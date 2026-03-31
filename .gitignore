@@ -16,8 +16,11 @@
 # Bootstrap- und Utility-Scripts
 !scripts/
 
-# Dokumentation
+# Dokumentation und KI-Agenten-Anweisungsdateien
 !README.md
+!AGENTS.md
+!CLAUDE.md
+!GEMINI.md
 
 # Spec-Kit Verfassung (nur constitution.md, keine Agenten-State-Dateien)
 !.specify/

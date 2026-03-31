@@ -1,0 +1,51 @@
+# Repository Guidelines
+
+## Project Structure & Module Organization
+This repository is the top-level `home-baseline` workspace bootstrap. Keep changes focused on the root documentation and the reusable scripts under `scripts/`.
+
+- `README.md`: bilingual usage and setup guide for the workspace baseline.
+- `scripts/bootstrap-workspace.sh`: Bash bootstrap flow for macOS/Linux.
+- `scripts/bootstrap-workspace.ps1`: PowerShell 7 bootstrap flow for Windows.
+- `scripts/install-hooks.*`: installs Git hooks into `.git/hooks/`.
+- `scripts/scan-agent-secrets.*`: manual or hook-driven secret scanning.
+- `scripts/hooks/pre-push`: shared hook copied into target repositories.
+
+There is no `src/` or formal test tree; the scripts themselves are the product.
+
+## Build, Test, and Development Commands
+There is no build step. Validate changes by running the scripts directly.
+
+```bash
+bash scripts/bootstrap-workspace.sh --dry-run FlutterProjects
+bash scripts/install-hooks.sh
+bash scripts/scan-agent-secrets.sh --fail-on-high .
+pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
+pwsh scripts/install-hooks.ps1 -Verbose
+pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
+```
+
+Use `--dry-run` and `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing files in `scripts/hooks/`.
+
+## Coding Style & Naming Conventions
+Bash scripts use `#!/usr/bin/env bash` plus `set -euo pipefail`. PowerShell scripts require PowerShell 7, `Set-StrictMode -Version Latest`, and `$ErrorActionPreference = 'Stop'`. Match the existing style:
+
+- Two-space indentation in Bash, four spaces in PowerShell.
+- Script filenames use kebab-case, for example `bootstrap-workspace.sh`.
+- PowerShell parameters use PascalCase, for example `-WorkspaceName`.
+- Prefer clear German-facing user messages; keep README content bilingual when editing existing sections.
+
+## Testing Guidelines
+Manual verification is the current test strategy. For bootstrap changes, test both shells in safe mode: Bash with `--dry-run`, PowerShell with `-WhatIf`. For hook or scanning changes, run the relevant installer, then execute the scanner against the repo root and confirm expected exit codes.
+
+## Commit & Pull Request Guidelines
+Recent history follows Conventional Commit prefixes: `chore:`, `docs:`, `feat:`. Keep subjects short and imperative, for example `feat: bootstrap-workspace aktualisiert ~/README.md automatisch`.
+
+Pull requests should include:
+
+- a short description of the workflow change,
+- affected scripts or docs,
+- manual verification commands you ran,
+- sample output or screenshots when user-visible console output changes.
+
+## Security & Configuration Tips
+Do not commit tokens, `.env` files, or local agent state. If you touch secret-scan behavior or hooks, mention the risk explicitly in the PR and re-run the scanner before pushing.
