@@ -166,7 +166,44 @@ if ($PSCmdlet.ShouldProcess($workspaceDir, 'Hooks installieren')) {
     Write-Host '    OK  Hooks installiert' -ForegroundColor Green
 }
 
-# --- Fertig --------------------------------------------------------------------
+# --- ~/README.md aktualisieren ------------------------------------------------
+
+$homeReadme = Join-Path $homeDir 'README.md'
+$newRow = "| ``~/$WorkspaceName/`` | [$RepoName](https://github.com/hindermath/$RepoName) | ``bootstrap-workspace`` |"
+
+if (Test-Path $homeReadme) {
+    Write-Host '→ Aktualisiere ~/README.md …'
+    $content = Get-Content $homeReadme -Raw
+    if ($content -match "~/$WorkspaceName/") {
+        Write-Host "    Eintrag für '$WorkspaceName' bereits vorhanden – übersprungen." -ForegroundColor Yellow
+    } elseif ($PSCmdlet.ShouldProcess($homeReadme, 'Workspace-Tabelle aktualisieren')) {
+        $updated = $content -replace '<!-- workspace-table-end -->', "$newRow`n<!-- workspace-table-end -->"
+        Set-Content -Path $homeReadme -Value $updated -Encoding UTF8 -NoNewline
+        Write-Host '    OK  ~/README.md aktualisiert' -ForegroundColor Green
+    }
+}
+
+# --- home-baseline committen und pushen ----------------------------------------
+
+$homeGit = Join-Path $homeDir '.git'
+if (Test-Path $homeGit -PathType Container) {
+    Write-Host '→ Committe Änderungen in home-baseline …'
+    if ($PSCmdlet.ShouldProcess('home-baseline', 'commit + push')) {
+        & git -C $homeDir add README.md
+        $msg = @"
+chore: $WorkspaceName in Workspace-Übersicht eingetragen
+
+Automatisch durch bootstrap-workspace.ps1 hinzugefügt.
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+"@
+        & git -C $homeDir commit -m $msg
+        & git -C $homeDir push
+        Write-Host '    OK  home-baseline aktualisiert und gepusht' -ForegroundColor Green
+    }
+}
+
+
 
 Write-Host ''
 Write-Host '╔══════════════════════════════════════════════════════════════════╗' -ForegroundColor Green

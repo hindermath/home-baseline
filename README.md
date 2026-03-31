@@ -17,8 +17,7 @@ private GitHub repository within seconds.*
 | `~/RiderProjects/` | [riderprojects-baseline](https://github.com/hindermath/riderprojects-baseline) | manuell |
 | `~/DataGripProjects/` | [datagrip-baseline](https://github.com/hindermath/datagrip-baseline) | manuell |
 | `~/C64Projects/` | [c64projects-baseline](https://github.com/hindermath/c64projects-baseline) | manuell |
-| `~/DataspellProjects/` | – | `bootstrap-workspace` |
-| `~/WebstormProjects/` | – | `bootstrap-workspace` |
+<!-- workspace-table-end -->
 
 ---
 

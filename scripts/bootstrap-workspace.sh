@@ -172,7 +172,41 @@ info "Installiere Git-Hooks …"
 run "bash '$WORKSPACE_DIR/scripts/install-hooks.sh'"
 ok "Hooks installiert"
 
-# --- Fertig --------------------------------------------------------------------
+# --- ~/README.md aktualisieren ------------------------------------------------
+
+HOME_README="$HOME_DIR/README.md"
+NEW_ROW="| \`~/$WORKSPACE_NAME/\` | [$REPO_NAME](https://github.com/hindermath/$REPO_NAME) | \`bootstrap-workspace\` |"
+
+if [ -f "$HOME_README" ]; then
+  info "Aktualisiere ~/README.md …"
+  if grep -qF "~/$WORKSPACE_NAME/" "$HOME_README"; then
+    log "Eintrag für '$WORKSPACE_NAME' bereits vorhanden – übersprungen."
+  else
+    if [ "$DRY_RUN" -eq 0 ]; then
+      sed -i '' "s|<!-- workspace-table-end -->|$NEW_ROW\n<!-- workspace-table-end -->|" "$HOME_README"
+      ok "~/README.md aktualisiert"
+    else
+      echo "  [dry-run] ~/README.md: neue Zeile würde eingefügt: $NEW_ROW"
+    fi
+  fi
+fi
+
+# --- home-baseline committen und pushen ----------------------------------------
+
+HOME_GIT="$HOME_DIR/.git"
+if [ -d "$HOME_GIT" ]; then
+  info "Committe Änderungen in home-baseline …"
+  run "git -C '$HOME_DIR' add README.md"
+  run "git -C '$HOME_DIR' commit -m 'chore: $WORKSPACE_NAME in Workspace-Übersicht eingetragen
+
+Automatisch durch bootstrap-workspace.sh hinzugefügt.
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
+  run "git -C '$HOME_DIR' push"
+  ok "home-baseline aktualisiert und gepusht"
+fi
+
+
 
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"
