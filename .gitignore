@@ -23,6 +23,17 @@
 !GEMINI.md
 !.github/
 !.github/copilot-instructions.md
+!.github/agents/
+!.github/prompts/
+
+# Spec-Kit Konfiguration und Templates
+!.specify/
+!.specify/init-options.json
+!.specify/memory/
+!.specify/memory/constitution.md
+!.specify/scripts/
+!.specify/scripts/bash/
+!.specify/templates/
 
 # Spec-Kit Verfassung (nur constitution.md, keine Agenten-State-Dateien)
 !.specify/
