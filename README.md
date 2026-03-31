@@ -76,11 +76,11 @@ Install-Module -Name GitAutomation       -Scope CurrentUser -Force  # Git als Cm
 bash ~/scripts/bootstrap-workspace.sh <Verzeichnisname>
 
 # Beispiele:
-bash ~/scripts/bootstrap-workspace.sh WebstormProjects
-bash ~/scripts/bootstrap-workspace.sh DataspellProjects dataspell-baseline "DataSpell Workspace"
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects
+bash ~/scripts/bootstrap-workspace.sh GoProjects go-baseline "Go-Workspace"
 
 # Vorher testen (kein Schreibzugriff):
-bash ~/scripts/bootstrap-workspace.sh --dry-run WebstormProjects
+bash ~/scripts/bootstrap-workspace.sh --dry-run FlutterProjects
 ```
 
 ### Windows (PowerShell Core >= 7)
@@ -90,11 +90,11 @@ bash ~/scripts/bootstrap-workspace.sh --dry-run WebstormProjects
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 
 # Beispiele:
-pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName WebstormProjects
-pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName DataspellProjects -RepoName dataspell-baseline -Description "DataSpell Workspace"
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName GoProjects -RepoName go-baseline -Description "Go-Workspace"
 
 # Vorher testen (kein Schreibzugriff):
-pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName WebstormProjects -WhatIf
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 ```
 
 Der Bootstrap-Vorgang erledigt automatisch:
