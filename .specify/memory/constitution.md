@@ -1,25 +1,35 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: (none) → 1.0.0  (initial ratification from template)
-Principles added:
-  I.   Security-First
-  II.  Cross-Platform Parity
-  III. Bootstrap Automation
-  IV.  Workspace Isolation
-  V.   Manual-First Verification
-Sections added:
-  - Script & Code Conventions
-  - Commit & Pull Request Standards
-  - Governance
+Version change: 1.0.0 → 1.1.0  (MINOR)
+Reason for bump:
+  - Principle I: Surgical subdirectory whitelist exception added for
+    .claude/commands/ and .gemini/commands/; parent-block-then-allow
+    .gitignore pattern documented.
+  - Principle IV: Tracked-file scope updated to reflect all newly
+    whitelisted categories (AI agent guidance files, Spec-Kit tooling,
+    agent commands, .specify/ directory).
+
+Modified principles:
+  I.  Security-First — added surgical whitelist exception paragraph
+  IV. Workspace Isolation — "tracks only root-level" → full category list
+
+Added sections:
+  None
+
+Removed sections:
+  None
+
 Templates reviewed:
-  ✅ .specify/templates/plan-template.md  — Constitution Check section is generic, no update needed
-  ✅ .specify/templates/spec-template.md  — generic template, no principle-driven changes required
-  ✅ .specify/templates/tasks-template.md — generic template, no principle-driven changes required
-  ✅ README.md                            — already reflects all principles; no update required
-  ✅ AGENTS.md                            — already reflects all principles; no update required
-  ✅ CLAUDE.md                            — already reflects all principles; no update required
-  ✅ GEMINI.md                            — already reflects all principles; no update required
+  ✅ .specify/templates/plan-template.md  — Constitution Check section is
+      generic; no principle-driven update required.
+  ✅ .specify/templates/spec-template.md  — no mandatory section changes.
+  ✅ .specify/templates/tasks-template.md — no task-category changes.
+  ✅ README.md                            — reflects current state; no update needed.
+  ✅ AGENTS.md                            — reflects current state; no update needed.
+  ✅ CLAUDE.md                            — reflects current state; no update needed.
+  ✅ GEMINI.md                            — reflects current state; no update needed.
+
 Deferred items:
   None — all placeholders resolved.
 -->
@@ -36,10 +46,23 @@ excluded by default (`/*`, `/.*`), and only explicitly listed safe entries are
 allowed.
 
 Non-negotiable rules:
-- AI agent state directories (`.claude/`, `.codex/`, `.gemini/`, `.junie/`,
-  `.opencode/`) MUST never be tracked in any Git repository.
 - Credential files (`.env*`, `*.key`, `*.pem`, `*secret*`, `.aws/`, `.ssh/`,
   `.kube/`, `.docker/`, `.gnupg/`) MUST never be tracked.
+- The sensitive root-level content of AI agent state directories MUST never
+  be tracked: `.claude/` (history, sessions, cache), `.codex/` (auth, SQLite
+  DBs), `.gemini/` (oauth_creds.json, google_accounts.json), `.junie/`
+  (history, logs), `.opencode/`.
+- **Surgical subdirectory exception**: A specific subdirectory within an
+  otherwise-blocked agent directory MAY be tracked if and only if it contains
+  exclusively tool-definition files (no credentials, no session data). The
+  `.gitignore` MUST use the block-then-allow pattern:
+  ```
+  !.claude/
+  .claude/*
+  !.claude/commands/
+  ```
+  Currently allowed subdirectories: `.claude/commands/` and `.gemini/commands/`
+  (Spec-Kit command definitions only).
 - Every workspace MUST have a `pre-push` hook installed that blocks pushes
   containing secret-like filenames or credential patterns (tokens matching
   `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private-key headers).
@@ -47,7 +70,9 @@ Non-negotiable rules:
   any change that touches hook or scanner logic.
 
 **Rationale**: Accidental secret exposure in a private repo is a critical security
-incident. Automated prevention at push time is the last reliable gate.
+incident. Automated prevention at push time is the last reliable gate. The
+surgical subdirectory exception enables Spec-Kit tool definitions to be
+synchronized across devices without exposing any credentials.
 
 ### II. Cross-Platform Parity
 
@@ -86,16 +111,29 @@ Each workspace directory under `~/` is an **independent Git repository**.
 Git submodules MUST NOT be used. Sub-repositories inside a workspace are
 detected by the bootstrap script and excluded via `.gitignore` entries.
 
+The `home-baseline` repo tracks the following categories of files (all others
+are excluded by the whitelist `.gitignore`):
+
+| Category | Tracked paths |
+|----------|--------------|
+| Infrastructure scripts | `scripts/` |
+| Documentation | `README.md`, `.gitignore`, `.gitconfig` |
+| AI agent guidance | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` |
+| Spec-Kit tooling | `.specify/` (config, templates, memory/constitution), `.agents/skills/`, `.github/agents/`, `.github/prompts/` |
+| Agent Spec-Kit commands | `.claude/commands/`, `.gemini/commands/` |
+
 Rules:
-- The `home-baseline` repo tracks only root-level infrastructure files
-  (scripts, `.gitignore`, `README.md`, AI agent guidance files).
 - Changes to `home-baseline` scripts do NOT auto-propagate to child workspaces;
   workspaces sync manually by re-running the relevant script or copying updates.
 - Each workspace owns its own `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and
   `.github/copilot-instructions.md`.
+- Adding a new tracked category MUST be accompanied by a constitution amendment
+  (PATCH or MINOR depending on scope).
 
 **Rationale**: Submodules create fragile cross-repo coupling. Independent repos
-give each workspace its own clean history and deployment lifecycle.
+give each workspace its own clean history and deployment lifecycle. Tracking
+AI agent guidance files and Spec-Kit tooling ensures consistent development
+environments across all devices (Mac Mini M4 Pro, MacBook Air M2).
 
 ### V. Manual-First Verification
 
@@ -146,10 +184,10 @@ Coding style rules that apply to all scripts in this repository:
 
 ## Governance
 
-This constitution supersedes all other practices documented in AGENTS.md,
-CLAUDE.md, GEMINI.md, and `.github/copilot-instructions.md` where they conflict.
-Those files provide runtime guidance for AI agents; this constitution defines
-non-negotiable structural rules.
+This constitution supersedes all other practices documented in `AGENTS.md`,
+`CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` where they
+conflict. Those files provide runtime guidance for AI agents; this constitution
+defines non-negotiable structural rules.
 
 **Amendment procedure**:
 1. Propose the change in a PR; describe the principle being added, changed, or removed.
@@ -170,9 +208,12 @@ version. It tracks the governance document's own evolution.
 **Compliance review**: Any change to `scripts/hooks/pre-push` or
 `scripts/scan-agent-secrets.*` MUST explicitly state in the PR which security
 rule (Principle I) it affects and include scanner output confirming no regressions.
+Any expansion of the surgical subdirectory exception (Principle I) MUST include
+a security justification confirming no credentials are present in the newly
+allowed path.
 
 **Runtime guidance**: Use `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` for
 per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-03-31
+**Version**: 1.1.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-03-31
