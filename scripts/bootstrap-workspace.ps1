@@ -1,0 +1,179 @@
+#Requires -Version 7
+<#
+.SYNOPSIS
+    Richtet ein neues Projektverzeichnis als privates GitHub-Repo ein.
+.DESCRIPTION
+    Automatisiert: git init · .gitignore · Scripts kopieren · gh repo create · push · Hooks installieren
+
+    Verwendung:
+        pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName WebstormProjects
+        pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName WebstormProjects -RepoName webstorm-baseline -Description "..."
+        pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName WebstormProjects -WhatIf
+.PARAMETER WorkspaceName
+    Name des Projektverzeichnisses unterhalb des Home-Verzeichnisses.
+.PARAMETER RepoName
+    Name des GitHub-Repositories. Standard: <workspacename-lowercased>-baseline
+.PARAMETER Description
+    Beschreibung für das GitHub-Repository.
+#>
+[CmdletBinding(SupportsShouldProcess)]
+param(
+    [Parameter(Mandatory)][string] $WorkspaceName,
+    [string] $RepoName      = '',
+    [string] $Description   = ''
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+$homeDir       = $HOME
+$workspaceDir  = Join-Path $homeDir $WorkspaceName
+$scriptsSource = Join-Path $homeDir 'scripts'
+
+if (-not $RepoName) {
+    $RepoName = ($WorkspaceName -replace 'Projects$', '-baseline' -replace ' ', '-').ToLower()
+}
+if (-not $Description) {
+    $Description = "Gemeinsame Workspace-Konfiguration für $WorkspaceName"
+}
+
+# --- Vorabprüfungen ------------------------------------------------------------
+
+if (-not (Test-Path $workspaceDir -PathType Container)) {
+    Write-Error "Verzeichnis '$workspaceDir' existiert nicht."
+}
+if (Test-Path (Join-Path $workspaceDir '.git') -PathType Container) {
+    Write-Error "'$workspaceDir' ist bereits ein Git-Repository."
+}
+if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+    Write-Error "gh (GitHub CLI) ist nicht installiert."
+}
+
+# --- Zusammenfassung -----------------------------------------------------------
+
+Write-Host ''
+Write-Host '╔══════════════════════════════════════════════════════════════════╗' -ForegroundColor Cyan
+Write-Host '║  bootstrap-workspace – Neue Workspace-Einrichtung               ║' -ForegroundColor Cyan
+Write-Host '╠══════════════════════════════════════════════════════════════════╣' -ForegroundColor Cyan
+Write-Host "║  Verzeichnis : $($workspaceDir.PadRight(51))║" -ForegroundColor Cyan
+Write-Host "║  GitHub-Repo : $("hindermath/$RepoName (privat)".PadRight(51))║" -ForegroundColor Cyan
+Write-Host '╚══════════════════════════════════════════════════════════════════╝' -ForegroundColor Cyan
+Write-Host ''
+
+# --- Sub-Repos ermitteln -------------------------------------------------------
+
+Write-Host '→ Suche bestehende Sub-Repositories …'
+$subRepos = Get-ChildItem -Path $workspaceDir -Directory -Recurse -Depth 1 |
+    Where-Object { Test-Path (Join-Path $_.FullName '.git') -PathType Container } |
+    Select-Object -ExpandProperty Name
+$subRepos | ForEach-Object { Write-Host "    Gefunden: $_/" }
+
+# --- .gitignore erstellen ------------------------------------------------------
+
+Write-Host '→ Erstelle .gitignore …'
+$gitignorePath = Join-Path $workspaceDir '.gitignore'
+if ($PSCmdlet.ShouldProcess($gitignorePath, '.gitignore erstellen')) {
+    $lines  = @('# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)')
+    $lines += $subRepos | ForEach-Object { "$_/" }
+    $lines += @(
+        '',
+        '# macOS',
+        '.DS_Store',
+        '.AppleDouble',
+        '.LSOverride',
+        '',
+        '# JetBrains IDEs',
+        '.idea/',
+        '*.iws',
+        '*.iml',
+        '',
+        '# VS Code (lokale Einstellungen)',
+        '.vscode/c_cpp_properties.json',
+        '.vscode/settings.json',
+        '',
+        '# Build-Artefakte',
+        'bin/',
+        'obj/',
+        'build/',
+        'node_modules/'
+    )
+    $lines | Set-Content -Path $gitignorePath -Encoding UTF8
+    Write-Host '    OK  .gitignore erstellt' -ForegroundColor Green
+}
+
+# --- Scripts kopieren ----------------------------------------------------------
+
+Write-Host '→ Kopiere Scripts …'
+$targetScripts = Join-Path $workspaceDir 'scripts'
+$targetHooks   = Join-Path $targetScripts 'hooks'
+
+if ($PSCmdlet.ShouldProcess($targetScripts, 'Scripts kopieren')) {
+    New-Item -ItemType Directory -Path $targetScripts -Force | Out-Null
+    New-Item -ItemType Directory -Path $targetHooks   -Force | Out-Null
+    $filesToCopy = @(
+        'scan-agent-secrets.sh',
+        'scan-agent-secrets.ps1',
+        'install-hooks.sh',
+        'install-hooks.ps1'
+    )
+    foreach ($file in $filesToCopy) {
+        Copy-Item (Join-Path $scriptsSource $file) $targetScripts -Force
+    }
+    Copy-Item (Join-Path $scriptsSource 'hooks' 'pre-push') $targetHooks -Force
+    if ($IsLinux -or $IsMacOS) {
+        Get-ChildItem $targetScripts -Filter '*.sh' | ForEach-Object { & chmod +x $_.FullName }
+        & chmod +x (Join-Path $targetHooks 'pre-push')
+    }
+    Write-Host '    OK  Scripts kopiert' -ForegroundColor Green
+}
+
+# --- git init + commit ---------------------------------------------------------
+
+Write-Host '→ Initialisiere Git-Repository …'
+if ($PSCmdlet.ShouldProcess($workspaceDir, 'git init + commit')) {
+    & git -C $workspaceDir init
+    & git -C $workspaceDir add .gitignore scripts/
+    $commitMsg = @"
+chore: initiale Baseline-Konfiguration für $WorkspaceName
+
+- .gitignore        – schließt Sub-Repos und Artefakte aus
+- scripts/          – Secret-Scan, Hook-Installation (Bash + PowerShell)
+
+Nach dem Clonen auf neuem Gerät:
+  bash scripts/install-hooks.sh       (macOS/Linux)
+  pwsh scripts/install-hooks.ps1      (Windows)
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+"@
+    & git -C $workspaceDir commit -m $commitMsg
+    Write-Host '    OK  Initialer Commit erstellt' -ForegroundColor Green
+}
+
+# --- GitHub-Repo erstellen und pushen ------------------------------------------
+
+Write-Host "→ Erstelle privates GitHub-Repository '$RepoName' …"
+if ($PSCmdlet.ShouldProcess("github.com/hindermath/$RepoName", 'gh repo create')) {
+    & gh repo create $RepoName --private --description $Description `
+        --source $workspaceDir --remote origin --push
+    Write-Host '    OK  GitHub-Repo erstellt und gepusht' -ForegroundColor Green
+}
+
+# --- Hooks installieren --------------------------------------------------------
+
+Write-Host '→ Installiere Git-Hooks …'
+if ($PSCmdlet.ShouldProcess($workspaceDir, 'Hooks installieren')) {
+    pwsh (Join-Path $targetScripts 'install-hooks.ps1')
+    Write-Host '    OK  Hooks installiert' -ForegroundColor Green
+}
+
+# --- Fertig --------------------------------------------------------------------
+
+Write-Host ''
+Write-Host '╔══════════════════════════════════════════════════════════════════╗' -ForegroundColor Green
+Write-Host '║  Einrichtung abgeschlossen!                                      ║' -ForegroundColor Green
+Write-Host '╚══════════════════════════════════════════════════════════════════╝' -ForegroundColor Green
+Write-Host ''
+Write-Host "  Repo  : https://github.com/hindermath/$RepoName"
+Write-Host "  Clone : git clone https://github.com/hindermath/$RepoName.git ~/$WorkspaceName"
+Write-Host "  Hooks : bash scripts/install-hooks.sh  (oder pwsh scripts/install-hooks.ps1)"
+Write-Host ''

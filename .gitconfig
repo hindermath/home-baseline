@@ -1,0 +1,5 @@
+[user]
+	name = Thorsten Hindermann
+	email = hindermath@googlemail.com
+[core]
+	autocrlf = input

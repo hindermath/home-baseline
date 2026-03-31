@@ -1,0 +1,34 @@
+# Home-Verzeichnis: Whitelist-Ansatz
+# Alles wird ignoriert; nur explizit aufgeführte Dateien/Verzeichnisse werden getrackt.
+
+# --- Alles ignorieren ----------------------------------------------------------
+/*
+/.*
+
+# --- Explizit erlaubt (sicher, kein Secret-Risiko) ----------------------------
+
+# Diese Datei selbst
+!.gitignore
+
+# Git-Globalkonfiguration (enthält keine Credentials)
+!.gitconfig
+
+# Bootstrap- und Utility-Scripts
+!scripts/
+
+# Dokumentation
+!README.md
+
+# --- Kritische Verzeichnisse / Dateien (niemals tracken) ----------------------
+# .aws/          – AWS-Credentials
+# .kube/         – Kubernetes-Configs mit Tokens
+# .docker/       – Docker-Login-Tokens
+# .ssh/          – SSH-Schlüssel
+# .gnupg/        – GPG-Schlüssel
+# .claude/       – Claude-History, Sessions, Cache (sensibel)
+# .codex/        – auth.json, SQLite-DBs, Sessions (sensibel)
+# .gemini/       – oauth_creds.json, google_accounts.json (sensibel)
+# .junie/        – History, Logs (sensibel)
+# .gradle/       – ggf. Signing-Keys
+# .npmrc         – npm-Auth-Tokens
+# .pypirc        – PyPI-Credentials
