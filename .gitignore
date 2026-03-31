@@ -19,6 +19,11 @@
 # Dokumentation
 !README.md
 
+# Spec-Kit Verfassung (nur constitution.md, keine Agenten-State-Dateien)
+!.specify/
+!.specify/memory/
+!.specify/memory/constitution.md
+
 # --- Kritische Verzeichnisse / Dateien (niemals tracken) ----------------------
 # .aws/          – AWS-Credentials
 # .kube/         – Kubernetes-Configs mit Tokens
