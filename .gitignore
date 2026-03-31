@@ -21,6 +21,8 @@
 !AGENTS.md
 !CLAUDE.md
 !GEMINI.md
+!.github/
+!.github/copilot-instructions.md
 
 # Spec-Kit Verfassung (nur constitution.md, keine Agenten-State-Dateien)
 !.specify/

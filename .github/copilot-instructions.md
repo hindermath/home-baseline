@@ -1,0 +1,85 @@
+# Copilot Instructions – home-baseline
+
+This is the top-level workspace bootstrap for `~/` (user: `hindermath`).
+It tracks only safe infrastructure files via a whitelist `.gitignore` and distributes reusable scripts to child workspaces.
+
+## Repository Purpose
+
+`home-baseline` manages workspace initialisation: it provides scripts that turn a plain directory into a private GitHub repo with `.gitignore`, standard scripts, and a `pre-push` secret-scanning hook installed. It does **not** contain application source code.
+
+## Validation Commands
+
+There is no build step. Validate changes by running scripts directly.
+
+```bash
+# Bash (macOS / Linux)
+bash scripts/bootstrap-workspace.sh --dry-run FlutterProjects   # preview, no writes
+bash scripts/install-hooks.sh
+bash scripts/scan-agent-secrets.sh --fail-on-high .
+
+# PowerShell 7+ (Windows)
+pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
+pwsh scripts/install-hooks.ps1 -Verbose
+pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
+```
+
+Always use `--dry-run` / `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing anything under `scripts/hooks/`.
+
+## Architecture
+
+### Bootstrap flow (`bootstrap-workspace.sh` / `.ps1`)
+
+1. Detect existing sub-repos (`.git/` directories) inside the target directory → add them to `.gitignore`
+2. Copy `scripts/` (secret scanner, hook installer, `pre-push` hook) into workspace
+3. `git init` + initial commit
+4. `gh repo create` (private) + push
+5. `bash scripts/install-hooks.sh` — copies `scripts/hooks/pre-push` → `.git/hooks/pre-push`
+6. Append a row to `~/README.md` workspace table and commit/push `home-baseline`
+
+### Secret-scanning infrastructure
+
+- **`scripts/hooks/pre-push`** — runs on every `git push`; scans only git-tracked files (`.gitignore` respected); blocks push with exit 2 on HIGH findings (secret-like filenames or content patterns).
+- **`scripts/scan-agent-secrets.sh` / `.ps1`** — manual scanner targeting AI-agent directories (`.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/`); accepts `--fail-on-high` / `-FailOnHigh` for CI use; requires `rg` (ripgrep).
+
+### `.gitignore` whitelist pattern
+
+The root `.gitignore` denies everything (`/*` and `/.*`) then explicitly allows safe entries only:
+```
+!.gitignore
+!.gitconfig
+!scripts/
+!README.md
+```
+Credential directories (`.aws/`, `.ssh/`, `.kube/`, `.docker/`, `.gnupg/`) and agent state (`.claude/`, `.codex/`, `.gemini/`, `.junie/`) are never tracked.
+
+### Child workspace inheritance
+
+Each bootstrapped workspace (e.g. `~/RiderProjects/`, `~/C64Projects/`) is an independent Git repo. It inherits a copy of `scripts/` and the `pre-push` hook but has its own `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`. Changes to home-baseline do **not** auto-propagate; workspaces must manually sync.
+
+## Code Conventions
+
+### Shell scripts
+- Bash: `#!/usr/bin/env bash` + `set -euo pipefail`
+- PowerShell: `#Requires -Version 7` + `Set-StrictMode -Version Latest` + `$ErrorActionPreference = 'Stop'`
+- Indentation: 2 spaces (Bash), 4 spaces (PowerShell)
+- Filenames: kebab-case (`bootstrap-workspace.sh`)
+- PowerShell parameters: PascalCase (`-WorkspaceName`, `-WhatIf`)
+- Bash variables: lowercase_underscore
+
+### User-facing messages
+German primary (`Fehler:`, `Verzeichnis nicht gefunden`), English acceptable in code comments. Box-drawing characters (╔, ║, ╚, ✓, →) used for visual output blocks.
+
+### Commits
+Follow Conventional Commits: `chore:`, `docs:`, `feat:`, `fix:`. Subjects are short and imperative (example from history: `feat: bootstrap-workspace aktualisiert ~/README.md automatisch`). Always include the trailer:
+```
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+```
+
+### Pull requests
+Include: affected scripts/docs, manual verification commands run (`--dry-run` output), and sample console output when user-visible output changes. For any change touching secret-scan or hook logic, explicitly state the risk and include scanner output.
+
+## Security Rules
+
+- Never commit tokens, `.env` files, or local agent state (`.claude/`, `.codex/`, `.gemini/`).
+- Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` before pushing any change that touches hook or scanner logic.
+- The pre-push hook detects patterns like `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private key headers, and secret-named files (`.env*`, `*secret*`, `*.key`, `*.pem`).
