@@ -35,6 +35,19 @@
 !.specify/scripts/bash/
 !.specify/templates/
 
+# Copilot-Agenten-Skills (keine Credentials)
+!.agents/
+
+# Claude Spec-Kit Commands (nur commands/, NICHT root — root enthält history, sessions, cache)
+!.claude/
+.claude/*
+!.claude/commands/
+
+# Gemini Spec-Kit Commands (nur commands/, NICHT root — root enthält oauth_creds.json)
+!.gemini/
+.gemini/*
+!.gemini/commands/
+
 # Spec-Kit Verfassung (nur constitution.md, keine Agenten-State-Dateien)
 !.specify/
 !.specify/memory/
