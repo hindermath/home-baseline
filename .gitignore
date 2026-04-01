@@ -26,6 +26,12 @@
 !.github/agents/
 !.github/prompts/
 
+# Lastenheft-Dateien und Spezifikationen (alle Ebenen)
+!Lastenheft*.md
+!STATS.md
+!STATS-archive*.md
+!specs/
+
 # Spec-Kit Konfiguration und Templates
 !.specify/
 !.specify/init-options.json
@@ -48,10 +54,7 @@
 .gemini/*
 !.gemini/commands/
 
-# Spec-Kit Verfassung (nur constitution.md, keine Agenten-State-Dateien)
-!.specify/
-!.specify/memory/
-!.specify/memory/constitution.md
+# Spec-Kit Verfassung (Duplikat-Eintrag entfernt — bereits oben definiert)
 
 # --- Kritische Verzeichnisse / Dateien (niemals tracken) ----------------------
 # .aws/          – AWS-Credentials

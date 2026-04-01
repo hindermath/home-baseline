@@ -17,6 +17,7 @@ private GitHub repository within seconds.*
 | `~/RiderProjects/` | [riderprojects-baseline](https://github.com/hindermath/riderprojects-baseline) | manuell |
 | `~/DataGripProjects/` | [datagrip-baseline](https://github.com/hindermath/datagrip-baseline) | manuell |
 | `~/C64Projects/` | [c64projects-baseline](https://github.com/hindermath/c64projects-baseline) | manuell |
+| `\~/DataGripProjects/InventarDb/` | — |
 <!-- workspace-table-end -->
 
 ---
@@ -154,3 +155,74 @@ Remove-Item home-baseline-tmp -Recurse -Force
 | macOS | ✅ nativ | – |
 | Linux | ✅ nativ | – |
 | Windows | ✅ PowerShell Core | Git for Windows + pwsh >= 7 |
+
+---
+
+## Für Azubis / For Apprentices
+
+Willkommen! Diese Anleitung führt dich Schritt für Schritt durch den Aufbau eines neuen C#-Projekts
+mit dem **Workspace Homogeneity Guardian** — ohne Senior-Hilfe und nur mit freien Tools.
+
+Welcome! This guide walks you through setting up a new C# project with the **Workspace Homogeneity
+Guardian** step by step — without senior help and using only free tools.
+
+### Voraussetzungen prüfen / Check Prerequisites
+
+| Tool | Version | Installation (Ubuntu 22.04) |
+|------|---------|-----------------------------|
+| `git` | ≥ 2.x | `sudo apt install git` |
+| `bash` | ≥ 5.x | `sudo apt install bash` (oder vorinstalliert) |
+| `ripgrep` | aktuell | `sudo apt install ripgrep` |
+| `gh` (optional) | aktuell | [cli.github.com](https://cli.github.com) |
+
+> **Hinweis / Note**: Wenn `sudo` fehlt, frage deine IT-Abteilung.
+> If `sudo` is unavailable, contact your IT department.
+
+### Schritt-für-Schritt / Step by Step
+
+**Schritt 1 / Step 1**: Dieses Repository auf dem neuen Gerät einrichten:
+
+```bash
+cd ~
+git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+cp -r home-baseline-tmp/scripts ~/scripts
+cp home-baseline-tmp/.gitignore ~/.gitignore
+bash ~/scripts/install-hooks.sh
+rm -rf home-baseline-tmp
+```
+
+**Schritt 2 / Step 2**: Neues C#-Projekt bootstrappen:
+
+```bash
+# Beispiel: neues Projekt "MeinProjekt" im RiderProjects-Workspace
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --no-remote --no-agents
+```
+
+**Schritt 3 / Step 3**: Compliance prüfen:
+
+```bash
+bash ~/scripts/check-homogeneity.sh ~/
+```
+
+**Schritt 4 / Step 4**: WARNs beheben — typische Probleme:
+
+| Fehler / Error | Ursache / Cause | Lösung / Fix |
+|----------------|-----------------|--------------|
+| `FAIL: file missing` | Pflichtdatei fehlt | Bootstrap erneut ausführen mit `--force` |
+| `WARN: bilingual-section-missing` | Kein DE+EN-Heading | Abschnitt `## Überblick / Overview` hinzufügen |
+| `WARN: hook-missing` | pre-push Hook nicht installiert | `bash ~/scripts/install-hooks.sh` |
+| `rg: command not found` | ripgrep fehlt | `sudo apt install ripgrep` |
+| `Permission denied` | Dateisystemproblem | `chown -R $USER .` |
+| `git: command not found` | Git fehlt | `sudo apt install git` |
+
+**Schritt 5 / Step 5**: Ziel erreicht — Score ≥ 90% bedeutet alles ist korrekt konfiguriert.
+
+Goal reached — score ≥ 90% means everything is correctly configured.
+
+### Neues Projekt mit Compliance-Gate / New Project with Compliance Gate
+
+```bash
+# Bootstrap + sofortiger Compliance-Check
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --no-remote --no-agents && \
+  bash ~/scripts/check-homogeneity.sh ~/RiderProjects/MeinProjekt
+```
