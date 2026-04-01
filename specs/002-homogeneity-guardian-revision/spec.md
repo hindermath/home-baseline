@@ -245,6 +245,14 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   `<!-- EN: [Dateiname] placeholder\n[DE-Zusammenfassung als Kommentar]\n-->`),
   `## Barrierefreiheit / Accessibility (A11Y)`, `## Spec-kit-Workflow`,
   `## Für Azubis / For Apprentices`.
+  Der Body-Inhalt der drei Abschnitte wird aus **Template-Dateien** gelesen:
+  `scripts/templates/a11y-section.md`, `scripts/templates/speckit-workflow-section.md`,
+  `scripts/templates/azubis-section.md`. Fehlt eine Template-Datei, bricht das Skript
+  mit `ERROR: template not found: scripts/templates/{name}` ab.
+  **Argumentverhalten**: Wird ein Workspace-Name übergeben, migriert das Skript nur diesen
+  Workspace. Wird **kein Argument** übergeben, migriert es alle Level-1-Workspaces in `~/`
+  sequentiell (Alle-auf-einmal-Modus); jeder Workspace durchläuft denselben
+  Preview-→-Commit-Zyklus.
   **Scope der Bilingualisierung**: ausschließlich `README.md`, `CLAUDE.md`, `GEMINI.md`,
   `AGENTS.md`, `.github/copilot-instructions.md`, `STATS.md` (nur Kopfzeilen) und `constitution.md`.
   Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) und sonstige `.md`-Dateien
@@ -282,6 +290,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   FR-001–FR-021 des Parent-Features `001-workspace-homogeneity-guardian` implementiert werden.
   Der Compliance-Score wird berechnet als `score = ✓ / (✓ + ✗) × 100` (ungewichtet; WARN zählt
   nicht als Fehler). Im `--json`-Modus wird der Score als Integer `0–100` ausgegeben.
+  Jeder Failure-Eintrag ist ein strukturiertes Objekt:
+  `{"file": "<relativer Pfad>", "check": "<Prüfname>", "level": <0|1|2>}`.
+  Beispiel-Ausgabe mit Befunden:
+  `{"score": 75, "failures": [{"file": "README.md", "check": "A11Y section", "level": 0}], "warnings": []}`.
 
 - **FR-REV-B02**: `scripts/bootstrap-project.sh` / `.ps1` MUSS gemäß den Anforderungen
   FR-009–FR-016 des Parent-Features implementiert werden.
@@ -293,6 +305,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-B04**: `scripts/init-stats.sh` / `.ps1` MUSS eine initiale `STATS.md` auf
   Level 0, 1 und 2 erzeugen, die den Ist-Zustand als Baseline festhält, und den
   STATS.md-Schema-Standard aus FR-007/008 des Parent-Features einhält.
+  Zur Score-Ermittlung ruft `init-stats.sh` intern `check-homogeneity.sh --json` auf
+  und extrahiert den `score`-Wert aus dem JSON-Output. Ist `check-homogeneity.sh`
+  nicht ausführbar, bricht das Skript mit
+  `ERROR: check-homogeneity.sh nicht gefunden — zuerst FR-REV-B01 implementieren` ab.
 
 - **FR-REV-B05**: `scripts/bootstrap-project.sh` MUSS spec-kit im neuen Projekt
   initialisieren: `.specify/`-Verzeichnis anlegen, `create-new-feature.sh` installieren,
@@ -311,8 +327,8 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 #### REV-C — .gitignore-Bereinigung / .gitignore Cleanup
 
-- **FR-REV-C01**: Die Root-`.gitignore` MUSS die Einträge `!Lastenheft*.md` und
-  `!STATS.md` enthalten, damit diese Dateien versioniert werden.
+- **FR-REV-C01**: Die Root-`.gitignore` MUSS die Einträge `!Lastenheft*.md`,
+  `!STATS.md` und `!scripts/templates/` enthalten, damit diese Dateien versioniert werden.
 
 - **FR-REV-C02**: Der doppelte Eintrag `!.specify/memory/` in der Root-`.gitignore`
   MUSS entfernt werden (Duplikat-Bereinigung).
@@ -402,8 +418,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **NFR-REV-07 TUI-A11Y-Prüfung / TUI A11Y Check**: `check-homogeneity.sh` MUSS als
   Teil des Compliance-Checks verifizieren, dass keine Datei in `scripts/` ANSI-Escape-
-  Sequenzen enthält (`grep -rP '\x1b\['`). Befunde werden als `✗`-Zeile im Report
-  ausgegeben und senken den Compliance-Score. *(behebt SW-17)*
+  Sequenzen enthält. Erkennungsmuster: `grep -rP '\x1b\[|\\033\[|\\e\['`
+  (erfasst literal ESC-Byte, Oktal-Notation `\033[` und Bash-Kurzform `\e[`).
+  Befunde werden als `✗`-Zeile im Report ausgegeben und senken den Compliance-Score.
+  *(behebt SW-17)*
 
 ---
 
@@ -477,7 +495,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 | Revisions-FR | Bezug / Reference |
 |---|---|
-| FR-REV-A01–A06 | FR-REV-G01–G03 (README-Dokumentation, Parent 001) |
+| FR-REV-A01–A06 | FR-001–FR-006 (Dateistruktur/-präsenz, Parent 001); `constitution.md` (Versionsextraktion FR-REV-A03) |
 | FR-REV-B01 | FR-001–FR-021 (Homogenitätsprüfung, Parent 001) |
 | FR-REV-B02 | FR-009–FR-016 (Bootstrap, Parent 001) |
 | FR-REV-B03 | FR-012 (Dateibenennungs-Konvention, Parent 001) |
@@ -593,3 +611,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Soll `bootstrap-project.sh` `speckit specify` aktiv aufrufen oder nur vorbereiten (FR-REV-B05)?**
   → A: Aktiv aufrufen — jedoch `speckit specify init --here --ai {agent}` (AI-Initialisierung, keine Feature-Spec). Befehle: `speckit specify init --here --ai claude`, `--ai gemini`, `--ai copilot`, `--ai codex --ai-skills`. Bei fehlender CLI: WARN + manueller Hinweis. (→ FR-REV-B05)
+
+- **Q: Ist das ANSI-Erkennungsmuster in NFR-REV-07 vollständig (nur `\x1b\[` oder auch Text-Notationen)?**
+  → A: Erweitert auf `grep -rP '\x1b\[|\\033\[|\\e\['` — erfasst literal ESC-Byte, Oktal-Notation `\033[` und Bash-Kurzform `\e[`. (→ NFR-REV-07)
+
+- **Q: Welches Format haben Failure-Einträge im `--json`-Output von `check-homogeneity.sh`?**
+  → A: Strukturierte Objekte: `{"file": "<relativer Pfad>", "check": "<Prüfname>", "level": <0|1|2>}`. Beispiel: `{"score": 75, "failures": [{"file": "README.md", "check": "A11Y section", "level": 0}], "warnings": []}`. (→ FR-REV-B01)
+
+- **Q: Was wird als Body-Inhalt unter den von `migrate-workspace.sh` eingefügten Abschnitts-Überschriften eingefügt?**
+  → A: Inhalt aus Template-Dateien in `scripts/templates/`: `a11y-section.md`, `speckit-workflow-section.md`, `azubis-section.md`. Fehlende Template → `ERROR` + Abbruch. `scripts/templates/` auch in `.gitignore`-Whitelist aufgenommen. (→ FR-REV-A01, FR-REV-C01)
+
+- **Q: Was passiert, wenn `migrate-workspace.sh` ohne Workspace-Argument aufgerufen wird?**
+  → A: Alle Level-1-Workspaces in `~/` werden sequentiell migriert (Alle-auf-einmal-Modus); jeder Workspace durchläuft denselben Preview-→-Commit-Zyklus. (→ FR-REV-A01)
+
+- **Q: Wie ermittelt `init-stats.sh` den Compliance-Score für den Baseline-Eintrag?**
+  → A: Intern `check-homogeneity.sh --json` aufrufen und `score`-Wert extrahieren. Ist check-homogeneity.sh nicht vorhanden → `ERROR` + Abbruch. (→ FR-REV-B04)
