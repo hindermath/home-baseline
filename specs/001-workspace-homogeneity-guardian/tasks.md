@@ -137,8 +137,8 @@ Azubi-Anleitung in `~/README.md §Für Azubis` von Anfang bis Ende befolgen →
 - [x] T045 Aktualisiere `specs/001-workspace-homogeneity-guardian/plan.md` §Constitution Post-Design Re-Check: markiere alle `.gitignore`-Punkte als `✅ erledigt`; SHA-256-Vergleich-Notiz bestätigen
 - [x] T046 Finale Compliance-Prüfung: `bash scripts/check-homogeneity.sh --verbose ~/`; Ziel: Score ≥ 90 %; alle verbleibenden WARNs dokumentieren oder beheben
 - [x] T047 [P] Finale PS-Syntax-Prüfung: `pwsh -Command "& { . scripts/check-homogeneity.ps1; . scripts/bootstrap-project.ps1 }"` ohne Fehler
-- [ ] T048 Alle neuen Dateien stagen: `git add scripts/ specs/001-workspace-homogeneity-guardian/tasks.md ~/README.md`; Commit: `feat(scripts): check-homogeneity + bootstrap-project implementation complete`
-- [ ] T049 Push: `git push origin 001-workspace-homogeneity-guardian`; bestätige pre-push Hook läuft + kein Abbruch durch Secret-Scanner
+- [x] T048 Alle neuen Dateien stagen: `git add scripts/ specs/001-workspace-homogeneity-guardian/tasks.md ~/README.md`; Commit: `feat(scripts): check-homogeneity + bootstrap-project implementation complete`
+- [x] T049 Push: `git push origin 001-workspace-homogeneity-guardian`; bestätige pre-push Hook läuft + kein Abbruch durch Secret-Scanner
 
 ---
 
