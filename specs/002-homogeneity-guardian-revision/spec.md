@@ -8,130 +8,6 @@
 **Depends on / Abhängig von**: `001-workspace-homogeneity-guardian` (Parent-Feature)  
 **Verfassung / Constitution**: v1.1.0
 
-## User Scenarios & Testing *(mandatory)*
-
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
-
-### User Story 1 - [Brief Title] (Priority: P1)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-### User Story 2 - [Brief Title] (Priority: P2)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-### User Story 3 - [Brief Title] (Priority: P3)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-[Add more user stories as needed, each with an assigned priority]
-
-### Edge Cases
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
-
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
-
-## Requirements *(mandatory)*
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
-
-### Functional Requirements
-
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
-
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
-### Measurable Outcomes
-
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
-
-## Assumptions
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right assumptions based on reasonable defaults
-  chosen when the feature description did not specify certain details.
--->
-
-- [Assumption about target users, e.g., "Users have stable internet connectivity"]
-- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
-- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
-- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
-
----
-
 ## Zweck / Purpose
 
 Ein Live-Audit der `home-baseline`-Umgebung hat 18 Schwachstellen (SW-01–SW-18) aufgedeckt.
@@ -360,8 +236,14 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-A01**: Das System MUSS ein Skript `scripts/migrate-workspace.sh` (Bash) und
   `scripts/migrate-workspace.ps1` (PowerShell 7+) bereitstellen, das idempotent alle
   fehlenden Pflichtabschnitte in bestehende Dateien einfügt:
-  bilingualen EN-Platzhalter-Block, `## Barrierefreiheit / Accessibility (A11Y)`,
-  `## Spec-kit-Workflow`, `## Für Azubis / For Apprentices`.
+  bilingualen EN-Platzhalter-Block (am **Dateiende** als einziger Block im Format
+  `<!-- EN: [Dateiname] placeholder\n[DE-Zusammenfassung als Kommentar]\n-->`),
+  `## Barrierefreiheit / Accessibility (A11Y)`, `## Spec-kit-Workflow`,
+  `## Für Azubis / For Apprentices`.
+  **Scope der Bilingualisierung**: ausschließlich `README.md`, `CLAUDE.md`, `GEMINI.md`,
+  `AGENTS.md`, `copilot-instructions.md`, `STATS.md` (nur Kopfzeilen) und `constitution.md`.
+  Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) und sonstige `.md`-Dateien
+  bleiben unberührt.
 
 - **FR-REV-A02**: Das Migrationsskript MUSS `--dry-run` / `-WhatIf` unterstützen
   und jeden geplanten Schreibvorgang vor der Ausführung anzeigen (außer im `--yes`/`-Force`-Modus).
@@ -375,10 +257,17 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-A05**: Das Migrationsskript DARF NIEMALS bestehende Inhalte überschreiben —
   ausschließlich Einfügungen und Ergänzungen am Dateiende oder an markierten Stellen.
 
+- **FR-REV-A06**: Bei Teilfehler während der Migration eines Workspace MUSS das Skript
+  alle Änderungen des betroffenen Workspace via `git stash` zurückrollen, eine Fehlermeldung
+  mit Diff auf stderr ausgeben, und danach mit dem nächsten Workspace fortfahren (andere
+  Workspaces bleiben unberührt).
+
 #### REV-B — Fehlende Skripte / Missing Scripts
 
 - **FR-REV-B01**: `scripts/check-homogeneity.sh` / `.ps1` MUSS gemäß den Anforderungen
   FR-001–FR-021 des Parent-Features `001-workspace-homogeneity-guardian` implementiert werden.
+  Der Compliance-Score wird berechnet als `score = ✓ / (✓ + ✗) × 100` (ungewichtet; WARN zählt
+  nicht als Fehler). Im `--json`-Modus wird der Score als Integer `0–100` ausgegeben.
 
 - **FR-REV-B02**: `scripts/bootstrap-project.sh` / `.ps1` MUSS gemäß den Anforderungen
   FR-009–FR-016 des Parent-Features implementiert werden.
@@ -424,6 +313,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   Constitution-Versionsänderungen die neue `constitution.md` in alle Child-Workspaces
   kopieren, je Workspace einen Git-Commit `chore: sync constitution to v{version}` erzeugen,
   und eine Zusammenfassung der geänderten Workspaces ausgeben.
+  Die Versionsnummer wird per `grep` aus der ersten Zeile der `constitution.md` extrahiert
+  (Format: `# Constitution vMAJOR.MINOR.PATCH`). Fehlt diese Zeile, bricht das Skript mit
+  `ERROR: constitution.md hat keine Versionszeile` ab.
 
 - **FR-REV-F02**: Das Skript MUSS `--dry-run` / `-WhatIf` unterstützen; bei Fehler
   MUSS es alle Teiländerungen zurückrollen (`git stash`).
@@ -472,8 +364,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   festhält — Vergleichspunkt für spätere Scans.
 - **Constitution-Propagation**: Mechanismus zur synchronen Verteilung einer neuen
   Constitution-Version in alle Child-Repos.
-- **EN-Platzhalter**: Markierter Block `<!-- EN: placeholder -->` am Ende einer
-  Datei, der bilingual ergänzt werden muss, aber noch nicht übersetzt ist.
+- **EN-Platzhalter**: Markierter Block `<!-- EN: [Dateiname] placeholder -->` am
+  **Ende** einer Pflichtdatei (ein Block pro Datei); wird von `migrate-workspace.sh`
+  eingefügt, wenn die Datei noch keinen EN-Abschnitt enthält.
 
 ---
 
@@ -576,3 +469,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Sollen GitHub-Actions-Workflows auch auf PRs laufen oder nur auf Push?**
   → A: Auf beides (`push` + `pull_request`) für maximale Frühwarnung.
+
+- **Q: Was passiert bei Teilfehler in `migrate-workspace.sh`?**
+  → A: `git stash`-Rollback für den betroffenen Workspace; Fehlermeldung + Diff auf stderr; andere Workspaces unberührt. (→ FR-REV-A06)
+
+- **Q: Wie wird der Compliance-Score berechnet?**
+  → A: `score = (Anzahl ✓) / (Anzahl ✓ + Anzahl ✗) × 100` — ungewichteter Prozentsatz bestandener Checks; jeder Check zählt gleich. WARN-Einträge zählen weder als ✓ noch als ✗. (→ FR-REV-B01)
+
+- **Q: Wie ist das Constitution-Versionsschema definiert?**
+  → A: Semver `vMAJOR.MINOR.PATCH`, manuell gepflegt als erste Zeile der `constitution.md` im Format `# Constitution vX.Y.Z`. Das Skript extrahiert die Version per `grep`; fehlt die Zeile, bricht es mit einem Fehler ab. (→ FR-REV-F01)
+
+- **Q: Wo wird der EN-Platzhalter-Block eingefügt?**
+  → A: Am Dateiende als einziger Block pro Datei im Format `<!-- EN: [Dateiname] placeholder\n[DE-Zusammenfassung als Kommentar]\n-->`. (→ FR-REV-A01)
+
+- **Q: Welche Dateien erhalten den EN-Platzhalter?**
+  → A: Nur `README.md`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `copilot-instructions.md`, `STATS.md` (Kopfzeilen), `constitution.md`. Spec-Kit-Artefakte und sonstige `.md`-Dateien bleiben unberührt. (→ FR-REV-A01)
