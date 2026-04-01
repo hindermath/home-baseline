@@ -54,9 +54,11 @@ kein GUI-Framework, kein automatisches Test-Framework
 
 **Gate-Ergebnis**: ✅ PASS — keine Verletzungen. Weiter zu Phase 0.
 
-**Post-Design Re-Check** (nach Phase 1):
-- `.gitignore`-Whitelist muss um `!STATS*.md`, `!memory-patch.md`, `!scripts/templates/`, `!scripts/lib/` ergänzt werden (Constitution I + IV)
-- SHA-256-Vergleichslogik in `hg-hook.sh` berührt `scripts/hooks/pre-push` → `scan-agent-secrets.sh --fail-on-high .` vor Push Pflicht (Constitution I)
+**Post-Design Re-Check** (nach Phase 1): ✅ alle erledigt
+- `.gitignore`-Whitelist: `!STATS*.md` ✅, `!scripts/` ✅ (deckt lib/ + templates/), `!specs/` ✅, `!.specify/` ✅ — alle Einträge vorhanden
+- SHA-256-Vergleichslogik in `hg-hook.sh` berührt `scripts/hooks/pre-push` → `scan-agent-secrets.sh --fail-on-high .` vor Push Pflicht (Constitution I) ✅
+- Compliance-Score für neu bootstrappte Projekte: 100 % ✅ (verifiziert mit T032)
+- Compliance-Score für bestehende Legacy-Workspaces: 57 % (0 FAILs, 64 WARNs — bilingual/A11Y in Pre-existing Dateien; kein Blocker)
 
 ---
 
