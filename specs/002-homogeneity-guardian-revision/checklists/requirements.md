@@ -59,9 +59,10 @@
 
 ## Notes / Hinweise
 
-Alle Punkte bestanden. speckit-clarify Runden 1 + 2 abgeschlossen (2026-04-01).  
-13 Klärungen → 5 neue FRs/NFRs (FR-REV-A06, NFR-REV-06) + 8 Präzisierungen bestehender FRs.  
-Gesamtstand: 21 FRs + 6 NFRs = 27 Anforderungen. 2 Sachfehler korrigiert (FR-REV-G01, US2 Sz.1).  
+Alle Punkte bestanden. speckit-clarify Runden 1–3 abgeschlossen (2026-04-01).  
+18 Klärungen → 7 neue FRs/NFRs + 11 Präzisierungen bestehender Anforderungen.  
+Gesamtstand: 22 FRs + 7 NFRs = 29 Anforderungen. SW-Tabelle vollständige Traceability-Matrix.  
+Alle 18 SW-xx auf FR/NFR gemappt. 4 Sachfehler behoben.  
 **→ Bereit für `/speckit-plan`.**
 
 Verweis auf Parent-Feature: `specs/001-workspace-homogeneity-guardian/spec.md`  

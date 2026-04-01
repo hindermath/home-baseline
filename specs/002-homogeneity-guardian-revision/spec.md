@@ -24,26 +24,26 @@ without destroying any existing content.*
 
 ## Audit-Ergebnisse / Audit Results (Ist-Zustand)
 
-| ID | Schwachstelle / Weakness | Schweregrad / Severity |
-|----|--------------------------|:----------------------:|
-| SW-01 | Kein `bootstrap-project.sh/.ps1` | HOCH |
-| SW-02 | Kein `check-homogeneity.sh/.ps1` | HOCH |
-| SW-03 | Root-Agentendateien nicht bilingual | HOCH |
-| SW-04 | Kein A11Y-Abschnitt in READMEs | MITTEL |
-| SW-05 | Kein `STATS.md` auf keiner Ebene | MITTEL |
-| SW-06 | Kein SDD-Workflow in Projekten | MITTEL |
-| SW-07 | Pre-Push-Hook Ebene 2 ungeprüft | MITTEL |
-| SW-08 | `Lastenheft*.md` nicht in `.gitignore`-Whitelist | MITTEL |
-| SW-09 | Doppelter `!.specify/`-Eintrag in `.gitignore` | NIEDRIG |
-| SW-10 | `copilot-instructions.md` unvollständig bilingual | NIEDRIG |
-| SW-11 | Kein `rename-lastenheft.sh/.ps1` | NIEDRIG |
-| SW-12 | CLI-Syntax der KI-Agenten-Init nicht spezifiziert | NIEDRIG |
-| SW-13 | Kein `.editorconfig` in C#-Projekten | NIEDRIG |
-| SW-14 | Kein Migrations-Pfad für bestehende Repos | HOCH |
-| SW-15 | Kein Mechanismus zur Constitution-Propagation | MITTEL |
-| SW-16 | Keine CI/CD-Integration | NIEDRIG |
-| SW-17 | TUI-Ausgaben nicht auf A11Y geprüft | MITTEL |
-| SW-18 | STATS.md-Kopfzeilen nicht bilingual | NIEDRIG |
+| ID | Schwachstelle / Weakness | Schweregrad / Severity | FR/NFR |
+|----|--------------------------|:----------------------:|--------|
+| SW-01 | Kein `bootstrap-project.sh/.ps1` | HOCH | FR-REV-B02 |
+| SW-02 | Kein `check-homogeneity.sh/.ps1` | HOCH | FR-REV-B01 |
+| SW-03 | Root-Agentendateien nicht bilingual | HOCH | FR-REV-A01 |
+| SW-04 | Kein A11Y-Abschnitt in READMEs | MITTEL | FR-REV-A01 |
+| SW-05 | Kein `STATS.md` auf keiner Ebene | MITTEL | FR-REV-B04 |
+| SW-06 | Kein SDD-Workflow in Projekten | MITTEL | FR-REV-B05 |
+| SW-07 | Pre-Push-Hook Ebene 2 ungeprüft | MITTEL | FR-REV-A04 |
+| SW-08 | `Lastenheft*.md` nicht in `.gitignore`-Whitelist | MITTEL | FR-REV-C01 |
+| SW-09 | Doppelter `!.specify/`-Eintrag in `.gitignore` | NIEDRIG | FR-REV-C02 |
+| SW-10 | `copilot-instructions.md` unvollständig bilingual | NIEDRIG | FR-REV-A01 |
+| SW-11 | Kein `rename-lastenheft.sh/.ps1` | NIEDRIG | FR-REV-B03 |
+| SW-12 | CLI-Syntax der KI-Agenten-Init nicht spezifiziert | NIEDRIG | FR-REV-D01/D02 |
+| SW-13 | Kein `.editorconfig` in C#-Projekten | NIEDRIG | FR-REV-E01 |
+| SW-14 | Kein Migrations-Pfad für bestehende Repos | HOCH | FR-REV-A01–A06 |
+| SW-15 | Kein Mechanismus zur Constitution-Propagation | MITTEL | FR-REV-F01/F02 |
+| SW-16 | Keine CI/CD-Integration | NIEDRIG | FR-REV-G01–G03 |
+| SW-17 | TUI-Ausgaben nicht auf A11Y geprüft | MITTEL | NFR-REV-07 |
+| SW-18 | STATS.md-Kopfzeilen nicht bilingual | NIEDRIG | NFR-REV-05 |
 
 ---
 
@@ -241,7 +241,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   `## Barrierefreiheit / Accessibility (A11Y)`, `## Spec-kit-Workflow`,
   `## Für Azubis / For Apprentices`.
   **Scope der Bilingualisierung**: ausschließlich `README.md`, `CLAUDE.md`, `GEMINI.md`,
-  `AGENTS.md`, `copilot-instructions.md`, `STATS.md` (nur Kopfzeilen) und `constitution.md`.
+  `AGENTS.md`, `.github/copilot-instructions.md`, `STATS.md` (nur Kopfzeilen) und `constitution.md`.
   Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) und sonstige `.md`-Dateien
   bleiben unberührt.
 
@@ -253,6 +253,8 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **FR-REV-A03**: Jeder Migrationslauf MUSS in einem Git-Commit enden mit der Message
   `chore: migrate {workspace} to homogeneity baseline v{version}`.
+  `{version}` wird per `grep` aus der ersten Zeile der Root-`constitution.md` extrahiert
+  (Format: `# Constitution vX.Y.Z`) — dieselbe Quelle wie FR-REV-F01.
 
 - **FR-REV-A04**: Das Migrationsskript MUSS auf Level-2-Ebene den Pre-Push-Hook-Status
   prüfen und bei Fehlen `install-hooks.sh` aufrufen. Als Level-2-Projekt gilt jedes
@@ -286,6 +288,11 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-B04**: `scripts/init-stats.sh` / `.ps1` MUSS eine initiale `STATS.md` auf
   Level 0, 1 und 2 erzeugen, die den Ist-Zustand als Baseline festhält, und den
   STATS.md-Schema-Standard aus FR-007/008 des Parent-Features einhält.
+
+- **FR-REV-B05**: `scripts/bootstrap-project.sh` MUSS spec-kit im neuen Projekt
+  initialisieren: `.specify/`-Verzeichnis anlegen, `create-new-feature.sh` installieren,
+  einen Verweis auf den SDD-Workflow in `AGENTS.md` einfügen, sodass nach Ausführung
+  ein `speckit-specify`-Aufruf sofort möglich ist. *(behebt SW-06)*
 
 #### REV-C — .gitignore-Bereinigung / .gitignore Cleanup
 
@@ -321,6 +328,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   kopieren, je Workspace einen Git-Commit `chore: sync constitution to v{version}` erzeugen,
   und eine abschließende Zusammenfassung aller Workspaces ausgeben mit Status
   `UPDATED` / `SKIPPED (dirty)` / `ALREADY UP-TO-DATE`.
+  Vor der Ausführung MUSS eine Preview aller `WOULD UPDATE`-Workspaces ausgegeben
+  und eine interaktive Prompt `Proceed? [y/N]` angezeigt werden; `--yes` überspringt
+  nur die Prompt, nicht die Preview.
   Die Versionsnummer wird per `grep` aus der ersten Zeile der `constitution.md` extrahiert
   (Format: `# Constitution vMAJOR.MINOR.PATCH`). Fehlt diese Zeile, bricht das Skript mit
   `ERROR: constitution.md hat keine Versionszeile` ab.
@@ -362,13 +372,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   PowerShell-Varianten erfordern PowerShell Core 7+. Unterstützte Plattformen:
   macOS 14+, Ubuntu 22.04/24.04 LTS, Debian 12, Windows 10/11 (native + WSL2).
 
+- **NFR-REV-05 Bilingualism in STATS.md / Bilingualität**: Alle STATS.md-Kopfzeilen
+  MÜSSEN bilingual sein (DE zuerst, EN zweite Zeile, CEFR B2).
+
 - **NFR-REV-06 Laufzeit / Runtime**: Kein programmatisches Timeout — Skripte laufen
   bis zum Abschluss. Der Nutzer kann jederzeit mit `Ctrl+C` abbrechen; ein `Ctrl+C`-Abbruch
   löst keinen automatischen Rollback aus. Der GitHub-Actions-Workflow (FR-REV-G01)
   erhält `timeout-minutes: 10` als CI-Sicherheitsnetz.
 
-- **NFR-REV-05 Bilingualism in STATS.md / Bilingualität**: Alle STATS.md-Kopfzeilen
-  MÜSSEN bilingual sein (DE zuerst, EN zweite Zeile, CEFR B2).
+- **NFR-REV-07 TUI-A11Y-Prüfung / TUI A11Y Check**: `check-homogeneity.sh` MUSS als
+  Teil des Compliance-Checks verifizieren, dass keine Datei in `scripts/` ANSI-Escape-
+  Sequenzen enthält (`grep -rP '\x1b\['`). Befunde werden als `✗`-Zeile im Report
+  ausgegeben und senken den Compliance-Score. *(behebt SW-17)*
 
 ---
 
@@ -394,7 +409,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   nach Abschluss aller Maßnahmen (kein einziger `✗`-Befund).
 
 - **SC-REV-02**: Alle Root-Agentendateien (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`,
-  `README.md`, `copilot-instructions.md`) enthalten je mindestens einen DE- und EN-Abschnitt.
+  `README.md`, `.github/copilot-instructions.md`) enthalten je mindestens einen DE- und EN-Abschnitt.
 
 - **SC-REV-03**: `STATS.md` auf Root-Ebene enthält eine Baseline-Zeile (Ist-Zustand)
   und mindestens eine Post-Fix-Zeile mit verbessertem Compliance-Score.
@@ -434,16 +449,16 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 | Revisions-FR | Bezug / Reference |
 |---|---|
-| FR-REV-A01–A05 | FR-G01–G05 (README-Dokumentation, Parent 001) |
+| FR-REV-A01–A06 | FR-REV-G01–G03 (README-Dokumentation, Parent 001) |
 | FR-REV-B01 | FR-001–FR-021 (Homogenitätsprüfung, Parent 001) |
 | FR-REV-B02 | FR-009–FR-016 (Bootstrap, Parent 001) |
 | FR-REV-B03 | FR-012 (Dateibenennungs-Konvention, Parent 001) |
 | FR-REV-B04 | FR-007/008 (STATS.md-Schema, Parent 001) |
 | FR-REV-C01–C02 | FR-002 (Dateipräsenz-Prüfung, Parent 001) |
-| FR-REV-D01–D02 | FR-009 Bootstrap-Agenten-Init |
+| FR-REV-D01–D02 | FR-009 Bootstrap-Agenten-Init; `gh` CLI (Copilot-Init) |
 | FR-REV-E01–E02 | FR-016 (C#-Dep-Scan erweitert) |
 | FR-REV-F01–F02 | Constitution Prinzip IV (Workspace Isolation) |
-| FR-REV-G01–G03 | NFR-REV-04 (Platform ubuntu-22.04) |
+| FR-REV-G01–G03 | NFR-REV-04 (Platform ubuntu-22.04); GitHub Actions Free-Tier |
 
 ---
 
@@ -501,7 +516,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   → A: Am Dateiende als einziger Block pro Datei im Format `<!-- EN: [Dateiname] placeholder\n[DE-Zusammenfassung als Kommentar]\n-->`. (→ FR-REV-A01)
 
 - **Q: Welche Dateien erhalten den EN-Platzhalter?**
-  → A: Nur `README.md`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `copilot-instructions.md`, `STATS.md` (Kopfzeilen), `constitution.md`. Spec-Kit-Artefakte und sonstige `.md`-Dateien bleiben unberührt. (→ FR-REV-A01)
+  → A: Nur `README.md`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `STATS.md` (Kopfzeilen), `constitution.md`. Spec-Kit-Artefakte und sonstige `.md`-Dateien bleiben unberührt. (→ FR-REV-A01)
 
 - **Q: Wie verhält sich `sync-constitution.sh` bei uncommitteten Änderungen in einem Child-Workspace?**
   → A: Workspace überspringen mit `WARN: {workspace} hat uncommittete Änderungen — übersprungen`; alle anderen Workspaces werden normal verarbeitet. (→ FR-REV-F02)
@@ -520,3 +535,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Was passiert, wenn `git stash` beim Rollback selbst fehlschlägt?**
   → A: `ERROR: git stash fehlgeschlagen — manuelle Bereinigung erforderlich` auf stderr + Diff; Exit-Code `2`; Skript bricht sofort ab, keine weiteren Workspaces werden berührt. (→ FR-REV-A06, FR-REV-F02)
+
+- **Q: Ist SW-06 (Kein SDD-Workflow) durch FR-REV-B02 abgedeckt oder braucht es ein eigenes FR?**
+  → A: Eigenes FR-REV-B05 hinzugefügt: `bootstrap-project.sh` muss spec-kit initialisieren (`.specify/`, `create-new-feature.sh`, `AGENTS.md`-Verweis). (→ FR-REV-B05)
+
+- **Q: Hat `sync-constitution.sh` einen Bestätigungsschritt vor dem Schreiben?**
+  → A: Ja — wie `migrate-workspace.sh`: Preview aller `WOULD UPDATE`-Workspaces, dann `Proceed? [y/N]`; `--yes` überspringt nur die Prompt. (→ FR-REV-F01)
+
+- **Q: Woher kommt `v{version}` in der Commit-Message von `migrate-workspace.sh`?**
+  → A: Aus der ersten Zeile der Root-`constitution.md` per `grep` — dieselbe Quelle wie FR-REV-F01. (→ FR-REV-A03)
+
+- **Q: Unter welchem Pfad liegt `copilot-instructions.md`?**
+  → A: `.github/copilot-instructions.md` — GitHub-Standard-Pfad. FR-REV-A01 und SC-REV-02 aktualisiert. (→ FR-REV-A01)
+
+- **Q: Soll SW-17 (TUI-A11Y) als formales NFR oder nur über den A11Y-Abschnitt abgedeckt sein?**
+  → A: Neues NFR-REV-07: `check-homogeneity.sh` prüft aktiv per `grep -rP '\x1b\['` ob Scripts ANSI-Codes enthalten; Befunde als `✗` im Report. (→ NFR-REV-07)
