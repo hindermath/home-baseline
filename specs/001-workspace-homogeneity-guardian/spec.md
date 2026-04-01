@@ -174,6 +174,12 @@ bootstraps a C# CLI project that passes the compliance check.
   → Without an explicit override flag the tool halts with
   `WARN: already bootstrapped — use --force to re-apply`.
 
+- What happens if the bootstrap tool is interrupted mid-run (e.g., after files
+  are created but before the hook is installed)?
+  → The partial state is left in place. A subsequent run without `--force`
+  detects already-present files (skips them) and completes only the missing
+  steps — idempotent re-run is the recovery mechanism.
+
 - What happens when no network connection is available during bootstrap?
   → All local steps complete; the remote repository creation step is skipped
   with `WARN: no network — remote push deferred`.
@@ -190,7 +196,8 @@ bootstraps a C# CLI project that passes the compliance check.
 
 - **FR-001**: The system MUST scan all three hierarchy levels — home (`~/`),
   workspace directories, and project directories — and report the presence of
-  every required file at each level.
+  every required file at each level. **The scan depth is fixed at exactly 3
+  levels; directories nested deeper than Level 2 are silently ignored.**
 
 - **FR-002**: The system MUST verify that a secret-scanning pre-push hook is
   installed in every git repository at all three levels and that it matches the
@@ -232,6 +239,16 @@ bootstraps a C# CLI project that passes the compliance check.
 
 - **FR-011**: The bootstrap tool MUST support a dry-run / preview mode that
   shows all planned actions without making any changes.
+
+- **FR-017**: The compliance check tool MUST support a `--verbose` flag. When
+  omitted, the output is compact: only failures, warnings, and the final
+  compliance score are shown. When `--verbose` is set, every checked file and
+  its individual status (✓ / ✗ / WARN) is included in the output.
+
+- **FR-018**: The compliance check tool MUST detect when an active `spec.md`
+  file was created with an older Spec-kit template version and report
+  `WARN: spec template version outdated` for that file. No automatic migration
+  is performed; the developer decides when to update manually.
 
 - **FR-012**: After a successful Spec-kit specify run that assigns a feature
   branch, the system MUST rename the associated Lastenheft file to append the
@@ -328,125 +345,34 @@ bootstraps a C# CLI project that passes the compliance check.
 - The four AI agents and Spec-kit are used for guidance and scaffolding only;
   no AI-generated content is committed without developer review.
 
-
-## User Scenarios & Testing *(mandatory)*
-
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
-
-### User Story 1 - [Brief Title] (Priority: P1)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
+## Out of Scope
 
-[Describe this user journey in plain language]
+The following areas are explicitly excluded from this feature to prevent scope
+creep. They may be addressed in separate features if needed.
 
-**Why this priority**: [Explain the value and why it has this priority level]
+- **Git submodules**: Directories managed as git submodules are not scanned or
+  configured by this system.
+- **Remote repository content**: The system does not clone, fetch, or inspect
+  content from remote GitHub/GitLab repositories.
+- **Docker environments**: Container image builds, Dockerfiles, and
+  container-specific configurations are not covered.
+- **External CI/CD systems**: GitHub Actions workflows, Jenkins pipelines, and
+  similar external automation are not in scope.
+- **Non-Markdown file formats**: Only `.md` files are inspected for bilingual
+  content, A11Y, and heading structure. Source code files are checked only for
+  dependency licences (FR-016).
+- **Directories deeper than Level 2**: Any directory nested more than two
+  levels below `~/` is silently ignored by the scanner.
 
-**Independent Test**: [Describe how this can be tested independently]
 
-**Acceptance Scenarios**:
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+### Session 2026-04-01
 
----
+- Q: Was soll passieren, wenn der Bootstrap-Prozess nach einigen Schritten abbricht? → A: Teilzustand belassen; erneuter Aufruf ohne `--force` ergänzt nur noch Fehlendes (idempotent re-run)
+- Q: Ist die 3-Ebenen-Struktur eine feste Grenze oder soll der Scanner tiefer scannen? → A: 3 Ebenen fix — tiefer liegende Verzeichnisse werden ignoriert
+- Q: Was liegt explizit außerhalb des Scope? → A: Git-Submodule, Remote-Repo-Inhalte, Docker-Umgebungen, externe CI/CD-Systeme, Nicht-Markdown-Dateiformate
+- Q: Hat das Compliance-Tool einen Verbose-/Debug-Modus? → A: `--verbose` als optionales Flag; Standard-Output ist kompakt (nur Fehler/Warnungen + Score)
+- Q: Was passiert bei Spec-kit Template-Versionsdrift? → A: Kein automatisches Upgrade; das Compliance-Tool meldet `WARN: spec template version outdated`; Migration ist manuell
 
-### User Story 3 - [Brief Title] (Priority: P3)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-[Add more user stories as needed, each with an assigned priority]
-
-### Edge Cases
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
-
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
-
-## Requirements *(mandatory)*
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
-
-### Functional Requirements
-
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
-
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
-### Measurable Outcomes
-
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
-
-## Assumptions
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right assumptions based on reasonable defaults
-  chosen when the feature description did not specify certain details.
--->
-
-- [Assumption about target users, e.g., "Users have stable internet connectivity"]
-- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
-- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
-- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
