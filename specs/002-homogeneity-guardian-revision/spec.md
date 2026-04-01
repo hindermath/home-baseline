@@ -216,6 +216,11 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - Was passiert, wenn eine Datei bereits einen EN-Platzhalter hat?
   → `migrate-workspace.sh` überspringt diese Datei mit `INFO: EN block already present — skip`.
 
+- Was passiert, wenn ein Pflichtabschnitt (`## Barrierefreiheit / Accessibility (A11Y)` etc.) bereits vorhanden ist?
+  → Exakter String-Match: Findet das Skript den genauen Heading-Text in der Datei,
+  überspringt es diesen Abschnitt mit `INFO: section already present — skip`.
+  Schlüsselwort-Treffer ohne exakten Match gelten nicht als vorhanden.
+
 - Was passiert, wenn `bootstrap-project.sh` auf ein bereits initialisiertes Verzeichnis trifft?
   → `WARN: already bootstrapped — use --force to re-apply`; kein Abbruch anderer Schritte.
 
@@ -253,6 +258,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   Workspace. Wird **kein Argument** übergeben, migriert es alle Level-1-Workspaces in `~/`
   sequentiell (Alle-auf-einmal-Modus); jeder Workspace durchläuft denselben
   Preview-→-Commit-Zyklus.
+  Das Skript erstellt zudem `.github/workflows/homogeneity-check.yml` falls noch nicht
+  vorhanden (Inhalt gemäß FR-REV-G01–G03); existiert die Datei bereits, wird sie
+  übersprungen mit `INFO: homogeneity-check.yml already present — skip`.
   **Scope der Bilingualisierung**: ausschließlich `README.md`, `CLAUDE.md`, `GEMINI.md`,
   `AGENTS.md`, `.github/copilot-instructions.md`, `STATS.md` (nur Kopfzeilen) und `constitution.md`.
   Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) und sonstige `.md`-Dateien
@@ -261,6 +269,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-A02**: Das Migrationsskript MUSS `--dry-run` / `-WhatIf` unterstützen
   und jeden geplanten Schreibvorgang vor der Ausführung anzeigen. Im Normalmodus
   wird nach der Preview eine interaktive Prompt `Proceed? [y/N]` angezeigt.
+  Im **Alle-auf-einmal-Modus** (kein Argument) erscheint eine einzige Gesamt-Preview
+  aller Workspaces, gefolgt von einer einzigen `Proceed? [y/N]` — keine separate
+  Bestätigung pro Workspace.
   Der Flag `--yes` / `-Force` überspringt nur diese Bestätigungsprompt — die
   Preview-Ausgabe erscheint weiterhin; stille Ausführung ohne Preview ist nicht vorgesehen.
 
@@ -351,6 +362,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-E01**: Jedes C#-Projekt MUSS eine `.editorconfig` mit Mindestregeln erhalten:
   `indent_style=space`, `indent_size=4`, `charset=utf-8`, `end_of_line=lf`,
   `insert_final_newline=true`.
+  **Erstellung in bestehenden Projekten**: `migrate-workspace.sh` erkennt per
+  `find . -maxdepth 2 -name "*.sln"` alle C#-Projekte und legt `.editorconfig`
+  mit den Mindestregeln an, falls die Datei noch nicht vorhanden ist.
+  Existiert `.editorconfig` bereits: `INFO: .editorconfig already present — skip`.
 
 - **FR-REV-E02**: Das Compliance-Check-Skript MUSS `.editorconfig` als Pflichtdatei für
   C#-Projekte in die Datei-Präsenzmatrix aufnehmen. Als C#-Projekt gilt jedes
@@ -360,8 +375,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 #### REV-F — Constitution-Propagation / Constitution Propagation
 
 - **FR-REV-F01**: Das Skript `scripts/sync-constitution.sh` / `.ps1` MUSS bei
-  Constitution-Versionsänderungen die neue `constitution.md` in alle Child-Workspaces
-  kopieren, je Workspace einen Git-Commit `chore: sync constitution to v{version}` erzeugen,
+  Constitution-Versionsänderungen die neue `constitution.md` in alle **Level-1-Workspaces**
+  kopieren (Level-2-Projekte erben die Verfassung über ihren Level-1-Parent — kein
+  direkter Sync auf Level-2-Ebene), je Workspace einen Git-Commit
+  `chore: sync constitution to v{version}` erzeugen,
   und eine abschließende Zusammenfassung aller Workspaces ausgeben mit Status
   `UPDATED` / `SKIPPED (dirty)` / `ALREADY UP-TO-DATE`.
   Vor der Ausführung MUSS eine Preview aller `WOULD UPDATE`-Workspaces ausgegeben
@@ -626,3 +643,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Wie ermittelt `init-stats.sh` den Compliance-Score für den Baseline-Eintrag?**
   → A: Intern `check-homogeneity.sh --json` aufrufen und `score`-Wert extrahieren. Ist check-homogeneity.sh nicht vorhanden → `ERROR` + Abbruch. (→ FR-REV-B04)
+
+- **Q: Erscheint `Proceed? [y/N]` im Alle-auf-einmal-Modus einmal oder pro Workspace?**
+  → A: Einmal — eine einzige Gesamt-Preview aller Workspaces, dann eine einzige `Proceed? [y/N]`. Keine separate Bestätigung pro Workspace. (→ FR-REV-A02)
+
+- **Q: Wie prüft `migrate-workspace.sh` die Idempotenz für neue Pflichtabschnitte (A11Y, Spec-kit-Workflow, Azubis)?**
+  → A: Exakter String-Match des Heading-Texts (z. B. `## Barrierefreiheit / Accessibility (A11Y)`) → `INFO: section already present — skip`. Schlüsselwort-Treffer ohne exakten Match gelten nicht als vorhanden. (→ FR-REV-A01, FR-REV-A05, Edge Cases)
+
+- **Q: Auf welche Ebenen synchronisiert `sync-constitution.sh` — Level-1 oder Level-1+2?**
+  → A: Nur Level-1-Workspaces. Level-2-Projekte erben die Verfassung über ihren Level-1-Parent — kein direkter Sync auf Level-2-Ebene. (→ FR-REV-F01)
+
+- **Q: Wer erstellt `.github/workflows/homogeneity-check.yml` in bereits bestehenden Repos?**
+  → A: `migrate-workspace.sh` — erstellt die Workflow-Datei wenn nicht vorhanden (FR-REV-G01–G03-konform); existiert sie bereits → `INFO: homogeneity-check.yml already present — skip`. (→ FR-REV-A01)
+
+- **Q: Wer erstellt `.editorconfig` in bestehenden C#-Projekten?**
+  → A: `migrate-workspace.sh` erkennt `*.sln`-Dateien und legt `.editorconfig` mit Mindestregeln an falls fehlend; existiert sie bereits → `INFO: .editorconfig already present — skip`. (→ FR-REV-E01)
