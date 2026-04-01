@@ -219,6 +219,11 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - Was passiert, wenn `bootstrap-project.sh` auf ein bereits initialisiertes Verzeichnis trifft?
   → `WARN: already bootstrapped — use --force to re-apply`; kein Abbruch anderer Schritte.
 
+- Was passiert, wenn das GitHub-Remote-Repo bei `gh repo create` bereits existiert?
+  → `bootstrap-project.sh` prüft zunächst per `git remote -v` ob ein Remote konfiguriert ist;
+  ist ein Remote vorhanden, wird `gh repo create` übersprungen mit
+  `INFO: remote already configured — skipping gh repo create`; kein Abbruch.
+
 - Was passiert bei fehlgeschlagenem Constitution-Propagations-Lauf?
   → `git stash` in jedem teilweise geänderten Workspace; Fehlermeldung + Diff auf stderr.
 
@@ -293,6 +298,16 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   initialisieren: `.specify/`-Verzeichnis anlegen, `create-new-feature.sh` installieren,
   einen Verweis auf den SDD-Workflow in `AGENTS.md` einfügen, sodass nach Ausführung
   ein `speckit-specify`-Aufruf sofort möglich ist. *(behebt SW-06)*
+  Zusätzlich MUSS das Skript spec-kit für alle vier KI-Agenten initialisieren:
+  ```
+  speckit specify init --here --ai claude
+  speckit specify init --here --ai gemini
+  speckit specify init --here --ai copilot
+  speckit specify init --here --ai codex --ai-skills
+  ```
+  Ist eine `speckit`-CLI nicht verfügbar, gibt das Skript
+  `WARN: speckit not found — run manually: speckit specify init --here --ai {agent}` aus
+  und fährt fort.
 
 #### REV-C — .gitignore-Bereinigung / .gitignore Cleanup
 
@@ -306,8 +321,11 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **FR-REV-D01**: Das Bootstrap-Skript MUSS die genauen Init-Befehle aller vier
   Agenten-CLIs dokumentieren und aufrufen:
-  Claude (`claude /init`), Codex (interaktiv, SKIP mit WARN),
-  Gemini (interaktiv, SKIP mit WARN), Copilot (`gh extension exec github/gh-copilot`).
+  Claude (`claude /init`), Copilot (`gh extension exec github/gh-copilot`).
+  Codex und Gemini sind interaktive CLIs und werden **nicht automatisch aufgerufen** —
+  das Skript gibt stattdessen aus:
+  `WARN: codex CLI is interactive — run manually: codex` bzw.
+  `WARN: gemini CLI is interactive — run manually: gemini`.
 
 - **FR-REV-D02**: Das Bootstrap-Skript MUSS vor jedem Agenten-Aufruf die CLI-Verfügbarkeit
   per `which`/`Get-Command` prüfen; bei Fehlen: `WARN: {agent} CLI not found — install manually`.
@@ -319,7 +337,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   `insert_final_newline=true`.
 
 - **FR-REV-E02**: Das Compliance-Check-Skript MUSS `.editorconfig` als Pflichtdatei für
-  C#-Projekte in die Datei-Präsenzmatrix aufnehmen.
+  C#-Projekte in die Datei-Präsenzmatrix aufnehmen. Als C#-Projekt gilt jedes
+  Level-2-Verzeichnis, das mindestens eine `*.sln`-Datei enthält
+  (`find . -maxdepth 1 -name "*.sln"` — Solution-Level-Erkennung).
 
 #### REV-F — Constitution-Propagation / Constitution Propagation
 
@@ -389,6 +409,14 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 ## Key Entities / Schlüsselobjekte
 
+- **Level 0**: Das Home-Verzeichnis `~/` selbst — das `home-baseline`-Repository.
+  *The home directory `~/` — the `home-baseline` repository.*
+- **Level 1**: Direkte Workspace-Unterverzeichnisse von `~/`, die ein eigenes
+  `.git/`-Verzeichnis enthalten (z. B. `~/RiderProjects/`, `~/C64Projects/`).
+  *Direct workspace subdirectories of `~/` that contain their own `.git/` directory.*
+- **Level 2**: Projekte innerhalb eines Level-1-Workspace, die selbst ein
+  `.git/`-Verzeichnis enthalten (z. B. `~/RiderProjects/TinyCalc`).
+  *Projects inside a Level-1 workspace that themselves contain a `.git/` directory.*
 - **Schwachstelle (SW-xx)**: Ein identifizierter Ist-/Soll-Abstand aus dem Audit
   mit Schweregrad HOCH / MITTEL / NIEDRIG.
 - **Migrationsskript**: Idempotentes Skript, das bestehende Dateien auf Zielstand
@@ -550,3 +578,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Soll SW-17 (TUI-A11Y) als formales NFR oder nur über den A11Y-Abschnitt abgedeckt sein?**
   → A: Neues NFR-REV-07: `check-homogeneity.sh` prüft aktiv per `grep -rP '\x1b\['` ob Scripts ANSI-Codes enthalten; Befunde als `✗` im Report. (→ NFR-REV-07)
+
+- **Q: Wie sind Level 0, Level 1 und Level 2 formal definiert?**
+  → A: Level 0 = `~/` (Home-Verzeichnis, `home-baseline`-Repo); Level 1 = direkte Workspace-Unterverzeichnisse mit eigenem `.git/` (z. B. `~/RiderProjects/`); Level 2 = Projekte innerhalb eines Level-1-Workspace mit eigenem `.git/` (z. B. `~/RiderProjects/TinyCalc`). Formale Definitionen in §Key Entities ergänzt. (→ FR-REV-A04, SC-REV-01)
+
+- **Q: Wie erkennt `check-homogeneity.sh` C#-Projekte für die `.editorconfig`-Pflichtprüfung?**
+  → A: Anwesenheit einer `*.sln`-Datei im Level-2-Verzeichnis (`find . -maxdepth 1 -name "*.sln"`) — Solution-Level-Erkennung. (→ FR-REV-E02)
+
+- **Q: Was passiert, wenn `gh repo create` in `bootstrap-project.sh` aufgerufen wird, aber das Remote-Repo auf GitHub bereits existiert?**
+  → A: Vorher `git remote -v` prüfen; ist ein Remote konfiguriert → `INFO: remote already configured — skipping gh repo create`; kein Abbruch. (→ FR-REV-B02, Edge Cases)
+
+- **Q: Was genau löst in `bootstrap-project.sh` das SKIP für Codex und Gemini aus (FR-REV-D01)?**
+  → A: Codex und Gemini werden grundsätzlich nie aufgerufen — immer `WARN: {agent} CLI is interactive — run manually: {cmd}`. Kein TTY-Check, kein Timeout. (→ FR-REV-D01)
+
+- **Q: Soll `bootstrap-project.sh` `speckit specify` aktiv aufrufen oder nur vorbereiten (FR-REV-B05)?**
+  → A: Aktiv aufrufen — jedoch `speckit specify init --here --ai {agent}` (AI-Initialisierung, keine Feature-Spec). Befehle: `speckit specify init --here --ai claude`, `--ai gemini`, `--ai copilot`, `--ai codex --ai-skills`. Bei fehlender CLI: WARN + manueller Hinweis. (→ FR-REV-B05)
