@@ -29,7 +29,7 @@ ArchiveEvent (entsteht bei STATS.md-Rotation)
 
 ### HierarchyLevel
 
-Repräsentiert eine der drei festen Scan-Ebenen.
+Repräsentiert eine der drei festen Scan-Ebenen *(FR-001)*.
 
 | Feld | Typ | Beschreibung |
 |------|-----|--------------|
@@ -267,3 +267,5 @@ MemoryPatch
 | `HookStatus.canonical_path` | Immer `~/scripts/hooks/pre-push` (FR-002) |
 | Lock-Timeout | `STATS.md.lock`: max. 5 Sekunden Wartezeit, dann Exit-Code 2 |
 | `STATS.md`-Archivierung | Trigger bei ≥ 500 `## Run`-Einträgen; Archiv-Datei wird git-tracked |
+| `HierarchyLevel.level_id` | Muss exakt 0, 1 oder 2 sein; Level ≥ 3 werden vom Scanner ignoriert (FR-001) |
+| `MemoryPatch.entries` | Muss mindestens 1 `MemoryPatchEntry` enthalten; leere Patches DÜRFEN NICHT generiert werden (FR-020) |

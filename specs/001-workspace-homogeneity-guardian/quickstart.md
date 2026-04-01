@@ -14,9 +14,9 @@
 |------|---------------|--------------|
 | `git` | 2.x | vorinstalliert auf macOS/Ubuntu |
 | `bash` | 5.x | macOS: `brew install bash` · Linux: vorinstalliert |
-| `ripgrep (rg)` | 13.x | `brew install ripgrep` · `apt install ripgrep` |
-| `gh` | 2.x (optional) | `brew install gh` · `apt install gh` |
-| `node` / `npx` | 18+ (optional) | `brew install node` · `apt install nodejs npm` |
+| `ripgrep (rg)` | 13.x | `brew install ripgrep` · `sudo apt install ripgrep` |
+| `gh` | 2.x (optional) | `brew install gh` · `sudo apt install gh` |
+| `node` / `npx` | 18+ (optional) | `brew install node` · `sudo apt install nodejs npm` |
 
 **English**: Ensure the following tools are installed (see table above).
 
@@ -163,8 +163,11 @@ step (bootstrap) and remote push require network access.
 
 | Problem | Lösung / Solution |
 |---------|-------------------|
-| `rg: command not found` | `brew install ripgrep` (macOS) · `apt install ripgrep` (Ubuntu/Debian) |
+| `rg: command not found` | `brew install ripgrep` (macOS) · `sudo apt install ripgrep` (Ubuntu/Debian) |
 | `WARN: stats file locked` | Anderer Prozess schreibt gerade; warte 10 s und versuche erneut |
 | `gh: command not found` | Verwende `--no-remote` um Remote-Schritte zu überspringen |
 | `npx: command not found` | Verwende `--no-speckit` oder installiere Node.js |
+| `git: command not found` | `sudo apt install git` (Ubuntu) · Xcode Command Line Tools auf macOS |
+| `Permission denied` / keine Schreibrechte | Prüfe Eigentümer: `ls -la <verzeichnis>`; ggf. `chown -R $USER <dir>` |
+| `sudo: command not found` oder sudo-Rechte fehlen | Wende dich an die IT/Ausbilder — Root-Rechte für `apt install` nötig |
 | Exit-Code 2 | Fataler Fehler; prüfe die Fehlermeldung auf stderr |

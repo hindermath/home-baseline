@@ -29,6 +29,7 @@
 # Lastenheft-Dateien und Spezifikationen (alle Ebenen)
 !Lastenheft*.md
 !STATS.md
+!STATS-archive*.md
 !specs/
 
 # Spec-Kit Konfiguration und Templates

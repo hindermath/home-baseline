@@ -200,6 +200,18 @@ bootstraps a C# CLI project that passes the compliance check.
   listed in the `.gitignore` whitelist. The compliance check reports the
   archival in the first entry of the new `STATS.md`.
 
+- What happens when two compliance check runs start within the same clock minute,
+  producing duplicate `## Run YYYY-MM-DD HH:MM` headings in `STATS.md`?
+  → The second run appends a collision counter: `## Run YYYY-MM-DD HH:MM:2`
+  (`:2`, `:3`, … for each additional collision within that minute). The lock
+  mechanism (EC-008) prevents simultaneous writes; the collision suffix handles
+  the case of sequential runs within the same minute.
+
+- All tool output MUST use only plain Unicode characters (✓, ✗, →, !) as status
+  indicators. ANSI escape codes and terminal colour sequences MUST NOT be used
+  in any output mode (standard, `--verbose`, `--json`) to ensure compatibility
+  with screen readers and non-interactive terminals.
+
 ---
 
 ## Requirements *(mandatory)*
@@ -224,7 +236,8 @@ bootstraps a C# CLI project that passes the compliance check.
   potential secret exposure in tracked files: authentication tokens, private key
   headers, and credential-named files. **The matched value MUST be replaced with
   `[REDACTED]` in all tool output; only the filename and line number are shown.**
-  This applies to both the compliance check tool and the pre-push hook output.
+  This applies to all output modes (standard, `--verbose`, and `--json`) and to
+  both the compliance check tool and the pre-push hook output.
 
 - **FR-004**: The system MUST check that every agent guidance file and README
   contains both a German primary section and an English section at CEFR B2
@@ -282,6 +295,8 @@ bootstraps a C# CLI project that passes the compliance check.
   "warnings": [{"path": "...", "check": "..."}] }`.
   All secret matches in JSON output MUST use `[REDACTED]` for the matched value.
   When `--json` is set, no human-readable ASCII/Markdown output is produced.
+  **When `--json` and `--verbose` are both set, `--json` takes precedence and
+  `--verbose` is silently ignored; only the JSON object is written to stdout.**
 
 - **FR-018**: The compliance check tool MUST detect when an active `spec.md`
   file was created with an older Spec-kit template version and report
@@ -303,6 +318,15 @@ bootstraps a C# CLI project that passes the compliance check.
 - **FR-015**: The system MUST operate on macOS 14+, Ubuntu 22.04/24.04 LTS,
   Debian 12, Windows 10/11 (native and via WSL2) — using only free, open-source
   tooling.
+
+- **FR-016**: The compliance check tool MUST scan all `*.csproj` files within
+  every project directory for references to known paid NuGet component vendors
+  using a static blocklist (`DevExpress.*`, `Telerik.*`, `Syncfusion.*`,
+  `Infragistics.*`, `MESCIUS.*`, `ComponentOne.*`, `GrapeCity.*`,
+  `Actipro.*`). Any match MUST generate a `WARN: paid dependency detected —
+  <PackageName>` entry. This check is advisory only (no FAIL, no blocking);
+  developers are responsible for the final licence review. The blocklist is
+  maintained in `scripts/lib/hg-deps.sh`.
 
 - **FR-020**: After every compliance check run, the system MUST generate a
   `memory-patch.md` file in the feature directory (or a configurable output

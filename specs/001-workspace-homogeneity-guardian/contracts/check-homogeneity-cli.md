@@ -24,7 +24,7 @@ check-homogeneity.ps1 [[-TargetDir] <String>] [OPTIONS]
 |-----------|-------------|------|----------|--------------|
 | (positional) | `-TargetDir` | `string` | `~/` | Startverzeichnis (Level 0) |
 | `--verbose` | `-Verbose` | `switch` | off | Alle geprüften Dateien mit Status ausgeben |
-| `--json` | `-Json` | `switch` | off | Maschinenlesbarer JSON-Output (kein ASCII/Markdown) |
+| `--json` | `-Json` | `switch` | off | Maschinenlesbarer JSON-Output (kein ASCII/Markdown); hat Vorrang vor `--verbose` |
 | `--dry-run` | `-DryRun` | `switch` | off | Keine Schreibvorgänge (kein STATS.md, kein Patch) |
 | `--apply-patch` | `-ApplyPatch` | `string` | — | Pfad zu `memory-patch.md`; wendet Patch an + committet |
 | `--no-patch` | `-NoPatch` | `switch` | off | Kein `memory-patch.md` generieren, auch bei Trigger |
