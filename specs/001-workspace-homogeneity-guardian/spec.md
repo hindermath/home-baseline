@@ -188,6 +188,18 @@ bootstraps a C# CLI project that passes the compliance check.
   → The compliance check flags `WARN: potentially non-free dependency detected`
   and lists the package name for manual review.
 
+- What happens when two compliance check runs execute concurrently and both
+  attempt to write to the same `STATS.md`?
+  → The second run detects the lock file (`STATS.md.lock`), waits up to 5
+  seconds, then exits with `WARN: stats file locked — try again` without
+  modifying the file. The lock is always cleaned up after a successful write.
+
+- What happens when `STATS.md` reaches 500 run entries?
+  → The file is automatically renamed to `STATS-archive-YYYY.md` (current year)
+  and a fresh `STATS.md` is created. The archive file is tracked by git and
+  listed in the `.gitignore` whitelist. The compliance check reports the
+  archival in the first entry of the new `STATS.md`.
+
 ---
 
 ## Requirements *(mandatory)*
@@ -233,6 +245,13 @@ bootstraps a C# CLI project that passes the compliance check.
   historical entries. Each run appends a new section using the fixed schema:
   `## Run YYYY-MM-DD HH:MM`, followed by a compliance table, an ASCII bar chart,
   and a file-presence matrix (see FR-008). Existing entries are never modified.
+  **Concurrent write protection**: before writing, the tool creates
+  `STATS.md.lock`; a second concurrent run waits up to 5 seconds for the lock
+  to clear, then exits with `WARN: stats file locked — try again` without
+  modifying the file. The lock file is removed after a successful write.
+  **Archival**: when a `STATS.md` file contains 500 or more `## Run` entries,
+  the tool automatically moves it to `STATS-archive-YYYY.md` (where YYYY is
+  the current year) and starts a fresh `STATS.md` for subsequent runs.
 
 - **FR-008**: Each `STATS.md` run section MUST include:
   1. A Markdown table with columns `Level | Directory | Score %`
@@ -285,9 +304,35 @@ bootstraps a C# CLI project that passes the compliance check.
   Debian 12, Windows 10/11 (native and via WSL2) — using only free, open-source
   tooling.
 
-- **FR-016**: C# projects managed by this system MUST target .NET 10 or later
-  and MUST NOT introduce dependencies on paid GUI component libraries;
-  TUI/CLI libraries with open-source licences are the approved alternative.
+- **FR-020**: After every compliance check run, the system MUST generate a
+  `memory-patch.md` file in the feature directory (or a configurable output
+  path). This file contains proposed additions for agent files
+  (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `copilot-instructions.md`),
+  README files, and the constitution (`~/.specify/memory/constitution.md`),
+  based on new findings from the current run. A patch entry is generated
+  **only** when one of the following trigger conditions is met:
+  (1) a Workspace or Project is detected for the first time (not present in
+  any prior STATS.md entry), (2) the overall compliance score for any
+  directory changes by 10 percentage points or more compared to the previous
+  run, or (3) a new category of WARN or FAIL appears that has not been
+  recorded in any previous patch. If no trigger fires, no `memory-patch.md`
+  is generated and the run exits normally. The patch MUST be reviewed and
+  explicitly applied by the developer via `--apply-patch` before any agent
+  file or constitution is modified.
+
+- **FR-021**: The `memory-patch.md` MUST distinguish between three target
+  categories using a strict routing schema:
+  (1) **Constitution** (`~/.specify/memory/constitution.md`) — receives only
+  new project-wide conventions or security rules that apply to all future
+  features and all agents (e.g., "all hooks must use SHA-256 comparison");
+  (2) **Agent Files** (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`,
+  `copilot-instructions.md` at the appropriate level) — receive tool-specific
+  context facts about the current workspace state (e.g., "RiderProjects
+  contains 3 SDD projects, last compliance score 87 %");
+  (3) **README sections** — receive step-by-step guidance additions targeted
+  at apprentices, triggered when a new setup step or correction is discovered.
+  Each proposed change MUST include the target file path, the proposed content,
+  and a one-line rationale explaining which routing rule applies.
 
 ### Key Entities
 
@@ -309,6 +354,10 @@ bootstraps a C# CLI project that passes the compliance check.
   a `spec.md` file.
 - **Lastenheft**: A bilingual requirements document for a feature; its filename
   gains a branch-name suffix after the Spec-kit specify step completes.
+- **Memory Patch**: A `memory-patch.md` file generated after each compliance
+  check run, containing proposed additions for agent files, READMEs, and the
+  constitution. Must be reviewed and explicitly applied by the developer via
+  `--apply-patch`; never written automatically.
 
 ---
 
@@ -399,6 +448,14 @@ creep. They may be addressed in separate features if needed.
 - Q: Was liegt explizit außerhalb des Scope? → A: Git-Submodule, Remote-Repo-Inhalte, Docker-Umgebungen, externe CI/CD-Systeme, Nicht-Markdown-Dateiformate
 - Q: Hat das Compliance-Tool einen Verbose-/Debug-Modus? → A: `--verbose` als optionales Flag; Standard-Output ist kompakt (nur Fehler/Warnungen + Score)
 - Q: Was passiert bei Spec-kit Template-Versionsdrift? → A: Kein automatisches Upgrade; das Compliance-Tool meldet `WARN: spec template version outdated`; Migration ist manuell
+
+### Session 2026-04-01 — Runde 3
+
+- Q: Soll das System Fakten/Erkenntnisse automatisch in KI-Agenten-Dateien, README und Verfassung schreiben? → A: Halbautomatisch — Tool generiert `memory-patch.md` mit vorgeschlagenen Ergänzungen; Entwickler prüft, übernimmt per Befehl, committet
+- Q: Welche Ereignisse lösen einen Eintrag in memory-patch.md aus? → A: (1) Neues Workspace/Projekt erstmals gefunden, (2) Score-Änderung ≥10% ggü. letztem Run, (3) neuer WARN/FAIL-Typ der noch nicht im Patch stand
+- Q: Nach welchem Prinzip entscheidet das Tool, wohin ein Fakt gehört? → A: Striktes Schema: Constitution=neue projektweite Konvention/Sicherheitsregel; Agent Files=werkzeugspezifische Kontext-Facts; README=Azubi-Anleitungsergänzungen
+- Q: Wie sollen gleichzeitige Schreibvorgänge auf STATS.md verhindert werden? → A: Lock-File `STATS.md.lock`; zweiter Run wartet max. 5s, dann `WARN: stats file locked` und Abbruch
+- Q: Was passiert, wenn STATS.md durch viele Runs zu groß wird? → A: Automatische Archivierung nach 500 Runs: aktive Datei wird nach `STATS-archive-YYYY.md` verschoben, neue leere STATS.md angelegt
 
 ### Session 2026-04-01 — Runde 2
 
