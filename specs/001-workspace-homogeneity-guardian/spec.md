@@ -198,14 +198,21 @@ bootstraps a C# CLI project that passes the compliance check.
   workspace directories, and project directories — and report the presence of
   every required file at each level. **The scan depth is fixed at exactly 3
   levels; directories nested deeper than Level 2 are silently ignored.**
+  A Level-1 directory is treated as a **Workspace** only if it contains a
+  `.git` subdirectory; all other Level-1 directories are silently skipped.
+  Similarly, a Level-2 directory is treated as a **Project** only if it
+  contains a `.git` subdirectory.
 
 - **FR-002**: The system MUST verify that a secret-scanning pre-push hook is
   installed in every git repository at all three levels and that it matches the
-  canonical master hook exactly.
+  canonical master hook exactly. The canonical master hook is located at
+  `~/scripts/hooks/pre-push`; comparison is performed via SHA-256 checksum.
 
 - **FR-003**: The system MUST detect and report the following classes of
   potential secret exposure in tracked files: authentication tokens, private key
-  headers, and credential-named files.
+  headers, and credential-named files. **The matched value MUST be replaced with
+  `[REDACTED]` in all tool output; only the filename and line number are shown.**
+  This applies to both the compliance check tool and the pre-push hook output.
 
 - **FR-004**: The system MUST check that every agent guidance file and README
   contains both a German primary section and an English section at CEFR B2
@@ -221,12 +228,17 @@ bootstraps a C# CLI project that passes the compliance check.
   annotations, colour-contrast requirements, and keyboard navigation coverage
   noted in the project specification.
 
-- **FR-007**: The system MUST generate and maintain a statistics file at every
-  level (home, workspace, project) in append-only mode, preserving all
-  historical entries.
+- **FR-007**: The system MUST generate and maintain a statistics file (`STATS.md`)
+  at every level (home, workspace, project) in append-only mode, preserving all
+  historical entries. Each run appends a new section using the fixed schema:
+  `## Run YYYY-MM-DD HH:MM`, followed by a compliance table, an ASCII bar chart,
+  and a file-presence matrix (see FR-008). Existing entries are never modified.
 
-- **FR-008**: The system MUST produce an ASCII compliance bar chart and a
-  file-presence matrix table as part of every statistics update.
+- **FR-008**: Each `STATS.md` run section MUST include:
+  1. A Markdown table with columns `Level | Directory | Score %`
+  2. An ASCII horizontal bar chart (`[████░░] 72 %`) with one bar per workspace
+  3. A file-presence matrix table listing every required filename as a column
+     and each scanned directory as a row, with `✓` / `✗` / `–` cells
 
 - **FR-009**: The system MUST provide a project bootstrap tool that creates all
   required files, installs the secret-scanning hook, initialises all four AI
@@ -244,6 +256,13 @@ bootstraps a C# CLI project that passes the compliance check.
   omitted, the output is compact: only failures, warnings, and the final
   compliance score are shown. When `--verbose` is set, every checked file and
   its individual status (✓ / ✗ / WARN) is included in the output.
+
+- **FR-019**: The compliance check tool MUST support a `--json` flag that
+  outputs a single JSON object to stdout:
+  `{ "score": <0–100>, "failures": [{"path": "...", "check": "..."}],
+  "warnings": [{"path": "...", "check": "..."}] }`.
+  All secret matches in JSON output MUST use `[REDACTED]` for the matched value.
+  When `--json` is set, no human-readable ASCII/Markdown output is produced.
 
 - **FR-018**: The compliance check tool MUST detect when an active `spec.md`
   file was created with an older Spec-kit template version and report
@@ -274,6 +293,10 @@ bootstraps a C# CLI project that passes the compliance check.
 
 - **Level**: A hierarchy tier in the workspace tree. Level 0 = home directory,
   Level 1 = workspace directory, Level 2 = project directory.
+- **Workspace**: A Level-1 directory that contains a `.git` subdirectory.
+  Directories without `.git` at Level 1 are silently ignored by the scanner.
+- **Project**: A Level-2 directory (inside a Workspace) that contains a `.git`
+  subdirectory. Directories without `.git` at Level 2 are silently ignored.
 - **Agent File**: One of four AI-agent configuration files associated with
   Claude, Codex, Gemini, or Copilot.
 - **Compliance Score**: The percentage of required files and content checks
@@ -367,12 +390,21 @@ creep. They may be addressed in separate features if needed.
   levels below `~/` is silently ignored by the scanner.
 
 
+## Clarifications
 
-### Session 2026-04-01
+### Session 2026-04-01 — Runde 1
 
 - Q: Was soll passieren, wenn der Bootstrap-Prozess nach einigen Schritten abbricht? → A: Teilzustand belassen; erneuter Aufruf ohne `--force` ergänzt nur noch Fehlendes (idempotent re-run)
 - Q: Ist die 3-Ebenen-Struktur eine feste Grenze oder soll der Scanner tiefer scannen? → A: 3 Ebenen fix — tiefer liegende Verzeichnisse werden ignoriert
 - Q: Was liegt explizit außerhalb des Scope? → A: Git-Submodule, Remote-Repo-Inhalte, Docker-Umgebungen, externe CI/CD-Systeme, Nicht-Markdown-Dateiformate
 - Q: Hat das Compliance-Tool einen Verbose-/Debug-Modus? → A: `--verbose` als optionales Flag; Standard-Output ist kompakt (nur Fehler/Warnungen + Score)
 - Q: Was passiert bei Spec-kit Template-Versionsdrift? → A: Kein automatisches Upgrade; das Compliance-Tool meldet `WARN: spec template version outdated`; Migration ist manuell
+
+### Session 2026-04-01 — Runde 2
+
+- Q: Welches Schema soll die Statistics-Datei (STATS.md) verwenden? → A: Festes Markdown-Schema: `## Run YYYY-MM-DD HH:MM` → Tabelle `Level | Dir | Score %` → ASCII-Balkendiagramm → Datei-Präsenz-Matrix
+- Q: Was macht ein Level-1-Verzeichnis zu einem scanfähigen Workspace? → A: Ein `.git`-Unterverzeichnis ist Pflichtmerkmal; Verzeichnisse ohne `.git` werden auf Level 1 übersprungen
+- Q: Zeigt das Compliance-Tool gefundene Secret-Inhalte im Output an? → A: Nein — gematchter Wert wird als `[REDACTED]` ausgegeben; nur Dateiname + Zeilennummer sind sichtbar
+- Q: Soll das Compliance-Tool maschinenlesbaren Output für CI unterstützen? → A: Ja — optionales `--json` Flag gibt `{ "score": N, "failures": [...], "warnings": [...] }` aus
+- Q: Wo liegt der kanonische Master-Hook für den SHA-256-Vergleich? → A: `~/scripts/hooks/pre-push` ist die kanonische Referenz
 
