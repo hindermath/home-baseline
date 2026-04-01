@@ -59,9 +59,9 @@
 
 ## Notes / Hinweise
 
-Alle 14 Punkte bestanden. speckit-clarify Session 2026-04-01 abgeschlossen.  
-5 Klärungen → 3 neue FRs (FR-REV-A06, Score-Formel in FR-REV-B01, Versionsschema in FR-REV-F01) + 2 Präzisierungen.  
-Strukturproblem (Template-Platzhalter Zeilen 11–131) behoben.  
+Alle Punkte bestanden. speckit-clarify Runden 1 + 2 abgeschlossen (2026-04-01).  
+13 Klärungen → 5 neue FRs/NFRs (FR-REV-A06, NFR-REV-06) + 8 Präzisierungen bestehender FRs.  
+Gesamtstand: 21 FRs + 6 NFRs = 27 Anforderungen. 2 Sachfehler korrigiert (FR-REV-G01, US2 Sz.1).  
 **→ Bereit für `/speckit-plan`.**
 
 Verweis auf Parent-Feature: `specs/001-workspace-homogeneity-guardian/spec.md`  
