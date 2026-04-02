@@ -160,3 +160,24 @@ Overall Score: **71 %**
 ASCII Bar: [██████████████░░░░░░] 71 %
 
 | 2026-04-03 00:19 | 71% | ██████████████░░░░░░ 71% |
+
+## Run 2026-04-03 00:20
+
+Overall Score: **71 %**
+
+| Level | Directory | Score % |
+|-------|-----------|----------|
+| 0 | `\~` | — |
+| 1 | `\~/C64Projects` | — |
+| 2 | `\~/C64Projects/cc65` | — |
+| 3 | `\~/DataGripProjects` | — |
+| 4 | `\~/DataGripProjects/InventarDb` | — |
+| 5 | `\~/RiderProjects` | — |
+| 6 | `\~/RiderProjects/InventarWorkerService` | — |
+| 7 | `\~/RiderProjects/sysinfotool` | — |
+| 8 | `\~/RiderProjects/TinyCalc` | — |
+| 9 | `\~/RiderProjects/TinyPl0` | — |
+| 10 | `\~/RiderProjects/TuiVision` | — |
+
+ASCII Bar: [██████████████░░░░░░] 71 %
+

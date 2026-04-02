@@ -76,6 +76,8 @@ Durchgeführt am / Conducted: 2026-04-01 · Basis: Live-Scan der Umgebung
 | SW-14 | Kein Migrations-Pfad für bestehende Workspaces/Projekte definiert | HOCH | Spec-Lücke |
 | SW-15 | Kein Mechanismus zur Propagation von Constitution-Änderungen in Child-Repos | MITTEL | Spec-Lücke |
 | SW-16 | GitHub Actions / CI-Integration nicht erwähnt — kein automatischer Scan in Pipelines | NIEDRIG | Spec-Lücke |
+| SW-17 | TUI-Ausgaben der Skripte nicht A11Y-geprüft (Screenreader-Kompatibilität) | MITTEL | Spec-Lücke |
+| SW-18 | STATS.md Kopfzeilen/Legenden sind nicht bilingual | NIEDRIG | Spec-Lücke |
 
 ---
 
@@ -394,6 +396,13 @@ Gilt auf allen Ebenen (0, 1, 2) — identisch mit dem Bezugs-Lastenheft.
 - [x] ASCII-Diagramme haben Klartextbeschreibung (Legende) / ASCII diagrams have plain-text description
 - [ ] Keine Bilder vorhanden — kein Alt-Text erforderlich / No images — no alt text needed
 - [x] Abkürzungen beim ersten Vorkommen erklärt (SW = Schwachstelle, LTS, SDD) / Abbreviations explained
+
+*Dieses Dokument ist Speckit-kompatibel und kann direkt als Eingabe für
+`speckit plan` und `speckit tasks` verwendet werden.*
+
+*This document is Speckit-compatible and can be used directly as input for
+`speckit plan` and `speckit tasks`.*
+hwachstelle, LTS, SDD) / Abbreviations explained
 
 *Dieses Dokument ist Speckit-kompatibel und kann direkt als Eingabe für
 `speckit plan` und `speckit tasks` verwendet werden.*
