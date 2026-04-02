@@ -136,15 +136,92 @@ Remove-Item home-baseline-tmp -Recurse -Force
 
 ## Inhalt / Contents
 
+### Workspace-Bootstrap / Workspace Bootstrap
+
 | Datei / File | Beschreibung / Description |
 |---|---|
 | `scripts/bootstrap-workspace.sh` | Neues Workspace einrichten (Bash) |
 | `scripts/bootstrap-workspace.ps1` | Neues Workspace einrichten (PowerShell Core) |
-| `scripts/scan-agent-secrets.sh` | Secret-Scan für git-getrackte Dateien (Bash) |
-| `scripts/scan-agent-secrets.ps1` | Secret-Scan für git-getrackte Dateien (PowerShell Core) |
+| `scripts/bootstrap-project.sh` | Neues Projekt in einem Workspace anlegen (Bash) |
+| `scripts/bootstrap-project.ps1` | Neues Projekt in einem Workspace anlegen (PowerShell Core) |
+
+### Homogeneity Guardian
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/check-homogeneity.sh` | Compliance-Scanner Level 0–2, JSON-Ausgabe, STATS.md-Update (Bash) |
+| `scripts/check-homogeneity.ps1` | Compliance-Scanner — Parität zu Bash-Version (PowerShell Core) |
+| `scripts/init-stats.sh` | STATS.md Baseline-Eintrag erzeugen (Bash) |
+| `scripts/init-stats.ps1` | STATS.md Baseline-Eintrag erzeugen (PowerShell Core) |
+| `scripts/migrate-workspace.sh` | Bestehende Workspaces auf Homogeneity-Baseline migrieren (Bash) |
+| `scripts/migrate-workspace.ps1` | Workspace-Migration (PowerShell Core) |
+| `scripts/sync-constitution.sh` | `constitution.md` in alle Level-1-Workspaces synchronisieren (Bash) |
+| `scripts/sync-constitution.ps1` | Constitution-Sync (PowerShell Core) |
+| `scripts/rename-lastenheft.sh` | Lastenheft-Datei umbenennen: `git mv` + Commit (Bash) |
+| `scripts/rename-lastenheft.ps1` | Lastenheft umbenennen (PowerShell Core) |
+| `constitution.md` | Workspace-Verfassung — Sync-Quelle für alle Workspaces |
+| `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-kit- und Azubis-Abschnitt |
+| `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt (Template) |
+| `scripts/templates/speckit-workflow-section.md` | Spec-kit-Workflow-Abschnitt (Template) |
+| `scripts/templates/azubis-section.md` | Azubi-Einstiegsleitfaden-Abschnitt (Template) |
+| `.github/workflows/homogeneity-check.yml` | CI/CD-Workflow: Compliance-Check auf Ubuntu, macOS, Windows |
+
+### Sicherheit / Security
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/scan-agent-secrets.sh` | Secret-Scan für KI-Agenten-Verzeichnisse (Bash) |
+| `scripts/scan-agent-secrets.ps1` | Secret-Scan (PowerShell Core) |
 | `scripts/install-hooks.sh` | Git-Hooks installieren (Bash) |
 | `scripts/install-hooks.ps1` | Git-Hooks installieren (PowerShell Core) |
 | `scripts/hooks/pre-push` | Pre-Push Hook: blockiert Push bei Secrets |
+
+---
+
+## Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference
+
+### Compliance-Check
+
+```bash
+# Gesamte Umgebung prüfen / Check entire environment
+bash ~/scripts/check-homogeneity.sh
+
+# Einzelnen Workspace prüfen / Check single workspace
+bash ~/scripts/check-homogeneity.sh ~/RiderProjects
+
+# JSON-Ausgabe (für CI) / JSON output (for CI)
+bash ~/scripts/check-homogeneity.sh --json
+```
+
+### STATS.md Baseline erzeugen / Generate STATS.md baseline
+
+```bash
+bash ~/scripts/init-stats.sh
+```
+
+### Bestehenden Workspace migrieren / Migrate existing workspace
+
+```bash
+# Vorschau / Preview
+bash ~/scripts/migrate-workspace.sh --dry-run RiderProjects
+
+# Alle Workspaces migrieren / Migrate all workspaces
+bash ~/scripts/migrate-workspace.sh --yes
+```
+
+### Constitution synchronisieren / Sync constitution
+
+```bash
+bash ~/scripts/sync-constitution.sh --dry-run   # Vorschau
+bash ~/scripts/sync-constitution.sh --yes        # Ausführen
+```
+
+### Lastenheft umbenennen / Rename Lastenheft
+
+```bash
+bash ~/scripts/rename-lastenheft.sh Lastenheft_foo.md 002-feature-branch
+# → Lastenheft_foo.002-feature-branch.md
+```
 
 ---
 
