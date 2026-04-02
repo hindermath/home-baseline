@@ -145,7 +145,7 @@ enthält mindestens eine Baseline-Zeile mit Timestamp und Score.
 3. **Given** mehrere aufeinanderfolgende Scans,
    **When** die `STATS.md` gelesen wird,
    **Then** zeigt das ASCII-Balkendiagramm einen messbaren Trend vom Ist-Zustand
-   zum Zielzustand.
+   zum Zielzustand; jede Zeile im Format `YYYY-MM-DD HH:MM | ████░░░░░░░░░░░░░░░░ 20%`.
 
 ---
 
@@ -250,9 +250,14 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   `<!-- EN: [Dateiname] placeholder\n[DE-Zusammenfassung als Kommentar]\n-->`),
   `## Barrierefreiheit / Accessibility (A11Y)`, `## Spec-kit-Workflow`,
   `## Für Azubis / For Apprentices`.
+  **Zieldatei für die drei Abschnitte**: ausschließlich `README.md` je Workspace/Level.
+  KI-Agenten-Dateien (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `copilot-instructions.md`)
+  erhalten **nur** den EN-Platzhalter-Block, nicht die drei Abschnitte.
   Der Body-Inhalt der drei Abschnitte wird aus **Template-Dateien** gelesen:
   `scripts/templates/a11y-section.md`, `scripts/templates/speckit-workflow-section.md`,
-  `scripts/templates/azubis-section.md`. Fehlt eine Template-Datei, bricht das Skript
+  `scripts/templates/azubis-section.md`. Die Templates MÜSSEN **bilingualen Inhalt**
+  enthalten (DE zuerst, EN zweite Zeile/Abschnitt, CEFR B2) — konsistent mit
+  dem Projekt-Grundsatz „DE first, EN second". Fehlt eine Template-Datei, bricht das Skript
   mit `ERROR: template not found: scripts/templates/{name}` ab.
   **Argumentverhalten**: Wird ein Workspace-Name übergeben, migriert das Skript nur diesen
   Workspace. Wird **kein Argument** übergeben, migriert es alle Level-1-Workspaces in `~/`
@@ -307,6 +312,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   nicht als Fehler). Im `--json`-Modus wird ein **aggregierter Gesamt-Score** plus
   **Score pro Ebene** ausgegeben:
   `{"score": 75, "by_level": {"0": 100, "1": 80, "2": 60}, "failures": [...], "warnings": []}`.
+  **Argument-Interface**: `check-homogeneity.sh [workspace-name]` — ohne Argument: globaler
+  Scan aller Level 0–2; mit optionalem Workspace-Namen: nur dieser Level-1-Workspace
+  und seine Level-2-Projekte werden geprüft (Level-0-Checks entfallen).
   Jeder Failure-Eintrag ist ein strukturiertes Objekt:
   `{"file": "<relativer Pfad>", "check": "<Prüfname>", "level": <0|1|2>}`.
   Beispiel-Ausgabe mit Befunden:
@@ -325,6 +333,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-B04**: `scripts/init-stats.sh` / `.ps1` MUSS eine initiale `STATS.md` auf
   Level 0, 1 und 2 erzeugen, die den Ist-Zustand als Baseline festhält, und den
   STATS.md-Schema-Standard aus FR-007/008 des Parent-Features einhält.
+  **ASCII-Chart-Format**: horizontale Balken, eine Zeile pro Scan-Run:
+  `YYYY-MM-DD HH:MM | ████░░░░░░░░░░░░░░░░ 20%`
+  (█ = belegter Anteil, ░ = freier Anteil, Gesamtbreite 20 Zeichen = 100 %;
+  Score wird auf nächste 5 % gerundet für die Balkendarstellung).
   Zur Score-Ermittlung ruft `init-stats.sh` intern `check-homogeneity.sh --json` auf
   und extrahiert den `score`-Wert aus dem JSON-Output. Ist `check-homogeneity.sh`
   nicht ausführbar, bricht das Skript mit
@@ -390,12 +402,15 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   `chore: sync constitution to v{version}` erzeugen,
   und eine abschließende Zusammenfassung aller Workspaces ausgeben mit Status
   `UPDATED` / `SKIPPED (dirty)` / `ALREADY UP-TO-DATE`.
+  **Fehlende `constitution.md` in Level-1**: wird wie eine Versionsabweichung behandelt —
+  das Skript kopiert die Root-`constitution.md` in den Workspace, erzeugt denselben Commit
+  und setzt den Status auf `UPDATED`. Kein Sonderfall, kein Fehler.
   Vor der Ausführung MUSS eine Preview aller `WOULD UPDATE`-Workspaces ausgegeben
   und eine interaktive Prompt `Proceed? [y/N]` angezeigt werden; `--yes` überspringt
   nur die Prompt, nicht die Preview.
-  Die Versionsnummer wird per `grep` aus der ersten Zeile der `constitution.md` extrahiert
-  (Format: `# Constitution vMAJOR.MINOR.PATCH`). Fehlt diese Zeile, bricht das Skript mit
-  `ERROR: constitution.md hat keine Versionszeile` ab.
+  Die Versionsnummer wird per `grep` aus der ersten Zeile der **Root**-`constitution.md`
+  extrahiert (Format: `# Constitution vMAJOR.MINOR.PATCH`). Fehlt diese Zeile, bricht
+  das Skript mit `ERROR: constitution.md hat keine Versionszeile` ab.
 
 - **FR-REV-F02**: Das Skript MUSS `--dry-run` / `-WhatIf` unterstützen; bei Fehler
   MUSS es alle Teiländerungen zurückrollen (`git stash`). Workspaces mit uncommitteten
@@ -688,3 +703,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Soll die Terminologie „Child-Workspace/Child-Repo" auf den Canonical Term „Level-1-Workspace" normalisiert werden?**
   → A: Ja — alle Vorkommen von „Child-Workspace(s)" und „Child-Repo(s)" durch „Level-1-Workspace(s)" ersetzt. Canonical Term ist „Level-1-Workspace" gemäß §Key Entities.
+
+- **Q: In welche Dateien fügt `migrate-workspace.sh` die Abschnitte A11Y, Spec-kit-Workflow und Azubis ein?**
+  → A: Ausschließlich `README.md` je Workspace/Level. KI-Agenten-Dateien (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `copilot-instructions.md`) erhalten nur den EN-Platzhalter-Block, nicht die drei Abschnitte. (→ FR-REV-A01)
+
+- **Q: Akzeptiert `check-homogeneity.sh` ein optionales Workspace-Argument für scoped Checks?**
+  → A: Ja — `check-homogeneity.sh [workspace-name]`: ohne Argument globaler Scan Level 0–2; mit Workspace-Namen nur dieser Level-1-Workspace + Level-2-Projekte (Level-0-Checks entfallen). (→ FR-REV-B01, SC-REV-07)
+
+- **Q: Welches Format hat das ASCII-Chart in `STATS.md`?**
+  → A: Horizontale Balken, eine Zeile pro Scan-Run: `YYYY-MM-DD HH:MM | ████░░░░░░░░░░░░░░░░ 20%` (20 Zeichen Breite = 100 %; Score auf 5 % gerundet). (→ FR-REV-B04, US3 Szenario 3)
+
+- **Q: Was passiert, wenn `constitution.md` in einem Level-1-Workspace komplett fehlt (Erstinstallation)?**
+  → A: Wie Versionsabweichung behandeln — Root-`constitution.md` kopieren, Commit `chore: sync constitution to v{version}`, Status `UPDATED`. Kein Sonderfall, kein Fehler. (→ FR-REV-F01)
+
+- **Q: Sollen die Template-Dateien (`a11y-section.md` etc.) bilingualen Inhalt haben?**
+  → A: Ja — vollständig bilingual (DE zuerst, EN zweite Zeile/Abschnitt, CEFR B2), konsistent mit dem Projektgrundsatz „DE first, EN second". (→ FR-REV-A01)
