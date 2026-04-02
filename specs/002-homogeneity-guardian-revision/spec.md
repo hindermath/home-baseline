@@ -264,8 +264,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   sequentiell (Alle-auf-einmal-Modus); jeder Workspace durchläuft denselben
   Preview-→-Commit-Zyklus.
   Das Skript erstellt zudem `.github/workflows/homogeneity-check.yml` falls noch nicht
-  vorhanden (Inhalt gemäß FR-REV-G01–G03); existiert die Datei bereits, wird sie
-  übersprungen mit `INFO: homogeneity-check.yml already present — skip`.
+  vorhanden — sowohl in Level-1-Workspaces **als auch** in Level-2-Projekten
+  (Inhalt gemäß FR-REV-G01–G03; der CI-Aufruf nutzt `basename "$GITHUB_WORKSPACE"` als
+  Workspace-Argument); existiert die Datei bereits, wird sie übersprungen mit
+  `INFO: homogeneity-check.yml already present — skip`.
   **Scope der Bilingualisierung**: ausschließlich `README.md`, `CLAUDE.md`, `GEMINI.md`,
   `AGENTS.md`, `.github/copilot-instructions.md`, `STATS.md` (nur Kopfzeilen) und `constitution.md`.
   Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) und sonstige `.md`-Dateien
@@ -312,6 +314,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   nicht als Fehler). Im `--json`-Modus wird ein **aggregierter Gesamt-Score** plus
   **Score pro Ebene** ausgegeben:
   `{"score": 75, "by_level": {"0": 100, "1": 80, "2": 60}, "failures": [...], "warnings": []}`.
+  **Klartext-Ausgabeformat** (Standard ohne `--json`): eine Zeile pro Check im Format
+  `[✓|✗|WARN] Level-N  {datei}  {check-name}`, abschließend eine Score-Zeile
+  `Score: 75% (15/20 checks passed)` sowie das ASCII-Chart im STATS.md-Format.
   **Argument-Interface**: `check-homogeneity.sh [workspace-name]` — ohne Argument: globaler
   Scan aller Level 0–2; mit optionalem Workspace-Namen: nur dieser Level-1-Workspace
   und seine Level-2-Projekte werden geprüft (Level-0-Checks entfallen).
@@ -322,6 +327,13 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **FR-REV-B02**: `scripts/bootstrap-project.sh` / `.ps1` MUSS gemäß den Anforderungen
   FR-009–FR-016 des Parent-Features implementiert werden.
+  **README-Template**: Das Skript MUSS `scripts/templates/readme-template.md` als
+  Basis für die neue `README.md` verwenden. Dieses Template enthält bereits alle
+  Pflichtabschnitte (`## Barrierefreiheit / Accessibility (A11Y)`, `## Spec-kit-Workflow`,
+  `## Für Azubis / For Apprentices`) und den EN-Platzhalter-Block — sodass ein frisch
+  gebooststrapptes Projekt sofort 100 % compliant ist ohne nachträglichen
+  `migrate-workspace.sh`-Lauf. Fehlt das Template, bricht das Skript mit
+  `ERROR: template not found: scripts/templates/readme-template.md` ab.
 
 - **FR-REV-B03**: `scripts/rename-lastenheft.sh` / `.ps1` MUSS implementiert werden:
   Aufruf `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` benennt die Datei
@@ -333,6 +345,8 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-B04**: `scripts/init-stats.sh` / `.ps1` MUSS eine initiale `STATS.md` auf
   Level 0, 1 und 2 erzeugen, die den Ist-Zustand als Baseline festhält, und den
   STATS.md-Schema-Standard aus FR-007/008 des Parent-Features einhält.
+  **Granularität Level 2**: Jedes Level-2-Projekt erhält eine **eigene `STATS.md`**
+  in seinem Projektstammverzeichnis — eine Datei pro Projekt, nicht aggregiert.
   **ASCII-Chart-Format**: horizontale Balken, eine Zeile pro Scan-Run:
   `YYYY-MM-DD HH:MM | ████░░░░░░░░░░░░░░░░ 20%`
   (█ = belegter Anteil, ░ = freier Anteil, Gesamtbreite 20 Zeichen = 100 %;
@@ -361,6 +375,8 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **FR-REV-C01**: Die Root-`.gitignore` MUSS die Einträge `!Lastenheft*.md`,
   `!STATS.md` und `!scripts/templates/` enthalten, damit diese Dateien versioniert werden.
+  Das Template-Verzeichnis umfasst: `a11y-section.md`, `speckit-workflow-section.md`,
+  `azubis-section.md` und `readme-template.md`.
 
 - **FR-REV-C02**: Der doppelte Eintrag `!.specify/memory/` in der Root-`.gitignore`
   MUSS entfernt werden (Duplikat-Bereinigung).
@@ -427,8 +443,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   eigenen Workspace ausführt. Der Workflow verwendet eine **Matrix-Strategie**:
   `ubuntu-22.04`, `macos-14`, `windows-latest`. Ripgrep wird je Plattform installiert
   (`apt-get install ripgrep` / `brew install ripgrep` / `choco install ripgrep`).
-  Auf Ubuntu/macOS wird `bash scripts/check-homogeneity.sh` aufgerufen,
-  auf Windows `pwsh scripts/check-homogeneity.ps1`.
+  **CI-Aufruf**: Auf Ubuntu/macOS `bash scripts/check-homogeneity.sh $(basename "$GITHUB_WORKSPACE")`,
+  auf Windows `pwsh scripts/check-homogeneity.ps1 -WorkspaceName (Split-Path $env:GITHUB_WORKSPACE -Leaf)`.
+  Das Workspace-Name-Argument scoped den Scan auf das ausgecheckte Repo (Level-0-Checks entfallen).
   Der Report wird als GitHub Job Summary ausgegeben (`$GITHUB_STEP_SUMMARY` / `$env:GITHUB_STEP_SUMMARY`).
 
 - **FR-REV-G02**: Der Workflow MUSS bei `✗`-Befunden mit Exit-Code `1` fehlschlagen
@@ -718,3 +735,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Sollen die Template-Dateien (`a11y-section.md` etc.) bilingualen Inhalt haben?**
   → A: Ja — vollständig bilingual (DE zuerst, EN zweite Zeile/Abschnitt, CEFR B2), konsistent mit dem Projektgrundsatz „DE first, EN second". (→ FR-REV-A01)
+
+- **Q: Wie ruft der GitHub-Actions-Workflow `check-homogeneity.sh` auf, wenn nur das Level-1-Repo ausgecheckt ist?**
+  → A: `bash scripts/check-homogeneity.sh $(basename "$GITHUB_WORKSPACE")` (Bash/macOS); `pwsh scripts/check-homogeneity.ps1 -WorkspaceName (Split-Path $env:GITHUB_WORKSPACE -Leaf)` (Windows). Workspace-Argument scoped den Scan — Level-0-Checks entfallen. (→ FR-REV-G01, FR-REV-B01)
+
+- **Q: Bekommt jedes Level-2-Projekt eine eigene `STATS.md` oder gibt es eine aggregierte pro Level-1?**
+  → A: Eine `STATS.md` pro Level-2-Projekt, im jeweiligen Projektstammverzeichnis — nicht aggregiert. (→ FR-REV-B04)
+
+- **Q: Erstellt `bootstrap-project.sh` eine sofort-compliant `README.md` oder benötigt es nachträgliches `migrate-workspace.sh`?**
+  → A: Sofort-compliant via `scripts/templates/readme-template.md` — Template enthält bereits alle Pflichtabschnitte + EN-Placeholder. Fehlt Template → `ERROR` + Abbruch. (→ FR-REV-B02, FR-REV-C01)
+
+- **Q: Erhalten Level-2-Projekte ebenfalls eine `homogeneity-check.yml` CI-Workflow-Datei?**
+  → A: Ja — `migrate-workspace.sh` erstellt sie auch in Level-2-Projekten (gleiches Template, gleiche Idempotenz-Regel `INFO: already present — skip`). (→ FR-REV-A01, FR-REV-G01)
+
+- **Q: Wie sieht die Klartext-Ausgabe (ohne `--json`) von `check-homogeneity.sh` aus?**
+  → A: Eine Zeile pro Check: `[✓|✗|WARN] Level-N  {datei}  {check-name}`; abschließend `Score: 75% (15/20 checks passed)` + ASCII-Chart im STATS.md-Format. (→ FR-REV-B01)
