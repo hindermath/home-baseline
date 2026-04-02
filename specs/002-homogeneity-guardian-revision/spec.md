@@ -286,6 +286,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   `chore: migrate {workspace} to homogeneity baseline v{version}`.
   `{version}` wird per `grep` aus der ersten Zeile der Root-`constitution.md` extrahiert
   (Format: `# Constitution vX.Y.Z`) — dieselbe Quelle wie FR-REV-F01.
+  **STATS.md-Baseline**: Nach dem Git-Commit MUSS `migrate-workspace.sh` automatisch
+  `bash scripts/init-stats.sh` aufrufen, um eine STATS.md-Baseline (Post-Migrations-Ist-Zustand)
+  für jeden migrierten Workspace zu erzeugen.
 
 - **FR-REV-A04**: Das Migrationsskript MUSS auf Level-2-Ebene den Pre-Push-Hook-Status
   prüfen und bei Fehlen `install-hooks.sh` aufrufen. Als Level-2-Projekt gilt jedes
@@ -317,6 +320,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   **Klartext-Ausgabeformat** (Standard ohne `--json`): eine Zeile pro Check im Format
   `[✓|✗|WARN] Level-N  {datei}  {check-name}`, abschließend eine Score-Zeile
   `Score: 75% (15/20 checks passed)` sowie das ASCII-Chart im STATS.md-Format.
+  **STATS.md-Check**: Das Skript prüft `STATS.md` ausschließlich auf **Vorhandensein**
+  (Datei existiert → PASS; fehlt → FAIL). Inhalt und Gültigkeit des ASCII-Charts werden
+  nicht geprüft — konsistent mit dem Präsenz-Prinzip aller anderen Pflichtdateien.
   **Argument-Interface**: `check-homogeneity.sh [workspace-name]` — ohne Argument: globaler
   Scan aller Level 0–2; mit optionalem Workspace-Namen: nur dieser Level-1-Workspace
   und seine Level-2-Projekte werden geprüft (Level-0-Checks entfallen).
@@ -334,6 +340,15 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   gebooststrapptes Projekt sofort 100 % compliant ist ohne nachträglichen
   `migrate-workspace.sh`-Lauf. Fehlt das Template, bricht das Skript mit
   `ERROR: template not found: scripts/templates/readme-template.md` ab.
+  **CI-Workflow**: Das Skript MUSS `.github/workflows/homogeneity-check.yml` direkt beim
+  Anlegen des Projekts erstellen (gleicher Inhalt wie FR-REV-G01–G03).
+  **constitution.md**: Das Skript MUSS `~/constitution.md` (Level-0-Root) als initiale
+  `constitution.md` ins neue Projekt kopieren. `sync-constitution.sh` übernimmt spätere
+  Updates. Fehlt `~/constitution.md`, bricht das Skript mit
+  `ERROR: root constitution.md not found at ~/constitution.md` ab.
+  **STATS.md-Baseline**: Am Ende des Bootstrap-Runs MUSS das Skript automatisch
+  `bash scripts/init-stats.sh` aufrufen, um eine initiale STATS.md-Baseline für das
+  neue Projekt zu erzeugen.
 
 - **FR-REV-B03**: `scripts/rename-lastenheft.sh` / `.ps1` MUSS implementiert werden:
   Aufruf `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` benennt die Datei
@@ -446,10 +461,13 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   **CI-Aufruf**: Auf Ubuntu/macOS `bash scripts/check-homogeneity.sh $(basename "$GITHUB_WORKSPACE")`,
   auf Windows `pwsh scripts/check-homogeneity.ps1 -WorkspaceName (Split-Path $env:GITHUB_WORKSPACE -Leaf)`.
   Das Workspace-Name-Argument scoped den Scan auf das ausgecheckte Repo (Level-0-Checks entfallen).
-  Der Report wird als GitHub Job Summary ausgegeben (`$GITHUB_STEP_SUMMARY` / `$env:GITHUB_STEP_SUMMARY`).
+  **Job-Summary-Format**: Plain Text (Klartext-Ausgabeformat) geht auf `stdout`; eine
+  **Markdown-Tabelle** wird zusätzlich in `$GITHUB_STEP_SUMMARY` / `$env:GITHUB_STEP_SUMMARY`
+  geschrieben — renderbar in der GitHub Actions UI. Beide Ausgabekanäle werden immer befüllt.
 
 - **FR-REV-G02**: Der Workflow MUSS bei `✗`-Befunden mit Exit-Code `1` fehlschlagen
-  und den Report als GitHub Job Summary ausgeben.
+  und den Report sowohl als Plain Text (stdout) als auch als Markdown-Tabelle
+  (`$GITHUB_STEP_SUMMARY`) ausgeben.
 
 - **FR-REV-G03**: Der Workflow MUSS die Matrix `[ubuntu-22.04, macos-14, windows-latest]`
   verwenden (NFR-REV-04-konform). `timeout-minutes: 10` gilt für jeden Matrix-Job.
@@ -750,3 +768,14 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Wie sieht die Klartext-Ausgabe (ohne `--json`) von `check-homogeneity.sh` aus?**
   → A: Eine Zeile pro Check: `[✓|✗|WARN] Level-N  {datei}  {check-name}`; abschließend `Score: 75% (15/20 checks passed)` + ASCII-Chart im STATS.md-Format. (→ FR-REV-B01)
+
+- **Q: Rufen `bootstrap-project.sh` und `migrate-workspace.sh` automatisch `init-stats.sh` auf?**
+  → A: Ja, beide — `bootstrap-project.sh` am Ende des Runs (neue Projekt-Baseline); `migrate-workspace.sh` nach dem Git-Commit (Post-Migrations-Ist-Zustand). Garantiert SC-REV-03. (→ FR-REV-A03, FR-REV-B02)
+- **Q: Erstellt `bootstrap-project.sh` auch `.github/workflows/homogeneity-check.yml` direkt beim Anlegen?**
+  → A: Ja — neues Projekt ist sofort 100 % compliant, kein nachträglicher `migrate-workspace.sh`-Lauf nötig. (→ FR-REV-B02)
+- **Q: Woher kommt `constitution.md` für ein neues Projekt in `bootstrap-project.sh`?**
+  → A: Bootstrap kopiert `~/constitution.md` (Level-0-Root) direkt ins neue Projekt; `sync-constitution.sh` übernimmt Updates. Fehlt Root-Datei → ERROR + Abbruch. (→ FR-REV-B02)
+- **Q: Prüft `check-homogeneity.sh` STATS.md nur auf Vorhandensein oder auch auf Inhalt?**
+  → A: Nur Präsenz — Datei existiert → PASS, fehlt → FAIL; konsistent mit allen anderen Pflichtdateien. (→ FR-REV-B01)
+- **Q: GitHub Job Summary: Markdown-Tabelle oder Plain Text?**
+  → A: Beides — Plain Text → stdout (Konsole/CI-Log); Markdown-Tabelle → `$GITHUB_STEP_SUMMARY` (GitHub Actions UI). (→ FR-REV-G01, FR-REV-G02)
