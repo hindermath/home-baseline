@@ -22,13 +22,13 @@ diese Artefakte sind Voraussetzung für alle nachfolgenden Phasen.
 *Purpose: Fix `.gitignore` whitelist and create bilingual templates —  
 these artifacts are prerequisites for all subsequent phases.*
 
-**Behebt / Fixes**: SW-08, SW-09
+**Behebt / Fixes**: SW-08, SW-09 *(H2: `!constitution.md` zur Whitelist ergänzt — constitution.md-Tracking vollständig)*
 
-- [ ] T001 `.gitignore` korrigieren: Einträge `!Lastenheft*.md`, `!STATS.md`, `!scripts/templates/` hinzufügen (FR-REV-C01); doppelten `!.specify/memory/`-Eintrag entfernen (FR-REV-C02) → `~/.gitignore`
+- [ ] T001 `.gitignore` korrigieren: Einträge `!Lastenheft*.md`, `!STATS.md`, `!scripts/templates/`, **`!constitution.md`** hinzufügen (FR-REV-C01; `!constitution.md` nötig: `~/constitution.md` ist Root-Sync-Quelle für `sync-constitution.sh` und existiert noch nicht im Tracking, H2); doppelten `!.specify/memory/`-Eintrag entfernen (FR-REV-C02); anschließend `git commit -m "fix(gitignore): REV-C01/C02 — Whitelist constitution.md, Lastenheft, STATS, templates + Duplikat entfernt"` (NFR-REV-03, M1) → `~/.gitignore`
 - [ ] T002 [P] Template `scripts/templates/a11y-section.md` erstellen — vollständiger bilingualer `## Barrierefreiheit / Accessibility (A11Y)`-Abschnitt, DE zuerst, EN CEFR B2, kein ANSI-Code (NFR-REV-07) → `scripts/templates/a11y-section.md`
 - [ ] T003 [P] Template `scripts/templates/speckit-workflow-section.md` erstellen — bilingualer `## Spec-kit-Workflow`-Abschnitt mit SDD-Workflow-Erklärung, DE/EN CEFR B2 → `scripts/templates/speckit-workflow-section.md`
 - [ ] T004 [P] Template `scripts/templates/azubis-section.md` erstellen — bilingualer `## Für Azubis / For Apprentices`-Abschnitt, DE/EN CEFR B2 → `scripts/templates/azubis-section.md`
-- [ ] T005 [P] Template `scripts/templates/readme-template.md` erstellen — vollständige billinguale README mit allen drei Pflichtabschnitten (A11Y, Spec-kit, Azubis) direkt aus T002–T004 und EN-Platzhalter-Block `<!-- EN: README.md placeholder -->` am Dateiende; ein frisch bootstrapptes Projekt ist sofort 100 % compliant → `scripts/templates/readme-template.md`
+- [ ] T005 [P] Template `scripts/templates/readme-template.md` erstellen — **NEUE** Datei, komplett getrennt von `scripts/templates/README.md.tmpl` (existierendes Workspace-Agenten-Template für `bootstrap-workspace.sh` — nicht anfassen, H3); vollständige bilinguale README mit allen drei Pflichtabschnitten (A11Y, Spec-kit, Azubis) aus T002–T004 eingebettet und EN-Platzhalter-Block `<!-- EN: README.md placeholder -->` am Dateiende; ein frisch bootstrapptes Level-2-Projekt ist sofort 100 % compliant → `scripts/templates/readme-template.md`
 
 **Checkpoint Phase 1**: Alle 4 Templates vorhanden, `.gitignore` korrigiert → Phase 2 kann beginnen.
 
@@ -48,8 +48,8 @@ diese Phase muss abgeschlossen sein, bevor Phase 3 beginnt.
 
 **Behebt / Fixes**: SW-02, SW-17
 
-- [ ] T006 [US2] `scripts/check-homogeneity.sh` erstellen (Bash 5+, `set -euo pipefail`): Pflichtdatei-Präsenz-Matrix Level 0–2 (alle Checks aus `contracts/check-homogeneity-cli.md`), Inhalts-Checks (`A11Y section`, `Spec-kit section`, `Azubis section`, `EN placeholder`), `.editorconfig`-Check für C#-Level-2 (FR-REV-E02, `find . -maxdepth 1 -name "*.sln"`), ANSI-Escape-Prüfung in `scripts/` (NFR-REV-07, Pattern `\x1b\[|\033\[|\e\[`), Score `✓/(✓+✗)×100`, `by_level` separat; Klartext-Ausgabe `[✓|✗|WARN] Level-N  {datei}  {check-name}` + Score-Zeile + ASCII-Chart; JSON-Modus (`--json`); Markdown-Tabelle → `$GITHUB_STEP_SUMMARY`; Exit-Codes 0/1/2 per Vertrag → `scripts/check-homogeneity.sh`
-- [ ] T007 [P] [US2] `scripts/check-homogeneity.ps1` erstellen (PowerShell 7+, `Set-StrictMode -Version Latest`): vollständige funktionale Parität zu T006; Parameter `-WorkspaceName` (optional) und `-Json`; dieselben Exit-Codes; `$env:GITHUB_STEP_SUMMARY` für Job-Summary → `scripts/check-homogeneity.ps1`
+- [ ] T006 [US2] `scripts/check-homogeneity.sh` **erweitern** (**H1**: Basis ist existierendes Skript für FR-001–FR-021 des Parent-Features — **nicht überschreiben**, additive Erweiterung): fehlende Checks aus `contracts/check-homogeneity-cli.md` ergänzen: Inhalts-Checks (`A11Y section`, `Spec-kit section`, `Azubis section`, `EN placeholder`), `.editorconfig`-Check für C#-Level-2 (FR-REV-E02, `find . -maxdepth 1 -name "*.sln"`), ANSI-Escape-Prüfung in `scripts/` via **`rg`** statt `grep -rP` (**M4**: `grep -rP` ist PCRE-only und schlägt auf macOS BSD-grep fehl; `rg` ist Pflicht-Dependency per NFR-REV-04 und plattformunabhängig; Pattern: `rg -l $'\x1b\[' scripts/ || rg -l '\\033\[' scripts/ || rg -l '\\e\[' scripts/`; NFR-REV-07), vollständige Pflichtdatei-Präsenz-Matrix Level 0–2, Score `✓/(✓+✗)×100`, `by_level` separat; Klartext-Ausgabe `[✓|✗|WARN] Level-N  {datei}  {check-name}` + Score-Zeile + ASCII-Chart; JSON-Modus (`--json`); Markdown-Tabelle → `$GITHUB_STEP_SUMMARY`; Exit-Codes 0/1/2 per Vertrag → `scripts/check-homogeneity.sh`
+- [ ] T007 [P] [US2] `scripts/check-homogeneity.ps1` **aktualisieren** (**H1**: existierendes PS1-Skript als Basis — **nicht überschreiben**): vollständige funktionale Parität zur erweiterten Bash-Variante (T006); ANSI-Prüfung via `Select-String` mit Pattern `\x1b\[|\033\[|\e\[` (PS1 unterstützt .NET-Regex, kein BSD-grep-Problem); Parameter `-WorkspaceName` (optional) und `-Json`; dieselben Exit-Codes; `$env:GITHUB_STEP_SUMMARY` für Job-Summary → `scripts/check-homogeneity.ps1`
 
 **Checkpoint Phase 2**: `bash scripts/check-homogeneity.sh` ausführbar → Phase 3 kann beginnen.
 
@@ -83,7 +83,7 @@ nach `bash scripts/migrate-workspace.sh RiderProjects` → `bash scripts/check-h
 
 **Behebt / Fixes**: SW-03, SW-04, SW-06, SW-07, SW-10, SW-13, SW-14
 
-- [ ] T010 [US1] `scripts/migrate-workspace.sh` erstellen (Bash 5+, `set -euo pipefail`): scannt alle fehlenden Pflicht-Inhalte; Preview aller geplanten Einfügungen; Prompt `Proceed? [y/N]` (entfällt bei `--dry-run` / `--yes`); **Einfügungen (append-only, FR-REV-A05)**: EN-Platzhalter `<!-- EN: {datei} placeholder\n[DE-Zusammenfassung als Kommentar]\n-->` an Dateiende in `README.md`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.github/copilot-instructions.md`; drei README-Abschnitte (A11Y, Spec-kit, Azubis) nur in `README.md` aus Templates T002–T004; `homogeneity-check.yml` anlegen falls fehlend (FR-REV-A01 + FR-REV-G01–G03-konform); `.editorconfig` für C#-Level-2-Projekte anlegen falls fehlend (`find . -maxdepth 2 -name "*.sln"`, FR-REV-E01); Level-2 pre-push Hook via `{level1-workspace}/scripts/install-hooks.sh` prüfen/installieren (FR-REV-A04); Idempotenz-Regeln per Vertrag `contracts/migrate-workspace-cli.md`; Git-Commit `chore: migrate {workspace} to homogeneity baseline v{version}` (Version aus erster Zeile `~/constitution.md`); `bash scripts/init-stats.sh` nach Commit aufrufen (FR-REV-A03); Fehlerrollback `git stash` pro Workspace (FR-REV-A06); `--yes`-Flag; Alle-auf-einmal-Modus ohne Argument → `scripts/migrate-workspace.sh`
+- [ ] T010 [US1] `scripts/migrate-workspace.sh` erstellen (Bash 5+, `set -euo pipefail`): scannt alle fehlenden Pflicht-Inhalte; Preview aller geplanten Einfügungen; **Prompt-Verhalten (FR-REV-A02, M2)**: Einzelner-Workspace-Modus → Preview für diesen Workspace + einmalige `Proceed? [y/N]`; **Alle-auf-einmal-Modus** (kein Argument) → **eine einzige** kombinierte Gesamt-Preview aller Workspaces gefolgt von **einem einzigen** `Proceed? [y/N]` — keine separate Bestätigung pro Workspace (Prompt entfällt bei `--dry-run` / `--yes`); **Einfügungen (append-only, FR-REV-A05)**: EN-Platzhalter `<!-- EN: {datei} placeholder\n[DE-Zusammenfassung als Kommentar]\n-->` an Dateiende in `README.md`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.github/copilot-instructions.md`; drei README-Abschnitte (A11Y, Spec-kit, Azubis) nur in `README.md` aus Templates T002–T004; `homogeneity-check.yml` anlegen falls fehlend in Level-1-Workspaces **und** Level-2-Projekten (**M3**, FR-REV-A01: Level-2-Erkennung via `find {workspace} -mindepth 2 -maxdepth 2 -name '.git' -type d`; FR-REV-G01–G03-konform); `.editorconfig` für C#-Level-2-Projekte anlegen falls fehlend (`find . -maxdepth 2 -name "*.sln"`, FR-REV-E01); Level-2 pre-push Hook via `{level1-workspace}/scripts/install-hooks.sh` prüfen/installieren (FR-REV-A04); Idempotenz-Regeln per Vertrag `contracts/migrate-workspace-cli.md`; Git-Commit `chore: migrate {workspace} to homogeneity baseline v{version}` (Version aus erster Zeile `~/constitution.md`); `bash scripts/init-stats.sh` nach Commit aufrufen (FR-REV-A03); Fehlerrollback `git stash` pro Workspace (FR-REV-A06); `--yes`-Flag; Alle-auf-einmal-Modus ohne Argument → `scripts/migrate-workspace.sh`
 - [ ] T011 [P] [US1] `scripts/migrate-workspace.ps1` erstellen (PowerShell 7+): vollständige Parität zu T010; Parameter `-WorkspaceName`, `-WhatIf`, `-Force`; identische Idempotenz-Regeln und Fehlerbehandlung → `scripts/migrate-workspace.ps1`
 
 **Checkpoint Phase 4**: Migrations-Workflow vollständig und getestet → Phase 5 kann beginnen.
@@ -99,10 +99,10 @@ nach `bash scripts/migrate-workspace.sh RiderProjects` → `bash scripts/check-h
 `bash scripts/bootstrap-project.sh TestProject --dry-run` → Preview ohne Dateien;  
 nach echtem Lauf: `ls TestProject/` zeigt README.md, constitution.md, STATS.md, .github/workflows/homogeneity-check.yml; `bash scripts/check-homogeneity.sh TestProject` Exit-Code 0.
 
-**Behebt / Fixes**: SW-01, SW-06, SW-12
+**Behebt / Fixes**: SW-01, SW-06, SW-12 *(H1: Skript existiert bereits für FR-009–016 des Parent-Features — additive Erweiterung, kein Overwrite)*
 
-- [ ] T012 Bootstrap-Skript `scripts/bootstrap-project.sh` erstellen (Bash 5+, `set -euo pipefail`): vollständiger Ablauf per `contracts/bootstrap-project-cli.md`; Verzeichnis anlegen; `README.md` aus `scripts/templates/readme-template.md` (T005) erstellen — bricht ab mit `ERROR: template not found: scripts/templates/readme-template.md` falls fehlt; `~/constitution.md` kopieren — bricht ab mit `ERROR: root constitution.md not found at ~/constitution.md` falls fehlt; `homogeneity-check.yml` erstellen (FR-REV-G01–G03-konform); spec-kit init: `.specify/` anlegen, `create-new-feature.sh` installieren, SDD-Verweis in `AGENTS.md` (FR-REV-B05); Agenten-CLIs: `claude /init` + `gh extension exec github/gh-copilot` aufrufen (falls verfügbar, sonst WARN); Codex + Gemini: WARN (interaktiv); `speckit specify init --here --ai {claude|gemini|copilot|codex}` (alle 4, falls `speckit` verfügbar, sonst WARN); `git init` + Commit; `gh repo create` (privat, skip falls Remote konfiguriert); `install-hooks.sh`; `bash scripts/init-stats.sh`; `--dry-run` Flag; `--force` für Re-Apply → `scripts/bootstrap-project.sh`
-- [ ] T013 [P] `scripts/bootstrap-project.ps1` erstellen (PowerShell 7+): vollständige Parität zu T012; Parameter `-ProjectName`, `-RepoName`, `-Description`, `-WhatIf`, `-Force` → `scripts/bootstrap-project.ps1`
+- [ ] T012 Bootstrap-Skript `scripts/bootstrap-project.sh` **erweitern/aktualisieren** (**H1**: Basis ist existierendes Skript für FR-009–FR-016 des Parent-Features — **nicht überschreiben**; additive Erweiterungen gemäß `contracts/bootstrap-project-cli.md`): `README.md` aus `scripts/templates/readme-template.md` (T005) verwenden statt direkt erzeugen — bricht ab mit `ERROR: template not found: scripts/templates/readme-template.md` falls fehlt; `~/constitution.md` kopieren (T024 sichergestellt) — bricht ab mit `ERROR: root constitution.md not found at ~/constitution.md` falls fehlt; `homogeneity-check.yml` erstellen (FR-REV-G01–G03-konform); spec-kit init: `.specify/` anlegen, `create-new-feature.sh` installieren, SDD-Verweis in `AGENTS.md` (FR-REV-B05); Agenten-CLIs: `claude /init` + `gh extension exec github/gh-copilot` (falls verfügbar, sonst WARN; FR-REV-D01/D02); Codex + Gemini: WARN interaktiv; `speckit specify init --here --ai {claude|gemini|copilot|codex}` (alle 4, falls `speckit` verfügbar, sonst WARN; FR-REV-B05); `bash scripts/init-stats.sh` am Ende aufrufen (FR-REV-B02); `--force` für Re-Apply → `scripts/bootstrap-project.sh`
+- [ ] T013 [P] `scripts/bootstrap-project.ps1` **aktualisieren** (**H1**: existierendes PS1-Skript als Basis — **nicht überschreiben**): vollständige Parität zur erweiterten Bash-Variante (T012); Parameter `-ProjectName`, `-RepoName`, `-Description`, `-WhatIf`, `-Force` → `scripts/bootstrap-project.ps1`
 
 ---
 
@@ -164,7 +164,8 @@ final validation of all SC-REV success criteria.*
 - [ ] T021 [P] `~/GEMINI.md` direkt bearbeiten: EN-Platzhalter-Block `<!-- EN: GEMINI.md placeholder\n[DE-Zusammenfassung als Kommentar]\n-->` an Dateiende (SW-03) → `~/GEMINI.md`
 - [ ] T022 [P] `~/AGENTS.md` direkt bearbeiten: EN-Platzhalter-Block `<!-- EN: AGENTS.md placeholder\n[DE-Zusammenfassung als Kommentar]\n-->` an Dateiende (SW-03) → `~/AGENTS.md`
 - [ ] T023 [P] `~/.github/copilot-instructions.md` direkt bearbeiten: EN-Platzhalter-Block einfügen (SW-10) → `~/.github/copilot-instructions.md`
-- [ ] T024 `~/constitution.md` Versionszeile sicherstellen: erste Zeile muss `# Constitution v1.1.0` sein — als Sync-Quelle für `sync-constitution.sh`; falls Datei fehlt: mit Basis-Inhalt und Versionszeile erstellen → `~/constitution.md`
+- [ ] T024 `~/constitution.md` anlegen und tracken (**H2**): `~/constitution.md` existiert noch nicht als eigenständige Root-Datei (Quelle: `~/.specify/memory/constitution.md`); Schritt 1: `cp ~/.specify/memory/constitution.md ~/constitution.md`; Schritt 2: erste Zeile auf `# Constitution v1.1.0` prüfen/sicherstellen; Schritt 3: `.gitignore` wurde bereits in T001 um `!constitution.md` erweitert — Datei ist nun getrackt; Schritt 4: `git commit -m "fix(constitution): ~/constitution.md als Root-Sync-Quelle anlegen"` (NFR-REV-03) → `~/constitution.md`
+- [ ] T024a Phase-9-Direktkorrekturen committen (**M1**, NFR-REV-03): `git add README.md CLAUDE.md GEMINI.md AGENTS.md .github/copilot-instructions.md` + `git commit -m "fix(bilingual): EN-Platzhalter + A11Y/Spec-kit/Azubis in Root-Dateien (SW-03, SW-04, SW-10; SC-REV-02)"` — fasst alle Dateiänderungen aus T019–T023 in einem Commit zusammen → `~/` (kein Datei-Pfad — Git-Commit)
 - [ ] T025 Vollständigen Validierungslauf durchführen: `bash scripts/check-homogeneity.sh` auf gesamter Umgebung — Ziel: Exit-Code 0, kein `✗`-Befund (SC-REV-01); alle SC-REV-01–SC-REV-07 manuell verifizieren
 - [ ] T026 STATS.md Level-0 Baseline erzeugen: `bash scripts/init-stats.sh` ausführen — `~/STATS.md` erhält Baseline-Eintrag (SC-REV-03); anschließend nach allen Korrekturen erneut aufrufen für Post-Fix-Eintrag
 
@@ -186,8 +187,10 @@ T014 ↔ T015 (parallel, keine Deps auf andere Phasen)
 T006 → T016 (sync-constitution commit-Muster analog)
 T016 ↔ T017 (parallel)
 T006 → T018 (CI-Workflow ruft check-homogeneity auf)
-T010–T018 → T019–T024 (parallel — Direktkorrekturen)
-T019–T024 → T025 (Validierung nach allen Korrekturen)
+T001 → T024 (constitution.md braucht !constitution.md in .gitignore)
+T010–T018 → T019–T023 (parallel — Direktkorrekturen Agenten-Dateien)
+T019–T023 → T024a (Commit Direktkorrekturen)
+T024 + T024a → T025 (Validierung nach allen Korrekturen)
 T025 → T026 (Post-Fix Baseline nach bestandenem Check)
 ```
 
@@ -202,7 +205,12 @@ T025 → T026 (Post-Fix Baseline nach bestandenem Check)
 | Bash+PS1 Bootstrap | T012, T013 | T010 ✓ |
 | Bash+PS1 Rename | T014, T015 | (T001 ✓) |
 | Bash+PS1 Sync | T016, T017 | T006 ✓ |
-| Direktkorrekturen | T019, T020, T021, T022, T023, T024 | T010–T018 ✓ |
+| CI/CD | T018 | T006 ✓ |
+| Direktkorrekturen | T019, T020, T021, T022, T023 | T010–T018 ✓ |
+| constitution.md anlegen | T024 | T001 ✓ |
+| Commit Phase 9 | T024a | T019–T024 ✓ |
+| Validierung | T025 | T024a ✓ |
+| Baseline-Commit | T026 | T025 ✓ |
 
 ## Implementierungsstrategie / Implementation Strategy
 
@@ -217,4 +225,4 @@ Phase 5 (REV-B02) → Phase 6 (REV-B03) → [implizit in T012: REV-D] →
 
 ---
 
-*Generiert von `/speckit-tasks` am 2026-04-02 · Spec: `002-homogeneity-guardian-revision` · 26 Tasks · 9 Phasen*
+*Generiert von `/speckit-tasks` am 2026-04-02 · Spec: `002-homogeneity-guardian-revision` · **27 Tasks** · 9 Phasen · Analysiert und korrigiert 2026-04-02 (H1, H2, H3, M1–M4)*
