@@ -113,7 +113,7 @@ Exit-Code `0`, alle Zeilen `✓` oder `WARN` (kein `✗`). Report enthält ASCII
 
 3. **Given** `--json`-Flag,
    **When** der Scan läuft,
-   **Then** gibt er `{"score": 100, "failures": [], "warnings": []}` aus.
+   **Then** gibt er `{"score": 100, "by_level": {"0": 100, "1": 100, "2": 100}, "failures": [], "warnings": []}` aus.
 
 ---
 
@@ -152,7 +152,7 @@ enthält mindestens eine Baseline-Zeile mit Timestamp und Score.
 ### User Story 4 — Developer propagiert Constitution-Änderungen (Priorität: P2)
 
 Bei einer Versions-Erhöhung der zentralen `constitution.md` werden alle
-Child-Workspaces automatisch (nach Bestätigung) auf die neue Version aktualisiert.
+Level-1-Workspaces automatisch (nach Bestätigung) auf die neue Version aktualisiert.
 
 *When the central `constitution.md` version is bumped, all child workspaces
 are updated automatically (after confirmation).*
@@ -167,7 +167,7 @@ Workspaces, die aktualisiert würden; kein Schreibvorgang.
 
 1. **Given** `constitution.md` wurde auf Version 1.2.0 erhöht,
    **When** `bash scripts/sync-constitution.sh` läuft und der Entwickler bestätigt,
-   **Then** erhält jeder Child-Workspace eine aktualisierte `constitution.md`
+   **Then** erhält jeder Level-1-Workspace eine aktualisierte `constitution.md`
    und einen Commit `chore: sync constitution to v1.2.0`.
 
 2. **Given** `--dry-run`,
@@ -207,7 +207,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
    GitHub Job Summary.
 
 3. **Given** der Workflow,
-   **Then** läuft er auf `ubuntu-22.04` (kostenlos im GitHub Free-Tier).
+   **Then** läuft er als Matrix auf `ubuntu-22.04`, `macos-14` und `windows-latest` (NFR-REV-04).
 
 ---
 
@@ -284,6 +284,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   prüfen und bei Fehlen `install-hooks.sh` aufrufen. Als Level-2-Projekt gilt jedes
   Unterverzeichnis eines Level-1-Workspace, das ein eigenes `.git/`-Verzeichnis enthält
   (Git als Wahrheitsquelle — keine externe Konfigurationsdatei erforderlich).
+  **Hook-Template-Quelle**: `migrate-workspace.sh` wechselt ins Level-2-Verzeichnis und
+  ruft `bash {level1-workspace}/scripts/install-hooks.sh` auf — verwendet das
+  Hook-Template (`scripts/hooks/pre-push`) des unmittelbaren Level-1-Parent-Workspace.
+  Das Root-`scripts/install-hooks.sh` wird für Level-2 nicht verwendet.
 
 - **FR-REV-A05**: Das Migrationsskript DARF NIEMALS bestehende Inhalte überschreiben —
   ausschließlich Einfügungen und Ergänzungen am Dateiende oder an markierten Stellen.
@@ -300,11 +304,13 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-B01**: `scripts/check-homogeneity.sh` / `.ps1` MUSS gemäß den Anforderungen
   FR-001–FR-021 des Parent-Features `001-workspace-homogeneity-guardian` implementiert werden.
   Der Compliance-Score wird berechnet als `score = ✓ / (✓ + ✗) × 100` (ungewichtet; WARN zählt
-  nicht als Fehler). Im `--json`-Modus wird der Score als Integer `0–100` ausgegeben.
+  nicht als Fehler). Im `--json`-Modus wird ein **aggregierter Gesamt-Score** plus
+  **Score pro Ebene** ausgegeben:
+  `{"score": 75, "by_level": {"0": 100, "1": 80, "2": 60}, "failures": [...], "warnings": []}`.
   Jeder Failure-Eintrag ist ein strukturiertes Objekt:
   `{"file": "<relativer Pfad>", "check": "<Prüfname>", "level": <0|1|2>}`.
   Beispiel-Ausgabe mit Befunden:
-  `{"score": 75, "failures": [{"file": "README.md", "check": "A11Y section", "level": 0}], "warnings": []}`.
+  `{"score": 75, "by_level": {"0": 100, "1": 80, "2": 60}, "failures": [{"file": "README.md", "check": "A11Y section", "level": 0}], "warnings": []}`.
 
 - **FR-REV-B02**: `scripts/bootstrap-project.sh` / `.ps1` MUSS gemäß den Anforderungen
   FR-009–FR-016 des Parent-Features implementiert werden.
@@ -312,6 +318,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-B03**: `scripts/rename-lastenheft.sh` / `.ps1` MUSS implementiert werden:
   Aufruf `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` benennt die Datei
   via `git mv` um und erzeugt einen Commit `chore: rename Lastenheft to {new-name}`.
+  **Ziel-Dateinamenformel**: `{original-stem}.{branch-name}.md` —
+  der Stem (Dateiname ohne `.md`) der Originaldatei + Punkt + Branch-Name + `.md`.
+  Beispiel: `Lastenheft_foo.md` + Branch `002-bar` → `Lastenheft_foo.002-bar.md`.
 
 - **FR-REV-B04**: `scripts/init-stats.sh` / `.ps1` MUSS eine initiale `STATS.md` auf
   Level 0, 1 und 2 erzeugen, die den Ist-Zustand als Baseline festhält, und den
@@ -400,13 +409,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **FR-REV-G01**: Jeder Workspace MUSS eine GitHub-Actions-Workflow-Datei
   `.github/workflows/homogeneity-check.yml` erhalten, die bei jedem Push **und**
   Pull Request (`push` + `pull_request`-Events) `check-homogeneity.sh` für den
-  eigenen Workspace ausführt.
+  eigenen Workspace ausführt. Der Workflow verwendet eine **Matrix-Strategie**:
+  `ubuntu-22.04`, `macos-14`, `windows-latest`. Ripgrep wird je Plattform installiert
+  (`apt-get install ripgrep` / `brew install ripgrep` / `choco install ripgrep`).
+  Auf Ubuntu/macOS wird `bash scripts/check-homogeneity.sh` aufgerufen,
+  auf Windows `pwsh scripts/check-homogeneity.ps1`.
+  Der Report wird als GitHub Job Summary ausgegeben (`$GITHUB_STEP_SUMMARY` / `$env:GITHUB_STEP_SUMMARY`).
 
 - **FR-REV-G02**: Der Workflow MUSS bei `✗`-Befunden mit Exit-Code `1` fehlschlagen
   und den Report als GitHub Job Summary ausgeben.
 
-- **FR-REV-G03**: Der Workflow MUSS auf `ubuntu-22.04` laufen
-  (kostenlos im GitHub Free-Tier).
+- **FR-REV-G03**: Der Workflow MUSS die Matrix `[ubuntu-22.04, macos-14, windows-latest]`
+  verwenden (NFR-REV-04-konform). `timeout-minutes: 10` gilt für jeden Matrix-Job.
 
 ### Non-Functional Requirements / Nicht-funktionale Anforderungen
 
@@ -459,7 +473,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **Baseline**: Erster STATS.md-Eintrag, der den Ist-Zustand vor allen Reparaturen
   festhält — Vergleichspunkt für spätere Scans.
 - **Constitution-Propagation**: Mechanismus zur synchronen Verteilung einer neuen
-  Constitution-Version in alle Child-Repos.
+  Constitution-Version in alle Level-1-Workspaces.
 - **EN-Platzhalter**: Markierter Block `<!-- EN: [Dateiname] placeholder -->` am
   **Ende** einer Pflichtdatei (ein Block pro Datei); wird von `migrate-workspace.sh`
   eingefügt, wenn die Datei noch keinen EN-Abschnitt enthält.
@@ -483,8 +497,9 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **SC-REV-05**: `rename-lastenheft.sh` benennt eine Test-Datei korrekt um und
   erzeugt einen `git mv`-Commit mit der erwarteten Message.
 
-- **SC-REV-06**: Der GitHub-Actions-Workflow läuft grün auf `ubuntu-22.04` nach
-  einem Push auf den Default-Branch eines Workspace-Repos.
+- **SC-REV-06**: Der GitHub-Actions-Workflow läuft grün auf allen drei Matrix-Plattformen
+  (`ubuntu-22.04`, `macos-14`, `windows-latest`) nach einem Push auf den Default-Branch
+  eines Workspace-Repos.
 
 - **SC-REV-07**: Das Migrationsskript läuft auf `RiderProjects` und erhöht den
   Compliance-Score für diesen Workspace um mindestens 40 Prozentpunkte gegenüber dem
@@ -521,7 +536,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 | FR-REV-D01–D02 | FR-009 Bootstrap-Agenten-Init; `gh` CLI (Copilot-Init) |
 | FR-REV-E01–E02 | FR-016 (C#-Dep-Scan erweitert) |
 | FR-REV-F01–F02 | Constitution Prinzip IV (Workspace Isolation) |
-| FR-REV-G01–G03 | NFR-REV-04 (Platform ubuntu-22.04); GitHub Actions Free-Tier |
+| FR-REV-G01–G03 | NFR-REV-04 (Platform matrix: ubuntu-22.04 + macos-14 + windows-latest); GitHub Actions Free-Tier |
 
 ---
 
@@ -581,7 +596,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **Q: Welche Dateien erhalten den EN-Platzhalter?**
   → A: Nur `README.md`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `STATS.md` (Kopfzeilen), `constitution.md`. Spec-Kit-Artefakte und sonstige `.md`-Dateien bleiben unberührt. (→ FR-REV-A01)
 
-- **Q: Wie verhält sich `sync-constitution.sh` bei uncommitteten Änderungen in einem Child-Workspace?**
+- **Q: Wie verhält sich `sync-constitution.sh` bei uncommitteten Änderungen in einem Level-1-Workspace?**
   → A: Workspace überspringen mit `WARN: {workspace} hat uncommittete Änderungen — übersprungen`; alle anderen Workspaces werden normal verarbeitet. (→ FR-REV-F02)
 
 - **Q: Wie erkennt `migrate-workspace.sh` Level-2-Projekte?**
@@ -633,7 +648,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   → A: Erweitert auf `grep -rP '\x1b\[|\\033\[|\\e\['` — erfasst literal ESC-Byte, Oktal-Notation `\033[` und Bash-Kurzform `\e[`. (→ NFR-REV-07)
 
 - **Q: Welches Format haben Failure-Einträge im `--json`-Output von `check-homogeneity.sh`?**
-  → A: Strukturierte Objekte: `{"file": "<relativer Pfad>", "check": "<Prüfname>", "level": <0|1|2>}`. Beispiel: `{"score": 75, "failures": [{"file": "README.md", "check": "A11Y section", "level": 0}], "warnings": []}`. (→ FR-REV-B01)
+  → A: Strukturierte Objekte: `{"file": "<relativer Pfad>", "check": "<Prüfname>", "level": <0|1|2>}`. Vollständiges Format inkl. `by_level`: `{"score": 75, "by_level": {"0": 100, "1": 80, "2": 60}, "failures": [...], "warnings": []}`. (→ FR-REV-B01)
 
 - **Q: Was wird als Body-Inhalt unter den von `migrate-workspace.sh` eingefügten Abschnitts-Überschriften eingefügt?**
   → A: Inhalt aus Template-Dateien in `scripts/templates/`: `a11y-section.md`, `speckit-workflow-section.md`, `azubis-section.md`. Fehlende Template → `ERROR` + Abbruch. `scripts/templates/` auch in `.gitignore`-Whitelist aufgenommen. (→ FR-REV-A01, FR-REV-C01)
@@ -658,3 +673,18 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 
 - **Q: Wer erstellt `.editorconfig` in bestehenden C#-Projekten?**
   → A: `migrate-workspace.sh` erkennt `*.sln`-Dateien und legt `.editorconfig` mit Mindestregeln an falls fehlend; existiert sie bereits → `INFO: .editorconfig already present — skip`. (→ FR-REV-E01)
+
+- **Q: Welches `install-hooks.sh` und welches Hook-Template verwendet `migrate-workspace.sh` beim Pre-Push-Hook-Setup auf Level-2?**
+  → A: `migrate-workspace.sh` wechselt ins Level-2-Verzeichnis und ruft `bash {level1-workspace}/scripts/install-hooks.sh` auf — verwendet das Hook-Template (`scripts/hooks/pre-push`) des unmittelbaren Level-1-Parent-Workspace. Root-`scripts/install-hooks.sh` wird für Level-2 nicht verwendet. (→ FR-REV-A04)
+
+- **Q: Welche Mindeststruktur hat `homogeneity-check.yml` — ubuntu-22.04 only oder Multi-Plattform-Matrix?**
+  → A: Matrix-Strategie `[ubuntu-22.04, macos-14, windows-latest]`; ripgrep-Install je Plattform (`apt`/`brew`/`choco`); `bash`/`pwsh` je OS; Report per `$GITHUB_STEP_SUMMARY`; `timeout-minutes: 10` pro Matrix-Job. (→ FR-REV-G01, FR-REV-G03, SC-REV-06)
+
+- **Q: Welches Ziel-Dateinamenformat verwendet `rename-lastenheft.sh`?**
+  → A: `{original-stem}.{branch-name}.md` — Stem (ohne `.md`) + Punkt + Branch-Name + `.md`. Beispiel: `Lastenheft_foo.md` + `002-bar` → `Lastenheft_foo.002-bar.md`. (→ FR-REV-B03)
+
+- **Q: Gibt `check-homogeneity.sh` einen globalen Score oder separate Scores pro Ebene aus?**
+  → A: Beides — aggregierter Gesamt-Score plus `by_level`-Objekt mit Scores für Level 0, 1 und 2. Format: `{"score": 75, "by_level": {"0": 100, "1": 80, "2": 60}, "failures": [...], "warnings": []}`. (→ FR-REV-B01, SC-REV-07)
+
+- **Q: Soll die Terminologie „Child-Workspace/Child-Repo" auf den Canonical Term „Level-1-Workspace" normalisiert werden?**
+  → A: Ja — alle Vorkommen von „Child-Workspace(s)" und „Child-Repo(s)" durch „Level-1-Workspace(s)" ersetzt. Canonical Term ist „Level-1-Workspace" gemäß §Key Entities.
