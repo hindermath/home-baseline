@@ -56,7 +56,9 @@ if ($Preview) {
         @('CREATE', "$TargetDir/CLAUDE.md", 'aus CLAUDE.md.tmpl'),
         @('CREATE', "$TargetDir/GEMINI.md", 'aus GEMINI.md.tmpl'),
         @('CREATE', "$TargetDir/.github/copilot-instructions.md", 'aus copilot-instructions.tmpl'),
-        @('CREATE', "$TargetDir/README.md", 'aus README.md.tmpl'),
+        @('CREATE', "$TargetDir/README.md", 'aus readme-template.md / README.md.tmpl'),
+        @('COPY',   "$TargetDir/constitution.md", 'von ~/constitution.md'),
+        @('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"),
         @('CREATE', "$TargetDir/STATS.md"),
         @('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'),
         @('COPY',   "$TargetDir/scripts/", 'von ~/scripts/'),
@@ -69,7 +71,7 @@ if ($Preview) {
         @('PRINT',  "Gemini manuelle Anweisung"),
         @('CHECK',  "gh copilot --help", 'optional'),
         @('EXEC',   "npx speckit init", 'optional'),
-        @('EXEC',   "check-homogeneity.sh (read-only)"),
+        @('EXEC',   "init-stats.sh (Baseline)", 'STATS.md'),
         @('UPDATE', "$env:HOME/README.md")
     ) | ForEach-Object {
         $note = if ($_.Count -gt 2) { "($($_[2]))" } else { '' }
@@ -151,8 +153,56 @@ else {
 Step-Start "README.md erzeugen"
 $f = Join-Path $TargetDir 'README.md'
 if ((Test-Path $f) -and -not $Force) { Step-Skip "Datei existiert" }
-elseif (Test-Path (Join-Path $TemplatesDir 'README.md.tmpl')) { Render-Template (Join-Path $TemplatesDir 'README.md.tmpl') $f; Step-Done }
-else { Step-Warn "Template nicht gefunden: README.md.tmpl" }
+else {
+    $readmeTmpl = Join-Path $TemplatesDir 'readme-template.md'
+    if (-not (Test-Path $readmeTmpl)) { $readmeTmpl = Join-Path $TemplatesDir 'README.md.tmpl' }
+    if (Test-Path $readmeTmpl) { Render-Template $readmeTmpl $f; Step-Done }
+    else { Step-Warn "Template nicht gefunden: readme-template.md / README.md.tmpl" }
+}
+
+# 7b. constitution.md
+Step-Start "constitution.md kopieren"
+$homeConstitution = Join-Path $env:HOME 'constitution.md'
+$fc = Join-Path $TargetDir 'constitution.md'
+if (-not (Test-Path $homeConstitution)) { Step-Warn "~/constitution.md fehlt — bitte sync-constitution.ps1 ausfuehren" }
+elseif ((Test-Path $fc) -and -not $Force) { Step-Skip "Datei existiert" }
+else { Copy-Item $homeConstitution $fc; Step-Done }
+
+# 7c. homogeneity-check.yml
+Step-Start "homogeneity-check.yml erzeugen"
+$wfDir  = Join-Path $TargetDir '.github' | Join-Path -ChildPath 'workflows'
+$wfFile = Join-Path $wfDir 'homogeneity-check.yml'
+if ((Test-Path $wfFile) -and -not $Force) { Step-Skip "Datei existiert" }
+else {
+    New-Item -ItemType Directory -Path $wfDir -Force | Out-Null
+    $constVer = 'v1.0.0'
+    if (Test-Path $homeConstitution) {
+        $firstLine = Get-Content $homeConstitution -TotalCount 1
+        if ($firstLine -match '(v\d+\.\d+\.\d+)') { $constVer = $Matches[1] }
+    }
+    @"
+name: Homogeneity Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  homogeneity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ripgrep
+        run: sudo apt-get install -y ripgrep
+      - name: Run homogeneity check
+        run: bash scripts/check-homogeneity.sh --json --exit-on-fail
+        env:
+          CONSTITUTION_VERSION: "$constVer"
+"@ | Set-Content $wfFile -Encoding UTF8
+    Step-Done
+}
 
 # 8. STATS.md
 Step-Start "STATS.md (initial) erzeugen"
@@ -259,10 +309,14 @@ elseif (Get-Command npx -ErrorAction SilentlyContinue) {
     if (Test-Path (Join-Path $TargetDir '.specify')) { Step-Done } else { Step-Warn "speckit init kein .specify/ erstellt" }
 } else { Step-Skip "node/npx nicht installiert" }
 
-# 20. Compliance check
-Step-Start "Compliance-Check"
+# 20. Compliance check + STATS baseline
+Step-Start "Compliance-Check + STATS-Baseline"
+$initStatsScript = Join-Path $ScriptDir 'init-stats.ps1'
 $checkScript = Join-Path $ScriptDir 'check-homogeneity.sh'
-if (Test-Path $checkScript) {
+if (Test-Path $initStatsScript) {
+    & $initStatsScript $TargetDir 2>$null | Out-Null
+    Step-Done "STATS.md Baseline geschrieben"
+} elseif (Test-Path $checkScript) {
     $score = (bash $checkScript --dry-run $TargetDir 2>$null | Select-String 'Overall:').Line -replace '.*(\d+) %.*','$1'
     Step-Done "Score: $score %"
 } else { Step-Skip "check-homogeneity.sh nicht gefunden" }

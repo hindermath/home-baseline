@@ -18,6 +18,7 @@ TEMPLATES_DIR="${SCRIPT_DIR}/templates"
 # ─── Argument Parsing ────────────────────────────────────────────────────────
 
 OPT_PREVIEW=false
+OPT_DRY_RUN=false
 OPT_FORCE=false
 OPT_NO_AGENTS=false
 OPT_NO_SPECKIT=false
@@ -28,7 +29,7 @@ TARGET_WORKSPACE=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --preview)    OPT_PREVIEW=true ;;
+    --preview|--dry-run) OPT_PREVIEW=true; OPT_DRY_RUN=true ;;
     --force)      OPT_FORCE=true ;;
     --no-agents)  OPT_NO_AGENTS=true ;;
     --no-speckit) OPT_NO_SPECKIT=true ;;
@@ -64,7 +65,7 @@ PARTIAL_FAIL=false
 
 preview_action() {
   local action="$1" target="$2" note="${3:-}"
-  short_target="${target/#$HOME/\~}"
+  short_target="${target/#$HOME/~}"
   if [ -n "$note" ]; then
     printf "  %-8s %-50s (%s)\n" "$action" "$short_target" "$note"
   else
@@ -116,7 +117,9 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/CLAUDE.md" "aus CLAUDE.md.tmpl"
   preview_action "CREATE" "${TARGET_DIR}/GEMINI.md" "aus GEMINI.md.tmpl"
   preview_action "CREATE" "${TARGET_DIR}/.github/copilot-instructions.md" "aus copilot-instructions.tmpl"
-  preview_action "CREATE" "${TARGET_DIR}/README.md" "aus README.md.tmpl"
+  preview_action "CREATE" "${TARGET_DIR}/README.md" "aus readme-template.md / README.md.tmpl"
+  preview_action "COPY" "${TARGET_DIR}/constitution.md" "von ~/constitution.md"
+  preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
   preview_action "COPY" "${TARGET_DIR}/scripts/" "von ~/scripts/"
@@ -130,6 +133,7 @@ if $OPT_PREVIEW; then
   preview_action "CHECK" "gh copilot --help" "optional"
   preview_action "EXEC" "npx speckit init" "optional"
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
+  preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"
   echo "  [Keine Dateien wurden geschrieben]"
   exit 0
@@ -247,12 +251,62 @@ step_start "README.md erzeugen"
 if [ -f "${TARGET_DIR}/README.md" ] && ! $OPT_FORCE; then
   step_skip "Datei existiert"
 else
-  if [ -f "${TEMPLATES_DIR}/README.md.tmpl" ]; then
-    render_template "${TEMPLATES_DIR}/README.md.tmpl" "${TARGET_DIR}/README.md"
+  readme_tmpl="${TEMPLATES_DIR}/readme-template.md"
+  [ -f "$readme_tmpl" ] || readme_tmpl="${TEMPLATES_DIR}/README.md.tmpl"
+  if [ -f "$readme_tmpl" ]; then
+    render_template "$readme_tmpl" "${TARGET_DIR}/README.md"
     step_done
   else
-    step_warn "Template nicht gefunden: README.md.tmpl"
+    step_warn "Template nicht gefunden: readme-template.md / README.md.tmpl"
   fi
+fi
+
+# ─── Step 7b: constitution.md kopieren ───────────────────────────────────────
+step_start "constitution.md kopieren"
+home_constitution="${HOME}/constitution.md"
+if [ ! -f "$home_constitution" ]; then
+  step_warn "~/constitution.md fehlt — bitte zuerst sync-constitution.sh ausfuehren"
+elif [ -f "${TARGET_DIR}/constitution.md" ] && ! $OPT_FORCE; then
+  step_skip "Datei existiert"
+else
+  cp "$home_constitution" "${TARGET_DIR}/constitution.md"
+  step_done
+fi
+
+# ─── Step 7c: homogeneity-check.yml ──────────────────────────────────────────
+step_start "homogeneity-check.yml erzeugen"
+wf_dir="${TARGET_DIR}/.github/workflows"
+wf_file="${wf_dir}/homogeneity-check.yml"
+if [ -f "$wf_file" ] && ! $OPT_FORCE; then
+  step_skip "Datei existiert"
+else
+  mkdir -p "$wf_dir"
+  constitution_ver="v1.0.0"
+  if [ -f "${HOME}/constitution.md" ]; then
+    constitution_ver=$(head -1 "${HOME}/constitution.md" | grep -o 'v[0-9]*\.[0-9]*\.[0-9]*' || echo "v1.0.0")
+  fi
+  cat > "$wf_file" <<EOF
+name: Homogeneity Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  homogeneity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ripgrep
+        run: sudo apt-get install -y ripgrep
+      - name: Run homogeneity check
+        run: bash scripts/check-homogeneity.sh --json --exit-on-fail
+        env:
+          CONSTITUTION_VERSION: "${constitution_ver}"
+EOF
+  step_done
 fi
 
 # ─── Step 8: STATS.md (initial) ──────────────────────────────────────────────
@@ -409,9 +463,12 @@ else
   step_skip "node/npx nicht installiert"
 fi
 
-# ─── Step 20: Compliance check ───────────────────────────────────────────────
-step_start "Compliance-Check"
-if [ -f "${SCRIPT_DIR}/check-homogeneity.sh" ]; then
+# ─── Step 20: Compliance check + STATS baseline ──────────────────────────────
+step_start "Compliance-Check + STATS-Baseline"
+if [ -f "${SCRIPT_DIR}/init-stats.sh" ]; then
+  bash "${SCRIPT_DIR}/init-stats.sh" "$TARGET_DIR" >/dev/null 2>&1 || true
+  step_done "STATS.md Baseline geschrieben"
+elif [ -f "${SCRIPT_DIR}/check-homogeneity.sh" ]; then
   compliance_score=$(bash "${SCRIPT_DIR}/check-homogeneity.sh" --dry-run "$TARGET_DIR" 2>/dev/null \
     | grep 'Overall:' | grep -o '[0-9]*' | head -1 || echo "?")
   step_done "Score: ${compliance_score} %"
