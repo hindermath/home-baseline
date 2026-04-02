@@ -22,7 +22,7 @@ diese Artefakte sind Voraussetzung für alle nachfolgenden Phasen.
 *Purpose: Fix `.gitignore` whitelist and create bilingual templates —  
 these artifacts are prerequisites for all subsequent phases.*
 
-**Behebt / Fixes**: SW-08, SW-09 *(H2: `!constitution.md` zur Whitelist ergänzt — constitution.md-Tracking vollständig)* — T024 `~/constitution.md` anlegen hier in Phase 1 *(C1-Fix: aus Phase 9 vorgezogen — T010/T012/T016 benötigen diese Datei zur Laufzeit)*
+**Behebt / Fixes**: SW-08, SW-09 *(H2: `!constitution.md` zur Whitelist ergänzt; C1-Fix: T024 in diese Phase vorgezogen — T010/T012/T016 benötigen `~/constitution.md` zur Laufzeit)*
 
 - [ ] T001 `.gitignore` korrigieren: Einträge `!Lastenheft*.md`, `!STATS.md`, `!scripts/templates/`, **`!constitution.md`** hinzufügen (FR-REV-C01; `!constitution.md` nötig: `~/constitution.md` ist Root-Sync-Quelle für `sync-constitution.sh` und existiert noch nicht im Tracking, H2); doppelten `!.specify/memory/`-Eintrag entfernen (FR-REV-C02); anschließend `git commit -m "fix(gitignore): REV-C01/C02 — Whitelist constitution.md, Lastenheft, STATS, templates + Duplikat entfernt"` (NFR-REV-03, M1) → `~/.gitignore`
 - [ ] T002 [P] Template `scripts/templates/a11y-section.md` erstellen — vollständiger bilingualer `## Barrierefreiheit / Accessibility (A11Y)`-Abschnitt, DE zuerst, EN CEFR B2, kein ANSI-Code (NFR-REV-07) → `scripts/templates/a11y-section.md`
