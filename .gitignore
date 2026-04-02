@@ -25,18 +25,22 @@
 !.github/copilot-instructions.md
 !.github/agents/
 !.github/prompts/
+!.github/workflows/
+!.github/workflows/homogeneity-check.yml
 
 # Lastenheft-Dateien und Spezifikationen (alle Ebenen)
 !Lastenheft*.md
 !STATS.md
 !STATS-archive*.md
 !specs/
+!constitution.md
 
 # Spec-Kit Konfiguration und Templates
 !.specify/
 !.specify/init-options.json
 !.specify/memory/
 !.specify/memory/constitution.md
+!scripts/templates/
 !.specify/scripts/
 !.specify/scripts/bash/
 !.specify/templates/
