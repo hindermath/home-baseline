@@ -183,3 +183,7 @@ per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
 **Version**: 1.1.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-03-31
+
+<!-- EN: constitution.md placeholder
+[DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
+-->

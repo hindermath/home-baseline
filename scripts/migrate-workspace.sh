@@ -159,8 +159,8 @@ append_en_placeholder() {
   fi
   {
     printf '\n<!-- EN: %s placeholder\n' "$basename_label"
-    printf '[DE-Zusammenfassung: Inhalt dieser Datei auf Deutsch]\n'
-    printf '-->\n'
+    printf '%s\n' '[DE-Zusammenfassung: Inhalt dieser Datei auf Deutsch]'
+    printf '%s\n' '-->'
   } >> "$file"
   echo "  APPENDED: EN placeholder to ${file/#$HOME/~}"
 }
@@ -270,21 +270,59 @@ migrate_workspace() {
     proj_name=$(basename "$proj_dir")
     echo "  Level-2: ${proj_name}/"
 
-    # EN placeholder for constitution.md in Level-2 not required
+    local proj_changed=false
+
+    # constitution.md — copy from workspace parent
+    local src_const="${ws_dir}/constitution.md"
+    [ -f "$src_const" ] || src_const="${HOME}/constitution.md"
+    if [ -f "$src_const" ]; then
+      if ! [ -f "${proj_dir}/constitution.md" ]; then
+        proj_changed=true
+        if $OPT_DRY_RUN; then
+          echo "    WOULD COPY: constitution.md to ${proj_name}/"
+        else
+          cp "$src_const" "${proj_dir}/constitution.md"
+          echo "    COPIED: constitution.md to ${proj_name}/"
+        fi
+      fi
+    fi
+
+    # README.md sections
+    local proj_readme="${proj_dir}/README.md"
+    if [ -f "$proj_readme" ]; then
+      if ! rg -qi '^## .*Barrierefreiheit' "$proj_readme" 2>/dev/null; then proj_changed=true; fi
+      append_readme_section "$proj_readme" "${TEMPLATES_DIR}/a11y-section.md" '^## .*Barrierefreiheit'
+
+      if ! rg -qi '^## .*Spec-kit' "$proj_readme" 2>/dev/null; then proj_changed=true; fi
+      append_readme_section "$proj_readme" "${TEMPLATES_DIR}/speckit-workflow-section.md" '^## .*Spec-kit'
+
+      if ! rg -qi '^## .*Azubis' "$proj_readme" 2>/dev/null; then proj_changed=true; fi
+      append_readme_section "$proj_readme" "${TEMPLATES_DIR}/azubis-section.md" '^## .*Azubis'
+    fi
+
     # homogeneity-check.yml
     if ! [ -f "${proj_dir}/.github/workflows/homogeneity-check.yml" ]; then
-      changed=true
+      proj_changed=true
     fi
     write_workflow_yml "$proj_dir"
 
     # .editorconfig for C# projects
     if find "$proj_dir" -maxdepth 1 -name "*.sln" 2>/dev/null | grep -q .; then
-      if ! [ -f "${proj_dir}/.editorconfig" ]; then changed=true; fi
+      if ! [ -f "${proj_dir}/.editorconfig" ]; then proj_changed=true; fi
       write_editorconfig "$proj_dir"
     fi
 
     # pre-push hook
     install_hook_if_needed "$proj_dir"
+
+    # Commit Level-2 changes
+    if ! $OPT_DRY_RUN && [ -n "$(git -C "$proj_dir" status --porcelain 2>/dev/null)" ]; then
+      git -C "$proj_dir" add -A 2>/dev/null || true
+      git -C "$proj_dir" commit -m "chore: migrate ${proj_name} to homogeneity baseline ${constitution_version}
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null 2>&1 || true
+      echo "    COMMITTED: migrate ${proj_name}"
+    fi
 
   done < <(find "$ws_dir" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
 
