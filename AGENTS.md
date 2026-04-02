@@ -58,3 +58,7 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 
 ## Recent Changes
 - 001-workspace-homogeneity-guardian: Added Bash 5+ (primär), PowerShell Core 7+ (Windows-Parität) + `git`, `bash` ≥ 5, `ripgrep (rg)`, `sha256sum` (Linux/WSL) /
+
+<!-- EN: AGENTS.md placeholder
+[DE-Zusammenfassung: AGENTS.md enthält Anweisungen für den Codex Agenten im home-baseline Repository.]
+-->

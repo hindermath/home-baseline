@@ -62,3 +62,7 @@ When adding a new workspace to `~/README.md`, insert a table row before the `<!-
 ## README Maintenance
 
 `~/README.md` is auto-updated by `bootstrap-workspace.sh` when a new workspace is created. The workspace table uses `<!-- workspace-table-end -->` as an insertion anchor. If editing manually, preserve that marker.
+
+<!-- EN: CLAUDE.md placeholder
+[DE-Zusammenfassung: CLAUDE.md enthält Anweisungen für den Claude Code Agenten im home-baseline Repository.]
+-->

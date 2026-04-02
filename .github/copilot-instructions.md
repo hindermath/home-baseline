@@ -83,3 +83,7 @@ Include: affected scripts/docs, manual verification commands run (`--dry-run` ou
 - Never commit tokens, `.env` files, or local agent state (`.claude/`, `.codex/`, `.gemini/`).
 - Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` before pushing any change that touches hook or scanner logic.
 - The pre-push hook detects patterns like `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private key headers, and secret-named files (`.env*`, `*secret*`, `*.key`, `*.pem`).
+
+<!-- EN: copilot-instructions.md placeholder
+[DE-Zusammenfassung: copilot-instructions.md enthält Anweisungen für GitHub Copilot im home-baseline Repository.]
+-->

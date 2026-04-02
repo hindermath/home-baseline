@@ -226,3 +226,68 @@ Goal reached — score ≥ 90% means everything is correctly configured.
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --no-remote --no-agents && \
   bash ~/scripts/check-homogeneity.sh ~/RiderProjects/MeinProjekt
 ```
+
+<!-- EN: README.md placeholder
+[DE-Zusammenfassung: Vollständige bilinguale README für home-baseline mit Workspace-Tabelle, Scripts, A11Y-, Spec-kit- und Azubis-Abschnitten.]
+-->
+## Barrierefreiheit / Accessibility (A11Y)
+
+Dieses Projekt folgt grundlegenden Barrierefreiheitsstandards für alle
+dokumentierten Inhalte und Benutzeroberflächen.
+
+Richtlinien für Markdown-Dokumentation:
+
+- Überschriften folgen einer klaren Hierarchie (h1 → h2 → h3 — keine Ebene überspringen)
+- Alle Bilder haben aussagekräftige Alt-Texte (`![Beschreibung](bild.png)`)
+- Linkbeschriftungen sind beschreibend (`[Installationsanleitung](...)` statt `[hier](...)`)
+- Code-Blöcke geben die Sprache an (` ```bash `, ` ```powershell `)
+- Tabellen haben Kopfzeilen für alle Spalten
+- Keine Informationen werden ausschließlich über Farbe vermittelt
+
+---
+
+This project follows basic accessibility standards for all documented
+content and user interfaces.
+
+Guidelines for Markdown documentation:
+
+- Headings follow a clear hierarchy (h1 → h2 → h3 — no level skipped)
+- All images have meaningful alt texts (`![Description](image.png)`)
+- Link labels are descriptive (`[Installation guide](...)` instead of `[here](...)`)
+- Code blocks specify the language (` ```bash `, ` ```powershell `)
+- Tables have header rows for all columns
+- No information is conveyed through colour alone
+
+## Spec-kit-Workflow
+
+Neue Features in diesem Workspace werden nach dem **Specification-Driven Development (SDD)**-Workflow entwickelt.
+Der Workflow verwendet das `speckit`-CLI-Tool (GitHub Copilot Skill).
+
+Schritte für ein neues Feature:
+
+1. **Spezifikation erstellen** — `speckit specify "Feature-Name"` → `specs/{branch}/spec.md`
+2. **Klärungsfragen** — `speckit clarify` → offene Fragen in `spec.md` beantworten
+3. **Implementierungsplan** — `speckit plan` → `specs/{branch}/plan.md`
+4. **Aufgabenliste** — `speckit tasks` → `specs/{branch}/tasks.md`
+5. **Implementieren** — `speckit implement` → Aufgaben aus `tasks.md` abarbeiten
+6. **Validieren** — `bash scripts/check-homogeneity.sh` → Compliance-Score prüfen
+
+Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert und versioniert.
+
+---
+
+## Spec-kit Workflow
+
+New features in this workspace are developed following the **Specification-Driven Development (SDD)** workflow.
+The workflow uses the `speckit` CLI tool (GitHub Copilot Skill).
+
+Steps for a new feature:
+
+1. **Create specification** — `speckit specify "Feature Name"` → `specs/{branch}/spec.md`
+2. **Clarification questions** — `speckit clarify` → answer open questions in `spec.md`
+3. **Implementation plan** — `speckit plan` → `specs/{branch}/plan.md`
+4. **Task list** — `speckit tasks` → `specs/{branch}/tasks.md`
+5. **Implement** — `speckit implement` → work through tasks in `tasks.md`
+6. **Validate** — `bash scripts/check-homogeneity.sh` → check compliance score
+
+All spec artefacts are stored and versioned in the branch directory `specs/{branch}/`.

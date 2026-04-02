@@ -51,3 +51,7 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 - **Primäre Tech-Stacks:** C# (.NET Framework), C (cc65/C64), VST3-Entwicklung, PowerShell.
 - **Interessen:** US-Navy Geschichte (Flugzeugträger ab 1950), Musikproduktion (HTMAN), Retro-Computing (C64, Atari, HP/TI Taschenrechner).
 - **Hardware/OS:** macOS (Darwin), Xbox Series S, Commodore 64 (Ultimate 64).
+
+<!-- EN: GEMINI.md placeholder
+[DE-Zusammenfassung: GEMINI.md enthält Anweisungen für den Gemini CLI Agenten im home-baseline Repository.]
+-->
