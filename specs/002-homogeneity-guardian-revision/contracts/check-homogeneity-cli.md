@@ -22,6 +22,16 @@ pwsh scripts/check-homogeneity.ps1 [-WorkspaceName <string>] [-Json]
 | `workspace-name` / `-WorkspaceName` | Nein | Scoped scan: nur dieser Level-1-Workspace + Level-2. Level-0-Checks entfallen. |
 | `--json` / `-Json` | Nein | JSON-Ausgabe statt Klartext |
 
+## Prozessablauf / Process Flow
+
+```
+1. Alle Checks aus der Pflichtdatei-Matrix sequentiell ausführen
+2. Pro Check: Datei-Präsenz prüfen; ggf. Inhalts-Checks (A11Y, EN-Block, ANSI-Codes)
+3. Ergebnis pro Check: [✓|✗|WARN] Level-N  {datei}  {check-name}
+4. Score berechnen: ✓ / (✓ + ✗) × 100; by_level separat
+5. Ausgabe: Plain Text → stdout; Markdown-Tabelle → $GITHUB_STEP_SUMMARY
+```
+
 ## Ausgabe / Output
 
 ### Klartext (Standard / Default)

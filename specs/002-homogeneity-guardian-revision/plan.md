@@ -8,12 +8,12 @@
 ## Zusammenfassung / Summary
 
 18 Schwachstellen (SW-01–SW-18) wurden in der `home-baseline`-Umgebung identifiziert.
-Dieser Plan liefert die vollständige Implementierungsroadmap: 7 neue Skript-Paare (Bash + PowerShell),
+Dieser Plan liefert die vollständige Implementierungsroadmap: 6 neue Skript-Paare (Bash + PowerShell),
 4 Template-Dateien, 1 CI/CD-Workflow, Korrekturen in `.gitignore` und bestehenden
 Markdown-Dateien — alle in der von NFR-REV-01 vorgeschriebenen Reihenfolge.
 
 *18 weaknesses (SW-01–SW-18) were identified in the `home-baseline` environment.
-This plan delivers the full implementation roadmap: 7 new script pairs (Bash + PowerShell),
+This plan delivers the full implementation roadmap: 6 new script pairs (Bash + PowerShell),
 4 template files, 1 CI/CD workflow, fixes to `.gitignore` and existing markdown files —
 all in the order prescribed by NFR-REV-01.*
 
@@ -26,7 +26,7 @@ all in the order prescribed by NFR-REV-01.*
 **Target Platform**: macOS 14+, Ubuntu 22.04/24.04 LTS, Debian 12, Windows 10/11 (nativ + WSL2)  
 **Project Type**: Infrastructure automation scripts (CLI-Tools)  
 **Performance Goals**: Kein programmatisches Timeout (NFR-REV-06); Skripte laufen bis Abschluss  
-**Constraints**: Nicht-destruktiv / Non-destructive (append-only, idempotent); kein Test-Framework (Constitution V)  
+**Constraints**: Nicht-destruktiv / Non-destructive (append-only, idempotent); kein Test-Framework (Constitution V); NFR-REV-07: keine ANSI-Escape-Sequenzen in `scripts/`  
 **Scale/Scope**: 7 neue Skript-Paare + 4 Templates + 1 CI-Workflow + N Datei-Modifikationen in 3+ Workspaces
 
 ## Verfassungs-Prüfung / Constitution Check
@@ -37,7 +37,7 @@ all in the order prescribed by NFR-REV-01.*
 | Prinzip / Principle | Status | Begründung / Rationale |
 |---------------------|:------:|------------------------|
 | I. Security-First | ✅ PASS | FR-REV-A04: Pre-Push-Hook auf Level-2 wird geprüft/installiert; FR-REV-B02: constitution.md-Kopie; keine Secrets in Scripts; pre-push-Hook blockiert Credential-Patterns |
-| II. Cross-Platform Parity | ✅ PASS | Alle 7 neuen Skripte haben .sh + .ps1-Variante (spec-erzwungen); Templates sind plattform-neutral |
+| II. Cross-Platform Parity | ✅ PASS | Alle 6 neuen Skripte haben .sh + .ps1-Variante (spec-erzwungen); Templates sind plattform-neutral |
 | III. Bootstrap Automation | ✅ PASS | `bootstrap-project.sh` ist Kernlieferobjekt; CI-Workflow + constitution.md werden direkt erstellt |
 | IV. Workspace Isolation | ✅ PASS | Keine Submodule; Level-2-Erkennung via `.git/`-Verzeichnis (Git als Wahrheitsquelle) |
 | V. Manual-First Verification | ✅ PASS | `--dry-run`/`-WhatIf` in migrate, bootstrap, sync-constitution; kein Test-Framework |
@@ -111,7 +111,7 @@ Gemäß NFR-REV-01 (zwingend einzuhalten):
 | Phase | Gruppe | Skript / Datei | SW-Fix |
 |-------|--------|----------------|--------|
 | 1 | REV-C | `.gitignore` korrigieren | SW-08, SW-09 |
-| 2 | REV-B01 | `check-homogeneity.sh/.ps1` | SW-02 |
+| 2 | REV-B01 | `check-homogeneity.sh/.ps1` | SW-02, SW-17 |
 | 3 | REV-B04 | `init-stats.sh/.ps1` | SW-05 |
 | 4 | REV-A | `migrate-workspace.sh/.ps1` + Templates | SW-03, SW-04, SW-06, SW-07, SW-10, SW-13, SW-14 |
 | 5 | REV-B02 | `bootstrap-project.sh/.ps1` | SW-01 |
