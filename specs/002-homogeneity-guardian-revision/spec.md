@@ -427,16 +427,35 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 #### REV-F — Constitution-Propagation / Constitution Propagation
 
 - **FR-REV-F01**: Das Skript `scripts/sync-constitution.sh` / `.ps1` MUSS bei
-  Constitution-Versionsänderungen die neue `constitution.md` in alle **Level-1-Workspaces**
-  kopieren (Level-2-Projekte erben die Verfassung über ihren Level-1-Parent — kein
-  direkter Sync auf Level-2-Ebene), je Workspace einen Git-Commit
-  `chore: sync constitution to v{version}` erzeugen,
+  Constitution-Versionsänderungen die `constitution.md` in alle **Level-1-Workspaces**
+  propagieren sowie anschließend in alle **Level-2-Projekte** innerhalb dieser Workspaces
+  (Level-2-Erkennung via `find {workspace} -mindepth 2 -maxdepth 2 -name '.git' -type d`),
+  je Workspace/Projekt einen Git-Commit erzeugen,
   und eine abschließende Zusammenfassung aller Workspaces ausgeben mit Status
   `UPDATED` / `SKIPPED (dirty)` / `ALREADY UP-TO-DATE`.
-  **Fehlende `constitution.md` in Level-1**: wird wie eine Versionsabweichung behandelt —
-  das Skript kopiert die Root-`constitution.md` in den Workspace, erzeugt denselben Commit
-  und setzt den Status auf `UPDATED`. Kein Sonderfall, kein Fehler.
-  Vor der Ausführung MUSS eine Preview aller `WOULD UPDATE`-Workspaces ausgegeben
+
+  **Propagations-Strategie — Merge-First** *(Product-Owner-Entscheidung 2026-04-02)*:
+  Das Skript entscheidet pro Ziel-Repository nach folgendem Entscheidungsbaum:
+
+  1. `constitution.md` **fehlt** im Ziel → **Kopieren**:
+     `cp ~/constitution.md {target}/constitution.md`;
+     Commit `chore: sync constitution to v{version}`; Status `UPDATED`.
+
+  2. `constitution.md` vorhanden, **Version identisch** →
+     Status `ALREADY UP-TO-DATE` (kein Schreibvorgang).
+
+  3. `constitution.md` vorhanden, **Version veraltet** oder **Versionszeile fehlt**:
+     Prüfe: `grep -q "^## Workspace" {target}/constitution.md`
+     - **JA** (workspace-spezifische Abschnitte vorhanden) → **Merge**:
+       Alle Root-Sections bis zum ersten `## Workspace-`-Heading durch aktuellen
+       Root-Inhalt ersetzen; alle `## Workspace-*`-Abschnitte vollständig erhalten
+       (append-only für workspace-spezifischen Teil, NFR-REV-02-konform);
+       Versionszeile auf neue Version aktualisieren;
+       Commit `chore: merge constitution to v{version}`; Status `UPDATED`.
+     - **NEIN** (keine workspace-spezifischen Abschnitte) → **Kopieren** wie Fall 1;
+       Commit `chore: sync constitution to v{version}`; Status `UPDATED`.
+
+  Vor der Ausführung MUSS eine Preview aller `WOULD UPDATE`-Ziele ausgegeben
   und eine interaktive Prompt `Proceed? [y/N]` angezeigt werden; `--yes` überspringt
   nur die Prompt, nicht die Preview.
   Die Versionsnummer wird per `grep` aus der ersten Zeile der **Root**-`constitution.md`
@@ -716,7 +735,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   → A: Exakter String-Match des Heading-Texts (z. B. `## Barrierefreiheit / Accessibility (A11Y)`) → `INFO: section already present — skip`. Schlüsselwort-Treffer ohne exakten Match gelten nicht als vorhanden. (→ FR-REV-A01, FR-REV-A05, Edge Cases)
 
 - **Q: Auf welche Ebenen synchronisiert `sync-constitution.sh` — Level-1 oder Level-1+2?**
-  → A: Nur Level-1-Workspaces. Level-2-Projekte erben die Verfassung über ihren Level-1-Parent — kein direkter Sync auf Level-2-Ebene. (→ FR-REV-F01)
+  → A: **Level-1 UND Level-2** (M4-Fix, FR-REV-F01-Amendment 2026-04-02). Level-2-Projekte werden direkt via `find {workspace} -mindepth 2 -maxdepth 2 -name '.git' -type d` erkannt und erhalten dieselbe Merge-First-Propagation wie Level-1. (→ FR-REV-F01)
 
 - **Q: Wer erstellt `.github/workflows/homogeneity-check.yml` in bereits bestehenden Repos?**
   → A: `migrate-workspace.sh` — erstellt die Workflow-Datei wenn nicht vorhanden (FR-REV-G01–G03-konform); existiert sie bereits → `INFO: homogeneity-check.yml already present — skip`. (→ FR-REV-A01)
@@ -749,7 +768,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   → A: Horizontale Balken, eine Zeile pro Scan-Run: `YYYY-MM-DD HH:MM | ████░░░░░░░░░░░░░░░░ 20%` (20 Zeichen Breite = 100 %; Score auf 5 % gerundet). (→ FR-REV-B04, US3 Szenario 3)
 
 - **Q: Was passiert, wenn `constitution.md` in einem Level-1-Workspace komplett fehlt (Erstinstallation)?**
-  → A: Wie Versionsabweichung behandeln — Root-`constitution.md` kopieren, Commit `chore: sync constitution to v{version}`, Status `UPDATED`. Kein Sonderfall, kein Fehler. (→ FR-REV-F01)
+  → A: Datei fehlt → Kopieren: `cp ~/constitution.md {target}/constitution.md`; Commit `chore: sync constitution to v{version}`; Status `UPDATED`. Kein Sonderfall, kein Fehler. **Merge-Strategie** gilt nur wenn Datei bereits vorhanden und Version veraltet (→ FR-REV-F01, Product-Owner-Entscheidung 2026-04-02).
 
 - **Q: Sollen die Template-Dateien (`a11y-section.md` etc.) bilingualen Inhalt haben?**
   → A: Ja — vollständig bilingual (DE zuerst, EN zweite Zeile/Abschnitt, CEFR B2), konsistent mit dem Projektgrundsatz „DE first, EN second". (→ FR-REV-A01)
