@@ -31,12 +31,14 @@
 !STATS.md
 !STATS-archive*.md
 !specs/
+!constitution.md
 
 # Spec-Kit Konfiguration und Templates
 !.specify/
 !.specify/init-options.json
 !.specify/memory/
 !.specify/memory/constitution.md
+!scripts/templates/
 !.specify/scripts/
 !.specify/scripts/bash/
 !.specify/templates/
