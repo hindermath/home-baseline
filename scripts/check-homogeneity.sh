@@ -121,6 +121,12 @@ WARNINGS=()
 TOTAL_CHECKS=0
 TOTAL_PASS=0
 CURRENT_DIR_IDX=-1
+CURRENT_LEVEL=0
+
+# Per-level counters for by_level JSON
+L0_TOTAL=0 L0_PASS=0
+L1_TOTAL=0 L1_PASS=0
+L2_TOTAL=0 L2_PASS=0
 
 # ─── Directory index lookup ───────────────────────────────────────────────────
 
@@ -143,6 +149,13 @@ emit_result() {
   TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
   SCAN_TOTALS[$idx]=$(( ${SCAN_TOTALS[$idx]:-0} + 1 ))
 
+  # Per-level tracking
+  case "$CURRENT_LEVEL" in
+    0) L0_TOTAL=$((L0_TOTAL + 1)); [ "$status" = "PASS" ] && L0_PASS=$((L0_PASS + 1)) ;;
+    1) L1_TOTAL=$((L1_TOTAL + 1)); [ "$status" = "PASS" ] && L1_PASS=$((L1_PASS + 1)) ;;
+    2) L2_TOTAL=$((L2_TOTAL + 1)); [ "$status" = "PASS" ] && L2_PASS=$((L2_PASS + 1)) ;;
+  esac
+
   if [ "$status" = "PASS" ]; then
     TOTAL_PASS=$((TOTAL_PASS + 1))
     SCAN_PASSES[$idx]=$(( ${SCAN_PASSES[$idx]:-0} + 1 ))
@@ -150,12 +163,12 @@ emit_result() {
       printf "  %-4s %-40s %s\n" "✓" "$filepath" "$message"
     fi
   elif [ "$status" = "WARN" ]; then
-    WARNINGS+=("${filepath}:${message}")
+    WARNINGS+=("${CURRENT_LEVEL}|${dir##*/}|${filepath}|${message}")
     if ! $OPT_JSON; then
       printf "  %-4s %-40s %s\n" "WARN" "$filepath" "WARN: ${message}"
     fi
   elif [ "$status" = "FAIL" ]; then
-    FAILURES+=("${filepath}:${message}")
+    FAILURES+=("${CURRENT_LEVEL}|${dir##*/}|${filepath}|${message}")
     if ! $OPT_JSON; then
       printf "  %-4s %-40s %s\n" "✗" "$filepath" "FAIL: ${message}"
     fi
@@ -212,6 +225,95 @@ check_markdown_file() {
   done < <(hg_scan_file_secrets "$full" 2>/dev/null || true)
 }
 
+# ─── REV-B01 New Check Helpers ────────────────────────────────────────────────
+
+check_en_placeholder() {
+  local dir="$1" file="$2"
+  local full="${dir}/${file}"
+  [ -f "$full" ] || return 0
+  if rg -q '<!-- EN:' "$full" 2>/dev/null; then
+    emit_result "PASS" "$file" "EN placeholder" "$dir"
+  else
+    emit_result "FAIL" "$file" "EN placeholder missing" "$dir"
+  fi
+}
+
+check_readme_sections() {
+  local dir="$1"
+  local full="${dir}/README.md"
+  [ -f "$full" ] || return 0
+
+  # A11Y section
+  if rg -qi '^## .*Barrierefreiheit' "$full" 2>/dev/null; then
+    emit_result "PASS" "README.md" "A11Y section" "$dir"
+  else
+    emit_result "FAIL" "README.md" "A11Y section missing" "$dir"
+  fi
+
+  # Spec-kit section
+  if rg -qi '^## .*Spec-kit' "$full" 2>/dev/null; then
+    emit_result "PASS" "README.md" "Spec-kit section" "$dir"
+  else
+    emit_result "FAIL" "README.md" "Spec-kit section missing" "$dir"
+  fi
+
+  # Azubis section
+  if rg -qi '^## .*Azubis' "$full" 2>/dev/null; then
+    emit_result "PASS" "README.md" "Azubis section" "$dir"
+  else
+    emit_result "FAIL" "README.md" "Azubis section missing" "$dir"
+  fi
+}
+
+check_ansi_in_scripts() {
+  local dir="$1"
+  local scripts_dir="${dir}/scripts"
+  [ -d "$scripts_dir" ] || return 0
+
+  # Three-pattern exhaustive ANSI scan (NFR-REV-07, M4-orig: use rg not grep -rP)
+  local ansi_files
+  ansi_files=$(rg -l -e $'\x1b\[' -e $'\\033\[' -e $'\\e\[' "$scripts_dir" 2>/dev/null || true)
+  if [ -z "$ansi_files" ]; then
+    emit_result "PASS" "scripts/" "no ANSI codes in scripts/" "$dir"
+  else
+    local first_file
+    first_file=$(printf '%s' "$ansi_files" | head -1 | sed "s|${scripts_dir}/||")
+    emit_result "FAIL" "scripts/" "ANSI escape codes found: ${first_file}" "$dir"
+  fi
+}
+
+check_editorconfig_csharp() {
+  local dir="$1"
+  # Only applies if C# solution files are present at project root
+  if find "$dir" -maxdepth 1 -name "*.sln" 2>/dev/null | grep -q .; then
+    if [ -f "${dir}/.editorconfig" ]; then
+      emit_result "PASS" ".editorconfig" ".editorconfig present (C# project)" "$dir"
+    else
+      emit_result "FAIL" ".editorconfig" ".editorconfig missing (C# project)" "$dir"
+    fi
+  fi
+}
+
+check_workflow_yml() {
+  local dir="$1"
+  local yml="${dir}/.github/workflows/homogeneity-check.yml"
+  if [ -f "$yml" ]; then
+    emit_result "PASS" ".github/workflows/homogeneity-check.yml" "file present" "$dir"
+  else
+    emit_result "FAIL" ".github/workflows/homogeneity-check.yml" "file missing" "$dir"
+  fi
+}
+
+check_copilot_instructions() {
+  local dir="$1"
+  local f="${dir}/.github/copilot-instructions.md"
+  if [ -f "$f" ]; then
+    emit_result "PASS" ".github/copilot-instructions.md" "file present" "$dir"
+  else
+    emit_result "FAIL" ".github/copilot-instructions.md" "file missing" "$dir"
+  fi
+}
+
 # ─── Header ──────────────────────────────────────────────────────────────────
 
 if ! $OPT_JSON; then
@@ -223,9 +325,10 @@ fi
 
 # ─── Main Scan ───────────────────────────────────────────────────────────────
 
-REQUIRED_FILES="AGENTS.md CLAUDE.md GEMINI.md README.md STATS.md"
+REQUIRED_FILES="AGENTS.md CLAUDE.md GEMINI.md README.md STATS.md constitution.md"
 
 while IFS='|' read -r level dir _type; do
+  CURRENT_LEVEL="$level"
   SCAN_DIRS+=("$dir")
   SCAN_TOTALS+=(0)
   SCAN_PASSES+=(0)
@@ -240,6 +343,30 @@ while IFS='|' read -r level dir _type; do
     check_file_presence "$dir" "$req_file"
     check_markdown_file "$dir" "$req_file"
   done
+
+  # README.md content checks (A11Y, Spec-kit, Azubis)
+  check_readme_sections "$dir"
+
+  # copilot-instructions.md presence (Level 0 and 1 only)
+  if [ "$level" -le 1 ]; then
+    check_copilot_instructions "$dir"
+  fi
+
+  # EN placeholder checks (Level 0 and 1)
+  if [ "$level" -le 1 ]; then
+    for en_file in README.md AGENTS.md CLAUDE.md GEMINI.md constitution.md; do
+      check_en_placeholder "$dir" "$en_file"
+    done
+    check_en_placeholder "$dir" ".github/copilot-instructions.md"
+  fi
+
+  # homogeneity-check.yml presence (all levels)
+  check_workflow_yml "$dir"
+
+  # ANSI escape scan in scripts/ (Level 0 only, global)
+  if [ "$level" -eq 0 ]; then
+    check_ansi_in_scripts "$dir"
+  fi
 
   # Hook check (Level 1+2 have .git/)
   if [ "$level" -ge 1 ]; then
@@ -258,6 +385,11 @@ while IFS='|' read -r level dir _type; do
     else
       emit_result "WARN" "scripts/hooks/pre-push" "canonical hook missing" "$dir"
     fi
+  fi
+
+  # .editorconfig for C# Level-2 (FR-REV-E02)
+  if [ "$level" -eq 2 ]; then
+    check_editorconfig_csharp "$dir"
   fi
 
   # Deps + speckit for projects (Level 2)
@@ -298,14 +430,19 @@ while IFS='|' read -r level _dir _type; do
 done < <(hg_scan "$TARGET_DIR")
 
 if $OPT_JSON; then
-  # JSON output
+  # JSON output — contract format: {"score":N,"by_level":{"0":N,"1":N,"2":N},"failures":[...],"warnings":[...]}
+  L0_SCORE=0; [ "$L0_TOTAL" -gt 0 ] && L0_SCORE=$(( (L0_PASS * 100) / L0_TOTAL ))
+  L1_SCORE=0; [ "$L1_TOTAL" -gt 0 ] && L1_SCORE=$(( (L1_PASS * 100) / L1_TOTAL ))
+  L2_SCORE=0; [ "$L2_TOTAL" -gt 0 ] && L2_SCORE=$(( (L2_PASS * 100) / L2_TOTAL ))
+
   fail_json="["
   first_f=true
   for f in "${FAILURES[@]+"${FAILURES[@]}"}"; do
     $first_f || fail_json+=","
-    fp="${f%%:*}"
-    chk="${f#*:}"
-    fail_json+="{\"path\":\"${fp}\",\"check\":\"${chk}\"}"
+    flevel="${f%%|*}"
+    frest="${f#*|}"; fws="${frest%%|*}"
+    frest2="${frest#*|}"; ffile="${frest2%%|*}"; fcheck="${frest2#*|}"
+    fail_json+="{\"file\":\"${ffile}\",\"check\":\"${fcheck}\",\"level\":${flevel},\"workspace\":\"${fws}\"}"
     first_f=false
   done
   fail_json+="]"
@@ -314,19 +451,17 @@ if $OPT_JSON; then
   first_w=true
   for w in "${WARNINGS[@]+"${WARNINGS[@]}"}"; do
     $first_w || warn_json+=","
-    wp="${w%%:*}"
-    wchk="${w#*:}"
-    warn_json+="{\"path\":\"${wp}\",\"check\":\"${wchk}\"}"
+    wlevel="${w%%|*}"
+    wrest="${w#*|}"; wws="${wrest%%|*}"
+    wrest2="${wrest#*|}"; wfile="${wrest2%%|*}"; wcheck="${wrest2#*|}"
+    warn_json+="{\"file\":\"${wfile}\",\"check\":\"${wcheck}\",\"level\":${wlevel},\"workspace\":\"${wws}\"}"
     first_w=false
   done
   warn_json+="]"
 
-  stats_val="null"
-  ! $OPT_DRY_RUN && stats_val="\"${HOME}/STATS.md\""
-
-  printf '{"score":%d,"workspaces_scanned":%d,"projects_scanned":%d,"failures":%s,"warnings":%s,"stats_updated":%s,"patch_generated":null}\n' \
-    "$OVERALL_SCORE" "$WORKSPACES_COUNT" "$PROJECTS_COUNT" \
-    "$fail_json" "$warn_json" "$stats_val"
+  printf '{"score":%d,"by_level":{"0":%d,"1":%d,"2":%d},"failures":%s,"warnings":%s}\n' \
+    "$OVERALL_SCORE" "$L0_SCORE" "$L1_SCORE" "$L2_SCORE" \
+    "$fail_json" "$warn_json"
 else
   printf '%.0s=' {1..54}; echo
   echo "COMPLIANCE SUMMARY"
@@ -373,6 +508,39 @@ else
   fi
 fi
 
+# ─── GitHub Step Summary ────────────────────────────────────────────────────
+
+if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+  {
+    echo "## Homogeneity Check Report"
+    echo ""
+    echo "| Level | Datei | Check | Status |"
+    echo "|---|---|---|---|"
+    for f in "${FAILURES[@]+"${FAILURES[@]}"}"; do
+      flevel="${f%%|*}"; frest="${f#*|}"; ffile="${frest#*|}"; ffile="${ffile%%|*}"; fcheck="${ffile#*|}"; ffile="${ffile%%|*}"
+      # Re-parse properly
+      arr_level="${f%%|*}"
+      arr_rest="${f#*|}"
+      arr_ws="${arr_rest%%|*}"
+      arr_rest2="${arr_rest#*|}"
+      arr_file="${arr_rest2%%|*}"
+      arr_check="${arr_rest2#*|}"
+      echo "| ${arr_level} | ${arr_file} | ${arr_check} | ✗ |"
+    done
+    for w in "${WARNINGS[@]+"${WARNINGS[@]}"}"; do
+      arr_level="${w%%|*}"
+      arr_rest="${w#*|}"
+      arr_ws="${arr_rest%%|*}"
+      arr_rest2="${arr_rest#*|}"
+      arr_file="${arr_rest2%%|*}"
+      arr_check="${arr_rest2#*|}"
+      echo "| ${arr_level} | ${arr_file} | ${arr_check} | WARN |"
+    done
+    echo ""
+    echo "**Score: ${OVERALL_SCORE}% (${TOTAL_PASS}/${TOTAL_CHECKS} checks passed)**"
+  } >> "$GITHUB_STEP_SUMMARY"
+fi
+
 # ─── Post-scan writes ─────────────────────────────────────────────────────────
 
 if ! $OPT_DRY_RUN; then
@@ -390,11 +558,12 @@ if ! $OPT_DRY_RUN; then
 fi
 
 # ─── Exit Code ───────────────────────────────────────────────────────────────
+# Exit 0: all PASS or WARN — no ✗ (per contract)
+# Exit 1: at least one ✗ (FAIL)
 
 _fail_cnt=0; for _ in "${FAILURES[@]+"${FAILURES[@]}"}"; do _fail_cnt=$((_fail_cnt+1)); done
-_warn_cnt=0; for _ in "${WARNINGS[@]+"${WARNINGS[@]}"}"; do _warn_cnt=$((_warn_cnt+1)); done
 
-if [ "$_fail_cnt" -gt 0 ] || [ "$_warn_cnt" -gt 0 ]; then
+if [ "$_fail_cnt" -gt 0 ]; then
   exit 1
 fi
 exit 0
