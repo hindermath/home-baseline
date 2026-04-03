@@ -8,6 +8,23 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.4.0](https://github.com/hindermath/home-baseline/compare/v0.3.1...v0.4.0) (2026-04-03)
+
+
+### Features / Neue Funktionen
+
+* Release Please eingerichtet (automatisches Versioning) ([e9a8167](https://github.com/hindermath/home-baseline/commit/e9a81671be6f9b069a22f01ce35bc46cff78ba38))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* CI-Fehler in check-homogeneity behoben ([df52abf](https://github.com/hindermath/home-baseline/commit/df52abfb3f1de55ae5a52fd63a957c7395df561d))
+
+
+### Documentation / Dokumentation
+
+* Release Please in README dokumentiert ([994b06b](https://github.com/hindermath/home-baseline/commit/994b06b6d8f2fbad7a1d94b0710ab7453ea34aed))
+
 ## [Unreleased]
 
 ---
