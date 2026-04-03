@@ -10,11 +10,68 @@ private GitHub repository within seconds.*
 
 ---
 
+## Inhaltsverzeichnis / Table of Contents
+
+- [Workspace-Übersicht](#workspace-übersicht--workspace-overview)
+- [Was ist dieses Template-Repo?](#was-ist-dieses-template-repo--what-is-this-template-repo)
+- [Voraussetzungen](#voraussetzungen--prerequisites)
+- [Neuen Workspace einrichten](#neuen-workspace-einrichten--create-new-workspace)
+- [Ersteinrichtung auf einem neuen Gerät](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
+- [Template-Entwickler-Workflow](#template-entwickler-workflow--template-developer-workflow)
+- [Inhalt / Dateien](#inhalt--contents)
+- [Homogeneity Guardian — Kurzreferenz](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
+- [Plattform-Übersicht](#plattform-übersicht--platform-overview)
+- [Für Auszubildende der Fachinformatik](#für-auszubildende-der-fachinformatik--for-it-apprentices)
+- [Barrierefreiheit (A11Y)](#barrierefreiheit--accessibility-a11y)
+- [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
+
+---
+
 ## Workspace-Übersicht / Workspace overview
 
 | Verzeichnis | GitHub-Repo | Eingerichtet mit |
 |---|---|---|
 <!-- workspace-table-end -->
+
+---
+
+## Was ist dieses Template-Repo? / What is this template repo?
+
+Dieses Repository ist ein **GitHub Template-Repository**. Das bedeutet: Anstelle eines
+klassischen Forks kann jeder, der dieses Repo als Ausgangsbasis nutzen möchte, über den
+Button **„Use this template"** ein eigenes, vollständig unabhängiges Repository erstellen —
+ohne die Commit-History des Originals zu erben und ohne eine dauerhafte Verbindung zum
+Original-Repository.
+
+*This repository is a **GitHub Template Repository**. Instead of a classic fork, anyone who
+wants to use this as a starting point can click **"Use this template"** to create their own
+fully independent repository — without inheriting the original commit history and without
+any permanent connection to the source.*
+
+### Unterschied Fork vs. Template / Fork vs. Template
+
+| | Fork | Template (dieses Repo) |
+|---|---|---|
+| Git-History | wird mitkopiert | **nicht** kopiert — frischer Start |
+| Verbindung zum Original | bleibt bestehen | **keine** Verbindung |
+| PRs zum Original möglich | ja | nein (bewusst getrennt) |
+| Eigener Namespace | fork-URL | frei wählbar |
+| Typischer Einsatz | Mitarbeit am Original | Eigene unabhängige Instanz |
+
+### So nutzt du dieses Template / How to use this template
+
+1. Auf [github.com/YOUR_USERNAME/home-baseline](https://github.com/YOUR_USERNAME/home-baseline) gehen
+2. Button **„Use this template"** → **„Create a new repository"** klicken
+3. Eigenen Repository-Namen und Sichtbarkeit (Private empfohlen) wählen
+4. Repo klonen und die [Ersteinrichtung](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device) durchführen
+
+> **Hinweis für Auszubildende:** Ihr erhaltet vom Ausbilder die URL des Template-Repos.
+> Erstellt euer eigenes Repo über „Use this template" — ihr seid dann vollständig unabhängig
+> und könnt nichts am Original kaputtmachen.
+>
+> *Note for apprentices: You will receive the template repo URL from your trainer.
+> Create your own repo via "Use this template" — you are then completely independent
+> and cannot break anything in the original.*
 
 ---
 
@@ -395,95 +452,260 @@ pwsh ~/scripts/rename-lastenheft.ps1 -File Lastenheft_foo.md -BranchName 002-fea
 
 ---
 
-## Für Azubis / For Apprentices
+## Für Auszubildende der Fachinformatik / For IT Apprentices
 
-Willkommen! Diese Anleitung führt dich Schritt für Schritt durch den Aufbau eines neuen C#-Projekts
-mit dem **Workspace Homogeneity Guardian** — ohne Senior-Hilfe und nur mit freien Tools.
+Willkommen! Dieser Abschnitt führt dich als **Auszubildende/r der Fachinformatik**
+Schritt für Schritt durch die Einrichtung deiner Entwicklungsumgebung — ohne Vorkenntnisse
+und nur mit freien, kostenlosen Tools.
 
-Welcome! This guide walks you through setting up a new C# project with the **Workspace Homogeneity
-Guardian** step by step — without senior help and using only free tools.
+*Welcome! This section guides you as an **IT apprentice** through setting up your
+development environment step by step — no prior knowledge required, free tools only.*
 
-### Voraussetzungen prüfen / Check Prerequisites
+---
 
-| Tool | Version | Installation (Ubuntu 22.04) |
-|------|---------|-----------------------------|
-| `git` | ≥ 2.x | `sudo apt install git` |
-| `bash` | ≥ 5.x | `sudo apt install bash` (oder vorinstalliert) |
-| `ripgrep` | aktuell | `sudo apt install ripgrep` |
-| `gh` (optional) | aktuell | [cli.github.com](https://cli.github.com) |
+### Was passiert hier überhaupt? / What is this about?
 
-> **Hinweis / Note**: Wenn `sudo` fehlt, frage deine IT-Abteilung.
-> If `sudo` is unavailable, contact your IT department.
+Bevor du mit der eigentlichen Programmierung beginnst, richtest du dein **Home-Verzeichnis**
+(`~/` — das ist dein persönliches Benutzerverzeichnis auf dem Computer) als Git-Repository ein.
+Das klingt komplizierter als es ist. Konkret bedeutet es:
 
-### Schritt-für-Schritt / Step by Step
+- Alle wichtigen Konfigurationsdateien und Scripts liegen an einem zentralen Ort
+- Du kannst deine Konfiguration jederzeit wiederherstellen, falls etwas schiefgeht
+- Der **Workspace Homogeneity Guardian** prüft automatisch, ob alles korrekt eingerichtet ist
 
-**Schritt 1 / Step 1**: Dieses Repository auf dem neuen Gerät einrichten:
+*Before you start actual programming, you set up your **home directory** (`~/` — your personal
+user directory) as a Git repository. This sounds more complicated than it is. Concretely it means:
+your configuration files and scripts are in one central place, you can restore them at any time,
+and the Homogeneity Guardian automatically checks that everything is set up correctly.*
+
+---
+
+### Schritt 0: Werkzeuge installieren / Step 0: Install tools
+
+Diese Programme brauchst du. Installiere sie in dieser Reihenfolge.
+
+*You need these programs. Install them in this order.*
+
+#### Ubuntu / Linux
 
 ```bash
+# Git — Versionsverwaltung (speichert Änderungen an Dateien)
+sudo apt update && sudo apt install -y git
+
+# ripgrep — schnelle Textsuche (wird vom Compliance-Scanner benötigt)
+sudo apt install -y ripgrep
+
+# GitHub CLI — kommuniziert mit GitHub von der Kommandozeile aus
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
+  sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] \
+  https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list
+sudo apt update && sudo apt install -y gh
+
+# Einmalig bei GitHub anmelden (Browser öffnet sich automatisch)
+gh auth login
+```
+
+#### macOS
+
+```bash
+# Homebrew installieren (falls noch nicht vorhanden)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Tools installieren
+brew install git ripgrep gh
+
+# Einmalig bei GitHub anmelden
+gh auth login
+```
+
+#### Windows (PowerShell als Administrator)
+
+```powershell
+# Git, ripgrep und GitHub CLI installieren
+winget install --id Git.Git
+winget install --id BurntSushi.ripgrep.MSVC
+winget install --id GitHub.cli
+
+# PowerShell Core 7 installieren (Windows braucht das für die ps1-Scripts)
+winget install --id Microsoft.PowerShell
+
+# Neues Terminal öffnen, dann bei GitHub anmelden
+gh auth login
+```
+
+> **Was macht `gh auth login`?** Es verbindet dein Terminal mit deinem GitHub-Account.
+> Ein Browser-Fenster öffnet sich, du meldest dich an und bestätigst. Danach können
+> die Scripts automatisch GitHub-Repositories für dich erstellen.
+>
+> *What does `gh auth login` do? It connects your terminal to your GitHub account.
+> A browser window opens, you log in and confirm. After that, scripts can automatically
+> create GitHub repositories for you.*
+
+---
+
+### Schritt 1: Template-Repo auf GitHub kopieren / Step 1: Copy template repo on GitHub
+
+1. Öffne die URL, die du von deinem Ausbilder erhalten hast (z. B. `https://github.com/AUSBILDER/home-baseline`)
+2. Klicke auf den grünen Button **„Use this template"** → **„Create a new repository"**
+3. Wähle einen Namen (z. B. `home-baseline`) und stelle die Sichtbarkeit auf **Private**
+4. Klicke **„Create repository"**
+
+Du hast jetzt dein eigenes Repo! Die URL lautet: `https://github.com/DEIN_USERNAME/home-baseline`
+
+*You now have your own repo! The URL is: `https://github.com/YOUR_USERNAME/home-baseline`*
+
+---
+
+### Schritt 2: Repo auf dem Computer einrichten / Step 2: Set up repo on your computer
+
+Öffne ein Terminal (macOS/Linux: **Terminal**-App; Windows: **PowerShell 7**).
+
+*Open a terminal (macOS/Linux: Terminal app; Windows: PowerShell 7).*
+
+#### Ubuntu / macOS
+
+```bash
+# In dein Home-Verzeichnis wechseln
 cd ~
-git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
 
-# Scripts und Konfiguration einrichten
-cp -r home-baseline-tmp/scripts/. ~/scripts/
-cp home-baseline-tmp/.gitignore ~/.gitignore
+# Repo klonen (DEIN_USERNAME ersetzen!)
+git clone https://github.com/DEIN_USERNAME/home-baseline.git home-baseline-tmp
 
-# Level-0-Dateien ins Home-Verzeichnis kopieren
-cp home-baseline-tmp/AGENTS.md home-baseline-tmp/CLAUDE.md home-baseline-tmp/GEMINI.md \
-   home-baseline-tmp/README.md home-baseline-tmp/STATS.md home-baseline-tmp/constitution.md ~/
-cp -r home-baseline-tmp/.github ~/
+# Sync-Script ausführen — kopiert alles an die richtigen Stellen
+bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 
-git init
-bash ~/scripts/install-hooks.sh
-rm -rf home-baseline-tmp
-```
-
-**Schritt 1b / Step 1b**: Compliance des Home-Verzeichnisses prüfen:
-
-```bash
+# Compliance-Check — zeigt dir, ob alles korrekt ist
 bash ~/scripts/check-homogeneity.sh ~/
 ```
 
-**Schritt 2 / Step 2**: Ersten Workspace bootstrappen (z. B. MyProjects):
+#### Windows (PowerShell 7)
 
-```bash
-bash ~/scripts/bootstrap-workspace.sh MyProjects
+```powershell
+# In dein Home-Verzeichnis wechseln
+Set-Location ~
+
+# Repo klonen (DEIN_USERNAME ersetzen!)
+git clone https://github.com/DEIN_USERNAME/home-baseline.git home-baseline-tmp
+
+# Sync-Script ausführen
+pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
+
+# Compliance-Check
+pwsh ~/scripts/check-homogeneity.ps1
 ```
 
-**Schritt 3 / Step 3**: Neues C#-Projekt bootstrappen:
+> **Was passiert gerade?** Das `sync-home`-Script kopiert alle wichtigen Dateien aus
+> dem geklonten Repo an die richtigen Stellen in deinem Home-Verzeichnis und erstellt
+> automatisch einen Git-Commit. Der anschließende `check-homogeneity`-Aufruf prüft,
+> ob alles korrekt vorhanden ist.
+>
+> *What is happening? The `sync-home` script copies all important files from the
+> cloned repo to the correct places in your home directory and automatically creates
+> a Git commit. The `check-homogeneity` call then checks that everything is correctly present.*
+
+**Ziel:** Score ≥ 90 % / *Goal: Score ≥ 90 %*
+
+---
+
+### Schritt 3: Ersten Workspace anlegen / Step 3: Create your first workspace
+
+Ein **Workspace** ist ein Verzeichnis für eine Gruppe verwandter Projekte, z. B. alle
+Projekte deiner Ausbildung. Das Script richtet es automatisch als GitHub-Repo ein.
+
+*A **workspace** is a directory for a group of related projects, e.g. all projects of
+your apprenticeship. The script sets it up automatically as a GitHub repo.*
 
 ```bash
-# Beispiel: neues Projekt "MeinProjekt" im MyProjects-Workspace
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects --no-remote --no-agents
+# macOS / Linux / Ubuntu
+bash ~/scripts/bootstrap-workspace.sh AusbildungsProjekte
+
+# Windows
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName AusbildungsProjekte
 ```
 
-**Schritt 4 / Step 4**: Compliance prüfen:
+Das Script erledigt automatisch:
+1. Verzeichnis `~/AusbildungsProjekte/` erstellen
+2. `git init` — Git-Versionsverwaltung aktivieren
+3. Privates Repo auf GitHub erstellen
+4. Scripts und Hooks kopieren
+5. Ersten Commit und Push zu GitHub
+
+*The script automatically: creates the directory, initialises Git, creates a private GitHub
+repo, copies scripts and hooks, makes the first commit and pushes to GitHub.*
+
+---
+
+### Schritt 4: Compliance prüfen / Step 4: Check compliance
 
 ```bash
+# macOS / Linux / Ubuntu
 bash ~/scripts/check-homogeneity.sh ~/
+
+# Windows
+pwsh ~/scripts/check-homogeneity.ps1
 ```
 
-**Schritt 5 / Step 5**: WARNs beheben — typische Probleme:
+Die Ausgabe zeigt dir für jede Datei und jeden Check, ob alles in Ordnung ist:
+- `✓` — alles gut
+- `WARN` — Warnung, sollte behoben werden
+- `✗ FAIL` — Fehler, muss behoben werden
+
+Am Ende siehst du einen **Score in Prozent**. Ziel ist ≥ 90 %.
+
+*The output shows you for each file and check whether everything is in order.
+At the end you see a score in percent. Goal is ≥ 90 %.*
+
+---
+
+### Häufige Fehler und Lösungen / Common errors and fixes
 
 | Fehler / Error | Ursache / Cause | Lösung / Fix |
-|----------------|-----------------|--------------|
-| `FAIL: file missing` | Pflichtdatei fehlt | Bootstrap erneut ausführen mit `--force` |
-| `WARN: bilingual-section-missing` | Kein DE+EN-Heading | Abschnitt `## Überblick / Overview` hinzufügen |
+|---|---|---|
+| `FAIL: file missing` | Pflichtdatei fehlt | `sync-home.sh` erneut ausführen |
+| `WARN: bilingual-section-missing` | Kein DE+EN-Heading in Markdown | Abschnitt `## Überblick / Overview` eintragen |
 | `WARN: hook-missing` | pre-push Hook nicht installiert | `bash ~/scripts/install-hooks.sh` |
-| `rg: command not found` | ripgrep fehlt | `sudo apt install ripgrep` |
-| `Permission denied` | Dateisystemproblem | `chown -R $USER .` |
-| `git: command not found` | Git fehlt | `sudo apt install git` |
+| `rg: command not found` | ripgrep nicht installiert | `sudo apt install ripgrep` |
+| `git: command not found` | Git nicht installiert | `sudo apt install git` |
+| `Permission denied` | Berechtigungsproblem | `chown -R $USER .` ausführen |
+| `gh: command not found` | GitHub CLI fehlt | Schritt 0 wiederholen |
+| `fatal: not a git repository` | `git init` wurde nicht ausgeführt | `git init` im Verzeichnis ausführen |
 
-**Schritt 6 / Step 6**: Ziel erreicht — Score ≥ 90% bedeutet alles ist korrekt konfiguriert.
+---
 
-Goal reached — score ≥ 90% means everything is correctly configured.
+### Neues Projekt anlegen / Create a new project
 
-### Neues Projekt mit Compliance-Gate / New Project with Compliance Gate
+Wenn du ein konkretes Programmierprojekt starten möchtest:
 
 ```bash
-# Bootstrap + sofortiger Compliance-Check
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects --no-remote --no-agents && \
-  bash ~/scripts/check-homogeneity.sh ~/MyProjects/MeinProjekt
+# macOS / Linux / Ubuntu
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/AusbildungsProjekte
+
+# Windows
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/AusbildungsProjekte
 ```
+
+Danach Compliance prüfen / Then check compliance:
+
+```bash
+bash ~/scripts/check-homogeneity.sh ~/AusbildungsProjekte
+```
+
+---
+
+### Glossar / Glossary
+
+| Begriff / Term | Erklärung / Explanation |
+|---|---|
+| **Repository / Repo** | Ein Verzeichnis unter Git-Versionsverwaltung — speichert alle Versionen deiner Dateien |
+| **Commit** | Ein gespeicherter Snapshot deiner Änderungen mit einer Beschreibung |
+| **Push** | Commits vom lokalen Computer zu GitHub hochladen |
+| **Pull** | Änderungen von GitHub auf den lokalen Computer herunterladen |
+| **Branch** | Ein paralleler Entwicklungszweig — Änderungen ohne den Hauptzweig zu berühren |
+| **Hook** | Ein Script das automatisch bei bestimmten Git-Aktionen ausgeführt wird (z. B. vor einem Push) |
+| **Compliance-Score** | Prozentualer Wert wie gut deine Umgebung den Standards entspricht |
+| **Template-Repo** | Ein GitHub-Repo das als Vorlage dient — „Use this template" erstellt ein unabhängiges Kopie |
+| **~/** | Kürzel für dein Home-Verzeichnis (z. B. `/home/deinname/` auf Linux) |
 
 <!-- EN: README.md placeholder
 [DE-Zusammenfassung: Vollständige bilinguale README für home-baseline mit Workspace-Tabelle, Scripts, A11Y-, Spec-kit- und Azubis-Abschnitten.]
