@@ -271,8 +271,9 @@ check_ansi_in_scripts() {
   [ -d "$scripts_dir" ] || return 0
 
   # Three-pattern exhaustive ANSI scan (NFR-REV-07, M4-orig: use rg not grep -rP)
+  # Exclude the scanner scripts themselves (they contain the patterns as literals in comments/code)
   local ansi_files
-  ansi_files=$(rg -l -e $'\x1b\[' -e $'\\033\[' -e $'\\e\[' "$scripts_dir" 2>/dev/null || true)
+  ansi_files=$(rg -l --glob '!check-homogeneity.*' -e $'\x1b\[' -e $'\\033\[' -e $'\\e\[' "$scripts_dir" 2>/dev/null || true)
   if [ -z "$ansi_files" ]; then
     emit_result "PASS" "scripts/" "no ANSI codes in scripts/" "$dir"
   else

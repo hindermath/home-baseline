@@ -162,8 +162,10 @@ function Check-AnsiInScripts {
     $scriptsDir = Join-Path $Dir 'scripts'
     if (-not (Test-Path $scriptsDir)) { return }
     # ANSI escape scan: actual ESC byte, \033[, \e[ (PS1 uses .NET regex)
+    # Exclude the scanner scripts themselves (they contain the patterns as literals in comments/code)
     $pattern = '\x1b\[|\\033\[|\\e\['
     $found = Get-ChildItem -Path $scriptsDir -File -Recurse -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -notmatch '^check-homogeneity\.(ps1|sh)$' } |
         Where-Object { (Get-Content $_.FullName -Raw -ErrorAction SilentlyContinue) -match $pattern } |
         Select-Object -First 1
     if ($null -eq $found) {
