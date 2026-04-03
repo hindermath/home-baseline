@@ -117,6 +117,7 @@ cd ~
 git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
 cp -r home-baseline-tmp/scripts ~/scripts
 cp home-baseline-tmp/.gitignore ~/.gitignore
+git init
 bash ~/scripts/install-hooks.sh
 rm -rf home-baseline-tmp
 ```
@@ -128,6 +129,7 @@ Set-Location ~
 git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
 Copy-Item home-baseline-tmp/scripts ~/scripts -Recurse -Force
 Copy-Item home-baseline-tmp/.gitignore ~/ -Force
+git init
 pwsh ~/scripts/install-hooks.ps1
 Remove-Item home-baseline-tmp -Recurse -Force
 ```
@@ -264,6 +266,7 @@ cd ~
 git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
 cp -r home-baseline-tmp/scripts ~/scripts
 cp home-baseline-tmp/.gitignore ~/.gitignore
+git init
 bash ~/scripts/install-hooks.sh
 rm -rf home-baseline-tmp
 ```
