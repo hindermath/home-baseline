@@ -16,7 +16,7 @@ param(
 
 $ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TemplatesDir = Join-Path $ScriptDir 'templates'
-$HomeDir      = ($env:HOME ?? $env:USERPROFILE)
+$HomeDir      = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
 
 # ─── Prerequisites ────────────────────────────────────────────────────────────
 

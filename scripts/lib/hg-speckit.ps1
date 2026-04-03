@@ -3,7 +3,7 @@
 function Invoke-HgCheckSpeckit {
     param([string]$SpecFile)
 
-    $specifyDir = Join-Path ($env:HOME ?? $env:USERPROFILE) '.specify'
+    $specifyDir = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) '.specify'
     if (-not (Test-Path $specifyDir)) { return }
     if (-not (Test-Path $SpecFile)) { return }
 

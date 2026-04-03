@@ -3,7 +3,7 @@
 function Invoke-HgCheckHook {
     param([string]$Dir)
 
-    $canonicalHook = Join-Path ($env:HOME ?? $env:USERPROFILE) 'scripts/hooks/pre-push'
+    $canonicalHook = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'scripts/hooks/pre-push'
     $installedHook = Join-Path $Dir '.git/hooks/pre-push'
 
     if (-not (Test-Path $canonicalHook)) {

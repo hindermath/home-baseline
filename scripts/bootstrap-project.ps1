@@ -25,7 +25,7 @@ $PartialFail = $false
 
 function Render-Template {
     param([string]$Template, [string]$Output)
-    $wsShort = $TargetWorkspace -replace [regex]::Escape(($env:HOME ?? $env:USERPROFILE)), '~'
+    $wsShort = $TargetWorkspace -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
     (Get-Content $Template) `
         -replace '\{\{PROJECT_NAME\}\}', $ProjectName `
         -replace '\{\{WORKSPACE\}\}', $wsShort |
@@ -72,10 +72,10 @@ if ($Preview) {
         @('CHECK',  "gh copilot --help", 'optional'),
         @('EXEC',   "npx speckit init", 'optional'),
         @('EXEC',   "init-stats.sh (Baseline)", 'STATS.md'),
-        @('UPDATE', "$($env:HOME ?? $env:USERPROFILE)/README.md")
+        @('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md")
     ) | ForEach-Object {
         $note = if ($_.Count -gt 2) { "($($_[2]))" } else { '' }
-        $shortPath = $_[1] -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
+        $shortPath = $_[1] -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
         Write-Host ("  {0,-8} {1,-50} {2}" -f $_[0], $shortPath, $note)
     }
     Write-Host "  [Keine Dateien wurden geschrieben]"
@@ -98,9 +98,9 @@ Write-Host "  bootstrap-project — Workspace Homogeneity Guardian"
 Write-Host ('=' * 50)
 Write-Host ""
 Write-Host "Projekt:    $ProjectName"
-$wsShort = $TargetWorkspace -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
+$wsShort = $TargetWorkspace -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
 Write-Host "Workspace:  $wsShort"
-$tdShort = $TargetDir -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
+$tdShort = $TargetDir -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
 Write-Host "Ziel:       $tdShort"
 Write-Host ""
 
@@ -162,7 +162,7 @@ else {
 
 # 7b. constitution.md
 Step-Start "constitution.md kopieren"
-$homeConstitution = Join-Path $($env:HOME ?? $env:USERPROFILE) 'constitution.md'
+$homeConstitution = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'constitution.md'
 $fc = Join-Path $TargetDir 'constitution.md'
 if (-not (Test-Path $homeConstitution)) { Step-Warn "~/constitution.md fehlt — bitte sync-constitution.ps1 ausfuehren" }
 elseif ((Test-Path $fc) -and -not $Force) { Step-Skip "Datei existiert" }
@@ -228,7 +228,7 @@ else { Step-Warn "~/scripts/ nicht gefunden" }
 
 # 11. Install hook
 Step-Start "pre-push Hook installieren"
-$hookSrc = Join-Path $($env:HOME ?? $env:USERPROFILE) 'scripts/hooks/pre-push'
+$hookSrc = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'scripts/hooks/pre-push'
 $hookDst = Join-Path $TargetDir '.git/hooks/pre-push'
 if (Test-Path $hookSrc) {
     $hooksDir = Split-Path $hookDst
@@ -323,7 +323,7 @@ if (Test-Path $initStatsScript) {
 
 # 21. Update ~/README.md
 Step-Start "~/README.md aktualisieren"
-$homeReadme = Join-Path $($env:HOME ?? $env:USERPROFILE) 'README.md'
+$homeReadme = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'README.md'
 if ((Get-Content $homeReadme -ErrorAction SilentlyContinue) -match $ProjectName) { Step-Skip "Eintrag vorhanden" }
 elseif ((Test-Path $homeReadme) -and (Select-String -Path $homeReadme -Pattern '<!-- workspace-table-end -->')) {
     $content = Get-Content $homeReadme -Raw
