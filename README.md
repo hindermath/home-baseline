@@ -29,10 +29,12 @@ private GitHub repository within seconds.*
   - [Täglich / nach Änderungen synchronisieren](#täglich--nach-änderungen-synchronisieren--daily-sync)
   - [Änderungen am Template entwickeln](#änderungen-am-template-entwickeln--develop-template-changes)
   - [Optionen sync-home](#optionen-sync-home--sync-home-options)
+  - [Releases und Versionierung](#releases-und-versionierung--releases--versioning)
 - [Inhalt / Dateien](#inhalt--contents)
   - [Workspace-Bootstrap](#workspace-bootstrap--workspace-bootstrap)
   - [Homogeneity Guardian](#homogeneity-guardian)
   - [Sicherheit / Security](#sicherheit--security)
+  - [Versionierung](#versionierung--versioning)
 - [Homogeneity Guardian — Kurzreferenz](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
   - [Compliance-Check](#compliance-check)
   - [STATS.md Baseline erzeugen](#statsmd-baseline-erzeugen--generate-statsmd-baseline)
@@ -356,6 +358,28 @@ bash ~/scripts/sync-home.sh --no-pull
 
 ---
 
+### Releases und Versionierung / Releases & Versioning
+
+Releases werden automatisch durch **[Release Please](https://github.com/googleapis/release-please-action)** erstellt — Grundlage sind die [Conventional Commits](https://www.conventionalcommits.org/).
+
+*Releases are created automatically by **[Release Please](https://github.com/googleapis/release-please-action)** based on [Conventional Commits](https://www.conventionalcommits.org/).*
+
+| Commit-Präfix / Prefix | Versions-Bump |
+|---|---|
+| `fix:`, `docs:`, `chore:` | Patch: `0.3.1 → 0.3.2` |
+| `feat:` | Minor: `0.3.1 → 0.4.0` |
+| `feat!:` oder `BREAKING CHANGE` | Major: `0.3.x → 1.0.0` |
+
+**Ablauf / Flow:**
+
+1. Commits auf `main` pushen
+2. Release Please öffnet automatisch einen **Release PR** (`chore(main): release X.Y.Z`) und aktualisiert `CHANGELOG.md` sowie `.release-please-manifest.json`
+3. PR mergen → Git-Tag + GitHub Release werden erstellt
+
+*1. Push commits to `main`. 2. Release Please opens or updates a Release PR automatically. 3. Merge the PR → Git tag + GitHub Release are created.*
+
+---
+
 ## Inhalt / Contents
 
 ### Workspace-Bootstrap / Workspace Bootstrap
@@ -387,6 +411,15 @@ bash ~/scripts/sync-home.sh --no-pull
 | `scripts/templates/speckit-workflow-section.md` | Spec-kit-Workflow-Abschnitt (Template) |
 | `scripts/templates/azubis-section.md` | Azubi-Einstiegsleitfaden-Abschnitt (Template) |
 | `.github/workflows/homogeneity-check.yml` | CI/CD-Workflow: Compliance-Check auf Ubuntu, macOS, Windows |
+
+### Versionierung / Versioning
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `.github/workflows/release-please.yml` | Release Please — erstellt Release PRs automatisch bei jedem Push auf `main` |
+| `release-please-config.json` | Konfiguration: `release-type: simple`, bilinguale Changelog-Sektionen |
+| `.release-please-manifest.json` | Aktuell getrackte Version — wird von Release Please automatisch aktualisiert |
+| `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/) — von Release Please verwaltet |
 
 ### Sicherheit / Security
 
