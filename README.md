@@ -191,6 +191,78 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 
 ---
 
+## Template-Entwickler-Workflow / Template Developer Workflow
+
+Dieser Abschnitt richtet sich an Personen, die **dieses Repo selbst weiterentwickeln** — also neue Scripts, Checks oder Dokumentation hinzufügen möchten.
+
+*This section is for people who want to **contribute to this template repo** — adding new scripts, checks, or documentation.*
+
+### Einmalig auf jeder neuen Maschine / One-time setup per machine
+
+```bash
+# macOS / Linux / Ubuntu
+git clone https://github.com/YOUR_USERNAME/home-baseline.git ~/home-baseline-tmp
+bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
+```
+
+```powershell
+# Windows (PowerShell Core >= 7)
+git clone https://github.com/YOUR_USERNAME/home-baseline.git ~/home-baseline-tmp
+pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
+```
+
+> **Hinweis / Note:** `--no-pull` / `-NoPull` überspringt `git pull`, da der Klon gerade frisch erstellt wurde.
+
+---
+
+### Täglich / nach Änderungen synchronisieren / Daily sync
+
+```bash
+# macOS / Linux / Ubuntu — pull + kopieren + Commit in ~/
+bash ~/scripts/sync-home.sh
+```
+
+```powershell
+# Windows
+pwsh ~/scripts/sync-home.ps1
+```
+
+---
+
+### Änderungen am Template entwickeln / Develop template changes
+
+```bash
+# 1. In den Klon wechseln
+cd ~/home-baseline-tmp
+
+# 2. Änderungen vornehmen (z. B. SDD via specs/ + .specify/)
+
+# 3. Compliance prüfen
+bash scripts/check-homogeneity.sh .     # macOS / Linux
+# pwsh scripts/check-homogeneity.ps1   # Windows
+
+# 4. Committen und pushen
+git add -A
+git commit -m "feat: ..."
+git push
+
+# 5. Sofort in ~/ übernehmen (kein erneutes pull nötig)
+bash ~/scripts/sync-home.sh --no-pull
+# pwsh ~/scripts/sync-home.ps1 -NoPull  # Windows
+```
+
+---
+
+### Optionen sync-home / sync-home options
+
+| Flag (Bash / PowerShell)       | Bedeutung / Meaning                          |
+|-------------------------------|----------------------------------------------|
+| `--no-pull` / `-NoPull`       | Kein `git pull` — nur kopieren / Skip pull   |
+| `--no-commit` / `-NoCommit`   | Nur kopieren, kein Commit in `~/` / Copy only |
+| `--dry-run` / `-WhatIf`       | Nur anzeigen, nichts schreiben / Preview only |
+
+---
+
 ## Inhalt / Contents
 
 ### Workspace-Bootstrap / Workspace Bootstrap
