@@ -491,9 +491,7 @@ else
   printf "Overall: %d %%  |  Workspaces: %d  |  Projects: %d\n" \
     "$OVERALL_SCORE" "$WORKSPACES_COUNT" "$PROJECTS_COUNT"
 
-  FAIL_COUNT=${#FAILURES[@]+"${#FAILURES[@]}"}
-  WARN_COUNT=${#WARNINGS[@]+"${#WARNINGS[@]}"}
-  # Bash 3 safe empty array check
+  # Bash 3/4-safe empty-array count (avoids bad substitution on older bash)
   FAIL_COUNT=0; for _ in "${FAILURES[@]+"${FAILURES[@]}"}"; do FAIL_COUNT=$((FAIL_COUNT+1)); done
   WARN_COUNT=0; for _ in "${WARNINGS[@]+"${WARNINGS[@]}"}"; do WARN_COUNT=$((WARN_COUNT+1)); done
 
