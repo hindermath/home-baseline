@@ -22,8 +22,8 @@ private GitHub repository within seconds.*
 - [Homogeneity Guardian — Kurzreferenz](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
 - [Plattform-Übersicht](#plattform-übersicht--platform-overview)
 - [Für Auszubildende der Fachinformatik](#für-auszubildende-der-fachinformatik--for-it-apprentices)
+- [Spec-kit-Workflow (SDD)](#spec-kit-workflow--spec-kit-workflow)
 - [Barrierefreiheit (A11Y)](#barrierefreiheit--accessibility-a11y)
-- [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
 
 ---
 
@@ -707,9 +707,293 @@ bash ~/scripts/check-homogeneity.sh ~/AusbildungsProjekte
 | **Template-Repo** | Ein GitHub-Repo das als Vorlage dient — „Use this template" erstellt ein unabhängiges Kopie |
 | **~/** | Kürzel für dein Home-Verzeichnis (z. B. `/home/deinname/` auf Linux) |
 
+## Spec-kit-Workflow / Spec-kit Workflow
+
+### Was ist Specification-Driven Development (SDD)?
+
+**Specification-Driven Development (SDD)** ist ein Arbeitsansatz, bei dem du *bevor* du eine Zeile Code schreibst eine strukturierte Spezifikation erstellst — unterstützt von einem KI-Agenten. Der Agent hilft dir dabei:
+
+1. Die Anforderungen klar zu formulieren (`spec.md`)
+2. Offene Fragen zu identifizieren und zu klären (`clarify`)
+3. Einen konkreten Implementierungsplan zu erstellen (`plan.md`)
+4. Die Implementierung in handhabbare Aufgaben aufzuteilen (`tasks.md`)
+5. Die Aufgaben Schritt für Schritt umzusetzen (`implement`)
+
+> **Warum SDD?**  
+> Ohne Spezifikation entstehen oft Missverständnisse, unfertige Features und unnötiger Code. Mit SDD weißt du immer, was als Nächstes zu tun ist — und warum.
+
+*SDD is a workflow where you create a structured specification — supported by an AI agent — before writing a single line of code.*
+
+---
+
+### Was ist Spec-Kit? / What is Spec-Kit?
+
+**Spec-Kit** ist ein KI-Agenten-Skill-System, das den SDD-Workflow automatisiert. Es ist in diesem Repository bereits vollständig vorkonfiguriert und unterstützt mehrere KI-Agenten (GitHub Copilot, Claude, Gemini, Codex, OpenCode).
+
+Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen des Repos automatisch mitgeliefert.  
+**Eine separate Installation ist nicht nötig** — du brauchst nur deinen bevorzugten KI-Agenten.
+
+*Spec-Kit is an AI agent skill system that automates the SDD workflow. It is fully pre-configured in this repository. No separate download is needed — you only need your preferred AI agent.*
+
+---
+
+### Voraussetzungen / Prerequisites
+
+| Voraussetzung | Pflicht? | Wozu / Why |
+|---|:---:|---|
+| `git` ≥ 2.30 | ✅ | Feature-Branches; Spec-Artefakte werden versioniert |
+| GitHub-Account | ✅ | Repo-Hosting |
+| KI-Agent (mind. einer) | ✅ | Führt die Spec-Kit-Skills aus |
+| `bash` ≥ 5 oder PowerShell 7 | ✅ | Interne Spec-Kit-Hilfsskripte |
+| `gh` CLI | empfohlen | GitHub Copilot CLI; Issues aus Tasks anlegen |
+
+Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` geprüft.
+
+---
+
+### KI-Agenten einrichten / Set up AI agents
+
+Je nachdem welchen KI-Agenten du bevorzugst, sind unterschiedliche Schritte nötig.  
+Dieses Repo unterstützt alle fünf nachfolgend beschriebenen Agenten.
+
+*Depending on which AI agent you prefer, different setup steps are needed. This repo supports all five agents described below.*
+
+#### GitHub Copilot CLI (empfohlen / recommended)
+
+Spec-Kit-Skills in `.agents/skills/` werden von der Copilot CLI automatisch erkannt — keine weitere Einrichtung nötig.
+
+```bash
+# 1. GitHub CLI installieren: https://cli.github.com
+# 2. GitHub Copilot CLI-Extension installieren
+gh extension install github/gh-copilot
+
+# 3. Anmelden (falls noch nicht geschehen)
+gh auth login
+
+# 4. In deinem Projektverzeichnis die Copilot CLI öffnen
+#    oder direkt im VS Code / Terminal-Editor
+gh copilot
+```
+
+> Skills werden automatisch aus `.agents/skills/` geladen.  
+> Aufruf im Chat: `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, …
+
+#### Claude Code
+
+Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis automatisch.
+
+```bash
+# 1. Claude Code installieren: https://claude.ai/code
+#    oder via npm:
+npm install -g @anthropic-ai/claude-code
+
+# 2. In deinem Projektverzeichnis starten
+claude
+
+# Verfügbare Kommandos im Chat:
+# /speckit.specify "Feature-Beschreibung"
+# /speckit.clarify
+# /speckit.plan
+# /speckit.tasks
+# /speckit.implement
+```
+
+#### Gemini CLI
+
+```bash
+# 1. Gemini CLI installieren: https://gemini.google.com/cli
+#    oder via npm:
+npm install -g @google/gemini-cli
+
+# 2. Authentifizieren
+gemini auth login
+
+# 3. In deinem Projektverzeichnis starten
+gemini
+
+# Spec-Kit-Kommandos sind über .gemini/commands/ verfügbar
+```
+
+#### Codex CLI (OpenAI)
+
+Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) stehen als Eingabe zur Verfügung.
+
+```bash
+# 1. Codex CLI installieren: https://github.com/openai/codex
+npm install -g @openai/codex
+
+# 2. API-Key setzen
+export OPENAI_API_KEY="sk-..."
+
+# 3. In deinem Projektverzeichnis starten
+codex
+
+# AGENTS.md wird automatisch als Projektkontext geladen.
+```
+
+#### OpenCode
+
+OpenCode liest ebenfalls `AGENTS.md` und unterstützt damit denselben Kontext wie Codex.
+
+```bash
+# 1. OpenCode installieren: https://opencode.ai
+# 2. In deinem Projektverzeichnis starten
+opencode
+
+# AGENTS.md wird automatisch geladen.
+```
+
+---
+
+### Verzeichnis für Spec-Kit vorbereiten / Prepare a directory
+
+Wenn du Spec-Kit in einem **neuen** Verzeichnis verwenden möchtest (das nicht über dieses Template angelegt wurde), kopiere die nötigen Verzeichnisse aus deinem `home-baseline-tmp`-Klon:
+
+*If you want to use Spec-Kit in a new directory, copy the required directories from your `home-baseline-tmp` clone:*
+
+```bash
+cd ~/MeinNeueProjekt
+
+# .specify/ — Konfiguration und Hilfsskripte
+cp -r ~/home-baseline-tmp/.specify .specify/
+
+# .agents/ — Spec-Kit-Skills für GitHub Copilot CLI
+cp -r ~/home-baseline-tmp/.agents .agents/
+
+# .claude/commands/ — Spec-Kit-Kommandos für Claude Code
+mkdir -p .claude
+cp -r ~/home-baseline-tmp/.claude/commands .claude/commands/
+
+# .gemini/commands/ — Spec-Kit-Kommandos für Gemini CLI
+mkdir -p .gemini
+cp -r ~/home-baseline-tmp/.gemini/commands .gemini/commands/
+
+# constitution.md — optionale Projektverfassung (Regeln für den Agenten)
+cp ~/home-baseline-tmp/constitution.md constitution.md
+```
+
+> **Tipp:** Wenn du `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` verwendest, wird all das automatisch eingerichtet.  
+> *Tip: Using `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` sets everything up automatically.*
+
+---
+
+### Der Workflow Schritt für Schritt / The workflow step by step
+
+Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht im Terminal).
+
+*All commands are entered in the chat interface of your AI agent (not in the terminal).*
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  SDD-Workflow mit Spec-Kit                                  │
+├─────┬───────────────────────────────────────────────────────┤
+│  1  │  speckit.specify "Feature-Beschreibung"               │
+│     │  → Erstellt specs/{branch}/spec.md + Git-Branch       │
+├─────┼───────────────────────────────────────────────────────┤
+│  2  │  speckit.clarify                                       │
+│     │  → Identifiziert Lücken, stellt Klärungsfragen        │
+├─────┼───────────────────────────────────────────────────────┤
+│  3  │  speckit.plan                                          │
+│     │  → Erstellt specs/{branch}/plan.md                    │
+├─────┼───────────────────────────────────────────────────────┤
+│  4  │  speckit.tasks                                         │
+│     │  → Erstellt specs/{branch}/tasks.md                   │
+├─────┼───────────────────────────────────────────────────────┤
+│  5  │  speckit.implement                                     │
+│     │  → Führt alle Tasks aus tasks.md aus                  │
+├─────┼───────────────────────────────────────────────────────┤
+│  6  │  bash scripts/check-homogeneity.sh .                   │
+│     │  → Prüft Compliance-Score ≥ 90 %                      │
+└─────┴───────────────────────────────────────────────────────┘
+```
+
+#### Weitere Spec-Kit-Kommandos / Additional commands
+
+| Kommando | Beschreibung / Description |
+|---|---|
+| `speckit.analyze` | Konsistenz-Check über alle Artefakte (spec.md, plan.md, tasks.md) |
+| `speckit.checklist` | Individuelle Feature-Checkliste generieren |
+| `speckit.constitution` | Projekt-Verfassung (`constitution.md`) erstellen oder aktualisieren |
+| `speckit.taskstoissues` | Tasks als GitHub Issues anlegen |
+
+---
+
+### Beispiel: Erstes Feature anlegen / Example: Creating your first feature
+
+Das folgende Beispiel zeigt den vollständigen Ablauf für ein Login-Feature.
+
+*The following example shows the complete flow for a login feature.*
+
+```
+Du (im Copilot-Chat):
+  speckit.specify "Login-Funktion mit GitHub OAuth"
+
+Copilot:
+  → Erstellt Branch:  001-login-github-oauth
+  → Erstellt Datei:   specs/001-login-github-oauth/spec.md
+  → Öffnet spec.md zur gemeinsamen Bearbeitung
+
+Du:
+  speckit.clarify
+
+Copilot:
+  → Analysiert spec.md
+  → Stellt 3 Klärungsfragen, z. B.:
+     "Welche OAuth-Scopes soll die App anfordern?"
+     "Soll Refresh-Token-Rotation aktiviert sein?"
+
+Du: (beantwortest die Fragen im Chat)
+
+Du:
+  speckit.plan
+
+Copilot:
+  → Erstellt: specs/001-login-github-oauth/plan.md
+  → Enthält: Architektur, Dateistruktur, Abhängigkeiten
+
+Du:
+  speckit.tasks
+
+Copilot:
+  → Erstellt: specs/001-login-github-oauth/tasks.md
+  → Enthält: geordnete Task-Liste mit Abhängigkeiten
+
+Du:
+  speckit.implement
+
+Copilot:
+  → Arbeitet alle Tasks ab, erstellt Code und Commits
+```
+
+---
+
+### Artefakte und Verzeichnisstruktur / Artefacts and directory structure
+
+Nach einem vollständigen Spec-Kit-Workflow sieht das `specs/`-Verzeichnis so aus:
+
+```
+specs/
+└── 001-login-github-oauth/
+    ├── spec.md          ← Anforderungen und Akzeptanzkriterien
+    ├── plan.md          ← Implementierungsplan und Architektur
+    ├── tasks.md         ← Geordnete Task-Liste
+    ├── research.md      ← Recherche-Ergebnisse (optional)
+    ├── data-model.md    ← Datenmodell (optional)
+    ├── quickstart.md    ← Schnellstart-Guide (optional)
+    └── contracts/       ← API-/CLI-Kontrakte (optional)
+        └── api.md
+```
+
+Alle Artefakte werden automatisch in Git versioniert — du kannst jederzeit nachvollziehen, wie eine Entscheidung entstanden ist.
+
+*All artefacts are automatically versioned in Git — you can always trace back how a decision was made.*
+
+---
+
 <!-- EN: README.md placeholder
 [DE-Zusammenfassung: Vollständige bilinguale README für home-baseline mit Workspace-Tabelle, Scripts, A11Y-, Spec-kit- und Azubis-Abschnitten.]
 -->
+
 ## Barrierefreiheit / Accessibility (A11Y)
 
 Dieses Projekt folgt grundlegenden Barrierefreiheitsstandards für alle
@@ -738,34 +1022,5 @@ Guidelines for Markdown documentation:
 - Tables have header rows for all columns
 - No information is conveyed through colour alone
 
-## Spec-kit-Workflow / Spec-kit Workflow
 
-Neue Features in diesem Workspace werden nach dem **Specification-Driven Development (SDD)**-Workflow entwickelt.
-Der Workflow verwendet das `speckit`-CLI-Tool (GitHub Copilot Skill).
 
-Schritte für ein neues Feature:
-
-1. **Spezifikation erstellen** — `speckit specify "Feature-Name"` → `specs/{branch}/spec.md`
-2. **Klärungsfragen** — `speckit clarify` → offene Fragen in `spec.md` beantworten
-3. **Implementierungsplan** — `speckit plan` → `specs/{branch}/plan.md`
-4. **Aufgabenliste** — `speckit tasks` → `specs/{branch}/tasks.md`
-5. **Implementieren** — `speckit implement` → Aufgaben aus `tasks.md` abarbeiten
-6. **Validieren** — `bash scripts/check-homogeneity.sh` → Compliance-Score prüfen
-
-Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert und versioniert.
-
----
-
-New features in this workspace are developed following the **Specification-Driven Development (SDD)** workflow.
-The workflow uses the `speckit` CLI tool (GitHub Copilot Skill).
-
-Steps for a new feature:
-
-1. **Create specification** — `speckit specify "Feature Name"` → `specs/{branch}/spec.md`
-2. **Clarification questions** — `speckit clarify` → answer open questions in `spec.md`
-3. **Implementation plan** — `speckit plan` → `specs/{branch}/plan.md`
-4. **Task list** — `speckit tasks` → `specs/{branch}/tasks.md`
-5. **Implement** — `speckit implement` → work through tasks in `tasks.md`
-6. **Validate** — `bash scripts/check-homogeneity.sh` → check compliance score
-
-All spec artefacts are stored and versioned in the branch directory `specs/{branch}/`.
