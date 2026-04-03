@@ -883,33 +883,35 @@ opencode
 
 ### Verzeichnis für Spec-Kit vorbereiten / Prepare a directory
 
-Wenn du Spec-Kit in einem **neuen** Verzeichnis verwenden möchtest (das nicht über dieses Template angelegt wurde), kopiere die nötigen Verzeichnisse aus deinem `home-baseline-tmp`-Klon:
+Initialisiere Spec-Kit in einem Projektverzeichnis mit dem `specify init`-Befehl:
 
-*If you want to use Spec-Kit in a new directory, copy the required directories from your `home-baseline-tmp` clone:*
+*Initialize Spec-Kit in a project directory with the `specify init` command:*
 
 ```bash
-cd ~/MeinNeueProjekt
+cd ~/MeinProjekt
 
-# .specify/ — Konfiguration und Hilfsskripte
-cp -r ~/home-baseline-tmp/.specify .specify/
+# GitHub Copilot CLI
+specify init --here --ai copilot
 
-# .agents/ — Spec-Kit-Skills für GitHub Copilot CLI
-cp -r ~/home-baseline-tmp/.agents .agents/
+# Claude Code
+specify init --here --ai claude
 
-# .claude/commands/ — Spec-Kit-Kommandos für Claude Code
-mkdir -p .claude
-cp -r ~/home-baseline-tmp/.claude/commands .claude/commands/
+# Gemini CLI
+specify init --here --ai gemini
 
-# .gemini/commands/ — Spec-Kit-Kommandos für Gemini CLI
-mkdir -p .gemini
-cp -r ~/home-baseline-tmp/.gemini/commands .gemini/commands/
+# Codex  (--ai-skill nur für Codex nötig / --ai-skill required for Codex only)
+specify init --here --ai codex --ai-skill
 
-# constitution.md — optionale Projektverfassung (Regeln für den Agenten)
-cp ~/home-baseline-tmp/constitution.md constitution.md
+# OpenCode
+specify init --here --ai opencode
 ```
 
-> **Tipp:** Wenn du `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` verwendest, wird all das automatisch eingerichtet.  
-> *Tip: Using `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` sets everything up automatically.*
+> **Hinweis zu `--ai-skill`:**  
+> Dieser Parameter installiert Spec-Kit-Skills in `.agents/skills/` und ist derzeit **nur für Codex** erforderlich. Alle anderen Agenten richten ihre Integrationspfade automatisch ein.  
+> *The `--ai-skill` flag installs Spec-Kit skills into `.agents/skills/` and is currently required **only for Codex**. Other agents set up their paths automatically.*
+
+> **Tipp / Tip:** `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` richtet all das automatisch ein.  
+> *Using `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` sets everything up automatically.*
 
 ---
 
@@ -926,19 +928,19 @@ Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht 
 │  1  │  speckit.specify "Feature-Beschreibung"               │
 │     │  → Erstellt specs/{branch}/spec.md + Git-Branch       │
 ├─────┼───────────────────────────────────────────────────────┤
-│  2  │  speckit.clarify                                       │
+│  2  │  speckit.clarify                                      │
 │     │  → Identifiziert Lücken, stellt Klärungsfragen        │
 ├─────┼───────────────────────────────────────────────────────┤
-│  3  │  speckit.plan                                          │
+│  3  │  speckit.plan                                         │
 │     │  → Erstellt specs/{branch}/plan.md                    │
 ├─────┼───────────────────────────────────────────────────────┤
-│  4  │  speckit.tasks                                         │
+│  4  │  speckit.tasks                                        │
 │     │  → Erstellt specs/{branch}/tasks.md                   │
 ├─────┼───────────────────────────────────────────────────────┤
-│  5  │  speckit.implement                                     │
+│  5  │  speckit.implement                                    │
 │     │  → Führt alle Tasks aus tasks.md aus                  │
 ├─────┼───────────────────────────────────────────────────────┤
-│  6  │  bash scripts/check-homogeneity.sh .                   │
+│  6  │  bash scripts/check-homogeneity.sh .                  │
 │     │  → Prüft Compliance-Score ≥ 90 %                      │
 └─────┴───────────────────────────────────────────────────────┘
 ```
