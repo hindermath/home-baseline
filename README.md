@@ -127,11 +127,22 @@ Der Bootstrap-Vorgang erledigt automatisch:
 ```bash
 cd ~
 git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+
+# Scripts und Konfiguration einrichten
 cp -r home-baseline-tmp/scripts/. ~/scripts/
 cp home-baseline-tmp/.gitignore ~/.gitignore
+
+# Level-0-Dateien ins Home-Verzeichnis kopieren
+cp home-baseline-tmp/AGENTS.md home-baseline-tmp/CLAUDE.md home-baseline-tmp/GEMINI.md \
+   home-baseline-tmp/README.md home-baseline-tmp/STATS.md home-baseline-tmp/constitution.md ~/
+cp -r home-baseline-tmp/.github ~/
+
 git init
 bash ~/scripts/install-hooks.sh
 rm -rf home-baseline-tmp
+
+# Compliance prüfen
+bash ~/scripts/check-homogeneity.sh ~/
 ```
 
 ### Windows (PowerShell Core >= 7)
@@ -139,11 +150,39 @@ rm -rf home-baseline-tmp
 ```powershell
 Set-Location ~
 git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+
+# Scripts und Konfiguration einrichten
 Copy-Item home-baseline-tmp/scripts/* ~/scripts/ -Recurse -Force
 Copy-Item home-baseline-tmp/.gitignore ~/ -Force
+
+# Level-0-Dateien ins Home-Verzeichnis kopieren
+foreach ($f in @('AGENTS.md','CLAUDE.md','GEMINI.md','README.md','STATS.md','constitution.md')) {
+    Copy-Item "home-baseline-tmp/$f" ~/ -Force
+}
+Copy-Item home-baseline-tmp/.github ~/ -Recurse -Force
+
 git init
 pwsh ~/scripts/install-hooks.ps1
 Remove-Item home-baseline-tmp -Recurse -Force
+
+# Compliance prüfen
+pwsh ~/scripts/check-homogeneity.ps1
+```
+
+### Nächste Schritte / Next steps
+
+Neuen Workspace anlegen und verifizieren / Create a new workspace and verify:
+
+```bash
+# macOS / Linux
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects
+bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
+```
+
+```powershell
+# Windows
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
+pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
 ---
@@ -307,27 +346,47 @@ Guardian** step by step — without senior help and using only free tools.
 ```bash
 cd ~
 git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+
+# Scripts und Konfiguration einrichten
 cp -r home-baseline-tmp/scripts/. ~/scripts/
 cp home-baseline-tmp/.gitignore ~/.gitignore
+
+# Level-0-Dateien ins Home-Verzeichnis kopieren
+cp home-baseline-tmp/AGENTS.md home-baseline-tmp/CLAUDE.md home-baseline-tmp/GEMINI.md \
+   home-baseline-tmp/README.md home-baseline-tmp/STATS.md home-baseline-tmp/constitution.md ~/
+cp -r home-baseline-tmp/.github ~/
+
 git init
 bash ~/scripts/install-hooks.sh
 rm -rf home-baseline-tmp
 ```
 
-**Schritt 2 / Step 2**: Neues C#-Projekt bootstrappen:
+**Schritt 1b / Step 1b**: Compliance des Home-Verzeichnisses prüfen:
+
+```bash
+bash ~/scripts/check-homogeneity.sh ~/
+```
+
+**Schritt 2 / Step 2**: Ersten Workspace bootstrappen (z. B. RiderProjects):
+
+```bash
+bash ~/scripts/bootstrap-workspace.sh RiderProjects
+```
+
+**Schritt 3 / Step 3**: Neues C#-Projekt bootstrappen:
 
 ```bash
 # Beispiel: neues Projekt "MeinProjekt" im RiderProjects-Workspace
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --no-remote --no-agents
 ```
 
-**Schritt 3 / Step 3**: Compliance prüfen:
+**Schritt 4 / Step 4**: Compliance prüfen:
 
 ```bash
 bash ~/scripts/check-homogeneity.sh ~/
 ```
 
-**Schritt 4 / Step 4**: WARNs beheben — typische Probleme:
+**Schritt 5 / Step 5**: WARNs beheben — typische Probleme:
 
 | Fehler / Error | Ursache / Cause | Lösung / Fix |
 |----------------|-----------------|--------------|
@@ -338,7 +397,7 @@ bash ~/scripts/check-homogeneity.sh ~/
 | `Permission denied` | Dateisystemproblem | `chown -R $USER .` |
 | `git: command not found` | Git fehlt | `sudo apt install git` |
 
-**Schritt 5 / Step 5**: Ziel erreicht — Score ≥ 90% bedeutet alles ist korrekt konfiguriert.
+**Schritt 6 / Step 6**: Ziel erreicht — Score ≥ 90% bedeutet alles ist korrekt konfiguriert.
 
 Goal reached — score ≥ 90% means everything is correctly configured.
 
