@@ -258,7 +258,7 @@ check_readme_sections() {
   fi
 
   # Azubis section
-  if rg -qi '^## .*Azubis' "$full" 2>/dev/null; then
+  if rg -qi '^## .*(Azubis|Auszubildende)' "$full" 2>/dev/null; then
     emit_result "PASS" "README.md" "Azubis section" "$dir"
   else
     emit_result "FAIL" "README.md" "Azubis section missing" "$dir"
@@ -379,9 +379,9 @@ while IFS='|' read -r level dir _type; do
     fi
   fi
 
-  # Level 0: canonical hook presence
+  # Level 0: canonical hook presence (check within scanned dir, works both in CI and on dev machine)
   if [ "$level" -eq 0 ]; then
-    if [ -f "${HOME}/scripts/hooks/pre-push" ]; then
+    if [ -f "${dir}/scripts/hooks/pre-push" ]; then
       emit_result "PASS" "scripts/hooks/pre-push" "canonical hook present" "$dir"
     else
       emit_result "WARN" "scripts/hooks/pre-push" "canonical hook missing" "$dir"

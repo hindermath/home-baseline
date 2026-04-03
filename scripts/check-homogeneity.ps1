@@ -150,7 +150,7 @@ function Check-ReadmeSections {
     } else {
         Emit-Result 'FAIL' 'README.md' 'Spec-kit section missing' $Dir
     }
-    if ($content -match '(?im)^## .*Azubis') {
+    if ($content -match '(?im)^## .*(Azubis|Auszubildende)') {
         Emit-Result 'PASS' 'README.md' 'Azubis section' $Dir
     } else {
         Emit-Result 'FAIL' 'README.md' 'Azubis section missing' $Dir
@@ -291,7 +291,7 @@ foreach ($entry in $scanResults) {
     }
 
     if ($level -eq 0) {
-        $canonicalHook = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'scripts/hooks/pre-push'
+        $canonicalHook = Join-Path $dir 'scripts/hooks/pre-push'
         if (Test-Path $canonicalHook) {
             Emit-Result 'PASS' 'scripts/hooks/pre-push' 'canonical hook present' $dir
         } else {
