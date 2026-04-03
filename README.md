@@ -58,7 +58,19 @@ winget install --id Microsoft.PowerShell
 
 Oder: [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/PowerShell/releases)
 
-### 4. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
+### 4. ripgrep (`rg`)
+
+`check-homogeneity` benötigt ripgrep für den Compliance-Scan.
+
+*`check-homogeneity` requires ripgrep for compliance scanning.*
+
+| Plattform | Installation |
+|---|---|
+| macOS | `brew install ripgrep` |
+| Linux | `sudo apt install ripgrep` / `sudo dnf install ripgrep` |
+| Windows | `winget install --id BurntSushi.ripgrep.MSVC` |
+
+### 5. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
 
 ```powershell
 Install-Module -Name posh-git            -Scope CurrentUser -Force  # Git-Prompt + Tab-Completion
@@ -68,7 +80,7 @@ Install-Module -Name GitAutomation       -Scope CurrentUser -Force  # Git als Cm
 
 ---
 
-
+## Neuen Workspace einrichten / Create new workspace
 
 ### macOS / Linux
 
@@ -195,10 +207,22 @@ bash ~/scripts/check-homogeneity.sh ~/RiderProjects
 bash ~/scripts/check-homogeneity.sh --json
 ```
 
+```powershell
+# Windows (PowerShell Core)
+pwsh ~/scripts/check-homogeneity.ps1
+pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/RiderProjects
+pwsh ~/scripts/check-homogeneity.ps1 -Json
+```
+
 ### STATS.md Baseline erzeugen / Generate STATS.md baseline
 
 ```bash
 bash ~/scripts/init-stats.sh
+```
+
+```powershell
+pwsh ~/scripts/init-stats.ps1
+pwsh ~/scripts/init-stats.ps1 -WorkspaceName RiderProjects
 ```
 
 ### Bestehenden Workspace migrieren / Migrate existing workspace
@@ -211,6 +235,11 @@ bash ~/scripts/migrate-workspace.sh --dry-run RiderProjects
 bash ~/scripts/migrate-workspace.sh --yes
 ```
 
+```powershell
+pwsh ~/scripts/migrate-workspace.ps1 -WorkspaceName RiderProjects -WhatIf
+pwsh ~/scripts/migrate-workspace.ps1 -Force
+```
+
 ### Constitution synchronisieren / Sync constitution
 
 ```bash
@@ -218,11 +247,20 @@ bash ~/scripts/sync-constitution.sh --dry-run   # Vorschau
 bash ~/scripts/sync-constitution.sh --yes        # Ausführen
 ```
 
+```powershell
+pwsh ~/scripts/sync-constitution.ps1 -WhatIf
+pwsh ~/scripts/sync-constitution.ps1 -Force
+```
+
 ### Lastenheft umbenennen / Rename Lastenheft
 
 ```bash
 bash ~/scripts/rename-lastenheft.sh Lastenheft_foo.md 002-feature-branch
 # → Lastenheft_foo.002-feature-branch.md
+```
+
+```powershell
+pwsh ~/scripts/rename-lastenheft.ps1 -File Lastenheft_foo.md -BranchName 002-feature-branch
 ```
 
 ---
@@ -233,7 +271,12 @@ bash ~/scripts/rename-lastenheft.sh Lastenheft_foo.md 002-feature-branch
 |---|---|---|
 | macOS | ✅ nativ | – |
 | Linux | ✅ nativ | – |
-| Windows | ✅ PowerShell Core | Git for Windows + pwsh >= 7 |
+| Windows | ✅ PowerShell Core | Git for Windows + pwsh >= 7 + ripgrep |
+
+> **Hinweis Windows / Windows note**: `$HOME` muss nicht gesetzt sein — die Scripts
+> verwenden automatisch `$env:USERPROFILE` als Fallback.
+>
+> *`$HOME` does not need to be set — scripts automatically fall back to `$env:USERPROFILE`.*
 
 ---
 
