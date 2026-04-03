@@ -14,15 +14,51 @@ private GitHub repository within seconds.*
 
 - [Workspace-Übersicht](#workspace-übersicht--workspace-overview)
 - [Was ist dieses Template-Repo?](#was-ist-dieses-template-repo--what-is-this-template-repo)
+  - [Unterschied Fork vs. Template](#unterschied-fork-vs-template--fork-vs-template)
+  - [So nutzt du dieses Template](#so-nutzt-du-dieses-template--how-to-use-this-template)
 - [Voraussetzungen](#voraussetzungen--prerequisites)
 - [Neuen Workspace einrichten](#neuen-workspace-einrichten--create-new-workspace)
+  - [macOS / Linux](#macos--linux)
+  - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7)
 - [Ersteinrichtung auf einem neuen Gerät](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
+  - [macOS / Linux](#macos--linux-1)
+  - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7-1)
+  - [Nächste Schritte](#nächste-schritte--next-steps)
 - [Template-Entwickler-Workflow](#template-entwickler-workflow--template-developer-workflow)
+  - [Einmalig auf jeder neuen Maschine](#einmalig-auf-jeder-neuen-maschine--one-time-setup-per-machine)
+  - [Täglich / nach Änderungen synchronisieren](#täglich--nach-änderungen-synchronisieren--daily-sync)
+  - [Änderungen am Template entwickeln](#änderungen-am-template-entwickeln--develop-template-changes)
+  - [Optionen sync-home](#optionen-sync-home--sync-home-options)
 - [Inhalt / Dateien](#inhalt--contents)
+  - [Workspace-Bootstrap](#workspace-bootstrap--workspace-bootstrap)
+  - [Homogeneity Guardian](#homogeneity-guardian)
+  - [Sicherheit / Security](#sicherheit--security)
 - [Homogeneity Guardian — Kurzreferenz](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
+  - [Compliance-Check](#compliance-check)
+  - [STATS.md Baseline erzeugen](#statsmd-baseline-erzeugen--generate-statsmd-baseline)
+  - [Bestehenden Workspace migrieren](#bestehenden-workspace-migrieren--migrate-existing-workspace)
+  - [Constitution synchronisieren](#constitution-synchronisieren--sync-constitution)
+  - [Lastenheft umbenennen](#lastenheft-umbenennen--rename-lastenheft)
 - [Plattform-Übersicht](#plattform-übersicht--platform-overview)
 - [Für Auszubildende der Fachinformatik](#für-auszubildende-der-fachinformatik--for-it-apprentices)
+  - [Was passiert hier überhaupt?](#was-passiert-hier-überhaupt--what-is-this-about)
+  - [Schritt 0: Werkzeuge installieren](#schritt-0-werkzeuge-installieren--step-0-install-tools)
+  - [Schritt 1: Template-Repo auf GitHub kopieren](#schritt-1-template-repo-auf-github-kopieren--step-1-copy-template-repo-on-github)
+  - [Schritt 2: Repo auf dem Computer einrichten](#schritt-2-repo-auf-dem-computer-einrichten--step-2-set-up-repo-on-your-computer)
+  - [Schritt 3: Ersten Workspace anlegen](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace)
+  - [Schritt 4: Compliance prüfen](#schritt-4-compliance-prüfen--step-4-check-compliance)
+  - [Häufige Fehler und Lösungen](#häufige-fehler-und-lösungen--common-errors-and-fixes)
+  - [Neues Projekt anlegen](#neues-projekt-anlegen--create-a-new-project)
+  - [Glossar / Glossary](#glossar--glossary)
 - [Spec-kit-Workflow (SDD)](#spec-kit-workflow--spec-kit-workflow)
+  - [Was ist SDD?](#was-ist-specification-driven-development-sdd--what-is-specification-driven-development-sdd)
+  - [Was ist Spec-Kit?](#was-ist-spec-kit--what-is-spec-kit)
+  - [Voraussetzungen (Spec-Kit)](#voraussetzungen--prerequisites-1)
+  - [KI-Agenten einrichten](#ki-agenten-einrichten--set-up-ai-agents)
+  - [Verzeichnis vorbereiten](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
+  - [Workflow Schritt für Schritt](#der-workflow-schritt-für-schritt--the-workflow-step-by-step)
+  - [Beispiel: Erstes Feature](#beispiel-erstes-feature-anlegen--example-creating-your-first-feature)
+  - [Artefakte und Verzeichnisstruktur](#artefakte-und-verzeichnisstruktur--artefacts-and-directory-structure)
 - [Barrierefreiheit (A11Y)](#barrierefreiheit--accessibility-a11y)
 
 ---
@@ -709,7 +745,7 @@ bash ~/scripts/check-homogeneity.sh ~/AusbildungsProjekte
 
 ## Spec-kit-Workflow / Spec-kit Workflow
 
-### Was ist Specification-Driven Development (SDD)?
+### Was ist Specification-Driven Development (SDD)? / What is Specification-Driven Development (SDD)?
 
 **Specification-Driven Development (SDD)** ist ein Arbeitsansatz, bei dem du *bevor* du eine Zeile Code schreibst eine strukturierte Spezifikation erstellst — unterstützt von einem KI-Agenten. Der Agent hilft dir dabei:
 
@@ -883,7 +919,7 @@ Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht 
 
 *All commands are entered in the chat interface of your AI agent (not in the terminal).*
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │  SDD-Workflow mit Spec-Kit                                  │
 ├─────┬───────────────────────────────────────────────────────┤
@@ -924,7 +960,7 @@ Das folgende Beispiel zeigt den vollständigen Ablauf für ein Login-Feature.
 
 *The following example shows the complete flow for a login feature.*
 
-```
+```text
 Du (im Copilot-Chat):
   speckit.specify "Login-Funktion mit GitHub OAuth"
 
@@ -971,7 +1007,7 @@ Copilot:
 
 Nach einem vollständigen Spec-Kit-Workflow sieht das `specs/`-Verzeichnis so aus:
 
-```
+```text
 specs/
 └── 001-login-github-oauth/
     ├── spec.md          ← Anforderungen und Akzeptanzkriterien
@@ -996,31 +1032,37 @@ Alle Artefakte werden automatisch in Git versioniert — du kannst jederzeit nac
 
 ## Barrierefreiheit / Accessibility (A11Y)
 
-Dieses Projekt folgt grundlegenden Barrierefreiheitsstandards für alle
-dokumentierten Inhalte und Benutzeroberflächen.
+Dieses Dokument richtet sich nach **WCAG 2.2 Level AA** für alle statischen Inhalte.
 
-Richtlinien für Markdown-Dokumentation:
+*This document follows **WCAG 2.2 Level AA** guidelines for all static content.*
 
-- Überschriften folgen einer klaren Hierarchie (h1 → h2 → h3 — keine Ebene überspringen)
-- Alle Bilder haben aussagekräftige Alt-Texte (`![Beschreibung](bild.png)`)
-- Linkbeschriftungen sind beschreibend (`[Installationsanleitung](...)` statt `[hier](...)`)
-- Code-Blöcke geben die Sprache an (` ```bash `, ` ```powershell `)
-- Tabellen haben Kopfzeilen für alle Spalten
-- Keine Informationen werden ausschließlich über Farbe vermittelt
+| WCAG-Kriterium / Criterion | Umsetzung / Implementation |
+|---|---|
+| **1.1.1** Nicht-Text-Inhalt / Non-text content | Keine Bilder vorhanden; Alt-Text-Pflicht für zukünftige Grafiken |
+| **1.3.1** Info und Beziehungen / Info and relationships | Überschriften h1→h2→h3→h4 ohne Sprung; Tabellen mit Kopfzeilen |
+| **1.3.2** Sinnvolle Reihenfolge / Meaningful sequence | Inhalt in logischer Lesereihenfolge strukturiert |
+| **1.4.1** Verwendung von Farbe / Use of colour | Keine ausschließlich farbbasierte Information |
+| **2.4.2** Seite mit Titel / Page titled | Dokumenttitel: `# home-baseline` |
+| **2.4.4** Linkzweck / Link purpose | Beschreibende Link-Texte (`[Installationsanleitung](...)` — nicht `[hier](...)`) |
+| **2.4.6** Überschriften und Bezeichnungen / Headings and labels | Alle Überschriften beschreibend und bilingual |
+| **3.1.1** Sprache der Seite / Language of page | Hauptsprache Deutsch; alle Abschnitte parallel auf Englisch |
+| **4.1.1** Syntaxanalyse / Parsing | Markdown-Elemente korrekt strukturiert; Code-Blöcke mit Sprachmarkierung |
+
+> **Plattformeinschränkung / Platform limitation:** WCAG 3.1.2 (Sprache von Teilen) erfordert `lang`-Attribute
+> an zweisprachigen Textstellen. GitHub Markdown entfernt HTML-Attribute — dies kann nicht implementiert werden.
+>
+> *WCAG 3.1.2 (Language of parts) requires `lang` attributes on bilingual passages.
+> GitHub Markdown strips HTML attributes — this cannot be implemented on this platform.*
 
 ---
 
-This project follows basic accessibility standards for all documented
-content and user interfaces.
+Regeln für neue Inhalte / Rules for new content:
 
-Guidelines for Markdown documentation:
-
-- Headings follow a clear hierarchy (h1 → h2 → h3 — no level skipped)
-- All images have meaningful alt texts (`![Description](image.png)`)
-- Link labels are descriptive (`[Installation guide](...)` instead of `[here](...)`)
-- Code blocks specify the language (` ```bash `, ` ```powershell `)
-- Tables have header rows for all columns
-- No information is conveyed through colour alone
+- Code-Blöcke immer mit Sprachmarkierung: ` ```bash `, ` ```powershell `, ` ```text `
+- Tabellen immer mit Kopfzeile und Trennzeile (`| Spalte |\n|---|`)
+- Neue Abschnitte bilingual anlegen (DE-Absatz → EN-Absatz in Kursiv)
+- Überschriften-Hierarchie einhalten: h2 → h3 → h4 — keine Ebene überspringen
+- Linkbeschriftungen beschreibend wählen — nicht `[hier](...)` oder `[here](...)`
 
 
 
