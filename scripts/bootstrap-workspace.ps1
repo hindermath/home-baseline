@@ -30,6 +30,12 @@ $homeDir       = $HOME
 $workspaceDir  = Join-Path $homeDir $WorkspaceName
 $scriptsSource = Join-Path $homeDir 'scripts'
 
+# GitHub-Benutzername dynamisch ermitteln
+$ghUser = (gh api user --jq '.login' 2>$null).Trim()
+if (-not $ghUser) {
+    Write-Error "Konnte GitHub-Benutzername nicht ermitteln. Bitte 'gh auth login' ausführen."
+}
+
 if (-not $RepoName) {
     $RepoName = ($WorkspaceName -replace 'Projects$', '-baseline' -replace ' ', '-').ToLower()
 }
@@ -56,7 +62,7 @@ Write-Host '╔═════════════════════�
 Write-Host '║  bootstrap-workspace – Neue Workspace-Einrichtung               ║' -ForegroundColor Cyan
 Write-Host '╠══════════════════════════════════════════════════════════════════╣' -ForegroundColor Cyan
 Write-Host "║  Verzeichnis : $($workspaceDir.PadRight(51))║" -ForegroundColor Cyan
-Write-Host "║  GitHub-Repo : $("hindermath/$RepoName (privat)".PadRight(51))║" -ForegroundColor Cyan
+Write-Host "║  GitHub-Repo : $("$ghUser/$RepoName (privat)".PadRight(51))║" -ForegroundColor Cyan
 Write-Host '╚══════════════════════════════════════════════════════════════════╝' -ForegroundColor Cyan
 Write-Host ''
 
@@ -152,7 +158,7 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 # --- GitHub-Repo erstellen und pushen ------------------------------------------
 
 Write-Host "→ Erstelle privates GitHub-Repository '$RepoName' …"
-if ($PSCmdlet.ShouldProcess("github.com/hindermath/$RepoName", 'gh repo create')) {
+if ($PSCmdlet.ShouldProcess("github.com/$ghUser/$RepoName", 'gh repo create')) {
     & gh repo create $RepoName --private --description $Description `
         --source $workspaceDir --remote origin --push
     Write-Host '    OK  GitHub-Repo erstellt und gepusht' -ForegroundColor Green
@@ -169,7 +175,7 @@ if ($PSCmdlet.ShouldProcess($workspaceDir, 'Hooks installieren')) {
 # --- ~/README.md aktualisieren ------------------------------------------------
 
 $homeReadme = Join-Path $homeDir 'README.md'
-$newRow = "| ``~/$WorkspaceName/`` | [$RepoName](https://github.com/hindermath/$RepoName) | ``bootstrap-workspace`` |"
+$newRow = "| ``~/$WorkspaceName/`` | [$RepoName](https://github.com/$ghUser/$RepoName) | ``bootstrap-workspace`` |"
 
 if (Test-Path $homeReadme) {
     Write-Host '→ Aktualisiere ~/README.md …'
@@ -210,7 +216,7 @@ Write-Host '╔═════════════════════�
 Write-Host '║  Einrichtung abgeschlossen!                                      ║' -ForegroundColor Green
 Write-Host '╚══════════════════════════════════════════════════════════════════╝' -ForegroundColor Green
 Write-Host ''
-Write-Host "  Repo  : https://github.com/hindermath/$RepoName"
-Write-Host "  Clone : git clone https://github.com/hindermath/$RepoName.git ~/$WorkspaceName"
+Write-Host "  Repo  : https://github.com/$ghUser/$RepoName"
+Write-Host "  Clone : git clone https://github.com/$ghUser/$RepoName.git ~/$WorkspaceName"
 Write-Host "  Hooks : bash scripts/install-hooks.sh  (oder pwsh scripts/install-hooks.ps1)"
 Write-Host ''

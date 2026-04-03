@@ -66,7 +66,7 @@ Markdown-Tabelle — immer befüllt (parallel zu stdout):
 | Level | Datei | Check | Status |
 |---|---|---|---|
 | 0 | README.md | A11Y section | ✗ |
-| 1 | RiderProjects/AGENTS.md | EN placeholder | ✓ |
+| 1 | MyProjects/AGENTS.md | EN placeholder | ✓ |
 
 **Score: 75% (15/20 checks passed)**
 ```

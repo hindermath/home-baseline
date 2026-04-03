@@ -14,7 +14,7 @@
 WorkspaceLevel :: 0 | 1 | 2
 
 0 = Home-Verzeichnis ~/  (home-baseline Repository)
-1 = Direktes Workspace-Unterverzeichnis von ~/  (z.B. ~/RiderProjects/)
+1 = Direktes Workspace-Unterverzeichnis von ~/  (z.B. ~/MyProjects/)
 2 = Projekt innerhalb eines Level-1-Workspace mit eigenem .git/
 ```
 
@@ -29,8 +29,8 @@ WorkspaceLevel :: 0 | 1 | 2
 
 ```
 WorkspaceInfo {
-  name:        string        # Verzeichnisname (basename), z.B. "RiderProjects"
-  path:        string        # Absoluter Pfad, z.B. "/Users/thorstenhindermann/RiderProjects"
+  name:        string        # Verzeichnisname (basename), z.B. "MyProjects"
+  path:        string        # Absoluter Pfad, z.B. "/Users/YOUR_USERNAME/MyProjects"
   level:       WorkspaceLevel
   git_root:    string        # Absoluter Pfad zum .git-Verzeichnis
   has_remote:  boolean       # git remote -v liefert mindestens eine URL

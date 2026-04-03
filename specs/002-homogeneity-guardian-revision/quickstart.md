@@ -31,10 +31,10 @@ bash scripts/init-stats.sh
 
 ```bash
 # Vorschau (keine Änderungen) / Preview (no changes)
-bash scripts/migrate-workspace.sh --dry-run RiderProjects
+bash scripts/migrate-workspace.sh --dry-run MyProjects
 
 # Migration durchführen / Run migration
-bash scripts/migrate-workspace.sh RiderProjects
+bash scripts/migrate-workspace.sh MyProjects
 ```
 
 ### Schritt 3: Alle Workspaces auf einmal / Migrate all workspaces at once
@@ -137,13 +137,13 @@ bash scripts/check-homogeneity.sh
 bash scripts/check-homogeneity.sh --json | python3 -m json.tool
 
 # Nur einen Workspace prüfen
-bash scripts/check-homogeneity.sh RiderProjects
+bash scripts/check-homogeneity.sh MyProjects
 
 # STATS.md-Trend ansehen
 cat STATS.md
 
 # PowerShell (Windows)
-pwsh scripts/migrate-workspace.ps1 -WorkspaceName RiderProjects -WhatIf
+pwsh scripts/migrate-workspace.ps1 -WorkspaceName MyProjects -WhatIf
 pwsh scripts/check-homogeneity.ps1
 pwsh scripts/sync-constitution.ps1 -WhatIf
 ```

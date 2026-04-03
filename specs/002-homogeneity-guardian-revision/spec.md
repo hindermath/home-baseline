@@ -51,8 +51,8 @@ without destroying any existing content.*
 
 ### User Story 1 — Developer migriert bestehende Repos auf Zielstand (Priorität: P1)
 
-Ein Entwickler bringt alle bestehenden Workspace-Repositories (z. B. `RiderProjects`,
-`C64Projects`) auf den Zielstand des Homogenitäts-Lastenhefts, ohne bestehende
+Ein Entwickler bringt alle bestehenden Workspace-Repositories (z. B. `MyProjects`,
+`HobbyProjects`) auf den Zielstand des Homogenitäts-Lastenhefts, ohne bestehende
 Inhalte zu zerstören.
 
 *A developer brings all existing workspace repositories to the target state of the
@@ -62,16 +62,16 @@ homogeneity Lastenheft without destroying existing content.*
 dauerhaft non-compliant. Dieses Szenario ist die Grundvoraussetzung für einen
 messbaren Fortschritt.
 
-**Independent Test**: `bash scripts/migrate-workspace.sh --dry-run RiderProjects`
-listet alle geplanten Änderungen. Anschließend `bash scripts/migrate-workspace.sh RiderProjects`
-und danach `bash scripts/check-homogeneity.sh` liefert für `RiderProjects` keinen `✗`-Befund mehr.
+**Independent Test**: `bash scripts/migrate-workspace.sh --dry-run MyProjects`
+listet alle geplanten Änderungen. Anschließend `bash scripts/migrate-workspace.sh MyProjects`
+und danach `bash scripts/check-homogeneity.sh` liefert für `MyProjects` keinen `✗`-Befund mehr.
 
 **Acceptance Scenarios**:
 
-1. **Given** `RiderProjects/` hat keinen A11Y-Abschnitt und keinen EN-Bilingual-Marker,
-   **When** `bash scripts/migrate-workspace.sh RiderProjects` läuft,
+1. **Given** `MyProjects/` hat keinen A11Y-Abschnitt und keinen EN-Bilingual-Marker,
+   **When** `bash scripts/migrate-workspace.sh MyProjects` läuft,
    **Then** werden die fehlenden Abschnitte als Platzhalter eingefügt, bestehende Inhalte
-   bleiben unberührt, und ein Git-Commit `chore: migrate RiderProjects to homogeneity baseline v1.1.0` wird erzeugt.
+   bleiben unberührt, und ein Git-Commit `chore: migrate MyProjects to homogeneity baseline v1.1.0` wird erzeugt.
 
 2. **Given** `--dry-run`-Modus,
    **When** das Skript aufgerufen wird,
@@ -82,7 +82,7 @@ und danach `bash scripts/check-homogeneity.sh` liefert für `RiderProjects` kein
    **When** das Migrationsskript erneut läuft (idempotenter Aufruf),
    **Then** erzeugt es keinen neuen Commit und meldet `INFO: already compliant — nothing to do`.
 
-4. **Given** Level-2-Projekte (z. B. `RiderProjects/TinyCalc`) innerhalb eines migrierten Workspace,
+4. **Given** Level-2-Projekte (z. B. `MyProjects/example-project`) innerhalb eines migrierten Workspace,
    **When** das Migrationsskript läuft,
    **Then** prüft und installiert es den Pre-Push-Hook auf Level-2-Ebene.
 
@@ -192,7 +192,7 @@ in GitHub Actions and fails if any `✗` findings are present.*
 **Why this priority / Warum P3**: CI-Integration ist wertvoll, aber optional — die
 Homogenität kann auch ohne CI manuell geprüft werden.
 
-**Independent Test**: Push auf `main` im `RiderProjects`-Repo → GitHub-Actions-Job
+**Independent Test**: Push auf `main` im `MyProjects`-Repo → GitHub-Actions-Job
 `homogeneity-check` läuft grün auf `ubuntu-22.04`.
 
 **Acceptance Scenarios**:
@@ -530,10 +530,10 @@ Homogenität kann auch ohne CI manuell geprüft werden.
 - **Level 0**: Das Home-Verzeichnis `~/` selbst — das `home-baseline`-Repository.
   *The home directory `~/` — the `home-baseline` repository.*
 - **Level 1**: Direkte Workspace-Unterverzeichnisse von `~/`, die ein eigenes
-  `.git/`-Verzeichnis enthalten (z. B. `~/RiderProjects/`, `~/C64Projects/`).
+  `.git/`-Verzeichnis enthalten (z. B. `~/MyProjects/`, `~/HobbyProjects/`).
   *Direct workspace subdirectories of `~/` that contain their own `.git/` directory.*
 - **Level 2**: Projekte innerhalb eines Level-1-Workspace, die selbst ein
-  `.git/`-Verzeichnis enthalten (z. B. `~/RiderProjects/TinyCalc`).
+  `.git/`-Verzeichnis enthalten (z. B. `~/MyProjects/example-project`).
   *Projects inside a Level-1 workspace that themselves contain a `.git/` directory.*
 - **Schwachstelle (SW-xx)**: Ein identifizierter Ist-/Soll-Abstand aus dem Audit
   mit Schweregrad HOCH / MITTEL / NIEDRIG.
@@ -570,7 +570,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   (`ubuntu-22.04`, `macos-14`, `windows-latest`) nach einem Push auf den Default-Branch
   eines Workspace-Repos.
 
-- **SC-REV-07**: Das Migrationsskript läuft auf `RiderProjects` und erhöht den
+- **SC-REV-07**: Das Migrationsskript läuft auf `MyProjects` und erhöht den
   Compliance-Score für diesen Workspace um mindestens 40 Prozentpunkte gegenüber dem
   Baseline-Scan.
 
@@ -699,7 +699,7 @@ Homogenität kann auch ohne CI manuell geprüft werden.
   → A: Neues NFR-REV-07: `check-homogeneity.sh` prüft aktiv per `grep -rP '\x1b\['` ob Scripts ANSI-Codes enthalten; Befunde als `✗` im Report. (→ NFR-REV-07)
 
 - **Q: Wie sind Level 0, Level 1 und Level 2 formal definiert?**
-  → A: Level 0 = `~/` (Home-Verzeichnis, `home-baseline`-Repo); Level 1 = direkte Workspace-Unterverzeichnisse mit eigenem `.git/` (z. B. `~/RiderProjects/`); Level 2 = Projekte innerhalb eines Level-1-Workspace mit eigenem `.git/` (z. B. `~/RiderProjects/TinyCalc`). Formale Definitionen in §Key Entities ergänzt. (→ FR-REV-A04, SC-REV-01)
+  → A: Level 0 = `~/` (Home-Verzeichnis, `home-baseline`-Repo); Level 1 = direkte Workspace-Unterverzeichnisse mit eigenem `.git/` (z. B. `~/MyProjects/`); Level 2 = Projekte innerhalb eines Level-1-Workspace mit eigenem `.git/` (z. B. `~/MyProjects/example-project`). Formale Definitionen in §Key Entities ergänzt. (→ FR-REV-A04, SC-REV-01)
 
 - **Q: Wie erkennt `check-homogeneity.sh` C#-Projekte für die `.editorconfig`-Pflichtprüfung?**
   → A: Anwesenheit einer `*.sln`-Datei im Level-2-Verzeichnis (`find . -maxdepth 1 -name "*.sln"`) — Solution-Level-Erkennung. (→ FR-REV-E02)

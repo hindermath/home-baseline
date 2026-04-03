@@ -5,7 +5,7 @@
 **Erstellt / Created**: 2026-04-01
 **Status**: Draft
 **Konstitutions-Version / Constitution Version**: 1.1.0
-**Autor / Author**: Thorsten Hindermann (`hindermath`)
+**Autor / Author**: YOUR_NAME (`YOUR_USERNAME`)
 
 ---
 
@@ -14,17 +14,17 @@
 > Diese Konvention gilt **auf allen drei Hierarchieebenen** (Ebene 0 = Home,
 > Ebene 1 = Workspace, Ebene 2 = Projekt), überall wo mit Spec-kit und
 > Lastenheften gearbeitet wird. Sie orientiert sich am etablierten Muster
-> in TuiVision.
+> in example-project.
 >
 > *This convention applies **at all three hierarchy levels** (Level 0 = Home,
 > Level 1 = Workspace, Level 2 = Project), wherever Spec-kit and Lastenhefts
-> are used. It follows the established pattern from TuiVision.*
+> are used. It follows the established pattern from example-project.*
 
 | Ebene / Level | Beispielpfad / Example path |
 |---|---|
 | 0 — Home (`~/`) | `~/Lastenheft_workspace-homogeneity-guardian.001-workspace-homogeneity-guardian.md` |
-| 1 — Workspace | `~/RiderProjects/Lastenheft_rider-baseline.002-rider-baseline.md` |
-| 2 — Projekt | `~/RiderProjects/TinyCalc/Lastenheft_calculator-engine.003-calculator-engine.md` |
+| 1 — Workspace | `~/MyProjects/Lastenheft_rider-baseline.002-rider-baseline.md` |
+| 2 — Projekt | `~/MyProjects/example-project/Lastenheft_calculator-engine.003-calculator-engine.md` |
 
 ### Regel / Rule
 
@@ -52,7 +52,7 @@ Lastenheft_{KurzName}.{branch-name}.md
    Das `**Feature Branch**`-Feld im Dokumentkopf wird gleichzeitig auf den
    tatsächlichen Branch-Namen aktualisiert.
 
-**Beispiele aus TuiVision / Examples from TuiVision**:
+**Beispiele aus example-project / Examples from example-project**:
 
 | Vorher / Before | Nachher (mit Branch) / After (with branch) |
 |---|---|
@@ -120,14 +120,14 @@ Das System erstreckt sich über **drei Hierarchieebenen**:
 
 ```
 ~ (home-baseline)                     ← Ebene 0 / Level 0
-├── RiderProjects/                    ← Ebene 1 / Level 1 (Workspace)
-│   ├── TinyCalc/                     ← Ebene 2 / Level 2 (Projekt / Project)
-│   ├── TuiVision/
+├── MyProjects/                    ← Ebene 1 / Level 1 (Workspace)
+│   ├── example-project/                     ← Ebene 2 / Level 2 (Projekt / Project)
+│   ├── example-project/
 │   └── ...
-├── C64Projects/
-│   └── cc65/
-├── DataGripProjects/
-└── VST_SDK/
+├── HobbyProjects/
+│   └── example-project/
+├── DataProjects/
+└── SdkProjects/
 ```
 
 **Beteiligte KI-Agenten / Involved AI Agents**:
@@ -207,7 +207,7 @@ files are present and the homogeneity scan reports `100%` for that project.*
 
 **Akzeptanzszenarien / Acceptance Scenarios**:
 
-1. **Gegeben** ein leeres Verzeichnis `~/RiderProjects/MeinProjekt/`,
+1. **Gegeben** ein leeres Verzeichnis `~/MyProjects/MeinProjekt/`,
    **wenn** `bash scripts/bootstrap-project.sh MeinProjekt` ausgeführt wird,
    **dann** werden `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`,
    `.github/copilot-instructions.md`, `pre-push`-Hook und `spec.md`-Scaffold
@@ -412,10 +412,10 @@ Barrierefreiheits-Merkmale geprüft.
   ╠══════════════════════════════════════════════════════╣
   ║  Workspace              Score  Balken                ║
   ║  ─────────────────────  ─────  ──────────────────    ║
-  ║  RiderProjects          87 %   ████████░░            ║
-  ║  C64Projects            75 %   ███████░░░            ║
-  ║  DataGripProjects       100 %  ██████████            ║
-  ║  VST_SDK                50 %   █████░░░░░            ║
+  ║  MyProjects          87 %   ████████░░            ║
+  ║  HobbyProjects            75 %   ███████░░░            ║
+  ║  DataProjects       100 %  ██████████            ║
+  ║  SdkProjects                50 %   █████░░░░░            ║
   ╠══════════════════════════════════════════════════════╣
   ║  Gesamt / Total         78 %   ████████░░            ║
   ╚══════════════════════════════════════════════════════╝
@@ -425,11 +425,11 @@ Barrierefreiheits-Merkmale geprüft.
   │ Ebene / Level      │ README │ CLAUDE │ GEMINI │ copilot-instructions       │
   ├────────────────────┼────────┼────────┼────────┼────────────────────────────┤
   │ ~ (root)           │  ✓     │  ✓     │  ✓     │  ✓                         │
-  │ RiderProjects/     │  ✓     │  ✓     │  ✓     │  ✓                         │
-  │   TinyCalc/        │  ✓     │  ✓     │  ✗     │  ✓                         │
-  │   TuiVision/       │  ✓     │  ✓     │  ✓     │  ✓                         │
-  │ C64Projects/       │  ✓     │  ✓     │  ✓     │  ✓                         │
-  │   cc65/            │  ✓     │  ✓     │  ✓     │  ✓                         │
+  │ MyProjects/     │  ✓     │  ✓     │  ✓     │  ✓                         │
+  │   example-project/        │  ✓     │  ✓     │  ✗     │  ✓                         │
+  │   example-project/       │  ✓     │  ✓     │  ✓     │  ✓                         │
+  │ HobbyProjects/       │  ✓     │  ✓     │  ✓     │  ✓                         │
+  │   example-project/            │  ✓     │  ✓     │  ✓     │  ✓                         │
   └────────────────────┴────────┴────────┴────────┴────────────────────────────┘
   ```
 

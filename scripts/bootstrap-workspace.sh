@@ -44,6 +44,13 @@ HOME_DIR="$(cd ~ && pwd)"
 WORKSPACE_DIR="$HOME_DIR/$WORKSPACE_NAME"
 SCRIPTS_SRC="$HOME_DIR/scripts"
 
+# GitHub-Benutzername dynamisch ermitteln
+GH_USER=$(gh api user --jq '.login' 2>/dev/null || true)
+if [ -z "$GH_USER" ]; then
+  echo "Fehler: Konnte GitHub-Benutzername nicht ermitteln. Bitte 'gh auth login' ausführen." >&2
+  exit 1
+fi
+
 # --- Vorabprüfungen ------------------------------------------------------------
 
 if [ ! -d "$WORKSPACE_DIR" ]; then
@@ -68,7 +75,7 @@ echo "╔═══════════════════════�
 echo "║  bootstrap-workspace – Neue Workspace-Einrichtung               ║"
 echo "╠══════════════════════════════════════════════════════════════════╣"
 printf "║  Verzeichnis : %-51s║\n" "$WORKSPACE_DIR"
-printf "║  GitHub-Repo : %-51s║\n" "hindermath/$REPO_NAME (privat)"
+printf "║  GitHub-Repo : %-51s║\n" "$GH_USER/$REPO_NAME (privat)"
 printf "║  Beschreibung: %-51s║\n" "${REPO_DESC:0:51}"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 [ "$DRY_RUN" -eq 1 ] && echo "  [DRY RUN – keine Änderungen werden vorgenommen]"
@@ -175,7 +182,7 @@ ok "Hooks installiert"
 # --- ~/README.md aktualisieren ------------------------------------------------
 
 HOME_README="$HOME_DIR/README.md"
-NEW_ROW="| \`~/$WORKSPACE_NAME/\` | [$REPO_NAME](https://github.com/hindermath/$REPO_NAME) | \`bootstrap-workspace\` |"
+NEW_ROW="| \`~/$WORKSPACE_NAME/\` | [$REPO_NAME](https://github.com/$GH_USER/$REPO_NAME) | \`bootstrap-workspace\` |"
 
 if [ -f "$HOME_README" ]; then
   info "Aktualisiere ~/README.md …"
@@ -213,7 +220,7 @@ echo "╔═══════════════════════�
 echo "║  Einrichtung abgeschlossen!                                      ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 echo ""
-echo "  Repo   : https://github.com/hindermath/$REPO_NAME"
-echo "  Clone  : git clone https://github.com/hindermath/$REPO_NAME.git ~/$WORKSPACE_NAME"
+echo "  Repo   : https://github.com/$GH_USER/$REPO_NAME"
+echo "  Clone  : git clone https://github.com/$GH_USER/$REPO_NAME.git ~/$WORKSPACE_NAME"
 echo "  Hooks  : bash scripts/install-hooks.sh  (oder pwsh scripts/install-hooks.ps1)"
 echo ""

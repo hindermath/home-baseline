@@ -138,21 +138,21 @@ Ein einzelner Schreibvorgang in `STATS.md` — entspricht einem vollständigen S
 | Level | Verzeichnis | Score % |
 |-------|-------------|---------|
 | 0     | ~/          | 92      |
-| 1     | RiderProjects | 87   |
-| 2     | TuiVision   | 100     |
+| 1     | MyProjects | 87   |
+| 2     | example-project   | 100     |
 
 ### Compliance-Balkendiagramm
 ~/             [█████████░] 92 %
-RiderProjects  [████████░░] 87 %
-TuiVision      [██████████] 100 %
+MyProjects  [████████░░] 87 %
+example-project      [██████████] 100 %
 
 ### Datei-Präsenz-Matrix
 
 | Verzeichnis | AGENTS | CLAUDE | GEMINI | Copilot | README | STATS | Hook |
 |-------------|--------|--------|--------|---------|--------|-------|------|
 | ~/          | ✓      | ✓      | ✓      | ✓       | ✓      | ✓     | ✓    |
-| RiderProjects | ✓   | ✓      | ✗      | ✓       | ✓      | ✓     | ✓    |
-| TuiVision   | ✓      | ✓      | ✓      | ✓       | ✓      | ✓     | ✓    |
+| MyProjects | ✓   | ✓      | ✗      | ✓       | ✓      | ✓     | ✓    |
+| example-project   | ✓      | ✓      | ✓      | ✓       | ✓      | ✓     | ✓    |
 ```
 
 ---

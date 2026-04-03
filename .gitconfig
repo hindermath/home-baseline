@@ -1,5 +1,5 @@
 [user]
-	name = Thorsten Hindermann
-	email = hindermath@googlemail.com
+name = Your Name
+email = your@email.example
 [core]
-	autocrlf = input
+autocrlf = input

@@ -1,6 +1,6 @@
 # Copilot Instructions – home-baseline
 
-This is the top-level workspace bootstrap for `~/` (user: `hindermath`).
+This is the top-level workspace bootstrap for `~/`.
 It tracks only safe infrastructure files via a whitelist `.gitignore` and distributes reusable scripts to child workspaces.
 
 ## Repository Purpose
@@ -54,7 +54,7 @@ Credential directories (`.aws/`, `.ssh/`, `.kube/`, `.docker/`, `.gnupg/`) and a
 
 ### Child workspace inheritance
 
-Each bootstrapped workspace (e.g. `~/RiderProjects/`, `~/C64Projects/`) is an independent Git repo. It inherits a copy of `scripts/` and the `pre-push` hook but has its own `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`. Changes to home-baseline do **not** auto-propagate; workspaces must manually sync.
+Each bootstrapped workspace (e.g. `~/MyProjects/`, `~/WorkProjects/`) is an independent Git repo. It inherits a copy of `scripts/` and the `pre-push` hook but has its own `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`. Changes to home-baseline do **not** auto-propagate; workspaces must manually sync.
 
 ## Code Conventions
 

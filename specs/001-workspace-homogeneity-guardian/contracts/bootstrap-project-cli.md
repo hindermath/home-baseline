@@ -84,8 +84,8 @@ Schritt  Beschreibung                                 Idempotenz-Check
 ╚══════════════════════════════════════════════════╝
 
 Projekt:    MyNewProject
-Workspace:  ~/RiderProjects/
-Ziel:       ~/RiderProjects/MyNewProject/
+Workspace:  ~/MyProjects/
+Ziel:       ~/MyProjects/MyNewProject/
 
 [1/21] → Verzeichnis anlegen ................. ✓
 [2/21] → git init ............................ ✓
@@ -99,13 +99,13 @@ Ziel:       ~/RiderProjects/MyNewProject/
 [10/21] → scripts/ kopieren .................. ✓
 [11/21] → pre-push Hook installieren ......... ✓
 [12/21] → Initialer git-Commit ............... ✓
-[13/21] → gh repo create (privat) ............ ✓  hindermath/mynewproject
+[13/21] → gh repo create (privat) ............ ✓  YOUR_USERNAME/mynewproject
 [14/21] → git push ........................... ✓
 [15/21] → Claude init ........................ ✓
 [16/21] → Codex (interaktiv):
-          → Bitte manuell ausführen: cd ~/RiderProjects/MyNewProject && codex
+          → Bitte manuell ausführen: cd ~/MyProjects/MyNewProject && codex
 [17/21] → Gemini (interaktiv):
-          → Bitte manuell ausführen: cd ~/RiderProjects/MyNewProject && gemini
+          → Bitte manuell ausführen: cd ~/MyProjects/MyNewProject && gemini
 [18/21] → Copilot verfügbar .................. ✓
 [19/21] → Spec-kit installieren .............. ✓  v0.4.3
 [20/21] → Compliance-Check ................... ✓  Score: 100 %
@@ -113,7 +113,7 @@ Ziel:       ~/RiderProjects/MyNewProject/
 
 ╔══════════════════════════════════════════════════╗
 ║  Bootstrap abgeschlossen ✓                          ║
-║  ~/RiderProjects/MyNewProject/ ist bereit.           ║
+║  ~/MyProjects/MyNewProject/ ist bereit.           ║
 ║                                                      ║
 ║  Nächste Schritte:                                   ║
 ║  → codex   (interaktive Initialisierung)             ║
@@ -128,11 +128,11 @@ Ziel:       ~/RiderProjects/MyNewProject/
 
 ```
 [PREVIEW] Folgende Aktionen würden ausgeführt:
-  CREATE  ~/RiderProjects/MyNewProject/
-  CREATE  ~/RiderProjects/MyNewProject/AGENTS.md      (aus AGENTS.md.tmpl)
-  CREATE  ~/RiderProjects/MyNewProject/CLAUDE.md      (aus CLAUDE.md.tmpl)
+  CREATE  ~/MyProjects/MyNewProject/
+  CREATE  ~/MyProjects/MyNewProject/AGENTS.md      (aus AGENTS.md.tmpl)
+  CREATE  ~/MyProjects/MyNewProject/CLAUDE.md      (aus CLAUDE.md.tmpl)
   ...
-  INSTALL ~/RiderProjects/MyNewProject/.git/hooks/pre-push
+  INSTALL ~/MyProjects/MyNewProject/.git/hooks/pre-push
   EXEC    claude /init
   EXEC    npx speckit init
   UPDATE  ~/README.md  (Zeile nach <!-- workspace-table-end -->)
@@ -144,8 +144,8 @@ Ziel:       ~/RiderProjects/MyNewProject/
 ## Idempotenz-Beispiel (bereits bootstrapptes Verzeichnis)
 
 ```bash
-bootstrap-project.sh MyNewProject ~/RiderProjects/
-# → WARN: ~/RiderProjects/MyNewProject/ already bootstrapped
+bootstrap-project.sh MyNewProject ~/MyProjects/
+# → WARN: ~/MyProjects/MyNewProject/ already bootstrapped
 #         Verwende --force um alle Schritte erneut auszuführen.
 #         Fehlende Dateien werden ergänzt (3 von 21 Schritten übersprungen).
 ```

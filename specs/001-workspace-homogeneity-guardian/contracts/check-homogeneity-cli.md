@@ -46,7 +46,7 @@ check-homogeneity.ps1 [[-TargetDir] <String>] [OPTIONS]
 
 ```
 Workspace Homogeneity Guardian — check-homogeneity v1.0
-Scan-Startpunkt: /Users/hindermath
+Scan-Startpunkt: /Users/YOUR_USERNAME
 ══════════════════════════════════════════════════════
 
 [Level 0] ~/
@@ -58,7 +58,7 @@ Scan-Startpunkt: /Users/hindermath
   ✓  STATS.md
   ✓  scripts/hooks/pre-push       PASS: hook SHA-256 match
 
-[Level 1] ~/RiderProjects/
+[Level 1] ~/MyProjects/
   ✓  AGENTS.md
   ✓  CLAUDE.md
   ✓  GEMINI.md
@@ -66,21 +66,21 @@ Scan-Startpunkt: /Users/hindermath
   ✓  STATS.md
   ✓  .git/hooks/pre-push          PASS: hook SHA-256 match
 
-[Level 2] ~/RiderProjects/TuiVision/
+[Level 2] ~/MyProjects/example-project/
   ✓  AGENTS.md
   ✓  CLAUDE.md
   ✓  GEMINI.md
   ✓  README.md
   ✓  STATS.md
   ✓  .git/hooks/pre-push
-  ✓  specs/001-tuivision/spec.md
+  ✓  specs/001-example-project/spec.md
 
 ══════════════════════════════════════════════════════
 COMPLIANCE SUMMARY
 
 ~/             [█████████░] 87 %   (13/15 checks)
-RiderProjects  [██████████] 100 %  (15/15 checks)
-TuiVision      [██████████] 100 %  (15/15 checks)
+MyProjects  [██████████] 100 %  (15/15 checks)
+example-project      [██████████] 100 %  (15/15 checks)
 
 Overall: 96 %  |  Workspaces: 1  |  Projects: 1
 STATS.md updated: ~/STATS.md

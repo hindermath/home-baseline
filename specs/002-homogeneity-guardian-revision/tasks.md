@@ -79,8 +79,8 @@ diese Phase muss abgeschlossen sein, bevor Phase 3 beginnt.
 *Goal: Bring existing workspace repos idempotently to target state without losing content.*
 
 **Unabhängiger Test / Independent Test**:  
-`bash scripts/migrate-workspace.sh --dry-run RiderProjects` → Preview ohne Dateiänderung, Exit-Code 0;  
-nach `bash scripts/migrate-workspace.sh RiderProjects` → `bash scripts/check-homogeneity.sh RiderProjects` liefert keinen `✗`-Befund für `RiderProjects` (SC-REV-07: Score +40 pp gegenüber Baseline).
+`bash scripts/migrate-workspace.sh --dry-run MyProjects` → Preview ohne Dateiänderung, Exit-Code 0;  
+nach `bash scripts/migrate-workspace.sh MyProjects` → `bash scripts/check-homogeneity.sh MyProjects` liefert keinen `✗`-Befund für `MyProjects` (SC-REV-07: Score +40 pp gegenüber Baseline).
 
 **Behebt / Fixes**: SW-03, SW-04, SW-06, SW-07, SW-10, SW-13, SW-14
 

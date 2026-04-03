@@ -14,10 +14,6 @@ private GitHub repository within seconds.*
 
 | Verzeichnis | GitHub-Repo | Eingerichtet mit |
 |---|---|---|
-| `~/RiderProjects/` | [riderprojects-baseline](https://github.com/hindermath/riderprojects-baseline) | manuell |
-| `~/DataGripProjects/` | [datagrip-baseline](https://github.com/hindermath/datagrip-baseline) | manuell |
-| `~/C64Projects/` | [c64projects-baseline](https://github.com/hindermath/c64projects-baseline) | manuell |
-| `\~/DataGripProjects/InventarDb/` | — |
 <!-- workspace-table-end -->
 
 ---
@@ -126,7 +122,7 @@ Der Bootstrap-Vorgang erledigt automatisch:
 
 ```bash
 cd ~
-git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
 
 # Scripts und Konfiguration einrichten
 cp -r home-baseline-tmp/scripts/. ~/scripts/
@@ -153,7 +149,7 @@ bash ~/scripts/check-homogeneity.sh ~/
 
 ```powershell
 Set-Location ~
-git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
 
 # Scripts und Konfiguration einrichten
 Copy-Item home-baseline-tmp/scripts/* ~/scripts/ -Recurse -Force
@@ -248,7 +244,7 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 bash ~/scripts/check-homogeneity.sh
 
 # Einzelnen Workspace prüfen / Check single workspace
-bash ~/scripts/check-homogeneity.sh ~/RiderProjects
+bash ~/scripts/check-homogeneity.sh ~/MyProjects
 
 # JSON-Ausgabe (für CI) / JSON output (for CI)
 bash ~/scripts/check-homogeneity.sh --json
@@ -257,7 +253,7 @@ bash ~/scripts/check-homogeneity.sh --json
 ```powershell
 # Windows (PowerShell Core)
 pwsh ~/scripts/check-homogeneity.ps1
-pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/RiderProjects
+pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/MyProjects
 pwsh ~/scripts/check-homogeneity.ps1 -Json
 ```
 
@@ -269,21 +265,21 @@ bash ~/scripts/init-stats.sh
 
 ```powershell
 pwsh ~/scripts/init-stats.ps1
-pwsh ~/scripts/init-stats.ps1 -WorkspaceName RiderProjects
+pwsh ~/scripts/init-stats.ps1 -WorkspaceName MyProjects
 ```
 
 ### Bestehenden Workspace migrieren / Migrate existing workspace
 
 ```bash
 # Vorschau / Preview
-bash ~/scripts/migrate-workspace.sh --dry-run RiderProjects
+bash ~/scripts/migrate-workspace.sh --dry-run MyProjects
 
 # Alle Workspaces migrieren / Migrate all workspaces
 bash ~/scripts/migrate-workspace.sh --yes
 ```
 
 ```powershell
-pwsh ~/scripts/migrate-workspace.ps1 -WorkspaceName RiderProjects -WhatIf
+pwsh ~/scripts/migrate-workspace.ps1 -WorkspaceName MyProjects -WhatIf
 pwsh ~/scripts/migrate-workspace.ps1 -Force
 ```
 
@@ -353,7 +349,7 @@ Guardian** step by step — without senior help and using only free tools.
 
 ```bash
 cd ~
-git clone https://github.com/hindermath/home-baseline.git home-baseline-tmp
+git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
 
 # Scripts und Konfiguration einrichten
 cp -r home-baseline-tmp/scripts/. ~/scripts/
@@ -375,17 +371,17 @@ rm -rf home-baseline-tmp
 bash ~/scripts/check-homogeneity.sh ~/
 ```
 
-**Schritt 2 / Step 2**: Ersten Workspace bootstrappen (z. B. RiderProjects):
+**Schritt 2 / Step 2**: Ersten Workspace bootstrappen (z. B. MyProjects):
 
 ```bash
-bash ~/scripts/bootstrap-workspace.sh RiderProjects
+bash ~/scripts/bootstrap-workspace.sh MyProjects
 ```
 
 **Schritt 3 / Step 3**: Neues C#-Projekt bootstrappen:
 
 ```bash
-# Beispiel: neues Projekt "MeinProjekt" im RiderProjects-Workspace
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --no-remote --no-agents
+# Beispiel: neues Projekt "MeinProjekt" im MyProjects-Workspace
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects --no-remote --no-agents
 ```
 
 **Schritt 4 / Step 4**: Compliance prüfen:
@@ -413,8 +409,8 @@ Goal reached — score ≥ 90% means everything is correctly configured.
 
 ```bash
 # Bootstrap + sofortiger Compliance-Check
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --no-remote --no-agents && \
-  bash ~/scripts/check-homogeneity.sh ~/RiderProjects/MeinProjekt
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects --no-remote --no-agents && \
+  bash ~/scripts/check-homogeneity.sh ~/MyProjects/MeinProjekt
 ```
 
 <!-- EN: README.md placeholder

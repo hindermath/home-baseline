@@ -51,17 +51,15 @@ The `.gitignore` uses a **whitelist model** (`/*` ignores everything; only expli
 
 The `scripts/hooks/pre-push` hook blocks pushes if secret-like filenames or credential patterns are found in tracked files. It is installed into `.git/hooks/` by `install-hooks.sh`.
 
-Secrets are stored in macOS Keychain, accessed via the shell helpers in `~/.zshrc` (`_keychain_secret`, `with_keychain_env`, `with_chat_ai_api_key`).
+Secrets are stored in the system credential store (e.g. macOS Keychain, Windows Credential Manager), accessed via shell helpers in your shell profile.
 
 ## Workspace Structure
 
-Each sub-directory is an **independent git repository** (not a submodule). They are excluded from home-baseline tracking via `.gitignore`. Current workspaces:
+Each sub-directory is an **independent git repository** (not a submodule). They are excluded from home-baseline tracking via `.gitignore`. Example workspaces:
 
 | Directory | GitHub Repo |
 |---|---|
-| `~/RiderProjects/` | `hindermath/riderprojects-baseline` |
-| `~/DataGripProjects/` | `hindermath/datagrip-baseline` |
-| `~/C64Projects/` | `hindermath/c64projects-baseline` |
+| `~/MyProjects/` | `YOUR_USERNAME/myprojects-baseline` |
 
 When adding a new workspace to `~/README.md`, insert a table row before the `<!-- workspace-table-end -->` marker.
 

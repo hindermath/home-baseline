@@ -84,7 +84,7 @@ Both variants MUST provide identical functionality and produce equivalent output
 A new script is not considered complete until both variants exist, pass manual
 verification, and are committed together in the same commit.
 
-**Rationale**: The workspace is used on macOS (Mac Mini M4 Pro, MacBook Air M2)
+**Rationale**: The workspace is used on macOS (your-machine, your-laptop)
 and may be used on Windows. Bash-only or PowerShell-only scripts create a
 second-class experience on one platform.
 
@@ -133,7 +133,7 @@ Rules:
 **Rationale**: Submodules create fragile cross-repo coupling. Independent repos
 give each workspace its own clean history and deployment lifecycle. Tracking
 AI agent guidance files and Spec-Kit tooling ensures consistent development
-environments across all devices (Mac Mini M4 Pro, MacBook Air M2).
+environments across all devices (your-machine, your-laptop).
 
 ### V. Manual-First Verification
 

@@ -6,7 +6,7 @@
 **Status**: Draft
 **Bezugs-Lastenheft / Reference Lastenheft**: `Lastenheft_workspace-homogeneity-guardian.md`
 **Konstitutions-Version / Constitution Version**: 1.1.0
-**Autor / Author**: Thorsten Hindermann (`hindermath`)
+**Autor / Author**: YOUR_NAME (`YOUR_USERNAME`)
 
 ---
 
@@ -85,22 +85,22 @@ Durchgeführt am / Conducted: 2026-04-01 · Basis: Live-Scan der Umgebung
 
 ### Szenario 1 — Migration bestehender Repos / Migration of Existing Repos (Priorität: P1)
 
-Ein bestehender Workspace (z. B. `RiderProjects`) wird auf den Zielstand des
+Ein bestehender Workspace (z. B. `MyProjects`) wird auf den Zielstand des
 Homogenitäts-Lastenhefts gebracht, ohne bestehende Inhalte zu zerstören.
 
-*An existing workspace (e.g. `RiderProjects`) is brought to the target state of
+*An existing workspace (e.g. `MyProjects`) is brought to the target state of
 the homogeneity Lastenheft without destroying existing content.*
 
 **Akzeptanzszenarien / Acceptance Scenarios**:
 
-1. **Gegeben** `RiderProjects/` hat weder A11Y-Abschnitt noch Bilingual-Marker,
-   **wenn** `bash scripts/migrate-workspace.sh RiderProjects` läuft,
+1. **Gegeben** `MyProjects/` hat weder A11Y-Abschnitt noch Bilingual-Marker,
+   **wenn** `bash scripts/migrate-workspace.sh MyProjects` läuft,
    **dann** werden fehlende Abschnitte als Platzhalter eingefügt und bestehende
    Inhalte bleiben unberührt.
 
 2. **Gegeben** ein Migrationslauf,
    **dann** erzeugt das Skript einen Git-Commit
-   `chore: migrate RiderProjects to homogeneity baseline`.
+   `chore: migrate MyProjects to homogeneity baseline`.
 
 3. **Gegeben** `--dry-run`-Modus,
    **dann** zeigt das Skript alle geplanten Änderungen, ohne etwas zu schreiben.
@@ -134,12 +134,12 @@ Alle bestehenden SDD-fähigen Projekte erhalten einen initialen `spec.md`-Scaffo
 
 **Akzeptanzszenarien / Acceptance Scenarios**:
 
-1. **Gegeben** `TinyCalc/` hat keine `spec.md`,
-   **wenn** `bash scripts/bootstrap-project.sh --sdd-only TinyCalc` läuft,
+1. **Gegeben** `example-project/` hat keine `spec.md`,
+   **wenn** `bash scripts/bootstrap-project.sh --sdd-only example-project` läuft,
    **dann** wird `spec.md` mit bilingualem Scaffold + A11Y-Abschnitt erstellt.
 
 2. **Gegeben** der Spec-kit-Durchlauf endet erfolgreich,
-   **dann** wird `spec.md` zu `Lastenheft_TinyCalc.{branch}.md` umbenannt.
+   **dann** wird `spec.md` zu `Lastenheft_example-project.{branch}.md` umbenannt.
 
 ---
 

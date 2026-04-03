@@ -57,16 +57,16 @@ content, accessibility, and absence of secrets across all three hierarchy levels
 
 ```bash
 # Neues Projekt im aktuellen Workspace anlegen
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects/
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects/
 
 # Vorschau (keine Dateien werden erstellt)
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects/ --preview
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects/ --preview
 
 # Bestehende Dateien ergänzen (fehlende hinzufügen, vorhandene nicht überschreiben)
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects/
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects/
 
 # Alle Schritte erzwingen (bestehende Dateien überschreiben)
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects/ --force
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects/ --force
 ```
 
 **Was der Bootstrap anlegt**:
@@ -123,13 +123,13 @@ wsl
 
 # Dann in WSL:
 bash ~/scripts/check-homogeneity.sh
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects/
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/MyProjects/
 ```
 
 Für native PowerShell (ohne WSL):
 ```powershell
 pwsh ~/scripts/check-homogeneity.ps1
-pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/RiderProjects/
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/MyProjects/
 ```
 
 **English**: On Windows, use WSL2 with Ubuntu 22.04 LTS for identical bash behaviour,

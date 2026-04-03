@@ -351,7 +351,7 @@ bootstraps a C# CLI project that passes the compliance check.
   features and all agents (e.g., "all hooks must use SHA-256 comparison");
   (2) **Agent Files** (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`,
   `copilot-instructions.md` at the appropriate level) — receive tool-specific
-  context facts about the current workspace state (e.g., "RiderProjects
+  context facts about the current workspace state (e.g., "MyProjects
   contains 3 SDD projects, last compliance score 87 %");
   (3) **README sections** — receive step-by-step guidance additions targeted
   at apprentices, triggered when a new setup step or correction is discovered.
