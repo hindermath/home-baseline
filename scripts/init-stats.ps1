@@ -76,7 +76,7 @@ function Get-ScoreFor {
 
 # ─── Main ────────────────────────────────────────────────────────────────────
 
-$HomeDir = $env:HOME
+$HomeDir = $($env:HOME ?? $env:USERPROFILE)
 
 if ($WorkspaceName) {
     # Scoped mode: only the specified Level-1 workspace and its Level-2 projects

@@ -49,7 +49,7 @@ function Invoke-HgWriteStats {
         )
         $i = 0
         foreach ($dir in $Dirs) {
-            $shortDir = $dir -replace [regex]::Escape($env:HOME), '~'
+            $shortDir = $dir -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
             $lines += "| $i | ``$shortDir`` | -- |"
             $i++
         }

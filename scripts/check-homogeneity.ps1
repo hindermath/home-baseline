@@ -3,7 +3,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$TargetDir = $env:HOME,
+    [string]$TargetDir = ($env:HOME ?? $env:USERPROFILE),
     [switch]$Json,
     [switch]$DryRun,
     [string]$ApplyPatch = '',
@@ -289,7 +289,7 @@ foreach ($entry in $scanResults) {
     }
 
     if ($level -eq 0) {
-        $canonicalHook = Join-Path $env:HOME 'scripts/hooks/pre-push'
+        $canonicalHook = Join-Path $($env:HOME ?? $env:USERPROFILE) 'scripts/hooks/pre-push'
         if (Test-Path $canonicalHook) {
             Emit-Result 'PASS' 'scripts/hooks/pre-push' 'canonical hook present' $dir
         } else {
@@ -349,7 +349,7 @@ if ($Json) {
         $ls = if ($lt -gt 0) { [int](($lp * 100) / $lt) } else { 0 }
         $filled = [int]($ls * 10 / 100)
         $bar = ('█' * $filled) + ('░' * (10 - $filled))
-        $shortName = $d -replace [regex]::Escape($env:HOME), '~'
+        $shortName = $d -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
         Write-Host ("{0,-30} [{1}] {2,3} %  ({3}/{4} checks)" -f $shortName, $bar, $ls, $lp, $lt)
     }
 
@@ -357,7 +357,7 @@ if ($Json) {
     Write-Host ("Overall: $OverallScore %  |  Workspaces: $WorkspacesCount  |  Projects: $ProjectsCount")
 
     if (-not $DryRun) {
-        Write-Host "STATS.md updated: $env:HOME/STATS.md"
+        Write-Host "STATS.md updated: $($env:HOME ?? $env:USERPROFILE)/STATS.md"
     }
 
     $fc = $Failures.Count; $wc = $Warnings.Count

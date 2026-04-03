@@ -3,7 +3,7 @@
 
 function Invoke-HgScan {
     param(
-        [string]$TargetDir = $env:HOME
+        [string]$TargetDir = ($env:HOME ?? $env:USERPROFILE)
     )
 
     $TargetDir = $TargetDir.TrimEnd([IO.Path]::DirectorySeparatorChar)

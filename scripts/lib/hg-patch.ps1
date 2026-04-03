@@ -36,7 +36,7 @@ function Invoke-HgGeneratePatch {
 
     if (-not $triggered) { return }
 
-    $specsDir = Join-Path $env:HOME 'specs'
+    $specsDir = Join-Path $($env:HOME ?? $env:USERPROFILE) 'specs'
     $activeFeature = Get-ChildItem -Path $specsDir -Directory -Filter '001-*' -ErrorAction SilentlyContinue | Select-Object -First 1
     $patchFile = if ($activeFeature) { Join-Path $activeFeature.FullName 'memory-patch.md' } else { Join-Path $specsDir 'memory-patch.md' }
 

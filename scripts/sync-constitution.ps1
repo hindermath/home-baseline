@@ -10,7 +10,7 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
-$HomeConstitution = Join-Path $env:HOME 'constitution.md'
+$HomeConstitution = Join-Path ($env:HOME ?? $env:USERPROFILE) 'constitution.md'
 
 # ─── 1. Version aus ~/constitution.md extrahieren ────────────────────────────
 
@@ -31,7 +31,7 @@ Write-Host ('=' * 50)
 
 # ─── 2. Level-1-Workspaces ermitteln ─────────────────────────────────────────
 
-$Workspaces = Get-ChildItem -Path $env:HOME -Directory |
+$Workspaces = Get-ChildItem -Path $($env:HOME ?? $env:USERPROFILE) -Directory |
     Where-Object { Test-Path (Join-Path $_.FullName '.git') } |
     Sort-Object Name
 
@@ -44,7 +44,7 @@ if ($Workspaces.Count -eq 0) {
 
 $WsStatus = @{}
 foreach ($ws in $Workspaces) {
-    $wsShort  = $ws.FullName -replace [regex]::Escape($env:HOME), '~'
+    $wsShort  = $ws.FullName -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
     $wsConst  = Join-Path $ws.FullName 'constitution.md'
     if (Test-Path $wsConst) {
         $wsFirstLine = Get-Content $wsConst -TotalCount 1
@@ -80,7 +80,7 @@ if (-not $Force) {
 $Updated = 0; $Skipped = 0; $Already = 0
 
 foreach ($ws in $Workspaces) {
-    $wsShort = $ws.FullName -replace [regex]::Escape($env:HOME), '~'
+    $wsShort = $ws.FullName -replace [regex]::Escape($($env:HOME ?? $env:USERPROFILE)), '~'
     $status  = $WsStatus[$ws.FullName]
 
     if ($status -eq 'ALREADY UP-TO-DATE') {
