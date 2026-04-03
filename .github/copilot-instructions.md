@@ -84,6 +84,68 @@ Include: affected scripts/docs, manual verification commands run (`--dry-run` ou
 - Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` before pushing any change that touches hook or scanner logic.
 - The pre-push hook detects patterns like `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private key headers, and secret-named files (`.env*`, `*secret*`, `*.key`, `*.pem`).
 
+## Repository Status
+
+- **Visibility**: public template repository (GitHub "Use this template" enabled)
+- **License**: MIT
+- **Branch protection**: `main` requires PR review; `enforce_admins: false` (owner can push directly)
+- **CI**: green on `ubuntu-22.04`, `macos-14`, `windows-2022` via `.github/workflows/homogeneity-check.yml`
+- **Compliance score**: 100 % (25/25 checks) as of last verified installation
+
+## Known Pitfalls & Technical Decisions
+
+### Windows: `$env:HOME` is an empty string, not `$null`
+PowerShell 7's `??` null-coalescing operator does **not** catch an empty string.
+Always use: `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })`
+
+### `Copy-Item` directory behaviour
+When the destination already exists, `Copy-Item src dst -Recurse` copies `src` **into** `dst` (creates `dst/src/`).
+Use `Copy-Item src/* dst/ -Recurse -Force` to copy contents, not the container.
+Bash equivalent: `cp -r src/. dst/` instead of `cp -r src dst`.
+
+### CI: scanner must run from the parent of `$GITHUB_WORKSPACE`
+`check-homogeneity.sh/ps1` expects `TARGET_DIR` to be a relative or absolute path it can enter.
+If called with just `$(basename "$GITHUB_WORKSPACE")` while `CWD` is the repo root, all files appear missing.
+Correct approach:
+```bash
+PARENT="$(dirname "$GITHUB_WORKSPACE")"; REPO="$(basename "$GITHUB_WORKSPACE")"
+cd "$PARENT" && bash "${REPO}/scripts/check-homogeneity.sh" "${REPO}"
+```
+PowerShell equivalent: `Set-Location (Split-Path $env:GITHUB_WORKSPACE -Parent)` then `& "${repo}/scripts/check-homogeneity.ps1" -TargetDir $repo`.
+
+### Bash array `${#array[@]+...}` not supported on Ubuntu 22.04
+`${#FAILURES[@]+"${#FAILURES[@]}"}` causes a `bad substitution` error on older bash.
+Use the Bash-3-safe for-loop: `count=0; for _ in "${arr[@]+"${arr[@]}"}"; do count=$((count+1)); done`
+
+### `hg-a11y`: fenced code block false positives
+`# comment` lines inside ` ``` ` blocks were parsed as h1 headings → false `heading-gap-h1-to-h3`.
+Fix: track an `$inFencedBlock` toggle on lines matching ` ``` `.
+
+### `hg-a11y`: non-descriptive link false positives
+`[hier](...)` and `[here](...)` inside backtick spans (documentation examples) triggered the link check.
+Fix: strip inline code spans (`'`[^`]+`'`) from each line before pattern-matching links.
+
+### `.gitignore` whitelist and `LICENSE`
+The whitelist `.gitignore` (`/*` blocks everything) silently ignores `git add LICENSE`.
+Always add `!LICENSE` to the allowlist; use `git add -f LICENSE` if needed retroactively.
+
+### `bootstrap-workspace`: dynamic GitHub username
+Both scripts previously had `hindermath` hardcoded. Fixed to detect current user:
+- Bash: `GH_USER=$(gh api user --jq '.login')`
+- PowerShell: `$ghUser = (gh api user --jq '.login')`
+
+### Branch protection on GitHub Free
+The `restrictions` field (who can push directly) requires a paid plan.
+On a free personal account only `required_pull_request_reviews` is effective.
+Set `enforce_admins: false` to allow the owner to bypass the PR requirement.
+
+### ANSI false positive in `check-homogeneity`
+The scanner itself contains `\033[` literals in comments → self-triggers the ANSI check.
+Exclude via: `--glob '!check-homogeneity.*'` (rg) / `Where-Object { $_.Name -notmatch '^check-homogeneity\.(ps1|sh)$' }` (PS).
+
+### `<!-- workspace-table-end -->` anchor must not be removed
+`bootstrap-workspace.sh/ps1` and `bootstrap-project.sh/ps1` use this comment as an insertion anchor in `README.md`. Removing it breaks automated workspace-table updates.
+
 <!-- EN: copilot-instructions.md placeholder
 [DE-Zusammenfassung: copilot-instructions.md enthält Anweisungen für GitHub Copilot im home-baseline Repository.]
 -->

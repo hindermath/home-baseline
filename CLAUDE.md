@@ -67,6 +67,38 @@ When adding a new workspace to `~/README.md`, insert a table row before the `<!-
 
 `~/README.md` is auto-updated by `bootstrap-workspace.sh` when a new workspace is created. The workspace table uses `<!-- workspace-table-end -->` as an insertion anchor. If editing manually, preserve that marker.
 
+## Projektstatus / Repository Status
+
+- **Sichtbarkeit / Visibility**: öffentliches Template-Repo — Azubis/andere können über „Use this template" ein eigenes Repo erstellen, ohne die Commit-History zu erben
+- **Lizenz / License**: MIT
+- **Branch-Schutz / Branch protection**: `main` erfordert PR; `enforce_admins: false` (Eigentümer kann direkt pushen)
+- **CI**: grün auf `ubuntu-22.04`, `macos-14`, `windows-2022`
+- **Compliance-Score**: 100 % (25/25 Checks) bei letzter verifizierten Installation
+
+## Bekannte Fallstricke / Known Pitfalls
+
+### Windows: `$env:HOME` ist ein leerer String, nicht `$null`
+Der `??`-Operator fängt leere Strings nicht ab. Immer verwenden:
+`$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })`
+
+### `Copy-Item` Verzeichnis-Verhalten
+Wenn das Ziel bereits existiert, kopiert `Copy-Item src dst -Recurse` das Verzeichnis **in** dst (erzeugt `dst/src/`).
+Korrekt: `Copy-Item src/* dst/ -Recurse -Force`. Bash-Äquivalent: `cp -r src/. dst/`.
+
+### CI: Scanner muss aus dem Parent-Verzeichnis von `$GITHUB_WORKSPACE` laufen
+`check-homogeneity.sh/ps1` erwartet `TARGET_DIR` als auflösbaren Pfad.
+Bei `$(basename "$GITHUB_WORKSPACE")` aus dem Repo-Root gelten alle Dateien als fehlend.
+
+### bash `${#array[@]+...}` nicht auf Ubuntu 22.04 unterstützt
+Verursacht `bad substitution`. Bash-3-sichere Alternative: `for`-Schleife zum Zählen.
+
+### `hg-a11y`: Falsch-Positive durch Fenced Code Blocks
+`# comment`-Zeilen in ` ``` `-Blöcken wurden als h1 interpretiert → `heading-gap-h1-to-h3`.
+Fix: `$inFencedBlock`-Toggle auf ` ``` `-Zeilen.
+
+### `.gitignore`-Whitelist und `LICENSE`
+`git add LICENSE` wird lautlos ignoriert, wenn `LICENSE` nicht explizit in der Whitelist steht (`!LICENSE`).
+
 <!-- EN: CLAUDE.md placeholder
 [DE-Zusammenfassung: CLAUDE.md enthält Anweisungen für den Claude Code Agenten im home-baseline Repository.]
 -->

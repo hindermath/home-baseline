@@ -41,6 +41,42 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 - **Sicherheits-Standard:** Jedes Projekt muss über einen `pre-push` Hook verfügen, der Secret-Scanning in Agenten-Verzeichnissen durchführt.
 - **Git-Strategie:** Keine Submodules; stattdessen werden Sub-Repos durch die Baseline-Skripte in der `.gitignore` des übergeordneten Workspaces erfasst.
 
+## 📦 Projektstatus
+
+- **Sichtbarkeit:** Öffentliches **Template-Repo** — über „Use this template" nutzbar; kein Fork, keine History-Übertragung
+- **Lizenz:** MIT
+- **Branch-Schutz:** PR-Pflicht auf `main`; Admin (Eigentümer) kann direkt pushen (`enforce_admins: false`)
+- **CI:** ✅ Ubuntu 22.04 · macOS 14 · Windows 2022
+- **Compliance-Score:** 100 % (25/25 Checks)
+
+## ⚠️ Bekannte Fallstricke
+
+### Windows: `$env:HOME` ist leer, nicht `$null`
+```powershell
+# Falsch (??-Operator fängt '' nicht ab):
+$home = $env:HOME ?? $env:USERPROFILE
+# Richtig:
+$home = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
+```
+
+### CI: Scanner-Verzeichnis
+```bash
+# Falsch (CWD = Repo-Root, Dateien nicht gefunden):
+bash scripts/check-homogeneity.sh home-baseline
+# Richtig (aus dem Parent heraus):
+cd "$(dirname "$GITHUB_WORKSPACE")"
+bash "$(basename "$GITHUB_WORKSPACE")/scripts/check-homogeneity.sh" "$(basename "$GITHUB_WORKSPACE")"
+```
+
+### `.gitignore`-Whitelist
+Jede neue Datei muss explizit als `!DATEINAME` in `.gitignore` eingetragen werden, sonst wird `git add` lautlos ignoriert (z. B. `LICENSE`).
+
+### `bootstrap-workspace`: GitHub-Username
+Früher hardcodiert. Jetzt dynamisch:
+```bash
+GH_USER=$(gh api user --jq '.login')
+```
+
 <!-- EN: GEMINI.md placeholder
 [DE-Zusammenfassung: GEMINI.md enthält Anweisungen für den Gemini CLI Agenten im home-baseline Repository.]
 -->
