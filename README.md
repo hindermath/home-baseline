@@ -440,7 +440,7 @@ Guidelines for Markdown documentation:
 - Tables have header rows for all columns
 - No information is conveyed through colour alone
 
-## Spec-kit-Workflow
+## Spec-kit-Workflow / Spec-kit Workflow
 
 Neue Features in diesem Workspace werden nach dem **Specification-Driven Development (SDD)**-Workflow entwickelt.
 Der Workflow verwendet das `speckit`-CLI-Tool (GitHub Copilot Skill).
@@ -457,8 +457,6 @@ Schritte für ein neues Feature:
 Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert und versioniert.
 
 ---
-
-## Spec-kit Workflow
 
 New features in this workspace are developed following the **Specification-Driven Development (SDD)** workflow.
 The workflow uses the `speckit` CLI tool (GitHub Copilot Skill).
