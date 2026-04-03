@@ -115,6 +115,14 @@ Bare ` ``` ` ohne Sprache verletzt WCAG 4.1.1 (Syntaxanalyse).
 Die README folgt WCAG 2.2 Level AA. Kriterien-Tabelle im Abschnitt `## Barrierefreiheit / Accessibility (A11Y)`.
 Einzige Plattform-Einschränkung: WCAG 3.1.2 (`lang`-Attribute) — GitHub entfernt HTML-Attribute.
 
+### ASCII-Box-Drawing-Tabellen: Zeilenbreite
+Alle Zeilen einer `text`-Code-Block-Tabelle müssen exakt gleich breit sein. Ein überzähliges Leerzeichen vor dem schließenden `│` macht die Zeile 1 Zeichen zu lang.
+Prüfen mit: `$line.Length` (PowerShell) — alle Rahmen-Zeilen müssen denselben Wert liefern.
+
+### Spec-Kit-Verzeichnis initialisieren
+Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
+`specify init --here --ai {agent}` — der Parameter `--ai-skill` ist **nur für Codex** erforderlich.
+
 <!-- EN: CLAUDE.md placeholder
 [DE-Zusammenfassung: CLAUDE.md enthält Anweisungen für den Claude Code Agenten im home-baseline Repository.]
 -->

@@ -171,6 +171,14 @@ The TOC is 2-level: `##` headings as top-level items, `###` headings as nested i
 `CHANGELOG.md` documents versions v0.1.0–v0.3.0 following Keep a Changelog format.
 Must be listed in `.gitignore` whitelist as `!CHANGELOG.md`.
 
+### ASCII box-drawing table alignment
+All rows in a `text` code block table must have identical character width. A single trailing space before the closing `│` makes a row 1 char too long and breaks the visual frame.
+Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 char regardless of UTF-8 byte width.
+
+### `specify init` — Spec-Kit directory setup
+Never copy from `~/home-baseline-tmp/` manually. The correct command is:
+`specify init --here --ai {agent}` — `--ai-skill` is required **only for Codex** (installs `.agents/skills/`).
+
 <!-- EN: copilot-instructions.md placeholder
 [DE-Zusammenfassung: copilot-instructions.md enthält Anweisungen für GitHub Copilot im home-baseline Repository.]
 -->

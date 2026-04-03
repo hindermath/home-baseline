@@ -90,6 +90,14 @@ Bare ` ``` ` ohne Sprache ist ein A11Y-Fehler. Für ASCII/Dialog/Verzeichnisse: 
 ### CHANGELOG.md hinzugefügt
 Dokumentiert Versionen v0.1.0–v0.3.0. Muss in `.gitignore`-Whitelist (`!CHANGELOG.md`) eingetragen sein.
 
+### ASCII-Box-Drawing-Tabellen: Zeilenbreite
+Alle Zeilen einer `text`-Code-Block-Tabelle müssen exakt gleich breit sein. Ein überzähliges Leerzeichen vor dem schließenden `│` macht die Zeile 1 Zeichen zu lang.
+Prüfen: PowerShell `$line.Length` oder `wc -m` (Bash) für jede Rahmen-Zeile.
+
+### Spec-Kit-Verzeichnis initialisieren
+Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
+`specify init --here --ai {agent}` — `--ai-skill` ist **nur für Codex** erforderlich.
+
 <!-- EN: GEMINI.md placeholder
 [DE-Zusammenfassung: GEMINI.md enthält Anweisungen für den Gemini CLI Agenten im home-baseline Repository.]
 -->

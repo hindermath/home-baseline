@@ -10,6 +10,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ## [Unreleased]
 
+### Fixed / Behoben
+
+- `README.md`: 5 Zeilen der SDD-Workflow-Tabelle von 64 auf 63 Zeichen korrigiert (ein überzähliges Leerzeichen vor dem schließenden `│` je Zeile)
+- `README.md`: Abschnitt „Verzeichnis für Spec-Kit vorbereiten" von manuellem `cp -r ~/home-baseline-tmp/` auf `specify init --here --ai {agent}` umgestellt; `--ai-skill` als Codex-spezifisch dokumentiert
+
 ---
 
 ## [0.3.0] — 2026-04-03
