@@ -2,19 +2,31 @@
 # hg-a11y.sh — Accessibility-Prüfung Markdown (FR-005/006, R-02)
 # Drei Checks: Heading-Hierarchie, leere Alt-Texte, nichtssagende Link-Texte
 
-# Check heading hierarchy gaps (e.g. h1 -> h3 = WARN)
+# Check heading hierarchy gaps — skips fenced and indented code blocks
 check_heading_hierarchy() {
   local file="$1"
   local prev=0
+  local in_fence=0
   while IFS= read -r line; do
-    local raw_level
-    raw_level=$(echo "$line" | grep -o '^#*' | wc -c)
-    local level=$(( raw_level - 1 ))  # wc -c counts newline
-    if [ "$level" -gt $(( prev + 1 )) ] && [ "$prev" -gt 0 ]; then
-      echo "WARN|${file}|heading-gap-h${prev}-to-h${level}"
+    # Toggle fenced code block state
+    if echo "$line" | grep -q '^```'; then
+      [ "$in_fence" -eq 0 ] && in_fence=1 || in_fence=0
+      continue
     fi
-    prev=$level
-  done < <(grep '^#' "$file" 2>/dev/null)
+    [ "$in_fence" -eq 1 ] && continue
+    # Skip indented code blocks (4+ spaces or tab)
+    echo "$line" | grep -qE '^(    |\t)' && continue
+
+    if echo "$line" | grep -q '^#'; then
+      local raw_level
+      raw_level=$(echo "$line" | grep -o '^#*' | wc -c)
+      local level=$(( raw_level - 1 ))  # wc -c counts newline
+      if [ "$level" -gt $(( prev + 1 )) ] && [ "$prev" -gt 0 ]; then
+        echo "WARN|${file}|heading-gap-h${prev}-to-h${level}"
+      fi
+      prev=$level
+    fi
+  done < "$file"
 }
 
 hg_check_a11y() {
@@ -37,9 +49,9 @@ hg_check_a11y() {
   empty_alt=$(rg -c '!\[\]\(' "$file" 2>/dev/null || echo 0)
   [ "$empty_alt" -gt 0 ] && echo "WARN|${file}|empty-alt-text"
 
-  # 3. Non-descriptive link texts
+  # 3. Non-descriptive link texts — strip inline code spans to avoid false positives
   local bad_links
-  bad_links=$(rg -ic '\[(hier|here|click here|link|mehr|more|this)\]\(' "$file" 2>/dev/null || echo 0)
+  bad_links=$(sed 's/`[^`]*`//g' "$file" | rg -ic '\[(hier|here|click here|link|mehr|more|this)\]\(' 2>/dev/null || echo 0)
   [ "$bad_links" -gt 0 ] && echo "WARN|${file}|non-descriptive-link-text"
 
   # 4. Color-only styling (inline HTML)
