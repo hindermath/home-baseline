@@ -141,6 +141,10 @@ git init
 bash ~/scripts/install-hooks.sh
 rm -rf home-baseline-tmp
 
+# Initialen Commit erstellen
+git add -A
+git commit -m "chore: initialer Commit — Level-0-Baseline"
+
 # Compliance prüfen
 bash ~/scripts/check-homogeneity.sh ~/
 ```
@@ -164,6 +168,10 @@ Copy-Item home-baseline-tmp/.github ~/ -Recurse -Force
 git init
 pwsh ~/scripts/install-hooks.ps1
 Remove-Item home-baseline-tmp -Recurse -Force
+
+# Initialen Commit erstellen
+git add -A
+git commit -m "chore: initialer Commit — Level-0-Baseline"
 
 # Compliance prüfen
 pwsh ~/scripts/check-homogeneity.ps1
