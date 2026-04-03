@@ -2,6 +2,12 @@
 
 # home-baseline Constitution
 
+## Beschreibung / Description
+
+Diese Verfassung definiert die verbindlichen Prinzipien und Standards für alle home-baseline Workspaces.
+
+*This constitution defines the non-negotiable principles and standards for all home-baseline workspaces.*
+
 ## Core Principles
 
 ### I. Security-First (NON-NEGOTIABLE)

@@ -1,5 +1,11 @@
 # Repository Guidelines
 
+## Beschreibung / Description
+
+Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur. Diese Datei enthält Anweisungen für KI-Agenten wie Codex und GitHub Copilot.
+
+*This repository is the **top-level** private workspace infrastructure. This file contains instructions for AI agents such as Codex and GitHub Copilot.*
+
 ## Project Structure & Module Organization
 This repository is the top-level `home-baseline` workspace bootstrap. Keep changes focused on the root documentation and the reusable scripts under `scripts/`.
 

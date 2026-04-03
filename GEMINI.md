@@ -2,7 +2,7 @@
 
 Dieses Repository ist die **oberste Ebene** der Workspace-Infrastruktur von Thorsten Hindermann. Es dient als "Baseline" für die gesamte Entwicklungsumgebung und bietet Automatisierungswerkzeuge, um neue Projektverzeichnisse (Workspaces) standardisiert einzurichten.
 
-## 🛠 Project Overview & Architecture
+## 🛠 Überblick / Project Overview & Architecture
 
 Die "home-baseline" verfolgt einen **Multi-Repo-Ansatz**. Das Root-Verzeichnis selbst ist ein Git-Repository, das jedoch alle Unterverzeichnisse (die eigenen Git-Repositories enthalten) per `.gitignore` ignoriert.
 

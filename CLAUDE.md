@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Beschreibung / Description
+
+Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur. Diese Datei enthält Anweisungen für den Claude Code Agenten.
+
+*This repository is the **top-level** private workspace infrastructure. This file contains instructions for the Claude Code agent.*
+
 ## Repository Purpose
 
 This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub repositories and enforces security across all projects.
