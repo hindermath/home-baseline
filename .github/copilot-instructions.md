@@ -146,6 +146,31 @@ Exclude via: `--glob '!check-homogeneity.*'` (rg) / `Where-Object { $_.Name -not
 ### `<!-- workspace-table-end -->` anchor must not be removed
 `bootstrap-workspace.sh/ps1` and `bootstrap-project.sh/ps1` use this comment as an insertion anchor in `README.md`. Removing it breaks automated workspace-table updates.
 
+### Duplicate heading anchors in GitHub Markdown
+When the same heading text appears more than once, GitHub appends `-1`, `-2` etc. to the anchor.
+TOC links for second/third occurrences must include this suffix (e.g. `#macos--linux-1`).
+Avoid duplicates by making heading text unique where possible.
+
+### Bilingual heading requirement (WCAG 2.4.6)
+All headings **must** follow the `DE / EN` pattern. German-only headings break bilingual consistency and violate WCAG 2.4.6.
+Exception: tool names / proper nouns (e.g. `### Homogeneity Guardian`, `### Compliance-Check`).
+
+### Code fence language tags (WCAG 4.1.1)
+Every code block **must** have a language specifier. Use `text` for ASCII art, dialog examples, and directory trees.
+Bare ` ``` ` without a language violates WCAG 4.1.1 (Parsing).
+
+### WCAG 2.2 Level AA — README compliance
+The README follows WCAG 2.2 Level AA. See `## Barrierefreiheit / Accessibility (A11Y)` for the full criteria table.
+Only known gap: WCAG 3.1.2 (`lang` attributes) — GitHub strips HTML attributes, cannot be implemented.
+
+### README TOC structure
+The TOC is 2-level: `##` headings as top-level items, `###` headings as nested items (2-space indent).
+`####` headings are excluded from the TOC (too granular, too many platform-specific duplicates).
+
+### CHANGELOG.md
+`CHANGELOG.md` documents versions v0.1.0–v0.3.0 following Keep a Changelog format.
+Must be listed in `.gitignore` whitelist as `!CHANGELOG.md`.
+
 <!-- EN: copilot-instructions.md placeholder
 [DE-Zusammenfassung: copilot-instructions.md enthält Anweisungen für GitHub Copilot im home-baseline Repository.]
 -->

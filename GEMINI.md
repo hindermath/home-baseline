@@ -77,6 +77,19 @@ Früher hardcodiert. Jetzt dynamisch:
 GH_USER=$(gh api user --jq '.login')
 ```
 
+### Doppelte Überschriften in TOC / Duplicate heading anchors
+Gleiche Heading-Texte → GitHub hängt `-1`, `-2` an. TOC-Links für zweite Vorkommen müssen den Suffix enthalten.
+
+### Bilinguale Headings Pflicht
+Format: `## DE / EN` — immer. Nur-Deutsch verletzt WCAG 2.4.6 und bilinguales Konsistenzgebot.
+Ausnahme: Eigennamen wie `### Homogeneity Guardian` oder `### Compliance-Check`.
+
+### Code-Blöcke immer mit Sprach-Tag (WCAG 4.1.1)
+Bare ` ``` ` ohne Sprache ist ein A11Y-Fehler. Für ASCII/Dialog/Verzeichnisse: ` ```text `.
+
+### CHANGELOG.md hinzugefügt
+Dokumentiert Versionen v0.1.0–v0.3.0. Muss in `.gitignore`-Whitelist (`!CHANGELOG.md`) eingetragen sein.
+
 <!-- EN: GEMINI.md placeholder
 [DE-Zusammenfassung: GEMINI.md enthält Anweisungen für den Gemini CLI Agenten im home-baseline Repository.]
 -->

@@ -65,6 +65,7 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 ## Recent Changes
 - 001-workspace-homogeneity-guardian: Added Bash 5+ (primär), PowerShell Core 7+ (Windows-Parität) + `git`, `bash` ≥ 5, `ripgrep (rg)`, `sha256sum` (Linux/WSL) /
 - 003-public-template-prep: Repo auf Public Template umgestellt, MIT-Lizenz, Branch-Protection, alle persönlichen Daten entfernt, Bootstrap-Skripte dynamisch (kein hardcodierter Username mehr)
+- 004-readme-ausbau-ci-fixes-sync: sync-home.sh/.ps1 hinzugefügt; README vollständig überarbeitet (2-stufiges TOC, Auszubildende, Spec-Kit, WCAG 2.2 AA); CHANGELOG.md angelegt; CI-Fixes (TARGET_DIR, windows-2022, -TargetDir)
 
 ## Projektstatus / Repository Status
 
@@ -83,6 +84,10 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 | ANSI-Falsch-Positive im Scanner | Scanner enthält `\033[` als Literal | `check-homogeneity.*` aus ANSI-Scan ausschließen |
 | `hg-a11y` h1 in Code-Blöcken | `# comment` in ` ``` ` als Heading geparst | `$inFencedBlock`-Toggle |
 | Bootstrap hardcodierter Username | `hindermath` war fest eingebaut | `gh api user --jq '.login'` dynamisch |
+| Doppelte Überschriften im TOC | GitHub hängt `-1`, `-2` an gleiche Texte | Ankertexte im TOC mit Suffix verwenden oder Headings umbenennen |
+| Nicht-bilinguale Überschriften | Heading nur auf Deutsch | Alle Headings müssen `DE / EN`-Format haben |
+| Code-Block ohne Sprach-Tag | Bare ` ``` ` verletzt WCAG 4.1.1 | Immer Sprache angeben — ` ```text ` für ASCII/Dialog |
+| WCAG 3.1.2 `lang`-Attribute | GitHub entfernt HTML-Attribute | Platform-Einschränkung — in Barrierefreiheit-Abschnitt dokumentiert |
 
 <!-- EN: AGENTS.md placeholder
 [DE-Zusammenfassung: AGENTS.md enthält Anweisungen für den Codex Agenten im home-baseline Repository.]

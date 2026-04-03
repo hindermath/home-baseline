@@ -99,6 +99,22 @@ Fix: `$inFencedBlock`-Toggle auf ` ``` `-Zeilen.
 ### `.gitignore`-Whitelist und `LICENSE`
 `git add LICENSE` wird lautlos ignoriert, wenn `LICENSE` nicht explizit in der Whitelist steht (`!LICENSE`).
 
+### Doppelte Headings im TOC / Duplicate heading anchors
+GitHub hängt `-1`, `-2` etc. an Anker wenn derselbe Heading-Text mehrfach vorkommt.
+TOC-Links für zweite Vorkommen müssen diesen Suffix enthalten.
+
+### Bilinguale Überschriften-Pflicht / Bilingual heading requirement
+Alle Headings MÜSSEN das Format `DE / EN` haben. Nur-Deutsch-Headings brechen die bilinguale Konsistenz und verletzen WCAG 2.4.6.
+Ausnahme: Eigennamen / Toolnamen (z. B. `### Homogeneity Guardian`) sind sprachneutral.
+
+### Code-Block Sprachmarkierung (WCAG 4.1.1)
+Jeder Code-Block benötigt eine Sprach-Angabe. Für ASCII-Grafiken, Dialog-Beispiele oder Verzeichnisstrukturen: ` ```text `.
+Bare ` ``` ` ohne Sprache verletzt WCAG 4.1.1 (Syntaxanalyse).
+
+### WCAG 2.2 Level AA — README-Compliance
+Die README folgt WCAG 2.2 Level AA. Kriterien-Tabelle im Abschnitt `## Barrierefreiheit / Accessibility (A11Y)`.
+Einzige Plattform-Einschränkung: WCAG 3.1.2 (`lang`-Attribute) — GitHub entfernt HTML-Attribute.
+
 <!-- EN: CLAUDE.md placeholder
 [DE-Zusammenfassung: CLAUDE.md enthält Anweisungen für den Claude Code Agenten im home-baseline Repository.]
 -->
