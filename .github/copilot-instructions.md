@@ -25,6 +25,18 @@ pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 
 Always use `--dry-run` / `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing anything under `scripts/hooks/`.
 
+## OS-Detection — Script Selection
+
+At the start of each session, detect the OS and call the matching script variant:
+
+| OS | Shell | Extension | Detection |
+|---|---|---|---|
+| Windows | `pwsh` (PowerShell 7+) | `.ps1` | `$IsWindows` / `$env:OS -eq 'Windows_NT'` |
+| macOS | `bash` | `.sh` | `$IsMacOS` / `uname -s` → `Darwin` |
+| Linux | `bash` | `.sh` | `$IsLinux` / `uname -s` → `Linux` |
+
+**Rule:** On Windows always call `pwsh scripts/xyz.ps1`. On macOS/Linux always call `bash scripts/xyz.sh`. Both variants are functionally equivalent — never mix them. Validate changes by running the variant that matches the current OS.
+
 ## Architecture
 
 ### Bootstrap flow (`bootstrap-workspace.sh` / `.ps1`)

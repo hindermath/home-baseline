@@ -29,6 +29,18 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 - **Manueller Secret-Scan:**
   `bash scripts/scan-agent-secrets.sh`
 
+## 🖥 OS-Erkennung — Skript-Auswahl / OS Detection — Script Selection
+
+Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Variante aufrufen:
+
+| Betriebssystem | Shell | Endung | Erkennung |
+|---|---|---|---|
+| Windows | `pwsh` (PowerShell 7+) | `.ps1` | `$IsWindows` / `$env:OS -eq 'Windows_NT'` |
+| macOS | `bash` | `.sh` | `$IsMacOS` / `uname -s` → `Darwin` |
+| Linux | `bash` | `.sh` | `$IsLinux` / `uname -s` → `Linux` |
+
+**Regel:** Auf Windows immer `pwsh scripts/xyz.ps1` aufrufen, auf macOS/Linux immer `bash scripts/xyz.sh`. Beide Varianten sind funktional äquivalent — nie mischen.
+
 ## 📁 Key Directories
 
 - `~/scripts/`: Zentrale Automatisierungsskripte (Bootstrap, Secret-Scan, Hook-Installer).

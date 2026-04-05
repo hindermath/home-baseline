@@ -45,6 +45,18 @@ pwsh ~/scripts/scan-agent-secrets.ps1
 
 Scans `.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/` for leaked credentials. Outputs `high=N medium=M low=L total=T`. Use `--fail-on-high` as a CI gate.
 
+## OS-Detection — Script Selection
+
+At the start of each session, detect the OS and call the matching script variant:
+
+| OS | Shell | Extension | Detection |
+|---|---|---|---|
+| Windows | `pwsh` (PowerShell 7+) | `.ps1` | `$IsWindows` / `$env:OS -eq 'Windows_NT'` |
+| macOS | `bash` | `.sh` | `$IsMacOS` / `uname -s` → `Darwin` |
+| Linux | `bash` | `.sh` | `$IsLinux` / `uname -s` → `Linux` |
+
+**Rule:** On Windows always call `pwsh scripts/xyz.ps1`. On macOS/Linux always call `bash scripts/xyz.sh`. Both variants are functionally equivalent — never mix them.
+
 ## Security Architecture
 
 The `.gitignore` uses a **whitelist model** (`/*` ignores everything; only explicitly listed files are tracked). Never add AI agent directories (`.claude/`, `.junie/`, etc.), credentials files, or dotfiles containing secrets to the tracked whitelist.

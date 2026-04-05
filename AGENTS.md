@@ -32,7 +32,19 @@ pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 
 Use `--dry-run` and `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing files in `scripts/hooks/`.
 
-## Coding Style & Naming Conventions
+## OS-Detection — Skript-Auswahl / OS Detection — Script Selection
+
+At the start of each session, detect the OS and call the matching script variant:
+
+| OS | Shell | Extension | Detection |
+|---|---|---|---|
+| Windows | `pwsh` (PowerShell 7+) | `.ps1` | `$IsWindows` / `$env:OS -eq 'Windows_NT'` |
+| macOS | `bash` | `.sh` | `$IsMacOS` / `uname -s` → `Darwin` |
+| Linux | `bash` | `.sh` | `$IsLinux` / `uname -s` → `Linux` |
+
+**Rule:** On Windows always call `pwsh scripts/xyz.ps1`. On macOS/Linux always call `bash scripts/xyz.sh`. Never mix — both variants are functionally equivalent. When validating changes, run the variant matching the current OS first, then cross-check the other if relevant.
+
+
 Bash scripts use `#!/usr/bin/env bash` plus `set -euo pipefail`. PowerShell scripts require PowerShell 7, `Set-StrictMode -Version Latest`, and `$ErrorActionPreference = 'Stop'`. Match the existing style:
 
 - Two-space indentation in Bash, four spaces in PowerShell.
