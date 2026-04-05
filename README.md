@@ -467,6 +467,25 @@ pwsh ~/scripts/check-homogeneity.ps1
 
 ### Änderungen am Template entwickeln / Develop template changes
 
+**Mit KI-Agent / With AI agent:**
+
+```bash
+# 1. In den Klon wechseln
+cd ~/home-baseline-tmp
+
+# 2. KI-Agent starten — der Agent macht Änderungen, committet und pusht selbst
+claude      # Claude Code
+# gemini    # Gemini CLI
+# codex     # OpenAI Codex
+# opencode  # OpenCode
+
+# 3. Nach dem Push des Agenten: ~/ synchronisieren
+bash ~/scripts/sync-home.sh --no-pull
+# pwsh ~/scripts/sync-home.ps1 -NoPull  # Windows
+```
+
+**Manuell / Manually:**
+
 ```bash
 # 1. In den Klon wechseln
 cd ~/home-baseline-tmp
