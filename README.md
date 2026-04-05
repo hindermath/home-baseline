@@ -700,7 +700,7 @@ pwsh ~/scripts/check-homogeneity.ps1
 > cloned repo to the correct places in your home directory and automatically creates
 > a Git commit. The `check-homogeneity` call then checks that everything is correctly present.*
 
-**Ziel:** Score ≥ 90 % / *Goal: Score ≥ 90 %*
+**Ziel:** Score 100 % — kein einziger FAIL / *Goal: Score 100 % — zero FAILs*
 
 ---
 
@@ -747,10 +747,10 @@ Die Ausgabe zeigt dir für jede Datei und jeden Check, ob alles in Ordnung ist:
 - `WARN` — Warnung, sollte behoben werden
 - `✗ FAIL` — Fehler, muss behoben werden
 
-Am Ende siehst du einen **Score in Prozent**. Ziel ist ≥ 90 %.
+Am Ende siehst du einen **Score in Prozent**. Ziel ist 100 % (kein einziges FAIL) — das Skript gibt Exit-Code 1 zurück, sobald auch nur ein FAIL auftritt.
 
 *The output shows you for each file and check whether everything is in order.
-At the end you see a score in percent. Goal is ≥ 90 %.*
+At the end you see a score in percent. Goal is 100 % (zero FAILs) — the script returns exit code 1 as soon as a single FAIL occurs.*
 
 ---
 
@@ -1132,7 +1132,7 @@ Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht 
 │     │  → Führt alle Tasks aus tasks.md aus                  │
 ├─────┼───────────────────────────────────────────────────────┤
 │  8  │  bash scripts/check-homogeneity.sh .                  │
-│     │  → Prüft Compliance-Score ≥ 90 %                      │
+│     │  → Exit 0 = keine FAILs (100 % Pflicht-Checks)        │
 └─────┴───────────────────────────────────────────────────────┘
 ```
 
