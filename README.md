@@ -250,9 +250,9 @@ Oder: [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/
 
 ### 5. Node.js ≥ 18 *(für npm-basierte KI-Agenten / for npm-based AI agents)*
 
-Wird für die Installation von Claude Code, Gemini CLI und Codex CLI via `npm` benötigt.
+Wird für die Installation von **Gemini CLI** und **Codex CLI** via `npm` benötigt. Claude Code hat einen eigenen nativen Installer und benötigt Node.js **nicht** mehr.
 
-*Required to install Claude Code, Gemini CLI, and Codex CLI via `npm`.*
+*Required to install **Gemini CLI** and **Codex CLI** via `npm`. Claude Code has its own native installer and no longer requires Node.js.*
 
 | Plattform | Installation |
 |---|---|
@@ -974,7 +974,7 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 | GitHub-Account | ✅ | Repo-Hosting |
 | KI-Agent (mind. einer) | ✅ | Führt die Spec-Kit-Skills aus |
 | `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) |
-| Node.js ≥ 18 | für npm-Agenten | Claude Code, Gemini CLI, Codex CLI installieren |
+| Node.js ≥ 18 | für npm-Agenten | Gemini CLI, Codex CLI installieren (Claude Code: nicht nötig) |
 | `gh` CLI | empfohlen | GitHub Copilot CLI; Issues aus Tasks anlegen |
 
 Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` geprüft.
@@ -1019,29 +1019,34 @@ Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis auto
 
 *Claude automatically discovers Spec-Kit commands via `.claude/commands/`.*
 
-> **Voraussetzung / Prerequisite:** Node.js ≥ 18, Anthropic-Account (kostenlos oder Pro)
+> **Voraussetzung / Prerequisite:** Anthropic-Account (Pro, Max, Teams oder Enterprise) — kein Node.js nötig.
+>
+> *An Anthropic account (Pro, Max, Teams or Enterprise) is required — Node.js is not needed.*
 
 | Plattform | Installation |
 |---|---|
-| macOS | `brew install node` (falls noch nicht), dann `npm install -g @anthropic-ai/claude-code` |
-| Linux | `sudo npm install -g @anthropic-ai/claude-code` |
-| Windows | `npm install -g @anthropic-ai/claude-code` |
+| macOS / Linux / WSL | `curl -fsSL https://claude.ai/install.sh \| bash` |
+| macOS (Homebrew) | `brew install --cask claude-code` |
+| Windows PowerShell | `irm https://claude.ai/install.ps1 \| iex` |
+| Windows (WinGet) | `winget install Anthropic.ClaudeCode` |
 
 ```bash
 # 1. Claude Code installieren
-# macOS / Windows:
-npm install -g @anthropic-ai/claude-code
-# Linux:
-sudo npm install -g @anthropic-ai/claude-code
+# macOS / Linux / WSL:
+curl -fsSL https://claude.ai/install.sh | bash
+# macOS (Homebrew):
+# brew install --cask claude-code
+# Windows PowerShell:
+# irm https://claude.ai/install.ps1 | iex
 
-# 2. Anmelden (Browser öffnet sich automatisch)
-claude auth login
+# 2. Anmelden (Browser öffnet sich beim ersten Start automatisch)
+claude
 
 # 3. In deinem Projektverzeichnis starten
 claude
 ```
 
-Weitere Infos: [docs.anthropic.com/claude-code](https://docs.anthropic.com/en/docs/claude-code)
+Weitere Infos: [code.claude.com/docs/de/setup](https://code.claude.com/docs/de/setup)
 
 ---
 
