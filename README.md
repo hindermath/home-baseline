@@ -1026,15 +1026,15 @@ Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis auto
 | Plattform | Installation |
 |---|---|
 | macOS / Linux / WSL | `curl -fsSL https://claude.ai/install.sh \| bash` |
-| macOS (Homebrew) | `brew install --cask claude-code` |
+| macOS / Linux (Homebrew) | `brew install --cask claude-code` |
 | Windows PowerShell | `irm https://claude.ai/install.ps1 \| iex` |
 | Windows (WinGet) | `winget install Anthropic.ClaudeCode` |
 
 ```bash
 # 1. Claude Code installieren
-# macOS / Linux / WSL:
+# macOS / Linux / WSL (nativer Installer / native installer):
 curl -fsSL https://claude.ai/install.sh | bash
-# macOS (Homebrew):
+# macOS / Linux (Homebrew, falls installiert / if Homebrew is installed):
 # brew install --cask claude-code
 # Windows PowerShell:
 # irm https://claude.ai/install.ps1 | iex
