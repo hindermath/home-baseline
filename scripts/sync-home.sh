@@ -112,7 +112,7 @@ if $OPT_COMMIT; then
     echo ""
   fi
 
-  if git diff --quiet && git diff --staged --quiet; then
+  if [ -z "$(git status --short)" ]; then
     echo "→ Keine Änderungen in ~/ — kein Commit nötig."
   else
     git add -A
