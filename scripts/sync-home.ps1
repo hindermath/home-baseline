@@ -15,6 +15,15 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepoDir   = Split-Path -Parent $ScriptDir   # ein Verzeichnis über scripts/
 $HomeDir   = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 
+# Falls aus ~/scripts/ aufgerufen (RepoDir == HomeDir), automatisch home-baseline-tmp nutzen
+if ($RepoDir -eq $HomeDir) {
+    $RepoDir = Join-Path $HomeDir 'home-baseline-tmp'
+    if (-not (Test-Path $RepoDir)) {
+        Write-Error "~/home-baseline-tmp nicht gefunden.`nBitte zuerst: git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp"
+        exit 1
+    }
+}
+
 $DoPull   = -not $NoPull
 $DoCommit = -not $NoCommit
 if ($WhatIfPreference) { $DoPull = $false; $DoCommit = $false }

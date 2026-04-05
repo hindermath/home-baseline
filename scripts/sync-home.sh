@@ -15,6 +15,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 HOME_DIR="${HOME}"
 
+# Falls aus ~/scripts/ aufgerufen (REPO_DIR == HOME_DIR), automatisch home-baseline-tmp nutzen
+if [ "$REPO_DIR" = "$HOME_DIR" ]; then
+  REPO_DIR="${HOME_DIR}/home-baseline-tmp"
+  if [ ! -d "$REPO_DIR" ]; then
+    echo "Fehler: ~/home-baseline-tmp nicht gefunden." >&2
+    echo "Bitte zuerst: git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp" >&2
+    exit 1
+  fi
+fi
+
 OPT_PULL=true
 OPT_COMMIT=true
 OPT_DRY_RUN=false
