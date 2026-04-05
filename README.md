@@ -336,7 +336,10 @@ Der Bootstrap-Vorgang erledigt automatisch:
 
 ```bash
 cd ~
+# Mit git:
 git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
+# Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
+# gh repo clone YOUR_USERNAME/home-baseline home-baseline-tmp
 
 # Scripts und Konfiguration einrichten
 cp -r home-baseline-tmp/scripts/. ~/scripts/
@@ -363,7 +366,10 @@ bash ~/scripts/check-homogeneity.sh ~/
 
 ```powershell
 Set-Location ~
+# Mit git:
 git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
+# Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
+# gh repo clone YOUR_USERNAME/home-baseline home-baseline-tmp
 
 # Scripts und Konfiguration einrichten
 Copy-Item home-baseline-tmp/scripts/* ~/scripts/ -Recurse -Force
@@ -415,13 +421,19 @@ Dieser Abschnitt richtet sich an **`hindermath`** — also die Person, die diese
 
 ```bash
 # macOS / Linux / Ubuntu (auch WSL)
+# Mit git:
 git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
+# Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
+# gh repo clone hindermath/home-baseline ~/home-baseline-tmp
 bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 ```
 
 ```powershell
 # Windows (PowerShell Core >= 7)
+# Mit git:
 git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
+# Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
+# gh repo clone hindermath/home-baseline ~/home-baseline-tmp
 pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 ```
 
