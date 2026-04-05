@@ -8,6 +8,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.4.2](https://github.com/hindermath/home-baseline/compare/v0.4.1...v0.4.2) (2026-04-05)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* Claude Code Installationsanleitung auf nativen Installer aktualisiert ([b35977e](https://github.com/hindermath/home-baseline/commit/b35977e55953357001c17bfe66283322767abd9e))
+
+
+### Documentation / Dokumentation
+
+* Claude Code Homebrew-Installation auch fuer Linux dokumentiert ([2c75a75](https://github.com/hindermath/home-baseline/commit/2c75a75aea773bec6681782a02659e067c87739f))
+* WinGet als Windows-Alternative fuer Claude Code im Code-Block ergaenzt ([df348dd](https://github.com/hindermath/home-baseline/commit/df348dda136f9a51114799a530fc55b1fda2bff8))
+
 ## [0.4.1](https://github.com/hindermath/home-baseline/compare/v0.4.0...v0.4.1) (2026-04-05)
 
 
