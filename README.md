@@ -328,6 +328,10 @@ Der Bootstrap-Vorgang erledigt automatisch:
 
 ## Ersteinrichtung dieses Repos auf einem neuen Gerät / Initial setup on a new device
 
+> **Für wen?** Dieser Abschnitt richtet sich an **Auszubildende und End-User**, die das Template genutzt haben und ihr eigenes Repo auf einem neuen Gerät einrichten möchten. Als Template-Entwickler (`hindermath`) nutze stattdessen den [Template-Entwickler-Workflow](#template-entwickler-workflow--template-developer-workflow).
+>
+> *Who is this for? This section is for **apprentices and end-users** who used the template and want to set up their own repo on a new device. As the template author (`hindermath`), use the [Template Developer Workflow](#template-entwickler-workflow--template-developer-workflow) instead.*
+
 ### macOS / Linux
 
 ```bash
@@ -403,21 +407,21 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 
 ## Template-Entwickler-Workflow / Template Developer Workflow
 
-Dieser Abschnitt richtet sich an Personen, die **dieses Repo selbst weiterentwickeln** — also neue Scripts, Checks oder Dokumentation hinzufügen möchten.
+Dieser Abschnitt richtet sich an **`hindermath`** — also die Person, die dieses Template-Repo selbst weiterentwickelt und auf mehreren Geräten (z. B. Windows + WSL Ubuntu) arbeitet.
 
-*This section is for people who want to **contribute to this template repo** — adding new scripts, checks, or documentation.*
+*This section is for **`hindermath`** — the person maintaining this template repo across multiple machines (e.g. Windows + WSL Ubuntu).*
 
 ### Einmalig auf jeder neuen Maschine / One-time setup per machine
 
 ```bash
-# macOS / Linux / Ubuntu
-git clone https://github.com/YOUR_USERNAME/home-baseline.git ~/home-baseline-tmp
+# macOS / Linux / Ubuntu (auch WSL)
+git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
 bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 ```
 
 ```powershell
 # Windows (PowerShell Core >= 7)
-git clone https://github.com/YOUR_USERNAME/home-baseline.git ~/home-baseline-tmp
+git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
 pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 ```
 
