@@ -16,6 +16,7 @@ private GitHub repository within seconds.*
 - [Was ist dieses Template-Repo?](#was-ist-dieses-template-repo--what-is-this-template-repo)
   - [Unterschied Fork vs. Template](#unterschied-fork-vs-template--fork-vs-template)
   - [So nutzt du dieses Template](#so-nutzt-du-dieses-template--how-to-use-this-template)
+  - [Template-Updates übernehmen](#template-updates-übernehmen--syncing-updates-from-the-template)
 - [Voraussetzungen](#voraussetzungen--prerequisites)
   - [Node.js ≥ 18](#5-nodejs--18-für-npm-basierte-ki-agenten--for-npm-based-ai-agents)
 - [Neuen Workspace einrichten](#neuen-workspace-einrichten--create-new-workspace)
@@ -114,7 +115,34 @@ any permanent connection to the source.*
 
 ---
 
-## Voraussetzungen / Prerequisites
+### Template-Updates übernehmen / Syncing updates from the template
+
+Da „Use this template" ein **unabhängiges Repo** ohne Upstream-Verbindung erstellt, gibt es keinen automatischen Update-Mechanismus. Updates (z. B. neue Scripts, CI-Fixes) müssen manuell übernommen werden.
+
+*Since "Use this template" creates an **independent repo** with no upstream link, there is no automatic update mechanism. Updates (e.g. new scripts, CI fixes) must be pulled in manually.*
+
+```bash
+# 1. Template einmalig als Remote hinzufügen (one-time)
+git remote add upstream https://github.com/hindermath/home-baseline.git
+
+# 2. Änderungen vom Template holen
+git fetch upstream
+
+# 3. Beim ersten Mal: --allow-unrelated-histories nötig (keine gemeinsame History)
+git merge upstream/main --allow-unrelated-histories
+
+# 4. Bei späteren Updates (gemeinsame History vorhanden)
+git merge upstream/main
+```
+
+> **Achtung / Warning:** Beim Merge können Konflikte in `README.md` oder Agenten-Dateien entstehen,
+> die du bereits angepasst hast. Behalte deine eigenen Anpassungen und übernehme nur die
+> gewünschten Änderungen aus dem Template (z. B. neue Scripts unter `scripts/`).
+>
+> *Conflicts may occur in `README.md` or agent files you have customised. Keep your own
+> changes and selectively adopt only the desired updates from the template (e.g. new scripts).*
+
+
 
 Diese Tools müssen auf jedem Gerät **vor** dem ersten Clonen installiert und eingerichtet sein.
 
