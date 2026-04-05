@@ -998,13 +998,13 @@ OpenCode liest ebenfalls `AGENTS.md` und unterstützt damit denselben Kontext wi
 
 | Plattform | Installation |
 |---|---|
-| macOS | `brew install sst/tap/opencode` |
+| macOS | `brew install anomalyco/tap/opencode` |
 | Linux | `curl -fsSL https://opencode.ai/install \| sh` |
 | Windows | `iwr https://opencode.ai/install.ps1 \| iex` (PowerShell) |
 
 ```bash
 # macOS
-brew install sst/tap/opencode
+brew install anomalyco/tap/opencode
 
 # Linux
 curl -fsSL https://opencode.ai/install | sh
