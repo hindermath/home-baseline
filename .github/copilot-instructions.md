@@ -7,6 +7,25 @@ It tracks only safe infrastructure files via a whitelist `.gitignore` and distri
 
 `home-baseline` manages workspace initialisation: it provides scripts that turn a plain directory into a private GitHub repo with `.gitignore`, standard scripts, and a `pre-push` secret-scanning hook installed. It does **not** contain application source code.
 
+## Working Directory
+
+**IMPORTANT:** Always work in `~/home-baseline-tmp` — this is the git clone with the GitHub remote. `~/` is a local copy only (no remote) and changes there cannot be pushed.
+
+```bash
+cd ~/home-baseline-tmp   # ← start Copilot CLI here
+gh copilot
+# → make changes, commit, push
+
+# After push: sync to ~/
+bash ~/scripts/sync-home.sh --no-pull   # macOS/Linux
+pwsh ~/scripts/sync-home.ps1 -NoPull   # Windows
+```
+
+| Directory | Git-Remote | Purpose |
+|---|---|---|
+| `~/home-baseline-tmp` | ✅ `origin` → GitHub | Development, commits, push |
+| `~/` | ❌ no remote | Local copy for scripts & hooks |
+
 ## Validation Commands
 
 There is no build step. Validate changes by running scripts directly.

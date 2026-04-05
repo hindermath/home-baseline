@@ -10,6 +10,24 @@ Die "home-baseline" verfolgt einen **Multi-Repo-Ansatz**. Das Root-Verzeichnis s
 - **Automatisierung:** Nutzung von Bash (macOS/Linux) und PowerShell Core (Windows) für plattformübergreifende Kompatibilität.
 - **Sicherheit:** Integrierter Secret-Scan für KI-Agenten-Verzeichnisse (`.gemini`, `.claude`, `.vscode`, etc.).
 
+## 📂 Arbeitsverzeichnis / Working Directory
+
+**WICHTIG / IMPORTANT:** Always work in `~/home-baseline-tmp` — this is the git clone with the GitHub remote. `~/` is a local copy only (no remote) and changes there cannot be pushed.
+
+```bash
+cd ~/home-baseline-tmp   # ← start Gemini CLI here
+gemini
+# → make changes, commit, push
+
+# After push: sync to ~/
+bash ~/scripts/sync-home.sh --no-pull
+```
+
+| Verzeichnis / Directory | Git-Remote | Zweck / Purpose |
+|---|---|---|
+| `~/home-baseline-tmp` | ✅ `origin` → GitHub | Entwicklung, Commits, Push |
+| `~/` | ❌ kein Remote | Lokale Kopie für Scripts & Hooks |
+
 ## 🚀 Key Workflows & Commands
 
 ### Einen neuen Workspace einrichten

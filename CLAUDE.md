@@ -8,6 +8,25 @@ Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur
 
 *This repository is the **top-level** private workspace infrastructure. This file contains instructions for the Claude Code agent.*
 
+## Arbeitsverzeichnis / Working Directory
+
+**WICHTIG / IMPORTANT:** Always work in `~/home-baseline-tmp` — this is the git clone with the GitHub remote. `~/` is a local copy only (no remote) and changes there cannot be pushed.
+
+```bash
+# Correct: start Claude Code here
+cd ~/home-baseline-tmp
+claude
+# → make changes, commit, push
+
+# After push: sync to ~/
+bash ~/scripts/sync-home.sh --no-pull
+```
+
+| Verzeichnis / Directory | Git-Remote | Zweck / Purpose |
+|---|---|---|
+| `~/home-baseline-tmp` | ✅ `origin` → GitHub | Entwicklung, Commits, Push |
+| `~/` | ❌ kein Remote | Lokale Kopie für Scripts & Hooks |
+
 ## Repository Purpose
 
 This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub repositories and enforces security across all projects.

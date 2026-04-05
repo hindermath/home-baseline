@@ -44,6 +44,24 @@ At the start of each session, detect the OS and call the matching script variant
 
 **Rule:** On Windows always call `pwsh scripts/xyz.ps1`. On macOS/Linux always call `bash scripts/xyz.sh`. Never mix — both variants are functionally equivalent. When validating changes, run the variant matching the current OS first, then cross-check the other if relevant.
 
+## Arbeitsverzeichnis / Working Directory
+
+**WICHTIG / IMPORTANT:** Always work in `~/home-baseline-tmp` — this is the git clone with the GitHub remote. `~/` is a local copy only (no remote) and changes there cannot be pushed.
+
+```bash
+# Correct: start agent here
+cd ~/home-baseline-tmp
+# → make changes, commit, push
+
+# After push: sync to ~/
+bash ~/scripts/sync-home.sh --no-pull
+```
+
+| Verzeichnis / Directory | Git-Remote | Zweck / Purpose |
+|---|---|---|
+| `~/home-baseline-tmp` | ✅ `origin` → GitHub | Entwicklung, Commits, Push |
+| `~/` | ❌ kein Remote | Lokale Kopie für Scripts & Hooks |
+
 
 Bash scripts use `#!/usr/bin/env bash` plus `set -euo pipefail`. PowerShell scripts require PowerShell 7, `Set-StrictMode -Version Latest`, and `$ErrorActionPreference = 'Stop'`. Match the existing style:
 
