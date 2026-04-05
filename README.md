@@ -1119,13 +1119,19 @@ Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht 
 │  3  │  speckit.plan                                         │
 │     │  → Erstellt specs/{branch}/plan.md                    │
 ├─────┼───────────────────────────────────────────────────────┤
-│  4  │  speckit.tasks                                        │
+│  4  │  speckit.checklist                                    │
+│     │  → Erstellt individuelle Feature-Checkliste           │
+├─────┼───────────────────────────────────────────────────────┤
+│  5  │  speckit.tasks                                        │
 │     │  → Erstellt specs/{branch}/tasks.md                   │
 ├─────┼───────────────────────────────────────────────────────┤
-│  5  │  speckit.implement                                    │
+│  6  │  speckit.analyze                                      │
+│     │  → Prüft Konsistenz: spec.md, plan.md, tasks.md       │
+├─────┼───────────────────────────────────────────────────────┤
+│  7  │  speckit.implement                                    │
 │     │  → Führt alle Tasks aus tasks.md aus                  │
 ├─────┼───────────────────────────────────────────────────────┤
-│  6  │  bash scripts/check-homogeneity.sh .                  │
+│  8  │  bash scripts/check-homogeneity.sh .                  │
 │     │  → Prüft Compliance-Score ≥ 90 %                      │
 └─────┴───────────────────────────────────────────────────────┘
 ```
@@ -1175,11 +1181,25 @@ Copilot:
   → Enthält: Architektur, Dateistruktur, Abhängigkeiten
 
 Du:
+  speckit.checklist
+
+Copilot:
+  → Erstellt individuelle Checkliste für das Feature
+  → Enthält: Akzeptanzkriterien, Testpunkte, Randfälle
+
+Du:
   speckit.tasks
 
 Copilot:
   → Erstellt: specs/001-login-github-oauth/tasks.md
   → Enthält: geordnete Task-Liste mit Abhängigkeiten
+
+Du:
+  speckit.analyze
+
+Copilot:
+  → Prüft Konsistenz zwischen spec.md, plan.md und tasks.md
+  → Meldet Lücken oder Widersprüche vor der Implementierung
 
 Du:
   speckit.implement
