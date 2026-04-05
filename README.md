@@ -840,6 +840,7 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 | `git` ≥ 2.30 | ✅ | Feature-Branches; Spec-Artefakte werden versioniert |
 | GitHub-Account | ✅ | Repo-Hosting |
 | KI-Agent (mind. einer) | ✅ | Führt die Spec-Kit-Skills aus |
+| `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) |
 | Node.js ≥ 18 | für npm-Agenten | Claude Code, Gemini CLI, Codex CLI installieren |
 | `gh` CLI | empfohlen | GitHub Copilot CLI; Issues aus Tasks anlegen |
 
@@ -1028,6 +1029,30 @@ GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
 ---
 
 ### Verzeichnis für Spec-Kit vorbereiten / Prepare a directory
+
+#### `uv` und `specify-cli` installieren / Install `uv` and `specify-cli`
+
+`specify` benötigt den Python-Paketmanager `uv`. Installiere zuerst `uv`, dann `specify-cli`:
+
+*`specify` requires the Python package manager `uv`. Install `uv` first, then `specify-cli`:*
+
+| Plattform | `uv` installieren |
+|---|---|
+| macOS | `brew install uv` |
+| Linux | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| Windows | `winget install --id astral-sh.uv` (oder `pip install uv`) |
+
+```bash
+# specify-cli installieren (einmalig / one-time)
+# vX.Y.Z durch den aktuellen Release-Tag ersetzen / replace vX.Y.Z with the latest tag
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
+```
+
+> Den aktuellen Release-Tag findest du unter: [github.com/github/spec-kit/releases](https://github.com/github/spec-kit/releases)
+
+---
+
+#### Spec-Kit initialisieren / Initialize Spec-Kit
 
 Initialisiere Spec-Kit in einem Projektverzeichnis mit dem `specify init`-Befehl:
 
