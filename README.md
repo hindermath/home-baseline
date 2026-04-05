@@ -107,7 +107,10 @@ any permanent connection to the source.*
 3. Eigenen Repository-Namen und Sichtbarkeit (Private empfohlen) wählen
 4. Repo klonen und die [Ersteinrichtung](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device) durchführen
 
-*1. Go to [github.com/hindermath/home-baseline](https://github.com/hindermath/home-baseline) · 2. Click **"Use this template"** → **"Create a new repository"** · 3. Choose your repository name and visibility (Private recommended) · 4. Clone the repo and follow the [initial setup](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device).*
+1. *Go to [github.com/hindermath/home-baseline](https://github.com/hindermath/home-baseline)*
+2. *Click **"Use this template"** → **"Create a new repository"***
+3. *Choose your repository name and visibility (Private recommended)*
+4. *Clone the repo and follow the [initial setup](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)*
 
 > **Hinweis für Auszubildende:** Ihr erhaltet vom Ausbilder die URL des Template-Repos.
 > Erstellt euer eigenes Repo über „Use this template" — ihr seid dann vollständig unabhängig
