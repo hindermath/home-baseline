@@ -136,17 +136,64 @@ git merge upstream/main
 ```
 
 > **Achtung / Warning:** Beim Merge können Konflikte in `README.md` oder Agenten-Dateien entstehen,
-> die du bereits angepasst hast. Behalte deine eigenen Anpassungen und übernehme nur die
-> gewünschten Änderungen aus dem Template (z. B. neue Scripts unter `scripts/`).
+> die du bereits angepasst hast. Drei Strategien:
 >
-> *Conflicts may occur in `README.md` or agent files you have customised. Keep your own
-> changes and selectively adopt only the desired updates from the template (e.g. new scripts).*
+> *Conflicts may occur in `README.md` or agent files you have customised. Three strategies:*
+
+**Strategie 1 / Strategy 1: Nur `scripts/` selektiv übernehmen (empfohlen / recommended)**
+
+```bash
+git fetch upstream
+
+# Nur scripts/ aus dem Template übernehmen — eigene Dateien bleiben unangetastet
+# Only take scripts/ from template — your own files stay untouched
+git checkout upstream/main -- scripts/
+
+# Änderungen prüfen und committen / Review and commit
+git diff --staged
+git commit -m "chore: scripts/ vom Template aktualisiert"
+```
+
+**Strategie 2 / Strategy 2: Vorher schauen was sich geändert hat**
+
+```bash
+git fetch upstream
+
+# Was hat sich im Template geändert? / What changed in the template?
+git log upstream/main --oneline --not HEAD
+
+# Diff nur für scripts/ anzeigen / Show diff for scripts/ only
+git diff HEAD upstream/main -- scripts/
+
+# Diff für README anzeigen / Show diff for README
+git diff HEAD upstream/main -- README.md
+```
+
+**Strategie 3 / Strategy 3: Einzelne Commits cherry-picken**
+
+```bash
+git fetch upstream
+
+# Commit-History des Templates ansehen / View template commit history
+git log upstream/main --oneline
+
+# Nur einen bestimmten Commit übernehmen / Cherry-pick a specific commit
+git cherry-pick <commit-sha>
+```
+
+> Dateien mit eigenen Anpassungen (`README.md`, `AGENTS.md`, `CLAUDE.md` usw.) am besten
+> **nicht** per `git checkout upstream/main -- README.md` überschreiben, sondern manuell
+> vergleichen und gewünschte Passagen herauskopieren.
+>
+> *Files with your own customisations (`README.md`, agent files etc.) should **not** be
+> overwritten with `git checkout upstream/main -- README.md`. Instead compare manually
+> and copy over only the desired passages.*
+
+---
+
+## Voraussetzungen / Prerequisites
 
 
-
-Diese Tools müssen auf jedem Gerät **vor** dem ersten Clonen installiert und eingerichtet sein.
-
-*These tools must be installed and configured on every device **before** the first clone.*
 
 ### 1. Git
 
