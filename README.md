@@ -17,6 +17,7 @@ private GitHub repository within seconds.*
   - [Unterschied Fork vs. Template](#unterschied-fork-vs-template--fork-vs-template)
   - [So nutzt du dieses Template](#so-nutzt-du-dieses-template--how-to-use-this-template)
 - [Voraussetzungen](#voraussetzungen--prerequisites)
+  - [Node.js ≥ 18](#5-nodejs--18-für-npm-basierte-ki-agenten--for-npm-based-ai-agents)
 - [Neuen Workspace einrichten](#neuen-workspace-einrichten--create-new-workspace)
   - [macOS / Linux](#macos--linux)
   - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7)
@@ -161,7 +162,26 @@ Oder: [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/
 | Linux | `sudo apt install ripgrep` / `sudo dnf install ripgrep` |
 | Windows | `winget install --id BurntSushi.ripgrep.MSVC` |
 
-### 5. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
+### 5. Node.js ≥ 18 *(für npm-basierte KI-Agenten / for npm-based AI agents)*
+
+Wird für die Installation von Claude Code, Gemini CLI und Codex CLI via `npm` benötigt.
+
+*Required to install Claude Code, Gemini CLI, and Codex CLI via `npm`.*
+
+| Plattform | Installation |
+|---|---|
+| macOS | `brew install node` oder [nodejs.org](https://nodejs.org/en/download) |
+| Linux | `sudo apt install nodejs npm` / `sudo dnf install nodejs` |
+| Windows | `winget install --id OpenJS.NodeJS.LTS` oder [nodejs.org](https://nodejs.org/en/download) |
+
+Nach der Installation prüfen / Verify installation:
+
+```bash
+node --version   # ≥ 18 erwartet
+npm --version
+```
+
+### 6. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
 
 ```powershell
 Install-Module -Name posh-git            -Scope CurrentUser -Force  # Git-Prompt + Tab-Completion
@@ -813,7 +833,7 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 | `git` ≥ 2.30 | ✅ | Feature-Branches; Spec-Artefakte werden versioniert |
 | GitHub-Account | ✅ | Repo-Hosting |
 | KI-Agent (mind. einer) | ✅ | Führt die Spec-Kit-Skills aus |
-| `bash` ≥ 5 oder PowerShell 7 | ✅ | Interne Spec-Kit-Hilfsskripte |
+| Node.js ≥ 18 | für npm-Agenten | Claude Code, Gemini CLI, Codex CLI installieren |
 | `gh` CLI | empfohlen | GitHub Copilot CLI; Issues aus Tasks anlegen |
 
 Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` geprüft.
@@ -831,86 +851,154 @@ Dieses Repo unterstützt alle fünf nachfolgend beschriebenen Agenten.
 
 Spec-Kit-Skills in `.agents/skills/` werden von der Copilot CLI automatisch erkannt — keine weitere Einrichtung nötig.
 
+*Spec-Kit skills in `.agents/skills/` are automatically discovered by the Copilot CLI — no further setup needed.*
+
+> **Voraussetzung / Prerequisite:** GitHub CLI `gh` (s. Abschnitt [§ 2. GitHub CLI](#2-github-cli-gh))
+
 ```bash
-# 1. GitHub CLI installieren: https://cli.github.com
-# 2. GitHub Copilot CLI-Extension installieren
+# Alle Plattformen / All platforms
+# 1. Copilot-Extension installieren (einmalig / one-time)
 gh extension install github/gh-copilot
 
-# 3. Anmelden (falls noch nicht geschehen)
+# 2. Anmelden (falls noch nicht geschehen / if not already done)
 gh auth login
 
-# 4. In deinem Projektverzeichnis die Copilot CLI öffnen
-#    oder direkt im VS Code / Terminal-Editor
+# 3. Copilot CLI in deinem Projektverzeichnis starten
 gh copilot
 ```
 
 > Skills werden automatisch aus `.agents/skills/` geladen.  
 > Aufruf im Chat: `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, …
 
+---
+
 #### Claude Code
 
 Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis automatisch.
 
+*Claude automatically discovers Spec-Kit commands via `.claude/commands/`.*
+
+> **Voraussetzung / Prerequisite:** Node.js ≥ 18, Anthropic-Account (kostenlos oder Pro)
+
+| Plattform | Installation |
+|---|---|
+| macOS | `brew install node` (falls noch nicht), dann `npm install -g @anthropic-ai/claude-code` |
+| Linux | `npm install -g @anthropic-ai/claude-code` |
+| Windows | `npm install -g @anthropic-ai/claude-code` |
+
 ```bash
-# 1. Claude Code installieren: https://claude.ai/code
-#    oder via npm:
+# 1. Claude Code installieren
 npm install -g @anthropic-ai/claude-code
 
-# 2. In deinem Projektverzeichnis starten
-claude
+# 2. Anmelden (Browser öffnet sich automatisch)
+claude auth login
 
-# Verfügbare Kommandos im Chat:
-# /speckit.specify "Feature-Beschreibung"
-# /speckit.clarify
-# /speckit.plan
-# /speckit.tasks
-# /speckit.implement
+# 3. In deinem Projektverzeichnis starten
+claude
 ```
+
+Weitere Infos: [docs.anthropic.com/claude-code](https://docs.anthropic.com/en/docs/claude-code)
+
+---
 
 #### Gemini CLI
 
+Gemini erkennt Spec-Kit-Kommandos über das `.gemini/commands/`-Verzeichnis automatisch.
+
+*Gemini automatically discovers Spec-Kit commands via `.gemini/commands/`.*
+
+> **Voraussetzung / Prerequisite:** Node.js ≥ 18, Google-Account
+
+| Plattform | Installation |
+|---|---|
+| macOS | `npm install -g @google/gemini-cli` |
+| Linux | `npm install -g @google/gemini-cli` |
+| Windows | `npm install -g @google/gemini-cli` |
+
 ```bash
-# 1. Gemini CLI installieren: https://gemini.google.com/cli
-#    oder via npm:
+# 1. Gemini CLI installieren
 npm install -g @google/gemini-cli
 
-# 2. Authentifizieren
+# 2. Authentifizieren (Browser öffnet sich automatisch)
 gemini auth login
 
 # 3. In deinem Projektverzeichnis starten
 gemini
-
-# Spec-Kit-Kommandos sind über .gemini/commands/ verfügbar
 ```
+
+Weitere Infos: [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
+
+---
 
 #### Codex CLI (OpenAI)
 
 Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) stehen als Eingabe zur Verfügung.
 
+*Codex reads `AGENTS.md` as project context; all Spec-Kit artefacts are available as input.*
+
+> **Voraussetzung / Prerequisite:** Node.js ≥ 18, OpenAI-Account mit API-Key
+
+| Plattform | Installation |
+|---|---|
+| macOS | `npm install -g @openai/codex` |
+| Linux | `npm install -g @openai/codex` |
+| Windows | `npm install -g @openai/codex` |
+
 ```bash
-# 1. Codex CLI installieren: https://github.com/openai/codex
+# 1. Codex CLI installieren
 npm install -g @openai/codex
 
-# 2. API-Key setzen
+# 2. API-Key setzen (einmalig / one-time)
+# macOS / Linux:
 export OPENAI_API_KEY="sk-..."
+# Windows (PowerShell):
+$env:OPENAI_API_KEY = "sk-..."
 
 # 3. In deinem Projektverzeichnis starten
 codex
-
-# AGENTS.md wird automatisch als Projektkontext geladen.
 ```
+
+> Tipp / Tip: Den API-Key dauerhaft in `~/.zshrc`, `~/.bashrc` oder dem Windows-Benutzerprofil eintragen, nicht im Repo speichern.
+
+Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
+
+---
 
 #### OpenCode
 
 OpenCode liest ebenfalls `AGENTS.md` und unterstützt damit denselben Kontext wie Codex.
 
-```bash
-# 1. OpenCode installieren: https://opencode.ai
-# 2. In deinem Projektverzeichnis starten
-opencode
+*OpenCode also reads `AGENTS.md` and therefore supports the same project context as Codex.*
 
-# AGENTS.md wird automatisch geladen.
+> **Voraussetzung / Prerequisite:** Kein Node.js nötig — natives Binary / No Node.js required — native binary
+
+| Plattform | Installation |
+|---|---|
+| macOS | `brew install sst/tap/opencode` |
+| Linux | `curl -fsSL https://opencode.ai/install \| sh` |
+| Windows | `iwr https://opencode.ai/install.ps1 \| iex` (PowerShell) |
+
+```bash
+# macOS
+brew install sst/tap/opencode
+
+# Linux
+curl -fsSL https://opencode.ai/install | sh
+
+# In deinem Projektverzeichnis starten / Start in your project directory
+opencode
 ```
+
+```powershell
+# Windows (PowerShell 7+)
+iwr https://opencode.ai/install.ps1 | iex
+
+# Starten
+opencode
+```
+
+Weitere Infos: [opencode.ai](https://opencode.ai)  
+GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
 
 ---
 
