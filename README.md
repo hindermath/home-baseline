@@ -98,12 +98,16 @@ any permanent connection to the source.*
 | Eigener Namespace | fork-URL | frei wählbar |
 | Typischer Einsatz | Mitarbeit am Original | Eigene unabhängige Instanz |
 
+*Git history: copied vs. not copied (fresh start) · Original connection: stays vs. none · PRs to original: yes vs. no · Namespace: fork-URL vs. freely chosen · Typical use: contribute to original vs. own independent instance.*
+
 ### So nutzt du dieses Template / How to use this template
 
 1. Auf [github.com/hindermath/home-baseline](https://github.com/hindermath/home-baseline) gehen
 2. Button **„Use this template"** → **„Create a new repository"** klicken
 3. Eigenen Repository-Namen und Sichtbarkeit (Private empfohlen) wählen
 4. Repo klonen und die [Ersteinrichtung](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device) durchführen
+
+*1. Go to [github.com/hindermath/home-baseline](https://github.com/hindermath/home-baseline) · 2. Click **"Use this template"** → **"Create a new repository"** · 3. Choose your repository name and visibility (Private recommended) · 4. Clone the repo and follow the [initial setup](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device).*
 
 > **Hinweis für Auszubildende:** Ihr erhaltet vom Ausbilder die URL des Template-Repos.
 > Erstellt euer eigenes Repo über „Use this template" — ihr seid dann vollständig unabhängig
@@ -310,6 +314,8 @@ Der Bootstrap-Vorgang erledigt automatisch:
 4. Privates GitHub-Repo erstellen (`gh repo create`)
 5. Push zu GitHub
 6. Git-Hooks installieren
+
+*The bootstrap process automatically handles: 1. detecting existing sub-repos and adding them to `.gitignore` · 2. copying standard scripts (`scan-agent-secrets`, `install-hooks`, `pre-push` hook) · 3. `git init` + initial commit · 4. creating a private GitHub repo (`gh repo create`) · 5. pushing to GitHub · 6. installing Git hooks.*
 
 ---
 
