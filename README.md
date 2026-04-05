@@ -448,11 +448,19 @@ pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 ```bash
 # macOS / Linux / Ubuntu — pull + kopieren + Commit in ~/
 bash ~/scripts/sync-home.sh
+# Das Script erkennt ~/home-baseline-tmp automatisch als Quelle.
+
+# Optional: Compliance prüfen / Optional: check compliance
+bash ~/scripts/check-homogeneity.sh ~/
 ```
 
 ```powershell
-# Windows
+# Windows — pull + kopieren + Commit in ~/
 pwsh ~/scripts/sync-home.ps1
+# Das Script erkennt ~/home-baseline-tmp automatisch als Quelle.
+
+# Optional: Compliance prüfen / Optional: check compliance
+pwsh ~/scripts/check-homogeneity.ps1
 ```
 
 ---
