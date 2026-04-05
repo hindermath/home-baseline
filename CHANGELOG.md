@@ -8,6 +8,43 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.4.1](https://github.com/hindermath/home-baseline/compare/v0.4.0...v0.4.1) (2026-04-05)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* Compliance-Score-Ziel auf 100% korrigiert (war irrefuehrend 90%) ([f2bb993](https://github.com/hindermath/home-baseline/commit/f2bb9936d2e53076d286b847a57988d4b58adf43))
+* OpenCode brew-Tap auf anomalyco/tap/opencode korrigiert ([2c0cc59](https://github.com/hindermath/home-baseline/commit/2c0cc59fa86343ec8a1d0eba3b9aa44dce1f1da1))
+* sudo fuer npm install -g unter Linux ergaenzt ([a2092d1](https://github.com/hindermath/home-baseline/commit/a2092d133b7553611c08fd8a12f906158b7653da))
+* sync-home erkennt Aufruf aus ~/scripts/ und nutzt home-baseline-tmp als Quelle ([b18646b](https://github.com/hindermath/home-baseline/commit/b18646b304b6d700cb75dee8190d7c0e18bb5f6b))
+* sync-home initialisiert ~/ automatisch falls noch kein Git-Repo ([78d2d21](https://github.com/hindermath/home-baseline/commit/78d2d21cb3903b7eabf6dacf4d854a43110be355))
+* sync-home.sh erkennt untracked Dateien nach git init ([1b2609e](https://github.com/hindermath/home-baseline/commit/1b2609e518eb2ba3643cbcce555a1a782616b3ee))
+
+
+### Documentation / Dokumentation
+
+* Arbeitsverzeichnis-Hinweis in alle Agenten-Dateien ergaenzt ([4f1fc46](https://github.com/hindermath/home-baseline/commit/4f1fc46c10e670bf07ab88eaa6648f5f99676759))
+* Codex bubblewrap-Hinweis fuer Linux ergaenzt ([7038e8e](https://github.com/hindermath/home-baseline/commit/7038e8eadfa3ac30037f284d1cfe8bbf7b8df8d1))
+* Codex CLI ChatGPT-Anmeldung als Option 2 ergaenzt ([88f760a](https://github.com/hindermath/home-baseline/commit/88f760ab803d136c39a3b42a8dd6895924ddf144))
+* Daily-Sync-Abschnitt um Auto-Detect-Hinweis und optionalen Compliance-Check ergaenzt ([963807d](https://github.com/hindermath/home-baseline/commit/963807dbb57ed54e3f71ea51591369cec48af12a))
+* DE/EN-Labels und Trennung unter 'So nutzt du dieses Template' ergaenzt ([43fcab9](https://github.com/hindermath/home-baseline/commit/43fcab9c569f1b946930b794ce9407d2c2b275ac))
+* EN-Schritte unter 'So nutzt du dieses Template' als nummerierte Liste formatiert ([85b3caa](https://github.com/hindermath/home-baseline/commit/85b3caa5db2d3b2383541e5195105cbc479c76f1))
+* fehlende EN-Uebersetzungen in README ergaenzt ([bbb35a2](https://github.com/hindermath/home-baseline/commit/bbb35a2c3cf0859d572b9ad931407da8bf73c5db))
+* gh CLI Clone-Alternative in Ersteinrichtung und Template-Entwickler-Workflow ergaenzt ([4434c2d](https://github.com/hindermath/home-baseline/commit/4434c2d4b02c86f44bb474b0b9fdc61800c8be9f))
+* install-hooks Schritt nach git clone in Template-Entwickler-Workflow ergaenzt ([b20532c](https://github.com/hindermath/home-baseline/commit/b20532c554301fd88279b7e7a6d7b923013ab211))
+* KI-Agent-Workflow in "Aenderungen am Template entwickeln" ergaenzt ([e19a96a](https://github.com/hindermath/home-baseline/commit/e19a96a8c236189032d4261e3f4bbe304ffe8aaf))
+* KI-Agenten-Installation plattformspezifisch dokumentiert ([d574a77](https://github.com/hindermath/home-baseline/commit/d574a7706ff023e946c6d4e78ff4d4cb255f25be))
+* OpenCode brew-Installation auch fuer Linux dokumentiert ([4ddc564](https://github.com/hindermath/home-baseline/commit/4ddc564e49c6183e58fabd49fd117e84057efb39))
+* OS-Detection Skript-Auswahl in alle Agenten-Dateien ergaenzt ([b3f0c1e](https://github.com/hindermath/home-baseline/commit/b3f0c1e24044261ef375f58a216c814c247fa1af))
+* specify-cli Installation und Spec-Kit-Doku erweitert ([9ed50f4](https://github.com/hindermath/home-baseline/commit/9ed50f4b5a9063dea235e83c3238e780675fb616))
+* speckit.checklist und speckit.analyze in Workflow ergaenzt ([3996489](https://github.com/hindermath/home-baseline/commit/3996489923915c460a1a2c2818577d15372d60ce))
+* Template-Updates-Workflow dokumentiert (upstream remote + merge) ([fde29f2](https://github.com/hindermath/home-baseline/commit/fde29f2956ef2d562dfe511a4cfb42e8abdd37b4))
+* Template-URL auf github.com/hindermath/home-baseline gesetzt ([18aaf03](https://github.com/hindermath/home-baseline/commit/18aaf038819cc815eee9d1f8ef1f6fee74db28fd))
+* TOC vollstaendig auf bilinguales Format aktualisiert ([b9aace7](https://github.com/hindermath/home-baseline/commit/b9aace78a37a626d6d6d40b2d23384984f3f04a9))
+* upstream-Sync mit 3 Strategien und Beispiel-Kommandos ergaenzt ([8faafeb](https://github.com/hindermath/home-baseline/commit/8faafeb219c227cf19a033af360c3ab79009c1f5))
+* uv und specify-cli Installationsanleitung ergaenzt ([5eb179a](https://github.com/hindermath/home-baseline/commit/5eb179a4bbe1f3bb64246395a8fbd3ff57311a99))
+* Zielgruppen in Ersteinrichtung und Template-Entwickler-Workflow klar abgegrenzt ([cbea7b7](https://github.com/hindermath/home-baseline/commit/cbea7b763538ee8e692a15bb2784d34385962b08))
+
 ## [0.4.0](https://github.com/hindermath/home-baseline/compare/v0.3.1...v0.4.0) (2026-04-03)
 
 
