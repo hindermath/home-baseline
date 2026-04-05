@@ -181,6 +181,13 @@ node --version   # ≥ 18 erwartet
 npm --version
 ```
 
+> **Tipp / Tip:** Bei einer systemweiten Node.js-Installation unter Linux (via `apt`/`dnf`) ist `sudo` für globale npm-Pakete erforderlich. Alternativ empfiehlt sich [nvm](https://github.com/nvm-sh/nvm) — damit entfällt `sudo`:
+> ```bash
+> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+> nvm install --lts
+> ```
+> *On Linux with a system-wide Node.js installation, `sudo` is required for global npm packages. Alternatively, use [nvm](https://github.com/nvm-sh/nvm) to avoid `sudo`.*
+
 ### 6. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
 
 ```powershell
@@ -883,12 +890,15 @@ Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis auto
 | Plattform | Installation |
 |---|---|
 | macOS | `brew install node` (falls noch nicht), dann `npm install -g @anthropic-ai/claude-code` |
-| Linux | `npm install -g @anthropic-ai/claude-code` |
+| Linux | `sudo npm install -g @anthropic-ai/claude-code` |
 | Windows | `npm install -g @anthropic-ai/claude-code` |
 
 ```bash
 # 1. Claude Code installieren
+# macOS / Windows:
 npm install -g @anthropic-ai/claude-code
+# Linux:
+sudo npm install -g @anthropic-ai/claude-code
 
 # 2. Anmelden (Browser öffnet sich automatisch)
 claude auth login
@@ -912,12 +922,15 @@ Gemini erkennt Spec-Kit-Kommandos über das `.gemini/commands/`-Verzeichnis auto
 | Plattform | Installation |
 |---|---|
 | macOS | `npm install -g @google/gemini-cli` |
-| Linux | `npm install -g @google/gemini-cli` |
+| Linux | `sudo npm install -g @google/gemini-cli` |
 | Windows | `npm install -g @google/gemini-cli` |
 
 ```bash
 # 1. Gemini CLI installieren
+# macOS / Windows:
 npm install -g @google/gemini-cli
+# Linux:
+sudo npm install -g @google/gemini-cli
 
 # 2. Authentifizieren (Browser öffnet sich automatisch)
 gemini auth login
@@ -941,12 +954,15 @@ Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `
 | Plattform | Installation |
 |---|---|
 | macOS | `npm install -g @openai/codex` |
-| Linux | `npm install -g @openai/codex` |
+| Linux | `sudo npm install -g @openai/codex` |
 | Windows | `npm install -g @openai/codex` |
 
 ```bash
 # 1. Codex CLI installieren
+# macOS / Windows:
 npm install -g @openai/codex
+# Linux:
+sudo npm install -g @openai/codex
 
 # 2. API-Key setzen (einmalig / one-time)
 # macOS / Linux:
