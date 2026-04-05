@@ -949,7 +949,7 @@ Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `
 
 *Codex reads `AGENTS.md` as project context; all Spec-Kit artefacts are available as input.*
 
-> **Voraussetzung / Prerequisite:** Node.js ≥ 18, OpenAI-Account mit API-Key
+> **Voraussetzung / Prerequisite:** Node.js ≥ 18, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
 
 | Plattform | Installation |
 |---|---|
@@ -964,7 +964,11 @@ npm install -g @openai/codex
 # Linux:
 sudo npm install -g @openai/codex
 
-# 2. API-Key setzen (einmalig / one-time)
+# 2. Anmelden mit ChatGPT (Plus, Pro, Business oder Enterprise)
+#    Browser öffnet sich automatisch / Browser opens automatically:
+codex --login
+
+# 3. Alternativ: API-Key setzen / Alternative: set API key (einmalig / one-time)
 # macOS / Linux:
 export OPENAI_API_KEY="sk-..."
 # Windows (PowerShell):
