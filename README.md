@@ -99,7 +99,7 @@ any permanent connection to the source.*
 
 ### So nutzt du dieses Template / How to use this template
 
-1. Auf [github.com/YOUR_USERNAME/home-baseline](https://github.com/YOUR_USERNAME/home-baseline) gehen
+1. Auf [github.com/hindermath/home-baseline](https://github.com/hindermath/home-baseline) gehen
 2. Button **„Use this template"** → **„Create a new repository"** klicken
 3. Eigenen Repository-Namen und Sichtbarkeit (Private empfohlen) wählen
 4. Repo klonen und die [Ersteinrichtung](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device) durchführen
