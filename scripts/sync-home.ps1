@@ -91,6 +91,16 @@ Write-Host ""
 if ($DoCommit) {
     Push-Location $HomeDir
     try {
+        # Falls ~/ noch kein Git-Repo ist, automatisch initialisieren
+        git rev-parse --git-dir 2>$null | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "→ ~/ ist noch kein Git-Repository — initialisiere..."
+            git init
+            $hookScript = Join-Path $HomeDir 'scripts\install-hooks.ps1'
+            if (Test-Path $hookScript) { pwsh $hookScript }
+            Write-Host "  ✓ Git-Repository und Hooks initialisiert."
+            Write-Host ""
+        }
         $status = git status --short
         if (-not $status) {
             Write-Host "→ Keine Änderungen in ~/ — kein Commit nötig."

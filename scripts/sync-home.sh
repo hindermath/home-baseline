@@ -100,6 +100,18 @@ echo ""
 # ── 3. git commit in ~/ ──────────────────────────────────────────────────────
 if $OPT_COMMIT; then
   cd "${HOME_DIR}"
+
+  # Falls ~/ noch kein Git-Repo ist, automatisch initialisieren
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "→ ~/ ist noch kein Git-Repository — initialisiere..."
+    git init
+    if [ -f "${HOME_DIR}/scripts/install-hooks.sh" ]; then
+      bash "${HOME_DIR}/scripts/install-hooks.sh"
+    fi
+    echo "  ✓ Git-Repository und Hooks initialisiert."
+    echo ""
+  fi
+
   if git diff --quiet && git diff --staged --quiet; then
     echo "→ Keine Änderungen in ~/ — kein Commit nötig."
   else
