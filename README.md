@@ -1038,6 +1038,8 @@ curl -fsSL https://claude.ai/install.sh | bash
 # brew install --cask claude-code
 # Windows PowerShell:
 # irm https://claude.ai/install.ps1 | iex
+# Windows (WinGet / alternativ):
+# winget install Anthropic.ClaudeCode
 
 # 2. Anmelden (Browser öffnet sich beim ersten Start automatisch)
 claude
