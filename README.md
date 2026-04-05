@@ -1043,22 +1043,36 @@ GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
 | Windows | `winget install --id astral-sh.uv` (oder `pip install uv`) |
 
 ```bash
-# specify-cli installieren (einmalig / one-time)
+# Option 1: Persistente Installation (empfohlen / recommended)
 # vX.Y.Z durch den aktuellen Release-Tag ersetzen / replace vX.Y.Z with the latest tag
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
+
+# Upgrade auf neue Version / Upgrade to new version
+uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git@vX.Y.Z
+
+# Option 2: Einmalige Nutzung ohne Installation / One-time usage without installing
+uvx --from git+https://github.com/github/spec-kit.git@vX.Y.Z specify init --here --ai copilot
+
+# Installation prüfen / Verify installation
+specify check
 ```
 
-> Den aktuellen Release-Tag findest du unter: [github.com/github/spec-kit/releases](https://github.com/github/spec-kit/releases)
+> Den aktuellen Release-Tag findest du unter: [github.com/github/spec-kit/releases](https://github.com/github/spec-kit/releases)  
+> Dokumentation: [github.github.io/spec-kit](https://github.github.io/spec-kit/)
 
 ---
 
 #### Spec-Kit initialisieren / Initialize Spec-Kit
 
-Initialisiere Spec-Kit in einem Projektverzeichnis mit dem `specify init`-Befehl:
+Initialisiere Spec-Kit in einem **bestehenden** Projektverzeichnis (`--here`) oder lege ein **neues** Verzeichnis an:
 
-*Initialize Spec-Kit in a project directory with the `specify init` command:*
+*Initialize Spec-Kit in an **existing** directory (`--here`) or create a **new** project directory:*
 
 ```bash
+# Neues Projektverzeichnis anlegen / Create new project directory
+specify init MeinProjekt --ai copilot
+
+# In bestehendem Verzeichnis initialisieren / Initialize in existing directory
 cd ~/MeinProjekt
 
 # GitHub Copilot CLI
