@@ -974,9 +974,13 @@ export OPENAI_API_KEY="sk-..."
 # Windows (PowerShell):
 $env:OPENAI_API_KEY = "sk-..."
 
-# 3. In deinem Projektverzeichnis starten
+# 4. In deinem Projektverzeichnis starten
 codex
 ```
+
+> **Hinweis Linux / Note Linux:** Beim ersten Start kann folgende Meldung erscheinen:
+> `Codex could not find system bubblewrap on PATH. Please install bubblewrap with your package manager. Codex will use the vendored bubblewrap in the meantime.`
+> Codex funktioniert trotzdem — zur Unterdrückung der Meldung: `sudo apt install bubblewrap` (Debian/Ubuntu) bzw. `sudo dnf install bubblewrap` (Fedora/RHEL).
 
 > Tipp / Tip: Den API-Key dauerhaft in `~/.zshrc`, `~/.bashrc` oder dem Windows-Benutzerprofil eintragen, nicht im Repo speichern.
 
