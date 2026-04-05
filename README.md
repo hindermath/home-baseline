@@ -425,6 +425,7 @@ Dieser Abschnitt richtet sich an **`hindermath`** — also die Person, die diese
 git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
 # Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
 # gh repo clone hindermath/home-baseline ~/home-baseline-tmp
+bash ~/home-baseline-tmp/scripts/install-hooks.sh   # pre-push Hook im Klon installieren
 bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 ```
 
@@ -434,10 +435,11 @@ bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
 # Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
 # gh repo clone hindermath/home-baseline ~/home-baseline-tmp
+pwsh ~/home-baseline-tmp/scripts/install-hooks.ps1   # pre-push Hook im Klon installieren
 pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 ```
 
-> **Hinweis / Note:** `--no-pull` / `-NoPull` überspringt `git pull`, da der Klon gerade frisch erstellt wurde.
+> **Hinweis / Note:** `--no-pull` / `-NoPull` überspringt `git pull`, da der Klon gerade frisch erstellt wurde. `install-hooks` installiert den `pre-push`-Hook in `home-baseline-tmp/.git/hooks/` — ohne diesen Schritt meldet `check-homogeneity` ein WARN.
 
 ---
 
