@@ -232,6 +232,44 @@ Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 cha
 Never copy from `~/home-baseline-tmp/` manually. The correct command is:
 `specify init --here --ai {agent}` — `--ai-skill` is required **only for Codex** (installs `.agents/skills/`).
 
+### Windows: `gh auth login` in background/async processes
+`gh auth login --web` does NOT detect browser confirmation when run in a background or async process (e.g. Copilot CLI async shell). The browser callback never arrives.
+Always run `gh auth login` in an **interactive terminal window** directly.
+
+### Windows: `gh` keyring becomes invalid
+Symptom: `Failed to log in to github.com account (keyring)` from `gh auth status`.
+Fix: `gh auth logout -h github.com -u hindermath` then `gh auth login --web -p ssh` in a real terminal.
+
+### Windows: `ssh-agent` service disabled by default
+The Windows OpenSSH Agent service is `Disabled` and requires admin rights to enable.
+Use HTTPS + `gh auth setup-git` for git push instead of SSH on Windows.
+After `gh auth login`, run `gh auth setup-git` once to configure git credential helper.
+
+### Linux: `git pull` divergent branches
+On Linux, `git pull` without config fails with "Need to specify how to reconcile divergent branches".
+Fix once: `git config --global pull.rebase true`
+Or per-call: `git pull --rebase`
+
+### Linux: SSH for GitHub push
+`gh auth setup-git` may not work if credential cache has stale entries.
+Reliable fix: generate SSH key, add to GitHub, set remote to SSH:
+```bash
+ssh-keygen -t ed25519 -C "linux-home-baseline" -f ~/.ssh/id_ed25519 -N ""
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "linux-home-baseline"
+git remote set-url origin git@github.com:hindermath/home-baseline.git
+ssh -T git@github.com   # test
+```
+
+### Test scripts: `git pull --rebase --autostash` before push
+The `*-test.sh/ps1` scripts write the output file **before** pushing. Without `--autostash`, `git pull --rebase` fails with "unstaged changes".
+All test scripts use: `git pull --rebase --autostash origin main`
+
+### Windows: `-NoProfile` for `pwsh` subprocesses
+When calling `pwsh -File script.ps1` as a subprocess, PowerShell loads the user profile.
+If the profile contains Oh-My-Posh or cursor-positioning code, it throws:
+`Exception setting "CursorPosition": "Das Handle ist ungültig."`
+Fix: always add `-NoProfile` to subprocess calls in `windows-test.ps1`.
+
 <!-- EN: copilot-instructions.md placeholder
 [DE-Zusammenfassung: copilot-instructions.md enthält Anweisungen für GitHub Copilot im home-baseline Repository.]
 -->

@@ -90,6 +90,36 @@ At the start of each session, detect the OS and call the matching script variant
 
 **Rule:** On Windows always call `pwsh scripts/xyz.ps1`. On macOS/Linux always call `bash scripts/xyz.sh`. Both variants are functionally equivalent — never mix them.
 
+## Known Pitfalls
+
+### Windows: `gh auth login` in background processes
+`gh auth login --web` does NOT detect browser confirmation in background/async processes.
+Always run `gh auth login` in an **interactive terminal window** directly.
+After login run: `gh auth setup-git` to configure the git credential helper.
+
+### Windows: `ssh-agent` requires admin rights — use HTTPS instead
+The OpenSSH Agent service is disabled by default (needs admin to enable).
+Use HTTPS + `gh auth setup-git` for all git push operations on Windows.
+
+### Windows: `-NoProfile` for `pwsh` subprocesses
+`pwsh -File script.ps1` loads the user profile (Oh-My-Posh etc.), causing:
+`Exception setting "CursorPosition": "Das Handle ist ungültig."`
+Fix: always add `-NoProfile` to `pwsh` subprocess calls.
+
+### Linux: `git pull` needs rebase config
+Run once: `git config --global pull.rebase true`
+
+### Linux: SSH for GitHub push
+```bash
+ssh-keygen -t ed25519 -C "linux-home-baseline" -f ~/.ssh/id_ed25519 -N ""
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "linux-home-baseline"
+git remote set-url origin git@github.com:hindermath/home-baseline.git
+```
+
+### Test scripts: `--autostash` required
+Scripts write the output file before pushing — `--autostash` prevents unstaged-changes error.
+All test scripts use: `git pull --rebase --autostash origin main`
+
 ## Security Architecture
 
 The `.gitignore` uses a **whitelist model** (`/*` ignores everything; only explicitly listed files are tracked). Never add AI agent directories (`.claude/`, `.junie/`, etc.), credentials files, or dotfiles containing secrets to the tracked whitelist.

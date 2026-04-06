@@ -1410,6 +1410,26 @@ Alle Artefakte werden automatisch in Git versioniert — du kannst jederzeit nac
 [DE-Zusammenfassung: Vollständige bilinguale README für home-baseline mit Workspace-Tabelle, Scripts, A11Y-, Spec-kit- und Azubis-Abschnitten.]
 -->
 
+## Bekannte Fallstricke / Known Pitfalls
+
+| Problem | Ursache | Fix |
+|---|---|---|
+| `$env:HOME` leer (Windows) | PS7 `??` fängt `''` nicht ab | `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` |
+| CI: Dateien „missing" | Relativer Pfad als CWD=Repo-Root | `cd "$(dirname $GITHUB_WORKSPACE)"` vor Scanner-Aufruf |
+| `bash` bad substitution | `${#arr[@]+...}` auf Ubuntu 22.04 | Bash-3-sichere `for`-Schleife zum Zählen |
+| `Copy-Item` kopiert Verzeichnis in Verzeichnis | Ziel existiert bereits | `Copy-Item src/* dst/ -Recurse -Force` |
+| `LICENSE` von `.gitignore` ignoriert | Whitelist-Modell | `!LICENSE` in `.gitignore` eintragen |
+| ANSI-Falsch-Positive im Scanner | Scanner enthält `\033[` als Literal | `check-homogeneity.*` aus ANSI-Scan ausschließen |
+| Bootstrap hardcodierter Username | `hindermath` war fest eingebaut | `gh api user --jq '.login'` dynamisch |
+| `gh auth login --web` bleibt hängen | Browser-Callback kommt in Hintergrundprozessen nicht an | In **interaktivem Terminal** ausführen |
+| `gh` keyring invalid (Windows) | Windows Credential Store korrupt | `gh auth logout` + `gh auth login` neu; dann `gh auth setup-git` |
+| `ssh-agent` startet nicht (Windows) | Service deaktiviert, Admin-Rechte nötig | HTTPS + `gh auth setup-git` statt SSH verwenden |
+| `CursorPosition`-Fehler in PS-Subprozessen | PowerShell-Profil (Oh-My-Posh) lädt im Subprocess | `-NoProfile` zu `pwsh -File`-Aufrufen hinzufügen |
+| `git pull` „divergent branches" (Linux) | Kein globales rebase-Config | `git config --global pull.rebase true` |
+| Push rejected: `fetch first` | Remote ist neuer als local | `git pull --rebase --autostash && git push` |
+| Test-Script: unstaged changes blockieren pull | Output-Datei wird vor pull geschrieben | `git pull --rebase --autostash origin main` in Test-Scripts |
+
+
 ## Barrierefreiheit / Accessibility (A11Y)
 
 Dieses Dokument richtet sich nach **WCAG 2.2 Level AA** für alle statischen Inhalte.

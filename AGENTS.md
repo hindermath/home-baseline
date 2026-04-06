@@ -101,6 +101,40 @@ Pull requests should include:
 ## Security & Configuration Tips
 Do not commit tokens, `.env` files, or local agent state. If you touch secret-scan behavior or hooks, mention the risk explicitly in the PR and re-run the scanner before pushing.
 
+## Known Pitfalls (Platform-specific)
+
+### Windows: `gh auth login` in background processes
+`gh auth login --web` does NOT detect browser confirmation when run in a background/async process.
+Always run `gh auth login` in an **interactive terminal window** — not from within Copilot CLI async shell.
+
+### Windows: `gh` keyring becomes invalid
+Symptom: `Failed to log in to github.com account (keyring)`.
+Fix: `gh auth logout -h github.com -u hindermath` then re-login interactively.
+After login: run `gh auth setup-git` once to configure the git credential helper.
+
+### Windows: `ssh-agent` requires admin rights
+The OpenSSH Agent service is disabled by default and needs admin to enable.
+Use HTTPS + `gh auth setup-git` instead of SSH on Windows.
+
+### Windows: `-NoProfile` for `pwsh` subprocesses
+Calling `pwsh -File script.ps1` loads the user profile (Oh-My-Posh etc.), which may fail with:
+`Exception setting "CursorPosition": "Das Handle ist ungültig."`
+Fix: add `-NoProfile` to all `pwsh` subprocess calls.
+
+### Linux: `git pull` needs rebase config
+Run once: `git config --global pull.rebase true` — prevents "divergent branches" error.
+
+### Linux: SSH for GitHub push (HTTPS credential cache unreliable)
+```bash
+ssh-keygen -t ed25519 -C "linux-home-baseline" -f ~/.ssh/id_ed25519 -N ""
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "linux-home-baseline"
+git remote set-url origin git@github.com:hindermath/home-baseline.git
+```
+
+### Test scripts: unstaged output file blocks `git pull --rebase`
+The `*-test.sh/ps1` scripts write the output file before pushing.
+All test scripts use `git pull --rebase --autostash origin main` to avoid this.
+
 ## Active Technologies
 - Bash 5+ (primär), PowerShell Core 7+ (Windows-Parität) + `git`, `bash` ≥ 5, `ripgrep (rg)`, `sha256sum` (Linux/WSL) / (001-workspace-homogeneity-guardian)
 - Plain-Markdown-Dateien — `STATS.md` (append-only), `memory-patch.md` (001-workspace-homogeneity-guardian)

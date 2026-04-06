@@ -72,6 +72,18 @@ Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Var
 
 **Regel:** Auf Windows immer `pwsh scripts/xyz.ps1` aufrufen, auf macOS/Linux immer `bash scripts/xyz.sh`. Beide Varianten sind funktional äquivalent — nie mischen.
 
+## ⚠️ Bekannte Fallstricke / Known Pitfalls
+
+| Problem | Ursache | Fix |
+|---|---|---|
+| `gh auth login --web` bleibt hängen | Browser-Callback kommt in Hintergrundprozessen nicht an | In **interaktivem Terminal** ausführen |
+| `gh` keyring invalid (Windows) | Windows Credential Store korrupt | `gh auth logout` + neu anmelden; dann `gh auth setup-git` |
+| `ssh-agent` startet nicht (Windows) | Service deaktiviert, Admin nötig | HTTPS + `gh auth setup-git` verwenden |
+| `CursorPosition`-Fehler in PS-Subprocess | PowerShell-Profil (Oh-My-Posh) lädt im Subprocess | `-NoProfile` zu `pwsh -File` Aufrufen hinzufügen |
+| `git pull` "divergent branches" (Linux) | Kein globales rebase-Config | `git config --global pull.rebase true` |
+| Push rejected: `fetch first` | Remote ist neuer als local | `git pull --rebase --autostash && git push` |
+| Test-Script: unstaged changes blockieren pull | Output-Datei wird vor pull geschrieben | `git pull --rebase --autostash origin main` |
+
 ## 📁 Key Directories
 
 - `~/scripts/`: Zentrale Automatisierungsskripte (Bootstrap, Secret-Scan, Hook-Installer).
