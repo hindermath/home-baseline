@@ -443,26 +443,32 @@ pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 
 ---
 
-### Plattform-Test (macOS) / Platform test (macOS)
+### Plattform-Test / Platform test
 
-Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert werden können, gibt es `mac-test.sh` — es sammelt System-Info und Compliance-Ergebnisse, committet und pusht sie direkt ins Repo.
+Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert werden können, gibt es plattformspezifische Test-Scripts — sie sammeln System-Info und Compliance-Ergebnisse, committen und pushen die Ergebnisse direkt ins Repo.
 
-*Since outputs cannot easily be copy-pasted between machines, `mac-test.sh` collects system info and compliance results, then commits and pushes them directly to the repo.*
+*Since outputs cannot easily be copy-pasted between machines, platform-specific test scripts collect system info and compliance results, then commit and push them directly to the repo.*
 
-```bash
-# Auf dem Mac ausführen / Run on the Mac:
-bash ~/home-baseline-tmp/scripts/mac-test.sh
+| Plattform / Platform | Script | Ausgabe / Output |
+|---|---|---|
+| macOS | `bash ~/home-baseline-tmp/scripts/mac-test.sh` | `mac-test-output.txt` |
+| Linux / WSL | `bash ~/home-baseline-tmp/scripts/linux-test.sh` | `linux-test-output.txt` |
+| Windows | `pwsh ~/home-baseline-tmp/scripts/windows-test.ps1` | `windows-test-output.txt` |
+
+Jedes Script erfasst / Each script collects:
+- OS-Version, Architektur
+- Installierte Tools (`git`, `gh`, `rg`, `pwsh`, `node`, `uv`, `python3`, `specify`)
+- Paketmanager (`brew` / `apt`/`dnf` / `winget`)
+- Ergebnis von `sync-home` und `check-homogeneity`
+
+Danach liegt die Ausgabedatei im Repo und kann von jedem anderen Gerät direkt gelesen und ausgewertet werden — z. B. von Copilot CLI unter Windows:
+
+*After running, the output file is in the repo and can be read and evaluated from any other device — e.g. by Copilot CLI on Windows:*
+
+```powershell
+git -C "$HOME\home-baseline-tmp" pull
+Get-Content "$HOME\home-baseline-tmp\windows-test-output.txt"  # oder mac-test-output.txt, linux-test-output.txt
 ```
-
-Das Script erfasst / The script collects:
-- macOS-Version, Architektur (Intel / Apple Silicon)
-- Installierte Tools (`git`, `gh`, `brew`, `rg`, `node`, `uv`, `specify`, `pwsh`)
-- Homebrew-Paketstände
-- Compliance-Check-Ergebnis (`check-homogeneity`)
-
-Danach liegt `mac-test-output.txt` im Repo und kann von einem anderen Gerät (z. B. Windows + Copilot CLI) direkt gelesen und ausgewertet werden.
-
-*After running, `mac-test-output.txt` is in the repo and can be read and evaluated from another device (e.g. Windows + Copilot CLI).*
 
 ---
 
