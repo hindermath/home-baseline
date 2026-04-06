@@ -63,14 +63,14 @@ Add-Line ""
 # === sync-home ===
 Add-Line "=== sync-home ==="
 $syncScript = Join-Path $RepoDir 'scripts\sync-home.ps1'
-$syncOutput = pwsh -File $syncScript -NoPull 2>&1
+$syncOutput = pwsh -NoProfile -File $syncScript -NoPull 2>&1
 $syncOutput | ForEach-Object { Add-Line "$_" }
 Add-Line ""
 
 # === check-homogeneity ===
 Add-Line "=== check-homogeneity ==="
 $checkScript = Join-Path $HomeDir 'scripts\check-homogeneity.ps1'
-$checkOutput = pwsh -File $checkScript -TargetDir $HomeDir 2>&1
+$checkOutput = pwsh -NoProfile -File $checkScript -TargetDir $HomeDir 2>&1
 $checkOutput | ForEach-Object { Add-Line "$_" }
 
 # Datei schreiben
