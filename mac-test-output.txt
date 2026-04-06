@@ -1,0 +1,66 @@
+Mac Test Output - 2026-04-06 16:49:38
+macOS: 26.4
+
+=== Homebrew ===
+Homebrew 5.1.4
+
+=== Tools ===
+  OK  git
+  OK  gh
+  OK  rg
+  OK  pwsh
+  OK  node
+  OK  uv
+  OK  python3
+
+=== sync-home ===
+╔══════════════════════════════════════════════════╗
+║  sync-home — Home-Baseline Sync                  ║
+╚══════════════════════════════════════════════════╝
+
+  Quelle : /Users/thorstenhindermann/home-baseline-tmp
+  Ziel   : /Users/thorstenhindermann
+  Pull   : false
+  Commit : true
+  Dry-run: false
+
+→ Dateien synchronisieren...
+  ✓ AGENTS.md
+  ✓ CLAUDE.md
+  ✓ GEMINI.md
+  ✓ README.md
+  ✓ STATS.md
+  ✓ constitution.md
+  ✓ .gitconfig
+  ✓ .gitignore
+  ✓ LICENSE
+  ✓ Lastenheft_workspace-homogeneity-guardian-revision.002-homogeneity-guardian-revision.md
+  ✓ Lastenheft_workspace-homogeneity-guardian.001-workspace-homogeneity-guardian.md
+  ✓ scripts/
+  ✓ .github/
+  ✓ specs/
+  ✓ .specify/
+
+→ Keine Änderungen in ~/ — kein Commit nötig.
+
+✓ sync-home abgeschlossen.
+
+=== check-homogeneity ===
+Workspace Homogeneity Guardian — check-homogeneity v1.0
+Scan-Startpunkt: /Users/thorstenhindermann
+======================================================
+
+[Level 0] /Users/thorstenhindermann/
+
+[Level 1] /Users/thorstenhindermann/home-baseline-tmp/
+
+======================================================
+COMPLIANCE SUMMARY
+
+~                              [██████████] 100 %  (25/25 checks)
+~/home-baseline-tmp            [██████████] 100 %  (24/24 checks)
+
+Overall: 100 %  |  Workspaces: 1  |  Projects: 0
+STATS.md updated: /Users/thorstenhindermann/STATS.md
+
+Exit code: 0 (all checks passed)
