@@ -78,6 +78,7 @@ $Lines | Set-Content -Path $OutFile -Encoding UTF8
 
 # Committen und pushen
 Set-Location $RepoDir
+git pull --rebase origin main 2>&1 | ForEach-Object { Write-Host $_ }
 git add windows-test-output.txt
 git commit -m "test: Windows Test-Output (${Date})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
 git push origin HEAD:main
