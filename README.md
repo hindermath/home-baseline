@@ -466,6 +466,9 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
+> Das Script erledigt automatisch / The script handles automatically:
+> `git init` · initialer Commit · `gh repo create` (privates GitHub-Repo) · Remote `origin` setzen · `git push`
+
 **2 — Projekt anlegen / Create a project**
 
 ```bash
@@ -479,6 +482,9 @@ bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/FlutterProjects
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
+
+> Das Script erledigt automatisch / The script handles automatically:
+> `git init` · initialer Commit · `gh repo create` (privates GitHub-Repo) · Remote `origin` setzen · `git push`
 
 **3 — KI-Agenten einrichten / Set up AI agents**
 
@@ -992,6 +998,13 @@ bash ~/scripts/bootstrap-project.sh MeinProjekt ~/AusbildungsProjekte
 # Windows
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/AusbildungsProjekte
 ```
+
+Das Script erledigt automatisch:
+1. Verzeichnis `~/AusbildungsProjekte/MeinProjekt/` erstellen
+2. `git init` — Git-Versionsverwaltung aktivieren
+3. Privates Repo auf GitHub erstellen
+4. Remote `origin` setzen
+5. Initialer Commit und Push zu GitHub
 
 ---
 
