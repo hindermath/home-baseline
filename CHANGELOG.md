@@ -8,6 +8,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.5.1](https://github.com/hindermath/home-baseline/compare/v0.5.0...v0.5.1) (2026-04-06)
+
+
+### Documentation / Dokumentation
+
+* automatisch erledigte Git-Schritte in Nächste-Schritte und Schritt 3 dokumentiert ([07e9c5c](https://github.com/hindermath/home-baseline/commit/07e9c5cdd1b5f7a43d8d2b173e797a2eea33abc5))
+* CHANGELOG v0.6.0 — README-Verbesserungen für End-User und Auszubildende ([626f999](https://github.com/hindermath/home-baseline/commit/626f99981d54bbccb981ab974934deb503255f65))
+* GitHub/GitLab-Auth und git remote add origin in Ersteinrichtung ergänzt ([40148a4](https://github.com/hindermath/home-baseline/commit/40148a478e673822c311587ac766261d005947e3))
+* Nächste-Schritte-Leitfaden und Schritt 5+6 für Auszubildende ergänzt ([b367acc](https://github.com/hindermath/home-baseline/commit/b367acc150cfa81c6cd7c8e0f09d854030795c8f))
+* redundanten Abschnitt 'Neues Projekt anlegen' zu Verweis gestrafft ([eb67966](https://github.com/hindermath/home-baseline/commit/eb67966a9f80ad4d1832e9f196763d4a73e44d3e))
+* Schritt Projekt anlegen in Nächste Schritte und Auszubildende ergänzt ([ae5c119](https://github.com/hindermath/home-baseline/commit/ae5c1194d6901664c64b0fb66266842e88619347))
+* Spec-Kit-init-Links am Ende jedes KI-Agenten-Blocks ergänzt ([243178d](https://github.com/hindermath/home-baseline/commit/243178dc27848c6fdad7c3444ccce87695d2f8bb))
+
 ## [0.6.0](https://github.com/hindermath/home-baseline/compare/v0.5.0...v0.6.0) (2026-04-06)
 
 
