@@ -1,4 +1,4 @@
-Mac Test Output - 2026-04-06 17:49:20
+Mac Test Output - 2026-04-06 18:01:32
 macOS: 26.4
 
 === Homebrew ===
@@ -12,6 +12,7 @@ Homebrew 5.1.4
   OK  node
   OK  uv
   OK  python3
+  OK  specify
 
 === sync-home ===
 ╔══════════════════════════════════════════════════╗
@@ -41,7 +42,11 @@ Homebrew 5.1.4
   ✓ specs/
   ✓ .specify/
 
-→ Keine Änderungen in ~/ — kein Commit nötig.
+[main aa54f63] chore: sync mit home-baseline @ e030e41
+ 9 files changed, 200 insertions(+), 37 deletions(-)
+ create mode 100644 scripts/linux-test.sh
+ create mode 100644 scripts/windows-test.ps1
+→ Commit in ~/ erstellt.
 
 ✓ sync-home abgeschlossen.
 
@@ -64,3 +69,15 @@ Overall: 100 %  |  Workspaces: 1  |  Projects: 0
 STATS.md updated: /Users/thorstenhindermann/STATS.md
 
 Exit code: 0 (all checks passed)
+[main 9bbce17] test: Mac Test-Output (2026-04-06 18:01:32)
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+pre-push: Prüfe git-getrackte Dateien auf Secrets …
+pre-push: Keine Secrets in getrackten Dateien. Push wird fortgesetzt.
+To https://github.com/hindermath/home-baseline.git
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to 'https://github.com/hindermath/home-baseline.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
