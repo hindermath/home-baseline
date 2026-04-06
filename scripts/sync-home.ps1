@@ -79,7 +79,7 @@ function Sync-Dir {
 Write-Host "→ Dateien synchronisieren..."
 
 # Root-Dateien
-foreach ($f in @('AGENTS.md','CLAUDE.md','GEMINI.md','README.md','STATS.md',
+foreach ($f in @('AGENTS.md','CLAUDE.md','GEMINI.md','README.md','STATS.md','CHANGELOG.md',
                   'constitution.md','.gitconfig','.gitignore','LICENSE')) {
     Sync-File $f
 }

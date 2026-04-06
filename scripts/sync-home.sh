@@ -89,7 +89,7 @@ sync_dir() {
 echo "→ Dateien synchronisieren..."
 
 # Root-Dateien
-for f in AGENTS.md CLAUDE.md GEMINI.md README.md STATS.md constitution.md \
+for f in AGENTS.md CLAUDE.md GEMINI.md README.md STATS.md CHANGELOG.md constitution.md \
           .gitconfig .gitignore LICENSE; do
   sync_file "$f"
 done
