@@ -64,6 +64,17 @@ pwsh ~/scripts/scan-agent-secrets.ps1
 
 Scans `.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/` for leaked credentials. Outputs `high=N medium=M low=L total=T`. Use `--fail-on-high` as a CI gate.
 
+### Cross-platform test output (macOS)
+
+When terminal output cannot be copy-pasted between machines, use `mac-test.sh` to collect results on the Mac, commit and push them, then read from any other device:
+
+```bash
+# On the Mac:
+bash ~/home-baseline-tmp/scripts/mac-test.sh
+```
+
+Collects: macOS version, architecture, tool versions (git, gh, brew, rg, node, uv, specify, pwsh), Homebrew package versions, compliance check result. Writes to `mac-test-output.txt` and pushes to the repo automatically.
+
 ## OS-Detection — Script Selection
 
 At the start of each session, detect the OS and call the matching script variant:

@@ -73,6 +73,17 @@ Bash scripts use `#!/usr/bin/env bash` plus `set -euo pipefail`. PowerShell scri
 ## Testing Guidelines
 Manual verification is the current test strategy. For bootstrap changes, test both shells in safe mode: Bash with `--dry-run`, PowerShell with `-WhatIf`. For hook or scanning changes, run the relevant installer, then execute the scanner against the repo root and confirm expected exit codes.
 
+### Cross-Platform Testing (macOS)
+When testing on macOS (or any machine where copy-pasting terminal output to this session is not possible), use `mac-test.sh`:
+```bash
+bash ~/home-baseline-tmp/scripts/mac-test.sh
+```
+This collects OS info, tool versions, brew package versions, and compliance check results, then commits and pushes `mac-test-output.txt` to the repo. Read it here with:
+```bash
+gh api repos/hindermath/home-baseline/contents/mac-test-output.txt --jq '.content' | base64 -d
+```
+Or simply view it at: `https://github.com/hindermath/home-baseline/blob/main/mac-test-output.txt`
+
 ## Commit & Pull Request Guidelines
 Recent history follows Conventional Commit prefixes: `chore:`, `docs:`, `feat:`. Keep subjects short and imperative, for example `feat: bootstrap-workspace aktualisiert ~/README.md automatisch`.
 

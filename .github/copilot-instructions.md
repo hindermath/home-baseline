@@ -44,6 +44,21 @@ pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 
 Always use `--dry-run` / `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing anything under `scripts/hooks/`.
 
+### Cross-platform test output (macOS)
+
+When terminal output cannot be copy-pasted between machines, use `mac-test.sh`:
+
+```bash
+# On the Mac — collects info, commits and pushes results automatically:
+bash ~/home-baseline-tmp/scripts/mac-test.sh
+```
+
+Results land in `mac-test-output.txt` in the repo. Read from Windows:
+```powershell
+git -C "$HOME\home-baseline-tmp" pull
+Get-Content "$HOME\home-baseline-tmp\mac-test-output.txt"
+```
+
 ## OS-Detection — Script Selection
 
 At the start of each session, detect the OS and call the matching script variant:

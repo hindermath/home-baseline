@@ -443,6 +443,29 @@ pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 
 ---
 
+### Plattform-Test (macOS) / Platform test (macOS)
+
+Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert werden können, gibt es `mac-test.sh` — es sammelt System-Info und Compliance-Ergebnisse, committet und pusht sie direkt ins Repo.
+
+*Since outputs cannot easily be copy-pasted between machines, `mac-test.sh` collects system info and compliance results, then commits and pushes them directly to the repo.*
+
+```bash
+# Auf dem Mac ausführen / Run on the Mac:
+bash ~/home-baseline-tmp/scripts/mac-test.sh
+```
+
+Das Script erfasst / The script collects:
+- macOS-Version, Architektur (Intel / Apple Silicon)
+- Installierte Tools (`git`, `gh`, `brew`, `rg`, `node`, `uv`, `specify`, `pwsh`)
+- Homebrew-Paketstände
+- Compliance-Check-Ergebnis (`check-homogeneity`)
+
+Danach liegt `mac-test-output.txt` im Repo und kann von einem anderen Gerät (z. B. Windows + Copilot CLI) direkt gelesen und ausgewertet werden.
+
+*After running, `mac-test-output.txt` is in the repo and can be read and evaluated from another device (e.g. Windows + Copilot CLI).*
+
+---
+
 ### Täglich / nach Änderungen synchronisieren / Daily sync
 
 ```bash
