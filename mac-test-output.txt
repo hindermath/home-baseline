@@ -1,4 +1,4 @@
-Mac Test Output - 2026-04-06 16:49:38
+Mac Test Output - 2026-04-06 16:59:48
 macOS: 26.4
 
 === Homebrew ===
@@ -12,6 +12,7 @@ Homebrew 5.1.4
   OK  node
   OK  uv
   OK  python3
+  OK  specify
 
 === sync-home ===
 ╔══════════════════════════════════════════════════╗
@@ -41,7 +42,9 @@ Homebrew 5.1.4
   ✓ specs/
   ✓ .specify/
 
-→ Keine Änderungen in ~/ — kein Commit nötig.
+[main f474f09] chore: sync mit home-baseline @ ad8b8a0
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+→ Commit in ~/ erstellt.
 
 ✓ sync-home abgeschlossen.
 
