@@ -8,6 +8,20 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.5.0](https://github.com/hindermath/home-baseline/compare/v0.4.2...v0.5.0) (2026-04-06)
+
+
+### Features / Neue Funktionen
+
+* mac-test.sh hinzugefuegt ([f5be93c](https://github.com/hindermath/home-baseline/commit/f5be93cb073c789c717d064eea0110c2d9973939))
+* mac-test.sh Script zum Sammeln von System-Info und Testergebnissen ([619f9c9](https://github.com/hindermath/home-baseline/commit/619f9c95fde8d09602737dc5055ce92acc48eaf8))
+
+
+### Documentation / Dokumentation
+
+* brew update && brew upgrade vor Tool-Installation auf macOS ergaenzt ([3b62fa0](https://github.com/hindermath/home-baseline/commit/3b62fa0a099016dd601e5761e7bc4177b1569a5f))
+* mac-test.sh in README und Agenten-Dateien dokumentiert ([1bb0462](https://github.com/hindermath/home-baseline/commit/1bb046223c12f9d83829eca7ab5bdcb3566d8ff2))
+
 ## [0.4.2](https://github.com/hindermath/home-baseline/compare/v0.4.1...v0.4.2) (2026-04-05)
 
 
