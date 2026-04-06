@@ -23,6 +23,8 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
 } | tee "$OUT"
 cd ~/home-baseline-tmp
 git add mac-test-output.txt
-git commit -m "test: Mac Test-Output (${DATE})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
-git push
-echo "Gepusht."
+{
+  git commit -m "test: Mac Test-Output (${DATE})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+  git push origin HEAD:main
+} 2>&1 | tee -a "$OUT"
+echo "Gepusht." | tee -a "$OUT"
