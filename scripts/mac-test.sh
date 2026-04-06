@@ -11,7 +11,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   brew --version 2>&1 || echo "brew: nicht gefunden"
   echo ""
   echo "=== Tools ==="
-  for cmd in git gh rg pwsh node uv python3; do
+  for cmd in git gh rg pwsh node uv python3 specify; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
   echo ""
