@@ -466,7 +466,21 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
-**2 — KI-Agenten einrichten / Set up AI agents**
+**2 — Projekt anlegen / Create a project**
+
+```bash
+# macOS / Linux
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects
+bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
+```
+
+```powershell
+# Windows
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/FlutterProjects
+pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
+```
+
+**3 — KI-Agenten einrichten / Set up AI agents**
 
 → [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
 
@@ -474,7 +488,7 @@ Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex,
 
 *Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) following the respective instructions.*
 
-**3 — Spec-Kit einrichten / Set up Spec-Kit**
+**4 — Spec-Kit einrichten / Set up Spec-Kit**
 
 → [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
 
@@ -968,6 +982,16 @@ Das Script erledigt automatisch:
 
 *The script automatically: creates the directory, initialises Git, creates a private GitHub
 repo, copies scripts and hooks, makes the first commit and pushes to GitHub.*
+
+Danach: erstes Projekt in diesem Workspace anlegen / Then: create your first project in this workspace:
+
+```bash
+# macOS / Linux / Ubuntu
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/AusbildungsProjekte
+
+# Windows
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/AusbildungsProjekte
+```
 
 ---
 
