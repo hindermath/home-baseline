@@ -8,6 +8,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.5.2](https://github.com/hindermath/home-baseline/compare/v0.5.1...v0.5.2) (2026-04-06)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* CHANGELOG bereinigt — v0.5.0-Heading wiederhergestellt, redundanten v0.6.0-Eintrag entfernt ([c76b0ee](https://github.com/hindermath/home-baseline/commit/c76b0ee188a95221c8cf1fcccab7d40caaaa67ad))
+* CHANGELOG.md zur sync-home-Dateiliste ergänzt (sh + ps1) ([3059942](https://github.com/hindermath/home-baseline/commit/3059942c210c111a410fd501b99559d2417d0988))
+
 ## [0.5.1](https://github.com/hindermath/home-baseline/compare/v0.5.0...v0.5.1) (2026-04-06)
 
 
