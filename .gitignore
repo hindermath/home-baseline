@@ -40,6 +40,8 @@
 !specs/
 !constitution.md
 !mac-test-output.txt
+!linux-test-output.txt
+!windows-test-output.txt
 
 # Spec-Kit Konfiguration und Templates
 !.specify/

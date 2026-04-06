@@ -47,14 +47,18 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 - **Manueller Secret-Scan:**
   `bash scripts/scan-agent-secrets.sh`
 
-### Plattform-Test (macOS) / Platform test (macOS)
-Falls Terminal-Output nicht zwischen Maschinen copy-pastebaar ist, `mac-test.sh` verwenden — es committet und pusht die Ergebnisse direkt ins Repo:
+### Plattform-Test / Platform test
+Falls Terminal-Output nicht zwischen Maschinen copy-pastebaar ist, passende Test-Scripts verwenden:
 ```bash
-bash ~/home-baseline-tmp/scripts/mac-test.sh
+bash ~/home-baseline-tmp/scripts/mac-test.sh     # macOS
+bash ~/home-baseline-tmp/scripts/linux-test.sh   # Linux / WSL
 ```
-Das Ergebnis liegt danach als `mac-test-output.txt` im Repo und kann von jedem anderen Gerät gelesen werden.
+```powershell
+pwsh ~/home-baseline-tmp/scripts/windows-test.ps1  # Windows
+```
+Ergebnisse landen als `mac-test-output.txt`, `linux-test-output.txt` bzw. `windows-test-output.txt` im Repo und können von jedem Gerät gelesen werden.
 
-*If terminal output cannot be copy-pasted between machines, use `mac-test.sh` — it commits and pushes results directly to the repo. The result is then available as `mac-test-output.txt` in the repo.*
+*Use the matching platform test script to collect results, commit and push them. Output files are in the repo and readable from any device.*
 
 ## 🖥 OS-Erkennung — Skript-Auswahl / OS Detection — Script Selection
 

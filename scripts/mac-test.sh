@@ -11,7 +11,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   brew --version 2>&1 || echo "brew: nicht gefunden"
   echo ""
   echo "=== Tools ==="
-  for cmd in git gh rg pwsh node uv python3; do
+  for cmd in git gh rg pwsh node uv python3 specify; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
   echo ""
@@ -23,6 +23,8 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
 } | tee "$OUT"
 cd ~/home-baseline-tmp
 git add mac-test-output.txt
-git commit -m "test: Mac Test-Output (${DATE})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
-git push
-echo "Gepusht."
+{
+  git commit -m "test: Mac Test-Output (${DATE})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+  git push origin HEAD:main
+} 2>&1 | tee -a "$OUT"
+echo "Gepusht." | tee -a "$OUT"
