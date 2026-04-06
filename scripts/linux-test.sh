@@ -43,7 +43,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
 } | tee "$OUT"
 
 cd ~/home-baseline-tmp
-git pull --rebase origin main 2>&1 | cat
+git pull --rebase --autostash origin main 2>&1 | cat
 git add linux-test-output.txt
 {
   git commit -m "test: Linux Test-Output (${DATE})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"

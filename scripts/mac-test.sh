@@ -22,7 +22,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   bash ~/scripts/check-homogeneity.sh ~/ 2>&1
 } | tee "$OUT"
 cd ~/home-baseline-tmp
-git pull --rebase origin main 2>&1 | cat
+git pull --rebase --autostash origin main 2>&1 | cat
 git add mac-test-output.txt
 git commit -m "test: Mac Test-Output (${DATE})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" 2>&1
 git push origin HEAD:main 2>&1
