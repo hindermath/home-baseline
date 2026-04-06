@@ -8,6 +8,37 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.5.0](https://github.com/hindermath/home-baseline/compare/v0.4.2...v0.5.0) (2026-04-06)
+
+
+### Features / Neue Funktionen
+
+* linux-test.sh und windows-test.ps1 hinzugefuegt ([df22668](https://github.com/hindermath/home-baseline/commit/df22668d00e0ac38297a9dda9611457a122e2953))
+* mac-test.sh hinzugefuegt ([f5be93c](https://github.com/hindermath/home-baseline/commit/f5be93cb073c789c717d064eea0110c2d9973939))
+* mac-test.sh Script zum Sammeln von System-Info und Testergebnissen ([619f9c9](https://github.com/hindermath/home-baseline/commit/619f9c95fde8d09602737dc5055ce92acc48eaf8))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* --autostash bei git pull --rebase in Test-Scripts ([c2b7830](https://github.com/hindermath/home-baseline/commit/c2b7830f1dbfe5dc57a84bcc74f89d076fbfd209))
+* -NoProfile bei pwsh-Subprozessen in windows-test.ps1 ([d7e1ceb](https://github.com/hindermath/home-baseline/commit/d7e1ceba1b34e09224077bb3f4ae673002f1acb6))
+* git pull --rebase vor push in allen Test-Scripts ergaenzt ([851b6cc](https://github.com/hindermath/home-baseline/commit/851b6ccf57d8fcc9a93e54f97f50c06db5ad99ad))
+* mac-test.sh fängt commit/push-Output in Datei und pusht korrekt zu main ([a6404bf](https://github.com/hindermath/home-baseline/commit/a6404bf0788f291c811fb8f45ecd19f22a9af128))
+* mac-test.sh pullt vor commit/push, kein tee-a nach Commit ([27f92e7](https://github.com/hindermath/home-baseline/commit/27f92e783248448138ffa7dffb9cf1317ac0804a))
+* specify zur Tool-Pruefliste in mac-test.sh ergaenzt ([ad8b8a0](https://github.com/hindermath/home-baseline/commit/ad8b8a0bc13e08f764ce2c82668a8b384dab1d0c))
+
+
+### Documentation / Dokumentation
+
+* Bekannte Fallstricke aus plattformuebergreifendem Test dokumentiert ([9b84def](https://github.com/hindermath/home-baseline/commit/9b84deff2fb32fd4170837176e94036e3ec69208))
+* brew update && brew upgrade vor Tool-Installation auf macOS ergaenzt ([3b62fa0](https://github.com/hindermath/home-baseline/commit/3b62fa0a099016dd601e5761e7bc4177b1569a5f))
+* mac-test.sh in README und Agenten-Dateien dokumentiert ([1bb0462](https://github.com/hindermath/home-baseline/commit/1bb046223c12f9d83829eca7ab5bdcb3566d8ff2))
+
+
+### Maintenance / Wartung
+
+* master und main zusammenführen ([e030e41](https://github.com/hindermath/home-baseline/commit/e030e415df6c471a8d605f5acc5150b29c3e1c10))
+
 ## [0.4.2](https://github.com/hindermath/home-baseline/compare/v0.4.1...v0.4.2) (2026-04-05)
 
 
