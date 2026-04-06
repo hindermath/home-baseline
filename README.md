@@ -52,6 +52,8 @@ private GitHub repository within seconds.*
   - [Schritt 2: Repo auf dem Computer einrichten / Step 2: Set up repo on your computer](#schritt-2-repo-auf-dem-computer-einrichten--step-2-set-up-repo-on-your-computer)
   - [Schritt 3: Ersten Workspace anlegen / Step 3: Create your first workspace](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace)
   - [Schritt 4: Compliance prüfen / Step 4: Check compliance](#schritt-4-compliance-prüfen--step-4-check-compliance)
+  - [Schritt 5: KI-Agenten einrichten / Step 5: Set up AI agents](#schritt-5-ki-agenten-einrichten--step-5-set-up-ai-agents)
+  - [Schritt 6: Spec-Kit einrichten / Step 6: Set up Spec-Kit](#schritt-6-spec-kit-einrichten--step-6-set-up-spec-kit)
   - [Häufige Fehler und Lösungen / Common errors and fixes](#häufige-fehler-und-lösungen--common-errors-and-fixes)
   - [Neues Projekt anlegen / Create a new project](#neues-projekt-anlegen--create-a-new-project)
   - [Glossar / Glossary](#glossar--glossary)
@@ -446,7 +448,11 @@ pwsh ~/scripts/check-homogeneity.ps1
 
 ### Nächste Schritte / Next steps
 
-Neuen Workspace anlegen und verifizieren / Create a new workspace and verify:
+Die Einrichtung ist abgeschlossen. Hier ist die empfohlene Reihenfolge für eine vollständige Entwicklungsumgebung.
+
+*Setup is complete. Here is the recommended sequence for a full development environment.*
+
+**1 — Workspace anlegen / Create a workspace**
 
 ```bash
 # macOS / Linux
@@ -459,6 +465,22 @@ bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
+
+**2 — KI-Agenten einrichten / Set up AI agents**
+
+→ [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
+
+Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) nach der jeweiligen Anleitung.
+
+*Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) following the respective instructions.*
+
+**3 — Spec-Kit einrichten / Set up Spec-Kit**
+
+→ [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
+
+Spec-Kit strukturiert die Zusammenarbeit mit KI-Agenten per Specification-Driven Development (SDD). Einrichten mit `specify init`, sobald mindestens ein Agent installiert ist.
+
+*Spec-Kit structures collaboration with AI agents via Specification-Driven Development (SDD). Set up with `specify init` once at least one agent is installed.*
 
 ---
 
@@ -968,6 +990,51 @@ Am Ende siehst du einen **Score in Prozent**. Ziel ist 100 % (kein einziges FAIL
 
 *The output shows you for each file and check whether everything is in order.
 At the end you see a score in percent. Goal is 100 % (zero FAILs) — the script returns exit code 1 as soon as a single FAIL occurs.*
+
+---
+
+### Schritt 5: KI-Agenten einrichten / Step 5: Set up AI agents
+
+Damit du KI-Assistenz beim Entwickeln nutzen kannst, installiere mindestens einen KI-Agenten. Die vollständige Anleitung für alle fünf unterstützten Agenten findest du hier:
+
+*To use AI assistance while coding, install at least one AI agent. Find the complete instructions for all five supported agents here:*
+
+→ [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
+
+**Empfehlung / Recommendation:** Starte mit dem **GitHub Copilot CLI** — du bist über `gh` bereits authentifiziert und es ist keine separate Einrichtung nötig.
+
+*Start with **GitHub Copilot CLI** — you are already authenticated via `gh` and no separate setup is needed.*
+
+```bash
+# GitHub Copilot CLI installieren (alle Plattformen / all platforms)
+gh extension install github/gh-copilot
+
+# Version prüfen / Check version
+gh copilot --version
+```
+
+---
+
+### Schritt 6: Spec-Kit einrichten / Step 6: Set up Spec-Kit
+
+Spec-Kit ermöglicht **Specification-Driven Development (SDD)**: Du beschreibst ein Feature in natürlicher Sprache — der KI-Agent erstellt daraus einen strukturierten Plan und umsetzbare Aufgaben.
+
+*Spec-Kit enables **Specification-Driven Development (SDD)**: you describe a feature in natural language and the AI agent creates a structured plan and actionable tasks from it.*
+
+→ Vollständige Anleitung: [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
+
+```bash
+# Node.js installieren, falls noch nicht vorhanden (s. Schritt 0 / see Step 0)
+
+# Spec-Kit global installieren / Install Spec-Kit globally
+npm install -g @ilodev/specify
+
+# Im Workspace-Verzeichnis initialisieren (Beispiel / example: AusbildungsProjekte)
+cd ~/AusbildungsProjekte
+specify init --here --ai copilot   # GitHub Copilot CLI
+# specify init --here --ai claude  # Claude Code
+# specify init --here --ai gemini  # Gemini CLI
+```
 
 ---
 
