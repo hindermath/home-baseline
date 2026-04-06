@@ -23,6 +23,7 @@ private GitHub repository within seconds.*
   - [macOS / Linux](#macos--linux)
   - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7)
 - [Ersteinrichtung dieses Repos auf einem neuen Gerät / Initial setup on a new device](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
+  - [GitHub / GitLab-Authentifizierung / Authentication](#github--gitlab-authentifizierung--authentication)
   - [macOS / Linux](#macos--linux-1)
   - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7-1)
   - [Nächste Schritte / Next steps](#nächste-schritte--next-steps)
@@ -332,6 +333,44 @@ Der Bootstrap-Vorgang erledigt automatisch:
 >
 > *Who is this for? This section is for **apprentices and end-users** who used the template and want to set up their own repo on a new device. As the template author (`hindermath`), use the [Template Developer Workflow](#template-entwickler-workflow--template-developer-workflow) instead.*
 
+### GitHub / GitLab-Authentifizierung / Authentication
+
+Stelle auf dem neuen Gerät sicher, dass du bei deinem Git-Hoster authentifiziert bist, **bevor** du klonst.
+
+*On the new device, make sure you are authenticated with your Git hosting provider **before** cloning.*
+
+**GitHub:**
+
+```bash
+# macOS / Linux
+gh auth login        # GitHub.com → HTTPS → Browser auswählen
+gh auth setup-git    # git Credential-Helper konfigurieren
+```
+
+```powershell
+# Windows — in einem interaktiven Terminalfenster ausführen (NICHT im Hintergrundprozess!)
+gh auth login        # GitHub.com → HTTPS → Browser auswählen
+gh auth setup-git    # git Credential-Helper konfigurieren
+```
+
+> ⚠️ **Windows:** `gh auth login` muss in einem **interaktiven Terminalfenster** gestartet werden — nicht aus Copilot CLI oder einem anderen Hintergrundprozess heraus.
+>
+> *Must be run in an interactive terminal window — not from Copilot CLI or any background process.*
+
+**GitLab:**
+
+```bash
+# Option A — glab CLI (falls installiert / if installed):
+glab auth login
+
+# Option B — Personal Access Token (PAT) direkt beim Klonen eingeben:
+# git clone https://gitlab.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
+# → Benutzername / username:  YOUR_USERNAME
+# → Passwort / password:      DEIN_PAT  (Scope: read_repository + write_repository)
+```
+
+---
+
 ### macOS / Linux
 
 ```bash
@@ -357,6 +396,12 @@ rm -rf home-baseline-tmp
 # Initialen Commit erstellen
 git add -A
 git commit -m "chore: initialer Commit — Level-0-Baseline"
+
+# Remote-Repo verbinden / Connect remote repo
+git remote add origin https://github.com/YOUR_USERNAME/home-baseline.git
+# GitLab-Alternative / GitLab alternative:
+# git remote add origin https://gitlab.com/YOUR_USERNAME/home-baseline.git
+git push -u origin main
 
 # Compliance prüfen
 bash ~/scripts/check-homogeneity.sh ~/
@@ -388,6 +433,12 @@ Remove-Item home-baseline-tmp -Recurse -Force
 # Initialen Commit erstellen
 git add -A
 git commit -m "chore: initialer Commit — Level-0-Baseline"
+
+# Remote-Repo verbinden / Connect remote repo
+git remote add origin https://github.com/YOUR_USERNAME/home-baseline.git
+# GitLab-Alternative / GitLab alternative:
+# git remote add origin https://gitlab.com/YOUR_USERNAME/home-baseline.git
+git push -u origin main
 
 # Compliance prüfen
 pwsh ~/scripts/check-homogeneity.ps1
