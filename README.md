@@ -738,8 +738,12 @@ gh auth login
 #### macOS
 
 ```bash
-# Homebrew installieren (falls noch nicht vorhanden)
+# Homebrew installieren (falls noch nicht vorhanden / if not already installed)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Homebrew aktualisieren und alle Pakete auf den neuesten Stand bringen
+# (empfohlen auf bestehenden Macs / recommended on existing Macs)
+brew update && brew upgrade
 
 # Tools installieren
 brew install git ripgrep gh
