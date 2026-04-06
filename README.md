@@ -1094,21 +1094,9 @@ specify init --here --ai copilot   # GitHub Copilot CLI
 
 ### Neues Projekt anlegen / Create a new project
 
-Wenn du ein konkretes Programmierprojekt starten möchtest:
+→ Siehe [Schritt 3: Ersten Workspace anlegen](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace) — die Befehle zum Anlegen weiterer Projekte sind dort bereits vollständig beschrieben.
 
-```bash
-# macOS / Linux / Ubuntu
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/AusbildungsProjekte
-
-# Windows
-pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/AusbildungsProjekte
-```
-
-Danach Compliance prüfen / Then check compliance:
-
-```bash
-bash ~/scripts/check-homogeneity.sh ~/AusbildungsProjekte
-```
+*See [Step 3: Create your first workspace](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace) — the commands for creating additional projects are fully described there.*
 
 ---
 
