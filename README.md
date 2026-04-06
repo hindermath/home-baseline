@@ -1037,6 +1037,8 @@ gh extension install github/gh-copilot
 gh copilot --version
 ```
 
+→ Weiter mit: [Schritt 6: Spec-Kit einrichten](#schritt-6-spec-kit-einrichten--step-6-set-up-spec-kit)
+
 ---
 
 ### Schritt 6: Spec-Kit einrichten / Step 6: Set up Spec-Kit
@@ -1186,6 +1188,8 @@ gh copilot
 > Skills werden automatisch aus `.agents/skills/` geladen.  
 > Aufruf im Chat: `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, …
 
+→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+
 ---
 
 #### Claude Code
@@ -1225,6 +1229,8 @@ claude
 
 Weitere Infos: [code.claude.com/docs/de/setup](https://code.claude.com/docs/de/setup)
 
+→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+
 ---
 
 #### Gemini CLI
@@ -1256,6 +1262,8 @@ gemini
 ```
 
 Weitere Infos: [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
+
+→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
 
 ---
 
@@ -1302,6 +1310,8 @@ codex
 
 Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
 
+→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+
 ---
 
 #### OpenCode
@@ -1340,6 +1350,8 @@ opencode
 
 Weitere Infos: [opencode.ai](https://opencode.ai)  
 GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
+
+→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
 
 ---
 
