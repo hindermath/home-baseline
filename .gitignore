@@ -39,6 +39,7 @@
 !STATS-archive*.md
 !specs/
 !constitution.md
+!mac-test-output.txt
 
 # Spec-Kit Konfiguration und Templates
 !.specify/
