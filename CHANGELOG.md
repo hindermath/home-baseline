@@ -8,7 +8,21 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
-## [0.5.0](https://github.com/hindermath/home-baseline/compare/v0.4.2...v0.5.0) (2026-04-06)
+## [0.6.0](https://github.com/hindermath/home-baseline/compare/v0.5.0...v0.6.0) (2026-04-06)
+
+
+### Documentation / Dokumentation
+
+* GitHub/GitLab-Authentifizierungssektion vor Ersteinrichtung ergänzt (gh auth login, glab auth login, PAT-Option) ([40148a4](https://github.com/hindermath/home-baseline/commit/40148a4))
+* git remote add origin und git push -u origin main in macOS/Linux- und Windows-Blöcken der Ersteinrichtung ergänzt ([40148a4](https://github.com/hindermath/home-baseline/commit/40148a4))
+* Nächste-Schritte-Abschnitt zu nummeriertem 4-Schritte-Leitfaden ausgebaut (Workspace → Projekt → KI-Agenten → Spec-Kit) ([b367acc](https://github.com/hindermath/home-baseline/commit/b367acc))
+* Auszubildende: Schritt 5 (KI-Agenten einrichten) und Schritt 6 (Spec-Kit einrichten) neu ergänzt ([b367acc](https://github.com/hindermath/home-baseline/commit/b367acc))
+* Schritt Projekt anlegen (bootstrap-project) in Nächste Schritte und Auszubildende Schritt 3 ergänzt ([ae5c119](https://github.com/hindermath/home-baseline/commit/ae5c119))
+* Spec-Kit-init-Link am Ende jedes KI-Agenten-Blocks ergänzt (alle 5 Agenten) ([243178d](https://github.com/hindermath/home-baseline/commit/243178d))
+* Automatisch erledigte Git-Schritte (git init, Commit, Remote, Push) in Nächste Schritte und Auszubildende Schritt 3 dokumentiert ([07e9c5c](https://github.com/hindermath/home-baseline/commit/07e9c5c))
+* Redundanten Abschnitt 'Neues Projekt anlegen' zu kurzem Verweis auf Schritt 3 gestrafft ([eb67966](https://github.com/hindermath/home-baseline/commit/eb67966))
+
+
 
 
 ### Features / Neue Funktionen
