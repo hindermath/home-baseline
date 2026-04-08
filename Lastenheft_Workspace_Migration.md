@@ -20,6 +20,7 @@
 > Schritt 1 → Lastenheft_GitLab_Support.md                (Voraussetzung / prerequisite)
 > Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   (Voraussetzung / prerequisite)
 > Schritt 3 → Lastenheft_Workspace_Migration.md            ← DU BIST HIER / YOU ARE HERE
+> Schritt 4 → Lastenheft_Workspace_Teardown.md              (unabhängig — parallel möglich)
 > ```
 >
 > **Beide Vorstufen müssen abgeschlossen sein**, bevor FR-04–FR-06 und FR-11 aus

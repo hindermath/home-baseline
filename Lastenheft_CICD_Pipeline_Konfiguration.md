@@ -19,6 +19,7 @@
 > Schritt 1 → Lastenheft_GitLab_Support.md                (Voraussetzung / prerequisite)
 > Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   ← DU BIST HIER / YOU ARE HERE
 > Schritt 3 → Lastenheft_Workspace_Migration.md            (erfordert Schritt 1 + 2)
+> Schritt 4 → Lastenheft_Workspace_Teardown.md              (unabhängig — parallel möglich)
 > ```
 >
 > **Schritt 1 muss abgeschlossen sein**, bevor GitLab-CI-Templates (FR-04, FR-05)

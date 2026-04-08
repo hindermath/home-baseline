@@ -18,11 +18,12 @@
 > Schritt 1 → Lastenheft_GitLab_Support.md           ← DU BIST HIER / YOU ARE HERE
 > Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   (erfordert Schritt 1)
 > Schritt 3 → Lastenheft_Workspace_Migration.md            (erfordert Schritt 1 + 2)
+> Schritt 4 → Lastenheft_Workspace_Teardown.md              (unabhängig — parallel möglich)
 > ```
 >
-> *These three Lastenheft files build on each other and **must be implemented in
+> *These Lastenheft files build on each other and **must be implemented in
 > this order**. Starting with a later step before completing earlier ones will
-> result in missing dependencies.*
+> result in missing dependencies. Step 4 is independent and can be done in parallel.*
 
 ---
 
