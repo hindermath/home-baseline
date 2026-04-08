@@ -420,19 +420,24 @@ Alle neuen Benutzerausgaben bilingual: Deutsch zuerst, Englisch (CEFR B2).
 
 ## Spec-Kit-Hinweise / Spec-Kit Notes
 
-> Dieses Lastenheft ist als Eingabe für `specify specify` konzipiert.
-> Dieses Feature hat **zwei Abhängigkeiten**:
+> Dieses Lastenheft ist als Eingabe für den Slash-Command `/speckit.specify`
+> konzipiert. Dieses Feature hat **zwei Abhängigkeiten**:
 > - `Lastenheft_GitLab_Support.md` (für GitLab-Remote-Erkennung)
 > - `Lastenheft_CICD_Pipeline_Konfiguration.md` (für CI-Templates)
 >
 > FR-01 bis FR-03 und FR-07–FR-09 können **unabhängig** von diesen
 > Abhängigkeiten implementiert werden.
 >
-> *This Lastenheft has two dependencies. FR-01 to FR-03 and FR-07-FR-09
+> *This Lastenheft is designed as input for the `/speckit.specify` slash command.
+> It has two dependencies. FR-01 to FR-03 and FR-07-FR-09
 > can be implemented independently.*
 
 ```bash
-# Spec-Kit starten / Start Spec-Kit
 cd ~/home-baseline-tmp
-specify specify Lastenheft_Workspace_Migration.md
+claude
+```
+Folgendes im Claude-Interface aufrufen / Then run in the Claude interface:
+```text
+# Spec-Kit starten / Start Spec-Kit (in Claude Code)
+/speckit.specify Lastenheft_Workspace_Migration.md
 ```
