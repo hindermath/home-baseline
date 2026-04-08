@@ -119,7 +119,7 @@ unintended repos.*
 ~/.gitconfig          → Nur sichere globale Defaults (user, init, autocrlf)
 ~/.gitconfig.d/
   home-baseline.inc   → Einstellungen nur für ~/home-baseline-tmp/
-  workspaces.inc      → Einstellungen nur für ~/*/  (Level 1 Workspaces)
+  myprojects.inc      → Einstellungen für ~/MyProjects/ UND alle darin enthaltenen Projekte
   <custom>.inc        → Nutzerdefinierte Workspace-Overrides
 
 [includeIf "gitdir:~/home-baseline-tmp/"]
@@ -127,7 +127,28 @@ unintended repos.*
 
 [includeIf "gitdir:~/MyProjects/"]
     path = ~/.gitconfig.d/myprojects.inc
+    # ↑ Trailing-Slash = gilt für ~/MyProjects/.git (Level 1)
+    #   UND alle ~/MyProjects/irgendein-projekt/.git (Level 2)
+    #   Projektinterne Unterordner (src/, tests/, obj/, bin/ …)
+    #   sind NICHT betroffen — git erlaubt sie immer (kein Scope-Eingriff)
 ```
+
+> **⚠️ Wichtige Klarstellung zu Level 2 / Important Clarification for Level 2**
+>
+> `includeIf "gitdir:~/MyProjects/"` mit **Trailing-Slash** greift für:
+> - den Workspace selbst (`~/MyProjects/.git` → Level 1)
+> - **alle Projekte darin** (`~/MyProjects/my-csharp-app/.git` → Level 2)
+>
+> `includeIf` beeinflusst ausschließlich **git-Konfigurationseinstellungen**.
+> Es schränkt Unterordner innerhalb eines Projekts **in keiner Weise** ein.
+> C#-, Java-, Python-, Flutter-Projekte usw. mit tiefer Ordnerstruktur
+> (`src/`, `tests/`, `lib/`, `bin/`, `obj/`, `packages/`) funktionieren
+> vollständig unverändert.
+>
+> *`includeIf` only scopes git configuration settings. It never restricts
+> subdirectory access or file tracking within a project repo. Level 2 project
+> repos with complex subdirectory structures (C#, Java, Flutter, etc.) are
+> fully supported and completely unaffected.*
 
 ---
 
@@ -215,6 +236,18 @@ neuen Workspace angelegt:
 ```
 
 Der Include wird nur angelegt wenn `~/.gitconfig.d/` existiert.
+
+> **Hinweis Level 2 / Note Level 2:** Der Trailing-Slash in
+> `gitdir:~/WorkspaceName/` bewirkt, dass dieser Include automatisch auch
+> für alle **Level-2-Projekte** innerhalb des Workspace gilt
+> (z. B. `~/WorkspaceName/my-app/`). Projektinterne Unterordner
+> (`src/`, `tests/`, `bin/` usw.) sind davon nicht betroffen —
+> `includeIf` scopet nur Konfigurationseinstellungen, nie Verzeichnisstrukturen.
+>
+> *The trailing slash means the `includeIf` automatically covers Level 2
+> project repos inside the workspace as well. Subdirectories within those
+> projects (src/, tests/, bin/, etc.) are entirely unaffected — `includeIf`
+> only scopes config settings, never directory structures.*
 
 *`bootstrap-workspace` sets workspace-specific settings with `git config --local`
 and optionally adds an `includeIf` entry to `~/.gitconfig`.*
@@ -339,6 +372,26 @@ should scan `~/.gitconfig.d/`.*
 
 ---
 
+### NFR-05 — Level-2-Projektstruktur unberührt / Level 2 Project Structure Unaffected
+
+Der `includeIf`-Mechanismus darf die interne Ordnerstruktur von Level-2-Projekten
+**in keiner Weise einschränken**. Projekte mit komplexer Unterordner-Hierarchie —
+C# (`src/`, `tests/`, `bin/`, `obj/`), Java (`src/main/`, `src/test/`),
+Flutter (`lib/`, `assets/`, `android/`, `ios/`), Python (`src/`, `venv/`)
+usw. — müssen vollständig und unverändert funktionieren.
+
+`git config --local` in einem Level-2-Projekt gilt für das **gesamte Repo**
+inklusive aller Unterordner. Das ist git-internes Standardverhalten und
+liegt außerhalb des Einflussbereichs dieses Features.
+
+*The `includeIf` mechanism must not restrict internal folder structures of
+Level 2 project repos in any way. Projects with deep subdirectory hierarchies
+(C#, Java, Flutter, Python, etc.) must work completely unchanged.
+`git config --local` in a project repo applies to the entire repo including
+all subdirectories — standard git behavior, outside the scope of this feature.*
+
+---
+
 ## Abgrenzung / Out of Scope
 
 | Thema / Topic | Begründung / Reason |
@@ -364,6 +417,7 @@ should scan `~/.gitconfig.d/`.*
 | AC-08 | `check-homogeneity` warnt bei fehlendem `includeIf` | Dry-Run |
 | AC-09 | `teardown-workspace` entfernt `includeIf`-Eintrag + `.inc`-Datei | Live-Test |
 | AC-10 | README-Abschnitt erklärt den Mechanismus mit Beispiel | Sichtprüfung |
+| AC-11 | In einem Level-2-Projekt (`~/MyProjects/my-csharp-app/`) können Unterordner (`src/`, `tests/`, `bin/`, `obj/`) ohne Einschränkungen von git getrackt werden | `git status` + `git add src/` in Projektrepo |
 
 ---
 
