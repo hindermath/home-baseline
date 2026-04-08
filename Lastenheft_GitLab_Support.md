@@ -11,10 +11,11 @@
 
 > ## ⚠️ Implementierungsreihenfolge / Implementation Order
 >
-> Diese drei Lastenheft-Dateien bauen aufeinander auf und **müssen in dieser
+> Diese Lastenheft-Dateien bauen aufeinander auf und **müssen in dieser
 > Reihenfolge** implementiert werden:
 >
 > ```text
+> Schritt 0 → Lastenheft_Git_Config_Scope.md               (ZUERST oder parallel — Grundlage)
 > Schritt 1 → Lastenheft_GitLab_Support.md           ← DU BIST HIER / YOU ARE HERE
 > Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   (erfordert Schritt 1)
 > Schritt 3 → Lastenheft_Workspace_Migration.md            (erfordert Schritt 1 + 2)
@@ -22,8 +23,9 @@
 > ```
 >
 > *These Lastenheft files build on each other and **must be implemented in
-> this order**. Starting with a later step before completing earlier ones will
-> result in missing dependencies. Step 4 is independent and can be done in parallel.*
+> this order**. Step 0 is foundational and should be done first or in parallel.
+> Starting with a later step before completing earlier ones will result in missing
+> dependencies. Step 4 is independent and can be done in parallel.*
 
 ---
 

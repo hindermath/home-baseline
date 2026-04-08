@@ -12,18 +12,19 @@
 
 > ## ⚠️ Implementierungsreihenfolge / Implementation Order
 >
-> Diese Lastenheft-Datei ist **unabhängig** von den anderen drei und kann
+> Diese Lastenheft-Datei ist **unabhängig** von den anderen und kann
 > parallel oder in beliebiger Reihenfolge implementiert werden. Sie ergänzt
 > die Bootstrap- und Migrations-Skripte um den umgekehrten Lifecycle-Schritt.
 >
 > Empfohlene Gesamtreihenfolge aller fünf Features:
 >
 > ```text
+> Schritt 0 → Lastenheft_Git_Config_Scope.md               (ZUERST oder parallel — Grundlage)
 > Schritt 1 → Lastenheft_GitLab_Support.md
 > Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md    (erfordert Schritt 1)
 > Schritt 3 → Lastenheft_Workspace_Migration.md             (erfordert Schritt 1 + 2)
 > Schritt 4 → Lastenheft_Workspace_Teardown.md              ← DU BIST HIER / YOU ARE HERE
->             (unabhängig — kann parallel zu Schritt 1–3 begonnen werden)
+>             (unabhängig — kann parallel zu Schritt 0–3 begonnen werden)
 > ```
 >
 > *This Lastenheft is independent of the other three and can be implemented in
