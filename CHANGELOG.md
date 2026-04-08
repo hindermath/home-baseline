@@ -8,6 +8,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.5.3](https://github.com/hindermath/home-baseline/compare/v0.5.2...v0.5.3) (2026-04-08)
+
+
+### Documentation / Dokumentation
+
+* EN Bootstrap-Liste als nummerierte Liste formatiert (analog DE) ([88d0b45](https://github.com/hindermath/home-baseline/commit/88d0b45a9e3872a051e6e0b35e58b1f79c74582e))
+* Implementierungsreihenfolge prominent in alle drei Lastenheft-Dateien eingefügt ([1ef4e2c](https://github.com/hindermath/home-baseline/commit/1ef4e2c816cc7fd0edb2230cf51d7e7402f883cd))
+* Lastenheft CI/CD-Pipeline und Workspace-Migration hinzugefügt (Spec-Kit-kompatibel) ([1361a02](https://github.com/hindermath/home-baseline/commit/1361a02dd121eec06f066176f9dad308369d2c9f))
+* Lastenheft GitLab-Support hinzugefügt (Spec-Kit-kompatibel) ([3365f49](https://github.com/hindermath/home-baseline/commit/3365f495cd9e5ff2863941521826d0cebefb9e00))
+* Lastenheft Workspace-Teardown hinzugefügt; Implementierungsreihenfolge in allen Lastenheften auf 4 Schritte erweitert ([cf09655](https://github.com/hindermath/home-baseline/commit/cf09655f953f24068877075e7cf5e4523b8ede4e))
+* Lastenheft_Git_Config_Scope.md hinzugefügt; Schritt-0 in alle Lastenheft-Dateien eingetragen ([3a62e61](https://github.com/hindermath/home-baseline/commit/3a62e61c446baa30312a86c756bb3caa14e38dc7))
+
 ## [0.5.2](https://github.com/hindermath/home-baseline/compare/v0.5.1...v0.5.2) (2026-04-06)
 
 
