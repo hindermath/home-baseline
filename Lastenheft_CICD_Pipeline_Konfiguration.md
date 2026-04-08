@@ -10,6 +10,26 @@
 
 ---
 
+> ## ⚠️ Implementierungsreihenfolge / Implementation Order
+>
+> Diese drei Lastenheft-Dateien bauen aufeinander auf und **müssen in dieser
+> Reihenfolge** implementiert werden:
+>
+> ```text
+> Schritt 1 → Lastenheft_GitLab_Support.md                (Voraussetzung / prerequisite)
+> Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   ← DU BIST HIER / YOU ARE HERE
+> Schritt 3 → Lastenheft_Workspace_Migration.md            (erfordert Schritt 1 + 2)
+> ```
+>
+> **Schritt 1 muss abgeschlossen sein**, bevor GitLab-CI-Templates (FR-04, FR-05)
+> aus diesem Lastenheft implementiert werden. Die GitHub-Actions-Teile (FR-01–FR-03,
+> FR-06–FR-09) können unabhängig von Schritt 1 umgesetzt werden.
+>
+> *Step 1 must be completed before implementing GitLab CI templates from this
+> Lastenheft. The GitHub Actions parts can be implemented independently.*
+
+---
+
 ## Dateibenennungs-Konvention / File Naming Convention
 
 ```

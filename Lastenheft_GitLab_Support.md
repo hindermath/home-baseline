@@ -9,6 +9,23 @@
 
 ---
 
+> ## ⚠️ Implementierungsreihenfolge / Implementation Order
+>
+> Diese drei Lastenheft-Dateien bauen aufeinander auf und **müssen in dieser
+> Reihenfolge** implementiert werden:
+>
+> ```text
+> Schritt 1 → Lastenheft_GitLab_Support.md           ← DU BIST HIER / YOU ARE HERE
+> Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   (erfordert Schritt 1)
+> Schritt 3 → Lastenheft_Workspace_Migration.md            (erfordert Schritt 1 + 2)
+> ```
+>
+> *These three Lastenheft files build on each other and **must be implemented in
+> this order**. Starting with a later step before completing earlier ones will
+> result in missing dependencies.*
+
+---
+
 ## Dateibenennungs-Konvention / File Naming Convention
 
 Dieses Lastenheft folgt der Projektkonvention:

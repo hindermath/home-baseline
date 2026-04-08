@@ -11,6 +11,28 @@
 
 ---
 
+> ## ⚠️ Implementierungsreihenfolge / Implementation Order
+>
+> Diese drei Lastenheft-Dateien bauen aufeinander auf und **müssen in dieser
+> Reihenfolge** implementiert werden:
+>
+> ```text
+> Schritt 1 → Lastenheft_GitLab_Support.md                (Voraussetzung / prerequisite)
+> Schritt 2 → Lastenheft_CICD_Pipeline_Konfiguration.md   (Voraussetzung / prerequisite)
+> Schritt 3 → Lastenheft_Workspace_Migration.md            ← DU BIST HIER / YOU ARE HERE
+> ```
+>
+> **Beide Vorstufen müssen abgeschlossen sein**, bevor FR-04–FR-06 und FR-11 aus
+> diesem Lastenheft implementiert werden (GitLab-Remote-Erkennung + CI-Templates).
+> FR-01 bis FR-03 sowie FR-07–FR-10 sind **unabhängig** und können sofort
+> begonnen werden.
+>
+> *Both prerequisites must be completed before implementing FR-04–FR-06 and FR-11
+> (GitLab remote detection + CI templates). FR-01–FR-03 and FR-07–FR-10 are
+> independent and can be started immediately.*
+
+---
+
 ## Dateibenennungs-Konvention / File Naming Convention
 
 ```
