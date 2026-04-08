@@ -325,7 +325,13 @@ Der Bootstrap-Vorgang erledigt automatisch:
 5. Push zu GitHub
 6. Git-Hooks installieren
 
-*The bootstrap process automatically handles: 1. detecting existing sub-repos and adding them to `.gitignore` · 2. copying standard scripts (`scan-agent-secrets`, `install-hooks`, `pre-push` hook) · 3. `git init` + initial commit · 4. creating a private GitHub repo (`gh repo create`) · 5. pushing to GitHub · 6. installing Git hooks.*
+The bootstrap process automatically handles:
+1. Detecting existing sub-repos and adding them to `.gitignore`
+2. Copying standard scripts (`scan-agent-secrets`, `install-hooks`, `pre-push` hook)
+3. `git init` + initial commit
+4. Creating a private GitHub repo (`gh repo create`)
+5. Pushing to GitHub
+6. Installing Git hooks
 
 ---
 
