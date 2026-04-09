@@ -18,7 +18,7 @@ Introduces workspace-scoped git configuration isolation using git's `includeIf "
 **Target Platform**: macOS (Darwin), Linux, Windows (Git for Windows / MSYS2)
 **Project Type**: Infrastructure scripts (CLI tools — paired .sh / .ps1)
 **Performance Goals**: N/A — file-system operations only
-**Constraints**: No new package dependencies; whitelist `.gitignore` model; `~/.gitconfig.d/` MUST remain untracked; all script changes MUST ship as Bash + PowerShell pairs
+**Constraints**: No new package dependencies; whitelist `.gitignore` model; `~/.gitconfig.d/` MUST remain untracked (verify after implementation: `git -C ~/home-baseline-tmp ls-files ~/.gitconfig.d/` MUST return empty output); all script changes MUST ship as Bash + PowerShell pairs
 **Scale/Scope**: Single developer workstation; up to ~10 workspace directories
 
 ---
@@ -37,7 +37,7 @@ Introduces workspace-scoped git configuration isolation using git's `includeIf "
 
 **No violations. No Complexity Tracking entries required.**
 
-**Post-design re-check**: Constitution Check passes after Phase 1 design. Forward-slash normalization (FR-012, R-004) is correctly implemented in both Bash and PowerShell. Pre-push hook extension (R-005) follows Principle I exactly.
+**Post-design re-check**: Constitution Check passes after Phase 1 design. Forward-slash normalization (FR-012, R-004) is correctly implemented in both Bash and PowerShell. Pre-push hook extension (R-005) follows Principle I exactly. *Reviewed by: feature author, 2026-04-09.*
 
 ---
 
@@ -88,7 +88,7 @@ scripts/teardown-workspace.ps1   ← same
 
 ### Phase 1A — Core: `~/.gitconfig` Template + `sync-home`
 
-**Implements**: FR-001, FR-003, FR-007
+**Implements**: FR-001, FR-002, FR-003, FR-007
 
 **Files**:
 - `.gitconfig` — strip to global defaults + add `[includeIf]` for home-baseline-tmp
@@ -98,11 +98,13 @@ scripts/teardown-workspace.ps1   ← same
 **Key implementation details**:
 1. `.gitconfig` template gets one `[includeIf "gitdir:~/home-baseline-tmp/"]` block pointing to `~/.gitconfig.d/home-baseline.inc`
 2. `sync-home` checks `~/.gitconfig.d/` at destination after copying `.gitconfig`:
-   - If absent: `mkdir -p ~/.gitconfig.d/ && write placeholder home-baseline.inc`
+   - If absent: `mkdir -p ~/.gitconfig.d/ && write placeholder home-baseline.inc` (placeholder content: see R-006 in research.md)
    - If present: skip with bilingual info message
 3. All new user-facing messages bilingual DE/EN (NFR-001)
 
-**Verification**: `bash scripts/sync-home.sh --dry-run` on a system without `~/.gitconfig.d/`
+**Verification**:
+- `bash scripts/sync-home.sh --dry-run` on a system without `~/.gitconfig.d/` (covers SC-002 partial, SC-003 creation path)
+- Second run: confirm no changes to existing `~/.gitconfig.d/` content (covers SC-003 idempotency path)
 
 ---
 
@@ -123,17 +125,18 @@ scripts/teardown-workspace.ps1   ← same
    - Create `~/.gitconfig.d/<normalized>.inc` placeholder if not present
 4. If `~/.gitconfig.d/` absent: skip with bilingual info message (no error)
 5. All output bilingual DE/EN (NFR-001)
+6. On Windows PowerShell: use `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` for home path resolution — see Dependencies & Risks (Windows HOME path)
 
-**Verification**: `bash scripts/bootstrap-workspace.sh --dry-run TestWorkspace`; run twice to verify idempotency
+**Verification**: `bash scripts/bootstrap-workspace.sh --dry-run TestWorkspace`; run twice to verify idempotency (covers SC-002)
 
 ---
 
 ### Phase 1C — Security: `pre-push` hook
 
-**Implements**: FR-011, SC-008
+**Implements**: FR-011, SC-008, NFR-001 (bilingual error output)
 
 **Files**:
-- `scripts/hooks/pre-push` (Bash only — git hooks are shell scripts on all platforms)
+- `scripts/hooks/pre-push` (Bash only — git hooks are shell scripts on all platforms; Git for Windows ships with sh.exe)
 
 **Key implementation details** (from R-005):
 ```bash
@@ -168,20 +171,23 @@ fi
 - `scripts/check-homogeneity.ps1`
 
 **Key implementation details** (from R-007, contracts/script-contracts.md):
-1. Add new check module (aligned with existing `lib/hg-*.sh` pattern):
+1. Add new check module as `scripts/lib/hg-git-scope.sh` (aligned with existing `lib/hg-*.sh` pattern — see R-007):
    - `GIT-SCOPE-001`: `~/.gitconfig.d/` exists → WARN if absent
    - `GIT-SCOPE-002`: `[includeIf]` for home-baseline-tmp in `~/.gitconfig` → WARN if absent
 2. WARN severity: does NOT increment fail counter; does NOT affect exit code
 3. JSON output support (`--json` flag) for machine-readable results
 4. All messages bilingual DE/EN (NFR-001)
 
-**Verification**: Remove `~/.gitconfig.d/`; run `bash scripts/check-homogeneity.sh`; confirm WARN is emitted and exit code is 0
+**Verification**:
+- Remove `~/.gitconfig.d/`; run `bash scripts/check-homogeneity.sh`; confirm WARN is emitted and exit code is 0 (covers SC-005)
+- Run `bash scripts/check-homogeneity.sh --json`; confirm JSON output contains `"status": "WARN"` for `GIT-SCOPE-001`
 
 ---
 
 ### Phase 1E — Documentation: `README.md` + `bootstrap-project` bilingual
 
-**Implements**: FR-010, NFR-001 (for bootstrap-project)
+**Implements**: FR-010, NFR-001 (for bootstrap-project output)
+*Note: FR-006 (bootstrap-project local git config) is already implemented — only bilingual output (NFR-001) is new. See R-009.*
 
 **Files**:
 - `README.md` — add `## Git Scope-Isolierung / Git Scope Isolation` section
@@ -193,6 +199,12 @@ fi
 - Lists which settings are global vs. workspace-specific
 - Shows how to add workspace-specific overrides (example: different email per workspace)
 - References `~/.gitconfig.d/` directory and `.inc` file format
+- **Insertion position**: Insert after the `## Workspace-Einrichtung / Workspace Setup` section (before `## Verzeichnisstruktur / Directory Structure` or equivalent). Must be added to the 2-level TOC under `##` headings.
+
+**Verification**:
+- Review `README.md` in rendered Markdown: confirm new section is present, TOC entry added, bilingual heading format `## Git Scope-Isolierung / Git Scope Isolation`, all code blocks have language tags
+- Run `bash scripts/bootstrap-project.sh --dry-run TestProject`; confirm bilingual output for local-config step
+- SC-006 / SC-007 regression: run `git status`, `git add`, `git commit --dry-run` in a Level 2 project directory after feature deployment; confirm all operations succeed normally
 
 ---
 
@@ -206,8 +218,8 @@ No Constitution violations — no entries required.
 
 | Item | Type | Notes |
 |---|---|---|
-| FR-008 `teardown-workspace` | **Out of scope** | Separate feature; orphaned `includeIf` entries harmless but must be documented |
-| git ≥ 2.13 | Assumption | Verified in research; `includeIf` is stable since 2.13 (2016) |
+| FR-008 `teardown-workspace` | **Out of scope** | Separate feature; orphaned `includeIf` entries harmless but must be documented — user mitigation: `quickstart.md` contains manual cleanup instructions |
+| git ≥ 2.13 | Assumption | Verified in research; `includeIf` is stable since 2.13 (2016). Scripts do NOT check the git version at runtime — the assumption is that git < 2.13 is not present on supported platforms (git 2.13 shipped 2017). If `includeIf` is silently ignored by an older git, workspace-specific config is simply not applied (non-fatal). |
 | `~/.gitconfig` write permissions | Risk (low) | Scripts fail with clear error if file is read-only; no special handling needed |
 | Windows HOME path | Risk (low) | `$env:HOME` may be empty — use `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` per CLAUDE.md |
 | Duplicate `includeIf` entries (existing installs) | Risk (low) | Idempotency check handles this for new bootstrap runs; existing duplicates harmless |

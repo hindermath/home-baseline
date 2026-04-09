@@ -132,7 +132,7 @@ POST-CONDITION: Push blocked (exit 2) if any HIGH findings in either scan
 
 **New output (on finding)**:
 ```text
-  HIGH: Secret-Muster in ~/.gitconfig.d/ gefunden:
+  HIGH: Secret-Muster in ~/.gitconfig.d/ gefunden / Secret patterns found in ~/.gitconfig.d/:
        /Users/user/.gitconfig.d/my-projects.inc
 ```
 

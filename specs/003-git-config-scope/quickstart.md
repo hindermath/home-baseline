@@ -91,6 +91,29 @@ Für Entwickler die diese Feature-Branch implementieren:
 
 ---
 
+## Bekannte Lücken bis teardown-workspace / Known gaps until teardown-workspace
+
+`teardown-workspace.sh/.ps1` ist noch nicht implementiert (separates Feature, Lastenheft_Workspace_Teardown.md). Bis dahin gilt:
+
+*`teardown-workspace.sh/.ps1` is not yet implemented (separate feature). Until then:*
+
+Wenn ein Workspace **manuell gelöscht** wird, bleiben zwei Artefakte zurück:
+1. Der `[includeIf "gitdir:~/WorkspaceName/"]`-Block in `~/.gitconfig`
+2. Die Datei `~/.gitconfig.d/<workspacename>.inc`
+
+Diese Artefakte sind **harmlos** (git ignoriert `includeIf`-Pfade, die nicht existieren), müssen aber manuell bereinigt werden:
+
+```bash
+# Manuelles Bereinigen / Manual cleanup
+# 1. ~/.gitconfig öffnen und den [includeIf]-Block für den gelöschten Workspace entfernen
+nano ~/.gitconfig  # oder editor der Wahl / or editor of choice
+
+# 2. .inc-Datei löschen / Delete .inc file
+rm ~/.gitconfig.d/<workspacename>.inc
+```
+
+---
+
 ## Verifikation / Verification
 
 ```bash
