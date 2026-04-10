@@ -516,6 +516,38 @@ Zeigt Modell, Arbeitsverzeichnis, Git-Branch und Rate-Limits in der Claude Code 
 
 *Displays model, working directory, git branch and rate limits in the Claude Code status bar. Re-run on additional devices (`--force` / `-Force` to overwrite).*
 
+**3c — Codex CLI status_line einrichten / Set up Codex CLI status_line** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-codex-settings.sh
+```
+
+```powershell
+# Windows
+pwsh -NoProfile ~/scripts/setup-codex-settings.ps1
+```
+
+Setzt die Codex-TUI-Statuszeile in `~/.codex/config.toml` aus einer zentralen Vorlage im Repo. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+
+*Sets the Codex TUI status line in `~/.codex/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
+**3d — Gemini CLI status_line einrichten / Set up Gemini CLI status_line** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-gemini-settings.sh
+```
+
+```powershell
+# Windows
+pwsh -NoProfile ~/scripts/setup-gemini-settings.ps1
+```
+
+Setzt die Gemini-TUI-Statuszeile in `~/.gemini/config.toml` aus einer zentralen Vorlage im Repo. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+
+*Sets the Gemini TUI status line in `~/.gemini/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
 **4 — Spec-Kit einrichten / Set up Spec-Kit**
 
 → [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
@@ -741,6 +773,17 @@ Releases werden automatisch durch **[Release Please](https://github.com/googleap
 |---|---|
 | `scripts/setup-claude-settings.sh` | Claude Code statusLine in `~/.claude/settings.json` einrichten (Bash) |
 | `scripts/setup-claude-settings.ps1` | Claude Code statusLine in `%APPDATA%\Claude\settings.json` einrichten (PowerShell Core) |
+
+### Codex CLI Einrichtung / Codex CLI Setup
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/setup-codex-settings.sh` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten (Bash) |
+| `scripts/setup-codex-settings.ps1` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten (PowerShell Core) |
+| `scripts/templates/codex-statusline.toml` | Zentrale Vorlage fuer die Codex-Statuszeile |
+| `scripts/setup-gemini-settings.sh` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten (Bash) |
+| `scripts/setup-gemini-settings.ps1` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten (PowerShell Core) |
+| `scripts/templates/gemini-statusline.toml` | Zentrale Vorlage fuer die Gemini-Statuszeile |
 
 ---
 
@@ -1332,6 +1375,18 @@ $env:OPENAI_API_KEY = "sk-..."
 codex
 ```
 
+```bash
+# 5. Optional: Codex status_line einrichten
+# macOS / Linux:
+bash ~/scripts/setup-codex-settings.sh
+# Windows (PowerShell):
+# pwsh -NoProfile ~/scripts/setup-codex-settings.ps1
+```
+
+Setzt `tui.status_line` in `~/.codex/config.toml` aus `scripts/templates/codex-statusline.toml`. Auf weiteren Geraeten erneut ausfuehren (`--force` / `-Force` zum Ueberschreiben).
+
+*Sets `tui.status_line` in `~/.codex/config.toml` from `scripts/templates/codex-statusline.toml`. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
 > **Hinweis Linux / Note Linux:** Beim ersten Start kann folgende Meldung erscheinen:
 > `Codex could not find system bubblewrap on PATH. Please install bubblewrap with your package manager. Codex will use the vendored bubblewrap in the meantime.`
 > Codex funktioniert trotzdem — zur Unterdrückung der Meldung: `sudo apt install bubblewrap` (Debian/Ubuntu) bzw. `sudo dnf install bubblewrap` (Fedora/RHEL).
@@ -1647,6 +1702,5 @@ Regeln für neue Inhalte / Rules for new content:
 - Neue Abschnitte bilingual anlegen (DE-Absatz → EN-Absatz in Kursiv)
 - Überschriften-Hierarchie einhalten: h2 → h3 → h4 — keine Ebene überspringen
 - Linkbeschriftungen beschreibend wählen — nicht `[hier](...)` oder `[here](...)`
-
 
 
