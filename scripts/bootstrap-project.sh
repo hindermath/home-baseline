@@ -59,7 +59,7 @@ TARGET_DIR="${TARGET_WORKSPACE}/${PROJECT_NAME}"
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=21
+TOTAL_STEPS=22
 SKIPPED=0
 PARTIAL_FAIL=false
 
@@ -189,6 +189,15 @@ if [ -d "${TARGET_DIR}/.git" ]; then
 else
   git init "$TARGET_DIR" >/dev/null 2>&1
   step_done
+fi
+
+# ─── Step 2b: Lokale git-Einstellungen / Local git settings ──────────────────
+step_start "Lokale git-Einstellungen / Local git settings"
+if [ -d "${TARGET_DIR}/.git" ]; then
+  git -C "$TARGET_DIR" config --local core.autocrlf input >/dev/null 2>&1 || true
+  step_done "Lokale git-Einstellungen gesetzt / Local git settings applied"
+else
+  step_skip "git-Repo noch nicht initialisiert / git repo not yet initialized"
 fi
 
 # ─── Step 3: AGENTS.md ───────────────────────────────────────────────────────

@@ -96,7 +96,31 @@ Sync-Dir '.specify'
 
 Write-Host ""
 
-# ── 3. git commit in ~/ ──────────────────────────────────────────────────────
+# ── 3. ~/.gitconfig.d/ Bootstrap ─────────────────────────────────────────────
+$gitconfigD = Join-Path $HomeDir '.gitconfig.d'
+$placeholder = Join-Path $gitconfigD 'home-baseline.inc'
+if ($WhatIfPreference) {
+    if (Test-Path $gitconfigD) {
+        Write-Host "  [WhatIf] ~/.gitconfig.d/ bereits vorhanden — Inhalt wird nicht überschrieben / already exists — content preserved"
+    } else {
+        Write-Host "  [WhatIf] ~/.gitconfig.d/ würde erstellt mit home-baseline.inc / would be created with home-baseline.inc"
+    }
+} elseif (Test-Path $gitconfigD) {
+    Write-Host "  → ~/.gitconfig.d/ bereits vorhanden — Inhalt wird nicht überschrieben / already exists — content preserved"
+} else {
+    New-Item -ItemType Directory -Path $gitconfigD -Force | Out-Null
+    @(
+        '# home-baseline workspace git configuration',
+        '# Hier workspace-spezifische git-Einstellungen eintragen:',
+        '# [user]',
+        '#   email = work@example.com'
+    ) | Set-Content -Path $placeholder -Encoding UTF8
+    Write-Host "  ✓ ~/.gitconfig.d/ erstellt mit home-baseline.inc / created with home-baseline.inc"
+}
+
+Write-Host ""
+
+# ── 4. git commit in ~/ ──────────────────────────────────────────────────────
 if ($DoCommit) {
     Push-Location $HomeDir
     try {

@@ -26,7 +26,11 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$homeDir       = $HOME
+function ConvertTo-NormalizedName([string]$Name) {
+    $Name.ToLower() -replace '[^a-z0-9]', '-' -replace '-+', '-' -replace '^-|-$', ''
+}
+
+$homeDir       = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
 $workspaceDir  = Join-Path $homeDir $WorkspaceName
 $scriptsSource = Join-Path $homeDir 'scripts'
 
@@ -210,6 +214,54 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 }
 
 
+
+# --- Git Scope-Isolierung -------------------------------------------------------
+
+Write-Host '→ Git Scope-Isolierung / Git Scope Isolation:'
+$normalizedName = ConvertTo-NormalizedName $WorkspaceName
+$gitconfigD = Join-Path $homeDir '.gitconfig.d'
+$gitconfig  = Join-Path $homeDir '.gitconfig'
+
+if (Test-Path $gitconfigD) {
+    # core.autocrlf im lokalen .git/config setzen (Windows: true; macOS/Linux über .sh-Pendant)
+    if ($PSCmdlet.ShouldProcess($workspaceDir, 'git config --local core.autocrlf')) {
+        $autocrlf = if ($IsWindows) { 'true' } else { 'input' }
+        & git -C $workspaceDir config --local core.autocrlf $autocrlf
+    }
+
+    # Idempotenz-Prüfung: includeIf-Block bereits vorhanden?
+    $includeIfPattern = "gitdir:~/$WorkspaceName/"
+    $alreadyPresent = (Get-Content $gitconfig -ErrorAction SilentlyContinue) |
+        Select-String -SimpleMatch $includeIfPattern -Quiet
+
+    if (-not $alreadyPresent) {
+        if ($PSCmdlet.ShouldProcess($gitconfig, "includeIf für $WorkspaceName hinzufügen")) {
+            $incRelPath = "~/.gitconfig.d/$normalizedName.inc"
+            $block = "`n[includeIf `"gitdir:~/$WorkspaceName/`"]`n`tpath = $incRelPath"
+            Add-Content -Path $gitconfig -Value $block -Encoding UTF8
+        }
+        Write-Host "  ✓ includeIf für $WorkspaceName / includeIf for $WorkspaceName eingetragen"
+    } else {
+        Write-Host "  → includeIf für $WorkspaceName bereits vorhanden — übersprungen / already present — skipped"
+    }
+
+    # .inc-Placeholder erstellen wenn nicht vorhanden
+    $incFile = Join-Path $gitconfigD "$normalizedName.inc"
+    if (-not (Test-Path $incFile)) {
+        if ($PSCmdlet.ShouldProcess($incFile, '.inc Placeholder erstellen')) {
+            @(
+                "# $WorkspaceName workspace git configuration",
+                '# [user]',
+                '#   email = work@example.com'
+            ) | Set-Content -Path $incFile -Encoding UTF8
+        }
+        Write-Host "  ✓ ~/.gitconfig.d/$normalizedName.inc erstellt / created"
+    } else {
+        Write-Host "  → ~/.gitconfig.d/$normalizedName.inc bereits vorhanden — übersprungen / already exists — skipped"
+    }
+} else {
+    Write-Host "  → ~/.gitconfig.d/ nicht vorhanden — Scope-Isolierung übersprungen / not found — skipping scope isolation"
+}
 
 Write-Host ''
 Write-Host '╔══════════════════════════════════════════════════════════════════╗' -ForegroundColor Green

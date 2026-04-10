@@ -20,10 +20,10 @@
 
 **Purpose**: Alle zu ändernden Dateien lesen, um den Ist-Stand zu verstehen bevor Änderungen vorgenommen werden. Pflicht — Edit/Write-Werkzeuge schlagen fehl wenn eine Datei nicht zuerst gelesen wurde.
 
-- [ ] T001 Read `.gitconfig` (repo root) to understand current global settings structure before modification
-- [ ] T002 [P] Read `scripts/sync-home.sh` and `scripts/sync-home.ps1` to understand current file-copy logic before adding `~/.gitconfig.d/` bootstrap block
-- [ ] T003 [P] Read `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-workspace.ps1` to understand current bootstrap sequence before adding scope isolation step
-- [ ] T004 [P] Read `scripts/hooks/pre-push`, `scripts/check-homogeneity.sh`, `scripts/check-homogeneity.ps1`, `scripts/bootstrap-project.sh`, `scripts/bootstrap-project.ps1` to understand current state before modification
+- [x] T001 Read `.gitconfig` (repo root) to understand current global settings structure before modification
+- [x] T002 [P] Read `scripts/sync-home.sh` and `scripts/sync-home.ps1` to understand current file-copy logic before adding `~/.gitconfig.d/` bootstrap block
+- [x] T003 [P] Read `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-workspace.ps1` to understand current bootstrap sequence before adding scope isolation step
+- [x] T004 [P] Read `scripts/hooks/pre-push`, `scripts/check-homogeneity.sh`, `scripts/check-homogeneity.ps1`, `scripts/bootstrap-project.sh`, `scripts/bootstrap-project.ps1` to understand current state before modification
 
 ---
 
@@ -35,7 +35,7 @@
 
 **Implements**: FR-001, FR-002, FR-003
 
-- [ ] T005 Update `.gitconfig` (repo root): strip any workspace-specific settings outside global scope; add `[includeIf "gitdir:~/home-baseline-tmp/"]` block (tilde `~` format — consistent with all other includeIf entries) pointing to `~/.gitconfig.d/home-baseline.inc`. Allowed global keys after change: `[user]` name+email, `[init]` defaultBranch, `[core]` autocrlf, `[pull]` rebase. Reference: data-model.md §Global Git Config, contracts/script-contracts.md §.gitconfig Template.
+- [x] T005 Update `.gitconfig` (repo root): strip any workspace-specific settings outside global scope; add `[includeIf "gitdir:~/home-baseline-tmp/"]` block (tilde `~` format — consistent with all other includeIf entries) pointing to `~/.gitconfig.d/home-baseline.inc`. Allowed global keys after change: `[user]` name+email, `[init]` defaultBranch, `[core]` autocrlf, `[pull]` rebase. Reference: data-model.md §Global Git Config, contracts/script-contracts.md §.gitconfig Template.
 
 **Checkpoint**: `.gitconfig` enthält `[includeIf "gitdir:~/home-baseline-tmp/"]` — Foundation ready.
 
@@ -68,17 +68,17 @@ ls ~/.gitconfig.d/                             # → keine neuen Dateien / no ne
 
 ### Implementation for US1 + US3
 
-- [ ] T006 [P] [US1] Add `~/.gitconfig.d/` bootstrap block to `scripts/sync-home.sh`: after file-copy step, check if `~/.gitconfig.d/` exists at `$HOME`; if absent: `mkdir -p "$HOME/.gitconfig.d/"` and write `home-baseline.inc` placeholder (content from research.md R-006 — commented `[user]` block with `email = work@example.com` example); if present: print bilingual skip message. All output bilingual DE/EN (NFR-001). Reference: contracts/script-contracts.md §sync-home.
-- [ ] T007 [P] [US1] Add same `~/.gitconfig.d/` bootstrap block to `scripts/sync-home.ps1`: identical logic using `$homeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` for home path (see CLAUDE.md §Windows HOME pitfall); bilingual output (NFR-001). Reference: contracts/script-contracts.md §sync-home, research.md R-006.
-- [ ] T008 [P] Extend `scripts/hooks/pre-push` to scan `~/.gitconfig.d/` for credential patterns: add new scan block after existing tracked-file scan using exact pattern from research.md R-005 with `"$secret_content_regex"` (same variable, no new regex). Bilingual error message: `"HIGH: Secret-Muster in ~/.gitconfig.d/ gefunden / Secret patterns found in ~/.gitconfig.d/:"`. Bash-only file — no .ps1 counterpart needed (git hooks are sh on all platforms via Git for Windows sh.exe). Reference: contracts/script-contracts.md §pre-push, plan.md §Phase 1C.
+- [x] T006 [P] [US1] Add `~/.gitconfig.d/` bootstrap block to `scripts/sync-home.sh`: after file-copy step, check if `~/.gitconfig.d/` exists at `$HOME`; if absent: `mkdir -p "$HOME/.gitconfig.d/"` and write `home-baseline.inc` placeholder (content from research.md R-006 — commented `[user]` block with `email = work@example.com` example); if present: print bilingual skip message. All output bilingual DE/EN (NFR-001). Reference: contracts/script-contracts.md §sync-home.
+- [x] T007 [P] [US1] Add same `~/.gitconfig.d/` bootstrap block to `scripts/sync-home.ps1`: identical logic using `$homeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` for home path (see CLAUDE.md §Windows HOME pitfall); bilingual output (NFR-001). Reference: contracts/script-contracts.md §sync-home, research.md R-006.
+- [x] T008 [P] Extend `scripts/hooks/pre-push` to scan `~/.gitconfig.d/` for credential patterns: add new scan block after existing tracked-file scan using exact pattern from research.md R-005 with `"$secret_content_regex"` (same variable, no new regex). Bilingual error message: `"HIGH: Secret-Muster in ~/.gitconfig.d/ gefunden / Secret patterns found in ~/.gitconfig.d/:"`. Bash-only file — no .ps1 counterpart needed (git hooks are sh on all platforms via Git for Windows sh.exe). Reference: contracts/script-contracts.md §pre-push, plan.md §Phase 1C.
 
 > **⚠️ Constitution Principle V MUST**: T009 MUST be executed immediately after T008 before any commit.
 
-- [ ] T009 **⚠️ (Constitution Principle V — MANDATORY)** Reinstall pre-push hook after T008 modification: run `bash scripts/install-hooks.sh` from repo root to copy the updated `scripts/hooks/pre-push` into `.git/hooks/pre-push`; confirm output shows `✓ pre-push installiert`; manually verify the hook runs by executing `git push --dry-run` (if supported) or by inspecting `.git/hooks/pre-push` content.
+- [x] T009 **⚠️ (Constitution Principle V — MANDATORY)** Reinstall pre-push hook after T008 modification: run `bash scripts/install-hooks.sh` from repo root to copy the updated `scripts/hooks/pre-push` into `.git/hooks/pre-push`; confirm output shows `✓ pre-push installiert`; manually verify the hook runs by executing `git push --dry-run` (if supported) or by inspecting `.git/hooks/pre-push` content.
 
 > **⚠️ Constitution Principle I MUST**: T010 MUST be executed and scanner output confirmed before committing T008+T009.
 
-- [ ] T010 **⚠️ (Constitution Principle I — MANDATORY GATE before Phase 3 commit)** Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` from repo root; confirm output shows `high=0`; **record the full output verbatim** — it MUST be included in the PR description per Constitution §Governance/Compliance review rule: "Any change to `scripts/hooks/pre-push` MUST explicitly state in the PR which security rule (Principle I) it affects and include scanner output confirming no regressions."
+- [x] T010 **⚠️ (Constitution Principle I — MANDATORY GATE before Phase 3 commit)** Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` from repo root; confirm output shows `high=0`; **record the full output verbatim** — it MUST be included in the PR description per Constitution §Governance/Compliance review rule: "Any change to `scripts/hooks/pre-push` MUST explicitly state in the PR which security rule (Principle I) it affects and include scanner output confirming no regressions."
 
 **Checkpoint**: US1 + US3 implementierbar und testbar. `bash scripts/sync-home.sh --dry-run` verifiziert Erstellung (zeigt `[dry-run] ~/.gitconfig.d/`-Erstellung). Zweiter Lauf mit `--no-pull` verifiziert Idempotenz (SC-003). Hook blockiert bei Credential-Muster (SC-008) — erst nach `install-hooks.sh` (T009) aktiv.
 
@@ -110,8 +110,8 @@ bash scripts/bootstrap-workspace.sh --dry-run PreviewWorkspace
 
 ### Implementation for US2
 
-- [ ] T011 [P] [US2] Add scope isolation step to `scripts/bootstrap-workspace.sh`: (1) `normalize_name()` function (research.md R-003 Bash implementation); (2) `git config --local core.autocrlf input` in new workspace repo (FR-004); (3) if `~/.gitconfig.d/` exists: idempotency check via `grep -qF "gitdir:~/${workspace_name}/"` (tilde format — see path note above; research.md R-002 adapted), if absent: append `[includeIf "gitdir:~/${workspace_name}/"]` block with tilde path and forward slashes (FR-012), create `~/.gitconfig.d/${normalized_name}.inc` placeholder if not present; (4) if `~/.gitconfig.d/` absent: bilingual skip message; (5) all output bilingual DE/EN (NFR-001). Expected output format from contracts/script-contracts.md §bootstrap-workspace.
-- [ ] T012 [P] [US2] Add same scope isolation step to `scripts/bootstrap-workspace.ps1`: `ConvertTo-NormalizedName` function (research.md R-003 PowerShell implementation); `$homeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` for home path; write includeIf value as `~/WorkspaceName/` (tilde format for consistency) — git on Windows resolves `~` correctly; idempotency check via `Select-String "gitdir:~/$workspaceName/"` (matching tilde format); `$path -replace '\\', '/'` for forward-slash normalization of any absolute path constructions (research.md R-004 — if using $homeDir, convert to tilde explicitly); `core.autocrlf = true` on Windows (FR-004 platform variant); all logic mirrors .sh variant. Reference: contracts/script-contracts.md §bootstrap-workspace, plan.md §Phase 1B.
+- [x] T011 [P] [US2] Add scope isolation step to `scripts/bootstrap-workspace.sh`: (1) `normalize_name()` function (research.md R-003 Bash implementation); (2) `git config --local core.autocrlf input` in new workspace repo (FR-004); (3) if `~/.gitconfig.d/` exists: idempotency check via `grep -qF "gitdir:~/${workspace_name}/"` (tilde format — see path note above; research.md R-002 adapted), if absent: append `[includeIf "gitdir:~/${workspace_name}/"]` block with tilde path and forward slashes (FR-012), create `~/.gitconfig.d/${normalized_name}.inc` placeholder if not present; (4) if `~/.gitconfig.d/` absent: bilingual skip message; (5) all output bilingual DE/EN (NFR-001). Expected output format from contracts/script-contracts.md §bootstrap-workspace.
+- [x] T012 [P] [US2] Add same scope isolation step to `scripts/bootstrap-workspace.ps1`: `ConvertTo-NormalizedName` function (research.md R-003 PowerShell implementation); `$homeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` for home path; write includeIf value as `~/WorkspaceName/` (tilde format for consistency) — git on Windows resolves `~` correctly; idempotency check via `Select-String "gitdir:~/$workspaceName/"` (matching tilde format); `$path -replace '\\', '/'` for forward-slash normalization of any absolute path constructions (research.md R-004 — if using $homeDir, convert to tilde explicitly); `core.autocrlf = true` on Windows (FR-004 platform variant); all logic mirrors .sh variant. Reference: contracts/script-contracts.md §bootstrap-workspace, plan.md §Phase 1B.
 
 **Checkpoint**: US2 implementierbar und testbar. Erst realen Lauf ohne `--dry-run` ausführen (erstellt `[includeIf]` + `.inc`), dann zweiten Lauf ausführen — `grep -c 'gitdir:~/TestWorkspace/'` MUSS `1` zurückgeben (Idempotenz = SC-002 erfüllt).
 
@@ -143,9 +143,9 @@ bash scripts/check-homogeneity.sh
 
 ### Implementation for US5
 
-- [ ] T013 [US5] Create `scripts/lib/hg-git-scope.sh` (new file — pattern from existing `scripts/lib/hg-*.sh`): implement `hg_check_git_scope()` function with GIT-SCOPE-001 check (`~/.gitconfig.d/` exists → WARN if absent) and GIT-SCOPE-002 check (`[includeIf "gitdir:~/home-baseline-tmp/"]` present in `~/.gitconfig` → WARN if absent); severity WARN (does NOT increment fail counter, does NOT affect exit code); bilingual WARN messages (NFR-001); JSON output support when `--json` flag active (emit JSON object per contracts/script-contracts.md §check-homogeneity). Reference: research.md R-007, contracts/script-contracts.md §check-homogeneity.
-- [ ] T014 [P] [US5] Integrate `hg-git-scope.sh` into `scripts/check-homogeneity.sh`: source `scripts/lib/hg-git-scope.sh`; call `hg_check_git_scope`; ensure WARN output is visible in standard and `--json` modes; WARN does NOT increment existing FAIL counter. Reference: contracts/script-contracts.md §check-homogeneity GIT-SCOPE-001/002.
-- [ ] T015 [P] [US5] Add GIT-SCOPE-001 and GIT-SCOPE-002 checks to `scripts/check-homogeneity.ps1` (paired with T014, PowerShell equivalent logic): `$homeDir` fallback for Windows HOME; same WARN severity and bilingual messages (NFR-001); JSON output block mirroring Bash check. Reference: contracts/script-contracts.md §check-homogeneity.
+- [x] T013 [US5] Create `scripts/lib/hg-git-scope.sh` (new file — pattern from existing `scripts/lib/hg-*.sh`): implement `hg_check_git_scope()` function with GIT-SCOPE-001 check (`~/.gitconfig.d/` exists → WARN if absent) and GIT-SCOPE-002 check (`[includeIf "gitdir:~/home-baseline-tmp/"]` present in `~/.gitconfig` → WARN if absent); severity WARN (does NOT increment fail counter, does NOT affect exit code); bilingual WARN messages (NFR-001); JSON output support when `--json` flag active (emit JSON object per contracts/script-contracts.md §check-homogeneity). Reference: research.md R-007, contracts/script-contracts.md §check-homogeneity.
+- [x] T014 [P] [US5] Integrate `hg-git-scope.sh` into `scripts/check-homogeneity.sh`: source `scripts/lib/hg-git-scope.sh`; call `hg_check_git_scope`; ensure WARN output is visible in standard and `--json` modes; WARN does NOT increment existing FAIL counter. Reference: contracts/script-contracts.md §check-homogeneity GIT-SCOPE-001/002.
+- [x] T015 [P] [US5] Add GIT-SCOPE-001 and GIT-SCOPE-002 checks to `scripts/check-homogeneity.ps1` (paired with T014, PowerShell equivalent logic): `$homeDir` fallback for Windows HOME; same WARN severity and bilingual messages (NFR-001); JSON output block mirroring Bash check. Reference: contracts/script-contracts.md §check-homogeneity.
 
 **Note**: T013 must complete before T014 can source the new lib file. T014 and T015 can run in parallel after T013.
 
@@ -159,11 +159,11 @@ bash scripts/check-homogeneity.sh
 
 > **Hinweis**: Constitution Principle I Scanner-Gate (T010) wurde bereits in Phase 3 ausgeführt. Der End-to-End-Verifikationsschritt T020 dient als abschließende Qualitätssicherung.
 
-- [ ] T016 [P] Add bilingual output to `scripts/bootstrap-project.sh` for existing `git config --local` step (NFR-001 only — FR-006 logic already implemented per research.md R-009). Add DE/EN message alongside existing step, e.g. `Lokale git-Einstellungen gesetzt / Local git settings applied`.
-- [ ] T017 [P] Add bilingual output to `scripts/bootstrap-project.ps1` for existing `git config --local` step (paired with T016, same NFR-001 requirement, same R-009 context).
-- [ ] T018 [US1] Add `## Git Scope-Isolierung / Git Scope Isolation` section to `README.md` after `## Workspace-Einrichtung / Workspace Setup` section (FR-010): bilingual heading (WCAG 2.4.6); explain `includeIf` mechanism; list global vs. workspace-specific settings; show user.email override example; reference `~/.gitconfig.d/` and `.inc` format; add TOC entry under `##` headings (2-level TOC convention); all code blocks with language tags (WCAG 4.1.1).
-- [ ] T019 [P] Verify `~/.gitconfig.d/` remains untracked: run `git -C ~/home-baseline-tmp ls-files ~/.gitconfig.d/`; confirm empty output (constraint from plan.md §Technical Context).
-- [ ] T020 Run comprehensive end-to-end verification covering all open Success Criteria:
+- [x] T016 [P] Add bilingual output to `scripts/bootstrap-project.sh` for existing `git config --local` step (NFR-001 only — FR-006 logic already implemented per research.md R-009). Add DE/EN message alongside existing step, e.g. `Lokale git-Einstellungen gesetzt / Local git settings applied`.
+- [x] T017 [P] Add bilingual output to `scripts/bootstrap-project.ps1` for existing `git config --local` step (paired with T016, same NFR-001 requirement, same R-009 context).
+- [x] T018 [US1] Add `## Git Scope-Isolierung / Git Scope Isolation` section to `README.md` after `## Workspace-Einrichtung / Workspace Setup` section (FR-010): bilingual heading (WCAG 2.4.6); explain `includeIf` mechanism; list global vs. workspace-specific settings; show user.email override example; reference `~/.gitconfig.d/` and `.inc` format; add TOC entry under `##` headings (2-level TOC convention); all code blocks with language tags (WCAG 4.1.1).
+- [x] T019 [P] Verify `~/.gitconfig.d/` remains untracked: run `git -C ~/home-baseline-tmp ls-files ~/.gitconfig.d/`; confirm empty output (constraint from plan.md §Technical Context).
+- [x] T020 Run comprehensive end-to-end verification covering all open Success Criteria:
   ```bash
   # SC-001: per-workspace identity (see Phase 3 Independent Test — run again for final confirmation)
   printf '[user]\n  email = work@test.com\n' > ~/.gitconfig.d/home-baseline.inc

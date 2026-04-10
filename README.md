@@ -22,6 +22,7 @@ private GitHub repository within seconds.*
 - [Neuen Workspace einrichten / Create new workspace](#neuen-workspace-einrichten--create-new-workspace)
   - [macOS / Linux](#macos--linux)
   - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7)
+- [Git Scope-Isolierung / Git Scope Isolation](#git-scope-isolierung--git-scope-isolation)
 - [Ersteinrichtung dieses Repos auf einem neuen Gerät / Initial setup on a new device](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
   - [GitHub / GitLab-Authentifizierung / Authentication](#github--gitlab-authentifizierung--authentication)
   - [macOS / Linux](#macos--linux-1)
@@ -332,6 +333,71 @@ The bootstrap process automatically handles:
 4. Creating a private GitHub repo (`gh repo create`)
 5. Pushing to GitHub
 6. Installing Git hooks
+
+---
+
+## Git Scope-Isolierung / Git Scope Isolation
+
+<!-- EN: Git Scope Isolation -->
+
+Jeder Workspace erhält seine eigene Git-Konfigurationsdatei unter `~/.gitconfig.d/`. Die globale `~/.gitconfig` enthält nur noch allgemeine Einstellungen und `[includeIf]`-Verweise auf diese workspace-spezifischen Dateien.
+
+*Each workspace gets its own git configuration fragment under `~/.gitconfig.d/`. The global `~/.gitconfig` contains only general settings and `[includeIf]` pointers to these workspace-specific files.*
+
+### Mechanismus / Mechanism
+
+Git's `includeIf "gitdir:..."` Direktive lädt automatisch die passende `.inc`-Datei, wenn git in einem bestimmten Verzeichnis ausgeführt wird:
+
+```ini
+# ~/.gitconfig (global — von sync-home verwaltet / managed by sync-home)
+[user]
+    name  = Your Name
+    email = your@global.example
+
+[includeIf "gitdir:~/home-baseline-tmp/"]
+    path = ~/.gitconfig.d/home-baseline.inc
+
+[includeIf "gitdir:~/MyProjects/"]
+    path = ~/.gitconfig.d/myprojects.inc
+```
+
+```ini
+# ~/.gitconfig.d/home-baseline.inc (workspace-spezifisch / workspace-specific)
+[user]
+    email = work@company.example
+```
+
+### Globale vs. workspace-spezifische Einstellungen / Global vs. workspace-specific settings
+
+| Einstellung / Setting | Speicherort / Location |
+|---|---|
+| `user.name`, `user.email` (global) | `~/.gitconfig` |
+| `init.defaultBranch`, `pull.rebase`, `core.autocrlf` | `~/.gitconfig` |
+| `user.email` (workspace-spezifisch / workspace-specific) | `~/.gitconfig.d/<workspace>.inc` |
+| `core.sshCommand`, Workspace-Aliases | `~/.gitconfig.d/<workspace>.inc` |
+
+### Einrichtung / Setup
+
+```bash
+# macOS / Linux — sync-home erstellt ~/.gitconfig.d/ automatisch:
+bash ~/scripts/sync-home.sh --no-pull
+
+# Workspace-E-Mail überschreiben / Override workspace email:
+nano ~/.gitconfig.d/home-baseline.inc
+# [user]
+#   email = work@company.example
+
+# Verifikation / Verification:
+git -C ~/home-baseline-tmp config user.email   # → work@company.example
+git config --show-origin user.email             # → zeigt ~/.gitconfig.d/home-baseline.inc
+git -C ~/MyProjects config user.email           # → globaler Default / global default
+```
+
+### Untracked — Sicherheitsmodell / Security model
+
+`~/.gitconfig.d/` wird **nicht** von home-baseline getrackt — nur du hast Zugriff. Der `pre-push`-Hook prüft diese Dateien auf Credential-Muster und blockiert Pushes bei Fund.
+
+*`~/.gitconfig.d/` is **not** tracked by home-baseline — only you have access. The `pre-push` hook scans these files for credential patterns and blocks pushes if found.*
 
 ---
 

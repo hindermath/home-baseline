@@ -49,6 +49,20 @@ if [ "${#content_hits[@]}" -gt 0 ]; then
   printf '       %s\n' "${content_hits[@]}" >&2
 fi
 
+# ~/.gitconfig.d/ auf Credential-Muster scannen
+gitconfig_d="${HOME}/.gitconfig.d"
+if [ -d "$gitconfig_d" ]; then
+  inc_hits=()
+  while IFS= read -r f; do
+    inc_hits+=("$f")
+  done < <(grep -rEl --include='*.inc' "$secret_content_regex" "$gitconfig_d" 2>/dev/null || true)
+  if [ "${#inc_hits[@]}" -gt 0 ]; then
+    found_high=1
+    echo "  HIGH: Secret-Muster in ~/.gitconfig.d/ gefunden / Secret patterns found in ~/.gitconfig.d/:" >&2
+    printf '       %s\n' "${inc_hits[@]}" >&2
+  fi
+fi
+
 if [ "$found_high" -eq 1 ]; then
   echo "" >&2
   echo "╔══════════════════════════════════════════════════════════════╗" >&2
