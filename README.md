@@ -500,6 +500,22 @@ Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex,
 
 *Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) following the respective instructions.*
 
+**3b — Claude Code statusLine einrichten / Set up Claude Code status line** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-claude-settings.sh
+```
+
+```powershell
+# Windows
+pwsh ~/scripts/setup-claude-settings.ps1
+```
+
+Zeigt Modell, Arbeitsverzeichnis, Git-Branch und Rate-Limits in der Claude Code Statuszeile an. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+
+*Displays model, working directory, git branch and rate limits in the Claude Code status bar. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
 **4 — Spec-Kit einrichten / Set up Spec-Kit**
 
 → [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
@@ -718,6 +734,13 @@ Releases werden automatisch durch **[Release Please](https://github.com/googleap
 | `scripts/install-hooks.sh` | Git-Hooks installieren (Bash) |
 | `scripts/install-hooks.ps1` | Git-Hooks installieren (PowerShell Core) |
 | `scripts/hooks/pre-push` | Pre-Push Hook: blockiert Push bei Secrets |
+
+### Claude Code Einrichtung / Claude Code Setup
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/setup-claude-settings.sh` | Claude Code statusLine in `~/.claude/settings.json` einrichten (Bash) |
+| `scripts/setup-claude-settings.ps1` | Claude Code statusLine in `%APPDATA%\Claude\settings.json` einrichten (PowerShell Core) |
 
 ---
 
