@@ -140,12 +140,15 @@ All test scripts use `git pull --rebase --autostash origin main` to avoid this.
 - Plain-Markdown-Dateien — `STATS.md` (append-only), `memory-patch.md` (001-workspace-homogeneity-guardian)
 - Bash 5+ (primär / primary); PowerShell Core 7+ (Windows-Parität / parity) + `git` ≥ 2.30, `ripgrep (rg)` (alle Plattformen), `gh` CLI (optional, Bootstrap) (002-homogeneity-guardian-revision)
 - Dateisystem / File system (`.md`, `.gitignore`, `STATS.md`, `constitution.md`, `.yml`) (002-homogeneity-guardian-revision)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
+- File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
 
 ## Recent Changes
 - 001-workspace-homogeneity-guardian: Added Bash 5+ (primär), PowerShell Core 7+ (Windows-Parität) + `git`, `bash` ≥ 5, `ripgrep (rg)`, `sha256sum` (Linux/WSL) /
 - 003-public-template-prep: Repo auf Public Template umgestellt, MIT-Lizenz, Branch-Protection, alle persönlichen Daten entfernt, Bootstrap-Skripte dynamisch (kein hardcodierter Username mehr)
 - 004-readme-ausbau-ci-fixes-sync: sync-home.sh/.ps1 hinzugefügt; README vollständig überarbeitet (2-stufiges TOC, Auszubildende, Spec-Kit, WCAG 2.2 AA); CHANGELOG.md angelegt; CI-Fixes (TARGET_DIR, windows-2022, -TargetDir)
 - 005-readme-tabelle-specify-init: Workflow-Tabelle ausgerichtet (5 Zeilen 64→63 Zeichen); Abschnitt „Verzeichnis vorbereiten" auf `specify init --here --ai {agent}` umgestellt; `--ai-skill` als Codex-spezifisch dokumentiert
+- 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf`, `~/.gitconfig.d/`, bootstrap-workspace, sync-home, check-homogeneity, pre-push hook erweitert
 
 ## Projektstatus / Repository Status
 

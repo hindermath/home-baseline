@@ -273,3 +273,10 @@ Fix: always add `-NoProfile` to subprocess calls in `windows-test.ps1`.
 <!-- EN: copilot-instructions.md placeholder
 [DE-Zusammenfassung: copilot-instructions.md enthält Anweisungen für GitHub Copilot im home-baseline Repository.]
 -->
+
+## Active Technologies
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
+- File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
+
+## Recent Changes
+- 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf`, `~/.gitconfig.d/`, bootstrap-workspace, sync-home, check-homogeneity, pre-push hook erweitert

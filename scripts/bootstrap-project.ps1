@@ -19,7 +19,7 @@ $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 21
+$TotalSteps = 22
 $Skipped = 0
 $PartialFail = $false
 
@@ -115,6 +115,14 @@ else { New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null; Step-Don
 Step-Start "git init"
 if (Test-Path (Join-Path $TargetDir '.git')) { Step-Skip ".git/ vorhanden" }
 else { git init $TargetDir 2>$null | Out-Null; Step-Done }
+
+# 2b. Lokale git-Einstellungen / Local git settings
+Step-Start "Lokale git-Einstellungen / Local git settings"
+if (Test-Path (Join-Path $TargetDir '.git')) {
+    $autocrlf = if ($IsWindows) { 'true' } else { 'input' }
+    git -C $TargetDir config --local core.autocrlf $autocrlf 2>$null | Out-Null
+    Step-Done "Lokale git-Einstellungen gesetzt / Local git settings applied"
+} else { Step-Skip "git-Repo noch nicht initialisiert / git repo not yet initialized" }
 
 # 3. AGENTS.md
 Step-Start "AGENTS.md erzeugen"

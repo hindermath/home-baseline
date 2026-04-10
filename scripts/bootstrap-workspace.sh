@@ -26,6 +26,10 @@ log()  { echo "  $*"; }
 ok()   { echo "✓ $*"; }
 info() { echo "→ $*"; }
 
+normalize_name() {
+  echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
+}
+
 # --- Parameter parsen ----------------------------------------------------------
 
 DRY_RUN=0
@@ -214,6 +218,47 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
 fi
 
 
+
+# --- Git Scope-Isolierung -------------------------------------------------------
+
+info "Git Scope-Isolierung / Git Scope Isolation:"
+NORMALIZED_NAME=$(normalize_name "$WORKSPACE_NAME")
+GITCONFIG_D="${HOME_DIR}/.gitconfig.d"
+GITCONFIG="${HOME_DIR}/.gitconfig"
+
+if [ -d "$GITCONFIG_D" ]; then
+  # core.autocrlf im lokalen .git/config setzen
+  run "git -C '$WORKSPACE_DIR' config --local core.autocrlf input"
+
+  # Idempotenz-Prüfung: bereits ein includeIf-Block für diesen Workspace?
+  if ! grep -qF "gitdir:~/${WORKSPACE_NAME}/" "${GITCONFIG}" 2>/dev/null; then
+    if [ "$DRY_RUN" -eq 0 ]; then
+      printf '\n[includeIf "gitdir:~/%s/"]\n\tpath = ~/.gitconfig.d/%s.inc\n' \
+        "${WORKSPACE_NAME}" "${NORMALIZED_NAME}" >> "${GITCONFIG}"
+    else
+      echo "  [dry-run] ~/.gitconfig: [includeIf \"gitdir:~/${WORKSPACE_NAME}/\"] würde hinzugefügt"
+    fi
+    log "✓ includeIf für ${WORKSPACE_NAME} / includeIf for ${WORKSPACE_NAME} eingetragen"
+  else
+    log "→ includeIf für ${WORKSPACE_NAME} bereits vorhanden — übersprungen / already present — skipped"
+  fi
+
+  # .inc-Placeholder erstellen wenn nicht vorhanden
+  INC_FILE="${GITCONFIG_D}/${NORMALIZED_NAME}.inc"
+  if [ ! -f "$INC_FILE" ]; then
+    if [ "$DRY_RUN" -eq 0 ]; then
+      printf '# %s workspace git configuration\n# [user]\n#   email = work@example.com\n' \
+        "${WORKSPACE_NAME}" > "$INC_FILE"
+    else
+      echo "  [dry-run] ~/.gitconfig.d/${NORMALIZED_NAME}.inc würde erstellt"
+    fi
+    log "✓ ~/.gitconfig.d/${NORMALIZED_NAME}.inc erstellt / created"
+  else
+    log "→ ~/.gitconfig.d/${NORMALIZED_NAME}.inc bereits vorhanden — übersprungen / already exists — skipped"
+  fi
+else
+  log "→ ~/.gitconfig.d/ nicht vorhanden — Scope-Isolierung übersprungen / not found — skipping scope isolation"
+fi
 
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"

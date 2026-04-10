@@ -456,15 +456,19 @@ all subdirectories — standard git behavior, outside the scope of this feature.
 
 ## Spec-Kit-Hinweise / Spec-Kit Notes
 
-> Dieses Lastenheft ist als Eingabe für `specify specify` konzipiert.
-> Es hat **keine Abhängigkeiten** von den anderen Lastenheften und kann
-> **sofort** begonnen werden.
+> Dieses Lastenheft ist als Eingabe für den Slash-Command `/speckit.specify`
+> konzipiert. Es hat **keine Abhängigkeiten** von den anderen Lastenheften
+> und kann **sofort** begonnen werden.
 >
-> *This Lastenheft has no dependencies on other Lastenheft files and can be
-> started immediately.*
+> *This Lastenheft is designed as input for the `/speckit.specify` slash command.
+> It has no dependencies on other Lastenheft files and can be started immediately.*
 
 ```bash
-# Spec-Kit starten / Start Spec-Kit
 cd ~/home-baseline-tmp
-specify specify Lastenheft_Git_Config_Scope.md
+claude
+```
+Folgendes im Claude-Interface aufrufen / Then run in the Claude interface:
+```text
+# Spec-Kit starten / Start Spec-Kit (in Claude Code)
+/speckit.specify Lastenheft_Git_Config_Scope.md
 ```

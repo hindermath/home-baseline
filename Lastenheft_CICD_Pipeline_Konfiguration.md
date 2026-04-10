@@ -367,17 +367,21 @@ implemented after the GitLab support feature.*
 
 ## Spec-Kit-Hinweise / Spec-Kit Notes
 
-> Dieses Lastenheft ist als Eingabe für `specify specify` konzipiert.
-> Dieses Feature hat eine **Abhängigkeit** auf `Lastenheft_GitLab_Support.md`
-> (für GitLab-CI-Templates). Die GitHub-Actions-Teile können unabhängig
-> implementiert werden.
+> Dieses Lastenheft ist als Eingabe für den Slash-Command `/speckit.specify`
+> konzipiert. Dieses Feature hat eine **Abhängigkeit** auf
+> `Lastenheft_GitLab_Support.md` (für GitLab-CI-Templates). Die
+> GitHub-Actions-Teile können unabhängig implementiert werden.
 >
-> *This Lastenheft is designed as input for `specify specify`. This feature has
-> a dependency on `Lastenheft_GitLab_Support.md` for GitLab CI templates.
-> The GitHub Actions parts can be implemented independently.*
+> *This Lastenheft is designed as input for the `/speckit.specify` slash command.
+> This feature has a dependency on `Lastenheft_GitLab_Support.md` for GitLab CI
+> templates. The GitHub Actions parts can be implemented independently.*
 
 ```bash
-# Spec-Kit starten / Start Spec-Kit
 cd ~/home-baseline-tmp
-specify specify Lastenheft_CICD_Pipeline_Konfiguration.md
+claude
+```
+Folgendes im Claude-Interface aufrufen / Then run in the Claude interface:
+```text
+# Spec-Kit starten / Start Spec-Kit (in Claude Code)
+/speckit.specify Lastenheft_CICD_Pipeline_Konfiguration.md
 ```

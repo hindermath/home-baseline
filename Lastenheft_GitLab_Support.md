@@ -422,19 +422,23 @@ GitHub Enterprise Server (GHES) ist **nicht** im Scope. Nur `github.com` und
 
 ## Spec-Kit-Hinweise / Spec-Kit Notes
 
-> Dieses Lastenheft ist als Eingabe für `specify specify` konzipiert.
-> Nach dem Spec-kit-Lauf:
+> Dieses Lastenheft ist als Eingabe für den Slash-Command `/speckit.specify`
+> konzipiert. Nach dem Spec-kit-Lauf:
 >
 > 1. Feature Branch wird von Spec-kit vergeben (z. B. `006-gitlab-support`)
 > 2. Datei umbenennen: `Lastenheft_GitLab_Support.006-gitlab-support.md`
 > 3. `**Feature Branch**`-Feld oben aktualisieren
 >
-> *This Lastenheft is designed as input for `specify specify`. After the Spec-kit
-> run, rename the file with the assigned branch suffix and update the Feature
-> Branch field.*
+> *This Lastenheft is designed as input for the `/speckit.specify` slash command.
+> After the Spec-kit run, rename the file with the assigned branch suffix and
+> update the Feature Branch field.*
 
 ```bash
-# Spec-Kit starten / Start Spec-Kit
 cd ~/home-baseline-tmp
-specify specify Lastenheft_GitLab_Support.md
+claude
+```
+Folgendes im Claude-Interface aufrufen / Then run in the Claude interface:
+```text
+# Spec-Kit starten / Start Spec-Kit (in Claude Code)
+/speckit.specify Lastenheft_GitLab_Support.md
 ```

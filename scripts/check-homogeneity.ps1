@@ -299,6 +299,29 @@ foreach ($entry in $scanResults) {
         }
     }
 
+    # Level 0: Git Scope Isolation checks (GIT-SCOPE-001, GIT-SCOPE-002)
+    if ($level -eq 0) {
+        $homeDir2 = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
+        $gitconfigD2 = Join-Path $homeDir2 '.gitconfig.d'
+        $gitconfig2  = Join-Path $homeDir2 '.gitconfig'
+        if (-not (Test-Path $gitconfigD2)) {
+            if ($Json) {
+                Write-Host '{"check":"GIT-SCOPE-001","status":"WARN","message":"~/.gitconfig.d/ fehlt — Scope-Isolierung nicht konfiguriert / missing — scope isolation not configured"}'
+            }
+            Emit-Result 'WARN' '~/.gitconfig.d/' `
+                '~/.gitconfig.d/ fehlt — Scope-Isolierung nicht konfiguriert / missing — scope isolation not configured' `
+                $dir
+        } elseif (-not ((Get-Content $gitconfig2 -ErrorAction SilentlyContinue) |
+                Select-String -SimpleMatch 'gitdir:~/home-baseline-tmp/' -Quiet)) {
+            if ($Json) {
+                Write-Host '{"check":"GIT-SCOPE-002","status":"WARN","message":"includeIf für home-baseline-tmp nicht gefunden / not found for home-baseline-tmp"}'
+            }
+            Emit-Result 'WARN' '~/.gitconfig' `
+                'includeIf für home-baseline-tmp nicht gefunden / not found for home-baseline-tmp' `
+                $dir
+        }
+    }
+
     # .editorconfig for C# Level-2 (FR-REV-E02)
     if ($level -eq 2) {
         Check-EditorconfigCsharp -Dir $dir

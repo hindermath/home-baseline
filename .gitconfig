@@ -1,5 +1,12 @@
 [user]
-name = Your Name
-email = your@email.example
+	name = Your Name
+	email = your@email.example
+[init]
+	defaultBranch = main
 [core]
-autocrlf = input
+	autocrlf = input
+[pull]
+	rebase = true
+
+[includeIf "gitdir:~/home-baseline-tmp/"]
+	path = ~/.gitconfig.d/home-baseline.inc

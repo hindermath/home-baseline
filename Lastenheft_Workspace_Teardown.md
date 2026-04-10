@@ -462,15 +462,19 @@ folgen den jeweiligen Konventionen (kebab-case / PascalCase).
 
 ## Spec-Kit-Hinweise / Spec-Kit Notes
 
-> Dieses Lastenheft ist als Eingabe für `specify specify` konzipiert.
-> Es ist **unabhängig** von den anderen Lastenheft-Dateien und kann jederzeit
-> begonnen werden.
+> Dieses Lastenheft ist als Eingabe für den Slash-Command `/speckit.specify`
+> konzipiert. Es ist **unabhängig** von den anderen Lastenheft-Dateien und
+> kann jederzeit begonnen werden.
 >
-> *This Lastenheft is designed as input for `specify specify`. It is independent
-> of the other Lastenheft files and can be started at any time.*
+> *This Lastenheft is designed as input for the `/speckit.specify` slash command.
+> It is independent of the other Lastenheft files and can be started at any time.*
 
 ```bash
-# Spec-Kit starten / Start Spec-Kit
 cd ~/home-baseline-tmp
-specify specify Lastenheft_Workspace_Teardown.md
+claude
+```
+Folgendes im Claude-Interface aufrufen / Then run in the Claude interface:
+```text
+# Spec-Kit starten / Start Spec-Kit (in Claude Code)
+/speckit.specify Lastenheft_Workspace_Teardown.md
 ```

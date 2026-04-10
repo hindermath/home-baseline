@@ -22,6 +22,7 @@ private GitHub repository within seconds.*
 - [Neuen Workspace einrichten / Create new workspace](#neuen-workspace-einrichten--create-new-workspace)
   - [macOS / Linux](#macos--linux)
   - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7)
+- [Git Scope-Isolierung / Git Scope Isolation](#git-scope-isolierung--git-scope-isolation)
 - [Ersteinrichtung dieses Repos auf einem neuen Gerät / Initial setup on a new device](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
   - [GitHub / GitLab-Authentifizierung / Authentication](#github--gitlab-authentifizierung--authentication)
   - [macOS / Linux](#macos--linux-1)
@@ -335,6 +336,71 @@ The bootstrap process automatically handles:
 
 ---
 
+## Git Scope-Isolierung / Git Scope Isolation
+
+<!-- EN: Git Scope Isolation -->
+
+Jeder Workspace erhält seine eigene Git-Konfigurationsdatei unter `~/.gitconfig.d/`. Die globale `~/.gitconfig` enthält nur noch allgemeine Einstellungen und `[includeIf]`-Verweise auf diese workspace-spezifischen Dateien.
+
+*Each workspace gets its own git configuration fragment under `~/.gitconfig.d/`. The global `~/.gitconfig` contains only general settings and `[includeIf]` pointers to these workspace-specific files.*
+
+### Mechanismus / Mechanism
+
+Git's `includeIf "gitdir:..."` Direktive lädt automatisch die passende `.inc`-Datei, wenn git in einem bestimmten Verzeichnis ausgeführt wird:
+
+```ini
+# ~/.gitconfig (global — von sync-home verwaltet / managed by sync-home)
+[user]
+    name  = Your Name
+    email = your@global.example
+
+[includeIf "gitdir:~/home-baseline-tmp/"]
+    path = ~/.gitconfig.d/home-baseline.inc
+
+[includeIf "gitdir:~/MyProjects/"]
+    path = ~/.gitconfig.d/myprojects.inc
+```
+
+```ini
+# ~/.gitconfig.d/home-baseline.inc (workspace-spezifisch / workspace-specific)
+[user]
+    email = work@company.example
+```
+
+### Globale vs. workspace-spezifische Einstellungen / Global vs. workspace-specific settings
+
+| Einstellung / Setting | Speicherort / Location |
+|---|---|
+| `user.name`, `user.email` (global) | `~/.gitconfig` |
+| `init.defaultBranch`, `pull.rebase`, `core.autocrlf` | `~/.gitconfig` |
+| `user.email` (workspace-spezifisch / workspace-specific) | `~/.gitconfig.d/<workspace>.inc` |
+| `core.sshCommand`, Workspace-Aliases | `~/.gitconfig.d/<workspace>.inc` |
+
+### Einrichtung / Setup
+
+```bash
+# macOS / Linux — sync-home erstellt ~/.gitconfig.d/ automatisch:
+bash ~/scripts/sync-home.sh --no-pull
+
+# Workspace-E-Mail überschreiben / Override workspace email:
+nano ~/.gitconfig.d/home-baseline.inc
+# [user]
+#   email = work@company.example
+
+# Verifikation / Verification:
+git -C ~/home-baseline-tmp config user.email   # → work@company.example
+git config --show-origin user.email             # → zeigt ~/.gitconfig.d/home-baseline.inc
+git -C ~/MyProjects config user.email           # → globaler Default / global default
+```
+
+### Untracked — Sicherheitsmodell / Security model
+
+`~/.gitconfig.d/` wird **nicht** von home-baseline getrackt — nur du hast Zugriff. Der `pre-push`-Hook prüft diese Dateien auf Credential-Muster und blockiert Pushes bei Fund.
+
+*`~/.gitconfig.d/` is **not** tracked by home-baseline — only you have access. The `pre-push` hook scans these files for credential patterns and blocks pushes if found.*
+
+---
+
 ## Ersteinrichtung dieses Repos auf einem neuen Gerät / Initial setup on a new device
 
 > **Für wen?** Dieser Abschnitt richtet sich an **Auszubildende und End-User**, die das Template genutzt haben und ihr eigenes Repo auf einem neuen Gerät einrichten möchten. Als Template-Entwickler (`hindermath`) nutze stattdessen den [Template-Entwickler-Workflow](#template-entwickler-workflow--template-developer-workflow).
@@ -499,6 +565,54 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) nach der jeweiligen Anleitung.
 
 *Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) following the respective instructions.*
+
+**3b — Claude Code statusLine einrichten / Set up Claude Code status line** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-claude-settings.sh
+```
+
+```powershell
+# Windows
+pwsh ~/scripts/setup-claude-settings.ps1
+```
+
+Zeigt Modell, Arbeitsverzeichnis, Git-Branch und Rate-Limits in der Claude Code Statuszeile an. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+
+*Displays model, working directory, git branch and rate limits in the Claude Code status bar. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
+**3c — Codex CLI status_line einrichten / Set up Codex CLI status_line** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-codex-settings.sh
+```
+
+```powershell
+# Windows
+pwsh -NoProfile ~/scripts/setup-codex-settings.ps1
+```
+
+Setzt die Codex-TUI-Statuszeile in `~/.codex/config.toml` aus einer zentralen Vorlage im Repo. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+
+*Sets the Codex TUI status line in `~/.codex/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
+**3d — Gemini CLI status_line einrichten / Set up Gemini CLI status_line** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-gemini-settings.sh
+```
+
+```powershell
+# Windows
+pwsh -NoProfile ~/scripts/setup-gemini-settings.ps1
+```
+
+Setzt die Gemini-TUI-Statuszeile in `~/.gemini/config.toml` aus einer zentralen Vorlage im Repo. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+
+*Sets the Gemini TUI status line in `~/.gemini/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
 
 **4 — Spec-Kit einrichten / Set up Spec-Kit**
 
@@ -718,6 +832,24 @@ Releases werden automatisch durch **[Release Please](https://github.com/googleap
 | `scripts/install-hooks.sh` | Git-Hooks installieren (Bash) |
 | `scripts/install-hooks.ps1` | Git-Hooks installieren (PowerShell Core) |
 | `scripts/hooks/pre-push` | Pre-Push Hook: blockiert Push bei Secrets |
+
+### Claude Code Einrichtung / Claude Code Setup
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/setup-claude-settings.sh` | Claude Code statusLine in `~/.claude/settings.json` einrichten (Bash) |
+| `scripts/setup-claude-settings.ps1` | Claude Code statusLine in `%APPDATA%\Claude\settings.json` einrichten (PowerShell Core) |
+
+### Codex CLI Einrichtung / Codex CLI Setup
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/setup-codex-settings.sh` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten (Bash) |
+| `scripts/setup-codex-settings.ps1` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten (PowerShell Core) |
+| `scripts/templates/codex-statusline.toml` | Zentrale Vorlage fuer die Codex-Statuszeile |
+| `scripts/setup-gemini-settings.sh` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten (Bash) |
+| `scripts/setup-gemini-settings.ps1` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten (PowerShell Core) |
+| `scripts/templates/gemini-statusline.toml` | Zentrale Vorlage fuer die Gemini-Statuszeile |
 
 ---
 
@@ -1309,6 +1441,18 @@ $env:OPENAI_API_KEY = "sk-..."
 codex
 ```
 
+```bash
+# 5. Optional: Codex status_line einrichten
+# macOS / Linux:
+bash ~/scripts/setup-codex-settings.sh
+# Windows (PowerShell):
+# pwsh -NoProfile ~/scripts/setup-codex-settings.ps1
+```
+
+Setzt `tui.status_line` in `~/.codex/config.toml` aus `scripts/templates/codex-statusline.toml`. Auf weiteren Geraeten erneut ausfuehren (`--force` / `-Force` zum Ueberschreiben).
+
+*Sets `tui.status_line` in `~/.codex/config.toml` from `scripts/templates/codex-statusline.toml`. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+
 > **Hinweis Linux / Note Linux:** Beim ersten Start kann folgende Meldung erscheinen:
 > `Codex could not find system bubblewrap on PATH. Please install bubblewrap with your package manager. Codex will use the vendored bubblewrap in the meantime.`
 > Codex funktioniert trotzdem — zur Unterdrückung der Meldung: `sudo apt install bubblewrap` (Debian/Ubuntu) bzw. `sudo dnf install bubblewrap` (Fedora/RHEL).
@@ -1624,6 +1768,5 @@ Regeln für neue Inhalte / Rules for new content:
 - Neue Abschnitte bilingual anlegen (DE-Absatz → EN-Absatz in Kursiv)
 - Überschriften-Hierarchie einhalten: h2 → h3 → h4 — keine Ebene überspringen
 - Linkbeschriftungen beschreibend wählen — nicht `[hier](...)` oder `[here](...)`
-
 
 

@@ -107,7 +107,26 @@ sync_dir ".specify"
 
 echo ""
 
-# ── 3. git commit in ~/ ──────────────────────────────────────────────────────
+# ── 3. ~/.gitconfig.d/ Bootstrap ─────────────────────────────────────────────
+gitconfig_d="${HOME}/.gitconfig.d"
+placeholder="${gitconfig_d}/home-baseline.inc"
+if $OPT_DRY_RUN; then
+  if [ -d "$gitconfig_d" ]; then
+    echo "  [dry-run] ~/.gitconfig.d/ bereits vorhanden — Inhalt wird nicht überschrieben / already exists — content preserved"
+  else
+    echo "  [dry-run] ~/.gitconfig.d/ würde erstellt mit home-baseline.inc / would be created with home-baseline.inc"
+  fi
+elif [ -d "$gitconfig_d" ]; then
+  echo "  → ~/.gitconfig.d/ bereits vorhanden — Inhalt wird nicht überschrieben / already exists — content preserved"
+else
+  mkdir -p "$gitconfig_d"
+  printf '# home-baseline workspace git configuration\n# Hier workspace-spezifische git-Einstellungen eintragen:\n# [user]\n#   email = work@example.com\n' > "$placeholder"
+  echo "  ✓ ~/.gitconfig.d/ erstellt mit home-baseline.inc / created with home-baseline.inc"
+fi
+
+echo ""
+
+# ── 4. git commit in ~/ ──────────────────────────────────────────────────────
 if $OPT_COMMIT; then
   cd "${HOME_DIR}"
 
