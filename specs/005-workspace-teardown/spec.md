@@ -7,6 +7,22 @@
 
 ---
 
+## Clarifications
+
+### Session 2026-04-10
+
+- Q: Reihenfolge der destruktiven Operationen (Remote vs. Lokal) → A: Remote zuerst löschen, dann lokal — Backup → Checks → Remote delete → Local delete → Artefakte cleanup.
+- Q: `--force`-Scope — überspringt es nur uncommittete Änderungen oder auch ungepushte Commits? → A: Beide — `--force` überspringt BEIDE Prüfungen (uncommittete Änderungen UND ungepushte Commits).
+- Q: `--force`-Propagation bei `--recursive` — gilt das Flag nur für den Workspace oder auch für alle Level-2-Projekte? → A: `--force` propagiert zu allen Level-2-Projekten; ein einziges Flag überspringt alle Sicherheitsprüfungen im gesamten Teardown.
+- Q: Bestätigungsprompt bei `--recursive` — einmalige konsolidierte Bestätigung oder Bestätigung pro Level-2-Projekt? → A: Eine konsolidierte Bestätigung; die Präambel-Box listet alle Aktionen (Level-2 + Workspace) auf, einmaliges y/N.
+- Q: Commit-Granularität Artefakt-Cleanup — ein Commit oder separate Commits pro Artefakt? → A: Ein einziger atomarer Commit für alle Artefakt-Änderungen (`~/README.md`, `~/.gitignore`, ggf. `~/.gitconfig`).
+- Q: Verhalten bei nicht erreichbarem Remote — harter Abbruch oder Fortsetzen? → A: Standardmäßig harter Abbruch vor lokaler Löschung; nur bei bereits gesetztem `--keep-remote` / `-KeepRemote` wird der Remote-Schritt bewusst übersprungen und der Rest ausgeführt.
+- Q: Backup-Kollision am selben Tag — Timestamp- oder numerischer Suffix? → A: Numerischer Suffix (`-1`, `-2`, ...) auf Basis von `WorkspaceName-backup-YYYY-MM-DD.tar.gz`.
+- Q: Gilt der `Co-authored-by`-Trailer auch für den automatisch erzeugten Artefakt-Commit? → A: Ja, auch der automatische Artefakt-Cleanup-Commit MUSS den Constitution-konformen `Co-authored-by`-Trailer enthalten.
+- Q: Was passiert, wenn `~/` kein Git-Repository ist? → A: Artefaktdateien werden trotzdem bereinigt; der Commit-Schritt wird mit Warnung übersprungen und der Lauf endet mit Exit 1.
+
+---
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 — Sicheres lokales Entfernen eines Workspace (Priority: P1)
@@ -39,7 +55,8 @@ Ein Entwickler möchte vor dem Teardown eine Sicherungskopie des Workspace als A
 1. **Given** ein Workspace mit konfiguriertem GitHub-Remote, **When** `teardown-workspace.sh MyProjects --backup` ausgeführt wird, **Then** existiert `~/MyProjects-backup-YYYY-MM-DD.tar.gz` vor der Löschung, und das Remote-Repo wird gelöscht.
 2. **Given** ein Workspace mit Remote, **When** `teardown-workspace.sh MyProjects --keep-remote` ausgeführt wird, **Then** wird das lokale Verzeichnis entfernt, das Remote-Repo bleibt erhalten.
 3. **Given** ein Workspace mit GitLab-Remote, **When** Teardown ausgeführt wird, **Then** wird das GitLab-Remote-Repo gelöscht (automatische Plattform-Erkennung via Remote-URL).
-4. **Given** ein nicht erreichbares Remote, **When** Teardown ausgeführt wird, **Then** erscheint eine Warnung und der Teardown kann mit `--keep-remote` fortgesetzt werden.
+4. **Given** ein nicht erreichbares Remote und **kein** `--keep-remote`, **When** Teardown ausgeführt wird, **Then** erscheint eine Warnung und das Skript bricht vor lokaler Löschung und Artefakt-Cleanup mit Exit 1 ab.
+5. **Given** ein Workspace mit Remote und gesetztem `--keep-remote`, **When** Teardown ausgeführt wird, **Then** wird der Remote-Schritt bewusst übersprungen und der lokale Teardown läuft weiter.
 
 ---
 
@@ -77,10 +94,11 @@ Ein Entwickler will sich nur ein Skript merken. `bootstrap-workspace.sh --teardo
 - Was passiert, wenn `home-baseline` als WorkspaceName angegeben wird? → Abbruch mit explizitem Schutzfehler.
 - Was passiert, wenn `~/README.md` keinen Eintrag für den Workspace enthält? → Schritt wird still übersprungen (kein Fehler).
 - Was passiert, wenn kein Remote konfiguriert ist? → Remote-Schritt wird übersprungen, Rest läuft durch.
-- Was passiert, wenn das Backup-Archiv bereits existiert (gleicher Tag, zweiter Versuch)? → Timestamp-Suffix verhindert Überschreiben.
+- Was passiert, wenn das Backup-Archiv bereits existiert (gleicher Tag, zweiter Versuch)? → Numerischer Suffix (`-1`, `-2`, ...) verhindert Überschreiben.
 - Was passiert, wenn `tar` nicht verfügbar ist? → Fehlermeldung, Teardown ohne Backup fortsetzen (mit Warnung, Exit 1).
 - Was passiert bei `--dry-run` auf einem nicht existierenden Workspace? → Fehlermeldung: Verzeichnis nicht gefunden, Exit 2.
 - Was passiert, wenn `~/.gitconfig` einen `includeIf`-Eintrag für den Workspace enthält? → Block und zugehörige `.inc`-Datei werden entfernt.
+- Was passiert, wenn `~/` kein Git-Repository ist? → Artefaktdateien werden trotzdem bereinigt; der Artefakt-Commit wird mit Warnung übersprungen und der Lauf endet mit Exit 1.
 
 ---
 
@@ -89,16 +107,16 @@ Ein Entwickler will sich nur ein Skript merken. `bootstrap-workspace.sh --teardo
 ### Functional Requirements
 
 - **FR-001**: Das System MUSS zwei neue Skripte bereitstellen: `teardown-workspace.sh` (Bash) und `teardown-workspace.ps1` (PowerShell 7), die funktional äquivalent sind.
-- **FR-002**: Das System MUSS vor jeder destruktiven Aktion uncommittete Änderungen und ungepushte Commits prüfen und bei Fund abbrechen (außer `--force` / `-Force`).
+- **FR-002**: Das System MUSS vor jeder destruktiven Aktion uncommittete Änderungen und ungepushte Commits prüfen und bei Fund abbrechen (außer `--force` / `-Force`); `--force` überspringt BEIDE Prüfungen — uncommittete Änderungen und ungepushte Commits.
 - **FR-003**: Das System MUSS Level-2-Projekte erkennen und ohne `--recursive` abbrechen.
-- **FR-004**: Das System MUSS das lokale Workspace-Verzeichnis nach erfolgreicher Sicherheitsprüfung und Nutzerbestätigung entfernen.
-- **FR-005**: Das System MUSS das Remote-Repo (GitHub oder GitLab, automatisch erkannt via Remote-URL) standardmäßig löschen; `--keep-remote` / `-KeepRemote` verhindert dies.
-- **FR-006**: Das System MUSS den Tabelleneintrag in `~/README.md` entfernen und in `~/` committen.
-- **FR-007**: Das System MUSS den Eintrag in `~/.gitignore` (sofern vorhanden) entfernen.
+- **FR-004**: Das System MUSS die destruktiven Operationen in dieser Reihenfolge ausführen: (1) Backup erstellen (wenn `--backup`), (2) Sicherheitsprüfungen, (3) Remote-Repo löschen, (4) lokales Verzeichnis entfernen, (5) Artefakte bereinigen (`~/README.md`, `~/.gitignore`, `~/.gitconfig`). Scheitert Schritt 3 und `--keep-remote` / `-KeepRemote` war **nicht** bereits gesetzt, bleiben Schritte 4 und 5 aus.
+- **FR-005**: Das System MUSS das Remote-Repo (GitHub oder GitLab, automatisch erkannt via Remote-URL) als ersten destruktiven Schritt löschen (vor der lokalen Löschung); `--keep-remote` / `-KeepRemote` überspringt diesen Schritt.
+- **FR-006**: Das System MUSS den Tabelleneintrag in `~/README.md` entfernen und zusammen mit allen weiteren Artefakt-Änderungen (FR-007, FR-008) in einem einzigen atomaren Commit in `~/` committen. Ist `~/` kein Git-Repository, MUSS das System die Artefaktdateien trotzdem bereinigen, den Commit-Schritt mit Warnung überspringen und Exit 1 liefern.
+- **FR-007**: Das System MUSS den Eintrag in `~/.gitignore` (sofern vorhanden) entfernen; die Änderung wird im Artefakt-Cleanup-Commit (FR-006) zusammengefasst.
 - **FR-008**: Das System MUSS den `[includeIf]`-Block in `~/.gitconfig` und die zugehörige `~/.gitconfig.d/<normalized-name>.inc`-Datei entfernen (Cleanup aus Feature 003-git-config-scope; bei fehlender `~/.gitconfig.d/` ohne Fehler überspringen).
 - **FR-009**: Das System MUSS mit `--backup` / `-Backup` vor der Löschung ein `.tar.gz`-Archiv in `~/` erstellen.
-- **FR-010**: Das System MUSS mit `--recursive` / `-Recursive` Level-2-Projekte einzeln (Sicherheitsprüfung + Remote-Löschen + lokal Löschen) vor dem Workspace-Teardown abarbeiten.
-- **FR-011**: Das System MUSS eine Präambel-Box mit allen geplanten Aktionen anzeigen und eine interaktive Bestätigung einholen; `--yes` / `-Yes` überspringt den Prompt.
+- **FR-010**: Das System MUSS mit `--recursive` / `-Recursive` Level-2-Projekte einzeln (Sicherheitsprüfung + Remote-Löschen + lokal Löschen) vor dem Workspace-Teardown abarbeiten; wird zusätzlich `--force` angegeben, propagiert es zu allen Level-2-Projekten und überspringt deren Sicherheitsprüfungen ebenfalls.
+- **FR-011**: Das System MUSS eine Präambel-Box mit allen geplanten Aktionen anzeigen (bei `--recursive` inkl. aller Level-2-Aktionen) und eine einzige konsolidierte interaktive Bestätigung einholen; `--yes` / `-Yes` überspringt den Prompt.
 - **FR-012**: Das System MUSS `--dry-run` (Bash) / `-WhatIf` (PowerShell) unterstützen: alle Aktionen anzeigen ohne Ausführung.
 - **FR-013**: Das System MUSS nach Abschluss einen bilingualen Abschlussbericht mit allen durchgeführten und übersprungenen Aktionen ausgeben.
 - **FR-014**: `bootstrap-workspace.sh/.ps1` MUSS einen `--teardown` / `-Teardown`-Parameter erhalten, der intern an `teardown-workspace` delegiert.
@@ -121,7 +139,7 @@ Ein Entwickler will sich nur ein Skript merken. `bootstrap-workspace.sh --teardo
 - **SC-001**: `teardown-workspace --dry-run` zeigt alle geplanten Aktionen in unter 2 Sekunden, ohne Schreibzugriff auf das Dateisystem.
 - **SC-002**: Ein vollständiger Teardown (lokal + remote + alle Artefakte) ist in unter 30 Sekunden abgeschlossen (ohne Backup-Archivierung großer Repos).
 - **SC-003**: Nach einem Teardown sind keine Rückstände des Workspace in `~/README.md`, `~/.gitignore`, `~/.gitconfig` oder `~/.gitconfig.d/` vorhanden (100 % Artefakt-Bereinigung).
-- **SC-004**: Ein Teardown mit uncommitteten Änderungen bricht in 100 % der Fälle ohne `--force` ab.
+- **SC-004**: Ein Teardown mit uncommitteten Änderungen oder ungepushten Commits bricht in 100 % der Fälle ohne `--force` ab.
 - **SC-005**: Bash- und PowerShell-Variante produzieren bei gleichem Input identische Aktionen und Exit-Codes auf ihren jeweiligen Plattformen.
 - **SC-006**: Bestehende Workspaces, Skripte und git-Operationen funktionieren nach einem Teardown eines anderen Workspace unverändert (keine Regressionen).
 
@@ -130,7 +148,7 @@ Ein Entwickler will sich nur ein Skript merken. `bootstrap-workspace.sh --teardo
 ## Assumptions
 
 - `gh` CLI ist bereits installiert (bestehende Abhängigkeit); `glab` ist optional — fehlt es, wird der GitLab-Remote-Schritt mit Warnung übersprungen.
-- Das Home-Verzeichnis (`~/`) ist ein git-Repository (von `sync-home` verwaltet); `~/README.md` und `~/.gitignore` sind getrackt.
+- Das Home-Verzeichnis (`~/`) ist normalerweise ein git-Repository (von `sync-home` verwaltet); fehlt dieses Repository unerwartet, wird der Artefakt-Commit mit Warnung übersprungen und Exit 1 geliefert, die Dateibereinigung läuft aber trotzdem.
 - `tar` ist auf allen Zielplattformen verfügbar (macOS/Linux: built-in; Windows: Git for Windows bringt `tar` mit).
 - Die `~/.gitconfig.d/`-Bereinigung (FR-008) setzt Feature `003-git-config-scope` voraus — bei fehlender `~/.gitconfig.d/` wird ohne Fehler übersprungen.
 - Level-2-Projekte sind nur direkte Kind-Verzeichnisse des Workspace (Tiefe 1) — tiefer verschachtelte `.git/`-Verzeichnisse werden nicht berücksichtigt.
