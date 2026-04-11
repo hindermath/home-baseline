@@ -77,6 +77,7 @@ Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Var
 | Problem | Ursache | Fix |
 |---|---|---|
 | `gh auth login --web` bleibt hängen | Browser-Callback kommt in Hintergrundprozessen nicht an | In **interaktivem Terminal** ausführen |
+| `glab auth login --web` bleibt hängen | Browser-Callback kommt in Hintergrundprozessen nicht an | In **interaktivem Terminal** ausführen |
 | `gh` keyring invalid (Windows) | Windows Credential Store korrupt | `gh auth logout` + neu anmelden; dann `gh auth setup-git` |
 | `ssh-agent` startet nicht (Windows) | Service deaktiviert, Admin nötig | HTTPS + `gh auth setup-git` verwenden |
 | `CursorPosition`-Fehler in PS-Subprocess | PowerShell-Profil (Oh-My-Posh) lädt im Subprocess | `-NoProfile` zu `pwsh -File` Aufrufen hinzufügen |
@@ -160,6 +161,9 @@ Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 ## Active Technologies
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
+- Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (GitLab support), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
+- Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
 
 ## Recent Changes
 - 003-git-config-scope: Added Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency)
+- 006-gitlab-support: Added GitLab CLI support, self-hosted GitLab URL handling, and `glab auth login` pitfall guidance

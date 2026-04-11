@@ -29,7 +29,7 @@ bash ~/scripts/sync-home.sh --no-pull
 
 ## Repository Purpose
 
-This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub repositories and enforces security across all projects.
+This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub or GitLab repositories and enforces security across all projects.
 
 ## Scripts
 
@@ -46,7 +46,7 @@ bash ~/scripts/bootstrap-workspace.sh --dry-run <WorkspaceName>   # preview only
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Name> [-RepoName <r>] [-WhatIf]
 ```
 
-The script: detects existing sub-repos → adds them to `.gitignore` → copies standard scripts → `git init` + initial commit → creates private GitHub repo via `gh repo create` → pushes → installs hooks → updates `~/README.md`.
+The script: detects existing sub-repos → adds them to `.gitignore` → copies standard scripts → `git init` + initial commit → creates a private GitHub repo via `gh repo create` or a private GitLab repo via `glab repo create` → pushes → installs hooks → updates `~/README.md`.
 
 ### Install Git hooks
 
@@ -96,6 +96,10 @@ At the start of each session, detect the OS and call the matching script variant
 `gh auth login --web` does NOT detect browser confirmation in background/async processes.
 Always run `gh auth login` in an **interactive terminal window** directly.
 After login run: `gh auth setup-git` to configure the git credential helper.
+
+### macOS/Linux/Windows: `glab auth login` in background processes
+`glab auth login --web` does NOT detect browser confirmation in background/async processes.
+Always run `glab auth login` in an **interactive terminal window** directly.
 
 ### Windows: `ssh-agent` requires admin rights — use HTTPS instead
 The OpenSSH Agent service is disabled by default (needs admin to enable).
@@ -207,6 +211,9 @@ Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `gh` CLI (existing, required), `glab` CLI (optional for GitLab), `tar` (system built-in), `git` ≥ 2.13 (005-workspace-teardown)
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc`, `~/README.md`, `~/.gitignore` (005-workspace-teardown)
+- Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (new) · `gh` ≥ 2.30 (existing) · `git` ≥ 2.30 (existing) (006-gitlab-support)
+- N/A — file modifications to existing scripts and `~/README.md` (006-gitlab-support)
 
 ## Recent Changes
 - 003-git-config-scope: Added Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency)
+- 006-gitlab-support: Added GitLab CLI support documentation, `glab auth login` pitfall guidance, and spec artifacts for GitLab bootstrap support

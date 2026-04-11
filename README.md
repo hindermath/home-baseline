@@ -2,11 +2,11 @@
 
 Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur.
 Es enthält die Bootstrap-Scripts, mit denen jedes neue Projektverzeichnis in wenigen
-Sekunden als synchronisiertes privates GitHub-Repository eingerichtet werden kann.
+Sekunden als synchronisiertes privates GitHub- oder GitLab-Repository eingerichtet werden kann.
 
 *This repository is the **top level** of the private workspace infrastructure.
 It contains bootstrap scripts to set up any new project directory as a synchronised
-private GitHub repository within seconds.*
+private GitHub or GitLab repository within seconds.*
 
 ---
 
@@ -443,6 +443,10 @@ glab auth login
 # → Passwort / password:      DEIN_PAT  (Scope: read_repository + write_repository)
 ```
 
+> ⚠️ **macOS / Linux / Windows:** `glab auth login` muss in einem **interaktiven Terminalfenster** gestartet werden — nicht aus einem Hintergrund- oder Async-Prozess heraus.
+>
+> *Must be run in an interactive terminal window — not from a background or async process.*
+
 ---
 
 ### macOS / Linux
@@ -475,6 +479,8 @@ git commit -m "chore: initialer Commit — Level-0-Baseline"
 git remote add origin https://github.com/YOUR_USERNAME/home-baseline.git
 # GitLab-Alternative / GitLab alternative:
 # git remote add origin https://gitlab.com/YOUR_USERNAME/home-baseline.git
+# Self-hosted GitLab / self-hosted GitLab:
+# git remote add origin https://gitlab.example.com/YOUR_USERNAME/home-baseline.git
 git push -u origin main
 
 # Compliance prüfen
@@ -512,6 +518,8 @@ git commit -m "chore: initialer Commit — Level-0-Baseline"
 git remote add origin https://github.com/YOUR_USERNAME/home-baseline.git
 # GitLab-Alternative / GitLab alternative:
 # git remote add origin https://gitlab.com/YOUR_USERNAME/home-baseline.git
+# Self-hosted GitLab / self-hosted GitLab:
+# git remote add origin https://gitlab.example.com/YOUR_USERNAME/home-baseline.git
 git push -u origin main
 
 # Compliance prüfen
@@ -529,34 +537,48 @@ Die Einrichtung ist abgeschlossen. Hier ist die empfohlene Reihenfolge für eine
 ```bash
 # macOS / Linux
 bash ~/scripts/bootstrap-workspace.sh FlutterProjects
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects --platform gitlab
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects --platform gitlab --gitlab-url https://gitlab.example.com
 bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 ```
 
 ```powershell
 # Windows
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -Platform gitlab
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -Platform gitlab -GitLabUrl https://gitlab.example.com
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
 > Das Script erledigt automatisch / The script handles automatically:
-> `git init` · initialer Commit · `gh repo create` (privates GitHub-Repo) · Remote `origin` setzen · `git push`
+> `git init` · initialer Commit · `gh repo create` **oder** `glab repo create` (privates Remote-Repo) · Remote `origin` setzen · `git push`
+>
+> *Without `--platform`, GitHub remains the default. With `--platform gitlab`, the same bootstrap flow targets GitLab instead.*
 
 **2 — Projekt anlegen / Create a project**
 
 ```bash
 # macOS / Linux
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab --no-remote
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab --gitlab-url https://gitlab.example.com --preview
 bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 ```
 
 ```powershell
 # Windows
-pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/FlutterProjects
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab -NoRemote
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab -GitLabUrl https://gitlab.example.com -Preview
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
 > Das Script erledigt automatisch / The script handles automatically:
-> `git init` · initialer Commit · `gh repo create` (privates GitHub-Repo) · Remote `origin` setzen · `git push`
+> `git init` · initialer Commit · `gh repo create` **oder** `glab repo create` (privates Remote-Repo) · Remote `origin` setzen · `git push`
+>
+> *For self-hosted GitLab, pass `--gitlab-url` / `-GitLabUrl` so the remote URL, summary output, and `~/README.md` entry all point to the custom host.*
 
 **3 — KI-Agenten einrichten / Set up AI agents**
 
@@ -1768,5 +1790,4 @@ Regeln für neue Inhalte / Rules for new content:
 - Neue Abschnitte bilingual anlegen (DE-Absatz → EN-Absatz in Kursiv)
 - Überschriften-Hierarchie einhalten: h2 → h3 → h4 — keine Ebene überspringen
 - Linkbeschriftungen beschreibend wählen — nicht `[hier](...)` oder `[here](...)`
-
 

@@ -10,6 +10,8 @@ param(
     [switch]$NoAgents,
     [switch]$NoSpeckit,
     [switch]$NoRemote,
+    [string]$Platform = 'github',
+    [string]$GitLabUrl = 'https://gitlab.com',
     [ValidateSet('de','en')][string]$Lang = 'de'
 )
 
@@ -22,6 +24,12 @@ $Step = 0
 $TotalSteps = 22
 $Skipped = 0
 $PartialFail = $false
+$gitlabHostname = ''
+$gitlabUser = ''
+$projectSlug = ''
+$projectSlugChanged = $false
+$summaryRepoUrl = ''
+$summaryDisplayRepo = ''
 
 function Render-Template {
     param([string]$Template, [string]$Output)
@@ -46,34 +54,112 @@ function Step-Warn  { param([string]$Msg)
     Write-Host " WARN: $Msg"; $script:PartialFail = $true
 }
 
+function ConvertTo-GitLabSlug([string]$Name) {
+    $Name.ToLower() -replace '[^a-z0-9]', '-' -replace '-+', '-' -replace '^-|-$', ''
+}
+
+function Convert-RemoteUrlToRepoUrl([string]$RemoteUrl) {
+    if ($RemoteUrl -like 'https://*') {
+        return ($RemoteUrl -replace '\.git$', '')
+    }
+    if ($RemoteUrl -match '^git@([^:]+):(.+)$') {
+        return ('https://' + $Matches[1] + '/' + ($Matches[2] -replace '\.git$', ''))
+    }
+    if ($RemoteUrl -match '^ssh://git@([^/]+)/(.+)$') {
+        return ('https://' + $Matches[1] + '/' + ($Matches[2] -replace '\.git$', ''))
+    }
+    return ($RemoteUrl -replace '\.git$', '')
+}
+
+function Get-RepoNameFromRemoteUrl([string]$RemoteUrl) {
+    $repoUrl = Convert-RemoteUrlToRepoUrl $RemoteUrl
+    return [IO.Path]::GetFileName($repoUrl)
+}
+
+if ($Platform -notin @('github', 'gitlab')) {
+    Write-Error "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab.`nError: Invalid platform '$Platform'. Valid values: github, gitlab."
+    exit 2
+}
+
+if ($Platform -eq 'gitlab') {
+    if (-not $GitLabUrl.StartsWith('https://')) {
+        Write-Error "Fehler: -GitLabUrl muss mit 'https://' beginnen.`nError: -GitLabUrl must start with 'https://'."
+        exit 2
+    }
+    $gitlabHostname = ($GitLabUrl -replace '^https://', '').TrimEnd('/')
+    $projectSlug = ConvertTo-GitLabSlug $ProjectName
+    $projectSlugChanged = $projectSlug -ne $ProjectName
+
+    if (-not $NoRemote) {
+        if (-not (Get-Command glab -ErrorAction SilentlyContinue)) {
+            Write-Error "Fehler: glab (GitLab CLI) ist nicht installiert.`n  macOS/Linux: brew install glab`n  Windows: winget install GLabCLI.GlabCLI`nError: glab (GitLab CLI) is not installed."
+            exit 2
+        }
+
+        $env:GITLAB_HOST = $gitlabHostname
+        & glab auth status 2>$null | Out-Null
+        $authExitCode = $LASTEXITCODE
+        $env:GITLAB_HOST = $null
+        if ($authExitCode -ne 0) {
+            Write-Error "Fehler: Nicht bei GitLab ($gitlabHostname) authentifiziert. Bitte 'glab auth login' ausführen.`nError: Not authenticated with GitLab ($gitlabHostname). Please run 'glab auth login'."
+            exit 2
+        }
+
+        $gitlabUserResponse = ((& glab api user --hostname $gitlabHostname 2>$null) | Out-String).Trim()
+        $gitlabUser = ''
+        if ($gitlabUserResponse) {
+            try {
+                $gitlabUser = ((($gitlabUserResponse | ConvertFrom-Json).username) | Out-String).Trim()
+            } catch {
+                $gitlabUser = ''
+            }
+        }
+        if (-not $gitlabUser) {
+            Write-Error "Fehler: GitLab-Benutzername konnte nicht ermittelt werden.`nError: Could not retrieve GitLab username."
+            exit 2
+        }
+    }
+}
+
 # ─── Preview Mode ────────────────────────────────────────────────────────────
 if ($Preview) {
     Write-Host "[PREVIEW] Folgende Aktionen wuerden ausgefuehrt:"
-    @(
-        @('CREATE', $TargetDir),
-        @('EXEC',   "git init $TargetDir"),
-        @('CREATE', "$TargetDir/AGENTS.md", 'aus AGENTS.md.tmpl'),
-        @('CREATE', "$TargetDir/CLAUDE.md", 'aus CLAUDE.md.tmpl'),
-        @('CREATE', "$TargetDir/GEMINI.md", 'aus GEMINI.md.tmpl'),
-        @('CREATE', "$TargetDir/.github/copilot-instructions.md", 'aus copilot-instructions.tmpl'),
-        @('CREATE', "$TargetDir/README.md", 'aus readme-template.md / README.md.tmpl'),
-        @('COPY',   "$TargetDir/constitution.md", 'von ~/constitution.md'),
-        @('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"),
-        @('CREATE', "$TargetDir/STATS.md"),
-        @('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'),
-        @('COPY',   "$TargetDir/scripts/", 'von ~/scripts/'),
-        @('INSTALL',"$TargetDir/.git/hooks/pre-push"),
-        @('EXEC',   "git commit -m 'feat: initial project bootstrap'"),
-        @('EXEC',   "gh repo create (privat)", 'optional'),
-        @('EXEC',   "git push", 'optional'),
-        @('EXEC',   "claude /init", 'optional'),
-        @('PRINT',  "Codex manuelle Anweisung"),
-        @('PRINT',  "Gemini manuelle Anweisung"),
-        @('CHECK',  "gh copilot --help", 'optional'),
-        @('EXEC',   "npx speckit init", 'optional'),
-        @('EXEC',   "init-stats.sh (Baseline)", 'STATS.md'),
-        @('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md")
-    ) | ForEach-Object {
+    $previewActions = [System.Collections.Generic.List[object[]]]::new()
+    $null = $previewActions.Add(@('CREATE', $TargetDir))
+    $null = $previewActions.Add(@('EXEC', "git init $TargetDir"))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/AGENTS.md", 'aus AGENTS.md.tmpl'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/CLAUDE.md", 'aus CLAUDE.md.tmpl'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/GEMINI.md", 'aus GEMINI.md.tmpl'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/copilot-instructions.md", 'aus copilot-instructions.tmpl'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/README.md", 'aus readme-template.md / README.md.tmpl'))
+    $null = $previewActions.Add(@('COPY', "$TargetDir/constitution.md", 'von ~/constitution.md'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
+    $null = $previewActions.Add(@('COPY', "$TargetDir/scripts/", 'von ~/scripts/'))
+    $null = $previewActions.Add(@('INSTALL', "$TargetDir/.git/hooks/pre-push"))
+    $null = $previewActions.Add(@('EXEC', "git commit -m 'feat: initial project bootstrap'"))
+
+    if ($NoRemote) {
+        $null = $previewActions.Add(@('SKIP', 'Remote-Erstellung', '--no-remote'))
+    } elseif ($Platform -eq 'github') {
+        $null = $previewActions.Add(@('EXEC', 'gh repo create (privat)', 'optional'))
+        $null = $previewActions.Add(@('EXEC', 'git push', 'optional'))
+    } else {
+        $null = $previewActions.Add(@('EXEC', 'glab repo create (privat)', 'optional'))
+        $null = $previewActions.Add(@('EXEC', 'git remote add origin https://HOST/USER/REPO.git', 'optional'))
+        $null = $previewActions.Add(@('EXEC', 'git push', 'optional'))
+    }
+
+    $null = $previewActions.Add(@('EXEC', "claude /init", 'optional'))
+    $null = $previewActions.Add(@('PRINT', "Codex manuelle Anweisung"))
+    $null = $previewActions.Add(@('PRINT', "Gemini manuelle Anweisung"))
+    $null = $previewActions.Add(@('CHECK', "gh copilot --help", 'optional'))
+    $null = $previewActions.Add(@('EXEC', "npx speckit init", 'optional'))
+    $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
+    $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
+
+    $previewActions | ForEach-Object {
         $note = if ($_.Count -gt 2) { "($($_[2]))" } else { '' }
         $shortPath = $_[1] -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
         Write-Host ("  {0,-8} {1,-50} {2}" -f $_[0], $shortPath, $note)
@@ -259,14 +345,39 @@ else {
     Step-Done
 }
 
-# 13. gh repo create
-Step-Start "gh repo create (privat)"
+# 13. Repo create
+Step-Start "Repo erstellen (privat)"
 if ($NoRemote) { Step-Skip "-NoRemote" }
-elseif (git -C $TargetDir remote get-url origin 2>$null) { Step-Skip "Remote vorhanden" }
-elseif (Get-Command gh -ErrorAction SilentlyContinue) {
+elseif ($existingRemote = (git -C $TargetDir remote get-url origin 2>$null | Out-String).Trim()) {
+    $summaryRepoUrl = Convert-RemoteUrlToRepoUrl $existingRemote
+    $summaryDisplayRepo = Get-RepoNameFromRemoteUrl $existingRemote
+    Step-Skip "Remote vorhanden"
+}
+elseif ($Platform -eq 'github' -and (Get-Command gh -ErrorAction SilentlyContinue)) {
     $repoName = $ProjectName.ToLower() -replace '\s+','-'
     $result = gh repo create $repoName --private --source $TargetDir --remote origin 2>$null
-    if ($LASTEXITCODE -eq 0) { Step-Done $repoName } else { Step-Warn "gh repo create fehlgeschlagen" }
+    if ($LASTEXITCODE -eq 0) {
+        $ghUser = ((gh api user --jq '.login' 2>$null) | Out-String).Trim()
+        $summaryRepoUrl = "https://github.com/$ghUser/$repoName"
+        $summaryDisplayRepo = $repoName
+        Step-Done $repoName
+    } else { Step-Warn "gh repo create fehlgeschlagen" }
+}
+elseif ($Platform -eq 'gitlab') {
+    $remoteUrl = "https://$gitlabHostname/$gitlabUser/$projectSlug.git"
+    $env:GITLAB_HOST = $gitlabHostname
+    & glab repo create $projectSlug --private 2>$null | Out-Null
+    $env:GITLAB_HOST = $null
+    if ($LASTEXITCODE -eq 0) {
+        git -C $TargetDir remote add origin $remoteUrl 2>$null | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            $summaryRepoUrl = "$($GitLabUrl.TrimEnd('/'))/$gitlabUser/$projectSlug"
+            $summaryDisplayRepo = $projectSlug
+            Step-Done $projectSlug
+        } else {
+            Step-Warn "git remote add origin fehlgeschlagen / git remote add origin failed"
+        }
+    } else { Step-Warn "glab repo create fehlgeschlagen / glab repo create failed" }
 } else { Step-Skip "gh nicht installiert" }
 
 # 14. git push
@@ -335,7 +446,8 @@ $homeReadme = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 if ((Get-Content $homeReadme -ErrorAction SilentlyContinue) -match $ProjectName) { Step-Skip "Eintrag vorhanden" }
 elseif ((Test-Path $homeReadme) -and (Select-String -Path $homeReadme -Pattern '<!-- workspace-table-end -->')) {
     $content = Get-Content $homeReadme -Raw
-    $row = "| ``$tdShort/`` | — |`n"
+    $repoCell = if ($summaryRepoUrl -and $summaryDisplayRepo) { "[$summaryDisplayRepo]($summaryRepoUrl)" } else { '—' }
+    $row = "| ``$tdShort/`` | $repoCell | ``bootstrap-project`` |`n"
     $content = $content -replace '<!-- workspace-table-end -->', "${row}<!-- workspace-table-end -->"
     $content | Set-Content $homeReadme -Encoding UTF8
     Step-Done
@@ -346,6 +458,13 @@ Write-Host ""
 Write-Host ('=' * 50)
 if ($PartialFail) { Write-Host "  Bootstrap teilweise abgeschlossen (Warnungen vorhanden)" }
 else { Write-Host "  Bootstrap abgeschlossen ✓" }
+if ($Platform -eq 'gitlab' -and $projectSlugChanged) {
+    Write-Host "  GitLab-Slug : $projectSlug (normalisiert von: $ProjectName)"
+}
+if ($summaryRepoUrl) {
+    Write-Host "  Repo   : $summaryRepoUrl"
+    Write-Host "  Clone  : git clone $summaryRepoUrl.git $TargetDir"
+}
 Write-Host "  $tdShort/ ist bereit."
 Write-Host ""
 Write-Host "  Naechste Schritte:"
