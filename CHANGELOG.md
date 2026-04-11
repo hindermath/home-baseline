@@ -8,6 +8,25 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.6.2](https://github.com/hindermath/home-baseline/compare/v0.6.1...v0.6.2) (2026-04-11)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* **bootstrap-project.ps1:** replace npx speckit with specify CLI ([1debf14](https://github.com/hindermath/home-baseline/commit/1debf14cce652112f40b66526798fd6ece3f4c45))
+* **bootstrap-project:** replace npx speckit with specify CLI ([198f4e8](https://github.com/hindermath/home-baseline/commit/198f4e803cf42f8aaef46357f1f80c4425278ae9))
+* **scripts:** add -- end-of-options support to 4 scripts ([bf81fd7](https://github.com/hindermath/home-baseline/commit/bf81fd7944ec40e5e602684c792ae0a84ac16bb5))
+* **scripts:** add -h/--help and guard grep against option-like project names ([fa9a799](https://github.com/hindermath/home-baseline/commit/fa9a7992a202ee9d4cf021af0b96af01728ee389))
+* **teardown-workspace:** add -- end-of-options support for dash-prefixed workspace names ([49d4fed](https://github.com/hindermath/home-baseline/commit/49d4fed6895eb498211bec66e27d9f23fb7dd6b2))
+
+
+### Documentation / Dokumentation
+
+* **agents:** complete 003-git-config-scope coverage in agent files ([4b04379](https://github.com/hindermath/home-baseline/commit/4b04379e8fcb75ad993efd34d695f23c151ee2dc))
+* **constitution+agents:** document teardown, -- sentinel, 005/006 in all agent files ([31ae070](https://github.com/hindermath/home-baseline/commit/31ae070a4230e77acd142946932c2c40da9ed4ee))
+* **README:** document teardown workflow and glab prerequisite ([39358ee](https://github.com/hindermath/home-baseline/commit/39358eef8ca45309a51cc19143c8c18b1b699d52))
+* **README:** replace npm install with uv tool install for specify-cli ([d675047](https://github.com/hindermath/home-baseline/commit/d675047341c62d8f1b192d0469801a6f55603f50))
+
 ## [0.6.1](https://github.com/hindermath/home-baseline/compare/v0.6.0...v0.6.1) (2026-04-11)
 
 
