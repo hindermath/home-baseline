@@ -8,6 +8,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.6.0](https://github.com/hindermath/home-baseline/compare/v0.5.3...v0.6.0) (2026-04-11)
+
+
+### Features / Neue Funktionen
+
+* **003-git-config-scope:** Git-Konfiguration Scope-Isolierung ([#12](https://github.com/hindermath/home-baseline/issues/12)) ([3531ddc](https://github.com/hindermath/home-baseline/commit/3531ddcf6918d86d2d242b3218d854fc9ff3bc8e))
+* add workspace teardown flow ([d672db8](https://github.com/hindermath/home-baseline/commit/d672db886231f0d93a8413a4056c2bef7da689f0))
+* add workspace teardown flow ([e65dbbb](https://github.com/hindermath/home-baseline/commit/e65dbbb787b4a134f4a4acf54aa9ba3ce8190101))
+* GitLab support for bootstrap scripts ([#14](https://github.com/hindermath/home-baseline/issues/14)) ([3912807](https://github.com/hindermath/home-baseline/commit/3912807c1d0f03e76832f3099ffc90b951a4cc7d))
+
+
+### Documentation / Dokumentation
+
+* **005-workspace-teardown:** Spezifikation erstellt — 16 FRs, 4 User Stories, 6 SCs ([54a730b](https://github.com/hindermath/home-baseline/commit/54a730b2d93e26976072e4709613f3cbb25ab831))
+* Lastenheft_Git_Config_Scope — Level-2-Klarstellung ergänzt ([411d5d8](https://github.com/hindermath/home-baseline/commit/411d5d80b69380ce5843e92dd852df79e9817235))
+
 ## [0.5.3](https://github.com/hindermath/home-baseline/compare/v0.5.2...v0.5.3) (2026-04-08)
 
 
