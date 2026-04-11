@@ -156,6 +156,7 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+- [ ] TXXX Lastenheft umbenennen / Rename Lastenheft: `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` (macOS/Linux) · `pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>` (Windows) — stamps the feature branch name onto the filename to mark it as archived
 
 ---
 

@@ -180,6 +180,7 @@ All test scripts use `git pull --rebase --autostash origin main` to avoid this.
 | WCAG 3.1.2 `lang`-Attribute | GitHub entfernt HTML-Attribute | Platform-Einschränkung — in Barrierefreiheit-Abschnitt dokumentiert |
 | ASCII-Box-Drawing-Tabellen falsch ausgerichtet | Ein überzähliges Leerzeichen vor dem schließenden `│` macht eine Zeile 1 Zeichen zu lang | Alle Zeilen auf exakt gleiche Zeichenbreite prüfen (PS: `$line.Length`) |
 | Spec-Kit-Verzeichnis manuell kopiert | `cp -r ~/home-baseline-tmp/` setzt lokalen Klon voraus | `specify init --here --ai {agent}` verwenden; `--ai-skill` nur für Codex |
+| Lastenheft nach Feature-Abschluss nicht umbenannt | `tasks.md` enthielt keinen Rename-Schritt (seit constitution v1.1.1 behoben) | `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` (macOS/Linux) · `pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>` (Windows) |
 
 <!-- EN: AGENTS.md placeholder
 [DE-Zusammenfassung: AGENTS.md enthält Anweisungen für den Codex Agenten im home-baseline Repository.]

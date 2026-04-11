@@ -232,6 +232,16 @@ Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 cha
 Never copy from `~/home-baseline-tmp/` manually. The correct command is:
 `specify init --here --ai {agent}` — `--ai-skill` is required **only for Codex** (installs `.agents/skills/`).
 
+### Lastenheft rename on feature completion
+When a feature's implementation is fully merged, rename the corresponding `Lastenheft_*.md` using:
+```bash
+bash scripts/rename-lastenheft.sh <LH-file> <branch-name>   # macOS/Linux
+pwsh scripts/rename-lastenheft.ps1 -File <LH-file> -BranchName <branch-name>   # Windows
+```
+This stamps the branch name onto the filename (e.g. `Lastenheft_Foo.003-feature.md`) to mark it as archived.
+The rename task is now included as the last step of every feature's Polish phase in `tasks.md` (constitution v1.1.1).
+Missing this step was the root cause of 003, 005, and 006 Lastenhefte remaining unrenamed.
+
 ### Windows: `gh auth login` in background/async processes
 `gh auth login --web` does NOT detect browser confirmation when run in a background or async process (e.g. Copilot CLI async shell). The browser callback never arrives.
 Always run `gh auth login` in an **interactive terminal window** directly.

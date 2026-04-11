@@ -202,6 +202,16 @@ Prüfen mit: `$line.Length` (PowerShell) — alle Rahmen-Zeilen müssen denselbe
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 `specify init --here --ai {agent}` — der Parameter `--ai-skill` ist **nur für Codex** erforderlich.
 
+### Lastenheft nach Feature-Abschluss umbenennen
+Nach vollständiger Implementierung eines Features MUSS das zugehörige `Lastenheft_*.md` umbenannt werden:
+```bash
+bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>   # macOS/Linux
+pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>   # Windows
+```
+Beispiel: `Lastenheft_Foo.md` + Branch `003-feature` → `Lastenheft_Foo.003-feature.md`.
+Dieser Schritt ist seit `constitution v1.1.1` als letzter Task der Polish-Phase in jeder `tasks.md` enthalten.
+Fehlte bei Features 003, 005 und 006, weil das Template den Schritt nicht vorsah.
+
 <!-- EN: CLAUDE.md placeholder
 [DE-Zusammenfassung: CLAUDE.md enthält Anweisungen für den Claude Code Agenten im home-baseline Repository.]
 -->

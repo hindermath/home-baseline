@@ -152,6 +152,7 @@ Coding style rules that apply to all scripts in this repository:
   - Manual verification commands run (with `--dry-run` / `-WhatIf` output)
   - Sample console output when user-visible output changes
   - Explicit security risk statement for any change touching hook or scanner logic
+- **Lastenheft rename on feature completion**: When a feature's implementation is fully merged, the corresponding `Lastenheft_*.md` MUST be renamed via `bash scripts/rename-lastenheft.sh <LH-file> <branch-name>` (macOS/Linux) or `pwsh scripts/rename-lastenheft.ps1 -File <LH-file> -BranchName <branch-name>` (Windows). This stamps the feature branch name onto the filename and marks the Lastenheft as archived. The rename commit MUST be included in the final tasks.md as the last step of the Polish phase.
 
 ## Governance
 
@@ -187,7 +188,7 @@ allowed path.
 per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
-**Version**: 1.1.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-03-31
+**Version**: 1.1.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-11
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

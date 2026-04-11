@@ -84,6 +84,7 @@ Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Var
 | `git pull` "divergent branches" (Linux) | Kein globales rebase-Config | `git config --global pull.rebase true` |
 | Push rejected: `fetch first` | Remote ist neuer als local | `git pull --rebase --autostash && git push` |
 | Test-Script: unstaged changes blockieren pull | Output-Datei wird vor pull geschrieben | `git pull --rebase --autostash origin main` |
+| Lastenheft nach Feature-Abschluss nicht umbenannt | `tasks.md` enthielt keinen Rename-Schritt (seit constitution v1.1.1 behoben) | `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` (macOS/Linux) · `pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>` (Windows) |
 
 ## 📁 Key Directories
 
