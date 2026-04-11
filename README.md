@@ -1223,10 +1223,8 @@ Spec-Kit ermöglicht **Specification-Driven Development (SDD)**: Du beschreibst 
 → Vollständige Anleitung: [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
 
 ```bash
-# Node.js installieren, falls noch nicht vorhanden (s. Schritt 0 / see Step 0)
-
-# Spec-Kit global installieren / Install Spec-Kit globally
-npm install -g @ilodev/specify
+# specify-cli via uv installieren / Install specify-cli via uv
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 # Im Workspace-Verzeichnis initialisieren (Beispiel / example: AusbildungsProjekte)
 cd ~/AusbildungsProjekte
