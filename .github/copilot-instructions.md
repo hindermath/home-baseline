@@ -84,10 +84,13 @@ At the start of each session, detect the OS and call the matching script variant
 
 1. Detect existing sub-repos (`.git/` directories) inside the target directory → add them to `.gitignore`
 2. Copy `scripts/` (secret scanner, hook installer, `pre-push` hook) into workspace
-3. `git init` + initial commit
+3. `git init` + initial commit + apply local git settings (`git config --local`)
 4. `gh repo create` or `glab repo create` (private) + push
 5. `bash scripts/install-hooks.sh` — copies `scripts/hooks/pre-push` → `.git/hooks/pre-push`
-6. Append a row to `~/README.md` workspace table and commit/push `home-baseline`
+6. If `~/.gitconfig.d/` exists: append `[includeIf "gitdir:~/WorkspaceName/"]` block to `~/.gitconfig` pointing to `~/.gitconfig.d/<workspacename>.inc` (idempotent — no duplicate if already present)
+7. Append a row to `~/README.md` workspace table and commit/push `home-baseline`
+
+**`bootstrap-project` vs. `bootstrap-workspace` git config scope**: `bootstrap-project` applies settings only via `git config --local` inside the new project repo — it MUST NOT and does not touch `~/.gitconfig` or `~/.gitconfig.d/`. Only `bootstrap-workspace` writes `includeIf` blocks.
 
 ### Teardown flow (`teardown-workspace.sh` / `.ps1`)
 
