@@ -155,7 +155,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('PRINT', "Codex manuelle Anweisung"))
     $null = $previewActions.Add(@('PRINT', "Gemini manuelle Anweisung"))
     $null = $previewActions.Add(@('CHECK', "gh copilot --help", 'optional'))
-    $null = $previewActions.Add(@('EXEC', "npx speckit init", 'optional'))
+    $null = $previewActions.Add(@('EXEC', "specify init --here --ai claude", 'optional'))
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
 
@@ -421,12 +421,16 @@ if ((Get-Command gh -ErrorAction SilentlyContinue) -and (gh extension list 2>$nu
 Step-Start "Spec-kit installieren"
 if ($NoSpeckit) { Step-Skip "-NoSpeckit" }
 elseif ((Test-Path (Join-Path $TargetDir '.specify')) -and -not $Force) { Step-Skip ".specify/ vorhanden" }
-elseif (Get-Command npx -ErrorAction SilentlyContinue) {
+elseif (Get-Command specify -ErrorAction SilentlyContinue) {
     Push-Location $TargetDir
-    npx speckit init 2>$null | Out-Null
+    specify init --here --ai claude 2>$null | Out-Null
     Pop-Location
-    if (Test-Path (Join-Path $TargetDir '.specify')) { Step-Done } else { Step-Warn "speckit init kein .specify/ erstellt" }
-} else { Step-Skip "node/npx nicht installiert" }
+    if (Test-Path (Join-Path $TargetDir '.specify')) { Step-Done } else { Step-Warn "specify init kein .specify/ erstellt" }
+} else {
+    Step-Warn "specify nicht installiert"
+    Write-Host "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
+    Write-Host "          -> Dann: cd $tdShort && specify init --here --ai claude"
+}
 
 # 20. Compliance check + STATS baseline
 Step-Start "Compliance-Check + STATS-Baseline"
@@ -471,7 +475,8 @@ Write-Host "  Naechste Schritte:"
 Write-Host "  -> cd $tdShort"
 Write-Host "  -> codex   (interaktive Initialisierung)"
 Write-Host "  -> gemini  (interaktive Initialisierung)"
-Write-Host "  -> npx speckit specify `"Feature-Name`""
+Write-Host "  -> specify init --here --ai gemini  (+ codex, copilot, opencode)"
+Write-Host "  -> specify specify `"Feature-Name`""
 Write-Host ('=' * 50)
 
 if ($PartialFail) { exit 1 }
