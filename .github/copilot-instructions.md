@@ -5,7 +5,7 @@ It tracks only safe infrastructure files via a whitelist `.gitignore` and distri
 
 ## Repository Purpose
 
-`home-baseline` manages workspace initialisation: it provides scripts that turn a plain directory into a private GitHub repo with `.gitignore`, standard scripts, and a `pre-push` secret-scanning hook installed. It does **not** contain application source code.
+`home-baseline` manages workspace initialisation: it provides scripts that turn a plain directory into a private GitHub or GitLab repo with `.gitignore`, standard scripts, and a `pre-push` secret-scanning hook installed. It does **not** contain application source code.
 
 ## Working Directory
 
@@ -85,7 +85,7 @@ At the start of each session, detect the OS and call the matching script variant
 1. Detect existing sub-repos (`.git/` directories) inside the target directory → add them to `.gitignore`
 2. Copy `scripts/` (secret scanner, hook installer, `pre-push` hook) into workspace
 3. `git init` + initial commit
-4. `gh repo create` (private) + push
+4. `gh repo create` or `glab repo create` (private) + push
 5. `bash scripts/install-hooks.sh` — copies `scripts/hooks/pre-push` → `.git/hooks/pre-push`
 6. Append a row to `~/README.md` workspace table and commit/push `home-baseline`
 
@@ -235,6 +235,10 @@ Never copy from `~/home-baseline-tmp/` manually. The correct command is:
 ### Windows: `gh auth login` in background/async processes
 `gh auth login --web` does NOT detect browser confirmation when run in a background or async process (e.g. Copilot CLI async shell). The browser callback never arrives.
 Always run `gh auth login` in an **interactive terminal window** directly.
+
+### macOS / Linux / Windows: `glab auth login` in background/async processes
+`glab auth login --web` does NOT detect browser confirmation when run in a background or async process. The browser callback never arrives.
+Always run `glab auth login` in an **interactive terminal window** directly.
 
 ### Windows: `gh` keyring becomes invalid
 Symptom: `Failed to log in to github.com account (keyring)` from `gh auth status`.

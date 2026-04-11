@@ -136,7 +136,11 @@ if [ "$OPT_PLATFORM" = "gitlab" ] && ! $OPT_NO_REMOTE; then
     exit 2
   fi
 
-  GITLAB_USER_LOCAL="$(glab api user --hostname "$OPT_GITLAB_HOSTNAME" --jq '.username' 2>/dev/null || true)"
+  GITLAB_USER_LOCAL="$(
+    glab api user --hostname "$OPT_GITLAB_HOSTNAME" 2>/dev/null \
+      | tr -d '\r\n' \
+      | sed -n 's/.*"username":"\([^"]*\)".*/\1/p'
+  )"
   if [ -z "$GITLAB_USER_LOCAL" ]; then
     echo "Fehler: Konnte GitLab-Benutzername nicht ermitteln." >&2
     echo "Error: Could not retrieve GitLab username." >&2

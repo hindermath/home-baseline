@@ -166,7 +166,11 @@ else
     exit 1
   fi
 
-  GITLAB_USER=$(glab api user --hostname "$GITLAB_HOSTNAME" --jq '.username' 2>/dev/null || true)
+  GITLAB_USER="$(
+    glab api user --hostname "$GITLAB_HOSTNAME" 2>/dev/null \
+      | tr -d '\r\n' \
+      | sed -n 's/.*"username":"\([^"]*\)".*/\1/p'
+  )"
   if [ -z "$GITLAB_USER" ]; then
     echo "Fehler: Konnte GitLab-Benutzername nicht ermitteln." >&2
     echo "Error: Could not retrieve GitLab username." >&2
@@ -226,7 +230,7 @@ GITIGNORE_PATH="$WORKSPACE_DIR/.gitignore"
 if [ "$DRY_RUN" -eq 0 ]; then
   {
     echo "# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
-    for repo in "${SUB_REPOS[@]}"; do
+    for repo in "${SUB_REPOS[@]+"${SUB_REPOS[@]}"}"; do
       echo "$repo/"
     done
     echo ""
@@ -254,7 +258,11 @@ STATIC
   } > "$GITIGNORE_PATH"
   ok ".gitignore erstellt"
 else
-  echo "  [dry-run] .gitignore würde erstellt mit Einträgen für: ${SUB_REPOS[*]:-keine}"
+  sub_repos_display="keine"
+  if [ "${#SUB_REPOS[@]}" -gt 0 ]; then
+    sub_repos_display="${SUB_REPOS[*]}"
+  fi
+  echo "  [dry-run] .gitignore würde erstellt mit Einträgen für: $sub_repos_display"
 fi
 
 # --- Scripts kopieren ----------------------------------------------------------
@@ -326,7 +334,7 @@ if [ -f "$HOME_README" ]; then
     log "Eintrag für '$WORKSPACE_NAME' bereits vorhanden – übersprungen."
   else
     if [ "$DRY_RUN" -eq 0 ]; then
-      sed -i '' "s|<!-- workspace-table-end -->|$NEW_ROW\n<!-- workspace-table-end -->|" "$HOME_README"
+      NEW_ROW="$NEW_ROW" perl -0pi -e 's/\Q<!-- workspace-table-end -->\E/$ENV{NEW_ROW}."\n<!-- workspace-table-end -->"/e' "$HOME_README"
       ok "~/README.md aktualisiert"
     else
       echo "  [dry-run] ~/README.md: neue Zeile würde eingefügt: $NEW_ROW"
@@ -345,8 +353,12 @@ if [ -d "$HOME_GIT" ]; then
 Automatisch durch bootstrap-workspace.sh hinzugefügt.
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
-  run "git -C '$HOME_DIR' push"
-  ok "home-baseline aktualisiert und gepusht"
+  if git -C "$HOME_DIR" remote get-url origin >/dev/null 2>&1; then
+    run "git -C '$HOME_DIR' push"
+    ok "home-baseline aktualisiert und gepusht"
+  else
+    ok "home-baseline committed (kein Remote konfiguriert — Push übersprungen / no remote configured — push skipped)"
+  fi
 fi
 
 

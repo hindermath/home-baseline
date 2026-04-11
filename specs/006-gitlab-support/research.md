@@ -29,13 +29,17 @@ GITLAB_HOST="$GITLAB_HOSTNAME" glab repo create "$REPO_SLUG" --private --descrip
 
 ## Decision 2: `glab api user` — Retrieving GitLab Username
 
-**Decision**: Use `glab api user --hostname "$GITLAB_HOSTNAME" --jq '.username'`.
+**Decision**: Use `glab api user --hostname "$GITLAB_HOSTNAME"` and extract `.username` from the returned JSON.
 
-**Rationale**: `glab api` accepts `--hostname` to override the GitLab host. This is explicit and does not rely on ambient environment variable state. The API response at `/api/v4/user` returns a JSON object; `.username` is the canonical login identifier (not `.login` like GitHub's `gh api`).
+**Rationale**: `glab api` accepts `--hostname` to override the GitLab host. This is explicit and does not rely on ambient environment variable state. The API response at `/api/v4/user` returns a JSON object; `.username` is the canonical login identifier (not `.login` like GitHub's `gh api`). Current `glab` versions do not support `--jq`, so the implementation must parse the returned JSON explicitly.
 
 **Command pattern**:
 ```bash
-GITLAB_USER=$(glab api user --hostname "$GITLAB_HOSTNAME" --jq '.username' 2>/dev/null || true)
+GITLAB_USER="$(
+  glab api user --hostname "$GITLAB_HOSTNAME" 2>/dev/null \
+    | tr -d '\r\n' \
+    | sed -n 's/.*"username":"\([^"]*\)".*/\1/p'
+)"
 ```
 
 **For gitlab.com**: `GITLAB_HOSTNAME="gitlab.com"`, so `--hostname gitlab.com` is redundant but harmless and keeps the code uniform.

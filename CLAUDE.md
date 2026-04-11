@@ -29,7 +29,7 @@ bash ~/scripts/sync-home.sh --no-pull
 
 ## Repository Purpose
 
-This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub repositories and enforces security across all projects.
+This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub or GitLab repositories and enforces security across all projects.
 
 ## Scripts
 
@@ -46,7 +46,7 @@ bash ~/scripts/bootstrap-workspace.sh --dry-run <WorkspaceName>   # preview only
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Name> [-RepoName <r>] [-WhatIf]
 ```
 
-The script: detects existing sub-repos → adds them to `.gitignore` → copies standard scripts → `git init` + initial commit → creates private GitHub repo via `gh repo create` → pushes → installs hooks → updates `~/README.md`.
+The script: detects existing sub-repos → adds them to `.gitignore` → copies standard scripts → `git init` + initial commit → creates a private GitHub repo via `gh repo create` or a private GitLab repo via `glab repo create` → pushes → installs hooks → updates `~/README.md`.
 
 ### Install Git hooks
 

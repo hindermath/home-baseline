@@ -103,15 +103,22 @@ if ($Platform -eq 'github') {
     }
 
     $env:GITLAB_HOST = $gitlabHostname
-    try {
-        glab auth status 2>&1 | Out-Null
-    } catch {
-        $env:GITLAB_HOST = $null
+    & glab auth status 2>$null | Out-Null
+    $authExitCode = $LASTEXITCODE
+    $env:GITLAB_HOST = $null
+    if ($authExitCode -ne 0) {
         Write-Error "Fehler: Nicht bei GitLab ($gitlabHostname) authentifiziert. Bitte 'glab auth login' ausführen.`nError: Not authenticated with GitLab ($gitlabHostname). Please run 'glab auth login'."
     }
-    $env:GITLAB_HOST = $null
 
-    $gitlabUser = ((glab api user --hostname $gitlabHostname --jq '.username' 2>$null) | Out-String).Trim()
+    $gitlabUserResponse = ((& glab api user --hostname $gitlabHostname 2>$null) | Out-String).Trim()
+    $gitlabUser = ''
+    if ($gitlabUserResponse) {
+        try {
+            $gitlabUser = ((($gitlabUserResponse | ConvertFrom-Json).username) | Out-String).Trim()
+        } catch {
+            $gitlabUser = ''
+        }
+    }
     if (-not $gitlabUser) {
         Write-Error "Fehler: GitLab-Benutzername konnte nicht ermittelt werden.`nError: Could not retrieve GitLab username."
     }
@@ -310,8 +317,13 @@ Automatisch durch bootstrap-workspace.ps1 hinzugefügt.
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 "@
         & git -C $homeDir commit -m $msg
-        & git -C $homeDir push
-        Write-Host '    OK  home-baseline aktualisiert und gepusht' -ForegroundColor Green
+        $hasRemote = (& git -C $homeDir remote get-url origin 2>$null) -ne $null
+        if ($hasRemote) {
+            & git -C $homeDir push
+            Write-Host '    OK  home-baseline aktualisiert und gepusht' -ForegroundColor Green
+        } else {
+            Write-Host '    OK  home-baseline committed (kein Remote konfiguriert — Push übersprungen / no remote configured — push skipped)' -ForegroundColor Green
+        }
     }
 }
 

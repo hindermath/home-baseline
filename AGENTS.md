@@ -107,6 +107,10 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 `gh auth login --web` does NOT detect browser confirmation when run in a background/async process.
 Always run `gh auth login` in an **interactive terminal window** — not from within Copilot CLI async shell.
 
+### macOS / Linux / Windows: `glab auth login` in background processes
+`glab auth login --web` does NOT detect browser confirmation when run in a background/async process.
+Always run `glab auth login` in an **interactive terminal window** — not from within Copilot CLI async shell.
+
 ### Windows: `gh` keyring becomes invalid
 Symptom: `Failed to log in to github.com account (keyring)`.
 Fix: `gh auth logout -h github.com -u hindermath` then re-login interactively.
@@ -142,6 +146,8 @@ All test scripts use `git pull --rebase --autostash origin main` to avoid this.
 - Dateisystem / File system (`.md`, `.gitignore`, `STATS.md`, `constitution.md`, `.yml`) (002-homogeneity-guardian-revision)
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
+- Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (GitLab support), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
+- Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
 
 ## Recent Changes
 - 001-workspace-homogeneity-guardian: Added Bash 5+ (primär), PowerShell Core 7+ (Windows-Parität) + `git`, `bash` ≥ 5, `ripgrep (rg)`, `sha256sum` (Linux/WSL) /
@@ -149,6 +155,7 @@ All test scripts use `git pull --rebase --autostash origin main` to avoid this.
 - 004-readme-ausbau-ci-fixes-sync: sync-home.sh/.ps1 hinzugefügt; README vollständig überarbeitet (2-stufiges TOC, Auszubildende, Spec-Kit, WCAG 2.2 AA); CHANGELOG.md angelegt; CI-Fixes (TARGET_DIR, windows-2022, -TargetDir)
 - 005-readme-tabelle-specify-init: Workflow-Tabelle ausgerichtet (5 Zeilen 64→63 Zeichen); Abschnitt „Verzeichnis vorbereiten" auf `specify init --here --ai {agent}` umgestellt; `--ai-skill` als Codex-spezifisch dokumentiert
 - 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf`, `~/.gitconfig.d/`, bootstrap-workspace, sync-home, check-homogeneity, pre-push hook erweitert
+- 006-gitlab-support: GitLab-CLI-Support für `bootstrap-workspace.*` und `bootstrap-project.*`, Self-hosted `--gitlab-url`, bilinguale Fehlerpfade und GitLab-Dokumentation ergänzt
 
 ## Projektstatus / Repository Status
 

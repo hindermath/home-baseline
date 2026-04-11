@@ -170,7 +170,11 @@ elif [ "$PLATFORM" = "gitlab" ]; then
     echo "Error: Not authenticated with GitLab ($GITLAB_HOSTNAME). Please run 'glab auth login'." >&2
     exit 1
   fi
-  GITLAB_USER=$(glab api user --hostname "$GITLAB_HOSTNAME" --jq '.username' 2>/dev/null || true)
+  GITLAB_USER="$(
+    glab api user --hostname "$GITLAB_HOSTNAME" 2>/dev/null \
+      | tr -d '\r\n' \
+      | sed -n 's/.*"username":"\([^"]*\)".*/\1/p'
+  )"
   if [ -z "$GITLAB_USER" ]; then
     echo "Fehler: Konnte GitLab-Benutzername nicht ermitteln." >&2
     echo "Error: Could not retrieve GitLab username." >&2
@@ -359,7 +363,11 @@ elif [ "$OPT_PLATFORM" = "gitlab" ]; then
   elif ! GITLAB_HOST="$OPT_GITLAB_HOSTNAME" glab auth status >/dev/null 2>&1; then
     step_warn "Nicht bei GitLab authentifiziert. Bitte 'glab auth login' ausführen. / Not authenticated with GitLab. Please run 'glab auth login'."
   else
-    GITLAB_USER_LOCAL=$(glab api user --hostname "$OPT_GITLAB_HOSTNAME" --jq '.username' 2>/dev/null || true)
+    GITLAB_USER_LOCAL="$(
+      glab api user --hostname "$OPT_GITLAB_HOSTNAME" 2>/dev/null \
+        | tr -d '\r\n' \
+        | sed -n 's/.*"username":"\([^"]*\)".*/\1/p'
+    )"
     repo_slug=$(normalize_name "$PROJECT_NAME")
     REMOTE_URL="https://${OPT_GITLAB_HOSTNAME}/${GITLAB_USER_LOCAL}/${repo_slug}.git"
     if GITLAB_HOST="$OPT_GITLAB_HOSTNAME" \
@@ -421,7 +429,15 @@ if ($Platform -eq 'gitlab') {
         Write-Error "Fehler: Nicht bei GitLab ($gitlabHostname) authentifiziert. Bitte 'glab auth login' ausführen.`nError: Not authenticated. Please run 'glab auth login'."
     }
     $env:GITLAB_HOST = $null
-    $gitlabUser = (glab api user --hostname $gitlabHostname --jq '.username' 2>$null).Trim()
+    $gitlabUserResponse = ((glab api user --hostname $gitlabHostname 2>$null) | Out-String).Trim()
+    $gitlabUser = ''
+    if ($gitlabUserResponse) {
+        try {
+            $gitlabUser = ((($gitlabUserResponse | ConvertFrom-Json).username) | Out-String).Trim()
+        } catch {
+            $gitlabUser = ''
+        }
+    }
     if (-not $gitlabUser) { Write-Error "Fehler: GitLab-Benutzername konnte nicht ermittelt werden." }
 }
 ```

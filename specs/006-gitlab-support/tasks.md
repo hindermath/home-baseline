@@ -19,8 +19,8 @@
 
 **Purpose**: Prepare script entry points and user-facing option surfaces for GitLab support
 
-- [ ] T001 Update Bash usage/help text for `--platform` and `--gitlab-url` in `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-project.sh`
-- [ ] T002 [P] Update PowerShell parameter/help surface for `-Platform` and `-GitLabUrl` in `scripts/bootstrap-workspace.ps1` and `scripts/bootstrap-project.ps1`
+- [x] T001 Update Bash usage/help text for `--platform` and `--gitlab-url` in `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-project.sh`
+- [x] T002 [P] Update PowerShell parameter/help surface for `-Platform` and `-GitLabUrl` in `scripts/bootstrap-workspace.ps1` and `scripts/bootstrap-project.ps1`
 
 ---
 
@@ -30,10 +30,10 @@
 
 **⚠️ CRITICAL**: No user story work should start before this phase is complete
 
-- [ ] T003 Implement Bash platform parsing, `https://` validation, and hostname derivation in `scripts/bootstrap-workspace.sh`
-- [ ] T004 [P] Implement Bash platform parsing, `https://` validation, hostname derivation, and local `normalize_name()` helper in `scripts/bootstrap-project.sh`
-- [ ] T005 [P] Implement PowerShell parameter scaffolding, explicit bilingual platform validation, and `-GitLabUrl` validation in `scripts/bootstrap-workspace.ps1`
-- [ ] T006 [P] Implement PowerShell parameter scaffolding, explicit bilingual platform validation, and `-GitLabUrl` validation in `scripts/bootstrap-project.ps1`
+- [x] T003 Implement Bash platform parsing, `https://` validation, and hostname derivation in `scripts/bootstrap-workspace.sh`
+- [x] T004 [P] Implement Bash platform parsing, `https://` validation, hostname derivation, and local `normalize_name()` helper in `scripts/bootstrap-project.sh`
+- [x] T005 [P] Implement PowerShell parameter scaffolding, explicit bilingual platform validation, and `-GitLabUrl` validation in `scripts/bootstrap-workspace.ps1`
+- [x] T006 [P] Implement PowerShell parameter scaffolding, explicit bilingual platform validation, and `-GitLabUrl` validation in `scripts/bootstrap-project.ps1`
 
 **Checkpoint**: Shared GitLab option handling is in place across all four scripts
 
@@ -47,11 +47,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T007 [US1] Implement GitLab CLI install/auth/username pre-flight logic in `scripts/bootstrap-workspace.sh`
-- [ ] T008 [US1] Implement GitLab repo creation, remote add, push, and dry-run command output in `scripts/bootstrap-workspace.sh`
-- [ ] T009 [US1] Implement platform-aware preamble, slug display, summary output, and `~/README.md` row generation in `scripts/bootstrap-workspace.sh`
-- [ ] T010 [P] [US1] Implement the equivalent GitLab workspace flow in `scripts/bootstrap-workspace.ps1`
-- [ ] T011 [US1] Run the workspace validation commands from `specs/006-gitlab-support/plan.md` against `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-workspace.ps1`
+- [x] T007 [US1] Implement GitLab CLI install/auth/username pre-flight logic in `scripts/bootstrap-workspace.sh`
+- [x] T008 [US1] Implement GitLab repo creation, remote add, push, and dry-run command output in `scripts/bootstrap-workspace.sh`
+- [x] T009 [US1] Implement platform-aware preamble, slug display, summary output, and `~/README.md` row generation in `scripts/bootstrap-workspace.sh`
+- [x] T010 [P] [US1] Implement the equivalent GitLab workspace flow in `scripts/bootstrap-workspace.ps1`
+- [x] T011 [US1] Run the workspace validation commands from `specs/006-gitlab-support/plan.md` against `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-workspace.ps1`
 
 **Checkpoint**: User Story 1 is complete when workspace bootstrap works on GitLab and still defaults to GitHub without regressions
 
@@ -65,10 +65,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T012 [US2] Implement GitLab-aware preview output and Step 13 remote creation flow in `scripts/bootstrap-project.sh`
-- [ ] T013 [US2] Preserve `--no-remote`, add platform-aware project summary and normalized GitLab slug output, and keep `~/README.md` behavior platform-aware in `scripts/bootstrap-project.sh`
-- [ ] T014 [P] [US2] Implement the equivalent GitLab project flow, summary output, slug display, and `-Preview` parity in `scripts/bootstrap-project.ps1`
-- [ ] T015 [US2] Run the project validation commands from `specs/006-gitlab-support/plan.md` and `specs/006-gitlab-support/quickstart.md` against `scripts/bootstrap-project.sh` and `scripts/bootstrap-project.ps1`, including invalid `--platform` / `-Platform` and invalid `--gitlab-url` / `-GitLabUrl` fatal-path checks
+- [x] T012 [US2] Implement GitLab-aware preview output and Step 13 remote creation flow in `scripts/bootstrap-project.sh`
+- [x] T013 [US2] Preserve `--no-remote`, add platform-aware project summary and normalized GitLab slug output, and keep `~/README.md` behavior platform-aware in `scripts/bootstrap-project.sh`
+- [x] T014 [P] [US2] Implement the equivalent GitLab project flow, summary output, slug display, and `-Preview` parity in `scripts/bootstrap-project.ps1`
+- [x] T015 [US2] Run the project validation commands from `specs/006-gitlab-support/plan.md` and `specs/006-gitlab-support/quickstart.md` against `scripts/bootstrap-project.sh` and `scripts/bootstrap-project.ps1`, including invalid `--platform` / `-Platform` and invalid `--gitlab-url` / `-GitLabUrl` fatal-path checks
 
 **Checkpoint**: User Story 2 is complete when project bootstrap previews and executes GitLab remote actions correctly while `--no-remote` remains unchanged
 
@@ -82,13 +82,13 @@
 
 ### Implementation for User Story 4
 
-- [ ] T016 [US4] Add bilingual invalid-platform, missing-`glab`, missing-auth, and username-retrieval error paths to `scripts/bootstrap-workspace.sh`
-- [ ] T017 [P] [US4] Add bilingual invalid-platform, missing-`glab`, missing-auth, and username-retrieval error paths to `scripts/bootstrap-workspace.ps1`
-- [ ] T018 [US4] Add bilingual GitLab error guidance to `scripts/bootstrap-project.sh`
-- [ ] T019 [P] [US4] Add bilingual GitLab error guidance to `scripts/bootstrap-project.ps1`
-- [ ] T020 [US4] Update troubleshooting and `glab auth login` pitfall guidance in `README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
-- [ ] T021 [US4] Update standard GitLab examples and the two explanatory blockquotes under `### Nächste Schritte / Next steps` in `README.md`
-- [ ] T022 [US4] Run deterministic error-handling validation for the four bootstrap scripts in `scripts/` using PATH masking to simulate missing `glab`, and `glab auth logout` or host-specific logout to simulate unauthenticated GitLab sessions, following `specs/006-gitlab-support/quickstart.md` and `specs/006-gitlab-support/plan.md`
+- [x] T016 [US4] Add bilingual invalid-platform, missing-`glab`, missing-auth, and username-retrieval error paths to `scripts/bootstrap-workspace.sh`
+- [x] T017 [P] [US4] Add bilingual invalid-platform, missing-`glab`, missing-auth, and username-retrieval error paths to `scripts/bootstrap-workspace.ps1`
+- [x] T018 [US4] Add bilingual GitLab error guidance to `scripts/bootstrap-project.sh`
+- [x] T019 [P] [US4] Add bilingual GitLab error guidance to `scripts/bootstrap-project.ps1`
+- [x] T020 [US4] Update troubleshooting and `glab auth login` pitfall guidance in `README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
+- [x] T021 [US4] Update standard GitLab examples and the two explanatory blockquotes under `### Nächste Schritte / Next steps` in `README.md`
+- [x] T022 [US4] Run deterministic error-handling validation for the four bootstrap scripts in `scripts/` using PATH masking to simulate missing `glab`, and `glab auth logout` or host-specific logout to simulate unauthenticated GitLab sessions, following `specs/006-gitlab-support/quickstart.md` and `specs/006-gitlab-support/plan.md`
 
 **Checkpoint**: User Story 4 is complete when missing-tool and auth failures are self-explanatory and bilingual across Bash and PowerShell
 
@@ -102,12 +102,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T023 [US3] Implement self-hosted `--gitlab-url` handling in `scripts/bootstrap-workspace.sh`
-- [ ] T024 [P] [US3] Implement self-hosted `-GitLabUrl` handling in `scripts/bootstrap-workspace.ps1`
-- [ ] T025 [US3] Implement self-hosted `--gitlab-url` handling in `scripts/bootstrap-project.sh`
-- [ ] T026 [P] [US3] Implement self-hosted `-GitLabUrl` handling in `scripts/bootstrap-project.ps1`
-- [ ] T027 [US3] Update self-hosted usage examples and platform-aware URL wording in `README.md`
-- [ ] T028 [US3] Run the self-hosted validation commands from `specs/006-gitlab-support/plan.md` and `specs/006-gitlab-support/quickstart.md` against `scripts/bootstrap-workspace.sh`, `scripts/bootstrap-workspace.ps1`, `scripts/bootstrap-project.sh`, and `scripts/bootstrap-project.ps1`
+- [x] T023 [US3] Implement self-hosted `--gitlab-url` handling in `scripts/bootstrap-workspace.sh`
+- [x] T024 [P] [US3] Implement self-hosted `-GitLabUrl` handling in `scripts/bootstrap-workspace.ps1`
+- [x] T025 [US3] Implement self-hosted `--gitlab-url` handling in `scripts/bootstrap-project.sh`
+- [x] T026 [P] [US3] Implement self-hosted `-GitLabUrl` handling in `scripts/bootstrap-project.ps1`
+- [x] T027 [US3] Update self-hosted usage examples and platform-aware URL wording in `README.md`
+- [x] T028 [US3] Run the self-hosted validation commands from `specs/006-gitlab-support/plan.md` and `specs/006-gitlab-support/quickstart.md` against `scripts/bootstrap-workspace.sh`, `scripts/bootstrap-workspace.ps1`, `scripts/bootstrap-project.sh`, and `scripts/bootstrap-project.ps1`
 
 **Checkpoint**: User Story 3 is complete when both bootstrap flows consistently target a custom GitLab base URL
 
@@ -117,8 +117,8 @@
 
 **Purpose**: Final parity pass, manual validation sweep, and documentation cleanup across all stories
 
-- [ ] T029 [P] Reconcile final bilingual wording and heading consistency in `README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
-- [ ] T030 Verify the final implementation against `specs/006-gitlab-support/checklists/plan-review.md`, `specs/006-gitlab-support/contracts/bootstrap-workspace-cli.md`, and `specs/006-gitlab-support/contracts/bootstrap-project-cli.md`
+- [x] T029 [P] Reconcile final bilingual wording and heading consistency in `README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
+- [x] T030 Verify the final implementation against `specs/006-gitlab-support/checklists/plan-review.md`, `specs/006-gitlab-support/contracts/bootstrap-workspace-cli.md`, and `specs/006-gitlab-support/contracts/bootstrap-project-cli.md`
 - [ ] T031 Run the full manual verification command set from `specs/006-gitlab-support/plan.md` and `specs/006-gitlab-support/quickstart.md`, including the timed `SC-001` live bootstrap check
 
 ---

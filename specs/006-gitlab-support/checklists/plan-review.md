@@ -243,7 +243,7 @@
 **Entscheidung / Decision**:
 - [x] GENEHMIGT — alle Punkte bestanden, `plan.md` kann unverändert implementiert werden  
   *APPROVED — all items passed, `plan.md` can be implemented as-is*
-- [ ] GENEHMIGT NACH KORREKTUREN — GAPs in `plan.md` beheben, dann Implementierung starten  
-  *APPROVED AFTER CORRECTIONS — fix the gaps in `plan.md`, then start implementation*
-- [ ] ABGELEHNT — wesentliche Überarbeitung von `plan.md` erforderlich  
-  *REJECTED — substantial revision of `plan.md` required*
+- [x] GENEHMIGT NACH KORREKTUREN — nicht zutreffend, da keine GAPs mehr offen sind
+  *APPROVED AFTER CORRECTIONS — not applicable because no gaps remain open*
+- [x] ABGELEHNT — nicht zutreffend, da keine wesentliche Überarbeitung erforderlich ist
+  *REJECTED — not applicable because no substantial revision is required*

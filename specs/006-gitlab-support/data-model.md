@@ -63,7 +63,7 @@ The authenticated user's login identifier, retrieved at runtime.
 
 | Attribute | Type | Source |
 |-----------|------|--------|
-| `username` | string | `glab api user --hostname <hostname> --jq '.username'` |
+| `username` | string | `glab api user --hostname <hostname>` + JSON parse of `.username` |
 
 **Constraints**:
 - Retrieved only when `Platform = gitlab`
