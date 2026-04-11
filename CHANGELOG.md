@@ -8,6 +8,20 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.6.1](https://github.com/hindermath/home-baseline/compare/v0.6.0...v0.6.1) (2026-04-11)
+
+
+### Documentation / Dokumentation
+
+* **constitution:** Lastenheft-Rename als Pflicht-Schritt in tasks-template und allen KI-Agenten-Dateien verankert ([5cd0dd8](https://github.com/hindermath/home-baseline/commit/5cd0dd8b82036b88aea8a5f12cb80015859d7a2b))
+
+
+### Maintenance / Wartung
+
+* rename Lastenheft to Lastenheft_Git_Config_Scope.003-git-config-scope.md ([f0dce42](https://github.com/hindermath/home-baseline/commit/f0dce42d631a82f8977da6fef9778b993f9aacec))
+* rename Lastenheft to Lastenheft_GitLab_Support.006-gitlab-support.md ([e323093](https://github.com/hindermath/home-baseline/commit/e3230931f21789cad1246ebb994cf3e1aab30237))
+* rename Lastenheft to Lastenheft_Workspace_Teardown.005-workspace-teardown.md ([6437fc2](https://github.com/hindermath/home-baseline/commit/6437fc2f891f6c8fed773f14198bb95aa200c032))
+
 ## [0.6.0](https://github.com/hindermath/home-baseline/compare/v0.5.3...v0.6.0) (2026-04-11)
 
 
