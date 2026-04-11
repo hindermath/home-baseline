@@ -13,6 +13,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --dry-run) OPT_DRY_RUN=true ;;
     --yes)     OPT_YES=true ;;
+    -h|--help) echo "USAGE: sync-constitution.sh [--dry-run] [--yes]" >&2; exit 0 ;;
     *) echo "Fehler: Unbekannte Option: $1" >&2; exit 1 ;;
   esac
   shift

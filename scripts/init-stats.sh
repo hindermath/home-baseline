@@ -13,6 +13,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_NAME=""
 while [ $# -gt 0 ]; do
   case "$1" in
+    -h|--help) echo "USAGE: init-stats.sh [workspace-name]" >&2; exit 0 ;;
     --*) echo "ERROR: unknown option $1" >&2; exit 1 ;;
     *) WORKSPACE_NAME="$1" ;;
   esac

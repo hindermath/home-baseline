@@ -29,6 +29,7 @@ for arg in "$@"; do
     --force)       FORCE=true ;;
     --effort=*)    EFFORT_LEVEL="${arg#--effort=}" ;;
     --theme=*)     THEME="${arg#--theme=}" ;;
+    -h|--help) printf "USAGE: setup-copilot-settings.sh [--dry-run] [--force] [--effort=LEVEL] [--theme=THEME]\n" >&2; exit 0 ;;
     *) printf "Unbekanntes Argument / Unknown argument: %s\n" "$arg" >&2; exit 1 ;;
   esac
 done

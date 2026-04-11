@@ -74,6 +74,7 @@ while [ $# -gt 0 ]; do
     --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
     --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
     --lang)       OPT_LANG="${2:-de}"; shift ;;
+    -h|--help) echo "USAGE: bootstrap-project.sh <ProjectName> [TARGET_WORKSPACE] [OPTIONS]" >&2; exit 0 ;;
     --*) echo "ERROR: unknown option $1" >&2; exit 2 ;;
     *)
       if [ -z "$PROJECT_NAME" ]; then
@@ -607,7 +608,7 @@ fi
 step_start "~/README.md aktualisieren"
 home_readme="${HOME}/README.md"
 short_target="${TARGET_DIR/#$HOME/\~}"
-if grep -q "$PROJECT_NAME" "$home_readme" 2>/dev/null; then
+if grep -q -- "$PROJECT_NAME" "$home_readme" 2>/dev/null; then
   step_skip "Eintrag vorhanden"
 elif [ -f "$home_readme" ] && grep -q '<!-- workspace-table-end -->' "$home_readme"; then
   if [ -n "$SUMMARY_REPO_URL" ] && [ -n "$SUMMARY_DISPLAY_REPO" ]; then

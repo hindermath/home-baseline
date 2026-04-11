@@ -15,6 +15,7 @@ for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY_RUN=true ;;
     --force)   FORCE=true ;;
+    -h|--help) printf "USAGE: setup-gemini-settings.sh [--dry-run] [--force]\n" >&2; exit 0 ;;
     *) printf "Unbekanntes Argument / Unknown argument: %s\n" "$arg" >&2; exit 1 ;;
   esac
 done
