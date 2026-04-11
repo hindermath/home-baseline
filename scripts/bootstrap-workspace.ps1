@@ -18,13 +18,40 @@
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
-    [Parameter(Mandatory)][string] $WorkspaceName,
+    [switch] $Teardown,
+    [string] $WorkspaceName = '',
     [string] $RepoName      = '',
-    [string] $Description   = ''
+    [string] $Description   = '',
+    [switch] $Backup,
+    [switch] $KeepRemote,
+    [switch] $Recursive,
+    [switch] $Force,
+    [switch] $Yes
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+if ($Teardown) {
+    if (-not $WorkspaceName) {
+        throw "Fehler: -WorkspaceName ist für -Teardown erforderlich / Error: -WorkspaceName is required for -Teardown"
+    }
+
+    $teardownPath = Join-Path $PSScriptRoot 'teardown-workspace.ps1'
+    & pwsh -NoProfile -File $teardownPath `
+        -WorkspaceName $WorkspaceName `
+        -Backup:$Backup `
+        -KeepRemote:$KeepRemote `
+        -Recursive:$Recursive `
+        -Force:$Force `
+        -Yes:$Yes `
+        -WhatIf:$WhatIfPreference
+    exit $LASTEXITCODE
+}
+
+if (-not $WorkspaceName) {
+    throw "Fehler: -WorkspaceName ist erforderlich / Error: -WorkspaceName is required"
+}
 
 function ConvertTo-NormalizedName([string]$Name) {
     $Name.ToLower() -replace '[^a-z0-9]', '-' -replace '-+', '-' -replace '^-|-$', ''
