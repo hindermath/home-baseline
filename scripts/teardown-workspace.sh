@@ -115,6 +115,11 @@ parse_args() {
         usage
         exit 0
         ;;
+      --)
+        shift
+        if [ $# -gt 0 ] && [ -z "$WORKSPACE_NAME" ]; then WORKSPACE_NAME="$1"; shift; fi
+        continue
+        ;;
       --*)
         echo "Fehler: Unbekannte Option '$1' / Error: Unknown option '$1'" >&2
         exit 2
