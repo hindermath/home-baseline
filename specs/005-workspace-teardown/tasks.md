@@ -23,8 +23,8 @@
 
 **Purpose**: Create the new teardown entry points and establish the implementation surface defined by the plan.
 
-- [ ] T001 Create paired teardown script files `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
-- [ ] T002 Scaffold the top-level command structure, usage/help text, and strict-mode headers in `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
+- [x] T001 Create paired teardown script files `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
+- [x] T002 Scaffold the top-level command structure, usage/help text, and strict-mode headers in `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
 
 ---
 
@@ -34,11 +34,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T003 Implement CLI argument parsing, teardown context assembly, and home-directory resolution in `scripts/teardown-workspace.sh`
-- [ ] T004 [P] Implement parameter parsing, teardown context assembly, and home-directory resolution in `scripts/teardown-workspace.ps1`
-- [ ] T005 Implement shared Bash helpers for bilingual output, preamble/completion boxes, and dry-run execution control in `scripts/teardown-workspace.sh`
-- [ ] T006 [P] Implement shared PowerShell helpers for bilingual output, preamble/completion boxes, and `ShouldProcess`/`-WhatIf` execution control in `scripts/teardown-workspace.ps1`
-- [ ] T007 Bind normalized workspace naming in `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1` to the existing `normalize_name()` / `ConvertTo-NormalizedName()` behavior from `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-workspace.ps1`
+- [x] T003 Implement CLI argument parsing, teardown context assembly, and home-directory resolution in `scripts/teardown-workspace.sh`
+- [x] T004 [P] Implement parameter parsing, teardown context assembly, and home-directory resolution in `scripts/teardown-workspace.ps1`
+- [x] T005 Implement shared Bash helpers for bilingual output, preamble/completion boxes, and dry-run execution control in `scripts/teardown-workspace.sh`
+- [x] T006 [P] Implement shared PowerShell helpers for bilingual output, preamble/completion boxes, and `ShouldProcess`/`-WhatIf` execution control in `scripts/teardown-workspace.ps1`
+- [x] T007 Bind normalized workspace naming in `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1` to the existing `normalize_name()` / `ConvertTo-NormalizedName()` behavior from `scripts/bootstrap-workspace.sh` and `scripts/bootstrap-workspace.ps1`
 
 **Checkpoint**: Foundational teardown infrastructure is ready for story-specific behavior
 
@@ -52,15 +52,15 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Implement `home-baseline` protection, workspace existence validation, and exit-code handling in `scripts/teardown-workspace.sh`
-- [ ] T009 [P] [US1] Implement `home-baseline` protection, workspace existence validation, and exit-code handling in `scripts/teardown-workspace.ps1`
-- [ ] T010 [US1] Implement safety checks for uncommitted changes, unpushed commits, and non-recursive Level-2 detection in `scripts/teardown-workspace.sh`
-- [ ] T011 [P] [US1] Implement safety checks for uncommitted changes, unpushed commits, and non-recursive Level-2 detection in `scripts/teardown-workspace.ps1`
-- [ ] T012 [US1] Implement local workspace deletion, artifact cleanup (`~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/*.inc`), and atomic artifact commit fallback handling in `scripts/teardown-workspace.sh`
-- [ ] T013 [P] [US1] Implement local workspace deletion, artifact cleanup (`~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/*.inc`), and atomic artifact commit fallback handling in `scripts/teardown-workspace.ps1`
-- [ ] T014 [US1] Implement interactive confirmation, dry-run invariants, and bilingual completion reporting for the local-only flow in `scripts/teardown-workspace.sh`
-- [ ] T015 [P] [US1] Implement interactive confirmation, dry-run invariants, and bilingual completion reporting for the local-only flow in `scripts/teardown-workspace.ps1`
-- [ ] T016 [US1] Manually validate User Story 1 scenarios from `specs/005-workspace-teardown/spec.md`, `specs/005-workspace-teardown/quickstart.md`, and the local-flow portions of `specs/005-workspace-teardown/contracts/cli.md` using `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
+- [x] T008 [US1] Implement `home-baseline` protection, workspace existence validation, and exit-code handling in `scripts/teardown-workspace.sh`
+- [x] T009 [P] [US1] Implement `home-baseline` protection, workspace existence validation, and exit-code handling in `scripts/teardown-workspace.ps1`
+- [x] T010 [US1] Implement safety checks for uncommitted changes, unpushed commits, and non-recursive Level-2 detection in `scripts/teardown-workspace.sh`
+- [x] T011 [P] [US1] Implement safety checks for uncommitted changes, unpushed commits, and non-recursive Level-2 detection in `scripts/teardown-workspace.ps1`
+- [x] T012 [US1] Implement local workspace deletion, artifact cleanup (`~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/*.inc`), and atomic artifact commit fallback handling in `scripts/teardown-workspace.sh`
+- [x] T013 [P] [US1] Implement local workspace deletion, artifact cleanup (`~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/*.inc`), and atomic artifact commit fallback handling in `scripts/teardown-workspace.ps1`
+- [x] T014 [US1] Implement interactive confirmation, dry-run invariants, and bilingual completion reporting for the local-only flow in `scripts/teardown-workspace.sh`
+- [x] T015 [P] [US1] Implement interactive confirmation, dry-run invariants, and bilingual completion reporting for the local-only flow in `scripts/teardown-workspace.ps1`
+- [x] T016 [US1] Manually validate User Story 1 scenarios from `specs/005-workspace-teardown/spec.md`, `specs/005-workspace-teardown/quickstart.md`, and the local-flow portions of `specs/005-workspace-teardown/contracts/cli.md` using `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
 
 **Checkpoint**: User Story 1 is functional and manually testable as the MVP without backup, remote deletion, or recursive teardown
 
@@ -74,13 +74,13 @@
 
 ### Implementation for User Story 2
 
-- [ ] T017 [US2] Implement backup archive creation, numeric collision suffix handling, and `tar` warning behavior in `scripts/teardown-workspace.sh`
-- [ ] T018 [P] [US2] Implement backup archive creation, numeric collision suffix handling, and `tar` warning behavior in `scripts/teardown-workspace.ps1`
-- [ ] T019 [US2] Implement remote URL detection, GitHub deletion, no-remote skip, and `--keep-remote` branching in `scripts/teardown-workspace.sh`
-- [ ] T020 [P] [US2] Implement remote URL detection, GitHub deletion, no-remote skip, and `-KeepRemote` branching in `scripts/teardown-workspace.ps1`
-- [ ] T021 [US2] Implement GitLab optional `glab` deletion path and remote-delete failure abort gate in `scripts/teardown-workspace.sh`
-- [ ] T022 [P] [US2] Implement GitLab optional `glab` deletion path and remote-delete failure abort gate in `scripts/teardown-workspace.ps1`
-- [ ] T023 [US2] Manually validate backup, keep-remote, no-remote, GitHub/GitLab, and remote-failure scenarios from `specs/005-workspace-teardown/spec.md` and `specs/005-workspace-teardown/quickstart.md` using `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
+- [x] T017 [US2] Implement backup archive creation, numeric collision suffix handling, and `tar` warning behavior in `scripts/teardown-workspace.sh`
+- [x] T018 [P] [US2] Implement backup archive creation, numeric collision suffix handling, and `tar` warning behavior in `scripts/teardown-workspace.ps1`
+- [x] T019 [US2] Implement remote URL detection, GitHub deletion, no-remote skip, and `--keep-remote` branching in `scripts/teardown-workspace.sh`
+- [x] T020 [P] [US2] Implement remote URL detection, GitHub deletion, no-remote skip, and `-KeepRemote` branching in `scripts/teardown-workspace.ps1`
+- [x] T021 [US2] Implement GitLab optional `glab` deletion path and remote-delete failure abort gate in `scripts/teardown-workspace.sh`
+- [x] T022 [P] [US2] Implement GitLab optional `glab` deletion path and remote-delete failure abort gate in `scripts/teardown-workspace.ps1`
+- [x] T023 [US2] Manually validate backup, keep-remote, no-remote, GitHub/GitLab, and remote-failure scenarios from `specs/005-workspace-teardown/spec.md` and `specs/005-workspace-teardown/quickstart.md` using `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
 
 **Checkpoint**: User Stories 1 and 2 both work, and the backup/remote flow remains independently verifiable
 
@@ -94,11 +94,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T024 [US3] Implement Level-2 repository discovery, recursive sequencing, and `--force` propagation in `scripts/teardown-workspace.sh`
-- [ ] T025 [P] [US3] Implement Level-2 repository discovery, recursive sequencing, and `-Force` propagation in `scripts/teardown-workspace.ps1`
-- [ ] T026 [US3] Implement consolidated recursive preamble/confirmation flow and ensure no artifact commit is created for Level-2 repositories in `scripts/teardown-workspace.sh`
-- [ ] T027 [P] [US3] Implement consolidated recursive preamble/confirmation flow and ensure no artifact commit is created for Level-2 repositories in `scripts/teardown-workspace.ps1`
-- [ ] T028 [US3] Manually validate recursive and non-recursive Level-2 scenarios from `specs/005-workspace-teardown/spec.md` and `specs/005-workspace-teardown/quickstart.md` using `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
+- [x] T024 [US3] Implement Level-2 repository discovery, recursive sequencing, and `--force` propagation in `scripts/teardown-workspace.sh`
+- [x] T025 [P] [US3] Implement Level-2 repository discovery, recursive sequencing, and `-Force` propagation in `scripts/teardown-workspace.ps1`
+- [x] T026 [US3] Implement consolidated recursive preamble/confirmation flow and ensure no artifact commit is created for Level-2 repositories in `scripts/teardown-workspace.sh`
+- [x] T027 [P] [US3] Implement consolidated recursive preamble/confirmation flow and ensure no artifact commit is created for Level-2 repositories in `scripts/teardown-workspace.ps1`
+- [x] T028 [US3] Manually validate recursive and non-recursive Level-2 scenarios from `specs/005-workspace-teardown/spec.md` and `specs/005-workspace-teardown/quickstart.md` using `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
 
 **Checkpoint**: User Stories 1-3 are functional, and recursive teardown remains independently testable
 
@@ -112,9 +112,9 @@
 
 ### Implementation for User Story 4
 
-- [ ] T029 [US4] Add `--teardown` delegation to `scripts/bootstrap-workspace.sh` so it forwards directly to `scripts/teardown-workspace.sh`
-- [ ] T030 [P] [US4] Add `-Teardown` delegation to `scripts/bootstrap-workspace.ps1` so it forwards directly to `scripts/teardown-workspace.ps1`
-- [ ] T031 [US4] Manually validate alias parity against direct teardown invocation using `specs/005-workspace-teardown/spec.md`, `specs/005-workspace-teardown/quickstart.md`, `scripts/bootstrap-workspace.sh`, and `scripts/bootstrap-workspace.ps1`
+- [x] T029 [US4] Add `--teardown` delegation to `scripts/bootstrap-workspace.sh` so it forwards directly to `scripts/teardown-workspace.sh`
+- [x] T030 [P] [US4] Add `-Teardown` delegation to `scripts/bootstrap-workspace.ps1` so it forwards directly to `scripts/teardown-workspace.ps1`
+- [x] T031 [US4] Manually validate alias parity against direct teardown invocation using `specs/005-workspace-teardown/spec.md`, `specs/005-workspace-teardown/quickstart.md`, `scripts/bootstrap-workspace.sh`, and `scripts/bootstrap-workspace.ps1`
 
 **Checkpoint**: All four user stories are independently functional and manually verifiable
 
@@ -124,12 +124,12 @@
 
 **Purpose**: Final parity, regression, and delivery-readiness checks across all stories
 
-- [ ] T032 [P] Review bilingual message consistency, exit-code parity, and dry-run parity across `scripts/teardown-workspace.sh`, `scripts/teardown-workspace.ps1`, `scripts/bootstrap-workspace.sh`, and `scripts/bootstrap-workspace.ps1`
-- [ ] T033 Run the full manual verification matrix from `specs/005-workspace-teardown/quickstart.md` on the current OS-first script path and cross-check the paired shell path
-- [ ] T034 Verify regression expectations from `specs/005-workspace-teardown/plan.md` by confirming an unrelated workspace and the existing bootstrap flow still behave correctly after teardown changes
-- [ ] T035 Measure SC-001 dry-run timing in `specs/005-workspace-teardown/quickstart.md` scenarios and record pass/fail for `<2s` in `specs/005-workspace-teardown/quickstart.md` for `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
-- [ ] T036 Measure SC-002 full teardown timing in controlled manual runs and record pass/fail for `<30s` in `specs/005-workspace-teardown/quickstart.md`
-- [ ] T037 Verify CLI contract conformance against `specs/005-workspace-teardown/contracts/cli.md` for help text, preamble box, confirmation prompt, completion report, dry-run output, and exit codes in `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`, and summarize the verification results in `specs/005-workspace-teardown/quickstart.md`
+- [x] T032 [P] Review bilingual message consistency, exit-code parity, and dry-run parity across `scripts/teardown-workspace.sh`, `scripts/teardown-workspace.ps1`, `scripts/bootstrap-workspace.sh`, and `scripts/bootstrap-workspace.ps1`
+- [x] T033 Run the full manual verification matrix from `specs/005-workspace-teardown/quickstart.md` on the current OS-first script path and cross-check the paired shell path
+- [x] T034 Verify regression expectations from `specs/005-workspace-teardown/plan.md` by confirming an unrelated workspace and the existing bootstrap flow still behave correctly after teardown changes
+- [x] T035 Measure SC-001 dry-run timing in `specs/005-workspace-teardown/quickstart.md` scenarios and record pass/fail for `<2s` in `specs/005-workspace-teardown/quickstart.md` for `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`
+- [x] T036 Measure SC-002 full teardown timing in controlled manual runs and record pass/fail for `<30s` in `specs/005-workspace-teardown/quickstart.md`
+- [x] T037 Verify CLI contract conformance against `specs/005-workspace-teardown/contracts/cli.md` for help text, preamble box, confirmation prompt, completion report, dry-run output, and exit codes in `scripts/teardown-workspace.sh` and `scripts/teardown-workspace.ps1`, and summarize the verification results in `specs/005-workspace-teardown/quickstart.md`
 
 ---
 

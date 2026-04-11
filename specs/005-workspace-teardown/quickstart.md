@@ -93,3 +93,36 @@ bash ~/scripts/bootstrap-workspace.sh --teardown MyProjects --dry-run
 ## Protected Names
 
 `home-baseline` cannot be torn down (FR-015). This exits 2 immediately regardless of flags.
+
+---
+
+## Verification Results / Verifikationsergebnisse
+
+Manual verification was executed on 2026-04-11 in isolated temp homes under `/tmp` with mocked `gh` responses for remote-delete scenarios. This kept the runs deterministic while still exercising the real Bash and PowerShell scripts end to end.
+
+### Scenario Matrix
+
+| Scenario | Bash | PowerShell | Notes |
+|----------|------|------------|-------|
+| Dry-run / `-WhatIf` preview | PASS | PASS | Preamble shown, no writes performed |
+| Live teardown with backup + GitHub remote delete | PASS | PASS | Backup, remote delete, local delete, artifact cleanup, artifact commit |
+| Level-2 detected without recursion | PASS | PASS | Safe abort with listed child repos |
+| Recursive teardown with `keep-remote` | PASS | PASS | Level-2 repos processed first, workspace artifacts committed once |
+| Safety gate on uncommitted changes | PASS | PASS | Abort before destructive actions |
+| Remote-delete failure gate | PASS | PASS | Abort before local delete and artifact cleanup |
+| `bootstrap-workspace` alias parity | PASS | PASS | Direct teardown and alias dry-run output matched |
+| Existing bootstrap dry-run regression | PASS | PASS | Non-teardown bootstrap entry path still worked in preview mode with mocked `gh api user` |
+
+### Success Criteria Measurements
+
+| Success Criterion | Bash | PowerShell | Result |
+|------------------|------|------------|--------|
+| SC-001 `--dry-run` / `-WhatIf` under 2 s | 0.33 s | 0.82 s | PASS |
+| SC-002 full teardown under 30 s | 1.22 s | 1.45 s | PASS |
+
+### Contract Conformance Summary
+
+- PASS: Help signatures, preamble box, single confirmation skip via `--yes` / `-Yes`, completion report, and bilingual output matched `contracts/cli.md`.
+- PASS: Exit code `0` observed for successful dry-run and live teardown, `1` observed for safety aborts and remote-delete failures, `2` remains reserved for usage/protected-name/not-found paths.
+- PASS: `--dry-run` / `-WhatIf` produced no filesystem writes in the isolated test homes.
+- PASS: Artifact cleanup removed `README.md` rows, `.gitignore` entries, `.gitconfig` includeIf blocks, and `.gitconfig.d/*.inc` files; tracked artifact files were committed once with the required trailer.

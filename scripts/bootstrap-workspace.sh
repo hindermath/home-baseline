@@ -14,6 +14,13 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [ "${1:-}" = "--teardown" ]; then
+  shift
+  exec bash "$SCRIPT_DIR/teardown-workspace.sh" "$@"
+fi
+
 # --- Hilfsfunktionen -----------------------------------------------------------
 
 usage() {
