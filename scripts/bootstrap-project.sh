@@ -75,6 +75,11 @@ while [ $# -gt 0 ]; do
     --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
     --lang)       OPT_LANG="${2:-de}"; shift ;;
     -h|--help) echo "USAGE: bootstrap-project.sh <ProjectName> [TARGET_WORKSPACE] [OPTIONS]" >&2; exit 0 ;;
+    --)
+      shift
+      if [ $# -gt 0 ] && [ -z "$PROJECT_NAME" ]; then PROJECT_NAME="$1"; shift; fi
+      if [ $# -gt 0 ] && [ -z "$TARGET_WORKSPACE" ]; then TARGET_WORKSPACE="$1"; shift; fi
+      continue ;;
     --*) echo "ERROR: unknown option $1" >&2; exit 2 ;;
     *)
       if [ -z "$PROJECT_NAME" ]; then

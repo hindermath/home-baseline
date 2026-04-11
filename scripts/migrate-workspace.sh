@@ -19,6 +19,10 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --dry-run) OPT_DRY_RUN=true ;;
     --yes)     OPT_YES=true ;;
+    --)
+      shift
+      if [ $# -gt 0 ] && [ -z "$WORKSPACE_NAME" ]; then WORKSPACE_NAME="$1"; shift; fi
+      continue ;;
     --*) echo "ERROR: unknown option $1" >&2; exit 2 ;;
     *) WORKSPACE_NAME="$1" ;;
   esac

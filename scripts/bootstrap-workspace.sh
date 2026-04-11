@@ -66,6 +66,13 @@ while [ $# -gt 0 ]; do
     --help|-h)
       usage
       ;;
+    --)
+      shift
+      if [ $# -gt 0 ] && [ -z "$WORKSPACE_NAME" ]; then WORKSPACE_NAME="$1"; shift; fi
+      if [ $# -gt 0 ] && [ -z "$REPO_NAME" ]; then REPO_NAME="$1"; shift; fi
+      if [ $# -gt 0 ] && [ -z "$REPO_DESC" ]; then REPO_DESC="$1"; shift; fi
+      continue
+      ;;
     --*)
       echo "Fehler: Unbekannte Option: $1" >&2
       echo "Error: Unknown option: $1" >&2

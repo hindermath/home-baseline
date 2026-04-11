@@ -14,6 +14,10 @@ WORKSPACE_NAME=""
 while [ $# -gt 0 ]; do
   case "$1" in
     -h|--help) echo "USAGE: init-stats.sh [workspace-name]" >&2; exit 0 ;;
+    --)
+      shift
+      if [ $# -gt 0 ] && [ -z "$WORKSPACE_NAME" ]; then WORKSPACE_NAME="$1"; shift; fi
+      continue ;;
     --*) echo "ERROR: unknown option $1" >&2; exit 1 ;;
     *) WORKSPACE_NAME="$1" ;;
   esac
