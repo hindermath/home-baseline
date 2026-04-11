@@ -1,4 +1,4 @@
-# Constitution v1.1.0
+# Constitution v1.1.2
 
 # home-baseline Constitution
 
@@ -69,6 +69,15 @@ Manual `git init` + `gh repo create` outside the bootstrap flow is prohibited
 for new workspaces. The bootstrap script is the single authoritative source of
 the correct workspace setup sequence.
 
+Workspace removal MUST be performed exclusively via the teardown scripts:
+- `bash ~/scripts/teardown-workspace.sh <WorkspaceName>` (macOS/Linux)
+- `pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName <Name>` (Windows)
+- or the alias: `bash ~/scripts/bootstrap-workspace.sh --teardown <WorkspaceName>`
+
+Manual `rm -rf` without teardown is prohibited because it orphans remote
+repositories, `~/README.md` table entries, `~/.gitignore` entries, and
+`~/.gitconfig` `[includeIf]` blocks.
+
 `~/README.md` MUST be updated (automatically or manually) whenever a new
 workspace is added. The workspace table anchor `<!-- workspace-table-end -->`
 MUST be preserved.
@@ -138,6 +147,7 @@ Coding style rules that apply to all scripts in this repository:
 - **User-facing messages**: German primary (`Fehler:`, `Verzeichnis nicht gefunden`);
   English is acceptable in code comments
 - **Visual output**: box-drawing characters (╔, ║, ╚, ✓, →) for structured console blocks
+- **End-of-options sentinel**: Bash scripts that accept positional arguments MUST support `--` to terminate option parsing, allowing names that start with `-` (e.g., `teardown-workspace.sh -- -myworkspace`)
 
 ## Commit & Pull Request Standards
 
@@ -188,7 +198,7 @@ allowed path.
 per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
-**Version**: 1.1.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-11
+**Version**: 1.1.2 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

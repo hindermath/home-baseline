@@ -41,6 +41,22 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 ```
 *Dieser Vorgang erstellt das Verzeichnis, initialisiert Git, kopiert die Baseline-Skripte, erstellt ein privates GitHub-Repo und installiert die Hooks.*
 
+### Einen Workspace entfernen
+Workspace sicher entfernen (Remote, lokales Verzeichnis, Artefakte):
+```bash
+# macOS / Linux
+bash ~/scripts/teardown-workspace.sh <WorkspaceName>
+bash ~/scripts/teardown-workspace.sh <WorkspaceName> --backup      # Archiv vor Löschung
+bash ~/scripts/teardown-workspace.sh <WorkspaceName> --keep-remote # Remote behalten
+bash ~/scripts/teardown-workspace.sh -- <WorkspaceName>            # Name beginnt mit -
+```
+```powershell
+# Windows
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName <Name>
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName <Name> -Backup
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName <Name> -KeepRemote
+```
+
 ### Sicherheit & Wartung
 - **Git-Hooks installieren (in jedem Workspace):**
   `bash scripts/install-hooks.sh`
@@ -162,9 +178,12 @@ Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 ## Active Technologies
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `gh` CLI, `glab` CLI (optional), `tar` (built-in), `git` ≥ 2.13 (005-workspace-teardown)
+- File system — `~/WorkspaceName/`, remote repo, `~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/` (005-workspace-teardown)
 - Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (GitLab support), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
 - Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
 
 ## Recent Changes
 - 003-git-config-scope: Added Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency)
+- 005-workspace-teardown: `teardown-workspace.sh/.ps1` — Backup, Remote-Löschung (GitHub/GitLab), lokale Löschung, Artefakt-Bereinigung; `--teardown`-Alias in `bootstrap-workspace.*`
 - 006-gitlab-support: Added GitLab CLI support, self-hosted GitLab URL handling, and `glab auth login` pitfall guidance

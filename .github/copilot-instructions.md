@@ -89,6 +89,19 @@ At the start of each session, detect the OS and call the matching script variant
 5. `bash scripts/install-hooks.sh` — copies `scripts/hooks/pre-push` → `.git/hooks/pre-push`
 6. Append a row to `~/README.md` workspace table and commit/push `home-baseline`
 
+### Teardown flow (`teardown-workspace.sh` / `.ps1`)
+
+Reverses the bootstrap in a safe, ordered sequence:
+1. Create backup archive (if `--backup` / `-Backup`)
+2. Safety checks — abort on uncommitted changes or unpushed commits (unless `--force`)
+3. Delete remote repo via `gh repo delete` or `glab repo delete` (auto-detected from remote URL); skip if `--keep-remote`
+4. Delete local workspace directory
+5. Clean up artifacts: remove row from `~/README.md`, entry from `~/.gitignore`, `[includeIf]` block from `~/.gitconfig`, and `~/.gitconfig.d/<name>.inc`
+6. Atomic commit of all artifact changes in `~/`
+
+Alias: `bootstrap-workspace.sh --teardown <WorkspaceName>` delegates to `teardown-workspace.sh`.
+The workspace name `home-baseline` is explicitly protected (exit 2).
+
 ### Secret-scanning infrastructure
 
 - **`scripts/hooks/pre-push`** — runs on every `git push`; scans only git-tracked files (`.gitignore` respected); blocks push with exit 2 on HIGH findings (secret-like filenames or content patterns).
@@ -232,6 +245,10 @@ Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 cha
 Never copy from `~/home-baseline-tmp/` manually. The correct command is:
 `specify init --here --ai {agent}` — `--ai-skill` is required **only for Codex** (installs `.agents/skills/`).
 
+### Workspace name starts with `-` (e.g. `-h`, `-t`)
+Bash option parsing interprets `-h` as a flag, causing scripts to show help or hang waiting for stdin.
+Use the `--` end-of-options sentinel: `teardown-workspace.sh -- -h`. Applies to all scripts accepting positional workspace/project names (`bootstrap-project.sh`, `bootstrap-workspace.sh`, `init-stats.sh`, `migrate-workspace.sh`, `teardown-workspace.sh`).
+
 ### Lastenheft rename on feature completion
 When a feature's implementation is fully merged, rename the corresponding `Lastenheft_*.md` using:
 ```bash
@@ -291,6 +308,12 @@ Fix: always add `-NoProfile` to subprocess calls in `windows-test.ps1`.
 ## Active Technologies
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `gh` CLI, `glab` CLI (optional), `tar` (built-in), `git` ≥ 2.13 (005-workspace-teardown)
+- File system — `~/WorkspaceName/`, remote repo, `~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/` (005-workspace-teardown)
+- Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (new), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
+- Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
 
 ## Recent Changes
 - 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf`, `~/.gitconfig.d/`, bootstrap-workspace, sync-home, check-homogeneity, pre-push hook erweitert
+- 005-workspace-teardown: `teardown-workspace.sh/.ps1` — Backup, Remote-Löschung (GitHub/GitLab auto-detected), lokale Löschung, Artefakt-Bereinigung; `--teardown`-Alias in `bootstrap-workspace.*`; `--` end-of-options für Workspace-Namen mit `-`-Präfix
+- 006-gitlab-support: GitLab-CLI-Support für `bootstrap-workspace.*` und `bootstrap-project.*`, `--platform gitlab`, Self-hosted `--gitlab-url`, bilinguale Fehlerpfade
