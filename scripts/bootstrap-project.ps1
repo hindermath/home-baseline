@@ -10,6 +10,8 @@ param(
     [switch]$NoAgents,
     [switch]$NoSpeckit,
     [switch]$NoRemote,
+    [string]$Platform = 'github',
+    [string]$GitLabUrl = 'https://gitlab.com',
     [ValidateSet('de','en')][string]$Lang = 'de'
 )
 
@@ -22,6 +24,12 @@ $Step = 0
 $TotalSteps = 22
 $Skipped = 0
 $PartialFail = $false
+$gitlabHostname = ''
+$gitlabUser = ''
+$projectSlug = ''
+$projectSlugChanged = $false
+$summaryRepoUrl = ''
+$summaryDisplayRepo = ''
 
 function Render-Template {
     param([string]$Template, [string]$Output)
@@ -46,6 +54,66 @@ function Step-Warn  { param([string]$Msg)
     Write-Host " WARN: $Msg"; $script:PartialFail = $true
 }
 
+function ConvertTo-GitLabSlug([string]$Name) {
+    $Name.ToLower() -replace '[^a-z0-9]', '-' -replace '-+', '-' -replace '^-|-$', ''
+}
+
+function Convert-RemoteUrlToRepoUrl([string]$RemoteUrl) {
+    if ($RemoteUrl -like 'https://*') {
+        return ($RemoteUrl -replace '\.git$', '')
+    }
+    if ($RemoteUrl -match '^git@([^:]+):(.+)$') {
+        return ('https://' + $Matches[1] + '/' + ($Matches[2] -replace '\.git$', ''))
+    }
+    if ($RemoteUrl -match '^ssh://git@([^/]+)/(.+)$') {
+        return ('https://' + $Matches[1] + '/' + ($Matches[2] -replace '\.git$', ''))
+    }
+    return ($RemoteUrl -replace '\.git$', '')
+}
+
+function Get-RepoNameFromRemoteUrl([string]$RemoteUrl) {
+    $repoUrl = Convert-RemoteUrlToRepoUrl $RemoteUrl
+    return [IO.Path]::GetFileName($repoUrl)
+}
+
+if ($Platform -notin @('github', 'gitlab')) {
+    Write-Error "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab.`nError: Invalid platform '$Platform'. Valid values: github, gitlab."
+    exit 2
+}
+
+if ($Platform -eq 'gitlab') {
+    if (-not $GitLabUrl.StartsWith('https://')) {
+        Write-Error "Fehler: -GitLabUrl muss mit 'https://' beginnen.`nError: -GitLabUrl must start with 'https://'."
+        exit 2
+    }
+    $gitlabHostname = ($GitLabUrl -replace '^https://', '').TrimEnd('/')
+    $projectSlug = ConvertTo-GitLabSlug $ProjectName
+    $projectSlugChanged = $projectSlug -ne $ProjectName
+
+    if (-not $NoRemote) {
+        if (-not (Get-Command glab -ErrorAction SilentlyContinue)) {
+            Write-Error "Fehler: glab (GitLab CLI) ist nicht installiert.`n  macOS/Linux: brew install glab`n  Windows: winget install GLabCLI.GlabCLI`nError: glab (GitLab CLI) is not installed."
+            exit 2
+        }
+
+        $env:GITLAB_HOST = $gitlabHostname
+        try {
+            glab auth status 2>&1 | Out-Null
+        } catch {
+            $env:GITLAB_HOST = $null
+            Write-Error "Fehler: Nicht bei GitLab ($gitlabHostname) authentifiziert. Bitte 'glab auth login' ausführen.`nError: Not authenticated with GitLab ($gitlabHostname). Please run 'glab auth login'."
+            exit 2
+        }
+        $env:GITLAB_HOST = $null
+
+        $gitlabUser = ((glab api user --hostname $gitlabHostname --jq '.username' 2>$null) | Out-String).Trim()
+        if (-not $gitlabUser) {
+            Write-Error "Fehler: GitLab-Benutzername konnte nicht ermittelt werden.`nError: Could not retrieve GitLab username."
+            exit 2
+        }
+    }
+}
+
 # ─── Preview Mode ────────────────────────────────────────────────────────────
 if ($Preview) {
     Write-Host "[PREVIEW] Folgende Aktionen wuerden ausgefuehrt:"
@@ -64,8 +132,16 @@ if ($Preview) {
         @('COPY',   "$TargetDir/scripts/", 'von ~/scripts/'),
         @('INSTALL',"$TargetDir/.git/hooks/pre-push"),
         @('EXEC',   "git commit -m 'feat: initial project bootstrap'"),
-        @('EXEC',   "gh repo create (privat)", 'optional'),
-        @('EXEC',   "git push", 'optional'),
+        $(if ($NoRemote) {
+            @('SKIP', 'Remote-Erstellung', '--no-remote')
+        } elseif ($Platform -eq 'github') {
+            @('EXEC', 'gh repo create (privat)', 'optional')
+            @('EXEC', 'git push', 'optional')
+        } else {
+            @('EXEC', 'glab repo create (privat)', 'optional')
+            @('EXEC', 'git remote add origin https://HOST/USER/REPO.git', 'optional')
+            @('EXEC', 'git push', 'optional')
+        }),
         @('EXEC',   "claude /init", 'optional'),
         @('PRINT',  "Codex manuelle Anweisung"),
         @('PRINT',  "Gemini manuelle Anweisung"),
@@ -259,14 +335,39 @@ else {
     Step-Done
 }
 
-# 13. gh repo create
-Step-Start "gh repo create (privat)"
+# 13. Repo create
+Step-Start "Repo erstellen (privat)"
 if ($NoRemote) { Step-Skip "-NoRemote" }
-elseif (git -C $TargetDir remote get-url origin 2>$null) { Step-Skip "Remote vorhanden" }
-elseif (Get-Command gh -ErrorAction SilentlyContinue) {
+elseif ($existingRemote = (git -C $TargetDir remote get-url origin 2>$null | Out-String).Trim()) {
+    $summaryRepoUrl = Convert-RemoteUrlToRepoUrl $existingRemote
+    $summaryDisplayRepo = Get-RepoNameFromRemoteUrl $existingRemote
+    Step-Skip "Remote vorhanden"
+}
+elseif ($Platform -eq 'github' -and (Get-Command gh -ErrorAction SilentlyContinue)) {
     $repoName = $ProjectName.ToLower() -replace '\s+','-'
     $result = gh repo create $repoName --private --source $TargetDir --remote origin 2>$null
-    if ($LASTEXITCODE -eq 0) { Step-Done $repoName } else { Step-Warn "gh repo create fehlgeschlagen" }
+    if ($LASTEXITCODE -eq 0) {
+        $ghUser = ((gh api user --jq '.login' 2>$null) | Out-String).Trim()
+        $summaryRepoUrl = "https://github.com/$ghUser/$repoName"
+        $summaryDisplayRepo = $repoName
+        Step-Done $repoName
+    } else { Step-Warn "gh repo create fehlgeschlagen" }
+}
+elseif ($Platform -eq 'gitlab') {
+    $remoteUrl = "https://$gitlabHostname/$gitlabUser/$projectSlug.git"
+    $env:GITLAB_HOST = $gitlabHostname
+    & glab repo create $projectSlug --private 2>$null | Out-Null
+    $env:GITLAB_HOST = $null
+    if ($LASTEXITCODE -eq 0) {
+        git -C $TargetDir remote add origin $remoteUrl 2>$null | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            $summaryRepoUrl = "$($GitLabUrl.TrimEnd('/'))/$gitlabUser/$projectSlug"
+            $summaryDisplayRepo = $projectSlug
+            Step-Done $projectSlug
+        } else {
+            Step-Warn "git remote add origin fehlgeschlagen / git remote add origin failed"
+        }
+    } else { Step-Warn "glab repo create fehlgeschlagen / glab repo create failed" }
 } else { Step-Skip "gh nicht installiert" }
 
 # 14. git push
@@ -335,7 +436,8 @@ $homeReadme = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 if ((Get-Content $homeReadme -ErrorAction SilentlyContinue) -match $ProjectName) { Step-Skip "Eintrag vorhanden" }
 elseif ((Test-Path $homeReadme) -and (Select-String -Path $homeReadme -Pattern '<!-- workspace-table-end -->')) {
     $content = Get-Content $homeReadme -Raw
-    $row = "| ``$tdShort/`` | — |`n"
+    $repoCell = if ($summaryRepoUrl -and $summaryDisplayRepo) { "[$summaryDisplayRepo]($summaryRepoUrl)" } else { '—' }
+    $row = "| ``$tdShort/`` | $repoCell | ``bootstrap-project`` |`n"
     $content = $content -replace '<!-- workspace-table-end -->', "${row}<!-- workspace-table-end -->"
     $content | Set-Content $homeReadme -Encoding UTF8
     Step-Done
@@ -346,6 +448,13 @@ Write-Host ""
 Write-Host ('=' * 50)
 if ($PartialFail) { Write-Host "  Bootstrap teilweise abgeschlossen (Warnungen vorhanden)" }
 else { Write-Host "  Bootstrap abgeschlossen ✓" }
+if ($Platform -eq 'gitlab' -and $projectSlugChanged) {
+    Write-Host "  GitLab-Slug : $projectSlug (normalisiert von: $ProjectName)"
+}
+if ($summaryRepoUrl) {
+    Write-Host "  Repo   : $summaryRepoUrl"
+    Write-Host "  Clone  : git clone $summaryRepoUrl.git $TargetDir"
+}
 Write-Host "  $tdShort/ ist bereit."
 Write-Host ""
 Write-Host "  Naechste Schritte:"

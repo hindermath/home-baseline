@@ -8,7 +8,9 @@
 #   --force         Overwrite existing files
 #   --no-agents     Skip AI agent initialization
 #   --no-speckit    Skip Spec-kit installation
-#   --no-remote     No gh repo create (local git init only)
+#   --no-remote     No remote repo create (local git init only)
+#   --platform      github|gitlab
+#   --gitlab-url    https://gitlab.example.com
 #   --lang de|en    Primary language for templates (default: de)
 # Exit codes: 0=success, 1=partial (warnings), 2=fatal
 
@@ -23,9 +25,44 @@ OPT_FORCE=false
 OPT_NO_AGENTS=false
 OPT_NO_SPECKIT=false
 OPT_NO_REMOTE=false
+OPT_PLATFORM="github"
+OPT_GITLAB_URL="https://gitlab.com"
+OPT_GITLAB_HOSTNAME=""
 OPT_LANG="de"
 PROJECT_NAME=""
 TARGET_WORKSPACE=""
+GITLAB_USER_LOCAL=""
+PROJECT_SLUG=""
+PROJECT_SLUG_CHANGED=false
+SUMMARY_REPO_URL=""
+SUMMARY_DISPLAY_REPO=""
+
+normalize_name() {
+  echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
+}
+
+repo_url_from_remote() {
+  case "$1" in
+    https://*)
+      printf '%s' "${1%.git}"
+      ;;
+    git@*:*)
+      printf '%s' "$1" | sed -E 's#^git@([^:]+):#https://\1/#; s#\.git$##'
+      ;;
+    ssh://git@*/*)
+      printf '%s' "$1" | sed -E 's#^ssh://git@([^/]+)/#https://\1/#; s#\.git$##'
+      ;;
+    *)
+      printf '%s' "${1%.git}"
+      ;;
+  esac
+}
+
+repo_name_from_url() {
+  local repo_url
+  repo_url="$(repo_url_from_remote "$1")"
+  printf '%s' "${repo_url##*/}"
+}
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -34,6 +71,8 @@ while [ $# -gt 0 ]; do
     --no-agents)  OPT_NO_AGENTS=true ;;
     --no-speckit) OPT_NO_SPECKIT=true ;;
     --no-remote)  OPT_NO_REMOTE=true ;;
+    --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
+    --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
     --lang)       OPT_LANG="${2:-de}"; shift ;;
     --*) echo "ERROR: unknown option $1" >&2; exit 2 ;;
     *)
@@ -55,6 +94,55 @@ TARGET_WORKSPACE="${TARGET_WORKSPACE:-$PWD}"
 TARGET_WORKSPACE="${TARGET_WORKSPACE/#\~/$HOME}"
 TARGET_WORKSPACE="${TARGET_WORKSPACE%/}"
 TARGET_DIR="${TARGET_WORKSPACE}/${PROJECT_NAME}"
+
+case "$OPT_PLATFORM" in
+  github|gitlab) ;;
+  *)
+    echo "Fehler: Ungültige Plattform '$OPT_PLATFORM'. Gültige Werte: github, gitlab." >&2
+    echo "Error: Invalid platform '$OPT_PLATFORM'. Valid values: github, gitlab." >&2
+    exit 2
+    ;;
+esac
+
+if [ "$OPT_PLATFORM" = "gitlab" ]; then
+  case "$OPT_GITLAB_URL" in
+    https://*) ;;
+    *)
+      echo "Fehler: --gitlab-url muss mit 'https://' beginnen." >&2
+      echo "Error: --gitlab-url must start with 'https://'." >&2
+      exit 2
+      ;;
+  esac
+  OPT_GITLAB_HOSTNAME="${OPT_GITLAB_URL#https://}"
+  OPT_GITLAB_HOSTNAME="${OPT_GITLAB_HOSTNAME%/}"
+  PROJECT_SLUG="$(normalize_name "$PROJECT_NAME")"
+  if [ "$PROJECT_SLUG" != "$PROJECT_NAME" ]; then
+    PROJECT_SLUG_CHANGED=true
+  fi
+fi
+
+if [ "$OPT_PLATFORM" = "gitlab" ] && ! $OPT_NO_REMOTE; then
+  if ! command -v glab >/dev/null 2>&1; then
+    echo "Fehler: glab (GitLab CLI) ist nicht installiert." >&2
+    echo "  macOS/Linux: brew install glab" >&2
+    echo "  Windows:     winget install GLabCLI.GlabCLI" >&2
+    echo "Error: glab (GitLab CLI) is not installed." >&2
+    exit 2
+  fi
+
+  if ! GITLAB_HOST="$OPT_GITLAB_HOSTNAME" glab auth status >/dev/null 2>&1; then
+    echo "Fehler: Nicht bei GitLab ($OPT_GITLAB_HOSTNAME) authentifiziert. Bitte 'glab auth login' ausführen." >&2
+    echo "Error: Not authenticated with GitLab ($OPT_GITLAB_HOSTNAME). Please run 'glab auth login'." >&2
+    exit 2
+  fi
+
+  GITLAB_USER_LOCAL="$(glab api user --hostname "$OPT_GITLAB_HOSTNAME" --jq '.username' 2>/dev/null || true)"
+  if [ -z "$GITLAB_USER_LOCAL" ]; then
+    echo "Fehler: Konnte GitLab-Benutzername nicht ermitteln." >&2
+    echo "Error: Could not retrieve GitLab username." >&2
+    exit 2
+  fi
+fi
 
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
@@ -125,8 +213,16 @@ if $OPT_PREVIEW; then
   preview_action "COPY" "${TARGET_DIR}/scripts/" "von ~/scripts/"
   preview_action "INSTALL" "${TARGET_DIR}/.git/hooks/pre-push" "von ~/scripts/hooks/pre-push"
   preview_action "EXEC" "git commit -m 'feat: initial project bootstrap'"
-  preview_action "EXEC" "gh repo create (privat)" "optional"
-  preview_action "EXEC" "git push" "optional"
+  if $OPT_NO_REMOTE; then
+    preview_action "SKIP" "Remote-Erstellung" "--no-remote"
+  elif [ "$OPT_PLATFORM" = "github" ]; then
+    preview_action "EXEC" "gh repo create (privat)" "optional"
+    preview_action "EXEC" "git push" "optional"
+  else
+    preview_action "EXEC" "glab repo create (privat)" "optional"
+    preview_action "EXEC" "git remote add origin https://HOST/USER/REPO.git" "optional"
+    preview_action "EXEC" "git push" "optional"
+  fi
   preview_action "EXEC" "claude /init" "optional"
   preview_action "PRINT" "Codex manuelle Anweisung" "interaktiv"
   preview_action "PRINT" "Gemini manuelle Anweisung" "interaktiv"
@@ -397,17 +493,35 @@ else
 fi
 
 # ─── Step 13: gh repo create ─────────────────────────────────────────────────
-step_start "gh repo create (privat)"
+step_start "Repo erstellen (privat)"
 if $OPT_NO_REMOTE; then
   step_skip "--no-remote"
 elif git -C "$TARGET_DIR" remote get-url origin >/dev/null 2>&1; then
+  remote_url="$(git -C "$TARGET_DIR" remote get-url origin 2>/dev/null || true)"
+  SUMMARY_REPO_URL="$(repo_url_from_remote "$remote_url")"
+  SUMMARY_DISPLAY_REPO="$(repo_name_from_url "$remote_url")"
   step_skip "Remote vorhanden"
-elif command -v gh >/dev/null 2>&1; then
+elif [ "$OPT_PLATFORM" = "github" ] && command -v gh >/dev/null 2>&1; then
   repo_name=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
   if gh repo create "$repo_name" --private --source "$TARGET_DIR" --remote origin >/dev/null 2>&1; then
+    SUMMARY_REPO_URL="https://github.com/$(gh api user --jq '.login' 2>/dev/null || true)/$repo_name"
+    SUMMARY_DISPLAY_REPO="$repo_name"
     step_done "$repo_name"
   else
     step_warn "gh repo create fehlgeschlagen"
+  fi
+elif [ "$OPT_PLATFORM" = "gitlab" ]; then
+  remote_url="https://${OPT_GITLAB_HOSTNAME}/${GITLAB_USER_LOCAL}/${PROJECT_SLUG}.git"
+  if GITLAB_HOST="$OPT_GITLAB_HOSTNAME" glab repo create "$PROJECT_SLUG" --private >/dev/null 2>&1; then
+    if git -C "$TARGET_DIR" remote add origin "$remote_url" >/dev/null 2>&1; then
+      SUMMARY_REPO_URL="${OPT_GITLAB_URL%/}/$GITLAB_USER_LOCAL/$PROJECT_SLUG"
+      SUMMARY_DISPLAY_REPO="$PROJECT_SLUG"
+      step_done "$PROJECT_SLUG"
+    else
+      step_warn "git remote add origin fehlgeschlagen / git remote add origin failed"
+    fi
+  else
+    step_warn "glab repo create fehlgeschlagen / glab repo create failed"
   fi
 else
   step_skip "gh nicht installiert"
@@ -492,12 +606,16 @@ short_target="${TARGET_DIR/#$HOME/\~}"
 if grep -q "$PROJECT_NAME" "$home_readme" 2>/dev/null; then
   step_skip "Eintrag vorhanden"
 elif [ -f "$home_readme" ] && grep -q '<!-- workspace-table-end -->' "$home_readme"; then
-  # Determine workspace link
-  ws_short="${TARGET_WORKSPACE/#$HOME/\~}"
-  sed -i "" "s|<!-- workspace-table-end -->|| ${ws_short}/${PROJECT_NAME}/ | — |\n<!-- workspace-table-end -->|" "$home_readme" 2>/dev/null || \
+  if [ -n "$SUMMARY_REPO_URL" ] && [ -n "$SUMMARY_DISPLAY_REPO" ]; then
+    repo_cell="[$SUMMARY_DISPLAY_REPO]($SUMMARY_REPO_URL)"
+  else
+    repo_cell="—"
+  fi
+  row="| \`${short_target}/\` | ${repo_cell} | \`bootstrap-project\` |\n"
+  sed -i "" "s|<!-- workspace-table-end -->|${row}<!-- workspace-table-end -->|" "$home_readme" 2>/dev/null || \
   python3 -c "
 content = open('${home_readme}').read()
-row = '| \`${short_target}/\` | — |\n'
+row = '${row}'
 content = content.replace('<!-- workspace-table-end -->', row + '<!-- workspace-table-end -->')
 open('${home_readme}','w').write(content)
 " 2>/dev/null || step_warn "README.md Update fehlgeschlagen"
@@ -514,6 +632,13 @@ if $PARTIAL_FAIL; then
   echo "  Bootstrap teilweise abgeschlossen (Warnungen vorhanden)"
 else
   echo "  Bootstrap abgeschlossen ✓"
+fi
+if [ "$OPT_PLATFORM" = "gitlab" ] && $PROJECT_SLUG_CHANGED; then
+  echo "  GitLab-Slug : $PROJECT_SLUG (normalisiert von: $PROJECT_NAME)"
+fi
+if [ -n "$SUMMARY_REPO_URL" ]; then
+  echo "  Repo   : $SUMMARY_REPO_URL"
+  echo "  Clone  : git clone ${SUMMARY_REPO_URL}.git ${TARGET_DIR}"
 fi
 printf "  %s/ ist bereit.\n" "${TARGET_DIR/#$HOME/\~}"
 echo ""
