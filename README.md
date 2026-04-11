@@ -232,6 +232,28 @@ Nach der Installation einmalig anmelden / After installation, log in once:
 gh auth login
 ```
 
+### 2b. GitLab CLI (`glab`) *(optional — nur für GitLab-Platform / only for GitLab platform)*
+
+Wird nur benötigt, wenn du `--platform gitlab` verwendest.
+
+*Only required when using `--platform gitlab`.*
+
+| Plattform | Installation |
+|---|---|
+| macOS | `brew install glab` |
+| Linux | [gitlab.com/gitlab-org/cli](https://gitlab.com/gitlab-org/cli) → Installationsanleitung |
+| Windows | `winget install --id GitLab.GLAB` |
+
+Nach der Installation einmalig anmelden / After installation, log in once:
+
+```bash
+glab auth login
+```
+
+> ⚠️ `glab auth login` muss in einem **interaktiven Terminalfenster** gestartet werden — nicht aus einem Hintergrund- oder Async-Prozess heraus.
+>
+> *Must be run in an interactive terminal window — not from a background or async process.*
+
 ### 3. PowerShell Core >= 7 *(nur Windows / Windows only)*
 
 ```powershell
@@ -580,6 +602,34 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 >
 > *For self-hosted GitLab, pass `--gitlab-url` / `-GitLabUrl` so the remote URL, summary output, and `~/README.md` entry all point to the custom host.*
 
+**2b — Workspace oder Projekt entfernen / Remove a workspace or project** *(bei Bedarf / when needed)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/teardown-workspace.sh FlutterProjects
+bash ~/scripts/teardown-workspace.sh FlutterProjects --backup        # Archiv vor Löschung
+bash ~/scripts/teardown-workspace.sh FlutterProjects --keep-remote   # Remote behalten
+bash ~/scripts/teardown-workspace.sh FlutterProjects --recursive     # inkl. Level-2-Projekte
+bash ~/scripts/teardown-workspace.sh FlutterProjects --dry-run       # Vorschau
+# Kurzform via bootstrap-workspace / shorthand via bootstrap-workspace:
+bash ~/scripts/bootstrap-workspace.sh --teardown FlutterProjects
+```
+
+```powershell
+# Windows
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName FlutterProjects
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName FlutterProjects -Backup
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName FlutterProjects -KeepRemote
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName FlutterProjects -Recursive
+pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
+```
+
+> Reihenfolge der destruktiven Aktionen: Backup → Sicherheitsprüfung → Remote löschen → Verzeichnis löschen → Artefakte bereinigen (`~/README.md`, `~/.gitignore`, `~/.gitconfig`).
+> Workspace-Name `home-baseline` ist geschützt und kann nicht entfernt werden.
+>
+> *Order of destructive actions: backup → safety check → delete remote → delete directory → clean artifacts (`~/README.md`, `~/.gitignore`, `~/.gitconfig`).
+> The workspace name `home-baseline` is protected and cannot be removed.*
+
 **3 — KI-Agenten einrichten / Set up AI agents**
 
 → [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
@@ -814,6 +864,8 @@ Releases werden automatisch durch **[Release Please](https://github.com/googleap
 | `scripts/bootstrap-workspace.ps1` | Neues Workspace einrichten (PowerShell Core) |
 | `scripts/bootstrap-project.sh` | Neues Projekt in einem Workspace anlegen (Bash) |
 | `scripts/bootstrap-project.ps1` | Neues Projekt in einem Workspace anlegen (PowerShell Core) |
+| `scripts/teardown-workspace.sh` | Workspace sicher entfernen: Remote, lokales Verzeichnis, Artefakte (Bash) |
+| `scripts/teardown-workspace.ps1` | Workspace-Teardown (PowerShell Core) |
 
 ### Homogeneity Guardian
 
@@ -1747,6 +1799,7 @@ Alle Artefakte werden automatisch in Git versioniert — du kannst jederzeit nac
 | ANSI-Falsch-Positive im Scanner | Scanner enthält `\033[` als Literal | `check-homogeneity.*` aus ANSI-Scan ausschließen |
 | Bootstrap hardcodierter Username | `hindermath` war fest eingebaut | `gh api user --jq '.login'` dynamisch |
 | `gh auth login --web` bleibt hängen | Browser-Callback kommt in Hintergrundprozessen nicht an | In **interaktivem Terminal** ausführen |
+| `glab auth login` bleibt hängen | Gleiche Ursache wie `gh` — Browser-Callback im Hintergrund nicht möglich | In **interaktivem Terminal** ausführen |
 | `gh` keyring invalid (Windows) | Windows Credential Store korrupt | `gh auth logout` + `gh auth login` neu; dann `gh auth setup-git` |
 | `ssh-agent` startet nicht (Windows) | Service deaktiviert, Admin-Rechte nötig | HTTPS + `gh auth setup-git` statt SSH verwenden |
 | `CursorPosition`-Fehler in PS-Subprozessen | PowerShell-Profil (Oh-My-Posh) lädt im Subprocess | `-NoProfile` zu `pwsh -File`-Aufrufen hinzufügen |
