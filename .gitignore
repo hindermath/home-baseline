@@ -36,6 +36,7 @@
 # Lastenheft-Dateien und Spezifikationen (alle Ebenen)
 !Lastenheft*.md
 !STATS.md
+!docs/
 !STATS-archive*.md
 !specs/
 !constitution.md

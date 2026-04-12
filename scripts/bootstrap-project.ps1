@@ -22,7 +22,7 @@ $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 26
+$TotalSteps = 27
 $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
@@ -135,6 +135,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('CREATE', "$TargetDir/README.md", 'aus readme-template.md / README.md.tmpl'))
     $null = $previewActions.Add(@('COPY', "$TargetDir/constitution.md", 'von ~/constitution.md'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/project-statistics.md", 'Statistik-Ledger (initial)'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
     if (-not $NoReleasePlease) {
@@ -304,6 +305,63 @@ jobs:
         env:
           CONSTITUTION_VERSION: "$constVer"
 "@ | Set-Content $wfFile -Encoding UTF8
+    Step-Done
+}
+
+# 7d. docs/project-statistics.md
+Step-Start "docs/project-statistics.md erzeugen"
+$statsDoc = Join-Path $TargetDir 'docs/project-statistics.md'
+if ((Test-Path $statsDoc) -and -not $Force) { Step-Skip "Datei existiert" }
+else {
+    New-Item -ItemType Directory -Path (Join-Path $TargetDir 'docs') -Force | Out-Null
+    $today = (Get-Date -Format 'yyyy-MM-dd')
+    @"
+# Projektstatistik / Project Statistics — $ProjectName
+
+> **Lebendiges Dokument / Living document** — nach jedem abgeschlossenen Feature,
+> jeder Spec-Kit-Phase und auf explizite Anfrage aktualisieren.
+>
+> *Update after every completed feature, Spec-Kit phase, or on explicit request.*
+
+---
+
+## Fortschreibungsprotokoll / Update Log
+
+Ältester Eintrag oben, neuester Eintrag unten.
+*Oldest entry at top, newest entry at bottom.*
+
+| Datum / Date | Phase / Branch | Aktivtage ges. | Zeilen ges. | Commits ges. | Hauptarbeitspakete / Main Work Packages |
+|---|---|---:|---:|---:|---|
+| $today | 0 — Bootstrap | 1 | — | 1 | Initialer Projekt-Bootstrap via bootstrap-project |
+
+---
+
+## Gesamtstand des Repositories / Repository Snapshot
+
+Stand / As of: $today — *Erste Einträge nach dem initialen Arbeitspaket eintragen.*
+
+| Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
+|---|---:|---:|---:|
+| Produktionscode / Production code | — | — | — |
+| Tests / Tests | — | — | — |
+| Dokumentation / Documentation (.md) | — | — | — |
+| **Gesamt / Total** | — | — | — |
+
+---
+
+## Gesamtstatistik / Overall Statistics
+
+*Wird nach dem ersten dokumentierten Arbeitspaket befüllt.*
+*To be filled after the first documented work package.*
+
+| Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
+|---|---:|
+| Artefaktbasis gesamt | — |
+| Beobachtbarer Projektzeitraum | $today bis — |
+| Sichtbare Git-Aktivtage | — |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | — |
+| Repo-weiter Speedup gg. Thorsten-Referenz | — |
+"@ | Set-Content $statsDoc -Encoding UTF8
     Step-Done
 }
 

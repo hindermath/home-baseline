@@ -160,7 +160,7 @@ fi
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=26
+TOTAL_STEPS=27
 SKIPPED=0
 PARTIAL_FAIL=false
 
@@ -221,6 +221,7 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/README.md" "aus readme-template.md / README.md.tmpl"
   preview_action "COPY" "${TARGET_DIR}/constitution.md" "von ~/constitution.md"
   preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml"
+  preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
   if ! $OPT_NO_RELEASE_PLEASE; then
@@ -434,6 +435,63 @@ jobs:
         env:
           CONSTITUTION_VERSION: "${constitution_ver}"
 EOF
+  step_done
+fi
+
+# ─── Step 7d: docs/project-statistics.md (initial) ──────────────────────────
+step_start "docs/project-statistics.md erzeugen"
+stats_doc="${TARGET_DIR}/docs/project-statistics.md"
+if [ -f "$stats_doc" ] && ! $OPT_FORCE; then
+  step_skip "Datei existiert"
+else
+  mkdir -p "${TARGET_DIR}/docs"
+  cat > "$stats_doc" <<STATSDOC
+# Projektstatistik / Project Statistics — ${PROJECT_NAME}
+
+> **Lebendiges Dokument / Living document** — nach jedem abgeschlossenen Feature,
+> jeder Spec-Kit-Phase und auf explizite Anfrage aktualisieren.
+>
+> *Update after every completed feature, Spec-Kit phase, or on explicit request.*
+
+---
+
+## Fortschreibungsprotokoll / Update Log
+
+Ältester Eintrag oben, neuester Eintrag unten.
+*Oldest entry at top, newest entry at bottom.*
+
+| Datum / Date | Phase / Branch | Aktivtage ges. | Zeilen ges. | Commits ges. | Hauptarbeitspakete / Main Work Packages |
+|---|---|---:|---:|---:|---|
+| $(date +%Y-%m-%d) | 0 — Bootstrap | 1 | — | 1 | Initialer Projekt-Bootstrap via bootstrap-project |
+
+---
+
+## Gesamtstand des Repositories / Repository Snapshot
+
+Stand / As of: $(date +%Y-%m-%d) — *Erste Einträge nach dem initialen Arbeitspaket eintragen.*
+
+| Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
+|---|---:|---:|---:|
+| Produktionscode / Production code | — | — | — |
+| Tests / Tests | — | — | — |
+| Dokumentation / Documentation (.md) | — | — | — |
+| **Gesamt / Total** | — | — | — |
+
+---
+
+## Gesamtstatistik / Overall Statistics
+
+*Wird nach dem ersten dokumentierten Arbeitspaket befüllt.*
+*To be filled after the first documented work package.*
+
+| Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
+|---|---:|
+| Artefaktbasis gesamt | — |
+| Beobachtbarer Projektzeitraum | $(date +%Y-%m-%d) bis — |
+| Sichtbare Git-Aktivtage | — |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | — |
+| Repo-weiter Speedup gg. Thorsten-Referenz | — |
+STATSDOC
   step_done
 fi
 
