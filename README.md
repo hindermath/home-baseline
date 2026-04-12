@@ -1258,14 +1258,16 @@ Du musst keine Angst haben, dass deine Arbeit überschrieben wird. Das Skript fo
 *   **Der `--force`-Flag:** Nur wenn du ganz bewusst den Zusatz `--force` am Ende des Befehls eingibst, werden bestehende Dateien durch die neuen Vorlagen ersetzt. Ohne diesen Zusatz ist dein Code absolut sicher.
 
 *The script follows a "Safety First" approach. It will **not** touch or overwrite any existing files (like your source code or README) unless you explicitly use the `--force` flag. It only adds the infrastructure files that are currently missing.*
-
 ---
 
 ### Schritt 5: Arbeiten mit der KI (Dein Mentor) / Step 5: Working with AI (Your Mentor)
 
-Du bist nicht allein! Wir haben KI-Agenten installiert, die dir helfen können. Wenn ein Befehl nicht funktioniert oder du eine Frage zum Code hast, frag sie einfach direkt im Terminal.
+Du bist nicht allein! Wir haben KI-Agenten installiert, die dir helfen können. Wie du diese Werkzeuge **bewusst und zielgerichtet** einsetzt, erfährst du im ausführlichen Abschnitt:
 
-**Beispiel für eine Frage:**
+→ **[Arbeiten mit agentischer KI / Working with Agentic AI](#arbeiten-mit-agentischer-ki--working-with-agentic-ai)**
+
+Hier ein paar schnelle Beispiele für den Start:
+...
 `gh copilot -p "Ich habe eine Fehlermeldung bei git push erhalten. Was bedeutet das?"`
 
 Oder wenn ein Skript abgebrochen ist:
