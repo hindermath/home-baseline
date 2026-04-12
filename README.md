@@ -48,16 +48,14 @@ private GitHub or GitLab repository within seconds.*
 - [Plattform-Übersicht / Platform overview](#plattform-übersicht--platform-overview)
 - [Für Auszubildende der Fachinformatik / For IT Apprentices](#für-auszubildende-der-fachinformatik--for-it-apprentices)
   - [Was passiert hier überhaupt? / What is this about?](#was-passiert-hier-überhaupt--what-is-this-about)
-  - [Schritt 0: Werkzeuge installieren / Step 0: Install tools](#schritt-0-werkzeuge-installieren--step-0-install-tools)
-  - [Schritt 1: Template-Repo auf GitHub kopieren / Step 1: Copy template repo on GitHub](#schritt-1-template-repo-auf-github-kopieren--step-1-copy-template-repo-on-github)
-  - [Schritt 2: Repo auf dem Computer einrichten / Step 2: Set up repo on your computer](#schritt-2-repo-auf-dem-computer-einrichten--step-2-set-up-repo-on-your-computer)
-  - [Schritt 3: Ersten Workspace anlegen / Step 3: Create your first workspace](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace)
-  - [Schritt 4: Compliance prüfen / Step 4: Check compliance](#schritt-4-compliance-prüfen--step-4-check-compliance)
-  - [Schritt 5: KI-Agenten einrichten / Step 5: Set up AI agents](#schritt-5-ki-agenten-einrichten--step-5-set-up-ai-agents)
-  - [Schritt 6: Spec-Kit einrichten / Step 6: Set up Spec-Kit](#schritt-6-spec-kit-einrichten--step-6-set-up-spec-kit)
-  - [Häufige Fehler und Lösungen / Common errors and fixes](#häufige-fehler-und-lösungen--common-errors-and-fixes)
-  - [Neues Projekt anlegen / Create a new project](#neues-projekt-anlegen--create-a-new-project)
-  - [Glossar / Glossary](#glossar--glossary)
+  - [Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools](#schritt-0-deine-werkzeuge-vorbereiten--step-0-preparing-your-tools)
+  - [Schritt 1: Dein eigenes Template erstellen / Step 1: Create your own template](#schritt-1-dein-eigenes-template-erstellen--step-1-create-your-own-template)
+  - [Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer](#schritt-2-deinen-computer-mit-der-cloud-verbinden--step-2-connect-your-computer)
+  - [Schritt 3: Deinen ersten "Workspace" anlegen / Step 3: Create your first workspace](#schritt-3-deinen-ersten-workspace-anlegen--step-3-create-your-first-workspace)
+  - [Schritt 4: Dein erstes Projekt starten / Step 4: Start your first project](#schritt-4-dein-erstes-projekt-starten--step-4-start-your-first-project)
+  - [Bestehende Projekte integrieren / Integrating existing projects](#bestehende-projekte-integrieren--integrating-existing-projects)
+  - [Schritt 5: Arbeiten mit der KI (Dein Mentor) / Step 5: Working with AI (Your Mentor)](#schritt-5-arbeiten-mit-der-ki-dein-mentor--step-5-working-with-ai-your-mentor)
+  - [Häufige Begriffe für den Start / Common terms for beginners](#häufige-begriffe-für-den-start--common-terms-for-beginners)
 - [Spec-kit-Workflow / Spec-kit Workflow](#spec-kit-workflow--spec-kit-workflow)
   - [Was ist Specification-Driven Development (SDD)? / What is Specification-Driven Development (SDD)?](#was-ist-specification-driven-development-sdd--what-is-specification-driven-development-sdd)
   - [Was ist Spec-Kit? / What is Spec-Kit?](#was-ist-spec-kit--what-is-spec-kit)
@@ -1226,6 +1224,30 @@ bash ~/scripts/bootstrap-project.sh HalloWelt ~/Ausbildung
 ```
 
 Ab jetzt arbeitest du in diesem Ordner: `cd ~/Ausbildung/HalloWelt`. Hier schreibst du deinen Code.
+
+---
+
+### Bestehende Projekte integrieren / Integrating existing projects
+
+Vielleicht hast du schon Ordner mit Code auf deinem Computer, die du in dein neues System aufnehmen möchtest. Das geht ganz einfach mit demselben Befehl.
+
+*Maybe you already have folders with code on your computer that you want to include in your new system. This is easily done using the same command.*
+
+**So gehst du vor:**
+1.  Verschiebe deinen vorhandenen Projektordner in den passenden Workspace (z. B. nach `~/Ausbildung/MeinAltesProjekt`).
+2.  Führe das Bootstrap-Skript für diesen Ordner aus.
+
+**Beispiel:**
+```bash
+# Integriert den bestehenden Ordner "MeinAltesProjekt" in den Workspace "Ausbildung"
+bash ~/scripts/bootstrap-project.sh MeinAltesProjekt ~/Ausbildung
+```
+
+**Was das Skript macht:**
+- Es erkennt, dass der Ordner schon da ist.
+- Es macht daraus ein Git-Repository (falls es noch keins war).
+- Es erstellt ein passendes privates Repository auf GitHub.
+- Es fügt alle Standard-Dateien (README, .gitignore, KI-Agenten-Setup) hinzu.
 
 ---
 
