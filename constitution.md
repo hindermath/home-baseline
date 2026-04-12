@@ -1,4 +1,4 @@
-# Constitution v1.3.0
+# Constitution v1.4.0
 
 # home-baseline Constitution
 
@@ -102,7 +102,7 @@ are excluded by the whitelist `.gitignore`):
 | Category | Tracked paths |
 |----------|--------------|
 | Infrastructure scripts | `scripts/` |
-| Documentation | `README.md`, `.gitignore`, `.gitconfig` |
+| Documentation | `README.md`, `.gitignore`, `.gitconfig`, `docs/` |
 | AI agent guidance | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` |
 | Spec-Kit tooling | `.specify/` (config, templates, memory/constitution), `.agents/skills/`, `.github/agents/`, `.github/prompts/` |
 | Agent Spec-Kit commands | `.claude/commands/`, `.gemini/commands/` |
@@ -138,6 +138,26 @@ decision is made and documented in this constitution (Governance section).
 **Rationale**: The scripts are low-churn infrastructure. The overhead of a test
 framework would exceed the benefit for the current scope.
 
+### VI. Observability & Continuous Measurement
+
+Every repository — including `home-baseline` and every Level-2 workspace — MUST maintain a living statistics ledger at `docs/project-statistics.md`.
+
+Mandatory content and update rules:
+
+- **Fortschreibungsprotokoll**: chronological table (oldest entry first, newest last) recording cumulative lines, active days, and commit count at each milestone.
+- **Gesamtstatistik**: always the final top-level section; includes compact ASCII-only diagrams (artefakt mix, phase volume, speedup factors, manual-reference comparison).
+- **Update triggers**: after each completed Spec-Kit implementation phase, after each merged feature, or when explicitly requested.
+- **Reference baselines**:
+  - Manual reference: `80` lines/workday (conservative) — project-specific Thorsten-Solo baseline documented in `AGENTS.md`.
+  - TVöD workday: `7.8 h` (`7h 48m`). Month: `21.5` workdays. Vacation: 30 days until end of 2026, 31 days from 2027 onwards.
+- **Acceleration factor** = blended repository speedup — delivery density against manual reference, **not** stopwatch time.
+- **Diagram format**: compact ASCII-only; each diagram followed by a CEFR-B2 bilingual explanation (DE + EN).
+- **Consistency rule**: When statistics methodology or shared guidance changes, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` MUST be updated together in the same commit.
+
+The bootstrap scripts (`bootstrap-project.sh` / `.ps1`) MUST create an initial `docs/project-statistics.md` stub at project creation time. `docs/` MUST be whitelisted in every project `.gitignore`.
+
+**Rationale**: Blended speedup metrics are educational for developers and apprentices. They make the productivity impact of AI-assisted workflows visible and comparable across projects. A living ledger that accumulates over the project lifetime is the only reliable source of this data.
+
 ## Script & Code Conventions
 
 Coding style rules that apply to all scripts in this repository:
@@ -150,7 +170,7 @@ Coding style rules that apply to all scripts in this repository:
 - **PowerShell parameters**: PascalCase (e.g., `-WorkspaceName`, `-WhatIf`)
 - **PowerShell naming**: Use the standard `Verb-Noun` pattern for functions and Cmdlets (e.g., `New-HBWorkspace`, `Set-HBSettings`).
 - **Bash variables**: lowercase_underscore (e.g., `repo_name`)
-- **Documentation**: 
+- **Documentation**:
   - Bash scripts MUST have a corresponding man-page in `docs/man/` (section 1).
   - PowerShell scripts MUST include complete comment-based help (`.SYNOPSIS`, `.DESCRIPTION`, etc.).
   - Both MUST be bilingual (DE / EN) or consistent with existing script headers.
@@ -208,20 +228,7 @@ allowed path.
 per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
-**Version**: 1.3.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
-
-<!-- EN: constitution.md placeholder
-[DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
--->
-UST include
-a security justification confirming no credentials are present in the newly
-allowed path.
-
-**Runtime guidance**: Use `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` for
-per-agent operational guidance. This constitution is the authoritative policy
-layer above all agent-specific files.
-
-**Version**: 1.3.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
+**Version**: 1.4.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
