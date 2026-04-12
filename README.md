@@ -551,6 +551,43 @@ git push -u origin main
 pwsh ~/scripts/check-homogeneity.ps1
 ```
 
+### Workspaces auf neuem Gerät wiederherstellen / Restoring workspaces on a new device
+
+Wenn du deine Umgebung auf einem zweiten Gerät (z. B. Wechsel von macOS zu Windows) einrichtest, fehlen dort zunächst die lokalen Git-Scope-Einstellungen (`.inc`-Dateien in `~/.gitconfig.d/`). Da diese Dateien aus Sicherheitsgründen nicht synchronisiert werden, musst du sie einmalig regenerieren.
+
+*When setting up your environment on a second device, the local Git scope settings (`.inc` files) are missing. Since these are not synchronized for security reasons, you must regenerate them once.*
+
+**Ablauf / Procedure:**
+
+1.  **Workspaces klonen / Clone workspaces:**
+    Klone deine bestehenden Workspace-Repositories (z. B. `c64-baseline`, `rider-baseline`) manuell in die entsprechenden Ordner in deinem Home-Verzeichnis (z. B. `~/C64Projects`, `~/RiderProjects`).
+    
+    *Clone your existing workspace repositories manually into their respective folders in your home directory.*
+
+2.  **Migration ausführen / Run migration:**
+    Starte das Migrations-Skript. Es erkennt automatisch alle vorhandenen Workspace-Ordner, legt die fehlenden `.inc`-Dateien an und trägt die `includeIf`-Verweise in deine globale `.gitconfig` ein.
+
+    *Run the migration script. It automatically detects all existing workspace folders, creates the missing `.inc` files, and adds the `includeIf` entries to your global `.gitconfig`.*
+
+    ```bash
+    # macOS / Linux
+    bash ~/scripts/migrate-workspace.sh --yes
+    ```
+
+    ```powershell
+    # Windows (PowerShell Core)
+    pwsh ~/scripts/migrate-workspace.ps1 -Force
+    ```
+
+3.  **Verifikation / Verification:**
+    Prüfe mit dem Homogeneity Guardian, ob alle Scopes korrekt erkannt wurden.
+
+    *Use the Homogeneity Guardian to verify that all scopes have been correctly identified.*
+
+    ```bash
+    bash ~/scripts/check-homogeneity.sh ~/
+    ```
+
 ### Nächste Schritte / Next steps
 
 Die Einrichtung ist abgeschlossen. Hier ist die empfohlene Reihenfolge für eine vollständige Entwicklungsumgebung.

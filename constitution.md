@@ -208,6 +208,19 @@ allowed path.
 per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
+**Version**: 1.3.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
+
+<!-- EN: constitution.md placeholder
+[DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
+-->
+UST include
+a security justification confirming no credentials are present in the newly
+allowed path.
+
+**Runtime guidance**: Use `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` for
+per-agent operational guidance. This constitution is the authoritative policy
+layer above all agent-specific files.
+
 **Version**: 1.3.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
 
 <!-- EN: constitution.md placeholder
