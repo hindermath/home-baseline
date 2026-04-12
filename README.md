@@ -73,9 +73,6 @@ private GitHub or GitLab repository within seconds.*
 
 | Verzeichnis | GitHub-Repo | Eingerichtet mit |
 |---|---|---|
-| `~/C64Projects/` | [c64-baseline](https://github.com/hindermath/c64-baseline) | `bootstrap-workspace` |
-| `~/RiderProjects/` | [rider-baseline](https://github.com/hindermath/rider-baseline) | `bootstrap-workspace` |
-| `~/DataGripProjects/` | [datagrip-baseline](https://github.com/hindermath/datagrip-baseline) | `bootstrap-workspace` |
 <!-- workspace-table-end -->
 
 ---
