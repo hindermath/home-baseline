@@ -1249,6 +1249,16 @@ bash ~/scripts/bootstrap-project.sh MeinAltesProjekt ~/Ausbildung
 - Es erstellt ein passendes privates Repository auf GitHub.
 - Es fügt alle Standard-Dateien (README, .gitignore, KI-Agenten-Setup) hinzu.
 
+#### Sicherheit und Schutz deiner Dateien / Safety and protection of your files
+
+Du musst keine Angst haben, dass deine Arbeit überschrieben wird. Das Skript folgt dem Prinzip **„Safety First“**:
+
+*   **Kein automatisches Überschreiben:** Wenn eine Datei (z. B. deine `README.md` oder dein Quellcode) bereits existiert, rührt das Skript sie **nicht** an. Es ergänzt lediglich die Dateien, die für die neue Infrastruktur noch fehlen.
+*   **Idempotenz:** Du kannst das Skript beliebig oft auf denselben Ordner anwenden. Es wird jedes Mal nur das tun, was noch nötig ist.
+*   **Der `--force`-Flag:** Nur wenn du ganz bewusst den Zusatz `--force` am Ende des Befehls eingibst, werden bestehende Dateien durch die neuen Vorlagen ersetzt. Ohne diesen Zusatz ist dein Code absolut sicher.
+
+*The script follows a "Safety First" approach. It will **not** touch or overwrite any existing files (like your source code or README) unless you explicitly use the `--force` flag. It only adds the infrastructure files that are currently missing.*
+
 ---
 
 ### Schritt 5: Arbeiten mit der KI (Dein Mentor) / Step 5: Working with AI (Your Mentor)
