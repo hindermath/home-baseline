@@ -75,6 +75,9 @@ private GitHub or GitLab repository within seconds.*
 
 | Verzeichnis | GitHub-Repo | Eingerichtet mit |
 |---|---|---|
+| `~/C64Projects/` | [c64-baseline](https://github.com/hindermath/c64-baseline) | `bootstrap-workspace` |
+| `~/RiderProjects/` | [rider-baseline](https://github.com/hindermath/rider-baseline) | `bootstrap-workspace` |
+| `~/DataGripProjects/` | [datagrip-baseline](https://github.com/hindermath/datagrip-baseline) | `bootstrap-workspace` |
 <!-- workspace-table-end -->
 
 ---
@@ -686,6 +689,28 @@ Setzt die Gemini-TUI-Statuszeile in `~/.gemini/config.toml` aus einer zentralen 
 
 *Sets the Gemini TUI status line in `~/.gemini/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
 
+---
+
+### Fehlerbehebung mit KI-Unterstützung / Troubleshooting with AI support
+
+Sollte ein Skript mit einem Fehler abbrechen, kannst du deinen installierten KI-Agenten direkt im Terminal bitten, das Problem zu analysieren oder den Vorgang abzuschließen.
+
+*If a script fails, you can ask your AI agent directly in the terminal to analyze the issue or complete the process.*
+
+| Agent | Kommando / Command |
+|---|---|
+| **GitHub Copilot** | `gh copilot -p "Skript X ist bei Schritt Y abgebrochen. Bitte prüfe den Status und schließe die Einrichtung ab."` |
+| **Claude Code** | `claude "Der Push zu GitHub ist fehlgeschlagen. Bitte prüfe die Remotes und hole den Push nach."` |
+| **Codex CLI** | `codex "Analysiere den letzten Fehler im Terminal und schlage eine Lösung vor."` |
+| **Gemini CLI** | `gemini -p "Vervollständige die Git-Konfiguration, da das Bootstrap-Skript vorzeitig beendet wurde."` |
+| **OpenCode** | `opencode --prompt "Prüfe, ob alle Git-Hooks und .inc-Dateien korrekt angelegt wurden."` |
+
+> **Tipp / Tip:** Nutze das Flag `--help` (z. B. `claude --help`, `gemini --help` oder `opencode --help`), um weitere Informationen zu den verfügbaren Befehlen deines Agenten zu erhalten.
+>
+> *Use the `--help` flag to learn more about the available commands for your specific agent.*
+
+---
+
 **4 — Spec-Kit einrichten / Set up Spec-Kit**
 
 → [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
@@ -1017,312 +1042,177 @@ pwsh ~/scripts/rename-lastenheft.ps1 -File Lastenheft_foo.md -BranchName 002-fea
 
 ## Für Auszubildende der Fachinformatik / For IT Apprentices
 
-Willkommen! Dieser Abschnitt führt dich als **Auszubildende/r der Fachinformatik**
-Schritt für Schritt durch die Einrichtung deiner Entwicklungsumgebung — ohne Vorkenntnisse
-und nur mit freien, kostenlosen Tools.
+Herzlich willkommen in deiner Ausbildung! Dieser Abschnitt ist speziell für dich geschrieben. Er führt dich Schritt für Schritt durch die Einrichtung deiner professionellen Entwicklungsumgebung. Wir fangen ganz vorne an — du brauchst kein Vorwissen.
 
-*Welcome! This section guides you as an **IT apprentice** through setting up your
-development environment step by step — no prior knowledge required, free tools only.*
+*Welcome to your apprenticeship! This section is written specifically for you. It guides you step by step through setting up your professional development environment. We start from scratch — no prior knowledge required.*
 
 ---
 
-### Was passiert hier überhaupt? / What is this about?
+### Was machen wir hier eigentlich? / What is this all about?
 
-Bevor du mit der eigentlichen Programmierung beginnst, richtest du dein **Home-Verzeichnis**
-(`~/` — das ist dein persönliches Benutzerverzeichnis auf dem Computer) als Git-Repository ein.
-Das klingt komplizierter als es ist. Konkret bedeutet es:
+In der IT arbeiten wir oft mit vielen verschiedenen Projekten. Damit du nicht den Überblick verlierst und deine Arbeit sicher gespeichert ist, nutzen wir eine **automatisierte Infrastruktur**.
 
-- Alle wichtigen Konfigurationsdateien und Scripts liegen an einem zentralen Ort
-- Du kannst deine Konfiguration jederzeit wiederherstellen, falls etwas schiefgeht
-- Der **Workspace Homogeneity Guardian** prüft automatisch, ob alles korrekt eingerichtet ist
+Hier sind die drei wichtigsten Konzepte, die du heute lernst:
 
-*Before you start actual programming, you set up your **home directory** (`~/` — your personal
-user directory) as a Git repository. This sounds more complicated than it is. Concretely it means:
-your configuration files and scripts are in one central place, you can restore them at any time,
-and the Homogeneity Guardian automatically checks that everything is set up correctly.*
+1.  **Das Terminal (die Kommandozeile):** Dein wichtigstes Werkzeug. Anstatt mit der Maus zu klicken, gibst du dem Computer direkte Textbefehle. Das ist schneller, präziser und lässt sich automatisieren.
+2.  **Git (Versionsverwaltung):** Wie eine „Zeitmaschine“ für deinen Code. Du speicherst Zwischenstände (Commits). Wenn etwas schiefgeht, kannst du jederzeit zu einem funktionierenden Stand zurückkehren.
+3.  **GitHub / GitLab (Die Cloud):** Hier wird dein Code sicher im Internet gespeichert. So kannst du von verschiedenen Computern daran arbeiten und deine Arbeit mit anderen teilen.
+
+**Wichtig für dich:** Dein **Home-Verzeichnis** (auf dem Mac/Linux als `~/` abgekürzt) ist dein persönlicher Bereich auf dem Computer. Wir richten diesen Bereich jetzt so ein, dass er sich „selbst verwaltet“.
 
 ---
 
-### Schritt 0: Werkzeuge installieren / Step 0: Install tools
+### Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools
 
-Diese Programme brauchst du. Installiere sie in dieser Reihenfolge.
+Bevor wir starten, müssen wir die „Handwerker-Kiste“ füllen. Wir installieren Programme, die im Hintergrund arbeiten.
 
-*You need these programs. Install them in this order.*
+*Before we start, we need to fill the "toolbox". We install programs that work in the background.*
 
-#### Ubuntu / Linux
+#### Welches Betriebssystem nutzt du?
 
+| Windows (PowerShell 7) | macOS (Terminal) | Linux / Ubuntu |
+|---|---|---|
+| Nutze die **PowerShell 7**. Sie ist viel mächtiger als die alte Eingabeaufforderung (CMD). | Nutze die **Terminal-App** (in den Dienstprogrammen). | Nutze das Standard-Terminal deiner Distribution. |
+
+#### Installation der Werkzeuge
+
+**1. Git:** Die Zeitmaschine für deinen Code.
+**2. GitHub CLI (`gh`):** Ein Werkzeug, mit dem du GitHub direkt aus dem Terminal steuern kannst.
+**3. ripgrep (`rg`):** Ein extrem schneller Suchdienst für Texte in Dateien.
+
+> **Anleitung für Windows (PowerShell als Administrator):**
+> ```powershell
+> winget install --id Git.Git
+> winget install --id GitHub.cli
+> winget install --id BurntSushi.ripgrep.MSVC
+> winget install --id Microsoft.PowerShell
+> ```
+> *Nach der Installation: Schließe das Fenster und öffne eine neue **PowerShell 7**.*
+
+> **Anleitung für macOS (Terminal):**
+> ```bash
+> # Installiert Homebrew (den "App Store" für Entwickler)
+> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+> # Installiert die Tools
+> brew install git gh ripgrep
+> ```
+
+**Wichtig: Bei GitHub anmelden!**
+Gib diesen Befehl ein und folge den Anweisungen im Browser:
 ```bash
-# Git — Versionsverwaltung (speichert Änderungen an Dateien)
-sudo apt update && sudo apt install -y git
-
-# ripgrep — schnelle Textsuche (wird vom Compliance-Scanner benötigt)
-sudo apt install -y ripgrep
-
-# GitHub CLI — kommuniziert mit GitHub von der Kommandozeile aus
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
-  sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] \
-  https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list
-sudo apt update && sudo apt install -y gh
-
-# Einmalig bei GitHub anmelden (Browser öffnet sich automatisch)
 gh auth login
 ```
-
-#### macOS
-
-```bash
-# Homebrew installieren (falls noch nicht vorhanden / if not already installed)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Homebrew aktualisieren und alle Pakete auf den neuesten Stand bringen
-# (empfohlen auf bestehenden Macs / recommended on existing Macs)
-brew update && brew upgrade
-
-# Tools installieren
-brew install git ripgrep gh
-
-# Einmalig bei GitHub anmelden
-gh auth login
-```
-
-#### Windows (PowerShell als Administrator)
-
-```powershell
-# Git, ripgrep und GitHub CLI installieren
-winget install --id Git.Git
-winget install --id BurntSushi.ripgrep.MSVC
-winget install --id GitHub.cli
-
-# PowerShell Core 7 installieren (Windows braucht das für die ps1-Scripts)
-winget install --id Microsoft.PowerShell
-
-# Neues Terminal öffnen, dann bei GitHub anmelden
-gh auth login
-```
-
-> **Was macht `gh auth login`?** Es verbindet dein Terminal mit deinem GitHub-Account.
-> Ein Browser-Fenster öffnet sich, du meldest dich an und bestätigst. Danach können
-> die Scripts automatisch GitHub-Repositories für dich erstellen.
->
-> *What does `gh auth login` do? It connects your terminal to your GitHub account.
-> A browser window opens, you log in and confirm. After that, scripts can automatically
-> create GitHub repositories for you.*
+*Wähle: GitHub.com → HTTPS → Yes (Authenticate Git) → Login with a web browser.*
 
 ---
 
-### Schritt 1: Template-Repo auf GitHub kopieren / Step 1: Copy template repo on GitHub
+### Schritt 1: Dein eigenes Template erstellen / Step 1: Create your own template
 
-1. Öffne die URL, die du von deinem Ausbilder erhalten hast (z. B. `https://github.com/AUSBILDER/home-baseline`)
-2. Klicke auf den grünen Button **„Use this template"** → **„Create a new repository"**
-3. Wähle einen Namen (z. B. `home-baseline`) und stelle die Sichtbarkeit auf **Private**
-4. Klicke **„Create repository"**
+Wir nutzen ein „Template“ (eine Vorlage). Das ist wie ein vorgefertigtes Formular, das du für dich kopierst.
 
-Du hast jetzt dein eigenes Repo! Die URL lautet: `https://github.com/DEIN_USERNAME/home-baseline`
+1.  Öffne im Browser die Vorlage, die dein Ausbilder dir gegeben hat (z. B. `hindermath/home-baseline`).
+2.  Klicke oben rechts auf den grünen Button **„Use this template“** → **„Create a new repository“**.
+3.  **Name:** Gib ihm einen Namen (z. B. `meine-it-umgebung`).
+4.  **Sichtbarkeit:** Wähle **Private**. Das ist wichtig, damit nur du deinen Code sehen kannst.
+5.  Klicke auf **„Create repository“**.
 
-*You now have your own repo! The URL is: `https://github.com/YOUR_USERNAME/home-baseline`*
+Du hast nun deine eigene Kopie in der Cloud! Die Adresse (URL) sieht so aus: `https://github.com/DEIN_NAME/meine-it-umgebung`.
 
 ---
 
-### Schritt 2: Repo auf dem Computer einrichten / Step 2: Set up repo on your computer
+### Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer
 
-Öffne ein Terminal (macOS/Linux: **Terminal**-App; Windows: **PowerShell 7**).
+Jetzt bringen wir die Dateien aus der Cloud auf deinen Computer und richten alles ein.
 
-*Open a terminal (macOS/Linux: Terminal app; Windows: PowerShell 7).*
+*Now we bring the files from the cloud to your computer and set everything up.*
 
-#### Ubuntu / macOS
+**Erklärung der Befehle:**
+- `cd ~`: „Change Directory to Home“ — Wir gehen in dein persönliches Verzeichnis.
+- `git clone ...`: Wir laden eine Kopie deines Repos herunter.
+- `bash` / `pwsh`: Wir führen ein Skript aus, das die ganze Arbeit für uns macht.
 
+#### Für macOS / Linux:
 ```bash
-# In dein Home-Verzeichnis wechseln
 cd ~
+# Lade dein Repo (Ersetze DEIN_NAME und REPO_NAME!)
+git clone https://github.com/DEIN_NAME/REPO_NAME.git home-baseline-tmp
 
-# Repo klonen (DEIN_USERNAME ersetzen!)
-git clone https://github.com/DEIN_USERNAME/home-baseline.git home-baseline-tmp
-
-# Sync-Script ausführen — kopiert alles an die richtigen Stellen
+# Starte die Einrichtung (sync-home kopiert alle Scripte)
 bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 
-# Compliance-Check — zeigt dir, ob alles korrekt ist
-bash ~/scripts/check-homogeneity.sh ~/
+# Aufräumen (wir brauchen den temporären Ordner nicht mehr)
+rm -rf home-baseline-tmp
 ```
 
-#### Windows (PowerShell 7)
-
+#### Für Windows:
 ```powershell
-# In dein Home-Verzeichnis wechseln
 Set-Location ~
+# Lade dein Repo
+git clone https://github.com/DEIN_NAME/REPO_NAME.git home-baseline-tmp
 
-# Repo klonen (DEIN_USERNAME ersetzen!)
-git clone https://github.com/DEIN_USERNAME/home-baseline.git home-baseline-tmp
-
-# Sync-Script ausführen
+# Starte die Einrichtung
 pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
 
-# Compliance-Check
-pwsh ~/scripts/check-homogeneity.ps1
+# Aufräumen
+Remove-Item home-baseline-tmp -Recurse -Force
 ```
-
-> **Was passiert gerade?** Das `sync-home`-Script kopiert alle wichtigen Dateien aus
-> dem geklonten Repo an die richtigen Stellen in deinem Home-Verzeichnis und erstellt
-> automatisch einen Git-Commit. Der anschließende `check-homogeneity`-Aufruf prüft,
-> ob alles korrekt vorhanden ist.
->
-> *What is happening? The `sync-home` script copies all important files from the
-> cloned repo to the correct places in your home directory and automatically creates
-> a Git commit. The `check-homogeneity` call then checks that everything is correctly present.*
-
-**Ziel:** Score 100 % — kein einziger FAIL / *Goal: Score 100 % — zero FAILs*
 
 ---
 
-### Schritt 3: Ersten Workspace anlegen / Step 3: Create your first workspace
+### Schritt 3: Deinen ersten "Workspace" anlegen / Step 3: Create your first workspace
 
-Ein **Workspace** ist ein Verzeichnis für eine Gruppe verwandter Projekte, z. B. alle
-Projekte deiner Ausbildung. Das Script richtet es automatisch als GitHub-Repo ein.
+Ein **Workspace** ist wie ein großer Aktenordner für ein bestimmtes Thema (z. B. „Berufsschule“ oder „C-Sharp-Kurs“). Jedes Mal, wenn du einen neuen Workspace anlegst, erstellt das System automatisch ein passendes, privates Repository auf GitHub für dich.
 
-*A **workspace** is a directory for a group of related projects, e.g. all projects of
-your apprenticeship. The script sets it up automatically as a GitHub repo.*
+*A workspace is like a large folder for a specific topic. The system automatically creates a matching private repo on GitHub for you.*
+
+**Befehl ausführen:**
+```bash
+# Erstellt einen Workspace für deine Ausbildungsprojekte
+bash ~/scripts/bootstrap-workspace.sh Ausbildung
+```
+*(Auf Windows nutzt du `pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName Ausbildung`)*
+
+**Was ist gerade passiert?**
+1.  Ein Ordner `~/Ausbildung` wurde erstellt.
+2.  Ein privates Repo namens `ausbildung-baseline` wurde auf GitHub für dich angelegt.
+3.  Wichtige Schutz-Scripte (Git-Hooks) wurden installiert, damit du keine Passwörter aus Versehen hochlädst.
+
+---
+
+### Schritt 4: Dein erstes Projekt starten / Step 4: Start your first project
+
+Innerhalb deines Workspaces legst du nun deine eigentlichen Programmier-Projekte an.
 
 ```bash
-# macOS / Linux / Ubuntu
-bash ~/scripts/bootstrap-workspace.sh AusbildungsProjekte
-
-# Windows
-pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName AusbildungsProjekte
+# Ein Projekt namens "HalloWelt" im Workspace "Ausbildung" erstellen
+bash ~/scripts/bootstrap-project.sh HalloWelt ~/Ausbildung
 ```
 
-Das Script erledigt automatisch:
-1. Verzeichnis `~/AusbildungsProjekte/` erstellen
-2. `git init` — Git-Versionsverwaltung aktivieren
-3. Privates Repo auf GitHub erstellen
-4. Scripts und Hooks kopieren
-5. Ersten Commit und Push zu GitHub
-
-*The script automatically: creates the directory, initialises Git, creates a private GitHub
-repo, copies scripts and hooks, makes the first commit and pushes to GitHub.*
-
-Danach: erstes Projekt in diesem Workspace anlegen / Then: create your first project in this workspace:
-
-```bash
-# macOS / Linux / Ubuntu
-bash ~/scripts/bootstrap-project.sh MeinProjekt ~/AusbildungsProjekte
-
-# Windows
-pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -WorkspaceDir ~/AusbildungsProjekte
-```
-
-Das Script erledigt automatisch:
-1. Verzeichnis `~/AusbildungsProjekte/MeinProjekt/` erstellen
-2. `git init` — Git-Versionsverwaltung aktivieren
-3. Privates Repo auf GitHub erstellen
-4. Remote `origin` setzen
-5. Initialer Commit und Push zu GitHub
+Ab jetzt arbeitest du in diesem Ordner: `cd ~/Ausbildung/HalloWelt`. Hier schreibst du deinen Code.
 
 ---
 
-### Schritt 4: Compliance prüfen / Step 4: Check compliance
+### Schritt 5: Arbeiten mit der KI (Dein Mentor) / Step 5: Working with AI (Your Mentor)
 
-```bash
-# macOS / Linux / Ubuntu
-bash ~/scripts/check-homogeneity.sh ~/
+Du bist nicht allein! Wir haben KI-Agenten installiert, die dir helfen können. Wenn ein Befehl nicht funktioniert oder du eine Frage zum Code hast, frag sie einfach direkt im Terminal.
 
-# Windows
-pwsh ~/scripts/check-homogeneity.ps1
-```
+**Beispiel für eine Frage:**
+`gh copilot -p "Ich habe eine Fehlermeldung bei git push erhalten. Was bedeutet das?"`
 
-Die Ausgabe zeigt dir für jede Datei und jeden Check, ob alles in Ordnung ist:
-- `✓` — alles gut
-- `WARN` — Warnung, sollte behoben werden
-- `✗ FAIL` — Fehler, muss behoben werden
-
-Am Ende siehst du einen **Score in Prozent**. Ziel ist 100 % (kein einziges FAIL) — das Skript gibt Exit-Code 1 zurück, sobald auch nur ein FAIL auftritt.
-
-*The output shows you for each file and check whether everything is in order.
-At the end you see a score in percent. Goal is 100 % (zero FAILs) — the script returns exit code 1 as soon as a single FAIL occurs.*
+Oder wenn ein Skript abgebrochen ist:
+`claude "Das bootstrap-workspace Skript ist hängengeblieben. Kannst du prüfen, ob alles fertig ist?"`
 
 ---
 
-### Schritt 5: KI-Agenten einrichten / Step 5: Set up AI agents
+### Häufige Begriffe für den Start / Common terms for beginners
 
-Damit du KI-Assistenz beim Entwickeln nutzen kannst, installiere mindestens einen KI-Agenten. Die vollständige Anleitung für alle fünf unterstützten Agenten findest du hier:
-
-*To use AI assistance while coding, install at least one AI agent. Find the complete instructions for all five supported agents here:*
-
-→ [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
-
-**Empfehlung / Recommendation:** Starte mit dem **GitHub Copilot CLI** — du bist über `gh` bereits authentifiziert und es ist keine separate Einrichtung nötig.
-
-*Start with **GitHub Copilot CLI** — you are already authenticated via `gh` and no separate setup is needed.*
-
-```bash
-# GitHub Copilot CLI installieren (alle Plattformen / all platforms)
-gh extension install github/gh-copilot
-
-# Version prüfen / Check version
-gh copilot --version
-```
-
-→ Weiter mit: [Schritt 6: Spec-Kit einrichten](#schritt-6-spec-kit-einrichten--step-6-set-up-spec-kit)
+- **Pfad (Path):** Die Adresse einer Datei auf dem Computer (z. B. `C:\Users\Name\Projekt` oder `~/Projekt`).
+- **Skript (Script):** Eine Textdatei mit Befehlen, die der Computer nacheinander ausführt.
+- **Commit:** Ein „Speicherpunkt“. Wie bei einem Videospiel, bevor du gegen einen Boss kämpfst.
+- **Push:** Deine lokalen Speicherpunkte ins Internet (GitHub) hochladen.
+- **Root:** Die oberste Ebene (das „Wurzelverzeichnis“).
 
 ---
-
-### Schritt 6: Spec-Kit einrichten / Step 6: Set up Spec-Kit
-
-Spec-Kit ermöglicht **Specification-Driven Development (SDD)**: Du beschreibst ein Feature in natürlicher Sprache — der KI-Agent erstellt daraus einen strukturierten Plan und umsetzbare Aufgaben.
-
-*Spec-Kit enables **Specification-Driven Development (SDD)**: you describe a feature in natural language and the AI agent creates a structured plan and actionable tasks from it.*
-
-→ Vollständige Anleitung: [Spec-kit-Workflow](#spec-kit-workflow--spec-kit-workflow)
-
-```bash
-# specify-cli via uv installieren / Install specify-cli via uv
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
-
-# Im Workspace-Verzeichnis initialisieren (Beispiel / example: AusbildungsProjekte)
-cd ~/AusbildungsProjekte
-specify init --here --ai copilot   # GitHub Copilot CLI
-# specify init --here --ai claude  # Claude Code
-# specify init --here --ai gemini  # Gemini CLI
-```
-
----
-
-### Häufige Fehler und Lösungen / Common errors and fixes
-
-| Fehler / Error | Ursache / Cause | Lösung / Fix |
-|---|---|---|
-| `FAIL: file missing` | Pflichtdatei fehlt | `sync-home.sh` erneut ausführen |
-| `WARN: bilingual-section-missing` | Kein DE+EN-Heading in Markdown | Abschnitt `## Überblick / Overview` eintragen |
-| `WARN: hook-missing` | pre-push Hook nicht installiert | `bash ~/scripts/install-hooks.sh` |
-| `rg: command not found` | ripgrep nicht installiert | `sudo apt install ripgrep` |
-| `git: command not found` | Git nicht installiert | `sudo apt install git` |
-| `Permission denied` | Berechtigungsproblem | `chown -R $USER .` ausführen |
-| `gh: command not found` | GitHub CLI fehlt | Schritt 0 wiederholen |
-| `fatal: not a git repository` | `git init` wurde nicht ausgeführt | `git init` im Verzeichnis ausführen |
-
----
-
-### Neues Projekt anlegen / Create a new project
-
-→ Siehe [Schritt 3: Ersten Workspace anlegen](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace) — die Befehle zum Anlegen weiterer Projekte sind dort bereits vollständig beschrieben.
-
-*See [Step 3: Create your first workspace](#schritt-3-ersten-workspace-anlegen--step-3-create-your-first-workspace) — the commands for creating additional projects are fully described there.*
-
----
-
-### Glossar / Glossary
-
-| Begriff / Term | Erklärung / Explanation |
-|---|---|
-| **Repository / Repo** | Ein Verzeichnis unter Git-Versionsverwaltung — speichert alle Versionen deiner Dateien |
-| **Commit** | Ein gespeicherter Snapshot deiner Änderungen mit einer Beschreibung |
-| **Push** | Commits vom lokalen Computer zu GitHub hochladen |
-| **Pull** | Änderungen von GitHub auf den lokalen Computer herunterladen |
-| **Branch** | Ein paralleler Entwicklungszweig — Änderungen ohne den Hauptzweig zu berühren |
-| **Hook** | Ein Script das automatisch bei bestimmten Git-Aktionen ausgeführt wird (z. B. vor einem Push) |
-| **Compliance-Score** | Prozentualer Wert wie gut deine Umgebung den Standards entspricht |
-| **Template-Repo** | Ein GitHub-Repo das als Vorlage dient — „Use this template" erstellt ein unabhängiges Kopie |
-| **~/** | Kürzel für dein Home-Verzeichnis (z. B. `/home/deinname/` auf Linux) |
 
 ## Spec-kit-Workflow / Spec-kit Workflow
 
