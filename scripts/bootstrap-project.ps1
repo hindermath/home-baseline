@@ -1,4 +1,4 @@
-# bootstrap-project.ps1 — Idempotenter Projekt-Bootstrap v1.0 (PowerShell)
+# bootstrap-project.ps1 — Idempotenter Projekt-Bootstrap v1.1 (PowerShell)
 # FR-009–016; Contract: bootstrap-project-cli.md
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -10,6 +10,7 @@ param(
     [switch]$NoAgents,
     [switch]$NoSpeckit,
     [switch]$NoRemote,
+    [switch]$NoReleasePlease,
     [string]$Platform = 'github',
     [string]$GitLabUrl = 'https://gitlab.com',
     [ValidateSet('de','en')][string]$Lang = 'de'
@@ -21,7 +22,7 @@ $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 22
+$TotalSteps = 26
 $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
@@ -136,6 +137,11 @@ if ($Preview) {
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
+    if (-not $NoReleasePlease) {
+        $null = $previewActions.Add(@('CREATE', "$TargetDir/release-please-config.json", 'Release Please Konfiguration'))
+        $null = $previewActions.Add(@('CREATE', "$TargetDir/.release-please-manifest.json", 'Release Please Manifest'))
+        $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/release-please.yml", 'Release Please Workflow'))
+    }
     $null = $previewActions.Add(@('COPY', "$TargetDir/scripts/", 'von ~/scripts/'))
     $null = $previewActions.Add(@('INSTALL', "$TargetDir/.git/hooks/pre-push"))
     $null = $previewActions.Add(@('EXEC', "git commit -m 'feat: initial project bootstrap'"))
@@ -145,6 +151,9 @@ if ($Preview) {
     } elseif ($Platform -eq 'github') {
         $null = $previewActions.Add(@('EXEC', 'gh repo create (privat)', 'optional'))
         $null = $previewActions.Add(@('EXEC', 'git push', 'optional'))
+        if (-not $NoReleasePlease) {
+            $null = $previewActions.Add(@('EXEC', 'gh api repos/.../actions/permissions/workflow', 'GitHub Actions: PR-Erstellung erlauben'))
+        }
     } else {
         $null = $previewActions.Add(@('EXEC', 'glab repo create (privat)', 'optional'))
         $null = $previewActions.Add(@('EXEC', 'git remote add origin https://HOST/USER/REPO.git', 'optional'))
@@ -313,6 +322,58 @@ elseif (Test-Path (Join-Path $TemplatesDir 'gitignore-project.tmpl')) {
     Step-Done
 } else { Step-Warn "Template nicht gefunden: gitignore-project.tmpl" }
 
+# 9b. Release Please einrichten
+Step-Start "Release Please einrichten"
+if ($NoReleasePlease) { Step-Skip "-NoReleasePlease" }
+elseif ((Test-Path (Join-Path $TargetDir 'release-please-config.json')) -and -not $Force) { Step-Skip "Konfiguration existiert bereits" }
+else {
+    New-Item -ItemType Directory -Path (Join-Path $TargetDir '.github/workflows') -Force | Out-Null
+    @'
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "packages": {
+    ".": {
+      "changelog-sections": [
+        {"type": "feat",     "section": "Features / Neue Funktionen"},
+        {"type": "fix",      "section": "Bug Fixes / Fehlerbehebungen"},
+        {"type": "docs",     "section": "Documentation / Dokumentation"},
+        {"type": "chore",    "section": "Maintenance / Wartung", "hidden": false},
+        {"type": "refactor", "section": "Refactoring", "hidden": true}
+      ]
+    }
+  }
+}
+'@ | Set-Content (Join-Path $TargetDir 'release-please-config.json') -Encoding UTF8
+    @'
+{
+  ".": "0.1.0"
+}
+'@ | Set-Content (Join-Path $TargetDir '.release-please-manifest.json') -Encoding UTF8
+    @'
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+'@ | Set-Content (Join-Path $TargetDir '.github/workflows/release-please.yml') -Encoding UTF8
+    Step-Done
+}
+
 # 10. Copy scripts/
 Step-Start "scripts/ kopieren"
 $scriptsTarget = Join-Path $TargetDir 'scripts'
@@ -388,6 +449,19 @@ else {
     git -C $TargetDir push -u origin HEAD 2>$null | Out-Null
     if ($LASTEXITCODE -eq 0) { Step-Done } else { Step-Warn "git push fehlgeschlagen" }
 }
+
+# 14b. GitHub Actions Berechtigungen
+Step-Start "GitHub Actions Berechtigungen setzen"
+if ($NoReleasePlease -or $NoRemote -or $Platform -ne 'github') { Step-Skip "nicht anwendbar" }
+elseif (-not $summaryRepoUrl) { Step-Skip "kein Remote konfiguriert" }
+elseif (Get-Command gh -ErrorAction SilentlyContinue) {
+    $rpRepo = $summaryRepoUrl -replace '^https://github\.com/', ''
+    & gh api --method PUT "repos/$rpRepo/actions/permissions/workflow" `
+        -f default_workflow_permissions=write `
+        -F can_approve_pull_request_reviews=true 2>$null | Out-Null
+    if ($LASTEXITCODE -eq 0) { Step-Done "PR-Erstellung fuer GitHub Actions erlaubt" }
+    else { Step-Warn "Berechtigungen nicht gesetzt — bitte manuell in Repo-Settings > Actions > General aktivieren" }
+} else { Step-Skip "gh nicht installiert" }
 
 # 15. Claude init
 Step-Start "Claude init"

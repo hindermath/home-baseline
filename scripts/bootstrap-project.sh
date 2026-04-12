@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
-# bootstrap-project.sh — Idempotenter Projekt-Bootstrap v1.0
+# bootstrap-project.sh — Idempotenter Projekt-Bootstrap v1.1
 # FR-009–016; Contract: bootstrap-project-cli.md
 #
 # Usage: bootstrap-project.sh <ProjectName> [TARGET_WORKSPACE] [OPTIONS]
 # Options:
-#   --preview       Show planned actions, write nothing
-#   --force         Overwrite existing files
-#   --no-agents     Skip AI agent initialization
-#   --no-speckit    Skip Spec-kit installation
-#   --no-remote     No remote repo create (local git init only)
-#   --platform      github|gitlab
-#   --gitlab-url    https://gitlab.example.com
-#   --lang de|en    Primary language for templates (default: de)
+#   --preview            Show planned actions, write nothing
+#   --force              Overwrite existing files
+#   --no-agents          Skip AI agent initialization
+#   --no-speckit         Skip Spec-kit installation
+#   --no-remote          No remote repo create (local git init only)
+#   --no-release-please  Skip Release Please workflow setup
+#   --platform           github|gitlab
+#   --gitlab-url         https://gitlab.example.com
+#   --lang de|en         Primary language for templates (default: de)
 # Exit codes: 0=success, 1=partial (warnings), 2=fatal
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -25,6 +26,7 @@ OPT_FORCE=false
 OPT_NO_AGENTS=false
 OPT_NO_SPECKIT=false
 OPT_NO_REMOTE=false
+OPT_NO_RELEASE_PLEASE=false
 OPT_PLATFORM="github"
 OPT_GITLAB_URL="https://gitlab.com"
 OPT_GITLAB_HOSTNAME=""
@@ -68,9 +70,10 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --preview|--dry-run) OPT_PREVIEW=true; OPT_DRY_RUN=true ;;
     --force)      OPT_FORCE=true ;;
-    --no-agents)  OPT_NO_AGENTS=true ;;
-    --no-speckit) OPT_NO_SPECKIT=true ;;
-    --no-remote)  OPT_NO_REMOTE=true ;;
+    --no-agents)          OPT_NO_AGENTS=true ;;
+    --no-speckit)         OPT_NO_SPECKIT=true ;;
+    --no-remote)          OPT_NO_REMOTE=true ;;
+    --no-release-please)  OPT_NO_RELEASE_PLEASE=true ;;
     --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
     --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
     --lang)       OPT_LANG="${2:-de}"; shift ;;
@@ -157,7 +160,7 @@ fi
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=22
+TOTAL_STEPS=26
 SKIPPED=0
 PARTIAL_FAIL=false
 
@@ -220,6 +223,11 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
+  if ! $OPT_NO_RELEASE_PLEASE; then
+    preview_action "CREATE" "${TARGET_DIR}/release-please-config.json" "Release Please Konfiguration"
+    preview_action "CREATE" "${TARGET_DIR}/.release-please-manifest.json" "Release Please Manifest"
+    preview_action "CREATE" "${TARGET_DIR}/.github/workflows/release-please.yml" "Release Please Workflow"
+  fi
   preview_action "COPY" "${TARGET_DIR}/scripts/" "von ~/scripts/"
   preview_action "INSTALL" "${TARGET_DIR}/.git/hooks/pre-push" "von ~/scripts/hooks/pre-push"
   preview_action "EXEC" "git commit -m 'feat: initial project bootstrap'"
@@ -228,6 +236,9 @@ if $OPT_PREVIEW; then
   elif [ "$OPT_PLATFORM" = "github" ]; then
     preview_action "EXEC" "gh repo create (privat)" "optional"
     preview_action "EXEC" "git push" "optional"
+    if ! $OPT_NO_RELEASE_PLEASE; then
+      preview_action "EXEC" "gh api repos/.../actions/permissions/workflow" "GitHub Actions: PR-Erstellung erlauben"
+    fi
   else
     preview_action "EXEC" "glab repo create (privat)" "optional"
     preview_action "EXEC" "git remote add origin https://HOST/USER/REPO.git" "optional"
@@ -448,6 +459,56 @@ else
   fi
 fi
 
+# ─── Step 9b: Release Please einrichten ─────────────────────────────────────
+step_start "Release Please einrichten"
+if $OPT_NO_RELEASE_PLEASE; then
+  step_skip "--no-release-please"
+elif [ -f "${TARGET_DIR}/release-please-config.json" ] && ! $OPT_FORCE; then
+  step_skip "Konfiguration existiert bereits"
+else
+  mkdir -p "${TARGET_DIR}/.github/workflows"
+  cat > "${TARGET_DIR}/release-please-config.json" <<'RPCFG'
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "packages": {
+    ".": {
+      "changelog-sections": [
+        {"type": "feat",     "section": "Features / Neue Funktionen"},
+        {"type": "fix",      "section": "Bug Fixes / Fehlerbehebungen"},
+        {"type": "docs",     "section": "Documentation / Dokumentation"},
+        {"type": "chore",    "section": "Maintenance / Wartung", "hidden": false},
+        {"type": "refactor", "section": "Refactoring", "hidden": true}
+      ]
+    }
+  }
+}
+RPCFG
+  printf '{\n  ".": "0.1.0"\n}\n' > "${TARGET_DIR}/.release-please-manifest.json"
+  cat > "${TARGET_DIR}/.github/workflows/release-please.yml" <<'RPWF'
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+RPWF
+  step_done
+fi
+
 # ─── Step 10: Copy scripts/ ──────────────────────────────────────────────────
 step_start "scripts/ kopieren"
 if [ -d "${TARGET_DIR}/scripts" ] && ! $OPT_FORCE; then
@@ -551,6 +612,25 @@ else
   else
     step_warn "git push fehlgeschlagen"
   fi
+fi
+
+# ─── Step 14b: GitHub Actions Berechtigungen ────────────────────────────────
+step_start "GitHub Actions Berechtigungen setzen"
+if $OPT_NO_RELEASE_PLEASE || $OPT_NO_REMOTE || [ "$OPT_PLATFORM" != "github" ]; then
+  step_skip "nicht anwendbar"
+elif [ -z "$SUMMARY_REPO_URL" ]; then
+  step_skip "kein Remote konfiguriert"
+elif command -v gh >/dev/null 2>&1; then
+  _rp_repo="${SUMMARY_REPO_URL#https://github.com/}"
+  if gh api --method PUT "repos/${_rp_repo}/actions/permissions/workflow" \
+    -f default_workflow_permissions=write \
+    -F can_approve_pull_request_reviews=true >/dev/null 2>&1; then
+    step_done "PR-Erstellung fuer GitHub Actions erlaubt"
+  else
+    step_warn "Berechtigungen nicht gesetzt — bitte manuell in Repo-Settings > Actions > General aktivieren"
+  fi
+else
+  step_skip "gh nicht installiert"
 fi
 
 # ─── Step 15: Claude init ────────────────────────────────────────────────────
