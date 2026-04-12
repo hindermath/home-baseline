@@ -8,6 +8,34 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.7.0](https://github.com/hindermath/home-baseline/compare/v0.6.2...v0.7.0) (2026-04-12)
+
+
+### Features / Neue Funktionen
+
+* automatische Erstellung der Workspace-README.md ([34259e0](https://github.com/hindermath/home-baseline/commit/34259e0b46edc76c08a21380c26391529b2b16d5))
+* **bootstrap-project:** Release Please automatisch beim Projekt-Bootstrap einrichten ([8938962](https://github.com/hindermath/home-baseline/commit/8938962397a784e40706e89773969616b127a200))
+* neues Projekt-README-Template und automatische Erstellung ([a47970c](https://github.com/hindermath/home-baseline/commit/a47970c011d5bf620e0c1be454d14b715cbd916a))
+* **statistics:** Projektstatistik-Ledger einführen ([2095229](https://github.com/hindermath/home-baseline/commit/2095229e9a0af7cf476b3da34ccbe2ce8097bd49))
+* **templates:** Statistik-Pflege-Regeln in alle KI-Agenten-Templates ([d15e03d](https://github.com/hindermath/home-baseline/commit/d15e03d573bfbce817b4225e849926b547d65963))
+* Wiederherstellung von Workspaces dokumentiert und in Constitution verankert ([b36f286](https://github.com/hindermath/home-baseline/commit/b36f286b0f2564030b71c8465314081cf45d7d05))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* **scripts:** fehlendes execute-Bit auf 6 .sh-Skripten gesetzt ([680eb69](https://github.com/hindermath/home-baseline/commit/680eb69693770f5d890308a731cb25710e7bebd3))
+* **scripts:** Parameter -WorkspaceName in check-homogeneity.ps1 ergänzt (CI-Fix) ([be7ea76](https://github.com/hindermath/home-baseline/commit/be7ea76092071388819087ccedcc578a82b36584))
+
+
+### Documentation / Dokumentation
+
+* ausführlicher Abschnitt zur agentischen KI in README.md ergänzt ([16ebb58](https://github.com/hindermath/home-baseline/commit/16ebb584bc1b3fb60947e50b9e0069935415912f))
+* **constitution:** v1.4.0 — Prinzip VI Observability + docs/-Whitelist ([1e906b4](https://github.com/hindermath/home-baseline/commit/1e906b45a69546b2715080c369f562c8e94dfc7a))
+* **convention:** enforce Verb-Noun naming and mandatory script documentation ([a728ead](https://github.com/hindermath/home-baseline/commit/a728eadb3577d7563779a2fa4783f737fd05f3c3))
+* Integration bestehender Projekte dokumentiert ([12601f3](https://github.com/hindermath/home-baseline/commit/12601f326c28c6f02fd1aa17b5011a37ea7c3bf3))
+* neue Workspaces und didaktische Erweiterungen in README.md ([8909394](https://github.com/hindermath/home-baseline/commit/8909394e9ff811d0d8b0993a8ea0a9ffa7af7a28))
+* Sicherheitshinweis (Safety First) für bootstrap-project in README.md ergänzt ([604ad2a](https://github.com/hindermath/home-baseline/commit/604ad2a679ceccc4a43f8cd1292ce5abceacde10))
+
 ## [0.6.2](https://github.com/hindermath/home-baseline/compare/v0.6.1...v0.6.2) (2026-04-11)
 
 
