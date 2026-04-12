@@ -1,4 +1,4 @@
-# Constitution v1.1.2
+# Constitution v1.3.0
 
 # home-baseline Constitution
 
@@ -46,18 +46,23 @@ incident. Automated prevention at push time is the last reliable gate. The
 surgical subdirectory exception enables Spec-Kit tool definitions to be
 synchronized across devices without exposing any credentials.
 
-### II. Cross-Platform Parity
+### II. Cross-Platform Parity & Documentation
 
 Every critical script MUST exist in two variants:
 - Bash (`.sh`) for macOS/Linux
 - PowerShell Core 7+ (`.ps1`) for Windows
 
 Both variants MUST provide identical functionality and produce equivalent output.
-A new script is not considered complete until both variants exist, pass manual
-verification, and are committed together in the same commit.
+A new script is not considered complete until:
+1. Both variants exist and pass manual verification.
+2. A corresponding Unix man-page is provided for the Bash variant (stored in `docs/man/`).
+3. Complete bilingual comment-based help is provided for the PowerShell variant.
+4. PowerShell scripts MUST also be available as Cmdlets (Advanced Functions) using the `Verb-Noun` naming convention (e.g., `New-HBWorkspace`).
+5. Help switches (`-h`, `--help`) point to the man-page or internal help.
 
-**Rationale**: The workspace is used on macOS and Windows. Bash-only or PowerShell-only scripts create a
-second-class experience on one platform.
+All files MUST be committed together in the same commit.
+
+**Rationale**: The workspace is used on macOS and Windows. Bash-only or PowerShell-only scripts create a second-class experience. Professional documentation ensures maintainability and ease of use across platforms.
 
 ### III. Bootstrap Automation
 
@@ -143,7 +148,12 @@ Coding style rules that apply to all scripts in this repository:
 - **Indentation**: 2 spaces in Bash, 4 spaces in PowerShell
 - **Filenames**: kebab-case (e.g., `bootstrap-workspace.sh`)
 - **PowerShell parameters**: PascalCase (e.g., `-WorkspaceName`, `-WhatIf`)
+- **PowerShell naming**: Use the standard `Verb-Noun` pattern for functions and Cmdlets (e.g., `New-HBWorkspace`, `Set-HBSettings`).
 - **Bash variables**: lowercase_underscore (e.g., `repo_name`)
+- **Documentation**: 
+  - Bash scripts MUST have a corresponding man-page in `docs/man/` (section 1).
+  - PowerShell scripts MUST include complete comment-based help (`.SYNOPSIS`, `.DESCRIPTION`, etc.).
+  - Both MUST be bilingual (DE / EN) or consistent with existing script headers.
 - **User-facing messages**: German primary (`Fehler:`, `Verzeichnis nicht gefunden`);
   English is acceptable in code comments
 - **Visual output**: box-drawing characters (╔, ║, ╚, ✓, →) for structured console blocks
@@ -198,7 +208,7 @@ allowed path.
 per-agent operational guidance. This constitution is the authoritative policy
 layer above all agent-specific files.
 
-**Version**: 1.1.2 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
+**Version**: 1.3.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-12
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

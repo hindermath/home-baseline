@@ -133,7 +133,9 @@ Each bootstrapped workspace (e.g. `~/MyProjects/`, `~/WorkProjects/`) is an inde
 - Indentation: 2 spaces (Bash), 4 spaces (PowerShell)
 - Filenames: kebab-case (`bootstrap-workspace.sh`)
 - PowerShell parameters: PascalCase (`-WorkspaceName`, `-WhatIf`)
+- **PowerShell naming**: Functions and Cmdlets MUST use the `Verb-Noun` pattern (e.g. `New-HBWorkspace`).
 - Bash variables: lowercase_underscore
+- **Documentation mandatory**: Every new script MUST have a Unix man-page (for `.sh`) in `docs/man/` and complete bilingual comment-based help (for `.ps1`). Help switches (`-h`, `--help`) MUST point to the documentation.
 
 ### User-facing messages
 German primary (`Fehler:`, `Verzeichnis nicht gefunden`), English acceptable in code comments. Box-drawing characters (╔, ║, ╚, ✓, →) used for visual output blocks.

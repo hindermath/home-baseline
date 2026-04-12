@@ -70,6 +70,8 @@ Bash scripts use `#!/usr/bin/env bash` plus `set -euo pipefail`. PowerShell scri
 - Two-space indentation in Bash, four spaces in PowerShell.
 - Script filenames use kebab-case, for example `bootstrap-workspace.sh`.
 - PowerShell parameters use PascalCase, for example `-WorkspaceName`.
+- **PowerShell naming**: Functions and Cmdlets MUST use the `Verb-Noun` pattern (e.g., `New-HBWorkspace`).
+- **Documentation mandatory**: Every new script MUST have a Unix man-page (for `.sh`) in `docs/man/` and complete bilingual comment-based help (for `.ps1`).
 - Prefer clear German-facing user messages; keep README content bilingual when editing existing sections.
 
 ## Testing Guidelines
