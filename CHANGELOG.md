@@ -8,6 +8,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.7.1](https://github.com/hindermath/home-baseline/compare/v0.7.0...v0.7.1) (2026-04-12)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* Workspace-Einträge aus Template-README entfernt ([0cd6f1b](https://github.com/hindermath/home-baseline/commit/0cd6f1b6b21e05f6aa68557ea0a088381c99129f))
+
+
+### Maintenance / Wartung
+
+* STATS.md aktualisiert ([5ce0c6c](https://github.com/hindermath/home-baseline/commit/5ce0c6c6dc0222af88bf9f36f9c600dcf1e3f339))
+
 ## [0.7.0](https://github.com/hindermath/home-baseline/compare/v0.6.2...v0.7.0) (2026-04-12)
 
 
