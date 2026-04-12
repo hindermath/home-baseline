@@ -361,18 +361,20 @@ else
   fi
 fi
 
-# ─── Step 7: README.md ───────────────────────────────────────────────────────
+# ─── Step 7: README.md erzeugen ───────────────────────────────────────────────
 step_start "README.md erzeugen"
 if [ -f "${TARGET_DIR}/README.md" ] && ! $OPT_FORCE; then
   step_skip "Datei existiert"
 else
-  readme_tmpl="${TEMPLATES_DIR}/readme-template.md"
+  readme_tmpl="${TEMPLATES_DIR}/project-readme-template.md"
+  [ -f "$readme_tmpl" ] || readme_tmpl="${TEMPLATES_DIR}/readme-template.md"
   [ -f "$readme_tmpl" ] || readme_tmpl="${TEMPLATES_DIR}/README.md.tmpl"
+
   if [ -f "$readme_tmpl" ]; then
     render_template "$readme_tmpl" "${TARGET_DIR}/README.md"
     step_done
   else
-    step_warn "Template nicht gefunden: readme-template.md / README.md.tmpl"
+    step_warn "Template nicht gefunden: project-readme-template.md / readme-template.md / README.md.tmpl"
   fi
 fi
 
