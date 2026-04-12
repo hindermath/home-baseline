@@ -284,15 +284,31 @@ run "cp '$SCRIPTS_SRC/hooks/pre-push'            '$WORKSPACE_DIR/scripts/hooks/'
 run "chmod +x '$WORKSPACE_DIR/scripts/'*.sh '$WORKSPACE_DIR/scripts/hooks/pre-push'"
 ok "Scripts kopiert"
 
+# --- README.md erzeugen --------------------------------------------------------
+
+info "Erstelle Workspace-README.md …"
+WS_README_TMPL="$SCRIPTS_SRC/templates/workspace-readme-template.md"
+if [ -f "$WS_README_TMPL" ]; then
+  if [ $DRY_RUN -eq 0 ]; then
+    sed "s/{{WORKSPACE_NAME}}/${WORKSPACE_NAME}/g" "$WS_README_TMPL" > "$WORKSPACE_DIR/README.md"
+    ok "Workspace-README.md erstellt"
+  else
+    echo "  [dry-run] Workspace-README.md würde aus $WS_README_TMPL erstellt."
+  fi
+else
+  log "WARN: Template '$WS_README_TMPL' nicht gefunden — überspringe README-Erstellung."
+fi
+
 # --- git init + commit ---------------------------------------------------------
 
 info "Initialisiere Git-Repository …"
 run "git -C '$WORKSPACE_DIR' init"
-run "git -C '$WORKSPACE_DIR' add .gitignore scripts/"
+run "git -C '$WORKSPACE_DIR' add .gitignore scripts/ README.md"
 run "git -C '$WORKSPACE_DIR' commit -m 'chore: initiale Baseline-Konfiguration für $WORKSPACE_NAME
 
 - .gitignore        – schließt Sub-Repos und Artefakte aus
 - scripts/          – Secret-Scan, Hook-Installation (Bash + PowerShell)
+- README.md         – Workspace-Dokumentation (bilingual)
 
 Nach dem Clonen auf neuem Gerät:
   bash scripts/install-hooks.sh       (macOS/Linux)
