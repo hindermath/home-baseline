@@ -4,6 +4,7 @@
 [CmdletBinding()]
 param(
     [string]$TargetDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }),
+    [string]$WorkspaceName = '',
     [switch]$Json,
     [switch]$DryRun,
     [string]$ApplyPatch = '',
