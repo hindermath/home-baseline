@@ -4,15 +4,14 @@
 #
 # Usage: pwsh scripts/migrate-workspace.ps1 [-WorkspaceName <string>] [-WhatIf] [-Force]
 # Exit codes: 0=success, 1=partial fail, 2=critical error
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
-
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [string]$WorkspaceName = '',
-    [switch]$WhatIf,
     [switch]$Force
 )
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
 $ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TemplatesDir = Join-Path $ScriptDir 'templates'
@@ -45,13 +44,13 @@ on:
 
 jobs:
   check:
-    name: Homogeneity Check (${{ matrix.os }})
+    name: Agent Secret Scan (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
 
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-14, windows-latest]
+        os: [ubuntu-22.04, macos-14, windows-2022]
 
     steps:
       - name: Checkout
@@ -59,41 +58,59 @@ jobs:
 
       - name: Install ripgrep (Ubuntu)
         if: runner.os == 'Linux'
-        run: sudo apt-get install -y ripgrep
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ripgrep
 
       - name: Install ripgrep (macOS)
         if: runner.os == 'macOS'
         run: brew install ripgrep
 
-      - name: Install ripgrep (Windows)
-        if: runner.os == 'Windows'
-        run: choco install ripgrep -y
-
-      - name: Run Homogeneity Check (Bash)
+      - name: Run Agent Secret Scan (Bash)
         if: runner.os != 'Windows'
-        run: bash scripts/check-homogeneity.sh $(basename "$GITHUB_WORKSPACE")
+        run: bash scripts/scan-agent-secrets.sh --fail-on-high .
 
-      - name: Run Homogeneity Check (PowerShell)
+      - name: Run Agent Secret Scan (PowerShell)
         if: runner.os == 'Windows'
         shell: pwsh
-        run: pwsh scripts/check-homogeneity.ps1 -WorkspaceName (Split-Path $env:GITHUB_WORKSPACE -Leaf)
+        run: |
+          & "${env:GITHUB_WORKSPACE}/scripts/scan-agent-secrets.ps1" `
+            -WorkspaceRoot "${env:GITHUB_WORKSPACE}" `
+            -FailOnHigh
 '@
+
+function Test-LegacyWorkflowYml {
+    param([string]$Path)
+    if (-not (Test-Path $Path)) {
+        return $false
+    }
+    $content = Get-Content $Path -Raw
+    return $content -match 'scripts/check-homogeneity\.(sh|ps1)|-WorkspaceName'
+}
 
 function Write-WorkflowYml {
     param([string]$TargetDir)
     $ymlFile = Join-Path $TargetDir '.github/workflows/homogeneity-check.yml'
+    $workflowAction = 'CREATED'
     if (Test-Path $ymlFile) {
-        Write-Host "  INFO: homogeneity-check.yml already present — skip"
-        return $false
+        if (-not (Test-LegacyWorkflowYml -Path $ymlFile)) {
+            Write-Host "  INFO: homogeneity-check.yml already present — skip"
+            return $false
+        }
+        $workflowAction = 'UPDATED'
+        if ($WhatIfPreference) {
+            Write-Host "  WOULD UPDATE: $($ymlFile -replace [regex]::Escape($HomeDir), '~')"
+            return $true
+        }
     }
-    if ($WhatIf) {
+    if ($WhatIfPreference) {
         Write-Host "  WOULD CREATE: $($ymlFile -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
     $dir = Split-Path $ymlFile -Parent
     New-Item -ItemType Directory -Path $dir -Force | Out-Null
     $WorkflowYml | Set-Content -Path $ymlFile
-    Write-Host "  CREATED: $($ymlFile -replace [regex]::Escape($HomeDir), '~')"
+    Write-Host "  $workflowAction`: $($ymlFile -replace [regex]::Escape($HomeDir), '~')"
     return $true
 }
 
@@ -106,7 +123,7 @@ function Write-Editorconfig {
     }
     $slnFiles = Get-ChildItem -Path $TargetDir -Filter '*.sln' -Depth 0 -ErrorAction SilentlyContinue
     if ($slnFiles.Count -eq 0) { return $false }
-    if ($WhatIf) {
+    if ($WhatIfPreference) {
         Write-Host "  WOULD CREATE: $($ecFile -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
@@ -143,7 +160,7 @@ function Add-EnPlaceholder {
         Write-Host "  INFO: EN block already present — skip ($($File -replace [regex]::Escape($HomeDir), '~'))"
         return $false
     }
-    if ($WhatIf) {
+    if ($WhatIfPreference) {
         Write-Host "  WOULD APPEND: EN placeholder to $($File -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
@@ -161,7 +178,7 @@ function Add-ReadmeSection {
         Write-Host "  INFO: section already present — skip ($(Split-Path $SectionFile -Leaf) in $(Split-Path $Readme -Leaf))"
         return $false
     }
-    if ($WhatIf) {
+    if ($WhatIfPreference) {
         Write-Host "  WOULD APPEND: $(Split-Path $SectionFile -Leaf) to $($Readme -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
@@ -181,7 +198,7 @@ function Install-HookIfNeeded {
         Write-Host "  INFO: pre-push hook already installed — skip ($($TargetDir -replace [regex]::Escape($HomeDir), '~'))"
         return $false
     }
-    if ($WhatIf) {
+    if ($WhatIfPreference) {
         Write-Host "  WOULD INSTALL: pre-push hook in $($TargetDir -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
@@ -237,7 +254,7 @@ function Migrate-Workspace {
         return
     }
 
-    if ($WhatIf) {
+    if ($WhatIfPreference) {
         Write-Host "  [WhatIf: no changes written]"
         return
     }
@@ -287,7 +304,7 @@ foreach ($ws in $workspaces) {
 }
 Write-Host ""
 
-if ($WhatIf) {
+if ($WhatIfPreference) {
     Write-Host "[WhatIf] Vorschau / Preview:"
     foreach ($ws in $workspaces) { Migrate-Workspace -WsDir $ws }
     exit 0

@@ -48,13 +48,29 @@ fi
 
 # ─── homogeneity-check.yml Template ─────────────────────────────────────────
 
+workflow_uses_legacy_check() {
+  local yml_file="$1"
+  [ -f "$yml_file" ] || return 1
+  rg -q 'scripts/check-homogeneity\.(sh|ps1)|-WorkspaceName' "$yml_file"
+}
+
 write_workflow_yml() {
   local target_dir="$1"
   local yml_dir="${target_dir}/.github/workflows"
   local yml_file="${yml_dir}/homogeneity-check.yml"
+  local workflow_action="CREATED"
   if [ -f "$yml_file" ]; then
-    echo "  INFO: homogeneity-check.yml already present — skip"
-    return 0
+    if workflow_uses_legacy_check "$yml_file"; then
+      workflow_action="UPDATED"
+      if $OPT_DRY_RUN; then
+        echo "  WOULD UPDATE: ${yml_file/#$HOME/~}"
+        return 0
+      fi
+      mkdir -p "$yml_dir"
+    else
+      echo "  INFO: homogeneity-check.yml already present — skip"
+      return 0
+    fi
   fi
   if $OPT_DRY_RUN; then
     echo "  WOULD CREATE: ${yml_file/#$HOME/~}"
@@ -70,13 +86,13 @@ on:
 
 jobs:
   check:
-    name: Homogeneity Check (${{ matrix.os }})
+    name: Agent Secret Scan (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
 
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-14, windows-latest]
+        os: [ubuntu-22.04, macos-14, windows-2022]
 
     steps:
       - name: Checkout
@@ -84,26 +100,27 @@ jobs:
 
       - name: Install ripgrep (Ubuntu)
         if: runner.os == 'Linux'
-        run: sudo apt-get install -y ripgrep
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ripgrep
 
       - name: Install ripgrep (macOS)
         if: runner.os == 'macOS'
         run: brew install ripgrep
 
-      - name: Install ripgrep (Windows)
-        if: runner.os == 'Windows'
-        run: choco install ripgrep -y
-
-      - name: Run Homogeneity Check (Bash)
+      - name: Run Agent Secret Scan (Bash)
         if: runner.os != 'Windows'
-        run: bash scripts/check-homogeneity.sh $(basename "$GITHUB_WORKSPACE")
+        run: bash scripts/scan-agent-secrets.sh --fail-on-high .
 
-      - name: Run Homogeneity Check (PowerShell)
+      - name: Run Agent Secret Scan (PowerShell)
         if: runner.os == 'Windows'
         shell: pwsh
-        run: pwsh scripts/check-homogeneity.ps1 -WorkspaceName (Split-Path $env:GITHUB_WORKSPACE -Leaf)
+        run: |
+          & "${env:GITHUB_WORKSPACE}/scripts/scan-agent-secrets.ps1" `
+            -WorkspaceRoot "${env:GITHUB_WORKSPACE}" `
+            -FailOnHigh
 YMLEOF
-  echo "  CREATED: ${yml_file/#$HOME/~}"
+  echo "  ${workflow_action}: ${yml_file/#$HOME/~}"
 }
 
 # ─── .editorconfig for C# projects ───────────────────────────────────────────
