@@ -3,6 +3,7 @@ release:
   stage: release
   image: ubuntu:24.04
   resource_group: release
+  allow_failure: true
   before_script:
     - apt-get update -qq
     - apt-get install -y -qq bash curl git jq
