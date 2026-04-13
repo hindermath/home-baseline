@@ -222,19 +222,34 @@ All released changes for this repository.
 EOF
 fi
 
-if ! grep -q "^## v${next_version} -" CHANGELOG.md; then
-  changelog_tmp="${temp_dir}/CHANGELOG.md"
-  {
-    sed -n '1,4p' CHANGELOG.md
-    printf '\n'
-    cat "$notes_file"
-    if [ "$(wc -l < CHANGELOG.md)" -gt 4 ]; then
-      printf '\n'
-      tail -n +5 CHANGELOG.md
-    fi
-  } > "$changelog_tmp"
-  mv "$changelog_tmp" CHANGELOG.md
+changelog_tmp="${temp_dir}/CHANGELOG.md"
+existing_body="${temp_dir}/CHANGELOG.body.md"
+filtered_body="${temp_dir}/CHANGELOG.body.filtered.md"
+
+if [ "$(wc -l < CHANGELOG.md)" -gt 4 ]; then
+  tail -n +5 CHANGELOG.md > "$existing_body"
+else
+  : > "$existing_body"
 fi
+
+# Refresh the current version block instead of keeping a stale pre-created draft.
+awk -v version="v${next_version}" '
+  BEGIN { skip = 0 }
+  $0 ~ ("^## " version " -") { skip = 1; next }
+  skip && $0 ~ /^## / { skip = 0 }
+  !skip { print }
+' "$existing_body" > "$filtered_body"
+
+{
+  sed -n '1,4p' CHANGELOG.md
+  printf '\n'
+  cat "$notes_file"
+  if [ -s "$filtered_body" ]; then
+    printf '\n'
+    sed '/./,$!d' "$filtered_body"
+  fi
+} > "$changelog_tmp"
+mv "$changelog_tmp" CHANGELOG.md
 
 echo "Next version: v${next_version}"
 echo "Bump level: ${bump}"
