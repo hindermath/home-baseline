@@ -122,8 +122,12 @@ environments across all devices.
 
 ### V. Manual-First Verification
 
-There is no automated CI/CD pipeline for `home-baseline` scripts. Verification
-is manual and MUST follow the safe-mode-first rule:
+`home-baseline` uses a blended verification model: manual verification remains
+mandatory for script changes, and lightweight automated CI/CD guardrails on
+GitHub MAY complement it. GitLab release automation is also maintained in this
+repository as reusable baseline logic and MUST be validated through real
+project pipelines before it is treated as production-ready. Verification MUST
+follow the safe-mode-first rule:
 
 - Bootstrap changes: always test with `--dry-run` (Bash) / `-WhatIf` (PowerShell)
   before running for real.
@@ -135,8 +139,9 @@ is manual and MUST follow the safe-mode-first rule:
 Automated test tooling MUST NOT be added to this repository unless a formal
 decision is made and documented in this constitution (Governance section).
 
-**Rationale**: The scripts are low-churn infrastructure. The overhead of a test
-framework would exceed the benefit for the current scope.
+**Rationale**: The scripts are low-churn infrastructure. Manual dry-runs and
+real pipeline validation catch the most relevant operational risks with less
+maintenance overhead than a broad scripted test framework.
 
 ### VI. Observability & Continuous Measurement
 

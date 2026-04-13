@@ -927,8 +927,9 @@ pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/Ri
 
 2. Danach laeuft auf dem Default-Branch ein manueller `release`-Job in GitLab CI
 3. Beim Start dieses Jobs werden `CHANGELOG.md`, Git-Tag und GitLab Release automatisch erzeugt
+4. Der `release`-Job bleibt bewusst manuell, blockiert aber den Gesamtstatus der Pipeline nicht
 
-*GitLab repositories use `setup-gitlab-release.*` as a GitLab-native replacement: install the baseline once, then trigger the manual `release` job on the default branch to create `CHANGELOG.md`, tag, and GitLab Release.*
+*GitLab repositories use `setup-gitlab-release.*` as a GitLab-native replacement: install the baseline once, then trigger the manual `release` job on the default branch to create `CHANGELOG.md`, tag, and GitLab Release. The job stays manual by design, but it does not block the overall pipeline status.*
 
 ---
 
