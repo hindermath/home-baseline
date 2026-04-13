@@ -14,7 +14,10 @@ if [ -z "$default_branch" ]; then
   default_branch="$(git branch --show-current)"
 fi
 
-current_branch="$(git branch --show-current)"
+current_branch="${CI_COMMIT_REF_NAME:-}"
+if [ -z "$current_branch" ]; then
+  current_branch="$(git branch --show-current)"
+fi
 if [ "$current_branch" != "$default_branch" ] && [ "$release_dry_run" != "true" ]; then
   echo "Release job must run on ${default_branch}, current branch is ${current_branch}." >&2
   exit 1
