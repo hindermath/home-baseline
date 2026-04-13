@@ -112,13 +112,10 @@ jobs:
         if: runner.os != 'Windows'
         run: bash scripts/scan-agent-secrets.sh --fail-on-high .
 
-      - name: Run Agent Secret Scan (PowerShell)
+      - name: Run Agent Secret Scan (Bash on Windows)
         if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          & "${env:GITHUB_WORKSPACE}/scripts/scan-agent-secrets.ps1" `
-            -WorkspaceRoot "${env:GITHUB_WORKSPACE}" `
-            -FailOnHigh
+        shell: bash
+        run: bash scripts/scan-agent-secrets.sh --fail-on-high .
 YMLEOF
   echo "  ${workflow_action}: ${yml_file/#$HOME/~}"
 }
