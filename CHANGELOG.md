@@ -8,6 +8,29 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.8.0](https://github.com/hindermath/home-baseline/compare/v0.7.1...v0.8.0) (2026-04-13)
+
+
+### Features / Neue Funktionen
+
+* add gitlab release automation baseline ([8d25b31](https://github.com/hindermath/home-baseline/commit/8d25b3189940052f9bf505c2bbf74fde411d07f0))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* install ripgrep for windows secret scan ([d06de8c](https://github.com/hindermath/home-baseline/commit/d06de8c1cf0072315e55415854d92bd4f7761a9b))
+* make gitlab release jobs non-blocking ([ce1269c](https://github.com/hindermath/home-baseline/commit/ce1269ccbdc5bb3102a0a3b220647c8c36d5eea1))
+* refresh gitlab release changelog blocks ([a7dedd6](https://github.com/hindermath/home-baseline/commit/a7dedd667e30e7a0c1e877e2c244b8f4b2ec35b7))
+* repair migrate-workspace CI template ([2246a2b](https://github.com/hindermath/home-baseline/commit/2246a2be7267778a854493fbb3ccba52026a31ae))
+* stabilize windows secret scan CI ([4f45527](https://github.com/hindermath/home-baseline/commit/4f455276ce588394be3bb706f94ca04564109df4))
+* support gitlab detached-head release jobs ([c02ad26](https://github.com/hindermath/home-baseline/commit/c02ad264f8895ee352e89a899a63faccd294fd56))
+
+
+### Documentation / Dokumentation
+
+* align release guidance across agents ([6de4f2c](https://github.com/hindermath/home-baseline/commit/6de4f2c2ce691e0af68967da65be82cd055e5aff))
+* sync gemini release guidance ([a4a8288](https://github.com/hindermath/home-baseline/commit/a4a82880d3822fb36c6104706b1e877e745758f0))
+
 ## [0.7.1](https://github.com/hindermath/home-baseline/compare/v0.7.0...v0.7.1) (2026-04-12)
 
 
