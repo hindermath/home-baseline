@@ -891,9 +891,9 @@ bash ~/scripts/sync-home.sh --no-pull
 
 ### Releases und Versionierung / Releases & Versioning
 
-Releases werden automatisch durch **[Release Please](https://github.com/googleapis/release-please-action)** erstellt — Grundlage sind die [Conventional Commits](https://www.conventionalcommits.org/).
+GitHub- und GitLab-Releases folgen beide den [Conventional Commits](https://www.conventionalcommits.org/), verwenden aber unterschiedliche Automationspfade.
 
-*Releases are created automatically by **[Release Please](https://github.com/googleapis/release-please-action)** based on [Conventional Commits](https://www.conventionalcommits.org/).*
+*GitHub and GitLab releases both follow [Conventional Commits](https://www.conventionalcommits.org/), but they use different automation paths.*
 
 | Commit-Präfix / Prefix | Versions-Bump |
 |---|---|
@@ -901,13 +901,34 @@ Releases werden automatisch durch **[Release Please](https://github.com/googleap
 | `feat:` | Minor: `0.3.1 → 0.4.0` |
 | `feat!:` oder `BREAKING CHANGE` | Major: `0.3.x → 1.0.0` |
 
-**Ablauf / Flow:**
+**GitHub / GitHub**
+
+GitHub-Repositories verwenden **[Release Please](https://github.com/googleapis/release-please-action)**.
 
 1. Commits auf `main` pushen
-2. Release Please öffnet automatisch einen **Release PR** (`chore(main): release X.Y.Z`) und aktualisiert `CHANGELOG.md` sowie `.release-please-manifest.json`
-3. PR mergen → Git-Tag + GitHub Release werden erstellt
+2. Release Please oeffnet oder aktualisiert automatisch einen Release PR
+3. PR mergen -> Git-Tag + GitHub Release werden erstellt
 
-*1. Push commits to `main`. 2. Release Please opens or updates a Release PR automatically. 3. Merge the PR → Git tag + GitHub Release are created.*
+*GitHub repositories use **Release Please**: push to `main`, let Release Please open or update the release PR, then merge the PR to create tag and GitHub Release.*
+
+**GitLab / GitLab**
+
+GitLab-Repositories verwenden `scripts/setup-gitlab-release.sh` bzw. `scripts/setup-gitlab-release.ps1` als GitLab-native Alternative.
+
+1. Release-Basis in das Repo einhaengen:
+
+```bash
+bash ~/home-baseline-tmp/scripts/setup-gitlab-release.sh ~/RiderProjects/MyGitLabRepo --gitlab-url https://gitlab-ce.gwdg.de
+```
+
+```powershell
+pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/RiderProjects/MyGitLabRepo -GitLabUrl https://gitlab-ce.gwdg.de
+```
+
+2. Danach laeuft auf dem Default-Branch ein manueller `release`-Job in GitLab CI
+3. Beim Start dieses Jobs werden `CHANGELOG.md`, Git-Tag und GitLab Release automatisch erzeugt
+
+*GitLab repositories use `setup-gitlab-release.*` as a GitLab-native replacement: install the baseline once, then trigger the manual `release` job on the default branch to create `CHANGELOG.md`, tag, and GitLab Release.*
 
 ---
 
@@ -952,7 +973,12 @@ Releases werden automatisch durch **[Release Please](https://github.com/googleap
 | `.github/workflows/release-please.yml` | Release Please — erstellt Release PRs automatisch bei jedem Push auf `main` |
 | `release-please-config.json` | Konfiguration: `release-type: simple`, bilinguale Changelog-Sektionen |
 | `.release-please-manifest.json` | Aktuell getrackte Version — wird von Release Please automatisch aktualisiert |
-| `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/) — von Release Please verwaltet |
+| `scripts/setup-gitlab-release.sh` | GitLab Release-Automation in bestehendes Repo einhaengen (Bash) |
+| `scripts/setup-gitlab-release.ps1` | GitLab Release-Automation in bestehendes Repo einhaengen (PowerShell Core) |
+| `scripts/templates/release-gitlab.sh.tmpl` | Generisches GitLab Release-Skript fuer SemVer, CHANGELOG, Tag und Release |
+| `scripts/templates/gitlab-release-job.yml.tmpl` | GitLab CI Job-Block fuer manuellen `release`-Job |
+| `scripts/templates/changelog-template.md` | Initiale CHANGELOG-Vorlage fuer GitLab-Repos |
+| `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/) — von Release Please oder GitLab Release-Job verwaltet |
 
 ### Sicherheit / Security
 
@@ -1799,4 +1825,3 @@ Regeln für neue Inhalte / Rules for new content:
 - Neue Abschnitte bilingual anlegen (DE-Absatz → EN-Absatz in Kursiv)
 - Überschriften-Hierarchie einhalten: h2 → h3 → h4 — keine Ebene überspringen
 - Linkbeschriftungen beschreibend wählen — nicht `[hier](...)` oder `[here](...)`
-

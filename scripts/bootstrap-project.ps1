@@ -139,9 +139,13 @@ if ($Preview) {
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
     if (-not $NoReleasePlease) {
-        $null = $previewActions.Add(@('CREATE', "$TargetDir/release-please-config.json", 'Release Please Konfiguration'))
-        $null = $previewActions.Add(@('CREATE', "$TargetDir/.release-please-manifest.json", 'Release Please Manifest'))
-        $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/release-please.yml", 'Release Please Workflow'))
+        if ($Platform -eq 'github') {
+            $null = $previewActions.Add(@('CREATE', "$TargetDir/release-please-config.json", 'Release Please Konfiguration'))
+            $null = $previewActions.Add(@('CREATE', "$TargetDir/.release-please-manifest.json", 'Release Please Manifest'))
+            $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/release-please.yml", 'Release Please Workflow'))
+        } else {
+            $null = $previewActions.Add(@('PRINT', 'setup-gitlab-release.ps1 nach Projekt-CI ausfuehren', 'GitLab Release-Automation'))
+        }
     }
     $null = $previewActions.Add(@('COPY', "$TargetDir/scripts/", 'von ~/scripts/'))
     $null = $previewActions.Add(@('INSTALL', "$TargetDir/.git/hooks/pre-push"))
@@ -380,9 +384,10 @@ elseif (Test-Path (Join-Path $TemplatesDir 'gitignore-project.tmpl')) {
     Step-Done
 } else { Step-Warn "Template nicht gefunden: gitignore-project.tmpl" }
 
-# 9b. Release Please einrichten
-Step-Start "Release Please einrichten"
+# 9b. Release-Automation einrichten
+Step-Start "Release-Automation einrichten"
 if ($NoReleasePlease) { Step-Skip "-NoReleasePlease" }
+elseif ($Platform -eq 'gitlab') { Step-Skip "GitLab: via setup-gitlab-release.ps1" }
 elseif ((Test-Path (Join-Path $TargetDir 'release-please-config.json')) -and -not $Force) { Step-Skip "Konfiguration existiert bereits" }
 else {
     New-Item -ItemType Directory -Path (Join-Path $TargetDir '.github/workflows') -Force | Out-Null

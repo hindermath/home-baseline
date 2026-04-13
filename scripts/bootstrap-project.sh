@@ -225,9 +225,13 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
   if ! $OPT_NO_RELEASE_PLEASE; then
-    preview_action "CREATE" "${TARGET_DIR}/release-please-config.json" "Release Please Konfiguration"
-    preview_action "CREATE" "${TARGET_DIR}/.release-please-manifest.json" "Release Please Manifest"
-    preview_action "CREATE" "${TARGET_DIR}/.github/workflows/release-please.yml" "Release Please Workflow"
+    if [ "$OPT_PLATFORM" = "github" ]; then
+      preview_action "CREATE" "${TARGET_DIR}/release-please-config.json" "Release Please Konfiguration"
+      preview_action "CREATE" "${TARGET_DIR}/.release-please-manifest.json" "Release Please Manifest"
+      preview_action "CREATE" "${TARGET_DIR}/.github/workflows/release-please.yml" "Release Please Workflow"
+    else
+      preview_action "PRINT" "setup-gitlab-release.sh nach Projekt-CI ausfuehren" "GitLab Release-Automation"
+    fi
   fi
   preview_action "COPY" "${TARGET_DIR}/scripts/" "von ~/scripts/"
   preview_action "INSTALL" "${TARGET_DIR}/.git/hooks/pre-push" "von ~/scripts/hooks/pre-push"
@@ -517,10 +521,12 @@ else
   fi
 fi
 
-# ─── Step 9b: Release Please einrichten ─────────────────────────────────────
-step_start "Release Please einrichten"
+# ─── Step 9b: Release-Automation einrichten ─────────────────────────────────
+step_start "Release-Automation einrichten"
 if $OPT_NO_RELEASE_PLEASE; then
   step_skip "--no-release-please"
+elif [ "$OPT_PLATFORM" = "gitlab" ]; then
+  step_skip "GitLab: via setup-gitlab-release.sh"
 elif [ -f "${TARGET_DIR}/release-please-config.json" ] && ! $OPT_FORCE; then
   step_skip "Konfiguration existiert bereits"
 else
