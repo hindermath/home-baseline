@@ -16,6 +16,7 @@ $ErrorActionPreference = 'Stop'
 $ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TemplatesDir = Join-Path $ScriptDir 'templates'
 $HomeDir      = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
+$WorkspaceGitignoreHeader = '# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)'
 
 # ─── Prerequisites ────────────────────────────────────────────────────────────
 
@@ -122,7 +123,7 @@ function Write-Editorconfig {
         Write-Host "  INFO: .editorconfig already present — skip"
         return $false
     }
-    $slnFiles = Get-ChildItem -Path $TargetDir -Filter '*.sln' -Depth 0 -ErrorAction SilentlyContinue
+    $slnFiles = @(Get-ChildItem -Path $TargetDir -Filter '*.sln' -Depth 0 -ErrorAction SilentlyContinue)
     if ($slnFiles.Count -eq 0) { return $false }
     if ($WhatIfPreference) {
         Write-Host "  WOULD CREATE: $($ecFile -replace [regex]::Escape($HomeDir), '~')"
@@ -151,6 +152,102 @@ indent_size = 2
 "@ | Set-Content -Path $ecFile
     Write-Host "  CREATED: $($ecFile -replace [regex]::Escape($HomeDir), '~')"
     return $true
+}
+
+function Set-DefaultWorkspaceGitignore {
+    param(
+        [string]$Path,
+        [string[]]$ProjectNames
+    )
+
+    $lines = [System.Collections.Generic.List[string]]::new()
+    $lines.Add($script:WorkspaceGitignoreHeader)
+    foreach ($name in $ProjectNames) {
+        $lines.Add("$name/")
+    }
+    $lines.Add('')
+    $lines.AddRange(@(
+        '# macOS',
+        '.DS_Store',
+        '.AppleDouble',
+        '.LSOverride',
+        '',
+        '# JetBrains IDEs',
+        '.idea/',
+        '*.iws',
+        '*.iml',
+        '',
+        '# VS Code (lokale Einstellungen)',
+        '.vscode/c_cpp_properties.json',
+        '.vscode/settings.json',
+        '',
+        '# Build-Artefakte',
+        'bin/',
+        'obj/',
+        'build/',
+        'node_modules/'
+    ))
+    $lines | Set-Content -Path $Path -Encoding UTF8
+}
+
+function Update-WorkspaceGitignoreEntry {
+    param(
+        [string]$WorkspaceDir,
+        [string]$ProjectName
+    )
+
+    $gitignorePath = Join-Path $WorkspaceDir '.gitignore'
+    $entry = "$ProjectName/"
+
+    if (-not $ProjectName) {
+        return 'Unchanged'
+    }
+
+    if (-not (Test-Path $gitignorePath)) {
+        if ($WhatIfPreference) {
+            return 'WouldCreate'
+        }
+        Set-DefaultWorkspaceGitignore -Path $gitignorePath -ProjectNames @($ProjectName)
+        return 'Created'
+    }
+
+    $lines = Get-Content $gitignorePath
+    if ($lines -contains $entry) {
+        return 'Unchanged'
+    }
+
+    if ($WhatIfPreference) {
+        return 'WouldUpdate'
+    }
+
+    $updated = [System.Collections.Generic.List[string]]::new()
+    $headerIndex = [Array]::IndexOf($lines, $script:WorkspaceGitignoreHeader)
+    if ($headerIndex -ge 0) {
+        $insertIndex = $lines.Length
+        for ($i = $headerIndex + 1; $i -lt $lines.Length; $i++) {
+            if ($lines[$i] -eq '') {
+                $insertIndex = $i
+                break
+            }
+        }
+        for ($i = 0; $i -lt $lines.Length; $i++) {
+            if ($i -eq $insertIndex) {
+                $updated.Add($entry)
+            }
+            $updated.Add($lines[$i])
+        }
+        if ($insertIndex -eq $lines.Length) {
+            $updated.Add($entry)
+        }
+    } else {
+        $updated.Add($script:WorkspaceGitignoreHeader)
+        $updated.Add($entry)
+        $updated.Add('')
+        $updated.AddRange($lines)
+    }
+
+    $updated | Set-Content -Path $gitignorePath -Encoding UTF8
+    return 'Updated'
 }
 
 function Add-EnPlaceholder {
@@ -244,7 +341,16 @@ function Migrate-Workspace {
     Get-ChildItem -Path $WsDir -Directory -ErrorAction SilentlyContinue | Sort-Object Name | ForEach-Object {
         $projDir = $_.FullName
         if (-not (Test-Path (Join-Path $projDir '.git'))) { return }
-        Write-Host "  Level-2: $(Split-Path $projDir -Leaf)/"
+        $projName = Split-Path $projDir -Leaf
+        Write-Host "  Level-2: $projName/"
+        $workspaceGitignoreState = Update-WorkspaceGitignoreEntry -WorkspaceDir $WsDir -ProjectName $projName
+        switch ($workspaceGitignoreState) {
+            'Created'     { Write-Host "  CREATED: $($WsDir -replace [regex]::Escape($HomeDir), '~')/.gitignore (+ $projName/)"; $changed = $true }
+            'Updated'     { Write-Host "  UPDATED: $($WsDir -replace [regex]::Escape($HomeDir), '~')/.gitignore (+ $projName/)"; $changed = $true }
+            'WouldCreate' { Write-Host "  WOULD CREATE: $($WsDir -replace [regex]::Escape($HomeDir), '~')/.gitignore (+ $projName/)"; $changed = $true }
+            'WouldUpdate' { Write-Host "  WOULD UPDATE: $($WsDir -replace [regex]::Escape($HomeDir), '~')/.gitignore (+ $projName/)"; $changed = $true }
+            default       { Write-Host "  INFO: workspace .gitignore already lists $projName/ — skip" }
+        }
         if (Write-WorkflowYml -TargetDir $projDir) { $changed = $true }
         if (Write-Editorconfig -TargetDir $projDir) { $changed = $true }
         if (Install-HookIfNeeded -TargetDir $projDir) { $changed = $true }

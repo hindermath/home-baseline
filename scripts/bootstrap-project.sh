@@ -160,9 +160,11 @@ fi
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=27
+TOTAL_STEPS=28
 SKIPPED=0
 PARTIAL_FAIL=false
+WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
+WORKSPACE_GITIGNORE_RESULT="unchanged"
 
 preview_action() {
   local action="$1" target="$2" note="${3:-}"
@@ -198,6 +200,116 @@ step_warn() {
   PARTIAL_FAIL=true
 }
 
+write_workspace_gitignore() {
+  local gitignore_path="$1"
+  shift
+
+  {
+    printf '%s\n' "$WORKSPACE_GITIGNORE_HEADER"
+    while [ "$#" -gt 0 ]; do
+      printf '%s/\n' "$1"
+      shift
+    done
+    cat <<'EOF'
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains IDEs
+.idea/
+*.iws
+*.iml
+
+# VS Code (lokale Einstellungen)
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+
+# Build-Artefakte
+bin/
+obj/
+build/
+node_modules/
+EOF
+  } > "$gitignore_path"
+}
+
+ensure_workspace_gitignore_entry() {
+  local workspace_dir="$1"
+  local project_name="$2"
+  local gitignore_path="${workspace_dir}/.gitignore"
+  local entry="${project_name}/"
+  local tmp_file=""
+
+  WORKSPACE_GITIGNORE_RESULT="unchanged"
+
+  if [ -z "$project_name" ]; then
+    return 1
+  fi
+
+  if [ ! -f "$gitignore_path" ]; then
+    if $OPT_DRY_RUN; then
+      WORKSPACE_GITIGNORE_RESULT="would-create"
+      return 0
+    fi
+    write_workspace_gitignore "$gitignore_path" "$project_name"
+    WORKSPACE_GITIGNORE_RESULT="created"
+    return 0
+  fi
+
+  if grep -Fxq "$entry" "$gitignore_path"; then
+    return 1
+  fi
+
+  if $OPT_DRY_RUN; then
+    WORKSPACE_GITIGNORE_RESULT="would-update"
+    return 0
+  fi
+
+  tmp_file="$(mktemp)"
+  if grep -Fxq "$WORKSPACE_GITIGNORE_HEADER" "$gitignore_path"; then
+    awk -v header="$WORKSPACE_GITIGNORE_HEADER" -v entry="$entry" '
+      BEGIN {
+        saw_header = 0
+        in_section = 0
+        inserted = 0
+      }
+      {
+        if (!saw_header && $0 == header) {
+          saw_header = 1
+          in_section = 1
+          print
+          next
+        }
+        if (in_section && $0 == "") {
+          print entry
+          print
+          inserted = 1
+          in_section = 0
+          next
+        }
+        print
+      }
+      END {
+        if (saw_header && in_section && !inserted) {
+          print entry
+        }
+      }
+    ' "$gitignore_path" > "$tmp_file"
+  else
+    {
+      printf '%s\n' "$WORKSPACE_GITIGNORE_HEADER"
+      printf '%s\n\n' "$entry"
+      cat "$gitignore_path"
+    } > "$tmp_file"
+  fi
+
+  mv "$tmp_file" "$gitignore_path"
+  WORKSPACE_GITIGNORE_RESULT="updated"
+  return 0
+}
+
 # ─── Template Substitution ───────────────────────────────────────────────────
 
 render_template() {
@@ -224,6 +336,7 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
+  preview_action "UPDATE" "${TARGET_WORKSPACE}/.gitignore" "Level-2-Projekt im Workspace ignorieren"
   if ! $OPT_NO_RELEASE_PLEASE; then
     if [ "$OPT_PLATFORM" = "github" ]; then
       preview_action "CREATE" "${TARGET_DIR}/release-please-config.json" "Release Please Konfiguration"
@@ -519,6 +632,30 @@ else
   else
     step_warn "Template nicht gefunden: gitignore-project.tmpl"
   fi
+fi
+
+# ─── Step 9a: Workspace-.gitignore aktualisieren ─────────────────────────────
+step_start "Workspace-.gitignore aktualisieren"
+if ensure_workspace_gitignore_entry "$TARGET_WORKSPACE" "$PROJECT_NAME"; then
+  case "$WORKSPACE_GITIGNORE_RESULT" in
+    created)
+      step_done "Workspace-.gitignore erstellt und ${PROJECT_NAME}/ eingetragen"
+      ;;
+    updated)
+      step_done "${PROJECT_NAME}/ im Workspace ignoriert"
+      ;;
+    would-create)
+      step_done "wuerde Workspace-.gitignore erstellen und ${PROJECT_NAME}/ eintragen"
+      ;;
+    would-update)
+      step_done "wuerde ${PROJECT_NAME}/ im Workspace ignorieren"
+      ;;
+    *)
+      step_done
+      ;;
+  esac
+else
+  step_skip "Eintrag vorhanden"
 fi
 
 # ─── Step 9b: Release-Automation einrichten ─────────────────────────────────

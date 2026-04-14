@@ -8,6 +8,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMPLATES_DIR="${SCRIPT_DIR}/templates"
+WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
+WORKSPACE_GITIGNORE_RESULT="unchanged"
 
 # ─── Argument Parsing ────────────────────────────────────────────────────────
 
@@ -165,6 +167,116 @@ ECEOF
   echo "  CREATED: ${ec_file/#$HOME/~}"
 }
 
+write_workspace_gitignore() {
+  local gitignore_path="$1"
+  shift
+
+  {
+    printf '%s\n' "$WORKSPACE_GITIGNORE_HEADER"
+    while [ "$#" -gt 0 ]; do
+      printf '%s/\n' "$1"
+      shift
+    done
+    cat <<'EOF'
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains IDEs
+.idea/
+*.iws
+*.iml
+
+# VS Code (lokale Einstellungen)
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+
+# Build-Artefakte
+bin/
+obj/
+build/
+node_modules/
+EOF
+  } > "$gitignore_path"
+}
+
+ensure_workspace_gitignore_entry() {
+  local workspace_dir="$1"
+  local project_name="$2"
+  local gitignore_path="${workspace_dir}/.gitignore"
+  local entry="${project_name}/"
+  local tmp_file=""
+
+  WORKSPACE_GITIGNORE_RESULT="unchanged"
+
+  if [ -z "$project_name" ]; then
+    return 1
+  fi
+
+  if [ ! -f "$gitignore_path" ]; then
+    if $OPT_DRY_RUN; then
+      WORKSPACE_GITIGNORE_RESULT="would-create"
+      return 0
+    fi
+    write_workspace_gitignore "$gitignore_path" "$project_name"
+    WORKSPACE_GITIGNORE_RESULT="created"
+    return 0
+  fi
+
+  if grep -Fxq "$entry" "$gitignore_path"; then
+    return 1
+  fi
+
+  if $OPT_DRY_RUN; then
+    WORKSPACE_GITIGNORE_RESULT="would-update"
+    return 0
+  fi
+
+  tmp_file="$(mktemp)"
+  if grep -Fxq "$WORKSPACE_GITIGNORE_HEADER" "$gitignore_path"; then
+    awk -v header="$WORKSPACE_GITIGNORE_HEADER" -v entry="$entry" '
+      BEGIN {
+        saw_header = 0
+        in_section = 0
+        inserted = 0
+      }
+      {
+        if (!saw_header && $0 == header) {
+          saw_header = 1
+          in_section = 1
+          print
+          next
+        }
+        if (in_section && $0 == "") {
+          print entry
+          print
+          inserted = 1
+          in_section = 0
+          next
+        }
+        print
+      }
+      END {
+        if (saw_header && in_section && !inserted) {
+          print entry
+        }
+      }
+    ' "$gitignore_path" > "$tmp_file"
+  else
+    {
+      printf '%s\n' "$WORKSPACE_GITIGNORE_HEADER"
+      printf '%s\n\n' "$entry"
+      cat "$gitignore_path"
+    } > "$tmp_file"
+  fi
+
+  mv "$tmp_file" "$gitignore_path"
+  WORKSPACE_GITIGNORE_RESULT="updated"
+  return 0
+}
+
 # ─── Append EN Placeholder ────────────────────────────────────────────────────
 
 append_en_placeholder() {
@@ -291,6 +403,26 @@ migrate_workspace() {
     local proj_name
     proj_name=$(basename "$proj_dir")
     echo "  Level-2: ${proj_name}/"
+
+    if ensure_workspace_gitignore_entry "$ws_dir" "$proj_name"; then
+      changed=true
+      case "$WORKSPACE_GITIGNORE_RESULT" in
+        created)
+          echo "  CREATED: ${ws_dir/#$HOME/~}/.gitignore (+ ${proj_name}/)"
+          ;;
+        updated)
+          echo "  UPDATED: ${ws_dir/#$HOME/~}/.gitignore (+ ${proj_name}/)"
+          ;;
+        would-create)
+          echo "  WOULD CREATE: ${ws_dir/#$HOME/~}/.gitignore (+ ${proj_name}/)"
+          ;;
+        would-update)
+          echo "  WOULD UPDATE: ${ws_dir/#$HOME/~}/.gitignore (+ ${proj_name}/)"
+          ;;
+      esac
+    else
+      echo "  INFO: workspace .gitignore already lists ${proj_name}/ — skip"
+    fi
 
     local proj_changed=false
 

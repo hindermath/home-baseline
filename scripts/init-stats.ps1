@@ -4,13 +4,13 @@
 #
 # Usage: pwsh scripts/init-stats.ps1 [-WorkspaceName <string>]
 # Exit codes: 0=success, 1=error
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
-
 [CmdletBinding()]
 param(
     [string]$WorkspaceName = ''
 )
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $CheckScript = Join-Path $ScriptDir 'check-homogeneity.ps1'
@@ -74,15 +74,30 @@ function Get-ScoreFor {
     }
 }
 
+function Resolve-TargetDir {
+    param([string]$InputPath)
+
+    if (Test-Path $InputPath) {
+        return (Resolve-Path $InputPath).Path
+    }
+
+    $homeCandidate = Join-Path $HomeDir $InputPath
+    if (Test-Path $homeCandidate) {
+        return (Resolve-Path $homeCandidate).Path
+    }
+
+    return $null
+}
+
 # ─── Main ────────────────────────────────────────────────────────────────────
 
 $HomeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
 
 if ($WorkspaceName) {
-    # Scoped mode: only the specified Level-1 workspace and its Level-2 projects
-    $wsDir = Join-Path $HomeDir $WorkspaceName
-    if (-not (Test-Path $wsDir)) {
-        Write-Error "ERROR: Workspace nicht gefunden: $wsDir"
+    # Scoped mode: support either a workspace name or an absolute path
+    $wsDir = Resolve-TargetDir -InputPath $WorkspaceName
+    if (-not $wsDir) {
+        Write-Error "ERROR: Workspace/Pfad nicht gefunden: $WorkspaceName"
         exit 1
     }
 

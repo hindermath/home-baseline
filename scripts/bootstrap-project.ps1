@@ -22,7 +22,7 @@ $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 27
+$TotalSteps = 28
 $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
@@ -31,6 +31,7 @@ $projectSlug = ''
 $projectSlugChanged = $false
 $summaryRepoUrl = ''
 $summaryDisplayRepo = ''
+$WorkspaceGitignoreHeader = '# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)'
 
 function Render-Template {
     param([string]$Template, [string]$Output)
@@ -53,6 +54,102 @@ function Step-Skip  { param([string]$Why='already done')
 }
 function Step-Warn  { param([string]$Msg)
     Write-Host " WARN: $Msg"; $script:PartialFail = $true
+}
+
+function Set-DefaultWorkspaceGitignore {
+    param(
+        [string]$Path,
+        [string[]]$ProjectNames
+    )
+
+    $lines = [System.Collections.Generic.List[string]]::new()
+    $lines.Add($script:WorkspaceGitignoreHeader)
+    foreach ($name in $ProjectNames) {
+        $lines.Add("$name/")
+    }
+    $lines.Add('')
+    $lines.AddRange(@(
+        '# macOS',
+        '.DS_Store',
+        '.AppleDouble',
+        '.LSOverride',
+        '',
+        '# JetBrains IDEs',
+        '.idea/',
+        '*.iws',
+        '*.iml',
+        '',
+        '# VS Code (lokale Einstellungen)',
+        '.vscode/c_cpp_properties.json',
+        '.vscode/settings.json',
+        '',
+        '# Build-Artefakte',
+        'bin/',
+        'obj/',
+        'build/',
+        'node_modules/'
+    ))
+    $lines | Set-Content -Path $Path -Encoding UTF8
+}
+
+function Update-WorkspaceGitignoreEntry {
+    param(
+        [string]$WorkspaceDir,
+        [string]$ProjectName
+    )
+
+    $gitignorePath = Join-Path $WorkspaceDir '.gitignore'
+    $entry = "$ProjectName/"
+
+    if (-not $ProjectName) {
+        return 'Unchanged'
+    }
+
+    if (-not (Test-Path $gitignorePath)) {
+        if ($WhatIfPreference) {
+            return 'WouldCreate'
+        }
+        Set-DefaultWorkspaceGitignore -Path $gitignorePath -ProjectNames @($ProjectName)
+        return 'Created'
+    }
+
+    $lines = Get-Content $gitignorePath
+    if ($lines -contains $entry) {
+        return 'Unchanged'
+    }
+
+    if ($WhatIfPreference) {
+        return 'WouldUpdate'
+    }
+
+    $updated = [System.Collections.Generic.List[string]]::new()
+    $headerIndex = [Array]::IndexOf($lines, $script:WorkspaceGitignoreHeader)
+    if ($headerIndex -ge 0) {
+        $insertIndex = $lines.Length
+        for ($i = $headerIndex + 1; $i -lt $lines.Length; $i++) {
+            if ($lines[$i] -eq '') {
+                $insertIndex = $i
+                break
+            }
+        }
+        for ($i = 0; $i -lt $lines.Length; $i++) {
+            if ($i -eq $insertIndex) {
+                $updated.Add($entry)
+            }
+            $updated.Add($lines[$i])
+        }
+        if ($insertIndex -eq $lines.Length) {
+            $updated.Add($entry)
+        }
+    } else {
+        $updated.Add($script:WorkspaceGitignoreHeader)
+        $updated.Add($entry)
+        $updated.Add('')
+        $updated.AddRange($lines)
+    }
+
+    $updated | Set-Content -Path $gitignorePath -Encoding UTF8
+    return 'Updated'
 }
 
 function ConvertTo-GitLabSlug([string]$Name) {
@@ -138,6 +235,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/project-statistics.md", 'Statistik-Ledger (initial)'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
+    $null = $previewActions.Add(@('UPDATE', "$TargetWorkspace/.gitignore", 'Level-2-Projekt im Workspace ignorieren'))
     if (-not $NoReleasePlease) {
         if ($Platform -eq 'github') {
             $null = $previewActions.Add(@('CREATE', "$TargetDir/release-please-config.json", 'Release Please Konfiguration'))
@@ -383,6 +481,17 @@ elseif (Test-Path (Join-Path $TemplatesDir 'gitignore-project.tmpl')) {
     Copy-Item (Join-Path $TemplatesDir 'gitignore-project.tmpl') $f
     Step-Done
 } else { Step-Warn "Template nicht gefunden: gitignore-project.tmpl" }
+
+# 9a. Workspace-.gitignore
+Step-Start "Workspace-.gitignore aktualisieren"
+$workspaceGitignoreState = Update-WorkspaceGitignoreEntry -WorkspaceDir $TargetWorkspace -ProjectName $ProjectName
+switch ($workspaceGitignoreState) {
+    'Created'     { Step-Done "Workspace-.gitignore erstellt und $ProjectName/ eingetragen" }
+    'Updated'     { Step-Done "$ProjectName/ im Workspace ignoriert" }
+    'WouldCreate' { Step-Done "wuerde Workspace-.gitignore erstellen und $ProjectName/ eintragen" }
+    'WouldUpdate' { Step-Done "wuerde $ProjectName/ im Workspace ignorieren" }
+    default       { Step-Skip "Eintrag vorhanden" }
+}
 
 # 9b. Release-Automation einrichten
 Step-Start "Release-Automation einrichten"
