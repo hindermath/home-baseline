@@ -38,6 +38,11 @@ private GitHub or GitLab repository within seconds.*
   - [Workspace-Bootstrap / Workspace Bootstrap](#workspace-bootstrap--workspace-bootstrap)
   - [Homogeneity Guardian / Check, Migration & Stats](#homogeneity-guardian--check-migration--stats)
   - [Sicherheit / Security](#sicherheit--security)
+  - [Einrichtung der KI-Agenten / AI Agent Setup](#einrichtung-der-ki-agenten--ai-agent-setup)
+    - [GitHub Copilot CLI / GitHub Copilot CLI](#github-copilot-cli--github-copilot-cli)
+    - [Claude Code / Claude Code](#claude-code--claude-code)
+    - [Codex CLI / Codex CLI](#codex-cli--codex-cli)
+    - [Gemini CLI / Gemini CLI](#gemini-cli--gemini-cli)
   - [Versionierung / Versioning](#versionierung--versioning)
 - [Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
   - [Compliance-Check / Compliance check](#compliance-check--compliance-check)
@@ -673,6 +678,22 @@ Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex,
 
 *Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) following the respective instructions.*
 
+**3a — GitHub Copilot CLI Einstellungen einrichten / Set up GitHub Copilot CLI settings** *(optional)*
+
+```bash
+# macOS / Linux
+bash ~/scripts/setup-copilot-settings.sh
+```
+
+```powershell
+# Windows
+pwsh -NoProfile ~/scripts/setup-copilot-settings.ps1
+```
+
+Setzt uebertragbare Copilot-Einstellungen in `~/.copilot/config.json`, zum Beispiel `effortLevel`, `banner`, `renderMarkdown` und `theme`, ohne Login-Daten oder vertrauenswuerdige Ordner zu ueberschreiben. Auf weiteren Geraeten erneut ausfuehren (`--force` / `-Force` zum Ueberschreiben, `--effort` / `-EffortLevel` und `--theme` / `-Theme` fuer gezielte Anpassungen).
+
+*Sets transferable Copilot settings in `~/.copilot/config.json`, such as `effortLevel`, `banner`, `renderMarkdown`, and `theme`, without overwriting login data or trusted folders. Re-run on additional devices (`--force` / `-Force` to overwrite, `--effort` / `-EffortLevel` and `--theme` / `-Theme` for targeted adjustments).*
+
 **3b — Claude Code statusLine einrichten / Set up Claude Code status line** *(optional)*
 
 ```bash
@@ -1027,20 +1048,58 @@ Die Rollen sind auch hier getrennt: `scan-agent-secrets.*` ist das eigentliche P
 | `scripts/install-hooks.ps1` | Git-Hooks installieren / Install Git hooks (PowerShell Core) |
 | `scripts/hooks/pre-push` | Pre-Push-Hook, blockiert Push bei Secrets / Pre-push hook, blocks pushes when secrets are found |
 
-### Claude Code Einrichtung / Claude Code Setup
+### Einrichtung der KI-Agenten / AI Agent Setup
+
+Dieser Block dokumentiert die **vorbereiteten lokalen Konfigurations-Skripte** fuer die vier Agenten, fuer die dieses Repository bereits wiederverwendbare Setup-Helfer mitliefert: GitHub Copilot CLI, Claude Code, Codex CLI und Gemini CLI. Diese Skripte installieren den Agenten nicht selbst, sondern richten nach der Installation und Anmeldung die lokalen Konfigurationsdateien so ein, dass Statuszeilen, Anzeigeoptionen oder uebertragbare Standardwerte konsistent gesetzt werden.
+
+*This block documents the **prepared local configuration scripts** for the four agents for which this repository already ships reusable setup helpers: GitHub Copilot CLI, Claude Code, Codex CLI, and Gemini CLI. These scripts do not install the agent itself. Instead, after installation and sign-in, they configure the local settings files so that status lines, display options, or transferable defaults are applied consistently.*
+
+Die Trennung ist wichtig: Die eigentliche Agenten-Installation und Anmeldung gehoert in den spaeteren Abschnitt `KI-Agenten einrichten / Set up AI agents`. Die Skripte hier sind der zweite Schritt fuer Maschinenkonsistenz. Als Kurzregel gilt deshalb: **Agent installieren = spaeterer Setup-Abschnitt**, **lokale Agenten-Konfiguration vereinheitlichen = `setup-*-settings.*` in diesem Block**.
+
+*The distinction matters: the actual agent installation and sign-in belong to the later section `KI-Agenten einrichten / Set up AI agents`. The scripts here are the second step for machine consistency. So the short rule is: **install the agent = later setup section**, **standardise the local agent configuration = `setup-*-settings.*` in this block**.*
+
+#### GitHub Copilot CLI / GitHub Copilot CLI
+
+Die Copilot-Skripte schreiben uebertragbare Einstellungen nach `~/.copilot/config.json`, ohne maschinenspezifische Daten wie Login-Status oder `trusted_folders` zu zerstoeren. Das ist vor allem sinnvoll, wenn Reasoning-Tiefe, Banner-Verhalten, Markdown-Rendering und Theme auf mehreren Geraeten gleich konfiguriert werden sollen.
+
+*The Copilot scripts write transferable settings to `~/.copilot/config.json` without destroying machine-specific data such as login state or `trusted_folders`. This is mainly useful when reasoning depth, banner behaviour, markdown rendering, and theme should be configured consistently across multiple devices.*
+
+| Datei / File | Beschreibung / Description |
+|---|---|
+| `scripts/setup-copilot-settings.sh` | GitHub-Copilot-CLI-Einstellungen in `~/.copilot/config.json` setzen / Set GitHub Copilot CLI settings in `~/.copilot/config.json` (Bash) |
+| `scripts/setup-copilot-settings.ps1` | GitHub-Copilot-CLI-Einstellungen in `~/.copilot/config.json` setzen / Set GitHub Copilot CLI settings in `~/.copilot/config.json` (PowerShell Core) |
+
+#### Claude Code / Claude Code
+
+Die Claude-Skripte setzen die `statusLine` in `~/.claude/settings.json` beziehungsweise `%APPDATA%\\Claude\\settings.json`. Ziel ist eine kompakte Statuszeile mit Modell, Arbeitsverzeichnis, Git-Branch sowie Context- und Rate-Limit-Informationen, damit Claude Code auf allen Maschinen aehnlich lesbar arbeitet.
+
+*The Claude scripts set the `statusLine` in `~/.claude/settings.json` or `%APPDATA%\\Claude\\settings.json`. The goal is a compact status line with model, working directory, git branch, and context or rate-limit information so that Claude Code behaves similarly across machines.*
 
 | Datei / File | Beschreibung / Description |
 |---|---|
 | `scripts/setup-claude-settings.sh` | Claude Code `statusLine` in `~/.claude/settings.json` einrichten / Configure Claude Code `statusLine` in `~/.claude/settings.json` (Bash) |
 | `scripts/setup-claude-settings.ps1` | Claude Code `statusLine` in `%APPDATA%\\Claude\\settings.json` einrichten / Configure Claude Code `statusLine` in `%APPDATA%\\Claude\\settings.json` (PowerShell Core) |
 
-### Codex CLI Einrichtung / Codex CLI Setup
+#### Codex CLI / Codex CLI
+
+Die Codex-Skripte setzen die TUI-`status_line` in `~/.codex/config.toml` oder `${CODEX_HOME}/config.toml`, basierend auf der zentralen Vorlage `scripts/templates/codex-statusline.toml`. Dadurch wird die Statuszeile als wiederverwendbare Repo-Baseline gepflegt und nicht auf jeder Maschine separat von Hand zusammengesetzt.
+
+*The Codex scripts set the TUI `status_line` in `~/.codex/config.toml` or `${CODEX_HOME}/config.toml`, based on the central template `scripts/templates/codex-statusline.toml`. This keeps the status line as a reusable repository baseline instead of rebuilding it manually on every machine.*
 
 | Datei / File | Beschreibung / Description |
 |---|---|
 | `scripts/setup-codex-settings.sh` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten / Configure Codex CLI `status_line` in `~/.codex/config.toml` (Bash) |
 | `scripts/setup-codex-settings.ps1` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten / Configure Codex CLI `status_line` in `~/.codex/config.toml` (PowerShell Core) |
 | `scripts/templates/codex-statusline.toml` | Zentrale Vorlage fuer die Codex-Statuszeile / Central template for the Codex status line |
+
+#### Gemini CLI / Gemini CLI
+
+Die Gemini-Skripte arbeiten analog zu Codex, aber fuer `~/.gemini/config.toml` beziehungsweise `${GEMINI_HOME}/config.toml` und mit der Vorlage `scripts/templates/gemini-statusline.toml`. So bleiben die angezeigten TUI-Elemente fuer Gemini ebenfalls zentral gepflegt und ueber mehrere Geraete hinweg konsistent.
+
+*The Gemini scripts work analogously to Codex, but for `~/.gemini/config.toml` or `${GEMINI_HOME}/config.toml` and with the template `scripts/templates/gemini-statusline.toml`. This keeps the displayed TUI items for Gemini centrally maintained and consistent across multiple devices as well.*
+
+| Datei / File | Beschreibung / Description |
+|---|---|
 | `scripts/setup-gemini-settings.sh` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten / Configure Gemini CLI `status_line` in `~/.gemini/config.toml` (Bash) |
 | `scripts/setup-gemini-settings.ps1` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten / Configure Gemini CLI `status_line` in `~/.gemini/config.toml` (PowerShell Core) |
 | `scripts/templates/gemini-statusline.toml` | Zentrale Vorlage fuer die Gemini-Statuszeile / Central template for the Gemini status line |
