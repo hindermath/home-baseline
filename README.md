@@ -1947,17 +1947,25 @@ Dieses Dokument richtet sich nach **WCAG 2.2 Level AA** für alle statischen Inh
 
 *This document follows **WCAG 2.2 Level AA** guidelines for all static content.*
 
+Der Abschnitt dokumentiert keine abstrakte Selbstverpflichtung, sondern die **konkreten redaktionellen Regeln**, nach denen diese README gepflegt wird. Ziel ist vor allem, dass Inhalte in GitHub Markdown auch ohne visuelle Hervorhebung, ohne Farbinformation und mit Screenreader oder reiner Tastaturnutzung moeglichst robust lesbar bleiben.
+
+*This section does not describe an abstract intention, but the **concrete editorial rules** used to maintain this README. The main goal is that content remains robustly readable in GitHub Markdown even without visual emphasis, without colour cues, and with screen readers or keyboard-only navigation.*
+
+Wichtig ist ausserdem die Grenze des Mediums: GitHub rendert kein vollwertiges barrierefreies HTML aus beliebigem Markdown, sondern eine Plattform mit festen Render-Regeln. Deshalb bedeutet A11Y hier vor allem: klare Struktur, beschreibende Texte, konsistente Sprachfuehrung, korrekt markierte Code-Bloecke und moeglichst semantisch saubere Tabellen statt visuell "schicker" Sonderloesungen.
+
+*It is also important to understand the boundary of the medium: GitHub does not render arbitrary Markdown as fully accessible custom HTML, but as a platform with fixed rendering rules. In this context, accessibility mainly means clear structure, descriptive text, consistent bilingual language flow, correctly tagged code blocks, and semantically clean tables instead of visually "fancier" special formatting.*
+
 | WCAG-Kriterium / Criterion | Umsetzung / Implementation |
 |---|---|
-| **1.1.1** Nicht-Text-Inhalt / Non-text content | Keine Bilder vorhanden; Alt-Text-Pflicht fuer zukuenftige Grafiken / No images yet; alt text is required for future graphics |
-| **1.3.1** Info und Beziehungen / Info and relationships | Ueberschriften h1->h2->h3->h4 ohne Sprung; Tabellen mit Kopfzeilen / Headings follow h1->h2->h3->h4 without skipping; tables use header rows |
-| **1.3.2** Sinnvolle Reihenfolge / Meaningful sequence | Inhalt in logischer Lesereihenfolge strukturiert / Content is structured in a logical reading order |
-| **1.4.1** Verwendung von Farbe / Use of colour | Keine ausschliesslich farbbasierte Information / No information relies on colour alone |
-| **2.4.2** Seite mit Titel / Page titled | Dokumenttitel: `# home-baseline` / Document title: `# home-baseline` |
-| **2.4.4** Linkzweck / Link purpose | Beschreibende Link-Texte (`[Installationsanleitung](...)` statt `[hier](...)`) / Descriptive link texts (`[Installationsanleitung](...)` instead of `[here](...)`) |
-| **2.4.6** Ueberschriften und Bezeichnungen / Headings and labels | Alle Ueberschriften beschreibend und bilingual / All headings are descriptive and bilingual |
-| **3.1.1** Sprache der Seite / Language of page | Hauptsprache Deutsch; alle Abschnitte parallel auf Englisch / Main language is German; all sections are mirrored in English |
-| **4.1.1** Syntaxanalyse / Parsing | Markdown-Elemente korrekt strukturiert; Code-Bloecke mit Sprachmarkierung / Markdown elements are structured correctly; code blocks use language tags |
+| **1.1.1** Nicht-Text-Inhalt / Non-text content | Aktuell werden keine Bilder oder eingebetteten Grafiken verwendet. Falls spaeter visuelle Artefakte hinzukommen, muessen sie mit aussagekraeftigem Alternativtext oder textlicher Begleiterklaerung eingefuehrt werden. / There are currently no images or embedded graphics. If visual artefacts are added later, they must be introduced with meaningful alt text or an accompanying textual explanation. |
+| **1.3.1** Info und Beziehungen / Info and relationships | Die README nutzt eine saubere Ueberschriftenhierarchie (`h1 -> h2 -> h3 -> h4`) ohne Ebenenspruenge. Tabellen werden bewusst mit Kopfzeilen gepflegt, damit Beziehungen auch fuer assistive Technologien nachvollziehbar bleiben. / The README uses a clean heading hierarchy (`h1 -> h2 -> h3 -> h4`) without skipping levels. Tables are deliberately maintained with header rows so structural relationships remain understandable for assistive technologies. |
+| **1.3.2** Sinnvolle Reihenfolge / Meaningful sequence | Die Inhalte sind in einer logischen Reihenfolge aufgebaut: Orientierung, Voraussetzungen, Arbeitsablaeufe, Referenzbloecke, Fallstricke und A11Y. Zweisprachige Abschnitte folgen dabei konsequent dem Muster Deutsch zuerst, Englisch direkt danach. / Content follows a logical order: orientation, prerequisites, workflows, reference blocks, pitfalls, and accessibility. Bilingual sections also follow a consistent pattern: German first, English immediately afterwards. |
+| **1.4.1** Verwendung von Farbe / Use of colour | Es wird keine Information ausschliesslich ueber Farbe, Emoji-Farbwirkung oder visuelle Hervorhebung transportiert. Bedeutungen werden immer durch Text, Struktur oder Beschriftung erklaert. / No information is conveyed through colour alone, emoji colour effects, or purely visual emphasis. Meaning is always explained through text, structure, or explicit labels. |
+| **2.4.2** Seite mit Titel / Page titled | Der Dokumenttitel ist klar als `# home-baseline` gesetzt und beschreibt die Seite eindeutig. Dadurch bleibt die Seite in Browser-Tabs, Verlauf und Screenreader-Kontexten besser orientierbar. / The document title is clearly set as `# home-baseline` and identifies the page unambiguously. This improves orientation in browser tabs, history, and screen-reader contexts. |
+| **2.4.4** Linkzweck / Link purpose | Links werden mit beschreibenden Texten formuliert, zum Beispiel `[Installationsanleitung](...)` statt generischer Marker wie `[hier](...)`. So bleibt das Linkziel auch ausserhalb des Fliesstexts verstaendlich. / Links use descriptive labels, for example `[Installationsanleitung](...)` instead of generic markers such as `[here](...)`. This keeps the destination understandable even outside the surrounding prose. |
+| **2.4.6** Ueberschriften und Bezeichnungen / Headings and labels | Ueberschriften benennen Abschnitte moeglichst konkret und durchgaengig bilingual. Dadurch koennen Nutzer schneller scannen, in der TOC navigieren und Abschnittszwecke ohne Ratespiel erkennen. / Headings name sections as concretely as possible and remain consistently bilingual. This lets users scan faster, navigate the table of contents more reliably, and understand section purpose without guesswork. |
+| **3.1.1** Sprache der Seite / Language of page | Die Hauptfuehrung ist Deutsch, englische Pendants folgen parallel und in wiederkehrendem Muster. Das verbessert Verstaendlichkeit fuer deutschsprachige Hauptnutzer und reduziert zugleich Sprachwechsel ohne Orientierung. / The primary flow is German, with English counterparts provided in parallel and in a recurring pattern. This improves clarity for German-speaking primary users while also reducing disorienting language switching. |
+| **4.1.1** Syntaxanalyse / Parsing | Markdown-Elemente werden strukturiert und parserfreundlich gehalten: korrekt geschlossene Code-Bloecke, konsistente Tabellen, keine absichtlich kaputten HTML-Konstrukte und moeglichst wenig Render-Sonderfaelle. / Markdown elements are kept structured and parser-friendly: properly closed code blocks, consistent tables, no intentionally broken HTML constructs, and as few rendering edge cases as possible. |
 
 > **Plattformeinschränkung / Platform limitation:** WCAG 3.1.2 (Sprache von Teilen) erfordert `lang`-Attribute
 > an zweisprachigen Textstellen. GitHub Markdown entfernt HTML-Attribute — dies kann nicht implementiert werden.
@@ -1967,10 +1975,44 @@ Dieses Dokument richtet sich nach **WCAG 2.2 Level AA** für alle statischen Inh
 
 ---
 
-Regeln für neue Inhalte / Rules for new content:
+Regeln fuer neue Inhalte / Rules for new content:
 
-- Code-Blöcke immer mit Sprachmarkierung: ` ```bash `, ` ```powershell `, ` ```text `
-- Tabellen immer mit Kopfzeile und Trennzeile (`| Spalte |\n|---|`)
-- Neue Abschnitte bilingual anlegen (DE-Absatz → EN-Absatz in Kursiv)
-- Überschriften-Hierarchie einhalten: h2 → h3 → h4 — keine Ebene überspringen
-- Linkbeschriftungen beschreibend wählen — nicht `[hier](...)` oder `[here](...)`
+- Code-Bloecke immer mit Sprachmarkierung anlegen, zum Beispiel ` ```bash `, ` ```powershell ` oder ` ```text `.
+  Ohne Sprachmarkierung verlieren Syntax-Highlighting, Lesbarkeit und Parser-Stabilitaet schnell an Qualitaet.
+  *Always add a language tag to code blocks, for example ` ```bash `, ` ```powershell `, or ` ```text `.
+  Without a language tag, syntax highlighting, readability, and parser stability degrade quickly.*
+
+- Tabellen immer mit Kopfzeile und Trennzeile schreiben, also nicht nur optisch, sondern semantisch als echte Markdown-Tabelle pflegen.
+  Wenn eine Information nicht sauber tabellarisch ist, ist oft eine Liste oder ein kurzer Abschnitt die bessere und barriereaermere Form.
+  *Always write tables with a header row and separator row, not just as something that looks tabular, but as a semantically valid Markdown table.
+  If information is not truly tabular, a list or a short prose section is often the better and more accessible form.*
+
+- Neue Abschnitte konsequent bilingual anlegen: zuerst der deutsche Absatz, direkt danach das englische Pendant in Kursiv.
+  Das Ziel ist nicht perfekte literarische Uebersetzung, sondern stabile Parallelitaet, damit beide Sprachversionen denselben Informationsgehalt haben.
+  *Create new sections consistently in bilingual form: first the German paragraph, then the English counterpart in italics directly afterwards.
+  The goal is not literary perfection, but stable parallelism so both language versions carry the same information.*
+
+- Die Ueberschriften-Hierarchie strikt einhalten: `h2 -> h3 -> h4`, ohne Ebenen zu ueberspringen.
+  Eine visuell "passende" kleinere oder groessere Ueberschrift ist kein Grund, die semantische Struktur zu brechen.
+  *Keep the heading hierarchy strict: `h2 -> h3 -> h4`, without skipping levels.
+  A visually tempting smaller or larger heading is not a reason to break the semantic structure.*
+
+- Linkbeschriftungen immer beschreibend formulieren und nie nur generisch als `[hier](...)`, `[here](...)` oder aehnlich.
+  Der Linktext soll auch dann noch verstaendlich sein, wenn er von Screenreadern isoliert vorgelesen oder in einer Linkliste angezeigt wird.
+  *Always phrase link labels descriptively and never as generic markers like `[here](...)` or similar.
+  The link text should still make sense when read in isolation by a screen reader or shown in a link list.*
+
+- Visuelle Sonderformen sparsam einsetzen.
+  ASCII-Boxen, dekorative Trenner oder sehr dichte Tabellen sind nur dann sinnvoll, wenn sie den Informationswert wirklich erhoehen und nicht nur "schicker" aussehen.
+  *Use visual special formatting sparingly.
+  ASCII boxes, decorative separators, or very dense tables are only useful when they truly improve information value instead of merely looking "nicer".*
+
+- Bei Beispielen und Kommandos moeglichst den realen Anwendungskontext mitgeben.
+  Ein kurzer Kommentar wie `# macOS / Linux`, `# Windows`, `# Dry Run` oder `# Beispiel` hilft Lesern deutlich mehr als ein nackter Befehl ohne Einordnung.
+  *For examples and commands, provide the real usage context whenever possible.
+  A short comment like `# macOS / Linux`, `# Windows`, `# Dry Run`, or `# Example` helps readers much more than a bare command without context.*
+
+- Wenn Plattformgrenzen oder GitHub-Rendering-Einschraenkungen bekannt sind, diese offen benennen statt sie durch fragiles Markdown zu kaschieren.
+  Eine dokumentierte Grenze ist wartbarer und ehrlicher als ein scheinbar cleverer Workaround, der nur zufaellig im aktuellen Renderer funktioniert.
+  *If platform limits or GitHub rendering constraints are known, state them openly instead of hiding them behind fragile Markdown tricks.
+  A documented limitation is more maintainable and more honest than an apparently clever workaround that only happens to work in the current renderer.*
