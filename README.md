@@ -1881,6 +1881,14 @@ Das folgende Beispiel zeigt den vollständigen Ablauf für ein Login-Feature.
 
 *The following example shows the complete flow for a login feature.*
 
+Der Sinn dieses Beispiels ist nicht nur zu zeigen, **welche Befehle** nacheinander aufgerufen werden, sondern auch, **warum diese Reihenfolge sinnvoll ist**. Jeder Schritt reduziert eine andere Art von Unsicherheit: `specify` klärt das Ziel, `clarify` schließt Lücken, `plan` macht daraus einen technischen Entwurf, `tasks` erzeugt eine operative Arbeitsliste und `analyze` prüft noch einmal, ob die Artefakte wirklich zusammenpassen, bevor `implement` produktiv wird.
+
+*The purpose of this example is not only to show **which commands** are run in sequence, but also **why that order makes sense**. Each step reduces a different kind of uncertainty: `specify` clarifies the goal, `clarify` closes gaps, `plan` turns the result into a technical design, `tasks` creates an operational work list, and `analyze` checks once more that the artefacts actually fit together before `implement` becomes productive.*
+
+Gerade fuer das erste eigene Feature ist diese Reihenfolge wichtig, weil man sonst leicht direkt in Implementierungsdetails springt und spaeter feststellt, dass Anforderungen, Randfaelle oder Architekturannahmen noch gar nicht sauber geklaert waren. Das Beispiel zeigt deshalb bewusst einen **vollstaendigen** SDD-Durchlauf und nicht nur einen einzelnen Prompt.
+
+*This order is especially important for your first real feature, because otherwise it is easy to jump straight into implementation details and only later realise that requirements, edge cases, or architectural assumptions were never clarified properly. The example therefore shows a deliberately **complete** SDD pass, not just a single prompt.*
+
 ```text
 Du (im Copilot-Chat):
   speckit.specify "Login-Funktion mit GitHub OAuth"
@@ -1935,6 +1943,28 @@ Du:
 Copilot:
   → Arbeitet alle Tasks ab, erstellt Code und Commits
 ```
+
+Was man an diesem Beispiel gut sehen kann:
+
+- Nach `speckit.specify` existiert noch **kein** fertiger technischer Entwurf, sondern zunaechst nur die fachliche Zielbeschreibung.
+- Nach `speckit.clarify` sollte die Spezifikation belastbarer sein, weil unklare Punkte aktiv in Fragen verwandelt wurden.
+- Nach `speckit.plan` ist aus der Fachbeschreibung ein technisches Arbeitsmodell geworden.
+- Nach `speckit.tasks` gibt es nicht nur "Ideen", sondern eine geordnete Reihenfolge fuer die Umsetzung.
+- Nach `speckit.analyze` liegt idealerweise ein letzter Qualitaetsfilter vor, bevor echter Code geschrieben wird.
+- Erst `speckit.implement` ist der Schritt, in dem der Agent wirklich mit produktiven Code-Aenderungen beginnt.
+
+*What this example shows especially well:*
+
+- *After `speckit.specify`, there is **not yet** a finished technical design, only the functional target description.*
+- *After `speckit.clarify`, the specification should be more robust because unclear points were actively turned into explicit questions.*
+- *After `speckit.plan`, the functional description has become a technical working model.*
+- *After `speckit.tasks`, you no longer only have "ideas", but an ordered implementation sequence.*
+- *After `speckit.analyze`, there is ideally a final quality filter before real code is written.*
+- *Only `speckit.implement` is the step where the agent actually starts making productive code changes.*
+
+Als praktische Faustregel gilt: Wenn sich ein Schritt "zu frueh" anfuehlt, ist das oft ein Signal, dass der vorherige Artefaktschritt noch nicht sauber genug ist. Wenn also `implement` zu riskant wirkt, fehlt haeufig noch Schaerfe in `spec.md`, `plan.md` oder `tasks.md` - nicht unbedingt mehr Programmieraufwand.
+
+*A practical rule of thumb is: if a step feels "too early", that is often a signal that the previous artefact step is not clean enough yet. So if `implement` feels too risky, what is often missing is sharper work in `spec.md`, `plan.md`, or `tasks.md` - not necessarily more coding effort.*
 
 ---
 
