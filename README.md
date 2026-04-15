@@ -21,12 +21,12 @@ private GitHub or GitLab repository within seconds.*
   - [Node.js ≥ 18](#5-nodejs--18-für-npm-basierte-ki-agenten--for-npm-based-ai-agents)
 - [Neuen Workspace einrichten / Create new workspace](#neuen-workspace-einrichten--create-new-workspace)
   - [macOS / Linux](#macos--linux)
-  - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7)
+  - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7--windows-powershell-core--7)
 - [Git Scope-Isolierung / Git Scope Isolation](#git-scope-isolierung--git-scope-isolation)
 - [Ersteinrichtung dieses Repos auf einem neuen Gerät / Initial setup on a new device](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
   - [GitHub / GitLab-Authentifizierung / Authentication](#github--gitlab-authentifizierung--authentication)
   - [macOS / Linux](#macos--linux-1)
-  - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7-1)
+  - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7--windows-powershell-core--7-1)
   - [Nächste Schritte / Next steps](#nächste-schritte--next-steps)
 - [Template-Entwickler-Workflow / Template Developer Workflow](#template-entwickler-workflow--template-developer-workflow)
   - [Einmalig auf jeder neuen Maschine / One-time setup per machine](#einmalig-auf-jeder-neuen-maschine--one-time-setup-per-machine)
@@ -40,14 +40,14 @@ private GitHub or GitLab repository within seconds.*
   - [Sicherheit / Security](#sicherheit--security)
   - [Versionierung / Versioning](#versionierung--versioning)
 - [Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
-  - [Compliance-Check](#compliance-check)
+  - [Compliance-Check / Compliance check](#compliance-check--compliance-check)
   - [STATS.md Baseline erzeugen / Generate STATS.md baseline](#statsmd-baseline-erzeugen--generate-statsmd-baseline)
   - [Bestehenden Workspace migrieren / Migrate existing workspace](#bestehenden-workspace-migrieren--migrate-existing-workspace)
   - [Constitution synchronisieren / Sync constitution](#constitution-synchronisieren--sync-constitution)
   - [Lastenheft umbenennen / Rename Lastenheft](#lastenheft-umbenennen--rename-lastenheft)
 - [Plattform-Übersicht / Platform overview](#plattform-übersicht--platform-overview)
 - [Für Auszubildende der Fachinformatik / For IT Apprentices](#für-auszubildende-der-fachinformatik--for-it-apprentices)
-  - [Was passiert hier überhaupt? / What is this about?](#was-passiert-hier-überhaupt--what-is-this-about)
+  - [Was machen wir hier eigentlich? / What is this all about?](#was-machen-wir-hier-eigentlich--what-is-this-all-about)
   - [Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools](#schritt-0-deine-werkzeuge-vorbereiten--step-0-preparing-your-tools)
   - [Schritt 1: Dein eigenes Template erstellen / Step 1: Create your own template](#schritt-1-dein-eigenes-template-erstellen--step-1-create-your-own-template)
   - [Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer](#schritt-2-deinen-computer-mit-der-cloud-verbinden--step-2-connect-your-computer)
@@ -71,7 +71,7 @@ private GitHub or GitLab repository within seconds.*
 
 ## Workspace-Übersicht / Workspace overview
 
-| Verzeichnis | GitHub-Repo | Eingerichtet mit |
+| Verzeichnis / Directory | GitHub-Repo / GitHub repo | Eingerichtet mit / Set up with |
 |---|---|---|
 <!-- workspace-table-end -->
 
@@ -92,13 +92,13 @@ any permanent connection to the source.*
 
 ### Unterschied Fork vs. Template / Fork vs. Template
 
-| | Fork | Template (dieses Repo) |
+| Kriterium / Criterion | Fork | Template / Template (this repo) |
 |---|---|---|
-| Git-History | wird mitkopiert | **nicht** kopiert — frischer Start |
-| Verbindung zum Original | bleibt bestehen | **keine** Verbindung |
-| PRs zum Original möglich | ja | nein (bewusst getrennt) |
-| Eigener Namespace | fork-URL | frei wählbar |
-| Typischer Einsatz | Mitarbeit am Original | Eigene unabhängige Instanz |
+| Git-History / Git history | wird mitkopiert / copied with the fork | **nicht** kopiert / **not** copied — frischer Start / fresh start |
+| Verbindung zum Original / Connection to original | bleibt bestehen / remains linked | **keine** Verbindung / **no** connection |
+| PRs zum Original möglich / PRs back to original | ja / yes | nein / no (bewusst getrennt / intentionally separate) |
+| Eigener Namespace / Own namespace | fork-URL / fork URL | frei wählbar / freely chosen |
+| Typischer Einsatz / Typical use | Mitarbeit am Original / contributing to the original | Eigene unabhängige Instanz / own independent instance |
 
 *Git history: copied vs. not copied (fresh start) · Original connection: stays vs. none · PRs to original: yes vs. no · Namespace: fork-URL vs. freely chosen · Typical use: contribute to original vs. own independent instance.*
 
@@ -210,7 +210,7 @@ git cherry-pick <commit-sha>
 
 ### 1. Git
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install git` oder [git-scm.com](https://git-scm.com/download/mac) |
 | Linux | `sudo apt install git` / `sudo dnf install git` |
@@ -218,7 +218,7 @@ git cherry-pick <commit-sha>
 
 ### 2. GitHub CLI (`gh`)
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install gh` |
 | Linux | [cli.github.com](https://cli.github.com) → Installationsanleitung |
@@ -236,7 +236,7 @@ Wird nur benötigt, wenn du `--platform gitlab` verwendest.
 
 *Only required when using `--platform gitlab`.*
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install glab` |
 | Linux | [gitlab.com/gitlab-org/cli](https://gitlab.com/gitlab-org/cli) → Installationsanleitung |
@@ -266,7 +266,7 @@ Oder: [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/
 
 *`check-homogeneity` requires ripgrep for compliance scanning.*
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install ripgrep` |
 | Linux | `sudo apt install ripgrep` / `sudo dnf install ripgrep` |
@@ -278,7 +278,7 @@ Wird für die Installation von **Gemini CLI** und **Codex CLI** via `npm` benöt
 
 *Required to install **Gemini CLI** and **Codex CLI** via `npm`. Claude Code has its own native installer and no longer requires Node.js.*
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install node` oder [nodejs.org](https://nodejs.org/en/download) |
 | Linux | `sudo apt install nodejs npm` / `sudo dnf install nodejs` |
@@ -324,7 +324,7 @@ bash ~/scripts/bootstrap-workspace.sh GoProjects go-baseline "Go-Workspace"
 bash ~/scripts/bootstrap-workspace.sh --dry-run FlutterProjects
 ```
 
-### Windows (PowerShell Core >= 7)
+### Windows (PowerShell Core >= 7) / Windows (PowerShell Core >= 7)
 
 ```powershell
 # Vollständige Einrichtung in einem Schritt:
@@ -507,7 +507,7 @@ git push -u origin main
 bash ~/scripts/check-homogeneity.sh ~/
 ```
 
-### Windows (PowerShell Core >= 7)
+### Windows (PowerShell Core >= 7) / Windows (PowerShell Core >= 7)
 
 ```powershell
 Set-Location ~
@@ -729,13 +729,13 @@ Sollte ein Skript mit einem Fehler abbrechen, kannst du deinen installierten KI-
 
 *If a script fails, you can ask your AI agent directly in the terminal to analyze the issue or complete the process.*
 
-| Agent | Kommando / Command |
+| Agent / Agent | Kommando / Command |
 |---|---|
-| **GitHub Copilot** | `gh copilot -p "Skript X ist bei Schritt Y abgebrochen. Bitte prüfe den Status und schließe die Einrichtung ab."` |
-| **Claude Code** | `claude "Der Push zu GitHub ist fehlgeschlagen. Bitte prüfe die Remotes und hole den Push nach."` |
-| **Codex CLI** | `codex "Analysiere den letzten Fehler im Terminal und schlage eine Lösung vor."` |
-| **Gemini CLI** | `gemini -p "Vervollständige die Git-Konfiguration, da das Bootstrap-Skript vorzeitig beendet wurde."` |
-| **OpenCode** | `opencode --prompt "Prüfe, ob alle Git-Hooks und .inc-Dateien korrekt angelegt wurden."` |
+| **GitHub Copilot** | `gh copilot -p "Skript X ist bei Schritt Y abgebrochen. Bitte pruefe den Status und schliesse die Einrichtung ab. / Script X failed at step Y. Please check the status and finish the setup."` |
+| **Claude Code** | `claude "Der Push zu GitHub ist fehlgeschlagen. Bitte pruefe die Remotes und hole den Push nach. / The push to GitHub failed. Please check the remotes and complete the push."` |
+| **Codex CLI** | `codex "Analysiere den letzten Fehler im Terminal und schlage eine Loesung vor. / Analyse the last terminal error and suggest a fix."` |
+| **Gemini CLI** | `gemini -p "Vervollstaendige die Git-Konfiguration, da das Bootstrap-Skript vorzeitig beendet wurde. / Complete the Git configuration because the bootstrap script ended early."` |
+| **OpenCode** | `opencode --prompt "Pruefe, ob alle Git-Hooks und .inc-Dateien korrekt angelegt wurden. / Check whether all Git hooks and .inc files were created correctly."` |
 
 > **Tipp / Tip:** Nutze das Flag `--help` (z. B. `claude --help`, `gemini --help` oder `opencode --help`), um weitere Informationen zu den verfügbaren Befehlen deines Agenten zu erhalten.
 >
@@ -791,7 +791,7 @@ Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert we
 
 *Since outputs cannot easily be copy-pasted between machines, platform-specific test scripts collect system info and compliance results, then commit and push them directly to the repo.*
 
-| Plattform / Platform | Script | Ausgabe / Output |
+| Plattform / Platform | Skript / Script | Ausgabe / Output |
 |---|---|---|
 | macOS | `bash ~/home-baseline-tmp/scripts/mac-test.sh` | `mac-test-output.txt` |
 | Linux / WSL | `bash ~/home-baseline-tmp/scripts/linux-test.sh` | `linux-test-output.txt` |
@@ -895,11 +895,11 @@ GitHub- und GitLab-Releases folgen beide den [Conventional Commits](https://www.
 
 *GitHub and GitLab releases both follow [Conventional Commits](https://www.conventionalcommits.org/), but they use different automation paths.*
 
-| Commit-Präfix / Prefix | Versions-Bump |
+| Commit-Präfix / Prefix | Versions-Bump / Version bump |
 |---|---|
 | `fix:`, `docs:`, `chore:` | Patch: `0.3.1 → 0.3.2` |
 | `feat:` | Minor: `0.3.1 → 0.4.0` |
-| `feat!:` oder `BREAKING CHANGE` | Major: `0.3.x → 1.0.0` |
+| `feat!:` oder / or `BREAKING CHANGE` | Major: `0.3.x → 1.0.0` |
 
 **GitHub / GitHub**
 
@@ -947,12 +947,12 @@ Wichtig ist die Abgrenzung: Bootstrap ist **nicht** dafuer da, einen bereits exi
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `scripts/bootstrap-workspace.sh` | Neues Workspace einrichten (Bash) |
-| `scripts/bootstrap-workspace.ps1` | Neues Workspace einrichten (PowerShell Core) |
-| `scripts/bootstrap-project.sh` | Neues Projekt in einem Workspace anlegen (Bash) |
-| `scripts/bootstrap-project.ps1` | Neues Projekt in einem Workspace anlegen (PowerShell Core) |
-| `scripts/teardown-workspace.sh` | Workspace sicher entfernen: Remote, lokales Verzeichnis, Artefakte (Bash) |
-| `scripts/teardown-workspace.ps1` | Workspace-Teardown (PowerShell Core) |
+| `scripts/bootstrap-workspace.sh` | Neues Workspace einrichten / Create a new workspace (Bash) |
+| `scripts/bootstrap-workspace.ps1` | Neues Workspace einrichten / Create a new workspace (PowerShell Core) |
+| `scripts/bootstrap-project.sh` | Neues Projekt in einem Workspace anlegen / Create a new project inside a workspace (Bash) |
+| `scripts/bootstrap-project.ps1` | Neues Projekt in einem Workspace anlegen / Create a new project inside a workspace (PowerShell Core) |
+| `scripts/teardown-workspace.sh` | Workspace sicher entfernen: Remote, lokales Verzeichnis, Artefakte / Safely remove a workspace: remote, local directory, artifacts (Bash) |
+| `scripts/teardown-workspace.ps1` | Workspace-Teardown / Workspace teardown (PowerShell Core) |
 
 ### Homogeneity Guardian / Check, Migration & Stats
 
@@ -970,22 +970,22 @@ Als praktische Kurzregel gilt: **neu anlegen = Bootstrap**, **vorhandenen Bestan
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `scripts/check-homogeneity.sh` | Compliance-Scanner Level 0–2, JSON-Ausgabe, STATS.md-Update (Bash) |
-| `scripts/check-homogeneity.ps1` | Compliance-Scanner — Parität zu Bash-Version (PowerShell Core) |
-| `scripts/init-stats.sh` | STATS.md Baseline-Eintrag erzeugen (Bash) |
-| `scripts/init-stats.ps1` | STATS.md Baseline-Eintrag erzeugen (PowerShell Core) |
-| `scripts/migrate-workspace.sh` | Bestehende Workspaces auf Homogeneity-Baseline migrieren (Bash) |
-| `scripts/migrate-workspace.ps1` | Workspace-Migration (PowerShell Core) |
-| `scripts/sync-constitution.sh` | `constitution.md` in alle Level-1-Workspaces synchronisieren (Bash) |
-| `scripts/sync-constitution.ps1` | Constitution-Sync (PowerShell Core) |
-| `scripts/rename-lastenheft.sh` | Lastenheft-Datei umbenennen: `git mv` + Commit (Bash) |
-| `scripts/rename-lastenheft.ps1` | Lastenheft umbenennen (PowerShell Core) |
-| `constitution.md` | Workspace-Verfassung — Sync-Quelle für alle Workspaces |
-| `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-kit- und Azubis-Abschnitt |
-| `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt (Template) |
-| `scripts/templates/speckit-workflow-section.md` | Spec-kit-Workflow-Abschnitt (Template) |
-| `scripts/templates/azubis-section.md` | Azubi-Einstiegsleitfaden-Abschnitt (Template) |
-| `.github/workflows/homogeneity-check.yml` | CI/CD-Workflow: Compliance-Check auf Ubuntu, macOS, Windows |
+| `scripts/check-homogeneity.sh` | Compliance-Scanner Level 0-2, JSON-Ausgabe, STATS.md-Update / Compliance scanner level 0-2, JSON output, STATS.md update (Bash) |
+| `scripts/check-homogeneity.ps1` | Compliance-Scanner mit Paritaet zur Bash-Version / Compliance scanner with Bash parity (PowerShell Core) |
+| `scripts/init-stats.sh` | STATS.md-Baseline-Eintrag erzeugen / Create a STATS.md baseline entry (Bash) |
+| `scripts/init-stats.ps1` | STATS.md-Baseline-Eintrag erzeugen / Create a STATS.md baseline entry (PowerShell Core) |
+| `scripts/migrate-workspace.sh` | Bestehende Workspaces auf Homogeneity-Baseline migrieren / Migrate existing workspaces to the homogeneity baseline (Bash) |
+| `scripts/migrate-workspace.ps1` | Workspace-Migration / Workspace migration (PowerShell Core) |
+| `scripts/sync-constitution.sh` | `constitution.md` in alle Level-1-Workspaces synchronisieren / Sync `constitution.md` into all level-1 workspaces (Bash) |
+| `scripts/sync-constitution.ps1` | Constitution-Sync / Constitution sync (PowerShell Core) |
+| `scripts/rename-lastenheft.sh` | Lastenheft-Datei umbenennen: `git mv` + Commit / Rename requirement file: `git mv` + commit (Bash) |
+| `scripts/rename-lastenheft.ps1` | Lastenheft umbenennen / Rename requirement file (PowerShell Core) |
+| `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
+| `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
+| `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
+| `scripts/templates/speckit-workflow-section.md` | Spec-Kit-Workflow-Abschnitt / Spec-Kit workflow section template |
+| `scripts/templates/azubis-section.md` | Azubi-Einstiegsleitfaden-Abschnitt / Apprentice onboarding guide section |
+| `.github/workflows/homogeneity-check.yml` | CI/CD-Workflow: Compliance-Check auf Ubuntu, macOS, Windows / CI/CD workflow: compliance check on Ubuntu, macOS, Windows |
 
 ### Versionierung / Versioning
 
@@ -999,15 +999,15 @@ Die Abgrenzung ist wichtig: Diese Dateien legen **nicht** den normalen Entwicklu
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `.github/workflows/release-please.yml` | Release Please — erstellt Release PRs automatisch bei jedem Push auf `main` |
-| `release-please-config.json` | Konfiguration: `release-type: simple`, bilinguale Changelog-Sektionen |
-| `.release-please-manifest.json` | Aktuell getrackte Version — wird von Release Please automatisch aktualisiert |
-| `scripts/setup-gitlab-release.sh` | GitLab Release-Automation in bestehendes Repo einhaengen (Bash) |
-| `scripts/setup-gitlab-release.ps1` | GitLab Release-Automation in bestehendes Repo einhaengen (PowerShell Core) |
-| `scripts/templates/release-gitlab.sh.tmpl` | Generisches GitLab Release-Skript fuer SemVer, CHANGELOG, Tag und Release |
-| `scripts/templates/gitlab-release-job.yml.tmpl` | GitLab CI Job-Block fuer manuellen `release`-Job |
-| `scripts/templates/changelog-template.md` | Initiale CHANGELOG-Vorlage fuer GitLab-Repos |
-| `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/) — von Release Please oder GitLab Release-Job verwaltet |
+| `.github/workflows/release-please.yml` | Release Please, erstellt Release-PRs automatisch bei jedem Push auf `main` / Release Please, automatically opens release PRs on every push to `main` |
+| `release-please-config.json` | Konfiguration: `release-type: simple`, bilinguale Changelog-Sektionen / Config: `release-type: simple`, bilingual changelog sections |
+| `.release-please-manifest.json` | Aktuell getrackte Version, automatisch von Release Please aktualisiert / Currently tracked version, automatically updated by Release Please |
+| `scripts/setup-gitlab-release.sh` | GitLab-Release-Automation in bestehendes Repo einhaengen / Attach GitLab release automation to an existing repo (Bash) |
+| `scripts/setup-gitlab-release.ps1` | GitLab-Release-Automation in bestehendes Repo einhaengen / Attach GitLab release automation to an existing repo (PowerShell Core) |
+| `scripts/templates/release-gitlab.sh.tmpl` | Generisches GitLab-Release-Skript fuer SemVer, CHANGELOG, Tag und Release / Generic GitLab release script for SemVer, changelog, tag, and release |
+| `scripts/templates/gitlab-release-job.yml.tmpl` | GitLab-CI-Job-Block fuer den manuellen `release`-Job / GitLab CI job block for the manual `release` job |
+| `scripts/templates/changelog-template.md` | Initiale CHANGELOG-Vorlage fuer GitLab-Repos / Initial changelog template for GitLab repos |
+| `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/), verwaltet durch Release Please oder GitLab-Release-Job / Version history following Keep a Changelog, managed by Release Please or the GitLab release job |
 
 ### Sicherheit / Security
 
@@ -1021,29 +1021,29 @@ Die Rollen sind auch hier getrennt: `scan-agent-secrets.*` ist das eigentliche P
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `scripts/scan-agent-secrets.sh` | Secret-Scan für KI-Agenten-Verzeichnisse (Bash) |
-| `scripts/scan-agent-secrets.ps1` | Secret-Scan (PowerShell Core) |
-| `scripts/install-hooks.sh` | Git-Hooks installieren (Bash) |
-| `scripts/install-hooks.ps1` | Git-Hooks installieren (PowerShell Core) |
-| `scripts/hooks/pre-push` | Pre-Push Hook: blockiert Push bei Secrets |
+| `scripts/scan-agent-secrets.sh` | Secret-Scan fuer KI-Agenten-Verzeichnisse / Secret scan for AI agent directories (Bash) |
+| `scripts/scan-agent-secrets.ps1` | Secret-Scan / Secret scan (PowerShell Core) |
+| `scripts/install-hooks.sh` | Git-Hooks installieren / Install Git hooks (Bash) |
+| `scripts/install-hooks.ps1` | Git-Hooks installieren / Install Git hooks (PowerShell Core) |
+| `scripts/hooks/pre-push` | Pre-Push-Hook, blockiert Push bei Secrets / Pre-push hook, blocks pushes when secrets are found |
 
 ### Claude Code Einrichtung / Claude Code Setup
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `scripts/setup-claude-settings.sh` | Claude Code statusLine in `~/.claude/settings.json` einrichten (Bash) |
-| `scripts/setup-claude-settings.ps1` | Claude Code statusLine in `%APPDATA%\Claude\settings.json` einrichten (PowerShell Core) |
+| `scripts/setup-claude-settings.sh` | Claude Code `statusLine` in `~/.claude/settings.json` einrichten / Configure Claude Code `statusLine` in `~/.claude/settings.json` (Bash) |
+| `scripts/setup-claude-settings.ps1` | Claude Code `statusLine` in `%APPDATA%\\Claude\\settings.json` einrichten / Configure Claude Code `statusLine` in `%APPDATA%\\Claude\\settings.json` (PowerShell Core) |
 
 ### Codex CLI Einrichtung / Codex CLI Setup
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `scripts/setup-codex-settings.sh` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten (Bash) |
-| `scripts/setup-codex-settings.ps1` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten (PowerShell Core) |
-| `scripts/templates/codex-statusline.toml` | Zentrale Vorlage fuer die Codex-Statuszeile |
-| `scripts/setup-gemini-settings.sh` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten (Bash) |
-| `scripts/setup-gemini-settings.ps1` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten (PowerShell Core) |
-| `scripts/templates/gemini-statusline.toml` | Zentrale Vorlage fuer die Gemini-Statuszeile |
+| `scripts/setup-codex-settings.sh` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten / Configure Codex CLI `status_line` in `~/.codex/config.toml` (Bash) |
+| `scripts/setup-codex-settings.ps1` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten / Configure Codex CLI `status_line` in `~/.codex/config.toml` (PowerShell Core) |
+| `scripts/templates/codex-statusline.toml` | Zentrale Vorlage fuer die Codex-Statuszeile / Central template for the Codex status line |
+| `scripts/setup-gemini-settings.sh` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten / Configure Gemini CLI `status_line` in `~/.gemini/config.toml` (Bash) |
+| `scripts/setup-gemini-settings.ps1` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten / Configure Gemini CLI `status_line` in `~/.gemini/config.toml` (PowerShell Core) |
+| `scripts/templates/gemini-statusline.toml` | Zentrale Vorlage fuer die Gemini-Statuszeile / Central template for the Gemini status line |
 
 ---
 
@@ -1053,7 +1053,7 @@ Die Kurzreferenz ist fuer den schnellen Zugriff gedacht: `check-homogeneity.*` p
 
 *The quick reference is meant for fast access: `check-homogeneity.*` only inspects the current state, `migrate-workspace.*` adds missing baseline building blocks to existing workspaces, and `init-stats.*` only initializes or extends the statistics record. So if you do not want to create anything new but are unsure which script you need, the same short rule applies here: **inspect = check**, **align = migrate**, **start or extend statistics = init-stats**.*
 
-### Compliance-Check
+### Compliance-Check / Compliance check
 
 ```bash
 # Gesamte Umgebung prüfen / Check entire environment
@@ -1126,10 +1126,10 @@ pwsh ~/scripts/rename-lastenheft.ps1 -File Lastenheft_foo.md -BranchName 002-fea
 
 ## Plattform-Übersicht / Platform overview
 
-| Plattform | Unterstützt | Voraussetzung |
+| Plattform / Platform | Unterstuetzt / Supported | Voraussetzung / Requirement |
 |---|---|---|
-| macOS | ✅ nativ | – |
-| Linux | ✅ nativ | – |
+| macOS | ✅ nativ / native | - |
+| Linux | ✅ nativ / native | - |
 | Windows | ✅ PowerShell Core | Git for Windows + pwsh >= 7 + ripgrep |
 
 > **Hinweis Windows / Windows note**: `$HOME` muss nicht gesetzt sein — die Scripts
@@ -1159,6 +1159,16 @@ Hier sind die drei wichtigsten Konzepte, die du heute lernst:
 
 **Wichtig für dich:** Dein **Home-Verzeichnis** (auf dem Mac/Linux als `~/` abgekürzt) ist dein persönlicher Bereich auf dem Computer. Wir richten diesen Bereich jetzt so ein, dass er sich „selbst verwaltet“.
 
+*In IT, we often work with many different projects. To help you stay organised and keep your work safely stored, we use an **automated infrastructure**.*
+
+*Here are the three main concepts you will learn today:*
+
+*1. **The terminal (command line):** your main tool. Instead of clicking with the mouse, you give the computer direct text commands. This is faster, more precise, and easy to automate.*
+*2. **Git (version control):** like a time machine for your code. You save checkpoints (commits). If something goes wrong, you can return to a working state at any time.*
+*3. **GitHub / GitLab (the cloud):** this is where your code is stored safely online. It lets you work from different computers and share your work with others.*
+
+***Important:** your **home directory** (shortened to `~/` on macOS/Linux) is your personal area on the computer. We now set it up so that it largely manages itself.*
+
 ---
 
 ### Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools
@@ -1167,13 +1177,13 @@ Bevor wir starten, müssen wir die „Handwerker-Kiste“ füllen. Wir installie
 
 *Before we start, we need to fill the "toolbox". We install programs that work in the background.*
 
-#### Welches Betriebssystem nutzt du?
+#### Welches Betriebssystem nutzt du? / Which operating system do you use?
 
 | Windows (PowerShell 7) | macOS (Terminal) | Linux / Ubuntu |
 |---|---|---|
-| Nutze die **PowerShell 7**. Sie ist viel mächtiger als die alte Eingabeaufforderung (CMD). | Nutze die **Terminal-App** (in den Dienstprogrammen). | Nutze das Standard-Terminal deiner Distribution. |
+| Nutze die **PowerShell 7**. Sie ist viel maechtiger als die alte Eingabeaufforderung (CMD). / Use **PowerShell 7**. It is much more capable than the old Command Prompt (CMD). | Nutze die **Terminal-App**. / Use the **Terminal app**. | Nutze das Standard-Terminal deiner Distribution. / Use your distribution's default terminal. |
 
-#### Installation der Werkzeuge
+#### Installation der Werkzeuge / Install the tools
 
 **1. Git:** Die Zeitmaschine für deinen Code.
 **2. GitHub CLI (`gh`):** Ein Werkzeug, mit dem du GitHub direkt aus dem Terminal steuern kannst.
@@ -1209,6 +1219,8 @@ gh auth login
 
 Wir nutzen ein „Template“ (eine Vorlage). Das ist wie ein vorgefertigtes Formular, das du für dich kopierst.
 
+*We use a "template". It is like a pre-filled form that you copy for your own use.*
+
 1.  Öffne im Browser die Vorlage, die dein Ausbilder dir gegeben hat (z. B. `hindermath/home-baseline`).
 2.  Klicke oben rechts auf den grünen Button **„Use this template“** → **„Create a new repository“**.
 3.  **Name:** Gib ihm einen Namen (z. B. `meine-it-umgebung`).
@@ -1216,6 +1228,8 @@ Wir nutzen ein „Template“ (eine Vorlage). Das ist wie ein vorgefertigtes For
 5.  Klicke auf **„Create repository“**.
 
 Du hast nun deine eigene Kopie in der Cloud! Die Adresse (URL) sieht so aus: `https://github.com/DEIN_NAME/meine-it-umgebung`.
+
+*You now have your own copy in the cloud. The URL looks like this: `https://github.com/YOUR_NAME/my-it-environment`.*
 
 ---
 
@@ -1230,7 +1244,12 @@ Jetzt bringen wir die Dateien aus der Cloud auf deinen Computer und richten alle
 - `git clone ...`: Wir laden eine Kopie deines Repos herunter.
 - `bash` / `pwsh`: Wir führen ein Skript aus, das die ganze Arbeit für uns macht.
 
-#### Für macOS / Linux:
+*Explanation of the commands:*
+- `cd ~`: "Change Directory to Home" - we move into your personal directory.
+- `git clone ...`: we download a copy of your repository.
+- `bash` / `pwsh`: we run a script that does the setup work for us.
+
+#### Fuer macOS / Linux / For macOS / Linux
 ```bash
 cd ~
 # Lade dein Repo (Ersetze DEIN_NAME und REPO_NAME!)
@@ -1243,7 +1262,7 @@ bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 rm -rf home-baseline-tmp
 ```
 
-#### Für Windows:
+#### Fuer Windows / For Windows
 ```powershell
 Set-Location ~
 # Lade dein Repo
@@ -1276,6 +1295,11 @@ bash ~/scripts/bootstrap-workspace.sh Ausbildung
 2.  Ein privates Repo namens `ausbildung-baseline` wurde auf GitHub für dich angelegt.
 3.  Wichtige Schutz-Scripte (Git-Hooks) wurden installiert, damit du keine Passwörter aus Versehen hochlädst.
 
+*What just happened?*
+*1. A directory `~/Ausbildung` was created.*
+*2. A private repo named `ausbildung-baseline` was created for you on GitHub.*
+*3. Important protection scripts (Git hooks) were installed so that you do not upload passwords by accident.*
+
 ---
 
 ### Schritt 4: Dein erstes Projekt starten / Step 4: Start your first project
@@ -1288,6 +1312,8 @@ bash ~/scripts/bootstrap-project.sh HalloWelt ~/Ausbildung
 ```
 
 Ab jetzt arbeitest du in diesem Ordner: `cd ~/Ausbildung/HalloWelt`. Hier schreibst du deinen Code.
+
+*From now on, you work in this directory: `cd ~/Ausbildung/HalloWelt`. This is where you write your code.*
 
 ---
 
@@ -1337,15 +1363,27 @@ Hier ein paar schnelle Beispiele für den Start:
 Oder wenn ein Skript abgebrochen ist:
 `claude "Das bootstrap-workspace Skript ist hängengeblieben. Kannst du prüfen, ob alles fertig ist?"`
 
+*You are not alone. We installed AI agents that can help you. You can learn how to use these tools consciously and with a clear goal in the detailed section below:*
+
+*See: **[Arbeiten mit agentischer KI / Working with Agentic AI](#arbeiten-mit-agentischer-ki--working-with-agentic-ai)**.*
+
+*Here are two quick starter examples:*
+
+`gh copilot -p "I got an error during git push. What does it mean?"`
+
+*Or if a script stopped unexpectedly:*
+
+`claude "The bootstrap-workspace script stopped early. Can you check whether everything is complete?"`
+
 ---
 
 ### Häufige Begriffe für den Start / Common terms for beginners
 
-- **Pfad (Path):** Die Adresse einer Datei auf dem Computer (z. B. `C:\Users\Name\Projekt` oder `~/Projekt`).
-- **Skript (Script):** Eine Textdatei mit Befehlen, die der Computer nacheinander ausführt.
-- **Commit:** Ein „Speicherpunkt“. Wie bei einem Videospiel, bevor du gegen einen Boss kämpfst.
-- **Push:** Deine lokalen Speicherpunkte ins Internet (GitHub) hochladen.
-- **Root:** Die oberste Ebene (das „Wurzelverzeichnis“).
+- **Pfad (Path):** Die Adresse einer Datei auf dem Computer (z. B. `C:\Users\Name\Projekt` oder `~/Projekt`). / The address of a file on your computer (for example `C:\Users\Name\Projekt` or `~/Projekt`).
+- **Skript (Script):** Eine Textdatei mit Befehlen, die der Computer nacheinander ausführt. / A text file with commands that the computer runs one after another.
+- **Commit:** Ein „Speicherpunkt“. Wie bei einem Videospiel, bevor du gegen einen Boss kämpfst. / A saved checkpoint, like before a difficult level in a game.
+- **Push:** Deine lokalen Speicherpunkte ins Internet (GitHub) hochladen. / Upload your local checkpoints to the internet (GitHub).
+- **Root:** Die oberste Ebene (das „Wurzelverzeichnis“). / The top level, also called the root directory.
 
 ---
 
@@ -1353,7 +1391,7 @@ Oder wenn ein Skript abgebrochen ist:
 
 ### Was ist Specification-Driven Development (SDD)? / What is Specification-Driven Development (SDD)?
 
-**Specification-Driven Development (SDD)** ist ein Arbeitsansatz, bei dem du *bevor* du eine Zeile Code schreibst eine strukturierte Spezifikation erstellst — unterstützt von einem KI-Agenten. Der Agent hilft dir dabei:
+**Specification-Driven Development (SDD)** ist ein Arbeitsansatz, bei dem du *bevor* du eine Zeile Code schreibst eine strukturierte Spezifikation erstellst - unterstützt von einem KI-Agenten. Der Agent hilft dir dabei:
 
 1. Die Anforderungen klar zu formulieren (`spec.md`)
 2. Offene Fragen zu identifizieren und zu klären (`clarify`)
@@ -1362,9 +1400,12 @@ Oder wenn ein Skript abgebrochen ist:
 5. Die Aufgaben Schritt für Schritt umzusetzen (`implement`)
 
 > **Warum SDD?**  
-> Ohne Spezifikation entstehen oft Missverständnisse, unfertige Features und unnötiger Code. Mit SDD weißt du immer, was als Nächstes zu tun ist — und warum.
+> Ohne Spezifikation entstehen oft Missverständnisse, unfertige Features und unnötiger Code. Mit SDD weißt du immer, was als Nächstes zu tun ist - und warum.
 
-*SDD is a workflow where you create a structured specification — supported by an AI agent — before writing a single line of code.*
+*Specification-Driven Development (SDD) is a way of working where you create a structured specification before writing a single line of code, supported by an AI agent. The agent helps you describe requirements clearly (`spec.md`), identify and resolve open questions (`clarify`), create a concrete implementation plan (`plan.md`), split the work into manageable tasks (`tasks.md`), and then implement those tasks step by step (`implement`).*
+
+> **Why SDD?**  
+> *Without a specification, teams often create misunderstandings, unfinished features, and unnecessary code. With SDD, you always know what to do next - and why.*
 
 ---
 
@@ -1381,14 +1422,14 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 
 ### Voraussetzungen / Prerequisites
 
-| Voraussetzung | Pflicht? | Wozu / Why |
+| Voraussetzung / Requirement | Pflicht? / Required? | Wozu / Why |
 |---|:---:|---|
-| `git` ≥ 2.30 | ✅ | Feature-Branches; Spec-Artefakte werden versioniert |
-| GitHub-Account | ✅ | Repo-Hosting |
-| KI-Agent (mind. einer) | ✅ | Führt die Spec-Kit-Skills aus |
-| `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) |
-| Node.js ≥ 18 | für npm-Agenten | Gemini CLI, Codex CLI installieren (Claude Code: nicht nötig) |
-| `gh` CLI | empfohlen | GitHub Copilot CLI; Issues aus Tasks anlegen |
+| `git` ≥ 2.30 | ✅ | Feature-Branches; Spec-Artefakte werden versioniert / Feature branches; spec artefacts are versioned |
+| GitHub-Account / GitHub account | ✅ | Repo-Hosting / Repository hosting |
+| KI-Agent (mind. einer) / AI agent (at least one) | ✅ | Fuehrt die Spec-Kit-Skills aus / Runs the Spec-Kit skills |
+| `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) / Installs `specify-cli` (the Spec-Kit CLI) |
+| Node.js ≥ 18 | fuer npm-Agenten / for npm-based agents | Gemini CLI und Codex CLI installieren (Claude Code: nicht noetig) / Install Gemini CLI and Codex CLI (Claude Code: not needed) |
+| `gh` CLI | empfohlen / recommended | GitHub Copilot CLI; Issues aus Tasks anlegen / create issues from tasks |
 
 Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` geprüft.
 
@@ -1428,7 +1469,7 @@ gh copilot
 
 ---
 
-#### Claude Code
+#### Claude Code / Claude Code
 
 Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis automatisch.
 
@@ -1438,7 +1479,7 @@ Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis auto
 >
 > *An Anthropic account (Pro, Max, Teams or Enterprise) is required — Node.js is not needed.*
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS / Linux / WSL | `curl -fsSL https://claude.ai/install.sh \| bash` |
 | macOS / Linux (Homebrew) | `brew install --cask claude-code` |
@@ -1469,7 +1510,7 @@ Weitere Infos: [code.claude.com/docs/de/setup](https://code.claude.com/docs/de/s
 
 ---
 
-#### Gemini CLI
+#### Gemini CLI / Gemini CLI
 
 Gemini erkennt Spec-Kit-Kommandos über das `.gemini/commands/`-Verzeichnis automatisch.
 
@@ -1477,7 +1518,7 @@ Gemini erkennt Spec-Kit-Kommandos über das `.gemini/commands/`-Verzeichnis auto
 
 > **Voraussetzung / Prerequisite:** Node.js ≥ 18, Google-Account
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `npm install -g @google/gemini-cli` |
 | Linux | `sudo npm install -g @google/gemini-cli` |
@@ -1503,7 +1544,7 @@ Weitere Infos: [github.com/google-gemini/gemini-cli](https://github.com/google-g
 
 ---
 
-#### Codex CLI (OpenAI)
+#### Codex CLI (OpenAI) / Codex CLI (OpenAI)
 
 Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) stehen als Eingabe zur Verfügung.
 
@@ -1511,7 +1552,7 @@ Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `
 
 > **Voraussetzung / Prerequisite:** Node.js ≥ 18, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `npm install -g @openai/codex` |
 | Linux | `sudo npm install -g @openai/codex` |
@@ -1562,7 +1603,7 @@ Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
 
 ---
 
-#### OpenCode
+#### OpenCode / OpenCode
 
 OpenCode liest ebenfalls `AGENTS.md` und unterstützt damit denselben Kontext wie Codex.
 
@@ -1570,7 +1611,7 @@ OpenCode liest ebenfalls `AGENTS.md` und unterstützt damit denselben Kontext wi
 
 > **Voraussetzung / Prerequisite:** Kein Node.js nötig — natives Binary / No Node.js required — native binary
 
-| Plattform | Installation |
+| Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install anomalyco/tap/opencode` |
 | Linux (brew) | `brew install anomalyco/tap/opencode` |
@@ -1611,7 +1652,7 @@ GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
 
 *`specify` requires the Python package manager `uv`. Install `uv` first, then `specify-cli`:*
 
-| Plattform | `uv` installieren |
+| Plattform / Platform | `uv` installieren / Install `uv` |
 |---|---|
 | macOS | `brew install uv` |
 | Linux | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
@@ -1713,12 +1754,12 @@ Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht 
 
 #### Weitere Spec-Kit-Kommandos / Additional commands
 
-| Kommando | Beschreibung / Description |
+| Kommando / Command | Beschreibung / Description |
 |---|---|
-| `speckit.analyze` | Konsistenz-Check über alle Artefakte (spec.md, plan.md, tasks.md) |
-| `speckit.checklist` | Individuelle Feature-Checkliste generieren |
-| `speckit.constitution` | Projekt-Verfassung (`constitution.md`) erstellen oder aktualisieren |
-| `speckit.taskstoissues` | Tasks als GitHub Issues anlegen |
+| `speckit.analyze` | Konsistenz-Check ueber alle Artefakte (spec.md, plan.md, tasks.md) / Consistency check across all artefacts |
+| `speckit.checklist` | Individuelle Feature-Checkliste generieren / Generate a custom feature checklist |
+| `speckit.constitution` | Projekt-Verfassung (`constitution.md`) erstellen oder aktualisieren / Create or update the project constitution (`constitution.md`) |
+| `speckit.taskstoissues` | Tasks als GitHub Issues anlegen / Create GitHub issues from tasks |
 
 ---
 
@@ -1814,23 +1855,23 @@ Alle Artefakte werden automatisch in Git versioniert — du kannst jederzeit nac
 
 ## Bekannte Fallstricke / Known Pitfalls
 
-| Problem | Ursache | Fix |
+| Problem / Problem | Ursache / Cause | Fix / Fix |
 |---|---|---|
-| `$env:HOME` leer (Windows) | PS7 `??` fängt `''` nicht ab | `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` |
-| CI: Dateien „missing" | Relativer Pfad als CWD=Repo-Root | `cd "$(dirname $GITHUB_WORKSPACE)"` vor Scanner-Aufruf |
-| `bash` bad substitution | `${#arr[@]+...}` auf Ubuntu 22.04 | Bash-3-sichere `for`-Schleife zum Zählen |
-| `Copy-Item` kopiert Verzeichnis in Verzeichnis | Ziel existiert bereits | `Copy-Item src/* dst/ -Recurse -Force` |
-| `LICENSE` von `.gitignore` ignoriert | Whitelist-Modell | `!LICENSE` in `.gitignore` eintragen |
-| ANSI-Falsch-Positive im Scanner | Scanner enthält `\033[` als Literal | `check-homogeneity.*` aus ANSI-Scan ausschließen |
-| Bootstrap hardcodierter Username | `hindermath` war fest eingebaut | `gh api user --jq '.login'` dynamisch |
-| `gh auth login --web` bleibt hängen | Browser-Callback kommt in Hintergrundprozessen nicht an | In **interaktivem Terminal** ausführen |
-| `glab auth login` bleibt hängen | Gleiche Ursache wie `gh` — Browser-Callback im Hintergrund nicht möglich | In **interaktivem Terminal** ausführen |
-| `gh` keyring invalid (Windows) | Windows Credential Store korrupt | `gh auth logout` + `gh auth login` neu; dann `gh auth setup-git` |
-| `ssh-agent` startet nicht (Windows) | Service deaktiviert, Admin-Rechte nötig | HTTPS + `gh auth setup-git` statt SSH verwenden |
-| `CursorPosition`-Fehler in PS-Subprozessen | PowerShell-Profil (Oh-My-Posh) lädt im Subprocess | `-NoProfile` zu `pwsh -File`-Aufrufen hinzufügen |
-| `git pull` „divergent branches" (Linux) | Kein globales rebase-Config | `git config --global pull.rebase true` |
-| Push rejected: `fetch first` | Remote ist neuer als local | `git pull --rebase --autostash && git push` |
-| Test-Script: unstaged changes blockieren pull | Output-Datei wird vor pull geschrieben | `git pull --rebase --autostash origin main` in Test-Scripts |
+| `$env:HOME` leer / empty (Windows) | PS7 `??` faengt `''` nicht ab / PS7 `??` does not catch `''` | `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })` |
+| CI: Dateien „missing" / files "missing" | Relativer Pfad als CWD=Repo-Root / Relative path while CWD is repo root | `cd "$(dirname $GITHUB_WORKSPACE)"` vor dem Scanner-Aufruf / before running the scanner |
+| `bash` bad substitution | `${#arr[@]+...}` auf Ubuntu 22.04 / on Ubuntu 22.04 | Bash-3-sichere `for`-Schleife zum Zaehlen / Bash-3-safe `for` loop for counting |
+| `Copy-Item` kopiert Verzeichnis in Verzeichnis / copies directory into directory | Ziel existiert bereits / Target already exists | `Copy-Item src/* dst/ -Recurse -Force` |
+| `LICENSE` von `.gitignore` ignoriert / ignored by `.gitignore` | Whitelist-Modell / whitelist model | `!LICENSE` in `.gitignore` eintragen / add `!LICENSE` to `.gitignore` |
+| ANSI-Falsch-Positive im Scanner / ANSI false positives in scanner | Scanner enthaelt `\\033[` als Literal / Scanner contains `\\033[` as a literal | `check-homogeneity.*` aus dem ANSI-Scan ausschliessen / exclude `check-homogeneity.*` from the ANSI scan |
+| Bootstrap hardcodierter Username / hard-coded username | `hindermath` war fest eingebaut / `hindermath` was hard-coded | `gh api user --jq '.login'` dynamisch verwenden / query `gh api user --jq '.login'` dynamically |
+| `gh auth login --web` bleibt haengen / hangs | Browser-Callback kommt in Hintergrundprozessen nicht an / Browser callback does not reach background processes | In **interaktivem Terminal** ausfuehren / run in an **interactive terminal** |
+| `glab auth login` bleibt haengen / hangs | Gleiche Ursache wie `gh`; Browser-Callback im Hintergrund nicht moeglich / Same root cause as `gh`; browser callback is not possible in background processes | In **interaktivem Terminal** ausfuehren / run in an **interactive terminal** |
+| `gh` keyring invalid (Windows) | Windows Credential Store korrupt / Windows Credential Store is corrupted | `gh auth logout` + `gh auth login` erneut; danach `gh auth setup-git` / log out and back in, then run `gh auth setup-git` |
+| `ssh-agent` startet nicht / does not start (Windows) | Service deaktiviert, Admin-Rechte noetig / Service is disabled and needs admin rights | HTTPS + `gh auth setup-git` statt SSH verwenden / use HTTPS + `gh auth setup-git` instead of SSH |
+| `CursorPosition`-Fehler in PS-Subprozessen / `CursorPosition` error in PS subprocesses | PowerShell-Profil (Oh-My-Posh) laedt im Subprozess / PowerShell profile loads in the subprocess | `-NoProfile` zu `pwsh -File`-Aufrufen hinzufuegen / add `-NoProfile` to `pwsh -File` calls |
+| `git pull` „divergent branches" (Linux) | Kein globales Rebase-Config / No global rebase config | `git config --global pull.rebase true` |
+| Push rejected: `fetch first` | Remote ist neuer als local / Remote is newer than local | `git pull --rebase --autostash && git push` |
+| Test-Script: unstaged changes blockieren pull / unstaged changes block pull | Output-Datei wird vor pull geschrieben / Output file is written before pull | `git pull --rebase --autostash origin main` in Test-Scripts verwenden / use `git pull --rebase --autostash origin main` in test scripts |
 
 
 ## Barrierefreiheit / Accessibility (A11Y)
@@ -1841,15 +1882,15 @@ Dieses Dokument richtet sich nach **WCAG 2.2 Level AA** für alle statischen Inh
 
 | WCAG-Kriterium / Criterion | Umsetzung / Implementation |
 |---|---|
-| **1.1.1** Nicht-Text-Inhalt / Non-text content | Keine Bilder vorhanden; Alt-Text-Pflicht für zukünftige Grafiken |
-| **1.3.1** Info und Beziehungen / Info and relationships | Überschriften h1→h2→h3→h4 ohne Sprung; Tabellen mit Kopfzeilen |
-| **1.3.2** Sinnvolle Reihenfolge / Meaningful sequence | Inhalt in logischer Lesereihenfolge strukturiert |
-| **1.4.1** Verwendung von Farbe / Use of colour | Keine ausschließlich farbbasierte Information |
-| **2.4.2** Seite mit Titel / Page titled | Dokumenttitel: `# home-baseline` |
-| **2.4.4** Linkzweck / Link purpose | Beschreibende Link-Texte (`[Installationsanleitung](...)` — nicht `[hier](...)`) |
-| **2.4.6** Überschriften und Bezeichnungen / Headings and labels | Alle Überschriften beschreibend und bilingual |
-| **3.1.1** Sprache der Seite / Language of page | Hauptsprache Deutsch; alle Abschnitte parallel auf Englisch |
-| **4.1.1** Syntaxanalyse / Parsing | Markdown-Elemente korrekt strukturiert; Code-Blöcke mit Sprachmarkierung |
+| **1.1.1** Nicht-Text-Inhalt / Non-text content | Keine Bilder vorhanden; Alt-Text-Pflicht fuer zukuenftige Grafiken / No images yet; alt text is required for future graphics |
+| **1.3.1** Info und Beziehungen / Info and relationships | Ueberschriften h1->h2->h3->h4 ohne Sprung; Tabellen mit Kopfzeilen / Headings follow h1->h2->h3->h4 without skipping; tables use header rows |
+| **1.3.2** Sinnvolle Reihenfolge / Meaningful sequence | Inhalt in logischer Lesereihenfolge strukturiert / Content is structured in a logical reading order |
+| **1.4.1** Verwendung von Farbe / Use of colour | Keine ausschliesslich farbbasierte Information / No information relies on colour alone |
+| **2.4.2** Seite mit Titel / Page titled | Dokumenttitel: `# home-baseline` / Document title: `# home-baseline` |
+| **2.4.4** Linkzweck / Link purpose | Beschreibende Link-Texte (`[Installationsanleitung](...)` statt `[hier](...)`) / Descriptive link texts (`[Installationsanleitung](...)` instead of `[here](...)`) |
+| **2.4.6** Ueberschriften und Bezeichnungen / Headings and labels | Alle Ueberschriften beschreibend und bilingual / All headings are descriptive and bilingual |
+| **3.1.1** Sprache der Seite / Language of page | Hauptsprache Deutsch; alle Abschnitte parallel auf Englisch / Main language is German; all sections are mirrored in English |
+| **4.1.1** Syntaxanalyse / Parsing | Markdown-Elemente korrekt strukturiert; Code-Bloecke mit Sprachmarkierung / Markdown elements are structured correctly; code blocks use language tags |
 
 > **Plattformeinschränkung / Platform limitation:** WCAG 3.1.2 (Sprache von Teilen) erfordert `lang`-Attribute
 > an zweisprachigen Textstellen. GitHub Markdown entfernt HTML-Attribute — dies kann nicht implementiert werden.
