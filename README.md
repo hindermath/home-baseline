@@ -1501,11 +1501,27 @@ Dieses Repo unterstützt alle fünf nachfolgend beschriebenen Agenten.
 
 *Depending on which AI agent you prefer, different setup steps are needed. This repo supports all five agents described below.*
 
+Der Zweck dieses Abschnitts ist zweigeteilt: Erstens sollst du den Agenten technisch zum Laufen bringen, zweitens soll klar werden, **wie Spec-Kit den jeweiligen Agenten integriert**. Nicht jeder Agent arbeitet mit demselben Mechanismus. Manche lesen Projektdateien wie `AGENTS.md` direkt als Kontext, andere entdecken Kommandos oder Skills in agentenspezifischen Verzeichnissen wie `.claude/commands/`, `.gemini/commands/` oder `.agents/skills/`.
+
+*This section has a two-part purpose: first, to get the agent running technically; second, to make clear **how Spec-Kit integrates with that specific agent**. Not every agent works through the same mechanism. Some read project files such as `AGENTS.md` directly as context, while others discover commands or skills from agent-specific directories such as `.claude/commands/`, `.gemini/commands/`, or `.agents/skills/`.*
+
+Praktisch bedeutet das: Du waehlst nicht nur nach Geschmack, sondern auch nach deinem lokalen Setup und deinem Arbeitsstil. GitHub Copilot CLI passt gut zu einem `gh`-zentrierten Workflow, Claude Code ist stark fuer dialogische Codearbeit mit eigener Kommando-Struktur, Gemini CLI und Codex CLI sind npm-basierte Terminal-Agenten mit guter Repo-Orientierung, und OpenCode ist eine native Alternative mit aehnlichem `AGENTS.md`-Kontextmodell wie Codex.
+
+*In practice, this means you are not choosing only by taste, but also by your local setup and working style. GitHub Copilot CLI fits well into a `gh`-centric workflow, Claude Code is strong for conversational coding with its own command structure, Gemini CLI and Codex CLI are npm-based terminal agents with good repository orientation, and OpenCode is a native alternative with a similar `AGENTS.md` context model to Codex.*
+
+Wichtig fuer den Ablauf: Nach der Agenten-Installation solltest du **nicht sofort `specify init` starten**, sondern zuerst den Abschnitt `Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory` lesen. Dort wird `uv`, `specify-cli` und der korrekte Initialisierungsweg eingerichtet. Dieser Schritt ist Voraussetzung dafuer, dass die nachfolgenden Spec-Kit-Befehle ueberhaupt sauber funktionieren.
+
+*One workflow detail matters especially: after installing the agent, you should **not jump directly to `specify init`**, but first read the section `Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory`. That is where `uv`, `specify-cli`, and the correct initialization path are set up. This step is a prerequisite for the later Spec-Kit commands to work properly at all.*
+
 #### GitHub Copilot CLI (empfohlen / recommended)
 
 Spec-Kit-Skills in `.agents/skills/` werden von der Copilot CLI automatisch erkannt — keine weitere Einrichtung nötig.
 
 *Spec-Kit skills in `.agents/skills/` are automatically discovered by the Copilot CLI — no further setup needed.*
+
+Copilot CLI ist in diesem Repository der am niedrigsten reibende Einstieg, wenn `gh` ohnehin schon benutzt wird. Der Vorteil liegt nicht nur in der Installation, sondern auch darin, dass Copilot CLI gut zu einem GitHub-zentrierten Workflow mit Repos, Issues und Terminal-Aufrufen passt. Fuer Spec-Kit ist besonders wichtig, dass die vorhandenen Skills in `.agents/skills/` direkt gefunden werden koennen, ohne dass du zusaetzliche Integrationsdateien erzeugen musst.
+
+*In this repository, Copilot CLI is the lowest-friction entry point if you already use `gh` anyway. The advantage is not only installation, but also that Copilot CLI fits naturally into a GitHub-centred workflow with repositories, issues, and terminal commands. For Spec-Kit, the key point is that the existing skills in `.agents/skills/` can be discovered directly without creating additional integration files first.*
 
 > **Voraussetzung / Prerequisite:** GitHub CLI `gh` (s. Abschnitt [§ 2. GitHub CLI](#2-github-cli-gh))
 
@@ -1524,7 +1540,11 @@ gh copilot
 > Skills werden automatisch aus `.agents/skills/` geladen.  
 > Aufruf im Chat: `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, …
 
-→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+Wenn du zusaetzlich auf mehreren Maschinen dieselbe Copilot-CLI-Darstellung oder dieselben Reasoning-Defaults haben willst, kannst du danach optional noch `setup-copilot-settings.*` aus dem frueheren Abschnitt `Einrichtung der KI-Agenten / AI Agent Setup` verwenden. Das ist fuer Spec-Kit nicht zwingend, aber fuer eine konsistente Arbeitsumgebung sinnvoll.
+
+*If you also want the same Copilot CLI appearance or the same reasoning defaults across several machines, you can optionally apply `setup-copilot-settings.*` afterwards from the earlier section `Einrichtung der KI-Agenten / AI Agent Setup`. That is not required for Spec-Kit itself, but useful for a consistent working environment.*
+
+→ Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
 ---
 
@@ -1533,6 +1553,10 @@ gh copilot
 Claude erkennt Spec-Kit-Kommandos über das `.claude/commands/`-Verzeichnis automatisch.
 
 *Claude automatically discovers Spec-Kit commands via `.claude/commands/`.*
+
+Claude Code eignet sich besonders dann, wenn du einen stark dialogorientierten Agenten suchst, der Kommandos und Kontext eng mit dem aktuellen Projekt verbindet. Fuer Spec-Kit ist die eingebaute Kommandostruktur wichtig: Die benoetigten Befehle werden aus `.claude/commands/` erkannt, sodass du im Chat gezielt durch den SDD-Workflow gehen kannst, ohne die Integrationsdateien selbst manuell vorbereiten zu muessen.
+
+*Claude Code is especially useful if you want a strongly dialogue-oriented agent that ties commands and context closely to the current project. For Spec-Kit, the built-in command structure is the important part: the necessary commands are discovered from `.claude/commands/`, so you can move through the SDD workflow in chat without having to prepare the integration files manually yourself.*
 
 > **Voraussetzung / Prerequisite:** Anthropic-Account (Pro, Max, Teams oder Enterprise) — kein Node.js nötig.
 >
@@ -1565,7 +1589,11 @@ claude
 
 Weitere Infos: [code.claude.com/docs/de/setup](https://code.claude.com/docs/de/setup)
 
-→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+Optional kannst du danach noch `setup-claude-settings.*` aus dem weiter oben dokumentierten Agenten-Setup-Block ausfuehren, wenn du auf allen Geraeten dieselbe `statusLine` mit Modell-, Branch- und Limit-Anzeige haben willst. Die eigentliche Spec-Kit-Integration funktioniert aber bereits ueber `.claude/commands/`.
+
+*Afterwards, you can optionally run `setup-claude-settings.*` from the agent setup block documented earlier if you want the same `statusLine` with model, branch, and limit display on all devices. The actual Spec-Kit integration, however, already works via `.claude/commands/`.*
+
+→ Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
 ---
 
@@ -1574,6 +1602,10 @@ Weitere Infos: [code.claude.com/docs/de/setup](https://code.claude.com/docs/de/s
 Gemini erkennt Spec-Kit-Kommandos über das `.gemini/commands/`-Verzeichnis automatisch.
 
 *Gemini automatically discovers Spec-Kit commands via `.gemini/commands/`.*
+
+Gemini CLI ist vor allem dann passend, wenn du bereits mit einer npm-basierten Toolchain arbeitest und einen schlanken Terminal-Agenten mit direkter Projektanbindung willst. Innerhalb dieses Repositories wird Spec-Kit ueber `.gemini/commands/` eingebunden, also aehnlich klar strukturiert wie bei Claude, aber mit dem typischen Gemini-CLI-Workflow.
+
+*Gemini CLI is especially suitable if you already work with an npm-based toolchain and want a lean terminal agent with direct project integration. In this repository, Spec-Kit is integrated via `.gemini/commands/`, so the structure is similarly clear to Claude, but with the typical Gemini CLI workflow.*
 
 > **Voraussetzung / Prerequisite:** Node.js ≥ 18, Google-Account
 
@@ -1599,7 +1631,11 @@ gemini
 
 Weitere Infos: [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
 
-→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+Wenn du die TUI-Darstellung auf mehreren Maschinen vereinheitlichen willst, kannst du anschliessend noch `setup-gemini-settings.*` aus dem frueheren Setup-Abschnitt verwenden. Fuer die Spec-Kit-Kommandos selbst ist das optional; entscheidend ist, dass `gemini` installiert und im Projekt lauffaehig ist.
+
+*If you want to standardise the TUI display across multiple machines, you can then also use `setup-gemini-settings.*` from the earlier setup section. That is optional for the Spec-Kit commands themselves; what matters is that `gemini` is installed and working inside the project.*
+
+→ Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
 ---
 
@@ -1608,6 +1644,10 @@ Weitere Infos: [github.com/google-gemini/gemini-cli](https://github.com/google-g
 Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `plan.md`, `tasks.md`) stehen als Eingabe zur Verfügung.
 
 *Codex reads `AGENTS.md` as project context; all Spec-Kit artefacts are available as input.*
+
+Codex CLI ist in diesem Setup besonders stark, wenn du repo-nahe Arbeit mit klarer Projektkontext-Datei bevorzugst. Anders als Claude oder Gemini arbeitet die Integration hier nicht primär ueber ein spezielles `commands`-Verzeichnis, sondern ueber `AGENTS.md` und - bei `specify init` - zusaetzlich ueber den Schalter `--ai-skill`, damit die Spec-Kit-Skills korrekt in `.agents/skills/` abgelegt werden.
+
+*Codex CLI is especially strong in this setup if you prefer repository-close work with an explicit project context file. Unlike Claude or Gemini, the integration here does not primarily depend on a dedicated `commands` directory, but on `AGENTS.md` and, during `specify init`, additionally on the `--ai-skill` switch so that the Spec-Kit skills are placed correctly into `.agents/skills/`.*
 
 > **Voraussetzung / Prerequisite:** Node.js ≥ 18, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
 
@@ -1658,7 +1698,11 @@ Setzt `tui.status_line` in `~/.codex/config.toml` aus `scripts/templates/codex-s
 
 Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
 
-→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+Wenn du ausserdem eine konsistente TUI-Statuszeile willst, ist `setup-codex-settings.*` der passende zweite Schritt aus dem frueheren Agenten-Setup-Block. Fuer Spec-Kit selbst ist wichtiger, dass du spaeter bei der Initialisierung den richtigen `--ai codex --ai-skill`-Pfad verwendest.
+
+*If you also want a consistent TUI status line, `setup-codex-settings.*` is the right second step from the earlier agent setup block. For Spec-Kit itself, the more important point is that you later use the correct `--ai codex --ai-skill` path during initialization.*
+
+→ Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
 ---
 
@@ -1667,6 +1711,10 @@ Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
 OpenCode liest ebenfalls `AGENTS.md` und unterstützt damit denselben Kontext wie Codex.
 
 *OpenCode also reads `AGENTS.md` and therefore supports the same project context as Codex.*
+
+OpenCode ist die native Alternative in dieser Liste und passt gut, wenn du keinen npm-basierten Agenten installieren willst. Fuer Spec-Kit ist der wichtige Punkt, dass OpenCode ebenso mit `AGENTS.md` als Projektkontext arbeitet. Dadurch ist die Arbeitsweise konzeptionell nah an Codex, auch wenn Installation und Laufzeitmodell unterschiedlich sind.
+
+*OpenCode is the native alternative in this list and fits well if you do not want to install an npm-based agent. For Spec-Kit, the important point is that OpenCode also works with `AGENTS.md` as project context. That makes the overall working model conceptually close to Codex even though installation and runtime differ.*
 
 > **Voraussetzung / Prerequisite:** Kein Node.js nötig — natives Binary / No Node.js required — native binary
 
@@ -1699,7 +1747,7 @@ opencode
 Weitere Infos: [opencode.ai](https://opencode.ai)  
 GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
 
-→ Nächster Schritt / Next step: [Spec-Kit initialisieren / Initialize Spec-Kit](#spec-kit-initialisieren--initialize-spec-kit)
+→ Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
 ---
 
@@ -1815,10 +1863,15 @@ Alle Kommandos werden im **Chat-Interface** deines KI-Agenten eingegeben (nicht 
 
 | Kommando / Command | Beschreibung / Description |
 |---|---|
-| `speckit.analyze` | Konsistenz-Check ueber alle Artefakte (spec.md, plan.md, tasks.md) / Consistency check across all artefacts |
-| `speckit.checklist` | Individuelle Feature-Checkliste generieren / Generate a custom feature checklist |
-| `speckit.constitution` | Projekt-Verfassung (`constitution.md`) erstellen oder aktualisieren / Create or update the project constitution (`constitution.md`) |
-| `speckit.taskstoissues` | Tasks als GitHub Issues anlegen / Create GitHub issues from tasks |
+| `speckit.specify` | Erstellt aus einer natuerlichen Feature-Beschreibung die erste fachliche Spezifikation in `spec.md` und legt in typischen Setups auch den zugehoerigen Branch oder Feature-Kontext an. Das ist fast immer der fachliche Einstiegspunkt in den SDD-Workflow. / Creates the first functional specification in `spec.md` from a natural-language feature description and, in typical setups, also creates the related branch or feature context. This is almost always the functional entry point into the SDD workflow. |
+| `speckit.clarify` | Liest die vorhandene Spezifikation und identifiziert offene, mehrdeutige oder unterbestimmte Punkte. Ziel ist nicht Implementierung, sondern saubere fachliche Klaerung, bevor Entwurf und Tasks gebaut werden. / Reads the existing specification and identifies open, ambiguous, or underspecified points. The goal is not implementation, but clean functional clarification before design and task generation begin. |
+| `speckit.plan` | Erzeugt den technischen Umsetzungsplan in `plan.md`, typischerweise mit Architektur, betroffenen Bereichen, Risiken, Datenmodell- oder Schnittstellenueberlegungen. Dieser Schritt uebersetzt die fachliche Spezifikation in einen technischen Entwurf. / Produces the technical implementation plan in `plan.md`, typically including architecture, affected areas, risks, and data model or interface considerations. This step translates the functional specification into a technical design. |
+| `speckit.checklist` | Generiert eine individuelle Checkliste fuer das konkrete Feature, zum Beispiel fuer Akzeptanzkriterien, Randfaelle, Testpunkte oder Qualitaetsfragen. Das ist besonders nuetzlich, wenn vor der Implementierung noch einmal explizit auf Vollstaendigkeit geschaut werden soll. / Generates a custom checklist for the specific feature, for example for acceptance criteria, edge cases, test points, or quality questions. This is especially useful when you want an explicit completeness pass before implementation starts. |
+| `speckit.tasks` | Zerlegt den Plan in eine geordnete, abhaengige Task-Liste in `tasks.md`. Das Ergebnis ist die operative Arbeitsgrundlage fuer die eigentliche Umsetzung. / Breaks the plan down into an ordered task list with dependencies in `tasks.md`. The result is the operational working basis for the actual implementation. |
+| `speckit.analyze` | Fuehrt einen Konsistenz-Check ueber die vorhandenen Artefakte wie `spec.md`, `plan.md` und `tasks.md` aus. Dabei werden Luecken, Widersprueche oder schwach gekoppelte Stellen sichtbar, bevor Code geschrieben wird. / Runs a consistency check across existing artefacts such as `spec.md`, `plan.md`, and `tasks.md`. This exposes gaps, contradictions, or weak handoffs before code is written. |
+| `speckit.implement` | Arbeitet die in `tasks.md` definierten Aufgaben schrittweise ab und fuehrt damit den Uebergang von Planung zu realer Umsetzung aus. In der Praxis ist das der Schritt, in dem der Agent beginnt, Aenderungen im Projekt vorzunehmen. / Processes the tasks defined in `tasks.md` step by step and performs the transition from planning to real implementation. In practice, this is the step where the agent begins to make changes inside the project. |
+| `speckit.constitution` | Erstellt oder aktualisiert die Projekt-Verfassung `constitution.md`, also die uebergreifenden Regeln und Prinzipien, die kuenftige Features, Tasks und Agentenentscheidungen rahmen. Das ist eher ein Governance- als ein Feature-Befehl. / Creates or updates the project constitution `constitution.md`, meaning the higher-level rules and principles that frame future features, tasks, and agent decisions. This is more of a governance command than a feature command. |
+| `speckit.taskstoissues` | Ueberfuehrt die Aufgaben aus `tasks.md` in GitHub Issues. Das ist dann sinnvoll, wenn aus dem internen Plan ein sichtbarer, teamfaehiger Arbeits-Backlog werden soll. / Converts the tasks from `tasks.md` into GitHub issues. This is useful when the internal plan should become a visible, team-ready work backlog. |
 
 ---
 
