@@ -1946,21 +1946,23 @@ Copilot:
 
 Was man an diesem Beispiel gut sehen kann:
 
-- Nach `speckit.specify` existiert noch **kein** fertiger technischer Entwurf, sondern zunaechst nur die fachliche Zielbeschreibung.
-- Nach `speckit.clarify` sollte die Spezifikation belastbarer sein, weil unklare Punkte aktiv in Fragen verwandelt wurden.
-- Nach `speckit.plan` ist aus der Fachbeschreibung ein technisches Arbeitsmodell geworden.
-- Nach `speckit.tasks` gibt es nicht nur "Ideen", sondern eine geordnete Reihenfolge fuer die Umsetzung.
-- Nach `speckit.analyze` liegt idealerweise ein letzter Qualitaetsfilter vor, bevor echter Code geschrieben wird.
-- Erst `speckit.implement` ist der Schritt, in dem der Agent wirklich mit produktiven Code-Aenderungen beginnt.
+- Nach `speckit.specify` existiert noch **kein** fertiger technischer Entwurf, sondern zunaechst nur die fachliche Zielbeschreibung. Genau das ist gewollt: In diesem Schritt geht es darum, das Feature sauber zu umreissen, den gewuenschten Nutzen zu benennen und erste Akzeptanzkriterien sichtbar zu machen, ohne sich schon zu frueh auf eine technische Loesung festzulegen.
+- Nach `speckit.clarify` sollte die Spezifikation belastbarer sein, weil unklare Punkte aktiv in Fragen verwandelt wurden. Gute Klaerungsfragen verhindern spaeter teure Richtungswechsel, weil Randbedingungen, Sicherheitsannahmen, UX-Erwartungen oder Integrationsdetails frueh explizit gemacht werden.
+- Nach `speckit.plan` ist aus der Fachbeschreibung ein technisches Arbeitsmodell geworden. In diesem Schritt entsteht typischerweise die Bruecke zwischen "Was soll das Feature koennen?" und "Welche Komponenten, Dateien, Schnittstellen und Risiken sind dafuer relevant?".
+- Nach `speckit.checklist` gibt es einen zusaetzlichen Qualitaetsblick auf das Feature selbst. Dieser Schritt ist besonders nuetzlich, wenn Teams oder Einzelentwickler sicherstellen wollen, dass Akzeptanzkriterien, Testpunkte, Randfaelle und nicht-funktionale Erwartungen nicht stillschweigend vergessen werden.
+- Nach `speckit.tasks` gibt es nicht nur "Ideen", sondern eine geordnete Reihenfolge fuer die Umsetzung. Das ist wichtig, weil gute Aufgabenlisten Abhaengigkeiten sichtbar machen, Arbeit in sinnvolle Einheiten zerlegen und dadurch sowohl manuelle Umsetzung als auch agentische Umsetzung deutlich robuster machen.
+- Nach `speckit.analyze` liegt idealerweise ein letzter Qualitaetsfilter vor, bevor echter Code geschrieben wird. Der Wert dieses Schritts liegt vor allem darin, dass Widersprueche zwischen `spec.md`, `plan.md` und `tasks.md` jetzt noch billig zu beheben sind - spaeter im Code waeren dieselben Widersprueche deutlich teurer.
+- Erst `speckit.implement` ist der Schritt, in dem der Agent wirklich mit produktiven Code-Aenderungen beginnt. Das ist bewusst der spaeteste Schritt in der Kette, weil die vorherigen Artefakte dafuer sorgen sollen, dass Implementierung nicht mehr als unscharfes Experiment startet, sondern als nachvollziehbarer Arbeitsauftrag.
 
 *What this example shows especially well:*
 
-- *After `speckit.specify`, there is **not yet** a finished technical design, only the functional target description.*
-- *After `speckit.clarify`, the specification should be more robust because unclear points were actively turned into explicit questions.*
-- *After `speckit.plan`, the functional description has become a technical working model.*
-- *After `speckit.tasks`, you no longer only have "ideas", but an ordered implementation sequence.*
-- *After `speckit.analyze`, there is ideally a final quality filter before real code is written.*
-- *Only `speckit.implement` is the step where the agent actually starts making productive code changes.*
+- *After `speckit.specify`, there is **not yet** a finished technical design, only the functional target description. That is intentional: this step is about defining the feature cleanly, naming its expected value, and making early acceptance criteria visible without locking into a technical solution too early.*
+- *After `speckit.clarify`, the specification should be more robust because unclear points were actively turned into explicit questions. Good clarification questions prevent expensive direction changes later by making constraints, security assumptions, UX expectations, or integration details explicit early on.*
+- *After `speckit.plan`, the functional description has become a technical working model. This is usually the bridge between "What should the feature do?" and "Which components, files, interfaces, and risks matter for implementing it?".*
+- *After `speckit.checklist`, there is an additional quality lens on the feature itself. This step is especially useful when a team or individual wants to make sure that acceptance criteria, test points, edge cases, and non-functional expectations are not silently forgotten.*
+- *After `speckit.tasks`, you no longer only have "ideas", but an ordered implementation sequence. This matters because good task lists make dependencies visible, break work into meaningful units, and thereby make both manual execution and agentic execution much more robust.*
+- *After `speckit.analyze`, there is ideally a final quality filter before real code is written. The value of this step is that contradictions between `spec.md`, `plan.md`, and `tasks.md` are still cheap to fix now, whereas the same contradictions would become much more expensive once they are baked into code.*
+- *Only `speckit.implement` is the step where the agent actually starts making productive code changes. It is intentionally the last step in the chain, because the previous artefacts are meant to ensure that implementation no longer starts as a vague experiment, but as a traceable work order.*
 
 Als praktische Faustregel gilt: Wenn sich ein Schritt "zu frueh" anfuehlt, ist das oft ein Signal, dass der vorherige Artefaktschritt noch nicht sauber genug ist. Wenn also `implement` zu riskant wirkt, fehlt haeufig noch Schaerfe in `spec.md`, `plan.md` oder `tasks.md` - nicht unbedingt mehr Programmieraufwand.
 
