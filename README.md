@@ -989,6 +989,14 @@ Als praktische Kurzregel gilt: **neu anlegen = Bootstrap**, **vorhandenen Bestan
 
 ### Versionierung / Versioning
 
+Dieser Block beschreibt, wie aus Commits nachvollziehbare Releases und Changelog-Eintraege werden. Fuer GitHub-Repositories ist `release-please` der automatische Standardpfad: Bei Pushes auf `main` entstehen Release-PRs, die Version, Changelog und Release-Tag kontrolliert fortschreiben. Fuer GitLab-Repositories uebernehmen `setup-gitlab-release.*` und die zugehoerigen Templates denselben Zweck mit einem GitLab-nativen, bewusst manuellen `release`-Job.
+
+*This block explains how commits become traceable releases and changelog entries. For GitHub repositories, `release-please` is the standard automated path: pushes to `main` produce release pull requests that update version, changelog, and release tags in a controlled way. For GitLab repositories, `setup-gitlab-release.*` and the related templates serve the same purpose with a GitLab-native, intentionally manual `release` job.*
+
+Die Abgrenzung ist wichtig: Diese Dateien legen **nicht** den normalen Entwicklungsablauf fest, sondern den Weg von abgeschlossener Arbeit zu einer veroeffentlichten Version. Wenn du also an Features oder Baseline-Skripten arbeitest, brauchst du meist nur die normale Commit-Disziplin. Die Dateien in diesem Abschnitt werden relevant, sobald Versionen, Tags, Releases und `CHANGELOG.md` konsistent und reproduzierbar gepflegt werden sollen.
+
+*The distinction matters: these files do **not** define the normal development flow, but the path from finished work to a published version. So when you work on features or baseline scripts, you usually only need normal commit discipline. The files in this section become relevant once versions, tags, releases, and `CHANGELOG.md` need to be maintained consistently and reproducibly.*
+
 | Datei / File | Beschreibung / Description |
 |---|---|
 | `.github/workflows/release-please.yml` | Release Please — erstellt Release PRs automatisch bei jedem Push auf `main` |
@@ -1002,6 +1010,14 @@ Als praktische Kurzregel gilt: **neu anlegen = Bootstrap**, **vorhandenen Bestan
 | `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/) — von Release Please oder GitLab Release-Job verwaltet |
 
 ### Sicherheit / Security
+
+Dieser Block deckt den Schutz vor versehentlich eingecheckten Geheimnissen ab. Die Secret-Scan-Skripte pruefen typische Agenten-, Tool- und Projektverzeichnisse auf riskante Dateien oder Inhalte, waehrend `install-hooks.*` den gemeinsamen `pre-push`-Hook in ein Repository einhaengt. Dadurch wird der Schutz moeglichst frueh aktiv: idealerweise schon vor dem Push und nicht erst nach einem CI-Fehler oder einem geleakten Token.
+
+*This block covers protection against secrets being committed by accident. The secret-scan scripts inspect common agent, tool, and project directories for risky files or contents, while `install-hooks.*` installs the shared `pre-push` hook into a repository. This makes the protection active as early as possible: ideally before a push, and not only after a CI failure or a leaked token.*
+
+Die Rollen sind auch hier getrennt: `scan-agent-secrets.*` ist das eigentliche Pruefwerkzeug, `install-hooks.*` bringt die Pruefung in den Alltag, und `scripts/hooks/pre-push` ist die gemeinsam genutzte Durchsetzungslogik. Als Kurzregel gilt also: **manuell pruefen = scan-agent-secrets**, **dauerhaft absichern = install-hooks**, **beim Push blockieren = pre-push**.
+
+*The roles are separated here as well: `scan-agent-secrets.*` is the actual inspection tool, `install-hooks.*` brings that inspection into day-to-day work, and `scripts/hooks/pre-push` is the shared enforcement logic. So the short rule is: **manual inspection = scan-agent-secrets**, **persistent protection = install-hooks**, **block on push = pre-push**.*
 
 | Datei / File | Beschreibung / Description |
 |---|---|
