@@ -1974,6 +1974,14 @@ Als praktische Faustregel gilt: Wenn sich ein Schritt "zu frueh" anfuehlt, ist d
 
 Nach einem vollständigen Spec-Kit-Workflow sieht das `specs/`-Verzeichnis so aus:
 
+Dieser Abschnitt ist wichtig, weil Spec-Kit nicht nur "irgendwelche Dateien" erzeugt, sondern eine **strukturierte Entscheidungs- und Arbeitskette**. Die Dateien im `specs/`-Verzeichnis haben unterschiedliche Rollen: Einige beschreiben fachliche Anforderungen, andere den technischen Entwurf, andere wieder die konkrete Ausführungsreihenfolge. Wer diese Rollen versteht, kann sehr viel schneller beurteilen, ob ein Feature schon sauber vorbereitet ist oder ob noch Lücken zwischen Idee, Plan und Umsetzung bestehen.
+
+*This section matters because Spec-Kit does not just generate "some files", but a **structured chain of decisions and work artefacts**. The files inside `specs/` play different roles: some describe functional requirements, others the technical design, and others the concrete execution order. If you understand these roles, you can judge much faster whether a feature is already well prepared or whether gaps still exist between idea, plan, and implementation.*
+
+Als Faustregel kann man die Artefakte so lesen: `spec.md` beantwortet vor allem **was** gebaut werden soll, `plan.md` beschreibt **wie** man es technisch denkt, `tasks.md` organisiert **in welcher Reihenfolge** gearbeitet wird. Die optionalen Dateien wie `research.md`, `data-model.md`, `quickstart.md` oder `contracts/` sind Vertiefungen fuer spezielle Fragestellungen und helfen dabei, Entscheidungen aus dem Hauptfluss auszulagern, statt `spec.md` oder `plan.md` zu ueberladen.
+
+*A useful rule of thumb is to read the artefacts like this: `spec.md` mainly answers **what** should be built, `plan.md` describes **how** it is approached technically, and `tasks.md` organises **in which order** the work should happen. The optional files such as `research.md`, `data-model.md`, `quickstart.md`, or `contracts/` are deepening artefacts for specific concerns and help move detail out of the main flow instead of overloading `spec.md` or `plan.md`.*
+
 ```text
 specs/
 └── 001-login-github-oauth/
@@ -1986,6 +1994,10 @@ specs/
     └── contracts/       ← API-/CLI-Kontrakte (optional)
         └── api.md
 ```
+
+Die Verzeichnisstruktur ist deshalb nicht nur Dokumentation, sondern auch ein Qualitaetssignal. Wenn zum Beispiel `tasks.md` schon existiert, aber `plan.md` noch sehr duenn oder widerspruechlich ist, deutet das oft darauf hin, dass die Aufgabenliste zu frueh erstellt wurde. Umgekehrt ist ein Feature meist gut vorbereitet, wenn die Artefakte sichtbar aufeinander aufbauen und die optionalen Dateien nur dort auftauchen, wo sie wirklich zusaetzlichen Erkenntniswert liefern.
+
+*The directory structure is therefore not only documentation, but also a quality signal. For example, if `tasks.md` already exists while `plan.md` is still thin or contradictory, that often means the task list was created too early. Conversely, a feature is usually well prepared when the artefacts visibly build on one another and the optional files appear only where they add real extra insight.*
 
 Alle Artefakte werden automatisch in Git versioniert — du kannst jederzeit nachvollziehen, wie eine Entscheidung entstanden ist.
 
