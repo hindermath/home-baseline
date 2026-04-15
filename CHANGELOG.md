@@ -8,6 +8,20 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.8.1](https://github.com/hindermath/home-baseline/compare/v0.8.0...v0.8.1) (2026-04-15)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* keep level-2 repositories ignored in workspaces ([3af91f4](https://github.com/hindermath/home-baseline/commit/3af91f478baa22c3bf6107b616e9eb994db06aac))
+
+
+### Documentation / Dokumentation
+
+* align readme bilingual content ([6942ec2](https://github.com/hindermath/home-baseline/commit/6942ec20ca31c03de89278cf59817c941d9e718b))
+* explain bootstrap, migration and checks ([4f33779](https://github.com/hindermath/home-baseline/commit/4f33779ed7fe83c5178a499c6512ccad601f1e61))
+* explain versioning and security scripts ([12b4180](https://github.com/hindermath/home-baseline/commit/12b41807c5c9df339fe89148572155fa471195d0))
+
 ## [0.8.0](https://github.com/hindermath/home-baseline/compare/v0.7.1...v0.8.0) (2026-04-13)
 
 
