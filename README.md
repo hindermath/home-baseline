@@ -36,7 +36,7 @@ private GitHub or GitLab repository within seconds.*
   - [Releases und Versionierung / Releases & Versioning](#releases-und-versionierung--releases--versioning)
 - [Inhalt / Contents](#inhalt--contents)
   - [Workspace-Bootstrap / Workspace Bootstrap](#workspace-bootstrap--workspace-bootstrap)
-  - [Homogeneity Guardian](#homogeneity-guardian)
+  - [Homogeneity Guardian / Check, Migration & Stats](#homogeneity-guardian--check-migration--stats)
   - [Sicherheit / Security](#sicherheit--security)
   - [Versionierung / Versioning](#versionierung--versioning)
 - [Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
@@ -937,6 +937,14 @@ pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/Ri
 
 ### Workspace-Bootstrap / Workspace Bootstrap
 
+Die Bootstrap-Skripte sind fuer den **Start eines neuen Scopes** gedacht. `bootstrap-workspace.*` legt einen neuen Level-1-Workspace an, richtet die Baseline-Dateien ein, kopiert die wiederverwendbaren Skripte, initialisiert Git und erstellt optional direkt das passende Remote-Repository. `bootstrap-project.*` macht dasselbe eine Ebene tiefer fuer ein neues Level-2-Projekt innerhalb eines bestehenden Workspaces. Die Teardown-Skripte gehoeren in denselben Block, weil sie den Lebenszyklus eines Workspaces wieder sauber beenden.
+
+*The bootstrap scripts are meant for the **start of a new scope**. `bootstrap-workspace.*` creates a new level-1 workspace, sets up the baseline files, copies the reusable scripts, initializes Git, and can optionally create the matching remote repository right away. `bootstrap-project.*` does the same one level deeper for a new level-2 project inside an existing workspace. The teardown scripts belong to the same block because they cleanly end the lifecycle of a workspace again.*
+
+Wichtig ist die Abgrenzung: Bootstrap ist **nicht** dafuer da, einen bereits existierenden Workspace nachtraeglich an eine neue Baseline anzupassen oder nur den Ist-Zustand zu bewerten. Wenn ein Workspace schon existiert, aber auf einen neueren Standard gebracht werden soll, ist `migrate-workspace.*` das richtige Werkzeug. Wenn du nur wissen willst, ob die aktuelle Struktur compliant ist, nutzt du `check-homogeneity.*`.
+
+*The important distinction is this: bootstrap is **not** meant to retrofit an already existing workspace to a newer baseline or to only evaluate the current state. If a workspace already exists but needs to be brought to a newer standard, `migrate-workspace.*` is the right tool. If you only want to know whether the current structure is compliant, use `check-homogeneity.*`.*
+
 | Datei / File | Beschreibung / Description |
 |---|---|
 | `scripts/bootstrap-workspace.sh` | Neues Workspace einrichten (Bash) |
@@ -946,7 +954,19 @@ pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/Ri
 | `scripts/teardown-workspace.sh` | Workspace sicher entfernen: Remote, lokales Verzeichnis, Artefakte (Bash) |
 | `scripts/teardown-workspace.ps1` | Workspace-Teardown (PowerShell Core) |
 
-### Homogeneity Guardian
+### Homogeneity Guardian / Check, Migration & Stats
+
+Der Homogeneity-Guardian-Block deckt die **Pflege eines bestehenden Bestands** ab. Hier geht es nicht mehr um das erstmalige Anlegen, sondern um pruefen, angleichen und nachweisen. Die Skripte in diesem Abschnitt helfen dir also dabei, vorhandene Workspaces und Projekte auf Konsistenz zu kontrollieren, fehlende Baseline-Bausteine nachzuziehen und den sichtbaren Fortschritt in `STATS.md` oder `docs/project-statistics.md` zu dokumentieren.
+
+*The Homogeneity Guardian block covers the **maintenance of an existing estate**. At this point the focus is no longer on first-time creation, but on checking, aligning, and documenting. The scripts in this section therefore help you inspect existing workspaces and projects for consistency, add missing baseline building blocks, and document visible progress in `STATS.md` or `docs/project-statistics.md`.*
+
+Die Rollen der wichtigsten Skripte sind bewusst unterschiedlich: `check-homogeneity.*` ist das Diagnose-Werkzeug und beantwortet die Frage **"Ist der aktuelle Zustand compliant?"**. `migrate-workspace.*` ist das Nachruest-Werkzeug und beantwortet **"Wie bringe ich einen vorhandenen Workspace auf die aktuelle Baseline?"**. `init-stats.*` ist kein Compliance-Fix, sondern initialisiert oder ergaenzt nur den Statistik-Nachweis. `sync-constitution.*` verteilt die gemeinsame Verfassung in bestehende Level-1-Workspaces, und `rename-lastenheft.*` haelt die Benennung von Lastenheften nach einem Feature-Abschluss konsistent.
+
+*The roles of the main scripts are intentionally different: `check-homogeneity.*` is the diagnostic tool and answers the question **"Is the current state compliant?"**. `migrate-workspace.*` is the retrofit tool and answers **"How do I bring an existing workspace to the current baseline?"**. `init-stats.*` is not a compliance fix, but only initializes or extends the statistics record. `sync-constitution.*` distributes the shared constitution into existing level-1 workspaces, and `rename-lastenheft.*` keeps the naming of requirement files consistent after a feature has been completed.*
+
+Als praktische Kurzregel gilt: **neu anlegen = Bootstrap**, **vorhandenen Bestand angleichen = Migration**, **nur bewerten = Check**, **nur Statistik initialisieren = init-stats**. Genau diese Trennung hilft dabei, Skripte nicht versehentlich fuer den falschen Zweck zu verwenden.
+
+*A practical short rule is: **create new = bootstrap**, **align existing estate = migration**, **only evaluate = check**, **only initialize statistics = init-stats**. This exact separation helps you avoid using the scripts for the wrong purpose by accident.*
 
 | Datei / File | Beschreibung / Description |
 |---|---|
@@ -1012,6 +1032,10 @@ pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/Ri
 ---
 
 ## Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference
+
+Die Kurzreferenz ist fuer den schnellen Zugriff gedacht: `check-homogeneity.*` prueft nur den aktuellen Zustand, `migrate-workspace.*` zieht fehlende Baseline-Bausteine in bestehende Workspaces nach, und `init-stats.*` initialisiert oder ergaenzt nur den Statistik-Nachweis. Wenn du also nichts neu anlegen willst, aber unsicher bist, welches Skript du brauchst, gilt hier dieselbe Kurzregel wie oben: **pruefen = check**, **angleichen = migrate**, **Statistik starten oder fortschreiben = init-stats**.
+
+*The quick reference is meant for fast access: `check-homogeneity.*` only inspects the current state, `migrate-workspace.*` adds missing baseline building blocks to existing workspaces, and `init-stats.*` only initializes or extends the statistics record. So if you do not want to create anything new but are unsure which script you need, the same short rule applies here: **inspect = check**, **align = migrate**, **start or extend statistics = init-stats**.*
 
 ### Compliance-Check
 
