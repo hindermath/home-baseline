@@ -8,6 +8,23 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.8.2](https://github.com/hindermath/home-baseline/compare/v0.8.1...v0.8.2) (2026-04-16)
+
+
+### Documentation / Dokumentation
+
+* add codex agents status bug report ([8132ccc](https://github.com/hindermath/home-baseline/commit/8132ccc9a177de043ef03df79712f8c2205f56ce))
+* add codex status output evidence ([7852019](https://github.com/hindermath/home-baseline/commit/785201922c7b5971bb52480e58e6c37160c44672))
+* archive codex agents status case closure ([8b25b7c](https://github.com/hindermath/home-baseline/commit/8b25b7c57e0d68354ed79c514234715138b31030))
+* deepen speckit example takeaways ([e989685](https://github.com/hindermath/home-baseline/commit/e9896851d77e05cc7ddfd17412d83b73c06fc100))
+* expand accessibility guidance ([de26080](https://github.com/hindermath/home-baseline/commit/de260807ac2e6f297ebbfdf502d63747d97dcbc7))
+* expand agent and speckit guidance ([7cc68ef](https://github.com/hindermath/home-baseline/commit/7cc68ef0e91a1b68ffb974f34192ae147b5f9242))
+* expand first speckit example ([7383f71](https://github.com/hindermath/home-baseline/commit/7383f719e61a395a6c7a50b3330efd53545349ec))
+* expand known pitfalls guidance ([c620279](https://github.com/hindermath/home-baseline/commit/c6202799167f75d4d84851231c521dd50b1ec0f8))
+* explain speckit artefacts ([d1f539b](https://github.com/hindermath/home-baseline/commit/d1f539bcfecead3067cd244125a290a12c80fbc2))
+* move codex bug report into docs ([020a49d](https://github.com/hindermath/home-baseline/commit/020a49d0c1b6cbf17c15f35c2cf9c8443aa3271f))
+* reorganize ai agent setup guidance ([7cb88ac](https://github.com/hindermath/home-baseline/commit/7cb88ac11ea41c2683ae699e05a0bcac8425842f))
+
 ## [0.8.1](https://github.com/hindermath/home-baseline/compare/v0.8.0...v0.8.1) (2026-04-15)
 
 
