@@ -1,21 +1,24 @@
-# Codex CLI Status Output Evidence
+# Reply Draft for OpenAI Support
 
-This file preserves the exact relevant session output and follow-up evidence for the `AGENTS.md` status mismatch report.
+## Suggested subject
 
-## Requested investigation details
+```text
+Re: Codex CLI `/status` shows `Agents.md: <none>` although `AGENTS.md` exists
+```
 
-### 1. OS and filesystem case sensitivity
+## Suggested reply body
 
+```text
+Hello,
+
+here are the requested investigation details for the Codex CLI `AGENTS.md` status mismatch:
+
+1) OS and filesystem case sensitivity
 - OS: macOS
 - Filesystem behavior for this path: case-insensitive
 
-This was verified in the affected working directory by checking that `AGENTS.md` exists while a lowercase lookup does not behave as a distinct second file path.
+2) Exact `/status` output block
 
-### 2. Exact `/status` output block
-
-The block below is the exact `/status` output provided by the user from the affected Codex CLI session.
-
-```text
 OpenAI Codex (v0.120.0)
 
 Visit https://chatgpt.com/codex/settings/usage for up-to-date
@@ -28,16 +31,12 @@ information on rate limits and credits
  Account:              hindermath@googlemail.com (Plus)
  Collaboration mode:   Default
  Session:              019d8b8d-6d90-78f2-8654-29be29c108e7
-```
 
-### 3. Exact `pwd` and `ls -la` output
+3) Output of `pwd` and `ls -la` for the directory
 
-```text
 $ pwd
 /Users/thorstenhindermann/home-baseline-tmp
-```
 
-```text
 $ ls -la
 total 864
 drwxr-xr-x   37 thorstenhindermann  staff    1184 Apr 16 08:29 .
@@ -77,12 +76,15 @@ drwxr-xr-x    5 thorstenhindermann  staff     160 Apr 16 08:29 docs
 drwxr-xr-x   40 thorstenhindermann  staff    1280 Apr 13 13:02 scripts
 drwxr-xr-x    7 thorstenhindermann  staff     224 Apr 11 16:53 specs
 -rw-r--r--    1 thorstenhindermann  staff    2215 Apr  6 18:30 windows-test-output.txt
-```
 
-### 4. Whether `AGENTS.md` existed before session start
+4) Whether `AGENTS.md` existed before starting the Codex session
 
 `AGENTS.md` already existed in `~/home-baseline-tmp` before the affected Codex session started. It was not created during the session.
 
-## Why this matters
+If useful, I can also provide the two local reference files I created for this report:
+- a concise bug report
+- a separate evidence file with the same captured output
 
-The mismatch is that `/status` reports `Agents.md: <none>` while a local `AGENTS.md` file clearly exists in the active working directory and predates the session itself.
+Best regards
+Thorsten Hindermann
+```
