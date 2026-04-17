@@ -989,6 +989,14 @@ Als praktische Kurzregel gilt: **neu anlegen = Bootstrap**, **vorhandenen Bestan
 
 *A practical short rule is: **create new = bootstrap**, **align existing estate = migration**, **only evaluate = check**, **only initialize statistics = init-stats**. This exact separation helps you avoid using the scripts for the wrong purpose by accident.*
 
+Die Basishierarchie dieses Setups ist bewusst generisch aufgebaut, aber aus zwei Blickwinkeln zu lesen: Fuer Maintainer dieses Repositories ist `~/home-baseline-tmp` das Arbeits-Repository, in dem die **Level-0 home-baseline** entwickelt wird. Fuer Nutzende, Azubis und alle bereits gebootstrappten Umgebungen ist dagegen `~/` das eigentliche Root der Arbeitsumgebung. Direkt darunter liegen die **Level-1 workspaces** als fachliche oder toolbezogene Sammelcontainer, und darin liegen die eigentlichen **Level-2 projects**. Diese Benennung ist absichtlich neutral gehalten, damit sie nicht von bestimmten IDEs, Programmiersprachen oder persoenlichen Workspace-Namen abhaengt.
+
+*The base hierarchy of this setup is intentionally generic, but it needs to be read from two perspectives: for maintainers of this repository, `~/home-baseline-tmp` is the working repository in which the **level-0 home baseline** is developed. For end users, apprentices, and already bootstrapped environments, however, `~/` is the actual root of the working environment. Directly below it sit the **level-1 workspaces** as domain- or tool-oriented containers, and inside them live the actual **level-2 projects**. This naming is intentionally neutral so it does not depend on specific IDEs, programming languages, or personal workspace names.*
+
+Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** innerhalb eines bestehenden **Level-1 workspace**. Auch dafuer ist **nicht** `bootstrap-project.*`, sondern `migrate-workspace.*` fuer den uebergeordneten Workspace die richtige Wahl, weil die Migration die enthaltenen Level-2-Repositories automatisch mit betrachtet und angleicht.
+
+*A common edge case is therefore an already existing **level-2 project** inside an existing **level-1 workspace**. Even in that case, the correct tool is **not** `bootstrap-project.*`, but `migrate-workspace.*` for the parent workspace, because the migration automatically inspects and aligns the contained level-2 repositories as well.*
+
 | Datei / File | Beschreibung / Description |
 |---|---|
 | `scripts/check-homogeneity.sh` | Compliance-Scanner Level 0-2, JSON-Ausgabe, STATS.md-Update / Compliance scanner level 0-2, JSON output, STATS.md update (Bash) |
@@ -1145,18 +1153,44 @@ pwsh ~/scripts/init-stats.ps1 -WorkspaceName MyProjects
 
 ### Bestehenden Workspace migrieren / Migrate existing workspace
 
+Die folgenden Kommandos kannst du technisch von **jedem** Verzeichnis aus starten, weil der Skriptpfad explizit ist und `migrate-workspace.*` den Ziel-Workspace ueber `~/<WorkspaceName>` aufloest. Praktisch haengt der beste Startpunkt vom Blickwinkel ab: Wenn du die Baseline selbst weiterentwickelst, ist `~/home-baseline-tmp` sinnvoll. Wenn du die Skripte als Nutzender oder Azubi auf deine bestehende Umgebung anwendest, ist `~/` der natuerlichere Ausgangspunkt, weil dort die Level-1-Workspaces direkt sichtbar sind.
+
+*You can technically start the following commands from **any** directory, because the script path is explicit and `migrate-workspace.*` resolves the target workspace via `~/<WorkspaceName>`. In practice, the best starting point depends on perspective: if you are evolving the baseline itself, `~/home-baseline-tmp` is sensible. If you are using the scripts as an end user or apprentice on your existing environment, `~/` is the more natural starting point because the level-1 workspaces are directly visible there.*
+
+Wenn du ein bereits vorhandenes **Level-2 project** in einen bestehenden **Level-1 workspace** integrieren willst, migrierst du den **Level-1 workspace**, nicht das einzelne Unterverzeichnis. Die empfohlene Reihenfolge ist also immer: erst `check-homogeneity.*` fuer den Workspace-Pfad, dann `migrate-workspace.* --dry-run <WorkspaceName>`, und erst danach die echte Migration.
+
+*If you want to integrate an already existing **level-2 project** into an existing **level-1 workspace**, migrate the **level-1 workspace**, not the individual subdirectory. The recommended order is therefore always: first run `check-homogeneity.*` for the workspace path, then `migrate-workspace.* --dry-run <WorkspaceName>`, and only then run the real migration.*
+
 ```bash
+# Vorher den Ist-Zustand des Level-1 workspace pruefen / Inspect the current state of the level-1 workspace first
+bash ~/scripts/check-homogeneity.sh ~/MyWorkspace
+
+# Bestehenden Level-1 workspace inklusive enthaltener Level-2 projects pruefend migrieren / Preview migration for an existing level-1 workspace including contained level-2 projects
+bash ~/scripts/migrate-workspace.sh MyWorkspace --dry-run
+
 # Vorschau / Preview
 bash ~/scripts/migrate-workspace.sh --dry-run MyProjects
+
+# Reale Migration fuer den ausgewaehlten Level-1 workspace / Real migration for the selected level-1 workspace
+bash ~/scripts/migrate-workspace.sh MyWorkspace --yes
 
 # Alle Workspaces migrieren / Migrate all workspaces
 bash ~/scripts/migrate-workspace.sh --yes
 ```
 
 ```powershell
+# Windows-Beispiel fuer einen Level-1 workspace / Windows example for a level-1 workspace
+pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/MyWorkspace
+pwsh ~/scripts/migrate-workspace.ps1 -WorkspaceName MyWorkspace -WhatIf
+pwsh ~/scripts/migrate-workspace.ps1 -WorkspaceName MyWorkspace -Force
+
 pwsh ~/scripts/migrate-workspace.ps1 -WorkspaceName MyProjects -WhatIf
 pwsh ~/scripts/migrate-workspace.ps1 -Force
 ```
+
+Im Dry-Run solltest du besonders auf vier Dinge achten: Erstens muss dein Zielprojekt als `Level-2: <ProjectName>/` oder mit dem passenden Namen auftauchen. Zweitens sollten nur die erwarteten Workspace- und Projektdateien als `WOULD CREATE`, `WOULD UPDATE` oder `WOULD COPY` erscheinen, zum Beispiel `.gitignore`, `constitution.md`, `.editorconfig` oder `homogeneity-check.yml`. Drittens sind Warnungen zu uncommitteten Aenderungen ein Signal, vor der echten Migration den Git-Zustand bewusst zu sichern. Viertens solltest du abbrechen, wenn unerwartete Unterverzeichnisse als Level-2-Repositories erkannt werden, denn dann wuerde die echte Migration mehr anfassen als beabsichtigt.
+
+*During the dry run, pay special attention to four things: first, your target project should appear as `Level-2: <ProjectName>/` or with the matching name. Second, only the expected workspace and project files should appear as `WOULD CREATE`, `WOULD UPDATE`, or `WOULD COPY`, for example `.gitignore`, `constitution.md`, `.editorconfig`, or `homogeneity-check.yml`. Third, warnings about uncommitted changes are a signal to secure the Git state intentionally before the real migration. Fourth, stop if unexpected subdirectories are detected as level-2 repositories, because the real migration would then touch more than intended.*
 
 ### Constitution synchronisieren / Sync constitution
 
