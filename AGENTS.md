@@ -16,6 +16,7 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/teardown-workspace.ps1`: PowerShell 7 equivalent of teardown.
 - `scripts/install-hooks.*`: installs Git hooks into `.git/hooks/`.
 - `scripts/scan-agent-secrets.*`: manual or hook-driven secret scanning.
+- `scripts/audit-agent-changes.*`: local baseline/report workflow to correlate agent-managed file changes with recent local agent logs.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories.
 
 There is no `src/` or formal test tree; the scripts themselves are the product.
@@ -27,12 +28,18 @@ There is no build step. Validate changes by running the scripts directly.
 bash scripts/bootstrap-workspace.sh --dry-run FlutterProjects
 bash scripts/install-hooks.sh
 bash scripts/scan-agent-secrets.sh --fail-on-high .
+bash scripts/audit-agent-changes.sh snapshot
+bash scripts/audit-agent-changes.sh report
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 pwsh scripts/install-hooks.ps1 -Verbose
 pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
+pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot
+pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
 ```
 
 Use `--dry-run` and `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing files in `scripts/hooks/`.
+
+Use `audit-agent-changes.*` when agent-managed files under `~/` should stay locally traceable across later updates. The workflow is: create a baseline once with `snapshot`, then compare later state with `report`. The audit state is stored locally under `~/.home-baseline/agent-audit/` and is not intended to be committed.
 
 ## OS-Detection — Skript-Auswahl / OS Detection — Script Selection
 

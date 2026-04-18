@@ -62,6 +62,13 @@ pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName <Name> -KeepRemote
   `bash scripts/install-hooks.sh`
 - **Manueller Secret-Scan:**
   `bash scripts/scan-agent-secrets.sh`
+- **Lokales Agent-Audit fuer spaetere Herkunftsspur:**
+  `bash scripts/audit-agent-changes.sh snapshot`
+  `bash scripts/audit-agent-changes.sh report`
+  `pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot`
+  `pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report`
+
+Das Agent-Audit speichert eine lokale Baseline unter `~/.home-baseline/agent-audit/` und vergleicht spaetere Aenderungen in agentverwalteten Dateien gegen diese Baseline. Die Zuordnung zu Codex, Claude, Copilot oder Continue ist bewusst heuristisch und dient der lokalen Nachvollziehbarkeit, nicht als manipulationssicherer Beweis.
 
 ### Plattform-Test / Platform test
 Falls Terminal-Output nicht zwischen Maschinen copy-pastebaar ist, passende Test-Scripts verwenden:

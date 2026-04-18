@@ -35,11 +35,15 @@ There is no build step. Validate changes by running scripts directly.
 bash scripts/bootstrap-workspace.sh --dry-run FlutterProjects   # preview, no writes
 bash scripts/install-hooks.sh
 bash scripts/scan-agent-secrets.sh --fail-on-high .
+bash scripts/audit-agent-changes.sh snapshot
+bash scripts/audit-agent-changes.sh report
 
 # PowerShell 7+ (Windows)
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 pwsh scripts/install-hooks.ps1 -Verbose
 pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
+pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot
+pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
 ```
 
 Always use `--dry-run` / `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing anything under `scripts/hooks/`.
@@ -109,6 +113,7 @@ The workspace name `home-baseline` is explicitly protected (exit 2).
 
 - **`scripts/hooks/pre-push`** — runs on every `git push`; scans only git-tracked files (`.gitignore` respected); blocks push with exit 2 on HIGH findings (secret-like filenames or content patterns).
 - **`scripts/scan-agent-secrets.sh` / `.ps1`** — manual scanner targeting AI-agent directories (`.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/`); accepts `--fail-on-high` / `-FailOnHigh` for CI use; requires `rg` (ripgrep).
+- **`scripts/audit-agent-changes.sh` / `.ps1`** — local baseline/report workflow for agent-managed files. It stores local audit state under `~/.home-baseline/agent-audit/`, lists later file drift, and searches recent Codex, Claude, Copilot, and Continue logs for path-based hints. This is heuristic correlation, not proof of authorship.
 
 ### `.gitignore` whitelist pattern
 

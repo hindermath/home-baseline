@@ -64,6 +64,17 @@ pwsh ~/scripts/scan-agent-secrets.ps1
 
 Scans `.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/` for leaked credentials. Outputs `high=N medium=M low=L total=T`. Use `--fail-on-high` as a CI gate.
 
+### Audit agent-managed file changes
+
+```bash
+bash ~/scripts/audit-agent-changes.sh snapshot
+bash ~/scripts/audit-agent-changes.sh report
+pwsh -NoProfile ~/scripts/audit-agent-changes.ps1 -Action snapshot
+pwsh -NoProfile ~/scripts/audit-agent-changes.ps1 -Action report
+```
+
+Creates a local baseline below `~/.home-baseline/agent-audit/` and later compares current agent-managed files against that baseline. The report correlates changes heuristically with recent Codex, Claude, Copilot, and Continue logs. This is local audit state, not repository content.
+
 ### Cross-platform test output (macOS / Linux / Windows)
 
 When terminal output cannot be copy-pasted between machines, use the matching platform test script to collect results, commit and push them, then read from any other device:

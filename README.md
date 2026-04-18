@@ -46,6 +46,7 @@ private GitHub or GitLab repository within seconds.*
   - [Versionierung / Versioning](#versionierung--versioning)
 - [Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
   - [Compliance-Check / Compliance check](#compliance-check--compliance-check)
+  - [Agent-Audit / Agent audit](#agent-audit--agent-audit)
   - [STATS.md Baseline erzeugen / Generate STATS.md baseline](#statsmd-baseline-erzeugen--generate-statsmd-baseline)
   - [Bestehenden Workspace migrieren / Migrate existing workspace](#bestehenden-workspace-migrieren--migrate-existing-workspace)
   - [Constitution synchronisieren / Sync constitution](#constitution-synchronisieren--sync-constitution)
@@ -1138,6 +1139,29 @@ bash ~/scripts/check-homogeneity.sh --json
 pwsh ~/scripts/check-homogeneity.ps1
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/MyProjects
 pwsh ~/scripts/check-homogeneity.ps1 -Json
+```
+
+### Agent-Audit / Agent audit
+
+Wenn lokale Agent-Dateien spaeter nachvollziehbar bleiben sollen, erstelle zuerst eine Baseline und vergleiche dann spaetere Aenderungen gegen diese Baseline. `audit-agent-changes.*` speichert die lokale Audit-State-Datei unter `~/.home-baseline/agent-audit/`, listet geaenderte Dateien auf und sucht anschliessend in lokalen Codex-, Claude-, Copilot- und Continue-Logs nach pfadbasierten Hinweisen. Das ist bewusst eine Heuristik und kein manipulationssicherer Herkunftsnachweis.
+
+*If you want later local agent-file changes to remain traceable, first create a baseline and then compare future changes against that baseline. `audit-agent-changes.*` stores local audit state under `~/.home-baseline/agent-audit/`, lists changed files, and then searches local Codex, Claude, Copilot, and Continue logs for path-based hints. This is intentionally a heuristic, not a tamper-proof proof of origin.*
+
+```bash
+# Baseline fuer die aktuelle Maschine anlegen / Create a baseline for this machine
+bash ~/scripts/audit-agent-changes.sh snapshot
+
+# Spaetere Aenderungen berichten / Report later changes
+bash ~/scripts/audit-agent-changes.sh report
+
+# Report erzeugen und aktuellen Zustand als neue Baseline akzeptieren / Report and accept current state as new baseline
+bash ~/scripts/audit-agent-changes.sh report --refresh-baseline
+```
+
+```powershell
+pwsh -NoProfile ~/scripts/audit-agent-changes.ps1 -Action snapshot
+pwsh -NoProfile ~/scripts/audit-agent-changes.ps1 -Action report
+pwsh -NoProfile ~/scripts/audit-agent-changes.ps1 -Action report -RefreshBaseline
 ```
 
 ### STATS.md Baseline erzeugen / Generate STATS.md baseline

@@ -17,30 +17,31 @@
 | Datum / Date | Phase / Branch | Aktivtage ges. | Zeilen ges. | Commits ges. | Hauptarbeitspakete / Main Work Packages |
 |---|---|---:|---:|---:|---|
 | 2026-04-12 | Baseline (alle Phasen 0–5) | 11 | 41 969 | 216 | Init-Infrastruktur, Homogeneity Guardian (001+002), Public Template + Sync (pub), CI + Git-Config-Scope (003), Workspace Teardown + GitLab-Support (005+006), Bootstrap-Project + Release Please |
+| 2026-04-18 | Maintenance-Rollup inkl. Agent-Audit | 17 | 45 712 | 256 | Nachlaufende Maintenance-Runden, Microsoft-Foundry-Skill-Sync im Arbeitsbaum, neues lokales Agent-Audit mit Baseline/Report fuer Codex, Claude, Copilot und Continue, README-, Guidance- und Manpage-Dokumentation |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-04-12**
+Stand / As of: **2026-04-18**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 52 | 8 671 | 20.7 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 14 | 851 | 2.0 % |
-| Hooks + CI (pre-push + YAML/JSON) | 4 | 186 | 0.4 % |
-| Dokumentation / Documentation (`.md`) | 190 | 32 261 | 76.9 % |
-| **Gesamt / Total** | **260** | **41 969** | **100 %** |
+| Skripte / Scripts (`.sh` + `.ps1`) | 56 | 11 020 | 24.1 % |
+| Templates (`.tmpl` + Konfigurationsdateien) | 13 | 858 | 1.9 % |
+| Hooks + CI (pre-push + YAML/JSON) | 3 | 144 | 0.3 % |
+| Dokumentation / Documentation (`.md`) | 198 | 33 690 | 73.7 % |
+| **Gesamt / Total** | **270** | **45 712** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 9 781 | 30.3 % |
-| Lastenhefte (`Lastenheft*.md`) | 3 554 | 11.0 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 841 | 2.6 % |
-| README / CHANGELOG / STATS | 2 099 | 6.5 % |
-| Sonstiges (Templates, andere `.md`) | 15 986 | 49.6 % |
+| Spec-Kit-Artefakte (`specs/`) | 9 781 | 29.1 % |
+| Lastenhefte (`Lastenheft*.md`) | 3 554 | 10.6 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 1 117 | 3.3 % |
+| README / CHANGELOG / STATS | 2 565 | 7.6 % |
+| Sonstiges (Templates, andere `.md`) | 16 673 | 49.5 % |
 
 ---
 
@@ -61,6 +62,16 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 4 | 005+006 — Workspace Teardown + GitLab | 10 769 | 21 | 2 | 2026-04-08 bis 04-11 |
 | 5 | proj — Bootstrap-Project + Release Please | 686 | 21 | 1 | 2026-04-12 |
 
+**Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
+enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-04-18`. Diese
+kleineren Nachlaufpakete sind bereits im Fortschreibungsprotokoll sichtbar,
+werden hier aber noch nicht als eigene Hauptphase ausdifferenziert.
+
+*Note on later maintenance rounds: the snapshot and overall numbers above also
+include the subsequent maintenance work up to `2026-04-18`. Those smaller
+follow-up packages are already visible in the update log, but are not yet split
+out here as a separate main phase.*
+
 **Hinweis zu Phase 1:** Der hohe Insertions-Wert (26 519 Zeilen an einem Aktivtag)
 entsteht durch die Spec-Kit-Batch-Generierung: Spec-Kit erstellt `spec.md`,
 `plan.md`, `tasks.md`, `checklist.md` und zugehörige Artefakte in einem einzigen
@@ -77,53 +88,56 @@ the speedup model captures.*
 
 ## Gesamtstatistik / Overall Statistics
 
-Basis dieses Schlussblocks sind die aktuell dokumentierten Snapshot- und
-Phasenwerte aus den Abschnitten oben.
+Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
+dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
-*This closing block is based on the currently documented snapshot and phase values
-from the sections above.*
+*This closing block is based on the current repository snapshot plus the
+documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `41 969` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `9 708` Zeilen (`23.1 %`) |
-| Dokumentationsanteil / Documentation share | `32 261` Zeilen (`76.9 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-12` |
-| Sichtbare Git-Aktivtage / Observable active days | `11` |
-| Git-Commits gesamt / Total commits | `216` |
-| Git-Commits pro Aktivtag / Commits per active day | `19.6` (`216 / 11`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 815.4` (`41 969 / 11`) |
-| Zeilen pro Commit / Lines per commit | `194.3` (`41 969 / 216`) |
-| Konservative Einzelentwickler-Untergrenze | `524.6` Arbeitstage / `4 091.9` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `419.7` Arbeitstage / `3 273.7` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `209.8` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `47.7x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `38.2x` |
+| Artefaktbasis gesamt / Total artifact base | `45 712` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `11 164` Zeilen (`24.4 %`) |
+| Dokumentationsanteil / Documentation share | `33 690` Zeilen (`73.7 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-18` |
+| Sichtbare Git-Aktivtage / Observable active days | `17` |
+| Git-Commits gesamt / Total commits | `256` |
+| Git-Commits pro Aktivtag / Commits per active day | `15.1` (`256 / 17`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 688.9` (`45 712 / 17`) |
+| Zeilen pro Commit / Lines per commit | `178.6` (`45 712 / 256`) |
+| Konservative Einzelentwickler-Untergrenze | `571.4` Arbeitstage / `4 456.9` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `457.1` Arbeitstage / `3 565.5` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `228.6` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `33.6x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `26.9x` |
 
 Kurzfazit:
 `home-baseline` ist ein stark dokumentations- und Governance-getriebenes
-Infrastruktur-Repository: `76.9 %` der sichtbaren Basis liegen in Markdown-
+Infrastruktur-Repository: `73.7 %` der sichtbaren Basis liegen in Markdown-
 Artefakten (Specs, Lastenhefte, Governance, README). Der operative Code
-(Skripte, Hooks, CI) macht `23.1 %` aus. Der groesste dokumentierte
+(Skripte, Hooks, CI) macht `24.4 %` aus. Der groesste dokumentierte
 Volumensprung liegt in Phase `1` (Spec-Kit-Batch fuer Homogeneity Guardian);
-die hoechste manuelle Referenzlast entsteht in Phasen `1` und `4` (Teardown +
-GitLab). Die Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern
-die sichtbare Lieferdichte gegen konservative manuelle Referenzmodelle.
+die hoechste manuelle Referenzlast entsteht weiterhin in Phasen `1` und `4`
+(Teardown + GitLab). Die spaeteren Maintenance-Runden verdichten den Snapshot
+weiter, veraendern aber nicht die Rangfolge der grossen Hauptphasen. Die
+Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern die sichtbare
+Lieferdichte gegen konservative manuelle Referenzmodelle.
 
 *Short summary: `home-baseline` is a strongly documentation- and governance-driven
-infrastructure repository: `76.9 %` of the visible base sits in Markdown artifacts
+infrastructure repository: `73.7 %` of the visible base sits in Markdown artifacts
 (specs, Lastenhefte, governance, README). Operational code (scripts, hooks, CI)
-accounts for `23.1 %`. The largest documented volume jump is in Phase `1`
+accounts for `24.4 %`. The largest documented volume jump is still Phase `1`
 (Spec-Kit batch for Homogeneity Guardian); the highest manual reference load
-arises in Phases `1` and `4` (Teardown + GitLab). The acceleration factors
-describe visible delivery density, not stopwatch measurements.*
+still arises in Phases `1` and `4` (Teardown + GitLab). Later maintenance rounds
+deepen the snapshot without changing the ranking of the major phases. The
+acceleration factors describe visible delivery density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #######                        |  9 708 | 23.1 %
-Dokumentation   | ############################### | 32 261 | 76.9 %
+Operativer Code | ########                       | 11 164 | 24.4 %
+Dokumentation   | ############################## | 33 690 | 73.7 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
@@ -197,9 +211,9 @@ few net lines per active day.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 524.6 d / 4 091.9 h
-Thorsten (100 Z./Tag)  | ###################### | 419.7 d / 3 273.7 h
-KI sichtbar            | #                        |  11.0 d
+Erfahren (80 Z./Tag)   | ######################## | 571.4 d / 4 456.9 h
+Thorsten (100 Z./Tag)  | #######################  | 457.1 d / 3 565.5 h
+KI sichtbar            | #                        |  17.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer
