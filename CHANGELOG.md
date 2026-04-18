@@ -8,6 +8,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.9.0](https://github.com/hindermath/home-baseline/compare/v0.8.2...v0.9.0) (2026-04-18)
+
+
+### Features / Neue Funktionen
+
+* add local agent audit workflow ([85491ad](https://github.com/hindermath/home-baseline/commit/85491adbcbb3cac5476736be2cddea064d1a3434))
+
+
+### Documentation / Dokumentation
+
+* aktualisiere microsoft-foundry skills ([9840b6d](https://github.com/hindermath/home-baseline/commit/9840b6d479a8f75fd89a4185541d6d6a4af1c433))
+* clarify migration levels ([6d4c1ce](https://github.com/hindermath/home-baseline/commit/6d4c1ce26a6f3842056f5da8c2228d56b57a8aa2))
+
 ## [0.8.2](https://github.com/hindermath/home-baseline/compare/v0.8.1...v0.8.2) (2026-04-16)
 
 
