@@ -47,7 +47,7 @@ In diesem Ordner schreibst du deinen eigentlichen Code. Hier sind ein paar wicht
 
 ### Sicherheit / Security
 - Der **pre-push Hook** ist aktiv. Er prüft bei jedem `git push`, ob du versehentlich Geheimnisse (Secrets) hochlädst.
-- Deine Konfiguration für KI-Agenten findest du in `AGENTS.md`, `CLAUDE.md` und `GEMINI.md`.
+- Deine Konfiguration für KI-Agenten findest du in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md`.
 
 ### Compliance
 Du kannst jederzeit prüfen, ob dein Projekt den Standards entspricht:

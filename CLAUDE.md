@@ -27,15 +27,15 @@ bash ~/scripts/sync-home.sh --no-pull
 | `~/home-baseline-tmp` | ✅ `origin` → GitHub | Entwicklung, Commits, Push |
 | `~/` | ❌ kein Remote | Lokale Kopie für Scripts & Hooks |
 
-## Repository Purpose
+## Repository-Zweck / Repository Purpose
 
 This is the **home-baseline** repository — the top-level workspace infrastructure for `~`. It manages bootstrapping new project workspaces as private GitHub or GitLab repositories and enforces security across all projects.
 
-## Scripts
+## Skripte / Scripts
 
 All scripts live in `~/scripts/` and come in paired Bash (`.sh`) and PowerShell Core (`.ps1`) variants for cross-platform support. **Each script requires a corresponding Unix man-page (for `.sh`, in `docs/man/`), complete bilingual comment-based help (for `.ps1`), and a corresponding PowerShell Cmdlet (using the `Verb-Noun` pattern).**
 
-### Bootstrap a new workspace
+### Neuen Workspace anlegen / Bootstrap a New Workspace
 
 ```bash
 # macOS/Linux
@@ -48,14 +48,14 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Name> [-RepoName <r>] [-W
 
 The script: detects existing sub-repos → adds them to `.gitignore` → copies standard scripts → `git init` + initial commit → creates a private GitHub repo via `gh repo create` or a private GitLab repo via `glab repo create` → pushes → installs hooks → updates `~/README.md`.
 
-### Install Git hooks
+### Git-Hooks installieren / Install Git Hooks
 
 ```bash
 bash ~/scripts/install-hooks.sh          # macOS/Linux
 pwsh ~/scripts/install-hooks.ps1         # Windows
 ```
 
-### Scan AI agent directories for secrets
+### KI-Agenten-Verzeichnisse auf Secrets prüfen / Scan AI Agent Directories for Secrets
 
 ```bash
 bash ~/scripts/scan-agent-secrets.sh [--fail-on-high]
@@ -64,7 +64,7 @@ pwsh ~/scripts/scan-agent-secrets.ps1
 
 Scans `.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/` for leaked credentials. Outputs `high=N medium=M low=L total=T`. Use `--fail-on-high` as a CI gate.
 
-### Audit agent-managed file changes
+### Agentenverwaltete Dateiänderungen auditieren / Audit Agent-Managed File Changes
 
 ```bash
 bash ~/scripts/audit-agent-changes.sh snapshot
@@ -75,7 +75,7 @@ pwsh -NoProfile ~/scripts/audit-agent-changes.ps1 -Action report
 
 Creates a local baseline below `~/.home-baseline/agent-audit/` and later compares current agent-managed files against that baseline. The report correlates changes heuristically with recent Codex, Claude, Copilot, and Continue logs. This is local audit state, not repository content.
 
-### Cross-platform test output (macOS / Linux / Windows)
+### Plattformübergreifende Testausgabe (macOS / Linux / Windows) / Cross-Platform Test Output (macOS / Linux / Windows)
 
 When terminal output cannot be copy-pasted between machines, use the matching platform test script to collect results, commit and push them, then read from any other device:
 
@@ -89,7 +89,7 @@ pwsh ~/home-baseline-tmp/scripts/windows-test.ps1  # Windows
 
 Each script collects: OS version, architecture, tool versions (git, gh, brew/apt/winget, rg, node, uv, specify, pwsh), package manager versions, sync-home and compliance check result. Output files: `mac-test-output.txt`, `linux-test-output.txt`, `windows-test-output.txt`.
 
-## OS-Detection — Script Selection
+## OS-Erkennung — Skript-Auswahl / OS Detection — Script Selection
 
 At the start of each session, detect the OS and call the matching script variant:
 
@@ -101,41 +101,30 @@ At the start of each session, detect the OS and call the matching script variant
 
 **Rule:** On Windows always call `pwsh scripts/xyz.ps1`. On macOS/Linux always call `bash scripts/xyz.sh`. Both variants are functionally equivalent — never mix them.
 
-## Known Pitfalls
+## Statistik-Pflege / Statistics Maintenance
 
-### Windows: `gh auth login` in background processes
-`gh auth login --web` does NOT detect browser confirmation in background/async processes.
-Always run `gh auth login` in an **interactive terminal window** directly.
-After login run: `gh auth setup-git` to configure the git credential helper.
+- Maintain `docs/project-statistics.md` as the living statistics ledger for this repository.
+- Update it after each completed feature/Lastenheft, each completed Spec-Kit phase, or when explicitly requested.
+- Keep the `## Fortschreibungsprotokoll` section chronological: oldest entry first, newest entry last.
+- Keep `## Gesamtstatistik` as the final top-level section; do not append later top-level sections after it.
+- Place compact ASCII-only diagrams directly below the metrics table inside `## Gesamtstatistik`; include at least artefact mix, phase volume, conservative reference bars, acceleration factors, and the experienced/Thorsten-Solo/AI-visible comparison.
+- Add a short CEFR-B2 explanation below every ASCII diagram in German first and English second.
+- Use text-friendly presentation only: no color-dependent signalling and no symbols that are unreadable on Braille displays or screen readers.
+- Manual references for this repository are `80` lines/workday (conservative) and `100` lines/workday (Thorsten-Solo, scripting infrastructure).
+- Default C#/.NET Thorsten-Solo baseline is `125` lines/workday unless the individual repository documents a justified deviation.
+- TVöD conversion basis: `7.8 h` (`7h 48m`) per workday, `21.5` workdays per month, 30 vacation days until the end of 2026, 31 from 2027 onward.
+- Shared guidance or statistics-method changes must update `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` together in the same change.
 
-### macOS/Linux/Windows: `glab auth login` in background processes
-`glab auth login --web` does NOT detect browser confirmation in background/async processes.
-Always run `glab auth login` in an **interactive terminal window** directly.
+## Inklusion & Barrierefreiheit / Inclusion & Accessibility
 
-### Windows: `ssh-agent` requires admin rights — use HTTPS instead
-The OpenSSH Agent service is disabled by default (needs admin to enable).
-Use HTTPS + `gh auth setup-git` for all git push operations on Windows.
+- `Programmierung #include<everyone>` is mandatory shared guidance, not optional wording.
+- All user-facing artefacts must be checked for inclusive use: CLI output, documentation, HTML, UI, and generated templates.
+- Treat WCAG 2.2 Level AA as the default accessibility baseline wherever the criteria apply.
+- Keep text-first usability visible for keyboard-only use, screen readers, Braille displays, and text browsers.
+- Follow DE first, EN second for shared guidance and learner-facing documentation; for large normative documents, a synchronised `.EN.md` companion is acceptable.
+- Shared guidance must stay aligned across `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`; document any intentional deviation in the same change.
 
-### Windows: `-NoProfile` for `pwsh` subprocesses
-`pwsh -File script.ps1` loads the user profile (Oh-My-Posh etc.), causing:
-`Exception setting "CursorPosition": "Das Handle ist ungültig."`
-Fix: always add `-NoProfile` to `pwsh` subprocess calls.
-
-### Linux: `git pull` needs rebase config
-Run once: `git config --global pull.rebase true`
-
-### Linux: SSH for GitHub push
-```bash
-ssh-keygen -t ed25519 -C "linux-home-baseline" -f ~/.ssh/id_ed25519 -N ""
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "linux-home-baseline"
-git remote set-url origin git@github.com:hindermath/home-baseline.git
-```
-
-### Test scripts: `--autostash` required
-Scripts write the output file before pushing — `--autostash` prevents unstaged-changes error.
-All test scripts use: `git pull --rebase --autostash origin main`
-
-## Security Architecture
+## Sicherheitsarchitektur / Security Architecture
 
 The `.gitignore` uses a **whitelist model** (`/*` ignores everything; only explicitly listed files are tracked). Never add AI agent directories (`.claude/`, `.junie/`, etc.), credentials files, or dotfiles containing secrets to the tracked whitelist.
 
@@ -143,7 +132,7 @@ The `scripts/hooks/pre-push` hook blocks pushes if secret-like filenames or cred
 
 Secrets are stored in the system credential store (e.g. macOS Keychain, Windows Credential Manager), accessed via shell helpers in your shell profile.
 
-## Workspace Structure
+## Workspace-Struktur / Workspace Structure
 
 Each sub-directory is an **independent git repository** (not a submodule). They are excluded from home-baseline tracking via `.gitignore`. Example workspaces:
 
@@ -153,7 +142,7 @@ Each sub-directory is an **independent git repository** (not a submodule). They 
 
 When adding a new workspace to `~/README.md`, insert a table row before the `<!-- workspace-table-end -->` marker.
 
-## README Maintenance
+## README-Pflege / README Maintenance
 
 `~/README.md` is auto-updated by `bootstrap-workspace.sh` when a new workspace is created. The workspace table uses `<!-- workspace-table-end -->` as an insertion anchor. If editing manually, preserve that marker.
 
@@ -167,26 +156,58 @@ When adding a new workspace to `~/README.md`, insert a table row before the `<!-
 
 ## Bekannte Fallstricke / Known Pitfalls
 
-### Windows: `$env:HOME` ist ein leerer String, nicht `$null`
+### Windows: `gh auth login` in Hintergrundprozessen / Windows: `gh auth login` in Background Processes
+`gh auth login --web` does NOT detect browser confirmation in background/async processes.
+Always run `gh auth login` in an **interactive terminal window** directly.
+After login run: `gh auth setup-git` to configure the git credential helper.
+
+### macOS/Linux/Windows: `glab auth login` in Hintergrundprozessen / macOS/Linux/Windows: `glab auth login` in Background Processes
+`glab auth login --web` does NOT detect browser confirmation in background/async processes.
+Always run `glab auth login` in an **interactive terminal window** directly.
+
+### Windows: `ssh-agent` braucht Adminrechte — stattdessen HTTPS nutzen / Windows: `ssh-agent` Requires Admin Rights — Use HTTPS Instead
+The OpenSSH Agent service is disabled by default (needs admin to enable).
+Use HTTPS + `gh auth setup-git` for all git push operations on Windows.
+
+### Windows: `-NoProfile` für `pwsh`-Subprozesse / Windows: `-NoProfile` for `pwsh` Subprocesses
+`pwsh -File script.ps1` loads the user profile (Oh-My-Posh etc.), causing:
+`Exception setting "CursorPosition": "Das Handle ist ungültig."`
+Fix: always add `-NoProfile` to `pwsh` subprocess calls.
+
+### Linux: `git pull` braucht Rebase-Konfiguration / Linux: `git pull` Needs Rebase Config
+Run once: `git config --global pull.rebase true`
+
+### Linux: SSH für GitHub-Push / Linux: SSH for GitHub Push
+```bash
+ssh-keygen -t ed25519 -C "linux-home-baseline" -f ~/.ssh/id_ed25519 -N ""
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "linux-home-baseline"
+git remote set-url origin git@github.com:hindermath/home-baseline.git
+```
+
+### Testskripte: `--autostash` erforderlich / Test Scripts: `--autostash` Required
+Scripts write the output file before pushing — `--autostash` prevents unstaged-changes error.
+All test scripts use: `git pull --rebase --autostash origin main`
+
+### Windows: `$env:HOME` ist ein leerer String, nicht `$null` / Windows: `$env:HOME` Is an Empty String, Not `$null`
 Der `??`-Operator fängt leere Strings nicht ab. Immer verwenden:
 `$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })`
 
-### `Copy-Item` Verzeichnis-Verhalten
+### `Copy-Item`-Verzeichnisverhalten / `Copy-Item` Directory Behaviour
 Wenn das Ziel bereits existiert, kopiert `Copy-Item src dst -Recurse` das Verzeichnis **in** dst (erzeugt `dst/src/`).
 Korrekt: `Copy-Item src/* dst/ -Recurse -Force`. Bash-Äquivalent: `cp -r src/. dst/`.
 
-### CI: Scanner muss aus dem Parent-Verzeichnis von `$GITHUB_WORKSPACE` laufen
+### CI: Scanner muss aus dem Parent-Verzeichnis von `$GITHUB_WORKSPACE` laufen / CI: Scanner Must Run from the Parent Directory of `$GITHUB_WORKSPACE`
 `check-homogeneity.sh/ps1` erwartet `TARGET_DIR` als auflösbaren Pfad.
 Bei `$(basename "$GITHUB_WORKSPACE")` aus dem Repo-Root gelten alle Dateien als fehlend.
 
-### bash `${#array[@]+...}` nicht auf Ubuntu 22.04 unterstützt
+### Bash `${#array[@]+...}` auf Ubuntu 22.04 nicht unterstützt / Bash `${#array[@]+...}` Not Supported on Ubuntu 22.04
 Verursacht `bad substitution`. Bash-3-sichere Alternative: `for`-Schleife zum Zählen.
 
-### `hg-a11y`: Falsch-Positive durch Fenced Code Blocks
+### `hg-a11y`: Falsch-Positive durch fenced code blocks / `hg-a11y`: False Positives from Fenced Code Blocks
 `# comment`-Zeilen in ` ``` `-Blöcken wurden als h1 interpretiert → `heading-gap-h1-to-h3`.
 Fix: `$inFencedBlock`-Toggle auf ` ``` `-Zeilen.
 
-### `.gitignore`-Whitelist und `LICENSE`
+### `.gitignore`-Whitelist und `LICENSE` / `.gitignore` Whitelist and `LICENSE`
 `git add LICENSE` wird lautlos ignoriert, wenn `LICENSE` nicht explizit in der Whitelist steht (`!LICENSE`).
 
 ### Doppelte Headings im TOC / Duplicate heading anchors
@@ -197,23 +218,23 @@ TOC-Links für zweite Vorkommen müssen diesen Suffix enthalten.
 Alle Headings MÜSSEN das Format `DE / EN` haben. Nur-Deutsch-Headings brechen die bilinguale Konsistenz und verletzen WCAG 2.4.6.
 Ausnahme: Eigennamen / Toolnamen (z. B. `### Homogeneity Guardian`) sind sprachneutral.
 
-### Code-Block Sprachmarkierung (WCAG 4.1.1)
+### Code-Block-Sprachmarkierung (WCAG 4.1.1) / Code Fence Language Tagging (WCAG 4.1.1)
 Jeder Code-Block benötigt eine Sprach-Angabe. Für ASCII-Grafiken, Dialog-Beispiele oder Verzeichnisstrukturen: ` ```text `.
 Bare ` ``` ` ohne Sprache verletzt WCAG 4.1.1 (Syntaxanalyse).
 
-### WCAG 2.2 Level AA — README-Compliance
+### WCAG 2.2 Level AA — README-Compliance / WCAG 2.2 Level AA — README Compliance
 Die README folgt WCAG 2.2 Level AA. Kriterien-Tabelle im Abschnitt `## Barrierefreiheit / Accessibility (A11Y)`.
 Einzige Plattform-Einschränkung: WCAG 3.1.2 (`lang`-Attribute) — GitHub entfernt HTML-Attribute.
 
-### ASCII-Box-Drawing-Tabellen: Zeilenbreite
+### ASCII-Box-Drawing-Tabellen: Zeilenbreite / ASCII Box-Drawing Tables: Line Width
 Alle Zeilen einer `text`-Code-Block-Tabelle müssen exakt gleich breit sein. Ein überzähliges Leerzeichen vor dem schließenden `│` macht die Zeile 1 Zeichen zu lang.
 Prüfen mit: `$line.Length` (PowerShell) — alle Rahmen-Zeilen müssen denselben Wert liefern.
 
-### Spec-Kit-Verzeichnis initialisieren
+### Spec-Kit-Verzeichnis initialisieren / Initialize the Spec-Kit Directory
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 `specify init --here --ai {agent}` — der Parameter `--ai-skill` ist **nur für Codex** erforderlich.
 
-### Lastenheft nach Feature-Abschluss umbenennen
+### Lastenheft nach Feature-Abschluss umbenennen / Rename Lastenheft After Feature Completion
 Nach vollständiger Implementierung eines Features MUSS das zugehörige `Lastenheft_*.md` umbenannt werden:
 ```bash
 bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>   # macOS/Linux
@@ -227,7 +248,7 @@ Fehlte bei Features 003, 005 und 006, weil das Template den Schritt nicht vorsah
 [DE-Zusammenfassung: CLAUDE.md enthält Anweisungen für den Claude Code Agenten im home-baseline Repository.]
 -->
 
-## Active Technologies
+## Aktive Technologien / Active Technologies
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency) (003-git-config-scope)
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc` (INI fragments) (003-git-config-scope)
 - Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `gh` CLI (existing, required), `glab` CLI (optional for GitLab), `tar` (system built-in), `git` ≥ 2.13 (005-workspace-teardown)
@@ -235,7 +256,7 @@ Fehlte bei Features 003, 005 und 006, weil das Template den Schritt nicht vorsah
 - Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (new) · `gh` ≥ 2.30 (existing) · `git` ≥ 2.30 (existing) (006-gitlab-support)
 - N/A — file modifications to existing scripts and `~/README.md` (006-gitlab-support)
 
-## Recent Changes
+## Letzte Änderungen / Recent Changes
 - 003-git-config-scope: Added Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency)
 - 006-gitlab-support: Added GitLab CLI support documentation, `glab auth login` pitfall guidance, and spec artifacts for GitLab bootstrap support
 - 007-gitlab-release-automation: Added `setup-gitlab-release.*`, reusable GitLab release templates, detached-head and changelog-refresh fixes, and a non-blocking manual `release` job validated with real GitLab releases in `sysinfotool` (`v0.1.0`) and `inventarworkerservice2` (`v0.0.1`)

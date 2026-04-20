@@ -79,20 +79,27 @@ Welcome! Here are your first steps:
 - Innerhalb von `## Gesamtstatistik` stehen kompakte ASCII-Only-Diagramme direkt unter der Kennzahlen-Tabelle; zeige mindestens Artefaktmix, Phasenkurve, Beschleunigungsfaktoren und den Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
 - Jedes ASCII-Diagramm erhält eine kurze CEFR-B2-Erklärung direkt darunter (deutsch und englisch).
 - Halte die Statistik textfreundlich: keine Farben, keine Symbole, die auf Braille-Zeilen oder Screenreadern nicht lesbar sind.
-- Manuelle Referenz-Basiswerte: `80` Zeilen/Arbeitstag (konservative Untergrenze) sowie ein projektspezifischer Thorsten-Solo-Wert (siehe CLAUDE.md oder constitution.md).
+- Manuelle Referenz-Basiswerte: `80` Zeilen/Arbeitstag (konservative Untergrenze) sowie ein projektspezifischer Thorsten-Solo-Wert, konsistent dokumentiert in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md`.
+- Gemeinsame Default-Basis für C#/.NET-Projekte: `125` Zeilen/Arbeitstag, sofern das Repo keinen abweichenden, begründeten Wert dokumentiert.
 - Beim Umrechnen in Stunden: `7.8` Stunden (`7h 48m`) pro Arbeitstag (TVöD-Basis).
 - Beim Umrechnen in Monate: `21.5` Arbeitstage/Monat; Urlaubstage 30 Tage bis Ende 2026, ab 2027 dann 31 Tage (TVöD, 5-Tage-Woche).
 - Beschleunigungsfaktoren vergleichen die manuelle Referenz gegen sichtbare Git-Aktivtage — blended repository speedup, keine Stoppuhrmessung.
 - Wenn gemeinsame Agenten-Guidance oder Statistikmethodik geändert wird: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` zusammen aktualisieren, sofern betroffen.
 
-*Maintain `docs/project-statistics.md` as the living statistics ledger for this project. Update after each completed Spec-Kit phase or feature. Keep Fortschreibungsprotokoll chronological (oldest first). Keep `## Gesamtstatistik` as the final section. Manual references: `80` lines/workday (conservative) and a project-specific Thorsten-Solo baseline. TVöD workday: `7.8 h`. Acceleration factors = manual reference vs. observable Git active days.*
+*Maintain `docs/project-statistics.md` as the living statistics ledger for this project. Update after each completed Spec-Kit phase or feature. Keep Fortschreibungsprotokoll chronological (oldest first). Keep `## Gesamtstatistik` as the final section. Manual references: `80` lines/workday (conservative) and a project-specific Thorsten-Solo baseline. Default C#/.NET Thorsten-Solo baseline: `125` lines/workday unless the repo documents a justified deviation. TVöD workday: `7.8 h`. Acceleration factors = manual reference vs. observable Git active days.*
 
 ## Hinweise / Notes
 
 - Keine ANSI-Farbcodes in Skript-Output
 - Keine leeren Alt-Texte in Bildern
 - Heading-Hierarchie ohne Lücken einhalten
+- `Programmierung #include<everyone>` gilt für alle nutzerseitigen Artefakte: CLI-Ausgaben, Doku, HTML, UI und generierte Templates.
+- WCAG 2.2 Level AA ist die Standard-Basis, sobald die Kriterien auf das Artefakt anwendbar sind.
+- Shared guidance wird immer gemeinsam in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` gepflegt.
 
 - No ANSI color codes in script output
 - No empty alt texts in images
 - Maintain heading hierarchy without gaps
+- `Programmierung #include<everyone>` applies to all user-facing artefacts: CLI output, docs, HTML, UI, and generated templates.
+- WCAG 2.2 Level AA is the default baseline wherever the criteria apply.
+- Keep shared guidance synchronized across `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`.

@@ -63,17 +63,24 @@ cd ~/{{WORKSPACE}}/{{PROJECT_NAME}} && gemini
 - Halte `## Gesamtstatistik` immer als letzten Top-Level-Abschnitt der Datei.
 - Innerhalb von `## Gesamtstatistik`: kompakte ASCII-Only-Diagramme direkt unter der Kennzahlen-Tabelle; mindestens Artefaktmix, Phasenkurve, Beschleunigungsfaktoren und Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
 - Jedes ASCII-Diagramm erhält eine kurze CEFR-B2-Erklärung direkt darunter (DE + EN).
-- Manuelle Referenz-Basiswerte: `80` Zeilen/Arbeitstag (konservativ) + projektspezifischer Thorsten-Solo-Wert (siehe `AGENTS.md`).
+- Manuelle Referenz-Basiswerte: `80` Zeilen/Arbeitstag (konservativ) + projektspezifischer Thorsten-Solo-Wert, konsistent dokumentiert in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md`.
+- Gemeinsame Default-Basis für C#/.NET-Projekte: `125` Zeilen/Arbeitstag, sofern das Repo keinen abweichenden, begründeten Wert dokumentiert.
 - Umrechnung in Stunden: `7.8 h` (`7h 48m`) pro Arbeitstag (TVöD). Monate: `21.5` AT/Monat; 30 Urlaubstage bis Ende 2026, ab 2027 dann 31.
 - Beschleunigungsfaktoren = blended repository speedup — Lieferdichte gegen manuelle Referenz, keine Stoppuhrzeit.
 - Wenn Statistikmethodik oder gemeinsame Guidance geändert wird: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` zusammen aktualisieren.
 
-*Maintain `docs/project-statistics.md` as the living statistics ledger. Update after each completed feature or Spec-Kit phase. Keep Fortschreibungsprotokoll chronological (oldest first). Keep `## Gesamtstatistik` as the final section. References: `80` lines/day (conservative) + project-specific Thorsten-Solo baseline. TVöD workday: `7.8 h`. Acceleration factors = blended repository speedup.*
+*Maintain `docs/project-statistics.md` as the living statistics ledger. Update after each completed feature or Spec-Kit phase. Keep Fortschreibungsprotokoll chronological (oldest first). Keep `## Gesamtstatistik` as the final section. References: `80` lines/day (conservative) + project-specific Thorsten-Solo baseline. Default C#/.NET Thorsten-Solo baseline: `125` lines/workday unless the repo documents a justified deviation. TVöD workday: `7.8 h`. Acceleration factors = blended repository speedup.*
 
 ## Hinweise / Notes
 
 - Keine ANSI-Farbcodes in Ausgaben
 - Heading-Hierarchie ohne Lücken
+- `Programmierung #include<everyone>` gilt für alle nutzerseitigen Artefakte: CLI-Ausgaben, Doku, HTML, UI und generierte Templates.
+- WCAG 2.2 Level AA ist die Standard-Basis, sobald die Kriterien auf das Artefakt anwendbar sind.
+- Shared guidance wird immer gemeinsam in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` gepflegt.
 
 - No ANSI color codes in output
 - Heading hierarchy without gaps
+- `Programmierung #include<everyone>` applies to all user-facing artefacts: CLI output, docs, HTML, UI, and generated templates.
+- WCAG 2.2 Level AA is the default baseline wherever the criteria apply.
+- Keep shared guidance synchronized across `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`.
