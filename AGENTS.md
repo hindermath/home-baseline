@@ -198,3 +198,8 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 <!-- EN: AGENTS.md placeholder
 [DE-Zusammenfassung: AGENTS.md enthält Anweisungen für den Codex Agenten im home-baseline Repository.]
 -->
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->
