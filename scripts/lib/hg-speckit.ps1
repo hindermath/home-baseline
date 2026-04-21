@@ -17,7 +17,11 @@ function Invoke-HgCheckSpeckit {
     }
 
     $content = Get-Content -Path $SpecFile -ErrorAction SilentlyContinue
-    $specVer = ($content | Select-String -Pattern '^\*\*Spec-kit Template Version\*\*:\s*(.+)$').Matches.Groups[1].Value
+    $specVer = ''
+    $versionMatch = $content | Select-String -Pattern '^\*\*Spec-kit Template Version\*\*:\s*(.+)$' | Select-Object -First 1
+    if ($versionMatch -and $versionMatch.Matches.Count -gt 0) {
+        $specVer = $versionMatch.Matches[0].Groups[1].Value
+    }
 
     if ($specVer) {
         $specVer = $specVer.Trim()
@@ -30,8 +34,8 @@ function Invoke-HgCheckSpeckit {
     }
 
     # Fallback: check created date
-    $createdLine = ($content | Select-String -Pattern '^\*\*Created\*\*:').Line
-    if ($createdLine -match '(\d{4}-\d{2}-\d{2})') {
+    $createdLine = ($content | Select-String -Pattern '^\*\*Created\*\*:' | Select-Object -First 1).Line
+    if ($createdLine -and $createdLine -match '(\d{4}-\d{2}-\d{2})') {
         $createdDate = [datetime]::ParseExact($Matches[1], 'yyyy-MM-dd', $null)
         $daysOld = ([datetime]::Today - $createdDate).Days
         if ($daysOld -gt 90) {
