@@ -182,6 +182,12 @@ Use HTTPS + `gh auth setup-git` for all git push operations on Windows.
 `Exception setting "CursorPosition": "Das Handle ist ungültig."`
 Fix: always add `-NoProfile` to `pwsh` subprocess calls.
 
+### Migration: `migrate-workspace.*` seriell ausführen / Migration: Run `migrate-workspace.*` Serially
+Do not run several `migrate-workspace.*` commands in parallel. Each migration starts `init-stats.*`,
+which updates the shared level 0/1/2 statistics across the whole environment; parallel runs can block
+each other and hit timeouts. Run the preview first, then execute real migrations one workspace at a
+time with a longer timeout.
+
 ### Linux: `git pull` braucht Rebase-Konfiguration / Linux: `git pull` Needs Rebase Config
 Run once: `git config --global pull.rebase true`
 

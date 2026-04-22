@@ -219,6 +219,12 @@ cd "$PARENT" && bash "${REPO}/scripts/check-homogeneity.sh" "${REPO}"
 ```
 PowerShell equivalent: `Set-Location (Split-Path $env:GITHUB_WORKSPACE -Parent)` then `& "${repo}/scripts/check-homogeneity.ps1" -TargetDir $repo`.
 
+### Migrationen seriell ausführen / Run Migrations Serially
+Do not run several `migrate-workspace.*` commands in parallel. Each migration invokes `init-stats.*`,
+which updates the shared level 0/1/2 statistics across the whole environment. Parallel migration runs
+can block each other and time out. First run `-WhatIf`/`--dry-run`, then execute real migrations one
+workspace at a time with a longer timeout.
+
 ### Bash-Array `${#array[@]+...}` auf Ubuntu 22.04 nicht unterstützt / Bash Array `${#array[@]+...}` Not Supported on Ubuntu 22.04
 `${#FAILURES[@]+"${#FAILURES[@]}"}` causes a `bad substitution` error on older bash.
 Use the Bash-3-safe for-loop: `count=0; for _ in "${arr[@]+"${arr[@]}"}"; do count=$((count+1)); done`

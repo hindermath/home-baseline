@@ -184,6 +184,7 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 | Windows `gh`-Keyring ungültig | Windows Credential Store korrupt oder veraltet | `gh auth logout -h github.com -u hindermath`, dann interaktiv neu anmelden und `gh auth setup-git` |
 | Windows `ssh-agent` braucht Adminrechte | OpenSSH-Agent-Dienst standardmäßig deaktiviert | HTTPS + `gh auth setup-git` statt SSH verwenden |
 | `pwsh -File` scheitert mit `CursorPosition` | Profil lädt im Subprozess | `-NoProfile` zu allen `pwsh`-Subprozessaufrufen hinzufügen |
+| Parallele `migrate-workspace.*`-Läufe laufen in Timeouts | Jeder Migrationslauf startet `init-stats.*`, das global Level 0/1/2-Statistiken aktualisiert und sich parallel gegenseitig ausbremst | Workspaces seriell migrieren; bei mehreren Workspaces erst `-WhatIf`/`--dry-run`, dann echte Läufe nacheinander mit längerem Timeout |
 | CI: Dateien „missing" | Relativer Pfad als CWD=Repo-Root | `cd "$(dirname $GITHUB_WORKSPACE)"` vor Scanner-Aufruf |
 | bash `bad substitution` | `${#arr[@]+...}` auf Ubuntu 22.04 | Bash-3-sichere `for`-Schleife zum Zählen |
 | Linux `git pull` meldet divergierende Branches | Kein globales Rebase-Setup | `git config --global pull.rebase true` |

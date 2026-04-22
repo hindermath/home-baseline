@@ -168,6 +168,11 @@ HTTPS + `gh auth setup-git` verwenden.
 PowerShell-Profil (Oh-My-Posh) lädt im Subprozess.
 `-NoProfile` zu `pwsh -File`-Aufrufen hinzufügen.
 
+### `migrate-workspace.*` läuft parallel in Timeouts / `migrate-workspace.*` Times Out in Parallel
+Jeder Migrationslauf startet `init-stats.*` und aktualisiert die Level-0/1/2-Statistiken global.
+Mehrere parallele Läufe können sich gegenseitig ausbremsen. Erst Vorschau (`-WhatIf`/`--dry-run`),
+dann echte Migrationen seriell pro Workspace mit längerem Timeout ausführen.
+
 ### `git pull` meldet divergierende Branches (Linux) / `git pull` Reports Divergent Branches (Linux)
 Kein globales Rebase-Setup.
 `git config --global pull.rebase true`.
