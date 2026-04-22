@@ -104,6 +104,14 @@ At the start of each session, detect the OS and call the matching script variant
 - Shared guidance and learner-facing documentation follow DE first, EN second; for large normative documents, a synchronised `.EN.md` companion file is acceptable.
 - Do not update only this file when a shared rule changes; keep `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` aligned and document any intentional deviation in the same change.
 
+## Level-2-Umgebungsregister / Level-2 Environment Registry
+
+- Die zentrale `constitution.md` enthält das verbindliche Level-2 Project Environment Registry.
+- Spec-Kit-Pläne und Copilot-Arbeit in Level-2-Projekten müssen die passende Registry-Zeile als verbindlichen Kontext für Runtime, Build/Test, A11Y, Statistik und Agentenflächen verwenden.
+- Änderungen an einer Level-2-Runtime, Toolchain oder Statistik-Basis müssen `constitution.md`, `.specify/memory/constitution.md` und betroffene KI-Agenten-Dateien gemeinsam prüfen.
+
+*The central `constitution.md` contains the binding Level-2 Project Environment Registry. Spec-Kit plans and Copilot work in Level-2 projects must use the matching registry row as binding context for runtime, build/test, A11Y, statistics, and agent surfaces. Changes to Level-2 runtime, toolchain, or statistics baselines require a joint review of `constitution.md`, `.specify/memory/constitution.md`, and affected AI-agent files.*
+
 ## Architektur / Architecture
 
 ### Bootstrap-Ablauf (`bootstrap-workspace.sh` / `.ps1`) / Bootstrap Flow (`bootstrap-workspace.sh` / `.ps1`)

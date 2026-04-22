@@ -33,6 +33,20 @@
 
 [Gates determined based on constitution file]
 
+- **Level-2 environment**: If this plan targets a listed Level-2 project, it
+  MUST cite the matching row from the Level-2 Project Environment Registry in
+  `constitution.md` and use its runtime, build/test, docs/A11Y, statistics, and
+  agent-surface baselines.
+- **Security-first**: Confirm no credential files, agent state, logs, history,
+  or SQLite state are planned for tracking.
+- **Inclusion/A11Y**: Identify affected user-facing artefacts and the WCAG 2.2
+  Level AA or text-first review path.
+- **Bilingual delivery**: State how DE-first/EN-second requirements apply.
+- **Statistics**: State whether `docs/project-statistics.md` needs an update
+  and which manual/Thorsten-Solo baseline applies.
+- **Agent guidance parity**: State whether `AGENTS.md`, `CLAUDE.md`,
+  `GEMINI.md`, and `.github/copilot-instructions.md` are affected together.
+
 ## Project Structure
 
 ### Documentation (this feature)

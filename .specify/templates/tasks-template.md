@@ -151,6 +151,10 @@ Examples of foundational tasks (adjust based on your project):
 **Purpose**: Improvements that affect multiple user stories
 
 - [ ] TXXX [P] Documentation updates in docs/
+- [ ] TXXX [P] Verify the implementation against the matching Level-2 Project Environment Registry row in `constitution.md`
+- [ ] TXXX [P] Run the required A11Y/text-first review path for affected user-facing artefacts
+- [ ] TXXX [P] Update `docs/project-statistics.md` when the feature changes statistics-relevant artefacts or delivery evidence
+- [ ] TXXX [P] Review and synchronize affected AI-agent guidance files: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`
 - [ ] TXXX Code cleanup and refactoring
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/

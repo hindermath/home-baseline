@@ -126,6 +126,14 @@ Or view at: `https://github.com/hindermath/home-baseline/blob/main/`
 - Für gemeinsame Guidance gilt DE zuerst, EN danach; bei großen normativen Dokumenten ist alternativ eine synchron gepflegte `.EN.md`-Parallelfassung zulässig.
 - Shared guidance wird immer gemeinsam in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` aktualisiert. Intentionale Abweichungen müssen in derselben Änderung dokumentiert sein.
 
+## Level-2-Umgebungsregister / Level-2 Environment Registry
+
+- Die zentrale `constitution.md` enthält das verbindliche Level-2 Project Environment Registry.
+- Spec-Kit-Pläne und Agentenarbeit in Level-2-Projekten müssen die passende Registry-Zeile als verbindlichen Kontext für Runtime, Build/Test, A11Y, Statistik und Agentenflächen verwenden.
+- Änderungen an einer Level-2-Runtime, Toolchain oder Statistik-Basis müssen `constitution.md`, `.specify/memory/constitution.md` und betroffene KI-Agenten-Dateien gemeinsam prüfen.
+
+*The central `constitution.md` contains the binding Level-2 Project Environment Registry. Spec-Kit plans and agent work in Level-2 projects must use the matching registry row as binding context for runtime, build/test, A11Y, statistics, and agent surfaces. Changes to Level-2 runtime, toolchain, or statistics baselines require a joint review of `constitution.md`, `.specify/memory/constitution.md`, and affected AI-agent files.*
+
 ## Commit- & Pull-Request-Leitlinien / Commit & Pull Request Guidelines
 Recent history follows Conventional Commit prefixes: `chore:`, `docs:`, `feat:`. Keep subjects short and imperative, for example `feat: bootstrap-workspace aktualisiert ~/README.md automatisch`.
 

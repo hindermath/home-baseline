@@ -95,6 +95,18 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
+### Constitution Requirements *(mandatory)*
+
+- **CR-001**: If this feature targets a listed Level-2 project, the feature MUST
+  use the matching Level-2 Project Environment Registry entry from
+  `constitution.md` as binding project context.
+- **CR-002**: User-facing artefacts MUST identify their A11Y review path
+  (WCAG 2.2 Level AA where applicable, text-first fallback otherwise).
+- **CR-003**: Learner-facing or shared guidance content MUST be DE-first,
+  EN-second unless a synchronized `.EN.md` companion is explicitly chosen.
+- **CR-004**: The feature MUST state whether statistics and AI-agent guidance
+  files require synchronized updates.
+
 ### Key Entities *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]
