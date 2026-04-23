@@ -8,6 +8,24 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.9.1](https://github.com/hindermath/home-baseline/compare/v0.9.0...v0.9.1) (2026-04-23)
+
+
+### Documentation / Dokumentation
+
+* align constitution and shared agent guidance ([33d32e4](https://github.com/hindermath/home-baseline/commit/33d32e47694b14c26fd03694794218bfeed59b6c))
+* amend constitution to v1.6.0 ([462fe96](https://github.com/hindermath/home-baseline/commit/462fe961af7c006327e61100655307999283a733))
+* amend constitution to v1.7.0 ([f0923d1](https://github.com/hindermath/home-baseline/commit/f0923d16f5fd6ff3c92a136a465bcfbf404714d0))
+* document serial workspace migrations ([9cf5d59](https://github.com/hindermath/home-baseline/commit/9cf5d59fe1963f6f3bbc1ac6042d36f9b4618520))
+* initialize speckit assets and align constitutions ([8393167](https://github.com/hindermath/home-baseline/commit/83931675721e0e26f80f3a8cafe5fb6a104c69c9))
+* update constitution v1.5.1 ([20c11a9](https://github.com/hindermath/home-baseline/commit/20c11a9d719aef3302f3dd59302b8ab9911f744d))
+
+
+### Maintenance / Wartung
+
+* update homogeneity stats ([2d2b143](https://github.com/hindermath/home-baseline/commit/2d2b1433b8fe059d10e31743be97dca811ec0948))
+* update homogeneity stats ([3eaf7b7](https://github.com/hindermath/home-baseline/commit/3eaf7b772db427dffd41cc3c8c167567b3a99616))
+
 ## [0.9.0](https://github.com/hindermath/home-baseline/compare/v0.8.2...v0.9.0) (2026-04-18)
 
 
