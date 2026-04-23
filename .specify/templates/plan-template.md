@@ -37,6 +37,10 @@
   MUST cite the matching row from the Level-2 Project Environment Registry in
   `constitution.md` and use its runtime, build/test, docs/A11Y, statistics, and
   agent-surface baselines.
+- **Memory-safe languages (MSL)**: State the primary implementation language
+  and confirm it is on the MSL allow-list in `constitution.md`, Principle XI.
+  If the primary language is not an MSL (e.g. C, C++, Assembly, `cc65`), cite
+  the justification recorded in the Level-2 `constitution.md`.
 - **Security-first**: Confirm no credential files, agent state, logs, history,
   or SQLite state are planned for tracking.
 - **Inclusion/A11Y**: Identify affected user-facing artefacts and the WCAG 2.2

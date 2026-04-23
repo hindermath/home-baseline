@@ -106,6 +106,10 @@
   EN-second unless a synchronized `.EN.md` companion is explicitly chosen.
 - **CR-004**: The feature MUST state whether statistics and AI-agent guidance
   files require synchronized updates.
+- **CR-005**: The feature MUST name its primary implementation language and
+  either confirm it is on the MSL allow-list (`constitution.md`, Principle XI)
+  or cite the documented non-MSL justification from the Level-2
+  `constitution.md`.
 
 ### Key Entities *(include if feature involves data)*
 

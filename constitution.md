@@ -1,27 +1,27 @@
 <!--
 Sync Impact Report
-Version change: 1.5.1 -> 1.6.0
+Version change: 1.6.0 -> 1.7.0
 Modified principles:
-- X. Level-2 Project Environment Addenda -> expanded with the shared Level-2 environment registry rule
+- None (purely additive)
 Added sections:
-- Level-2 Project Environment Registry / Level-2-Projektumgebungsregister
+- XI. Memory-Safe Languages (MSL) Preference for Level-2 Projects
 Removed sections:
 - None
 Templates requiring updates:
 - ✅ .specify/templates/plan-template.md
 - ✅ .specify/templates/spec-template.md
 - ✅ .specify/templates/tasks-template.md
-- ✅ .specify/templates/commands/ (not present in this repository)
 Runtime guidance requiring updates:
 - ✅ AGENTS.md
 - ✅ CLAUDE.md
 - ✅ GEMINI.md
 - ✅ .github/copilot-instructions.md
+- ✅ .specify/memory/constitution.md (mirror)
 Follow-up TODOs:
-- None
+- Add non-blocking MSL-detection warning to the speckit.constitution skill and `speckit.specify` (tooling change, tracked separately)
 -->
 
-# Constitution v1.6.0
+# Constitution v1.7.0
 
 # home-baseline Constitution
 
@@ -267,6 +267,66 @@ Agentic tools need the binding shared rules and the local build/test/runtime
 context in the same policy surface so generated plans do not drift away from
 the actual project environment.
 
+### XI. Memory-Safe Languages (MSL) Preference for Level-2 Projects
+
+Level-2 project repositories SHOULD select a memory-safe language (MSL) as
+their primary implementation runtime whenever the target platform allows it.
+This is a recommendation, not a hard block: legacy, embedded, and retro-
+hardware targets that cannot be built with an MSL toolchain remain explicitly
+permitted when their Level-2 `constitution.md` documents a short justification.
+
+Mandatory rules:
+- The `Runtime / Language` column of every Level-2 registry row is the
+  authoritative primary-language declaration for that project.
+- When the declared primary language is **not** on the MSL allow-list below,
+  the Level-2 `constitution.md` MUST include a short written justification
+  (target hardware, legacy C API, retro platform, interoperability
+  requirement, safety-certified non-MSL toolchain, etc.). The justification
+  MUST name the constraint, not merely restate the fact.
+- The Spec-Kit `speckit.constitution` skill and `speckit.specify` SHOULD emit
+  a non-blocking advisory warning when a repository's primary implementation
+  language is not an MSL. The warning MUST NOT prevent constitution creation,
+  amendment, or repository bootstrap.
+- Adding a new non-MSL Level-2 project is allowed with justification. Removing
+  the MSL preference itself requires a MAJOR constitution amendment.
+
+**MSL allow-list** (baseline: NSA "Software Memory Safety", Nov 2022; CISA
+"The Case for Memory Safe Roadmaps", Dec 2023; extended with obvious
+CLR/JVM/BEAM and functional peers of the NSA/CISA-listed languages):
+
+| Family | Memory-safe languages |
+|---|---|
+| Systems / compiled | Rust, Swift |
+| .NET / CLR | C#, F#, VB.NET |
+| JVM | Java, Kotlin, Scala, Clojure, Groovy |
+| Google-originated | Go, Dart |
+| Dynamic / scripting | Python, Ruby, JavaScript, TypeScript, PHP (Zend ≥ 7), Lua |
+| Functional | Haskell, OCaml, Elm, PureScript |
+| BEAM (actor VM) | Erlang, Elixir, Gleam |
+| Safety-critical / formally verified | Ada, SPARK |
+
+**Explicitly NOT memory-safe** (primary use requires justification):
+C, C++, classic Objective-C, Assembly (6502, ARM, x86, RISC-V, Z80, …),
+the `cc65` C89 toolchain, Zig (pre-1.0, only partial runtime checks), Nim
+(manual-memory mode), D without the default GC.
+
+**Current registry status**:
+- All `RiderProjects/*` entries (C# / .NET 9–10) — MSL ✓
+- `DataGripProjects/InventarDb` (C# / .NET integration context) — MSL ✓
+- `C64Projects/cc65` (C / 6502 assembler targeting Commodore 64) —
+  **not MSL**; justification: the target platform is 8-bit retro hardware
+  with no MSL toolchain available, and the repository's purpose is parity
+  with the historical cc65 reference. Justification to be documented inline
+  in its Level-2 `constitution.md`.
+
+**Rationale**: Since 2022/2023 NSA and CISA have identified the transition to
+memory-safe languages as the single highest-leverage mitigation against the
+most common CVE classes (buffer overflows, use-after-free, double-free, type
+confusion, out-of-bounds reads). Encoding the preference at workspace level
+keeps new Level-2 projects actively choosing memory safety instead of drifting
+into unsafe defaults, while preserving deliberate room for legacy, embedded,
+and hardware-bound repositories.
+
 ## Level-2 Project Environment Registry / Level-2-Projektumgebungsregister
 
 This registry consolidates the constitution-relevant Level-2 project facts
@@ -357,7 +417,7 @@ allowed path.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.6.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-22
+**Version**: 1.7.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-23
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
