@@ -8,6 +8,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.10.1](https://github.com/hindermath/home-baseline/compare/v0.10.0...v0.10.1) (2026-04-24)
+
+
+### Documentation / Dokumentation
+
+* add spec-kit issue response playbook ([351fb00](https://github.com/hindermath/home-baseline/commit/351fb0041a97f4660e38ed37c7a518c9276e7830))
+
 ## [0.10.0](https://github.com/hindermath/home-baseline/compare/v0.9.2...v0.10.0) (2026-04-24)
 
 
