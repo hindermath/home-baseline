@@ -54,6 +54,16 @@
   (threat model, S-ADRs, arc42 Section 8 security concepts, security checklist,
   dependency audit, security quality scenarios). State whether `docs/security/`
   needs new or updated documents. Templates: `.specify/templates/`.
+- **Security standards applicability**: Determine which standards from
+  `constitution.md`, Principles XIV-XVIII apply. `NIST SSDF` and `CWE Top 25`
+  always apply to Level-2; add `OWASP ASVS`, `SBOM`, `VEX`, `SLSA`, `CAPEC`,
+  `NIST Zero Trust`, `OWASP SAMM`, `OWASP Cheat Sheet Series` /
+  `OWASP Proactive Controls`, and `OpenSSF Scorecard` where relevant. Mark
+  non-applicable standards as `N/A` with justification.
+- **Release / supply-chain evidence**: State whether the feature requires
+  ASVS verification notes, SBOM/VEX artefacts, provenance/SLSA evidence,
+  CAPEC references, Zero-Trust applicability notes, or SAMM follow-up items,
+  and where that evidence will live.
 - **Security-first**: Confirm no credential files, agent state, logs, history,
   or SQLite state are planned for tracking.
 - **Inclusion/A11Y**: Identify affected user-facing artefacts and the WCAG 2.2

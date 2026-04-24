@@ -110,6 +110,18 @@
   either confirm it is on the MSL allow-list (`constitution.md`, Principle XI)
   or cite the documented non-MSL justification from the Level-2
   `constitution.md`.
+- **CR-006**: The feature MUST determine the applicable security standards from
+  `constitution.md`, Principles XIV-XVIII, and mark non-applicable standards
+  as `N/A` with justification. `NIST SSDF` and `CWE Top 25` are mandatory for
+  all Level-2 work.
+- **CR-007**: If the feature includes web/API/HTTP/auth-bearing services, it
+  MUST declare the selected `OWASP ASVS` level and verification scope.
+- **CR-008**: If the feature creates releasable or distributable artefacts, it
+  MUST declare the intended `SBOM` / `VEX` evidence path and any required
+  provenance / `SLSA` considerations.
+- **CR-009**: If the feature changes trust boundaries, externally reachable
+  flows, or distributed/service architecture, it MUST state how `CAPEC` and
+  `Zero Trust` applicability will be handled.
 
 ### Key Entities *(include if feature involves data)*
 

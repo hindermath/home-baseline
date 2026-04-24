@@ -163,6 +163,12 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Verify architecture against secure-architecture principles in `constitution.md`, Principle XIII (trust boundaries, defense in depth, least privilege, fail-safe defaults, attack surface reduction, separation of concerns, secure configuration, supply-chain security)
 - [ ] TXXX [P] Update mandatory security documentation in `docs/security/`: threat model, security checklist, dependency audit, arc42 security concepts, and security quality scenarios (SHOULD) — using templates from `.specify/templates/`
 - [ ] TXXX [P] Create or update Security Architecture Decision Records (S-ADR) in `docs/security/adr/` for any security-relevant architectural decisions made during this feature
+- [ ] TXXX [P] Record the applicable security standards from `constitution.md`, Principles XIV-XVIII, and mark non-applicable entries as `N/A` with justification
+- [ ] TXXX [P] Apply `NIST SSDF` and `CWE Top 25` to design/review/remediation evidence; add relevant notes to checklist, threat model, ADR, or PR as appropriate
+- [ ] TXXX [P] If the feature includes web/API/HTTP/auth-bearing services, document the selected `OWASP ASVS` level and verification scope in `docs/security/` or equivalent project-local documentation
+- [ ] TXXX [P] If the feature creates releasable or distributable artefacts, generate/update `SBOM` and, when relevant, `VEX` evidence; capture provenance/SLSA actions for CI/CD or published artefacts
+- [ ] TXXX [P] If threat boundaries or externally reachable flows changed, update STRIDE threat modeling and add relevant `CAPEC` references for the highest-risk attack paths
+- [ ] TXXX [P] If the system is distributed, service-based, cloud, or remotely managed, document `Zero Trust` applicability; if the project is long-lived, note any `OWASP SAMM` follow-up actions
 - [ ] TXXX Run quickstart.md validation
 - [ ] TXXX Lastenheft umbenennen / Rename Lastenheft: `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` (macOS/Linux) · `pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>` (Windows) — stamps the feature branch name onto the filename to mark it as archived
 
