@@ -8,6 +8,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.9.2](https://github.com/hindermath/home-baseline/compare/v0.9.1...v0.9.2) (2026-04-24)
+
+
+### Documentation / Dokumentation
+
+* add lastenheft for agent environment checks ([ba7954c](https://github.com/hindermath/home-baseline/commit/ba7954c8152251b0d7e5485a0fd73428e5e18065))
+* update constitution and security templates ([8e571b1](https://github.com/hindermath/home-baseline/commit/8e571b123b5fcbd9bb7c4b1f7a96c76b7c314e55))
+
 ## [0.9.1](https://github.com/hindermath/home-baseline/compare/v0.9.0...v0.9.1) (2026-04-23)
 
 
