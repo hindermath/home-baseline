@@ -16,7 +16,7 @@
 | `bash` | 5.x | macOS: `brew install bash` · Linux: vorinstalliert |
 | `ripgrep (rg)` | 13.x | `brew install ripgrep` · `sudo apt install ripgrep` |
 | `gh` | 2.x (optional) | `brew install gh` · `sudo apt install gh` |
-| `node` / `npx` | 18+ (optional) | `brew install node` · `sudo apt install nodejs npm` |
+| `node` / `npx` | 22+ LTS (optional) | `brew install node` · `sudo apt install nodejs npm` |
 
 **English**: Ensure the following tools are installed (see table above).
 

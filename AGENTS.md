@@ -15,6 +15,7 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/teardown-workspace.sh`: removes a workspace — remote repo, local directory, and artifacts (`~/README.md`, `~/.gitignore`, `~/.gitconfig`).
 - `scripts/teardown-workspace.ps1`: PowerShell 7 equivalent of teardown.
 - `scripts/install-hooks.*`: installs Git hooks into `.git/hooks/`.
+- `scripts/setup-git-identity.*`: detects and fixes placeholder git identity (`Your Name` / `your@email.example`) in `~/.gitconfig`; called automatically by `bootstrap-workspace.*`.
 - `scripts/scan-agent-secrets.*`: manual or hook-driven secret scanning.
 - `scripts/audit-agent-changes.*`: local baseline/report workflow to correlate agent-managed file changes with recent local agent logs.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories.
@@ -27,11 +28,15 @@ There is no build step. Validate changes by running the scripts directly.
 ```bash
 bash scripts/bootstrap-workspace.sh --dry-run FlutterProjects
 bash scripts/install-hooks.sh
+bash scripts/setup-git-identity.sh --check-only    # Git-Identität prüfen / check identity
+bash scripts/setup-git-identity.sh                 # Git-Identität einrichten / set identity
 bash scripts/scan-agent-secrets.sh --fail-on-high .
 bash scripts/audit-agent-changes.sh snapshot
 bash scripts/audit-agent-changes.sh report
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 pwsh scripts/install-hooks.ps1 -Verbose
+pwsh scripts/setup-git-identity.ps1 -CheckOnly     # Git-Identität prüfen / check identity
+pwsh scripts/setup-git-identity.ps1                # Git-Identität einrichten / set identity
 pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
@@ -181,18 +186,22 @@ Or view at: `https://github.com/hindermath/home-baseline/blob/main/`
 
 *AI-generated and human-written software architecture MUST follow secure-architecture principles. Authoritative rules: `constitution.md`, Principle XIII. Core principles: trust boundaries (validate all input at system boundaries), defense in depth (at least two independent security layers), least privilege (minimum required permissions), fail-safe defaults (deny by default), attack surface reduction (disable unused features), separation of concerns (auth/logging/validation as cross-cutting concerns), secure configuration (secrets in secret stores, never in code or Git), supply-chain security (verified registries, lock files, no known-vulnerable dependencies). Principles XII + XIII together form the complete secure-development approach: XII = tactical code-level security, XIII = strategic architecture-level security. Changes require a joint update across `constitution.md`, `.specify/memory/constitution.md`, and all four agent guidance files.*
 
-## Sicherheitsdokumentation / Security Documentation (XII/XIII Extensions)
+## Sicherheitsdokumentation / Security Documentation (XII–XVIII Extensions)
 
 - Jedes Level-2-Projekt MUSS die folgenden Sicherheitsdokumente pflegen, basierend auf den Templates in `.specify/templates/`:
-  - **Bedrohungsmodell / Threat Model** (`threat-model-template.md`) — STRIDE-Methodik, Trust Boundaries, Risikobewertung (Prinzip XIII)
+  - **Bedrohungsmodell / Threat Model** (`threat-model-template.md`) — STRIDE-Methodik, Trust Boundaries, Risikobewertung, CAPEC-Referenzen (Prinzip XIII + XVII)
   - **Security Architecture Decision Records (S-ADR)** (`adr-template.md`) — architektonische Sicherheitsentscheidungen mit Compliance-Nachweis (Prinzip XIII)
   - **arc42 Section 8 Sicherheits-Querschnittskonzepte** (`arc42-security-template.md`) — Authentifizierung, Autorisierung, Verschlüsselung, Eingabevalidierung, Fehlerbehandlung, Logging, Abhängigkeiten, Deployment (Prinzip XIII)
   - **Sicherheits-Checkliste / Security Checklist** (`security-checklist-template.md`) — sprachspezifische Code-Review-Checkliste (Prinzip XII)
   - **Abhängigkeits-Audit / Dependency Audit** (`dependency-audit-template.md`) — CVE-Tracking, Lizenz-Compliance, Supply-Chain-Sicherheit (Prinzip XII)
   - **Sicherheits-Qualitätsszenarien / Security Quality Scenarios** (`security-quality-scenarios-template.md`) — iSAQB CPSA-F Qualitätsszenario-Methodik (Prinzip XII + XIII, SHOULD)
+  - **ASVS-Verifikation / ASVS Verification** (`asvs-verification-template.md`) — OWASP ASVS Level, Scope und Evidenz (Prinzip XV, Web-/API-Projekte MUST)
+  - **Supply-Chain-Evidenz / Supply Chain Evidence** (`supply-chain-evidence-template.md`) — SBOM, VEX, SLSA, OpenSSF Scorecard (Prinzip XVI, releasefähige Projekte MUST)
+  - **Zero-Trust-Anwendbarkeit / Zero Trust Applicability** (`zero-trust-applicability-template.md`) — NIST SP 800-207-Bewertung (Prinzip XVIII, verteilte Systeme SHOULD)
+  - **SAMM-Bewertung / SAMM Assessment** (`samm-assessment-template.md`) — OWASP SAMM Reifegrad und Verbesserungsplan (Prinzip XVIII, langlebige Projekte SHOULD)
 - Projektspezifische Instanzen werden in `docs/security/` gepflegt; S-ADRs als einzelne Dateien in `docs/security/adr/`.
 
-*Every Level-2 project MUST maintain security documents based on templates in `.specify/templates/`: threat model (STRIDE), S-ADRs, arc42 Section 8 security concepts, security checklist, dependency audit, and security quality scenarios (SHOULD). Project-specific instances live in `docs/security/`; S-ADRs in `docs/security/adr/`. See `constitution.md`, Principles XII and XIII for authoritative requirements.*
+*Every Level-2 project MUST maintain security documents based on templates in `.specify/templates/`: threat model (STRIDE+CAPEC), S-ADRs, arc42 Section 8 security concepts, security checklist, dependency audit, security quality scenarios (SHOULD), ASVS verification (web/API MUST), supply-chain evidence (release-capable MUST), Zero Trust applicability note (distributed systems SHOULD), and SAMM assessment (long-lived projects SHOULD). Project-specific instances live in `docs/security/`; S-ADRs in `docs/security/adr/`. See `constitution.md`, Principles XII–XVIII for authoritative requirements.*
 
 ## Sicherheitsstandards & Anwendbarkeit / Security Standards & Applicability
 

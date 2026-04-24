@@ -1,3 +1,14 @@
+; ============================================================
+; WICHTIG / IMPORTANT: Name und E-Mail MÜSSEN geändert werden!
+; Diese Platzhalter-Werte führen zu falschen Commit-Autoren.
+;
+; IMPORTANT: name and email MUST be changed!
+; These placeholder values produce incorrect commit author information.
+;
+; Schnell einrichten / Quick setup:
+;   bash ~/scripts/setup-git-identity.sh
+;   pwsh -NoProfile ~/scripts/setup-git-identity.ps1   (Windows)
+; ============================================================
 [user]
 	name = Your Name
 	email = your@email.example

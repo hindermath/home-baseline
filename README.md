@@ -18,7 +18,7 @@ private GitHub or GitLab repository within seconds.*
   - [So nutzt du dieses Template / How to use this template](#so-nutzt-du-dieses-template--how-to-use-this-template)
   - [Template-Updates übernehmen / Syncing updates from the template](#template-updates-übernehmen--syncing-updates-from-the-template)
 - [Voraussetzungen / Prerequisites](#voraussetzungen--prerequisites)
-  - [Node.js ≥ 18](#5-nodejs--18-für-npm-basierte-ki-agenten--for-npm-based-ai-agents)
+  - [Node.js ≥ 22 LTS](#5-nodejs--22-lts-für-npm-basierte-ki-agenten--for-npm-based-ai-agents)
 - [Neuen Workspace einrichten / Create new workspace](#neuen-workspace-einrichten--create-new-workspace)
   - [macOS / Linux](#macos--linux)
   - [Windows (PowerShell Core ≥ 7)](#windows-powershell-core--7--windows-powershell-core--7)
@@ -278,11 +278,11 @@ Oder: [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/
 | Linux | `sudo apt install ripgrep` / `sudo dnf install ripgrep` |
 | Windows | `winget install --id BurntSushi.ripgrep.MSVC` |
 
-### 5. Node.js ≥ 18 *(für npm-basierte KI-Agenten / for npm-based AI agents)*
+### 5. Node.js ≥ 22 LTS *(für npm-basierte KI-Agenten / for npm-based AI agents)*
 
-Wird für die Installation von **Gemini CLI** und **Codex CLI** via `npm` benötigt. Claude Code hat einen eigenen nativen Installer und benötigt Node.js **nicht** mehr.
+Wird für die Installation von **Gemini CLI** und **Codex CLI** via `npm` benötigt. Claude Code hat einen eigenen nativen Installer und benötigt Node.js **nicht** mehr. Node.js 18 ist end-of-life — bitte mindestens **Node.js 22 LTS** (aktiv gewartet) oder **Node.js 24 LTS** verwenden.
 
-*Required to install **Gemini CLI** and **Codex CLI** via `npm`. Claude Code has its own native installer and no longer requires Node.js.*
+*Required to install **Gemini CLI** and **Codex CLI** via `npm`. Claude Code has its own native installer and no longer requires Node.js. Node.js 18 is end-of-life — use at least **Node.js 22 LTS** (actively maintained) or **Node.js 24 LTS**.*
 
 | Plattform / Platform | Installation / Installation |
 |---|---|
@@ -293,7 +293,7 @@ Wird für die Installation von **Gemini CLI** und **Codex CLI** via `npm` benöt
 Nach der Installation prüfen / Verify installation:
 
 ```bash
-node --version   # ≥ 18 erwartet
+node --version   # ≥ 22 erwartet (22 LTS oder 24 LTS)
 npm --version
 ```
 
@@ -1545,7 +1545,7 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 | GitHub-Account / GitHub account | ✅ | Repo-Hosting / Repository hosting |
 | KI-Agent (mind. einer) / AI agent (at least one) | ✅ | Fuehrt die Spec-Kit-Skills aus / Runs the Spec-Kit skills |
 | `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) / Installs `specify-cli` (the Spec-Kit CLI) |
-| Node.js ≥ 18 | fuer npm-Agenten / for npm-based agents | Gemini CLI und Codex CLI installieren (Claude Code: nicht noetig) / Install Gemini CLI and Codex CLI (Claude Code: not needed) |
+| Node.js ≥ 22 LTS | fuer npm-Agenten / for npm-based agents | Gemini CLI und Codex CLI installieren (Claude Code: nicht noetig) / Install Gemini CLI and Codex CLI (Claude Code: not needed) |
 | `gh` CLI | empfohlen / recommended | GitHub Copilot CLI; Issues aus Tasks anlegen / create issues from tasks |
 
 Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` geprüft.
@@ -1665,7 +1665,7 @@ Gemini CLI ist vor allem dann passend, wenn du bereits mit einer npm-basierten T
 
 *Gemini CLI is especially suitable if you already work with an npm-based toolchain and want a lean terminal agent with direct project integration. In this repository, Spec-Kit is integrated via `.gemini/commands/`, so the structure is similarly clear to Claude, but with the typical Gemini CLI workflow.*
 
-> **Voraussetzung / Prerequisite:** Node.js ≥ 18, Google-Account
+> **Voraussetzung / Prerequisite:** Node.js ≥ 22 LTS, Google-Account
 
 | Plattform / Platform | Installation / Installation |
 |---|---|
@@ -1707,7 +1707,7 @@ Codex CLI ist in diesem Setup besonders stark, wenn du repo-nahe Arbeit mit klar
 
 *Codex CLI is especially strong in this setup if you prefer repository-close work with an explicit project context file. Unlike Claude or Gemini, the integration here does not primarily depend on a dedicated `commands` directory, but on `AGENTS.md` and, during `specify init`, additionally on the `--ai-skill` switch so that the Spec-Kit skills are placed correctly into `.agents/skills/`.*
 
-> **Voraussetzung / Prerequisite:** Node.js ≥ 18, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
+> **Voraussetzung / Prerequisite:** Node.js ≥ 22 LTS, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
 
 | Plattform / Platform | Installation / Installation |
 |---|---|

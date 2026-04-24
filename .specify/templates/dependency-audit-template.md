@@ -7,14 +7,26 @@
 **Constitution-Referenz / Constitution Reference**: Principle XII (A.8.28), Principle XIII (A.8.27)
 
 <!--
-  Dieses Dokument erfasst den Audit-Status aller direkten und transitiven
-  Abhängigkeiten des Projekts. Es wird vor jedem Release und mindestens
-  monatlich aktualisiert. Nicht zutreffende Abschnitte mit N/A markieren.
+  Dieses Dokument dient als statischer Snapshot des Audit-Zustands.
+  Da Abhängigkeiten, CVEs und Lizenzen sich laufend ändern, ist statische
+  Dokumentation allein nicht ausreichend. Bevorzuge automatisierte Werkzeuge
+  (z. B. Dependency Track, Renovatebot, Dependabot) und nutze dieses
+  Dokument als Ergänzung für Entscheidungen, Ausnahmen und Release-Nachweise.
 
-  This document captures the audit status of all direct and transitive
-  dependencies of the project. It is updated before each release and at
-  least monthly. Mark non-applicable sections as N/A.
+  This document serves as a static snapshot of the audit state.
+  Since dependencies, CVEs, and licenses change continuously, static
+  documentation alone is insufficient. Prefer automated tooling
+  (e.g., Dependency Track, Renovatebot, Dependabot) and use this document
+  as a supplement for decisions, exceptions, and release evidence.
 -->
+
+> **Empfehlung / Recommendation**: Statische Dokumentation ersetzen oder ergänzen durch:
+>
+> - **[Dependency Track](https://dependencytrack.org/)** — nimmt SBOM-Artefakte aus CI-Pipelines entgegen und trackt CVEs sowie Lizenz-Compliance automatisch und kontinuierlich.
+> - **[Renovatebot](https://docs.renovatebot.com/)** / **[Dependabot](https://docs.github.com/en/code-security/dependabot)** — erstellen automatisch PRs für veraltete oder verwundbare Abhängigkeiten (Best Practice für alle Projekte).
+> - Diese Datei dient dann primär als Evidenz-Dokument für Release-Entscheidungen, Ausnahmen und Risikoakzeptanz.
+>
+> *Replace or supplement static documentation with automated tooling: Dependency Track for continuous SBOM/CVE/license tracking, Renovatebot or Dependabot for automated dependency update PRs. This file then serves primarily as an evidence document for release decisions, exceptions, and risk acceptance.*
 
 ## 1. Audit-Werkzeuge / Audit Tools
 

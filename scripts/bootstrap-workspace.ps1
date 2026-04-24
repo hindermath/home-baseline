@@ -129,6 +129,22 @@ if ($Platform -eq 'github') {
 
 # --- Vorabprüfungen ------------------------------------------------------------
 
+# Git-Identität prüfen: Platzhalter-Werte führen zu falschen Commit-Autoren
+# Check git identity: placeholder values cause incorrect commit author information
+$identityScript = Join-Path $PSScriptRoot 'setup-git-identity.ps1'
+& pwsh -NoProfile -File $identityScript -CheckOnly 2>$null | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ''
+    Write-Error "Fehler: Git-Identität muss vor dem Bootstrap konfiguriert werden." -ErrorAction Continue
+    Write-Host "  Die globale Git-Konfiguration enthält noch Platzhalter-Werte."
+    Write-Host ''
+    Write-Host "  Behebung / Fix:"
+    Write-Host "    pwsh -NoProfile ~/scripts/setup-git-identity.ps1"
+    Write-Host ''
+    Write-Host 'Error: Git identity must be configured before bootstrapping a workspace.'
+    exit 1
+}
+
 if (-not (Test-Path $workspaceDir -PathType Container)) {
     Write-Error "Verzeichnis '$workspaceDir' existiert nicht."
 }

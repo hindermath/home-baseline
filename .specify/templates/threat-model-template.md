@@ -12,6 +12,39 @@
 
 *[Describe which system, feature, or component this threat model covers.]*
 
+---
+
+## Asset-Inventar & CIA-Matrix / Asset Inventory & CIA Matrix
+
+<!--
+  Liste alle relevanten Funktionalitäten und Datenwerte auf.
+  Bewerte jedes Asset nach Confidentiality (Vertraulichkeit), Integrity (Integrität)
+  und Availability (Verfügbarkeit): H = Hoch, M = Mittel, N = Niedrig, - = Nicht anwendbar.
+  Der CIA-Wert bestimmt den Schutzbedarf und leitet die STRIDE-Prioritäten.
+
+  List all relevant functionalities and data assets.
+  Rate each asset for Confidentiality, Integrity, and Availability:
+  H = High, M = Medium, L = Low, - = Not applicable.
+  The CIA rating determines protection needs and guides STRIDE priorities.
+-->
+
+| Asset / Funktionalität | Beschreibung / Description | Vertraulichkeit / Confidentiality | Integrität / Integrity | Verfügbarkeit / Availability | Gesamt-Schutzbedarf / Overall |
+|---|---|:---:|:---:|:---:|:---:|
+| [z. B. Benutzerdaten / User data] | [Personenbezogene Daten, PII] | H | H | M | **H** |
+| [z. B. Authentifizierungs-Token / Auth token] | [Session- und JWT-Tokens] | H | H | M | **H** |
+| [z. B. Konfiguration / Configuration] | [API-Keys, Verbindungszeichenketten] | H | M | L | **H** |
+| [z. B. Audit-Log / Audit log] | [Sicherheitsereignisse, Änderungsprotokoll] | M | H | M | **H** |
+| [z. B. Öffentliche API / Public API] | [Read-only Endpunkte] | - | M | H | **M** |
+
+**Legende / Legend**: H = Hoch/High · M = Mittel/Medium · L = Niedrig/Low · - = Nicht anwendbar/Not applicable
+
+> **Hinweis / Note**: Assets mit H in Confidentiality oder Integrity erfordern mindestens Defense-in-Depth
+> (Prinzip XIII) und sind bevorzugt in der STRIDE-Analyse abzudecken.
+> *Assets rated H in Confidentiality or Integrity require at least Defense-in-Depth (Principle XIII)
+> and should be prioritised in the STRIDE analysis.*
+
+---
+
 ## Trust Boundaries / Vertrauensgrenzen
 
 <!--

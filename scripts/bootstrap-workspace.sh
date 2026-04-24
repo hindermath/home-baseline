@@ -132,6 +132,20 @@ fi
 
 # --- Vorabprüfungen ------------------------------------------------------------
 
+# Git-Identität prüfen: Platzhalter-Werte führen zu falschen Commit-Autoren
+# Check git identity: placeholder values cause incorrect commit author information
+if ! bash "$SCRIPT_DIR/setup-git-identity.sh" --check-only 2>/dev/null; then
+  echo "" >&2
+  echo "Fehler: Git-Identität muss vor dem Bootstrap konfiguriert werden." >&2
+  echo "  Die globale Git-Konfiguration enthält noch Platzhalter-Werte." >&2
+  echo "" >&2
+  echo "  Behebung / Fix:" >&2
+  echo "    bash ~/scripts/setup-git-identity.sh" >&2
+  echo "" >&2
+  echo "Error: Git identity must be configured before bootstrapping a workspace." >&2
+  exit 1
+fi
+
 if [ ! -d "$WORKSPACE_DIR" ]; then
   echo "Fehler: Verzeichnis '$WORKSPACE_DIR' existiert nicht." >&2
   exit 1
