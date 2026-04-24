@@ -76,6 +76,21 @@ TB = Trust Boundary / Vertrauensgrenze
 | **D**enial of Service | | | | | | |
 | **E**levation of Privilege | | | | | | |
 
+## CAPEC-Referenzen / CAPEC References
+
+<!--
+  Verweise auf relevante CAPEC-Angriffsmuster fuer die risikoreichsten
+  Angriffswege. Keine Vollstaendigkeit erforderlich; Fokus auf realistische
+  Angriffstechniken.
+
+  Reference relevant CAPEC attack patterns for the highest-risk attack paths.
+  Exhaustiveness is not required; focus on realistic attacker techniques.
+-->
+
+| Risk / Flow | CAPEC-ID | Angriffsmuster / Attack Pattern | Bezug / Relevance | Mitigation Link |
+|---|---|---|---|---|
+| [z. B. Login] | [CAPEC-XXX] | | | |
+
 ## Risikobewertung / Risk Assessment
 
 <!--
@@ -103,8 +118,10 @@ TB = Trust Boundary / Vertrauensgrenze
 
 - Constitution Principle XII: Secure Code Generation (ISO 27002:2022 A.8.28)
 - Constitution Principle XIII: Secure Software Architecture (ISO 27002:2022 A.8.27)
+- Constitution Principle XVII: Threat Modeling & Attack Pattern Coverage
 - OWASP Threat Modeling: [owasp.org/www-community/Threat_Modeling](https://owasp.org/www-community/Threat_Modeling)
 - STRIDE: Microsoft Threat Modeling methodology
+- CAPEC: [capec.mitre.org](https://capec.mitre.org/)
 
 <!-- EN: threat-model-template.md
 [DE-Zusammenfassung: Template fuer Bedrohungsmodelle basierend auf STRIDE-Methodik, ISO 27002 A.8.26/A.8.27.]
