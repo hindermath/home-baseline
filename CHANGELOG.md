@@ -8,6 +8,21 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.10.0](https://github.com/hindermath/home-baseline/compare/v0.9.2...v0.10.0) (2026-04-24)
+
+
+### Features / Neue Funktionen
+
+* add git identity setup workflow ([b1bd3f4](https://github.com/hindermath/home-baseline/commit/b1bd3f478c46d9016361cc59afa06e8e1b494326))
+* add propagate-security-guidance script for Level-1/Level-2 sync ([a4d5d17](https://github.com/hindermath/home-baseline/commit/a4d5d17d0201edcb9d6b79e0eff0943477743919))
+
+
+### Documentation / Dokumentation
+
+* add security evidence templates ([75090b4](https://github.com/hindermath/home-baseline/commit/75090b44197cda6d4471a526a91c9115414bb3cf))
+* extend secure development constitution ([22053e4](https://github.com/hindermath/home-baseline/commit/22053e41c9fe9e9d861577617f74b03181955bf3))
+* propagate constitution v1.10.0 guidance ([ddf8cf0](https://github.com/hindermath/home-baseline/commit/ddf8cf01db3a934e956f5cd880130c8b2974ff0d))
+
 ## [0.9.2](https://github.com/hindermath/home-baseline/compare/v0.9.1...v0.9.2) (2026-04-24)
 
 
