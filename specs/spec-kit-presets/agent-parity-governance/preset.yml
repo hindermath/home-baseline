@@ -1,0 +1,77 @@
+schema_version: "1.0"
+
+preset:
+  id: "agent-parity-governance"
+  name: "Agent Parity Governance"
+  version: "0.1.0"
+  description: "Adds shared-guidance parity across AGENTS.md, CLAUDE.md, GEMINI.md, and .github/copilot-instructions.md so AI-agent surfaces never drift."
+  author: "Thorsten Hindermann"
+  repository: "https://github.com/hindermath/spec-kit-preset-agent-parity-governance"
+  license: "MIT"
+
+requires:
+  speckit_version: ">=0.8.0"
+
+provides:
+  templates:
+    - type: "template"
+      name: "constitution-template"
+      file: "templates/constitution-addendum.md"
+      description: "Append four-agent guidance parity governance"
+      strategy: "append"
+
+    - type: "template"
+      name: "spec-template"
+      file: "templates/spec-addendum.md"
+      description: "Append agent-parity applicability section"
+      strategy: "append"
+
+    - type: "template"
+      name: "plan-template"
+      file: "templates/plan-addendum.md"
+      description: "Append agent-parity planning checks"
+      strategy: "append"
+
+    - type: "template"
+      name: "tasks-template"
+      file: "templates/tasks-addendum.md"
+      description: "Append agent-parity tasks"
+      strategy: "append"
+
+    - type: "template"
+      name: "agent-file-template"
+      file: "templates/agent-file-addendum.md"
+      description: "Append shared agent guidance for parity governance"
+      strategy: "append"
+
+    - type: "template"
+      name: "agent-parity-checklist-template"
+      file: "templates/agent-parity-checklist-template.md"
+      description: "Starter checklist for verifying parity across the four agent surfaces"
+
+    - type: "command"
+      name: "speckit.specify"
+      file: "commands/speckit.specify.md"
+      description: "Wrap specify with agent-parity checks"
+      strategy: "wrap"
+
+    - type: "command"
+      name: "speckit.plan"
+      file: "commands/speckit.plan.md"
+      description: "Wrap plan with agent-parity checks"
+      strategy: "wrap"
+
+    - type: "command"
+      name: "speckit.tasks"
+      file: "commands/speckit.tasks.md"
+      description: "Wrap tasks with agent-parity checks"
+      strategy: "wrap"
+
+tags:
+  - "agents"
+  - "governance"
+  - "parity"
+  - "agent-md"
+  - "claude-md"
+  - "gemini-md"
+  - "copilot-instructions"
