@@ -39,10 +39,9 @@ provides:
       strategy: "append"
 
     - type: "template"
-      name: "agent-file-template"
+      name: "architecture-agent-guidance-addendum-template"
       file: "templates/agent-file-addendum.md"
-      description: "Append shared agent guidance for architecture governance"
-      strategy: "append"
+      description: "Standalone agent guidance addendum for architecture governance"
 
     - type: "template"
       name: "threat-model-template"

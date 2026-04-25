@@ -33,8 +33,9 @@ Standards and rules in scope:
 Preset strategy:
 
 - append accessibility governance to `constitution-template`,
-  `spec-template`, `plan-template`, `tasks-template`, and
-  `agent-file-template`
+  `spec-template`, `plan-template`, and `tasks-template`
+- provide a standalone agent-guidance addendum template for projects that
+  maintain agent instruction files
 - wrap `speckit.specify`, `speckit.plan`, and `speckit.tasks` with a
   shared accessibility workflow
 - provide starter templates for A11Y review, bilingual content review,

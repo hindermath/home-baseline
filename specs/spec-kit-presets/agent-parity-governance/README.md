@@ -25,7 +25,9 @@ What it covers:
 Preset strategy:
 
 - append parity governance to `constitution-template`, `spec-template`,
-  `plan-template`, `tasks-template`, and `agent-file-template`
+  `plan-template`, and `tasks-template`
+- provide a standalone agent-guidance addendum template for projects that
+  maintain agent instruction files
 - wrap `speckit.specify`, `speckit.plan`, and `speckit.tasks` with a
   shared parity workflow
 - provide a parity checklist starter

@@ -29,7 +29,7 @@ confirm whether the shared rule landed.
 | `.specify/templates/spec-template.md` | | |
 | `.specify/templates/plan-template.md` | | |
 | `.specify/templates/tasks-template.md` | | |
-| `.specify/templates/agent-file-template.md` | | |
+| Agent guidance addendum template (if maintained) | | |
 | Other template (name): | | |
 
 ## Intentional Deviations

@@ -39,10 +39,9 @@ provides:
       strategy: "append"
 
     - type: "template"
-      name: "agent-file-template"
+      name: "cross-platform-agent-guidance-addendum-template"
       file: "templates/agent-file-addendum.md"
-      description: "Append shared agent guidance for cross-platform parity"
-      strategy: "append"
+      description: "Standalone agent guidance addendum for cross-platform parity"
 
     - type: "template"
       name: "script-parity-checklist-template"

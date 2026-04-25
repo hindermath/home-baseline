@@ -35,7 +35,9 @@ Standards in scope:
 Preset strategy:
 
 - append governance sections to `constitution-template`, `spec-template`,
-  `plan-template`, `tasks-template`, and `agent-file-template`
+  `plan-template`, and `tasks-template`
+- provide a standalone agent-guidance addendum template for projects that
+  maintain agent instruction files
 - wrap `speckit.specify`, `speckit.plan`, and `speckit.tasks` with a small
   shared security workflow
 - provide concrete evidence templates for secure-development artefacts,

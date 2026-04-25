@@ -39,10 +39,9 @@ provides:
       strategy: "append"
 
     - type: "template"
-      name: "agent-file-template"
+      name: "a11y-agent-guidance-addendum-template"
       file: "templates/agent-file-addendum.md"
-      description: "Append shared agent guidance for accessibility governance"
-      strategy: "append"
+      description: "Standalone agent guidance addendum for accessibility governance"
 
     - type: "template"
       name: "a11y-checklist-template"

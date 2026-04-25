@@ -38,8 +38,9 @@ Standards and concepts in scope:
 Preset strategy:
 
 - append architecture-governance sections to `constitution-template`,
-  `spec-template`, `plan-template`, `tasks-template`, and
-  `agent-file-template`
+  `spec-template`, `plan-template`, and `tasks-template`
+- provide a standalone agent-guidance addendum template for projects that
+  maintain agent instruction files
 - wrap `speckit.specify`, `speckit.plan`, and `speckit.tasks` with a
   shared architecture workflow
 - provide starter templates for threat models, S-ADRs, arc42 Section 8

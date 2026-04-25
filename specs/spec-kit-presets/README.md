@@ -113,5 +113,7 @@ Notes:
   compete.
 - If stacked, verify effective file resolution with
   `specify preset resolve`.
-- Agent guidance is intentionally modelled through `agent-file-template`
-  addenda plus wrapped `speckit.*` commands.
+- Agent guidance is intentionally modelled through standalone
+  `*-agent-guidance-addendum-template` files plus wrapped `speckit.*`
+  commands because Spec Kit 0.8.x has no core `agent-file-template` base
+  layer to append to.

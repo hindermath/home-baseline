@@ -39,10 +39,9 @@ provides:
       strategy: "append"
 
     - type: "template"
-      name: "agent-file-template"
+      name: "agent-parity-guidance-addendum-template"
       file: "templates/agent-file-addendum.md"
-      description: "Append shared agent guidance for parity governance"
-      strategy: "append"
+      description: "Standalone agent guidance addendum for parity governance"
 
     - type: "template"
       name: "agent-parity-checklist-template"
