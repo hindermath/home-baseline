@@ -8,6 +8,5 @@
   shared principles change.
 - Plan documentation of any intentional deviation between surfaces (what
   deviates, why, expected lifetime).
-- Plan a parity check task that validates the four files (and any
-  additional surfaces) reflect the same shared rules at the end of the
-  change.
+- Plan a parity check task that validates every declared surface reflects
+  the same shared rules at the end of the change.

@@ -1,4 +1,4 @@
-## Four-Agent Guidance Parity
+## Agent Guidance Parity
 
 ### Mandate
 
@@ -8,16 +8,21 @@ where one tool follows a rule another tool ignores.
 
 ### Maintained agent surfaces
 
-The four standard surfaces are:
+Each project MUST declare its maintained agent guidance surfaces in the
+local constitution or equivalent governance document. Common surfaces
+include:
 
-- `AGENTS.md` — for Codex and Codex-like agents
-- `CLAUDE.md` — for Claude Code
-- `GEMINI.md` — for Gemini Code Assist
-- `.github/copilot-instructions.md` — for GitHub Copilot
+- `AGENTS.md`
+- `CLAUDE.md`
+- `GEMINI.md`
+- `.github/copilot-instructions.md`
+- `.cursorrules`
+- `.windsurfrules`
+- `JUNIE.md`
+- other project-specific instruction files
 
-A project MAY maintain additional agent surfaces (e.g. `.cursorrules`,
-`.windsurfrules`, `JUNIE.md`). Any additional surface MUST be listed in
-the local constitution as part of the parity set.
+This preset does not require any specific vendor or agent mix. Only
+surfaces declared by the project are mandatory for that project.
 
 ### Mandatory rules
 
@@ -41,8 +46,7 @@ migration plan recorded in the change.
 
 ### Evidence
 
-- Default location for parity-evidence artefacts: project root
-  (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
-  `.github/copilot-instructions.md`).
+- Default location for parity-evidence artefacts: project root and the
+  project's declared agent guidance surfaces.
 - A `agent-parity-checklist` SHOULD be filed for changes that touch
   shared guidance — see `agent-parity-checklist-template`.

@@ -9,16 +9,17 @@
 
 ## Maintained Agent Surfaces
 
-For each maintained surface, confirm whether the rule landed.
+List every maintained surface for this project. For each surface,
+confirm whether the shared rule landed.
 
 | Surface | Updated? | Location of the change | Notes |
 |---------|----------|------------------------|-------|
-| `AGENTS.md` | | | |
-| `CLAUDE.md` | | | |
-| `GEMINI.md` | | | |
-| `.github/copilot-instructions.md` | | | |
-| Project-specific (name): | | | |
-| Project-specific (name): | | | |
+| Primary agent guidance (name/path): | | | |
+| Additional agent guidance (name/path): | | | |
+| Additional agent guidance (name/path): | | | |
+| Additional agent guidance (name/path): | | | |
+| Project-specific guidance (name/path): | | | |
+| Project-specific guidance (name/path): | | | |
 
 ## Companion Locations
 

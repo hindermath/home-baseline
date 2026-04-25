@@ -7,16 +7,16 @@ strategies introduced in 0.8.x).
 Purpose:
 
 - prevent silent process drift between AI-agent guidance files
-- enforce that shared rules land atomically across `AGENTS.md`,
-  `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`
+- enforce that shared rules land atomically across the project's
+  declared AI-agent guidance surfaces
 
 Primary source chapter from `home-baseline` constitution:
 
-- `IX. Four-Agent Guidance Parity & Template Synchronization`
+- `IX. Agent Guidance Parity & Template Synchronization`
 
 What it covers:
 
-- mandatory list of maintained agent surfaces (extensible per project)
+- project-declared list of maintained agent surfaces
 - atomic-change discipline (one change → all surfaces)
 - propagation into project templates and `.specify/memory/constitution.md`
 - explicit documentation of intentional deviations
@@ -37,6 +37,11 @@ When to use:
   instructions
 - any project where AI-agent surfaces are part of the contributor
   contract
+
+Common surfaces include `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
+`.github/copilot-instructions.md`, `.cursorrules`, `.windsurfrules`,
+`JUNIE.md`, or other project-specific instruction files. The preset does
+not require a specific vendor or agent mix.
 
 When not to use:
 

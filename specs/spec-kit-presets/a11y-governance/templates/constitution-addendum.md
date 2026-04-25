@@ -51,10 +51,10 @@
 
 ### Agent-file parity
 
-- Shared accessibility guidance MUST stay aligned across the four agent
-  guidance files: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and
-  `.github/copilot-instructions.md`. Document any intentional deviation
-  in the same change.
+- Shared accessibility guidance MUST stay aligned across the project's
+  declared agent guidance surfaces. Common examples include `AGENTS.md`,
+  `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`.
+  Document any intentional deviation in the same change.
 
 ### Evidence locations
 

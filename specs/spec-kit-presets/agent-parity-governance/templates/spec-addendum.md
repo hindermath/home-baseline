@@ -3,9 +3,7 @@
 - Identify whether this feature changes shared agent guidance, project
   templates, or `.specify/memory/constitution.md`.
 - List the maintained agent surfaces that must be updated together
-  (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
-  `.github/copilot-instructions.md`, plus any project-specific
-  surfaces).
+  according to the project's declared parity set.
 - Record whether project templates under `.specify/templates/` are also
   affected.
 - Record whether any intentional deviation between surfaces is required

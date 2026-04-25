@@ -42,7 +42,7 @@ Coverage by principle:
 | II | Cross-Platform Parity & Documentation | `cross-platform-governance` |
 | VII | `Programmierung #include<everyone>` | `a11y-governance` |
 | VIII | DE-First / EN-Second Bilingual Delivery | `a11y-governance` |
-| IX | Four-Agent Guidance Parity & Template Synchronization | `agent-parity-governance` |
+| IX | Agent Guidance Parity & Template Synchronization | `agent-parity-governance` |
 | XI | Memory-Safe Languages (MSL) Preference | `security-governance` (architectural constraint surfaced by `architecture-governance`) |
 | XII | Secure Code Generation | `security-governance` |
 | XIII | Secure Software Architecture | `architecture-governance` |
