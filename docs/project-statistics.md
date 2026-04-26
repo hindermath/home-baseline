@@ -19,38 +19,39 @@
 | 2026-04-12 | Baseline (alle Phasen 0–5) | 11 | 41 969 | 216 | Init-Infrastruktur, Homogeneity Guardian (001+002), Public Template + Sync (pub), CI + Git-Config-Scope (003), Workspace Teardown + GitLab-Support (005+006), Bootstrap-Project + Release Please |
 | 2026-04-18 | Maintenance-Rollup inkl. Agent-Audit | 17 | 45 712 | 256 | Nachlaufende Maintenance-Runden, Microsoft-Foundry-Skill-Sync im Arbeitsbaum, neues lokales Agent-Audit mit Baseline/Report fuer Codex, Claude, Copilot und Continue, README-, Guidance- und Manpage-Dokumentation |
 | 2026-04-22 | Maintenance-Guidance serielle Migration | 21 | 42 875 | 266 | Remote-Fast-Forward auf Constitution v1.6.0, agentische Umgebung aktualisiert, Homogeneity-Statistiken fortgeschrieben, Fallstrick zu parallelen `migrate-workspace.*`-Laeufen in Shared Guidance und README dokumentiert |
+| 2026-04-26 | Spec-Kit Preset Governance & Veroeffentlichung | 25 | 67 251 | 291 | Sechs Spec-Kit-Governance-Presets fachlich geschnitten, standalone GitHub-Repos veroeffentlicht, lokale und GitHub-ZIP-Smoke-Tests ausgefuehrt, Issue `github/spec-kit#2362` aktualisiert, Preset-Pflegeworkflow in Verfassung und Agenten-Dateien dokumentiert; Release-Matrix nachgetragen |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-04-22**
+Stand / As of: **2026-04-26**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 75 | 12 770 | 29.8 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 37 | 2 528 | 5.9 % |
-| Hooks + CI (pre-push + YAML/JSON) | 3 | 118 | 0.3 % |
-| Dokumentation / Documentation (`.md`) | 219 | 26 683 | 62.2 % |
-| Sonstiges / Other | 13 | 776 | 1.8 % |
-| **Gesamt / Total** | **347** | **42 875** | **100 %** |
+| Skripte / Scripts (`.sh` + `.ps1`) | 79 | 15 796 | 23.5 % |
+| Templates (`.tmpl` + Konfigurationsdateien) | 41 | 2 759 | 4.1 % |
+| Hooks + CI (pre-push + YAML/JSON) | 3 | 144 | 0.2 % |
+| Dokumentation / Documentation (`.md`) | 412 | 45 922 | 68.3 % |
+| Sonstiges / Other | 27 | 2 630 | 3.9 % |
+| **Gesamt / Total** | **562** | **67 251** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 7 201 | 27.0 % |
-| Lastenhefte (`Lastenheft*.md`) | 2 625 | 9.8 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 1 148 | 4.3 % |
-| README / CHANGELOG / STATS | 2 000 | 7.5 % |
-| Sonstiges (Templates, andere `.md`) | 13 709 | 51.4 % |
+| Spec-Kit-Artefakte (`specs/`) | 16 277 | 35.5 % |
+| Lastenhefte (`Lastenheft*.md`) | 3 840 | 8.4 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 1 929 | 4.2 % |
+| README / CHANGELOG / STATS | 2 707 | 5.9 % |
+| Sonstiges (Templates, andere `.md`) | 21 169 | 46.1 % |
 
 ---
 
 ## Phasen und Haupt-Branches / Phases and Main Branches
 
 Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
-(Zeilen eingefügt, ohne nachträgliche Löschungen in späteren Phasen abzuziehen).
+(Zeilen eingefuegt, ohne nachtraegliche Loeschungen in spaeteren Phasen abzuziehen).
 
 *The "Insertions" column shows the documented net contribution per phase
 (lines inserted, without subtracting later deletions in subsequent phases).*
@@ -63,28 +64,89 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 3 | CI+003 — CI-Pipeline + Git-Config-Scope | 1 523 | 92 | 3 | 2026-04-04 bis 04-06 |
 | 4 | 005+006 — Workspace Teardown + GitLab | 10 769 | 21 | 2 | 2026-04-08 bis 04-11 |
 | 5 | proj — Bootstrap-Project + Release Please | 686 | 21 | 1 | 2026-04-12 |
+| 6 | presets — Spec-Kit Governance Presets | 7 751 | 9 | 2 | 2026-04-25 bis 04-26 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
-enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-04-22`. Diese
-kleineren Nachlaufpakete sind bereits im Fortschreibungsprotokoll sichtbar,
-werden hier aber noch nicht als eigene Hauptphase ausdifferenziert.
+enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-04-26`. Dazu
+gehoeren insbesondere die Verfassungs- und Agenten-Guidance-Runden, Release-
+Please-Aktualisierungen sowie die Preset-Governance-Arbeit.
 
-*Note on later maintenance rounds: the snapshot and overall numbers above also
-include the subsequent maintenance work up to `2026-04-22`. Those smaller
-follow-up packages are already visible in the update log, but are not yet split
-out here as a separate main phase.*
+*Note on later maintenance rounds: the snapshot and overall values above also
+include follow-up maintenance work through `2026-04-26`, especially constitution
+and agent-guidance rounds, Release Please updates, and preset-governance work.*
 
 **Hinweis zu Phase 1:** Der hohe Insertions-Wert (26 519 Zeilen an einem Aktivtag)
 entsteht durch die Spec-Kit-Batch-Generierung: Spec-Kit erstellt `spec.md`,
-`plan.md`, `tasks.md`, `checklist.md` und zugehörige Artefakte in einem einzigen
+`plan.md`, `tasks.md`, `checklist.md` und zugehoerige Artefakte in einem einzigen
 orchestrierten Lauf. Das ist kein manueller Tippaufwand, sondern der dokumentierte
-Output agentischer KI-Unterstützung — genau das, was das Speedup-Modell abbildet.
+Output agentischer KI-Unterstuetzung — genau das, was das Speedup-Modell abbildet.
 
 *Note on Phase 1: The high insertion count (26 519 lines in one active day) results
 from Spec-Kit batch generation: Spec-Kit produces spec.md, plan.md, tasks.md,
-checklist.md and related artifacts in a single orchestrated run. This is not
-manual typing effort but documented output of agentic AI support — precisely what
-the speedup model captures.*
+checklist.md and related artifacts in a single day. This is not manual typing
+effort but documented output of agentic AI support — precisely what the speedup
+model captures.*
+
+**Hinweis zu Phase 6:** Die Preset-Phase hat aus der Verfassung sechs
+wiederverwendbare Spec-Kit-Presets abgeleitet, als repo-foermige Scaffolds
+dokumentiert, in eigenstaendige GitHub-Repos veroeffentlicht und per GitHub-ZIP-
+Installation smoke-getestet. Der Zeilenzuwachs liegt fast vollstaendig in
+Markdown/YAML-Governance-Artefakten.
+
+*Note on Phase 6: The preset phase derived six reusable Spec Kit presets from the
+constitution, documented them as repo-shaped scaffolds, published standalone
+GitHub repositories, and smoke-tested GitHub ZIP installation. The line growth is
+almost entirely Markdown/YAML governance artifacts.*
+
+---
+
+## Release-Staende und Aenderungen / Release States and Changes
+
+Quelle fuer diese Matrix ist `CHANGELOG.md`; lokale Git-Tags sind ab `v0.3.1`
+vorhanden. Die Releases `v0.1.0` bis `v0.3.0` sind historisch im Changelog
+dokumentiert, im aktuellen lokalen Tag-Satz aber nicht als Tags vorhanden.
+GitHub-Releases sind per Remote-Abgleich am `2026-04-26` fuer `v0.4.0` bis
+`v0.11.0` vorhanden; `v0.3.1` ist lokal getaggt und im Changelog dokumentiert.
+
+*This matrix is based on `CHANGELOG.md`; local Git tags exist from `v0.3.1`
+onward. Releases `v0.1.0` through `v0.3.0` are historically documented in the
+changelog but are not present as tags in the current local tag set. Remote
+GitHub Releases were checked on `2026-04-26` and exist for `v0.4.0` through
+`v0.11.0`; `v0.3.1` is locally tagged and documented in the changelog.*
+
+| Release | Datum / Date | Erfasst in Statistik / Captured in Statistics | Hauptaenderungen / Main Changes |
+|---|---|---|---|
+| v0.1.0 | 2026-03-31 | Phase 0 | Initiale Bootstrap-Infrastruktur, Agenten-Dateien, Spec-Kit-Integration, Whitelist-`.gitignore`, `STATS.md`, bilinguale README |
+| v0.2.0 | 2026-04-03 | Phase 1 | Workspace Homogeneity Guardian, Stats-/Migrations-/Constitution-Sync-Skripte, MIT-Lizenz, Homogeneity-CI, Template-Repo-Umstellung |
+| v0.3.0 | 2026-04-03 | Phase 2 | `sync-home.*`, CHANGELOG, README-Ausbau, Spec-Kit-Dokumentation, WCAG-Abschnitt, Agenten-Guidance und CI-Fixes |
+| v0.3.1 | 2026-04-03 | Phase 2 | README-Tabellenkorrektur, `specify init --here --ai {agent}`, Agenten-Known-Pitfalls |
+| v0.4.0 | 2026-04-03 | Phase 2 | Release Please eingerichtet, CI-Fehler behoben, Release-Please-Dokumentation |
+| v0.4.1 | 2026-04-05 | Phase 2/3 | Compliance-Ziel korrigiert, OpenCode/Linux/Codex/sync-home-Fixes, Arbeitsverzeichnis- und OS-Detection-Guidance |
+| v0.4.2 | 2026-04-05 | Phase 3 | Claude-Code-Installationsdokumentation fuer macOS/Linux/Windows korrigiert |
+| v0.5.0 | 2026-04-06 | Phase 3 | Plattformtest-Skripte, Pull-/Push-Stabilisierung, macOS/Windows-Testdokumentation, `master`/`main` zusammengefuehrt |
+| v0.5.1 | 2026-04-06 | Phase 3 | README-Nachfuehrung fuer Git-Schritte, Auth, neue Projekte, Auszubildenden-Workflow und Spec-Kit-Init-Links |
+| v0.5.2 | 2026-04-06 | Phase 3 | CHANGELOG-Korrekturen und `sync-home`-Dateiliste erweitert |
+| v0.5.3 | 2026-04-08 | Phase 4 | Spec-Kit-kompatible Lastenhefte fuer CI/CD, GitLab, Git-Config-Scope und Workspace-Teardown |
+| v0.6.0 | 2026-04-11 | Phase 4 | Git-Config-Scope, Workspace-Teardown, GitLab-Support und zugehoerige Spezifikationen |
+| v0.6.1 | 2026-04-11 | Phase 4 | Lastenheft-Rename-Pflicht in Templates und Agenten-Dateien, Lastenhefte umbenannt |
+| v0.6.2 | 2026-04-11 | Phase 4 | `specify`-CLI statt `npx speckit`, `--`-Sentinel, Help-/grep-Guards, Teardown- und GitLab-Doku |
+| v0.7.0 | 2026-04-12 | Phase 5 | Workspace-/Projekt-README-Erstellung, Bootstrap-Project Release Please, Statistik-Ledger, Agenten-Statistikregeln, Constitution v1.4.0 |
+| v0.7.1 | 2026-04-12 | Phase 5 | Template-README bereinigt und `STATS.md` aktualisiert |
+| v0.8.0 | 2026-04-13 | Maintenance-Rollup | GitLab-Release-Automation, GitLab-Release-Fixes, Release-Guidance fuer Agenten |
+| v0.8.1 | 2026-04-15 | Maintenance-Rollup | Level-2-Repos weiter ignoriert, README zu Bootstrap, Migration, Versionierung und Security erweitert |
+| v0.8.2 | 2026-04-16 | Maintenance-Rollup | Codex-Status-Fall, Speckit-Beispiele, Accessibility- und Agenten-Guidance erweitert |
+| v0.9.0 | 2026-04-18 | Maintenance-Rollup | Lokaler Agent-Audit-Workflow, Microsoft-Foundry-Skills, Migrationsebenen |
+| v0.9.1 | 2026-04-23 | Maintenance-Guidance | Constitution v1.5.1 bis v1.7.0, Spec-Kit-Assets, serielle Migrationen, Homogeneity-Stats |
+| v0.9.2 | 2026-04-24 | Maintenance-Guidance | Lastenheft fuer agentische Umgebungspruefung, Constitution und Security-Templates aktualisiert |
+| v0.10.0 | 2026-04-24 | Maintenance-Guidance | Git-Identity-Setup, Propagate-Security-Guidance, Security-Evidence-Templates, sichere Entwicklung in Constitution |
+| v0.10.1 | 2026-04-24 | Maintenance-Guidance | Spec-Kit-Issue-Response-Playbook |
+| v0.11.0 | 2026-04-26 | Phase 6 | Sechs Spec-Kit-Governance-Presets, iSAQB-Architektur-Preset, Standalone-Repos, Smoke-Tests, Preset-Pflegeworkflow |
+
+Damit sind alle in `CHANGELOG.md` dokumentierten Release-Staende in der
+Statistik entweder einer Hauptphase oder einer Maintenance-Runde zugeordnet.
+
+*All release states documented in `CHANGELOG.md` are now assigned to either a
+main phase or a maintenance round in this statistics ledger.*
 
 ---
 
@@ -98,125 +160,126 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `42 875` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `12 888` Zeilen (`30.1 %`) |
-| Dokumentationsanteil / Documentation share | `26 683` Zeilen (`62.2 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-22` |
-| Sichtbare Git-Aktivtage / Observable active days | `21` |
-| Git-Commits gesamt / Total commits | `266` |
-| Git-Commits pro Aktivtag / Commits per active day | `12.7` (`266 / 21`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 041.7` (`42 875 / 21`) |
-| Zeilen pro Commit / Lines per commit | `161.2` (`42 875 / 266`) |
-| Konservative Einzelentwickler-Untergrenze | `535.9` Arbeitstage / `4 180.0` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `428.8` Arbeitstage / `3 344.3` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `214.4` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `25.5x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `20.4x` |
+| Artefaktbasis gesamt / Total artifact base | `67 251` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `15 940` Zeilen (`23.7 %`) |
+| Dokumentationsanteil / Documentation share | `45 922` Zeilen (`68.3 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-26` |
+| Sichtbare Git-Aktivtage / Observable active days | `25` |
+| Git-Commits gesamt / Total commits | `291` |
+| Git-Commits pro Aktivtag / Commits per active day | `11.6` (`291 / 25`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 690.0` (`67 251 / 25`) |
+| Zeilen pro Commit / Lines per commit | `231.1` (`67 251 / 291`) |
+| Konservative Einzelentwickler-Untergrenze | `840.6` Arbeitstage / `6 557.0` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `672.5` Arbeitstage / `5 245.6` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `336.3` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `33.6x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `26.9x` |
 
 Kurzfazit:
-`home-baseline` ist ein stark dokumentations- und Governance-getriebenes
-Infrastruktur-Repository: `62.2 %` der sichtbaren Basis liegen in Markdown-
-Artefakten (Specs, Lastenhefte, Governance, README). Der operative Code
-(Skripte, Hooks, CI) macht `30.1 %` aus. Der groesste dokumentierte
-Volumensprung liegt in Phase `1` (Spec-Kit-Batch fuer Homogeneity Guardian);
-die hoechste manuelle Referenzlast entsteht weiterhin in Phasen `1` und `4`
-(Teardown + GitLab). Die spaeteren Maintenance-Runden verdichten den Snapshot
-weiter, veraendern aber nicht die Rangfolge der grossen Hauptphasen. Die
-Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern die sichtbare
-Lieferdichte gegen konservative manuelle Referenzmodelle.
+`home-baseline` ist nach der Preset-Phase noch staerker dokumentations- und
+Governance-getrieben: `68.3 %` der sichtbaren Basis liegen in Markdown-
+Artefakten. Der operative Code (Skripte, Hooks, CI) macht `23.7 %` aus. Der
+groesste dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer
+Homogeneity Guardian). Phase `6` ist der neue groesste Governance-Nachlauf:
+sechs veroeffentlichte Spec-Kit-Presets, lokale Scaffolds, GitHub-Repos,
+Smoke-Tests und Pflege-Regeln. Die Beschleunigungsfaktoren beschreiben keine
+Stoppuhrzeit, sondern sichtbare Lieferdichte gegen konservative manuelle
+Referenzmodelle.
 
-*Short summary: `home-baseline` is a strongly documentation- and governance-driven
-infrastructure repository: `62.2 %` of the visible base sits in Markdown artifacts
-(specs, Lastenhefte, governance, README). Operational code (scripts, hooks, CI)
-accounts for `30.1 %`. The largest documented volume jump is still Phase `1`
-(Spec-Kit batch for Homogeneity Guardian); the highest manual reference load
-still arises in Phases `1` and `4` (Teardown + GitLab). Later maintenance rounds
-deepen the snapshot without changing the ranking of the major phases. The
-acceleration factors describe visible delivery density, not stopwatch measurements.*
+*Short summary: after the preset phase, `home-baseline` is even more
+documentation- and governance-driven: `68.3 %` of the visible base sits in
+Markdown artifacts. Operational code (scripts, hooks, CI) accounts for `23.7 %`.
+The largest documented volume jump remains Phase `1` (Spec-Kit batch for
+Homogeneity Guardian). Phase `6` is the new largest governance follow-up: six
+published Spec Kit presets, local scaffolds, GitHub repositories, smoke tests,
+and maintenance rules. The acceleration factors describe visible delivery
+density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | ###############                | 12 888 | 30.1 %
-Dokumentation   | ############################## | 26 683 | 62.2 %
-Sonstiges       | #                              |  3 304 |  7.7 %
+Operativer Code | ###########                    | 15 940 | 23.7 %
+Dokumentation   | ############################## | 45 922 | 68.3 %
+Sonstiges       | ###                            |  5 389 |  8.0 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
-(Skripte, Hooks, CI) und Dokumentation verteilt ist. `home-baseline` ist
-bewusst dokumentationslastig: Specs, Governance-Dateien und Lastenhefte
-wachsen parallel zum operativen Code.
+(Skripte, Hooks, CI), Dokumentation und sonstigen Artefakten verteilt ist.
+Die Preset-Arbeit hat den Dokumentations- und Governance-Anteil sichtbar
+erhoeht.
 
-*This chart shows the split between operational code (scripts, hooks, CI) and
-documentation in the current snapshot. `home-baseline` is intentionally
-documentation-heavy: specs, governance files, and Lastenhefte grow in parallel
-with the operational code.*
+*This chart shows the split between operational code (scripts, hooks, CI),
+documentation, and other artifacts in the current snapshot. The preset work
+visibly increased the documentation and governance share.*
 
 ```text
 Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
-0 Init   | #                        |    954
-1 001+   | ######################## | 26 519
-2 pub    | #####                    |  6 168
-3 CI+003 | #                        |  1 523
-4 005+   | ##########               | 10 769
-5 proj   | #                        |    686
+0 Init    | #                        |    954
+1 001+    | ######################## | 26 519
+2 pub     | #####                    |  6 168
+3 CI+003  | #                        |  1 523
+4 005+    | ##########               | 10 769
+5 proj    | #                        |    686
+6 presets | #######                  |  7 751
 ```
 
 Dieses Diagramm zeigt den Netto-Insertions-Beitrag der dokumentierten Phasen.
-Phase `1` dominiert durch Spec-Kit-Batch-Generierung. Phase `4` (Teardown +
-GitLab) ist das naechstgroesste Paket durch neue Skripte und Spezifikationen.
+Phase `6` ist nach Phase `4` das groesste sichtbare Paket und besteht vor allem
+aus Preset-Templates, README-Dateien, Governance-Regeln und Smoke-Test-Doku.
 
-*This chart shows the net insertion contribution per documented phase. Phase `1`
-dominates due to Spec-Kit batch generation. Phase `4` (Teardown + GitLab) is
-the next largest package due to new scripts and specifications.*
+*This chart shows the net insertion contribution per documented phase. Phase `6`
+is the largest visible package after Phase `4` and mainly consists of preset
+templates, README files, governance rules, and smoke-test documentation.*
 
 ```text
 Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Tag)
-0 Init   | #                        |   11.9 d
-1 001+   | ######################## |  331.5 d
-2 pub    | ######                   |   77.1 d
-3 CI+003 | ##                       |   19.0 d
-4 005+   | ##########               |  134.6 d
-5 proj   | #                        |    8.6 d
+0 Init    | #                        |   11.9 d
+1 001+    | ######################## |  331.5 d
+2 pub     | ######                   |   77.1 d
+3 CI+003  | ##                       |   19.0 d
+4 005+    | ##########               |  134.6 d
+5 proj    | #                        |    8.6 d
+6 presets | #######                  |   96.9 d
 ```
 
 Jeder Balken zeigt, wie viele Arbeitstage ein erfahrener Einzelentwickler
 bei `80` manuell erstellten Zeilen pro Tag fuer das jeweilige Phasenpaket
-benoetigt haette. Lange Balken bedeuten grosses sichtbares Liefervolumen.
+benoetigt haette. Die Preset-Phase entspricht konservativ knapp `97`
+Arbeitstagen sichtbarem Governance-Output.
 
 *Each bar shows how many workdays an experienced solo developer would have needed
-at `80` manually created lines per day for the respective phase package. Longer
-bars mean larger visible delivery volume.*
+at `80` manually created lines per day for the respective phase package. The
+preset phase conservatively represents almost `97` workdays of visible
+governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges.| ############################################ | 47.7x
-0 Init   | ############ | 11.9x
-1 001+   | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
-2 pub    | ####################################### | 38.6x
-3 CI+003 | ####### | 6.3x
-4 005+   | ################################################ | 67.3x
-5 proj   | ######### | 8.6x
+Repo ges. | ################################# | 33.6x
+0 Init    | ############                     | 11.9x
+1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
+2 pub     | ################################# | 38.6x
+3 CI+003  | ######                           |  6.3x
+4 005+    | ################################################ | 67.3x
+5 proj    | ########                         |  8.6x
+6 presets | ################################################ | 48.5x
 ```
 
 Hier werden keine Stoppuhrzeiten gemessen. Verglichen wird die dokumentierte
-Lieferdichte pro Aktivtag gegen die 80-Zeilen-Referenz. Phase `1` liegt weit
-ausserhalb der Skala, weil Spec-Kit an einem einzigen Tag ein vollstaendiges
-Artefaktpaket generiert hat. Phase `3` (CI-Fixes) zeigt den niedrigsten Wert —
-viele kleine Korrekturen erzeugen wenig Netto-Zeilen pro Aktivtag.
+Lieferdichte pro Aktivtag gegen die 80-Zeilen-Referenz. Phase `6` ist hoch,
+weil sechs Presets, sechs externe Repos und mehrere Smoke-Test-Runden in zwei
+sichtbaren Git-Aktivtagen abgeschlossen wurden.
 
 *This chart does not measure stopwatch time. It compares documented delivery
-density per active day against the 80-line reference. Phase `1` is far off the
-scale because Spec-Kit generated a complete artifact package in a single day.
-Phase `3` (CI fixes) shows the lowest value — many small corrections produce
-few net lines per active day.*
+density per active day against the 80-line reference. Phase `6` is high because
+six presets, six external repositories, and several smoke-test rounds were
+completed in two visible Git active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 535.9 d / 4 180.0 h
-Thorsten (100 Z./Tag)  | ###################      | 428.8 d / 3 344.3 h
-KI sichtbar            | #                        |  21.0 d
+Erfahren (80 Z./Tag)   | ######################## | 840.6 d / 6 557.0 h
+Thorsten (100 Z./Tag)  | ###################      | 672.5 d / 5 245.6 h
+KI sichtbar            | #                        |  25.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer
@@ -226,25 +289,26 @@ blended repository speedup.
 
 *This comparison makes the scale visible: there is clear compression between
 classical manual effort and the delivery window visible in the repository.
-That documented compression is what the ledger labels as blended repository speedup.*
+That documented compression is what the ledger labels as blended repository
+speedup.*
 
 ```text
-X/Y-Diagramm: Phasenvolumen (X = Phase 0..5, Y = Insertions)
+X/Y-Diagramm: Phasenvolumen (X = Phase 0..6, Y = Insertions)
 30000 |
 25000 |   *
 20000 |
 15000 |
 10000 |               *
- 5000 |         *
+ 5000 |         *             *
     0 | *           *   *
-      +-------------
-       0 1 2 3 4 5
+      +---------------
+       0 1 2 3 4 5 6
 ```
 
 Als zweite Ansicht zeigt diese X/Y-Kurve denselben Verlauf ueber die
-Phasenachse. Phase `1` ragt deutlich heraus; der Abfall zu Phase `3` (CI-Fixes)
-und Phase `5` (Bootstrap-Erweiterungen) ist gut sichtbar.
+Phasenachse. Phase `1` ragt deutlich heraus; Phase `6` bildet den neuen
+Governance- und Preset-Nachlauf nach den Sicherheits- und Architekturarbeiten.
 
 *As a second view, this X/Y curve shows the same progression across the phase
-axis. Phase `1` stands out clearly; the drop to Phase `3` (CI fixes) and
-Phase `5` (bootstrap enhancements) is well visible.*
+axis. Phase `1` stands out clearly; Phase `6` forms the new governance and
+preset follow-up after the security and architecture work.*
