@@ -329,6 +329,18 @@ Prüfen: PowerShell `$line.Length` oder `wc -m` (Bash) für jede Rahmen-Zeile.
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 `specify init --here --ai {agent}` — `--ai-skill` ist **nur für Codex** erforderlich.
 
+## Spec-Kit-Preset-Pflege / Spec Kit Preset Maintenance
+
+- Die veröffentlichten Presets liegen unter `https://github.com/hindermath/spec-kit-preset-*`.
+- Die lokale Arbeitskopie der veröffentlichten Preset-Repos liegt unter `~/SpecKitPresetProjects/`.
+- Die kanonischen Scaffolds in diesem Repo liegen unter `specs/spec-kit-presets/` und `specs/spec-kit-preset-repos/`.
+- Verbesserungen an Presets zuerst im `home-baseline`-Scaffold einarbeiten, dann in die passenden Repos unter `~/SpecKitPresetProjects/` übertragen.
+- Danach je betroffenem Preset committen, pushen und mit `specify preset add --from https://github.com/hindermath/<repo>/archive/refs/heads/main.zip` smoke-testen.
+- Bei Änderungen an Preset-Regeln immer prüfen, ob `constitution.md`, `.specify/memory/constitution.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` ebenfalls aktualisiert werden müssen.
+- Community-/Katalog-Abstimmung läuft über `github/spec-kit#2362`.
+
+*Published presets live under `https://github.com/hindermath/spec-kit-preset-*`. Local working clones live under `~/SpecKitPresetProjects/`. Canonical scaffolds in this repository live under `specs/spec-kit-presets/` and `specs/spec-kit-preset-repos/`. Improve presets in the home-baseline scaffold first, propagate to the affected standalone preset repos, then commit, push, and smoke-test via the GitHub ZIP URL. For preset-rule changes, review constitution and all agent guidance files for required updates. Community/catalog coordination happens in `github/spec-kit#2362`.*
+
 <!-- EN: GEMINI.md placeholder
 [DE-Zusammenfassung: GEMINI.md enthält Anweisungen für den Gemini CLI Agenten im home-baseline Repository.]
 -->

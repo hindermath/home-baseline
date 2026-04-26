@@ -808,11 +808,22 @@ Any expansion of the surgical subdirectory exception (Principle I) MUST include
 a security justification confirming no credentials are present in the newly
 allowed path.
 
+**Spec Kit preset governance**: Published governance presets live under
+`https://github.com/hindermath/spec-kit-preset-*`; local working clones live
+under `~/SpecKitPresetProjects/`. Canonical scaffolds in this repository live
+under `specs/spec-kit-presets/` and `specs/spec-kit-preset-repos/`. Preset
+improvements SHOULD be made in the home-baseline scaffold first, propagated to
+the affected standalone preset repositories, committed, pushed, and smoke-tested
+via the GitHub ZIP URL. Preset-rule changes MUST review whether
+`constitution.md`, `.specify/memory/constitution.md`, `AGENTS.md`, `CLAUDE.md`,
+`GEMINI.md`, and `.github/copilot-instructions.md` need matching updates.
+Community/catalog coordination is tracked in `github/spec-kit#2362`.
+
 **Runtime guidance**: Use `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` /
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.12.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-24
+**Version**: 1.12.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-04-26
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
