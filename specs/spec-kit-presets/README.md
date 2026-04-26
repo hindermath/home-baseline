@@ -1,17 +1,18 @@
 # Spec Kit Preset Scaffolds
 
-This directory contains local scaffold repos for five Spec Kit presets
+This directory contains local scaffold repos for six Spec Kit presets
 derived from the `home-baseline` governance work.
 
 Target split:
 
 - `security-governance` — version `0.2.0`
+- `isaqb-architecture-governance` — version `0.1.0`
 - `architecture-governance` — version `0.2.0`
 - `a11y-governance` — version `0.2.0`
 - `agent-parity-governance` — version `0.1.0`
 - `cross-platform-governance` — version `0.1.0`
 
-All five presets require `spec-kit >= 0.8.0`. They depend on the
+All six presets require `spec-kit >= 0.8.0`. They depend on the
 `wrap` and `append` composition strategies introduced in 0.8.x; older
 Spec Kit versions cannot apply them.
 
@@ -22,6 +23,7 @@ repositories for the Spec Kit community catalog.
 Recommended future repository names:
 
 - `hindermath/spec-kit-preset-security-governance`
+- `hindermath/spec-kit-preset-isaqb-architecture-governance`
 - `hindermath/spec-kit-preset-architecture-governance`
 - `hindermath/spec-kit-preset-a11y-governance`
 - `hindermath/spec-kit-preset-agent-parity-governance`
@@ -45,6 +47,7 @@ Coverage by principle:
 | IX | Agent Guidance Parity & Template Synchronization | `agent-parity-governance` |
 | XI | Memory-Safe Languages (MSL) Preference | `security-governance` (architectural constraint surfaced by `architecture-governance`) |
 | XII | Secure Code Generation | `security-governance` |
+| General Architecture | iSAQB/CPSA-F and arc42 architecture method | `isaqb-architecture-governance` |
 | XIII | Secure Software Architecture | `architecture-governance` |
 | XIV | Standards Matrix Applicability | shared (security + architecture) |
 | XV | Secure SDLC & Verification Standards | `security-governance` |
@@ -69,7 +72,8 @@ Design goal:
 - keep presets small and stackable
 - use `append` or `wrap` rather than full replacement
 - keep agent guidance shared and agent-agnostic
-- split security, architecture, accessibility, agent-parity, and
+- split security, general architecture, secure architecture,
+  accessibility, agent-parity, and
   cross-platform concerns cleanly
 
 MSL integration:
@@ -77,8 +81,11 @@ MSL integration:
 - `XI. Memory-Safe Languages (MSL)` is treated as primarily a
   `security-governance` concern because it affects implementation-language
   safety defaults and secure-development guidance.
+- `isaqb-architecture-governance` covers general software architecture
+  and references MSL only if language/runtime choice affects architecture
+  constraints.
 - `architecture-governance` references MSL where runtime or platform
-  decisions are architectural constraints.
+  decisions are security-relevant architectural constraints.
 - `a11y-governance`, `agent-parity-governance`, and
   `cross-platform-governance` do not carry MSL rules.
 
@@ -91,15 +98,17 @@ Current status:
 Recommended publication order:
 
 1. `security-governance`
-2. `architecture-governance`
-3. `a11y-governance`
-4. `cross-platform-governance`
-5. `agent-parity-governance`
+2. `isaqb-architecture-governance`
+3. `architecture-governance`
+4. `a11y-governance`
+5. `cross-platform-governance`
+6. `agent-parity-governance`
 
 Recommended install order for stacked use:
 
 ```bash
 specify preset add security-governance --priority 10
+specify preset add isaqb-architecture-governance --priority 15
 specify preset add architecture-governance --priority 20
 specify preset add cross-platform-governance --priority 25
 specify preset add a11y-governance --priority 30

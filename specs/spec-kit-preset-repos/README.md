@@ -1,11 +1,12 @@
 # Spec Kit Preset Repository Scaffolds
 
-This directory contains repo-shaped release candidates for the five
+This directory contains repo-shaped release candidates for the six
 home-baseline-derived Spec Kit governance presets.
 
 Each subdirectory is intended to become a standalone GitHub repository:
 
 - `spec-kit-preset-security-governance`
+- `spec-kit-preset-isaqb-architecture-governance`
 - `spec-kit-preset-architecture-governance`
 - `spec-kit-preset-a11y-governance`
 - `spec-kit-preset-agent-parity-governance`

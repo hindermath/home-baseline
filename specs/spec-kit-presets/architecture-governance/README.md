@@ -10,6 +10,19 @@ Purpose:
   into Spec Kit workflows
 - keep architecture concerns separate from the more tactical
   secure-development preset; the two compose cleanly side by side
+- keep secure-architecture concerns separate from the general
+  iSAQB/arc42 architecture method preset
+
+Relationship to `isaqb-architecture-governance`:
+
+- `isaqb-architecture-governance` covers general software architecture:
+  architecture goals, context, building blocks, runtime view, deployment
+  view, quality scenarios, ADRs, risks, and technical debt.
+- `architecture-governance` covers secure architecture: trust
+  boundaries, threat modeling, STRIDE/CAPEC, Zero Trust, S-ADRs, and
+  OWASP SAMM.
+- If both general and security-relevant architecture are in scope, use
+  both presets together.
 
 Primary source chapters from `home-baseline` constitution:
 
