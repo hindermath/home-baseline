@@ -123,6 +123,9 @@ Notes:
 - If stacked, verify effective file resolution with
   `specify preset resolve`.
 - Agent guidance is intentionally modelled through standalone
-  `*-agent-guidance-addendum-template` files plus wrapped `speckit.*`
-  commands because Spec Kit 0.8.x has no core `agent-file-template` base
-  layer to append to.
+  agent-guidance addendum templates plus wrapped `speckit.*` commands
+  because Spec Kit 0.8.x has no core `agent-file-template` base layer to
+  append to. The standalone template name follows
+  `<preset-prefix>-agent-guidance-addendum-template`; the
+  `agent-parity-governance` preset elides the duplicate `agent-` segment
+  and uses `agent-parity-guidance-addendum-template`.

@@ -30,9 +30,43 @@ specify preset resolve plan-template
 specify preset resolve tasks-template
 ```
 
+For the full stacked smoke test, install all six presets in their
+recommended priority order:
+
+```bash
+specify preset add --dev /path/to/spec-kit-preset-security-governance --priority 10
+specify preset add --dev /path/to/spec-kit-preset-isaqb-architecture-governance --priority 15
+specify preset add --dev /path/to/spec-kit-preset-architecture-governance --priority 20
+specify preset add --dev /path/to/spec-kit-preset-cross-platform-governance --priority 25
+specify preset add --dev /path/to/spec-kit-preset-a11y-governance --priority 30
+specify preset add --dev /path/to/spec-kit-preset-agent-parity-governance --priority 40
+specify preset list
+specify preset resolve constitution-template
+```
+
 For agent guidance addenda, resolve the preset-specific standalone
-template, for example:
+template. Each preset names its standalone template
+`<preset-prefix>-agent-guidance-addendum-template` (the
+`agent-parity-governance` preset elides the duplicate `agent-` segment):
 
 ```bash
 specify preset resolve security-agent-guidance-addendum-template
+specify preset resolve isaqb-architecture-agent-guidance-addendum-template
+specify preset resolve architecture-agent-guidance-addendum-template
+specify preset resolve cross-platform-agent-guidance-addendum-template
+specify preset resolve a11y-agent-guidance-addendum-template
+specify preset resolve agent-parity-guidance-addendum-template
+```
+
+Each preset also registers three wrap commands (`speckit.specify`,
+`speckit.plan`, `speckit.tasks`). `specify preset resolve` operates on
+templates only; verify the wrap commands per preset with `preset info`:
+
+```bash
+specify preset info security-governance
+specify preset info isaqb-architecture-governance
+specify preset info architecture-governance
+specify preset info cross-platform-governance
+specify preset info a11y-governance
+specify preset info agent-parity-governance
 ```
