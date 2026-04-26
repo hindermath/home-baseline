@@ -8,6 +8,27 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.11.0](https://github.com/hindermath/home-baseline/compare/v0.10.1...v0.11.0) (2026-04-26)
+
+
+### Features / Neue Funktionen
+
+* add isaqb architecture governance preset ([3bbb4f3](https://github.com/hindermath/home-baseline/commit/3bbb4f3bbe9fdf60c3ae6a88ea80f2179d087cd1))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* align spec-kit preset agent guidance templates ([7087b55](https://github.com/hindermath/home-baseline/commit/7087b55372e0fd70250f564e22a1019ac56d9c88))
+
+
+### Documentation / Dokumentation
+
+* add spec-kit governance preset drafts ([6eb76b0](https://github.com/hindermath/home-baseline/commit/6eb76b0ff82f1a82cc97876cf3f3e4ee9c5ff50e))
+* document spec-kit preset maintenance workflow ([d524042](https://github.com/hindermath/home-baseline/commit/d524042ae961d7fc0e8378c662f855c1bfaa0f4d))
+* document spec-kit preset smoke tests ([d351765](https://github.com/hindermath/home-baseline/commit/d351765986244ed2238fdfc0011792cb8e22e217))
+* generalize agent parity preset guidance ([8b52e32](https://github.com/hindermath/home-baseline/commit/8b52e321da68eb8c9e6ef7d10b816eb2760cd42d))
+* scaffold standalone spec-kit preset repos ([6506497](https://github.com/hindermath/home-baseline/commit/6506497e6d33ff95611e2c95026c0b09c44a5a91))
+
 ## [0.10.1](https://github.com/hindermath/home-baseline/compare/v0.10.0...v0.10.1) (2026-04-24)
 
 
