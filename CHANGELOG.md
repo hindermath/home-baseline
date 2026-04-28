@@ -8,6 +8,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.11.1](https://github.com/hindermath/home-baseline/compare/v0.11.0...v0.11.1) (2026-04-28)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* restore git identity after sync-home ([3b63924](https://github.com/hindermath/home-baseline/commit/3b6392443deaceaeaa277f60c079278f6c634db4))
+
+
+### Documentation / Dokumentation
+
+* document github housekeeping pitfalls ([00be09d](https://github.com/hindermath/home-baseline/commit/00be09d8dac0bec588b809449bcdd64e9a30cd2d))
+* update project statistics for presets ([67c2e23](https://github.com/hindermath/home-baseline/commit/67c2e233ed40294dd8e5ea7a2cc723d24a858914))
+
 ## [0.11.0](https://github.com/hindermath/home-baseline/compare/v0.10.1...v0.11.0) (2026-04-26)
 
 
