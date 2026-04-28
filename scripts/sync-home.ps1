@@ -120,7 +120,21 @@ if ($WhatIfPreference) {
 
 Write-Host ""
 
-# ── 4. git commit in ~/ ──────────────────────────────────────────────────────
+# ── 4. Globale Git-Identität reparieren ──────────────────────────────────────
+$identityScript = Join-Path $HomeDir 'scripts\setup-git-identity.ps1'
+if ($WhatIfPreference) {
+    Write-Host "  [WhatIf] pwsh -NoProfile ~/scripts/setup-git-identity.ps1 -Auto"
+} elseif (Test-Path $identityScript) {
+    Write-Host "→ Git-Identität in ~/.gitconfig prüfen und reparieren..."
+    pwsh -NoProfile -File $identityScript -Auto
+    Write-Host ""
+} else {
+    Write-Warning "~/scripts/setup-git-identity.ps1 nicht gefunden — Git-Identität nicht geprüft."
+    Write-Warning "~/scripts/setup-git-identity.ps1 not found — git identity not checked."
+    Write-Host ""
+}
+
+# ── 5. git commit in ~/ ──────────────────────────────────────────────────────
 if ($DoCommit) {
     Push-Location $HomeDir
     try {

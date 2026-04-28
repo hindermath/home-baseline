@@ -909,6 +909,10 @@ bash ~/scripts/sync-home.sh --no-pull
 | `--no-commit` / `-NoCommit`   | Nur kopieren, kein Commit in `~/` / Copy only |
 | `--dry-run` / `-WhatIf`       | Nur anzeigen, nichts schreiben / Preview only |
 
+Nach dem Kopieren prüft `sync-home` automatisch die globale Git-Identität in `~/.gitconfig` und ruft dafür `setup-git-identity.*` im Auto-Modus auf. So werden Platzhalterwerte aus der synchronisierten `.gitconfig` vor dem optionalen Commit in `~/` wieder durch die echte lokale Identität ersetzt.
+
+*After copying, `sync-home` automatically checks the global Git identity in `~/.gitconfig` by running `setup-git-identity.*` in auto mode. This replaces placeholder values from the synced `.gitconfig` with the real local identity before the optional commit in `~/`.*
+
 ---
 
 ### Releases und Versionierung / Releases & Versioning

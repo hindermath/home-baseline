@@ -126,7 +126,21 @@ fi
 
 echo ""
 
-# ── 4. git commit in ~/ ──────────────────────────────────────────────────────
+# ── 4. Globale Git-Identität reparieren ──────────────────────────────────────
+identity_script="${HOME_DIR}/scripts/setup-git-identity.sh"
+if $OPT_DRY_RUN; then
+  echo "  [dry-run] bash ~/scripts/setup-git-identity.sh --auto"
+elif [ -f "$identity_script" ]; then
+  echo "→ Git-Identität in ~/.gitconfig prüfen und reparieren..."
+  bash "$identity_script" --auto
+  echo ""
+else
+  echo "Warnung: ~/scripts/setup-git-identity.sh nicht gefunden — Git-Identität nicht geprüft." >&2
+  echo "Warning: ~/scripts/setup-git-identity.sh not found — git identity not checked." >&2
+  echo ""
+fi
+
+# ── 5. git commit in ~/ ──────────────────────────────────────────────────────
 if $OPT_COMMIT; then
   cd "${HOME_DIR}"
 

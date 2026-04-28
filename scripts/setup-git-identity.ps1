@@ -35,14 +35,14 @@
     pwsh -NoProfile ~/scripts/setup-git-identity.ps1 -WhatIf
 #>
 
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
-
 param(
     [switch]$CheckOnly,
     [switch]$Auto,
     [switch]$WhatIf
 )
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
 $PlaceholderName  = 'Your Name'
 $PlaceholderEmail = 'your@email.example'
