@@ -397,6 +397,15 @@ This stamps the branch name onto the filename (e.g. `Lastenheft_Foo.003-feature.
 The rename task is now included as the last step of every feature's Polish phase in `tasks.md` (constitution v1.1.1).
 Missing this step was the root cause of 003, 005, and 006 Lastenhefte remaining unrenamed.
 
+### GitHub-Housekeeping: Archivierung, Sichtbarkeit, Forks und Stars / GitHub Housekeeping: Archiving, Visibility, Forks, and Stars
+`archived` on GitHub means read-only, not hidden. Public archived repositories remain visible to signed-out visitors.
+Archived repositories are read-only through the API; changing visibility requires:
+`archived=false` → `private=true` → `archived=true`.
+
+Public forks cannot simply be changed to private. Options are: keep them public archived, delete them, or recreate them as private mirror repositories. Keep deletion target lists explicit and narrow; `gh repo delete` may require `gh auth refresh -h github.com -s delete_repo`.
+
+For activity-based housekeeping, use `pushedAt` instead of `updatedAt`, because metadata updates change `updatedAt`. Stars are account metadata and can be removed via `DELETE /user/starred/{owner}/{repo}`; verify afterwards with `user/starred`.
+
 ### Windows: `gh auth login` in Hintergrund-/Async-Prozessen / Windows: `gh auth login` in Background/Async Processes
 `gh auth login --web` does NOT detect browser confirmation when run in a background or async process (e.g. Copilot CLI async shell). The browser callback never arrives.
 Always run `gh auth login` in an **interactive terminal window** directly.

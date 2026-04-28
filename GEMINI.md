@@ -329,6 +329,15 @@ Prüfen: PowerShell `$line.Length` oder `wc -m` (Bash) für jede Rahmen-Zeile.
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
 `specify init --here --ai {agent}` — `--ai-skill` ist **nur für Codex** erforderlich.
 
+### GitHub-Housekeeping: Archivierung, Sichtbarkeit, Forks und Stars / GitHub Housekeeping: Archiving, Visibility, Forks, and Stars
+`archived` bedeutet bei GitHub nur read-only, nicht unsichtbar. Public archived Repos bleiben ohne Anmeldung sichtbar.
+Archivierte Repos sind API-seitig read-only; Sichtbarkeit ändern geht deshalb nur über:
+`archived=false` → `private=true` → `archived=true`.
+
+Öffentliche Forks lassen sich nicht einfach auf private setzen. Optionen: öffentlich archiviert lassen, löschen, oder als private Mirror-Repos neu anlegen. Vor Löschungen die Repo-Liste eng festlegen; `gh repo delete` benötigt ggf. `gh auth refresh -h github.com -s delete_repo`.
+
+Für Aktivitätsbewertungen `pushedAt` statt `updatedAt` verwenden, weil `updatedAt` durch Metadatenänderungen springt. Stars sind kontogebundene Metadaten und können über `DELETE /user/starred/{owner}/{repo}` entfernt werden; danach `user/starred` gegenprüfen.
+
 ## Spec-Kit-Preset-Pflege / Spec Kit Preset Maintenance
 
 - Die veröffentlichten Presets liegen unter `https://github.com/hindermath/spec-kit-preset-*`.

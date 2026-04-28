@@ -287,6 +287,12 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 | ANSI-Falsch-Positive im Scanner | Scanner enthält `\033[` als Literal | `check-homogeneity.*` aus ANSI-Scan ausschließen |
 | `hg-a11y` h1 in Code-Blöcken | `# comment` in ` ``` ` als Heading geparst | `$inFencedBlock`-Toggle |
 | Bootstrap hardcodierter Username | `hindermath` war fest eingebaut | `gh api user --jq '.login'` dynamisch |
+| GitHub `archived` Repo bleibt öffentlich sichtbar | Archivieren macht ein Repo nur read-only, nicht unsichtbar | Public Source-Repos bei Bedarf auf `private` setzen; Forks separat behandeln |
+| GitHub blockiert Sichtbarkeitsänderung bei archivierten Repos | Archivierte Repos sind API-seitig read-only | Ablauf: `archived=false` → `private=true` → `archived=true` |
+| Öffentliche GitHub-Forks lassen sich nicht privat setzen | Fork-Sichtbarkeit folgt GitHub-Fork-Regeln | Öffentlich archiviert lassen, löschen oder als privates Mirror-Repo neu anlegen |
+| `gh repo delete` schlägt mit fehlendem Scope fehl | CLI-Token hat keinen `delete_repo`-Scope | `gh auth refresh -h github.com -s delete_repo`, dann Löschung eng auf bestätigte Repos begrenzen |
+| Repo-Aktivität falsch bewertet | `updatedAt` springt auch bei Metadatenänderungen | Für Housekeeping `pushedAt` verwenden; z. B. nach letzter Push-Aktivität klassifizieren |
+| GitHub-Stars sollen bereinigt werden | Stars sind kontogebundene Metadaten | Über `DELETE /user/starred/{owner}/{repo}` entfernen und mit `user/starred` gegenprüfen |
 | Doppelte Überschriften im TOC | GitHub hängt `-1`, `-2` an gleiche Texte | Ankertexte im TOC mit Suffix verwenden oder Headings umbenennen |
 | Nicht-bilinguale Überschriften | Heading nur auf Deutsch | Alle Headings müssen `DE / EN`-Format haben |
 | Code-Block ohne Sprach-Tag | Bare ` ``` ` verletzt WCAG 4.1.1 | Immer Sprache angeben — ` ```text ` für ASCII/Dialog |

@@ -370,6 +370,15 @@ bash ~/scripts/setup-git-identity.sh --check-only # nur prüfen
 pwsh ~/scripts/setup-git-identity.ps1             # Windows
 ```
 
+### GitHub-Housekeeping: Archivierung, Sichtbarkeit, Forks und Stars / GitHub Housekeeping: Archiving, Visibility, Forks, and Stars
+`archived` bedeutet bei GitHub nur read-only, nicht unsichtbar. Public archived Repos bleiben ohne Anmeldung sichtbar.
+Archivierte Repos sind API-seitig read-only; Sichtbarkeit ändern geht deshalb nur über:
+`archived=false` → `private=true` → `archived=true`.
+
+Öffentliche Forks lassen sich nicht einfach auf private setzen. Optionen: öffentlich archiviert lassen, löschen, oder als private Mirror-Repos neu anlegen. Vor Löschungen die Repo-Liste eng festlegen; `gh repo delete` benötigt ggf. `gh auth refresh -h github.com -s delete_repo`.
+
+Für Aktivitätsbewertungen `pushedAt` statt `updatedAt` verwenden, weil `updatedAt` durch Metadatenänderungen springt. Stars sind kontogebundene Metadaten und können über `DELETE /user/starred/{owner}/{repo}` entfernt werden; danach `user/starred` gegenprüfen.
+
 ### Lastenheft nach Feature-Abschluss umbenennen / Rename Lastenheft After Feature Completion
 Nach vollständiger Implementierung eines Features MUSS das zugehörige `Lastenheft_*.md` umbenannt werden:
 ```bash
