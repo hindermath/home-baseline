@@ -223,22 +223,202 @@ $targetHooks   = Join-Path $targetScripts 'hooks'
 
 if ($PSCmdlet.ShouldProcess($targetScripts, 'Scripts kopieren')) {
     New-Item -ItemType Directory -Path $targetScripts -Force | Out-Null
-    New-Item -ItemType Directory -Path $targetHooks   -Force | Out-Null
-    $filesToCopy = @(
-        'scan-agent-secrets.sh',
-        'scan-agent-secrets.ps1',
-        'install-hooks.sh',
-        'install-hooks.ps1'
-    )
-    foreach ($file in $filesToCopy) {
-        Copy-Item (Join-Path $scriptsSource $file) $targetScripts -Force
-    }
-    Copy-Item (Join-Path $scriptsSource 'hooks' 'pre-push') $targetHooks -Force
+    Copy-Item (Join-Path $scriptsSource '*') $targetScripts -Recurse -Force
     if ($IsLinux -or $IsMacOS) {
         Get-ChildItem $targetScripts -Filter '*.sh' | ForEach-Object { & chmod +x $_.FullName }
-        & chmod +x (Join-Path $targetHooks 'pre-push')
+        if (Test-Path (Join-Path $targetHooks 'pre-push')) {
+            & chmod +x (Join-Path $targetHooks 'pre-push')
+        }
     }
     Write-Host '    OK  Scripts kopiert' -ForegroundColor Green
+}
+
+# --- README.md erzeugen --------------------------------------------------------
+
+Write-Host '→ Erstelle Workspace-README.md …'
+$workspaceReadmeTemplate = Join-Path $scriptsSource 'templates/workspace-readme-template.md'
+$workspaceReadme = Join-Path $workspaceDir 'README.md'
+if ((Test-Path $workspaceReadmeTemplate) -and $PSCmdlet.ShouldProcess($workspaceReadme, 'Workspace-README.md erstellen')) {
+    (Get-Content $workspaceReadmeTemplate -Raw).Replace('{{WORKSPACE_NAME}}', $WorkspaceName) |
+        Set-Content -Path $workspaceReadme -Encoding UTF8 -NoNewline
+    Write-Host '    OK  Workspace-README.md erstellt' -ForegroundColor Green
+}
+
+# --- Agentische Level-1-Baseline erzeugen -------------------------------------
+
+Write-Host '→ Erzeuge agentische Level-1-Baseline …'
+$templatesDir = Join-Path $scriptsSource 'templates'
+
+function Write-RenderedTemplate([string] $TemplatePath, [string] $OutputPath) {
+    $content = Get-Content $TemplatePath -Raw
+    $content = $content.Replace('{{PROJECT_NAME}}', $WorkspaceName).Replace('{{WORKSPACE}}', "~/$WorkspaceName")
+    Set-Content -Path $OutputPath -Value $content -Encoding UTF8 -NoNewline
+}
+
+if ($PSCmdlet.ShouldProcess($workspaceDir, 'Agentische Level-1-Baseline erzeugen')) {
+    New-Item -ItemType Directory -Path (Join-Path $workspaceDir '.github/workflows') -Force | Out-Null
+    New-Item -ItemType Directory -Path (Join-Path $workspaceDir 'docs') -Force | Out-Null
+
+    foreach ($agentFile in @('AGENTS.md', 'CLAUDE.md', 'GEMINI.md')) {
+        $templatePath = Join-Path $templatesDir "$agentFile.tmpl"
+        if (Test-Path $templatePath) {
+            Write-RenderedTemplate $templatePath (Join-Path $workspaceDir $agentFile)
+        }
+    }
+
+    $copilotTemplate = Join-Path $templatesDir 'copilot-instructions.tmpl'
+    if (Test-Path $copilotTemplate) {
+        Write-RenderedTemplate $copilotTemplate (Join-Path $workspaceDir '.github/copilot-instructions.md')
+    }
+
+    $homeConstitution = Join-Path $homeDir 'constitution.md'
+    if (Test-Path $homeConstitution) {
+        Copy-Item $homeConstitution (Join-Path $workspaceDir 'constitution.md') -Force
+    }
+
+    $constitutionVersion = 'v1.0.0'
+    $workspaceConstitution = Join-Path $workspaceDir 'constitution.md'
+    if (Test-Path $workspaceConstitution) {
+        $firstLine = Get-Content $workspaceConstitution -First 1
+        if ($firstLine -match 'v\d+\.\d+\.\d+') { $constitutionVersion = $Matches[0] }
+    }
+
+    @"
+name: Homogeneity Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  homogeneity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ripgrep
+        run: sudo apt-get install -y ripgrep
+      - name: Run homogeneity check
+        run: bash scripts/check-homogeneity.sh --json --fail-fast .
+        env:
+          CONSTITUTION_VERSION: "$constitutionVersion"
+"@ | Set-Content (Join-Path $workspaceDir '.github/workflows/homogeneity-check.yml') -Encoding UTF8
+
+    $today = Get-Date -Format 'yyyy-MM-dd'
+    @"
+# Projektstatistik / Project Statistics — $WorkspaceName
+
+> **Lebendiges Dokument / Living document** — nach jedem abgeschlossenen Feature,
+> jeder Spec-Kit-Phase und auf explizite Anfrage aktualisieren.
+>
+> *Update after every completed feature, Spec-Kit phase, or on explicit request.*
+
+---
+
+## Fortschreibungsprotokoll / Update Log
+
+Ältester Eintrag oben, neuester Eintrag unten.
+*Oldest entry at top, newest entry at bottom.*
+
+| Datum / Date | Phase / Branch | Aktivtage ges. | Zeilen ges. | Commits ges. | Hauptarbeitspakete / Main Work Packages |
+|---|---|---:|---:|---:|---|
+| $today | 0 — Bootstrap | 1 | — | 1 | Initialer Workspace-Bootstrap via bootstrap-workspace |
+
+---
+
+## Gesamtstand des Repositories / Repository Snapshot
+
+Stand / As of: $today — *Erste Einträge nach dem initialen Arbeitspaket eintragen.*
+
+| Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
+|---|---:|---:|---:|
+| Produktionscode / Production code | — | — | — |
+| Tests / Tests | — | — | — |
+| Dokumentation / Documentation (.md) | — | — | — |
+| **Gesamt / Total** | — | — | — |
+
+---
+
+## Gesamtstatistik / Overall Statistics
+
+*Wird nach dem ersten dokumentierten Arbeitspaket befüllt.*
+*To be filled after the first documented work package.*
+
+| Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
+|---|---:|
+| Artefaktbasis gesamt | — |
+| Beobachtbarer Projektzeitraum | $today bis — |
+| Sichtbare Git-Aktivtage | — |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | — |
+| Repo-weiter Speedup gg. Thorsten-Referenz | — |
+"@ | Set-Content (Join-Path $workspaceDir 'docs/project-statistics.md') -Encoding UTF8
+
+    "# STATS.md -- $WorkspaceName`n`n## Überblick / Overview`n`nCompliance-Historie -- Compliance History`n`n## Verwendung / Usage`n`nJeder ``check-homogeneity.sh``-Aufruf fügt hier einen Eintrag hinzu.`n`nEach ``check-homogeneity.sh`` run appends an entry here.`n" |
+        Set-Content (Join-Path $workspaceDir 'STATS.md') -Encoding UTF8
+
+    if ($Platform -eq 'github') {
+        @'
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "packages": {
+    ".": {
+      "changelog-sections": [
+        {"type": "feat", "section": "Features / Neue Funktionen"},
+        {"type": "fix", "section": "Bug Fixes / Fehlerbehebungen"},
+        {"type": "docs", "section": "Documentation / Dokumentation"},
+        {"type": "chore", "section": "Maintenance / Wartung", "hidden": false},
+        {"type": "refactor", "section": "Refactoring", "hidden": true}
+      ]
+    }
+  }
+}
+'@ | Set-Content (Join-Path $workspaceDir 'release-please-config.json') -Encoding UTF8
+        "{`n  `"."": `"0.1.0`"`n}`n" | Set-Content (Join-Path $workspaceDir '.release-please-manifest.json') -Encoding UTF8
+        @'
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+'@ | Set-Content (Join-Path $workspaceDir '.github/workflows/release-please.yml') -Encoding UTF8
+    }
+
+    if (Get-Command specify -ErrorAction SilentlyContinue) {
+        foreach ($agent in @('gemini', 'opencode', 'claude', 'copilot', 'codex')) {
+            Push-Location $workspaceDir
+            try {
+                specify init --here --force --ignore-agent-tools --ai $agent 2>$null | Out-Null
+            } catch {
+                Write-Host "    WARN: specify init fehlgeschlagen fuer $agent" -ForegroundColor Yellow
+            } finally {
+                Pop-Location
+            }
+        }
+        $specifyMemory = Join-Path $workspaceDir '.specify/memory'
+        if ((Test-Path $workspaceConstitution) -and (Test-Path $specifyMemory)) {
+            Copy-Item $workspaceConstitution (Join-Path $specifyMemory 'constitution.md') -Force
+        }
+    } else {
+        Write-Host '    WARN: specify nicht installiert — Spec-Kit manuell nachziehen' -ForegroundColor Yellow
+    }
+
+    Write-Host '    OK  Agentische Level-1-Baseline erzeugt' -ForegroundColor Green
 }
 
 # --- git init + commit ---------------------------------------------------------
@@ -246,7 +426,7 @@ if ($PSCmdlet.ShouldProcess($targetScripts, 'Scripts kopieren')) {
 Write-Host '→ Initialisiere Git-Repository …'
 if ($PSCmdlet.ShouldProcess($workspaceDir, 'git init + commit')) {
     & git -C $workspaceDir init
-    & git -C $workspaceDir add .gitignore scripts/
+    & git -C $workspaceDir add -A
     $commitMsg = @"
 chore: initiale Baseline-Konfiguration für $WorkspaceName
 

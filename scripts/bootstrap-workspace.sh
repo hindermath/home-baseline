@@ -289,13 +289,9 @@ fi
 # --- Scripts kopieren ----------------------------------------------------------
 
 info "Kopiere Scripts …"
-run "mkdir -p '$WORKSPACE_DIR/scripts/hooks'"
-run "cp '$SCRIPTS_SRC/scan-agent-secrets.sh'  '$WORKSPACE_DIR/scripts/'"
-run "cp '$SCRIPTS_SRC/scan-agent-secrets.ps1'  '$WORKSPACE_DIR/scripts/'"
-run "cp '$SCRIPTS_SRC/install-hooks.sh'         '$WORKSPACE_DIR/scripts/'"
-run "cp '$SCRIPTS_SRC/install-hooks.ps1'         '$WORKSPACE_DIR/scripts/'"
-run "cp '$SCRIPTS_SRC/hooks/pre-push'            '$WORKSPACE_DIR/scripts/hooks/'"
-run "chmod +x '$WORKSPACE_DIR/scripts/'*.sh '$WORKSPACE_DIR/scripts/hooks/pre-push'"
+run "mkdir -p '$WORKSPACE_DIR/scripts'"
+run "cp -R '$SCRIPTS_SRC/.' '$WORKSPACE_DIR/scripts/'"
+run "chmod +x '$WORKSPACE_DIR/scripts/'*.sh '$WORKSPACE_DIR/scripts/hooks/pre-push' 2>/dev/null || true"
 ok "Scripts kopiert"
 
 # --- README.md erzeugen --------------------------------------------------------
@@ -313,11 +309,176 @@ else
   log "WARN: Template '$WS_README_TMPL' nicht gefunden — überspringe README-Erstellung."
 fi
 
+# --- Agentische Level-1-Baseline erzeugen -------------------------------------
+
+info "Erzeuge agentische Level-1-Baseline …"
+TEMPLATES_DIR="$SCRIPTS_SRC/templates"
+
+render_workspace_template() {
+  local template="$1" output="$2"
+  sed \
+    -e "s|{{PROJECT_NAME}}|${WORKSPACE_NAME}|g" \
+    -e "s|{{WORKSPACE}}|~/${WORKSPACE_NAME}|g" \
+    "$template" > "$output"
+}
+
+if [ "$DRY_RUN" -eq 0 ]; then
+  mkdir -p "$WORKSPACE_DIR/.github/workflows" "$WORKSPACE_DIR/docs"
+
+  for agent_file in AGENTS.md CLAUDE.md GEMINI.md; do
+    tmpl="$TEMPLATES_DIR/${agent_file}.tmpl"
+    if [ -f "$tmpl" ]; then
+      render_workspace_template "$tmpl" "$WORKSPACE_DIR/$agent_file"
+    fi
+  done
+
+  if [ -f "$TEMPLATES_DIR/copilot-instructions.tmpl" ]; then
+    render_workspace_template "$TEMPLATES_DIR/copilot-instructions.tmpl" "$WORKSPACE_DIR/.github/copilot-instructions.md"
+  fi
+
+  if [ -f "$HOME_DIR/constitution.md" ]; then
+    cp "$HOME_DIR/constitution.md" "$WORKSPACE_DIR/constitution.md"
+  fi
+
+  constitution_ver="v1.0.0"
+  if [ -f "$WORKSPACE_DIR/constitution.md" ]; then
+    constitution_ver=$(head -1 "$WORKSPACE_DIR/constitution.md" | grep -o 'v[0-9]*\.[0-9]*\.[0-9]*' || echo "v1.0.0")
+  fi
+  cat > "$WORKSPACE_DIR/.github/workflows/homogeneity-check.yml" <<EOF
+name: Homogeneity Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  homogeneity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ripgrep
+        run: sudo apt-get install -y ripgrep
+      - name: Run homogeneity check
+        run: bash scripts/check-homogeneity.sh --json --fail-fast .
+        env:
+          CONSTITUTION_VERSION: "${constitution_ver}"
+EOF
+
+  cat > "$WORKSPACE_DIR/docs/project-statistics.md" <<STATSDOC
+# Projektstatistik / Project Statistics — ${WORKSPACE_NAME}
+
+> **Lebendiges Dokument / Living document** — nach jedem abgeschlossenen Feature,
+> jeder Spec-Kit-Phase und auf explizite Anfrage aktualisieren.
+>
+> *Update after every completed feature, Spec-Kit phase, or on explicit request.*
+
+---
+
+## Fortschreibungsprotokoll / Update Log
+
+Ältester Eintrag oben, neuester Eintrag unten.
+*Oldest entry at top, newest entry at bottom.*
+
+| Datum / Date | Phase / Branch | Aktivtage ges. | Zeilen ges. | Commits ges. | Hauptarbeitspakete / Main Work Packages |
+|---|---|---:|---:|---:|---|
+| $(date +%Y-%m-%d) | 0 — Bootstrap | 1 | — | 1 | Initialer Workspace-Bootstrap via bootstrap-workspace |
+
+---
+
+## Gesamtstand des Repositories / Repository Snapshot
+
+Stand / As of: $(date +%Y-%m-%d) — *Erste Einträge nach dem initialen Arbeitspaket eintragen.*
+
+| Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
+|---|---:|---:|---:|
+| Produktionscode / Production code | — | — | — |
+| Tests / Tests | — | — | — |
+| Dokumentation / Documentation (.md) | — | — | — |
+| **Gesamt / Total** | — | — | — |
+
+---
+
+## Gesamtstatistik / Overall Statistics
+
+*Wird nach dem ersten dokumentierten Arbeitspaket befüllt.*
+*To be filled after the first documented work package.*
+
+| Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
+|---|---:|
+| Artefaktbasis gesamt | — |
+| Beobachtbarer Projektzeitraum | $(date +%Y-%m-%d) bis — |
+| Sichtbare Git-Aktivtage | — |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | — |
+| Repo-weiter Speedup gg. Thorsten-Referenz | — |
+STATSDOC
+
+  printf '# STATS.md — %s\n\n## Überblick / Overview\n\nCompliance-Historie — Compliance History\n\n## Verwendung / Usage\n\nJeder `check-homogeneity.sh`-Aufruf fügt hier einen Eintrag hinzu.\n\nEach `check-homogeneity.sh` run appends an entry here.\n\n' "$WORKSPACE_NAME" > "$WORKSPACE_DIR/STATS.md"
+
+  if [ "$PLATFORM" = "github" ]; then
+    cat > "$WORKSPACE_DIR/release-please-config.json" <<'RPCFG'
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "packages": {
+    ".": {
+      "changelog-sections": [
+        {"type": "feat", "section": "Features / Neue Funktionen"},
+        {"type": "fix", "section": "Bug Fixes / Fehlerbehebungen"},
+        {"type": "docs", "section": "Documentation / Dokumentation"},
+        {"type": "chore", "section": "Maintenance / Wartung", "hidden": false},
+        {"type": "refactor", "section": "Refactoring", "hidden": true}
+      ]
+    }
+  }
+}
+RPCFG
+    printf '{\n  ".": "0.1.0"\n}\n' > "$WORKSPACE_DIR/.release-please-manifest.json"
+    cat > "$WORKSPACE_DIR/.github/workflows/release-please.yml" <<'RPWF'
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+RPWF
+  fi
+
+  if command -v specify >/dev/null 2>&1; then
+    for agent in gemini opencode claude copilot codex; do
+      (cd "$WORKSPACE_DIR" && specify init --here --force --ignore-agent-tools --ai "$agent" >/dev/null 2>&1) || log "WARN: specify init fehlgeschlagen fuer $agent"
+    done
+    if [ -f "$WORKSPACE_DIR/constitution.md" ] && [ -d "$WORKSPACE_DIR/.specify/memory" ]; then
+      cp "$WORKSPACE_DIR/constitution.md" "$WORKSPACE_DIR/.specify/memory/constitution.md"
+    fi
+  else
+    log "WARN: specify nicht installiert — Spec-Kit manuell nachziehen"
+  fi
+
+  ok "Agentische Level-1-Baseline erzeugt"
+else
+  echo "  [dry-run] Agenten-Dateien, Constitution, Workflows, Statistik, Release Please und Spec-Kit würden erzeugt."
+fi
+
 # --- git init + commit ---------------------------------------------------------
 
 info "Initialisiere Git-Repository …"
 run "git -C '$WORKSPACE_DIR' init"
-run "git -C '$WORKSPACE_DIR' add .gitignore scripts/ README.md"
+run "git -C '$WORKSPACE_DIR' add -A"
 run "git -C '$WORKSPACE_DIR' commit -m 'chore: initiale Baseline-Konfiguration für $WORKSPACE_NAME
 
 - .gitignore        – schließt Sub-Repos und Artefakte aus
