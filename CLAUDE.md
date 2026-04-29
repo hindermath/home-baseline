@@ -355,7 +355,7 @@ Prüfen mit: `$line.Length` (PowerShell) — alle Rahmen-Zeilen müssen denselbe
 
 ### Spec-Kit-Verzeichnis initialisieren / Initialize the Spec-Kit Directory
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
-`specify init --here --ai {agent}` — der Parameter `--ai-skill` ist **nur für Codex** erforderlich.
+`specify init --here --force --ignore-agent-tools --ai {agent}` je Agent für `gemini`, `opencode`, `claude`, `copilot` und `codex` ausführen.
 
 ### Git-Identität: Platzhalter-Autor in Commits / Git Identity: Placeholder Author in Commits
 Commits mit `Your Name <your@email.example>` als Autor entstehen, wenn `~/.gitconfig`

@@ -381,7 +381,7 @@ Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 cha
 
 ### `specify init` — Spec-Kit-Verzeichnisaufbau / `specify init` — Spec-Kit Directory Setup
 Never copy from `~/home-baseline-tmp/` manually. The correct command is:
-`specify init --here --ai {agent}` — `--ai-skill` is required **only for Codex** (installs `.agents/skills/`).
+Run `specify init --here --force --ignore-agent-tools --ai {agent}` once per agent for `gemini`, `opencode`, `claude`, `copilot`, and `codex`.
 
 ### Workspace-Name beginnt mit `-` (z. B. `-h`, `-t`) / Workspace Name Starts with `-` (e.g. `-h`, `-t`)
 Bash option parsing interprets `-h` as a flag, causing scripts to show help or hang waiting for stdin.

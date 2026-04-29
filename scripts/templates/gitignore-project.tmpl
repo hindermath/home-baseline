@@ -13,6 +13,7 @@
 # --- Pflichtdateien: Dokumentation / Required: Documentation ---
 !README.md
 !STATS.md
+!constitution.md
 !Lastenheft*.md
 
 # --- Pflichtdateien: Git-Konfiguration / Required: Git config ---
@@ -23,7 +24,11 @@
 !.github/
 !.github/copilot-instructions.md
 !.github/agents/
+!.github/agents/**
 !.github/prompts/
+!.github/prompts/**
+!.github/workflows/
+!.github/workflows/**
 
 # --- Quellcode / Source code ---
 !src/
@@ -51,20 +56,47 @@
 
 # --- Spec-kit Konfiguration / Spec-kit configuration ---
 !.specify/
+!.specify/extensions.yml
+!.specify/integration.json
 !.specify/init-options.json
+!.specify/extensions/
+!.specify/extensions/**
+!.specify/integrations/
+!.specify/integrations/**
 !.specify/memory/
+!.specify/memory/**
 !.specify/scripts/
+!.specify/scripts/**
 !.specify/templates/
+!.specify/templates/**
+!.specify/workflows/
+!.specify/workflows/**
 
 # --- Claude Spec-Kit Commands ---
 !.claude/
 .claude/*
 !.claude/commands/
+!.claude/commands/**
+!.claude/skills/
+!.claude/skills/**
 
 # --- Gemini Spec-Kit Commands ---
 !.gemini/
 .gemini/*
 !.gemini/commands/
+!.gemini/commands/**
+
+# --- Codex Spec-Kit Skills ---
+!.agents/
+.agents/*
+!.agents/skills/
+!.agents/skills/**
+
+# --- OpenCode Spec-Kit Commands ---
+!.opencode/
+.opencode/*
+!.opencode/command/
+!.opencode/command/**
 
 # --- Release Please ---
 !release-please-config.json

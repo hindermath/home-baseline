@@ -1707,9 +1707,9 @@ Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `
 
 *Codex reads `AGENTS.md` as project context; all Spec-Kit artefacts are available as input.*
 
-Codex CLI ist in diesem Setup besonders stark, wenn du repo-nahe Arbeit mit klarer Projektkontext-Datei bevorzugst. Anders als Claude oder Gemini arbeitet die Integration hier nicht primär ueber ein spezielles `commands`-Verzeichnis, sondern ueber `AGENTS.md` und - bei `specify init` - zusaetzlich ueber den Schalter `--ai-skill`, damit die Spec-Kit-Skills korrekt in `.agents/skills/` abgelegt werden.
+Codex CLI ist in diesem Setup besonders stark, wenn du repo-nahe Arbeit mit klarer Projektkontext-Datei bevorzugst. Die Spec-Kit-Integration wird heute wie die anderen Agenten ueber `specify init --here --force --ignore-agent-tools --ai codex` eingerichtet.
 
-*Codex CLI is especially strong in this setup if you prefer repository-close work with an explicit project context file. Unlike Claude or Gemini, the integration here does not primarily depend on a dedicated `commands` directory, but on `AGENTS.md` and, during `specify init`, additionally on the `--ai-skill` switch so that the Spec-Kit skills are placed correctly into `.agents/skills/`.*
+*Codex CLI is especially strong in this setup if you prefer repository-close work with an explicit project context file. Spec-Kit integration is now initialized like the other agents via `specify init --here --force --ignore-agent-tools --ai codex`.*
 
 > **Voraussetzung / Prerequisite:** Node.js ≥ 22 LTS, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
 
@@ -1760,9 +1760,9 @@ Setzt `tui.status_line` in `~/.codex/config.toml` aus `scripts/templates/codex-s
 
 Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
 
-Wenn du ausserdem eine konsistente TUI-Statuszeile willst, ist `setup-codex-settings.*` der passende zweite Schritt aus dem frueheren Agenten-Setup-Block. Fuer Spec-Kit selbst ist wichtiger, dass du spaeter bei der Initialisierung den richtigen `--ai codex --ai-skill`-Pfad verwendest.
+Wenn du ausserdem eine konsistente TUI-Statuszeile willst, ist `setup-codex-settings.*` der passende zweite Schritt aus dem frueheren Agenten-Setup-Block. Fuer Spec-Kit selbst ist wichtiger, dass du spaeter die agentenweise Initialisierung mit `--force --ignore-agent-tools` verwendest.
 
-*If you also want a consistent TUI status line, `setup-codex-settings.*` is the right second step from the earlier agent setup block. For Spec-Kit itself, the more important point is that you later use the correct `--ai codex --ai-skill` path during initialization.*
+*If you also want a consistent TUI status line, `setup-codex-settings.*` is the right second step from the earlier agent setup block. For Spec-Kit itself, the more important point is to use the per-agent initialization with `--force --ignore-agent-tools`.*
 
 → Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
@@ -1836,7 +1836,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX
 uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git@vX.Y.Z
 
 # Option 2: Einmalige Nutzung ohne Installation / One-time usage without installing
-uvx --from git+https://github.com/github/spec-kit.git@vX.Y.Z specify init --here --ai copilot
+uvx --from git+https://github.com/github/spec-kit.git@vX.Y.Z specify init --here --force --ignore-agent-tools --ai copilot
 
 # Installation prüfen / Verify installation
 specify check
@@ -1860,25 +1860,17 @@ specify init MeinProjekt --ai copilot
 # In bestehendem Verzeichnis initialisieren / Initialize in existing directory
 cd ~/MeinProjekt
 
-# GitHub Copilot CLI
-specify init --here --ai copilot
-
-# Claude Code
-specify init --here --ai claude
-
-# Gemini CLI
-specify init --here --ai gemini
-
-# Codex  (--ai-skill nur für Codex nötig / --ai-skill required for Codex only)
-specify init --here --ai codex --ai-skill
-
-# OpenCode
-specify init --here --ai opencode
+# Alle Agenten-Integrationen nacheinander / All agent integrations in sequence
+specify init --here --force --ignore-agent-tools --ai gemini
+specify init --here --force --ignore-agent-tools --ai opencode
+specify init --here --force --ignore-agent-tools --ai claude
+specify init --here --force --ignore-agent-tools --ai copilot
+specify init --here --force --ignore-agent-tools --ai codex
 ```
 
-> **Hinweis zu `--ai-skill`:**  
-> Dieser Parameter installiert Spec-Kit-Skills in `.agents/skills/` und ist derzeit **nur für Codex** erforderlich. Alle anderen Agenten richten ihre Integrationspfade automatisch ein.  
-> *The `--ai-skill` flag installs Spec-Kit skills into `.agents/skills/` and is currently required **only for Codex**. Other agents set up their paths automatically.*
+> **Hinweis / Note:**  
+> `specify` meldet derzeit, dass `--ai` ab Version 0.10.0 durch `--integration` ersetzt wird. Bis die Repo-Skripte komplett auf die neue CLI umgestellt sind, bleibt die oben gezeigte Form die dokumentierte Baseline.  
+> *`specify` currently warns that `--ai` will be replaced by `--integration` in version 0.10.0. Until the repo scripts fully switch to the new CLI, the form shown above remains the documented baseline.*
 
 > **Tipp / Tip:** `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` richtet all das automatisch ein.  
 > *Using `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` sets everything up automatically.*

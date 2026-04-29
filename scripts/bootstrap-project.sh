@@ -165,6 +165,7 @@ SKIPPED=0
 PARTIAL_FAIL=false
 WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
 WORKSPACE_GITIGNORE_RESULT="unchanged"
+SPECIFY_AGENTS=(gemini opencode claude copilot codex)
 
 preview_action() {
   local action="$1" target="$2" note="${3:-}"
@@ -366,7 +367,9 @@ if $OPT_PREVIEW; then
   preview_action "PRINT" "Codex manuelle Anweisung" "interaktiv"
   preview_action "PRINT" "Gemini manuelle Anweisung" "interaktiv"
   preview_action "CHECK" "gh copilot --help" "optional"
-  preview_action "EXEC" "specify init --here --ai claude" "optional"
+  for agent in "${SPECIFY_AGENTS[@]}"; do
+    preview_action "EXEC" "specify init --here --force --ignore-agent-tools --ai ${agent}" "optional"
+  done
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"
@@ -873,12 +876,20 @@ if $OPT_NO_SPECKIT; then
 elif [ -d "${TARGET_DIR}/.specify" ] && ! $OPT_FORCE; then
   step_skip ".specify/ vorhanden"
 elif command -v specify >/dev/null 2>&1; then
-  (cd "$TARGET_DIR" && specify init --here --ai claude >/dev/null 2>&1) || step_warn "specify init fehlgeschlagen"
+  for agent in "${SPECIFY_AGENTS[@]}"; do
+    if ! (cd "$TARGET_DIR" && specify init --here --force --ignore-agent-tools --ai "$agent" >/dev/null 2>&1); then
+      step_warn "specify init fehlgeschlagen fuer ${agent}"
+    fi
+  done
   [ -d "${TARGET_DIR}/.specify" ] && step_done || step_warn "specify init kein .specify/ erstellt"
 else
   step_warn "specify nicht installiert"
   echo "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
-  echo "          -> Dann: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --ai claude"
+  echo "          -> Dann je Agent: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --force --ignore-agent-tools --ai {gemini|opencode|claude|copilot|codex}"
+fi
+
+if [ -f "${TARGET_DIR}/constitution.md" ] && [ -d "${TARGET_DIR}/.specify/memory" ]; then
+  cp "${TARGET_DIR}/constitution.md" "${TARGET_DIR}/.specify/memory/constitution.md"
 fi
 
 # ─── Step 20: Compliance check + STATS baseline ──────────────────────────────
@@ -941,8 +952,8 @@ echo "  Naechste Schritte:"
 printf "  -> cd %s\n" "${TARGET_DIR/#$HOME/\~}"
 echo "  -> codex   (interaktive Initialisierung)"
 echo "  -> gemini  (interaktive Initialisierung)"
-echo "  -> specify init --here --ai gemini  (+ codex, copilot, opencode)"
-  echo "  -> specify specify \"Feature-Name\""
+echo "  -> Spec-Kit ist fuer gemini, opencode, claude, copilot und codex vorbereitet"
+echo "  -> specify specify \"Feature-Name\""
 echo "$(printf '%s' "$(printf '=%.0s' {1..50})")"
 
 if $PARTIAL_FAIL; then

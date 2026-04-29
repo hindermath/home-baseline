@@ -327,7 +327,7 @@ Prüfen: PowerShell `$line.Length` oder `wc -m` (Bash) für jede Rahmen-Zeile.
 
 ### Spec-Kit-Verzeichnis initialisieren / Initialize the Spec-Kit Directory
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
-`specify init --here --ai {agent}` — `--ai-skill` ist **nur für Codex** erforderlich.
+`specify init --here --force --ignore-agent-tools --ai {agent}` je Agent für `gemini`, `opencode`, `claude`, `copilot` und `codex` ausführen.
 
 ### GitHub-Housekeeping: Archivierung, Sichtbarkeit, Forks und Stars / GitHub Housekeeping: Archiving, Visibility, Forks, and Stars
 `archived` bedeutet bei GitHub nur read-only, nicht unsichtbar. Public archived Repos bleiben ohne Anmeldung sichtbar.
