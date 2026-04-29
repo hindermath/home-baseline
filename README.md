@@ -375,10 +375,10 @@ Jeder Workspace erhält seine eigene Git-Konfigurationsdatei unter `~/.gitconfig
 Git's `includeIf "gitdir:..."` Direktive lädt automatisch die passende `.inc`-Datei, wenn git in einem bestimmten Verzeichnis ausgeführt wird:
 
 ```ini
-# ~/.gitconfig (global — von sync-home verwaltet / managed by sync-home)
+# ~/.gitconfig (global — lokal verwaltet, sync-home prüft Baseline-Werte)
 [user]
-    name  = Your Name
-    email = your@global.example
+    name  = Thorsten Hindermann
+    email = hindermath@googlemail.com
 
 [includeIf "gitdir:~/home-baseline-tmp/"]
     path = ~/.gitconfig.d/home-baseline.inc
@@ -909,9 +909,9 @@ bash ~/scripts/sync-home.sh --no-pull
 | `--no-commit` / `-NoCommit`   | Nur kopieren, kein Commit in `~/` / Copy only |
 | `--dry-run` / `-WhatIf`       | Nur anzeigen, nichts schreiben / Preview only |
 
-Nach dem Kopieren prüft `sync-home` automatisch die globale Git-Identität in `~/.gitconfig` und ruft dafür `setup-git-identity.*` im Auto-Modus auf. So werden Platzhalterwerte aus der synchronisierten `.gitconfig` vor dem optionalen Commit in `~/` wieder durch die echte lokale Identität ersetzt.
+`sync-home` kopiert `.gitconfig` bewusst nicht mehr blind aus dem Repository nach `~/`. Stattdessen stellt es die Baseline-Werte (`init.defaultBranch`, `core.autocrlf`, `pull.rebase`, `includeIf`) sicher und prüft danach die globale Git-Identität per `setup-git-identity.*` im Auto-Modus. So bleiben `user.name` und `user.email` dauerhaft echte lokale Werte.
 
-*After copying, `sync-home` automatically checks the global Git identity in `~/.gitconfig` by running `setup-git-identity.*` in auto mode. This replaces placeholder values from the synced `.gitconfig` with the real local identity before the optional commit in `~/`.*
+*`sync-home` intentionally no longer copies `.gitconfig` blindly from the repository into `~/`. Instead, it ensures the baseline values (`init.defaultBranch`, `core.autocrlf`, `pull.rebase`, `includeIf`) and then checks the global git identity via `setup-git-identity.*` in auto mode. This keeps `user.name` and `user.email` as real local values permanently.*
 
 ---
 

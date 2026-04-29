@@ -76,11 +76,32 @@ function Sync-Dir {
     Write-Host "  ✓ $RelPath/"
 }
 
+function Ensure-GitconfigBaseline {
+    if ($WhatIfPreference) {
+        Write-Host "  [WhatIf] ~/.gitconfig Baseline-Einstellungen prüfen / check baseline settings"
+        return
+    }
+
+    $gitconfigPath = Join-Path $HomeDir '.gitconfig'
+    if (-not (Test-Path $gitconfigPath)) { New-Item -ItemType File -Path $gitconfigPath -Force | Out-Null }
+
+    git config --global init.defaultBranch main
+    git config --global core.autocrlf input
+    git config --global pull.rebase true
+
+    $content = Get-Content -Raw -Path $gitconfigPath -ErrorAction SilentlyContinue
+    if ($content -notmatch [regex]::Escape('gitdir:~/home-baseline-tmp/')) {
+        Add-Content -Path $gitconfigPath -Value "`n[includeIf `"gitdir:~/home-baseline-tmp/`"]`n`tpath = ~/.gitconfig.d/home-baseline.inc"
+    }
+
+    Write-Host "  ✓ ~/.gitconfig Baseline-Einstellungen geprüft / baseline settings checked"
+}
+
 Write-Host "→ Dateien synchronisieren..."
 
 # Root-Dateien
 foreach ($f in @('AGENTS.md','CLAUDE.md','GEMINI.md','README.md','STATS.md','CHANGELOG.md',
-                  'constitution.md','.gitconfig','.gitignore','LICENSE')) {
+                  'constitution.md','.gitignore','LICENSE')) {
     Sync-File $f
 }
 
@@ -117,6 +138,8 @@ if ($WhatIfPreference) {
     ) | Set-Content -Path $placeholder -Encoding UTF8
     Write-Host "  ✓ ~/.gitconfig.d/ erstellt mit home-baseline.inc / created with home-baseline.inc"
 }
+
+Ensure-GitconfigBaseline
 
 Write-Host ""
 

@@ -1,17 +1,15 @@
 ; ============================================================
-; WICHTIG / IMPORTANT: Name und E-Mail MÜSSEN geändert werden!
-; Diese Platzhalter-Werte führen zu falschen Commit-Autoren.
+; home-baseline Git defaults
 ;
-; IMPORTANT: name and email MUST be changed!
-; These placeholder values produce incorrect commit author information.
+; WICHTIG / IMPORTANT:
+; Diese Vorlage enthält bewusst keine [user]-Identität.
+; sync-home.* setzt Name und E-Mail lokal über setup-git-identity.*
+; und überschreibt sie nicht aus dem Repository.
 ;
-; Schnell einrichten / Quick setup:
-;   bash ~/scripts/setup-git-identity.sh
-;   pwsh -NoProfile ~/scripts/setup-git-identity.ps1   (Windows)
+; This template intentionally contains no [user] identity.
+; sync-home.* sets name and email locally via setup-git-identity.*
+; and does not overwrite them from the repository.
 ; ============================================================
-[user]
-	name = Your Name
-	email = your@email.example
 [init]
 	defaultBranch = main
 [core]

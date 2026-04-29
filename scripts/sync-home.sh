@@ -86,11 +86,29 @@ sync_dir() {
   fi
 }
 
+ensure_gitconfig_baseline() {
+  if $OPT_DRY_RUN; then
+    echo "  [dry-run] ~/.gitconfig Baseline-Einstellungen prüfen / check baseline settings"
+    return
+  fi
+
+  touch "${HOME_DIR}/.gitconfig"
+  git config --global init.defaultBranch main
+  git config --global core.autocrlf input
+  git config --global pull.rebase true
+
+  if ! grep -qF 'gitdir:~/home-baseline-tmp/' "${HOME_DIR}/.gitconfig" 2>/dev/null; then
+    printf '\n[includeIf "gitdir:~/home-baseline-tmp/"]\n\tpath = ~/.gitconfig.d/home-baseline.inc\n' >> "${HOME_DIR}/.gitconfig"
+  fi
+
+  echo "  ✓ ~/.gitconfig Baseline-Einstellungen geprüft / baseline settings checked"
+}
+
 echo "→ Dateien synchronisieren..."
 
 # Root-Dateien
 for f in AGENTS.md CLAUDE.md GEMINI.md README.md STATS.md CHANGELOG.md constitution.md \
-          .gitconfig .gitignore LICENSE; do
+          .gitignore LICENSE; do
   sync_file "$f"
 done
 
@@ -123,6 +141,8 @@ else
   printf '# home-baseline workspace git configuration\n# Hier workspace-spezifische git-Einstellungen eintragen:\n# [user]\n#   email = work@example.com\n' > "$placeholder"
   echo "  ✓ ~/.gitconfig.d/ erstellt mit home-baseline.inc / created with home-baseline.inc"
 fi
+
+ensure_gitconfig_baseline
 
 echo ""
 
