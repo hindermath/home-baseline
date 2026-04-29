@@ -22,6 +22,7 @@
 | 2026-04-26 | Spec-Kit Preset Governance & Veroeffentlichung | 25 | 67 251 | 291 | Sechs Spec-Kit-Governance-Presets fachlich geschnitten, standalone GitHub-Repos veroeffentlicht, lokale und GitHub-ZIP-Smoke-Tests ausgefuehrt, Issue `github/spec-kit#2362` aktualisiert, Preset-Pflegeworkflow in Verfassung und Agenten-Dateien dokumentiert; Release-Matrix nachgetragen |
 | 2026-04-29 | Agentische Praxisprobe OpenCode-Analyse | 26 | 67 359 | 292 | `WebStormProjects` und `opencode-analysis` praktisch eingerichtet, OpenCode-Fork-Workflow vorbereitet, `bootstrap-project.*` auf agentenweise Spec-Kit-Initialisierung fuer Gemini, OpenCode, Claude, Copilot und Codex korrigiert |
 | 2026-04-29 | Git-Identity-Sync-Haertung | 26 | 67 456 | 294 | `.gitconfig` aus blindem `sync-home`-Kopiervorgang entfernt, lokale Git-Identitaet dauerhaft geschuetzt, alte Platzhalter-Warnkoepfe automatisch migriert und README-Dokumentation aktualisiert |
+| 2026-04-29 | opencode-analysis CI-Fix | 26 | 67 507 | 302 | Fehlgeschlagenen Homogeneity-Workflow in `opencode-analysis` analysiert und behoben; `--exit-on-fail` durch gueltigen `--fail-fast .`-Aufruf ersetzt, Level-2-README-/Agenten-Templates ergaenzt und Scanner fuer git-ignorierte Unterrepos gehaertet |
 
 ---
 
@@ -31,12 +32,12 @@ Stand / As of: **2026-04-29**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 79 | 15 948 | 23.6 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 56 | 4 959 | 7.4 % |
+| Skripte / Scripts (`.sh` + `.ps1`) | 79 | 15 977 | 23.7 % |
+| Templates (`.tmpl` + Konfigurationsdateien) | 56 | 4 967 | 7.4 % |
 | Hooks + CI (pre-push + YAML/JSON) | 1 | 76 | 0.1 % |
-| Dokumentation / Documentation (`.md`) | 412 | 45 954 | 68.1 % |
+| Dokumentation / Documentation (`.md`) | 412 | 45 968 | 68.1 % |
 | Sonstiges / Other | 14 | 519 | 0.8 % |
-| **Gesamt / Total** | **562** | **67 456** | **100 %** |
+| **Gesamt / Total** | **562** | **67 507** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
@@ -162,20 +163,20 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `67 456` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `16 024` Zeilen (`23.8 %`) |
-| Dokumentationsanteil / Documentation share | `45 954` Zeilen (`68.1 %`) |
+| Artefaktbasis gesamt / Total artifact base | `67 507` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `16 053` Zeilen (`23.8 %`) |
+| Dokumentationsanteil / Documentation share | `45 968` Zeilen (`68.1 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-29` |
 | Sichtbare Git-Aktivtage / Observable active days | `26` |
-| Git-Commits gesamt / Total commits | `294` |
-| Git-Commits pro Aktivtag / Commits per active day | `11.3` (`294 / 26`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 594.5` (`67 456 / 26`) |
-| Zeilen pro Commit / Lines per commit | `229.4` (`67 456 / 294`) |
-| Konservative Einzelentwickler-Untergrenze | `843.2` Arbeitstage / `6 577.0` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `674.6` Arbeitstage / `5 261.6` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `337.3` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.4x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.9x` |
+| Git-Commits gesamt / Total commits | `302` |
+| Git-Commits pro Aktivtag / Commits per active day | `11.6` (`302 / 26`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 596.4` (`67 507 / 26`) |
+| Zeilen pro Commit / Lines per commit | `223.5` (`67 507 / 302`) |
+| Konservative Einzelentwickler-Untergrenze | `843.8` Arbeitstage / `6 581.8` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `675.1` Arbeitstage / `5 265.5` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `337.5` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.5x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `26.0x` |
 
 Kurzfazit:
 `home-baseline` ist nach der Preset-Phase noch staerker dokumentations- und
@@ -201,9 +202,9 @@ density, not stopwatch measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | ###########                    | 16 024 | 23.8 %
-Dokumentation   | ############################## | 45 954 | 68.1 %
-Sonstiges       | ###                            |  5 478 |  8.1 %
+Operativer Code | ###########                    | 16 053 | 23.8 %
+Dokumentation   | ############################## | 45 968 | 68.1 %
+Sonstiges       | ###                            |  5 486 |  8.1 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
@@ -257,7 +258,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################  | 32.4x
+Repo ges. | ################################  | 32.5x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -279,8 +280,8 @@ completed in two visible Git active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 843.2 d / 6 577.0 h
-Thorsten (100 Z./Tag)  | ###################      | 674.6 d / 5 261.6 h
+Erfahren (80 Z./Tag)   | ######################## | 843.8 d / 6 581.8 h
+Thorsten (100 Z./Tag)  | ###################      | 675.1 d / 5 265.5 h
 KI sichtbar            | #                        |  26.0 d
 ```
 

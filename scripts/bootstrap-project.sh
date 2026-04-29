@@ -551,7 +551,7 @@ jobs:
       - name: Install ripgrep
         run: sudo apt-get install -y ripgrep
       - name: Run homogeneity check
-        run: bash scripts/check-homogeneity.sh --json --exit-on-fail
+        run: bash scripts/check-homogeneity.sh --json --fail-fast .
         env:
           CONSTITUTION_VERSION: "${constitution_ver}"
 EOF

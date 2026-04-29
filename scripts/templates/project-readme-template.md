@@ -8,7 +8,9 @@ Dieses Projekt ist Teil des Workspaces **{{WORKSPACE}}**.
 
 ## Über dieses Projekt / About this project
 
-[Hier eine kurze Beschreibung des Projekts einfügen / Insert a short project description here]
+Dieses Projekt ist ein Level-2-Projekt im Workspace **{{WORKSPACE}}**.
+
+*This project is a level-2 project in the **{{WORKSPACE}}** workspace.*
 
 ---
 
@@ -41,6 +43,14 @@ Dieses Projekt nutzt **Spec-Kit** für die strukturierte Entwicklung von Feature
 
 ---
 
+## Barrierefreiheit / Accessibility
+
+Alle nutzerseitigen Artefakte werden textorientiert gepflegt und sollen mit Tastatur, Screenreader, Braille-Zeile und Textbrowser nutzbar bleiben. WCAG 2.2 Level AA ist die Basis, soweit die Kriterien auf das jeweilige Artefakt anwendbar sind.
+
+*All user-facing artifacts are maintained in a text-oriented form and should remain usable with keyboard, screen readers, Braille displays, and text browsers. WCAG 2.2 Level AA is the baseline where the criteria apply to the artifact.*
+
+---
+
 ## Für Auszubildende / For IT Apprentices
 
 In diesem Ordner schreibst du deinen eigentlichen Code. Hier sind ein paar wichtige Regeln für die Arbeit an diesem Projekt:
@@ -67,3 +77,5 @@ Nutze deine KI-Agenten direkt im Terminal, wenn du feststeckst:
 - [STATS.md](./STATS.md) — Statistiken über dieses Projekt.
 
 ---
+
+<!-- EN: README.md contains bilingual setup and usage guidance for this level-2 project. -->
