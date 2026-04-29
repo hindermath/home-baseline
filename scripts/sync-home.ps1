@@ -85,6 +85,40 @@ function Ensure-GitconfigBaseline {
     $gitconfigPath = Join-Path $HomeDir '.gitconfig'
     if (-not (Test-Path $gitconfigPath)) { New-Item -ItemType File -Path $gitconfigPath -Force | Out-Null }
 
+    $oldWarning = 'WICHTIG / IMPORTANT: Name und E-Mail MÜSSEN geändert werden!'
+    $content = Get-Content -Raw -Path $gitconfigPath -ErrorAction SilentlyContinue
+    if ($content -match [regex]::Escape($oldWarning)) {
+        $lines = Get-Content -Path $gitconfigPath
+        $remaining = [System.Collections.Generic.List[string]]::new()
+        $skip = $false
+        $done = $false
+        foreach ($line in $lines) {
+            if (-not $done -and $line -eq '; ============================================================') {
+                $skip = $true
+                continue
+            }
+            if ($skip -and $line -eq '; ============================================================') {
+                $skip = $false
+                $done = $true
+                continue
+            }
+            if (-not $skip) { $remaining.Add($line) }
+        }
+
+        $header = @(
+            '; ============================================================',
+            '; Lokale Git-Konfiguration / Local git configuration',
+            ';',
+            '; user.name und user.email werden lokal durch setup-git-identity.*',
+            '; gepflegt. sync-home.* überschreibt diese Identität nicht.',
+            ';',
+            '; user.name and user.email are maintained locally by',
+            '; setup-git-identity.*. sync-home.* does not overwrite them.',
+            '; ============================================================'
+        )
+        @($header + $remaining) | Set-Content -Path $gitconfigPath -Encoding UTF8
+    }
+
     git config --global init.defaultBranch main
     git config --global core.autocrlf input
     git config --global pull.rebase true

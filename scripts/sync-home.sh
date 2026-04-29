@@ -93,6 +93,28 @@ ensure_gitconfig_baseline() {
   fi
 
   touch "${HOME_DIR}/.gitconfig"
+  if grep -qF 'WICHTIG / IMPORTANT: Name und E-Mail MÜSSEN geändert werden!' "${HOME_DIR}/.gitconfig" 2>/dev/null; then
+    tmp_gitconfig="$(mktemp)"
+    cat > "$tmp_gitconfig" <<'EOF'
+; ============================================================
+; Lokale Git-Konfiguration / Local git configuration
+;
+; user.name und user.email werden lokal durch setup-git-identity.*
+; gepflegt. sync-home.* überschreibt diese Identität nicht.
+;
+; user.name and user.email are maintained locally by
+; setup-git-identity.*. sync-home.* does not overwrite them.
+; ============================================================
+EOF
+    awk '
+      BEGIN { skip = 0; done = 0 }
+      /^; ============================================================$/ && done == 0 { skip = 1; next }
+      skip == 1 && /^; ============================================================$/ { skip = 0; done = 1; next }
+      skip == 0 { print }
+    ' "${HOME_DIR}/.gitconfig" >> "$tmp_gitconfig"
+    mv "$tmp_gitconfig" "${HOME_DIR}/.gitconfig"
+  fi
+
   git config --global init.defaultBranch main
   git config --global core.autocrlf input
   git config --global pull.rebase true
