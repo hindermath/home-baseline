@@ -82,3 +82,9 @@
 # .gradle/       – ggf. Signing-Keys
 # .npmrc         – npm-Auth-Tokens
 # .pypirc        – PyPI-Credentials
+
+# opencode Spec-Kit Commands (nur commands/, NICHT root — root kann Cache enthalten)
+!.opencode/
+.opencode/*
+!.opencode/command/
+!.opencode/command/*.md
