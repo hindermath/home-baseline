@@ -355,7 +355,19 @@ Prüfen mit: `$line.Length` (PowerShell) — alle Rahmen-Zeilen müssen denselbe
 
 ### Spec-Kit-Verzeichnis initialisieren / Initialize the Spec-Kit Directory
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
-`specify init --here --force --ignore-agent-tools --ai {agent}` je Agent für `gemini`, `opencode`, `claude`, `copilot` und `codex` ausführen.
+`specify init --here --force --integration {agent}` je Agent für `gemini`, `opencode`, `claude`, `copilot` und `codex` ausführen.
+
+### Spec-Kit-Updates repo-weit / Repository-Wide Spec-Kit Updates
+Fuer Level 0, Level 1 und Level 2 nicht mehr per Hand in jedem Repo nachziehen.
+Stattdessen zuerst `bash scripts/update-spec-kit.sh --dry-run` bzw.
+`pwsh scripts/update-spec-kit.ps1 -WhatIf` ausfuehren, danach bei Bedarf
+`--commit --push` / `-Commit -Push`.
+
+Das Skript erkennt neue Repos dynamisch ueber `.git` plus `.specify/`, sichert
+`.specify/memory/constitution.md`, legt die lokalen Governance-Templates wieder
+auf und nimmt `RiderProjects/TuiVision` normal mit. OpenCode wird nur ueber
+`.opencode/command/*.md` getrackt; `.opencode`-Caches, Sessions, Logs,
+Credentials und lokale Abhaengigkeiten bleiben ausgeschlossen.
 
 ### Git-Identität: Platzhalter-Autor in Commits / Git Identity: Placeholder Author in Commits
 Commits mit `Your Name <your@email.example>` als Autor entstehen, wenn `~/.gitconfig`
@@ -412,11 +424,13 @@ Fehlte bei Features 003, 005 und 006, weil das Template den Schritt nicht vorsah
 - File system — `~/.gitconfig` (INI), `~/.gitconfig.d/*.inc`, `~/README.md`, `~/.gitignore` (005-workspace-teardown)
 - Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (new) · `gh` ≥ 2.30 (existing) · `git` ≥ 2.30 (existing) (006-gitlab-support)
 - N/A — file modifications to existing scripts and `~/README.md` (006-gitlab-support)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `specify` CLI ≥ 0.8.3, `git` ≥ 2.30 (008-spec-kit-update-automation)
 
 ## Letzte Änderungen / Recent Changes
 - 003-git-config-scope: Added Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + git ≥ 2.13 (required for `includeIf`), gh CLI (existing dependency)
 - 006-gitlab-support: Added GitLab CLI support documentation, `glab auth login` pitfall guidance, and spec artifacts for GitLab bootstrap support
 - 007-gitlab-release-automation: Added `setup-gitlab-release.*`, reusable GitLab release templates, detached-head and changelog-refresh fixes, and a non-blocking manual `release` job validated with real GitLab releases in `sysinfotool` (`v0.1.0`) and `inventarworkerservice2` (`v0.0.1`)
+- 008-spec-kit-update-automation: Added `update-spec-kit.*` for dynamic Level-0/1/2 Spec-Kit refreshes, governance-template preservation, TuiVision inclusion, and `.opencode/command` tracking
 
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,

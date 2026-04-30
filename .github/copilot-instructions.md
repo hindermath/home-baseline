@@ -39,6 +39,7 @@ bash scripts/setup-git-identity.sh               # set git identity interactivel
 bash scripts/scan-agent-secrets.sh --fail-on-high .
 bash scripts/audit-agent-changes.sh snapshot
 bash scripts/audit-agent-changes.sh report
+bash scripts/update-spec-kit.sh --dry-run
 
 # PowerShell 7+ (Windows)
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
@@ -48,6 +49,7 @@ pwsh -NoProfile scripts/setup-git-identity.ps1             # set git identity in
 pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
+pwsh -NoProfile scripts/update-spec-kit.ps1 -WhatIf
 ```
 
 Always use `--dry-run` / `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing anything under `scripts/hooks/`.
@@ -381,7 +383,20 @@ Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 cha
 
 ### `specify init` — Spec-Kit-Verzeichnisaufbau / `specify init` — Spec-Kit Directory Setup
 Never copy from `~/home-baseline-tmp/` manually. The correct command is:
-Run `specify init --here --force --ignore-agent-tools --ai {agent}` once per agent for `gemini`, `opencode`, `claude`, `copilot`, and `codex`.
+Run `specify init --here --force --integration {agent}` once per agent for `gemini`, `opencode`, `claude`, `copilot`, and `codex`.
+
+### Spec-Kit-Updates repo-weit / Repository-Wide Spec-Kit Updates
+Do not refresh Level 0, Level 1, and Level 2 repositories by hand. Run
+`bash scripts/update-spec-kit.sh --dry-run` or
+`pwsh scripts/update-spec-kit.ps1 -WhatIf` first, then use `--commit --push` /
+`-Commit -Push` when the preview is correct.
+
+The script dynamically discovers new repositories via `.git` plus `.specify/`,
+backs up and restores `.specify/memory/constitution.md`, reapplies the local
+governance templates, and includes `RiderProjects/TuiVision` in normal update
+runs. OpenCode support is tracked only through `.opencode/command/*.md`;
+`.opencode` caches, sessions, logs, credentials, and local dependencies remain
+excluded.
 
 ### Workspace-Name beginnt mit `-` (z. B. `-h`, `-t`) / Workspace Name Starts with `-` (e.g. `-h`, `-t`)
 Bash option parsing interprets `-h` as a flag, causing scripts to show help or hang waiting for stdin.
@@ -471,12 +486,14 @@ Fix: always add `-NoProfile` to subprocess calls in `windows-test.ps1`.
 - File system — `~/WorkspaceName/`, remote repo, `~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/` (005-workspace-teardown)
 - Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (new), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
 - Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `specify` CLI ≥ 0.8.3, `git` ≥ 2.30 (008-spec-kit-update-automation)
 
 ## Letzte Änderungen / Recent Changes
 - 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf`, `~/.gitconfig.d/`, bootstrap-workspace, sync-home, check-homogeneity, pre-push hook erweitert
 - 005-workspace-teardown: `teardown-workspace.sh/.ps1` — Backup, Remote-Löschung (GitHub/GitLab auto-detected), lokale Löschung, Artefakt-Bereinigung; `--teardown`-Alias in `bootstrap-workspace.*`; `--` end-of-options für Workspace-Namen mit `-`-Präfix
 - 006-gitlab-support: GitLab-CLI-Support für `bootstrap-workspace.*` und `bootstrap-project.*`, `--platform gitlab`, Self-hosted `--gitlab-url`, bilinguale Fehlerpfade
 - 007-gitlab-release-automation: `setup-gitlab-release.*`, GitLab-Release-Templates und non-blocking manueller `release`-Job ergänzt; mit echten Releases in `sysinfotool` (`v0.1.0`) und `inventarworkerservice2` (`v0.0.1`) validiert; Detached-HEAD- und CHANGELOG-Refresh-Fixes eingearbeitet
+- 008-spec-kit-update-automation: Added `update-spec-kit.*` for dynamic Level-0/1/2 Spec-Kit refreshes, governance-template preservation, TuiVision inclusion, and `.opencode/command` tracking
 
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,

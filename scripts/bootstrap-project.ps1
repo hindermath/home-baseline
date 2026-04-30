@@ -269,7 +269,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('PRINT', "Gemini manuelle Anweisung"))
     $null = $previewActions.Add(@('CHECK', "gh copilot --help", 'optional'))
     foreach ($agent in $SpecifyAgents) {
-        $null = $previewActions.Add(@('EXEC', "specify init --here --force --ignore-agent-tools --ai $agent", 'optional'))
+        $null = $previewActions.Add(@('EXEC', "specify init --here --force --integration $agent", 'optional'))
     }
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
@@ -673,7 +673,7 @@ elseif ((Test-Path (Join-Path $TargetDir '.specify')) -and -not $Force) { Step-S
 elseif (Get-Command specify -ErrorAction SilentlyContinue) {
     Push-Location $TargetDir
     foreach ($agent in $SpecifyAgents) {
-        specify init --here --force --ignore-agent-tools --ai $agent 2>$null | Out-Null
+        specify init --here --force --integration $agent 2>$null | Out-Null
         if ($LASTEXITCODE -ne 0) {
             Step-Warn "specify init fehlgeschlagen fuer $agent"
         }
@@ -683,7 +683,7 @@ elseif (Get-Command specify -ErrorAction SilentlyContinue) {
 } else {
     Step-Warn "specify nicht installiert"
     Write-Host "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
-    Write-Host "          -> Dann je Agent: cd $tdShort && specify init --here --force --ignore-agent-tools --ai {gemini|opencode|claude|copilot|codex}"
+    Write-Host "          -> Dann je Agent: cd $tdShort && specify init --here --force --integration {gemini|opencode|claude|copilot|codex}"
 }
 
 $projectConstitution = Join-Path $TargetDir 'constitution.md'

@@ -1,32 +1,32 @@
 <!--
 Sync Impact Report
-Version change: 1.11.0 -> 1.12.0
+Version change: 1.12.0 -> 1.13.0
 Modified principles:
-- None (purely additive)
+- I. Security-First (add `.opencode/command/` as allowed Spec-Kit command surface)
+- IV. Workspace Isolation (add Spec-Kit lifecycle maintenance rules)
 Added sections:
-- None
+- Spec-Kit lifecycle maintenance rules under Principle IV
 Removed sections:
 - None
 Templates requiring updates:
-- ✅ .specify/templates/plan-template.md
-- ✅ .specify/templates/spec-template.md
-- ✅ .specify/templates/tasks-template.md
-- ✅ .specify/templates/asvs-verification-template.md
-- ✅ .specify/templates/supply-chain-evidence-template.md
-- ✅ .specify/templates/zero-trust-applicability-template.md
-- ✅ .specify/templates/samm-assessment-template.md
-- ✅ .specify/templates/threat-model-template.md
+- ✅ .specify/templates/plan-template.md (preserve local governance overlay)
+- ✅ .specify/templates/spec-template.md (preserve CR-001..CR-010 overlay)
+- ✅ .specify/templates/tasks-template.md (preserve cross-cutting governance tasks)
 Runtime guidance requiring updates:
 - ✅ AGENTS.md
 - ✅ CLAUDE.md
 - ✅ GEMINI.md
 - ✅ .github/copilot-instructions.md
 - ✅ .specify/memory/constitution.md (mirror)
+New scripts:
+- ✅ scripts/update-spec-kit.sh
+- ✅ scripts/update-spec-kit.ps1
+- ✅ docs/man/update-spec-kit.1.md
 Follow-up TODOs:
 - None
 -->
 
-# Constitution v1.12.0
+# Constitution v1.13.0
 
 # home-baseline Constitution
 
@@ -65,8 +65,8 @@ Non-negotiable rules:
   .claude/*
   !.claude/commands/
   ```
-  Currently allowed subdirectories: `.claude/commands/` and `.gemini/commands/`
-  (Spec-Kit command definitions only).
+  Currently allowed subdirectories: `.claude/commands/`, `.gemini/commands/`,
+  and `.opencode/command/` (Spec-Kit command definitions only).
 - Every workspace MUST have a `pre-push` hook installed that blocks pushes
   containing secret-like filenames or credential patterns (tokens matching
   `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private-key headers).
@@ -137,7 +137,7 @@ are excluded by the whitelist `.gitignore`):
 | Documentation | `README.md`, `.gitignore`, `.gitconfig`, `docs/` |
 | AI agent guidance | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` |
 | Spec-Kit tooling | `.specify/` (config, templates, memory/constitution), `.agents/skills/`, `.github/agents/`, `.github/prompts/` |
-| Agent Spec-Kit commands | `.claude/commands/`, `.gemini/commands/` |
+| Agent Spec-Kit commands | `.claude/commands/`, `.gemini/commands/`, `.opencode/command/` |
 
 Rules:
 - Changes to `home-baseline` scripts do NOT auto-propagate to child workspaces;
@@ -146,6 +146,26 @@ Rules:
   `.github/copilot-instructions.md`.
 - Adding a new tracked category MUST be accompanied by a constitution amendment
   (PATCH or MINOR depending on scope).
+
+Spec-Kit lifecycle maintenance rules:
+- Repository-wide Spec-Kit refreshes MUST use the paired scripts
+  `scripts/update-spec-kit.sh` and `scripts/update-spec-kit.ps1`, not ad-hoc
+  manual copying from `~/home-baseline-tmp`.
+- The scripts MUST dynamically discover Level-0 (`~/home-baseline-tmp`),
+  Level-1 workspaces, and Level-2 projects by looking for `.git` plus
+  `.specify/`; newly added repos are therefore included automatically.
+- Each refresh MUST run `specify init --here --force --integration <agent>` for
+  `claude`, `opencode`, `gemini`, `copilot`, and `codex`. Legacy `--ai` usage
+  is only a compatibility fallback.
+- `.specify/memory/constitution.md` MUST be backed up and restored around
+  `specify init --force`. Local governance overlays in `spec-template.md`,
+  `plan-template.md`, and `tasks-template.md` MUST be preserved after every
+  Spec-Kit update.
+- `RiderProjects/TuiVision` is part of the normal Spec-Kit update set. It is
+  only skipped when it is already clean and no update is needed.
+- OpenCode support is tracked via `.opencode/command/*.md`; caches, sessions,
+  logs, credentials, package directories, and other `.opencode/` root content
+  remain excluded.
 
 **Rationale**: Submodules create fragile cross-repo coupling. Independent repos
 give each workspace its own clean history and deployment lifecycle. Tracking
@@ -738,8 +758,8 @@ project context.
 | `RiderProjects/TinyPl0` | .NET 10 / C# 14 compiler, VM, CLI, and Terminal.Gui IDE for PL/0 | `dotnet restore/build/test`; coverage collection; `scripts/update-golden-code.sh` for intentional compiler-output changes | Learner-facing compiler docs, examples, generated API docs, and IDE flows follow DE-first/EN-second and WCAG 2.2 AA-oriented review | Manual conservative `80`; C#/.NET Thorsten-Solo `125` unless all agent files justify a deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.codex` prompt/rule surfaces, Spec-Kit surfaces; `.codex` credentials/logs/history/SQLite state are forbidden |
 | `RiderProjects/TuiVision` | .NET 10 / C# terminal UI framework and Turbo Vision port: framework libraries, managed console driver, compatibility, controls, serialization, examples | `dotnet restore/build/test`; MSTest suites; Coverlet coverage gates for core assemblies; `dotnet format` where configured | DocFX regeneration requires Playwright + axe and lynx-oriented A11Y smoke review for generated documentation | Manual conservative `80`; C#/.NET Thorsten-Solo `125` unless all agent files justify a deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.github/agents/copilot-instructions.md`, Spec-Kit surfaces |
 | `RiderProjects/WebApplication1` | .NET 10 / C# single-project ASP.NET Core MVC application | `dotnet build`; `dotnet build -c Release/Debug`; `dotnet run --project WebApplication1/WebApplication1.csproj` | HTML views, documentation, templates, and UI output follow WCAG 2.2 AA where applicable and stay keyboard/AT usable | Manual conservative `80`; C#/.NET Thorsten-Solo `125` unless all agent files justify a deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit surfaces |
-| `RiderProjects/inventarworkerservice2` | .NET 9.0 via `global.json`; cross-platform Worker Service; Windows/Systemd hosting; hardware inventory; PowerShell SDK; YAML/JSON status output | `dotnet build InventarWorkerService2.sln`; `dotnet run --project InventarWorkerService2/InventarWorkerService2.csproj`; CI includes Gitleaks and agent-secret-scan | CLI/service status output, generated templates, docs, JSON/YAML reports, and logs remain text-first and accessibility-aware | Manual conservative `80`; C#/.NET Thorsten-Solo `125` unless all agent files justify a deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.opencode`, Spec-Kit surfaces; credentials/history/logs/SQLite state are forbidden |
-| `RiderProjects/sysinfotool` | .NET 10 / C# 14 cross-platform system-information CLI; Spectre.Console; Windows/macOS/Linux/FreeBSD services; DE/EN localization | `dotnet restore/build/test`; coverage collection; `docfx docfx.json`; GitLab CI stages `build/test/docs/scan` | Generated DocFX HTML targets WCAG 2.2 AA; DocFX regeneration requires Playwright + axe and lynx-oriented review where applicable | Manual conservative `80`; repo-specific Thorsten-Solo `100` lines/workday for this .NET CLI codebase | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.opencode`, Spec-Kit surfaces; credentials/history/logs/SQLite state are forbidden |
+| `RiderProjects/inventarworkerservice2` | .NET 9.0 via `global.json`; cross-platform Worker Service; Windows/Systemd hosting; hardware inventory; PowerShell SDK; YAML/JSON status output | `dotnet build InventarWorkerService2.sln`; `dotnet run --project InventarWorkerService2/InventarWorkerService2.csproj`; CI includes Gitleaks and agent-secret-scan | CLI/service status output, generated templates, docs, JSON/YAML reports, and logs remain text-first and accessibility-aware | Manual conservative `80`; C#/.NET Thorsten-Solo `125` unless all agent files justify a deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.opencode/command/`, Spec-Kit surfaces; credentials/history/logs/SQLite state are forbidden |
+| `RiderProjects/sysinfotool` | .NET 10 / C# 14 cross-platform system-information CLI; Spectre.Console; Windows/macOS/Linux/FreeBSD services; DE/EN localization | `dotnet restore/build/test`; coverage collection; `docfx docfx.json`; GitLab CI stages `build/test/docs/scan` | Generated DocFX HTML targets WCAG 2.2 AA; DocFX regeneration requires Playwright + axe and lynx-oriented review where applicable | Manual conservative `80`; repo-specific Thorsten-Solo `100` lines/workday for this .NET CLI codebase | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.opencode/command/`, Spec-Kit surfaces; credentials/history/logs/SQLite state are forbidden |
 
 ## Script & Code Conventions
 

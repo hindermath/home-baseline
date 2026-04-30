@@ -145,6 +145,7 @@ Get-ChildItem -Path $RepoDir -Filter 'Lastenheft*.md' -File -ErrorAction Silentl
 
 # Verzeichnisse
 Sync-Dir 'scripts'
+Sync-Dir 'docs'
 Sync-Dir '.github'
 Sync-Dir 'specs'
 Sync-Dir '.specify'

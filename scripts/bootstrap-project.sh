@@ -368,7 +368,7 @@ if $OPT_PREVIEW; then
   preview_action "PRINT" "Gemini manuelle Anweisung" "interaktiv"
   preview_action "CHECK" "gh copilot --help" "optional"
   for agent in "${SPECIFY_AGENTS[@]}"; do
-    preview_action "EXEC" "specify init --here --force --ignore-agent-tools --ai ${agent}" "optional"
+    preview_action "EXEC" "specify init --here --force --integration ${agent}" "optional"
   done
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
@@ -877,7 +877,7 @@ elif [ -d "${TARGET_DIR}/.specify" ] && ! $OPT_FORCE; then
   step_skip ".specify/ vorhanden"
 elif command -v specify >/dev/null 2>&1; then
   for agent in "${SPECIFY_AGENTS[@]}"; do
-    if ! (cd "$TARGET_DIR" && specify init --here --force --ignore-agent-tools --ai "$agent" >/dev/null 2>&1); then
+    if ! (cd "$TARGET_DIR" && specify init --here --force --integration "$agent" >/dev/null 2>&1); then
       step_warn "specify init fehlgeschlagen fuer ${agent}"
     fi
   done
@@ -885,7 +885,7 @@ elif command -v specify >/dev/null 2>&1; then
 else
   step_warn "specify nicht installiert"
   echo "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
-  echo "          -> Dann je Agent: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --force --ignore-agent-tools --ai {gemini|opencode|claude|copilot|codex}"
+  echo "          -> Dann je Agent: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --force --integration {gemini|opencode|claude|copilot|codex}"
 fi
 
 if [ -f "${TARGET_DIR}/constitution.md" ] && [ -d "${TARGET_DIR}/.specify/memory" ]; then

@@ -403,7 +403,7 @@ jobs:
         foreach ($agent in @('gemini', 'opencode', 'claude', 'copilot', 'codex')) {
             Push-Location $workspaceDir
             try {
-                specify init --here --force --ignore-agent-tools --ai $agent 2>$null | Out-Null
+                specify init --here --force --integration $agent 2>$null | Out-Null
             } catch {
                 Write-Host "    WARN: specify init fehlgeschlagen fuer $agent" -ForegroundColor Yellow
             } finally {

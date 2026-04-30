@@ -562,7 +562,7 @@ Wenn du deine Umgebung auf einem zweiten Gerät (z. B. Wechsel von macOS zu Wind
 
 1.  **Workspaces klonen / Clone workspaces:**
     Klone deine bestehenden Workspace-Repositories (z. B. `c64-baseline`, `rider-baseline`) manuell in die entsprechenden Ordner in deinem Home-Verzeichnis (z. B. `~/C64Projects`, `~/RiderProjects`).
-    
+
     *Clone your existing workspace repositories manually into their respective folders in your home directory.*
 
 2.  **Migration ausführen / Run migration:**
@@ -1520,12 +1520,12 @@ Oder wenn ein Skript abgebrochen ist:
 4. Die Implementierung in handhabbare Aufgaben aufzuteilen (`tasks.md`)
 5. Die Aufgaben Schritt für Schritt umzusetzen (`implement`)
 
-> **Warum SDD?**  
+> **Warum SDD?**
 > Ohne Spezifikation entstehen oft Missverständnisse, unfertige Features und unnötiger Code. Mit SDD weißt du immer, was als Nächstes zu tun ist - und warum.
 
 *Specification-Driven Development (SDD) is a way of working where you create a structured specification before writing a single line of code, supported by an AI agent. The agent helps you describe requirements clearly (`spec.md`), identify and resolve open questions (`clarify`), create a concrete implementation plan (`plan.md`), split the work into manageable tasks (`tasks.md`), and then implement those tasks step by step (`implement`).*
 
-> **Why SDD?**  
+> **Why SDD?**
 > *Without a specification, teams often create misunderstandings, unfinished features, and unnecessary code. With SDD, you always know what to do next - and why.*
 
 ---
@@ -1534,7 +1534,7 @@ Oder wenn ein Skript abgebrochen ist:
 
 **Spec-Kit** ist ein KI-Agenten-Skill-System, das den SDD-Workflow automatisiert. Es ist in diesem Repository bereits vollständig vorkonfiguriert und unterstützt mehrere KI-Agenten (GitHub Copilot, Claude, Gemini, Codex, OpenCode).
 
-Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen des Repos automatisch mitgeliefert.  
+Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen des Repos automatisch mitgeliefert.
 **Eine separate Installation ist nicht nötig** — du brauchst nur deinen bevorzugten KI-Agenten.
 
 *Spec-Kit is an AI agent skill system that automates the SDD workflow. It is fully pre-configured in this repository. No separate download is needed — you only need your preferred AI agent.*
@@ -1558,7 +1558,7 @@ Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` gepr
 
 ### KI-Agenten einrichten / Set up AI agents
 
-Je nachdem welchen KI-Agenten du bevorzugst, sind unterschiedliche Schritte nötig.  
+Je nachdem welchen KI-Agenten du bevorzugst, sind unterschiedliche Schritte nötig.
 Dieses Repo unterstützt alle fünf nachfolgend beschriebenen Agenten.
 
 *Depending on which AI agent you prefer, different setup steps are needed. This repo supports all five agents described below.*
@@ -1599,7 +1599,7 @@ gh auth login
 gh copilot
 ```
 
-> Skills werden automatisch aus `.agents/skills/` geladen.  
+> Skills werden automatisch aus `.agents/skills/` geladen.
 > Aufruf im Chat: `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, …
 
 Wenn du zusaetzlich auf mehreren Maschinen dieselbe Copilot-CLI-Darstellung oder dieselben Reasoning-Defaults haben willst, kannst du danach optional noch `setup-copilot-settings.*` aus dem frueheren Abschnitt `Einrichtung der KI-Agenten / AI Agent Setup` verwenden. Das ist fuer Spec-Kit nicht zwingend, aber fuer eine konsistente Arbeitsumgebung sinnvoll.
@@ -1707,9 +1707,9 @@ Codex liest `AGENTS.md` als Kontext-Datei; alle Spec-Kit-Artefakte (`spec.md`, `
 
 *Codex reads `AGENTS.md` as project context; all Spec-Kit artefacts are available as input.*
 
-Codex CLI ist in diesem Setup besonders stark, wenn du repo-nahe Arbeit mit klarer Projektkontext-Datei bevorzugst. Die Spec-Kit-Integration wird heute wie die anderen Agenten ueber `specify init --here --force --ignore-agent-tools --ai codex` eingerichtet.
+Codex CLI ist in diesem Setup besonders stark, wenn du repo-nahe Arbeit mit klarer Projektkontext-Datei bevorzugst. Die Spec-Kit-Integration wird heute wie die anderen Agenten ueber `specify init --here --force --integration codex` eingerichtet.
 
-*Codex CLI is especially strong in this setup if you prefer repository-close work with an explicit project context file. Spec-Kit integration is now initialized like the other agents via `specify init --here --force --ignore-agent-tools --ai codex`.*
+*Codex CLI is especially strong in this setup if you prefer repository-close work with an explicit project context file. Spec-Kit integration is now initialized like the other agents via `specify init --here --force --integration codex`.*
 
 > **Voraussetzung / Prerequisite:** Node.js ≥ 22 LTS, OpenAI-Account (API-Key **oder** ChatGPT Plus/Pro/Business/Enterprise)
 
@@ -1760,9 +1760,9 @@ Setzt `tui.status_line` in `~/.codex/config.toml` aus `scripts/templates/codex-s
 
 Weitere Infos: [github.com/openai/codex](https://github.com/openai/codex)
 
-Wenn du ausserdem eine konsistente TUI-Statuszeile willst, ist `setup-codex-settings.*` der passende zweite Schritt aus dem frueheren Agenten-Setup-Block. Fuer Spec-Kit selbst ist wichtiger, dass du spaeter die agentenweise Initialisierung mit `--force --ignore-agent-tools` verwendest.
+Wenn du ausserdem eine konsistente TUI-Statuszeile willst, ist `setup-codex-settings.*` der passende zweite Schritt aus dem frueheren Agenten-Setup-Block. Fuer Spec-Kit selbst ist wichtiger, dass du spaeter die agentenweise Initialisierung mit `--force --integration` verwendest.
 
-*If you also want a consistent TUI status line, `setup-codex-settings.*` is the right second step from the earlier agent setup block. For Spec-Kit itself, the more important point is to use the per-agent initialization with `--force --ignore-agent-tools`.*
+*If you also want a consistent TUI status line, `setup-codex-settings.*` is the right second step from the earlier agent setup block. For Spec-Kit itself, the more important point is to use the per-agent initialization with `--force --integration`.*
 
 → Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
@@ -1806,7 +1806,7 @@ iwr https://opencode.ai/install.ps1 | iex
 opencode
 ```
 
-Weitere Infos: [opencode.ai](https://opencode.ai)  
+Weitere Infos: [opencode.ai](https://opencode.ai)
 GitHub: [github.com/sst/opencode](https://github.com/sst/opencode)
 
 → Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
@@ -1836,13 +1836,13 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX
 uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git@vX.Y.Z
 
 # Option 2: Einmalige Nutzung ohne Installation / One-time usage without installing
-uvx --from git+https://github.com/github/spec-kit.git@vX.Y.Z specify init --here --force --ignore-agent-tools --ai copilot
+uvx --from git+https://github.com/github/spec-kit.git@vX.Y.Z specify init --here --force --integration copilot
 
 # Installation prüfen / Verify installation
 specify check
 ```
 
-> Den aktuellen Release-Tag findest du unter: [github.com/github/spec-kit/releases](https://github.com/github/spec-kit/releases)  
+> Den aktuellen Release-Tag findest du unter: [github.com/github/spec-kit/releases](https://github.com/github/spec-kit/releases)
 > Dokumentation: [github.github.io/spec-kit](https://github.github.io/spec-kit/)
 
 ---
@@ -1855,25 +1855,49 @@ Initialisiere Spec-Kit in einem **bestehenden** Projektverzeichnis (`--here`) od
 
 ```bash
 # Neues Projektverzeichnis anlegen / Create new project directory
-specify init MeinProjekt --ai copilot
+specify init MeinProjekt --integration copilot
 
 # In bestehendem Verzeichnis initialisieren / Initialize in existing directory
 cd ~/MeinProjekt
 
 # Alle Agenten-Integrationen nacheinander / All agent integrations in sequence
-specify init --here --force --ignore-agent-tools --ai gemini
-specify init --here --force --ignore-agent-tools --ai opencode
-specify init --here --force --ignore-agent-tools --ai claude
-specify init --here --force --ignore-agent-tools --ai copilot
-specify init --here --force --ignore-agent-tools --ai codex
+specify init --here --force --integration gemini
+specify init --here --force --integration opencode
+specify init --here --force --integration claude
+specify init --here --force --integration copilot
+specify init --here --force --integration codex
 ```
 
-> **Hinweis / Note:**  
-> `specify` meldet derzeit, dass `--ai` ab Version 0.10.0 durch `--integration` ersetzt wird. Bis die Repo-Skripte komplett auf die neue CLI umgestellt sind, bleibt die oben gezeigte Form die dokumentierte Baseline.  
-> *`specify` currently warns that `--ai` will be replaced by `--integration` in version 0.10.0. Until the repo scripts fully switch to the new CLI, the form shown above remains the documented baseline.*
+> **Hinweis / Note:**
+> Fuer bestehende home-baseline-Repos bevorzugt `scripts/update-spec-kit.*` die neue Spec-Kit-Integration: `specify init --here --force --integration <agent>`. Die alte `--ai`-Form ist nur noch ein Kompatibilitaets-Fallback in den Update-Skripten.
+> *For existing home-baseline repositories, `scripts/update-spec-kit.*` prefers the new Spec-Kit integration form: `specify init --here --force --integration <agent>`. The old `--ai` form is only kept as a compatibility fallback in the update scripts.*
 
-> **Tipp / Tip:** `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` richtet all das automatisch ein.  
+> **Tipp / Tip:** `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` richtet all das automatisch ein.
 > *Using `bootstrap-workspace.sh` / `bootstrap-workspace.ps1` sets everything up automatically.*
+
+Repo-weite Spec-Kit-Aktualisierungen ueber alle Level-0-, Level-1- und
+Level-2-Repositories laufen ueber:
+
+*Repository-wide Spec-Kit updates across all Level-0, Level-1, and Level-2
+repositories use:*
+
+```bash
+bash scripts/update-spec-kit.sh --dry-run
+bash scripts/update-spec-kit.sh --commit --push
+```
+
+```powershell
+pwsh scripts/update-spec-kit.ps1 -WhatIf
+pwsh scripts/update-spec-kit.ps1 -Commit -Push
+```
+
+Die Skripte erkennen Repos dynamisch ueber `.git` plus `.specify/`, sichern
+`.specify/memory/constitution.md`, legen die lokalen Governance-Templates wieder
+auf und tracken fuer OpenCode nur `.opencode/command/*.md`.
+
+*The scripts dynamically discover repositories via `.git` plus `.specify/`,
+preserve `.specify/memory/constitution.md`, reapply the local governance
+templates, and track only `.opencode/command/*.md` for OpenCode.*
 
 ---
 

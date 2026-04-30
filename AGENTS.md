@@ -18,6 +18,7 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/setup-git-identity.*`: detects and fixes placeholder git identity (`Your Name` / `your@email.example`) in `~/.gitconfig`; called automatically by `bootstrap-workspace.*`.
 - `scripts/scan-agent-secrets.*`: manual or hook-driven secret scanning.
 - `scripts/audit-agent-changes.*`: local baseline/report workflow to correlate agent-managed file changes with recent local agent logs.
+- `scripts/update-spec-kit.*`: dynamically refreshes Spec-Kit integrations across Level-0, Level-1, and Level-2 repos while preserving local governance templates.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories.
 
 There is no `src/` or formal test tree; the scripts themselves are the product.
@@ -33,6 +34,7 @@ bash scripts/setup-git-identity.sh                 # Git-Identität einrichten /
 bash scripts/scan-agent-secrets.sh --fail-on-high .
 bash scripts/audit-agent-changes.sh snapshot
 bash scripts/audit-agent-changes.sh report
+bash scripts/update-spec-kit.sh --dry-run
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 pwsh scripts/install-hooks.ps1 -Verbose
 pwsh scripts/setup-git-identity.ps1 -CheckOnly     # Git-Identität prüfen / check identity
@@ -40,6 +42,7 @@ pwsh scripts/setup-git-identity.ps1                # Git-Identität einrichten /
 pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
+pwsh -NoProfile scripts/update-spec-kit.ps1 -WhatIf
 ```
 
 Use `--dry-run` and `-WhatIf` before changing bootstrap logic. Reinstall hooks after editing files in `scripts/hooks/`.
@@ -251,16 +254,19 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 - File system — `~/WorkspaceName/` (local dir), remote repo (GitHub/GitLab), `~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/` (005-workspace-teardown)
 - Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (GitLab support), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
 - Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `specify` CLI ≥ 0.8.3, `git` ≥ 2.30, optional `gh`/`glab` push remotes (008-spec-kit-update-automation)
+- File system — dynamic Level-0/Level-1/Level-2 discovery via `.git` + `.specify/`; Spec-Kit templates, `.opencode/command/*.md`, `.specify/memory/constitution.md` (008-spec-kit-update-automation)
 
 ## Letzte Änderungen / Recent Changes
 - 001-workspace-homogeneity-guardian: Added Bash 5+ (primär), PowerShell Core 7+ (Windows-Parität) + `git`, `bash` ≥ 5, `ripgrep (rg)`, `sha256sum` (Linux/WSL) /
 - 003-public-template-prep: Repo auf Public Template umgestellt, MIT-Lizenz, Branch-Protection, alle persönlichen Daten entfernt, Bootstrap-Skripte dynamisch (kein hardcodierter Username mehr)
 - 004-readme-ausbau-ci-fixes-sync: sync-home.sh/.ps1 hinzugefügt; README vollständig überarbeitet (2-stufiges TOC, Auszubildende, Spec-Kit, WCAG 2.2 AA); CHANGELOG.md angelegt; CI-Fixes (TARGET_DIR, windows-2022, -TargetDir)
-- 005-readme-tabelle-specify-init: Workflow-Tabelle ausgerichtet (5 Zeilen 64→63 Zeichen); Abschnitt „Verzeichnis vorbereiten" auf agentenweise `specify init --here --force --ignore-agent-tools --ai {agent}` umgestellt
+- 005-readme-tabelle-specify-init: Workflow-Tabelle ausgerichtet (5 Zeilen 64→63 Zeichen); Abschnitt „Verzeichnis vorbereiten" auf agentenweise `specify init --here --force --integration {agent}` umgestellt
 - 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf`, `~/.gitconfig.d/`, bootstrap-workspace, sync-home, check-homogeneity, pre-push hook erweitert
 - 005-workspace-teardown: `teardown-workspace.sh/.ps1` neu — Backup, Remote-Löschung (GitHub/GitLab auto-detected), lokale Löschung, Artefakt-Bereinigung; `--teardown`-Alias in `bootstrap-workspace.*`
 - 006-gitlab-support: GitLab-CLI-Support für `bootstrap-workspace.*` und `bootstrap-project.*`, Self-hosted `--gitlab-url`, bilinguale Fehlerpfade und GitLab-Dokumentation ergänzt
 - 007-gitlab-release-automation: `setup-gitlab-release.*`, GitLab-Release-Templates und non-blocking manueller `release`-Job ergänzt; mit echten Releases in `sysinfotool` (`v0.1.0`) und `inventarworkerservice2` (`v0.0.1`) validiert; Detached-HEAD- und CHANGELOG-Refresh-Fixes eingearbeitet
+- 008-spec-kit-update-automation: `update-spec-kit.sh/.ps1` ergänzt; dynamische Level-0/1/2-Erkennung, `specify init --here --force --integration <agent>` für Claude/OpenCode/Gemini/Copilot/Codex, Constitution-/Template-Erhalt und `.opencode/command`-Tracking automatisiert
 
 ## Projektstatus / Repository Status
 
@@ -299,9 +305,20 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 | WCAG 3.1.2 `lang`-Attribute | GitHub entfernt HTML-Attribute | Platform-Einschränkung — in Barrierefreiheit-Abschnitt dokumentiert |
 | ASCII-Box-Drawing-Tabellen falsch ausgerichtet | Ein überzähliges Leerzeichen vor dem schließenden `│` macht eine Zeile 1 Zeichen zu lang | Alle Zeilen auf exakt gleiche Zeichenbreite prüfen (PS: `$line.Length`) |
 | `*-test.sh/ps1` blockiert `git pull --rebase` | Output-Datei wird vor dem Push geschrieben | `git pull --rebase --autostash origin main` vor dem Push verwenden |
-| Spec-Kit-Verzeichnis manuell kopiert | `cp -r ~/home-baseline-tmp/` setzt lokalen Klon voraus | Agentenweise `specify init --here --force --ignore-agent-tools --ai {agent}` verwenden |
+| Spec-Kit-Verzeichnis manuell kopiert | `cp -r ~/home-baseline-tmp/` setzt lokalen Klon voraus | `bash scripts/update-spec-kit.sh` / `pwsh scripts/update-spec-kit.ps1` oder agentenweise `specify init --here --force --integration {agent}` verwenden |
 | Lastenheft nach Feature-Abschluss nicht umbenannt | `tasks.md` enthielt keinen Rename-Schritt (seit constitution v1.1.1 behoben) | `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` (macOS/Linux) · `pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>` (Windows) |
 | Workspace-Name beginnt mit `-` (z.B. `-h`) | Shell interpretiert ihn als Flag | `teardown-workspace.sh -- -h` (doppeltes Minus vor dem Namen); gilt analog für alle Skripte mit Positionsargumenten |
+
+## Spec-Kit-Update-Pflege / Spec Kit Update Maintenance
+
+- Fuer repo-weite Spec-Kit-Aktualisierungen zuerst `bash scripts/update-spec-kit.sh --dry-run` bzw. `pwsh scripts/update-spec-kit.ps1 -WhatIf` ausfuehren.
+- Echte Laeufe laufen ueber `bash scripts/update-spec-kit.sh --commit --push` oder `pwsh scripts/update-spec-kit.ps1 -Commit -Push`; manuelle Massenkopien aus `~/home-baseline-tmp` sind nicht zulaessig.
+- Das Skript erkennt Level 0 (`~/home-baseline-tmp`), Level-1-Workspaces und Level-2-Projekte dynamisch ueber `.git` plus `.specify/`; neue Repos werden automatisch aufgenommen.
+- `RiderProjects/TuiVision` gehoert zur normalen Zielmenge und darf nur uebersprungen werden, wenn es bereits sauber und aktuell ist.
+- Lokale Governance in `.specify/memory/constitution.md`, `spec-template.md`, `plan-template.md` und `tasks-template.md` muss nach `specify init --force` erhalten bleiben.
+- OpenCode wird ueber `.opencode/command/*.md` getrackt. Das `.opencode/`-Root, Caches, Sessions, Logs, Credentials und lokale Abhaengigkeiten bleiben ausgeschlossen.
+
+*For repository-wide Spec-Kit updates, run the dry-run first, then use the paired update scripts with `--commit --push` / `-Commit -Push`. The scripts dynamically discover Level 0, Level 1, and Level 2 repositories, keep TuiVision in scope, preserve local governance templates and constitution memory, and track only `.opencode/command/*.md` for OpenCode.*
 
 ## Spec-Kit-Preset-Pflege / Spec Kit Preset Maintenance
 

@@ -327,7 +327,19 @@ Prüfen: PowerShell `$line.Length` oder `wc -m` (Bash) für jede Rahmen-Zeile.
 
 ### Spec-Kit-Verzeichnis initialisieren / Initialize the Spec-Kit Directory
 Nie manuell aus `~/home-baseline-tmp/` kopieren. Stattdessen:
-`specify init --here --force --ignore-agent-tools --ai {agent}` je Agent für `gemini`, `opencode`, `claude`, `copilot` und `codex` ausführen.
+`specify init --here --force --integration {agent}` je Agent für `gemini`, `opencode`, `claude`, `copilot` und `codex` ausführen.
+
+### Spec-Kit-Updates repo-weit / Repository-Wide Spec-Kit Updates
+Fuer Level 0, Level 1 und Level 2 nicht mehr per Hand in jedem Repo nachziehen.
+Stattdessen zuerst `bash scripts/update-spec-kit.sh --dry-run` bzw.
+`pwsh scripts/update-spec-kit.ps1 -WhatIf` ausfuehren, danach bei Bedarf
+`--commit --push` / `-Commit -Push`.
+
+Das Skript erkennt neue Repos dynamisch ueber `.git` plus `.specify/`, sichert
+`.specify/memory/constitution.md`, legt die lokalen Governance-Templates wieder
+auf und nimmt `RiderProjects/TuiVision` normal mit. OpenCode wird nur ueber
+`.opencode/command/*.md` getrackt; `.opencode`-Caches, Sessions, Logs,
+Credentials und lokale Abhaengigkeiten bleiben ausgeschlossen.
 
 ### GitHub-Housekeeping: Archivierung, Sichtbarkeit, Forks und Stars / GitHub Housekeeping: Archiving, Visibility, Forks, and Stars
 `archived` bedeutet bei GitHub nur read-only, nicht unsichtbar. Public archived Repos bleiben ohne Anmeldung sichtbar.
@@ -361,12 +373,14 @@ Für Aktivitätsbewertungen `pushedAt` statt `updatedAt` verwenden, weil `update
 - File system — `~/WorkspaceName/`, remote repo, `~/README.md`, `~/.gitignore`, `~/.gitconfig`, `~/.gitconfig.d/` (005-workspace-teardown)
 - Bash 3.x+ (macOS/Linux) · PowerShell 7+ (Windows) + `glab` ≥ 1.40 (GitLab support), `gh` ≥ 2.30, `git` ≥ 2.30 (006-gitlab-support)
 - Existing script files plus `~/README.md` row updates for GitHub/GitLab bootstrap flows (006-gitlab-support)
+- Bash 3.x+ (macOS/Linux), PowerShell 7+ (Windows) + `specify` CLI ≥ 0.8.3, `git` ≥ 2.30 (008-spec-kit-update-automation)
 
 ## Letzte Änderungen / Recent Changes
 - 003-git-config-scope: Git-Konfiguration Scope-Isolierung — `includeIf` in `~/.gitconfig`, `~/.gitconfig.d/` als workspace-spezifische Include-Fragmente; bootstrap-workspace, sync-home, check-homogeneity und pre-push hook erweitert
 - 005-workspace-teardown: `teardown-workspace.sh/.ps1` — Backup, Remote-Löschung (GitHub/GitLab), lokale Löschung, Artefakt-Bereinigung; `--teardown`-Alias in `bootstrap-workspace.*`
 - 006-gitlab-support: Added GitLab CLI support, self-hosted GitLab URL handling, and `glab auth login` pitfall guidance
 - 007-gitlab-release-automation: Added `setup-gitlab-release.*`, reusable GitLab release templates, detached-head and changelog-refresh fixes, and a non-blocking manual `release` job validated with real GitLab releases in `sysinfotool` (`v0.1.0`) and `inventarworkerservice2` (`v0.0.1`)
+- 008-spec-kit-update-automation: Added `update-spec-kit.*` for dynamic Level-0/1/2 Spec-Kit refreshes, governance-template preservation, TuiVision inclusion, and `.opencode/command` tracking
 
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,

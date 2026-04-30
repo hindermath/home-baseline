@@ -141,6 +141,7 @@ done
 
 # Verzeichnisse
 sync_dir "scripts"
+sync_dir "docs"
 sync_dir ".github"
 sync_dir "specs"
 sync_dir ".specify"
