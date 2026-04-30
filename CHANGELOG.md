@@ -8,6 +8,35 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.11.2](https://github.com/hindermath/home-baseline/compare/v0.11.1...v0.11.2) (2026-04-30)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* bootstrap full level-1 agentic baseline ([33acefc](https://github.com/hindermath/home-baseline/commit/33acefc8d5568a4c7b2cf336b01381cc887d18d9))
+* initialise spec kit for all agents ([95c0011](https://github.com/hindermath/home-baseline/commit/95c0011a90304771038cc01b423cd34360f6fd4d))
+* keep git identity local during sync ([e7813a2](https://github.com/hindermath/home-baseline/commit/e7813a2be07e6fd1b9505f2d64f8f0126a868fe1))
+* make spec-kit template source self-contained ([6ae21c9](https://github.com/hindermath/home-baseline/commit/6ae21c9e894bb21d66f4e325e3871afc197708c9))
+* migrate stale gitconfig identity warning ([0571a3b](https://github.com/hindermath/home-baseline/commit/0571a3bc61bc482e1f39fc55f794408a46a8c4b6))
+* opt release-please into node 24 ([9e96a51](https://github.com/hindermath/home-baseline/commit/9e96a5180a535babf89732373d1ba6dc9b7c3251))
+* pin release-please node 24 action ([252717a](https://github.com/hindermath/home-baseline/commit/252717a63def4e28fbff65e68c414a6f23ec3f2d))
+* repair generated homogeneity workflow ([353b19d](https://github.com/hindermath/home-baseline/commit/353b19d6efc835b3a87aaeb7748a3a63371dcc73))
+
+
+### Documentation / Dokumentation
+
+* document manual specify upgrade before rollout ([1f88728](https://github.com/hindermath/home-baseline/commit/1f8872800718e9e14d1a7318d52042004d0b5ae8))
+* update project statistics for opencode setup ([b2d820b](https://github.com/hindermath/home-baseline/commit/b2d820b2377c8aa4a3e78bb697085a0e794d21ce))
+* update statistics for git identity sync fix ([ecbd976](https://github.com/hindermath/home-baseline/commit/ecbd9765c81f9d8875954978dcfb6406b185b956))
+
+
+### Maintenance / Wartung
+
+* automate spec-kit integration updates ([f340980](https://github.com/hindermath/home-baseline/commit/f340980212f888baaa9699dc963485a34a60d541))
+* update Microsoft Foundry skill ([56b2c4e](https://github.com/hindermath/home-baseline/commit/56b2c4eb7bdc4ee2060f8cb49ad2a370d4e0a402))
+* update spec-kit integrations ([495d88a](https://github.com/hindermath/home-baseline/commit/495d88af327cd282b50037394f006b7667126b3d))
+* update spec-kit integrations to 0.8.3 ([8566987](https://github.com/hindermath/home-baseline/commit/85669877c77afcd9bba6be4f155ea1139c63cd84))
+
 ## [0.11.1](https://github.com/hindermath/home-baseline/compare/v0.11.0...v0.11.1) (2026-04-28)
 
 
