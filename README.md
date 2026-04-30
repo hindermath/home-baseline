@@ -937,12 +937,15 @@ GitHub-Repositories verwenden **[Release Please](https://github.com/googleapis/r
 
 *GitHub repositories use **Release Please**: push to `main`, let Release Please open or update the release PR, then merge the PR to create tag and GitHub Release.*
 
-Release-Please-Workflows setzen `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true`, damit
-GitHub die JavaScript-Action bereits vor der Node.js-20-Abschaltung auf Node.js
-24 ausfuehrt.
+Release-Please-Workflows pinnen voruebergehend einen konkreten
+`googleapis/release-please-action`-SHA, dessen `action.yml` bereits `node24`
+nutzt. Sobald ein getaggtes v4-Release ebenfalls `node24` verwendet, kann die
+Workflow-Referenz wieder auf einen normalen `@v4.x`-Tag umgestellt werden.
 
-*Release Please workflows set `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` so
-GitHub runs the JavaScript action on Node.js 24 before Node.js 20 is removed.*
+*Release Please workflows temporarily pin a concrete
+`googleapis/release-please-action` SHA whose `action.yml` already uses `node24`.
+Once a tagged v4 release also targets `node24`, the workflow reference can move
+back to a normal `@v4.x` tag.*
 
 **GitLab / GitLab**
 

@@ -26,7 +26,7 @@
 | 2026-04-29 | Level-1-Workspace-Bootstrap-Haertung | 26 | 67 914 | 303 | Ursache fuer den minimal eingerichteten `WebStormProjects`-Workspace ermittelt, bestehenden Level-1-Workspace auf vollstaendige agentische Baseline gebracht und `bootstrap-workspace.*` samt Workspace-README-Template fuer kuenftige Erst-Einrichtungen erweitert |
 | 2026-04-30 | Spec-Kit 0.8.3 Update-Automation | 28 | 71 461 | 306 | Spec-Kit-0.8.3-Integrationen ueber Level 0/1/2 aktualisiert, OpenCode-Command-Tracking aufgenommen, Governance-Template-Erhalt in Verfassung und Agenten-Dateien dokumentiert, `update-spec-kit.sh/.ps1` samt Manpage und `sync-home`-Docs-Sync ergaenzt |
 | 2026-04-30 | Public-Template-Quelle fuer Spec-Kit-Updates | 28 | 71 527 | 309 | `update-spec-kit.*` von impliziter TuiVision-Prioritaet auf selbsttragendes `home-baseline`-Default umgestellt; private Template-Quellen nur noch als expliziter Override dokumentiert; Verfassung, Agenten-Dateien, README und Manpage nachgezogen |
-| 2026-04-30 | Release-Please Node-24-Opt-in | 28 | 71 552 | 310 | `release-please`-Workflows und Bootstrap-Generatoren auf `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` gesetzt, um GitHubs Node.js-20-Deprecation-Warnung fuer JavaScript-Actions zu vermeiden |
+| 2026-04-30 | Release-Please Node-24-Runtime | 28 | 71 547 | 311 | `release-please`-Workflows und Bootstrap-Generatoren auf einen konkreten `googleapis/release-please-action`-SHA mit `node24`-Runtime gepinnt, um GitHubs Node.js-20-Deprecation-Warnung fuer JavaScript-Actions zu vermeiden |
 
 ---
 
@@ -36,12 +36,12 @@ Stand / As of: **2026-04-30**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 81 | 17 397 | 24.3 % |
+| Skripte / Scripts (`.sh` + `.ps1`) | 81 | 17 389 | 24.3 % |
 | Templates (`.tmpl` + Konfigurationsdateien) | 21 | 1 057 | 1.5 % |
-| Hooks + CI (pre-push + YAML/JSON) | 20 | 1 953 | 2.7 % |
-| Dokumentation / Documentation (`.md`) | 423 | 48 574 | 67.9 % |
+| Hooks + CI (pre-push + YAML/JSON) | 20 | 1 951 | 2.7 % |
+| Dokumentation / Documentation (`.md`) | 423 | 48 579 | 67.9 % |
 | Sonstiges / Other | 30 | 2 571 | 3.6 % |
-| **Gesamt / Total** | **575** | **71 552** | **100 %** |
+| **Gesamt / Total** | **575** | **71 547** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
@@ -50,7 +50,7 @@ Stand / As of: **2026-04-30**
 | Spec-Kit-Artefakte (`specs/`) | 16 277 | 33.6 % |
 | Lastenhefte (`Lastenheft*.md`) | 3 840 | 7.9 % |
 | Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 390 | 7.0 % |
-| README / CHANGELOG / STATS | 3 050 | 6.3 % |
+| README / CHANGELOG / STATS | 3 055 | 6.3 % |
 | Sonstiges (Templates, andere `.md`) | 22 017 | 45.3 % |
 
 ---
@@ -168,18 +168,18 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `71 552` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `19 350` Zeilen (`27.0 %`) |
-| Dokumentationsanteil / Documentation share | `48 574` Zeilen (`67.9 %`) |
+| Artefaktbasis gesamt / Total artifact base | `71 547` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `19 340` Zeilen (`27.0 %`) |
+| Dokumentationsanteil / Documentation share | `48 579` Zeilen (`67.9 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-30` |
 | Sichtbare Git-Aktivtage / Observable active days | `28` |
-| Git-Commits gesamt / Total commits | `310` |
-| Git-Commits pro Aktivtag / Commits per active day | `11.1` (`310 / 28`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 555.4` (`71 552 / 28`) |
-| Zeilen pro Commit / Lines per commit | `230.8` (`71 552 / 310`) |
-| Konservative Einzelentwickler-Untergrenze | `894.4` Arbeitstage / `6 977.6` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `715.5` Arbeitstage / `5 580.9` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `357.8` Arbeitstage |
+| Git-Commits gesamt / Total commits | `311` |
+| Git-Commits pro Aktivtag / Commits per active day | `11.1` (`311 / 28`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 555.2` (`71 547 / 28`) |
+| Zeilen pro Commit / Lines per commit | `230.1` (`71 547 / 311`) |
+| Konservative Einzelentwickler-Untergrenze | `894.3` Arbeitstage / `6 975.6` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `715.5` Arbeitstage / `5 580.5` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `357.7` Arbeitstage |
 | Repo-weiter Speedup gg. 80-Zeilen-Referenz | `31.9x` |
 | Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.5x` |
 
@@ -192,8 +192,9 @@ Homogeneity Guardian). Die aktuelle Maintenance-Runde ergaenzt robuste
 Spec-Kit-Update-Automation ueber Level 0/1/2. Die oeffentliche Vorlage bleibt
 jetzt selbsttragend, weil private Repos wie TuiVision nur noch explizite
 Template-Overrides sind. OpenCode-Command-Tracking und Governance-Template-Erhalt
-bleiben Teil des Workflows. Release-Please-Workflows optieren frueh auf Node.js
-24, um GitHubs Node.js-20-Deprecation-Warnung zu vermeiden. Die
+bleiben Teil des Workflows. Release-Please-Workflows nutzen voruebergehend einen
+konkret gepinnten Node.js-24-faehigen upstream-SHA, um GitHubs
+Node.js-20-Deprecation-Warnung zu vermeiden. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
@@ -205,16 +206,17 @@ for Homogeneity Guardian). The current maintenance round adds robust Level 0/1/2
 Spec-Kit update automation. The public template is now self-contained because
 private repositories such as TuiVision are only explicit template overrides.
 OpenCode command tracking and governance-template preservation remain part of
-the workflow. Release Please workflows opt into Node.js 24 early to avoid
-GitHub's Node.js 20 deprecation warning. The acceleration factors describe visible
+the workflow. Release Please workflows temporarily use a concretely pinned
+Node.js 24-capable upstream SHA to avoid GitHub's Node.js 20 deprecation
+warning. The acceleration factors describe visible
 delivery density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #############                  | 19 350 | 27.0 %
-Dokumentation   | ############################## | 48 574 | 67.9 %
+Operativer Code | #############                  | 19 340 | 27.0 %
+Dokumentation   | ############################## | 48 579 | 67.9 %
 Sonstiges       | ##                             |  3 628 |  5.1 %
 ```
 
@@ -291,8 +293,8 @@ completed in two visible Git active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 894.4 d / 6 977.6 h
-Thorsten (100 Z./Tag)  | ###################      | 715.5 d / 5 580.9 h
+Erfahren (80 Z./Tag)   | ######################## | 894.3 d / 6 975.6 h
+Thorsten (100 Z./Tag)  | ###################      | 715.5 d / 5 580.5 h
 KI sichtbar            | #                        |  28.0 d
 ```
 
