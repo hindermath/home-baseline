@@ -937,6 +937,13 @@ GitHub-Repositories verwenden **[Release Please](https://github.com/googleapis/r
 
 *GitHub repositories use **Release Please**: push to `main`, let Release Please open or update the release PR, then merge the PR to create tag and GitHub Release.*
 
+Release-Please-Workflows setzen `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true`, damit
+GitHub die JavaScript-Action bereits vor der Node.js-20-Abschaltung auf Node.js
+24 ausfuehrt.
+
+*Release Please workflows set `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` so
+GitHub runs the JavaScript action on Node.js 24 before Node.js 20 is removed.*
+
 **GitLab / GitLab**
 
 GitLab-Repositories verwenden `scripts/setup-gitlab-release.sh` bzw. `scripts/setup-gitlab-release.ps1` als GitLab-native Alternative.
