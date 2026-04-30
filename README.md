@@ -1881,12 +1881,28 @@ Level-2-Repositories laufen ueber:
 *Repository-wide Spec-Kit updates across all Level-0, Level-1, and Level-2
 repositories use:*
 
+Die Update-Skripte pruefen nicht selbst, ob `specify` die neueste Spec-Kit-
+Version ist. Aktualisiere `specify` deshalb bewusst vorher manuell und fuehre
+danach erst den Trockenlauf und den Repo-Rollout aus.
+
+*The update scripts do not check whether `specify` is the latest Spec-Kit
+version. Update `specify` manually first, then run the dry-run and repository
+rollout.*
+
 ```bash
+# 1. specify manuell aktualisieren / manually update specify
+uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git
+
+# 2. Repos pruefen und aktualisieren / preview and update repositories
 bash scripts/update-spec-kit.sh --dry-run
 bash scripts/update-spec-kit.sh --commit --push
 ```
 
 ```powershell
+# 1. specify manuell aktualisieren / manually update specify
+uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git
+
+# 2. Repos pruefen und aktualisieren / preview and update repositories
 pwsh scripts/update-spec-kit.ps1 -WhatIf
 pwsh scripts/update-spec-kit.ps1 -Commit -Push
 ```
