@@ -316,9 +316,10 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 - Das Skript erkennt Level 0 (`~/home-baseline-tmp`), Level-1-Workspaces und Level-2-Projekte dynamisch ueber `.git` plus `.specify/`; neue Repos werden automatisch aufgenommen.
 - `RiderProjects/TuiVision` gehoert zur normalen Zielmenge und darf nur uebersprungen werden, wenn es bereits sauber und aktuell ist.
 - Lokale Governance in `.specify/memory/constitution.md`, `spec-template.md`, `plan-template.md` und `tasks-template.md` muss nach `specify init --force` erhalten bleiben.
+- Die Standard-Template-Quelle ist das oeffentliche `home-baseline`-Repo, aus dem das Skript laeuft. Private Repos wie `RiderProjects/TuiVision` sind keine implizite Voraussetzung und duerfen nur bewusst mit `--template-source` / `-TemplateSource` als Override genutzt werden.
 - OpenCode wird ueber `.opencode/command/*.md` getrackt. Das `.opencode/`-Root, Caches, Sessions, Logs, Credentials und lokale Abhaengigkeiten bleiben ausgeschlossen.
 
-*For repository-wide Spec-Kit updates, run the dry-run first, then use the paired update scripts with `--commit --push` / `-Commit -Push`. The scripts dynamically discover Level 0, Level 1, and Level 2 repositories, keep TuiVision in scope, preserve local governance templates and constitution memory, and track only `.opencode/command/*.md` for OpenCode.*
+*For repository-wide Spec-Kit updates, run the dry-run first, then use the paired update scripts with `--commit --push` / `-Commit -Push`. The scripts dynamically discover Level 0, Level 1, and Level 2 repositories, keep TuiVision in scope, preserve local governance templates and constitution memory, use public `home-baseline` as the default template source, and track only `.opencode/command/*.md` for OpenCode.*
 
 ## Spec-Kit-Preset-Pflege / Spec Kit Preset Maintenance
 

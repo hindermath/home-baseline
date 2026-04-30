@@ -24,6 +24,7 @@ Usage:
 Options:
   --home-dir PATH          Home directory to scan (default: $HOME)
   --template-source PATH   Repo whose local governance templates are canonical
+                           (default: repository running this script)
   --agents LIST            Comma-separated integrations (default: claude,opencode,gemini,copilot,codex)
   --commit                 Commit changes in each changed repo
   --push                   Push current branch after commit/check
@@ -137,12 +138,12 @@ select_template_source() {
     return
   fi
 
-  if [ -d "${HOME_DIR}/RiderProjects/TuiVision/.specify/templates" ]; then
-    TEMPLATE_SOURCE="${HOME_DIR}/RiderProjects/TuiVision"
+  if [ -d "$REPO_DIR/.specify/templates" ]; then
+    TEMPLATE_SOURCE="$REPO_DIR"
   elif [ -d "${HOME_DIR}/home-baseline-tmp/.specify/templates" ]; then
     TEMPLATE_SOURCE="${HOME_DIR}/home-baseline-tmp"
   else
-    TEMPLATE_SOURCE="$REPO_DIR"
+    die "Keine Governance-Template-Quelle gefunden; nutze --template-source PATH"
   fi
 }
 

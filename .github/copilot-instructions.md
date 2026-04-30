@@ -398,6 +398,10 @@ runs. OpenCode support is tracked only through `.opencode/command/*.md`;
 `.opencode` caches, sessions, logs, credentials, and local dependencies remain
 excluded.
 
+The default template source is the public `home-baseline` repository that runs
+the script. Private repositories such as `RiderProjects/TuiVision` may only be
+used deliberately with `--template-source` / `-TemplateSource`.
+
 ### Workspace-Name beginnt mit `-` (z. B. `-h`, `-t`) / Workspace Name Starts with `-` (e.g. `-h`, `-t`)
 Bash option parsing interprets `-h` as a flag, causing scripts to show help or hang waiting for stdin.
 Use the `--` end-of-options sentinel: `teardown-workspace.sh -- -h`. Applies to all scripts accepting positional workspace/project names (`bootstrap-project.sh`, `bootstrap-workspace.sh`, `init-stats.sh`, `migrate-workspace.sh`, `teardown-workspace.sh`).

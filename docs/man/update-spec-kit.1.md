@@ -62,11 +62,23 @@ Level-1 repository with `.git` and `.specify/`.*
 |---|---|---|
 | `--dry-run` | `-WhatIf` | Nur anzeigen, keine Schreiboperationen |
 | `--home-dir PATH` | `-HomeDir PATH` | Alternatives Home-Verzeichnis |
-| `--template-source PATH` | `-TemplateSource PATH` | Governance-Template-Referenz |
+| `--template-source PATH` | `-TemplateSource PATH` | Explizite Governance-Template-Referenz |
 | `--agents LIST` | `-Agents LIST` | Integrationen, Standard: alle fuenf |
 | `--commit` | `-Commit` | Pro geaendertem Repo committen |
 | `--push` | `-Push` | Pro Repo pushen; aktiviert Commit |
 | `--allow-dirty` | `-AllowDirty` | Bestehende lokale Aenderungen erlauben |
+
+Ohne explizite Template-Quelle nutzt das Skript die `.specify/templates/` aus
+dem Repository, aus dem es ausgefuehrt wird. Falls das Skript aus einer lokalen
+Home-Kopie laeuft, ist `~/home-baseline-tmp` der Fallback. Private Projekt-
+Repos wie `TuiVision` sind keine implizite Voraussetzung; sie koennen nur
+bewusst ueber `--template-source` / `-TemplateSource` gesetzt werden.
+
+*Without an explicit template source, the script uses `.specify/templates/` from
+the repository that runs it. If the script is executed from a local home copy,
+`~/home-baseline-tmp` is the fallback. Private project repositories such as
+`TuiVision` are not an implicit requirement; they can only be selected
+deliberately via `--template-source` / `-TemplateSource`.*
 
 ## Beispiele / Examples
 
@@ -79,12 +91,16 @@ bash scripts/update-spec-kit.sh --commit
 
 # Aktualisieren, committen und pushen
 bash scripts/update-spec-kit.sh --commit --push
+
+# Private Referenz bewusst verwenden
+bash scripts/update-spec-kit.sh --template-source ~/RiderProjects/TuiVision --dry-run
 ```
 
 ```powershell
 # Windows / PowerShell
 pwsh scripts/update-spec-kit.ps1 -WhatIf
 pwsh scripts/update-spec-kit.ps1 -Commit -Push
+pwsh scripts/update-spec-kit.ps1 -TemplateSource ~/RiderProjects/TuiVision -WhatIf
 ```
 
 ## Sicherheit / Security

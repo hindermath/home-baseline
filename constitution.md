@@ -1,11 +1,10 @@
 <!--
 Sync Impact Report
-Version change: 1.12.0 -> 1.13.0
+Version change: 1.13.0 -> 1.13.1
 Modified principles:
-- I. Security-First (add `.opencode/command/` as allowed Spec-Kit command surface)
-- IV. Workspace Isolation (add Spec-Kit lifecycle maintenance rules)
+- IV. Workspace Isolation (make public `home-baseline` the default Spec-Kit template source)
 Added sections:
-- Spec-Kit lifecycle maintenance rules under Principle IV
+- None
 Removed sections:
 - None
 Templates requiring updates:
@@ -26,7 +25,7 @@ Follow-up TODOs:
 - None
 -->
 
-# Constitution v1.13.0
+# Constitution v1.13.1
 
 # home-baseline Constitution
 
@@ -161,6 +160,11 @@ Spec-Kit lifecycle maintenance rules:
   `specify init --force`. Local governance overlays in `spec-template.md`,
   `plan-template.md`, and `tasks-template.md` MUST be preserved after every
   Spec-Kit update.
+- The default governance-template source MUST be the public `home-baseline`
+  repository that runs the update script. Private repositories such as
+  `RiderProjects/TuiVision` MUST NOT be implicit dependencies of the public
+  template and may only be used through an explicit `--template-source` /
+  `-TemplateSource` override.
 - `RiderProjects/TuiVision` is part of the normal Spec-Kit update set. It is
   only skipped when it is already clean and no update is needed.
 - OpenCode support is tracked via `.opencode/command/*.md`; caches, sessions,

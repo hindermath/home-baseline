@@ -21,7 +21,7 @@
 
 .PARAMETER TemplateSource
     Repository, dessen lokale Governance-Templates kanonisch sind. Standard:
-    zuerst ~/RiderProjects/TuiVision, danach ~/home-baseline-tmp.
+    das Repository, aus dem dieses Skript laeuft; danach ~/home-baseline-tmp.
 
 .PARAMETER Agents
     Spec-Kit-Integrationen. Standard: claude, opencode, gemini, copilot, codex.
@@ -99,13 +99,12 @@ function Select-HBTemplateSource {
 
     if ($Requested) { return $Requested }
 
-    $tuiVision = Join-Path $Root 'RiderProjects/TuiVision'
-    if (Test-Path (Join-Path $tuiVision '.specify/templates')) { return $tuiVision }
+    if (Test-Path (Join-Path $RepositoryRoot '.specify/templates')) { return $RepositoryRoot }
 
     $level0 = Join-Path $Root 'home-baseline-tmp'
     if (Test-Path (Join-Path $level0 '.specify/templates')) { return $level0 }
 
-    return $RepositoryRoot
+    throw 'Keine Governance-Template-Quelle gefunden; nutze -TemplateSource PATH'
 }
 
 function Copy-HBGovernanceTemplatesToCache {

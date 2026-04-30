@@ -1909,11 +1909,19 @@ pwsh scripts/update-spec-kit.ps1 -Commit -Push
 
 Die Skripte erkennen Repos dynamisch ueber `.git` plus `.specify/`, sichern
 `.specify/memory/constitution.md`, legen die lokalen Governance-Templates wieder
-auf und tracken fuer OpenCode nur `.opencode/command/*.md`.
+auf und tracken fuer OpenCode nur `.opencode/command/*.md`. Die kanonische
+Template-Quelle ist standardmaessig das `home-baseline`-Repo, aus dem das
+Skript ausgefuehrt wird; externe Nutzer brauchen deshalb kein privates
+`TuiVision`-Repository. Eine andere Referenz kann bei Bedarf explizit mit
+`--template-source PATH` bzw. `-TemplateSource PATH` gesetzt werden.
 
 *The scripts dynamically discover repositories via `.git` plus `.specify/`,
 preserve `.specify/memory/constitution.md`, reapply the local governance
-templates, and track only `.opencode/command/*.md` for OpenCode.*
+templates, and track only `.opencode/command/*.md` for OpenCode. By default,
+the canonical template source is the `home-baseline` repository that runs the
+script, so external users do not need the private `TuiVision` repository. A
+different reference can be selected explicitly with `--template-source PATH` or
+`-TemplateSource PATH`.*
 
 ---
 

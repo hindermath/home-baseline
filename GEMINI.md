@@ -341,6 +341,10 @@ auf und nimmt `RiderProjects/TuiVision` normal mit. OpenCode wird nur ueber
 `.opencode/command/*.md` getrackt; `.opencode`-Caches, Sessions, Logs,
 Credentials und lokale Abhaengigkeiten bleiben ausgeschlossen.
 
+Die Standard-Template-Quelle ist das oeffentliche `home-baseline`-Repo, aus dem
+das Skript laeuft. Private Repos wie `RiderProjects/TuiVision` duerfen nur
+bewusst mit `--template-source` / `-TemplateSource` als Override genutzt werden.
+
 ### GitHub-Housekeeping: Archivierung, Sichtbarkeit, Forks und Stars / GitHub Housekeeping: Archiving, Visibility, Forks, and Stars
 `archived` bedeutet bei GitHub nur read-only, nicht unsichtbar. Public archived Repos bleiben ohne Anmeldung sichtbar.
 Archivierte Repos sind API-seitig read-only; Sichtbarkeit ändern geht deshalb nur über:

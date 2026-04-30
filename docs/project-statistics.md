@@ -25,6 +25,7 @@
 | 2026-04-29 | opencode-analysis CI-Fix | 26 | 67 507 | 302 | Fehlgeschlagenen Homogeneity-Workflow in `opencode-analysis` analysiert und behoben; `--exit-on-fail` durch gueltigen `--fail-fast .`-Aufruf ersetzt, Level-2-README-/Agenten-Templates ergaenzt und Scanner fuer git-ignorierte Unterrepos gehaertet |
 | 2026-04-29 | Level-1-Workspace-Bootstrap-Haertung | 26 | 67 914 | 303 | Ursache fuer den minimal eingerichteten `WebStormProjects`-Workspace ermittelt, bestehenden Level-1-Workspace auf vollstaendige agentische Baseline gebracht und `bootstrap-workspace.*` samt Workspace-README-Template fuer kuenftige Erst-Einrichtungen erweitert |
 | 2026-04-30 | Spec-Kit 0.8.3 Update-Automation | 28 | 71 461 | 306 | Spec-Kit-0.8.3-Integrationen ueber Level 0/1/2 aktualisiert, OpenCode-Command-Tracking aufgenommen, Governance-Template-Erhalt in Verfassung und Agenten-Dateien dokumentiert, `update-spec-kit.sh/.ps1` samt Manpage und `sync-home`-Docs-Sync ergaenzt |
+| 2026-04-30 | Public-Template-Quelle fuer Spec-Kit-Updates | 28 | 71 527 | 309 | `update-spec-kit.*` von impliziter TuiVision-Prioritaet auf selbsttragendes `home-baseline`-Default umgestellt; private Template-Quellen nur noch als expliziter Override dokumentiert; Verfassung, Agenten-Dateien, README und Manpage nachgezogen |
 
 ---
 
@@ -37,9 +38,9 @@ Stand / As of: **2026-04-30**
 | Skripte / Scripts (`.sh` + `.ps1`) | 81 | 17 385 | 24.3 % |
 | Templates (`.tmpl` + Konfigurationsdateien) | 21 | 1 057 | 1.5 % |
 | Hooks + CI (pre-push + YAML/JSON) | 20 | 1 787 | 2.5 % |
-| Dokumentation / Documentation (`.md`) | 423 | 48 497 | 67.9 % |
-| Sonstiges / Other | 30 | 2 735 | 3.8 % |
-| **Gesamt / Total** | **575** | **71 461** | **100 %** |
+| Dokumentation / Documentation (`.md`) | 423 | 48 564 | 67.9 % |
+| Sonstiges / Other | 30 | 2 734 | 3.8 % |
+| **Gesamt / Total** | **575** | **71 527** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
@@ -47,9 +48,9 @@ Stand / As of: **2026-04-30**
 |---|---:|---:|
 | Spec-Kit-Artefakte (`specs/`) | 16 277 | 33.6 % |
 | Lastenhefte (`Lastenheft*.md`) | 3 840 | 7.9 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 369 | 6.9 % |
-| README / CHANGELOG / STATS | 3 009 | 6.2 % |
-| Sonstiges (Templates, andere `.md`) | 22 002 | 45.4 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 390 | 7.0 % |
+| README / CHANGELOG / STATS | 3 040 | 6.3 % |
+| Sonstiges (Templates, andere `.md`) | 22 017 | 45.3 % |
 
 ---
 
@@ -166,18 +167,18 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `71 461` Zeilen |
+| Artefaktbasis gesamt / Total artifact base | `71 527` Zeilen |
 | Operativer Code / Operational code (Skripte + Hooks + CI) | `19 172` Zeilen (`26.8 %`) |
-| Dokumentationsanteil / Documentation share | `48 497` Zeilen (`67.9 %`) |
+| Dokumentationsanteil / Documentation share | `48 564` Zeilen (`67.9 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-04-30` |
 | Sichtbare Git-Aktivtage / Observable active days | `28` |
-| Git-Commits gesamt / Total commits | `306` |
-| Git-Commits pro Aktivtag / Commits per active day | `10.9` (`306 / 28`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 552.2` (`71 461 / 28`) |
-| Zeilen pro Commit / Lines per commit | `233.5` (`71 461 / 306`) |
-| Konservative Einzelentwickler-Untergrenze | `893.3` Arbeitstage / `6 967.4` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `714.6` Arbeitstage / `5 574.0` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `357.3` Arbeitstage |
+| Git-Commits gesamt / Total commits | `309` |
+| Git-Commits pro Aktivtag / Commits per active day | `11.0` (`309 / 28`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 554.5` (`71 527 / 28`) |
+| Zeilen pro Commit / Lines per commit | `231.5` (`71 527 / 309`) |
+| Konservative Einzelentwickler-Untergrenze | `894.1` Arbeitstage / `6 973.9` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `715.3` Arbeitstage / `5 579.1` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `357.6` Arbeitstage |
 | Repo-weiter Speedup gg. 80-Zeilen-Referenz | `31.9x` |
 | Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.5x` |
 
@@ -187,8 +188,10 @@ Governance-getrieben: `67.9 %` der sichtbaren Basis liegen in Markdown-
 Artefakten. Der operative Code (Skripte, Hooks, CI) macht `26.8 %` aus. Der
 groesste dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer
 Homogeneity Guardian). Die aktuelle Maintenance-Runde ergaenzt robuste
-Spec-Kit-Update-Automation ueber Level 0/1/2, einschliesslich TuiVision,
-OpenCode-Command-Tracking und Governance-Template-Erhalt. Die
+Spec-Kit-Update-Automation ueber Level 0/1/2. Die oeffentliche Vorlage bleibt
+jetzt selbsttragend, weil private Repos wie TuiVision nur noch explizite
+Template-Overrides sind. OpenCode-Command-Tracking und Governance-Template-Erhalt
+bleiben Teil des Workflows. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
@@ -197,8 +200,10 @@ remains documentation- and governance-driven: `67.9 %` of the visible base sits
 in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
 `26.8 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
 for Homogeneity Guardian). The current maintenance round adds robust Level 0/1/2
-Spec-Kit update automation, including TuiVision, OpenCode command tracking, and
-governance-template preservation. The acceleration factors describe visible
+Spec-Kit update automation. The public template is now self-contained because
+private repositories such as TuiVision are only explicit template overrides.
+OpenCode command tracking and governance-template preservation remain part of
+the workflow. The acceleration factors describe visible
 delivery density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
@@ -206,8 +211,8 @@ delivery density, not stopwatch measurements.*
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
 Operativer Code | #############                  | 19 172 | 26.8 %
-Dokumentation   | ############################## | 48 497 | 67.9 %
-Sonstiges       | ##                             |  3 792 |  5.3 %
+Dokumentation   | ############################## | 48 564 | 67.9 %
+Sonstiges       | ##                             |  3 791 |  5.3 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
@@ -283,8 +288,8 @@ completed in two visible Git active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 893.3 d / 6 967.4 h
-Thorsten (100 Z./Tag)  | ###################      | 714.6 d / 5 574.0 h
+Erfahren (80 Z./Tag)   | ######################## | 894.1 d / 6 973.9 h
+Thorsten (100 Z./Tag)  | ###################      | 715.3 d / 5 579.1 h
 KI sichtbar            | #                        |  28.0 d
 ```
 

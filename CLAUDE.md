@@ -369,6 +369,10 @@ auf und nimmt `RiderProjects/TuiVision` normal mit. OpenCode wird nur ueber
 `.opencode/command/*.md` getrackt; `.opencode`-Caches, Sessions, Logs,
 Credentials und lokale Abhaengigkeiten bleiben ausgeschlossen.
 
+Die Standard-Template-Quelle ist das oeffentliche `home-baseline`-Repo, aus dem
+das Skript laeuft. Private Repos wie `RiderProjects/TuiVision` duerfen nur
+bewusst mit `--template-source` / `-TemplateSource` als Override genutzt werden.
+
 ### Git-Identität: Platzhalter-Autor in Commits / Git Identity: Placeholder Author in Commits
 Commits mit `Your Name <your@email.example>` als Autor entstehen, wenn `~/.gitconfig`
 nach dem Klonen des Template-Repos nicht angepasst wurde.
