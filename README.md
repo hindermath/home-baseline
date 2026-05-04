@@ -68,6 +68,7 @@ private GitHub or GitLab repository within seconds.*
   - [Voraussetzungen / Prerequisites](#voraussetzungen--prerequisites-1)
   - [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
   - [Verzeichnis für Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
+  - [Governance-Presets einbinden / Install governance presets](#governance-presets-einbinden--install-governance-presets)
   - [Der Workflow Schritt für Schritt / The workflow step by step](#der-workflow-schritt-für-schritt--the-workflow-step-by-step)
   - [Beispiel: Erstes Feature anlegen / Example: Creating your first feature](#beispiel-erstes-feature-anlegen--example-creating-your-first-feature)
   - [Artefakte und Verzeichnisstruktur / Artefacts and directory structure](#artefakte-und-verzeichnisstruktur--artefacts-and-directory-structure)
@@ -1932,6 +1933,195 @@ the canonical template source is the `home-baseline` repository that runs the
 script, so external users do not need the private `TuiVision` repository. A
 different reference can be selected explicitly with `--template-source PATH` or
 `-TemplateSource PATH`.*
+
+---
+
+### Governance-Presets einbinden / Install governance presets
+
+Nach `specify init` kannst du Spec-Kit-Presets installieren. Presets erweitern
+die Standard-Templates von Spec-Kit, ohne das Projekt komplett zu ersetzen. Sie
+liefern zusätzliche Governance-Regeln, Addenda und Template-Bausteine für
+Sicherheit, Architektur, Barrierefreiheit, Agenten-Parität und
+plattformübergreifende Arbeit.
+
+*After `specify init`, you can install Spec-Kit presets. Presets extend the
+standard Spec-Kit templates without replacing the whole project. They provide
+additional governance rules, addenda, and template building blocks for security,
+architecture, accessibility, agent parity, and cross-platform work.*
+
+Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
+
+*The official Spec-Kit preset documentation is available here:*
+
+- [Spec-Kit Presets Reference](https://github.github.com/spec-kit/reference/presets.html)
+- [Community Presets Table](https://github.com/github/spec-kit/blob/main/docs/community/presets.md)
+- [Community Presets Catalog JSON](https://github.com/github/spec-kit/blob/main/presets/catalog.community.json)
+
+#### Welche Presets gibt es? / Which presets exist?
+
+| Preset | Zweck / Purpose | Empfehlung / Recommendation |
+|---|---|---|
+| `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |
+| `architecture-governance` | Sichere Architektur, Threat Modeling, Zero Trust, OWASP SAMM, Security-ADRs. / Secure architecture, threat modeling, Zero Trust, OWASP SAMM, security ADRs. | Für Projekte mit Services, Datenflüssen, Schnittstellen oder Sicherheitsrisiken installieren. / Install for projects with services, data flows, interfaces, or security risks. |
+| `isaqb-architecture-governance` | Allgemeine Softwarearchitektur nach iSAQB/arc42: Sichten, Qualitätsszenarien, Entscheidungen, Risiken. / General software architecture based on iSAQB/arc42: views, quality scenarios, decisions, risks. | Für Projekte installieren, bei denen Architekturarbeit dauerhaft nachvollziehbar sein soll. / Install when architectural work should stay traceable over time. |
+| `a11y-governance` | Barrierefreiheit nach WCAG 2.2 Level AA für UI, HTML, CLI, Doku und Templates. / Accessibility based on WCAG 2.2 Level AA for UI, HTML, CLI, docs, and templates. | Für alle nutzerseitigen Artefakte installieren. / Install for all user-facing artefacts. |
+| `cross-platform-governance` | macOS/Linux/Windows-Parität, Shell-Auswahl, Pfadregeln, Testhinweise. / macOS/Linux/Windows parity, shell choice, path rules, test guidance. | Für Skripte, CLIs, Tooling und Workspace-Infrastruktur installieren. / Install for scripts, CLIs, tooling, and workspace infrastructure. |
+| `agent-parity-governance` | Gemeinsame Pflege von `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md`. / Joint maintenance of `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`. | Für Repos mit mehreren KI-Agenten-Oberflächen installieren. / Install for repos with multiple AI-agent surfaces. |
+
+Nicht jedes Projekt braucht alle sechs Presets. Für kleine Lern- oder
+Experimentierprojekte reicht oft eine Teilmenge. Für ernsthafte Level-2-Projekte
+ist diese Startkombination sinnvoll:
+
+*Not every project needs all six presets. For small learning or experimental
+projects, a subset is often enough. For serious Level-2 projects, this starting
+combination is useful:*
+
+- `security-governance`
+- `architecture-governance`
+- `a11y-governance`
+
+Wenn das Projekt zusätzlich allgemeine Architekturarbeit nach iSAQB/arc42
+dokumentieren soll, kommt `isaqb-architecture-governance` dazu. Wenn Skripte
+oder CLI-Artefakte auf mehreren Betriebssystemen laufen müssen, kommt
+`cross-platform-governance` dazu. Wenn mehrere Agenten-Dateien parallel gepflegt
+werden, kommt `agent-parity-governance` dazu.
+
+*If the project should also document general architecture work using iSAQB/arc42,
+add `isaqb-architecture-governance`. If scripts or CLI artefacts must work across
+multiple operating systems, add `cross-platform-governance`. If multiple agent
+instruction files are maintained in parallel, add `agent-parity-governance`.*
+
+#### Installation pro Projekt / Per-project installation
+
+Führe die folgenden Befehle im jeweiligen Projekt-Repository aus, also dort, wo
+bereits `.specify/` liegt. Die Installation ist bewusst projektlokal: Ein
+Projekt kann andere Presets oder Prioritäten haben als ein anderes Projekt.
+
+*Run the following commands inside the target project repository, where
+`.specify/` already exists. Installation is intentionally project-local: one
+project may use different presets or priorities than another project.*
+
+```bash
+cd ~/Pfad/zu/deinem/Projekt
+
+# Falls noch nicht geschehen / if not done yet:
+specify init --here --force --integration codex
+
+# Governance-Presets installieren / install governance presets
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.2.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.2.0.zip --priority 20
+specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.1.0.zip --priority 30
+specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.2.0.zip --priority 40
+specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.1.0.zip --priority 50
+specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.1.0.zip --priority 60
+```
+
+Die Priorität steuert, welches Preset bei gleichnamigen Dateien oder Addenda
+zuerst berücksichtigt wird. Bei Spec-Kit gilt: kleinere Zahl = höhere Priorität.
+Deshalb steht `security-governance` bewusst ganz oben. Sicherheit ist die
+verbindliche Grundschicht; Architektur, iSAQB, A11Y, Plattform-Parität und
+Agenten-Parität ergänzen sie.
+
+*Priority controls which preset is considered first when files or addenda overlap.
+In Spec-Kit, a lower number means higher priority. That is why
+`security-governance` is placed first. Security is the binding base layer;
+architecture, iSAQB, A11Y, platform parity, and agent parity extend it.*
+
+#### Installation prüfen / Verify installation
+
+Nach der Installation prüfst du die registrierten Presets und die aufgelösten
+Template-Bausteine:
+
+*After installation, verify the registered presets and resolved template
+building blocks:*
+
+```bash
+specify preset list
+specify preset info security-governance
+specify preset info a11y-governance
+specify preset resolve constitution-template.md
+specify preset resolve agent-guidance-addendum-template.md
+```
+
+Prüfe danach mit `git status`, welche `.specify/`-Dateien geändert wurden. Wenn
+das Projekt dauerhaft mit diesen Presets arbeiten soll, committe die
+projektlokale Preset-Konfiguration zusammen mit den daraus bewusst übernommenen
+Template- oder Dokumentationsänderungen.
+
+*Then check with `git status` which `.specify/` files changed. If the project
+should keep using these presets, commit the project-local preset configuration
+together with the template or documentation changes that you intentionally
+adopted.*
+
+```bash
+git status --short
+git add .specify
+git commit -m "chore: configure spec-kit governance presets"
+```
+
+#### Community-Katalog oder direkte URL? / Community catalog or direct URL?
+
+Wenn dein `specify` die Community-Presets bereits aus dem Katalog auflösen kann,
+kannst du sie auch per Preset-ID installieren. Die direkte `--from`-Installation
+über die versionierte ZIP-URL ist aber die robusteste Variante, weil sie exakt
+einen bekannten Release-Stand verwendet.
+
+*If your `specify` version can already resolve community presets from the catalog,
+you can install them by preset ID. The direct `--from` installation via the
+versioned ZIP URL is the most robust variant, because it uses one exact known
+release state.*
+
+```bash
+# Katalog durchsuchen / search catalog
+specify preset search governance
+
+# Falls vom lokalen specify unterstützt / if supported by the local specify version
+specify preset add security-governance --priority 10
+
+# Immer eindeutig / always explicit
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.2.0.zip --priority 10
+```
+
+#### Presets aktualisieren oder entfernen / Update or remove presets
+
+Für ein Update installierst du den neuen Release-Tag erneut mit derselben
+Priorität. Prüfe danach die aufgelösten Templates und die Git-Änderungen. Wenn
+ein Preset für ein Projekt nicht passt, deaktiviere es zuerst statt es sofort zu
+löschen. So bleibt die Entscheidung nachvollziehbar.
+
+*To update a preset, install the new release tag again with the same priority.
+Then verify the resolved templates and Git changes. If a preset does not fit a
+project, disable it first instead of deleting it immediately. This keeps the
+decision traceable.*
+
+```bash
+# Vorübergehend deaktivieren / temporarily disable
+specify preset disable agent-parity-governance
+
+# Wieder aktivieren / enable again
+specify preset enable agent-parity-governance
+
+# Entfernen, wenn dauerhaft nicht passend / remove if permanently not suitable
+specify preset remove agent-parity-governance
+```
+
+#### Was danach im SDD-Workflow passiert / What changes in the SDD workflow
+
+Die Presets ändern nicht den Grundablauf. Du nutzt weiterhin `speckit.specify`,
+`speckit.plan`, `speckit.tasks`, `speckit.analyze` und `speckit.implement`.
+Der Unterschied ist, dass die erzeugten oder geprüften Artefakte zusätzliche
+Governance-Punkte berücksichtigen:
+
+*The presets do not change the basic workflow. You still use `speckit.specify`,
+`speckit.plan`, `speckit.tasks`, `speckit.analyze`, and `speckit.implement`.
+The difference is that generated or reviewed artefacts include additional
+governance points:*
+
+- Sicherheitsstandards werden nicht stillschweigend ausgelassen, sondern als anwendbar oder `N/A` begründet. / Security standards are not silently omitted, but marked as applicable or justified as `N/A`.
+- Architekturentscheidungen werden als ADRs oder gleichwertige Doku nachvollziehbar. / Architecture decisions become traceable as ADRs or equivalent documentation.
+- Barrierefreiheit wird für UI, HTML, CLI, Dokumentation und Templates geprüft. / Accessibility is checked for UI, HTML, CLI, documentation, and templates.
+- Plattformunterschiede werden früh im Plan berücksichtigt. / Platform differences are considered early in the plan.
+- Gemeinsame Agenten-Regeln werden nicht nur in einer Datei aktualisiert. / Shared agent rules are not updated in one file only.
 
 ---
 
