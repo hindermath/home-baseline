@@ -1957,6 +1957,16 @@ Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
 - [Community Presets Table](https://github.com/github/spec-kit/blob/main/docs/community/presets.md)
 - [Community Presets Catalog JSON](https://github.com/github/spec-kit/blob/main/presets/catalog.community.json)
 
+Stand 2026-05-04 sind alle sechs Governance-Presets im Spec-Kit
+Community-Katalog enthalten. Die direkte Installation über versionierte ZIP-URLs
+bleibt trotzdem die bevorzugte Variante, wenn ein Projekt einen exakt
+reproduzierbaren Preset-Stand pinnen soll.
+
+*As of 2026-05-04, all six governance presets are included in the Spec-Kit
+community catalog. Direct installation via versioned ZIP URLs is still the
+preferred variant when a project should pin one exactly reproducible preset
+state.*
+
 #### Welche Presets gibt es? / Which presets exist?
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
@@ -1979,6 +1989,16 @@ combination is useful:*
 - `security-governance`
 - `architecture-governance`
 - `a11y-governance`
+
+Für C#/.NET-Level-2-Projekte ist die Standardentscheidung in dieser
+Workspace-Familie: alle sechs Presets installieren, sofern das Projekt keine
+begründete Ausnahme dokumentiert. Die Referenz-Rollouts sind `TinyPl0`,
+`TinyCalc`, `TuiVision` und `InventarWorkerService`.
+
+*For C#/.NET Level-2 projects, the default decision in this workspace family is
+to install all six presets unless the project documents a justified exception.
+The reference rollouts are `TinyPl0`, `TinyCalc`, `TuiVision`, and
+`InventarWorkerService`.*
 
 Wenn das Projekt zusätzlich allgemeine Architekturarbeit nach iSAQB/arc42
 dokumentieren soll, kommt `isaqb-architecture-governance` dazu. Wenn Skripte
@@ -2043,19 +2063,22 @@ specify preset resolve constitution-template.md
 specify preset resolve agent-guidance-addendum-template.md
 ```
 
-Prüfe danach mit `git status`, welche `.specify/`-Dateien geändert wurden. Wenn
-das Projekt dauerhaft mit diesen Presets arbeiten soll, committe die
-projektlokale Preset-Konfiguration zusammen mit den daraus bewusst übernommenen
-Template- oder Dokumentationsänderungen.
+Prüfe danach mit `git status`, welche `.specify/`- und Agenten-Dateien geändert
+wurden. Wenn das Projekt dauerhaft mit diesen Presets arbeiten soll, committe
+`.specify/presets/` und die erzeugten Agenten-/Command-Dateien zusammen mit den
+daraus bewusst übernommenen Template- oder Dokumentationsänderungen.
+`.specify/presets/.cache/` ist nur lokaler Katalog-Cache und wird nicht
+committed.
 
-*Then check with `git status` which `.specify/` files changed. If the project
-should keep using these presets, commit the project-local preset configuration
-together with the template or documentation changes that you intentionally
-adopted.*
+*Then check with `git status` which `.specify/` and agent files changed. If the
+project should keep using these presets, commit `.specify/presets/` and the
+generated agent/command files together with the template or documentation changes
+that you intentionally adopted. `.specify/presets/.cache/` is only local catalog
+cache and is not committed.*
 
 ```bash
 git status --short
-git add .specify
+git add .specify/presets .agents .claude .gemini .github .opencode
 git commit -m "chore: configure spec-kit governance presets"
 ```
 

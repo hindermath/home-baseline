@@ -53,6 +53,10 @@
 !.specify/scripts/
 !.specify/scripts/bash/
 !.specify/templates/
+!.specify/presets/
+!.specify/presets/**
+.specify/presets/.cache/
+.specify/presets/.cache/**
 
 # Copilot-Agenten-Skills (keine Credentials)
 !.agents/

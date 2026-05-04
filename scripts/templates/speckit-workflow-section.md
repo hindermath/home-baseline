@@ -14,6 +14,26 @@ Schritte für ein neues Feature:
 
 Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert und versioniert.
 
+### Governance-Presets
+
+Für Level-2-Projekte können Spec-Kit-Governance-Presets installiert werden.
+Das Standard-Set dieser Workspace-Familie ist:
+
+- `security-governance` v0.2.0, Priority 10
+- `architecture-governance` v0.2.0, Priority 20
+- `isaqb-architecture-governance` v0.1.0, Priority 30
+- `a11y-governance` v0.2.0, Priority 40
+- `cross-platform-governance` v0.1.0, Priority 50
+- `agent-parity-governance` v0.1.0, Priority 60
+
+Alle sechs Presets sind seit 2026-05-04 im `github/spec-kit`
+Community-Katalog enthalten. C#/.NET-Level-2-Projekte verwenden
+standardmäßig alle sechs Presets, sofern keine begründete Ausnahme dokumentiert
+ist. Nach Installation oder Update prüfen: `specify preset list`,
+`specify preset info <id>` und bei Template-Fragen `specify preset resolve
+<template>`. `.specify/presets/` wird committed, `.specify/presets/.cache/`
+nicht.
+
 ---
 
 ## Spec-kit Workflow
@@ -31,3 +51,22 @@ Steps for a new feature:
 6. **Validate** — `bash scripts/check-homogeneity.sh` → check compliance score
 
 All spec artefacts are stored and versioned in the branch directory `specs/{branch}/`.
+
+### Governance Presets
+
+Level-2 projects can install Spec-Kit governance presets. The standard set for
+this workspace family is:
+
+- `security-governance` v0.2.0, priority 10
+- `architecture-governance` v0.2.0, priority 20
+- `isaqb-architecture-governance` v0.1.0, priority 30
+- `a11y-governance` v0.2.0, priority 40
+- `cross-platform-governance` v0.1.0, priority 50
+- `agent-parity-governance` v0.1.0, priority 60
+
+All six presets are included in the `github/spec-kit` community catalog as of
+2026-05-04. C#/.NET Level-2 projects default to all six presets unless a
+justified exception is documented. After install or update, verify with
+`specify preset list`, `specify preset info <id>`, and for template questions
+`specify preset resolve <template>`. Commit `.specify/presets/`, but not
+`.specify/presets/.cache/`.
