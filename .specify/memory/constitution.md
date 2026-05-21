@@ -1,31 +1,33 @@
 <!--
 Sync Impact Report
-Version change: 1.13.0 -> 1.13.1
+Version change: 1.13.1 -> 1.14.0
 Modified principles:
-- IV. Workspace Isolation (make public `home-baseline` the default Spec-Kit template source)
+- XIV. Secure Development Standards & Applicability Matrix (add AI-SBOM)
+- XVI. Supply-Chain Transparency & Build Integrity (add G7/BSI AI-SBOM applicability)
+- XIX. EU Cyber Resilience Act (CRA) Compliance Awareness (add AI Act / AI-SBOM awareness)
 Added sections:
 - None
 Removed sections:
 - None
 Templates requiring updates:
-- ✅ .specify/templates/plan-template.md (preserve local governance overlay)
-- ✅ .specify/templates/spec-template.md (preserve CR-001..CR-010 overlay)
-- ✅ .specify/templates/tasks-template.md (preserve cross-cutting governance tasks)
+- ✅ .specify/templates/supply-chain-evidence-template.md (add AI-SBOM applicability)
+- ✅ .specify/templates/plan-template.md (add AI-SBOM planning checks)
+- ✅ .specify/templates/spec-template.md (add AI-SBOM requirement)
+- ✅ .specify/templates/tasks-template.md (add conditional AI-SBOM task)
 Runtime guidance requiring updates:
 - ✅ AGENTS.md
 - ✅ CLAUDE.md
 - ✅ GEMINI.md
 - ✅ .github/copilot-instructions.md
 - ✅ .specify/memory/constitution.md (mirror)
+- ✅ scripts/templates/* agent guidance templates
 New scripts:
-- ✅ scripts/update-spec-kit.sh
-- ✅ scripts/update-spec-kit.ps1
-- ✅ docs/man/update-spec-kit.1.md
+- None
 Follow-up TODOs:
 - None
 -->
 
-# Constitution v1.13.1
+# Constitution v1.14.0
 
 # home-baseline Constitution
 
@@ -522,6 +524,7 @@ MUST use this matrix to determine which standards apply.
 | CWE Top 25 | MUST | All Level-2 projects | Relevant weaknesses are checked during design, implementation, review, and remediation |
 | OWASP ASVS | MUST | Web, API, HTTP, or authentication-bearing services | Select and document an ASVS level and verification scope |
 | SBOM | MUST | Release-capable or distributable artefacts | Generate machine-readable component inventory per release |
+| AI-SBOM / G7 SBOM for AI Minimum Elements | Project-type-dependent | AI models, AI services, training or embedding datasets, inference infrastructure, or AI runtime components are part of the released or operated system | Assess AI-SBOM applicability; when applicable, record the seven G7/BSI clusters: metadata, system-level properties, models, datasets, infrastructure, security properties, and key performance indicators |
 | VEX | MUST | Known vulnerabilities in shipped or evaluated components | Record whether the project is affected, not affected, mitigated, or under investigation |
 | SLSA | SHOULD | CI/CD-built or published artefacts | Target build provenance and integrity controls; at least L1 where feasible |
 | OWASP SAMM | SHOULD | Long-lived Level-1 and Level-2 workspaces/projects | Periodic self-assessment with prioritized improvement actions |
@@ -603,6 +606,20 @@ Mandatory rules:
   release asset and/or in `docs/security/`. This reflects the forthcoming
   requirements of the EU Cyber Resilience Act (CRA) and established industry
   best practice.
+- Projects that include AI models, AI services, training or embedding
+  datasets, inference infrastructure, or AI runtime components in a released
+  artefact or operated system MUST assess whether an `AI-SBOM` is applicable.
+  When applicable, the supply-chain evidence MUST at minimum cover the seven
+  G7/BSI AI-SBOM clusters: metadata, system-level properties, models, datasets,
+  infrastructure, security properties, and key performance indicators. The
+  evidence MAY remain internal unless release, customer, regulatory, or sector
+  requirements demand publication.
+- AI tools used only for development assistance (for example code generation,
+  documentation, review, testing, or local agent workflows) do not by
+  themselves require a product `AI-SBOM`. In that case, record `AI-SBOM` as
+  `N/A` with a short toolchain rationale when supply-chain evidence is being
+  maintained. If no AI component is part of the released or operated system,
+  record `N/A` with a short rationale rather than omitting the decision.
 - When a released or evaluated component has a known vulnerability that is
   relevant to consumers or reviewers, the project MUST publish or record a
   `VEX`-style status statement indicating whether the product is affected,
@@ -632,11 +649,16 @@ Mandatory rules:
 - Release-capable projects MUST maintain a supply-chain evidence document using
   `supply-chain-evidence-template.md` or an equivalent repository-local format.
   That document MUST reference the current SBOM, VEX decisions, provenance or
-  SLSA status, and any relevant OpenSSF Scorecard observations.
+  SLSA status, AI-SBOM applicability where relevant, and any relevant OpenSSF
+  Scorecard observations.
 
 **Rationale**: A project can follow secure coding rules and still ship opaque
 or tampered artefacts. SBOM, VEX, SLSA, and Scorecard address transparency,
 integrity, and supplier trustworthiness across the software supply chain.
+The G7/BSI AI-SBOM minimum elements extend that transparency to AI-specific
+dependencies such as models, datasets, and inference infrastructure. They are
+not a direct legal obligation by themselves, but they are a useful target
+architecture for systems that ship or operate AI components.
 Automated tooling (Renovatebot/Dependabot, Dependency Track) dramatically
 reduces the manual overhead of dependency management and removes the gap
 between policy and enforcement that static documentation cannot close.
@@ -728,6 +750,11 @@ Mandatory rules:
 - CRA-scoped projects MUST document their conformity assessment approach
   (self-assessment for most products; third-party assessment for critical
   or important products under Annex III/IV of the CRA).
+- Projects with AI runtime components MUST record whether the EU AI Act, CRA,
+  or sector-specific rules create additional transparency, supply-chain, or
+  security obligations. The G7/BSI AI-SBOM minimum elements do not create
+  direct legal obligations by themselves, but AI components delivered,
+  embedded, or relied on at runtime SHOULD use them as target architecture.
 - All projects SHOULD align security practices with CRA principles
   regardless of formal scope applicability, as the CRA reflects emerging
   industry baseline expectations for secure software development:
@@ -742,9 +769,12 @@ with compliance deadlines phased through 2027) is the most significant
 EU regulatory development in software security since GDPR. It codifies
 many existing best practices — SBOM, vulnerability disclosure, secure
 development lifecycle, security-by-design — as legal obligations for
-software placed on the EU market. Recording CRA applicability and aligning
-practices proactively reduces legal and reputational risk and builds on the
-security work already required by Principles XII–XVIII.
+software placed on the EU market. AI-SBOM awareness complements that record
+for systems that include AI components, especially where the EU AI Act,
+CRA, or sector-specific rules already touch transparency and dependency
+management. Recording CRA applicability and aligning practices proactively
+reduces legal and reputational risk and builds on the security work already
+required by Principles XII–XVIII.
 
 ## Level-2 Project Environment Registry / Level-2-Projektumgebungsregister
 
@@ -837,7 +867,7 @@ workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.2.0` | `10` | secure development, MSL, SSDF, ASVS, SBOM/VEX/SLSA, CRA awareness |
+| `security-governance` | `v0.3.0` | `10` | secure development, MSL, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA awareness |
 | `architecture-governance` | `v0.2.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR |
 | `isaqb-architecture-governance` | `v0.1.0` | `30` | general iSAQB/arc42 architecture governance |
 | `a11y-governance` | `v0.2.0` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts |

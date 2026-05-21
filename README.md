@@ -1971,7 +1971,7 @@ state.*
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
-| `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |
+| `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |
 | `architecture-governance` | Sichere Architektur, Threat Modeling, Zero Trust, OWASP SAMM, Security-ADRs. / Secure architecture, threat modeling, Zero Trust, OWASP SAMM, security ADRs. | Für Projekte mit Services, Datenflüssen, Schnittstellen oder Sicherheitsrisiken installieren. / Install for projects with services, data flows, interfaces, or security risks. |
 | `isaqb-architecture-governance` | Allgemeine Softwarearchitektur nach iSAQB/arc42: Sichten, Qualitätsszenarien, Entscheidungen, Risiken. / General software architecture based on iSAQB/arc42: views, quality scenarios, decisions, risks. | Für Projekte installieren, bei denen Architekturarbeit dauerhaft nachvollziehbar sein soll. / Install when architectural work should stay traceable over time. |
 | `a11y-governance` | Barrierefreiheit nach WCAG 2.2 Level AA für UI, HTML, CLI, Doku und Templates. / Accessibility based on WCAG 2.2 Level AA for UI, HTML, CLI, docs, and templates. | Für alle nutzerseitigen Artefakte installieren. / Install for all user-facing artefacts. |
@@ -2028,13 +2028,26 @@ cd ~/Pfad/zu/deinem/Projekt
 specify init --here --force --integration codex
 
 # Governance-Presets installieren / install governance presets
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.2.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.3.0.zip --priority 10
 specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.2.0.zip --priority 20
 specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.1.0.zip --priority 30
 specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.2.0.zip --priority 40
 specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.1.0.zip --priority 50
 specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.1.0.zip --priority 60
 ```
+
+`security-governance` v0.3.0 behandelt `AI-SBOM` bewusst bedingt: Wenn KI nur
+als Entwicklungswerkzeug genutzt wird, ist `AI-SBOM` mit kurzer
+Toolchain-Begruendung `N/A`. Wenn KI-Modelle, KI-Dienste, Datensaetze,
+Inferenz-Infrastruktur oder KI-Runtime-Komponenten Teil des ausgelieferten oder
+betriebenen Systems sind, wird die Supply-Chain-Evidenz um die G7/BSI
+AI-SBOM-Cluster erweitert.
+
+*`security-governance` v0.3.0 treats `AI-SBOM` as conditional: when AI is used
+only as development tooling, `AI-SBOM` is `N/A` with a short toolchain rationale.
+When AI models, AI services, datasets, inference infrastructure, or AI runtime
+components are part of the released or operated system, supply-chain evidence is
+extended with the G7/BSI AI-SBOM clusters.*
 
 Die Priorität steuert, welches Preset bei gleichnamigen Dateien oder Addenda
 zuerst berücksichtigt wird. Bei Spec-Kit gilt: kleinere Zahl = höhere Priorität.
@@ -2102,7 +2115,7 @@ specify preset search governance
 specify preset add security-governance --priority 10
 
 # Immer eindeutig / always explicit
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.2.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.3.0.zip --priority 10
 ```
 
 #### Presets aktualisieren oder entfernen / Update or remove presets

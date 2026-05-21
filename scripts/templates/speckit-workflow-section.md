@@ -19,7 +19,7 @@ Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert u
 Für Level-2-Projekte können Spec-Kit-Governance-Presets installiert werden.
 Das Standard-Set dieser Workspace-Familie ist:
 
-- `security-governance` v0.2.0, Priority 10
+- `security-governance` v0.3.0, Priority 10
 - `architecture-governance` v0.2.0, Priority 20
 - `isaqb-architecture-governance` v0.1.0, Priority 30
 - `a11y-governance` v0.2.0, Priority 40
@@ -57,7 +57,7 @@ All spec artefacts are stored and versioned in the branch directory `specs/{bran
 Level-2 projects can install Spec-Kit governance presets. The standard set for
 this workspace family is:
 
-- `security-governance` v0.2.0, priority 10
+- `security-governance` v0.3.0, priority 10
 - `architecture-governance` v0.2.0, priority 20
 - `isaqb-architecture-governance` v0.1.0, priority 30
 - `a11y-governance` v0.2.0, priority 40
