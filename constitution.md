@@ -906,7 +906,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.13.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-05-04
+**Version**: 1.14.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-05-22
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
