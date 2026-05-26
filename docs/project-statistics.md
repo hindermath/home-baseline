@@ -28,31 +28,32 @@
 | 2026-04-30 | Public-Template-Quelle fuer Spec-Kit-Updates | 28 | 71 527 | 309 | `update-spec-kit.*` von impliziter TuiVision-Prioritaet auf selbsttragendes `home-baseline`-Default umgestellt; private Template-Quellen nur noch als expliziter Override dokumentiert; Verfassung, Agenten-Dateien, README und Manpage nachgezogen |
 | 2026-04-30 | Release-Please Node-24-Runtime | 28 | 71 547 | 311 | `release-please`-Workflows und Bootstrap-Generatoren auf einen konkreten `googleapis/release-please-action`-SHA mit `node24`-Runtime gepinnt, um GitHubs Node.js-20-Deprecation-Warnung fuer JavaScript-Actions zu vermeiden |
 | 2026-05-21 | AI-SBOM Governance & security-governance v0.3.0 | 31 | 72 257 | 316 | G7/BSI-AI-SBOM als bedingt anwendbare Supply-Chain-Evidenz in Constitution, Spec-Kit-Templates, Agenten-Guidance, README und `security-governance`-Preset aufgenommen; Entwicklungswerkzeug-Nutzung als `N/A`, KI-Runtime-/Produktkomponenten mit sieben AI-SBOM-Clustern dokumentiert |
+| 2026-05-26 | security-governance v0.4.0 Sprachprofile | 32 | 72 796 | 317 | Sprachspezifische Secure-Coding-Profile fuer Rust, Go, Swift, Java/Kotlin, Python und TypeScript/JavaScript in Constitution, Spec-Kit-Templates, Agenten-Guidance, README und Preset-Scaffolds propagiert; MSL-Status als nicht ausreichender Sicherheitsnachweis dokumentiert |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-05-21**
+Stand / As of: **2026-05-26**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 81 | 17 389 | 24.1 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 151 | 4.4 % |
+| Skripte / Scripts (`.sh` + `.ps1`) | 81 | 17 389 | 23.9 % |
+| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 167 | 4.4 % |
 | Hooks + CI (pre-push + YAML/JSON) | 33 | 1 957 | 2.7 % |
-| Dokumentation / Documentation (`.md`) | 423 | 49 231 | 68.1 % |
-| Sonstiges / Other | 14 | 529 | 0.7 % |
-| **Gesamt / Total** | **575** | **72 257** | **100 %** |
+| Dokumentation / Documentation (`.md`) | 424 | 49 733 | 68.3 % |
+| Sonstiges / Other | 15 | 550 | 0.8 % |
+| **Gesamt / Total** | **577** | **72 796** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 16 421 | 33.4 % |
+| Spec-Kit-Artefakte (`specs/`) | 16 671 | 33.5 % |
 | Lastenhefte (`Lastenheft*.md`) | 3 840 | 7.8 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 536 | 7.2 % |
-| README / CHANGELOG / STATS | 3 308 | 6.7 % |
-| Sonstiges (Templates, andere `.md`) | 22 126 | 44.9 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 598 | 7.2 % |
+| README / CHANGELOG / STATS | 3 311 | 6.7 % |
+| Sonstiges (Templates, andere `.md`) | 22 313 | 44.9 % |
 
 ---
 
@@ -174,49 +175,52 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `72 257` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `19 346` Zeilen (`26.8 %`) |
-| Dokumentationsanteil / Documentation share | `49 231` Zeilen (`68.1 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-05-21` |
-| Sichtbare Git-Aktivtage / Observable active days | `31` |
-| Git-Commits gesamt / Total commits | `316` |
-| Git-Commits pro Aktivtag / Commits per active day | `10.2` (`316 / 31`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 330.9` (`72 257 / 31`) |
-| Zeilen pro Commit / Lines per commit | `228.7` (`72 257 / 316`) |
-| Konservative Einzelentwickler-Untergrenze | `903.2` Arbeitstage / `7 045.1` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `722.6` Arbeitstage / `5 636.0` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `361.3` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `29.1x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `23.3x` |
+| Artefaktbasis gesamt / Total artifact base | `72 796` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `19 346` Zeilen (`26.6 %`) |
+| Dokumentationsanteil / Documentation share | `49 733` Zeilen (`68.3 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-05-26` |
+| Sichtbare Git-Aktivtage / Observable active days | `32` |
+| Git-Commits gesamt / Total commits | `317` |
+| Git-Commits pro Aktivtag / Commits per active day | `9.9` (`317 / 32`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 274.9` (`72 796 / 32`) |
+| Zeilen pro Commit / Lines per commit | `229.6` (`72 796 / 317`) |
+| Konservative Einzelentwickler-Untergrenze | `910.0` Arbeitstage / `7 097.6` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `728.0` Arbeitstage / `5 678.1` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `364.0` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `28.4x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `22.7x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `68.1 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `68.3 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Der operative Code (Skripte,
-Hooks, CI) macht `26.8 %` aus. Der groesste dokumentierte Volumensprung bleibt
+Hooks, CI) macht `26.6 %` aus. Der groesste dokumentierte Volumensprung bleibt
 Phase `1` (Spec-Kit-Batch fuer Homogeneity Guardian). Die aktuelle
 Maintenance-Runde ergaenzt AI-SBOM als bedingt anwendbare Supply-Chain-Evidenz:
 reine Entwicklungswerkzeug-Nutzung wird als `N/A` begruendet, KI-Runtime- oder
-Produktkomponenten werden ueber die sieben G7/BSI-AI-SBOM-Cluster erfasst. Die
+Produktkomponenten werden ueber die sieben G7/BSI-AI-SBOM-Cluster erfasst und
+MSL-Projekte erhalten weiterhin konkrete sprachspezifische Secure-Coding-
+Profile. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
-*Short summary: after the Spec-Kit 0.8.3 automation round, `home-baseline`
-remains documentation- and governance-driven: `68.1 %` of the visible base sits
+*Short summary: after the security-governance v0.4.0 propagation round,
+`home-baseline` remains documentation- and governance-driven: `68.3 %` of the visible base sits
 in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
-`26.8 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
+`26.6 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
 for Homogeneity Guardian). The current maintenance round adds AI-SBOM as
 conditional supply-chain evidence: development-tool-only usage is justified as
 `N/A`, while AI runtime or product components are captured through the seven
-G7/BSI AI-SBOM clusters. The acceleration factors describe visible delivery
-density, not stopwatch measurements.*
+G7/BSI AI-SBOM clusters, and MSL projects still receive concrete
+language-specific secure-coding profiles. The acceleration factors describe
+visible delivery density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #############                  | 19 346 | 26.8 %
-Dokumentation   | ############################## | 49 231 | 68.1 %
-Sonstiges       | ##                             |  3 680 |  5.1 %
+Operativer Code | #############                  | 19 346 | 26.6 %
+Dokumentation   | ############################## | 49 733 | 68.3 %
+Sonstiges       | ##                             |  3 717 |  5.1 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
@@ -270,7 +274,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | #############################     | 29.1x
+Repo ges. | ############################      | 28.4x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -292,9 +296,9 @@ completed in two visible Git active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 903.2 d / 7 045.1 h
-Thorsten (100 Z./Tag)  | ###################      | 722.6 d / 5 636.0 h
-KI sichtbar            | #                        |  31.0 d
+Erfahren (80 Z./Tag)   | ######################## | 910.0 d / 7 097.6 h
+Thorsten (100 Z./Tag)  | ###################      | 728.0 d / 5 678.1 h
+KI sichtbar            | #                        |  32.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer
