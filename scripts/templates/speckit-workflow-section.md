@@ -19,12 +19,14 @@ Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert u
 Für Level-2-Projekte können Spec-Kit-Governance-Presets installiert werden.
 Das Standard-Set dieser Workspace-Familie ist:
 
-- `security-governance` v0.4.0, Priority 10
-- `architecture-governance` v0.2.0, Priority 20
-- `isaqb-architecture-governance` v0.1.0, Priority 30
-- `a11y-governance` v0.2.0, Priority 40
-- `cross-platform-governance` v0.1.0, Priority 50
-- `agent-parity-governance` v0.1.0, Priority 60
+| Preset-ID | Name | Version | Priorität |
+|---|---|---:|---:|
+| `security-governance` | Security Governance | `v0.4.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.2.0` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.1.0` | `60` |
 
 Alle sechs Presets sind seit 2026-05-04 im `github/spec-kit`
 Community-Katalog enthalten. C#/.NET-Level-2-Projekte verwenden
@@ -33,6 +35,9 @@ ist. Nach Installation oder Update prüfen: `specify preset list`,
 `specify preset info <id>` und bei Template-Fragen `specify preset resolve
 <template>`. `.specify/presets/` wird committed, `.specify/presets/.cache/`
 nicht.
+Bei jeder Preset-Version oder Prioritätsänderung müssen die Preset-Tabelle,
+Installationsbefehle, Constitution, Agenten-Dateien und Templates gemeinsam
+aktualisiert werden.
 
 ---
 
@@ -57,12 +62,14 @@ All spec artefacts are stored and versioned in the branch directory `specs/{bran
 Level-2 projects can install Spec-Kit governance presets. The standard set for
 this workspace family is:
 
-- `security-governance` v0.4.0, priority 10
-- `architecture-governance` v0.2.0, priority 20
-- `isaqb-architecture-governance` v0.1.0, priority 30
-- `a11y-governance` v0.2.0, priority 40
-- `cross-platform-governance` v0.1.0, priority 50
-- `agent-parity-governance` v0.1.0, priority 60
+| Preset ID | Name | Version | Priority |
+|---|---|---:|---:|
+| `security-governance` | Security Governance | `v0.4.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.2.0` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.1.0` | `60` |
 
 All six presets are included in the `github/spec-kit` community catalog as of
 2026-05-04. C#/.NET Level-2 projects default to all six presets unless a
@@ -70,3 +77,6 @@ justified exception is documented. After install or update, verify with
 `specify preset list`, `specify preset info <id>`, and for template questions
 `specify preset resolve <template>`. Commit `.specify/presets/`, but not
 `.specify/presets/.cache/`.
+For every preset version or priority change, update the preset table,
+installation commands, constitution, agent guidance files, and templates
+together.

@@ -893,6 +893,13 @@ workspace family consists of:
 | `cross-platform-governance` | `v0.1.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.1.0` | `60` | synchronized agent guidance across declared AI-agent files |
 
+This matrix is the authoritative source for preset IDs, versions, priorities,
+and scope. Any preset version or priority change MUST update the matching
+compact overview and installation snippets in `README.md`,
+`.specify/memory/constitution.md`, the four agent guidance files,
+`scripts/templates/speckit-workflow-section.md`, and the matching agent
+templates under `scripts/templates/` in the same change.
+
 All six presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*` and are included in the
 `github/spec-kit` community preset catalog as of 2026-05-04. New Level-2

@@ -1969,6 +1969,25 @@ state.*
 
 #### Welche Presets gibt es? / Which presets exist?
 
+Die folgende kompakte Übersicht ist die nutzerseitige Spiegelung der
+konstitutionellen Preset-Matrix. Bei jeder neuen Preset-Version oder
+Prioritätsänderung müssen diese Tabelle, die Installationsbefehle und die
+zugehörigen Guidance-/Template-Stellen gemeinsam aktualisiert werden.
+
+*The following compact overview mirrors the constitutional preset matrix for
+users. Whenever a preset version or priority changes, this table, the
+installation commands, and the related guidance/template locations must be
+updated together.*
+
+| Preset-ID | Name | Version | Priorität / Priority |
+|---|---|---:|---:|
+| `security-governance` | Security Governance | `v0.4.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.2.0` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.1.0` | `60` |
+
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
 | `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |
@@ -2127,11 +2146,19 @@ Für ein Update installierst du den neuen Release-Tag erneut mit derselben
 Priorität. Prüfe danach die aufgelösten Templates und die Git-Änderungen. Wenn
 ein Preset für ein Projekt nicht passt, deaktiviere es zuerst statt es sofort zu
 löschen. So bleibt die Entscheidung nachvollziehbar.
+Bei jeder neuen Preset-Version müssen mindestens die kompakte Übersicht oben,
+die ZIP-Installationsbefehle, `constitution.md`,
+`.specify/memory/constitution.md`, die vier Agenten-Dateien und die
+entsprechenden `scripts/templates/*`-Vorlagen gemeinsam geprüft und aktualisiert
+werden.
 
 *To update a preset, install the new release tag again with the same priority.
 Then verify the resolved templates and Git changes. If a preset does not fit a
 project, disable it first instead of deleting it immediately. This keeps the
-decision traceable.*
+decision traceable. For every new preset version, at least the compact overview
+above, the ZIP installation commands, `constitution.md`,
+`.specify/memory/constitution.md`, the four agent guidance files, and the
+matching `scripts/templates/*` templates must be reviewed and updated together.*
 
 ```bash
 # Vorübergehend deaktivieren / temporarily disable
