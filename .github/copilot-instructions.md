@@ -26,6 +26,16 @@ pwsh ~/scripts/sync-home.ps1 -NoPull   # Windows
 | `~/home-baseline-tmp` | ✅ `origin` → GitHub | Development, commits, push |
 | `~/` | ❌ no remote | Local copy for scripts & hooks |
 
+## GitHub/GitLab CLI First / GitHub/GitLab CLI zuerst
+
+Für GitHub-Repositories zuerst die authentifizierte `gh` CLI für mögliche Schreibaktionen und Live-Repository-Operationen verwenden, einschließlich PR-/Issue-Kommentaren, PR-Statusprüfungen, Review-Follow-up, Workflow-Prüfung und Merge-/Statusabfragen. GitHub-Connector-Tools hauptsächlich für strukturierte Read-only-Inspektion oder Fälle nutzen, in denen die CLI nicht geeignet ist.
+
+Für GitLab-Repositories die authentifizierte `glab` CLI zuerst für gleichwertige Aktionen verwenden. Bekanntermaßen fehlschlagende Connector-Schreibwege nicht wiederholt versuchen, wenn `gh`/`glab` die Aufgabe direkt erledigen kann.
+
+For GitHub repositories, use the authenticated `gh` CLI first for feasible write actions and live repository operations, including PR/issue comments, PR status checks, review follow-up, workflow inspection, and merge/status queries. Use GitHub connector tools mainly for structured read-only inspection or when the CLI is not suitable.
+
+For GitLab repositories, use the authenticated `glab` CLI first for equivalent actions. Do not repeatedly try connector write paths that are known to fail when `gh`/`glab` can perform the task directly.
+
 ## Validierungsbefehle / Validation Commands
 
 There is no build step. Validate changes by running scripts directly.
