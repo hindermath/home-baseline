@@ -250,12 +250,26 @@ function Update-WorkspaceGitignoreEntry {
     return 'Updated'
 }
 
+function Test-EnGuidance {
+    param([string]$File)
+    if (-not (Test-Path $File)) { return $false }
+    $content = Get-Content $File -Raw -ErrorAction SilentlyContinue
+    if ($content -match '<!-- EN:') { return $true }
+    if ($content -match '(?im)^#{1,6}\s+.+\s+/\s+.*(Shared|Environment|Registry|Security|Secure|Architecture|Documentation|Standards|Workflow|Maintenance|Notes|Description|Accessibility|For Apprentices|Spec[- ]Kit|Governance|Guidelines|Instructions|tooling)') {
+        return $true
+    }
+    if (($content -match '(?i)(Gemeinsame|Barrierefreiheit|Sichere|Sicherheits|Umgebungsregister|Hinweise|Beschreibung|deutsch)') -and
+        ($content -match '(?i)(Shared|Accessibility|Secure|Security|Environment|Notes|Description|English|englisch)')) {
+        return $true
+    }
+    return $false
+}
+
 function Add-EnPlaceholder {
     param([string]$File, [string]$Label)
     if (-not (Test-Path $File)) { return $false }
-    $content = Get-Content $File -Raw -ErrorAction SilentlyContinue
-    if ($content -match '<!-- EN:') {
-        Write-Host "  INFO: EN block already present — skip ($($File -replace [regex]::Escape($HomeDir), '~'))"
+    if (Test-EnGuidance -File $File) {
+        Write-Host "  INFO: EN guidance already present — skip ($($File -replace [regex]::Escape($HomeDir), '~'))"
         return $false
     }
     if ($WhatIfPreference) {
@@ -318,7 +332,7 @@ function Migrate-Workspace {
 
     $changed = $false
 
-    foreach ($agentFile in @('README.md','AGENTS.md','CLAUDE.md','GEMINI.md','constitution.md')) {
+    foreach ($agentFile in @('AGENTS.md','CLAUDE.md','GEMINI.md','constitution.md')) {
         $fullPath = Join-Path $WsDir $agentFile
         if (Test-Path $fullPath) {
             if (Add-EnPlaceholder -File $fullPath -Label $agentFile) { $changed = $true }
