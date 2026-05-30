@@ -1986,7 +1986,7 @@ updated together.*
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.1.0` | `60` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.2.0` | `60` |
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
@@ -1995,7 +1995,7 @@ updated together.*
 | `isaqb-architecture-governance` | Allgemeine Softwarearchitektur nach iSAQB/arc42: Sichten, Qualitätsszenarien, Entscheidungen, Risiken. / General software architecture based on iSAQB/arc42: views, quality scenarios, decisions, risks. | Für Projekte installieren, bei denen Architekturarbeit dauerhaft nachvollziehbar sein soll. / Install when architectural work should stay traceable over time. |
 | `a11y-governance` | Barrierefreiheit nach WCAG 2.2 Level AA für UI, HTML, CLI, Doku und Templates. / Accessibility based on WCAG 2.2 Level AA for UI, HTML, CLI, docs, and templates. | Für alle nutzerseitigen Artefakte installieren. / Install for all user-facing artefacts. |
 | `cross-platform-governance` | macOS/Linux/Windows-Parität, Shell-Auswahl, Pfadregeln, Testhinweise. / macOS/Linux/Windows parity, shell choice, path rules, test guidance. | Für Skripte, CLIs, Tooling und Workspace-Infrastruktur installieren. / Install for scripts, CLIs, tooling, and workspace infrastructure. |
-| `agent-parity-governance` | Gemeinsame Pflege von `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md`. / Joint maintenance of `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`. | Für Repos mit mehreren KI-Agenten-Oberflächen installieren. / Install for repos with multiple AI-agent surfaces. |
+| `agent-parity-governance` | Gemeinsame Pflege von Agent-Guidance plus agentenneutrales Spec-Kit-Modell-Routing. / Joint maintenance of agent guidance plus agent-neutral Spec-Kit model routing. | Für Repos mit mehreren KI-Agenten-Oberflächen installieren. / Install for repos with multiple AI-agent surfaces. |
 
 Nicht jedes Projekt braucht alle sechs Presets. Für kleine Lern- oder
 Experimentierprojekte reicht oft eine Teilmenge. Für ernsthafte Level-2-Projekte
@@ -2052,7 +2052,7 @@ specify preset add --from https://github.com/hindermath/spec-kit-preset-architec
 specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.1.0.zip --priority 30
 specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.2.0.zip --priority 40
 specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.1.0.zip --priority 50
-specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.1.0.zip --priority 60
+specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.2.0.zip --priority 60
 ```
 
 `security-governance` v0.4.0 behandelt `AI-SBOM` bewusst bedingt und ergaenzt

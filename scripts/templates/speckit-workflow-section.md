@@ -26,7 +26,7 @@ Das Standard-Set dieser Workspace-Familie ist:
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.1.0` | `60` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.2.0` | `60` |
 
 Alle sechs Presets sind seit 2026-05-04 im `github/spec-kit`
 Community-Katalog enthalten. C#/.NET-Level-2-Projekte verwenden
@@ -69,7 +69,7 @@ this workspace family is:
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.1.0` | `60` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.2.0` | `60` |
 
 All six presets are included in the `github/spec-kit` community catalog as of
 2026-05-04. C#/.NET Level-2 projects default to all six presets unless a

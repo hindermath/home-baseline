@@ -9,7 +9,7 @@ Target split:
 - `isaqb-architecture-governance` — version `0.1.0`
 - `architecture-governance` — version `0.2.0`
 - `a11y-governance` — version `0.2.0`
-- `agent-parity-governance` — version `0.1.0`
+- `agent-parity-governance` — version `0.2.0`
 - `cross-platform-governance` — version `0.1.0`
 
 All six presets require `spec-kit >= 0.8.0`. They depend on the
