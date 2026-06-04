@@ -105,6 +105,7 @@ At the start of each session, detect the OS and call the matching script variant
 - Keep `## Fortschreibungsprotokoll` chronological: oldest entry first, newest entry last.
 - Keep `## Gesamtstatistik` as the final top-level section.
 - Include compact ASCII-only diagrams directly below the metrics table: artefact mix, phase volume, conservative reference bars, acceleration factors, and the experienced/Thorsten-Solo/AI-visible comparison.
+- ASCII X/Y charts must use fixed-width X slots: every documented phase keeps its slot, missing values stay blank, and overly wide series are split into labelled blocks such as `0..15`, `16..31`, and `32..47`.
 - Add a short CEFR-B2 explanation below every diagram in German first and English second.
 - Use text-friendly output only: no color-dependent signalling and no symbols that break Braille or screen-reader readability.
 - Manual references for this repository are `80` lines/workday (conservative) and `100` lines/workday (Thorsten-Solo, scripting infrastructure).

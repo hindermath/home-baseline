@@ -311,21 +311,24 @@ speedup.*
 
 ```text
 X/Y-Diagramm: Phasenvolumen (X = Phase 0..6, Y = Insertions)
-30000 |
-25000 |   *
-20000 |
-15000 |
-10000 |               *
- 5000 |         *             *
-    0 | *           *   *
-      +---------------
-       0 1 2 3 4 5 6
+30000 |                            |
+25000 |     *                      |
+20000 |                            |
+15000 |                            |
+10000 |                 *       *  |
+ 5000 |         *                  |
+    0 | *           *       *      |
+      +----------------------------+
+        0   1   2   3   4   5   6
 ```
 
 Als zweite Ansicht zeigt diese X/Y-Kurve denselben Verlauf ueber die
-Phasenachse. Phase `1` ragt deutlich heraus; Phase `6` bildet den neuen
-Governance- und Preset-Nachlauf nach den Sicherheits- und Architekturarbeiten.
+Phasenachse. Die X-Positionen nutzen feste Slots, damit spaetere zweistellige
+oder fehlende Phasenwerte keine Punkte verschieben. Phase `1` ragt deutlich
+heraus; Phase `6` bildet den neuen Governance- und Preset-Nachlauf nach den
+Sicherheits- und Architekturarbeiten.
 
 *As a second view, this X/Y curve shows the same progression across the phase
-axis. Phase `1` stands out clearly; Phase `6` forms the new governance and
-preset follow-up after the security and architecture work.*
+axis. The X positions use fixed slots so later two-digit or missing phase values
+do not shift points. Phase `1` stands out clearly; Phase `6` forms the new
+governance and preset follow-up after the security and architecture work.*

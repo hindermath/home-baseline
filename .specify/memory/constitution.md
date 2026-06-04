@@ -209,6 +209,7 @@ Mandatory content and update rules:
 
 - **Fortschreibungsprotokoll**: chronological table (oldest entry first, newest last) recording cumulative lines, active days, and commit count at each milestone.
 - **Gesamtstatistik**: always the final top-level section; includes compact ASCII-only diagrams (artefakt mix, phase volume, speedup factors, manual-reference comparison).
+- **ASCII X/Y charts**: use fixed-width X slots; every documented phase keeps its slot, missing values stay blank, and overly wide series are split into labelled blocks such as `0..15`, `16..31`, and `32..47`.
 - **Update triggers**: after each completed Spec-Kit implementation phase, after each merged feature, or when explicitly requested.
 - **Reference baselines**:
   - Manual reference: `80` lines/workday (conservative) — project-specific Thorsten-Solo baseline documented consistently in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`.

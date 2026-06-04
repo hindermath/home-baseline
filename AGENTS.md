@@ -124,6 +124,7 @@ Or view at: `https://github.com/hindermath/home-baseline/blob/main/`
 - Im `## Fortschreibungsprotokoll`-Abschnitt gilt: ältester Eintrag oben, neuester Eintrag unten; Einträge mit gleichem Datum behalten ihre Reihenfolge.
 - Halte den `## Gesamtstatistik`-Abschnitt als letzten Top-Level-Abschnitt; hänge danach keine weiteren Top-Level-Abschnitte an.
 - Innerhalb von `## Gesamtstatistik` stehen kompakte ASCII-Only-Diagramme direkt unter der Kennzahlen-Tabelle; zeige mindestens Artefaktmix, Phasenvolumen, konservative Referenz-Balken, Beschleunigungsfaktoren und den Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
+- ASCII-X/Y-Diagramme verwenden feste X-Slots: jeder dokumentierte Phasenwert behält seinen Slot, fehlende Werte bleiben leer, und zu breite Reihen werden in beschriftete Blöcke wie `0..15`, `16..31` und `32..47` geteilt.
 - Jedes ASCII-Diagramm erhält eine kurze CEFR-B2-Erklärung direkt darunter (deutsch und englisch).
 - Halte die Statistik textfreundlich: keine Farben, keine Symbole, die auf Braille-Zeilen oder Screenreadern nicht lesbar sind.
 - Manuelle Referenzen für dieses Repository: `80` Zeilen/Arbeitstag (konservative Untergrenze) und `100` Zeilen/Arbeitstag (Thorsten-Solo, Scripting-Infra).
@@ -133,7 +134,7 @@ Or view at: `https://github.com/hindermath/home-baseline/blob/main/`
 - Beschleunigungsfaktoren vergleichen die manuelle Referenz gegen sichtbare Git-Aktivtage — keine Stoppuhrmessung, sondern blended repository speedup.
 - Shared guidance darf nicht nur in einer der Agenten-Dateien aktualisiert werden; intentionale Abweichungen müssen in derselben Änderung dokumentiert sein.
 
-*Maintain `docs/project-statistics.md` as the living statistics ledger for this repository. Update after each completed feature/Lastenheft, Spec-Kit phase, or on explicit request. Keep the Fortschreibungsprotokoll in chronological order (oldest first). Keep `## Gesamtstatistik` as the final top-level section. Manual references: `80` lines/workday (conservative) and `100` lines/workday (Thorsten-Solo, scripting infra). Default C#/.NET Thorsten-Solo baseline: `125` lines/workday unless the repo documents a justified deviation. TVöD workday: `7.8 h`. Acceleration factors compare manual reference against observable Git active days — not stopwatch time.*
+*Maintain `docs/project-statistics.md` as the living statistics ledger for this repository. Update after each completed feature/Lastenheft, Spec-Kit phase, or on explicit request. Keep the Fortschreibungsprotokoll in chronological order (oldest first). Keep `## Gesamtstatistik` as the final top-level section. ASCII X/Y charts use fixed X slots and split overly wide series into labelled blocks. Manual references: `80` lines/workday (conservative) and `100` lines/workday (Thorsten-Solo, scripting infra). Default C#/.NET Thorsten-Solo baseline: `125` lines/workday unless the repo documents a justified deviation. TVöD workday: `7.8 h`. Acceleration factors compare manual reference against observable Git active days — not stopwatch time.*
 
 ## Inklusion & Barrierefreiheit / Inclusion & Accessibility
 

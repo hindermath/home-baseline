@@ -117,6 +117,7 @@ Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Var
 - `## Fortschreibungsprotokoll` chronologisch halten: ältester Eintrag oben, neuester unten.
 - `## Gesamtstatistik` bleibt immer der letzte Top-Level-Abschnitt.
 - Direkt unter der Kennzahlen-Tabelle in `## Gesamtstatistik` kompakte ASCII-only-Diagramme pflegen: mindestens Artefaktmix, Phasenvolumen, konservative Referenz-Balken, Beschleunigungsfaktoren und Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
+- ASCII-X/Y-Diagramme verwenden feste X-Slots: jeder dokumentierte Phasenwert behält seinen Slot, fehlende Werte bleiben leer, und zu breite Reihen werden in beschriftete Blöcke wie `0..15`, `16..31` und `32..47` geteilt.
 - Jedes ASCII-Diagramm bekommt eine kurze CEFR-B2-Erklärung in DE zuerst, EN danach.
 - Textfreundlich bleiben: keine farbabhängigen Signale und keine Symbole, die auf Braille-Zeilen oder mit Screenreadern schlecht lesbar sind.
 - Für dieses Repository gelten `80` Zeilen/Arbeitstag als konservative Referenz und `100` Zeilen/Arbeitstag als Thorsten-Solo-Basis für Scripting-Infrastruktur.
