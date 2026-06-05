@@ -24,7 +24,7 @@ Das Standard-Set dieser Workspace-Familie ist:
 | `security-governance` | Security Governance | `v0.4.0` | `10` |
 | `architecture-governance` | Architecture Governance | `v0.2.0` | `20` |
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
+| `a11y-governance` | A11Y Governance | `v0.3.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.2.0` | `60` |
 
@@ -67,7 +67,7 @@ this workspace family is:
 | `security-governance` | Security Governance | `v0.4.0` | `10` |
 | `architecture-governance` | Architecture Governance | `v0.2.0` | `20` |
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.2.0` | `40` |
+| `a11y-governance` | A11Y Governance | `v0.3.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.2.0` | `60` |
 

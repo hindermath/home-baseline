@@ -233,11 +233,16 @@ All user-facing artefacts MUST be designed and reviewed for inclusive use:
 - HTML and generated websites
 - Graphical user interfaces
 - Generated templates and scaffolding
+- Didactic inline-code comments for non-trivial logic when learning
+  comprehension or maintainability is affected
 
 Mandatory rules:
 - WCAG 2.2 Level AA is the default accessibility baseline wherever the criteria are applicable.
 - User-facing artefacts MUST remain usable with keyboard-only interaction, screen readers, Braille displays, and text browsers.
 - Text-first fallbacks MUST be preferred for status reporting, diagrams, and operational guidance.
+- New or changed non-trivial logic MUST be reviewed for didactic comment need:
+  comments explain `why`, trade-off, boundary condition, historical deviation,
+  or proof limit; they do not repeat obvious code.
 - Accessibility review is part of completion, not post-processing.
 
 **Rationale**: Inclusive delivery improves quality for everyone, reduces retrofit work, and makes the repositories usable in real assistive-technology workflows from the start.
@@ -891,7 +896,7 @@ workspace family consists of:
 | `security-governance` | `v0.4.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA awareness |
 | `architecture-governance` | `v0.2.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR |
 | `isaqb-architecture-governance` | `v0.1.0` | `30` | general iSAQB/arc42 architecture governance |
-| `a11y-governance` | `v0.2.0` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts |
+| `a11y-governance` | `v0.3.0` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.1.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.2.0` | `60` | synchronized agent guidance and agent-neutral Spec-Kit model routing across declared AI-agent files |
 
