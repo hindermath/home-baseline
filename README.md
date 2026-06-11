@@ -1982,8 +1982,8 @@ updated together.*
 
 | Preset-ID | Name | Version | Priorität / Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.4.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.3.0` | `20` |
+| `security-governance` | Security Governance | `v0.5.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.4.0` | `20` |
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.3.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
@@ -1991,8 +1991,8 @@ updated together.*
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
-| `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard. | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |
-| `architecture-governance` | Sichere Architektur, Threat Modeling, Zero Trust, BSI C3A Cloud-Autonomie, OWASP SAMM, Security-ADRs. / Secure architecture, threat modeling, Zero Trust, BSI C3A cloud autonomy, OWASP SAMM, security ADRs. | Für Projekte mit Services, Datenflüssen, Schnittstellen, Cloud-Abhängigkeiten oder Sicherheitsrisiken installieren. / Install for projects with services, data flows, interfaces, cloud dependencies, or security risks. |
+| `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard, Regulatory Applicability (NIS2/CRA/EU AI Act/DORA). / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard, regulatory applicability (NIS2/CRA/EU AI Act/DORA). | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |
+| `architecture-governance` | Sichere Architektur, Threat Modeling, Zero Trust, BSI C3A Cloud-Autonomie, BSI C5 Cloud-Compliance-Assurance, OWASP SAMM, Security-ADRs. / Secure architecture, threat modeling, Zero Trust, BSI C3A cloud autonomy, BSI C5 cloud compliance assurance, OWASP SAMM, security ADRs. | Für Projekte mit Services, Datenflüssen, Schnittstellen, Cloud-Abhängigkeiten oder Sicherheitsrisiken installieren. / Install for projects with services, data flows, interfaces, cloud dependencies, or security risks. |
 | `isaqb-architecture-governance` | Allgemeine Softwarearchitektur nach iSAQB/arc42: Sichten, Qualitätsszenarien, Entscheidungen, Risiken. / General software architecture based on iSAQB/arc42: views, quality scenarios, decisions, risks. | Für Projekte installieren, bei denen Architekturarbeit dauerhaft nachvollziehbar sein soll. / Install when architectural work should stay traceable over time. |
 | `a11y-governance` | Barrierefreiheit nach WCAG 2.2 Level AA für UI, HTML, CLI, Doku, Templates und didaktische Inline-Code-Kommentare. / Accessibility based on WCAG 2.2 Level AA for UI, HTML, CLI, docs, templates, and didactic inline-code comments. | Für alle nutzerseitigen Artefakte und Lern-/Referenzprojekte installieren. / Install for all user-facing artefacts and learning/reference projects. |
 | `cross-platform-governance` | macOS/Linux/Windows-Parität, Shell-Auswahl, Pfadregeln, Testhinweise. / macOS/Linux/Windows parity, shell choice, path rules, test guidance. | Für Skripte, CLIs, Tooling und Workspace-Infrastruktur installieren. / Install for scripts, CLIs, tooling, and workspace infrastructure. |
@@ -2048,50 +2048,57 @@ cd ~/Pfad/zu/deinem/Projekt
 specify init --here --force --integration codex
 
 # Governance-Presets installieren / install governance presets
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.4.0.zip --priority 10
-specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.3.0.zip --priority 20
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.5.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.4.0.zip --priority 20
 specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.1.0.zip --priority 30
 specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.3.0.zip --priority 40
 specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.1.0.zip --priority 50
 specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.2.0.zip --priority 60
 ```
 
-`architecture-governance` v0.3.0 ergaenzt `BSI C3A` (Criteria enabling Cloud
-Computing Autonomy) als bedingte Cloud-Autonomie-Pruefung. Bei Cloud-Service-
-Auswahl, Cloud-Betrieb, SaaS/PaaS/IaaS, Managed Services,
-Container-/Artefakt-Hosting oder providerabhaengigen Deployments wird
-`docs/security/cloud-autonomy-applicability.md` oder ein gleichwertiger
-Evidenzpfad gepflegt. Reine Entwicklungsinfrastruktur ohne ausgelieferte oder
+`architecture-governance` v0.4.0 ergaenzt `BSI C3A` (Criteria enabling Cloud
+Computing Autonomy) als bedingte Cloud-Autonomie-Pruefung und `BSI C5` als
+bedingte Cloud-Compliance-Assurance-Pruefung. Bei Cloud-Service-Auswahl,
+Cloud-Betrieb, SaaS/PaaS/IaaS, Managed Services, Container-/Artefakt-Hosting
+oder providerabhaengigen Deployments werden `docs/security/cloud-autonomy-applicability.md`
+und `docs/security/cloud-compliance-assurance.md` oder gleichwertige
+Evidenzpfade gepflegt. Reine Entwicklungsinfrastruktur ohne ausgelieferte oder
 betriebene Cloud-Runtime kann mit kurzer Toolchain-Begruendung `N/A` sein.
 
-`security-governance` v0.4.0 behandelt `AI-SBOM` bewusst bedingt und ergaenzt
-sprachspezifische Secure-Coding-Profile fuer Rust, Go, Swift, Java/Kotlin,
-Python und TypeScript/JavaScript. Wenn KI nur als Entwicklungswerkzeug genutzt
-wird, ist `AI-SBOM` mit kurzer Toolchain-Begruendung `N/A`. Wenn KI-Modelle,
-KI-Dienste, Datensaetze, Inferenz-Infrastruktur oder KI-Runtime-Komponenten Teil
-des ausgelieferten oder betriebenen Systems sind, wird die Supply-Chain-Evidenz
-um die G7/BSI AI-SBOM-Cluster erweitert.
+`security-governance` v0.5.0 behandelt `AI-SBOM` bewusst bedingt, ergaenzt
+sprachspezifische Secure-Coding-Profile und fuehrt eine regulatorische
+Anwendbarkeitsmatrix fuer `NIS2`, `CRA`, `EU AI Act` und `DORA` ein. Wenn KI
+nur als Entwicklungswerkzeug genutzt wird, ist `AI-SBOM` mit kurzer
+Toolchain-Begruendung `N/A`. Wenn KI-Modelle, KI-Dienste, Datensaetze,
+Inferenz-Infrastruktur oder KI-Runtime-Komponenten Teil des ausgelieferten oder
+betriebenen Systems sind, wird die Supply-Chain-Evidenz um die G7/BSI
+AI-SBOM-Cluster erweitert. Private Ausbildungsprojekte dokumentieren
+regulatorische Nichtanwendbarkeit mit kurzer Begruendung, wenn kein regulierter
+Scope vorliegt.
 `a11y-governance` v0.3.0 ergaenzt didaktische Inline-Code-Kommentar-Governance:
 nicht-triviale neue oder geaenderte Logik wird auf Kommentarbedarf geprueft,
 wenn Lernverstaendnis oder Wartbarkeit betroffen sind.
 
-*`architecture-governance` v0.3.0 adds `BSI C3A` (Criteria enabling Cloud
-Computing Autonomy) as a conditional cloud-autonomy check. Cloud-service
-selection, cloud operation, SaaS/PaaS/IaaS, managed services,
-container/artifact hosting, or provider-dependent deployments maintain
-`docs/security/cloud-autonomy-applicability.md` or an equivalent evidence path.
-Pure development infrastructure without a released or operated cloud runtime
-can be `N/A` with a short toolchain rationale.*
+*`architecture-governance` v0.4.0 adds `BSI C3A` (Criteria enabling Cloud
+Computing Autonomy) as a conditional cloud-autonomy check and `BSI C5` as a
+conditional cloud-compliance assurance check. Cloud-service selection, cloud
+operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, or
+provider-dependent deployments maintain `docs/security/cloud-autonomy-applicability.md`
+and `docs/security/cloud-compliance-assurance.md` or equivalent evidence
+paths. Pure development infrastructure without a released or operated cloud
+runtime can be `N/A` with a short toolchain rationale.*
 
-*`security-governance` v0.4.0 treats `AI-SBOM` as conditional and adds
-language-specific secure-coding profiles for Rust, Go, Swift, Java/Kotlin,
-Python, and TypeScript/JavaScript. When AI is used only as development tooling,
-`AI-SBOM` is `N/A` with a short toolchain rationale. When AI models, AI
-services, datasets, inference infrastructure, or AI runtime components are part
-of the released or operated system, supply-chain evidence is extended with the
-G7/BSI AI-SBOM clusters. `a11y-governance` v0.3.0 adds didactic
-inline-code-comment governance: new or changed non-trivial logic is reviewed
-for comment need when learning comprehension or maintainability is affected.*
+*`security-governance` v0.5.0 treats `AI-SBOM` as conditional, adds
+language-specific secure-coding profiles, and introduces regulatory
+applicability screening for `NIS2`, `CRA`, `EU AI Act`, and `DORA`. When AI is
+used only as development tooling, `AI-SBOM` is `N/A` with a short toolchain
+rationale. When AI models, AI services, datasets, inference infrastructure, or
+AI runtime components are part of the released or operated system, supply-chain
+evidence is extended with the G7/BSI AI-SBOM clusters. Private training
+projects record regulatory `N/A` with a short rationale when no regulated
+scope exists. `a11y-governance` v0.3.0 adds didactic inline-code-comment
+governance: new or changed non-trivial logic is reviewed for comment need when
+learning comprehension or maintainability is affected.*
 
 Die Priorität steuert, welches Preset bei gleichnamigen Dateien oder Addenda
 zuerst berücksichtigt wird. Bei Spec-Kit gilt: kleinere Zahl = höhere Priorität.
@@ -2159,7 +2166,7 @@ specify preset search governance
 specify preset add security-governance --priority 10
 
 # Immer eindeutig / always explicit
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.4.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.5.0.zip --priority 10
 ```
 
 #### Presets aktualisieren oder entfernen / Update or remove presets

@@ -21,8 +21,8 @@ Das Standard-Set dieser Workspace-Familie ist:
 
 | Preset-ID | Name | Version | Priorität |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.4.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.3.0` | `20` |
+| `security-governance` | Security Governance | `v0.5.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.4.0` | `20` |
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.3.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
@@ -64,8 +64,8 @@ this workspace family is:
 
 | Preset ID | Name | Version | Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.4.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.3.0` | `20` |
+| `security-governance` | Security Governance | `v0.5.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.4.0` | `20` |
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.3.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |

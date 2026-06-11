@@ -556,6 +556,8 @@ MUST use this matrix to determine which standards apply.
 | CAPEC | SHOULD | Threat modeling of material attack paths | Reference relevant attack patterns for high-risk flows and abuse cases |
 | NIST Zero Trust (SP 800-207) | Project-type-dependent | Distributed, service-based, cloud, remote-managed, or multi-device systems | Explicit applicability decision with controls or justified N/A |
 | BSI C3A (Criteria enabling Cloud Computing Autonomy) | Project-type-dependent | Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, or provider-dependent deployments | Explicit cloud-autonomy applicability decision with service-selection evidence, provider-dependency review, audit/assurance status, autonomy risks, and justified N/A where not applicable |
+| BSI C5 (Cloud Computing Compliance Criteria Catalogue) | Project-type-dependent | Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, provider-dependent deployments, or customer/security assurance reviews | Explicit cloud-compliance assurance decision with C5 report/testat status, assurance scope, shared-responsibility gaps, provider/subprocessor dependencies, data location, logging, backup, and incident evidence |
+| Regulatory applicability (NIS2 / CRA / EU AI Act / DORA) | Project-type-dependent | Regulated entity, regulated customer/supply chain, EU-market product, AI runtime/product component, financial-sector ICT dependency, or sector-specific obligation | Explicit applicability matrix with `Applicable`, `N/A`, or `Open`; private training projects default to `N/A` when no regulated service, market product, customer obligation, or regulated supply-chain role exists |
 | OWASP Cheat Sheet Series / Proactive Controls | SHOULD | All developer-facing projects | Use as day-to-day implementation guidance below the constitution |
 | OpenSSF Scorecard | Project-type-dependent | Public OSS repositories or high-impact external dependencies | Review repository/dependency security posture before adoption or release |
 
@@ -756,25 +758,47 @@ Mandatory rules:
 - Cloud use limited to generic development infrastructure, such as GitHub or
   GitLab repository hosting without a released or operated cloud runtime, MAY
   be documented as `N/A` with a short toolchain rationale.
+- Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services,
+  container/artifact hosting, or provider-dependent deployments SHOULD
+  explicitly evaluate `BSI C5` assurance relevance. The architecture or
+  security documentation SHOULD record `Applicable`, `N/A`, or `Open` with
+  C5 report/testat status, assurance scope, shared-responsibility gaps,
+  provider and subprocessor dependencies, data location, logging, backup, and
+  incident evidence where applicable.
+- Cloud use limited to generic development infrastructure MAY be documented as
+  `N/A` for C5 with the same short toolchain rationale used for C3A.
 - Repositories performing periodic SAMM reviews SHOULD maintain their current
   assessment snapshot and follow-up actions using `samm-assessment-template.md`
   or an equivalent repository-local format.
 
 **Rationale**: Zero Trust addresses the realities of remote access, services,
 and cloud deployment; C3A adds transparency for self-determined cloud use and
-provider dependency; SAMM addresses the maturity of the development program
-itself. Together they keep security architecture and security process moving
-forward instead of freezing at a one-time baseline.
+provider dependency; C5 adds cloud assurance and auditability; SAMM addresses
+the maturity of the development program itself. Together they keep security
+architecture and security process moving forward instead of freezing at a
+one-time baseline.
 
-### XIX. EU Cyber Resilience Act (CRA) Compliance Awareness
+### XIX. EU Cyber Resilience Act (CRA) & Regulatory Applicability Awareness
 
 Software placed on the EU market is subject to the Cyber Resilience Act
 (Regulation (EU) 2024/2847), which establishes mandatory cybersecurity
 requirements for products with digital elements. This principle requires
-that all workspace projects maintain awareness of CRA applicability and
-align their practices accordingly.
+that all workspace projects maintain awareness of CRA applicability and,
+where relevant, related regulatory scopes such as NIS2, the EU AI Act, DORA,
+or sector-specific/customer obligations.
 
 Mandatory rules:
+- All projects MUST record a lightweight regulatory applicability decision
+  when release, market placement, customer handover, cloud operation, AI
+  runtime/product components, financial-sector ICT dependencies, or regulated
+  customers/supply chains are in scope. The default evidence path is
+  `docs/security/regulatory-applicability.md` using
+  `regulatory-applicability-template.md`.
+- Private training, learning, and reference projects MAY record NIS2, CRA,
+  EU AI Act, and DORA as `N/A` when no regulated service, regulated customer,
+  EU-market product, AI runtime/product component, financial-sector ICT
+  dependency, or regulated supply-chain role exists. The `N/A` rationale MUST
+  be explicit; silent omission is not allowed.
 - All projects MUST assess whether their software qualifies as a "product
   with digital elements" under the CRA (commercial sale, licensing, or
   free distribution for economic purposes within the EU market). Even
@@ -801,6 +825,10 @@ Mandatory rules:
 - The CRA applicability decision MUST be recorded in `docs/security/` or
   equivalent governance documentation (e.g., as a note in the supply-chain
   evidence document or a dedicated S-ADR).
+- NIS2, DORA, EU AI Act, and sector-specific/customer obligations MUST NOT be
+  treated as automatically applicable to private learning projects; they are
+  scoped through the regulatory applicability record and followed up only when
+  the project context makes them relevant.
 
 **Rationale**: The EU Cyber Resilience Act (in force since December 2024,
 with compliance deadlines phased through 2027) is the most significant
@@ -812,7 +840,7 @@ for systems that include AI components, especially where the EU AI Act,
 CRA, or sector-specific rules already touch transparency and dependency
 management. Recording CRA applicability and aligning practices proactively
 reduces legal and reputational risk and builds on the security work already
-required by Principles XII–XVIII.
+required by Principles XII–XIX.
 
 ## Level-2 Project Environment Registry / Level-2-Projektumgebungsregister
 
@@ -906,8 +934,8 @@ workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.4.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA awareness |
-| `architecture-governance` | `v0.3.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy |
+| `security-governance` | `v0.5.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
+| `architecture-governance` | `v0.4.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
 | `isaqb-architecture-governance` | `v0.1.0` | `30` | general iSAQB/arc42 architecture governance |
 | `a11y-governance` | `v0.3.0` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.1.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |

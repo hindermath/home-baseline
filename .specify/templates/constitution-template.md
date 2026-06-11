@@ -45,15 +45,16 @@
 <!--
   If this project uses Spec-Kit governance presets, list the installed presets,
   versions, priorities, and evidence paths here. The home-baseline default set is:
-  security-governance v0.4.0 prio 10, architecture-governance v0.3.0 prio 20,
+  security-governance v0.5.0 prio 10, architecture-governance v0.4.0 prio 20,
   isaqb-architecture-governance v0.1.0 prio 30, a11y-governance v0.3.0 prio 40,
   cross-platform-governance v0.1.0 prio 50, agent-parity-governance v0.2.0 prio 60.
-  security-governance v0.4.0 keeps conditional AI-SBOM evidence and adds
-  language-specific secure-coding profiles for Rust, Go, Swift, Java/Kotlin,
-  Python, and TypeScript/JavaScript. Development-tool-only AI usage is N/A;
-  AI runtime/product components require G7/BSI cluster evidence.
-  architecture-governance v0.3.0 adds conditional BSI C3A cloud-autonomy
-  evidence for cloud-service selection and provider-dependent deployments.
+  security-governance v0.5.0 keeps conditional AI-SBOM evidence, language-
+  specific secure-coding profiles, and regulatory applicability screening for
+  NIS2, CRA, EU AI Act, and DORA. Development-tool-only AI usage is N/A; AI
+  runtime/product components require G7/BSI cluster evidence.
+  architecture-governance v0.4.0 adds conditional BSI C3A cloud-autonomy and
+  BSI C5 cloud-compliance assurance evidence for cloud-service selection and
+  provider-dependent deployments.
   C#/.NET Level-2 projects default to all six unless a justified exception is documented.
 -->
 
