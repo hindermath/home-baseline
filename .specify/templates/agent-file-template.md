@@ -44,6 +44,8 @@ projects default to all six home-baseline presets unless a justified exception
 is documented: `security-governance`, `architecture-governance`,
 `isaqb-architecture-governance`, `a11y-governance`,
 `cross-platform-governance`, and `agent-parity-governance`.
+`architecture-governance` includes conditional BSI C3A cloud-autonomy evidence
+for cloud-service selection and provider-dependent deployments.
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

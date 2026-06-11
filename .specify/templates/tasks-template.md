@@ -172,7 +172,8 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Record `AI-SBOM` applicability: if AI is only a development tool or absent from the released/operated system, document `N/A` with rationale; if AI models, AI services, datasets, inference infrastructure, or AI runtime components are present, update supply-chain evidence with the G7/BSI AI-SBOM clusters
 - [ ] TXXX [P] If threat boundaries or externally reachable flows changed, update STRIDE threat modeling and add relevant `CAPEC` references for the highest-risk attack paths
 - [ ] TXXX [P] If the system is distributed, service-based, cloud, or remotely managed, document `Zero Trust` applicability; if the project is long-lived, note any `OWASP SAMM` follow-up actions
-- [ ] TXXX [P] Prefer the default evidence files `docs/security/asvs-verification.md`, `docs/security/supply-chain-evidence.md`, `docs/security/zero-trust-applicability.md`, and `docs/security/samm-assessment.md`; document and justify any equivalent governance location
+- [ ] TXXX [P] If the feature selects, operates, or materially depends on cloud services, document `BSI C3A` cloud-autonomy applicability in `docs/security/cloud-autonomy-applicability.md`; if cloud use is only development infrastructure, record `N/A` with rationale
+- [ ] TXXX [P] Prefer the default evidence files `docs/security/asvs-verification.md`, `docs/security/supply-chain-evidence.md`, `docs/security/zero-trust-applicability.md`, `docs/security/samm-assessment.md`, and `docs/security/cloud-autonomy-applicability.md`; document and justify any equivalent governance location
 - [ ] TXXX Run quickstart.md validation
 - [ ] TXXX Lastenheft umbenennen / Rename Lastenheft: `bash scripts/rename-lastenheft.sh <LH-Datei> <branch-name>` (macOS/Linux) . `pwsh scripts/rename-lastenheft.ps1 -File <LH-Datei> -BranchName <branch-name>` (Windows) - stamps the feature branch name onto the filename to mark it as archived
 

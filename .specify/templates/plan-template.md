@@ -57,9 +57,10 @@
 - **Security standards applicability**: Determine which standards from
   `constitution.md`, Principles XIV-XVIII apply. `NIST SSDF` and `CWE Top 25`
   always apply to Level-2; add `OWASP ASVS`, `SBOM`, `VEX`, `SLSA`, `CAPEC`,
-  `AI-SBOM`, `NIST Zero Trust`, `OWASP SAMM`, `OWASP Cheat Sheet Series` /
-  `OWASP Proactive Controls`, and `OpenSSF Scorecard` where relevant. Mark
-  non-applicable standards as `N/A` with justification.
+  `AI-SBOM`, `NIST Zero Trust`, `BSI C3A`, `OWASP SAMM`,
+  `OWASP Cheat Sheet Series` / `OWASP Proactive Controls`, and
+  `OpenSSF Scorecard` where relevant. Mark non-applicable standards as `N/A`
+  with justification.
 - **AI-SBOM applicability**: State whether AI is used only as a development
   tool, absent from the released/operated system, or present as a runtime or
   product component. If AI runtime or product components are present, plan the
@@ -69,12 +70,15 @@
 - **Release / supply-chain evidence**: State whether the feature requires
   ASVS verification notes, SBOM/VEX artefacts, AI-SBOM evidence,
   provenance/SLSA evidence, CAPEC references, Zero-Trust applicability notes,
-  or SAMM follow-up items, and where that evidence will live.
+  BSI C3A cloud-autonomy applicability, or SAMM follow-up items, and where
+  that evidence will live.
 - **Default evidence files**: Prefer `docs/security/asvs-verification.md`,
   `docs/security/supply-chain-evidence.md`,
-  `docs/security/zero-trust-applicability.md`, and
-  `docs/security/samm-assessment.md`. If the repository uses an equivalent
-  governance location, state that path explicitly and justify the deviation.
+  `docs/security/zero-trust-applicability.md`,
+  `docs/security/samm-assessment.md`, and
+  `docs/security/cloud-autonomy-applicability.md`. If the repository uses an
+  equivalent governance location, state that path explicitly and justify the
+  deviation.
 - **Spec-Kit presets**: List installed governance presets and confirm their
   applicability. For C#/.NET Level-2 projects, default to all six
   home-baseline presets (`security-governance`, `architecture-governance`,

@@ -555,6 +555,7 @@ MUST use this matrix to determine which standards apply.
 | OWASP SAMM | SHOULD | Long-lived Level-1 and Level-2 workspaces/projects | Periodic self-assessment with prioritized improvement actions |
 | CAPEC | SHOULD | Threat modeling of material attack paths | Reference relevant attack patterns for high-risk flows and abuse cases |
 | NIST Zero Trust (SP 800-207) | Project-type-dependent | Distributed, service-based, cloud, remote-managed, or multi-device systems | Explicit applicability decision with controls or justified N/A |
+| BSI C3A (Criteria enabling Cloud Computing Autonomy) | Project-type-dependent | Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, or provider-dependent deployments | Explicit cloud-autonomy applicability decision with service-selection evidence, provider-dependency review, audit/assurance status, autonomy risks, and justified N/A where not applicable |
 | OWASP Cheat Sheet Series / Proactive Controls | SHOULD | All developer-facing projects | Use as day-to-day implementation guidance below the constitution |
 | OpenSSF Scorecard | Project-type-dependent | Public OSS repositories or high-impact external dependencies | Review repository/dependency security posture before adoption or release |
 
@@ -719,10 +720,11 @@ CAPEC complements it by adding attacker behavior and attack-pattern language.
 Using both helps avoid sterile threat models that classify risks but fail to
 anticipate realistic exploitation paths.
 
-### XVIII. Zero Trust Applicability & Security Program Maturity
+### XVIII. Zero Trust, Cloud Autonomy & Security Program Maturity
 
 Secure architecture is not static; it must account for modern distributed
-access patterns and continuously improve over time.
+access patterns, cloud autonomy dependencies, and continuous improvement over
+time.
 
 Mandatory rules:
 - Distributed, service-based, cloud, remote-managed, multi-device, or
@@ -744,12 +746,23 @@ Mandatory rules:
 - Systems where Zero Trust applicability is material SHOULD maintain a
   dedicated applicability note using `zero-trust-applicability-template.md` or
   an equivalent repository-local format.
+- Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services,
+  container/artifact hosting, or provider-dependent deployments MUST explicitly
+  evaluate `BSI C3A` (Criteria enabling Cloud Computing Autonomy)
+  applicability. The architecture documentation MUST record `Applicable`,
+  `N/A`, or `Open` with service-selection evidence, provider-dependency
+  review, available audit or assurance evidence, autonomy and lock-in risks,
+  and exit or portability concerns where applicable.
+- Cloud use limited to generic development infrastructure, such as GitHub or
+  GitLab repository hosting without a released or operated cloud runtime, MAY
+  be documented as `N/A` with a short toolchain rationale.
 - Repositories performing periodic SAMM reviews SHOULD maintain their current
   assessment snapshot and follow-up actions using `samm-assessment-template.md`
   or an equivalent repository-local format.
 
 **Rationale**: Zero Trust addresses the realities of remote access, services,
-and cloud deployment; SAMM addresses the maturity of the development program
+and cloud deployment; C3A adds transparency for self-determined cloud use and
+provider dependency; SAMM addresses the maturity of the development program
 itself. Together they keep security architecture and security process moving
 forward instead of freezing at a one-time baseline.
 
@@ -894,7 +907,7 @@ workspace family consists of:
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
 | `security-governance` | `v0.4.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA awareness |
-| `architecture-governance` | `v0.2.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR |
+| `architecture-governance` | `v0.3.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy |
 | `isaqb-architecture-governance` | `v0.1.0` | `30` | general iSAQB/arc42 architecture governance |
 | `a11y-governance` | `v0.3.0` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.1.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
