@@ -80,7 +80,6 @@ private GitHub or GitLab repository within seconds.*
 
 | Verzeichnis / Directory | GitHub-Repo / GitHub repo | Eingerichtet mit / Set up with |
 |---|---|---|
-| `~/container-images/` | [container-images](https://github.com/hindermath/container-images) | `bootstrap-workspace` |
 <!-- workspace-table-end -->
 
 ---
