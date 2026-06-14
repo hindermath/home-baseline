@@ -1981,12 +1981,16 @@ updated together.*
 
 | Preset-ID | Name | Version | Priorität / Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.5.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.4.0` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.1.0` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.3.0` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.1.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.2.0` | `60` |
+| `security-governance` | Security Governance | `v0.6.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.5.0` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.0` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.4.0` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
+
+Hinweis: Alle sechs Presets erzeugen bzw. verlangen ab diesem Release-Block audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begründung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
+
+*Note: Starting with this release block, all six presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
@@ -2047,15 +2051,15 @@ cd ~/Pfad/zu/deinem/Projekt
 specify init --here --force --integration codex
 
 # Governance-Presets installieren / install governance presets
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.5.0.zip --priority 10
-specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.4.0.zip --priority 20
-specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.1.0.zip --priority 30
-specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.3.0.zip --priority 40
-specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.1.0.zip --priority 50
-specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.2.0.zip --priority 60
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.5.0.zip --priority 20
+specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.2.0.zip --priority 30
+specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.4.0.zip --priority 40
+specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.2.0.zip --priority 50
+specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.3.0.zip --priority 60
 ```
 
-`architecture-governance` v0.4.0 ergaenzt `BSI C3A` (Criteria enabling Cloud
+`architecture-governance` v0.5.0 ergaenzt `BSI C3A` (Criteria enabling Cloud
 Computing Autonomy) als bedingte Cloud-Autonomie-Pruefung und `BSI C5` als
 bedingte Cloud-Compliance-Assurance-Pruefung. Bei Cloud-Service-Auswahl,
 Cloud-Betrieb, SaaS/PaaS/IaaS, Managed Services, Container-/Artefakt-Hosting
@@ -2064,7 +2068,7 @@ und `docs/security/cloud-compliance-assurance.md` oder gleichwertige
 Evidenzpfade gepflegt. Reine Entwicklungsinfrastruktur ohne ausgelieferte oder
 betriebene Cloud-Runtime kann mit kurzer Toolchain-Begruendung `N/A` sein.
 
-`security-governance` v0.5.0 behandelt `AI-SBOM` bewusst bedingt, ergaenzt
+`security-governance` v0.6.0 behandelt `AI-SBOM` bewusst bedingt, ergaenzt
 sprachspezifische Secure-Coding-Profile und fuehrt eine regulatorische
 Anwendbarkeitsmatrix fuer `NIS2`, `CRA`, `EU AI Act` und `DORA` ein. Wenn KI
 nur als Entwicklungswerkzeug genutzt wird, ist `AI-SBOM` mit kurzer
@@ -2074,11 +2078,11 @@ betriebenen Systems sind, wird die Supply-Chain-Evidenz um die G7/BSI
 AI-SBOM-Cluster erweitert. Private Ausbildungsprojekte dokumentieren
 regulatorische Nichtanwendbarkeit mit kurzer Begruendung, wenn kein regulierter
 Scope vorliegt.
-`a11y-governance` v0.3.0 ergaenzt didaktische Inline-Code-Kommentar-Governance:
+`a11y-governance` v0.4.0 ergaenzt didaktische Inline-Code-Kommentar-Governance:
 nicht-triviale neue oder geaenderte Logik wird auf Kommentarbedarf geprueft,
 wenn Lernverstaendnis oder Wartbarkeit betroffen sind.
 
-*`architecture-governance` v0.4.0 adds `BSI C3A` (Criteria enabling Cloud
+*`architecture-governance` v0.5.0 adds `BSI C3A` (Criteria enabling Cloud
 Computing Autonomy) as a conditional cloud-autonomy check and `BSI C5` as a
 conditional cloud-compliance assurance check. Cloud-service selection, cloud
 operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, or
@@ -2087,7 +2091,7 @@ and `docs/security/cloud-compliance-assurance.md` or equivalent evidence
 paths. Pure development infrastructure without a released or operated cloud
 runtime can be `N/A` with a short toolchain rationale.*
 
-*`security-governance` v0.5.0 treats `AI-SBOM` as conditional, adds
+*`security-governance` v0.6.0 treats `AI-SBOM` as conditional, adds
 language-specific secure-coding profiles, and introduces regulatory
 applicability screening for `NIS2`, `CRA`, `EU AI Act`, and `DORA`. When AI is
 used only as development tooling, `AI-SBOM` is `N/A` with a short toolchain
@@ -2095,7 +2099,7 @@ rationale. When AI models, AI services, datasets, inference infrastructure, or
 AI runtime components are part of the released or operated system, supply-chain
 evidence is extended with the G7/BSI AI-SBOM clusters. Private training
 projects record regulatory `N/A` with a short rationale when no regulated
-scope exists. `a11y-governance` v0.3.0 adds didactic inline-code-comment
+scope exists. `a11y-governance` v0.4.0 adds didactic inline-code-comment
 governance: new or changed non-trivial logic is reviewed for comment need when
 learning comprehension or maintainability is affected.*
 
@@ -2165,7 +2169,7 @@ specify preset search governance
 specify preset add security-governance --priority 10
 
 # Immer eindeutig / always explicit
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.5.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.0.zip --priority 10
 ```
 
 #### Presets aktualisieren oder entfernen / Update or remove presets
