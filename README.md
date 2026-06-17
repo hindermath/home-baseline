@@ -37,6 +37,7 @@ private GitHub or GitLab repository within seconds.*
 - [Inhalt / Contents](#inhalt--contents)
   - [Workspace-Bootstrap / Workspace Bootstrap](#workspace-bootstrap--workspace-bootstrap)
   - [Homogeneity Guardian / Check, Migration & Stats](#homogeneity-guardian--check-migration--stats)
+  - [Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide](#generischer-leitfaden-sichere-entwicklung--generic-secure-development-guide)
   - [Sicherheit / Security](#sicherheit--security)
   - [Einrichtung der KI-Agenten / AI Agent Setup](#einrichtung-der-ki-agenten--ai-agent-setup)
     - [GitHub Copilot CLI / GitHub Copilot CLI](#github-copilot-cli--github-copilot-cli)
@@ -1053,6 +1054,16 @@ Die Abgrenzung ist wichtig: Diese Dateien legen **nicht** den normalen Entwicklu
 | `scripts/templates/gitlab-release-job.yml.tmpl` | GitLab-CI-Job-Block fuer den manuellen `release`-Job / GitLab CI job block for the manual `release` job |
 | `scripts/templates/changelog-template.md` | Initiale CHANGELOG-Vorlage fuer GitLab-Repos / Initial changelog template for GitLab repos |
 | `CHANGELOG.md` | Versionsverlauf nach [Keep a Changelog](https://keepachangelog.com/), verwaltet durch Release Please oder GitLab-Release-Job / Version history following Keep a Changelog, managed by Release Please or the GitLab release job |
+
+### Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide
+
+Der Ordner [`docs/secure-development/`](docs/secure-development/README.md) enthaelt einen generischen, zweisprachigen Leitfaden fuer sichere Entwicklung. Er richtet sich besonders an Fachinformatik-Auszubildende, Entwicklerinnen und Entwickler, Reviewer und KI-Agenten in Level-2-Projekten. Die Dokumente sind organisationsneutral formuliert, behalten aber die fachliche Schaerfe der ISO/IEC-27001-/27002-orientierten sicheren Entwicklung bei.
+
+*The folder [`docs/secure-development/`](docs/secure-development/README.md) contains a generic, bilingual guide for secure development. It is aimed especially at IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects. The documents are organization-neutral while preserving the rigor of ISO/IEC 27001/27002-oriented secure development.*
+
+Der Bereich besteht aus einer richtlinienaehnlichen Grundlage, zwoelf Einzelchecklisten und einem Sammelband. Er dient als wiederverwendbare Pruef- und Haertungsbasis fuer Level-2-Repositories. Projektspezifische Nachweise bleiben weiterhin im jeweiligen Projekt, zum Beispiel unter `docs/security/`; der Leitfaden liefert die gemeinsame Bewertungslogik, Statusfelder, Evidenzanforderungen und `N/A`-Begruendungspflicht.
+
+*The area consists of a policy-like baseline, twelve individual checklists, and a compendium. It serves as a reusable review and hardening baseline for level-2 repositories. Project-specific evidence remains in the respective project, for example under `docs/security/`; the guide provides the shared assessment logic, status fields, evidence requirements, and mandatory `N/A` rationale.*
 
 ### Sicherheit / Security
 
