@@ -1026,6 +1026,8 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/sync-constitution.ps1` | Constitution-Sync / Constitution sync (PowerShell Core) |
 | `scripts/rename-lastenheft.sh` | Lastenheft-Datei umbenennen: `git mv` + Commit / Rename requirement file: `git mv` + commit (Bash) |
 | `scripts/rename-lastenheft.ps1` | Lastenheft umbenennen / Rename requirement file (PowerShell Core) |
+| `scripts/prepare-secure-development-hardening.sh` | MSL-Level-2-Repos fuer spaetere Secure-Development-Haertung vorbereiten / Prepare MSL level-2 repos for later secure-development hardening (Bash) |
+| `scripts/prepare-secure-development-hardening.ps1` | Secure-Development-Hardening vorbereiten / Prepare secure-development hardening (PowerShell Core) |
 | `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
 | `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
 | `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
@@ -1064,6 +1066,24 @@ Der Ordner [`docs/secure-development/`](docs/secure-development/README.md) entha
 Der Bereich besteht aus einer richtlinienaehnlichen Grundlage, zwoelf Einzelchecklisten und einem Sammelband. Er dient als wiederverwendbare Pruef- und Haertungsbasis fuer Level-2-Repositories. Projektspezifische Nachweise bleiben weiterhin im jeweiligen Projekt, zum Beispiel unter `docs/security/`; der Leitfaden liefert die gemeinsame Bewertungslogik, Statusfelder, Evidenzanforderungen und `N/A`-Begruendungspflicht.
 
 *The area consists of a policy-like baseline, twelve individual checklists, and a compendium. It serves as a reusable review and hardening baseline for level-2 repositories. Project-specific evidence remains in the respective project, for example under `docs/security/`; the guide provides the shared assessment logic, status fields, evidence requirements, and mandatory `N/A` rationale.*
+
+Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
+
+```bash
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --primary-language C#
+```
+
+```powershell
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/RiderProjects -PrimaryLanguage C#
+```
+
+Fuer bestehende Level-2-Repositories synchronisiert `prepare-secure-development-hardening.*` dieselbe Basis, erzeugt bei Bedarf `Lastenheft_Secure-Development-Hardening.md` und pflegt `Lastenheft_Abarbeitungsreihenfolge.md` anhand des strikten Suchmusters `Lastenheft*.md`. Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert, manuelle Begruendungen bleiben erhalten.
+
+*For existing level-2 repositories, `prepare-secure-development-hardening.*` synchronizes the same baseline, creates `Lastenheft_Secure-Development-Hardening.md` when needed, and maintains `Lastenheft_Abarbeitungsreihenfolge.md` from the strict `Lastenheft*.md` pattern. Existing order files are protected: only the marked generated section is updated, while manual rationale remains preserved.*
+
+Wichtig: Diese Vorbereitung startet keinen Spec-Kit-Lauf, erzeugt keinen Feature-Branch und befuellt keine `docs/security/`-Nachweise. Sie legt nur Intake- und Ordnungsartefakte fuer spaetere, separat gestartete Haertungslaeufe an.
+
+*Important: this preparation does not start a Spec Kit run, does not create a feature branch, and does not populate `docs/security/` evidence. It only creates intake and ordering artefacts for later hardening runs started separately.*
 
 ### Sicherheit / Security
 

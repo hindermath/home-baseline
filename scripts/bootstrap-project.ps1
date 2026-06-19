@@ -13,16 +13,21 @@ param(
     [switch]$NoReleasePlease,
     [string]$Platform = 'github',
     [string]$GitLabUrl = 'https://gitlab.com',
-    [ValidateSet('de','en')][string]$Lang = 'de'
+    [ValidateSet('de','en')][string]$Lang = 'de',
+    [string]$PrimaryLanguage = ''
 )
 
 $ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TemplatesDir = Join-Path $ScriptDir 'templates'
+$SecureDevLib = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
+if (Test-Path $SecureDevLib) {
+    . $SecureDevLib
+}
 $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 28
+$TotalSteps = 29
 $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
@@ -234,6 +239,9 @@ if ($Preview) {
     $null = $previewActions.Add(@('COPY', "$TargetDir/constitution.md", 'von ~/constitution.md'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/project-statistics.md", 'Statistik-Ledger (initial)'))
+    $null = $previewActions.Add(@('PREPARE', "$TargetDir/docs/secure-development/", 'bei erkannter MSL'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/Lastenheft_Secure-Development-Hardening.md", 'bei erkannter MSL'))
+    $null = $previewActions.Add(@('UPDATE', "$TargetDir/Lastenheft_Abarbeitungsreihenfolge.md", 'Lastenheft*.md-Reihenfolge'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
     $null = $previewActions.Add(@('UPDATE', "$TargetWorkspace/.gitignore", 'Level-2-Projekt im Workspace ignorieren'))
@@ -468,6 +476,27 @@ Stand / As of: $today — *Erste Einträge nach dem initialen Arbeitspaket eintr
 | Repo-weiter Speedup gg. Thorsten-Referenz | — |
 "@ | Set-Content $statsDoc -Encoding UTF8
     Step-Done
+}
+
+# 7e. Secure-Development-Hardening vorbereiten
+Step-Start "Secure-Development-Hardening vorbereiten"
+if (-not (Test-Path $SecureDevLib) -or -not (Get-Command Invoke-SdhPrepareRepo -ErrorAction SilentlyContinue)) {
+    Step-Warn "Secure-Development-Hardening-Hilfslogik nicht gefunden"
+} else {
+    $ok = Invoke-SdhPrepareRepo `
+        -Repo $TargetDir `
+        -ProjectName $ProjectName `
+        -PrimaryLanguage $PrimaryLanguage `
+        -ScriptDir $ScriptDir
+    if (-not $ok) {
+        Step-Warn $script:SdhPrepareReason
+    } else {
+        switch ($script:SdhPrepareResult) {
+            'prepared' { Step-Done $script:SdhPrepareReason }
+            'skipped'  { Step-Skip $script:SdhPrepareReason }
+            default    { Step-Done "$script:SdhPrepareResult $script:SdhPrepareReason" }
+        }
+    }
 }
 
 # 8. STATS.md

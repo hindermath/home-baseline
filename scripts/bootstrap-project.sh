@@ -13,10 +13,17 @@
 #   --platform           github|gitlab
 #   --gitlab-url         https://gitlab.example.com
 #   --lang de|en         Primary language for templates (default: de)
+#   --primary-language   Declared primary implementation language for MSL setup
 # Exit codes: 0=success, 1=partial (warnings), 2=fatal
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMPLATES_DIR="${SCRIPT_DIR}/templates"
+SECURE_DEV_LIB="${SCRIPT_DIR}/lib/secure-development-hardening.sh"
+
+if [ -f "$SECURE_DEV_LIB" ]; then
+  # shellcheck source=/dev/null
+  . "$SECURE_DEV_LIB"
+fi
 
 # ─── Argument Parsing ────────────────────────────────────────────────────────
 
@@ -31,6 +38,7 @@ OPT_PLATFORM="github"
 OPT_GITLAB_URL="https://gitlab.com"
 OPT_GITLAB_HOSTNAME=""
 OPT_LANG="de"
+OPT_PRIMARY_LANGUAGE=""
 PROJECT_NAME=""
 TARGET_WORKSPACE=""
 GITLAB_USER_LOCAL=""
@@ -77,6 +85,7 @@ while [ $# -gt 0 ]; do
     --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
     --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
     --lang)       OPT_LANG="${2:-de}"; shift ;;
+    --primary-language) OPT_PRIMARY_LANGUAGE="${2:-}"; shift ;;
     -h|--help) echo "USAGE: bootstrap-project.sh <ProjectName> [TARGET_WORKSPACE] [OPTIONS]" >&2; exit 0 ;;
     --)
       shift
@@ -160,7 +169,7 @@ fi
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=28
+TOTAL_STEPS=29
 SKIPPED=0
 PARTIAL_FAIL=false
 WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
@@ -335,6 +344,9 @@ if $OPT_PREVIEW; then
   preview_action "COPY" "${TARGET_DIR}/constitution.md" "von ~/constitution.md"
   preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml"
   preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
+  preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "bei erkannter MSL"
+  preview_action "CREATE" "${TARGET_DIR}/Lastenheft_Secure-Development-Hardening.md" "bei erkannter MSL"
+  preview_action "UPDATE" "${TARGET_DIR}/Lastenheft_Abarbeitungsreihenfolge.md" "Lastenheft*.md-Reihenfolge"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
   preview_action "UPDATE" "${TARGET_WORKSPACE}/.gitignore" "Level-2-Projekt im Workspace ignorieren"
@@ -613,6 +625,22 @@ Stand / As of: $(date +%Y-%m-%d) — *Erste Einträge nach dem initialen Arbeits
 | Repo-weiter Speedup gg. Thorsten-Referenz | — |
 STATSDOC
   step_done
+fi
+
+# ─── Step 7e: Secure-Development-Hardening vorbereiten ──────────────────────
+step_start "Secure-Development-Hardening vorbereiten"
+if [ ! -f "$SECURE_DEV_LIB" ] || ! declare -F sdh_prepare_repo >/dev/null 2>&1; then
+  step_warn "Secure-Development-Hardening-Hilfslogik nicht gefunden"
+else
+  if sdh_prepare_repo "$TARGET_DIR" "$PROJECT_NAME" "$OPT_PRIMARY_LANGUAGE" 0 0 "$SCRIPT_DIR"; then
+    case "$SDH_PREPARE_RESULT" in
+      prepared) step_done "$SDH_PREPARE_REASON" ;;
+      skipped)  step_skip "$SDH_PREPARE_REASON" ;;
+      *)        step_done "$SDH_PREPARE_RESULT $SDH_PREPARE_REASON" ;;
+    esac
+  else
+    step_warn "$SDH_PREPARE_REASON"
+  fi
 fi
 
 # ─── Step 8: STATS.md (initial) ──────────────────────────────────────────────

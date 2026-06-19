@@ -351,6 +351,18 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 *For repository-wide Spec-Kit updates, run the dry-run first, then use the paired update scripts with `--commit --push` / `-Commit -Push`. The scripts dynamically discover Level 0, Level 1, and Level 2 repositories, keep TuiVision in scope, preserve local governance templates and constitution memory, use public `home-baseline` as the default template source, and track only `.opencode/command/*.md` for OpenCode.*
 
 
+## Secure-Development-Hardening Intake / Secure Development Hardening Intake
+
+- MSL-basierte Level-2-Repositories SOLLEN die zentrale sichere-Entwicklung-Basis aus `docs/secure-development/` enthalten.
+- Neue Level-2-Projekte koennen diese Basis beim Bootstrap ueber `bootstrap-project.* --primary-language <Sprache>` / `-PrimaryLanguage <Sprache>` erhalten.
+- Bestehende Level-2-Projekte werden mit `prepare-secure-development-hardening.*` vorbereitet; zuerst `--dry-run` / `-WhatIf` nutzen.
+- Die Vorbereitung erzeugt nur Intake- und Ordnungsartefakte: `docs/secure-development/`, `Lastenheft_Secure-Development-Hardening.md` und `Lastenheft_Abarbeitungsreihenfolge.md`.
+- Das Suchmuster fuer die automatische Reihenfolge ist strikt `Lastenheft*.md`; `Lastenheft_Abarbeitungsreihenfolge.md` wird selbst nicht als Arbeitspaket einsortiert.
+- Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert; manuelle Begruendungen bleiben erhalten.
+- Diese Vorbereitung startet keinen Spec-Kit-Lauf, erzeugt keinen Feature-Branch und befuellt keine `docs/security/`-Nachweise. Die eigentlichen Haertungslaeufe werden separat gestartet.
+
+*MSL-based level-2 repositories SHOULD contain the central secure-development baseline from `docs/secure-development/`. New projects can receive it via `bootstrap-project.* --primary-language <language>` / `-PrimaryLanguage <language>`. Existing projects are prepared with `prepare-secure-development-hardening.*`; use `--dry-run` / `-WhatIf` first. The preparation only creates intake and ordering artefacts: `docs/secure-development/`, `Lastenheft_Secure-Development-Hardening.md`, and `Lastenheft_Abarbeitungsreihenfolge.md`. The automatic order uses the strict `Lastenheft*.md` pattern and excludes the order file itself. Existing order files are protected by updating only the marked generated section. This preparation does not start a Spec Kit run, create a feature branch, or populate `docs/security/` evidence; hardening runs are started separately.*
+
 ## Spec-Kit-Modell-Routing / Spec Kit Model Routing
 
 - Modellwahl ist operative Agenten-Routing-Guidance, keine Feature-Anforderung. Modellnamen nicht in `spec.md`, `plan.md`, `tasks.md` oder einzelne Feature-Specs schreiben; diese Artefakte muessen reproduzierbar bleiben, auch wenn Modellnamen wechseln oder ein anderer KI-Agent verwendet wird.
