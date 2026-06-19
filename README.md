@@ -1063,9 +1063,9 @@ Der Ordner [`docs/secure-development/`](docs/secure-development/README.md) entha
 
 *The folder [`docs/secure-development/`](docs/secure-development/README.md) contains a generic, bilingual guide for secure development. It is aimed especially at IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects. The documents are organization-neutral while preserving the rigor of ISO/IEC 27001/27002-oriented secure development.*
 
-Der Bereich besteht aus einer richtlinienaehnlichen Grundlage, zwoelf Einzelchecklisten und einem Sammelband. Er dient als wiederverwendbare Pruef- und Haertungsbasis fuer Level-2-Repositories. Projektspezifische Nachweise bleiben weiterhin im jeweiligen Projekt, zum Beispiel unter `docs/security/`; der Leitfaden liefert die gemeinsame Bewertungslogik, Statusfelder, Evidenzanforderungen und `N/A`-Begruendungspflicht.
+Der Bereich besteht aus einer richtlinienaehnlichen Grundlage, zwoelf Einzelchecklisten, einem Sammelband und mitgeltenden Dokumenten in `docs/secure-development/mitgeltende-dokumente/`. Er dient als wiederverwendbare Pruef- und Haertungsbasis fuer Level-2-Repositories. Projektspezifische Nachweise bleiben weiterhin im jeweiligen Projekt, zum Beispiel unter `docs/security/`; der Leitfaden liefert die gemeinsame Bewertungslogik, Statusfelder, Evidenzanforderungen und `N/A`-Begruendungspflicht.
 
-*The area consists of a policy-like baseline, twelve individual checklists, and a compendium. It serves as a reusable review and hardening baseline for level-2 repositories. Project-specific evidence remains in the respective project, for example under `docs/security/`; the guide provides the shared assessment logic, status fields, evidence requirements, and mandatory `N/A` rationale.*
+*The area consists of a policy-like baseline, twelve individual checklists, a compendium, and related documents in `docs/secure-development/mitgeltende-dokumente/`. It serves as a reusable review and hardening baseline for level-2 repositories. Project-specific evidence remains in the respective project, for example under `docs/security/`; the guide provides the shared assessment logic, status fields, evidence requirements, and mandatory `N/A` rationale.*
 
 Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
 
@@ -1080,6 +1080,10 @@ pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~
 Fuer bestehende Level-2-Repositories synchronisiert `prepare-secure-development-hardening.*` dieselbe Basis, erzeugt bei Bedarf `Lastenheft_Secure-Development-Hardening.md` und pflegt `Lastenheft_Abarbeitungsreihenfolge.md` anhand des strikten Suchmusters `Lastenheft*.md`. Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert, manuelle Begruendungen bleiben erhalten.
 
 *For existing level-2 repositories, `prepare-secure-development-hardening.*` synchronizes the same baseline, creates `Lastenheft_Secure-Development-Hardening.md` when needed, and maintains `Lastenheft_Abarbeitungsreihenfolge.md` from the strict `Lastenheft*.md` pattern. Existing order files are protected: only the marked generated section is updated, while manual rationale remains preserved.*
+
+Gezielte Repositories koennen mit `--repo <Pfad>` / `-Repo <Pfad>` vorbereitet werden; das ist fuer bewusst begrenzte Propagationen in einzelne Level-2-Repos vorgesehen.
+
+*Specific repositories can be prepared with `--repo <path>` / `-Repo <path>`; this is intended for deliberately bounded propagation into selected level-2 repos.*
 
 Wichtig: Diese Vorbereitung startet keinen Spec-Kit-Lauf, erzeugt keinen Feature-Branch und befuellt keine `docs/security/`-Nachweise. Sie legt nur Intake- und Ordnungsartefakte fuer spaetere, separat gestartete Haertungslaeufe an.
 

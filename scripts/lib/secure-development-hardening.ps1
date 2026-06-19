@@ -96,7 +96,9 @@ function Get-SdhSourceDir {
         (Join-Path $HOME 'docs/secure-development'),
         (Join-Path $HOME 'home-baseline-tmp/docs/secure-development')
     )) {
-        if ((Test-Path $candidate) -and (Test-Path (Join-Path $candidate 'README.md'))) {
+        if ((Test-Path $candidate) `
+            -and (Test-Path (Join-Path $candidate 'README.md')) `
+            -and (Test-Path (Join-Path $candidate 'mitgeltende-dokumente/README.md'))) {
             return $candidate
         }
     }

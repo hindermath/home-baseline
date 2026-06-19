@@ -21,6 +21,7 @@ OPT_COMMIT=false
 OPT_PUSH=false
 OPT_ALLOW_DIRTY=false
 OPT_PRIMARY_LANGUAGE=""
+OPT_REPOS=()
 
 usage() {
   cat <<'EOF'
@@ -31,6 +32,7 @@ Usage:
 
 Options:
   --home-dir PATH             Home directory to scan (default: $HOME)
+  --repo PATH                 Prepare one explicit Level-2 repo; repeatable
   --primary-language LANG     Override language detection for all discovered repos
   --commit                    Commit changes in each changed repo
   --push                      Push current branch after commit/check; implies --commit
@@ -59,6 +61,11 @@ while [ $# -gt 0 ]; do
     --primary-language)
       [ $# -ge 2 ] || die "--primary-language braucht einen Wert"
       OPT_PRIMARY_LANGUAGE="$2"
+      shift 2
+      ;;
+    --repo)
+      [ $# -ge 2 ] || die "--repo braucht einen Pfad"
+      OPT_REPOS+=("$2")
       shift 2
       ;;
     --commit)
@@ -118,6 +125,13 @@ add_repo() {
 discover_repos() {
   local workspace project
   REPOS=()
+
+  if [ "${#OPT_REPOS[@]}" -gt 0 ]; then
+    for project in "${OPT_REPOS[@]}"; do
+      add_repo "$project"
+    done
+    return 0
+  fi
 
   for workspace in "$HOME_DIR"/*; do
     [ -d "$workspace" ] || continue
@@ -195,6 +209,9 @@ discover_repos
 
 log "Secure-Development-Hardening Vorbereitung"
 log "  Home             : $HOME_DIR"
+if [ "${#OPT_REPOS[@]}" -gt 0 ]; then
+  log "  Repos            : ${#OPT_REPOS[@]} explizit"
+fi
 log "  Primaersprache   : ${OPT_PRIMARY_LANGUAGE:-auto}"
 log "  Commit           : $OPT_COMMIT"
 log "  Push             : $OPT_PUSH"

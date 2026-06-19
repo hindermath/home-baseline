@@ -23,6 +23,7 @@
 | [Richtlinie_Sichere-Entwicklung.md](Richtlinie_Sichere-Entwicklung.md) | Richtlinienaehnliche Grundlage fuer sichere Entwicklung / Policy-like secure-development baseline |
 | [checklisten/](checklisten/) | Zwoelf Einzelchecklisten fuer fokussierte Pruefungen / Twelve individual checklists for focused reviews |
 | [Checklistensammelband_Sichere-Entwicklung.md](Checklistensammelband_Sichere-Entwicklung.md) | Zusammengefuehrter Sammelband fuer vollstaendige Reviews / Combined compendium for full reviews |
+| [mitgeltende-dokumente/](mitgeltende-dokumente/) | Mitgeltende Leitlinien, Richtlinien und externe Referenzen / Related guidelines, policies, and external references |
 
 ## Grenzen / Boundaries
 

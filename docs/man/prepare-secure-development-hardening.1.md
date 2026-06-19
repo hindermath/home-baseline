@@ -9,11 +9,12 @@
 ## Synopsis
 
 ```bash
-bash scripts/prepare-secure-development-hardening.sh [--dry-run] [--commit] [--push] [--allow-dirty]
+bash scripts/prepare-secure-development-hardening.sh [--repo PATH] [--dry-run] [--commit] [--push] [--allow-dirty]
 ```
 
 ```powershell
 pwsh scripts/prepare-secure-development-hardening.ps1 -WhatIf
+pwsh scripts/prepare-secure-development-hardening.ps1 -Repo PATH -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -Commit -Push
 ```
 
@@ -65,6 +66,7 @@ guidance files.*
 |---|---|---|
 | `--dry-run` | `-WhatIf` | Nur anzeigen, keine Schreiboperationen |
 | `--home-dir PATH` | `-HomeDir PATH` | Alternatives Home-Verzeichnis |
+| `--repo PATH` | `-Repo PATH` | Explizites Level-2-Repo vorbereiten; wiederholbar |
 | `--primary-language LANG` | `-PrimaryLanguage LANG` | Primaersprache explizit setzen |
 | `--commit` | `-Commit` | Pro geaendertem Repo committen |
 | `--push` | `-Push` | Pro Repo pushen; aktiviert Commit |
@@ -79,6 +81,13 @@ bash scripts/prepare-secure-development-hardening.sh --dry-run
 # Sprache fuer neue/leere Repos explizit setzen
 bash scripts/prepare-secure-development-hardening.sh --dry-run --primary-language C#
 
+# Vier bekannte C#-Level-2-Repos gezielt vorbereiten
+bash scripts/prepare-secure-development-hardening.sh --dry-run \
+  --repo ~/RiderProjects/TinyPl0 \
+  --repo ~/RiderProjects/TinyCalc \
+  --repo ~/RiderProjects/TuiVision \
+  --repo ~/RiderProjects/InventarWorkerService
+
 # Vorbereiten, committen und pushen
 bash scripts/prepare-secure-development-hardening.sh --commit --push
 ```
@@ -87,6 +96,7 @@ bash scripts/prepare-secure-development-hardening.sh --commit --push
 # Windows / PowerShell
 pwsh scripts/prepare-secure-development-hardening.ps1 -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -PrimaryLanguage C# -WhatIf
+pwsh scripts/prepare-secure-development-hardening.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -Commit -Push
 ```
 

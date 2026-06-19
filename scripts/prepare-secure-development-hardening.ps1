@@ -26,6 +26,13 @@ Home-Verzeichnis, unter dem Level-1- und Level-2-Repositories gesucht werden.
 
 Home directory below which level-1 and level-2 repositories are discovered.
 
+.PARAMETER Repo
+Explizite Level-2-Repositories, die vorbereitet werden sollen. Kann mehrfach
+oder als Array uebergeben werden.
+
+Explicit level-2 repositories to prepare. Can be passed multiple times or as an
+array.
+
 .PARAMETER PrimaryLanguage
 Explizite Primaersprache, wenn Auto-Erkennung aus Constitution oder Dateien
 nicht ausreichend ist.
@@ -52,12 +59,16 @@ Allows existing local changes in target repositories.
 pwsh scripts/prepare-secure-development-hardening.ps1 -WhatIf
 
 .EXAMPLE
+pwsh scripts/prepare-secure-development-hardening.ps1 -Repo /Users/thorstenhindermann/RiderProjects/TuiVision -WhatIf
+
+.EXAMPLE
 pwsh scripts/prepare-secure-development-hardening.ps1 -HomeDir /Users/thorstenhindermann -Commit -Push
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [string]$HomeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }),
+    [string[]]$Repo = @(),
     [string]$PrimaryLanguage = '',
     [switch]$Commit,
     [switch]$Push,
@@ -167,10 +178,21 @@ function Invoke-PrepareRepo {
     }
 }
 
-$repos = @(Get-Level2Repos -Root $HomeDir)
+if ($Repo.Count -gt 0) {
+    $explicitRepos = @(
+        $Repo |
+            ForEach-Object { $_ -split ',' } |
+            ForEach-Object { $_.Trim() } |
+            Where-Object { $_ }
+    )
+    $repos = @($explicitRepos | Where-Object { Test-Level2Repo $_ } | Select-Object -Unique)
+} else {
+    $repos = @(Get-Level2Repos -Root $HomeDir)
+}
 
 Write-Host 'Secure-Development-Hardening Vorbereitung'
 Write-Host "  Home             : $HomeDir"
+if ($Repo.Count -gt 0) { Write-Host "  Repos            : $($repos.Count) explizit" }
 Write-Host "  Primaersprache   : $(if ($PrimaryLanguage) { $PrimaryLanguage } else { 'auto' })"
 Write-Host "  Commit           : $Commit"
 Write-Host "  Push             : $Push"

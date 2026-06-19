@@ -119,6 +119,7 @@ For GitLab repositories, use the authenticated `glab` CLI first for equivalent a
 ## Secure-Development-Hardening Intake / Secure Development Hardening Intake
 
 - MSL-basierte Level-2-Repositories SOLLEN die zentrale sichere-Entwicklung-Basis aus `docs/secure-development/` enthalten.
+- Dazu gehoeren Richtlinie, Checklisten, Sammelband und `docs/secure-development/mitgeltende-dokumente/`.
 - Neue Level-2-Projekte koennen diese Basis beim Bootstrap ueber `bootstrap-project.* --primary-language <Sprache>` / `-PrimaryLanguage <Sprache>` erhalten.
 - Bestehende Level-2-Projekte werden mit `prepare-secure-development-hardening.*` vorbereitet; zuerst `--dry-run` / `-WhatIf` nutzen.
 - Die Vorbereitung erzeugt nur Intake- und Ordnungsartefakte: `docs/secure-development/`, `Lastenheft_Secure-Development-Hardening.md` und `Lastenheft_Abarbeitungsreihenfolge.md`.
@@ -126,7 +127,7 @@ For GitLab repositories, use the authenticated `glab` CLI first for equivalent a
 - Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert; manuelle Begruendungen bleiben erhalten.
 - Diese Vorbereitung startet keinen Spec-Kit-Lauf, erzeugt keinen Feature-Branch und befuellt keine `docs/security/`-Nachweise. Die eigentlichen Haertungslaeufe werden separat gestartet.
 
-*MSL-based level-2 repositories SHOULD contain the central secure-development baseline from `docs/secure-development/`. New projects can receive it via `bootstrap-project.* --primary-language <language>` / `-PrimaryLanguage <language>`. Existing projects are prepared with `prepare-secure-development-hardening.*`; use `--dry-run` / `-WhatIf` first. The preparation only creates intake and ordering artefacts: `docs/secure-development/`, `Lastenheft_Secure-Development-Hardening.md`, and `Lastenheft_Abarbeitungsreihenfolge.md`. The automatic order uses the strict `Lastenheft*.md` pattern and excludes the order file itself. Existing order files are protected by updating only the marked generated section. This preparation does not start a Spec Kit run, create a feature branch, or populate `docs/security/` evidence; hardening runs are started separately.*
+*MSL-based level-2 repositories SHOULD contain the central secure-development baseline from `docs/secure-development/`, including guideline, checklists, compendium, and `docs/secure-development/mitgeltende-dokumente/`. New projects can receive it via `bootstrap-project.* --primary-language <language>` / `-PrimaryLanguage <language>`. Existing projects are prepared with `prepare-secure-development-hardening.*`; use `--dry-run` / `-WhatIf` first. The preparation only creates intake and ordering artefacts: `docs/secure-development/`, `Lastenheft_Secure-Development-Hardening.md`, and `Lastenheft_Abarbeitungsreihenfolge.md`. The automatic order uses the strict `Lastenheft*.md` pattern and excludes the order file itself. Existing order files are protected by updating only the marked generated section. This preparation does not start a Spec Kit run, create a feature branch, or populate `docs/security/` evidence; hardening runs are started separately.*
 
 ## Spec-Kit-Modell-Routing / Spec Kit Model Routing
 

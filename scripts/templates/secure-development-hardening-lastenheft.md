@@ -34,6 +34,7 @@ Der spaetere Lauf muss mindestens diese Grundlagen beruecksichtigen:
 - `docs/secure-development/Richtlinie_Sichere-Entwicklung.md`
 - `docs/secure-development/checklisten/`
 - `docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md`
+- `docs/secure-development/mitgeltende-dokumente/`
 - `constitution.md` und `.specify/memory/constitution.md`
 - `docs/security/` als Standard-Evidenzpfad fuer projektspezifische Nachweise
 - installierte Governance-Presets, soweit sie Projekt-Policy sind

@@ -136,7 +136,9 @@ sdh_find_source_dir() {
     "$repo_dir/docs/secure-development" \
     "$HOME/docs/secure-development" \
     "$HOME/home-baseline-tmp/docs/secure-development"; do
-    if [ -d "$candidate" ] && [ -f "$candidate/README.md" ]; then
+    if [ -d "$candidate" ] \
+      && [ -f "$candidate/README.md" ] \
+      && [ -f "$candidate/mitgeltende-dokumente/README.md" ]; then
       printf '%s\n' "$candidate"
       return 0
     fi
