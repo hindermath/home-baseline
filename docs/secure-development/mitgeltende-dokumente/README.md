@@ -1,6 +1,6 @@
 # Mitgeltende Dokumente / Related Documents
 
-**Stand / Date:** 2026-06-19  
+**Stand / Date:** 2026-06-19
 **Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten / IT specialist apprentices, developers, reviewers, and AI agents
 
 ## Zweck / Purpose

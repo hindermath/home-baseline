@@ -1,8 +1,8 @@
 # Lastenheft: Secure-Development-Hardening
 
-**Repository:** {{PROJECT_NAME}}  
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** vorbereitet fuer separaten Spec-Kit-Haertungslauf  
+**Repository:** {{PROJECT_NAME}}
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** vorbereitet fuer separaten Spec-Kit-Haertungslauf
 **Stand:** {{DATE}}
 
 ## 1. Zweck

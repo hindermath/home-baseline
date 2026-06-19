@@ -1,6 +1,6 @@
 # Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide
 
-**Stand / Date:** 2026-06-17  
+**Stand / Date:** 2026-06-17
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, Entwickler*innen, Reviewer und KI-Agenten in Level-2-Projekten / IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects
 
 ## Zweck / Purpose
