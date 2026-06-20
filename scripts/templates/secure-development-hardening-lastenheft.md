@@ -35,6 +35,7 @@ Der spaetere Lauf muss mindestens diese Grundlagen beruecksichtigen:
 - `docs/secure-development/checklisten/`
 - `docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md`
 - `docs/secure-development/mitgeltende-dokumente/`
+- `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md`
 - `constitution.md` und `.specify/memory/constitution.md`
 - `docs/security/` als Standard-Evidenzpfad fuer projektspezifische Nachweise
 - installierte Governance-Presets, soweit sie Projekt-Policy sind
@@ -58,15 +59,16 @@ Dieses Lastenheft loest keinen Haertungslauf aus und aendert keine Produktionslo
 ## 7. Mindestanforderungen an den spaeteren Spec-Kit-Lauf
 
 1. Relevante Checklisten aus `docs/secure-development/` auswaehlen und jede Auswahl begruenden.
-2. Alle Pruefpunkte als `Applicable`, `N/A` oder `Open` dokumentieren.
-3. Fuer `Applicable`-Punkte konkrete Evidenzpfade in `docs/security/`, Testdateien, Codeverweisen oder Spec-Kit-Artefakten benennen.
-4. Fuer `N/A`-Punkte eine kurze technische oder fachliche Begruendung erfassen.
-5. Fuer `Open`-Punkte Risiko, Folgeaktion und Prioritaet festhalten.
-6. Secure Coding und Secure Architecture gemeinsam bewerten; MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Pruefung.
-7. Relevante Trust Boundaries projektbezogen benennen.
-8. A11Y- und didaktische Kommentar-Governance fuer nutzerseitige Artefakte pruefen.
-9. Supply-Chain-, SBOM-, AI-SBOM-, C3A-/C5- und regulatorische Punkte nur anwenden, wenn sie fachlich greifen; sonst als `N/A` mit Begruendung erfassen.
-10. Am Ende eine nachvollziehbare Ergebnisuebersicht mit offenen Risiken, akzeptierten Restrisiken und Folgeaufgaben erstellen.
+2. Die Verzahnungsdatei nutzen, um Richtlinienabschnitte, mitgeltende Dokumente, CL-Kapitel, Presets und Evidenzpfade zuzuordnen.
+3. Alle Pruefpunkte als `Applicable`, `N/A` oder `Open` dokumentieren.
+4. Fuer `Applicable`-Punkte konkrete Evidenzpfade in `docs/security/`, Testdateien, Codeverweisen oder Spec-Kit-Artefakten benennen.
+5. Fuer `N/A`-Punkte eine kurze technische oder fachliche Begruendung erfassen.
+6. Fuer `Open`-Punkte Risiko, Folgeaktion und Prioritaet festhalten.
+7. Secure Coding und Secure Architecture gemeinsam bewerten; MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Pruefung. Swift gilt als MSL, braucht aber Swift-spezifische Secure-Coding-Pruefung.
+8. Relevante Trust Boundaries projektbezogen benennen.
+9. A11Y- und didaktische Kommentar-Governance fuer nutzerseitige Artefakte pruefen.
+10. Supply-Chain-, SBOM-, AI-SBOM-, C3A-/C5- und regulatorische Punkte nur anwenden, wenn sie fachlich greifen; sonst als `N/A` mit Begruendung erfassen.
+11. Am Ende eine nachvollziehbare Ergebnisuebersicht mit offenen Risiken, akzeptierten Restrisiken und Folgeaufgaben erstellen.
 
 ## 8. Erwartete Ergebnisartefakte des spaeteren Laufs
 

@@ -33,31 +33,33 @@
 | 2026-06-05 | a11y-governance v0.3.0 didaktische Inline-Kommentare | 36 | 73 583 | 328 | Didaktische Inline-Code-Kommentar-Governance in `a11y-governance` als Minor-Update ergaenzt, neues Review-Template `didactic-code-comment-check-template` aufgenommen, Constitution, README, Agenten-Dateien, Templates und Preset-Scaffolds synchronisiert |
 | 2026-06-11 | architecture-governance v0.3.0 BSI C3A Cloud-Autonomie | 37 | 73 853 | 329 | BSI C3A als bedingt anwendbare Cloud-Autonomie-Evidenz in `architecture-governance` ergaenzt, neues Template `cloud-autonomy-applicability-template` aufgenommen, Constitution, README, Agenten-Dateien, Templates und Preset-Scaffolds synchronisiert |
 | 2026-06-11 | C5/NIS2 Preset-Erweiterung | 37 | 74 835 | 330 | BSI C5 als Cloud-Compliance-Assurance in `architecture-governance v0.4.0` und regulatorische Anwendbarkeitsmatrix fuer NIS2, CRA, EU AI Act und DORA in `security-governance v0.5.0` ergaenzt; neue Templates `cloud-compliance-assurance-template` und `regulatory-applicability-template` aufgenommen; Constitution, README, Agenten-Dateien, Templates und Preset-Scaffolds synchronisiert |
+| 2026-06-20 | Secure-Development-Basis und mitgeltende Dokumente | 44 | 112 992 | 339 | Generische sichere-Entwicklung-Basis mit Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten, CISA-Memory-Safe-Roadmaps-PDF samt EN/DE-Markdown, neuer Verzahnungsdatei fuer Richtlinie/CLs/Presets und Lastenheft fuer einen spaeteren Spec-Kit-Verzahnungslauf fortgeschrieben; Swift als MSL didaktisch sichtbarer gemacht |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-06-11**
+Stand / As of: **2026-06-20**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 81 | 17 465 | 23.3 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 255 | 4.3 % |
-| Hooks + CI (pre-push + YAML/JSON) | 33 | 1 978 | 2.6 % |
-| Dokumentation / Documentation (`.md`) | 436 | 51 525 | 68.9 % |
-| Sonstiges / Other | 15 | 612 | 0.8 % |
-| **Gesamt / Total** | **589** | **74 835** | **100 %** |
+| Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 663 | 16.5 % |
+| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.9 % |
+| Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.8 % |
+| Dokumentation / Documentation (`.md`) | 473 | 83 742 | 74.1 % |
+| Sonstiges / Other | 22 | 5 229 | 4.6 % |
+| **Gesamt / Total** | **637** | **112 995** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 17 835 | 34.6 % |
-| Lastenhefte (`Lastenheft*.md`) | 3 840 | 7.5 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 904 | 7.6 % |
-| README / CHANGELOG / STATS | 3 495 | 6.8 % |
-| Sonstiges (Templates, andere `.md`) | 22 451 | 43.6 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 24.1 % |
+| Secure Development (`docs/secure-development/`) | 28 977 | 34.6 % |
+| Lastenhefte (`Lastenheft*.md`) | 3 921 | 4.7 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 912 | 4.7 % |
+| README / CHANGELOG / STATS | 3 424 | 4.1 % |
+| Sonstiges (Templates, andere `.md`) | 23 313 | 27.8 % |
 
 ---
 
@@ -80,14 +82,16 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
-enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-06-11`. Dazu
+enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-06-20`. Dazu
 gehoeren insbesondere die Verfassungs- und Agenten-Guidance-Runden, Release-
-Please-Aktualisierungen sowie die Preset-Governance-Arbeit.
+Please-Aktualisierungen, die Preset-Governance-Arbeit und die sichere-
+Entwicklung-Basis mit mitgeltenden Dokumenten.
 
 *Note on later maintenance rounds: the snapshot and overall values above also
-include follow-up maintenance work through `2026-06-11`, especially constitution
-and agent-guidance rounds, Release Please updates, preset-governance work, and
-the Level-1 workspace bootstrap hardening.*
+include follow-up maintenance work through `2026-06-20`, especially constitution
+and agent-guidance rounds, Release Please updates, preset-governance work, the
+secure-development baseline with related documents, and the Level-1 workspace
+bootstrap hardening.*
 
 **Hinweis zu Phase 1:** Der hohe Insertions-Wert (26 519 Zeilen an einem Aktivtag)
 entsteht durch die Spec-Kit-Batch-Generierung: Spec-Kit erstellt `spec.md`,
@@ -179,42 +183,40 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `74 835` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `19 443` Zeilen (`26.0 %`) |
-| Dokumentationsanteil / Documentation share | `51 525` Zeilen (`68.9 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-11` |
-| Sichtbare Git-Aktivtage / Observable active days | `37` |
-| Git-Commits gesamt / Total commits | `330` |
-| Git-Commits pro Aktivtag / Commits per active day | `8.9` (`330 / 37`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 022.6` (`74 835 / 37`) |
-| Zeilen pro Commit / Lines per commit | `226.8` (`74 835 / 330`) |
-| Konservative Einzelentwickler-Untergrenze | `935.4` Arbeitstage / `7 296.4` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `748.4` Arbeitstage / `5 837.1` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `374.2` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `25.3x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `20.2x` |
+| Artefaktbasis gesamt / Total artifact base | `112 995` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `20 713` Zeilen (`18.3 %`) |
+| Dokumentationsanteil / Documentation share | `83 742` Zeilen (`74.1 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-20` |
+| Sichtbare Git-Aktivtage / Observable active days | `44` |
+| Git-Commits gesamt / Total commits | `339` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.7` (`339 / 44`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 568.1` (`112 995 / 44`) |
+| Zeilen pro Commit / Lines per commit | `333.3` (`112 995 / 339`) |
+| Konservative Einzelentwickler-Untergrenze | `1 412.4` Arbeitstage / `11 017.0` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 130.0` Arbeitstage / `8 813.6` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `565.0` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.1x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.7x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `68.9 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.1 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Der operative Code (Skripte,
-Hooks, CI) macht `26.0 %` aus. Der groesste dokumentierte Volumensprung bleibt
+Hooks, CI) macht `18.3 %` aus. Der groesste dokumentierte Volumensprung bleibt
 Phase `1` (Spec-Kit-Batch fuer Homogeneity Guardian). Die aktuelle
-Maintenance-Runde ergaenzt BSI C5 als Cloud-Compliance-Assurance im
-`architecture-governance`-Preset und eine schlanke regulatorische
-Anwendbarkeitspruefung fuer NIS2, CRA, EU AI Act und DORA im
-`security-governance`-Preset. Fuer private Ausbildungsprojekte bleibt
+Maintenance-Runde ergaenzt die sichere-Entwicklung-Basis, mitgeltende
+Dokumente, CISA-Memory-Safe-Roadmaps und die Verzahnung zwischen Richtlinie,
+Checklisten und Spec-Kit-Presets. Fuer private Ausbildungsprojekte bleibt
 Nichtanwendbarkeit als begruendetes `N/A` dokumentierbar. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
-*Short summary: after the C5 and regulatory applicability round,
-`home-baseline` remains documentation- and governance-driven: `68.9 %` of the visible base sits
+*Short summary: after the secure-development related-documents alignment round,
+`home-baseline` remains documentation- and governance-driven: `74.1 %` of the visible base sits
 in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
-`26.0 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
-for Homogeneity Guardian). The current maintenance round adds BSI C5 cloud
-compliance assurance to `architecture-governance` and a lightweight regulatory
-applicability screen for NIS2, CRA, EU AI Act, and DORA to
-`security-governance`. Private training projects can still document
+`18.3 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
+for Homogeneity Guardian). The current maintenance round adds the secure-development
+baseline, related documents, CISA memory-safe roadmaps, and the alignment between
+guideline, checklists, and Spec Kit presets. Private training projects can still document
 non-applicability as justified `N/A`. The
 acceleration factors describe
 visible delivery density, not stopwatch measurements.*
@@ -223,19 +225,20 @@ visible delivery density, not stopwatch measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #############                  | 19 443 | 26.0 %
-Dokumentation   | ############################## | 51 525 | 68.9 %
-Sonstiges       | ##                             |  3 867 |  5.2 %
+Operativer Code | #######                        | 20 713 | 18.3 %
+Dokumentation   | ############################## | 83 742 | 74.1 %
+Sonstiges       | ###                            |  8 540 |  7.6 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
 (Skripte, Hooks, CI), Dokumentation und sonstigen Artefakten verteilt ist.
-Die Preset-Arbeit hat den Dokumentations- und Governance-Anteil sichtbar
-erhoeht.
+Die Preset-Arbeit und die sichere-Entwicklung-Basis haben den
+Dokumentations- und Governance-Anteil sichtbar erhoeht.
 
 *This chart shows the split between operational code (scripts, hooks, CI),
-documentation, and other artifacts in the current snapshot. The preset work
-visibly increased the documentation and governance share.*
+documentation, and other artifacts in the current snapshot. The preset work and
+the secure-development baseline visibly increased the documentation and
+governance share.*
 
 ```text
 Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
@@ -279,7 +282,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | #########################         | 25.3x
+Repo ges. | ################################  | 32.1x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -301,9 +304,9 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 935.4 d / 7 296.4 h
-Thorsten (100 Z./Tag)  | ###################      | 748.4 d / 5 837.1 h
-KI sichtbar            | #                        |  37.0 d
+Erfahren (80 Z./Tag)   | ######################## | 1 412.4 d / 11 017.0 h
+Thorsten (100 Z./Tag)  | ###################      | 1 130.0 d /  8 813.6 h
+KI sichtbar            | #                        |    44.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer
