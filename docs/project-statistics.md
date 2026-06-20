@@ -34,6 +34,9 @@
 | 2026-06-11 | architecture-governance v0.3.0 BSI C3A Cloud-Autonomie | 37 | 73 853 | 329 | BSI C3A als bedingt anwendbare Cloud-Autonomie-Evidenz in `architecture-governance` ergaenzt, neues Template `cloud-autonomy-applicability-template` aufgenommen, Constitution, README, Agenten-Dateien, Templates und Preset-Scaffolds synchronisiert |
 | 2026-06-11 | C5/NIS2 Preset-Erweiterung | 37 | 74 835 | 330 | BSI C5 als Cloud-Compliance-Assurance in `architecture-governance v0.4.0` und regulatorische Anwendbarkeitsmatrix fuer NIS2, CRA, EU AI Act und DORA in `security-governance v0.5.0` ergaenzt; neue Templates `cloud-compliance-assurance-template` und `regulatory-applicability-template` aufgenommen; Constitution, README, Agenten-Dateien, Templates und Preset-Scaffolds synchronisiert |
 | 2026-06-20 | Secure-Development-Basis und mitgeltende Dokumente | 44 | 112 992 | 339 | Generische sichere-Entwicklung-Basis mit Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten, CISA-Memory-Safe-Roadmaps-PDF samt EN/DE-Markdown, neuer Verzahnungsdatei fuer Richtlinie/CLs/Presets und Lastenheft fuer einen spaeteren Spec-Kit-Verzahnungslauf fortgeschrieben; Swift als MSL didaktisch sichtbarer gemacht |
+| 2026-06-20 | Lastenheft-Abarbeitungsreihenfolge | 44 | 113 066 | 339 | Root-nahe `Lastenheft_Abarbeitungsreihenfolge.md` ergaenzt, aktive spaetere Spec-Kit-Intakes von historischen Feature-Branch-Lastenheften getrennt und README-Verweis auf die Reihenfolge aufgenommen |
+| 2026-06-20 | Spec-Kit-Intake-Haertung und Container-Intake | 44 | 113 460 | 339 | Aktive Level-0-Lastenhefte fuer spaetere Spec-Kit-Laeufe als Intake-Dateien geschaerft, kopierbare `/speckit-specify`-Prompts ergaenzt, neues Lastenheft fuer Secure-Development-Container-Hardening aufgenommen und Agenten-/Secure-Development-Guidance zur Intake-Struktur nachgezogen |
+| 2026-06-20 | Skriptsprachen-Guidance fuer Agenten | 44 | 113 489 | 339 | README und Agenten-Dateien um OS-Pruefung, PowerShell-7-/Cmdlet-Prioritaet, optionalen C#-Pfad ueber `.NET`/`mono` und Fallback auf vorhandene OS-nahe Repo-Skripte ergaenzt |
 
 ---
 
@@ -46,20 +49,20 @@ Stand / As of: **2026-06-20**
 | Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 663 | 16.5 % |
 | Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.9 % |
 | Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.8 % |
-| Dokumentation / Documentation (`.md`) | 473 | 83 742 | 74.1 % |
+| Dokumentation / Documentation (`.md`) | 475 | 84 236 | 74.2 % |
 | Sonstiges / Other | 22 | 5 229 | 4.6 % |
-| **Gesamt / Total** | **637** | **112 995** | **100 %** |
+| **Gesamt / Total** | **639** | **113 489** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 20 195 | 24.1 % |
-| Secure Development (`docs/secure-development/`) | 28 977 | 34.6 % |
-| Lastenhefte (`Lastenheft*.md`) | 3 921 | 4.7 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 912 | 4.7 % |
-| README / CHANGELOG / STATS | 3 424 | 4.1 % |
-| Sonstiges (Templates, andere `.md`) | 23 313 | 27.8 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 24.0 % |
+| Secure Development (`docs/secure-development/`) | 28 987 | 34.4 % |
+| Lastenhefte (`Lastenheft*.md`) | 4 363 | 5.2 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 924 | 4.7 % |
+| README / CHANGELOG / STATS | 3 454 | 4.1 % |
+| Sonstiges (Templates, andere `.md`) | 23 313 | 27.7 % |
 
 ---
 
@@ -183,23 +186,23 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `112 995` Zeilen |
+| Artefaktbasis gesamt / Total artifact base | `113 489` Zeilen |
 | Operativer Code / Operational code (Skripte + Hooks + CI) | `20 713` Zeilen (`18.3 %`) |
-| Dokumentationsanteil / Documentation share | `83 742` Zeilen (`74.1 %`) |
+| Dokumentationsanteil / Documentation share | `84 236` Zeilen (`74.2 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-20` |
 | Sichtbare Git-Aktivtage / Observable active days | `44` |
 | Git-Commits gesamt / Total commits | `339` |
 | Git-Commits pro Aktivtag / Commits per active day | `7.7` (`339 / 44`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 568.1` (`112 995 / 44`) |
-| Zeilen pro Commit / Lines per commit | `333.3` (`112 995 / 339`) |
-| Konservative Einzelentwickler-Untergrenze | `1 412.4` Arbeitstage / `11 017.0` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 130.0` Arbeitstage / `8 813.6` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `565.0` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.1x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.7x` |
+| Zeilen pro Aktivtag / Lines per active day | `2 579.3` (`113 489 / 44`) |
+| Zeilen pro Commit / Lines per commit | `334.8` (`113 489 / 339`) |
+| Konservative Einzelentwickler-Untergrenze | `1 418.6` Arbeitstage / `11 065.2` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 134.9` Arbeitstage / `8 852.1` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `567.4` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.2x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.8x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.1 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.2 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Der operative Code (Skripte,
 Hooks, CI) macht `18.3 %` aus. Der groesste dokumentierte Volumensprung bleibt
 Phase `1` (Spec-Kit-Batch fuer Homogeneity Guardian). Die aktuelle
@@ -211,7 +214,7 @@ Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
 *Short summary: after the secure-development related-documents alignment round,
-`home-baseline` remains documentation- and governance-driven: `74.1 %` of the visible base sits
+`home-baseline` remains documentation- and governance-driven: `74.2 %` of the visible base sits
 in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
 `18.3 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
 for Homogeneity Guardian). The current maintenance round adds the secure-development
@@ -226,19 +229,22 @@ visible delivery density, not stopwatch measurements.*
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
 Operativer Code | #######                        | 20 713 | 18.3 %
-Dokumentation   | ############################## | 83 742 | 74.1 %
-Sonstiges       | ###                            |  8 540 |  7.6 %
+Dokumentation   | ############################## | 84 236 | 74.2 %
+Sonstiges       | ###                            |  8 540 |  7.5 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
 (Skripte, Hooks, CI), Dokumentation und sonstigen Artefakten verteilt ist.
 Die Preset-Arbeit und die sichere-Entwicklung-Basis haben den
-Dokumentations- und Governance-Anteil sichtbar erhoeht.
+Dokumentations- und Governance-Anteil sichtbar erhoeht; die aktuelle
+Lastenheft-Reihenfolge trennt aktive Intakes von historischen Feature-Branch-
+Lastenheften.
 
 *This chart shows the split between operational code (scripts, hooks, CI),
 documentation, and other artifacts in the current snapshot. The preset work and
 the secure-development baseline visibly increased the documentation and
-governance share.*
+governance share; the current Lastenheft order separates active intakes from
+historical feature-branch Lastenhefte.*
 
 ```text
 Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
@@ -282,7 +288,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################  | 32.1x
+Repo ges. | ################################  | 32.2x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -304,8 +310,8 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 1 412.4 d / 11 017.0 h
-Thorsten (100 Z./Tag)  | ###################      | 1 130.0 d /  8 813.6 h
+Erfahren (80 Z./Tag)   | ######################## | 1 418.6 d / 11 065.2 h
+Thorsten (100 Z./Tag)  | ###################      | 1 134.9 d /  8 852.1 h
 KI sichtbar            | #                        |    44.0 d
 ```
 

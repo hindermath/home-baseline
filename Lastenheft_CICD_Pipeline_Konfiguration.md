@@ -365,23 +365,43 @@ implemented after the GitLab support feature.*
 
 ---
 
-## Spec-Kit-Hinweise / Spec-Kit Notes
+## Spec-Kit-Intake-Reife / Spec Kit Intake Readiness
 
-> Dieses Lastenheft ist als Eingabe für den Slash-Command `/speckit.specify`
-> konzipiert. Dieses Feature hat eine **Abhängigkeit** auf
-> `Lastenheft_GitLab_Support.md` (für GitLab-CI-Templates). Die
-> GitHub-Actions-Teile können unabhängig implementiert werden.
->
-> *This Lastenheft is designed as input for the `/speckit.specify` slash command.
-> This feature has a dependency on `Lastenheft_GitLab_Support.md` for GitLab CI
-> templates. The GitHub Actions parts can be implemented independently.*
+Dieses Lastenheft ist inhaltlich breit genug fuer einen spaeteren
+`/speckit-specify`-Lauf, muss aber beim Start gegen den heutigen Repository-
+Stand validiert werden. Einige Teilanforderungen koennen bereits durch spaetere
+Home-Baseline-Arbeiten ganz oder teilweise erledigt sein.
 
-```bash
-cd ~/home-baseline-tmp
-claude
-```
-Folgendes im Claude-Interface aufrufen / Then run in the Claude interface:
+*This requirements document is broad enough for a later `/speckit-specify` run,
+but must be validated against the current repository state at run start. Some
+requirements may already be fully or partly covered by later home-baseline work.*
+
+Der spaetere Lauf muss zuerst klassifizieren:
+
+- `AlreadySatisfied`: im aktuellen Stand bereits umgesetzt und nachweisbar.
+- `Applicable`: noch offen und fuer diesen Lauf umzusetzen.
+- `N/A`: nicht mehr passend, mit kurzer Begruendung.
+- `FollowUp`: sinnvoll, aber zu gross oder zu unabhaengig fuer diesen Lauf.
+
+## Kopierbarer `/speckit-specify`-Prompt / Copyable `/speckit-specify` Prompt
+
 ```text
-# Spec-Kit starten / Start Spec-Kit (in Claude Code)
-/speckit.specify Lastenheft_CICD_Pipeline_Konfiguration.md
+/speckit-specify Nutze Lastenheft_CICD_Pipeline_Konfiguration.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen CI/CD-Pipeline-Konfigurationslauf im home-baseline-Repository.
+
+Ziel: Pruefe und haerte die CI/CD-Template-Strategie fuer neue Level-1- und Level-2-Repositories. Beruecksichtige GitHub Actions primaer und GitLab CI sekundaer, ohne bereits erledigte historische Anforderungen blind erneut umzusetzen.
+
+Pflichtschritte in der Spezifikation:
+- Vergleiche alle FR-/NFR-/AC-Punkte dieses Lastenhefts mit dem aktuellen Repository-Stand.
+- Klassifiziere jeden Punkt als `AlreadySatisfied`, `Applicable`, `N/A` oder `FollowUp`.
+- Plane nur `Applicable`-Punkte fuer diesen Lauf.
+- Erhalte Rueckwaertskompatibilitaet fuer bestehende Bootstrap- und Migrationsskripte.
+- Beruecksichtige Secret-Scan, Homogeneity Check, Release Please, GitLab-CI-Unterstuetzung, Workflow-Template-Versionierung, `--dry-run`/`-WhatIf` und Dokumentation.
+- Halte DE/EN, CEFR B2, WCAG-2.2-AA-freundliche Dokumentation und GitHub/GitLab-CLI-first-Guidance ein.
+
+Nicht-Ziele:
+- Keine Self-hosted-Runner-Architektur.
+- Keine Deployment-CD fuer konkrete Produkte.
+- Keine Dependabot-/Renovate-Einfuehrung, falls sie nicht zwingend fuer diesen CI/CD-Scope gebraucht wird.
+
+Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, aktualisierter Ist-/Soll-Klassifikation, funktionalen Anforderungen, Akzeptanzkriterien, Risiken, Teststrategie und klaren Folgeentscheidungen.
 ```

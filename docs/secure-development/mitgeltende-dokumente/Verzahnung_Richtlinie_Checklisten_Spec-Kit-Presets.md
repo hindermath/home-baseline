@@ -57,6 +57,12 @@
 | Wo liegt die Evidenz? / Where is the evidence? | Pfad, Link, PR, Test, Scan oder `docs/security/`-Artefakt nennen. / Name path, link, PR, test, scan, or `docs/security/` artefact. |
 | Gibt es `N/A`? / Are there `N/A` decisions? | Kurze technische oder fachliche Begründung notieren. / Record a short technical or functional rationale. |
 
+## Lastenheft als Spec-Kit-Intake / Requirements Document as Spec Kit Intake
+
+**DE:** Ein Lastenheft, das spaeter direkt fuer `/speckit-specify` genutzt wird, soll die spaetere Pruefung bereits vorbereiten. Es nennt Zweck, Ausgangslage, Zielbild, Scope, Nicht-Ziele, Anforderungen, erwartete Artefakte, Akzeptanzkriterien und einen kopierbaren Prompt. Wenn Sicherheits-, Architektur-, A11Y-, Supply-Chain- oder Agenten-Governance betroffen ist, muss der Prompt `Applicable`, `N/A`, `Open`, Evidenzpfad und Begruendungspflicht ausdruecklich verlangen.
+
+**EN:** A requirements document that will later be used directly with `/speckit-specify` should prepare the later review already. It names purpose, context, target state, scope, non-goals, requirements, expected artefacts, acceptance criteria, and a copyable prompt. If security, architecture, accessibility, supply chain, or agent governance is affected, the prompt must explicitly require `Applicable`, `N/A`, `Open`, evidence paths, and rationale duties.
+
 ## Didaktische Regel / Teaching Rule
 
 **DE:** Für Auszubildende ab dem ersten Lehrjahr muss jeder Prüfpunkt in Alltagssprache erklärbar sein. Wenn ein Begriff wie `SBOM`, `VEX`, `SLSA`, `Threat Model`, `MSL`, `C3A` oder `C5` verwendet wird, muss das Dokument oder der Spec-Kit-Lauf einen kurzen erklärenden Satz oder einen Link auf die Lernfassung enthalten.

@@ -56,3 +56,61 @@ Dieses Lastenheft beschreibt die Anforderungen für die Einführung von Unix man
 
 ---
 **Status**: Entwurf / Draft | **ID**: 007-script-documentation | **Author**: Gemini CLI
+
+## 7. Spec-Kit-Intake-Ergaenzung / Spec Kit Intake Addendum
+
+Dieses Lastenheft ist fachlich geeignet, braucht fuer einen heutigen
+Spec-Kit-Lauf aber eine aktualisierte Struktur. Der spaetere Lauf soll nicht
+einfach jede Datei anfassen, sondern zuerst den aktuellen Dokumentationsstand
+ermitteln und dann fehlende oder veraltete Hilfe gezielt schliessen.
+
+*This requirements document is functionally suitable, but needs an updated
+structure for a current Spec Kit run. The later run must not blindly touch every
+file; it first records the current documentation state and then closes missing
+or stale help intentionally.*
+
+## 8. Aktualisierter Scope / Updated Scope
+
+In Scope:
+
+- Bash-Skripte unter `scripts/` mit fehlender oder veralteter Manpage.
+- PowerShell-Skripte unter `scripts/` mit fehlender oder unvollstaendiger
+  kommentarbasierter Hilfe.
+- README-, Agenten- und Template-Regeln, die neue Skripte an Dokumentation
+  koppeln.
+- Pruefskript oder dokumentierte Pruefroutine fuer Hilfe-/Manpage-Abdeckung.
+
+Out of Scope:
+
+- Umbenennung von Skripten.
+- Fachliche Aenderung am Skriptverhalten ohne direkten Dokumentationsgrund.
+- Ein PowerShell-Modul- oder Cmdlet-Umbau; dieser Scope gehoert zu
+  `Lastenheft_PowerShell_Cmdlets.md`.
+
+## 9. Erwartete Ergebnisartefakte / Expected Result Artefacts
+
+| Artefakt | Erwartung |
+|---|---|
+| Bestandsmatrix | Jedes Skript ist mit Dokumentationsstatus erfasst |
+| Manpages | Fehlende oder veraltete Bash-Manpages sind ergaenzt |
+| PowerShell-Hilfe | `.SYNOPSIS`, `.DESCRIPTION`, `.PARAMETER`, `.EXAMPLE`, `.NOTES` sind vollstaendig |
+| README/Guidance | Dokumentationspflicht fuer neue/geaenderte Skripte ist sichtbar |
+| Pruefung | `git diff --check` und eine nachvollziehbare Hilfeabdeckungspruefung laufen |
+
+## 10. Kopierbarer `/speckit-specify`-Prompt
+
+```text
+/speckit-specify Nutze Lastenheft_Script_Dokumentation.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Dokumentationslauf zu Bash-Manpages und PowerShell-Hilfe im home-baseline-Repository.
+
+Ziel: Alle relevanten Skripte sollen eine aktuelle, zweisprachige und wartbare Hilfe haben. Bash-Skripte brauchen passende Manpages in `docs/man/`; PowerShell-Skripte brauchen vollstaendige kommentarbasierte Hilfe. Neue oder geaenderte Skripte duerfen kuenftig nicht ohne passende Dokumentation entstehen.
+
+Pflichtpunkte:
+- Erstelle zuerst eine Bestandsmatrix fuer `scripts/*.sh` und `scripts/*.ps1`.
+- Klassifiziere je Skript `Documented`, `Missing`, `Stale`, `N/A`.
+- Plane nur fehlende oder veraltete Dokumentation fuer diesen Lauf.
+- Halte DE/EN, CEFR B2 und textfreundliche WCAG-2.2-AA-Dokumentation ein.
+- Aendere Skriptverhalten nur, wenn es fuer `--help`, `-h` oder `Get-Help` notwendig ist.
+- Trenne diesen Lauf klar vom PowerShell-Cmdlet-Umbau.
+
+Erzeuge eine Spezifikation mit Bestandsanalyse, Scope, Nicht-Zielen, Anforderungen, Akzeptanzkriterien, Teststrategie und erwarteten Dokumentationsartefakten.
+```

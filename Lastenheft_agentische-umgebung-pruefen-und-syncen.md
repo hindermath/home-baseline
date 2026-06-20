@@ -284,3 +284,48 @@ affecting the active branch.*
   Statuspruefung.
 - Kein blindes Ueberschreiben projektspezifischer Level-2-Verfassungsinhalte.
 
+---
+
+## Erwartete Ergebnisartefakte / Expected Result Artefacts
+
+| Artefakt | Erwartung |
+|---|---|
+| Statusbericht | Level 0, Level 1 und Level 2 sind getrennt ausgewiesen |
+| Repo-Matrix | Pro Repo stehen Branch, Remote, Dirty State, Pull-/Push-Bedarf und Sync-Bedarf |
+| Skriptgrenzen | Nicht abgedeckte Faelle sind transparent dokumentiert |
+| Aktualisierungsplan | Notwendige Schritte sind sortiert: erst Pull/Fetch, dann lokale Fixes, dann Commit/Push, danach Home-Sync |
+| Sicherheitspruefung | Secret-Scan- und Homogeneity-Status sind sichtbar |
+| Abschlussnotiz | Offene Risiken, manuelle Entscheidungen und nicht ausgefuehrte Schritte sind dokumentiert |
+
+## Spec-Kit-Intake-Reife / Spec Kit Intake Readiness
+
+Dieses Lastenheft ist als Intake fuer einen operativen Spec-Kit-Planungslauf
+geeignet. Der Lauf darf jedoch nicht automatisch alle Git-Operationen ausfuehren.
+Er soll zuerst eine belastbare Pruef- und Entscheidungsstruktur erzeugen.
+
+*This requirements document is suitable as intake for an operational Spec Kit
+planning run. The run must not automatically execute all Git operations. It
+first creates a reliable inspection and decision structure.*
+
+## Kopierbarer `/speckit-specify`-Prompt
+
+```text
+/speckit-specify Nutze Lastenheft_agentische-umgebung-pruefen-und-syncen.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Lauf zur Pruefung und Synchronisation der agentischen Level-0-, Level-1- und Level-2-Umgebung.
+
+Ziel: Die gesamte agentische Arbeitsumgebung soll mit vorhandenen home-baseline-Skripten pruefbar, aktualisierbar und nachvollziehbar werden. Der Lauf soll pro Ebene und pro Repository ausweisen, ob `commit`, `push`, `fetch`, `pull`, Secret-Scan, Homogeneity-Check oder Home-Sync notwendig ist.
+
+Pflichtpunkte:
+- Level 0 (`~/home-baseline-tmp` und lokale Kopie `~/`), Level 1 und Level 2 getrennt behandeln.
+- GitHub/GitLab CLI-first-Guidance beachten: `gh`/`glab` fuer Live-Status, Kommentare, Checks und Merge-/PR-Abfragen bevorzugen.
+- Vor jeder mutierenden Aktion den Status ausweisen; keine pauschale Vollautomatisierung.
+- Vorhandene Skripte bevorzugen: `check-homogeneity.*`, `scan-agent-secrets.*`, `sync-constitution.*`, `sync-home.*`, `audit-agent-changes.*`, `update-spec-kit.*`.
+- Lokale Level-2-Spezialisierungen duerfen nicht blind ueberschrieben werden.
+- Ergebnisse muessen DE/EN, CEFR B2 und textfreundlich dokumentierbar sein.
+
+Nicht-Ziele:
+- Keine Einfuehrung neuer externer Tools, wenn vorhandene Skripte reichen.
+- Kein automatisches Committen/Pullen/Pushen ohne vorherige Statusklassifikation.
+- Kein Start fachlicher Spec-Kit-Feature-Laeufe in den Level-2-Repos.
+
+Erzeuge eine Spezifikation mit Ebenenmodell, Repo-Statusmatrix, Anforderungen, Randfaellen, Akzeptanzkriterien, Teststrategie und klarer Trennung zwischen Pruefung, Aktualisierung und Abschlussbericht.
+```

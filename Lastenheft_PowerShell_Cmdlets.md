@@ -50,3 +50,64 @@ Die zentrale `README.md` im Root-Verzeichnis muss um einen Abschnitt "PowerShell
 
 ---
 **Status**: Entwurf / Draft | **ID**: 008-powershell-cmdlets | **Author**: Gemini CLI
+
+## 7. Spec-Kit-Intake-Ergaenzung / Spec Kit Intake Addendum
+
+Dieses Lastenheft beschreibt einen groesseren PowerShell-Integrationslauf. Fuer
+einen Spec-Kit-Lauf muss der Scope bewusst schmal geschnitten werden: Erst wird
+eine stabile Modul-/Cmdlet-Strategie spezifiziert, danach werden Skripte
+schrittweise und rueckwaertskompatibel angebunden.
+
+*This requirements document describes a larger PowerShell integration run. For a
+Spec Kit run, the scope must be intentionally narrow: first define a stable
+module/cmdlet strategy, then connect scripts step by step while preserving
+backward compatibility.*
+
+## 8. Aktualisierter Scope / Updated Scope
+
+In Scope:
+
+- Entscheidung fuer eine Modulstruktur, z. B. `HomeBaseline.psm1` plus Manifest.
+- Namensmatrix von bestehenden Skripten zu `Verb-Noun`-Funktionen.
+- Gemeinsame Parameterregeln: `CmdletBinding`, `SupportsShouldProcess`,
+  `-WhatIf`, `-Confirm`, `-Verbose`, `-Debug`.
+- Profil- und Ladeanleitung fuer Benutzende.
+- Rueckwaertskompatible Skriptaufrufe bleiben erhalten.
+
+Out of Scope:
+
+- Sofortige Vollmigration aller PowerShell-Skripte ohne Priorisierung.
+- Entfernung bestehender `.ps1`-Entry-Points.
+- Automatische Veraenderung von Benutzerprofilen.
+
+## 9. Erwartete Ergebnisartefakte / Expected Result Artefacts
+
+| Artefakt | Erwartung |
+|---|---|
+| Cmdlet-Strategie | Modulname, Ladeweg, Namensschema und Kompatibilitaet sind entschieden |
+| Mapping-Tabelle | Skriptname, Cmdlet-Name, Parameter und Status sind dokumentiert |
+| Modul-/Library-Plan | Technischer Aufbau ist spezifiziert |
+| README/Guidance | Nutzung und Profilintegration sind erklaert |
+| Tests | Import, `Get-Command`, `Get-Help`, `-WhatIf` und direkte Skriptaufrufe bleiben pruefbar |
+
+## 10. Kopierbarer `/speckit-specify`-Prompt
+
+```text
+/speckit-specify Nutze Lastenheft_PowerShell_Cmdlets.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer eine PowerShell-Cmdlet- und Modulstrategie im home-baseline-Repository.
+
+Ziel: Bestehende PowerShell-Skripte sollen langfristig als native Advanced Functions mit PowerShell-konformen `Verb-Noun`-Namen nutzbar werden, ohne die vorhandenen Skriptaufrufe zu brechen.
+
+Pflichtpunkte:
+- Erstelle eine Bestands- und Namensmatrix fuer alle relevanten `scripts/*.ps1`.
+- Definiere Modulstruktur, Ladeweg, Profil-Hinweis und Rueckwaertskompatibilitaet.
+- Lege Regeln fuer `CmdletBinding`, `SupportsShouldProcess`, `-WhatIf`, `-Confirm`, `-Verbose`, `-Debug`, Fehlerbehandlung und Hilfe fest.
+- Plane eine schrittweise Umsetzung statt einer riskanten Vollmigration.
+- Halte DE/EN, CEFR B2, WCAG-2.2-AA-freundliche Doku und PowerShell-Verb-Noun-Regeln ein.
+
+Nicht-Ziele:
+- Keine automatische Aenderung von Benutzerprofilen.
+- Keine Entfernung bestehender `.ps1`-Entry-Points.
+- Keine fachliche Skriptlogik-Aenderung ohne direkten Modul-/Cmdlet-Grund.
+
+Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, Modulentscheidung, Mapping-Artefakten, Anforderungen, Akzeptanzkriterien und Teststrategie.
+```

@@ -901,6 +901,26 @@ bash ~/scripts/sync-home.sh --no-pull
 # pwsh ~/scripts/sync-home.ps1 -NoPull  # Windows
 ```
 
+**Skriptsprachenwahl fuer Agenten / Script language choice for agents**
+
+Vor jeder Automationsaufgabe zuerst das Betriebssystem pruefen. Wenn ein
+passendes PowerShell-7-Skript oder Cmdlet vorhanden ist und `pwsh` verfuegbar
+ist, soll diese Variante bevorzugt werden. Fuer strukturierte lokale
+Automationen kann C# ueber `.NET` oder `mono` genutzt werden, wenn Typisierung,
+Dateiformate oder Wiederverwendbarkeit dadurch klar besser werden. Erst wenn
+PowerShell oder C# nicht sinnvoll passen, soll die OS-nahe vorhandene
+Repo-Variante genutzt werden, auf macOS/Linux also typischerweise Bash. Eine
+neue Sprache wird nicht nur aus Bequemlichkeit eingefuehrt, wenn ein
+vorhandenes Repo-Skript denselben Zweck erfuellt.
+
+*Before each automation task, detect the operating system first. If a matching
+PowerShell 7 script or cmdlet exists and `pwsh` is available, prefer that
+variant. For structured local automation, C# via `.NET` or `mono` may be used
+when type safety, file formats, or reuse clearly benefit from it. Only when
+PowerShell or C# is not a good fit, use the existing OS-native repository
+variant, typically Bash on macOS/Linux. Do not introduce a new language merely
+for convenience when an existing repository script already solves the task.*
+
 ---
 
 ### Optionen sync-home / sync-home options
@@ -1080,6 +1100,10 @@ pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~
 Fuer bestehende Level-2-Repositories synchronisiert `prepare-secure-development-hardening.*` dieselbe Basis, erzeugt bei Bedarf `Lastenheft_Secure-Development-Hardening.md` und pflegt `Lastenheft_Abarbeitungsreihenfolge.md` anhand des strikten Suchmusters `Lastenheft*.md`. Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert, manuelle Begruendungen bleiben erhalten.
 
 *For existing level-2 repositories, `prepare-secure-development-hardening.*` synchronizes the same baseline, creates `Lastenheft_Secure-Development-Hardening.md` when needed, and maintains `Lastenheft_Abarbeitungsreihenfolge.md` from the strict `Lastenheft*.md` pattern. Existing order files are protected: only the marked generated section is updated, while manual rationale remains preserved.*
+
+Fuer dieses Level-0-Repository dokumentiert [`Lastenheft_Abarbeitungsreihenfolge.md`](Lastenheft_Abarbeitungsreihenfolge.md) die sichtbare Reihenfolge spaeterer Spec-Kit-Intakes. Lastenhefte mit Feature-Branch-Kennung im Dateinamen, zum Beispiel `001-workspace-homogeneity-guardian`, gelten dort als historischer Kontext und werden nicht erneut ausgefuehrt.
+
+*For this Level-0 repository, [`Lastenheft_Abarbeitungsreihenfolge.md`](Lastenheft_Abarbeitungsreihenfolge.md) documents the visible order of later Spec Kit intakes. Lastenhefte with a feature-branch marker in the file name, for example `001-workspace-homogeneity-guardian`, are treated as historical context and are not executed again.*
 
 Swift ist als Memory-Safe Language (MSL) beruecksichtigt. Das ist besonders fuer Apple-Zielplattformen relevant. Swift-Projekte muessen trotzdem die Swift-spezifischen Secure-Coding-Regeln pruefen; MSL-Status ersetzt keine API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Pruefung.
 

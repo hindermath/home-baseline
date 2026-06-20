@@ -36,6 +36,10 @@
 
 **EN:** Swift is considered a memory-safe language in this baseline. This follows from the central MSL allow-list and the CISA memory-safe roadmaps document. Swift projects still need Swift-specific secure-coding review.
 
+**DE:** Lastenhefte fuer spaetere Spec-Kit-Laeufe sollen selbst schon auditfaehig vorbereitet sein. Dazu gehoeren Zweck, Ausgangslage, Zielbild, Scope, Nicht-Ziele, Anforderungen, erwartete Artefakte, Akzeptanzkriterien und ein kopierbarer `/speckit-specify`-Prompt. Der Prompt soll `Applicable`, `N/A`, `Open`, Evidenzpfad und Begruendungspflicht ausdruecklich nennen, wenn Sicherheits- oder Governance-Punkte betroffen sind.
+
+**EN:** Requirements documents for later Spec Kit runs should already be prepared in an audit-ready form. They include purpose, context, target state, scope, non-goals, requirements, expected artefacts, acceptance criteria, and a copyable `/speckit-specify` prompt. The prompt should explicitly mention `Applicable`, `N/A`, `Open`, evidence paths, and rationale duties when security or governance items are affected.
+
 ## Grenzen / Boundaries
 
 **DE:** Diese Dokumente ersetzen keine projektspezifischen Sicherheitsartefakte in `docs/security/`, sondern liefern die wiederverwendbare Pruefgrundlage. Projektspezifische Nachweise bleiben im jeweiligen Projektkontext zu fuehren.

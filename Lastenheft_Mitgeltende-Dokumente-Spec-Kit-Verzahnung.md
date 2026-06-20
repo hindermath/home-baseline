@@ -79,3 +79,41 @@ Ein neuer Preset-Release ist nur erforderlich, wenn der Abgleich eine echte Änd
 - Swift ist konsistent als MSL eingeordnet.
 - Die sechs Governance-Presets bleiben fachlich widerspruchsfrei zur Richtlinie und den mitgeltenden Dokumenten.
 - `git diff --check`, Secret-Scan und Propagations-Dry-run laufen ohne blockierende Befunde.
+
+## 9. Spec-Kit-Intake-Reife
+
+Dieses Lastenheft ist als direkte Eingabedatei fuer einen spaeteren
+`/speckit-specify`-Lauf geeignet. Der Lauf soll zuerst die bestehende
+Verzahnung pruefen und dann nur dort Aenderungen planen, wo Richtlinie,
+Checklisten, mitgeltende Dokumente, Agenten-Guidance oder Preset-Evidenz
+auseinanderlaufen.
+
+Der spaetere Lauf muss ausdruecklich dokumentieren:
+
+- welche Artefakte nur gelesen wurden,
+- welche Artefakte geaendert werden sollen,
+- ob eine reine Dokumentationskorrektur reicht,
+- ob ein Preset-Release notwendig wird,
+- welche Level-2-Propagation danach erforderlich ist,
+- welche Punkte als `N/A` gelten und warum.
+
+## 10. Kopierbarer `/speckit-specify`-Prompt
+
+```text
+/speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den sechs Governance-Presets.
+
+Ziel: Die sichere-Entwicklung-Basis soll fuer Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten so klar werden, dass spaetere Level-2-Spec-Kit-Laeufe dieselbe Bewertungslogik fuer `Applicable`, `N/A`, `Open`, Evidenzpfad, Restrisiko und Follow-up verwenden.
+
+Pflichtkontext:
+- Pruefe `docs/secure-development/README.md`, `Richtlinie_Sichere-Entwicklung.md`, `Checklistensammelband_Sichere-Entwicklung.md`, `checklisten/`, `mitgeltende-dokumente/` und `scripts/templates/secure-development-hardening-lastenheft.md`.
+- Pruefe die Konsistenz zu `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance` und `agent-parity-governance`.
+- Swift bleibt als Memory-Safe Language sichtbar, ersetzt aber keine sprachspezifische Secure-Coding-Pruefung.
+- Inhalte bleiben DE/EN, CEFR B2 und WCAG-2.2-AA-freundlich.
+
+Nicht-Ziele:
+- Keinen Level-2-Haertungslauf starten.
+- Keine projektspezifischen `docs/security/`-Nachweise befuellen.
+- Kein Preset-Release planen, wenn nur Klarstellungen in der Secure-Development-Basis erforderlich sind.
+
+Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, betroffenen Artefakten, Anforderungen, Akzeptanzkriterien, Pruefstrategie und klarer Entscheidung, ob Presets, Agenten-Guidance, Templates oder nur Dokumentation betroffen sind.
+```
