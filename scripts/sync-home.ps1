@@ -24,6 +24,18 @@ if ($RepoDir -eq $HomeDir) {
     }
 }
 
+$homeScriptsDir = Join-Path $HomeDir 'scripts'
+$repoScript = Join-Path $RepoDir 'scripts/sync-home.ps1'
+if ((Test-Path $homeScriptsDir) -and (Test-Path $repoScript) -and
+    ((Resolve-Path -LiteralPath $ScriptDir).Path -eq (Resolve-Path -LiteralPath $homeScriptsDir).Path)) {
+    $forwardArgs = @()
+    if ($NoPull) { $forwardArgs += '-NoPull' }
+    if ($NoCommit) { $forwardArgs += '-NoCommit' }
+    if ($WhatIfPreference) { $forwardArgs += '-WhatIf' }
+    & $repoScript @forwardArgs
+    exit $LASTEXITCODE
+}
+
 $DoPull   = -not $NoPull
 $DoCommit = -not $NoCommit
 if ($WhatIfPreference) { $DoPull = $false; $DoCommit = $false }

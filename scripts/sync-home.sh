@@ -25,6 +25,10 @@ if [ "$REPO_DIR" = "$HOME_DIR" ]; then
   fi
 fi
 
+if [ "$SCRIPT_DIR" = "${HOME_DIR}/scripts" ] && [ -f "${REPO_DIR}/scripts/sync-home.sh" ]; then
+  exec bash "${REPO_DIR}/scripts/sync-home.sh" "$@"
+fi
+
 OPT_PULL=true
 OPT_COMMIT=true
 OPT_DRY_RUN=false

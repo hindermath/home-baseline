@@ -939,6 +939,10 @@ for convenience when an existing repository script already solves the task.*
 
 *During directory sync, `sync-home` removes macOS Finder metadata such as `.DS_Store` so it does not end up in the local `~/` copy or in git commits.*
 
+Wenn `sync-home` aus `~/scripts/` gestartet wird, delegiert es automatisch an die Repo-Kopie in `~/home-baseline-tmp/scripts/`. Dadurch kann es `~/scripts/` aktualisieren, ohne das gerade laufende Skript zu überschreiben.
+
+*When `sync-home` is started from `~/scripts/`, it automatically delegates to the repository copy in `~/home-baseline-tmp/scripts/`. This lets it update `~/scripts/` without overwriting the script that is currently running.*
+
 ---
 
 ### Releases und Versionierung / Releases & Versioning
