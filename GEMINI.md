@@ -137,6 +137,12 @@ Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Var
 - Gemeinsame Guidance und lernrelevante Doku folgen DE zuerst, EN danach; bei großen normativen Dokumenten ist eine synchron gepflegte `.EN.md`-Parallelfassung zulässig.
 - Shared guidance nie nur hier ändern: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` werden gemeinsam gepflegt; Abweichungen müssen in derselben Änderung begründet werden.
 
+## Selbstaktualisierende Skripte / Self-Updating Scripts
+
+Bei Sync- oder Bootstrap-Skripten, die ihr eigenes Verzeichnis kopieren oder ersetzen, vor echten Läufen immer Syntaxcheck und Vorschau verwenden: `bash -n`, `--dry-run` und `-WhatIf`. Echte Läufe aus einer stabilen Repo-Kopie wie `~/home-baseline-tmp/scripts/` starten oder sicherstellen, dass das Skript dorthin delegiert.
+
+*For sync or bootstrap scripts that copy or replace their own directory, always use syntax checks and previews before real runs: `bash -n`, `--dry-run`, and `-WhatIf`. Start real runs from a stable repository copy such as `~/home-baseline-tmp/scripts/`, or ensure the script delegates there.*
+
 ## Level-2-Umgebungsregister / Level-2 Environment Registry
 
 - Die zentrale `constitution.md` enthält das verbindliche Level-2 Project Environment Registry.

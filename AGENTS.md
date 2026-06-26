@@ -104,6 +104,10 @@ For GitLab repositories, use the authenticated `glab` CLI first for equivalent a
 ## Testleitlinien / Testing Guidelines
 Manual verification is the current test strategy. For bootstrap changes, test both shells in safe mode: Bash with `--dry-run`, PowerShell with `-WhatIf`. For hook or scanning changes, run the relevant installer, then execute the scanner against the repo root and confirm expected exit codes.
 
+Bei selbstaktualisierenden Sync-/Bootstrap-Skripten, die ihr eigenes Verzeichnis kopieren oder ersetzen, vor jedem echten Lauf Syntaxcheck und Vorschau ausführen (`bash -n`, `--dry-run`, `-WhatIf`). Echte Läufe aus einer stabilen Repo-Kopie starten, z. B. `~/home-baseline-tmp/scripts/`, oder sicherstellen, dass das Skript dorthin delegiert.
+
+*For self-updating sync/bootstrap scripts that copy or replace their own directory, run syntax checks and previews before every real run (`bash -n`, `--dry-run`, `-WhatIf`). Start real runs from a stable repository copy, for example `~/home-baseline-tmp/scripts/`, or ensure the script delegates there.*
+
 ### Plattformübergreifendes Testen (macOS / Linux / Windows) / Cross-Platform Testing (macOS / Linux / Windows)
 When testing on a machine where copy-pasting terminal output to this session is not possible, use the matching platform test script — it commits and pushes `*-test-output.txt` to the repo:
 ```bash
