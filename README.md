@@ -1095,6 +1095,10 @@ Der Bereich besteht aus einer richtlinienaehnlichen Grundlage, zwoelf Einzelchec
 
 *The area consists of a policy-like baseline, twelve individual checklists, a compendium, and related documents in `docs/secure-development/mitgeltende-dokumente/`. The file `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md` is the central bridge between guideline, checklists, related documents, and the six governance presets. It serves as a reusable review and hardening baseline for level-2 repositories. Project-specific evidence remains in the respective project, for example under `docs/security/`; the guide provides the shared assessment logic, status fields, evidence requirements, and mandatory `N/A` rationale.*
 
+Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) beschreibt das Referenzprofil fuer sichere Entwicklung mit KI-Agenten in einer Sandbox. `absdd-image-sandbox` ist dabei als oeffentlichkeitsfaehige Ausbildungs-Sandbox vorgesehen: `home-baseline` liefert Richtlinien, Checklisten, Presets und Intake; die Sandbox liefert die ausfuehrbare Lern- und Arbeitsumgebung; Level-2-Repositories liefern die konkreten Entwicklungs- und Haertungsziele.
+
+*The related [Secure Development Sandbox Guideline](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) describes the reference profile for secure development with AI agents in a sandbox. `absdd-image-sandbox` is intended as a public-ready training sandbox: `home-baseline` provides guidelines, checklists, presets, and intake; the sandbox provides the executable learning and work environment; level-2 repositories provide the concrete development and hardening targets.*
+
 Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
 
 ```bash

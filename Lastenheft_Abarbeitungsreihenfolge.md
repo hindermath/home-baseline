@@ -33,10 +33,11 @@ added to the active order once they have been assessed.*
 |---:|---|---|
 | 1 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
 | 2 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
-| 3 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prueft und haertet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
-| 4 | `Lastenheft_Script_Dokumentation.md` | Fuehrt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
-| 5 | `Lastenheft_PowerShell_Cmdlets.md` | Prueft PowerShell-Cmdlet-Konventionen und Windows-Paritaet. / Reviews PowerShell cmdlet conventions and Windows parity. |
-| 6 | `Lastenheft_agentische-umgebung-pruefen-und-syncen.md` | Prueft und synchronisiert die agentische Level-0-/Level-1-/Level-2-Umgebung. / Reviews and synchronizes the agentic Level-0/Level-1/Level-2 environment. |
+| 3 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
+| 4 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prueft und haertet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
+| 5 | `Lastenheft_Script_Dokumentation.md` | Fuehrt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
+| 6 | `Lastenheft_PowerShell_Cmdlets.md` | Prueft PowerShell-Cmdlet-Konventionen und Windows-Paritaet. / Reviews PowerShell cmdlet conventions and Windows parity. |
+| 7 | `Lastenheft_agentische-umgebung-pruefen-und-syncen.md` | Prueft und synchronisiert die agentische Level-0-/Level-1-/Level-2-Umgebung. / Reviews and synchronizes the agentic Level-0/Level-1/Level-2 environment. |
 
 ## Historisch / Nicht erneut ausfuehren
 

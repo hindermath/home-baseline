@@ -26,6 +26,12 @@
 | [mitgeltende-dokumente/](mitgeltende-dokumente/) | Mitgeltende Leitlinien, Richtlinien und externe Referenzen / Related guidelines, policies, and external references |
 | [mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md](mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md) | Zentrale Mapping-Datei fuer Richtlinie, Checklisten, mitgeltende Dokumente und Governance-Presets / Central mapping file for guideline, checklists, related documents, and governance presets |
 
+## Entwicklungs-Sandbox / Development Sandbox
+
+**DE:** Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) beschreibt, wie MSL-basierte Level-2-Projekte mit KI-Agenten in einer freigegebenen Sandbox bearbeitet werden koennen. `absdd-image-sandbox` ist das vorgesehene oeffentlichkeitsfaehige Ausbildungsprofil; konkrete Projektnachweise bleiben im jeweiligen Level-2-Repository.
+
+**EN:** The related [Secure Development Sandbox Guideline](mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) describes how MSL-based level-2 projects can be worked on with AI agents in an approved sandbox. `absdd-image-sandbox` is the intended public-ready training profile; concrete project evidence remains in the respective level-2 repository.
+
 ## Spec-Kit-Verzahnung / Spec Kit Alignment
 
 **DE:** Bei einem Spec-Kit-Lauf zuerst die zentrale Verzahnungsdatei lesen. Sie zeigt, welche mitgeltenden Dokumente, Checklisten und Governance-Presets zu einem Pruefbereich gehoeren. Dadurch muessen Auszubildende und Reviewer die Zuordnung nicht neu erfinden. Das Ergebnis des Laufs bleibt trotzdem projektspezifisch: konkrete Evidenz liegt im jeweiligen Feature, Review, Test, Scan oder in `docs/security/`.
