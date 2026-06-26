@@ -108,6 +108,14 @@ Bei selbstaktualisierenden Sync-/Bootstrap-Skripten, die ihr eigenes Verzeichnis
 
 *For self-updating sync/bootstrap scripts that copy or replace their own directory, run syntax checks and previews before every real run (`bash -n`, `--dry-run`, `-WhatIf`). Start real runs from a stable repository copy, for example `~/home-baseline-tmp/scripts/`, or ensure the script delegates there.*
 
+Bei erzeugten oder schnell angepassten PowerShell-Skripten Variablen in Strings vor angrenzender Interpunktion immer mit `${Name}` abgrenzen, z. B. `${Path}:`. So entstehen keine fehlerhaften Bereichsvariablen wie `$Path:`.
+
+*In generated or quickly adapted PowerShell scripts, always delimit variables before adjacent punctuation with `${Name}`, for example `${Path}:`. This avoids invalid scoped-variable parsing such as `$Path:`.*
+
+Bei Workspace-/Repo-Migrationen eine vorhandene oder remote neuere `README.md` nicht stillschweigend überschreiben. Wenn die Remote-README kanonisch ist oder ausdrücklich erhalten bleiben soll, vor dem Push `fetch`/Rebase ausführen und `README.md` aus `origin/main` bewahren oder wiederherstellen.
+
+*During workspace/repository migrations, do not silently overwrite an existing or newer remote `README.md`. If the remote README is canonical or must be preserved, fetch/rebase before pushing and preserve or restore `README.md` from `origin/main`.*
+
 ### Plattformübergreifendes Testen (macOS / Linux / Windows) / Cross-Platform Testing (macOS / Linux / Windows)
 When testing on a machine where copy-pasting terminal output to this session is not possible, use the matching platform test script — it commits and pushes `*-test-output.txt` to the repo:
 ```bash
