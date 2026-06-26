@@ -92,3 +92,6 @@
 .opencode/*
 !.opencode/command/
 !.opencode/command/*.md
+
+# macOS Finder metadata must never override the whitelist.
+**/.DS_Store

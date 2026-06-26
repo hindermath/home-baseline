@@ -73,6 +73,8 @@ function Sync-Dir {
     }
     if (-not (Test-Path $dst)) { New-Item -ItemType Directory -Path $dst -Force | Out-Null }
     Copy-Item "$src\*" $dst -Recurse -Force
+    Get-ChildItem -Path $dst -Recurse -Force -Filter '.DS_Store' -File -ErrorAction SilentlyContinue |
+        Remove-Item -Force
     Write-Host "  ✓ $RelPath/"
 }
 

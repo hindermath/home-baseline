@@ -935,6 +935,10 @@ for convenience when an existing repository script already solves the task.*
 
 *`sync-home` intentionally no longer copies `.gitconfig` blindly from the repository into `~/`. Instead, it ensures the baseline values (`init.defaultBranch`, `core.autocrlf`, `pull.rebase`, `includeIf`) and then checks the global git identity via `setup-git-identity.*` in auto mode. This keeps `user.name` and `user.email` as real local values permanently.*
 
+`sync-home` entfernt beim Verzeichnis-Sync macOS-Finder-Metadaten wie `.DS_Store`, damit sie weder in der lokalen `~/`-Kopie noch in Git-Commits landen.
+
+*During directory sync, `sync-home` removes macOS Finder metadata such as `.DS_Store` so it does not end up in the local `~/` copy or in git commits.*
+
 ---
 
 ### Releases und Versionierung / Releases & Versioning

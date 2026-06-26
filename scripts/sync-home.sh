@@ -82,6 +82,7 @@ sync_dir() {
   else
     mkdir -p "$dst"
     cp -r "${src}/." "${dst}/"
+    find "$dst" -name '.DS_Store' -type f -delete
     echo "  ✓ ${1}/"
   fi
 }
