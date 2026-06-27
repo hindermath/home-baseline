@@ -37,32 +37,34 @@
 | 2026-06-20 | Lastenheft-Abarbeitungsreihenfolge | 44 | 113 066 | 339 | Root-nahe `Lastenheft_Abarbeitungsreihenfolge.md` ergaenzt, aktive spaetere Spec-Kit-Intakes von historischen Feature-Branch-Lastenheften getrennt und README-Verweis auf die Reihenfolge aufgenommen |
 | 2026-06-20 | Spec-Kit-Intake-Haertung und Container-Intake | 44 | 113 460 | 339 | Aktive Level-0-Lastenhefte fuer spaetere Spec-Kit-Laeufe als Intake-Dateien geschaerft, kopierbare `/speckit-specify`-Prompts ergaenzt, neues Lastenheft fuer Secure-Development-Container-Hardening aufgenommen und Agenten-/Secure-Development-Guidance zur Intake-Struktur nachgezogen |
 | 2026-06-20 | Skriptsprachen-Guidance fuer Agenten | 44 | 113 489 | 339 | README und Agenten-Dateien um OS-Pruefung, PowerShell-7-/Cmdlet-Prioritaet, optionalen C#-Pfad ueber `.NET`/`mono` und Fallback auf vorhandene OS-nahe Repo-Skripte ergaenzt |
+| 2026-06-27 | Secure-CaseTracker-Lernreihe | 45 | 115 330 | 347 | Ausführliche DE-first/EN-second Lernreihe für die fiktive Übungsfirma EuFPA erstellt: Master-Intake, elf einzeln startbare Spec-Kit-Aufgaben-Intakes, Unterrichtsleitfaden, Fachrichtungsbezug AE/SI/DPA, Richtlinie-Sichere-Entwicklung-Bezug, sechs MSL-Zielsprachen C#/Go/Java/Python/Rust/Swift und README-/Reihenfolge-Verankerung |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-06-20**
+Stand / As of: **2026-06-27**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 663 | 16.5 % |
+| Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 682 | 16.2 % |
 | Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.9 % |
 | Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.8 % |
-| Dokumentation / Documentation (`.md`) | 475 | 84 236 | 74.2 % |
-| Sonstiges / Other | 22 | 5 229 | 4.6 % |
-| **Gesamt / Total** | **639** | **113 489** | **100 %** |
+| Dokumentation / Documentation (`.md`) | 492 | 86 055 | 74.6 % |
+| Sonstiges / Other | 22 | 5 232 | 4.5 % |
+| **Gesamt / Total** | **656** | **115 330** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 20 195 | 24.0 % |
-| Secure Development (`docs/secure-development/`) | 28 987 | 34.4 % |
-| Lastenhefte (`Lastenheft*.md`) | 4 363 | 5.2 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 924 | 4.7 % |
-| README / CHANGELOG / STATS | 3 454 | 4.1 % |
-| Sonstiges (Templates, andere `.md`) | 23 313 | 27.7 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 23.5 % |
+| Secure Development (`docs/secure-development/`) | 28 987 | 33.7 % |
+| Lastenhefte (`Lastenheft*.md`) | 5 718 | 6.6 % |
+| Lernmaterialien (`docs/learning-units/`) | 220 | 0.3 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 924 | 4.6 % |
+| README / CHANGELOG / STATS | 3 460 | 4.0 % |
+| Sonstiges (Templates, andere `.md`) | 23 551 | 27.4 % |
 
 ---
 
@@ -186,40 +188,40 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `113 489` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `20 713` Zeilen (`18.3 %`) |
-| Dokumentationsanteil / Documentation share | `84 236` Zeilen (`74.2 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-20` |
-| Sichtbare Git-Aktivtage / Observable active days | `44` |
-| Git-Commits gesamt / Total commits | `339` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.7` (`339 / 44`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 579.3` (`113 489 / 44`) |
-| Zeilen pro Commit / Lines per commit | `334.8` (`113 489 / 339`) |
-| Konservative Einzelentwickler-Untergrenze | `1 418.6` Arbeitstage / `11 065.2` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 134.9` Arbeitstage / `8 852.1` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `567.4` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.2x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.8x` |
+| Artefaktbasis gesamt / Total artifact base | `115 330` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `20 732` Zeilen (`18.0 %`) |
+| Dokumentationsanteil / Documentation share | `86 055` Zeilen (`74.6 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-27` |
+| Sichtbare Git-Aktivtage / Observable active days | `45` |
+| Git-Commits gesamt / Total commits | `347` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.7` (`347 / 45`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 562.9` (`115 330 / 45`) |
+| Zeilen pro Commit / Lines per commit | `332.4` (`115 330 / 347`) |
+| Konservative Einzelentwickler-Untergrenze | `1 441.6` Arbeitstage / `11 244.7` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 153.3` Arbeitstage / `8 995.7` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `576.6` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.0x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.6x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.2 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.6 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Der operative Code (Skripte,
-Hooks, CI) macht `18.3 %` aus. Der groesste dokumentierte Volumensprung bleibt
-Phase `1` (Spec-Kit-Batch fuer Homogeneity Guardian). Die aktuelle
-Maintenance-Runde ergaenzt die sichere-Entwicklung-Basis, mitgeltende
-Dokumente, CISA-Memory-Safe-Roadmaps und die Verzahnung zwischen Richtlinie,
-Checklisten und Spec-Kit-Presets. Fuer private Ausbildungsprojekte bleibt
-Nichtanwendbarkeit als begruendetes `N/A` dokumentierbar. Die
+Hooks, CI) macht `18.0 %` aus. Der größte dokumentierte Volumensprung bleibt
+Phase `1` (Spec-Kit-Batch für Homogeneity Guardian). Die aktuelle
+Maintenance-Runde ergänzt die sichere-Entwicklung-Basis um eine ausführliche
+EuFPA-Lernreihe für Secure CaseTracker, elf einzeln startbare Spec-Kit-
+Aufgaben-Intakes und einen Unterrichtsleitfaden. Für private Ausbildungsprojekte bleibt
+Nichtanwendbarkeit als begründetes `N/A` dokumentierbar. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
-*Short summary: after the secure-development related-documents alignment round,
-`home-baseline` remains documentation- and governance-driven: `74.2 %` of the visible base sits
+*Short summary: after the Secure CaseTracker learning-series round,
+`home-baseline` remains documentation- and governance-driven: `74.6 %` of the visible base sits
 in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
-`18.3 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
-for Homogeneity Guardian). The current maintenance round adds the secure-development
-baseline, related documents, CISA memory-safe roadmaps, and the alignment between
-guideline, checklists, and Spec Kit presets. Private training projects can still document
+`18.0 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
+for Homogeneity Guardian). The current maintenance round adds the detailed
+EuFPA Secure CaseTracker learning series, eleven individually runnable Spec Kit
+task intakes, and a teaching guide. Private training projects can still document
 non-applicability as justified `N/A`. The
 acceleration factors describe
 visible delivery density, not stopwatch measurements.*
@@ -228,9 +230,9 @@ visible delivery density, not stopwatch measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #######                        | 20 713 | 18.3 %
-Dokumentation   | ############################## | 84 236 | 74.2 %
-Sonstiges       | ###                            |  8 540 |  7.5 %
+Operativer Code | #######                        | 20 732 | 18.0 %
+Dokumentation   | ############################## | 86 055 | 74.6 %
+Sonstiges       | ###                            |  8 543 |  7.4 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code

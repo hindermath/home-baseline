@@ -1099,6 +1099,10 @@ Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development
 
 *The related [Secure Development Sandbox Guideline](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) describes the reference profile for secure development with AI agents in a sandbox. `absdd-image-sandbox` is intended as a public-ready training sandbox: `home-baseline` provides guidelines, checklists, presets, and intake; the sandbox provides the executable learning and work environment; level-2 repositories provide the concrete development and hardening targets.*
 
+Die Lernmaterialien unter [`docs/learning-units/`](docs/learning-units/README.md) übertragen diese Grundlagen in ausführliche, DE-first/EN-second aufgebaute Lerneinheiten. Die erste Reihe ist **Secure CaseTracker** für die fiktive Übungsfirma **EuFPA – Europäische Firma Programmiert Alles**. Sie ist sprachneutral für C#, Go, Java, Python, Rust und Swift angelegt und ordnet jede Aufgabe sichtbar den Fachrichtungen Anwendungsentwicklung, Systemintegration sowie Daten- und Prozessanalyse zu.
+
+*The learning material under [`docs/learning-units/`](docs/learning-units/README.md) turns this baseline into detailed DE-first/EN-second learning units. The first series is **Secure CaseTracker** for the fictional training company **EuFPA – European Company Programs Everything**. It is language-neutral for C#, Go, Java, Python, Rust, and Swift and visibly maps each task to Application Development, System Integration, and Data and Process Analysis.*
+
 Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
 
 ```bash
