@@ -30,6 +30,10 @@ Der ausführliche [Secure CaseTracker Unterrichtsleitfaden](Secure-CaseTracker-U
 - **Level 1:** A later private workspace repository, recommended as `SecureCaseTrackerProjects`, coordinates the full series, status matrix, and processing order.
 - **Level 2:** Each target language gets its own private project repository: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, and `SecureCaseTracker-Swift`.
 
+**DE:** Die lokalen Level-2-Ordner verwenden CamelCase. Die zugehörigen GitHub-Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, zum Beispiel `securecasetracker-csharp`.
+
+**EN:** The local Level 2 folders use CamelCase. The matching GitHub repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.
+
 **DE:** Codex oder andere KI-Agenten dürfen diese Struktur vorbereiten, aber die eigentlichen Spec-Kit-Läufe werden später bewusst manuell durch Thorsten oder Lernende gestartet. C# ist als erster Referenzpfad vorgesehen; die anderen MSL-Sprachen dienen danach als Vergleichs- und Vertiefungspfade.
 
 **EN:** Codex or other AI agents may prepare this structure, but the actual Spec Kit runs are started later and deliberately by Thorsten or learners. C# is planned as the first reference path; the other MSL languages then serve as comparison and deeper practice paths.

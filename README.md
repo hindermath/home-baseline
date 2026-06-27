@@ -1107,6 +1107,10 @@ Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Lev
 
 *For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-tmp` remains the Level 0 source, a private Level 1 repository `SecureCaseTrackerProjects` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by Thorsten or learners; C# is planned as the first reference path.*
 
+Die lokalen Level-2-Ordner nutzen CamelCase, z. B. `SecureCaseTracker-CSharp`. Die GitHub-Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, z. B. `securecasetracker-csharp`.
+
+*The local Level 2 folders use CamelCase, for example `SecureCaseTracker-CSharp`. The GitHub repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.*
+
 Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
 
 ```bash

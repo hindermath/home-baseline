@@ -66,15 +66,15 @@
 
 **EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-tmp` remains Level 0 and keeps the generic material. A private Level 1 workspace repository `SecureCaseTrackerProjects` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
 
-| Rolle / Role | Empfohlenes Repo / Recommended repo | Primärsprache / Primary language | Zweck / Purpose |
+| Rolle / Role | Lokaler Ordner / Local folder | GitHub-Slug | Primärsprache / Primary language | Zweck / Purpose |
 |---|---|---|---|
-| Koordination / Coordination | `SecureCaseTrackerProjects` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
-| Referenz / Reference | `SecureCaseTracker-CSharp` | C# | erste manuelle Referenzimplementierung durch Thorsten |
-| Vergleich / Comparison | `SecureCaseTracker-Go` | Go | MSL-Vergleich mit Go-Toolchain und Go-Sicherheitsprüfungen |
-| Vergleich / Comparison | `SecureCaseTracker-Java` | Java | MSL-Vergleich mit Java-Toolchain und Java-Sicherheitsprüfungen |
-| Vergleich / Comparison | `SecureCaseTracker-Python` | Python | MSL-Vergleich mit Python-Toolchain und Python-Sicherheitsprüfungen |
-| Vergleich / Comparison | `SecureCaseTracker-Rust` | Rust | MSL-Vergleich mit Rust-Toolchain und Rust-Sicherheitsprüfungen |
-| Vergleich / Comparison | `SecureCaseTracker-Swift` | Swift | MSL-Vergleich mit Swift-Toolchain und Apple-Plattform-Hinweisen |
+| Koordination / Coordination | `SecureCaseTrackerProjects` | `secure-casetracker-baseline` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
+| Referenz / Reference | `SecureCaseTracker-CSharp` | `securecasetracker-csharp` | C# | erste manuelle Referenzimplementierung durch Thorsten |
+| Vergleich / Comparison | `SecureCaseTracker-Go` | `securecasetracker-go` | Go | MSL-Vergleich mit Go-Toolchain und Go-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Java` | `securecasetracker-java` | Java | MSL-Vergleich mit Java-Toolchain und Java-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Python` | `securecasetracker-python` | Python | MSL-Vergleich mit Python-Toolchain und Python-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Rust` | `securecasetracker-rust` | Rust | MSL-Vergleich mit Rust-Toolchain und Rust-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Swift` | `securecasetracker-swift` | Swift | MSL-Vergleich mit Swift-Toolchain und Apple-Plattform-Hinweisen |
 
 **DE:** In jedem Level-2-Repo werden die gleichen fachlichen Intakes genutzt. Die fachlichen Regeln bleiben gleich; nur Umsetzung, Toolchain, Tests und sprachspezifische Sicherheitsprüfungen unterscheiden sich. Spec-Kit-Läufe werden nicht automatisch gestartet, sondern später manuell pro Repo und pro Aufgaben-Lastenheft.
 
