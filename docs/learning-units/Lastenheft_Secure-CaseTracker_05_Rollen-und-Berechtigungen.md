@@ -101,5 +101,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_05_Rollen-und-Berechtigungen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Rollenmatrix, sichere Defaults, geschützte Aktionen, Autorisierungstests und N/A-Begründung für nicht umgesetzte Authentifizierung des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_05_Rollen-und-Berechtigungen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Rollenmatrix, sichere Defaults, geschützte Aktionen, Autorisierungstests und N/A-Begründung für nicht umgesetzte Authentifizierung des Secure CaseTracker. Erzeuge keine Implementierung.
 ```

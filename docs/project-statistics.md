@@ -41,6 +41,7 @@
 | 2026-06-27 | Secure-CaseTracker-Level-Modell | 45 | 115 429 | 348 | Lernreihe um generisches Level-0-/Level-1-/Level-2-Arbeitsmodell, private Repo-Zielstruktur, Statusmatrix-Vorlage und manuelle Spec-Kit-Laufgrenzen erweitert; C# als Referenzpfad und Go/Java/Python/Rust/Swift als Vergleichspfade dokumentiert |
 | 2026-06-27 | Secure-CaseTracker-Repo-Struktur | 45 | 115 442 | 349 | Dokumentation nach realem Bootstrap-Modell geschaerft: lokale CamelCase-Level-2-Ordner und lowercase GitHub-Repository-Slugs unterschieden und in Lernreihe, Master-Intake und README verankert |
 | 2026-06-27 | Secure-CaseTracker-Praesentation | 45 | 118 728 | 350 | Pandoc-kompatible DE/EN-Markdown-Praesentationen fuer die Secure-CaseTracker-Lernreihe ergaenzt, zentrale Lernmaterialien dokumentiert und als lokale Einfuehrung fuer Level-1-/Level-2-Repos vorbereitet |
+| 2026-06-27 | Secure-CaseTracker-Intake-Ablage | 45 | 118 733 | 351 | Zentrale Secure-CaseTracker-Lastenhefte aus dem Repository-Wurzelverzeichnis nach `docs/learning-units/` verschoben, Abarbeitungsreihenfolge, README, Praesentations-Prompts und Copy-Paste-Intakes auf den neuen kanonischen Lernreihenpfad aktualisiert |
 
 ---
 
@@ -53,9 +54,9 @@ Stand / As of: **2026-06-27**
 | Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 682 | 15.7 % |
 | Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.8 % |
 | Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.7 % |
-| Dokumentation / Documentation (`.md`) | 509 | 89 386 | 75.3 % |
+| Dokumentation / Documentation (`.md`) | 509 | 89 391 | 75.3 % |
 | Sonstiges / Other | 28 | 5 299 | 4.5 % |
-| **Gesamt / Total** | **679** | **118 728** | **100 %** |
+| **Gesamt / Total** | **679** | **118 733** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
@@ -63,10 +64,10 @@ Stand / As of: **2026-06-27**
 |---|---:|---:|
 | Spec-Kit-Artefakte (`specs/`) | 20 195 | 22.6 % |
 | Secure Development (`docs/secure-development/`) | 29 152 | 32.6 % |
-| Lastenhefte (`Lastenheft*.md`) | 5 742 | 6.4 % |
-| Lernmaterialien (`docs/learning-units/`) | 1 189 | 1.3 % |
+| Lastenhefte im Repository-Wurzelverzeichnis (`Lastenheft*.md`) | 4 461 | 5.0 % |
+| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 2 470 | 2.8 % |
 | Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 982 | 4.5 % |
-| README / CHANGELOG / STATS | 3 493 | 3.9 % |
+| README / CHANGELOG / STATS | 3 498 | 3.9 % |
 | Sonstiges (Templates, andere `.md`) | 25 633 | 28.7 % |
 
 ---
@@ -237,7 +238,7 @@ visible delivery density, not stopwatch measurements.*
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
 Operativer Code | #######                        | 20 732 | 17.5 %
-Dokumentation   | ############################## | 89 386 | 75.3 %
+Dokumentation   | ############################## | 89 391 | 75.3 %
 Sonstiges       | ###                            |  8 610 |  7.3 %
 ```
 
@@ -318,8 +319,8 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 1 484.1 d / 11 576.0 h
-Thorsten (100 Z./Tag)  | ###################      | 1 187.3 d /  9 260.8 h
+Erfahren (80 Z./Tag)   | ######################## | 1 484.2 d / 11 576.5 h
+Thorsten (100 Z./Tag)  | ###################      | 1 187.3 d /  9 261.2 h
 KI sichtbar            | #                        |    45.0 d
 ```
 

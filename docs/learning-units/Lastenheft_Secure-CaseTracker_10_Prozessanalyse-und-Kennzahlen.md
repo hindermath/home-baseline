@@ -101,5 +101,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_10_Prozessanalyse-und-Kennzahlen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Prozesskennzahlen, Datenqualität, Datenschutz, Aussagegrenzen und Tests der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_10_Prozessanalyse-und-Kennzahlen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Prozesskennzahlen, Datenqualität, Datenschutz, Aussagegrenzen und Tests der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
 ```

@@ -106,5 +106,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_08_Supply-Chain-und-MSL-Bewertung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Dependency-Erfassung, Audit-Werkzeuge, MSL-Bewertung, SBOM-/N/A-Entscheidung und sichere Lieferkettennachweise der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_08_Supply-Chain-und-MSL-Bewertung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Dependency-Erfassung, Audit-Werkzeuge, MSL-Bewertung, SBOM-/N/A-Entscheidung und sichere Lieferkettennachweise der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
 ```

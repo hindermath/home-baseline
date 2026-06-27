@@ -105,5 +105,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_03_Eingabevalidierung-und-Trust-Boundaries.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Trust Boundaries, Eingabevalidierung, sichere Fehlermeldungen, Dateipfadprüfung und negative Tests des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_03_Eingabevalidierung-und-Trust-Boundaries.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Trust Boundaries, Eingabevalidierung, sichere Fehlermeldungen, Dateipfadprüfung und negative Tests des Secure CaseTracker. Erzeuge keine Implementierung.
 ```

@@ -103,5 +103,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_02_Domaenenmodell-und-Zustaende.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für das sprachneutrale Domänenmodell, erlaubte Zustände, verbotene Zustandswechsel, Datenminimierung und Modelltests des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_02_Domaenenmodell-und-Zustaende.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für das sprachneutrale Domänenmodell, erlaubte Zustände, verbotene Zustandswechsel, Datenminimierung und Modelltests des Secure CaseTracker. Erzeuge keine Implementierung.
 ```

@@ -73,7 +73,7 @@
 ## Erwartete Artefakte / Expected Artifacts
 
 - Übersicht in `docs/learning-units/Secure-CaseTracker-Lernreihe.md`.
-- Einzelne Aufgaben-Intakes `Lastenheft_Secure-CaseTracker_01_*.md` bis `Lastenheft_Secure-CaseTracker_11_*.md`.
+- Einzelne Aufgaben-Intakes `docs/learning-units/Lastenheft_Secure-CaseTracker_01_*.md` bis `docs/learning-units/Lastenheft_Secure-CaseTracker_11_*.md`.
 - Sichtbare Reihenfolge in `Lastenheft_Abarbeitungsreihenfolge.md`.
 - Späteres Level-1-Koordinations-Repo mit Statusmatrix und sechs Level-2-Sprach-Repos.
 - Keine Feature-Branch-Erzeugung in diesem Schritt.
@@ -88,5 +88,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Lege auch noch keinen Level-1-/Level-2-Arbeitsraum an. Wähle stattdessen in einem bereits vorbereiteten Sprach-Repo das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe und erstelle dafür eine fokussierte Feature-Spezifikation.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Lege auch noch keinen Level-1-/Level-2-Arbeitsraum an. Wähle stattdessen in einem bereits vorbereiteten Sprach-Repo das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe und erstelle dafür eine fokussierte Feature-Spezifikation.
 ```

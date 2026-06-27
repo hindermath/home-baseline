@@ -267,7 +267,7 @@ Learners should consciously start and understand a Spec Kit run.
 # Example First Start
 
 ```text
-/speckit-specify Use Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md
+/speckit-specify Use docs/learning-units/Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md
 as the binding input file. Create a feature specification for customer task,
 scope, roles, acceptance criteria, and first privacy/security assumptions of
 the EuFPA Secure CaseTracker learning series. Do not create an implementation.

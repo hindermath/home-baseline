@@ -267,7 +267,7 @@ Lernende sollen den Start eines Spec-Kit-Laufs bewusst auslösen und verstehen.
 # Beispiel für den ersten Start
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md
 als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für
 Kundenauftrag, Scope, Rollen, Akzeptanzkriterien und erste Datenschutz-/
 Sicherheitsannahmen der EuFPA-Lernreihe Secure CaseTracker.

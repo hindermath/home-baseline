@@ -106,5 +106,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_06_Persistenz-und-Import-Export.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für sichere Persistenz, Import, Export, Pfadprüfung, sichere Deserialisierung, Datenminimierung und Import-/Export-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_06_Persistenz-und-Import-Export.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für sichere Persistenz, Import, Export, Pfadprüfung, sichere Deserialisierung, Datenminimierung und Import-/Export-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
 ```

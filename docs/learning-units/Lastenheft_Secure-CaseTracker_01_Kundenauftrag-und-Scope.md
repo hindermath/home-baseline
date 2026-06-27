@@ -106,5 +106,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Kundenauftrag, Scope, Rollen, Akzeptanzkriterien und erste Datenschutz-/Sicherheitsannahmen der EuFPA-Lernreihe Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Kundenauftrag, Scope, Rollen, Akzeptanzkriterien und erste Datenschutz-/Sicherheitsannahmen der EuFPA-Lernreihe Secure CaseTracker. Erzeuge keine Implementierung.
 ```

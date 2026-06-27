@@ -44,6 +44,6 @@ Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführ
 
 ## Verbindung zu Lastenheften / Relation to Intake Files
 
-**DE:** Die fachliche und didaktische Erklärung liegt in diesem Verzeichnis. Die später einzeln ausführbaren Spec-Kit-Intakes liegen als `Lastenheft_Secure-CaseTracker*.md` im Repository-Wurzelverzeichnis. Dadurch bleiben sie über `Lastenheft_Abarbeitungsreihenfolge.md` auffindbar.
+**DE:** Die fachliche und didaktische Erklärung liegt in diesem Verzeichnis. Die später einzeln ausführbaren Spec-Kit-Intakes liegen hier ebenfalls als `Lastenheft_Secure-CaseTracker*.md`. Dadurch bleiben Lernmaterial, Unterrichtsleitfaden, Präsentationen und Intake-Dateien zusammen und sind zusätzlich über `Lastenheft_Abarbeitungsreihenfolge.md` auffindbar.
 
-**EN:** The functional and didactic explanation lives in this directory. The later individually runnable Spec Kit intake files live as `Lastenheft_Secure-CaseTracker*.md` in the repository root. This keeps them discoverable through `Lastenheft_Abarbeitungsreihenfolge.md`.
+**EN:** The functional and didactic explanation lives in this directory. The later individually runnable Spec Kit intake files also live here as `Lastenheft_Secure-CaseTracker*.md`. This keeps learning material, teaching guide, presentations, and intake files together while also making them discoverable through `Lastenheft_Abarbeitungsreihenfolge.md`.

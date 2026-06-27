@@ -102,5 +102,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_04_Datenschutz-und-Audit-Logging.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Datenschutz, Audit-Events, erlaubte und verbotene Log-Felder, Log-Injection-Schutz und Logging-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_04_Datenschutz-und-Audit-Logging.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Datenschutz, Audit-Events, erlaubte und verbotene Log-Felder, Log-Injection-Schutz und Logging-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
 ```

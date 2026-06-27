@@ -106,5 +106,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker_07_Testbarkeit-und-Qualitaet.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Testplan, fachliche Tests, Sicherheitstests, Datenschutztests, CI-/Sandbox-Nachweise und offene Testlücken des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_07_Testbarkeit-und-Qualitaet.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Testplan, fachliche Tests, Sicherheitstests, Datenschutztests, CI-/Sandbox-Nachweise und offene Testlücken des Secure CaseTracker. Erzeuge keine Implementierung.
 ```
