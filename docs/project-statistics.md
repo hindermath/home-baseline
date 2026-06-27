@@ -42,6 +42,7 @@
 | 2026-06-27 | Secure-CaseTracker-Repo-Struktur | 45 | 115 442 | 349 | Dokumentation nach realem Bootstrap-Modell geschaerft: lokale CamelCase-Level-2-Ordner und lowercase GitHub-Repository-Slugs unterschieden und in Lernreihe, Master-Intake und README verankert |
 | 2026-06-27 | Secure-CaseTracker-Praesentation | 45 | 118 728 | 350 | Pandoc-kompatible DE/EN-Markdown-Praesentationen fuer die Secure-CaseTracker-Lernreihe ergaenzt, zentrale Lernmaterialien dokumentiert und als lokale Einfuehrung fuer Level-1-/Level-2-Repos vorbereitet |
 | 2026-06-27 | Secure-CaseTracker-Intake-Ablage | 45 | 118 733 | 351 | Zentrale Secure-CaseTracker-Lastenhefte aus dem Repository-Wurzelverzeichnis nach `docs/learning-units/` verschoben, Abarbeitungsreihenfolge, README, Praesentations-Prompts und Copy-Paste-Intakes auf den neuen kanonischen Lernreihenpfad aktualisiert |
+| 2026-06-27 | Generische Lernreihen-Wiederverwendung | 45 | — | — | `docs/learning-units/` als Level-0-Quelle fuer weitere Lernreihen ab dem 1., 2. und 3. Lehrjahr geschaerft; Blueprint, Register, Vorlagen, generische Git-Start-Anleitung und wiederverwendbare Lernpaket-Skripte ergaenzt |
 
 ---
 

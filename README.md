@@ -1099,9 +1099,13 @@ Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development
 
 *The related [Secure Development Sandbox Guideline](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) describes the reference profile for secure development with AI agents in a sandbox. `absdd-image-sandbox` is intended as a public-ready training sandbox: `home-baseline` provides guidelines, checklists, presets, and intake; the sandbox provides the executable learning and work environment; level-2 repositories provide the concrete development and hardening targets.*
 
-Die Lernmaterialien unter [`docs/learning-units/`](docs/learning-units/README.md) übertragen diese Grundlagen in ausführliche, DE-first/EN-second aufgebaute Lerneinheiten. Die erste Reihe ist **Secure CaseTracker** für die fiktive Übungsfirma **EuFPA – Europäische Firma Programmiert Alles**. Sie ist sprachneutral für C#, Go, Java, Python, Rust und Swift angelegt und ordnet jede Aufgabe sichtbar den Fachrichtungen Anwendungsentwicklung, Systemintegration sowie Daten- und Prozessanalyse zu.
+Die Lernmaterialien unter [`docs/learning-units/`](docs/learning-units/README.md) übertragen diese Grundlagen in ausführliche, DE-first/EN-second aufgebaute Lerneinheiten. Der Bereich ist die Level-0-Quelle fuer wiederverwendbare Lernreihen ab dem 1., 2. und 3. Lehrjahr. Der [Lernreihen-Blueprint](docs/learning-units/Lernreihen-Blueprint.md), das [Lernreihen-Register](docs/learning-units/Lernreihen-Register.md) und die Vorlagen unter [`docs/learning-units/templates/`](docs/learning-units/templates/) definieren das generische Muster fuer neue Reihen.
 
-*The learning material under [`docs/learning-units/`](docs/learning-units/README.md) turns this baseline into detailed DE-first/EN-second learning units. The first series is **Secure CaseTracker** for the fictional training company **EuFPA – European Company Programs Everything**. It is language-neutral for C#, Go, Java, Python, Rust, and Swift and visibly maps each task to Application Development, System Integration, and Data and Process Analysis.*
+*The learning material under [`docs/learning-units/`](docs/learning-units/README.md) turns this baseline into detailed DE-first/EN-second learning units. This area is the level-0 source for reusable learning series from the first, second, and third training year onward. The [Learning Series Blueprint](docs/learning-units/Lernreihen-Blueprint.md), the [Learning Series Register](docs/learning-units/Lernreihen-Register.md), and the templates under [`docs/learning-units/templates/`](docs/learning-units/templates/) define the generic pattern for new series.*
+
+Die erste Reihe ist **Secure CaseTracker** für die fiktive Übungsfirma **EuFPA – Europäische Firma Programmiert Alles**. Sie ist sprachneutral für C#, Go, Java, Python, Rust und Swift angelegt und ordnet jede Aufgabe sichtbar den Fachrichtungen Anwendungsentwicklung, Systemintegration sowie Daten- und Prozessanalyse zu.
+
+*The first series is **Secure CaseTracker** for the fictional training company **EuFPA – European Company Programs Everything**. It is language-neutral for C#, Go, Java, Python, Rust, and Swift and visibly maps each task to Application Development, System Integration, and Data and Process Analysis.*
 
 Die zugehörigen Markdown-Präsentationen liegen unter [`docs/learning-units/presentations/`](docs/learning-units/presentations/) und sind für eine spätere Pandoc-Umwandlung nach PowerPoint vorbereitet. Sie dienen als Einführung in EuFPA, Secure CaseTracker, MSL, Sandbox, Spec Kit und die manuell gestarteten Level-2-Läufe.
 
@@ -1118,6 +1122,18 @@ Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Lev
 Die lokalen Level-2-Ordner nutzen CamelCase, z. B. `SecureCaseTracker-CSharp`. Die GitHub-Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, z. B. `securecasetracker-csharp`.
 
 *The local Level 2 folders use CamelCase, for example `SecureCaseTracker-CSharp`. The GitHub repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.*
+
+Lernreihen koennen fuer die Weitergabe mit `package-learning-series.*` als ZIP ohne `.git`-Verzeichnisse, ohne urspruengliche Remote-URLs und ohne lokale Build-/IDE-Artefakte gepackt werden. Die generische Startanleitung [`docs/learning-units/GIT-START-FUER-LERNENDE.md`](docs/learning-units/GIT-START-FUER-LERNENDE.md) erklaert Lernenden danach den eigenen Git-Start.
+
+*Learning series can be packaged for distribution with `package-learning-series.*` as a ZIP without `.git` directories, original remote URLs, or local build/IDE artefacts. The generic start guide [`docs/learning-units/GIT-START-FUER-LERNENDE.md`](docs/learning-units/GIT-START-FUER-LERNENDE.md) then explains how learners start their own Git history.*
+
+```bash
+bash scripts/package-learning-series.sh --source-dir ~/SecureCaseTrackerProjects --series-name "Secure CaseTracker" --package-prefix secure-casetracker --dry-run
+```
+
+```powershell
+pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/SecureCaseTrackerProjects -SeriesName 'Secure CaseTracker' -PackagePrefix secure-casetracker -WhatIf
+```
 
 Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
 

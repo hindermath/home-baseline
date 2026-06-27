@@ -101,6 +101,12 @@ For GitHub repositories, use the authenticated `gh` CLI first for feasible write
 
 For GitLab repositories, use the authenticated `glab` CLI first for equivalent actions. Do not repeatedly try connector write paths that are known to fail when `gh`/`glab` can perform the task directly.
 
+## Lernreihen-Governance / Learning Series Governance
+
+Neue Lernreihen fuer Fachinformatiker*innen werden zuerst in `docs/learning-units/` als Level-0-Quelle vorbereitet. Der `Lernreihen-Blueprint`, das `Lernreihen-Register` und die Vorlagen unter `docs/learning-units/templates/` sind verbindlich, bevor eine konkrete Level-1-/Level-2-Struktur gespiegelt wird. KI-Agenten duerfen Lernreihen, Lastenhefte, Reihenfolgen und ZIP-Paketierung vorbereiten, starten aber keine Spec-Kit-Laeufe fuer Lernende ohne ausdruecklichen Auftrag.
+
+*New learning series for IT specialist apprentices are prepared first in `docs/learning-units/` as the level-0 source. The Learning Series Blueprint, Learning Series Register, and templates under `docs/learning-units/templates/` are binding before a concrete level-1/level-2 structure is mirrored. AI agents may prepare learning series, intake files, ordering, and ZIP packaging, but must not start learner Spec Kit runs without an explicit instruction.*
+
 ## Testleitlinien / Testing Guidelines
 Manual verification is the current test strategy. For bootstrap changes, test both shells in safe mode: Bash with `--dry-run`, PowerShell with `-WhatIf`. For hook or scanning changes, run the relevant installer, then execute the scanner against the repo root and confirm expected exit codes.
 

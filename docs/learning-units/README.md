@@ -20,6 +20,23 @@ Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführ
 
 *The presentations under [`presentations/`](presentations/) provide an introduction before the first Spec Kit run. The Markdown files are prepared for later Pandoc conversion to PowerPoint; the Markdown source remains the maintained version.*
 
+## Wiederverwendbare Lernreihen / Reusable Learning Series
+
+**DE:** Dieses Verzeichnis ist nicht nur fuer Secure CaseTracker gedacht. Es ist die Level-0-Quelle fuer weitere Lernreihen ab dem 1., 2. und 3. Lehrjahr. Der [Lernreihen-Blueprint](Lernreihen-Blueprint.md) beschreibt das generische Vorgehen. Das [Lernreihen-Register](Lernreihen-Register.md) zeigt, welche Reihen vorbereitet, geplant oder aktiv sind.
+
+**EN:** This directory is not only for Secure CaseTracker. It is the level-0 source for additional learning series from the first, second, and third training year onward. The [Learning Series Blueprint](Lernreihen-Blueprint.md) describes the generic approach. The [Learning Series Register](Lernreihen-Register.md) shows which series are prepared, planned, or active.
+
+Neue Reihen nutzen die Vorlagen unter [`templates/`](templates/):
+
+- [`Lernreihe-Vorlage.md`](templates/Lernreihe-Vorlage.md)
+- [`Lastenheft-Lernaufgabe-Vorlage.md`](templates/Lastenheft-Lernaufgabe-Vorlage.md)
+
+*New series use the templates under [`templates/`](templates/).*
+
+Die generische [Git-Start-Anleitung fuer Lernende](GIT-START-FUER-LERNENDE.md) wird in Lernpakete kopiert, damit Lernende nach dem Entpacken einen eigenen Git-Verlauf ohne urspruengliche Remotes starten koennen.
+
+*The generic [Git start guide for learners](GIT-START-FUER-LERNENDE.md) is copied into learning packages so learners can start their own Git history after extraction, without original remotes.*
+
 ## Arbeitsmodell / Working Model
 
 **DE:** Die Lernreihe ist für ein dreistufiges Arbeitsmodell vorbereitet:
