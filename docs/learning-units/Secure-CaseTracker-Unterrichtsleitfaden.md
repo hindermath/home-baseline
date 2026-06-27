@@ -100,9 +100,9 @@
 
 **EN:** The Spec Kit runs are started later and manually per Level 2 repository. C# is planned as the first reference path. Go, Java, Python, Rust, and Swift can follow as comparison paths. This order helps create a well-understood reference first and then makes differences between toolchains, validation, dependency audits, and secure-coding rules visible.
 
-**DE:** Wichtig: Eine vorbereitete Struktur ist noch kein ausgeführter Spec-Kit-Lauf. Ein Level-2-Repo gilt erst dann als bearbeitet, wenn Lernende oder Thorsten dort bewusst ein konkretes Aufgaben-Lastenheft `01` bis `11` mit `/speckit-specify` gestartet und die entstehenden Artefakte geprüft haben.
+**DE:** Wichtig: Eine vorbereitete Struktur ist noch kein ausgeführter Spec-Kit-Lauf. Ein Level-2-Repo gilt erst dann als bearbeitet, wenn Lernende oder Lehrende dort bewusst ein konkretes Aufgaben-Lastenheft `01` bis `11` mit `/speckit-specify` gestartet und die entstehenden Artefakte geprüft haben.
 
-**EN:** Important: A prepared structure is not yet an executed Spec Kit run. A Level 2 repository counts as worked on only after learners or Thorsten deliberately start a concrete task intake `01` to `11` with `/speckit-specify` and review the resulting artifacts.
+**EN:** Important: A prepared structure is not yet an executed Spec Kit run. A Level 2 repository counts as worked on only after learners or instructors deliberately start a concrete task intake `01` to `11` with `/speckit-specify` and review the resulting artifacts.
 
 ## Rolle von Spec Kit / Role of Spec Kit
 

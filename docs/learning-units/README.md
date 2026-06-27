@@ -38,9 +38,9 @@ Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführ
 
 **EN:** The local Level 2 folders use CamelCase. The matching GitHub repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.
 
-**DE:** Codex oder andere KI-Agenten dürfen diese Struktur vorbereiten, aber die eigentlichen Spec-Kit-Läufe werden später bewusst manuell durch Thorsten oder Lernende gestartet. C# ist als erster Referenzpfad vorgesehen; die anderen MSL-Sprachen dienen danach als Vergleichs- und Vertiefungspfade.
+**DE:** Codex oder andere KI-Agenten dürfen diese Struktur vorbereiten, aber die eigentlichen Spec-Kit-Läufe werden später bewusst manuell durch Lehrende oder Lernende gestartet. C# ist als erster Referenzpfad vorgesehen; die anderen MSL-Sprachen dienen danach als Vergleichs- und Vertiefungspfade.
 
-**EN:** Codex or other AI agents may prepare this structure, but the actual Spec Kit runs are started later and deliberately by Thorsten or learners. C# is planned as the first reference path; the other MSL languages then serve as comparison and deeper practice paths.
+**EN:** Codex or other AI agents may prepare this structure, but the actual Spec Kit runs are started later and deliberately by instructors or learners. C# is planned as the first reference path; the other MSL languages then serve as comparison and deeper practice paths.
 
 ## Verbindung zu Lastenheften / Relation to Intake Files
 

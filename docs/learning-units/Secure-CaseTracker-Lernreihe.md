@@ -69,7 +69,7 @@
 | Rolle / Role | Lokaler Ordner / Local folder | GitHub-Slug | Primärsprache / Primary language | Zweck / Purpose |
 |---|---|---|---|
 | Koordination / Coordination | `SecureCaseTrackerProjects` | `secure-casetracker-baseline` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
-| Referenz / Reference | `SecureCaseTracker-CSharp` | `securecasetracker-csharp` | C# | erste manuelle Referenzimplementierung durch Thorsten |
+| Referenz / Reference | `SecureCaseTracker-CSharp` | `securecasetracker-csharp` | C# | erste manuelle Referenzimplementierung durch Lehrende |
 | Vergleich / Comparison | `SecureCaseTracker-Go` | `securecasetracker-go` | Go | MSL-Vergleich mit Go-Toolchain und Go-Sicherheitsprüfungen |
 | Vergleich / Comparison | `SecureCaseTracker-Java` | `securecasetracker-java` | Java | MSL-Vergleich mit Java-Toolchain und Java-Sicherheitsprüfungen |
 | Vergleich / Comparison | `SecureCaseTracker-Python` | `securecasetracker-python` | Python | MSL-Vergleich mit Python-Toolchain und Python-Sicherheitsprüfungen |
