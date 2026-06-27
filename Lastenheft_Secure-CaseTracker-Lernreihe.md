@@ -8,6 +8,7 @@
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Spec-Kit-Nutzung / Spec Kit use:** Dieses Lastenheft ist die Gesamtlandkarte. Die einzelnen Aufgaben-Lastenhefte werden später separat als Spec-Kit-Intakes genutzt.
 - **Sandbox-Bezug / Sandbox relation:** `absdd-image-sandbox` ist das Zielbild für sichere, reproduzierbare Lern- und Agentenarbeit.
+- **Operatives Zielmodell / Operational target model:** späteres privates Level-1-Workspace-Repo mit sechs privaten Level-2-Sprach-Repos.
 
 ## Lernziel / Learning Goal
 
@@ -41,6 +42,24 @@
 
 **EN:** The full guideline and the six governance presets are the assessment frame for all later task intakes.
 
+## Operatives Arbeitsmodell / Operational Working Model
+
+**DE:** Dieses Master-Lastenheft beschreibt die Gesamtlandkarte. Die spätere praktische Bearbeitung soll in einer privaten Level-1-/Level-2-Struktur erfolgen:
+
+- **Level 0:** `home-baseline-tmp` als zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, Presets und Intakes.
+- **Level 1:** `SecureCaseTrackerProjects` als privates Koordinations-Repo mit README, Statusmatrix und Abarbeitungsreihenfolge.
+- **Level 2:** sechs private Sprach-Repos: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, `SecureCaseTracker-Swift`.
+
+**EN:** This master intake describes the overall map. Later practical work should use a private Level 1 / Level 2 structure:
+
+- **Level 0:** `home-baseline-tmp` as the central source for learning material, guideline, checklists, presets, and intakes.
+- **Level 1:** `SecureCaseTrackerProjects` as the private coordination repository with README, status matrix, and processing order.
+- **Level 2:** six private language repositories: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, `SecureCaseTracker-Swift`.
+
+**DE:** C# ist als erster manueller Referenzpfad vorgesehen. Go, Java, Python, Rust und Swift folgen als Vergleichs- und Vertiefungspfade. Codex bereitet diese Struktur nur vor; die Spec-Kit-Läufe starten später manuell durch Thorsten oder Lernende.
+
+**EN:** C# is planned as the first manual reference path. Go, Java, Python, Rust, and Swift follow as comparison and deeper practice paths. Codex only prepares this structure; the Spec Kit runs are started later and manually by Thorsten or learners.
+
 ## Aufgabenstellung / Task
 
 **DE:** Erstelle keine Implementierung. Nutze dieses Lastenheft als Gesamtlandkarte. Spätere Spec-Kit-Läufe starten jeweils mit einem der Aufgaben-Lastenhefte `01` bis `11`.
@@ -52,6 +71,7 @@
 - Übersicht in `docs/learning-units/Secure-CaseTracker-Lernreihe.md`.
 - Einzelne Aufgaben-Intakes `Lastenheft_Secure-CaseTracker_01_*.md` bis `Lastenheft_Secure-CaseTracker_11_*.md`.
 - Sichtbare Reihenfolge in `Lastenheft_Abarbeitungsreihenfolge.md`.
+- Späteres Level-1-Koordinations-Repo mit Statusmatrix und sechs Level-2-Sprach-Repos.
 - Keine Feature-Branch-Erzeugung in diesem Schritt.
 
 ## Akzeptanzkriterien / Acceptance Criteria
@@ -64,5 +84,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Wähle stattdessen das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe und erstelle dafür eine fokussierte Feature-Spezifikation.
+/speckit-specify Nutze Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Lege auch noch keinen Level-1-/Level-2-Arbeitsraum an. Wähle stattdessen in einem bereits vorbereiteten Sprach-Repo das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe und erstelle dafür eine fokussierte Feature-Spezifikation.
 ```

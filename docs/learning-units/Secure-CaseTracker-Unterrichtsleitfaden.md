@@ -84,6 +84,26 @@
 | Standard | 11 Aufgaben plus Reviewblöcke | vollständige Spec-Kit-Vorbereitung |
 | Vertieft | Aufgaben je Sprache wiederholen | Vergleich von C#, Go, Java, Python, Rust und Swift |
 
+## Durchführung mit Level 1 und Level 2 / Execution with Level 1 and Level 2
+
+**DE:** Für die spätere praktische Durchführung wird ein privates Level-1-Workspace-Repo empfohlen. Es koordiniert die Reihe, enthält aber keine eigene Fachimplementierung. Die Implementierungen entstehen getrennt in sechs Level-2-Repos. So können Lernende sehen, dass dieselbe Aufgabe je Sprache andere Werkzeuge und Prüfungen braucht.
+
+**EN:** A private Level 1 workspace repository is recommended for later practical execution. It coordinates the series but contains no functional implementation itself. The implementations are created separately in six Level 2 repositories. This helps learners see that the same task needs different tools and checks depending on the language.
+
+| Ebene / Level | Aufgabe / Task | Lehrnutzen / Teaching value |
+|---|---|---|
+| Level 0 | Zentrale Quelle in `home-baseline-tmp` | gemeinsame Richtlinie, Checklisten, Presets und Intakes bleiben stabil |
+| Level 1 | Koordination in `SecureCaseTrackerProjects` | Status, Reihenfolge, Links und Vergleich bleiben an einer Stelle sichtbar |
+| Level 2 | Umsetzung in sechs Sprach-Repos | jede MSL-Sprache erhält eigene Spec-Kit-Artefakte, Tests und Nachweise |
+
+**DE:** Die Spec-Kit-Läufe werden später pro Level-2-Repo manuell gestartet. C# ist als erster Referenzpfad vorgesehen. Danach können Go, Java, Python, Rust und Swift als Vergleichspfade folgen. Diese Reihenfolge hilft, zuerst eine gut verstandene Referenz zu erzeugen und anschließend Unterschiede zwischen Toolchains, Validierung, Dependency-Audits und Secure-Coding-Regeln sichtbar zu machen.
+
+**EN:** The Spec Kit runs are started later and manually per Level 2 repository. C# is planned as the first reference path. Go, Java, Python, Rust, and Swift can follow as comparison paths. This order helps create a well-understood reference first and then makes differences between toolchains, validation, dependency audits, and secure-coding rules visible.
+
+**DE:** Wichtig: Eine vorbereitete Struktur ist noch kein ausgeführter Spec-Kit-Lauf. Ein Level-2-Repo gilt erst dann als bearbeitet, wenn Lernende oder Thorsten dort bewusst ein konkretes Aufgaben-Lastenheft `01` bis `11` mit `/speckit-specify` gestartet und die entstehenden Artefakte geprüft haben.
+
+**EN:** Important: A prepared structure is not yet an executed Spec Kit run. A Level 2 repository counts as worked on only after learners or Thorsten deliberately start a concrete task intake `01` to `11` with `/speckit-specify` and review the resulting artifacts.
+
 ## Rolle von Spec Kit / Role of Spec Kit
 
 **DE:** Spec Kit ist in dieser Reihe nicht nur Werkzeug, sondern Lernstruktur. Lernende sehen, dass professionelle Entwicklung nicht direkt mit Code beginnt. Sie beginnt mit einer Spezifikation, geht über Plan und Aufgaben in Tests und Review. Die Governance-Presets sorgen dafür, dass Sicherheit, Architektur, Barrierefreiheit, Plattformen und Agentenregeln nicht vergessen werden.

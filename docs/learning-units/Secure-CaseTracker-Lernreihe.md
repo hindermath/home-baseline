@@ -60,6 +60,41 @@
 
 **EN:** The Secure Development Guideline is the binding anchor. Each learning unit requires visible references to the guideline, checklists, related documents, and the six Spec Kit governance presets. Non-applicable points are documented as `N/A` with rationale; open points are marked as `Open` with follow-up work.
 
+## Empfohlene Repo-Struktur / Recommended Repository Structure
+
+**DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-tmp` bleibt Level 0 und hält die generischen Materialien. Ein privates Level-1-Workspace-Repo `SecureCaseTrackerProjects` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.
+
+**EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-tmp` remains Level 0 and keeps the generic material. A private Level 1 workspace repository `SecureCaseTrackerProjects` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
+
+| Rolle / Role | Empfohlenes Repo / Recommended repo | Primärsprache / Primary language | Zweck / Purpose |
+|---|---|---|---|
+| Koordination / Coordination | `SecureCaseTrackerProjects` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
+| Referenz / Reference | `SecureCaseTracker-CSharp` | C# | erste manuelle Referenzimplementierung durch Thorsten |
+| Vergleich / Comparison | `SecureCaseTracker-Go` | Go | MSL-Vergleich mit Go-Toolchain und Go-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Java` | Java | MSL-Vergleich mit Java-Toolchain und Java-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Python` | Python | MSL-Vergleich mit Python-Toolchain und Python-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Rust` | Rust | MSL-Vergleich mit Rust-Toolchain und Rust-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Swift` | Swift | MSL-Vergleich mit Swift-Toolchain und Apple-Plattform-Hinweisen |
+
+**DE:** In jedem Level-2-Repo werden die gleichen fachlichen Intakes genutzt. Die fachlichen Regeln bleiben gleich; nur Umsetzung, Toolchain, Tests und sprachspezifische Sicherheitsprüfungen unterscheiden sich. Spec-Kit-Läufe werden nicht automatisch gestartet, sondern später manuell pro Repo und pro Aufgaben-Lastenheft.
+
+**EN:** Each Level 2 repository uses the same functional intakes. The functional rules stay the same; only implementation, toolchain, tests, and language-specific security checks differ. Spec Kit runs are not started automatically but later run manually per repository and task intake.
+
+## Statusmatrix-Vorlage / Status Matrix Template
+
+**DE:** Das spätere Level-1-Repo kann diese Matrix als Startpunkt verwenden:
+
+**EN:** The later Level 1 repository can use this matrix as a starting point:
+
+| Sprache / Language | Level-2-Repo | MSL | Intakes kopiert / Intakes copied | Spec-Kit-Stand / Spec Kit state | Reviewstatus / Review state | Rolle / Role |
+|---|---|---|---|---|---|---|
+| C# | `SecureCaseTracker-CSharp` | ja / yes | offen / open | manuell offen / manually open | offen / open | Referenz / Reference |
+| Go | `SecureCaseTracker-Go` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Java | `SecureCaseTracker-Java` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Python | `SecureCaseTracker-Python` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Rust | `SecureCaseTracker-Rust` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Swift | `SecureCaseTracker-Swift` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+
 ## Reihenfolge der Lerneinheiten / Order of Learning Units
 
 | Nr. | Lerneinheit | Primär geeignet für |

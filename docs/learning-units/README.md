@@ -16,6 +16,24 @@ Der ausführliche [Secure CaseTracker Unterrichtsleitfaden](Secure-CaseTracker-U
 
 *The detailed [Secure CaseTracker Teaching Guide](Secure-CaseTracker-Unterrichtsleitfaden.md) explains order, specialization fit, common mistakes, evidence, and didactic use of the series.*
 
+## Arbeitsmodell / Working Model
+
+**DE:** Die Lernreihe ist für ein dreistufiges Arbeitsmodell vorbereitet:
+
+- **Level 0:** `home-baseline-tmp` bleibt die zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, mitgeltende Dokumente, Spec-Kit-Presets und Intake-Vorlagen.
+- **Level 1:** Ein späteres privates Workspace-Repo, empfohlen `SecureCaseTrackerProjects`, koordiniert die gesamte Reihe, Statusmatrix und Abarbeitungsreihenfolge.
+- **Level 2:** Je Ziel-Sprache entsteht ein eigenes privates Projekt-Repo: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust` und `SecureCaseTracker-Swift`.
+
+**EN:** The learning series is prepared for a three-level working model:
+
+- **Level 0:** `home-baseline-tmp` remains the central source for learning material, guideline, checklists, related documents, Spec Kit presets, and intake templates.
+- **Level 1:** A later private workspace repository, recommended as `SecureCaseTrackerProjects`, coordinates the full series, status matrix, and processing order.
+- **Level 2:** Each target language gets its own private project repository: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, and `SecureCaseTracker-Swift`.
+
+**DE:** Codex oder andere KI-Agenten dürfen diese Struktur vorbereiten, aber die eigentlichen Spec-Kit-Läufe werden später bewusst manuell durch Thorsten oder Lernende gestartet. C# ist als erster Referenzpfad vorgesehen; die anderen MSL-Sprachen dienen danach als Vergleichs- und Vertiefungspfade.
+
+**EN:** Codex or other AI agents may prepare this structure, but the actual Spec Kit runs are started later and deliberately by Thorsten or learners. C# is planned as the first reference path; the other MSL languages then serve as comparison and deeper practice paths.
+
 ## Verbindung zu Lastenheften / Relation to Intake Files
 
 **DE:** Die fachliche und didaktische Erklärung liegt in diesem Verzeichnis. Die später einzeln ausführbaren Spec-Kit-Intakes liegen als `Lastenheft_Secure-CaseTracker*.md` im Repository-Wurzelverzeichnis. Dadurch bleiben sie über `Lastenheft_Abarbeitungsreihenfolge.md` auffindbar.

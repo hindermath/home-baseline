@@ -1103,6 +1103,10 @@ Die Lernmaterialien unter [`docs/learning-units/`](docs/learning-units/README.md
 
 *The learning material under [`docs/learning-units/`](docs/learning-units/README.md) turns this baseline into detailed DE-first/EN-second learning units. The first series is **Secure CaseTracker** for the fictional training company **EuFPA – European Company Programs Everything**. It is language-neutral for C#, Go, Java, Python, Rust, and Swift and visibly maps each task to Application Development, System Integration, and Data and Process Analysis.*
 
+Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Level-2-Struktur vorgesehen: `home-baseline-tmp` bleibt die Level-0-Quelle, ein privates Level-1-Repo `SecureCaseTrackerProjects` koordiniert Status und Reihenfolge, und sechs private Level-2-Repos bilden die getrennten MSL-Pfade für C#, Go, Java, Python, Rust und Swift. Die Spec-Kit-Läufe werden dort später manuell durch Thorsten oder Lernende gestartet; C# ist als erster Referenzpfad vorgesehen.
+
+*For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-tmp` remains the Level 0 source, a private Level 1 repository `SecureCaseTrackerProjects` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by Thorsten or learners; C# is planned as the first reference path.*
+
 Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
 
 ```bash

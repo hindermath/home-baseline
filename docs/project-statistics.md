@@ -38,6 +38,7 @@
 | 2026-06-20 | Spec-Kit-Intake-Haertung und Container-Intake | 44 | 113 460 | 339 | Aktive Level-0-Lastenhefte fuer spaetere Spec-Kit-Laeufe als Intake-Dateien geschaerft, kopierbare `/speckit-specify`-Prompts ergaenzt, neues Lastenheft fuer Secure-Development-Container-Hardening aufgenommen und Agenten-/Secure-Development-Guidance zur Intake-Struktur nachgezogen |
 | 2026-06-20 | Skriptsprachen-Guidance fuer Agenten | 44 | 113 489 | 339 | README und Agenten-Dateien um OS-Pruefung, PowerShell-7-/Cmdlet-Prioritaet, optionalen C#-Pfad ueber `.NET`/`mono` und Fallback auf vorhandene OS-nahe Repo-Skripte ergaenzt |
 | 2026-06-27 | Secure-CaseTracker-Lernreihe | 45 | 115 330 | 347 | Ausführliche DE-first/EN-second Lernreihe für die fiktive Übungsfirma EuFPA erstellt: Master-Intake, elf einzeln startbare Spec-Kit-Aufgaben-Intakes, Unterrichtsleitfaden, Fachrichtungsbezug AE/SI/DPA, Richtlinie-Sichere-Entwicklung-Bezug, sechs MSL-Zielsprachen C#/Go/Java/Python/Rust/Swift und README-/Reihenfolge-Verankerung |
+| 2026-06-27 | Secure-CaseTracker-Level-Modell | 45 | 115 429 | 348 | Lernreihe um generisches Level-0-/Level-1-/Level-2-Arbeitsmodell, private Repo-Zielstruktur, Statusmatrix-Vorlage und manuelle Spec-Kit-Laufgrenzen erweitert; C# als Referenzpfad und Go/Java/Python/Rust/Swift als Vergleichspfade dokumentiert |
 
 ---
 
@@ -50,9 +51,9 @@ Stand / As of: **2026-06-27**
 | Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 682 | 16.2 % |
 | Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.9 % |
 | Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.8 % |
-| Dokumentation / Documentation (`.md`) | 492 | 86 055 | 74.6 % |
+| Dokumentation / Documentation (`.md`) | 492 | 86 154 | 74.6 % |
 | Sonstiges / Other | 22 | 5 232 | 4.5 % |
-| **Gesamt / Total** | **656** | **115 330** | **100 %** |
+| **Gesamt / Total** | **656** | **115 429** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
@@ -60,10 +61,10 @@ Stand / As of: **2026-06-27**
 |---|---:|---:|
 | Spec-Kit-Artefakte (`specs/`) | 20 195 | 23.5 % |
 | Secure Development (`docs/secure-development/`) | 28 987 | 33.7 % |
-| Lastenhefte (`Lastenheft*.md`) | 5 718 | 6.6 % |
-| Lernmaterialien (`docs/learning-units/`) | 220 | 0.3 % |
+| Lastenhefte (`Lastenheft*.md`) | 5 738 | 6.7 % |
+| Lernmaterialien (`docs/learning-units/`) | 293 | 0.3 % |
 | Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 924 | 4.6 % |
-| README / CHANGELOG / STATS | 3 460 | 4.0 % |
+| README / CHANGELOG / STATS | 3 466 | 4.0 % |
 | Sonstiges (Templates, andere `.md`) | 23 551 | 27.4 % |
 
 ---
@@ -188,20 +189,20 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `115 330` Zeilen |
+| Artefaktbasis gesamt / Total artifact base | `115 429` Zeilen |
 | Operativer Code / Operational code (Skripte + Hooks + CI) | `20 732` Zeilen (`18.0 %`) |
-| Dokumentationsanteil / Documentation share | `86 055` Zeilen (`74.6 %`) |
+| Dokumentationsanteil / Documentation share | `86 154` Zeilen (`74.6 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-27` |
 | Sichtbare Git-Aktivtage / Observable active days | `45` |
-| Git-Commits gesamt / Total commits | `347` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.7` (`347 / 45`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 562.9` (`115 330 / 45`) |
-| Zeilen pro Commit / Lines per commit | `332.4` (`115 330 / 347`) |
-| Konservative Einzelentwickler-Untergrenze | `1 441.6` Arbeitstage / `11 244.7` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 153.3` Arbeitstage / `8 995.7` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `576.6` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.0x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.6x` |
+| Git-Commits gesamt / Total commits | `348` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.7` (`348 / 45`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 565.1` (`115 429 / 45`) |
+| Zeilen pro Commit / Lines per commit | `331.7` (`115 429 / 348`) |
+| Konservative Einzelentwickler-Untergrenze | `1 442.9` Arbeitstage / `11 254.3` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 154.3` Arbeitstage / `9 003.5` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `577.1` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.1x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.7x` |
 
 Kurzfazit:
 `home-baseline` bleibt dokumentations- und Governance-getrieben: `74.6 %` der
@@ -210,7 +211,8 @@ Hooks, CI) macht `18.0 %` aus. Der größte dokumentierte Volumensprung bleibt
 Phase `1` (Spec-Kit-Batch für Homogeneity Guardian). Die aktuelle
 Maintenance-Runde ergänzt die sichere-Entwicklung-Basis um eine ausführliche
 EuFPA-Lernreihe für Secure CaseTracker, elf einzeln startbare Spec-Kit-
-Aufgaben-Intakes und einen Unterrichtsleitfaden. Für private Ausbildungsprojekte bleibt
+Aufgaben-Intakes, einen Unterrichtsleitfaden und ein klares Level-1-/Level-2-
+Arbeitsmodell für private MSL-Sprachpfade. Für private Ausbildungsprojekte bleibt
 Nichtanwendbarkeit als begründetes `N/A` dokumentierbar. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
