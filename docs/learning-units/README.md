@@ -16,6 +16,10 @@ Der ausführliche [Secure CaseTracker Unterrichtsleitfaden](Secure-CaseTracker-U
 
 *The detailed [Secure CaseTracker Teaching Guide](Secure-CaseTracker-Unterrichtsleitfaden.md) explains order, specialization fit, common mistakes, evidence, and didactic use of the series.*
 
+Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführung vor dem ersten Spec-Kit-Lauf. Die Markdown-Dateien sind für eine spätere Pandoc-Umwandlung nach PowerPoint vorbereitet; die Markdown-Quelle bleibt die gepflegte Fassung.
+
+*The presentations under [`presentations/`](presentations/) provide an introduction before the first Spec Kit run. The Markdown files are prepared for later Pandoc conversion to PowerPoint; the Markdown source remains the maintained version.*
+
 ## Arbeitsmodell / Working Model
 
 **DE:** Die Lernreihe ist für ein dreistufiges Arbeitsmodell vorbereitet:

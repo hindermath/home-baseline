@@ -40,6 +40,7 @@
 | 2026-06-27 | Secure-CaseTracker-Lernreihe | 45 | 115 330 | 347 | Ausführliche DE-first/EN-second Lernreihe für die fiktive Übungsfirma EuFPA erstellt: Master-Intake, elf einzeln startbare Spec-Kit-Aufgaben-Intakes, Unterrichtsleitfaden, Fachrichtungsbezug AE/SI/DPA, Richtlinie-Sichere-Entwicklung-Bezug, sechs MSL-Zielsprachen C#/Go/Java/Python/Rust/Swift und README-/Reihenfolge-Verankerung |
 | 2026-06-27 | Secure-CaseTracker-Level-Modell | 45 | 115 429 | 348 | Lernreihe um generisches Level-0-/Level-1-/Level-2-Arbeitsmodell, private Repo-Zielstruktur, Statusmatrix-Vorlage und manuelle Spec-Kit-Laufgrenzen erweitert; C# als Referenzpfad und Go/Java/Python/Rust/Swift als Vergleichspfade dokumentiert |
 | 2026-06-27 | Secure-CaseTracker-Repo-Struktur | 45 | 115 442 | 349 | Dokumentation nach realem Bootstrap-Modell geschaerft: lokale CamelCase-Level-2-Ordner und lowercase GitHub-Repository-Slugs unterschieden und in Lernreihe, Master-Intake und README verankert |
+| 2026-06-27 | Secure-CaseTracker-Praesentation | 45 | 118 728 | 350 | Pandoc-kompatible DE/EN-Markdown-Praesentationen fuer die Secure-CaseTracker-Lernreihe ergaenzt, zentrale Lernmaterialien dokumentiert und als lokale Einfuehrung fuer Level-1-/Level-2-Repos vorbereitet |
 
 ---
 
@@ -49,24 +50,24 @@ Stand / As of: **2026-06-27**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 682 | 16.2 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.9 % |
-| Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.8 % |
-| Dokumentation / Documentation (`.md`) | 492 | 86 167 | 74.6 % |
-| Sonstiges / Other | 22 | 5 232 | 4.5 % |
-| **Gesamt / Total** | **656** | **115 442** | **100 %** |
+| Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 682 | 15.7 % |
+| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.8 % |
+| Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.7 % |
+| Dokumentation / Documentation (`.md`) | 509 | 89 386 | 75.3 % |
+| Sonstiges / Other | 28 | 5 299 | 4.5 % |
+| **Gesamt / Total** | **679** | **118 728** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 20 195 | 23.5 % |
-| Secure Development (`docs/secure-development/`) | 28 987 | 33.7 % |
-| Lastenhefte (`Lastenheft*.md`) | 5 742 | 6.7 % |
-| Lernmaterialien (`docs/learning-units/`) | 297 | 0.3 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 924 | 4.6 % |
-| README / CHANGELOG / STATS | 3 486 | 4.0 % |
-| Sonstiges (Templates, andere `.md`) | 23 551 | 27.4 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 22.6 % |
+| Secure Development (`docs/secure-development/`) | 29 152 | 32.6 % |
+| Lastenhefte (`Lastenheft*.md`) | 5 742 | 6.4 % |
+| Lernmaterialien (`docs/learning-units/`) | 1 189 | 1.3 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 982 | 4.5 % |
+| README / CHANGELOG / STATS | 3 493 | 3.9 % |
+| Sonstiges (Templates, andere `.md`) | 25 633 | 28.7 % |
 
 ---
 
@@ -190,41 +191,43 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `115 442` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `20 732` Zeilen (`18.0 %`) |
-| Dokumentationsanteil / Documentation share | `86 167` Zeilen (`74.6 %`) |
+| Artefaktbasis gesamt / Total artifact base | `118 728` Zeilen |
+| Operativer Code / Operational code (Skripte + Hooks + CI) | `20 732` Zeilen (`17.5 %`) |
+| Dokumentationsanteil / Documentation share | `89 386` Zeilen (`75.3 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-27` |
 | Sichtbare Git-Aktivtage / Observable active days | `45` |
-| Git-Commits gesamt / Total commits | `349` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.8` (`349 / 45`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 565.4` (`115 442 / 45`) |
-| Zeilen pro Commit / Lines per commit | `330.8` (`115 442 / 349`) |
-| Konservative Einzelentwickler-Untergrenze | `1 442.9` Arbeitstage / `11 254.3` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 154.3` Arbeitstage / `9 003.5` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `577.1` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `32.1x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `25.7x` |
+| Git-Commits gesamt / Total commits | `350` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.8` (`350 / 45`) |
+| Zeilen pro Aktivtag / Lines per active day | `2 638.4` (`118 728 / 45`) |
+| Zeilen pro Commit / Lines per commit | `339.2` (`118 728 / 350`) |
+| Konservative Einzelentwickler-Untergrenze | `1 484.1` Arbeitstage / `11 576.0` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 187.3` Arbeitstage / `9 260.8` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `593.6` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `33.0x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `26.4x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.6 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `75.3 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Der operative Code (Skripte,
-Hooks, CI) macht `18.0 %` aus. Der größte dokumentierte Volumensprung bleibt
+Hooks, CI) macht `17.5 %` aus. Der größte dokumentierte Volumensprung bleibt
 Phase `1` (Spec-Kit-Batch für Homogeneity Guardian). Die aktuelle
 Maintenance-Runde ergänzt die sichere-Entwicklung-Basis um eine ausführliche
 EuFPA-Lernreihe für Secure CaseTracker, elf einzeln startbare Spec-Kit-
-Aufgaben-Intakes, einen Unterrichtsleitfaden und ein klares Level-1-/Level-2-
-Arbeitsmodell für private MSL-Sprachpfade. Für private Ausbildungsprojekte bleibt
+Aufgaben-Intakes, einen Unterrichtsleitfaden, ein klares Level-1-/Level-2-
+Arbeitsmodell für private MSL-Sprachpfade und Pandoc-kompatible
+Einführungspräsentationen. Für private Ausbildungsprojekte bleibt
 Nichtanwendbarkeit als begründetes `N/A` dokumentierbar. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
 *Short summary: after the Secure CaseTracker learning-series round,
-`home-baseline` remains documentation- and governance-driven: `74.6 %` of the visible base sits
+`home-baseline` remains documentation- and governance-driven: `75.3 %` of the visible base sits
 in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
-`18.0 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
+`17.5 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
 for Homogeneity Guardian). The current maintenance round adds the detailed
 EuFPA Secure CaseTracker learning series, eleven individually runnable Spec Kit
-task intakes, and a teaching guide. Private training projects can still document
+task intakes, a teaching guide, and Pandoc-compatible introductory
+presentations. Private training projects can still document
 non-applicability as justified `N/A`. The
 acceleration factors describe
 visible delivery density, not stopwatch measurements.*
@@ -233,9 +236,9 @@ visible delivery density, not stopwatch measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #######                        | 20 732 | 18.0 %
-Dokumentation   | ############################## | 86 055 | 74.6 %
-Sonstiges       | ###                            |  8 543 |  7.4 %
+Operativer Code | #######                        | 20 732 | 17.5 %
+Dokumentation   | ############################## | 89 386 | 75.3 %
+Sonstiges       | ###                            |  8 610 |  7.3 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
@@ -293,7 +296,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################  | 32.2x
+Repo ges. | ################################# | 33.0x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -315,9 +318,9 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 1 418.6 d / 11 065.2 h
-Thorsten (100 Z./Tag)  | ###################      | 1 134.9 d /  8 852.1 h
-KI sichtbar            | #                        |    44.0 d
+Erfahren (80 Z./Tag)   | ######################## | 1 484.1 d / 11 576.0 h
+Thorsten (100 Z./Tag)  | ###################      | 1 187.3 d /  9 260.8 h
+KI sichtbar            | #                        |    45.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer
