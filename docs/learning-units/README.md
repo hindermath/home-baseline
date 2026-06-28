@@ -43,13 +43,13 @@ Die generische [Git-Start-Anleitung fuer Lernende](GIT-START-FUER-LERNENDE.md) w
 
 - **Level 0:** `home-baseline-tmp` bleibt die zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, mitgeltende Dokumente, Spec-Kit-Presets und Intake-Vorlagen.
 - **Level 1:** Ein späteres privates Workspace-Repo, empfohlen `SecureCaseTrackerProjects`, koordiniert die gesamte Reihe, Statusmatrix und Abarbeitungsreihenfolge.
-- **Level 2:** Je Ziel-Sprache entsteht ein eigenes privates Projekt-Repo: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust` und `SecureCaseTracker-Swift`.
+- **Level 2:** Je Ziel-Sprache entsteht ein eigenes privates Projekt-Repo: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust` und `SecureCaseTracker-Swift`. Jedes Level-2-Repo fuehrt die Secure-Development-Basis lokal mit: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Preset-Verzahnung.
 
 **EN:** The learning series is prepared for a three-level working model:
 
 - **Level 0:** `home-baseline-tmp` remains the central source for learning material, guideline, checklists, related documents, Spec Kit presets, and intake templates.
 - **Level 1:** A later private workspace repository, recommended as `SecureCaseTrackerProjects`, coordinates the full series, status matrix, and processing order.
-- **Level 2:** Each target language gets its own private project repository: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, and `SecureCaseTracker-Swift`.
+- **Level 2:** Each target language gets its own private project repository: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, and `SecureCaseTracker-Swift`. Each level-2 repository carries the secure-development baseline locally: guideline, 12 individual checklists, compendium, related documents, and preset alignment.
 
 **DE:** Die lokalen Level-2-Ordner verwenden CamelCase. Die zugehörigen GitHub-Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, zum Beispiel `securecasetracker-csharp`.
 

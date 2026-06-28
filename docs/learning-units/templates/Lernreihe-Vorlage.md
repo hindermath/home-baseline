@@ -29,7 +29,7 @@
 |---|---|---|
 | Level 0 | `home-baseline-tmp` | kanonische Quelle fuer Lernmaterial und Vorlagen |
 | Level 1 | `<SeriesName>Projects` | Koordination, Statusmatrix, Paketierung |
-| Level 2 | `<SeriesName>-CSharp`, `<SeriesName>-Go`, `<SeriesName>-Java`, `<SeriesName>-Python`, `<SeriesName>-Rust`, `<SeriesName>-Swift` | getrennte MSL-Sprachpfade |
+| Level 2 | `<SeriesName>-CSharp`, `<SeriesName>-Go`, `<SeriesName>-Java`, `<SeriesName>-Python`, `<SeriesName>-Rust`, `<SeriesName>-Swift` | getrennte MSL-Sprachpfade mit lokaler Secure-Development-Basis |
 
 ## Aufgabenstruktur / Task Structure
 
@@ -42,7 +42,9 @@
 ## Nachweise / Evidence
 
 - erwartete Markdown-Dokumente
-- auszufuellende Checklisten
+- auszufuellende Checklisten aus `docs/secure-development/checklisten/CL_01_*.md` bis `CL_12_*.md`
+- Checklistensammelband `docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md`
+- mitgeltende Dokumente unter `docs/secure-development/mitgeltende-dokumente/`
 - `N/A`-Begruendungen fuer nicht anwendbare Standards
 - Test- und Review-Nachweise
 - Bezug zu sicherer Entwicklung, MSL, Sandbox und Spec-Kit-Presets

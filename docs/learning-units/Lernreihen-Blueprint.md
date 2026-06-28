@@ -23,7 +23,7 @@
 |---|---|---|
 | Level 0 | Kanonische Quelle / Canonical source | Blueprint, Register, Vorlagen, Richtlinie, Checklisten, Presets |
 | Level 1 | Koordination / Coordination | Statusmatrix, Reihenfolge, Lernpaket, Links zu Sprachpfaden |
-| Level 2 | Umsetzung / Implementation | ein Repo je MSL-Sprache, manuelle Spec-Kit-Laeufe, Projektnachweise |
+| Level 2 | Umsetzung / Implementation | ein Repo je MSL-Sprache, lokale Secure-Development-Basis, manuelle Spec-Kit-Laeufe, Projektnachweise |
 
 **DE:** Level 0 bleibt `home-baseline-tmp`. Level 1 ist ein eigenes Koordinations-Repo pro Lernreihe. Level 2 enthaelt die konkreten Sprachpfade und spaeteren Projektergebnisse.
 
@@ -53,8 +53,15 @@ Jede Lernreihe enthaelt mindestens:
 - eine sichtbare Abarbeitungsreihenfolge
 - eine Statusmatrix fuer Sprachpfade
 - eine Paketierungsanleitung fuer Lernende ohne urspruengliche Git-Remotes
+- in jedem Level-2-Sprachrepo die vollstaendige Secure-Development-Basis: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Verzahnung zu Spec-Kit-Presets
 
-*Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, and a package guide without original Git remotes.*
+*Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, a package guide without original Git remotes, and the complete secure-development baseline in every level-2 language repository.*
+
+## Secure-Development-Basis in Level 2 / Secure Development Baseline in Level 2
+
+**DE:** Jede Lernaufgabe darf auf `CL_01` bis `CL_12`, den Sammelband und die mitgeltenden Dokumente verweisen. Diese Unterlagen muessen deshalb lokal im jeweiligen Level-2-Repo unter `docs/secure-development/` vorhanden sein. Sie sind Arbeits- und Nachweisgrundlage fuer spaetere manuelle Spec-Kit-Laeufe, nicht nur externe Referenz.
+
+**EN:** Each learning task may reference `CL_01` through `CL_12`, the compendium, and the related documents. These materials therefore must be locally available in each level-2 repository under `docs/secure-development/`. They are working and evidence material for later manual Spec Kit runs, not only external references.
 
 ## Jahrgangsplanung / Training-Year Planning
 
