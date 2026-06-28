@@ -34,6 +34,15 @@ Die Installation ist projektlokal. `.specify/presets/` wird versioniert, waehren
 *Installation is project-local. `.specify/presets/` is versioned, while
 `.specify/presets/.cache/` is not committed.*
 
+Nach der Installation normalisiert das Werkzeug trailing whitespace in
+Markdown-Dateien unter `.specify/presets/`. Dadurch blockieren fremde
+Preset-ZIP-Artefakte keine lokalen Git-Hooks; fachliche Inhalte bleiben
+unveraendert.
+
+*After installation, the tool normalizes trailing whitespace in Markdown files
+under `.specify/presets/`. This prevents external preset ZIP artefacts from
+blocking local Git hooks; semantic content remains unchanged.*
+
 ## Optionen / Options
 
 | Bash | PowerShell | Bedeutung / Meaning |

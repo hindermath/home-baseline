@@ -66,6 +66,55 @@ PY
   die "python3 nicht gefunden; JSON-Preset-Matrix kann nicht gelesen werden"
 }
 
+normalize_preset_markdown() {
+  local repo="$1"
+  local status
+
+  [ -d "$repo/.specify/presets" ] || return 1
+
+  if $OPT_DRY_RUN; then
+    printf '  [dry-run] Markdown-Whitespace in .specify/presets normalisieren\n'
+    return 1
+  fi
+
+  if python3 - "$repo/.specify/presets" <<'PY'
+from pathlib import Path
+import sys
+
+root = Path(sys.argv[1])
+changed = False
+
+for path in root.rglob("*.md"):
+    if ".cache" in path.parts:
+        continue
+    text = path.read_text(encoding="utf-8")
+    lines = text.splitlines(keepends=True)
+    normalized = "".join(
+        line.rstrip(" \t\r\n") + (line[len(line.rstrip("\r\n")):] if line.endswith(("\n", "\r")) else "")
+        for line in lines
+    )
+    if not lines:
+        normalized = text.rstrip(" \t")
+    elif not text.endswith(("\n", "\r")):
+        normalized = normalized.rstrip(" \t")
+    if normalized != text:
+        path.write_text(normalized, encoding="utf-8")
+        changed = True
+
+sys.exit(10 if changed else 0)
+PY
+  then
+    return 1
+  else
+    status=$?
+    if [ "$status" = "10" ]; then
+      printf '  normalisiert: Markdown-Whitespace in .specify/presets\n'
+      return 0
+    fi
+    die "Markdown-Whitespace-Normalisierung fehlgeschlagen: $repo"
+  fi
+}
+
 preset_is_installed() {
   local repo="$1"
   local preset_id="$2"
@@ -106,6 +155,10 @@ install_for_repo() {
     fi
     changed=1
   done < <(read_preset_matrix "$OPT_CONFIG")
+
+  if normalize_preset_markdown "$repo"; then
+    changed=1
+  fi
 
   if [ "$changed" = "0" ]; then
     printf '  unveraendert: alle konfigurierten Presets vorhanden\n'

@@ -99,6 +99,37 @@ function Invoke-PresetCommand {
     }
 }
 
+function Normalize-PresetMarkdown {
+    param([string]$Repository)
+
+    $presetDir = Join-Path $Repository '.specify/presets'
+    if (-not (Test-Path $presetDir)) {
+        return $false
+    }
+
+    $changed = $false
+    $markdownFiles = Get-ChildItem $presetDir -Recurse -File -Filter '*.md' |
+        Where-Object { $_.FullName -notmatch '[/\\]\.cache[/\\]' }
+
+    foreach ($file in $markdownFiles) {
+        $text = [System.IO.File]::ReadAllText($file.FullName)
+        $normalized = [regex]::Replace($text, '[ \t]+(?=\r?\n)', '')
+        $normalized = [regex]::Replace($normalized, '[ \t]+\z', '')
+        if ($normalized -ne $text) {
+            if ($PSCmdlet.ShouldProcess($file.FullName, 'normalize preset markdown whitespace')) {
+                $utf8NoBom = [System.Text.UTF8Encoding]::new($false)
+                [System.IO.File]::WriteAllText($file.FullName, $normalized, $utf8NoBom)
+            }
+            $changed = $true
+        }
+    }
+
+    if ($changed) {
+        Write-Host '  normalisiert: Markdown-Whitespace in .specify/presets'
+    }
+    return $changed
+}
+
 if (-not (Get-Command specify -ErrorAction SilentlyContinue)) {
     throw 'specify CLI nicht gefunden / specify CLI not found'
 }
@@ -139,6 +170,10 @@ foreach ($repoItem in $Repo) {
         }
 
         Invoke-PresetCommand -Repository $repository -Arguments @('preset', 'add', '--from', $archiveUrl, '--priority', $priority) -Description "install $id $version"
+        $changed = $true
+    }
+
+    if (Normalize-PresetMarkdown -Repository $repository) {
         $changed = $true
     }
 
