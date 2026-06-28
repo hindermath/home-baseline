@@ -91,3 +91,14 @@ Der spaetere Spec-Kit-Lauf soll mindestens folgende Ergebnisarten erzeugen oder 
 - Jeder offene Punkt ist als `Open` mit Folgeaktion dokumentiert.
 - Jede positive Aussage zur Einhaltung verweist auf konkrete Evidenz.
 - Das Projekt bleibt nach moeglichen spaeteren Haertungen baubar und testbar.
+
+## 10. Optimaler Specify-Prompt / Optimal Specify Prompt
+
+```text
+/speckit-specify
+Nutze Lastenheft_Secure-Development-Hardening.md als verbindlichen Intake fuer einen separaten Secure-Development-Haertungslauf in {{PROJECT_NAME}}.
+Starte keinen Sammellauf fuer eine gesamte Lernreihe und erzeuge noch keine Implementierung.
+Erstelle eine fokussierte Feature-Spezifikation, die docs/secure-development/, constitution.md, .specify/memory/constitution.md, docs/security/ und die installierten Governance-Presets als Pruefgrundlagen beruecksichtigt.
+Dokumentiere jeden relevanten Pruefpunkt als Applicable, N/A oder Open mit Evidenzpfad, Begruendung, Risiko oder Folgeaktion und Bezug zum spaeteren Artefakt.
+Beruecksichtige sichere Entwicklung, MSL-Sprachprofil, A11Y/WCAG 2.2 AA, DE-first/EN-second, CEFR B2, Supply Chain/SBOM/AI-SBOM/VEX/SLSA, BSI C3A/C5 und regulatorische Anwendbarkeit nur dort, wo sie fachlich greifen.
+```
