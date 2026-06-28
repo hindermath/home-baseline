@@ -14,6 +14,12 @@
 | `Praesentation-Secure-CaseTracker-v2-Lernreihe.en.md` | English companion version of the Secure CaseTracker v2 introduction. |
 | `Praesentation-Secure-InventoryHub-Lernreihe.md` | DE-first-Einführung in Secure InventoryHub für Inventar, Softwarestände, Rollen, Patch-/Wartungsstatus und SBOM-Bezug. |
 | `Praesentation-Secure-InventoryHub-Lernreihe.en.md` | English companion version of the Secure InventoryHub introduction. |
+| `Praesentation-Secure-CaseTracker-Application-Track-Lernreihe.md` | DE-first-Einführung in den AE Application Track ab dem 3. Lehrjahr. |
+| `Praesentation-Secure-CaseTracker-Application-Track-Lernreihe.en.md` | English companion version of the Application Track introduction. |
+| `Praesentation-Secure-CaseTracker-Operations-Track-Lernreihe.md` | DE-first-Einführung in den SI Operations Track ab dem 3. Lehrjahr. |
+| `Praesentation-Secure-CaseTracker-Operations-Track-Lernreihe.en.md` | English companion version of the Operations Track introduction. |
+| `Praesentation-Secure-CaseTracker-Data-Process-Track-Lernreihe.md` | DE-first-Einführung in den DPA Data & Process Track ab dem 3. Lehrjahr. |
+| `Praesentation-Secure-CaseTracker-Data-Process-Track-Lernreihe.en.md` | English companion version of the Data & Process Track introduction. |
 
 ## Pandoc
 
@@ -23,13 +29,18 @@ pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Lernre
 ```
 
 ```bash
-pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-v2-Lernreihe.md \
-  -o Secure-CaseTracker-v2-Lernreihe.pptx
+pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Application-Track-Lernreihe.md \
+  -o Secure-CaseTracker-Application-Track-Lernreihe.pptx
 ```
 
 ```bash
-pandoc docs/learning-units/presentations/Praesentation-Secure-InventoryHub-Lernreihe.md \
-  -o Secure-InventoryHub-Lernreihe.pptx
+pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Operations-Track-Lernreihe.md \
+  -o Secure-CaseTracker-Operations-Track-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Data-Process-Track-Lernreihe.md \
+  -o Secure-CaseTracker-Data-Process-Track-Lernreihe.pptx
 ```
 
 **DE:** Erzeugte `.pptx`-Dateien sind Ausgabeartefakte und werden nicht automatisch versioniert.

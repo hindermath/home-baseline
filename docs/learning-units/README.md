@@ -32,6 +32,20 @@ Die zugehörigen Unterrichtsleitfäden sind [Secure CaseTracker v2 Unterrichtsle
 
 *The related teaching guides are [Secure CaseTracker v2 Teaching Guide](Secure-CaseTracker-v2-Unterrichtsleitfaden.md) and [Secure InventoryHub Teaching Guide](Secure-InventoryHub-Unterrichtsleitfaden.md).*
 
+## Lernreihen ab dem 3. Lehrjahr / Learning Series from the Third Training Year
+
+**DE:** Für das 3. Lehrjahr ist [Secure CaseTracker Professional Tracks](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) vorbereitet. Die Reihe nutzt den bekannten CaseTracker-Fall weiter, trennt die Arbeit aber in drei Spezialisierungen:
+
+- [Secure CaseTracker Application Track](Secure-CaseTracker-Application-Track-Lernreihe.md) für AE.
+- [Secure CaseTracker Operations Track](Secure-CaseTracker-Operations-Track-Lernreihe.md) für SI.
+- [Secure CaseTracker Data & Process Track](Secure-CaseTracker-Data-Process-Track-Lernreihe.md) für DPA.
+
+**EN:** [Secure CaseTracker Professional Tracks](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) is prepared for the third training year. It continues the known CaseTracker case but separates the work into three specializations: Application, Operations, and Data & Process.
+
+Jeder Track enthält einen Unterrichtsleitfaden, ein Master-Lastenheft, zehn einzelne Aufgaben-Intakes und DE/EN-Präsentationen. Die späteren Spec-Kit-Läufe werden manuell pro Track, Sprachpfad und Aufgaben-Lastenheft gestartet.
+
+*Each track contains a teaching guide, master intake, ten individual task intakes, and DE/EN presentations. Later Spec Kit runs are started manually per track, language path, and task intake.*
+
 ## Präsentationen / Presentations
 
 Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführung vor dem ersten Spec-Kit-Lauf. Die Markdown-Dateien sind für eine spätere Pandoc-Umwandlung nach PowerPoint vorbereitet; die Markdown-Quelle bleibt die gepflegte Fassung.
