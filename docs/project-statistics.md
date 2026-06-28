@@ -44,6 +44,7 @@
 | 2026-06-27 | Secure-CaseTracker-Intake-Ablage | 45 | 118 733 | 351 | Zentrale Secure-CaseTracker-Lastenhefte aus dem Repository-Wurzelverzeichnis nach `docs/learning-units/` verschoben, Abarbeitungsreihenfolge, README, Praesentations-Prompts und Copy-Paste-Intakes auf den neuen kanonischen Lernreihenpfad aktualisiert |
 | 2026-06-27 | Generische Lernreihen-Wiederverwendung | 45 | — | — | `docs/learning-units/` als Level-0-Quelle fuer weitere Lernreihen ab dem 1., 2. und 3. Lehrjahr geschaerft; Blueprint, Register, Vorlagen, generische Git-Start-Anleitung und wiederverwendbare Lernpaket-Skripte ergaenzt |
 | 2026-06-28 | Lernreihen-Checklisten-Verankerung | 46 | — | — | Lernreihen-Blueprint, README und Vorlage geschaerft: Level-2-Sprachrepos fuehren Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Preset-Verzahnung lokal als Arbeits- und Nachweisgrundlage |
+| 2026-06-28 | Lernreihen-Governance-Preset-Installation | 46 | — | — | Zentrale Preset-Matrix und Installer fuer alle sechs GitHub-Spec-Kit-Governance-Presets ergaenzt, `bootstrap-project.*` fuer MSL-Level-2-Repos integriert und Secure-CaseTracker-Lernreihe auf nachweisbar installierte Presets ausgerichtet |
 
 ---
 

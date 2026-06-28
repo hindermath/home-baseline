@@ -53,15 +53,19 @@ Jede Lernreihe enthaelt mindestens:
 - eine sichtbare Abarbeitungsreihenfolge
 - eine Statusmatrix fuer Sprachpfade
 - eine Paketierungsanleitung fuer Lernende ohne urspruengliche Git-Remotes
-- in jedem Level-2-Sprachrepo die vollstaendige Secure-Development-Basis: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Verzahnung zu Spec-Kit-Presets
+- in jedem Level-2-Sprachrepo die vollstaendige Secure-Development-Basis: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente, Verzahnung zu Spec-Kit-Presets und installierte Presets aus der zentralen Matrix
 
-*Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, a package guide without original Git remotes, and the complete secure-development baseline in every level-2 language repository.*
+*Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, a package guide without original Git remotes, and the complete secure-development baseline plus installed governance presets in every level-2 language repository.*
 
 ## Secure-Development-Basis in Level 2 / Secure Development Baseline in Level 2
 
 **DE:** Jede Lernaufgabe darf auf `CL_01` bis `CL_12`, den Sammelband und die mitgeltenden Dokumente verweisen. Diese Unterlagen muessen deshalb lokal im jeweiligen Level-2-Repo unter `docs/secure-development/` vorhanden sein. Sie sind Arbeits- und Nachweisgrundlage fuer spaetere manuelle Spec-Kit-Laeufe, nicht nur externe Referenz.
 
 **EN:** Each learning task may reference `CL_01` through `CL_12`, the compendium, and the related documents. These materials therefore must be locally available in each level-2 repository under `docs/secure-development/`. They are working and evidence material for later manual Spec Kit runs, not only external references.
+
+**DE:** Die sechs Governance-Presets werden fuer MSL-Level-2-Repos aus der zentralen Matrix `scripts/config/spec-kit-governance-presets.json` installiert. Der konkrete Spec-Kit-Lauf bleibt manuell; die installierten Presets sind aber Vorbedingung und Nachweisbasis.
+
+**EN:** The six governance presets are installed for MSL level-2 repositories from the central matrix `scripts/config/spec-kit-governance-presets.json`. The actual Spec Kit run remains manual, but the installed presets are prerequisite and evidence baseline.
 
 ## Jahrgangsplanung / Training-Year Planning
 

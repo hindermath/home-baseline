@@ -45,6 +45,7 @@
 - auszufuellende Checklisten aus `docs/secure-development/checklisten/CL_01_*.md` bis `CL_12_*.md`
 - Checklistensammelband `docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md`
 - mitgeltende Dokumente unter `docs/secure-development/mitgeltende-dokumente/`
+- installierte Governance-Presets aus `scripts/config/spec-kit-governance-presets.json`, nachgewiesen mit `specify preset list`
 - `N/A`-Begruendungen fuer nicht anwendbare Standards
 - Test- und Review-Nachweise
 - Bezug zu sicherer Entwicklung, MSL, Sandbox und Spec-Kit-Presets

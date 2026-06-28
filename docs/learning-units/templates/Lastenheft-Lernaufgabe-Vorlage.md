@@ -36,6 +36,7 @@
 - Lieferkette: <anwendbar oder N/A mit Begruendung>
 - Barrierefreiheit: <anwendbar oder N/A mit Begruendung>
 - Spec-Kit-Presets: <relevante Presets>
+- Preset-Nachweis: `specify preset list` zeigt die fuer dieses Repo installierten Governance-Presets oder eine begruendete Ausnahme
 
 ## Erwartete Artefakte / Expected Artefacts
 

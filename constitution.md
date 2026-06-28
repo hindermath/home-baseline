@@ -943,28 +943,31 @@ workspace family consists of:
 
 All six governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint is recorded as `Applicable`, `N/A`, or `Open` with rationale, evidence path, reviewer, residual risk, and follow-up for the current Spec-Kit run.
 
-This matrix is the authoritative source for preset IDs, versions, priorities,
-and scope. Any preset version or priority change MUST update the matching
-compact overview and installation snippets in `README.md`,
-`.specify/memory/constitution.md`, the four agent guidance files,
-`scripts/templates/speckit-workflow-section.md`, and the matching agent
-templates under `scripts/templates/` in the same change.
+The executable source of truth for preset installation is
+`scripts/config/spec-kit-governance-presets.json`. This constitution mirrors the
+same preset IDs, versions, priorities, and scope for governance review. Any
+preset version or priority change MUST update the central matrix first, then the
+matching compact overview in `README.md`, `.specify/memory/constitution.md`, the
+four agent guidance files, `scripts/templates/speckit-workflow-section.md`, and
+the matching agent templates under `scripts/templates/` in the same change.
 
 All six presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*` and are included in the
-`github/spec-kit` community preset catalog as of 2026-05-04. New Level-2
-projects SHOULD install the applicable subset during Spec-Kit initialization.
-For C#/.NET Level-2 projects, the default subset is all six presets unless the
-project documents a narrow reason to omit one. Existing C# Level-2 projects
+`github/spec-kit` community preset catalog as of 2026-05-04. New MSL Level-2
+projects SHOULD install presets from the central matrix during Spec-Kit
+initialization. For C#/.NET and learning Level-2 projects, the default subset is
+all six presets unless the project documents a narrow reason to omit one.
+Existing C# Level-2 projects
 `RiderProjects/TinyPl0`, `RiderProjects/TinyCalc`, `RiderProjects/TuiVision`,
 and `RiderProjects/InventarWorkerService` are the reference rollout set for
 all-six installation.
 
-Use the community catalog when supported by the local `specify` CLI. Use
-versioned GitHub ZIP URLs when a reproducible release pin is required. Commit
+Use `install-spec-kit-governance-presets.*` for normal installation so versions
+and priorities stay centralized in the matrix. Community catalog and direct
+single ZIP installs remain valid for diagnostics or smoke tests. Commit
 `.specify/presets/` and all generated agent-command updates when presets are
-project policy. Do not commit `.specify/presets/.cache/`. Preset updates MUST
-be verified with `specify preset list`, at least one `specify preset info`, and
+project policy. Do not commit `.specify/presets/.cache/`. Preset updates MUST be
+verified with `specify preset list`, at least one `specify preset info`, and
 where relevant `specify preset resolve`.
 
 Local working clones of the published preset repositories live under

@@ -39,7 +39,7 @@
 - **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Leitlinie Sichere Entwicklungs-Sandbox, Kompetenzprofile und Schulungsplan.
 - **Spec-Kit-Presets:** alle sechs Governance-Presets als Bewertungsrahmen.
 - **Evidenz:** Aufgaben-Lastenhefte, spätere `spec.md`, `plan.md`, `tasks.md`, Checklisten und Review-Notizen.
-- **Level-2-Arbeitsbasis:** Jedes Sprachrepo führt die Richtlinie, alle 12 Einzel-Checklisten, den Checklistensammelband, die mitgeltenden Dokumente und die Preset-Verzahnung lokal unter `docs/secure-development/`.
+- **Level-2-Arbeitsbasis:** Jedes Sprachrepo führt die Richtlinie, alle 12 Einzel-Checklisten, den Checklistensammelband, die mitgeltenden Dokumente und die Preset-Verzahnung lokal unter `docs/secure-development/`. Die sechs Governance-Presets sind aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar.
 
 **EN:** The full guideline and the six governance presets are the assessment frame for all later task intakes.
 

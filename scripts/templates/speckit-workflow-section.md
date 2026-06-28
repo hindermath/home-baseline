@@ -16,8 +16,9 @@ Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert u
 
 ### Governance-Presets
 
-Für Level-2-Projekte können Spec-Kit-Governance-Presets installiert werden.
-Das Standard-Set dieser Workspace-Familie ist:
+Für MSL-Level-2-Projekte werden Spec-Kit-Governance-Presets aus der zentralen
+Matrix `scripts/config/spec-kit-governance-presets.json` installiert. Das
+Standard-Set dieser Workspace-Familie ist:
 
 | Preset-ID | Name | Version | Priorität |
 |---|---|---:|---:|
@@ -29,15 +30,15 @@ Das Standard-Set dieser Workspace-Familie ist:
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 
 Alle sechs Presets sind seit 2026-05-04 im `github/spec-kit`
-Community-Katalog enthalten. C#/.NET-Level-2-Projekte verwenden
+Community-Katalog enthalten. C#/.NET- und Lern-Level-2-Projekte verwenden
 standardmäßig alle sechs Presets, sofern keine begründete Ausnahme dokumentiert
 ist. Nach Installation oder Update prüfen: `specify preset list`,
 `specify preset info <id>` und bei Template-Fragen `specify preset resolve
 <template>`. `.specify/presets/` wird committed, `.specify/presets/.cache/`
 nicht. Alle sechs Presets erzeugen oder verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begruendung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
-Bei jeder Preset-Version oder Prioritätsänderung müssen die Preset-Tabelle,
-Installationsbefehle, Constitution, Agenten-Dateien und Templates gemeinsam
-aktualisiert werden.
+Bei jeder Preset-Version oder Prioritätsänderung zuerst die zentrale Matrix
+aktualisieren und danach README-Tabellen, Constitution, Agenten-Dateien und
+Templates gemeinsam prüfen.
 
 ---
 
@@ -59,8 +60,9 @@ All spec artefacts are stored and versioned in the branch directory `specs/{bran
 
 ### Governance Presets
 
-Level-2 projects can install Spec-Kit governance presets. The standard set for
-this workspace family is:
+MSL level-2 projects install Spec Kit governance presets from the central matrix
+`scripts/config/spec-kit-governance-presets.json`. The standard set for this
+workspace family is:
 
 | Preset ID | Name | Version | Priority |
 |---|---|---:|---:|
@@ -72,11 +74,11 @@ this workspace family is:
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 
 All six presets are included in the `github/spec-kit` community catalog as of
-2026-05-04. C#/.NET Level-2 projects default to all six presets unless a
-justified exception is documented. After install or update, verify with
+2026-05-04. C#/.NET and learning level-2 projects default to all six presets
+unless a justified exception is documented. After install or update, verify with
 `specify preset list`, `specify preset info <id>`, and for template questions
 `specify preset resolve <template>`. Commit `.specify/presets/`, but not
 `.specify/presets/.cache/`. All six presets produce or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.
-For every preset version or priority change, update the preset table,
-installation commands, constitution, agent guidance files, and templates
+For every preset version or priority change, update the central matrix first,
+then review README tables, constitution, agent guidance files, and templates
 together.

@@ -60,9 +60,9 @@
 
 **EN:** The Secure Development Guideline is the binding anchor. Each learning unit requires visible references to the guideline, checklists, related documents, and the six Spec Kit governance presets. Non-applicable points are documented as `N/A` with rationale; open points are marked as `Open` with follow-up work.
 
-**DE:** Die Level-2-Sprachrepos führen diese Grundlage lokal unter `docs/secure-development/` mit: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Preset-Verzahnung. Dadurch können Lernende die in den Lastenheften genannten `CL_01` bis `CL_12` direkt bearbeiten und mit Spec-Kit-Artefakten verknüpfen.
+**DE:** Die Level-2-Sprachrepos führen diese Grundlage lokal unter `docs/secure-development/` mit: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Preset-Verzahnung. Zusätzlich sind die sechs Governance-Presets aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar. Dadurch können Lernende die in den Lastenheften genannten `CL_01` bis `CL_12` direkt bearbeiten und mit Spec-Kit-Artefakten verknüpfen.
 
-**EN:** The level-2 language repositories carry this baseline locally under `docs/secure-development/`: guideline, 12 individual checklists, compendium, related documents, and preset alignment. This lets learners work directly with `CL_01` through `CL_12` from the intake files and link them to Spec Kit artefacts.
+**EN:** The level-2 language repositories carry this baseline locally under `docs/secure-development/`: guideline, 12 individual checklists, compendium, related documents, and preset alignment. The six governance presets from the central matrix are installed as well and can be evidenced with `specify preset list`. This lets learners work directly with `CL_01` through `CL_12` from the intake files and link them to Spec Kit artefacts.
 
 ## Empfohlene Repo-Struktur / Recommended Repository Structure
 

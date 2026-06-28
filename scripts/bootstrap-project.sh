@@ -8,6 +8,8 @@
 #   --force              Overwrite existing files
 #   --no-agents          Skip AI agent initialization
 #   --no-speckit         Skip Spec-kit installation
+#   --no-governance-presets
+#                       Skip Spec-kit governance preset installation
 #   --no-remote          No remote repo create (local git init only)
 #   --no-release-please  Skip Release Please workflow setup
 #   --platform           github|gitlab
@@ -32,6 +34,7 @@ OPT_DRY_RUN=false
 OPT_FORCE=false
 OPT_NO_AGENTS=false
 OPT_NO_SPECKIT=false
+OPT_NO_GOVERNANCE_PRESETS=false
 OPT_NO_REMOTE=false
 OPT_NO_RELEASE_PLEASE=false
 OPT_PLATFORM="github"
@@ -80,6 +83,7 @@ while [ $# -gt 0 ]; do
     --force)      OPT_FORCE=true ;;
     --no-agents)          OPT_NO_AGENTS=true ;;
     --no-speckit)         OPT_NO_SPECKIT=true ;;
+    --no-governance-presets) OPT_NO_GOVERNANCE_PRESETS=true ;;
     --no-remote)          OPT_NO_REMOTE=true ;;
     --no-release-please)  OPT_NO_RELEASE_PLEASE=true ;;
     --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
@@ -169,7 +173,7 @@ fi
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=29
+TOTAL_STEPS=30
 SKIPPED=0
 PARTIAL_FAIL=false
 WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
@@ -382,6 +386,9 @@ if $OPT_PREVIEW; then
   for agent in "${SPECIFY_AGENTS[@]}"; do
     preview_action "EXEC" "specify init --here --force --integration ${agent}" "optional"
   done
+  if ! $OPT_NO_SPECKIT && ! $OPT_NO_GOVERNANCE_PRESETS; then
+    preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR}" "bei erkannter MSL"
+  fi
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"
@@ -921,7 +928,29 @@ if [ -f "${TARGET_DIR}/constitution.md" ] && [ -d "${TARGET_DIR}/.specify/memory
   cp "${TARGET_DIR}/constitution.md" "${TARGET_DIR}/.specify/memory/constitution.md"
 fi
 
-# ─── Step 20: Compliance check + STATS baseline ──────────────────────────────
+# ─── Step 20: Governance-Presets installieren ────────────────────────────────
+step_start "Governance-Presets installieren"
+if $OPT_NO_SPECKIT; then
+  step_skip "--no-speckit"
+elif $OPT_NO_GOVERNANCE_PRESETS; then
+  step_skip "--no-governance-presets"
+elif [ "${SDH_PREPARE_RESULT:-}" != "prepared" ]; then
+  step_skip "keine MSL-Vorbereitung"
+elif [ ! -d "${TARGET_DIR}/.specify" ]; then
+  step_skip "Spec Kit nicht initialisiert"
+elif [ ! -f "${SCRIPT_DIR}/install-spec-kit-governance-presets.sh" ]; then
+  step_warn "Preset-Installer nicht gefunden"
+else
+  preset_args=(--repo "$TARGET_DIR")
+  $OPT_FORCE && preset_args+=(--force)
+  if bash "${SCRIPT_DIR}/install-spec-kit-governance-presets.sh" "${preset_args[@]}"; then
+    step_done "aus zentraler Preset-Matrix"
+  else
+    step_warn "Governance-Preset-Installation fehlgeschlagen"
+  fi
+fi
+
+# ─── Step 21: Compliance check + STATS baseline ──────────────────────────────
 step_start "Compliance-Check + STATS-Baseline"
 if [ -f "${SCRIPT_DIR}/init-stats.sh" ]; then
   bash "${SCRIPT_DIR}/init-stats.sh" "$TARGET_DIR" >/dev/null 2>&1 || true
@@ -934,7 +963,7 @@ else
   step_skip "check-homogeneity.sh nicht gefunden"
 fi
 
-# ─── Step 21: Update ~/README.md ─────────────────────────────────────────────
+# ─── Step 22: Update ~/README.md ─────────────────────────────────────────────
 step_start "~/README.md aktualisieren"
 home_readme="${HOME}/README.md"
 short_target="${TARGET_DIR/#$HOME/\~}"

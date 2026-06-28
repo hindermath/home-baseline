@@ -9,6 +9,7 @@ param(
     [switch]$Force,
     [switch]$NoAgents,
     [switch]$NoSpeckit,
+    [switch]$NoGovernancePresets,
     [switch]$NoRemote,
     [switch]$NoReleasePlease,
     [string]$Platform = 'github',
@@ -27,7 +28,7 @@ $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 29
+$TotalSteps = 30
 $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
@@ -278,6 +279,9 @@ if ($Preview) {
     $null = $previewActions.Add(@('CHECK', "gh copilot --help", 'optional'))
     foreach ($agent in $SpecifyAgents) {
         $null = $previewActions.Add(@('EXEC', "specify init --here --force --integration $agent", 'optional'))
+    }
+    if (-not $NoSpeckit -and -not $NoGovernancePresets) {
+        $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir", 'bei erkannter MSL'))
     }
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
@@ -722,7 +726,30 @@ if ((Test-Path $projectConstitution) -and (Test-Path $specifyMemoryDir)) {
     Copy-Item -Path $projectConstitution -Destination (Join-Path $specifyMemoryDir 'constitution.md') -Force
 }
 
-# 20. Compliance check + STATS baseline
+# 20. Governance-Presets
+Step-Start "Governance-Presets installieren"
+if ($NoSpeckit) {
+    Step-Skip "-NoSpeckit"
+} elseif ($NoGovernancePresets) {
+    Step-Skip "-NoGovernancePresets"
+} elseif ($script:SdhPrepareResult -ne 'prepared') {
+    Step-Skip "keine MSL-Vorbereitung"
+} elseif (-not (Test-Path (Join-Path $TargetDir '.specify'))) {
+    Step-Skip "Spec Kit nicht initialisiert"
+} else {
+    $presetInstaller = Join-Path $ScriptDir 'install-spec-kit-governance-presets.ps1'
+    if (-not (Test-Path $presetInstaller)) {
+        Step-Warn "Preset-Installer nicht gefunden"
+    } else {
+        $presetArgs = @('-Repo', $TargetDir)
+        if ($Force) { $presetArgs += '-Force' }
+        & $presetInstaller @presetArgs
+        if ($LASTEXITCODE -eq 0) { Step-Done "aus zentraler Preset-Matrix" }
+        else { Step-Warn "Governance-Preset-Installation fehlgeschlagen" }
+    }
+}
+
+# 21. Compliance check + STATS baseline
 Step-Start "Compliance-Check + STATS-Baseline"
 $initStatsScript = Join-Path $ScriptDir 'init-stats.ps1'
 $checkScript = Join-Path $ScriptDir 'check-homogeneity.sh'

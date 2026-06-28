@@ -181,7 +181,7 @@ Depending on the class, some tasks can receive stronger focus.
 - Secure Programming Guideline
 - Secure Development Sandbox Guideline
 - 12 checklists and compendium
-- six Spec Kit governance presets
+- six installed Spec Kit governance presets
 - audit-ready documentation with status, evidence, and rationale
 
 ::: notes
@@ -205,7 +205,7 @@ Security comes from requirements, architecture, code, tests, operation, and evid
 
 ::: notes
 The presets do not provide a finished solution.
-They help keep important quality questions visible in Spec Kit artifacts.
+They are installed from the central matrix and help keep important quality questions visible in Spec Kit artifacts.
 :::
 
 

@@ -1145,6 +1145,20 @@ bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --primary-langua
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/RiderProjects -PrimaryLanguage C#
 ```
 
+Bei MSL-Level-2-Projekten installiert `bootstrap-project.*` nach der
+Spec-Kit-Initialisierung auch die Governance-Presets aus der zentralen Matrix
+[`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json).
+Die Matrix ist die einzige Stelle fuer aktuelle Preset-Versionen und
+Prioritaeten. Soll ein Projekt bewusst ohne diese Presets entstehen, kann
+`--no-governance-presets` / `-NoGovernancePresets` gesetzt werden.
+
+*For MSL level-2 projects, `bootstrap-project.*` also installs the governance
+presets from the central matrix
+[`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json)
+after Spec Kit initialization. The matrix is the single source for current preset
+versions and priorities. Use `--no-governance-presets` /
+`-NoGovernancePresets` only for a documented exception.*
+
 Fuer bestehende Level-2-Repositories synchronisiert `prepare-secure-development-hardening.*` dieselbe Basis, erzeugt bei Bedarf `Lastenheft_Secure-Development-Hardening.md` und pflegt `Lastenheft_Abarbeitungsreihenfolge.md` anhand des strikten Suchmusters `Lastenheft*.md`. Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert, manuelle Begruendungen bleiben erhalten.
 
 *For existing level-2 repositories, `prepare-secure-development-hardening.*` synchronizes the same baseline, creates `Lastenheft_Secure-Development-Hardening.md` when needed, and maintains `Lastenheft_Abarbeitungsreihenfolge.md` from the strict `Lastenheft*.md` pattern. Existing order files are protected: only the marked generated section is updated, while manual rationale remains preserved.*
@@ -2147,13 +2161,20 @@ instruction files are maintained in parallel, add `agent-parity-governance`.*
 
 #### Installation pro Projekt / Per-project installation
 
-Führe die folgenden Befehle im jeweiligen Projekt-Repository aus, also dort, wo
-bereits `.specify/` liegt. Die Installation ist bewusst projektlokal: Ein
-Projekt kann andere Presets oder Prioritäten haben als ein anderes Projekt.
+Die empfohlene Installation nutzt die zentrale Matrix
+[`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json).
+Führe den Installer im jeweiligen Projekt-Repository aus, also dort, wo bereits
+`.specify/` liegt. Die Installation ist bewusst projektlokal: Ein Projekt kann
+andere Presets oder Prioritäten haben als ein anderes Projekt. Neue
+Preset-Versionen werden nicht im Installer-Code gepflegt, sondern durch ein
+Update der Matrix.
 
-*Run the following commands inside the target project repository, where
-`.specify/` already exists. Installation is intentionally project-local: one
-project may use different presets or priorities than another project.*
+*The recommended installation uses the central matrix
+[`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json).
+Run the installer inside the target project repository, where `.specify/`
+already exists. Installation is intentionally project-local: one project may use
+different presets or priorities than another project. New preset versions are
+maintained in the matrix, not in installer code.*
 
 ```bash
 cd ~/Pfad/zu/deinem/Projekt
@@ -2161,13 +2182,24 @@ cd ~/Pfad/zu/deinem/Projekt
 # Falls noch nicht geschehen / if not done yet:
 specify init --here --force --integration codex
 
-# Governance-Presets installieren / install governance presets
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.0.zip --priority 10
-specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.5.0.zip --priority 20
-specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.2.0.zip --priority 30
-specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.4.0.zip --priority 40
-specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.2.0.zip --priority 50
-specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.3.0.zip --priority 60
+# Governance-Presets aus der zentralen Matrix installieren
+bash ~/scripts/install-spec-kit-governance-presets.sh --repo .
+```
+
+```powershell
+pwsh ~/scripts/install-spec-kit-governance-presets.ps1 -Repo .
+```
+
+Wenn eine neue Preset-Version freigegeben wird, zuerst die Matrix aktualisieren.
+Neue Level-2-Repos nutzen danach automatisch die neuere Version. Bestehende Repos
+werden bewusst aktualisiert:
+
+*When a new preset version is released, update the matrix first. New level-2
+repositories then use the newer version automatically. Existing repositories are
+updated deliberately:*
+
+```bash
+bash ~/scripts/install-spec-kit-governance-presets.sh --repo . --force
 ```
 
 `architecture-governance` v0.5.0 ergaenzt `BSI C3A` (Criteria enabling Cloud
@@ -2262,48 +2294,59 @@ git commit -m "chore: configure spec-kit governance presets"
 
 #### Community-Katalog oder direkte URL? / Community catalog or direct URL?
 
-Wenn dein `specify` die Community-Presets bereits aus dem Katalog auflösen kann,
-kannst du sie auch per Preset-ID installieren. Die direkte `--from`-Installation
-über die versionierte ZIP-URL ist aber die robusteste Variante, weil sie exakt
-einen bekannten Release-Stand verwendet.
+Für diese Workspace-Familie ist die zentrale Matrix der Standardweg. Sie nutzt
+versionierte ZIP-URLs und hält Preset-ID, Version, Priorität und Quelle an einer
+Stelle zusammen. Community-Katalog oder einzelne direkte URLs bleiben nützlich
+für Diagnose, Smoke-Tests oder ein einzelnes Preset, ersetzen aber nicht die
+Matrixpflege.
 
-*If your `specify` version can already resolve community presets from the catalog,
-you can install them by preset ID. The direct `--from` installation via the
-versioned ZIP URL is the most robust variant, because it uses one exact known
-release state.*
+*For this workspace family, the central matrix is the standard path. It uses
+versioned ZIP URLs and keeps preset ID, version, priority, and source together
+in one place. The community catalog or individual direct URLs are still useful
+for diagnostics, smoke tests, or one single preset, but they do not replace
+matrix maintenance.*
 
 ```bash
-# Katalog durchsuchen / search catalog
+# Standardweg / standard path
+bash ~/scripts/install-spec-kit-governance-presets.sh --repo .
+
+# Katalog durchsuchen / search catalog, if needed
 specify preset search governance
 
-# Falls vom lokalen specify unterstützt / if supported by the local specify version
+# Einzelinstallation, falls vom lokalen specify unterstützt
+# Single-preset install, if supported by the local specify version
 specify preset add security-governance --priority 10
 
-# Immer eindeutig / always explicit
+# Einzelner ZIP-Smoke-Test / single ZIP smoke test
 specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.0.zip --priority 10
 ```
 
 #### Presets aktualisieren oder entfernen / Update or remove presets
 
-Für ein Update installierst du den neuen Release-Tag erneut mit derselben
-Priorität. Prüfe danach die aufgelösten Templates und die Git-Änderungen. Wenn
+Für ein Update wird zuerst `scripts/config/spec-kit-governance-presets.json`
+aktualisiert. Danach werden bestehende Projekte bewusst mit `--force` /
+`-Force` aus der Matrix nachgezogen und anschließend mit `specify preset list`,
+`specify preset info <id>` und `specify preset resolve <template>` geprüft. Wenn
 ein Preset für ein Projekt nicht passt, deaktiviere es zuerst statt es sofort zu
 löschen. So bleibt die Entscheidung nachvollziehbar.
-Bei jeder neuen Preset-Version müssen mindestens die kompakte Übersicht oben,
-die ZIP-Installationsbefehle, `constitution.md`,
-`.specify/memory/constitution.md`, die vier Agenten-Dateien und die
-entsprechenden `scripts/templates/*`-Vorlagen gemeinsam geprüft und aktualisiert
-werden.
+Bei jeder neuen Preset-Version müssen Matrix, kompakte Übersicht,
+`constitution.md`, `.specify/memory/constitution.md`, die vier Agenten-Dateien
+und die entsprechenden `scripts/templates/*`-Vorlagen gemeinsam geprüft und
+aktualisiert werden.
 
-*To update a preset, install the new release tag again with the same priority.
-Then verify the resolved templates and Git changes. If a preset does not fit a
+*To update presets, update `scripts/config/spec-kit-governance-presets.json`
+first. Existing projects are then deliberately refreshed from the matrix with
+`--force` / `-Force` and verified with `specify preset list`, `specify preset
+info <id>`, and `specify preset resolve <template>`. If a preset does not fit a
 project, disable it first instead of deleting it immediately. This keeps the
-decision traceable. For every new preset version, at least the compact overview
-above, the ZIP installation commands, `constitution.md`,
-`.specify/memory/constitution.md`, the four agent guidance files, and the
-matching `scripts/templates/*` templates must be reviewed and updated together.*
+decision traceable. For every new preset version, review and update the matrix,
+compact overview, `constitution.md`, `.specify/memory/constitution.md`, the four
+agent guidance files, and the matching `scripts/templates/*` templates together.*
 
 ```bash
+# Aus der aktualisierten Matrix nachziehen / refresh from updated matrix
+bash ~/scripts/install-spec-kit-governance-presets.sh --repo . --force
+
 # Vorübergehend deaktivieren / temporarily disable
 specify preset disable agent-parity-governance
 

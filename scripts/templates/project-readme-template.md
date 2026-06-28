@@ -76,6 +76,7 @@ Nutze deine KI-Agenten direkt im Terminal, wenn du feststeckst:
 - [CONSTITUTION.md](./constitution.md) — Die Regeln unseres Workspaces.
 - [STATS.md](./STATS.md) — Statistiken über dieses Projekt.
 - [docs/secure-development/](./docs/secure-development/) — Wiederverwendbare sichere-Entwicklung-Basis inkl. mitgeltender Dokumente und Verzahnungsdatei zu Checklisten und Spec-Kit-Presets, wenn dieses Level-2-Projekt mit einer MSL-Primärsprache vorbereitet wurde.
+- [.specify/presets/](./.specify/presets/) — Projektlokal installierte Spec-Kit-Governance-Presets, falls dieses Level-2-Projekt mit der zentralen Preset-Matrix vorbereitet wurde.
 - [Lastenheft_Abarbeitungsreihenfolge.md](./Lastenheft_Abarbeitungsreihenfolge.md) — Sichtbare Reihenfolge der `Lastenheft*.md`-Dateien fuer spaetere Spec-Kit-Laeufe, falls vorhanden.
 
 ---

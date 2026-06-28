@@ -181,7 +181,7 @@ Je nach Klasse können einzelne Aufgaben stärker gewichtet werden.
 - Leitlinie Sichere Programmierung
 - Leitlinie Sichere Entwicklungs-Sandbox
 - 12 Checklisten und Sammelband
-- sechs Spec-Kit-Governance-Presets
+- sechs installierte Spec-Kit-Governance-Presets
 - Auditfähige Dokumentation mit Status, Evidenz und Begründung
 
 ::: notes
@@ -205,7 +205,7 @@ Sicherheit entsteht aus Anforderungen, Architektur, Code, Tests, Betrieb und Nac
 
 ::: notes
 Die Presets liefern keine fertige Lösung.
-Sie sorgen dafür, dass wichtige Qualitätsfragen in Spec-Kit-Artefakten sichtbar bleiben.
+Sie werden aus der zentralen Matrix installiert und sorgen dafür, dass wichtige Qualitätsfragen in Spec-Kit-Artefakten sichtbar bleiben.
 :::
 
 
