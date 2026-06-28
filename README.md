@@ -1106,6 +1106,9 @@ Die Lernmaterialien unter [`docs/learning-units/`](docs/learning-units/README.md
 Die erste Reihe ist **Secure CaseTracker** für die fiktive Übungsfirma **EuFPA – Europäische Firma Programmiert Alles**. Sie ist sprachneutral für C#, Go, Java, Python, Rust und Swift angelegt und ordnet jede Aufgabe sichtbar den Fachrichtungen Anwendungsentwicklung, Systemintegration sowie Daten- und Prozessanalyse zu.
 
 *The first series is **Secure CaseTracker** for the fictional training company **EuFPA – European Company Programs Everything**. It is language-neutral for C#, Go, Java, Python, Rust, and Swift and visibly maps each task to Application Development, System Integration, and Data and Process Analysis.*
+Für Lernende ab dem 2. Lehrjahr sind zusätzlich **Secure CaseTracker v2** und **Secure InventoryHub** vorbereitet. CaseTracker v2 vertieft die vorhandene Reihe in Richtung Architektur, Persistenz, Service-Verträge, Autorisierung, Audit-Logging, CI, Sandbox, Betrieb und MSL-Vergleich. InventoryHub ist ein eigenständiger Praxisfall zu Inventar, Softwareständen, Rollen, Datenqualität, Patch-/Wartungsstatus, SBOM-Bezug, Tests und Betriebsnachweisen.
+
+*For learners from the second training year onward, **Secure CaseTracker v2** and **Secure InventoryHub** are prepared as additional series. CaseTracker v2 deepens the existing series toward architecture, persistence, service contracts, authorization, audit logging, CI, sandbox, operation, and MSL comparison. InventoryHub is a standalone practical case about inventory, software versions, roles, data quality, patch/maintenance state, SBOM relation, tests, and operational evidence.*
 
 Die zugehörigen Markdown-Präsentationen liegen unter [`docs/learning-units/presentations/`](docs/learning-units/presentations/) und sind für eine spätere Pandoc-Umwandlung nach PowerPoint vorbereitet. Sie dienen als Einführung in EuFPA, Secure CaseTracker, MSL, Sandbox, Spec Kit und die manuell gestarteten Level-2-Läufe.
 
