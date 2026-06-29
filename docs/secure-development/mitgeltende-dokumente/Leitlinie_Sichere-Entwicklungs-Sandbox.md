@@ -1,7 +1,7 @@
 # Leitlinie Sichere Entwicklungs-Sandbox / Secure Development Sandbox Guideline
 
-**Stand / Date:** 2026-06-26  
-**Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten / IT specialist apprentices, developers, reviewers, and AI agents  
+**Stand / Date:** 2026-06-26
+**Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten / IT specialist apprentices, developers, reviewers, and AI agents
 **Dokumenttyp / Document type:** Mitgeltendes Dokument zur Richtlinie Sichere Entwicklung / Related document for the Secure Development Guideline
 
 ## Zweck / Purpose
