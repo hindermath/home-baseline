@@ -29,6 +29,16 @@
 - Positive Aussagen zur Sicherheit, Qualität oder Compliance brauchen konkrete Evidenz.
 - Nicht anwendbare Punkte werden als `N/A` mit Begründung dokumentiert.
 
+## Jahr-2-Baseline und Track-Ableitung / Year-2 Baseline and Track Derivation
+
+**DE:** Die Jahr-3-Tracks starten aus einem abgeschlossenen Jahr-2-Stand, nicht aus einem leeren Projekt. Der empfohlene Bezugspunkt ist der Tag `learning/year-2-complete` im jeweiligen Sprachrepo. Der Jahr-2-Stand dokumentiert `YEAR2_BASELINE.md`; ein später abgeleiteter Track dokumentiert `TRACK_BASELINE.md` mit Herkunftsrepo, Herkunfts-Commit, Sprache, Track-Ziel, übernommenen Nachweisen und bewusst offenen Punkten.
+
+**EN:** The year-3 tracks start from a completed year-2 state, not from an empty project. The recommended reference point is the tag `learning/year-2-complete` in the respective language repository. The year-2 state documents `YEAR2_BASELINE.md`; a later derived track documents `TRACK_BASELINE.md` with source repository, source commit, language, track target, inherited evidence, and intentionally open points.
+
+**DE:** Ein GitHub-Fork ist möglich, wenn die Plattformhistorie sichtbar bleiben soll. Für die Ausbildung reicht häufig eine geschützte Baseline mit Tag und ein abgeleitetes Track-Repo oder eine Track-Kopie. Es werden nur die wirklich benötigten Track-/Sprachkombinationen vorbereitet.
+
+**EN:** A GitHub fork is possible when the platform history should stay visible. For training, a protected baseline with a tag and a derived track repository or track copy is often sufficient. Only the actually needed track/language combinations are prepared.
+
 ## Abgrenzung zu Jahr 1 und Jahr 2 / Relation to Earlier Years
 
 **DE:** Jahr 1 vermittelt Grundlagen und einfache Nachweise. Jahr 2 vertieft Architektur, Persistenz, Schnittstellen, Tests und Betrieb. Jahr 3 trennt die Arbeit nach Spezialisierung und verlangt stärkere Trade-off-Begründungen, Review-Nachweise und Abschlussbewertungen.

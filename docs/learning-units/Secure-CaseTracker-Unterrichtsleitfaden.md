@@ -1,6 +1,6 @@
 # Secure CaseTracker Unterrichtsleitfaden / Secure CaseTracker Teaching Guide
 
-**Stand / Date:** 2026-06-27
+**Stand / Date:** 2026-06-29
 **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 1. Lehrjahr, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices from year 1 onward, trainers, reviewers, AI agents
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -21,6 +21,7 @@
 
 | Schritt | Was gelernt wird | Warum diese Stelle |
 |---:|---|---|
+| 00 | Sprachrepo-Projekt-Scaffold | Ohne lauffähige Projekt-, Build-, Test- und Preset-Basis starten spätere Aufgaben unsauber. |
 | 01 | Auftrag, Scope, Rollen, erste Datenschutzannahmen | Ohne klaren Auftrag werden Sicherheitsprüfungen beliebig. |
 | 02 | Domänenmodell und Zustände | Ein sicheres Programm braucht ein klares fachliches Modell. |
 | 03 | Eingabevalidierung und Trust Boundaries | Viele Sicherheitsfehler beginnen an ungeprüften Eingaben. |
@@ -32,6 +33,7 @@
 | 09 | Sandbox und agentische Entwicklung | KI-Agenten brauchen klare technische und organisatorische Grenzen. |
 | 10 | Prozessanalyse und Kennzahlen | Kennzahlen brauchen Datenqualität, Datenschutz und Aussagegrenzen. |
 | 11 | Spec-Kit-Review und Abschluss | Ergebnisse müssen prüfbar und kundenverständlich zusammengeführt werden. |
+| 12 | Jahr-2-Baseline und Track-Ableitung | Jahr 3 soll aus einem belastbaren Jahr-2-Stand starten, nicht aus einem leeren Projekt. |
 
 ## Fachrichtungsnutzung / Use by Specialization
 
@@ -39,9 +41,9 @@
 
 | Fachrichtung | Besonders wichtige Aufgaben | Begründung |
 |---|---|---|
-| Anwendungsentwicklung | 01, 02, 03, 05, 06, 07, 11 | Diese Aufgaben behandeln Anforderungen, Modell, Validierung, Berechtigungen, Persistenz, Tests und Review. |
-| Systemintegration | 01, 07, 08, 09, 11 | Diese Aufgaben behandeln reproduzierbare Umgebung, Toolchains, Supply Chain, Sandbox, Secrets und Nachweise. |
-| Daten- und Prozessanalyse | 01, 02, 04, 06, 10, 11 | Diese Aufgaben behandeln Datenarten, Datenschutz, Datenqualität, Auswertung und Aussagegrenzen. |
+| Anwendungsentwicklung | 00, 01, 02, 03, 05, 06, 07, 11, 12 | Diese Aufgaben behandeln Projektbasis, Anforderungen, Modell, Validierung, Berechtigungen, Persistenz, Tests, Review und spätere Track-Ableitung. |
+| Systemintegration | 00, 01, 07, 08, 09, 11, 12 | Diese Aufgaben behandeln reproduzierbare Umgebung, Toolchains, Supply Chain, Sandbox, Secrets, Nachweise und Baseline-Fähigkeit. |
+| Daten- und Prozessanalyse | 00, 01, 02, 04, 06, 10, 11, 12 | Diese Aufgaben behandeln Projektbasis, Datenarten, Datenschutz, Datenqualität, Auswertung, Aussagegrenzen und spätere Track-Ableitung. |
 
 **EN:** The series can be taught jointly. Depending on the class or learner group, tasks can be weighted differently.
 
@@ -80,8 +82,8 @@
 
 | Variante | Umfang | Nutzung |
 |---|---|---|
-| Kompakt | 11 Einheiten | Orientierung, Grundlagen, erste Reviews |
-| Standard | 11 Aufgaben plus Reviewblöcke | vollständige Spec-Kit-Vorbereitung |
+| Kompakt | 11 fachliche Einheiten plus `00` nach Bedarf | Orientierung, Grundlagen, erste Reviews |
+| Standard | `00` bis `11` plus Reviewblöcke | vollständige Spec-Kit-Vorbereitung |
 | Vertieft | Aufgaben je Sprache wiederholen | Vergleich von C#, Go, Java, Python, Rust und Swift |
 
 ## Durchführung mit Level 1 und Level 2 / Execution with Level 1 and Level 2
@@ -100,9 +102,9 @@
 
 **EN:** The Spec Kit runs are started later and manually per Level 2 repository. C# is planned as the first reference path. Go, Java, Python, Rust, and Swift can follow as comparison paths. This order helps create a well-understood reference first and then makes differences between toolchains, validation, dependency audits, and secure-coding rules visible.
 
-**DE:** Wichtig: Eine vorbereitete Struktur ist noch kein ausgeführter Spec-Kit-Lauf. Ein Level-2-Repo gilt erst dann als bearbeitet, wenn Lernende oder Lehrende dort bewusst ein konkretes Aufgaben-Lastenheft `01` bis `11` mit `/speckit-specify` gestartet und die entstehenden Artefakte geprüft haben.
+**DE:** Wichtig: Eine vorbereitete Struktur ist noch kein ausgeführter Spec-Kit-Lauf. Ein Level-2-Repo gilt erst dann als bearbeitet, wenn Lernende oder Lehrende dort bewusst ein konkretes Aufgaben-Lastenheft `00` bis `12` mit `/speckit-specify` gestartet und die entstehenden Artefakte geprüft haben. Neue oder leere Sprachrepos beginnen mit `00`; fachliche Jahr-1-Arbeit beginnt mit `01`; `12` gehört zur späteren Jahr-2-Baseline vor Jahr 3.
 
-**EN:** Important: A prepared structure is not yet an executed Spec Kit run. A Level 2 repository counts as worked on only after learners or instructors deliberately start a concrete task intake `01` to `11` with `/speckit-specify` and review the resulting artifacts.
+**EN:** Important: A prepared structure is not yet an executed Spec Kit run. A Level 2 repository counts as worked on only after learners or instructors deliberately start a concrete task intake `00` to `12` with `/speckit-specify` and review the resulting artifacts. New or empty language repositories start with `00`; functional year-1 work starts with `01`; `12` belongs to the later year-2 baseline before year 3.
 
 ## Rolle von Spec Kit / Role of Spec Kit
 

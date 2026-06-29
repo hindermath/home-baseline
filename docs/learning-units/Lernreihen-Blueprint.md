@@ -67,6 +67,16 @@ Jede Lernreihe enthaelt mindestens:
 
 **EN:** The six governance presets are installed for MSL level-2 repositories from the central matrix `scripts/config/spec-kit-governance-presets.json`. The actual Spec Kit run remains manual, but the installed presets are prerequisite and evidence baseline.
 
+## Projekt-Scaffold und Baseline-Ableitung / Project Scaffold and Baseline Derivation
+
+**DE:** Neue Sprachrepos starten mit einem technischen `00`-Intake. Dieser Intake erzeugt oder prüft nur ein minimales lauffähiges Projekt, Build-/Testbefehle, Secure-Development-Basis und installierte Presets. Fachliche Aufgaben dürfen nicht stillschweigend ein Projektgerüst erzeugen, wenn dafür ein eigener Startlauf vorgesehen ist.
+
+**EN:** New language repositories start with a technical `00` intake. This intake only creates or verifies a minimal runnable project, build/test commands, the secure-development baseline, and installed presets. Functional tasks must not silently create a project scaffold when a separate scaffold run is defined.
+
+**DE:** Fortgeschrittene Reihen ab dem 2. und 3. Lehrjahr bauen auf einem vorhandenen Sprachrepo auf. Für Spezialisierungen im 3. Lehrjahr wird der fertige Jahr-2-Stand mit einem eindeutigen Tag wie `learning/year-2-complete` gesichert. Abgeleitete Track-Repos oder Track-Kopien dokumentieren ihre Herkunft mit `TRACK_BASELINE.md`; der Jahr-2-Stand dokumentiert sich mit `YEAR2_BASELINE.md`.
+
+**EN:** Advanced series from year 2 and year 3 onward build on an existing language repository. For third-year specializations, the completed year-2 state is preserved with a clear tag such as `learning/year-2-complete`. Derived track repositories or track copies document their origin with `TRACK_BASELINE.md`; the year-2 state documents itself with `YEAR2_BASELINE.md`.
+
 ## Jahrgangsplanung / Training-Year Planning
 
 | Lehrjahr / Year | Typischer Fokus / Typical Focus | Erwartete Tiefe / Expected Depth |

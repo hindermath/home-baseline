@@ -35,6 +35,12 @@
 
 **EN:** This series is currently prepared only as canonical level-0 learning material. Level-1 and level-2 repositories will be created later in a separate step. Later level-2 paths use C#, Go, Java, Python, Rust, and Swift and carry the secure-development baseline locally.
 
+## Readiness vor Jahr 2 / Readiness Before Year 2
+
+**DE:** Jahr 2 setzt auf einem bestehenden Jahr-1-Sprachrepo auf. Wenn ein Sprachrepo noch leer ist oder kein minimales Projekt enthält, wird zuerst der Secure-CaseTracker-Startlauf `00` ausgeführt. Die fachlichen Jahr-2-Intakes erzeugen kein Projektgerüst, sondern erweitern einen vorhandenen Sprachpfad. Der fertige Jahr-2-Stand soll später als Tag `learning/year-2-complete` gesichert werden.
+
+**EN:** Year 2 builds on an existing year-1 language repository. If a language repository is still empty or has no minimal project, the Secure CaseTracker scaffold run `00` is executed first. The functional year-2 intakes do not create the project scaffold; they extend an existing language path. The completed year-2 state should later be preserved as the tag `learning/year-2-complete`.
+
 ## Aufgabenstruktur / Task Structure
 
 | Nr. | Lerneinheit | Primär geeignet für |

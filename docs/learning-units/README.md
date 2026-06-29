@@ -87,6 +87,12 @@ Die generische [Git-Start-Anleitung für Lernende](GIT-START-FUER-LERNENDE.md) w
 
 **EN:** Codex or other AI agents may prepare this structure, but the actual Spec Kit runs are started later and deliberately by instructors or learners. C# is planned as the first reference path; the other MSL languages then serve as comparison and deeper practice paths.
 
+## Scaffold, Baseline und Tracks / Scaffold, Baseline, and Tracks
+
+**DE:** Sprachrepos starten mit einem technischen `00`-Intake, bevor fachliche Aufgaben beginnen. Dieser Lauf prüft minimales Projekt, Build/Test, Secure-Development-Basis und Governance-Presets. Fortgeschrittene Secure-CaseTracker-Reihen ab Jahr 2 erweitern den vorhandenen Sprachpfad. Jahr 3 leitet AE-, SI- oder DPA-Tracks aus dem abgeschlossenen Jahr-2-Stand mit Tag `learning/year-2-complete` ab.
+
+**EN:** Language repositories start with a technical `00` intake before functional tasks begin. This run verifies the minimal project, build/test setup, secure-development baseline, and governance presets. Advanced Secure CaseTracker series from year 2 onward extend the existing language path. Year 3 derives AE, SI, or DPA tracks from the completed year-2 state tagged as `learning/year-2-complete`.
+
 ## Verbindung zu Lastenheften / Relation to Intake Files
 
 **DE:** Die fachliche und didaktische Erklärung liegt in diesem Verzeichnis. Die später einzeln ausführbaren Spec-Kit-Intakes liegen hier ebenfalls als `Lastenheft_*.md`. Dadurch bleiben Lernmaterial, Unterrichtsleitfaden, Präsentationen und Intake-Dateien zusammen und sind zusätzlich über die Reihenbeschreibungen auffindbar.

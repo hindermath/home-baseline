@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-06-29
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices, trainers, reviewers, AI agents
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -61,27 +61,27 @@
 
 **EN:** The Level 2 names identify the local folders. The GitHub repository slugs are created lowercase by the bootstrap, for example `securecasetracker-csharp`.
 
-**DE:** C# ist als erster manueller Referenzpfad vorgesehen. Go, Java, Python, Rust und Swift folgen als Vergleichs- und Vertiefungspfade. Codex bereitet diese Struktur nur vor; die Spec-Kit-Läufe starten später manuell durch Lehrende oder Lernende.
+**DE:** C# ist als erster manueller Referenzpfad vorgesehen. Go, Java, Python, Rust und Swift folgen als Vergleichs- und Vertiefungspfade. Codex bereitet diese Struktur nur vor; die Spec-Kit-Läufe starten später manuell durch Lehrende oder Lernende. Vor Aufgabe `01` gibt es den technischen Startlauf `00`; nach dem Abschluss von Jahr 2 gibt es den Baseline- und Track-Ableitungslauf `12`.
 
-**EN:** C# is planned as the first manual reference path. Go, Java, Python, Rust, and Swift follow as comparison and deeper practice paths. Codex only prepares this structure; the Spec Kit runs are started later and manually by instructors or learners.
+**EN:** C# is planned as the first manual reference path. Go, Java, Python, Rust, and Swift follow as comparison and deeper practice paths. Codex only prepares this structure; the Spec Kit runs are started later and manually by instructors or learners. Before task `01`, there is the technical scaffold run `00`; after year 2, there is the baseline and track derivation run `12`.
 
 ## Aufgabenstellung / Task
 
-**DE:** Erstelle keine Implementierung. Nutze dieses Lastenheft als Gesamtlandkarte. Spätere Spec-Kit-Läufe starten jeweils mit einem der Aufgaben-Lastenhefte `01` bis `11`.
+**DE:** Erstelle keine Implementierung. Nutze dieses Lastenheft als Gesamtlandkarte. Spätere Spec-Kit-Läufe starten jeweils mit einem der Aufgaben-Lastenhefte `00` bis `12`. `00` bereitet nur das Sprachrepo vor, `01` bis `11` bearbeiten die fachliche Jahr-1-Reihe, und `12` sichert später den Jahr-2-Stand als Grundlage für Jahr 3.
 
-**EN:** Do not create an implementation from this intake. Use it as the overall map. Later Spec Kit runs start with one of the task intake files `01` to `11`.
+**EN:** Do not create an implementation from this intake. Use it as the overall map. Later Spec Kit runs start with one of the task intake files `00` to `12`. `00` only prepares the language repository, `01` through `11` cover the functional year-1 series, and `12` later preserves the year-2 state as the basis for year 3.
 
 ## Erwartete Artefakte / Expected Artifacts
 
 - Übersicht in `docs/learning-units/Secure-CaseTracker-Lernreihe.md`.
-- Einzelne Aufgaben-Intakes `docs/learning-units/Lastenheft_Secure-CaseTracker_01_*.md` bis `docs/learning-units/Lastenheft_Secure-CaseTracker_11_*.md`.
+- Einzelne Aufgaben-Intakes `docs/learning-units/Lastenheft_Secure-CaseTracker_00_*.md` bis `docs/learning-units/Lastenheft_Secure-CaseTracker_12_*.md`.
 - Sichtbare Reihenfolge in `Lastenheft_Abarbeitungsreihenfolge.md`.
 - Späteres Level-1-Koordinations-Repo mit Statusmatrix und sechs Level-2-Sprach-Repos.
 - Keine Feature-Branch-Erzeugung in diesem Schritt.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Alle elf Aufgaben-Lastenhefte existieren.
+- Alle dreizehn Aufgaben-Lastenhefte existieren.
 - Jedes Aufgaben-Lastenheft enthält Fachrichtungsbezug, Richtlinienbezug, Sicherheitsanforderungen, Datenschutzanforderungen, Tests, Evidenz und Copy-Paste-Prompt.
 - Deutsche Texte verwenden Umlaute und `ß`; Dateinamen bleiben ASCII.
 - DE-first, EN-second ist sichtbar.
@@ -89,5 +89,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Lege auch noch keinen Level-1-/Level-2-Arbeitsraum an. Wähle stattdessen in einem bereits vorbereiteten Sprach-Repo das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe und erstelle dafür eine fokussierte Feature-Spezifikation.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Lege auch noch keinen Level-1-/Level-2-Arbeitsraum an. Wähle stattdessen in einem bereits vorbereiteten Sprach-Repo das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe. Bei einem neuen oder leeren Sprachrepo beginne mit `00`; bei fachlicher Jahr-1-Arbeit beginne mit `01`; für die spätere Jahr-2-Baseline nutze `12`.
 ```

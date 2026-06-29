@@ -48,6 +48,7 @@
 | 2026-06-28 | Secure-Development-Hardening-Specify-Prompt | 46 | — | — | Zentrale Secure-Development-Hardening-Lastenheft-Vorlage um kopierbaren `/speckit-specify`-Prompt fuer spaetere separate Haertungslaeufe ergaenzt |
 | 2026-06-28 | Lernreihen-ab-2-Lehrjahr | 46 | — | — | Secure CaseTracker v2 und Secure InventoryHub als vollstaendige Level-0-Lernreihen ab dem 2. Lehrjahr vorbereitet: je Reihenbeschreibung, Unterrichtsleitfaden, Master-Lastenheft, zehn einzeln startbare Aufgaben-Intakes, DE/EN-Praesentation, Register-/README-Verankerung und klare Grenze ohne Level-1-/Level-2-Repo-Erzeugung |
 | 2026-06-28 | Lernreihen-ab-3-Lehrjahr | 46 | — | — | Secure CaseTracker Professional Tracks als 3.-Lehrjahr-Spezialisierung vorbereitet: Dachreihe, Master-Lastenheft, Application/Operations/Data-Process-Tracks fuer AE/SI/DPA, je Unterrichtsleitfaden, Master-Lastenheft, zehn Aufgaben-Intakes, DE/EN-Praesentationen und README-/Register-Verankerung ohne Level-1-/Level-2-Repo-Erzeugung |
+| 2026-06-29 | Secure-CaseTracker-Scaffold-und-Baseline-Modell | 47 | — | — | Secure-CaseTracker-Lernreihe um technischen Startlauf `00`, Jahr-2-Baseline-/Track-Ableitung `12`, Tag `learning/year-2-complete`, `YEAR2_BASELINE.md` und `TRACK_BASELINE.md` erweitert; README, Blueprint, Unterrichtsleitfaden, Jahr-2-/Jahr-3-Doku und Abarbeitungslogik nachgezogen |
 
 ---
 

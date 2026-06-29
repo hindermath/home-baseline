@@ -84,6 +84,12 @@
 
 **EN:** Each Level 2 repository uses the same functional intakes. The functional rules stay the same; only implementation, toolchain, tests, and language-specific security checks differ. Spec Kit runs are not started automatically but later run manually per repository and task intake.
 
+## Technischer Startlauf 00 / Technical Scaffold Run 00
+
+**DE:** Vor der ersten fachlichen Lerneinheit führt jedes Sprachrepo den technischen Startlauf `00` aus. Dieser Lauf erzeugt oder prüft nur das minimale Sprachprojekt, Build/Test-Befehle, Secure-Development-Basis und installierte Governance-Presets. Fachliche CaseTracker-Logik beginnt erst mit Aufgabe `01`.
+
+**EN:** Before the first functional learning unit, each language repository runs the technical scaffold task `00`. This run only creates or verifies the minimal language project, build/test commands, the secure-development baseline, and installed governance presets. Functional CaseTracker logic starts with task `01`.
+
 ## Statusmatrix-Vorlage / Status Matrix Template
 
 **DE:** Das spätere Level-1-Repo kann diese Matrix als Startpunkt verwenden:
@@ -103,6 +109,7 @@
 
 | Nr. | Lerneinheit | Primär geeignet für |
 |---:|---|---|
+| 00 | Sprachrepo-Projekt-Scaffold | AE, SI, DPA |
 | 01 | Kundenauftrag und Scope | AE |
 | 02 | Domänenmodell und Zustände | AE |
 | 03 | Eingabevalidierung und Trust Boundaries | AE |
@@ -114,6 +121,7 @@
 | 09 | Sandbox und agentische Entwicklung | SI |
 | 10 | Prozessanalyse und Kennzahlen | DPA |
 | 11 | Spec-Kit-Review und Abschluss | AE, SI, DPA |
+| 12 | Jahr-2-Baseline und Track-Ableitung | AE, SI, DPA |
 
 ## Sprachspezifische Adapterhinweise / Language-Specific Adapter Notes
 
