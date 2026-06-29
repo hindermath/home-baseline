@@ -133,6 +133,7 @@ function Write-SdhRenderedTemplate {
 function Get-SdhOrderRank {
     param([string]$Name)
     $n = $Name.ToLowerInvariant()
+    if ($n -match 'rl-se.*checklist.*selbstpruefung|checklist.*selbstpruefung') { return 45 }
     if ($n -like '*secure-development-hardening*') { return 50 }
     if ($n -match 'constitution|governance|baseline|homogeneity') { return 10 }
     if ($n -match 'migration|build|ci|cicd|tool|terminalgui|rename') { return 20 }
@@ -148,6 +149,7 @@ function Get-SdhOrderGroup {
         20 { 'Migration/Tooling' }
         30 { 'Kernlogik/Runtime' }
         40 { 'UI/A11Y/Dokumentation' }
+        45 { 'RL-SE-/Checklist-Selbstpruefung' }
         50 { 'Secure-Development-Hardening' }
         default { 'Weitere Anforderungen' }
     }

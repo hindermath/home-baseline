@@ -93,6 +93,10 @@ Die generische [Git-Start-Anleitung für Lernende](GIT-START-FUER-LERNENDE.md) w
 
 **EN:** Language repositories start with a technical `00` intake before functional tasks begin. This run verifies the minimal project, build/test setup, secure-development baseline, and governance presets. Advanced Secure CaseTracker series from year 2 onward extend the existing language path. Year 3 derives AE, SI, or DPA tracks from the completed year-2 state tagged as `learning/year-2-complete`.
 
+**DE:** Jedes Level-2-Sprachrepo fuehrt zusaetzlich einen separaten `Lastenheft_RL-SE-Checklist-Selbstpruefung.md`-Intake. Dieser prueft Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets als Selbstpruefung vor spaeterer Haertung. Er gilt unabhaengig von MSL; MSL-Status wird als eigener Pruefpunkt dokumentiert.
+
+**EN:** Each level-2 language repository also carries a separate `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` intake. It checks the secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets as a self-assessment before later hardening. It applies independently of MSL; MSL status is documented as its own checkpoint.
+
 ## Verbindung zu Lastenheften / Relation to Intake Files
 
 **DE:** Die fachliche und didaktische Erklärung liegt in diesem Verzeichnis. Die später einzeln ausführbaren Spec-Kit-Intakes liegen hier ebenfalls als `Lastenheft_*.md`. Dadurch bleiben Lernmaterial, Unterrichtsleitfaden, Präsentationen und Intake-Dateien zusammen und sind zusätzlich über die Reihenbeschreibungen auffindbar.

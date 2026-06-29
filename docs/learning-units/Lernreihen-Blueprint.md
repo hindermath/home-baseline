@@ -67,6 +67,10 @@ Jede Lernreihe enthaelt mindestens:
 
 **EN:** The six governance presets are installed for MSL level-2 repositories from the central matrix `scripts/config/spec-kit-governance-presets.json`. The actual Spec Kit run remains manual, but the installed presets are prerequisite and evidence baseline.
 
+**DE:** Jede Lernreihe plant fuer Level-2-Repos einen separaten RL-SE-/Checklist-Selbstpruefungs-Intake vor spaeterer Haertung ein. Dieser Intake gilt unabhaengig von MSL und verlangt eine Evidenzmatrix mit `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp`.
+
+**EN:** Each learning series plans a separate RL-SE/checklist self-assessment intake for level-2 repositories before later hardening. This intake applies independently of MSL and requires an evidence matrix with `Applicable`, `AlreadySatisfied`, `N/A`, `Open`, and `FollowUp`.
+
 ## Projekt-Scaffold und Baseline-Ableitung / Project Scaffold and Baseline Derivation
 
 **DE:** Neue Sprachrepos starten mit einem technischen `00`-Intake. Dieser Intake erzeugt oder prüft nur ein minimales lauffähiges Projekt, Build-/Testbefehle, Secure-Development-Basis und installierte Presets. Fachliche Aufgaben dürfen nicht stillschweigend ein Projektgerüst erzeugen, wenn dafür ein eigener Startlauf vorgesehen ist.

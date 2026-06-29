@@ -184,6 +184,7 @@ sdh_order_rank() {
   name="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
 
   case "$name" in
+    *rl-se*checklist*selbstpruefung*|*checklist*selbstpruefung*) printf '%s\n' "45" ;;
     *secure-development-hardening*) printf '%s\n' "50" ;;
     *constitution*|*governance*|*baseline*|*homogeneity*) printf '%s\n' "10" ;;
     *migration*|*build*|*ci*|*cicd*|*tool*|*terminalgui*|*rename*) printf '%s\n' "20" ;;
@@ -199,6 +200,7 @@ sdh_order_group() {
     20) printf '%s\n' "Migration/Tooling" ;;
     30) printf '%s\n' "Kernlogik/Runtime" ;;
     40) printf '%s\n' "UI/A11Y/Dokumentation" ;;
+    45) printf '%s\n' "RL-SE-/Checklist-Selbstpruefung" ;;
     50) printf '%s\n' "Secure-Development-Hardening" ;;
     *)  printf '%s\n' "Weitere Anforderungen" ;;
   esac

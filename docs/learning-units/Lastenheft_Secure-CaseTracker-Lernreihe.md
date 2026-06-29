@@ -40,6 +40,7 @@
 - **Spec-Kit-Presets:** alle sechs Governance-Presets als Bewertungsrahmen.
 - **Evidenz:** Aufgaben-Lastenhefte, spätere `spec.md`, `plan.md`, `tasks.md`, Checklisten und Review-Notizen.
 - **Level-2-Arbeitsbasis:** Jedes Sprachrepo führt die Richtlinie, alle 12 Einzel-Checklisten, den Checklistensammelband, die mitgeltenden Dokumente und die Preset-Verzahnung lokal unter `docs/secure-development/`. Die sechs Governance-Presets sind aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar.
+- **Selbstprüfung vor Härtung:** Jedes Sprachrepo führt `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` als separaten späteren Intake; MSL-Status ist dabei Prüfpunkt, aber keine Voraussetzung.
 
 **EN:** The full guideline and the six governance presets are the assessment frame for all later task intakes.
 

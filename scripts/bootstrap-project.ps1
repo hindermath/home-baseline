@@ -503,6 +503,22 @@ if (-not (Test-Path $SecureDevLib) -or -not (Get-Command Invoke-SdhPrepareRepo -
     }
 }
 
+# 7f. RL-SE-/Checklist-Selbstpruefung vorbereiten
+Step-Start "RL-SE-/Checklist-Selbstpruefung vorbereiten"
+$rlSeScript = Join-Path $ScriptDir 'prepare-rl-se-checklist-selbstpruefung.ps1'
+if (-not (Test-Path $rlSeScript)) {
+    Step-Warn "RL-SE-/Checklist-Selbstpruefungs-Skript nicht gefunden"
+} else {
+    $rlSeArgs = @('-Repo', $TargetDir, '-AllowDirty')
+    if ($PrimaryLanguage) { $rlSeArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
+    try {
+        & $rlSeScript @rlSeArgs | Out-Null
+        Step-Done "Intake und Reihenfolge vorbereitet"
+    } catch {
+        Step-Warn "RL-SE-/Checklist-Selbstpruefung konnte nicht vorbereitet werden: $($_.Exception.Message)"
+    }
+}
+
 # 8. STATS.md
 Step-Start "STATS.md (initial) erzeugen"
 $f = Join-Path $TargetDir 'STATS.md'

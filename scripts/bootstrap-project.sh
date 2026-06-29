@@ -350,6 +350,7 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
   preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "bei erkannter MSL"
   preview_action "CREATE" "${TARGET_DIR}/Lastenheft_Secure-Development-Hardening.md" "bei erkannter MSL"
+  preview_action "CREATE" "${TARGET_DIR}/Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "unabhaengig von MSL"
   preview_action "UPDATE" "${TARGET_DIR}/Lastenheft_Abarbeitungsreihenfolge.md" "Lastenheft*.md-Reihenfolge"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
@@ -947,6 +948,20 @@ else
     step_done "aus zentraler Preset-Matrix"
   else
     step_warn "Governance-Preset-Installation fehlgeschlagen"
+  fi
+fi
+
+# ─── Step 20b: RL-SE-/Checklist-Selbstpruefung vorbereiten ──────────────────
+step_start "RL-SE-/Checklist-Selbstpruefung vorbereiten"
+if [ ! -f "${SCRIPT_DIR}/prepare-rl-se-checklist-selbstpruefung.sh" ]; then
+  step_warn "RL-SE-/Checklist-Selbstpruefungs-Skript nicht gefunden"
+else
+  rlse_args=(--repo "$TARGET_DIR" --allow-dirty)
+  [ -n "$OPT_PRIMARY_LANGUAGE" ] && rlse_args+=(--primary-language "$OPT_PRIMARY_LANGUAGE")
+  if bash "${SCRIPT_DIR}/prepare-rl-se-checklist-selbstpruefung.sh" "${rlse_args[@]}" >/dev/null; then
+    step_done "Intake und Reihenfolge vorbereitet"
+  else
+    step_warn "RL-SE-/Checklist-Selbstpruefung konnte nicht vorbereitet werden"
   fi
 fi
 

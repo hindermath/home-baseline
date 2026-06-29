@@ -64,6 +64,10 @@
 
 **EN:** The level-2 language repositories carry this baseline locally under `docs/secure-development/`: guideline, 12 individual checklists, compendium, related documents, and preset alignment. The six governance presets from the central matrix are installed as well and can be evidenced with `specify preset list`. This lets learners work directly with `CL_01` through `CL_12` from the intake files and link them to Spec Kit artefacts.
 
+**DE:** Vor einer spaeteren Haertung fuehren die Level-2-Sprachrepos einen eigenstaendigen RL-SE-/Checklist-Selbstpruefungs-Intake. Er erzeugt keine Umsetzung, sondern prueft Anwendbarkeit, Evidenz, `N/A`, offene Punkte, Owner, Follow-up und Re-Evaluation-Trigger gegen Richtlinie und CLs.
+
+**EN:** Before later hardening, the level-2 language repositories carry a dedicated RL-SE/checklist self-assessment intake. It does not implement changes; it reviews applicability, evidence, `N/A`, open points, owner, follow-up, and re-evaluation triggers against the guideline and checklists.
+
 ## Empfohlene Repo-Struktur / Recommended Repository Structure
 
 **DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-tmp` bleibt Level 0 und hält die generischen Materialien. Ein privates Level-1-Workspace-Repo `SecureCaseTrackerProjects` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.

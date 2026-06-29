@@ -1056,6 +1056,8 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/rename-lastenheft.ps1` | Lastenheft umbenennen / Rename requirement file (PowerShell Core) |
 | `scripts/prepare-secure-development-hardening.sh` | MSL-Level-2-Repos fuer spaetere Secure-Development-Haertung vorbereiten / Prepare MSL level-2 repos for later secure-development hardening (Bash) |
 | `scripts/prepare-secure-development-hardening.ps1` | Secure-Development-Hardening vorbereiten / Prepare secure-development hardening (PowerShell Core) |
+| `scripts/prepare-rl-se-checklist-selbstpruefung.sh` | Repos fuer spaetere RL-SE-/Checklist-Selbstpruefung vorbereiten / Prepare repos for later RL-SE/checklist self-assessment (Bash) |
+| `scripts/prepare-rl-se-checklist-selbstpruefung.ps1` | RL-SE-/Checklist-Selbstpruefung vorbereiten / Prepare RL-SE/checklist self-assessment (PowerShell Core) |
 | `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
 | `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
 | `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
@@ -1143,7 +1145,7 @@ bash scripts/package-learning-series.sh --source-dir ~/SecureCaseTrackerProjects
 pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/SecureCaseTrackerProjects -SeriesName 'Secure CaseTracker' -PackagePrefix secure-casetracker -WhatIf
 ```
 
-Neue Level-2-Projekte koennen die Secure-Development-Basis direkt beim Bootstrap erhalten, wenn ihre Primaersprache als MSL deklariert oder erkannt wird:
+Neue Level-2-Projekte erhalten beim Bootstrap einen RL-SE-/Checklist-Selbstpruefungs-Intake unabhaengig von MSL. Wenn ihre Primaersprache als MSL deklariert oder erkannt wird, wird zusaetzlich der Secure-Development-Hardening-Intake vorbereitet:
 
 ```bash
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --primary-language C#
@@ -1160,7 +1162,9 @@ Die Matrix ist die einzige Stelle fuer aktuelle Preset-Versionen und
 Prioritaeten. Soll ein Projekt bewusst ohne diese Presets entstehen, kann
 `--no-governance-presets` / `-NoGovernancePresets` gesetzt werden.
 
-*For MSL level-2 projects, `bootstrap-project.*` also installs the governance
+*New level-2 projects receive an RL-SE/checklist self-assessment intake during
+bootstrap independently of MSL. For MSL level-2 projects, `bootstrap-project.*`
+also installs the governance
 presets from the central matrix
 [`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json)
 after Spec Kit initialization. The matrix is the single source for current preset
@@ -1170,6 +1174,10 @@ versions and priorities. Use `--no-governance-presets` /
 Fuer bestehende Level-2-Repositories synchronisiert `prepare-secure-development-hardening.*` dieselbe Basis, erzeugt bei Bedarf `Lastenheft_Secure-Development-Hardening.md` und pflegt `Lastenheft_Abarbeitungsreihenfolge.md` anhand des strikten Suchmusters `Lastenheft*.md`. Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert, manuelle Begruendungen bleiben erhalten.
 
 *For existing level-2 repositories, `prepare-secure-development-hardening.*` synchronizes the same baseline, creates `Lastenheft_Secure-Development-Hardening.md` when needed, and maintains `Lastenheft_Abarbeitungsreihenfolge.md` from the strict `Lastenheft*.md` pattern. Existing order files are protected: only the marked generated section is updated, while manual rationale remains preserved.*
+
+Vor der eigentlichen Haertung kann `prepare-rl-se-checklist-selbstpruefung.*` eine eigenstaendige RL-SE-/Checklist-Selbstpruefung vorbereiten. Dieser Intake gilt unabhaengig von MSL: MSL-Status wird geprueft und begruendet, blockiert aber die Selbstpruefung nicht. Das erzeugte `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` verlangt `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp` mit Begruendung, Evidenzpfad, Owner, Follow-up, Re-Evaluation-Trigger und Restrisiko.
+
+*Before actual hardening, `prepare-rl-se-checklist-selbstpruefung.*` can prepare a dedicated RL-SE/checklist self-assessment. This intake applies independently of MSL: MSL status is reviewed and justified, but it does not block the self-assessment. The generated `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` requires `Applicable`, `AlreadySatisfied`, `N/A`, `Open`, and `FollowUp` with rationale, evidence path, owner, follow-up, re-evaluation trigger, and residual risk.*
 
 Fuer dieses Level-0-Repository dokumentiert [`Lastenheft_Abarbeitungsreihenfolge.md`](Lastenheft_Abarbeitungsreihenfolge.md) die sichtbare Reihenfolge spaeterer Spec-Kit-Intakes. Lastenhefte mit Feature-Branch-Kennung im Dateinamen, zum Beispiel `001-workspace-homogeneity-guardian`, gelten dort als historischer Kontext und werden nicht erneut ausgefuehrt.
 
