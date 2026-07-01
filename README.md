@@ -1058,6 +1058,10 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/prepare-secure-development-hardening.ps1` | Secure-Development-Hardening vorbereiten / Prepare secure-development hardening (PowerShell Core) |
 | `scripts/prepare-rl-se-checklist-selbstpruefung.sh` | Repos fuer spaetere RL-SE-/Checklist-Selbstpruefung vorbereiten / Prepare repos for later RL-SE/checklist self-assessment (Bash) |
 | `scripts/prepare-rl-se-checklist-selbstpruefung.ps1` | RL-SE-/Checklist-Selbstpruefung vorbereiten / Prepare RL-SE/checklist self-assessment (PowerShell Core) |
+| `scripts/register-level2-repository.sh` | Level-1-/Level-2-Repo in der GSDB-Registry eintragen / Register a level-1/level-2 repo in the GSDB registry (Bash) |
+| `scripts/register-level2-repository.ps1` | GSDB-Registry aktualisieren / Update the GSDB registry (PowerShell Core) |
+| `scripts/check-gsdb-self-assessment.sh` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (Bash) |
+| `scripts/check-gsdb-self-assessment.ps1` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (PowerShell Core) |
 | `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
 | `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
 | `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
@@ -1096,6 +1100,26 @@ Der Ordner [`docs/secure-development/`](docs/secure-development/README.md) entha
 Der Bereich besteht aus einer richtlinienaehnlichen Grundlage, zwoelf Einzelchecklisten, einem Sammelband und mitgeltenden Dokumenten in `docs/secure-development/mitgeltende-dokumente/`. Die Datei `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md` ist die zentrale Bruecke zwischen Richtlinie, Checklisten, mitgeltenden Dokumenten und den sechs Governance-Presets. Der Bereich dient als wiederverwendbare Pruef- und Haertungsbasis fuer Level-2-Repositories. Projektspezifische Nachweise bleiben weiterhin im jeweiligen Projekt, zum Beispiel unter `docs/security/`; der Leitfaden liefert die gemeinsame Bewertungslogik, Statusfelder, Evidenzanforderungen und `N/A`-Begruendungspflicht.
 
 *The area consists of a policy-like baseline, twelve individual checklists, a compendium, and related documents in `docs/secure-development/mitgeltende-dokumente/`. The file `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md` is the central bridge between guideline, checklists, related documents, and the six governance presets. It serves as a reusable review and hardening baseline for level-2 repositories. Project-specific evidence remains in the respective project, for example under `docs/security/`; the guide provides the shared assessment logic, status fields, evidence requirements, and mandatory `N/A` rationale.*
+
+Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative Merkliste der GSDB-relevanten Repositories liegt in `scripts/config/level2-repository-registry.json`. Neue MSL-Level-2-Repositories werden beim Bootstrap automatisch mit `register-level2-repository.*` registriert. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
+
+*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The operational registry of GSDB-relevant repositories lives in `scripts/config/level2-repository-registry.json`. New MSL level-2 repositories are automatically registered during bootstrap via `register-level2-repository.*`. Existing repositories can be added later with the same tool.*
+
+Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` prueft rein lesend. Ein normaler Lauf schreibt `docs/security/gsdb-self-assessment.md`, erzeugt oder aktualisiert `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md` und nimmt dieses Lastenheft in `Lastenheft_Abarbeitungsreihenfolge.md` auf. Der Preflight startet keinen Spec-Kit-Lauf; das erzeugte Lastenheft ist Intake fuer einen spaeter manuell gestarteten `/speckit-specify`-Lauf.
+
+*The GSDB preflight without a Spec Kit run is performed with `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` is read-only. A normal run writes `docs/security/gsdb-self-assessment.md`, creates or updates `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md`, and adds that requirements document to `Lastenheft_Abarbeitungsreihenfolge.md`. The preflight does not start a Spec Kit run; the generated requirements document is intake for a later manually started `/speckit-specify` run.*
+
+```bash
+bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run
+bash scripts/check-gsdb-self-assessment.sh --repo ~/RiderProjects/TuiVision --check-only
+bash scripts/check-gsdb-self-assessment.sh --repo ~/RiderProjects/TuiVision --dry-run
+```
+
+```powershell
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
+pwsh -NoProfile -File scripts/check-gsdb-self-assessment.ps1 -Repo ~/RiderProjects/TuiVision -CheckOnly
+pwsh -NoProfile -File scripts/check-gsdb-self-assessment.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
+```
 
 Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) beschreibt das Referenzprofil fuer sichere Entwicklung mit KI-Agenten in einer Sandbox. `absdd-image-sandbox` ist dabei als oeffentlichkeitsfaehige Ausbildungs-Sandbox vorgesehen: `home-baseline` liefert Richtlinien, Checklisten, Presets und Intake; die Sandbox liefert die ausfuehrbare Lern- und Arbeitsumgebung; Level-2-Repositories liefern die konkreten Entwicklungs- und Haertungsziele.
 

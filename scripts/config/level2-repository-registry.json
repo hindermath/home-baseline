@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "description": "Operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory.",
+  "updatedAt": "2026-06-30",
+  "repositories": [
+    {
+      "path": "SecureCaseTrackerProjects",
+      "level": 1,
+      "primaryLanguage": "none",
+      "mslStatus": "n/a",
+      "gsdbRequired": true,
+      "presetProfile": "coordination-gsdb",
+      "role": "learning-series-coordination",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-CSharp",
+      "level": 2,
+      "primaryLanguage": "C#",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "learning-series-reference",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Go",
+      "level": 2,
+      "primaryLanguage": "Go",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "learning-series-comparison",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Java",
+      "level": 2,
+      "primaryLanguage": "Java",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "learning-series-comparison",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Python",
+      "level": 2,
+      "primaryLanguage": "Python",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "learning-series-comparison",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Rust",
+      "level": 2,
+      "primaryLanguage": "Rust",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "learning-series-comparison",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Swift",
+      "level": 2,
+      "primaryLanguage": "Swift",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "learning-series-comparison",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "RiderProjects/InventarWorkerService",
+      "level": 2,
+      "primaryLanguage": "C#",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "csharp-reference-rollout",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "RiderProjects/TinyCalc",
+      "level": 2,
+      "primaryLanguage": "C#",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "csharp-reference-rollout",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "RiderProjects/TinyPl0",
+      "level": 2,
+      "primaryLanguage": "C#",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "csharp-reference-rollout",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "RiderProjects/TuiVision",
+      "level": 2,
+      "primaryLanguage": "C#",
+      "mslStatus": "msl",
+      "gsdbRequired": true,
+      "presetProfile": "standard-six-governance-presets",
+      "role": "csharp-reference-rollout",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    },
+    {
+      "path": "container-images/absdd-image-sandbox",
+      "level": 2,
+      "primaryLanguage": "Python/Bash/PowerShell",
+      "mslStatus": "msl-mixed-tooling",
+      "gsdbRequired": true,
+      "presetProfile": "sandbox-gsdb",
+      "role": "secure-development-training-sandbox",
+      "source": "seed-current-gsdb-rollout",
+      "registeredAt": "2026-06-30"
+    }
+  ]
+}

@@ -173,7 +173,7 @@ fi
 # ─── Preview/Action Helpers ──────────────────────────────────────────────────
 
 STEP=0
-TOTAL_STEPS=30
+TOTAL_STEPS=31
 SKIPPED=0
 PARTIAL_FAIL=false
 WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
@@ -390,6 +390,7 @@ if $OPT_PREVIEW; then
   if ! $OPT_NO_SPECKIT && ! $OPT_NO_GOVERNANCE_PRESETS; then
     preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR}" "bei erkannter MSL"
   fi
+  preview_action "UPDATE" "scripts/config/level2-repository-registry.json" "bei erkannter MSL"
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"
@@ -962,6 +963,22 @@ else
     step_done "Intake und Reihenfolge vorbereitet"
   else
     step_warn "RL-SE-/Checklist-Selbstpruefung konnte nicht vorbereitet werden"
+  fi
+fi
+
+# ─── Step 20c: GSDB-Registry aktualisieren ──────────────────────────────────
+step_start "GSDB-Registry aktualisieren"
+if [ "${SDH_PREPARE_RESULT:-}" != "prepared" ]; then
+  step_skip "keine MSL-Vorbereitung"
+elif [ ! -f "${SCRIPT_DIR}/register-level2-repository.sh" ]; then
+  step_warn "Registry-Helper nicht gefunden"
+else
+  registry_args=(--repo "$TARGET_DIR" --source "bootstrap-project")
+  [ -n "$OPT_PRIMARY_LANGUAGE" ] && registry_args+=(--primary-language "$OPT_PRIMARY_LANGUAGE")
+  if bash "${SCRIPT_DIR}/register-level2-repository.sh" "${registry_args[@]}" >/dev/null; then
+    step_done "Level-2-Repo registriert"
+  else
+    step_warn "GSDB-Registry konnte nicht aktualisiert werden"
   fi
 fi
 

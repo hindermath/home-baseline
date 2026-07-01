@@ -77,6 +77,8 @@ Nutze deine KI-Agenten direkt im Terminal, wenn du feststeckst:
 - [STATS.md](./STATS.md) — Statistiken über dieses Projekt.
 - [docs/secure-development/](./docs/secure-development/) — Wiederverwendbare sichere-Entwicklung-Basis inkl. mitgeltender Dokumente und Verzahnungsdatei zu Checklisten und Spec-Kit-Presets. Die RL-SE-/Checklist-Selbstpruefung gilt unabhaengig von MSL; MSL-Status bleibt ein Pruefpunkt.
 - [.specify/presets/](./.specify/presets/) — Projektlokal installierte Spec-Kit-Governance-Presets, falls dieses Level-2-Projekt mit der zentralen Preset-Matrix vorbereitet wurde.
+- [docs/security/gsdb-self-assessment.md](./docs/security/gsdb-self-assessment.md) — GSDB-Preflight-Bericht, falls mit `check-gsdb-self-assessment.*` erzeugt.
+- [Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md](./Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md) — Intake fuer einen spaeter manuell gestarteten Spec-Kit-Lauf zur intensiven GSDB-Pruefung, falls vorhanden.
 - [Lastenheft_Abarbeitungsreihenfolge.md](./Lastenheft_Abarbeitungsreihenfolge.md) — Sichtbare Reihenfolge der `Lastenheft*.md`-Dateien fuer spaetere Spec-Kit-Laeufe, falls vorhanden.
 
 ---

@@ -28,7 +28,7 @@ $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
 $Step = 0
-$TotalSteps = 30
+$TotalSteps = 31
 $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
@@ -283,6 +283,7 @@ if ($Preview) {
     if (-not $NoSpeckit -and -not $NoGovernancePresets) {
         $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir", 'bei erkannter MSL'))
     }
+    $null = $previewActions.Add(@('UPDATE', 'scripts/config/level2-repository-registry.json', 'bei erkannter MSL'))
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
 
@@ -762,6 +763,26 @@ if ($NoSpeckit) {
         & $presetInstaller @presetArgs
         if ($LASTEXITCODE -eq 0) { Step-Done "aus zentraler Preset-Matrix" }
         else { Step-Warn "Governance-Preset-Installation fehlgeschlagen" }
+    }
+}
+
+# 20b. GSDB-Registry aktualisieren
+Step-Start "GSDB-Registry aktualisieren"
+if ($script:SdhPrepareResult -ne 'prepared') {
+    Step-Skip "keine MSL-Vorbereitung"
+} else {
+    $registryHelper = Join-Path $ScriptDir 'register-level2-repository.ps1'
+    if (-not (Test-Path $registryHelper)) {
+        Step-Warn "Registry-Helper nicht gefunden"
+    } else {
+        $registryArgs = @('-Repo', $TargetDir, '-Source', 'bootstrap-project')
+        if ($PrimaryLanguage) { $registryArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
+        try {
+            & $registryHelper @registryArgs | Out-Null
+            Step-Done "Level-2-Repo registriert"
+        } catch {
+            Step-Warn "GSDB-Registry konnte nicht aktualisiert werden: $($_.Exception.Message)"
+        }
     }
 }
 
