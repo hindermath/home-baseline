@@ -124,6 +124,33 @@ for item in data.get("repositories", []):
 PY
 }
 
+registry_entry_for_repo() {
+  local repo="$1"
+  [ -f "$OPT_REGISTRY" ] || return 1
+  command -v python3 >/dev/null 2>&1 || return 1
+  python3 - "$OPT_REGISTRY" "$OPT_HOME_DIR" "$repo" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+registry = Path(sys.argv[1])
+home = Path(sys.argv[2]).expanduser()
+repo = Path(sys.argv[3]).expanduser().resolve(strict=False)
+data = json.loads(registry.read_text(encoding="utf-8"))
+for item in data.get("repositories", []):
+    path = Path(item.get("path", ""))
+    candidate = (path if path.is_absolute() else home / path).resolve(strict=False)
+    if candidate == repo:
+        print(
+            f"{item.get('level', '')}\t"
+            f"{item.get('primaryLanguage', '')}\t"
+            f"{item.get('mslStatus', '')}\t"
+            f"{item.get('presetProfile', '')}"
+        )
+        break
+PY
+}
+
 if [ "${#OPT_REPOS[@]}" -eq 0 ]; then
   while IFS= read -r repo; do
     [ -n "$repo" ] && OPT_REPOS+=("$repo")
@@ -263,10 +290,18 @@ check_repo() {
   local repo="$1"
   local project_name language report_tmp report_target open_count=0 preset_output preset_id dry_mode
   local gsdb_intake_missing=false
+  local registry_meta registry_level="" registry_language="" registry_msl_status="" registry_preset_profile=""
 
   [ -d "$repo/.git" ] || die "kein Git-Repository: $repo"
   project_name="$(basename "$repo")"
+  registry_meta="$(registry_entry_for_repo "$repo" || true)"
+  if [ -n "$registry_meta" ]; then
+    IFS=$'\t' read -r registry_level registry_language registry_msl_status registry_preset_profile <<< "$registry_meta"
+  fi
   language="$(sdh_detect_language "$repo" "$project_name" "" 2>/dev/null || true)"
+  if [ -z "$language" ] && [ -n "$registry_language" ]; then
+    language="$registry_language"
+  fi
   [ -n "$language" ] || language="unknown"
 
   printf '## %s\n' "$repo"
@@ -294,7 +329,11 @@ check_repo() {
     open_count=$((open_count + 1))
   fi
 
-  if sdh_is_msl_language "$language"; then
+  if [ "$registry_level" = "1" ] || [ "$registry_msl_status" = "n/a" ] || [ "$language" = "none" ]; then
+    append_row "$report_tmp" "N/A" "MSL-Status" "scripts/config/level2-repository-registry.json" "Koordinations- oder Nicht-Implementierungsrepo" "-"
+  elif [ "$registry_msl_status" = "msl-mixed-tooling" ]; then
+    append_row "$report_tmp" "OK" "MSL-Status" "scripts/config/level2-repository-registry.json" "Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix" "-"
+  elif sdh_is_msl_language "$language"; then
     append_row "$report_tmp" "OK" "MSL-Status" "constitution.md" "Primaersprache ist auf der MSL-Allowlist" "-"
   elif sdh_is_known_non_msl_language "$language"; then
     append_row "$report_tmp" "Open" "MSL-Status" "constitution.md" "bekannte Nicht-MSL erkannt" "Nicht-MSL-Begruendung pruefen"
@@ -304,25 +343,31 @@ check_repo() {
     open_count=$((open_count + 1))
   fi
 
-  if [ -d "$repo/.specify" ]; then
+  if [ "$registry_level" = "1" ]; then
+    append_row "$report_tmp" "N/A" "Spec Kit initialisiert" ".specify/" "Koordinationsrepo ohne eigenen Spec-Kit-Implementierungslauf" "-"
+  elif [ -d "$repo/.specify" ]; then
     append_row "$report_tmp" "OK" "Spec Kit initialisiert" ".specify/" "Spec-Kit-Verzeichnis vorhanden" "-"
   else
     append_row "$report_tmp" "Open" "Spec Kit initialisiert" ".specify/" "Spec-Kit-Verzeichnis fehlt" "Spec Kit initialisieren oder N/A begruenden"
     open_count=$((open_count + 1))
   fi
 
-  preset_output="$(cd "$repo" && specify preset list 2>/dev/null || true)"
-  while IFS= read -r preset_id; do
-    [ -n "$preset_id" ] || continue
-    if [ -n "$preset_output" ] && [[ "$preset_output" == *"(${preset_id})"* ]]; then
-      append_row "$report_tmp" "OK" "Preset $preset_id" ".specify/presets/" "per specify preset list nachweisbar" "-"
-    elif find "$repo/.specify/presets" -maxdepth 4 -type d -name "$preset_id" -print -quit 2>/dev/null | grep -q .; then
-      append_row "$report_tmp" "OK" "Preset $preset_id" ".specify/presets/" "lokal installiert" "-"
-    else
-      append_row "$report_tmp" "Open" "Preset $preset_id" ".specify/presets/" "nicht nachweisbar" "Governance-Presets installieren oder Ausnahme dokumentieren"
-      open_count=$((open_count + 1))
-    fi
-  done < <(preset_ids)
+  if [ "$registry_level" = "1" ]; then
+    append_row "$report_tmp" "N/A" "Governance-Presets" ".specify/presets/" "Koordinationsrepo ohne eigene Preset-Installation" "-"
+  else
+    preset_output="$(cd "$repo" && specify preset list 2>/dev/null || true)"
+    while IFS= read -r preset_id; do
+      [ -n "$preset_id" ] || continue
+      if [ -n "$preset_output" ] && [[ "$preset_output" == *"(${preset_id})"* ]]; then
+        append_row "$report_tmp" "OK" "Preset $preset_id" ".specify/presets/" "per specify preset list nachweisbar" "-"
+      elif find "$repo/.specify/presets" -maxdepth 4 -type d -name "$preset_id" -print -quit 2>/dev/null | grep -q .; then
+        append_row "$report_tmp" "OK" "Preset $preset_id" ".specify/presets/" "lokal installiert" "-"
+      else
+        append_row "$report_tmp" "Open" "Preset $preset_id" ".specify/presets/" "nicht nachweisbar" "Governance-Presets installieren oder Ausnahme dokumentieren"
+        open_count=$((open_count + 1))
+      fi
+    done < <(preset_ids)
+  fi
 
   if [ -d "$repo/docs/security" ]; then
     append_row "$report_tmp" "OK" "Projektspezifischer Nachweisort" "docs/security/" "Nachweisordner vorhanden" "-"
@@ -332,7 +377,11 @@ check_repo() {
   fi
 
   check_path "$repo" "$report_tmp" "RL-SE-/Checklist-Selbstpruefungs-Intake" "Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "Intake vorbereiten" || open_count=$((open_count + 1))
-  check_path "$repo" "$report_tmp" "Secure-Development-Hardening-Intake" "Lastenheft_Secure-Development-Hardening.md" "Intake vorbereiten" || open_count=$((open_count + 1))
+  if [ "$registry_level" = "1" ]; then
+    append_row "$report_tmp" "N/A" "Secure-Development-Hardening-Intake" "Lastenheft_Secure-Development-Hardening.md" "Koordinationsrepo ohne eigene Implementierungshaertung" "-"
+  else
+    check_path "$repo" "$report_tmp" "Secure-Development-Hardening-Intake" "Lastenheft_Secure-Development-Hardening.md" "Intake vorbereiten" || open_count=$((open_count + 1))
+  fi
 
   if [ -f "$repo/Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md" ]; then
     append_row "$report_tmp" "OK" "GSDB-Spec-Kit-Intensivpruefungs-Intake" "Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md" "Intake vorhanden" "-"

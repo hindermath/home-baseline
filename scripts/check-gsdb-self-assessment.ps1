@@ -47,6 +47,22 @@ function Get-RegistryRepos {
         })
 }
 
+function Get-RegistryEntryForRepo {
+    param([string]$RegistryPath, [string]$Root, [string]$Repository)
+    if (-not (Test-Path $RegistryPath)) { return $null }
+    $data = Get-Content $RegistryPath -Raw | ConvertFrom-Json
+    $repoFull = [System.IO.Path]::GetFullPath((Resolve-HBPath $Repository))
+    foreach ($item in @($data.repositories)) {
+        $itemPath = [string]$item.path
+        if (-not [System.IO.Path]::IsPathRooted($itemPath)) {
+            $itemPath = Join-Path $Root $itemPath
+        }
+        $candidate = [System.IO.Path]::GetFullPath($itemPath)
+        if ($candidate -eq $repoFull) { return $item }
+    }
+    return $null
+}
+
 function Add-ReportRow {
     param(
         [System.Collections.Generic.List[string]]$Lines,
@@ -122,7 +138,12 @@ function Invoke-GsdbRepoCheck {
     }
 
     $projectName = Split-Path -Leaf $Repository
+    $registryEntry = Get-RegistryEntryForRepo -RegistryPath $Registry -Root $HomeDir -Repository $Repository
+    $registryLevel = if ($registryEntry) { [string]$registryEntry.level } else { '' }
+    $registryLanguage = if ($registryEntry) { [string]$registryEntry.primaryLanguage } else { '' }
+    $registryMslStatus = if ($registryEntry) { [string]$registryEntry.mslStatus } else { '' }
     $language = Get-SdhPrimaryLanguage -Repo $Repository -ProjectName $projectName -ExplicitLanguage ''
+    if (-not $language -and $registryLanguage) { $language = $registryLanguage }
     if (-not $language) { $language = 'unknown' }
 
     Write-Host "## $Repository"
@@ -168,7 +189,11 @@ function Invoke-GsdbRepoCheck {
         $open++
     }
 
-    if (Test-SdhMslLanguage $language) {
+    if (($registryLevel -eq '1') -or ($registryMslStatus -eq 'n/a') -or ($language -eq 'none')) {
+        Add-ReportRow $lines 'N/A' 'MSL-Status' 'scripts/config/level2-repository-registry.json' 'Koordinations- oder Nicht-Implementierungsrepo' '-'
+    } elseif ($registryMslStatus -eq 'msl-mixed-tooling') {
+        Add-ReportRow $lines 'OK' 'MSL-Status' 'scripts/config/level2-repository-registry.json' 'Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix' '-'
+    } elseif (Test-SdhMslLanguage $language) {
         Add-ReportRow $lines 'OK' 'MSL-Status' 'constitution.md' 'Primaersprache ist auf der MSL-Allowlist' '-'
     } elseif (Test-SdhKnownNonMslLanguage $language) {
         Add-ReportRow $lines 'Open' 'MSL-Status' 'constitution.md' 'bekannte Nicht-MSL erkannt' 'Nicht-MSL-Begruendung pruefen'
@@ -178,7 +203,9 @@ function Invoke-GsdbRepoCheck {
         $open++
     }
 
-    if (Test-Path (Join-Path $Repository '.specify')) {
+    if ($registryLevel -eq '1') {
+        Add-ReportRow $lines 'N/A' 'Spec Kit initialisiert' '.specify/' 'Koordinationsrepo ohne eigenen Spec-Kit-Implementierungslauf' '-'
+    } elseif (Test-Path (Join-Path $Repository '.specify')) {
         Add-ReportRow $lines 'OK' 'Spec Kit initialisiert' '.specify/' 'Spec-Kit-Verzeichnis vorhanden' '-'
     } else {
         Add-ReportRow $lines 'Open' 'Spec Kit initialisiert' '.specify/' 'Spec-Kit-Verzeichnis fehlt' 'Spec Kit initialisieren oder N/A begruenden'
@@ -195,14 +222,18 @@ function Invoke-GsdbRepoCheck {
         Pop-Location
     }
 
-    foreach ($presetId in Get-PresetIds) {
-        $presetDir = Join-Path $Repository '.specify/presets'
-        $localMatch = if (Test-Path $presetDir) { Get-ChildItem $presetDir -Recurse -Directory -Filter $presetId -ErrorAction SilentlyContinue | Select-Object -First 1 } else { $null }
-        if (($presetOutput -match "\($([regex]::Escape($presetId))\)") -or $localMatch) {
-            Add-ReportRow $lines 'OK' "Preset $presetId" '.specify/presets/' 'nachweisbar' '-'
-        } else {
-            Add-ReportRow $lines 'Open' "Preset $presetId" '.specify/presets/' 'nicht nachweisbar' 'Governance-Presets installieren oder Ausnahme dokumentieren'
-            $open++
+    if ($registryLevel -eq '1') {
+        Add-ReportRow $lines 'N/A' 'Governance-Presets' '.specify/presets/' 'Koordinationsrepo ohne eigene Preset-Installation' '-'
+    } else {
+        foreach ($presetId in Get-PresetIds) {
+            $presetDir = Join-Path $Repository '.specify/presets'
+            $localMatch = if (Test-Path $presetDir) { Get-ChildItem $presetDir -Recurse -Directory -Filter $presetId -ErrorAction SilentlyContinue | Select-Object -First 1 } else { $null }
+            if (($presetOutput -match "\($([regex]::Escape($presetId))\)") -or $localMatch) {
+                Add-ReportRow $lines 'OK' "Preset $presetId" '.specify/presets/' 'nachweisbar' '-'
+            } else {
+                Add-ReportRow $lines 'Open' "Preset $presetId" '.specify/presets/' 'nicht nachweisbar' 'Governance-Presets installieren oder Ausnahme dokumentieren'
+                $open++
+            }
         }
     }
 
@@ -214,7 +245,11 @@ function Invoke-GsdbRepoCheck {
     }
 
     $open += Test-RepoPath $Repository $lines 'RL-SE-/Checklist-Selbstpruefungs-Intake' 'Lastenheft_RL-SE-Checklist-Selbstpruefung.md' 'Intake vorbereiten'
-    $open += Test-RepoPath $Repository $lines 'Secure-Development-Hardening-Intake' 'Lastenheft_Secure-Development-Hardening.md' 'Intake vorbereiten'
+    if ($registryLevel -eq '1') {
+        Add-ReportRow $lines 'N/A' 'Secure-Development-Hardening-Intake' 'Lastenheft_Secure-Development-Hardening.md' 'Koordinationsrepo ohne eigene Implementierungshaertung' '-'
+    } else {
+        $open += Test-RepoPath $Repository $lines 'Secure-Development-Hardening-Intake' 'Lastenheft_Secure-Development-Hardening.md' 'Intake vorbereiten'
+    }
     $gsdbIntake = 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
     $gsdbIntakeMissing = $false
     if (Test-Path (Join-Path $Repository $gsdbIntake)) {
