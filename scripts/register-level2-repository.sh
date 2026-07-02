@@ -31,7 +31,7 @@ Usage:
 
 Options:
   --repo PATH                 Repository to register.
-  --registry PATH             Registry JSON. Default: canonical home-baseline-tmp registry.
+  --registry PATH             Registry JSON. Default: ~/.home-baseline/level2-repository-registry.json.
   --level 1|2                 Explicit repository level. Default: infer from parent git repo.
   --primary-language LANG     Optional primary language. Default: detect from repo.
   --gsdb-required true|false  Whether GSDB applies. Default: true for MSL Level-2 repos.
@@ -58,12 +58,7 @@ normalize_path() {
 }
 
 default_registry() {
-  local canonical="$HOME/home-baseline-tmp/scripts/config/level2-repository-registry.json"
-  if [ -f "$canonical" ] || [ -d "$HOME/home-baseline-tmp/.git" ]; then
-    printf '%s\n' "$canonical"
-  else
-    printf '%s\n' "$SCRIPT_DIR/config/level2-repository-registry.json"
-  fi
+  printf '%s\n' "$HOME/.home-baseline/level2-repository-registry.json"
 }
 
 infer_level() {
@@ -228,7 +223,7 @@ if registry_path.exists():
 else:
     data = {
         "schemaVersion": 1,
-        "description": "Operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory.",
+        "description": "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory.",
         "updatedAt": today,
         "repositories": [],
     }

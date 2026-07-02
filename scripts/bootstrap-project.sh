@@ -390,7 +390,7 @@ if $OPT_PREVIEW; then
   if ! $OPT_NO_SPECKIT && ! $OPT_NO_GOVERNANCE_PRESETS; then
     preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR}" "bei erkannter MSL"
   fi
-  preview_action "UPDATE" "scripts/config/level2-repository-registry.json" "bei erkannter MSL"
+  preview_action "UPDATE" "~/.home-baseline/level2-repository-registry.json" "bei erkannter MSL"
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"

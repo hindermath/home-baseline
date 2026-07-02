@@ -283,7 +283,7 @@ if ($Preview) {
     if (-not $NoSpeckit -and -not $NoGovernancePresets) {
         $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir", 'bei erkannter MSL'))
     }
-    $null = $previewActions.Add(@('UPDATE', 'scripts/config/level2-repository-registry.json', 'bei erkannter MSL'))
+    $null = $previewActions.Add(@('UPDATE', '~/.home-baseline/level2-repository-registry.json', 'bei erkannter MSL'))
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
 

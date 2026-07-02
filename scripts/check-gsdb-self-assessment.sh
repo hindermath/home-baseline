@@ -30,8 +30,8 @@ Usage:
   bash scripts/check-gsdb-self-assessment.sh [options]
 
 Options:
-  --repo PATH             Explicit repository; repeatable. Default: GSDB registry.
-  --registry PATH         Registry JSON. Default: scripts/config/level2-repository-registry.json.
+  --repo PATH             Explicit repository; repeatable. Default: local GSDB registry.
+  --registry PATH         Registry JSON. Default: ~/.home-baseline/level2-repository-registry.json.
   --home-dir PATH         Home directory for registry-relative paths.
   --check-only            Do not write report, intake, or order file.
   --fail-on-open          Exit non-zero when Open findings exist.
@@ -55,12 +55,7 @@ normalize_path() {
 }
 
 default_registry() {
-  local canonical="$HOME/home-baseline-tmp/scripts/config/level2-repository-registry.json"
-  if [ -f "$canonical" ]; then
-    printf '%s\n' "$canonical"
-  else
-    printf '%s\n' "$SCRIPT_DIR/config/level2-repository-registry.json"
-  fi
+  printf '%s\n' "$HOME/.home-baseline/level2-repository-registry.json"
 }
 
 while [ $# -gt 0 ]; do
@@ -330,9 +325,9 @@ check_repo() {
   fi
 
   if [ "$registry_level" = "1" ] || [ "$registry_msl_status" = "n/a" ] || [ "$language" = "none" ]; then
-    append_row "$report_tmp" "N/A" "MSL-Status" "scripts/config/level2-repository-registry.json" "Koordinations- oder Nicht-Implementierungsrepo" "-"
+    append_row "$report_tmp" "N/A" "MSL-Status" "~/.home-baseline/level2-repository-registry.json" "Koordinations- oder Nicht-Implementierungsrepo" "-"
   elif [ "$registry_msl_status" = "msl-mixed-tooling" ]; then
-    append_row "$report_tmp" "OK" "MSL-Status" "scripts/config/level2-repository-registry.json" "Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix" "-"
+    append_row "$report_tmp" "OK" "MSL-Status" "~/.home-baseline/level2-repository-registry.json" "Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix" "-"
   elif sdh_is_msl_language "$language"; then
     append_row "$report_tmp" "OK" "MSL-Status" "constitution.md" "Primaersprache ist auf der MSL-Allowlist" "-"
   elif sdh_is_known_non_msl_language "$language"; then

@@ -5,13 +5,13 @@ Registriert ein Level-1-/Level-2-Repository in der operativen GSDB-Registry.
 Registers a level-1/level-2 repository in the operational GSDB registry.
 
 .DESCRIPTION
-Aktualisiert scripts/config/level2-repository-registry.json idempotent. Wenn
-das Skript aus ~/scripts gestartet wird, bevorzugt es die versionierte Registry
-unter ~/home-baseline-tmp/scripts/config/.
+Aktualisiert standardmaessig die lokale Registry
+~/.home-baseline/level2-repository-registry.json idempotent. Das Repository
+enthaelt nur eine public-safe Beispiel-Registry unter scripts/config/.
 
-Updates scripts/config/level2-repository-registry.json idempotently. When the
-script is started from ~/scripts, it prefers the versioned registry under
-~/home-baseline-tmp/scripts/config/.
+Updates the local ~/.home-baseline/level2-repository-registry.json registry by
+default. The repository only contains a public-safe example registry under
+scripts/config/.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -41,10 +41,7 @@ function Resolve-HBPath {
 }
 
 function Get-DefaultRegistry {
-    $canonical = Join-Path $HOME 'home-baseline-tmp/scripts/config/level2-repository-registry.json'
-    $canonicalRepo = Join-Path $HOME 'home-baseline-tmp/.git'
-    if ((Test-Path $canonical) -or (Test-Path $canonicalRepo)) { return $canonical }
-    return (Join-Path $ScriptDir 'config/level2-repository-registry.json')
+    return (Join-Path $HOME '.home-baseline/level2-repository-registry.json')
 }
 
 function Get-HomeRelativePath {
@@ -108,7 +105,7 @@ if (Test-Path $Registry) {
 } else {
     $data = [pscustomobject]@{
         schemaVersion = 1
-        description = "Operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
+        description = "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
         updatedAt = $today
         repositories = @()
     }

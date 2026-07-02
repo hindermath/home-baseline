@@ -50,6 +50,9 @@
 !.specify/memory/
 !.specify/memory/constitution.md
 !scripts/templates/
+scripts/config/level2-repository-registry.json
+scripts/config/level2-repository-registry.local.json
+scripts/config/*repository-registry.local.json
 !.specify/scripts/
 !.specify/scripts/bash/
 !.specify/templates/

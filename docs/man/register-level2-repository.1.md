@@ -18,21 +18,27 @@ pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo PATH -WhatIf
 
 ## Beschreibung / Description
 
-Das Werkzeug aktualisiert `scripts/config/level2-repository-registry.json`
-idempotent. Die Registry ist die operative Merkliste fuer Repositories, die die
-Generische Secure-Development Basis (GSDB) fuehren oder pruefen sollen.
+Das Werkzeug aktualisiert standardmaessig
+`~/.home-baseline/level2-repository-registry.json` idempotent. Die lokale
+Registry ist die operative Merkliste fuer Repositories, die die Generische
+Secure-Development Basis (GSDB) fuehren oder pruefen sollen. Das Repository
+enthaelt mit `scripts/config/level2-repository-registry.example.json` nur eine
+public-safe Vorlage.
 
-*The tool updates `scripts/config/level2-repository-registry.json`
-idempotently. The registry is the operational memory list for repositories that
-should carry or check the Generic Secure Development Baseline (GSDB).*
+*By default, the tool updates
+`~/.home-baseline/level2-repository-registry.json` idempotently. The local
+registry is the operational memory list for repositories that should carry or
+check the Generic Secure Development Baseline (GSDB). The repository only keeps
+`scripts/config/level2-repository-registry.example.json` as a public-safe seed.*
 
-Wenn das Skript aus `~/scripts` gestartet wird, bevorzugt es die versionierte
-Registry unter `~/home-baseline-tmp/scripts/config/`. Dadurch bleiben neue
-MSL-Level-2-Repositories in der kanonischen Level-0-Arbeitskopie sichtbar.
+Wenn das Skript aus `~/scripts` gestartet wird, bleibt der Default ebenfalls die
+lokale Registry unter `~/.home-baseline/`. Dadurch werden rechner- und
+personenbezogene Repository-Pfade nicht in das oeffentliche Repository
+geschrieben.
 
-*When the script is started from `~/scripts`, it prefers the versioned registry
-under `~/home-baseline-tmp/scripts/config/`. This keeps new MSL level-2
-repositories visible in the canonical level-0 working copy.*
+*When the script is started from `~/scripts`, the default still points to the
+local registry under `~/.home-baseline/`. This keeps machine- and
+person-specific repository paths out of the public repository.*
 
 ## Optionen / Options
 

@@ -30,9 +30,7 @@ function Resolve-HBPath {
 }
 
 function Get-DefaultRegistry {
-    $canonical = Join-Path $HOME 'home-baseline-tmp/scripts/config/level2-repository-registry.json'
-    if (Test-Path $canonical) { return $canonical }
-    return (Join-Path $ScriptDir 'config/level2-repository-registry.json')
+    return (Join-Path $HOME '.home-baseline/level2-repository-registry.json')
 }
 
 function Get-RegistryRepos {
@@ -190,9 +188,9 @@ function Invoke-GsdbRepoCheck {
     }
 
     if (($registryLevel -eq '1') -or ($registryMslStatus -eq 'n/a') -or ($language -eq 'none')) {
-        Add-ReportRow $lines 'N/A' 'MSL-Status' 'scripts/config/level2-repository-registry.json' 'Koordinations- oder Nicht-Implementierungsrepo' '-'
+        Add-ReportRow $lines 'N/A' 'MSL-Status' '~/.home-baseline/level2-repository-registry.json' 'Koordinations- oder Nicht-Implementierungsrepo' '-'
     } elseif ($registryMslStatus -eq 'msl-mixed-tooling') {
-        Add-ReportRow $lines 'OK' 'MSL-Status' 'scripts/config/level2-repository-registry.json' 'Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix' '-'
+        Add-ReportRow $lines 'OK' 'MSL-Status' '~/.home-baseline/level2-repository-registry.json' 'Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix' '-'
     } elseif (Test-SdhMslLanguage $language) {
         Add-ReportRow $lines 'OK' 'MSL-Status' 'constitution.md' 'Primaersprache ist auf der MSL-Allowlist' '-'
     } elseif (Test-SdhKnownNonMslLanguage $language) {
