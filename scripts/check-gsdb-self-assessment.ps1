@@ -93,6 +93,22 @@ function Test-RepoPath {
     return 1
 }
 
+function Test-GsdbNonMslJustification {
+    param([string]$Repository)
+
+    $content = [System.Text.StringBuilder]::new()
+    foreach ($file in @((Join-Path $Repository 'constitution.md'), (Join-Path $Repository '.specify/memory/constitution.md'))) {
+        if (Test-Path $file) {
+            [void]$content.AppendLine((Get-Content $file -Raw))
+        }
+    }
+
+    $text = $content.ToString()
+    $hasJustification = $text -match 'Nicht-MSL|non-MSL|not MSL|not an MSL|not memory-safe|C89|cc65'
+    $hasControls = $text -match 'Kompensationskontrollen|compensating controls|Secure-C-Review|Makefile-Kettenpruefung|Artefakt-Hygiene|Target/Sample-Validierung|target compatibility|toolchain compatibility'
+    return ($hasJustification -and $hasControls)
+}
+
 function Get-PresetIds {
     if (-not (Test-Path $PresetConfig)) { return @() }
     $data = Get-Content $PresetConfig -Raw | ConvertFrom-Json
@@ -141,7 +157,11 @@ function Invoke-GsdbRepoCheck {
     $registryLanguage = if ($registryEntry) { [string]$registryEntry.primaryLanguage } else { '' }
     $registryMslStatus = if ($registryEntry) { [string]$registryEntry.mslStatus } else { '' }
     $language = Get-SdhPrimaryLanguage -Repo $Repository -ProjectName $projectName -ExplicitLanguage ''
-    if (-not $language -and $registryLanguage) { $language = $registryLanguage }
+    if (($registryMslStatus -eq 'non-msl') -and $registryLanguage) {
+        $language = $registryLanguage
+    } elseif (-not $language -and $registryLanguage) {
+        $language = $registryLanguage
+    }
     if (-not $language) { $language = 'unknown' }
 
     Write-Host "## $Repository"
@@ -193,9 +213,13 @@ function Invoke-GsdbRepoCheck {
         Add-ReportRow $lines 'OK' 'MSL-Status' '~/.home-baseline/level2-repository-registry.json' 'Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix' '-'
     } elseif (Test-SdhMslLanguage $language) {
         Add-ReportRow $lines 'OK' 'MSL-Status' 'constitution.md' 'Primaersprache ist auf der MSL-Allowlist' '-'
-    } elseif (Test-SdhKnownNonMslLanguage $language) {
-        Add-ReportRow $lines 'Open' 'MSL-Status' 'constitution.md' 'bekannte Nicht-MSL erkannt' 'Nicht-MSL-Begruendung pruefen'
-        $open++
+    } elseif (($registryMslStatus -eq 'non-msl') -or (Test-SdhKnownNonMslLanguage $language)) {
+        if (Test-GsdbNonMslJustification -Repository $Repository) {
+            Add-ReportRow $lines 'OK' 'MSL-Status' 'constitution.md' 'Nicht-MSL ist mit Begruendung und Kompensationskontrollen dokumentiert' '-'
+        } else {
+            Add-ReportRow $lines 'Open' 'MSL-Status' 'constitution.md' 'bekannte Nicht-MSL erkannt' 'Nicht-MSL-Begruendung pruefen'
+            $open++
+        }
     } else {
         Add-ReportRow $lines 'Open' 'MSL-Status' 'constitution.md' 'Primaersprache unklar oder nicht klassifiziert' 'Sprache im Repository dokumentieren'
         $open++

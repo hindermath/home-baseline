@@ -198,6 +198,28 @@ check_path() {
   fi
 }
 
+has_non_msl_justification() {
+  local repo="$1"
+  local content_file
+  local combined
+
+  combined="$(mktemp)"
+  for content_file in "$repo/constitution.md" "$repo/.specify/memory/constitution.md"; do
+    [ -f "$content_file" ] || continue
+    cat "$content_file" >> "$combined"
+    printf '\n' >> "$combined"
+  done
+
+  if grep -Eiq 'Nicht-MSL|non-MSL|not MSL|not an MSL|not memory-safe|C89|cc65' "$combined" \
+    && grep -Eiq 'Kompensationskontrollen|compensating controls|Secure-C-Review|Makefile-Kettenpruefung|Artefakt-Hygiene|Target/Sample-Validierung|target compatibility|toolchain compatibility' "$combined"; then
+    rm -f "$combined"
+    return 0
+  fi
+
+  rm -f "$combined"
+  return 1
+}
+
 render_gsdb_intake() {
   local repo="$1"
   local project_name="$2"
@@ -294,7 +316,9 @@ check_repo() {
     IFS=$'\t' read -r registry_level registry_language registry_msl_status registry_preset_profile <<< "$registry_meta"
   fi
   language="$(sdh_detect_language "$repo" "$project_name" "" 2>/dev/null || true)"
-  if [ -z "$language" ] && [ -n "$registry_language" ]; then
+  if [ "$registry_msl_status" = "non-msl" ] && [ -n "$registry_language" ]; then
+    language="$registry_language"
+  elif [ -z "$language" ] && [ -n "$registry_language" ]; then
     language="$registry_language"
   fi
   [ -n "$language" ] || language="unknown"
@@ -330,9 +354,13 @@ check_repo() {
     append_row "$report_tmp" "OK" "MSL-Status" "~/.home-baseline/level2-repository-registry.json" "Registry dokumentiert GSDB-relevanten MSL-/Tooling-Mix" "-"
   elif sdh_is_msl_language "$language"; then
     append_row "$report_tmp" "OK" "MSL-Status" "constitution.md" "Primaersprache ist auf der MSL-Allowlist" "-"
-  elif sdh_is_known_non_msl_language "$language"; then
-    append_row "$report_tmp" "Open" "MSL-Status" "constitution.md" "bekannte Nicht-MSL erkannt" "Nicht-MSL-Begruendung pruefen"
-    open_count=$((open_count + 1))
+  elif [ "$registry_msl_status" = "non-msl" ] || sdh_is_known_non_msl_language "$language"; then
+    if has_non_msl_justification "$repo"; then
+      append_row "$report_tmp" "OK" "MSL-Status" "constitution.md" "Nicht-MSL ist mit Begruendung und Kompensationskontrollen dokumentiert" "-"
+    else
+      append_row "$report_tmp" "Open" "MSL-Status" "constitution.md" "bekannte Nicht-MSL erkannt" "Nicht-MSL-Begruendung pruefen"
+      open_count=$((open_count + 1))
+    fi
   else
     append_row "$report_tmp" "Open" "MSL-Status" "constitution.md" "Primaersprache unklar oder nicht klassifiziert" "Sprache im Repository dokumentieren"
     open_count=$((open_count + 1))
