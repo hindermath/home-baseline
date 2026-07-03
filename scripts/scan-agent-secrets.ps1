@@ -28,7 +28,7 @@ $ErrorActionPreference = 'Stop'
 
 $SecretNamePatterns = @(
     'auth\.json',
-    '\.env(\.[^.]+)?$',
+    '^\.env(\.[^.]+)?$',
     '.*(secret|credential|creds).*\.(json|yaml|yml|xml|ini|cfg|conf|toml)$',
     '.*id_rsa.*',
     '\.(pem|key|p12|pfx)$'
