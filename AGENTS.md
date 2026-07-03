@@ -16,13 +16,13 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/teardown-workspace.ps1`: PowerShell 7 equivalent of teardown.
 - `scripts/install-hooks.*`: installs Git hooks into `.git/hooks/`.
 - `scripts/setup-git-identity.*`: detects and fixes placeholder git identity (`Your Name` / `your@email.example`) in `~/.gitconfig`; called automatically by `bootstrap-workspace.*`.
-- `scripts/scan-agent-secrets.*`: manual or hook-driven secret scanning.
+- `scripts/scan-agent-secrets.*`: manual or hook-driven secret scanning; uses `gitleaks` for the current git diff when available and keeps the regex fallback.
 - `scripts/audit-agent-changes.*`: local baseline/report workflow to correlate agent-managed file changes with recent local agent logs.
 - `scripts/update-spec-kit.*`: dynamically refreshes Spec-Kit integrations across Level-0, Level-1, and Level-2 repos while preserving local governance templates.
 - `scripts/install-spec-kit-governance-presets.*`: installs the central Spec-Kit governance preset matrix from `scripts/config/spec-kit-governance-presets.json` into Level-2 repos.
 - `scripts/register-level2-repository.*`: updates the local operational GSDB repository registry at `~/.home-baseline/level2-repository-registry.json`; `scripts/config/level2-repository-registry.example.json` is the public-safe seed.
 - `scripts/check-gsdb-self-assessment.*`: runs a GSDB preflight without starting Spec Kit and prepares a later GSDB intensive-review intake.
-- `scripts/hooks/pre-push`: shared hook copied into target repositories.
+- `scripts/hooks/pre-push`: shared hook copied into target repositories; uses `gitleaks` for pushed commit ranges when available and keeps the regex fallback.
 
 There is no `src/` or formal test tree; the scripts themselves are the product.
 

@@ -83,6 +83,7 @@ pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName <Name> -KeepRemote
   `pwsh -NoProfile scripts/setup-git-identity.ps1`             — Windows einrichten
 - **Manueller Secret-Scan:**
   `bash scripts/scan-agent-secrets.sh`
+  Wenn `gitleaks` installiert ist, prueft der manuelle Scan zusaetzlich den aktuellen Git-Diff mit `gitleaks git --pre-commit`.
 - **Lokales Agent-Audit für spaetere Herkunftsspur:**
   `bash scripts/audit-agent-changes.sh snapshot`
   `bash scripts/audit-agent-changes.sh report`
@@ -279,7 +280,7 @@ Bei Workspace-/Repo-Migrationen eine vorhandene oder remote neuere `README.md` n
 ## Entwicklungskonventionen / Development Conventions
 
 - **Plattformunabhängigkeit & Dokumentation:** Alle kritischen Skripte müssen sowohl als `.sh` (Bash) als auch als `.ps1` (PowerShell Core) vorliegen. Jedes Skript erfordert eine Unix man-Page (`.sh`, in `docs/man/`), eine vollständige PowerShell-Hilfe (`.ps1`) und muss zusätzlich als PowerShell Cmdlet (Advanced Function) im `Verb-Noun` Format verfügbar sein.
-- **Sicherheits-Standard:** Jedes Projekt muss über einen `pre-push` Hook verfügen, der Secret-Scanning in Agenten-Verzeichnissen durchführt.
+- **Sicherheits-Standard:** Jedes Projekt muss über einen `pre-push` Hook verfügen, der `gitleaks` für zu pushende Commit-Ranges nutzt, wenn verfügbar, und zusätzlich den bestehenden Regex-Fallback für Secret-Scanning ausführt.
 - **Git-Strategie:** Keine Submodules; stattdessen werden Sub-Repos durch die Baseline-Skripte in der `.gitignore` des übergeordneten Workspaces erfasst.
 
 ## Projektstatus / Repository Status

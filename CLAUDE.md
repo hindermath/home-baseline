@@ -101,6 +101,10 @@ pwsh ~/scripts/scan-agent-secrets.ps1
 
 Scans `.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/` for leaked credentials. Outputs `high=N medium=M low=L total=T`. Use `--fail-on-high` as a CI gate.
 
+Wenn `gitleaks` installiert ist, fuehren die Scanner zusaetzlich `gitleaks git --pre-commit` fuer den aktuellen Git-Diff aus. Der gemeinsame `pre-push`-Hook nutzt `gitleaks` fuer die zu pushenden Commit-Ranges und faellt bei fehlendem `gitleaks` auf den bestehenden Regex-Scanner zurueck.
+
+*When `gitleaks` is installed, the scanners additionally run `gitleaks git --pre-commit` for the current git diff. The shared `pre-push` hook uses `gitleaks` for the commit ranges being pushed and falls back to the existing regex scanner when `gitleaks` is missing.*
+
 ### Agentenverwaltete Dateiänderungen auditieren / Audit Agent-Managed File Changes
 
 ```bash
@@ -296,7 +300,7 @@ Bei Workspace-/Repo-Migrationen eine vorhandene oder remote neuere `README.md` n
 
 The `.gitignore` uses a **whitelist model** (`/*` ignores everything; only explicitly listed files are tracked). Never add AI agent directories (`.claude/`, `.junie/`, etc.), credentials files, or dotfiles containing secrets to the tracked whitelist.
 
-The `scripts/hooks/pre-push` hook blocks pushes if secret-like filenames or credential patterns are found in tracked files. It is installed into `.git/hooks/` by `install-hooks.sh`.
+The `scripts/hooks/pre-push` hook blocks pushes if `gitleaks` finds a secret in pushed commit ranges or if secret-like filenames or credential patterns are found in tracked files. It is installed into `.git/hooks/` by `install-hooks.sh`.
 
 Secrets are stored in the system credential store (e.g. macOS Keychain, Windows Credential Manager), accessed via shell helpers in your shell profile.
 

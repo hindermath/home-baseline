@@ -62,6 +62,35 @@ $rootPath = $root.ProviderPath
 
 Write-Verbose "Repository-Root: $rootPath"
 
+# --- gitleaks: aktuelle Git-Aenderungen pruefen -------------------------------------
+
+function Invoke-GitleaksWorktreeScan {
+    param([string]$RepositoryRoot)
+
+    $gitleaks = Get-Command gitleaks -ErrorAction SilentlyContinue
+    if (-not $gitleaks) {
+        Write-Host 'INFO  gitleaks nicht gefunden; Regex-Fallback bleibt aktiv.' -ForegroundColor Yellow
+        return $false
+    }
+
+    & git -C $RepositoryRoot rev-parse --is-inside-work-tree *> $null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host 'INFO  gitleaks übersprungen; WorkspaceRoot ist kein Git-Repository.' -ForegroundColor Yellow
+        return $false
+    }
+
+    & gitleaks git --redact --no-banner --no-color --log-level warn --exit-code 2 --pre-commit $RepositoryRoot
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host 'OK    gitleaks: Keine Secrets im aktuellen Git-Diff gefunden.' -ForegroundColor Green
+        return $false
+    }
+
+    Write-Host 'HIGH  gitleaks: Mögliche Secrets im aktuellen Git-Diff oder Scan-Fehler.' -ForegroundColor Red
+    return $true
+}
+
+$gitleaksFoundHigh = Invoke-GitleaksWorktreeScan -RepositoryRoot $rootPath
+
 # --- Nur git-getrackte Dateien laden -------------------------------------------------
 
 $trackedRelative = & git -C $rootPath ls-files
@@ -93,7 +122,7 @@ $contentHits = $trackedFiles |
 
 # --- Ergebnis ausgeben ---------------------------------------------------------------
 
-$foundHigh = $false
+$foundHigh = [bool]$gitleaksFoundHigh
 
 if ($nameHits) {
     $foundHigh = $true

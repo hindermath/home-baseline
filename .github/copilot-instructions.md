@@ -286,8 +286,8 @@ The workspace name `home-baseline` is explicitly protected (exit 2).
 
 ### Secret-Scan-Infrastruktur / Secret-Scanning Infrastructure
 
-- **`scripts/hooks/pre-push`** — runs on every `git push`; scans only git-tracked files (`.gitignore` respected); blocks push with exit 2 on HIGH findings (secret-like filenames or content patterns).
-- **`scripts/scan-agent-secrets.sh` / `.ps1`** — manual scanner targeting AI-agent directories (`.claude/`, `.codex/`, `.gemini/`, `.junie/`, `.opencode/`); accepts `--fail-on-high` / `-FailOnHigh` for CI use; requires `rg` (ripgrep).
+- **`scripts/hooks/pre-push`** — runs on every `git push`; uses `gitleaks` for the commit ranges being pushed when available, then scans changed git-tracked files from those ranges (`.gitignore` respected) with the regex fallback; blocks push with exit 2 on HIGH findings.
+- **`scripts/scan-agent-secrets.sh` / `.ps1`** — manual scanner; uses `gitleaks git --pre-commit` for the current git diff when available, then runs the existing regex checks; accepts `--fail-on-high` / `-FailOnHigh` for CI use; requires `rg` (ripgrep), while `gitleaks` is preferred but optional.
 - **`scripts/audit-agent-changes.sh` / `.ps1`** — local baseline/report workflow for agent-managed files. It stores local audit state under `~/.home-baseline/agent-audit/`, lists later file drift, and searches recent Codex, Claude, Copilot, and Continue logs for path-based hints. This is heuristic correlation, not proof of authorship.
 
 ### `.gitignore`-Whitelist-Muster / `.gitignore` Whitelist Pattern
@@ -332,8 +332,8 @@ Include: affected scripts/docs, manual verification commands run (`--dry-run` ou
 ## Sicherheitsregeln / Security Rules
 
 - Never commit tokens, `.env` files, or local agent state (`.claude/`, `.codex/`, `.gemini/`).
-- Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` before pushing any change that touches hook or scanner logic.
-- The pre-push hook detects patterns like `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private key headers, and secret-named files (`.env*`, `*secret*`, `*.key`, `*.pem`).
+- Run `bash scripts/scan-agent-secrets.sh --fail-on-high .` before pushing any change that touches hook or scanner logic; this uses `gitleaks` for the current diff when available.
+- The pre-push hook runs `gitleaks` on pushed commit ranges when available and then applies the regex fallback to changed tracked files for patterns like `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private key headers, and secret-named files (`.env*`, `*secret*`, `*.key`, `*.pem`).
 
 ## Repository-Status / Repository Status
 
