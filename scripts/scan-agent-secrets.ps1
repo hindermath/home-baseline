@@ -34,6 +34,10 @@ $SecretNamePatterns = @(
     '\.(pem|key|p12|pfx)$'
 )
 
+$AllowedSecretNamePatterns = @(
+    '^\.env\.(example|sample|template|dist)$'
+)
+
 $SecretContentPatterns = @(
     'id_token\s*[:=]',
     'access_token\s*[:=]',
@@ -110,6 +114,9 @@ $nameHits = $trackedFiles | Where-Object {
         return $false
     }
     $name = Split-Path $_ -Leaf
+    if ($AllowedSecretNamePatterns | Where-Object { $name -match $_ }) {
+        return $false
+    }
     $SecretNamePatterns | Where-Object { $name -match $_ }
 }
 
