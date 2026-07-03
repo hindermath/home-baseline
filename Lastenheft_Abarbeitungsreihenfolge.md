@@ -52,7 +52,9 @@ added to the active order once they have been assessed.*
 | 19 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
 | 20 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
 | 21 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
-| 22 | `Lastenheft_agentische-umgebung-pruefen-und-syncen.md` | Prüft und synchronisiert die agentische Level-0-/Level-1-/Level-2-Umgebung. / Reviews and synchronizes the agentic Level-0/Level-1/Level-2 environment. |
+| 22 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
+| 23 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
+| 24 | `Lastenheft_agentische-umgebung-pruefen-und-syncen.md` | Prüft und synchronisiert die agentische Level-0-/Level-1-/Level-2-Umgebung. / Reviews and synchronizes the agentic Level-0/Level-1/Level-2 environment. |
 
 ## Historisch / Nicht erneut ausfuehren
 
