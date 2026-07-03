@@ -28,6 +28,7 @@ This presentation introduces the learning series. It does not replace a Spec Kit
 - The series deepens secure development with the guideline and checklists.
 - Later implementations remain comparable across languages.
 - C#, Go, Java, Python, Rust, and Swift are prepared as MSL paths.
+- `absdd-image-sandbox` is the public sandbox reference, but in year 2 it is not yet a hard mandatory run.
 
 ---
 
@@ -63,6 +64,8 @@ This presentation introduces the learning series. It does not replace a Spec Kit
 - related documents
 - six governance presets
 - `Applicable`, `N/A`, `Open` with rationale
+- sandbox decision: `Applicable`, `N/A`, or `Open`
+- IDE work outside the sandbox remains allowed
 
 ---
 

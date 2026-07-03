@@ -28,6 +28,7 @@ Diese Präsentation führt in den Track ein. Sie ersetzt keinen Spec-Kit-Lauf un
 - Der Track baut auf Secure CaseTracker und Secure CaseTracker v2 auf.
 - Die spätere Arbeit bleibt je Sprachpfad und Aufgaben-Lastenheft getrennt.
 - C#, Go, Java, Python, Rust und Swift bleiben als MSL-Pfade vorbereitet.
+- Ab dem 3. Lehrjahr wird KI-gestützte Schreibarbeit in oder mit `absdd-image-sandbox` erwartet oder begründet abgegrenzt.
 
 ---
 
@@ -53,6 +54,8 @@ Diese Präsentation führt in den Track ein. Sie ersetzt keinen Spec-Kit-Lauf un
 - mitgeltende Dokumente
 - sechs Governance-Presets
 - `Applicable`, `N/A`, `Open` mit Begründung
+- Public-Sandbox-Link und Sandbox-/IDE-Abgrenzung
+- Abweichungen von Sandbox-Nutzung als Risiko oder `N/A`
 
 ---
 

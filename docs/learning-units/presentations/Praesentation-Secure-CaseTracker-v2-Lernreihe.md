@@ -28,6 +28,7 @@ Diese Präsentation führt in die Lernreihe ein. Sie ersetzt keinen Spec-Kit-Lau
 - Die Reihe vertieft sichere Entwicklung nach der Richtlinie und den Checklisten.
 - Die späteren Umsetzungen bleiben sprachneutral vergleichbar.
 - C#, Go, Java, Python, Rust und Swift werden als MSL-Pfade vorbereitet.
+- `absdd-image-sandbox` ist die öffentliche Sandbox-Referenz, im 2. Lehrjahr aber noch kein harter Pflichtlauf.
 
 ---
 
@@ -63,6 +64,8 @@ Diese Präsentation führt in die Lernreihe ein. Sie ersetzt keinen Spec-Kit-Lau
 - mitgeltende Dokumente
 - sechs Governance-Presets
 - `Applicable`, `N/A`, `Open` mit Begründung
+- Sandbox-Entscheidung: `Applicable`, `N/A` oder `Open`
+- IDE-Arbeit außerhalb der Sandbox bleibt zulässig
 
 ---
 

@@ -1,6 +1,6 @@
 # Secure CaseTracker Lernreihe / Secure CaseTracker Learning Series
 
-**Stand / Date:** 2026-06-27
+**Stand / Date:** 2026-07-03
 **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Ausbilder*innen, Reviewer und KI-Agenten / IT specialist apprentices, trainers, reviewers, and AI agents
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -68,6 +68,16 @@
 
 **EN:** Before later hardening, the level-2 language repositories carry a dedicated RL-SE/checklist self-assessment intake. It does not implement changes; it reviews applicability, evidence, `N/A`, open points, owner, follow-up, and re-evaluation triggers against the guideline and checklists.
 
+## Sandbox-Einordnung / Sandbox Classification
+
+**DE:** `absdd-image-sandbox` ist als öffentliches Referenz-Repository verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. Im 1. Lehrjahr ist die Sandbox ein Lern- und Zielbild, aber keine Pflicht für jeden praktischen Arbeitsschritt. Lernende sollen verstehen, warum eine Sandbox KI-gestützte Entwicklung begrenzt, welche Daten nicht in Agentenläufe gehören und welche Nachweise später wichtig werden.
+
+**EN:** `absdd-image-sandbox` is available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. In the first training year, the sandbox is a learning target and reference picture, but not mandatory for every practical work step. Learners should understand why a sandbox limits AI-assisted development, which data must not enter agent runs, and which evidence will matter later.
+
+**DE:** Allgemeine Entwicklung, Lesen, Review und Bedienung der Werkzeuge können außerhalb der Sandbox erfolgen, zum Beispiel mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio. Die Sandbox wird dort genutzt oder geplant, wo KI-Agenten, reproduzierbare Toolchains, riskantere Experimente oder klare Schreib- und Netzwerkgrenzen wichtig sind.
+
+**EN:** General development, reading, review, and tool operation may happen outside the sandbox, for example with JetBrains IDEs, VS Code, or Visual Studio on Windows. The sandbox is used or planned where AI agents, reproducible toolchains, higher-risk experiments, or clear write and network boundaries matter.
+
 ## Empfohlene Repo-Struktur / Recommended Repository Structure
 
 **DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-tmp` bleibt Level 0 und hält die generischen Materialien. Ein privates Level-1-Workspace-Repo `SecureCaseTrackerProjects` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.
@@ -122,7 +132,7 @@
 | 06 | Persistenz, Import und Export | AE, DPA |
 | 07 | Testbarkeit und Qualität | AE |
 | 08 | Supply Chain und MSL-Bewertung | SI |
-| 09 | Sandbox und agentische Entwicklung | SI |
+| 09 | Sandbox und agentische Entwicklung | SI, im 1. Lehrjahr vorbereitend |
 | 10 | Prozessanalyse und Kennzahlen | DPA |
 | 11 | Spec-Kit-Review und Abschluss | AE, SI, DPA |
 | 12 | Jahr-2-Baseline und Track-Ableitung | AE, SI, DPA |

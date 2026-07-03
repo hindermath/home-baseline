@@ -16,6 +16,12 @@ Der ausführliche [Secure CaseTracker Unterrichtsleitfaden](Secure-CaseTracker-U
 
 *The detailed [Secure CaseTracker Teaching Guide](Secure-CaseTracker-Unterrichtsleitfaden.md) explains order, specialization fit, common mistakes, evidence, and didactic use of the series.*
 
+## Sandbox-Stufung / Sandbox Staging
+
+**DE:** Die sichere Entwicklungs-Sandbox ist jetzt als öffentliches Referenz-Repo verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. In Secure CaseTracker ist sie bewusst gestuft: Im 1. Lehrjahr wird sie erklärt und als Zielbild eingeordnet, aber nicht verpflichtend praktisch eingesetzt. Im 2. Lehrjahr wird sie als Betriebs-, Toolchain- und Nachweiskonzept vorbereitet. Ab dem 3. Lehrjahr wird erwartet, dass Lernende KI-gestützte Entwicklung in oder mit der Sandbox fachlich und technisch begründen können. Lesen, Review, normale Codearbeit und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio können weiterhin außerhalb der Sandbox erfolgen.
+
+**EN:** The secure development sandbox is now available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. Secure CaseTracker uses it in staged form: in year 1 it is explained and positioned as the target picture, but it is not mandatory for practical use. In year 2 it is prepared as an operational, toolchain, and evidence concept. From year 3 onward, learners are expected to justify AI-assisted development in or with the sandbox from a functional and technical perspective. Reading, review, normal code work, and use of JetBrains IDEs, VS Code, or Windows-only Visual Studio may still happen outside the sandbox.
+
 ## Lernreihen ab dem 2. Lehrjahr / Learning Series from the Second Training Year
 
 **DE:** Für Lernende ab dem 2. Lehrjahr sind zwei Reihen vorbereitet:

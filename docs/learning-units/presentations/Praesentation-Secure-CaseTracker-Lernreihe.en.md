@@ -318,10 +318,13 @@ A visible Open is better than a hidden risk.
 # Sandbox and AI Agents
 
 - The sandbox limits environment, tools, and write areas
+- Public reference: <https://github.com/hindermath/absdd-image-sandbox>
+- In year 1, practical sandbox use is not yet mandatory
 - Agents receive clear repository instructions
 - Secrets do not belong in prompts, logs, or Git
 - Network and mount rules are documented
 - Results are reviewed by humans
+- JetBrains IDEs, VS Code, and Visual Studio may be used outside the sandbox
 
 ::: notes
 AI agents are tools, not approval authorities.

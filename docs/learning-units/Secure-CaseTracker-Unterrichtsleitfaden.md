@@ -1,6 +1,6 @@
 # Secure CaseTracker Unterrichtsleitfaden / Secure CaseTracker Teaching Guide
 
-**Stand / Date:** 2026-06-29
+**Stand / Date:** 2026-07-03
 **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 1. Lehrjahr, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices from year 1 onward, trainers, reviewers, AI agents
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -60,6 +60,16 @@
 | Datenschutznachweis | Datenarten, Zweck, Minimierung, Audit-Log-Regeln |
 | Spec-Kit-Nachweis | `spec.md`, `plan.md`, `tasks.md`, Checkliste, Review-Ergebnis |
 | Sandbox-Nachweis | Mount-Liste, Secret-Regel, Netzwerkentscheidung, Toolchain-Status |
+
+## Sandbox im 1. Lehrjahr / Sandbox in Year 1
+
+**DE:** `absdd-image-sandbox` ist als öffentliches Referenz-Repo verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. Im 1. Lehrjahr ist die Sandbox vor allem Anschauungs- und Planungsgegenstand. Lernende sollen Grenzen für KI-Agenten, Secrets, Mounts und Netzwerk verstehen. Eine praktische Nutzung der Sandbox ist sinnvoll, aber nicht verpflichtend, wenn Container-, Mount- oder Agententechniken noch nicht ausreichend behandelt wurden.
+
+**EN:** `absdd-image-sandbox` is available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. In year 1, the sandbox is mainly a teaching and planning subject. Learners should understand boundaries for AI agents, secrets, mounts, and networking. Practical sandbox use is useful but not mandatory if container, mount, or agent techniques have not yet been covered deeply enough.
+
+**DE:** Allgemeine Entwicklungsarbeit kann außerhalb der Sandbox mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio erfolgen. Die Sandbox wird dort vorbereitet, wo KI-Agenten, reproduzierbare Toolchains oder klare Schreibgrenzen wichtig werden.
+
+**EN:** General development work may happen outside the sandbox with JetBrains IDEs, VS Code, or Visual Studio on Windows. The sandbox is prepared where AI agents, reproducible toolchains, or clear write boundaries become important.
 
 ## Typische Fehler / Common Mistakes
 

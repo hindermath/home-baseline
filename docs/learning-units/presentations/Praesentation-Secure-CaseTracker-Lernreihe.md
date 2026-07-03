@@ -319,10 +319,13 @@ Ein sichtbares Open ist besser als ein verstecktes Risiko.
 # Sandbox und KI-Agenten
 
 - Die Sandbox begrenzt Umgebung, Tools und Schreibbereiche
+- Public-Referenz: <https://github.com/hindermath/absdd-image-sandbox>
+- Im 1. Lehrjahr ist praktische Sandbox-Nutzung noch keine Pflicht
 - Agenten erhalten klare Repo-Anweisungen
 - Secrets gehören nicht in Prompts, Logs oder Git
 - Netzwerk- und Mount-Regeln werden dokumentiert
 - Ergebnisse werden durch Menschen geprüft
+- JetBrains IDEs, VS Code und Visual Studio können außerhalb der Sandbox genutzt werden
 
 ::: notes
 KI-Agenten sind Hilfsmittel, keine Freigabeinstanz.

@@ -28,6 +28,7 @@ This presentation introduces the track. It does not replace a Spec Kit run and d
 - The track builds on Secure CaseTracker and Secure CaseTracker v2.
 - Later work stays separated by language path and task intake.
 - C#, Go, Java, Python, Rust, and Swift remain prepared as MSL paths.
+- From year 3 onward, AI-assisted write work is expected in or with `absdd-image-sandbox`, or explicitly bounded with rationale.
 
 ---
 
@@ -53,6 +54,8 @@ This presentation introduces the track. It does not replace a Spec Kit run and d
 - related documents
 - six governance presets
 - `Applicable`, `N/A`, `Open` with rationale
+- public sandbox link and sandbox/IDE boundary
+- deviations from sandbox use as risk or `N/A`
 
 ---
 

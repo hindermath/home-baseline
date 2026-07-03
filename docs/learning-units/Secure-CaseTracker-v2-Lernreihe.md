@@ -1,6 +1,6 @@
 # Secure CaseTracker v2 Lernreihe / Secure CaseTracker v2 Service Edition Learning Series
 
-**Stand / Date:** 2026-06-28
+**Stand / Date:** 2026-07-03
 **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 2. Lehrjahr / IT specialist apprentices from the second training year onward
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -40,6 +40,16 @@
 **DE:** Jahr 2 setzt auf einem bestehenden Jahr-1-Sprachrepo auf. Wenn ein Sprachrepo noch leer ist oder kein minimales Projekt enthält, wird zuerst der Secure-CaseTracker-Startlauf `00` ausgeführt. Die fachlichen Jahr-2-Intakes erzeugen kein Projektgerüst, sondern erweitern einen vorhandenen Sprachpfad. Der fertige Jahr-2-Stand soll später als Tag `learning/year-2-complete` gesichert werden.
 
 **EN:** Year 2 builds on an existing year-1 language repository. If a language repository is still empty or has no minimal project, the Secure CaseTracker scaffold run `00` is executed first. The functional year-2 intakes do not create the project scaffold; they extend an existing language path. The completed year-2 state should later be preserved as the tag `learning/year-2-complete`.
+
+## Sandbox-Readiness / Sandbox Readiness
+
+**DE:** `absdd-image-sandbox` ist öffentlich verfügbar unter <https://github.com/hindermath/absdd-image-sandbox>. Im 2. Lehrjahr wird die Sandbox als Betriebs-, Toolchain- und Nachweiskonzept vorbereitet. Ein konkreter Lernlauf darf begründet außerhalb der Sandbox erfolgen, wenn die benötigten Technologien noch nicht ausreichend behandelt wurden. Die Entscheidung wird als `Applicable`, `N/A` oder `Open` dokumentiert.
+
+**EN:** `absdd-image-sandbox` is publicly available at <https://github.com/hindermath/absdd-image-sandbox>. In the second training year, the sandbox is prepared as an operational, toolchain, and evidence concept. A concrete learning run may be justified outside the sandbox if the required technologies have not yet been covered deeply enough. The decision is documented as `Applicable`, `N/A`, or `Open`.
+
+**DE:** IDE- und Editor-Arbeit bleibt zulässig außerhalb der Sandbox, insbesondere mit JetBrains IDEs, VS Code oder Windows-only Visual Studio. KI-gestützte Schreibarbeit wird jedoch so geplant, dass ab Jahr 3 eine sichere Sandbox-Nutzung möglich ist.
+
+**EN:** IDE and editor work remains allowed outside the sandbox, especially with JetBrains IDEs, VS Code, or Windows-only Visual Studio. AI-assisted write work is planned so that secure sandbox use is possible from year 3 onward.
 
 ## Aufgabenstruktur / Task Structure
 

@@ -2,17 +2,17 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-28
+- **Stand / Date:** 2026-07-03
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 2. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Primär geeignet für / Primary fit:** SI
 - **Spec-Kit-Nutzung / Spec Kit use:** eigenständiger späterer Spec-Kit-Intake
-- **Sandbox-Bezug / Sandbox relation:** Vorbereitung für spätere Arbeit in `absdd-image-sandbox`
+- **Sandbox-Bezug / Sandbox relation:** Vorbereitung für spätere Arbeit in `absdd-image-sandbox`, öffentliches Referenz-Repo: <https://github.com/hindermath/absdd-image-sandbox>
 
 ## Lernziel / Learning Goal
 
-**DE:** Sandbox-Nutzung, Konfiguration, Secrets, Schreibgrenzen, Laufzeitannahmen und Betriebsnachweise werden geplant.
+**DE:** Sandbox-Nutzung, Konfiguration, Secrets, Schreibgrenzen, Laufzeitannahmen und Betriebsnachweise werden geplant. Im 2. Lehrjahr ist die Sandbox ein vorbereitetes Betriebs- und Nachweiskonzept; praktische Nutzung kann begründet `N/A` oder `Open` bleiben.
 
 **EN:** Learners can work on this topic in a language-neutral way and document security, privacy, test, and evidence decisions.
 
@@ -39,9 +39,15 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für ein Sandbox- und Betriebsnachweis-Konzept eine fokussierte Spezifikation. Berücksichtige: Sandbox-Nutzung, Konfiguration, Secrets, Schreibgrenzen, Laufzeitannahmen und Betriebsnachweise werden geplant.
+**DE:** Erarbeite für ein Sandbox- und Betriebsnachweis-Konzept eine fokussierte Spezifikation. Berücksichtige: Public-Referenz `absdd-image-sandbox`, Konfiguration, Secrets, Schreibgrenzen, Laufzeitannahmen und Betriebsnachweise. Dokumentiere außerdem, ob praktische Sandbox-Nutzung für diesen Lauf `Applicable`, `N/A` oder `Open` ist.
 
 **EN:** Prepare the corresponding feature specification. Keep the later implementation separate from this intake.
+
+## Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
+
+**DE:** Allgemeine Codearbeit, Lesen, Review und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio dürfen außerhalb der Sandbox stattfinden. KI-gestützte Schreibarbeit soll aber so geplant werden, dass ab dem 3. Lehrjahr eine sichere Sandbox-Nutzung möglich und nachweisbar ist.
+
+**EN:** General code work, reading, review, and use of JetBrains IDEs, VS Code, or Windows-only Visual Studio may happen outside the sandbox. AI-assisted write work should be planned so that secure sandbox use is possible and reviewable from the third training year onward.
 
 ## Anforderungen / Requirements
 
@@ -50,6 +56,7 @@
 - **R-03:** Test- oder Reviewpfade sind benannt.
 - **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert.
 - **R-05:** Die Lösung bleibt vergleichbar für C#, Go, Java, Python, Rust und Swift.
+- **R-06:** Praktische Sandbox-Nutzung wird im 2. Lehrjahr nicht stillschweigend vorausgesetzt, sondern ausdrücklich begründet.
 
 ## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
@@ -71,6 +78,7 @@
 - `tasks.md` mit umsetzbaren Review-, Test- und Dokumentationsschritten.
 - Projektspezifische Markdown-Nachweise oder begründete `N/A`-Einträge.
 - Erwartete Evidenz: Sandbox-Annahmen, Secret-Regeln, Betriebsgrenzen, Incident-/Backup-N/A-Prüfung.
+- Erwartete Evidenz: Link zur Public-Sandbox, Entscheidung `Applicable`/`N/A`/`Open`, IDE-/Editor-Abgrenzung.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
@@ -83,5 +91,5 @@
 ## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-v2_09_Sandbox-und-Betriebsnachweise.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für ein Sandbox- und Betriebsnachweis-Konzept der EuFPA-Lernreihe Secure CaseTracker v2. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-v2_09_Sandbox-und-Betriebsnachweise.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für ein Sandbox- und Betriebsnachweis-Konzept der EuFPA-Lernreihe Secure CaseTracker v2. Berücksichtige die Public-Referenz `https://github.com/hindermath/absdd-image-sandbox`, die Jahr-2-Abgrenzung ohne harte Nutzungspflicht, IDE-/Editor-Arbeit außerhalb der Sandbox und die Vorbereitung auf verpflichtendere Sandbox-Kompetenz ab Jahr 3. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

@@ -1,6 +1,6 @@
 # Secure CaseTracker Professional Tracks Lernreihe / Learning Series
 
-**Stand / Date:** 2026-06-28
+**Stand / Date:** 2026-07-03
 **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 3. Lehrjahr / IT specialist apprentices from the third training year onward
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -25,9 +25,18 @@
 - Kein Track startet automatisch einen Spec-Kit-Lauf.
 - Jede spätere Umsetzung bleibt pro Track, pro Sprachpfad und pro Aufgaben-Lastenheft getrennt.
 - C#, Go, Java, Python, Rust und Swift bleiben die Standard-MSL-Pfade.
+- Ab dem 3. Lehrjahr wird erwartet, dass KI-gestützte Entwicklungsarbeit in oder mit `absdd-image-sandbox` geplant, genutzt oder begründet abgegrenzt wird.
 - Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und sechs Governance-Presets werden als lokale Nachweisbasis erwartet.
 - Positive Aussagen zur Sicherheit, Qualität oder Compliance brauchen konkrete Evidenz.
 - Nicht anwendbare Punkte werden als `N/A` mit Begründung dokumentiert.
+
+**EN:** From the third training year onward, AI-assisted development work is expected to be planned, used, or explicitly bounded with `absdd-image-sandbox`. The public reference repository is <https://github.com/hindermath/absdd-image-sandbox>.
+
+## Sandbox und Arbeitswerkzeuge / Sandbox and Work Tools
+
+**DE:** Die Sandbox ist das Referenzprofil für KI-Agenten, reproduzierbare Toolchains, Schreibgrenzen, Netzwerkgrenzen und Nachweise. Normale IDE-Arbeit, Lesen, Review, Dokumentation und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio können außerhalb der Sandbox stattfinden. Wird im 3. Lehrjahr außerhalb der Sandbox mit KI-Agenten geschrieben, muss die Abweichung begründet und als Risiko oder `N/A` dokumentiert werden.
+
+**EN:** The sandbox is the reference profile for AI agents, reproducible toolchains, write boundaries, network boundaries, and evidence. Normal IDE work, reading, review, documentation, and use of JetBrains IDEs, VS Code, or Windows-only Visual Studio may happen outside the sandbox. If third-year AI-assisted write work happens outside the sandbox, the deviation must be justified and documented as a risk or `N/A`.
 
 ## Jahr-2-Baseline und Track-Ableitung / Year-2 Baseline and Track Derivation
 

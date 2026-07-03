@@ -2,16 +2,16 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-07-03
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
-- **Sandbox-Bezug / Sandbox relation:** `absdd-image-sandbox`
+- **Sandbox-Bezug / Sandbox relation:** `absdd-image-sandbox`, öffentliches Referenz-Repo: <https://github.com/hindermath/absdd-image-sandbox>
 
 ## Lernziel / Learning Goal
 
-**DE:** Lernende können erklären, warum KI-gestützte Entwicklungsarbeit in einer freigegebenen Sandbox stattfinden soll und welche Nachweise dafür erforderlich sind.
+**DE:** Lernende können erklären, warum KI-gestützte Entwicklungsarbeit in einer freigegebenen Sandbox stattfinden soll und welche Nachweise später dafür erforderlich sind. Im 1. Lehrjahr ist praktische Sandbox-Nutzung noch keine Pflicht.
 
-**EN:** Learners can explain why AI-assisted development should happen in an approved sandbox and which evidence is required for that.
+**EN:** Learners can explain why AI-assisted development should happen in an approved sandbox and which evidence will later be required for that. In the first training year, practical sandbox use is not yet mandatory.
 
 ## Fachrichtungsbezug / Specialization Fit
 
@@ -36,9 +36,15 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Plane, wie Secure-CaseTracker-Aufgaben in oder mit `absdd-image-sandbox` bearbeitet werden können. Dokumentiere Mounts, Schreibgrenzen, Netzwerkannahmen, Secret-Regeln, Toolchain-Status für die sechs Zielsprachen und Grenzen für KI-Agenten.
+**DE:** Plane, wie Secure-CaseTracker-Aufgaben später in oder mit `absdd-image-sandbox` bearbeitet werden können. Dokumentiere Mounts, Schreibgrenzen, Netzwerkannahmen, Secret-Regeln, Toolchain-Status für die sechs Zielsprachen und Grenzen für KI-Agenten. Halte ausdrücklich fest, dass im 1. Lehrjahr auch Arbeit außerhalb der Sandbox zulässig ist, wenn die Sandbox-Technologien noch nicht ausreichend behandelt wurden.
 
-**EN:** Plan how Secure CaseTracker tasks can be worked on in or with `absdd-image-sandbox`. Document mounts, write boundaries, network assumptions, secret rules, toolchain status for the six target languages, and AI-agent boundaries.
+**EN:** Plan how Secure CaseTracker tasks can later be worked on in or with `absdd-image-sandbox`. Document mounts, write boundaries, network assumptions, secret rules, toolchain status for the six target languages, and AI-agent boundaries. Explicitly record that work outside the sandbox remains acceptable in the first training year if the sandbox technologies have not been covered deeply enough.
+
+## Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
+
+**DE:** Allgemeine Entwicklung, Lesen, Review und Bedienung der Werkzeuge dürfen außerhalb der Sandbox stattfinden, zum Beispiel mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio. Die Sandbox ist das Zielbild für KI-Agenten, reproduzierbare Toolchains, riskantere Experimente sowie klare Schreib- und Netzwerkgrenzen.
+
+**EN:** General development, reading, review, and tool operation may happen outside the sandbox, for example with JetBrains IDEs, VS Code, or Visual Studio on Windows. The sandbox is the target picture for AI agents, reproducible toolchains, higher-risk experiments, and clear write and network boundaries.
 
 ## Sicherheitsanforderungen / Security Requirements
 
@@ -78,6 +84,7 @@
 - Mounts, Schreibgrenzen, Netzwerk und Secrets sind dokumentiert.
 - Jede Zielsprachen-Toolchain hat einen Status.
 - Agenten-Grenzen sind für Codex, Copilot, Claude und Gemini gleichwertig verständlich.
+- Praktische Sandbox-Nutzung ist für Jahr 1 nicht als Pflicht formuliert, sondern als begründete Vorbereitung.
 - Keine echten personenbezogenen Daten oder Secrets werden für Agentenläufe vorgesehen.
 
 ## Tests und Nachweise / Tests and Evidence
@@ -96,6 +103,7 @@
 
 - Nicht genutzte Zielsprachen können in einem konkreten Lauf `N/A` sein, wenn die Lernaufgabe nur eine Sprache prüft.
 - Cloud-Betrieb ist `N/A`, solange die Sandbox lokal oder containerbasiert bleibt.
+- Praktische Sandbox-Nutzung kann im 1. Lehrjahr `N/A` sein, wenn die nötigen Container-, Mount- oder Agentenkenntnisse noch nicht behandelt wurden.
 - Netzwerkfreigaben sind `N/A`, wenn der Lauf bewusst offline geplant wird.
 
 ## Offene Punkte / Open Follow-Ups
@@ -106,5 +114,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_09_Sandbox-und-Agentische-Entwicklung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Sandbox-Nutzung, Mounts, Schreibgrenzen, Secret-Regeln, Netzwerkannahmen, MSL-Support-Matrix und KI-Agenten-Grenzen der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_09_Sandbox-und-Agentische-Entwicklung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für die vorbereitende Sandbox-Einordnung der Secure-CaseTracker-Lernreihe: Public-Referenz `absdd-image-sandbox`, Mounts, Schreibgrenzen, Secret-Regeln, Netzwerkannahmen, MSL-Support-Matrix, KI-Agenten-Grenzen und klare N/A-Begründung, falls praktische Sandbox-Nutzung im 1. Lehrjahr noch nicht verpflichtend ist. Erzeuge keine Implementierung.
 ```

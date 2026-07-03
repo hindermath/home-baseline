@@ -1,5 +1,7 @@
 # Secure CaseTracker v2 Unterrichtsleitfaden / Secure CaseTracker v2 Service Edition Teaching Guide
 
+**Stand / Date:** 2026-07-03
+
 ## Zweck / Purpose
 
 **DE:** Dieser Leitfaden unterstützt Lehrende bei der Durchführung der Lernreihe ab dem 2. Lehrjahr. Er erklärt Reihenfolge, didaktische Tiefe, Fachrichtungsbezug, typische Fehler und erwartete Nachweise.
@@ -34,6 +36,17 @@
 - Prüfe, ob Nachweise konkrete Pfade, Tests, Dokumente oder Spec-Kit-Artefakte nennen.
 - Prüfe, ob die Sprache DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-freundlich bleibt.
 - Prüfe, ob MSL-Vorteile sichtbar werden, ohne sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung zu ersetzen.
+- Prüfe, ob Sandbox-Nutzung im 2. Lehrjahr als Betriebs- und Nachweiskonzept vorbereitet und nicht unreflektiert als Pflicht behauptet wird.
+
+## Sandbox im 2. Lehrjahr / Sandbox in Year 2
+
+**DE:** `absdd-image-sandbox` ist öffentlich verfügbar unter <https://github.com/hindermath/absdd-image-sandbox>. Im 2. Lehrjahr wird die Sandbox als Betriebs-, Toolchain- und Evidenzkonzept vorbereitet. Praktische Nutzung ist möglich, aber nicht zwingend, wenn die Lerngruppe die nötigen Technologien noch nicht sicher beherrscht.
+
+**EN:** `absdd-image-sandbox` is publicly available at <https://github.com/hindermath/absdd-image-sandbox>. In year 2, the sandbox is prepared as an operational, toolchain, and evidence concept. Practical use is possible but not mandatory if the learner group does not yet handle the required technologies confidently.
+
+**DE:** JetBrains IDEs, VS Code und Windows-only Visual Studio bleiben zulässige Arbeitswerkzeuge außerhalb der Sandbox. KI-gestützte Schreibarbeit wird jedoch so vorbereitet, dass ab Jahr 3 eine sichere Sandbox-Nutzung erwartet werden kann.
+
+**EN:** JetBrains IDEs, VS Code, and Windows-only Visual Studio remain valid work tools outside the sandbox. AI-assisted write work is prepared so that secure sandbox use can be expected from year 3 onward.
 
 ## Grenzen / Boundaries
 
