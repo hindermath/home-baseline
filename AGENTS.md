@@ -22,8 +22,8 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/install-spec-kit-governance-presets.*`: installs the central Spec-Kit governance preset matrix from `scripts/config/spec-kit-governance-presets.json` into Level-2 repos.
 - `scripts/register-level2-repository.*`: updates the local operational GSDB repository registry at `~/.home-baseline/level2-repository-registry.json`; `scripts/config/level2-repository-registry.example.json` is the public-safe seed.
 - `scripts/check-gsdb-self-assessment.*`: runs a GSDB preflight without starting Spec Kit and prepares a later GSDB intensive-review intake.
-- `scripts/maintain-agentic-brew-apps.sh`: maintains the macOS/Linux Homebrew or apt agentic-development toolchain from `scripts/config/brew-apps-registry.json`.
-- `scripts/maintain-agentic-winget-apps.ps1`: maintains the Windows WinGet agentic-development toolchain from `scripts/config/winget-apps-registry.json`.
+- `scripts/maintain-agentic-brew-apps.sh`: maintains the macOS/Linux Homebrew or apt agentic-development toolchain from `scripts/config/brew-apps-registry.json` plus VS Code extensions from `scripts/config/vscode-extensions-registry.json`.
+- `scripts/maintain-agentic-winget-apps.ps1`: maintains the Windows WinGet agentic-development toolchain from `scripts/config/winget-apps-registry.json` plus VS Code extensions from `scripts/config/vscode-extensions-registry.json`.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories; uses `gitleaks` for pushed commit ranges when available and keeps the regex fallback.
 
 There is no `src/` or formal test tree; the scripts themselves are the product.
@@ -381,12 +381,13 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 ## Agentische Toolchain-Wartung / Agentic Toolchain Maintenance
 
 - Wiederkehrende Toolchain-Wartungsrunden sind im README unter `Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance` dokumentiert.
-- macOS/Linux nutzen `scripts/maintain-agentic-brew-apps.sh` und `scripts/config/brew-apps-registry.json`; Windows nutzt `scripts/maintain-agentic-winget-apps.ps1` und `scripts/config/winget-apps-registry.json`.
+- macOS/Linux nutzen `scripts/maintain-agentic-brew-apps.sh` und `scripts/config/brew-apps-registry.json`; Windows nutzt `scripts/maintain-agentic-winget-apps.ps1` und `scripts/config/winget-apps-registry.json`; VS-Code-Extensions werden gemeinsam ueber `scripts/config/vscode-extensions-registry.json` gepflegt.
+- VS Code ist der grafische Required-Editor fuer Auszubildende; Helix (`hx`) ist der Required-A11Y-/CLI-Editor. Die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift nutzen die offiziellen minimalen VS-Code-Extensions.
 - Standardlaeufe installieren nur `required`; `optional` dient als dokumentierter Komfort-/Projektkontext. `xquartz` bleibt bewusst aus der Brew-Registry ausgeschlossen.
 - `gitleaks` ist Required und muss nach Paketmanager-Wartung mit `gitleaks version` pruefbar sein.
 - Zweitgeraete ueber `mac-test.sh`, `linux-test.sh` und `windows-test.ps1` vergleichen; bewusst installierte Top-Level-Tools danach in die passende Registry uebernehmen.
 
-*Recurring toolchain maintenance rounds are documented in the README section `Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance`. macOS/Linux use `scripts/maintain-agentic-brew-apps.sh` with `scripts/config/brew-apps-registry.json`; Windows uses `scripts/maintain-agentic-winget-apps.ps1` with `scripts/config/winget-apps-registry.json`. Default runs install only `required`; `optional` records convenience/project context. `xquartz` stays intentionally excluded from the Brew registry. `gitleaks` is required and must be verifiable with `gitleaks version`; compare second machines through the platform test scripts and then update the matching registry for intentional top-level tools.*
+*Recurring toolchain maintenance rounds are documented in the README section `Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance`. macOS/Linux use `scripts/maintain-agentic-brew-apps.sh` with `scripts/config/brew-apps-registry.json`; Windows uses `scripts/maintain-agentic-winget-apps.ps1` with `scripts/config/winget-apps-registry.json`; VS Code extensions are shared through `scripts/config/vscode-extensions-registry.json`. VS Code is the required graphical editor for apprentices; Helix (`hx`) is the required A11Y/CLI editor. The six MSL paths C#, Go, Java, Python, Rust, and Swift use the official minimal VS Code extensions. Default runs install only `required`; `optional` records convenience/project context. `xquartz` stays intentionally excluded from the Brew registry. `gitleaks` is required and must be verifiable with `gitleaks version`; compare second machines through the platform test scripts and then update the matching registry for intentional top-level tools.*
 
 
 ## Secure-Development-Hardening Intake / Secure Development Hardening Intake

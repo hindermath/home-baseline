@@ -68,9 +68,27 @@ if (Test-Path $wingetMaint) {
 }
 Add-Line ""
 
+# === VS Code / Helix ===
+Add-Line "=== VS Code / Helix ==="
+if (Get-Command code -ErrorAction SilentlyContinue) {
+    $codeVersion = code --version 2>&1
+    $codeVersion | ForEach-Object { Add-Line "$_" }
+    $codeExtensions = code --list-extensions 2>&1
+    $codeExtensions | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line 'code: nicht installiert'
+}
+if (Get-Command hx -ErrorAction SilentlyContinue) {
+    $hxVersion = hx --version 2>&1
+    $hxVersion | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line 'hx: nicht installiert'
+}
+Add-Line ""
+
 # === Tools ===
 Add-Line "=== Tools ==="
-foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'uv', 'python', 'specify')) {
+foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'uv', 'python', 'specify', 'code', 'hx')) {
     if (Get-Command $cmd -ErrorAction SilentlyContinue) {
         Add-Line "  OK  ${cmd}"
     } else {

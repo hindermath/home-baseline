@@ -19,8 +19,21 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo "=== Agentic Brew Registry Vergleich ==="
   bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
   echo ""
+  echo "=== VS Code / Helix ==="
+  if command -v code > /dev/null 2>&1; then
+    code --version 2>&1 || true
+    code --list-extensions 2>&1 || true
+  else
+    echo "code: nicht gefunden"
+  fi
+  if command -v hx > /dev/null 2>&1; then
+    hx --version 2>&1 || true
+  else
+    echo "hx: nicht gefunden"
+  fi
+  echo ""
   echo "=== Tools ==="
-  for cmd in git gh glab rg gitleaks pwsh node uv python3 specify; do
+  for cmd in git gh glab rg gitleaks pwsh node uv python3 specify code hx; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
   echo ""

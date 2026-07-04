@@ -21,6 +21,8 @@
     { "id": "Rustlang.Rustup", "scope": "required", "purpose": "Memory-safe Rust toolchain manager" },
     { "id": "Anthropic.ClaudeCode", "scope": "required", "purpose": "Claude Code command-line agent" },
     { "id": "GitHub.Copilot", "scope": "required", "purpose": "GitHub Copilot CLI" },
+    { "id": "Microsoft.VisualStudioCode", "scope": "required", "purpose": "Minimum graphical editor and quasi-IDE for apprentice development" },
+    { "id": "Helix.Helix", "scope": "required", "purpose": "Terminal-native A11Y editor with language-server support" },
     { "id": "Podman.CLI", "scope": "optional", "purpose": "Podman CLI for container workflows" },
     { "id": "Docker.DockerCLI", "scope": "optional", "purpose": "Docker CLI for container workflows" },
     { "id": "Docker.DockerCompose", "scope": "optional", "purpose": "Docker Compose for container workflows" },

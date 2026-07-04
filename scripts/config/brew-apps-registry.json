@@ -19,6 +19,8 @@
     { "name": "gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
     { "name": "glab", "scope": "required", "purpose": "GitLab CLI for repository operations" },
     { "name": "go", "scope": "required", "purpose": "Memory-safe Go toolchain" },
+    { "name": "helix", "scope": "required", "apt": "helix", "purpose": "Terminal-native A11Y editor with language-server support" },
+    { "name": "jetbrains/junie/junie", "scope": "optional", "purpose": "JetBrains Junie command-line agent from the trusted JetBrains tap" },
     { "name": "lynx", "scope": "optional", "apt": "lynx", "purpose": "Text browser for accessibility-oriented checks" },
     { "name": "midnight-commander", "scope": "optional", "apt": "mc", "purpose": "Terminal file manager" },
     { "name": "mongodb/brew/mongodb-community", "scope": "optional", "purpose": "MongoDB local database for compatible projects" },
@@ -41,7 +43,8 @@
     { "name": "ollama-app", "scope": "optional", "purpose": "Local model runtime app" },
     { "name": "pgadmin4", "scope": "optional", "purpose": "PostgreSQL GUI administration" },
     { "name": "podman-desktop", "scope": "optional", "purpose": "Podman GUI and machine management" },
-    { "name": "powershell", "scope": "optional", "purpose": "PowerShell app bundle; formula remains the scripted baseline" }
+    { "name": "powershell", "scope": "optional", "purpose": "PowerShell app bundle; formula remains the scripted baseline" },
+    { "name": "visual-studio-code", "scope": "required", "purpose": "Minimum graphical editor and quasi-IDE for apprentice development" }
   ],
   "aptFallback": {
     "description": "Linux fallback packages for machines without Homebrew. Only explicit mappings are installed.",
@@ -52,7 +55,9 @@
       { "name": "nodejs", "scope": "required", "purpose": "Node.js runtime where distro package is acceptable" },
       { "name": "cmake", "scope": "required", "purpose": "Native build orchestration" },
       { "name": "pandoc", "scope": "required", "purpose": "Documentation conversion" },
-      { "name": "podman-compose", "scope": "required", "purpose": "Container compose support" }
+      { "name": "podman-compose", "scope": "required", "purpose": "Container compose support" },
+      { "name": "helix", "scope": "required", "purpose": "Terminal-native A11Y editor when available in the configured apt sources" },
+      { "name": "code", "scope": "required", "purpose": "VS Code package when available in the configured apt sources" }
     ]
   }
 }

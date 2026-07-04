@@ -5,10 +5,12 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 REGISTRY="$REPO_ROOT/scripts/config/brew-apps-registry.json"
+VSCODE_REGISTRY="$REPO_ROOT/scripts/config/vscode-extensions-registry.json"
 DRY_RUN=0
 COMPARE_ONLY=0
 SKIP_UPGRADE=0
 INCLUDE_OPTIONAL=0
+SKIP_VSCODE_EXTENSIONS=0
 
 usage() {
   cat <<'USAGE'
@@ -18,7 +20,11 @@ Options:
   --dry-run             Show package-manager actions without executing them
   --compare-only        Only compare installed packages with the registry
   --registry PATH       Use an alternative registry JSON
+  --vscode-registry PATH
+                        Use an alternative VS Code extensions registry JSON
   --skip-upgrade        Skip brew/apt update+upgrade
+  --skip-vscode-extensions
+                        Skip VS Code extension install and comparison
   --include-optional    Also install optional registry entries
   -h, --help            Show this help
 USAGE
@@ -41,8 +47,20 @@ while [ "$#" -gt 0 ]; do
       REGISTRY="${2:-}"
       shift
       ;;
+    --vscode-registry)
+      if [ "$#" -lt 2 ] || [ -z "${2:-}" ]; then
+        echo "Fehler: --vscode-registry benoetigt einen Pfad." >&2
+        usage >&2
+        exit 1
+      fi
+      VSCODE_REGISTRY="${2:-}"
+      shift
+      ;;
     --skip-upgrade)
       SKIP_UPGRADE=1
+      ;;
+    --skip-vscode-extensions)
+      SKIP_VSCODE_EXTENSIONS=1
       ;;
     --include-optional)
       INCLUDE_OPTIONAL=1
@@ -62,6 +80,11 @@ done
 
 if [ ! -f "$REGISTRY" ]; then
   echo "Fehler: Registry nicht gefunden: $REGISTRY" >&2
+  exit 1
+fi
+
+if [ "$SKIP_VSCODE_EXTENSIONS" -eq 0 ] && [ ! -f "$VSCODE_REGISTRY" ]; then
+  echo "Fehler: VS-Code-Extension-Registry nicht gefunden: $VSCODE_REGISTRY" >&2
   exit 1
 fi
 
@@ -110,6 +133,26 @@ for item in items:
 PY
 }
 
+vscode_registry_items() {
+  local section="$1"
+  local scope="${2:-all}"
+  python3 - "$VSCODE_REGISTRY" "$section" "$scope" <<'PY'
+import json
+import sys
+
+registry_path, section, scope = sys.argv[1:4]
+with open(registry_path, encoding="utf-8") as handle:
+    data = json.load(handle)
+
+for item in data.get(section, []):
+    if scope != "all" and item.get("scope", "required") != scope:
+        continue
+    value = item.get("id")
+    if value:
+        print(value)
+PY
+}
+
 registry_excluded_casks() {
   printf '%s\n' "xquartz"
   python3 - "$REGISTRY" <<'PY'
@@ -131,6 +174,44 @@ installed_formulae() {
 
 installed_casks() {
   brew list --cask 2>/dev/null | sort -u
+}
+
+code_candidates() {
+  if [ -n "${VSCODE_CLI:-}" ]; then
+    printf '%s\n' "$VSCODE_CLI"
+  fi
+  if command -v code >/dev/null 2>&1; then
+    command -v code
+  fi
+  printf '%s\n' \
+    "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" \
+    "$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" \
+    "/opt/homebrew/bin/code" \
+    "/usr/local/bin/code"
+}
+
+find_vscode_cli() {
+  local candidate seen
+  seen=""
+  while IFS= read -r candidate; do
+    [ -n "$candidate" ] || continue
+    case "$seen" in
+      *"|$candidate|"*) continue ;;
+    esac
+    seen="$seen|$candidate|"
+    [ -x "$candidate" ] || continue
+    if "$candidate" --version >/dev/null 2>&1 && "$candidate" --list-extensions >/dev/null 2>&1; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+    printf 'WARN: VS-Code-CLI nicht nutzbar: %s\n' "$candidate" >&2
+  done < <(code_candidates)
+  return 1
+}
+
+installed_vscode_extensions() {
+  local code_cli="$1"
+  "$code_cli" --list-extensions 2>/dev/null | tr '[:upper:]' '[:lower:]' | sort -u
 }
 
 print_missing() {
@@ -178,6 +259,55 @@ compare_brew_registry() {
   rm -rf "$tmp_dir"
 }
 
+compare_vscode_registry() {
+  [ "$SKIP_VSCODE_EXTENSIONS" -eq 0 ] || return 0
+
+  local code_cli tmp_dir installed_ext registry_ext deprecated_report
+  log "VS Code extension registry: $VSCODE_REGISTRY"
+  if ! code_cli="$(find_vscode_cli)"; then
+    log "vscode_cli: unavailable"
+    log "missing_on_machine.vscode_extensions"
+    vscode_registry_items extensions all | sed 's/^/  - /'
+    return 0
+  fi
+
+  tmp_dir="$(mktemp -d)"
+  installed_ext="$tmp_dir/installed-vscode-extensions"
+  registry_ext="$tmp_dir/registry-vscode-extensions"
+  installed_vscode_extensions "$code_cli" > "$installed_ext"
+  vscode_registry_items extensions all | tr '[:upper:]' '[:lower:]' | sort -u > "$registry_ext"
+
+  print_missing "missing_on_machine.vscode_extensions" "$installed_ext" "$registry_ext"
+
+  deprecated_report="$(python3 - "$VSCODE_REGISTRY" "$installed_ext" <<'PY'
+import json
+import sys
+
+registry_path, installed_path = sys.argv[1:3]
+with open(registry_path, encoding="utf-8") as handle:
+    registry = json.load(handle)
+with open(installed_path, encoding="utf-8") as handle:
+    installed = {line.strip().lower() for line in handle if line.strip()}
+for item in registry.get("deprecatedExtensions", []):
+    ext_id = item.get("id", "")
+    if ext_id.lower() in installed:
+        replacement = item.get("replacement", "")
+        if replacement:
+            print(f"{ext_id} -> {replacement}")
+        else:
+            print(ext_id)
+PY
+)"
+  if [ -n "$deprecated_report" ]; then
+    log "deprecated_installed.vscode_extensions"
+    printf '%s\n' "$deprecated_report" | sed 's/^/  - /'
+  else
+    log "deprecated_installed.vscode_extensions: none"
+  fi
+
+  rm -rf "$tmp_dir"
+}
+
 install_brew_items() {
   local scope formula cask
   scope="required"
@@ -206,6 +336,45 @@ install_brew_items() {
   fi
 }
 
+install_vscode_extensions() {
+  [ "$SKIP_VSCODE_EXTENSIONS" -eq 0 ] || return 0
+
+  local scope code_cli extension installed_lc extension_lc
+  scope="required"
+  [ "$INCLUDE_OPTIONAL" -eq 1 ] && scope="all"
+
+  if ! code_cli="$(find_vscode_cli)"; then
+    if [ "$DRY_RUN" -eq 1 ]; then
+      code_cli="code"
+      log "WARN: Keine nutzbare VS-Code-CLI gefunden; Dry-Run zeigt geplante Extension-Kommandos mit 'code'."
+    else
+      log "SKIP vscode extensions: Keine nutzbare VS-Code-CLI gefunden. Vergleich meldet fehlende Extensions."
+      return 0
+    fi
+  fi
+
+  installed_lc=""
+  if [ "$code_cli" != "code" ] || command -v code >/dev/null 2>&1; then
+    installed_lc="$(installed_vscode_extensions "$code_cli" || true)"
+  fi
+
+  while IFS= read -r extension; do
+    [ -z "$extension" ] && continue
+    extension_lc="$(printf '%s\n' "$extension" | tr '[:upper:]' '[:lower:]')"
+    if [ -n "$installed_lc" ] && printf '%s\n' "$installed_lc" | grep -Fxq "$extension_lc"; then
+      log "OK vscode extension: $extension"
+    else
+      log "INSTALL vscode extension: $extension"
+      run_cmd "$code_cli" --install-extension "$extension"
+    fi
+  done < <(vscode_registry_items extensions "$scope")
+}
+
+apt_package_available() {
+  local pkg="$1"
+  apt-cache policy "$pkg" 2>/dev/null | awk '/Candidate:/ { print $2; found=1 } END { if (!found) print "(none)" }' | grep -Fvq '(none)'
+}
+
 run_apt_fallback() {
   if [ "$OS_NAME" != "Linux" ] || ! command -v apt >/dev/null 2>&1; then
     echo "Fehler: Homebrew fehlt und apt-Fallback ist auf diesem System nicht verfuegbar." >&2
@@ -230,9 +399,11 @@ run_apt_fallback() {
     [ -z "$pkg" ] && continue
     if dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q 'install ok installed'; then
       log "OK apt: $pkg"
-    else
+    elif apt_package_available "$pkg"; then
       log "INSTALL apt: $pkg"
       run_cmd sudo apt install -y "$pkg"
+    else
+      log "SKIP apt unavailable: $pkg"
     fi
   done < <(registry_items aptFallback "$scope")
 }
@@ -249,9 +420,15 @@ if command -v brew >/dev/null 2>&1; then
 
   if [ "$COMPARE_ONLY" -eq 0 ]; then
     install_brew_items
+    install_vscode_extensions
   fi
 
   compare_brew_registry
+  compare_vscode_registry
 else
   run_apt_fallback
+  if [ "$COMPARE_ONLY" -eq 0 ]; then
+    install_vscode_extensions
+  fi
+  compare_vscode_registry
 fi

@@ -9,33 +9,42 @@
 ## Synopsis
 
 ```bash
-bash scripts/maintain-agentic-brew-apps.sh [--dry-run] [--compare-only] [--skip-upgrade] [--include-optional]
+bash scripts/maintain-agentic-brew-apps.sh [--dry-run] [--compare-only] [--skip-upgrade] [--skip-vscode-extensions] [--include-optional]
 ```
 
 ## Beschreibung / Description
 
 Das Werkzeug liest
 `scripts/config/brew-apps-registry.json` und gleicht die lokale macOS-/Linux-
-Toolchain fuer agentische Entwicklung ab. Auf Systemen mit Homebrew fuehrt ein
-normaler Lauf `brew update`, `brew upgrade` und die Installation fehlender
-Required-Formulae aus. Auf macOS werden zusaetzlich Required-Casks gepflegt.
+Toolchain fuer agentische Entwicklung ab. Zusaetzlich liest es
+`scripts/config/vscode-extensions-registry.json` und pflegt die Required-VS-
+Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift.
+Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
+`brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
+werden zusaetzlich Required-Casks gepflegt.
 
 *The tool reads `scripts/config/brew-apps-registry.json` and reconciles the
-local macOS/Linux toolchain for agentic development. On systems with Homebrew, a
-normal run executes `brew update`, `brew upgrade`, and installs missing required
-formulae. On macOS it also maintains required casks.*
+local macOS/Linux toolchain for agentic development. It additionally reads
+`scripts/config/vscode-extensions-registry.json` and maintains the required VS
+Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift. On
+systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
+installs missing required formulae. On macOS it also maintains required casks.*
 
 Wenn Linux kein `brew`, aber `apt` bereitstellt, nutzt das Skript den explizit
 dokumentierten apt-Fallback aus der Registry: `sudo apt update`,
-`sudo apt upgrade` und nur die dort gemappten Pakete. Die Homebrew-Registry
-enthaelt Top-Level-Pakete (`brew leaves --installed-on-request`) und macOS-Casks,
-keine transitiven Abhaengigkeiten. `xquartz` ist bewusst ausgeschlossen.
+`sudo apt upgrade` und nur die dort gemappten Pakete. `code` und `helix` werden
+im apt-Fallback nur installiert, wenn sie in den bereits konfigurierten apt-
+Quellen verfuegbar sind. Die Homebrew-Registry enthaelt Top-Level-Pakete
+(`brew leaves --installed-on-request`) und macOS-Casks, keine transitiven
+Abhaengigkeiten. `xquartz` ist bewusst ausgeschlossen.
 
 *When Linux has no `brew` but provides `apt`, the script uses the explicitly
 documented apt fallback from the registry: `sudo apt update`,
-`sudo apt upgrade`, and only the mapped packages. The Homebrew registry contains
-top-level packages (`brew leaves --installed-on-request`) and macOS casks, not
-transitive dependencies. `xquartz` is intentionally excluded.*
+`sudo apt upgrade`, and only the mapped packages. In the apt fallback, `code`
+and `helix` are installed only when available from the already configured apt
+sources. The Homebrew registry contains top-level packages
+(`brew leaves --installed-on-request`) and macOS casks, not transitive
+dependencies. `xquartz` is intentionally excluded.*
 
 ## Optionen / Options
 
@@ -44,7 +53,9 @@ transitive dependencies. `xquartz` is intentionally excluded.*
 | `--dry-run` | Paketmanager-Aktionen anzeigen, nicht ausfuehren |
 | `--compare-only` | Nur Registry-Drift melden, nichts installieren oder upgraden |
 | `--registry PATH` | Alternative Registry-Datei verwenden |
+| `--vscode-registry PATH` | Alternative VS-Code-Extension-Registry verwenden |
 | `--skip-upgrade` | `brew update`/`brew upgrade` bzw. apt-Update/Upgrade ueberspringen |
+| `--skip-vscode-extensions` | VS-Code-Extensions weder installieren noch vergleichen |
 | `--include-optional` | Auch optionale Registry-Eintraege installieren |
 | `-h`, `--help` | Hilfe anzeigen |
 
@@ -59,13 +70,16 @@ bash scripts/maintain-agentic-brew-apps.sh
 ## Abschlusskriterien / Closeout Criteria
 
 - `gitleaks version` funktioniert.
+- `code --version` und `hx --version` funktionieren, sofern die Plattform die grafische bzw. TUI-Editor-Basis installieren konnte.
 - `--compare-only` meldet keine fehlenden Required-Tools.
 - `python3 -m json.tool scripts/config/brew-apps-registry.json` ist erfolgreich.
+- `python3 -m json.tool scripts/config/vscode-extensions-registry.json` ist erfolgreich.
 - Neue bewusst installierte Top-Level-Tools werden in der Registry nachgetragen.
 
-*`gitleaks version` works, `--compare-only` reports no missing required tools,
-the registry is valid JSON, and intentional new top-level tools are added to the
-registry.*
+*`gitleaks version` works, `code --version` and `hx --version` work where the
+platform could install the graphical/TUI editor baseline, `--compare-only`
+reports no missing required tools, the registries are valid JSON, and
+intentional new top-level tools are added to the registry.*
 
 ## Sicherheit / Security
 
