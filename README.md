@@ -1213,7 +1213,7 @@ Die maschinelle Quelle fuer macOS/Linux ist
 [`scripts/config/brew-apps-registry.json`](scripts/config/brew-apps-registry.json),
 die Quelle fuer Windows ist
 [`scripts/config/winget-apps-registry.json`](scripts/config/winget-apps-registry.json).
-Die sechs offiziellen VS-Code-MSL-Extensions werden separat in
+Die offiziellen VS-Code-MSL-Extensions und die Container-Tools-Extension werden separat in
 [`scripts/config/vscode-extensions-registry.json`](scripts/config/vscode-extensions-registry.json)
 gefuehrt.
 Beide Registries unterscheiden `required` und `optional`; Standardlaeufe
@@ -1228,7 +1228,7 @@ machine source for macOS/Linux is
 [`scripts/config/brew-apps-registry.json`](scripts/config/brew-apps-registry.json),
 and the Windows source is
 [`scripts/config/winget-apps-registry.json`](scripts/config/winget-apps-registry.json).
-The six official VS Code MSL extensions are maintained separately in
+The official VS Code MSL extensions and the Container Tools extension are maintained separately in
 [`scripts/config/vscode-extensions-registry.json`](scripts/config/vscode-extensions-registry.json).
 Both registries distinguish `required` from `optional`; default runs install
 only `required`. `xquartz` may be installed locally, but is intentionally
@@ -1259,9 +1259,10 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `gitleaks`, auf Windows per WinGet als `Gitleaks.Gitleaks` gepflegt.
 4. VS Code ist Required: macOS per Cask `visual-studio-code`, Windows per
    WinGet-ID `Microsoft.VisualStudioCode`. Die Required-Extensions fuer C#,
-   Go, Java, Python, Rust und Swift werden mit `code --install-extension`
-   gepflegt. Die veraltete Swift-Extension `sswg.swift-lang` wird nur gemeldet,
-   nicht automatisch entfernt.
+   Go, Java, Python, Rust und Swift sowie Microsoft Container Tools fuer
+   Docker-/Podman-Workflows werden mit `code --install-extension` gepflegt. Die
+   veraltete Swift-Extension `sswg.swift-lang` wird nur gemeldet, nicht
+   automatisch entfernt.
 5. Helix ist Required als terminalbasierter A11Y-/CLI-Editor: macOS/Linux per
    Formula `helix`, Windows per WinGet-ID `Helix.Helix`. `msedit` bleibt ein
    optionaler einfacher Terminal-Editor.
@@ -1291,8 +1292,9 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `gitleaks`; on Windows it is maintained through WinGet as `Gitleaks.Gitleaks`.
 4. VS Code is required: macOS via cask `visual-studio-code`, Windows via WinGet
    ID `Microsoft.VisualStudioCode`. The required extensions for C#, Go, Java,
-   Python, Rust, and Swift are maintained with `code --install-extension`. The
-   deprecated Swift extension `sswg.swift-lang` is reported only, not removed
+   Python, Rust, and Swift plus Microsoft Container Tools for Docker/Podman
+   workflows are maintained with `code --install-extension`. The deprecated
+   Swift extension `sswg.swift-lang` is reported only, not removed
    automatically.
 5. Helix is required as the terminal-native A11Y/CLI editor: macOS/Linux via
    formula `helix`, Windows via WinGet ID `Helix.Helix`. `msedit` remains an

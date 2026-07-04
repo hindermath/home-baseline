@@ -18,7 +18,8 @@ Das Werkzeug liest
 `scripts/config/brew-apps-registry.json` und gleicht die lokale macOS-/Linux-
 Toolchain fuer agentische Entwicklung ab. Zusaetzlich liest es
 `scripts/config/vscode-extensions-registry.json` und pflegt die Required-VS-
-Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift.
+Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
+sowie Microsoft Container Tools fuer Docker-/Podman-Workflows.
 Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 `brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
 werden zusaetzlich Required-Casks gepflegt.
@@ -26,7 +27,8 @@ werden zusaetzlich Required-Casks gepflegt.
 *The tool reads `scripts/config/brew-apps-registry.json` and reconciles the
 local macOS/Linux toolchain for agentic development. It additionally reads
 `scripts/config/vscode-extensions-registry.json` and maintains the required VS
-Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift. On
+Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
+plus Microsoft Container Tools for Docker/Podman workflows. On
 systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
 installs missing required formulae. On macOS it also maintains required casks.*
 

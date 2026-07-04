@@ -18,7 +18,8 @@ Das Werkzeug liest
 `scripts/config/winget-apps-registry.json` und gleicht die Windows-Toolchain fuer
 agentische Entwicklung ab. Zusaetzlich liest es
 `scripts/config/vscode-extensions-registry.json` und pflegt die Required-VS-
-Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift.
+Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
+sowie Microsoft Container Tools fuer Docker-/Podman-Workflows.
 Ein normaler Lauf aktualisiert WinGet-Quellen, fuehrt `winget upgrade --all`
 aus und installiert fehlende Required-Pakete per `winget install --id <Id>
 --exact`.
@@ -26,7 +27,8 @@ aus und installiert fehlende Required-Pakete per `winget install --id <Id>
 *The tool reads `scripts/config/winget-apps-registry.json` and reconciles the
 Windows toolchain for agentic development. It additionally reads
 `scripts/config/vscode-extensions-registry.json` and maintains the required VS
-Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift. A
+Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
+plus Microsoft Container Tools for Docker/Podman workflows. A
 normal run refreshes WinGet sources, runs `winget upgrade --all`, and installs
 missing required packages via `winget install --id <Id> --exact`.*
 
