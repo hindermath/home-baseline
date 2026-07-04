@@ -244,7 +244,12 @@ clean_generated_whitespace() {
     return 0
   fi
 
-  for dir in "$repo/.opencode/command" "$repo/.claude/skills" "$repo/.agents/skills"; do
+  for dir in \
+    "$repo/.opencode/command" \
+    "$repo/.claude/skills" \
+    "$repo/.agents/skills" \
+    "$repo/.gemini/commands" \
+    "$repo/.github/agents"; do
     if [ -d "$dir" ]; then
       find "$dir" -type f -name '*.md' -exec perl -pi -e 's/[ \t]+$//' {} +
     fi

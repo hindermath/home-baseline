@@ -211,7 +211,13 @@ function Repair-HBGeneratedWhitespace {
         return
     }
 
-    foreach ($rel in @('.opencode/command', '.claude/skills', '.agents/skills')) {
+    foreach ($rel in @(
+        '.opencode/command',
+        '.claude/skills',
+        '.agents/skills',
+        '.gemini/commands',
+        '.github/agents'
+    )) {
         $dir = Join-Path $Repo $rel
         if (Test-Path $dir) {
             Get-ChildItem -Path $dir -Filter '*.md' -File -Recurse |
