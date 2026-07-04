@@ -13,9 +13,10 @@
 - **WCAG 2.2 AA:** Markdown muss mit Tastatur, Screenreader, Braille-Zeile und Textbrowser nutzbar bleiben.
 - **MSL-neutral:** Aufgaben duerfen nicht von einer einzelnen Sprache abhaengen, solange das Lernziel sprachneutral ist.
 - **Manuelle Spec-Kit-Laeufe:** KI-Agenten bereiten Intakes und Struktur vor, starten aber keine Spec-Kit-Laeufe fuer Lernende.
+- **Berufsbild bleibt fuehrend:** Spec-Kit-Laeufe begleiten Aufgaben pro Lehrjahr, Track, Sprachpfad und Aufgaben-Lastenheft; sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Pruefungsvorbereitung.
 - **Auditfaehige Nachweise:** Jede Aufgabe benennt erwartete Dokumente, Checklisten, `N/A`-Begruendungen und Evidenzpfade.
 
-*DE-first, EN-second; CEFR B2; WCAG 2.2 AA; memory-safe-language neutral where possible; manual Spec Kit runs only; and audit-ready evidence paths.*
+*DE-first, EN-second; CEFR B2; WCAG 2.2 AA; memory-safe-language neutral where possible; manual Spec Kit runs only; occupational learning remains leading; and audit-ready evidence paths.*
 
 ## Level-Modell / Level Model
 
@@ -41,6 +42,12 @@ Neue sprachneutrale Lernreihen verwenden standardmaessig diese sechs MSL-Pfade:
 6. Swift als Apple-/Swift-Plattformpfad
 
 *New language-neutral learning series normally use C# as the reference path, then Go, Java, Python, Rust, and Swift as comparison paths.*
+
+## IT-Berufsbild-Mapping / IT Occupation Mapping
+
+**DE:** Lernreihen koennen neben Fachinformatiker-Fachrichtungen auch weitere IT-Ausbildungsberufe didaktisch adressieren. Das Mapping bleibt eine Unterrichtshilfe und erzeugt keine neuen Repositories. Als Mindestmatrix gelten FI/AE, FI/SI, FI/DPA, FI/DV, IT-System-Elektroniker/-in, Kaufmann/-frau fuer IT-System-Management und Kaufmann/-frau fuer Digitalisierungsmanagement.
+
+**EN:** Learning series may also address additional IT training occupations didactically. The mapping remains a teaching aid and does not create repositories. The minimum matrix covers FI/AE, FI/SI, FI/DPA, FI/DV, IT systems electronics technician, IT systems management clerk, and digitalization management clerk.
 
 ## Mindestartefakte / Minimum Artefacts
 
@@ -97,6 +104,7 @@ Jede Lernreihe enthaelt mindestens:
 
 - Ein Master-Lastenheft beschreibt die ganze Reihe und wird nicht als ein grosser Lauf gestartet.
 - Aufgaben-Lastenhefte werden einzeln mit `/speckit-specify` gestartet.
+- Spec-Kit-Laeufe sind begleitende SDD-Aufgaben und ersetzen nicht das jeweilige Berufsbild.
 - Der optimale Specify-Prompt steht am Ende jedes Aufgaben-Lastenhefts.
 - Agenten duerfen Dateien vorbereiten, Reihenfolgen pflegen und Pakete erzeugen.
 - Agenten starten keine Lernenden-Laeufe, erstellen keine Feature-Branches fuer Lernende und befuellen keine projektspezifischen `docs/security/`-Nachweise ohne ausdruecklichen Auftrag.

@@ -14,6 +14,7 @@
 | Fachrichtung AE | <hoch/mittel/niedrig> |
 | Fachrichtung SI | <hoch/mittel/niedrig> |
 | Fachrichtung DPA | <hoch/mittel/niedrig> |
+| Fachrichtung DV | <hoch/mittel/niedrig> |
 | Sprachniveau / Language level | DE-first, EN-second, CEFR B2 |
 | Barrierefreiheit / Accessibility | WCAG 2.2 AA, textfreundliches Markdown |
 
@@ -55,3 +56,4 @@
 - Diese Datei startet keinen Spec-Kit-Lauf.
 - Das Master-Lastenheft ist nur Gesamtlandkarte.
 - Einzelne Aufgaben-Lastenhefte werden spaeter manuell mit `/speckit-specify` gestartet.
+- Spec-Kit-Laeufe begleiten die Aufgaben und ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Pruefungsvorbereitung.

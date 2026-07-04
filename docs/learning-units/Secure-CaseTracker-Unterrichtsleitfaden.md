@@ -44,6 +44,7 @@
 | Anwendungsentwicklung | 00, 01, 02, 03, 05, 06, 07, 11, 12 | Diese Aufgaben behandeln Projektbasis, Anforderungen, Modell, Validierung, Berechtigungen, Persistenz, Tests, Review und spätere Track-Ableitung. |
 | Systemintegration | 00, 01, 07, 08, 09, 11, 12 | Diese Aufgaben behandeln reproduzierbare Umgebung, Toolchains, Supply Chain, Sandbox, Secrets, Nachweise und Baseline-Fähigkeit. |
 | Daten- und Prozessanalyse | 00, 01, 02, 04, 06, 10, 11, 12 | Diese Aufgaben behandeln Projektbasis, Datenarten, Datenschutz, Datenqualität, Auswertung, Aussagegrenzen und spätere Track-Ableitung. |
+| Digitale Vernetzung | 00, 01, 03, 08, 09, 11, 12 | Diese Aufgaben behandeln Projektbasis, Systemgrenzen, Trust Boundaries, Toolchain, Sandbox, Vernetzungsperspektive und spätere Track-Ableitung. |
 
 **EN:** The series can be taught jointly. Depending on the class or learner group, tasks can be weighted differently.
 
@@ -115,6 +116,10 @@
 **DE:** Wichtig: Eine vorbereitete Struktur ist noch kein ausgeführter Spec-Kit-Lauf. Ein Level-2-Repo gilt erst dann als bearbeitet, wenn Lernende oder Lehrende dort bewusst ein konkretes Aufgaben-Lastenheft `00` bis `12` mit `/speckit-specify` gestartet und die entstehenden Artefakte geprüft haben. Neue oder leere Sprachrepos beginnen mit `00`; fachliche Jahr-1-Arbeit beginnt mit `01`; `12` gehört zur späteren Jahr-2-Baseline vor Jahr 3.
 
 **EN:** Important: A prepared structure is not yet an executed Spec Kit run. A Level 2 repository counts as worked on only after learners or instructors deliberately start a concrete task intake `00` to `12` with `/speckit-specify` and review the resulting artifacts. New or empty language repositories start with `00`; functional year-1 work starts with `01`; `12` belongs to the later year-2 baseline before year 3.
+
+**DE:** Spec-Kit-Läufe sind begleitende SDD-Aufgaben. Sie ersetzen nicht das klassische Erlernen des Berufsbildes, die Berufsschule, die betriebliche Ausbildung, den Rahmenlehrplan, Ausbilderentscheidungen oder Prüfungsvorbereitung.
+
+**EN:** Spec Kit runs are companion SDD tasks. They do not replace learning the occupation, vocational school, workplace training, the curriculum, instructor decisions, or exam preparation.
 
 ## Rolle von Spec Kit / Role of Spec Kit
 

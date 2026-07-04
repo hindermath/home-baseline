@@ -39,6 +39,7 @@ Diese Präsentation führt in die Lernreihe ein. Sie ersetzt keinen Spec-Kit-Lau
 | AE | Architektur, Service-Vertrag, Persistenz, Validierung, Autorisierung und Tests. |
 | SI | Sandbox, CI, Konfiguration, Betriebsannahmen, Secrets, Toolchain- und Nachweispfade. |
 | DPA | Datenmodell, Datenschutz, Auditdaten, Prozesskennzahlen und Aussagegrenzen. |
+| DV | Systemgrenzen, Schnittstellen, Kommunikationsflüsse, Segmentierung und Verfügbarkeit. |
 
 ---
 

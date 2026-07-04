@@ -38,6 +38,7 @@ This presentation introduces the learning series. It does not replace a Spec Kit
 | Application Development | architecture, interfaces, implementation decisions, and tests |
 | System Integration | sandbox, CI, configuration, operation, and evidence paths |
 | Data and Process Analysis | data quality, metrics, privacy, and decision boundaries |
+| Digital Networking | asset network context, interfaces, communication flows, segmentation, and availability assumptions |
 
 ---
 

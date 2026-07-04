@@ -14,15 +14,20 @@
 | Fachrichtung AE | hoch |
 | Fachrichtung SI | hoch |
 | Fachrichtung DPA | mittel bis hoch |
+| Fachrichtung DV | mittel bis hoch |
 | MSL-Sprachen | C#, Go, Java, Python, Rust, Swift |
 | Sprache / Language | DE-first, EN-second, CEFR B2 |
 | Barrierefreiheit / Accessibility | WCAG 2.2 AA, textfreundliches Markdown |
 
+**DE:** Die Spec-Kit-Läufe der Reihe sind begleitende SDD-Aufgaben. Sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Ausbilderentscheidungen oder Prüfungsvorbereitung.
+
+**EN:** The Spec Kit runs in this series are companion SDD tasks. They do not replace vocational school, workplace training, trainer decisions, or exam preparation.
+
 ## Gesamtziel / Overall Goal
 
-**DE:** EuFPA möchte den bisherigen Secure CaseTracker zu einer Service Edition ausbauen. Die Reihe vertieft Architektur, Persistenz, API-/Service-Grenzen, Autorisierung, Audit-Logging, Tests, CI, Sandbox, Betrieb und MSL-Vergleich.
+**DE:** EuFPA möchte den bisherigen Secure CaseTracker zu einer Service Edition ausbauen. Die Reihe vertieft Architektur, Persistenz, API-/Service-Grenzen, Autorisierung, Audit-Logging, Tests, CI, Sandbox, Betrieb, Schnittstellenbetrachtung und MSL-Vergleich.
 
-**EN:** EuFPA wants to extend the existing Secure CaseTracker into a service edition. The series deepens architecture, persistence, API/service boundaries, authorization, audit logging, tests, CI, sandbox, operation, and MSL comparison.
+**EN:** EuFPA wants to extend the existing Secure CaseTracker into a service edition. The series deepens architecture, persistence, API/service boundaries, authorization, audit logging, tests, CI, sandbox, operation, interface review, and MSL comparison.
 
 ## Aufgaben-Intakes / Task Intakes
 

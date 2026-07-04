@@ -51,8 +51,9 @@
 | AE – Anwendungsentwicklung | Domänenmodell, Eingabevalidierung, Berechtigungen, Persistenz, Tests und sichere APIs. |
 | SI – Systemintegration | Sandbox, Laufzeit, Konfiguration, Logging, Secrets, Supply Chain und Toolchain-Nachweise. |
 | DPA – Daten- und Prozessanalyse | Datenschutz, Datenqualität, Kennzahlen, Prozessauswertung und Grenzen der Aussagekraft. |
+| DV – Digitale Vernetzung | Systemkontext, Schnittstellen, Kommunikationsflüsse, Segmentierung, Verfügbarkeit und Betriebsnachweise. |
 
-**EN:** Application Development focuses on the domain model, validation, permissions, persistence, tests, and secure APIs. System Integration focuses on sandboxing, runtime, configuration, logging, secrets, supply chain, and toolchain evidence. Data and Process Analysis focuses on privacy, data quality, metrics, process evaluation, and limits of interpretation.
+**EN:** Application Development focuses on the domain model, validation, permissions, persistence, tests, and secure APIs. System Integration focuses on sandboxing, runtime, configuration, logging, secrets, supply chain, and toolchain evidence. Data and Process Analysis focuses on privacy, data quality, metrics, process evaluation, and limits of interpretation. Digital Networking focuses on system context, interfaces, communication flows, segmentation, availability, and operational evidence.
 
 ## Richtlinie Sichere Entwicklung / Secure Development Guideline
 
@@ -123,7 +124,7 @@
 
 | Nr. | Lerneinheit | Primär geeignet für |
 |---:|---|---|
-| 00 | Sprachrepo-Projekt-Scaffold | AE, SI, DPA |
+| 00 | Sprachrepo-Projekt-Scaffold | AE, SI, DPA, DV |
 | 01 | Kundenauftrag und Scope | AE |
 | 02 | Domänenmodell und Zustände | AE |
 | 03 | Eingabevalidierung und Trust Boundaries | AE |
@@ -132,10 +133,10 @@
 | 06 | Persistenz, Import und Export | AE, DPA |
 | 07 | Testbarkeit und Qualität | AE |
 | 08 | Supply Chain und MSL-Bewertung | SI |
-| 09 | Sandbox und agentische Entwicklung | SI, im 1. Lehrjahr vorbereitend |
+| 09 | Sandbox und agentische Entwicklung | SI, DV, im 1. Lehrjahr vorbereitend |
 | 10 | Prozessanalyse und Kennzahlen | DPA |
-| 11 | Spec-Kit-Review und Abschluss | AE, SI, DPA |
-| 12 | Jahr-2-Baseline und Track-Ableitung | AE, SI, DPA |
+| 11 | Spec-Kit-Review und Abschluss | AE, SI, DPA, DV |
+| 12 | Jahr-2-Baseline und Track-Ableitung | AE, SI, DPA, DV |
 
 ## Sprachspezifische Adapterhinweise / Language-Specific Adapter Notes
 

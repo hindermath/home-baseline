@@ -166,10 +166,12 @@ but it is not a complete security guarantee.
 | Application Development | Model, validation, permissions, persistence, tests |
 | System Integration | Sandbox, toolchain, logging, secrets, supply chain |
 | Data and Process Analysis | Privacy, data quality, metrics, limits of interpretation |
+| Digital Networking | System context, interfaces, communication flows, availability |
 
 ::: notes
 The series can be used jointly.
 Depending on the class, some tasks can receive stronger focus.
+Spec Kit accompanies the SDD tasks, but it does not replace occupation learning.
 :::
 
 

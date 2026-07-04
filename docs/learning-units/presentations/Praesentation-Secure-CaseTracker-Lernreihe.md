@@ -166,10 +166,12 @@ aber keine vollständige Sicherheitsgarantie.
 | Anwendungsentwicklung | Modell, Validierung, Berechtigungen, Persistenz, Tests |
 | Systemintegration | Sandbox, Toolchain, Logging, Secrets, Supply Chain |
 | Daten- und Prozessanalyse | Datenschutz, Datenqualität, Kennzahlen, Aussagegrenzen |
+| Digitale Vernetzung | Systemkontext, Schnittstellen, Kommunikationsflüsse, Verfügbarkeit |
 
 ::: notes
 Die Lernreihe ist gemeinsam nutzbar.
 Je nach Klasse können einzelne Aufgaben stärker gewichtet werden.
+Spec Kit begleitet die SDD-Aufgaben, ersetzt aber nicht das Berufsbildlernen.
 :::
 
 

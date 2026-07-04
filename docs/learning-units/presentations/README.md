@@ -8,6 +8,8 @@
 
 | Datei / File | Zweck / Purpose |
 |---|---|
+| `Praesentation-Spec-Kit-SDD-Auftakt.md` | Neutrale DE-first-Auftaktinformation zu Spec-Driven Development mit Spec Kit ohne Organisationsbezüge. |
+| `Praesentation-Spec-Kit-SDD-Auftakt.en.md` | English companion version of the neutral Spec Kit SDD kickoff. |
 | `Praesentation-Secure-CaseTracker-Lernreihe.md` | DE-first-Einführung in EuFPA, Secure CaseTracker, MSL, Sandbox, Spec Kit und manuelle Level-2-Läufe. |
 | `Praesentation-Secure-CaseTracker-Lernreihe.en.md` | English companion version of the Secure CaseTracker introduction. |
 | `Praesentation-Secure-CaseTracker-v2-Lernreihe.md` | DE-first-Einführung in Secure CaseTracker v2 für Architektur, Persistenz, Service-Verträge, Betrieb und MSL-Vergleich. |
@@ -20,8 +22,15 @@
 | `Praesentation-Secure-CaseTracker-Operations-Track-Lernreihe.en.md` | English companion version of the Operations Track introduction. |
 | `Praesentation-Secure-CaseTracker-Data-Process-Track-Lernreihe.md` | DE-first-Einführung in den DPA Data & Process Track ab dem 3. Lehrjahr. |
 | `Praesentation-Secure-CaseTracker-Data-Process-Track-Lernreihe.en.md` | English companion version of the Data & Process Track introduction. |
+| `Praesentation-Secure-CaseTracker-Digital-Networking-Track-Lernreihe.md` | DE-first-Einführung in den DV Digital Networking Track ab dem 3. Lehrjahr. |
+| `Praesentation-Secure-CaseTracker-Digital-Networking-Track-Lernreihe.en.md` | English companion version of the Digital Networking Track introduction. |
 
 ## Pandoc
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Spec-Kit-SDD-Auftakt.md \
+  -o Spec-Kit-SDD-Auftakt.pptx
+```
 
 ```bash
 pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Lernreihe.md \
@@ -41,6 +50,11 @@ pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Operat
 ```bash
 pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Data-Process-Track-Lernreihe.md \
   -o Secure-CaseTracker-Data-Process-Track-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Digital-Networking-Track-Lernreihe.md \
+  -o Secure-CaseTracker-Digital-Networking-Track-Lernreihe.pptx
 ```
 
 **DE:** Erzeugte `.pptx`-Dateien sind Ausgabeartefakte und werden nicht automatisch versioniert.

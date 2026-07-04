@@ -13,7 +13,8 @@
 | vorbereitet / prepared | Secure CaseTracker | [Secure-CaseTracker-Lernreihe.md](Secure-CaseTracker-Lernreihe.md) | ab 1. Lehrjahr | sichere Grundlagen, MSL-Vergleich, Spec Kit, Datenschutz, Tests |
 | vorbereitet / prepared | Secure CaseTracker v2 | [Secure-CaseTracker-v2-Lernreihe.md](Secure-CaseTracker-v2-Lernreihe.md) | ab dem 2. Lehrjahr | Architektur, Persistenz, Schnittstellen, Autorisierung, Audit-Logging, Betrieb |
 | vorbereitet / prepared | Secure InventoryHub | [Secure-InventoryHub-Lernreihe.md](Secure-InventoryHub-Lernreihe.md) | ab dem 2. Lehrjahr | Inventar, Softwarestände, Rollen, Datenqualität, Patch-/Wartungsstatus, SBOM-Bezug |
-| vorbereitet / prepared | Secure CaseTracker Professional Tracks | [Secure-CaseTracker-Professional-Tracks-Lernreihe.md](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) | ab dem 3. Lehrjahr | Spezialisierung in AE, SI und DPA mit Application, Operations und Data & Process Tracks |
+| vorbereitet / prepared | Secure CaseTracker Professional Tracks | [Secure-CaseTracker-Professional-Tracks-Lernreihe.md](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) | ab dem 3. Lehrjahr | Spezialisierung in AE, SI, DPA und DV mit Application, Operations, Data & Process und Digital Networking Tracks |
+| vorbereitet / prepared | IT-Berufe-Mapping für Secure CaseTracker | [IT-Berufe-Secure-CaseTracker-Mapping.md](IT-Berufe-Secure-CaseTracker-Mapping.md) | berufsbegleitend / supporting all years | Berufsbild-Mapping für FI/AE, FI/SI, FI/DPA, FI/DV, IT-System-Elektroniker/-in, IT-System-Management und Digitalisierungsmanagement |
 | geplant / planned | Weitere Reihe ab 3. Lehrjahr | noch offen / open | ab dem 3. Lehrjahr | Härtung, Lieferkette, Compliance, Deployment, Review |
 
 ## Statuswerte / Status Values
@@ -27,6 +28,6 @@
 
 ## Pflegehinweis / Maintenance Note
 
-**DE:** Neue Lernreihen werden zuerst hier registriert und danach anhand des [Lernreihen-Blueprints](Lernreihen-Blueprint.md) ausgearbeitet. Secure CaseTracker bleibt die Referenz für Struktur, Tiefe und Paketierung. Secure CaseTracker v2 und Secure InventoryHub zeigen das Muster für Reihen ab dem 2. Lehrjahr. Secure CaseTracker Professional Tracks zeigt das Spezialisierungsmuster für das 3. Lehrjahr.
+**DE:** Neue Lernreihen werden zuerst hier registriert und danach anhand des [Lernreihen-Blueprints](Lernreihen-Blueprint.md) ausgearbeitet. Secure CaseTracker bleibt die Referenz für Struktur, Tiefe und Paketierung. Secure CaseTracker v2 und Secure InventoryHub zeigen das Muster für Reihen ab dem 2. Lehrjahr. Secure CaseTracker Professional Tracks zeigt das Spezialisierungsmuster für das 3. Lehrjahr. Das Berufsbild-Mapping ordnet vorhandene Reihen didaktisch zu, ersetzt aber keine Ausbildungsordnung und erzeugt keine eigenen Repos.
 
-**EN:** New learning series are registered here first and then built from the [Learning Series Blueprint](Lernreihen-Blueprint.md). Secure CaseTracker remains the reference for structure, depth, and packaging. Secure CaseTracker v2 and Secure InventoryHub show the pattern for second-year series. Secure CaseTracker Professional Tracks shows the specialization pattern for the third training year.
+**EN:** New learning series are registered here first and then built from the [Learning Series Blueprint](Lernreihen-Blueprint.md). Secure CaseTracker remains the reference for structure, depth, and packaging. Secure CaseTracker v2 and Secure InventoryHub show the pattern for second-year series. Secure CaseTracker Professional Tracks shows the specialization pattern for the third training year. The occupation mapping is didactic only; it does not replace training regulations and does not create repositories.

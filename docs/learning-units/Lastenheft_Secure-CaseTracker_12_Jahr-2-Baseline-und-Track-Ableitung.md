@@ -10,9 +10,9 @@
 
 ## Lernziel / Learning Goal
 
-**DE:** Lernende können den abgeschlossenen Jahr-2-Stand des Secure CaseTracker als nachvollziehbare Baseline sichern und daraus spätere Jahr-3-Spezialisierungspfade für AE, SI und DPA ableiten, ohne bei den Spezialisierungen wieder bei einem leeren Projekt zu starten.
+**DE:** Lernende können den abgeschlossenen Jahr-2-Stand des Secure CaseTracker als nachvollziehbare Baseline sichern und daraus spätere Jahr-3-Spezialisierungspfade für AE, SI, DPA und DV ableiten, ohne bei den Spezialisierungen wieder bei einem leeren Projekt zu starten.
 
-**EN:** Learners can preserve the completed year-2 Secure CaseTracker state as a traceable baseline and derive later year-3 specialization paths for AE, SI, and DPA without starting the specializations from an empty project again.
+**EN:** Learners can preserve the completed year-2 Secure CaseTracker state as a traceable baseline and derive later year-3 specialization paths for AE, SI, DPA, and DV without starting the specializations from an empty project again.
 
 ## Fachrichtungsbezug / Specialization Fit
 
@@ -21,12 +21,17 @@
 | AE | Primär | Der spätere Application Track braucht eine stabile fachliche und technische Ausgangsbasis. |
 | SI | Primär | Der spätere Operations Track braucht reproduzierbare Build-, Betriebs- und Nachweisinformationen. |
 | DPA | Primär | Der spätere Data-&-Process-Track braucht nachvollziehbare Daten- und Kennzahlenannahmen. |
+| DV | Primär | Der spätere Digital-Networking-Track braucht nachvollziehbare Systemgrenzen, Schnittstellen, Kommunikationsflüsse und Verfügbarkeitsannahmen. |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
 **DE:** Die Aufgabe unterstützt Projektabschluss, Versionsstand, Übergabe, Qualitätssicherung, Dokumentation und fachrichtungsspezifische Weiterentwicklung.
 
 **EN:** The task supports project closure, version state, handover, quality assurance, documentation, and specialization-specific continuation.
+
+**DE:** Spec-Kit-Läufe sind begleitende SDD-Aufgaben für Baseline und Ableitung. Sie ersetzen nicht das klassische Erlernen des jeweiligen Berufsbilds oder die fachliche Ausbildung im Betrieb und in der Berufsschule.
+
+**EN:** Spec Kit runs are companion SDD tasks for baseline and derivation. They do not replace classical occupation learning or vocational training at school and in the workplace.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
@@ -67,7 +72,7 @@
 - Entscheidung, ob der Jahr-2-Stand baselinefähig ist.
 - Tag-Plan oder vorhandener Tag `learning/year-2-complete`.
 - Datei `docs/learning-units/YEAR2_BASELINE.md` im Jahr-2-Sprachrepo.
-- Plan für die spätere Ableitung in AE-, SI- oder DPA-Track.
+- Plan für die spätere Ableitung in AE-, SI-, DPA- oder DV-Track.
 - Vorlage oder späteres Ziel für `docs/learning-units/TRACK_BASELINE.md`.
 
 ## Akzeptanzkriterien / Acceptance Criteria
@@ -90,6 +95,7 @@
 - **AE:** Welche Architektur- oder Implementierungsentscheidung aus Jahr 2 darf der Application Track nicht verlieren?
 - **SI:** Welche Betriebs-, Sandbox- oder CI-Annahme muss vor dem Operations Track stabil sein?
 - **DPA:** Welche Datenqualitäts- oder Kennzahlenannahme muss vor dem Data-&-Process-Track dokumentiert sein?
+- **DV:** Welche Systemgrenze, Schnittstelle oder Kommunikationsannahme muss vor dem Digital-Networking-Track dokumentiert sein?
 
 ## N/A-Regeln / N/A Rules
 
@@ -105,5 +111,5 @@
 ## Copy-Paste Spec-Kit Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_12_Jahr-2-Baseline-und-Track-Ableitung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für den Abschluss der Jahr-2-Baseline, den Tag learning/year-2-complete, die Baseline-Nachweise und die spätere Track-Ableitung für AE, SI und DPA. Erzeuge keine neue Fachlogik und keine automatische Massenanlage von Track-Repositories.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_12_Jahr-2-Baseline-und-Track-Ableitung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für den Abschluss der Jahr-2-Baseline, den Tag learning/year-2-complete, die Baseline-Nachweise und die spätere Track-Ableitung für AE, SI, DPA und DV. Erzeuge keine neue Fachlogik und keine automatische Massenanlage von Track-Repositories.
 ```

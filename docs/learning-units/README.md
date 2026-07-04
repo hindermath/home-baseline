@@ -40,23 +40,30 @@ Die zugehörigen Unterrichtsleitfäden sind [Secure CaseTracker v2 Unterrichtsle
 
 ## Lernreihen ab dem 3. Lehrjahr / Learning Series from the Third Training Year
 
-**DE:** Für das 3. Lehrjahr ist [Secure CaseTracker Professional Tracks](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) vorbereitet. Die Reihe nutzt den bekannten CaseTracker-Fall weiter, trennt die Arbeit aber in drei Spezialisierungen:
+**DE:** Für das 3. Lehrjahr ist [Secure CaseTracker Professional Tracks](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) vorbereitet. Die Reihe nutzt den bekannten CaseTracker-Fall weiter, trennt die Arbeit aber in vier Spezialisierungen:
 
 - [Secure CaseTracker Application Track](Secure-CaseTracker-Application-Track-Lernreihe.md) für AE.
 - [Secure CaseTracker Operations Track](Secure-CaseTracker-Operations-Track-Lernreihe.md) für SI.
 - [Secure CaseTracker Data & Process Track](Secure-CaseTracker-Data-Process-Track-Lernreihe.md) für DPA.
+- [Secure CaseTracker Digital Networking Track](Secure-CaseTracker-Digital-Networking-Track-Lernreihe.md) für DV.
 
-**EN:** [Secure CaseTracker Professional Tracks](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) is prepared for the third training year. It continues the known CaseTracker case but separates the work into three specializations: Application, Operations, and Data & Process.
+**EN:** [Secure CaseTracker Professional Tracks](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) is prepared for the third training year. It continues the known CaseTracker case but separates the work into four specializations: Application, Operations, Data & Process, and Digital Networking.
 
-Jeder Track enthält einen Unterrichtsleitfaden, ein Master-Lastenheft, zehn einzelne Aufgaben-Intakes und DE/EN-Präsentationen. Die späteren Spec-Kit-Läufe werden manuell pro Track, Sprachpfad und Aufgaben-Lastenheft gestartet.
+Jeder Track enthält einen Unterrichtsleitfaden, ein Master-Lastenheft, zehn einzelne Aufgaben-Intakes und DE/EN-Präsentationen. Die späteren Spec-Kit-Läufe werden manuell pro Track, Sprachpfad und Aufgaben-Lastenheft gestartet. Sie begleiten die Aufgaben, ersetzen aber nicht das klassische Erlernen des jeweiligen Berufsbildes.
 
-*Each track contains a teaching guide, master intake, ten individual task intakes, and DE/EN presentations. Later Spec Kit runs are started manually per track, language path, and task intake.*
+*Each track contains a teaching guide, master intake, ten individual task intakes, and DE/EN presentations. Later Spec Kit runs are started manually per track, language path, and task intake. They accompany the tasks but do not replace learning the respective occupation.*
+
+## Berufsbild-Mapping / Occupation Mapping
+
+**DE:** Das [IT-Berufe-Mapping für Secure CaseTracker](IT-Berufe-Secure-CaseTracker-Mapping.md) ordnet die vorhandenen Reihen den Fachinformatiker-Fachrichtungen AE, SI, DPA und DV sowie den weiteren IT-Berufen IT-System-Elektroniker/-in, Kaufmann/-frau für IT-System-Management und Kaufmann/-frau für Digitalisierungsmanagement zu.
+
+**EN:** The [IT occupation mapping for Secure CaseTracker](IT-Berufe-Secure-CaseTracker-Mapping.md) maps the existing series to the IT specialist specializations AE, SI, DPA, and DV, and to the additional IT occupations IT systems electronics technician, IT systems management clerk, and digitalization management clerk.
 
 ## Präsentationen / Presentations
 
-Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführung vor dem ersten Spec-Kit-Lauf. Die Markdown-Dateien sind für eine spätere Pandoc-Umwandlung nach PowerPoint vorbereitet; die Markdown-Quelle bleibt die gepflegte Fassung.
+Die Präsentationen unter [`presentations/`](presentations/) dienen als Einführung vor dem ersten Spec-Kit-Lauf. Die neutrale [Spec-Kit-SDD-Auftaktinformation](SPEC-KIT-SDD-AUFTAKT.md) und die zugehörige Präsentation erklären Spec-Driven Development ohne organisationsspezifische Workshop-Bezüge. Die Markdown-Dateien sind für eine spätere Pandoc-Umwandlung nach PowerPoint vorbereitet; die Markdown-Quelle bleibt die gepflegte Fassung.
 
-*The presentations under [`presentations/`](presentations/) provide an introduction before the first Spec Kit run. The Markdown files are prepared for later Pandoc conversion to PowerPoint; the Markdown source remains the maintained version.*
+*The presentations under [`presentations/`](presentations/) provide an introduction before the first Spec Kit run. The neutral [Spec Kit SDD kickoff](SPEC-KIT-SDD-AUFTAKT.md) and the related presentation explain spec-driven development without organization-specific workshop references. The Markdown files are prepared for later Pandoc conversion to PowerPoint; the Markdown source remains the maintained version.*
 
 ## Wiederverwendbare Lernreihen / Reusable Learning Series
 
@@ -95,9 +102,9 @@ Die generische [Git-Start-Anleitung für Lernende](GIT-START-FUER-LERNENDE.md) w
 
 ## Scaffold, Baseline und Tracks / Scaffold, Baseline, and Tracks
 
-**DE:** Sprachrepos starten mit einem technischen `00`-Intake, bevor fachliche Aufgaben beginnen. Dieser Lauf prüft minimales Projekt, Build/Test, Secure-Development-Basis und Governance-Presets. Fortgeschrittene Secure-CaseTracker-Reihen ab Jahr 2 erweitern den vorhandenen Sprachpfad. Jahr 3 leitet AE-, SI- oder DPA-Tracks aus dem abgeschlossenen Jahr-2-Stand mit Tag `learning/year-2-complete` ab.
+**DE:** Sprachrepos starten mit einem technischen `00`-Intake, bevor fachliche Aufgaben beginnen. Dieser Lauf prüft minimales Projekt, Build/Test, Secure-Development-Basis und Governance-Presets. Fortgeschrittene Secure-CaseTracker-Reihen ab Jahr 2 erweitern den vorhandenen Sprachpfad. Jahr 3 leitet AE-, SI-, DPA- oder DV-Tracks aus dem abgeschlossenen Jahr-2-Stand mit Tag `learning/year-2-complete` ab.
 
-**EN:** Language repositories start with a technical `00` intake before functional tasks begin. This run verifies the minimal project, build/test setup, secure-development baseline, and governance presets. Advanced Secure CaseTracker series from year 2 onward extend the existing language path. Year 3 derives AE, SI, or DPA tracks from the completed year-2 state tagged as `learning/year-2-complete`.
+**EN:** Language repositories start with a technical `00` intake before functional tasks begin. This run verifies the minimal project, build/test setup, secure-development baseline, and governance presets. Advanced Secure CaseTracker series from year 2 onward extend the existing language path. Year 3 derives AE, SI, DPA, or DV tracks from the completed year-2 state tagged as `learning/year-2-complete`.
 
 **DE:** Jedes Level-2-Sprachrepo fuehrt zusaetzlich einen separaten `Lastenheft_RL-SE-Checklist-Selbstpruefung.md`-Intake. Dieser prueft Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets als Selbstpruefung vor spaeterer Haertung. Er gilt unabhaengig von MSL; MSL-Status wird als eigener Pruefpunkt dokumentiert.
 

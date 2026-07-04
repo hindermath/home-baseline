@@ -38,6 +38,7 @@ Diese Präsentation führt in die Lernreihe ein. Sie ersetzt keinen Spec-Kit-Lau
 | AE | Datenmodell, Rollen, Suche, Import/Export, Tests und sichere Schnittstellen. |
 | SI | Inventar, Betrieb, Patchstand, Wartung, Toolchain, SBOM und Betriebsnachweise. |
 | DPA | Datenqualität, Kennzahlen, Aussagegrenzen, Datenschutz und Risikoansichten. |
+| DV | Netzbezug von Assets, Schnittstellen, Kommunikationsflüsse, Segmentierung und Verfügbarkeitsannahmen. |
 
 ---
 

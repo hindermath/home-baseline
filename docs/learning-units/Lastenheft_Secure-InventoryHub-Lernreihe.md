@@ -14,15 +14,20 @@
 | Fachrichtung AE | hoch |
 | Fachrichtung SI | hoch |
 | Fachrichtung DPA | mittel bis hoch |
+| Fachrichtung DV | mittel bis hoch |
 | MSL-Sprachen | C#, Go, Java, Python, Rust, Swift |
 | Sprache / Language | DE-first, EN-second, CEFR B2 |
 | Barrierefreiheit / Accessibility | WCAG 2.2 AA, textfreundliches Markdown |
 
+**DE:** Die Spec-Kit-Läufe der Reihe sind begleitende SDD-Aufgaben. Sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Ausbilderentscheidungen oder Prüfungsvorbereitung.
+
+**EN:** The Spec Kit runs in this series are companion SDD tasks. They do not replace vocational school, workplace training, trainer decisions, or exam preparation.
+
 ## Gesamtziel / Overall Goal
 
-**DE:** EuFPA benötigt einen Secure InventoryHub, um Geräte, Software, Versionen, Verantwortliche, Wartungsstatus und einfache Risikoansichten nachvollziehbar zu verwalten.
+**DE:** EuFPA benötigt einen Secure InventoryHub, um Geräte, Software, Versionen, Verantwortliche, Wartungsstatus, Schnittstellenbezüge und einfache Risikoansichten nachvollziehbar zu verwalten.
 
-**EN:** EuFPA needs a Secure InventoryHub to manage devices, software, versions, owners, maintenance status, and simple risk views in a traceable way.
+**EN:** EuFPA needs a Secure InventoryHub to manage devices, software, versions, owners, maintenance status, interface references, and simple risk views in a traceable way.
 
 ## Aufgaben-Intakes / Task Intakes
 

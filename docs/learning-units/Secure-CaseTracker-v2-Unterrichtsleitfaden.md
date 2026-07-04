@@ -20,14 +20,14 @@
 |---:|---|---|---|
 | 01 | Architekturzielbild und Systemgrenzen | AE, SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 | 02 | Persistenzmodell und Migrationen | AE, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 03 | API- und Service-Vertrag | AE, SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 03 | API- und Service-Vertrag | AE, SI, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 | 04 | Fehler-, Validierungs- und Response-Modell | AE | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 | 05 | Rollen- und Autorisierungsmatrix | AE, SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 06 | Audit-Logging und Datenschutz | SI, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 06 | Audit-Logging und Datenschutz | SI, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 | 07 | Import- und Export-Härtung | AE, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 08 | Teststrategie und CI-Nachweise | AE, SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 09 | Sandbox- und Betriebsnachweise | SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 10 | MSL-Vergleich und Abschlussreview | AE, SI, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 08 | Teststrategie und CI-Nachweise | AE, SI, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 09 | Sandbox- und Betriebsnachweise | SI, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 10 | MSL-Vergleich und Abschlussreview | AE, SI, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 
 ## Bewertung / Assessment
 
@@ -53,3 +53,7 @@
 **DE:** Der Leitfaden ist kein Spec-Kit-Intake. Die späteren Spec-Kit-Läufe werden manuell pro Aufgaben-Lastenheft und pro späterem Level-2-Repo gestartet.
 
 **EN:** This guide is not a Spec Kit intake. Later Spec Kit runs are started manually per task intake and per later level-2 repository.
+
+**DE:** Spec-Kit-Läufe begleiten die Aufgaben. Sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Prüfungsvorbereitung.
+
+**EN:** Spec Kit runs accompany the tasks. They do not replace vocational school, workplace training, the curriculum, instructor decisions, or exam preparation.

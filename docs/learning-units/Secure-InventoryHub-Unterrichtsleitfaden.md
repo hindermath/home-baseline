@@ -16,16 +16,16 @@
 
 | Nr. | Aufgabe | Fachrichtungsbezug | Lehrhinweis |
 |---:|---|---|---|
-| 01 | Kundenauftrag, Scope und Inventarobjekte | AE, SI, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 02 | Asset- und Software-Datenmodell und Status | AE, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 03 | Verantwortlichkeiten und Rollen | AE, SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 04 | Suche, Filter und Datenqualität | AE, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 01 | Kundenauftrag, Scope und Inventarobjekte | AE, SI, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 02 | Asset- und Software-Datenmodell und Status | AE, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 03 | Verantwortlichkeiten und Rollen | AE, SI, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 04 | Suche, Filter und Datenqualität | AE, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 | 05 | Import, Export und Datenbereinigung | AE, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 06 | Audit-Logging und Datenschutz | SI, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 07 | Patch-, Wartungs- und Risikoansicht | SI, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 08 | Supply Chain, SBOM und Dependency-Bezug | SI, AE | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 09 | Teststrategie, Sandbox und Betriebsnachweise | AE, SI | Entscheidung, Nachweis und Reflexion sichtbar machen. |
-| 10 | Review, Kennzahlen und Abschlussbewertung | AE, SI, DPA | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 06 | Audit-Logging und Datenschutz | SI, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 07 | Patch-, Wartungs- und Risikoansicht | SI, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 08 | Supply Chain, SBOM und Dependency-Bezug | SI, AE, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 09 | Teststrategie, Sandbox und Betriebsnachweise | AE, SI, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
+| 10 | Review, Kennzahlen und Abschlussbewertung | AE, SI, DPA, DV | Entscheidung, Nachweis und Reflexion sichtbar machen. |
 
 ## Bewertung / Assessment
 
@@ -40,3 +40,7 @@
 **DE:** Der Leitfaden ist kein Spec-Kit-Intake. Die späteren Spec-Kit-Läufe werden manuell pro Aufgaben-Lastenheft und pro späterem Level-2-Repo gestartet.
 
 **EN:** This guide is not a Spec Kit intake. Later Spec Kit runs are started manually per task intake and per later level-2 repository.
+
+**DE:** Spec-Kit-Läufe begleiten die Aufgaben und ersetzen nicht das klassische Erlernen des jeweiligen Berufsbildes.
+
+**EN:** Spec Kit runs accompany the tasks and do not replace learning the respective occupation.

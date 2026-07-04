@@ -6,7 +6,7 @@
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 2. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
-- **Primär geeignet für / Primary fit:** AE, SI, DPA
+- **Primär geeignet für / Primary fit:** AE, SI, DPA, DV
 - **Spec-Kit-Nutzung / Spec Kit use:** eigenständiger späterer Spec-Kit-Intake
 - **Sandbox-Bezug / Sandbox relation:** Vorbereitung für spätere Arbeit in `absdd-image-sandbox`
 
@@ -23,6 +23,7 @@
 | AE | hoch | Welche Implementierungsentscheidung folgt aus dieser Aufgabe? |
 | SI | hoch | Welche Betriebs-, Toolchain- oder Sandbox-Annahme muss dokumentiert werden? |
 | DPA | mittel bis hoch | Welche Datenqualität, Datenschutzfrage oder Aussagegrenze ist betroffen? |
+| DV | mittel bis hoch | Welche Schnittstelle, Systemgrenze oder Kommunikationsannahme ist betroffen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 

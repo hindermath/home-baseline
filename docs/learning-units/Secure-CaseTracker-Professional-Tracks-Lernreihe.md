@@ -8,9 +8,9 @@
 
 ## Zielbild / Target Picture
 
-**DE:** Die Professional Tracks führen `Secure CaseTracker` im 3. Lehrjahr fort. Der gemeinsame fachliche Kern bleibt erhalten, aber die Lernenden spezialisieren sich sichtbar auf AE, SI oder DPA.
+**DE:** Die Professional Tracks führen `Secure CaseTracker` im 3. Lehrjahr fort. Der gemeinsame fachliche Kern bleibt erhalten, aber die Lernenden spezialisieren sich sichtbar auf AE, SI, DPA oder DV.
 
-**EN:** The Professional Tracks continue `Secure CaseTracker` in the third training year. The shared domain stays the same, but learners specialize visibly into Application Development, System Integration, or Data and Process Analysis.
+**EN:** The Professional Tracks continue `Secure CaseTracker` in the third training year. The shared domain stays the same, but learners specialize visibly into Application Development, System Integration, Data and Process Analysis, or Digital Networking.
 
 ## Track-Übersicht / Track Overview
 
@@ -19,11 +19,13 @@
 | AE | [Secure CaseTracker Application Track](Secure-CaseTracker-Application-Track-Lernreihe.md) | AE - Anwendungsentwicklung | Feature-Entwicklung, Architektur, sichere APIs, Persistenz, Tests und wartbare Erweiterbarkeit |
 | SI | [Secure CaseTracker Operations Track](Secure-CaseTracker-Operations-Track-Lernreihe.md) | SI - Systemintegration | Betrieb, Härtung, CI/CD, Sandbox, Observability, Recovery und Betriebsnachweise |
 | DPA | [Secure CaseTracker Data & Process Track](Secure-CaseTracker-Data-Process-Track-Lernreihe.md) | DPA - Daten- und Prozessanalyse | Datenqualität, Datenschutz, Kennzahlen, Reporting, Prozessfeedback und Aussagegrenzen |
+| DV | [Secure CaseTracker Digital Networking Track](Secure-CaseTracker-Digital-Networking-Track-Lernreihe.md) | DV - Digitale Vernetzung | Systemkontext, Schnittstellen, Kommunikationsflüsse, Segmentierung, Verfügbarkeit und Betriebsnachweise |
 
 ## Gemeinsame Regeln / Shared Rules
 
 - Kein Track startet automatisch einen Spec-Kit-Lauf.
 - Jede spätere Umsetzung bleibt pro Track, pro Sprachpfad und pro Aufgaben-Lastenheft getrennt.
+- Spec-Kit-Läufe begleiten die Aufgaben pro Lehrjahr, Track, Sprachpfad und Aufgaben-Lastenheft; sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Prüfungsvorbereitung.
 - C#, Go, Java, Python, Rust und Swift bleiben die Standard-MSL-Pfade.
 - Ab dem 3. Lehrjahr wird erwartet, dass KI-gestützte Entwicklungsarbeit in oder mit `absdd-image-sandbox` geplant, genutzt oder begründet abgegrenzt wird.
 - Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und sechs Governance-Presets werden als lokale Nachweisbasis erwartet.

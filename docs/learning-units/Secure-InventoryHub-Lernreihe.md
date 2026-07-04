@@ -19,6 +19,7 @@
 | AE - Anwendungsentwicklung | Datenmodell, Rollen, Suche, Import/Export, Tests und sichere Schnittstellen. |
 | SI - Systemintegration | Inventar, Betrieb, Patchstand, Wartung, Toolchain, SBOM und Betriebsnachweise. |
 | DPA - Daten- und Prozessanalyse | Datenqualität, Kennzahlen, Aussagegrenzen, Datenschutz und Risikoansichten. |
+| DV - Digitale Vernetzung | Geräte- und Systembezüge, Schnittstellen, Netzpfade, Wartungsstatus, Risikoansichten und Betriebsnachweise. |
 
 ## Lernziele / Learning Goals
 
@@ -39,16 +40,16 @@
 
 | Nr. | Lerneinheit | Primär geeignet für |
 |---:|---|---|
-| 01 | Kundenauftrag, Scope und Inventarobjekte | AE, SI, DPA |
-| 02 | Asset- und Software-Datenmodell und Status | AE, DPA |
-| 03 | Verantwortlichkeiten und Rollen | AE, SI |
-| 04 | Suche, Filter und Datenqualität | AE, DPA |
+| 01 | Kundenauftrag, Scope und Inventarobjekte | AE, SI, DPA, DV |
+| 02 | Asset- und Software-Datenmodell und Status | AE, DPA, DV |
+| 03 | Verantwortlichkeiten und Rollen | AE, SI, DV |
+| 04 | Suche, Filter und Datenqualität | AE, DPA, DV |
 | 05 | Import, Export und Datenbereinigung | AE, DPA |
-| 06 | Audit-Logging und Datenschutz | SI, DPA |
-| 07 | Patch-, Wartungs- und Risikoansicht | SI, DPA |
-| 08 | Supply Chain, SBOM und Dependency-Bezug | SI, AE |
-| 09 | Teststrategie, Sandbox und Betriebsnachweise | AE, SI |
-| 10 | Review, Kennzahlen und Abschlussbewertung | AE, SI, DPA |
+| 06 | Audit-Logging und Datenschutz | SI, DPA, DV |
+| 07 | Patch-, Wartungs- und Risikoansicht | SI, DPA, DV |
+| 08 | Supply Chain, SBOM und Dependency-Bezug | SI, AE, DV |
+| 09 | Teststrategie, Sandbox und Betriebsnachweise | AE, SI, DV |
+| 10 | Review, Kennzahlen und Abschlussbewertung | AE, SI, DPA, DV |
 
 ## Governance und Nachweise / Governance and Evidence
 

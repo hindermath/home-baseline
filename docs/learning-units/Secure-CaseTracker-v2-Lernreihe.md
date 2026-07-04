@@ -19,6 +19,7 @@
 | AE - Anwendungsentwicklung | Architektur, Service-Vertrag, Persistenz, Validierung, Autorisierung und Tests. |
 | SI - Systemintegration | Sandbox, CI, Konfiguration, Betriebsannahmen, Secrets, Toolchain- und Nachweispfade. |
 | DPA - Daten- und Prozessanalyse | Datenmodell, Datenschutz, Auditdaten, Prozesskennzahlen und Aussagegrenzen. |
+| DV - Digitale Vernetzung | Service-Grenzen, Schnittstellen, Kommunikationsflüsse, Betriebsannahmen, Sandbox und Verfügbarkeit. |
 
 ## Lernziele / Learning Goals
 
@@ -57,14 +58,14 @@
 |---:|---|---|
 | 01 | Architekturzielbild und Systemgrenzen | AE, SI |
 | 02 | Persistenzmodell und Migrationen | AE, DPA |
-| 03 | API- und Service-Vertrag | AE, SI |
+| 03 | API- und Service-Vertrag | AE, SI, DV |
 | 04 | Fehler-, Validierungs- und Response-Modell | AE |
 | 05 | Rollen- und Autorisierungsmatrix | AE, SI |
-| 06 | Audit-Logging und Datenschutz | SI, DPA |
+| 06 | Audit-Logging und Datenschutz | SI, DPA, DV |
 | 07 | Import- und Export-Härtung | AE, DPA |
-| 08 | Teststrategie und CI-Nachweise | AE, SI |
-| 09 | Sandbox- und Betriebsnachweise | SI |
-| 10 | MSL-Vergleich und Abschlussreview | AE, SI, DPA |
+| 08 | Teststrategie und CI-Nachweise | AE, SI, DV |
+| 09 | Sandbox- und Betriebsnachweise | SI, DV |
+| 10 | MSL-Vergleich und Abschlussreview | AE, SI, DPA, DV |
 
 ## Governance und Nachweise / Governance and Evidence
 

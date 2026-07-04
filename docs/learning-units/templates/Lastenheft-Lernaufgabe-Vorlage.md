@@ -14,6 +14,7 @@
 | Fachrichtung AE | <hoch/mittel/niedrig> |
 | Fachrichtung SI | <hoch/mittel/niedrig> |
 | Fachrichtung DPA | <hoch/mittel/niedrig> |
+| Fachrichtung DV | <hoch/mittel/niedrig> |
 | MSL-Sprachen | C#, Go, Java, Python, Rust, Swift |
 
 ## Ausgangslage / Starting Point
@@ -62,4 +63,5 @@ Nutze dieses Lastenheft als verbindlichen Intake fuer einen einzelnen Spec-Kit-L
 Starte keinen Sammellauf fuer die gesamte Lernreihe.
 Halte die Umsetzung DE-first, EN-second, CEFR B2 und WCAG 2.2 AA.
 Beruecksichtige sichere Entwicklung, MSL, Sandbox-Nutzung, Spec-Kit-Presets und auditfaehige Markdown-Nachweise.
+Ordne Spec Kit als begleitende SDD-Struktur ein. Der Lauf ersetzt nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Pruefungsvorbereitung.
 ```

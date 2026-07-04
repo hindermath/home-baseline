@@ -4,7 +4,7 @@
 
 - **Stand / Date:** 2026-06-29
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
-- **Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices, trainers, reviewers, AI agents
+- **Zielgruppe / Audience:** Fachinformatiker*innen und anschlussfähige IT-Berufe in Ausbildung, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices and related IT occupations, trainers, reviewers, AI agents
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Spec-Kit-Nutzung / Spec Kit use:** Dieses Lastenheft ist die Gesamtlandkarte. Die einzelnen Aufgaben-Lastenhefte werden später separat als Spec-Kit-Intakes genutzt.
 - **Sandbox-Bezug / Sandbox relation:** `absdd-image-sandbox` ist das Zielbild für sichere, reproduzierbare Lern- und Agentenarbeit.
@@ -23,14 +23,19 @@
 | AE | Primär | Die Reihe enthält Domänenmodell, Validierung, Berechtigungen, Persistenz, Tests und sichere Implementierungsentscheidungen. |
 | SI | Primär | Die Reihe enthält Sandbox, Laufzeit, Toolchain, Secrets, Logging, Supply Chain und reproduzierbare Entwicklungsumgebung. |
 | DPA | Primär | Die Reihe enthält Datenschutz, Datenqualität, Prozesskennzahlen, Auswertung und Grenzen der Aussagekraft. |
+| DV | Primär | Die Reihe enthält Systemkontext, Schnittstellen, Kommunikationsflüsse, Trust Boundaries, Verfügbarkeit und sichere Vernetzung. |
 
-**EN:** The series is primary material for all three specializations because it connects application behavior, secure runtime, and process data in one shared training project.
+**EN:** The series is primary material for all four IT specialist specializations because it connects application behavior, secure runtime, process data, and digital networking in one shared training project.
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
-**DE:** Die Reihe stützt die gemeinsamen IT-Lernfelder zu Kundenauftrag, Arbeitsplatz, vernetzten Systemen, Schutzbedarf, Datenverwaltung, Service, systemübergreifender Datenbereitstellung und fachrichtungsspezifischer Vertiefung. Sie ist bewusst so geschnitten, dass AE, SI und DPA jeweils eigene Schwerpunkte erkennen.
+**DE:** Die Reihe stützt die gemeinsamen IT-Lernfelder zu Kundenauftrag, Arbeitsplatz, vernetzten Systemen, Schutzbedarf, Datenverwaltung, Service, systemübergreifender Datenbereitstellung und fachrichtungsspezifischer Vertiefung. Sie ist bewusst so geschnitten, dass AE, SI, DPA und DV jeweils eigene Schwerpunkte erkennen.
 
 **EN:** The series supports the shared IT learning fields around customer tasks, workplace context, networked systems, protection needs, data management, service, cross-system data provisioning, and specialization-specific depth.
+
+**DE:** Spec-Kit-Läufe sind begleitende SDD-Aufgaben innerhalb dieser Lernreihe. Sie ersetzen nicht das klassische Erlernen des jeweiligen Berufsbilds, den Berufsschulunterricht, die betriebliche Ausbildung, Ausbilderentscheidungen oder Prüfungsvorbereitung.
+
+**EN:** Spec Kit runs are companion SDD tasks inside this learning series. They do not replace classical learning of the occupation, vocational school, workplace training, trainer decisions, or exam preparation.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
@@ -76,6 +81,8 @@
 
 - Übersicht in `docs/learning-units/Secure-CaseTracker-Lernreihe.md`.
 - Einzelne Aufgaben-Intakes `docs/learning-units/Lastenheft_Secure-CaseTracker_00_*.md` bis `docs/learning-units/Lastenheft_Secure-CaseTracker_12_*.md`.
+- Berufsbild-Mapping `docs/learning-units/IT-Berufe-Secure-CaseTracker-Mapping.md` als Zuordnungs- und Abgrenzungsdokument.
+- Spec-Kit-SDD-Auftakt `docs/learning-units/SPEC-KIT-SDD-AUFTAKT.md` als neutrale Startinformation.
 - Sichtbare Reihenfolge in `Lastenheft_Abarbeitungsreihenfolge.md`.
 - Späteres Level-1-Koordinations-Repo mit Statusmatrix und sechs Level-2-Sprach-Repos.
 - Keine Feature-Branch-Erzeugung in diesem Schritt.
