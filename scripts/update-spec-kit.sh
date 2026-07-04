@@ -250,6 +250,7 @@ clean_generated_whitespace() {
     "$repo/.agents/skills"/speckit-* \
     "$repo/.gemini/commands" \
     "$repo/.github/agents" \
+    "$repo/.github/prompts" \
     "$repo/.specify/templates" \
     "$repo/.specify/scripts" \
     "$repo/.specify/extensions"; do

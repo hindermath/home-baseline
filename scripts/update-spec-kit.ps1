@@ -215,6 +215,7 @@ function Repair-HBGeneratedWhitespace {
         (Join-Path $Repo '.opencode/command'),
         (Join-Path $Repo '.gemini/commands'),
         (Join-Path $Repo '.github/agents'),
+        (Join-Path $Repo '.github/prompts'),
         (Join-Path $Repo '.specify/templates'),
         (Join-Path $Repo '.specify/scripts'),
         (Join-Path $Repo '.specify/extensions')

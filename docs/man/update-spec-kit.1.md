@@ -37,8 +37,8 @@ Das Script schuetzt lokale Governance-Anpassungen:
   gemacht, ohne das ganze `.opencode/`-Root freizugeben.
 - Generierte Spec-Kit-Dateien unter `.opencode/command`,
   `.claude/skills/speckit-*`, `.agents/skills/speckit-*`,
-  `.gemini/commands`, `.github/agents`, `.specify/templates`,
-  `.specify/scripts` und `.specify/extensions` werden
+  `.gemini/commands`, `.github/agents`, `.github/prompts`,
+  `.specify/templates`, `.specify/scripts` und `.specify/extensions` werden
   von trailing whitespace und ueberzaehligen EOF-Leerzeilen bereinigt, damit
   `git diff --check` nicht an generierten Command-, Agent-, Template- und
   Skriptdateien scheitert.
