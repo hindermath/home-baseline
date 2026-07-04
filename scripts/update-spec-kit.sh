@@ -249,9 +249,10 @@ clean_generated_whitespace() {
     "$repo/.claude/skills" \
     "$repo/.agents/skills" \
     "$repo/.gemini/commands" \
-    "$repo/.github/agents"; do
+    "$repo/.github/agents" \
+    "$repo/.specify/templates"; do
     if [ -d "$dir" ]; then
-      find "$dir" -type f -name '*.md' -exec perl -pi -e 's/[ \t]+$//' {} +
+      find "$dir" -type f -exec perl -pi -e 's/[ \t]+$//' {} +
     fi
   done
 

@@ -216,11 +216,12 @@ function Repair-HBGeneratedWhitespace {
         '.claude/skills',
         '.agents/skills',
         '.gemini/commands',
-        '.github/agents'
+        '.github/agents',
+        '.specify/templates'
     )) {
         $dir = Join-Path $Repo $rel
         if (Test-Path $dir) {
-            Get-ChildItem -Path $dir -Filter '*.md' -File -Recurse |
+            Get-ChildItem -Path $dir -File -Recurse |
                 ForEach-Object {
                     $lines = Get-Content -Path $_.FullName
                     $lines = $lines | ForEach-Object { $_ -replace '[ \t]+$', '' }
