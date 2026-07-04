@@ -211,23 +211,30 @@ function Repair-HBGeneratedWhitespace {
         return
     }
 
-    foreach ($rel in @(
-        '.opencode/command',
-        '.claude/skills',
-        '.agents/skills',
-        '.gemini/commands',
-        '.github/agents',
-        '.specify/templates'
-    )) {
-        $dir = Join-Path $Repo $rel
-        if (Test-Path $dir) {
-            Get-ChildItem -Path $dir -File -Recurse |
-                ForEach-Object {
-                    $lines = Get-Content -Path $_.FullName
-                    $lines = $lines | ForEach-Object { $_ -replace '[ \t]+$', '' }
-                    Set-Content -Path $_.FullName -Value $lines
-                }
-        }
+    $paths = @(
+        (Join-Path $Repo '.opencode/command'),
+        (Join-Path $Repo '.gemini/commands'),
+        (Join-Path $Repo '.github/agents'),
+        (Join-Path $Repo '.specify/templates'),
+        (Join-Path $Repo '.specify/scripts'),
+        (Join-Path $Repo '.specify/extensions')
+    )
+
+    $paths += Get-ChildItem -Path (Join-Path $Repo '.claude/skills') -Directory -Filter 'speckit-*' -ErrorAction SilentlyContinue |
+        ForEach-Object { $_.FullName }
+    $paths += Get-ChildItem -Path (Join-Path $Repo '.agents/skills') -Directory -Filter 'speckit-*' -ErrorAction SilentlyContinue |
+        ForEach-Object { $_.FullName }
+
+    foreach ($dir in $paths) {
+        if (-not (Test-Path $dir)) { continue }
+
+        Get-ChildItem -Path $dir -File -Recurse |
+            ForEach-Object {
+                $text = Get-Content -Raw -Path $_.FullName
+                $text = $text -replace '[ \t]+(?=\r?\n|$)', ''
+                $text = $text -replace "(\r?\n)+\z", "`n"
+                Set-Content -Path $_.FullName -Value $text -NoNewline
+            }
     }
 
     $settings = Join-Path $Repo '.vscode/settings.json'

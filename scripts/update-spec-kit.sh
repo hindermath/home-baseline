@@ -246,13 +246,15 @@ clean_generated_whitespace() {
 
   for dir in \
     "$repo/.opencode/command" \
-    "$repo/.claude/skills" \
-    "$repo/.agents/skills" \
+    "$repo/.claude/skills"/speckit-* \
+    "$repo/.agents/skills"/speckit-* \
     "$repo/.gemini/commands" \
     "$repo/.github/agents" \
-    "$repo/.specify/templates"; do
+    "$repo/.specify/templates" \
+    "$repo/.specify/scripts" \
+    "$repo/.specify/extensions"; do
     if [ -d "$dir" ]; then
-      find "$dir" -type f -exec perl -pi -e 's/[ \t]+$//' {} +
+      find "$dir" -type f -exec perl -0pi -e 's/[ \t]+$//mg; s/\n+\z/\n/' {} +
     fi
   done
 

@@ -35,11 +35,13 @@ Das Script schuetzt lokale Governance-Anpassungen:
   dem Spec-Kit-Refresh aus der lokalen Governance-Referenz wieder aufgelegt.
 - `.opencode/command/*.md` wird in Whitelist-`.gitignore`-Repos trackbar
   gemacht, ohne das ganze `.opencode/`-Root freizugeben.
-- Generierte Spec-Kit-Dateien unter `.opencode/command`, `.claude/skills`,
-  `.agents/skills`, `.gemini/commands`, `.github/agents` und
-  `.specify/templates` werden von trailing whitespace bereinigt, damit
-  `git diff --check` nicht an generierten Command-, Agent- und Template-Dateien
-  scheitert.
+- Generierte Spec-Kit-Dateien unter `.opencode/command`,
+  `.claude/skills/speckit-*`, `.agents/skills/speckit-*`,
+  `.gemini/commands`, `.github/agents`, `.specify/templates`,
+  `.specify/scripts` und `.specify/extensions` werden
+  von trailing whitespace und ueberzaehligen EOF-Leerzeilen bereinigt, damit
+  `git diff --check` nicht an generierten Command-, Agent-, Template- und
+  Skriptdateien scheitert.
 
 *The script protects local governance customizations: it preserves the
 constitution memory file, reapplies the local governance templates, allows only
