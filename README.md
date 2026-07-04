@@ -823,8 +823,9 @@ Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert we
 
 Jedes Script erfasst / Each script collects:
 - OS-Version, Architektur
-- Installierte Tools (`git`, `gh`, `rg`, `pwsh`, `node`, `uv`, `python3`, `specify`)
+- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `uv`, `python3`, `specify`)
 - Paketmanager (`brew` / `apt`/`dnf` / `winget`)
+- Paketlisten und Registry-Vergleiche fuer `brew-apps-registry.json` bzw. `winget-apps-registry.json`
 - Ergebnis von `sync-home` und `check-homogeneity`
 
 Danach liegt die Ausgabedatei im Repo und kann von jedem anderen Gerät direkt gelesen und ausgewertet werden — z. B. von Copilot CLI unter Windows:
@@ -1062,6 +1063,10 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/register-level2-repository.ps1` | GSDB-Registry aktualisieren / Update the GSDB registry (PowerShell Core) |
 | `scripts/check-gsdb-self-assessment.sh` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (Bash) |
 | `scripts/check-gsdb-self-assessment.ps1` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (PowerShell Core) |
+| `scripts/maintain-agentic-brew-apps.sh` | Homebrew-/apt-Toolchain fuer agentische Entwicklung pflegen / Maintain Homebrew/apt toolchain for agentic development (Bash) |
+| `scripts/maintain-agentic-winget-apps.ps1` | WinGet-Toolchain fuer agentische Entwicklung pflegen / Maintain WinGet toolchain for agentic development (PowerShell Core) |
+| `scripts/config/brew-apps-registry.json` | Versionierte Homebrew-Registry fuer agentische Entwicklung / Versioned Homebrew registry for agentic development |
+| `scripts/config/winget-apps-registry.json` | Versionierte WinGet-Registry fuer agentische Entwicklung / Versioned WinGet registry for agentic development |
 | `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
 | `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
 | `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
@@ -1120,6 +1125,154 @@ pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/RiderProjec
 pwsh -NoProfile -File scripts/check-gsdb-self-assessment.ps1 -Repo ~/RiderProjects/TuiVision -CheckOnly
 pwsh -NoProfile -File scripts/check-gsdb-self-assessment.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
 ```
+
+#### Wiederkehrende Level-2-Wartungsrunde / Recurring Level-2 Maintenance Round
+
+Eine vollstaendige Level-2-Wartungsrunde fuer bestehende Umgebungen laeuft immer
+vom Bestand zur Evidenz: zuerst Repositories und Toolchains aktualisieren, dann
+Registrierung und Baseline angleichen, zuletzt GSDB, Statistik und lokale
+Synchronisierung abschliessen.
+
+*A complete level-2 maintenance round for existing environments always moves
+from estate state to evidence: first update repositories and toolchains, then
+align registration and baseline, and finally close GSDB, statistics, and local
+synchronization.*
+
+1. Level-0-, Level-1- und Level-2-Repositories aus ihren Remotes pullen. Fehlende
+   Repositories nur dann klonen, wenn sie lokal noch nicht vorhanden sind.
+2. Das Secure-CaseTracker-Level-1-Repository und die sechs
+   MSL-Sprachen-Level-2-Repositories fuer C#, Go, Java, Python, Rust und Swift
+   bei Bedarf klonen oder, wenn vorhanden, pullen.
+3. Den Level-1-Workspace `container-images` und darin das
+   `absdd-image-sandbox`-Level-2-Repository bei Bedarf klonen oder pullen.
+4. Die sechs MSL-CLI-Toolchains pruefen: `.NET`, Go, Java/Javac, Python,
+   Rust/Cargo und Swift. Auf macOS fehlende Homebrew-verfuegbare Toolchains mit
+   `brew install` nachziehen; Swift ueber die installierte Apple-Toolchain
+   pruefen.
+5. Alle operativen Level-2-Repositories mit `register-level2-repository.*` in
+   `~/.home-baseline/level2-repository-registry.json` registrieren oder
+   bestaetigen. Die public-safe Vorlage bleibt
+   `scripts/config/level2-repository-registry.example.json`.
+6. `constitution.md` und `.specify/memory/constitution.md` nur aktualisieren,
+   wenn sich verbindliche Level-2-Umgebungsdaten wie Runtime, Build/Test,
+   A11Y-, Statistik- oder Agentenflaechen aendern.
+7. Spec-Kit und Governance bewusst ausrollen: erst `update-spec-kit.*` im
+   Trockenlauf, dann bei Bedarf mit Commit/Push; fehlende Governance-Presets mit
+   `install-spec-kit-governance-presets.*` nachziehen.
+8. Secure-Development-Intakes fuer bestehende Repos mit
+   `prepare-rl-se-checklist-selbstpruefung.*` und
+   `prepare-secure-development-hardening.*` vorbereiten, jeweils zuerst mit
+   `--dry-run` / `-WhatIf`.
+9. GSDB mit `check-gsdb-self-assessment.* --check-only` pruefen, offene Punkte
+   beheben und den normalen GSDB-Preflight nur ausfuehren, wenn die
+   Intake-Artefakte aktualisiert werden sollen. Abschlussziel ist
+   `Offene Punkte gesamt: 0`.
+10. Den Abschluss in `docs/project-statistics.md` dokumentieren, betroffene
+    Repositories committen/pushen oder bewusst lokal begruenden, und nach
+    Level-0-Aenderungen `bash ~/scripts/sync-home.sh --no-pull` ausfuehren.
+
+1. Pull level-0, level-1, and level-2 repositories from their remotes. Clone
+   missing repositories only when they are not present locally yet.
+2. Clone the Secure CaseTracker level-1 repository and the six MSL language
+   level-2 repositories for C#, Go, Java, Python, Rust, and Swift when missing,
+   or pull them when they already exist.
+3. Clone or pull the `container-images` level-1 workspace and its
+   `absdd-image-sandbox` level-2 repository as needed.
+4. Check the six MSL CLI toolchains: `.NET`, Go, Java/Javac, Python, Rust/Cargo,
+   and Swift. On macOS, install missing Homebrew-available toolchains with
+   `brew install`; verify Swift through the installed Apple toolchain.
+5. Register or confirm all operational level-2 repositories with
+   `register-level2-repository.*` in
+   `~/.home-baseline/level2-repository-registry.json`. The public-safe seed
+   remains `scripts/config/level2-repository-registry.example.json`.
+6. Update `constitution.md` and `.specify/memory/constitution.md` only when
+   binding level-2 environment facts change, such as runtime, build/test, A11Y,
+   statistics, or agent surfaces.
+7. Roll out Spec Kit and governance deliberately: run `update-spec-kit.*` as a
+   dry run first, then with commit/push when needed; add missing governance
+   presets with `install-spec-kit-governance-presets.*`.
+8. Prepare secure-development intakes for existing repositories with
+   `prepare-rl-se-checklist-selbstpruefung.*` and
+   `prepare-secure-development-hardening.*`, each with `--dry-run` / `-WhatIf`
+   first.
+9. Check GSDB with `check-gsdb-self-assessment.* --check-only`, fix open items,
+   and run the normal GSDB preflight only when intake artefacts should be
+   updated. The closeout target is `Offene Punkte gesamt: 0`.
+10. Record the closeout in `docs/project-statistics.md`, commit/push affected
+    repositories or document why they remain local, and after level-0 changes
+    run `bash ~/scripts/sync-home.sh --no-pull`.
+
+#### Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance
+
+Die agentische Toolchain-Wartung haelt die Programme stabil, die fuer Arbeiten
+in Level-0-, Level-1- und Level-2-Repositories gebraucht werden. Die
+maschinelle Quelle fuer macOS/Linux ist
+[`scripts/config/brew-apps-registry.json`](scripts/config/brew-apps-registry.json),
+die Quelle fuer Windows ist
+[`scripts/config/winget-apps-registry.json`](scripts/config/winget-apps-registry.json).
+Beide Registries unterscheiden `required` und `optional`; Standardlaeufe
+installieren nur `required`. `xquartz` ist lokal erlaubt, aber bewusst aus der
+Brew-Registry ausgeschlossen.
+
+*Recurring agentic toolchain maintenance keeps the programs stable that are
+needed for work in level-0, level-1, and level-2 repositories. The machine
+source for macOS/Linux is
+[`scripts/config/brew-apps-registry.json`](scripts/config/brew-apps-registry.json),
+and the Windows source is
+[`scripts/config/winget-apps-registry.json`](scripts/config/winget-apps-registry.json).
+Both registries distinguish `required` from `optional`; default runs install
+only `required`. `xquartz` may be installed locally, but is intentionally
+excluded from the Brew registry.*
+
+```bash
+bash scripts/maintain-agentic-brew-apps.sh --dry-run
+bash scripts/maintain-agentic-brew-apps.sh --compare-only
+bash scripts/maintain-agentic-brew-apps.sh
+```
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf
+pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -CompareOnly
+pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
+```
+
+1. macOS/Linux zuerst mit `maintain-agentic-brew-apps.sh --dry-run` pruefen.
+   Wenn `brew` vorhanden ist, fuehrt der echte Lauf `brew update`,
+   `brew upgrade` und fehlende Required-Installationen aus. Auf Ubuntu/Linux
+   ohne `brew` nutzt das Skript den dokumentierten apt-Fallback mit
+   `sudo apt update`, `sudo apt upgrade` und explizit gemappten Paketen.
+2. Windows zuerst mit `maintain-agentic-winget-apps.ps1 -WhatIf` pruefen. Der
+   echte Lauf nutzt `winget update`, faellt bei Bedarf auf
+   `winget source update` zurueck, fuehrt `winget upgrade --all` aus und
+   installiert fehlende Required-Pakete mit `winget install --id <Id> --exact`.
+3. `gitleaks` ist Required. Auf macOS/Linux wird es per Homebrew als
+   `gitleaks`, auf Windows per WinGet als `Gitleaks.Gitleaks` gepflegt.
+4. Zweitgeraete werden ueber `mac-test.sh`, `linux-test.sh` und
+   `windows-test.ps1` verglichen. Die Testausgaben enthalten Paketlisten und
+   Registry-Diffs; bewusst installierte Top-Level-Tools werden danach in die
+   passende Registry uebernommen.
+5. Abschlusskriterien: `--compare-only` meldet keine fehlenden Required-Tools,
+   `gitleaks version` funktioniert, die Registry-Dateien sind gueltiges JSON,
+   und der Abschluss wird in `docs/project-statistics.md` dokumentiert.
+
+1. Check macOS/Linux first with `maintain-agentic-brew-apps.sh --dry-run`.
+   When `brew` exists, the real run executes `brew update`, `brew upgrade`,
+   and missing required installations. On Ubuntu/Linux without `brew`, the
+   script uses the documented apt fallback with `sudo apt update`,
+   `sudo apt upgrade`, and explicitly mapped packages.
+2. Check Windows first with `maintain-agentic-winget-apps.ps1 -WhatIf`. The
+   real run uses `winget update`, falls back to `winget source update` when
+   needed, runs `winget upgrade --all`, and installs missing required packages
+   with `winget install --id <Id> --exact`.
+3. `gitleaks` is required. On macOS/Linux it is maintained through Homebrew as
+   `gitleaks`; on Windows it is maintained through WinGet as `Gitleaks.Gitleaks`.
+4. Compare second machines through `mac-test.sh`, `linux-test.sh`, and
+   `windows-test.ps1`. Their test outputs include package lists and registry
+   diffs; intentionally installed top-level tools are then added to the matching
+   registry.
+5. Closeout criteria: `--compare-only` reports no missing required tools,
+   `gitleaks version` works, the registry files are valid JSON, and the closeout
+   is documented in `docs/project-statistics.md`.
 
 Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) beschreibt das Referenzprofil für sichere Entwicklung mit KI-Agenten in einer Sandbox. `absdd-image-sandbox` ist als öffentliches Ausbildungs- und Referenz-Repository verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. `home-baseline` liefert Richtlinien, Checklisten, Presets und Intake; die Sandbox liefert die ausführbare Lern- und Arbeitsumgebung; Level-2-Repositories liefern die konkreten Entwicklungs- und Härtungsziele.
 

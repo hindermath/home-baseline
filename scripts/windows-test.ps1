@@ -39,9 +39,38 @@ foreach ($pm in @('winget', 'choco', 'scoop')) {
 }
 Add-Line ""
 
+# === WinGet Inventar ===
+Add-Line "=== WinGet Pakete ==="
+if (Get-Command winget -ErrorAction SilentlyContinue) {
+    $wingetList = winget list --accept-source-agreements 2>&1
+    $wingetList | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line "winget: nicht installiert"
+}
+Add-Line ""
+
+Add-Line "=== WinGet Upgrades ==="
+if (Get-Command winget -ErrorAction SilentlyContinue) {
+    $wingetUpgrade = winget upgrade --accept-source-agreements 2>&1
+    $wingetUpgrade | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line "winget: nicht installiert"
+}
+Add-Line ""
+
+Add-Line "=== Agentic WinGet Registry Vergleich ==="
+$wingetMaint = Join-Path $RepoDir 'scripts\maintain-agentic-winget-apps.ps1'
+if (Test-Path $wingetMaint) {
+    $wingetCompare = pwsh -NoProfile -File $wingetMaint -CompareOnly 2>&1
+    $wingetCompare | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line "maintain-agentic-winget-apps.ps1: nicht gefunden"
+}
+Add-Line ""
+
 # === Tools ===
 Add-Line "=== Tools ==="
-foreach ($cmd in @('git', 'gh', 'rg', 'node', 'uv', 'python', 'specify')) {
+foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'uv', 'python', 'specify')) {
     if (Get-Command $cmd -ErrorAction SilentlyContinue) {
         Add-Line "  OK  ${cmd}"
     } else {

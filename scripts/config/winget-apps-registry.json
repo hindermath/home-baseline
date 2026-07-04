@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-07-04",
+  "description": "WinGet package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
+  "policy": {
+    "packageSource": "winget list / winget search --id --exact",
+    "defaultInstallScope": "required",
+    "fallbackSourceRefresh": "winget source update when winget update is unavailable"
+  },
+  "packages": [
+    { "id": "Git.Git", "scope": "required", "purpose": "Source control" },
+    { "id": "GitHub.cli", "scope": "required", "purpose": "GitHub CLI for repository operations" },
+    { "id": "GLab.GLab", "scope": "required", "purpose": "GitLab CLI for repository operations" },
+    { "id": "BurntSushi.ripgrep.MSVC", "scope": "required", "purpose": "Fast repository search" },
+    { "id": "Microsoft.PowerShell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
+    { "id": "OpenJS.NodeJS.LTS", "scope": "required", "purpose": "Node.js LTS runtime for npm-based tools" },
+    { "id": "astral-sh.uv", "scope": "required", "purpose": "Python package/tool runner and Spec Kit installation support" },
+    { "id": "Gitleaks.Gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
+    { "id": "Microsoft.DotNet.SDK.10", "scope": "required", "purpose": "Memory-safe .NET SDK toolchain" },
+    { "id": "GoLang.Go", "scope": "required", "purpose": "Memory-safe Go toolchain" },
+    { "id": "Rustlang.Rustup", "scope": "required", "purpose": "Memory-safe Rust toolchain manager" },
+    { "id": "Anthropic.ClaudeCode", "scope": "required", "purpose": "Claude Code command-line agent" },
+    { "id": "GitHub.Copilot", "scope": "required", "purpose": "GitHub Copilot CLI" },
+    { "id": "Podman.CLI", "scope": "optional", "purpose": "Podman CLI for container workflows" },
+    { "id": "Docker.DockerCLI", "scope": "optional", "purpose": "Docker CLI for container workflows" },
+    { "id": "Docker.DockerCompose", "scope": "optional", "purpose": "Docker Compose for container workflows" },
+    { "id": "PostgreSQL.pgAdmin", "scope": "optional", "purpose": "PostgreSQL GUI administration when available through WinGet" }
+  ]
+}

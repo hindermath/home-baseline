@@ -53,6 +53,7 @@
 | 2026-06-30 | GSDB-Registry-und-Preflight | 48 | — | — | Operative GSDB-Registry fuer relevante Level-1-/Level-2-Repos, Register-Helper und GSDB-Self-Assessment-Preflight ergaenzt; normale Preflight-Laeufe erzeugen `docs/security/gsdb-self-assessment.md`, `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md` und aktualisieren die Lastenheft-Abarbeitungsreihenfolge, starten aber keinen Spec-Kit-Lauf |
 | 2026-07-03 | Skript-/Konfig-Kommentar- und GSDB-Intakes | 49 | — | — | Zwei vorbereitende Lastenhefte fuer didaktische Skript-/Konfig-Kommentare, JSONC-Migrationspruefung und fokussierte GSDB-Pruefung der Skript-, JSON/JSONC-, YAML- und Workflow-Flaechen ergaenzt; Abarbeitungsreihenfolge nach Script-Dokumentation und PowerShell-Cmdlet-Konventionen eingeordnet |
 | 2026-07-04 | Level-2-Registry, Spec-Kit und GSDB-Wartung | 53 | 126 858 | 383 | Level-0/1/2-Repos gepullt, SecureCaseTracker- und absdd-Level-2-Struktur lokal geklont/registriert, sechs MSL-CLI-Toolchains verifiziert, Spec-Kit-Integrationen samt Whitespace-Normalisierung aktualisiert, zentrale Level-2-Registry auf 16 operative Repos erweitert und GSDB-Preflight auf `Open=0` gebracht |
+| 2026-07-04 | Agentische Toolchain-Registry und Paketwartung | 53 | 127 816 | 384 | Homebrew aktualisiert, `gitleaks` installiert und verifiziert, versionierte Brew-/WinGet-Registries fuer agentische Entwicklung ergaenzt, macOS/Linux-/Windows-Wartungsskripte samt Testausgaben, Manpages, README-Runbook und Agenten-Guidance dokumentiert |
 
 ---
 

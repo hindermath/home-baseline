@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-07-04",
+  "description": "Homebrew top-level package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
+  "policy": {
+    "formulaSource": "brew leaves --installed-on-request",
+    "caskSource": "brew list --cask",
+    "dependencyPolicy": "Do not list transitive Homebrew dependencies.",
+    "defaultInstallScope": "required"
+  },
+  "formulae": [
+    { "name": "acme", "scope": "optional", "purpose": "Plan 9 toolchain experiments" },
+    { "name": "antlr", "scope": "optional", "purpose": "Parser and language tooling" },
+    { "name": "cc65", "scope": "optional", "purpose": "C64 and 6502 development" },
+    { "name": "cmake", "scope": "required", "apt": "cmake", "purpose": "Native build orchestration" },
+    { "name": "cmake-docs", "scope": "optional", "purpose": "CMake documentation" },
+    { "name": "gemini-cli", "scope": "required", "purpose": "Gemini command-line agent" },
+    { "name": "gh", "scope": "required", "purpose": "GitHub CLI for repository operations" },
+    { "name": "gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
+    { "name": "glab", "scope": "required", "purpose": "GitLab CLI for repository operations" },
+    { "name": "go", "scope": "required", "purpose": "Memory-safe Go toolchain" },
+    { "name": "lynx", "scope": "optional", "apt": "lynx", "purpose": "Text browser for accessibility-oriented checks" },
+    { "name": "midnight-commander", "scope": "optional", "apt": "mc", "purpose": "Terminal file manager" },
+    { "name": "mongodb/brew/mongodb-community", "scope": "optional", "purpose": "MongoDB local database for compatible projects" },
+    { "name": "msedit", "scope": "optional", "purpose": "Terminal editor" },
+    { "name": "oh-my-posh", "scope": "optional", "purpose": "Shell prompt consistency" },
+    { "name": "opencode", "scope": "required", "purpose": "OpenCode command-line agent" },
+    { "name": "pandoc", "scope": "required", "apt": "pandoc", "purpose": "Documentation conversion" },
+    { "name": "pnpm", "scope": "required", "purpose": "Node package management for agent/tooling packages" },
+    { "name": "podman-compose", "scope": "required", "apt": "podman-compose", "purpose": "Container compose support for sandbox workflows" },
+    { "name": "postgresql@18", "scope": "optional", "purpose": "PostgreSQL local database for compatible projects" },
+    { "name": "powershell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
+    { "name": "qwen-code", "scope": "required", "purpose": "Qwen command-line coding agent" },
+    { "name": "rust", "scope": "required", "purpose": "Memory-safe Rust toolchain" },
+    { "name": "uv", "scope": "required", "purpose": "Python package/tool runner and Spec Kit installation support" },
+    { "name": "vice", "scope": "optional", "purpose": "C64 emulator for retro projects" }
+  ],
+  "casks": [
+    { "name": "claude-code", "scope": "required", "purpose": "Claude Code command-line agent" },
+    { "name": "copilot-cli", "scope": "required", "purpose": "GitHub Copilot CLI" },
+    { "name": "ollama-app", "scope": "optional", "purpose": "Local model runtime app" },
+    { "name": "pgadmin4", "scope": "optional", "purpose": "PostgreSQL GUI administration" },
+    { "name": "podman-desktop", "scope": "optional", "purpose": "Podman GUI and machine management" },
+    { "name": "powershell", "scope": "optional", "purpose": "PowerShell app bundle; formula remains the scripted baseline" }
+  ],
+  "aptFallback": {
+    "description": "Linux fallback packages for machines without Homebrew. Only explicit mappings are installed.",
+    "packages": [
+      { "name": "git", "scope": "required", "purpose": "Source control" },
+      { "name": "ripgrep", "scope": "required", "purpose": "Fast repository search" },
+      { "name": "python3", "scope": "required", "purpose": "Python runtime for scripts and validation" },
+      { "name": "nodejs", "scope": "required", "purpose": "Node.js runtime where distro package is acceptable" },
+      { "name": "cmake", "scope": "required", "purpose": "Native build orchestration" },
+      { "name": "pandoc", "scope": "required", "purpose": "Documentation conversion" },
+      { "name": "podman-compose", "scope": "required", "purpose": "Container compose support" }
+    ]
+  }
+}

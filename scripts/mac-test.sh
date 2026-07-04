@@ -10,8 +10,17 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo "=== Homebrew ==="
   brew --version 2>&1 || echo "brew: nicht gefunden"
   echo ""
+  echo "=== Homebrew Top-Level Formulae ==="
+  brew leaves --installed-on-request 2>&1 || echo "brew leaves: nicht verfuegbar"
+  echo ""
+  echo "=== Homebrew Casks ohne xquartz ==="
+  brew list --cask 2>/dev/null | grep -Fvx 'xquartz' || true
+  echo ""
+  echo "=== Agentic Brew Registry Vergleich ==="
+  bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
+  echo ""
   echo "=== Tools ==="
-  for cmd in git gh rg pwsh node uv python3 specify; do
+  for cmd in git gh glab rg gitleaks pwsh node uv python3 specify; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
   echo ""

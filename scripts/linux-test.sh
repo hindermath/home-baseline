@@ -26,9 +26,30 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
     command -v "$pm" > /dev/null 2>&1 && echo "  OK  $pm: $(${pm} --version 2>/dev/null | head -1)" || echo "  --- $pm: nicht installiert"
   done
   echo ""
+  echo "=== Homebrew Top-Level Formulae ==="
+  if command -v brew > /dev/null 2>&1; then
+    brew leaves --installed-on-request 2>&1
+  else
+    echo "brew: nicht installiert"
+  fi
+  echo ""
+  echo "=== apt Status ==="
+  if command -v apt > /dev/null 2>&1; then
+    apt list --upgradable 2>/dev/null | sed -n '1,80p'
+  else
+    echo "apt: nicht installiert"
+  fi
+  echo ""
+  echo "=== Agentic Brew Registry Vergleich ==="
+  if command -v brew > /dev/null 2>&1; then
+    bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
+  else
+    bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1 || true
+  fi
+  echo ""
 
   echo "=== Tools ==="
-  for cmd in git gh rg pwsh node uv python3 specify; do
+  for cmd in git gh glab rg gitleaks pwsh node uv python3 specify; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
   echo ""
