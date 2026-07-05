@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-03
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Sandbox-Bezug / Sandbox relation:** `absdd-image-sandbox`, öffentliches Referenz-Repo: <https://github.com/hindermath/absdd-image-sandbox>
@@ -26,6 +26,11 @@
 **DE:** Die Aufgabe verbindet sichere Entwicklungsumgebung, vernetzte Systeme, Schutzbedarf, Toolchain-Betrieb und dokumentierte Arbeitsprozesse.
 
 **EN:** The task connects secure development environment, networked systems, protection needs, toolchain operation, and documented work processes.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 4 („Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen")**; berührt LF 2 („Arbeitsplätze nach Kundenwunsch ausstatten"), LF 9 („Netzwerke und Dienste bereitstellen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_09_Sandbox-und-Agentische-Entwicklung.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 4 ("Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen")**; touched LF 2 ("Arbeitsplätze nach Kundenwunsch ausstatten"), LF 9 ("Netzwerke und Dienste bereitstellen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_09_Sandbox-und-Agentische-Entwicklung.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

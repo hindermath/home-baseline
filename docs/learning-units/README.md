@@ -115,3 +115,13 @@ Die generische [Git-Start-Anleitung für Lernende](GIT-START-FUER-LERNENDE.md) w
 **DE:** Die fachliche und didaktische Erklärung liegt in diesem Verzeichnis. Die später einzeln ausführbaren Spec-Kit-Intakes liegen hier ebenfalls als `Lastenheft_*.md`. Dadurch bleiben Lernmaterial, Unterrichtsleitfaden, Präsentationen und Intake-Dateien zusammen und sind zusätzlich über die Reihenbeschreibungen auffindbar.
 
 **EN:** The functional and didactic explanation lives in this directory. The later individually runnable Spec Kit intake files also live here as `Lastenheft_*.md`. This keeps learning material, teaching guide, presentations, and intake files together while making them discoverable through the series descriptions.
+
+## Lernbegleiter und Lernfeldbezug / Study Companions and Learning-Field Relation
+
+**DE:** Zu jeder Aufgaben-Einheit der Secure-CaseTracker-Familie und von Secure InventoryHub gibt es einen **Lernbegleiter** unter [`lernbegleiter/`](lernbegleiter/). Der Lernbegleiter erklärt das Thema ausführlich (CEFR B2), nennt Kernbegriffe, geht Schritt für Schritt vor, zeigt den Rahmenlehrplanbezug und enthält Verständnisfragen mit Musterantworten. Die Lastenhefte bleiben schlanke Spec-Kit-Intakes; die Erklärtiefe liegt im Lernbegleiter. Als zusätzliches Material ersetzt der Lernbegleiter nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan oder Prüfungsvorbereitung.
+
+**EN:** Every task unit of the Secure CaseTracker family and of Secure InventoryHub has a **study companion** under [`lernbegleiter/`](lernbegleiter/). The companion explains the topic in detail (CEFR B2), names key terms, proceeds step by step, shows the curriculum relation, and includes comprehension questions with model answers. The intake files stay lean Spec Kit intakes; the explanatory depth lives in the companion. As additional material, the companion does not replace vocational school, workplace training, the curriculum, or exam preparation.
+
+**DE:** Die konkreten Lernfelder je Einheit stehen zentral in der [Rahmenlehrplan-Lernfeld-Zuordnung](Rahmenlehrplan-Lernfeld-Mapping.md). Sie ist die einzige verbindliche Quelle für Lernfeld-Bezüge; jeder Lernbegleiter und jedes Lastenheft zitiert daraus. Neue Lernbegleiter nutzen die Vorlage [`templates/Lernbegleiter-Vorlage.md`](templates/Lernbegleiter-Vorlage.md).
+
+**EN:** The concrete learning fields per unit are documented centrally in the [curriculum learning-field mapping](Rahmenlehrplan-Lernfeld-Mapping.md). It is the single binding source for learning-field references; every companion and every intake cites from it. New companions use the template [`templates/Lernbegleiter-Vorlage.md`](templates/Lernbegleiter-Vorlage.md).

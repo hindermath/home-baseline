@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 
@@ -25,6 +25,11 @@
 **DE:** Die Aufgabe verbindet Qualitätsmanagement, Testmanagement, sichere Entwicklung und nachvollziehbare Ergebnisdokumentation.
 
 **EN:** The task connects quality management, test management, secure development, and traceable result documentation.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 5 („Software zur Verwaltung von Daten anpassen")**; berührt LF 6 („Serviceanfragen bearbeiten"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_07_Testbarkeit-und-Qualitaet.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 5 ("Software zur Verwaltung von Daten anpassen")**; touched LF 6 ("Serviceanfragen bearbeiten"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_07_Testbarkeit-und-Qualitaet.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

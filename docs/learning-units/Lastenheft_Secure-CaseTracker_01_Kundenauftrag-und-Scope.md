@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Spec-Kit-Nutzung / Spec Kit use:** Eigenständiger späterer Spec-Kit-Intake
@@ -27,6 +27,11 @@
 **DE:** Die Aufgabe unterstützt Kundenorientierung, Projektabgrenzung, Schutzbedarf, Datenschutz und dokumentierte Arbeitsplanung.
 
 **EN:** The task supports customer orientation, scope definition, protection needs, privacy, and documented work planning.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 1 („Das Unternehmen und die eigene Rolle im Betrieb beschreiben")**; berührt LF 4 („Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen"), LF 6 („Serviceanfragen bearbeiten"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_01_Kundenauftrag-und-Scope.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 1 ("Das Unternehmen und die eigene Rolle im Betrieb beschreiben")**; touched LF 4 ("Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen"), LF 6 ("Serviceanfragen bearbeiten"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_01_Kundenauftrag-und-Scope.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

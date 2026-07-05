@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 
@@ -25,6 +25,11 @@
 **DE:** Die Aufgabe verbindet Datenverwaltung, Schnittstellen, Datenschutz, sichere Dateiverarbeitung und Qualität von Auswertungsdaten.
 
 **EN:** The task connects data management, interfaces, privacy, safe file handling, and quality of analysis data.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 5 („Software zur Verwaltung von Daten anpassen")**; berührt LF 8 („Daten systemübergreifend bereitstellen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_06_Persistenz-und-Import-Export.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 5 ("Software zur Verwaltung von Daten anpassen")**; touched LF 8 ("Daten systemübergreifend bereitstellen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_06_Persistenz-und-Import-Export.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

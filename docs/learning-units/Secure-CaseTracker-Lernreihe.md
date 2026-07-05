@@ -1,6 +1,6 @@
 # Secure CaseTracker Lernreihe / Secure CaseTracker Learning Series
 
-**Stand / Date:** 2026-07-03
+**Stand / Date:** 2026-07-05
 **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Ausbilder*innen, Reviewer und KI-Agenten / IT specialist apprentices, trainers, reviewers, and AI agents
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -154,3 +154,10 @@
 **DE:** Nach Abschluss der Reihe sollen Lernende erklären können, warum MSL wichtig sind, warum MSL sichere Entwicklung nicht ersetzen, wie Spec Kit Anforderungen, Planung, Aufgaben und Reviews strukturiert, wie Datenschutz und Informationssicherheit zusammenhängen und wie eine Sandbox sichere KI-gestützte Entwicklung unterstützt.
 
 **EN:** After completing the series, learners should be able to explain why MSL matter, why MSL do not replace secure development, how Spec Kit structures requirements, planning, tasks, and reviews, how privacy and information security relate, and how a sandbox supports secure AI-assisted development.
+
+<!-- lernbegleiter-verweis -->
+## Lernbegleiter und Lernfeldbezug / Study Companions and Learning-Field Relation
+
+**DE:** Zu jeder Aufgaben-Einheit dieser Reihe gibt es einen ausführlichen Lernbegleiter unter [`lernbegleiter/`](lernbegleiter/). Er erklärt das Thema (CEFR B2), nennt Kernbegriffe, geht Schritt für Schritt vor und enthält Verständnisfragen mit Musterantworten. Die konkreten Lernfelder je Einheit stehen in der [Rahmenlehrplan-Lernfeld-Zuordnung](Rahmenlehrplan-Lernfeld-Mapping.md). Die Lastenhefte bleiben schlanke Spec-Kit-Intakes; die Erklärtiefe liegt im Lernbegleiter. Das Zusatzmaterial ersetzt nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan oder Prüfungsvorbereitung.
+
+**EN:** Every task unit of this series has a detailed study companion under [`lernbegleiter/`](lernbegleiter/). It explains the topic (CEFR B2), names key terms, proceeds step by step, and includes comprehension questions with model answers. The concrete learning fields per unit are documented in the [curriculum learning-field mapping](Rahmenlehrplan-Lernfeld-Mapping.md). The intake files stay lean Spec Kit intakes; the explanatory depth lives in the companion. This additional material does not replace vocational school, workplace training, the curriculum, or exam preparation.

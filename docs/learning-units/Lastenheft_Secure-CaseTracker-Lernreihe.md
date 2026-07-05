@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-29
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielgruppe / Audience:** Fachinformatiker*innen und anschlussfähige IT-Berufe in Ausbildung, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices and related IT occupations, trainers, reviewers, AI agents
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift

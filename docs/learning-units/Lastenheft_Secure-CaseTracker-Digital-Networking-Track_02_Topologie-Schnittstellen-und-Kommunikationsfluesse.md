@@ -22,6 +22,11 @@
 
 **EN:** The task supports Digital Networking in year 3 and uses Spec Kit as a companion SDD structure, not as a replacement for vocational training.
 
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 10d („Cyber-physische Systeme entwickeln")**; berührt LF 3 („Clients in Netzwerke einbinden"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_02_Topologie-Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 10d ("Cyber-physische Systeme entwickeln")**; touched LF 3 ("Clients in Netzwerke einbinden"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_02_Topologie-Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md`.
+
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** Trust Boundaries, Angriffsfläche reduzieren, sichere Konfiguration, Datenschutz und Evidenz.

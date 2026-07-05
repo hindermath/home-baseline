@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Spec-Kit-Nutzung / Spec Kit use:** Eigenständiger späterer Spec-Kit-Intake
@@ -26,6 +26,10 @@
 **DE:** Die Aufgabe verbindet sichere Eingabeverarbeitung, Schutzbedarf, Schnittstellenverständnis und Qualität von Daten.
 
 **EN:** The task connects safe input handling, protection needs, interface understanding, and data quality.
+
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 4** (Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen), **berührt LF 5** (Software zur Verwaltung von Daten anpassen). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_03_Eingabevalidierung-und-Trust-Boundaries.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 4** (perform a protection-needs analysis in your own work area), **touched LF 5** (adapt software for data management). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_03_Eingabevalidierung-und-Trust-Boundaries.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

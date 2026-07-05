@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-03
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 2. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
@@ -29,6 +29,11 @@
 **DE:** Die Aufgabe verbindet Kundenauftrag, Projektplanung, sichere Entwicklung, Qualitätssicherung, Betrieb und dokumentierte Bewertung auf dem Niveau ab dem 2. Lehrjahr.
 
 **EN:** The task connects customer task, project planning, secure development, quality assurance, operation, and documented assessment at second-year level.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 9 („Netzwerke und Dienste bereitstellen")**; berührt LF 4 („Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-v2_09_Sandbox-und-Betriebsnachweise.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 9 ("Netzwerke und Dienste bereitstellen")**; touched LF 4 ("Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-v2_09_Sandbox-und-Betriebsnachweise.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

@@ -22,6 +22,11 @@
 
 **EN:** The task supports Digital Networking in year 3 and uses Spec Kit as a companion evidence structure.
 
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 11d („Betrieb und Sicherheit vernetzter Systeme gewährleisten")**; berührt LF 9 („Netzwerke und Dienste bereitstellen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_07_Konfiguration-Secrets-und-Rollout-Pfade.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 11d ("Betrieb und Sicherheit vernetzter Systeme gewährleisten")**; touched LF 9 ("Netzwerke und Dienste bereitstellen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_07_Konfiguration-Secrets-und-Rollout-Pfade.Lernbegleiter.md`.
+
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** sichere Konfiguration, Least Privilege, Change Management, Secrets-Schutz und Evidenz.

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-29
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Spec-Kit-Nutzung / Spec Kit use:** Eigenständiger späterer technischer Spec-Kit-Intake vor der ersten fachlichen Aufgabe
@@ -27,6 +27,11 @@
 **DE:** Die Aufgabe unterstützt Arbeitsorganisation, Einrichtung einer Entwicklungsumgebung, Versionsverwaltung, Qualitätssicherung und dokumentierte Vorbereitung für spätere Kundenaufträge.
 
 **EN:** The task supports work organization, development environment setup, version control, quality assurance, and documented preparation for later customer tasks.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 1 („Das Unternehmen und die eigene Rolle im Betrieb beschreiben")**; berührt LF 2 („Arbeitsplätze nach Kundenwunsch ausstatten"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_00_Sprachrepo-Projekt-Scaffold.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 1 ("Das Unternehmen und die eigene Rolle im Betrieb beschreiben")**; touched LF 2 ("Arbeitsplätze nach Kundenwunsch ausstatten"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_00_Sprachrepo-Projekt-Scaffold.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 

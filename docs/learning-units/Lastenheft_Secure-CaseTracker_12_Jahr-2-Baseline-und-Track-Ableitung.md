@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-29
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Spec-Kit-Nutzung / Spec Kit use:** Eigenständiger späterer Abschluss- und Vorbereitungs-Intake nach Jahr 2
@@ -32,6 +32,11 @@
 **DE:** Spec-Kit-Läufe sind begleitende SDD-Aufgaben für Baseline und Ableitung. Sie ersetzen nicht das klassische Erlernen des jeweiligen Berufsbilds oder die fachliche Ausbildung im Betrieb und in der Berufsschule.
 
 **EN:** Spec Kit runs are companion SDD tasks for baseline and derivation. They do not replace classical occupation learning or vocational training at school and in the workplace.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 5 („Software zur Verwaltung von Daten anpassen")**; berührt LF 6 („Serviceanfragen bearbeiten"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_12_Jahr-2-Baseline-und-Track-Ableitung.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 5 ("Software zur Verwaltung von Daten anpassen")**; touched LF 6 ("Serviceanfragen bearbeiten"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_12_Jahr-2-Baseline-und-Track-Ableitung.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
