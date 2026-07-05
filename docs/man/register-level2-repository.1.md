@@ -10,10 +10,12 @@
 
 ```bash
 bash scripts/register-level2-repository.sh --repo PATH [--dry-run]
+bash scripts/register-level2-repository.sh --scan-root PATH [--dry-run]
 ```
 
 ```powershell
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo PATH -WhatIf
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot PATH -WhatIf
 ```
 
 ## Beschreibung / Description
@@ -40,11 +42,26 @@ geschrieben.
 local registry under `~/.home-baseline/`. This keeps machine- and
 person-specific repository paths out of the public repository.*
 
+Mit `--scan-root` / `-ScanRoot` kann die Wartungsrunde bekannte Workspace-
+Wurzeln nach Git-Repositories durchsuchen. Das ist fuer Registry-Drift gedacht:
+neu hinzugekommene Level-2-Repositories werden sichtbar und koennen idempotent
+in die lokale GSDB-Registry uebernommen werden. Fuer MSL-Level-2-Repositories
+ist `gsdbRequired` standardmaessig `true`; Nicht-MSL- oder Koordinationsrepos
+werden nur dann GSDB-pflichtig, wenn dies explizit gesetzt wird.
+
+*With `--scan-root` / `-ScanRoot`, the maintenance round can scan known
+workspace roots for Git repositories. This is intended for registry drift:
+newly added level-2 repositories become visible and can be idempotently added
+to the local GSDB registry. For MSL level-2 repositories, `gsdbRequired`
+defaults to `true`; non-MSL or coordination repositories become GSDB-required
+only when this is set explicitly.*
+
 ## Optionen / Options
 
 | Bash | PowerShell | Bedeutung / Meaning |
 |---|---|---|
 | `--repo PATH` | `-Repo PATH` | Repository eintragen |
+| `--scan-root PATH` | `-ScanRoot PATH` | Workspace-Wurzel nach Git-Repositories scannen |
 | `--registry PATH` | `-Registry PATH` | Alternative Registry-Datei |
 | `--level 1\|2` | `-Level 1\|2` | Level explizit setzen |
 | `--primary-language LANG` | `-PrimaryLanguage LANG` | Primaersprache explizit setzen |
@@ -59,11 +76,15 @@ person-specific repository paths out of the public repository.*
 ```bash
 bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run
 bash scripts/register-level2-repository.sh --repo ~/SecureCaseTrackerProjects/SecureCaseTracker-Rust --primary-language Rust
+bash scripts/register-level2-repository.sh --scan-root ~/RiderProjects --dry-run
+bash scripts/register-level2-repository.sh --scan-root ~/SecureCaseTrackerProjects --source maintenance-discovery
 ```
 
 ```powershell
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/SecureCaseTrackerProjects/SecureCaseTracker-Rust -PrimaryLanguage Rust
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/RiderProjects -WhatIf
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/SecureCaseTrackerProjects -Source maintenance-discovery
 ```
 
 ## Sicherheit / Security

@@ -173,7 +173,32 @@ installed_formulae() {
 }
 
 installed_casks() {
-  brew list --cask 2>/dev/null | sort -u
+  {
+    brew list --cask 2>/dev/null || true
+    if visual_studio_code_app_present; then
+      printf '%s\n' "visual-studio-code"
+    fi
+  } | sort -u
+}
+
+visual_studio_code_app_present() {
+  [ -d "/Applications/Visual Studio Code.app" ] \
+    || [ -d "$HOME/Applications/Visual Studio Code.app" ]
+}
+
+cask_present() {
+  local cask="$1"
+  if brew list --cask --versions "$cask" >/dev/null 2>&1; then
+    return 0
+  fi
+  case "$cask" in
+    visual-studio-code)
+      visual_studio_code_app_present
+      ;;
+    *)
+      return 1
+      ;;
+  esac
 }
 
 code_candidates() {
@@ -229,28 +254,39 @@ print_missing() {
 }
 
 compare_brew_registry() {
-  local tmp_dir installed_f registry_f installed_c registry_c excluded_c
+  local tmp_dir installed_f registry_f registry_required_f registry_optional_f
+  local installed_c registry_c registry_required_c registry_optional_c excluded_c
   tmp_dir="$(mktemp -d)"
   installed_f="$tmp_dir/installed-formulae"
   registry_f="$tmp_dir/registry-formulae"
+  registry_required_f="$tmp_dir/registry-formulae-required"
+  registry_optional_f="$tmp_dir/registry-formulae-optional"
   installed_c="$tmp_dir/installed-casks"
   registry_c="$tmp_dir/registry-casks"
+  registry_required_c="$tmp_dir/registry-casks-required"
+  registry_optional_c="$tmp_dir/registry-casks-optional"
   excluded_c="$tmp_dir/excluded-casks"
 
   installed_formulae > "$installed_f"
   registry_items formulae all | sort -u > "$registry_f"
-  print_missing "missing_on_machine.formulae" "$installed_f" "$registry_f"
+  registry_items formulae required | sort -u > "$registry_required_f"
+  registry_items formulae optional | sort -u > "$registry_optional_f"
+  print_missing "missing_on_machine.required.formulae" "$installed_f" "$registry_required_f"
+  print_missing "missing_on_machine.optional.formulae" "$installed_f" "$registry_optional_f"
   print_missing "missing_from_registry.formulae" "$registry_f" "$installed_f"
 
   if [ "$OS_NAME" = "Darwin" ]; then
     installed_casks > "$installed_c"
     registry_items casks all | sort -u > "$registry_c"
+    registry_items casks required | sort -u > "$registry_required_c"
+    registry_items casks optional | sort -u > "$registry_optional_c"
     registry_excluded_casks | sort -u > "$excluded_c"
     if [ -s "$excluded_c" ]; then
       grep -Fvx -f "$excluded_c" "$installed_c" > "$installed_c.filtered" || true
       mv "$installed_c.filtered" "$installed_c"
     fi
-    print_missing "missing_on_machine.casks" "$installed_c" "$registry_c"
+    print_missing "missing_on_machine.required.casks" "$installed_c" "$registry_required_c"
+    print_missing "missing_on_machine.optional.casks" "$installed_c" "$registry_optional_c"
     print_missing "missing_from_registry.casks" "$registry_c" "$installed_c"
   else
     log "casks: skipped on non-macOS"
@@ -262,22 +298,29 @@ compare_brew_registry() {
 compare_vscode_registry() {
   [ "$SKIP_VSCODE_EXTENSIONS" -eq 0 ] || return 0
 
-  local code_cli tmp_dir installed_ext registry_ext deprecated_report
+  local code_cli tmp_dir installed_ext registry_ext registry_required_ext registry_optional_ext deprecated_report
   log "VS Code extension registry: $VSCODE_REGISTRY"
   if ! code_cli="$(find_vscode_cli)"; then
     log "vscode_cli: unavailable"
-    log "missing_on_machine.vscode_extensions"
-    vscode_registry_items extensions all | sed 's/^/  - /'
+    log "missing_on_machine.required.vscode_extensions"
+    vscode_registry_items extensions required | sed 's/^/  - /'
+    log "missing_on_machine.optional.vscode_extensions"
+    vscode_registry_items extensions optional | sed 's/^/  - /'
     return 0
   fi
 
   tmp_dir="$(mktemp -d)"
   installed_ext="$tmp_dir/installed-vscode-extensions"
   registry_ext="$tmp_dir/registry-vscode-extensions"
+  registry_required_ext="$tmp_dir/registry-vscode-extensions-required"
+  registry_optional_ext="$tmp_dir/registry-vscode-extensions-optional"
   installed_vscode_extensions "$code_cli" > "$installed_ext"
   vscode_registry_items extensions all | tr '[:upper:]' '[:lower:]' | sort -u > "$registry_ext"
+  vscode_registry_items extensions required | tr '[:upper:]' '[:lower:]' | sort -u > "$registry_required_ext"
+  vscode_registry_items extensions optional | tr '[:upper:]' '[:lower:]' | sort -u > "$registry_optional_ext"
 
-  print_missing "missing_on_machine.vscode_extensions" "$installed_ext" "$registry_ext"
+  print_missing "missing_on_machine.required.vscode_extensions" "$installed_ext" "$registry_required_ext"
+  print_missing "missing_on_machine.optional.vscode_extensions" "$installed_ext" "$registry_optional_ext"
 
   deprecated_report="$(python3 - "$VSCODE_REGISTRY" "$installed_ext" <<'PY'
 import json
@@ -326,7 +369,7 @@ install_brew_items() {
   if [ "$OS_NAME" = "Darwin" ]; then
     while IFS= read -r cask; do
       [ -z "$cask" ] && continue
-      if brew list --cask --versions "$cask" >/dev/null 2>&1; then
+      if cask_present "$cask"; then
         log "OK cask: $cask"
       else
         log "INSTALL cask: $cask"

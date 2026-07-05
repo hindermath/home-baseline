@@ -1,28 +1,37 @@
 <#
 .SYNOPSIS
-Registriert ein Level-1-/Level-2-Repository in der operativen GSDB-Registry.
+Registriert Level-1-/Level-2-Repositories in der operativen GSDB-Registry.
 
-Registers a level-1/level-2 repository in the operational GSDB registry.
+Registers level-1/level-2 repositories in the operational GSDB registry.
 
 .DESCRIPTION
 Aktualisiert standardmaessig die lokale Registry
 ~/.home-baseline/level2-repository-registry.json idempotent. Das Repository
 enthaelt nur eine public-safe Beispiel-Registry unter scripts/config/.
 
+Mit -ScanRoot koennen Workspace-Wurzeln nach Git-Repositories durchsucht
+werden. So erkennt die wiederkehrende Wartung neue GSDB-Kandidaten, ohne
+maschinenbezogene Pfade in das oeffentliche Repository zu schreiben.
+
 Updates the local ~/.home-baseline/level2-repository-registry.json registry by
 default. The repository only contains a public-safe example registry under
 scripts/config/.
+
+With -ScanRoot, workspace roots can be scanned for Git repositories. This lets
+recurring maintenance detect new GSDB candidates without writing machine-
+specific paths to the public repository.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
-    [Parameter(Mandatory)][string]$Repo,
+    [string[]]$Repo = @(),
+    [string[]]$ScanRoot = @(),
     [string]$Registry = '',
     [ValidateSet('1','2')][string]$Level = '',
     [string]$PrimaryLanguage = '',
     [ValidateSet('true','false','')][string]$GsdbRequired = '',
     [string]$PresetProfile = '',
     [string]$Role = '',
-    [string]$Source = 'manual-registration'
+    [string]$Source = ''
 )
 
 Set-StrictMode -Version Latest
@@ -54,9 +63,122 @@ function Get-HomeRelativePath {
     return $full -replace '\\','/'
 }
 
-$Repo = Resolve-HBPath $Repo
-if (-not (Test-Path (Join-Path $Repo '.git'))) {
-    throw "kein Git-Repository / not a Git repository: ${Repo}"
+function Get-HBInferredLevel {
+    param([string]$Repository)
+    $parent = Split-Path -Parent $Repository
+    if (Test-Path (Join-Path $parent '.git')) { return '2' }
+    return '1'
+}
+
+function Get-HBDiscoveredRepository {
+    param([string[]]$Roots)
+    foreach ($root in $Roots) {
+        $resolvedRoot = Resolve-HBPath $root
+        if (-not (Test-Path $resolvedRoot)) {
+            Write-Warning "Scan-Root nicht gefunden / scan root not found: ${resolvedRoot}"
+            continue
+        }
+        $rootFull = [System.IO.Path]::GetFullPath($resolvedRoot).TrimEnd([IO.Path]::DirectorySeparatorChar)
+        Get-ChildItem -LiteralPath $resolvedRoot -Directory -Force -Recurse -Filter '.git' -ErrorAction SilentlyContinue |
+            ForEach-Object {
+                $repoPath = Split-Path -Parent $_.FullName
+                $repoFull = [System.IO.Path]::GetFullPath($repoPath).TrimEnd([IO.Path]::DirectorySeparatorChar)
+                if ($repoFull -ne $rootFull) { $repoPath }
+            }
+    }
+}
+
+function Register-HBRepository {
+    param(
+        [string]$Repository,
+        [string]$RegistryPath,
+        [string]$RegistrationSource
+    )
+
+    if (-not (Test-Path (Join-Path $Repository '.git'))) {
+        throw "kein Git-Repository / not a Git repository: ${Repository}"
+    }
+
+    $projectName = Split-Path -Leaf $Repository
+    $effectiveLevel = if ($Level) { $Level } else { Get-HBInferredLevel -Repository $Repository }
+
+    $language = $PrimaryLanguage
+    if (-not $language) {
+        $language = Get-SdhPrimaryLanguage -Repo $Repository -ProjectName $projectName -ExplicitLanguage ''
+    }
+    if (-not $language) { $language = 'unknown' }
+
+    $mslStatus = 'unknown'
+    if (Test-SdhMslLanguage $language) { $mslStatus = 'msl' }
+    elseif (Test-SdhKnownNonMslLanguage $language) { $mslStatus = 'non-msl' }
+    elseif ($language -eq 'none') { $mslStatus = 'n/a' }
+
+    $gsdbRequiredValue = $GsdbRequired
+    if (-not $gsdbRequiredValue) {
+        $gsdbRequiredValue = if (($effectiveLevel -eq '2') -and ($mslStatus -eq 'msl')) { 'true' } else { 'false' }
+    }
+
+    $effectivePresetProfile = $PresetProfile
+    if (-not $effectivePresetProfile) {
+        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($mslStatus -eq 'msl')) { 'standard-six-governance-presets' } else { 'none' }
+    }
+    $effectiveRole = $Role
+    if (-not $effectiveRole) {
+        $effectiveRole = if ($effectiveLevel -eq '2') { 'level-2-project' } else { 'level-1-workspace' }
+    }
+
+    $today = Get-Date -Format 'yyyy-MM-dd'
+    $repoRel = Get-HomeRelativePath $Repository
+
+    if (Test-Path $RegistryPath) {
+        $data = Get-Content $RegistryPath -Raw | ConvertFrom-Json
+    } else {
+        $data = [pscustomobject]@{
+            schemaVersion = 1
+            description = "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
+            updatedAt = $today
+            repositories = @()
+        }
+    }
+
+    $repos = @($data.repositories)
+    $entry = [pscustomobject]@{
+        path = $repoRel
+        level = [int]$effectiveLevel
+        primaryLanguage = $language
+        mslStatus = $mslStatus
+        gsdbRequired = ($gsdbRequiredValue -eq 'true')
+        presetProfile = $effectivePresetProfile
+        role = $effectiveRole
+        source = $RegistrationSource
+        registeredAt = $today
+    }
+
+    $existing = $repos | Where-Object { $_.path -eq $repoRel } | Select-Object -First 1
+    if ($existing) {
+        $repos = @($repos | Where-Object { $_.path -ne $repoRel }) + @($entry)
+        $action = 'updated'
+    } else {
+        $repos = @($repos) + @($entry)
+        $action = 'added'
+    }
+
+    $data.updatedAt = $today
+    $data.repositories = @($repos | Sort-Object path)
+
+    $shouldWrite = $PSCmdlet.ShouldProcess($RegistryPath, "$action $repoRel")
+    if ($shouldWrite) {
+        $data | ConvertTo-Json -Depth 8 | Set-Content -Path $RegistryPath -Encoding UTF8
+    }
+    if ($WhatIfPreference) {
+        Write-Host "[WhatIf] ${action}: ${repoRel} -> ${RegistryPath}"
+    } else {
+        Write-Host "${action}: ${repoRel} -> ${RegistryPath}"
+    }
+}
+
+if ((@($Repo).Count -eq 0) -and (@($ScanRoot).Count -eq 0)) {
+    throw "-Repo oder -ScanRoot ist erforderlich / -Repo or -ScanRoot is required"
 }
 
 if (-not $Registry) { $Registry = Get-DefaultRegistry }
@@ -68,80 +190,20 @@ if (-not $WhatIfPreference) {
     Write-Host "[WhatIf] Registry-Verzeichnis erzeugen: $registryDirectory"
 }
 
-$projectName = Split-Path -Leaf $Repo
-if (-not $Level) {
-    $parent = Split-Path -Parent $Repo
-    $Level = if (Test-Path (Join-Path $parent '.git')) { '2' } else { '1' }
+$registrationSource = $Source
+if (-not $registrationSource) {
+    $registrationSource = if (@($ScanRoot).Count -gt 0) { 'maintenance-discovery' } else { 'manual-registration' }
 }
 
-$language = $PrimaryLanguage
-if (-not $language) {
-    $language = Get-SdhPrimaryLanguage -Repo $Repo -ProjectName $projectName -ExplicitLanguage ''
+$repositories = @()
+foreach ($repoPath in @($Repo)) {
+    if ($repoPath) { $repositories += (Resolve-HBPath $repoPath) }
 }
-if (-not $language) { $language = 'unknown' }
-
-$mslStatus = 'unknown'
-if (Test-SdhMslLanguage $language) { $mslStatus = 'msl' }
-elseif (Test-SdhKnownNonMslLanguage $language) { $mslStatus = 'non-msl' }
-elseif ($language -eq 'none') { $mslStatus = 'n/a' }
-
-$gsdbRequiredValue = $GsdbRequired
-if (-not $gsdbRequiredValue) {
-    $gsdbRequiredValue = if (($Level -eq '2') -and ($mslStatus -eq 'msl')) { 'true' } else { 'false' }
+if (@($ScanRoot).Count -gt 0) {
+    $repositories += @(Get-HBDiscoveredRepository -Roots $ScanRoot)
 }
 
-if (-not $PresetProfile) {
-    $PresetProfile = if (($Level -eq '2') -and ($mslStatus -eq 'msl')) { 'standard-six-governance-presets' } else { 'none' }
-}
-if (-not $Role) {
-    $Role = if ($Level -eq '2') { 'level-2-project' } else { 'level-1-workspace' }
-}
-
-$today = Get-Date -Format 'yyyy-MM-dd'
-$repoRel = Get-HomeRelativePath $Repo
-
-if (Test-Path $Registry) {
-    $data = Get-Content $Registry -Raw | ConvertFrom-Json
-} else {
-    $data = [pscustomobject]@{
-        schemaVersion = 1
-        description = "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
-        updatedAt = $today
-        repositories = @()
-    }
-}
-
-$repos = @($data.repositories)
-$entry = [pscustomobject]@{
-    path = $repoRel
-    level = [int]$Level
-    primaryLanguage = $language
-    mslStatus = $mslStatus
-    gsdbRequired = ($gsdbRequiredValue -eq 'true')
-    presetProfile = $PresetProfile
-    role = $Role
-    source = $Source
-    registeredAt = $today
-}
-
-$existing = $repos | Where-Object { $_.path -eq $repoRel } | Select-Object -First 1
-if ($existing) {
-    $repos = @($repos | Where-Object { $_.path -ne $repoRel }) + @($entry)
-    $action = 'updated'
-} else {
-    $repos = @($repos) + @($entry)
-    $action = 'added'
-}
-
-$data.updatedAt = $today
-$data.repositories = @($repos | Sort-Object path)
-
-$shouldWrite = $PSCmdlet.ShouldProcess($Registry, "$action $repoRel")
-if ($shouldWrite) {
-    $data | ConvertTo-Json -Depth 8 | Set-Content -Path $Registry -Encoding UTF8
-}
-if ($WhatIfPreference) {
-    Write-Host "[WhatIf] ${action}: ${repoRel} -> ${Registry}"
-} else {
-    Write-Host "${action}: ${repoRel} -> ${Registry}"
+$repositories = @($repositories | Where-Object { $_ } | Sort-Object -Unique)
+foreach ($repository in $repositories) {
+    Register-HBRepository -Repository $repository -RegistryPath $Registry -RegistrationSource $registrationSource
 }

@@ -1115,14 +1115,29 @@ Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`
 
 *The GSDB preflight without a Spec Kit run is performed with `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` is read-only. A normal run writes `docs/security/gsdb-self-assessment.md`, creates or updates `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md`, and adds that requirements document to `Lastenheft_Abarbeitungsreihenfolge.md`. The preflight does not start a Spec Kit run; the generated requirements document is intake for a later manually started `/speckit-specify` run.*
 
+Die wiederkehrende Wartung nutzt `register-level2-repository.* --scan-root` /
+`-ScanRoot`, um bekannte Level-1-Wurzeln nach neuen Git-Repositories zu
+durchsuchen. Das ist die Registry-Drift-Pruefung: neue MSL-Level-2-Repos werden
+als GSDB-Kandidaten sichtbar und koennen in die lokale Merkliste uebernommen
+werden. Nicht-MSL- oder reine Koordinationsrepos werden nur mit expliziter
+Begruendung GSDB-pflichtig.
+
+*Recurring maintenance uses `register-level2-repository.* --scan-root` /
+`-ScanRoot` to scan known level-1 roots for new Git repositories. This is the
+registry drift check: new MSL level-2 repositories become visible as GSDB
+candidates and can be added to the local memory list. Non-MSL or pure
+coordination repositories become GSDB-required only with an explicit rationale.*
+
 ```bash
 bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run
+bash scripts/register-level2-repository.sh --scan-root ~/RiderProjects --dry-run
 bash scripts/check-gsdb-self-assessment.sh --repo ~/RiderProjects/TuiVision --check-only
 bash scripts/check-gsdb-self-assessment.sh --repo ~/RiderProjects/TuiVision --dry-run
 ```
 
 ```powershell
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/RiderProjects -WhatIf
 pwsh -NoProfile -File scripts/check-gsdb-self-assessment.ps1 -Repo ~/RiderProjects/TuiVision -CheckOnly
 pwsh -NoProfile -File scripts/check-gsdb-self-assessment.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
 ```
@@ -1150,9 +1165,11 @@ synchronization.*
    Rust/Cargo und Swift. Auf macOS fehlende Homebrew-verfuegbare Toolchains mit
    `brew install` nachziehen; Swift ueber die installierte Apple-Toolchain
    pruefen.
-5. Alle operativen Level-2-Repositories mit `register-level2-repository.*` in
-   `~/.home-baseline/level2-repository-registry.json` registrieren oder
-   bestaetigen. Die public-safe Vorlage bleibt
+5. Die GSDB-Registry-Drift pruefen: bekannte Level-1-Wurzeln mit
+   `register-level2-repository.* --scan-root` / `-ScanRoot` zuerst im
+   Trockenlauf durchsuchen, neu erkannte GSDB-relevante Repositories
+   bestaetigen und in `~/.home-baseline/level2-repository-registry.json`
+   registrieren. Die public-safe Vorlage bleibt
    `scripts/config/level2-repository-registry.example.json`.
 6. `constitution.md` und `.specify/memory/constitution.md` nur aktualisieren,
    wenn sich verbindliche Level-2-Umgebungsdaten wie Runtime, Build/Test,
@@ -1182,8 +1199,9 @@ synchronization.*
 4. Check the six MSL CLI toolchains: `.NET`, Go, Java/Javac, Python, Rust/Cargo,
    and Swift. On macOS, install missing Homebrew-available toolchains with
    `brew install`; verify Swift through the installed Apple toolchain.
-5. Register or confirm all operational level-2 repositories with
-   `register-level2-repository.*` in
+5. Check GSDB registry drift: scan known level-1 roots first in dry-run mode
+   with `register-level2-repository.* --scan-root` / `-ScanRoot`, confirm newly
+   detected GSDB-relevant repositories, and register them in
    `~/.home-baseline/level2-repository-registry.json`. The public-safe seed
    remains `scripts/config/level2-repository-registry.example.json`.
 6. Update `constitution.md` and `.specify/memory/constitution.md` only when
@@ -1234,6 +1252,22 @@ Both registries distinguish `required` from `optional`; default runs install
 only `required`. `xquartz` may be installed locally, but is intentionally
 excluded from the Brew registry.*
 
+Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-tmp` startet und keine
+strengere Read-only-Aufgabe im Vordergrund steht, soll er einmal nachfragen, ob
+die wiederkehrende Workspace-Wartung ausgefuehrt werden soll. Die vier Optionen
+sind: nur pruefen; pruefen und fehlende Required-Tools installieren; vollstaendig
+inklusive GSDB-Preflight vorbereiten; oder ueberspringen. Fehlende
+Required-Tools aus `--compare-only` / `-CompareOnly` werden bei freigegebener
+Wartung installiert. Optionale Tools bleiben zustimmungspflichtig.
+
+*When a known AI agent starts in `~` or `~/home-baseline-tmp` and no stricter
+read-only task is in focus, it should ask once whether recurring workspace
+maintenance should run. The four options are: check only; check and install
+missing required tools; full maintenance including GSDB preflight preparation;
+or skip. Missing required tools reported by `--compare-only` / `-CompareOnly`
+are installed when maintenance is approved. Optional tools still require
+explicit approval.*
+
 ```bash
 bash scripts/maintain-agentic-brew-apps.sh --dry-run
 bash scripts/maintain-agentic-brew-apps.sh --compare-only
@@ -1262,7 +1296,9 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    Go, Java, Python, Rust und Swift sowie Microsoft Container Tools fuer
    Docker-/Podman-Workflows werden mit `code --install-extension` gepflegt. Die
    veraltete Swift-Extension `sswg.swift-lang` wird nur gemeldet, nicht
-   automatisch entfernt.
+   automatisch entfernt. Auf macOS erfuellt ein vorhandenes App-Bundle unter
+   `/Applications/Visual Studio Code.app` oder `~/Applications/Visual Studio Code.app`
+   den Required-Cask auch ohne Homebrew-Cask-Installation.
 5. Helix ist Required als terminalbasierter A11Y-/CLI-Editor: macOS/Linux per
    Formula `helix`, Windows per WinGet-ID `Helix.Helix`. `msedit` bleibt ein
    optionaler einfacher Terminal-Editor.
@@ -1274,7 +1310,8 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `windows-test.ps1` verglichen. Die Testausgaben enthalten Paketlisten und
    Registry-Diffs; bewusst installierte Top-Level-Tools werden danach in die
    passende Registry uebernommen.
-8. Abschlusskriterien: `--compare-only` meldet keine fehlenden Required-Tools,
+8. Abschlusskriterien: `--compare-only` meldet
+   `missing_on_machine.required.*: none`,
    `gitleaks version`, `code --version` und `hx --version` funktionieren, die
    Registry-Dateien sind gueltiges JSON, und der Abschluss wird in
    `docs/project-statistics.md` dokumentiert.
@@ -1295,7 +1332,9 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    Python, Rust, and Swift plus Microsoft Container Tools for Docker/Podman
    workflows are maintained with `code --install-extension`. The deprecated
    Swift extension `sswg.swift-lang` is reported only, not removed
-   automatically.
+   automatically. On macOS, an existing app bundle under
+   `/Applications/Visual Studio Code.app` or `~/Applications/Visual Studio Code.app`
+   satisfies the required cask even without a Homebrew cask install.
 5. Helix is required as the terminal-native A11Y/CLI editor: macOS/Linux via
    formula `helix`, Windows via WinGet ID `Helix.Helix`. `msedit` remains an
    optional simple terminal editor.
@@ -1306,7 +1345,8 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `windows-test.ps1`. Their test outputs include package lists and registry
    diffs; intentionally installed top-level tools are then added to the matching
    registry.
-8. Closeout criteria: `--compare-only` reports no missing required tools,
+8. Closeout criteria: `--compare-only` reports
+   `missing_on_machine.required.*: none`,
    `gitleaks version`, `code --version`, and `hx --version` work, the registry
    files are valid JSON, and the closeout is documented in
    `docs/project-statistics.md`.

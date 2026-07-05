@@ -13,13 +13,14 @@ if [ -f "$LIB_FILE" ]; then
 fi
 
 OPT_REGISTRY=""
-OPT_REPO=""
+OPT_REPOS=()
+OPT_SCAN_ROOTS=()
 OPT_LEVEL=""
 OPT_PRIMARY_LANGUAGE=""
 OPT_GSDB_REQUIRED=""
 OPT_PRESET_PROFILE=""
 OPT_ROLE=""
-OPT_SOURCE="manual-registration"
+OPT_SOURCE=""
 OPT_DRY_RUN=false
 
 usage() {
@@ -28,16 +29,18 @@ register-level2-repository.sh - Level-1/Level-2-Repo in GSDB-Registry eintragen
 
 Usage:
   bash scripts/register-level2-repository.sh --repo PATH [options]
+  bash scripts/register-level2-repository.sh --scan-root PATH [options]
 
 Options:
-  --repo PATH                 Repository to register.
+  --repo PATH                 Repository to register. Repeatable.
+  --scan-root PATH            Scan a workspace root for git repositories. Repeatable.
   --registry PATH             Registry JSON. Default: ~/.home-baseline/level2-repository-registry.json.
   --level 1|2                 Explicit repository level. Default: infer from parent git repo.
   --primary-language LANG     Optional primary language. Default: detect from repo.
   --gsdb-required true|false  Whether GSDB applies. Default: true for MSL Level-2 repos.
   --preset-profile NAME       Preset profile note. Default: standard-six-governance-presets for MSL Level-2.
   --role NAME                 Registry role note. Default: level-2-project or level-1-workspace.
-  --source NAME               Registration source. Default: manual-registration.
+  --source NAME               Registration source. Default: manual-registration or maintenance-discovery.
   --dry-run                   Show the registry update without writing.
   -h, --help                  Show this help.
 EOF
@@ -80,11 +83,28 @@ to_home_relative() {
   esac
 }
 
+discover_repositories() {
+  local root="$1"
+  [ -d "$root" ] || return 0
+  root="${root%/}"
+  find "$root" -type d -name .git -prune -print 2>/dev/null \
+    | while IFS= read -r git_dir; do
+        repo_dir="$(dirname "$git_dir")"
+        [ "$repo_dir" = "$root" ] && continue
+        printf '%s\n' "$repo_dir"
+      done
+}
+
 while [ $# -gt 0 ]; do
   case "$1" in
     --repo)
       [ $# -ge 2 ] || die "--repo braucht einen Pfad"
-      OPT_REPO="$(normalize_path "$2")"
+      OPT_REPOS+=("$(normalize_path "$2")")
+      shift 2
+      ;;
+    --scan-root)
+      [ $# -ge 2 ] || die "--scan-root braucht einen Pfad"
+      OPT_SCAN_ROOTS+=("$(normalize_path "$2")")
       shift 2
       ;;
     --registry)
@@ -136,72 +156,95 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-[ -n "$OPT_REPO" ] || die "--repo ist erforderlich"
-[ -d "$OPT_REPO/.git" ] || die "kein Git-Repository: $OPT_REPO"
+[ "${#OPT_REPOS[@]}" -gt 0 ] || [ "${#OPT_SCAN_ROOTS[@]}" -gt 0 ] || die "--repo oder --scan-root ist erforderlich"
 command -v python3 >/dev/null 2>&1 || die "python3 nicht gefunden"
 
 OPT_REGISTRY="${OPT_REGISTRY:-$(default_registry)}"
 mkdir -p "$(dirname "$OPT_REGISTRY")"
 
-project_name="$(basename "$OPT_REPO")"
-level="${OPT_LEVEL:-$(infer_level "$OPT_REPO")}"
-case "$level" in
-  1|2) ;;
-  *) die "--level muss 1 oder 2 sein" ;;
-esac
-
-language="$OPT_PRIMARY_LANGUAGE"
-if [ -z "$language" ] && command -v sdh_detect_language >/dev/null 2>&1; then
-  language="$(sdh_detect_language "$OPT_REPO" "$project_name" "" 2>/dev/null || true)"
-fi
-[ -n "$language" ] || language="unknown"
-
-msl_status="unknown"
-if command -v sdh_is_msl_language >/dev/null 2>&1 && sdh_is_msl_language "$language"; then
-  msl_status="msl"
-elif command -v sdh_is_known_non_msl_language >/dev/null 2>&1 && sdh_is_known_non_msl_language "$language"; then
-  msl_status="non-msl"
-elif [ "$language" = "none" ]; then
-  msl_status="n/a"
-fi
-
-gsdb_required="$OPT_GSDB_REQUIRED"
-if [ -z "$gsdb_required" ]; then
-  if [ "$level" = "2" ] && [ "$msl_status" = "msl" ]; then
-    gsdb_required="true"
+if [ -z "$OPT_SOURCE" ]; then
+  if [ "${#OPT_SCAN_ROOTS[@]}" -gt 0 ]; then
+    OPT_SOURCE="maintenance-discovery"
   else
-    gsdb_required="false"
-  fi
-fi
-case "$gsdb_required" in
-  true|false) ;;
-  *) die "--gsdb-required muss true oder false sein" ;;
-esac
-
-preset_profile="$OPT_PRESET_PROFILE"
-if [ -z "$preset_profile" ]; then
-  if [ "$level" = "2" ] && [ "$msl_status" = "msl" ]; then
-    preset_profile="standard-six-governance-presets"
-  else
-    preset_profile="none"
+    OPT_SOURCE="manual-registration"
   fi
 fi
 
-role="$OPT_ROLE"
-if [ -z "$role" ]; then
-  if [ "$level" = "2" ]; then
-    role="level-2-project"
-  else
-    role="level-1-workspace"
-  fi
+if [ "${#OPT_SCAN_ROOTS[@]}" -gt 0 ]; then
+  while IFS= read -r discovered_repo; do
+    [ -n "$discovered_repo" ] && OPT_REPOS+=("$discovered_repo")
+  done < <(
+    for scan_root in "${OPT_SCAN_ROOTS[@]}"; do
+      discover_repositories "$scan_root"
+    done | sort -u
+  )
 fi
 
-repo_rel="$(to_home_relative "$OPT_REPO")"
-today="$(date +%Y-%m-%d)"
-dry_run="false"
-$OPT_DRY_RUN && dry_run="true"
+register_repository() {
+  local repo="$1"
+  [ -d "$repo/.git" ] || die "kein Git-Repository: $repo"
 
-python3 - "$OPT_REGISTRY" "$repo_rel" "$level" "$language" "$msl_status" "$gsdb_required" "$preset_profile" "$role" "$OPT_SOURCE" "$today" "$dry_run" <<'PY'
+  local project_name level language msl_status gsdb_required preset_profile role repo_rel today dry_run
+
+  project_name="$(basename "$repo")"
+  level="${OPT_LEVEL:-$(infer_level "$repo")}"
+  case "$level" in
+    1|2) ;;
+    *) die "--level muss 1 oder 2 sein" ;;
+  esac
+
+  language="$OPT_PRIMARY_LANGUAGE"
+  if [ -z "$language" ] && command -v sdh_detect_language >/dev/null 2>&1; then
+    language="$(sdh_detect_language "$repo" "$project_name" "" 2>/dev/null || true)"
+  fi
+  [ -n "$language" ] || language="unknown"
+
+  msl_status="unknown"
+  if command -v sdh_is_msl_language >/dev/null 2>&1 && sdh_is_msl_language "$language"; then
+    msl_status="msl"
+  elif command -v sdh_is_known_non_msl_language >/dev/null 2>&1 && sdh_is_known_non_msl_language "$language"; then
+    msl_status="non-msl"
+  elif [ "$language" = "none" ]; then
+    msl_status="n/a"
+  fi
+
+  gsdb_required="$OPT_GSDB_REQUIRED"
+  if [ -z "$gsdb_required" ]; then
+    if [ "$level" = "2" ] && [ "$msl_status" = "msl" ]; then
+      gsdb_required="true"
+    else
+      gsdb_required="false"
+    fi
+  fi
+  case "$gsdb_required" in
+    true|false) ;;
+    *) die "--gsdb-required muss true oder false sein" ;;
+  esac
+
+  preset_profile="$OPT_PRESET_PROFILE"
+  if [ -z "$preset_profile" ]; then
+    if [ "$level" = "2" ] && [ "$msl_status" = "msl" ]; then
+      preset_profile="standard-six-governance-presets"
+    else
+      preset_profile="none"
+    fi
+  fi
+
+  role="$OPT_ROLE"
+  if [ -z "$role" ]; then
+    if [ "$level" = "2" ]; then
+      role="level-2-project"
+    else
+      role="level-1-workspace"
+    fi
+  fi
+
+  repo_rel="$(to_home_relative "$repo")"
+  today="$(date +%Y-%m-%d)"
+  dry_run="false"
+  $OPT_DRY_RUN && dry_run="true"
+
+  python3 - "$OPT_REGISTRY" "$repo_rel" "$level" "$language" "$msl_status" "$gsdb_required" "$preset_profile" "$role" "$OPT_SOURCE" "$today" "$dry_run" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -258,3 +301,8 @@ else:
     registry_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{action}: {repo_path} -> {registry_path}")
 PY
+}
+
+for repo in "${OPT_REPOS[@]}"; do
+  register_repository "$repo"
+done
