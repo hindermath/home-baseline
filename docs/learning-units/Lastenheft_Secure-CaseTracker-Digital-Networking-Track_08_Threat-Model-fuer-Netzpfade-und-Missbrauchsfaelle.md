@@ -22,6 +22,11 @@
 
 **EN:** The task supports Digital Networking in year 3. Spec Kit helps with structure and evidence but does not replace security education.
 
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 11d („Betrieb und Sicherheit vernetzter Systeme gewährleisten")**; berührt LF 9 („Netzwerke und Dienste bereitstellen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_08_Threat-Model-fuer-Netzpfade-und-Missbrauchsfaelle.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 11d ("Betrieb und Sicherheit vernetzter Systeme gewährleisten")**; touched LF 9 ("Netzwerke und Dienste bereitstellen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_08_Threat-Model-fuer-Netzpfade-und-Missbrauchsfaelle.Lernbegleiter.md`.
+
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** Threat Modeling, Defense in Depth, Fail-Safe Defaults, sichere Architektur und Review-Evidenz.

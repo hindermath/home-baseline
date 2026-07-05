@@ -15,6 +15,8 @@
 | vorbereitet / prepared | Secure InventoryHub | [Secure-InventoryHub-Lernreihe.md](Secure-InventoryHub-Lernreihe.md) | ab dem 2. Lehrjahr | Inventar, Softwarestände, Rollen, Datenqualität, Patch-/Wartungsstatus, SBOM-Bezug |
 | vorbereitet / prepared | Secure CaseTracker Professional Tracks | [Secure-CaseTracker-Professional-Tracks-Lernreihe.md](Secure-CaseTracker-Professional-Tracks-Lernreihe.md) | ab dem 3. Lehrjahr | Spezialisierung in AE, SI, DPA und DV mit Application, Operations, Data & Process und Digital Networking Tracks |
 | vorbereitet / prepared | IT-Berufe-Mapping für Secure CaseTracker | [IT-Berufe-Secure-CaseTracker-Mapping.md](IT-Berufe-Secure-CaseTracker-Mapping.md) | berufsbegleitend / supporting all years | Berufsbild-Mapping für FI/AE, FI/SI, FI/DPA, FI/DV, IT-System-Elektroniker/-in, IT-System-Management und Digitalisierungsmanagement |
+| vorbereitet / prepared | Rahmenlehrplan-Lernfeld-Zuordnung | [Rahmenlehrplan-Lernfeld-Mapping.md](Rahmenlehrplan-Lernfeld-Mapping.md) | berufsbegleitend / supporting all years | verbindliche LF-Zuordnung (LF 1–12) je Einheit für die gesamte Secure-CaseTracker-Familie und Secure InventoryHub |
+| vorbereitet / prepared | Lernbegleiter / Study Companions | [lernbegleiter/](lernbegleiter/) | berufsbegleitend / supporting all years | ausführliche Erklärungen und Verständnisfragen mit Musterantworten je Aufgaben-Einheit (CEFR B2, WCAG 2.2 AA) |
 | geplant / planned | Weitere Reihe ab 3. Lehrjahr | noch offen / open | ab dem 3. Lehrjahr | Härtung, Lieferkette, Compliance, Deployment, Review |
 
 ## Statuswerte / Status Values

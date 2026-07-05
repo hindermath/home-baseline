@@ -22,6 +22,11 @@
 
 **EN:** The task supports Digital Networking in year 3. Spec Kit structures specification, planning, and evidence but does not replace vocational learning.
 
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 11d („Betrieb und Sicherheit vernetzter Systeme gewährleisten")**; berührt LF 9 („Netzwerke und Dienste bereitstellen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_03_Trust-Boundaries-und-Segmentierung.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 11d ("Betrieb und Sicherheit vernetzter Systeme gewährleisten")**; touched LF 9 ("Netzwerke und Dienste bereitstellen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_03_Trust-Boundaries-und-Segmentierung.Lernbegleiter.md`.
+
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** Defense in Depth, Least Privilege, Fail-Safe Defaults, Trust Boundaries und sichere Architektur.

@@ -22,6 +22,11 @@
 
 **EN:** The task supports the Digital Networking specialization in the third training year. Spec Kit accompanies the task but does not replace the vocational curriculum or workplace training.
 
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 10d („Cyber-physische Systeme entwickeln")**; berührt LF 3 („Clients in Netzwerke einbinden"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_01_Vernetzungszielbild-und-Systemkontext.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 10d ("Cyber-physische Systeme entwickeln")**; touched LF 3 ("Clients in Netzwerke einbinden"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_01_Vernetzungszielbild-und-Systemkontext.Lernbegleiter.md`.
+
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** sichere Architektur, Trust Boundaries, Datenschutz, N/A-Begründung und auditfähige Evidenz.

@@ -22,6 +22,11 @@
 
 **EN:** The task supports Digital Networking in year 3. Spec Kit structures final review and evidence but does not replace vocational assessment.
 
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 12d („Kundenspezifisches cyber-physisches System optimieren")**; berührt LF 9 („Netzwerke und Dienste bereitstellen"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_10_Abschlussreview-mit-Vernetzungsrisiken-und-Uebergabe.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 12d ("Kundenspezifisches cyber-physisches System optimieren")**; touched LF 9 ("Netzwerke und Dienste bereitstellen"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker-Digital-Networking-Track_10_Abschlussreview-mit-Vernetzungsrisiken-und-Uebergabe.Lernbegleiter.md`.
+
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** auditfähige Evidenz, sichere Architektur, sichere Entwicklung, Datenschutz, A11Y und Restrisiko.

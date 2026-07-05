@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-06-27
+- **Stand / Date:** 2026-07-05
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 
@@ -25,6 +25,11 @@
 **DE:** Die Aufgabe verbindet Projektabschluss, Review, Qualitätssicherung, Kundendarstellung, Datenschutz und Informationssicherheit.
 
 **EN:** The task connects project closure, review, quality assurance, customer presentation, privacy, and information security.
+
+<!-- lf-konkret -->
+**DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primär LF 6 („Serviceanfragen bearbeiten")**; berührt LF 1 („Das Unternehmen und die eigene Rolle im Betrieb beschreiben"). Vertiefte Erklärung und Verständnisfragen: `lernbegleiter/Secure-CaseTracker_11_Spec-Kit-Review-und-Abschluss.Lernbegleiter.md`.
+
+**EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`): **primary LF 6 ("Serviceanfragen bearbeiten")**; touched LF 1 ("Das Unternehmen und die eigene Rolle im Betrieb beschreiben"). Deeper explanation and comprehension questions: `lernbegleiter/Secure-CaseTracker_11_Spec-Kit-Review-und-Abschluss.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
