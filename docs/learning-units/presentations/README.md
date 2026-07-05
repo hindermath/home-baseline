@@ -25,7 +25,19 @@
 | `Praesentation-Secure-CaseTracker-Digital-Networking-Track-Lernreihe.md` | DE-first-Einführung in den DV Digital Networking Track ab dem 3. Lehrjahr. |
 | `Praesentation-Secure-CaseTracker-Digital-Networking-Track-Lernreihe.en.md` | English companion version of the Digital Networking Track introduction. |
 
-## Pandoc
+## Sprachtrennung / Language Split
+
+**DE:** Die Folien nutzen bewusst getrennte Sprachdateien: `Praesentation-*.md` enthaelt die deutsche
+Fassung, `Praesentation-*.en.md` die englische. Folientitel sind deshalb einsprachig. Dies ist eine
+dokumentierte Ausnahme von der `DE / EN`-Ueberschriftenregel und keine Barrierefreiheitsverletzung; jede
+Sprache bleibt in sich vollstaendig und mit Screenreader/Braille nutzbar.
+
+**EN:** The slides deliberately use separate language files: `Praesentation-*.md` holds the German version,
+`Praesentation-*.en.md` the English one. Slide titles are therefore single-language. This is a documented
+exception to the `DE / EN` heading rule and not an accessibility violation; each language stays complete on
+its own and usable with screen reader and Braille display.
+
+## Pandoc / Pandoc
 
 ```bash
 pandoc docs/learning-units/presentations/Praesentation-Spec-Kit-SDD-Auftakt.md \

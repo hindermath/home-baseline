@@ -60,9 +60,27 @@ Jede Lernreihe enthaelt mindestens:
 - eine sichtbare Abarbeitungsreihenfolge
 - eine Statusmatrix fuer Sprachpfade
 - eine Paketierungsanleitung fuer Lernende ohne urspruengliche Git-Remotes
+- je regulaerer Aufgaben-Einheit einen Lernbegleiter unter `lernbegleiter/` mit ausfuehrlicher Erklaerung (CEFR B2), Kernbegriffen, Schritt-fuer-Schritt-Beispiel, konkretem Lernfeldbezug, Verstaendnisfragen mit Musterantworten und Rueckverweis auf das zugehoerige Lastenheft
+- eine zentrale Rahmenlehrplan-Lernfeld-Zuordnung als verbindliche Quelle fuer konkrete Lernfelder je Einheit
 - in jedem Level-2-Sprachrepo die vollstaendige Secure-Development-Basis: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente, Verzahnung zu Spec-Kit-Presets und installierte Presets aus der zentralen Matrix
 
-*Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, a package guide without original Git remotes, and the complete secure-development baseline plus installed governance presets in every level-2 language repository.*
+*Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, a package guide without original Git remotes, one study companion per regular task unit under `lernbegleiter/` (detailed explanation, key terms, worked example, concrete learning-field relation, comprehension questions with model answers, backlink to the intake), a central curriculum learning-field mapping as the binding source for concrete learning fields, and the complete secure-development baseline plus installed governance presets in every level-2 language repository.*
+
+## Struktur-Stufung der Aufgaben-Intakes / Structural Tiering of Task Intakes
+
+**DE:** Die Aufgaben-Lastenhefte sind bewusst nach Lehrjahr gestuft und nicht formgleich. Die Basis-Reihe
+(1. Lehrjahr) fuehrt zusaetzliche fuehrende Abschnitte wie `Fachrichtungsbezug`, getrennte Sicherheits- und
+Datenschutzanforderungen, `Sprachspezifische Hinweise`, `Tests und Nachweise`, `Reflexionsfragen`,
+`N/A-Regeln` und `Offene Punkte`. Aufbaureihen ab dem 2. Lehrjahr (v2) und die Jahr-3-Tracks sind bewusst
+schlanker (kombinierte Anforderungen, mehr Eigenentscheidung). Diese Stufung ist gewollt; sie darf nicht zu
+formaler Gleichmacherei nivelliert werden. Die ausfuehrliche Didaktik liegt einheitlich im Lernbegleiter.
+
+**EN:** The task intakes are intentionally tiered by training year and are not identical in shape. The base
+series (year 1) carries additional guiding sections such as `Fachrichtungsbezug`, separate security and
+privacy requirements, language-specific notes, tests/evidence, reflection questions, `N/A` rules, and open
+follow-ups. Advanced series from year 2 (v2) and the year-3 tracks are intentionally leaner (combined
+requirements, more learner autonomy). This tiering is deliberate and must not be levelled into formal
+uniformity. The detailed didactics live uniformly in the study companion.
 
 ## Secure-Development-Basis in Level 2 / Secure Development Baseline in Level 2
 
