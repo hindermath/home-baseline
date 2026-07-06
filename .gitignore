@@ -98,3 +98,5 @@ scripts/config/*repository-registry.local.json
 
 # macOS Finder metadata must never override the whitelist.
 **/.DS_Store
+docs/.vscode/settings.json
+docs/learning-units/.vscode/settings.json
