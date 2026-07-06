@@ -116,7 +116,7 @@
 - Fehlende Toolchains werden je Sprache als `Open` notiert.
 - Unklare Netzwerk- oder Secret-Regeln müssen vor Agenten-Implementierung geklärt werden.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_09_Sandbox-und-Agentische-Entwicklung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für die vorbereitende Sandbox-Einordnung der Secure-CaseTracker-Lernreihe: Public-Referenz `absdd-image-sandbox`, Mounts, Schreibgrenzen, Secret-Regeln, Netzwerkannahmen, MSL-Support-Matrix, KI-Agenten-Grenzen und klare N/A-Begründung, falls praktische Sandbox-Nutzung im 1. Lehrjahr noch nicht verpflichtend ist. Erzeuge keine Implementierung.

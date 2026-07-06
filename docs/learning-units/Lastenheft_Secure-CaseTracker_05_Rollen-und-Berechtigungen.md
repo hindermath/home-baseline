@@ -103,7 +103,7 @@
 - Rollen, die später echte Authentifizierung benötigen, werden als Folgeaufgabe markiert.
 - Unklare Exportrechte werden vor Persistenz und Prozessanalyse erneut geprüft.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_05_Rollen-und-Berechtigungen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Rollenmatrix, sichere Defaults, geschützte Aktionen, Autorisierungstests und N/A-Begründung für nicht umgesetzte Authentifizierung des Secure CaseTracker. Erzeuge keine Implementierung.

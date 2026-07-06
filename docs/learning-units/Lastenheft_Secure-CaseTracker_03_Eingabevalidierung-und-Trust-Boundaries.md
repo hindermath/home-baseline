@@ -106,7 +106,7 @@
 - Unklare Eingangsarten werden vor Persistenz oder Import/Export nachgezogen.
 - Fehlende negative Tests werden als `Open` mit verantwortlicher Folgeaufgabe dokumentiert.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_03_Eingabevalidierung-und-Trust-Boundaries.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Trust Boundaries, Eingabevalidierung, sichere Fehlermeldungen, Dateipfadprüfung und negative Tests des Secure CaseTracker. Erzeuge keine Implementierung.
