@@ -113,7 +113,7 @@
 - Fehlende Tests, offene Sicherheitsfragen oder unklare Track-Ziele werden als Folgeaufgaben für den ersten passenden Jahr-3-Intake dokumentiert.
 - Wenn ein GitHub-Fork genutzt werden soll, wird die Entscheidung vor der Umsetzung separat bestätigt.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_12_Jahr-2-Baseline-und-Track-Ableitung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für den Abschluss der Jahr-2-Baseline, den Tag learning/year-2-complete, die Baseline-Nachweise und die spätere Track-Ableitung für AE, SI, DPA und DV. Erzeuge keine neue Fachlogik und keine automatische Massenanlage von Track-Repositories.

@@ -111,7 +111,7 @@
 - Fehlende Toolchains, Presets oder Secure-Development-Dateien werden nicht stillschweigend übersprungen, sondern als `Open` mit Folgeaufgabe dokumentiert.
 - Sprachspezifische Architekturentscheidungen werden erst in den fachlichen Aufgaben vertieft.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_00_Sprachrepo-Projekt-Scaffold.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für den technischen Sprachrepo-Scaffold der Secure-CaseTracker-Lernreihe. Lege ein minimales lauffähiges Projekt für die gewählte MSL-Sprache mit Build-/Teststruktur, Secure-Development-Basis und Preset-Nachweis an, aber erzeuge keine fachliche CaseTracker-Logik.

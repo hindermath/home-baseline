@@ -82,6 +82,39 @@ follow-ups. Advanced series from year 2 (v2) and the year-3 tracks are intention
 requirements, more learner autonomy). This tiering is deliberate and must not be levelled into formal
 uniformity. The detailed didactics live uniformly in the study companion.
 
+### Zwei zulaessige Struktur-Muster / Two Accepted Structure Patterns
+
+**DE:** Fuer die Lastenheft-Struktur einer Familie sind zwei gleichwertige Muster zulaessig. Eine Familie
+waehlt genau eines und haelt es in sich durch:
+
+- **Gestuft / tiered** (Referenz: **Secure CaseTracker**): Die Basis (1. Lehrjahr) ist am reichsten
+  (rund 17 Abschnitte), v2 schlanker (rund 12), die Jahr-3-Tracks am schlanksten (rund 10) — wie oben
+  beschrieben.
+- **Uniform / uniform** (Referenz: **Secure ServiceHarvester**): Alle Sub-Reihen (Basis, v2, Tracks) nutzen
+  einheitlich das schlanke v2-Niveau (rund 12 Lastenheft-Abschnitte). Die Erklaertiefe und Jahresprogression
+  liegen dann vollstaendig im Lernbegleiter und in den Anforderungen, nicht in zusaetzlichen Abschnitten.
+
+**DE:** Beide Muster sind bewusst gewaehlt und geprueft; sie sind kein Konsistenzfehler. Der **Lernbegleiter
+bleibt in beiden Mustern identisch strukturiert** (9 Abschnitte), ebenso Familienform, Namenskonvention,
+Governance-Anbindung und Bilingualitaet. Der `Optimaler Specify-Prompt / Optimal Specify Prompt`-Abschnitt in
+Aufgaben-Lastenheften und der `Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt`-Abschnitt in
+Master-Lastenheften werden in beiden Mustern bilingual gefuehrt.
+
+**EN:** Two equivalent patterns are allowed for a family's intake structure. A family picks exactly one and
+keeps it internally consistent:
+
+- **Tiered** (reference: **Secure CaseTracker**): the base (year 1) is richest (about 17 sections), v2 leaner
+  (about 12), the year-3 tracks leanest (about 10) — as described above.
+- **Uniform** (reference: **Secure ServiceHarvester**): all sub-series (base, v2, tracks) use the same lean
+  v2-level structure (about 12 intake sections). Explanatory depth and year progression then live entirely in
+  the study companion and in the requirements, not in extra sections.
+
+**EN:** Both patterns are deliberate and reviewed; they are not a consistency defect. The **study companion
+stays identically structured in both patterns** (9 sections), as do family shape, naming convention,
+governance wiring, and bilinguality. The `Optimaler Specify-Prompt / Optimal Specify Prompt` section in task
+intakes and the `Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt` section in master intakes are kept
+bilingual in both patterns.
+
 ## Secure-Development-Basis in Level 2 / Secure Development Baseline in Level 2
 
 **DE:** Jede Lernaufgabe darf auf `CL_01` bis `CL_12`, den Sammelband und die mitgeltenden Dokumente verweisen. Diese Unterlagen muessen deshalb lokal im jeweiligen Level-2-Repo unter `docs/secure-development/` vorhanden sein. Sie sind Arbeits- und Nachweisgrundlage fuer spaetere manuelle Spec-Kit-Laeufe, nicht nur externe Referenz.

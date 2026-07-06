@@ -94,7 +94,7 @@
 - Deutsche Texte verwenden Umlaute und `ß`; Dateinamen bleiben ASCII.
 - DE-first, EN-second ist sichtbar.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-Lernreihe.md nur als Gesamtlandkarte. Starte daraus keinen einzelnen großen Implementierungslauf. Lege auch noch keinen Level-1-/Level-2-Arbeitsraum an. Wähle stattdessen in einem bereits vorbereiteten Sprach-Repo das nächste konkrete Aufgaben-Lastenheft der Secure-CaseTracker-Reihe. Bei einem neuen oder leeren Sprachrepo beginne mit `00`; bei fachlicher Jahr-1-Arbeit beginne mit `01`; für die spätere Jahr-2-Baseline nutze `12`.

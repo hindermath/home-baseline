@@ -103,7 +103,7 @@
 - Unklare Kennzahlen werden als `Open` markiert und vor Abschlussreview geklärt.
 - Datenschutzfragen zu Auswertungen werden in die Evidenzmatrix übernommen.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_10_Prozessanalyse-und-Kennzahlen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Prozesskennzahlen, Datenqualität, Datenschutz, Aussagegrenzen und Tests der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.

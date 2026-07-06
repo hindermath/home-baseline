@@ -108,7 +108,7 @@
 - Fehlende Testarten werden als `Open` mit Folgeaufgabe erfasst.
 - Offene Toolchain-Fragen werden in die Sandbox- oder Supply-Chain-Einheit übernommen.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_07_Testbarkeit-und-Qualitaet.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Testplan, fachliche Tests, Sicherheitstests, Datenschutztests, CI-/Sandbox-Nachweise und offene Testlücken des Secure CaseTracker. Erzeuge keine Implementierung.

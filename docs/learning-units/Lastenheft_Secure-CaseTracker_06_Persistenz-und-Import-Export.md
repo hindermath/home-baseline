@@ -108,7 +108,7 @@
 - Unklare Persistenzrisiken werden vor Implementierung als `Open` geführt.
 - Exportfelder mit Datenschutzrisiko werden vor Prozessanalyse erneut geprüft.
 
-## Copy-Paste Spec-Kit Prompt
+## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
 
 ```text
 /speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_06_Persistenz-und-Import-Export.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für sichere Persistenz, Import, Export, Pfadprüfung, sichere Deserialisierung, Datenminimierung und Import-/Export-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
