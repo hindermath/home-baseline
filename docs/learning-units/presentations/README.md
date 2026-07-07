@@ -26,6 +26,8 @@
 | `Praesentation-Secure-CaseTracker-Digital-Networking-Track-Lernreihe.en.md` | English companion version of the Digital Networking Track introduction. |
 | `Praesentation-Secure-ServiceHarvester-Lernreihe.md` | DE-first-Einführung in die Secure-ServiceHarvester-Basis (1. Lehrjahr): plattformübergreifender Sammel-/Worker-Dienst, MSL, Sandbox, Spec Kit und agentische KI. |
 | `Praesentation-Secure-ServiceHarvester-Lernreihe.en.md` | English companion version of the Secure ServiceHarvester base introduction. |
+| `Praesentation-Secure-OrderDesk-Lernreihe.md` | DE-first-Einführung in die Secure-OrderDesk-Basis (1. Lehrjahr): relationale Bestell-/Handelsplattform für Secure Trader, Northwind inkl. `ALFKI`, parametrisierte SQL-Zugriffe, MSL, Sandbox, Spec Kit und agentische KI. |
+| `Praesentation-Secure-OrderDesk-Lernreihe.en.md` | English companion version of the Secure OrderDesk base introduction. |
 | `Praesentation-Secure-ServiceHarvester-v2-Lernreihe.md` | DE-first-Einführung in Secure ServiceHarvester v2 (2. Lehrjahr): Architektur, Dienst-Hosting, Backend-Abstraktion, Harvester, API und Betrieb. |
 | `Praesentation-Secure-ServiceHarvester-v2-Lernreihe.en.md` | English companion version of the Secure ServiceHarvester v2 introduction. |
 | `Praesentation-Secure-ServiceHarvester-Application-Track-Lernreihe.md` | DE-first-Einführung in den AE Application Track des ServiceHarvester ab dem 3. Lehrjahr. |
@@ -84,6 +86,11 @@ pandoc docs/learning-units/presentations/Praesentation-Secure-CaseTracker-Digita
 ```bash
 pandoc docs/learning-units/presentations/Praesentation-Secure-ServiceHarvester-Lernreihe.md \
   -o Secure-ServiceHarvester-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.md \
+  -o Secure-OrderDesk-Lernreihe.pptx
 ```
 
 ```bash
