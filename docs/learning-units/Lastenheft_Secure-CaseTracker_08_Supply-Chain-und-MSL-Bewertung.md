@@ -2,9 +2,11 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
+- **Lehrjahr / Training year:** ab dem 1. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
+- **Primär geeignet für / Primary fit:** AE, SI, DPA
 
 ## Lernziel / Learning Goal
 
@@ -14,11 +16,11 @@
 
 ## Fachrichtungsbezug / Specialization Fit
 
-| Fachrichtung | Eignung | Warum |
+| Fachrichtung | Eignung | Reflexionsfrage |
 |---|---|---|
-| AE | Sekundär | Entwickler*innen wählen Bibliotheken und müssen Risiken verstehen. |
-| SI | Primär | Toolchains, Paketquellen, Scans und SBOM sind Betriebs- und Lieferkettenthemen. |
-| DPA | Ergänzend | Datenanalyse hängt von vertrauenswürdigen Werkzeugen und Bibliotheken ab. |
+| AE | Sekundär | Welche Bibliothek würdest du vermeiden, wenn sie ungepflegt ist? |
+| SI | Primär | Wie beweist du, welche Versionen im Build verwendet wurden? |
+| DPA | Ergänzend | Welche Risiken entstehen, wenn Analysebibliotheken ungeprüft bleiben? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -44,26 +46,29 @@
 
 **EN:** Define how dependencies are recorded and reviewed for each target language. Document that C#, Go, Java, Python, Rust, and Swift are treated as MSL target languages in this learning series. Also describe which security classes MSL do not solve automatically.
 
-## Sicherheitsanforderungen / Security Requirements
+## Anforderungen / Requirements
+
+- **R-01:** Für jede Zielsprache sind Paketquelle, Audit-Werkzeug und der Umgang mit Lockfiles oder Versionsnachweisen benannt.
+- **R-02:** Jede neue Abhängigkeit hat Zweck, Quelle und Risikohinweis; bekannte kritische Schwachstellen werden nicht ignoriert.
+- **R-03:** MSL wird nicht als pauschale Sicherheitsfreigabe formuliert; die Bewertung nennt Sicherheitsklassen, die MSL nicht automatisch lösen.
+- **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert: AI-SBOM ist `N/A`, wenn keine KI-Runtime, kein Modell und keine KI-Komponente ausgeliefert oder betrieben wird; VEX ist `N/A`, wenn keine bekannte Schwachstelle bewertet werden muss; SBOM kann `Open` sein, wenn Tooling für die Sprache noch nicht festgelegt ist.
+- **R-05:** Die Dependency- und MSL-Bewertung gilt vergleichbar für C#, Go, Java, Python, Rust und Swift.
+
+## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
 - Neue Abhängigkeiten brauchen Zweck und Quelle.
 - Bekannte kritische Schwachstellen werden nicht ignoriert.
 - Lockfiles oder vergleichbare Versionsnachweise werden eingeplant.
 - MSL-Status ersetzt keine Prüfung von Eingabe, I/O, Auth, SQL, Crypto, Logging oder Dependencies.
-
-## Datenschutzanforderungen / Privacy Requirements
-
 - Dependency- und Toolchain-Nachweise enthalten keine Tokens oder privaten Registry-Zugangsdaten.
 - Paketquellen und Audit-Ausgaben werden vor Veröffentlichung auf sensible Informationen geprüft.
+- Nicht anwendbare Standards (z. B. AI-SBOM ohne KI-Runtime, VEX ohne bewertete Schwachstelle) werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
 - Jede Sprache nennt Paketquelle, Audit-Werkzeug und Umgang mit Lockfiles oder Versionsnachweisen.
 - Die MSL-Bewertung nutzt dieselbe Aussage: Speicherfehler werden reduziert, andere Sicherheitsklassen bleiben prüfpflichtig.
 - `AI-SBOM` ist `N/A`, solange nur Entwicklungswerkzeuge genutzt und keine KI-Runtime ausgeliefert wird.
-
-## Sprachspezifische Hinweise / Language-Specific Notes
-
 - **C#:** NuGet-Audit oder gleichwertiger Nachweis.
 - **Go:** `govulncheck`.
 - **Java:** Maven-/Gradle-Audit oder OWASP Dependency-Check.
@@ -77,39 +82,19 @@
 - MSL-Bewertung.
 - Audit-Werkzeug je Sprache.
 - SBOM- oder `N/A`-Entscheidung mit Begründung.
+- Offene Punkte: fehlende Audit-Werkzeuge werden als `Open` je Sprache notiert; unklare Paketquellen oder Lockfile-Regeln werden vor Implementierung geklärt.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Alle sechs Zielsprachen sind in der Toolchain-Bewertung sichtbar.
-- Jede Abhängigkeit hat Zweck, Quelle und Risikohinweis.
-- MSL wird nicht als pauschale Sicherheitsfreigabe formuliert.
-- SBOM, AI-SBOM und VEX werden als `Applicable`, `N/A` oder `Open` bewertet.
+- [ ] Alle sechs Zielsprachen sind in der Toolchain-Bewertung sichtbar.
+- [ ] Jede Abhängigkeit hat Zweck, Quelle und Risikohinweis.
+- [ ] MSL wird nicht als pauschale Sicherheitsfreigabe formuliert.
+- [ ] SBOM, AI-SBOM und VEX werden als `Applicable`, `N/A` oder `Open` bewertet.
+- [ ] Nachweise vorhanden: Review, ob jede Abhängigkeit einen Zweck hat, Review, ob MSL nicht als pauschale Sicherheitsfreigabe missverstanden wird, und Dokumentation offener Toolchain-Lücken als `Open`.
+- [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
-## Tests und Nachweise / Tests and Evidence
-
-- Review prüft, ob jede Abhängigkeit einen Zweck hat.
-- Review prüft, ob MSL nicht als pauschale Sicherheitsfreigabe missverstanden wird.
-- Offene Toolchain-Lücken werden als `Open` dokumentiert.
-
-## Reflexionsfragen / Reflection Questions
-
-- **AE:** Welche Bibliothek würdest du vermeiden, wenn sie ungepflegt ist?
-- **SI:** Wie beweist du, welche Versionen im Build verwendet wurden?
-- **DPA:** Welche Risiken entstehen, wenn Analysebibliotheken ungeprüft bleiben?
-
-## N/A-Regeln / N/A Rules
-
-- AI-SBOM ist `N/A`, wenn keine KI-Runtime, kein Modell und keine KI-Komponente ausgeliefert oder betrieben wird.
-- VEX ist `N/A`, wenn keine bekannte Schwachstelle bewertet werden muss.
-- SBOM kann `Open` sein, wenn Tooling für die Sprache noch nicht festgelegt ist.
-
-## Offene Punkte / Open Follow-Ups
-
-- Fehlende Audit-Werkzeuge werden als `Open` je Sprache notiert.
-- Unklare Paketquellen oder Lockfile-Regeln werden vor Implementierung geklärt.
-
-## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
+## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_08_Supply-Chain-und-MSL-Bewertung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Dependency-Erfassung, Audit-Werkzeuge, MSL-Bewertung, SBOM-/N/A-Entscheidung und sichere Lieferkettennachweise der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_08_Supply-Chain-und-MSL-Bewertung.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für Dependency-Erfassung, Audit-Werkzeuge, MSL-Bewertung, SBOM-/N/A-Entscheidung und sichere Lieferkettennachweise der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

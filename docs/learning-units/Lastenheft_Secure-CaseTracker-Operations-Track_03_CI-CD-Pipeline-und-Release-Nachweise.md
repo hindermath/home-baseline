@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Pipeline-Schritte, Gates, Tests, Artefakte, Release-Nachweise und manuelle Freigaben werden geplant.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Wie weist du nach, dass ein Release genau aus dem geprüften Quellstand entstanden ist? |
+| AE | mittel bis hoch | Welche Build-, Test- oder Gate-Schritte gehören verpflichtend in die Pipeline? |
+| DPA | mittel | Welche Kennzahlen zu Build-Erfolg und Testabdeckung sind auswertbar? |
+| DV | mittel bis hoch | Welche Registry-, Netz- oder Deploy-Ziele sind Teil der Pipeline? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der Pipeline-Vertrag (Stufen, Reproduzierbarkeit, Nachweise) bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Build- und Audit-Werkzeuge dürfen gewählt, müssen aber benannt und begründet werden.
+- MSL-Status ersetzt keine sichere Dependency-, Build- oder Release-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

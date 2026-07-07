@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Feature-Zugriff, Rollen, Rechte, sichere Defaults und Missbrauchsfälle werden geprüft.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (Schwerpunkt) | Welche Rechteprüfung und welches Feature-Gate sind sicher, deterministisch und wartbar? |
+| SI | mittel | Welche Betriebs- oder Konfigurationsannahme folgt aus Rollen und sicheren Defaults? |
+| DPA | mittel bis hoch | Welche Daten werden durch welche Rolle sichtbar und welche Aussagegrenze gilt? |
+| DV | mittel | Welche Schnittstelle prüft Rechte an welcher Systemgrenze? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der Autorisierungsvertrag (Rollen, Rechte, sichere Defaults, Missbrauchsfälle) bleibt für alle Zielsprachen vergleichbar.
+- Sprachspezifische Auth- oder Policy-Bibliotheken dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine Prüfung von Zugriffskontrolle, Fail-Safe-Defaults und Missbrauchsfällen.
 
 ## Erwartete Artefakte / Expected Artifacts
 

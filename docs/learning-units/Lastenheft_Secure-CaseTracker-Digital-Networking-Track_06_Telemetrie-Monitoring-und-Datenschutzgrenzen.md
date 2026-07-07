@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Metriken, Logs, Traces, Warnungen, Datenschutzgrenzen und Aussagegrenzen werden getrennt dokumentiert.
 
 **EN:** Learners document metrics, logs, traces, alerts, privacy boundaries, and interpretation limits separately.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welche Metrik oder welcher Log belegt, dass der vernetzte CaseTracker erreichbar und gesund ist? |
+| DPA | hoch | Welche Datenschutzgrenze, Zweckbindung oder Aufbewahrung begrenzt Logs, Traces und Metriken? |
+| SI | hoch | Welche Betriebs-, Toolchain- oder Sandbox-Annahme muss dokumentiert werden? |
+| AE | mittel | Welche Implementierungsentscheidung folgt aus Metrik-, Log- und Trace-Struktur? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Keine Secrets, Tokens, vollständigen Pfade oder unnötigen personenbezogenen Daten protokollieren.
 - Monitoring-Daten nur mit Zweck und Zugriffsschutz planen.
 - Aus Monitoring darf keine stärkere Aussage abgeleitet werden, als die Datenqualität trägt.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Health-, Metrik- und Log-Struktur bleiben für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Observability- oder Logging-Bibliotheken dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

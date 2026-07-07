@@ -2,9 +2,11 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
+- **Lehrjahr / Training year:** ab dem 1. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
+- **Primär geeignet für / Primary fit:** AE, SI, DPA
 
 ## Lernziel / Learning Goal
 
@@ -14,11 +16,11 @@
 
 ## Fachrichtungsbezug / Specialization Fit
 
-| Fachrichtung | Eignung | Warum |
+| Fachrichtung | Eignung | Reflexionsfrage |
 |---|---|---|
-| AE | Sekundär | Logging muss in der Anwendung korrekt ausgelöst werden. |
-| SI | Sekundär | Logs sind Betriebs- und Nachweisartefakte. |
-| DPA | Primär | Datenschutz, Datenqualität und Zweckbindung sind zentral. |
+| AE | Sekundär | Welche Daten werden technisch leicht geloggt, sind aber fachlich unnötig? |
+| SI | Sekundär | Wie bleiben Logs im Betrieb nützlich und trotzdem datensparsam? |
+| DPA | Primär | Welche Audit-Daten reichen für Prozessauswertung aus? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -43,26 +45,29 @@
 
 **EN:** Define which events are logged: case created, status changed, work note added, case closed, import performed. Describe which data may appear in the audit log and which must not.
 
-## Sicherheitsanforderungen / Security Requirements
+## Anforderungen / Requirements
+
+- **R-01:** Die Audit-Ereignisse (Fall angelegt, Status geändert, Bearbeitungsnotiz ergänzt, Fall geschlossen, Import durchgeführt) sind mit Zweck und erlaubten Feldern benannt.
+- **R-02:** Erlaubte und verbotene Log-Felder sind ausdrücklich getrennt; Secrets, Tokens, Zugangsdaten und vollständige Freitexte sind ausgeschlossen.
+- **R-03:** Log-Injection wird als Risiko behandelt; Steuerzeichen und Zeilenumbrüche in Logwerten werden sicher behandelt.
+- **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert: produktive Log-Aufbewahrungsfristen sind `N/A`, wenn nur Lern- und Testdaten betrachtet werden; zentrales SIEM ist `N/A`, wenn keine Betriebsintegration geplant wird; jede `N/A`-Entscheidung nennt, was stattdessen als Lernnachweis gilt.
+- **R-05:** Die Audit-Fälle und Log-Regeln gelten vergleichbar für C#, Go, Java, Python, Rust und Swift.
+
+## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
 - Keine Secrets, Tokens, Zugangsdaten oder vollständigen Freitexte im Audit-Log.
 - Log-Injection verhindern, zum Beispiel durch Bereinigung von Zeilenumbrüchen.
 - User-facing Fehler und interne Logs trennen.
-
-## Datenschutzanforderungen / Privacy Requirements
-
 - Audit-Log enthält Zweck, Zeitpunkt, Aktion, Rolle und technische Referenz.
 - Personenbezug wird minimiert oder pseudonymisiert.
 - Testdaten bleiben fiktiv.
+- Nicht anwendbare Standards (z. B. produktive Aufbewahrungsfristen, zentrales SIEM) werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
 - Audit-Einträge sind strukturiert.
 - Audit-Log ist nachvollziehbar, aber nicht datenhungrig.
 - Jede Sprache muss dieselben Audit-Fälle abdecken.
-
-## Sprachspezifische Hinweise / Language-Specific Notes
-
 - Jede Sprache nutzt strukturierte Logwerte oder klar getrennte Felder statt zusammengebauter Freitext-Zeilen.
 - C#, Go, Java, Python, Rust und Swift müssen Steuerzeichen in Logwerten sicher behandeln.
 - Framework-spezifische Logging-Bibliotheken dürfen keine Secrets oder vollständigen Freitexte automatisch mitschreiben.
@@ -73,39 +78,19 @@
 - erlaubte und verbotene Log-Felder.
 - Datenschutznotiz.
 - Logging-Testfälle.
+- Offene Punkte: unklare Aufbewahrungs- oder Exportfragen werden als `Open` markiert; offene Datenschutzfragen werden vor Prozessanalyse und Abschlussreview erneut geprüft.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Jedes Audit-Ereignis hat Zweck und erlaubte Felder.
-- Verbotene Log-Inhalte sind ausdrücklich genannt.
-- Log-Injection wird als Risiko behandelt.
-- Datenschutz und Nachvollziehbarkeit sind gemeinsam abgewogen.
+- [ ] Jedes Audit-Ereignis hat Zweck und erlaubte Felder.
+- [ ] Verbotene Log-Inhalte sind ausdrücklich genannt.
+- [ ] Log-Injection wird als Risiko behandelt.
+- [ ] Datenschutz und Nachvollziehbarkeit sind gemeinsam abgewogen.
+- [ ] Nachweise vorhanden: Test, dass Secrets und personenbezogene Beispielwerte nicht im Log erscheinen, Test, dass Zeilenumbrüche oder Steuerzeichen in Logwerten sicher behandelt werden, und ein Review gegen die Datenschutzanforderungen.
+- [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
-## Tests und Nachweise / Tests and Evidence
-
-- Test, dass Secrets und personenbezogene Beispielwerte nicht im Log erscheinen.
-- Test, dass Zeilenumbrüche oder Steuerzeichen in Logwerten sicher behandelt werden.
-- Review gegen Datenschutzanforderungen.
-
-## Reflexionsfragen / Reflection Questions
-
-- **AE:** Welche Daten werden technisch leicht geloggt, sind aber fachlich unnötig?
-- **SI:** Wie bleiben Logs im Betrieb nützlich und trotzdem datensparsam?
-- **DPA:** Welche Audit-Daten reichen für Prozessauswertung aus?
-
-## N/A-Regeln / N/A Rules
-
-- Produktive Log-Aufbewahrungsfristen sind `N/A`, wenn nur Lern- und Testdaten betrachtet werden.
-- Zentrales SIEM ist `N/A`, wenn keine Betriebsintegration geplant wird.
-- Jede `N/A`-Entscheidung nennt, was stattdessen als Lernnachweis gilt.
-
-## Offene Punkte / Open Follow-Ups
-
-- Unklare Aufbewahrungs- oder Exportfragen werden als `Open` markiert.
-- Offene Datenschutzfragen werden vor Prozessanalyse und Abschlussreview erneut geprüft.
-
-## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
+## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_04_Datenschutz-und-Audit-Logging.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Datenschutz, Audit-Events, erlaubte und verbotene Log-Felder, Log-Injection-Schutz und Logging-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_04_Datenschutz-und-Audit-Logging.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für Datenschutz, Audit-Events, erlaubte und verbotene Log-Felder, Log-Injection-Schutz und Logging-Tests des Secure CaseTracker. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

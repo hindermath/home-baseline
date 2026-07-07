@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Sprachspezifische Secure-Coding-Regeln für C#, Go, Java, Python, Rust und Swift werden sichtbar gemacht.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (primär) | Welche sprachspezifische Secure-Coding-Regel gilt für welchen MSL-Pfad und wie ist sie belegt? |
+| SI | mittel | Welche Betriebs- oder Toolchain-Annahme (Linter, Scanner) stützt die Secure-Coding-Prüfung? |
+| DPA | mittel | Welche Datenverarbeitung braucht welche sprachspezifische Absicherung? |
+| DV | mittel | Welche Schnittstelle braucht sprachspezifische Eingabe- oder Ausgabeprüfung? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Sicherheitsziel (Bounds, Injection-Schutz, sichere Deserialisierung, Crypto, Fehlerbehandlung) bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar; nur die konkrete Umsetzung ist sprachspezifisch.
+- Sprachspezifische Secure-Coding-Regeln und Prüfwerkzeuge werden bewusst gewählt und begründet.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung; die MSL-Zugehörigkeit ist nur ein Ausgangspunkt.
 
 ## Erwartete Artefakte / Expected Artifacts
 

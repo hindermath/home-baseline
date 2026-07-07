@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Betriebsrisiken, Nachweise, offene Punkte, Akzeptanz und Übergabeempfehlung werden dokumentiert.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Welche Betriebsentscheidung und welches Restrisiko müssen bei der Übergabe sichtbar sein? |
+| AE | mittel | Welche technische Schuld sollte im Abschluss dokumentiert werden? |
+| DPA | mittel | Welche Kennzahlen belegen den geordneten Betrieb? |
+| DV | mittel bis hoch | Welche Schnittstellen oder Abhängigkeiten muss die Übergabe benennen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Review-, Risiko- und Übergabevertrag bleiben für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Betriebswerkzeuge dürfen genannt, müssen aber begründet werden.
+- MSL-Status ersetzt keine Betriebs-, Sicherheits- oder Übergabeprüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

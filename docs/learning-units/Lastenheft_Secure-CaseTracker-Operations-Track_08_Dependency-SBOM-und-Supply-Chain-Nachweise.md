@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Dependencies, SBOM, VEX, SLSA, OpenSSF-Scorecard-Anwendbarkeit und N/A-Begründungen werden geprüft.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Wie weist du nach, welche Versionen und Paketquellen im betriebenen CaseTracker enthalten sind? |
+| AE | mittel bis hoch | Welche Bibliothek würdest du ersetzen, wenn sie ungepflegt ist oder eine kritische CVE hat? |
+| DPA | mittel | Welche Risiken entstehen, wenn Analyse- oder Datenbibliotheken ungeprüft bleiben? |
+| DV | mittel bis hoch | Welche Registries und Bezugswege sind Teil der Lieferkette? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Jede Sprache nennt Paketquelle, Audit-Werkzeug und Umgang mit Lockfiles oder Versionsnachweisen.
+- Die MSL-Bewertung nutzt dieselbe ehrliche Aussage: Speicherfehler werden reduziert, andere Sicherheitsklassen bleiben prüfpflichtig.
+- `AI-SBOM` ist `N/A`, solange nur Entwicklungswerkzeuge genutzt und keine KI-Runtime im Dienst ausgeliefert oder betrieben wird.
 
 ## Erwartete Artefakte / Expected Artifacts
 

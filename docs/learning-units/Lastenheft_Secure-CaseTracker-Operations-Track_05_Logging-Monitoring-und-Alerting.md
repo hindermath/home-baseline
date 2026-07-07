@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Logs, Metriken, Alerts, Datenschutzgrenzen, Aussagegrenzen und Verantwortlichkeiten werden spezifiziert.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Welches Log-, Metrik- und Alert-Signal belegt einen Betriebszustand auditfähig? |
+| AE | mittel | Welche strukturierten Log- und Health-Endpunkte muss der Code bereitstellen? |
+| DPA | mittel bis hoch | Welche Log-Inhalte sind schützenswert und wie weit trägt eine Metrik als Aussage? |
+| DV | mittel | Welche Health-/Metrik-Endpunkte werden über welche Netzgrenze abgefragt? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Log-Struktur, Metrik-Bedeutung und Alert-Semantik bleiben für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Logging- und Metrik-Bibliotheken dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere Logging-, Health- und Metrik-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

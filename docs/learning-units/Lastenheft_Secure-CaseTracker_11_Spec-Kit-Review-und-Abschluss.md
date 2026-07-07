@@ -2,9 +2,11 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
+- **Lehrjahr / Training year:** ab dem 1. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
+- **Primär geeignet für / Primary fit:** AE, SI, DPA
 
 ## Lernziel / Learning Goal
 
@@ -14,11 +16,11 @@
 
 ## Fachrichtungsbezug / Specialization Fit
 
-| Fachrichtung | Eignung | Warum |
+| Fachrichtung | Eignung | Reflexionsfrage |
 |---|---|---|
-| AE | Primär | Implementierungs- und Testentscheidungen werden fachlich geprüft. |
-| SI | Primär | Umgebung, Toolchain, Sandbox und Supply Chain werden geprüft. |
-| DPA | Primär | Datenschutz, Datenqualität und Kennzahlen werden geprüft. |
+| AE | Primär | Welche technische Entscheidung würdest du im Review besonders erklären? |
+| SI | Primär | Welche Umgebungs- oder Toolchain-Frage bleibt als Risiko offen? |
+| DPA | Primär | Welche Kennzahl würdest du Kund*innen nur mit Warnhinweis zeigen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -44,26 +46,29 @@
 
 **EN:** Plan the closure of the learning series. Define which artifacts must exist, how open risks are documented, and how a short presentation from EuFPA's perspective is structured.
 
-## Sicherheitsanforderungen / Security Requirements
+## Anforderungen / Requirements
+
+- **R-01:** Für jede gestartete Lerneinheit sind die Artefakte auffindbar (`spec.md`, `plan.md`, `tasks.md`, Checklisten, Reviews, Testnachweise).
+- **R-02:** Eine Evidenzmatrix deckt alle gestarteten Lerneinheiten ab und führt je Entscheidung `Applicable`, `N/A` oder `Open` mit Begründung und Evidenzpfad.
+- **R-03:** Kein offener Sicherheitsbefund wird verschwiegen; `Open` erhält Owner, Trigger oder Folgeaufgabe, Restrisiken und Folgeaufgaben bleiben sichtbar.
+- **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert; nicht gestartete Lerneinheiten sind `N/A` mit Hinweis auf die Reihenfolge, nicht genutzte Zielsprachen sind `N/A`, wenn der Lauf nur eine Sprache behandelt, und externe Audits sind `N/A`, weil diese Lernreihe interne Ausbildungsnachweise erzeugt.
+- **R-05:** Die Bewertung bleibt vergleichbar für C#, Go, Java, Python, Rust und Swift.
+
+## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
 - Kein offener Sicherheitsbefund wird verschwiegen.
 - `N/A` braucht Begründung.
 - `Open` braucht Owner, Trigger oder Folgeaufgabe.
 - Review-Ergebnisse werden nachvollziehbar dokumentiert.
-
-## Datenschutzanforderungen / Privacy Requirements
-
 - Abschlussartefakte enthalten keine echten personenbezogenen Daten.
 - Datenschutzentscheidungen aus früheren Aufgaben werden zusammengeführt.
 - Präsentation zeigt Datenminimierung und Aussagegrenzen.
+- Nicht anwendbare Standards werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
 - Der Abschluss bewertet fachliche Ergebnisse, Sicherheitsentscheidungen und Evidenz unabhängig von der Zielprogrammiersprache.
 - Sprachspezifische Abweichungen werden als Abweichung, `N/A` oder `Open` dokumentiert.
-
-## Sprachspezifische Hinweise / Language-Specific Notes
-
 - Jede genutzte Zielprogrammiersprache nennt Testkommando, Audit-Werkzeug und offene Toolchain-Fragen.
 - Unterschiede zwischen C#, Go, Java, Python, Rust und Swift werden als Lernpunkt, nicht als Fehler behandelt, solange der Kernvertrag erhalten bleibt.
 
@@ -74,39 +79,19 @@
 - Restrisikoliste.
 - Folgeaufgaben.
 - kurze EuFPA-Präsentationsstruktur.
+- Liste offener Punkte: offene Risiken werden nicht in der Präsentation versteckt, sondern verständlich zusammengefasst, und Folgeaufgaben erhalten Owner, Trigger oder geplanten nächsten Spec-Kit-Lauf.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Evidenzmatrix deckt alle gestarteten Lerneinheiten ab.
-- `Applicable`, `N/A` und `Open` sind begründet.
-- Restrisiken und Folgeaufgaben sind sichtbar.
-- Die Abschlusspräsentation ist kundenverständlich und datenschutzfreundlich.
+- [ ] Evidenzmatrix deckt alle gestarteten Lerneinheiten ab.
+- [ ] `Applicable`, `N/A` und `Open` sind begründet.
+- [ ] Restrisiken und Folgeaufgaben sind sichtbar.
+- [ ] Die Abschlusspräsentation ist kundenverständlich und datenschutzfreundlich.
+- [ ] Es wird geprüft, ob alle Aufgabenartefakte auffindbar sind, ob alle `Applicable`-/`N/A`-/`Open`-Entscheidungen begründet sind und ob alle sechs Zielsprachen in der Lernreihe berücksichtigt wurden.
+- [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
-## Tests und Nachweise / Tests and Evidence
-
-- Prüfung, ob alle Aufgabenartefakte auffindbar sind.
-- Prüfung, ob alle `Applicable`-/`N/A`-/`Open`-Entscheidungen begründet sind.
-- Prüfung, ob alle sechs Zielsprachen in der Lernreihe berücksichtigt wurden.
-
-## Reflexionsfragen / Reflection Questions
-
-- **AE:** Welche technische Entscheidung würdest du im Review besonders erklären?
-- **SI:** Welche Umgebungs- oder Toolchain-Frage bleibt als Risiko offen?
-- **DPA:** Welche Kennzahl würdest du Kund*innen nur mit Warnhinweis zeigen?
-
-## N/A-Regeln / N/A Rules
-
-- Nicht gestartete Lerneinheiten sind `N/A` mit Hinweis auf die Reihenfolge.
-- Nicht genutzte Zielsprachen sind `N/A`, wenn der konkrete Lauf nur eine Sprache behandelt.
-- Externe Audits sind `N/A`, weil diese Lernreihe interne Ausbildungsnachweise erzeugt.
-
-## Offene Punkte / Open Follow-Ups
-
-- Offene Risiken werden nicht in der Präsentation versteckt, sondern verständlich zusammengefasst.
-- Folgeaufgaben erhalten Owner, Trigger oder geplanten nächsten Spec-Kit-Lauf.
-
-## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
+## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_11_Spec-Kit-Review-und-Abschluss.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Abschlussreview, Evidenzmatrix, Restrisiken, Folgeaufgaben und kundengerechte Abschlusspräsentation der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_11_Spec-Kit-Review-und-Abschluss.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Abschlussreview, Evidenzmatrix, Restrisiken, Folgeaufgaben und kundengerechte Abschlusspräsentation der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

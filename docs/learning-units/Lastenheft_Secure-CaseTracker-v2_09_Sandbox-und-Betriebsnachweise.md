@@ -48,7 +48,7 @@
 
 **EN:** Prepare the corresponding feature specification. Keep the later implementation separate from this intake.
 
-## Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
+### Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
 
 **DE:** Allgemeine Codearbeit, Lesen, Review und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio dürfen außerhalb der Sandbox stattfinden. KI-gestützte Schreibarbeit soll aber so geplant werden, dass ab dem 3. Lehrjahr eine sichere Sandbox-Nutzung möglich und nachweisbar ist.
 

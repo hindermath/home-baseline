@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Komponenten, Modulgrenzen, Abhängigkeiten, Trust Boundaries und ADR-Kandidaten werden entworfen.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (Schwerpunkt) | Welcher Komponenten- und Modulschnitt setzt Trust Boundaries und Abhängigkeitsregeln sauber um? |
+| SI | mittel | Welche Betriebs- oder Deployment-Annahme folgt aus dem Modulschnitt? |
+| DPA | mittel | Welche Datenflüsse überschreiten welche Modul- oder Vertrauensgrenze? |
+| DV | mittel bis hoch | Welche Schnittstelle zwischen den Komponenten ändert sich? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der Architekturvertrag (Komponenten, Modulgrenzen, Abhängigkeitsregeln) bleibt für alle Zielsprachen vergleichbar.
+- Sprachspezifische Modul- oder DI-Frameworks dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine Prüfung von Trust Boundaries, Eingabevalidierung und Abhängigkeiten an den Modulgrenzen.
 
 ## Erwartete Artefakte / Expected Artifacts
 

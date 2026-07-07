@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Topologie, Protokolle, Datenflüsse, Ports, Richtungen und Datenklassen werden nachvollziehbar beschrieben.
 
 **EN:** Learners describe topology, protocols, data flows, ports, directions, and data classes in a traceable way.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welche Kommunikationsrichtung entscheidet über die spätere Segment- oder Firewall-Regel? |
+| AE | hoch | Welcher Schnittstellenvertrag (Richtung, Port, Format) folgt aus dem Kommunikationsfluss? |
+| SI | hoch | Welche Port-/Protokollannahme muss dokumentiert und als Betriebsnachweis geprüft werden? |
+| DPA | mittel bis hoch | Welche Datenklasse verlangt einen verschlüsselten oder engeren Pfad? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Datenflüsse mit Personenbezug, Secrets oder Betriebsdaten gesondert kennzeichnen.
 - Offene Netzwerkannahmen nicht als erfüllt darstellen.
 - Monitoring- oder Testdaten nicht mit produktiven Daten vermischen.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der Schnittstellenvertrag (Richtung, Format, Datenklasse) bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische HTTP-, gRPC- oder Messaging-Bibliotheken dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

@@ -66,33 +66,39 @@ Jede Lernreihe enthaelt mindestens:
 
 *Each learning series contains a series description, teaching guide, master map, individual task intakes, processing order, language-path status matrix, a package guide without original Git remotes, one study companion per regular task unit under `lernbegleiter/` (detailed explanation, key terms, worked example, concrete learning-field relation, comprehension questions with model answers, backlink to the intake), a central curriculum learning-field mapping as the binding source for concrete learning fields, and the complete secure-development baseline plus installed governance presets in every level-2 language repository.*
 
-## Struktur-Stufung der Aufgaben-Intakes / Structural Tiering of Task Intakes
+## Struktur der Aufgaben-Intakes / Structure of Task Intakes
 
-**DE:** Die Aufgaben-Lastenhefte sind bewusst nach Lehrjahr gestuft und nicht formgleich. Die Basis-Reihe
-(1. Lehrjahr) fuehrt zusaetzliche fuehrende Abschnitte wie `Fachrichtungsbezug`, getrennte Sicherheits- und
-Datenschutzanforderungen, `Sprachspezifische Hinweise`, `Tests und Nachweise`, `Reflexionsfragen`,
-`N/A-Regeln` und `Offene Punkte`. Aufbaureihen ab dem 2. Lehrjahr (v2) und die Jahr-3-Tracks sind bewusst
-schlanker (kombinierte Anforderungen, mehr Eigenentscheidung). Diese Stufung ist gewollt; sie darf nicht zu
-formaler Gleichmacherei nivelliert werden. Die ausfuehrliche Didaktik liegt einheitlich im Lernbegleiter.
+**DE:** Die Aufgaben-Lastenhefte nutzen als Haus-Default ein **uniformes 12-Abschnitte-Muster** ueber alle
+Sub-Reihen hinweg (Basis, v2, Jahr-3-Tracks). Die Jahresprogression und die Erklaertiefe liegen im
+Lernbegleiter und in den Anforderungen, nicht in zusaetzlichen Lastenheft-Abschnitten. Beide aktuellen
+Familien — **Secure CaseTracker** und **Secure ServiceHarvester** — folgen diesem uniformen Muster und sind
+damit auch strukturell zueinander konsistent. Die uniformen 12 Abschnitte sind: `Metadaten`, `Lernziel`,
+`Fachrichtungsbezug`, `Rahmenlehrplanbezug`, `Bezug zur Richtlinie Sichere Entwicklung`, `Aufgabenstellung`,
+`Anforderungen`, `Sicherheits- und Datenschutzanforderungen`, `Sprachneutrale Anforderungen`,
+`Erwartete Artefakte`, `Akzeptanzkriterien` und `Optimaler Specify-Prompt`.
 
-**EN:** The task intakes are intentionally tiered by training year and are not identical in shape. The base
-series (year 1) carries additional guiding sections such as `Fachrichtungsbezug`, separate security and
-privacy requirements, language-specific notes, tests/evidence, reflection questions, `N/A` rules, and open
-follow-ups. Advanced series from year 2 (v2) and the year-3 tracks are intentionally leaner (combined
-requirements, more learner autonomy). This tiering is deliberate and must not be levelled into formal
-uniformity. The detailed didactics live uniformly in the study companion.
+**EN:** The task intakes use a **uniform 12-section shape** as the house default across all sub-series (base,
+v2, year-3 tracks). Year progression and explanatory depth live in the study companion and in the
+requirements, not in extra intake sections. Both current families — **Secure CaseTracker** and **Secure
+ServiceHarvester** — follow this uniform pattern and are therefore also structurally consistent with each
+other. The uniform 12 sections are `Metadaten`, `Lernziel`, `Fachrichtungsbezug`, `Rahmenlehrplanbezug`,
+`Bezug zur Richtlinie Sichere Entwicklung`, `Aufgabenstellung`, `Anforderungen`, `Sicherheits- und
+Datenschutzanforderungen`, `Sprachneutrale Anforderungen`, `Erwartete Artefakte`, `Akzeptanzkriterien`, and
+`Optimaler Specify-Prompt`.
 
 ### Zwei zulaessige Struktur-Muster / Two Accepted Structure Patterns
 
-**DE:** Fuer die Lastenheft-Struktur einer Familie sind zwei gleichwertige Muster zulaessig. Eine Familie
-waehlt genau eines und haelt es in sich durch:
+**DE:** Fuer die Lastenheft-Struktur einer Familie sind zwei Muster zulaessig. Eine Familie waehlt genau eines
+und haelt es in sich durch:
 
-- **Gestuft / tiered** (Referenz: **Secure CaseTracker**): Die Basis (1. Lehrjahr) ist am reichsten
-  (rund 17 Abschnitte), v2 schlanker (rund 12), die Jahr-3-Tracks am schlanksten (rund 10) — wie oben
-  beschrieben.
-- **Uniform / uniform** (Referenz: **Secure ServiceHarvester**): Alle Sub-Reihen (Basis, v2, Tracks) nutzen
-  einheitlich das schlanke v2-Niveau (rund 12 Lastenheft-Abschnitte). Die Erklaertiefe und Jahresprogression
-  liegen dann vollstaendig im Lernbegleiter und in den Anforderungen, nicht in zusaetzlichen Abschnitten.
+- **Uniform / uniform** (Haus-Default; Referenz: **Secure CaseTracker** und **Secure ServiceHarvester**): Alle
+  Sub-Reihen (Basis, v2, Tracks) nutzen einheitlich das schlanke 12-Abschnitte-Niveau. Erklaertiefe und
+  Jahresprogression liegen vollstaendig im Lernbegleiter und in den Anforderungen, nicht in zusaetzlichen
+  Abschnitten. Reichere Erst-Lehrjahr-Didaktik (Reflexionsfragen, Nachweise, N/A-Begruendung, offene Punkte)
+  wird inhaltlich in die 12 Abschnitte eingewebt (z. B. Reflexionsfragen in die `Fachrichtungsbezug`-Tabelle).
+- **Gestuft / tiered** (weiterhin zulaessige Variante, aktuell **nicht belegt**): Die Basis (1. Lehrjahr) ist
+  am reichsten (rund 17 Abschnitte), v2 schlanker (rund 12), die Jahr-3-Tracks am schlanksten (rund 10).
+  Secure CaseTracker war historisch gestuft und wurde bewusst auf das uniforme Muster angeglichen.
 
 **DE:** Beide Muster sind bewusst gewaehlt und geprueft; sie sind kein Konsistenzfehler. Der **Lernbegleiter
 bleibt in beiden Mustern identisch strukturiert** (9 Abschnitte), ebenso Familienform, Namenskonvention,
@@ -100,14 +106,17 @@ Governance-Anbindung und Bilingualitaet. Der `Optimaler Specify-Prompt / Optimal
 Aufgaben-Lastenheften und der `Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt`-Abschnitt in
 Master-Lastenheften werden in beiden Mustern bilingual gefuehrt.
 
-**EN:** Two equivalent patterns are allowed for a family's intake structure. A family picks exactly one and
-keeps it internally consistent:
+**EN:** Two patterns are allowed for a family's intake structure. A family picks exactly one and keeps it
+internally consistent:
 
-- **Tiered** (reference: **Secure CaseTracker**): the base (year 1) is richest (about 17 sections), v2 leaner
-  (about 12), the year-3 tracks leanest (about 10) — as described above.
-- **Uniform** (reference: **Secure ServiceHarvester**): all sub-series (base, v2, tracks) use the same lean
-  v2-level structure (about 12 intake sections). Explanatory depth and year progression then live entirely in
-  the study companion and in the requirements, not in extra sections.
+- **Uniform** (house default; reference: **Secure CaseTracker** and **Secure ServiceHarvester**): all
+  sub-series (base, v2, tracks) use the same lean 12-section level. Explanatory depth and year progression
+  live entirely in the study companion and in the requirements, not in extra sections. Richer year-1 didactics
+  (reflection questions, evidence, `N/A` rationale, open follow-ups) are woven into the 12 sections in content
+  (e.g. reflection questions into the `Fachrichtungsbezug` table).
+- **Tiered** (still an allowed variant, currently **not in use**): the base (year 1) is richest (about 17
+  sections), v2 leaner (about 12), the year-3 tracks leanest (about 10). Secure CaseTracker was historically
+  tiered and was deliberately aligned to the uniform pattern.
 
 **EN:** Both patterns are deliberate and reviewed; they are not a consistency defect. The **study companion
 stays identically structured in both patterns** (9 sections), as do family shape, naming convention,

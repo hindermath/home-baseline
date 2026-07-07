@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Backup-Ziele, Restore-Ablauf, Recovery-Test, Datenverlustgrenzen und Nachweise werden geplant.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Wie beweist du, dass ein Restore innerhalb des RTO gelingt und die Daten vollständig sind? |
+| AE | mittel | Welche Datenstrukturen erschweren oder erleichtern ein Backup und einen Restore? |
+| DPA | mittel bis hoch | Welche Datenverlustgrenze ist aus dem Schutzbedarf noch vertretbar? |
+| DV | mittel bis hoch | Welche Netz- oder Speicherwege muss ein Backup sicher nutzen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Backup-, Restore- und Recovery-Vertrag bleiben für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Werkzeuge für Backup, Prüfsummen oder Restore dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine Prüfung von Datenintegrität, Speicherzugriff oder Restore-Logik.
 
 ## Erwartete Artefakte / Expected Artifacts
 

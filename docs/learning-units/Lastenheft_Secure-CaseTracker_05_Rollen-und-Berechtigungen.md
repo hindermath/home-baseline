@@ -2,9 +2,11 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
+- **Lehrjahr / Training year:** ab dem 1. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
+- **Primär geeignet für / Primary fit:** AE, SI, DPA
 
 ## Lernziel / Learning Goal
 
@@ -14,11 +16,11 @@
 
 ## Fachrichtungsbezug / Specialization Fit
 
-| Fachrichtung | Eignung | Warum |
+| Fachrichtung | Eignung | Reflexionsfrage |
 |---|---|---|
-| AE | Primär | Autorisierung muss in der Anwendung und Kernlogik geprüft werden. |
-| SI | Sekundär | Rollen beeinflussen Betrieb, Konfiguration und spätere Zugriffskontrolle. |
-| DPA | Ergänzend | Rollen bestimmen, wer welche Daten sehen oder auswerten darf. |
+| AE | Primär | Wo muss Autorisierung geprüft werden, damit keine UI-Umgehung möglich ist? |
+| SI | Sekundär | Welche Rollenannahmen wären im Betrieb zu dokumentieren? |
+| DPA | Ergänzend | Welche Auswertungen dürfen Lernende sehen, ohne Datenschutz zu verletzen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -43,28 +45,30 @@
 
 **EN:** Define a role matrix for `learner`, `developer`, and `reviewer`. Define which role may create, update, close, export, and view audit entries. Full authentication is not mandatory in this task; if it is not implemented, document this as `N/A`.
 
-## Sicherheitsanforderungen / Security Requirements
+## Anforderungen / Requirements
+
+- **R-01:** Eine Rollenmatrix benennt je Rolle erlaubte und verbotene Aktionen (erstellen, ändern, schließen, exportieren, Audit ansehen).
+- **R-02:** Die Standardrolle hat minimale Rechte (sichere Defaults); die Rolle wird nie ungeprüft aus einem Eingabeparameter übernommen.
+- **R-03:** Jede geschützte Aktion hat eine Autorisierungsregel, die nicht allein auf UI- oder CLI-Auswahl beruht.
+- **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert: echte Benutzerverwaltung ist `N/A`, wenn dieser Lauf nur Autorisierungsregeln lehrt; externe Identity Provider sind `N/A`, solange keine reale Betriebsintegration vorgesehen ist; jede `N/A`-Entscheidung grenzt Lernvereinfachung von Produktivanforderung ab.
+- **R-05:** Die Rollenmatrix gilt vergleichbar für C#, Go, Java, Python, Rust und Swift.
+
+## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
 - Standardrolle hat minimale Rechte.
 - Rolle darf nicht ungeprüft aus einem Eingabeparameter übernommen werden.
 - Jede geschützte Aktion hat eine Autorisierungsregel.
-
-## Datenschutzanforderungen / Privacy Requirements
-
 - Export und Audit-Einsicht sind besonders restriktiv.
 - Rollenentscheidung darf keine unnötigen personenbezogenen Daten offenlegen.
+- Nicht anwendbare Standards (z. B. echte Produktiv-Authentifizierung, externe Identity Provider) werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
 - Die Rollenmatrix gilt in allen sechs Zielsprachen gleich.
 - Geschützte Aktionen werden fachlich beschrieben, nicht durch ein bestimmtes Framework.
 - Eine vereinfachte Authentifizierung muss klar von echter Produktiv-Authentifizierung getrennt werden.
-
-## Sprachspezifische Hinweise / Language-Specific Notes
-
 - Framework-spezifische Authentifizierung wird nur beschrieben, wenn sie im späteren Spec-Kit-Lauf wirklich umgesetzt wird.
-- C#, Java und Swift können Framework-Policies nutzen; Go, Python und Rust können zunächst explizite Rollenprüfungen in der Kernlogik zeigen.
-- Jede Sprache dokumentiert, wo Rollen geprüft werden.
+- C#, Java und Swift können Framework-Policies nutzen; Go, Python und Rust können zunächst explizite Rollenprüfungen in der Kernlogik zeigen. Jede Sprache dokumentiert, wo Rollen geprüft werden.
 
 ## Erwartete Artefakte / Expected Artifacts
 
@@ -72,39 +76,19 @@
 - Liste geschützter Aktionen.
 - `N/A`-Begründung für echte Authentifizierung, falls nicht Teil der Aufgabe.
 - Autorisierungstestideen.
+- Offene Punkte: Rollen, die später echte Authentifizierung benötigen, sind als Folgeaufgabe markiert; unklare Exportrechte werden vor Persistenz und Prozessanalyse erneut geprüft.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Jede Rolle hat erlaubte und verbotene Aktionen.
-- Die Standardrolle hat minimale Rechte.
-- Keine geschützte Aktion verlässt sich allein auf UI- oder CLI-Auswahl.
-- Nicht umgesetzte echte Authentifizierung ist begründet.
+- [ ] Jede Rolle hat erlaubte und verbotene Aktionen.
+- [ ] Die Standardrolle hat minimale Rechte.
+- [ ] Keine geschützte Aktion verlässt sich allein auf UI- oder CLI-Auswahl.
+- [ ] Nicht umgesetzte echte Authentifizierung ist begründet.
+- [ ] Nachweise vorhanden: Tests für erlaubte Aktionen je Rolle, Tests für verbotene Aktionen je Rolle und ein Review, ob sichere Defaults dokumentiert sind.
+- [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
-## Tests und Nachweise / Tests and Evidence
-
-- Tests für erlaubte Aktionen je Rolle.
-- Tests für verbotene Aktionen je Rolle.
-- Review, ob sichere Defaults dokumentiert sind.
-
-## Reflexionsfragen / Reflection Questions
-
-- **AE:** Wo muss Autorisierung geprüft werden, damit keine UI-Umgehung möglich ist?
-- **SI:** Welche Rollenannahmen wären im Betrieb zu dokumentieren?
-- **DPA:** Welche Auswertungen dürfen Lernende sehen, ohne Datenschutz zu verletzen?
-
-## N/A-Regeln / N/A Rules
-
-- Echte Benutzerverwaltung ist `N/A`, wenn dieser Lauf nur Autorisierungsregeln lehrt.
-- Externe Identity Provider sind `N/A`, solange keine reale Betriebsintegration vorgesehen ist.
-- Jede `N/A`-Entscheidung grenzt Lernvereinfachung von Produktivanforderung ab.
-
-## Offene Punkte / Open Follow-Ups
-
-- Rollen, die später echte Authentifizierung benötigen, werden als Folgeaufgabe markiert.
-- Unklare Exportrechte werden vor Persistenz und Prozessanalyse erneut geprüft.
-
-## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
+## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_05_Rollen-und-Berechtigungen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Rollenmatrix, sichere Defaults, geschützte Aktionen, Autorisierungstests und N/A-Begründung für nicht umgesetzte Authentifizierung des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_05_Rollen-und-Berechtigungen.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für Rollenmatrix, sichere Defaults, geschützte Aktionen, Autorisierungstests und N/A-Begründung für nicht umgesetzte Authentifizierung des Secure CaseTracker. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

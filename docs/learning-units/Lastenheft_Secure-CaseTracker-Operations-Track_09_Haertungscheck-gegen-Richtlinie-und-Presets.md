@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Betrieb, Sandbox, CI, Logging, Secrets und Dokumentation werden gegen Richtlinie und Presets gehärtet.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Welche abgeschaltete Fläche und welche Least-Privilege-Entscheidung muss gegen Richtlinie und Presets auditfähig belegt werden? |
+| AE | mittel | Welche Debug-/Testfunktion muss der Code für den Produktivbetrieb deaktivieren? |
+| DPA | niedrig bis mittel | Welche Datenexposition wird durch Härtung reduziert und wie wird das belegt? |
+| DV | mittel | Welche Ports, Protokolle und Netzpfade bleiben nach der Härtung offen und warum? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Bestandsaufnahme und Härtungsentscheidungen bleiben für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Härtungswerkzeuge dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine Prüfung offener Flächen, Rechte und Fehlerausgaben.
 
 ## Erwartete Artefakte / Expected Artifacts
 

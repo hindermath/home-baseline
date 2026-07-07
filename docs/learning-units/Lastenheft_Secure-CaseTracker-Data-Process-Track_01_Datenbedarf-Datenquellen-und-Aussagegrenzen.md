@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DPA - Daten- und Prozessanalyse
@@ -15,6 +15,15 @@
 **DE:** Datenbedarf, Quellen, Zweckbindung, Aussagegrenzen und Datenschutzbezug werden geklärt.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DPA | hoch (Schwerpunkt) | Welche Frage soll aus den Daten beantwortet werden, welche Quelle liefert sie und welche Aussagegrenze gilt? |
+| AE | mittel | Welche Datenstruktur oder Importschnittstelle folgt aus dem Datenbedarf? |
+| SI | mittel | Welche Betriebs- oder Toolchain-Annahme beeinflusst Datenquelle und Datenerhebung? |
+| DV | mittel | Welche Schnittstelle oder Systemgrenze liefert die Rohdaten? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag zu Datenbedarf, Quellen und Aussagegrenzen bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Frameworks für Datenimport oder Datenzugriff dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

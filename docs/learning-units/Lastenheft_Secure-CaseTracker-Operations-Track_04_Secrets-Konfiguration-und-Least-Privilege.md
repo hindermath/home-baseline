@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Secrets, Konfiguration, Berechtigungen, sichere Defaults und Rotationsannahmen werden geprüft.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Welche Konfigurations- und Secret-Herkunft je Umgebung und welche Least-Privilege-Entscheidung muss auditfähig dokumentiert werden? |
+| AE | mittel | Wie liest der Code Konfiguration ein, ohne Secrets im Repository zu speichern? |
+| DPA | mittel | Welche schützenswerte Angabe darf nicht in Klartext-Konfiguration landen? |
+| DV | mittel | Welche Endpunkt- oder Zugangskonfiguration berührt Netzgrenzen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Konfigurations-, Secret- und Berechtigungsmodell bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Konfigurations- und Secret-Bibliotheken dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere Secret-, Default-, Rechte- und Konfigurationsprüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DPA - Daten- und Prozessanalyse
@@ -15,6 +15,15 @@
 **DE:** Kennzahlenergebnisse werden in Verbesserungsmaßnahmen, Prozessfeedback und Verantwortlichkeiten übersetzt.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DPA | hoch (Schwerpunkt) | Wie wird aus einer Kennzahl über die geprüfte Ursache eine wirksame Verbesserungsmaßnahme? |
+| AE | mittel | Welche Codeänderung folgt aus einer Verbesserungsmaßnahme und wie wird sie getestet? |
+| SI | mittel | Welche Betriebs- oder Konfigurationsmaßnahme verbessert den Prozess messbar? |
+| DV | mittel | Welche Schnittstellen- oder Prozessmaßnahme schließt eine wiederkehrende Lücke? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag zu Maßnahmen, Wirkungshypothese und Follow-up bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Werkzeuge zur Auswertung dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

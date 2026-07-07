@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Systemkontext, Beteiligte, Knoten, Schnittstellen und Nicht-Ziele werden für den vernetzten CaseTracker abgegrenzt.
 
 **EN:** Learners define system context, stakeholders, nodes, interfaces, and non-goals for the networked CaseTracker.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welches Netz-Schutzziel und welche Vertrauensgrenze prägen den Systemkontext des vernetzten CaseTracker? |
+| SI | hoch | Welche Betriebs-, Knoten- oder Sandbox-Annahme des Systemkontexts muss als Nachweis dokumentiert werden? |
+| AE | mittel bis hoch | Welche Schnittstellen- oder Vertragsentscheidung folgt aus dem Vernetzungszielbild? |
+| DPA | mittel | Welche Datenklasse oder Datenschutzgrenze wird durch den vernetzten CaseTracker berührt? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Vernetzungsgrenzen, Schnittstellen, Protokolle, Logs und Konfiguration als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag des Vernetzungszielbilds bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Frameworks für Dienst-Hosting oder Netzkommunikation dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

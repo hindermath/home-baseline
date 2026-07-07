@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Betriebsziele, Systemgrenzen, Verantwortlichkeiten und Schutzbedarf werden für den betriebenen CaseTracker definiert.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Welches Betriebsziel, welche Systemgrenze und welche Betriebsannahme des CaseTracker muss auditfähig dokumentiert werden? |
+| AE | mittel | Welche Betriebsanforderung wirkt auf Codeaufbau und Konfigurierbarkeit zurück? |
+| DPA | mittel | Welcher Schutzbedarf der Betriebs- und Falldaten begrenzt Auswertungen? |
+| DV | mittel | Welche Netz- oder Kommunikationsgrenze berührt das Betriebszielbild? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Betriebszielbild bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Betriebs- und Hosting-Werkzeuge dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung im Betrieb.
 
 ## Erwartete Artefakte / Expected Artifacts
 

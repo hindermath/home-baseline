@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DPA - Daten- und Prozessanalyse
@@ -15,6 +15,15 @@
 **DE:** Testdaten, Wiederholbarkeit, Reviewpfade, Datenqualitätsprüfungen und Nachweise werden geplant.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DPA | hoch (Schwerpunkt) | Womit weist man reproduzierbar nach, dass eine Auswertung das berechnet, was sie behauptet? |
+| AE | mittel bis hoch | Wie schreibt man einen reproduzierbaren Test für eine Kennzahl oder Bereinigungsregel? |
+| SI | mittel | Wie stellt man eine reproduzierbare Testumgebung ohne echte personenbezogene Daten bereit? |
+| DV | mittel | Wie testet man Auswertungen über Schnittstellen- oder Zeitgrenzen hinweg? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag zu Testdaten, Wiederholbarkeit und Nachweisregeln bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Test-Frameworks dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

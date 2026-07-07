@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Konfigurationsquellen, Secret-Grenzen, Rollout, Rückfallpfade und Änderungsnachweise werden festgelegt.
 
 **EN:** Learners define configuration sources, secret boundaries, rollout, rollback paths, and change evidence.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welcher Rollout- oder Rückfallpfad entscheidet über den sicheren Betrieb des vernetzten CaseTracker? |
+| SI | hoch | Welche Konfigurations-, Secret- oder Rollout-Annahme muss als Betriebs- und Änderungsnachweis geprüft werden? |
+| AE | mittel bis hoch | Welche Implementierungsentscheidung folgt aus Konfigurationsquelle und Secret-Grenze? |
+| DPA | mittel bis hoch | Welche Datenklasse oder welches Secret verlangt einen engeren Speicherort und warum? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Beispielwerte müssen eindeutig synthetisch sein.
 - Konfigurationsfehler dürfen nicht zu offener Kommunikation oder Privilegienausweitung führen.
 - Rollout-Entscheidungen brauchen nachvollziehbare Review- oder Testevidenz.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Konfigurations-, Secret- und Rollout-Modell bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Konfigurations-, Secret- oder Deployment-Werkzeuge dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DPA - Daten- und Prozessanalyse
@@ -15,6 +15,15 @@
 **DE:** Fehlerhafte Daten, Bias-Risiken, Ausreißer, Entscheidungsgrenzen und Warnhinweise werden dokumentiert.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DPA | hoch (Schwerpunkt) | Welcher Fehler oder Bias ist echt, welcher ist ein Datenartefakt, und wo liegt die Entscheidungsgrenze? |
+| AE | mittel | Welche Feld-, Ausreißer- oder Warnlogik macht Datenrisiken im Code sichtbar? |
+| SI | mittel | Welche Betriebs- oder Erfassungsbedingung erzeugt fehlerhafte oder verzerrte Daten? |
+| DV | mittel | Welche Schnittstellen- oder Verfügbarkeitslücke verzerrt die ausgewerteten Daten? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag zu Fehler-, Bias- und Entscheidungsgrenzen bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Bibliotheken für Statistik oder Ausreißererkennung dürfen gewählt, müssen aber begründet und in der Lieferkette bewertet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 
