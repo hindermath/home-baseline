@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Identitäten, technische Konten, Rollen, Servicezugriffe und Least-Privilege-Regeln werden spezifiziert.
 
 **EN:** Learners specify identities, technical accounts, roles, service access, and least-privilege rules.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welcher Netzpfad verlangt welche technische Identität und welches Least-Privilege-Recht? |
+| SI | hoch | Welche Konten-, Rollen- oder Rechteannahme muss als Betriebs- und Audit-Nachweis geprüft werden? |
+| AE | mittel bis hoch | Wie wirkt sich die Rechtevergabe auf Service-zu-Service-Zugriffe im Code aus? |
+| DPA | mittel bis hoch | Welche Datenklasse verlangt eine engere Zugriffs- oder Revocation-Regel und warum? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Keine Secrets in Markdown, Code, Logs oder Testdaten aufnehmen.
 - Zugriff standardmäßig verweigern und explizit begründen.
 - Audit-Informationen ohne unnötige personenbezogene Daten planen.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Identitäts-, Rollen- und Rechtemodell bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Auth-, Token- oder Secret-Bibliotheken dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

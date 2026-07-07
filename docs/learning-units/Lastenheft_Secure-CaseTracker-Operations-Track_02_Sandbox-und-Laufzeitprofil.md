@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** SI - Systemintegration
@@ -15,6 +15,15 @@
 **DE:** Sandbox, Laufzeit, Containerannahmen, Schreibgrenzen, Netzwerkgrenzen und Toolchain werden beschrieben. Im 3. Lehrjahr wird erwartet, dass Lernende KI-gestützte Entwicklungsarbeit in oder mit der Sandbox planen, nutzen oder begründet abgrenzen können.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| SI | Schwerpunkt | Welche Laufzeit-, Schreib- und Netzwerkgrenze der Sandbox muss auditfähig dokumentiert werden? |
+| AE | mittel | Welche Programm-Annahme bricht, wenn Schreib- oder Netzzugriff in der Sandbox eingeschränkt wird? |
+| DPA | mittel | Welche Daten dürfen die Sandbox verlassen und welche nicht? |
+| DV | mittel bis hoch | Welche Netzsegmente und Kommunikationswege sind für das Laufzeitprofil erlaubt? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -40,7 +49,7 @@
 
 **EN:** Prepare the corresponding specialization-focused feature specification. Keep the later implementation separate from this intake.
 
-## Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
+### Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
 
 **DE:** JetBrains IDEs, VS Code und Windows-only Visual Studio dürfen weiterhin für Lesen, Review, Navigation, Debugging und normale Bearbeitung außerhalb der Sandbox genutzt werden. KI-gestützte Schreibarbeit, riskantere Experimente, reproduzierbare Toolchain-Prüfungen und Arbeiten mit klaren Schreib- oder Netzwerkgrenzen sollen im 3. Lehrjahr in oder mit der Sandbox erfolgen; Abweichungen werden begründet dokumentiert.
 
@@ -61,6 +70,13 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Sandbox- und Laufzeitprofil bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Toolchains und Container-Basisbilder dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine Isolation, keine Rechtebeschränkung und keine Betriebsprüfung.
+- KI-gestützte Schreibarbeit an oder mit der Sandbox wird begründet abgegrenzt und dokumentiert.
 
 ## Erwartete Artefakte / Expected Artifacts
 

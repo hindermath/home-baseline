@@ -2,9 +2,11 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
+- **Lehrjahr / Training year:** ab dem 1. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
+- **Primär geeignet für / Primary fit:** DPA, AE, SI
 
 ## Lernziel / Learning Goal
 
@@ -14,11 +16,11 @@
 
 ## Fachrichtungsbezug / Specialization Fit
 
-| Fachrichtung | Eignung | Warum |
+| Fachrichtung | Eignung | Reflexionsfrage |
 |---|---|---|
-| AE | Sekundär | Kennzahlen müssen korrekt aus dem Modell berechnet werden. |
-| SI | Ergänzend | Betriebsdaten und Logs können Kennzahlen beeinflussen. |
-| DPA | Primär | Datenqualität, Prozessanalyse und Interpretation sind Kern der Aufgabe. |
+| AE | Sekundär | Welche Berechnung muss deterministisch testbar sein? |
+| SI | Ergänzend | Welche Betriebsdaten wären für Kennzahlen nützlich, aber sensibel? |
+| DPA | Primär | Welche Kennzahl kann leicht falsch interpretiert werden? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -43,26 +45,29 @@
 
 **EN:** Define metrics for open cases, closed cases, average throughput time, error rate, and data-quality issues. Describe which data may be used and what limits of interpretation exist.
 
-## Sicherheitsanforderungen / Security Requirements
+## Anforderungen / Requirements
+
+- **R-01:** Kennzahlen für offene Fälle, geschlossene Fälle, durchschnittliche Durchlaufzeit, Fehlerquote und Datenqualitätsprobleme sind definiert; jede Kennzahl hat Zweck, sprachneutrale Formel und Aussagegrenze.
+- **R-02:** Es ist beschrieben, welche Daten für die Kennzahlen genutzt werden dürfen und welche Aussagegrenzen bestehen; personenbezogene Details werden nicht für Lernkennzahlen benötigt.
+- **R-03:** Fehlende, fehlerhafte oder widersprüchliche Daten werden sichtbar behandelt, nicht still gefüllt.
+- **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert; Echtzeit-Dashboards sind `N/A`, wenn nur Lernkennzahlen berechnet werden, personenbezogene Auswertungen sind `N/A` ohne reale Rechtsgrundlage und echten Zweck, und Machine Learning ist `N/A`, solange einfache Kennzahlen ausreichen.
+- **R-05:** Die Kennzahlen bleiben vergleichbar für C#, Go, Java, Python, Rust und Swift und werten dieselben fiktiven Testdaten gleich aus.
+
+## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
 - Kennzahlen dürfen keine Rückschlüsse auf echte Personen ermöglichen.
 - Aggregierte Werte dürfen keine vertraulichen Details aus Freitexten enthalten.
 - Fehlende oder fehlerhafte Daten werden sichtbar behandelt.
-
-## Datenschutzanforderungen / Privacy Requirements
-
 - Datenverarbeitung braucht Zweck und Minimierung.
 - Personenbezogene Details werden nicht für Lernkennzahlen benötigt.
 - Auswertungen enthalten Warnhinweise zu Aussagegrenzen.
+- Nicht anwendbare Standards werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
 - Kennzahlenformeln sind unabhängig von der Zielprogrammiersprache.
 - Jede Sprache muss dieselben fiktiven Testdaten gleich auswerten.
 - Fehlende, fehlerhafte oder widersprüchliche Daten werden sichtbar behandelt.
-
-## Sprachspezifische Hinweise / Language-Specific Notes
-
 - Sprachspezifische Datums- und Zeittypen müssen deterministisch getestet werden.
 - Rundung, Zeitzonen und fehlende Werte werden je Sprache dokumentiert, wenn sie die Aussage beeinflussen.
 
@@ -72,39 +77,19 @@
 - Datenqualitätsnotiz.
 - Beispielauswertung mit fiktiven Daten.
 - Hinweis zu Fehlinterpretationen.
+- Liste offener Punkte: unklare Kennzahlen als `Open` vor dem Abschlussreview und Datenschutzfragen zu Auswertungen in der Evidenzmatrix.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Jede Kennzahl hat Zweck, Formel und Aussagegrenze.
-- Testdaten sind fiktiv und wiederholbar.
-- Datenschutzrisiken sind bewertet.
-- Fehlinterpretationen werden in einfacher Sprache erklärt.
+- [ ] Jede Kennzahl hat Zweck, Formel und Aussagegrenze.
+- [ ] Testdaten sind fiktiv und wiederholbar.
+- [ ] Datenschutzrisiken sind bewertet.
+- [ ] Fehlinterpretationen werden in einfacher Sprache erklärt.
+- [ ] Es gibt einen Test für korrekte Zählung offener und geschlossener Fälle sowie einen Test für die Durchlaufzeit mit fehlenden oder ungültigen Daten; Datenschutz- und Aussagegrenzen werden im Review geprüft.
+- [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
-## Tests und Nachweise / Tests and Evidence
-
-- Test für korrekte Zählung offener und geschlossener Fälle.
-- Test für Durchlaufzeit mit fehlenden oder ungültigen Daten.
-- Review der Datenschutz- und Aussagegrenzen.
-
-## Reflexionsfragen / Reflection Questions
-
-- **AE:** Welche Berechnung muss deterministisch testbar sein?
-- **SI:** Welche Betriebsdaten wären für Kennzahlen nützlich, aber sensibel?
-- **DPA:** Welche Kennzahl kann leicht falsch interpretiert werden?
-
-## N/A-Regeln / N/A Rules
-
-- Echtzeit-Dashboards sind `N/A`, wenn nur Lernkennzahlen berechnet werden.
-- Personenbezogene Auswertungen sind `N/A`, wenn keine reale Rechtsgrundlage und kein echter Zweck vorliegen.
-- Machine Learning ist `N/A`, solange einfache Kennzahlen ausreichend sind.
-
-## Offene Punkte / Open Follow-Ups
-
-- Unklare Kennzahlen werden als `Open` markiert und vor Abschlussreview geklärt.
-- Datenschutzfragen zu Auswertungen werden in die Evidenzmatrix übernommen.
-
-## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
+## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_10_Prozessanalyse-und-Kennzahlen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Prozesskennzahlen, Datenqualität, Datenschutz, Aussagegrenzen und Tests der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_10_Prozessanalyse-und-Kennzahlen.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für Prozesskennzahlen, Datenqualität, Datenschutz, Aussagegrenzen und Tests der Secure-CaseTracker-Lernreihe. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Feature-Scope, Nicht-Ziele, fachliche Regeln und Schutzbedarf werden für eine professionelle CaseTracker-Erweiterung getrennt.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (Schwerpunkt) | Welche Implementierungsentscheidung und welcher fachliche Vertrag folgen aus dem abgegrenzten Erweiterungs-Scope? |
+| SI | mittel | Welche Betriebs-, Toolchain- oder Sandbox-Annahme wird durch die Erweiterung berührt? |
+| DPA | mittel | Welche Datenqualität oder Aussagegrenze verändert sich durch die neue Fachdomäne? |
+| DV | mittel | Welche Schnittstelle oder Systemgrenze wächst durch den Erweiterungs-Scope? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag des Erweiterungs-Scopes bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Frameworks dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

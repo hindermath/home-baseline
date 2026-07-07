@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** STRIDE-orientierte Risiken, CAPEC-Bezüge, Missbrauchsfälle und Gegenmaßnahmen werden bewertet.
 
 **EN:** Learners assess STRIDE-oriented risks, CAPEC references, abuse cases, and countermeasures.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welcher Netzpfad trägt das höchste Risiko und welche Gegenmaßnahme wirkt am stärksten? |
+| SI | hoch | Welche Betriebs-, Angriffs- oder Sandbox-Annahme des Threat Models muss dokumentiert werden? |
+| AE | mittel bis hoch | Welche Implementierungsentscheidung folgt aus Eintrittsstelle und Gegenmaßnahme? |
+| DPA | mittel bis hoch | Welche Datenklasse ist bei einem Missbrauchsfall am stärksten gefährdet? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Missbrauchsfälle didaktisch beschreiben, nicht als Angriffsanleitung ausformulieren.
 - Restrisiken nicht als behoben darstellen.
 - Datenschutzrisiken aus Monitoring, Logs und Datenflüssen gesondert prüfen.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Die STRIDE- und CAPEC-orientierte Risikobewertung bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Sicherheits- oder Validierungsbibliotheken dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Vertrauensgrenzen, Netzwerksegmente, Schutzbedarf und erlaubte Übergänge werden sichtbar gemacht.
 
 **EN:** Learners make trust boundaries, network segments, protection needs, and allowed transitions visible.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welche Segmentgrenze schützt den kritischsten Netzpfad am wirksamsten? |
+| SI | hoch | Welche Segment- oder Firewall-Regel muss als Betriebsnachweis geprüft werden? |
+| AE | mittel | Welche Schnittstelle muss über einen definierten Choke Point statt direkt sprechen? |
+| DPA | mittel bis hoch | Welche Datenklasse verlangt ein eigenes, engeres Segment? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Standardannahme ist deny by default, erlaubte Übergänge werden begründet.
 - Übergänge mit personenbezogenen Daten oder Secrets erhalten eigene Prüfnotiz.
 - Nicht modellierte Übergänge dürfen nicht stillschweigend als sicher gelten.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Segment- und Zonenmodell bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische oder plattformspezifische Firewall-/Netzwerkwerkzeuge dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

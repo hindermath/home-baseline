@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Persistenzänderungen, Migrationen, Integritätsregeln, Rollback-Annahmen und Testdaten werden geplant.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (primär) | Welche Persistenz-, Migrations- und Integritätsregel macht den Fachkern robust und testbar? |
+| SI | mittel | Welche Betriebs-, Backup- oder Backend-Annahme (Datei, DB) muss dokumentiert werden? |
+| DPA | mittel bis hoch | Welche Datenintegritäts- oder Konsistenzregel sichert die Aussagekraft der Daten? |
+| DV | mittel | Welche Systemgrenze entsteht zwischen Fachkern und Persistenz-Backend? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der Persistenz- und Migrationsvertrag (Datenmodell, Integritätsregeln, Rollback-Annahmen) bleibt für alle Zielsprachen vergleichbar.
+- Sprachspezifische Persistenz- oder Migrations-Bibliotheken dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine Prüfung von Datenzugriff, Transaktionsgrenzen, Fehlerbehandlung und Secrets.
 
 ## Erwartete Artefakte / Expected Artifacts
 

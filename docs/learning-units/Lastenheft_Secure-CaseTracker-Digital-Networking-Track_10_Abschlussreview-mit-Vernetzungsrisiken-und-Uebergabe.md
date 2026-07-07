@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Vernetzungsrisiken, Evidenz, offene Punkte, Restrisiko und Übergabeempfehlung werden zusammengeführt.
 
 **EN:** Learners consolidate networking risks, evidence, open items, residual risk, and handover recommendation.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welcher Trade-off zwischen Verfügbarkeit, Sicherheit und Aufwand wird für den vernetzten CaseTracker empfohlen? |
+| SI | hoch | Welche Betriebs-, Toolchain- oder Sandbox-Annahme bleibt als Restrisiko offen? |
+| AE | mittel bis hoch | Welche Implementierungsentscheidung folgt aus dem Abschlussreview? |
+| DPA | mittel bis hoch | Welche Aussagegrenze bleibt für die vernetzten Case- und Betriebsdaten bestehen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Restrisiken nicht beschönigen.
 - Positive Sicherheits- oder Betriebsreifeaussagen nur mit Evidenz treffen.
 - Datenschutzgrenzen und Monitoring-Aussagegrenzen erneut prüfen.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Die Review- und Trade-off-Bewertung bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Entscheidungen dürfen einfließen, müssen aber als solche begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Ergebnisse, Restrisiken, offene Punkte, Testnachweise und Übergabeempfehlung werden zusammengeführt.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (primär) | Welche Entwurfsentscheidung war ein Trade-off und wie ist sie beim Abschluss begründet? |
+| SI | mittel | Welche Betriebs- oder Übergaberisiken bleiben offen? |
+| DPA | mittel | Welche Datenschutz- oder Datenqualitätsrisiken sind noch offen? |
+| DV | mittel | Welche Schnittstellen- oder Systemgrenze braucht bei Übergabe besondere Aufmerksamkeit? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Reviewbericht, Restrisikoliste und Übergabenotiz bleiben für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Belege dürfen genutzt werden, müssen aber begründet und einheitlich dokumentiert werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

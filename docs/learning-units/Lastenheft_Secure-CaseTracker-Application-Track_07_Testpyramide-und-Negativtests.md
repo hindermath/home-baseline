@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Unit-, Integrations-, End-to-End-, Security- und Negativtests werden als prüfbare Testpyramide formuliert.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (primär) | Welche Testart deckt welchen Vertrag, welche Fehlerklasse oder welchen Negativfall ab? |
+| SI | mittel | Wie laufen Unit-, Integrations- und End-to-End-Tests reproduzierbar in CI und Sandbox? |
+| DPA | mittel | Wie bleiben Testdaten synthetisch und datenschutzkonform? |
+| DV | mittel | Welcher Integrations- oder End-to-End-Test sichert eine Schnittstellen- oder Systemgrenze ab? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Die Teststrategie (Testpyramide, Negativtests, Abdeckungsaussage) bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Test-Frameworks dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine Negativ-, Grenz- oder Sicherheitstests.
 
 ## Erwartete Artefakte / Expected Artifacts
 

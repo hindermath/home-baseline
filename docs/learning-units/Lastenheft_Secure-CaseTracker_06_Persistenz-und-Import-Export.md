@@ -2,9 +2,11 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA – Europäische Firma Programmiert Alles
+- **Lehrjahr / Training year:** ab dem 1. Lehrjahr
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
+- **Primär geeignet für / Primary fit:** AE, SI, DPA
 
 ## Lernziel / Learning Goal
 
@@ -14,11 +16,11 @@
 
 ## Fachrichtungsbezug / Specialization Fit
 
-| Fachrichtung | Eignung | Warum |
+| Fachrichtung | Eignung | Reflexionsfrage |
 |---|---|---|
-| AE | Primär | Persistenz und Import/Export sind Kernfunktionen. |
-| SI | Sekundär | Speicherorte, Dateirechte und Laufzeitpfade sind Betriebsfragen. |
-| DPA | Primär | Datenqualität und Exportumfang bestimmen spätere Auswertung. |
+| AE | Primär | Welche Daten müssen nach dem Einlesen erneut validiert werden? |
+| SI | Sekundär | Wo darf die Anwendung Dateien lesen oder schreiben? |
+| DPA | Primär | Welche Exportdaten reichen für Kennzahlen aus? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -43,27 +45,30 @@
 
 **EN:** Plan a simple persistence form for learning purposes. JSON, SQLite, or a language-common alternative is allowed. Define import and export rules, path boundaries, validation after reading, and export without unnecessary personal data.
 
-## Sicherheitsanforderungen / Security Requirements
+## Anforderungen / Requirements
+
+- **R-01:** Eine Persistenzentscheidung (JSON, SQLite oder sprachübliche Alternative) ist mit Begründung und benannter Alternative dokumentiert.
+- **R-02:** Import und Export nutzen denselben fachlichen Datenvertrag; importierte Daten werden nach dem Parsen erneut fachlich validiert.
+- **R-03:** Pfade werden normalisiert und auf erlaubte Verzeichnisse begrenzt; Export enthält keine unnötigen personenbezogenen Daten.
+- **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert: Datenbankbetrieb ist `N/A`, wenn nur Datei-Persistenz geplant wird; Verschlüsselung ruhender Daten ist `N/A`, wenn nur fiktive lokale Lern-Testdaten genutzt werden; Cloud-Speicherung ist `N/A`, wenn keine Cloud-Integration geplant wird.
+- **R-05:** Persistenz, Import und Export bleiben vergleichbar für C#, Go, Java, Python, Rust und Swift.
+
+## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
 - Keine unsichere Deserialisierung.
 - Pfade normalisieren und auf erlaubte Verzeichnisse begrenzen.
 - Importierte Daten nach dem Parsen erneut fachlich validieren.
 - Datenbank- oder Dateioperationen dürfen keine internen Details an Endnutzer ausgeben.
-
-## Datenschutzanforderungen / Privacy Requirements
-
 - Exportprofile unterscheiden vollständigen Lernexport und datensparsame Auswertung.
 - Personenbezogene Testdaten bleiben fiktiv.
 - Nicht benötigte Felder werden nicht exportiert.
+- Nicht anwendbare Standards (z. B. Datenbankbetrieb, Verschlüsselung ruhender Daten, Cloud-Speicherung) werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
 - Import und Export verwenden denselben fachlichen Datenvertrag.
 - Jede Sprache validiert importierte Daten nach dem Einlesen erneut.
 - Exportformate werden so beschrieben, dass sie später testbar sind.
-
-## Sprachspezifische Hinweise / Language-Specific Notes
-
 - **C#:** `System.Text.Json`, keine unsicheren Formatter, parametrisierte SQLite-Zugriffe.
 - **Go:** Standard-JSON, Pfade mit `filepath`, SQL nur parametrisiert.
 - **Java:** Jackson/Gson restriktiv konfigurieren, keine native Java-Serialisierung.
@@ -77,39 +82,19 @@
 - Import-/Export-Vertrag.
 - Pfadregel.
 - Tests für gültige und ungültige Dateien.
+- Offene Punkte: unklare Persistenzrisiken werden vor Implementierung als `Open` geführt; Exportfelder mit Datenschutzrisiko werden vor Prozessanalyse erneut geprüft.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
-- Persistenzentscheidung und Alternative sind begründet.
-- Import validiert Struktur und Domänenregeln.
-- Export enthält keine verbotenen Felder.
-- Pfadprüfung ist als Sicherheitsanforderung sichtbar.
+- [ ] Persistenzentscheidung und Alternative sind begründet.
+- [ ] Import validiert Struktur und Domänenregeln.
+- [ ] Export enthält keine verbotenen Felder.
+- [ ] Pfadprüfung ist als Sicherheitsanforderung sichtbar.
+- [ ] Nachweise vorhanden: Import ungültiger Daten schlägt kontrolliert fehl, Export enthält keine verbotenen Felder und manipulierte Pfade werden abgelehnt.
+- [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
-## Tests und Nachweise / Tests and Evidence
-
-- Import ungültiger Daten schlägt kontrolliert fehl.
-- Export enthält keine verbotenen Felder.
-- Manipulierte Pfade werden abgelehnt.
-
-## Reflexionsfragen / Reflection Questions
-
-- **AE:** Welche Daten müssen nach dem Einlesen erneut validiert werden?
-- **SI:** Wo darf die Anwendung Dateien lesen oder schreiben?
-- **DPA:** Welche Exportdaten reichen für Kennzahlen aus?
-
-## N/A-Regeln / N/A Rules
-
-- Datenbankbetrieb ist `N/A`, wenn nur Datei-Persistenz geplant wird.
-- Verschlüsselung ruhender Daten ist `N/A`, wenn nur fiktive lokale Lern-Testdaten genutzt werden; die Begründung muss das klar sagen.
-- Cloud-Speicherung ist `N/A`, wenn keine Cloud-Integration geplant wird.
-
-## Offene Punkte / Open Follow-Ups
-
-- Unklare Persistenzrisiken werden vor Implementierung als `Open` geführt.
-- Exportfelder mit Datenschutzrisiko werden vor Prozessanalyse erneut geprüft.
-
-## Copy-Paste Spec-Kit Prompt / Copy-Paste Spec Kit Prompt
+## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_06_Persistenz-und-Import-Export.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für sichere Persistenz, Import, Export, Pfadprüfung, sichere Deserialisierung, Datenminimierung und Import-/Export-Tests des Secure CaseTracker. Erzeuge keine Implementierung.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker_06_Persistenz-und-Import-Export.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für sichere Persistenz, Import, Export, Pfadprüfung, sichere Deserialisierung, Datenminimierung und Import-/Export-Tests des Secure CaseTracker. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

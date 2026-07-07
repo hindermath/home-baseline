@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** Eingaben, Validierung, technische Fehler, fachliche Fehler, Response-Modell und Logging-Grenzen werden getrennt.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (Schwerpunkt) | Welche Validierungs- und Fehlerentscheidung wird an welcher Schicht und mit welchem Response-Modell getroffen? |
+| SI | mittel | Wie wirken sich Fehlerpfade auf Betrieb, Neustart und Log-Auswertung aus? |
+| DPA | mittel | Welche Fehlermeldung oder Response darf welche Daten enthalten und welche nicht? |
+| DV | mittel | Welche Fehlerantwort überschreitet eine Schnittstellen- oder Systemgrenze? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Das Validierungs- und Response-Modell bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Mechanismen (Exceptions, `Result`, Fehlerwerte) dürfen gewählt, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere Eingabe-, Fehler-, Logging- oder Grenzprüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

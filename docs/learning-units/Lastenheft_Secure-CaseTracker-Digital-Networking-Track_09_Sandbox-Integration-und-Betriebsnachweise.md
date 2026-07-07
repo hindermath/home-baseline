@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Sandbox-Bezug, Netzwerkgrenzen, Toolchain-Nachweise und abweichende Arbeitsweisen werden begründet.
 
 **EN:** Learners justify sandbox relation, network boundaries, toolchain evidence, and deviations from the reference workflow.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welche Netzwerkgrenze der Sandbox entscheidet über den sicheren Betrieb des vernetzten CaseTracker? |
+| SI | hoch | Welche Sandbox-, Toolchain- oder Betriebsannahme muss als Nachweis dokumentiert werden? |
+| AE | mittel bis hoch | Welche Implementierungs- oder Abweichungsentscheidung folgt aus den Sandbox-Grenzen? |
+| DPA | mittel | Welche Datenklasse oder Aussagegrenze wird durch Arbeit außerhalb der Sandbox berührt? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Netzwerkzugriffe nur mit Zweck und Grenze dokumentieren.
 - Schreibzugriffe bewusst begrenzen.
 - Abweichungen nicht verschweigen, sondern als Risiko oder `N/A` begründen.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der Sandbox- und Betriebsnachweis-Vertrag bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Build-, Test- oder Toolchain-Werkzeuge dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

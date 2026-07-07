@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
@@ -15,6 +15,15 @@
 **DE:** Ausfallannahmen, Wiederanlauf, Degradation, Timeouts und Resilienzgrenzen werden geplant.
 
 **EN:** Learners plan failure assumptions, restart behavior, degradation, timeouts, and resilience boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| DV | Schwerpunkt | Welche Timeout-, Wiederanlauf- und Degradationsentscheidung schützt den vernetzten CaseTracker? |
+| SI | hoch | Welche Betriebs-, Toolchain- oder Sandbox-Annahme zur Verfügbarkeit muss dokumentiert werden? |
+| AE | mittel bis hoch | Welche Implementierungsentscheidung folgt aus Timeout, Wiederanlauf und sicherer Degradation? |
+| DPA | mittel | Welche Datenqualität oder Aussagegrenze entsteht im degradierten Betrieb? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Fallbacks dürfen keine Authentifizierung, Autorisierung oder Datenschutzgrenzen umgehen.
 - Fehlerausgaben dürfen keine Secrets, internen Pfade oder Verbindungsdaten offenlegen.
 - Resilienzbehauptungen benötigen nachvollziehbare Test- oder Review-Evidenz.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der fachliche Vertrag von Timeout, Wiederanlauf und Degradation bleibt für C#, Go, Java, Python, Rust und Swift vergleichbar.
+- Sprachspezifische Resilienz- oder HTTP-Bibliotheken dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Prüfung.
 
 ## Erwartete Artefakte / Expected Artifacts
 

@@ -2,7 +2,7 @@
 
 ## Metadaten / Metadata
 
-- **Stand / Date:** 2026-07-05
+- **Stand / Date:** 2026-07-07
 - **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** AE - Anwendungsentwicklung
@@ -15,6 +15,15 @@
 **DE:** API-Änderungen, Versionierung, Kompatibilität, Fehlerverträge und Migrationspfade werden spezifiziert.
 
 **EN:** Learners can work on this specialization task and document decisions, risks, evidence paths, and boundaries.
+
+## Fachrichtungsbezug / Specialization Fit
+
+| Fachrichtung | Eignung | Reflexionsfrage |
+|---|---|---|
+| AE | hoch (Schwerpunkt) | Welcher Versionierungs- und Kompatibilitätsvertrag hält die API stabil und abwärtskompatibel? |
+| SI | mittel | Welche Betriebs- oder Rollout-Annahme folgt aus einem Versionswechsel? |
+| DPA | mittel | Welche Datenfelder ändern über Versionen ihre Aussagegrenze? |
+| DV | mittel bis hoch | Welche Schnittstelle und welcher Kommunikationsvertrag ändern sich zwischen den Versionen? |
 
 ## Rahmenlehrplanbezug / Curriculum Relation
 
@@ -54,6 +63,12 @@
 - Eingaben, Dateien, Konfiguration, Logs, Abhängigkeiten und Auswertungen als mögliche Vertrauensgrenzen prüfen.
 - Positive Sicherheits-, Qualitäts- oder Compliance-Aussagen nur mit Nachweis treffen.
 - Nicht anwendbare Standards als `N/A` mit kurzer technischer Begründung dokumentieren.
+
+## Sprachneutrale Anforderungen / Language-Neutral Requirements
+
+- Der API- und Versionierungsvertrag (Ressourcen, Fehlerverträge, Migrationspfade) bleibt für alle Zielsprachen vergleichbar.
+- Sprachspezifische Web- oder Serialisierungs-Frameworks dürfen gewählt werden, müssen aber begründet werden.
+- MSL-Status ersetzt keine Eingabevalidierung, Auth-, Output- oder Fehlerbehandlungsprüfung an der API-Grenze.
 
 ## Erwartete Artefakte / Expected Artifacts
 
