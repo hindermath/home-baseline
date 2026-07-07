@@ -1,7 +1,7 @@
 # Rahmenlehrplan-Lernfeld-Mapping / Curriculum Learning-Field Mapping
 
 **Stand / Date:** 2026-07-05
-**Bezug / Scope:** Secure-CaseTracker-Familie (Basis, v2, Professional Tracks), Secure InventoryHub und Secure-ServiceHarvester-Familie (Basis, v2, Professional Tracks)
+**Bezug / Scope:** Secure-CaseTracker-Familie (Basis, v2, Professional Tracks), Secure InventoryHub, Secure-ServiceHarvester-Familie (Basis, v2, Professional Tracks) und Secure-OrderDesk-Familie (Basis, v2, Professional Tracks)
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA
 
 ## Zweck / Purpose
@@ -183,6 +183,78 @@ harvester, interfaces, and operations.
 | 10 | MSL-Vergleich und Abschlussreview | LF 6 | LF 5 |
 
 ## Zuordnung Secure ServiceHarvester Professional Tracks / Mapping of Secure ServiceHarvester Professional Tracks (01–10, Jahr 3)
+
+**DE:** Jeder Track liegt im 3. Lehrjahr und trägt die fachrichtungsspezifischen Lernfelder. Die konkreten
+Einheiten 01–10 verteilen sich auf die drei LF der jeweiligen Fachrichtung; Betrieb, Sicherheit und
+Kundenbezug ziehen sich durch.
+
+**EN:** Each track is placed in year 3 and carries the specialization-specific learning fields. Units 01–10
+distribute across the three LF of the respective specialization; operations, security, and customer relation
+run throughout.
+
+| Track | Fachrichtung | Primäre Lernfelder / Primary Learning Fields |
+|---|---|---|
+| Application Track | AE | LF 10a, LF 11a, LF 12a (Berührt: LF 4, LF 5) |
+| Operations Track | SI | LF 10b, LF 11b, LF 12b (Berührt: LF 4, LF 9) |
+| Data & Process Track | DPA | LF 10c, LF 11c, LF 12c (Berührt: LF 5, LF 6) |
+| Digital Networking Track | DV | LF 10d, LF 11d, LF 12d (Berührt: LF 3, LF 9) |
+
+**DE:** Feinzuordnung je Track-Einheit erfolgt im jeweiligen Lernbegleiter mit Begründung; sie bleibt an die
+oben genannten Primär-Lernfelder gebunden.
+
+**EN:** The fine-grained mapping per track unit is documented in each study companion with a rationale; it
+stays bound to the primary learning fields named above.
+
+## Zuordnung Secure OrderDesk Basis / Mapping of Secure OrderDesk Base (00–12)
+
+**DE:** Die Secure-OrderDesk-Basis liegt didaktisch im 1. Lehrjahr mit Ausblick auf das 2. Jahr. Die
+Bestell-/Handelsplattform bleibt bewusst einfach; relationale Grundlagen, SQL-Sicherheit und Datenschutz der
+Kunden- und Bestelldaten stehen im Vordergrund. Datenbasis ist die klassische Northwind-Sample-DB inkl.
+`ALFKI`.
+
+**EN:** The Secure OrderDesk base is didactically placed in year 1 with an outlook to year 2. The
+ordering/trading platform stays deliberately simple; relational foundations, SQL security, and privacy of the
+customer and order data are in the foreground. The data base is the classic Northwind sample database incl.
+`ALFKI`.
+
+| Nr. | Einheit / Unit | Primär / Primary | Berührt / Touched | Begründung / Rationale |
+|---:|---|---|---|---|
+| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung. |
+| 01 | Kundenauftrag, Scope und Handelsdomäne | LF 1 | LF 4, LF 6 | Auftrag der Handelsfirma, Rolle, erste Schutzbedarfs- und Serviceperspektive. |
+| 02 | Domänenmodell: Kunden, Produkte, Bestellungen und Positionen | LF 5 | LF 4 | Relationales Datenmodell als Grundlage der Datenverwaltung. |
+| 03 | Eingabevalidierung und Trust Boundaries | LF 4 | LF 5 | Schutzbedarf an Vertrauensgrenzen, sichere Verarbeitung von Bestelleingaben. |
+| 04 | Datenschutz und Audit-Logging | LF 4 | LF 5 | Schutzbedarf, Datenschutz der Kundendaten, nachvollziehbare Verarbeitung. |
+| 05 | Rollen und Berechtigungen | LF 4 | LF 5 | Zugangssteuerung und sichere Defaults als Schutzmaßnahme. |
+| 06 | Persistenz, SQL und sichere Datenzugriffe | LF 5 | LF 4 | Datenverwaltung mit parametrisierten Queries und Abwehr von SQL-Injection. |
+| 07 | Testbarkeit und Qualität | LF 5 | LF 6 | Qualitätssicherung der Datenverwaltungs-Software. |
+| 08 | Lieferanten, Supply Chain und MSL-Bewertung | LF 4 | LF 9 | Schutzbedarf der Lieferkette, Werkzeug- und Abhängigkeitsbewertung. |
+| 09 | Sandbox und agentische Entwicklung | LF 4 | LF 2, LF 9 | Sichere Umgebung, Grenzen, reproduzierbare Werkzeuge. |
+| 10 | Auswertungen und Kennzahlen | LF 6 | LF 5 | Umsatz- und Bestellauswertungen sowie Kennzahlen aus den Handelsdaten. |
+| 11 | Spec-Kit-Review und Abschluss | LF 6 | LF 1 | Serviceabschluss, kundenverständliche Übergabe. |
+| 12 | Jahr-2-Baseline und Track-Ableitung | LF 5 | LF 6 | Übergang in Jahr 2, Vorbereitung fachrichtungsspezifischer LF. |
+
+## Zuordnung Secure OrderDesk v2 / Mapping of Secure OrderDesk v2 (01–10)
+
+**DE:** v2 liegt didaktisch im 2. Lehrjahr und vertieft Architektur, Persistenzmodell, Bestellannahme,
+Service-Verträge, Autorisierung und Betrieb.
+
+**EN:** v2 is didactically placed in year 2 and deepens architecture, persistence model, order intake, service
+contracts, authorization, and operations.
+
+| Nr. | Einheit / Unit | Primär / Primary | Berührt / Touched |
+|---:|---|---|---|
+| 01 | Architekturzielbild und Systemgrenzen | LF 5 | LF 8 |
+| 02 | Plattformübergreifendes Hosting und Lebenszyklus | LF 9 | LF 6 |
+| 03 | Relationales Persistenzmodell und Backend-Abstraktion | LF 5 | LF 8 |
+| 04 | Bestellannahme: Idempotenz und Import-Härtung | LF 8 | LF 4 |
+| 05 | API- und Service-Vertrag und OpenAPI | LF 8 | LF 6 |
+| 06 | Fehler-, Validierungs- und Response-Modell | LF 5 | LF 4 |
+| 07 | Rollen-, Autorisierung und Audit-Logging | LF 4 | LF 5 |
+| 08 | Betrieb, Logging, Health und Monitoring | LF 9 | LF 6 |
+| 09 | Sichere Konfiguration, Secrets und Betriebsnachweise | LF 9 | LF 4 |
+| 10 | MSL-Vergleich und Abschlussreview | LF 6 | LF 5 |
+
+## Zuordnung Secure OrderDesk Professional Tracks / Mapping of Secure OrderDesk Professional Tracks (01–10, Jahr 3)
 
 **DE:** Jeder Track liegt im 3. Lehrjahr und trägt die fachrichtungsspezifischen Lernfelder. Die konkreten
 Einheiten 01–10 verteilen sich auf die drei LF der jeweiligen Fachrichtung; Betrieb, Sicherheit und
