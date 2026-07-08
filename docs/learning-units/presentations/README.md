@@ -40,6 +40,14 @@
 | `Praesentation-Secure-ServiceHarvester-Data-Process-Track-Lernreihe.en.md` | English companion version of the ServiceHarvester Data & Process Track introduction. |
 | `Praesentation-Secure-ServiceHarvester-Digital-Networking-Track-Lernreihe.md` | DE-first-Einführung in den DV Digital Networking Track des ServiceHarvester ab dem 3. Lehrjahr. |
 | `Praesentation-Secure-ServiceHarvester-Digital-Networking-Track-Lernreihe.en.md` | English companion version of the ServiceHarvester Digital Networking Track introduction. |
+| `Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.md` | DE-first-Einführung in den AE Application Track des OrderDesk ab dem 3. Lehrjahr; Northwind inkl. `ALFKI` und Systemlandschaft Secure Trader. |
+| `Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.en.md` | English companion version of the OrderDesk Application Track introduction. |
+| `Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.md` | DE-first-Einführung in den SI Operations Track des OrderDesk ab dem 3. Lehrjahr; Northwind inkl. `ALFKI` und Systemlandschaft Secure Trader. |
+| `Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.en.md` | English companion version of the OrderDesk Operations Track introduction. |
+| `Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.md` | DE-first-Einführung in den DPA Data & Process Track des OrderDesk ab dem 3. Lehrjahr; Northwind inkl. `ALFKI` und Systemlandschaft Secure Trader. |
+| `Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.en.md` | English companion version of the OrderDesk Data & Process Track introduction. |
+| `Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md` | DE-first-Einführung in den DV Digital Networking Track des OrderDesk ab dem 3. Lehrjahr; Northwind inkl. `ALFKI` und Systemlandschaft Secure Trader. |
+| `Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.en.md` | English companion version of the OrderDesk Digital Networking Track introduction. |
 
 ## Sprachtrennung / Language Split
 
@@ -123,6 +131,26 @@ pandoc docs/learning-units/presentations/Praesentation-Secure-ServiceHarvester-D
 ```bash
 pandoc docs/learning-units/presentations/Praesentation-Secure-ServiceHarvester-Digital-Networking-Track-Lernreihe.md \
   -o Secure-ServiceHarvester-Digital-Networking-Track-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.md \
+  -o Secure-OrderDesk-Application-Track-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.md \
+  -o Secure-OrderDesk-Operations-Track-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.md \
+  -o Secure-OrderDesk-Data-Process-Track-Lernreihe.pptx
+```
+
+```bash
+pandoc docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md \
+  -o Secure-OrderDesk-Digital-Networking-Track-Lernreihe.pptx
 ```
 
 **DE:** Erzeugte `.pptx`-Dateien sind Ausgabeartefakte und werden nicht automatisch versioniert.
