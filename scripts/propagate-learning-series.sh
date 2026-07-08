@@ -116,14 +116,21 @@ plan() { if [ "$DRY_RUN" -eq 1 ]; then echo "  [DRY-RUN] $*"; else echo "  [OK] 
 
 series_unit_files() {
   # Ausgeschlossen: dist/, presentations/ (unveraenderte Paketierungs-/Folienpfade)
+  # Eingeschlossen: das gemeinsame Secure-Trader-Universum (Systemlandschaft) und
+  # der geteilte Datensatz-Baum datasets/** (Generator + CSVs + schema.sql), damit
+  # das Lernwerkzeug in jedem Level-1/Level-2-Repo lauffaehig vorliegt.
+  # datasets/* + datasets/*/* deckt den zweistufigen datasets-Baum ab
+  # (bash-3-kompatibel, ohne globstar).
   ( cd -- "$SRC_UNITS" && {
       shopt -s nullglob
       local f
       for f in Lastenheft_"${FILE_SERIES}"*.md "${FILE_SERIES}"*.md \
                Rahmenlehrplan-Lernfeld-Mapping.md \
                IT-Berufe-"${FILE_SERIES}"-Mapping.md \
+               Secure-Trader-*.md \
                lernbegleiter/"${FILE_SERIES}"*.Lernbegleiter.md \
-               templates/*.md; do
+               templates/*.md \
+               datasets/* datasets/*/*; do
         [ -f "$f" ] && printf '%s\n' "$f"
       done
     } )

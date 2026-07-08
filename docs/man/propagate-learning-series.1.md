@@ -16,13 +16,13 @@ pwsh -NoProfile -File scripts/propagate-learning-series.ps1 [options]
 
 ## DESCRIPTION
 
-Das Skript kopiert das serienspezifische Lernmaterial aus Level-0 (`~/home-baseline-tmp/docs/learning-units/`) in die zugehoerigen Repos: Lastenhefte (Intakes), Uebersichten, `Rahmenlehrplan-Lernfeld-Mapping.md`, das IT-Berufe-Mapping, die Lernbegleiter unter `lernbegleiter/` und die Vorlagen unter `templates/`.
+Das Skript kopiert das serienspezifische Lernmaterial aus Level-0 (`~/home-baseline-tmp/docs/learning-units/`) in die zugehoerigen Repos: Lastenhefte (Intakes), Uebersichten, `Rahmenlehrplan-Lernfeld-Mapping.md`, das IT-Berufe-Mapping, die Lernbegleiter unter `lernbegleiter/`, die Vorlagen unter `templates/`, das gemeinsame Secure-Trader-Universum (`Secure-Trader-*.md`, u. a. die Systemlandschaft) und den geteilten Datensatz-Baum unter `datasets/` (Generator, CSVs, `schema.sql`), damit das Datensatz-Lernwerkzeug in jedem Repo lauffaehig vorliegt.
 
 Die Ziel-Repos werden aus `~/.home-baseline/level2-repository-registry.json` ermittelt und ueber den Serien-Praefix gefiltert. Level-2-Repos erhalten die Intakes zusaetzlich in der Repo-Wurzel (Bootstrap-Layout); Level-1 erhaelt nur `docs/learning-units/`. Andere Reihen (z. B. Secure InventoryHub) und die Ordner `dist/` und `presentations/` bleiben unberuehrt.
 
 Der Lauf ist idempotent: nur echte Inhaltsaenderungen erzeugen einen Commit. Bei Aenderungen committet und pusht das Skript pro Repo auf `main`.
 
-*The script copies the series-specific learning material from Level-0 into the matching repositories: intake files, overviews, the curriculum learning-field mapping, the IT-occupation mapping, the study companions under `lernbegleiter/`, and the templates. Target repos are discovered from the level-2 registry and filtered by the series prefix. Level-2 repos additionally receive the intakes in the repository root (bootstrap layout); Level-1 receives only `docs/learning-units/`. Other series and the `dist/` and `presentations/` folders stay untouched. The run is idempotent; only real content changes create a commit, which is then pushed to `main` per repository.*
+*The script copies the series-specific learning material from Level-0 into the matching repositories: intake files, overviews, the curriculum learning-field mapping, the IT-occupation mapping, the study companions under `lernbegleiter/`, the templates, the shared Secure Trader universe (`Secure-Trader-*.md`, including the system landscape), and the shared dataset tree under `datasets/` (generator, CSVs, `schema.sql`) so the dataset learning tool is runnable in every repository. Target repos are discovered from the level-2 registry and filtered by the series prefix. Level-2 repos additionally receive the intakes in the repository root (bootstrap layout); Level-1 receives only `docs/learning-units/`. Other series and the `dist/` and `presentations/` folders stay untouched. The run is idempotent; only real content changes create a commit, which is then pushed to `main` per repository.*
 
 ## OPTIONS
 
