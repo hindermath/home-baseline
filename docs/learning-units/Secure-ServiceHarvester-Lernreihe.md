@@ -12,6 +12,18 @@
 
 **EN:** This file describes the **base series (year 1)** of the **Secure ServiceHarvester** family. The family accompanies the apprenticeship from year 1 to year 3: base (year 1), [v2/advanced (year 2)](Secure-ServiceHarvester-v2-Lernreihe.md), and [Professional Tracks (year 3)](Secure-ServiceHarvester-Professional-Tracks-Lernreihe.md). The continuous goal is to practice secure development **and** responsible work with AI agents and Spec-Driven Development (Spec Kit).
 
+## Systemlandschaft / System Landscape
+
+**DE:** Die fiktive Handelsfirma **Secure Trader** betreibt eine Bestell-/Handelsplattform auf Northwind-Datenbasis. Die didaktische Software-Schmiede **EuFPA** baut und betreut für Secure Trader drei ineinandergreifende, aber je **eigenständig nutzbare** Systeme:
+
+- **Secure OrderDesk** — die Handels-/Bestellplattform selbst (Kunden, Produkte, Bestellungen; Northwind-Daten inkl. `ALFKI`).
+- **Secure ServiceHarvester** — erfasst System-/Bestandsdaten der Arbeitsplatz-PCs und Server, auf denen Secure Trader läuft.
+- **Secure CaseTracker** — Support-Plattform für Support-Cases von Kundinnen/Kunden (Angebot/Bestellung/Lieferung) und internen Mitarbeitenden.
+
+Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigkeit. Jede Lernreihe bleibt eigenständig bearbeitbar. Das gemeinsame Universums- und Datenmodell steht in [`Secure-Trader-Systemlandschaft.md`](Secure-Trader-Systemlandschaft.md).
+
+**EN:** The fictional trading company **Secure Trader** runs an ordering/trading platform on a Northwind data base. The didactic software house **EuFPA** builds and maintains three interlocking, yet individually usable systems for Secure Trader: **Secure OrderDesk** (the trading platform itself), **Secure ServiceHarvester** (collects system/inventory data of the workstation PCs and servers Secure Trader runs on), and **Secure CaseTracker** (support platform for support cases from customers and internal staff). The coupling is deliberately light: enriching context, not a hard dependency. Every series stays usable on its own. The shared world and data model is in [`Secure-Trader-Systemlandschaft.md`](Secure-Trader-Systemlandschaft.md).
+
 ## Zielbild / Target Picture
 
 **DE:** Die Lernreihe führt Lernende schrittweise durch sichere Softwareentwicklung am Beispiel eines Hintergrund-/Worker-Dienstes. Das Beispielprogramm ist kein fertiges Produkt, sondern ein didaktisches Integrationsprojekt. Lernende üben, Anforderungen zu verstehen, sichere Entscheidungen zu treffen, Tests zu planen, Datenschutz zu beachten und ihre Entscheidungen so zu dokumentieren, dass andere sie prüfen können. Im 1. Lehrjahr bleibt der Dienst bewusst einfach; Hosting, Backend-Wechsel und API-Tiefe kommen erst in Jahr 2 und Jahr 3.
