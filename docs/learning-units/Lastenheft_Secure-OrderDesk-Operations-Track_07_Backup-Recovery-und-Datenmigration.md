@@ -14,9 +14,9 @@
 
 ## Lernziel / Learning Goal
 
-**DE:** Backup-Ziele (RPO/RTO), Restore-Ablauf, Recovery-Übung und eine sichere Datenmigration der relationalen Handelsdaten (Northwind inkl. `ALFKI`) zwischen Schema-Versionen oder Datenbank-Backends werden geplant. Lernende begründen, warum nur ein getesteter Restore und eine geprüfte Migration als Nachweis gelten. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Backup-Ziele (RPO/RTO), Restore-Ablauf, Recovery-Übung und eine sichere Datenmigration der relationalen Handelsdaten (Northwind inkl. `ALFKI`) zwischen Schema-Versionen oder Datenbank-Backends werden geplant. Lernende begründen, warum nur ein getesteter Restore und eine geprüfte Migration als Nachweis gelten. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** Backup goals (RPO/RTO), restore procedure, recovery drill, and a safe data migration of the relational trading data (Northwind incl. `ALFKI`) between schema versions or database backends are planned. Learners justify why only a tested restore and a verified migration count as evidence. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** Backup goals (RPO/RTO), restore procedure, recovery drill, and a safe data migration of the relational trading data (Northwind incl. `ALFKI`) between schema versions or database backends are planned. Learners justify why only a tested restore and a verified migration count as evidence. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Fachrichtungsbezug / Specialization Fit
 
@@ -47,9 +47,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für ein Backup-, Recovery- und Datenmigrationskonzept des Secure OrderDesk eine fokussierte Spezifikation für die Spezialisierung SI - Systemintegration. Berücksichtige: Backup-Ziele (RPO/RTO), sicheren und geschützten Backup-Speicher der Handelsdatenbank, einen nummerierten Restore-Ablauf, eine Recovery-Übung mit Zeitmessung sowie eine geprüfte Datenmigration zwischen Schema-Versionen oder Datenbank-Backends (Northwind-Layout inkl. `ALFKI`). Halte die Lösung für C#, Go, Java, Python, Rust und Swift vergleichbar. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Erarbeite für ein Backup-, Recovery- und Datenmigrationskonzept des Secure OrderDesk eine fokussierte Spezifikation für die Spezialisierung SI - Systemintegration. Berücksichtige: Backup-Ziele (RPO/RTO), sicheren und geschützten Backup-Speicher der Handelsdatenbank, einen nummerierten Restore-Ablauf, eine Recovery-Übung mit Zeitmessung sowie eine geprüfte Datenmigration zwischen Schema-Versionen oder Datenbank-Backends (Northwind-Layout inkl. `ALFKI`). Halte die Lösung für C#, Go, Java, Python, Rust und Swift vergleichbar. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** Prepare a focused specification for a backup, recovery, and data-migration concept of the Secure OrderDesk for the SI - System Integration specialization. Consider: backup goals (RPO/RTO), secure and protected backup storage of the trading database, a numbered restore procedure, a recovery drill with time measurement, and a verified data migration between schema versions or database backends (Northwind layout incl. `ALFKI`). Keep the solution comparable across C#, Go, Java, Python, Rust, and Swift. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** Prepare a focused specification for a backup, recovery, and data-migration concept of the Secure OrderDesk for the SI - System Integration specialization. Consider: backup goals (RPO/RTO), secure and protected backup storage of the trading database, a numbered restore procedure, a recovery drill with time measurement, and a verified data migration between schema versions or database backends (Northwind layout incl. `ALFKI`). Keep the solution comparable across C#, Go, Java, Python, Rust, and Swift. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Anforderungen / Requirements
 

@@ -38,7 +38,7 @@ Diese Präsentation führt in den Track ein. Sie ersetzt keinen Spec-Kit-Lauf un
 - Layout und Daten inklusive Pflicht-Datensatz **`ALFKI`**
 - Kunden, Produkte, Bestellungen und Bestellpositionen im Northwind-Layout
 - Alle Daten sind fiktiv und werden markenneutral genutzt
-- „Microsoft" wird nur als historischer Quellhinweis erwähnt
+- „Microsoft“ wird nur als historischer Quellhinweis erwähnt
 
 ::: notes
 Der Datensatz `ALFKI` ist Pflicht, damit alle Sprachpfade dieselbe Datenbasis für Kennzahlen und Auswertungen haben. Es dürfen keine echten personenbezogenen Daten oder Secrets verwendet werden.

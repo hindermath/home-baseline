@@ -37,11 +37,16 @@ DEFAULT_SEED = 20260707
 
 
 def parse_end(value):
-    """Parst 'YYYY-MM' zu (year, month)."""
-    y, m = value.split("-")
-    y, m = int(y), int(m)
-    if not (1 <= m <= 12) or y < 1996:
-        raise ValueError("ungueltiger Endmonat (>= 1996-01): %s" % value)
+    """Parst 'YYYY-MM' zu (year, month) mit klaren Fehlern (kein Stacktrace fuer Lernende)."""
+    parts = value.split("-")
+    if len(parts) != 2 or not parts[0].isdigit() or not parts[1].isdigit():
+        raise ValueError("Endmonat muss das Format YYYY-MM haben (z. B. 2026-07): %r" % value)
+    y, m = int(parts[0]), int(parts[1])
+    if not (1 <= m <= 12):
+        raise ValueError("Monat muss zwischen 01 und 12 liegen: %r" % value)
+    if (y, m) < (1996, 7):
+        raise ValueError("Endmonat darf nicht vor dem Datenstart 1996-07 liegen "
+                         "(fachliche Support-Cases entstehen ab 1998-06): %r" % value)
     return y, m
 
 
@@ -59,7 +64,10 @@ def main():
                         help="Zielverzeichnis (Default: Verzeichnis dieses Skripts).")
     args = parser.parse_args()
 
-    end_year, end_month = parse_end(args.end)
+    try:
+        end_year, end_month = parse_end(args.end)
+    except ValueError as exc:
+        parser.error(str(exc))  # freundliche usage-Meldung + Exit-Code 2, kein Stacktrace
     seed = args.seed
     base_dir = args.out or os.path.dirname(os.path.abspath(__file__))
     build(end_year, end_month, seed, base_dir)

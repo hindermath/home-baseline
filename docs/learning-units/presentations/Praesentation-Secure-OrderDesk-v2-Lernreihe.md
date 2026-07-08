@@ -78,7 +78,7 @@ Sichere Architektur (Prinzip XIII) und sicherer Code (Prinzip XII) müssen zusam
 - Layout und Daten inklusive Pflicht-Datensatz **`ALFKI`**
 - Original-Bestelldaten (~1996-1998), erweitert um fiktive Datensätze bis 2026
 - Alle Daten sind fiktiv und werden markenneutral genutzt
-- „Microsoft" wird nur als historischer Quellhinweis erwähnt
+- „Microsoft“ wird nur als historischer Quellhinweis erwähnt
 
 ::: notes
 Der Datensatz `ALFKI` ist Pflicht, damit alle Sprachpfade denselben Bezugspunkt haben. Es dürfen keine echten personenbezogenen Daten oder Secrets verwendet werden.

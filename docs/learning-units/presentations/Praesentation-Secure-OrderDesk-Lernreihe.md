@@ -89,7 +89,7 @@ sichtbar werden: Datenmodell, SQL-Zugriff, Ablage und Nachvollziehbarkeit.
 - Layout und Daten inklusive Pflicht-Datensatz **`ALFKI`**
 - Original-Bestelldaten (~1996–1998), erweitert um fiktive Datensätze bis 2026
 - Alle Daten sind fiktiv und werden markenneutral genutzt
-- „Microsoft" wird nur als historischer Quellhinweis erwähnt
+- „Microsoft“ wird nur als historischer Quellhinweis erwähnt
 
 ::: notes
 Die Northwind-Datenbank ist eine bekannte, gut dokumentierte Beispielbasis.

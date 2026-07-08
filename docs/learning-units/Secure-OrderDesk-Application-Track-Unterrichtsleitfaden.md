@@ -1,5 +1,7 @@
 # Secure OrderDesk Application Track Unterrichtsleitfaden / Secure OrderDesk Application Track Teaching Guide
 
+**Stand / Date:** 2026-07-08
+
 ## Zweck / Purpose
 
 **DE:** Dieser Leitfaden unterstützt Lehrende bei der Durchführung des AE - Anwendungsentwicklung-Tracks im 3. Lehrjahr für die relationale Handels-/Bestellplattform Secure OrderDesk (Kundenfirma Secure Trader, Northwind-Datenbasis inkl. `ALFKI`). Er legt die Spezialisierung, erwartete Tiefe, typische Fehler und Nachweisanforderungen fest.

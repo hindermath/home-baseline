@@ -14,9 +14,9 @@
 
 ## Lernziel / Learning Goal
 
-**DE:** Der Betrieb der Handelsplattform Secure OrderDesk wird abschließend bewertet: ein Betriebs-Review, ein kundenverständliches Runbook, offene Punkte, Restrisiken, Akzeptanz und eine Übergabeempfehlung an Secure Trader. Lernende fassen die Betriebssicht als prüfbaren Abschluss zusammen. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Der Betrieb der Handelsplattform Secure OrderDesk wird abschließend bewertet: ein Betriebs-Review, ein kundenverständliches Runbook, offene Punkte, Restrisiken, Akzeptanz und eine Übergabeempfehlung an Secure Trader. Lernende fassen die Betriebssicht als prüfbaren Abschluss zusammen. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** The operation of the Secure OrderDesk trading platform is finally assessed: an operations review, a customer-understandable runbook, open items, residual risks, acceptance, and a handover recommendation to Secure Trader. Learners summarize the operational view as a testable closure. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** The operation of the Secure OrderDesk trading platform is finally assessed: an operations review, a customer-understandable runbook, open items, residual risks, acceptance, and a handover recommendation to Secure Trader. Learners summarize the operational view as a testable closure. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Fachrichtungsbezug / Specialization Fit
 
@@ -47,9 +47,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für den Betriebsabschluss des Secure OrderDesk eine fokussierte Spezifikation für die Spezialisierung SI - Systemintegration. Berücksichtige: ein Betriebs-Review über die Einheiten 06 bis 09 (CI/CD, Backup/Recovery, Supply Chain, Sandbox), ein kundenverständliches Runbook mit den wichtigsten Betriebsabläufen (Start, Stopp, Restore der Handelsdatenbank, Alarm-Reaktion), eine Liste offener Punkte und Restrisiken, Akzeptanzkriterien und eine Übergabeempfehlung an Secure Trader. Nutze `ALFKI` als fiktives Beispiel in Beleg- und Testverweisen. Halte die Lösung für C#, Go, Java, Python, Rust und Swift vergleichbar. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Erarbeite für den Betriebsabschluss des Secure OrderDesk eine fokussierte Spezifikation für die Spezialisierung SI - Systemintegration. Berücksichtige: ein Betriebs-Review über die Einheiten 06 bis 09 (CI/CD, Backup/Recovery, Supply Chain, Sandbox), ein kundenverständliches Runbook mit den wichtigsten Betriebsabläufen (Start, Stopp, Restore der Handelsdatenbank, Alarm-Reaktion), eine Liste offener Punkte und Restrisiken, Akzeptanzkriterien und eine Übergabeempfehlung an Secure Trader. Nutze `ALFKI` als fiktives Beispiel in Beleg- und Testverweisen. Halte die Lösung für C#, Go, Java, Python, Rust und Swift vergleichbar. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** Prepare a focused specification for the operational closure of the Secure OrderDesk for the SI - System Integration specialization. Consider: an operations review across units 06 to 09 (CI/CD, backup/recovery, supply chain, sandbox), a customer-understandable runbook with the most important operational procedures (start, stop, restore of the trading database, alarm response), a list of open items and residual risks, acceptance criteria, and a handover recommendation to Secure Trader. Use `ALFKI` as a fictional example in evidence and test references. Keep the solution comparable across C#, Go, Java, Python, Rust, and Swift. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** Prepare a focused specification for the operational closure of the Secure OrderDesk for the SI - System Integration specialization. Consider: an operations review across units 06 to 09 (CI/CD, backup/recovery, supply chain, sandbox), a customer-understandable runbook with the most important operational procedures (start, stop, restore of the trading database, alarm response), a list of open items and residual risks, acceptance criteria, and a handover recommendation to Secure Trader. Use `ALFKI` as a fictional example in evidence and test references. Keep the solution comparable across C#, Go, Java, Python, Rust, and Swift. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Anforderungen / Requirements
 

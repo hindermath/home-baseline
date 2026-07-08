@@ -47,9 +47,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für den beobachtbaren Betrieb des Secure OrderDesk eine fokussierte Spezifikation. Berücksichtige: strukturiertes Logging (Ereignis, Ebene, Kontext), einen Health- und Status-Endpunkt (inkl. Datenbank-Erreichbarkeit), einfache Betriebs- und Bestellkennzahlen (z. B. Anzahl angenommener Bestellungen, letzte erfolgreiche Auswertung, Fehlerzahl, Umsatzsumme je Zeitraum) und die Regel, dass keine Secrets und keine personenbezogenen Kundendaten in Logs oder Statusausgaben erscheinen. Nutze `ALFKI` als fiktives Beispiel. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Erarbeite für den beobachtbaren Betrieb des Secure OrderDesk eine fokussierte Spezifikation. Berücksichtige: strukturiertes Logging (Ereignis, Ebene, Kontext), einen Health- und Status-Endpunkt (inkl. Datenbank-Erreichbarkeit), einfache Betriebs- und Bestellkennzahlen (z. B. Anzahl angenommener Bestellungen, letzte erfolgreiche Auswertung, Fehlerzahl, Umsatzsumme je Zeitraum) und die Regel, dass keine Secrets und keine personenbezogenen Kundendaten in Logs oder Statusausgaben erscheinen. Nutze `ALFKI` als fiktives Beispiel. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** Prepare a focused specification for the observable operation of the Secure OrderDesk. Consider structured logging (event, level, context), a health and status endpoint (incl. database reachability), simple operational and order metrics (e.g. number of accepted orders, last successful report, error count, revenue sum per period), and the rule that no secrets and no personal customer data appear in logs or status output. Use `ALFKI` as a fictional example. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** Prepare a focused specification for the observable operation of the Secure OrderDesk. Consider structured logging (event, level, context), a health and status endpoint (incl. database reachability), simple operational and order metrics (e.g. number of accepted orders, last successful report, error count, revenue sum per period), and the rule that no secrets and no personal customer data appear in logs or status output. Use `ALFKI` as a fictional example. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Anforderungen / Requirements
 

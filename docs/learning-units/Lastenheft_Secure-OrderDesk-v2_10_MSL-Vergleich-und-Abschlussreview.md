@@ -47,9 +47,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für einen sprachneutralen Abschlussvergleich der sechs MSL-Pfade des Secure OrderDesk v2 eine fokussierte Spezifikation. Berücksichtige: Vergleichskriterien (z. B. Backend-Abstraktion, parametrisierte SQL-Zugriffe, Bestellannahme/Idempotenz, Service-Vertrag, Fehler-/Response-Modell, Betrieb), offene Risiken, akzeptierte Restrisiken, Folgeaufgaben und eine Übergabenotiz. Prüfe, dass `ALFKI` in jedem Pfad als Testanker vorhanden bleibt. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Erarbeite für einen sprachneutralen Abschlussvergleich der sechs MSL-Pfade des Secure OrderDesk v2 eine fokussierte Spezifikation. Berücksichtige: Vergleichskriterien (z. B. Backend-Abstraktion, parametrisierte SQL-Zugriffe, Bestellannahme/Idempotenz, Service-Vertrag, Fehler-/Response-Modell, Betrieb), offene Risiken, akzeptierte Restrisiken, Folgeaufgaben und eine Übergabenotiz. Prüfe, dass `ALFKI` in jedem Pfad als Testanker vorhanden bleibt. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** Prepare a focused specification for a language-neutral final comparison of the six MSL paths of the Secure OrderDesk v2. Consider comparison criteria (e.g. backend abstraction, parameterized SQL access, order intake/idempotency, service contract, error/response model, operation), open risks, accepted residual risks, follow-up tasks, and a handover note. Verify that `ALFKI` stays present as a test anchor in every path. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** Prepare a focused specification for a language-neutral final comparison of the six MSL paths of the Secure OrderDesk v2. Consider comparison criteria (e.g. backend abstraction, parameterized SQL access, order intake/idempotency, service contract, error/response model, operation), open risks, accepted residual risks, follow-up tasks, and a handover note. Verify that `ALFKI` stays present as a test anchor in every path. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Anforderungen / Requirements
 

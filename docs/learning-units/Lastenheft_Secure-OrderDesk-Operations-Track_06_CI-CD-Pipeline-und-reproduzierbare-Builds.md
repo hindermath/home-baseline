@@ -14,9 +14,9 @@
 
 ## Lernziel / Learning Goal
 
-**DE:** Eine CI/CD-Pipeline für die Bestell-/Handelsplattform Secure OrderDesk wird geplant: Stufen, reproduzierbare Builds, festgesetzte Versionen, Datenbank-Migrationsschritte, Build-Herkunft (Provenance) und Release-Nachweise. Lernende begründen, warum ein Build der relationalen Plattform (Northwind inkl. `ALFKI`) wiederholbar und nachvollziehbar sein muss. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Eine CI/CD-Pipeline für die Bestell-/Handelsplattform Secure OrderDesk wird geplant: Stufen, reproduzierbare Builds, festgesetzte Versionen, Datenbank-Migrationsschritte, Build-Herkunft (Provenance) und Release-Nachweise. Lernende begründen, warum ein Build der relationalen Plattform (Northwind inkl. `ALFKI`) wiederholbar und nachvollziehbar sein muss. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** A CI/CD pipeline for the Secure OrderDesk ordering/trading platform is planned: stages, reproducible builds, pinned versions, database migration steps, build provenance, and release evidence. Learners justify why a build of the relational platform (Northwind incl. `ALFKI`) must be repeatable and traceable. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** A CI/CD pipeline for the Secure OrderDesk ordering/trading platform is planned: stages, reproducible builds, pinned versions, database migration steps, build provenance, and release evidence. Learners justify why a build of the relational platform (Northwind incl. `ALFKI`) must be repeatable and traceable. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Fachrichtungsbezug / Specialization Fit
 
@@ -47,9 +47,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für eine CI/CD-Pipeline des Secure OrderDesk eine fokussierte Spezifikation für die Spezialisierung SI - Systemintegration. Berücksichtige: Pipeline-Stufen (Build, Test, Sicherheits- und Dependency-Prüfung, Datenbank-Migration, Paketierung, optionaler Release), reproduzierbare Builds durch festgesetzte Versionen und Lockfiles, Build-Herkunft (Provenance) sowie Release-Nachweise. Nutze `ALFKI` als fiktives Beispiel in Test- und Migrationsdaten (Northwind-Layout). Halte die Lösung für C#, Go, Java, Python, Rust und Swift vergleichbar. Die C#-Referenz `InventarWorkerService` dient nur zur Orientierung.
+**DE:** Erarbeite für eine CI/CD-Pipeline des Secure OrderDesk eine fokussierte Spezifikation für die Spezialisierung SI - Systemintegration. Berücksichtige: Pipeline-Stufen (Build, Test, Sicherheits- und Dependency-Prüfung, Datenbank-Migration, Paketierung, optionaler Release), reproduzierbare Builds durch festgesetzte Versionen und Lockfiles, Build-Herkunft (Provenance) sowie Release-Nachweise. Nutze `ALFKI` als fiktives Beispiel in Test- und Migrationsdaten (Northwind-Layout). Halte die Lösung für C#, Go, Java, Python, Rust und Swift vergleichbar. Die C#-Referenz `SecureOrderDesk-CSharp` dient nur zur Orientierung.
 
-**EN:** Prepare a focused specification for a CI/CD pipeline of the Secure OrderDesk for the SI - System Integration specialization. Consider: pipeline stages (build, test, security and dependency checks, database migration, packaging, optional release), reproducible builds through pinned versions and lockfiles, build provenance, and release evidence. Use `ALFKI` as a fictional example in test and migration data (Northwind layout). Keep the solution comparable across C#, Go, Java, Python, Rust, and Swift. The C# reference `InventarWorkerService` serves only as orientation.
+**EN:** Prepare a focused specification for a CI/CD pipeline of the Secure OrderDesk for the SI - System Integration specialization. Consider: pipeline stages (build, test, security and dependency checks, database migration, packaging, optional release), reproducible builds through pinned versions and lockfiles, build provenance, and release evidence. Use `ALFKI` as a fictional example in test and migration data (Northwind layout). Keep the solution comparable across C#, Go, Java, Python, Rust, and Swift. The C# reference `SecureOrderDesk-CSharp` serves only as orientation.
 
 ## Anforderungen / Requirements
 

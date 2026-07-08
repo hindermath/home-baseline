@@ -34,7 +34,7 @@ even with gaps, empty orders, and outliers. Both belong together but are not the
 **DE:** In dieser Einheit lernst du, synthetische Northwind-Testdaten inkl. `ALFKI` ohne echte personenbezogene
 Inhalte zu wählen, ein **Golden Dataset** mit bekanntem Sollergebnis (Umsatz von Hand berechnet) anzulegen,
 Kantenfälle (leere Menge, Bestellung ohne Positionen, Rabatt-Ausreißer) abzudecken und alles reproduzierbar zu
-machen. „Microsoft" wird nur als Herkunftshinweis der Northwind-Beispieldaten genannt; die Lösung bleibt
+machen. „Microsoft“ wird nur als Herkunftshinweis der Northwind-Beispieldaten genannt; die Lösung bleibt
 sprachneutral für C#, Go, Java, Python, Rust und Swift.
 
 **EN:** In this unit you learn to choose synthetic Northwind test data incl. `ALFKI` without real personal content,
