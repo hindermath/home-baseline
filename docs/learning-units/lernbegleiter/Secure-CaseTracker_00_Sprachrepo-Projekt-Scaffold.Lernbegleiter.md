@@ -47,6 +47,9 @@ domain logic.
 | Governance-Preset | Vordefinierter Regelsatz, der Sicherheit und Qualität im Spec-Kit-Lauf steuert. |
 | Secure-Development-Basis / Baseline | Zentrale sichere-Entwicklung-Grundlage unter `docs/secure-development/`. |
 | Blocker | Dokumentiertes Hindernis, das eine Aufgabe (noch) verhindert. |
+| Container / Sandbox | Abgeschottete Umgebung, in der Werkzeuge und KI-Agenten laufen, ohne den echten Rechner zu berühren. |
+| Container-First-Gate | Regel: Ein KI-Agent wird nur im Container gestartet, nie direkt auf dem Arbeitsplatz-Rechner. |
+| KI-Agent / AI agent | Werkzeug wie Codex, Claude, Copilot oder Gemini, das Dateien liest/schreibt und Befehle ausführt. |
 
 ## Erklärung Schritt für Schritt / Step-by-Step Explanation
 
@@ -84,13 +87,30 @@ etwas, wird es als **Blocker** oder `Open` mit konkretem Behebungsweg dokumentie
 `specify preset list`. Check whether `docs/secure-development/` exists as a working baseline. If something is
 missing, document it as a **blocker** or `Open` with a concrete fix path – do not silently skip it.
 
+**DE:** **Schritt 5 – Container-First-Gate, bevor du einen KI-Agenten startest.** Wenn du in diesem Schritt
+einen KI-Agenten (z. B. Codex, Claude, Copilot, Gemini) nutzt, startest du ihn **im Container bzw. in der
+freigegebenen Sandbox** (`absdd-image-sandbox`), **nie** direkt auf deinem Arbeitsplatz-Rechner. Warum? Ein
+Agent kann Dateien schreiben und Befehle ausführen; im Container bleibt ein Fehlgriff eingegrenzt, deine
+privaten Daten und Zugangsdaten sind geschützt. Arbeite die Preflight-Checkliste aus
+`Secure-Trader-Sandbox-Preflight.md` ab. Nutzt du keinen Agenten, hältst du das als `N/A` mit Begründung fest.
+Lesen, Review und Tippen ohne Agent dürfen auf dem Host bleiben.
+
+**EN:** **Step 5 – Container-first gate before you start an AI agent.** If you use an AI agent in this step
+(e.g. Codex, Claude, Copilot, Gemini), you start it **inside the container or approved sandbox**
+(`absdd-image-sandbox`), **never** directly on your workstation. Why? An agent can write files and run
+commands; inside the container a mistake stays contained and your private data and credentials are protected.
+Work through the preflight checklist in `Secure-Trader-Sandbox-Preflight.md`. If you do not use an agent,
+record this as `N/A` with a reason. Reading, review, and typing without an agent may stay on the host.
+
 **DE:** **Typische Fehler.** Fachlogik zu früh einbauen. Build- oder Testbefehle nur im Kopf behalten.
 Fehlende Presets ignorieren. Echte Daten, Secrets oder private Pfade in Beispielausgaben. Mehrere Sprachen
-gleichzeitig anfangen und keine sauber fertigstellen.
+gleichzeitig anfangen und keine sauber fertigstellen. **Einen KI-Agenten direkt auf dem Arbeitsplatz-Rechner
+statt im Container starten.**
 
 **EN:** **Common mistakes.** Adding domain logic too early. Keeping build or test commands only in your head.
 Ignoring missing presets. Real data, secrets, or private paths in sample output. Starting several languages
-at once and finishing none cleanly.
+at once and finishing none cleanly. **Starting an AI agent directly on the workstation instead of inside the
+container.**
 
 ### Beispiel / Example
 
@@ -115,6 +135,7 @@ Blocker:        keiner  (sonst: "Open: govulncheck fehlt, Folgeaufgabe in Einhei
 |---|---|---|
 | LF 1 Das Unternehmen und die eigene Rolle im Betrieb beschreiben | Primär / Primary | Arbeitsorganisation und die eigene Rolle prägen, wie ein reproduzierbares Projektgerüst entsteht. |
 | LF 2 Arbeitsplätze nach Kundenwunsch ausstatten | Berührt / Touched | Die eingerichtete, lauffähige Entwicklungsumgebung ist die technische Ausstattung des Arbeitsplatzes. |
+| LF 4 Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen | Berührt / Touched | Das Container-First-Gate schützt den eigenen Arbeitsbereich: KI-Agenten laufen isoliert, nicht auf dem Arbeitsplatz-Rechner. |
 
 ## Sicher & barrierefrei denken / Thinking Secure & Accessible
 
@@ -133,6 +154,16 @@ code generation, and audit-ready evidence. Matching checklists: `CL_01` (standar
 *first a verified, reproducible baseline, then domain logic.* Accessibility aspect: build and test
 instructions are written as clear text with a language tag in the code block, so they remain usable with a
 screen reader or Braille display; no color-only signals for success or failure.
+
+**DE:** Zusätzliche Sicherheitsentscheidung: *Container-First für KI-Agenten.* Wird ein Agent genutzt, läuft er
+im Container/der Sandbox, nie auf dem Arbeitsplatz-Rechner (Grundlage `Secure-Trader-Sandbox-Preflight.md`,
+`CL_12`). In ISO/IEC-27001-zertifizierten Organisationen ist das ein pruefbarer Kontrollpunkt (u. a. A.8.25,
+A.8.31), kein Komfort.
+
+**EN:** Additional security decision: *container-first for AI agents.* If an agent is used, it runs inside the
+container/sandbox, never on the workstation (basis `Secure-Trader-Sandbox-Preflight.md`, `CL_12`). In
+ISO/IEC 27001-certified organizations this is an auditable control point (e.g. A.8.25, A.8.31), not a
+convenience.
 
 ## Verständnisfragen / Comprehension Questions
 
@@ -212,6 +243,22 @@ screen reader or Braille display; no color-only signals for success or failure.
 
    </details>
 
+7. **DE:** Warum muss ein KI-Agent im Container laufen und nicht direkt auf dem Arbeitsplatz-Rechner? /
+   **EN:** Why must an AI agent run inside the container and not directly on the workstation?
+
+   <details><summary>Musterantwort / Model answer</summary>
+
+   **DE:** Ein Agent kann Dateien schreiben, Befehle ausführen und auf das Netzwerk zugreifen. Ohne Isolation
+   trifft das den echten Rechner mit privaten Daten, Zugangsdaten und anderen Projekten. Im Container gelten
+   klare Grenzen (Mounts, Schreibrechte, Netzwerk), und ein Fehlgriff bleibt eingegrenzt. In
+   ISO-27001-zertifizierten Organisationen ist das ein pruefbarer Kontrollpunkt, kein Komfort.
+   **EN:** An agent can write files, run commands, and access the network. Without isolation this hits the real
+   machine with private data, credentials, and other projects. Inside the container clear limits apply
+   (mounts, write permissions, network), and a mistake stays contained. In ISO-27001-certified organizations
+   this is an auditable control point, not a convenience.
+
+   </details>
+
 ## Selbstcheck / Self-Check
 
 **DE:** Ich kann …
@@ -221,6 +268,7 @@ screen reader or Braille display; no color-only signals for success or failure.
 - [ ] die sechs Governance-Presets und die Secure-Development-Basis nachweisen.
 - [ ] fehlende Werkzeuge als Blocker oder `Open` statt als stille Lücke behandeln.
 - [ ] begründen, warum in diesem Schritt keine Fachlogik entsteht.
+- [ ] das Container-First-Gate anwenden: einen KI-Agenten nur im Container starten, nie auf dem Arbeitsplatz-Rechner.
 
 **EN:** I can …
 
@@ -229,6 +277,7 @@ screen reader or Braille display; no color-only signals for success or failure.
 - [ ] prove the six governance presets and the secure-development baseline.
 - [ ] treat missing tools as a blocker or `Open` rather than a silent gap.
 - [ ] explain why no domain logic is created in this step.
+- [ ] apply the container-first gate: start an AI agent only inside the container, never on the workstation.
 
 ## Weiter zur Aufgabe / On to the Task
 

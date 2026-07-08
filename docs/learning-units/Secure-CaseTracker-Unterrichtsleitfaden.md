@@ -21,7 +21,7 @@
 
 | Schritt | Was gelernt wird | Warum diese Stelle |
 |---:|---|---|
-| 00 | Sprachrepo-Projekt-Scaffold | Ohne lauffähige Projekt-, Build-, Test- und Preset-Basis starten spätere Aufgaben unsauber. |
+| 00 | Sprachrepo-Projekt-Scaffold | Ohne lauffähige Projekt-, Build-, Test- und Preset-Basis starten spätere Aufgaben unsauber; hier gilt das Container-First-Gate: KI-Agenten nur im Container starten (siehe `Secure-Trader-Sandbox-Preflight.md`). |
 | 01 | Auftrag, Scope, Rollen, erste Datenschutzannahmen | Ohne klaren Auftrag werden Sicherheitsprüfungen beliebig. |
 | 02 | Domänenmodell und Zustände | Ein sicheres Programm braucht ein klares fachliches Modell. |
 | 03 | Eingabevalidierung und Trust Boundaries | Viele Sicherheitsfehler beginnen an ungeprüften Eingaben. |
@@ -30,7 +30,7 @@
 | 06 | Persistenz, Import und Export | Dateien und Datenbanken sind typische Fehler- und Datenabflussstellen. |
 | 07 | Testbarkeit und Qualität | Sicherheit ohne Tests bleibt Behauptung. |
 | 08 | Supply Chain und MSL-Bewertung | Speichersichere Sprachen helfen, ersetzen aber keine Lieferkettenprüfung. |
-| 09 | Sandbox und agentische Entwicklung | KI-Agenten brauchen klare technische und organisatorische Grenzen. |
+| 09 | Sandbox und agentische Entwicklung | KI-Agenten brauchen klare technische und organisatorische Grenzen; das Container-First-Gate aus Unit 00 wird hier zur vollständigen Sandbox-Profilierung vertieft. |
 | 10 | Prozessanalyse und Kennzahlen | Kennzahlen brauchen Datenqualität, Datenschutz und Aussagegrenzen. |
 | 11 | Spec-Kit-Review und Abschluss | Ergebnisse müssen prüfbar und kundenverständlich zusammengeführt werden. |
 | 12 | Jahr-2-Baseline und Track-Ableitung | Jahr 3 soll aus einem belastbaren Jahr-2-Stand starten, nicht aus einem leeren Projekt. |
@@ -62,15 +62,15 @@
 | Spec-Kit-Nachweis | `spec.md`, `plan.md`, `tasks.md`, Checkliste, Review-Ergebnis |
 | Sandbox-Nachweis | Mount-Liste, Secret-Regel, Netzwerkentscheidung, Toolchain-Status |
 
-## Sandbox im 1. Lehrjahr / Sandbox in Year 1
+## Sandbox und Container-First-Gate / Sandbox and Container-First Gate
 
-**DE:** `absdd-image-sandbox` ist als öffentliches Referenz-Repo verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. Im 1. Lehrjahr ist die Sandbox vor allem Anschauungs- und Planungsgegenstand. Lernende sollen Grenzen für KI-Agenten, Secrets, Mounts und Netzwerk verstehen. Eine praktische Nutzung der Sandbox ist sinnvoll, aber nicht verpflichtend, wenn Container-, Mount- oder Agententechniken noch nicht ausreichend behandelt wurden.
+**DE:** `absdd-image-sandbox` ist als öffentliches Referenz-Repo verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. **Container-First-Gate:** Jeder KI-Agenten-Aufruf (z. B. Codex, Claude, Copilot, Gemini) erfolgt ab Unit 00 verbindlich im Container bzw. in der freigegebenen Sandbox — nie direkt auf dem Arbeitsplatz-Rechner der Auszubildenden. Diese Regel gilt, **bevor** der erste Agent gestartet wird; verbindliche Grundlage ist `Secure-Trader-Sandbox-Preflight.md`. Lernende sollen zusätzlich Grenzen für KI-Agenten, Secrets, Mounts und Netzwerk verstehen. Was über die Jahre wächst, ist die Tiefe der eigenen Sandbox-Profilierung (Mounts, Egress, Nachweise) — Unit 09 vertieft dies —, nicht die Frage, ob das Gate gilt.
 
-**EN:** `absdd-image-sandbox` is available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. In year 1, the sandbox is mainly a teaching and planning subject. Learners should understand boundaries for AI agents, secrets, mounts, and networking. Practical sandbox use is useful but not mandatory if container, mount, or agent techniques have not yet been covered deeply enough.
+**EN:** `absdd-image-sandbox` is available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. **Container-first gate:** every AI-agent invocation (e.g. Codex, Claude, Copilot, Gemini) runs inside the container or approved sandbox from unit 00 onward — never directly on the apprentice's workstation. This rule applies **before** the first agent is started; the binding basis is `Secure-Trader-Sandbox-Preflight.md`. Learners should additionally understand boundaries for AI agents, secrets, mounts, and networking. What grows over the years is the depth of your own sandbox profiling (mounts, egress, evidence) — unit 09 deepens this — not whether the gate applies.
 
-**DE:** Allgemeine Entwicklungsarbeit kann außerhalb der Sandbox mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio erfolgen. Die Sandbox wird dort vorbereitet, wo KI-Agenten, reproduzierbare Toolchains oder klare Schreibgrenzen wichtig werden.
+**DE:** Die Grenze verläuft am Agenten-Aufruf: Lesen, Review und allgemeine Entwicklung **ohne Agenten** dürfen außerhalb der Sandbox erfolgen, zum Beispiel mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio. Sobald ein KI-Agent Dateien oder Befehle ausführt, geschieht das im Container.
 
-**EN:** General development work may happen outside the sandbox with JetBrains IDEs, VS Code, or Visual Studio on Windows. The sandbox is prepared where AI agents, reproducible toolchains, or clear write boundaries become important.
+**EN:** The boundary is the agent invocation: reading, review, and general development **without agents** may happen outside the sandbox, for example with JetBrains IDEs, VS Code, or Visual Studio on Windows. As soon as an AI agent runs files or commands, it happens inside the container.
 
 ## Typische Fehler / Common Mistakes
 
@@ -84,6 +84,8 @@
   **EN:** Planning tests only for success paths.
 - **DE:** KI-Agenten ohne Schreibgrenzen, Sandbox-Regeln oder Review nutzen.
   **EN:** Using AI agents without write boundaries, sandbox rules, or review.
+- **DE:** Einen KI-Agenten direkt auf dem Arbeitsplatz-Rechner starten statt im Container (Container-First-Gate ab Unit 00, siehe `Secure-Trader-Sandbox-Preflight.md`).
+  **EN:** Starting an AI agent directly on the workstation instead of inside the container (container-first gate from unit 00, see `Secure-Trader-Sandbox-Preflight.md`).
 
 ## Vorschlag für Unterrichtsablauf / Suggested Teaching Flow
 

@@ -85,13 +85,13 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 
 ## Sandbox-Einordnung / Sandbox Classification
 
-**DE:** `absdd-image-sandbox` ist als öffentliches Referenz-Repository verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. Im 1. Lehrjahr ist die Sandbox ein Lern- und Zielbild, aber keine Pflicht für jeden praktischen Arbeitsschritt. Lernende sollen verstehen, warum eine Sandbox KI-gestützte Entwicklung begrenzt, welche Daten nicht in Agentenläufe gehören und welche Nachweise später wichtig werden.
+**DE:** `absdd-image-sandbox` ist als öffentliches Referenz-Repository verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. **Container-First-Gate:** Jeder KI-Agenten-Aufruf (z. B. Codex, Claude, Copilot, Gemini) erfolgt ab Unit 00 verbindlich im Container bzw. in der freigegebenen Sandbox — nie direkt auf dem Arbeitsplatz-Rechner der Auszubildenden. Diese Regel gilt, **bevor** der erste Agent gestartet wird. Verbindliche Grundlage ist [`Secure-Trader-Sandbox-Preflight.md`](Secure-Trader-Sandbox-Preflight.md). Lernende sollen zusätzlich verstehen, warum eine Sandbox KI-gestützte Entwicklung begrenzt, welche Daten nicht in Agentenläufe gehören und welche Nachweise später wichtig werden.
 
-**EN:** `absdd-image-sandbox` is available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. In the first training year, the sandbox is a learning target and reference picture, but not mandatory for every practical work step. Learners should understand why a sandbox limits AI-assisted development, which data must not enter agent runs, and which evidence will matter later.
+**EN:** `absdd-image-sandbox` is available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. **Container-first gate:** every AI-agent invocation (e.g. Codex, Claude, Copilot, Gemini) runs inside the container or approved sandbox from unit 00 onward — never directly on the apprentice's workstation. This rule applies **before** the first agent is started. The binding basis is [`Secure-Trader-Sandbox-Preflight.md`](Secure-Trader-Sandbox-Preflight.md). Learners should additionally understand why a sandbox limits AI-assisted development, which data must not enter agent runs, and which evidence will matter later.
 
-**DE:** Allgemeine Entwicklung, Lesen, Review und Bedienung der Werkzeuge können außerhalb der Sandbox erfolgen, zum Beispiel mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio. Die Sandbox wird dort genutzt oder geplant, wo KI-Agenten, reproduzierbare Toolchains, riskantere Experimente oder klare Schreib- und Netzwerkgrenzen wichtig sind.
+**DE:** Die Grenze verläuft am Agenten-Aufruf: Lesen, Review und allgemeine Entwicklung **ohne Agenten** dürfen außerhalb der Sandbox erfolgen, zum Beispiel mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio. Sobald ein KI-Agent Dateien oder Befehle ausführt, geschieht das im Container. Was über die Jahre wächst, ist die Tiefe der eigenen Sandbox-Profilierung (Mounts, Egress, Nachweise), nicht die Frage, ob das Gate gilt.
 
-**EN:** General development, reading, review, and tool operation may happen outside the sandbox, for example with JetBrains IDEs, VS Code, or Visual Studio on Windows. The sandbox is used or planned where AI agents, reproducible toolchains, higher-risk experiments, or clear write and network boundaries matter.
+**EN:** The boundary is the agent invocation: reading, review, and general development **without agents** may happen outside the sandbox, for example with JetBrains IDEs, VS Code, or Visual Studio on Windows. As soon as an AI agent runs files or commands, it happens inside the container. What grows over the years is the depth of your own sandbox profiling (mounts, egress, evidence), not whether the gate applies.
 
 ## Empfohlene Repo-Struktur / Recommended Repository Structure
 
@@ -147,7 +147,7 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 | 06 | Persistenz, Import und Export | AE, DPA |
 | 07 | Testbarkeit und Qualität | AE |
 | 08 | Supply Chain und MSL-Bewertung | SI |
-| 09 | Sandbox und agentische Entwicklung | SI, DV, im 1. Lehrjahr vorbereitend |
+| 09 | Sandbox und agentische Entwicklung | SI, DV, Container-First-Gate ab Unit 00 verbindlich, hier vertieft |
 | 10 | Betriebssicht und Kennzahlen | DPA, SI |
 | 11 | Spec-Kit-Review und Abschluss | AE, SI, DPA, DV |
 | 12 | Jahr-2-Baseline und Track-Ableitung | AE, SI, DPA, DV |

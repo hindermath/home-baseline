@@ -50,9 +50,9 @@
 
 ### Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
 
-**DE:** Allgemeine Codearbeit, Lesen, Review und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio dürfen außerhalb der Sandbox stattfinden. KI-gestützte Schreibarbeit soll aber so geplant werden, dass ab dem 3. Lehrjahr eine sichere Sandbox-Nutzung möglich und nachweisbar ist.
+**DE:** Die Grenze verläuft am KI-Agenten-Aufruf: Allgemeine, agentenlose Codearbeit, Lesen, Review und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio dürfen außerhalb der Sandbox stattfinden. Jeder KI-Agenten-Aufruf erfolgt jedoch verbindlich im Container/der Sandbox (Container-First-Gate ab Unit 00, Grundlage `Secure-Trader-Sandbox-Preflight.md`), nie auf dem Arbeitsplatz-Rechner. Was in Jahr 2/3 wächst, ist die Tiefe der Betriebsnachweise, nicht die Frage, ob das Gate gilt.
 
-**EN:** General code work, reading, review, and use of JetBrains IDEs, VS Code, or Windows-only Visual Studio may happen outside the sandbox. AI-assisted write work should be planned so that secure sandbox use is possible and reviewable from the third training year onward.
+**EN:** The boundary is the AI-agent invocation: general agent-free code work, reading, review, and use of JetBrains IDEs, VS Code, or Windows-only Visual Studio may happen outside the sandbox. Every AI-agent invocation, however, runs in the container/sandbox as a binding rule (container-first gate from unit 00, basis `Secure-Trader-Sandbox-Preflight.md`), never on the workstation. What grows in year 2/3 is the depth of operational evidence, not whether the gate applies.
 
 ## Anforderungen / Requirements
 
@@ -96,5 +96,5 @@
 ## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-v2_09_Sandbox-und-Betriebsnachweise.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für ein Sandbox- und Betriebsnachweis-Konzept der EuFPA-Lernreihe Secure CaseTracker v2. Berücksichtige die Public-Referenz `https://github.com/hindermath/absdd-image-sandbox`, die Jahr-2-Abgrenzung ohne harte Nutzungspflicht, IDE-/Editor-Arbeit außerhalb der Sandbox und die Vorbereitung auf verpflichtendere Sandbox-Kompetenz ab Jahr 3. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-v2_09_Sandbox-und-Betriebsnachweise.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für ein Sandbox- und Betriebsnachweis-Konzept der EuFPA-Lernreihe Secure CaseTracker v2. Berücksichtige die Public-Referenz `https://github.com/hindermath/absdd-image-sandbox`, das verbindliche Container-First-Gate (jeder KI-Agenten-Aufruf im Container, nie auf dem Arbeitsplatz-Rechner, ab Unit 00, Grundlage Secure-Trader-Sandbox-Preflight.md), agentenlose IDE-/Editor-Arbeit außerhalb der Sandbox und die in Jahr 2/3 wachsende Tiefe der Betriebsnachweise. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

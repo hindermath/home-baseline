@@ -14,9 +14,9 @@
 
 ## Lernziel / Learning Goal
 
-**DE:** Lernende können erklären, warum KI-gestützte Entwicklungsarbeit an der Bestell-/Handelsplattform Secure OrderDesk in einer freigegebenen Sandbox stattfinden soll und welche Nachweise dafür später erforderlich sind. Im 1. Lehrjahr ist die praktische Sandbox-Nutzung noch keine Pflicht.
+**DE:** Lernende können erklären, warum KI-gestützte Entwicklungsarbeit an der Bestell-/Handelsplattform Secure OrderDesk in einer freigegebenen Sandbox stattfinden **muss** und welche Nachweise dafür erforderlich sind. Das Container-First-Gate (jeder KI-Agenten-Aufruf im Container, nie auf dem Arbeitsplatz-Rechner) gilt ab Unit 00 verbindlich; diese Einheit vertieft die vollständige Sandbox-Profilierung (Mounts, Egress, Nachweise).
 
-**EN:** Learners can explain why AI-assisted development work on the Secure OrderDesk ordering/trading platform should happen in an approved sandbox and which evidence will later be required. In the first training year, practical sandbox use is not yet mandatory.
+**EN:** Learners can explain why AI-assisted development work on the Secure OrderDesk ordering/trading platform **must** happen in an approved sandbox and which evidence is required. The container-first gate (every AI-agent invocation inside the container, never on the workstation) is binding from unit 00; this unit deepens the full sandbox profiling (mounts, egress, evidence).
 
 ## Fachrichtungsbezug / Specialization Fit
 
@@ -47,16 +47,16 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Plane, wie Secure-OrderDesk-Aufgaben später in oder mit `absdd-image-sandbox` bearbeitet werden können. Dokumentiere Mounts, Schreibgrenzen, Netzwerkannahmen, Secret-Regeln (z. B. Datenbank-Zugangsdaten), den Umgang mit einer fiktiven Testdatenbank (Northwind inkl. `ALFKI`), den Toolchain-Status für die sechs Zielsprachen und klare Grenzen für KI-Agenten (Codex, Copilot, Claude, Gemini). Halte ausdrücklich fest, dass im 1. Lehrjahr auch Arbeit außerhalb der Sandbox zulässig ist, wenn die Sandbox-Technologien noch nicht ausreichend behandelt wurden. Allgemeine Entwicklung, Lesen und Review dürfen außerhalb stattfinden, z. B. mit VS Code oder JetBrains-IDEs.
+**DE:** Plane, wie Secure-OrderDesk-Aufgaben später in oder mit `absdd-image-sandbox` bearbeitet werden können. Dokumentiere Mounts, Schreibgrenzen, Netzwerkannahmen, Secret-Regeln (z. B. Datenbank-Zugangsdaten), den Umgang mit einer fiktiven Testdatenbank (Northwind inkl. `ALFKI`), den Toolchain-Status für die sechs Zielsprachen und klare Grenzen für KI-Agenten (Codex, Copilot, Claude, Gemini). Halte ausdrücklich das Container-First-Gate fest: Jeder KI-Agenten-Aufruf erfolgt im Container/der Sandbox, nie auf dem Arbeitsplatz-Rechner (Grundlage `Secure-Trader-Sandbox-Preflight.md`). Nur agentenlose Tätigkeit — allgemeine Entwicklung, Lesen und Review — darf außerhalb stattfinden, z. B. mit VS Code oder JetBrains-IDEs.
 
-**EN:** Plan how Secure OrderDesk tasks can later be worked on in or with `absdd-image-sandbox`. Document mounts, write boundaries, network assumptions, secret rules (e.g. database credentials), the handling of a fictitious test database (Northwind incl. `ALFKI`), the toolchain status for the six target languages, and clear boundaries for AI agents (Codex, Copilot, Claude, Gemini). Explicitly record that work outside the sandbox remains acceptable in the first training year if the sandbox technologies have not been covered deeply enough. General development, reading, and review may happen outside, e.g. with VS Code or JetBrains IDEs.
+**EN:** Plan how Secure OrderDesk tasks can later be worked on in or with `absdd-image-sandbox`. Document mounts, write boundaries, network assumptions, secret rules (e.g. database credentials), the handling of a fictitious test database (Northwind incl. `ALFKI`), the toolchain status for the six target languages, and clear boundaries for AI agents (Codex, Copilot, Claude, Gemini). Explicitly record the container-first gate: every AI-agent invocation happens inside the container/sandbox, never on the workstation (basis `Secure-Trader-Sandbox-Preflight.md`). Only agent-free work — general development, reading, and review — may happen outside, e.g. with VS Code or JetBrains IDEs.
 
 ## Anforderungen / Requirements
 
 - **R-01:** Mounts, Schreibgrenzen, Netzwerkannahmen und Secret-Regeln (inkl. Datenbank-Zugangsdaten und fiktiver Testdatenbank) sind dokumentiert.
 - **R-02:** Jede der sechs Zielsprachen erhält einen Toolchain-Status `Supported`, `Open` oder `N/A`.
 - **R-03:** Die Grenzen für KI-Agenten sind für Codex, Copilot, Claude und Gemini gleichwertig verständlich.
-- **R-04:** Die Jahr-1-Regel ist festgehalten: praktische Sandbox-Nutzung ist begründete Vorbereitung, keine Pflicht.
+- **R-04:** Das Container-First-Gate ist festgehalten: Jeder KI-Agenten-Aufruf erfolgt ab Unit 00 verbindlich im Container/der Sandbox, nie auf dem Arbeitsplatz-Rechner. Diese Einheit vertieft die vollständige Sandbox-Profilierung (Mounts, Egress, Nachweise).
 - **R-05:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert.
 
 ## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
@@ -85,12 +85,12 @@
 - [ ] Mounts, Schreibgrenzen, Netzwerk, Secrets und Testdatenbank-Regeln sind dokumentiert.
 - [ ] Jede Zielsprachen-Toolchain hat einen Status.
 - [ ] Agenten-Grenzen sind für Codex, Copilot, Claude und Gemini gleichwertig verständlich.
-- [ ] Praktische Sandbox-Nutzung ist für Jahr 1 nicht als Pflicht formuliert, sondern als begründete Vorbereitung.
+- [ ] Das Container-First-Gate ist verbindlich formuliert: KI-Agenten-Aufrufe nur im Container, nie auf dem Arbeitsplatz-Rechner.
 - [ ] Keine echten personenbezogenen Daten oder Secrets sind für Agentenläufe vorgesehen.
 - [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
 ## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-OrderDesk_09_Sandbox-und-Agentische-Entwicklung.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für die vorbereitende Sandbox-Einordnung der Bestell-/Handelsplattform Secure OrderDesk (Kundenfirma Secure Trader, Northwind-Datenbasis inkl. ALFKI): Public-Referenz absdd-image-sandbox, Mounts, Schreibgrenzen, Secret-Regeln, fiktive Testdatenbank, Netzwerkannahmen, MSL-Support-Matrix, KI-Agenten-Grenzen und klare N/A-Begründung, falls praktische Sandbox-Nutzung im 1. Lehrjahr noch nicht verpflichtend ist. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-OrderDesk_09_Sandbox-und-Agentische-Entwicklung.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für die Sandbox-Einordnung und -Vertiefung der Bestell-/Handelsplattform Secure OrderDesk (Kundenfirma Secure Trader, Northwind-Datenbasis inkl. ALFKI): Public-Referenz absdd-image-sandbox, Mounts, Schreibgrenzen, Secret-Regeln, fiktive Testdatenbank, Netzwerkannahmen, MSL-Support-Matrix, KI-Agenten-Grenzen und das verbindliche Container-First-Gate (jeder KI-Agenten-Aufruf im Container, nie auf dem Arbeitsplatz-Rechner, gemäß Secure-Trader-Sandbox-Preflight.md). Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

@@ -15,8 +15,9 @@
 - **Manuelle Spec-Kit-Laeufe:** KI-Agenten bereiten Intakes und Struktur vor, starten aber keine Spec-Kit-Laeufe fuer Lernende.
 - **Berufsbild bleibt fuehrend:** Spec-Kit-Laeufe begleiten Aufgaben pro Lehrjahr, Track, Sprachpfad und Aufgaben-Lastenheft; sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Pruefungsvorbereitung.
 - **Auditfaehige Nachweise:** Jede Aufgabe benennt erwartete Dokumente, Checklisten, `N/A`-Begruendungen und Evidenzpfade.
+- **Container-First fuer KI-Agenten:** Jeder KI-Agenten-Aufruf erfolgt in einer freigegebenen Sandbox bzw. einem Container (Referenz: `absdd-image-sandbox`), nie direkt auf dem Arbeitsplatz-Rechner der Auszubildenden. Diese Regel gilt als Gate ab dem 1. Lehrjahr (Unit 00), bevor der erste Agent gestartet wird. Verbindliche Grundlage: [`Secure-Trader-Sandbox-Preflight.md`](Secure-Trader-Sandbox-Preflight.md), `Leitlinie_Sichere-Entwicklungs-Sandbox.md` und `CL_12_Agentische-KI-Sandbox.md`.
 
-*DE-first, EN-second; CEFR B2; WCAG 2.2 AA; memory-safe-language neutral where possible; manual Spec Kit runs only; occupational learning remains leading; and audit-ready evidence paths.*
+*DE-first, EN-second; CEFR B2; WCAG 2.2 AA; memory-safe-language neutral where possible; manual Spec Kit runs only; occupational learning remains leading; audit-ready evidence paths; and container-first for AI agents (every agent invocation runs in an approved sandbox/container, never on the apprentice's workstation, as a gate from year 1 / unit 00 — see `Secure-Trader-Sandbox-Preflight.md`).*
 
 ## Gemeinsame fiktive Systemlandschaft / Shared Fictional Landscape
 

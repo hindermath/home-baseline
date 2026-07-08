@@ -60,7 +60,7 @@ field carries the unit; "touched" learning fields are practiced alongside.
 
 | Nr. | Einheit / Unit | Primär / Primary | Berührt / Touched | Begründung / Rationale |
 |---:|---|---|---|---|
-| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung. |
+| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2, LF 4 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung; Container-First-Gate fuer KI-Agenten als sichere Arbeitsumgebung vor der ersten Agenten-Nutzung. |
 | 01 | Kundenauftrag und Scope | LF 1 | LF 4, LF 6 | Auftrag, Rolle, erste Schutzbedarfs- und Serviceperspektive. |
 | 02 | Domänenmodell und Zustände | LF 5 | LF 4 | Fachliches Datenmodell als Grundlage der Datenverwaltung. |
 | 03 | Eingabevalidierung und Trust Boundaries | LF 4 | LF 5 | Schutzbedarf an Vertrauensgrenzen, sichere Datenverarbeitung. |
@@ -147,7 +147,7 @@ Spec Kit are in the foreground.
 
 | Nr. | Einheit / Unit | Primär / Primary | Berührt / Touched | Begründung / Rationale |
 |---:|---|---|---|---|
-| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung. |
+| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2, LF 4 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung; Container-First-Gate fuer KI-Agenten als sichere Arbeitsumgebung vor der ersten Agenten-Nutzung. |
 | 01 | Kundenauftrag, Scope und Dienstidee | LF 1 | LF 4, LF 6 | Auftrag, Rolle, erste Schutzbedarfs- und Serviceperspektive. |
 | 02 | Domänenmodell: Maschinen, Snapshots und Zustände | LF 5 | LF 4 | Fachliches Datenmodell als Grundlage der Datenverwaltung. |
 | 03 | Eingabevalidierung und Trust Boundaries | LF 4 | LF 5 | Schutzbedarf an Vertrauensgrenzen, sichere Verarbeitung von Importdaten. |
@@ -219,7 +219,7 @@ customer and order data are in the foreground. The data base is the classic Nort
 
 | Nr. | Einheit / Unit | Primär / Primary | Berührt / Touched | Begründung / Rationale |
 |---:|---|---|---|---|
-| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung. |
+| 00 | Sprachrepo-Projekt-Scaffold | LF 1 | LF 2, LF 4 | Arbeitsorganisation, Rolle im Betrieb, eingerichtete Entwicklungsumgebung; Container-First-Gate fuer KI-Agenten als sichere Arbeitsumgebung vor der ersten Agenten-Nutzung. |
 | 01 | Kundenauftrag, Scope und Handelsdomäne | LF 1 | LF 4, LF 6 | Auftrag der Handelsfirma, Rolle, erste Schutzbedarfs- und Serviceperspektive. |
 | 02 | Domänenmodell: Kunden, Produkte, Bestellungen und Positionen | LF 5 | LF 4 | Relationales Datenmodell als Grundlage der Datenverwaltung. |
 | 03 | Eingabevalidierung und Trust Boundaries | LF 4 | LF 5 | Schutzbedarf an Vertrauensgrenzen, sichere Verarbeitung von Bestelleingaben. |

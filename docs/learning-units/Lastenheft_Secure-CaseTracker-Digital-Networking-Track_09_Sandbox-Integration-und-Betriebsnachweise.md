@@ -45,9 +45,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite eine Spezifikation für Sandbox-Integration und Betriebsnachweise. Berücksichtige Netzwerkzugriffe, Mounts, Schreibgrenzen, Toolchain-Status, erlaubte Abweichungen, Nachweispfade und Risiken bei Arbeit außerhalb der Sandbox.
+**DE:** Erarbeite eine Spezifikation für Sandbox-Integration und Betriebsnachweise. Berücksichtige Netzwerkzugriffe, Mounts, Schreibgrenzen, Toolchain-Status, erlaubte Abweichungen und Nachweispfade. Das Container-First-Gate gilt verbindlich: Jeder KI-Agenten-Aufruf erfolgt im Container/der Sandbox, nie auf dem Arbeitsplatz-Rechner (ab Unit 00, Grundlage `Secure-Trader-Sandbox-Preflight.md`); nur agentenlose Arbeit außerhalb der Sandbox wird als Restrisiko bewertet.
 
-**EN:** Prepare a specification for sandbox integration and operational evidence. Keep later implementation separate from this intake.
+**EN:** Prepare a specification for sandbox integration and operational evidence. Consider network access, mounts, write boundaries, toolchain status, permitted deviations, and evidence paths. The container-first gate is binding: every AI-agent invocation runs in the container/sandbox, never on the workstation (from unit 00, basis `Secure-Trader-Sandbox-Preflight.md`); only agent-free work outside the sandbox is assessed as residual risk. Keep later implementation separate from this intake.
 
 ## Anforderungen / Requirements
 
