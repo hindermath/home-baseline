@@ -21,7 +21,7 @@
 
 | Schritt | Was gelernt wird | Warum diese Stelle |
 |---:|---|---|
-| 00 | Sprachrepo-Projekt-Scaffold | Ohne lauffähige Projekt-, Build-, Test- und Preset-Basis starten spätere Aufgaben unsauber. |
+| 00 | Sprachrepo-Projekt-Scaffold | Ohne lauffähige Projekt-, Build-, Test- und Preset-Basis starten spätere Aufgaben unsauber; hier gilt das Container-First-Gate: KI-Agenten nur im Container starten (siehe `Secure-Trader-Sandbox-Preflight.md`). |
 | 01 | Auftrag, Scope, Dienstidee, erste Datenschutzannahmen | Ohne klaren Auftrag werden Sicherheitsprüfungen beliebig. |
 | 02 | Domänenmodell: Maschinen, Snapshots und Zustände | Ein sicheres Programm braucht ein klares fachliches Modell. |
 | 03 | Eingabevalidierung und Trust Boundaries | Viele Sicherheitsfehler beginnen an ungeprüften Import-Eingaben. |
@@ -30,7 +30,7 @@
 | 06 | Persistenz, Import und Export | Dateien und Ablagen sind typische Fehler- und Datenabflussstellen. |
 | 07 | Testbarkeit und Qualität | Sicherheit ohne Tests bleibt Behauptung. |
 | 08 | Supply Chain und MSL-Bewertung | Speichersichere Sprachen helfen, ersetzen aber keine Lieferkettenprüfung. |
-| 09 | Sandbox und agentische Entwicklung | KI-Agenten brauchen klare technische und organisatorische Grenzen. |
+| 09 | Sandbox und agentische Entwicklung | KI-Agenten brauchen klare technische und organisatorische Grenzen; das Container-First-Gate aus Unit 00 wird hier zur vollständigen Sandbox-Profilierung vertieft. |
 | 10 | Betriebssicht und Kennzahlen | Health und Kennzahlen brauchen Datenqualität, Datenschutz und Aussagegrenzen. |
 | 11 | Spec-Kit-Review und Abschluss | Ergebnisse müssen prüfbar und kundenverständlich zusammengeführt werden. |
 | 12 | Jahr-2-Baseline und Track-Ableitung | Jahr 3 soll aus einem belastbaren Jahr-2-Stand starten, nicht aus einem leeren Projekt. |
@@ -74,6 +74,8 @@
   **EN:** Planning tests only for success paths.
 - **DE:** KI-Agenten ohne Schreibgrenzen, Sandbox-Regeln oder Review nutzen.
   **EN:** Using AI agents without write boundaries, sandbox rules, or review.
+- **DE:** Einen KI-Agenten direkt auf dem Arbeitsplatz-Rechner starten statt im Container (Container-First-Gate ab Unit 00, siehe `Secure-Trader-Sandbox-Preflight.md`).
+  **EN:** Starting an AI agent directly on the workstation instead of inside the container (container-first gate from unit 00, see `Secure-Trader-Sandbox-Preflight.md`).
 
 ## Durchführung mit Level 1 und Level 2 / Execution with Level 1 and Level 2
 

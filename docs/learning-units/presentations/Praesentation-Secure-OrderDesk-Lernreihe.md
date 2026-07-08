@@ -394,17 +394,18 @@ Ein sichtbares Open ist besser als ein verstecktes Risiko.
 
 # Sandbox und KI-Agenten
 
-- Die Sandbox begrenzt Umgebung, Tools und Schreibbereiche
+- Container-First-Gate: Jeder KI-Agenten-Aufruf im Container, nie auf dem Arbeitsplatz-Rechner
+- Gilt ab Unit 00 verbindlich, bevor der erste Agent startet
 - Public-Referenz: <https://github.com/hindermath/absdd-image-sandbox>
-- Im 1. Lehrjahr ist praktische Sandbox-Nutzung noch keine Pflicht
-- Agenten erhalten klare Repo-Anweisungen
+- Grundlage: `Secure-Trader-Sandbox-Preflight.md`
 - Secrets und echte personenbezogene Daten gehören nicht in Prompts, Logs oder Git
 - Netzwerk- und Mount-Regeln werden dokumentiert
 - Ergebnisse werden durch Menschen geprüft
-- JetBrains IDEs, VS Code und Visual Studio können außerhalb der Sandbox genutzt werden
+- Nur agentenlose Arbeit (Lesen, Review, IDEs) darf außerhalb der Sandbox laufen
 
 ::: notes
 KI-Agenten sind Hilfsmittel, keine Freigabeinstanz.
+Das Gate ist ab Unit 00 verbindlich; in ISO-27001-zertifizierten Organisationen ein pruefbarer Kontrollpunkt (A.8.25, A.8.31).
 Die Lernenden sollen Grenzen und Kontrollpunkte verstehen.
 :::
 

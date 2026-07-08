@@ -22,17 +22,20 @@ Secure OrderDesk helfen, sollen riskantere Schritte in einer freigegebenen Sandb
 ablaufen – mit klaren **Mounts** (Schreibbereichen), **Schreibgrenzen**, **Netzwerkannahmen** und
 **Secret-Regeln** (z. B. Datenbank-Zugangsdaten). In dieser Einheit planst du, wie Secure-OrderDesk-Aufgaben
 später in oder mit dieser Sandbox bearbeitet werden, inklusive einer **fiktiven Testdatenbank** (Northwind inkl.
-`ALFKI`). Wichtig: Im 1. Lehrjahr ist die praktische Sandbox-Nutzung **noch keine Pflicht**. Allgemeine
-Entwicklung, Lesen und Review dürfen weiter außerhalb stattfinden, z. B. mit VS Code oder JetBrains-IDEs.
+`ALFKI`). Wichtig: Das **Container-First-Gate** gilt ab Unit 00 verbindlich — jeder KI-Agenten-Aufruf erfolgt
+im Container/der Sandbox, **nie** auf dem Arbeitsplatz-Rechner (Grundlage `Secure-Trader-Sandbox-Preflight.md`).
+Nur agentenlose Arbeit — allgemeine Entwicklung, Lesen und Review — darf außerhalb stattfinden, z. B. mit
+VS Code oder JetBrains-IDEs. Diese Einheit vertieft die vollständige Sandbox-Profilierung.
 
 **EN:** A **sandbox** is a fenced-off play area: what happens inside cannot damage the rest of the system. When
 AI agents (Codex, Copilot, Claude, Gemini) help develop the Secure OrderDesk ordering/trading platform, riskier
 steps should run in an approved sandbox like `absdd-image-sandbox` – with clear **mounts** (write areas),
 **write boundaries**, **network assumptions**, and **secret rules** (e.g. database credentials). In this unit
 you plan how Secure OrderDesk tasks can later be worked on in or with this sandbox, including a **fictitious
-test database** (Northwind incl. `ALFKI`). Important: in the first training year, practical sandbox use is **not
-yet mandatory**. General development, reading, and review may still happen outside, e.g. with VS Code or
-JetBrains IDEs.
+test database** (Northwind incl. `ALFKI`). Important: the **container-first gate** is binding from unit 00 —
+every AI-agent invocation happens inside the container/sandbox, **never** on the workstation (basis
+`Secure-Trader-Sandbox-Preflight.md`). Only agent-free work — general development, reading, and review — may
+happen outside, e.g. with VS Code or JetBrains IDEs. This unit deepens the full sandbox profiling.
 
 **DE:** Du dokumentierst außerdem eine MSL-Support-Matrix (Status `Supported`, `Open` oder `N/A` je Sprache) und
 klare Grenzen für KI-Agenten, die für alle Agenten gleichwertig verständlich sind.
@@ -98,15 +101,15 @@ sein. Warum? Reproduzierbarkeit und Fairness verlangen, dass die Regeln unabhän
 agent boundaries must be equally understandable for Codex, Copilot, Claude, and Gemini. Why? Reproducibility
 and fairness require that the rules apply independently of the agent.
 
-**DE:** **Typische Fehler.** Praktische Sandbox-Nutzung im 1. Lehrjahr als Pflicht formulieren. Datenbank-
-Zugangsdaten in Prompts oder Logs. Unbegrenzte Schreib- oder Netzwerkzugriffe. Echte Kundendaten in
+**DE:** **Typische Fehler.** Einen KI-Agenten direkt auf dem Arbeitsplatz-Rechner statt im Container starten.
+Datenbank-Zugangsdaten in Prompts oder Logs. Unbegrenzte Schreib- oder Netzwerkzugriffe. Echte Kundendaten in
 Agentenläufen statt fiktiver Testdatenbank. Fehlende Toolchains verschweigen. Agenten-Regeln nur für einen
 Agenten schreiben. Agenten-Caches ins Projekt committen.
 
-**EN:** **Common mistakes.** Phrasing practical sandbox use as mandatory in the first year. Database credentials
-in prompts or logs. Unlimited write or network access. Real customer data in agent runs instead of a fictitious
-test database. Hiding missing toolchains. Writing agent rules for only one agent. Committing agent caches to the
-project.
+**EN:** **Common mistakes.** Starting an AI agent directly on the workstation instead of inside the container.
+Database credentials in prompts or logs. Unlimited write or network access. Real customer data in agent runs
+instead of a fictitious test database. Hiding missing toolchains. Writing agent rules for only one agent.
+Committing agent caches to the project.
 
 ### Beispiel / Example
 
@@ -138,16 +141,18 @@ Jahr 1:         Praktische Sandbox-Nutzung = N/A (Container-/Mount-Kenntnisse no
 **DE:** Bezug zur Richtlinie Sichere Entwicklung: sichere Entwicklungsumgebung, KI-Codeerzeugung und
 Sandbox-Freigabe. Passende Checklisten: `CL_09` (Testmanagement/Reproduzierbarkeit), `CL_10`
 (Kompetenz/Nachweis) und `CL_12` (sichere Sandbox/Umgebung). Die Sicherheitsentscheidung dieser Einheit lautet:
-*KI-gestützte, riskantere Arbeit läuft in einer freigegebenen Sandbox mit klaren Schreib-, Netzwerk- und
-Secret-Grenzen und nur gegen eine fiktive Testdatenbank; im 1. Lehrjahr ist das begründete Vorbereitung, keine
-Pflicht.* A11Y-Aspekt: Die MSL-Support-Matrix und die Agenten-Grenzen werden als Texttabellen mit klaren
+*Jeder KI-Agenten-Aufruf läuft im Container/der Sandbox — nie auf dem Arbeitsplatz-Rechner — mit klaren
+Schreib-, Netzwerk- und Secret-Grenzen und nur gegen eine fiktive Testdatenbank; dieses Gate gilt ab Unit 00
+verbindlich (in ISO-27001-zertifizierten Organisationen ein pruefbarer Kontrollpunkt, u. a. A.8.25, A.8.31).*
+A11Y-Aspekt: Die MSL-Support-Matrix und die Agenten-Grenzen werden als Texttabellen mit klaren
 Statuswörtern geführt, nicht nur farblich, damit sie mit Screenreader und Braille-Zeile lesbar bleiben.
 
 **EN:** Relation to the Secure Development Guideline: secure development environment, AI code generation, and
 sandbox approval. Matching checklists: `CL_09` (test management/reproducibility), `CL_10` (competence/evidence),
-and `CL_12` (secure sandbox/environment). The security decision of this unit is: *AI-assisted, riskier work
-runs in an approved sandbox with clear write, network, and secret boundaries and only against a fictitious test
-database; in the first year this is justified preparation, not an obligation.* Accessibility aspect: the MSL
+and `CL_12` (secure sandbox/environment). The security decision of this unit is: *every AI-agent invocation
+runs inside the container/sandbox — never on the workstation — with clear write, network, and secret
+boundaries and only against a fictitious test database; this gate is binding from unit 00 (an auditable control
+point in ISO-27001-certified organizations, e.g. A.8.25, A.8.31).* Accessibility aspect: the MSL
 support matrix and the agent boundaries are kept as text tables with clear status words, not only by color, so
 they remain readable with a screen reader and Braille display.
 
@@ -220,15 +225,19 @@ they remain readable with a screen reader and Braille display.
 
    </details>
 
-6. **DE:** Warum ist praktische Sandbox-Nutzung im 1. Lehrjahr `N/A` und nicht Pflicht? /
-   **EN:** Why is practical sandbox use `N/A` in the first year and not mandatory?
+6. **DE:** Warum gilt das Container-First-Gate schon ab Unit 00, auch wenn die Sandbox-Technik erst hier vertieft wird? /
+   **EN:** Why does the container-first gate already apply from unit 00, even though the sandbox technology is only deepened here?
 
    <details><summary>Musterantwort / Model answer</summary>
 
-   **DE:** Container-, Mount- und Agentenkenntnisse sind oft noch nicht behandelt. Deshalb ist die Nutzung
-   begründete Vorbereitung; Arbeit außerhalb der Sandbox bleibt zulässig.
-   **EN:** Container, mount, and agent knowledge is often not covered yet. Therefore use is justified
-   preparation; work outside the sandbox remains acceptable.
+   **DE:** Weil das Risiko am Agenten-Aufruf entsteht, nicht am Kursfortschritt: Sobald ein KI-Agent Dateien
+   schreibt oder Befehle ausführt, muss das isoliert im Container geschehen. Das Gate (Agent nur im Container)
+   ist deshalb ab der ersten Nutzung verbindlich; was in dieser Einheit wächst, ist die Tiefe der eigenen
+   Sandbox-Profilierung (Mounts, Egress, Nachweise), nicht die Frage, ob das Gate gilt.
+   **EN:** Because the risk arises at the agent invocation, not with course progress: as soon as an AI agent
+   writes files or runs commands, it must happen isolated in the container. The gate (agent only in the
+   container) is therefore binding from first use; what grows in this unit is the depth of your own sandbox
+   profiling (mounts, egress, evidence), not whether the gate applies.
 
    </details>
 
@@ -252,7 +261,7 @@ they remain readable with a screen reader and Braille display.
 - [ ] Mounts, Schreibgrenzen und Netzwerk-/Datenbankannahmen dokumentieren.
 - [ ] Secret- und Datenschutzregeln für Agentenläufe formulieren und eine fiktive Testdatenbank vorsehen.
 - [ ] eine MSL-Support-Matrix mit Status je Sprache erstellen.
-- [ ] begründen, warum praktische Sandbox-Nutzung im 1. Lehrjahr `N/A` sein kann.
+- [ ] das Container-First-Gate erklären: KI-Agenten nur im Container starten, nie auf dem Arbeitsplatz-Rechner.
 
 **EN:** I can …
 

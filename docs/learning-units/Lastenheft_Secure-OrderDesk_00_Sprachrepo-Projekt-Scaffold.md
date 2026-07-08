@@ -9,7 +9,7 @@
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 - **Primär geeignet für / Primary fit:** AE, SI, DPA
 - **Spec-Kit-Nutzung / Spec Kit use:** eigenständiger späterer technischer Spec-Kit-Intake vor der ersten fachlichen Aufgabe
-- **Sandbox-Bezug / Sandbox relation:** Vorbereitung für spätere Arbeit in `absdd-image-sandbox`
+- **Sandbox-Bezug / Sandbox relation:** Container-First-Gate ab Unit 00 verbindlich — jeder KI-Agenten-Aufruf im Container/der Sandbox `absdd-image-sandbox`, nie auf dem Arbeitsplatz-Rechner; Grundlage `Secure-Trader-Sandbox-Preflight.md`
 - **Datensatzquelle / Dataset source:** `Secure-OrderDesk-Datensatzquelle.md`, `Secure-Trader-Systemlandschaft.md`
 
 ## Lernziel / Learning Goal
@@ -43,19 +43,21 @@ and documented preparation for later customer tasks of the trading company at fi
 <!-- lf-konkret -->
 **DE:** Konkrete Lernfelder (Quelle: `Rahmenlehrplan-Lernfeld-Mapping.md`, Abschnitt „Secure OrderDesk Basis"):
 **primär LF 1 („Das Unternehmen und die eigene Rolle im Betrieb beschreiben")**; berührt LF 2 („Arbeitsplätze
-nach Kundenwunsch ausstatten"). Vertiefte Erklärung und Verständnisfragen:
+nach Kundenwunsch ausstatten") und LF 4 („Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen", wegen
+Container-First-Gate). Vertiefte Erklärung und Verständnisfragen:
 `lernbegleiter/Secure-OrderDesk_00_Sprachrepo-Projekt-Scaffold.Lernbegleiter.md`.
 
 **EN:** Concrete learning fields (source: `Rahmenlehrplan-Lernfeld-Mapping.md`, section "Secure OrderDesk
 Base"): **primary LF 1 ("Das Unternehmen und die eigene Rolle im Betrieb beschreiben")**; touched LF 2
-("Arbeitsplätze nach Kundenwunsch ausstatten"). Deeper explanation and comprehension questions:
+("Arbeitsplätze nach Kundenwunsch ausstatten") and LF 4 ("Schutzbedarfsanalyse im eigenen Arbeitsbereich
+durchführen", because of the container-first gate). Deeper explanation and comprehension questions:
 `lernbegleiter/Secure-OrderDesk_00_Sprachrepo-Projekt-Scaffold.Lernbegleiter.md`.
 
 ## Bezug zur Richtlinie Sichere Entwicklung / Relation to Secure Development Guideline
 
 - **Prinzipien:** sichere Entwicklungsumgebung, MSL-Präferenz, sichere Code-Erzeugung, auditfähige Evidenz.
 - **Checklisten:** CL_01, CL_05, CL_08, CL_09, CL_10, CL_12.
-- **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Leitlinie Sichere Entwicklungs-Sandbox, Kompetenzprofile und Schulungsplan.
+- **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Leitlinie Sichere Entwicklungs-Sandbox, `Secure-Trader-Sandbox-Preflight.md` (Container-First-Gate), Kompetenzprofile und Schulungsplan.
 - **Presets:** alle sechs Governance-Presets als lokale Arbeits- und Nachweisbasis.
 
 ## Aufgabenstellung / Task
@@ -75,6 +77,14 @@ secure-development baseline, and governance presets work before the first functi
 data base is the classic Northwind sample database incl. the mandatory record `ALFKI`, but in this step it is
 only named and not yet connected. Keep the scaffold deliberately simple in year 1.
 
+**DE:** Wenn im Scaffold-Schritt ein KI-Agent genutzt wird, gilt das Container-First-Gate: Der Agenten-Aufruf
+erfolgt in der freigegebenen Sandbox/im Container (`absdd-image-sandbox`), nie auf dem Arbeitsplatz-Rechner.
+Führe vor dem ersten Agenten-Aufruf die Preflight-Checkliste aus `Secure-Trader-Sandbox-Preflight.md` durch.
+
+**EN:** If an AI agent is used in the scaffold step, the container-first gate applies: the agent invocation
+happens in the approved sandbox/container (`absdd-image-sandbox`), never on the workstation. Run the preflight
+checklist from `Secure-Trader-Sandbox-Preflight.md` before the first agent invocation.
+
 ## Anforderungen / Requirements
 
 - **R-01:** Ein minimales lauffähiges Projekt für genau eine der sechs Zielsprachen ist vorhanden oder wird angelegt.
@@ -82,6 +92,7 @@ only named and not yet connected. Keep the scaffold deliberately simple in year 
 - **R-03:** Die sechs Governance-Presets sind installiert oder als Blocker mit konkretem Behebungsweg dokumentiert.
 - **R-04:** Die Secure-Development-Basis unter `docs/secure-development/` ist vorhanden oder als fehlend mit Folgeaufgabe dokumentiert.
 - **R-05:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert; die Northwind-Datenbasis inkl. `ALFKI` ist als spätere Quelle benannt, aber noch nicht angebunden.
+- **R-06 (Container-First-Gate):** Wird ein KI-Agent genutzt, erfolgt der Aufruf ausschließlich in der freigegebenen Sandbox/im Container (`absdd-image-sandbox`), nie auf dem Arbeitsplatz-Rechner. Die Preflight-Checkliste aus `Secure-Trader-Sandbox-Preflight.md` ist vor dem ersten Agenten-Aufruf abgearbeitet; wird kein Agent genutzt, wird dies als `N/A` mit Begründung dokumentiert.
 
 ## Sicherheits- und Datenschutzanforderungen / Security and Privacy Requirements
 
@@ -89,6 +100,7 @@ only named and not yet connected. Keep the scaffold deliberately simple in year 
 - Keine Fachlogik und keine echten Northwind-Kundendaten vorwegnehmen, die in den späteren Aufgaben spezifiziert werden.
 - Beispielausgaben bleiben neutral und enthalten keine echten Namen, E-Mail-Adressen, Tokens, Verbindungszeichenketten oder privaten Pfade.
 - Datenbankzugangsdaten, Netzwerkzugriffe und externe Dienste bleiben ausgeschaltet oder werden als `N/A` mit kurzer Begründung dokumentiert.
+- KI-Agenten werden nur im Container/der Sandbox gestartet, nie direkt auf dem Arbeitsplatz-Rechner; Schreibgrenzen, Mounts und Secret-Regeln folgen `Secure-Trader-Sandbox-Preflight.md`.
 
 ## Sprachneutrale Anforderungen / Language-Neutral Requirements
 
@@ -103,6 +115,7 @@ only named and not yet connected. Keep the scaffold deliberately simple in year 
 - Nachweis der installierten Governance-Presets, zum Beispiel durch Ausgabe von `specify preset list`.
 - Lokale Secure-Development-Basis oder dokumentierter Blocker.
 - Kurze Entscheidung, warum dieses Projektgerüst für die spätere OrderDesk-Lernreihe mit Northwind-Datenbasis ausreicht.
+- Kurzer Nachweis der Container-First-Preflight-Entscheidung (Agent im Container genutzt oder `N/A` mit Begründung).
 
 ## Akzeptanzkriterien / Acceptance Criteria
 
@@ -111,10 +124,11 @@ only named and not yet connected. Keep the scaffold deliberately simple in year 
 - [ ] Es gibt keine fachliche OrderDesk-Logik und keine Datenbankanbindung in diesem Schritt.
 - [ ] Die spätere Aufgabe `01` kann auf dem Projektgerüst aufsetzen.
 - [ ] `N/A` und `Open` werden sichtbar mit Begründung dokumentiert.
+- [ ] Wird ein KI-Agent genutzt, erfolgt der Aufruf im Container/der Sandbox (nie auf dem Arbeitsplatz-Rechner); die Preflight-Checkliste ist abgearbeitet oder als `N/A` begründet.
 - [ ] Markdown bleibt DE-first, EN-second, CEFR B2 und WCAG-2.2-AA-orientiert.
 
 ## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-OrderDesk_00_Sprachrepo-Projekt-Scaffold.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für den technischen Sprachrepo-Scaffold der EuFPA-Lernreihe Secure OrderDesk (Kundenfirma Secure Trader, spätere Northwind-Datenbasis inkl. ALFKI). Lege ein minimales lauffähiges Projekt für die gewählte MSL-Sprache mit Build-/Teststruktur, Secure-Development-Basis und Preset-Nachweis an, aber erzeuge keine fachliche OrderDesk- oder Datenbanklogik. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-OrderDesk_00_Sprachrepo-Projekt-Scaffold.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation für den technischen Sprachrepo-Scaffold der EuFPA-Lernreihe Secure OrderDesk (Kundenfirma Secure Trader, spätere Northwind-Datenbasis inkl. ALFKI). Lege ein minimales lauffähiges Projekt für die gewählte MSL-Sprache mit Build-/Teststruktur, Secure-Development-Basis und Preset-Nachweis an, aber erzeuge keine fachliche OrderDesk- oder Datenbanklogik. Halte das Container-First-Gate fest: Wird ein KI-Agent genutzt, erfolgt der Aufruf im Container/der Sandbox absdd-image-sandbox (nie auf dem Arbeitsplatz-Rechner) gemäß Secure-Trader-Sandbox-Preflight.md, sonst als N/A begründet. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```

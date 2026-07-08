@@ -394,17 +394,18 @@ A visible Open is better than a hidden risk.
 
 # Sandbox and AI Agents
 
-- The sandbox limits environment, tools, and write areas
+- Container-first gate: every AI-agent invocation inside the container, never on the workstation
+- Binding from unit 00, before the first agent starts
 - Public reference: <https://github.com/hindermath/absdd-image-sandbox>
-- In year 1, practical sandbox use is not yet mandatory
-- Agents receive clear repository instructions
+- Basis: `Secure-Trader-Sandbox-Preflight.md`
 - Secrets and real personal data do not belong in prompts, logs, or Git
 - Network and mount rules are documented
 - Results are reviewed by humans
-- JetBrains IDEs, VS Code, and Visual Studio may be used outside the sandbox
+- Only agent-free work (reading, review, IDEs) may run outside the sandbox
 
 ::: notes
 AI agents are tools, not approval authorities.
+The gate is binding from unit 00; an auditable control point in ISO-27001-certified organizations (A.8.25, A.8.31).
 Learners should understand boundaries and control points.
 :::
 

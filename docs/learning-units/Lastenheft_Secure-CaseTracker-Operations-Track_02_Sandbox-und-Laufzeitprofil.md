@@ -51,9 +51,9 @@
 
 ### Arbeitswerkzeuge außerhalb der Sandbox / Work Tools Outside the Sandbox
 
-**DE:** JetBrains IDEs, VS Code und Windows-only Visual Studio dürfen weiterhin für Lesen, Review, Navigation, Debugging und normale Bearbeitung außerhalb der Sandbox genutzt werden. KI-gestützte Schreibarbeit, riskantere Experimente, reproduzierbare Toolchain-Prüfungen und Arbeiten mit klaren Schreib- oder Netzwerkgrenzen sollen im 3. Lehrjahr in oder mit der Sandbox erfolgen; Abweichungen werden begründet dokumentiert.
+**DE:** JetBrains IDEs, VS Code und Windows-only Visual Studio dürfen weiterhin für Lesen, Review, Navigation, Debugging und normale, agentenlose Bearbeitung außerhalb der Sandbox genutzt werden. Jeder KI-Agenten-Aufruf erfolgt jedoch verbindlich im Container/der Sandbox (Container-First-Gate ab Unit 00, Grundlage `Secure-Trader-Sandbox-Preflight.md`), nie auf dem Arbeitsplatz-Rechner. Riskantere Experimente, reproduzierbare Toolchain-Prüfungen und Betriebsnachweise werden im 3. Lehrjahr vertieft; Abweichungen werden als begründetes Restrisiko dokumentiert.
 
-**EN:** JetBrains IDEs, VS Code, and Windows-only Visual Studio may still be used outside the sandbox for reading, review, navigation, debugging, and normal editing. From the third training year onward, AI-assisted write work, higher-risk experiments, reproducible toolchain checks, and work with clear write or network boundaries should happen in or with the sandbox; deviations are documented with rationale.
+**EN:** JetBrains IDEs, VS Code, and Windows-only Visual Studio may still be used outside the sandbox for reading, review, navigation, debugging, and normal agent-free editing. Every AI-agent invocation, however, runs in the container/sandbox as a binding rule (container-first gate from unit 00, basis `Secure-Trader-Sandbox-Preflight.md`), never on the workstation. Higher-risk experiments, reproducible toolchain checks, and operational evidence are deepened in the third training year; deviations are documented as a justified residual risk.
 
 ## Anforderungen / Requirements
 
@@ -99,5 +99,5 @@
 ## Optimaler Specify-Prompt / Optimal Specify Prompt
 
 ```text
-/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-Operations-Track_02_Sandbox-und-Laufzeitprofil.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für ein sicheres Sandbox- und Laufzeitprofil der EuFPA-Lernreihe Secure CaseTracker Operations Track. Berücksichtige die Public-Referenz `https://github.com/hindermath/absdd-image-sandbox`, KI-gestützte Entwicklung in oder mit der Sandbox ab dem 3. Lehrjahr, IDE-/Editor-Arbeit außerhalb der Sandbox und dokumentierte Abweichungen. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
+/speckit-specify Nutze docs/learning-units/Lastenheft_Secure-CaseTracker-Operations-Track_02_Sandbox-und-Laufzeitprofil.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation für ein sicheres Sandbox- und Laufzeitprofil der EuFPA-Lernreihe Secure CaseTracker Operations Track. Berücksichtige die Public-Referenz `https://github.com/hindermath/absdd-image-sandbox`, das verbindliche Container-First-Gate (jeder KI-Agenten-Aufruf im Container, nie auf dem Arbeitsplatz-Rechner, ab Unit 00, Grundlage Secure-Trader-Sandbox-Preflight.md), agentenlose IDE-/Editor-Arbeit außerhalb der Sandbox und dokumentierte Abweichungen als Restrisiko. Erzeuge keine Implementierung und starte keinen Sammellauf für die gesamte Lernreihe.
 ```
