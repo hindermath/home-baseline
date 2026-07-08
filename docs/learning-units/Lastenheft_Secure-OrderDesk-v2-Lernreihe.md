@@ -46,7 +46,7 @@
 
 ## Datenbasis / Data Base
 
-**DE:** Verbindliche Datenquelle bleibt die klassische Northwind-Sample-Datenbank mit Layout und Daten, inklusive Pflicht-Datensatz `ALFKI`. Alle Daten sind fiktiv und werden markenneutral und rein didaktisch genutzt. „Microsoft" wird nur als historischer Quellhinweis auf den Ursprung der Northwind-Beispieldatenbank erwähnt. SQL-Zugriffe müssen parametrisiert sein; es werden keine echten Secrets und keine echten personenbezogenen Daten verwendet.
+**DE:** Verbindliche Datenquelle bleibt die klassische Northwind-Sample-Datenbank mit Layout und Daten, inklusive Pflicht-Datensatz `ALFKI`. Alle Daten sind fiktiv und werden markenneutral und rein didaktisch genutzt. „Microsoft“ wird nur als historischer Quellhinweis auf den Ursprung der Northwind-Beispieldatenbank erwähnt. SQL-Zugriffe müssen parametrisiert sein; es werden keine echten Secrets und keine echten personenbezogenen Daten verwendet.
 
 **EN:** The binding data source stays the classic Northwind sample database with layout and data, including the mandatory record `ALFKI`. All data is fictional and used brand-neutrally and purely for teaching. "Microsoft" is mentioned only as a historical source note for the origin of the Northwind sample database. SQL access must be parameterized; no real secrets and no real personal data are used.
 

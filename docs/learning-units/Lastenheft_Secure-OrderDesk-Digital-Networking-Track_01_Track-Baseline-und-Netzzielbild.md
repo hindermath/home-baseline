@@ -8,7 +8,7 @@
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
-- **C#-Referenz / C# reference:** `InventarWorkerService`
+- **C#-Referenz / C# reference:** `SecureOrderDesk-CSharp`
 - **Primär geeignet für / Primary fit:** DV (Schwerpunkt); berührt SI, AE, DPA
 - **Spec-Kit-Nutzung / Spec Kit use:** eigenständiger späterer Spec-Kit-Intake
 - **Sandbox-Bezug / Sandbox relation:** Vorbereitung für spätere Arbeit in `absdd-image-sandbox`
@@ -49,9 +49,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Erarbeite für die Track-Baseline und das Netzzielbild eine fokussierte Spezifikation für die Spezialisierung DV - Digitale Vernetzung. Berücksichtige: den Stand aus v2 (Jahr 2), das Szenario der verteilten Bestellverarbeitung (Bestellannahme, Katalog, relationale Ablage im Northwind-Schema, Auswertung), die Netz-Schutzziele (Vertraulichkeit, Integrität, Verfügbarkeit), grobe Vertrauenszonen, Verfügbarkeitsziele, Scope und Nicht-Ziele des Tracks. `ALFKI` dient als fiktiver Beispielkunde. Die C#-Referenz `InventarWorkerService` dient als Orientierung, die Lösung bleibt sprachneutral.
+**DE:** Erarbeite für die Track-Baseline und das Netzzielbild eine fokussierte Spezifikation für die Spezialisierung DV - Digitale Vernetzung. Berücksichtige: den Stand aus v2 (Jahr 2), das Szenario der verteilten Bestellverarbeitung (Bestellannahme, Katalog, relationale Ablage im Northwind-Schema, Auswertung), die Netz-Schutzziele (Vertraulichkeit, Integrität, Verfügbarkeit), grobe Vertrauenszonen, Verfügbarkeitsziele, Scope und Nicht-Ziele des Tracks. `ALFKI` dient als fiktiver Beispielkunde. Die C#-Referenz `SecureOrderDesk-CSharp` dient als Orientierung, die Lösung bleibt sprachneutral.
 
-**EN:** Prepare a focused specification for the track baseline and network target picture for the Digital Networking specialization. Consider the year-2 (v2) state, the distributed order-processing scenario (order intake, catalog, relational store in the Northwind schema, analytics), network protection goals (confidentiality, integrity, availability), coarse trust zones, availability targets, and the track scope and non-goals. `ALFKI` serves as a fictional example customer. The C# reference `InventarWorkerService` serves as orientation; the solution stays language-neutral.
+**EN:** Prepare a focused specification for the track baseline and network target picture for the Digital Networking specialization. Consider the year-2 (v2) state, the distributed order-processing scenario (order intake, catalog, relational store in the Northwind schema, analytics), network protection goals (confidentiality, integrity, availability), coarse trust zones, availability targets, and the track scope and non-goals. `ALFKI` serves as a fictional example customer. The C# reference `SecureOrderDesk-CSharp` serves as orientation; the solution stays language-neutral.
 
 ## Anforderungen / Requirements
 

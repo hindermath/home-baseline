@@ -8,7 +8,7 @@
 - **Lehrjahr / Training year:** ab dem 3. Lehrjahr
 - **Spezialisierung / Specialization:** DV - Digitale Vernetzung
 - **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
-- **C#-Referenz / C# reference:** `InventarWorkerService`
+- **C#-Referenz / C# reference:** `SecureOrderDesk-CSharp`
 - **Primär geeignet für / Primary fit:** DV (Schwerpunkt); berührt SI, AE, DPA
 - **Spec-Kit-Nutzung / Spec Kit use:** eigenständiger späterer Spec-Kit-Intake
 - **Sandbox-Bezug / Sandbox relation:** Vorbereitung für spätere Arbeit in `absdd-image-sandbox`

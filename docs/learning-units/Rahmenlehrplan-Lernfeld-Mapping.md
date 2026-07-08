@@ -1,6 +1,6 @@
 # Rahmenlehrplan-Lernfeld-Mapping / Curriculum Learning-Field Mapping
 
-**Stand / Date:** 2026-07-05
+**Stand / Date:** 2026-07-08
 **Bezug / Scope:** Secure-CaseTracker-Familie (Basis, v2, Professional Tracks), Secure InventoryHub, Secure-ServiceHarvester-Familie (Basis, v2, Professional Tracks) und Secure-OrderDesk-Familie (Basis, v2, Professional Tracks)
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA
 

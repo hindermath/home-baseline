@@ -48,7 +48,7 @@ is fixed (`--seed`, default `20260707`); the end date is dynamic (`--end YYYY-MM
 **DE:** Die relationale Grundlage ist die klassische **Northwind-Traders-Sample-Datenbank** (historisch als
 Microsoft-Beispiel bekannt), hier **markenneutral und rein didaktisch** verwendet. Feldnamen, Datentypen und
 Fremdschlüssel folgen dem Northwind-Layout. **Alle Daten sind fiktiv.** Es sind keine echten personenbezogenen
-Daten (PII), keine echten Secrets und keine realen internen Pfade enthalten. Der Name „Microsoft" erscheint nur
+Daten (PII), keine echten Secrets und keine realen internen Pfade enthalten. Der Name „Microsoft“ erscheint nur
 als Herkunftshinweis; „Windows" und „Windows Server" sind ausschließlich als Betriebssystem-Bezeichnungen
 verwendet.
 
