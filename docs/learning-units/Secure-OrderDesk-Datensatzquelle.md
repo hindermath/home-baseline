@@ -65,30 +65,36 @@ fiktiven Datensätzen aufgefüllt:
 - **1–2 neue Kund*innen pro Monat** (fiktiv, plausibel, Northwind-Layout).
 - **8–16 Bestellungen pro Monat** (inkl. `Order Details`), **verteilt über alten und neuen Kundenstamm**;
   `ALFKI` bleibt aktiv.
-- Lückenlos von 1998-06 bis **einschließlich Juli 2026**.
+- Lückenlos von 1998-06 bis zum **Endmonat**.
 - Konsistente Fremdschlüssel; plausible Mengen, Preise, Rabatte, Versender und Mitarbeitende.
+
+**Endmonat / End month:** Der Generator erzeugt standardmäßig bis zum **heutigen Monat** (`datetime.now()`),
+damit die Daten bis zum **Projektdatum** der Auszubildenden mitwachsen; der **Seed** ist fest (reproduzierbar
+über alle sechs Sprach-Repos). Der eingecheckte Snapshot reicht bis **2026-07** (`--end 2026-07`).
 
 **EN:** The original order data runs only from 1996-07 to 1998-05. Missing months are filled with plausible
 fictional records: 1–2 new customers per month and 8–16 orders per month (incl. order details), spread over
-old and new customers with `ALFKI` staying active, without gaps from 1998-06 up to and including July 2026,
-with consistent foreign keys and plausible quantities, prices, discounts, shippers, and employees.
+old and new customers with `ALFKI` staying active, without gaps from 1998-06 to the end month, with consistent
+foreign keys and plausible quantities, prices, discounts, shippers, and employees. The end month defaults to
+the current month (`datetime.now()`) so the data grows to the apprentices' project date; the seed is fixed
+(reproducible across all six language repos). The committed snapshot ends at 2026-07.
 
-**DE:** Erwartetes Volumen im Vollausbau siehe `Secure-Trader-Systemlandschaft.md` (rund 2.700–5.400
-Bestellungen, rund 340–680 neue Kund*innen). Die Generierung ist deterministisch skriptbar.
+**DE:** Erwartetes Volumen im 2026-07-Snapshot siehe `Secure-Trader-Systemlandschaft.md` (rund 4.725
+Bestellungen, 597 Kund*innen). Die Generierung ist reproduzierbar je (Enddatum, Seed).
 
-**EN:** Expected full-build volume: see `Secure-Trader-Systemlandschaft.md`. Generation is deterministically
-scriptable.
+**EN:** Expected 2026-07-snapshot volume: see `Secure-Trader-Systemlandschaft.md`. Generation is reproducible
+per (end date, seed).
 
 ## Format / Format
 
 **DE:** Der Referenzdatenbestand bleibt sprachneutral, damit alle sechs MSL-Sprachen (C#, Go, Java, Python,
 Rust, Swift) dieselben Daten nutzen: portables SQL-DDL für das Schema plus Seed-Daten als CSV. Der
-vollständige, bis 2026-07 generierte Datenbestand und der deterministische Generator liegen unter
+Snapshot-Datenbestand (`--end 2026-07`) und der bis zum Projektdatum lauffähige Generator liegen unter
 [`datasets/`](datasets/README.md) (`schema.sql`, `orderdesk/*.csv`, `generate-secure-trader-dataset.py`).
 
 **EN:** The reference data stays language-neutral so all six MSL languages use the same data: portable SQL DDL
-for the schema plus seed data as CSV. The full dataset generated up to 2026-07 and the deterministic generator
-are in [`datasets/`](datasets/README.md) (`schema.sql`, `orderdesk/*.csv`, `generate-secure-trader-dataset.py`).
+for the schema plus seed data as CSV. The snapshot data (`--end 2026-07`) and the generator (runnable up to the
+project date) are in [`datasets/`](datasets/README.md) (`schema.sql`, `orderdesk/*.csv`, `generate-secure-trader-dataset.py`).
 
 ## Beispiel-Ausschnitt mit ALFKI / Sample Excerpt with ALFKI
 

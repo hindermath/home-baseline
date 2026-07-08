@@ -66,22 +66,29 @@ Zeitachse / Timeline
 
 | System | Regel |
 |---|---|
-| Secure OrderDesk | Pro Monat 1–2 neue Kund*innen; pro Monat 8–16 Bestellungen (inkl. `Order Details`), verteilt über alten UND neuen Kundenstamm; `ALFKI` bleibt aktiv; lückenlos 1998-06 bis 2026-07. |
-| Secure ServiceHarvester | Start: 2 Arbeitsplatz-PCs + 1 Server. Ziel heute: 4 Windows-Server. Pro Jahr 1–2 neue Mitarbeitende, je +1 Arbeitsplatz-PC. Erfasst wird je Maschine: Name, Betriebssystem, letzter Kontakt. |
-| Secure CaseTracker | 4 Kundenanfragen (Angebot/Bestellung/Lieferung) + 2–4 Mitarbeitenden-Anfragen (interne IT/Prozess), verknüpft mit realen Kund*innen/Bestellungen bzw. Mitarbeitenden/Maschinen der Beispieldaten. |
+| Secure OrderDesk | Pro Monat 1–2 neue Kund*innen; pro Monat 8–16 Bestellungen (inkl. `Order Details`), verteilt über alten UND neuen Kundenstamm; `ALFKI` bleibt aktiv; lückenlos 1998-06 bis zum **Endmonat**. |
+| Secure ServiceHarvester | Start: 2 Arbeitsplatz-PCs + 1 Server. Pro Jahr 1–2 neue Mitarbeitende, je +1 Arbeitsplatz-PC (wächst bis zum Endmonat weiter). Windows-Server in historischer Kadenz: **bis ~2026 vier Server**, danach weiter (grob +1 alle ~8 Jahre). Erfasst je Maschine: Name, Betriebssystem, letzter Kontakt. |
+| Secure CaseTracker | **Pro Monat** (1998-06 bis Endmonat) **4 Kundenanfragen** (Angebot/Bestellung/Lieferung) + **2–4 Mitarbeitenden-Anfragen** (interne IT/Prozess), je mit `CreatedDate`, verknüpft mit periodengültigen realen Kund*innen/Bestellungen bzw. Mitarbeitenden/Maschinen; `ALFKI` regelmäßig. |
 
-**EN:** Binding rules for later (fictional, plausible, deterministically scriptable) data generation: OrderDesk
-adds 1–2 new customers and 8–16 orders per month over old and new customers (ALFKI stays active) without gaps
-from 1998-06 to 2026-07; ServiceHarvester grows from 2 workstations + 1 server to 4 Windows servers with 1–2
-new employees per year (each +1 PC), recording name, operating system, and last contact per machine;
-CaseTracker holds 4 customer inquiries plus 2–4 employee inquiries linked to the customers/orders and
-employees/machines of the sample data.
+**Endmonat / End month:** Alle drei Systeme wachsen monatlich mit bis zum **Endmonat** — standardmäßig der
+**heutige Monat** (`datetime.now()`), damit Auszubildende Daten bis zu ihrem Projektdatum erhalten. Der
+eingecheckte Snapshot reicht bis **2026-07**. Details und Lauf-Anleitung: [`datasets/README.md`](datasets/README.md).
 
-**DE:** Erwartetes Gesamtvolumen im Vollausbau (~338 Monate 1998-06 bis 2026-07): rund 2.700–5.400
-Bestellungen, rund 340–680 neue Kund*innen (zzgl. 91 Original), rund 30–65 Arbeitsplatz-PCs plus 4 Server.
+**EN:** Binding rules for the (fictional, plausible, deterministic) data generation: OrderDesk adds 1–2 new
+customers and 8–16 orders per month over old and new customers (ALFKI stays active) without gaps from 1998-06
+to the end month; ServiceHarvester grows from 2 workstations + 1 server with 1–2 new employees per year (each
++1 PC) and Windows servers on a historical cadence (four by ~2026, growing further); CaseTracker generates 4
+customer + 2–4 employee inquiries **per month** (with `CreatedDate`) linked to period-valid customers/orders
+and machines. **All three grow to the end month, by default the current month; the committed snapshot ends at
+2026-07.**
 
-**EN:** Expected full-build volume (~338 months): roughly 2,700–5,400 orders, roughly 340–680 new customers
-(plus the 91 original), and roughly 30–65 workstation PCs plus 4 servers.
+**DE:** Volumen im **2026-07-Snapshot** (~338 Monate 1998-06 bis 2026-07): rund **4.725 Bestellungen**, **597
+Kund*innen** (91 Original + 506 neu, inkl. `ALFKI`), **44 Maschinen** (4 Server + 40 PCs) und **~2.360 Cases**
+(4 + 2–4 pro Monat). Bei einem späteren Endmonat wachsen alle Zahlen entsprechend.
+
+**EN:** Volume in the **2026-07 snapshot** (~338 months): about **4,725 orders**, **597 customers** (91
+original + 506 new, incl. `ALFKI`), **44 machines** (4 servers + 40 PCs), and **~2,360 cases** (4 + 2–4 per
+month). A later end month scales all numbers accordingly.
 
 ## Beispieldaten Secure OrderDesk / Sample Data (Northwind-Layout)
 
@@ -133,21 +140,19 @@ Arbeitsplätze; `SRV-02` bis `SRV-04` kamen mit steigender Last hinzu.
 
 ## Beispieldaten Secure CaseTracker / Sample Data (Support-Cases)
 
-**DE:** Support-Cases im CaseTracker-Datenmodell (Kontaktname, Fallbeschreibung, Asset-Bezug,
-Bearbeitungsnotiz). Sie verweisen auf reale Kund*innen/Bestellungen bzw. Mitarbeitende/Maschinen der
-Beispieldaten — als Kontext, nicht als Voraussetzung.
+**DE:** Support-Cases im CaseTracker-Datenmodell (`CaseID, CreatedDate, ContactName, ContactType, Subject,
+AssetRef, Status`). CaseTracker wächst **monatlich mit**: pro Monat **4 Kundenanfragen + 2–4
+Mitarbeitenden-Anfragen**. Die Cases verweisen auf periodengültige reale Kund*innen/Bestellungen bzw.
+Mitarbeitende/Maschinen — als Kontext, nicht als Voraussetzung. Der folgende Ausschnitt ist **illustrativ**;
+den vollständigen, bis zum Endmonat wachsenden Bestand erzeugt der Generator (siehe `datasets/`).
 
 ```text
-Kundenanfragen / Customer cases (Kontakt; Fallbeschreibung; Asset-Bezug)
-Maria Anders (ALFKI); Lieferstatus zu Bestellung 50218 unklar; Order 50218
-Thomas Hardy (AROUT); Angebot für Großmenge Produkt 28 angefragt; Product 28
-Lena Brandt (NORDW); Rechnung zu Bestellung 50219 weicht ab; Order 50219
-Marco Keller (ALPBI); Neuanlage Lieferadresse gewünscht; Customer ALPBI
-
-Mitarbeitenden-Anfragen / Employee cases (Kontakt; Fallbeschreibung; Asset-Bezug)
-Nancy Davolio (Emp 1); OrderDesk-Login nach Passwortablauf gesperrt; WS-01
-IT-Betrieb (Emp 4); SRV-03 meldet vollen Log-Datenträger; SRV-03
-Neue Kollegin (Emp – 2024); Arbeitsplatz WS-07 braucht OrderDesk-Zugriff; WS-07
+CaseID; CreatedDate; ContactName; ContactType; Subject; AssetRef; Status
+CASE-01988; 2019-03-14; Maria Anders; customer; Lieferstatus zu Bestellung 41xxx unklar; Order 41xxx; resolved
+CASE-01990; 2019-03-19; Thomas Hardy; customer; Angebot fuer Grossmenge angefragt; Customer AROUT; resolved
+CASE-01991; 2019-03-22; Lena Brandt; customer; Rechnung zu Bestellung 41xxx weicht ab; Order 41xxx; resolved
+CASE-01993; 2019-03-27; IT-Betrieb; employee; SRV-03 meldet vollen Log-Datentraeger; SRV-03; resolved
+CASE-01994; 2019-03-28; <Mitarbeitende>; employee; Arbeitsplatz WS-17 braucht OrderDesk-Zugriff; WS-17; resolved
 ```
 
 ## Fiktivität, Datenschutz und Provenance / Fictionality, Privacy and Provenance
