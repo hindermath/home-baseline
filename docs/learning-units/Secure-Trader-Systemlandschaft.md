@@ -171,9 +171,11 @@ way. The series name stays **Secure OrderDesk**.
 ## Grenzen / Boundaries
 
 **DE:** Dieses Dokument definiert Modell und Regeln plus kleine Beispieldaten. Die vollständigen, bis 2026-07
-generierten Datensätze und ihre Einbettung in die drei Familien entstehen im späteren Vollausbau. Die
-Verzahnung bleibt leicht: Kein Aufgaben-Lastenheft einer Reihe setzt eine andere Reihe voraus.
+generierten Datensätze liegen unter [`datasets/`](datasets/README.md) (deterministischer Generator
+`generate-secure-trader-dataset.py` plus generierte CSV-Dateien und `schema.sql`). Die Verzahnung bleibt
+leicht: Kein Aufgaben-Lastenheft einer Reihe setzt eine andere Reihe voraus.
 
 **EN:** This document defines the model, the rules, and small sample data. The full datasets generated up to
-2026-07 and their embedding into the three families are produced in the later full build. The coupling stays
-light: no task intake of one series requires another series.
+2026-07 are in [`datasets/`](datasets/README.md) (deterministic generator `generate-secure-trader-dataset.py`
+plus generated CSV files and `schema.sql`). The coupling stays light: no task intake of one series requires
+another series.

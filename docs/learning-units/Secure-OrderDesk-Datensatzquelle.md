@@ -82,13 +82,13 @@ scriptable.
 ## Format / Format
 
 **DE:** Der Referenzdatenbestand bleibt sprachneutral, damit alle sechs MSL-Sprachen (C#, Go, Java, Python,
-Rust, Swift) dieselben Daten nutzen: portables SQL-DDL für das Schema plus Seed-Daten als CSV und/oder
-SQL-`INSERT`s. Das endgültige Format wird im Vollausbau festgelegt; dieser Pilot fixiert Quelle, ALFKI-Pflicht,
-Wachstumsregeln und die Erweiterung bis 2026-07.
+Rust, Swift) dieselben Daten nutzen: portables SQL-DDL für das Schema plus Seed-Daten als CSV. Der
+vollständige, bis 2026-07 generierte Datenbestand und der deterministische Generator liegen unter
+[`datasets/`](datasets/README.md) (`schema.sql`, `orderdesk/*.csv`, `generate-secure-trader-dataset.py`).
 
 **EN:** The reference data stays language-neutral so all six MSL languages use the same data: portable SQL DDL
-for the schema plus seed data as CSV and/or SQL `INSERT`s. The final format is decided in the full build; this
-pilot fixes the source, the ALFKI requirement, the growth rules, and the extension up to 2026-07.
+for the schema plus seed data as CSV. The full dataset generated up to 2026-07 and the deterministic generator
+are in [`datasets/`](datasets/README.md) (`schema.sql`, `orderdesk/*.csv`, `generate-secure-trader-dataset.py`).
 
 ## Beispiel-Ausschnitt mit ALFKI / Sample Excerpt with ALFKI
 
