@@ -1,0 +1,8 @@
+CaseID,ContactName,ContactType,Subject,AssetRef,Status
+CASE-0001,Maria Anders,customer,Lieferstatus zu Bestellung 10269 unklar,Order 10269,in_progress
+CASE-0002,Thomas Hardy,customer,Angebot fuer Grossmenge Produkt 28 angefragt,Product 28,new
+CASE-0003,Lena Brandt,customer,Rechnung zu Bestellung 14422 weicht ab,Order 14422,in_progress
+CASE-0004,Marco Keller,customer,Neuanlage Lieferadresse gewuenscht,Customer ALPBI,resolved
+CASE-0005,Nancy Davolio,employee,OrderDesk-Login nach Passwortablauf gesperrt,WS-01,resolved
+CASE-0006,Margaret Peacock,employee,SRV-03 meldet vollen Log-Datentraeger,SRV-03,in_progress
+CASE-0007,Anne Dodsworth,employee,Arbeitsplatz WS-07 braucht OrderDesk-Zugriff,WS-07,new

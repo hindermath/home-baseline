@@ -1,0 +1,598 @@
+CustomerID,CompanyName,ContactName,City,Country
+ALFKI,Alfreds Futterkiste,Maria Anders,Berlin,Germany
+AROUT,Around the Horn,Thomas Hardy,London,UK
+FMMRL,Sued Pantry Ltd.,Jonas Cooper,Nantes,France
+ETXRP,Klare Trading AG,Regina Nolot,London,UK
+KVMJK,Rote Bistro & Co.,Dirk Bertrand,Manchester,UK
+IEOWD,Alpen Emporium AG,Elio Cooper,Vienna,Austria
+MAPTB,Klare Taverna Ltd.,Charlotte Amsel,Cologne,Germany
+XVNBZ,Frische Kontor SARL,Robb Winkler,Zurich,Switzerland
+TINQA,Stille Gourmet GmbH,Sofia Bein,Bergen,Norway
+TRYSX,Goldene Speisekammer Ltd.,Mayumi Heikkonen,Madrid,Spain
+TWGGZ,West Feinkost BV,Regina Goulet,Graz,Austria
+YVQCH,Nord Kontor Ltd.,Carlos Ohno,Stockholm,Sweden
+NGCTP,Hohe Emporium OY,Carlos Vileid,Copenhagen,Denmark
+SPPRI,Bunte Provisions Ltd.,Sven Diaz,Turin,Italy
+BNYBJ,West Feinkost OY,Martin Saveley,Munich,Germany
+VXJHA,Rote Kontor AB,Anne Murphy,Hamburg,Germany
+VLLAI,Nord Cantina AG,Niels Bein,Brussels,Belgium
+GEEGS,Freie Delikatessen S.p.A.,Petra Bein,Turin,Italy
+JEYCD,Sued Trading & Co.,Elio Nagase,Brussels,Belgium
+MXKGV,Tiefe Vorratshaus SARL,Robb Murphy,Brussels,Belgium
+HOAFN,Bunte Gourmet AG,Dirk Winkler,Helsinki,Finland
+JCWVH,Blaue Vorratshaus OY,Chandra Nolot,Turin,Italy
+WPBNO,West Genuss SARL,Elio del Valle,Manchester,UK
+RBMPA,Stille Feinkost Ltd.,Sofia Amsel,Rome,Italy
+OYUGL,Beste Larder BV,Michael Nolot,Madrid,Spain
+XLAVG,Erste Kontor SARL,Emma Luchini,Nantes,France
+AKZQT,Ost Trading S.p.A.,Niels Bertrand,Bergen,Norway
+XKTZQ,Bunte Kontor SARL,Chantal Amsel,Barcelona,Spain
+KHKRV,Nord Handels Ltd.,Lars Saveley,Hamburg,Germany
+SDLSY,Frische Pantry AG,Wendy Crespi,Lyon,France
+THSQN,Bunte Pantry S.p.A.,Michael Rossi,Brussels,Belgium
+YUXHC,Weite Vorratshaus AG,Antonio Wilson,Hamburg,Germany
+MYVXC,Alte Trading AG,Petra Crespi,Munich,Germany
+SHRPR,Alte Trading & Co.,Jean del Valle,Helsinki,Finland
+YWUSA,West Bistro GmbH,Pavel Luchini,Berlin,Germany
+MNXAG,Hohe Speisekammer SARL,Charlotte Wilson,Oslo,Norway
+WSEBX,Klare Handels KG,Niels Merchant,Lisbon,Portugal
+MZTXS,Sued Vorratshaus S.p.A.,Ian del Valle,Graz,Austria
+BOGAS,Bunte Larder & Co.,Pavel Murphy,Oslo,Norway
+LPREO,Tiefe Vorratshaus AG,Chandra Heikkonen,Bern,Switzerland
+KBWLG,Tiefe Kontor BV,Anne Bein,Bergen,Norway
+SMORH,Frische Larder S.p.A.,Guylene del Valle,Lisbon,Portugal
+UAXMI,Tiefe Pantry GmbH,Noah Weber,Barcelona,Spain
+PSZOY,Ost Pantry GmbH,Lena Luchini,Oslo,Norway
+RNTHV,Erste Feinkost BV,Beate Mendoza,Manchester,UK
+FGLEI,Stille Feinkost S.p.A.,Anne Bertrand,Zurich,Switzerland
+ALZAL,Bunte Vorratshaus Ltd.,Giovanni Crespi,Helsinki,Finland
+WVGUX,Bunte Provisions GmbH,Mayumi Peterson,Rome,Italy
+QDSIQ,Frische Emporium Ltd.,Antonio Diaz,Hamburg,Germany
+WBBZO,Hohe Speisekammer AB,Marco Vileid,Stockholm,Sweden
+SKSEF,Goldene Handels Ltd.,Lars Petersen,Zurich,Switzerland
+ALPBF,Bunte Delikatessen AB,Emma Wilson,Innsbruck,Austria
+CKKWE,Klare Taverna KG,Petra Petersen,Rome,Italy
+GHUHP,Kleine Larder SARL,Wendy Diaz,Helsinki,Finland
+VBYNW,Hohe Taverna AG,Chandra Luchini,Paris,France
+SVGTT,Goldene Speisekammer KG,Sofia Petersen,Dublin,Ireland
+BKURQ,Sued Delikatessen S.p.A.,Anne Nolot,Graz,Austria
+HLHVL,Alpen Trading AB,Marco Luchini,Munich,Germany
+YLWKF,Sued Genuss AG,Guylene Rossi,Hamburg,Germany
+JLWBL,Neue Taverna & Co.,Antonio Wilson,Turin,Italy
+PUQHW,Grosse Taverna S.p.A.,Niels Devling,Bergen,Norway
+SGTEY,Grosse Feinkost AG,Carlos del Valle,Helsinki,Finland
+UQVLY,Frische Trading BV,Robb Petersen,Lyon,France
+VYHBU,Beste Provisions BV,Petra Nagase,Innsbruck,Austria
+FFFYR,Alte Import AB,Lars Crespi,Oslo,Norway
+KIWFL,Ost Trading OY,Antonio Petersen,Turin,Italy
+DTZKB,Weite Import Ltd.,Katrin Crespi,Warsaw,Poland
+PFEIS,Ost Import BV,Yoshi Diaz,Cologne,Germany
+VTJBP,Kleine Provisions AB,Pavel Nagase,Munich,Germany
+VEYUQ,Weite Speisekammer S.p.A.,Regina Ohno,Paris,France
+JVTVC,Alpen Import & Co.,Marco Weber,Vienna,Austria
+AMPEQ,Freie Markt SARL,Jonas Heikkonen,Amsterdam,Netherlands
+YJAXX,Bunte Genuss Ltd.,Ian Nolot,Prague,Czechia
+IWQPR,Stille Provisions OY,Jonas Nolot,Cologne,Germany
+OUKVF,Nord Trading OY,Ian Crespi,Berlin,Germany
+INWFA,Kleine Handels BV,Regina Burke,Dublin,Ireland
+XTUBQ,Freie Delikatessen SARL,Michael Petersen,London,UK
+PSNQQ,Ost Cantina OY,Petra Crespi,Manchester,UK
+UCGRS,Stille Genuss S.p.A.,Emma Murphy,Milan,Italy
+QEFYE,Rote Handels AB,Emma Bein,Warsaw,Poland
+FLETF,Freie Feinkost S.p.A.,Jonas Luchini,Innsbruck,Austria
+HIVZZ,Neue Feinkost SARL,Antonio Diaz,Paris,France
+POBYN,Goldene Trading BV,Charlotte Fresnel,Manchester,UK
+TCJVQ,Kleine Trading AG,Guylene Goulet,Copenhagen,Denmark
+PLRKR,Klare Genuss OY,Ian Damodaran,Amsterdam,Netherlands
+ORDDL,Weite Import S.p.A.,Marco Burke,Copenhagen,Denmark
+LPVQG,Bunte Speisekammer GmbH,Marco Bein,Copenhagen,Denmark
+ZPMLW,Ost Pantry AG,Yoshi Petersen,Milan,Italy
+UDJOJ,Freie Genuss S.p.A.,Cheryl Weber,Bern,Switzerland
+KVIFE,Neue Markt & Co.,Chantal Crespi,Bergen,Norway
+EDMNO,Alpen Feinkost & Co.,Carlos Schulz,Vienna,Austria
+FWOFX,Kleine Gourmet AG,Marie Petersen,Lyon,France
+DFGYY,Freie Pantry Ltd.,Charlotte Cooper,Madrid,Spain
+GBWAC,Goldene Handels OY,Martin Petersen,Barcelona,Spain
+KZCRH,Weite Pantry AG,Mayumi Nagase,Rome,Italy
+GNWWW,Nord Taverna & Co.,Dirk Saveley,Lisbon,Portugal
+RLXGK,Ost Vorratshaus AG,Niels Schulz,Amsterdam,Netherlands
+RTJFF,Kleine Cantina OY,Michael Ohno,Vienna,Austria
+KEHQT,West Import OY,Michael Luchini,Paris,France
+CVUQF,Blaue Taverna & Co.,Mayumi Murphy,Barcelona,Spain
+EUSVY,West Speisekammer AG,Jonas Wilson,Warsaw,Poland
+LBUUY,Neue Provisions S.p.A.,Eliane Cooper,Manchester,UK
+GBDKX,Alte Cantina Ltd.,Sven Ohno,Madrid,Spain
+OMRHM,Alpen Larder BV,Michael Goulet,Zurich,Switzerland
+PWGYK,Runde Kontor GmbH,Marco Goulet,Amsterdam,Netherlands
+EIMER,Alte Vorratshaus AG,Lena Mendoza,London,UK
+ZOXOL,Alpen Pantry Ltd.,Dirk Nagase,London,UK
+CFXGH,Weite Trading & Co.,Niels Winkler,Cologne,Germany
+SMLJL,Stille Vorratshaus S.p.A.,Pavel Peterson,Stockholm,Sweden
+CFBZD,Erste Bistro AG,Niels Burke,Cologne,Germany
+OAHDC,Stille Genuss AG,Sven Damodaran,Nantes,France
+PCKSN,Neue Kontor AB,Dirk Petersen,Paris,France
+KIODW,Beste Emporium Ltd.,Marie Murphy,Turin,Italy
+OELNJ,Runde Handels KG,Beate Petersen,Bern,Switzerland
+KFOGD,Sued Larder Ltd.,Lena Petersen,Rome,Italy
+GIJPO,Beste Pantry Ltd.,Shelley Weber,Berlin,Germany
+BNFBU,Klare Larder AG,Robb Nodier,London,UK
+AEQYP,Alte Trading & Co.,Jean Crespi,Helsinki,Finland
+PNUAE,Goldene Genuss OY,Marie Winkler,Hamburg,Germany
+GVOIG,Kleine Emporium OY,Marco Damodaran,Madrid,Spain
+OBZUY,Beste Kontor SARL,Michael Nolot,Graz,Austria
+WMXST,Blaue Delikatessen KG,Dirk Merchant,Madrid,Spain
+COJQZ,Neue Provisions AG,Pavel Crespi,Madrid,Spain
+YNUTD,West Gourmet SARL,Dirk Bein,Helsinki,Finland
+MYWSA,Feine Taverna S.p.A.,Giovanni Petersen,Innsbruck,Austria
+YDKXG,Alte Cantina SARL,Lena Cooper,Manchester,UK
+HDHPW,Klare Bistro & Co.,Yoshi Wilson,Innsbruck,Austria
+PZDII,Grosse Taverna AG,Martin Ohno,Copenhagen,Denmark
+NDYSD,Tiefe Bistro SARL,Antonio Crespi,Innsbruck,Austria
+SGPZQ,Klare Vorratshaus GmbH,Beate Weber,Innsbruck,Austria
+HIEWN,Nord Emporium S.p.A.,Guylene Vileid,Lyon,France
+JJYFM,Sued Provisions AB,Robb Petersen,Madrid,Spain
+PCOZG,Kleine Delikatessen S.p.A.,Niels Keller,Amsterdam,Netherlands
+CSYLN,Tiefe Bistro OY,Charlotte Ohno,Dublin,Ireland
+JYAMY,Freie Provisions S.p.A.,Anne Saveley,Lisbon,Portugal
+MXDEI,Goldene Gourmet & Co.,Charlotte Nagase,Helsinki,Finland
+DJSTV,Grosse Speisekammer GmbH,Martin Devling,Lyon,France
+EMNVE,Rote Genuss BV,Mayumi Schulz,Turin,Italy
+YCHNL,Blaue Trading SARL,Shelley Goulet,Stockholm,Sweden
+JXNIV,Nord Emporium AB,Niels Rossi,Copenhagen,Denmark
+LSKJL,Neue Feinkost OY,Regina Merchant,Stockholm,Sweden
+AHYQD,Sued Bistro SARL,Martin Bein,Bern,Switzerland
+ZMZNK,Hohe Gourmet BV,Emma Nodier,Innsbruck,Austria
+ZTSVE,Nord Larder BV,Sven del Valle,Stockholm,Sweden
+WZZOG,Blaue Handels S.p.A.,Dirk Nagase,Dublin,Ireland
+QNFGQ,Alpen Delikatessen GmbH,Cheryl Brandt,Prague,Czechia
+NXNXC,Sued Delikatessen BV,Beate Weber,Oslo,Norway
+TOWCZ,West Provisions OY,Chandra Brandt,Oslo,Norway
+IMETZ,Neue Delikatessen & Co.,Jonas Peterson,Vienna,Austria
+DWIDV,Neue Markt Ltd.,Sven Petersen,Amsterdam,Netherlands
+KSFNV,Weite Delikatessen AB,Beate Nagase,Warsaw,Poland
+TFXGR,Weite Cantina OY,Chantal Bein,London,UK
+OUXAV,Kleine Bistro AB,Noah Rossi,Amsterdam,Netherlands
+GQSFS,Nord Cantina AB,Eliane Damodaran,Innsbruck,Austria
+ESKGK,Hohe Import KG,Petra Heikkonen,Cologne,Germany
+DFEOL,Nord Feinkost KG,Martin Devling,Amsterdam,Netherlands
+TLYEZ,Feine Delikatessen SARL,Wendy Weber,Warsaw,Poland
+SPPNZ,Freie Taverna KG,Regina Ohno,Madrid,Spain
+SHRWN,Neue Bistro S.p.A.,Noah Diaz,Bergen,Norway
+FDCEW,Alpen Import Ltd.,Elio Bein,London,UK
+RPWJE,Erste Feinkost GmbH,Marco Winkler,Lisbon,Portugal
+LBGIQ,Goldene Feinkost S.p.A.,Jean Nagase,Prague,Czechia
+DKAUS,Sued Pantry S.p.A.,Jonas Damodaran,Copenhagen,Denmark
+ONAMJ,Frische Bistro BV,Carlos Murphy,Manchester,UK
+DDOTR,Stille Speisekammer S.p.A.,Shelley Bertrand,Stockholm,Sweden
+FJSFT,Nord Bistro SARL,Ian Nagase,Manchester,UK
+HAQTM,Neue Provisions SARL,Giovanni Bein,Brussels,Belgium
+RZMXB,Goldene Import KG,Lena Ohno,Vienna,Austria
+SAWUR,Feine Gourmet S.p.A.,Pavel Merchant,Munich,Germany
+MHXGD,Tiefe Cantina KG,Katrin Bertrand,Munich,Germany
+XOJOS,Frische Delikatessen AB,Elio Heikkonen,Rome,Italy
+GHSFC,Neue Kontor Ltd.,Lars Keller,Copenhagen,Denmark
+TKZGB,Sued Speisekammer Ltd.,Anne Bein,Copenhagen,Denmark
+HAWET,Beste Emporium S.p.A.,Dirk Burke,Graz,Austria
+TYMYS,West Emporium BV,Elio Mendoza,Manchester,UK
+GZJQE,Runde Gourmet Ltd.,Emma Peterson,Barcelona,Spain
+XPVSE,Hohe Cantina SARL,Carlos Petersen,Oslo,Norway
+IJIGR,Erste Vorratshaus GmbH,Peter Goulet,Rome,Italy
+JMUPQ,Freie Genuss KG,Dirk Bein,Innsbruck,Austria
+HBKZL,Neue Genuss SARL,Sven Cooper,Lisbon,Portugal
+XXSWY,Stille Handels OY,Eliane Keller,Warsaw,Poland
+MOYAF,Erste Genuss AB,Michael Burke,Madrid,Spain
+DXKIC,Bunte Emporium GmbH,Noah Bertrand,Stockholm,Sweden
+BHJHW,Rote Genuss SARL,Sven Luchini,Nantes,France
+NOELM,Bunte Import S.p.A.,Charlotte Bertrand,Graz,Austria
+LHTHA,Hohe Cantina SARL,Marco Petersen,Bern,Switzerland
+UIHOS,Freie Vorratshaus SARL,Pavel Murphy,Madrid,Spain
+EOAED,Erste Bistro GmbH,Ian Nolot,Prague,Czechia
+LPCSB,Nord Pantry S.p.A.,Marie Amsel,Helsinki,Finland
+BTOQD,Alpen Provisions BV,Niels Vileid,Nantes,France
+BAQLL,Alte Vorratshaus AB,Elio Cooper,Helsinki,Finland
+QJRQX,Alte Emporium AB,Marie Bein,Warsaw,Poland
+CSFEG,Runde Kontor AB,Jonas Luchini,Zurich,Switzerland
+FWHII,Hohe Vorratshaus OY,Peter Devling,Warsaw,Poland
+MEMFP,Klare Import AG,Guylene Devling,Graz,Austria
+ORXPP,Sued Import OY,Regina Winkler,Vienna,Austria
+VHQKB,Grosse Taverna GmbH,Giovanni Damodaran,Graz,Austria
+ZLZHX,Hohe Taverna & Co.,Niels Saveley,Lisbon,Portugal
+JTDYX,Feine Handels BV,Mayumi Fresnel,Barcelona,Spain
+QGHTL,Rote Gourmet GmbH,Emma del Valle,Milan,Italy
+QVYOW,Rote Pantry AB,Noah Nodier,Zurich,Switzerland
+QYLBO,Kleine Taverna SARL,Mayumi Rossi,Hamburg,Germany
+MIRTJ,Freie Kontor OY,Guylene Saveley,Stockholm,Sweden
+FNDZJ,Klare Markt & Co.,Giovanni Weber,Cologne,Germany
+QPTVF,Goldene Gourmet AG,Lars Weber,Graz,Austria
+OMVCV,Nord Feinkost GmbH,Antonio Luchini,Lisbon,Portugal
+CLYBE,Weite Emporium GmbH,Carlos Burke,Paris,France
+AOGJM,Erste Pantry BV,Jonas Weber,Warsaw,Poland
+QGQSJ,Klare Kontor BV,Chantal Nodier,Helsinki,Finland
+GVNBB,Freie Genuss AG,Katrin Cooper,Paris,France
+TWJVR,Erste Trading BV,Petra Goulet,Bergen,Norway
+ZYHVE,Sued Delikatessen S.p.A.,Mayumi Luchini,Brussels,Belgium
+MDMOQ,Frische Trading BV,Cheryl Keller,Innsbruck,Austria
+CCCHN,Blaue Speisekammer OY,Elio Petersen,Graz,Austria
+CBNDM,Nord Larder BV,Regina Nolot,Prague,Czechia
+VBTNL,Alte Provisions AG,Jonas Schulz,Brussels,Belgium
+ZXSXD,Kleine Gourmet KG,Wendy Bertrand,Munich,Germany
+YNTPM,Sued Provisions SARL,Lena Nagase,Warsaw,Poland
+BZYMS,Runde Larder S.p.A.,Sven Damodaran,Lyon,France
+RTSEZ,Weite Emporium SARL,Wendy Heikkonen,Manchester,UK
+UUHQZ,Runde Feinkost Ltd.,Yoshi Diaz,Bergen,Norway
+PYDDY,Tiefe Gourmet OY,Chandra Burke,Bern,Switzerland
+OHJOB,Frische Genuss KG,Carlos Nagase,Bergen,Norway
+PWAVD,Bunte Emporium KG,Jean Murphy,Turin,Italy
+ABYOA,Tiefe Genuss SARL,Chandra Peterson,Barcelona,Spain
+NWRRN,Neue Larder AB,Noah Amsel,Rome,Italy
+DIJBL,Hohe Provisions GmbH,Michael Saveley,Warsaw,Poland
+UNSTP,Blaue Larder BV,Robb del Valle,Munich,Germany
+CJNGS,Blaue Speisekammer AG,Michael Nolot,Lyon,France
+DGSNV,Klare Trading KG,Marie Peterson,Berlin,Germany
+MIBJV,Alte Kontor AG,Noah Burke,Oslo,Norway
+EASCC,Feine Taverna KG,Wendy Cooper,Milan,Italy
+AOYNN,Nord Larder KG,Regina Ohno,Graz,Austria
+RTQKE,Kleine Genuss AB,Chandra Damodaran,Barcelona,Spain
+VRCXB,Goldene Taverna Ltd.,Regina Damodaran,Berlin,Germany
+WNOOO,Hohe Speisekammer S.p.A.,Yoshi Damodaran,Oslo,Norway
+NHZWD,Sued Bistro SARL,Lena Goulet,Manchester,UK
+ULXRA,Ost Trading S.p.A.,Peter Amsel,Stockholm,Sweden
+BDOUG,Erste Pantry SARL,Emma Ohno,Helsinki,Finland
+UWGXB,Ost Import GmbH,Charlotte Amsel,Prague,Czechia
+OPZMR,Bunte Bistro AB,Lena Peterson,Berlin,Germany
+JMONJ,Erste Emporium KG,Regina Heikkonen,Vienna,Austria
+PYJLS,Blaue Kontor AB,Ian Crespi,Berlin,Germany
+HGUIL,Stille Genuss & Co.,Noah Nodier,Paris,France
+RPHVQ,Alte Speisekammer GmbH,Dirk del Valle,Munich,Germany
+GSWQC,Neue Larder BV,Ian Merchant,Nantes,France
+EPYTU,Sued Bistro AG,Marie Petersen,Warsaw,Poland
+HJIUV,Neue Markt S.p.A.,Lars Cooper,Cologne,Germany
+VHNYP,Frische Bistro OY,Robb Cooper,Prague,Czechia
+MFVTR,Hohe Provisions OY,Chandra Brandt,Vienna,Austria
+GYDMQ,Feine Genuss GmbH,Sofia Nolot,Lisbon,Portugal
+DXZWS,Freie Markt Ltd.,Cheryl Brandt,London,UK
+VFZEZ,Weite Handels Ltd.,Cheryl Mendoza,Zurich,Switzerland
+ODQBE,Hohe Import AG,Regina Vileid,Copenhagen,Denmark
+MBRVJ,Hohe Taverna S.p.A.,Giovanni Keller,Helsinki,Finland
+SDYVG,Beste Markt AG,Chandra del Valle,Dublin,Ireland
+XJEHG,Alte Bistro SARL,Emma Heikkonen,Manchester,UK
+BNBPZ,Rote Vorratshaus & Co.,Noah Ohno,Warsaw,Poland
+DSILU,Rote Gourmet & Co.,Robb Saveley,Oslo,Norway
+PALWN,Goldene Trading OY,Dirk del Valle,Innsbruck,Austria
+SRKFV,Alte Feinkost KG,Ian Nolot,Milan,Italy
+PCUEV,Beste Trading BV,Sofia Wilson,Warsaw,Poland
+IPGHZ,Ost Bistro KG,Elio Keller,Lisbon,Portugal
+BPPOJ,Rote Gourmet AB,Sofia Devling,Barcelona,Spain
+UGXKI,Feine Vorratshaus KG,Sofia Nolot,Bern,Switzerland
+FJAKE,Runde Trading BV,Sofia Schulz,Berlin,Germany
+QKNWA,Bunte Larder Ltd.,Beate Wilson,Madrid,Spain
+VPTMC,Beste Delikatessen KG,Chandra Petersen,Helsinki,Finland
+FDBVN,Ost Speisekammer AB,Jonas Rossi,Munich,Germany
+XITAS,Freie Handels AG,Katrin Nodier,Madrid,Spain
+LEAWE,Weite Genuss S.p.A.,Beate Peterson,Bergen,Norway
+QFKIJ,Sued Taverna SARL,Giovanni Wilson,Helsinki,Finland
+WHCAA,West Kontor SARL,Antonio Heikkonen,Brussels,Belgium
+YCNLF,Grosse Emporium & Co.,Michael Devling,Brussels,Belgium
+AXBVH,Alte Feinkost & Co.,Chandra Murphy,Brussels,Belgium
+HTUFX,Neue Vorratshaus AG,Niels Rossi,Copenhagen,Denmark
+EIVGS,Goldene Bistro S.p.A.,Emma del Valle,Helsinki,Finland
+PUHRO,Sued Larder GmbH,Shelley Goulet,Dublin,Ireland
+YYIHO,Stille Gourmet GmbH,Lena Damodaran,Amsterdam,Netherlands
+RDKVH,Ost Vorratshaus Ltd.,Shelley Petersen,Nantes,France
+UPOLP,Neue Larder SARL,Peter Fresnel,Madrid,Spain
+YDANU,Frische Bistro AG,Niels Schulz,Manchester,UK
+HXYLK,Blaue Bistro Ltd.,Martin Brandt,Barcelona,Spain
+QRPMD,Runde Cantina GmbH,Chandra Mendoza,Innsbruck,Austria
+ZUDTB,Grosse Delikatessen S.p.A.,Beate Ohno,Munich,Germany
+WRHKC,Kleine Vorratshaus & Co.,Pavel Ohno,Manchester,UK
+SWDEY,Erste Feinkost SARL,Antonio Schulz,Bergen,Norway
+OGFED,Neue Genuss KG,Elio Winkler,Berlin,Germany
+ZVYJH,Bunte Cantina Ltd.,Wendy Nodier,Madrid,Spain
+VFRVX,Grosse Taverna SARL,Marco Schulz,Bern,Switzerland
+MAGHO,Erste Larder AG,Charlotte Wilson,Warsaw,Poland
+LBSEZ,Ost Provisions AG,Niels Weber,Milan,Italy
+OIIVP,West Emporium KG,Beate Wilson,London,UK
+CSUPO,Neue Larder Ltd.,Petra Bertrand,Dublin,Ireland
+WRGAC,West Kontor Ltd.,Chantal del Valle,Copenhagen,Denmark
+TSFAP,Rote Markt OY,Cheryl Merchant,Bergen,Norway
+IQMQX,Erste Trading AG,Mayumi Petersen,Rome,Italy
+BISXZ,Alpen Pantry & Co.,Martin Merchant,London,UK
+SYQVE,Ost Speisekammer OY,Chandra Heikkonen,Oslo,Norway
+YADXV,Grosse Vorratshaus KG,Giovanni Saveley,Nantes,France
+UXJOM,Freie Vorratshaus BV,Regina Rossi,Prague,Czechia
+FJKGQ,Bunte Handels Ltd.,Shelley Cooper,Lisbon,Portugal
+AXVGB,Freie Delikatessen KG,Elio Goulet,Innsbruck,Austria
+UFRZR,Freie Import OY,Marco del Valle,Lyon,France
+PBQGH,Stille Larder KG,Niels Murphy,Innsbruck,Austria
+FFUJF,Rote Genuss AB,Katrin Nodier,Lisbon,Portugal
+IMRZC,Blaue Trading Ltd.,Shelley Keller,Graz,Austria
+KFBFE,Frische Handels KG,Noah Goulet,Munich,Germany
+LVTKF,Bunte Handels BV,Lars Vileid,Brussels,Belgium
+PXKQP,Goldene Markt AB,Giovanni Vileid,Prague,Czechia
+WNHGY,Sued Markt OY,Katrin Bein,Manchester,UK
+FJXAS,West Feinkost & Co.,Charlotte Bertrand,Barcelona,Spain
+MJXVN,Neue Bistro GmbH,Anne Devling,Madrid,Spain
+DSBKV,Nord Speisekammer SARL,Guylene Bein,Bern,Switzerland
+AYOND,West Vorratshaus Ltd.,Charlotte Wilson,Warsaw,Poland
+CTSWH,Bunte Taverna AG,Sofia Bein,Hamburg,Germany
+CZVTV,Freie Markt OY,Marco Luchini,London,UK
+MFAQT,Nord Bistro KG,Antonio Damodaran,Zurich,Switzerland
+GQQTO,Neue Genuss & Co.,Jean Bertrand,Oslo,Norway
+GUCUQ,Sued Cantina Ltd.,Jonas Cooper,Zurich,Switzerland
+BNTXV,Frische Larder KG,Sven Wilson,Oslo,Norway
+LNKFG,Feine Genuss Ltd.,Antonio Damodaran,Lisbon,Portugal
+XGXIC,Alte Larder GmbH,Anne Schulz,Warsaw,Poland
+RCQDF,Beste Gourmet BV,Petra Vileid,Stockholm,Sweden
+WOMZN,Blaue Delikatessen AB,Lena Nagase,Vienna,Austria
+OBSSH,Ost Vorratshaus BV,Giovanni Nagase,Manchester,UK
+YOOSA,Kleine Emporium AG,Emma Nagase,Lisbon,Portugal
+KRVOE,Nord Delikatessen BV,Martin Luchini,Vienna,Austria
+VPFLW,Alpen Gourmet OY,Jonas Devling,Cologne,Germany
+SEYYD,Runde Pantry OY,Shelley Ohno,Paris,France
+LDCGP,Kleine Genuss AG,Chandra Goulet,Hamburg,Germany
+DQLXX,Neue Delikatessen BV,Lars Goulet,Manchester,UK
+SFBTI,Alpen Kontor AB,Martin Devling,Paris,France
+OHCSW,Alpen Import AG,Mayumi Amsel,Vienna,Austria
+NSHTA,Kleine Delikatessen KG,Lars Rossi,Vienna,Austria
+VRYTZ,Ost Vorratshaus S.p.A.,Antonio Fresnel,Graz,Austria
+CTSBD,Neue Delikatessen AG,Lars del Valle,Vienna,Austria
+OBNRE,Feine Genuss SARL,Pavel Burke,Brussels,Belgium
+WNTWV,Freie Emporium OY,Marco Bein,Stockholm,Sweden
+WXNSJ,Klare Trading AG,Eliane Brandt,Amsterdam,Netherlands
+TKGMR,Alpen Speisekammer AG,Peter Mendoza,Turin,Italy
+WVJQB,Alte Delikatessen KG,Eliane Brandt,Barcelona,Spain
+WKKKT,West Genuss AG,Regina Rossi,Bern,Switzerland
+EYFDB,Grosse Taverna OY,Martin Ohno,Bern,Switzerland
+QWYTL,Kleine Gourmet BV,Petra Mendoza,Bern,Switzerland
+ERRHS,Nord Provisions BV,Mayumi Rossi,Madrid,Spain
+ODGMU,Tiefe Speisekammer & Co.,Shelley Crespi,Lyon,France
+HIAKV,Bunte Kontor GmbH,Niels Damodaran,Stockholm,Sweden
+SKOOI,Stille Vorratshaus S.p.A.,Marie Diaz,Prague,Czechia
+UROEB,Tiefe Cantina S.p.A.,Yoshi Mendoza,Graz,Austria
+EIOCD,Hohe Handels KG,Ian Nolot,Helsinki,Finland
+OOUXQ,Alte Delikatessen GmbH,Emma Wilson,Dublin,Ireland
+MWKXS,Nord Kontor AB,Marco Bertrand,Paris,France
+BKUUP,Runde Import GmbH,Petra Luchini,Oslo,Norway
+ZIZYY,Kleine Pantry AB,Petra Schulz,Bergen,Norway
+RKBFG,Beste Genuss S.p.A.,Cheryl Nagase,Stockholm,Sweden
+KLBBL,Freie Cantina SARL,Chandra Nolot,Prague,Czechia
+TGMKB,Bunte Taverna & Co.,Shelley Wilson,Rome,Italy
+WPQBZ,Rote Provisions BV,Yoshi Nagase,Nantes,France
+KKSXE,Nord Provisions SARL,Sofia Crespi,Bergen,Norway
+FNVVM,Weite Bistro Ltd.,Dirk Rossi,Milan,Italy
+MFIDD,Beste Trading KG,Elio Merchant,Berlin,Germany
+NRRJG,Kleine Markt BV,Dirk Wilson,Bern,Switzerland
+VKCPQ,Runde Genuss OY,Pavel Bein,Lyon,France
+ZBUSK,Goldene Genuss OY,Regina Diaz,Lisbon,Portugal
+MFPQU,Weite Handels AB,Noah Peterson,Zurich,Switzerland
+KENFN,Klare Taverna AG,Regina Bertrand,Manchester,UK
+DTBGX,Alpen Emporium KG,Dirk Petersen,Dublin,Ireland
+UIAVN,Bunte Gourmet S.p.A.,Jonas Nagase,Oslo,Norway
+CAHTL,Bunte Genuss GmbH,Pavel Luchini,Lisbon,Portugal
+AFZRB,Frische Feinkost AG,Jonas Weber,Bergen,Norway
+ADEKP,Hohe Emporium Ltd.,Marie Devling,Stockholm,Sweden
+ZZUFD,Goldene Speisekammer GmbH,Eliane Nodier,Oslo,Norway
+PXUAQ,Klare Delikatessen & Co.,Emma Schulz,Amsterdam,Netherlands
+SLWVH,Klare Cantina AG,Anne Wilson,Rome,Italy
+DQZFW,Klare Import SARL,Yoshi Brandt,Hamburg,Germany
+QTIBV,Neue Taverna GmbH,Wendy Weber,Bergen,Norway
+NWCTE,Blaue Feinkost AG,Peter Diaz,Warsaw,Poland
+HXSFC,Tiefe Vorratshaus GmbH,Sven Diaz,Munich,Germany
+ZIUEE,Weite Cantina GmbH,Niels Goulet,Barcelona,Spain
+NHEWZ,Ost Trading BV,Chantal Goulet,Hamburg,Germany
+FAEMX,Goldene Emporium S.p.A.,Anne Fresnel,Munich,Germany
+MUDSX,Klare Provisions BV,Marco Keller,Munich,Germany
+RLATT,Stille Feinkost Ltd.,Jean Luchini,Paris,France
+YDJQK,Stille Kontor S.p.A.,Chandra Burke,Graz,Austria
+MEDBS,Neue Genuss OY,Chantal Heikkonen,Helsinki,Finland
+YWZUI,Feine Vorratshaus GmbH,Guylene Cooper,Innsbruck,Austria
+TFDTU,Kleine Vorratshaus SARL,Niels Petersen,Berlin,Germany
+YRUDE,Tiefe Taverna BV,Eliane Petersen,Berlin,Germany
+PRQUX,Alpen Pantry Ltd.,Peter Heikkonen,Berlin,Germany
+BCVKW,Neue Import Ltd.,Regina Peterson,Munich,Germany
+AETTO,Kleine Provisions AG,Wendy Keller,Warsaw,Poland
+DHPOC,Nord Pantry SARL,Sofia Bein,Zurich,Switzerland
+JLSTF,Rote Emporium AB,Anne Bein,Barcelona,Spain
+FFWPN,Blaue Kontor S.p.A.,Petra Rossi,Munich,Germany
+ONHNY,Weite Feinkost Ltd.,Katrin Bein,Bergen,Norway
+HHIHO,Alte Handels BV,Niels Winkler,Stockholm,Sweden
+YNEYD,Bunte Pantry & Co.,Lena Bein,Rome,Italy
+LIQGM,Beste Vorratshaus AG,Yoshi Burke,Zurich,Switzerland
+HRVCS,Nord Delikatessen SARL,Katrin Nolot,Munich,Germany
+SNILW,Hohe Kontor BV,Giovanni Crespi,Oslo,Norway
+WTLDY,Goldene Feinkost SARL,Anne Crespi,Nantes,France
+FBKWN,Freie Taverna OY,Beate del Valle,Lisbon,Portugal
+MFRYM,Alte Kontor Ltd.,Jean Crespi,Amsterdam,Netherlands
+CJCKO,Grosse Handels AB,Giovanni Devling,Bergen,Norway
+XCESB,Erste Import GmbH,Emma Nolot,Warsaw,Poland
+WUUTP,Neue Kontor GmbH,Jean Petersen,Berlin,Germany
+NYQCX,Kleine Emporium BV,Pavel Vileid,Hamburg,Germany
+TFKVI,Grosse Bistro S.p.A.,Chandra Amsel,Milan,Italy
+PTHBC,Stille Bistro S.p.A.,Lars Weber,Turin,Italy
+VDSCL,Sued Taverna Ltd.,Beate Murphy,Madrid,Spain
+RLYXT,Runde Delikatessen BV,Robb Goulet,Berlin,Germany
+VNGES,Kleine Emporium SARL,Lars Mendoza,Hamburg,Germany
+HRLRL,Erste Markt S.p.A.,Charlotte Goulet,Warsaw,Poland
+UEXKA,Tiefe Trading & Co.,Marco Nagase,Amsterdam,Netherlands
+FYJFI,Feine Pantry AG,Chantal Devling,Copenhagen,Denmark
+PFSWD,Blaue Larder S.p.A.,Pavel Heikkonen,Warsaw,Poland
+ZBORO,Rote Genuss S.p.A.,Guylene Winkler,Turin,Italy
+MWHVX,Grosse Emporium AG,Martin Cooper,Turin,Italy
+PZXCK,Kleine Import BV,Mayumi Mendoza,London,UK
+UNGFG,Frische Trading OY,Mayumi Mendoza,Warsaw,Poland
+UBETI,Alte Vorratshaus AG,Cheryl Keller,Madrid,Spain
+XOJBG,Ost Kontor BV,Wendy Weber,Graz,Austria
+OHXYC,West Handels S.p.A.,Cheryl Ohno,Manchester,UK
+FOSTR,Neue Provisions BV,Emma Luchini,Lisbon,Portugal
+VLMTI,Rote Vorratshaus Ltd.,Emma Bertrand,Berlin,Germany
+BYOJH,Beste Cantina KG,Petra Petersen,Graz,Austria
+FARSL,Stille Kontor GmbH,Martin Rossi,Nantes,France
+HEUTX,Stille Cantina KG,Marco Petersen,Munich,Germany
+UUHFK,Rote Cantina Ltd.,Charlotte Nagase,Brussels,Belgium
+JACND,Goldene Taverna GmbH,Eliane Amsel,Stockholm,Sweden
+UMJKQ,West Provisions & Co.,Marie Keller,London,UK
+VQFXE,Alpen Markt BV,Michael Merchant,Innsbruck,Austria
+VQYET,Nord Provisions OY,Elio Peterson,Nantes,France
+FPYBS,Grosse Delikatessen BV,Regina Brandt,Graz,Austria
+PZFXA,West Larder BV,Michael Heikkonen,Prague,Czechia
+UICCC,Stille Vorratshaus & Co.,Petra Rossi,Graz,Austria
+UWPCY,Sued Pantry AG,Carlos Devling,Hamburg,Germany
+HQOTI,Erste Feinkost Ltd.,Yoshi Cooper,Cologne,Germany
+QNVBE,Klare Speisekammer GmbH,Charlotte Nagase,Munich,Germany
+ZCUXQ,Sued Taverna S.p.A.,Peter Ohno,Copenhagen,Denmark
+TWKDN,Nord Taverna AG,Antonio Weber,Oslo,Norway
+XEYPU,Runde Trading AG,Shelley Nodier,Dublin,Ireland
+HKBHD,Grosse Bistro AG,Cheryl Keller,Manchester,UK
+UMMFB,Grosse Emporium OY,Petra Burke,Brussels,Belgium
+IZSFD,Alte Emporium OY,Marco Schulz,Amsterdam,Netherlands
+GNIEK,Ost Gourmet SARL,Beate Petersen,Bergen,Norway
+LAOWV,Feine Vorratshaus SARL,Jonas Rossi,Cologne,Germany
+MAPNH,Blaue Speisekammer S.p.A.,Chantal Heikkonen,Berlin,Germany
+AIPEN,Runde Gourmet AG,Carlos Diaz,Lisbon,Portugal
+DUUCI,Alte Genuss Ltd.,Ian Saveley,Manchester,UK
+QWDTO,Hohe Vorratshaus AB,Ian Rossi,Warsaw,Poland
+WZCBS,Nord Markt AG,Jean Winkler,Cologne,Germany
+IFZDI,Alte Import KG,Eliane Merchant,Helsinki,Finland
+IKVAZ,Erste Markt BV,Wendy Merchant,Vienna,Austria
+DPPDH,Erste Gourmet BV,Wendy Keller,Prague,Czechia
+UCZFS,Weite Kontor S.p.A.,Ian Saveley,Bern,Switzerland
+DXXWR,Erste Cantina OY,Chantal Saveley,Milan,Italy
+VNIRX,Ost Delikatessen AG,Yoshi Goulet,Paris,France
+VCKGN,Kleine Genuss BV,Yoshi Mendoza,Amsterdam,Netherlands
+OTRES,Bunte Pantry KG,Lars Burke,Bergen,Norway
+EVWOV,Beste Vorratshaus & Co.,Anne Keller,Madrid,Spain
+WEARC,Nord Speisekammer S.p.A.,Mayumi Murphy,Madrid,Spain
+JATCM,Bunte Genuss Ltd.,Lars Bertrand,Paris,France
+WXXQM,Feine Pantry Ltd.,Wendy Bertrand,Helsinki,Finland
+NORDW,Nordwind Feinkost GmbH,Lena Brandt,Hamburg,Germany
+SYIFR,Freie Larder SARL,Carlos Petersen,Barcelona,Spain
+FBOHJ,Bunte Delikatessen GmbH,Guylene Saveley,Oslo,Norway
+HJQHH,Tiefe Emporium Ltd.,Yoshi Wilson,Barcelona,Spain
+UKNDZ,Nord Feinkost KG,Lars Keller,London,UK
+WRNCK,Hohe Pantry BV,Mayumi Keller,Amsterdam,Netherlands
+MESSA,Kleine Genuss BV,Lena Rossi,Barcelona,Spain
+BLCJY,Tiefe Import & Co.,Cheryl Mendoza,Innsbruck,Austria
+XNPBH,Neue Delikatessen GmbH,Elio Petersen,Dublin,Ireland
+TGWUG,Alpen Kontor BV,Giovanni Keller,Madrid,Spain
+BXKJC,Rote Emporium BV,Michael del Valle,Zurich,Switzerland
+PPYYJ,Goldene Kontor SARL,Dirk Bein,Prague,Czechia
+VMQDP,Weite Emporium Ltd.,Peter Rossi,Oslo,Norway
+UULPP,West Pantry & Co.,Lars Crespi,Lisbon,Portugal
+GTSTS,Kleine Bistro & Co.,Anne Goulet,Vienna,Austria
+GNPUD,Ost Handels AG,Sofia Bein,Lyon,France
+TRPNK,Weite Vorratshaus AB,Jean Crespi,Copenhagen,Denmark
+VCJCT,Neue Import KG,Charlotte Nolot,Lyon,France
+NJZSF,Weite Provisions OY,Beate Keller,Oslo,Norway
+XAJEP,Erste Delikatessen OY,Regina Schulz,Madrid,Spain
+KOVEX,Rote Markt BV,Chandra Goulet,London,UK
+XAYKA,Bunte Markt AB,Sofia Mendoza,Helsinki,Finland
+TINQC,Erste Feinkost & Co.,Elio Damodaran,Bergen,Norway
+HIQZM,Alte Cantina AB,Lars Weber,Oslo,Norway
+EVGNF,Tiefe Taverna Ltd.,Michael Amsel,Barcelona,Spain
+NIPOH,Kleine Pantry KG,Sven Goulet,Dublin,Ireland
+TYREQ,Ost Markt OY,Giovanni Cooper,Nantes,France
+VMCHE,West Taverna & Co.,Lars Cooper,Vienna,Austria
+MFEQX,Alpen Provisions & Co.,Ian Keller,Turin,Italy
+KZEXV,Freie Bistro SARL,Niels Brandt,Hamburg,Germany
+YIPUC,Feine Trading OY,Sven Peterson,Helsinki,Finland
+JZYVP,Rote Cantina S.p.A.,Charlotte Heikkonen,Barcelona,Spain
+EQDPG,Rote Taverna Ltd.,Ian Vileid,Munich,Germany
+IGXDM,Alpen Trading SARL,Chandra Saveley,Vienna,Austria
+IFWOL,Ost Feinkost & Co.,Jean Goulet,Graz,Austria
+OCIGO,Weite Larder GmbH,Petra Diaz,Lisbon,Portugal
+BZODS,Goldene Speisekammer OY,Lena Winkler,Lyon,France
+AVOZW,Freie Feinkost SARL,Martin Petersen,Hamburg,Germany
+RUAAC,Alte Bistro KG,Emma Brandt,Milan,Italy
+OJSMW,Erste Taverna & Co.,Sofia Nolot,Prague,Czechia
+CWBNN,Kleine Handels S.p.A.,Beate Damodaran,Dublin,Ireland
+KHFBT,Nord Import S.p.A.,Yoshi Keller,Copenhagen,Denmark
+FQMAC,Kleine Import KG,Petra Bein,Berlin,Germany
+EXDUR,Grosse Cantina BV,Martin Mendoza,Zurich,Switzerland
+OEFSH,Alte Handels OY,Martin Petersen,Copenhagen,Denmark
+PIZRY,Weite Vorratshaus SARL,Noah Nagase,London,UK
+CCATV,Rote Handels OY,Charlotte Bein,Graz,Austria
+KSQWL,Tiefe Delikatessen OY,Chandra Goulet,Innsbruck,Austria
+LAUSR,Goldene Delikatessen AB,Chandra Bein,Milan,Italy
+TQJZF,Goldene Pantry AB,Noah Amsel,Nantes,France
+SDWDL,Alte Genuss Ltd.,Martin Burke,Copenhagen,Denmark
+XYXKK,Weite Larder & Co.,Emma Keller,Milan,Italy
+YKTFL,Hohe Speisekammer OY,Sofia Nolot,Amsterdam,Netherlands
+UBVCF,Hohe Trading SARL,Jonas Heikkonen,Lyon,France
+ZHCHA,Neue Handels AG,Lars Devling,Warsaw,Poland
+DTXFD,West Taverna Ltd.,Yoshi Amsel,Vienna,Austria
+JSVBF,Klare Genuss Ltd.,Sven Mendoza,Berlin,Germany
+XVVOE,Alte Vorratshaus OY,Sven Weber,Bern,Switzerland
+TIMXN,Sued Emporium AG,Jean del Valle,Graz,Austria
+OYDFR,Goldene Feinkost OY,Beate Bein,Berlin,Germany
+EFSKY,Blaue Markt OY,Charlotte Heikkonen,Turin,Italy
+DLRTP,Goldene Import & Co.,Noah Petersen,Berlin,Germany
+HEYVH,Feine Bistro GmbH,Lars Winkler,London,UK
+DMXPG,Neue Kontor S.p.A.,Elio Fresnel,Cologne,Germany
+OCEZN,Tiefe Import AB,Niels Devling,Brussels,Belgium
+BVZVR,Freie Pantry KG,Marco Nagase,Milan,Italy
+CQQZQ,Ost Handels BV,Peter Cooper,Warsaw,Poland
+GNHTE,Neue Delikatessen KG,Guylene Amsel,Copenhagen,Denmark
+XKGPQ,Neue Vorratshaus OY,Marie Ohno,Zurich,Switzerland
+YPSXH,Rote Cantina AG,Regina Mendoza,Lyon,France
+YZWSE,Blaue Speisekammer S.p.A.,Eliane Mendoza,Oslo,Norway
+CXLTI,Beste Trading GmbH,Katrin Bein,Manchester,UK
+QLQYD,Freie Bistro AB,Guylene Ohno,Nantes,France
+AUOZY,Ost Delikatessen GmbH,Martin Amsel,Graz,Austria
+KBVMT,Alte Taverna & Co.,Charlotte Devling,Innsbruck,Austria
+HDCLB,Grosse Provisions AB,Antonio Schulz,Lisbon,Portugal
+MRYPK,Alpen Feinkost OY,Antonio Wilson,Warsaw,Poland
+LBRSM,Blaue Larder Ltd.,Dirk Damodaran,Lisbon,Portugal
+BYKUR,Feine Delikatessen KG,Dirk Damodaran,Zurich,Switzerland
+PPHKH,Alpen Bistro S.p.A.,Pavel Diaz,Rome,Italy
+ITEZM,Erste Handels Ltd.,Emma Peterson,Munich,Germany
+VFGWL,Grosse Cantina AB,Chandra Rossi,Stockholm,Sweden
+ADIHF,Frische Pantry Ltd.,Anne Saveley,Nantes,France
+PMBZQ,Beste Handels Ltd.,Beate Bein,Prague,Czechia
+BADXC,Alte Genuss KG,Marie Winkler,Helsinki,Finland
+ZUJSC,Beste Trading KG,Jonas Peterson,Prague,Czechia
+TMCVR,Feine Pantry S.p.A.,Michael Bein,Manchester,UK
+IHABP,Nord Gourmet SARL,Niels Wilson,Warsaw,Poland
+QPKXB,Blaue Vorratshaus AB,Lars Nodier,Barcelona,Spain
+DRENK,Tiefe Feinkost Ltd.,Jean Luchini,Bern,Switzerland
+VPIEQ,Tiefe Provisions AB,Shelley Crespi,Madrid,Spain
+PVVWU,Grosse Feinkost AG,Petra Peterson,Dublin,Ireland
+SSNII,Grosse Trading AB,Pavel Peterson,Manchester,UK
+HMIYN,Tiefe Larder OY,Guylene Bein,Madrid,Spain
+QLOAF,Alte Bistro OY,Wendy Diaz,Lisbon,Portugal
+JBTCU,Frische Trading Ltd.,Petra Rossi,Madrid,Spain
+OKKLZ,Grosse Trading KG,Noah Cooper,Warsaw,Poland
+GEGBA,Tiefe Pantry & Co.,Ian Merchant,Bergen,Norway
+LUETE,Frische Handels BV,Lars Burke,Lisbon,Portugal
+GDBWT,Runde Provisions OY,Jonas Nodier,Oslo,Norway
+HAKSL,Kleine Vorratshaus SARL,Peter Brandt,Rome,Italy
+DGAPJ,Freie Import KG,Eliane Damodaran,Brussels,Belgium
+ALPBI,Alpenbistro Handels AG,Marco Keller,Innsbruck,Austria
+BPHZB,Beste Bistro & Co.,Katrin Vileid,Zurich,Switzerland
+DHPSL,Tiefe Speisekammer S.p.A.,Charlotte Weber,Berlin,Germany
+RIRKP,Klare Markt BV,Antonio Bertrand,Barcelona,Spain
+JPTAC,Rote Kontor KG,Lars Luchini,Nantes,France
+LORXC,Tiefe Genuss SARL,Pavel Bein,Munich,Germany
+STHNM,Rote Speisekammer Ltd.,Niels Ohno,Innsbruck,Austria
+JRORI,Rote Kontor S.p.A.,Antonio Peterson,Innsbruck,Austria
+KBMTE,Feine Speisekammer SARL,Jonas Fresnel,Madrid,Spain
+TNZHZ,Neue Emporium SARL,Emma Saveley,Oslo,Norway
+JJYVA,West Emporium & Co.,Shelley Merchant,Munich,Germany
+IJUCG,West Handels SARL,Marco Burke,Innsbruck,Austria
+DRAFP,Hohe Cantina & Co.,Robb Diaz,Stockholm,Sweden
+YQXOS,Tiefe Genuss Ltd.,Yoshi Heikkonen,Manchester,UK
+MWWDZ,West Import & Co.,Michael Bein,Bern,Switzerland
+QOUIP,Nord Larder BV,Jean Goulet,Brussels,Belgium
+IVWPL,Frische Delikatessen Ltd.,Sven Schulz,Dublin,Ireland
+OICLF,Erste Bistro GmbH,Anne Fresnel,London,UK
+GFHTI,Rote Trading & Co.,Marco Luchini,Dublin,Ireland
+OJNYR,Tiefe Markt AB,Sven Burke,Warsaw,Poland
+JSFJC,Beste Vorratshaus AB,Emma Fresnel,Nantes,France
+LFDMZ,Klare Kontor Ltd.,Martin Cooper,London,UK
+XTQGR,Alpen Cantina AG,Martin Damodaran,London,UK
+SGUFK,Freie Handels & Co.,Katrin Luchini,Prague,Czechia
+DRIAD,Klare Markt AG,Beate Goulet,Copenhagen,Denmark
+NCNWO,Nord Delikatessen AB,Elio Rossi,Bergen,Norway
+NVIFK,Stille Kontor AB,Pavel Fresnel,Cologne,Germany
+FNSTZ,Neue Feinkost S.p.A.,Marie Diaz,Innsbruck,Austria
+XTJGY,Klare Genuss GmbH,Mayumi Keller,Dublin,Ireland
+MXCOO,Neue Handels AB,Wendy Nodier,Warsaw,Poland
