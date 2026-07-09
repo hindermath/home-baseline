@@ -57,6 +57,35 @@ sample), used here in a **brand-neutral, purely didactic** way. Field names, dat
 follow the Northwind layout. **All data is fictional** — no real PII, no real secrets, no real internal paths.
 "Microsoft" appears only as an origin note; "Windows" / "Windows Server" are used only as OS names.
 
+### DS-GVO / GDPR
+
+**DE:** Weil der Bestand vollständig synthetisch und fiktiv ist und **keinen Personenbezug** hat, fällt er
+**nicht in den Anwendungsbereich der DS-GVO** (Erwägungsgrund 26 zu anonymen bzw. nicht personenbezogenen
+Daten). Northwind-Namen wie **Maria Anders** oder **Alfreds Futterkiste** sind fiktive Beispieleinträge, keine
+realen Personen. Es werden keine echten Namen, Adressen, Kontaktdaten oder sonstigen personenbezogenen
+Informationen abgebildet.
+
+**EN:** Because the data set is fully synthetic and fictional and has **no personal reference**, it is **outside
+the scope of the GDPR** (Recital 26 on anonymous / non-personal data). Northwind names such as **Maria Anders**
+or **Alfreds Futterkiste** are fictional sample entries, not real people. No real names, addresses, contact
+details, or other personal information are represented.
+
+### Entstehung / Provenance
+
+**DE:** Zur Ehrlichkeit über die Herkunft ist zwischen **Datenwerten** und **Werkzeug** zu trennen. Die
+**Datenwerte** werden **prozedural und deterministisch** durch das geseedete Python-Skript
+`generate-secure-trader-dataset.py` erzeugt — **kein LLM-Output**, kein `os.urandom`; gleiches `(end, seed)`
+liefert bitgleiche Ausgabe. Das **Generator-Skript und diese Begleitdokumentation** wurden dagegen
+**KI-assistiert** (Claude Code) erstellt. Kurz: KI beim Werkzeug, Determinismus bei den Daten. Ein pauschales
+Etikett „KI-generierte Daten" träfe daher nicht zu.
+
+**EN:** For honesty about provenance, separate the **data values** from the **tooling**. The **data values**
+are produced **procedurally and deterministically** by the seeded Python script
+`generate-secure-trader-dataset.py` — **no LLM output**, no `os.urandom`; the same `(end, seed)` yields
+bit-identical output. The **generator script and this accompanying documentation**, by contrast, were created
+**with AI assistance** (Claude Code). In short: AI for the tool, determinism for the data. A blanket label of
+"AI-generated data" would therefore be inaccurate.
+
 ## Dateien / Files
 
 ```text

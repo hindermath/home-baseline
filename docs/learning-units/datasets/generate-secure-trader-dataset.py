@@ -23,6 +23,16 @@ WHY zwei getrennte Achsen / two separate axes:
     Kein os.urandom, keine Zufallszeit; now() wird NUR fuer das Default-Enddatum
     genutzt, NICHT fuer den Seed.
 
+HERKUNFT & DS-GVO / provenance & GDPR:
+    DE: Die Datenwerte entstehen prozedural und deterministisch aus diesem
+        geseedeten Skript -- KEIN LLM-Output. Skript und Doku selbst wurden
+        KI-assistiert (Claude Code) erstellt. Alle Werte sind synthetisch/fiktiv
+        und haben keinen Personenbezug; damit ausserhalb der DS-GVO (ErwG 26).
+    EN: The data values are procedural and deterministic from this seeded script
+        -- NOT LLM output. The script and docs themselves were authored with AI
+        assistance (Claude Code). All values are synthetic/fictional with no
+        personal reference, hence outside the GDPR (Recital 26).
+
 Der eingecheckte Snapshot wird mit gepinnten Parametern erzeugt und dokumentiert
 (siehe README): `python3 generate-secure-trader-dataset.py --end 2026-07`.
 """
