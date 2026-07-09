@@ -25,6 +25,37 @@
 | Kaufmann/-frau für IT-System-Management | Secure CaseTracker, Secure InventoryHub, ausgewählte Application-/Operations-Aufgaben | Kundenanforderungen, Angebote, Beschaffung, Services, Verträge, Kosten/Nutzen und Übergabe |
 | Kaufmann/-frau für Digitalisierungsmanagement | Data & Process Track, Secure InventoryHub, ausgewählte v2-Aufgaben | Geschäftsprozesse, Digitalisierung, Datenbedarf, Kennzahlen, Datenschutz, Wirtschaftlichkeit |
 
+## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
+
+**DE:** KITSM und KDM arbeiten an derselben Secure-CaseTracker-Familie wie die
+Fachinformatiker-Fachrichtungen, aber in der Rolle **Auftraggeber:in und Abnehmer:in**. Wie viel
+Programmierung dazugehört, beschreibt die
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md):
+Der Beitrag liegt auf Spezifikation, Governance und Abnahme; der Agent trägt den imperativen Code.
+Der Fokus auf Support-Cases, Beschaffung, Prozessanalyse und kundenverständliche Übergabe passt zu
+beiden kaufmännischen Berufen (KITSM: Services/Übergabe; KDM: Datenbedarf/Kennzahlen).
+
+**EN:** KITSM and KDM work on the same Secure CaseTracker family as the IT-specialist directions, but
+in the role of **client and acceptor**. How much programming this involves is described in the
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md):
+the contribution is on specification, governance, and acceptance; the agent carries the imperative
+code. The focus on support cases, procurement, process analysis, and customer-friendly handover fits
+both commercial occupations (KITSM: services/handover; KDM: data needs/key figures).
+
+| Beruf | Programmieranteil / Authoring | Pflicht-Touch (aktiv) | Beispiel-Units CaseTracker |
+|---|---|---|---|
+| KITSM | ~5–10 % | Konfig-/Parameter-Änderung plus minimaler SQL-Schreib-Touch | 01 Kundenauftrag/Scope, 06 Persistenz/Import-Export, 11 Review/Übergabe |
+| KDM | ~15–25 % | SQL-Authoring für eine Kennzahl (parametrisiert) | 06 Persistenz/Import-Export, 10 Prozessanalyse/Kennzahlen, Data-&-Process-Track 05 |
+
+**DE:** Verbindlich für beide: der SQL-Schreib-Pflicht-Touch (mindestens ein aktiver, parametrisierter
+Schritt) und die evidenzbasierte Abnahme mit einer bewusst eingebauten Abweichung, die gefunden werden
+muss. Details je Einheit stehen im Abschnitt „Kaufmännische Rollen-Umschaltung" der betroffenen
+Lernbegleiter.
+
+**EN:** Binding for both: the mandatory SQL write touch (at least one active, parameterized step) and
+evidence-based acceptance with a deliberately built-in deviation that must be found. Per-unit details
+are in the "Commercial Role Switch" section of the affected study companions.
+
 ## Nutzung im Unterricht / Classroom Use
 
 - **DE:** Spec-Kit-Läufe werden pro Aufgabe und Repo bewusst gestartet. Sie begleiten Analyse, Planung, Umsetzung und Review, ersetzen aber nicht das Erlernen des Berufsbildes.

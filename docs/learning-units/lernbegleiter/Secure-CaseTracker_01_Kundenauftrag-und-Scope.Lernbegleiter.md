@@ -229,6 +229,27 @@ not by color.
 - [ ] name data types with a purpose and set data minimization as a criterion.
 - [ ] document at least one privacy and one security assumption.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Diese Einheit lässt sich in der kaufmännischen Rolle als **Auftraggeber:in** fahren (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+Der Agent entwickelt; du beauftragst und nimmst ab.
+
+- **KITSM:** Formuliere aus dem Kundenauftrag eine kurze **Leistungsbeschreibung** für das
+  Case-Handling (Scope, Nicht-Ziele, messbare Abnahmekriterien, Service-/SLA-Aspekte) für `/specify`.
+- **KDM:** Formuliere den **Datenbedarf** und ein erstes **Prozesskennzahl-Ziel** (z. B.
+  „Cases je Status und Zeitraum") als Anforderung für `/specify`.
+- **Pflicht-Touch:** hier noch kein Code — der aktive SQL-Schreib-Touch folgt in Einheit 06.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Mindestens eine Anforderung in der Agenten-Spec
+  ist unklar oder fehlt; finde sie über `/clarify`, bevor du abnimmst.
+
+**EN:** Run this unit in the commercial role as **client** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KITSM: turn the customer order into a short service description with measurable acceptance criteria and
+SLA aspects for `/specify`. KDM: state the data need and a first process-metric goal for `/specify`.
+Mandatory touch: no code yet — the active SQL write touch follows in unit 06. Evidence-based acceptance:
+at least one requirement is unclear or missing; find it via `/clarify` before accepting.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

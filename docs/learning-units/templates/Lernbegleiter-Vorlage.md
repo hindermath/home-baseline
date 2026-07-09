@@ -95,6 +95,26 @@ security decision is inside this unit? Which accessibility aspect is relevant?>
 
 - [ ] <verifiable learning-goal statement>
 
+<!-- Optionaler Abschnitt: nur bei Handlungs-Units, an denen KITSM/KDM real agieren
+     (Auftrag, SQL-Persistenz, Kennzahlen, Review/Abnahme). Grundlage und Bänder:
+     Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md. Sonst weglassen. -->
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Diese Einheit lässt sich in der kaufmännischen Rolle als **Auftraggeber:in / Abnehmer:in**
+fahren (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+Der Agent entwickelt; du beauftragst und nimmst ab.
+
+- **KITSM:** <rollenspezifische Spec-/Abnahme-/Übergabe-Aufgabe; Bezug zu Services, Verträgen, Kosten/Nutzen>
+- **KDM:** <rollenspezifische Datenbedarf-/Kennzahl-Aufgabe; Bezug zu Geschäftsprozess, Datenschutz, Aussagegrenzen>
+- **Pflicht-Touch:** <mindestens ein aktiver, parametrisierter SQL-Schreib-Schritt oder Verweis auf die SQL-Einheit>
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** <eine bewusst gesetzte Abweichung, die vor der Freigabe gefunden werden muss>
+
+**EN:** Run this unit in the commercial role as **client / acceptor** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+The agent develops; you commission and accept. State the KITSM and KDM tasks, the mandatory SQL write
+touch, and one built-in deviation to find during evidence-based acceptance.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

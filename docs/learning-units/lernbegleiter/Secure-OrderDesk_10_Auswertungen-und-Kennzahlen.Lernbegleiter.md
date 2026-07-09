@@ -286,6 +286,26 @@ understandable with a screen reader and Braille display.
 - [ ] name a limit of interpretation for each metric.
 - [ ] design evaluations aggregated and without conclusions about individual real people and use `ALFKI` as an anchor.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Auswertungen und Kennzahlen sind besonders **KDM-nah** (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+
+- **KDM (Authoring):** Schreibe eine parametrisierte **Auswertungs-Abfrage** selbst (z. B. „Umsatz je
+  Monat", „Top-Kunden je Zeitraum") und benenne die **Aussagegrenzen** (Zeitraum, fehlende Daten).
+- **KITSM (lesend + Bewertung):** Interpretiere die Kennzahlen unter **Kosten/Nutzen** und prüfe, ob
+  die Auswertung die Kundenfrage beantwortet. Kein Pflicht-Authoring hier — dein SQL-Touch war in 06.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Eine Kennzahl ist **überinterpretiert** (fehlende
+  Aussagegrenze oder falsche Aggregationsbasis). Finde sie und fordere die Korrektur vor Freigabe.
+
+**EN:** Reporting and key figures are especially **close to KDM** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KDM authors a parameterized reporting query (e.g. "revenue per month") and names the limits of the
+statement. KITSM interprets the figures under cost/benefit and checks they answer the customer question
+(no mandatory authoring here — the SQL touch was in unit 06). Evidence-based acceptance: one figure is
+over-interpreted (missing limit or wrong aggregation base) — find it and require the correction before
+release.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

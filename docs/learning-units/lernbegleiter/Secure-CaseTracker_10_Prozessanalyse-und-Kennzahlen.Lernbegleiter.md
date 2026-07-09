@@ -227,6 +227,26 @@ understandable with a screen reader and Braille display.
 - [ ] design metrics without conclusions about real people.
 - [ ] create a sample evaluation with fictitious, repeatable data.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Prozessanalyse und Kennzahlen sind besonders **KDM-nah** (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+
+- **KDM (Authoring):** Schreibe eine parametrisierte **Prozesskennzahl-Abfrage** selbst (z. B.
+  „Durchlaufzeit je Case-Typ", „offene Cases je Zeitraum") und benenne die **Aussagegrenzen**.
+- **KITSM (lesend + Bewertung):** Interpretiere die Kennzahlen unter **Kosten/Nutzen** und Service-Sicht.
+  Kein Pflicht-Authoring hier — dein SQL-Touch war in 06.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Eine Kennzahl ist **überinterpretiert** (fehlende
+  Aussagegrenze oder falsche Aggregationsbasis). Finde sie und fordere die Korrektur vor Freigabe.
+
+**EN:** Process analysis and key figures are especially **close to KDM** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KDM authors a parameterized process-metric query (e.g. "lead time per case type") and names the limits
+of the statement. KITSM interprets the figures under cost/benefit and service view (no mandatory
+authoring here — the SQL touch was in unit 06). Evidence-based acceptance: one figure is
+over-interpreted (missing limit or wrong aggregation base) — find it and require the correction before
+release.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

@@ -229,6 +229,31 @@ details and without color-only signals, so they remain usable with a screen read
 - [ ] re-validate imported data functionally after reading.
 - [ ] distinguish a data-minimal export profile from a complete one.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Dies ist die **SQL-Schlüsseleinheit** für beide kaufmännischen Berufe (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+Hier findet der verpflichtende **SQL-Schreib-Touch** statt. SQL ist die deklarative
+Brücken-Programmiersprache: Du beschreibst das Ergebnis, der Agent trägt das „Wie".
+
+- **KITSM (minimaler Touch):** Schreibe **eine** parametrisierte Abfrage selbst, z. B. „Cases eines
+  Kunden" (`... WHERE CustomerID = ?`). Zusätzlich eine kleine **Konfig-/Parameter-Änderung** (z. B.
+  Import-Timeout). Kein dynamisches SQL aus Eingaben.
+- **KDM (Authoring):** Schreibe eine parametrisierte **Prozesskennzahl-Abfrage** (z. B. „Cases je
+  Status") selbst und rechne das Ergebnis gegen einen festen Testanker.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Im Datenzugriffs-/Import-Code des Agenten ist
+  eine Stelle **nicht parametrisiert** (String-Verkettung) oder eine Filterspalte fehlt der Allowlist.
+  Finde diese Stelle in der Abnahme und lehne ab, bis sie parametrisiert ist.
+
+**EN:** This is the **SQL key unit** for both commercial occupations and hosts the mandatory **SQL write
+touch** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KITSM writes one parameterized query (e.g. "cases of a customer") plus a small config change. KDM
+authors a parameterized process-metric query (e.g. "cases per status") and checks it against a fixed
+test anchor. Evidence-based acceptance: one spot in the agent's data-access/import code is not
+parameterized (string concatenation) or a filter column is missing from the allowlist — find it and
+reject until fixed.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

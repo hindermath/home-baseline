@@ -229,6 +229,29 @@ reader and Braille display.
 - [ ] back positive security or quality statements with evidence.
 - [ ] build a short, customer-understandable, privacy-friendly presentation.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Review und Abschluss sind die **Abnahme-/Übergabe-Einheit** — die Kernrolle beider
+kaufmännischen Berufe (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+Der Agent hat entwickelt; du nimmst ab und übergibst.
+
+- **KITSM:** Erstelle ein kurzes **Abnahmeprotokoll/Übergabedokument** (erfüllte Kriterien, offene
+  Punkte, Service-/SLA-Hinweise, Kosten/Nutzen). Prüfe jeden Punkt gegen die Spec, nicht gegen das Gefühl.
+- **KDM:** Rechne die zentralen **Prozesskennzahlen** gegen und dokumentiere **Datenschutz** und
+  **Aussagegrenzen** in der Übergabe.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Die Zusammenfassung des Agenten behauptet ein
+  **erfülltes Kriterium, das nicht erfüllt ist**. Finde es über Ausführen/Gegenprüfen und verweigere die
+  Freigabe, bis es stimmt.
+
+**EN:** Review and closure are the **acceptance/handover unit** — the core role of both commercial
+occupations (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KITSM writes a short acceptance/handover record (met criteria, open points, SLA notes, cost/benefit),
+checking each point against the spec. KDM re-computes the process metrics and documents privacy and the
+limits of the statement in the handover. Evidence-based acceptance: the agent's summary claims a met
+criterion that is not met — find it by running/checking and withhold release until correct.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

@@ -267,6 +267,31 @@ details and without color-only signals, so they remain usable with a screen read
 - [ ] distinguish a data-minimal export profile from a complete one.
 - [ ] keep internal details out of user-facing error messages.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Dies ist die **SQL-Schlüsseleinheit** für beide kaufmännischen Berufe (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+Hier findet der verpflichtende **SQL-Schreib-Touch** statt. SQL ist die deklarative
+Brücken-Programmiersprache: Du beschreibst das Ergebnis, der Agent trägt das „Wie".
+
+- **KITSM (minimaler Touch):** Schreibe **eine** parametrisierte Abfrage selbst, z. B. „Snapshots eines
+  Geräts" (`... WHERE MachineID = ?`). Zusätzlich eine kleine **Konfig-/Parameter-Änderung** (z. B.
+  Import-Timeout). Kein dynamisches SQL aus Eingaben.
+- **KDM (Authoring):** Schreibe eine parametrisierte **Betriebskennzahl-Abfrage** (z. B.
+  „Bestandsänderungen je Zeitraum") selbst und rechne das Ergebnis gegen einen festen Testanker.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Im Datenzugriffs-/Import-Code des Agenten ist
+  eine Stelle **nicht parametrisiert** (String-Verkettung) oder eine Filterspalte fehlt der Allowlist.
+  Finde diese Stelle in der Abnahme und lehne ab, bis sie parametrisiert ist.
+
+**EN:** This is the **SQL key unit** for both commercial occupations and hosts the mandatory **SQL write
+touch** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KITSM writes one parameterized query (e.g. "snapshots of a machine") plus a small config change. KDM
+authors a parameterized operational-metric query (e.g. "inventory changes per period") and checks it
+against a fixed test anchor. Evidence-based acceptance: one spot in the agent's data-access/import code
+is not parameterized (string concatenation) or a filter column is missing from the allowlist — find it
+and reject until fixed.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

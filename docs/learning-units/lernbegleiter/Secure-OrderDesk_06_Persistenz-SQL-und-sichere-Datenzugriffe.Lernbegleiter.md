@@ -286,6 +286,31 @@ Braille display.
 - [ ] validate customer and order input before access and encapsulate database errors.
 - [ ] design a customer query data-minimal and use `ALFKI` as a test anchor.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Dies ist die **SQL-Schlüsseleinheit** für beide kaufmännischen Berufe (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+Hier findet der verpflichtende **SQL-Schreib-Touch** statt. SQL ist die deklarative
+Brücken-Programmiersprache: Du beschreibst das Ergebnis, der Agent trägt das „Wie".
+
+- **KITSM (minimaler Touch):** Schreibe **eine** parametrisierte Abfrage selbst, z. B. „Bestellungen
+  eines Kunden" (`... WHERE CustomerID = ?`, Parameter `ALFKI`). Zusätzlich eine kleine
+  **Konfig-/Parameter-Änderung** (z. B. Verbindungs-Timeout). Kein dynamisches SQL aus Eingaben.
+- **KDM (Authoring):** Schreibe eine parametrisierte **Kennzahl-Abfrage** (z. B. „Umsatz je Kunde")
+  selbst und rechne das Ergebnis für `ALFKI` gegen.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Im Datenzugriffs-Code des Agenten ist eine
+  Stelle **nicht parametrisiert** (String-Verkettung) oder eine Sortierspalte fehlt der Allowlist.
+  Finde diese Stelle in der Abnahme und lehne ab, bis sie parametrisiert ist.
+
+**EN:** This is the **SQL key unit** for both commercial occupations and hosts the mandatory **SQL write
+touch** (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KITSM writes one parameterized query (e.g. "orders of a customer", parameter `ALFKI`) plus a small
+config change. KDM authors a parameterized key-figure query (e.g. "revenue per customer") and checks it
+against `ALFKI`. Evidence-based acceptance: one spot in the agent's data-access code is not
+parameterized (string concatenation) or a sort column is missing from the allowlist — find it and
+reject until fixed.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

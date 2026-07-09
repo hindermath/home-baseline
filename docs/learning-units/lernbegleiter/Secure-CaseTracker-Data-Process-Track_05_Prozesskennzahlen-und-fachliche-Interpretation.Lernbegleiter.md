@@ -233,6 +233,28 @@ text-based; traffic-light terms like "green/red" must never be the only signal.
 - [ ] name the context of a metric.
 - [ ] rule out typical misinterpretations in writing.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Diese Track-Einheit ist die **KDM-Vertiefung** für Prozesskennzahlen und ihre fachliche
+Interpretation (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+
+- **KDM (Authoring, Kernkompetenz):** Schreibe mehrere parametrisierte **Prozesskennzahl-Abfragen**
+  selbst (z. B. Durchlaufzeit, Wiedereröffnungsquote) und bereite sie als belastbare **Datenaussage**
+  auf. Benenne pro Kennzahl die Aussagegrenze und die Datenquelle.
+- **KITSM (optional, lesend):** Nutze die Kennzahlen für Kosten/Nutzen und Service-Entscheidungen.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Eine Aggregation **verdeckt eine
+  Datenqualitätslücke** (z. B. fehlende Zeiträume zählen als 0 statt „unbekannt"). Finde sie und
+  korrigiere die Aussage, bevor du sie freigibst.
+
+**EN:** This track unit is the **KDM deepening** for process metrics and their interpretation (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KDM authors several parameterized process-metric queries (e.g. lead time, reopen rate) and prepares them
+as a defensible data statement, naming each figure's limit and source. KITSM optionally uses the figures
+for cost/benefit and service decisions. Evidence-based acceptance: one aggregation hides a data-quality
+gap (e.g. missing periods counted as 0 instead of "unknown") — find it and correct the statement before
+release.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

@@ -25,6 +25,37 @@
 | Kaufmann/-frau für IT-System-Management | Basis, ausgewählte Application-/Operations-Aufgaben | Kundenanforderungen der Handelsfirma, Services, Bestellprozesse, Verträge, Kosten/Nutzen und Übergabe |
 | Kaufmann/-frau für Digitalisierungsmanagement | Data & Process Track, ausgewählte v2-Aufgaben | Geschäftsprozesse im Handel, Datenbedarf, Umsatz-/Betriebskennzahlen, Datenschutz, Wirtschaftlichkeit |
 
+## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
+
+**DE:** KITSM und KDM arbeiten an derselben Secure-OrderDesk-Plattform wie die
+Fachinformatiker-Fachrichtungen, aber in der Rolle **Auftraggeber:in und Abnehmer:in**. Wie viel
+Programmierung dazugehört, beschreibt die
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md):
+Der Beitrag liegt auf Spezifikation, Governance und Abnahme; der Agent trägt den imperativen Code.
+Die relationale Handels-/Bestell-Domäne mit SQL-Sicherheit und Umsatzauswertungen macht OrderDesk
+besonders **KDM-nah** (Datenbedarf, Kennzahlen).
+
+**EN:** KITSM and KDM work on the same Secure OrderDesk platform as the IT-specialist directions, but
+in the role of **client and acceptor**. How much programming this involves is described in the
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md):
+the contribution is on specification, governance, and acceptance; the agent carries the imperative
+code. The relational trading/ordering domain with SQL security and revenue reporting makes OrderDesk
+especially **close to KDM** (data needs, key figures).
+
+| Beruf | Programmieranteil / Authoring | Pflicht-Touch (aktiv) | Beispiel-Units OrderDesk |
+|---|---|---|---|
+| KITSM | ~5–10 % | Konfig-/Parameter-Änderung plus minimaler SQL-Schreib-Touch | 01 Kundenauftrag/Scope, 06 Persistenz-SQL, 11 Review/Übergabe |
+| KDM | ~15–25 % | SQL-Authoring für eine Kennzahl (parametrisiert) | 06 Persistenz-SQL, 10 Auswertungen/Kennzahlen, Data-&-Process-Track 03 |
+
+**DE:** Verbindlich für beide: der SQL-Schreib-Pflicht-Touch (mindestens ein aktiver, parametrisierter
+Schritt) und die evidenzbasierte Abnahme mit einer bewusst eingebauten Abweichung, die gefunden werden
+muss. Details je Einheit stehen im Abschnitt „Kaufmännische Rollen-Umschaltung" der betroffenen
+Lernbegleiter.
+
+**EN:** Binding for both: the mandatory SQL write touch (at least one active, parameterized step) and
+evidence-based acceptance with a deliberately built-in deviation that must be found. Per-unit details
+are in the "Commercial Role Switch" section of the affected study companions.
+
 ## Besondere Eignung dieser Familie / Particular Fit of This Family
 
 **DE:** Die Secure-OrderDesk-Familie hat durch ihren Fokus auf eine relationale Bestell-/Handelsplattform, SQL-Sicherheit und Auswertungen eine besonders starke Nähe zu **Anwendungsentwicklung** und **Daten- und Prozessanalyse**. Systemintegration findet ihren Schwerpunkt im Datenbank-Betrieb und in der Betriebssicherheit; Digitale Vernetzung in den Schnittstellen der Bestell-Pipeline. Der durchgehende Faden über alle drei Lehrjahre ist das verantwortliche Arbeiten mit KI-Agenten und Spec Kit. Die verbindliche Datenbasis ist die klassische Northwind-Sample-Datenbank (Kundenfirma Secure Trader, Pflicht-Datensatz `ALFKI`).
