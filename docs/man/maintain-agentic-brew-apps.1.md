@@ -19,7 +19,9 @@ Das Werkzeug liest
 Toolchain fuer agentische Entwicklung ab. Zusaetzlich liest es
 `scripts/config/vscode-extensions-registry.json` und pflegt die Required-VS-
 Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
-sowie Microsoft Container Tools fuer Docker-/Podman-Workflows.
+sowie Microsoft Container Tools fuer Docker-/Podman-Workflows. Danach liest es
+`scripts/config/required-cli-tools-registry.json` und prueft die Required-CLI-
+Tools fuer die sechs MSL-Pfade, `syft` und GitHub Spec Kit (`specify`).
 Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 `brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
 werden zusaetzlich Required-Casks gepflegt.
@@ -32,7 +34,9 @@ installiert wurde.
 local macOS/Linux toolchain for agentic development. It additionally reads
 `scripts/config/vscode-extensions-registry.json` and maintains the required VS
 Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
-plus Microsoft Container Tools for Docker/Podman workflows. On
+plus Microsoft Container Tools for Docker/Podman workflows. It then reads
+`scripts/config/required-cli-tools-registry.json` and checks the required CLI
+tools for the six MSL paths, `syft`, and GitHub Spec Kit (`specify`). On
 systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
 installs missing required formulae. On macOS it also maintains required casks.
 An existing Visual Studio Code app bundle under `/Applications/Visual Studio Code.app`
@@ -79,15 +83,21 @@ bash scripts/maintain-agentic-brew-apps.sh
 ## Abschlusskriterien / Closeout Criteria
 
 - `gitleaks version` funktioniert.
+- `syft version` und `specify --version` funktionieren.
+- `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind per CLI pruefbar,
+  soweit die Plattform den jeweiligen Pfad unterstuetzt.
 - `code --version` und `hx --version` funktionieren, sofern die Plattform die grafische bzw. TUI-Editor-Basis installieren konnte.
 - `--compare-only` meldet `missing_on_machine.required.*: none`.
 - `python3 -m json.tool scripts/config/brew-apps-registry.json` ist erfolgreich.
 - `python3 -m json.tool scripts/config/vscode-extensions-registry.json` ist erfolgreich.
+- `python3 -m json.tool scripts/config/required-cli-tools-registry.json` ist erfolgreich.
 - Neue bewusst installierte Top-Level-Tools werden in der Registry nachgetragen.
 
-*`gitleaks version` works, `code --version` and `hx --version` work where the
-platform could install the graphical/TUI editor baseline, `--compare-only`
-reports `missing_on_machine.required.*: none`, the registries are valid JSON, and
+*`gitleaks version`, `syft version`, and `specify --version` work; .NET, Go,
+Java/Javac, Python, Rust/Cargo, and Swift are CLI-checkable where the platform
+supports the path; `code --version` and `hx --version` work where the platform
+could install the graphical/TUI editor baseline; `--compare-only` reports
+`missing_on_machine.required.*: none`; the registries are valid JSON; and
 intentional new top-level tools are added to the registry.*
 
 ## Sicherheit / Security

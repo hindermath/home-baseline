@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-04",
+  "updated": "2026-07-09",
   "description": "Homebrew top-level package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
   "policy": {
     "formulaSource": "brew leaves --installed-on-request",
@@ -14,6 +14,7 @@
     { "name": "cc65", "scope": "optional", "purpose": "C64 and 6502 development" },
     { "name": "cmake", "scope": "required", "apt": "cmake", "purpose": "Native build orchestration" },
     { "name": "cmake-docs", "scope": "optional", "purpose": "CMake documentation" },
+    { "name": "dotnet", "scope": "required", "purpose": "Memory-safe C#/.NET SDK toolchain" },
     { "name": "gemini-cli", "scope": "required", "purpose": "Gemini command-line agent" },
     { "name": "gh", "scope": "required", "purpose": "GitHub CLI for repository operations" },
     { "name": "gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
@@ -26,14 +27,17 @@
     { "name": "mongodb/brew/mongodb-community", "scope": "optional", "purpose": "MongoDB local database for compatible projects" },
     { "name": "msedit", "scope": "optional", "purpose": "Terminal editor" },
     { "name": "oh-my-posh", "scope": "optional", "purpose": "Shell prompt consistency" },
+    { "name": "openjdk", "scope": "required", "apt": "default-jdk", "purpose": "Java/Javac MSL toolchain for learning-series repositories" },
     { "name": "opencode", "scope": "required", "purpose": "OpenCode command-line agent" },
     { "name": "pandoc", "scope": "required", "apt": "pandoc", "purpose": "Documentation conversion" },
     { "name": "pnpm", "scope": "required", "purpose": "Node package management for agent/tooling packages" },
     { "name": "podman-compose", "scope": "required", "apt": "podman-compose", "purpose": "Container compose support for sandbox workflows" },
     { "name": "postgresql@18", "scope": "optional", "purpose": "PostgreSQL local database for compatible projects" },
     { "name": "powershell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
+    { "name": "python@3.14", "scope": "required", "apt": "python3", "purpose": "Python MSL CLI toolchain for learning-series repositories" },
     { "name": "qwen-code", "scope": "required", "purpose": "Qwen command-line coding agent" },
     { "name": "rust", "scope": "required", "purpose": "Memory-safe Rust toolchain" },
+    { "name": "syft", "scope": "required", "purpose": "SBOM generation for supply-chain evidence" },
     { "name": "uv", "scope": "required", "purpose": "Python package/tool runner and Spec Kit installation support" },
     { "name": "vice", "scope": "optional", "purpose": "C64 emulator for retro projects" }
   ],
@@ -53,9 +57,13 @@
       { "name": "ripgrep", "scope": "required", "purpose": "Fast repository search" },
       { "name": "python3", "scope": "required", "purpose": "Python runtime for scripts and validation" },
       { "name": "nodejs", "scope": "required", "purpose": "Node.js runtime where distro package is acceptable" },
+      { "name": "golang-go", "scope": "required", "purpose": "Go MSL CLI toolchain when available in configured apt sources" },
       { "name": "cmake", "scope": "required", "purpose": "Native build orchestration" },
+      { "name": "default-jdk", "scope": "required", "purpose": "Java/Javac MSL toolchain from configured apt sources" },
       { "name": "pandoc", "scope": "required", "purpose": "Documentation conversion" },
       { "name": "podman-compose", "scope": "required", "purpose": "Container compose support" },
+      { "name": "rustc", "scope": "required", "purpose": "Rust compiler when available in configured apt sources" },
+      { "name": "cargo", "scope": "required", "purpose": "Rust package/build tool when available in configured apt sources" },
       { "name": "helix", "scope": "required", "purpose": "Terminal-native A11Y editor when available in the configured apt sources" },
       { "name": "code", "scope": "required", "purpose": "VS Code package when available in the configured apt sources" }
     ]

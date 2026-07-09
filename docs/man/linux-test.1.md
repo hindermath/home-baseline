@@ -12,9 +12,9 @@ bash scripts/linux-test.sh
 
 ## DESCRIPTION
 
-Das Skript sammelt OS-Version, Architektur, Paketmanager- und Tool-Versionen sowie Compliance-Ergebnisse und schreibt sie nach `~/home-baseline-tmp/linux-test-output.txt`. Anschliessend committet und pusht es die Ausgabe, damit sie von anderen Geraeten gelesen werden kann. Ein PowerShell-Pendant fuer Linux gibt es nicht; das Windows-Gegenstueck ist `windows-test.ps1`.
+Das Skript sammelt OS-Version, Architektur, Paketmanager- und Tool-Versionen fuer VS Code, Helix, die sechs MSL-Pfade, `syft` und GitHub Spec Kit (`specify`) sowie Compliance-Ergebnisse und schreibt sie nach `~/home-baseline-tmp/linux-test-output.txt`. Anschliessend committet und pusht es die Ausgabe, damit sie von anderen Geraeten gelesen werden kann. Ein PowerShell-Pendant fuer Linux gibt es nicht; das Windows-Gegenstueck ist `windows-test.ps1`.
 
-*The script collects the OS version, architecture, package-manager and tool versions, and compliance results, and writes them to `~/home-baseline-tmp/linux-test-output.txt`. It then commits and pushes the output so it can be read from other machines. There is no PowerShell counterpart for Linux; the Windows counterpart is `windows-test.ps1`.*
+*The script collects the OS version, architecture, package-manager and tool versions for VS Code, Helix, the six MSL paths, `syft`, and GitHub Spec Kit (`specify`), plus compliance results, and writes them to `~/home-baseline-tmp/linux-test-output.txt`. It then commits and pushes the output so it can be read from other machines. There is no PowerShell counterpart for Linux; the Windows counterpart is `windows-test.ps1`.*
 
 ## OPTIONS
 

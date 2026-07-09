@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-04",
+  "updated": "2026-07-09",
   "description": "WinGet package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
   "policy": {
     "packageSource": "winget list / winget search --id --exact",
@@ -18,7 +18,11 @@
     { "id": "Gitleaks.Gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
     { "id": "Microsoft.DotNet.SDK.10", "scope": "required", "purpose": "Memory-safe .NET SDK toolchain" },
     { "id": "GoLang.Go", "scope": "required", "purpose": "Memory-safe Go toolchain" },
+    { "id": "Python.Python.3.14", "scope": "required", "purpose": "Python MSL CLI toolchain for learning-series repositories" },
+    { "id": "EclipseAdoptium.Temurin.26.JDK", "scope": "required", "purpose": "Java/Javac MSL toolchain for learning-series repositories" },
     { "id": "Rustlang.Rustup", "scope": "required", "purpose": "Memory-safe Rust toolchain manager" },
+    { "id": "Swift.Toolchain", "scope": "required", "purpose": "Swift MSL CLI toolchain for learning-series repositories" },
+    { "id": "Anchore.Syft", "scope": "required", "purpose": "SBOM generation for supply-chain evidence" },
     { "id": "Anthropic.ClaudeCode", "scope": "required", "purpose": "Claude Code command-line agent" },
     { "id": "GitHub.Copilot", "scope": "required", "purpose": "GitHub Copilot CLI" },
     { "id": "Microsoft.VisualStudioCode", "scope": "required", "purpose": "Minimum graphical editor and quasi-IDE for apprentice development" },

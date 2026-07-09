@@ -19,7 +19,9 @@ Das Werkzeug liest
 agentische Entwicklung ab. Zusaetzlich liest es
 `scripts/config/vscode-extensions-registry.json` und pflegt die Required-VS-
 Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
-sowie Microsoft Container Tools fuer Docker-/Podman-Workflows.
+sowie Microsoft Container Tools fuer Docker-/Podman-Workflows. Danach liest es
+`scripts/config/required-cli-tools-registry.json` und prueft die Required-CLI-
+Tools fuer die sechs MSL-Pfade, `syft` und GitHub Spec Kit (`specify`).
 Ein normaler Lauf aktualisiert WinGet-Quellen, fuehrt `winget upgrade --all`
 aus und installiert fehlende Required-Pakete per `winget install --id <Id>
 --exact`.
@@ -28,7 +30,9 @@ aus und installiert fehlende Required-Pakete per `winget install --id <Id>
 Windows toolchain for agentic development. It additionally reads
 `scripts/config/vscode-extensions-registry.json` and maintains the required VS
 Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
-plus Microsoft Container Tools for Docker/Podman workflows. A
+plus Microsoft Container Tools for Docker/Podman workflows. It then reads
+`scripts/config/required-cli-tools-registry.json` and checks the required CLI
+tools for the six MSL paths, `syft`, and GitHub Spec Kit (`specify`). A
 normal run refreshes WinGet sources, runs `winget upgrade --all`, and installs
 missing required packages via `winget install --id <Id> --exact`.*
 
@@ -65,16 +69,20 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 ## Abschlusskriterien / Closeout Criteria
 
 - `gitleaks version` funktioniert.
+- `syft version` und `specify --version` funktionieren.
+- `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind per CLI pruefbar.
 - `code --version` und `hx --version` funktionieren.
 - `-CompareOnly` meldet keine fehlenden Required-Tools.
 - `python3 -m json.tool scripts/config/winget-apps-registry.json` ist erfolgreich.
 - `python3 -m json.tool scripts/config/vscode-extensions-registry.json` ist erfolgreich.
+- `python3 -m json.tool scripts/config/required-cli-tools-registry.json` ist erfolgreich.
 - Neue bewusst installierte WinGet-Top-Level-Tools werden in der Registry
   nachgetragen.
 
-*`gitleaks version`, `code --version`, and `hx --version` work, `-CompareOnly`
-reports no missing required tools, the registries are valid JSON, and
-intentional new WinGet top-level tools are added to the registry.*
+*`gitleaks version`, `syft version`, `specify --version`, .NET, Go,
+Java/Javac, Python, Rust/Cargo, Swift, `code --version`, and `hx --version`
+work; `-CompareOnly` reports no missing required tools; the registries are valid
+JSON; and intentional new WinGet top-level tools are added to the registry.*
 
 ## Sicherheit / Security
 

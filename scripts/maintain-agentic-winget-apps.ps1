@@ -50,12 +50,16 @@ if (-not $Registry) {
 if (-not $VSCodeRegistry) {
     $VSCodeRegistry = Join-Path $repoRoot 'scripts/config/vscode-extensions-registry.json'
 }
+$cliRegistry = Join-Path $repoRoot 'scripts/config/required-cli-tools-registry.json'
 
 if (-not (Test-Path -Path $Registry -PathType Leaf)) {
     Write-Error "Registry nicht gefunden: $Registry"
 }
 if (-not $SkipVSCodeExtensions -and -not (Test-Path -Path $VSCodeRegistry -PathType Leaf)) {
     Write-Error "VS-Code-Extension-Registry nicht gefunden: $VSCodeRegistry"
+}
+if (-not (Test-Path -Path $cliRegistry -PathType Leaf)) {
+    Write-Error "Required-CLI-Registry nicht gefunden: $cliRegistry"
 }
 
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
@@ -64,8 +68,21 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 
 $registryData = Get-Content -Path $Registry -Raw | ConvertFrom-Json
 $vscodeRegistryData = if ($SkipVSCodeExtensions) { $null } else { Get-Content -Path $VSCodeRegistry -Raw | ConvertFrom-Json }
+$cliRegistryData = Get-Content -Path $cliRegistry -Raw | ConvertFrom-Json
 $installScope = if ($IncludeOptional) { @('required', 'optional') } else { @('required') }
 $allRegistryIds = @($registryData.packages | ForEach-Object { $_.id } | Sort-Object -Unique)
+$requiredRegistryIds = @(
+    $registryData.packages |
+        Where-Object { $_.scope -eq 'required' } |
+        ForEach-Object { $_.id } |
+        Sort-Object -Unique
+)
+$optionalRegistryIds = @(
+    $registryData.packages |
+        Where-Object { $_.scope -eq 'optional' } |
+        ForEach-Object { $_.id } |
+        Sort-Object -Unique
+)
 $installIds = @(
     $registryData.packages |
         Where-Object { $installScope -contains $_.scope } |
@@ -285,6 +302,121 @@ function Compare-HBVSCodeRegistry {
     }
 }
 
+function Get-HBCLITools {
+    param([Parameter(Mandatory)][string[]] $Scopes)
+
+    return @(
+        $cliRegistryData.tools |
+            Where-Object {
+                ($Scopes -contains $_.scope) -and
+                (@($_.platforms) -contains 'Windows')
+            }
+    )
+}
+
+function Test-HBCLITool {
+    param([Parameter(Mandatory)] $Tool)
+
+    $command = Get-Command $Tool.command -ErrorAction SilentlyContinue
+    if (-not $command) { return $false }
+
+    $arguments = @()
+    if ($Tool.PSObject.Properties.Name -contains 'args') {
+        $arguments = @($Tool.args | ForEach-Object { [string]$_ })
+    }
+
+    & $command.Source @arguments *> $null
+    return ($LASTEXITCODE -eq 0)
+}
+
+function Invoke-HBExternal {
+    param(
+        [Parameter(Mandatory)][string] $Command,
+        [Parameter(Mandatory)][string[]] $Arguments,
+        [Parameter(Mandatory)][string] $Action
+    )
+
+    $display = "$Command $($Arguments -join ' ')"
+    if ($PSCmdlet.ShouldProcess($display, $Action)) {
+        & $Command @Arguments
+        return $LASTEXITCODE
+    }
+
+    Write-Host "WHATIF: $display"
+    return 0
+}
+
+function Install-HBCLITool {
+    param([Parameter(Mandatory)] $Tool)
+
+    $install = if ($Tool.PSObject.Properties.Name -contains 'install') { $Tool.install } else { $null }
+    if ($install -and $install.manager -eq 'uv') {
+        $arguments = @($install.arguments | ForEach-Object { [string]$_ })
+        Write-Host "INSTALL cli tool: $($Tool.id)"
+        if ($WhatIfPreference -or (Get-Command uv -ErrorAction SilentlyContinue)) {
+            [void](Invoke-HBExternal -Command 'uv' -Arguments $arguments -Action "Install CLI tool $($Tool.id)")
+        } else {
+            Write-Host "SKIP cli tool install: $($Tool.id) (uv fehlt)"
+        }
+        return
+    }
+
+    Write-Host "MISSING cli tool: $($Tool.id)"
+}
+
+function Install-HBCLITools {
+    foreach ($tool in Get-HBCLITools -Scopes $installScope) {
+        if (Test-HBCLITool -Tool $tool) {
+            Write-Host "OK cli tool: $($tool.id)"
+            continue
+        }
+
+        Install-HBCLITool -Tool $tool
+    }
+}
+
+function Compare-HBCLIScope {
+    param(
+        [Parameter(Mandatory)][string] $Scope,
+        [Parameter(Mandatory)][string] $Label
+    )
+
+    $missing = @(
+        Get-HBCLITools -Scopes @($Scope) |
+            Where-Object { -not (Test-HBCLITool -Tool $_) } |
+            ForEach-Object { $_.id }
+    )
+
+    if ($missing.Count -gt 0) {
+        Write-Host $Label
+        $missing | ForEach-Object { Write-Host "  - $_" }
+    } else {
+        Write-Host "${Label}: none"
+    }
+}
+
+function Compare-HBCLIRegistry {
+    Write-Host "Required CLI tool registry: $cliRegistry"
+    Compare-HBCLIScope -Scope 'required' -Label 'missing_on_machine.required.cli_tools'
+    Compare-HBCLIScope -Scope 'optional' -Label 'missing_on_machine.optional.cli_tools'
+}
+
+function Compare-HBPackageScope {
+    param(
+        [Parameter(Mandatory)][string[]] $RegistryIds,
+        [Parameter(Mandatory)][string[]] $InstalledIds,
+        [Parameter(Mandatory)][string] $Label
+    )
+
+    $missing = @($RegistryIds | Where-Object { $InstalledIds -notcontains $_ })
+    if ($missing.Count -gt 0) {
+        Write-Host $Label
+        $missing | ForEach-Object { Write-Host "  - $_" }
+    } else {
+        Write-Host "${Label}: none"
+    }
+}
+
 Write-Host 'Agentic WinGet registry maintenance'
 Write-Host "Registry: $Registry"
 
@@ -313,18 +445,14 @@ if (-not $CompareOnly) {
     }
 
     Install-HBVSCodeExtensions
+    Install-HBCLITools
 }
 
 $installedIds = @(Get-HBWingetInstalledIds)
-$missingOnMachine = @($allRegistryIds | Where-Object { $installedIds -notcontains $_ })
 $missingFromRegistry = @($installedIds | Where-Object { $allRegistryIds -notcontains $_ })
 
-if ($missingOnMachine.Count -gt 0) {
-    Write-Host 'missing_on_machine.packages'
-    $missingOnMachine | ForEach-Object { Write-Host "  - $_" }
-} else {
-    Write-Host 'missing_on_machine.packages: none'
-}
+Compare-HBPackageScope -RegistryIds $requiredRegistryIds -InstalledIds $installedIds -Label 'missing_on_machine.required.packages'
+Compare-HBPackageScope -RegistryIds $optionalRegistryIds -InstalledIds $installedIds -Label 'missing_on_machine.optional.packages'
 
 if ($missingFromRegistry.Count -gt 0) {
     Write-Host 'missing_from_registry.packages'
@@ -334,3 +462,4 @@ if ($missingFromRegistry.Count -gt 0) {
 }
 
 Compare-HBVSCodeRegistry
+Compare-HBCLIRegistry

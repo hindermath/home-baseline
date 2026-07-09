@@ -6,6 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 REGISTRY="$REPO_ROOT/scripts/config/brew-apps-registry.json"
 VSCODE_REGISTRY="$REPO_ROOT/scripts/config/vscode-extensions-registry.json"
+CLI_REGISTRY="$REPO_ROOT/scripts/config/required-cli-tools-registry.json"
 DRY_RUN=0
 COMPARE_ONLY=0
 SKIP_UPGRADE=0
@@ -88,6 +89,11 @@ if [ "$SKIP_VSCODE_EXTENSIONS" -eq 0 ] && [ ! -f "$VSCODE_REGISTRY" ]; then
   exit 1
 fi
 
+if [ ! -f "$CLI_REGISTRY" ]; then
+  echo "Fehler: Required-CLI-Registry nicht gefunden: $CLI_REGISTRY" >&2
+  exit 1
+fi
+
 if ! command -v python3 >/dev/null 2>&1; then
   echo "Fehler: python3 wird fuer die JSON-Registry benoetigt." >&2
   exit 1
@@ -153,6 +159,36 @@ for item in data.get(section, []):
 PY
 }
 
+cli_registry_items() {
+  local scope="${1:-all}"
+  python3 - "$CLI_REGISTRY" "$OS_NAME" "$scope" <<'PY'
+import json
+import sys
+
+registry_path, os_name, scope = sys.argv[1:4]
+with open(registry_path, encoding="utf-8") as handle:
+    data = json.load(handle)
+
+for item in data.get("tools", []):
+    if scope != "all" and item.get("scope", "required") != scope:
+        continue
+    if os_name not in item.get("platforms", []):
+        continue
+    install = item.get("install", {})
+    print(
+        "\t".join(
+            [
+                item.get("id", ""),
+                item.get("command", ""),
+                json.dumps(item.get("args", []), separators=(",", ":")),
+                install.get("manager") or "-",
+                json.dumps(install.get("arguments", []), separators=(",", ":")),
+            ]
+        )
+    )
+PY
+}
+
 registry_excluded_casks() {
   printf '%s\n' "xquartz"
   python3 - "$REGISTRY" <<'PY'
@@ -169,6 +205,10 @@ PY
 }
 
 installed_formulae() {
+  brew list --formula 2>/dev/null | sort -u
+}
+
+installed_requested_formulae() {
   brew leaves --installed-on-request 2>/dev/null | sort -u
 }
 
@@ -253,11 +293,104 @@ print_missing() {
   fi
 }
 
+json_array_items() {
+  local json="$1"
+  python3 - "$json" <<'PY'
+import json
+import sys
+
+for value in json.loads(sys.argv[1] or "[]"):
+    print(value)
+PY
+}
+
+cli_tool_available() {
+  local command_name="$1"
+  local args_json="$2"
+  local -a args
+  local arg
+
+  command -v "$command_name" >/dev/null 2>&1 || return 1
+  while IFS= read -r arg; do
+    args+=("$arg")
+  done < <(json_array_items "$args_json")
+  "$command_name" "${args[@]}" >/dev/null 2>&1
+}
+
+install_cli_tool() {
+  local id="$1"
+  local manager="$2"
+  local install_args_json="$3"
+  local -a install_args
+  local arg
+
+  case "$manager" in
+    uv)
+      while IFS= read -r arg; do
+        install_args+=("$arg")
+      done < <(json_array_items "$install_args_json")
+      log "INSTALL cli tool: $id"
+      if [ "$DRY_RUN" -eq 1 ] || command -v uv >/dev/null 2>&1; then
+        run_cmd uv "${install_args[@]}"
+      else
+        log "SKIP cli tool install: $id (uv fehlt)"
+      fi
+      ;;
+    *)
+      log "MISSING cli tool: $id"
+      ;;
+  esac
+}
+
+install_cli_tools() {
+  local scope id command_name args_json manager install_args_json
+  scope="required"
+  [ "$INCLUDE_OPTIONAL" -eq 1 ] && scope="all"
+
+  while IFS=$'\t' read -r id command_name args_json manager install_args_json; do
+    [ -n "$id" ] || continue
+    if cli_tool_available "$command_name" "$args_json"; then
+      log "OK cli tool: $id"
+    else
+      install_cli_tool "$id" "$manager" "$install_args_json"
+    fi
+  done < <(cli_registry_items "$scope")
+}
+
+compare_cli_scope() {
+  local scope="$1"
+  local label="$2"
+  local id command_name args_json manager install_args_json
+  local missing
+  missing=""
+
+  while IFS=$'\t' read -r id command_name args_json manager install_args_json; do
+    [ -n "$id" ] || continue
+    if ! cli_tool_available "$command_name" "$args_json"; then
+      missing="${missing}${id}"$'\n'
+    fi
+  done < <(cli_registry_items "$scope")
+
+  if [ -n "$missing" ]; then
+    log "$label"
+    printf '%s' "$missing" | sed '/^$/d; s/^/  - /'
+  else
+    log "$label: none"
+  fi
+}
+
+compare_cli_registry() {
+  log "Required CLI tool registry: $CLI_REGISTRY"
+  compare_cli_scope required "missing_on_machine.required.cli_tools"
+  compare_cli_scope optional "missing_on_machine.optional.cli_tools"
+}
+
 compare_brew_registry() {
-  local tmp_dir installed_f registry_f registry_required_f registry_optional_f
+  local tmp_dir installed_f installed_requested_f registry_f registry_required_f registry_optional_f
   local installed_c registry_c registry_required_c registry_optional_c excluded_c
   tmp_dir="$(mktemp -d)"
   installed_f="$tmp_dir/installed-formulae"
+  installed_requested_f="$tmp_dir/installed-requested-formulae"
   registry_f="$tmp_dir/registry-formulae"
   registry_required_f="$tmp_dir/registry-formulae-required"
   registry_optional_f="$tmp_dir/registry-formulae-optional"
@@ -268,12 +401,13 @@ compare_brew_registry() {
   excluded_c="$tmp_dir/excluded-casks"
 
   installed_formulae > "$installed_f"
+  installed_requested_formulae > "$installed_requested_f"
   registry_items formulae all | sort -u > "$registry_f"
   registry_items formulae required | sort -u > "$registry_required_f"
   registry_items formulae optional | sort -u > "$registry_optional_f"
   print_missing "missing_on_machine.required.formulae" "$installed_f" "$registry_required_f"
   print_missing "missing_on_machine.optional.formulae" "$installed_f" "$registry_optional_f"
-  print_missing "missing_from_registry.formulae" "$registry_f" "$installed_f"
+  print_missing "missing_from_registry.formulae" "$registry_f" "$installed_requested_f"
 
   if [ "$OS_NAME" = "Darwin" ]; then
     installed_casks > "$installed_c"
@@ -464,14 +598,18 @@ if command -v brew >/dev/null 2>&1; then
   if [ "$COMPARE_ONLY" -eq 0 ]; then
     install_brew_items
     install_vscode_extensions
+    install_cli_tools
   fi
 
   compare_brew_registry
   compare_vscode_registry
+  compare_cli_registry
 else
   run_apt_fallback
   if [ "$COMPARE_ONLY" -eq 0 ]; then
     install_vscode_extensions
+    install_cli_tools
   fi
   compare_vscode_registry
+  compare_cli_registry
 fi

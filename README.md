@@ -823,9 +823,9 @@ Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert we
 
 Jedes Script erfasst / Each script collects:
 - OS-Version, Architektur
-- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `uv`, `python3`, `specify`, `code`, `hx`)
+- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `uv`, `python3`/`python`, `dotnet`, `go`, `java`, `javac`, `cargo`, `rustc`, `swift`, `syft`, `specify`, `code`, `hx`)
 - Paketmanager (`brew` / `apt`/`dnf` / `winget`)
-- Paketlisten und Registry-Vergleiche fuer `brew-apps-registry.json`, `winget-apps-registry.json` und `vscode-extensions-registry.json`
+- Paketlisten und Registry-Vergleiche fuer `brew-apps-registry.json`, `winget-apps-registry.json`, `vscode-extensions-registry.json` und `required-cli-tools-registry.json`
 - Ergebnis von `sync-home` und `check-homogeneity`
 
 Danach liegt die Ausgabedatei im Repo und kann von jedem anderen Gerät direkt gelesen und ausgewertet werden — z. B. von Copilot CLI unter Windows:
@@ -1068,6 +1068,7 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/config/brew-apps-registry.json` | Versionierte Homebrew-Registry fuer agentische Entwicklung / Versioned Homebrew registry for agentic development |
 | `scripts/config/winget-apps-registry.json` | Versionierte WinGet-Registry fuer agentische Entwicklung / Versioned WinGet registry for agentic development |
 | `scripts/config/vscode-extensions-registry.json` | Versionierte VS-Code-Extension-Registry fuer sechs MSL-Pfade / Versioned VS Code extension registry for six MSL paths |
+| `scripts/config/required-cli-tools-registry.json` | Versionierte Required-CLI-Pruefregistry fuer sechs MSL-Pfade, SBOM und Spec Kit / Versioned required CLI check registry for six MSL paths, SBOM, and Spec Kit |
 | `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
 | `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
 | `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
@@ -1233,10 +1234,12 @@ die Quelle fuer Windows ist
 [`scripts/config/winget-apps-registry.json`](scripts/config/winget-apps-registry.json).
 Die offiziellen VS-Code-MSL-Extensions und die Container-Tools-Extension werden separat in
 [`scripts/config/vscode-extensions-registry.json`](scripts/config/vscode-extensions-registry.json)
-gefuehrt.
-Beide Registries unterscheiden `required` und `optional`; Standardlaeufe
-installieren nur `required`. `xquartz` ist lokal erlaubt, aber bewusst aus der
-Brew-Registry ausgeschlossen.
+gefuehrt. Die Required-CLI-Pruefungen fuer die sechs MSL-Pfade, `syft` und
+GitHub Spec Kit (`specify`) liegen in
+[`scripts/config/required-cli-tools-registry.json`](scripts/config/required-cli-tools-registry.json).
+Die Paketmanager-Registries unterscheiden `required` und `optional`;
+Standardlaeufe installieren nur `required`. `xquartz` ist lokal erlaubt, aber
+bewusst aus der Brew-Registry ausgeschlossen.
 
 *Recurring agentic toolchain maintenance keeps the programs stable that are
 needed for work in level-0, level-1, and level-2 repositories. For apprentices,
@@ -1248,9 +1251,12 @@ and the Windows source is
 [`scripts/config/winget-apps-registry.json`](scripts/config/winget-apps-registry.json).
 The official VS Code MSL extensions and the Container Tools extension are maintained separately in
 [`scripts/config/vscode-extensions-registry.json`](scripts/config/vscode-extensions-registry.json).
-Both registries distinguish `required` from `optional`; default runs install
-only `required`. `xquartz` may be installed locally, but is intentionally
-excluded from the Brew registry.*
+Required CLI checks for the six MSL paths, `syft`, and GitHub Spec Kit
+(`specify`) live in
+[`scripts/config/required-cli-tools-registry.json`](scripts/config/required-cli-tools-registry.json).
+The package-manager registries distinguish `required` from `optional`; default
+runs install only `required`. `xquartz` may be installed locally, but is
+intentionally excluded from the Brew registry.*
 
 Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-tmp` startet und keine
 strengere Read-only-Aufgabe im Vordergrund steht, soll er einmal nachfragen, ob
@@ -1289,8 +1295,10 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    echte Lauf nutzt `winget update`, faellt bei Bedarf auf
    `winget source update` zurueck, fuehrt `winget upgrade --all` aus und
    installiert fehlende Required-Pakete mit `winget install --id <Id> --exact`.
-3. `gitleaks` ist Required. Auf macOS/Linux wird es per Homebrew als
-   `gitleaks`, auf Windows per WinGet als `Gitleaks.Gitleaks` gepflegt.
+3. `gitleaks`, `syft` und GitHub Spec Kit (`specify`) sind Required.
+   `gitleaks` und `syft` werden ueber die Paketmanager-Registries gepflegt;
+   `specify` wird bei Bedarf ueber `uv tool install specify-cli --from
+   git+https://github.com/github/spec-kit.git` installiert.
 4. VS Code ist Required: macOS per Cask `visual-studio-code`, Windows per
    WinGet-ID `Microsoft.VisualStudioCode`. Die Required-Extensions fuer C#,
    Go, Java, Python, Rust und Swift sowie Microsoft Container Tools fuer
@@ -1302,17 +1310,22 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 5. Helix ist Required als terminalbasierter A11Y-/CLI-Editor: macOS/Linux per
    Formula `helix`, Windows per WinGet-ID `Helix.Helix`. `msedit` bleibt ein
    optionaler einfacher Terminal-Editor.
-6. Linux ohne Homebrew richtet keine zusaetzlichen Microsoft-APT-Quellen ein.
+6. Die sechs MSL-CLI-Toolchains sind Required: `.NET`, Go, Java/Javac,
+   Python, Rust/Cargo und Swift. Swift wird auf macOS ueber die Apple-Toolchain
+   geprueft; Windows nutzt die WinGet-Toolchain; Linux ohne Homebrew meldet
+   nicht nativ verfuegbare Tools transparent als offene manuelle Luecke.
+7. Linux ohne Homebrew richtet keine zusaetzlichen Microsoft-APT-Quellen ein.
    `code` und `helix` werden im apt-Fallback nur installiert, wenn sie in den
    bereits konfigurierten apt-Quellen verfuegbar sind; andernfalls wird dies
    klar gemeldet.
-7. Zweitgeraete werden ueber `mac-test.sh`, `linux-test.sh` und
+8. Zweitgeraete werden ueber `mac-test.sh`, `linux-test.sh` und
    `windows-test.ps1` verglichen. Die Testausgaben enthalten Paketlisten und
    Registry-Diffs; bewusst installierte Top-Level-Tools werden danach in die
    passende Registry uebernommen.
-8. Abschlusskriterien: `--compare-only` meldet
+9. Abschlusskriterien: `--compare-only` meldet
    `missing_on_machine.required.*: none`,
-   `gitleaks version`, `code --version` und `hx --version` funktionieren, die
+   `gitleaks version`, `syft version`, `specify --version`, die sechs
+   MSL-CLI-Pruefungen, `code --version` und `hx --version` funktionieren, die
    Registry-Dateien sind gueltiges JSON, und der Abschluss wird in
    `docs/project-statistics.md` dokumentiert.
 
@@ -1325,8 +1338,10 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    real run uses `winget update`, falls back to `winget source update` when
    needed, runs `winget upgrade --all`, and installs missing required packages
    with `winget install --id <Id> --exact`.
-3. `gitleaks` is required. On macOS/Linux it is maintained through Homebrew as
-   `gitleaks`; on Windows it is maintained through WinGet as `Gitleaks.Gitleaks`.
+3. `gitleaks`, `syft`, and GitHub Spec Kit (`specify`) are required.
+   `gitleaks` and `syft` are maintained through the package-manager
+   registries; `specify` is installed through `uv tool install specify-cli
+   --from git+https://github.com/github/spec-kit.git` when missing.
 4. VS Code is required: macOS via cask `visual-studio-code`, Windows via WinGet
    ID `Microsoft.VisualStudioCode`. The required extensions for C#, Go, Java,
    Python, Rust, and Swift plus Microsoft Container Tools for Docker/Podman
@@ -1338,18 +1353,22 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 5. Helix is required as the terminal-native A11Y/CLI editor: macOS/Linux via
    formula `helix`, Windows via WinGet ID `Helix.Helix`. `msedit` remains an
    optional simple terminal editor.
-6. Linux without Homebrew does not configure additional Microsoft apt sources.
+6. The six MSL CLI toolchains are required: `.NET`, Go, Java/Javac, Python,
+   Rust/Cargo, and Swift. Swift is checked through the Apple toolchain on
+   macOS; Windows uses the WinGet toolchain; Linux without Homebrew reports
+   tools that are not natively available as explicit manual gaps.
+7. Linux without Homebrew does not configure additional Microsoft apt sources.
    In the apt fallback, `code` and `helix` are installed only when available
    from the already configured apt sources; otherwise this is reported clearly.
-7. Compare second machines through `mac-test.sh`, `linux-test.sh`, and
+8. Compare second machines through `mac-test.sh`, `linux-test.sh`, and
    `windows-test.ps1`. Their test outputs include package lists and registry
    diffs; intentionally installed top-level tools are then added to the matching
    registry.
-8. Closeout criteria: `--compare-only` reports
+9. Closeout criteria: `--compare-only` reports
    `missing_on_machine.required.*: none`,
-   `gitleaks version`, `code --version`, and `hx --version` work, the registry
-   files are valid JSON, and the closeout is documented in
-   `docs/project-statistics.md`.
+   `gitleaks version`, `syft version`, `specify --version`, the six MSL CLI
+   checks, `code --version`, and `hx --version` work, the registry files are
+   valid JSON, and the closeout is documented in `docs/project-statistics.md`.
 
 Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) beschreibt das Referenzprofil für sichere Entwicklung mit KI-Agenten in einer Sandbox. `absdd-image-sandbox` ist als öffentliches Ausbildungs- und Referenz-Repository verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. `home-baseline` liefert Richtlinien, Checklisten, Presets und Intake; die Sandbox liefert die ausführbare Lern- und Arbeitsumgebung; Level-2-Repositories liefern die konkreten Entwicklungs- und Härtungsziele.
 
