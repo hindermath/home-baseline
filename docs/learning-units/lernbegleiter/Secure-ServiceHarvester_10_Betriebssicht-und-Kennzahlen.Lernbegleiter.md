@@ -270,6 +270,28 @@ traffic light, so they remain understandable with a screen reader and Braille di
 - [ ] design metrics without conclusions about real people.
 - [ ] create a sample evaluation with fictitious, repeatable data.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Betriebssicht und Kennzahlen sind besonders **KDM-nah**, für KITSM zusätzlich betriebs-/
+service-relevant (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+
+- **KDM (Authoring):** Schreibe eine parametrisierte **Betriebskennzahl-Abfrage** selbst (z. B.
+  „aktive Dienste je Zeitraum", „Bestandsentwicklung") und benenne die **Aussagegrenzen**.
+- **KITSM (lesend + Bewertung):** Interpretiere die Betriebskennzahlen unter **Kosten/Nutzen** und
+  Service-Sicht. Kein Pflicht-Authoring hier — dein SQL-Touch war in 06.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Eine Kennzahl ist **überinterpretiert** (fehlende
+  Aussagegrenze oder falsche Aggregationsbasis). Finde sie und fordere die Korrektur vor Freigabe.
+
+**EN:** Operational view and key figures are especially **close to KDM**, and additionally
+operations/service relevant for KITSM (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KDM authors a parameterized operational-metric query (e.g. "active services per period") and names the
+limits of the statement. KITSM interprets the metrics under cost/benefit and service view (no mandatory
+authoring here — the SQL touch was in unit 06). Evidence-based acceptance: one figure is
+over-interpreted (missing limit or wrong aggregation base) — find it and require the correction before
+release.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft

@@ -50,6 +50,43 @@ year 2, LF 10–12 specialization-specific in year 3.
 | 11 | 11a Funktionalität in Anwendungen realisieren | 11b Betrieb und Sicherheit vernetzter Systeme gewährleisten | 11c Prozesse analysieren und gestalten | 11d Betrieb und Sicherheit vernetzter Systeme gewährleisten |
 | 12 | 12a Kundenspezifische Anwendungsentwicklung durchführen | 12b Kundenspezifische Systemintegration durchführen | 12c Kundenspezifische Prozess- und Datenanalyse durchführen | 12d Kundenspezifisches cyber-physisches System optimieren |
 
+### Lernfelder der kaufmännischen IT-Berufe / Learning Fields of the Commercial IT Occupations
+
+**DE:** Die beiden kaufmännischen IT-Berufe teilen mit den Fachinformatiker*innen und
+IT-System-Elektroniker*innen die Lernfelder **1–6** (gemeinsamer IT-Kern, siehe Tabelle oben). Ihre
+Lernfelder **7–9** sind untereinander gleich, unterscheiden sich aber von den FI-Lernfeldern 7–9. Das
+dritte Ausbildungsjahr ist berufsspezifisch. Diese Zuordnung wird zusammen mit der
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)
+genutzt, die den kaufmännischen Programmier- und Abnahmeanteil im agentischen SDD beschreibt.
+
+**EN:** The two commercial IT occupations share learning fields **1–6** with the IT specialists and IT
+systems electronics technicians (common IT core, see table above). Their learning fields **7–9** are
+identical to each other but differ from the IT-specialist fields 7–9. The third training year is
+occupation-specific. This mapping is used together with the
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md),
+which describes the commercial programming and acceptance share in agentic SDD.
+
+| LF | Kaufmann/-frau für IT-System-Management (KITSM) | Kaufmann/-frau für Digitalisierungsmanagement (KDM) | Jahr / Year |
+|---:|---|---|---|
+| 1–6 | gemeinsamer IT-Kern (wie oben) | gemeinsamer IT-Kern (wie oben) | 1–2 |
+| 7 | Softwareprojekte durchführen | Softwareprojekte durchführen | 2 |
+| 8 | Beschaffungsprozesse durchführen | Beschaffungsprozesse durchführen | 2 |
+| 9 | Netzwerkbasierte IT-Lösungen umsetzen | Netzwerkbasierte IT-Lösungen umsetzen | 2 |
+| 10 | Wertschöpfungsprozesse erfolgsorientiert steuern | Wertschöpfungsprozesse erfolgsorientiert steuern und preispolitische Maßnahmen ableiten | 3 |
+| 11 | Absatzmarketing-Maßnahmen planen und bewerten | Informationen und Daten aufbereiten | 3 |
+| 12 | Absatzprozesse durchführen und überwachen | Unternehmen digital weiterentwickeln | 3 |
+| 13 | Netzwerkinfrastruktur planen und kalkulieren | — (KDM hat 12 Lernfelder) | 3 |
+
+**DE:** Quelle: KMK-Rahmenlehrplan „Kaufleute für IT-System-Management" bzw. „Kaufleute für
+Digitalisierungsmanagement" (Beschluss vom 13.12.2019, gültig ab 2020). KITSM umfasst 13 Lernfelder,
+KDM umfasst 12 Lernfelder. Titel bei fachlicher Aktualisierung gegen die offizielle Ausbildungsordnung
+und die KMK-Quelle prüfen.
+
+**EN:** Source: KMK curriculum "Kaufleute für IT-System-Management" and "Kaufleute für
+Digitalisierungsmanagement" (decision of 13 Dec 2019, effective from 2020). KITSM has 13 learning
+fields, KDM has 12. Verify titles against the official training regulation and the KMK source on
+updates.
+
 ## Zuordnung Basis-Reihe / Mapping of the Base Series (Secure CaseTracker 00–12)
 
 **DE:** Die Basis-Reihe liegt didaktisch im 1. Lehrjahr mit Ausblick auf das 2. Jahr. Ein „Primär"-Lernfeld

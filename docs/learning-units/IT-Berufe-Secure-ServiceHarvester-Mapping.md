@@ -25,6 +25,37 @@
 | Kaufmann/-frau für IT-System-Management | Basis, ausgewählte Application-/Operations-Aufgaben | Kundenanforderungen, Services, Serviceanfragen, Verträge, Kosten/Nutzen und Übergabe |
 | Kaufmann/-frau für Digitalisierungsmanagement | Data & Process Track, ausgewählte v2-Aufgaben | Geschäftsprozesse, Datenbedarf, Betriebskennzahlen, Datenschutz, Wirtschaftlichkeit |
 
+## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
+
+**DE:** KITSM und KDM arbeiten an derselben Secure-ServiceHarvester-Familie wie die
+Fachinformatiker-Fachrichtungen, aber in der Rolle **Auftraggeber:in und Abnehmer:in**. Wie viel
+Programmierung dazugehört, beschreibt die
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md):
+Der Beitrag liegt auf Spezifikation, Governance und Abnahme; der Agent trägt den imperativen Code.
+Der Fokus auf Dienst-/Worker-Betrieb, Serviceanfragen und Betriebsnachweise macht ServiceHarvester
+besonders **KITSM-nah** (Services, Verträge, Kosten/Nutzen, Übergabe).
+
+**EN:** KITSM and KDM work on the same Secure ServiceHarvester family as the IT-specialist directions,
+but in the role of **client and acceptor**. How much programming this involves is described in the
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md):
+the contribution is on specification, governance, and acceptance; the agent carries the imperative
+code. The focus on service/worker operation, service requests, and operational evidence makes
+ServiceHarvester especially **close to KITSM** (services, contracts, cost/benefit, handover).
+
+| Beruf | Programmieranteil / Authoring | Pflicht-Touch (aktiv) | Beispiel-Units ServiceHarvester |
+|---|---|---|---|
+| KITSM | ~5–10 % | Konfig-/Parameter-Änderung plus minimaler SQL-Schreib-Touch | 01 Kundenauftrag/Dienstidee, 06 Persistenz/Import-Export, 11 Review/Übergabe |
+| KDM | ~15–25 % | SQL-Authoring für eine Kennzahl (parametrisiert) | 06 Persistenz/Import-Export, 10 Betriebssicht/Kennzahlen, Data-&-Process-Track 03 |
+
+**DE:** Verbindlich für beide: der SQL-Schreib-Pflicht-Touch (mindestens ein aktiver, parametrisierter
+Schritt) und die evidenzbasierte Abnahme mit einer bewusst eingebauten Abweichung, die gefunden werden
+muss. Details je Einheit stehen im Abschnitt „Kaufmännische Rollen-Umschaltung" der betroffenen
+Lernbegleiter.
+
+**EN:** Binding for both: the mandatory SQL write touch (at least one active, parameterized step) and
+evidence-based acceptance with a deliberately built-in deviation that must be found. Per-unit details
+are in the "Commercial Role Switch" section of the affected study companions.
+
 ## Besondere Eignung dieser Familie / Particular Fit of This Family
 
 **DE:** Die Secure-ServiceHarvester-Familie hat durch ihren Fokus auf einen langlaufenden Dienst, Sammeln, Persistenz und Betrieb eine besonders starke Nähe zu **Systemintegration** und **Digitaler Vernetzung**. Anwendungsentwicklung findet ihren Schwerpunkt in Feature-, API- und Adapter-Entwicklung; Daten- und Prozessanalyse in der ehrlichen Auswertung der gesammelten Daten. Der durchgehende Faden über alle drei Lehrjahre ist das verantwortliche Arbeiten mit KI-Agenten und Spec Kit.

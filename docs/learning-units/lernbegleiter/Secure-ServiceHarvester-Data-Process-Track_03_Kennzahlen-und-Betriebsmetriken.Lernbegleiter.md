@@ -266,6 +266,27 @@ display.
 - [ ] aggregate metrics so that no individual person becomes traceable.
 - [ ] document non-applicable standards as `N/A` with a justification.
 
+## Kaufmännische Rollen-Umschaltung / Commercial Role Switch
+
+**DE:** Diese Track-Einheit ist die **KDM-Vertiefung** für Kennzahlen und Betriebsmetriken (Grundlage:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+
+- **KDM (Authoring, Kernkompetenz):** Schreibe mehrere parametrisierte **Kennzahl-Abfragen** selbst
+  (z. B. Dienst-Verfügbarkeit, Bestandsentwicklung) und bereite sie als belastbare **Datenaussage** auf.
+  Benenne pro Kennzahl die Aussagegrenze und die Datenquelle.
+- **KITSM (optional, lesend):** Nutze die Kennzahlen für Kosten/Nutzen und Service-Entscheidungen.
+- **Abnahme (evidenzbasiert), eingebaute Abweichung:** Eine Aggregation **verdeckt eine
+  Datenqualitätslücke** (z. B. fehlende Zeiträume zählen als 0 statt „unbekannt"). Finde sie und
+  korrigiere die Aussage, bevor du sie freigibst.
+
+**EN:** This track unit is the **KDM deepening** for key figures and operational metrics (basis:
+[`Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`](../Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md)).
+KDM authors several parameterized key-figure queries (e.g. service availability, inventory development)
+and prepares them as a defensible data statement, naming each figure's limit and source. KITSM
+optionally uses the figures for cost/benefit and service decisions. Evidence-based acceptance: one
+aggregation hides a data-quality gap (e.g. missing periods counted as 0 instead of "unknown") — find it
+and correct the statement before release.
+
 ## Weiter zur Aufgabe / On to the Task
 
 **DE:** Wenn du diese Erklärung verstanden hast, bearbeite das zugehörige Lastenheft
