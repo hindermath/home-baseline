@@ -63,9 +63,14 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo ""
 
   echo "=== Tools ==="
-  for cmd in git gh glab rg gitleaks pwsh node uv python3 dotnet go java javac cargo rustc swift syft specify code hx; do
+  for cmd in git gh glab rg gitleaks pwsh node npm uv python3 dotnet go java javac cargo rustc swift syft specify codex claude gemini code hx; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
+  if command -v gh > /dev/null 2>&1 && gh copilot --help > /dev/null 2>&1; then
+    echo "  OK  gh copilot"
+  else
+    echo "  --- gh copilot: fehlt"
+  fi
   echo ""
 
   echo "=== sync-home ==="

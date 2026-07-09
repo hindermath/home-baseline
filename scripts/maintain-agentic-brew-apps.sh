@@ -7,6 +7,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 REGISTRY="$REPO_ROOT/scripts/config/brew-apps-registry.json"
 VSCODE_REGISTRY="$REPO_ROOT/scripts/config/vscode-extensions-registry.json"
 CLI_REGISTRY="$REPO_ROOT/scripts/config/required-cli-tools-registry.json"
+NPM_AGENT_REGISTRY="$REPO_ROOT/scripts/config/npm-agent-cli-registry.json"
 DRY_RUN=0
 COMPARE_ONLY=0
 SKIP_UPGRADE=0
@@ -23,6 +24,8 @@ Options:
   --registry PATH       Use an alternative registry JSON
   --vscode-registry PATH
                         Use an alternative VS Code extensions registry JSON
+  --npm-agent-registry PATH
+                        Use an alternative npm agent CLI registry JSON
   --skip-upgrade        Skip brew/apt update+upgrade
   --skip-vscode-extensions
                         Skip VS Code extension install and comparison
@@ -55,6 +58,15 @@ while [ "$#" -gt 0 ]; do
         exit 1
       fi
       VSCODE_REGISTRY="${2:-}"
+      shift
+      ;;
+    --npm-agent-registry)
+      if [ "$#" -lt 2 ] || [ -z "${2:-}" ]; then
+        echo "Fehler: --npm-agent-registry benoetigt einen Pfad." >&2
+        usage >&2
+        exit 1
+      fi
+      NPM_AGENT_REGISTRY="${2:-}"
       shift
       ;;
     --skip-upgrade)
@@ -91,6 +103,11 @@ fi
 
 if [ ! -f "$CLI_REGISTRY" ]; then
   echo "Fehler: Required-CLI-Registry nicht gefunden: $CLI_REGISTRY" >&2
+  exit 1
+fi
+
+if [ ! -f "$NPM_AGENT_REGISTRY" ]; then
+  echo "Fehler: npm-Agent-CLI-Registry nicht gefunden: $NPM_AGENT_REGISTRY" >&2
   exit 1
 fi
 
@@ -183,6 +200,34 @@ for item in data.get("tools", []):
                 json.dumps(item.get("args", []), separators=(",", ":")),
                 install.get("manager") or "-",
                 json.dumps(install.get("arguments", []), separators=(",", ":")),
+            ]
+        )
+    )
+PY
+}
+
+npm_agent_registry_items() {
+  local scope="${1:-all}"
+  python3 - "$NPM_AGENT_REGISTRY" "$OS_NAME" "$scope" <<'PY'
+import json
+import sys
+
+registry_path, os_name, scope = sys.argv[1:4]
+with open(registry_path, encoding="utf-8") as handle:
+    data = json.load(handle)
+
+for item in data.get("tools", []):
+    if scope != "all" and item.get("scope", "required") != scope:
+        continue
+    if os_name not in item.get("platforms", []):
+        continue
+    print(
+        "\t".join(
+            [
+                item.get("id", ""),
+                item.get("package", ""),
+                item.get("command", ""),
+                json.dumps(item.get("args", []), separators=(",", ":")),
             ]
         )
     )
@@ -357,6 +402,24 @@ install_cli_tools() {
   done < <(cli_registry_items "$scope")
 }
 
+install_npm_agent_tools() {
+  local scope id package_name command_name args_json
+  scope="required"
+  [ "$INCLUDE_OPTIONAL" -eq 1 ] && scope="all"
+
+  while IFS=$'\t' read -r id package_name command_name args_json; do
+    [ -n "$id" ] || continue
+    if cli_tool_available "$command_name" "$args_json"; then
+      log "OK npm agent cli: $id"
+    elif [ "$DRY_RUN" -eq 1 ] || command -v npm >/dev/null 2>&1; then
+      log "INSTALL npm agent cli: $id ($package_name)"
+      run_cmd npm install -g "$package_name"
+    else
+      log "MISSING npm agent cli: $id (npm fehlt)"
+    fi
+  done < <(npm_agent_registry_items "$scope")
+}
+
 compare_cli_scope() {
   local scope="$1"
   local label="$2"
@@ -383,6 +446,34 @@ compare_cli_registry() {
   log "Required CLI tool registry: $CLI_REGISTRY"
   compare_cli_scope required "missing_on_machine.required.cli_tools"
   compare_cli_scope optional "missing_on_machine.optional.cli_tools"
+}
+
+compare_npm_agent_scope() {
+  local scope="$1"
+  local label="$2"
+  local id package_name command_name args_json
+  local missing
+  missing=""
+
+  while IFS=$'\t' read -r id package_name command_name args_json; do
+    [ -n "$id" ] || continue
+    if ! cli_tool_available "$command_name" "$args_json"; then
+      missing="${missing}${id}"$'\n'
+    fi
+  done < <(npm_agent_registry_items "$scope")
+
+  if [ -n "$missing" ]; then
+    log "$label"
+    printf '%s' "$missing" | sed '/^$/d; s/^/  - /'
+  else
+    log "$label: none"
+  fi
+}
+
+compare_npm_agent_registry() {
+  log "npm agent CLI registry: $NPM_AGENT_REGISTRY"
+  compare_npm_agent_scope required "missing_on_machine.required.npm_agent_cli_tools"
+  compare_npm_agent_scope optional "missing_on_machine.optional.npm_agent_cli_tools"
 }
 
 compare_brew_registry() {
@@ -599,17 +690,21 @@ if command -v brew >/dev/null 2>&1; then
     install_brew_items
     install_vscode_extensions
     install_cli_tools
+    install_npm_agent_tools
   fi
 
   compare_brew_registry
   compare_vscode_registry
   compare_cli_registry
+  compare_npm_agent_registry
 else
   run_apt_fallback
   if [ "$COMPARE_ONLY" -eq 0 ]; then
     install_vscode_extensions
     install_cli_tools
+    install_npm_agent_tools
   fi
   compare_vscode_registry
   compare_cli_registry
+  compare_npm_agent_registry
 fi

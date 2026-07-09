@@ -13,7 +13,7 @@
     { "id": "GLab.GLab", "scope": "required", "purpose": "GitLab CLI for repository operations" },
     { "id": "BurntSushi.ripgrep.MSVC", "scope": "required", "purpose": "Fast repository search" },
     { "id": "Microsoft.PowerShell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
-    { "id": "OpenJS.NodeJS.LTS", "scope": "required", "purpose": "Node.js LTS runtime for npm-based tools" },
+    { "id": "OpenJS.NodeJS.LTS", "scope": "required", "purpose": "Node.js LTS runtime for npm-based tools and agent CLI packages" },
     { "id": "astral-sh.uv", "scope": "required", "purpose": "Python package/tool runner and Spec Kit installation support" },
     { "id": "Gitleaks.Gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
     { "id": "Microsoft.DotNet.SDK.10", "scope": "required", "purpose": "Memory-safe .NET SDK toolchain" },

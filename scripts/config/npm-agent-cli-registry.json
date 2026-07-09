@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-07-09",
+  "description": "Global npm CLI package registry for required agent command-line tools that are not maintained through Brew or WinGet on every platform.",
+  "policy": {
+    "packageSource": "npm install -g <package>",
+    "defaultInstallScope": "required",
+    "dependencyPolicy": "Do not list transitive npm dependencies.",
+    "platformPolicy": "Codex is installed through npm on macOS, Linux, and Windows when missing. Gemini is installed through npm on Linux and Windows when the CLI is missing; macOS uses the Brew gemini-cli formula. Claude and GitHub Copilot remain package-manager-managed and are checked through required-cli-tools-registry.json."
+  },
+  "tools": [
+    {
+      "id": "codex",
+      "scope": "required",
+      "platforms": ["Darwin", "Linux", "Windows"],
+      "package": "@openai/codex",
+      "command": "codex",
+      "args": ["--version"],
+      "purpose": "OpenAI Codex command-line agent"
+    },
+    {
+      "id": "gemini",
+      "scope": "required",
+      "platforms": ["Linux", "Windows"],
+      "package": "@google/gemini-cli",
+      "command": "gemini",
+      "args": ["--version"],
+      "purpose": "Gemini command-line agent fallback where Brew gemini-cli is not used"
+    }
+  ]
+}

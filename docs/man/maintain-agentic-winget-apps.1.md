@@ -9,7 +9,7 @@
 ## Synopsis
 
 ```powershell
-pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 [-WhatIf] [-CompareOnly] [-SkipUpgrade] [-SkipVSCodeExtensions] [-IncludeOptional]
+pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 [-WhatIf] [-CompareOnly] [-SkipUpgrade] [-SkipVSCodeExtensions] [-IncludeOptional] [-NpmAgentRegistry PATH]
 ```
 
 ## Beschreibung / Description
@@ -21,7 +21,10 @@ agentische Entwicklung ab. Zusaetzlich liest es
 Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
 sowie Microsoft Container Tools fuer Docker-/Podman-Workflows. Danach liest es
 `scripts/config/required-cli-tools-registry.json` und prueft die Required-CLI-
-Tools fuer die sechs MSL-Pfade, `syft` und GitHub Spec Kit (`specify`).
+Tools fuer die sechs MSL-Pfade, `syft`, GitHub Spec Kit (`specify`) und die
+vier Agenten-CLIs `codex`, `claude`, `gemini` und `gh copilot`. npm-basierte
+Agenten-CLIs wie `codex` und `gemini` werden ueber
+`scripts/config/npm-agent-cli-registry.json` installiert, wenn ihre CLI fehlt.
 Ein normaler Lauf aktualisiert WinGet-Quellen, fuehrt `winget upgrade --all`
 aus und installiert fehlende Required-Pakete per `winget install --id <Id>
 --exact`.
@@ -32,7 +35,10 @@ Windows toolchain for agentic development. It additionally reads
 Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
 plus Microsoft Container Tools for Docker/Podman workflows. It then reads
 `scripts/config/required-cli-tools-registry.json` and checks the required CLI
-tools for the six MSL paths, `syft`, and GitHub Spec Kit (`specify`). A
+tools for the six MSL paths, `syft`, GitHub Spec Kit (`specify`), and the four
+agent CLIs `codex`, `claude`, `gemini`, and `gh copilot`. npm-based agent CLIs
+such as `codex` and `gemini` are installed from
+`scripts/config/npm-agent-cli-registry.json` when their CLI is missing. A
 normal run refreshes WinGet sources, runs `winget upgrade --all`, and installs
 missing required packages via `winget install --id <Id> --exact`.*
 
@@ -54,6 +60,7 @@ installation.*
 | `-CompareOnly` | Nur Registry-Drift melden, nichts installieren oder upgraden |
 | `-Registry PATH` | Alternative Registry-Datei verwenden |
 | `-VSCodeRegistry PATH` | Alternative VS-Code-Extension-Registry verwenden |
+| `-NpmAgentRegistry PATH` | Alternative npm-Agent-CLI-Registry verwenden |
 | `-SkipUpgrade` | WinGet-Update und `winget upgrade --all` ueberspringen |
 | `-SkipVSCodeExtensions` | VS-Code-Extensions weder installieren noch vergleichen |
 | `-IncludeOptional` | Auch optionale Registry-Eintraege installieren |
@@ -70,16 +77,20 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 
 - `gitleaks version` funktioniert.
 - `syft version` und `specify --version` funktionieren.
+- `codex --version`, `claude --version`, `gemini --version` und
+  `gh copilot --help` funktionieren.
 - `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind per CLI pruefbar.
 - `code --version` und `hx --version` funktionieren.
 - `-CompareOnly` meldet keine fehlenden Required-Tools.
 - `python3 -m json.tool scripts/config/winget-apps-registry.json` ist erfolgreich.
 - `python3 -m json.tool scripts/config/vscode-extensions-registry.json` ist erfolgreich.
 - `python3 -m json.tool scripts/config/required-cli-tools-registry.json` ist erfolgreich.
+- `python3 -m json.tool scripts/config/npm-agent-cli-registry.json` ist erfolgreich.
 - Neue bewusst installierte WinGet-Top-Level-Tools werden in der Registry
   nachgetragen.
 
-*`gitleaks version`, `syft version`, `specify --version`, .NET, Go,
+*`gitleaks version`, `syft version`, `specify --version`, `codex --version`,
+`claude --version`, `gemini --version`, `gh copilot --help`, .NET, Go,
 Java/Javac, Python, Rust/Cargo, Swift, `code --version`, and `hx --version`
 work; `-CompareOnly` reports no missing required tools; the registries are valid
 JSON; and intentional new WinGet top-level tools are added to the registry.*

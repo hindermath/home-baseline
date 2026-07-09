@@ -1,10 +1,12 @@
 {
   "schemaVersion": 1,
   "updated": "2026-07-09",
-  "description": "Required CLI command checks for the learning-series MSL toolchains, SBOM tooling, and GitHub Spec Kit.",
+  "description": "Required CLI command checks for the learning-series MSL toolchains, SBOM tooling, GitHub Spec Kit, and required agent CLI surfaces.",
   "policy": {
     "defaultScope": "required",
     "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
+    "npmAgentRegistry": "scripts/config/npm-agent-cli-registry.json",
+    "agentCliPolicy": "codex, claude, gemini, and GitHub Copilot via gh copilot are required agent CLI surfaces. npm-installed agent CLIs are maintained through npm-agent-cli-registry.json.",
     "linuxWithoutBrew": "Linux without Homebrew uses distro packages where available. .NET, Swift, Syft, and GitHub Spec Kit may require external package sources or uv-based installation."
   },
   "tools": [
@@ -99,6 +101,38 @@
         "arguments": ["tool", "install", "specify-cli", "--from", "git+https://github.com/github/spec-kit.git"]
       },
       "purpose": "GitHub Spec Kit CLI for specification-driven development"
+    },
+    {
+      "id": "codex",
+      "scope": "required",
+      "platforms": ["Darwin", "Linux", "Windows"],
+      "command": "codex",
+      "args": ["--version"],
+      "purpose": "OpenAI Codex command-line agent for AI-assisted development"
+    },
+    {
+      "id": "claude",
+      "scope": "required",
+      "platforms": ["Darwin", "Linux", "Windows"],
+      "command": "claude",
+      "args": ["--version"],
+      "purpose": "Claude Code command-line agent for AI-assisted development"
+    },
+    {
+      "id": "gemini",
+      "scope": "required",
+      "platforms": ["Darwin", "Linux", "Windows"],
+      "command": "gemini",
+      "args": ["--version"],
+      "purpose": "Gemini command-line agent for AI-assisted development"
+    },
+    {
+      "id": "copilot",
+      "scope": "required",
+      "platforms": ["Darwin", "Linux", "Windows"],
+      "command": "gh",
+      "args": ["copilot", "--help"],
+      "purpose": "GitHub Copilot CLI extension exposed through gh copilot"
     }
   ]
 }

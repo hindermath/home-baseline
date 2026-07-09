@@ -9,7 +9,7 @@
 ## Synopsis
 
 ```bash
-bash scripts/maintain-agentic-brew-apps.sh [--dry-run] [--compare-only] [--skip-upgrade] [--skip-vscode-extensions] [--include-optional]
+bash scripts/maintain-agentic-brew-apps.sh [--dry-run] [--compare-only] [--skip-upgrade] [--skip-vscode-extensions] [--include-optional] [--npm-agent-registry PATH]
 ```
 
 ## Beschreibung / Description
@@ -21,7 +21,10 @@ Toolchain fuer agentische Entwicklung ab. Zusaetzlich liest es
 Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
 sowie Microsoft Container Tools fuer Docker-/Podman-Workflows. Danach liest es
 `scripts/config/required-cli-tools-registry.json` und prueft die Required-CLI-
-Tools fuer die sechs MSL-Pfade, `syft` und GitHub Spec Kit (`specify`).
+Tools fuer die sechs MSL-Pfade, `syft`, GitHub Spec Kit (`specify`) und die
+vier Agenten-CLIs `codex`, `claude`, `gemini` und `gh copilot`. npm-basierte
+Agenten-CLIs wie `codex` werden ueber
+`scripts/config/npm-agent-cli-registry.json` installiert, wenn ihre CLI fehlt.
 Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 `brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
 werden zusaetzlich Required-Casks gepflegt.
@@ -36,7 +39,10 @@ local macOS/Linux toolchain for agentic development. It additionally reads
 Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
 plus Microsoft Container Tools for Docker/Podman workflows. It then reads
 `scripts/config/required-cli-tools-registry.json` and checks the required CLI
-tools for the six MSL paths, `syft`, and GitHub Spec Kit (`specify`). On
+tools for the six MSL paths, `syft`, GitHub Spec Kit (`specify`), and the four
+agent CLIs `codex`, `claude`, `gemini`, and `gh copilot`. npm-based agent CLIs
+such as `codex` are installed from
+`scripts/config/npm-agent-cli-registry.json` when their CLI is missing. On
 systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
 installs missing required formulae. On macOS it also maintains required casks.
 An existing Visual Studio Code app bundle under `/Applications/Visual Studio Code.app`
@@ -67,6 +73,7 @@ dependencies. `xquartz` is intentionally excluded.*
 | `--compare-only` | Registry-Drift nach Required/Optional getrennt melden, nichts installieren oder upgraden |
 | `--registry PATH` | Alternative Registry-Datei verwenden |
 | `--vscode-registry PATH` | Alternative VS-Code-Extension-Registry verwenden |
+| `--npm-agent-registry PATH` | Alternative npm-Agent-CLI-Registry verwenden |
 | `--skip-upgrade` | `brew update`/`brew upgrade` bzw. apt-Update/Upgrade ueberspringen |
 | `--skip-vscode-extensions` | VS-Code-Extensions weder installieren noch vergleichen |
 | `--include-optional` | Auch optionale Registry-Eintraege installieren |
@@ -84,6 +91,8 @@ bash scripts/maintain-agentic-brew-apps.sh
 
 - `gitleaks version` funktioniert.
 - `syft version` und `specify --version` funktionieren.
+- `codex --version`, `claude --version`, `gemini --version` und
+  `gh copilot --help` funktionieren.
 - `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind per CLI pruefbar,
   soweit die Plattform den jeweiligen Pfad unterstuetzt.
 - `code --version` und `hx --version` funktionieren, sofern die Plattform die grafische bzw. TUI-Editor-Basis installieren konnte.
@@ -91,14 +100,16 @@ bash scripts/maintain-agentic-brew-apps.sh
 - `python3 -m json.tool scripts/config/brew-apps-registry.json` ist erfolgreich.
 - `python3 -m json.tool scripts/config/vscode-extensions-registry.json` ist erfolgreich.
 - `python3 -m json.tool scripts/config/required-cli-tools-registry.json` ist erfolgreich.
+- `python3 -m json.tool scripts/config/npm-agent-cli-registry.json` ist erfolgreich.
 - Neue bewusst installierte Top-Level-Tools werden in der Registry nachgetragen.
 
-*`gitleaks version`, `syft version`, and `specify --version` work; .NET, Go,
-Java/Javac, Python, Rust/Cargo, and Swift are CLI-checkable where the platform
-supports the path; `code --version` and `hx --version` work where the platform
-could install the graphical/TUI editor baseline; `--compare-only` reports
-`missing_on_machine.required.*: none`; the registries are valid JSON; and
-intentional new top-level tools are added to the registry.*
+*`gitleaks version`, `syft version`, `specify --version`, `codex --version`,
+`claude --version`, `gemini --version`, and `gh copilot --help` work; .NET,
+Go, Java/Javac, Python, Rust/Cargo, and Swift are CLI-checkable where the
+platform supports the path; `code --version` and `hx --version` work where the
+platform could install the graphical/TUI editor baseline; `--compare-only`
+reports `missing_on_machine.required.*: none`; the registries are valid JSON;
+and intentional new top-level tools are added to the registry.*
 
 ## Sicherheit / Security
 

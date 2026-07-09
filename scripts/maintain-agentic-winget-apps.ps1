@@ -14,6 +14,9 @@
 .PARAMETER VSCodeRegistry
     Alternative VS Code extensions registry JSON path.
 
+.PARAMETER NpmAgentRegistry
+    Alternative npm agent CLI registry JSON path.
+
 .PARAMETER CompareOnly
     Only compare installed packages with the registry.
 
@@ -34,6 +37,7 @@
 param(
     [string] $Registry = '',
     [string] $VSCodeRegistry = '',
+    [string] $NpmAgentRegistry = '',
     [switch] $CompareOnly,
     [switch] $SkipUpgrade,
     [switch] $SkipVSCodeExtensions,
@@ -51,6 +55,9 @@ if (-not $VSCodeRegistry) {
     $VSCodeRegistry = Join-Path $repoRoot 'scripts/config/vscode-extensions-registry.json'
 }
 $cliRegistry = Join-Path $repoRoot 'scripts/config/required-cli-tools-registry.json'
+if (-not $NpmAgentRegistry) {
+    $NpmAgentRegistry = Join-Path $repoRoot 'scripts/config/npm-agent-cli-registry.json'
+}
 
 if (-not (Test-Path -Path $Registry -PathType Leaf)) {
     Write-Error "Registry nicht gefunden: $Registry"
@@ -61,6 +68,9 @@ if (-not $SkipVSCodeExtensions -and -not (Test-Path -Path $VSCodeRegistry -PathT
 if (-not (Test-Path -Path $cliRegistry -PathType Leaf)) {
     Write-Error "Required-CLI-Registry nicht gefunden: $cliRegistry"
 }
+if (-not (Test-Path -Path $NpmAgentRegistry -PathType Leaf)) {
+    Write-Error "npm-Agent-CLI-Registry nicht gefunden: $NpmAgentRegistry"
+}
 
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     Write-Error 'winget ist nicht installiert oder nicht im PATH.'
@@ -69,6 +79,7 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 $registryData = Get-Content -Path $Registry -Raw | ConvertFrom-Json
 $vscodeRegistryData = if ($SkipVSCodeExtensions) { $null } else { Get-Content -Path $VSCodeRegistry -Raw | ConvertFrom-Json }
 $cliRegistryData = Get-Content -Path $cliRegistry -Raw | ConvertFrom-Json
+$npmAgentRegistryData = Get-Content -Path $NpmAgentRegistry -Raw | ConvertFrom-Json
 $installScope = if ($IncludeOptional) { @('required', 'optional') } else { @('required') }
 $allRegistryIds = @($registryData.packages | ForEach-Object { $_.id } | Sort-Object -Unique)
 $requiredRegistryIds = @(
@@ -346,6 +357,75 @@ function Invoke-HBExternal {
     return 0
 }
 
+function Get-HBNpmAgentTools {
+    param([Parameter(Mandatory)][string[]] $Scopes)
+
+    return @(
+        $npmAgentRegistryData.tools |
+            Where-Object {
+                ($Scopes -contains $_.scope) -and
+                (@($_.platforms) -contains 'Windows')
+            }
+    )
+}
+
+function Test-HBNpmAgentTool {
+    param([Parameter(Mandatory)] $Tool)
+
+    $command = Get-Command $Tool.command -ErrorAction SilentlyContinue
+    if (-not $command) { return $false }
+
+    $arguments = @()
+    if ($Tool.PSObject.Properties.Name -contains 'args') {
+        $arguments = @($Tool.args | ForEach-Object { [string]$_ })
+    }
+
+    & $command.Source @arguments *> $null
+    return ($LASTEXITCODE -eq 0)
+}
+
+function Install-HBNpmAgentTools {
+    foreach ($tool in Get-HBNpmAgentTools -Scopes $installScope) {
+        if (Test-HBNpmAgentTool -Tool $tool) {
+            Write-Host "OK npm agent cli: $($tool.id)"
+            continue
+        }
+
+        if ($WhatIfPreference -or (Get-Command npm -ErrorAction SilentlyContinue)) {
+            Write-Host "INSTALL npm agent cli: $($tool.id) ($($tool.package))"
+            [void](Invoke-HBExternal -Command 'npm' -Arguments @('install', '-g', [string]$tool.package) -Action "Install npm agent CLI $($tool.id)")
+        } else {
+            Write-Host "MISSING npm agent cli: $($tool.id) (npm fehlt)"
+        }
+    }
+}
+
+function Compare-HBNpmAgentScope {
+    param(
+        [Parameter(Mandatory)][string] $Scope,
+        [Parameter(Mandatory)][string] $Label
+    )
+
+    $missing = @(
+        Get-HBNpmAgentTools -Scopes @($Scope) |
+            Where-Object { -not (Test-HBNpmAgentTool -Tool $_) } |
+            ForEach-Object { $_.id }
+    )
+
+    if ($missing.Count -gt 0) {
+        Write-Host $Label
+        $missing | ForEach-Object { Write-Host "  - $_" }
+    } else {
+        Write-Host "${Label}: none"
+    }
+}
+
+function Compare-HBNpmAgentRegistry {
+    Write-Host "npm agent CLI registry: $NpmAgentRegistry"
+    Compare-HBNpmAgentScope -Scope 'required' -Label 'missing_on_machine.required.npm_agent_cli_tools'
+    Compare-HBNpmAgentScope -Scope 'optional' -Label 'missing_on_machine.optional.npm_agent_cli_tools'
+}
+
 function Install-HBCLITool {
     param([Parameter(Mandatory)] $Tool)
 
@@ -446,6 +526,7 @@ if (-not $CompareOnly) {
 
     Install-HBVSCodeExtensions
     Install-HBCLITools
+    Install-HBNpmAgentTools
 }
 
 $installedIds = @(Get-HBWingetInstalledIds)
@@ -463,3 +544,4 @@ if ($missingFromRegistry.Count -gt 0) {
 
 Compare-HBVSCodeRegistry
 Compare-HBCLIRegistry
+Compare-HBNpmAgentRegistry
