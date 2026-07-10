@@ -418,7 +418,10 @@ process_repo() {
   # Commit + Push
   git -C "$repo" add -A -- docs/learning-units >/dev/null 2>&1 || true
   [ "$level" = "2" ] && git -C "$repo" add -A -- 'Lastenheft_'"${FILE_SERIES}"'*.md' >/dev/null 2>&1 || true
-  git -C "$repo" add -- START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md README.md
+  git -C "$repo" add -- README.md
+  # Level-2 whitelist-style .gitignore files may ignore root Markdown by default.
+  # Force only the two canonical learner guides, never arbitrary ignored files.
+  git -C "$repo" add -f -- START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md
 
   if git -C "$repo" diff --cached --quiet; then
     ok "${name}: keine Git-Aenderung nach Add / no staged change"

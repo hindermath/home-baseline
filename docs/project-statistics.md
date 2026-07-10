@@ -69,7 +69,7 @@
 | 2026-07-09 | Vier Agenten-CLI-Required-Baseline | 58 | — | — | `codex`, `claude`, `gemini` und `gh copilot` als Required-Agenten-CLI-Oberflaechen in der CLI-Pruefregistry verankert; neue npm-Agenten-Registry fuer `codex` und Linux-/Windows-`gemini`, Node/npm-Grundlage, Brew-/WinGet-Wartungsskripte, Plattformtests, README, Manpages, Agenten-Guidance und Templates synchronisiert |
 | 2026-07-09 | Kaufmaennische Berufsrollen-Linse (KITSM/KDM) | 58 | — | — | Die beiden kaufmaennischen IT-Berufe **KITSM** und **KDM** ohne neue Repos in die drei Lernreihen integriert (Blueprint-konform, `Lernreihen-Blueprint.md:61`): neues zentrales `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` (Code-Naehe-Modell — Barriere-Umkehr, SQL als deklarative Bruecken-Programmiersprache, Baender KITSM ~5–10 %/KDM ~15–25 %, Pflicht-SQL-Schreib-Touch, evidenzbasierte Abnahme mit eingebauter Abweichung, Rollen-Split); `Secure-Trader-`-Praefix fuer Auto-Propagation. `Rahmenlehrplan-Lernfeld-Mapping.md` um die **amtlichen KMK-Lernfelder** KITSM (LF 1–13) und KDM (LF 1–12) erweitert (Quelle KMK-RLP 13.12.2019). Drei `IT-Berufe-Secure-*-Mapping.md` um kaufmaennischen SDD-Rollenabschnitt vertieft. 15 **Unit-Overlays** „Kaufmaennische Rollen-Umschaltung" in die Handlungs-Units (01/06/10/11 + Data-&-Process-Track) der drei Familien. Template, Register und Blueprint angeglichen; `Secure InventoryHub` bewusst ausgeschlossen (keine der drei Reihen) |
 | 2026-07-10 | Neutraler KI-Erstellungshinweis | 58 | — | — | Root-README um einen gut sichtbaren, bilingualen Transparenzhinweis ergaenzt: die agentische Unterstuetzungs-Umgebung und wesentliche Dokumentations-, Lern- und Skriptinhalte sind menschlich kuratiert, geprueft und fortgeschrieben; Teile wurden mit Hilfe agentischer KI erstellt oder generiert. Der Hinweis bleibt ohne Klarnamen und macht menschliche Verantwortung, Pruefung und Freigabe massgeblich |
-| 2026-07-10 | Selbstfuehrender Lernenden-Einstieg und Vier-Agenten-Sandbox | 59 | 229 591 | 420 | Kanonischer Startpfad ab dem 1. Lehrjahr mit persoenlichem `home-baseline`-Fork, persistentem `home-baseline-tmp`, Podman-Sandbox und erstem kontrollierten Agentenlauf; Podman, sechs MSL, JDK, Syft, Spec Kit sowie Codex/Claude/Gemini/Copilot konsistent Required; Lernpaket-Self-Tests, Lychee-Link-/Anker-CI und fehlertolerante 21-Repo-Propagation mit Remote-, Clean-/Main-/Fast-forward- und Neuere-Zieldatei-Gates ergaenzt |
+| 2026-07-10 | Selbstfuehrender Lernenden-Einstieg und Vier-Agenten-Sandbox | 59 | 229 594 | 421 | Kanonischer Startpfad ab dem 1. Lehrjahr mit persoenlichem `home-baseline`-Fork, persistentem `home-baseline-tmp`, Podman-Sandbox und erstem kontrollierten Agentenlauf; Podman, sechs MSL, JDK, Syft, Spec Kit sowie Codex/Claude/Gemini/Copilot konsistent Required; Lernpaket-Self-Tests, Lychee-Link-/Anker-CI und fehlertolerante 21-Repo-Propagation mit Remote-, Clean-/Main-/Fast-forward- und Neuere-Zieldatei-Gates ergaenzt |
 
 ---
 
@@ -79,12 +79,12 @@ Stand / As of: **2026-07-10**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 102 | 24 340 | 10.6 % |
+| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 102 | 24 343 | 10.6 % |
 | Strukturierte Konfiguration und Templates / Structured config and templates | 65 | 5 897 | 2.6 % |
 | Dokumentation / Documentation (`.md`) | 1 029 | 171 857 | 74.9 % |
 | Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 11.6 % |
 | Sonstiges / Other | 22 | 872 | 0.4 % |
-| **Gesamt / Total** | **1 230** | **229 591** | **100 %** |
+| **Gesamt / Total** | **1 230** | **229 594** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
@@ -219,17 +219,17 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `229 591` Zeilen |
-| Operativer Code und Konfiguration / Operational code and configuration | `30 237` Zeilen (`13.2 %`) |
+| Artefaktbasis gesamt / Total artifact base | `229 594` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `30 240` Zeilen (`13.2 %`) |
 | Dokumentationsanteil / Documentation share | `171 857` Zeilen (`74.9 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-10` |
 | Sichtbare Git-Aktivtage / Observable active days | `59` |
-| Git-Commits gesamt / Total commits | `420` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.1` (`420 / 59`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 891.4` (`229 591 / 59`) |
-| Zeilen pro Commit / Lines per commit | `546.6` (`229 591 / 420`) |
-| Konservative Einzelentwickler-Untergrenze | `2 869.9` Arbeitstage / `22 385.1` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 295.9` Arbeitstage / `17 908.1` Stunden |
+| Git-Commits gesamt / Total commits | `421` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.1` (`421 / 59`) |
+| Zeilen pro Aktivtag / Lines per active day | `3 891.4` (`229 594 / 59`) |
+| Zeilen pro Commit / Lines per commit | `545.4` (`229 594 / 421`) |
+| Konservative Einzelentwickler-Untergrenze | `2 869.9` Arbeitstage / `22 385.4` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 295.9` Arbeitstage / `17 908.3` Stunden |
 | Kleines 3er-Team mit Koordinationsaufschlag | `1 148.0` Arbeitstage |
 | Repo-weiter Speedup gg. 80-Zeilen-Referenz | `48.6x` |
 | Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `38.9x` |
@@ -260,7 +260,7 @@ visible delivery density, not stopwatch measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Skripte         | ###                            | 24 340 | 10.6 %
+Skripte         | ###                            | 24 343 | 10.6 %
 Konfiguration   | #                              |  5 897 |  2.6 %
 Dokumentation   | ######################         |171 857 | 74.9 %
 Daten/Medien    | ###                            | 26 625 | 11.6 %
@@ -342,8 +342,8 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 2 869.9 d / 22 385.1 h
-Thorsten (100 Z./Tag)  | ###################      | 2 295.9 d / 17 908.1 h
+Erfahren (80 Z./Tag)   | ######################## | 2 869.9 d / 22 385.4 h
+Thorsten (100 Z./Tag)  | ###################      | 2 295.9 d / 17 908.3 h
 KI sichtbar            | #                        |    59.0 d
 ```
 
