@@ -47,11 +47,11 @@ trap 'rm -f "$tmp"' EXIT
 guideline_path="$(jq -r '.guideline.path' "$MANIFEST")"
 guideline_version="$(jq -r '.guideline.version' "$MANIFEST")"
 [ -f "$DOC_ROOT/$guideline_path" ] || { printf 'Guideline missing: %s\n' "$guideline_path" >&2; exit 1; }
-rg -q "\| Versionsnummer \| $guideline_version \|" "$DOC_ROOT/$guideline_path" || { printf 'Guideline version mismatch: %s\n' "$guideline_path" >&2; exit 1; }
+grep -Fq "| Versionsnummer | $guideline_version |" "$DOC_ROOT/$guideline_path" || { printf 'Guideline version mismatch: %s\n' "$guideline_path" >&2; exit 1; }
 
 while IFS=$'\t' read -r relative version; do
   [ -f "$DOC_ROOT/$relative" ] || { printf 'Controlled document missing: %s\n' "$relative" >&2; exit 1; }
-  rg -q "\*\*Version / Version:\*\* $version" "$DOC_ROOT/$relative" || { printf 'Controlled document version mismatch: %s\n' "$relative" >&2; exit 1; }
+  grep -Fq "**Version / Version:** $version" "$DOC_ROOT/$relative" || { printf 'Controlled document version mismatch: %s\n' "$relative" >&2; exit 1; }
 done < <(jq -r '(.relatedDocuments + .learningDocuments)[] | [.path, .version] | @tsv' "$MANIFEST")
 
 while IFS= read -r relative; do
@@ -72,9 +72,9 @@ trap 'rm -f "$tmp" "$ids_tmp"' EXIT
 while IFS=$'\t' read -r id relative version; do
   source_file="$DOC_ROOT/$relative"
   [ -f "$source_file" ] || { printf 'Checklist missing: %s\n' "$relative" >&2; exit 1; }
-  rg -q "\*\*Dokument-ID / Document ID:\*\* $id" "$source_file" || { printf 'Document ID mismatch: %s\n' "$relative" >&2; exit 1; }
-  rg -q "\*\*Version / Version:\*\* $version" "$source_file" || { printf 'Version mismatch: %s\n' "$relative" >&2; exit 1; }
-  rg -o '^#### CL-[0-9]{2}-[0-9]{2}:' "$source_file" | sed 's/^#### //; s/:$//' >> "$ids_tmp"
+  grep -Fq "**Dokument-ID / Document ID:** $id" "$source_file" || { printf 'Document ID mismatch: %s\n' "$relative" >&2; exit 1; }
+  grep -Fq "**Version / Version:** $version" "$source_file" || { printf 'Version mismatch: %s\n' "$relative" >&2; exit 1; }
+  grep -Eo '^#### CL-[0-9]{2}-[0-9]{2}:' "$source_file" | sed 's/^#### //; s/:$//' >> "$ids_tmp"
 
   printf '\n---\n\n' >> "$tmp"
   sed \

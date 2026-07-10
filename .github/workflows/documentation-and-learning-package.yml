@@ -24,6 +24,7 @@ jobs:
             --include-fragments
             --exclude-path docs/learning-units/dist
             --exclude-path scripts/templates/project-readme-template.md
+            --exclude-path scripts/templates/secure-development-compendium-header.md
             './**/*.md'
           fail: true
           failIfEmpty: true
