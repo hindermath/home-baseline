@@ -147,6 +147,74 @@ sdh_find_source_dir() {
   return 1
 }
 
+sdh_manifest_paths() {
+  local manifest="$1"
+  jq -r '
+    ["baseline-manifest.json", .guideline.path, .compendium.path]
+    + [.checklists[].path]
+    + [.relatedDocuments[].path]
+    + [.learningDocuments[].path]
+    + .managedBinaryFiles
+    + .managedReferenceFiles
+    | unique[]
+  ' "$manifest"
+}
+
+sdh_sync_baseline() {
+  local source_dir="$1"
+  local target_dir="$2"
+  local dry_run="${3:-0}"
+  local source_manifest="$source_dir/baseline-manifest.json"
+  local target_manifest="$target_dir/baseline-manifest.json"
+  local new_paths old_paths relative source_file target_file copied=0 removed=0
+
+  command -v jq >/dev/null 2>&1 || { sdh_log "  Fehler: jq wird fuer die manifestgesteuerte Synchronisation benoetigt"; return 1; }
+  [ -f "$source_manifest" ] || { sdh_log "  Fehler: Baseline-Manifest fehlt: $source_manifest"; return 1; }
+  new_paths="$(mktemp)"
+  old_paths="$(mktemp)"
+  sdh_manifest_paths "$source_manifest" > "$new_paths"
+  if [ -f "$target_manifest" ]; then
+    sdh_manifest_paths "$target_manifest" > "$old_paths"
+  else
+    : > "$old_paths"
+  fi
+
+  while IFS= read -r relative; do
+    [ -n "$relative" ] || continue
+    case "$relative" in /*|*../*) sdh_log "  Fehler: unsicherer Manifestpfad: $relative"; rm -f "$new_paths" "$old_paths"; return 1 ;; esac
+    if ! grep -Fqx "$relative" "$new_paths"; then
+      target_file="$target_dir/$relative"
+      if [ -f "$target_file" ]; then
+        removed=$((removed + 1))
+        [ "$dry_run" = "1" ] || rm -f "$target_file"
+      fi
+    fi
+  done < "$old_paths"
+
+  while IFS= read -r relative; do
+    [ -n "$relative" ] || continue
+    case "$relative" in /*|*../*) sdh_log "  Fehler: unsicherer Manifestpfad: $relative"; rm -f "$new_paths" "$old_paths"; return 1 ;; esac
+    source_file="$source_dir/$relative"
+    target_file="$target_dir/$relative"
+    [ -f "$source_file" ] || { sdh_log "  Fehler: verwaltete Quelldatei fehlt: $relative"; rm -f "$new_paths" "$old_paths"; return 1; }
+    if [ ! -f "$target_file" ] || ! cmp -s "$source_file" "$target_file"; then
+      copied=$((copied + 1))
+      if [ "$dry_run" != "1" ] && [ "$relative" != "baseline-manifest.json" ]; then
+        mkdir -p "$(dirname "$target_file")"
+        cp "$source_file" "$target_file"
+      fi
+    fi
+  done < "$new_paths"
+
+  if [ "$dry_run" != "1" ]; then
+    mkdir -p "$target_dir"
+    cp "$source_manifest" "$target_manifest"
+    find "$target_dir" -depth -type d -empty -delete 2>/dev/null || true
+  fi
+  sdh_log "  Baseline-Sync: $copied aktualisiert, $removed veraltet entfernt"
+  rm -f "$new_paths" "$old_paths"
+}
+
 sdh_find_template_file() {
   local script_dir="$1"
   local repo_dir
@@ -371,8 +439,7 @@ sdh_prepare_repo() {
   if [ "$dry_run" = "1" ]; then
     sdh_log "  [dry-run] docs/secure-development nach ${repo}/docs/secure-development synchronisieren"
   else
-    mkdir -p "$target_docs"
-    cp -R "$source_dir/." "$target_docs/"
+    sdh_sync_baseline "$source_dir" "$target_docs" 0
   fi
 
   if [ -f "$intake_file" ] && [ "$force" != "1" ]; then

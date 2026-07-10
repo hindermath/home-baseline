@@ -43,17 +43,15 @@ Der spaetere Spec-Kit-Lauf muss mindestens diese Grundlagen beruecksichtigen:
 
 ## 4. Zielbild des spaeteren Prueflaufs
 
-Der spaetere Lauf erzeugt eine Evidenz- und Anwendbarkeitsmatrix. Jeder
-relevante Pruefpunkt erhaelt einen Status:
+Der spaetere Lauf erzeugt eine Evidenzmatrix. Jeder relevante Pruefpunkt
+erhaelt genau einen Wert je Statusachse:
 
-- `Applicable`: gilt fuer {{PROJECT_NAME}} und braucht Evidenz oder Umsetzung.
-- `AlreadySatisfied`: ist im aktuellen Stand bereits nachweisbar erfuellt.
-- `N/A`: gilt fuer diesen Lauf nicht und braucht eine kurze Begruendung.
-- `Open`: gilt, ist aber noch nicht ausreichend geklaert oder belegt.
-- `FollowUp`: fachlich relevant, aber bewusst ausserhalb dieses Laufs.
+- Anwendbarkeit: `Applicable`, `N/A` oder `Open`.
+- Umsetzung: `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled` oder `Not Assessed`.
 
-Jeder Pruefpunkt braucht mindestens Begruendung, Evidenzpfad oder Open-Markierung,
-Owner, Follow-up und Re-Evaluation-Trigger.
+Jeder Pruefpunkt braucht mindestens Begruendung, Evidenzpfad oder klare
+Evidenzluecke, Owner, Follow-up, Restrisiko und Re-Evaluation-Trigger. Bei
+`N/A` bleibt die Umsetzung `Not Assessed`; die Begruendung bleibt Pflicht.
 
 ## 5. Scope
 
@@ -81,10 +79,10 @@ Im spaeteren Prueflauf werden insbesondere behandelt:
 
 1. Aktuellen Repository-Stand lesen und bereits erledigte Punkte nicht neu umsetzen.
 2. Die Verzahnungsdatei zuerst nutzen, um Richtlinie, CLs, Presets und Evidenzpfade zuzuordnen.
-3. Alle relevanten Pruefpunkte als `Applicable`, `AlreadySatisfied`, `N/A`, `Open` oder `FollowUp` klassifizieren.
-4. Fuer `Applicable` und `AlreadySatisfied` konkrete Evidenzpfade benennen.
-5. Fuer `N/A` und `FollowUp` kurze technische oder fachliche Begruendung erfassen.
-6. Fuer `Open` Owner, Follow-up, Prioritaet, Risiko und Re-Evaluation-Trigger festhalten.
+3. Alle relevanten Pruefpunkte auf beiden Statusachsen klassifizieren.
+4. Fuer `Fulfilled` und `Partly Fulfilled` konkrete Evidenzpfade benennen.
+5. Fuer `N/A` eine kurze technische oder fachliche Begruendung erfassen.
+6. Fuer `Open`, `Partly Fulfilled`, `Not Fulfilled` und `Not Assessed` Owner, Follow-up, Prioritaet, Restrisiko und Re-Evaluation-Trigger festhalten.
 7. Positive Aussagen zur Einhaltung nur mit konkreter Evidenz treffen.
 8. Human-only-Punkte sichtbar abgrenzen und nicht als erledigt behaupten.
 9. Ergebnis als auditfaehige, fuer Auszubildende verstaendliche Markdown-Dokumentation ablegen.
@@ -96,7 +94,7 @@ Im spaeteren Prueflauf werden insbesondere behandelt:
 | Spec-Kit `spec.md` | Ziel, Scope, Nicht-Ziele, Pruefgrundlagen und Statuslogik dokumentiert |
 | Spec-Kit `plan.md` | Pruefstrategie, Evidenzpfade, Standards und Presets nachvollziehbar |
 | Spec-Kit `tasks.md` | Konkrete Pruef-, Dokumentations- und Follow-up-Aufgaben ableitbar |
-| Evidenzmatrix | `Applicable`, `AlreadySatisfied`, `N/A`, `Open`, `FollowUp` mit Begruendung |
+| Evidenzmatrix | Beide Statusachsen mit Begruendung, Evidenz, Owner und Restrisiko |
 | `docs/security/` | Projektspezifische Nachweise oder begruendete N/A-/Open-Eintraege |
 | Abschlussnotiz | Ergebnis, offene Risiken, Restrisiken und Re-Evaluation-Trigger |
 
@@ -104,8 +102,8 @@ Im spaeteren Prueflauf werden insbesondere behandelt:
 
 - Alle relevanten Punkte aus Richtlinie, Sammelband, CL_01 bis CL_12 und mitgeltenden Dokumenten sind sichtbar behandelt.
 - Kein relevanter Governance-Preset-Pruefpunkt wurde stillschweigend ausgelassen.
-- Jeder ausgelassene Punkt ist als `N/A` oder `FollowUp` begruendet.
-- Jeder offene Punkt ist als `Open` mit Owner, Folgeaktion und Re-Evaluation-Trigger dokumentiert.
+- Jeder nicht anwendbare Punkt ist als `N/A` begruendet.
+- Jede Umsetzungs- oder Evidenzluecke hat Owner, Folgeaktion und Re-Evaluation-Trigger.
 - Jede positive Aussage verweist auf konkrete Evidenz.
 - Das Projekt bleibt nach der Pruefung baubar, testbar und fuer Lernende nachvollziehbar.
 
@@ -116,6 +114,6 @@ Im spaeteren Prueflauf werden insbesondere behandelt:
 Nutze Lastenheft_RL-SE-Checklist-Selbstpruefung.md als verbindlichen Intake fuer einen separaten RL-SE-/Checklist-Selbstpruefungslauf in {{PROJECT_NAME}}.
 Starte keinen Sammellauf ueber mehrere Repositories, erzeuge keine automatische Haertung und befuelle keine docs/security/-Nachweise ohne konkrete Spec-Kit-Aufgabe.
 Erstelle eine fokussierte Feature-Spezifikation, die docs/secure-development/, Richtlinie_Sichere-Entwicklung.md, Checklistensammelband_Sichere-Entwicklung.md, CL_01 bis CL_12, mitgeltende Dokumente, Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md, constitution.md, .specify/memory/constitution.md und installierte Governance-Presets als Pruefgrundlagen beruecksichtigt.
-Dokumentiere jeden relevanten Pruefpunkt als Applicable, AlreadySatisfied, N/A, Open oder FollowUp mit Begruendung, Evidenzpfad, Owner, Follow-up, Re-Evaluation-Trigger und Restrisiko.
+Dokumentiere je Pruefpunkt die Anwendbarkeit als Applicable, N/A oder Open und getrennt die Umsetzung als Fulfilled, Partly Fulfilled, Not Fulfilled oder Not Assessed. Erfasse Begruendung, Evidenzpfad, Owner, Follow-up, Re-Evaluation-Trigger und Restrisiko.
 Behandle sichere Entwicklung als Must-have. MSL-Status ist ein Pruefpunkt, aber keine Voraussetzung fuer diesen Selbstpruefungslauf.
 ```

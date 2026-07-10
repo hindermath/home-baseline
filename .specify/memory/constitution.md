@@ -940,7 +940,9 @@ workspace family consists of:
 | `cross-platform-governance` | `v0.2.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.3.0` | `60` | synchronized agent guidance and agent-neutral Spec-Kit model routing across declared AI-agent files |
 
-All six governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint is recorded as `Applicable`, `N/A`, or `Open` with rationale, evidence path, reviewer, residual risk, and follow-up for the current Spec-Kit run.
+All six governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint records applicability as `Applicable`, `N/A`, or `Open` and implementation separately as `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`, plus rationale, evidence path, owner, reviewer, residual risk, re-evaluation trigger, and follow-up. `N/A` keeps implementation at `Not Assessed` and always needs a rationale.
+
+The central secure-development baseline is versioned by `docs/secure-development/baseline-manifest.json`. Its twelve individual checklists and 157 stable CL IDs are canonical; the compendium is generated and MUST pass `build-secure-development-docs.*` check mode. Reusable templates are separate from project evidence under `docs/security/secure-development/<date>-<scope>/`. Secure-development teaching starts with the first repository access and coding task and follows the year 1 to year 3 learning path. Registry-based baseline-only propagation MUST NOT modify Lastenhefte, project evidence, or start Spec Kit.
 
 The executable source of truth for preset installation is
 `scripts/config/spec-kit-governance-presets.json`. This constitution mirrors the

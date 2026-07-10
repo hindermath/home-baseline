@@ -34,6 +34,23 @@ Array uebergeben werden.
 
 Explicit repositories to prepare. Can be passed multiple times or as an array.
 
+.PARAMETER Registry
+Pfad zum lokalen Level-2-Register. Standard ist
+`~/.home-baseline/level2-repository-registry.json`.
+
+Path to the local level-2 registry. The default is
+`~/.home-baseline/level2-repository-registry.json`.
+
+.PARAMETER Discover
+Sucht anstelle des Registers unter HomeDir nach Repositories.
+
+Discovers repositories below HomeDir instead of using the registry.
+
+.PARAMETER BaselineOnly
+Synchronisiert nur `docs/secure-development/` und verändert keine Lastenhefte.
+
+Synchronizes only `docs/secure-development/` and does not change Lastenhefte.
+
 .PARAMETER PrimaryLanguage
 Optionale Primaersprache als Kontextinformation. Sie blockiert die Vorbereitung
 nicht.
@@ -69,6 +86,9 @@ pwsh scripts/prepare-rl-se-checklist-selbstpruefung.ps1 -HomeDir /Users/thorsten
 param(
     [string]$HomeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }),
     [string[]]$Repo = @(),
+    [string]$Registry = $(Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) '.home-baseline/level2-repository-registry.json'),
+    [switch]$Discover,
+    [switch]$BaselineOnly,
     [string]$PrimaryLanguage = '',
     [switch]$Commit,
     [switch]$Push,
@@ -130,12 +150,14 @@ function Invoke-RlSeCommitAndPush {
     if (-not $Commit -and -not $Push) { return }
 
     if ($WhatIfPreference) {
-        if ($Commit) { Write-Host '  [WhatIf] git add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md && git commit' }
+        if ($Commit -and $BaselineOnly) { Write-Host '  [WhatIf] git add docs/secure-development && git commit' }
+        elseif ($Commit) { Write-Host '  [WhatIf] git add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md && git commit' }
         if ($Push) { Write-Host '  [WhatIf] git push origin <branch>' }
         return
     }
 
-    git -C $Repo add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md
+    if ($BaselineOnly) { git -C $Repo add docs/secure-development }
+    else { git -C $Repo add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md }
     git -C $Repo diff --cached --check
     if ($LASTEXITCODE -ne 0) { throw "git diff --cached --check fehlgeschlagen in $Repo" }
 
@@ -179,10 +201,14 @@ function Invoke-RlSePrepareRepo {
     $intakeFile = Join-Path $Repo 'Lastenheft_RL-SE-Checklist-Selbstpruefung.md'
 
     if ($WhatIfPreference) {
-        Write-Host "  [WhatIf] docs/secure-development nach $targetDocs synchronisieren"
+        Sync-SdhBaseline -SourceDir $sourceDir -TargetDir $targetDocs -WhatIfMode
     } else {
-        New-Item -ItemType Directory -Path $targetDocs -Force | Out-Null
-        Copy-Item -Path (Join-Path $sourceDir '*') -Destination $targetDocs -Recurse -Force
+        Sync-SdhBaseline -SourceDir $sourceDir -TargetDir $targetDocs
+    }
+
+    if ($BaselineOnly) {
+        Invoke-RlSeCommitAndPush -Repo $Repo
+        return
     }
 
     if ((Test-Path $intakeFile)) {
@@ -213,13 +239,30 @@ if ($Repo.Count -gt 0) {
     )
     $repos = @($explicitRepos | Where-Object { Test-RlSeTargetRepo $_ } | Select-Object -Unique)
 } else {
-    $repos = @(Get-RlSeTargetRepos -Root $HomeDir)
+    if ($Discover) {
+        $repos = @(Get-RlSeTargetRepos -Root $HomeDir)
+    } else {
+        if (-not (Test-Path $Registry)) { throw "Registry nicht gefunden: $Registry (alternativ -Discover nutzen)" }
+        $registryData = Get-Content $Registry -Raw | ConvertFrom-Json
+        $repos = @(
+            $registryData.repositories |
+                Where-Object { $_.level -eq 2 -and $_.gsdbRequired -eq $true } |
+                ForEach-Object {
+                    if ([IO.Path]::IsPathRooted($_.path)) { $_.path } else { Join-Path $HomeDir $_.path }
+                } |
+                Where-Object { Test-RlSeTargetRepo $_ } |
+                Select-Object -Unique
+        )
+    }
 }
 
 Write-Host 'RL-SE-/Checklist-Selbstpruefung Vorbereitung'
 Write-Host "  Home             : $HomeDir"
 if ($Repo.Count -gt 0) { Write-Host "  Repos            : $($repos.Count) explizit" }
 Write-Host "  Primaersprache   : $(if ($PrimaryLanguage) { $PrimaryLanguage } else { 'auto/optional' })"
+Write-Host "  Registry         : $Registry"
+Write-Host "  Discover         : $Discover"
+Write-Host "  Baseline only    : $BaselineOnly"
 Write-Host "  Commit           : $Commit"
 Write-Host "  Push             : $Push"
 Write-Host "  WhatIf           : $WhatIfPreference"

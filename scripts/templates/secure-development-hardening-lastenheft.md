@@ -19,11 +19,10 @@ Die wiederverwendbare sichere-Entwicklung-Basis liegt in `docs/secure-developmen
 
 ## 3. Zielbild des spaeteren Haertungslaufs
 
-Der spaetere Spec-Kit-Lauf soll alle relevanten Pruefpunkte klassifizieren und dokumentieren:
+Der spaetere Spec-Kit-Lauf soll alle relevanten Pruefpunkte auf zwei Achsen klassifizieren und dokumentieren:
 
-- `Applicable`: der Pruefpunkt gilt fuer {{PROJECT_NAME}} und muss mit Evidenzpfad, Entscheidung und Ergebnis dokumentiert werden.
-- `N/A`: der Pruefpunkt gilt nicht fuer diesen Lauf und muss mit kurzer Begruendung dokumentiert werden.
-- `Open`: der Pruefpunkt gilt, ist aber noch nicht ausreichend erfuellt; Folgeaufgabe, Risiko oder technische Haertung ist zu dokumentieren.
+- Anwendbarkeit: `Applicable`, `N/A` oder `Open`.
+- Umsetzung: `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled` oder `Not Assessed`.
 
 Nicht anwendbare Punkte duerfen nicht stillschweigend ausgelassen werden.
 
@@ -60,10 +59,10 @@ Dieses Lastenheft loest keinen Haertungslauf aus und aendert keine Produktionslo
 
 1. Relevante Checklisten aus `docs/secure-development/` auswaehlen und jede Auswahl begruenden.
 2. Die Verzahnungsdatei nutzen, um Richtlinienabschnitte, mitgeltende Dokumente, CL-Kapitel, Presets und Evidenzpfade zuzuordnen.
-3. Alle Pruefpunkte als `Applicable`, `N/A` oder `Open` dokumentieren.
-4. Fuer `Applicable`-Punkte konkrete Evidenzpfade in `docs/security/`, Testdateien, Codeverweisen oder Spec-Kit-Artefakten benennen.
+3. Alle Pruefpunkte auf beiden Statusachsen dokumentieren.
+4. Fuer positive oder teilweise positive Umsetzungsangaben konkrete Evidenzpfade in `docs/security/`, Testdateien, Codeverweisen oder Spec-Kit-Artefakten benennen.
 5. Fuer `N/A`-Punkte eine kurze technische oder fachliche Begruendung erfassen.
-6. Fuer `Open`-Punkte Risiko, Folgeaktion und Prioritaet festhalten.
+6. Fuer offene Anwendbarkeit und jede Umsetzungs- oder Evidenzluecke Risiko, Owner, Folgeaktion, Prioritaet und Re-Evaluation-Trigger festhalten.
 7. Secure Coding und Secure Architecture gemeinsam bewerten; MSL-Status ersetzt keine sichere API-, I/O-, Auth-, Crypto-, Logging- oder Dependency-Pruefung. Swift gilt als MSL, braucht aber Swift-spezifische Secure-Coding-Pruefung.
 8. Relevante Trust Boundaries projektbezogen benennen.
 9. A11Y- und didaktische Kommentar-Governance fuer nutzerseitige Artefakte pruefen.
@@ -99,6 +98,6 @@ Der spaetere Spec-Kit-Lauf soll mindestens folgende Ergebnisarten erzeugen oder 
 Nutze Lastenheft_Secure-Development-Hardening.md als verbindlichen Intake fuer einen separaten Secure-Development-Haertungslauf in {{PROJECT_NAME}}.
 Starte keinen Sammellauf fuer eine gesamte Lernreihe und erzeuge noch keine Implementierung.
 Erstelle eine fokussierte Feature-Spezifikation, die docs/secure-development/, constitution.md, .specify/memory/constitution.md, docs/security/ und die installierten Governance-Presets als Pruefgrundlagen beruecksichtigt.
-Dokumentiere jeden relevanten Pruefpunkt als Applicable, N/A oder Open mit Evidenzpfad, Begruendung, Risiko oder Folgeaktion und Bezug zum spaeteren Artefakt.
+Dokumentiere je Pruefpunkt die Anwendbarkeit als Applicable, N/A oder Open und getrennt die Umsetzung als Fulfilled, Partly Fulfilled, Not Fulfilled oder Not Assessed. Erfasse Evidenzpfad, Begruendung, Owner, Restrisiko, Folgeaktion und Re-Evaluation-Trigger.
 Beruecksichtige sichere Entwicklung, MSL-Sprachprofil, A11Y/WCAG 2.2 AA, DE-first/EN-second, CEFR B2, Supply Chain/SBOM/AI-SBOM/VEX/SLSA, BSI C3A/C5 und regulatorische Anwendbarkeit nur dort, wo sie fachlich greifen.
 ```

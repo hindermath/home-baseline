@@ -102,6 +102,15 @@ pwsh scripts/prepare-secure-development-hardening.ps1 -Commit -Push
 
 ## Sicherheit / Security
 
+`docs/secure-development/` wird anhand von `baseline-manifest.json`
+synchronisiert. Nur dort aufgeführte verwaltete Dateien werden aktualisiert oder
+als veraltet entfernt. Projektspezifische Dateien unter `docs/security/` und
+vorhandene Lastenhefte bleiben unberührt.
+
+*`docs/secure-development/` is synchronized from `baseline-manifest.json`.
+Only listed managed files are updated or removed as stale. Project-specific
+files under `docs/security/` and existing Lastenhefte remain untouched.*
+
 Nicht-MSL- oder unklare Repositories werden uebersprungen und melden eine
 Begruendung. Eine explizite Sprache kann mit `--primary-language` /
 `-PrimaryLanguage` gesetzt werden. `docs/security/` bleibt der projektspezifische

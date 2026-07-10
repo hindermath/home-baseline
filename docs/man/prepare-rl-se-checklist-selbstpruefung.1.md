@@ -9,7 +9,7 @@
 ## Synopsis
 
 ```bash
-bash scripts/prepare-rl-se-checklist-selbstpruefung.sh [--repo PATH] [--dry-run] [--commit] [--push] [--allow-dirty]
+bash scripts/prepare-rl-se-checklist-selbstpruefung.sh [--repo PATH] [--registry PATH] [--baseline-only] [--dry-run] [--commit] [--push] [--allow-dirty]
 ```
 
 ```powershell
@@ -20,8 +20,10 @@ pwsh scripts/prepare-rl-se-checklist-selbstpruefung.ps1 -Commit -Push
 
 ## Beschreibung / Description
 
-`prepare-rl-se-checklist-selbstpruefung` findet Repositories unter dem
-Home-Verzeichnis oder nutzt explizite `--repo`-/`-Repo`-Ziele. Es synchronisiert
+`prepare-rl-se-checklist-selbstpruefung` liest standardmaessig alle Level-2-Ziele
+mit `gsdbRequired: true` aus dem lokalen Register oder nutzt explizite
+`--repo`-/`-Repo`-Ziele. `--discover`/`-Discover` aktiviert bewusst die breite
+Suche unter dem Home-Verzeichnis. Das Skript synchronisiert
 die zentrale Secure-Development-Basis, erzeugt bei Bedarf
 `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` und pflegt die sichtbare
 `Lastenheft_Abarbeitungsreihenfolge.md`.
@@ -53,6 +55,9 @@ does not populate project-specific `docs/security/` evidence.*
 | `--dry-run` | `-WhatIf` | Nur anzeigen, keine Schreiboperationen |
 | `--home-dir PATH` | `-HomeDir PATH` | Alternatives Home-Verzeichnis |
 | `--repo PATH` | `-Repo PATH` | Explizites Repository vorbereiten; wiederholbar |
+| `--registry PATH` | `-Registry PATH` | Lokales Level-2-Register; Standard unter `~/.home-baseline/` |
+| `--discover` | `-Discover` | Breite Home-Suche statt Registry bewusst aktivieren |
+| `--baseline-only` | `-BaselineOnly` | Nur manifestverwaltete Baseline synchronisieren; Lastenhefte nicht ändern |
 | `--primary-language LANG` | `-PrimaryLanguage LANG` | Optionale Sprachinformation, blockiert nicht |
 | `--commit` | `-Commit` | Pro geaendertem Repo committen |
 | `--push` | `-Push` | Pro Repo pushen; aktiviert Commit |
@@ -74,14 +79,14 @@ pwsh scripts/prepare-rl-se-checklist-selbstpruefung.ps1 -Repo ~/RiderProjects/Ti
 
 ## Sicherheit / Security
 
-Das erzeugte Lastenheft verlangt `Applicable`, `AlreadySatisfied`, `N/A`,
-`Open` und `FollowUp` mit Begruendung, Evidenzpfad, Owner, Follow-up,
+Das erzeugte Lastenheft verlangt die getrennten Statusachsen Anwendbarkeit und
+Umsetzung mit Begruendung, Evidenzpfad, Owner, Follow-up,
 Re-Evaluation-Trigger und Restrisiko. Human-only-Punkte wie formale Freigabe,
-QISMS-Eintraege, Branch-Protection, Secrets, Provider und Modellfreigaben
+Branch-Protection, Secrets, Provider und Modellfreigaben
 duerfen nicht als erledigt behauptet werden.
 
-*The generated intake requires `Applicable`, `AlreadySatisfied`, `N/A`, `Open`,
-and `FollowUp` with rationale, evidence path, owner, follow-up, re-evaluation
-trigger, and residual risk. Human-only points such as formal approval, QISMS
-entries, branch protection, secrets, providers, and model approvals must not be
+*The generated intake requires separate applicability and implementation axes
+with rationale, evidence path, owner, follow-up, re-evaluation trigger, and
+residual risk. Human-only points such as formal approval, branch protection,
+secrets, providers, and model approvals must not be
 claimed as done.*

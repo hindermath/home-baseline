@@ -48,3 +48,12 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: pwsh -NoProfile -File scripts/check-learning-package.ps1 -SelfTest
+
+      - name: Check generated secure-development documents with Bash
+        if: runner.os != 'Windows'
+        run: bash scripts/build-secure-development-docs.sh --check
+
+      - name: Check generated secure-development documents with PowerShell
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: pwsh -NoProfile -File scripts/build-secure-development-docs.ps1 -Check

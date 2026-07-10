@@ -31,7 +31,7 @@ governance presets, and project-specific evidence.
 - Preset-Installation und Preset-zu-CL-Mapping pruefen.
 - Projektspezifische Evidenz unter `docs/security/` oder gleichwertigen
   Nachweisorten pruefen.
-- Alle Ergebnisse mit `Applicable`, `N/A` oder `Open` dokumentieren.
+- Alle Ergebnisse mit der Anwendbarkeit `Applicable`, `N/A` oder `Open` und dem getrennten Umsetzungsstatus `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled` oder `Not Assessed` dokumentieren.
 
 ## Nicht-Ziele / Non-Goals
 
@@ -59,6 +59,6 @@ governance presets, and project-specific evidence.
 ## Kopierbarer Spec-Kit Specify Prompt
 
 ```text
-/speckit-specify Fuehre eine intensive GSDB-Pruefung fuer dieses Repository durch. Nutze docs/secure-development/, constitution.md, .specify/memory/constitution.md, docs/security/, Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md und die installierten Governance-Presets als Pruefgrundlagen. Starte keine formale Freigabe und behaupte keine Human-only-Punkte als erledigt. Erstelle eine Feature-Spezifikation, die alle relevanten GSDB-Pruefpunkte mit Applicable, N/A oder Open behandelt. Dokumentiere je Pruefpunkt Begruendung, Evidenzpfad, Owner, Follow-up, Re-Evaluation-Trigger und Restrisiko. Wenn ein Punkt nicht anwendbar ist, dokumentiere N/A mit kurzer Begruendung. Wenn Evidenz fehlt, dokumentiere Open mit konkreter Nacharbeit.
+/speckit-specify Fuehre eine intensive GSDB-Pruefung fuer dieses Repository durch. Nutze docs/secure-development/, constitution.md, .specify/memory/constitution.md, docs/security/, Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md und die installierten Governance-Presets als Pruefgrundlagen. Starte keine formale Freigabe und behaupte keine Human-only-Punkte als erledigt. Dokumentiere je Pruefpunkt die Anwendbarkeit als Applicable, N/A oder Open und getrennt die Umsetzung als Fulfilled, Partly Fulfilled, Not Fulfilled oder Not Assessed. Erfasse Begruendung, Evidenzpfad, Owner, Follow-up, Re-Evaluation-Trigger und Restrisiko. Bei N/A bleibt die Umsetzung Not Assessed. Wenn Evidenz fehlt, dokumentiere die Luecke mit konkreter Nacharbeit.
 ```
 <!-- gsdb-spec-kit-intensivpruefung:end -->

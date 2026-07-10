@@ -20,6 +20,9 @@ OPT_DRY_RUN=false
 OPT_COMMIT=false
 OPT_PUSH=false
 OPT_ALLOW_DIRTY=false
+OPT_BASELINE_ONLY=false
+OPT_DISCOVER=false
+OPT_REGISTRY="$HOME/.home-baseline/level2-repository-registry.json"
 OPT_PRIMARY_LANGUAGE=""
 OPT_REPOS=()
 
@@ -33,6 +36,9 @@ Usage:
 Options:
   --home-dir PATH             Home directory to scan (default: $HOME)
   --repo PATH                 Prepare one explicit repository; repeatable
+  --registry PATH             Level-2 registry (default: ~/.home-baseline/level2-repository-registry.json)
+  --discover                  Discover repositories below --home-dir instead of using the registry
+  --baseline-only             Synchronize docs/secure-development only; do not create or update Lastenhefte
   --primary-language LANG     Optional language note; does not gate preparation
   --commit                    Commit changes in each changed repo
   --push                      Push current branch after commit/check; implies --commit
@@ -62,6 +68,19 @@ while [ $# -gt 0 ]; do
       [ $# -ge 2 ] || die "--primary-language braucht einen Wert"
       OPT_PRIMARY_LANGUAGE="$2"
       shift 2
+      ;;
+    --registry)
+      [ $# -ge 2 ] || die "--registry braucht einen Pfad"
+      OPT_REGISTRY="$2"
+      shift 2
+      ;;
+    --discover)
+      OPT_DISCOVER=true
+      shift
+      ;;
+    --baseline-only)
+      OPT_BASELINE_ONLY=true
+      shift
       ;;
     --repo)
       [ $# -ge 2 ] || die "--repo braucht einen Pfad"
@@ -133,6 +152,15 @@ discover_repos() {
     return 0
   fi
 
+  if ! $OPT_DISCOVER; then
+    command -v jq >/dev/null 2>&1 || die "jq wird fuer die Registry benoetigt"
+    [ -f "$OPT_REGISTRY" ] || die "Registry nicht gefunden: $OPT_REGISTRY (alternativ --discover nutzen)"
+    while IFS= read -r project; do
+      case "$project" in /*) add_repo "$project" ;; *) add_repo "$HOME_DIR/$project" ;; esac
+    done < <(jq -r '.repositories[] | select(.level == 2 and .gsdbRequired == true) | .path' "$OPT_REGISTRY")
+    return 0
+  fi
+
   for workspace in "$HOME_DIR"/*; do
     [ -d "$workspace" ] || continue
     [ -d "$workspace/.git" ] || continue
@@ -170,12 +198,20 @@ commit_and_push() {
   fi
 
   if $OPT_DRY_RUN; then
-    $OPT_COMMIT && log "  [dry-run] git add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md && git commit"
+    if $OPT_BASELINE_ONLY; then
+      $OPT_COMMIT && log "  [dry-run] git add docs/secure-development && git commit"
+    else
+      $OPT_COMMIT && log "  [dry-run] git add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md && git commit"
+    fi
     $OPT_PUSH && log "  [dry-run] git push origin <branch>"
     return 0
   fi
 
-  git -C "$repo" add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md
+  if $OPT_BASELINE_ONLY; then
+    git -C "$repo" add docs/secure-development
+  else
+    git -C "$repo" add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md
+  fi
   git -C "$repo" diff --cached --check
 
   if ! git -C "$repo" diff --cached --quiet; then
@@ -218,10 +254,14 @@ prepare_repo() {
   intake_file="$repo/Lastenheft_RL-SE-Checklist-Selbstpruefung.md"
 
   if $OPT_DRY_RUN; then
-    log "  [dry-run] docs/secure-development nach ${target_docs} synchronisieren"
+    sdh_sync_baseline "$source_dir" "$target_docs" 1
   else
-    mkdir -p "$target_docs"
-    cp -R "$source_dir/." "$target_docs/"
+    sdh_sync_baseline "$source_dir" "$target_docs" 0
+  fi
+
+  if $OPT_BASELINE_ONLY; then
+    commit_and_push "$repo"
+    return 0
   fi
 
   if [ -f "$intake_file" ]; then
@@ -253,6 +293,9 @@ if [ "${#OPT_REPOS[@]}" -gt 0 ]; then
   log "  Repos            : ${#OPT_REPOS[@]} explizit"
 fi
 log "  Primaersprache   : ${OPT_PRIMARY_LANGUAGE:-auto/optional}"
+log "  Registry         : $OPT_REGISTRY"
+log "  Discover         : $OPT_DISCOVER"
+log "  Baseline only    : $OPT_BASELINE_ONLY"
 log "  Commit           : $OPT_COMMIT"
 log "  Push             : $OPT_PUSH"
 log "  Dry-run          : $OPT_DRY_RUN"

@@ -105,6 +105,75 @@ function Get-SdhSourceDir {
     return ''
 }
 
+function Get-SdhManifestPaths {
+    param([string]$ManifestPath)
+
+    $manifest = Get-Content $ManifestPath -Raw | ConvertFrom-Json
+    $paths = [System.Collections.Generic.List[string]]::new()
+    $paths.Add('baseline-manifest.json')
+    $paths.Add([string]$manifest.guideline.path)
+    $paths.Add([string]$manifest.compendium.path)
+    foreach ($item in $manifest.checklists) { $paths.Add([string]$item.path) }
+    foreach ($item in $manifest.relatedDocuments) { $paths.Add([string]$item.path) }
+    foreach ($item in $manifest.learningDocuments) { $paths.Add([string]$item.path) }
+    foreach ($item in $manifest.managedBinaryFiles) { $paths.Add([string]$item) }
+    foreach ($item in $manifest.managedReferenceFiles) { $paths.Add([string]$item) }
+    return @($paths | Sort-Object -Unique)
+}
+
+function Sync-SdhBaseline {
+    param([string]$SourceDir, [string]$TargetDir, [switch]$WhatIfMode)
+
+    $sourceManifest = Join-Path $SourceDir 'baseline-manifest.json'
+    $targetManifest = Join-Path $TargetDir 'baseline-manifest.json'
+    if (-not (Test-Path $sourceManifest)) { throw "Baseline-Manifest fehlt: ${sourceManifest}" }
+
+    $newPaths = @(Get-SdhManifestPaths -ManifestPath $sourceManifest)
+    $oldPaths = if (Test-Path $targetManifest) { @(Get-SdhManifestPaths -ManifestPath $targetManifest) } else { @() }
+    $copied = 0
+    $removed = 0
+
+    foreach ($relative in $oldPaths) {
+        if ([IO.Path]::IsPathRooted($relative) -or $relative -match '(^|[\\/])\.\.([\\/]|$)') { throw "Unsicherer Manifestpfad: ${relative}" }
+        if ($relative -notin $newPaths) {
+            $targetFile = Join-Path $TargetDir $relative
+            if (Test-Path $targetFile -PathType Leaf) {
+                $removed++
+                if (-not $WhatIfMode) { Remove-Item -LiteralPath $targetFile -Force }
+            }
+        }
+    }
+
+    foreach ($relative in $newPaths) {
+        if ([IO.Path]::IsPathRooted($relative) -or $relative -match '(^|[\\/])\.\.([\\/]|$)') { throw "Unsicherer Manifestpfad: ${relative}" }
+        $sourceFile = Join-Path $SourceDir $relative
+        $targetFile = Join-Path $TargetDir $relative
+        if (-not (Test-Path $sourceFile -PathType Leaf)) { throw "Verwaltete Quelldatei fehlt: ${relative}" }
+        $different = -not (Test-Path $targetFile -PathType Leaf)
+        if (-not $different) {
+            $different = (Get-FileHash $sourceFile -Algorithm SHA256).Hash -ne (Get-FileHash $targetFile -Algorithm SHA256).Hash
+        }
+        if ($different) {
+            $copied++
+            if (-not $WhatIfMode -and $relative -ne 'baseline-manifest.json') {
+                $parent = Split-Path -Parent $targetFile
+                New-Item -ItemType Directory -Path $parent -Force | Out-Null
+                Copy-Item -LiteralPath $sourceFile -Destination $targetFile -Force
+            }
+        }
+    }
+
+    if (-not $WhatIfMode) {
+        New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
+        Copy-Item -LiteralPath $sourceManifest -Destination $targetManifest -Force
+        Get-ChildItem -Path $TargetDir -Directory -Recurse -ErrorAction SilentlyContinue |
+            Sort-Object FullName -Descending |
+            Where-Object { -not (Get-ChildItem -LiteralPath $_.FullName -Force -ErrorAction SilentlyContinue) } |
+            Remove-Item -Force
+    }
+    Write-Host "  Baseline-Sync: $copied aktualisiert, $removed veraltet entfernt"
+}
+
 function Get-SdhTemplateFile {
     param([string]$ScriptDir)
 
@@ -285,8 +354,7 @@ function Invoke-SdhPrepareRepo {
     if ($WhatIfMode) {
         Write-Host "  [WhatIf] docs/secure-development nach $targetDocs synchronisieren"
     } else {
-        New-Item -ItemType Directory -Path $targetDocs -Force | Out-Null
-        Copy-Item -Path (Join-Path $sourceDir '*') -Destination $targetDocs -Recurse -Force
+        Sync-SdhBaseline -SourceDir $sourceDir -TargetDir $targetDocs
     }
 
     if ((Test-Path $intakeFile) -and -not $Force) {
