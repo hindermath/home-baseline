@@ -37,6 +37,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $packageScript = Join-Path $PSScriptRoot 'package-learning-series.ps1'
+$gitleaksConfig = Join-Path $PSScriptRoot 'templates/gitleaks.toml'
 
 function Test-HBLearningPackage {
     param(
@@ -92,7 +93,11 @@ function Test-HBLearningPackage {
 
         $gitleaks = Get-Command gitleaks -ErrorAction SilentlyContinue
         if ($gitleaks) {
-            & $gitleaks.Source dir $root --no-banner --redact *> $null
+            $gitleaksArguments = @('dir', $root, '--no-banner', '--redact')
+            if (Test-Path -LiteralPath $gitleaksConfig -PathType Leaf) {
+                $gitleaksArguments += @('--config', $gitleaksConfig)
+            }
+            & $gitleaks.Source @gitleaksArguments *> $null
             if ($LASTEXITCODE -ne 0) { throw 'gitleaks hat einen moeglichen Secret-Befund gemeldet.' }
         } else {
             Write-Warning 'gitleaks nicht verfuegbar; Secret-Scan uebersprungen.'

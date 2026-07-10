@@ -73,7 +73,7 @@ check_package() {
 
   entries="$(unzip -Z1 "$package")"
   [ -n "$entries" ] || { echo "ERROR: ZIP ist leer" >&2; return 1; }
-  if printf '%s\n' "$entries" | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
+  if grep -Eq '(^/|(^|/)\.\.(/|$))' <<< "$entries"; then
     echo "ERROR: ZIP enthaelt unsichere absolute oder aufsteigende Pfade" >&2
     return 1
   fi
@@ -86,13 +86,13 @@ check_package() {
   root="$(printf '%s\n' "$roots" | sed -n '1p')"
 
   for required in START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md PACKAGING-MANIFEST.txt; do
-    printf '%s\n' "$entries" | grep -Fxq "${root}/${required}" || {
+    grep -Fxq "${root}/${required}" <<< "$entries" || {
       echo "ERROR: verbindliche Paketdatei fehlt: ${required}" >&2
       return 1
     }
   done
 
-  if printf '%s\n' "$entries" | grep -Eq '(^|/)(\.git|bin|obj|build|node_modules|\.vs|\.idea)(/|$)|(^|/)settings\.local\.json$|(^|/)\.vscode/(settings\.json|c_cpp_properties\.json)$'; then
+  if grep -Eq '(^|/)(\.git|bin|obj|build|node_modules|\.vs|\.idea)(/|$)|(^|/)settings\.local\.json$|(^|/)\.vscode/(settings\.json|c_cpp_properties\.json)$' <<< "$entries"; then
     echo "ERROR: ZIP enthaelt ausgeschlossene Git-, Build-, IDE- oder lokale Einstellungsartefakte" >&2
     return 1
   fi
@@ -106,7 +106,11 @@ check_package() {
   grep -Eq '^Start here after extracting: START-HERE-FUER-LERNENDE\.md$' "$manifest" || { echo "ERROR: Manifest nennt die primaere Startdatei nicht" >&2; return 1; }
 
   if command -v gitleaks >/dev/null 2>&1; then
-    gitleaks dir "${work_dir}/${root}" --no-banner --redact >/dev/null
+    gitleaks_args=(dir "${work_dir}/${root}" --no-banner --redact)
+    if [ -f "${SCRIPT_DIR}/templates/gitleaks.toml" ]; then
+      gitleaks_args+=(--config "${SCRIPT_DIR}/templates/gitleaks.toml")
+    fi
+    gitleaks "${gitleaks_args[@]}" >/dev/null
   else
     echo "WARN: gitleaks nicht verfuegbar; Secret-Scan uebersprungen" >&2
   fi

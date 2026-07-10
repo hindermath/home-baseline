@@ -24,13 +24,17 @@ Die Skripte pruefen, dass ein Lernpaket genau einen Root-Ordner, die Dateien
 `PACKAGING-MANIFEST.txt` sowie eine passende SHA-256-Pruefsumme enthaelt. Sie
 weisen `.git`-Verzeichnisse, Build-Ausgaben, IDE-Zustaende und lokale
 Einstellungsdateien zurueck. Wenn `gitleaks` verfuegbar ist, wird der entpackte
-Inhalt zusaetzlich auf offensichtliche Secrets geprueft.
+Inhalt zusaetzlich auf offensichtliche Secrets geprueft. Die bestehende enge
+Allowlist aus `scripts/templates/gitleaks.toml` nimmt nur dokumentierte
+Beispielmuster in Markdown-Lehrmaterial unter `docs/secure-development/` aus.
 
 *The scripts validate that a learning package contains exactly one root folder,
 both learner start guides, a packaging manifest, and a matching SHA-256 file.
 They reject Git metadata, build output, IDE state, and local settings. When
 `gitleaks` is available, the extracted content is additionally scanned for
-obvious secrets.*
+obvious secrets. The existing narrow allowlist in
+`scripts/templates/gitleaks.toml` excludes only documented example patterns in
+`docs/secure-development/` teaching Markdown.*
 
 ## OPTIONS
 
