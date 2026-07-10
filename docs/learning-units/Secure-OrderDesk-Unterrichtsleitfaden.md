@@ -6,6 +6,10 @@
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 1. Lehrjahr, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices from year 1 onward, trainers, reviewers, AI agents
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 
+> **Lernenden-Einstieg / Learner entry:** Fuehre neue Lernende zuerst durch
+> [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md). Unit 00 setzt den
+> dort beschriebenen Fork-, Podman- und Preflight-Stand voraus.
+
 ## Zweck / Purpose
 
 **DE:** Dieser Unterrichtsleitfaden erklärt, wie die Basis-Reihe (Jahr 1) der Familie Secure OrderDesk eingesetzt werden kann. EuFPA baut die Bestell- und Handelsplattform für die fiktive Kundenfirma Secure Trader. Die Lastenhefte sind die späteren Spec-Kit-Intakes. Dieses Dokument ist die didaktische Begleitung: Es erklärt Reihenfolge, Lernlogik, typische Fehler, erwartete Nachweise und den Bezug zu den Fachrichtungen. Der fachliche Kern ruht auf einer relationalen Bestelldomäne mit Kunden, Produkten, Bestellungen und Bestellpositionen auf Northwind-Datenbasis.

@@ -5,6 +5,10 @@
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 1. Lehrjahr, Ausbilder*innen, Reviewer, KI-Agenten / IT specialist apprentices from year 1 onward, trainers, reviewers, AI agents
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 
+> **Lernenden-Einstieg / Learner entry:** Fuehre neue Lernende zuerst durch
+> [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md). Unit 00 setzt den
+> dort beschriebenen Fork-, Podman- und Preflight-Stand voraus.
+
 ## Zweck / Purpose
 
 **DE:** Dieser Unterrichtsleitfaden erklärt, wie die Secure-CaseTracker-Lernreihe eingesetzt werden kann. Die Lastenhefte sind die späteren Spec-Kit-Intakes. Dieses Dokument ist die didaktische Begleitung: Es erklärt Reihenfolge, Lernlogik, typische Fehler, erwartete Nachweise und den Bezug zu den Fachrichtungen.

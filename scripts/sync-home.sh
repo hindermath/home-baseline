@@ -20,7 +20,7 @@ if [ "$REPO_DIR" = "$HOME_DIR" ]; then
   REPO_DIR="${HOME_DIR}/home-baseline-tmp"
   if [ ! -d "$REPO_DIR" ]; then
     echo "Fehler: ~/home-baseline-tmp nicht gefunden." >&2
-    echo "Bitte zuerst: git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp" >&2
+    echo "Bitte zuerst den persoenlichen Fork gemaess docs/learning-units/START-HERE-FUER-LERNENDE.md nach ~/home-baseline-tmp klonen." >&2
     exit 1
   fi
 fi

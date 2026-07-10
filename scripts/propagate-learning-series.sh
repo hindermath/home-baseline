@@ -44,6 +44,9 @@ VERBOSE=0
 REPOS_CHANGED=0
 REPOS_TOTAL=0
 FILES_CHANGED=0
+FILES_SKIPPED_NEWER=0
+REPOS_SKIPPED=0
+PUSH_FAILURES=0
 
 # --- Parameter / Arguments ----------------------------------------------------
 
@@ -128,12 +131,18 @@ series_unit_files() {
                Rahmenlehrplan-Lernfeld-Mapping.md \
                IT-Berufe-"${FILE_SERIES}"-Mapping.md \
                Secure-Trader-*.md \
+               START-HERE-FUER-LERNENDE.md \
+               GIT-START-FUER-LERNENDE.md \
                lernbegleiter/"${FILE_SERIES}"*.Lernbegleiter.md \
                templates/*.md \
                datasets/* datasets/*/*; do
         [ -f "$f" ] && printf '%s\n' "$f"
       done
     } )
+}
+
+shared_root_guides() {
+  printf '%s\n' START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md
 }
 
 # Nur die Root-Intakes (fuer Level-2 zusaetzlich in die Repo-Wurzel gespiegelt)
@@ -148,8 +157,8 @@ series_root_intakes() {
 }
 
 # --- Registry-Erkennung / Registry discovery ----------------------------------
-# Gibt Zeilen "LEVEL<TAB>ABS_PFAD" fuer Repos aus, deren Pfad den Serien-Namen
-# enthaelt. Level-1 zuerst, dann Level-2.
+# Gibt "LEVEL<TAB>ABS_PFAD<TAB>EXPECTED_REMOTE" fuer passende Repos aus.
+# Level-1 zuerst, dann Level-2.
 
 discover_repos() {
   python3 - "$REGISTRY" "$SERIES" "$HOME_DIR" <<'PYEOF'
@@ -158,6 +167,11 @@ reg, series, home = sys.argv[1], sys.argv[2], sys.argv[3]
 data = json.load(open(reg, encoding="utf-8"))
 repos = data.get("repositories", []) if isinstance(data, dict) else data
 rows = []
+level1_slugs = {
+    "securecasetracker": "secure-casetracker-baseline",
+    "secureorderdesk": "secure-orderdesk-baseline",
+    "secureserviceharvester": "secure-serviceharvester",
+}
 for e in repos:
     if not isinstance(e, dict):
         continue
@@ -166,23 +180,92 @@ for e in repos:
         continue
     level = e.get("level", 0)
     abspath = path if os.path.isabs(path) else os.path.join(home, path)
-    rows.append((int(level), abspath))
+    if int(level) == 1:
+        slug = level1_slugs.get(series.lower(), "")
+    else:
+        slug = os.path.basename(abspath).lower()
+    if not slug:
+        continue
+    expected = f"https://github.com/hindermath/{slug}.git"
+    rows.append((int(level), abspath, expected))
 rows.sort(key=lambda r: (r[0], r[1]))
-for level, abspath in rows:
-    print(f"{level}\t{abspath}")
+for level, abspath, expected in rows:
+    print(f"{level}\t{abspath}\t{expected}")
 PYEOF
 }
 
+normalize_github_remote() {
+  local remote="${1%/}"
+  remote="${remote%.git}"
+  case "$remote" in
+    git@github.com:*) remote="https://github.com/${remote#git@github.com:}" ;;
+    ssh://git@github.com/*) remote="https://github.com/${remote#ssh://git@github.com/}" ;;
+  esac
+  printf '%s\n' "$remote" | tr '[:upper:]' '[:lower:]'
+}
+
+source_epoch_for() {
+  local rel="$1"
+  if ! git -C "$LEVEL0_DIR" ls-files --error-unmatch "docs/learning-units/${rel}" >/dev/null 2>&1 \
+      || ! git -C "$LEVEL0_DIR" diff --quiet -- "docs/learning-units/${rel}"; then
+    date +%s
+  else
+    git -C "$LEVEL0_DIR" log -1 --format=%ct -- "docs/learning-units/${rel}" 2>/dev/null || printf '0\n'
+  fi
+}
+
+target_is_newer() {
+  local rel="$1" repo="$2" target_rel="$3" dst="$4"
+  local source_epoch target_epoch
+  [ -f "$dst" ] || return 1
+  cmp -s -- "${SRC_UNITS}/${rel}" "$dst" && return 1
+  source_epoch="$(source_epoch_for "$rel")"
+  target_epoch="$(git -C "$repo" log -1 --format=%ct -- "$target_rel" 2>/dev/null || printf '0')"
+  source_epoch="${source_epoch:-0}"
+  target_epoch="${target_epoch:-0}"
+  [ "$target_epoch" -gt "$source_epoch" ]
+}
+
+preflight_newer_targets() {
+  local level="$1" repo="$2" rel newer=0
+  while IFS= read -r rel; do
+    if target_is_newer "$rel" "$repo" "docs/learning-units/${rel}" "${repo}/docs/learning-units/${rel}"; then
+      warn "Uebersprungen (Zieldatei neuer) / skipped (target newer): $(basename -- "$repo")/docs/learning-units/${rel}"
+      newer=$((newer + 1))
+    fi
+  done < <(series_unit_files)
+  if [ "$level" = "2" ]; then
+    while IFS= read -r rel; do
+      if target_is_newer "$rel" "$repo" "$rel" "${repo}/${rel}"; then
+        warn "Uebersprungen (Zieldatei neuer) / skipped (target newer): $(basename -- "$repo")/${rel}"
+        newer=$((newer + 1))
+      fi
+    done < <(series_root_intakes)
+  fi
+  while IFS= read -r rel; do
+    if target_is_newer "$rel" "$repo" "$rel" "${repo}/${rel}"; then
+      warn "Uebersprungen (Zieldatei neuer) / skipped (target newer): $(basename -- "$repo")/${rel}"
+      newer=$((newer + 1))
+    fi
+  done < <(shared_root_guides)
+  FILES_SKIPPED_NEWER=$((FILES_SKIPPED_NEWER + newer))
+  [ "$newer" -eq 0 ]
+}
+
 # --- Datei-Kopie / File copy --------------------------------------------------
-# copy_one <rel-src-unter-SRC_UNITS> <ziel-basisdir>
+# copy_one <rel-src-unter-SRC_UNITS> <ziel-basisdir> <repo> <ziel-relpfad>
 # Legt Zielunterordner an, kopiert nur bei Inhaltsunterschied.
 
 copy_one() {
-  local rel="$1" destbase="$2"
+  local rel="$1" destbase="$2" repo="$3" target_rel="$4"
   local src="${SRC_UNITS}/${rel}"
   local dst="${destbase}/${rel}"
   if [ -f "$dst" ] && cmp -s -- "$src" "$dst"; then
     return 1  # unveraendert
+  fi
+
+  if target_is_newer "$rel" "$repo" "$target_rel" "$dst"; then
+    return 2
   fi
   if [ "$DRY_RUN" -eq 0 ]; then
     mkdir -p -- "$(dirname -- "$dst")"
@@ -191,36 +274,99 @@ copy_one() {
   return 0    # geaendert
 }
 
+ensure_readme_start_link() {
+  local repo="$1"
+  local readme="${repo}/README.md"
+  local marker='<!-- home-baseline-learner-start -->'
+
+  if [ -f "$readme" ] && grep -Fq "$marker" "$readme"; then
+    return 1
+  fi
+  if [ "$DRY_RUN" -eq 0 ]; then
+    cat >> "$readme" <<'EOF'
+
+<!-- home-baseline-learner-start -->
+## Start fuer Lernende / Start for Learners
+
+Beginne mit [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md), bevor
+du Unit 00 oder einen KI-Agenten startest.
+
+*Start with [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md) before
+starting unit 00 or an AI agent.*
+EOF
+  fi
+  return 0
+}
+
 # --- Ein Repo verarbeiten / Process one repository ----------------------------
 
 process_repo() {
-  local level="$1" repo="$2"
+  local level="$1" repo="$2" expected_remote="$3"
   REPOS_TOTAL=$((REPOS_TOTAL + 1))
   local name; name="$(basename -- "$repo")"
 
   if [ ! -d "$repo/.git" ]; then
     warn "Uebersprungen (kein Git-Repo) / skipped (not a git repo): $repo"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
     return
   fi
 
-  # Auf main bringen; leere/unborn Klone hydrieren.
+  # Leere/unborn Klone werden nicht automatisch ueberschrieben.
   if ! git -C "$repo" rev-parse --verify HEAD >/dev/null 2>&1; then
-    info "Hydriere leeren Klon / hydrating empty clone: $name"
-    if [ "$DRY_RUN" -eq 0 ]; then
-      git -C "$repo" fetch --quiet origin || { warn "fetch fehlgeschlagen: $name"; return; }
-      git -C "$repo" checkout -B main origin/main --quiet || { warn "checkout main fehlgeschlagen: $name"; return; }
-    fi
+    warn "Uebersprungen (leerer/unborn Klon) / skipped (empty/unborn clone): $name"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+    return
   fi
 
   # Sauberkeit pruefen (nur ausserhalb Dry-Run relevant fuer Commit).
   if [ -n "$(git -C "$repo" status --porcelain 2>/dev/null)" ]; then
     warn "Uebersprungen (nicht sauberer Arbeitsbaum) / skipped (dirty tree): $name"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
     return
   fi
-  # Sicherstellen, dass wir auf main sind.
+  # Nur ein bereits ausgechecktes main mit origin/main als Upstream ist erlaubt.
   local cur; cur="$(git -C "$repo" branch --show-current 2>/dev/null || true)"
-  if [ "$cur" != "main" ] && [ "$DRY_RUN" -eq 0 ]; then
-    git -C "$repo" checkout main --quiet 2>/dev/null || warn "konnte nicht auf main wechseln: $name"
+  if [ "$cur" != "main" ]; then
+    warn "Uebersprungen (Branch ist nicht main) / skipped (branch is not main): $name ($cur)"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+    return
+  fi
+  local upstream; upstream="$(git -C "$repo" rev-parse --abbrev-ref 'main@{upstream}' 2>/dev/null || true)"
+  if [ "$upstream" != "origin/main" ]; then
+    warn "Uebersprungen (main folgt nicht origin/main) / skipped (main does not track origin/main): $name"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+    return
+  fi
+  local actual_remote
+  actual_remote="$(git -C "$repo" remote get-url origin 2>/dev/null || true)"
+  if [ "$(normalize_github_remote "$actual_remote")" != "$(normalize_github_remote "$expected_remote")" ]; then
+    warn "Uebersprungen (unerwartetes origin) / skipped (unexpected origin): $name ($actual_remote)"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+    return
+  fi
+  if [ "$DRY_RUN" -eq 1 ]; then
+    if ! git -C "$repo" fetch --dry-run origin >/dev/null 2>&1; then
+      warn "Uebersprungen (Remote nicht erreichbar) / skipped (remote unavailable): $name"
+      REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+      return
+    fi
+  else
+    if ! git -C "$repo" fetch --quiet origin; then
+      warn "Uebersprungen (fetch fehlgeschlagen) / skipped (fetch failed): $name"
+      REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+      return
+    fi
+    if ! git -C "$repo" pull --ff-only --quiet origin main; then
+      warn "Uebersprungen (kein Fast-forward) / skipped (not fast-forwardable): $name"
+      REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+      return
+    fi
+  fi
+
+  if ! preflight_newer_targets "$level" "$repo"; then
+    warn "Uebersprungen (mindestens eine Zieldatei ist neuer) / skipped (at least one target file is newer): $name"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+    return
   fi
 
   info "Repo (Level ${level}): ${name}"
@@ -228,7 +374,7 @@ process_repo() {
 
   # 1) docs/learning-units/ synchronisieren (alle Ebenen)
   while IFS= read -r rel; do
-    if copy_one "$rel" "${repo}/docs/learning-units"; then
+    if copy_one "$rel" "${repo}/docs/learning-units" "$repo" "docs/learning-units/${rel}"; then
       changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
       [ "$VERBOSE" -eq 1 ] && plan "docs/learning-units/${rel}"
     fi
@@ -237,11 +383,25 @@ process_repo() {
   # 2) Root-Intakes (nur Level-2)
   if [ "$level" = "2" ]; then
     while IFS= read -r rel; do
-      if copy_one "$rel" "$repo"; then
+      if copy_one "$rel" "$repo" "$repo" "$rel"; then
         changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
         [ "$VERBOSE" -eq 1 ] && plan "(root) ${rel}"
       fi
     done < <(series_root_intakes)
+  fi
+
+  # 3) Beide Einstiegsleitfaeden in die Repo-Wurzel spiegeln (Level 1 und 2).
+  while IFS= read -r rel; do
+    if copy_one "$rel" "$repo" "$repo" "$rel"; then
+      changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
+      [ "$VERBOSE" -eq 1 ] && plan "(root) ${rel}"
+    fi
+  done < <(shared_root_guides)
+
+  # 4) Root-README macht den Lernenden-Einstieg sichtbar, ohne vorhandenen Text zu ersetzen.
+  if ensure_readme_start_link "$repo"; then
+    changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
+    [ "$VERBOSE" -eq 1 ] && plan "README.md (Lernenden-Einstieg)"
   fi
 
   if [ "$changed" -eq 0 ]; then
@@ -258,20 +418,18 @@ process_repo() {
   # Commit + Push
   git -C "$repo" add -A -- docs/learning-units >/dev/null 2>&1 || true
   [ "$level" = "2" ] && git -C "$repo" add -A -- 'Lastenheft_'"${FILE_SERIES}"'*.md' >/dev/null 2>&1 || true
+  git -C "$repo" add -- START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md README.md
 
   if git -C "$repo" diff --cached --quiet; then
     ok "${name}: keine Git-Aenderung nach Add / no staged change"
     return
   fi
 
-  git -C "$repo" commit -q -m "docs(learning-units): Lernbegleiter, LF-Zuordnung und Konsistenz-Sweep uebernehmen
+  git -C "$repo" diff --cached --check
+  git -C "$repo" commit -q -m "docs(learning-units): ${SERIES} Lernenden-Einstieg synchronisieren
 
-Uebernimmt das revidierte ${SERIES}-Lernmaterial aus Level-0 (home-baseline):
-Lernbegleiter, Rahmenlehrplan-Lernfeld-Zuordnung, Lernbegleiter-Vorlage und die
-aktualisierten Lastenhefte/Uebersichten (konkrete Lernfelder, vereinheitlichte
-Stand-Daten, Querverweise). DE-first/EN-second, CEFR B2, WCAG 2.2 AA.
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+Uebernimmt das kanonische ${SERIES}-Lernmaterial aus Level-0 (home-baseline),
+einschliesslich Startanleitungen, Unit-00-Verweisen und Container-First-Gate."
   REPOS_CHANGED=$((REPOS_CHANGED + 1))
   ok "${name}: committet / committed"
 
@@ -282,6 +440,7 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
       ok "${name}: gepusht / pushed"
     else
       warn "${name}: Push fehlgeschlagen / push failed"
+      PUSH_FAILURES=$((PUSH_FAILURES + 1))
     fi
   fi
 }
@@ -301,10 +460,10 @@ info "Quell-Dateien der Serie / series source files: ${file_count} (davon Lernbe
 echo
 
 found=0
-while IFS=$'\t' read -r level repo; do
+while IFS=$'\t' read -r level repo expected_remote; do
   [ -z "${level:-}" ] && continue
   found=$((found + 1))
-  process_repo "$level" "$repo"
+  process_repo "$level" "$repo" "$expected_remote"
   echo
 done < <(discover_repos)
 
@@ -316,6 +475,13 @@ fi
 echo "---------------------------------------------"
 echo "Repos gesamt / total:      ${REPOS_TOTAL}"
 echo "Repos geaendert / changed: ${REPOS_CHANGED}"
+echo "Repos uebersprungen / skipped: ${REPOS_SKIPPED}"
 echo "Dateien geaendert / files: ${FILES_CHANGED}"
+echo "Neuere Zieldateien bewahrt / newer target files preserved: ${FILES_SKIPPED_NEWER}"
+echo "Push-Fehler / push failures: ${PUSH_FAILURES}"
 [ "$DRY_RUN" -eq 1 ] && echo "(DRY-RUN: nichts geschrieben / nothing written)"
+if [ "$REPOS_SKIPPED" -gt 0 ] || [ "$PUSH_FAILURES" -gt 0 ]; then
+  warn "Lauf mit uebersprungenen Repos oder Push-Fehlern beendet / completed with skipped repos or push failures"
+  exit 1
+fi
 ok "Fertig / Done."

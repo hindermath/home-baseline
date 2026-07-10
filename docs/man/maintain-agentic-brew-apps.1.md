@@ -19,11 +19,11 @@ Das Werkzeug liest
 Toolchain fuer agentische Entwicklung ab. Zusaetzlich liest es
 `scripts/config/vscode-extensions-registry.json` und pflegt die Required-VS-
 Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
-sowie Microsoft Container Tools fuer Docker-/Podman-Workflows. Danach liest es
+sowie Microsoft Container Tools fuer Podman-Workflows. Danach liest es
 `scripts/config/required-cli-tools-registry.json` und prueft die Required-CLI-
 Tools fuer die sechs MSL-Pfade, `syft`, GitHub Spec Kit (`specify`) und die
-vier Agenten-CLIs `codex`, `claude`, `gemini` und `gh copilot`. npm-basierte
-Agenten-CLIs wie `codex` werden ueber
+vier Agenten-CLIs `codex`, `claude`, `gemini` und `copilot`. npm-basierte
+Agenten-CLIs fuer alle vier Required-Agenten werden ueber
 `scripts/config/npm-agent-cli-registry.json` installiert, wenn ihre CLI fehlt.
 Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 `brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
@@ -37,11 +37,10 @@ installiert wurde.
 local macOS/Linux toolchain for agentic development. It additionally reads
 `scripts/config/vscode-extensions-registry.json` and maintains the required VS
 Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
-plus Microsoft Container Tools for Docker/Podman workflows. It then reads
+plus Microsoft Container Tools for Podman workflows. It then reads
 `scripts/config/required-cli-tools-registry.json` and checks the required CLI
 tools for the six MSL paths, `syft`, GitHub Spec Kit (`specify`), and the four
-agent CLIs `codex`, `claude`, `gemini`, and `gh copilot`. npm-based agent CLIs
-such as `codex` are installed from
+agent CLIs `codex`, `claude`, `gemini`, and `copilot`. npm-based agent CLIs for all four required agents are installed from
 `scripts/config/npm-agent-cli-registry.json` when their CLI is missing. On
 systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
 installs missing required formulae. On macOS it also maintains required casks.
@@ -92,7 +91,7 @@ bash scripts/maintain-agentic-brew-apps.sh
 - `gitleaks version` funktioniert.
 - `syft version` und `specify --version` funktionieren.
 - `codex --version`, `claude --version`, `gemini --version` und
-  `gh copilot --help` funktionieren.
+  `copilot --help` funktionieren.
 - `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind per CLI pruefbar,
   soweit die Plattform den jeweiligen Pfad unterstuetzt.
 - `code --version` und `hx --version` funktionieren, sofern die Plattform die grafische bzw. TUI-Editor-Basis installieren konnte.
@@ -104,7 +103,7 @@ bash scripts/maintain-agentic-brew-apps.sh
 - Neue bewusst installierte Top-Level-Tools werden in der Registry nachgetragen.
 
 *`gitleaks version`, `syft version`, `specify --version`, `codex --version`,
-`claude --version`, `gemini --version`, and `gh copilot --help` work; .NET,
+`claude --version`, `gemini --version`, and `copilot --help` work; .NET,
 Go, Java/Javac, Python, Rust/Cargo, and Swift are CLI-checkable where the
 platform supports the path; `code --version` and `hx --version` work where the
 platform could install the graphical/TUI editor baseline; `--compare-only`

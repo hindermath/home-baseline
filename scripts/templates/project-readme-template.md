@@ -67,7 +67,7 @@ bash scripts/check-homogeneity.sh .
 
 ### Hilfe holen / Get Help
 Nutze deine KI-Agenten direkt im Terminal, wenn du feststeckst:
-- `gh copilot -p "Erkläre mir diesen Code..."`
+- `copilot -p "Erkläre mir diesen Code..."`
 - `claude "Wie schreibe ich einen Test für..."`
 
 ---

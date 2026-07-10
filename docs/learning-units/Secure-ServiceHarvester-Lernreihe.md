@@ -6,6 +6,10 @@
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA
 
+> **Start / Start:** Neue Lernende beginnen mit
+> [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md), bevor sie Unit 00
+> oder einen KI-Agenten starten.
+
 ## Einordnung in die Familie / Placement in the Family
 
 **DE:** Diese Datei beschreibt die **Basis-Reihe (1. Lehrjahr)** der Familie **Secure ServiceHarvester**. Die Familie begleitet die Ausbildung vom 1. bis zum 3. Lehrjahr: Basis (Jahr 1), [v2/Aufbau (Jahr 2)](Secure-ServiceHarvester-v2-Lernreihe.md) und [Professional Tracks (Jahr 3)](Secure-ServiceHarvester-Professional-Tracks-Lernreihe.md). Das durchgehende Ziel ist, sicheres Entwickeln **und** das verantwortliche Arbeiten mit KI-Agenten und Spec-Driven Development (Spec Kit) einzuüben.

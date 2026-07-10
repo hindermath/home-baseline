@@ -4,6 +4,11 @@
 **Zugehöriges Lastenheft / Related intake:** `Lastenheft_Secure-OrderDesk_00_Sprachrepo-Projekt-Scaffold.md`
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA
 
+> **Start / Start:** Arbeite zuerst
+> [`START-HERE-FUER-LERNENDE.md`](../START-HERE-FUER-LERNENDE.md) und den
+> [`Secure-Trader-Sandbox-Preflight`](../Secure-Trader-Sandbox-Preflight.md)
+> durch. Starte einen Agenten nur in der Podman-Sandbox.
+
 ## Hinweis zur Einordnung / Note on Classification
 
 **DE:** Dieser Lernbegleiter ist ein zusätzliches Erklär- und Übungsmaterial. Er ersetzt nicht die

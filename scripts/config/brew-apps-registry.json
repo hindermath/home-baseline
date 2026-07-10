@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-09",
+  "updated": "2026-07-10",
   "description": "Homebrew top-level package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
   "policy": {
     "formulaSource": "brew leaves --installed-on-request",
@@ -32,6 +32,7 @@
     { "name": "opencode", "scope": "required", "purpose": "OpenCode command-line agent" },
     { "name": "pandoc", "scope": "required", "apt": "pandoc", "purpose": "Documentation conversion" },
     { "name": "pnpm", "scope": "required", "purpose": "Node package management for agent/tooling packages" },
+    { "name": "podman", "scope": "required", "apt": "podman", "purpose": "Podman CLI for the required Secure Trader sandbox runtime" },
     { "name": "podman-compose", "scope": "required", "apt": "podman-compose", "purpose": "Container compose support for sandbox workflows" },
     { "name": "postgresql@18", "scope": "optional", "purpose": "PostgreSQL local database for compatible projects" },
     { "name": "powershell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
@@ -63,6 +64,7 @@
       { "name": "cmake", "scope": "required", "purpose": "Native build orchestration" },
       { "name": "default-jdk", "scope": "required", "purpose": "Java/Javac MSL toolchain from configured apt sources" },
       { "name": "pandoc", "scope": "required", "purpose": "Documentation conversion" },
+      { "name": "podman", "scope": "required", "purpose": "Podman CLI for the required Secure Trader sandbox runtime" },
       { "name": "podman-compose", "scope": "required", "purpose": "Container compose support" },
       { "name": "rustc", "scope": "required", "purpose": "Rust compiler when available in configured apt sources" },
       { "name": "cargo", "scope": "required", "purpose": "Rust package/build tool when available in configured apt sources" },

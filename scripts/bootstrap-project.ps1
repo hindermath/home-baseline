@@ -276,7 +276,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('EXEC', "claude /init", 'optional'))
     $null = $previewActions.Add(@('PRINT', "Codex manuelle Anweisung"))
     $null = $previewActions.Add(@('PRINT', "Gemini manuelle Anweisung"))
-    $null = $previewActions.Add(@('CHECK', "gh copilot --help", 'optional'))
+    $null = $previewActions.Add(@('CHECK', 'copilot --version', 'Required-Host-Baseline'))
     foreach ($agent in $SpecifyAgents) {
         $null = $previewActions.Add(@('EXEC', "specify init --here --force --integration $agent", 'optional'))
     }
@@ -713,9 +713,11 @@ Write-Host ("          -> Bitte manuell ausfuehren: cd $tdShort && gemini")
 
 # 18. Copilot check
 Step-Start "Copilot verfuegbar pruefen"
-if ((Get-Command gh -ErrorAction SilentlyContinue) -and (gh extension list 2>$null | Select-String 'copilot')) {
-    Step-Done "gh copilot verfuegbar"
-} else { Step-Skip "gh copilot nicht installiert" }
+if (Get-Command copilot -ErrorAction SilentlyContinue) {
+    & copilot --version *> $null
+    if ($LASTEXITCODE -eq 0) { Step-Done 'copilot verfuegbar' }
+    else { Step-Skip 'copilot nicht nutzbar; Required-Host-Wartung ausfuehren' }
+} else { Step-Skip 'copilot nicht installiert; Required-Host-Wartung ausfuehren' }
 
 # 19. Spec-kit
 Step-Start "Spec-kit installieren"

@@ -6,6 +6,20 @@
 
 **EN:** This directory contains detailed learning material for secure development with GitHub Spec Kit, memory-safe languages (MSL), sandbox use, and audit-ready documentation. The material is DE-first, EN-second, CEFR-B2-oriented, and written for IT specialist apprentices from the first training year onward.
 
+## Start fuer Lernende / Start for Learners
+
+**DE:** Beginne mit
+[`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md). Der Leitfaden
+fuehrt ohne vorausgesetzte Git-, Container- oder Agentenkenntnisse vom
+persoenlichen `home-baseline`-Fork ueber die Required-Werkzeuge und die
+Podman-Sandbox bis zum ersten kontrollierten Agentenlauf.
+
+**EN:** Start with
+[`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md). The guide assumes
+no prior Git, container, or agent knowledge and leads from the personal
+`home-baseline` fork through the required tools and Podman sandbox to the first
+controlled agent run.
+
 ## Secure CaseTracker
 
 **DE:** Die erste Lernreihe heißt [Secure CaseTracker Lernreihe](Secure-CaseTracker-Lernreihe.md). Sie nutzt die fiktive Übungsfirma **EuFPA - Europäische Firma Programmiert Alles** als fachlichen Rahmen. Die Lernenden planen ein kleines System für Kundenanfragen, Assets, Bearbeitungsnotizen und Prozesskennzahlen.
@@ -18,9 +32,21 @@ Der ausführliche [Secure CaseTracker Unterrichtsleitfaden](Secure-CaseTracker-U
 
 ## Sandbox-Stufung / Sandbox Staging
 
-**DE:** Die sichere Entwicklungs-Sandbox ist jetzt als öffentliches Referenz-Repo verfügbar: <https://github.com/hindermath/absdd-image-sandbox>. In Secure CaseTracker ist sie bewusst gestuft: Im 1. Lehrjahr wird sie erklärt und als Zielbild eingeordnet, aber nicht verpflichtend praktisch eingesetzt. Im 2. Lehrjahr wird sie als Betriebs-, Toolchain- und Nachweiskonzept vorbereitet. Ab dem 3. Lehrjahr wird erwartet, dass Lernende KI-gestützte Entwicklung in oder mit der Sandbox fachlich und technisch begründen können. Lesen, Review, normale Codearbeit und Bedienung von JetBrains IDEs, VS Code oder Windows-only Visual Studio können weiterhin außerhalb der Sandbox erfolgen.
+**DE:** Die sichere Entwicklungs-Sandbox ist als oeffentliches Referenz-Repo
+verfuegbar: <https://github.com/hindermath/absdd-image-sandbox>. Das
+Container-First-Gate gilt fuer Secure CaseTracker, Secure OrderDesk und Secure
+ServiceHarvester verbindlich ab Unit 00: Jeder Agentenaufruf erfolgt in der
+Podman-Sandbox. Wird kein Agent verwendet, darf der Sandbox-Punkt begruendet als
+`N/A` dokumentiert werden. Lesen, Review und normale agentenlose Codearbeit
+duerfen ausserhalb der Sandbox stattfinden.
 
-**EN:** The secure development sandbox is now available as a public reference repository: <https://github.com/hindermath/absdd-image-sandbox>. Secure CaseTracker uses it in staged form: in year 1 it is explained and positioned as the target picture, but it is not mandatory for practical use. In year 2 it is prepared as an operational, toolchain, and evidence concept. From year 3 onward, learners are expected to justify AI-assisted development in or with the sandbox from a functional and technical perspective. Reading, review, normal code work, and use of JetBrains IDEs, VS Code, or Windows-only Visual Studio may still happen outside the sandbox.
+**EN:** The secure development sandbox is available as a public reference
+repository: <https://github.com/hindermath/absdd-image-sandbox>. The
+container-first gate applies to Secure CaseTracker, Secure OrderDesk, and Secure
+ServiceHarvester from unit 00 onward: every agent invocation runs inside the
+Podman sandbox. If no agent is used, the sandbox item may be documented as
+justified `N/A`. Reading, review, and normal agent-free coding may happen outside
+the sandbox.
 
 ## Lernreihen ab dem 2. Lehrjahr / Learning Series from the Second Training Year
 

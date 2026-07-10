@@ -10,6 +10,11 @@
 - **Spec-Kit-Nutzung / Spec Kit use:** eigenständiger späterer technischer Spec-Kit-Intake vor der ersten fachlichen Aufgabe
 - **Sandbox-Bezug / Sandbox relation:** Container-First-Gate ab Unit 00 verbindlich — jeder KI-Agenten-Aufruf im Container/der Sandbox `absdd-image-sandbox`, nie auf dem Arbeitsplatz-Rechner; Grundlage `Secure-Trader-Sandbox-Preflight.md`
 
+> **Vorbedingung / Prerequisite:** Zuerst
+> [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md) und den
+> [`Secure-Trader-Sandbox-Preflight`](Secure-Trader-Sandbox-Preflight.md)
+> durcharbeiten. Dieser Intake startet noch keinen Spec-Kit-Lauf.
+
 ## Lernziel / Learning Goal
 
 **DE:** Lernende können ein minimales, lauffähiges Sprachrepo so vorbereiten, dass spätere fachliche Secure-ServiceHarvester-Aufgaben auf einer sauberen Build-, Test-, Dokumentations- und Governance-Basis starten. Die C#-Referenz ist das Worker-Service-Projekt `InventarWorkerService`.

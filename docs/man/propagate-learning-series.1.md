@@ -16,13 +16,13 @@ pwsh -NoProfile -File scripts/propagate-learning-series.ps1 [options]
 
 ## DESCRIPTION
 
-Das Skript kopiert das serienspezifische Lernmaterial aus Level-0 (`~/home-baseline-tmp/docs/learning-units/`) in die zugehoerigen Repos: Lastenhefte (Intakes), Uebersichten, `Rahmenlehrplan-Lernfeld-Mapping.md`, das IT-Berufe-Mapping, die Lernbegleiter unter `lernbegleiter/`, die Vorlagen unter `templates/`, das gemeinsame Secure-Trader-Universum (`Secure-Trader-*.md`, u. a. die Systemlandschaft) und den geteilten Datensatz-Baum unter `datasets/` (Generator, CSVs, `schema.sql`), damit das Datensatz-Lernwerkzeug in jedem Repo lauffaehig vorliegt.
+Das Skript kopiert das serienspezifische Lernmaterial aus Level-0 (`~/home-baseline-tmp/docs/learning-units/`) in die zugehoerigen Repos: Lastenhefte (Intakes), Uebersichten, `Rahmenlehrplan-Lernfeld-Mapping.md`, das IT-Berufe-Mapping, die Lernbegleiter unter `lernbegleiter/`, die Vorlagen unter `templates/`, das gemeinsame Secure-Trader-Universum (`Secure-Trader-*.md`, u. a. die Systemlandschaft), beide Lernenden-Startanleitungen und den geteilten Datensatz-Baum unter `datasets/` (Generator, CSVs, `schema.sql`). Beide Startanleitungen werden zusaetzlich in die Repo-Wurzel gespiegelt und dort aus der README verlinkt.
 
 Die Ziel-Repos werden aus `~/.home-baseline/level2-repository-registry.json` ermittelt und ueber den Serien-Praefix gefiltert. Level-2-Repos erhalten die Intakes zusaetzlich in der Repo-Wurzel (Bootstrap-Layout); Level-1 erhaelt nur `docs/learning-units/`. Andere Reihen (z. B. Secure InventoryHub) und die Ordner `dist/` und `presentations/` bleiben unberuehrt.
 
-Der Lauf ist idempotent: nur echte Inhaltsaenderungen erzeugen einen Commit. Bei Aenderungen committet und pusht das Skript pro Repo auf `main`.
+Der Lauf ist idempotent: nur echte Inhaltsaenderungen erzeugen einen Commit. Vor Aenderungen verlangt er einen sauberen `main`, der `origin/main` folgt, prueft `origin` gegen die erwartete `hindermath`-Remote und aktualisiert per `fetch` plus `pull --ff-only`. Dirty, divergierte, falsch zugeordnete oder anders ausgecheckte Repositories werden ohne Reset oder Force-Push uebersprungen und im Abschlussbericht genannt. Ist mindestens eine Zieldatei neuer als ihre kanonische Quelle, wird das ganze Repo vor der ersten Kopie uebersprungen; es entsteht kein Teil-Commit. Bei Aenderungen committet und pusht das Skript pro Repo auf `main`; der Commit enthaelt keinen modellbezogenen Co-Author-Trailer.
 
-*The script copies the series-specific learning material from Level-0 into the matching repositories: intake files, overviews, the curriculum learning-field mapping, the IT-occupation mapping, the study companions under `lernbegleiter/`, the templates, the shared Secure Trader universe (`Secure-Trader-*.md`, including the system landscape), and the shared dataset tree under `datasets/` (generator, CSVs, `schema.sql`) so the dataset learning tool is runnable in every repository. Target repos are discovered from the level-2 registry and filtered by the series prefix. Level-2 repos additionally receive the intakes in the repository root (bootstrap layout); Level-1 receives only `docs/learning-units/`. Other series and the `dist/` and `presentations/` folders stay untouched. The run is idempotent; only real content changes create a commit, which is then pushed to `main` per repository.*
+*The script copies the series-specific learning material, both learner start guides, and the shared dataset tree from Level 0 into the matching repositories. Both guides are also mirrored to each repository root and linked from its README. Target repos are discovered from the level-2 registry and filtered by series prefix. Before changing a target, the script requires a clean `main` tracking `origin/main`, checks `origin` against the expected `hindermath` remote, and updates it with fetch plus fast-forward-only pull. Dirty, diverged, wrongly mapped, or differently checked-out repositories are skipped without reset or force-push and reported. If any target file is newer, the whole repository is skipped before copying, preventing partial commits. Only real changes create a neutral commit that is pushed to `main`.*
 
 ## OPTIONS
 
@@ -57,14 +57,14 @@ pwsh -NoProfile -File scripts/propagate-learning-series.ps1 -DryRun
 
 - Quelle / source: `~/home-baseline-tmp/docs/learning-units/`
 - Registry: `~/.home-baseline/level2-repository-registry.json`
-- Ziel / target: `<repo>/docs/learning-units/` und bei Level-2 zusaetzlich die Repo-Wurzel
+- Ziel / target: `<repo>/docs/learning-units/`, beide Startanleitungen und README-Verweis in der Repo-Wurzel sowie bei Level-2 die Root-Intakes
 
 ## EXIT STATUS
 
 | Code | Bedeutung / Meaning |
 |---:|---|
 | 0 | Propagation oder Vorschau erfolgreich |
-| 1 | fehlende Quelle/Registry, fehlende Werkzeuge oder keine Repos gefunden |
+| 1 | fehlende Quelle/Registry/Werkzeuge, keine Repos, uebersprungene Repos oder Push-Fehler |
 | 2 | ungueltige Option / invalid option |
 
 ## SEE ALSO

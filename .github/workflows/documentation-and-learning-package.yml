@@ -1,0 +1,50 @@
+name: Documentation and Learning Package
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-links:
+    name: Local Markdown Links and Anchors
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Check local Markdown links and headings with Lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        with:
+          args: >-
+            --offline
+            --include-fragments
+            --exclude-path docs/learning-units/dist
+            --exclude-path scripts/templates/project-readme-template.md
+            './**/*.md'
+          fail: true
+          failIfEmpty: true
+
+  learning-package:
+    name: Learning Package (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, macos-14, windows-2022]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Run Bash package self-test
+        if: runner.os != 'Windows'
+        run: bash scripts/check-learning-package.sh --self-test
+
+      - name: Run PowerShell package self-test
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: pwsh -NoProfile -File scripts/check-learning-package.ps1 -SelfTest

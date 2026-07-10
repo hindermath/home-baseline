@@ -88,22 +88,12 @@ Add-Line ""
 
 # === Tools ===
 Add-Line "=== Tools ==="
-foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'npm', 'uv', 'python', 'dotnet', 'go', 'java', 'javac', 'cargo', 'rustc', 'swift', 'syft', 'specify', 'codex', 'claude', 'gemini', 'code', 'hx')) {
+foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'npm', 'uv', 'python', 'dotnet', 'go', 'java', 'javac', 'cargo', 'rustc', 'swift', 'syft', 'specify', 'podman', 'codex', 'claude', 'gemini', 'copilot', 'code', 'hx')) {
     if (Get-Command $cmd -ErrorAction SilentlyContinue) {
         Add-Line "  OK  ${cmd}"
     } else {
         Add-Line "  --- ${cmd}: fehlt"
     }
-}
-if (Get-Command gh -ErrorAction SilentlyContinue) {
-    & gh copilot --help *> $null
-    if ($LASTEXITCODE -eq 0) {
-        Add-Line '  OK  gh copilot'
-    } else {
-        Add-Line '  --- gh copilot: fehlt'
-    }
-} else {
-    Add-Line '  --- gh copilot: fehlt'
 }
 Add-Line ""
 

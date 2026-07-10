@@ -69,33 +69,33 @@
 | 2026-07-09 | Vier Agenten-CLI-Required-Baseline | 58 | — | — | `codex`, `claude`, `gemini` und `gh copilot` als Required-Agenten-CLI-Oberflaechen in der CLI-Pruefregistry verankert; neue npm-Agenten-Registry fuer `codex` und Linux-/Windows-`gemini`, Node/npm-Grundlage, Brew-/WinGet-Wartungsskripte, Plattformtests, README, Manpages, Agenten-Guidance und Templates synchronisiert |
 | 2026-07-09 | Kaufmaennische Berufsrollen-Linse (KITSM/KDM) | 58 | — | — | Die beiden kaufmaennischen IT-Berufe **KITSM** und **KDM** ohne neue Repos in die drei Lernreihen integriert (Blueprint-konform, `Lernreihen-Blueprint.md:61`): neues zentrales `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` (Code-Naehe-Modell — Barriere-Umkehr, SQL als deklarative Bruecken-Programmiersprache, Baender KITSM ~5–10 %/KDM ~15–25 %, Pflicht-SQL-Schreib-Touch, evidenzbasierte Abnahme mit eingebauter Abweichung, Rollen-Split); `Secure-Trader-`-Praefix fuer Auto-Propagation. `Rahmenlehrplan-Lernfeld-Mapping.md` um die **amtlichen KMK-Lernfelder** KITSM (LF 1–13) und KDM (LF 1–12) erweitert (Quelle KMK-RLP 13.12.2019). Drei `IT-Berufe-Secure-*-Mapping.md` um kaufmaennischen SDD-Rollenabschnitt vertieft. 15 **Unit-Overlays** „Kaufmaennische Rollen-Umschaltung" in die Handlungs-Units (01/06/10/11 + Data-&-Process-Track) der drei Familien. Template, Register und Blueprint angeglichen; `Secure InventoryHub` bewusst ausgeschlossen (keine der drei Reihen) |
 | 2026-07-10 | Neutraler KI-Erstellungshinweis | 58 | — | — | Root-README um einen gut sichtbaren, bilingualen Transparenzhinweis ergaenzt: die agentische Unterstuetzungs-Umgebung und wesentliche Dokumentations-, Lern- und Skriptinhalte sind menschlich kuratiert, geprueft und fortgeschrieben; Teile wurden mit Hilfe agentischer KI erstellt oder generiert. Der Hinweis bleibt ohne Klarnamen und macht menschliche Verantwortung, Pruefung und Freigabe massgeblich |
+| 2026-07-10 | Selbstfuehrender Lernenden-Einstieg und Vier-Agenten-Sandbox | 59 | 229 591 | 419 | Kanonischer Startpfad ab dem 1. Lehrjahr mit persoenlichem `home-baseline`-Fork, persistentem `home-baseline-tmp`, Podman-Sandbox und erstem kontrollierten Agentenlauf; Podman, sechs MSL, JDK, Syft, Spec Kit sowie Codex/Claude/Gemini/Copilot konsistent Required; Lernpaket-Self-Tests, Lychee-Link-/Anker-CI und fehlertolerante 21-Repo-Propagation mit Remote-, Clean-/Main-/Fast-forward- und Neuere-Zieldatei-Gates ergaenzt |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-06-27**
+Stand / As of: **2026-07-10**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh` + `.ps1`) | 85 | 18 682 | 15.7 % |
-| Templates (`.tmpl` + Konfigurationsdateien) | 24 | 3 311 | 2.8 % |
-| Hooks + CI (pre-push + YAML/JSON) | 33 | 2 050 | 1.7 % |
-| Dokumentation / Documentation (`.md`) | 509 | 89 391 | 75.3 % |
-| Sonstiges / Other | 28 | 5 299 | 4.5 % |
-| **Gesamt / Total** | **679** | **118 733** | **100 %** |
+| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 102 | 24 340 | 10.6 % |
+| Strukturierte Konfiguration und Templates / Structured config and templates | 65 | 5 897 | 2.6 % |
+| Dokumentation / Documentation (`.md`) | 1 029 | 171 857 | 74.9 % |
+| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 11.6 % |
+| Sonstiges / Other | 22 | 872 | 0.4 % |
+| **Gesamt / Total** | **1 230** | **229 591** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 20 195 | 22.6 % |
-| Secure Development (`docs/secure-development/`) | 29 152 | 32.6 % |
-| Lastenhefte im Repository-Wurzelverzeichnis (`Lastenheft*.md`) | 4 461 | 5.0 % |
-| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 2 470 | 2.8 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution) | 3 982 | 4.5 % |
-| README / CHANGELOG / STATS | 3 498 | 3.9 % |
-| Sonstiges (Templates, andere `.md`) | 25 633 | 28.7 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 11.8 % |
+| Secure Development (`docs/secure-development/`) | 29 135 | 17.0 % |
+| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 380 | 49.1 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 3 155 | 1.8 % |
+| README / CHANGELOG / STATS / Projektstatistik | 3 837 | 2.2 % |
+| Sonstige Markdown-Artefakte / Other Markdown artifacts | 31 155 | 18.1 % |
 
 ---
 
@@ -118,13 +118,13 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
-enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-06-20`. Dazu
+enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-10`. Dazu
 gehoeren insbesondere die Verfassungs- und Agenten-Guidance-Runden, Release-
 Please-Aktualisierungen, die Preset-Governance-Arbeit und die sichere-
 Entwicklung-Basis mit mitgeltenden Dokumenten.
 
 *Note on later maintenance rounds: the snapshot and overall values above also
-include follow-up maintenance work through `2026-06-20`, especially constitution
+include follow-up maintenance work through `2026-07-10`, especially constitution
 and agent-guidance rounds, Release Please updates, preset-governance work, the
 secure-development baseline with related documents, and the Level-1 workspace
 bootstrap hardening.*
@@ -219,68 +219,64 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `118 728` Zeilen |
-| Operativer Code / Operational code (Skripte + Hooks + CI) | `20 732` Zeilen (`17.5 %`) |
-| Dokumentationsanteil / Documentation share | `89 386` Zeilen (`75.3 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-06-27` |
-| Sichtbare Git-Aktivtage / Observable active days | `45` |
-| Git-Commits gesamt / Total commits | `350` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.8` (`350 / 45`) |
-| Zeilen pro Aktivtag / Lines per active day | `2 638.4` (`118 728 / 45`) |
-| Zeilen pro Commit / Lines per commit | `339.2` (`118 728 / 350`) |
-| Konservative Einzelentwickler-Untergrenze | `1 484.1` Arbeitstage / `11 576.0` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `1 187.3` Arbeitstage / `9 260.8` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `593.6` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `33.0x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `26.4x` |
+| Artefaktbasis gesamt / Total artifact base | `229 591` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `30 237` Zeilen (`13.2 %`) |
+| Dokumentationsanteil / Documentation share | `171 857` Zeilen (`74.9 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-10` |
+| Sichtbare Git-Aktivtage / Observable active days | `59` |
+| Git-Commits gesamt / Total commits | `419` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.1` (`419 / 59`) |
+| Zeilen pro Aktivtag / Lines per active day | `3 891.4` (`229 591 / 59`) |
+| Zeilen pro Commit / Lines per commit | `548.0` (`229 591 / 419`) |
+| Konservative Einzelentwickler-Untergrenze | `2 869.9` Arbeitstage / `22 385.1` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 295.9` Arbeitstage / `17 908.1` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 148.0` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `48.6x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `38.9x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `75.3 %` der
-sichtbaren Basis liegen in Markdown-Artefakten. Der operative Code (Skripte,
-Hooks, CI) macht `17.5 %` aus. Der größte dokumentierte Volumensprung bleibt
-Phase `1` (Spec-Kit-Batch für Homogeneity Guardian). Die aktuelle
-Maintenance-Runde ergänzt die sichere-Entwicklung-Basis um eine ausführliche
-EuFPA-Lernreihe für Secure CaseTracker, elf einzeln startbare Spec-Kit-
-Aufgaben-Intakes, einen Unterrichtsleitfaden, ein klares Level-1-/Level-2-
-Arbeitsmodell für private MSL-Sprachpfade und Pandoc-kompatible
-Einführungspräsentationen. Für private Ausbildungsprojekte bleibt
-Nichtanwendbarkeit als begründetes `N/A` dokumentierbar. Die
-Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
-Lieferdichte gegen konservative manuelle Referenzmodelle.
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.9 %` der
+sichtbaren Basis liegen in Markdown-Artefakten. Operative Skripte und
+strukturierte Konfiguration machen zusammen `13.2 %` aus. Der groesste
+dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer Homogeneity
+Guardian). Die aktuelle Maintenance-Runde schliesst fuer alle drei Secure-
+Trader-Lernreihen einen selbstfuehrenden Einstieg ab: persoenlicher Fork,
+persistente Wartungsarbeitskopie, Podman-Sandbox, vier Required-Agenten,
+kontrollierter Erstlauf, Diff- und Testpruefung sowie reproduzierbare
+Lernpakete. Die Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern
+sichtbare Lieferdichte gegen konservative manuelle Referenzmodelle.
 
-*Short summary: after the Secure CaseTracker learning-series round,
-`home-baseline` remains documentation- and governance-driven: `75.3 %` of the visible base sits
-in Markdown artifacts. Operational code (scripts, hooks, CI) accounts for
-`17.5 %`. The largest documented volume jump remains Phase `1` (Spec-Kit batch
-for Homogeneity Guardian). The current maintenance round adds the detailed
-EuFPA Secure CaseTracker learning series, eleven individually runnable Spec Kit
-task intakes, a teaching guide, and Pandoc-compatible introductory
-presentations. Private training projects can still document
-non-applicability as justified `N/A`. The
-acceleration factors describe
+*Short summary: `home-baseline` remains documentation- and governance-driven:
+`74.9 %` of the visible base sits in Markdown artifacts. Operational scripts
+and structured configuration together account for `13.2 %`. The largest
+documented volume jump remains Phase `1` (Spec-Kit batch for Homogeneity
+Guardian). The current maintenance round completes a self-guided entry path for
+all three Secure Trader learning series: personal fork, persistent maintenance
+clone, Podman sandbox, four required agents, controlled first run, diff and test
+review, and reproducible learning packages. Acceleration factors describe
 visible delivery density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Operativer Code | #######                        | 20 732 | 17.5 %
-Dokumentation   | ############################## | 89 391 | 75.3 %
-Sonstiges       | ###                            |  8 610 |  7.3 %
+Skripte         | ###                            | 24 340 | 10.6 %
+Konfiguration   | #                              |  5 897 |  2.6 %
+Dokumentation   | ######################         |171 857 | 74.9 %
+Daten/Medien    | ###                            | 26 625 | 11.6 %
+Sonstiges       | #                              |    872 |  0.4 %
 ```
 
-Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen operativem Code
-(Skripte, Hooks, CI), Dokumentation und sonstigen Artefakten verteilt ist.
-Die Preset-Arbeit und die sichere-Entwicklung-Basis haben den
-Dokumentations- und Governance-Anteil sichtbar erhoeht; die aktuelle
-Lastenheft-Reihenfolge trennt aktive Intakes von historischen Feature-Branch-
-Lastenheften.
+Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen Skripten,
+strukturierter Konfiguration, Dokumentation, Daten/Medien und sonstigen
+Artefakten verteilt ist. Dokumentation bildet weiterhin den Schwerpunkt; die
+getrennte Ausweisung der Daten- und Medienartefakte verhindert, dass
+generierte Lernreihen-Datensaetze dem operativen Code zugerechnet werden.
 
-*This chart shows the split between operational code (scripts, hooks, CI),
-documentation, and other artifacts in the current snapshot. The preset work and
-the secure-development baseline visibly increased the documentation and
-governance share; the current Lastenheft order separates active intakes from
-historical feature-branch Lastenhefte.*
+*This chart shows the split between scripts, structured configuration,
+documentation, data/media, and other artifacts in the current snapshot.
+Documentation remains the main share; listing data and media separately avoids
+counting generated learning-series datasets as operational code.*
 
 ```text
 Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
@@ -324,7 +320,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################# | 33.0x
+Repo ges. | ################################################ | 48.6x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -346,9 +342,9 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 1 484.2 d / 11 576.5 h
-Thorsten (100 Z./Tag)  | ###################      | 1 187.3 d /  9 261.2 h
-KI sichtbar            | #                        |    45.0 d
+Erfahren (80 Z./Tag)   | ######################## | 2 869.9 d / 22 385.1 h
+Thorsten (100 Z./Tag)  | ###################      | 2 295.9 d / 17 908.1 h
+KI sichtbar            | #                        |    59.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer

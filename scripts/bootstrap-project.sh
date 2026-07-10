@@ -383,7 +383,7 @@ if $OPT_PREVIEW; then
   preview_action "EXEC" "claude /init" "optional"
   preview_action "PRINT" "Codex manuelle Anweisung" "interaktiv"
   preview_action "PRINT" "Gemini manuelle Anweisung" "interaktiv"
-  preview_action "CHECK" "gh copilot --help" "optional"
+  preview_action "CHECK" "copilot --version" "Required-Host-Baseline"
   for agent in "${SPECIFY_AGENTS[@]}"; do
     preview_action "EXEC" "specify init --here --force --integration ${agent}" "optional"
   done
@@ -901,10 +901,10 @@ printf "          -> Bitte manuell ausfuehren: cd %s && gemini\n" "${TARGET_DIR/
 
 # ─── Step 18: Copilot check ──────────────────────────────────────────────────
 step_start "Copilot verfuegbar pruefen"
-if command -v gh >/dev/null 2>&1 && gh extension list 2>/dev/null | grep -q copilot; then
-  step_done "gh copilot verfuegbar"
+if command -v copilot >/dev/null 2>&1 && copilot --version >/dev/null 2>&1; then
+  step_done "copilot verfuegbar"
 else
-  step_skip "gh copilot nicht installiert"
+  step_skip "copilot nicht installiert; Required-Host-Wartung ausfuehren"
 fi
 
 # ─── Step 19: Spec-kit install ───────────────────────────────────────────────

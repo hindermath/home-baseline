@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-09",
+  "updated": "2026-07-10",
   "description": "Required CLI command checks for the learning-series MSL toolchains, SBOM tooling, GitHub Spec Kit, and required agent CLI surfaces.",
   "policy": {
     "defaultScope": "required",
     "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
     "npmAgentRegistry": "scripts/config/npm-agent-cli-registry.json",
-    "agentCliPolicy": "codex, claude, gemini, and GitHub Copilot via gh copilot are required agent CLI surfaces. npm-installed agent CLIs are maintained through npm-agent-cli-registry.json.",
+    "agentCliPolicy": "codex, claude, gemini, and the standalone GitHub Copilot CLI are required agent CLI surfaces. npm fallback installations are maintained through npm-agent-cli-registry.json.",
     "linuxWithoutBrew": "Linux without Homebrew uses distro packages where available. .NET, Swift, Syft, and GitHub Spec Kit may require external package sources or uv-based installation."
   },
   "tools": [
@@ -77,10 +77,10 @@
     {
       "id": "swift",
       "scope": "required",
-      "platforms": ["Darwin", "Windows"],
+      "platforms": ["Darwin", "Linux", "Windows"],
       "command": "swift",
       "args": ["--version"],
-      "purpose": "Swift MSL CLI toolchain; macOS uses the Apple toolchain, Windows uses WinGet Swift.Toolchain"
+      "purpose": "Swift MSL CLI toolchain; macOS uses the Apple toolchain, Windows uses WinGet Swift.Toolchain, and Linux requires a separately configured Swift toolchain"
     },
     {
       "id": "syft",
@@ -130,9 +130,9 @@
       "id": "copilot",
       "scope": "required",
       "platforms": ["Darwin", "Linux", "Windows"],
-      "command": "gh",
-      "args": ["copilot", "--help"],
-      "purpose": "GitHub Copilot CLI extension exposed through gh copilot"
+      "command": "copilot",
+      "args": ["--version"],
+      "purpose": "Standalone GitHub Copilot command-line agent for AI-assisted development"
     }
   ]
 }

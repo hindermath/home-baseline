@@ -19,7 +19,7 @@ $HomeDir   = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 if ($RepoDir -eq $HomeDir) {
     $RepoDir = Join-Path $HomeDir 'home-baseline-tmp'
     if (-not (Test-Path $RepoDir)) {
-        Write-Error "~/home-baseline-tmp nicht gefunden.`nBitte zuerst: git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp"
+        Write-Error "~/home-baseline-tmp nicht gefunden.`nBitte zuerst den persoenlichen Fork gemaess docs/learning-units/START-HERE-FUER-LERNENDE.md nach ~/home-baseline-tmp klonen."
         exit 1
     }
 }

@@ -19,6 +19,15 @@ private GitHub or GitLab repository within seconds.*
 > or generated with help and support from agentic AI. Human responsibility,
 > review, and approval remain authoritative.*
 
+> **Start fuer Lernende / Start for learners:** Beginne mit
+> [`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
+> Die Anleitung fuehrt vom persoenlichen Fork ueber die Required-Werkzeuge und
+> die Podman-Sandbox bis zum ersten kontrollierten Agentenlauf.
+>
+> *Start with [`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
+> It leads from your personal fork through the required tools and Podman sandbox
+> to the first controlled agent run.*
+
 ---
 
 ## Inhaltsverzeichnis / Table of Contents
@@ -67,7 +76,7 @@ private GitHub or GitLab repository within seconds.*
 - [Für Auszubildende der Fachinformatik / For IT Apprentices](#für-auszubildende-der-fachinformatik--for-it-apprentices)
   - [Was machen wir hier eigentlich? / What is this all about?](#was-machen-wir-hier-eigentlich--what-is-this-all-about)
   - [Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools](#schritt-0-deine-werkzeuge-vorbereiten--step-0-preparing-your-tools)
-  - [Schritt 1: Dein eigenes Template erstellen / Step 1: Create your own template](#schritt-1-dein-eigenes-template-erstellen--step-1-create-your-own-template)
+  - [Schritt 1: Deinen persoenlichen Fork anlegen / Step 1: Create Your Personal Fork](#schritt-1-deinen-persoenlichen-fork-anlegen--step-1-create-your-personal-fork)
   - [Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer](#schritt-2-deinen-computer-mit-der-cloud-verbinden--step-2-connect-your-computer)
   - [Schritt 3: Deinen ersten "Workspace" anlegen / Step 3: Create your first workspace](#schritt-3-deinen-ersten-workspace-anlegen--step-3-create-your-first-workspace)
   - [Schritt 4: Dein erstes Projekt starten / Step 4: Start your first project](#schritt-4-dein-erstes-projekt-starten--step-4-start-your-first-project)
@@ -137,13 +146,16 @@ any permanent connection to the source.*
 3. Choose your repository name and visibility (Private recommended)
 4. Clone the repo and follow the [initial setup](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
 
-> **Hinweis für Auszubildende:** Ihr erhaltet vom Ausbilder die URL des Template-Repos.
-> Erstellt euer eigenes Repo über „Use this template" — ihr seid dann vollständig unabhängig
-> und könnt nichts am Original kaputtmachen.
+> **Hinweis für Auszubildende:** Fuer den betreuten Lernendenpfad wird kein
+> unabhaengiges Template-Repository erzeugt. Lege einen persoenlichen **Fork** von
+> `hindermath/home-baseline` an, damit `origin` auf deinen Fork und `upstream` auf
+> die kanonische Quelle zeigt. Folge danach der
+> [Startanleitung fuer Lernende](docs/learning-units/START-HERE-FUER-LERNENDE.md).
 >
-> *Note for apprentices: You will receive the template repo URL from your trainer.
-> Create your own repo via "Use this template" — you are then completely independent
-> and cannot break anything in the original.*
+> *For the guided learner path, do not create an independent template repository.
+> Create a personal **fork** of `hindermath/home-baseline` so `origin` points to
+> your fork and `upstream` points to the canonical source. Then follow the
+> [learner start guide](docs/learning-units/START-HERE-FUER-LERNENDE.md).*
 
 ---
 
@@ -492,78 +504,43 @@ glab auth login
 
 ```bash
 cd ~
-# Mit git:
-git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
-# Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
-# gh repo clone YOUR_USERNAME/home-baseline home-baseline-tmp
-
-# Scripts und Konfiguration einrichten
-cp -r home-baseline-tmp/scripts/. ~/scripts/
-cp home-baseline-tmp/.gitignore ~/.gitignore
-
-# Level-0-Dateien ins Home-Verzeichnis kopieren
-cp home-baseline-tmp/AGENTS.md home-baseline-tmp/CLAUDE.md home-baseline-tmp/GEMINI.md \
-   home-baseline-tmp/README.md home-baseline-tmp/STATS.md home-baseline-tmp/constitution.md ~/
-cp -r home-baseline-tmp/.github ~/
-
-git init
-bash ~/scripts/install-hooks.sh
-rm -rf home-baseline-tmp
-
-# Initialen Commit erstellen
-git add -A
-git commit -m "chore: initialer Commit — Level-0-Baseline"
-
-# Remote-Repo verbinden / Connect remote repo
-git remote add origin https://github.com/YOUR_USERNAME/home-baseline.git
-# GitLab-Alternative / GitLab alternative:
-# git remote add origin https://gitlab.com/YOUR_USERNAME/home-baseline.git
-# Self-hosted GitLab / self-hosted GitLab:
-# git remote add origin https://gitlab.example.com/YOUR_USERNAME/home-baseline.git
-git push -u origin main
-
-# Compliance prüfen
-bash ~/scripts/check-homogeneity.sh ~/
+gh auth status
+gh repo fork hindermath/home-baseline --clone=false
+GH_USER="$(gh api user --jq .login)"
+gh repo clone "${GH_USER}/home-baseline" ~/home-baseline-tmp
+git -C ~/home-baseline-tmp remote add upstream https://github.com/hindermath/home-baseline.git
+git -C ~/home-baseline-tmp remote -v
+git -C ~/home-baseline-tmp fetch upstream
+git -C ~/home-baseline-tmp merge --ff-only upstream/main
+git -C ~/home-baseline-tmp push origin main
+bash ~/home-baseline-tmp/scripts/install-hooks.sh
+bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
 ```
+
+`origin` muss auf den persoenlichen Fork zeigen; `upstream` muss
+`hindermath/home-baseline` sein. Der Klon `~/home-baseline-tmp` bleibt dauerhaft
+bestehen. `~/` ist die lokale Betriebskopie ohne Remote.
 
 ### Windows (PowerShell Core >= 7) / Windows (PowerShell Core >= 7)
 
 ```powershell
 Set-Location ~
-# Mit git:
-git clone https://github.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
-# Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
-# gh repo clone YOUR_USERNAME/home-baseline home-baseline-tmp
-
-# Scripts und Konfiguration einrichten
-Copy-Item home-baseline-tmp/scripts/* ~/scripts/ -Recurse -Force
-Copy-Item home-baseline-tmp/.gitignore ~/ -Force
-
-# Level-0-Dateien ins Home-Verzeichnis kopieren
-foreach ($f in @('AGENTS.md','CLAUDE.md','GEMINI.md','README.md','STATS.md','constitution.md')) {
-    Copy-Item "home-baseline-tmp/$f" ~/ -Force
-}
-Copy-Item home-baseline-tmp/.github ~/ -Recurse -Force
-
-git init
-pwsh ~/scripts/install-hooks.ps1
-Remove-Item home-baseline-tmp -Recurse -Force
-
-# Initialen Commit erstellen
-git add -A
-git commit -m "chore: initialer Commit — Level-0-Baseline"
-
-# Remote-Repo verbinden / Connect remote repo
-git remote add origin https://github.com/YOUR_USERNAME/home-baseline.git
-# GitLab-Alternative / GitLab alternative:
-# git remote add origin https://gitlab.com/YOUR_USERNAME/home-baseline.git
-# Self-hosted GitLab / self-hosted GitLab:
-# git remote add origin https://gitlab.example.com/YOUR_USERNAME/home-baseline.git
-git push -u origin main
-
-# Compliance prüfen
-pwsh ~/scripts/check-homogeneity.ps1
+gh auth status
+gh repo fork hindermath/home-baseline --clone=false
+$GitHubUser = gh api user --jq '.login'
+gh repo clone "${GitHubUser}/home-baseline" "$HOME/home-baseline-tmp"
+git -C "$HOME/home-baseline-tmp" remote add upstream https://github.com/hindermath/home-baseline.git
+git -C "$HOME/home-baseline-tmp" remote -v
+git -C "$HOME/home-baseline-tmp" fetch upstream
+git -C "$HOME/home-baseline-tmp" merge --ff-only upstream/main
+git -C "$HOME/home-baseline-tmp" push origin main
+pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/install-hooks.ps1"
+pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -NoPull
 ```
+
+`origin` must point to the personal fork; `upstream` must point to
+`hindermath/home-baseline`. Keep `~/home-baseline-tmp` permanently. `~/` remains
+the local runtime copy without a remote.
 
 ### Workspaces auf neuem Gerät wiederherstellen / Restoring workspaces on a new device
 
@@ -766,7 +743,7 @@ Sollte ein Skript mit einem Fehler abbrechen, kannst du deinen installierten KI-
 
 | Agent / Agent | Kommando / Command |
 |---|---|
-| **GitHub Copilot** | `gh copilot -p "Skript X ist bei Schritt Y abgebrochen. Bitte pruefe den Status und schliesse die Einrichtung ab. / Script X failed at step Y. Please check the status and finish the setup."` |
+| **GitHub Copilot** | `copilot -p "Skript X ist bei Schritt Y abgebrochen. Bitte pruefe den Status und schliesse die Einrichtung ab. / Script X failed at step Y. Please check the status and finish the setup."` |
 | **Claude Code** | `claude "Der Push zu GitHub ist fehlgeschlagen. Bitte pruefe die Remotes und hole den Push nach. / The push to GitHub failed. Please check the remotes and complete the push."` |
 | **Codex CLI** | `codex "Analysiere den letzten Fehler im Terminal und schlage eine Loesung vor. / Analyse the last terminal error and suggest a fix."` |
 | **Gemini CLI** | `gemini -p "Vervollstaendige die Git-Konfiguration, da das Bootstrap-Skript vorzeitig beendet wurde. / Complete the Git configuration because the bootstrap script ended early."` |
@@ -834,7 +811,7 @@ Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert we
 
 Jedes Script erfasst / Each script collects:
 - OS-Version, Architektur
-- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `npm`, `uv`, `python3`/`python`, `dotnet`, `go`, `java`, `javac`, `cargo`, `rustc`, `swift`, `syft`, `specify`, `codex`, `claude`, `gemini`, `gh copilot`, `code`, `hx`)
+- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `npm`, `uv`, `python3`/`python`, `dotnet`, `go`, `java`, `javac`, `cargo`, `rustc`, `swift`, `syft`, `specify`, `podman`, `codex`, `claude`, `gemini`, `copilot`, `code`, `hx`)
 - Paketmanager (`brew` / `apt`/`dnf` / `winget`)
 - Paketlisten und Registry-Vergleiche fuer `brew-apps-registry.json`, `winget-apps-registry.json`, `vscode-extensions-registry.json`, `required-cli-tools-registry.json` und `npm-agent-cli-registry.json`
 - Ergebnis von `sync-home` und `check-homogeneity`
@@ -1316,12 +1293,11 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `gitleaks` und `syft` werden ueber die Paketmanager-Registries gepflegt;
    `specify` wird bei Bedarf ueber `uv tool install specify-cli --from
    git+https://github.com/github/spec-kit.git` installiert.
-4. Die vier Agenten-CLI-Oberflaechen `codex`, `claude`, `gemini` und
-   `gh copilot` sind Required. `claude` und `gh copilot` werden
-   paketmanagerbasiert gepflegt; `gemini` kommt auf macOS/Linux ueber
-   `gemini-cli` und wird auf Linux/Windows bei fehlendem CLI per npm
-   nachinstalliert; `codex` wird bei fehlendem CLI per npm aus
-   `npm-agent-cli-registry.json` installiert.
+4. Die vier eigenstaendigen Agenten-CLIs `codex`, `claude`, `gemini` und
+   `copilot` sind Required. Paketmanager werden zuerst genutzt; wenn ein Kommando
+   danach fehlt, installiert `npm-agent-cli-registry.json` das offizielle npm-
+   Paket als gemeinsamen Fallback auf macOS, Linux und Windows. `gh copilot`
+   gilt nicht als Installationsnachweis fuer die eigenstaendige Copilot CLI.
 5. VS Code ist Required: macOS per Cask `visual-studio-code`, Windows per
    WinGet-ID `Microsoft.VisualStudioCode`. Die Required-Extensions fuer C#,
    Go, Java, Python, Rust und Swift sowie Microsoft Container Tools fuer
@@ -1333,7 +1309,8 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 6. Helix ist Required als terminalbasierter A11Y-/CLI-Editor: macOS/Linux per
    Formula `helix`, Windows per WinGet-ID `Helix.Helix`. `msedit` bleibt ein
    optionaler einfacher Terminal-Editor.
-7. Die sechs MSL-CLI-Toolchains sind Required: `.NET`, Go, Java/Javac,
+7. Podman CLI und Compose-Unterstuetzung sowie die sechs MSL-CLI-Toolchains sind
+   Required: `.NET`, Go, Java/Javac,
    Python, Rust/Cargo und Swift. Swift wird auf macOS ueber die Apple-Toolchain
    geprueft; Windows nutzt die WinGet-Toolchain; Linux ohne Homebrew meldet
    nicht nativ verfuegbare Tools transparent als offene manuelle Luecke.
@@ -1348,8 +1325,9 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 10. Abschlusskriterien: `--compare-only` meldet
    `missing_on_machine.required.*: none`,
    `gitleaks version`, `syft version`, `specify --version`,
-   `codex --version`, `claude --version`, `gemini --version`,
-   `gh copilot --help`, die sechs MSL-CLI-Pruefungen, `code --version` und
+   `podman --version`, `codex --version`, `claude --version`,
+   `gemini --version`, `copilot --version`, die sechs MSL-CLI-Pruefungen,
+   `code --version` und
    `hx --version` funktionieren, die
    Registry-Dateien sind gueltiges JSON, und der Abschluss wird in
    `docs/project-statistics.md` dokumentiert.
@@ -1367,11 +1345,11 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `gitleaks` and `syft` are maintained through the package-manager
    registries; `specify` is installed through `uv tool install specify-cli
    --from git+https://github.com/github/spec-kit.git` when missing.
-4. The four agent CLI surfaces `codex`, `claude`, `gemini`, and `gh copilot`
-   are required. `claude` and `gh copilot` are package-manager-managed;
-   `gemini` comes from `gemini-cli` on macOS/Linux and is installed through npm
-   on Linux/Windows when its CLI is missing; `codex` is installed through npm
-   from `npm-agent-cli-registry.json` when its CLI is missing.
+4. The four standalone agent CLIs `codex`, `claude`, `gemini`, and `copilot`
+   are required. Package managers run first; if a command is still missing,
+   `npm-agent-cli-registry.json` installs the official npm package as a common
+   fallback on macOS, Linux, and Windows. `gh copilot` does not count as proof
+   that the standalone Copilot CLI is installed.
 5. VS Code is required: macOS via cask `visual-studio-code`, Windows via WinGet
    ID `Microsoft.VisualStudioCode`. The required extensions for C#, Go, Java,
    Python, Rust, and Swift plus Microsoft Container Tools for Docker/Podman
@@ -1383,7 +1361,8 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 6. Helix is required as the terminal-native A11Y/CLI editor: macOS/Linux via
    formula `helix`, Windows via WinGet ID `Helix.Helix`. `msedit` remains an
    optional simple terminal editor.
-7. The six MSL CLI toolchains are required: `.NET`, Go, Java/Javac, Python,
+7. The Podman CLI and Compose support plus the six MSL CLI toolchains are
+   required: `.NET`, Go, Java/Javac, Python,
    Rust/Cargo, and Swift. Swift is checked through the Apple toolchain on
    macOS; Windows uses the WinGet toolchain; Linux without Homebrew reports
    tools that are not natively available as explicit manual gaps.
@@ -1397,8 +1376,9 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 10. Closeout criteria: `--compare-only` reports
    `missing_on_machine.required.*: none`,
    `gitleaks version`, `syft version`, `specify --version`,
-   `codex --version`, `claude --version`, `gemini --version`,
-   `gh copilot --help`, the six MSL CLI checks, `code --version`, and
+   `podman --version`, `codex --version`, `claude --version`,
+   `gemini --version`, `copilot --version`, the six MSL CLI checks,
+   `code --version`, and
    `hx --version` work, the registry files are valid JSON, and the closeout is
    documented in `docs/project-statistics.md`.
 
@@ -1406,9 +1386,18 @@ Die mitgeltende [Leitlinie Sichere Entwicklungs-Sandbox](docs/secure-development
 
 *The related [Secure Development Sandbox Guideline](docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md) describes the reference profile for secure development with AI agents in a sandbox. `absdd-image-sandbox` is available as a public training and reference repository: <https://github.com/hindermath/absdd-image-sandbox>. `home-baseline` provides guidelines, checklists, presets, and intake; the sandbox provides the executable learning and work environment; level-2 repositories provide the concrete development and hardening targets.*
 
-Für Secure-CaseTracker-Lernreihen gilt die Sandbox gestuft: Im 1. Lehrjahr wird sie erklärt und eingeordnet, ist aber keine Pflicht. Im 2. Lehrjahr wird sie als Betriebs- und Nachweiskonzept vorbereitet. Ab dem 3. Lehrjahr wird erwartet, dass Lernende KI-gestützte Entwicklung in oder mit der Sandbox nachvollziehbar planen, nutzen und begründen können. Normale Entwicklungsarbeit, Lesen, Review und Bedienung der Werkzeuge dürfen weiterhin außerhalb der Sandbox mit JetBrains IDEs, VS Code oder unter Windows mit Visual Studio erfolgen.
+Fuer alle drei Secure-Trader-Lernreihen gilt ab Unit 00 eine klare Grenze: Wird
+kein KI-Agent verwendet, darf die Sandbox-Nutzung begruendet als `N/A`
+dokumentiert werden. Jeder Agentenaufruf fuer Secure CaseTracker, Secure
+OrderDesk oder Secure ServiceHarvester erfolgt dagegen verbindlich in der
+freigegebenen Podman-Sandbox. Normale agentenlose Entwicklung, Lesen und Review
+duerfen weiterhin ausserhalb der Sandbox stattfinden.
 
-*For Secure CaseTracker learning series, sandbox use is staged: in year 1 it is explained and classified, but not mandatory. In year 2 it is prepared as an operational and evidence concept. From year 3 onward, learners are expected to plan, use, and justify AI-assisted development in or with the sandbox. Normal development work, reading, review, and tool operation may still happen outside the sandbox with JetBrains IDEs, VS Code, or Visual Studio on Windows.*
+*A clear boundary applies to all three Secure Trader learning series from unit
+00 onward: when no AI agent is used, sandbox use may be documented as justified
+`N/A`. Every agent invocation for Secure CaseTracker, Secure OrderDesk, or Secure
+ServiceHarvester, however, must run inside the approved Podman sandbox. Normal
+agent-free development, reading, and review may continue outside the sandbox.*
 
 Die Lernmaterialien unter [`docs/learning-units/`](docs/learning-units/README.md) übertragen diese Grundlagen in ausführliche, DE-first/EN-second aufgebaute Lerneinheiten. Der Bereich ist die Level-0-Quelle fuer wiederverwendbare Lernreihen ab dem 1., 2. und 3. Lehrjahr. Der [Lernreihen-Blueprint](docs/learning-units/Lernreihen-Blueprint.md), das [Lernreihen-Register](docs/learning-units/Lernreihen-Register.md), das [IT-Berufe-Mapping](docs/learning-units/IT-Berufe-Secure-CaseTracker-Mapping.md) und die Vorlagen unter [`docs/learning-units/templates/`](docs/learning-units/templates/) definieren das generische Muster fuer neue Reihen.
 
@@ -1759,107 +1748,56 @@ Hier sind die drei wichtigsten Konzepte, die du heute lernst:
 
 ### Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools
 
-Bevor wir starten, müssen wir die „Handwerker-Kiste“ füllen. Wir installieren Programme, die im Hintergrund arbeiten.
+Die vollstaendige, verbindliche Reihenfolge steht in
+[`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
+Beginne dort mit Betriebssystem, Shell, Git, GitHub CLI und ripgrep. Danach
+werden die weiteren Required-Werkzeuge ueber das passende Wartungsskript zuerst
+in der Vorschau und anschliessend im echten Lauf eingerichtet.
 
-*Before we start, we need to fill the "toolbox". We install programs that work in the background.*
-
-#### Welches Betriebssystem nutzt du? / Which operating system do you use?
-
-| Windows (PowerShell 7) | macOS (Terminal) | Linux / Ubuntu |
-|---|---|---|
-| Nutze die **PowerShell 7**. Sie ist viel maechtiger als die alte Eingabeaufforderung (CMD). / Use **PowerShell 7**. It is much more capable than the old Command Prompt (CMD). | Nutze die **Terminal-App**. / Use the **Terminal app**. | Nutze das Standard-Terminal deiner Distribution. / Use your distribution's default terminal. |
-
-#### Installation der Werkzeuge / Install the tools
-
-**1. Git:** Die Zeitmaschine für deinen Code.
-**2. GitHub CLI (`gh`):** Ein Werkzeug, mit dem du GitHub direkt aus dem Terminal steuern kannst.
-**3. ripgrep (`rg`):** Ein extrem schneller Suchdienst für Texte in Dateien.
-
-> **Anleitung für Windows (PowerShell als Administrator):**
-> ```powershell
-> winget install --id Git.Git
-> winget install --id GitHub.cli
-> winget install --id BurntSushi.ripgrep.MSVC
-> winget install --id Microsoft.PowerShell
-> ```
-> *Nach der Installation: Schließe das Fenster und öffne eine neue **PowerShell 7**.*
-
-> **Anleitung für macOS (Terminal):**
-> ```bash
-> # Installiert Homebrew (den "App Store" für Entwickler)
-> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-> # Installiert die Tools
-> brew install git gh ripgrep
-> ```
-
-**Wichtig: Bei GitHub anmelden!**
-Gib diesen Befehl ein und folge den Anweisungen im Browser:
-```bash
-gh auth login
-```
-*Wähle: GitHub.com → HTTPS → Yes (Authenticate Git) → Login with a web browser.*
+*The complete binding sequence is in
+[`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
+Start there with your operating system, shell, Git, GitHub CLI, and ripgrep.
+Then set up the remaining required tools through the matching maintenance script,
+first as a preview and then as a real run.*
 
 ---
 
-### Schritt 1: Dein eigenes Template erstellen / Step 1: Create your own template
+### Schritt 1: Deinen persoenlichen Fork anlegen / Step 1: Create Your Personal Fork
 
-Wir nutzen ein „Template“ (eine Vorlage). Das ist wie ein vorgefertigtes Formular, das du für dich kopierst.
+Lege einen persoenlichen Fork von `hindermath/home-baseline` an. Ein Fork behaelt
+die Verbindung zur kanonischen Quelle. Dadurch kann dein lokaler Klon spaeter
+`origin` fuer eigene Pushes und `upstream` fuer freigegebene Aktualisierungen
+verwenden. Ein unabhaengiges Repository ueber **Use this template** ist fuer
+diesen betreuten Lernendenpfad nicht vorgesehen.
 
-*We use a "template". It is like a pre-filled form that you copy for your own use.*
+*Create a personal fork of `hindermath/home-baseline`. A fork keeps its
+connection to the canonical source. Your local clone can therefore use `origin`
+for your own pushes and `upstream` for approved updates. An independent
+repository created through **Use this template** is not used for this guided
+learner path.*
 
-1.  Öffne im Browser die Vorlage, die dein Ausbilder dir gegeben hat (z. B. `hindermath/home-baseline`).
-2.  Klicke oben rechts auf den grünen Button **„Use this template“** → **„Create a new repository“**.
-3.  **Name:** Gib ihm einen Namen (z. B. `meine-it-umgebung`).
-4.  **Sichtbarkeit:** Wähle **Private**. Das ist wichtig, damit nur du deinen Code sehen kannst.
-5.  Klicke auf **„Create repository“**.
-
-Du hast nun deine eigene Kopie in der Cloud! Die Adresse (URL) sieht so aus: `https://github.com/DEIN_NAME/meine-it-umgebung`.
-
-*You now have your own copy in the cloud. The URL looks like this: `https://github.com/YOUR_NAME/my-it-environment`.*
+```bash
+gh auth status
+gh repo fork hindermath/home-baseline --clone=false
+```
 
 ---
 
 ### Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer
 
-Jetzt bringen wir die Dateien aus der Cloud auf deinen Computer und richten alles ein.
+Klone deinen persoenlichen Fork dauerhaft als `~/home-baseline-tmp`, richte
+`upstream` ein und pruefe beide Remotes. Loesche diesen Ordner nicht: Er ist deine
+mit GitHub verbundene Wartungs- und Entwicklungsarbeitskopie. `~/` bleibt die
+lokale Betriebskopie ohne Remote. Die genauen macOS/Linux- und Windows-Befehle
+stehen in den Schritten 5 bis 10 der
+[Startanleitung](docs/learning-units/START-HERE-FUER-LERNENDE.md#5-persoenlichen-fork-dauerhaft-klonen--clone-your-fork-permanently).
 
-*Now we bring the files from the cloud to your computer and set everything up.*
-
-**Erklärung der Befehle:**
-- `cd ~`: „Change Directory to Home“ — Wir gehen in dein persönliches Verzeichnis.
-- `git clone ...`: Wir laden eine Kopie deines Repos herunter.
-- `bash` / `pwsh`: Wir führen ein Skript aus, das die ganze Arbeit für uns macht.
-
-*Explanation of the commands:*
-- `cd ~`: "Change Directory to Home" - we move into your personal directory.
-- `git clone ...`: we download a copy of your repository.
-- `bash` / `pwsh`: we run a script that does the setup work for us.
-
-#### Fuer macOS / Linux / For macOS / Linux
-```bash
-cd ~
-# Lade dein Repo (Ersetze DEIN_NAME und REPO_NAME!)
-git clone https://github.com/DEIN_NAME/REPO_NAME.git home-baseline-tmp
-
-# Starte die Einrichtung (sync-home kopiert alle Scripte)
-bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
-
-# Aufräumen (wir brauchen den temporären Ordner nicht mehr)
-rm -rf home-baseline-tmp
-```
-
-#### Fuer Windows / For Windows
-```powershell
-Set-Location ~
-# Lade dein Repo
-git clone https://github.com/DEIN_NAME/REPO_NAME.git home-baseline-tmp
-
-# Starte die Einrichtung
-pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
-
-# Aufräumen
-Remove-Item home-baseline-tmp -Recurse -Force
-```
+*Clone your personal fork permanently as `~/home-baseline-tmp`, configure
+`upstream`, and verify both remotes. Do not delete this directory: it is your
+GitHub-connected maintenance and development checkout. `~/` remains the local
+runtime copy without a remote. The exact macOS/Linux and Windows commands are in
+steps 5 through 10 of the
+[start guide](docs/learning-units/START-HERE-FUER-LERNENDE.md#5-persoenlichen-fork-dauerhaft-klonen--clone-your-fork-permanently).*
 
 ---
 
@@ -1938,28 +1876,16 @@ Du musst keine Angst haben, dass deine Arbeit überschrieben wird. Das Skript fo
 
 ### Schritt 5: Arbeiten mit der KI (Dein Mentor) / Step 5: Working with AI (Your Mentor)
 
-Du bist nicht allein! Wir haben KI-Agenten installiert, die dir helfen können. Wie du diese Werkzeuge **bewusst und zielgerichtet** einsetzt, erfährst du im ausführlichen Abschnitt:
+Die Wartung installiert und prueft Codex, Claude Code, Gemini CLI und die
+eigenstaendige GitHub Copilot CLI. Fuer Secure-Trader-Projekte startest du diese
+Agenten nicht auf dem Host. Arbeite zuerst den Sandbox-Preflight durch und folge
+dem dokumentierten
+[ersten kontrollierten Agentenlauf](docs/learning-units/START-HERE-FUER-LERNENDE.md#17-erster-kontrollierter-agentenlauf--first-controlled-agent-run).
 
-→ **[Arbeiten mit agentischer KI / Working with Agentic AI](#arbeiten-mit-agentischer-ki--working-with-agentic-ai)**
-
-Hier ein paar schnelle Beispiele für den Start:
-...
-`gh copilot -p "Ich habe eine Fehlermeldung bei git push erhalten. Was bedeutet das?"`
-
-Oder wenn ein Skript abgebrochen ist:
-`claude "Das bootstrap-workspace Skript ist hängengeblieben. Kannst du prüfen, ob alles fertig ist?"`
-
-*You are not alone. We installed AI agents that can help you. You can learn how to use these tools consciously and with a clear goal in the detailed section below:*
-
-*See: **[Arbeiten mit agentischer KI / Working with Agentic AI](#arbeiten-mit-agentischer-ki--working-with-agentic-ai)**.*
-
-*Here are two quick starter examples:*
-
-`gh copilot -p "I got an error during git push. What does it mean?"`
-
-*Or if a script stopped unexpectedly:*
-
-`claude "The bootstrap-workspace script stopped early. Can you check whether everything is complete?"`
+*Maintenance installs and checks Codex, Claude Code, Gemini CLI, and the
+standalone GitHub Copilot CLI. For Secure Trader projects, do not start these
+agents on the host. Complete the sandbox preflight first and follow the documented
+[first controlled agent run](docs/learning-units/START-HERE-FUER-LERNENDE.md#17-erster-kontrollierter-agentenlauf--first-controlled-agent-run).*
 
 ---
 
@@ -2046,22 +1972,24 @@ Spec-Kit-Skills in `.agents/skills/` werden von der Copilot CLI automatisch erka
 
 *Spec-Kit skills in `.agents/skills/` are automatically discovered by the Copilot CLI — no further setup needed.*
 
-Copilot CLI ist in diesem Repository der am niedrigsten reibende Einstieg, wenn `gh` ohnehin schon benutzt wird. Der Vorteil liegt nicht nur in der Installation, sondern auch darin, dass Copilot CLI gut zu einem GitHub-zentrierten Workflow mit Repos, Issues und Terminal-Aufrufen passt. Fuer Spec-Kit ist besonders wichtig, dass die vorhandenen Skills in `.agents/skills/` direkt gefunden werden koennen, ohne dass du zusaetzliche Integrationsdateien erzeugen musst.
+Copilot CLI ist ein eigenstaendiges Kommando und keine Erweiterung der GitHub CLI.
+Es passt weiterhin zu einem GitHub-zentrierten Workflow mit Repositories, Issues
+und Terminal-Aufrufen. Fuer Spec Kit ist besonders wichtig, dass vorhandene
+Skills in `.agents/skills/` direkt gefunden werden koennen.
 
-*In this repository, Copilot CLI is the lowest-friction entry point if you already use `gh` anyway. The advantage is not only installation, but also that Copilot CLI fits naturally into a GitHub-centred workflow with repositories, issues, and terminal commands. For Spec-Kit, the key point is that the existing skills in `.agents/skills/` can be discovered directly without creating additional integration files first.*
+*Copilot CLI is a standalone command, not a GitHub CLI extension. It still fits
+a GitHub-centred workflow with repositories, issues, and terminal commands. For
+Spec Kit, the key point is that existing skills in `.agents/skills/` can be
+discovered directly.*
 
-> **Voraussetzung / Prerequisite:** GitHub CLI `gh` (s. Abschnitt [§ 2. GitHub CLI](#2-github-cli-gh))
+> **Voraussetzung / Prerequisite:** GitHub-Konto mit Copilot-Berechtigung sowie
+> Node.js/npm oder die plattformspezifische Paketmanager-Installation.
 
 ```bash
-# Alle Plattformen / All platforms
-# 1. Copilot-Extension installieren (einmalig / one-time)
-gh extension install github/gh-copilot
-
-# 2. Anmelden (falls noch nicht geschehen / if not already done)
-gh auth login
-
-# 3. Copilot CLI in deinem Projektverzeichnis starten
-gh copilot
+# Alle Plattformen: gemeinsamer npm-Fallback / all platforms: common npm fallback
+npm install -g @github/copilot
+copilot --version
+copilot
 ```
 
 > Skills werden automatisch aus `.agents/skills/` geladen.

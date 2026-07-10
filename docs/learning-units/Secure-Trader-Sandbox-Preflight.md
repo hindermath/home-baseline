@@ -25,6 +25,12 @@ understandable in everyday language already in the first training year. It compl
 `Leitlinie_Sichere-Entwicklungs-Sandbox.md` and the checklist `CL_12_Agentische-KI-Sandbox.md`; in case of
 conflict, the guideline and the checklist take precedence.
 
+**DE:** Wenn du die Umgebung noch nicht eingerichtet hast, beginne mit
+[`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md).
+
+**EN:** If you have not set up the environment yet, start with
+[`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md).
+
 ## Kernregel / Core Rule
 
 **DE:** Jeder Aufruf eines KI-Agenten (zum Beispiel Codex, Claude, Copilot, Gemini oder OpenCode) fuer Arbeit
@@ -94,39 +100,44 @@ Jahr 3 / Year 3  (Tracks):       Sandbox-Isolation, Integration und Betriebsnach
 
 ## Runbook (host-agnostisch) / Runbook (Host-Agnostic)
 
-**DE:** Die genauen Service-Namen, der Entrypoint und der konkrete Agenten-Aufruf stehen im
-`absdd-image-sandbox`-README (Single Source of Truth). Das folgende Muster zeigt die Reihenfolge; `podman` und
-`docker` sind austauschbar. Platzhalter `<sandbox-service>` und `<agent-cli>` gemaess README ersetzen.
+**DE:** Die genauen Service-Namen, der Entrypoint und der konkrete Agenten-Aufruf
+stehen im `absdd-image-sandbox`-README (Single Source of Truth). Die
+Referenzlaufzeit ist ausschliesslich Podman. Docker und Docker Desktop sind kein
+alternativer Lernpfad. Der Compose-Service heisst `ade`.
 
-**EN:** The exact service names, the entrypoint, and the concrete agent invocation are in the
-`absdd-image-sandbox` README (single source of truth). The pattern below shows the order; `podman` and
-`docker` are interchangeable. Replace the placeholders `<sandbox-service>` and `<agent-cli>` per the README.
+**EN:** The exact service names, entrypoint, and concrete agent invocation are in
+the `absdd-image-sandbox` README (single source of truth). Podman is the only
+reference runtime. Docker and Docker Desktop are not an alternative learner
+path. The Compose service is named `ade`.
 
 ```bash
 # 1. Konfiguration pruefen / verify the compose configuration
-podman compose config --no-interpolate      # oder / or: docker compose config
+podman-compose config
 
 # 2. Sandbox-Image bauen (einmalig bzw. bei Aenderung) / build the sandbox image (once or on change)
-podman compose build --pull                 # oder / or: docker compose build --pull
+podman compose build --pull
 
 # 3. Sandbox starten / start the sandbox
-podman compose up -d                        # oder / or: docker compose up -d
+podman compose up -d
 
 # 4. In die Sandbox wechseln und ERST DORT den KI-Agenten starten
 #    enter the sandbox and start the AI agent ONLY there
-podman compose exec <sandbox-service> bash  # oder / or: docker compose exec <sandbox-service> bash
+podman compose exec ade bash
 #    -> im Container / inside the container:
-#       <agent-cli>        # z. B. / e.g. codex | claude | opencode  --  Aufruf NUR hier / invoke ONLY here
+#       <agent-cli>        # codex | claude | gemini | copilot | opencode
 
 # 5. Nach der Arbeit herunterfahren / shut down after work
-podman compose down                         # oder / or: docker compose down
+bash scripts/compose-down-with-audit.sh --podman
 ```
 
-**DE:** Falsch waere, `<agent-cli>` direkt in einer Host-Shell (ausserhalb von Schritt 4) auszufuehren. Der
-Agenten-Aufruf gehoert ausschliesslich in den Container.
+**DE:** Falsch waere, `<agent-cli>` direkt in einer Host-Shell (ausserhalb von
+Schritt 4) auszufuehren. Der Agenten-Aufruf gehoert ausschliesslich in den
+Container. Wenn kein Agent verwendet wird, darf dieser Punkt mit Begruendung als
+`N/A` dokumentiert werden.
 
-**EN:** It would be wrong to run `<agent-cli>` directly in a host shell (outside step 4). The agent invocation
-belongs exclusively inside the container.
+**EN:** It would be wrong to run `<agent-cli>` directly in a host shell (outside
+step 4). The agent invocation belongs exclusively inside the container. If no
+agent is used, this item may be documented as justified `N/A`.
 
 ## Was auf dem Host bleiben darf / What May Stay on the Host
 

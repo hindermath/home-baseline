@@ -24,6 +24,10 @@ Dateiname-Prefix. Standard wird aus SeriesName abgeleitet.
 
 .PARAMETER StartGuide
 Startanleitung relativ zu SourceDir oder absolut. Standard ist
+docs/learning-units/START-HERE-FUER-LERNENDE.md.
+
+.PARAMETER GitGuide
+Git-Startanleitung relativ zu SourceDir oder absolut. Standard ist
 docs/learning-units/GIT-START-FUER-LERNENDE.md.
 
 .EXAMPLE
@@ -35,7 +39,8 @@ param(
     [string]$SeriesName = '',
     [string]$OutputDir = '',
     [string]$PackagePrefix = '',
-    [string]$StartGuide = 'docs/learning-units/GIT-START-FUER-LERNENDE.md'
+    [string]$StartGuide = 'docs/learning-units/START-HERE-FUER-LERNENDE.md',
+    [string]$GitGuide = 'docs/learning-units/GIT-START-FUER-LERNENDE.md'
 )
 
 Set-StrictMode -Version Latest
@@ -106,6 +111,19 @@ if ([System.IO.Path]::IsPathRooted($StartGuide)) {
     $startGuidePath = Join-Path $SourceDir $StartGuide
 }
 
+if ([System.IO.Path]::IsPathRooted($GitGuide)) {
+    $gitGuidePath = $GitGuide
+} else {
+    $gitGuidePath = Join-Path $SourceDir $GitGuide
+}
+
+if (-not (Test-Path -LiteralPath $startGuidePath -PathType Leaf)) {
+    throw "Verbindliche Startanleitung fehlt: $startGuidePath"
+}
+if (-not (Test-Path -LiteralPath $gitGuidePath -PathType Leaf)) {
+    throw "Verbindliche Git-Startanleitung fehlt: $gitGuidePath"
+}
+
 $shortSha = Get-HBGitValue -Repo $SourceDir -GitArgs @('rev-parse', '--short', 'HEAD')
 if (-not $shortSha) { $shortSha = 'nogit' }
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
@@ -118,7 +136,8 @@ if ($WhatIfPreference) {
     Write-Host "Reihe:  $SeriesName"
     Write-Host "Quelle: $SourceDir"
     Write-Host "Ziel:   $zipPath"
-    Write-Host "Guide:  $startGuidePath"
+    Write-Host "Start:  $startGuidePath"
+    Write-Host "Git:    $gitGuidePath"
     Write-Host 'Ausgeschlossen: .git, dist, Build-, IDE- und lokale Settings-Artefakte'
     return
 }
@@ -130,9 +149,8 @@ if ($PSCmdlet.ShouldProcess($zipPath, 'Create learning series ZIP package')) {
     New-Item -ItemType Directory -Path $packageRoot -Force | Out-Null
     try {
         Copy-HBLearningTree -SourceRoot $SourceDir -DestinationRoot $packageRoot -CurrentPath $SourceDir
-        if (Test-Path $startGuidePath) {
-            Copy-Item -LiteralPath $startGuidePath -Destination (Join-Path $packageRoot (Split-Path $startGuidePath -Leaf)) -Force
-        }
+        Copy-Item -LiteralPath $startGuidePath -Destination (Join-Path $packageRoot (Split-Path $startGuidePath -Leaf)) -Force
+        Copy-Item -LiteralPath $gitGuidePath -Destination (Join-Path $packageRoot (Split-Path $gitGuidePath -Leaf)) -Force
 
         $manifest = Join-Path $packageRoot 'PACKAGING-MANIFEST.txt'
         $lines = [System.Collections.Generic.List[string]]::new()
@@ -153,11 +171,8 @@ if ($PSCmdlet.ShouldProcess($zipPath, 'Create learning series ZIP package')) {
             }
         }
         $lines.Add('')
-        if (Test-Path $startGuidePath) {
-            $lines.Add("Start here after extracting: $(Split-Path $startGuidePath -Leaf)")
-        } else {
-            $lines.Add('Start guide: not included')
-        }
+        $lines.Add("Start here after extracting: $(Split-Path $startGuidePath -Leaf)")
+        $lines.Add("Git guide: $(Split-Path $gitGuidePath -Leaf)")
         Set-Content -Path $manifest -Value $lines -Encoding UTF8
 
         if (Test-Path $zipPath) { Remove-Item -Path $zipPath -Force }

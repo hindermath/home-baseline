@@ -6,6 +6,10 @@
 **Zielsprachen / Target languages:** C#, Go, Java, Python, Rust, Swift
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA
 
+> **Start / Start:** Neue Lernende beginnen mit
+> [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md), bevor sie Unit 00
+> oder einen KI-Agenten starten.
+
 ## Systemlandschaft / System Landscape
 
 **DE:** Die fiktive Handelsfirma **Secure Trader** betreibt eine Bestell-/Handelsplattform auf Northwind-Datenbasis. Die didaktische Software-Schmiede **EuFPA** baut und betreut für Secure Trader drei ineinandergreifende, aber je **eigenständig nutzbare** Systeme:

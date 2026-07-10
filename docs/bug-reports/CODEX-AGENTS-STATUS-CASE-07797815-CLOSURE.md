@@ -125,6 +125,6 @@ Damit war die vorherige Fehlersituation bei frischem Start nicht mehr reproduzie
 
 ## Zugehoerige Dateien / Related Files
 
-- [CODEX-AGENTS-STATUS-BUG-REPORT.md](/Users/thorstenhindermann/home-baseline-tmp/docs/bug-reports/CODEX-AGENTS-STATUS-BUG-REPORT.md)
-- [CODEX-AGENTS-STATUS-OUTPUT.md](/Users/thorstenhindermann/home-baseline-tmp/docs/bug-reports/CODEX-AGENTS-STATUS-OUTPUT.md)
-- [CODEX-AGENTS-STATUS-REPLY-TO-OPENAI.md](/Users/thorstenhindermann/home-baseline-tmp/docs/bug-reports/CODEX-AGENTS-STATUS-REPLY-TO-OPENAI.md)
+- [CODEX-AGENTS-STATUS-BUG-REPORT.md](CODEX-AGENTS-STATUS-BUG-REPORT.md)
+- [CODEX-AGENTS-STATUS-OUTPUT.md](CODEX-AGENTS-STATUS-OUTPUT.md)
+- [CODEX-AGENTS-STATUS-REPLY-TO-OPENAI.md](CODEX-AGENTS-STATUS-REPLY-TO-OPENAI.md)

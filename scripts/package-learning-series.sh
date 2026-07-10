@@ -6,7 +6,8 @@ SOURCE_DIR=""
 SERIES_NAME=""
 OUTPUT_DIR=""
 PACKAGE_PREFIX=""
-START_GUIDE="docs/learning-units/GIT-START-FUER-LERNENDE.md"
+START_GUIDE="docs/learning-units/START-HERE-FUER-LERNENDE.md"
+GIT_GUIDE="docs/learning-units/GIT-START-FUER-LERNENDE.md"
 DRY_RUN=0
 
 usage() {
@@ -22,6 +23,7 @@ Options:
   --output-dir DIR       Zielordner fuer ZIP und SHA256
   --package-prefix NAME  Dateiname-Prefix; Standard aus --series-name
   --start-guide PATH     Startanleitung relativ zu --source-dir oder absolut
+  --git-guide PATH       Git-Startanleitung relativ zu --source-dir oder absolut
   --dry-run              Vorschau ohne ZIP-Erzeugung
   -h, --help             Hilfe anzeigen
 USAGE
@@ -52,6 +54,11 @@ while [ "$#" -gt 0 ]; do
     --start-guide)
       [ "$#" -ge 2 ] || { echo "ERROR: --start-guide braucht einen Wert" >&2; exit 1; }
       START_GUIDE="$2"
+      shift 2
+      ;;
+    --git-guide)
+      [ "$#" -ge 2 ] || { echo "ERROR: --git-guide braucht einen Wert" >&2; exit 1; }
+      GIT_GUIDE="$2"
       shift 2
       ;;
     --dry-run)
@@ -107,6 +114,15 @@ else
   START_GUIDE_PATH="${SOURCE_DIR}/${START_GUIDE}"
 fi
 
+if [[ "$GIT_GUIDE" = /* ]]; then
+  GIT_GUIDE_PATH="$GIT_GUIDE"
+else
+  GIT_GUIDE_PATH="${SOURCE_DIR}/${GIT_GUIDE}"
+fi
+
+[ -f "$START_GUIDE_PATH" ] || { echo "ERROR: verbindliche Startanleitung fehlt: $START_GUIDE_PATH" >&2; exit 1; }
+[ -f "$GIT_GUIDE_PATH" ] || { echo "ERROR: verbindliche Git-Startanleitung fehlt: $GIT_GUIDE_PATH" >&2; exit 1; }
+
 short_sha="$(git -C "$SOURCE_DIR" rev-parse --short HEAD 2>/dev/null || printf 'nogit')"
 stamp="$(date -u '+%Y%m%dT%H%M%SZ')"
 package_name="${PACKAGE_PREFIX}-learning-package-${stamp}-${short_sha}"
@@ -134,7 +150,8 @@ if [ "$DRY_RUN" -eq 1 ]; then
   echo "Reihe:  ${SERIES_NAME}"
   echo "Quelle: ${SOURCE_DIR}"
   echo "Ziel:   ${zip_path}"
-  echo "Guide:  ${START_GUIDE_PATH}"
+  echo "Start:  ${START_GUIDE_PATH}"
+  echo "Git:    ${GIT_GUIDE_PATH}"
   echo "Ausgeschlossen: .git, dist, Build-, IDE- und lokale Settings-Artefakte"
   rsync -an --delete "${excludes[@]}" "${SOURCE_DIR}/" "/tmp/${package_name}/${ROOT_NAME}/" | sed -n '1,80p'
   exit 0
@@ -147,9 +164,8 @@ package_root="${tmp_dir}/${ROOT_NAME}"
 mkdir -p "$package_root"
 
 rsync -a --delete "${excludes[@]}" "${SOURCE_DIR}/" "${package_root}/"
-if [ -f "$START_GUIDE_PATH" ]; then
-  cp "$START_GUIDE_PATH" "${package_root}/$(basename "$START_GUIDE_PATH")"
-fi
+cp "$START_GUIDE_PATH" "${package_root}/$(basename "$START_GUIDE_PATH")"
+cp "$GIT_GUIDE_PATH" "${package_root}/$(basename "$GIT_GUIDE_PATH")"
 
 manifest="${package_root}/PACKAGING-MANIFEST.txt"
 {
@@ -172,11 +188,8 @@ manifest="${package_root}/PACKAGING-MANIFEST.txt"
     echo "- ${name}: branch=${branch}, commit=${commit}, dirty=${dirty}"
   done
   echo
-  if [ -f "$START_GUIDE_PATH" ]; then
-    echo "Start here after extracting: $(basename "$START_GUIDE_PATH")"
-  else
-    echo "Start guide: not included"
-  fi
+  echo "Start here after extracting: $(basename "$START_GUIDE_PATH")"
+  echo "Git guide: $(basename "$GIT_GUIDE_PATH")"
 } > "$manifest"
 
 rm -f "$zip_path" "$sha_path"
@@ -184,7 +197,10 @@ rm -f "$zip_path" "$sha_path"
   cd "$tmp_dir"
   zip -qr "$zip_path" "$ROOT_NAME"
 )
-shasum -a 256 "$zip_path" > "$sha_path"
+(
+  cd "$OUTPUT_DIR"
+  shasum -a 256 "$(basename "$zip_path")" > "$(basename "$sha_path")"
+)
 
 echo "ZIP erzeugt: ${zip_path}"
 echo "SHA256:      ${sha_path}"

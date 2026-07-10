@@ -16,9 +16,9 @@ pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir DIR [option
 
 ## DESCRIPTION
 
-Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Paket enthaelt keine `.git`-Verzeichnisse, keine urspruenglichen Remote-URLs und keine lokalen Build- oder IDE-Artefakte. Es ist fuer die Weitergabe an Lernende gedacht.
+Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Paket enthaelt keine `.git`-Verzeichnisse, keine urspruenglichen Remote-URLs und keine lokalen Build- oder IDE-Artefakte. `START-HERE-FUER-LERNENDE.md` ist der verbindliche Root-Einstieg; `GIT-START-FUER-LERNENDE.md` wird ebenfalls aufgenommen. Fehlt eine der beiden Dateien, bricht die Paketierung ab.
 
-*The scripts create a ZIP package from a level-1 learning-series folder. The package contains no `.git` directories, no original remote URLs, and no local build or IDE artefacts. It is intended for distribution to learners.*
+*The scripts create a ZIP package from a level-1 learning-series folder. The package contains no `.git` directories, no original remote URLs, and no local build or IDE artefacts. `START-HERE-FUER-LERNENDE.md` is the required root entry; `GIT-START-FUER-LERNENDE.md` is included as well. Packaging fails when either file is missing.*
 
 ## OPTIONS
 
@@ -29,6 +29,7 @@ Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Pake
 | `--output-dir DIR` | `-OutputDir DIR` | Zielordner fuer ZIP und SHA256 |
 | `--package-prefix NAME` | `-PackagePrefix NAME` | Dateiname-Prefix |
 | `--start-guide PATH` | `-StartGuide PATH` | Startanleitung relativ zu `SourceDir` oder absolut |
+| `--git-guide PATH` | `-GitGuide PATH` | Git-Startanleitung relativ zu `SourceDir` oder absolut |
 | `--dry-run` | `-WhatIf` | Vorschau ohne ZIP-Erzeugung |
 
 ## EXAMPLES
@@ -54,6 +55,7 @@ pwsh -NoProfile -File scripts/package-learning-series.ps1 `
 - ZIP-Datei unter `docs/learning-units/dist/` des Quellordners, sofern kein anderer Zielordner angegeben wird.
 - SHA256-Datei mit gleichem Namen und Suffix `.sha256`.
 - `PACKAGING-MANIFEST.txt` im ZIP mit Branch-/Commit-/Dirty-Status ohne Remote-URLs.
+- Beide Startanleitungen im Paket-Root; das Manifest verweist auf beide Dateien.
 
 ## EXIT STATUS
 
