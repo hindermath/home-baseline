@@ -163,7 +163,8 @@ function Invoke-RlSeCommitAndPush {
 
     git -C $Repo diff --cached --quiet
     if ($LASTEXITCODE -ne 0) {
-        git -C $Repo commit -m 'docs: prepare RL-SE checklist self-assessment'
+        $message = if ($BaselineOnly) { 'docs: update secure development baseline to 3.0.0' } else { 'docs: prepare RL-SE checklist self-assessment' }
+        git -C $Repo commit -m $message
         if ($LASTEXITCODE -ne 0) { throw "git commit fehlgeschlagen in $Repo" }
     }
 

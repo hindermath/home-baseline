@@ -215,7 +215,11 @@ commit_and_push() {
   git -C "$repo" diff --cached --check
 
   if ! git -C "$repo" diff --cached --quiet; then
-    git -C "$repo" commit -m "docs: prepare RL-SE checklist self-assessment"
+    if $OPT_BASELINE_ONLY; then
+      git -C "$repo" commit -m "docs: update secure development baseline to 3.0.0"
+    else
+      git -C "$repo" commit -m "docs: prepare RL-SE checklist self-assessment"
+    fi
   fi
 
   if $OPT_PUSH; then
