@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # bootstrap-workspace.sh
-# Richtet ein neues Projektverzeichnis als privates GitHub- oder GitLab-Repo ein:
+# Richtet ein neues Projektverzeichnis als privates Remote-Repo ein:
 #   git init · .gitignore · Scripts kopieren · repo create · push · Hooks installieren
 #
 # Verwendung:
@@ -12,12 +12,21 @@
 #
 # Optionen:
 #   --dry-run               Zeigt alle Schritte ohne Ausführung
-#   --platform <github|gitlab>
+#   --platform <github|gitlab|forgejo|codeberg>
 #   --gitlab-url <https://gitlab.example.com>
+#   --forgejo-url <https://forgejo.example.com>
+#   --no-remote             Nur lokales Git-Repository
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FORGEJO_LIB="$SCRIPT_DIR/lib/hg-forgejo.sh"
+if [ ! -f "$FORGEJO_LIB" ]; then
+  echo "Fehler: Forgejo-Bibliothek fehlt: $FORGEJO_LIB" >&2
+  exit 1
+fi
+# shellcheck source=scripts/lib/hg-forgejo.sh
+source "$FORGEJO_LIB"
 
 if [ "${1:-}" = "--teardown" ]; then
   shift
@@ -43,9 +52,12 @@ normalize_name() {
 # --- Parameter parsen ----------------------------------------------------------
 
 DRY_RUN=0
+NO_REMOTE=0
 PLATFORM="github"
 GITLAB_URL="https://gitlab.com"
 GITLAB_HOSTNAME=""
+FORGEJO_URL=""
+FORGEJO_BASE_URL=""
 WORKSPACE_NAME=""
 REPO_NAME=""
 REPO_DESC=""
@@ -55,12 +67,19 @@ while [ $# -gt 0 ]; do
     --dry-run)
       DRY_RUN=1
       ;;
+    --no-remote)
+      NO_REMOTE=1
+      ;;
     --platform)
       PLATFORM="${2:-}"
       shift
       ;;
     --gitlab-url)
       GITLAB_URL="${2:-}"
+      shift
+      ;;
+    --forgejo-url)
+      FORGEJO_URL="${2:-}"
       shift
       ;;
     --help|-h)
@@ -98,10 +117,10 @@ done
 [ -z "$WORKSPACE_NAME" ] && usage
 
 case "$PLATFORM" in
-  github|gitlab) ;;
+  github|gitlab|forgejo|codeberg) ;;
   *)
-    echo "Fehler: Ungültige Plattform '$PLATFORM'. Gültige Werte: github, gitlab." >&2
-    echo "Error: Invalid platform '$PLATFORM'. Valid values: github, gitlab." >&2
+    echo "Fehler: Ungültige Plattform '$PLATFORM'. Gültige Werte: github, gitlab, forgejo, codeberg." >&2
+    echo "Error: Invalid platform '$PLATFORM'. Valid values: github, gitlab, forgejo, codeberg." >&2
     exit 1
     ;;
 esac
@@ -117,6 +136,10 @@ if [ "$PLATFORM" = "gitlab" ]; then
   esac
   GITLAB_HOSTNAME="${GITLAB_URL#https://}"
   GITLAB_HOSTNAME="${GITLAB_HOSTNAME%/}"
+fi
+
+if [ "$NO_REMOTE" -eq 0 ] && { [ "$PLATFORM" = "forgejo" ] || [ "$PLATFORM" = "codeberg" ]; }; then
+  FORGEJO_BASE_URL="$(hb_forgejo_resolve_base_url "$PLATFORM" "$FORGEJO_URL")"
 fi
 
 HOME_DIR="$(cd ~ && pwd)"
@@ -156,7 +179,15 @@ if [ -d "$WORKSPACE_DIR/.git" ]; then
   exit 1
 fi
 
-if [ "$PLATFORM" = "github" ]; then
+if [ "$NO_REMOTE" -eq 1 ]; then
+  REPO_SLUG="$(normalize_name "$REPO_NAME")"
+  SLUG_CHANGED=0
+elif [ "$PLATFORM" = "github" ]; then
+  if [ "$DRY_RUN" -eq 1 ]; then
+    GH_USER="<GITHUB-USER>"
+    REPO_SLUG="$REPO_NAME"
+    SLUG_CHANGED=0
+  else
   if ! command -v gh >/dev/null 2>&1; then
     echo "Fehler: gh (GitHub CLI) ist nicht installiert." >&2
     echo "Error: gh (GitHub CLI) is not installed." >&2
@@ -172,7 +203,14 @@ if [ "$PLATFORM" = "github" ]; then
 
   REPO_SLUG="$REPO_NAME"
   SLUG_CHANGED=0
-else
+  fi
+elif [ "$PLATFORM" = "gitlab" ]; then
+  if [ "$DRY_RUN" -eq 1 ]; then
+    GITLAB_USER="<GITLAB-USER>"
+    REPO_SLUG="$(normalize_name "$REPO_NAME")"
+    SLUG_CHANGED=0
+    [ "$REPO_SLUG" != "$REPO_NAME" ] && SLUG_CHANGED=1
+  else
   if ! command -v glab >/dev/null 2>&1; then
     echo "Fehler: glab (GitLab CLI) ist nicht installiert." >&2
     echo "  macOS/Linux: brew install glab" >&2
@@ -201,6 +239,11 @@ else
   REPO_SLUG="$(normalize_name "$REPO_NAME")"
   SLUG_CHANGED=0
   [ "$REPO_SLUG" != "$REPO_NAME" ] && SLUG_CHANGED=1
+  fi
+else
+  REPO_SLUG="$(normalize_name "$REPO_NAME")"
+  SLUG_CHANGED=0
+  [ "$REPO_SLUG" != "$REPO_NAME" ] && SLUG_CHANGED=1
 fi
 
 # --- Zusammenfassung anzeigen --------------------------------------------------
@@ -211,14 +254,22 @@ echo "║  bootstrap-workspace – Neue Workspace-Einrichtung               ║"
 echo "╠══════════════════════════════════════════════════════════════════╣"
 printf "║  Verzeichnis : %-51s║\n" "$WORKSPACE_DIR"
 printf "║  Beschreibung: %-51s║\n" "${REPO_DESC:0:51}"
-if [ "$PLATFORM" = "github" ]; then
+if [ "$NO_REMOTE" -eq 1 ]; then
+  printf "║  Remote      : %-51s║\n" "kein Remote / no remote"
+elif [ "$PLATFORM" = "github" ]; then
   printf "║  GitHub-Repo : %-51s║\n" "$GH_USER/$REPO_NAME (privat)"
   printf "║  Plattform   : %-51s║\n" "GitHub (privat)"
-else
+elif [ "$PLATFORM" = "gitlab" ]; then
   printf "║  GitLab-Repo : %-51s║\n" "$GITLAB_USER/$REPO_SLUG (privat)"
   printf "║  Plattform   : %-51s║\n" "GitLab — $GITLAB_URL (privat)"
   if [ "$SLUG_CHANGED" -eq 1 ]; then
     printf "║  GitLab-Slug : %-51s║\n" "$REPO_SLUG (normalisiert von: $REPO_NAME)"
+  fi
+else
+  printf "║  Remote-Repo : %-51s║\n" "<USER>/$REPO_SLUG (privat)"
+  printf "║  Plattform   : %-51s║\n" "$PLATFORM - $FORGEJO_BASE_URL"
+  if [ "$SLUG_CHANGED" -eq 1 ]; then
+    printf "║  Repo-Slug   : %-51s║\n" "$REPO_SLUG (normalisiert von: $REPO_NAME)"
   fi
 fi
 echo "╚══════════════════════════════════════════════════════════════════╝"
@@ -416,7 +467,7 @@ STATSDOC
 
   printf '# STATS.md — %s\n\n## Überblick / Overview\n\nCompliance-Historie — Compliance History\n\n## Verwendung / Usage\n\nJeder `check-homogeneity.sh`-Aufruf fügt hier einen Eintrag hinzu.\n\nEach `check-homogeneity.sh` run appends an entry here.\n\n' "$WORKSPACE_NAME" > "$WORKSPACE_DIR/STATS.md"
 
-  if [ "$PLATFORM" = "github" ]; then
+  if [ "$PLATFORM" = "github" ] && [ "$NO_REMOTE" -eq 0 ]; then
     cat > "$WORKSPACE_DIR/release-please-config.json" <<'RPCFG'
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
@@ -493,13 +544,15 @@ Nach dem Clonen auf neuem Gerät:
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
 ok "Initialer Commit erstellt"
 
-# --- GitHub-Repo erstellen und pushen ------------------------------------------
+# --- Remote-Repo erstellen und pushen ------------------------------------------
 
-if [ "$PLATFORM" = "github" ]; then
+if [ "$NO_REMOTE" -eq 1 ]; then
+  info "Remote-Erstellung uebersprungen (--no-remote)."
+elif [ "$PLATFORM" = "github" ]; then
   info "Erstelle privates GitHub-Repository '$REPO_NAME' …"
   run "gh repo create '$REPO_NAME' --private --description '$REPO_DESC' --source '$WORKSPACE_DIR' --remote origin --push"
   ok "GitHub-Repo erstellt und gepusht"
-else
+elif [ "$PLATFORM" = "gitlab" ]; then
   REMOTE_URL="https://${GITLAB_HOSTNAME}/${GITLAB_USER}/${REPO_SLUG}.git"
   info "Erstelle privates GitLab-Repository '$REPO_SLUG' …"
   run "GITLAB_HOST='$GITLAB_HOSTNAME' glab repo create '$REPO_SLUG' --private --description '$REPO_DESC'"
@@ -507,6 +560,28 @@ else
   run "git -C '$WORKSPACE_DIR' remote add origin '$REMOTE_URL'"
   run "git -C '$WORKSPACE_DIR' push -u origin HEAD"
   ok "Remote gesetzt und gepusht"
+else
+  if [ "$DRY_RUN" -eq 1 ]; then
+    echo "  [dry-run] Forgejo-API wuerde privates Repository '$REPO_SLUG' auf '$FORGEJO_BASE_URL' anlegen oder wiederverwenden."
+    echo "  [dry-run] git remote add origin <API-CLONE-URL>"
+    echo "  [dry-run] git push -u origin HEAD"
+  else
+    info "Erstelle oder verwende privates $PLATFORM-Repository '$REPO_SLUG' ..."
+    hb_forgejo_create_or_get_repository "$FORGEJO_BASE_URL" "$REPO_SLUG" "$REPO_DESC"
+    git -C "$WORKSPACE_DIR" remote add origin "$HB_FORGEJO_CLONE_URL"
+    git -C "$WORKSPACE_DIR" config --local home-baseline.remote-platform "$PLATFORM"
+    git -C "$WORKSPACE_DIR" config --local home-baseline.remote-base-url "$FORGEJO_BASE_URL"
+    git -C "$WORKSPACE_DIR" config --local home-baseline.remote-owner "$HB_FORGEJO_REPOSITORY_OWNER"
+    git -C "$WORKSPACE_DIR" config --local home-baseline.remote-repository "$HB_FORGEJO_REPOSITORY_NAME"
+    git -C "$WORKSPACE_DIR" push -u origin HEAD
+    REPO_URL="$HB_FORGEJO_HTML_URL"
+    DISPLAY_REPO="$HB_FORGEJO_REPOSITORY_NAME"
+    if [ "$HB_FORGEJO_REPOSITORY_CREATED" -eq 1 ]; then
+      ok "$PLATFORM-Repo erstellt und gepusht"
+    else
+      ok "Vorhandenes $PLATFORM-Repo verbunden und gepusht"
+    fi
+  fi
 fi
 
 # --- Hooks installieren --------------------------------------------------------
@@ -518,14 +593,24 @@ ok "Hooks installiert"
 # --- ~/README.md aktualisieren ------------------------------------------------
 
 HOME_README="$HOME_DIR/README.md"
-if [ "$PLATFORM" = "github" ]; then
+if [ "$NO_REMOTE" -eq 1 ]; then
+  REPO_URL=""
+  DISPLAY_REPO="lokal / local"
+elif [ "$PLATFORM" = "github" ]; then
   REPO_URL="https://github.com/$GH_USER/$REPO_NAME"
   DISPLAY_REPO="$REPO_NAME"
-else
+elif [ "$PLATFORM" = "gitlab" ]; then
   REPO_URL="${GITLAB_URL%/}/$GITLAB_USER/$REPO_SLUG"
   DISPLAY_REPO="$REPO_SLUG"
+elif [ "$DRY_RUN" -eq 1 ]; then
+  REPO_URL="$FORGEJO_BASE_URL/<USER>/$REPO_SLUG"
+  DISPLAY_REPO="$REPO_SLUG"
 fi
-NEW_ROW="| \`~/$WORKSPACE_NAME/\` | [$DISPLAY_REPO]($REPO_URL) | \`bootstrap-workspace\` |"
+if [ -n "$REPO_URL" ]; then
+  NEW_ROW="| \`~/$WORKSPACE_NAME/\` | [$DISPLAY_REPO]($REPO_URL) | \`bootstrap-workspace\` |"
+else
+  NEW_ROW="| \`~/$WORKSPACE_NAME/\` | $DISPLAY_REPO | \`bootstrap-workspace --no-remote\` |"
+fi
 
 if [ -f "$HOME_README" ]; then
   info "Aktualisiere ~/README.md …"
@@ -608,10 +693,14 @@ echo "╔═══════════════════════�
 echo "║  Einrichtung abgeschlossen!                                      ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 echo ""
-if [ "$PLATFORM" = "gitlab" ] && [ "$SLUG_CHANGED" -eq 1 ]; then
-  echo "  GitLab-Slug : $REPO_SLUG (normalisiert von: $REPO_NAME)"
+if [ "$PLATFORM" != "github" ] && [ "$SLUG_CHANGED" -eq 1 ]; then
+  echo "  Repo-Slug : $REPO_SLUG (normalisiert von: $REPO_NAME)"
 fi
-echo "  Repo   : $REPO_URL"
-echo "  Clone  : git clone ${REPO_URL}.git ~/$WORKSPACE_NAME"
+if [ -n "$REPO_URL" ]; then
+  echo "  Repo   : $REPO_URL"
+  echo "  Clone  : git clone $(git -C "$WORKSPACE_DIR" remote get-url origin 2>/dev/null || printf '%s.git' "$REPO_URL") ~/$WORKSPACE_NAME"
+else
+  echo "  Repo   : kein Remote / no remote"
+fi
 echo "  Hooks  : bash scripts/install-hooks.sh  (oder pwsh scripts/install-hooks.ps1)"
 echo ""

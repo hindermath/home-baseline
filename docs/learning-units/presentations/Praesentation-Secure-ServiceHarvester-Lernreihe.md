@@ -136,7 +136,7 @@ an dem später die eigentlichen Spec-Kit-Läufe und Implementierungen stattfinde
 
 # Repo-Struktur
 
-| Rolle | Lokaler Ordner | GitHub-Slug |
+| Rolle | Lokaler Ordner | Repository-Slug |
 |---|---|---|
 | Koordination | `SecureServiceHarvesterProjects` | `secure-serviceharvester-baseline` |
 | Referenz | `SecureServiceHarvester-CSharp` | `secureserviceharvester-csharp` |
@@ -148,7 +148,7 @@ an dem später die eigentlichen Spec-Kit-Läufe und Implementierungen stattfinde
 
 ::: notes
 Lokale Ordner nutzen CamelCase.
-Die GitHub-Slugs werden durch die Bootstrap-Skripte lowercase erzeugt.
+Die Repository-Slugs werden durch die Bootstrap-Skripte lowercase erzeugt.
 Der C#-Referenzpfad orientiert sich am bestehenden InventarWorkerService.
 :::
 

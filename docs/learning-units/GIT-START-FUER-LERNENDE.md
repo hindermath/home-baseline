@@ -23,9 +23,9 @@ git init
 git branch -M main
 ```
 
-**DE:** `git init` erstellt ein neues lokales Git-Repository. `git branch -M main` nennt den Standard-Branch `main`. Es wird dabei kein GitHub- oder GitLab-Remote verbunden.
+**DE:** `git init` erstellt ein neues lokales Git-Repository. `git branch -M main` nennt den Standard-Branch `main`. Es wird dabei kein Remote eines Git-Hosting-Systems verbunden.
 
-**EN:** `git init` creates a new local Git repository. `git branch -M main` names the default branch `main`. This does not connect a GitHub or GitLab remote.
+**EN:** `git init` creates a new local Git repository. `git branch -M main` names the default branch `main`. This does not connect a remote Git hosting system.
 
 ## 3. Status prüfen / Check the Status
 
@@ -60,9 +60,9 @@ git commit -m "Initialer Stand Lernpaket"
 
 ## 6. Optional: Eigenes Remote verbinden / Optional: Connect Your Own Remote
 
-**DE:** Diesen Schritt brauchst du nur, wenn deine Lehrperson ein GitHub-/GitLab-Repository vorgibt oder du selbst ein eigenes Repository erstellt hast. Ersetze `<URL>` durch die URL deines eigenen Repositories.
+**DE:** Diesen Schritt brauchst du nur, wenn deine Lehrperson ein Repository auf GitHub, GitLab, Codeberg, Forgejo oder einem anderen Git-System vorgibt oder du selbst ein eigenes Repository erstellt hast. Ersetze `<URL>` durch die HTTPS-URL deines eigenen Repositories.
 
-**EN:** You only need this step if your instructor provides a GitHub/GitLab repository or if you created your own repository. Replace `<URL>` with the URL of your own repository.
+**EN:** You only need this step if your instructor provides a repository on GitHub, GitLab, Codeberg, Forgejo, or another Git system, or if you created your own repository. Replace `<URL>` with the HTTPS URL of your own repository.
 
 ```bash
 git remote add origin <URL>
@@ -76,10 +76,10 @@ git push -u origin main
 ## Wichtige Grenzen / Important Boundaries
 
 - **DE:** Diese Befehle starten keinen Spec-Kit-Lauf.
-- **DE:** Diese Befehle erstellen keine GitHub- oder GitLab-Repositories automatisch.
+- **DE:** Diese Befehle erstellen kein Repository auf dem Git-Hosting-System automatisch.
 - **DE:** Die ursprünglichen privaten Remotes aus der Vorbereitung werden nicht übernommen.
 - **DE:** Lehrende entscheiden, ob jede Person ein eigenes Remote nutzt oder ob es ein gemeinsames Kurs-Remote gibt.
 - **EN:** These commands do not start a Spec Kit run.
-- **EN:** These commands do not automatically create GitHub or GitLab repositories.
+- **EN:** These commands do not automatically create a repository on the Git hosting system.
 - **EN:** The original private remotes from preparation are not included.
 - **EN:** Instructors decide whether each person uses their own remote or whether there is a shared course remote.

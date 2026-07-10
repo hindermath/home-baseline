@@ -13,7 +13,7 @@ usage() {
 Usage: check-learning-package.sh [--checksum FILE] ZIP
        check-learning-package.sh --self-test
 
-Prueft ein Lernreihen-ZIP auf genau einen Paket-Root, beide Startanleitungen,
+Prueft ein Lernreihen-ZIP auf genau einen Paket-Root, die Startanleitungen,
 Manifest, SHA-256, ausgeschlossene Git-/Build-/IDE-Artefakte und offensichtliche
 Secrets. --self-test erzeugt und prueft ein minimales Testpaket.
 
@@ -85,7 +85,7 @@ check_package() {
   }
   root="$(printf '%s\n' "$roots" | sed -n '1p')"
 
-  for required in START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md PACKAGING-MANIFEST.txt; do
+  for required in START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md INSTITUTIONELLES-GIT-HOSTING.md PACKAGING-MANIFEST.txt; do
     grep -Fxq "${root}/${required}" <<< "$entries" || {
       echo "ERROR: verbindliche Paketdatei fehlt: ${required}" >&2
       return 1
@@ -104,6 +104,7 @@ check_package() {
   grep -Eq '^Git data included: no ' "$manifest" || { echo "ERROR: Manifest bestaetigt Git-Ausschluss nicht" >&2; return 1; }
   grep -Eq '^Original remotes included: no$' "$manifest" || { echo "ERROR: Manifest bestaetigt Remote-Ausschluss nicht" >&2; return 1; }
   grep -Eq '^Start here after extracting: START-HERE-FUER-LERNENDE\.md$' "$manifest" || { echo "ERROR: Manifest nennt die primaere Startdatei nicht" >&2; return 1; }
+  grep -Eq '^Institutional hosting guide: INSTITUTIONELLES-GIT-HOSTING\.md$' "$manifest" || { echo "ERROR: Manifest nennt den Hosting-Leitfaden nicht" >&2; return 1; }
 
   if command -v gitleaks >/dev/null 2>&1; then
     gitleaks_args=(dir "${work_dir}/${root}" --no-banner --redact)
@@ -129,6 +130,7 @@ self_test() {
   mkdir -p "${source_dir}/docs/learning-units" "${source_dir}/src"
   printf '# Start\n' > "${source_dir}/docs/learning-units/START-HERE-FUER-LERNENDE.md"
   printf '# Git Start\n' > "${source_dir}/docs/learning-units/GIT-START-FUER-LERNENDE.md"
+  printf '# Institutional Git Hosting\n' > "${source_dir}/docs/learning-units/INSTITUTIONELLES-GIT-HOSTING.md"
   printf '# Example\n' > "${source_dir}/README.md"
   printf 'example\n' > "${source_dir}/src/example.txt"
 

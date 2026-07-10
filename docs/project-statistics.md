@@ -70,6 +70,7 @@
 | 2026-07-09 | Kaufmaennische Berufsrollen-Linse (KITSM/KDM) | 58 | — | — | Die beiden kaufmaennischen IT-Berufe **KITSM** und **KDM** ohne neue Repos in die drei Lernreihen integriert (Blueprint-konform, `Lernreihen-Blueprint.md:61`): neues zentrales `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` (Code-Naehe-Modell — Barriere-Umkehr, SQL als deklarative Bruecken-Programmiersprache, Baender KITSM ~5–10 %/KDM ~15–25 %, Pflicht-SQL-Schreib-Touch, evidenzbasierte Abnahme mit eingebauter Abweichung, Rollen-Split); `Secure-Trader-`-Praefix fuer Auto-Propagation. `Rahmenlehrplan-Lernfeld-Mapping.md` um die **amtlichen KMK-Lernfelder** KITSM (LF 1–13) und KDM (LF 1–12) erweitert (Quelle KMK-RLP 13.12.2019). Drei `IT-Berufe-Secure-*-Mapping.md` um kaufmaennischen SDD-Rollenabschnitt vertieft. 15 **Unit-Overlays** „Kaufmaennische Rollen-Umschaltung" in die Handlungs-Units (01/06/10/11 + Data-&-Process-Track) der drei Familien. Template, Register und Blueprint angeglichen; `Secure InventoryHub` bewusst ausgeschlossen (keine der drei Reihen) |
 | 2026-07-10 | Neutraler KI-Erstellungshinweis | 58 | — | — | Root-README um einen gut sichtbaren, bilingualen Transparenzhinweis ergaenzt: die agentische Unterstuetzungs-Umgebung und wesentliche Dokumentations-, Lern- und Skriptinhalte sind menschlich kuratiert, geprueft und fortgeschrieben; Teile wurden mit Hilfe agentischer KI erstellt oder generiert. Der Hinweis bleibt ohne Klarnamen und macht menschliche Verantwortung, Pruefung und Freigabe massgeblich |
 | 2026-07-10 | Selbstfuehrender Lernenden-Einstieg und Vier-Agenten-Sandbox | 59 | 229 607 | 422 | Kanonischer Startpfad ab dem 1. Lehrjahr mit persoenlichem `home-baseline`-Fork, persistentem `home-baseline-tmp`, Podman-Sandbox und erstem kontrollierten Agentenlauf; Podman, sechs MSL, JDK, Syft, Spec Kit sowie Codex/Claude/Gemini/Copilot konsistent Required; Lernpaket-Self-Tests, Lychee-Link-/Anker-CI und fehlertolerante 21-Repo-Propagation mit Remote-, Clean-/Main-/Fast-forward- und Neuere-Zieldatei-Gates ergaenzt |
+| 2026-07-10 | Provider-neutrales Git-Hosting fuer Lernende | 59 | 230 725 | 423 | Lernenden-Einstieg von einer allgemeinen GitHub-Kontopflicht geloest: institutionelle GitLab-, Forgejo-, Codeberg- und generische Git-Profile mit getrennten `origin`-/`upstream`-Rollen dokumentiert; Ausbildendenleitfaden fuer Import, Schutzregeln, Konten und Aktualisierung ergaenzt; Bootstrap-/Teardown-Skripte um private Forgejo-/Codeberg-Repositories mit sicherer Credential-API-Nutzung erweitert; Sandbox-Dokumentation und Lernpaket-Propagation nachgezogen |
 
 ---
 
@@ -79,23 +80,23 @@ Stand / As of: **2026-07-10**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 102 | 24 352 | 10.6 % |
-| Strukturierte Konfiguration und Templates / Structured config and templates | 65 | 5 897 | 2.6 % |
-| Dokumentation / Documentation (`.md`) | 1 029 | 171 861 | 74.9 % |
-| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 11.6 % |
+| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 104 | 25 180 | 10.9 % |
+| Strukturierte Konfiguration und Templates / Structured config and templates | 65 | 5 899 | 2.6 % |
+| Dokumentation / Documentation (`.md`) | 1 030 | 172 149 | 74.6 % |
+| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 11.5 % |
 | Sonstiges / Other | 22 | 872 | 0.4 % |
-| **Gesamt / Total** | **1 230** | **229 607** | **100 %** |
+| **Gesamt / Total** | **1 233** | **230 725** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 20 195 | 11.8 % |
-| Secure Development (`docs/secure-development/`) | 29 135 | 17.0 % |
-| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 380 | 49.1 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 3 155 | 1.8 % |
-| README / CHANGELOG / STATS / Projektstatistik | 3 837 | 2.2 % |
-| Sonstige Markdown-Artefakte / Other Markdown artifacts | 31 159 | 18.1 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 11.7 % |
+| Secure Development (`docs/secure-development/`) | 29 135 | 16.9 % |
+| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 553 | 49.1 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 3 222 | 1.9 % |
+| README / CHANGELOG / STATS / Projektstatistik | 3 872 | 2.2 % |
+| Sonstige Markdown-Artefakte / Other Markdown artifacts | 31 172 | 18.1 % |
 
 ---
 
@@ -219,51 +220,57 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `229 607` Zeilen |
-| Operativer Code und Konfiguration / Operational code and configuration | `30 249` Zeilen (`13.2 %`) |
-| Dokumentationsanteil / Documentation share | `171 861` Zeilen (`74.9 %`) |
+| Artefaktbasis gesamt / Total artifact base | `230 725` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `31 079` Zeilen (`13.5 %`) |
+| Dokumentationsanteil / Documentation share | `172 149` Zeilen (`74.6 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-10` |
 | Sichtbare Git-Aktivtage / Observable active days | `59` |
-| Git-Commits gesamt / Total commits | `422` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.2` (`422 / 59`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 891.6` (`229 607 / 59`) |
-| Zeilen pro Commit / Lines per commit | `544.1` (`229 607 / 422`) |
-| Konservative Einzelentwickler-Untergrenze | `2 870.1` Arbeitstage / `22 386.7` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 296.1` Arbeitstage / `17 909.3` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `1 148.0` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `48.6x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `38.9x` |
+| Git-Commits gesamt / Total commits | `423` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.2` (`423 / 59`) |
+| Zeilen pro Aktivtag / Lines per active day | `3 910.6` (`230 725 / 59`) |
+| Zeilen pro Commit / Lines per commit | `545.4` (`230 725 / 423`) |
+| Konservative Einzelentwickler-Untergrenze | `2 884.1` Arbeitstage / `22 495.7` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 307.2` Arbeitstage / `17 996.5` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 153.6` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `48.9x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.1x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.9 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.6 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Operative Skripte und
-strukturierte Konfiguration machen zusammen `13.2 %` aus. Der groesste
+strukturierte Konfiguration machen zusammen `13.5 %` aus. Der groesste
 dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer Homogeneity
 Guardian). Die aktuelle Maintenance-Runde schliesst fuer alle drei Secure-
-Trader-Lernreihen einen selbstfuehrenden Einstieg ab: persoenlicher Fork,
+Trader-Lernreihen einen selbstfuehrenden, provider-neutralen Einstieg ab:
+persoenliches Repository auf dem institutionell vorgegebenen Git-System,
 persistente Wartungsarbeitskopie, Podman-Sandbox, vier Required-Agenten,
 kontrollierter Erstlauf, Diff- und Testpruefung sowie reproduzierbare
-Lernpakete. Die Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern
-sichtbare Lieferdichte gegen konservative manuelle Referenzmodelle.
+Lernpakete. GitHub bleibt ein moegliches Profil und ist nur fuer die Nutzung
+von GitHub Copilot zwingend. Die Beschleunigungsfaktoren beschreiben keine
+Stoppuhrzeit, sondern sichtbare Lieferdichte gegen konservative manuelle
+Referenzmodelle.
 
 *Short summary: `home-baseline` remains documentation- and governance-driven:
-`74.9 %` of the visible base sits in Markdown artifacts. Operational scripts
-and structured configuration together account for `13.2 %`. The largest
+`74.6 %` of the visible base sits in Markdown artifacts. Operational scripts
+and structured configuration together account for `13.5 %`. The largest
 documented volume jump remains Phase `1` (Spec-Kit batch for Homogeneity
 Guardian). The current maintenance round completes a self-guided entry path for
-all three Secure Trader learning series: personal fork, persistent maintenance
-clone, Podman sandbox, four required agents, controlled first run, diff and test
-review, and reproducible learning packages. Acceleration factors describe
-visible delivery density, not stopwatch measurements.*
+all three Secure Trader learning series without binding learners to one Git
+provider: a personal repository on the institution-selected Git system,
+persistent maintenance clone, Podman sandbox, four required agents, controlled
+first run, diff and test review, and reproducible learning packages. GitHub
+remains an available profile and is mandatory only when GitHub Copilot is used.
+Acceleration factors describe visible delivery density, not stopwatch
+measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Skripte         | ###                            | 24 352 | 10.6 %
-Konfiguration   | #                              |  5 897 |  2.6 %
-Dokumentation   | ######################         |171 861 | 74.9 %
-Daten/Medien    | ###                            | 26 625 | 11.6 %
+Skripte         | ###                            | 25 180 | 10.9 %
+Konfiguration   | #                              |  5 899 |  2.6 %
+Dokumentation   | ######################         |172 149 | 74.6 %
+Daten/Medien    | ###                            | 26 625 | 11.5 %
 Sonstiges       | #                              |    872 |  0.4 %
 ```
 
@@ -320,7 +327,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################################ | 48.6x
+Repo ges. | ################################################ | 48.9x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -342,8 +349,8 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 2 870.1 d / 22 386.7 h
-Thorsten (100 Z./Tag)  | ###################      | 2 296.1 d / 17 909.3 h
+Erfahren (80 Z./Tag)   | ######################## | 2 884.1 d / 22 495.7 h
+Thorsten (100 Z./Tag)  | ###################      | 2 307.2 d / 17 996.5 h
 KI sichtbar            | #                        |    59.0 d
 ```
 

@@ -35,10 +35,10 @@ deleted but carried into the baseline. The Northwind data base incl. `ALFKI` is 
 fictitious foundation.
 
 **DE:** In dieser Einheit prüfst du, ob der Jahr-2-Stand baselinefähig ist (Build, Tests, Secure-Development,
-Presets, offene Risiken), und planst die Ableitung als Kopie oder Track-Repo. Ein GitHub-Fork ist optional.
+Presets, offene Risiken), und planst die Ableitung als Kopie oder Track-Repo. Ein Plattform-Fork ist optional.
 
 **EN:** In this unit you check whether the year-2 state is baseline-capable (build, tests, secure development,
-presets, open risks), and plan the derivation as a copy or track repository. A GitHub fork is optional.
+presets, open risks), and plan the derivation as a copy or track repository. A platform-native fork is optional.
 
 ## Kernbegriffe / Key Terms
 

@@ -39,6 +39,22 @@ For GitLab repositories, use the authenticated `glab` CLI first for equivalent a
 
 ## Lernreihen-Governance / Learning Series Governance
 
+### Git-Hosting fuer Lernende / Git Hosting for Learners
+
+Lernenden-Dokumentation darf kein GitHub-Konto pauschal voraussetzen. `origin`
+ist der persoenliche Fork beziehungsweise das persoenliche Lernenden-Repository,
+`upstream` die institutionell gepflegte Referenz. GitHub ist ein Profil neben
+GitLab, Codeberg, Forgejo und anderen Git-faehigen Systemen. Ein GitHub-Konto
+darf nur fuer den direkten GitHub-Pfad oder die optionale Copilot-Anmeldung
+verlangt werden. Maintainer-Remotes und Produktnamen bleiben unberuehrt.
+
+*Learner documentation must not assume a GitHub account universally. `origin`
+is the personal fork or learner repository and `upstream` is the
+institution-maintained reference. GitHub is one profile alongside GitLab,
+Codeberg, Forgejo, and other Git-capable systems. A GitHub account may only be
+required for the direct GitHub route or optional Copilot sign-in. Maintainer
+remotes and product names remain unaffected.*
+
 Neue Lernreihen fuer Fachinformatiker*innen und weitere IT-Ausbildungsberufe werden zuerst in `docs/learning-units/` als Level-0-Quelle vorbereitet. Der `Lernreihen-Blueprint`, das `Lernreihen-Register`, das IT-Berufe-Mapping und die Vorlagen unter `docs/learning-units/templates/` sind verbindlich, bevor eine konkrete Level-1-/Level-2-Struktur gespiegelt wird. KI-Agenten duerfen Lernreihen, Lastenhefte, Berufsbild-Mappings, Reihenfolgen und ZIP-Paketierung vorbereiten, starten aber keine Spec-Kit-Laeufe fuer Lernende ohne ausdruecklichen Auftrag. Spec-Kit-Laeufe sind begleitende SDD-Aufgaben und ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Pruefungsvorbereitung.
 
 *New learning series for IT specialist apprentices and additional IT training occupations are prepared first in `docs/learning-units/` as the level-0 source. The Learning Series Blueprint, Learning Series Register, IT occupation mapping, and templates under `docs/learning-units/templates/` are binding before a concrete level-1/level-2 structure is mirrored. AI agents may prepare learning series, intake files, occupation mappings, ordering, and ZIP packaging, but must not start learner Spec Kit runs without an explicit instruction. Spec Kit runs are companion SDD tasks and do not replace vocational school, workplace training, the curriculum, instructor decisions, or exam preparation.*

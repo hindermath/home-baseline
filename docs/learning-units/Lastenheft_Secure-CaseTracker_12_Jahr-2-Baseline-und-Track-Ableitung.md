@@ -49,9 +49,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Prüfe den abgeschlossenen Jahr-2-Stand eines Secure-CaseTracker-Sprachrepos. Dokumentiere, ob Build, Tests, Secure-Development-Basis, Presets, offene Risiken und `N/A`-Begründungen für eine spätere Spezialisierung belastbar genug sind. Bereite anschließend die Ableitung für Jahr 3 vor. Die bevorzugte Variante ist ein nachvollziehbarer Baseline-Stand mit Tag `learning/year-2-complete` und eine spätere abgeleitete Track-Kopie oder ein Track-Repo. Ein GitHub-Fork ist optional, wenn die Plattformhistorie bewusst sichtbar bleiben soll.
+**DE:** Prüfe den abgeschlossenen Jahr-2-Stand eines Secure-CaseTracker-Sprachrepos. Dokumentiere, ob Build, Tests, Secure-Development-Basis, Presets, offene Risiken und `N/A`-Begründungen für eine spätere Spezialisierung belastbar genug sind. Bereite anschließend die Ableitung für Jahr 3 vor. Die bevorzugte Variante ist ein nachvollziehbarer Baseline-Stand mit Tag `learning/year-2-complete` und eine spätere abgeleitete Track-Kopie oder ein Track-Repo. Ein Plattform-Fork ist optional, wenn die Plattformhistorie bewusst sichtbar bleiben soll.
 
-**EN:** Review the completed year-2 state of a Secure CaseTracker language repository. Document whether build, tests, the secure-development baseline, presets, open risks, and `N/A` rationales are strong enough for later specialization. Then prepare the year-3 derivation. The preferred variant is a traceable baseline state with the tag `learning/year-2-complete` and a later derived track copy or track repository. A GitHub fork is optional when platform history should stay visible.
+**EN:** Review the completed year-2 state of a Secure CaseTracker language repository. Document whether build, tests, the secure-development baseline, presets, open risks, and `N/A` rationales are strong enough for later specialization. Then prepare the year-3 derivation. The preferred variant is a traceable baseline state with the tag `learning/year-2-complete` and a later derived track copy or track repository. A platform-native fork is optional when platform history should stay visible.
 
 ## Anforderungen / Requirements
 
@@ -85,7 +85,7 @@
 - Datei `docs/learning-units/YEAR2_BASELINE.md` im Jahr-2-Sprachrepo.
 - Plan für die spätere Ableitung in AE-, SI-, DPA- oder DV-Track.
 - Vorlage oder späteres Ziel für `docs/learning-units/TRACK_BASELINE.md`.
-- Liste offener Punkte: fehlende Tests, offene Sicherheitsfragen oder unklare Track-Ziele als Folgeaufgaben für den ersten passenden Jahr-3-Intake; die Entscheidung für einen GitHub-Fork wird vor der Umsetzung separat bestätigt.
+- Liste offener Punkte: fehlende Tests, offene Sicherheitsfragen oder unklare Track-Ziele als Folgeaufgaben für den ersten passenden Jahr-3-Intake; die Entscheidung für einen Plattform-Fork wird vor der Umsetzung separat bestätigt.
 
 ## Akzeptanzkriterien / Acceptance Criteria
 

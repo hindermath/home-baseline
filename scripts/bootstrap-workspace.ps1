@@ -1,7 +1,7 @@
 #Requires -Version 7
 <#
 .SYNOPSIS
-    Richtet ein neues Projektverzeichnis als privates GitHub-Repo ein.
+    Richtet ein neues Projektverzeichnis als privates Remote-Repo ein.
 .DESCRIPTION
     Automatisiert: git init · .gitignore · Scripts kopieren · Repo erstellen · push · Hooks installieren
 
@@ -13,9 +13,17 @@
 .PARAMETER WorkspaceName
     Name des Projektverzeichnisses unterhalb des Home-Verzeichnisses.
 .PARAMETER RepoName
-    Name des GitHub-Repositories. Standard: <workspacename-lowercased>-baseline
+    Name des Remote-Repositories. Standard: <workspacename-lowercased>-baseline
 .PARAMETER Description
     Beschreibung für das Remote-Repository.
+.PARAMETER Platform
+    Zielplattform: github, gitlab, forgejo oder codeberg.
+.PARAMETER GitLabUrl
+    HTTPS-Basis-URL fuer GitLab.
+.PARAMETER ForgejoUrl
+    HTTPS-Basis-URL fuer institutionelles Forgejo. Bei Codeberg nicht angeben.
+.PARAMETER NoRemote
+    Erstellt nur das lokale Repository und kein Remote.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -25,6 +33,8 @@ param(
     [string] $Description   = '',
     [string] $Platform      = 'github',
     [string] $GitLabUrl     = 'https://gitlab.com',
+    [string] $ForgejoUrl    = '',
+    [switch] $NoRemote,
     [switch] $Backup,
     [switch] $KeepRemote,
     [switch] $Recursive,
@@ -34,6 +44,11 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$forgejoLib = Join-Path $PSScriptRoot 'lib/hg-forgejo.ps1'
+if (-not (Test-Path $forgejoLib)) {
+    throw "Forgejo support library is missing: $forgejoLib"
+}
+. $forgejoLib
 
 if ($Teardown) {
     if (-not $WorkspaceName) {
@@ -56,16 +71,20 @@ if (-not $WorkspaceName) {
     throw "Fehler: -WorkspaceName ist erforderlich / Error: -WorkspaceName is required"
 }
 
-if ($Platform -notin @('github', 'gitlab')) {
-    throw "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab.`nError: Invalid platform '$Platform'. Valid values: github, gitlab."
+if ($Platform -notin @('github', 'gitlab', 'forgejo', 'codeberg')) {
+    throw "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab, forgejo, codeberg.`nError: Invalid platform '$Platform'. Valid values: github, gitlab, forgejo, codeberg."
 }
 
 $gitlabHostname = ''
+$forgejoBaseUrl = ''
 if ($Platform -eq 'gitlab') {
     if (-not $GitLabUrl.StartsWith('https://')) {
         throw "Fehler: -GitLabUrl muss mit 'https://' beginnen.`nError: -GitLabUrl must start with 'https://'."
     }
     $gitlabHostname = ($GitLabUrl -replace '^https://', '').TrimEnd('/')
+}
+if (-not $NoRemote -and $Platform -in @('forgejo', 'codeberg')) {
+    $forgejoBaseUrl = Resolve-HBForgejoBaseUrl -Platform $Platform -ConfiguredUrl $ForgejoUrl
 }
 
 function ConvertTo-NormalizedName([string]$Name) {
@@ -88,7 +107,14 @@ $gitlabUser = ''
 $repoSlug = $RepoName
 $slugChanged = $false
 
-if ($Platform -eq 'github') {
+if ($NoRemote -or $WhatIfPreference) {
+    if ($Platform -eq 'github') { $ghUser = '<GITHUB-USER>' }
+    if ($Platform -eq 'gitlab') { $gitlabUser = '<GITLAB-USER>' }
+    if ($Platform -ne 'github') {
+        $repoSlug = ConvertTo-NormalizedName $RepoName
+        $slugChanged = $repoSlug -ne $RepoName
+    }
+} elseif ($Platform -eq 'github') {
     if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
         Write-Error "Fehler: gh (GitHub CLI) ist nicht installiert.`nError: gh (GitHub CLI) is not installed."
     }
@@ -97,7 +123,7 @@ if ($Platform -eq 'github') {
     if (-not $ghUser) {
         Write-Error "Fehler: Konnte GitHub-Benutzername nicht ermitteln. Bitte 'gh auth login' ausführen.`nError: Could not retrieve GitHub username. Please run 'gh auth login'."
     }
-} else {
+} elseif ($Platform -eq 'gitlab') {
     if (-not (Get-Command glab -ErrorAction SilentlyContinue)) {
         Write-Error "Fehler: glab (GitLab CLI) ist nicht installiert.`n  macOS/Linux: brew install glab`n  Windows: winget install GLabCLI.GlabCLI`nError: glab (GitLab CLI) is not installed."
     }
@@ -123,6 +149,9 @@ if ($Platform -eq 'github') {
         Write-Error "Fehler: GitLab-Benutzername konnte nicht ermittelt werden.`nError: Could not retrieve GitLab username."
     }
 
+    $repoSlug = ConvertTo-NormalizedName $RepoName
+    $slugChanged = $repoSlug -ne $RepoName
+} else {
     $repoSlug = ConvertTo-NormalizedName $RepoName
     $slugChanged = $repoSlug -ne $RepoName
 }
@@ -159,10 +188,12 @@ Write-Host '║  bootstrap-workspace – Neue Workspace-Einrichtung             
 Write-Host '╠══════════════════════════════════════════════════════════════════╣' -ForegroundColor Cyan
 Write-Host "║  Verzeichnis : $($workspaceDir.PadRight(51))║" -ForegroundColor Cyan
 Write-Host "║  Beschreibung: $($Description.Substring(0, [Math]::Min($Description.Length, 51)).PadRight(51))║" -ForegroundColor Cyan
-if ($Platform -eq 'github') {
+if ($NoRemote) {
+    Write-Host "║  Remote      : $('kein Remote / no remote'.PadRight(51))║" -ForegroundColor Cyan
+} elseif ($Platform -eq 'github') {
     Write-Host "║  GitHub-Repo : $("$ghUser/$RepoName (privat)".PadRight(51))║" -ForegroundColor Cyan
     Write-Host "║  Plattform   : $('GitHub (privat)'.PadRight(51))║" -ForegroundColor Cyan
-} else {
+} elseif ($Platform -eq 'gitlab') {
     Write-Host "║  GitLab-Repo : $("$gitlabUser/$repoSlug (privat)".PadRight(51))║" -ForegroundColor Cyan
     Write-Host "║  Plattform   : $("GitLab — $GitLabUrl (privat)".PadRight(51))║" -ForegroundColor Cyan
     if ($slugChanged) {
@@ -170,6 +201,9 @@ if ($Platform -eq 'github') {
         if ($slugLine.Length -gt 51) { $slugLine = $slugLine.Substring(0, 51) }
         Write-Host "║  GitLab-Slug : $($slugLine.PadRight(51))║" -ForegroundColor Cyan
     }
+} else {
+    Write-Host "║  Remote-Repo : $("<USER>/$repoSlug (privat)".PadRight(51))║" -ForegroundColor Cyan
+    Write-Host "║  Plattform   : $("$Platform - $forgejoBaseUrl".PadRight(51))║" -ForegroundColor Cyan
 }
 Write-Host '╚══════════════════════════════════════════════════════════════════╝' -ForegroundColor Cyan
 Write-Host ''
@@ -357,7 +391,7 @@ Stand / As of: $today — *Erste Einträge nach dem initialen Arbeitspaket eintr
     "# STATS.md -- $WorkspaceName`n`n## Überblick / Overview`n`nCompliance-Historie -- Compliance History`n`n## Verwendung / Usage`n`nJeder ``check-homogeneity.sh``-Aufruf fügt hier einen Eintrag hinzu.`n`nEach ``check-homogeneity.sh`` run appends an entry here.`n" |
         Set-Content (Join-Path $workspaceDir 'STATS.md') -Encoding UTF8
 
-    if ($Platform -eq 'github') {
+    if ($Platform -eq 'github' -and -not $NoRemote) {
         @'
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
@@ -444,16 +478,18 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
     Write-Host '    OK  Initialer Commit erstellt' -ForegroundColor Green
 }
 
-# --- GitHub-Repo erstellen und pushen ------------------------------------------
+# --- Remote-Repo erstellen und pushen ------------------------------------------
 
-if ($Platform -eq 'github') {
+if ($NoRemote) {
+    Write-Host '→ Remote-Erstellung uebersprungen (-NoRemote).'
+} elseif ($Platform -eq 'github') {
     Write-Host "→ Erstelle privates GitHub-Repository '$RepoName' …"
     if ($PSCmdlet.ShouldProcess("github.com/$ghUser/$RepoName", 'gh repo create')) {
         & gh repo create $RepoName --private --description $Description `
             --source $workspaceDir --remote origin --push
         Write-Host '    OK  GitHub-Repo erstellt und gepusht' -ForegroundColor Green
     }
-} else {
+} elseif ($Platform -eq 'gitlab') {
     $remoteUrl = "https://$gitlabHostname/$gitlabUser/$repoSlug.git"
     Write-Host "→ Erstelle privates GitLab-Repository '$repoSlug' …"
     if ($PSCmdlet.ShouldProcess("$GitLabUrl/$gitlabUser/$repoSlug", 'glab repo create + git remote add + git push')) {
@@ -464,6 +500,20 @@ if ($Platform -eq 'github') {
         & git -C $workspaceDir remote add origin $remoteUrl
         & git -C $workspaceDir push -u origin HEAD
         Write-Host '    OK  Remote gesetzt und gepusht' -ForegroundColor Green
+    }
+} else {
+    Write-Host "→ Erstelle oder verwende privates $Platform-Repository '$repoSlug' …"
+    if ($PSCmdlet.ShouldProcess("$forgejoBaseUrl/<USER>/$repoSlug", 'Forgejo API + git remote add + git push')) {
+        $repository = New-HBForgejoRepository -BaseUrl $forgejoBaseUrl -RepositoryName $repoSlug -Description $Description
+        & git -C $workspaceDir remote add origin $repository.CloneUrl
+        & git -C $workspaceDir config --local home-baseline.remote-platform $Platform
+        & git -C $workspaceDir config --local home-baseline.remote-base-url $forgejoBaseUrl
+        & git -C $workspaceDir config --local home-baseline.remote-owner $repository.Owner
+        & git -C $workspaceDir config --local home-baseline.remote-repository $repository.Name
+        & git -C $workspaceDir push -u origin HEAD
+        $repoUrl = $repository.HtmlUrl
+        $displayRepo = $repository.Name
+        Write-Host '    OK  Forgejo-Remote gesetzt und gepusht' -ForegroundColor Green
     }
 }
 
@@ -478,14 +528,24 @@ if ($PSCmdlet.ShouldProcess($workspaceDir, 'Hooks installieren')) {
 # --- ~/README.md aktualisieren ------------------------------------------------
 
 $homeReadme = Join-Path $homeDir 'README.md'
-if ($Platform -eq 'github') {
+if ($NoRemote) {
+    $repoUrl = ''
+    $displayRepo = 'lokal / local'
+} elseif ($Platform -eq 'github') {
     $repoUrl = "https://github.com/$ghUser/$RepoName"
     $displayRepo = $RepoName
-} else {
+} elseif ($Platform -eq 'gitlab') {
     $repoUrl = "$($GitLabUrl.TrimEnd('/'))/$gitlabUser/$repoSlug"
     $displayRepo = $repoSlug
+} elseif ($WhatIfPreference) {
+    $repoUrl = "$forgejoBaseUrl/<USER>/$repoSlug"
+    $displayRepo = $repoSlug
 }
-$newRow = "| ``~/$WorkspaceName/`` | [$displayRepo]($repoUrl) | ``bootstrap-workspace`` |"
+if ($repoUrl) {
+    $newRow = "| ``~/$WorkspaceName/`` | [$displayRepo]($repoUrl) | ``bootstrap-workspace`` |"
+} else {
+    $newRow = "| ``~/$WorkspaceName/`` | $displayRepo | ``bootstrap-workspace -NoRemote`` |"
+}
 
 if (Test-Path $homeReadme) {
     Write-Host '→ Aktualisiere ~/README.md …'
@@ -579,10 +639,16 @@ Write-Host '╔═════════════════════�
 Write-Host '║  Einrichtung abgeschlossen!                                      ║' -ForegroundColor Green
 Write-Host '╚══════════════════════════════════════════════════════════════════╝' -ForegroundColor Green
 Write-Host ''
-if ($Platform -eq 'gitlab' -and $slugChanged) {
-    Write-Host "  GitLab-Slug : $repoSlug (normalisiert von: $RepoName)"
+if ($Platform -ne 'github' -and $slugChanged) {
+    Write-Host "  Repo-Slug : $repoSlug (normalisiert von: $RepoName)"
 }
-Write-Host "  Repo  : $repoUrl"
-Write-Host "  Clone : git clone $repoUrl.git ~/$WorkspaceName"
+if ($repoUrl) {
+    $cloneUrl = ((& git -C $workspaceDir remote get-url origin 2>$null) | Out-String).Trim()
+    if (-not $cloneUrl) { $cloneUrl = "$repoUrl.git" }
+    Write-Host "  Repo  : $repoUrl"
+    Write-Host "  Clone : git clone $cloneUrl ~/$WorkspaceName"
+} else {
+    Write-Host '  Repo  : kein Remote / no remote'
+}
 Write-Host "  Hooks : bash scripts/install-hooks.sh  (oder pwsh scripts/install-hooks.ps1)"
 Write-Host ''

@@ -4,7 +4,7 @@
     Prueft ein Lernreihen-ZIP oder fuehrt einen Paket-Selbsttest aus.
 
 .DESCRIPTION
-    Prueft genau einen Paket-Root, beide Startanleitungen, Manifest, SHA-256,
+    Prueft genau einen Paket-Root, die Startanleitungen, Manifest, SHA-256,
     ausgeschlossene Git-/Build-/IDE-Artefakte und offensichtliche Secrets.
     Validates one package root, both start guides, manifest, SHA-256, excluded
     Git/build/IDE artefacts, and obvious secrets.
@@ -66,7 +66,7 @@ function Test-HBLearningPackage {
         }
         $root = $roots[0].FullName
 
-        foreach ($required in @('START-HERE-FUER-LERNENDE.md', 'GIT-START-FUER-LERNENDE.md', 'PACKAGING-MANIFEST.txt')) {
+        foreach ($required in @('START-HERE-FUER-LERNENDE.md', 'GIT-START-FUER-LERNENDE.md', 'INSTITUTIONELLES-GIT-HOSTING.md', 'PACKAGING-MANIFEST.txt')) {
             if (-not (Test-Path -LiteralPath (Join-Path $root $required) -PathType Leaf)) {
                 throw "Verbindliche Paketdatei fehlt: $required"
             }
@@ -89,6 +89,9 @@ function Test-HBLearningPackage {
         if ($manifest -notmatch '(?m)^Original remotes included: no$') { throw 'Manifest bestaetigt Remote-Ausschluss nicht.' }
         if ($manifest -notmatch '(?m)^Start here after extracting: START-HERE-FUER-LERNENDE\.md$') {
             throw 'Manifest nennt die primaere Startdatei nicht.'
+        }
+        if ($manifest -notmatch '(?m)^Institutional hosting guide: INSTITUTIONELLES-GIT-HOSTING\.md$') {
+            throw 'Manifest nennt den Hosting-Leitfaden nicht.'
         }
 
         $gitleaks = Get-Command gitleaks -ErrorAction SilentlyContinue
@@ -119,6 +122,7 @@ function Invoke-HBLearningPackageSelfTest {
     try {
         Set-Content -LiteralPath (Join-Path $guideDir 'START-HERE-FUER-LERNENDE.md') -Value '# Start' -Encoding UTF8
         Set-Content -LiteralPath (Join-Path $guideDir 'GIT-START-FUER-LERNENDE.md') -Value '# Git Start' -Encoding UTF8
+        Set-Content -LiteralPath (Join-Path $guideDir 'INSTITUTIONELLES-GIT-HOSTING.md') -Value '# Institutional Git Hosting' -Encoding UTF8
         Set-Content -LiteralPath (Join-Path $sourceDir 'README.md') -Value '# Example' -Encoding UTF8
         Set-Content -LiteralPath (Join-Path $sourceDir 'src/example.txt') -Value 'example' -Encoding UTF8
 

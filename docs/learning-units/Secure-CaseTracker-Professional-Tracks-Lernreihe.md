@@ -46,9 +46,9 @@
 
 **EN:** The year-3 tracks start from a completed year-2 state, not from an empty project. The recommended reference point is the tag `learning/year-2-complete` in the respective language repository. The year-2 state documents `YEAR2_BASELINE.md`; a later derived track documents `TRACK_BASELINE.md` with source repository, source commit, language, track target, inherited evidence, and intentionally open points.
 
-**DE:** Ein GitHub-Fork ist möglich, wenn die Plattformhistorie sichtbar bleiben soll. Für die Ausbildung reicht häufig eine geschützte Baseline mit Tag und ein abgeleitetes Track-Repo oder eine Track-Kopie. Es werden nur die wirklich benötigten Track-/Sprachkombinationen vorbereitet.
+**DE:** Ein Plattform-Fork ist möglich, wenn die Plattformhistorie sichtbar bleiben soll. Für die Ausbildung reicht häufig eine geschützte Baseline mit Tag und ein abgeleitetes Track-Repo oder eine Track-Kopie. Es werden nur die wirklich benötigten Track-/Sprachkombinationen vorbereitet.
 
-**EN:** A GitHub fork is possible when the platform history should stay visible. For training, a protected baseline with a tag and a derived track repository or track copy is often sufficient. Only the actually needed track/language combinations are prepared.
+**EN:** A platform-native fork is possible when the platform history should stay visible. For training, a protected baseline with a tag and a derived track repository or track copy is often sufficient. Only the actually needed track/language combinations are prepared.
 
 ## Abgrenzung zu Jahr 1 und Jahr 2 / Relation to Earlier Years
 

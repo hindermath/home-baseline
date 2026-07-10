@@ -13,6 +13,10 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$forgejoLib = Join-Path $PSScriptRoot 'lib/hg-forgejo.ps1'
+if (Test-Path $forgejoLib) {
+    . $forgejoLib
+}
 
 $script:ExitCode = 0
 $script:Results = [System.Collections.Generic.List[object]]::new()
@@ -122,6 +126,11 @@ function Get-RemotePlatform([string]$Dir) {
     $remoteUrl = (& git -C $Dir remote get-url origin 2>$null)
     if (-not $remoteUrl) {
         return 'kein Remote / no remote'
+    }
+
+    $configuredPlatform = ((& git -C $Dir config --local --get home-baseline.remote-platform 2>$null) | Out-String).Trim()
+    if ($configuredPlatform -in @('forgejo', 'codeberg')) {
+        return $configuredPlatform
     }
 
     if ($remoteUrl -match 'github\.com') {
@@ -281,6 +290,32 @@ function Remove-RemoteRepo([string]$Label, [string]$Dir) {
     if (-not $remoteUrl) {
         Add-Result 'skip' "Kein Remote konfiguriert / No remote configured: $Label"
         return $true
+    }
+
+    $configuredPlatform = ((& git -C $Dir config --local --get home-baseline.remote-platform 2>$null) | Out-String).Trim()
+    if ($configuredPlatform -in @('forgejo', 'codeberg')) {
+        if (-not (Test-Path $forgejoLib)) {
+            Add-Result 'fail' "Forgejo-Bibliothek fehlt, Remote-Löschung abgebrochen / Forgejo library missing, remote deletion aborted: $Label"
+            Set-WarningExit
+            return $false
+        }
+        $baseUrl = ((& git -C $Dir config --local --get home-baseline.remote-base-url 2>$null) | Out-String).Trim()
+        $owner = ((& git -C $Dir config --local --get home-baseline.remote-owner 2>$null) | Out-String).Trim()
+        $repository = ((& git -C $Dir config --local --get home-baseline.remote-repository 2>$null) | Out-String).Trim()
+        if (-not $baseUrl -or -not $owner -or -not $repository) {
+            Add-Result 'fail' "Forgejo-Metadaten fehlen, bitte -KeepRemote verwenden / Forgejo metadata missing, use -KeepRemote: $Label"
+            Set-WarningExit
+            return $false
+        }
+        try {
+            Remove-HBForgejoRepository -BaseUrl $baseUrl -Owner $owner -RepositoryName $repository
+            Add-Result 'done' "$configuredPlatform-Remote gelöscht / remote deleted: $owner/$repository"
+            return $true
+        } catch {
+            Add-Result 'fail' "$configuredPlatform-Remote konnte nicht gelöscht werden / remote could not be deleted: $owner/$repository"
+            Set-WarningExit
+            return $false
+        }
     }
 
     if ($remoteUrl -match 'github\.com') {

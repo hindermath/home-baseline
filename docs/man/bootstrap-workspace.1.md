@@ -2,7 +2,7 @@
 
 ## NAME
 
-`bootstrap-workspace.sh`, `bootstrap-workspace.ps1` - richtet ein neues Workspace-Verzeichnis als privates GitHub- oder GitLab-Repo ein. *Sets up a new workspace directory as a private GitHub or GitLab repository.*
+`bootstrap-workspace.sh`, `bootstrap-workspace.ps1` - richtet ein neues Workspace-Verzeichnis lokal oder als privates GitHub-, GitLab-, Forgejo- oder Codeberg-Repo ein. *Sets up a new workspace directory locally or as a private GitHub, GitLab, Forgejo, or Codeberg repository.*
 
 ## SYNOPSIS
 
@@ -16,9 +16,9 @@ pwsh -NoProfile -File scripts/bootstrap-workspace.ps1 -WorkspaceName <Name> [-Re
 
 ## DESCRIPTION
 
-Das Skript initialisiert ein Workspace-Verzeichnis: `git init`, `.gitignore`, Kopieren der Standard-Skripte, Anlegen eines privaten Repos ueber `gh repo create` (GitHub) oder `glab repo create` (GitLab), Push und Installation der Git-Hooks. Mit `--teardown` delegiert das Skript an `teardown-workspace`.
+Das Skript initialisiert ein Workspace-Verzeichnis: `git init`, `.gitignore`, Kopieren der Standard-Skripte, optionales Anlegen eines privaten Repos ueber `gh`, `glab` oder die Forgejo-API, Push und Installation der Git-Hooks. Mit `--teardown` delegiert das Skript an `teardown-workspace`.
 
-*The script initializes a workspace directory: `git init`, `.gitignore`, copying the standard scripts, creating a private repository via `gh repo create` (GitHub) or `glab repo create` (GitLab), pushing, and installing the git hooks. With `--teardown` the script delegates to `teardown-workspace`.*
+*The script initializes a workspace directory: `git init`, `.gitignore`, copying the standard scripts, optionally creating a private repository through `gh`, `glab`, or the Forgejo API, pushing, and installing the git hooks. With `--teardown` the script delegates to `teardown-workspace`.*
 
 ## OPTIONS
 
@@ -28,8 +28,10 @@ Das Skript initialisiert ein Workspace-Verzeichnis: `git init`, `.gitignore`, Ko
 | `[Repo-Name]` | `-RepoName <r>` | Name des Remote-Repos |
 | `[Beschreibung]` | `-Description <d>` | Repo-Beschreibung |
 | `--dry-run` | `-WhatIf` | Alle Schritte ohne Ausfuehrung zeigen |
-| `--platform <github\|gitlab>` | `-Platform <github\|gitlab>` | Zielplattform |
+| `--platform <github\|gitlab\|forgejo\|codeberg>` | `-Platform <github\|gitlab\|forgejo\|codeberg>` | Zielplattform |
 | `--gitlab-url <url>` | `-GitLabUrl <url>` | GitLab-Basis-URL (`https://…`) |
+| `--forgejo-url <url>` | `-ForgejoUrl <url>` | Pflicht-URL fuer institutionelles Forgejo; bei Codeberg fest vorbelegt |
+| `--no-remote` | `-NoRemote` | Kein Remote-Repo, nur lokales `git init` |
 | `--teardown` | `-Teardown` | An `teardown-workspace` delegieren |
 
 ## EXAMPLES
@@ -40,6 +42,10 @@ bash scripts/bootstrap-workspace.sh WebstormProjects webstorm-baseline "Workspac
 
 ```bash
 bash scripts/bootstrap-workspace.sh --dry-run WebstormProjects
+```
+
+```bash
+bash scripts/bootstrap-workspace.sh Ausbildung --platform forgejo --forgejo-url https://git.institution.example
 ```
 
 ```powershell

@@ -155,7 +155,7 @@ an dem später die eigentlichen Spec-Kit-Läufe und Implementierungen stattfinde
 
 # Repo-Struktur
 
-| Rolle | Lokaler Ordner | GitHub-Slug |
+| Rolle | Lokaler Ordner | Repository-Slug |
 |---|---|---|
 | Koordination | `SecureOrderDeskProjects` | `secure-orderdesk-baseline` |
 | Referenz | `SecureOrderDesk-CSharp` | `secureorderdesk-csharp` |
@@ -167,7 +167,7 @@ an dem später die eigentlichen Spec-Kit-Läufe und Implementierungen stattfinde
 
 ::: notes
 Lokale Ordner nutzen CamelCase.
-Die GitHub-Slugs werden durch die Bootstrap-Skripte lowercase erzeugt.
+Die Repository-Slugs werden durch die Bootstrap-Skripte lowercase erzeugt.
 Der C#-Referenzpfad wird als erste manuelle Referenz durch Lehrende umgesetzt.
 :::
 

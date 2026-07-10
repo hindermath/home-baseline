@@ -9,8 +9,8 @@
   },
   "packages": [
     { "id": "Git.Git", "scope": "required", "purpose": "Source control" },
-    { "id": "GitHub.cli", "scope": "required", "purpose": "GitHub CLI for repository operations" },
-    { "id": "GLab.GLab", "scope": "required", "purpose": "GitLab CLI for repository operations" },
+    { "id": "GitHub.cli", "scope": "required", "purpose": "GitHub CLI binary; provider sign-in is required only for the direct GitHub profile" },
+    { "id": "GLab.GLab", "scope": "required", "purpose": "GitLab CLI binary; provider sign-in is required only for a GitLab profile" },
     { "id": "BurntSushi.ripgrep.MSVC", "scope": "required", "purpose": "Fast repository search" },
     { "id": "Microsoft.PowerShell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
     { "id": "OpenJS.NodeJS.LTS", "scope": "required", "purpose": "Node.js LTS runtime for npm-based tools and agent CLI packages" },

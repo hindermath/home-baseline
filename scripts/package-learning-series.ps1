@@ -30,6 +30,9 @@ docs/learning-units/START-HERE-FUER-LERNENDE.md.
 Git-Startanleitung relativ zu SourceDir oder absolut. Standard ist
 docs/learning-units/GIT-START-FUER-LERNENDE.md.
 
+.PARAMETER HostingGuide
+Leitfaden fuer institutionelles Git-Hosting relativ zu SourceDir oder absolut.
+
 .EXAMPLE
 pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/SecureCaseTrackerProjects -SeriesName 'Secure CaseTracker' -WhatIf
 #>
@@ -40,7 +43,8 @@ param(
     [string]$OutputDir = '',
     [string]$PackagePrefix = '',
     [string]$StartGuide = 'docs/learning-units/START-HERE-FUER-LERNENDE.md',
-    [string]$GitGuide = 'docs/learning-units/GIT-START-FUER-LERNENDE.md'
+    [string]$GitGuide = 'docs/learning-units/GIT-START-FUER-LERNENDE.md',
+    [string]$HostingGuide = 'docs/learning-units/INSTITUTIONELLES-GIT-HOSTING.md'
 )
 
 Set-StrictMode -Version Latest
@@ -117,11 +121,20 @@ if ([System.IO.Path]::IsPathRooted($GitGuide)) {
     $gitGuidePath = Join-Path $SourceDir $GitGuide
 }
 
+if ([System.IO.Path]::IsPathRooted($HostingGuide)) {
+    $hostingGuidePath = $HostingGuide
+} else {
+    $hostingGuidePath = Join-Path $SourceDir $HostingGuide
+}
+
 if (-not (Test-Path -LiteralPath $startGuidePath -PathType Leaf)) {
     throw "Verbindliche Startanleitung fehlt: $startGuidePath"
 }
 if (-not (Test-Path -LiteralPath $gitGuidePath -PathType Leaf)) {
     throw "Verbindliche Git-Startanleitung fehlt: $gitGuidePath"
+}
+if (-not (Test-Path -LiteralPath $hostingGuidePath -PathType Leaf)) {
+    throw "Leitfaden fuer institutionelles Git-Hosting fehlt: $hostingGuidePath"
 }
 
 $shortSha = Get-HBGitValue -Repo $SourceDir -GitArgs @('rev-parse', '--short', 'HEAD')
@@ -138,6 +151,7 @@ if ($WhatIfPreference) {
     Write-Host "Ziel:   $zipPath"
     Write-Host "Start:  $startGuidePath"
     Write-Host "Git:    $gitGuidePath"
+    Write-Host "Hosting:$hostingGuidePath"
     Write-Host 'Ausgeschlossen: .git, dist, Build-, IDE- und lokale Settings-Artefakte'
     return
 }
@@ -151,6 +165,7 @@ if ($PSCmdlet.ShouldProcess($zipPath, 'Create learning series ZIP package')) {
         Copy-HBLearningTree -SourceRoot $SourceDir -DestinationRoot $packageRoot -CurrentPath $SourceDir
         Copy-Item -LiteralPath $startGuidePath -Destination (Join-Path $packageRoot (Split-Path $startGuidePath -Leaf)) -Force
         Copy-Item -LiteralPath $gitGuidePath -Destination (Join-Path $packageRoot (Split-Path $gitGuidePath -Leaf)) -Force
+        Copy-Item -LiteralPath $hostingGuidePath -Destination (Join-Path $packageRoot (Split-Path $hostingGuidePath -Leaf)) -Force
 
         $manifest = Join-Path $packageRoot 'PACKAGING-MANIFEST.txt'
         $lines = [System.Collections.Generic.List[string]]::new()
@@ -173,6 +188,7 @@ if ($PSCmdlet.ShouldProcess($zipPath, 'Create learning series ZIP package')) {
         $lines.Add('')
         $lines.Add("Start here after extracting: $(Split-Path $startGuidePath -Leaf)")
         $lines.Add("Git guide: $(Split-Path $gitGuidePath -Leaf)")
+        $lines.Add("Institutional hosting guide: $(Split-Path $hostingGuidePath -Leaf)")
         Set-Content -Path $manifest -Value $lines -Encoding UTF8
 
         if (Test-Path $zipPath) { Remove-Item -Path $zipPath -Force }

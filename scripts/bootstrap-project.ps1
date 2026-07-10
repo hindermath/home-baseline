@@ -14,6 +14,7 @@ param(
     [switch]$NoReleasePlease,
     [string]$Platform = 'github',
     [string]$GitLabUrl = 'https://gitlab.com',
+    [string]$ForgejoUrl = '',
     [ValidateSet('de','en')][string]$Lang = 'de',
     [string]$PrimaryLanguage = ''
 )
@@ -21,9 +22,15 @@ param(
 $ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TemplatesDir = Join-Path $ScriptDir 'templates'
 $SecureDevLib = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
+$ForgejoLib   = Join-Path $ScriptDir 'lib/hg-forgejo.ps1'
 if (Test-Path $SecureDevLib) {
     . $SecureDevLib
 }
+if (-not (Test-Path $ForgejoLib)) {
+    throw "Forgejo support library is missing: $ForgejoLib"
+}
+. $ForgejoLib
+$Preview = $Preview -or $WhatIfPreference
 $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
 
@@ -33,6 +40,7 @@ $Skipped = 0
 $PartialFail = $false
 $gitlabHostname = ''
 $gitlabUser = ''
+$forgejoBaseUrl = ''
 $projectSlug = ''
 $projectSlugChanged = $false
 $summaryRepoUrl = ''
@@ -181,9 +189,20 @@ function Get-RepoNameFromRemoteUrl([string]$RemoteUrl) {
     return [IO.Path]::GetFileName($repoUrl)
 }
 
-if ($Platform -notin @('github', 'gitlab')) {
-    Write-Error "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab.`nError: Invalid platform '$Platform'. Valid values: github, gitlab."
+if ($Platform -notin @('github', 'gitlab', 'forgejo', 'codeberg')) {
+    Write-Error "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab, forgejo, codeberg.`nError: Invalid platform '$Platform'. Valid values: github, gitlab, forgejo, codeberg."
     exit 2
+}
+
+if (-not $NoRemote -and $Platform -in @('forgejo', 'codeberg')) {
+    try {
+        $forgejoBaseUrl = Resolve-HBForgejoBaseUrl -Platform $Platform -ConfiguredUrl $ForgejoUrl
+    } catch {
+        Write-Error $_.Exception.Message
+        exit 2
+    }
+    $projectSlug = ConvertTo-GitLabSlug $ProjectName
+    $projectSlugChanged = $projectSlug -ne $ProjectName
 }
 
 if ($Platform -eq 'gitlab') {
@@ -195,7 +214,7 @@ if ($Platform -eq 'gitlab') {
     $projectSlug = ConvertTo-GitLabSlug $ProjectName
     $projectSlugChanged = $projectSlug -ne $ProjectName
 
-    if (-not $NoRemote) {
+    if (-not $NoRemote -and -not $Preview) {
         if (-not (Get-Command glab -ErrorAction SilentlyContinue)) {
             Write-Error "Fehler: glab (GitLab CLI) ist nicht installiert.`n  macOS/Linux: brew install glab`n  Windows: winget install GLabCLI.GlabCLI`nError: glab (GitLab CLI) is not installed."
             exit 2
@@ -246,13 +265,15 @@ if ($Preview) {
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
     $null = $previewActions.Add(@('UPDATE', "$TargetWorkspace/.gitignore", 'Level-2-Projekt im Workspace ignorieren'))
-    if (-not $NoReleasePlease) {
+    if (-not $NoReleasePlease -and -not $NoRemote) {
         if ($Platform -eq 'github') {
             $null = $previewActions.Add(@('CREATE', "$TargetDir/release-please-config.json", 'Release Please Konfiguration'))
             $null = $previewActions.Add(@('CREATE', "$TargetDir/.release-please-manifest.json", 'Release Please Manifest'))
             $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/release-please.yml", 'Release Please Workflow'))
-        } else {
+        } elseif ($Platform -eq 'gitlab') {
             $null = $previewActions.Add(@('PRINT', 'setup-gitlab-release.ps1 nach Projekt-CI ausfuehren', 'GitLab Release-Automation'))
+        } else {
+            $null = $previewActions.Add(@('PRINT', 'Forgejo-Actions-Konfiguration institutionell freigeben', 'keine ungepruefte Release-Automation'))
         }
     }
     $null = $previewActions.Add(@('COPY', "$TargetDir/scripts/", 'von ~/scripts/'))
@@ -267,9 +288,13 @@ if ($Preview) {
         if (-not $NoReleasePlease) {
             $null = $previewActions.Add(@('EXEC', 'gh api repos/.../actions/permissions/workflow', 'GitHub Actions: PR-Erstellung erlauben'))
         }
-    } else {
+    } elseif ($Platform -eq 'gitlab') {
         $null = $previewActions.Add(@('EXEC', 'glab repo create (privat)', 'optional'))
         $null = $previewActions.Add(@('EXEC', 'git remote add origin https://HOST/USER/REPO.git', 'optional'))
+        $null = $previewActions.Add(@('EXEC', 'git push', 'optional'))
+    } else {
+        $null = $previewActions.Add(@('EXEC', 'Forgejo API: Repository privat anlegen oder wiederverwenden', $forgejoBaseUrl))
+        $null = $previewActions.Add(@('EXEC', 'git remote add origin <API-CLONE-URL>', 'HTTPS + Credential Helper'))
         $null = $previewActions.Add(@('EXEC', 'git push', 'optional'))
     }
 
@@ -549,7 +574,9 @@ switch ($workspaceGitignoreState) {
 # 9b. Release-Automation einrichten
 Step-Start "Release-Automation einrichten"
 if ($NoReleasePlease) { Step-Skip "-NoReleasePlease" }
+elseif ($NoRemote) { Step-Skip "-NoRemote" }
 elseif ($Platform -eq 'gitlab') { Step-Skip "GitLab: via setup-gitlab-release.ps1" }
+elseif ($Platform -in @('forgejo', 'codeberg')) { Step-Skip "Forgejo Actions: institutionell freigegebene Konfiguration erforderlich" }
 elseif ((Test-Path (Join-Path $TargetDir 'release-please-config.json')) -and -not $Force) { Step-Skip "Konfiguration existiert bereits" }
 else {
     New-Item -ItemType Directory -Path (Join-Path $TargetDir '.github/workflows') -Force | Out-Null
@@ -665,7 +692,22 @@ elseif ($Platform -eq 'gitlab') {
             Step-Warn "git remote add origin fehlgeschlagen / git remote add origin failed"
         }
     } else { Step-Warn "glab repo create fehlgeschlagen / glab repo create failed" }
-} else { Step-Skip "gh nicht installiert" }
+} elseif ($Platform -in @('forgejo', 'codeberg')) {
+    try {
+        $repository = New-HBForgejoRepository -BaseUrl $forgejoBaseUrl -RepositoryName $projectSlug -Description "Project repository for $ProjectName"
+        git -C $TargetDir remote add origin $repository.CloneUrl 2>$null | Out-Null
+        if ($LASTEXITCODE -ne 0) { throw 'git remote add origin failed' }
+        git -C $TargetDir config --local home-baseline.remote-platform $Platform
+        git -C $TargetDir config --local home-baseline.remote-base-url $forgejoBaseUrl
+        git -C $TargetDir config --local home-baseline.remote-owner $repository.Owner
+        git -C $TargetDir config --local home-baseline.remote-repository $repository.Name
+        $summaryRepoUrl = $repository.HtmlUrl
+        $summaryDisplayRepo = $repository.Name
+        Step-Done $(if ($repository.Created) { "$projectSlug erstellt" } else { "$projectSlug wiederverwendet" })
+    } catch {
+        Step-Warn "Forgejo-Repository konnte nicht erstellt oder gelesen werden: $($_.Exception.Message)"
+    }
+} else { Step-Skip "Plattform-CLI nicht installiert" }
 
 # 14. git push
 Step-Start "git push"

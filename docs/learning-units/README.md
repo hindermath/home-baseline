@@ -11,14 +11,20 @@
 **DE:** Beginne mit
 [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md). Der Leitfaden
 fuehrt ohne vorausgesetzte Git-, Container- oder Agentenkenntnisse vom
-persoenlichen `home-baseline`-Fork ueber die Required-Werkzeuge und die
+persoenlichen `home-baseline`-Fork beziehungsweise das institutionell
+bereitgestellte Lernenden-Repository ueber die Required-Werkzeuge und die
 Podman-Sandbox bis zum ersten kontrollierten Agentenlauf.
 
 **EN:** Start with
 [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md). The guide assumes
 no prior Git, container, or agent knowledge and leads from the personal
-`home-baseline` fork through the required tools and Podman sandbox to the first
+`home-baseline` fork or institution-provided learner repository through the
+required tools and Podman sandbox to the first
 controlled agent run.
+
+Ausbildende, die GitLab, Codeberg, Forgejo oder ein anderes institutionelles
+Git-System verwenden, beginnen mit
+[`INSTITUTIONELLES-GIT-HOSTING.md`](INSTITUTIONELLES-GIT-HOSTING.md).
 
 ## Secure CaseTracker
 
@@ -33,7 +39,8 @@ Der ausführliche [Secure CaseTracker Unterrichtsleitfaden](Secure-CaseTracker-U
 ## Sandbox-Stufung / Sandbox Staging
 
 **DE:** Die sichere Entwicklungs-Sandbox ist als oeffentliches Referenz-Repo
-verfuegbar: <https://github.com/hindermath/absdd-image-sandbox>. Das
+verfuegbar: <https://github.com/hindermath/absdd-image-sandbox>. Institutionen
+koennen diese Referenz in ihr eigenes Git-System uebertragen. Das
 Container-First-Gate gilt fuer Secure CaseTracker, Secure OrderDesk und Secure
 ServiceHarvester verbindlich ab Unit 00: Jeder Agentenaufruf erfolgt in der
 Podman-Sandbox. Wird kein Agent verwendet, darf der Sandbox-Punkt begruendet als
@@ -41,7 +48,8 @@ Podman-Sandbox. Wird kein Agent verwendet, darf der Sandbox-Punkt begruendet als
 duerfen ausserhalb der Sandbox stattfinden.
 
 **EN:** The secure development sandbox is available as a public reference
-repository: <https://github.com/hindermath/absdd-image-sandbox>. The
+repository: <https://github.com/hindermath/absdd-image-sandbox>. Institutions
+may transfer this reference to their own Git system. The
 container-first gate applies to Secure CaseTracker, Secure OrderDesk, and Secure
 ServiceHarvester from unit 00 onward: every agent invocation runs inside the
 Podman sandbox. If no agent is used, the sandbox item may be documented as

@@ -57,7 +57,7 @@
 - **Level 1:** `SecureCaseTrackerProjects` als privates Koordinations-Repo mit README, Statusmatrix und Abarbeitungsreihenfolge.
 - **Level 2:** sechs private Sprach-Repos: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, `SecureCaseTracker-Swift`.
 
-**DE:** Die Level-2-Namen bezeichnen die lokalen Ordner. Die GitHub-Repository-Slugs werden durch den Bootstrap lowercase erzeugt, zum Beispiel `securecasetracker-csharp`.
+**DE:** Die Level-2-Namen bezeichnen die lokalen Ordner. Die Repository-Slugs werden durch den Bootstrap lowercase erzeugt, zum Beispiel `securecasetracker-csharp`.
 
 **EN:** This master intake describes the overall map. Later practical work should use a private Level 1 / Level 2 structure:
 
@@ -65,7 +65,7 @@
 - **Level 1:** `SecureCaseTrackerProjects` as the private coordination repository with README, status matrix, and processing order.
 - **Level 2:** six private language repositories: `SecureCaseTracker-CSharp`, `SecureCaseTracker-Go`, `SecureCaseTracker-Java`, `SecureCaseTracker-Python`, `SecureCaseTracker-Rust`, `SecureCaseTracker-Swift`.
 
-**EN:** The Level 2 names identify the local folders. The GitHub repository slugs are created lowercase by the bootstrap, for example `securecasetracker-csharp`.
+**EN:** The Level 2 names identify the local folders. The repository slugs are created lowercase by the bootstrap, for example `securecasetracker-csharp`.
 
 **DE:** C# ist als erster manueller Referenzpfad vorgesehen. Go, Java, Python, Rust und Swift folgen als Vergleichs- und Vertiefungspfade. Codex bereitet diese Struktur nur vor; die Spec-Kit-Läufe starten später manuell durch Lehrende oder Lernende. Vor Aufgabe `01` gibt es den technischen Startlauf `00`; nach dem Abschluss von Jahr 2 gibt es den Baseline- und Track-Ableitungslauf `12`.
 

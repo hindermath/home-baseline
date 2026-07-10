@@ -33,8 +33,9 @@ Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialis
 | `--no-governance-presets` | `-NoGovernancePresets` | Governance-Preset-Installation ueberspringen |
 | `--no-remote` | `-NoRemote` | Kein Remote-Repo, nur lokales `git init` |
 | `--no-release-please` | `-NoReleasePlease` | Release-Please-Workflow ueberspringen |
-| `--platform <github\|gitlab>` | `-Platform <github\|gitlab>` | Zielplattform |
+| `--platform <github\|gitlab\|forgejo\|codeberg>` | `-Platform <github\|gitlab\|forgejo\|codeberg>` | Zielplattform |
 | `--gitlab-url <url>` | `-GitLabUrl <url>` | GitLab-Basis-URL (`https://…`) |
+| `--forgejo-url <url>` | `-ForgejoUrl <url>` | Pflicht-URL fuer institutionelles Forgejo; bei Codeberg fest vorbelegt |
 | `--lang <de\|en>` | `-Lang <de\|en>` | Primaersprache der Templates (Standard: de) |
 | `--primary-language <lang>` | `-PrimaryLanguage <lang>` | Deklarierte Implementierungssprache fuer MSL-Setup |
 
@@ -42,6 +43,10 @@ Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialis
 
 ```bash
 bash scripts/bootstrap-project.sh MyTool ~/RiderProjects --primary-language csharp --preview
+```
+
+```bash
+bash scripts/bootstrap-project.sh MyTool ~/RiderProjects --platform codeberg --preview
 ```
 
 ```powershell

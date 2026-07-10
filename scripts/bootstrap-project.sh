@@ -12,8 +12,9 @@
 #                       Skip Spec-kit governance preset installation
 #   --no-remote          No remote repo create (local git init only)
 #   --no-release-please  Skip Release Please workflow setup
-#   --platform           github|gitlab
+#   --platform           github|gitlab|forgejo|codeberg
 #   --gitlab-url         https://gitlab.example.com
+#   --forgejo-url        https://forgejo.example.com
 #   --lang de|en         Primary language for templates (default: de)
 #   --primary-language   Declared primary implementation language for MSL setup
 # Exit codes: 0=success, 1=partial (warnings), 2=fatal
@@ -21,11 +22,18 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMPLATES_DIR="${SCRIPT_DIR}/templates"
 SECURE_DEV_LIB="${SCRIPT_DIR}/lib/secure-development-hardening.sh"
+FORGEJO_LIB="${SCRIPT_DIR}/lib/hg-forgejo.sh"
 
 if [ -f "$SECURE_DEV_LIB" ]; then
   # shellcheck source=/dev/null
   . "$SECURE_DEV_LIB"
 fi
+if [ ! -f "$FORGEJO_LIB" ]; then
+  echo "ERROR: Forgejo support library is missing: $FORGEJO_LIB" >&2
+  exit 2
+fi
+# shellcheck source=scripts/lib/hg-forgejo.sh
+. "$FORGEJO_LIB"
 
 # ─── Argument Parsing ────────────────────────────────────────────────────────
 
@@ -40,6 +48,8 @@ OPT_NO_RELEASE_PLEASE=false
 OPT_PLATFORM="github"
 OPT_GITLAB_URL="https://gitlab.com"
 OPT_GITLAB_HOSTNAME=""
+OPT_FORGEJO_URL=""
+FORGEJO_BASE_URL=""
 OPT_LANG="de"
 OPT_PRIMARY_LANGUAGE=""
 PROJECT_NAME=""
@@ -88,6 +98,7 @@ while [ $# -gt 0 ]; do
     --no-release-please)  OPT_NO_RELEASE_PLEASE=true ;;
     --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
     --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
+    --forgejo-url) OPT_FORGEJO_URL="${2:-}"; shift ;;
     --lang)       OPT_LANG="${2:-de}"; shift ;;
     --primary-language) OPT_PRIMARY_LANGUAGE="${2:-}"; shift ;;
     -h|--help) echo "USAGE: bootstrap-project.sh <ProjectName> [TARGET_WORKSPACE] [OPTIONS]" >&2; exit 0 ;;
@@ -118,10 +129,10 @@ TARGET_WORKSPACE="${TARGET_WORKSPACE%/}"
 TARGET_DIR="${TARGET_WORKSPACE}/${PROJECT_NAME}"
 
 case "$OPT_PLATFORM" in
-  github|gitlab) ;;
+  github|gitlab|forgejo|codeberg) ;;
   *)
-    echo "Fehler: Ungültige Plattform '$OPT_PLATFORM'. Gültige Werte: github, gitlab." >&2
-    echo "Error: Invalid platform '$OPT_PLATFORM'. Valid values: github, gitlab." >&2
+    echo "Fehler: Ungültige Plattform '$OPT_PLATFORM'. Gültige Werte: github, gitlab, forgejo, codeberg." >&2
+    echo "Error: Invalid platform '$OPT_PLATFORM'. Valid values: github, gitlab, forgejo, codeberg." >&2
     exit 2
     ;;
 esac
@@ -143,7 +154,15 @@ if [ "$OPT_PLATFORM" = "gitlab" ]; then
   fi
 fi
 
-if [ "$OPT_PLATFORM" = "gitlab" ] && ! $OPT_NO_REMOTE; then
+if ! $OPT_NO_REMOTE && { [ "$OPT_PLATFORM" = "forgejo" ] || [ "$OPT_PLATFORM" = "codeberg" ]; }; then
+  FORGEJO_BASE_URL="$(hb_forgejo_resolve_base_url "$OPT_PLATFORM" "$OPT_FORGEJO_URL")"
+  PROJECT_SLUG="$(normalize_name "$PROJECT_NAME")"
+  if [ "$PROJECT_SLUG" != "$PROJECT_NAME" ]; then
+    PROJECT_SLUG_CHANGED=true
+  fi
+fi
+
+if [ "$OPT_PLATFORM" = "gitlab" ] && ! $OPT_NO_REMOTE && ! $OPT_PREVIEW; then
   if ! command -v glab >/dev/null 2>&1; then
     echo "Fehler: glab (GitLab CLI) ist nicht installiert." >&2
     echo "  macOS/Linux: brew install glab" >&2
@@ -355,13 +374,15 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
   preview_action "UPDATE" "${TARGET_WORKSPACE}/.gitignore" "Level-2-Projekt im Workspace ignorieren"
-  if ! $OPT_NO_RELEASE_PLEASE; then
+  if ! $OPT_NO_RELEASE_PLEASE && ! $OPT_NO_REMOTE; then
     if [ "$OPT_PLATFORM" = "github" ]; then
       preview_action "CREATE" "${TARGET_DIR}/release-please-config.json" "Release Please Konfiguration"
       preview_action "CREATE" "${TARGET_DIR}/.release-please-manifest.json" "Release Please Manifest"
       preview_action "CREATE" "${TARGET_DIR}/.github/workflows/release-please.yml" "Release Please Workflow"
-    else
+    elif [ "$OPT_PLATFORM" = "gitlab" ]; then
       preview_action "PRINT" "setup-gitlab-release.sh nach Projekt-CI ausfuehren" "GitLab Release-Automation"
+    else
+      preview_action "PRINT" "Forgejo-Actions-Konfiguration institutionell freigeben" "keine ungepruefte Release-Automation"
     fi
   fi
   preview_action "COPY" "${TARGET_DIR}/scripts/" "von ~/scripts/"
@@ -375,9 +396,13 @@ if $OPT_PREVIEW; then
     if ! $OPT_NO_RELEASE_PLEASE; then
       preview_action "EXEC" "gh api repos/.../actions/permissions/workflow" "GitHub Actions: PR-Erstellung erlauben"
     fi
-  else
+  elif [ "$OPT_PLATFORM" = "gitlab" ]; then
     preview_action "EXEC" "glab repo create (privat)" "optional"
     preview_action "EXEC" "git remote add origin https://HOST/USER/REPO.git" "optional"
+    preview_action "EXEC" "git push" "optional"
+  else
+    preview_action "EXEC" "Forgejo API: Repository privat anlegen oder wiederverwenden" "$FORGEJO_BASE_URL"
+    preview_action "EXEC" "git remote add origin <API-CLONE-URL>" "HTTPS + Credential Helper"
     preview_action "EXEC" "git push" "optional"
   fi
   preview_action "EXEC" "claude /init" "optional"
@@ -702,8 +727,12 @@ fi
 step_start "Release-Automation einrichten"
 if $OPT_NO_RELEASE_PLEASE; then
   step_skip "--no-release-please"
+elif $OPT_NO_REMOTE; then
+  step_skip "--no-remote"
 elif [ "$OPT_PLATFORM" = "gitlab" ]; then
   step_skip "GitLab: via setup-gitlab-release.sh"
+elif [ "$OPT_PLATFORM" = "forgejo" ] || [ "$OPT_PLATFORM" = "codeberg" ]; then
+  step_skip "Forgejo Actions: institutionell freigegebene Konfiguration erforderlich"
 elif [ -f "${TARGET_DIR}/release-please-config.json" ] && ! $OPT_FORCE; then
   step_skip "Konfiguration existiert bereits"
 else
@@ -838,8 +867,28 @@ elif [ "$OPT_PLATFORM" = "gitlab" ]; then
   else
     step_warn "glab repo create fehlgeschlagen / glab repo create failed"
   fi
+elif [ "$OPT_PLATFORM" = "forgejo" ] || [ "$OPT_PLATFORM" = "codeberg" ]; then
+  if hb_forgejo_create_or_get_repository "$FORGEJO_BASE_URL" "$PROJECT_SLUG" "Project repository for $PROJECT_NAME"; then
+    if git -C "$TARGET_DIR" remote add origin "$HB_FORGEJO_CLONE_URL" >/dev/null 2>&1; then
+      git -C "$TARGET_DIR" config --local home-baseline.remote-platform "$OPT_PLATFORM"
+      git -C "$TARGET_DIR" config --local home-baseline.remote-base-url "$FORGEJO_BASE_URL"
+      git -C "$TARGET_DIR" config --local home-baseline.remote-owner "$HB_FORGEJO_REPOSITORY_OWNER"
+      git -C "$TARGET_DIR" config --local home-baseline.remote-repository "$HB_FORGEJO_REPOSITORY_NAME"
+      SUMMARY_REPO_URL="$HB_FORGEJO_HTML_URL"
+      SUMMARY_DISPLAY_REPO="$HB_FORGEJO_REPOSITORY_NAME"
+      if [ "$HB_FORGEJO_REPOSITORY_CREATED" -eq 1 ]; then
+        step_done "$PROJECT_SLUG erstellt"
+      else
+        step_done "$PROJECT_SLUG wiederverwendet"
+      fi
+    else
+      step_warn "git remote add origin fehlgeschlagen / git remote add origin failed"
+    fi
+  else
+    step_warn "Forgejo-Repository konnte nicht erstellt oder gelesen werden"
+  fi
 else
-  step_skip "gh nicht installiert"
+  step_skip "Plattform-CLI nicht installiert"
 fi
 
 # ─── Step 14: git push ───────────────────────────────────────────────────────

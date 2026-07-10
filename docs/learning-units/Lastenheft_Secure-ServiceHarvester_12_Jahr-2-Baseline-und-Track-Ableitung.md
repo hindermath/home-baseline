@@ -45,9 +45,9 @@
 
 ## Aufgabenstellung / Task
 
-**DE:** Prüfe den abgeschlossenen Jahr-2-Stand eines Secure-ServiceHarvester-Sprachrepos. Dokumentiere, ob Build, Tests, Secure-Development-Basis, Presets, offene Risiken und `N/A`-Begründungen für eine spätere Spezialisierung belastbar genug sind. Bereite anschließend die Ableitung für Jahr 3 vor: ein nachvollziehbarer Baseline-Stand mit Tag `learning/year-2-complete` und eine spätere abgeleitete Track-Kopie oder ein Track-Repo. Ein GitHub-Fork ist optional, wenn die Plattformhistorie bewusst sichtbar bleiben soll.
+**DE:** Prüfe den abgeschlossenen Jahr-2-Stand eines Secure-ServiceHarvester-Sprachrepos. Dokumentiere, ob Build, Tests, Secure-Development-Basis, Presets, offene Risiken und `N/A`-Begründungen für eine spätere Spezialisierung belastbar genug sind. Bereite anschließend die Ableitung für Jahr 3 vor: ein nachvollziehbarer Baseline-Stand mit Tag `learning/year-2-complete` und eine spätere abgeleitete Track-Kopie oder ein Track-Repo. Ein Plattform-Fork ist optional, wenn die Plattformhistorie bewusst sichtbar bleiben soll.
 
-**EN:** Review the completed year-2 state of a Secure ServiceHarvester language repository. Document whether build, tests, the secure-development baseline, presets, open risks, and `N/A` rationales are strong enough for later specialization. Then prepare the year-3 derivation: a traceable baseline state with the tag `learning/year-2-complete` and a later derived track copy or track repository. A GitHub fork is optional when platform history should stay visible.
+**EN:** Review the completed year-2 state of a Secure ServiceHarvester language repository. Document whether build, tests, the secure-development baseline, presets, open risks, and `N/A` rationales are strong enough for later specialization. Then prepare the year-3 derivation: a traceable baseline state with the tag `learning/year-2-complete` and a later derived track copy or track repository. A platform-native fork is optional when platform history should stay visible.
 
 ## Anforderungen / Requirements
 

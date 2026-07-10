@@ -7,6 +7,8 @@
     "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
     "npmAgentRegistry": "scripts/config/npm-agent-cli-registry.json",
     "agentCliPolicy": "codex, claude, gemini, and the standalone GitHub Copilot CLI are required agent CLI surfaces. npm fallback installations are maintained through npm-agent-cli-registry.json.",
+    "hostingAccountPolicy": "Learners need an account on the selected institutional Git hosting system. A GitHub account is required only for the direct GitHub profile or optional GitHub Copilot sign-in.",
+    "forgejoClientPolicy": "No additional Forgejo client CLI is required. Bootstrap automation uses normal git, HTTPS credentials from a secure Git credential helper, and the Forgejo REST API.",
     "linuxWithoutBrew": "Linux without Homebrew uses distro packages where available. .NET, Swift, Syft, and GitHub Spec Kit may require external package sources or uv-based installation."
   },
   "tools": [

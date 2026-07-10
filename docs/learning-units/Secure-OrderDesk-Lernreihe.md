@@ -100,7 +100,7 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 
 **EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-tmp` remains Level 0 and keeps the generic material. A private Level 1 workspace repository `SecureOrderDeskProjects` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
 
-| Rolle / Role | Lokaler Ordner / Local folder | GitHub-Slug | Primärsprache / Primary language | Zweck / Purpose |
+| Rolle / Role | Lokaler Ordner / Local folder | Repository-Slug | Primärsprache / Primary language | Zweck / Purpose |
 |---|---|---|---|---|
 | Koordination / Coordination | `SecureOrderDeskProjects` | `secure-orderdesk-baseline` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
 | Referenz / Reference | `SecureOrderDesk-CSharp` | `secureorderdesk-csharp` | C# | erste manuelle Referenzimplementierung durch Lehrende |

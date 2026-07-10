@@ -16,9 +16,9 @@ pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir DIR [option
 
 ## DESCRIPTION
 
-Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Paket enthaelt keine `.git`-Verzeichnisse, keine urspruenglichen Remote-URLs und keine lokalen Build- oder IDE-Artefakte. `START-HERE-FUER-LERNENDE.md` ist der verbindliche Root-Einstieg; `GIT-START-FUER-LERNENDE.md` wird ebenfalls aufgenommen. Fehlt eine der beiden Dateien, bricht die Paketierung ab.
+Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Paket enthaelt keine `.git`-Verzeichnisse, keine urspruenglichen Remote-URLs und keine lokalen Build- oder IDE-Artefakte. `START-HERE-FUER-LERNENDE.md` ist der verbindliche Root-Einstieg; `GIT-START-FUER-LERNENDE.md` und `INSTITUTIONELLES-GIT-HOSTING.md` werden ebenfalls aufgenommen. Fehlt eine dieser Dateien, bricht die Paketierung ab.
 
-*The scripts create a ZIP package from a level-1 learning-series folder. The package contains no `.git` directories, no original remote URLs, and no local build or IDE artefacts. `START-HERE-FUER-LERNENDE.md` is the required root entry; `GIT-START-FUER-LERNENDE.md` is included as well. Packaging fails when either file is missing.*
+*The scripts create a ZIP package from a level-1 learning-series folder. The package contains no `.git` directories, no original remote URLs, and no local build or IDE artefacts. `START-HERE-FUER-LERNENDE.md` is the required root entry; `GIT-START-FUER-LERNENDE.md` and `INSTITUTIONELLES-GIT-HOSTING.md` are included as well. Packaging fails when one of these files is missing.*
 
 ## OPTIONS
 
@@ -30,6 +30,7 @@ Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Pake
 | `--package-prefix NAME` | `-PackagePrefix NAME` | Dateiname-Prefix |
 | `--start-guide PATH` | `-StartGuide PATH` | Startanleitung relativ zu `SourceDir` oder absolut |
 | `--git-guide PATH` | `-GitGuide PATH` | Git-Startanleitung relativ zu `SourceDir` oder absolut |
+| `--hosting-guide PATH` | `-HostingGuide PATH` | Leitfaden fuer institutionelles Git-Hosting |
 | `--dry-run` | `-WhatIf` | Vorschau ohne ZIP-Erzeugung |
 
 ## EXAMPLES

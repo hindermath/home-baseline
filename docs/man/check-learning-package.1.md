@@ -20,8 +20,9 @@ pwsh -NoProfile -File scripts/check-learning-package.ps1 -SelfTest
 ## DESCRIPTION
 
 Die Skripte pruefen, dass ein Lernpaket genau einen Root-Ordner, die Dateien
-`START-HERE-FUER-LERNENDE.md`, `GIT-START-FUER-LERNENDE.md` und
-`PACKAGING-MANIFEST.txt` sowie eine passende SHA-256-Pruefsumme enthaelt. Sie
+`START-HERE-FUER-LERNENDE.md`, `GIT-START-FUER-LERNENDE.md`,
+`INSTITUTIONELLES-GIT-HOSTING.md` und `PACKAGING-MANIFEST.txt` sowie eine
+passende SHA-256-Pruefsumme enthaelt. Sie
 weisen `.git`-Verzeichnisse, Build-Ausgaben, IDE-Zustaende und lokale
 Einstellungsdateien zurueck. Wenn `gitleaks` verfuegbar ist, wird der entpackte
 Inhalt zusaetzlich auf offensichtliche Secrets geprueft. Die bestehende enge
@@ -29,7 +30,7 @@ Allowlist aus `scripts/templates/gitleaks.toml` nimmt nur dokumentierte
 Beispielmuster in Markdown-Lehrmaterial unter `docs/secure-development/` aus.
 
 *The scripts validate that a learning package contains exactly one root folder,
-both learner start guides, a packaging manifest, and a matching SHA-256 file.
+the learner and institutional-hosting guides, a packaging manifest, and a matching SHA-256 file.
 They reject Git metadata, build output, IDE state, and local settings. When
 `gitleaks` is available, the extracted content is additionally scanned for
 obvious secrets. The existing narrow allowlist in

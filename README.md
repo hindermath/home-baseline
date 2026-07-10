@@ -2,11 +2,13 @@
 
 Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur.
 Es enthält die Bootstrap-Scripts, mit denen jedes neue Projektverzeichnis in wenigen
-Sekunden als synchronisiertes privates GitHub- oder GitLab-Repository eingerichtet werden kann.
+Sekunden als synchronisiertes privates Repository auf GitHub, GitLab, Codeberg,
+Forgejo oder einem manuell angebundenen Git-System eingerichtet werden kann.
 
 *This repository is the **top level** of the private workspace infrastructure.
 It contains bootstrap scripts to set up any new project directory as a synchronised
-private GitHub or GitLab repository within seconds.*
+private repository on GitHub, GitLab, Codeberg, Forgejo, or a manually connected
+Git system within seconds.*
 
 > **Hinweis zur Erstellung / Creation notice:** Diese agentische
 > Unterstützungs-Umgebung und wesentliche Dokumentations-, Lern- und
@@ -21,11 +23,13 @@ private GitHub or GitLab repository within seconds.*
 
 > **Start fuer Lernende / Start for learners:** Beginne mit
 > [`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
-> Die Anleitung fuehrt vom persoenlichen Fork ueber die Required-Werkzeuge und
+> Die Anleitung fuehrt vom persoenlichen Fork oder institutionell
+> bereitgestellten Lernenden-Repository ueber die Required-Werkzeuge und
 > die Podman-Sandbox bis zum ersten kontrollierten Agentenlauf.
 >
 > *Start with [`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
-> It leads from your personal fork through the required tools and Podman sandbox
+> It leads from your personal fork or institution-provided learner repository
+> through the required tools and Podman sandbox
 > to the first controlled agent run.*
 
 ---
@@ -77,7 +81,7 @@ private GitHub or GitLab repository within seconds.*
   - [Was machen wir hier eigentlich? / What is this all about?](#was-machen-wir-hier-eigentlich--what-is-this-all-about)
   - [Schritt 0: Deine Werkzeuge vorbereiten / Step 0: Preparing your tools](#schritt-0-deine-werkzeuge-vorbereiten--step-0-preparing-your-tools)
   - [Schritt 1: Deinen persoenlichen Fork anlegen / Step 1: Create Your Personal Fork](#schritt-1-deinen-persoenlichen-fork-anlegen--step-1-create-your-personal-fork)
-  - [Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer](#schritt-2-deinen-computer-mit-der-cloud-verbinden--step-2-connect-your-computer)
+  - [Schritt 2: Deinen Computer mit dem Git-Hosting verbinden / Step 2: Connect to Git hosting](#schritt-2-deinen-computer-mit-dem-git-hosting-verbinden--step-2-connect-to-git-hosting)
   - [Schritt 3: Deinen ersten "Workspace" anlegen / Step 3: Create your first workspace](#schritt-3-deinen-ersten-workspace-anlegen--step-3-create-your-first-workspace)
   - [Schritt 4: Dein erstes Projekt starten / Step 4: Start your first project](#schritt-4-dein-erstes-projekt-starten--step-4-start-your-first-project)
   - [Bestehende Projekte integrieren / Integrating existing projects](#bestehende-projekte-integrieren--integrating-existing-projects)
@@ -99,7 +103,7 @@ private GitHub or GitLab repository within seconds.*
 
 ## Workspace-Übersicht / Workspace overview
 
-| Verzeichnis / Directory | GitHub-Repo / GitHub repo | Eingerichtet mit / Set up with |
+| Verzeichnis / Directory | Remote-Repository | Eingerichtet mit / Set up with |
 |---|---|---|
 <!-- workspace-table-end -->
 
@@ -147,14 +151,18 @@ any permanent connection to the source.*
 4. Clone the repo and follow the [initial setup](#ersteinrichtung-dieses-repos-auf-einem-neuen-gerät--initial-setup-on-a-new-device)
 
 > **Hinweis für Auszubildende:** Fuer den betreuten Lernendenpfad wird kein
-> unabhaengiges Template-Repository erzeugt. Lege einen persoenlichen **Fork** von
-> `hindermath/home-baseline` an, damit `origin` auf deinen Fork und `upstream` auf
-> die kanonische Quelle zeigt. Folge danach der
+> unabhaengiges Template-Repository erzeugt. Lege einen persoenlichen **Fork**
+> der von deiner Institution bereitgestellten Referenz an. Nur im direkten
+> GitHub-Profil ist dies `hindermath/home-baseline`. `origin` zeigt auf dein
+> persoenliches Repository, `upstream` auf die institutionelle oder oeffentliche
+> Referenz. Folge danach der
 > [Startanleitung fuer Lernende](docs/learning-units/START-HERE-FUER-LERNENDE.md).
 >
 > *For the guided learner path, do not create an independent template repository.
-> Create a personal **fork** of `hindermath/home-baseline` so `origin` points to
-> your fork and `upstream` points to the canonical source. Then follow the
+> Create a personal **fork** of the reference provided by your institution. Only
+> the direct GitHub profile uses `hindermath/home-baseline`. `origin` points to
+> your personal repository and `upstream` to the institutional or public
+> reference. Then follow the
 > [learner start guide](docs/learning-units/START-HERE-FUER-LERNENDE.md).*
 
 ---
@@ -350,6 +358,9 @@ bash ~/scripts/bootstrap-workspace.sh <Verzeichnisname>
 # Beispiele:
 bash ~/scripts/bootstrap-workspace.sh FlutterProjects
 bash ~/scripts/bootstrap-workspace.sh GoProjects go-baseline "Go-Workspace"
+bash ~/scripts/bootstrap-workspace.sh Ausbildung --platform codeberg
+bash ~/scripts/bootstrap-workspace.sh Ausbildung --platform forgejo --forgejo-url https://git.institution.example
+bash ~/scripts/bootstrap-workspace.sh Ausbildung --no-remote
 
 # Vorher testen (kein Schreibzugriff):
 bash ~/scripts/bootstrap-workspace.sh --dry-run FlutterProjects
@@ -364,6 +375,9 @@ pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName <Verzeichnisname>
 # Beispiele:
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName GoProjects -RepoName go-baseline -Description "Go-Workspace"
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName Ausbildung -Platform codeberg
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName Ausbildung -Platform forgejo -ForgejoUrl https://git.institution.example
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName Ausbildung -NoRemote
 
 # Vorher testen (kein Schreibzugriff):
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
@@ -373,16 +387,16 @@ Der Bootstrap-Vorgang erledigt automatisch:
 1. Bestehende Sub-Repos erkennen und in `.gitignore` eintragen
 2. Standard-Scripts (`scan-agent-secrets`, `install-hooks`, `pre-push`-Hook) kopieren
 3. `git init` + initialer Commit
-4. Privates GitHub-Repo erstellen (`gh repo create`)
-5. Push zu GitHub
+4. Privates Remote-Repo auf der gewaehlten Plattform erstellen oder `no-remote` respektieren
+5. `origin` setzen und pushen
 6. Git-Hooks installieren
 
 The bootstrap process automatically handles:
 1. Detecting existing sub-repos and adding them to `.gitignore`
 2. Copying standard scripts (`scan-agent-secrets`, `install-hooks`, `pre-push` hook)
 3. `git init` + initial commit
-4. Creating a private GitHub repo (`gh repo create`)
-5. Pushing to GitHub
+4. Creating a private remote repository on the selected platform or respecting `no-remote`
+5. Setting `origin` and pushing
 6. Installing Git hooks
 
 ---
@@ -592,6 +606,9 @@ Die Einrichtung ist abgeschlossen. Hier ist die empfohlene Reihenfolge für eine
 bash ~/scripts/bootstrap-workspace.sh FlutterProjects
 bash ~/scripts/bootstrap-workspace.sh FlutterProjects --platform gitlab
 bash ~/scripts/bootstrap-workspace.sh FlutterProjects --platform gitlab --gitlab-url https://gitlab.example.com
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects --platform codeberg
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects --platform forgejo --forgejo-url https://git.institution.example
+bash ~/scripts/bootstrap-workspace.sh FlutterProjects --no-remote
 bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 ```
 
@@ -600,13 +617,16 @@ bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -Platform gitlab
 pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -Platform gitlab -GitLabUrl https://gitlab.example.com
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -Platform codeberg
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -Platform forgejo -ForgejoUrl https://git.institution.example
+pwsh ~/scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -NoRemote
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
 > Das Script erledigt automatisch / The script handles automatically:
-> `git init` · initialer Commit · `gh repo create` **oder** `glab repo create` (privates Remote-Repo) · Remote `origin` setzen · `git push`
+> `git init` · initialer Commit · privates Remote ueber `gh`, `glab` oder die Forgejo-API anlegen · Remote `origin` setzen · `git push`
 >
-> *Without `--platform`, GitHub remains the default. With `--platform gitlab`, the same bootstrap flow targets GitLab instead.*
+> *Without `--platform`, GitHub remains the default. `gitlab`, `forgejo`, and `codeberg` select other supported forges; `--no-remote` keeps the repository local.*
 
 **2 — Projekt anlegen / Create a project**
 
@@ -616,6 +636,8 @@ bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab --no-remote
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab --gitlab-url https://gitlab.example.com --preview
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform codeberg --preview
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform forgejo --forgejo-url https://git.institution.example --preview
 bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 ```
 
@@ -625,13 +647,15 @@ pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab -NoRemote
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab -GitLabUrl https://gitlab.example.com -Preview
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform codeberg -Preview
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform forgejo -ForgejoUrl https://git.institution.example -Preview
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
 > Das Script erledigt automatisch / The script handles automatically:
-> `git init` · initialer Commit · `gh repo create` **oder** `glab repo create` (privates Remote-Repo) · Remote `origin` setzen · `git push`
+> `git init` · initialer Commit · privates Remote ueber `gh`, `glab` oder die Forgejo-API anlegen · Remote `origin` setzen · `git push`
 >
-> *For self-hosted GitLab, pass `--gitlab-url` / `-GitLabUrl` so the remote URL, summary output, and `~/README.md` entry all point to the custom host.*
+> *For self-hosted GitLab or Forgejo, pass the matching base URL. Codeberg uses `https://codeberg.org`. Forgejo and Codeberg use HTTPS credentials from the configured Git credential helper.*
 
 **2b — Workspace oder Projekt entfernen / Remove a workspace or project** *(bei Bedarf / when needed)*
 
@@ -938,7 +962,7 @@ Wenn `sync-home` aus `~/scripts/` gestartet wird, delegiert es automatisch an di
 
 GitHub- und GitLab-Releases folgen beide den [Conventional Commits](https://www.conventionalcommits.org/), verwenden aber unterschiedliche Automationspfade.
 
-*GitHub and GitLab releases both follow [Conventional Commits](https://www.conventionalcommits.org/), but they use different automation paths.*
+*GitHub and GitLab releases both follow [Conventional Commits](https://www.conventionalcommits.org/), but they use different automation paths. Forgejo/Codeberg release automation requires a separately reviewed institutional Actions configuration.*
 
 | Commit-Präfix / Prefix | Versions-Bump / Version bump |
 |---|---|
@@ -1431,9 +1455,9 @@ Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Lev
 
 *For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-tmp` remains the Level 0 source, a private Level 1 repository `SecureCaseTrackerProjects` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by instructors or learners; C# is planned as the first reference path.*
 
-Die lokalen Level-2-Ordner nutzen CamelCase, z. B. `SecureCaseTracker-CSharp`. Die GitHub-Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, z. B. `securecasetracker-csharp`.
+Die lokalen Level-2-Ordner nutzen CamelCase, z. B. `SecureCaseTracker-CSharp`. Die Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, z. B. `securecasetracker-csharp`.
 
-*The local Level 2 folders use CamelCase, for example `SecureCaseTracker-CSharp`. The GitHub repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.*
+*The local Level 2 folders use CamelCase, for example `SecureCaseTracker-CSharp`. The repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.*
 
 Lernreihen koennen fuer die Weitergabe mit `package-learning-series.*` als ZIP ohne `.git`-Verzeichnisse, ohne urspruengliche Remote-URLs und ohne lokale Build-/IDE-Artefakte gepackt werden. Die generische Startanleitung [`docs/learning-units/GIT-START-FUER-LERNENDE.md`](docs/learning-units/GIT-START-FUER-LERNENDE.md) erklaert Lernenden danach den eigenen Git-Start.
 
@@ -1730,7 +1754,7 @@ Hier sind die drei wichtigsten Konzepte, die du heute lernst:
 
 1.  **Das Terminal (die Kommandozeile):** Dein wichtigstes Werkzeug. Anstatt mit der Maus zu klicken, gibst du dem Computer direkte Textbefehle. Das ist schneller, präziser und lässt sich automatisieren.
 2.  **Git (Versionsverwaltung):** Wie eine „Zeitmaschine“ für deinen Code. Du speicherst Zwischenstände (Commits). Wenn etwas schiefgeht, kannst du jederzeit zu einem funktionierenden Stand zurückkehren.
-3.  **GitHub / GitLab (Die Cloud):** Hier wird dein Code sicher im Internet gespeichert. So kannst du von verschiedenen Computern daran arbeiten und deine Arbeit mit anderen teilen.
+3.  **Git-Hosting:** GitHub, GitLab, Codeberg, Forgejo oder ein institutionelles Git-System speichern deine Repositories zentral. Du verwendest nur das System und das Konto, das deine Institution vorgibt.
 
 **Wichtig für dich:** Dein **Home-Verzeichnis** (auf dem Mac/Linux als `~/` abgekürzt) ist dein persönlicher Bereich auf dem Computer. Wir richten diesen Bereich jetzt so ein, dass er sich „selbst verwaltet“.
 
@@ -1740,7 +1764,7 @@ Hier sind die drei wichtigsten Konzepte, die du heute lernst:
 
 *1. **The terminal (command line):** your main tool. Instead of clicking with the mouse, you give the computer direct text commands. This is faster, more precise, and easy to automate.*
 *2. **Git (version control):** like a time machine for your code. You save checkpoints (commits). If something goes wrong, you can return to a working state at any time.*
-*3. **GitHub / GitLab (the cloud):** this is where your code is stored safely online. It lets you work from different computers and share your work with others.*
+*3. **Git hosting:** GitHub, GitLab, Codeberg, Forgejo, or an institutional Git system stores your repositories centrally. You only use the system and account selected by your institution.*
 
 ***Important:** your **home directory** (shortened to `~/` on macOS/Linux) is your personal area on the computer. We now set it up so that it largely manages itself.*
 
@@ -1750,13 +1774,15 @@ Hier sind die drei wichtigsten Konzepte, die du heute lernst:
 
 Die vollstaendige, verbindliche Reihenfolge steht in
 [`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
-Beginne dort mit Betriebssystem, Shell, Git, GitHub CLI und ripgrep. Danach
+Beginne dort mit Betriebssystem, Shell, Git und ripgrep. Eine Hosting-CLI wird
+nur fuer das tatsaechlich verwendete Profil angemeldet. Danach
 werden die weiteren Required-Werkzeuge ueber das passende Wartungsskript zuerst
 in der Vorschau und anschliessend im echten Lauf eingerichtet.
 
 *The complete binding sequence is in
 [`START-HERE-FUER-LERNENDE.md`](docs/learning-units/START-HERE-FUER-LERNENDE.md).
-Start there with your operating system, shell, Git, GitHub CLI, and ripgrep.
+Start there with your operating system, shell, Git, and ripgrep. A hosting CLI
+is only signed in for the profile actually in use.
 Then set up the remaining required tools through the matching maintenance script,
 first as a preview and then as a real run.*
 
@@ -1764,37 +1790,39 @@ first as a preview and then as a real run.*
 
 ### Schritt 1: Deinen persoenlichen Fork anlegen / Step 1: Create Your Personal Fork
 
-Lege einen persoenlichen Fork von `hindermath/home-baseline` an. Ein Fork behaelt
-die Verbindung zur kanonischen Quelle. Dadurch kann dein lokaler Klon spaeter
+Lege einen persoenlichen Fork der institutionell bereitgestellten
+`home-baseline`-Referenz an. Nur beim direkten GitHub-Profil ist diese Referenz
+`hindermath/home-baseline`. Ein Fork behaelt die Verbindung zur Quelle. Dadurch
+kann dein lokaler Klon spaeter
 `origin` fuer eigene Pushes und `upstream` fuer freigegebene Aktualisierungen
 verwenden. Ein unabhaengiges Repository ueber **Use this template** ist fuer
 diesen betreuten Lernendenpfad nicht vorgesehen.
 
-*Create a personal fork of `hindermath/home-baseline`. A fork keeps its
-connection to the canonical source. Your local clone can therefore use `origin`
+*Create a personal fork of the institution-provided `home-baseline` reference.
+Only the direct GitHub profile uses `hindermath/home-baseline`. A fork keeps its
+connection to the source. Your local clone can therefore use `origin`
 for your own pushes and `upstream` for approved updates. An independent
 repository created through **Use this template** is not used for this guided
 learner path.*
 
-```bash
-gh auth status
-gh repo fork hindermath/home-baseline --clone=false
-```
+Die genauen institutionellen und direkten GitHub-Wege stehen in den Schritten 3
+bis 5 der Startanleitung. Ausbildende beginnen mit
+[`INSTITUTIONELLES-GIT-HOSTING.md`](docs/learning-units/INSTITUTIONELLES-GIT-HOSTING.md).
 
 ---
 
-### Schritt 2: Deinen Computer mit der Cloud verbinden / Step 2: Connect your computer
+### Schritt 2: Deinen Computer mit dem Git-Hosting verbinden / Step 2: Connect to Git Hosting
 
 Klone deinen persoenlichen Fork dauerhaft als `~/home-baseline-tmp`, richte
 `upstream` ein und pruefe beide Remotes. Loesche diesen Ordner nicht: Er ist deine
-mit GitHub verbundene Wartungs- und Entwicklungsarbeitskopie. `~/` bleibt die
+mit deinem Git-Hosting verbundene Wartungs- und Entwicklungsarbeitskopie. `~/` bleibt die
 lokale Betriebskopie ohne Remote. Die genauen macOS/Linux- und Windows-Befehle
 stehen in den Schritten 5 bis 10 der
 [Startanleitung](docs/learning-units/START-HERE-FUER-LERNENDE.md#5-persoenlichen-fork-dauerhaft-klonen--clone-your-fork-permanently).
 
 *Clone your personal fork permanently as `~/home-baseline-tmp`, configure
 `upstream`, and verify both remotes. Do not delete this directory: it is your
-GitHub-connected maintenance and development checkout. `~/` remains the local
+Git-hosting-connected maintenance and development checkout. `~/` remains the local
 runtime copy without a remote. The exact macOS/Linux and Windows commands are in
 steps 5 through 10 of the
 [start guide](docs/learning-units/START-HERE-FUER-LERNENDE.md#5-persoenlichen-fork-dauerhaft-klonen--clone-your-fork-permanently).*
@@ -1803,9 +1831,9 @@ steps 5 through 10 of the
 
 ### Schritt 3: Deinen ersten "Workspace" anlegen / Step 3: Create your first workspace
 
-Ein **Workspace** ist wie ein großer Aktenordner für ein bestimmtes Thema (z. B. „Berufsschule“ oder „C-Sharp-Kurs“). Jedes Mal, wenn du einen neuen Workspace anlegst, erstellt das System automatisch ein passendes, privates Repository auf GitHub für dich.
+Ein **Workspace** ist wie ein großer Aktenordner für ein bestimmtes Thema (z. B. „Berufsschule“ oder „C-Sharp-Kurs“). Der Bootstrap kann ein passendes privates Repository auf GitHub, GitLab, Codeberg oder Forgejo erstellen. Fuer andere Git-Systeme verwendest du `--no-remote` und verbindest das bereitgestellte Repository danach manuell.
 
-*A workspace is like a large folder for a specific topic. The system automatically creates a matching private repo on GitHub for you.*
+*A workspace is like a large folder for a specific topic. The bootstrap can create a matching private repository on GitHub, GitLab, Codeberg, or Forgejo. For other Git systems, use `--no-remote` and connect the provided repository afterwards.*
 
 **Befehl ausführen:**
 ```bash
@@ -1816,12 +1844,12 @@ bash ~/scripts/bootstrap-workspace.sh Ausbildung
 
 **Was ist gerade passiert?**
 1.  Ein Ordner `~/Ausbildung` wurde erstellt.
-2.  Ein privates Repo namens `ausbildung-baseline` wurde auf GitHub für dich angelegt.
+2.  Ein privates Repo namens `ausbildung-baseline` wurde auf der gewaehlten Plattform angelegt.
 3.  Wichtige Schutz-Scripte (Git-Hooks) wurden installiert, damit du keine Passwörter aus Versehen hochlädst.
 
 *What just happened?*
 *1. A directory `~/Ausbildung` was created.*
-*2. A private repo named `ausbildung-baseline` was created for you on GitHub.*
+*2. A private repo named `ausbildung-baseline` was created on the selected platform.*
 *3. Important protection scripts (Git hooks) were installed so that you do not upload passwords by accident.*
 
 ---
@@ -1937,7 +1965,7 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 | Voraussetzung / Requirement | Pflicht? / Required? | Wozu / Why |
 |---|:---:|---|
 | `git` ≥ 2.30 | ✅ | Feature-Branches; Spec-Artefakte werden versioniert / Feature branches; spec artefacts are versioned |
-| GitHub-Account / GitHub account | ✅ | Repo-Hosting / Repository hosting |
+| Konto im verwendeten Git-System / Account on the selected Git system | ✅ | Repository-Hosting; GitHub nur im direkten GitHub-Profil / repository hosting; GitHub only for the direct GitHub profile |
 | KI-Agent (mind. einer) / AI agent (at least one) | ✅ | Fuehrt die Spec-Kit-Skills aus / Runs the Spec-Kit skills |
 | `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) / Installs `specify-cli` (the Spec-Kit CLI) |
 | Node.js ≥ 22 LTS | fuer npm-Agenten / for npm-based agents | Gemini CLI und Codex CLI installieren (Claude Code: nicht noetig) / Install Gemini CLI and Codex CLI (Claude Code: not needed) |

@@ -133,6 +133,7 @@ series_unit_files() {
                Secure-Trader-*.md \
                START-HERE-FUER-LERNENDE.md \
                GIT-START-FUER-LERNENDE.md \
+               INSTITUTIONELLES-GIT-HOSTING.md \
                lernbegleiter/"${FILE_SERIES}"*.Lernbegleiter.md \
                templates/*.md \
                datasets/* datasets/*/*; do
@@ -142,7 +143,7 @@ series_unit_files() {
 }
 
 shared_root_guides() {
-  printf '%s\n' START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md
+  printf '%s\n' START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md INSTITUTIONELLES-GIT-HOSTING.md
 }
 
 # Nur die Root-Intakes (fuer Level-2 zusaetzlich in die Repo-Wurzel gespiegelt)
@@ -420,8 +421,8 @@ process_repo() {
   [ "$level" = "2" ] && git -C "$repo" add -A -- 'Lastenheft_'"${FILE_SERIES}"'*.md' >/dev/null 2>&1 || true
   git -C "$repo" add -- README.md
   # Level-2 whitelist-style .gitignore files may ignore root Markdown by default.
-  # Force only the two canonical learner guides, never arbitrary ignored files.
-  git -C "$repo" add -f -- START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md
+  # Force only the canonical learner and hosting guides, never arbitrary ignored files.
+  git -C "$repo" add -f -- START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md INSTITUTIONELLES-GIT-HOSTING.md
 
   if git -C "$repo" diff --cached --quiet; then
     ok "${name}: keine Git-Aenderung nach Add / no staged change"

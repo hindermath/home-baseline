@@ -2,6 +2,13 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FORGEJO_LIB="$SCRIPT_DIR/lib/hg-forgejo.sh"
+if [ -f "$FORGEJO_LIB" ]; then
+  # shellcheck source=scripts/lib/hg-forgejo.sh
+  source "$FORGEJO_LIB"
+fi
+
 BOX_WIDTH=66
 
 EXIT_CODE=0
@@ -174,10 +181,14 @@ discover_level2_projects() {
 remote_platform_for_dir() {
   local dir="$1"
   local remote_url=""
+  local configured_platform=""
 
   remote_url="$(git -C "$dir" remote get-url origin 2>/dev/null || true)"
+  configured_platform="$(git -C "$dir" config --local --get home-baseline.remote-platform 2>/dev/null || true)"
   if [ -z "$remote_url" ]; then
     echo "kein Remote / no remote"
+  elif [ "$configured_platform" = "forgejo" ] || [ "$configured_platform" = "codeberg" ]; then
+    echo "$configured_platform"
   elif echo "$remote_url" | grep -qi 'github\.com'; then
     echo "GitHub"
   elif echo "$remote_url" | grep -qi 'gitlab\.com'; then
@@ -350,6 +361,10 @@ delete_remote_repo() {
   local dir="$2"
   local remote_url=""
   local owner_repo=""
+  local configured_platform=""
+  local forgejo_base_url=""
+  local forgejo_owner=""
+  local forgejo_repository=""
 
   if [ "$KEEP_REMOTE" -eq 1 ]; then
     add_result "skip" "Remote bewusst behalten / Remote intentionally kept: $label"
@@ -365,6 +380,30 @@ delete_remote_repo() {
   if [ -z "$remote_url" ]; then
     add_result "skip" "Kein Remote konfiguriert / No remote configured: $label"
     return 0
+  fi
+
+  configured_platform="$(git -C "$dir" config --local --get home-baseline.remote-platform 2>/dev/null || true)"
+  if [ "$configured_platform" = "forgejo" ] || [ "$configured_platform" = "codeberg" ]; then
+    if [ ! -f "$FORGEJO_LIB" ]; then
+      add_result "fail" "Forgejo-Bibliothek fehlt, Remote-Löschung abgebrochen / Forgejo library missing, remote deletion aborted: $label"
+      set_warning_exit
+      return 1
+    fi
+    forgejo_base_url="$(git -C "$dir" config --local --get home-baseline.remote-base-url 2>/dev/null || true)"
+    forgejo_owner="$(git -C "$dir" config --local --get home-baseline.remote-owner 2>/dev/null || true)"
+    forgejo_repository="$(git -C "$dir" config --local --get home-baseline.remote-repository 2>/dev/null || true)"
+    if [ -z "$forgejo_base_url" ] || [ -z "$forgejo_owner" ] || [ -z "$forgejo_repository" ]; then
+      add_result "fail" "Forgejo-Metadaten fehlen, bitte --keep-remote verwenden / Forgejo metadata missing, use --keep-remote: $label"
+      set_warning_exit
+      return 1
+    fi
+    if hb_forgejo_delete_repository "$forgejo_base_url" "$forgejo_owner" "$forgejo_repository"; then
+      add_result "done" "$configured_platform-Remote gelöscht / remote deleted: $forgejo_owner/$forgejo_repository"
+      return 0
+    fi
+    add_result "fail" "$configured_platform-Remote konnte nicht gelöscht werden / remote could not be deleted: $forgejo_owner/$forgejo_repository"
+    set_warning_exit
+    return 1
   fi
 
   if echo "$remote_url" | grep -qi 'github\.com'; then

@@ -16,7 +16,7 @@ pwsh -NoProfile -File scripts/teardown-workspace.ps1 -WorkspaceName <Name> [opti
 
 ## DESCRIPTION
 
-Das Skript baut einen Workspace kontrolliert ab: es entfernt das Verzeichnis, bereinigt `README.md`, `.gitignore` und die `.gitconfig.d/*.inc`-Fragmente und loescht optional das Remote-Repository. Der geschuetzte Name `home-baseline` wird abgelehnt. Mit `--dry-run` werden alle Aktionen nur angezeigt.
+Das Skript baut einen Workspace kontrolliert ab: es entfernt das Verzeichnis, bereinigt `README.md`, `.gitignore` und die `.gitconfig.d/*.inc`-Fragmente und loescht optional das GitHub-, GitLab-, Forgejo- oder Codeberg-Remote. Forgejo-Metadaten werden aus der lokalen `.git/config` gelesen. Der geschuetzte Name `home-baseline` wird abgelehnt. Mit `--dry-run` werden alle Aktionen nur angezeigt.
 
 *The script tears a workspace down in a controlled way: it removes the directory, cleans up `README.md`, `.gitignore`, and the `.gitconfig.d/*.inc` fragments, and optionally deletes the remote repository. The protected name `home-baseline` is rejected. With `--dry-run` all actions are only shown.*
 

@@ -71,7 +71,7 @@
 - **Level 1:** `SecureOrderDeskProjects` als privates Koordinations-Repo mit README, Statusmatrix und Abarbeitungsreihenfolge.
 - **Level 2:** sechs private Sprach-Repos: `SecureOrderDesk-CSharp`, `SecureOrderDesk-Go`, `SecureOrderDesk-Java`, `SecureOrderDesk-Python`, `SecureOrderDesk-Rust`, `SecureOrderDesk-Swift`.
 
-**DE:** Die Level-2-Namen bezeichnen die lokalen Ordner. Die GitHub-Repository-Slugs werden durch den Bootstrap lowercase erzeugt, zum Beispiel `secureorderdesk-csharp`.
+**DE:** Die Level-2-Namen bezeichnen die lokalen Ordner. Die Repository-Slugs werden durch den Bootstrap lowercase erzeugt, zum Beispiel `secureorderdesk-csharp`.
 
 **EN:** This master intake describes the overall map of the base series. Later practical work should use a private Level 1 / Level 2 structure:
 
@@ -79,7 +79,7 @@
 - **Level 1:** `SecureOrderDeskProjects` as the private coordination repository with README, status matrix, and processing order.
 - **Level 2:** six private language repositories: `SecureOrderDesk-CSharp`, `SecureOrderDesk-Go`, `SecureOrderDesk-Java`, `SecureOrderDesk-Python`, `SecureOrderDesk-Rust`, `SecureOrderDesk-Swift`.
 
-**EN:** The Level 2 names identify the local folders. The GitHub repository slugs are created lowercase by the bootstrap, for example `secureorderdesk-csharp`.
+**EN:** The Level 2 names identify the local folders. The repository slugs are created lowercase by the bootstrap, for example `secureorderdesk-csharp`.
 
 **DE:** C# ist als erster manueller Referenzpfad vorgesehen. Go, Java, Python, Rust und Swift folgen als Vergleichs- und Vertiefungspfade. Ein KI-Agent bereitet diese Struktur nur vor; die Spec-Kit-Läufe starten später manuell durch Lehrende oder Lernende. Vor Aufgabe `01` gibt es den technischen Startlauf `00`; nach dem Abschluss von Jahr 2 gibt es den Baseline- und Track-Ableitungslauf `12`.
 

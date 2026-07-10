@@ -51,58 +51,111 @@ PowerShell 7 und `.ps1`-Skripte. Unter macOS/Linux verwendest du Bash und
 
 ## 2. Minimale Host-Werkzeuge installieren / Install Minimum Host Tools
 
-Du brauchst zuerst Git, GitHub CLI und ripgrep. Die ausfuehrlichen
-Installationswege stehen in der
-[Root-README](../../README.md#voraussetzungen--prerequisites).
+Du brauchst zuerst Git und ripgrep. Die ausfuehrlichen Installationswege stehen
+in der [Root-README](../../README.md#voraussetzungen--prerequisites). Die
+GitHub CLI `gh` beziehungsweise die GitLab CLI `glab` darf bereits installiert
+sein, wird aber nur im passenden Hosting-Profil angemeldet.
 
 **Host:**
 
 ```bash
 git --version
-gh --version
 rg --version
 ```
 
-**Erfolg / Success:** Alle drei Befehle zeigen eine Version.
+**Erfolg / Success:** Beide Befehle zeigen eine Version.
 
-## 3. Bei GitHub anmelden / Sign In to GitHub
+## 3. Git-Hosting-Profil waehlen / Choose the Git Hosting Profile
+
+Waehle den von deiner Lehr- oder Betreuungsperson vorgegebenen Weg:
+
+| Profil / Profile | Konto / Account | Referenz / Reference |
+|---|---|---|
+| A: Institutionelles Git-Hosting | Konto im institutionellen GitLab-, Forgejo-, Codeberg- oder anderen Git-System | Von der Institution bereitgestellte URL |
+| B: Direkte GitHub-Nutzung | Persoenliches GitHub-Konto | `hindermath/home-baseline` |
+
+Ein GitHub-Konto ist in Profil A nicht erforderlich. Es wird nur fuer Profil B
+oder fuer die spaetere, optionale Anmeldung bei GitHub Copilot benoetigt. Die
+technische Installation einer CLI ist von der Anmeldung beim jeweiligen
+Anbieter getrennt.
+
+*A GitHub account is not required in profile A. It is only needed for profile B
+or for the later optional GitHub Copilot sign-in. Installing a CLI and signing
+in to its provider are separate steps.*
+
+## 4. Persoenliches Lernenden-Repository anlegen / Create Your Learner Repository
+
+### Profil A: Institutionelles Git-Hosting
+
+Oeffne die von deiner Lehrperson bereitgestellte institutionelle
+`home-baseline`-Referenz und waehle dort **Fork**. Der Fork liegt in deinem
+persoenlichen Namensraum. Falls das verwendete Git-System keine Fork-Funktion
+hat, stellt die Institution stattdessen ein persoenliches Repository mit
+derselben Git-Historie bereit.
+
+Notiere zwei HTTPS-URLs:
+
+- die URL deines persoenlichen Repositorys fuer `origin`;
+- die URL der institutionellen Referenz fuer `upstream`.
+
+Verwende fuer HTTPS einen persoenlichen Zugriffstoken im Git-Credential-Helper.
+Der Token gehoert niemals in die URL, einen Prompt, einen Screenshot oder eine
+Repository-Datei.
+
+Pruefe, ob ein sicherer Helper konfiguriert ist:
+
+```bash
+git config --global --get credential.helper
+```
+
+Auf macOS ist `osxkeychain`, unter Windows Git Credential Manager und unter
+Linux ein von der Institution freigegebener Secret-Store vorgesehen. Fehlt die
+Ausgabe, richte den Helper mit deiner Lehrperson ein, bevor du fortfaehrst.
+
+### Profil B: Direkte GitHub-Nutzung
 
 **Host:**
 
 ```bash
 gh auth status
-```
-
-Falls noch keine Anmeldung besteht / If you are not signed in yet:
-
-```bash
-gh auth login
-gh auth setup-git
-```
-
-Fuehre die Anmeldung in einem interaktiven Terminal aus. Gib Tokens niemals in
-Prompts, Screenshots oder Repository-Dateien ein.
-
-## 4. Persoenlichen Fork anlegen / Create Your Personal Fork
-
-**DE:** Lege zuerst einen Fork von `hindermath/home-baseline` in deinem
-persoenlichen GitHub-Namensraum an. Verwende den vorhandenen Fork weiter, wenn du
-diesen Schritt bereits frueher ausgefuehrt hast.
-
-**EN:** First create a fork of `hindermath/home-baseline` in your personal GitHub
-namespace. Reuse the existing fork if you completed this step earlier.
-
-**Host:**
-
-```bash
 gh repo fork hindermath/home-baseline --clone=false
 ```
 
-**Erfolg / Success:** Auf GitHub existiert
-`DEIN-GITHUB-NAME/home-baseline`, und GitHub zeigt
-`forked from hindermath/home-baseline` an.
+Falls die Anmeldung fehlt, fuehre `gh auth login` und `gh auth setup-git` in
+einem interaktiven Terminal aus.
+
+**Erfolg / Success:** Dein persoenlicher Namensraum enthaelt einen Fork oder ein
+von der Institution bereitgestelltes persoenliches Repository. Du hast keinen
+direkten Schreibzugriff auf die Referenzquelle noetig.
 
 ## 5. Persoenlichen Fork dauerhaft klonen / Clone Your Fork Permanently
+
+### Profil A: Institutionelles Git-Hosting
+
+Ersetze beide Platzhalter durch die von der Institution bereitgestellten
+HTTPS-URLs.
+
+**Host - macOS/Linux:**
+
+```bash
+LEARNER_REPO_URL="<HTTPS-URL-DEINES-PERSOENLICHEN-REPOSITORYS>"
+INSTITUTION_UPSTREAM_URL="<HTTPS-URL-DER-INSTITUTIONELLEN-REFERENZ>"
+git clone "$LEARNER_REPO_URL" "$HOME/home-baseline-tmp"
+git -C "$HOME/home-baseline-tmp" remote add upstream "$INSTITUTION_UPSTREAM_URL"
+git -C "$HOME/home-baseline-tmp" remote -v
+```
+
+**Host - Windows, PowerShell 7:**
+
+```powershell
+$LearnerRepoUrl = '<HTTPS-URL-DEINES-PERSOENLICHEN-REPOSITORYS>'
+$InstitutionUpstreamUrl = '<HTTPS-URL-DER-INSTITUTIONELLEN-REFERENZ>'
+git clone $LearnerRepoUrl "$HOME/home-baseline-tmp"
+git -C "$HOME/home-baseline-tmp" remote add upstream $InstitutionUpstreamUrl
+git -C "$HOME/home-baseline-tmp" remote -v
+```
+
+### Profil B: Direkte GitHub-Nutzung
 
 **Host - macOS/Linux:**
 
@@ -113,17 +166,12 @@ git -C "$HOME/home-baseline-tmp" remote add upstream https://github.com/hinderma
 git -C "$HOME/home-baseline-tmp" remote -v
 ```
 
-**Host - Windows, PowerShell 7:**
+Unter Windows verwendest du denselben Ablauf in PowerShell mit
+`$GitHubUser = gh api user --jq '.login'`.
 
-```powershell
-$GitHubUser = gh api user --jq '.login'
-gh repo clone "${GitHubUser}/home-baseline" "$HOME/home-baseline-tmp"
-git -C "$HOME/home-baseline-tmp" remote add upstream https://github.com/hindermath/home-baseline.git
-git -C "$HOME/home-baseline-tmp" remote -v
-```
-
-**Erfolg / Success:** `origin` zeigt auf deinen persoenlichen Fork.
-`upstream` zeigt auf `https://github.com/hindermath/home-baseline.git`.
+**Erfolg / Success:** `origin` zeigt auf dein persoenliches Lernenden-Repository.
+`upstream` zeigt auf die institutionelle Referenz oder in Profil B auf
+`https://github.com/hindermath/home-baseline.git`.
 Vertausche diese beiden Remotes nicht. Der Ordner `~/home-baseline-tmp` wird nach
 der Einrichtung nicht geloescht.
 
@@ -232,11 +280,16 @@ pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -NoPull
 
 ## 11. Referenz-Sandbox klonen / Clone the Reference Sandbox
 
+Verwende in Profil A die institutionelle Sandbox-URL. Nur in Profil B oder wenn
+deine Lehrperson es ausdruecklich vorgibt, verwendest du die oeffentliche
+GitHub-Referenz.
+
 **Host - macOS/Linux:**
 
 ```bash
 mkdir -p "$HOME/container-images"
-gh repo clone hindermath/absdd-image-sandbox "$HOME/container-images/absdd-image-sandbox"
+SANDBOX_REPO_URL="<INSTITUTIONELLE-SANDBOX-URL-ODER-HTTPS://GITHUB.COM/HINDERMATH/ABSDD-IMAGE-SANDBOX.GIT>"
+git clone "$SANDBOX_REPO_URL" "$HOME/container-images/absdd-image-sandbox"
 cd "$HOME/container-images/absdd-image-sandbox"
 cp opencode.env.example opencode.env
 ```
@@ -245,7 +298,8 @@ cp opencode.env.example opencode.env
 
 ```powershell
 New-Item -ItemType Directory -Force -Path "$HOME/container-images" | Out-Null
-gh repo clone hindermath/absdd-image-sandbox "$HOME/container-images/absdd-image-sandbox"
+$SandboxRepoUrl = '<INSTITUTIONELLE-SANDBOX-URL-ODER-HTTPS://GITHUB.COM/HINDERMATH/ABSDD-IMAGE-SANDBOX.GIT>'
+git clone $SandboxRepoUrl "$HOME/container-images/absdd-image-sandbox"
 Set-Location "$HOME/container-images/absdd-image-sandbox"
 Copy-Item opencode.env.example opencode.env
 ```
@@ -335,10 +389,13 @@ Ein vorbereiteter Intake startet noch keinen Spec-Kit-Lauf.
 
 ### 17.1 Anmeldung nur in der Sandbox / Sign In Only Inside the Sandbox
 
-**Sandbox:** Starte genau den freigegebenen Agenten mit `codex`, `claude`,
-`gemini` oder `copilot` und folge dessen Login-Anleitung. Speichere Tokens nur im
-dafuer vorgesehenen Named Volume. Zeige Tokens weder im Terminalprotokoll noch in
-Git-Dateien.
+**Sandbox:** Starte genau einen institutionell freigegebenen und fuer dich
+zugelassenen Agenten mit `codex`, `claude`, `gemini` oder `copilot` und folge
+dessen Login-Anleitung. Die vier CLIs sind technisch installiert; du benoetigst
+nicht vier Anbieterkonten. Fuer `copilot` ist ein GitHub-Konto mit
+Copilot-Berechtigung erforderlich, auch wenn dein Repository auf GitLab,
+Codeberg oder Forgejo liegt. Speichere Tokens nur im dafuer vorgesehenen Named
+Volume. Zeige Tokens weder im Terminalprotokoll noch in Git-Dateien.
 
 ### 17.2 Erster Auftrag: nur lesen / First Task: Read Only
 
@@ -397,9 +454,9 @@ Reset verwendet `-v` und loescht die gespeicherten Agentenanmeldungen.
 
 - Host-Wartung: [Root-README](../../README.md#wiederkehrende-agentische-toolchain-wartung--recurring-agentic-toolchain-maintenance)
 - Git-Grundlagen im entpackten Lernpaket: [GIT-START-FUER-LERNENDE.md](GIT-START-FUER-LERNENDE.md)
-- Sandbox-Installation: <https://github.com/hindermath/absdd-image-sandbox/blob/main/docs/fuer-lernende/installation.md>
-- Sandbox-Fehlerhilfe: <https://github.com/hindermath/absdd-image-sandbox/blob/main/docs/fuer-lernende/troubleshooting.md>
-- Begriffe: <https://github.com/hindermath/absdd-image-sandbox/blob/main/docs/fuer-lernende/GLOSSAR.md>
+- Institutionelles Git-Hosting: [INSTITUTIONELLES-GIT-HOSTING.md](INSTITUTIONELLES-GIT-HOSTING.md)
+- Sandbox-Dokumentation: `docs/fuer-lernende/` im geklonten Sandbox-Repository
+- Oeffentliche Sandbox-Referenz: <https://github.com/hindermath/absdd-image-sandbox>
 
 Verwende bei Problemen keinen Force-Push, keinen Hard Reset und keine echten
 Secrets als Diagnosebeispiel.

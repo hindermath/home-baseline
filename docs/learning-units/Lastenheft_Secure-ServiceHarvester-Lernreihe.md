@@ -57,7 +57,7 @@
 - **Level 1:** `SecureServiceHarvesterProjects` als privates Koordinations-Repo mit README, Statusmatrix und Abarbeitungsreihenfolge.
 - **Level 2:** sechs private Sprach-Repos: `SecureServiceHarvester-CSharp`, `SecureServiceHarvester-Go`, `SecureServiceHarvester-Java`, `SecureServiceHarvester-Python`, `SecureServiceHarvester-Rust`, `SecureServiceHarvester-Swift`.
 
-**DE:** Die Level-2-Namen bezeichnen die lokalen Ordner. Die GitHub-Repository-Slugs werden durch den Bootstrap lowercase erzeugt, zum Beispiel `secureserviceharvester-csharp`.
+**DE:** Die Level-2-Namen bezeichnen die lokalen Ordner. Die Repository-Slugs werden durch den Bootstrap lowercase erzeugt, zum Beispiel `secureserviceharvester-csharp`.
 
 **EN:** This master intake describes the overall map of the base series. Later practical work should use a private Level 1 / Level 2 structure:
 
@@ -65,7 +65,7 @@
 - **Level 1:** `SecureServiceHarvesterProjects` as the private coordination repository with README, status matrix, and processing order.
 - **Level 2:** six private language repositories: `SecureServiceHarvester-CSharp`, `SecureServiceHarvester-Go`, `SecureServiceHarvester-Java`, `SecureServiceHarvester-Python`, `SecureServiceHarvester-Rust`, `SecureServiceHarvester-Swift`.
 
-**EN:** The Level 2 names identify the local folders. The GitHub repository slugs are created lowercase by the bootstrap, for example `secureserviceharvester-csharp`.
+**EN:** The Level 2 names identify the local folders. The repository slugs are created lowercase by the bootstrap, for example `secureserviceharvester-csharp`.
 
 **DE:** C# ist als erster manueller Referenzpfad vorgesehen. Go, Java, Python, Rust und Swift folgen als Vergleichs- und Vertiefungspfade. Ein KI-Agent bereitet diese Struktur nur vor; die Spec-Kit-Läufe starten später manuell durch Lehrende oder Lernende. Vor Aufgabe `01` gibt es den technischen Startlauf `00`; nach dem Abschluss von Jahr 2 gibt es den Baseline- und Track-Ableitungslauf `12`.
 
