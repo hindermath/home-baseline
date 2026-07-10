@@ -83,7 +83,7 @@ function Test-HBLearningPackage {
             throw "Ausgeschlossenes Artefakt im ZIP: $($forbidden[0].FullName)"
         }
 
-        $manifest = Get-Content -LiteralPath (Join-Path $root 'PACKAGING-MANIFEST.txt') -Raw
+        $manifest = (Get-Content -LiteralPath (Join-Path $root 'PACKAGING-MANIFEST.txt') -Raw) -replace "`r`n?", "`n"
         if ($manifest -notmatch '(?m)^Git data included: no ') { throw 'Manifest bestaetigt Git-Ausschluss nicht.' }
         if ($manifest -notmatch '(?m)^Original remotes included: no$') { throw 'Manifest bestaetigt Remote-Ausschluss nicht.' }
         if ($manifest -notmatch '(?m)^Start here after extracting: START-HERE-FUER-LERNENDE\.md$') {
