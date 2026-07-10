@@ -8,6 +8,17 @@ Sekunden als synchronisiertes privates GitHub- oder GitLab-Repository eingericht
 It contains bootstrap scripts to set up any new project directory as a synchronised
 private GitHub or GitLab repository within seconds.*
 
+> **Hinweis zur Erstellung / Creation notice:** Diese agentische
+> Unterstützungs-Umgebung und wesentliche Dokumentations-, Lern- und
+> Skriptinhalte wurden menschlich kuratiert, geprüft und fortgeschrieben; Teile
+> wurden mit Hilfe und Unterstützung agentischer KI erstellt oder generiert.
+> Menschliche Verantwortung, Prüfung und Freigabe bleiben maßgeblich.
+>
+> *This agentic support environment and substantial documentation, learning, and
+> script content were human-curated, reviewed, and maintained; parts were created
+> or generated with help and support from agentic AI. Human responsibility,
+> review, and approval remain authoritative.*
+
 ---
 
 ## Inhaltsverzeichnis / Table of Contents
