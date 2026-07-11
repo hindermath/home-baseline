@@ -8,6 +8,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.13.0](https://github.com/hindermath/home-baseline/compare/v0.12.0...v0.13.0) (2026-07-11)
+
+
+### Features / Neue Funktionen
+
+* **toolchain:** replace Gemini CLI with Antigravity ([f67acea](https://github.com/hindermath/home-baseline/commit/f67acea18d58db8a0e6522304c0549eea5d29f3f))
+
 ## [0.12.0](https://github.com/hindermath/home-baseline/compare/v0.11.2...v0.12.0) (2026-07-10)
 
 
