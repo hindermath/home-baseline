@@ -93,6 +93,41 @@ function Test-RepoPath {
     return 1
 }
 
+function Get-ArchivedGsdbIntake {
+    param([string]$Repository, [string]$RelativePath)
+
+    $stem = [IO.Path]::GetFileNameWithoutExtension($RelativePath)
+    $pattern = '^' + [regex]::Escape($stem) + '\.[0-9]{3}-.+\.md$'
+    return Get-ChildItem -LiteralPath $Repository -File -Filter "$stem.*.md" -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -match $pattern } |
+        Sort-Object Name |
+        Select-Object -First 1
+}
+
+function Test-GsdbIntakePath {
+    param(
+        [string]$Repository,
+        [System.Collections.Generic.List[string]]$Lines,
+        [string]$Label,
+        [string]$RelativePath,
+        [string]$FollowUp
+    )
+
+    if (Test-Path (Join-Path $Repository $RelativePath) -PathType Leaf) {
+        Add-ReportRow $Lines 'OK' $Label $RelativePath 'aktiver Intake vorhanden' '-'
+        return 0
+    }
+
+    $archived = Get-ArchivedGsdbIntake -Repository $Repository -RelativePath $RelativePath
+    if ($archived) {
+        Add-ReportRow $Lines 'OK' $Label $archived.Name 'abgeschlossener oder archivierter Intake vorhanden' '-'
+        return 0
+    }
+
+    Add-ReportRow $Lines 'Open' $Label $RelativePath 'aktiver oder archivierter Intake fehlt' $FollowUp
+    return 1
+}
+
 function Test-GsdbNonMslJustification {
     param([string]$Repository)
 
@@ -120,6 +155,12 @@ function Write-GsdbIntake {
     $target = Join-Path $Repository 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
     $template = Join-Path $ScriptDir 'templates/gsdb-spec-kit-intensivpruefung-lastenheft.md'
     if (-not (Test-Path $template)) { throw "GSDB-Intake-Template nicht gefunden: $template" }
+
+    $archived = Get-ArchivedGsdbIntake -Repository $Repository -RelativePath 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
+    if ((-not (Test-Path $target -PathType Leaf)) -and $archived) {
+        Write-Host "  unveraendert: abgeschlossenes GSDB-Intake vorhanden: $($archived.Name)"
+        return
+    }
 
     if ($CheckOnly) {
         Write-Host "  [check-only] GSDB-Intake pruefen/aktualisieren: Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md"
@@ -266,18 +307,15 @@ function Invoke-GsdbRepoCheck {
         $open++
     }
 
-    $open += Test-RepoPath $Repository $lines 'RL-SE-/Checklist-Selbstpruefungs-Intake' 'Lastenheft_RL-SE-Checklist-Selbstpruefung.md' 'Intake vorbereiten'
+    $open += Test-GsdbIntakePath $Repository $lines 'RL-SE-/Checklist-Selbstpruefungs-Intake' 'Lastenheft_RL-SE-Checklist-Selbstpruefung.md' 'Intake vorbereiten'
     if ($registryLevel -eq '1') {
         Add-ReportRow $lines 'N/A' 'Secure-Development-Hardening-Intake' 'Lastenheft_Secure-Development-Hardening.md' 'Koordinationsrepo ohne eigene Implementierungshaertung' '-'
     } else {
-        $open += Test-RepoPath $Repository $lines 'Secure-Development-Hardening-Intake' 'Lastenheft_Secure-Development-Hardening.md' 'Intake vorbereiten'
+        $open += Test-GsdbIntakePath $Repository $lines 'Secure-Development-Hardening-Intake' 'Lastenheft_Secure-Development-Hardening.md' 'Intake vorbereiten'
     }
     $gsdbIntake = 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
     $gsdbIntakeMissing = $false
-    if (Test-Path (Join-Path $Repository $gsdbIntake)) {
-        Add-ReportRow $lines 'OK' 'GSDB-Spec-Kit-Intensivpruefungs-Intake' $gsdbIntake 'Intake vorhanden' '-'
-    } else {
-        Add-ReportRow $lines 'Open' 'GSDB-Spec-Kit-Intensivpruefungs-Intake' $gsdbIntake 'Intake fehlt' 'durch diesen Checker erzeugen lassen'
+    if ((Test-GsdbIntakePath $Repository $lines 'GSDB-Spec-Kit-Intensivpruefungs-Intake' $gsdbIntake 'durch diesen Checker erzeugen lassen') -ne 0) {
         $open++
         $gsdbIntakeMissing = $true
     }

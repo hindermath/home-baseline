@@ -350,10 +350,11 @@ sdh_update_order_file() {
   local repo="$1"
   local dry_run="$2"
   local order_file="$repo/Lastenheft_Abarbeitungsreihenfolge.md"
-  local section_file tmp_file
+  local section_file tmp_file normalized_file
 
   section_file="$(mktemp)"
   tmp_file="$(mktemp)"
+  normalized_file="$(mktemp)"
   sdh_build_order_section "$repo" > "$section_file"
 
   if [ -f "$order_file" ]; then
@@ -394,18 +395,28 @@ EOF
     cat "$section_file" >> "$tmp_file"
   fi
 
+  awk '
+    { lines[NR] = $0 }
+    END {
+      last = NR
+      while (last > 0 && lines[last] ~ /^[[:space:]]*$/) last--
+      for (i = 1; i <= last; i++) print lines[i]
+    }
+  ' "$tmp_file" > "$normalized_file"
+  mv "$normalized_file" "$tmp_file"
+
   if [ -f "$order_file" ] && cmp -s "$order_file" "$tmp_file"; then
-    rm -f "$section_file" "$tmp_file"
+    rm -f "$section_file" "$tmp_file" "$normalized_file"
     return 1
   fi
 
   if [ "$dry_run" = "1" ]; then
-    rm -f "$section_file" "$tmp_file"
+    rm -f "$section_file" "$tmp_file" "$normalized_file"
     return 0
   fi
 
   mv "$tmp_file" "$order_file"
-  rm -f "$section_file"
+  rm -f "$section_file" "$normalized_file"
   return 0
 }
 

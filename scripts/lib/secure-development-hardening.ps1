@@ -311,13 +311,15 @@ $section
 "@
     }
 
+    $newContent = $newContent.TrimEnd("`r", "`n") + [Environment]::NewLine
+
     if ((Test-Path $orderFile) -and ((Get-Content $orderFile -Raw) -eq $newContent)) {
         return $false
     }
 
     if ($WhatIfMode) { return $true }
 
-    $newContent | Set-Content -Path $orderFile -Encoding UTF8
+    [IO.File]::WriteAllText($orderFile, $newContent, [Text.UTF8Encoding]::new($false))
     return $true
 }
 

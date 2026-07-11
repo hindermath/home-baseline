@@ -23,11 +23,22 @@ Das Werkzeug fuehrt einen GSDB-Preflight aus. Es prueft, ob die Generische
 Secure-Development Basis im Zielrepo vorhanden ist, ob die 12 Checklisten, der
 Sammelband, mitgeltende Dokumente, Preset-Verzahnung, MSL-Status,
 Governance-Presets und Nachweisorte sichtbar sind.
+Bei Intake-Dateien akzeptiert der Preflight sowohl den aktiven Root-Namen als
+auch einen nach erfolgreichem Feature-Abschluss archivierten numerischen
+Branch-Suffix, zum Beispiel
+`Lastenheft_Secure-Development-Hardening.016-secure-development-hardening.md`.
+Ein archivierter Nachweis wird nicht als neues aktives Intake dupliziert.
 
 *The tool runs a GSDB preflight. It checks whether the Generic Secure
 Development Baseline is present in the target repository and whether the 12
 checklists, compendium, related documents, preset alignment, MSL status,
 governance presets, and evidence locations are visible.*
+
+*For intake files, the preflight accepts both the active root name and a
+numeric branch-suffixed file archived after successful feature completion, for
+example
+`Lastenheft_Secure-Development-Hardening.016-secure-development-hardening.md`.
+An archived record is not duplicated as a new active intake.*
 
 Im normalen Lauf schreibt das Werkzeug `docs/security/gsdb-self-assessment.md`,
 erzeugt oder aktualisiert

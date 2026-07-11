@@ -198,6 +198,39 @@ check_path() {
   fi
 }
 
+find_archived_intake() {
+  local repo="$1"
+  local rel_path="$2"
+  local stem="${rel_path%.md}"
+
+  find "$repo" -maxdepth 1 -type f -name "${stem}.[0-9][0-9][0-9]-*.md" -print 2>/dev/null \
+    | sort \
+    | head -n 1
+}
+
+check_intake_path() {
+  local repo="$1"
+  local report="$2"
+  local label="$3"
+  local rel_path="$4"
+  local follow_up="$5"
+  local archived
+
+  if [ -f "$repo/$rel_path" ]; then
+    append_row "$report" "OK" "$label" "$rel_path" "aktiver Intake vorhanden" "-"
+    return 0
+  fi
+
+  archived="$(find_archived_intake "$repo" "$rel_path")"
+  if [ -n "$archived" ]; then
+    append_row "$report" "OK" "$label" "$(basename "$archived")" "abgeschlossener oder archivierter Intake vorhanden" "-"
+    return 0
+  fi
+
+  append_row "$report" "Open" "$label" "$rel_path" "aktiver oder archivierter Intake fehlt" "$follow_up"
+  return 1
+}
+
 has_non_msl_justification() {
   local repo="$1"
   local content_file
@@ -225,9 +258,15 @@ render_gsdb_intake() {
   local project_name="$2"
   local target="$repo/Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md"
   local template="$SCRIPT_DIR/templates/gsdb-spec-kit-intensivpruefung-lastenheft.md"
-  local rendered tmp
+  local rendered tmp archived
 
   [ -f "$template" ] || die "GSDB-Intake-Template nicht gefunden: $template"
+
+  archived="$(find_archived_intake "$repo" "$(basename "$target")")"
+  if [ ! -f "$target" ] && [ -n "$archived" ]; then
+    printf '  unveraendert: abgeschlossenes GSDB-Intake vorhanden: %s\n' "$(basename "$archived")"
+    return 0
+  fi
 
   if $OPT_CHECK_ONLY || $OPT_DRY_RUN; then
     local mode_label
@@ -399,17 +438,14 @@ check_repo() {
     open_count=$((open_count + 1))
   fi
 
-  check_path "$repo" "$report_tmp" "RL-SE-/Checklist-Selbstpruefungs-Intake" "Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "Intake vorbereiten" || open_count=$((open_count + 1))
+  check_intake_path "$repo" "$report_tmp" "RL-SE-/Checklist-Selbstpruefungs-Intake" "Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "Intake vorbereiten" || open_count=$((open_count + 1))
   if [ "$registry_level" = "1" ]; then
     append_row "$report_tmp" "N/A" "Secure-Development-Hardening-Intake" "Lastenheft_Secure-Development-Hardening.md" "Koordinationsrepo ohne eigene Implementierungshaertung" "-"
   else
-    check_path "$repo" "$report_tmp" "Secure-Development-Hardening-Intake" "Lastenheft_Secure-Development-Hardening.md" "Intake vorbereiten" || open_count=$((open_count + 1))
+    check_intake_path "$repo" "$report_tmp" "Secure-Development-Hardening-Intake" "Lastenheft_Secure-Development-Hardening.md" "Intake vorbereiten" || open_count=$((open_count + 1))
   fi
 
-  if [ -f "$repo/Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md" ]; then
-    append_row "$report_tmp" "OK" "GSDB-Spec-Kit-Intensivpruefungs-Intake" "Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md" "Intake vorhanden" "-"
-  else
-    append_row "$report_tmp" "Open" "GSDB-Spec-Kit-Intensivpruefungs-Intake" "Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md" "Intake fehlt" "durch diesen Checker erzeugen lassen"
+  if ! check_intake_path "$repo" "$report_tmp" "GSDB-Spec-Kit-Intensivpruefungs-Intake" "Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md" "durch diesen Checker erzeugen lassen"; then
     open_count=$((open_count + 1))
     gsdb_intake_missing=true
   fi
