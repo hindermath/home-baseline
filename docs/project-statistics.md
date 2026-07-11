@@ -74,7 +74,7 @@
 | 2026-07-10 | Secure-Development-Basis 3.0.0 | 59 | — | — | Richtlinie und 15 mitgeltende Dokumente fuer Lernende ab Lehrjahr 1 vertieft; Lernpfad, Standardsregister, 157 stabile CL-IDs und zweiachsiges Evidenzmodell eingefuehrt; Sammelband manifestgesteuert aus 12 kanonischen Checklisten erzeugt; Bash-/PowerShell-Generatoren, CI-Gate und geschuetzte registry-basierte Level-2-Propagation ergaenzt; sechs Governance-Presets unveraendert als Reviewrahmen genutzt |
 | 2026-07-11 | Workspace-, Toolchain- und Lernreihen-Wartung | 60 | 235 377 | 429 | Alle verwalteten Level-0-/Level-1-/Level-2-Repos aktualisiert, Secure OrderDesk und Secure ServiceHarvester mit je sechs MSL-Sprachrepos lokal aufgenommen und registriert, Homebrew samt 21 Upgrades gewartet, Gemini CLI durch Google Antigravity ersetzt, VS-Code-/MSL-/SBOM-/Spec-Kit-Toolchain vollstaendig verifiziert sowie zentrale Secure-Development-Baseline und GSDB-Preflights in den zwoelf neuen Level-2-Repos auf `Open=0` gebracht |
 | 2026-07-11 | Antigravity-CLI-Vollmigration | 60 | — | 432 | Antigravity CLI `agy` ab 1.1.1 als alleinige aktive Google-Agenten-CLI verankert; plattformgerechte Brew-/WinGet-/verifizierte Linux-Installation, gehärtete JSON-Settings, ASCII-Statusline, eigener Flottenaudit, Spec-Kit-`agy`-Manifest, sichere `.agents/skills`-Allowlist und Entfernung aktiver Gemini-Kommandos umgesetzt; historische Specs und Lastenhefte bewusst bewahrt |
-| 2026-07-11 | GSDB-Registry-Promotion und Drift-Haertung | 60 | — | 433 | Alle 25 registrierten Level-2-Repos in den GSDB-Pruefumfang aufgenommen; 18 Lern-Sprachrepos als MSL, `cc65` als Nicht-MSL und `absdd-image-sandbox` als gemischte Tooling-Umgebung klassifiziert; Registry-Upserts in Bash/PowerShell gegen Metadaten-Herabstufung gehaertet, Sprachsuffix-Erkennung und expliziter MSL-Override ergaenzt, zwoelf fehlende Umgebungsregisterzeilen nachgezogen und der read-only Container-Preflight fuer die 20 promovierten Repos mit `Open=0` abgeschlossen |
+| 2026-07-11 | GSDB-Registry-Promotion und Drift-Haertung | 60 | — | 435 | Alle 25 registrierten Level-2-Repos in den GSDB-Pruefumfang aufgenommen; 18 Lern-Sprachrepos als MSL, `cc65` als Nicht-MSL und `absdd-image-sandbox` als gemischte Tooling-Umgebung klassifiziert; Registry-Upserts in Bash/PowerShell gegen Metadaten-Herabstufung gehaertet, Sprachsuffix-Erkennung und expliziter MSL-Override ergaenzt, zwoelf fehlende Umgebungsregisterzeilen nachgezogen und der read-only Container-Preflight fuer die 20 promovierten Repos mit `Open=0` abgeschlossen |
 
 ---
 
@@ -229,10 +229,10 @@ documented main phases and maintenance rounds from the sections above.*
 | Dokumentationsanteil / Documentation share | `176 212` Zeilen (`74.9 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-11` |
 | Sichtbare Git-Aktivtage / Observable active days | `60` |
-| Git-Commits gesamt / Total commits | `433` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.2` (`433 / 60`) |
+| Git-Commits gesamt / Total commits | `435` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.3` (`435 / 60`) |
 | Zeilen pro Aktivtag / Lines per active day | `3 923.0` (`235 377 / 60`) |
-| Zeilen pro Commit / Lines per commit | `543.6` (`235 377 / 433`) |
+| Zeilen pro Commit / Lines per commit | `541.1` (`235 377 / 435`) |
 | Konservative Einzelentwickler-Untergrenze | `2 942.2` Arbeitstage / `22 949.3` Stunden |
 | Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 353.8` Arbeitstage / `18 359.4` Stunden |
 | Kleines 3er-Team mit Koordinationsaufschlag | `1 176.9` Arbeitstage |
