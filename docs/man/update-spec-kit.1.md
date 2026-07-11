@@ -56,10 +56,14 @@ Standard-Erkennung:
 - Level 1: direkte Unterverzeichnisse von `~/` mit `.git` und `.specify/`
 - Level 2: direkte Unterverzeichnisse erkannter Level-1-Repos mit `.git` und
   `.specify/`
+- Git-Worktrees mit einer `.git`-Datei werden ebenso erkannt wie normale
+  Klone mit einem `.git`-Verzeichnis.
 
 *Default discovery: Level 0 is `~/home-baseline-tmp`; Level 1 is each direct
 child of `~/` with `.git` and `.specify/`; Level 2 is each direct child of a
-Level-1 repository with `.git` and `.specify/`.*
+Level-1 repository with `.git` and `.specify/`. Git worktrees with a
+`.git` file are recognized in the same way as regular clones with a `.git`
+directory.*
 
 ## Optionen / Options
 

@@ -80,6 +80,8 @@ def active_gemini_references(repo):
     for relative in tracked_files(repo):
         if pathlib.PurePosixPath(relative).name.startswith("Lastenheft"):
             continue
+        if relative.startswith("scripts/audit-antigravity-migration."):
+            continue
         if relative in excluded or any(relative.startswith(prefix) for prefix in excluded if prefix.endswith("/")):
             continue
         path = repo / relative

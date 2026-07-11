@@ -93,7 +93,8 @@ if ! $OPT_DRY_RUN; then
 fi
 
 is_spec_repo() {
-  [ -d "$1/.git" ] && [ -d "$1/.specify" ]
+  [ -e "$1/.git" ] && [ -d "$1/.specify" ] &&
+    git -C "$1" rev-parse --is-inside-work-tree >/dev/null 2>&1
 }
 
 contains_repo() {
