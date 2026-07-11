@@ -313,9 +313,9 @@ Oder: [github.com/PowerShell/PowerShell/releases](https://github.com/PowerShell/
 
 ### 5. Node.js ≥ 22 LTS *(für npm-basierte KI-Agenten / for npm-based AI agents)*
 
-Wird für die Installation von **Gemini CLI** und **Codex CLI** via `npm` benötigt. Claude Code hat einen eigenen nativen Installer und benötigt Node.js **nicht** mehr. Node.js 18 ist end-of-life — bitte mindestens **Node.js 22 LTS** (aktiv gewartet) oder **Node.js 24 LTS** verwenden.
+Wird für die Installation von **Codex CLI** und weiteren npm-basierten Werkzeugen benötigt. Antigravity CLI wird nicht über npm installiert. Claude Code hat einen eigenen nativen Installer und benötigt Node.js **nicht** mehr. Node.js 18 ist end-of-life — bitte mindestens **Node.js 22 LTS** (aktiv gewartet) oder **Node.js 24 LTS** verwenden.
 
-*Required to install **Gemini CLI** and **Codex CLI** via `npm`. Claude Code has its own native installer and no longer requires Node.js. Node.js 18 is end-of-life — use at least **Node.js 22 LTS** (actively maintained) or **Node.js 24 LTS**.*
+*Required to install **Codex CLI** and other npm-based tools. Antigravity CLI is not installed through npm. Claude Code has its own native installer and no longer requires Node.js. Node.js 18 is end-of-life — use at least **Node.js 22 LTS** (actively maintained) or **Node.js 24 LTS**.*
 
 | Plattform / Platform | Installation / Installation |
 |---|---|
@@ -689,9 +689,9 @@ pwsh ~/scripts/teardown-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 
 → [KI-Agenten einrichten / Set up AI agents](#ki-agenten-einrichten--set-up-ai-agents)
 
-Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) nach der jeweiligen Anleitung.
+Installiere mindestens einen KI-Agenten (GitHub Copilot CLI, Claude Code, Codex, Antigravity CLI, OpenCode) nach der jeweiligen Anleitung.
 
-*Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Gemini CLI, OpenCode) following the respective instructions.*
+*Install at least one AI agent (GitHub Copilot CLI, Claude Code, Codex, Antigravity CLI, OpenCode) following the respective instructions.*
 
 **3a — GitHub Copilot CLI Einstellungen einrichten / Set up GitHub Copilot CLI settings** *(optional)*
 
@@ -741,21 +741,21 @@ Setzt die Codex-TUI-Statuszeile in `~/.codex/config.toml` aus einer zentralen Vo
 
 *Sets the Codex TUI status line in `~/.codex/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
 
-**3d — Gemini CLI status_line einrichten / Set up Gemini CLI status_line** *(optional)*
+**3d — Antigravity CLI haerten / Harden Antigravity CLI** *(recommended)*
 
 ```bash
 # macOS / Linux
-bash ~/scripts/setup-gemini-settings.sh
+bash ~/scripts/setup-antigravity-settings.sh
 ```
 
 ```powershell
 # Windows
-pwsh -NoProfile ~/scripts/setup-gemini-settings.ps1
+pwsh -NoProfile ~/scripts/setup-antigravity-settings.ps1
 ```
 
-Setzt die Gemini-TUI-Statuszeile in `~/.gemini/config.toml` aus einer zentralen Vorlage im Repo. Auf weiteren Geräten erneut ausführen (`--force` / `-Force` zum Überschreiben).
+Setzt in `~/.gemini/antigravity-cli/settings.json` strikte Werkzeugfreigaben, Artefaktprüfung, Terminal-Sandbox, Workspace-Isolation und deaktivierte Telemetrie. Zusätzlich wird eine ASCII-only-Statuszeile ohne Identitätsdaten installiert.
 
-*Sets the Gemini TUI status line in `~/.gemini/config.toml` from a central template in the repository. Re-run on additional devices (`--force` / `-Force` to overwrite).*
+*Sets strict tool approval, artifact review, terminal sandboxing, workspace isolation, and disabled telemetry in `~/.gemini/antigravity-cli/settings.json`. It also installs an ASCII-only status line without identity data.*
 
 ---
 
@@ -1325,8 +1325,9 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    plattformuebergreifend Required und nutzen bei Bedarf die npm-Registry als
    Fallback. Google Antigravity ersetzt Gemini CLI: macOS nutzt den Required-
    Cask `antigravity-cli` mit dem Kommando `agy`, Windows das Required-WinGet-
-   Paket `Google.Antigravity`. Auf Linux bleibt Antigravity bis zu einem
-   offiziell paketierten CLI-Pfad als begruendetes `N/A` dokumentiert.
+   Paket `Google.AntigravityCLI`. Linux nutzt den offiziellen Installer nur
+   nach erfolgreicher Prüfung gegen die in der CLI-Registry hinterlegte
+   SHA-256-Prüfsumme.
    `gh copilot` gilt nicht als Installationsnachweis fuer die eigenstaendige
    Copilot CLI.
 5. VS Code ist Required: macOS per Cask `visual-studio-code`, Windows per
@@ -1380,8 +1381,8 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    across platforms and use the npm registry as a fallback when needed. Google
    Antigravity replaces Gemini CLI: macOS uses required cask
    `antigravity-cli` and command `agy`, while Windows uses required WinGet
-   package `Google.Antigravity`. Antigravity remains a documented `N/A` on
-   Linux until an officially packaged CLI path is available. `gh copilot`
+   package `Google.AntigravityCLI`. Linux uses the official installer only
+   after verification against the SHA-256 digest stored in the CLI registry. `gh copilot`
    does not count as proof that the standalone Copilot CLI is installed.
 5. VS Code is required: macOS via cask `visual-studio-code`, Windows via WinGet
    ID `Microsoft.VisualStudioCode`. The required extensions for C#, Go, Java,
@@ -1544,15 +1545,17 @@ Die Rollen sind auch hier getrennt: `scan-agent-secrets.*` ist das eigentliche P
 |---|---|
 | `scripts/scan-agent-secrets.sh` | Secret-Scan fuer KI-Agenten-Verzeichnisse / Secret scan for AI agent directories (Bash) |
 | `scripts/scan-agent-secrets.ps1` | Secret-Scan / Secret scan (PowerShell Core) |
+| `scripts/audit-antigravity-migration.sh` | Antigravity-Migration ueber Level 0/1/2 pruefen / Audit Antigravity migration across Level 0/1/2 |
+| `scripts/audit-antigravity-migration.ps1` | Windows-/PowerShell-Pendant des Migrationsaudits / Windows and PowerShell migration audit counterpart |
 | `scripts/install-hooks.sh` | Git-Hooks installieren / Install Git hooks (Bash) |
 | `scripts/install-hooks.ps1` | Git-Hooks installieren / Install Git hooks (PowerShell Core) |
 | `scripts/hooks/pre-push` | Pre-Push-Hook, blockiert Push bei Secrets / Pre-push hook, blocks pushes when secrets are found |
 
 ### Einrichtung der KI-Agenten / AI Agent Setup
 
-Dieser Block dokumentiert die **vorbereiteten lokalen Konfigurations-Skripte** fuer die vier Agenten, fuer die dieses Repository bereits wiederverwendbare Setup-Helfer mitliefert: GitHub Copilot CLI, Claude Code, Codex CLI und Gemini CLI. Diese Skripte installieren den Agenten nicht selbst, sondern richten nach der Installation und Anmeldung die lokalen Konfigurationsdateien so ein, dass Statuszeilen, Anzeigeoptionen oder uebertragbare Standardwerte konsistent gesetzt werden.
+Dieser Block dokumentiert die **vorbereiteten lokalen Konfigurations-Skripte** fuer die vier Agenten, fuer die dieses Repository bereits wiederverwendbare Setup-Helfer mitliefert: GitHub Copilot CLI, Claude Code, Codex CLI und Antigravity CLI. Diese Skripte installieren den Agenten nicht selbst, sondern richten nach der Installation und Anmeldung die lokalen Konfigurationsdateien so ein, dass Statuszeilen, Anzeigeoptionen oder uebertragbare Standardwerte konsistent gesetzt werden.
 
-*This block documents the **prepared local configuration scripts** for the four agents for which this repository already ships reusable setup helpers: GitHub Copilot CLI, Claude Code, Codex CLI, and Gemini CLI. These scripts do not install the agent itself. Instead, after installation and sign-in, they configure the local settings files so that status lines, display options, or transferable defaults are applied consistently.*
+*This block documents the **prepared local configuration scripts** for the four agents for which this repository already ships reusable setup helpers: GitHub Copilot CLI, Claude Code, Codex CLI, and Antigravity CLI. These scripts do not install the agent itself. Instead, after installation and sign-in, they configure the local settings files so that status lines, display options, or transferable defaults are applied consistently.*
 
 Die Trennung ist wichtig: Die eigentliche Agenten-Installation und Anmeldung gehoert in den spaeteren Abschnitt `KI-Agenten einrichten / Set up AI agents`. Die Skripte hier sind der zweite Schritt fuer Maschinenkonsistenz. Als Kurzregel gilt deshalb: **Agent installieren = spaeterer Setup-Abschnitt**, **lokale Agenten-Konfiguration vereinheitlichen = `setup-*-settings.*` in diesem Block**.
 
@@ -1592,17 +1595,17 @@ Die Codex-Skripte setzen die TUI-`status_line` in `~/.codex/config.toml` oder `$
 | `scripts/setup-codex-settings.ps1` | Codex CLI `status_line` in `~/.codex/config.toml` einrichten / Configure Codex CLI `status_line` in `~/.codex/config.toml` (PowerShell Core) |
 | `scripts/templates/codex-statusline.toml` | Zentrale Vorlage fuer die Codex-Statuszeile / Central template for the Codex status line |
 
-#### Gemini CLI / Gemini CLI
+#### Antigravity CLI / Antigravity CLI
 
-Die Gemini-Skripte arbeiten analog zu Codex, aber fuer `~/.gemini/config.toml` beziehungsweise `${GEMINI_HOME}/config.toml` und mit der Vorlage `scripts/templates/gemini-statusline.toml`. So bleiben die angezeigten TUI-Elemente fuer Gemini ebenfalls zentral gepflegt und ueber mehrere Geraete hinweg konsistent.
+Die Antigravity-Skripte pflegen `~/.gemini/antigravity-cli/settings.json` strukturiert, erhalten unbekannte Schlüssel und setzen die gehärtete Sicherheitsbaseline. Die plattformspezifischen Statusline-Helfer geben nur technische Workspace-Daten aus.
 
-*The Gemini scripts work analogously to Codex, but for `~/.gemini/config.toml` or `${GEMINI_HOME}/config.toml` and with the template `scripts/templates/gemini-statusline.toml`. This keeps the displayed TUI items for Gemini centrally maintained and consistent across multiple devices as well.*
+*The Antigravity scripts maintain `~/.gemini/antigravity-cli/settings.json` structurally, preserve unknown keys, and apply the hardened security baseline. The platform-specific status line helpers output technical workspace data only.*
 
 | Datei / File | Beschreibung / Description |
 |---|---|
-| `scripts/setup-gemini-settings.sh` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten / Configure Gemini CLI `status_line` in `~/.gemini/config.toml` (Bash) |
-| `scripts/setup-gemini-settings.ps1` | Gemini CLI `status_line` in `~/.gemini/config.toml` einrichten / Configure Gemini CLI `status_line` in `~/.gemini/config.toml` (PowerShell Core) |
-| `scripts/templates/gemini-statusline.toml` | Zentrale Vorlage fuer die Gemini-Statuszeile / Central template for the Gemini status line |
+| `scripts/setup-antigravity-settings.sh` | Antigravity CLI haerten und Statuszeile einrichten / Harden Antigravity CLI and configure status line (Bash) |
+| `scripts/setup-antigravity-settings.ps1` | Antigravity CLI haerten und Statuszeile einrichten / Harden Antigravity CLI and configure status line (PowerShell Core) |
+| `scripts/templates/antigravity-statusline.*` | Plattformgerechte ASCII-only-Statuszeilen / Platform-specific ASCII-only status lines |
 
 ---
 
@@ -1913,13 +1916,13 @@ Du musst keine Angst haben, dass deine Arbeit überschrieben wird. Das Skript fo
 
 ### Schritt 5: Arbeiten mit der KI (Dein Mentor) / Step 5: Working with AI (Your Mentor)
 
-Die Wartung installiert und prueft Codex, Claude Code, Gemini CLI und die
+Die Wartung installiert und prueft Codex, Claude Code, Antigravity CLI und die
 eigenstaendige GitHub Copilot CLI. Fuer Secure-Trader-Projekte startest du diese
 Agenten nicht auf dem Host. Arbeite zuerst den Sandbox-Preflight durch und folge
 dem dokumentierten
 [ersten kontrollierten Agentenlauf](docs/learning-units/START-HERE-FUER-LERNENDE.md#17-erster-kontrollierter-agentenlauf--first-controlled-agent-run).
 
-*Maintenance installs and checks Codex, Claude Code, Gemini CLI, and the
+*Maintenance installs and checks Codex, Claude Code, Antigravity CLI, and the
 standalone GitHub Copilot CLI. For Secure Trader projects, do not start these
 agents on the host. Complete the sandbox preflight first and follow the documented
 [first controlled agent run](docs/learning-units/START-HERE-FUER-LERNENDE.md#17-erster-kontrollierter-agentenlauf--first-controlled-agent-run).*
@@ -1977,7 +1980,7 @@ Die Spec-Kit-Skills befinden sich unter `.agents/skills/` und werden beim Klonen
 | Konto im verwendeten Git-System / Account on the selected Git system | ✅ | Repository-Hosting; GitHub nur im direkten GitHub-Profil / repository hosting; GitHub only for the direct GitHub profile |
 | KI-Agent (mind. einer) / AI agent (at least one) | ✅ | Fuehrt die Spec-Kit-Skills aus / Runs the Spec-Kit skills |
 | `uv` (Python) | ✅ | Installiert `specify-cli` (das Spec-Kit-CLI) / Installs `specify-cli` (the Spec-Kit CLI) |
-| Node.js ≥ 22 LTS | fuer npm-Agenten / for npm-based agents | Gemini CLI und Codex CLI installieren (Claude Code: nicht noetig) / Install Gemini CLI and Codex CLI (Claude Code: not needed) |
+| Node.js ≥ 22 LTS | fuer npm-Agenten / for npm-based agents | Codex CLI und weitere npm-Werkzeuge installieren / Install Codex CLI and other npm tools |
 | `gh` CLI | empfohlen / recommended | GitHub Copilot CLI; Issues aus Tasks anlegen / create issues from tasks |
 
 Alle Voraussetzungen werden beim ersten Aufruf von `check-prerequisites.sh` geprüft.
@@ -1991,13 +1994,13 @@ Dieses Repo unterstützt alle fünf nachfolgend beschriebenen Agenten.
 
 *Depending on which AI agent you prefer, different setup steps are needed. This repo supports all five agents described below.*
 
-Der Zweck dieses Abschnitts ist zweigeteilt: Erstens sollst du den Agenten technisch zum Laufen bringen, zweitens soll klar werden, **wie Spec-Kit den jeweiligen Agenten integriert**. Nicht jeder Agent arbeitet mit demselben Mechanismus. Manche lesen Projektdateien wie `AGENTS.md` direkt als Kontext, andere entdecken Kommandos oder Skills in agentenspezifischen Verzeichnissen wie `.claude/commands/`, `.gemini/commands/` oder `.agents/skills/`.
+Der Zweck dieses Abschnitts ist zweigeteilt: Erstens sollst du den Agenten technisch zum Laufen bringen, zweitens soll klar werden, **wie Spec-Kit den jeweiligen Agenten integriert**. Nicht jeder Agent arbeitet mit demselben Mechanismus. Manche lesen Projektdateien wie `AGENTS.md` oder `GEMINI.md` direkt als Kontext, andere entdecken Kommandos oder Skills in agentenspezifischen Verzeichnissen wie `.claude/commands/` oder `.agents/skills/`.
 
-*This section has a two-part purpose: first, to get the agent running technically; second, to make clear **how Spec-Kit integrates with that specific agent**. Not every agent works through the same mechanism. Some read project files such as `AGENTS.md` directly as context, while others discover commands or skills from agent-specific directories such as `.claude/commands/`, `.gemini/commands/`, or `.agents/skills/`.*
+*This section has a two-part purpose: first, to get the agent running technically; second, to make clear **how Spec-Kit integrates with that specific agent**. Not every agent works through the same mechanism. Some read project files such as `AGENTS.md` or `GEMINI.md` directly as context, while others discover commands or skills from agent-specific directories such as `.claude/commands/` or `.agents/skills/`.*
 
-Praktisch bedeutet das: Du waehlst nicht nur nach Geschmack, sondern auch nach deinem lokalen Setup und deinem Arbeitsstil. GitHub Copilot CLI passt gut zu einem `gh`-zentrierten Workflow, Claude Code ist stark fuer dialogische Codearbeit mit eigener Kommando-Struktur, Gemini CLI und Codex CLI sind npm-basierte Terminal-Agenten mit guter Repo-Orientierung, und OpenCode ist eine native Alternative mit aehnlichem `AGENTS.md`-Kontextmodell wie Codex.
+Praktisch bedeutet das: Du waehlst nicht nur nach Geschmack, sondern auch nach deinem lokalen Setup und deinem Arbeitsstil. GitHub Copilot CLI passt gut zu einem `gh`-zentrierten Workflow, Claude Code ist stark fuer dialogische Codearbeit mit eigener Kommando-Struktur, Antigravity CLI und Codex CLI sind tastaturorientierte Terminal-Agenten mit guter Repo-Orientierung, und OpenCode ist eine native Alternative mit aehnlichem `AGENTS.md`-Kontextmodell wie Codex.
 
-*In practice, this means you are not choosing only by taste, but also by your local setup and working style. GitHub Copilot CLI fits well into a `gh`-centric workflow, Claude Code is strong for conversational coding with its own command structure, Gemini CLI and Codex CLI are npm-based terminal agents with good repository orientation, and OpenCode is a native alternative with a similar `AGENTS.md` context model to Codex.*
+*In practice, this means you are not choosing only by taste, but also by your local setup and working style. GitHub Copilot CLI fits well into a `gh`-centric workflow, Claude Code is strong for conversational coding with its own command structure, Antigravity CLI and Codex CLI are keyboard-oriented terminal agents with good repository orientation, and OpenCode is a native alternative with a similar `AGENTS.md` context model to Codex.*
 
 Wichtig fuer den Ablauf: Nach der Agenten-Installation solltest du **nicht sofort `specify init` starten**, sondern zuerst den Abschnitt `Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory` lesen. Dort wird `uv`, `specify-cli` und der korrekte Initialisierungsweg eingerichtet. Dieser Schritt ist Voraussetzung dafuer, dass die nachfolgenden Spec-Kit-Befehle ueberhaupt sauber funktionieren.
 
@@ -2094,20 +2097,20 @@ Optional kannst du danach noch `setup-claude-settings.*` aus dem weiter oben dok
 Google Antigravity ersetzt in der Required-Toolchain die veraltete Homebrew-
 Formel Gemini CLI. Auf macOS installiert die Wartung `antigravity-cli`; das
 Kommando lautet `agy`. Windows nutzt das WinGet-Paket
-`Google.Antigravity`. Ein offiziell paketierter Linux-CLI-Pfad ist derzeit
-nicht vorhanden und wird deshalb als begruendetes `N/A` behandelt.
+`Google.AntigravityCLI`. Linux nutzt den offiziellen Installer nach einer
+Prüfung seiner SHA-256-Prüfsumme gegen die zentrale CLI-Registry.
 
 *Google Antigravity replaces the deprecated Gemini CLI Homebrew formula in the
 required toolchain. On macOS, maintenance installs `antigravity-cli` and the
-command is `agy`. Windows uses WinGet package `Google.Antigravity`. No
-officially packaged Linux CLI path is currently available, so Linux records a
-justified `N/A`.*
+command is `agy`. Windows uses WinGet package `Google.AntigravityCLI`.
+Linux uses the official installer after its SHA-256 digest has been verified
+against the central CLI registry.*
 
 | Plattform / Platform | Installation / Installation |
 |---|---|
 | macOS | `brew install --cask antigravity-cli` |
-| Linux | `N/A` bis zu einem offiziellen Paket / until an official package exists |
-| Windows | `winget install --id Google.Antigravity --exact` |
+| Linux | `bash scripts/maintain-agentic-brew-apps.sh` (verifizierter Vendor-Installer / verified vendor installer) |
+| Windows | `winget install --id Google.AntigravityCLI --exact` |
 
 ```bash
 # macOS
@@ -2115,13 +2118,13 @@ brew install --cask antigravity-cli
 agy --version
 ```
 
-Die vorhandenen `GEMINI.md`- und `.gemini/commands/`-Dateien bleiben als
-Projektkompatibilitaet fuer bestehende Integrationen erhalten. Sie sind kein
-Installationsnachweis fuer die abgeloeste Gemini CLI.
+Die vorhandene `GEMINI.md` bleibt als von Antigravity unterstützte
+Projekt-Kontextdatei erhalten. Die frühere `.gemini/commands/`-Integration
+wird entfernt; Spec Kit verwendet für Antigravity `.agents/skills/`.
 
-*Existing `GEMINI.md` and `.gemini/commands/` files remain as project
-compatibility artifacts for existing integrations. They do not count as proof
-that the retired Gemini CLI is installed.*
+*The existing `GEMINI.md` remains as a project context file supported by
+Antigravity. The former `.gemini/commands/` integration is removed; Spec Kit
+uses `.agents/skills/` for Antigravity.*
 
 → Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 
@@ -2287,7 +2290,7 @@ specify init MeinProjekt --integration copilot
 cd ~/MeinProjekt
 
 # Alle Agenten-Integrationen nacheinander / All agent integrations in sequence
-specify init --here --force --integration gemini
+specify init --here --force --integration agy
 specify init --here --force --integration opencode
 specify init --here --force --integration claude
 specify init --here --force --integration copilot
@@ -2578,7 +2581,7 @@ cache and is not committed.*
 
 ```bash
 git status --short
-git add .specify/presets .agents .claude .gemini .github .opencode
+git add .specify/presets .agents .claude .github .opencode
 git commit -m "chore: configure spec-kit governance presets"
 ```
 

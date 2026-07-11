@@ -133,7 +133,7 @@ MONITORED_SPECS = [
     ("tree", ".github/agents"),
     ("tree", ".github/prompts"),
     ("tree", ".claude/commands"),
-    ("tree", ".gemini/commands"),
+    ("file", ".gemini/antigravity-cli/settings.json"),
     ("file", ".codex/config.toml"),
     ("file", ".claude/settings.json"),
     ("file", ".copilot/config.json"),
@@ -142,6 +142,7 @@ MONITORED_SPECS = [
 ]
 
 APP_SOURCES = {
+    "Antigravity": [".gemini/antigravity-cli/history", ".gemini/antigravity-cli/logs"],
     "Codex": [".codex/history.jsonl", ".codex/log/codex-tui.log"],
     "Claude": [".claude/history.jsonl", ".claude/projects", ".claude/file-history"],
     "Copilot": [".copilot/command-history-state.json", ".copilot/logs"],

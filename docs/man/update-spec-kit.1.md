@@ -21,11 +21,11 @@ pwsh scripts/update-spec-kit.ps1 -Commit -Push
 
 `update-spec-kit` findet dynamisch Spec-Kit-Repositories unter dem Home-
 Verzeichnis und fuehrt fuer jedes Repository die aktuelle Spec-Kit-
-Initialisierung fuer `claude`, `opencode`, `gemini`, `copilot` und `codex` aus.
+Initialisierung fuer `claude`, `opencode`, `agy`, `copilot` und `codex` aus.
 
 *`update-spec-kit` dynamically discovers Spec-Kit repositories below the home
 directory and refreshes the current Spec-Kit initialization for `claude`,
-`opencode`, `gemini`, `copilot`, and `codex`.*
+`opencode`, `agy`, `copilot`, and `codex`.*
 
 Das Script schuetzt lokale Governance-Anpassungen:
 
@@ -37,7 +37,7 @@ Das Script schuetzt lokale Governance-Anpassungen:
   gemacht, ohne das ganze `.opencode/`-Root freizugeben.
 - Generierte Spec-Kit-Dateien unter `.opencode/command`,
   `.claude/skills/speckit-*`, `.agents/skills/speckit-*`,
-  `.gemini/commands`, `.github/agents`, `.github/prompts`,
+  `.github/agents`, `.github/prompts`,
   `.specify/templates`, `.specify/scripts` und `.specify/extensions` werden
   von trailing whitespace und ueberzaehligen EOF-Leerzeilen bereinigt, damit
   `git diff --check` nicht an generierten Command-, Agent-, Template- und

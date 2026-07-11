@@ -200,6 +200,9 @@ for item in data.get("tools", []):
                 json.dumps(item.get("args", []), separators=(",", ":")),
                 install.get("manager") or "-",
                 json.dumps(install.get("arguments", []), separators=(",", ":")),
+                install.get("url", ""),
+                install.get("sha256", ""),
+                install.get("interpreter", ""),
             ]
         )
     )
@@ -406,6 +409,9 @@ install_cli_tool() {
   local id="$1"
   local manager="$2"
   local install_args_json="$3"
+  local install_url="${4:-}"
+  local install_sha256="${5:-}"
+  local interpreter="${6:-}"
   local -a install_args
   local arg
 
@@ -421,6 +427,48 @@ install_cli_tool() {
         log "SKIP cli tool install: $id (uv fehlt)"
       fi
       ;;
+    vendor-script)
+      if [ "$OS_NAME" != "Linux" ]; then
+        log "MISSING cli tool: $id (vendor installer is Linux-only)"
+        return 0
+      fi
+      if [ -z "$install_url" ] || [ -z "$install_sha256" ] || [ "$interpreter" != "bash" ]; then
+        log "SKIP cli tool install: $id (ungueltige vendor-script Registrydaten)"
+        return 0
+      fi
+      log "INSTALL cli tool: $id (verified vendor script)"
+      if [ "$DRY_RUN" -eq 1 ]; then
+        log "DRY-RUN: download $install_url, verify sha256=$install_sha256, execute with bash"
+        return 0
+      fi
+      command -v curl >/dev/null 2>&1 || {
+        log "SKIP cli tool install: $id (curl fehlt)"
+        return 0
+      }
+      local installer actual_sha256
+      installer="$(mktemp)"
+      if ! curl -fsSL "$install_url" -o "$installer"; then
+        rm -f -- "$installer"
+        log "SKIP cli tool install: $id (Download fehlgeschlagen)"
+        return 0
+      fi
+      if command -v sha256sum >/dev/null 2>&1; then
+        actual_sha256="$(sha256sum "$installer" | awk '{print $1}')"
+      elif command -v shasum >/dev/null 2>&1; then
+        actual_sha256="$(shasum -a 256 "$installer" | awk '{print $1}')"
+      else
+        rm -f -- "$installer"
+        log "SKIP cli tool install: $id (SHA-256-Werkzeug fehlt)"
+        return 0
+      fi
+      if [ "$actual_sha256" != "$install_sha256" ]; then
+        rm -f -- "$installer"
+        log "SKIP cli tool install: $id (Installer-Pruefsumme geaendert; Registry zuerst pruefen)"
+        return 0
+      fi
+      bash "$installer"
+      rm -f -- "$installer"
+      ;;
     *)
       log "MISSING cli tool: $id"
       ;;
@@ -428,16 +476,16 @@ install_cli_tool() {
 }
 
 install_cli_tools() {
-  local scope id command_name args_json manager install_args_json
+  local scope id command_name args_json manager install_args_json install_url install_sha256 interpreter
   scope="required"
   [ "$INCLUDE_OPTIONAL" -eq 1 ] && scope="all"
 
-  while IFS=$'\t' read -r id command_name args_json manager install_args_json; do
+  while IFS=$'\t' read -r id command_name args_json manager install_args_json install_url install_sha256 interpreter; do
     [ -n "$id" ] || continue
     if cli_tool_available "$command_name" "$args_json"; then
       log "OK cli tool: $id"
     else
-      install_cli_tool "$id" "$manager" "$install_args_json"
+      install_cli_tool "$id" "$manager" "$install_args_json" "$install_url" "$install_sha256" "$interpreter"
     fi
   done < <(cli_registry_items "$scope")
 }
@@ -463,11 +511,11 @@ install_npm_agent_tools() {
 compare_cli_scope() {
   local scope="$1"
   local label="$2"
-  local id command_name args_json manager install_args_json
+  local id command_name args_json manager install_args_json install_url install_sha256 interpreter
   local missing
   missing=""
 
-  while IFS=$'\t' read -r id command_name args_json manager install_args_json; do
+  while IFS=$'\t' read -r id command_name args_json manager install_args_json install_url install_sha256 interpreter; do
     [ -n "$id" ] || continue
     if ! cli_tool_available "$command_name" "$args_json"; then
       missing="${missing}${id}"$'\n'

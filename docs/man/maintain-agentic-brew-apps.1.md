@@ -28,6 +28,8 @@ Fallbacks fuer Codex, Claude und Copilot werden ueber
 Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 `brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
 werden zusaetzlich Required-Casks gepflegt.
+Fehlt `agy` auf Linux, wird der offizielle Installer nur nach erfolgreicher
+SHA-256-Pruefung gegen die Required-CLI-Registry ausgefuehrt.
 CLI-Versionsproben werden nach fuenf Sekunden beendet, damit interaktive oder
 festhaengende Agenten-CLIs den Wartungslauf nicht blockieren.
 Ein bereits vorhandenes App-Bundle fuer Visual Studio Code unter
@@ -46,6 +48,8 @@ agent CLIs `codex`, `claude`, `agy`, and `copilot`. npm-based fallbacks for Code
 `scripts/config/npm-agent-cli-registry.json` when their CLI is missing. On
 systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
 installs missing required formulae. On macOS it also maintains required casks.
+When `agy` is missing on Linux, the official installer runs only after its
+SHA-256 digest matches the required CLI registry.
 CLI version probes stop after five seconds so interactive or stuck agent CLIs
 cannot block maintenance.
 An existing Visual Studio Code app bundle under `/Applications/Visual Studio Code.app`

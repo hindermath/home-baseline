@@ -67,7 +67,7 @@ $MonitoredSpecs = @(
     @{ Kind = 'tree'; Path = '.github/agents' },
     @{ Kind = 'tree'; Path = '.github/prompts' },
     @{ Kind = 'tree'; Path = '.claude/commands' },
-    @{ Kind = 'tree'; Path = '.gemini/commands' },
+    @{ Kind = 'file'; Path = '.gemini/antigravity-cli/settings.json' },
     @{ Kind = 'file'; Path = '.codex/config.toml' },
     @{ Kind = 'file'; Path = '.claude/settings.json' },
     @{ Kind = 'file'; Path = '.copilot/config.json' },
@@ -76,6 +76,7 @@ $MonitoredSpecs = @(
 )
 
 $AppSources = @{
+    Antigravity = @('.gemini/antigravity-cli/history', '.gemini/antigravity-cli/logs')
     Codex    = @('.codex/history.jsonl', '.codex/log/codex-tui.log')
     Claude   = @('.claude/history.jsonl', '.claude/projects', '.claude/file-history')
     Copilot  = @('.copilot/command-history-state.json', '.copilot/logs')

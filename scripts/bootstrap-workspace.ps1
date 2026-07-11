@@ -435,7 +435,7 @@ jobs:
     }
 
     if (Get-Command specify -ErrorAction SilentlyContinue) {
-        foreach ($agent in @('gemini', 'opencode', 'claude', 'copilot', 'codex')) {
+        foreach ($agent in @('agy', 'opencode', 'claude', 'copilot', 'codex')) {
             Push-Location $workspaceDir
             try {
                 specify init --here --force --integration $agent 2>$null | Out-Null

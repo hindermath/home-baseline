@@ -46,4 +46,4 @@ pwsh -NoProfile -File scripts/setup-codex-settings.ps1 -Force
 
 ## SEE ALSO
 
-`setup-claude-settings.1`, `setup-copilot-settings.1`, `setup-gemini-settings.1`
+`setup-claude-settings.1`, `setup-copilot-settings.1`, `setup-antigravity-settings.1`

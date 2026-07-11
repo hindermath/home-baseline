@@ -19,15 +19,16 @@ pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report [-HomeDir DIR] [-
 The command provides a lightweight local audit layer for agent-related file changes.
 
 It is meant for cases where files below `~/.agents/`, `.claude/commands/`,
-`.gemini/commands/`, `.github/agents/`, `.github/prompts/`, or selected local
-agent config files change and you want future changes to be easier to attribute.
+`.github/agents/`, `.github/prompts/`, Antigravity settings, or selected
+local agent config files change and you want future changes to be easier to
+attribute.
 
 The workflow has two steps:
 
 1. `snapshot` records the current baseline into a local audit state directory.
 2. `report` compares the current state with that baseline, stores a JSON report,
-   and searches recent Codex, Claude, Copilot, and Continue logs for path-based
-   hints.
+   and searches recent Antigravity, Codex, Claude, Copilot, and Continue logs
+   for path-based hints.
 
 This is **heuristic correlation**, not a cryptographic proof of authorship.
 If no app log references the changed paths or terms, the report will say so.

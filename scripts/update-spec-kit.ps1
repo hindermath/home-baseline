@@ -24,7 +24,7 @@
     das Repository, aus dem dieses Skript laeuft; danach ~/home-baseline-tmp.
 
 .PARAMETER Agents
-    Spec-Kit-Integrationen. Standard: claude, opencode, gemini, copilot, codex.
+    Spec-Kit-Integrationen. Standard: claude, opencode, agy, copilot, codex.
 
 .PARAMETER Commit
     Commitet Aenderungen pro geaendertem Repo.
@@ -45,7 +45,7 @@
 param(
     [string]$HomeDir = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }),
     [string]$TemplateSource,
-    [string[]]$Agents = @('claude', 'opencode', 'gemini', 'copilot', 'codex'),
+    [string[]]$Agents = @('claude', 'opencode', 'agy', 'copilot', 'codex'),
     [switch]$Commit,
     [switch]$Push,
     [switch]$AllowDirty
@@ -213,7 +213,6 @@ function Repair-HBGeneratedWhitespace {
 
     $paths = @(
         (Join-Path $Repo '.opencode/command'),
-        (Join-Path $Repo '.gemini/commands'),
         (Join-Path $Repo '.github/agents'),
         (Join-Path $Repo '.github/prompts'),
         (Join-Path $Repo '.specify/templates'),
@@ -242,6 +241,25 @@ function Repair-HBGeneratedWhitespace {
     if (Test-Path $settings) {
         $text = (Get-Content -Raw -Path $settings) -replace "(\r?\n)+\z", "`n"
         Set-Content -Path $settings -Value $text -NoNewline
+    }
+}
+
+function Remove-HBLegacyGeminiIntegration {
+    param([Parameter(Mandatory)][string]$Repo)
+
+    $paths = @(
+        (Join-Path $Repo '.gemini/commands'),
+        (Join-Path $Repo '.specify/integrations/gemini.manifest.json')
+    )
+    foreach ($path in $paths) {
+        if ($PSCmdlet.ShouldProcess($path, 'Legacy Gemini Spec-Kit integration entfernen / Remove legacy Gemini Spec-Kit integration')) {
+            Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue
+        }
+    }
+
+    $geminiDir = Join-Path $Repo '.gemini'
+    if ((Test-Path $geminiDir) -and -not (Get-ChildItem -Force $geminiDir -ErrorAction SilentlyContinue)) {
+        Remove-Item -Path $geminiDir -Force
     }
 }
 
@@ -305,6 +323,7 @@ function Invoke-HBSpecKitUpdate {
 
     Restore-HBGovernanceTemplates -Repo $Repo -CacheDir $TemplateCache
     Enable-HBOpenCodeCommandTracking -Repo $Repo
+    Remove-HBLegacyGeminiIntegration -Repo $Repo
     Repair-HBGeneratedWhitespace -Repo $Repo
     Invoke-HBRepoCommitAndPush -Repo $Repo
 }

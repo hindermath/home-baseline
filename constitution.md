@@ -56,8 +56,9 @@ Non-negotiable rules:
   .claude/*
   !.claude/commands/
   ```
-  Currently allowed subdirectories: `.claude/commands/`, `.gemini/commands/`,
-  and `.opencode/command/` (Spec-Kit command definitions only).
+  Currently allowed subdirectories: `.claude/commands/`,
+  `.agents/skills/`, and `.opencode/command/` (Spec-Kit tool definitions
+  only). Antigravity and Codex share `.agents/skills/`.
 - Every workspace MUST have a `pre-push` hook installed that blocks pushes
   containing secret-like filenames or credential patterns (tokens matching
   `ghp_*`, `sk-*`, `AKIA*`, `AIza*`, PEM private-key headers).
@@ -128,7 +129,7 @@ are excluded by the whitelist `.gitignore`):
 | Documentation | `README.md`, `.gitignore`, `.gitconfig`, `docs/` |
 | AI agent guidance | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` |
 | Spec-Kit tooling | `.specify/` (config, templates, memory/constitution), `.agents/skills/`, `.github/agents/`, `.github/prompts/` |
-| Agent Spec-Kit commands | `.claude/commands/`, `.gemini/commands/`, `.opencode/command/` |
+| Agent Spec-Kit surfaces | `.claude/commands/`, `.agents/skills/`, `.opencode/command/` |
 
 Rules:
 - Changes to `home-baseline` scripts do NOT auto-propagate to child workspaces;
@@ -146,7 +147,7 @@ Spec-Kit lifecycle maintenance rules:
   Level-1 workspaces, and Level-2 projects by looking for `.git` plus
   `.specify/`; newly added repos are therefore included automatically.
 - Each refresh MUST run `specify init --here --force --integration <agent>` for
-  `claude`, `opencode`, `gemini`, `copilot`, and `codex`. Legacy `--ai` usage
+  `claude`, `opencode`, `agy`, `copilot`, and `codex`. Legacy `--ai` usage
   is only a compatibility fallback.
 - `.specify/memory/constitution.md` MUST be backed up and restored around
   `specify init --force`. Local governance overlays in `spec-template.md`,

@@ -197,7 +197,7 @@ SKIPPED=0
 PARTIAL_FAIL=false
 WORKSPACE_GITIGNORE_HEADER="# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
 WORKSPACE_GITIGNORE_RESULT="unchanged"
-SPECIFY_AGENTS=(gemini opencode claude copilot codex)
+SPECIFY_AGENTS=(agy opencode claude copilot codex)
 
 preview_action() {
   local action="$1" target="$2" note="${3:-}"
@@ -407,7 +407,7 @@ if $OPT_PREVIEW; then
   fi
   preview_action "EXEC" "claude /init" "optional"
   preview_action "PRINT" "Codex manuelle Anweisung" "interaktiv"
-  preview_action "PRINT" "Gemini manuelle Anweisung" "interaktiv"
+  preview_action "PRINT" "Antigravity manuelle Anweisung" "interaktiv"
   preview_action "CHECK" "copilot --version" "Required-Host-Baseline"
   for agent in "${SPECIFY_AGENTS[@]}"; do
     preview_action "EXEC" "specify init --here --force --integration ${agent}" "optional"
@@ -943,10 +943,10 @@ step_start "Codex (interaktiv)"
 printf "\n"
 printf "          -> Bitte manuell ausfuehren: cd %s && codex\n" "${TARGET_DIR/#$HOME/\~}"
 
-# ─── Step 17: Gemini (manual) ────────────────────────────────────────────────
-step_start "Gemini (interaktiv)"
+# ─── Step 17: Antigravity (manual) ───────────────────────────────────────────
+step_start "Antigravity (interaktiv)"
 printf "\n"
-printf "          -> Bitte manuell ausfuehren: cd %s && gemini\n" "${TARGET_DIR/#$HOME/\~}"
+printf "          -> Bitte manuell ausfuehren: cd %s && agy\n" "${TARGET_DIR/#$HOME/\~}"
 
 # ─── Step 18: Copilot check ──────────────────────────────────────────────────
 step_start "Copilot verfuegbar pruefen"
@@ -972,7 +972,7 @@ elif command -v specify >/dev/null 2>&1; then
 else
   step_warn "specify nicht installiert"
   echo "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
-  echo "          -> Dann je Agent: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --force --integration {gemini|opencode|claude|copilot|codex}"
+  echo "          -> Dann je Agent: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --force --integration {agy|opencode|claude|copilot|codex}"
 fi
 
 if [ -f "${TARGET_DIR}/constitution.md" ] && [ -d "${TARGET_DIR}/.specify/memory" ]; then
@@ -1090,8 +1090,8 @@ echo ""
 echo "  Naechste Schritte:"
 printf "  -> cd %s\n" "${TARGET_DIR/#$HOME/\~}"
 echo "  -> codex   (interaktive Initialisierung)"
-echo "  -> gemini  (interaktive Initialisierung)"
-echo "  -> Spec-Kit ist fuer gemini, opencode, claude, copilot und codex vorbereitet"
+echo "  -> agy     (interaktive Initialisierung)"
+echo "  -> Spec-Kit ist fuer agy, opencode, claude, copilot und codex vorbereitet"
 echo "  -> specify specify \"Feature-Name\""
 echo "$(printf '%s' "$(printf '=%.0s' {1..50})")"
 

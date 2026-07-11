@@ -46,7 +46,7 @@ $projectSlugChanged = $false
 $summaryRepoUrl = ''
 $summaryDisplayRepo = ''
 $WorkspaceGitignoreHeader = '# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)'
-$SpecifyAgents = @('gemini', 'opencode', 'claude', 'copilot', 'codex')
+$SpecifyAgents = @('agy', 'opencode', 'claude', 'copilot', 'codex')
 
 function Render-Template {
     param([string]$Template, [string]$Output)
@@ -748,10 +748,10 @@ Step-Start "Codex (interaktiv)"
 Write-Host ""
 Write-Host ("          -> Bitte manuell ausfuehren: cd $tdShort && codex")
 
-# 17. Gemini
-Step-Start "Gemini (interaktiv)"
+# 17. Antigravity
+Step-Start "Antigravity (interaktiv)"
 Write-Host ""
-Write-Host ("          -> Bitte manuell ausfuehren: cd $tdShort && gemini")
+Write-Host ("          -> Bitte manuell ausfuehren: cd $tdShort && agy")
 
 # 18. Copilot check
 Step-Start "Copilot verfuegbar pruefen"
@@ -778,7 +778,7 @@ elseif (Get-Command specify -ErrorAction SilentlyContinue) {
 } else {
     Step-Warn "specify nicht installiert"
     Write-Host "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
-    Write-Host "          -> Dann je Agent: cd $tdShort && specify init --here --force --integration {gemini|opencode|claude|copilot|codex}"
+    Write-Host "          -> Dann je Agent: cd $tdShort && specify init --here --force --integration {agy|opencode|claude|copilot|codex}"
 }
 
 $projectConstitution = Join-Path $TargetDir 'constitution.md'
@@ -872,8 +872,8 @@ Write-Host ""
 Write-Host "  Naechste Schritte:"
 Write-Host "  -> cd $tdShort"
 Write-Host "  -> codex   (interaktive Initialisierung)"
-Write-Host "  -> gemini  (interaktive Initialisierung)"
-Write-Host "  -> Spec-Kit ist fuer gemini, opencode, claude, copilot und codex vorbereitet"
+Write-Host "  -> agy     (interaktive Initialisierung)"
+Write-Host "  -> Spec-Kit ist fuer agy, opencode, claude, copilot und codex vorbereitet"
 Write-Host "  -> specify specify `"Feature-Name`""
 Write-Host ('=' * 50)
 

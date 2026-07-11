@@ -341,6 +341,33 @@ check_copilot_instructions() {
   fi
 }
 
+check_antigravity_integration() {
+  local dir="$1"
+  local gitignore="${dir}/.gitignore"
+  if [ -f "${dir}/.specify/integrations/agy.manifest.json" ]; then
+    emit_result "PASS" ".specify/integrations/agy.manifest.json" "Antigravity Spec-Kit integration present" "$dir"
+  else
+    emit_result "FAIL" ".specify/integrations/agy.manifest.json" "Antigravity Spec-Kit integration missing" "$dir"
+  fi
+  if [ -e "${dir}/.specify/integrations/gemini.manifest.json" ] || [ -e "${dir}/.gemini/commands" ]; then
+    emit_result "FAIL" ".gemini/commands" "legacy Gemini Spec-Kit integration present" "$dir"
+  else
+    emit_result "PASS" ".gemini/commands" "legacy Gemini Spec-Kit integration absent" "$dir"
+  fi
+  if find "${dir}/.agents/skills" -maxdepth 1 -type d -name 'speckit-*' -print -quit 2>/dev/null | grep -q .; then
+    emit_result "PASS" ".agents/skills" "Antigravity/Codex Spec-Kit skills present" "$dir"
+  else
+    emit_result "FAIL" ".agents/skills" "Antigravity/Codex Spec-Kit skills missing" "$dir"
+  fi
+  if [ -f "$gitignore" ] &&
+     grep -qF '.agents/*' "$gitignore" &&
+     grep -qF '!.agents/skills/' "$gitignore"; then
+    emit_result "PASS" ".gitignore" "surgical .agents skills allowlist" "$dir"
+  else
+    emit_result "FAIL" ".gitignore" "surgical .agents skills allowlist missing" "$dir"
+  fi
+}
+
 # ─── Header ──────────────────────────────────────────────────────────────────
 
 if ! $OPT_JSON; then
@@ -389,6 +416,7 @@ while IFS='|' read -r level dir _type; do
 
   # homogeneity-check.yml presence (all levels)
   check_workflow_yml "$dir"
+  check_antigravity_integration "$dir"
 
   # ANSI escape scan in scripts/ (Level 0 only, global)
   if [ "$level" -eq 0 ]; then

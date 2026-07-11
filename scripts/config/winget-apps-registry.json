@@ -25,7 +25,7 @@
     { "id": "Anchore.Syft", "scope": "required", "purpose": "SBOM generation for supply-chain evidence" },
     { "id": "Anthropic.ClaudeCode", "scope": "required", "purpose": "Claude Code command-line agent" },
     { "id": "GitHub.Copilot", "scope": "required", "purpose": "GitHub Copilot CLI" },
-    { "id": "Google.Antigravity", "scope": "required", "purpose": "Google Antigravity agent application; Windows counterpart to the Homebrew Antigravity CLI" },
+    { "id": "Google.AntigravityCLI", "scope": "required", "purpose": "Google Antigravity command-line agent providing the required agy command" },
     { "id": "Microsoft.VisualStudioCode", "scope": "required", "purpose": "Minimum graphical editor and quasi-IDE for apprentice development" },
     { "id": "Helix.Helix", "scope": "required", "purpose": "Terminal-native A11Y editor with language-server support" },
     { "id": "Podman.CLI", "scope": "required", "purpose": "Podman CLI for the required Secure Trader sandbox runtime" },

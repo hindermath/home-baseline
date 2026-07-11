@@ -228,6 +228,39 @@ function Check-CopilotInstructions {
     }
 }
 
+function Check-AntigravityIntegration {
+    param([string]$Dir)
+
+    $agyManifest = Join-Path $Dir '.specify/integrations/agy.manifest.json'
+    if (Test-Path $agyManifest) {
+        Emit-Result 'PASS' '.specify/integrations/agy.manifest.json' 'Antigravity Spec-Kit integration present' $Dir
+    } else {
+        Emit-Result 'FAIL' '.specify/integrations/agy.manifest.json' 'Antigravity Spec-Kit integration missing' $Dir
+    }
+
+    if ((Test-Path (Join-Path $Dir '.specify/integrations/gemini.manifest.json')) -or
+        (Test-Path (Join-Path $Dir '.gemini/commands'))) {
+        Emit-Result 'FAIL' '.gemini/commands' 'legacy Gemini Spec-Kit integration present' $Dir
+    } else {
+        Emit-Result 'PASS' '.gemini/commands' 'legacy Gemini Spec-Kit integration absent' $Dir
+    }
+
+    $skills = Get-ChildItem -Path (Join-Path $Dir '.agents/skills') -Directory -Filter 'speckit-*' -ErrorAction SilentlyContinue
+    if ($skills) {
+        Emit-Result 'PASS' '.agents/skills' 'Antigravity/Codex Spec-Kit skills present' $Dir
+    } else {
+        Emit-Result 'FAIL' '.agents/skills' 'Antigravity/Codex Spec-Kit skills missing' $Dir
+    }
+
+    $gitignore = Join-Path $Dir '.gitignore'
+    $content = if (Test-Path $gitignore) { Get-Content $gitignore -Raw } else { '' }
+    if ($content.Contains('.agents/*') -and $content.Contains('!.agents/skills/')) {
+        Emit-Result 'PASS' '.gitignore' 'surgical .agents skills allowlist' $Dir
+    } else {
+        Emit-Result 'FAIL' '.gitignore' 'surgical .agents skills allowlist missing' $Dir
+    }
+}
+
 # ─── Header ──────────────────────────────────────────────────────────────────
 if (-not $Json) {
     Write-Host "Workspace Homogeneity Guardian — check-homogeneity v1.0"
@@ -299,6 +332,7 @@ foreach ($entry in $scanResults) {
 
     # homogeneity-check.yml presence (all levels)
     Check-WorkflowYml -Dir $dir
+    Check-AntigravityIntegration -Dir $dir
 
     # ANSI escape scan in scripts/ (Level 0 only)
     if ($level -eq 0) {

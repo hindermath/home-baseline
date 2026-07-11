@@ -6,10 +6,10 @@
     "defaultScope": "required",
     "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
     "npmAgentRegistry": "scripts/config/npm-agent-cli-registry.json",
-    "agentCliPolicy": "codex, claude, and the standalone GitHub Copilot CLI are required cross-platform CLI surfaces. Google Antigravity replaces Gemini CLI and is required where an official package exists: Homebrew on macOS and WinGet on Windows. npm fallback installations are maintained through npm-agent-cli-registry.json.",
+    "agentCliPolicy": "codex, claude, the standalone GitHub Copilot CLI, and Google Antigravity CLI are required cross-platform CLI surfaces. Google Antigravity replaces Gemini CLI. macOS uses Homebrew, Windows uses WinGet, and Linux uses the checksum-verified official vendor installer. npm fallback installations are maintained through npm-agent-cli-registry.json.",
     "hostingAccountPolicy": "Learners need an account on the selected institutional Git hosting system. A GitHub account is required only for the direct GitHub profile or optional GitHub Copilot sign-in.",
     "forgejoClientPolicy": "No additional Forgejo client CLI is required. Bootstrap automation uses normal git, HTTPS credentials from a secure Git credential helper, and the Forgejo REST API.",
-    "linuxWithoutBrew": "Linux without Homebrew uses distro packages where available. .NET, Swift, Syft, and GitHub Spec Kit may require external package sources or uv-based installation."
+    "linuxWithoutBrew": "Linux without Homebrew uses distro packages where available. .NET, Swift, Syft, and GitHub Spec Kit may require external package sources or uv-based installation. Antigravity CLI uses its checksum-verified official vendor installer."
   },
   "tools": [
     {
@@ -123,9 +123,16 @@
     {
       "id": "antigravity",
       "scope": "required",
-      "platforms": ["Darwin"],
+      "platforms": ["Darwin", "Linux", "Windows"],
       "command": "agy",
       "args": ["--version"],
+      "install": {
+        "manager": "vendor-script",
+        "platforms": ["Linux"],
+        "url": "https://antigravity.google/cli/install.sh",
+        "sha256": "ee1ea43ce4e9e56356c4ab6dad907ef357ae4bdfcaadb682735909fb57c9c640",
+        "interpreter": "bash"
+      },
       "purpose": "Google Antigravity command-line agent for AI-assisted development; replaces Gemini CLI"
     },
     {

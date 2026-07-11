@@ -6,7 +6,7 @@
     "packageSource": "npm install -g <package>",
     "defaultInstallScope": "required",
     "dependencyPolicy": "Do not list transitive npm dependencies.",
-    "platformPolicy": "Codex, Claude Code, and the standalone GitHub Copilot CLI use npm as the common fallback on macOS, Linux, and Windows when the command remains missing after package-manager maintenance. Google Antigravity is maintained through Brew on macOS and WinGet on Windows."
+    "platformPolicy": "Codex, Claude Code, and the standalone GitHub Copilot CLI use npm as the common fallback on macOS, Linux, and Windows when the command remains missing after package-manager maintenance. Google Antigravity is maintained through Brew on macOS, the verified official installer on Linux, and WinGet on Windows."
   },
   "tools": [
     {

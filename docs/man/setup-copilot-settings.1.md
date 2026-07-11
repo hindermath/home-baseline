@@ -48,4 +48,4 @@ pwsh -NoProfile -File scripts/setup-copilot-settings.ps1 -EffortLevel high -Them
 
 ## SEE ALSO
 
-`setup-claude-settings.1`, `setup-codex-settings.1`, `setup-gemini-settings.1`
+`setup-claude-settings.1`, `setup-codex-settings.1`, `setup-antigravity-settings.1`

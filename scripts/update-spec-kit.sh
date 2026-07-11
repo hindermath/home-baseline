@@ -7,7 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 HOME_DIR="${HOME}"
 
-AGENTS=(claude opencode gemini copilot codex)
+AGENTS=(claude opencode agy copilot codex)
 OPT_DRY_RUN=false
 OPT_COMMIT=false
 OPT_PUSH=false
@@ -25,7 +25,7 @@ Options:
   --home-dir PATH          Home directory to scan (default: $HOME)
   --template-source PATH   Repo whose local governance templates are canonical
                            (default: repository running this script)
-  --agents LIST            Comma-separated integrations (default: claude,opencode,gemini,copilot,codex)
+  --agents LIST            Comma-separated integrations (default: claude,opencode,agy,copilot,codex)
   --commit                 Commit changes in each changed repo
   --push                   Push current branch after commit/check
   --allow-dirty            Continue even if a repo already has local changes
@@ -248,7 +248,6 @@ clean_generated_whitespace() {
     "$repo/.opencode/command" \
     "$repo/.claude/skills"/speckit-* \
     "$repo/.agents/skills"/speckit-* \
-    "$repo/.gemini/commands" \
     "$repo/.github/agents" \
     "$repo/.github/prompts" \
     "$repo/.specify/templates" \
@@ -261,6 +260,21 @@ clean_generated_whitespace() {
 
   if [ -f "$repo/.vscode/settings.json" ]; then
     perl -0pi -e 's/\n+\z/\n/' "$repo/.vscode/settings.json"
+  fi
+}
+
+remove_legacy_gemini_integration() {
+  local repo="$1"
+
+  if $OPT_DRY_RUN; then
+    log "  [dry-run] legacy .gemini/commands und gemini.manifest.json entfernen"
+    return 0
+  fi
+
+  rm -rf -- "$repo/.gemini/commands"
+  rm -f -- "$repo/.specify/integrations/gemini.manifest.json"
+  if [ -d "$repo/.gemini" ] && [ -z "$(find "$repo/.gemini" -mindepth 1 -print -quit)" ]; then
+    rmdir "$repo/.gemini"
   fi
 }
 
@@ -319,6 +333,7 @@ update_repo() {
 
   apply_governance_templates "$repo"
   ensure_opencode_allowlist "$repo"
+  remove_legacy_gemini_integration "$repo"
   clean_generated_whitespace "$repo"
   commit_and_push "$repo"
 }

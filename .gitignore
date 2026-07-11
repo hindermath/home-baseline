@@ -60,19 +60,19 @@ scripts/config/*repository-registry.local.json
 !.specify/presets/**
 .specify/presets/.cache/
 .specify/presets/.cache/**
+.specify/integrations/.cache/
+.specify/integrations/.cache/**
 
-# Copilot-Agenten-Skills (keine Credentials)
+# Antigravity-/Codex-Agenten-Skills (keine Credentials)
 !.agents/
+.agents/*
+!.agents/skills/
+!.agents/skills/**
 
 # Claude Spec-Kit Commands (nur commands/, NICHT root — root enthält history, sessions, cache)
 !.claude/
 .claude/*
 !.claude/commands/
-
-# Gemini Spec-Kit Commands (nur commands/, NICHT root — root enthält oauth_creds.json)
-!.gemini/
-.gemini/*
-!.gemini/commands/
 
 # Spec-Kit Verfassung (Duplikat-Eintrag entfernt — bereits oben definiert)
 

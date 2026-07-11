@@ -511,7 +511,7 @@ RPWF
   fi
 
   if command -v specify >/dev/null 2>&1; then
-    for agent in gemini opencode claude copilot codex; do
+    for agent in agy opencode claude copilot codex; do
       (cd "$WORKSPACE_DIR" && specify init --here --force --integration "$agent" >/dev/null 2>&1) || log "WARN: specify init fehlgeschlagen fuer $agent"
     done
     if [ -f "$WORKSPACE_DIR/constitution.md" ] && [ -d "$WORKSPACE_DIR/.specify/memory" ]; then

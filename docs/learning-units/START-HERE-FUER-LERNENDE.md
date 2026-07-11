@@ -251,7 +251,7 @@ syft version
 specify --version
 codex --version
 claude --version
-gemini --version
+agy --version
 copilot --version
 ```
 

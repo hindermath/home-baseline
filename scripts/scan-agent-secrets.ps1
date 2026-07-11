@@ -103,7 +103,19 @@ if (-not $trackedRelative) {
     exit 0
 }
 
-$trackedFiles = $trackedRelative | ForEach-Object { Join-Path $rootPath $_ }
+$trackedFiles = $trackedRelative |
+    Where-Object {
+        $relative = $_.Replace('\', '/')
+        $relative.StartsWith('.agents/') -or
+        $relative.StartsWith('.claude/') -or
+        $relative.StartsWith('.codex/') -or
+        $relative.StartsWith('.gemini/') -or
+        $relative.StartsWith('.junie/') -or
+        $relative.StartsWith('.opencode/') -or
+        $relative.StartsWith('.github/agents/') -or
+        $relative.StartsWith('.github/prompts/')
+    } |
+    ForEach-Object { Join-Path $rootPath $_ }
 Write-Verbose "$($trackedFiles.Count) getrackte Datei(en) werden geprüft."
 
 # --- Scan: Dateinamen ----------------------------------------------------------------
@@ -122,10 +134,18 @@ $nameHits = $trackedFiles | Where-Object {
 
 # --- Scan: Dateiinhalte (Select-String) ----------------------------------------------
 
-$contentHits = $trackedFiles |
-    Where-Object { Test-Path $_ -PathType Leaf } |
-    Select-String -Pattern $SecretContentPatterns -List |
-    Select-Object -ExpandProperty Path -Unique
+$contentScanFiles = @($trackedFiles |
+    Where-Object {
+        if (-not (Test-Path $_ -PathType Leaf)) { return $false }
+        $relative = [IO.Path]::GetRelativePath($rootPath, $_).Replace('\', '/')
+        return -not $relative.StartsWith('.agents/skills/')
+    })
+$contentHits = if ($contentScanFiles.Count -gt 0) {
+    Select-String -Path $contentScanFiles -Pattern $SecretContentPatterns -List |
+        Select-Object -ExpandProperty Path -Unique
+} else {
+    @()
+}
 
 # --- Ergebnis ausgeben ---------------------------------------------------------------
 

@@ -70,6 +70,7 @@ run_gitleaks_worktree_scan() {
 }
 
 agent_dir_patterns=(
+  '.agents'
   '.claude'
   '.codex'
   '.gemini'
@@ -85,7 +86,7 @@ while IFS= read -r dir; do
 done < <(
   find "$workspace_root" \
     \( -path '*/.git' -o -path '*/bin' -o -path '*/obj' -o -path '*/node_modules' -o -path '*/_site' -o -path '*/TestResults' \) -prune -o \
-    \( -name '.claude' -o -name '.codex' -o -name '.gemini' -o -name '.junie' -o -name '.opencode' -o -path '*/.github/agents' -o -path '*/.github/prompts' \) \
+    \( -name '.agents' -o -name '.claude' -o -name '.codex' -o -name '.gemini' -o -name '.junie' -o -name '.opencode' -o -path '*/.github/agents' -o -path '*/.github/prompts' \) \
     -type d -print | sort
 )
 
@@ -124,8 +125,13 @@ for dir in "${agent_dirs[@]}"; do
   files=()
   while IFS= read -r line; do
     rel_file="${line#$dir/}"
+    if [ "${dir##*/}" = ".agents" ]; then
+      case "$rel_file" in
+        skills/*) continue ;;
+      esac
+    fi
     case "$rel_file" in
-      */.claude/*|*/.codex/*|*/.gemini/*|*/.junie/*|*/.opencode/*|*/.github/agents/*|*/.github/prompts/*)
+      */.agents/*|*/.claude/*|*/.codex/*|*/.gemini/*|*/.junie/*|*/.opencode/*|*/.github/agents/*|*/.github/prompts/*)
         continue
         ;;
     esac
@@ -154,8 +160,13 @@ for dir in "${agent_dirs[@]}"; do
   high_content_hits=()
   while IFS= read -r line; do
     rel_file="${line#$dir/}"
+    if [ "${dir##*/}" = ".agents" ]; then
+      case "$rel_file" in
+        skills/*) continue ;;
+      esac
+    fi
     case "$rel_file" in
-      */.claude/*|*/.codex/*|*/.gemini/*|*/.junie/*|*/.opencode/*|*/.github/agents/*|*/.github/prompts/*)
+      */.agents/*|*/.claude/*|*/.codex/*|*/.gemini/*|*/.junie/*|*/.opencode/*|*/.github/agents/*|*/.github/prompts/*)
         continue
         ;;
     esac
