@@ -259,7 +259,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('COPY', "$TargetDir/constitution.md", 'von ~/constitution.md'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/project-statistics.md", 'Statistik-Ledger (initial)'))
-    $null = $previewActions.Add(@('PREPARE', "$TargetDir/docs/secure-development/", 'bei erkannter MSL'))
+    $null = $previewActions.Add(@('PREPARE', "$TargetDir/docs/secure-development/", 'Hardening bei erkannter MSL; RL-SE unabhaengig davon'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/Lastenheft_Secure-Development-Hardening.md", 'bei erkannter MSL'))
     $null = $previewActions.Add(@('UPDATE', "$TargetDir/Lastenheft_Abarbeitungsreihenfolge.md", 'Lastenheft*.md-Reihenfolge'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
@@ -306,9 +306,9 @@ if ($Preview) {
         $null = $previewActions.Add(@('EXEC', "specify init --here --force --integration $agent", 'optional'))
     }
     if (-not $NoSpeckit -and -not $NoGovernancePresets) {
-        $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir", 'bei erkannter MSL'))
+        $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir", 'GSDB-Level-2-Standard'))
     }
-    $null = $previewActions.Add(@('UPDATE', '~/.home-baseline/level2-repository-registry.json', 'bei erkannter MSL'))
+    $null = $previewActions.Add(@('UPDATE', '~/.home-baseline/level2-repository-registry.json', 'GSDB-Level-2-Standard; MSL getrennt klassifiziert'))
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
 
@@ -793,8 +793,6 @@ if ($NoSpeckit) {
     Step-Skip "-NoSpeckit"
 } elseif ($NoGovernancePresets) {
     Step-Skip "-NoGovernancePresets"
-} elseif ($script:SdhPrepareResult -ne 'prepared') {
-    Step-Skip "keine MSL-Vorbereitung"
 } elseif (-not (Test-Path (Join-Path $TargetDir '.specify'))) {
     Step-Skip "Spec Kit nicht initialisiert"
 } else {
@@ -812,21 +810,18 @@ if ($NoSpeckit) {
 
 # 20b. GSDB-Registry aktualisieren
 Step-Start "GSDB-Registry aktualisieren"
-if ($script:SdhPrepareResult -ne 'prepared') {
-    Step-Skip "keine MSL-Vorbereitung"
+$registryHelper = Join-Path $ScriptDir 'register-level2-repository.ps1'
+if (-not (Test-Path $registryHelper)) {
+    Step-Warn "Registry-Helper nicht gefunden"
 } else {
-    $registryHelper = Join-Path $ScriptDir 'register-level2-repository.ps1'
-    if (-not (Test-Path $registryHelper)) {
-        Step-Warn "Registry-Helper nicht gefunden"
-    } else {
-        $registryArgs = @('-Repo', $TargetDir, '-Source', 'bootstrap-project')
-        if ($PrimaryLanguage) { $registryArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
-        try {
-            & $registryHelper @registryArgs | Out-Null
-            Step-Done "Level-2-Repo registriert"
-        } catch {
-            Step-Warn "GSDB-Registry konnte nicht aktualisiert werden: $($_.Exception.Message)"
-        }
+    $registryArgs = @('-Repo', $TargetDir, '-Level', '2', '-Source', 'bootstrap-project')
+    if ($PrimaryLanguage) { $registryArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
+    if ($NoGovernancePresets) { $registryArgs += @('-PresetProfile', 'none') }
+    try {
+        & $registryHelper @registryArgs | Out-Null
+        Step-Done "Level-2-Repo registriert"
+    } catch {
+        Step-Warn "GSDB-Registry konnte nicht aktualisiert werden: $($_.Exception.Message)"
     }
 }
 

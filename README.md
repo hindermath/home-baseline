@@ -1123,9 +1123,9 @@ Der Bereich besteht aus Richtlinie, zwölf kanonischen Einzelchecklisten mit 157
 
 *The area contains the guideline, twelve canonical individual checklists with 157 stable CL IDs, a generated compendium, a year 1-to-3 learning path, and expanded related documents. `baseline-manifest.json` controls files and versions. Project evidence is stored separately under `docs/security/secure-development/<date>-<scope>/` and uses separate applicability and implementation axes. Security starts with the first repository access and coding task.*
 
-Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative lokale Merkliste der GSDB-relevanten Repositories liegt ausserhalb des public Repos unter `~/.home-baseline/level2-repository-registry.json`. Im Repo bleibt nur `scripts/config/level2-repository-registry.example.json` als public-safe Vorlage. Neue MSL-Level-2-Repositories werden beim Bootstrap automatisch mit `register-level2-repository.*` registriert. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
+Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative lokale Merkliste der GSDB-relevanten Repositories liegt ausserhalb des public Repos unter `~/.home-baseline/level2-repository-registry.json`. Im Repo bleibt nur `scripts/config/level2-repository-registry.example.json` als public-safe Vorlage. Level-2-Repositories werden beim Bootstrap standardmaessig unabhaengig vom MSL-Status als GSDB-pflichtig mit dem Sechs-Preset-Profil registriert; begruendete Ausnahmen muessen explizit gesetzt werden. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
 
-*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The local operational registry of GSDB-relevant repositories lives outside the public repo at `~/.home-baseline/level2-repository-registry.json`. The repository only keeps `scripts/config/level2-repository-registry.example.json` as a public-safe seed. New MSL level-2 repositories are automatically registered during bootstrap via `register-level2-repository.*`. Existing repositories can be added later with the same tool.*
+*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The local operational registry of GSDB-relevant repositories lives outside the public repo at `~/.home-baseline/level2-repository-registry.json`. The repository only keeps `scripts/config/level2-repository-registry.example.json` as a public-safe seed. Level-2 repositories default to GSDB-required with the six-preset profile independently of MSL status; justified exceptions must be explicit. Existing repositories can be added later with the same tool.*
 
 Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` prueft rein lesend. Ein normaler Lauf schreibt `docs/security/gsdb-self-assessment.md`, erzeugt oder aktualisiert `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md` und nimmt dieses Lastenheft in `Lastenheft_Abarbeitungsreihenfolge.md` auf. Der Preflight startet keinen Spec-Kit-Lauf; das erzeugte Lastenheft ist Intake fuer einen spaeter manuell gestarteten `/speckit-specify`-Lauf.
 
@@ -1133,16 +1133,20 @@ Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`
 
 Die wiederkehrende Wartung nutzt `register-level2-repository.* --scan-root` /
 `-ScanRoot`, um bekannte Level-1-Wurzeln nach neuen Git-Repositories zu
-durchsuchen. Das ist die Registry-Drift-Pruefung: neue MSL-Level-2-Repos werden
-als GSDB-Kandidaten sichtbar und koennen in die lokale Merkliste uebernommen
-werden. Nicht-MSL- oder reine Koordinationsrepos werden nur mit expliziter
-Begruendung GSDB-pflichtig.
+durchsuchen. Das ist die Registry-Drift-Pruefung: neue Level-2-Repos werden als
+GSDB-Kandidaten sichtbar und koennen in die lokale Merkliste uebernommen werden.
+Eindeutige Sprachsuffixe gelten bei vorbereiteten Lernrepos bereits vor dem
+Runtime-Scaffold. Wartungsscans bewahren bekannte Sprach-, MSL-, GSDB- und
+Preset-Metadaten; explizite Parameter bleiben der einzige Weg fuer eine
+begruendete Herabstufung oder Ausnahme.
 
 *Recurring maintenance uses `register-level2-repository.* --scan-root` /
 `-ScanRoot` to scan known level-1 roots for new Git repositories. This is the
-registry drift check: new MSL level-2 repositories become visible as GSDB
-candidates and can be added to the local memory list. Non-MSL or pure
-coordination repositories become GSDB-required only with an explicit rationale.*
+registry drift check: new level-2 repositories become visible as GSDB candidates
+and can be added to the local memory list. Unambiguous language suffixes apply
+to prepared learning repositories before their runtime scaffold exists.
+Maintenance scans preserve known language, MSL, GSDB, and preset metadata;
+explicit parameters are the only way to record a justified downgrade or exception.*
 
 ```bash
 bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run

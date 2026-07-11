@@ -52,6 +52,24 @@ function Get-SdhLanguageFromConstitution {
     return ''
 }
 
+function Get-SdhLanguageFromProjectName {
+    param([string]$ProjectName)
+
+    switch -Regex ($ProjectName.ToLowerInvariant()) {
+        '[-_.](csharp|c#)$' { return 'C#' }
+        '[-_.](fsharp|f#)$' { return 'F#' }
+        '[-_.]rust$' { return 'Rust' }
+        '[-_.]swift$' { return 'Swift' }
+        '[-_.]java$' { return 'Java' }
+        '[-_.]kotlin$' { return 'Kotlin' }
+        '[-_.]go$' { return 'Go' }
+        '[-_.]python$' { return 'Python' }
+        '[-_.]typescript$' { return 'TypeScript' }
+        '[-_.]javascript$' { return 'JavaScript' }
+        default { return '' }
+    }
+}
+
 function Test-SdhAnyFile {
     param([string]$Repo, [string[]]$Patterns)
     foreach ($pattern in $Patterns) {
@@ -83,6 +101,9 @@ function Get-SdhPrimaryLanguage {
 
     $fromConstitution = Get-SdhLanguageFromConstitution -Repo $Repo -ProjectName $ProjectName
     if ($fromConstitution) { return $fromConstitution }
+
+    $fromProjectName = Get-SdhLanguageFromProjectName -ProjectName $ProjectName
+    if ($fromProjectName) { return $fromProjectName }
 
     return Get-SdhLanguageFromFiles -Repo $Repo
 }

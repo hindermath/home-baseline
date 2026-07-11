@@ -71,6 +71,25 @@ sdh_detect_language_from_constitution() {
   return 1
 }
 
+sdh_detect_language_from_project_name() {
+  local project_name
+  project_name="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
+
+  case "$project_name" in
+    *-csharp|*_csharp|*.csharp|*-c#|*_c#|*.c#) printf '%s\n' "C#" ;;
+    *-fsharp|*_fsharp|*.fsharp|*-f#|*_f#|*.f#) printf '%s\n' "F#" ;;
+    *-rust|*_rust|*.rust) printf '%s\n' "Rust" ;;
+    *-swift|*_swift|*.swift) printf '%s\n' "Swift" ;;
+    *-java|*_java|*.java) printf '%s\n' "Java" ;;
+    *-kotlin|*_kotlin|*.kotlin) printf '%s\n' "Kotlin" ;;
+    *-go|*_go|*.go) printf '%s\n' "Go" ;;
+    *-python|*_python|*.python) printf '%s\n' "Python" ;;
+    *-typescript|*_typescript|*.typescript) printf '%s\n' "TypeScript" ;;
+    *-javascript|*_javascript|*.javascript) printf '%s\n' "JavaScript" ;;
+    *) return 1 ;;
+  esac
+}
+
 sdh_find_first() {
   local repo="$1"
   shift
@@ -113,6 +132,12 @@ sdh_detect_language() {
   fi
 
   detected="$(sdh_detect_language_from_constitution "$repo" "$project_name" 2>/dev/null || true)"
+  if [ -n "$detected" ]; then
+    printf '%s\n' "$detected"
+    return 0
+  fi
+
+  detected="$(sdh_detect_language_from_project_name "$project_name" 2>/dev/null || true)"
   if [ -n "$detected" ]; then
     printf '%s\n' "$detected"
     return 0

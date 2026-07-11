@@ -20,6 +20,45 @@ scripts/config/.
 With -ScanRoot, workspace roots can be scanned for Git repositories. This lets
 recurring maintenance detect new GSDB candidates without writing machine-
 specific paths to the public repository.
+
+Maintenance scans preserve stronger existing language, MSL, GSDB, and preset
+metadata. Level-2 repositories default to GSDB scope independently of their MSL
+classification; documented exceptions must be set explicitly.
+
+.PARAMETER Repo
+Ein oder mehrere Repositories. / One or more repositories to register.
+
+.PARAMETER ScanRoot
+Ein oder mehrere Workspace-Wurzeln. / One or more workspace roots to scan.
+
+.PARAMETER Registry
+Alternative lokale Registry-Datei. / Alternate local registry file.
+
+.PARAMETER Level
+Explizite Repository-Ebene 1 oder 2. / Explicit repository level 1 or 2.
+
+.PARAMETER PrimaryLanguage
+Explizite Primaersprache oder Zielsprache. / Explicit primary or target language.
+
+.PARAMETER MslStatus
+Explizite MSL-Klassifikation. / Explicit MSL classification.
+
+.PARAMETER GsdbRequired
+Explizite GSDB-Pflicht. / Explicit GSDB requirement.
+
+.PARAMETER PresetProfile
+Explizites Governance-Preset-Profil. / Explicit governance preset profile.
+
+.PARAMETER Role
+Repository-Rolle in der Registry. / Repository role in the registry.
+
+.PARAMETER Source
+Quelle der Registrierung. / Registration source.
+
+.EXAMPLE
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/SecureOrderDeskProjects -WhatIf
+
+Prueft Registry-Drift ohne Schreibzugriff. / Checks registry drift without writing.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -28,6 +67,7 @@ param(
     [string]$Registry = '',
     [ValidateSet('1','2')][string]$Level = '',
     [string]$PrimaryLanguage = '',
+    [ValidateSet('msl','non-msl','msl-mixed-tooling','n/a','unknown','')][string]$MslStatus = '',
     [ValidateSet('true','false','')][string]$GsdbRequired = '',
     [string]$PresetProfile = '',
     [string]$Role = '',
@@ -108,19 +148,22 @@ function Register-HBRepository {
     }
     if (-not $language) { $language = 'unknown' }
 
-    $mslStatus = 'unknown'
-    if (Test-SdhMslLanguage $language) { $mslStatus = 'msl' }
-    elseif (Test-SdhKnownNonMslLanguage $language) { $mslStatus = 'non-msl' }
-    elseif ($language -eq 'none') { $mslStatus = 'n/a' }
+    $effectiveMslStatus = $MslStatus
+    if (-not $effectiveMslStatus) {
+        $effectiveMslStatus = 'unknown'
+        if (Test-SdhMslLanguage $language) { $effectiveMslStatus = 'msl' }
+        elseif (Test-SdhKnownNonMslLanguage $language) { $effectiveMslStatus = 'non-msl' }
+        elseif ($language -eq 'none') { $effectiveMslStatus = 'n/a' }
+    }
 
     $gsdbRequiredValue = $GsdbRequired
     if (-not $gsdbRequiredValue) {
-        $gsdbRequiredValue = if (($effectiveLevel -eq '2') -and ($mslStatus -eq 'msl')) { 'true' } else { 'false' }
+        $gsdbRequiredValue = if ($effectiveLevel -eq '2') { 'true' } else { 'false' }
     }
 
     $effectivePresetProfile = $PresetProfile
     if (-not $effectivePresetProfile) {
-        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($mslStatus -eq 'msl')) { 'standard-six-governance-presets' } else { 'none' }
+        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($gsdbRequiredValue -eq 'true')) { 'standard-six-governance-presets' } else { 'none' }
     }
     $effectiveRole = $Role
     if (-not $effectiveRole) {
@@ -142,31 +185,64 @@ function Register-HBRepository {
     }
 
     $repos = @($data.repositories)
+    $existing = $repos | Where-Object { $_.path -eq $repoRel } | Select-Object -First 1
+
+    if ($existing) {
+        $preserveCurated = ($RegistrationSource -eq 'maintenance-discovery') -and ($existing.source -notin @($null, '', 'maintenance-discovery'))
+        if ((-not $PrimaryLanguage) -and ($preserveCurated -or ($language -eq 'unknown')) -and ($existing.primaryLanguage -notin @($null, '', 'unknown'))) {
+            $language = [string]$existing.primaryLanguage
+        }
+        if ((-not $MslStatus) -and ($preserveCurated -or ($effectiveMslStatus -eq 'unknown')) -and ($existing.mslStatus -notin @($null, '', 'unknown'))) {
+            $effectiveMslStatus = [string]$existing.mslStatus
+        }
+        if ((-not $GsdbRequired) -and ($preserveCurated -or ([bool]$existing.gsdbRequired))) {
+            $gsdbRequiredValue = if ([bool]$existing.gsdbRequired) { 'true' } else { 'false' }
+        }
+        if ((-not $PresetProfile) -and ($preserveCurated -or ($effectivePresetProfile -eq 'none')) -and ($existing.presetProfile -notin @($null, ''))) {
+            $effectivePresetProfile = [string]$existing.presetProfile
+        }
+        if (($RegistrationSource -eq 'maintenance-discovery') -and $existing.source) {
+            $RegistrationSource = [string]$existing.source
+        }
+    }
+
     $entry = [pscustomobject]@{
         path = $repoRel
         level = [int]$effectiveLevel
         primaryLanguage = $language
-        mslStatus = $mslStatus
+        mslStatus = $effectiveMslStatus
         gsdbRequired = ($gsdbRequiredValue -eq 'true')
         presetProfile = $effectivePresetProfile
         role = $effectiveRole
         source = $RegistrationSource
-        registeredAt = $today
+        registeredAt = if ($existing -and $existing.registeredAt) { [string]$existing.registeredAt } else { $today }
     }
 
-    $existing = $repos | Where-Object { $_.path -eq $repoRel } | Select-Object -First 1
     if ($existing) {
-        $repos = @($repos | Where-Object { $_.path -ne $repoRel }) + @($entry)
-        $action = 'updated'
+        $changed = $false
+        foreach ($property in @('path','level','primaryLanguage','mslStatus','gsdbRequired','presetProfile','role','source','registeredAt')) {
+            if ($existing.$property -ne $entry.$property) {
+                $changed = $true
+                break
+            }
+        }
+        if ($changed) {
+            $repos = @($repos | Where-Object { $_.path -ne $repoRel }) + @($entry)
+            $action = 'updated'
+        } else {
+            $action = 'unchanged'
+        }
     } else {
         $repos = @($repos) + @($entry)
         $action = 'added'
     }
 
-    $data.updatedAt = $today
-    $data.repositories = @($repos | Sort-Object path)
+    if ($action -ne 'unchanged') {
+        $data.updatedAt = $today
+        $data.repositories = @($repos | Sort-Object path)
+    }
 
-    $shouldWrite = $PSCmdlet.ShouldProcess($RegistryPath, "$action $repoRel")
+    $shouldWrite = ($action -ne 'unchanged') -and $PSCmdlet.ShouldProcess($RegistryPath, "$action $repoRel")
     if ($shouldWrite) {
         $data | ConvertTo-Json -Depth 8 | Set-Content -Path $RegistryPath -Encoding UTF8
     }

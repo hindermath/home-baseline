@@ -367,7 +367,7 @@ if $OPT_PREVIEW; then
   preview_action "COPY" "${TARGET_DIR}/constitution.md" "von ~/constitution.md"
   preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml"
   preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
-  preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "bei erkannter MSL"
+  preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "Hardening bei erkannter MSL; RL-SE unabhaengig davon"
   preview_action "CREATE" "${TARGET_DIR}/Lastenheft_Secure-Development-Hardening.md" "bei erkannter MSL"
   preview_action "CREATE" "${TARGET_DIR}/Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "unabhaengig von MSL"
   preview_action "UPDATE" "${TARGET_DIR}/Lastenheft_Abarbeitungsreihenfolge.md" "Lastenheft*.md-Reihenfolge"
@@ -413,9 +413,9 @@ if $OPT_PREVIEW; then
     preview_action "EXEC" "specify init --here --force --integration ${agent}" "optional"
   done
   if ! $OPT_NO_SPECKIT && ! $OPT_NO_GOVERNANCE_PRESETS; then
-    preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR}" "bei erkannter MSL"
+    preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR}" "GSDB-Level-2-Standard"
   fi
-  preview_action "UPDATE" "~/.home-baseline/level2-repository-registry.json" "bei erkannter MSL"
+  preview_action "UPDATE" "~/.home-baseline/level2-repository-registry.json" "GSDB-Level-2-Standard; MSL getrennt klassifiziert"
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"
@@ -985,8 +985,6 @@ if $OPT_NO_SPECKIT; then
   step_skip "--no-speckit"
 elif $OPT_NO_GOVERNANCE_PRESETS; then
   step_skip "--no-governance-presets"
-elif [ "${SDH_PREPARE_RESULT:-}" != "prepared" ]; then
-  step_skip "keine MSL-Vorbereitung"
 elif [ ! -d "${TARGET_DIR}/.specify" ]; then
   step_skip "Spec Kit nicht initialisiert"
 elif [ ! -f "${SCRIPT_DIR}/install-spec-kit-governance-presets.sh" ]; then
@@ -1017,13 +1015,12 @@ fi
 
 # ─── Step 20c: GSDB-Registry aktualisieren ──────────────────────────────────
 step_start "GSDB-Registry aktualisieren"
-if [ "${SDH_PREPARE_RESULT:-}" != "prepared" ]; then
-  step_skip "keine MSL-Vorbereitung"
-elif [ ! -f "${SCRIPT_DIR}/register-level2-repository.sh" ]; then
+if [ ! -f "${SCRIPT_DIR}/register-level2-repository.sh" ]; then
   step_warn "Registry-Helper nicht gefunden"
 else
-  registry_args=(--repo "$TARGET_DIR" --source "bootstrap-project")
+  registry_args=(--repo "$TARGET_DIR" --level 2 --source "bootstrap-project")
   [ -n "$OPT_PRIMARY_LANGUAGE" ] && registry_args+=(--primary-language "$OPT_PRIMARY_LANGUAGE")
+  $OPT_NO_GOVERNANCE_PRESETS && registry_args+=(--preset-profile "none")
   if bash "${SCRIPT_DIR}/register-level2-repository.sh" "${registry_args[@]}" >/dev/null; then
     step_done "Level-2-Repo registriert"
   else

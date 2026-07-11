@@ -17,6 +17,7 @@ OPT_REPOS=()
 OPT_SCAN_ROOTS=()
 OPT_LEVEL=""
 OPT_PRIMARY_LANGUAGE=""
+OPT_MSL_STATUS=""
 OPT_GSDB_REQUIRED=""
 OPT_PRESET_PROFILE=""
 OPT_ROLE=""
@@ -36,9 +37,10 @@ Options:
   --scan-root PATH            Scan a workspace root for git repositories. Repeatable.
   --registry PATH             Registry JSON. Default: ~/.home-baseline/level2-repository-registry.json.
   --level 1|2                 Explicit repository level. Default: infer from parent git repo.
-  --primary-language LANG     Optional primary language. Default: detect from repo.
-  --gsdb-required true|false  Whether GSDB applies. Default: true for MSL Level-2 repos.
-  --preset-profile NAME       Preset profile note. Default: standard-six-governance-presets for MSL Level-2.
+  --primary-language LANG     Optional primary language. Default: detect from governance, project suffix, or files.
+  --msl-status STATUS         Override: msl, non-msl, msl-mixed-tooling, n/a, or unknown.
+  --gsdb-required true|false  Whether GSDB applies. Default: true for Level-2 repos.
+  --preset-profile NAME       Preset profile note. Default: standard-six-governance-presets for GSDB Level-2.
   --role NAME                 Registry role note. Default: level-2-project or level-1-workspace.
   --source NAME               Registration source. Default: manual-registration or maintenance-discovery.
   --dry-run                   Show the registry update without writing.
@@ -122,6 +124,11 @@ while [ $# -gt 0 ]; do
       OPT_PRIMARY_LANGUAGE="$2"
       shift 2
       ;;
+    --msl-status)
+      [ $# -ge 2 ] || die "--msl-status braucht einen Wert"
+      OPT_MSL_STATUS="$2"
+      shift 2
+      ;;
     --gsdb-required)
       [ $# -ge 2 ] || die "--gsdb-required braucht true oder false"
       OPT_GSDB_REQUIRED="$2"
@@ -199,18 +206,25 @@ register_repository() {
   fi
   [ -n "$language" ] || language="unknown"
 
-  msl_status="unknown"
-  if command -v sdh_is_msl_language >/dev/null 2>&1 && sdh_is_msl_language "$language"; then
-    msl_status="msl"
-  elif command -v sdh_is_known_non_msl_language >/dev/null 2>&1 && sdh_is_known_non_msl_language "$language"; then
-    msl_status="non-msl"
-  elif [ "$language" = "none" ]; then
-    msl_status="n/a"
+  msl_status="$OPT_MSL_STATUS"
+  if [ -z "$msl_status" ]; then
+    msl_status="unknown"
+    if command -v sdh_is_msl_language >/dev/null 2>&1 && sdh_is_msl_language "$language"; then
+      msl_status="msl"
+    elif command -v sdh_is_known_non_msl_language >/dev/null 2>&1 && sdh_is_known_non_msl_language "$language"; then
+      msl_status="non-msl"
+    elif [ "$language" = "none" ]; then
+      msl_status="n/a"
+    fi
   fi
+  case "$msl_status" in
+    msl|non-msl|msl-mixed-tooling|n/a|unknown) ;;
+    *) die "--msl-status ist ungueltig: $msl_status" ;;
+  esac
 
   gsdb_required="$OPT_GSDB_REQUIRED"
   if [ -z "$gsdb_required" ]; then
-    if [ "$level" = "2" ] && [ "$msl_status" = "msl" ]; then
+    if [ "$level" = "2" ]; then
       gsdb_required="true"
     else
       gsdb_required="false"
@@ -223,7 +237,7 @@ register_repository() {
 
   preset_profile="$OPT_PRESET_PROFILE"
   if [ -z "$preset_profile" ]; then
-    if [ "$level" = "2" ] && [ "$msl_status" = "msl" ]; then
+    if [ "$level" = "2" ] && [ "$gsdb_required" = "true" ]; then
       preset_profile="standard-six-governance-presets"
     else
       preset_profile="none"
@@ -244,7 +258,11 @@ register_repository() {
   dry_run="false"
   $OPT_DRY_RUN && dry_run="true"
 
-  python3 - "$OPT_REGISTRY" "$repo_rel" "$level" "$language" "$msl_status" "$gsdb_required" "$preset_profile" "$role" "$OPT_SOURCE" "$today" "$dry_run" <<'PY'
+  python3 - "$OPT_REGISTRY" "$repo_rel" "$level" "$language" "$msl_status" "$gsdb_required" "$preset_profile" "$role" "$OPT_SOURCE" "$today" "$dry_run" \
+    "$([ -n "$OPT_PRIMARY_LANGUAGE" ] && printf true || printf false)" \
+    "$([ -n "$OPT_MSL_STATUS" ] && printf true || printf false)" \
+    "$([ -n "$OPT_GSDB_REQUIRED" ] && printf true || printf false)" \
+    "$([ -n "$OPT_PRESET_PROFILE" ] && printf true || printf false)" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -260,6 +278,10 @@ role = sys.argv[8]
 source = sys.argv[9]
 today = sys.argv[10]
 dry_run = sys.argv[11] == "true"
+language_explicit = sys.argv[12] == "true"
+msl_explicit = sys.argv[13] == "true"
+gsdb_explicit = sys.argv[14] == "true"
+preset_explicit = sys.argv[15] == "true"
 
 if registry_path.exists():
     data = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -286,17 +308,37 @@ entry = {
 }
 
 if existing:
-    existing.update(entry)
-    action = "updated"
+    preserve_curated = source == "maintenance-discovery" and existing.get("source") not in (None, "", "maintenance-discovery")
+    if not language_explicit and (preserve_curated or language == "unknown") and existing.get("primaryLanguage") not in (None, "", "unknown"):
+        entry["primaryLanguage"] = existing["primaryLanguage"]
+    if not msl_explicit and (preserve_curated or msl_status == "unknown") and existing.get("mslStatus") not in (None, "", "unknown"):
+        entry["mslStatus"] = existing["mslStatus"]
+    if not gsdb_explicit and (preserve_curated or existing.get("gsdbRequired") is True):
+        entry["gsdbRequired"] = existing.get("gsdbRequired", entry["gsdbRequired"])
+    if not preset_explicit and (preserve_curated or preset_profile == "none") and existing.get("presetProfile") not in (None, ""):
+        entry["presetProfile"] = existing["presetProfile"]
+    if source == "maintenance-discovery" and existing.get("source"):
+        entry["source"] = existing["source"]
+    entry["registeredAt"] = existing.get("registeredAt", today)
+
+    changed = any(existing.get(key) != value for key, value in entry.items())
+    if changed:
+        existing.update(entry)
+        action = "updated"
+    else:
+        action = "unchanged"
 else:
     repos.append(entry)
     action = "added"
 
-data["updatedAt"] = today
-data["repositories"] = sorted(repos, key=lambda item: item.get("path", ""))
+if action != "unchanged":
+    data["updatedAt"] = today
+    data["repositories"] = sorted(repos, key=lambda item: item.get("path", ""))
 
 if dry_run:
     print(f"[dry-run] {action}: {repo_path} -> {registry_path}")
+elif action == "unchanged":
+    print(f"unchanged: {repo_path} -> {registry_path}")
 else:
     registry_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{action}: {repo_path} -> {registry_path}")

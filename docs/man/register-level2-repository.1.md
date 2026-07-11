@@ -45,16 +45,23 @@ person-specific repository paths out of the public repository.*
 Mit `--scan-root` / `-ScanRoot` kann die Wartungsrunde bekannte Workspace-
 Wurzeln nach Git-Repositories durchsuchen. Das ist fuer Registry-Drift gedacht:
 neu hinzugekommene Level-2-Repositories werden sichtbar und koennen idempotent
-in die lokale GSDB-Registry uebernommen werden. Fuer MSL-Level-2-Repositories
-ist `gsdbRequired` standardmaessig `true`; Nicht-MSL- oder Koordinationsrepos
-werden nur dann GSDB-pflichtig, wenn dies explizit gesetzt wird.
+in die lokale GSDB-Registry uebernommen werden. Level-2-Repositories sind
+standardmaessig unabhaengig vom MSL-Status GSDB-pflichtig und verwenden das
+Sechs-Preset-Profil. Begruendete Ausnahmen werden explizit gesetzt.
+Eindeutige Sprachsuffixe wie `-CSharp`, `-Go` oder `-Rust` dokumentieren bei
+vorbereiteten Lernrepos die Zielsprache bereits vor dem Runtime-Scaffold.
+Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
+`unknown`, `false` oder `none` herab.
 
 *With `--scan-root` / `-ScanRoot`, the maintenance round can scan known
 workspace roots for Git repositories. This is intended for registry drift:
 newly added level-2 repositories become visible and can be idempotently added
-to the local GSDB registry. For MSL level-2 repositories, `gsdbRequired`
-defaults to `true`; non-MSL or coordination repositories become GSDB-required
-only when this is set explicitly.*
+to the local GSDB registry. Level-2 repositories default to GSDB-required with
+the six-preset profile independently of MSL status; justified exceptions are
+explicit. Unambiguous suffixes such as `-CSharp`, `-Go`, or `-Rust` provide the
+target language for prepared learning repositories before a runtime scaffold
+exists. Maintenance scans preserve stronger existing metadata instead of
+downgrading it to `unknown`, `false`, or `none`.*
 
 ## Optionen / Options
 
@@ -65,6 +72,7 @@ only when this is set explicitly.*
 | `--registry PATH` | `-Registry PATH` | Alternative Registry-Datei |
 | `--level 1\|2` | `-Level 1\|2` | Level explizit setzen |
 | `--primary-language LANG` | `-PrimaryLanguage LANG` | Primaersprache explizit setzen |
+| `--msl-status STATUS` | `-MslStatus STATUS` | MSL-Klassifikation explizit setzen |
 | `--gsdb-required true\|false` | `-GsdbRequired true\|false` | GSDB-Pflicht explizit setzen |
 | `--preset-profile NAME` | `-PresetProfile NAME` | Preset-Profil dokumentieren |
 | `--role NAME` | `-Role NAME` | Rolle im Repo-Bestand dokumentieren |
@@ -76,6 +84,7 @@ only when this is set explicitly.*
 ```bash
 bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run
 bash scripts/register-level2-repository.sh --repo ~/SecureCaseTrackerProjects/SecureCaseTracker-Rust --primary-language Rust
+bash scripts/register-level2-repository.sh --repo ~/C64Projects/cc65 --primary-language cc65 --msl-status non-msl --gsdb-required true
 bash scripts/register-level2-repository.sh --scan-root ~/RiderProjects --dry-run
 bash scripts/register-level2-repository.sh --scan-root ~/SecureCaseTrackerProjects --source maintenance-discovery
 ```
@@ -83,6 +92,7 @@ bash scripts/register-level2-repository.sh --scan-root ~/SecureCaseTrackerProjec
 ```powershell
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/SecureCaseTrackerProjects/SecureCaseTracker-Rust -PrimaryLanguage Rust
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/C64Projects/cc65 -PrimaryLanguage cc65 -MslStatus non-msl -GsdbRequired true
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/RiderProjects -WhatIf
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/SecureCaseTrackerProjects -Source maintenance-discovery
 ```
@@ -91,7 +101,9 @@ pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/SecureC
 
 Die Registry ist ein Zielregister, kein Sicherheitsnachweis. Projektspezifische
 Nachweise bleiben im jeweiligen Repository, bevorzugt unter `docs/security/`.
+`gsdbRequired=true` startet keinen Spec-Kit-Lauf und ist keine formale Freigabe.
 
 *The registry is a target registry, not security evidence. Project-specific
 evidence remains in the respective repository, preferably under
-`docs/security/`.*
+`docs/security/`. `gsdbRequired=true` neither starts a Spec Kit run nor records
+a formal approval.*
