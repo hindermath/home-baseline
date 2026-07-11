@@ -354,7 +354,15 @@ check_antigravity_integration() {
   else
     emit_result "PASS" ".gemini/commands" "legacy Gemini Spec-Kit integration absent" "$dir"
   fi
-  if find "${dir}/.agents/skills" -maxdepth 1 -type d -name 'speckit-*' -print -quit 2>/dev/null | grep -q .; then
+  local skill_dir skill_found
+  skill_found=0
+  for skill_dir in "${dir}/.agents/skills"/speckit-*; do
+    if [ -d "$skill_dir" ]; then
+      skill_found=1
+      break
+    fi
+  done
+  if [ "$skill_found" -eq 1 ]; then
     emit_result "PASS" ".agents/skills" "Antigravity/Codex Spec-Kit skills present" "$dir"
   else
     emit_result "FAIL" ".agents/skills" "Antigravity/Codex Spec-Kit skills missing" "$dir"
