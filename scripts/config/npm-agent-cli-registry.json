@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-10",
+  "updated": "2026-07-11",
   "description": "Global npm CLI package registry for required agent command-line tools that are not maintained through Brew or WinGet on every platform.",
   "policy": {
     "packageSource": "npm install -g <package>",
     "defaultInstallScope": "required",
     "dependencyPolicy": "Do not list transitive npm dependencies.",
-    "platformPolicy": "Codex, Claude Code, Gemini CLI, and the standalone GitHub Copilot CLI use npm as the common fallback on macOS, Linux, and Windows when the command remains missing after package-manager maintenance."
+    "platformPolicy": "Codex, Claude Code, and the standalone GitHub Copilot CLI use npm as the common fallback on macOS, Linux, and Windows when the command remains missing after package-manager maintenance. Google Antigravity is maintained through Brew on macOS and WinGet on Windows."
   },
   "tools": [
     {
@@ -26,15 +26,6 @@
       "command": "claude",
       "args": ["--version"],
       "purpose": "Anthropic Claude Code command-line agent"
-    },
-    {
-      "id": "gemini",
-      "scope": "required",
-      "platforms": ["Darwin", "Linux", "Windows"],
-      "package": "@google/gemini-cli",
-      "command": "gemini",
-      "args": ["--version"],
-      "purpose": "Google Gemini command-line agent"
     },
     {
       "id": "copilot",

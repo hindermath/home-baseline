@@ -33,7 +33,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   fi
   echo ""
   echo "=== Tools ==="
-  for cmd in git gh glab rg gitleaks pwsh node npm uv python3 dotnet go java javac cargo rustc swift syft specify podman codex claude gemini copilot code hx; do
+  for cmd in git gh glab rg gitleaks pwsh node npm uv python3 dotnet go java javac cargo rustc swift syft specify podman codex claude agy copilot code hx; do
     command -v "$cmd" > /dev/null 2>&1 && echo "  OK  $cmd" || echo "  --- $cmd: fehlt"
   done
   echo ""

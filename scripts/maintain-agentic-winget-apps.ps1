@@ -325,6 +325,36 @@ function Get-HBCLITools {
     )
 }
 
+function Test-HBCommandWithTimeout {
+    param(
+        [Parameter(Mandatory)][string] $FilePath,
+        [Parameter(Mandatory)][string[]] $Arguments,
+        [int] $TimeoutMilliseconds = 5000
+    )
+
+    $startInfo = [System.Diagnostics.ProcessStartInfo]::new()
+    $startInfo.FileName = $FilePath
+    $startInfo.UseShellExecute = $false
+    $startInfo.RedirectStandardOutput = $true
+    $startInfo.RedirectStandardError = $true
+    foreach ($argument in $Arguments) {
+        [void]$startInfo.ArgumentList.Add($argument)
+    }
+
+    $process = [System.Diagnostics.Process]::new()
+    $process.StartInfo = $startInfo
+    try {
+        [void]$process.Start()
+        if (-not $process.WaitForExit($TimeoutMilliseconds)) {
+            $process.Kill($true)
+            return $false
+        }
+        return ($process.ExitCode -eq 0)
+    } finally {
+        $process.Dispose()
+    }
+}
+
 function Test-HBCLITool {
     param([Parameter(Mandatory)] $Tool)
 
@@ -336,8 +366,7 @@ function Test-HBCLITool {
         $arguments = @($Tool.args | ForEach-Object { [string]$_ })
     }
 
-    & $command.Source @arguments *> $null
-    return ($LASTEXITCODE -eq 0)
+    return Test-HBCommandWithTimeout -FilePath $command.Source -Arguments $arguments
 }
 
 function Invoke-HBExternal {
@@ -380,8 +409,7 @@ function Test-HBNpmAgentTool {
         $arguments = @($Tool.args | ForEach-Object { [string]$_ })
     }
 
-    & $command.Source @arguments *> $null
-    return ($LASTEXITCODE -eq 0)
+    return Test-HBCommandWithTimeout -FilePath $command.Source -Arguments $arguments
 }
 
 function Install-HBNpmAgentTools {

@@ -250,11 +250,21 @@ PY
 }
 
 installed_formulae() {
-  brew list --formula 2>/dev/null | sort -u
+  brew list --formula --full-name 2>/dev/null | sort -u
 }
 
 installed_requested_formulae() {
-  brew leaves --installed-on-request 2>/dev/null | sort -u
+  brew info --json=v2 --installed 2>/dev/null \
+    | python3 -c '
+import json
+import sys
+
+data = json.load(sys.stdin)
+for formula in data.get("formulae", []):
+    if any(item.get("installed_on_request") for item in formula.get("installed", [])):
+        print(formula["full_name"])
+' \
+    | sort -u
 }
 
 installed_casks() {
@@ -349,6 +359,36 @@ for value in json.loads(sys.argv[1] or "[]"):
 PY
 }
 
+run_probe_with_timeout() {
+  python3 - "$@" <<'PY'
+import os
+import signal
+import subprocess
+import sys
+
+try:
+    process = subprocess.Popen(
+        sys.argv[1:],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        start_new_session=True,
+    )
+except OSError:
+    raise SystemExit(127)
+
+try:
+    raise SystemExit(process.wait(timeout=5))
+except subprocess.TimeoutExpired:
+    os.killpg(process.pid, signal.SIGTERM)
+    try:
+        process.wait(timeout=0.5)
+    except subprocess.TimeoutExpired:
+        os.killpg(process.pid, signal.SIGKILL)
+        process.wait()
+    raise SystemExit(124)
+PY
+}
+
 cli_tool_available() {
   local command_name="$1"
   local args_json="$2"
@@ -359,7 +399,7 @@ cli_tool_available() {
   while IFS= read -r arg; do
     args+=("$arg")
   done < <(json_array_items "$args_json")
-  "$command_name" "${args[@]}" >/dev/null 2>&1
+  run_probe_with_timeout "$command_name" "${args[@]}"
 }
 
 install_cli_tool() {

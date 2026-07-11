@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-10",
+  "updated": "2026-07-11",
   "description": "Required CLI command checks for the learning-series MSL toolchains, SBOM tooling, GitHub Spec Kit, and required agent CLI surfaces.",
   "policy": {
     "defaultScope": "required",
     "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
     "npmAgentRegistry": "scripts/config/npm-agent-cli-registry.json",
-    "agentCliPolicy": "codex, claude, gemini, and the standalone GitHub Copilot CLI are required agent CLI surfaces. npm fallback installations are maintained through npm-agent-cli-registry.json.",
+    "agentCliPolicy": "codex, claude, and the standalone GitHub Copilot CLI are required cross-platform CLI surfaces. Google Antigravity replaces Gemini CLI and is required where an official package exists: Homebrew on macOS and WinGet on Windows. npm fallback installations are maintained through npm-agent-cli-registry.json.",
     "hostingAccountPolicy": "Learners need an account on the selected institutional Git hosting system. A GitHub account is required only for the direct GitHub profile or optional GitHub Copilot sign-in.",
     "forgejoClientPolicy": "No additional Forgejo client CLI is required. Bootstrap automation uses normal git, HTTPS credentials from a secure Git credential helper, and the Forgejo REST API.",
     "linuxWithoutBrew": "Linux without Homebrew uses distro packages where available. .NET, Swift, Syft, and GitHub Spec Kit may require external package sources or uv-based installation."
@@ -121,12 +121,12 @@
       "purpose": "Claude Code command-line agent for AI-assisted development"
     },
     {
-      "id": "gemini",
+      "id": "antigravity",
       "scope": "required",
-      "platforms": ["Darwin", "Linux", "Windows"],
-      "command": "gemini",
+      "platforms": ["Darwin"],
+      "command": "agy",
       "args": ["--version"],
-      "purpose": "Gemini command-line agent for AI-assisted development"
+      "purpose": "Google Antigravity command-line agent for AI-assisted development; replaces Gemini CLI"
     },
     {
       "id": "copilot",

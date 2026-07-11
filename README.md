@@ -67,7 +67,7 @@ Git system within seconds.*
     - [GitHub Copilot CLI / GitHub Copilot CLI](#github-copilot-cli--github-copilot-cli)
     - [Claude Code / Claude Code](#claude-code--claude-code)
     - [Codex CLI / Codex CLI](#codex-cli--codex-cli)
-    - [Gemini CLI / Gemini CLI](#gemini-cli--gemini-cli)
+    - [Google Antigravity / Google Antigravity](#google-antigravity--google-antigravity)
   - [Versionierung / Versioning](#versionierung--versioning)
 - [Workspace Homogeneity Guardian — Kurzreferenz / Quick Reference](#workspace-homogeneity-guardian--kurzreferenz--quick-reference)
   - [Compliance-Check / Compliance check](#compliance-check--compliance-check)
@@ -770,10 +770,10 @@ Sollte ein Skript mit einem Fehler abbrechen, kannst du deinen installierten KI-
 | **GitHub Copilot** | `copilot -p "Skript X ist bei Schritt Y abgebrochen. Bitte pruefe den Status und schliesse die Einrichtung ab. / Script X failed at step Y. Please check the status and finish the setup."` |
 | **Claude Code** | `claude "Der Push zu GitHub ist fehlgeschlagen. Bitte pruefe die Remotes und hole den Push nach. / The push to GitHub failed. Please check the remotes and complete the push."` |
 | **Codex CLI** | `codex "Analysiere den letzten Fehler im Terminal und schlage eine Loesung vor. / Analyse the last terminal error and suggest a fix."` |
-| **Gemini CLI** | `gemini -p "Vervollstaendige die Git-Konfiguration, da das Bootstrap-Skript vorzeitig beendet wurde. / Complete the Git configuration because the bootstrap script ended early."` |
+| **Google Antigravity** | `agy` auf macOS beziehungsweise die Antigravity-App auf Windows starten und den letzten Terminalfehler zur Analyse uebergeben. |
 | **OpenCode** | `opencode --prompt "Pruefe, ob alle Git-Hooks und .inc-Dateien korrekt angelegt wurden. / Check whether all Git hooks and .inc files were created correctly."` |
 
-> **Tipp / Tip:** Nutze das Flag `--help` (z. B. `claude --help`, `gemini --help` oder `opencode --help`), um weitere Informationen zu den verfügbaren Befehlen deines Agenten zu erhalten.
+> **Tipp / Tip:** Nutze das Flag `--help` (z. B. `claude --help`, `agy --help` oder `opencode --help`), um weitere Informationen zu den verfügbaren Befehlen deines Agenten zu erhalten.
 >
 > *Use the `--help` flag to learn more about the available commands for your specific agent.*
 
@@ -835,7 +835,7 @@ Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert we
 
 Jedes Script erfasst / Each script collects:
 - OS-Version, Architektur
-- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `npm`, `uv`, `python3`/`python`, `dotnet`, `go`, `java`, `javac`, `cargo`, `rustc`, `swift`, `syft`, `specify`, `podman`, `codex`, `claude`, `gemini`, `copilot`, `code`, `hx`)
+- Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `npm`, `uv`, `python3`/`python`, `dotnet`, `go`, `java`, `javac`, `cargo`, `rustc`, `swift`, `syft`, `specify`, `podman`, `codex`, `claude`, `agy`/Antigravity, `copilot`, `code`, `hx`)
 - Paketmanager (`brew` / `apt`/`dnf` / `winget`)
 - Paketlisten und Registry-Vergleiche fuer `brew-apps-registry.json`, `winget-apps-registry.json`, `vscode-extensions-registry.json`, `required-cli-tools-registry.json` und `npm-agent-cli-registry.json`
 - Ergebnis von `sync-home` und `check-homogeneity`
@@ -883,7 +883,7 @@ cd ~/home-baseline-tmp
 
 # 2. KI-Agent starten — der Agent macht Änderungen, committet und pusht selbst
 claude      # Claude Code
-# gemini    # Gemini CLI
+# agy       # Google Antigravity CLI auf macOS
 # codex     # OpenAI Codex
 # opencode  # OpenCode
 
@@ -1172,9 +1172,10 @@ synchronization.*
 
 1. Level-0-, Level-1- und Level-2-Repositories aus ihren Remotes pullen. Fehlende
    Repositories nur dann klonen, wenn sie lokal noch nicht vorhanden sind.
-2. Das Secure-CaseTracker-Level-1-Repository und die sechs
-   MSL-Sprachen-Level-2-Repositories fuer C#, Go, Java, Python, Rust und Swift
-   bei Bedarf klonen oder, wenn vorhanden, pullen.
+2. Die drei Secure-Trader-Lernreihen-Level-1-Repositories fuer Secure
+   CaseTracker, Secure OrderDesk und Secure ServiceHarvester sowie jeweils die
+   sechs MSL-Sprachen-Level-2-Repositories fuer C#, Go, Java, Python, Rust und
+   Swift bei Bedarf klonen oder, wenn vorhanden, pullen.
 3. Den Level-1-Workspace `container-images` und darin das
    `absdd-image-sandbox`-Level-2-Repository bei Bedarf klonen oder pullen.
 4. Die sechs MSL-CLI-Toolchains pruefen: `.NET`, Go, Java/Javac, Python,
@@ -1207,9 +1208,10 @@ synchronization.*
 
 1. Pull level-0, level-1, and level-2 repositories from their remotes. Clone
    missing repositories only when they are not present locally yet.
-2. Clone the Secure CaseTracker level-1 repository and the six MSL language
-   level-2 repositories for C#, Go, Java, Python, Rust, and Swift when missing,
-   or pull them when they already exist.
+2. Clone or pull the three Secure Trader learning-series level-1 repositories
+   for Secure CaseTracker, Secure OrderDesk, and Secure ServiceHarvester plus
+   their six MSL language level-2 repositories for C#, Go, Java, Python, Rust,
+   and Swift.
 3. Clone or pull the `container-images` level-1 workspace and its
    `absdd-image-sandbox` level-2 repository as needed.
 4. Check the six MSL CLI toolchains: `.NET`, Go, Java/Javac, Python, Rust/Cargo,
@@ -1250,7 +1252,7 @@ die Quelle fuer Windows ist
 Die offiziellen VS-Code-MSL-Extensions und die Container-Tools-Extension werden separat in
 [`scripts/config/vscode-extensions-registry.json`](scripts/config/vscode-extensions-registry.json)
 gefuehrt. Die Required-CLI-Pruefungen fuer die sechs MSL-Pfade, `syft`,
-GitHub Spec Kit (`specify`) und die vier Agenten-CLIs liegen in
+GitHub Spec Kit (`specify`) und die erforderlichen Agenten-CLIs liegen in
 [`scripts/config/required-cli-tools-registry.json`](scripts/config/required-cli-tools-registry.json).
 Global installierte npm-Agenten-CLIs werden in
 [`scripts/config/npm-agent-cli-registry.json`](scripts/config/npm-agent-cli-registry.json)
@@ -1270,7 +1272,7 @@ and the Windows source is
 The official VS Code MSL extensions and the Container Tools extension are maintained separately in
 [`scripts/config/vscode-extensions-registry.json`](scripts/config/vscode-extensions-registry.json).
 Required CLI checks for the six MSL paths, `syft`, GitHub Spec Kit
-(`specify`), and the four agent CLIs live in
+(`specify`), and the required agent CLIs live in
 [`scripts/config/required-cli-tools-registry.json`](scripts/config/required-cli-tools-registry.json).
 Globally installed npm agent CLIs are maintained in
 [`scripts/config/npm-agent-cli-registry.json`](scripts/config/npm-agent-cli-registry.json).
@@ -1319,11 +1321,14 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `gitleaks` und `syft` werden ueber die Paketmanager-Registries gepflegt;
    `specify` wird bei Bedarf ueber `uv tool install specify-cli --from
    git+https://github.com/github/spec-kit.git` installiert.
-4. Die vier eigenstaendigen Agenten-CLIs `codex`, `claude`, `gemini` und
-   `copilot` sind Required. Paketmanager werden zuerst genutzt; wenn ein Kommando
-   danach fehlt, installiert `npm-agent-cli-registry.json` das offizielle npm-
-   Paket als gemeinsamen Fallback auf macOS, Linux und Windows. `gh copilot`
-   gilt nicht als Installationsnachweis fuer die eigenstaendige Copilot CLI.
+4. Die eigenstaendigen Agenten-CLIs `codex`, `claude` und `copilot` sind
+   plattformuebergreifend Required und nutzen bei Bedarf die npm-Registry als
+   Fallback. Google Antigravity ersetzt Gemini CLI: macOS nutzt den Required-
+   Cask `antigravity-cli` mit dem Kommando `agy`, Windows das Required-WinGet-
+   Paket `Google.Antigravity`. Auf Linux bleibt Antigravity bis zu einem
+   offiziell paketierten CLI-Pfad als begruendetes `N/A` dokumentiert.
+   `gh copilot` gilt nicht als Installationsnachweis fuer die eigenstaendige
+   Copilot CLI.
 5. VS Code ist Required: macOS per Cask `visual-studio-code`, Windows per
    WinGet-ID `Microsoft.VisualStudioCode`. Die Required-Extensions fuer C#,
    Go, Java, Python, Rust und Swift sowie Microsoft Container Tools fuer
@@ -1352,7 +1357,7 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `missing_on_machine.required.*: none`,
    `gitleaks version`, `syft version`, `specify --version`,
    `podman --version`, `codex --version`, `claude --version`,
-   `gemini --version`, `copilot --version`, die sechs MSL-CLI-Pruefungen,
+   `agy --version`, `copilot --version`, die sechs MSL-CLI-Pruefungen,
    `code --version` und
    `hx --version` funktionieren, die
    Registry-Dateien sind gueltiges JSON, und der Abschluss wird in
@@ -1371,11 +1376,13 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `gitleaks` and `syft` are maintained through the package-manager
    registries; `specify` is installed through `uv tool install specify-cli
    --from git+https://github.com/github/spec-kit.git` when missing.
-4. The four standalone agent CLIs `codex`, `claude`, `gemini`, and `copilot`
-   are required. Package managers run first; if a command is still missing,
-   `npm-agent-cli-registry.json` installs the official npm package as a common
-   fallback on macOS, Linux, and Windows. `gh copilot` does not count as proof
-   that the standalone Copilot CLI is installed.
+4. The standalone `codex`, `claude`, and `copilot` agent CLIs are required
+   across platforms and use the npm registry as a fallback when needed. Google
+   Antigravity replaces Gemini CLI: macOS uses required cask
+   `antigravity-cli` and command `agy`, while Windows uses required WinGet
+   package `Google.Antigravity`. Antigravity remains a documented `N/A` on
+   Linux until an officially packaged CLI path is available. `gh copilot`
+   does not count as proof that the standalone Copilot CLI is installed.
 5. VS Code is required: macOS via cask `visual-studio-code`, Windows via WinGet
    ID `Microsoft.VisualStudioCode`. The required extensions for C#, Go, Java,
    Python, Rust, and Swift plus Microsoft Container Tools for Docker/Podman
@@ -1403,7 +1410,7 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
    `missing_on_machine.required.*: none`,
    `gitleaks version`, `syft version`, `specify --version`,
    `podman --version`, `codex --version`, `claude --version`,
-   `gemini --version`, `copilot --version`, the six MSL CLI checks,
+   `agy --version`, `copilot --version`, the six MSL CLI checks,
    `code --version`, and
    `hx --version` work, the registry files are valid JSON, and the closeout is
    documented in `docs/project-statistics.md`.
@@ -2082,43 +2089,39 @@ Optional kannst du danach noch `setup-claude-settings.*` aus dem weiter oben dok
 
 ---
 
-#### Gemini CLI / Gemini CLI
+#### Google Antigravity / Google Antigravity
 
-Gemini erkennt Spec-Kit-Kommandos über das `.gemini/commands/`-Verzeichnis automatisch.
+Google Antigravity ersetzt in der Required-Toolchain die veraltete Homebrew-
+Formel Gemini CLI. Auf macOS installiert die Wartung `antigravity-cli`; das
+Kommando lautet `agy`. Windows nutzt das WinGet-Paket
+`Google.Antigravity`. Ein offiziell paketierter Linux-CLI-Pfad ist derzeit
+nicht vorhanden und wird deshalb als begruendetes `N/A` behandelt.
 
-*Gemini automatically discovers Spec-Kit commands via `.gemini/commands/`.*
-
-Gemini CLI ist vor allem dann passend, wenn du bereits mit einer npm-basierten Toolchain arbeitest und einen schlanken Terminal-Agenten mit direkter Projektanbindung willst. Innerhalb dieses Repositories wird Spec-Kit ueber `.gemini/commands/` eingebunden, also aehnlich klar strukturiert wie bei Claude, aber mit dem typischen Gemini-CLI-Workflow.
-
-*Gemini CLI is especially suitable if you already work with an npm-based toolchain and want a lean terminal agent with direct project integration. In this repository, Spec-Kit is integrated via `.gemini/commands/`, so the structure is similarly clear to Claude, but with the typical Gemini CLI workflow.*
-
-> **Voraussetzung / Prerequisite:** Node.js ≥ 22 LTS, Google-Account
+*Google Antigravity replaces the deprecated Gemini CLI Homebrew formula in the
+required toolchain. On macOS, maintenance installs `antigravity-cli` and the
+command is `agy`. Windows uses WinGet package `Google.Antigravity`. No
+officially packaged Linux CLI path is currently available, so Linux records a
+justified `N/A`.*
 
 | Plattform / Platform | Installation / Installation |
 |---|---|
-| macOS | `npm install -g @google/gemini-cli` |
-| Linux | `sudo npm install -g @google/gemini-cli` |
-| Windows | `npm install -g @google/gemini-cli` |
+| macOS | `brew install --cask antigravity-cli` |
+| Linux | `N/A` bis zu einem offiziellen Paket / until an official package exists |
+| Windows | `winget install --id Google.Antigravity --exact` |
 
 ```bash
-# 1. Gemini CLI installieren
-# macOS / Windows:
-npm install -g @google/gemini-cli
-# Linux:
-sudo npm install -g @google/gemini-cli
-
-# 2. Authentifizieren (Browser öffnet sich automatisch)
-gemini auth login
-
-# 3. In deinem Projektverzeichnis starten
-gemini
+# macOS
+brew install --cask antigravity-cli
+agy --version
 ```
 
-Weitere Infos: [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
+Die vorhandenen `GEMINI.md`- und `.gemini/commands/`-Dateien bleiben als
+Projektkompatibilitaet fuer bestehende Integrationen erhalten. Sie sind kein
+Installationsnachweis fuer die abgeloeste Gemini CLI.
 
-Wenn du die TUI-Darstellung auf mehreren Maschinen vereinheitlichen willst, kannst du anschliessend noch `setup-gemini-settings.*` aus dem frueheren Setup-Abschnitt verwenden. Fuer die Spec-Kit-Kommandos selbst ist das optional; entscheidend ist, dass `gemini` installiert und im Projekt lauffaehig ist.
-
-*If you want to standardise the TUI display across multiple machines, you can then also use `setup-gemini-settings.*` from the earlier setup section. That is optional for the Spec-Kit commands themselves; what matters is that `gemini` is installed and working inside the project.*
+*Existing `GEMINI.md` and `.gemini/commands/` files remain as project
+compatibility artifacts for existing integrations. They do not count as proof
+that the retired Gemini CLI is installed.*
 
 → Nächster Schritt / Next step: [Verzeichnis fuer Spec-Kit vorbereiten / Prepare a directory](#verzeichnis-für-spec-kit-vorbereiten--prepare-a-directory)
 

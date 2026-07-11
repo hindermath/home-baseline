@@ -22,12 +22,14 @@ Code-Extensions fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift
 sowie Microsoft Container Tools fuer Podman-Workflows. Danach liest es
 `scripts/config/required-cli-tools-registry.json` und prueft die Required-CLI-
 Tools fuer die sechs MSL-Pfade, `syft`, GitHub Spec Kit (`specify`) und die
-vier Agenten-CLIs `codex`, `claude`, `gemini` und `copilot`. npm-basierte
-Agenten-CLIs fuer alle vier Required-Agenten werden ueber
+Agenten-CLIs `codex`, `claude`, `agy` und `copilot`. npm-basierte
+Fallbacks fuer Codex, Claude und Copilot werden ueber
 `scripts/config/npm-agent-cli-registry.json` installiert, wenn ihre CLI fehlt.
 Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 `brew upgrade` und die Installation fehlender Required-Formulae aus. Auf macOS
 werden zusaetzlich Required-Casks gepflegt.
+CLI-Versionsproben werden nach fuenf Sekunden beendet, damit interaktive oder
+festhaengende Agenten-CLIs den Wartungslauf nicht blockieren.
 Ein bereits vorhandenes App-Bundle fuer Visual Studio Code unter
 `/Applications/Visual Studio Code.app` oder `~/Applications/Visual Studio Code.app`
 gilt als erfuellter Required-Cask, auch wenn VS Code nicht von Homebrew
@@ -39,11 +41,13 @@ local macOS/Linux toolchain for agentic development. It additionally reads
 Code extensions for the six MSL paths C#, Go, Java, Python, Rust, and Swift
 plus Microsoft Container Tools for Podman workflows. It then reads
 `scripts/config/required-cli-tools-registry.json` and checks the required CLI
-tools for the six MSL paths, `syft`, GitHub Spec Kit (`specify`), and the four
-agent CLIs `codex`, `claude`, `gemini`, and `copilot`. npm-based agent CLIs for all four required agents are installed from
+tools for the six MSL paths, `syft`, GitHub Spec Kit (`specify`), and the
+agent CLIs `codex`, `claude`, `agy`, and `copilot`. npm-based fallbacks for Codex, Claude, and Copilot are installed from
 `scripts/config/npm-agent-cli-registry.json` when their CLI is missing. On
 systems with Homebrew, a normal run executes `brew update`, `brew upgrade`, and
 installs missing required formulae. On macOS it also maintains required casks.
+CLI version probes stop after five seconds so interactive or stuck agent CLIs
+cannot block maintenance.
 An existing Visual Studio Code app bundle under `/Applications/Visual Studio Code.app`
 or `~/Applications/Visual Studio Code.app` satisfies the required cask even when
 VS Code was not installed by Homebrew.*
@@ -90,7 +94,7 @@ bash scripts/maintain-agentic-brew-apps.sh
 
 - `gitleaks version` funktioniert.
 - `syft version` und `specify --version` funktionieren.
-- `codex --version`, `claude --version`, `gemini --version` und
+- `codex --version`, `claude --version`, `agy --version` und
   `copilot --help` funktionieren.
 - `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind per CLI pruefbar,
   soweit die Plattform den jeweiligen Pfad unterstuetzt.
@@ -103,7 +107,7 @@ bash scripts/maintain-agentic-brew-apps.sh
 - Neue bewusst installierte Top-Level-Tools werden in der Registry nachgetragen.
 
 *`gitleaks version`, `syft version`, `specify --version`, `codex --version`,
-`claude --version`, `gemini --version`, and `copilot --help` work; .NET,
+`claude --version`, `agy --version`, and `copilot --help` work; .NET,
 Go, Java/Javac, Python, Rust/Cargo, and Swift are CLI-checkable where the
 platform supports the path; `code --version` and `hx --version` work where the
 platform could install the graphical/TUI editor baseline; `--compare-only`

@@ -72,32 +72,33 @@
 | 2026-07-10 | Selbstfuehrender Lernenden-Einstieg und Vier-Agenten-Sandbox | 59 | 229 607 | 422 | Kanonischer Startpfad ab dem 1. Lehrjahr mit persoenlichem `home-baseline`-Fork, persistentem `home-baseline-tmp`, Podman-Sandbox und erstem kontrollierten Agentenlauf; Podman, sechs MSL, JDK, Syft, Spec Kit sowie Codex/Claude/Gemini/Copilot konsistent Required; Lernpaket-Self-Tests, Lychee-Link-/Anker-CI und fehlertolerante 21-Repo-Propagation mit Remote-, Clean-/Main-/Fast-forward- und Neuere-Zieldatei-Gates ergaenzt |
 | 2026-07-10 | Provider-neutrales Git-Hosting fuer Lernende | 59 | 230 725 | 423 | Lernenden-Einstieg von einer allgemeinen GitHub-Kontopflicht geloest: institutionelle GitLab-, Forgejo-, Codeberg- und generische Git-Profile mit getrennten `origin`-/`upstream`-Rollen dokumentiert; Ausbildendenleitfaden fuer Import, Schutzregeln, Konten und Aktualisierung ergaenzt; Bootstrap-/Teardown-Skripte um private Forgejo-/Codeberg-Repositories mit sicherer Credential-API-Nutzung erweitert; Sandbox-Dokumentation und Lernpaket-Propagation nachgezogen |
 | 2026-07-10 | Secure-Development-Basis 3.0.0 | 59 | — | — | Richtlinie und 15 mitgeltende Dokumente fuer Lernende ab Lehrjahr 1 vertieft; Lernpfad, Standardsregister, 157 stabile CL-IDs und zweiachsiges Evidenzmodell eingefuehrt; Sammelband manifestgesteuert aus 12 kanonischen Checklisten erzeugt; Bash-/PowerShell-Generatoren, CI-Gate und geschuetzte registry-basierte Level-2-Propagation ergaenzt; sechs Governance-Presets unveraendert als Reviewrahmen genutzt |
+| 2026-07-11 | Workspace-, Toolchain- und Lernreihen-Wartung | 60 | 235 377 | 429 | Alle verwalteten Level-0-/Level-1-/Level-2-Repos aktualisiert, Secure OrderDesk und Secure ServiceHarvester mit je sechs MSL-Sprachrepos lokal aufgenommen und registriert, Homebrew samt 21 Upgrades gewartet, Gemini CLI durch Google Antigravity ersetzt, VS-Code-/MSL-/SBOM-/Spec-Kit-Toolchain vollstaendig verifiziert sowie zentrale Secure-Development-Baseline und GSDB-Preflights in den zwoelf neuen Level-2-Repos auf `Open=0` gebracht |
 
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
-Stand / As of: **2026-07-10**
+Stand / As of: **2026-07-11**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 104 | 25 180 | 10.9 % |
-| Strukturierte Konfiguration und Templates / Structured config and templates | 65 | 5 899 | 2.6 % |
-| Dokumentation / Documentation (`.md`) | 1 030 | 172 149 | 74.6 % |
-| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 11.5 % |
-| Sonstiges / Other | 22 | 872 | 0.4 % |
-| **Gesamt / Total** | **1 233** | **230 725** | **100 %** |
+| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 106 | 25 688 | 10.9 % |
+| Strukturierte Konfiguration und Templates / Structured config and templates | 68 | 6 082 | 2.6 % |
+| Dokumentation / Documentation (`.md`) | 1 034 | 176 212 | 74.9 % |
+| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 11.3 % |
+| Sonstiges / Other | 20 | 770 | 0.3 % |
+| **Gesamt / Total** | **1 240** | **235 377** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 20 195 | 11.7 % |
-| Secure Development (`docs/secure-development/`) | 29 135 | 16.9 % |
-| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 553 | 49.1 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 3 222 | 1.9 % |
-| README / CHANGELOG / STATS / Projektstatistik | 3 872 | 2.2 % |
-| Sonstige Markdown-Artefakte / Other Markdown artifacts | 31 172 | 18.1 % |
+| Spec-Kit-Artefakte (`specs/`) | 20 195 | 11.5 % |
+| Secure Development (`docs/secure-development/`) | 32 935 | 18.7 % |
+| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 553 | 48.0 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 3 240 | 1.8 % |
+| README / CHANGELOG / STATS / Projektstatistik | 4 014 | 2.3 % |
+| Sonstige Markdown-Artefakte / Other Markdown artifacts | 31 275 | 17.8 % |
 
 ---
 
@@ -120,13 +121,13 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
-enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-10`. Dazu
+enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-11`. Dazu
 gehoeren insbesondere die Verfassungs- und Agenten-Guidance-Runden, Release-
 Please-Aktualisierungen, die Preset-Governance-Arbeit und die sichere-
 Entwicklung-Basis mit mitgeltenden Dokumenten.
 
 *Note on later maintenance rounds: the snapshot and overall values above also
-include follow-up maintenance work through `2026-07-10`, especially constitution
+include follow-up maintenance work through `2026-07-11`, especially constitution
 and agent-guidance rounds, Release Please updates, preset-governance work, the
 secure-development baseline with related documents, and the Level-1 workspace
 bootstrap hardening.*
@@ -221,58 +222,56 @@ documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `230 725` Zeilen |
-| Operativer Code und Konfiguration / Operational code and configuration | `31 079` Zeilen (`13.5 %`) |
-| Dokumentationsanteil / Documentation share | `172 149` Zeilen (`74.6 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-10` |
-| Sichtbare Git-Aktivtage / Observable active days | `59` |
-| Git-Commits gesamt / Total commits | `423` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.2` (`423 / 59`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 910.6` (`230 725 / 59`) |
-| Zeilen pro Commit / Lines per commit | `545.4` (`230 725 / 423`) |
-| Konservative Einzelentwickler-Untergrenze | `2 884.1` Arbeitstage / `22 495.7` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 307.2` Arbeitstage / `17 996.5` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `1 153.6` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `48.9x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.1x` |
+| Artefaktbasis gesamt / Total artifact base | `235 377` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `31 770` Zeilen (`13.5 %`) |
+| Dokumentationsanteil / Documentation share | `176 212` Zeilen (`74.9 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-11` |
+| Sichtbare Git-Aktivtage / Observable active days | `60` |
+| Git-Commits gesamt / Total commits | `429` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.2` (`429 / 60`) |
+| Zeilen pro Aktivtag / Lines per active day | `3 923.0` (`235 377 / 60`) |
+| Zeilen pro Commit / Lines per commit | `548.7` (`235 377 / 429`) |
+| Konservative Einzelentwickler-Untergrenze | `2 942.2` Arbeitstage / `22 949.3` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 353.8` Arbeitstage / `18 359.4` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 176.9` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `49.0x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.2x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.6 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `74.9 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Operative Skripte und
 strukturierte Konfiguration machen zusammen `13.5 %` aus. Der groesste
 dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer Homogeneity
-Guardian). Die aktuelle Maintenance-Runde schliesst fuer alle drei Secure-
-Trader-Lernreihen einen selbstfuehrenden, provider-neutralen Einstieg ab:
-persoenliches Repository auf dem institutionell vorgegebenen Git-System,
-persistente Wartungsarbeitskopie, Podman-Sandbox, vier Required-Agenten,
-kontrollierter Erstlauf, Diff- und Testpruefung sowie reproduzierbare
-Lernpakete. GitHub bleibt ein moegliches Profil und ist nur fuer die Nutzung
-von GitHub Copilot zwingend. Die Beschleunigungsfaktoren beschreiben keine
-Stoppuhrzeit, sondern sichtbare Lieferdichte gegen konservative manuelle
-Referenzmodelle.
+Guardian). Die aktuelle Maintenance-Runde aktualisiert die verwalteten
+Workspace-Repositories, nimmt zwei weitere Secure-Trader-Lernreihen mit zwoelf
+MSL-Sprachrepos in den lokalen Betrieb auf und schliesst deren
+Secure-Development-/GSDB-Vorbereitung ab. Google Antigravity ersetzt dabei die
+abgeloeste Gemini CLI in der macOS-/Windows-Toolchain; Linux dokumentiert die
+fehlende offizielle Paketierung als `N/A`. Die Beschleunigungsfaktoren
+beschreiben keine Stoppuhrzeit, sondern sichtbare Lieferdichte gegen
+konservative manuelle Referenzmodelle.
 
 *Short summary: `home-baseline` remains documentation- and governance-driven:
-`74.6 %` of the visible base sits in Markdown artifacts. Operational scripts
+`74.9 %` of the visible base sits in Markdown artifacts. Operational scripts
 and structured configuration together account for `13.5 %`. The largest
 documented volume jump remains Phase `1` (Spec-Kit batch for Homogeneity
-Guardian). The current maintenance round completes a self-guided entry path for
-all three Secure Trader learning series without binding learners to one Git
-provider: a personal repository on the institution-selected Git system,
-persistent maintenance clone, Podman sandbox, four required agents, controlled
-first run, diff and test review, and reproducible learning packages. GitHub
-remains an available profile and is mandatory only when GitHub Copilot is used.
-Acceleration factors describe visible delivery density, not stopwatch
-measurements.*
+Guardian). The current maintenance round updates the managed workspace
+repositories, brings two additional Secure Trader series with twelve MSL
+language repositories into local operations, and completes their secure-
+development and GSDB preparation. Google Antigravity replaces the retired
+Gemini CLI in the macOS and Windows toolchains; Linux records the missing
+official package as `N/A`. Acceleration factors describe visible delivery
+density, not stopwatch measurements.*
 
 ### ASCII-Diagramme / ASCII Charts
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Skripte         | ###                            | 25 180 | 10.9 %
-Konfiguration   | #                              |  5 899 |  2.6 %
-Dokumentation   | ######################         |172 149 | 74.6 %
-Daten/Medien    | ###                            | 26 625 | 11.5 %
-Sonstiges       | #                              |    872 |  0.4 %
+Skripte         | ###                            | 25 688 | 10.9 %
+Konfiguration   | #                              |  6 082 |  2.6 %
+Dokumentation   | ######################         |176 212 | 74.9 %
+Daten/Medien    | ###                            | 26 625 | 11.3 %
+Sonstiges       | #                              |    770 |  0.3 %
 ```
 
 Dieses Diagramm zeigt, wie der aktuelle Snapshot zwischen Skripten,
@@ -328,7 +327,7 @@ governance output.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################################ | 48.9x
+Repo ges. | ################################################ | 49.0x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -350,9 +349,9 @@ smoke-test rounds were completed in two visible preset active days.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 2 884.1 d / 22 495.7 h
-Thorsten (100 Z./Tag)  | ###################      | 2 307.2 d / 17 996.5 h
-KI sichtbar            | #                        |    59.0 d
+Erfahren (80 Z./Tag)   | ######################## | 2 942.2 d / 22 949.3 h
+Thorsten (100 Z./Tag)  | ###################      | 2 353.8 d / 18 359.4 h
+KI sichtbar            | #                        |    60.0 d
 ```
 
 Dieser Vergleich macht die grobe Groessenordnung sichtbar: Zwischen klassischer

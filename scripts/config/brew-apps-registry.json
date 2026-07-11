@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-10",
+  "updated": "2026-07-11",
   "description": "Homebrew top-level package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
   "policy": {
     "formulaSource": "brew leaves --installed-on-request",
@@ -15,7 +15,6 @@
     { "name": "cmake", "scope": "required", "apt": "cmake", "purpose": "Native build orchestration" },
     { "name": "cmake-docs", "scope": "optional", "purpose": "CMake documentation" },
     { "name": "dotnet", "scope": "required", "purpose": "Memory-safe C#/.NET SDK toolchain" },
-    { "name": "gemini-cli", "scope": "required", "purpose": "Gemini command-line agent" },
     { "name": "gh", "scope": "required", "purpose": "GitHub CLI binary; provider sign-in is required only for the direct GitHub profile" },
     { "name": "gitleaks", "scope": "required", "purpose": "Secret scanning for hooks and manual scans" },
     { "name": "glab", "scope": "required", "purpose": "GitLab CLI binary; provider sign-in is required only for a GitLab profile" },
@@ -44,6 +43,7 @@
     { "name": "vice", "scope": "optional", "purpose": "C64 emulator for retro projects" }
   ],
   "casks": [
+    { "name": "antigravity-cli", "scope": "required", "purpose": "Google Antigravity command-line agent; maintained Homebrew replacement for the deprecated Gemini CLI formula" },
     { "name": "claude-code", "scope": "required", "purpose": "Claude Code command-line agent" },
     { "name": "copilot-cli", "scope": "required", "purpose": "GitHub Copilot CLI" },
     { "name": "ollama-app", "scope": "optional", "purpose": "Local model runtime app" },

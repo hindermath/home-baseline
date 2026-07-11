@@ -88,7 +88,7 @@ Add-Line ""
 
 # === Tools ===
 Add-Line "=== Tools ==="
-foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'npm', 'uv', 'python', 'dotnet', 'go', 'java', 'javac', 'cargo', 'rustc', 'swift', 'syft', 'specify', 'podman', 'codex', 'claude', 'gemini', 'copilot', 'code', 'hx')) {
+foreach ($cmd in @('git', 'gh', 'glab', 'rg', 'gitleaks', 'pwsh', 'node', 'npm', 'uv', 'python', 'dotnet', 'go', 'java', 'javac', 'cargo', 'rustc', 'swift', 'syft', 'specify', 'podman', 'codex', 'claude', 'antigravity', 'copilot', 'code', 'hx')) {
     if (Get-Command $cmd -ErrorAction SilentlyContinue) {
         Add-Line "  OK  ${cmd}"
     } else {
