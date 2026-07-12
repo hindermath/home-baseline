@@ -18,6 +18,7 @@
 #   bash ~/scripts/propagate-security-guidance.sh --verbose
 #   bash ~/scripts/propagate-security-guidance.sh --only-level1
 #   bash ~/scripts/propagate-security-guidance.sh --only-constitution
+#   bash ~/scripts/propagate-security-guidance.sh --only-environment-registry
 #
 # Was das Script propagiert / What the script propagates:
 #   1. Sicherheitsdokumentation-Sektion (XII–XVIII Extensions, alle 10 Templates)
@@ -43,6 +44,7 @@ DRY_RUN=0
 VERBOSE=0
 ONLY_LEVEL1=0
 ONLY_CONSTITUTION=0
+ONLY_ENVIRONMENT_REGISTRY=0
 CHANGED_COUNT=0
 SKIPPED_COUNT=0
 
@@ -54,6 +56,7 @@ while [ $# -gt 0 ]; do
     --verbose|-v)         VERBOSE=1 ;;
     --only-level1)        ONLY_LEVEL1=1 ;;
     --only-constitution)  ONLY_CONSTITUTION=1 ;;
+    --only-environment-registry) ONLY_ENVIRONMENT_REGISTRY=1 ;;
     --help|-h)
       echo "Verwendung / Usage: $(basename "$0") [OPTIONEN]"
       echo ""
@@ -61,6 +64,7 @@ while [ $# -gt 0 ]; do
       echo "  --verbose,-v        Auch unveränderte Dateien anzeigen / Show unchanged files too"
       echo "  --only-level1       Nur Level-1-Repos, keine Level-2-Projekte"
       echo "  --only-constitution Nur .specify/memory/constitution.md-Dateien aktualisieren"
+      echo "  --only-environment-registry Nur das Level-2-Umgebungsregister synchronisieren"
       echo ""
       echo "Canonical-Quellen / Canonical sources: $LEVEL0_DIR"
       exit 0
@@ -70,6 +74,11 @@ while [ $# -gt 0 ]; do
   esac
   shift
 done
+
+if [ "$ONLY_CONSTITUTION" -eq 1 ] && [ "$ONLY_ENVIRONMENT_REGISTRY" -eq 1 ]; then
+  echo "Fehler: --only-constitution und --only-environment-registry sind nicht kombinierbar." >&2
+  exit 2
+fi
 
 # --- Vorabprüfungen / Prerequisite checks -------------------------------------
 
@@ -198,6 +207,7 @@ CANONICAL_WORKFLOW_CLAUDE="$(extract_section "$LEVEL0_CLAUDE" "## Agentischer Se
 CANONICAL_CONST_XIX="$(extract_section "$LEVEL0_CONST" "### XIX. EU Cyber Resilience")"
 CANONICAL_CONST_XVII="$(extract_section "$LEVEL0_CONST" "### XVII. Threat Modeling")"
 CANONICAL_CONST_XVI="$(extract_section "$LEVEL0_CONST" "### XVI. Supply-Chain")"
+CANONICAL_ENVIRONMENT_REGISTRY="$(extract_section "$LEVEL0_CONST" "## Level-2 Project Environment Registry")"
 
 # Fingerprints / Marker (eindeutige Strings aus dem aktualisierten Inhalt)
 MARKER_SECDOC_COMPLETE="samm-assessment-template.md"           # alle 10 Templates
@@ -213,6 +223,10 @@ if [ -z "$CANONICAL_SECDOC_CLAUDE" ]; then
 fi
 if [ -z "$CANONICAL_CONST_XIX" ]; then
   echo "Fehler: Konnte Prinzip XIX nicht aus Level-0 constitution.md lesen." >&2
+  exit 1
+fi
+if [ -z "$CANONICAL_ENVIRONMENT_REGISTRY" ]; then
+  echo "Fehler: Konnte das Level-2-Umgebungsregister nicht aus Level-0 constitution.md lesen." >&2
   exit 1
 fi
 ok "Canonical-Inhalte geladen."
@@ -461,6 +475,36 @@ apply_constitution_updates() {
   [ "$changed" -eq 0 ] || true
 }
 
+apply_environment_registry_updates() {
+  local repo="$1"
+  local label current_section const_file relative_path
+  label="$(basename "$repo")"
+
+  for const_file in \
+    "${repo}/constitution.md" \
+    "${repo}/.specify/memory/constitution.md"; do
+    relative_path="${const_file#"$repo"/}"
+    if [ ! -f "$const_file" ]; then
+      warn "$label: Constitution-Datei fehlt: $relative_path"
+      SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
+      continue
+    fi
+
+    current_section="$(extract_section "$const_file" "## Level-2 Project Environment Registry")"
+    if [ -z "$current_section" ]; then
+      warn "$label: Level-2-Umgebungsregister fehlt in $relative_path"
+      SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
+    elif [ "$current_section" = "$CANONICAL_ENVIRONMENT_REGISTRY" ]; then
+      mark_skipped "$label/$relative_path: Level-2-Umgebungsregister OK"
+    else
+      mark_changed "$label/$relative_path: Level-2-Umgebungsregister"
+      replace_section_in_file "$const_file" \
+        "## Level-2 Project Environment Registry" \
+        "$CANONICAL_ENVIRONMENT_REGISTRY"
+    fi
+  done
+}
+
 # --- Hauptschleife / Main loop ------------------------------------------------
 
 # Bash 3.x-sicher: Index-Iteration statt direkter Array-Expansion
@@ -468,10 +512,14 @@ for _main_i in "${!REPOS[@]}"; do
   repo="${REPOS[$_main_i]}"
   echo "┌─ $(basename "$repo") ($repo)"
 
-  if [ "$ONLY_CONSTITUTION" -eq 0 ]; then
-    apply_agent_file_updates "$repo"
+  if [ "$ONLY_ENVIRONMENT_REGISTRY" -eq 1 ]; then
+    apply_environment_registry_updates "$repo"
+  else
+    if [ "$ONLY_CONSTITUTION" -eq 0 ]; then
+      apply_agent_file_updates "$repo"
+    fi
+    apply_constitution_updates "$repo"
   fi
-  apply_constitution_updates "$repo"
 
   echo "└─ fertig / done"
   echo ""

@@ -26,6 +26,9 @@
 .PARAMETER OnlyConstitution
     Nur constitution.md-Dateien / Only constitution.md files.
 
+.PARAMETER OnlyEnvironmentRegistry
+    Nur das Level-2-Umgebungsregister / Only the Level-2 environment registry.
+
 .EXAMPLE
     # Empfohlen auf Windows mit WSL2 / Recommended on Windows with WSL2:
     wsl bash ~/scripts/propagate-security-guidance.sh --dry-run
@@ -38,7 +41,8 @@
 param(
     [switch]$DryRun,
     [switch]$OnlyLevel1,
-    [switch]$OnlyConstitution
+    [switch]$OnlyConstitution,
+    [switch]$OnlyEnvironmentRegistry
 )
 
 Set-StrictMode -Version Latest
@@ -69,6 +73,7 @@ $args_to_pass = @()
 if ($DryRun)            { $args_to_pass += '--dry-run' }
 if ($OnlyLevel1)        { $args_to_pass += '--only-level1' }
 if ($OnlyConstitution)  { $args_to_pass += '--only-constitution' }
+if ($OnlyEnvironmentRegistry) { $args_to_pass += '--only-environment-registry' }
 if ($VerbosePreference -ne 'SilentlyContinue') { $args_to_pass += '--verbose' }
 
 $bashCmd = "bash ~/scripts/propagate-security-guidance.sh " + ($args_to_pass -join ' ')

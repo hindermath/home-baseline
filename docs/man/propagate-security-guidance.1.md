@@ -10,9 +10,11 @@
 ```text
 bash scripts/propagate-security-guidance.sh [--dry-run] [--verbose]
                                              [--only-level1] [--only-constitution]
+                                             [--only-environment-registry]
 
 pwsh -NoProfile scripts/propagate-security-guidance.ps1 [-DryRun] [-OnlyLevel1]
                                                          [-OnlyConstitution]
+                                                         [-OnlyEnvironmentRegistry]
 ```
 
 ## BESCHREIBUNG / DESCRIPTION
@@ -55,6 +57,7 @@ ist sicher.
 | 4 | Prinzip XVI (SBOM auf allen Levels + automatisierte Tools) | `.specify/memory/constitution.md` |
 | 5 | Prinzip XVII (CIA-Matrix als Pflicht im Threat-Modeling) | `.specify/memory/constitution.md` |
 | 6 | Prinzip XIX (EU Cyber Resilience Act) | `.specify/memory/constitution.md` |
+| 7 | Kanonisches Level-2-Umgebungsregister | `constitution.md`, `.specify/memory/constitution.md` |
 
 ## OPTIONEN / OPTIONS
 
@@ -64,6 +67,7 @@ ist sicher.
 | `--verbose`, `-v` | Auch unveränderte Dateien ausgeben / Also output unchanged files |
 | `--only-level1` | Nur Level-1-Repos; Level-2-Projekte überspringen |
 | `--only-constitution` | Nur `.specify/memory/constitution.md`-Dateien aktualisieren |
+| `--only-environment-registry` | Nur das kanonische Level-2-Umgebungsregister in beiden Constitution-Dateien synchronisieren |
 | `--help`, `-h` | Hilfemeldung anzeigen / Show help |
 
 ## REPO-ERKENNUNG / REPO DISCOVERY
@@ -94,6 +98,9 @@ bash ~/scripts/propagate-security-guidance.sh
 # Nur constitution.md-Dateien aktualisieren
 bash ~/scripts/propagate-security-guidance.sh --only-constitution
 
+# Nur das gemeinsame Level-2-Umgebungsregister aktualisieren
+bash ~/scripts/propagate-security-guidance.sh --only-environment-registry
+
 # Nur Level-1, kein Level-2
 bash ~/scripts/propagate-security-guidance.sh --only-level1
 
@@ -104,6 +111,8 @@ bash ~/scripts/propagate-security-guidance.sh --verbose --dry-run
 ```powershell
 # Windows (erfordert WSL2)
 pwsh -NoProfile ~/scripts/propagate-security-guidance.ps1 -DryRun
+
+pwsh -NoProfile ~/scripts/propagate-security-guidance.ps1 -OnlyEnvironmentRegistry
 ```
 
 ## NACH DEM LAUF / AFTER A RUN
