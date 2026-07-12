@@ -78,6 +78,7 @@
 | 2026-07-11 | GSDB-Preflight fuer archivierte Intakes | 60 | — | — | False Positive bei abgeschlossenen Spec-Kit-Intakes beseitigt: `check-gsdb-self-assessment.*` akzeptiert neben aktiven Root-Dateien nun numerisch branch-suffigierte Archivnachweise, nennt den tatsaechlichen Evidenzpfad und erzeugt bei archiviertem GSDB-Intake kein neues aktives Duplikat; Bash- und PowerShell-Pruefung gegen TuiVisions abgeschlossenes Feature 016 liefern `Open=0` |
 | 2026-07-12 | Autonomous-Run-Governance Feld-Input 018 | 61 | — | — | Ersten TuiVision-Feldlauf als 629-zeiligen reproduzierbaren Snapshot aus Skill-Quelle, OpenAI-UI-Metadaten, Runbook, Evidence-Template und Retrospektivmodell uebernommen; Workitem AR-018 dokumentiert PR-/Merge-Evidence, projektspezifische Ausschluesse, reproduzierbare Tests und die Entscheidungen `Promote` fuer exakte Delivery-Evidence-Pfade sowie Berechtigungsgrenzen und `ObserveAgain` fuer gebuendelte Red-Proofs. Zusammen mit dieser Ledger-Zeile `+630/-0`; reine Dokumentation/Skill-/Template-Eingabe, keine Skript- oder Runtime-Aenderung. Manualreferenz: `7,9` Tage beziehungsweise `61,4` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `6,3` Tage beziehungsweise `49,1` Stunden bei 100 Zeilen/Tag. Sichtbares Arbeitsfenster ist der Handoff am 2026-07-12. |
 | 2026-07-12 | Autonomous-Run-Governance Feld-Input 019 | 61 | — | — | Zweiten TuiVision-Feldlauf als 1.053-zeiligen Snapshot aus aktuellem Skill, OpenAI-UI-Metadaten, Runbook, Retrospektive, Evidence-/Task-Template und Agent-Policy uebernommen. AR-019 promoviert vollstaendige projektlokale Red-Matrizen nach zweiter Beobachtung, den Compile-Surface-Check, Linked-Source-Artefaktidentitaet und den bestaetigten exakten Delivery-Evidence-Pfad; Reviewer-/Bypass-Sicherheit bleibt explizit autoritaetsgebunden. Zusammen mit dieser Ledger-Zeile `+1054/-0`; keine Skript- oder Runtime-Aenderung. Manualreferenz: `13,2` Tage beziehungsweise `102,8` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `10,5` Tage beziehungsweise `82,2` Stunden bei 100 Zeilen/Tag. Der langlebige Paketbranch bleibt bis nach Feldlauf 023 ungemergt. |
+| 2026-07-12 | Autonomous-Run-Governance Feld-Input 020 | 61 | — | — | Dritten TuiVision-Feldlauf als 1.089-zeiligen Snapshot aus Skill, OpenAI-UI-Metadaten, Runbook, Retrospektive, Tasks-/Evidence-Template und Agent-Policy uebernommen. AR-020 promoviert den kausalen Closeout-Pfad fuer selbstinvalidierende Reviewed-Head-Fakten, bestaetigt Compile-Surface-Gate und projektlokale Red-Matrix und haelt physische Host-Evidence als getrennten `ObserveAgain`-Kandidaten fest. Zusammen mit dieser Ledger-Zeile `+1090/-0`; keine Skript- oder Runtime-Aenderung. Manualreferenz: `13,6` Tage beziehungsweise `106,2` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `10,9` Tage beziehungsweise `84,9` Stunden bei 100 Zeilen/Tag. Der langlebige Paketbranch bleibt bis nach Feldlauf 023 ungemergt. |
 
 ---
 
@@ -124,7 +125,7 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 4 | 005+006 — Workspace Teardown + GitLab | 10 769 | 21 | 2 | 2026-04-08 bis 04-11 |
 | 5 | proj — Bootstrap-Project + Release Please | 686 | 21 | 1 | 2026-04-12 |
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
-| 7 | autonomous — Feld-Inputs 018/019 | 1 683 | 2 | 1 | 2026-07-12 |
+| 7 | autonomous — Feld-Inputs 018/019/020 | 2 772 | 3 | 1 | 2026-07-12 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
 enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-11`. Dazu
@@ -304,7 +305,7 @@ Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
 4 005+    | ##########               | 10 769
 5 proj    | #                        |    686
 6 presets | ########                 |  8 733
-7 autonom | ##                       |  1 683
+7 autonom | ###                      |  2 772
 ```
 
 Dieses Diagramm zeigt den Netto-Insertions-Beitrag der dokumentierten Phasen.
@@ -324,7 +325,7 @@ Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Ta
 4 005+    | ##########               |  134.6 d
 5 proj    | #                        |    8.6 d
 6 presets | ########                 |  109.2 d
-7 autonom | ##                       |   21.0 d
+7 autonom | ###                      |   34.7 d
 ```
 
 Jeder Balken zeigt, wie viele Arbeitstage ein erfahrener Einzelentwickler
@@ -335,7 +336,7 @@ Arbeitstagen sichtbarem Governance-Output.
 *Each bar shows how many workdays an experienced solo developer would have needed
 at `80` manually created lines per day for the respective phase package. The
 preset phase conservatively represents about `109` workdays of visible
-governance output; the current autonomous field package adds about `21` days.*
+governance output; the current autonomous field package adds about `35` days.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
@@ -347,7 +348,7 @@ Repo ges. | ################################################ | 49.0x
 4 005+    | ################################################ | 67.3x
 5 proj    | ########                         |  8.6x
 6 presets | ################################################ | 54.6x
-7 autonom | ###################                              | 21.0x
+7 autonom | ##################################               | 34.7x
 ```
 
 Hier werden keine Stoppuhrzeiten gemessen. Verglichen wird die dokumentierte
