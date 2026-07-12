@@ -1,5 +1,19 @@
 # <Lernreihe> / <Learning Series>
 
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Diese Lernreihe gestaltet Software, Dokumentation und Lernwege
+> inklusiv und barrierefrei. WCAG 2.2 AA, Tastaturbedienung, Screenreader- und
+> Texttauglichkeit werden von Anfang an beruecksichtigt und geprueft.
+>
+> **EN:** This learning series designs software, documentation, and learning
+> paths to be inclusive and accessible. WCAG 2.2 AA, keyboard operation,
+> screen-reader support, and text usability are considered and verified from
+> the start.
+
 ## Zweck / Purpose
 
 **DE:** Beschreibe hier kurz, welches fachliche Problem die Lernreihe behandelt und warum sie fuer Fachinformatiker*innen relevant ist.

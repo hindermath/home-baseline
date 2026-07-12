@@ -1,5 +1,18 @@
 # home-baseline
 
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Wir gestalten Software, Dokumentation und Lernwege inklusiv und
+> barrierefrei. WCAG 2.2 AA, Tastaturbedienung, Screenreader- und
+> Texttauglichkeit werden von Anfang an beruecksichtigt und geprueft.
+>
+> **EN:** We design software, documentation, and learning paths to be inclusive
+> and accessible. WCAG 2.2 AA, keyboard operation, screen-reader support, and
+> text usability are considered and verified from the start.
+
 Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur.
 Es enthält die Bootstrap-Scripts, mit denen jedes neue Projektverzeichnis in wenigen
 Sekunden als synchronisiertes privates Repository auf GitHub, GitLab, Codeberg,

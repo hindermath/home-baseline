@@ -1,5 +1,19 @@
 # Lernreihen-Blueprint / Learning Series Blueprint
 
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Jede Lernreihe gestaltet Software, Dokumentation und Lernwege
+> inklusiv und barrierefrei. WCAG 2.2 AA, Tastaturbedienung, Screenreader- und
+> Texttauglichkeit werden von Anfang an beruecksichtigt und geprueft.
+>
+> **EN:** Every learning series designs software, documentation, and learning
+> paths to be inclusive and accessible. WCAG 2.2 AA, keyboard operation,
+> screen-reader support, and text usability are considered and verified from
+> the start.
+
 ## Zweck / Purpose
 
 **DE:** Dieser Blueprint beschreibt, wie neue Lernreihen fuer Fachinformatiker*innen in diesem Workspace vorbereitet werden. Er ist die kanonische Vorlage fuer spaetere Reihen ab dem 1., 2. und 3. Lehrjahr.

@@ -1,5 +1,18 @@
 # Start hier fuer Lernende / Start Here for Learners
 
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Wir gestalten Software, Dokumentation und Lernwege inklusiv und
+> barrierefrei. WCAG 2.2 AA, Tastaturbedienung, Screenreader- und
+> Texttauglichkeit werden von Anfang an beruecksichtigt und geprueft.
+>
+> **EN:** We design software, documentation, and learning paths to be inclusive
+> and accessible. WCAG 2.2 AA, keyboard operation, screen-reader support, and
+> text usability are considered and verified from the start.
+
 ## Ziel / Goal
 
 **DE:** Diese Anleitung fuehrt dich vom ersten Terminalfenster bis zu einem

@@ -1,5 +1,20 @@
 # Lernbegleiter: <Lernreihe> <Nr.> <Thema> / Study Companion
 
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Dieser Lernbegleiter gestaltet Erklaerungen, Beispiele und
+> Uebungswege inklusiv und barrierefrei. WCAG 2.2 AA, Tastaturbedienung,
+> Screenreader- und Texttauglichkeit werden von Anfang an beruecksichtigt und
+> geprueft.
+>
+> **EN:** This study companion designs explanations, examples, and practice
+> paths to be inclusive and accessible. WCAG 2.2 AA, keyboard operation,
+> screen-reader support, and text usability are considered and verified from
+> the start.
+
 **Stand / Date:** <JJJJ-MM-TT>
 **Zugehöriges Lastenheft / Related intake:** `<Dateiname des Lastenhefts>`
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA

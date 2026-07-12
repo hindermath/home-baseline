@@ -1,5 +1,18 @@
 # Lernmaterialien / Learning Units
 
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Wir gestalten Software, Dokumentation und Lernwege inklusiv und
+> barrierefrei. WCAG 2.2 AA, Tastaturbedienung, Screenreader- und
+> Texttauglichkeit werden von Anfang an beruecksichtigt und geprueft.
+>
+> **EN:** We design software, documentation, and learning paths to be inclusive
+> and accessible. WCAG 2.2 AA, keyboard operation, screen-reader support, and
+> text usability are considered and verified from the start.
+
 **Zweck / Purpose**
 
 **DE:** Dieses Verzeichnis enthält ausführliche Lernmaterialien für sichere Entwicklung mit GitHub Spec Kit, Memory-Safe Languages (MSL), Sandbox-Nutzung und auditfähiger Dokumentation. Die Materialien sind DE-first, EN-second, CEFR-B2-orientiert und für Fachinformatiker*innen ab dem 1. Lehrjahr verständlich aufgebaut.

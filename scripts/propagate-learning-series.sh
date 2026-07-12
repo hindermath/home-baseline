@@ -299,6 +299,57 @@ EOF
   return 0
 }
 
+ensure_readme_guiding_principle() {
+  local repo="$1"
+  local readme="${repo}/README.md"
+  local marker='<!-- include-everyone-guiding-principle -->'
+  local block_file tmp_file
+
+  [ -f "$readme" ] || return 1
+  grep -Fq "$marker" "$readme" && return 1
+
+  if [ "$DRY_RUN" -eq 0 ]; then
+    block_file="$(mktemp)"
+    tmp_file="$(mktemp)"
+    cat > "$block_file" <<'EOF'
+<!-- include-everyone-guiding-principle -->
+> **Leitsatz:** `Programmierung #include<everyone>`.
+>
+> **Guiding principle:** `Programming #include<everyone>`.
+>
+> **DE:** Wir gestalten Software, Dokumentation und Lernwege inklusiv und
+> barrierefrei. WCAG 2.2 AA, Tastaturbedienung, Screenreader- und
+> Texttauglichkeit werden von Anfang an beruecksichtigt und geprueft.
+>
+> **EN:** We design software, documentation, and learning paths to be inclusive
+> and accessible. WCAG 2.2 AA, keyboard operation, screen-reader support, and
+> text usability are considered and verified from the start.
+EOF
+
+    if grep -Eq '^#[[:space:]]+' "$readme"; then
+      awk -v block_file="$block_file" '
+        !inserted && /^#[[:space:]]+/ {
+          print
+          print ""
+          while ((getline line < block_file) > 0) print line
+          close(block_file)
+          inserted = 1
+          next
+        }
+        { print }
+      ' "$readme" > "$tmp_file"
+    else
+      cat "$block_file" > "$tmp_file"
+      printf '\n' >> "$tmp_file"
+      cat "$readme" >> "$tmp_file"
+    fi
+
+    mv "$tmp_file" "$readme"
+    rm -f "$block_file"
+  fi
+  return 0
+}
+
 # --- Ein Repo verarbeiten / Process one repository ----------------------------
 
 process_repo() {
@@ -399,7 +450,11 @@ process_repo() {
     fi
   done < <(shared_root_guides)
 
-  # 4) Root-README macht den Lernenden-Einstieg sichtbar, ohne vorhandenen Text zu ersetzen.
+  # 4) Root-README macht Leitsatz und Lernenden-Einstieg sichtbar, ohne Text zu ersetzen.
+  if ensure_readme_guiding_principle "$repo"; then
+    changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
+    [ "$VERBOSE" -eq 1 ] && plan "README.md (Leitsatz)"
+  fi
   if ensure_readme_start_link "$repo"; then
     changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
     [ "$VERBOSE" -eq 1 ] && plan "README.md (Lernenden-Einstieg)"
