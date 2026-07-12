@@ -77,6 +77,7 @@
 | 2026-07-11 | GSDB-Registry-Promotion und Drift-Haertung | 60 | — | 435 | Alle 25 registrierten Level-2-Repos in den GSDB-Pruefumfang aufgenommen; 18 Lern-Sprachrepos als MSL, `cc65` als Nicht-MSL und `absdd-image-sandbox` als gemischte Tooling-Umgebung klassifiziert; Registry-Upserts in Bash/PowerShell gegen Metadaten-Herabstufung gehaertet, Sprachsuffix-Erkennung und expliziter MSL-Override ergaenzt, zwoelf fehlende Umgebungsregisterzeilen nachgezogen und der read-only Container-Preflight fuer die 20 promovierten Repos mit `Open=0` abgeschlossen |
 | 2026-07-11 | GSDB-Preflight fuer archivierte Intakes | 60 | — | — | False Positive bei abgeschlossenen Spec-Kit-Intakes beseitigt: `check-gsdb-self-assessment.*` akzeptiert neben aktiven Root-Dateien nun numerisch branch-suffigierte Archivnachweise, nennt den tatsaechlichen Evidenzpfad und erzeugt bei archiviertem GSDB-Intake kein neues aktives Duplikat; Bash- und PowerShell-Pruefung gegen TuiVisions abgeschlossenes Feature 016 liefern `Open=0` |
 | 2026-07-12 | Autonomous-Run-Governance Feld-Input 018 | 61 | — | — | Ersten TuiVision-Feldlauf als 629-zeiligen reproduzierbaren Snapshot aus Skill-Quelle, OpenAI-UI-Metadaten, Runbook, Evidence-Template und Retrospektivmodell uebernommen; Workitem AR-018 dokumentiert PR-/Merge-Evidence, projektspezifische Ausschluesse, reproduzierbare Tests und die Entscheidungen `Promote` fuer exakte Delivery-Evidence-Pfade sowie Berechtigungsgrenzen und `ObserveAgain` fuer gebuendelte Red-Proofs. Zusammen mit dieser Ledger-Zeile `+630/-0`; reine Dokumentation/Skill-/Template-Eingabe, keine Skript- oder Runtime-Aenderung. Manualreferenz: `7,9` Tage beziehungsweise `61,4` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `6,3` Tage beziehungsweise `49,1` Stunden bei 100 Zeilen/Tag. Sichtbares Arbeitsfenster ist der Handoff am 2026-07-12. |
+| 2026-07-12 | Autonomous-Run-Governance Feld-Input 019 | 61 | — | — | Zweiten TuiVision-Feldlauf als 1.053-zeiligen Snapshot aus aktuellem Skill, OpenAI-UI-Metadaten, Runbook, Retrospektive, Evidence-/Task-Template und Agent-Policy uebernommen. AR-019 promoviert vollstaendige projektlokale Red-Matrizen nach zweiter Beobachtung, den Compile-Surface-Check, Linked-Source-Artefaktidentitaet und den bestaetigten exakten Delivery-Evidence-Pfad; Reviewer-/Bypass-Sicherheit bleibt explizit autoritaetsgebunden. Zusammen mit dieser Ledger-Zeile `+1054/-0`; keine Skript- oder Runtime-Aenderung. Manualreferenz: `13,2` Tage beziehungsweise `102,8` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `10,5` Tage beziehungsweise `82,2` Stunden bei 100 Zeilen/Tag. Der langlebige Paketbranch bleibt bis nach Feldlauf 023 ungemergt. |
 
 ---
 
@@ -123,6 +124,7 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 4 | 005+006 — Workspace Teardown + GitLab | 10 769 | 21 | 2 | 2026-04-08 bis 04-11 |
 | 5 | proj — Bootstrap-Project + Release Please | 686 | 21 | 1 | 2026-04-12 |
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
+| 7 | autonomous — Feld-Inputs 018/019 | 1 683 | 2 | 1 | 2026-07-12 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
 enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-11`. Dazu
@@ -221,6 +223,10 @@ main phase or a maintenance round in this statistics ledger.*
 Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
 dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
+Der langlebige Branch `codex/autonomous-run-governance-package` wird erst nach
+Feldlauf 023 gemergt. Phase 7 zeigt seinen dokumentierten Zwischenstand; die
+Gesamtwerte bleiben bis zum Paketmerge der letzte gemergte `main`-Snapshot.
+
 *This closing block is based on the current repository snapshot plus the
 documented main phases and maintenance rounds from the sections above.*
 
@@ -298,15 +304,16 @@ Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
 4 005+    | ##########               | 10 769
 5 proj    | #                        |    686
 6 presets | ########                 |  8 733
+7 autonom | ##                       |  1 683
 ```
 
 Dieses Diagramm zeigt den Netto-Insertions-Beitrag der dokumentierten Phasen.
-Phase `6` ist nach Phase `4` das groesste sichtbare Paket und besteht vor allem
-aus Preset-Templates, README-Dateien, Governance-Regeln und Smoke-Test-Doku.
+Phase `6` ist nach Phase `4` das groesste sichtbare Paket. Phase `7` sammelt
+die noch ungemergten Feld-Inputs fuer das autonome Governance-Preset.
 
 *This chart shows the net insertion contribution per documented phase. Phase `6`
-is the largest visible package after Phase `4` and mainly consists of preset
-templates, README files, governance rules, and smoke-test documentation.*
+is the largest visible package after Phase `4`. Phase `7` collects the still
+unmerged field inputs for the autonomous governance preset.*
 
 ```text
 Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Tag)
@@ -317,6 +324,7 @@ Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Ta
 4 005+    | ##########               |  134.6 d
 5 proj    | #                        |    8.6 d
 6 presets | ########                 |  109.2 d
+7 autonom | ##                       |   21.0 d
 ```
 
 Jeder Balken zeigt, wie viele Arbeitstage ein erfahrener Einzelentwickler
@@ -327,7 +335,7 @@ Arbeitstagen sichtbarem Governance-Output.
 *Each bar shows how many workdays an experienced solo developer would have needed
 at `80` manually created lines per day for the respective phase package. The
 preset phase conservatively represents about `109` workdays of visible
-governance output.*
+governance output; the current autonomous field package adds about `21` days.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
@@ -339,6 +347,7 @@ Repo ges. | ################################################ | 49.0x
 4 005+    | ################################################ | 67.3x
 5 proj    | ########                         |  8.6x
 6 presets | ################################################ | 54.6x
+7 autonom | ###################                              | 21.0x
 ```
 
 Hier werden keine Stoppuhrzeiten gemessen. Verglichen wird die dokumentierte
@@ -349,7 +358,8 @@ in zwei sichtbaren Preset-Aktivtagen abgeschlossen wurden.
 *This chart does not measure stopwatch time. It compares documented delivery
 density per active day against the 80-line reference. Phase `6` is high because
 multiple preset follow-up releases, external preset repositories, and several
-smoke-test rounds were completed in two visible preset active days.*
+smoke-test rounds were completed in two visible preset active days. Phase `7`
+currently uses one visible handoff day and remains an unmerged package branch.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
@@ -369,25 +379,25 @@ That documented compression is what the ledger labels as blended repository
 speedup.*
 
 ```text
-X/Y-Diagramm: Phasenvolumen (X = Phase 0..6, Y = Insertions)
-30000 |                            |
-25000 |     *                      |
-20000 |                            |
-15000 |                            |
-10000 |                 *       *  |
- 5000 |         *                  |
-    0 | *           *       *      |
-      +----------------------------+
-        0   1   2   3   4   5   6
+X/Y-Diagramm: Phasenvolumen (X = Phase 0..7, Y = Insertions)
+30000 |                                |
+25000 |     *                          |
+20000 |                                |
+15000 |                                |
+10000 |                 *       *      |
+ 5000 |         *                   *  |
+    0 | *           *       *          |
+      +--------------------------------+
+        0   1   2   3   4   5   6   7
 ```
 
 Als zweite Ansicht zeigt diese X/Y-Kurve denselben Verlauf ueber die
 Phasenachse. Die X-Positionen nutzen feste Slots, damit spaetere zweistellige
 oder fehlende Phasenwerte keine Punkte verschieben. Phase `1` ragt deutlich
-heraus; Phase `6` bildet den neuen Governance- und Preset-Nachlauf nach den
-Sicherheits- und Architekturarbeiten.
+heraus; Phase `6` bildet den Governance-Preset-Nachlauf und Phase `7` das
+autonome Feld-Input-Paket.
 
 *As a second view, this X/Y curve shows the same progression across the phase
 axis. The X positions use fixed slots so later two-digit or missing phase values
-do not shift points. Phase `1` stands out clearly; Phase `6` forms the new
-governance and preset follow-up after the security and architecture work.*
+do not shift points. Phase `1` stands out clearly; Phase `6` contains the
+governance preset follow-up and Phase `7` the autonomous field-input package.*
