@@ -32,18 +32,19 @@
 
 | Field | Value |
 |---|---|
-| Observation | Feature 027 converged through repeated Analyze, exact evidence gates, one reviewed feature PR, and a planned non-recursive closeout. Empty owner sets continued to suppress Features 025 and 026. |
+| Observation | Feature 027 converged through repeated Analyze and exact evidence gates. Its first closeout head then changed the formal gate from `Blocked` to `Eligible`, while an executable audit validator still required the old marker. Local documentation-only trigger logic skipped that validator; Linux and macOS CI rejected the stale expectation. |
 | Artifact kind | Field validation of command, skill, runbook, checklist, evidence, and permission contracts |
 | TuiVision-specific exclusions | Do not promote feature numbering, Turbo Vision audit fields, project coverage gates, or Wave ordering. |
-| Generic target rule | Retain the current preset rules for convergence, explicit authority, no empty work, unavailable reviewers, reviewed-head gates, and causal closeout. |
-| Occurrence count | Confirmed across the six productization field runs, Feature 024, and Feature 027. |
+| Generic target rule | Before classifying documentation, status, schema, or evidence changes as test-free, search for executable validators that consume changed paths, markers, schemas, or state values. Update and run affected validators in the same slice. |
+| Occurrence count | One deterministic correctness and evidence-trigger defect in Feature 027. |
 | Confidence | High. |
 | Permission risk | High for remote delivery; no authority is inferred or widened. |
-| Reproducible test | Keep the existing synthetic permission-denial, no-empty-PR, unavailable-reviewer, duplicate-event, resume, and causal-closeout scenarios. |
-| Decision | `NoPromotion`; no missing command, skill, template, checklist, evidence field, or script requirement was observed. |
+| Reproducible test | In a temporary project, make an executable test read a Markdown gate marker, change the marker in a documentation-only closeout, and require readiness logic to discover and run that validator before allowing a test skip. |
+| Decision | `Promote` as a correctness rule in command, task, runbook, readiness-checklist, and agent addenda. No new script is required. |
 
 ## Package Boundary
 
-Feature 027 validates the existing `autonomous-run-governance` v0.1.0 payload
-and the Feature-024 Home-Baseline correction. It does not justify a preset
-version change, publication, or update to `github/spec-kit#3479`.
+Feature 027 validates the existing core contracts and the Feature-024
+Home-Baseline correction. The status-validator trigger gap justifies the
+bounded `autonomous-run-governance` v0.1.1 patch and an update to
+`github/spec-kit#3479` after package publication and ZIP verification.
