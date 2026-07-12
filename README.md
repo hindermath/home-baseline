@@ -2414,6 +2414,26 @@ Hinweis: Alle sechs Presets erzeugen bzw. verlangen ab diesem Release-Block audi
 
 *Note: Starting with this release block, all six presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
+Optional für ausdrücklich delegierte, vollständige Spec-Kit-Läufe ist
+`autonomous-run-governance` v0.1.0 mit Priorität `70`. Es ergänzt
+`speckit.autonomous`, `speckit.autonomous-retrospective`, konvergente
+Clarify-/Checklist-/Analyze-Gates, Evidence-first, Resume und einen
+berechtigungsgebundenen Remote-Closeout. Es gehört nicht zur unveränderten
+Standard-Sechsermatrix. `LocalImplementation` bleibt der sichere Default; die
+Installation erteilt keine Remote-, Merge-, Bypass- oder Provider-Rechte. Die
+optionale Siebenerkonfiguration liegt in
+[`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json).
+
+*For explicitly delegated complete Spec Kit runs, the optional
+`autonomous-run-governance` v0.1.0 preset uses priority `70`. It adds
+`speckit.autonomous`, `speckit.autonomous-retrospective`, convergence-based
+Clarify/checklist/Analyze gates, evidence-first execution, resume, and a
+permission-bounded remote closeout. It is not part of the unchanged standard
+six-preset matrix. `LocalImplementation` remains the safe default; installation
+grants no remote, merge, bypass, or provider rights. The optional seven-preset
+configuration is stored in
+[`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json).*
+
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
 | `security-governance` | Sichere Entwicklung, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard, Regulatory Applicability (NIS2/CRA/EU AI Act/DORA). / Secure development, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CAPEC, OpenSSF Scorecard, regulatory applicability (NIS2/CRA/EU AI Act/DORA). | Für alle produktionsnahen Projekte installieren. / Install for all production-like projects. |

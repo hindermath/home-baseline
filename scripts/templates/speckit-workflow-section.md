@@ -29,6 +29,12 @@ Standard-Set dieser Workspace-Familie ist:
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 
+Für ausdrücklich delegierte vollständige Läufe kann optional
+`autonomous-run-governance` v0.1.0 mit Priorität `70` über
+`scripts/config/spec-kit-autonomous-governance-presets.json` ergänzt werden.
+Die Standard-Sechsermatrix bleibt unverändert. `LocalImplementation` ist der
+sichere Default; Installation erteilt keine Remote-, Merge- oder Bypass-Rechte.
+
 Alle sechs Presets sind seit 2026-05-04 im `github/spec-kit`
 Community-Katalog enthalten. C#/.NET- und Lern-Level-2-Projekte verwenden
 standardmäßig alle sechs Presets, sofern keine begründete Ausnahme dokumentiert
@@ -72,6 +78,12 @@ workspace family is:
 | `a11y-governance` | A11Y Governance | `v0.4.0` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
+
+For explicitly delegated complete runs, optionally add
+`autonomous-run-governance` v0.1.0 at priority `70` through
+`scripts/config/spec-kit-autonomous-governance-presets.json`. The standard
+six-preset matrix remains unchanged. `LocalImplementation` is the safe default;
+installation grants no remote, merge, or bypass authority.
 
 All six presets are included in the `github/spec-kit` community catalog as of
 2026-05-04. C#/.NET and learning level-2 projects default to all six presets

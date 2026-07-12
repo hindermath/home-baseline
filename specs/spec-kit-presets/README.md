@@ -1,20 +1,23 @@
 # Spec Kit Preset Scaffolds
 
-This directory contains local scaffold repos for six Spec Kit presets
-derived from the `home-baseline` governance work.
+This directory contains local scaffolds for the six standard Spec Kit
+governance presets plus one optional autonomous-delivery preset derived from
+the `home-baseline` governance work.
 
 Target split:
 
-- `security-governance` — version `0.2.0`
-- `isaqb-architecture-governance` — version `0.1.0`
-- `architecture-governance` — version `0.2.0`
-- `a11y-governance` — version `0.2.0`
-- `agent-parity-governance` — version `0.2.0`
-- `cross-platform-governance` — version `0.1.0`
+- `security-governance` — version `0.6.0`
+- `architecture-governance` — version `0.5.0`
+- `isaqb-architecture-governance` — version `0.2.0`
+- `a11y-governance` — version `0.4.0`
+- `cross-platform-governance` — version `0.2.0`
+- `agent-parity-governance` — version `0.3.0`
+- optional `autonomous-run-governance` — version `0.1.0`
 
-All six presets require `spec-kit >= 0.8.0`. They depend on the
+The standard six presets require `spec-kit >= 0.8.0`. They depend on the
 `wrap` and `append` composition strategies introduced in 0.8.x; older
-Spec Kit versions cannot apply them.
+Spec Kit versions cannot apply them. `autonomous-run-governance` requires
+`spec-kit >= 0.8.3` and adds two new commands without replacing core commands.
 
 These scaffolds are intentionally kept as separate repo-shaped
 directories so they can later be moved into independent public GitHub
@@ -28,6 +31,7 @@ Recommended future repository names:
 - `hindermath/spec-kit-preset-a11y-governance`
 - `hindermath/spec-kit-preset-agent-parity-governance`
 - `hindermath/spec-kit-preset-cross-platform-governance`
+- `hindermath/spec-kit-preset-autonomous-run-governance`
 
 Source material in `home-baseline`:
 
@@ -91,9 +95,9 @@ MSL integration:
 
 Current status:
 
-- local scaffold only
-- not yet published as standalone repos
-- ready for validation in a Spec Kit test project
+- the six standard presets are published and catalogued
+- `autonomous-run-governance` v0.1.0 is the release candidate produced from
+  six TuiVision field runs
 
 Recommended publication order:
 
@@ -103,16 +107,18 @@ Recommended publication order:
 4. `a11y-governance`
 5. `cross-platform-governance`
 6. `agent-parity-governance`
+7. optional `autonomous-run-governance`
 
 Recommended install order for stacked use:
 
 ```bash
 specify preset add security-governance --priority 10
-specify preset add isaqb-architecture-governance --priority 15
 specify preset add architecture-governance --priority 20
-specify preset add cross-platform-governance --priority 25
-specify preset add a11y-governance --priority 30
-specify preset add agent-parity-governance --priority 40
+specify preset add isaqb-architecture-governance --priority 30
+specify preset add a11y-governance --priority 40
+specify preset add cross-platform-governance --priority 50
+specify preset add agent-parity-governance --priority 60
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.1.0.zip --priority 70
 ```
 
 Notes:
