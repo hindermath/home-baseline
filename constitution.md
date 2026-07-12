@@ -953,6 +953,14 @@ workspace family consists of:
 | `cross-platform-governance` | `v0.2.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.3.0` | `60` | synchronized agent guidance and agent-neutral Spec-Kit model routing across declared AI-agent files |
 
+`autonomous-run-governance` v0.1.0 at priority 70 is an optional, stackable
+delivery preset and is not part of the mandatory six-preset governance matrix.
+It may be installed from
+`scripts/config/spec-kit-autonomous-governance-presets.json` when a repository
+explicitly adopts complete autonomous Spec Kit runs. `LocalImplementation` is
+its safe default; installation grants no remote write, merge, bypass,
+cancellation, secret, or provider-administration authority.
+
 All six governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint records applicability as `Applicable`, `N/A`, or `Open` and implementation separately as `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`, plus rationale, evidence path, owner, reviewer, residual risk, re-evaluation trigger, and follow-up. `N/A` keeps implementation at `Not Assessed` and always needs a rationale.
 
 The central secure-development baseline is versioned by `docs/secure-development/baseline-manifest.json`. Its twelve individual checklists and 157 stable CL IDs are canonical; the compendium is generated and MUST pass `build-secure-development-docs.*` check mode. Reusable templates are separate from project evidence under `docs/security/secure-development/<date>-<scope>/`. Secure-development teaching starts with the first repository access and coding task and follows the year 1 to year 3 learning path. Registry-based baseline-only propagation MUST NOT modify Lastenhefte, project evidence, or start Spec Kit.
@@ -964,6 +972,10 @@ preset version or priority change MUST update the central matrix first, then the
 matching compact overview in `README.md`, `.specify/memory/constitution.md`, the
 four agent guidance files, `scripts/templates/speckit-workflow-section.md`, and
 the matching agent templates under `scripts/templates/` in the same change.
+The optional seven-preset composition is maintained separately in
+`scripts/config/spec-kit-autonomous-governance-presets.json`; it MUST preserve
+the standard six entries unchanged and place `autonomous-run-governance` at
+priority 70.
 
 All six presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*` and are included in the

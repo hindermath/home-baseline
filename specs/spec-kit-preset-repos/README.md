@@ -1,7 +1,8 @@
 # Spec Kit Preset Repository Scaffolds
 
-This directory contains repo-shaped release candidates for the six
-home-baseline-derived Spec Kit governance presets.
+This directory contains repo-shaped release candidates for the six standard
+home-baseline-derived Spec Kit governance presets and the optional autonomous
+run preset.
 
 Each subdirectory is intended to become a standalone GitHub repository:
 
@@ -11,6 +12,7 @@ Each subdirectory is intended to become a standalone GitHub repository:
 - `spec-kit-preset-a11y-governance`
 - `spec-kit-preset-agent-parity-governance`
 - `spec-kit-preset-cross-platform-governance`
+- `spec-kit-preset-autonomous-run-governance`
 
 The scaffolds intentionally do not contain nested `.git/` directories.
 Create standalone repositories outside this root workspace before
@@ -35,11 +37,12 @@ recommended priority order:
 
 ```bash
 specify preset add --dev /path/to/spec-kit-preset-security-governance --priority 10
-specify preset add --dev /path/to/spec-kit-preset-isaqb-architecture-governance --priority 15
 specify preset add --dev /path/to/spec-kit-preset-architecture-governance --priority 20
-specify preset add --dev /path/to/spec-kit-preset-cross-platform-governance --priority 25
-specify preset add --dev /path/to/spec-kit-preset-a11y-governance --priority 30
-specify preset add --dev /path/to/spec-kit-preset-agent-parity-governance --priority 40
+specify preset add --dev /path/to/spec-kit-preset-isaqb-architecture-governance --priority 30
+specify preset add --dev /path/to/spec-kit-preset-a11y-governance --priority 40
+specify preset add --dev /path/to/spec-kit-preset-cross-platform-governance --priority 50
+specify preset add --dev /path/to/spec-kit-preset-agent-parity-governance --priority 60
+specify preset add --dev /path/to/spec-kit-preset-autonomous-run-governance --priority 70
 specify preset list
 specify preset resolve constitution-template
 ```
@@ -56,6 +59,7 @@ specify preset resolve architecture-agent-guidance-addendum-template
 specify preset resolve cross-platform-agent-guidance-addendum-template
 specify preset resolve a11y-agent-guidance-addendum-template
 specify preset resolve agent-parity-guidance-addendum-template
+specify preset resolve autonomous-run-agent-guidance-addendum-template
 ```
 
 Each preset also registers three wrap commands (`speckit.specify`,
@@ -69,4 +73,5 @@ specify preset info architecture-governance
 specify preset info cross-platform-governance
 specify preset info a11y-governance
 specify preset info agent-parity-governance
+specify preset info autonomous-run-governance
 ```
