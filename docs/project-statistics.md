@@ -84,6 +84,7 @@
 | 2026-07-12 | Autonomous-Run-Governance Feld-Input 023 | 61 | — | — | Sechsten Feldlauf als `+2541/-0`-Snapshot einschliesslich Feature-/Closeout-Evidence und fail-closed Bash-/PowerShell-Wrappern uebernommen. Promoviert wurden genau ein mutierbarer Validierungstoken pro explizitem Aufruf sowie Helper-Abnahme ueber expliziten Repo-Root, Exitcode und sauberen Fehlerkanal. Manualreferenz: `31,8` Tage beziehungsweise `247,7` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `25,4` Tage beziehungsweise `198,2` Stunden bei 100 Zeilen/Tag. |
 | 2026-07-12 | `autonomous-run-governance` v0.1.0 Release Candidate | 61 | 243 552 | 443 | Sechs Feldlaeufe zu einem optionalen, stackbaren Preset produktisiert: zwei Commands, Constitution-/Spec-/Plan-/Tasks-/Agent-Addenda, Runbook-, Evidence-, Retrospektiv- und Readiness-Vorlagen, Feldvalidierungsbericht, kanonischer Scaffold, Publikationskopie, MIT-Lizenz und getrennte Siebenerkonfiguration bei unveraenderter Standard-Sechsermatrix. Produktisierung vor Statistikpflege `+1390/-23`, also 1367 Nettozeilen. Dev-/lokaler ZIP-Install, siebenfache Komposition, List/Info/Resolve, Remove/Reinstall/Disable/Enable, genau eine Command-Oberflaeche in Codex/Claude/Copilot-Skills/Gemini sowie remote-freier synthetischer LocalImplementation-Lauf bis Analyze bestanden. Manualreferenz fuer 1390 hinzugefuegte oder aktualisierte Zeilen: `17,4` Tage beziehungsweise `135,5` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `13,9` Tage beziehungsweise `108,4` Stunden bei 100 Zeilen/Tag. Remote-PR, Tag-ZIP, Upstream-Issue und TuiVision-Dogfooding folgen als externe Abschlussgates. |
 | 2026-07-12 | `Programmierung #include<everyone>` / `Programming #include<everyone>` prominent propagiert | 61 | — | — | Verbindlichen Leitsatz bilingual sichtbar in Home-Baseline-README, zentralem Lernbereich, Lernenden-Start, Blueprint sowie Lernreihen-/Lernbegleiter-Vorlagen verankert; Vorlagen-README grenzt die bewusste Nicht-Wiederholung in einzelnen Aufgaben-Lastenheften ab. Idempotente README-Propagation dokumentiert und in drei Level-1- sowie 18 Level-2-Repositories umgesetzt; insgesamt 21 Ziel-Repositories mit README, beiden START-HERE-Kopien und Vorlagen synchronisiert. Reine Dokumentations- und Wartungslogik, keine Spec-Kit-, Build- oder Runtime-Ausfuehrung. |
+| 2026-07-12 | Autonomous-Run-Governance Feld-Input 024 | 61 | 243 608 | 446 | Siebten TuiVision-Feldlauf als Workitem uebernommen und die bereits in v0.1.0 enthaltene Clean-Error-Channel-Regel unabhaengig validiert. Der PowerShell-Homogeneity-Lauf hatte bei Exitcode 0 insgesamt 108 `PropertyNotFoundException`-Zeilen erzeugt; zwei Helfer normalisieren Zero-/One-/Many-Resultate jetzt array-sicher. PowerShell und Bash liefern mit explizitem Repo-Root jeweils genau ein parsebares JSON-Dokument und einen leeren Fehlerkanal. Der gesamte Branch-Diff einschliesslich Statistikpflege umfasst `+81/-25`, also 56 Nettozeilen; die fachliche Kernaenderung sind `+6/-4` PowerShell und ein 52-zeiliges Workitem. Manualreferenz fuer 81 hinzugefuegte oder aktualisierte Zeilen: `1,0` Tage beziehungsweise `7,9` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `0,8` Tage beziehungsweise `6,3` Stunden bei 100 Zeilen/Tag. Das Preset benoetigt keine Scope-Erweiterung, weil die portable Zielregel bereits enthalten ist. |
 
 ---
 
@@ -130,7 +131,7 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 4 | 005+006 — Workspace Teardown + GitLab | 10 769 | 21 | 2 | 2026-04-08 bis 04-11 |
 | 5 | proj — Bootstrap-Project + Release Please | 686 | 21 | 1 | 2026-04-12 |
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
-| 7 | autonomous — Feld-Inputs 018-023 + Preset v0.1.0 | 9 583 | 7 | 1 | 2026-07-12 |
+| 7 | autonomous — Feld-Inputs 018-024 + Preset v0.1.0 | 9 639 | 7 | 1 | 2026-07-12 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
 enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-11`. Dazu
@@ -229,27 +230,28 @@ main phase or a maintenance round in this statistics ledger.*
 Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
 dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
-Der langlebige Branch `codex/autonomous-run-governance-package` enthaelt jetzt
-alle sechs Feldlaeufe und den validierten v0.1.0-Release-Candidate. Phase 7 zeigt
-den vollstaendigen Paketstand vor Remote-PR, Tag-ZIP und Dogfooding.
+Der Branch `codex/autonomous-run-governance-package` enthaelt jetzt den siebten
+Feldlauf als Follow-up zum bereits veroeffentlichten v0.1.0-Preset. Phase 7
+zeigt den Paketstand mit der unabhaengig bestaetigten Error-Channel-Regel und
+dem korrigierten Home-Baseline-Helfer.
 
 *This closing block is based on the current repository snapshot plus the
 documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `243 552` Zeilen |
-| Operativer Code und Konfiguration / Operational code and configuration | `31 838` Zeilen (`13.1 %`) |
-| Dokumentationsanteil / Documentation share | `185 089` Zeilen (`76.0 %`) |
+| Artefaktbasis gesamt / Total artifact base | `243 608` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `31 840` Zeilen (`13.1 %`) |
+| Dokumentationsanteil / Documentation share | `185 143` Zeilen (`76.0 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-12` |
 | Sichtbare Git-Aktivtage / Observable active days | `61` |
-| Git-Commits gesamt / Total commits | `443` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.3` (`443 / 61`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 992.7` (`243 552 / 61`) |
-| Zeilen pro Commit / Lines per commit | `549.8` (`243 552 / 443`) |
-| Konservative Einzelentwickler-Untergrenze | `3 044.4` Arbeitstage / `23 746.3` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 435.5` Arbeitstage / `18 997.1` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `1 217.8` Arbeitstage |
+| Git-Commits gesamt / Total commits | `446` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.3` (`446 / 61`) |
+| Zeilen pro Aktivtag / Lines per active day | `3 993.6` (`243 608 / 61`) |
+| Zeilen pro Commit / Lines per commit | `546.2` (`243 608 / 446`) |
+| Konservative Einzelentwickler-Untergrenze | `3 045.1` Arbeitstage / `23 751.7` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 436.1` Arbeitstage / `19 001.4` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 218.0` Arbeitstage |
 | Repo-weiter Speedup gg. 80-Zeilen-Referenz | `49.9x` |
 | Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.9x` |
 
@@ -283,9 +285,9 @@ density, not stopwatch measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Skripte         | ###                            | 27 421 | 11.3 %
+Skripte         | ###                            | 27 423 | 11.3 %
 Konfiguration   | #                              |  4 417 |  1.8 %
-Dokumentation   | ######################         |185 089 | 76.0 %
+Dokumentation   | ######################         |185 143 | 76.0 %
 Daten/Medien    | ###                            | 26 625 | 10.9 %
 Sonstiges       |                                |      0 |  0.0 %
 ```
@@ -310,7 +312,7 @@ Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
 4 005+    | ##########               | 10 769
 5 proj    | #                        |    686
 6 presets | ########                 |  8 733
-7 autonom | #########                |  9 583
+7 autonom | #########                |  9 639
 ```
 
 Dieses Diagramm zeigt den Netto-Insertions-Beitrag der dokumentierten Phasen.
@@ -331,7 +333,7 @@ Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Ta
 4 005+    | ##########               |  134.6 d
 5 proj    | #                        |    8.6 d
 6 presets | ########                 |  109.2 d
-7 autonom | ###########              |  119.8 d
+7 autonom | ###########              |  120.5 d
 ```
 
 Jeder Balken zeigt, wie viele Arbeitstage ein erfahrener Einzelentwickler
@@ -355,7 +357,7 @@ Repo ges. | ################################################ | 49.9x
 4 005+    | ################################################ | 67.3x
 5 proj    | ########                         |  8.6x
 6 presets | ################################################ | 54.6x
-7 autonom | >> complete field package: 119.8x (outside scale)
+7 autonom | >> complete field package: 120.5x (outside scale)
 ```
 
 Hier werden keine Stoppuhrzeiten gemessen. Verglichen wird die dokumentierte
@@ -372,8 +374,8 @@ bundles six field runs and productization into one visible handoff day.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 3 044.4 d / 23 746.3 h
-Thorsten (100 Z./Tag)  | ###################      | 2 435.5 d / 18 997.1 h
+Erfahren (80 Z./Tag)   | ######################## | 3 045.1 d / 23 751.7 h
+Thorsten (100 Z./Tag)  | ###################      | 2 436.1 d / 19 001.4 h
 KI sichtbar            | #                        |    61.0 d
 ```
 
