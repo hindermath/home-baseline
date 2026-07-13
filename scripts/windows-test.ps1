@@ -68,6 +68,16 @@ if (Test-Path $wingetMaint) {
 }
 Add-Line ""
 
+Add-Line "=== Workspace Maintenance Check ==="
+$workspaceMaint = Join-Path $RepoDir 'scripts\maintain-agentic-workspace.ps1'
+if (Test-Path $workspaceMaint) {
+    $workspaceCheck = pwsh -NoProfile -File $workspaceMaint -CheckOnly -ScriptsOnly 2>&1
+    $workspaceCheck | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line "maintain-agentic-workspace.ps1: nicht gefunden"
+}
+Add-Line ""
+
 # === VS Code / Helix ===
 Add-Line "=== VS Code / Helix ==="
 if (Get-Command code -ErrorAction SilentlyContinue) {

@@ -201,6 +201,9 @@ function Register-HBRepository {
         if ((-not $PresetProfile) -and ($preserveCurated -or ($effectivePresetProfile -eq 'none')) -and ($existing.presetProfile -notin @($null, ''))) {
             $effectivePresetProfile = [string]$existing.presetProfile
         }
+        if ((-not $Role) -and $preserveCurated -and ($existing.role -notin @($null, ''))) {
+            $effectiveRole = [string]$existing.role
+        }
         if (($RegistrationSource -eq 'maintenance-discovery') -and $existing.source) {
             $RegistrationSource = [string]$existing.source
         }

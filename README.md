@@ -851,6 +851,7 @@ Jedes Script erfasst / Each script collects:
 - Installierte Tools (`git`, `gh`, `glab`, `rg`, `gitleaks`, `pwsh`, `node`, `npm`, `uv`, `python3`/`python`, `dotnet`, `go`, `java`, `javac`, `cargo`, `rustc`, `swift`, `syft`, `specify`, `podman`, `codex`, `claude`, `agy`/Antigravity, `copilot`, `code`, `hx`)
 - Paketmanager (`brew` / `apt`/`dnf` / `winget`)
 - Paketlisten und Registry-Vergleiche fuer `brew-apps-registry.json`, `winget-apps-registry.json`, `vscode-extensions-registry.json`, `required-cli-tools-registry.json` und `npm-agent-cli-registry.json`
+- Read-only-orientierter Repository-/Registry-/Propagationscheck des Workspace-Orchestrators / Read-oriented repository, registry, and propagation check from the workspace orchestrator
 - Ergebnis von `sync-home` und `check-homogeneity`
 
 Danach liegt die Ausgabedatei im Repo und kann von jedem anderen Gerät direkt gelesen und ausgewertet werden — z. B. von Copilot CLI unter Windows:
@@ -1094,6 +1095,8 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/check-gsdb-self-assessment.ps1` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (PowerShell Core) |
 | `scripts/maintain-agentic-brew-apps.sh` | Homebrew-/apt-Toolchain fuer agentische Entwicklung pflegen / Maintain Homebrew/apt toolchain for agentic development (Bash) |
 | `scripts/maintain-agentic-winget-apps.ps1` | WinGet-Toolchain fuer agentische Entwicklung pflegen / Maintain WinGet toolchain for agentic development (PowerShell Core) |
+| `scripts/maintain-agentic-workspace.sh` | Vollstaendige Level-0/1/2- und Toolchain-Wartung orchestrieren / Orchestrate complete Level-0/1/2 and toolchain maintenance (Bash) |
+| `scripts/maintain-agentic-workspace.ps1` | Funktionsgleiche Windows-Orchestrierung / Functionally equivalent Windows orchestration (PowerShell Core) |
 | `scripts/propagate-agentic-toolchain-maintenance.sh` | Kanonisches Wartungspaket in Level-1/Level-2 propagieren / Propagate the canonical maintenance package to Level-1/Level-2 (Bash) |
 | `scripts/propagate-agentic-toolchain-maintenance.ps1` | Funktionsgleiche PowerShell-Propagation / Functionally equivalent PowerShell propagation |
 | `scripts/config/brew-apps-registry.json` | Versionierte Homebrew-Registry fuer agentische Entwicklung / Versioned Homebrew registry for agentic development |
@@ -1332,6 +1335,52 @@ missing required tools; full maintenance including GSDB preflight preparation;
 or skip. Missing required tools reported by `--compare-only` / `-CompareOnly`
 are installed when maintenance is approved. Optional tools still require
 explicit approval.*
+
+### Ein Wartungsbefehl pro Betriebssystem / One maintenance command per OS
+
+Fuer die normale Gesamtwartung ist nur noch der passende Orchestrator noetig.
+Ohne Optionen aktualisiert er Level-0, synchronisiert `~/`, aktualisiert alle
+dynamisch erkannten Level-1-/Level-2-Repositories per Fast-forward, pflegt die
+lokale GSDB-Registry, prueft die Wartungspaket-Verteilung und wartet danach die
+Maschinen-Toolchain. Vor dem ersten echten Lauf auf einem weiteren System sind
+`--check-only` / `-CheckOnly` und anschliessend die Vorschau empfohlen.
+
+*Normal full maintenance now needs only the matching orchestrator. Without
+options it updates Level-0, synchronizes `~/`, fast-forwards all dynamically
+discovered Level-1/Level-2 repositories, maintains the local GSDB registry,
+checks maintenance-package distribution, and then maintains the machine
+toolchain. On another machine, run check-only and then preview before the first
+actual run.*
+
+```bash
+# macOS / Linux
+bash scripts/maintain-agentic-workspace.sh --check-only
+bash scripts/maintain-agentic-workspace.sh --dry-run
+bash scripts/maintain-agentic-workspace.sh
+```
+
+```powershell
+# Windows
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CheckOnly
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1
+```
+
+Mit `--scripts-only` / `-ScriptsOnly` bleibt die Maschinen-Toolchain
+unveraendert. Wartungspaket-Drift wird standardmaessig nur gemeldet und nur mit
+`--repair-drift` / `-RepairDrift` lokal korrigiert. Dieser Reparaturmodus
+commitet oder pusht nie: Exit `3` fordert zur separaten Pruefung der betroffenen
+Repositories auf. Dirty Worktrees, fehlende Upstreams, Ahead-/Diverged-Zustaende
+und detached HEAD werden nicht automatisch aufgeloest. Ein Lock verhindert
+parallele Laeufe; Logs liegen lokal unter `~/.home-baseline/logs/`.
+
+*Use `--scripts-only` / `-ScriptsOnly` to leave the machine toolchain unchanged.
+Maintenance-package drift is reported by default and repaired locally only with
+`--repair-drift` / `-RepairDrift`. Repair mode never commits or pushes; exit `3`
+requests separate review of affected repositories. Dirty worktrees, missing
+upstreams, ahead/diverged states, and detached HEAD are never resolved
+automatically. A lock prevents parallel runs; local logs are stored below
+`~/.home-baseline/logs/`.*
 
 ```bash
 bash scripts/maintain-agentic-brew-apps.sh --dry-run

@@ -25,6 +25,7 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/check-gsdb-self-assessment.*`: runs a GSDB preflight without starting Spec Kit and prepares a later GSDB intensive-review intake.
 - `scripts/maintain-agentic-brew-apps.sh`: maintains the macOS/Linux Homebrew or apt agentic-development toolchain from `scripts/config/brew-apps-registry.json`, VS Code extensions from `scripts/config/vscode-extensions-registry.json`, required CLI checks from `scripts/config/required-cli-tools-registry.json`, and npm agent CLIs from `scripts/config/npm-agent-cli-registry.json`.
 - `scripts/maintain-agentic-winget-apps.ps1`: maintains the Windows WinGet agentic-development toolchain from `scripts/config/winget-apps-registry.json`, VS Code extensions from `scripts/config/vscode-extensions-registry.json`, required CLI checks from `scripts/config/required-cli-tools-registry.json`, and npm agent CLIs from `scripts/config/npm-agent-cli-registry.json`.
+- `scripts/maintain-agentic-workspace.*`: orchestrates complete Level-0/1/2 fast-forward maintenance, home sync, registry/propagation checks, and the matching platform toolchain without committing or pushing target repositories.
 - `scripts/propagate-agentic-toolchain-maintenance.*`: checks and synchronizes the canonical maintenance scripts, registries, and manpages across existing Level-1/Level-2 repositories without committing or pushing.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories; uses `gitleaks` for pushed commit ranges when available and keeps the regex fallback.
 
@@ -42,6 +43,8 @@ bash scripts/scan-agent-secrets.sh --fail-on-high .
 bash scripts/audit-agent-changes.sh snapshot
 bash scripts/audit-agent-changes.sh report
 bash scripts/update-spec-kit.sh --dry-run
+bash scripts/maintain-agentic-workspace.sh --check-only
+bash scripts/maintain-agentic-workspace.sh --dry-run
 bash scripts/maintain-agentic-brew-apps.sh --dry-run
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 pwsh scripts/install-hooks.ps1 -Verbose
@@ -51,6 +54,8 @@ pwsh scripts/scan-agent-secrets.ps1 -FailOnHigh
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action snapshot
 pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
 pwsh -NoProfile scripts/update-spec-kit.ps1 -WhatIf
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CheckOnly
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf
 ```
 
@@ -411,6 +416,7 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 - Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-tmp` startet und keine strengere Read-only-Aufgabe im Vordergrund steht, fragt er einmal nach: nur pruefen, pruefen und fehlende Required-Tools installieren, vollstaendig inklusive GSDB-Preflight vorbereiten oder ueberspringen.
 - macOS/Linux nutzen `scripts/maintain-agentic-brew-apps.sh` und `scripts/config/brew-apps-registry.json`; Windows nutzt `scripts/maintain-agentic-winget-apps.ps1` und `scripts/config/winget-apps-registry.json`; VS-Code-Extensions werden ueber `scripts/config/vscode-extensions-registry.json`, Required-CLI-Pruefungen ueber `scripts/config/required-cli-tools-registry.json`, npm-Agenten-CLIs ueber `scripts/config/npm-agent-cli-registry.json` gepflegt.
 - Level-0 unter `~/home-baseline-tmp` ist die kanonische Quelle fuer diese Wartungsdateien. Bestehende Level-1-/Level-2-Kopien mit `propagate-agentic-toolchain-maintenance.*` zuerst als Vorschau, danach schreibend und abschliessend mit `--check-only` / `-CheckOnly` synchronisieren; das Werkzeug commitet oder pusht nicht.
+- Fuer komplette Wartungslaeufe `maintain-agentic-workspace.sh` auf macOS/Linux beziehungsweise `maintain-agentic-workspace.ps1` auf Windows verwenden. Ohne Optionen aktualisieren sie Level-0/1/2 und die Required-Toolchain; `--check-only` / `-CheckOnly` prueft, Vorschau zeigt Schreibschritte, und Drift-Reparatur bleibt mit `--repair-drift` / `-RepairDrift` ausdruecklich zustimmungspflichtig. Die Orchestratoren wechseln keine Branches und committen oder pushen keine Ziel-Repositories.
 - VS Code ist der grafische Required-Editor fuer Auszubildende; Helix (`hx`) ist der Required-A11Y-/CLI-Editor. Fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift sind die offiziellen minimalen VS-Code-Extensions required; Microsoft Container Tools ist zusaetzlich required fuer Podman-Workflows.
 - Podman CLI und Compose-Unterstuetzung sowie die sechs MSL-CLI-Toolchains `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind Required; `syft` fuer SBOM-Nachweise und GitHub Spec Kit (`specify`) fuer SDD sind ebenfalls Required. `specify` wird bei Bedarf ueber `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git` installiert.
 - Die Agenten-CLI-Oberflaechen `codex`, `claude` und `copilot` sind plattformuebergreifend Required und nutzen bei Bedarf die npm-Registry als Fallback. Google Antigravity ersetzt Gemini CLI; `agy` ist plattformuebergreifend Required: macOS nutzt Homebrew, Windows `Google.AntigravityCLI` per WinGet und Linux den pruefsummengeprueften offiziellen Installer.
@@ -422,6 +428,8 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 *Recurring toolchain maintenance rounds are documented in the README section `Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance`. macOS/Linux use `scripts/maintain-agentic-brew-apps.sh` with `scripts/config/brew-apps-registry.json`; Windows uses `scripts/maintain-agentic-winget-apps.ps1` with `scripts/config/winget-apps-registry.json`; VS Code extensions are maintained through `scripts/config/vscode-extensions-registry.json`, required CLI checks through `scripts/config/required-cli-tools-registry.json`, and npm agent CLIs through `scripts/config/npm-agent-cli-registry.json`. VS Code is the required graphical editor for apprentices; Helix (`hx`) is the required A11Y/CLI editor. The official minimal VS Code extensions are required for the six MSL paths C#, Go, Java, Python, Rust, and Swift; Microsoft Container Tools is also required for Podman workflows. Podman CLI and Compose support plus the six MSL CLI toolchains `.NET`, Go, Java/Javac, Python, Rust/Cargo, and Swift are required; `syft` for SBOM evidence and GitHub Spec Kit (`specify`) for SDD are required as well. The `codex`, `claude`, and `copilot` agent CLI surfaces are required across platforms and use the npm registry as a fallback when needed. Google Antigravity replaces Gemini CLI; `agy` is required cross-platform: macOS uses Homebrew, Windows uses `Google.AntigravityCLI` through WinGet, and Linux uses the checksum-verified official installer. `specify` is installed through `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git` when missing. Default runs install only `required`; `optional` records convenience/project context. `xquartz` stays intentionally excluded from the Brew registry. `gitleaks`, `syft`, `specify`, the MSL CLI toolchains, and the required agent CLIs must be verifiable after package-manager maintenance; compare second machines through the platform test scripts and then update the matching registry for intentional top-level tools.*
 
 *Level-0 under `~/home-baseline-tmp` is the canonical source for these maintenance files. Synchronize existing Level-1/Level-2 copies with `propagate-agentic-toolchain-maintenance.*`: preview first, apply second, and finish with `--check-only` / `-CheckOnly`. The tool performs no commits or pushes.*
+
+*Use `maintain-agentic-workspace.sh` on macOS/Linux or `maintain-agentic-workspace.ps1` on Windows for complete maintenance. With no options they update Level-0/1/2 and the required toolchain; check-only reports state, preview shows mutating steps, and drift repair requires explicit `--repair-drift` / `-RepairDrift`. The orchestrators never switch branches or commit/push target repositories.*
 
 *At startup in `~` or `~/home-baseline-tmp`, known AI agents ask once whether to check only, check and install missing required tools, prepare full maintenance including GSDB preflight, or skip. Missing required tools from compare mode may be installed after approval; optional tools require explicit approval.*
 

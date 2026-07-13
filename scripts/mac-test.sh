@@ -19,6 +19,9 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo "=== Agentic Brew Registry Vergleich ==="
   bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
   echo ""
+  echo "=== Workspace Maintenance Check ==="
+  bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-workspace.sh" --check-only --scripts-only 2>&1 || true
+  echo ""
   echo "=== VS Code / Helix ==="
   if command -v code > /dev/null 2>&1; then
     code --version 2>&1 || true

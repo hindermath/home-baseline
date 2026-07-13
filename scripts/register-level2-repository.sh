@@ -262,7 +262,8 @@ register_repository() {
     "$([ -n "$OPT_PRIMARY_LANGUAGE" ] && printf true || printf false)" \
     "$([ -n "$OPT_MSL_STATUS" ] && printf true || printf false)" \
     "$([ -n "$OPT_GSDB_REQUIRED" ] && printf true || printf false)" \
-    "$([ -n "$OPT_PRESET_PROFILE" ] && printf true || printf false)" <<'PY'
+    "$([ -n "$OPT_PRESET_PROFILE" ] && printf true || printf false)" \
+    "$([ -n "$OPT_ROLE" ] && printf true || printf false)" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -282,6 +283,7 @@ language_explicit = sys.argv[12] == "true"
 msl_explicit = sys.argv[13] == "true"
 gsdb_explicit = sys.argv[14] == "true"
 preset_explicit = sys.argv[15] == "true"
+role_explicit = sys.argv[16] == "true"
 
 if registry_path.exists():
     data = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -317,6 +319,8 @@ if existing:
         entry["gsdbRequired"] = existing.get("gsdbRequired", entry["gsdbRequired"])
     if not preset_explicit and (preserve_curated or preset_profile == "none") and existing.get("presetProfile") not in (None, ""):
         entry["presetProfile"] = existing["presetProfile"]
+    if not role_explicit and preserve_curated and existing.get("role") not in (None, ""):
+        entry["role"] = existing["role"]
     if source == "maintenance-discovery" and existing.get("source"):
         entry["source"] = existing["source"]
     entry["registeredAt"] = existing.get("registeredAt", today)
