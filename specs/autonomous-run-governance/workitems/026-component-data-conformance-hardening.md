@@ -54,16 +54,16 @@ validation, seven-preset composition, generated-agent parity, tag-ZIP smoke,
 and release decision.
 
 A future public update may reference `github/spec-kit#3499` only after the new
-package version and versioned ZIP have passed those checks. Until then,
-TuiVision keeps v0.1.2 installed and records this workitem as an open
-`PresetFollowUp`.
+package version and versioned ZIP have passed those checks. Until the public
+release and adoption complete, TuiVision keeps v0.1.2 installed and records
+this workitem as an open `PresetFollowUp`.
 
 ## Promotion Status
 
 | Field | Value |
 |---|---|
-| Target version | Candidate `autonomous-run-governance` v0.1.3; Home Baseline decides after implementation and validation |
-| Portable surfaces | Command, runbook, tasks, evidence, readiness, agent guidance, field-validation summary, and deterministic validator requirement |
-| Script decision | `Open`; executable payload requires demonstrated Bash/PowerShell parity and provider-neutral fixtures |
-| Local package validation | Not started by this handoff |
+| Target version | `autonomous-run-governance` v0.1.3 |
+| Portable surfaces | Command, generated skill, constitution/spec/plan/tasks addenda, runbook, evidence, readiness, agent guidance, two JSON templates, field-validation summary, and validator payload |
+| Script decision | `Promote`; read-only Bash and PowerShell validators passed equivalent success, tooling-only, stale-head, N/A-trigger, duplicate-Primary, empty-starter, and Supplemental fixtures |
+| Local package validation | Pass; see `specs/autonomous-run-governance/package-validation-v0.1.3.md` |
 | Release-dependent validation | Open until Home-Baseline review/merge, package tests, public tag, ZIP smoke, TuiVision adoption, and issue update |
