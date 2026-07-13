@@ -52,13 +52,13 @@ references independently.
 
 | Check | State | Completion evidence |
 |---|---|---|
-| Home-Baseline package PR | Open | PR checks, reviews, merge, and synchronized main |
-| Public repository patch | Open | publication copy pushed to the standalone repository |
-| Tag and release | Open | `v0.1.3` |
-| GitHub ZIP checksum/install | Open | versioned archive checksum and temporary-project install |
-| TuiVision adoption | Open | tag-ZIP install, no duplicate skills, seven-preset parity |
-| Upstream issue update | Open | concise evidence comment on `github/spec-kit#3499` |
+| Home-Baseline package PR | Pass | `hindermath/home-baseline#62`, merge `cb58d751ac477f95f9831a32feb4fd24a09387fb` |
+| Public repository patch | Pass | `hindermath/spec-kit-preset-autonomous-run-governance#3`, merge `5a6355c93e21341279eef51729f6a19ebff12d53` |
+| Tag and release | Pass | `v0.1.3` published on 2026-07-14 |
+| GitHub ZIP checksum/install | Pass | SHA-256 `c3a69a5fc6a75d268622ec9acbaee1b7c3f9960695b5bff39e4d8fca375da3`; payload and fresh-install smoke passed |
+| TuiVision adoption | Superseded | Tag-ZIP dogfooding found that the installer drops the Bash executable mode; v0.1.4 standardizes explicit interpreter invocation before adoption completes |
+| Upstream issue update | Superseded | v0.1.4 release and adoption evidence will provide the final update to `github/spec-kit#3499` |
 
-Release-dependent facts remain open until the corresponding provider or
-consumer state exists. Feature 028 starts only after the tag-ZIP and TuiVision
-adoption gates pass.
+Feature 028 starts only after the v0.1.4 tag-ZIP and TuiVision adoption gates
+pass. Superseding v0.1.3 at the consumer boundary preserves its validated gate
+schema while correcting the installer-facing invocation contract.

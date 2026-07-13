@@ -88,6 +88,7 @@
 | 2026-07-12 | Level-2-Umgebungsregister bereinigt und dauerhaft synchronisierbar | 61 | — | — | Alle 31 verwalteten Level-0-/Level-1-/Level-2-Repositories fast-forward aktualisiert; operative GSDB-Registry auf 24 klassifizierte Level-2-Repositories ohne `unknown` gebracht; kanonisches Umgebungsregister auf die 24 real vorhandenen Pfade reduziert. `propagate-security-guidance.*` synchronisiert das Register nun mit einem isolierten Registry-only-Modus in beiden Constitution-Dateien, ohne projektspezifische Governance oder fremde Arbeitsstaende anzutasten. |
 | 2026-07-13 | Agentisches Toolchain-Wartungspaket propagiert | 62 | — | — | Kanonische Neun-Dateien-Menge fuer beide Wartungsskripte, fuenf Registries und zwei Manpages als Manifest festgelegt; native, idempotente Bash-/PowerShell-Propagation mit Dry-Run, Drift-Check, Registry-/Dynamik-Erkennung und Schutz lokal veraenderter Zieldateien umgesetzt. Isolierte Schreib-, Idempotenz- und Schutztests bestanden; 256 Dateidifferenzen ohne Schutzkonflikt in sechs Level-1- und 24 Level-2-Repositories synchronisiert, mit 30 gezielten Commits gepusht und abschliessend durch beide Implementierungen als `30/30 current` sowie zusammen mit Level-0 als `31/31` clean und remote-paritaetisch bestaetigt. |
 | 2026-07-13 | Plattformuebergreifender Wartungsorchestrator | 62 | — | — | Je einen zentralen Bash- und PowerShell-7-Orchestrator fuer die komplette Level-0-/Level-1-/Level-2- und Maschinenwartung ergaenzt. Standardlaeufe aktualisieren nur per Fast-forward, synchronisieren die lokale Home-Baseline, pflegen Registry und Required-Toolchain und pruefen die kanonische Wartungspaket-Verteilung; Check-only, Vorschau, Scripts-only, optionale Pakete und ausdrueckliche Drift-Reparatur sind getrennte Modi. Lock, lokale Logs sowie Dirty-, detached-HEAD-, fehlender-Upstream-, Ahead-/Diverged- und No-Commit/No-Push-Gates dokumentiert; Registry-Wartungsscans bewahren nun zusaetzlich kuratierte Repository-Rollen. Isolierte lokale Bare-Remote-Tests fuer Fast-forward, Check-only ohne Pull, Dirty-/Ahead-Schutz, Reparatur mit Exit `3`, kanonische Home-Pfade und Bash-/PowerShell-Paritaet bestanden. |
+| 2026-07-14 | `autonomous-run-governance` v0.1.3/v0.1.4 Gate-Evidence-Haertung | 63 | 247 923 | 462 | Zwei unabhaengige TuiVision-Feldfunde in v0.1.3 als maschinenlesbare Gate-Requirements, exakte HEAD-Evidence sowie read-only Bash-/PowerShell-Validatoren produktisiert. Home-PR #62, oeffentlicher Preset-PR #3, Tag, Release und ZIP-Smoke bestanden. Beim TuiVision-Dogfooding verlor der installierte Bash-Validator erwartbar das Git-Ausfuehrungsbit; v0.1.4 standardisiert deshalb ohne Schema- oder Autoritaetsaenderung `bash <validator.sh>` und `pwsh -NoProfile -File <validator.ps1>`. Der begrenzte v0.1.4-Patch umfasst vor Statistikpflege `+142/-58`, also 84 Nettozeilen; konservative Manualreferenz `1,8` Tage beziehungsweise `13,8` Stunden, Thorsten-Solo `1,4` Tage beziehungsweise `11,1` Stunden. Sieben-Preset-Komposition, lokaler Release-ZIP mit installiertem Modus `0644`, beide Interpreterpfade und unveraenderte Berechtigungsgrenzen sind nachgewiesen. |
 
 ---
 
@@ -233,33 +234,33 @@ main phase or a maintenance round in this statistics ledger.*
 Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
 dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
-Der Branch `codex/autonomous-run-governance-package` enthaelt jetzt den siebten
-Feldlauf als Follow-up zum bereits veroeffentlichten v0.1.0-Preset. Phase 7
-zeigt den Paketstand mit der unabhaengig bestaetigten Error-Channel-Regel und
-dem korrigierten Home-Baseline-Helfer.
+Das optionale siebte Preset liegt mit maschinenlesbaren Acceptance-Gates und
+exakter HEAD-Evidence vor. Der v0.1.4-Patch macht den Validatoraufruf auch dann
+portabel, wenn ZIP-Extraktion oder Preset-Installation das Ausfuehrungsbit des
+Bash-Skripts nicht bewahrt.
 
 *This closing block is based on the current repository snapshot plus the
 documented main phases and maintenance rounds from the sections above.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `243 608` Zeilen |
-| Operativer Code und Konfiguration / Operational code and configuration | `31 840` Zeilen (`13.1 %`) |
-| Dokumentationsanteil / Documentation share | `185 143` Zeilen (`76.0 %`) |
-| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-12` |
-| Sichtbare Git-Aktivtage / Observable active days | `61` |
-| Git-Commits gesamt / Total commits | `446` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.3` (`446 / 61`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 993.6` (`243 608 / 61`) |
-| Zeilen pro Commit / Lines per commit | `546.2` (`243 608 / 446`) |
-| Konservative Einzelentwickler-Untergrenze | `3 045.1` Arbeitstage / `23 751.7` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 436.1` Arbeitstage / `19 001.4` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `1 218.0` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `49.9x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.9x` |
+| Artefaktbasis gesamt / Total artifact base | `247 923` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `32 511` Zeilen (`13.1 %`) |
+| Dokumentationsanteil / Documentation share | `185 948` Zeilen (`75.0 %`) |
+| Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-14` |
+| Sichtbare Git-Aktivtage / Observable active days | `63` |
+| Git-Commits gesamt / Total commits | `462` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.3` (`462 / 63`) |
+| Zeilen pro Aktivtag / Lines per active day | `3 935.3` (`247 923 / 63`) |
+| Zeilen pro Commit / Lines per commit | `536.6` (`247 923 / 462`) |
+| Konservative Einzelentwickler-Untergrenze | `3 099.0` Arbeitstage / `24 172.5` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 479.2` Arbeitstage / `19 338.0` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 239.6` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `49.2x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.4x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `76.0 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `75.0 %` der
 sichtbaren Basis liegen in Markdown-Artefakten. Operative Skripte und
 strukturierte Konfiguration machen zusammen `13.5 %` aus. Der groesste
 dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer Homogeneity
@@ -273,7 +274,7 @@ beschreiben keine Stoppuhrzeit, sondern sichtbare Lieferdichte gegen
 konservative manuelle Referenzmodelle.
 
 *Short summary: `home-baseline` remains documentation- and governance-driven:
-`76.0 %` of the visible base sits in Markdown artifacts. Operational scripts
+`75.0 %` of the visible base sits in Markdown artifacts. Operational scripts
 and structured configuration together account for `13.5 %`. The largest
 documented volume jump remains Phase `1` (Spec-Kit batch for Homogeneity
 Guardian). The current maintenance round updates the managed workspace
