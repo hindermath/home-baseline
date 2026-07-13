@@ -73,3 +73,13 @@ The implementation should be exercised in a temporary project for both an
 authorized delivery mode and a local-only mode before release. A later public
 update may reference `github/spec-kit#3499` only after the package and versioned
 ZIP have been validated.
+
+## Promotion Status
+
+| Field | Value |
+|---|---|
+| Target version | `autonomous-run-governance` v0.1.2 |
+| Portable surfaces | Command, runbook, tasks, evidence, readiness, agent guidance, and field-validation summary |
+| Script decision | `N/A`; existing Git commands provide deterministic proof without a new cross-platform payload |
+| Local package validation | Pass; see `specs/autonomous-run-governance/package-validation-v0.1.2.md` |
+| Release-dependent validation | Open until Home-Baseline merge, public tag, ZIP smoke, TuiVision adoption, and issue update exist |

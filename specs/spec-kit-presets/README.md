@@ -12,7 +12,7 @@ Target split:
 - `a11y-governance` — version `0.4.0`
 - `cross-platform-governance` — version `0.2.0`
 - `agent-parity-governance` — version `0.3.0`
-- optional `autonomous-run-governance` — version `0.1.0`
+- optional `autonomous-run-governance` — version `0.1.2`
 
 The standard six presets require `spec-kit >= 0.8.0`. They depend on the
 `wrap` and `append` composition strategies introduced in 0.8.x; older
@@ -96,8 +96,8 @@ MSL integration:
 Current status:
 
 - the six standard presets are published and catalogued
-- `autonomous-run-governance` v0.1.0 is the release candidate produced from
-  six TuiVision field runs
+- `autonomous-run-governance` v0.1.2 is the current patch release produced from
+  seven TuiVision product field runs plus audit and closure evidence
 
 Recommended publication order:
 
@@ -118,7 +118,7 @@ specify preset add isaqb-architecture-governance --priority 30
 specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
-specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.1.0.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.1.2.zip --priority 70
 ```
 
 Notes:
