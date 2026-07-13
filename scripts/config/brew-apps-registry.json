@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-11",
+  "updated": "2026-07-13",
   "description": "Homebrew top-level package registry for agentic development across the Level-0, Level-1, and Level-2 repositories.",
   "policy": {
     "formulaSource": "brew leaves --installed-on-request",
@@ -20,7 +20,6 @@
     { "name": "glab", "scope": "required", "purpose": "GitLab CLI binary; provider sign-in is required only for a GitLab profile" },
     { "name": "go", "scope": "required", "purpose": "Memory-safe Go toolchain" },
     { "name": "helix", "scope": "required", "apt": "helix", "purpose": "Terminal-native A11Y editor with language-server support" },
-    { "name": "jetbrains/junie/junie", "scope": "optional", "purpose": "JetBrains Junie command-line agent from the trusted JetBrains tap" },
     { "name": "lynx", "scope": "optional", "apt": "lynx", "purpose": "Text browser for accessibility-oriented checks" },
     { "name": "midnight-commander", "scope": "optional", "apt": "mc", "purpose": "Terminal file manager" },
     { "name": "mongodb/brew/mongodb-community", "scope": "optional", "purpose": "MongoDB local database for compatible projects" },
@@ -36,7 +35,6 @@
     { "name": "postgresql@18", "scope": "optional", "purpose": "PostgreSQL local database for compatible projects" },
     { "name": "powershell", "scope": "required", "purpose": "PowerShell 7 parity scripts" },
     { "name": "python@3.14", "scope": "required", "apt": "python3", "purpose": "Python MSL CLI toolchain for learning-series repositories" },
-    { "name": "qwen-code", "scope": "required", "purpose": "Qwen command-line coding agent" },
     { "name": "rust", "scope": "required", "purpose": "Memory-safe Rust toolchain" },
     { "name": "syft", "scope": "required", "purpose": "SBOM generation for supply-chain evidence" },
     { "name": "uv", "scope": "required", "purpose": "Python package/tool runner and Spec Kit installation support" },
