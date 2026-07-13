@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-07-13",
+  "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
+  "files": [
+    {
+      "path": "scripts/maintain-agentic-brew-apps.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/maintain-agentic-winget-apps.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/brew-apps-registry.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/winget-apps-registry.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/vscode-extensions-registry.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/required-cli-tools-registry.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/npm-agent-cli-registry.json",
+      "executable": false
+    },
+    {
+      "path": "docs/man/maintain-agentic-brew-apps.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/maintain-agentic-winget-apps.1.md",
+      "executable": false
+    }
+  ]
+}

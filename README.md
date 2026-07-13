@@ -1094,11 +1094,14 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/check-gsdb-self-assessment.ps1` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (PowerShell Core) |
 | `scripts/maintain-agentic-brew-apps.sh` | Homebrew-/apt-Toolchain fuer agentische Entwicklung pflegen / Maintain Homebrew/apt toolchain for agentic development (Bash) |
 | `scripts/maintain-agentic-winget-apps.ps1` | WinGet-Toolchain fuer agentische Entwicklung pflegen / Maintain WinGet toolchain for agentic development (PowerShell Core) |
+| `scripts/propagate-agentic-toolchain-maintenance.sh` | Kanonisches Wartungspaket in Level-1/Level-2 propagieren / Propagate the canonical maintenance package to Level-1/Level-2 (Bash) |
+| `scripts/propagate-agentic-toolchain-maintenance.ps1` | Funktionsgleiche PowerShell-Propagation / Functionally equivalent PowerShell propagation |
 | `scripts/config/brew-apps-registry.json` | Versionierte Homebrew-Registry fuer agentische Entwicklung / Versioned Homebrew registry for agentic development |
 | `scripts/config/winget-apps-registry.json` | Versionierte WinGet-Registry fuer agentische Entwicklung / Versioned WinGet registry for agentic development |
 | `scripts/config/vscode-extensions-registry.json` | Versionierte VS-Code-Extension-Registry fuer sechs MSL-Pfade / Versioned VS Code extension registry for six MSL paths |
 | `scripts/config/required-cli-tools-registry.json` | Versionierte Required-CLI-Pruefregistry fuer sechs MSL-Pfade, SBOM, Spec Kit und Agenten-CLIs / Versioned required CLI check registry for six MSL paths, SBOM, Spec Kit, and agent CLIs |
 | `scripts/config/npm-agent-cli-registry.json` | Versionierte npm-Registry fuer global installierte Agenten-CLIs / Versioned npm registry for globally installed agent CLIs |
+| `scripts/config/agentic-toolchain-maintenance-files.json` | Kanonische Dateiliste des propagierten Wartungspakets / Canonical file list for the propagated maintenance package |
 | `constitution.md` | Workspace-Verfassung, Sync-Quelle fuer alle Workspaces / Workspace constitution, sync source for all workspaces |
 | `scripts/templates/readme-template.md` | Bilinguale README-Vorlage mit A11Y-, Spec-Kit- und Azubi-Abschnitt / Bilingual README template with A11Y, Spec-Kit, and apprentice section |
 | `scripts/templates/a11y-section.md` | Barrierefreiheits-Abschnitt / Accessibility section template |
@@ -1280,6 +1283,14 @@ Die Paketmanager-Registries unterscheiden `required` und `optional`;
 Standardlaeufe installieren nur `required`. `xquartz` ist lokal erlaubt, aber
 bewusst aus der Brew-Registry ausgeschlossen.
 
+Level-0 unter `~/home-baseline-tmp` ist zugleich die kanonische Quelle fuer das
+Wartungspaket in bestehenden Level-1-/Level-2-Repositories. Die kontrollierte
+Dateiliste steht in
+[`scripts/config/agentic-toolchain-maintenance-files.json`](scripts/config/agentic-toolchain-maintenance-files.json).
+Das Propagationswerkzeug aktualisiert nur diese Dateien, ueberschreibt keine
+lokal veraenderte verwaltete Datei und fuehrt selbst keine Git-Commits oder
+Pushes aus.
+
 *Recurring agentic toolchain maintenance keeps the programs stable that are
 needed for work in level-0, level-1, and level-2 repositories. For apprentices,
 the minimum standard deliberately has two editor paths: VS Code is the graphical
@@ -1298,6 +1309,13 @@ Globally installed npm agent CLIs are maintained in
 The package-manager registries distinguish `required` from `optional`; default
 runs install only `required`. `xquartz` may be installed locally, but is
 intentionally excluded from the Brew registry.*
+
+*Level-0 under `~/home-baseline-tmp` is also the canonical source for the
+maintenance package in existing Level-1/Level-2 repositories. The controlled
+file list lives in
+[`scripts/config/agentic-toolchain-maintenance-files.json`](scripts/config/agentic-toolchain-maintenance-files.json).
+The propagation tool updates only these files, never overwrites a locally
+modified managed file, and performs no Git commits or pushes itself.*
 
 Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-tmp` startet und keine
 strengere Read-only-Aufgabe im Vordergrund steht, soll er einmal nachfragen, ob
@@ -1325,6 +1343,24 @@ bash scripts/maintain-agentic-brew-apps.sh
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -CompareOnly
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
+```
+
+Vor und nach Aenderungen am Wartungspaket wird dessen Repository-Verteilung
+zuerst als Vorschau, danach als reiner Drift-Check ausgefuehrt.
+
+*Before and after changing the maintenance package, preview its repository
+distribution first and finish with a drift-only check.*
+
+```bash
+bash scripts/propagate-agentic-toolchain-maintenance.sh --dry-run
+bash scripts/propagate-agentic-toolchain-maintenance.sh
+bash scripts/propagate-agentic-toolchain-maintenance.sh --check-only
+```
+
+```powershell
+pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 -WhatIf
+pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1
+pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 -CheckOnly
 ```
 
 1. macOS/Linux zuerst mit `maintain-agentic-brew-apps.sh --dry-run` pruefen.
