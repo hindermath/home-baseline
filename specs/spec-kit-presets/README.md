@@ -96,8 +96,9 @@ MSL integration:
 Current status:
 
 - the six standard presets are published and catalogued
-- `autonomous-run-governance` v0.1.2 is the current patch release produced from
-  seven TuiVision product field runs plus audit and closure evidence
+- `autonomous-run-governance` v0.2.0 is the current minor release; it adds
+  validated lifecycle state plus explicit status, graceful-stop, and protected
+  resume commands to the existing TuiVision field evidence
 
 Recommended publication order:
 
@@ -118,7 +119,7 @@ specify preset add isaqb-architecture-governance --priority 30
 specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
-specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.1.2.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.0.zip --priority 70
 ```
 
 Notes:
