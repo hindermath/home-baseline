@@ -945,13 +945,17 @@ workspace family consists of:
 | `cross-platform-governance` | `v0.2.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.3.0` | `60` | synchronized agent guidance and agent-neutral Spec-Kit model routing across declared AI-agent files |
 
-`autonomous-run-governance` v0.1.0 at priority 70 is an optional, stackable
+`autonomous-run-governance` v0.2.0 at priority 70 is an optional, stackable
 delivery preset and is not part of the mandatory six-preset governance matrix.
 It may be installed from
 `scripts/config/spec-kit-autonomous-governance-presets.json` when a repository
 explicitly adopts complete autonomous Spec Kit runs. `LocalImplementation` is
 its safe default; installation grants no remote write, merge, bypass,
 cancellation, secret, or provider-administration authority.
+Its feature-local run state is validated at phase boundaries. A deliberate
+`PausedByUser` state requires `speckit.autonomous-resume`; a cooperative stop
+grants no process-kill or delivery authority, and interrupted operations must be
+revalidated before continuation.
 
 All six governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint records applicability as `Applicable`, `N/A`, or `Open` and implementation separately as `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`, plus rationale, evidence path, owner, reviewer, residual risk, re-evaluation trigger, and follow-up. `N/A` keeps implementation at `Not Assessed` and always needs a rationale.
 
