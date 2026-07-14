@@ -42,12 +42,14 @@ as a portable installed contract.
 
 | Check | State | Completion evidence |
 |---|---|---|
-| Home-Baseline package PR | Open | PR checks, reviews, merge, and synchronized main |
-| Public repository patch | Open | Publication copy pushed and reviewed in the standalone repository |
-| Tag and release | Open | `v0.1.4` |
-| GitHub ZIP checksum/install | Open | Versioned archive checksum and temporary-project installation |
-| TuiVision adoption | Open | Exact tag-ZIP install, unique skills, seven-preset parity, documentation gates |
-| Upstream issue update | Open | Concise evidence comment on `github/spec-kit#3499` |
+| Home-Baseline package PR | Pass | PR `hindermath/home-baseline#63`; implementation `ed61e65`; merge `9322fad9ba689d516da2c1391f12db7ef1818652`; all technical checks passed and local `main` was synchronized |
+| Public repository patch | Pass | PR `hindermath/spec-kit-preset-autonomous-run-governance#4`; implementation `72bcdf4`; merge `0ab22e3262ea0e44faf87408ae3a9c7366277e8b` |
+| Tag and release | Pass | Public release `v0.1.4`: <https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.1.4> |
+| GitHub ZIP checksum/install | Pass | Exact tag ZIP installed in a temporary project; SHA-256 `da667e2fd3fc5ccf0a29f7fd078d9f030f50ba267f659fc5b31bc000b59767e0`; explicit Bash and PowerShell fixture paths passed |
+| TuiVision adoption | Pass | PR `hindermath/TuiVision#76`; merge `9cc6f463916643d82c27392d32c96361e49366a8`; exact tag-ZIP payload, unique skills, seven-preset parity, exact-head validator proof, DocFX, A11Y, and text checks passed |
+| Upstream issue update | Pass | Patch-release evidence recorded in `github/spec-kit#3499`: <https://github.com/github/spec-kit/issues/3499#issuecomment-4964168467> |
 
-Feature 028 remains blocked until the v0.1.4 public ZIP and TuiVision adoption
-are complete. An external catalog update is not a local completion dependency.
+All local v0.1.4 release and adoption gates are complete. Feature 028 may start
+with the published preset; this closeout does not start that autonomous run.
+The merged Community Catalog contribution `github/spec-kit#3501` is additional
+upstream evidence and was not required for local completion.
