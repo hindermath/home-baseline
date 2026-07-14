@@ -4,13 +4,15 @@
     Prueft getrackte PowerShell-Dateien. / Analyzes tracked PowerShell files.
 
 .DESCRIPTION
-    Ermittelt PowerShell-Dateien mit git ls-files, importiert die in der
-    Modul-Registry festgelegte PSScriptAnalyzer-Version und beendet den Lauf
-    bei jedem Error- oder Warning-Befund mit Exitcode 1.
+    Ermittelt repo-eigene PowerShell-Dateien mit git ls-files, importiert die
+    in der Modul-Registry festgelegte PSScriptAnalyzer-Version und beendet den
+    Lauf bei jedem Error- oder Warning-Befund mit Exitcode 1. Explizit in der
+    Registry aufgefuehrte generierte Upstream-Pfade werden nicht analysiert.
 
-    Discovers PowerShell files through git ls-files, imports the
-    PSScriptAnalyzer version pinned in the module registry, and exits with code
-    1 for every Error or Warning finding.
+    Discovers repository-owned PowerShell files through git ls-files, imports
+    the PSScriptAnalyzer version pinned in the module registry, and exits with
+    code 1 for every Error or Warning finding. Generated upstream paths listed
+    explicitly in the registry are not analyzed.
 
 .PARAMETER RepositoryRoot
     Repository-Wurzel. Standard ist das Elternverzeichnis von scripts/.
@@ -58,13 +60,45 @@ if (-not $analyzer) {
 $requiredVersion = [version][string]$analyzer.version
 Import-Module PSScriptAnalyzer -RequiredVersion $requiredVersion -Force -ErrorAction Stop
 
-$relativeFiles = @(
+$excludedPathPrefixes = @(
+    if ($registryData.PSObject.Properties.Name -contains 'analysis') {
+        foreach ($prefix in @($registryData.analysis.excludedPathPrefixes)) {
+            ([string]$prefix).Replace('\', '/').TrimStart('/')
+        }
+    }
+)
+
+function Test-HBExcludedAnalysisPath {
+    param(
+        [Parameter(Mandatory)]
+        [string] $RelativePath,
+        [string[]] $Prefixes = @()
+    )
+
+    $normalizedPath = $RelativePath.Replace('\', '/')
+    foreach ($prefix in $Prefixes) {
+        if ($prefix -and $normalizedPath.StartsWith($prefix, [StringComparison]::OrdinalIgnoreCase)) {
+            return $true
+        }
+    }
+    return $false
+}
+
+$trackedPowerShellFiles = @(
     & git -C $RepositoryRoot ls-files -- '*.ps1' '*.psm1' '*.psd1' |
         Where-Object { $_ }
 )
 if ($LASTEXITCODE -ne 0) {
     throw 'git ls-files fehlgeschlagen / failed.'
 }
+$relativeFiles = @(
+    $trackedPowerShellFiles |
+        Where-Object { -not (Test-HBExcludedAnalysisPath -RelativePath $_ -Prefixes $excludedPathPrefixes) }
+)
+$excludedFiles = @(
+    $trackedPowerShellFiles |
+        Where-Object { Test-HBExcludedAnalysisPath -RelativePath $_ -Prefixes $excludedPathPrefixes }
+)
 
 $findings = @(
     foreach ($relativeFile in $relativeFiles) {
@@ -74,6 +108,9 @@ $findings = @(
 )
 
 Write-Host "PSScriptAnalyzer ${requiredVersion}: $($relativeFiles.Count) Dateien / files"
+if ($excludedFiles.Count -gt 0) {
+    Write-Host "Ausgenommen / excluded generated upstream files: $($excludedFiles.Count)"
+}
 if ($findings.Count -eq 0) {
     Write-Host 'OK: keine Error-/Warning-Befunde / no Error or Warning findings'
     exit 0

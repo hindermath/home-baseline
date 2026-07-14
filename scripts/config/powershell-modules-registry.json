@@ -3,6 +3,13 @@
   "updated": "2026-07-14",
   "description": "Required and optional PowerShell modules for cross-platform workspace maintenance and static analysis.",
   "repository": "PSGallery",
+  "analysis": {
+    "excludedPathPrefixes": [
+      ".specify/scripts/",
+      ".specify/extensions/"
+    ],
+    "exclusionReason": "Generated upstream GitHub Spec Kit PowerShell is maintained through update-spec-kit and is not repository-owned code."
+  },
   "modules": [
     {
       "name": "PSScriptAnalyzer",

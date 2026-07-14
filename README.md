@@ -355,12 +355,17 @@ npm --version
 PSScriptAnalyzer ist auf macOS, Linux und Windows ein Required-Modul. Die
 zentrale Registry legt Version `1.25.0` fest. Die normale Host-Wartung
 installiert sie im `CurrentUser`-Bereich; das Analyse-Gate prueft alle mit Git
-getrackten `.ps1`, `.psm1` und `.psd1`-Dateien.
+getrackten repo-eigenen `.ps1`, `.psm1` und `.psd1`-Dateien. Von GitHub Spec Kit
+erzeugte Upstream-Dateien unter `.specify/scripts/` und `.specify/extensions/`
+werden ueber `update-spec-kit.*` gepflegt und sind begruendet ausgenommen.
 
 *PSScriptAnalyzer is a required module on macOS, Linux, and Windows. The central
 registry pins version `1.25.0`. Normal host maintenance installs it in
-`CurrentUser` scope; the analysis gate checks every Git-tracked `.ps1`, `.psm1`,
-and `.psd1` file.*
+`CurrentUser` scope; the analysis gate checks every Git-tracked,
+repository-owned `.ps1`, `.psm1`, and `.psd1` file. Generated upstream GitHub
+Spec Kit files below `.specify/scripts/` and `.specify/extensions/` are
+maintained through `update-spec-kit.*` and are excluded with a recorded
+rationale.*
 
 ```powershell
 pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1 -CompareOnly
@@ -1499,7 +1504,9 @@ pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 -Check
    klar gemeldet.
 9. PSScriptAnalyzer `1.25.0` ist als Required-PowerShell-Modul festgelegt. Die
    Host-Wartung installiert oder prueft es im Benutzerkontext; der gemeinsame
-   Analyselauf muss fuer alle getrackten PowerShell-Dateien gruen sein.
+   Analyselauf muss fuer alle getrackten repo-eigenen PowerShell-Dateien gruen
+   sein; die in der Modul-Registry dokumentierten Spec-Kit-Upstream-Pfade sind
+   ausgenommen.
 10. Zweitgeraete werden ueber `mac-test.sh`, `linux-test.sh` und
    `windows-test.ps1` verglichen. Die Testausgaben enthalten Paketlisten und
    Registry-Diffs; bewusst installierte Top-Level-Tools werden danach in die
@@ -1555,7 +1562,8 @@ pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 -Check
    from the already configured apt sources; otherwise this is reported clearly.
 9. PSScriptAnalyzer `1.25.0` is pinned as a required PowerShell module. Host
    maintenance installs or checks it in user scope; the shared analysis run
-   must pass for every tracked PowerShell file.
+   must pass for every tracked, repository-owned PowerShell file; the Spec Kit
+   upstream paths documented in the module registry are excluded.
 10. Compare second machines through `mac-test.sh`, `linux-test.sh`, and
    `windows-test.ps1`. Their test outputs include package lists and registry
    diffs; intentionally installed top-level tools are then added to the matching
