@@ -66,5 +66,5 @@ patch therefore completes adoption before Feature 028.
 | Target version | Gate schema and validators in v0.1.3; installer-stable invocation in v0.1.4 |
 | Portable surfaces | Command, generated skill, constitution/spec/plan/tasks addenda, runbook, evidence, readiness, agent guidance, two JSON templates, field-validation summary, and validator payload |
 | Script decision | `Promote`; read-only Bash and PowerShell validators passed equivalent success, tooling-only, stale-head, N/A-trigger, duplicate-Primary, empty-starter, and Supplemental fixtures |
-| Local package validation | Pass for v0.1.3; installer-boundary follow-up in `specs/autonomous-run-governance/package-validation-v0.1.4.md` |
-| Release-dependent validation | v0.1.3 published; v0.1.4 review/merge, public tag, ZIP smoke, TuiVision adoption, and issue update remain |
+| Local package validation | Pass for v0.1.3 and v0.1.4; installer-boundary proof is complete in `specs/autonomous-run-governance/package-validation-v0.1.4.md` |
+| Release-dependent validation | Pass; Home-Baseline PR #63, public preset PR #4, release and tag ZIP v0.1.4, TuiVision adoption PR #76, and the `github/spec-kit#3499` evidence update are complete |

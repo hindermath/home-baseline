@@ -88,7 +88,7 @@
 | 2026-07-12 | Level-2-Umgebungsregister bereinigt und dauerhaft synchronisierbar | 61 | — | — | Alle 31 verwalteten Level-0-/Level-1-/Level-2-Repositories fast-forward aktualisiert; operative GSDB-Registry auf 24 klassifizierte Level-2-Repositories ohne `unknown` gebracht; kanonisches Umgebungsregister auf die 24 real vorhandenen Pfade reduziert. `propagate-security-guidance.*` synchronisiert das Register nun mit einem isolierten Registry-only-Modus in beiden Constitution-Dateien, ohne projektspezifische Governance oder fremde Arbeitsstaende anzutasten. |
 | 2026-07-13 | Agentisches Toolchain-Wartungspaket propagiert | 62 | — | — | Kanonische Neun-Dateien-Menge fuer beide Wartungsskripte, fuenf Registries und zwei Manpages als Manifest festgelegt; native, idempotente Bash-/PowerShell-Propagation mit Dry-Run, Drift-Check, Registry-/Dynamik-Erkennung und Schutz lokal veraenderter Zieldateien umgesetzt. Isolierte Schreib-, Idempotenz- und Schutztests bestanden; 256 Dateidifferenzen ohne Schutzkonflikt in sechs Level-1- und 24 Level-2-Repositories synchronisiert, mit 30 gezielten Commits gepusht und abschliessend durch beide Implementierungen als `30/30 current` sowie zusammen mit Level-0 als `31/31` clean und remote-paritaetisch bestaetigt. |
 | 2026-07-13 | Plattformuebergreifender Wartungsorchestrator | 62 | — | — | Je einen zentralen Bash- und PowerShell-7-Orchestrator fuer die komplette Level-0-/Level-1-/Level-2- und Maschinenwartung ergaenzt. Standardlaeufe aktualisieren nur per Fast-forward, synchronisieren die lokale Home-Baseline, pflegen Registry und Required-Toolchain und pruefen die kanonische Wartungspaket-Verteilung; Check-only, Vorschau, Scripts-only, optionale Pakete und ausdrueckliche Drift-Reparatur sind getrennte Modi. Lock, lokale Logs sowie Dirty-, detached-HEAD-, fehlender-Upstream-, Ahead-/Diverged- und No-Commit/No-Push-Gates dokumentiert; Registry-Wartungsscans bewahren nun zusaetzlich kuratierte Repository-Rollen. Isolierte lokale Bare-Remote-Tests fuer Fast-forward, Check-only ohne Pull, Dirty-/Ahead-Schutz, Reparatur mit Exit `3`, kanonische Home-Pfade und Bash-/PowerShell-Paritaet bestanden. |
-| 2026-07-14 | `autonomous-run-governance` v0.1.3/v0.1.4 Gate-Evidence-Haertung | 63 | 247 923 | 462 | Zwei unabhaengige TuiVision-Feldfunde in v0.1.3 als maschinenlesbare Gate-Requirements, exakte HEAD-Evidence sowie read-only Bash-/PowerShell-Validatoren produktisiert. Home-PR #62, oeffentlicher Preset-PR #3, Tag, Release und ZIP-Smoke bestanden. Beim TuiVision-Dogfooding verlor der installierte Bash-Validator erwartbar das Git-Ausfuehrungsbit; v0.1.4 standardisiert deshalb ohne Schema- oder Autoritaetsaenderung `bash <validator.sh>` und `pwsh -NoProfile -File <validator.ps1>`. Der begrenzte v0.1.4-Patch umfasst vor Statistikpflege `+142/-58`, also 84 Nettozeilen; konservative Manualreferenz `1,8` Tage beziehungsweise `13,8` Stunden, Thorsten-Solo `1,4` Tage beziehungsweise `11,1` Stunden. Sieben-Preset-Komposition, lokaler Release-ZIP mit installiertem Modus `0644`, beide Interpreterpfade und unveraenderte Berechtigungsgrenzen sind nachgewiesen. |
+| 2026-07-14 | `autonomous-run-governance` v0.1.3/v0.1.4 Gate-Evidence-Haertung | 63 | 247 929 | 462 | Zwei unabhaengige TuiVision-Feldfunde in v0.1.3 als maschinenlesbare Gate-Requirements, exakte HEAD-Evidence sowie read-only Bash-/PowerShell-Validatoren produktisiert. Home-PRs #62/#63, oeffentliche Preset-PRs #3/#4, Release und exakter Tag-ZIP-Smoke fuer v0.1.4 sowie die TuiVision-Adoption in PR #76 sind abgeschlossen; der Upstream-Nachweis steht in `github/spec-kit#3499`. Beim TuiVision-Dogfooding verlor der installierte Bash-Validator erwartbar das Git-Ausfuehrungsbit; v0.1.4 standardisiert deshalb ohne Schema- oder Autoritaetsaenderung `bash <validator.sh>` und `pwsh -NoProfile -File <validator.ps1>`. Der begrenzte v0.1.4-Patch umfasst vor Statistikpflege `+142/-58`, also 84 Nettozeilen; konservative Manualreferenz `1,8` Tage beziehungsweise `13,8` Stunden, Thorsten-Solo `1,4` Tage beziehungsweise `11,1` Stunden. Sieben-Preset-Komposition, installierter Modus `0644`, beide Interpreterpfade, eindeutige Agent-Oberflaechen und unveraenderte Berechtigungsgrenzen sind nachgewiesen; Feature 028 ist freigegeben, aber nicht gestartet. |
 
 ---
 
@@ -237,25 +237,29 @@ dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 Das optionale siebte Preset liegt mit maschinenlesbaren Acceptance-Gates und
 exakter HEAD-Evidence vor. Der v0.1.4-Patch macht den Validatoraufruf auch dann
 portabel, wenn ZIP-Extraktion oder Preset-Installation das Ausfuehrungsbit des
-Bash-Skripts nicht bewahrt.
+Bash-Skripts nicht bewahrt. Der exakte Tag-ZIP ist in TuiVision adoptiert und
+der Patch-Release-Nachweis im Community-Catalog-Issue dokumentiert.
 
 *This closing block is based on the current repository snapshot plus the
 documented main phases and maintenance rounds from the sections above.*
 
+*The exact tag ZIP is adopted in TuiVision, and the patch-release evidence is
+recorded in the Community Catalog issue.*
+
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `247 923` Zeilen |
+| Artefaktbasis gesamt / Total artifact base | `247 929` Zeilen |
 | Operativer Code und Konfiguration / Operational code and configuration | `32 511` Zeilen (`13.1 %`) |
-| Dokumentationsanteil / Documentation share | `185 948` Zeilen (`75.0 %`) |
+| Dokumentationsanteil / Documentation share | `185 954` Zeilen (`75.0 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-14` |
 | Sichtbare Git-Aktivtage / Observable active days | `63` |
 | Git-Commits gesamt / Total commits | `462` |
 | Git-Commits pro Aktivtag / Commits per active day | `7.3` (`462 / 63`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 935.3` (`247 923 / 63`) |
-| Zeilen pro Commit / Lines per commit | `536.6` (`247 923 / 462`) |
-| Konservative Einzelentwickler-Untergrenze | `3 099.0` Arbeitstage / `24 172.5` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 479.2` Arbeitstage / `19 338.0` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `1 239.6` Arbeitstage |
+| Zeilen pro Aktivtag / Lines per active day | `3 935.4` (`247 929 / 63`) |
+| Zeilen pro Commit / Lines per commit | `536.6` (`247 929 / 462`) |
+| Konservative Einzelentwickler-Untergrenze | `3 099.1` Arbeitstage / `24 173.1` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 479.3` Arbeitstage / `19 338.5` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 239.7` Arbeitstage |
 | Repo-weiter Speedup gg. 80-Zeilen-Referenz | `49.2x` |
 | Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.4x` |
 
