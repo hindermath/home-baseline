@@ -90,6 +90,7 @@
 | 2026-07-13 | Plattformuebergreifender Wartungsorchestrator | 62 | — | — | Je einen zentralen Bash- und PowerShell-7-Orchestrator fuer die komplette Level-0-/Level-1-/Level-2- und Maschinenwartung ergaenzt. Standardlaeufe aktualisieren nur per Fast-forward, synchronisieren die lokale Home-Baseline, pflegen Registry und Required-Toolchain und pruefen die kanonische Wartungspaket-Verteilung; Check-only, Vorschau, Scripts-only, optionale Pakete und ausdrueckliche Drift-Reparatur sind getrennte Modi. Lock, lokale Logs sowie Dirty-, detached-HEAD-, fehlender-Upstream-, Ahead-/Diverged- und No-Commit/No-Push-Gates dokumentiert; Registry-Wartungsscans bewahren nun zusaetzlich kuratierte Repository-Rollen. Isolierte lokale Bare-Remote-Tests fuer Fast-forward, Check-only ohne Pull, Dirty-/Ahead-Schutz, Reparatur mit Exit `3`, kanonische Home-Pfade und Bash-/PowerShell-Paritaet bestanden. |
 | 2026-07-14 | `autonomous-run-governance` v0.1.3/v0.1.4 Gate-Evidence-Haertung | 63 | 247 929 | 462 | Zwei unabhaengige TuiVision-Feldfunde in v0.1.3 als maschinenlesbare Gate-Requirements, exakte HEAD-Evidence sowie read-only Bash-/PowerShell-Validatoren produktisiert. Home-PRs #62/#63, oeffentliche Preset-PRs #3/#4, Release und exakter Tag-ZIP-Smoke fuer v0.1.4 sowie die TuiVision-Adoption in PR #76 sind abgeschlossen; der Upstream-Nachweis steht in `github/spec-kit#3499`. Beim TuiVision-Dogfooding verlor der installierte Bash-Validator erwartbar das Git-Ausfuehrungsbit; v0.1.4 standardisiert deshalb ohne Schema- oder Autoritaetsaenderung `bash <validator.sh>` und `pwsh -NoProfile -File <validator.ps1>`. Der begrenzte v0.1.4-Patch umfasst vor Statistikpflege `+142/-58`, also 84 Nettozeilen; konservative Manualreferenz `1,8` Tage beziehungsweise `13,8` Stunden, Thorsten-Solo `1,4` Tage beziehungsweise `11,1` Stunden. Sieben-Preset-Komposition, installierter Modus `0644`, beide Interpreterpfade, eindeutige Agent-Oberflaechen und unveraenderte Berechtigungsgrenzen sind nachgewiesen; Feature 028 ist freigegeben, aber nicht gestartet. |
 | 2026-07-14 | PSScriptAnalyzer Required-Baseline | 63 | — | — | PSScriptAnalyzer `1.25.0` als versionsgebundenes Required-PowerShell-Modul fuer macOS, Linux und Windows eingefuehrt; gemeinsame Modul-Registry, CurrentUser-Pflege, repositoryweiter Analyzer-Runner und dreiplattformiges CI-Gate ergaenzt. 718 Bestandswarnungen wurden fachlich bewertet: repositorybedingte Stilregeln sind eng dokumentiert ausgeschlossen, waehrend Korrektheits- und Sicherheitsregeln blockierend bleiben; alle verbleibenden echten Befunde wurden behoben und 59 getrackte PowerShell-Artefakte lokal mit null Befunden verifiziert. Wartungsskripte, Plattformtests, README, Manpages, Agenten-Guidance, Templates und 30-Repo-Propagationsmanifest wurden synchron fortgeschrieben. |
+| 2026-07-14 | `autonomous-run-governance` v0.2.0 Lifecycle-Haertung | 63 | — | 469 | Einen realen unerwarteten Unterbrechungs- und Benutzerstopp-Fall aus TuiVision Feature 028 als geschuetztes Lifecycle-Modell produktisiert: lesender Status, kooperativer Graceful Stop, explizit autorisierte Wiederaufnahme, sechs validierte Zustaende und `NeedsRevalidation` fuer unklare Operationen. Home-Baseline-PR #65, oeffentlicher Preset-PR #5, Tag/Release v0.2.0 und TuiVision-Adoptions-PR #78 sind gemergt; exakter Tag-ZIP-SHA-256 und Sieben-Preset-Komposition sind nachgewiesen. Der Implementierungscommit umfasst `+1769/-57`, also 1712 Nettozeilen in kanonischem und publizierbarem Preset, vier portablen Lifecycle-/Gate-Validatoren, fuenf Commands, Runbooks, Templates, Agent-Guidance und Feld-Workitem. Konservative Manualreferenz: `22,1` Tage beziehungsweise `172,5` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `17,7` Tage beziehungsweise `138,0` Stunden bei 100 Zeilen/Tag. Feature 028 bleibt vor der Implementierung pausiert; echter Resume-Feldnachweis und Community-Catalog-Folgeissue bleiben bis zur ausdruecklichen Freigabe zurueckgestellt. |
 
 ---
 
@@ -235,17 +236,20 @@ main phase or a maintenance round in this statistics ledger.*
 Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
 dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
-Das optionale siebte Preset liegt mit maschinenlesbaren Acceptance-Gates und
-exakter HEAD-Evidence vor. Der v0.1.4-Patch macht den Validatoraufruf auch dann
-portabel, wenn ZIP-Extraktion oder Preset-Installation das Ausfuehrungsbit des
-Bash-Skripts nicht bewahrt. Der exakte Tag-ZIP ist in TuiVision adoptiert und
-der Patch-Release-Nachweis im Community-Catalog-Issue dokumentiert.
+Das optionale siebte Preset liegt mit maschinenlesbaren Acceptance-Gates,
+exakter HEAD-Evidence und einem validierten Laufzustand vor. v0.2.0 ergänzt
+lesenden Status, kooperatives Stoppen und geschützte Wiederaufnahme, ohne aus
+gespeichertem Zustand neue Remote-Berechtigung abzuleiten. Der exakte Tag-ZIP
+ist in TuiVision adoptiert. Der Community-Catalog bleibt auf dem zuletzt real
+belegten Stand, bis Feature 028 einen echten Resume-Feldnachweis liefert.
 
 *This closing block is based on the current repository snapshot plus the
 documented main phases and maintenance rounds from the sections above.*
 
-*The exact tag ZIP is adopted in TuiVision, and the patch-release evidence is
-recorded in the Community Catalog issue.*
+*Version v0.2.0 adds read-only status, cooperative stop, protected resume, and
+validated run state without deriving current remote authority from stored
+history. The exact tag ZIP is adopted in TuiVision. The Community Catalog stays
+at its last field-proven version until Feature 028 provides a real resume proof.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
