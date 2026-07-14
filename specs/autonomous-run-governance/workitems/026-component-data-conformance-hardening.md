@@ -53,17 +53,18 @@ issue update. Home Baseline owns the bounded implementation, temporary-project
 validation, seven-preset composition, generated-agent parity, tag-ZIP smoke,
 and release decision.
 
-A future public update may reference `github/spec-kit#3499` only after the new
-package version and versioned ZIP have passed those checks. Until the public
-release and adoption complete, TuiVision keeps v0.1.2 installed and records
-this workitem as an open `PresetFollowUp`.
+The public v0.1.3 release passed package and ZIP checks. During TuiVision
+adoption, Spec Kit copied the Bash validator without its Git executable mode.
+The documented `bash` invocation worked, as did the PowerShell surface, but the
+ambiguous direct-path contract was not portable. A bounded v0.1.4 packaging
+patch therefore completes adoption before Feature 028.
 
 ## Promotion Status
 
 | Field | Value |
 |---|---|
-| Target version | `autonomous-run-governance` v0.1.3 |
+| Target version | Gate schema and validators in v0.1.3; installer-stable invocation in v0.1.4 |
 | Portable surfaces | Command, generated skill, constitution/spec/plan/tasks addenda, runbook, evidence, readiness, agent guidance, two JSON templates, field-validation summary, and validator payload |
 | Script decision | `Promote`; read-only Bash and PowerShell validators passed equivalent success, tooling-only, stale-head, N/A-trigger, duplicate-Primary, empty-starter, and Supplemental fixtures |
-| Local package validation | Pass; see `specs/autonomous-run-governance/package-validation-v0.1.3.md` |
-| Release-dependent validation | Open until Home-Baseline review/merge, package tests, public tag, ZIP smoke, TuiVision adoption, and issue update |
+| Local package validation | Pass for v0.1.3; installer-boundary follow-up in `specs/autonomous-run-governance/package-validation-v0.1.4.md` |
+| Release-dependent validation | v0.1.3 published; v0.1.4 review/merge, public tag, ZIP smoke, TuiVision adoption, and issue update remain |
