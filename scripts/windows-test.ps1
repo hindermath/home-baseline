@@ -68,6 +68,19 @@ if (Test-Path $wingetMaint) {
 }
 Add-Line ""
 
+Add-Line "=== PSScriptAnalyzer ==="
+$moduleMaintainer = Join-Path $RepoDir 'scripts\maintain-powershell-modules.ps1'
+$analyzerRunner = Join-Path $RepoDir 'scripts\invoke-psscriptanalyzer.ps1'
+if ((Test-Path $moduleMaintainer) -and (Test-Path $analyzerRunner)) {
+    $moduleComparison = pwsh -NoProfile -File $moduleMaintainer -CompareOnly 2>&1
+    $moduleComparison | ForEach-Object { Add-Line "$_" }
+    $analysisOutput = pwsh -NoProfile -File $analyzerRunner 2>&1
+    $analysisOutput | ForEach-Object { Add-Line "$_" }
+} else {
+    Add-Line 'PowerShell-Modulpflege oder PSScriptAnalyzer-Runner fehlt'
+}
+Add-Line ""
+
 Add-Line "=== Workspace Maintenance Check ==="
 $workspaceMaint = Join-Path $RepoDir 'scripts\maintain-agentic-workspace.ps1'
 if (Test-Path $workspaceMaint) {

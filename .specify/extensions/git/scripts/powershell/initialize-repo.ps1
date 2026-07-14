@@ -51,7 +51,9 @@ try {
         Write-Warning "[specify] Git repository already initialized; skipping"
         exit 0
     }
-} catch { }
+} catch {
+    Write-Verbose "Git repository check failed; initialization continues: $($_.Exception.Message)"
+}
 
 # Initialize
 try {

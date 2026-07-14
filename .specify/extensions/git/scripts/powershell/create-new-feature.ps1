@@ -134,7 +134,9 @@ function Get-NextBranchNumber {
     } else {
         try {
             git fetch --all --prune 2>$null | Out-Null
-        } catch { }
+        } catch {
+            Write-Verbose "git fetch failed and local branches will be used: $($_.Exception.Message)"
+        }
         $highestBranch = Get-HighestNumberFromBranches
     }
 
@@ -339,7 +341,11 @@ if (-not $DryRun) {
 
         if (-not $branchCreated) {
             $currentBranch = ''
-            try { $currentBranch = (git rev-parse --abbrev-ref HEAD 2>$null).Trim() } catch {}
+            try {
+                $currentBranch = (git rev-parse --abbrev-ref HEAD 2>$null).Trim()
+            } catch {
+                Write-Verbose "Current branch could not be read: $($_.Exception.Message)"
+            }
             $existingBranch = git branch --list $branchName 2>$null
             if ($existingBranch) {
                 if ($AllowExistingBranch) {

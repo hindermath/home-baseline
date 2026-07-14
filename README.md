@@ -350,7 +350,34 @@ npm --version
 > ```
 > *On Linux with a system-wide Node.js installation, `sudo` is required for global npm packages. Alternatively, use [nvm](https://github.com/nvm-sh/nvm) to avoid `sudo`.*
 
-### 6. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
+### 6. Erforderliches PowerShell-Analysemodul / Required PowerShell analysis module
+
+PSScriptAnalyzer ist auf macOS, Linux und Windows ein Required-Modul. Die
+zentrale Registry legt Version `1.25.0` fest. Die normale Host-Wartung
+installiert sie im `CurrentUser`-Bereich; das Analyse-Gate prueft alle mit Git
+getrackten `.ps1`, `.psm1` und `.psd1`-Dateien.
+
+*PSScriptAnalyzer is a required module on macOS, Linux, and Windows. The central
+registry pins version `1.25.0`. Normal host maintenance installs it in
+`CurrentUser` scope; the analysis gate checks every Git-tracked `.ps1`, `.psm1`,
+and `.psd1` file.*
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1 -CompareOnly
+pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1 -WhatIf
+pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1
+pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1
+```
+
+Die bewusst ausgeschlossenen Regeln betreffen etablierte CLI-Ausgabe,
+UTF-8-ohne-BOM, stabile Funktionsnamen und vorhandene Vorschau-Semantik.
+Korrektheits- und Sicherheitswarnungen bleiben blockierend.
+
+*Intentional exclusions cover established CLI output, UTF-8 without BOM,
+stable function names, and existing preview semantics. Correctness and security
+warnings remain blocking.*
+
+### 7. Empfohlene PowerShell-Module *(optional, einmalig / optional, once)*
 
 ```powershell
 Install-Module -Name posh-git            -Scope CurrentUser -Force  # Git-Prompt + Tab-Completion
@@ -1095,6 +1122,8 @@ Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** 
 | `scripts/check-gsdb-self-assessment.ps1` | GSDB-Preflight und Spec-Kit-Intake vorbereiten / Prepare GSDB preflight and Spec Kit intake (PowerShell Core) |
 | `scripts/maintain-agentic-brew-apps.sh` | Homebrew-/apt-Toolchain fuer agentische Entwicklung pflegen / Maintain Homebrew/apt toolchain for agentic development (Bash) |
 | `scripts/maintain-agentic-winget-apps.ps1` | WinGet-Toolchain fuer agentische Entwicklung pflegen / Maintain WinGet toolchain for agentic development (PowerShell Core) |
+| `scripts/maintain-powershell-modules.ps1` | Required-PowerShell-Module versionsgebunden pflegen / Maintain pinned required PowerShell modules |
+| `scripts/invoke-psscriptanalyzer.ps1` | Getrackte PowerShell-Dateien statisch pruefen / Statically analyze tracked PowerShell files |
 | `scripts/maintain-agentic-workspace.sh` | Vollstaendige Level-0/1/2- und Toolchain-Wartung orchestrieren / Orchestrate complete Level-0/1/2 and toolchain maintenance (Bash) |
 | `scripts/maintain-agentic-workspace.ps1` | Funktionsgleiche Windows-Orchestrierung / Functionally equivalent Windows orchestration (PowerShell Core) |
 | `scripts/propagate-agentic-toolchain-maintenance.sh` | Kanonisches Wartungspaket in Level-1/Level-2 propagieren / Propagate the canonical maintenance package to Level-1/Level-2 (Bash) |
@@ -1394,6 +1423,20 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -CompareOnly
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 ```
 
+PSScriptAnalyzer `1.25.0` wird nicht als Brew-/WinGet-Paket, sondern als
+Required-PowerShell-Modul aus der PowerShell Gallery gepflegt. Beide
+Host-Wartungspfade rufen denselben Modulpfleger auf. Fuer einen direkten
+Vergleich oder Analyselauf:
+
+*PSScriptAnalyzer `1.25.0` is maintained as a required PowerShell module from
+PowerShell Gallery, not as a Brew or WinGet package. Both host-maintenance paths
+invoke the same module maintainer. For a direct comparison or analysis run:*
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1 -CompareOnly
+pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1
+```
+
 Vor und nach Aenderungen am Wartungspaket wird dessen Repository-Verteilung
 zuerst als Vorschau, danach als reiner Drift-Check ausgefuehrt.
 
@@ -1454,11 +1497,14 @@ pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 -Check
    `code` und `helix` werden im apt-Fallback nur installiert, wenn sie in den
    bereits konfigurierten apt-Quellen verfuegbar sind; andernfalls wird dies
    klar gemeldet.
-9. Zweitgeraete werden ueber `mac-test.sh`, `linux-test.sh` und
+9. PSScriptAnalyzer `1.25.0` ist als Required-PowerShell-Modul festgelegt. Die
+   Host-Wartung installiert oder prueft es im Benutzerkontext; der gemeinsame
+   Analyselauf muss fuer alle getrackten PowerShell-Dateien gruen sein.
+10. Zweitgeraete werden ueber `mac-test.sh`, `linux-test.sh` und
    `windows-test.ps1` verglichen. Die Testausgaben enthalten Paketlisten und
    Registry-Diffs; bewusst installierte Top-Level-Tools werden danach in die
    passende Registry uebernommen.
-10. Abschlusskriterien: `--compare-only` meldet
+11. Abschlusskriterien: `--compare-only` meldet
    `missing_on_machine.required.*: none`,
    `gitleaks version`, `syft version`, `specify --version`,
    `podman --version`, `codex --version`, `claude --version`,
@@ -1507,11 +1553,14 @@ pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 -Check
 8. Linux without Homebrew does not configure additional Microsoft apt sources.
    In the apt fallback, `code` and `helix` are installed only when available
    from the already configured apt sources; otherwise this is reported clearly.
-9. Compare second machines through `mac-test.sh`, `linux-test.sh`, and
+9. PSScriptAnalyzer `1.25.0` is pinned as a required PowerShell module. Host
+   maintenance installs or checks it in user scope; the shared analysis run
+   must pass for every tracked PowerShell file.
+10. Compare second machines through `mac-test.sh`, `linux-test.sh`, and
    `windows-test.ps1`. Their test outputs include package lists and registry
    diffs; intentionally installed top-level tools are then added to the matching
    registry.
-10. Closeout criteria: `--compare-only` reports
+11. Closeout criteria: `--compare-only` reports
    `missing_on_machine.required.*: none`,
    `gitleaks version`, `syft version`, `specify --version`,
    `podman --version`, `codex --version`, `claude --version`,

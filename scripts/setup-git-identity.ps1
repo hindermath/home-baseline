@@ -51,7 +51,7 @@ $PlaceholderEmail = 'your@email.example'
 
 function Write-Ok   { param([string]$Msg) Write-Host "✓ $Msg" }
 function Write-Info { param([string]$Msg) Write-Host "→ $Msg" }
-function Write-Log  { param([string]$Msg) Write-Host "  $Msg" }
+function Write-HBLog { param([string]$Msg) Write-Host "  $Msg" }
 
 # --- Aktuelle Werte lesen / Read current values --------------------------------
 
@@ -74,13 +74,13 @@ if (-not $IsPlaceholder) {
 
 if ($CheckOnly) {
     Write-Error "Git-Identität enthält Platzhalter:" -ErrorAction Continue
-    Write-Log "  user.name  = $(if ($CurrentName) { $CurrentName } else { '(leer / empty)' })"
-    Write-Log "  user.email = $(if ($CurrentEmail) { $CurrentEmail } else { '(leer / empty)' })"
-    Write-Log ''
-    Write-Log "Behebung / Fix:"
-    Write-Log "  pwsh -NoProfile ~/scripts/setup-git-identity.ps1"
-    Write-Log ''
-    Write-Log 'Error: Git identity is still at placeholder values.'
+    Write-HBLog "  user.name  = $(if ($CurrentName) { $CurrentName } else { '(leer / empty)' })"
+    Write-HBLog "  user.email = $(if ($CurrentEmail) { $CurrentEmail } else { '(leer / empty)' })"
+    Write-HBLog ''
+    Write-HBLog "Behebung / Fix:"
+    Write-HBLog "  pwsh -NoProfile ~/scripts/setup-git-identity.ps1"
+    Write-HBLog ''
+    Write-HBLog 'Error: Git identity is still at placeholder values.'
     exit 1
 }
 
@@ -94,7 +94,7 @@ $DetectedEmail = ''
 # Quelle 1: gh API
 # Source 1: gh API
 if (Get-Command gh -ErrorAction SilentlyContinue) {
-    $GhStatus = gh auth status 2>&1
+    & gh auth status *> $null
     if ($LASTEXITCODE -eq 0) {
         $GhName  = gh api user --jq '.name // ""' 2>$null
         $GhEmail = gh api user --jq '.email // ""' 2>$null
@@ -120,7 +120,9 @@ if (-not $DetectedName -and $IsWindows) {
         if ($FullName -and $FullName -ne $env:USERNAME) {
             $DetectedName = $FullName
         }
-    } catch { <# kein ADSI → fortfahren / no ADSI → continue #> }
+    } catch {
+        Write-Verbose "ADSI nicht verfuegbar / unavailable: $($_.Exception.Message)"
+    }
 }
 
 # Quelle 2b: macOS — dscl
@@ -132,7 +134,9 @@ if (-not $DetectedName -and $IsMacOS) {
             $SysName = ($DsclOut -split "`n" | Select-Object -Last 1).Trim()
             if ($SysName) { $DetectedName = $SysName }
         }
-    } catch { <# dscl nicht verfügbar → fortfahren / dscl not available → continue #> }
+    } catch {
+        Write-Verbose "dscl nicht verfuegbar / unavailable: $($_.Exception.Message)"
+    }
 }
 
 # Quelle 2c: Linux — getent
@@ -144,7 +148,9 @@ if (-not $DetectedName -and $IsLinux) {
             $Gecos = ($Getent -split ':')[4] -split ',' | Select-Object -First 1
             if ($Gecos) { $DetectedName = $Gecos }
         }
-    } catch { <# getent nicht verfügbar → fortfahren / getent not available → continue #> }
+    } catch {
+        Write-Verbose "getent nicht verfuegbar / unavailable: $($_.Exception.Message)"
+    }
 }
 
 # Quelle 3: git log — vorhandene Commits (ohne Platzhalter)
@@ -169,11 +175,11 @@ if ($Auto) {
         $MissName  = if ($DetectedName)  { $DetectedName }  else { '(nicht erkannt / not detected)' }
         $MissEmail = if ($DetectedEmail) { $DetectedEmail } else { '(nicht erkannt / not detected)' }
         Write-Error "Git-Identität konnte nicht automatisch ermittelt werden." -ErrorAction Continue
-        Write-Log "  Name : $MissName"
-        Write-Log "  Email: $MissEmail"
-        Write-Log ''
-        Write-Log "Tipp: 'gh auth login' ausführen oder Skript ohne -Auto starten."
-        Write-Log 'Error: Could not auto-detect git identity. Run "gh auth login" or use interactive mode.'
+        Write-HBLog "  Name : $MissName"
+        Write-HBLog "  Email: $MissEmail"
+        Write-HBLog ''
+        Write-HBLog "Tipp: 'gh auth login' ausführen oder Skript ohne -Auto starten."
+        Write-HBLog 'Error: Could not auto-detect git identity. Run "gh auth login" or use interactive mode.'
         exit 1
     }
     $NewName  = $DetectedName
@@ -182,18 +188,18 @@ if ($Auto) {
     # --- Interaktiver Dialog / Interactive prompt --------------------------------
     Write-Host ''
     if ($DetectedName -or $DetectedEmail) {
-        Write-Log 'Erkannte Werte / Detected values:'
-        if ($DetectedName)  { Write-Log "  Name : $DetectedName" }
-        if ($DetectedEmail) { Write-Log "  Email: $DetectedEmail" }
+        Write-HBLog 'Erkannte Werte / Detected values:'
+        if ($DetectedName)  { Write-HBLog "  Name : $DetectedName" }
+        if ($DetectedEmail) { Write-HBLog "  Email: $DetectedEmail" }
         Write-Host ''
-        Write-Log 'Eingabe leer lassen = erkannten Wert übernehmen.'
-        Write-Log 'Leave input empty to accept the detected value.'
+        Write-HBLog 'Eingabe leer lassen = erkannten Wert übernehmen.'
+        Write-HBLog 'Leave input empty to accept the detected value.'
         Write-Host ''
     }
 
     if ($DetectedName) {
-        $Input = Read-Host "  Git-Name [$DetectedName]"
-        $NewName = if ($Input) { $Input } else { $DetectedName }
+        $nameInput = Read-Host "  Git-Name [$DetectedName]"
+        $NewName = if ($nameInput) { $nameInput } else { $DetectedName }
     } else {
         do {
             $NewName = Read-Host '  Git-Name (Vor- und Nachname / full name)'
@@ -201,8 +207,8 @@ if ($Auto) {
     }
 
     if ($DetectedEmail) {
-        $Input = Read-Host "  Git-E-Mail [$DetectedEmail]"
-        $NewEmail = if ($Input) { $Input } else { $DetectedEmail }
+        $emailInput = Read-Host "  Git-E-Mail [$DetectedEmail]"
+        $NewEmail = if ($emailInput) { $emailInput } else { $DetectedEmail }
     } else {
         do {
             $NewEmail = Read-Host '  Git-E-Mail'
@@ -213,13 +219,13 @@ if ($Auto) {
 # --- Vorschau / Schreiben / Preview and write ----------------------------------
 
 Write-Host ''
-Write-Log 'Git-Identität wird gesetzt / Setting git identity:'
-Write-Log "  user.name  = $NewName"
-Write-Log "  user.email = $NewEmail"
+Write-HBLog 'Git-Identität wird gesetzt / Setting git identity:'
+Write-HBLog "  user.name  = $NewName"
+Write-HBLog "  user.email = $NewEmail"
 Write-Host ''
 
 if ($WhatIf) {
-    Write-Log '[WhatIf] Keine Änderungen vorgenommen / No changes made.'
+    Write-HBLog '[WhatIf] Keine Änderungen vorgenommen / No changes made.'
     exit 0
 }
 
@@ -228,6 +234,6 @@ git config --global user.email $NewEmail
 
 Write-Ok 'Globale Git-Identität gesetzt / Global git identity configured.'
 Write-Host ''
-Write-Log 'Verifizierung / Verification:'
-Write-Log "  git config --global user.name  => $(git config --global user.name)"
-Write-Log "  git config --global user.email => $(git config --global user.email)"
+Write-HBLog 'Verifizierung / Verification:'
+Write-HBLog "  git config --global user.name  => $(git config --global user.name)"
+Write-HBLog "  git config --global user.email => $(git config --global user.email)"

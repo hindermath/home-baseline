@@ -238,8 +238,8 @@ function Invoke-GsdbRepoCheck {
 
     $missingChecklists = 0
     foreach ($n in '01','02','03','04','05','06','07','08','09','10','11','12') {
-        $matches = Get-ChildItem -Path (Join-Path $Repository 'docs/secure-development/checklisten') -Filter "CL_${n}_*.md" -ErrorAction SilentlyContinue
-        if (-not $matches) { $missingChecklists++ }
+        $checklistMatches = Get-ChildItem -Path (Join-Path $Repository 'docs/secure-development/checklisten') -Filter "CL_${n}_*.md" -ErrorAction SilentlyContinue
+        if (-not $checklistMatches) { $missingChecklists++ }
     }
     if ($missingChecklists -eq 0) {
         Add-ReportRow $lines 'OK' 'CL_01 bis CL_12' 'docs/secure-development/checklisten/' 'alle 12 Checklisten vorhanden' '-'

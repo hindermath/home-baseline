@@ -54,7 +54,9 @@ $wslAvailable = $false
 try {
     $null = Get-Command wsl -ErrorAction Stop
     $wslAvailable = $true
-} catch { }
+} catch {
+    Write-Verbose "WSL ist nicht verfuegbar / is unavailable: $($_.Exception.Message)"
+}
 
 if (-not $wslAvailable) {
     Write-Error @"

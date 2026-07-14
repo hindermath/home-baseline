@@ -19,6 +19,10 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo "=== Agentic Brew Registry Vergleich ==="
   bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
   echo ""
+  echo "=== PSScriptAnalyzer ==="
+  pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/maintain-powershell-modules.ps1" -CompareOnly 2>&1
+  pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/invoke-psscriptanalyzer.ps1" 2>&1
+  echo ""
   echo "=== Workspace Maintenance Check ==="
   bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-workspace.sh" --check-only --scripts-only 2>&1 || true
   echo ""

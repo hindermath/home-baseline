@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-07-14",
+  "description": "Required and optional PowerShell modules for cross-platform workspace maintenance and static analysis.",
+  "repository": "PSGallery",
+  "modules": [
+    {
+      "name": "PSScriptAnalyzer",
+      "version": "1.25.0",
+      "scope": "required",
+      "platforms": ["Darwin", "Linux", "Windows"],
+      "purpose": "Static analysis for repository PowerShell scripts, modules, and data files"
+    }
+  ]
+}

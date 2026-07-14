@@ -48,6 +48,15 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   fi
   echo ""
 
+  echo "=== PSScriptAnalyzer ==="
+  if command -v pwsh > /dev/null 2>&1; then
+    pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/maintain-powershell-modules.ps1" -CompareOnly 2>&1
+    pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/invoke-psscriptanalyzer.ps1" 2>&1
+  else
+    echo "pwsh: nicht installiert"
+  fi
+  echo ""
+
   echo "=== Workspace Maintenance Check ==="
   bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-workspace.sh" --check-only --scripts-only 2>&1 || true
   echo ""

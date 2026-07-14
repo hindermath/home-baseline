@@ -60,13 +60,13 @@ function Get-HBForgejoCredential {
 function Approve-HBForgejoCredential {
     param(
         [Parameter(Mandatory)][string]$BaseUrl,
-        [Parameter(Mandatory)]$Credential
+        [Parameter(Mandatory)]$AuthenticationData
     )
 
     @(
         "url=$BaseUrl"
-        "username=$($Credential.Username)"
-        "password=$($Credential.Token)"
+        "username=$($AuthenticationData.Username)"
+        "password=$($AuthenticationData.Token)"
         ''
     ) | & git credential approve
     if ($LASTEXITCODE -ne 0) {
@@ -79,7 +79,7 @@ function Invoke-HBForgejoApi {
         [Parameter(Mandatory)][ValidateSet('GET','POST','DELETE')][string]$Method,
         [Parameter(Mandatory)][string]$BaseUrl,
         [Parameter(Mandatory)][string]$Path,
-        [Parameter(Mandatory)]$Credential,
+        [Parameter(Mandatory)]$AuthenticationData,
         [string]$Body = ''
     )
 
@@ -88,7 +88,7 @@ function Invoke-HBForgejoApi {
         Method            = $Method
         Headers           = @{
             Accept        = 'application/json'
-            Authorization = "token $($Credential.Token)"
+            Authorization = "token $($AuthenticationData.Token)"
         }
         SkipHttpErrorCheck = $true
     }
@@ -129,7 +129,7 @@ function New-HBForgejoRepository {
     )
 
     $credential = Get-HBForgejoCredential -BaseUrl $BaseUrl
-    $userResponse = Invoke-HBForgejoApi -Method GET -BaseUrl $BaseUrl -Path '/api/v1/user' -Credential $credential
+    $userResponse = Invoke-HBForgejoApi -Method GET -BaseUrl $BaseUrl -Path '/api/v1/user' -AuthenticationData $credential
     if ($userResponse.StatusCode -ne 200) {
         throw (Get-HBForgejoErrorMessage -Action 'Validate sign-in' -StatusCode $userResponse.StatusCode)
     }
@@ -138,7 +138,7 @@ function New-HBForgejoRepository {
 
     $encodedOwner = [uri]::EscapeDataString($owner)
     $encodedRepo = [uri]::EscapeDataString($RepositoryName)
-    $repoResponse = Invoke-HBForgejoApi -Method GET -BaseUrl $BaseUrl -Path "/api/v1/repos/$encodedOwner/$encodedRepo" -Credential $credential
+    $repoResponse = Invoke-HBForgejoApi -Method GET -BaseUrl $BaseUrl -Path "/api/v1/repos/$encodedOwner/$encodedRepo" -AuthenticationData $credential
     $created = $false
     if ($repoResponse.StatusCode -eq 404) {
         $body = @{
@@ -148,7 +148,7 @@ function New-HBForgejoRepository {
             auto_init      = $false
             default_branch = 'main'
         } | ConvertTo-Json -Compress
-        $repoResponse = Invoke-HBForgejoApi -Method POST -BaseUrl $BaseUrl -Path '/api/v1/user/repos' -Credential $credential -Body $body
+        $repoResponse = Invoke-HBForgejoApi -Method POST -BaseUrl $BaseUrl -Path '/api/v1/user/repos' -AuthenticationData $credential -Body $body
         if ($repoResponse.StatusCode -ne 201) {
             throw (Get-HBForgejoErrorMessage -Action 'Create repository' -StatusCode $repoResponse.StatusCode)
         }
@@ -161,7 +161,7 @@ function New-HBForgejoRepository {
     if (-not $repository.name -or -not $repository.clone_url -or -not $repository.html_url) {
         throw 'Incomplete Forgejo repository response.'
     }
-    Approve-HBForgejoCredential -BaseUrl $BaseUrl -Credential $credential
+    Approve-HBForgejoCredential -BaseUrl $BaseUrl -AuthenticationData $credential
 
     [pscustomobject]@{
         Owner     = $owner
@@ -182,7 +182,7 @@ function Remove-HBForgejoRepository {
     $credential = Get-HBForgejoCredential -BaseUrl $BaseUrl
     $encodedOwner = [uri]::EscapeDataString($Owner)
     $encodedRepo = [uri]::EscapeDataString($RepositoryName)
-    $response = Invoke-HBForgejoApi -Method DELETE -BaseUrl $BaseUrl -Path "/api/v1/repos/$encodedOwner/$encodedRepo" -Credential $credential
+    $response = Invoke-HBForgejoApi -Method DELETE -BaseUrl $BaseUrl -Path "/api/v1/repos/$encodedOwner/$encodedRepo" -AuthenticationData $credential
     if ($response.StatusCode -ne 204) {
         throw (Get-HBForgejoErrorMessage -Action 'Delete repository' -StatusCode $response.StatusCode)
     }

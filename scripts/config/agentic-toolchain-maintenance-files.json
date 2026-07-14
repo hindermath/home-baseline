@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-13",
+  "updated": "2026-07-14",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "files": [
     {
@@ -9,6 +9,14 @@
     },
     {
       "path": "scripts/maintain-agentic-winget-apps.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/maintain-powershell-modules.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/invoke-psscriptanalyzer.ps1",
       "executable": false
     },
     {
@@ -32,11 +40,31 @@
       "executable": false
     },
     {
+      "path": "scripts/config/powershell-modules-registry.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/PSScriptAnalyzerSettings.psd1",
+      "executable": false
+    },
+    {
+      "path": ".github/workflows/powershell-analysis.yml",
+      "executable": false
+    },
+    {
       "path": "docs/man/maintain-agentic-brew-apps.1.md",
       "executable": false
     },
     {
       "path": "docs/man/maintain-agentic-winget-apps.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/maintain-powershell-modules.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/invoke-psscriptanalyzer.1.md",
       "executable": false
     }
   ]
