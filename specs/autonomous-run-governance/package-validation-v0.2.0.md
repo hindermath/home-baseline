@@ -42,10 +42,24 @@ marks uncertain operations `NeedsRevalidation`.
 
 | Check | State | Completion evidence |
 |---|---|---|
-| Home-Baseline package PR | Open | PR and merge |
-| Public repository update | Open | PR and merge |
-| Tag and release | Open | Public `v0.2.0` release |
-| GitHub ZIP checksum/install | Open | Exact tag archive and temporary install |
-| TuiVision adoption | Open | Separate adoption PR; Feature 028 remains paused |
-| Feature 028 real resume | Deferred | Requires separate explicit user release |
-| Community catalog update | Deferred | New structured update issue after real 028 field validation |
+| Home-Baseline package PR | Pass | [PR #65](https://github.com/hindermath/home-baseline/pull/65), merge `608d148ffb65adf3e5725c887d783e17aea7d60c` |
+| Public repository update | Pass | [PR #5](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/5), merge `7bd8ef34014514d21b3f987a639960119e873a98` |
+| Tag and release | Pass | Public [`v0.2.0`](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.2.0) release |
+| GitHub ZIP checksum/install | Pass | SHA-256 `7cde2b22306906e298decefd5e6af0e4f6848eb32e188837f122ade22fc17237`; exact payload parity and temporary seven-preset install |
+| TuiVision adoption | Pass | [PR #78](https://github.com/hindermath/TuiVision/pull/78), merge `80e58e9ff94b0c309680fb896ea4ccfd8b3643b7`; Feature 028 remains paused |
+| Feature 028 real resume | Deferred | Requires separate explicit user release; branch remains at `5550fbfe61dc97650304a69bd86358d76929fd00` without implementation or synthetic state |
+| Community catalog update | Deferred | Open a new structured update issue only after real 028 stop/resume field validation |
+
+The release and adoption gates are complete. TuiVision resolved all seven
+presets, exposed five unique commands on every maintained agent surface,
+accepted a realistic temporary `PausedByUser` fixture in Bash and PowerShell,
+and rejected a contradictory interrupted fixture. PR #78 completed 23 technical
+checks, Claude review, and zero review threads; Copilot remained unavailable
+because of user quota. The bounded approval bypass applied only to the remaining
+human-approval rule.
+
+No retroactive state file was added to Feature 028. The first real resume must
+therefore reconstruct the accepted checkpoint, create validated state only as
+part of the explicitly authorized resume, and preserve the existing feature
+artifacts unless drift is proven. This deferred field proof is also the boundary
+for any later Community Catalog update.
