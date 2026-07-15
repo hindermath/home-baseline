@@ -18,7 +18,7 @@
     },
     {
       "id": "isaqb-architecture-governance",
-      "version": "v0.2.0",
+      "version": "v0.2.1",
       "priority": 30,
       "repository": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance",
       "archiveUrl": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.2.0.zip"
@@ -49,7 +49,7 @@
       "version": "v0.2.0",
       "priority": 70,
       "repository": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance",
-      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.0.zip"
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.1.zip"
     }
   ]
 }

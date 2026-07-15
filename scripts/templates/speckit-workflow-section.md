@@ -30,14 +30,18 @@ Standard-Set dieser Workspace-Familie ist:
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 
 Für ausdrücklich delegierte vollständige Läufe kann optional
-`autonomous-run-governance` v0.2.0 mit Priorität `70` über
+`autonomous-run-governance` v0.2.1 mit Priorität `70` über
 `scripts/config/spec-kit-autonomous-governance-presets.json` ergänzt werden.
 Die Standard-Sechsermatrix bleibt unverändert. `LocalImplementation` ist der
 sichere Default; Installation erteilt keine Remote-, Merge- oder Bypass-Rechte.
 `speckit.autonomous-status` prueft einen Lauf read-only,
 `speckit.autonomous-stop` pausiert kooperativ am naechsten sicheren Grenzpunkt,
 und `speckit.autonomous-resume` ist fuer `PausedByUser` verpflichtend. Ein
-gespeicherter Delivery-Modus ist keine aktuelle Berechtigung.
+gespeicherter Delivery-Modus ist keine aktuelle Berechtigung. Nach Preset- oder
+Governance-Drift werden neue zwingende Korrektheits-, Sicherheits-,
+Berechtigungs- und Evidenzregeln minimal mit akzeptierten Plan-, Task- und
+Checklist-Artefakten abgeglichen; Effizienzpraeferenzen loesen keine
+rueckwirkende Neugenerierung aus.
 
 Alle sechs Presets sind seit 2026-05-04 im `github/spec-kit`
 Community-Katalog enthalten. C#/.NET- und Lern-Level-2-Projekte verwenden
@@ -84,7 +88,7 @@ workspace family is:
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 
 For explicitly delegated complete runs, optionally add
-`autonomous-run-governance` v0.2.0 at priority `70` through
+`autonomous-run-governance` v0.2.1 at priority `70` through
 `scripts/config/spec-kit-autonomous-governance-presets.json`. The standard
 six-preset matrix remains unchanged. `LocalImplementation` is the safe default;
 installation grants no remote, merge, or bypass authority.
@@ -92,6 +96,10 @@ installation grants no remote, merge, or bypass authority.
 `speckit.autonomous-stop` pauses cooperatively at the next safe boundary, and
 `speckit.autonomous-resume` is mandatory for `PausedByUser`. A recorded delivery
 mode is not current authority.
+After preset or governance drift, new mandatory correctness, security,
+permission, and evidence-integrity rules are minimally reconciled with accepted
+Plan, Tasks, and checklist artifacts; efficiency preferences do not trigger
+retroactive regeneration.
 
 All six presets are included in the `github/spec-kit` community catalog as of
 2026-05-04. C#/.NET and learning level-2 projects default to all six presets
