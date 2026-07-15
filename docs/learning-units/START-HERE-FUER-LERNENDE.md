@@ -291,6 +291,27 @@ pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -NoPull
 `~/home-baseline-tmp` bleibt die Git-Arbeitskopie mit `origin` und `upstream`.
 `~/` ist die lokale Betriebskopie ohne Remote-Verbindung.
 
+Loesche den Klon nach dem ersten Sync nicht. Nur dort koennen Updates aus
+`upstream` nachvollziehbar uebernommen, eigene Aenderungen nach `origin`
+gepusht und spaetere Home-Sync-Laeufe sicher geprueft werden. Vor einem echten
+Sync kannst du den Zustand schreibfrei pruefen:
+
+```bash
+bash "$HOME/home-baseline-tmp/scripts/sync-home.sh" --check-only
+```
+
+```powershell
+pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -CheckOnly
+```
+
+Im ABS-DD-Container nutzt du `~/home-baseline-tmp` direkt. Starte dort keinen
+schreibenden Home-Sync; dieser gehoert auf den Host.
+
+*Do not delete the clone after the first sync. It is the only place where you
+can trace updates from `upstream`, push your changes to `origin`, and verify
+later Home sync runs safely. Inside the ABS-DD container, use
+`~/home-baseline-tmp` directly and run writing Home sync operations on the host.*
+
 ## 11. Referenz-Sandbox klonen / Clone the Reference Sandbox
 
 Verwende in Profil A die institutionelle Sandbox-URL. Nur in Profil B oder wenn

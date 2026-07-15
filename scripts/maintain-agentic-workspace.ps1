@@ -117,6 +117,20 @@ function Write-HBWarning {
     Write-Warning $Message
 }
 
+function Test-HBHomeSync {
+    $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
+    & $syncScript -NoPull -CheckOnly
+    $status = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+    switch ($status) {
+        0 { Write-Host 'OK: Lokale Home-Baseline ist manifestkonform / local home baseline matches manifest' }
+        1 {
+            Write-HBWarning 'Lokale Home-Baseline hat Drift oder Konflikte / local home baseline has drift or conflicts'
+            $script:Findings++
+        }
+        default { throw 'sync-home Check fehlgeschlagen / check failed.' }
+    }
+}
+
 function Invoke-HBGit {
     param(
         [Parameter(Mandatory)][string] $Repository,
@@ -373,7 +387,7 @@ try {
         Write-HBInfo 'Lokale Home-Baseline synchronisieren / Synchronize local home baseline'
         $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
         if ($CheckOnly) {
-            Write-Host '[CHECK] sync-home wird nicht ausgefuehrt / is not executed'
+            Test-HBHomeSync
         } elseif ($WhatIfPreference) {
             & $syncScript -NoPull -WhatIf
         } else {
@@ -411,6 +425,7 @@ try {
 
     if ($script:Findings -eq 0) {
         Write-HBInfo 'Abschlusspruefung / Final verification'
+        Test-HBHomeSync
         if ((Invoke-HBPropagationCheck) -ne 0) { throw 'Abschliessende Propagationspruefung fehlgeschlagen / final propagation check failed.' }
         [void](Test-HBRepository -Repository $sourceRoot -Label 'Level-0')
         foreach ($repo in Get-HBManagedRepositories) {

@@ -989,18 +989,62 @@ for convenience when an existing repository script already solves the task.*
 | `--no-pull` / `-NoPull`       | Kein `git pull` — nur kopieren / Skip pull   |
 | `--no-commit` / `-NoCommit`   | Nur kopieren, kein Commit in `~/` / Copy only |
 | `--dry-run` / `-WhatIf`       | Nur anzeigen, nichts schreiben / Preview only |
+| `--check-only` / `-CheckOnly` | Pull-frei auf Drift und Konflikte pruefen / Check drift and conflicts without pulling |
+| `--force` / `-Force`          | Gepruefte Konflikte verwalteter Dateien ueberschreiben / Overwrite reviewed managed-file conflicts |
+
+`~/home-baseline-tmp` bleibt dauerhaft der versionierte Level-0-Klon mit
+`origin`, `upstream` und nachvollziehbarer Historie. `~/` ist nur die lokale
+Betriebskopie. Der Sync verwendet
+`scripts/config/home-sync-manifest.json` und ausschliesslich mit Git
+versionierte Quelldateien. Lokale, nicht verwaltete Dateien bleiben erhalten.
+Spec-Kit-Agentenflaechen werden nur fuer `speckit-*` synchronisiert; private
+Agentenzustaende, globale Skills und installierte `.specify/presets/` werden
+nicht gespiegelt.
+
+*`~/home-baseline-tmp` permanently remains the versioned level-0 clone with
+`origin`, `upstream`, and auditable history. `~/` is only the local runtime
+copy. Sync uses `scripts/config/home-sync-manifest.json` and Git-tracked source
+files only. Unmanaged local files are preserved. Agent surfaces are synced only
+for `speckit-*`; private agent state, global skills, and installed
+`.specify/presets/` are not mirrored.*
+
+Der letzte erfolgreiche Stand steht lokal in
+`~/.home-baseline/home-sync-state.json` mit Quell-Commit, SHA-256 und
+Dateimodus. Weicht eine verwaltete Zieldatei lokal ab, bricht der Sync vor dem
+ersten Schreibzugriff ab. `--force` beziehungsweise `-Force` darf erst nach
+Pruefung des Konfliktberichts verwendet werden. Automatische Commits enthalten
+nur die vom Sync geaenderten Pfade und gegebenenfalls die lokal gepflegte
+`.gitconfig`, niemals pauschal alle Home-Aenderungen.
+
+*The last successful state is recorded locally in
+`~/.home-baseline/home-sync-state.json` with source commit, SHA-256, and file
+mode. If a managed target file was changed locally, sync stops before its first
+write. Use `--force` or `-Force` only after reviewing the conflict report.
+Automatic commits contain only paths changed by sync and, when needed, the
+locally maintained `.gitconfig`, never every Home change.*
 
 `sync-home` kopiert `.gitconfig` bewusst nicht mehr blind aus dem Repository nach `~/`. Stattdessen stellt es die Baseline-Werte (`init.defaultBranch`, `core.autocrlf`, `pull.rebase`, `includeIf`) sicher und prüft danach die globale Git-Identität per `setup-git-identity.*` im Auto-Modus. So bleiben `user.name` und `user.email` dauerhaft echte lokale Werte.
 
 *`sync-home` intentionally no longer copies `.gitconfig` blindly from the repository into `~/`. Instead, it ensures the baseline values (`init.defaultBranch`, `core.autocrlf`, `pull.rebase`, `includeIf`) and then checks the global git identity via `setup-git-identity.*` in auto mode. This keeps `user.name` and `user.email` as real local values permanently.*
 
-`sync-home` entfernt beim Verzeichnis-Sync macOS-Finder-Metadaten wie `.DS_Store`, damit sie weder in der lokalen `~/`-Kopie noch in Git-Commits landen.
+Da die Quellmenge aus `git ls-files` entsteht, werden `.DS_Store`,
+verschachtelte `.git`-Verzeichnisse, Caches und andere unversionierte Artefakte
+nicht kopiert.
 
-*During directory sync, `sync-home` removes macOS Finder metadata such as `.DS_Store` so it does not end up in the local `~/` copy or in git commits.*
+*Because the source set comes from `git ls-files`, `.DS_Store`, nested `.git`
+directories, caches, and other untracked artifacts are never copied.*
 
 Wenn `sync-home` aus `~/scripts/` gestartet wird, delegiert es automatisch an die Repo-Kopie in `~/home-baseline-tmp/scripts/`. Dadurch kann es `~/scripts/` aktualisieren, ohne das gerade laufende Skript zu überschreiben.
 
 *When `sync-home` is started from `~/scripts/`, it automatically delegates to the repository copy in `~/home-baseline-tmp/scripts/`. This lets it update `~/scripts/` without overwriting the script that is currently running.*
+
+In der ABS-DD-Sandbox wird die Level-0-Referenz direkt unter
+`~/home-baseline-tmp` gelesen. Schreibende `sync-home`-Laeufe nach
+`/home/adedev` sind gesperrt; der Home-Sync wird immer auf dem Host ausgefuehrt.
+
+*Inside the ABS-DD sandbox, read the level-0 reference directly at
+`~/home-baseline-tmp`. Writing `sync-home` runs targeting `/home/adedev` are
+blocked; always run Home sync on the host.*
 
 ---
 

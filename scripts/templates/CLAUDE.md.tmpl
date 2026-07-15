@@ -19,6 +19,23 @@ This document provides Claude Code with instructions for working in this project
 **Workspace**: {{WORKSPACE}}
 **Sprache / Language**: C# / .NET
 
+### Level-0- und Home-Sync-Grenze / Level-0 and Home Sync Boundary
+
+- Der persönliche Fork `~/home-baseline-tmp` bleibt die versionierte
+  Level-0-Quelle und wird nach dem ersten Sync nicht gelöscht.
+- `~/` ist nur die manifestgesteuerte lokale Betriebskopie. Vor einem echten
+  Home-Sync `--check-only` / `-CheckOnly` verwenden und Konflikte nicht ohne
+  Prüfung mit `--force` / `-Force` überschreiben.
+- In Containern und insbesondere der ABS-DD-Sandbox die eingebundene
+  Level-0-Referenz direkt verwenden; schreibende Home-Sync-Laeufe gehoeren auf
+  den Host.
+
+*Keep the personal fork `~/home-baseline-tmp` as the versioned level-0 source.
+`~/` is only the manifest-managed local runtime copy. Check before syncing and
+use force only after reviewing conflicts. In containers, especially the
+ABS-DD sandbox, use the mounted level-0 reference directly and run writing Home
+sync operations on the host.*
+
 ---
 
 ## Verwendung / Usage

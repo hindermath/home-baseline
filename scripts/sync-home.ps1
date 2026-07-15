@@ -1,11 +1,13 @@
 #Requires -Version 7
 # sync-home.ps1 — Synchronisiert ~/home-baseline-tmp nach ~/
-# Verwendung: pwsh ~/scripts/sync-home.ps1 [-NoPull] [-NoCommit] [-WhatIf]
+# Verwendung: pwsh ~/scripts/sync-home.ps1 [-NoPull] [-NoCommit] [-CheckOnly] [-Force] [-WhatIf]
 
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [switch]$NoPull,
-    [switch]$NoCommit
+    [switch]$NoCommit,
+    [switch]$CheckOnly,
+    [switch]$Force
 )
 
 Set-StrictMode -Version Latest
@@ -19,7 +21,7 @@ $HomeDir   = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 if ($RepoDir -eq $HomeDir) {
     $RepoDir = Join-Path $HomeDir 'home-baseline-tmp'
     if (-not (Test-Path $RepoDir)) {
-        Write-Error "~/home-baseline-tmp nicht gefunden.`nBitte zuerst den persoenlichen Fork gemaess docs/learning-units/START-HERE-FUER-LERNENDE.md nach ~/home-baseline-tmp klonen."
+        [Console]::Error.WriteLine("~/home-baseline-tmp nicht gefunden.`nBitte zuerst den persoenlichen Fork gemaess docs/learning-units/START-HERE-FUER-LERNENDE.md nach ~/home-baseline-tmp klonen.")
         exit 1
     }
 }
@@ -31,6 +33,8 @@ if ((Test-Path $homeScriptsDir) -and (Test-Path $repoScript) -and
     $forwardArgs = @()
     if ($NoPull) { $forwardArgs += '-NoPull' }
     if ($NoCommit) { $forwardArgs += '-NoCommit' }
+    if ($CheckOnly) { $forwardArgs += '-CheckOnly' }
+    if ($Force) { $forwardArgs += '-Force' }
     if ($WhatIfPreference) { $forwardArgs += '-WhatIf' }
     & $repoScript @forwardArgs
     exit $LASTEXITCODE
@@ -39,6 +43,7 @@ if ((Test-Path $homeScriptsDir) -and (Test-Path $repoScript) -and
 $DoPull   = -not $NoPull
 $DoCommit = -not $NoCommit
 if ($WhatIfPreference) { $DoPull = $false; $DoCommit = $false }
+if ($CheckOnly) { $DoPull = $false; $DoCommit = $false }
 
 Write-Host "╔══════════════════════════════════════════════════╗"
 Write-Host "║  sync-home — Home-Baseline Sync                  ║"
@@ -49,45 +54,45 @@ Write-Host "  Ziel   : $HomeDir"
 Write-Host "  Pull   : $DoPull"
 Write-Host "  Commit : $DoCommit"
 if ($WhatIfPreference) { Write-Host "  WhatIf : true (kein Schreiben)" }
+Write-Host "  Check  : $CheckOnly"
+Write-Host "  Force  : $Force"
 Write-Host ""
+
+$isAbsddContainer = $HomeDir -eq '/home/adedev' -and
+    ((Test-Path -LiteralPath '/.dockerenv') -or (Test-Path -LiteralPath '/run/.containerenv'))
+if ($isAbsddContainer -and -not $WhatIfPreference -and -not $CheckOnly) {
+    [Console]::Error.WriteLine(@'
+Schreibende sync-home-Laeufe sind in der ABS-DD-Sandbox gesperrt.
+Writing sync-home runs are blocked inside the ABS-DD sandbox.
+Die Level-0-Referenz direkt unter ~/home-baseline-tmp verwenden und den Home-Sync auf dem Host ausfuehren.
+'@)
+    exit 2
+}
+
+$pythonCommand = Get-Command python3 -ErrorAction SilentlyContinue
+if (-not $pythonCommand) {
+    [Console]::Error.WriteLine('python3 wird fuer den manifestgesteuerten Home-Sync benoetigt.')
+    exit 2
+}
+
+$syncHelper = Join-Path $RepoDir 'scripts/lib/home-sync-files.py'
+$syncManifest = Join-Path $RepoDir 'scripts/config/home-sync-manifest.json'
+$syncState = Join-Path $HomeDir '.home-baseline/home-sync-state.json'
+$syncResult = Join-Path $HomeDir '.home-baseline/home-sync-result.json'
+if (-not (Test-Path -LiteralPath $syncHelper -PathType Leaf)) {
+    [Console]::Error.WriteLine("Home-Sync-Helfer fehlt: $syncHelper")
+    exit 2
+}
+if (-not (Test-Path -LiteralPath $syncManifest -PathType Leaf)) {
+    [Console]::Error.WriteLine("Home-Sync-Manifest fehlt: $syncManifest")
+    exit 2
+}
 
 # ── 1. git pull ──────────────────────────────────────────────────────────────
 if ($DoPull) {
     Write-Host "→ git pull in $RepoDir..."
     git -C $RepoDir pull --ff-only
     Write-Host ""
-}
-
-# ── 2. Dateien kopieren ──────────────────────────────────────────────────────
-function Sync-File {
-    param([string]$RelPath)
-    $src = Join-Path $RepoDir $RelPath
-    $dst = Join-Path $HomeDir $RelPath
-    if (-not (Test-Path $src)) { return }
-    if ($WhatIfPreference) {
-        Write-Host "  [WhatIf] $RelPath"
-        return
-    }
-    $dstDir = Split-Path $dst -Parent
-    if (-not (Test-Path $dstDir)) { New-Item -ItemType Directory -Path $dstDir -Force | Out-Null }
-    Copy-Item $src $dst -Force
-    Write-Host "  ✓ $RelPath"
-}
-
-function Sync-Dir {
-    param([string]$RelPath)
-    $src = Join-Path $RepoDir $RelPath
-    $dst = Join-Path $HomeDir $RelPath
-    if (-not (Test-Path $src)) { return }
-    if ($WhatIfPreference) {
-        Write-Host "  [WhatIf] $RelPath/"
-        return
-    }
-    if (-not (Test-Path $dst)) { New-Item -ItemType Directory -Path $dst -Force | Out-Null }
-    Copy-Item "$src\*" $dst -Recurse -Force
-    Get-ChildItem -Path $dst -Recurse -Force -Filter '.DS_Store' -File -ErrorAction SilentlyContinue |
-        Remove-Item -Force
-    Write-Host "  ✓ $RelPath/"
 }
 
 function Ensure-GitconfigBaseline {
@@ -147,22 +152,22 @@ function Ensure-GitconfigBaseline {
 
 Write-Host "→ Dateien synchronisieren..."
 
-# Root-Dateien
-foreach ($f in @('AGENTS.md','CLAUDE.md','GEMINI.md','README.md','STATS.md','CHANGELOG.md',
-                  'constitution.md','.gitignore','LICENSE')) {
-    Sync-File $f
-}
-
-# Lastenheft (Glob)
-Get-ChildItem -Path $RepoDir -Filter 'Lastenheft*.md' -File -ErrorAction SilentlyContinue |
-    ForEach-Object { Sync-File $_.Name }
-
-# Verzeichnisse
-Sync-Dir 'scripts'
-Sync-Dir 'docs'
-Sync-Dir '.github'
-Sync-Dir 'specs'
-Sync-Dir '.specify'
+$syncArguments = @(
+    $syncHelper,
+    'sync',
+    '--repo', $RepoDir,
+    '--home', $HomeDir,
+    '--manifest', $syncManifest,
+    '--state', $syncState,
+    '--result', $syncResult
+)
+if ($WhatIfPreference) { $syncArguments += '--dry-run' }
+if ($CheckOnly) { $syncArguments += '--check-only' }
+if ($Force) { $syncArguments += '--force' }
+& $pythonCommand.Source @syncArguments
+$syncStatus = $LASTEXITCODE
+if ($CheckOnly) { exit $syncStatus }
+if ($syncStatus -ne 0) { exit $syncStatus }
 
 Write-Host ""
 
@@ -220,13 +225,31 @@ if ($DoCommit) {
             Write-Host "  ✓ Git-Repository und Hooks initialisiert."
             Write-Host ""
         }
-        $status = git status --short
-        if (-not $status) {
-            Write-Host "→ Keine Änderungen in ~/ — kein Commit nötig."
+        $result = Get-Content -Raw -LiteralPath $syncResult | ConvertFrom-Json
+        $changedPaths = [System.Collections.Generic.List[string]]::new()
+        foreach ($path in $result.changedPaths) { $changedPaths.Add([string]$path) }
+        if (git status --porcelain -- .gitconfig) { $changedPaths.Add('.gitconfig') }
+        $commitPaths = [System.Collections.Generic.List[string]]::new()
+        foreach ($path in ($changedPaths | Sort-Object -Unique)) {
+            $target = Join-Path $HomeDir $path
+            git ls-files --error-unmatch -- $path 2>$null | Out-Null
+            $isTracked = $LASTEXITCODE -eq 0
+            if ((Test-Path -LiteralPath $target) -or $isTracked) {
+                git add -A -- $path
+                git diff --cached --quiet -- $path
+                if ($LASTEXITCODE -eq 1) {
+                    $commitPaths.Add($path)
+                } elseif ($LASTEXITCODE -gt 1) {
+                    throw "git diff fuer verwalteten Pfad fehlgeschlagen / failed: ${path}"
+                }
+            }
+        }
+        if ($commitPaths.Count -eq 0) {
+            Write-Host "→ Keine verwalteten Änderungen in ~/ — kein Commit nötig."
         } else {
-            git add -A
             $remoteSha = (git -C $RepoDir rev-parse --short HEAD 2>$null) ?? 'unbekannt'
-            git commit -m "chore: sync mit home-baseline @ ${remoteSha}`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+            $message = "chore: sync mit home-baseline @ ${remoteSha}`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+            git commit --only -m $message -- @commitPaths
             Write-Host "→ Commit in ~/ erstellt."
         }
     } finally {

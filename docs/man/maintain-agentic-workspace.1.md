@@ -32,6 +32,15 @@ Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
    Required-Agenten-CLIs werden gepflegt.
 7. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
 
+Im Check-only-Modus wird der manifestgesteuerte Home-Sync jetzt ebenfalls
+schreibfrei ausgefuehrt. Nach einem echten Sync wiederholt die
+Abschlusspruefung diesen Check, damit SHA-256-, Dateimodus- oder
+Konfliktabweichungen nicht unbemerkt bleiben.
+
+*Check-only now also runs the manifest-based Home sync check without writing.
+After a real sync, final verification repeats this check so SHA-256, file-mode,
+or conflict drift cannot remain unnoticed.*
+
 Das Skript wechselt keine Branches, klont keine Repositories, fuehrt keinen
 Reset aus und commitet oder pusht keine Level-1-/Level-2-Aenderungen. Bei
 lokalen Aenderungen, fehlendem Upstream, Ahead-/Diverged-Zustand oder detached

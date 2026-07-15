@@ -59,6 +59,22 @@ info() { printf '\n==> %s\n' "$*"; }
 ok() { printf 'OK: %s\n' "$*"; }
 warn() { printf 'WARN: %s\n' "$*" >&2; }
 
+run_home_sync_check() {
+  local status=0
+  set +e
+  HOME="$HOME_DIR" bash "${SOURCE_ROOT}/scripts/sync-home.sh" --check-only --no-pull
+  status=$?
+  set -e
+  case "$status" in
+    0) ok "Lokale Home-Baseline ist manifestkonform / local home baseline matches manifest" ;;
+    1)
+      warn "Lokale Home-Baseline hat Drift oder Konflikte / local home baseline has drift or conflicts"
+      FINDINGS=$((FINDINGS + 1))
+      ;;
+    *) die "sync-home Check fehlgeschlagen / check failed" ;;
+  esac
+}
+
 cleanup() {
   local status=$?
   if [ -n "$LOCK_DIR" ] && [ -d "$LOCK_DIR" ]; then
@@ -326,7 +342,7 @@ check_repository "$SOURCE_ROOT" "Level-0" || true
 if [ "$FINDINGS" -eq 0 ]; then
   info "Lokale Home-Baseline synchronisieren / Synchronize local home baseline"
   if [ "$CHECK_ONLY" -eq 1 ]; then
-    printf '[CHECK] sync-home wird nicht ausgefuehrt / is not executed\n'
+    run_home_sync_check
   elif [ "$DRY_RUN" -eq 1 ]; then
     HOME="$HOME_DIR" bash "${SOURCE_ROOT}/scripts/sync-home.sh" --dry-run --no-pull
   else
@@ -363,6 +379,7 @@ fi
 
 if [ "$FINDINGS" -eq 0 ]; then
   info "Abschlusspruefung / Final verification"
+  run_home_sync_check
   run_propagation_check
   check_repository "$SOURCE_ROOT" "Level-0" || true
   while IFS=$'\t' read -r level repo; do

@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # sync-home.sh — Synchronisiert ~/home-baseline-tmp nach ~/
-# Verwendung: bash ~/scripts/sync-home.sh [--pull] [--commit] [--dry-run]
+# Verwendung: bash ~/scripts/sync-home.sh [--pull] [--commit] [--check-only] [--dry-run] [--force]
 #
 # --pull     : git pull in home-baseline-tmp vor dem Sync (Standard: ja)
 # --commit   : git commit in ~/ nach dem Sync (Standard: ja)
 # --dry-run  : Nur anzeigen, was gemacht würde
+# --check-only: Pull-frei und schreibfrei auf Drift pruefen
+# --force    : Nach manueller Pruefung verwaltete Konflikte ueberschreiben
 # --no-pull  : Kein git pull (nur kopieren)
 # --no-commit: Kein automatischer Commit in ~/
 
@@ -32,6 +34,8 @@ fi
 OPT_PULL=true
 OPT_COMMIT=true
 OPT_DRY_RUN=false
+OPT_CHECK_ONLY=false
+OPT_FORCE=false
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -40,6 +44,8 @@ while [ $# -gt 0 ]; do
     --commit)    OPT_COMMIT=true ;;
     --no-commit) OPT_COMMIT=false ;;
     --dry-run)   OPT_DRY_RUN=true; OPT_PULL=false; OPT_COMMIT=false ;;
+    --check-only) OPT_CHECK_ONLY=true; OPT_PULL=false; OPT_COMMIT=false ;;
+    --force)      OPT_FORCE=true ;;
     *) echo "Unbekannte Option: $1" >&2; exit 2 ;;
   esac
   shift
@@ -54,7 +60,30 @@ echo "  Ziel   : ${HOME_DIR}"
 echo "  Pull   : ${OPT_PULL}"
 echo "  Commit : ${OPT_COMMIT}"
 echo "  Dry-run: ${OPT_DRY_RUN}"
+echo "  Check  : ${OPT_CHECK_ONLY}"
+echo "  Force  : ${OPT_FORCE}"
 echo ""
+
+if [ "$HOME_DIR" = "/home/adedev" ] && { [ -f /.dockerenv ] || [ -f /run/.containerenv ]; } && \
+   ! $OPT_DRY_RUN && ! $OPT_CHECK_ONLY; then
+  echo "Fehler: Schreibender sync-home-Lauf in der ABS-DD-Sandbox ist gesperrt." >&2
+  echo "Error: Writing sync-home runs are blocked inside the ABS-DD sandbox." >&2
+  echo "Die Level-0-Referenz direkt unter ~/home-baseline-tmp verwenden und den Home-Sync auf dem Host ausfuehren." >&2
+  exit 2
+fi
+
+command -v python3 >/dev/null 2>&1 || {
+  echo "Fehler: python3 wird fuer den manifestgesteuerten Home-Sync benoetigt." >&2
+  exit 2
+}
+
+SYNC_HELPER="${REPO_DIR}/scripts/lib/home-sync-files.py"
+SYNC_MANIFEST="${REPO_DIR}/scripts/config/home-sync-manifest.json"
+SYNC_STATE="${HOME_DIR}/.home-baseline/home-sync-state.json"
+SYNC_RESULT="${HOME_DIR}/.home-baseline/home-sync-result.json"
+
+[ -f "$SYNC_HELPER" ] || { echo "Fehler: Home-Sync-Helfer fehlt: ${SYNC_HELPER}" >&2; exit 2; }
+[ -f "$SYNC_MANIFEST" ] || { echo "Fehler: Home-Sync-Manifest fehlt: ${SYNC_MANIFEST}" >&2; exit 2; }
 
 # ── 1. git pull ──────────────────────────────────────────────────────────────
 if $OPT_PULL; then
@@ -62,34 +91,6 @@ if $OPT_PULL; then
   git -C "${REPO_DIR}" pull --ff-only
   echo ""
 fi
-
-# ── 2. Dateien kopieren ──────────────────────────────────────────────────────
-sync_file() {
-  local src="${REPO_DIR}/${1}"
-  local dst="${HOME_DIR}/${1}"
-  [ -f "$src" ] || return 0
-  if $OPT_DRY_RUN; then
-    echo "  [dry-run] cp ${1}"
-  else
-    mkdir -p "$(dirname "$dst")"
-    cp "$src" "$dst"
-    echo "  ✓ ${1}"
-  fi
-}
-
-sync_dir() {
-  local src="${REPO_DIR}/${1}"
-  local dst="${HOME_DIR}/${1}"
-  [ -d "$src" ] || return 0
-  if $OPT_DRY_RUN; then
-    echo "  [dry-run] cp -r ${1}/"
-  else
-    mkdir -p "$dst"
-    cp -r "${src}/." "${dst}/"
-    find "$dst" -name '.DS_Store' -type f -delete
-    echo "  ✓ ${1}/"
-  fi
-}
 
 ensure_gitconfig_baseline() {
   if $OPT_DRY_RUN; then
@@ -133,23 +134,29 @@ EOF
 
 echo "→ Dateien synchronisieren..."
 
-# Root-Dateien
-for f in AGENTS.md CLAUDE.md GEMINI.md README.md STATS.md CHANGELOG.md constitution.md \
-          .gitignore LICENSE; do
-  sync_file "$f"
-done
+sync_args=(
+  sync
+  --repo "$REPO_DIR"
+  --home "$HOME_DIR"
+  --manifest "$SYNC_MANIFEST"
+  --state "$SYNC_STATE"
+  --result "$SYNC_RESULT"
+)
+$OPT_DRY_RUN && sync_args+=(--dry-run)
+$OPT_CHECK_ONLY && sync_args+=(--check-only)
+$OPT_FORCE && sync_args+=(--force)
 
-# Lastenheft (glob-Muster)
-for f in "${REPO_DIR}"/Lastenheft*.md; do
-  [ -f "$f" ] && sync_file "$(basename "$f")"
-done
+set +e
+python3 "$SYNC_HELPER" "${sync_args[@]}"
+sync_status=$?
+set -e
 
-# Verzeichnisse
-sync_dir "scripts"
-sync_dir "docs"
-sync_dir ".github"
-sync_dir "specs"
-sync_dir ".specify"
+if $OPT_CHECK_ONLY; then
+  exit "$sync_status"
+fi
+if [ "$sync_status" -ne 0 ]; then
+  exit "$sync_status"
+fi
 
 echo ""
 
@@ -203,14 +210,32 @@ if $OPT_COMMIT; then
     echo ""
   fi
 
-  if [ -z "$(git status --short)" ]; then
-    echo "→ Keine Änderungen in ~/ — kein Commit nötig."
-  else
-    git add -A
-    REMOTE_SHA=$(git -C "${REPO_DIR}" rev-parse --short HEAD 2>/dev/null || echo "unbekannt")
-    git commit -m "chore: sync mit home-baseline @ ${REMOTE_SHA}
+  changed_paths=()
+  while IFS= read -r -d '' path; do
+    changed_paths+=("$path")
+  done < <(python3 "$SYNC_HELPER" emit-changed --result "$SYNC_RESULT")
 
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+  if [ -n "$(git status --porcelain -- .gitconfig)" ]; then
+    changed_paths+=(".gitconfig")
+  fi
+
+  commit_paths=()
+  for path in "${changed_paths[@]}"; do
+    if [ -e "${HOME_DIR}/${path}" ] || git ls-files --error-unmatch -- "$path" >/dev/null 2>&1; then
+      git add -A -- "$path"
+      if ! git diff --cached --quiet -- "$path"; then
+        commit_paths+=("$path")
+      fi
+    fi
+  done
+
+  if [ "${#commit_paths[@]}" -eq 0 ]; then
+    echo "→ Keine verwalteten Änderungen in ~/ — kein Commit nötig."
+  else
+    REMOTE_SHA=$(git -C "${REPO_DIR}" rev-parse --short HEAD 2>/dev/null || echo "unbekannt")
+    git commit --only -m "chore: sync mit home-baseline @ ${REMOTE_SHA}
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" -- "${commit_paths[@]}"
     echo "→ Commit in ~/ erstellt."
   fi
 fi

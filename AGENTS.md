@@ -97,6 +97,23 @@ bash ~/scripts/sync-home.sh --no-pull
 | `~/home-baseline-tmp` | ✅ `origin` → GitHub | Entwicklung, Commits, Push |
 | `~/` | ❌ kein Remote | Lokale Kopie für Scripts & Hooks |
 
+Der persönliche Fork unter `~/home-baseline-tmp` bleibt dauerhaft als
+versionierte Level-0-Quelle erhalten. `sync-home.*` synchronisiert nur die im
+Home-Sync-Manifest freigegebenen, mit Git versionierten Dateien, schützt lokale
+Abweichungen und protokolliert SHA-256 sowie Quell-Commit unter
+`~/.home-baseline/`. Vor echten Läufen `--check-only` / `-CheckOnly` verwenden;
+`--force` / `-Force` nur nach Prüfung der Konflikte. In der ABS-DD-Sandbox die
+eingebundene Referenz direkt verwenden; schreibender Home-Sync läuft nur auf
+dem Host.
+
+*Keep the personal fork at `~/home-baseline-tmp` permanently as the versioned
+level-0 source. `sync-home.*` copies only Git-tracked files approved by the Home
+sync manifest, protects local divergence, and records SHA-256 plus source
+commit under `~/.home-baseline/`. Use `--check-only` / `-CheckOnly` before real
+runs and `--force` / `-Force` only after reviewing conflicts. Inside the
+ABS-DD sandbox, use the mounted reference directly; writing Home sync runs are
+host-only.*
+
 
 Bash scripts use `#!/usr/bin/env bash` plus `set -euo pipefail`. PowerShell scripts require PowerShell 7, `Set-StrictMode -Version Latest`, and `$ErrorActionPreference = 'Stop'`. Match the existing style:
 

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "rootFiles": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "README.md",
+    "STATS.md",
+    "CHANGELOG.md",
+    "constitution.md",
+    ".gitignore",
+    "LICENSE"
+  ],
+  "rootGlobs": [
+    "Lastenheft*.md"
+  ],
+  "trackedPrefixes": [
+    "scripts/",
+    "docs/",
+    ".github/",
+    "specs/",
+    ".specify/"
+  ],
+  "trackedGlobs": [
+    ".agents/skills/speckit-*/**",
+    ".claude/commands/speckit.*.md",
+    ".claude/skills/speckit-*/**",
+    ".opencode/command/speckit.*.md"
+  ],
+  "excludePaths": [
+    ".agents/.skill-lock.json",
+    ".claude/settings.local.json"
+  ],
+  "excludePrefixes": [
+    ".agents/skills/microsoft-foundry/",
+    ".specify/presets/",
+    ".specify/integrations/.cache/"
+  ],
+  "excludeGlobs": [
+    "**/.DS_Store",
+    "**/.git/**",
+    "**/__pycache__/**"
+  ],
+  "legacyCleanupPaths": [
+    "scripts/templates/gemini-statusline.toml",
+    "scripts/config/level2-repository-registry.json",
+    "scripts/setup-gemini-settings.sh",
+    "scripts/setup-gemini-settings.ps1",
+    "docs/man/setup-gemini-settings.1.md",
+    ".specify/integrations/gemini.manifest.json"
+  ]
+}
