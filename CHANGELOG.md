@@ -8,6 +8,65 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.14.0](https://github.com/hindermath/home-baseline/compare/v0.13.0...v0.14.0) (2026-07-15)
+
+
+### Features / Neue Funktionen
+
+* add autonomous run governance preset ([3dad171](https://github.com/hindermath/home-baseline/commit/3dad171ab906e900a24ba28bdb8f6f5d5988462f))
+* add protected autonomous stop and resume ([608d148](https://github.com/hindermath/home-baseline/commit/608d148ffb65adf3e5725c887d783e17aea7d60c))
+* add protected autonomous stop and resume ([31a2f4d](https://github.com/hindermath/home-baseline/commit/31a2f4d7ab1796c3c7168b0028297d9689d6db40))
+* complete Antigravity CLI migration ([35acfbe](https://github.com/hindermath/home-baseline/commit/35acfbef70bafcfc9dee199f5d7cfc2ba09df967))
+* harden autonomous validation triggers ([c74f681](https://github.com/hindermath/home-baseline/commit/c74f681a3ab3fdaca7d38b1ffb1eb1ec4c352327))
+* harden GSDB registry promotion ([15fe2b1](https://github.com/hindermath/home-baseline/commit/15fe2b15066af4896c8fce4f2aaa53ebfcd5ee30))
+* orchestrate workspace maintenance ([b450c6d](https://github.com/hindermath/home-baseline/commit/b450c6dad4e9fdb74f0455938f395f010d37fc1d))
+* package autonomous run governance preset ([fb4671c](https://github.com/hindermath/home-baseline/commit/fb4671cd2a80df608b88c28b24abbbc31cd709e2))
+* release autonomous run governance v0.1.1 ([7b2911d](https://github.com/hindermath/home-baseline/commit/7b2911de77882b4ff291ecdf91a389746ac01f88))
+* release autonomous run governance v0.1.2 ([9ffe1d1](https://github.com/hindermath/home-baseline/commit/9ffe1d11707653c05cc3c2ad07b0d2b84fb5cdbf))
+* release autonomous run governance v0.1.2 ([7559004](https://github.com/hindermath/home-baseline/commit/75590041148efb9a5c3418ffda53f874fda8dab5))
+* release autonomous run governance v0.1.3 ([cb58d75](https://github.com/hindermath/home-baseline/commit/cb58d751ac477f95f9831a32feb4fd24a09387fb))
+* **sync:** harden managed home synchronization ([6892258](https://github.com/hindermath/home-baseline/commit/6892258c20e11971a6d16dc0924f96c2233ef1b9))
+* **toolchain:** add maintenance propagation ([88e733b](https://github.com/hindermath/home-baseline/commit/88e733b4fb27af714e5ce09ff946f5eebc56a3b2))
+* **toolchain:** require PSScriptAnalyzer ([5d5a1d1](https://github.com/hindermath/home-baseline/commit/5d5a1d10fdccfeaf97912585f28d885026e1afad))
+* validate autonomous acceptance gates ([0b6d911](https://github.com/hindermath/home-baseline/commit/0b6d911ef849b635352cad44ad35154de1e41be8))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* harden PowerShell homogeneity evidence ([db2bd86](https://github.com/hindermath/home-baseline/commit/db2bd86658c96c27f63c3c5dcd3fa23ce57f0060))
+* make Antigravity homogeneity check portable ([31ee568](https://github.com/hindermath/home-baseline/commit/31ee56890ac1a61c6b60e9802011142d86746e0d))
+* make autonomous validator invocation portable ([9322fad](https://github.com/hindermath/home-baseline/commit/9322fad9ba689d516da2c1391f12db7ef1818652))
+* make autonomous validator invocation portable ([ed61e65](https://github.com/hindermath/home-baseline/commit/ed61e65aae00510f21a91f4fe72d066e1ce138ee))
+* recognize archived GSDB intakes ([e8b9cb1](https://github.com/hindermath/home-baseline/commit/e8b9cb179faf3a69fe674d2b98900f8d8cf96f4d))
+* support Spec Kit migration in worktrees ([a94b5a1](https://github.com/hindermath/home-baseline/commit/a94b5a1e28df16d9b41adfda5dc3af737e2385c0))
+* synchronize active Level-2 environment registry ([d1de4ae](https://github.com/hindermath/home-baseline/commit/d1de4ae881bf1f35e5c238fd189829f8594d1a71))
+* **toolchain:** scope PowerShell analysis gate ([2d922d0](https://github.com/hindermath/home-baseline/commit/2d922d077b9d5a7642a0684caba7b81200d8bd42))
+
+
+### Documentation / Dokumentation
+
+* add autonomous governance field input 018 ([0abcd19](https://github.com/hindermath/home-baseline/commit/0abcd19aded614af5783558ab20d3415e2fec276))
+* add Feature 025 gate-scope finding ([9bd3e1d](https://github.com/hindermath/home-baseline/commit/9bd3e1da62e60c5438565e2345acf23aa9af0fda))
+* close autonomous governance v0.1.4 evidence ([541dd71](https://github.com/hindermath/home-baseline/commit/541dd710d3b3cf4b05ccc1312fff6919f2b06e79))
+* close autonomous governance v0.1.4 evidence ([26ef078](https://github.com/hindermath/home-baseline/commit/26ef078d81fcddfee2c28da9547f8a1fa66a4df2))
+* close autonomous run governance v0.2.0 ([bceaf98](https://github.com/hindermath/home-baseline/commit/bceaf98e493921ed12dbe9e23368619fbb7389e2))
+* correct statistics commit count ([0dc318c](https://github.com/hindermath/home-baseline/commit/0dc318ca703a80eefa9fc2bc31dfc84abbe31ea9))
+* hand off autonomous run findings from 019 ([70189d0](https://github.com/hindermath/home-baseline/commit/70189d0496661a6502b5fb43c4e2eadc481e635a))
+* hand off autonomous run findings from 020 ([fc8cdb4](https://github.com/hindermath/home-baseline/commit/fc8cdb47883aa294f2a67272f7526e25f6e48be7))
+* hand off autonomous run findings from 021 ([5b68bc6](https://github.com/hindermath/home-baseline/commit/5b68bc647ae0be55d9a7522e23321f1b34fc4e28))
+* hand off autonomous run findings from Feature 022 ([e22d556](https://github.com/hindermath/home-baseline/commit/e22d556a6748324c83c3c2013c423ca0c620d4de))
+* hand off autonomous run findings from Feature 023 ([f913ee0](https://github.com/hindermath/home-baseline/commit/f913ee053b889d6ab2975c3622bfd26d69cd4a87))
+* hand off Feature 025 preset finding ([ac72687](https://github.com/hindermath/home-baseline/commit/ac726873613e8bb745090f9e7994bd687e880ca2))
+* hand off Feature 026 gate validation learning ([046b65a](https://github.com/hindermath/home-baseline/commit/046b65a8d303d69333cd94fbdfea9be17f8287e6))
+* publish bilingual inclusion motto ([13c7ad2](https://github.com/hindermath/home-baseline/commit/13c7ad2bfd0ec9bcc49b309f557a0e24b48284e0))
+* record Feature 027 preset evidence ([b92c2b4](https://github.com/hindermath/home-baseline/commit/b92c2b470f150b84492482d1114cc72a258fdd8d))
+* **stats:** record maintenance rollout ([d3c156d](https://github.com/hindermath/home-baseline/commit/d3c156ddec6b78da23d95a4e9edb48766e877be1))
+
+
+### Maintenance / Wartung
+
+* **toolchain:** remove unused agent CLIs ([21959e3](https://github.com/hindermath/home-baseline/commit/21959e3169d6fef48496f4ada7f440393c8c6856))
+
 ## [0.13.0](https://github.com/hindermath/home-baseline/compare/v0.12.0...v0.13.0) (2026-07-11)
 
 
