@@ -36,9 +36,10 @@ efficiency-only guidance remain stable.
 | Gate-evidence validators | Pass | Bash and PowerShell accept all nine exact-head rows and reject a tampered head with exit 1 |
 | Disable/enable/remove/reinstall | Pass | Preset lifecycle operations preserve v0.2.1 and priority `70` without duplicate registrations |
 | Repository checks | Pass | `git diff --check`; Homogeneity 28/28; secret scan high=0; PSScriptAnalyzer 1.25.0 checks 57 files with zero Error/Warning findings |
-| Public preset PR | Pending | Recorded after immutable merge |
-| Tag and release | Pending | `v0.2.1` exact-tag ZIP and SHA-256 |
-| TuiVision adoption | Pending | Installed exact tag ZIP; seven presets and five autonomous commands unique |
+| Home Baseline PR | Pass | PR [#67](https://github.com/hindermath/home-baseline/pull/67), merge `37a3e6e17d1532987c07eaaf55dde5479bb8c29a` |
+| Public preset PR | Pass | PR [#6](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/6), merge `ac59d8ac31bad3893454a6ac41dcbe5c42c1819b` |
+| Tag and release | Pass | [`v0.2.1`](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.2.1); exact tag ZIP SHA-256 `799cc189e10893c2fd7106b6f6532fc02a1fc10a65d66b95139465f2acb6cf75` |
+| TuiVision adoption | Pass | PR [#81](https://github.com/hindermath/TuiVision/pull/81), merge `a09b741712d35e2faa7f7de35301143515b9ea39`; exact tag ZIP installed, seven presets resolved, and five autonomous commands unique on every maintained surface |
 
 ## Boundaries
 
