@@ -2616,7 +2616,7 @@ Hinweis: Alle sechs Presets erzeugen bzw. verlangen ab diesem Release-Block audi
 *Note: Starting with this release block, all six presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
 Optional für ausdrücklich delegierte, vollständige Spec-Kit-Läufe ist
-`autonomous-run-governance` v0.2.1 mit Priorität `70`. Es ergänzt
+`autonomous-run-governance` v0.2.2 mit Priorität `70`. Es ergänzt
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume` und
 `speckit.autonomous-retrospective`. Ergänzt werden konvergente
@@ -2626,11 +2626,13 @@ zwingende Korrektheits-, Sicherheits-, Berechtigungs- und Evidenzregeln minimal
 mit akzeptierten Plan-/Task-/Checklist-Artefakten ab. Es gehört nicht zur unveränderten
 Standard-Sechsermatrix. `LocalImplementation` bleibt der sichere Default; die
 Installation erteilt keine Remote-, Merge-, Bypass- oder Provider-Rechte. Die
+lesbare Skill-Überschrift `Deliver` ist kein Run-State-Wert; für Remote-Closeout
+gelten `Publish`, `Review` oder `MergeAndSync`. Die
 optionale Siebenerkonfiguration liegt in
 [`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json).
 
 *For explicitly delegated complete Spec Kit runs, the optional
-`autonomous-run-governance` v0.2.1 preset uses priority `70`. It adds
+`autonomous-run-governance` v0.2.2 preset uses priority `70`. It adds
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume`, and
 `speckit.autonomous-retrospective`. It adds convergence-based
@@ -2639,7 +2641,9 @@ checkpoints, and a permission-bounded remote closeout. On resume, it minimally
 reconciles new mandatory correctness, security, permission, and evidence rules
 with accepted Plan, Tasks, and checklist artifacts. It is not part of the unchanged standard
 six-preset matrix. `LocalImplementation` remains the safe default; installation
-grants no remote, merge, bypass, or provider rights. The optional seven-preset
+grants no remote, merge, bypass, or provider rights. The readable generated
+skill heading `Deliver` is not a run-state value; remote closeout uses
+`Publish`, `Review`, or `MergeAndSync`. The optional seven-preset
 configuration is stored in
 [`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json).*
 
