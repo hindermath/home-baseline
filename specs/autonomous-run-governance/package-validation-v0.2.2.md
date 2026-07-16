@@ -40,12 +40,33 @@ closeout uses `Publish`, `Review`, or `MergeAndSync`.
 | Public preset PR | Pass | [PR #7](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/7), merge `6c737d12e8f02ce055abd38fa62291e171505386`; publication-copy update only |
 | Tag and release | Pass | [`v0.2.2`](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.2.2), GitHub tag ZIP SHA-256 `e9f1bea43d99c891242516767aa06491e22b6f89d1f932a3837e970d05cf4f0d` |
 | TuiVision adoption | Pass | [PR #85](https://github.com/hindermath/TuiVision/pull/85), merge `a2606892dc0f204176a8f32e4e79458b1e8aab9e`; exact tag ZIP, seven-preset resolve, five unique autonomous skills, strict stage fixtures, DocFX/A11Y, formatting, secrets, CI, and Claude passed |
+| Post-release hard-abort/resume | Pass | Isolated Spec Kit 0.12.11 project, seven-preset stack, no Git remote, UI abort after `started`, read-only `Interrupted` classification, implicit-continuation refusal, explicit local-authority resume, Attempt 1 reused, 30/30 final tasks, both state validators green |
 
 Copilot could not review the three delivery PRs because the requesting user
 had exhausted the available quota. This is recorded as unavailable review,
 not as a pass. For the protected Home Baseline and TuiVision repositories, the
 previously authorized narrow admin bypass applied only after technical checks
 were green and no actionable review thread remained.
+
+## Post-Release Recovery Validation
+
+The isolated v0.2.2 field test used a deterministic 120-second local validation
+and aborted Codex through the UI without invoking the graceful stop command.
+The child process completed after the agent interruption, leaving stale
+persisted `Active` state at 13/30 tasks while the task file had reached 15/30.
+
+`speckit.autonomous-status` remained read-only, detected the task and operation
+drift, and classified the effective state as `Interrupted`. The general
+autonomous command refused to overwrite or continue the run. Explicit resume
+revalidated `LocalImplementation` authority, verified the completed marker and
+byte-exact result, and did not start a second attempt. The final state is
+`Retrospective`, `Completed`, 30/30 tasks, and `nextExactAction: N/A`; Bash and
+PowerShell validators both return `PASS`.
+
+The retrospective is `NoPromotion`. The only local correction was EOF
+formatting in the synthetic feature artifacts. No command, skill, runbook,
+template, validator, agent-guidance, version, release, or permission change is
+required.
 
 ## Boundaries
 
