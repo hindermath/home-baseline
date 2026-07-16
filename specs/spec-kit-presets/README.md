@@ -96,9 +96,11 @@ MSL integration:
 Current status:
 
 - the six standard presets are published and catalogued
-- `autonomous-run-governance` v0.2.1 is the current patch release; it retains
+- `autonomous-run-governance` v0.2.2 is the current patch release; it retains
   validated lifecycle state plus explicit status, graceful-stop, and protected
-  resume commands, and adds a mandatory-rule delta audit for preset drift
+  resume commands, adds a mandatory-rule delta audit for preset drift, provides
+  a detailed operating guide, and distinguishes the readable `Deliver` heading
+  from canonical `Publish`, `Review`, and `MergeAndSync` run-state stages
 
 Recommended publication order:
 
@@ -119,7 +121,7 @@ specify preset add isaqb-architecture-governance --priority 30
 specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
-specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.1.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.2.zip --priority 70
 ```
 
 Notes:
