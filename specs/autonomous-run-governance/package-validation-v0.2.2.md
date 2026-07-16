@@ -36,10 +36,16 @@ closeout uses `Publish`, `Review`, or `MergeAndSync`.
 | Gate-evidence validators | Pass | Bash and PowerShell accept all ten real Feature-029 exact-head rows |
 | Disable/enable/remove/reinstall | Pass | Lifecycle operations preserve v0.2.2 priority `70` without duplicate skills |
 | Repository checks | Pass | Diff and canonical parity clean; homogeneity 100; secrets high=0; PSScriptAnalyzer 1.25.0 reports zero Error/Warning findings |
-| Home Baseline PR | Pending | Non-empty documentation package PR |
-| Public preset PR | Pending | Publication-copy update only |
-| Tag and release | Pending | `v0.2.2` plus exact GitHub ZIP checksum |
-| TuiVision adoption | Pending | Exact tag ZIP, seven-preset resolve, and unique autonomous skills |
+| Home Baseline PR | Pass | [PR #70](https://github.com/hindermath/home-baseline/pull/70), merge `d77e92b2f823257fc4ad90595cd4cf6fed0daa28`; documentation, homogeneity, and PowerShell checks passed on Ubuntu, macOS, and Windows |
+| Public preset PR | Pass | [PR #7](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/7), merge `6c737d12e8f02ce055abd38fa62291e171505386`; publication-copy update only |
+| Tag and release | Pass | [`v0.2.2`](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.2.2), GitHub tag ZIP SHA-256 `e9f1bea43d99c891242516767aa06491e22b6f89d1f932a3837e970d05cf4f0d` |
+| TuiVision adoption | Pass | [PR #85](https://github.com/hindermath/TuiVision/pull/85), merge `a2606892dc0f204176a8f32e4e79458b1e8aab9e`; exact tag ZIP, seven-preset resolve, five unique autonomous skills, strict stage fixtures, DocFX/A11Y, formatting, secrets, CI, and Claude passed |
+
+Copilot could not review the three delivery PRs because the requesting user
+had exhausted the available quota. This is recorded as unavailable review,
+not as a pass. For the protected Home Baseline and TuiVision repositories, the
+previously authorized narrow admin bypass applied only after technical checks
+were green and no actionable review thread remained.
 
 ## Boundaries
 
