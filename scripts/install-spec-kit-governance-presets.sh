@@ -184,7 +184,8 @@ install_for_repo() {
   local changed=0
   local id version priority archive_url
 
-  [ -d "$repo/.git" ] || die "kein Git-Repository: $repo"
+  git -C "$repo" rev-parse --git-dir >/dev/null 2>&1 ||
+    die "kein Git-Repository: $repo"
   [ -d "$repo/.specify" ] || die "Spec Kit ist nicht initialisiert: $repo"
 
   printf '## %s\n' "$repo"
