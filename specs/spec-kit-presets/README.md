@@ -1,8 +1,7 @@
 # Spec Kit Preset Scaffolds
 
-This directory contains local scaffolds for the six standard Spec Kit
-governance presets plus one optional autonomous-delivery preset derived from
-the `home-baseline` governance work.
+This directory contains local scaffolds for the seven standard Spec Kit
+governance presets derived from the `home-baseline` governance work.
 
 Target split:
 
@@ -12,12 +11,12 @@ Target split:
 - `a11y-governance` — version `0.4.0`
 - `cross-platform-governance` — version `0.2.0`
 - `agent-parity-governance` — version `0.3.0`
-- optional `autonomous-run-governance` — version `0.2.1`
+- `autonomous-run-governance` — version `0.2.2`
 
-The standard six presets require `spec-kit >= 0.8.0`. They depend on the
-`wrap` and `append` composition strategies introduced in 0.8.x; older
-Spec Kit versions cannot apply them. `autonomous-run-governance` requires
-`spec-kit >= 0.8.3` and adds five new commands without replacing core commands.
+The standard seven-preset profile requires `spec-kit >= 0.8.3`.
+The original six presets depend on the `wrap` and `append` composition
+strategies introduced in 0.8.x. `autonomous-run-governance` adds five new
+commands without replacing core commands.
 
 These scaffolds are intentionally kept as separate repo-shaped
 directories so they can later be moved into independent public GitHub
@@ -110,7 +109,7 @@ Recommended publication order:
 4. `a11y-governance`
 5. `cross-platform-governance`
 6. `agent-parity-governance`
-7. optional `autonomous-run-governance`
+7. `autonomous-run-governance`
 
 Recommended install order for stacked use:
 

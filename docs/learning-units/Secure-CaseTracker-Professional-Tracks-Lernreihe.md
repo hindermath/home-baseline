@@ -28,7 +28,7 @@
 - Spec-Kit-Läufe begleiten die Aufgaben pro Lehrjahr, Track, Sprachpfad und Aufgaben-Lastenheft; sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Prüfungsvorbereitung.
 - C#, Go, Java, Python, Rust und Swift bleiben die Standard-MSL-Pfade.
 - Ab dem 3. Lehrjahr wird erwartet, dass KI-gestützte Entwicklungsarbeit in oder mit `absdd-image-sandbox` geplant, genutzt oder begründet abgegrenzt wird.
-- Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und sechs Governance-Presets werden als lokale Nachweisbasis erwartet.
+- Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und sieben Governance-Presets werden als lokale Nachweisbasis erwartet.
 - Positive Aussagen zur Sicherheit, Qualität oder Compliance brauchen konkrete Evidenz.
 - Nicht anwendbare Punkte werden als `N/A` mit Begründung dokumentiert.
 

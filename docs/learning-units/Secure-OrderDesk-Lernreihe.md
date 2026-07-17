@@ -80,9 +80,9 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 
 **EN:** The Secure Development Guideline is the binding anchor. Each learning unit requires visible references to the guideline, checklists, related documents, and the six Spec Kit governance presets. Non-applicable points are documented as `N/A` with rationale; open points are marked as `Open` with follow-up work. Because of the relational domain, SQL security (parameterized statements) and privacy are especially prominent.
 
-**DE:** Die Level-2-Sprachrepos führen diese Grundlage lokal unter `docs/secure-development/` mit: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Preset-Verzahnung. Zusätzlich sind die sechs Governance-Presets aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar.
+**DE:** Die Level-2-Sprachrepos führen diese Grundlage lokal unter `docs/secure-development/` mit: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und Preset-Verzahnung. Zusätzlich sind die sieben Governance-Presets aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar.
 
-**EN:** The level-2 language repositories carry this baseline locally under `docs/secure-development/`: guideline, 12 individual checklists, compendium, related documents, and preset alignment. The six governance presets from the central matrix are installed as well and can be evidenced with `specify preset list`.
+**EN:** The level-2 language repositories carry this baseline locally under `docs/secure-development/`: guideline, 12 individual checklists, compendium, related documents, and preset alignment. The seven governance presets from the central matrix are installed as well and can be evidenced with `specify preset list`.
 
 ## Sandbox-Einordnung / Sandbox Classification
 

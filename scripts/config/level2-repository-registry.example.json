@@ -20,7 +20,7 @@
       "primaryLanguage": "C#",
       "mslStatus": "msl",
       "gsdbRequired": true,
-      "presetProfile": "standard-six-governance-presets",
+      "presetProfile": "standard-seven-governance-presets",
       "role": "learning-series-reference",
       "source": "example",
       "registeredAt": "2026-07-01"

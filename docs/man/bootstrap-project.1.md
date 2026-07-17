@@ -16,9 +16,9 @@ pwsh -NoProfile -File scripts/bootstrap-project.ps1 -ProjectName <Name> [-Target
 
 ## DESCRIPTION
 
-Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialisiert die KI-Agenten, installiert Spec-Kit samt Governance-Presets, richtet optional ein Remote-Repository sowie den Release-Please-Workflow ein und setzt die deklarierte Primaersprache fuer das MSL-Setup. Jedes erzeugte Level-2-Projekt wird unabhaengig vom MSL-Status als GSDB-Ziel registriert; das Sechs-Preset-Profil ist der Standard, sofern es nicht explizit abgeschaltet wird. Bereits vorhandene Dateien bleiben ohne `--force` unangetastet.
+Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialisiert die KI-Agenten, installiert Spec-Kit samt Governance-Presets, richtet optional ein Remote-Repository sowie den Release-Please-Workflow ein und setzt die deklarierte Primaersprache fuer das MSL-Setup. Jedes erzeugte Level-2-Projekt wird unabhaengig vom MSL-Status als GSDB-Ziel registriert; das Sieben-Preset-Profil ist der Standard, sofern es nicht explizit abgeschaltet wird. Bereits vorhandene Dateien bleiben ohne `--force` unangetastet.
 
-*The script creates a new project idempotently: it copies templates, initializes the AI agents, installs Spec Kit and its governance presets, optionally sets up a remote repository and the Release Please workflow, and applies the declared primary language for the MSL setup. Every generated level-2 project is registered for GSDB scope independently of MSL status; the six-preset profile is the default unless explicitly disabled. Existing files are left untouched unless `--force` is given.*
+*The script creates a new project idempotently: it copies templates, initializes the AI agents, installs Spec Kit and its governance presets, optionally sets up a remote repository and the Release Please workflow, and applies the declared primary language for the MSL setup. Every generated level-2 project is registered for GSDB scope independently of MSL status; the seven-preset profile is the default unless explicitly disabled. Existing files are left untouched unless `--force` is given.*
 
 ## OPTIONS
 

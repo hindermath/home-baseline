@@ -6,6 +6,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEFAULT_CONFIG="${SCRIPT_DIR}/config/spec-kit-governance-presets.json"
+LEGACY_CONFIG="${SCRIPT_DIR}/config/spec-kit-autonomous-governance-presets.json"
 
 OPT_CONFIG="$DEFAULT_CONFIG"
 OPT_DRY_RUN=false
@@ -64,6 +65,61 @@ PY
   fi
 
   die "python3 nicht gefunden; JSON-Preset-Matrix kann nicht gelesen werden"
+}
+
+validate_preset_matrix() {
+  local config="$1"
+  python3 - "$config" <<'PY'
+import json
+import sys
+
+path = sys.argv[1]
+with open(path, "r", encoding="utf-8") as handle:
+    data = json.load(handle)
+
+if data.get("schemaVersion") != 1:
+    raise SystemExit(f"unsupported schemaVersion in {path}")
+
+presets = data.get("presets")
+if not isinstance(presets, list) or not presets:
+    raise SystemExit(f"presets must be a non-empty list in {path}")
+
+required = {"id", "version", "priority", "repository", "archiveUrl"}
+ids = set()
+priorities = set()
+for index, preset in enumerate(presets):
+    if not isinstance(preset, dict):
+        raise SystemExit(f"preset {index} must be an object in {path}")
+    missing = required.difference(preset)
+    if missing:
+        raise SystemExit(f"preset {index} missing {sorted(missing)} in {path}")
+    if preset["id"] in ids:
+        raise SystemExit(f"duplicate preset id {preset['id']} in {path}")
+    if preset["priority"] in priorities:
+        raise SystemExit(f"duplicate priority {preset['priority']} in {path}")
+    ids.add(preset["id"])
+    priorities.add(preset["priority"])
+PY
+}
+
+validate_legacy_matrix_parity() {
+  [ "$OPT_CONFIG" = "$DEFAULT_CONFIG" ] || return 0
+  [ -f "$LEGACY_CONFIG" ] || return 0
+
+  python3 - "$DEFAULT_CONFIG" "$LEGACY_CONFIG" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], "r", encoding="utf-8") as handle:
+    canonical = json.load(handle).get("presets", [])
+with open(sys.argv[2], "r", encoding="utf-8") as handle:
+    legacy = json.load(handle).get("presets", [])
+
+if canonical != legacy:
+    raise SystemExit(
+        "deprecated autonomous preset matrix differs from the canonical matrix"
+    )
+PY
 }
 
 normalize_preset_markdown() {
@@ -197,6 +253,8 @@ done
 
 command -v specify >/dev/null 2>&1 || die "specify CLI nicht gefunden"
 [ -f "$OPT_CONFIG" ] || die "Preset-Konfiguration nicht gefunden: $OPT_CONFIG"
+validate_preset_matrix "$OPT_CONFIG"
+validate_legacy_matrix_parity
 
 if [ "${#OPT_REPOS[@]}" -eq 0 ]; then
   OPT_REPOS+=("$PWD")

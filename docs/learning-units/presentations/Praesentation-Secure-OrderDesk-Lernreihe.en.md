@@ -228,7 +228,7 @@ For a relational domain, SQL security and privacy are especially prominent.
 
 ---
 
-# The Six Governance Presets
+# The Seven Governance Presets
 
 | Preset | Focus |
 |---|---|

@@ -51,7 +51,7 @@ This presentation introduces the track. It does not replace a Spec Kit run and d
 - secure development guideline
 - 12 individual checklists and compendium
 - related documents
-- six governance presets
+- seven governance presets
 - `Applicable`, `N/A`, `Open` with rationale
 
 ---

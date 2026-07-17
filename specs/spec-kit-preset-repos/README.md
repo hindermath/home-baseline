@@ -1,8 +1,7 @@
 # Spec Kit Preset Repository Scaffolds
 
-This directory contains repo-shaped release candidates for the six standard
-home-baseline-derived Spec Kit governance presets and the optional autonomous
-run preset.
+This directory contains repo-shaped release candidates for the seven standard
+home-baseline-derived Spec Kit governance presets.
 
 Each subdirectory is intended to become a standalone GitHub repository:
 
@@ -32,7 +31,7 @@ specify preset resolve plan-template
 specify preset resolve tasks-template
 ```
 
-For the full stacked smoke test, install all six presets in their
+For the full stacked smoke test, install all seven presets in their
 recommended priority order:
 
 ```bash

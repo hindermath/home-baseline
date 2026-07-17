@@ -40,7 +40,7 @@ Relevante Bezugspunkte sind insbesondere:
 - `docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md`
 - `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md`
 - `constitution.md`, Prinzipien XII bis XIX
-- die sechs Governance-Presets
+- die sieben Governance-Presets
 
 ## 3. Zielbild
 
@@ -135,7 +135,7 @@ stillschweigend ausgelassen werden.
 ```text
 /speckit-specify Nutze Lastenheft_Secure-Development-Container-Hardening.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen sicheren Softwareentwicklungscontainer bzw. eine Entwicklungs-Sandbox.
 
-Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden Dokumenten und den sechs Governance-Presets soll ein belastbares Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer entstehen.
+Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden Dokumenten und den sieben Governance-Presets soll ein belastbares Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer entstehen.
 
 Pflichtpunkte:
 - Container-/Sandbox-Typ, Schutzgrenzen und Nicht-Ziele klaeren.

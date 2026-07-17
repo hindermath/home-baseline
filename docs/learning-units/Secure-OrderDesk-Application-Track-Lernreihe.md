@@ -37,7 +37,7 @@
 ## Governance und Nachweise / Governance and Evidence
 
 - Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband und mitgeltende Dokumente als lokale Nachweisbasis.
-- Sechs Governance-Presets aus der zentralen Matrix; Nachweis über `specify preset list`.
+- Sieben Governance-Presets aus der zentralen Matrix; Nachweis über `specify preset list`.
 - Nicht anwendbare Punkte als `N/A` mit Begründung; offene Punkte als `Open` mit Folgeaktion.
 - Positive Aussagen zu Sicherheit, Qualität oder Compliance nur mit konkreter Evidenz.
 

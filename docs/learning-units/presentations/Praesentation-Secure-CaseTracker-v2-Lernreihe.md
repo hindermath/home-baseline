@@ -63,7 +63,7 @@ Diese Präsentation führt in die Lernreihe ein. Sie ersetzt keinen Spec-Kit-Lau
 - Richtlinie Sichere Entwicklung
 - 12 Einzel-Checklisten und Checklistensammelband
 - mitgeltende Dokumente
-- sechs Governance-Presets
+- sieben Governance-Presets
 - `Applicable`, `N/A`, `Open` mit Begründung
 - Sandbox-Entscheidung: `Applicable`, `N/A` oder `Open`
 - IDE-Arbeit außerhalb der Sandbox bleibt zulässig

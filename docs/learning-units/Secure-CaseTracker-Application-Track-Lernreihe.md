@@ -39,7 +39,7 @@
 
 - Dieser Track nutzt `Secure CaseTracker` und `Secure CaseTracker v2` als fachliche Vorarbeit.
 - Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband und mitgeltende Dokumente werden als lokale Arbeitsgrundlage erwartet.
-- Die sechs Governance-Presets aus der zentralen Matrix sind Voraussetzung für spätere MSL-Level-2-Repos.
+- Die sieben Governance-Presets aus der zentralen Matrix sind Voraussetzung für spätere MSL-Level-2-Repos.
 - Nicht anwendbare Punkte werden als `N/A` mit Begründung dokumentiert.
 - Offene Punkte werden als `Open` mit Folgeaktion, Risiko und Priorität dokumentiert.
 

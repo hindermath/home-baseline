@@ -228,7 +228,7 @@ Bei einer relationalen Domäne stehen SQL-Sicherheit und Datenschutz besonders i
 
 ---
 
-# Die sechs Governance-Presets
+# Die sieben Governance-Presets
 
 | Preset | Fokus |
 |---|---|

@@ -19,7 +19,7 @@ Die sichere-Entwicklung-Basis liegt in `docs/secure-development/`. Sie enthält:
 - zwölf Einzelchecklisten in `checklisten/`,
 - den Sammelband `Checklistensammelband_Sichere-Entwicklung.md`,
 - mitgeltende Dokumente in `mitgeltende-dokumente/`,
-- Bezüge zu den sechs Governance-Presets `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance` und `agent-parity-governance`.
+- Bezüge zu den sieben Governance-Presets `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance` und `agent-parity-governance`.
 
 Die CISA-Unterlage `THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR` beschreibt Swift ausdrücklich als Memory-Safe Language (MSL). Swift ist in der zentralen Constitution und in den Preset-Flächen bereits als MSL enthalten. Der spätere Lauf soll diese Einordnung in den mitgeltenden Dokumenten didaktisch sichtbarer machen.
 
@@ -77,7 +77,7 @@ Ein neuer Preset-Release ist nur erforderlich, wenn der Abgleich eine echte Änd
 - Es gibt keine stille Auslassung relevanter Prüfbereiche.
 - Jede Nichtanwendbarkeit bleibt als `N/A` mit kurzer Begründung dokumentierbar.
 - Swift ist konsistent als MSL eingeordnet.
-- Die sechs Governance-Presets bleiben fachlich widerspruchsfrei zur Richtlinie und den mitgeltenden Dokumenten.
+- Die sieben Governance-Presets bleiben fachlich widerspruchsfrei zur Richtlinie und den mitgeltenden Dokumenten.
 - `git diff --check`, Secret-Scan und Propagations-Dry-run laufen ohne blockierende Befunde.
 
 ## 9. Spec-Kit-Intake-Reife
@@ -100,7 +100,7 @@ Der spaetere Lauf muss ausdruecklich dokumentieren:
 ## 10. Kopierbarer `/speckit-specify`-Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den sechs Governance-Presets.
+/speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den sieben Governance-Presets.
 
 Ziel: Die sichere-Entwicklung-Basis soll fuer Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten so klar werden, dass spaetere Level-2-Spec-Kit-Laeufe dieselbe Bewertungslogik fuer `Applicable`, `N/A`, `Open`, Evidenzpfad, Restrisiko und Follow-up verwenden.
 

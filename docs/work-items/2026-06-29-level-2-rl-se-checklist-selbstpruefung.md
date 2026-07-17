@@ -80,7 +80,7 @@ Je nach Repository-Struktur typischerweise:
 ```text
 /speckit-specify Nutze das repo-spezifische Lastenheft_RL-SE-Checklist-Selbstpruefung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer eine RL-SE-/Checklist-Selbstpruefung von TARGET_REPO.
 
-Ziel: Pruefe TARGET_REPO gegen die generische Secure-Development-Basis aus docs/secure-development/ beziehungsweise aus dem Level-0-Repo ~/home-baseline-tmp/docs/secure-development/. Beruecksichtige Richtlinie_Sichere-Entwicklung.md, Checklistensammelband_Sichere-Entwicklung.md, CL_01 bis CL_12, mitgeltende Dokumente, Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md und die sechs Governance-Presets.
+Ziel: Pruefe TARGET_REPO gegen die generische Secure-Development-Basis aus docs/secure-development/ beziehungsweise aus dem Level-0-Repo ~/home-baseline-tmp/docs/secure-development/. Beruecksichtige Richtlinie_Sichere-Entwicklung.md, Checklistensammelband_Sichere-Entwicklung.md, CL_01 bis CL_12, mitgeltende Dokumente, Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md und die sieben Governance-Presets.
 
 Erzeuge eine projektspezifische Evidenz- und Anwendbarkeitslogik mit `Applicable`, `N/A` und `Open`. Jeder relevante Pruefpunkt braucht Begruendung, Evidenzpfad oder Open-Markierung, Owner, Follow-up und Re-Evaluation-Trigger. Human-only-Punkte wie formale Freigabe, QISMS-Eintraege, Plattform-Branch-Protection, Secrets, Provider und Modellfreigaben duerfen nicht als erledigt behauptet werden.
 

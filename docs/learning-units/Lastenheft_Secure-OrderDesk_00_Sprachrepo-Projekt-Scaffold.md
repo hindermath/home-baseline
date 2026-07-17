@@ -63,7 +63,7 @@ durchführen", because of the container-first gate). Deeper explanation and comp
 - **Prinzipien:** sichere Entwicklungsumgebung, MSL-Präferenz, sichere Code-Erzeugung, auditfähige Evidenz.
 - **Checklisten:** CL_01, CL_05, CL_08, CL_09, CL_10, CL_12.
 - **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Leitlinie Sichere Entwicklungs-Sandbox, `Secure-Trader-Sandbox-Preflight.md` (Container-First-Gate), Kompetenzprofile und Schulungsplan.
-- **Presets:** alle sechs Governance-Presets als lokale Arbeits- und Nachweisbasis.
+- **Presets:** alle sieben Governance-Presets als lokale Arbeits- und Nachweisbasis.
 
 ## Aufgabenstellung / Task
 
@@ -94,7 +94,7 @@ checklist from `Secure-Trader-Sandbox-Preflight.md` before the first agent invoc
 
 - **R-01:** Ein minimales lauffähiges Projekt für genau eine der sechs Zielsprachen ist vorhanden oder wird angelegt.
 - **R-02:** Lokale Build- und Testbefehle sind vollständig dokumentiert und reproduzierbar.
-- **R-03:** Die sechs Governance-Presets sind installiert oder als Blocker mit konkretem Behebungsweg dokumentiert.
+- **R-03:** Die sieben Governance-Presets sind installiert oder als Blocker mit konkretem Behebungsweg dokumentiert.
 - **R-04:** Die Secure-Development-Basis unter `docs/secure-development/` ist vorhanden oder als fehlend mit Folgeaufgabe dokumentiert.
 - **R-05:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert; die Northwind-Datenbasis inkl. `ALFKI` ist als spätere Quelle benannt, aber noch nicht angebunden.
 - **R-06 (Container-First-Gate):** Wird ein KI-Agent genutzt, erfolgt der Aufruf ausschließlich in der freigegebenen Sandbox/im Container (`absdd-image-sandbox`), nie auf dem Arbeitsplatz-Rechner. Die Preflight-Checkliste aus `Secure-Trader-Sandbox-Preflight.md` ist vor dem ersten Agenten-Aufruf abgearbeitet; wird kein Agent genutzt, wird dies als `N/A` mit Begründung dokumentiert.

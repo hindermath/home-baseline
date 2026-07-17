@@ -194,7 +194,7 @@ Security comes from requirements, architecture, code, tests, operation, and evid
 
 ---
 
-# The Six Governance Presets
+# The Seven Governance Presets
 
 | Preset | Focus |
 |---|---|

@@ -30,11 +30,11 @@ means deliberately making a system more resilient and closing open gaps. A **har
 structured cross-check: what does the rule require, what is met, what is missing, and what has which priority?
 
 **DE:** In dieser Einheit lernst du, eine Härtungsmatrix aufzubauen, jede Anforderung gegen Richtlinie und
-Presets zu prüfen, offene Punkte ehrlich mit Priorität zu notieren und die sechs Governance-Presets als
+Presets zu prüfen, offene Punkte ehrlich mit Priorität zu notieren und die sieben Governance-Presets als
 prüfbaren Rahmen zu nutzen.
 
 **EN:** In this unit you learn to build a hardening matrix, check each requirement against the guideline and
-presets, honestly note open items with a priority, and use the six governance presets as a verifiable frame.
+presets, honestly note open items with a priority, and use the seven governance presets as a verifiable frame.
 
 ## Kernbegriffe / Key Terms
 
@@ -230,7 +230,7 @@ is at the same time the subject of the `a11y-governance` preset.
 
 **EN:** I can …
 
-- [ ] name the check frame of the guideline and the six presets.
+- [ ] name the check frame of the guideline and the seven presets.
 - [ ] build a hardening matrix with status, gap, priority, and evidence.
 - [ ] keep positive claims only with evidence, else `Open`/`N/A` with a rationale.
 - [ ] prioritize open hardening items by risk and effort.

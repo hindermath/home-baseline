@@ -13,7 +13,7 @@ Dieses Lastenheft beschreibt, wie Level-2-Repositories von einer sicheren Entwic
 
 ## Kontext / Context
 
-Die zentrale Secure-Development-Basis besteht aus Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten und sechs Governance-Presets. `absdd-image-sandbox` ist das vorgesehene Referenzprofil fuer eine oeffentlichkeitsfaehige Ausbildungs-Sandbox. Level-2-Repositories bleiben die konkreten Entwicklungs- und Haertungsziele.
+Die zentrale Secure-Development-Basis besteht aus Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten und sieben Governance-Presets. `absdd-image-sandbox` ist das vorgesehene Referenzprofil fuer eine oeffentlichkeitsfaehige Ausbildungs-Sandbox. Level-2-Repositories bleiben die konkreten Entwicklungs- und Haertungsziele.
 
 ## Geltungsbereich / Scope
 
@@ -36,7 +36,7 @@ Dieses Lastenheft gilt fuer Level-2-Repositories, die:
 
 1. Fuer jedes betroffene Level-2-Repository wird eine konkrete Intake-Datei fuer einen spaeteren Sandbox-gestuetzten Secure-Development-Haertungslauf bereitgestellt.
 2. Die Intake-Datei nennt Projektkontext, Runtime, Build/Test-Baseline, Dokumentations-/A11Y-Basis und Agentenflaechen aus dem zentralen Level-2-Register.
-3. Die Intake-Datei verweist auf Richtlinie, `CL_12`, `Leitlinie_Sichere-Entwicklungs-Sandbox.md`, vorhandene Secure-Development-Lastenhefte und die sechs Governance-Presets.
+3. Die Intake-Datei verweist auf Richtlinie, `CL_12`, `Leitlinie_Sichere-Entwicklungs-Sandbox.md`, vorhandene Secure-Development-Lastenhefte und die sieben Governance-Presets.
 4. Die Intake-Datei prueft, wie das Projekt sicher in oder mit der Sandbox bearbeitet werden kann: Mounts, Schreibgrenzen, Secrets, Build/Test, SBOM, Scans, KI-Agenten, Statistik und Review.
 5. Jede Intake-Datei endet mit einem kopierbaren `/speckit-specify` Prompt.
 6. `Lastenheft_Abarbeitungsreihenfolge.md` wird geschuetzt ergaenzt. Branch-spezifische Lastenhefte mit Feature-Branch-Kennung werden nicht erneut eingeplant.
@@ -78,7 +78,7 @@ Ziel: Level-2-Repositories sollen sicher, nachvollziehbar und ausbildungsgeeigne
 Beruecksichtige:
 - Richtlinie Sichere Entwicklung und CL_12 Agentische KI in Sandbox-Umgebungen.
 - Leitlinie_Sichere-Entwicklungs-Sandbox.md.
-- Die sechs Governance-Presets mit auditfaehigen Applicable/N/A/Open-Entscheidungen.
+- Die sieben Governance-Presets mit auditfaehigen Applicable/N/A/Open-Entscheidungen.
 - MSL-Scope: Rust, Swift, C#, F#, Java, Kotlin, Scala, Go, Dart, Python, Ruby, JavaScript, TypeScript, Haskell, OCaml, Erlang, Elixir, Ada und SPARK.
 - Die vier C#/.NET-Referenzrepos TuiVision, TinyCalc, TinyPl0 und InventarWorkerService als erste Zielmenge.
 - Keine Spec-Kit-Implementierung und keine Projekt-Haertung in diesem Lauf.

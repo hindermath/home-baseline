@@ -55,6 +55,7 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 if (-not $PresetConfig) {
     $PresetConfig = Join-Path $ScriptDir 'config/spec-kit-governance-presets.json'
 }
+$LegacyPresetConfig = Join-Path $ScriptDir 'config/spec-kit-autonomous-governance-presets.json'
 
 function Resolve-HBPath {
     param([string]$Path)
@@ -130,6 +131,38 @@ function Normalize-PresetMarkdown {
     return $changed
 }
 
+function Test-PresetMatrix {
+    param([string]$Path)
+
+    $data = Get-Content $Path -Raw | ConvertFrom-Json
+    if ([int]$data.schemaVersion -ne 1) {
+        throw "unsupported schemaVersion in ${Path}"
+    }
+
+    $presets = @($data.presets)
+    if ($presets.Count -eq 0) {
+        throw "presets must be a non-empty list in ${Path}"
+    }
+
+    $ids = [System.Collections.Generic.HashSet[string]]::new()
+    $priorities = [System.Collections.Generic.HashSet[int]]::new()
+    foreach ($preset in $presets) {
+        foreach ($property in @('id', 'version', 'priority', 'repository', 'archiveUrl')) {
+            if ($null -eq $preset.$property -or [string]::IsNullOrWhiteSpace([string]$preset.$property)) {
+                throw "preset is missing ${property} in ${Path}"
+            }
+        }
+        if (-not $ids.Add([string]$preset.id)) {
+            throw "duplicate preset id $($preset.id) in ${Path}"
+        }
+        if (-not $priorities.Add([int]$preset.priority)) {
+            throw "duplicate priority $($preset.priority) in ${Path}"
+        }
+    }
+
+    return $data
+}
+
 if (-not (Get-Command specify -ErrorAction SilentlyContinue)) {
     throw 'specify CLI nicht gefunden / specify CLI not found'
 }
@@ -139,7 +172,19 @@ if (-not (Test-Path $PresetConfig)) {
     throw "Preset-Konfiguration nicht gefunden / preset config not found: ${PresetConfig}"
 }
 
-$matrix = Get-Content $PresetConfig -Raw | ConvertFrom-Json
+$matrix = Test-PresetMatrix -Path $PresetConfig
+$defaultPresetConfig = Join-Path $ScriptDir 'config/spec-kit-governance-presets.json'
+if (
+    ([System.IO.Path]::GetFullPath($PresetConfig) -eq [System.IO.Path]::GetFullPath($defaultPresetConfig)) -and
+    (Test-Path $LegacyPresetConfig)
+) {
+    $legacyMatrix = Test-PresetMatrix -Path $LegacyPresetConfig
+    $canonicalJson = @($matrix.presets) | ConvertTo-Json -Depth 8 -Compress
+    $legacyJson = @($legacyMatrix.presets) | ConvertTo-Json -Depth 8 -Compress
+    if ($canonicalJson -ne $legacyJson) {
+        throw 'deprecated autonomous preset matrix differs from the canonical matrix'
+    }
+}
 foreach ($repoItem in $Repo) {
     $repository = Resolve-HBPath $repoItem
     if (-not (Test-Path (Join-Path $repository '.git'))) {

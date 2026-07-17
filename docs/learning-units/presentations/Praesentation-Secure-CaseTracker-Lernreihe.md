@@ -194,7 +194,7 @@ Sicherheit entsteht aus Anforderungen, Architektur, Code, Tests, Betrieb und Nac
 
 ---
 
-# Die sechs Governance-Presets
+# Die sieben Governance-Presets
 
 | Preset | Fokus |
 |---|---|

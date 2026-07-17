@@ -45,7 +45,7 @@
 - **Prinzipien:** sichere Entwicklungsumgebung, MSL-Präferenz, sichere Code-Erzeugung, auditfähige Evidenz.
 - **Checklisten:** CL_01, CL_05, CL_08, CL_09, CL_10, CL_12.
 - **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Leitlinie Sichere Entwicklungs-Sandbox, `Secure-Trader-Sandbox-Preflight.md` (Container-First-Gate), Kompetenzprofile und Schulungsplan.
-- **Presets:** alle sechs Governance-Presets als lokale Arbeits- und Nachweisbasis.
+- **Presets:** alle sieben Governance-Presets als lokale Arbeits- und Nachweisbasis.
 
 ## Aufgabenstellung / Task
 
@@ -61,7 +61,7 @@
 
 - **R-01:** Ein minimales lauffähiges Projekt für genau eine der sechs Zielsprachen ist vorhanden oder wird angelegt.
 - **R-02:** Lokale Build- und Testbefehle sind vollständig dokumentiert und reproduzierbar.
-- **R-03:** Die sechs Governance-Presets sind installiert oder als Blocker mit konkretem Behebungsweg dokumentiert.
+- **R-03:** Die sieben Governance-Presets sind installiert oder als Blocker mit konkretem Behebungsweg dokumentiert.
 - **R-04:** Alle `Applicable`, `N/A` und `Open` Punkte werden mit Evidenzpfad oder Begründung dokumentiert: fachliche Rollen, Persistenz, API, Import, Export und Kennzahlen sind in diesem Schritt `N/A`, weil nur das Projektgerüst vorbereitet wird; Cloud, KI-Runtime und produktiver Betrieb sind `N/A`, solange nur ein lokales Lernrepo vorbereitet wird; jede `N/A`-Entscheidung nennt kurz, warum sie für diesen Spec-Kit-Lauf nicht greift.
 - **R-05:** Der Gerüst-Zweck bleibt vergleichbar für C#, Go, Java, Python, Rust und Swift.
 - **R-06 (Container-First-Gate):** Wird ein KI-Agent genutzt, erfolgt der Aufruf ausschließlich in der freigegebenen Sandbox/im Container (`absdd-image-sandbox`), nie auf dem Arbeitsplatz-Rechner. Die Preflight-Checkliste aus `Secure-Trader-Sandbox-Preflight.md` ist vor dem ersten Agenten-Aufruf abgearbeitet; wird kein Agent genutzt, wird dies als `N/A` mit Begründung dokumentiert.
@@ -72,7 +72,7 @@
 - Keine Fachlogik vorwegnehmen, die in den Aufgaben `01` bis `11` spezifiziert wird.
 - Build- und Testbefehle müssen dokumentiert sein.
 - Die Secure-Development-Basis muss lokal unter `docs/secure-development/` vorhanden oder als fehlend mit Folgeaufgabe dokumentiert sein.
-- Die sechs Governance-Presets müssen installiert oder als Blocker mit konkretem Behebungsweg dokumentiert sein.
+- Die sieben Governance-Presets müssen installiert oder als Blocker mit konkretem Behebungsweg dokumentiert sein.
 - Keine personenbezogenen Beispieldaten verwenden; Beispielausgaben bleiben neutral und enthalten keine echten Namen, E-Mail-Adressen, Tokens oder Pfade mit privaten Informationen.
 - Nicht benötigte Telemetrie, externe Dienste und Netzwerkzugriffe bleiben ausgeschaltet oder werden als `N/A` mit kurzer technischer Begründung dokumentiert.
 - KI-Agenten werden nur im Container/der Sandbox gestartet, nie direkt auf dem Arbeitsplatz-Rechner; Schreibgrenzen, Mounts und Secret-Regeln folgen `Secure-Trader-Sandbox-Preflight.md`.

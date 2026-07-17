@@ -81,7 +81,7 @@ EuFPA builds three interlocking but individually independent systems for Secure 
 - secure development guideline
 - 12 individual checklists and compendium
 - related documents
-- six governance presets
+- seven governance presets
 - `Applicable`, `N/A`, `Open` with rationale
 - public sandbox link and sandbox/IDE boundary
 - deviations from sandbox use as risk or `N/A`

@@ -45,7 +45,7 @@
 - **Prinzipien:** auditfähige Evidenz, sichere Übergabe, MSL-Präferenz, sichere Architektur, sichere Code-Erzeugung.
 - **Checklisten:** CL_01, CL_05, CL_08, CL_09, CL_10, CL_12.
 - **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Richtlinie Secure Development Life Cycle, Richtlinie Testmanagement, Leitlinie Sichere Entwicklungs-Sandbox.
-- **Presets:** alle sechs Governance-Presets als Nachweisrahmen für den Jahr-2-Abschluss.
+- **Presets:** alle sieben Governance-Presets als Nachweisrahmen für den Jahr-2-Abschluss.
 
 ## Aufgabenstellung / Task
 

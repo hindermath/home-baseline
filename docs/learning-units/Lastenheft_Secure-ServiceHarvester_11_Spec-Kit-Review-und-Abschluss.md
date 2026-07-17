@@ -41,7 +41,7 @@
 - **Prinzipien:** gesamte Richtlinie als Abschlussmaßstab, auditfähige Evidenz, keine verschwiegenen Sicherheitsbefunde.
 - **Checklisten:** CL_01 bis CL_12, je nach Aufgabe `Applicable`, `N/A` oder `Open`.
 - **Mitgeltende Dokumente:** Richtlinie Secure Development Life Cycle, Richtlinie Testmanagement, Leitlinie für sichere Programmierung.
-- **Presets:** alle sechs Governance-Presets als Nachweisrahmen.
+- **Presets:** alle sieben Governance-Presets als Nachweisrahmen.
 
 ## Aufgabenstellung / Task
 

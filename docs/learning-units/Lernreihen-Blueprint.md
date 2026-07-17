@@ -157,9 +157,9 @@ bilingual in both patterns.
 
 **EN:** Each learning task may reference `CL_01` through `CL_12`, the compendium, and the related documents. These materials therefore must be locally available in each level-2 repository under `docs/secure-development/`. They are working and evidence material for later manual Spec Kit runs, not only external references.
 
-**DE:** Die sechs Governance-Presets werden fuer MSL-Level-2-Repos aus der zentralen Matrix `scripts/config/spec-kit-governance-presets.json` installiert. Der konkrete Spec-Kit-Lauf bleibt manuell; die installierten Presets sind aber Vorbedingung und Nachweisbasis.
+**DE:** Die sieben Governance-Presets werden fuer MSL-Level-2-Repos aus der zentralen Matrix `scripts/config/spec-kit-governance-presets.json` installiert. Der konkrete Spec-Kit-Lauf bleibt manuell; die installierten Presets sind aber Vorbedingung und Nachweisbasis.
 
-**EN:** The six governance presets are installed for MSL level-2 repositories from the central matrix `scripts/config/spec-kit-governance-presets.json`. The actual Spec Kit run remains manual, but the installed presets are prerequisite and evidence baseline.
+**EN:** The seven governance presets are installed for MSL level-2 repositories from the central matrix `scripts/config/spec-kit-governance-presets.json`. The actual Spec Kit run remains manual, but the installed presets are prerequisite and evidence baseline.
 
 **DE:** Jede Lernreihe plant fuer Level-2-Repos einen separaten RL-SE-/Checklist-Selbstpruefungs-Intake vor spaeterer Haertung ein. Dieser Intake gilt unabhaengig von MSL und verlangt eine Evidenzmatrix mit `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp`.
 

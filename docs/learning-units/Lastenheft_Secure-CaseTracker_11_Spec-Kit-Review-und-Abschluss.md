@@ -37,7 +37,7 @@
 
 - **Prinzipien:** gesamte Richtlinie als Abschlussmaßstab.
 - **Checklisten:** CL_01 bis CL_12, je nach Aufgabe `Applicable`, `N/A` oder `Open`.
-- **Presets:** alle sechs Governance-Presets.
+- **Presets:** alle sieben Governance-Presets.
 - **Evidenz:** `spec.md`, `plan.md`, `tasks.md`, Checklisten, Reviews, Testnachweise.
 
 ## Aufgabenstellung / Task
