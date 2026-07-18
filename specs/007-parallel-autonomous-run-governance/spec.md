@@ -44,6 +44,8 @@ or permission boundaries.
 - **FR-014**: Handoffs MUST identify producer, consumer, path, and SHA-256.
 - **FR-015**: Installation MUST grant no execution or remote authority.
 - **FR-016**: Bash and PowerShell entry points MUST expose equivalent behavior.
+- **FR-017**: A sequential worker MAY inherit the validated exact head of one
+  direct dependency in the same repository without sharing its worktree.
 
 ## Success Criteria
 
