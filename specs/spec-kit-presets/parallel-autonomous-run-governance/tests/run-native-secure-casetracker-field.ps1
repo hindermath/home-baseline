@@ -16,7 +16,7 @@
     startup failures.
 
 .PARAMETER Action
-    Prepare, Validate, Start, Status oder Consolidate.
+    Prepare, Validate, Start, Status, Stop, Resume oder Consolidate.
 
 .PARAMETER RepositoryRoot
     Elternverzeichnis der sechs securecasetracker-* Repositories.
@@ -44,7 +44,7 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [Parameter(Mandatory)]
-    [ValidateSet('Prepare', 'Validate', 'Start', 'Status', 'Consolidate')]
+    [ValidateSet('Prepare', 'Validate', 'Start', 'Status', 'Stop', 'Resume', 'Consolidate')]
     [string] $Action,
 
     [string] $RepositoryRoot = (Join-Path ([Environment]::GetFolderPath('UserProfile')) 'secure-casetracker-baseline'),
