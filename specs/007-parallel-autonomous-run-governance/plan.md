@@ -40,3 +40,18 @@ and completion times. Concurrency remains capped at three. The override ends
 after field findings are captured and does not apply to learner, production,
 routine maintenance, or later campaigns. Those return to Container-First
 unless the repository owner issues a new explicit authorization.
+
+## GitHub Billing Development Override
+
+Repository owner Thorsten Hindermann explicitly authorized the development
+field campaign to continue despite GitHub Actions jobs in the six private
+Secure CaseTracker repositories being rejected before their first step with
+the account-payment or spending-limit annotation.
+
+This exception is narrow: those exact startup rejections are recorded as
+external provider `N/A`, not as passing technical evidence. Every local build,
+test, security, accessibility, documentation, and autonomous-state gate remains
+required. Technical CI failures, actionable reviews, missing worker evidence,
+and any other unavailable check remain blocking. Ordered merges may use the
+owner's admin bypass only after the all-ready barrier and successful local
+gates. The exception expires with the native field campaign.

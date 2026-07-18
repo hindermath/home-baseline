@@ -12,5 +12,6 @@
   development Mac.
 - [x] T010 Publish protected experimental repository and v0.1.0.
 - [ ] T011 Run Secure CaseTracker Units 00-03 across six MSL repositories
-  natively under the explicit, temporary development override.
+  natively under the explicit, temporary native and GitHub-Billing development
+  overrides.
 - [ ] T012 Promote field findings, v0.2.0, standard matrix, and catalog entry.

@@ -46,6 +46,8 @@ or permission boundaries.
 - **FR-016**: Bash and PowerShell entry points MUST expose equivalent behavior.
 - **FR-017**: A sequential worker MAY inherit the validated exact head of one
   direct dependency in the same repository without sharing its worktree.
+- **FR-018**: Reviewed campaign-specific operator instructions MUST be routed
+  visibly to every worker without weakening undeclared authority boundaries.
 
 ## Success Criteria
 
@@ -72,5 +74,11 @@ or permission boundaries.
   Container-First only for the native macOS development smoke set and the
   Secure CaseTracker field campaign for this preset. The override is not a
   reusable exception and expires when the field findings are captured.
+- The repository owner's 2026-07-18 instruction also permits the development
+  field campaign to classify only GitHub Actions jobs rejected before their
+  first step with the known account-payment or spending-limit annotation as an
+  external provider `N/A`. Local and agent-side gates remain required. Any
+  technical CI failure, review finding, or different unavailable check remains
+  blocking.
 - Container-First remains binding for normal Secure Trader work and for any
   later production, learner, or routine campaign.
