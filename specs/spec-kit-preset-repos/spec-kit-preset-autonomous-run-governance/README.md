@@ -2,7 +2,8 @@
 
 Version: `0.2.2`
 Requires: `spec-kit >= 0.8.3`
-Recommended priority: `70`
+Status: published, optional autonomous governance preset
+Priority: `70`
 
 ## Purpose / Zweck
 
