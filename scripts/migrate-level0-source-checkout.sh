@@ -53,4 +53,5 @@ args=(-NoProfile -File "${SCRIPT_DIR}/migrate-level0-source-checkout.ps1" -Targe
 [ "$DRY_RUN" -eq 1 ] && args+=(-WhatIf)
 [ "$FINALIZE" -eq 1 ] && args+=(-Finalize)
 [ "$JSON" -eq 1 ] && args+=(-Json)
+[ "$CHECK_ONLY" -eq 1 ] || [ "$DRY_RUN" -eq 1 ] || args+=('-Confirm:$false')
 exec pwsh "${args[@]}"
