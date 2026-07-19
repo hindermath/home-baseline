@@ -51,7 +51,7 @@ Diese Präsentation führt in den Track ein. Sie ersetzt keinen Spec-Kit-Lauf un
 - Richtlinie Sichere Entwicklung
 - 12 Einzel-Checklisten und Checklistensammelband
 - mitgeltende Dokumente
-- sieben Governance-Presets
+- acht Governance-Presets
 - `Applicable`, `N/A`, `Open` mit Begründung
 
 ---

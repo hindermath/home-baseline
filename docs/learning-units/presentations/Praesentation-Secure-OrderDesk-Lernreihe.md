@@ -215,7 +215,7 @@ Spec Kit begleitet die SDD-Aufgaben, ersetzt aber nicht das Berufsbildlernen.
 - Leitlinie Sichere Programmierung
 - Leitlinie Sichere Entwicklungs-Sandbox
 - 12 Checklisten und Sammelband
-- sechs installierte Spec-Kit-Governance-Presets
+- acht installierte Spec-Kit-Governance-Presets
 - Auditfähige Dokumentation mit Status, Evidenz und Begründung
 - Besonderer Fokus: parametrisierte SQL-Zugriffe und Schutz von Kunden-/Bestelldaten
 
@@ -228,7 +228,7 @@ Bei einer relationalen Domäne stehen SQL-Sicherheit und Datenschutz besonders i
 
 ---
 
-# Die sieben Governance-Presets
+# Die acht Governance-Presets
 
 | Preset | Fokus |
 |---|---|
@@ -238,6 +238,8 @@ Bei einer relationalen Domäne stehen SQL-Sicherheit und Datenschutz besonders i
 | a11y-governance | Barrierefreiheit und didaktische Kommentare |
 | cross-platform-governance | plattformübergreifende Nutzbarkeit |
 | agent-parity-governance | Agenten-Parität und nachvollziehbare Arbeitsweise |
+| autonomous-run-governance | geschützte einzelne autonome Läufe |
+| parallel-autonomous-run-governance | gesteuerte parallele autonome Kampagnen |
 
 ::: notes
 Die Presets liefern keine fertige Lösung.

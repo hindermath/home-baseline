@@ -42,12 +42,12 @@
 - **Relevante Richtlinienprinzipien:** sichere Anforderungen, sichere Architektur, sichere Code-Erzeugung, MSL-Präferenz, auditfähige Evidenz.
 - **Relevante Checklisten:** CL_01, CL_05, CL_08, CL_09, CL_10, CL_12.
 - **Mitgeltende Dokumente:** Leitlinie Sichere Programmierung, Leitlinie Sichere Entwicklungs-Sandbox, Kompetenzprofile und Schulungsplan.
-- **Spec-Kit-Presets:** alle sieben Governance-Presets als Bewertungsrahmen.
+- **Spec-Kit-Presets:** alle acht Governance-Presets als Bewertungsrahmen.
 - **Evidenz:** Aufgaben-Lastenhefte, spätere `spec.md`, `plan.md`, `tasks.md`, Checklisten und Review-Notizen.
-- **Level-2-Arbeitsbasis:** Jedes Sprachrepo führt die Richtlinie, alle 12 Einzel-Checklisten, den Checklistensammelband, die mitgeltenden Dokumente und die Preset-Verzahnung lokal unter `docs/secure-development/`. Die sieben Governance-Presets sind aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar.
+- **Level-2-Arbeitsbasis:** Jedes Sprachrepo führt die Richtlinie, alle 12 Einzel-Checklisten, den Checklistensammelband, die mitgeltenden Dokumente und die Preset-Verzahnung lokal unter `docs/secure-development/`. Die acht Governance-Presets sind aus der zentralen Matrix installiert und mit `specify preset list` nachweisbar.
 - **Selbstprüfung vor Härtung:** Jedes Sprachrepo führt `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` als separaten späteren Intake; MSL-Status ist dabei Prüfpunkt, aber keine Voraussetzung.
 
-**EN:** The full guideline and the seven governance presets are the assessment frame for all later task intakes.
+**EN:** The full guideline and the eight governance presets are the assessment frame for all later task intakes.
 
 ## Operatives Arbeitsmodell / Operational Working Model
 

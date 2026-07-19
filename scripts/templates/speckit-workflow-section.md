@@ -29,8 +29,9 @@ Standard-Set dieser Workspace-Familie ist:
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.2.2` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
 
-`autonomous-run-governance` ist Teil der Standard-Siebenermatrix. Vollständige
+`autonomous-run-governance` ist Teil der Standard-Achtermatrix. Vollständige
 autonome Läufe bleiben ausdrücklich delegationspflichtig. `LocalImplementation` ist der
 sichere Default; Installation erteilt keine Remote-, Merge- oder Bypass-Rechte.
 `speckit.autonomous-status` prueft einen Lauf read-only,
@@ -42,14 +43,23 @@ Berechtigungs- und Evidenzregeln minimal mit akzeptierten Plan-, Task- und
 Checklist-Artefakten abgeglichen; Effizienzpraeferenzen loesen keine
 rueckwirkende Neugenerierung aus.
 
+`parallel-autonomous-run-governance` startet durch seine Installation keine
+Kampagne. Ausdruecklich delegierte Kampagnen verwenden getrennte Worktrees,
+maximal drei gleichzeitig aktive Worker, optionale agentenneutrale
+Runner-Metadaten, kooperatives Stop/Resume und eine providergebundene,
+fortsetzbare Konsolidierung. `Completed` folgt erst nach Synchronisation,
+manifestdeklarierten Post-Merge-Aktionen und Abschlussvalidierung.
+
 Die ursprünglichen sechs Presets sind seit 2026-05-04 und
 `autonomous-run-governance` v0.2.2 ist seit 2026-07-17 im `github/spec-kit`
 Community-Katalog enthalten. C#/.NET- und Lern-Level-2-Projekte verwenden
-standardmäßig alle sieben Presets, sofern keine begründete Ausnahme dokumentiert
+standardmäßig alle acht Presets, sofern keine begründete Ausnahme dokumentiert
 ist. Nach Installation oder Update prüfen: `specify preset list`,
 `specify preset info <id>` und bei Template-Fragen `specify preset resolve
 <template>`. `.specify/presets/` wird committed, `.specify/presets/.cache/`
-nicht. Alle sieben Presets erzeugen oder verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begruendung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
+nicht. Alle acht Presets erzeugen oder verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begruendung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
+`parallel-autonomous-run-governance` v0.2.0 ist eigenstaendig veroeffentlicht
+und wurde mit `github/spec-kit#3591` fuer den Community-Katalog eingereicht.
 Bei jeder Preset-Version oder Prioritätsänderung zuerst die zentrale Matrix
 aktualisieren und danach README-Tabellen, Constitution, Agenten-Dateien und
 Templates gemeinsam prüfen.
@@ -87,8 +97,9 @@ workspace family is:
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.2.2` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
 
-`autonomous-run-governance` is part of the standard seven-preset matrix.
+`autonomous-run-governance` is part of the standard eight-preset matrix.
 Complete autonomous runs still require explicit delegation. `LocalImplementation` is the safe default;
 installation grants no remote, merge, or bypass authority.
 `speckit.autonomous-status` inspects a run read-only,
@@ -100,13 +111,21 @@ permission, and evidence-integrity rules are minimally reconciled with accepted
 Plan, Tasks, and checklist artifacts; efficiency preferences do not trigger
 retroactive regeneration.
 
+Installing `parallel-autonomous-run-governance` does not start a campaign.
+Explicitly delegated campaigns use separate worktrees, at most three active
+workers, optional agent-neutral runner metadata, cooperative stop/resume, and
+provider-gated resumable consolidation. `Completed` follows only after
+synchronization, manifest-declared post-merge actions, and final validation.
+
 The original six presets have been in the `github/spec-kit` community catalog
 since 2026-05-04, and `autonomous-run-governance` v0.2.2 was verified there on
-2026-07-17. C#/.NET and learning level-2 projects default to all seven presets
+2026-07-17. C#/.NET and learning level-2 projects default to all eight presets
 unless a justified exception is documented. After install or update, verify with
 `specify preset list`, `specify preset info <id>`, and for template questions
 `specify preset resolve <template>`. Commit `.specify/presets/`, but not
-`.specify/presets/.cache/`. All seven presets produce or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.
+`.specify/presets/.cache/`. All eight presets produce or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.
+`parallel-autonomous-run-governance` v0.2.0 is published independently and was
+submitted to the community catalog as `github/spec-kit#3591`.
 For every preset version or priority change, update the central matrix first,
 then review README tables, constitution, agent guidance files, and templates
 together.

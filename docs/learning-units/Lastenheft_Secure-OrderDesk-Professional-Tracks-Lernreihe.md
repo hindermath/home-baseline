@@ -23,9 +23,9 @@
 
 ## Roter Faden / Common Thread
 
-**DE:** Alle vier Tracks arbeiten mit KI-Agenten und Spec Kit als begleitendem SDD-Werkzeug. Ab dem 3. Lehrjahr wird erwartet, dass KI-gestützte Entwicklungsarbeit in oder mit `absdd-image-sandbox` geplant, genutzt oder begründet abgegrenzt wird. Die verbindliche Northwind-Datenbasis inklusive `ALFKI` bleibt in jedem Track prüfbar; SQL-Zugriffe müssen parametrisiert sein. Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und sieben Governance-Presets bleiben die lokale Nachweisbasis.
+**DE:** Alle vier Tracks arbeiten mit KI-Agenten und Spec Kit als begleitendem SDD-Werkzeug. Ab dem 3. Lehrjahr wird erwartet, dass KI-gestützte Entwicklungsarbeit in oder mit `absdd-image-sandbox` geplant, genutzt oder begründet abgegrenzt wird. Die verbindliche Northwind-Datenbasis inklusive `ALFKI` bleibt in jedem Track prüfbar; SQL-Zugriffe müssen parametrisiert sein. Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente und acht Governance-Presets bleiben die lokale Nachweisbasis.
 
-**EN:** All four tracks use AI agents and Spec Kit as a companion SDD tool. From the third training year onward, AI-assisted development is expected to be planned, used, or explicitly bounded with `absdd-image-sandbox`. The binding Northwind data base including `ALFKI` stays verifiable in every track; SQL access must be parameterized. The secure development guideline, 12 individual checklists, compendium, related documents, and seven governance presets remain the local evidence base.
+**EN:** All four tracks use AI agents and Spec Kit as a companion SDD tool. From the third training year onward, AI-assisted development is expected to be planned, used, or explicitly bounded with `absdd-image-sandbox`. The binding Northwind data base including `ALFKI` stays verifiable in every track; SQL access must be parameterized. The secure development guideline, 12 individual checklists, compendium, related documents, and eight governance presets remain the local evidence base.
 
 ## Nicht-Ziele / Non-Goals
 

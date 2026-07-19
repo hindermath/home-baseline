@@ -1,7 +1,7 @@
 # Spec Kit Preset Scaffolds
 
-This directory contains local scaffolds for the seven standard Spec Kit
-governance presets derived from the `home-baseline` governance work.
+This directory contains local scaffolds for the eight standard
+Spec Kit governance presets derived from the `home-baseline` governance work.
 
 Target split:
 
@@ -12,11 +12,14 @@ Target split:
 - `cross-platform-governance` — version `0.2.0`
 - `agent-parity-governance` — version `0.3.0`
 - `autonomous-run-governance` — version `0.2.2`
+- `parallel-autonomous-run-governance` — version `0.2.0`
 
-The standard seven-preset profile requires `spec-kit >= 0.8.3`.
+The standard eight-preset profile requires `spec-kit >= 0.8.3`.
 The original six presets depend on the `wrap` and `append` composition
 strategies introduced in 0.8.x. `autonomous-run-governance` adds five new
-commands without replacing core commands.
+commands without replacing core commands. `parallel-autonomous-run-governance`
+adds bounded multi-worker campaign orchestration on top of autonomous-run
+governance.
 
 These scaffolds are intentionally kept as separate repo-shaped
 directories so they can later be moved into independent public GitHub
@@ -31,6 +34,7 @@ Recommended future repository names:
 - `hindermath/spec-kit-preset-agent-parity-governance`
 - `hindermath/spec-kit-preset-cross-platform-governance`
 - `hindermath/spec-kit-preset-autonomous-run-governance`
+- `hindermath/spec-kit-preset-parallel-autonomous-run-governance`
 
 Source material in `home-baseline`:
 
@@ -91,15 +95,20 @@ MSL integration:
   decisions are security-relevant architectural constraints.
 - `a11y-governance`, `agent-parity-governance`, and
   `cross-platform-governance` do not carry MSL rules.
+- `parallel-autonomous-run-governance` inherits MSL and secure-development
+  expectations from the target repositories and installed governance stack; it
+  governs campaign isolation, concurrency, stop/resume, and consolidation.
 
 Current status:
 
-- the six standard presets are published and catalogued
+- the six original governance presets are published and catalogued
 - `autonomous-run-governance` v0.2.2 is the current patch release; it retains
   validated lifecycle state plus explicit status, graceful-stop, and protected
   resume commands, adds a mandatory-rule delta audit for preset drift, provides
   a detailed operating guide, and distinguishes the readable `Deliver` heading
   from canonical `Publish`, `Review`, and `MergeAndSync` run-state stages
+- `parallel-autonomous-run-governance` v0.2.0 is the validated eighth standard
+  preset; starting a parallel campaign remains explicitly delegable
 
 Recommended publication order:
 
@@ -110,6 +119,7 @@ Recommended publication order:
 5. `cross-platform-governance`
 6. `agent-parity-governance`
 7. `autonomous-run-governance`
+8. `parallel-autonomous-run-governance`
 
 Recommended install order for stacked use:
 
@@ -121,6 +131,7 @@ specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
 specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.2.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.0.zip --priority 80
 ```
 
 Notes:

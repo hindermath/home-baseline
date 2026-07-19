@@ -40,7 +40,7 @@ Options:
   --primary-language LANG     Optional primary language. Default: detect from governance, project suffix, or files.
   --msl-status STATUS         Override: msl, non-msl, msl-mixed-tooling, n/a, or unknown.
   --gsdb-required true|false  Whether GSDB applies. Default: true for Level-2 repos.
-  --preset-profile NAME       Preset profile note. Default: standard-seven-governance-presets for GSDB Level-2.
+  --preset-profile NAME       Preset profile note. Default: standard-eight-governance-presets for GSDB Level-2.
   --role NAME                 Registry role note. Default: level-2-project or level-1-workspace.
   --source NAME               Registration source. Default: manual-registration or maintenance-discovery.
   --dry-run                   Show the registry update without writing.
@@ -238,7 +238,7 @@ register_repository() {
   preset_profile="$OPT_PRESET_PROFILE"
   if [ -z "$preset_profile" ]; then
     if [ "$level" = "2" ] && [ "$gsdb_required" = "true" ]; then
-      preset_profile="standard-seven-governance-presets"
+      preset_profile="standard-eight-governance-presets"
     else
       preset_profile="none"
     fi
@@ -318,8 +318,11 @@ if existing:
     if not gsdb_explicit and (preserve_curated or existing.get("gsdbRequired") is True):
         entry["gsdbRequired"] = existing.get("gsdbRequired", entry["gsdbRequired"])
     existing_profile = existing.get("presetProfile")
-    if existing_profile == "standard-six-governance-presets":
-        existing_profile = "standard-seven-governance-presets"
+    if existing_profile in (
+        "standard-six-governance-presets",
+        "standard-seven-governance-presets",
+    ):
+        existing_profile = "standard-eight-governance-presets"
     if not preset_explicit and (preserve_curated or preset_profile == "none") and existing_profile not in (None, ""):
         entry["presetProfile"] = existing_profile
     if not role_explicit and preserve_curated and existing.get("role") not in (None, ""):

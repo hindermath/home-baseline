@@ -19,12 +19,12 @@ pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -Repo PATH
 ## Beschreibung / Description
 
 Das Werkzeug liest `scripts/config/spec-kit-governance-presets.json` und
-installiert die dort genannten sieben Governance-Presets in einem Spec-Kit-Repo.
+installiert die dort genannten acht Governance-Presets in einem Spec-Kit-Repo.
 Die Skriptlogik enthaelt keine fest eingebauten Preset-Versionen. Neue
 Versionen werden durch Aktualisieren der zentralen Matrix wirksam.
 
 *The tool reads `scripts/config/spec-kit-governance-presets.json` and installs
-the seven listed governance presets into a Spec Kit repository. The script logic
+the eight listed governance presets into a Spec Kit repository. The script logic
 does not hard-code preset versions. New versions become effective by updating
 the central matrix.*
 

@@ -163,7 +163,7 @@ function Register-HBRepository {
 
     $effectivePresetProfile = $PresetProfile
     if (-not $effectivePresetProfile) {
-        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($gsdbRequiredValue -eq 'true')) { 'standard-seven-governance-presets' } else { 'none' }
+        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($gsdbRequiredValue -eq 'true')) { 'standard-eight-governance-presets' } else { 'none' }
     }
     $effectiveRole = $Role
     if (-not $effectiveRole) {
@@ -199,8 +199,8 @@ function Register-HBRepository {
             $gsdbRequiredValue = if ([bool]$existing.gsdbRequired) { 'true' } else { 'false' }
         }
         $existingPresetProfile = [string]$existing.presetProfile
-        if ($existingPresetProfile -eq 'standard-six-governance-presets') {
-            $existingPresetProfile = 'standard-seven-governance-presets'
+        if ($existingPresetProfile -in @('standard-six-governance-presets', 'standard-seven-governance-presets')) {
+            $existingPresetProfile = 'standard-eight-governance-presets'
         }
         if ((-not $PresetProfile) -and ($preserveCurated -or ($effectivePresetProfile -eq 'none')) -and ($existingPresetProfile -notin @($null, ''))) {
             $effectivePresetProfile = $existingPresetProfile

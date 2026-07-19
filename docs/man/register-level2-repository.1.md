@@ -47,7 +47,7 @@ Wurzeln nach Git-Repositories durchsuchen. Das ist fuer Registry-Drift gedacht:
 neu hinzugekommene Level-2-Repositories werden sichtbar und koennen idempotent
 in die lokale GSDB-Registry uebernommen werden. Level-2-Repositories sind
 standardmaessig unabhaengig vom MSL-Status GSDB-pflichtig und verwenden das
-Sieben-Preset-Profil. Begruendete Ausnahmen werden explizit gesetzt.
+Acht-Preset-Profil. Begruendete Ausnahmen werden explizit gesetzt.
 Eindeutige Sprachsuffixe wie `-CSharp`, `-Go` oder `-Rust` dokumentieren bei
 vorbereiteten Lernrepos die Zielsprache bereits vor dem Runtime-Scaffold.
 Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
@@ -57,7 +57,7 @@ Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
 workspace roots for Git repositories. This is intended for registry drift:
 newly added level-2 repositories become visible and can be idempotently added
 to the local GSDB registry. Level-2 repositories default to GSDB-required with
-the seven-preset profile independently of MSL status; justified exceptions are
+the eight-preset profile independently of MSL status; justified exceptions are
 explicit. Unambiguous suffixes such as `-CSharp`, `-Go`, or `-Rust` provide the
 target language for prepared learning repositories before a runtime scaffold
 exists. Maintenance scans preserve stronger existing metadata instead of

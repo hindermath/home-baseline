@@ -2,12 +2,12 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** vorbereitet für separaten Spec-Kit-Lauf
-**Stand:** 2026-06-20
+**Stand:** 2026-07-19
 **Zielgruppe:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten
 
 ## 1. Zweck
 
-Dieses Lastenheft beschreibt einen späteren Spec-Kit-Lauf zur besseren Verzahnung der Richtlinie Sichere Entwicklung, der zwölf Checklisten, der mitgeltenden Dokumente und der sechs GitHub-Spec-Kit-Governance-Presets.
+Dieses Lastenheft beschreibt einen späteren Spec-Kit-Lauf zur besseren Verzahnung der Richtlinie Sichere Entwicklung, der zwölf Checklisten, der mitgeltenden Dokumente und der acht GitHub-Spec-Kit-Governance-Presets.
 
 Der Lauf soll die vorhandene sichere-Entwicklung-Basis so verbessern, dass auch Auszubildende ab dem ersten Lehrjahr und Entwickler*innen ohne Sicherheits-Spezialwissen die Anforderungen verstehen, anwenden und auditfähig dokumentieren können.
 
@@ -19,7 +19,7 @@ Die sichere-Entwicklung-Basis liegt in `docs/secure-development/`. Sie enthält:
 - zwölf Einzelchecklisten in `checklisten/`,
 - den Sammelband `Checklistensammelband_Sichere-Entwicklung.md`,
 - mitgeltende Dokumente in `mitgeltende-dokumente/`,
-- Bezüge zu den sieben Governance-Presets `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance` und `agent-parity-governance`.
+- Bezüge zu den acht Governance-Presets `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance`, `agent-parity-governance`, `autonomous-run-governance` und `parallel-autonomous-run-governance`.
 
 Die CISA-Unterlage `THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR` beschreibt Swift ausdrücklich als Memory-Safe Language (MSL). Swift ist in der zentralen Constitution und in den Preset-Flächen bereits als MSL enthalten. Der spätere Lauf soll diese Einordnung in den mitgeltenden Dokumenten didaktisch sichtbarer machen.
 
@@ -77,7 +77,7 @@ Ein neuer Preset-Release ist nur erforderlich, wenn der Abgleich eine echte Änd
 - Es gibt keine stille Auslassung relevanter Prüfbereiche.
 - Jede Nichtanwendbarkeit bleibt als `N/A` mit kurzer Begründung dokumentierbar.
 - Swift ist konsistent als MSL eingeordnet.
-- Die sieben Governance-Presets bleiben fachlich widerspruchsfrei zur Richtlinie und den mitgeltenden Dokumenten.
+- Die acht Governance-Presets bleiben fachlich widerspruchsfrei zur Richtlinie und den mitgeltenden Dokumenten.
 - `git diff --check`, Secret-Scan und Propagations-Dry-run laufen ohne blockierende Befunde.
 
 ## 9. Spec-Kit-Intake-Reife
@@ -100,13 +100,14 @@ Der spaetere Lauf muss ausdruecklich dokumentieren:
 ## 10. Kopierbarer `/speckit-specify`-Prompt
 
 ```text
-/speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den sieben Governance-Presets.
+/speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den acht Governance-Presets.
 
 Ziel: Die sichere-Entwicklung-Basis soll fuer Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten so klar werden, dass spaetere Level-2-Spec-Kit-Laeufe dieselbe Bewertungslogik fuer `Applicable`, `N/A`, `Open`, Evidenzpfad, Restrisiko und Follow-up verwenden.
 
 Pflichtkontext:
 - Pruefe `docs/secure-development/README.md`, `Richtlinie_Sichere-Entwicklung.md`, `Checklistensammelband_Sichere-Entwicklung.md`, `checklisten/`, `mitgeltende-dokumente/` und `scripts/templates/secure-development-hardening-lastenheft.md`.
-- Pruefe die Konsistenz zu `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance` und `agent-parity-governance`.
+- Pruefe die Konsistenz zu `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance`, `agent-parity-governance`, `autonomous-run-governance` und `parallel-autonomous-run-governance`.
+- Die Installation der Autonomous-Presets startet keinen Lauf und erteilt keine Remote-, Merge-, Bypass-, Secret- oder Provider-Rechte.
 - Swift bleibt als Memory-Safe Language sichtbar, ersetzt aber keine sprachspezifische Secure-Coding-Pruefung.
 - Inhalte bleiben DE/EN, CEFR B2 und WCAG-2.2-AA-freundlich.
 
