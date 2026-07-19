@@ -2,20 +2,25 @@
 
 _is_hb_source_repository() {
   local candidate="$1"
-  local remote
+  local remote root candidate_root
   [ -e "$candidate/.git" ] && [ -f "$candidate/scripts/sync-home.sh" ] || return 1
   remote="$(git -C "$candidate" remote get-url origin 2>/dev/null)" || return 1
-  [[ "$remote" =~ hindermath/home-baseline(\.git)?$ ]]
+  [ -n "$remote" ] || return 1
+  root="$(git -C "$candidate" rev-parse --show-toplevel 2>/dev/null)" || return 1
+  candidate_root="$(cd -- "$candidate" && pwd -P)" || return 1
+  [ "$(cd -- "$root" && pwd -P)" = "$candidate_root" ]
 }
 
 resolve_hb_source_repository() {
   local start_path="${1:-${BASH_SOURCE[0]}}"
   local allow_legacy="${2:-0}"
-  local candidate state_path configured
+  local candidate state_path configured home_root
+
+  home_root="$(cd -- "$HOME" && pwd -P)"
 
   candidate="$(cd -- "$(dirname -- "$start_path")" 2>/dev/null && pwd -P)" || return 2
   while [ "$candidate" != "/" ]; do
-    if _is_hb_source_repository "$candidate"; then
+    if [ "$candidate" != "$home_root" ] && _is_hb_source_repository "$candidate"; then
       printf '%s\n' "$candidate"
       return 0
     fi

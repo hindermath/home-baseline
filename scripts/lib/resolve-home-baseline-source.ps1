@@ -10,8 +10,12 @@ function Test-HBSourceRepository {
         return $false
     }
     $remote = & git -C $Path remote get-url origin 2>$null
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace([string]$remote)) {
+        return $false
+    }
+    $prefix = & git -C $Path rev-parse --show-prefix 2>$null
     $LASTEXITCODE -eq 0 -and
-        [string]$remote -match 'hindermath/home-baseline(?:\.git)?$'
+        [string]::IsNullOrEmpty([string]$prefix)
 }
 
 function Resolve-HBSourceRepository {
@@ -25,8 +29,10 @@ function Resolve-HBSourceRepository {
     if (Test-Path -LiteralPath $candidate -PathType Leaf) {
         $candidate = Split-Path -Parent $candidate
     }
+    $homeRoot = (Resolve-Path -LiteralPath $HOME).Path
     while ($candidate) {
-        if (Test-HBSourceRepository -Path $candidate) {
+        if ([IO.Path]::GetFullPath($candidate) -ne $homeRoot -and
+            (Test-HBSourceRepository -Path $candidate)) {
             return $candidate
         }
         $parent = Split-Path -Parent $candidate
