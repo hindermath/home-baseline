@@ -11,7 +11,7 @@
 #   --no-patch      Do not generate memory-patch.md
 #   --fail-fast     Abort on first FAIL
 #   --yes           Non-interactive confirmation (for --apply-patch)
-# Exit codes: 0=all pass, 1=fail/warn, 2=fatal error
+# Exit codes: 0=no FAILs (WARNs allowed), 1=FAIL present, 2=fatal error
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_DIR="${SCRIPT_DIR}/lib"
@@ -349,8 +349,14 @@ check_antigravity_integration() {
   else
     emit_result "FAIL" ".specify/integrations/agy.manifest.json" "Antigravity Spec-Kit integration missing" "$dir"
   fi
-  if [ -e "${dir}/.specify/integrations/gemini.manifest.json" ] || [ -e "${dir}/.gemini/commands" ]; then
-    emit_result "FAIL" ".gemini/commands" "legacy Gemini Spec-Kit integration present" "$dir"
+  local legacy_gemini_path=""
+  if [ -e "${dir}/.specify/integrations/gemini.manifest.json" ]; then
+    legacy_gemini_path=".specify/integrations/gemini.manifest.json"
+  elif [ -e "${dir}/.gemini/commands" ]; then
+    legacy_gemini_path=".gemini/commands"
+  fi
+  if [ -n "$legacy_gemini_path" ]; then
+    emit_result "FAIL" "$legacy_gemini_path" "legacy Gemini Spec-Kit integration present" "$dir"
   else
     emit_result "PASS" ".gemini/commands" "legacy Gemini Spec-Kit integration absent" "$dir"
   fi
@@ -369,7 +375,8 @@ check_antigravity_integration() {
   fi
   if [ -f "$gitignore" ] &&
      grep -qF '.agents/*' "$gitignore" &&
-     grep -qF '!.agents/skills/' "$gitignore"; then
+     grep -qF '!.agents/skills/' "$gitignore" &&
+     grep -qF '!.agents/skills/**' "$gitignore"; then
     emit_result "PASS" ".gitignore" "surgical .agents skills allowlist" "$dir"
   else
     emit_result "FAIL" ".gitignore" "surgical .agents skills allowlist missing" "$dir"
@@ -628,8 +635,10 @@ else
   fi
 
   echo ""
-  if [ "$FAIL_COUNT" -gt 0 ] || [ "$WARN_COUNT" -gt 0 ]; then
+  if [ "$FAIL_COUNT" -gt 0 ]; then
     printf "Exit code: 1 (%d FAIL, %d WARN)\n" "$FAIL_COUNT" "$WARN_COUNT"
+  elif [ "$WARN_COUNT" -gt 0 ]; then
+    printf "Exit code: 0 (0 FAIL, %d WARN)\n" "$WARN_COUNT"
   else
     printf "Exit code: 0 (all checks passed)\n"
   fi
@@ -673,7 +682,7 @@ fi
 if ! $OPT_DRY_RUN; then
   if [ -f "${LIB_DIR}/hg-stats.sh" ]; then
     . "${LIB_DIR}/hg-stats.sh"
-    hg_write_stats "${HOME}/STATS.md" "$OVERALL_SCORE" "${SCAN_DIRS[@]+"${SCAN_DIRS[@]}"}" 2>/dev/null || true
+    hg_write_stats "${HOME}/STATS.md" "$OVERALL_SCORE" "${SCAN_DIRS[@]+"${SCAN_DIRS[@]}"}"
   fi
 
   if ! $OPT_NO_PATCH; then

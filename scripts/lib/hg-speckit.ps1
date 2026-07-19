@@ -36,7 +36,8 @@ function Invoke-HgCheckSpeckit {
     }
 
     # Fallback: check created date
-    $createdLine = ($content | Select-String -Pattern '^\*\*Created\*\*:' | Select-Object -First 1).Line
+    $createdMatch = $content | Select-String -Pattern '^\*\*Created\*\*:' | Select-Object -First 1
+    $createdLine = if ($null -eq $createdMatch) { '' } else { $createdMatch.Line }
     if ($createdLine -and $createdLine -match '(\d{4}-\d{2}-\d{2})') {
         $createdDate = [datetime]::ParseExact($Matches[1], 'yyyy-MM-dd', $null)
         $daysOld = ([datetime]::Today - $createdDate).Days

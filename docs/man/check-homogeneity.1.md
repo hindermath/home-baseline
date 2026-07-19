@@ -47,8 +47,8 @@ pwsh -NoProfile -File scripts/check-homogeneity.ps1 -TargetDir ~/RiderProjects -
 
 | Code | Bedeutung / Meaning |
 |---:|---|
-| 0 | alle Pruefungen bestanden / all pass |
-| 1 | Fehler oder Warnung / fail or warn |
+| 0 | kein Fehler; Warnungen sind zulaessig / no failure; warnings are allowed |
+| 1 | mindestens ein Fehler / at least one failure |
 | 2 | fataler Fehler / fatal error |
 
 ## SEE ALSO
