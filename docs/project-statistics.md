@@ -99,7 +99,7 @@
 | 2026-07-18 | `parallel-autonomous-run-governance` v0.1.0 und nativer Real-Agent-Smoke | 66 | — | — | Experimentelles achtes Preset mit vier Topologien, UUID-Vertraegen, isolierten Worktrees, maximal drei parallelen Workern, DAG-Pruefung, gehashten Handoffs, kooperativem Stop/Resume und expliziter Alternativauswahl umgesetzt. Der vom Repository-Eigentuemer bewusst autorisierte native macOS-Entwicklungs-Smoke fuehrte 13 echte Codex-/Spec-Kit-Autonomous-Worker ohne Remote-Schreibzugriff aus: 13/13 Exitcode 0, Replicated/Independent/Alternative jeweils beobachtete Parallelitaet 3, Pipeline `A -> {B,C} -> D` mit Parallelitaet 2 und vier validierten Handoffs. Kanonisches Preset, Publikationskopie und Feature-Artefakte umfassen vor dieser Ledger-Zeile 4.180 Zeilen; konservative Manualreferenz `52,3` Tage beziehungsweise `407,6` Stunden bei 80 Zeilen/Tag, Thorsten-Solo `41,8` Tage beziehungsweise `326,0` Stunden bei 100 Zeilen/Tag. Das Preset bleibt bis zum nativen Secure-CaseTracker-Feldtest experimentell und opt-in; Container-First bleibt ausserhalb dieses ausdruecklichen Entwicklungs-Overrides verbindlich. |
 | 2026-07-19 | `parallel-autonomous-run-governance` v0.2.0 und 24-Worker-Feldtest | 68 | 267 166 | 500 | Native Secure-CaseTracker-Kampagne `91c2c1a0-1526-479a-b8a3-e36a7d15d2b1` ueber C#, Go, Java, Python, Rust und Swift kontrolliert abgeschlossen: 24/24 Worker und exakte PR-Heads gemergt, sechs Closeout-PRs einschliesslich Lastenheft-Archivierung abgeschlossen sowie sprachspezifische Hauptbranch-Gates bestanden. Stop, Status, Resume und zweiter idempotenter Resume-Versuch wurden praktisch nachgewiesen; konfigurierte und beobachtete Parallelitaet blieben bei drei. Die portablen Erkenntnisse flossen in Schema 1.1, pro-Worker-Runnerprofile, agentenneutrale Modellmetadaten, providergebundene Preflights, fortsetzbare Teilmerges, gestapelte PR-Basen, kooperativen Konsolidierungsstopp und manifestgebundene Post-Merge-Aktionen ein. v0.2.0 ist im geschuetzten Preset-Repo veroeffentlicht, per exaktem Tag-ZIP isoliert mit allen acht Presets validiert, lokal in 25 registrierten Level-2-Repositories ausgerollt und als `github/spec-kit#3591` eingereicht. Der v0.2.0-Arbeitsstand umfasst vor dieser Ledger-Zeile `+5994/-671`, also 5323 Nettozeilen; konservative Manualreferenz `74,9` Tage beziehungsweise `584,4` Stunden fuer hinzugefuegte oder aktualisierte Zeilen, Thorsten-Solo `59,9` Tage beziehungsweise `467,5` Stunden. Der native Entwicklungs-Override endet mit diesem Closeout; spaetere Secure-Trader-Kampagnen unterliegen wieder Container-First. |
 | 2026-07-19 | Standard-Achtermatrix als 33-Repository-Flottenrollout | 68 | 286 594 | 503 | Die Standard-Achtermatrix auf Level 0, alle sieben registrierten Level-1-Repositories und alle 25 registrierten Level-2-Repositories ausgerollt; bestehende Sechser-/Siebenerprofile als Kompatibilitaetsaliase migriert und aktuelle Dokumentation vollstaendig auf acht Presets geprueft. Portable Feld- und Rollout-Erkenntnisse wurden in alle sieben bestehenden Presets uebernommen und zusammen mit `parallel-autonomous-run-governance` als Patch-Releases veroeffentlicht. 33/33 lokale Preset-, Parser-, Matrix-, Drift- und Idempotenzpruefungen bestanden; alle PR-Heads waren exakt, alle Copilot-Threads beantwortet und geschlossen. GitHub Actions lief in einzelnen Repositories wieder real und erfolgreich, waehrend die verbliebenen Null-Schritt-Ablehnungen weiterhin den identischen Billing-/Spending-Limit-Providergrund meldeten und deshalb gemaess Feldtest-Override als `N/A`, nicht als technischer Erfolg, dokumentiert wurden. Der Flottenbranch umfasst einschliesslich dieser Ledger-Zeile `+20917/-1452`, also 19 465 Nettozeilen. Konservative Manualreferenz: `243,3` Tage beziehungsweise `1 897,8` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `194,7` Tage beziehungsweise `1 518,3` Stunden bei 100 Zeilen/Tag. |
-| 2026-07-19 | ASCII-Statistikprofil 2 Toolchain und Level-0-Migration | 67 | 284 691 | 507 | Reproduzierbaren PowerShell-7-Renderer mit Bash-Einstieg, JSON-Schema, Repository-Konfiguration, 52-Wochen-Heatmap, Wochen- und kumulativem Volumen, festen Phasenslots, Monatsfallback, ASCII-Gauges und bilingualer Textalternative eingefuehrt. Bootstrap, Homogeneity-Pruefung, Propagationsmanifest, Constitution, fuenf Agentenflaechen, Vorlagen, README und Manpage wurden synchron aktualisiert; historische Gesamtstatistik blieb als Profil-1-Archiv erhalten und `STATS.md` wurde ohne Aenderung von Scores, Zeitstempeln oder Reihenfolge auf `#` normalisiert. 138 deterministische Assertions pruefen unter anderem leere Aktivitaet, Binaerdaten, Umbenennungen, Statistik-only-Commits, ungueltige Konfigurationen, 49 Phasen, Idempotenz, `>500x` und bytegleiche Bash-/PowerShell-Ausgabe. Der Toolchain-Commit umfasst `+3235/-63`, also 3172 Nettozeilen; konservative Manualreferenz fuer 3235 hinzugefuegte oder aktualisierte Zeilen: `40,4` Tage beziehungsweise `315,4` Stunden, Thorsten-Solo: `32,4` Tage beziehungsweise `252,3` Stunden. Aktivtage und Textbasis folgen erstmals durchgehend Methodik v2 und sind deshalb nicht unmittelbar mit den vorherigen Profil-1-Zeilen vergleichbar. Der Homogeneity-Workflow laedt die vollstaendige Git-Historie, damit der synthetische PR-Merge-Commit dieselbe reproduzierbare Statistik wie der Branch-Head validiert. |
+| 2026-07-19 | ASCII-Statistikprofil 2 Toolchain und Level-0-Migration | 67 | 284 732 | 508 | Reproduzierbaren PowerShell-7-Renderer mit Bash-Einstieg, JSON-Schema, Repository-Konfiguration, 52-Wochen-Heatmap, Wochen- und kumulativem Volumen, festen Phasenslots, Monatsfallback, ASCII-Gauges und bilingualer Textalternative eingefuehrt. Bootstrap, Homogeneity-Pruefung, Propagationsmanifest, Constitution, fuenf Agentenflaechen, Vorlagen, README und Manpage wurden synchron aktualisiert; historische Gesamtstatistik blieb als Profil-1-Archiv erhalten und `STATS.md` wurde ohne Aenderung von Scores, Zeitstempeln oder Reihenfolge auf `#` normalisiert. 138 deterministische Assertions pruefen unter anderem leere Aktivitaet, Binaerdaten, Umbenennungen, Statistik-only-Commits, ungueltige Konfigurationen, 49 Phasen, Idempotenz, `>500x` und bytegleiche Bash-/PowerShell-Ausgabe. Der Toolchain-Commit umfasst `+3235/-63`, also 3172 Nettozeilen; konservative Manualreferenz fuer 3235 hinzugefuegte oder aktualisierte Zeilen: `40,4` Tage beziehungsweise `315,4` Stunden, Thorsten-Solo: `32,4` Tage beziehungsweise `252,3` Stunden. Aktivtage und Textbasis folgen erstmals durchgehend Methodik v2 und sind deshalb nicht unmittelbar mit den vorherigen Profil-1-Zeilen vergleichbar. Der Homogeneity-Workflow laedt die vollstaendige Git-Historie, damit der synthetische PR-Merge-Commit dieselbe reproduzierbare Statistik wie der Branch-Head validiert. Die Copilot-Hinweise zu PowerShell-Synopsis und Bootstrap-Anzeigename sind umgesetzt; ein gepufferter, kompilierter Dateiscanner beschleunigt besonders die Windows-Validierung, ohne den Datenvertrag zu aendern. |
 
 ---
 
@@ -468,26 +468,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 284691 lines |
+| Textbasis / Text base | 284732 lines |
 | Textdateien / Text files | 1680 |
 | Beobachtbarer Zeitraum / Observable period | 2026-03-31..2026-07-19 |
 | Aktivtage / Active days | 67 |
-| Relevante Commits / Relevant commits | 442 |
-| Zeilen je Aktivtag / Lines per active day | 4249.1 |
+| Relevante Commits / Relevant commits | 443 |
+| Zeilen je Aktivtag / Lines per active day | 4249.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 24 days |
 | Speedup vs. 80 lines/day | 53.1x |
 | Speedup vs. 100 lines/day | 42.5x |
-| Methodik / Methodology | v2; source `02118c39cc1b` |
+| Methodik / Methodology | v2; source `7c06552689f4` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.4% | 6724
-Dokumentation / Documentation   [#################...]  83.8% | 238461
-Skripte / Scripts               [###.................]  12.7% | 36239
+Dokumentation / Documentation   [#################...]  83.7% | 238461
+Skripte / Scripts               [###.................]  12.7% | 36280
 Konfiguration / Configuration   [#...................]   0.9% | 2639
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 628
@@ -618,7 +618,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4249.1
+Visible repository [#################...] 4249.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -644,6 +644,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-19. Es enthaelt 67 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 191368 |
+| 2026-07 | 191467 |
 
 <!-- project-statistics-v2:end -->
