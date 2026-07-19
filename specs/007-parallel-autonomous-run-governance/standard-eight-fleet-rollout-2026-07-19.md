@@ -25,7 +25,7 @@ autonomous run and grants no additional authority.
 | 50 | `cross-platform-governance` | `v0.2.1` |
 | 60 | `agent-parity-governance` | `v0.4.0` |
 | 70 | `autonomous-run-governance` | `v0.3.0` |
-| 80 | `parallel-autonomous-run-governance` | `v0.2.0` |
+| 80 | `parallel-autonomous-run-governance` | `v0.2.1` |
 
 ## Umfang / Scope
 
@@ -84,6 +84,16 @@ Audit-Ergebnis / Audit result:
 - One transient release-download timeout in
   `SecureOrderDesk-CSharp` was repaired by a complete forced reinstall and
   subsequent exact check
+- The published `parallel-autonomous-run-governance` patch release `v0.2.1`
+  was reinstalled and revalidated in all 33 repositories. Its tag ZIP has
+  SHA-256
+  `1322ef523f2288076237d477eb45656cf330ff3573bf5fcfe3c94e9c204f49d2`.
+- GitHub rejected 60 deduplicated PR workflow runs twice before their first
+  step. Attempt 2 contained 123 jobs with no runner and no steps: 115 carried
+  the identical billing/spending-limit annotation and eight matrix jobs were
+  canceled only because a sibling job had received that annotation. These
+  provider refusals are recorded as `N/A`; no technical check is reported as
+  passed on their basis.
 
 The dirty user worktree in `C64Projects/cc65` was not modified. Its rollout was
 prepared in the isolated worktree
@@ -128,6 +138,7 @@ prepared in the isolated worktree
 | Cross-Platform | `hindermath/spec-kit-preset-cross-platform-governance#2` | `v0.2.1` |
 | Agent Parity | `hindermath/spec-kit-preset-agent-parity-governance#2` | `v0.4.0` |
 | Autonomous Run | `hindermath/spec-kit-preset-autonomous-run-governance#9` | `v0.3.0` |
+| Parallel Autonomous Run | `hindermath/spec-kit-preset-parallel-autonomous-run-governance#4` | `v0.2.1` |
 
 Copilot-Hinweise wurden vor den Merges fachlich behandelt. Der erforderliche
 Admin-Bypass ersetzte nur die fehlende formale externe Approval-Stimme, nicht

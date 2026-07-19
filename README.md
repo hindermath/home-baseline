@@ -2582,7 +2582,7 @@ Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
 
 Die ursprünglichen sechs Governance-Presets sind seit 2026-05-04 im Spec-Kit
 Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
-2026-07-17 verifiziert. `parallel-autonomous-run-governance` v0.2.0 ist
+2026-07-17 verifiziert. `parallel-autonomous-run-governance` v0.2.1 ist
 eigenstaendig veroeffentlicht und wurde mit `github/spec-kit#3591` fuer den
 Community-Katalog eingereicht. Die direkte Installation über
 versionierte ZIP-URLs bleibt die bevorzugte Variante, wenn ein Projekt einen
@@ -2590,7 +2590,7 @@ exakt reproduzierbaren Preset-Stand pinnen soll.
 
 *The original six governance presets have been in the Spec-Kit community
 catalog since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified there
-on 2026-07-17. `parallel-autonomous-run-governance` v0.2.0 is published
+on 2026-07-17. `parallel-autonomous-run-governance` v0.2.1 is published
 independently and was submitted to the community catalog as
 `github/spec-kit#3591`. Direct
 installation via versioned ZIP URLs is still the preferred variant when a
@@ -2617,7 +2617,7 @@ updated together.*
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.1` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.4.0` | `60` |
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.3.0` | `70` |
-| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.1` | `80` |
 
 Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begründung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
 
@@ -2664,7 +2664,7 @@ re-registration, the former profile names `standard-six-governance-presets`
 and `standard-seven-governance-presets` are compatibility aliases migrated to
 the same current eight-preset matrix.*
 
-`parallel-autonomous-run-governance` v0.2.0 mit Prioritaet `80` koordiniert
+`parallel-autonomous-run-governance` v0.2.1 mit Prioritaet `80` koordiniert
 ausdruecklich delegierte Kampagnen mit getrennten Worktrees und maximal drei
 gleichzeitig aktiven Workern. Schema `1.1` erlaubt `runnerProfile` je Worker,
 agentenneutrale optionale Modell-/Reasoning-Metadaten, barrierearme Text- und
@@ -2673,7 +2673,7 @@ Head-/Review-/Check-Preflights, fortsetzbare Teilmerges und deklarierte
 Post-Merge-Aktionen. Installation allein startet keine Kampagne und erteilt
 keine zusaetzlichen Rechte.
 
-*`parallel-autonomous-run-governance` v0.2.0 at priority `80` coordinates
+*`parallel-autonomous-run-governance` v0.2.1 at priority `80` coordinates
 explicitly delegated campaigns with separate worktrees and at most three
 active workers. Schema `1.1` adds per-worker `runnerProfile`, optional
 agent-neutral model/reasoning metadata, accessible text and JSON status,
