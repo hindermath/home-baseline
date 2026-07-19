@@ -242,7 +242,7 @@ try {
         -OldValue $facts.Root -NewValue $targetPath
     Set-HBTextReplacement -Path (Join-Path $HOME '.codex/rules/default.rules') `
         -OldValue $facts.Root -NewValue $targetPath
-    Set-HBJsonProperty -Path (Join-Path $stateDirectory 'sync-state.json') `
+    Set-HBJsonProperty -Path (Join-Path $stateDirectory 'home-sync-state.json') `
         -Name 'sourcePath' -Value $targetPath
 
     if ($Json) { $preview | ConvertTo-Json -Compress } else {
