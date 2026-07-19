@@ -130,7 +130,7 @@ Sprache:        Go
 Struktur:       go mod init serviceharvester  (plus ein Basistest in main_test.go)
 Build:          go build ./...      -> OK
 Test:           go test ./...       -> 1 passed
-Presets:        specify preset list -> 6 Presets sichtbar (security, architecture, isaqb, a11y, cross, agent)
+Presets:        specify preset list -> 8 Presets sichtbar (security, architecture, isaqb, a11y, cross, agent, autonomous, parallel autonomous)
 Secure-Dev:     docs/secure-development/ vorhanden -> Applicable
 Fachlogik:      KEINE (Sammeln, Ablage, Zeitplan bewusst N/A in diesem Schritt)
 Secrets:        keine; Beispielwert nur als <PLATZHALTER-KEIN-ECHTER-WERT>

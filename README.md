@@ -2610,20 +2610,20 @@ updated together.*
 
 | Preset-ID | Name | Version | Priorität / Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.6.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.5.0` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.0` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.4.0` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.2.2` | `70` |
+| `security-governance` | Security Governance | `v0.6.1` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.5.1` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.1` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.4.1` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.2.1` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.4.0` | `60` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.3.0` | `70` |
 | `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
 
 Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begründung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
 
 *Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
-`autonomous-run-governance` v0.2.2 mit Priorität `70` ist Teil der
+`autonomous-run-governance` v0.3.0 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume` und
@@ -2644,7 +2644,7 @@ Name. Die früheren Profilnamen `standard-six-governance-presets` und
 `standard-seven-governance-presets` werden beim erneuten Registrieren als
 Kompatibilitätsaliase auf dieselbe aktuelle Achtermatrix migriert.
 
-*`autonomous-run-governance` v0.2.2 at priority `70` is part of the standard
+*`autonomous-run-governance` v0.3.0 at priority `70` is part of the standard
 eight-preset matrix. It adds
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume`, and
@@ -2692,13 +2692,15 @@ campaign and grants no additional authority.*
 | `autonomous-run-governance` | Berechtigungsgebundene, evidenzbasierte Steuerung ausdrücklich delegierter autonomer Spec-Kit-Läufe. / Permission-bounded, evidence-first control for explicitly delegated autonomous Spec Kit runs. | Standardmäßig installieren; einen Lauf nur nach ausdrücklicher Delegation starten. / Install by default; start a run only after explicit delegation. |
 | `parallel-autonomous-run-governance` | Isolierte, begrenzte Multi-Worker-Kampagnen mit fortsetzbarer Konsolidierung und Closeout. / Isolated bounded multi-worker campaigns with resumable consolidation and closeout. | Standardmäßig installieren; parallele Kampagnen nur nach ausdrücklicher Delegation starten. / Install by default; start parallel campaigns only after explicit delegation. |
 
-Nicht jedes Projekt braucht alle acht Presets. Für kleine Lern- oder
-Experimentierprojekte reicht oft eine Teilmenge. Für ernsthafte Level-2-Projekte
-ist diese Startkombination sinnvoll:
+Das registrierte Standardprofil dieser Workspace-Familie umfasst auf Level 0,
+Level 1 und Level 2 alle acht Presets. Eine Teilmenge bleibt nur als bewusst
+dokumentierte Projektausnahme zulässig. Für externe, nicht registrierte kleine
+Lern- oder Experimentierprojekte kann diese Startkombination sinnvoll sein:
 
-*Not every project needs all eight presets. For small learning or experimental
-projects, a subset is often enough. For serious Level-2 projects, this starting
-combination is useful:*
+*The registered standard profile for this workspace family includes all eight
+presets at level 0, level 1, and level 2. A subset is allowed only as a
+deliberately documented project exception. For external, unregistered small
+learning or experimental projects, this starting combination can be useful:*
 
 - `security-governance`
 - `architecture-governance`
@@ -2757,18 +2759,19 @@ pwsh ~/scripts/install-spec-kit-governance-presets.ps1 -Repo .
 ```
 
 Wenn eine neue Preset-Version freigegeben wird, zuerst die Matrix aktualisieren.
-Neue Level-2-Repos nutzen danach automatisch die neuere Version. Bestehende Repos
-werden bewusst aktualisiert:
+Neue registrierte Level-0-, Level-1- und Level-2-Repositories nutzen danach
+automatisch die neuere Version. Bestehende Repositories werden bewusst
+aktualisiert:
 
-*When a new preset version is released, update the matrix first. New level-2
-repositories then use the newer version automatically. Existing repositories are
-updated deliberately:*
+*When a new preset version is released, update the matrix first. New registered
+level-0, level-1, and level-2 repositories then use the newer version
+automatically. Existing repositories are updated deliberately:*
 
 ```bash
 bash ~/scripts/install-spec-kit-governance-presets.sh --repo . --force
 ```
 
-`architecture-governance` v0.5.0 ergaenzt `BSI C3A` (Criteria enabling Cloud
+`architecture-governance` v0.5.1 ergaenzt `BSI C3A` (Criteria enabling Cloud
 Computing Autonomy) als bedingte Cloud-Autonomie-Pruefung und `BSI C5` als
 bedingte Cloud-Compliance-Assurance-Pruefung. Bei Cloud-Service-Auswahl,
 Cloud-Betrieb, SaaS/PaaS/IaaS, Managed Services, Container-/Artefakt-Hosting
@@ -2777,7 +2780,7 @@ und `docs/security/cloud-compliance-assurance.md` oder gleichwertige
 Evidenzpfade gepflegt. Reine Entwicklungsinfrastruktur ohne ausgelieferte oder
 betriebene Cloud-Runtime kann mit kurzer Toolchain-Begruendung `N/A` sein.
 
-`security-governance` v0.6.0 behandelt `AI-SBOM` bewusst bedingt, ergaenzt
+`security-governance` v0.6.1 behandelt `AI-SBOM` bewusst bedingt, ergaenzt
 sprachspezifische Secure-Coding-Profile und fuehrt eine regulatorische
 Anwendbarkeitsmatrix fuer `NIS2`, `CRA`, `EU AI Act` und `DORA` ein. Wenn KI
 nur als Entwicklungswerkzeug genutzt wird, ist `AI-SBOM` mit kurzer
@@ -2787,11 +2790,11 @@ betriebenen Systems sind, wird die Supply-Chain-Evidenz um die G7/BSI
 AI-SBOM-Cluster erweitert. Private Ausbildungsprojekte dokumentieren
 regulatorische Nichtanwendbarkeit mit kurzer Begruendung, wenn kein regulierter
 Scope vorliegt.
-`a11y-governance` v0.4.0 ergaenzt didaktische Inline-Code-Kommentar-Governance:
+`a11y-governance` v0.4.1 ergaenzt didaktische Inline-Code-Kommentar-Governance:
 nicht-triviale neue oder geaenderte Logik wird auf Kommentarbedarf geprueft,
 wenn Lernverstaendnis oder Wartbarkeit betroffen sind.
 
-*`architecture-governance` v0.5.0 adds `BSI C3A` (Criteria enabling Cloud
+*`architecture-governance` v0.5.1 adds `BSI C3A` (Criteria enabling Cloud
 Computing Autonomy) as a conditional cloud-autonomy check and `BSI C5` as a
 conditional cloud-compliance assurance check. Cloud-service selection, cloud
 operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, or
@@ -2800,7 +2803,7 @@ and `docs/security/cloud-compliance-assurance.md` or equivalent evidence
 paths. Pure development infrastructure without a released or operated cloud
 runtime can be `N/A` with a short toolchain rationale.*
 
-*`security-governance` v0.6.0 treats `AI-SBOM` as conditional, adds
+*`security-governance` v0.6.1 treats `AI-SBOM` as conditional, adds
 language-specific secure-coding profiles, and introduces regulatory
 applicability screening for `NIS2`, `CRA`, `EU AI Act`, and `DORA`. When AI is
 used only as development tooling, `AI-SBOM` is `N/A` with a short toolchain
@@ -2808,7 +2811,7 @@ rationale. When AI models, AI services, datasets, inference infrastructure, or
 AI runtime components are part of the released or operated system, supply-chain
 evidence is extended with the G7/BSI AI-SBOM clusters. Private training
 projects record regulatory `N/A` with a short rationale when no regulated
-scope exists. `a11y-governance` v0.4.0 adds didactic inline-code-comment
+scope exists. `a11y-governance` v0.4.1 adds didactic inline-code-comment
 governance: new or changed non-trivial logic is reviewed for comment need when
 learning comprehension or maintainability is affected.*
 
@@ -2884,7 +2887,7 @@ specify preset search governance
 specify preset add security-governance --priority 10
 
 # Einzelner ZIP-Smoke-Test / single ZIP smoke test
-specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.0.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.1.zip --priority 10
 ```
 
 #### Presets aktualisieren oder entfernen / Update or remove presets

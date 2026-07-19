@@ -946,13 +946,13 @@ workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.6.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
-| `architecture-governance` | `v0.5.0` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
-| `isaqb-architecture-governance` | `v0.2.0` | `30` | general iSAQB/arc42 architecture governance |
-| `a11y-governance` | `v0.4.0` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
-| `cross-platform-governance` | `v0.2.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
-| `agent-parity-governance` | `v0.3.0` | `60` | synchronized agent guidance and agent-neutral Spec-Kit model routing across declared AI-agent files |
-| `autonomous-run-governance` | `v0.2.2` | `70` | permission-bounded, evidence-first governance for explicitly delegated autonomous Spec Kit runs |
+| `security-governance` | `v0.6.1` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
+| `architecture-governance` | `v0.5.1` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
+| `isaqb-architecture-governance` | `v0.2.1` | `30` | general iSAQB/arc42 architecture governance |
+| `a11y-governance` | `v0.4.1` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
+| `cross-platform-governance` | `v0.2.1` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
+| `agent-parity-governance` | `v0.4.0` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
+| `autonomous-run-governance` | `v0.3.0` | `70` | permission-bounded, evidence-first governance with resumable, validated closeout |
 | `parallel-autonomous-run-governance` | `v0.2.0` | `80` | isolated bounded campaigns, mixed runner profiles, cooperative stop/resume, provider-gated resumable consolidation, and declared post-merge closeout |
 
 `autonomous-run-governance` is installed as part of the mandatory eight-preset
@@ -1001,14 +1001,11 @@ All eight presets are published as standalone repositories under
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
 `parallel-autonomous-run-governance` v0.2.0 was submitted to the community
-catalog as `github/spec-kit#3591`. New MSL Level-2
-projects SHOULD install presets from the central matrix during Spec-Kit
-initialization. For C#/.NET and learning Level-2 projects, the default subset is
-all eight presets unless the project documents a narrow reason to omit one.
-Existing C# Level-2 projects
-`RiderProjects/TinyPl0`, `RiderProjects/TinyCalc`, `RiderProjects/TuiVision`,
-and `RiderProjects/InventarWorkerService` are the reference rollout set for
-all-eight installation.
+catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
+repositories with Spec Kit SHOULD install all eight presets from the central
+matrix unless the repository documents a narrow exception. Fleet evidence MUST
+cover installation, exact matrix validation, commit, push, and remote
+synchronization for every target repository.
 
 Use `install-spec-kit-governance-presets.*` for normal installation so versions
 and priorities stay centralized in the matrix. Community catalog and direct

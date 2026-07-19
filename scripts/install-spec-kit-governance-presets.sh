@@ -11,6 +11,7 @@ LEGACY_CONFIG="${SCRIPT_DIR}/config/spec-kit-autonomous-governance-presets.json"
 OPT_CONFIG="$DEFAULT_CONFIG"
 OPT_DRY_RUN=false
 OPT_FORCE=false
+OPT_CHECK_ONLY=false
 OPT_REPOS=()
 
 usage() {
@@ -23,6 +24,7 @@ Usage:
 Options:
   --repo PATH             Target repository; repeatable. Default: current directory.
   --preset-config PATH    Preset matrix JSON. Default: scripts/config/spec-kit-governance-presets.json.
+  --check-only           Validate the exact installed matrix without writing.
   --force                 Remove existing presets first, then install configured versions.
   --dry-run               Show actions only.
   -h, --help              Show this help.
@@ -122,6 +124,69 @@ if canonical != legacy:
 PY
 }
 
+validate_repository_matrix() {
+  local repo="$1"
+  local config="$2"
+
+  python3 - "$repo" "$config" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+repo = Path(sys.argv[1])
+config_path = Path(sys.argv[2])
+registry_path = repo / ".specify" / "presets" / ".registry"
+
+if not registry_path.is_file():
+    raise SystemExit(f"Preset-Registry fehlt / preset registry missing: {registry_path}")
+
+with config_path.open("r", encoding="utf-8") as handle:
+    expected_items = json.load(handle)["presets"]
+with registry_path.open("r", encoding="utf-8") as handle:
+    registry = json.load(handle)
+
+actual_items = registry.get("presets")
+if not isinstance(actual_items, dict):
+    raise SystemExit(f"ungueltige Preset-Registry / invalid preset registry: {registry_path}")
+
+expected = {item["id"]: item for item in expected_items}
+errors = []
+if set(actual_items) != set(expected):
+    missing = sorted(set(expected) - set(actual_items))
+    extra = sorted(set(actual_items) - set(expected))
+    if missing:
+        errors.append(f"fehlende IDs / missing IDs: {', '.join(missing)}")
+    if extra:
+        errors.append(f"zusaetzliche IDs / extra IDs: {', '.join(extra)}")
+
+for preset_id, item in expected.items():
+    actual = actual_items.get(preset_id)
+    if not isinstance(actual, dict):
+        continue
+    expected_version = str(item["version"]).removeprefix("v")
+    if str(actual.get("version", "")).removeprefix("v") != expected_version:
+        errors.append(
+            f"{preset_id}: Version {actual.get('version')} != {expected_version}"
+        )
+    if actual.get("priority") != item["priority"]:
+        errors.append(
+            f"{preset_id}: Prioritaet / priority {actual.get('priority')} != {item['priority']}"
+        )
+    if actual.get("enabled") is not True:
+        errors.append(f"{preset_id}: nicht aktiv / not enabled")
+    if not (repo / ".specify" / "presets" / preset_id / "preset.yml").is_file():
+        errors.append(f"{preset_id}: preset.yml fehlt / missing")
+
+if errors:
+    raise SystemExit("\n".join(errors))
+
+print(
+    f"  OK: {len(expected)} Presets entsprechen exakt der Matrix "
+    f"/ presets exactly match the matrix"
+)
+PY
+}
+
 normalize_preset_markdown() {
   local repo="$1"
   local status
@@ -190,6 +255,11 @@ install_for_repo() {
 
   printf '## %s\n' "$repo"
 
+  if $OPT_CHECK_ONLY; then
+    validate_repository_matrix "$repo" "$OPT_CONFIG"
+    return
+  fi
+
   while IFS="$(printf '\t')" read -r id version priority archive_url; do
     [ -n "$id" ] || continue
 
@@ -238,6 +308,10 @@ while [ $# -gt 0 ]; do
       OPT_FORCE=true
       shift
       ;;
+    --check-only)
+      OPT_CHECK_ONLY=true
+      shift
+      ;;
     --dry-run)
       OPT_DRY_RUN=true
       shift
@@ -251,6 +325,10 @@ while [ $# -gt 0 ]; do
       ;;
   esac
 done
+
+if $OPT_CHECK_ONLY && { $OPT_FORCE || $OPT_DRY_RUN; }; then
+  die "--check-only ist nicht mit --force oder --dry-run kombinierbar"
+fi
 
 command -v specify >/dev/null 2>&1 || die "specify CLI nicht gefunden"
 [ -f "$OPT_CONFIG" ] || die "Preset-Konfiguration nicht gefunden: $OPT_CONFIG"
