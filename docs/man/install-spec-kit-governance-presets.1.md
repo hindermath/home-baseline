@@ -9,22 +9,24 @@
 ## Synopsis
 
 ```bash
-bash scripts/install-spec-kit-governance-presets.sh [--repo PATH] [--preset-config PATH] [--force] [--dry-run]
+bash scripts/install-spec-kit-governance-presets.sh [--repo PATH] [--preset-config PATH] [--check-only] [--force] [--dry-run]
 ```
 
 ```powershell
-pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -Repo PATH -PresetConfig PATH -Force -WhatIf
+pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -Repo PATH -PresetConfig PATH -CheckOnly -Force -WhatIf
 ```
 
 ## Beschreibung / Description
 
 Das Werkzeug liest `scripts/config/spec-kit-governance-presets.json` und
-installiert die dort genannten acht Governance-Presets in einem Spec-Kit-Repo.
+installiert oder prueft die dort genannten acht Governance-Presets in
+Level-0-, Level-1- und Level-2-Spec-Kit-Repositories.
 Die Skriptlogik enthaelt keine fest eingebauten Preset-Versionen. Neue
 Versionen werden durch Aktualisieren der zentralen Matrix wirksam.
 
 *The tool reads `scripts/config/spec-kit-governance-presets.json` and installs
-the eight listed governance presets into a Spec Kit repository. The script logic
+the eight listed governance presets in level-0, level-1, and level-2 Spec Kit
+repositories. The script logic
 does not hard-code preset versions. New versions become effective by updating
 the central matrix.*
 
@@ -49,19 +51,28 @@ blocking local Git hooks; semantic content remains unchanged.*
 |---|---|---|
 | `--repo PATH` | `-Repo PATH` | Ziel-Repository; wiederholbar |
 | `--preset-config PATH` | `-PresetConfig PATH` | Alternative Preset-Matrix |
+| `--check-only` | `-CheckOnly` | Exakte installierte Matrix ohne Schreibzugriff prüfen |
 | `--force` | `-Force` | Vorhandene Presets entfernen und aus der Matrix neu installieren |
 | `--dry-run` | `-WhatIf` | Nur anzeigen, keine Schreiboperationen |
+
+`--check-only` / `-CheckOnly` ist ein ausschliesslich lesender Modus und kann
+nicht mit `--force` / `-Force` oder `--dry-run` / `-WhatIf` kombiniert werden.
+
+*`--check-only` / `-CheckOnly` is an exclusively read-only mode and cannot be
+combined with `--force` / `-Force` or `--dry-run` / `-WhatIf`.*
 
 ## Beispiele / Examples
 
 ```bash
 bash scripts/install-spec-kit-governance-presets.sh --dry-run
+bash scripts/install-spec-kit-governance-presets.sh --check-only
 bash scripts/install-spec-kit-governance-presets.sh --repo ~/SecureCaseTrackerProjects/SecureCaseTracker-CSharp
 bash scripts/install-spec-kit-governance-presets.sh --repo ~/SecureCaseTrackerProjects/SecureCaseTracker-CSharp --force
 ```
 
 ```powershell
 pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -WhatIf
+pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -CheckOnly
 pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -Repo ~/SecureCaseTrackerProjects/SecureCaseTracker-CSharp
 pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -Repo ~/SecureCaseTrackerProjects/SecureCaseTracker-CSharp -Force
 ```

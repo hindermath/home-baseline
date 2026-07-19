@@ -99,7 +99,7 @@ into the baseline. Using a fork without justification.
 ### Beispiel / Example
 
 ```text
-Baseline-Pruefung:  Build OK | Tests: 42 passed, 2 Open | Secure-Dev vorhanden | 6 Presets vorhanden
+Baseline-Pruefung:  Build OK | Tests: 42 passed, 2 Open | Secure-Dev vorhanden | 8 Presets vorhanden
 Tag:                learning/year-2-complete  @ commit a8b6fc1
 YEAR2_BASELINE.md:  Sprache=Rust, Build=OK, Test=OK(2 Open), Risiko="SBOM-Tooling offen", Nachweisgrenze notiert
 Track-Auswahl:      nur DPA-Track fuer Rust vorbereitet (tatsaechlich benoetigt), andere = N/A + Grund

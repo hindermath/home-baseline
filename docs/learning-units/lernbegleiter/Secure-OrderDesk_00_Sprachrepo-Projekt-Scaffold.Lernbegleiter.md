@@ -135,7 +135,7 @@ Sprache:        Go
 Struktur:       go mod init orderdesk  (plus ein Basistest in main_test.go)
 Build:          go build ./...      -> OK
 Test:           go test ./...       -> 1 passed
-Presets:        specify preset list -> 6 Presets sichtbar (security, architecture, isaqb, a11y, cross, agent)
+Presets:        specify preset list -> 8 Presets sichtbar (security, architecture, isaqb, a11y, cross, agent, autonomous, parallel autonomous)
 Secure-Dev:     docs/secure-development/ vorhanden -> Applicable
 Fachlogik:      KEINE (Kunden, Produkte, Bestellungen, SQL bewusst N/A in diesem Schritt)
 Datenbasis:     Northwind inkl. ALFKI nur benannt, noch NICHT angebunden -> Open fuer Einheit 02/06

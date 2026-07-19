@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-14",
+  "updated": "2026-07-19",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "files": [
     {
@@ -17,6 +17,14 @@
     },
     {
       "path": "scripts/invoke-psscriptanalyzer.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/install-spec-kit-governance-presets.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/install-spec-kit-governance-presets.ps1",
       "executable": false
     },
     {
@@ -48,6 +56,46 @@
       "executable": false
     },
     {
+      "path": "scripts/config/spec-kit-governance-presets.json",
+      "executable": false
+    },
+    {
+      "path": ".specify/templates/spec-template.md",
+      "executable": false
+    },
+    {
+      "path": ".specify/templates/plan-template.md",
+      "executable": false
+    },
+    {
+      "path": ".specify/templates/tasks-template.md",
+      "executable": false
+    },
+    {
+      "path": ".specify/templates/agent-file-template.md",
+      "executable": false
+    },
+    {
+      "path": "scripts/templates/speckit-workflow-section.md",
+      "executable": false
+    },
+    {
+      "path": "scripts/templates/AGENTS.md.tmpl",
+      "executable": false
+    },
+    {
+      "path": "scripts/templates/CLAUDE.md.tmpl",
+      "executable": false
+    },
+    {
+      "path": "scripts/templates/GEMINI.md.tmpl",
+      "executable": false
+    },
+    {
+      "path": "scripts/templates/copilot-instructions.tmpl",
+      "executable": false
+    },
+    {
       "path": ".github/workflows/powershell-analysis.yml",
       "executable": false
     },
@@ -65,6 +113,10 @@
     },
     {
       "path": "docs/man/invoke-psscriptanalyzer.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/install-spec-kit-governance-presets.1.md",
       "executable": false
     }
   ]

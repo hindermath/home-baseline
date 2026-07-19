@@ -124,7 +124,7 @@ Sprache:        Rust
 Struktur:       cargo new secure-casetracker --bin  (plus Basistest)
 Build:          cargo build      -> OK
 Test:           cargo test       -> 1 passed
-Presets:        specify preset list -> 6 Presets sichtbar (security, architecture, isaqb, a11y, cross, agent)
+Presets:        specify preset list -> 8 Presets sichtbar (security, architecture, isaqb, a11y, cross, agent, autonomous, parallel autonomous)
 Secure-Dev:     docs/secure-development/ vorhanden -> Applicable
 Fachlogik:      KEINE (bewusst N/A in diesem Schritt)
 Blocker:        keiner  (sonst: "Open: govulncheck fehlt, Folgeaufgabe in Einheit 08")

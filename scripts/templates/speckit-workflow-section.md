@@ -10,26 +10,28 @@ Schritte für ein neues Feature:
 3. **Implementierungsplan** — `speckit plan` → `specs/{branch}/plan.md`
 4. **Aufgabenliste** — `speckit tasks` → `specs/{branch}/tasks.md`
 5. **Implementieren** — `speckit implement` → Aufgaben aus `tasks.md` abarbeiten
-6. **Validieren** — `bash scripts/check-homogeneity.sh` → Compliance-Score prüfen
+6. **Validieren** — `bash ~/scripts/check-homogeneity.sh "$PWD"` oder
+   `pwsh ~/scripts/check-homogeneity.ps1 -TargetDir "$PWD"` → Compliance-Score prüfen
 
 Alle Spec-Artefakte werden im Branch-Verzeichnis `specs/{branch}/` gespeichert und versioniert.
 
 ### Governance-Presets
 
-Für MSL-Level-2-Projekte werden Spec-Kit-Governance-Presets aus der zentralen
-Matrix `scripts/config/spec-kit-governance-presets.json` installiert. Das
-Standard-Set dieser Workspace-Familie ist:
+Registrierte Level-0-, Level-1- und Level-2-Repositories installieren
+Spec-Kit-Governance-Presets aus der zentralen Matrix
+`scripts/config/spec-kit-governance-presets.json`. Das Standard-Set dieser
+Workspace-Familie ist:
 
 | Preset-ID | Name | Version | Priorität |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.6.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.5.0` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.0` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.4.0` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.2.2` | `70` |
-| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
+| `security-governance` | Security Governance | `v0.6.1` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.5.1` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.1` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.4.1` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.2.1` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.4.0` | `60` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.3.0` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.1` | `80` |
 
 `autonomous-run-governance` ist Teil der Standard-Achtermatrix. Vollständige
 autonome Läufe bleiben ausdrücklich delegationspflichtig. `LocalImplementation` ist der
@@ -52,13 +54,15 @@ manifestdeklarierten Post-Merge-Aktionen und Abschlussvalidierung.
 
 Die ursprünglichen sechs Presets sind seit 2026-05-04 und
 `autonomous-run-governance` v0.2.2 ist seit 2026-07-17 im `github/spec-kit`
-Community-Katalog enthalten. C#/.NET- und Lern-Level-2-Projekte verwenden
-standardmäßig alle acht Presets, sofern keine begründete Ausnahme dokumentiert
-ist. Nach Installation oder Update prüfen: `specify preset list`,
+Community-Katalog enthalten. Registrierte Level-0-, Level-1- und
+Level-2-Repositories verwenden standardmäßig alle acht Presets, sofern keine
+begründete Ausnahme dokumentiert ist. Nach Installation oder Update prüfen:
+`install-spec-kit-governance-presets.* --check-only` / `-CheckOnly`,
+`specify preset list`,
 `specify preset info <id>` und bei Template-Fragen `specify preset resolve
 <template>`. `.specify/presets/` wird committed, `.specify/presets/.cache/`
 nicht. Alle acht Presets erzeugen oder verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begruendung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
-`parallel-autonomous-run-governance` v0.2.0 ist eigenstaendig veroeffentlicht
+`parallel-autonomous-run-governance` v0.2.1 ist eigenstaendig veroeffentlicht
 und wurde mit `github/spec-kit#3591` fuer den Community-Katalog eingereicht.
 Bei jeder Preset-Version oder Prioritätsänderung zuerst die zentrale Matrix
 aktualisieren und danach README-Tabellen, Constitution, Agenten-Dateien und
@@ -78,26 +82,28 @@ Steps for a new feature:
 3. **Implementation plan** — `speckit plan` → `specs/{branch}/plan.md`
 4. **Task list** — `speckit tasks` → `specs/{branch}/tasks.md`
 5. **Implement** — `speckit implement` → work through tasks in `tasks.md`
-6. **Validate** — `bash scripts/check-homogeneity.sh` → check compliance score
+6. **Validate** — `bash ~/scripts/check-homogeneity.sh "$PWD"` or
+   `pwsh ~/scripts/check-homogeneity.ps1 -TargetDir "$PWD"` → check compliance score
 
 All spec artefacts are stored and versioned in the branch directory `specs/{branch}/`.
 
 ### Governance Presets
 
-MSL level-2 projects install Spec Kit governance presets from the central matrix
+Registered level-0, level-1, and level-2 repositories install Spec Kit
+governance presets from the central matrix
 `scripts/config/spec-kit-governance-presets.json`. The standard set for this
 workspace family is:
 
 | Preset ID | Name | Version | Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.6.0` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.5.0` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.0` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.4.0` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.2.2` | `70` |
-| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
+| `security-governance` | Security Governance | `v0.6.1` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.5.1` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.1` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.4.1` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.2.1` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.4.0` | `60` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.3.0` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.1` | `80` |
 
 `autonomous-run-governance` is part of the standard eight-preset matrix.
 Complete autonomous runs still require explicit delegation. `LocalImplementation` is the safe default;
@@ -119,12 +125,13 @@ synchronization, manifest-declared post-merge actions, and final validation.
 
 The original six presets have been in the `github/spec-kit` community catalog
 since 2026-05-04, and `autonomous-run-governance` v0.2.2 was verified there on
-2026-07-17. C#/.NET and learning level-2 projects default to all eight presets
-unless a justified exception is documented. After install or update, verify with
-`specify preset list`, `specify preset info <id>`, and for template questions
+2026-07-17. Registered level-0, level-1, and level-2 repositories default to
+all eight presets unless a justified exception is documented. After install or
+update, verify with `install-spec-kit-governance-presets.* --check-only` /
+`-CheckOnly`, `specify preset list`, `specify preset info <id>`, and for template questions
 `specify preset resolve <template>`. Commit `.specify/presets/`, but not
 `.specify/presets/.cache/`. All eight presets produce or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.
-`parallel-autonomous-run-governance` v0.2.0 is published independently and was
+`parallel-autonomous-run-governance` v0.2.1 is published independently and was
 submitted to the community catalog as `github/spec-kit#3591`.
 For every preset version or priority change, update the central matrix first,
 then review README tables, constitution, agent guidance files, and templates

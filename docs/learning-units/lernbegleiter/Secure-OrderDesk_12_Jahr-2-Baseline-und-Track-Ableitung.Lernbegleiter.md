@@ -102,7 +102,7 @@ into the baseline. Using a fork without justification.
 ### Beispiel / Example
 
 ```text
-Baseline-Pruefung:  Build OK | Tests: 48 passed, 2 Open | Secure-Dev vorhanden | 6 Presets vorhanden
+Baseline-Pruefung:  Build OK | Tests: 48 passed, 2 Open | Secure-Dev vorhanden | 8 Presets vorhanden
 Tag:                learning/year-2-complete  @ commit c4d9e02
 YEAR2_BASELINE.md:  Sprache=C#, Build=OK, Test=OK(2 Open), Risiko="Rollenmodell offen", Nachweisgrenze notiert
 Track-Auswahl:      nur DPA-Track fuer C# vorbereitet (tatsaechlich benoetigt), andere = N/A + Grund
