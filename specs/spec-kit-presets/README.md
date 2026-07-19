@@ -5,14 +5,14 @@ Spec Kit governance presets derived from the `home-baseline` governance work.
 
 Target split:
 
-- `security-governance` — version `0.6.0`
-- `architecture-governance` — version `0.5.0`
-- `isaqb-architecture-governance` — version `0.2.0`
-- `a11y-governance` — version `0.4.0`
-- `cross-platform-governance` — version `0.2.0`
-- `agent-parity-governance` — version `0.3.0`
-- `autonomous-run-governance` — version `0.2.2`
-- `parallel-autonomous-run-governance` — version `0.2.0`
+- `security-governance` — version `0.6.1`
+- `architecture-governance` — version `0.5.1`
+- `isaqb-architecture-governance` — version `0.2.1`
+- `a11y-governance` — version `0.4.1`
+- `cross-platform-governance` — version `0.2.1`
+- `agent-parity-governance` — version `0.4.0`
+- `autonomous-run-governance` — version `0.3.1`
+- `parallel-autonomous-run-governance` — version `0.2.2`
 
 The standard eight-preset profile requires `spec-kit >= 0.8.3`.
 The original six presets depend on the `wrap` and `append` composition
@@ -102,13 +102,18 @@ MSL integration:
 Current status:
 
 - the six original governance presets are published and catalogued
-- `autonomous-run-governance` v0.2.2 is the current patch release; it retains
+- `autonomous-run-governance` v0.3.1 is the current patch release; it retains
   validated lifecycle state plus explicit status, graceful-stop, and protected
   resume commands, adds a mandatory-rule delta audit for preset drift, provides
-  a detailed operating guide, and distinguishes the readable `Deliver` heading
-  from canonical `Publish`, `Review`, and `MergeAndSync` run-state stages
-- `parallel-autonomous-run-governance` v0.2.0 is the validated eighth standard
-  preset; starting a parallel campaign remains explicitly delegable
+  a detailed bilingual operating guide with five Mermaid diagrams, and
+  distinguishes the readable `Deliver` heading from canonical `Publish`,
+  `Review`, and `MergeAndSync` run-state stages
+- `parallel-autonomous-run-governance` v0.2.2 is the validated eighth standard
+  preset with a bilingual campaign manual and nine Mermaid diagrams; starting
+  a parallel campaign remains explicitly delegable
+- real Preset 8 campaigns require enabled
+  `autonomous-run-governance >=0.2.2` in every worker repository; priority `70`
+  provides the worker lifecycle before priority `80` coordinates the campaign
 
 Recommended publication order:
 
@@ -130,8 +135,8 @@ specify preset add isaqb-architecture-governance --priority 30
 specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
-specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.2.zip --priority 70
-specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.0.zip --priority 80
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.1.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.2.zip --priority 80
 ```
 
 Notes:

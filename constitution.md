@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report
-Version change: 1.15.0 -> 1.16.0
+Version change: 1.16.0 -> 1.17.0
 Modified principles:
-- Spec Kit preset governance (promote parallel autonomous governance to the standard eight-preset profile)
+- Spec Kit preset governance (document Preset 8's mandatory Preset 7 worker dependency and publish the documentation patch releases)
 Added sections:
 - None
 Removed sections:
@@ -25,7 +25,7 @@ Follow-up TODOs:
 - None.
 -->
 
-# Constitution v1.16.0
+# Constitution v1.17.0
 
 # home-baseline Constitution
 
@@ -955,8 +955,8 @@ workspace family consists of:
 | `a11y-governance` | `v0.4.1` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.1` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.4.0` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.3.0` | `70` | permission-bounded, evidence-first governance with resumable, validated closeout |
-| `parallel-autonomous-run-governance` | `v0.2.1` | `80` | isolated bounded campaigns, mixed runner profiles, cooperative stop/resume, provider-gated resumable consolidation, and declared post-merge closeout |
+| `autonomous-run-governance` | `v0.3.1` | `70` | permission-bounded, evidence-first governance with resumable, validated closeout |
+| `parallel-autonomous-run-governance` | `v0.2.2` | `80` | isolated bounded campaigns, mixed runner profiles, cooperative stop/resume, provider-gated resumable consolidation, and declared post-merge closeout |
 
 `autonomous-run-governance` is installed as part of the mandatory eight-preset
 governance matrix. Installation does not authorize an autonomous run.
@@ -981,7 +981,13 @@ per-worker runner profiles with agent-neutral model metadata, exact-head and
 review-aware provider preflights, resumable partial consolidation, cooperative
 stop during consolidation, and manifest-declared idempotent post-merge actions.
 Schema `1.0` artifacts remain readable, but their legacy merge form is not
-executed without migration to the provider-gated `1.1` contract.
+executed without migration to the provider-gated `1.1` contract. Every real
+worker repository MUST have enabled `autonomous-run-governance >=0.2.2`.
+Preset 7 at priority `70` owns the worker lifecycle, evidence, and authority
+contract; Preset 8 at priority `80` owns campaign coordination. A missing,
+disabled, or outdated Preset 7 MUST fail preflight before any worker starts.
+`requireAutonomousPreset: false` is limited to isolated internal fixtures and
+MUST NOT be documented or used as a production campaign mode.
 
 All eight governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint records applicability as `Applicable`, `N/A`, or `Open` and implementation separately as `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`, plus rationale, evidence path, owner, reviewer, residual risk, re-evaluation trigger, and follow-up. `N/A` keeps implementation at `Not Assessed` and always needs a rationale.
 
@@ -1003,8 +1009,9 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-`parallel-autonomous-run-governance` v0.2.1 was submitted to the community
-catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
+The current standalone releases are `autonomous-run-governance` v0.3.1 and
+`parallel-autonomous-run-governance` v0.2.2; Preset 8 was submitted to the
+community catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote
@@ -1033,7 +1040,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.16.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-19
+**Version**: 1.17.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-20
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

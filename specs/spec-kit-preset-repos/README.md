@@ -48,6 +48,12 @@ specify preset list
 specify preset resolve constitution-template
 ```
 
+For production campaigns, the final two entries form a dependency pair:
+`autonomous-run-governance >=0.2.2` at priority `70` supplies each worker's
+lifecycle, evidence, and authority contract. `parallel-autonomous-run-governance`
+at priority `80` coordinates those workers. Preset 8 must fail preflight before
+worker start when Preset 7 is missing, disabled, or outdated.
+
 For agent guidance addenda, resolve the preset-specific standalone
 template. Each preset names its standalone template
 `<preset-prefix>-agent-guidance-addendum-template` (the
