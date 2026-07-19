@@ -458,6 +458,22 @@ do not shift points. Phase `1` stands out clearly; Phase `6` contains the
 governance preset follow-up, Phase `7` the autonomous package, Phase `8`
 the parallel field-test package, and Phase `9` the fleet rollout.*
 
+### 2026-07-19 - Skriptkatalog und dauerhafte Level-0-Quelle / Script catalog and permanent Level 0 source
+
+- Alle kanonischen und eingebetteten Skriptdateien werden nun reproduzierbar
+  inventarisiert; eine bilinguale Zentralreferenz dokumentiert Rolle,
+  Voraussetzungen, Nebenwirkungen und sichere Aufrufbeispiele.
+- Die dauerhafte Level-0-Quelle wechselt von der historischen
+  Temp-Bezeichnung zu `~/home-baseline-source`. Ein gemeinsamer Resolver,
+  strikter Preflight, lokaler JSON-Nachweis und befristeter
+  Kompatibilitaetslink machen die Migration plattformuebergreifend pruefbar.
+
+*All canonical and embedded script files are now inventoried reproducibly. A
+bilingual central reference documents roles, prerequisites, side effects, and
+safe invocation examples. The permanent Level 0 source moves to
+`~/home-baseline-source` through shared discovery, a strict preflight, local
+JSON evidence, and a temporary compatibility link.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

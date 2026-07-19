@@ -89,6 +89,14 @@
       "labelEn": "Fleet rollout",
       "netLines": 19465,
       "activeDays": 1
+    },
+    {
+      "slot": 10,
+      "id": "script-catalog-source-migration",
+      "labelDe": "Skriptkatalog und Quellmigration",
+      "labelEn": "Script catalog and source migration",
+      "netLines": 2731,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
