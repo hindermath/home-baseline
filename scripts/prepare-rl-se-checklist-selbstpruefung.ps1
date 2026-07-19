@@ -137,7 +137,7 @@ function Get-RlSeTemplateFile {
         (Join-Path $ScriptDir 'templates/rl-se-checklist-selbstpruefung-lastenheft.md'),
         (Join-Path $repoDir 'scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md'),
         (Join-Path $HOME 'scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md'),
-        (Join-Path $HOME 'home-baseline-tmp/scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md')
+        (Join-Path $HOME 'home-baseline-source/scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md')
     )) {
         if (Test-Path $candidate) { return $candidate }
     }

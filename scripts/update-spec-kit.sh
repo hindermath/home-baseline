@@ -6,6 +6,9 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 HOME_DIR="${HOME}"
+# shellcheck source=scripts/lib/resolve-home-baseline-source.sh
+source "${SCRIPT_DIR}/lib/resolve-home-baseline-source.sh"
+LEVEL0_SOURCE="$(resolve_hb_source_repository "${BASH_SOURCE[0]}" 1)"
 
 AGENTS=(claude opencode agy copilot codex)
 OPT_DRY_RUN=false
@@ -117,12 +120,12 @@ add_repo() {
 discover_repos() {
   REPOS=()
 
-  add_repo "${HOME_DIR}/home-baseline-tmp"
+  add_repo "$LEVEL0_SOURCE"
 
   local workspace project
   for workspace in "${HOME_DIR}"/*; do
     [ -d "$workspace" ] || continue
-    [ "$workspace" = "${HOME_DIR}/home-baseline-tmp" ] && continue
+    [ "$workspace" = "$LEVEL0_SOURCE" ] && continue
     add_repo "$workspace"
 
     if is_spec_repo "$workspace"; then
@@ -141,8 +144,8 @@ select_template_source() {
 
   if [ -d "$REPO_DIR/.specify/templates" ]; then
     TEMPLATE_SOURCE="$REPO_DIR"
-  elif [ -d "${HOME_DIR}/home-baseline-tmp/.specify/templates" ]; then
-    TEMPLATE_SOURCE="${HOME_DIR}/home-baseline-tmp"
+  elif [ -d "${LEVEL0_SOURCE}/.specify/templates" ]; then
+    TEMPLATE_SOURCE="$LEVEL0_SOURCE"
   else
     die "Keine Governance-Template-Quelle gefunden; nutze --template-source PATH"
   fi

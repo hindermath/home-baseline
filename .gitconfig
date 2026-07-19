@@ -17,5 +17,5 @@
 [pull]
 	rebase = true
 
-[includeIf "gitdir:~/home-baseline-tmp/"]
+[includeIf "gitdir:~/home-baseline-source/"]
 	path = ~/.gitconfig.d/home-baseline.inc

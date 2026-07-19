@@ -84,10 +84,14 @@ if ($IncludeOptional -and $ScriptsOnly) {
 $sourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
 $HomeDir = (Resolve-Path -LiteralPath $HomeDir).Path
 $homeScriptsDir = Join-Path $HomeDir 'scripts'
-$repoScript = Join-Path $HomeDir 'home-baseline-tmp/scripts/maintain-agentic-workspace.ps1'
-if ((Test-Path -LiteralPath $repoScript -PathType Leaf) -and
-    (Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
+if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
     ((Resolve-Path -LiteralPath $PSScriptRoot).Path -eq (Resolve-Path -LiteralPath $homeScriptsDir).Path)) {
+    . (Join-Path $PSScriptRoot 'lib/resolve-home-baseline-source.ps1')
+    $sourceRoot = Resolve-HBSourceRepository -StartPath $PSScriptRoot -AllowLegacy
+    $repoScript = Join-Path $sourceRoot 'scripts/maintain-agentic-workspace.ps1'
+    if (-not (Test-Path -LiteralPath $repoScript -PathType Leaf)) {
+        throw "Canonical maintenance script missing: $repoScript"
+    }
     $forward = @{}
     if ($CheckOnly) { $forward.CheckOnly = $true }
     if ($ScriptsOnly) { $forward.ScriptsOnly = $true }

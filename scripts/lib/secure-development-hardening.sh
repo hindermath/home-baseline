@@ -160,7 +160,7 @@ sdh_find_source_dir() {
   for candidate in \
     "$repo_dir/docs/secure-development" \
     "$HOME/docs/secure-development" \
-    "$HOME/home-baseline-tmp/docs/secure-development"; do
+    "$HOME/home-baseline-source/docs/secure-development"; do
     if [ -d "$candidate" ] \
       && [ -f "$candidate/README.md" ] \
       && [ -f "$candidate/mitgeltende-dokumente/README.md" ]; then
@@ -249,7 +249,7 @@ sdh_find_template_file() {
     "$script_dir/templates/secure-development-hardening-lastenheft.md" \
     "$repo_dir/scripts/templates/secure-development-hardening-lastenheft.md" \
     "$HOME/scripts/templates/secure-development-hardening-lastenheft.md" \
-    "$HOME/home-baseline-tmp/scripts/templates/secure-development-hardening-lastenheft.md"; do
+    "$HOME/home-baseline-source/scripts/templates/secure-development-hardening-lastenheft.md"; do
     if [ -f "$candidate" ]; then
       printf '%s\n' "$candidate"
       return 0

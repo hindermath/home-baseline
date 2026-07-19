@@ -179,7 +179,7 @@ find_selfcheck_template_file() {
     "$SCRIPT_DIR/templates/rl-se-checklist-selbstpruefung-lastenheft.md" \
     "$repo_dir/scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md" \
     "$HOME/scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md" \
-    "$HOME/home-baseline-tmp/scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md"; do
+    "$HOME/home-baseline-source/scripts/templates/rl-se-checklist-selbstpruefung-lastenheft.md"; do
     if [ -f "$candidate" ]; then
       printf '%s\n' "$candidate"
       return 0

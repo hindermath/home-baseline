@@ -49,3 +49,7 @@ jobs:
           $repo = Split-Path -Leaf $env:GITHUB_WORKSPACE
           Set-Location $parent
           pwsh -NoProfile -File "$repo/scripts/check-homogeneity.ps1" -TargetDir $repo
+
+      - name: Validate generated script reference
+        shell: pwsh
+        run: pwsh -NoProfile -File scripts/render-script-reference.ps1 -Repo . -CheckOnly

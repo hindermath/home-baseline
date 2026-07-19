@@ -9,10 +9,10 @@ It tracks only safe infrastructure files via a whitelist `.gitignore` and distri
 
 ## Arbeitsverzeichnis / Working Directory
 
-**IMPORTANT:** Always work in `~/home-baseline-tmp` — this is the git clone with the GitHub remote. `~/` is a local copy only (no remote) and changes there cannot be pushed.
+**IMPORTANT:** Always work in `~/home-baseline-source` — this is the git clone with the GitHub remote. `~/` is a local copy only (no remote) and changes there cannot be pushed.
 
 ```bash
-cd ~/home-baseline-tmp   # ← start Copilot CLI here
+cd ~/home-baseline-source   # ← start Copilot CLI here
 copilot
 # → make changes, commit, push
 
@@ -23,10 +23,10 @@ pwsh ~/scripts/sync-home.ps1 -NoPull   # Windows
 
 | Directory | Git-Remote | Purpose |
 |---|---|---|
-| `~/home-baseline-tmp` | ✅ `origin` → GitHub | Development, commits, push |
+| `~/home-baseline-source` | ✅ `origin` → GitHub | Development, commits, push |
 | `~/` | ❌ no remote | Local copy for scripts & hooks |
 
-Der persönliche Fork unter `~/home-baseline-tmp` bleibt dauerhaft als
+Der persönliche Fork unter `~/home-baseline-source` bleibt dauerhaft als
 versionierte Level-0-Quelle erhalten. `sync-home.*` synchronisiert nur die im
 Home-Sync-Manifest freigegebenen, mit Git versionierten Dateien, schützt lokale
 Abweichungen und protokolliert SHA-256 sowie Quell-Commit unter
@@ -35,7 +35,7 @@ Abweichungen und protokolliert SHA-256 sowie Quell-Commit unter
 eingebundene Referenz direkt verwenden; schreibender Home-Sync läuft nur auf
 dem Host.
 
-*Keep the personal fork at `~/home-baseline-tmp` permanently as the versioned
+*Keep the personal fork at `~/home-baseline-source` permanently as the versioned
 level-0 source. `sync-home.*` copies only Git-tracked files approved by the Home
 sync manifest, protects local divergence, and records SHA-256 plus source
 commit under `~/.home-baseline/`. Use `--check-only` / `-CheckOnly` before real
@@ -52,6 +52,21 @@ Für GitLab-Repositories die authentifizierte `glab` CLI zuerst für gleichwerti
 For GitHub repositories, use the authenticated `gh` CLI first for feasible write actions and live repository operations, including PR/issue comments, PR status checks, review follow-up, workflow inspection, and merge/status queries. Use GitHub connector tools mainly for structured read-only inspection or when the CLI is not suitable.
 
 For GitLab repositories, use the authenticated `glab` CLI first for equivalent actions. Do not repeatedly try connector write paths that are known to fail when `gh`/`glab` can perform the task directly.
+
+## Skriptreferenz und Quellpfad / Script Reference and Source Path
+
+- Die vollstaendige Skriptinventur steht unter `docs/scripts/`; neue Skripte
+  muessen genau einer Kategorie in `scripts/config/script-catalog.json`
+  zugeordnet sein.
+- Vor einem schreibenden Skriptlauf Hilfe und vorhandenen Check-, Dry-Run- oder
+  WhatIf-Modus verwenden.
+- Die Level-0-Quelle wird ueber den gemeinsamen Resolver ermittelt; neue
+  Automationen duerfen den absoluten Pfad nicht fest eincodieren.
+
+*The complete script inventory lives under `docs/scripts/`. New scripts must
+match exactly one catalog category. Read help and use a check or preview mode
+before writing. Resolve Level 0 through the shared contract rather than a
+hard-coded absolute path.*
 
 ## Lernreihen-Governance / Learning Series Governance
 
@@ -115,20 +130,20 @@ When terminal output cannot be copy-pasted between machines, use the matching pl
 
 ```bash
 # On the Mac — collects info, commits and pushes results automatically:
-bash ~/home-baseline-tmp/scripts/mac-test.sh
+bash ~/home-baseline-source/scripts/mac-test.sh
 
 # On Linux / WSL:
-bash ~/home-baseline-tmp/scripts/linux-test.sh
+bash ~/home-baseline-source/scripts/linux-test.sh
 ```
 ```powershell
 # On Windows:
-pwsh ~/home-baseline-tmp/scripts/windows-test.ps1
+pwsh ~/home-baseline-source/scripts/windows-test.ps1
 ```
 
 Results land in `mac-test-output.txt`, `linux-test-output.txt`, or `windows-test-output.txt` in the repo. Read from Windows:
 ```powershell
-git -C "$HOME\home-baseline-tmp" pull
-Get-Content "$HOME\home-baseline-tmp\windows-test-output.txt"  # oder mac-test-output.txt, linux-test-output.txt
+git -C "$HOME\home-baseline-source" pull
+Get-Content "$HOME\home-baseline-source\windows-test-output.txt"  # oder mac-test-output.txt, linux-test-output.txt
 ```
 
 ## OS-Erkennung — Skript-Auswahl / OS Detection — Script Selection
@@ -173,9 +188,9 @@ At the start of each session, detect the OS and call the matching script variant
 
 ## Selbstaktualisierende Skripte / Self-Updating Scripts
 
-Bei Sync- oder Bootstrap-Skripten, die ihr eigenes Verzeichnis kopieren oder ersetzen, vor echten Läufen immer Syntaxcheck und Vorschau verwenden: `bash -n`, `--dry-run` und `-WhatIf`. Echte Läufe aus einer stabilen Repo-Kopie wie `~/home-baseline-tmp/scripts/` starten oder sicherstellen, dass das Skript dorthin delegiert.
+Bei Sync- oder Bootstrap-Skripten, die ihr eigenes Verzeichnis kopieren oder ersetzen, vor echten Läufen immer Syntaxcheck und Vorschau verwenden: `bash -n`, `--dry-run` und `-WhatIf`. Echte Läufe aus einer stabilen Repo-Kopie wie `~/home-baseline-source/scripts/` starten oder sicherstellen, dass das Skript dorthin delegiert.
 
-*For sync or bootstrap scripts that copy or replace their own directory, always use syntax checks and previews before real runs: `bash -n`, `--dry-run`, and `-WhatIf`. Start real runs from a stable repository copy such as `~/home-baseline-tmp/scripts/`, or ensure the script delegates there.*
+*For sync or bootstrap scripts that copy or replace their own directory, always use syntax checks and previews before real runs: `bash -n`, `--dry-run`, and `-WhatIf`. Start real runs from a stable repository copy such as `~/home-baseline-source/scripts/`, or ensure the script delegates there.*
 
 Bei erzeugten oder schnell angepassten PowerShell-Skripten Variablen in Strings vor angrenzender Interpunktion immer mit `${Name}` abgrenzen, z. B. `${Path}:`. So entstehen keine fehlerhaften Bereichsvariablen wie `$Path:`.
 
@@ -474,7 +489,7 @@ All rows in a `text` code block table must have identical character width. A sin
 Verify with: `$line.Length` (PowerShell) — all frame characters count as 1 char regardless of UTF-8 byte width.
 
 ### `specify init` — Spec-Kit-Verzeichnisaufbau / `specify init` — Spec-Kit Directory Setup
-Never copy from `~/home-baseline-tmp/` manually. The correct command is:
+Never copy from `~/home-baseline-source/` manually. The correct command is:
 Run `specify init --here --force --integration {agent}` once per agent for `agy`, `opencode`, `claude`, `copilot`, and `codex`.
 
 ### Spec-Kit-Updates repo-weit / Repository-Wide Spec-Kit Updates
@@ -563,10 +578,10 @@ Fix: always add `-NoProfile` to subprocess calls in `windows-test.ps1`.
 ## Agentische Toolchain-Wartung / Agentic Toolchain Maintenance
 
 - Wiederkehrende Toolchain-Wartungsrunden sind im README unter `Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance` dokumentiert.
-- Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-tmp` startet und keine strengere Read-only-Aufgabe im Vordergrund steht, fragt er einmal nach: nur pruefen, pruefen und fehlende Required-Tools installieren, vollstaendig inklusive GSDB-Preflight vorbereiten oder ueberspringen.
+- Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-source` startet und keine strengere Read-only-Aufgabe im Vordergrund steht, fragt er einmal nach: nur pruefen, pruefen und fehlende Required-Tools installieren, vollstaendig inklusive GSDB-Preflight vorbereiten oder ueberspringen.
 - macOS/Linux nutzen `scripts/maintain-agentic-brew-apps.sh` und `scripts/config/brew-apps-registry.json`; Windows nutzt `scripts/maintain-agentic-winget-apps.ps1` und `scripts/config/winget-apps-registry.json`; VS-Code-Extensions werden ueber `scripts/config/vscode-extensions-registry.json`, Required-CLI-Pruefungen ueber `scripts/config/required-cli-tools-registry.json`, npm-Agenten-CLIs ueber `scripts/config/npm-agent-cli-registry.json` gepflegt.
 - PSScriptAnalyzer `1.25.0` ist ein Required-PowerShell-Modul aus `scripts/config/powershell-modules-registry.json`; alle getrackten repo-eigenen `.ps1`, `.psm1` und `.psd1` muessen den gemeinsamen Analyselauf bestehen. Nur die dort begruendet dokumentierten, von GitHub Spec Kit erzeugten Upstream-Pfade sind ausgenommen. / PSScriptAnalyzer `1.25.0` is a required module; every tracked, repository-owned PowerShell file must pass the shared analysis run. Only generated GitHub Spec Kit upstream paths documented there with a rationale are excluded.
-- Level-0 unter `~/home-baseline-tmp` ist die kanonische Quelle fuer diese Wartungsdateien. Bestehende Level-1-/Level-2-Kopien mit `propagate-agentic-toolchain-maintenance.*` zuerst als Vorschau, danach schreibend und abschliessend mit `--check-only` / `-CheckOnly` synchronisieren; das Werkzeug commitet oder pusht nicht.
+- Level-0 unter `~/home-baseline-source` ist die kanonische Quelle fuer diese Wartungsdateien. Bestehende Level-1-/Level-2-Kopien mit `propagate-agentic-toolchain-maintenance.*` zuerst als Vorschau, danach schreibend und abschliessend mit `--check-only` / `-CheckOnly` synchronisieren; das Werkzeug commitet oder pusht nicht.
 - Fuer komplette Wartungslaeufe `maintain-agentic-workspace.sh` auf macOS/Linux beziehungsweise `maintain-agentic-workspace.ps1` auf Windows verwenden. Ohne Optionen aktualisieren sie Level-0/1/2 und die Required-Toolchain; `--check-only` / `-CheckOnly` prueft, Vorschau zeigt Schreibschritte, und Drift-Reparatur bleibt mit `--repair-drift` / `-RepairDrift` ausdruecklich zustimmungspflichtig. Die Orchestratoren wechseln keine Branches und committen oder pushen keine Ziel-Repositories.
 - VS Code ist der grafische Required-Editor fuer Auszubildende; Helix (`hx`) ist der Required-A11Y-/CLI-Editor. Fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift sind die offiziellen minimalen VS-Code-Extensions required; Microsoft Container Tools ist zusaetzlich required fuer Podman-Workflows.
 - Podman CLI und Compose-Unterstuetzung sowie die sechs MSL-CLI-Toolchains `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind Required; `syft` fuer SBOM-Nachweise und GitHub Spec Kit (`specify`) fuer SDD sind ebenfalls Required. `specify` wird bei Bedarf ueber `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git` installiert.
@@ -578,11 +593,11 @@ Fix: always add `-NoProfile` to subprocess calls in `windows-test.ps1`.
 
 *Recurring toolchain maintenance rounds are documented in the README section `Wiederkehrende agentische Toolchain-Wartung / Recurring Agentic Toolchain Maintenance`. macOS/Linux use `scripts/maintain-agentic-brew-apps.sh` with `scripts/config/brew-apps-registry.json`; Windows uses `scripts/maintain-agentic-winget-apps.ps1` with `scripts/config/winget-apps-registry.json`; VS Code extensions are maintained through `scripts/config/vscode-extensions-registry.json`, required CLI checks through `scripts/config/required-cli-tools-registry.json`, and npm agent CLIs through `scripts/config/npm-agent-cli-registry.json`. VS Code is the required graphical editor for apprentices; Helix (`hx`) is the required A11Y/CLI editor. The official minimal VS Code extensions are required for the six MSL paths C#, Go, Java, Python, Rust, and Swift; Microsoft Container Tools is also required for Podman workflows. Podman CLI and Compose support plus the six MSL CLI toolchains `.NET`, Go, Java/Javac, Python, Rust/Cargo, and Swift are required; `syft` for SBOM evidence and GitHub Spec Kit (`specify`) for SDD are required as well. The `codex`, `claude`, and `copilot` agent CLI surfaces are required across platforms and use the npm registry as a fallback when needed. Google Antigravity replaces Gemini CLI; `agy` is required cross-platform: macOS uses Homebrew, Windows uses `Google.AntigravityCLI` through WinGet, and Linux uses the checksum-verified official installer. `specify` is installed through `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git` when missing. Default runs install only `required`; `optional` records convenience/project context. `xquartz` stays intentionally excluded from the Brew registry. `gitleaks`, `syft`, `specify`, the MSL CLI toolchains, and the required agent CLIs must be verifiable after package-manager maintenance; compare second machines through the platform test scripts and then update the matching registry for intentional top-level tools.*
 
-*Level-0 under `~/home-baseline-tmp` is the canonical source for these maintenance files. Synchronize existing Level-1/Level-2 copies with `propagate-agentic-toolchain-maintenance.*`: preview first, apply second, and finish with `--check-only` / `-CheckOnly`. The tool performs no commits or pushes.*
+*Level-0 under `~/home-baseline-source` is the canonical source for these maintenance files. Synchronize existing Level-1/Level-2 copies with `propagate-agentic-toolchain-maintenance.*`: preview first, apply second, and finish with `--check-only` / `-CheckOnly`. The tool performs no commits or pushes.*
 
 *Use `maintain-agentic-workspace.sh` on macOS/Linux or `maintain-agentic-workspace.ps1` on Windows for complete maintenance. With no options they update Level-0/1/2 and the required toolchain; check-only reports state, preview shows mutating steps, and drift repair requires explicit `--repair-drift` / `-RepairDrift`. The orchestrators never switch branches or commit/push target repositories.*
 
-*At startup in `~` or `~/home-baseline-tmp`, known AI agents ask once whether to check only, check and install missing required tools, prepare full maintenance including GSDB preflight, or skip. Missing required tools from compare mode may be installed after approval; optional tools require explicit approval.*
+*At startup in `~` or `~/home-baseline-source`, known AI agents ask once whether to check only, check and install missing required tools, prepare full maintenance including GSDB preflight, or skip. Missing required tools from compare mode may be installed after approval; optional tools require explicit approval.*
 
 
 ## Secure-Development-Hardening Intake / Secure Development Hardening Intake

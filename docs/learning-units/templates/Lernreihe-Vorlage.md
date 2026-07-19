@@ -42,7 +42,7 @@
 
 | Level | Geplanter Name / Planned Name | Zweck / Purpose |
 |---|---|---|
-| Level 0 | `home-baseline-tmp` | kanonische Quelle fuer Lernmaterial und Vorlagen |
+| Level 0 | `home-baseline-source` | kanonische Quelle fuer Lernmaterial und Vorlagen |
 | Level 1 | `<SeriesName>Projects` | Koordination, Statusmatrix, Paketierung |
 | Level 2 | `<SeriesName>-CSharp`, `<SeriesName>-Go`, `<SeriesName>-Java`, `<SeriesName>-Python`, `<SeriesName>-Rust`, `<SeriesName>-Swift` | getrennte MSL-Sprachpfade mit lokaler Secure-Development-Basis |
 

@@ -16,7 +16,7 @@ pwsh -NoProfile -File scripts/propagate-learning-series.ps1 [options]
 
 ## DESCRIPTION
 
-Das Skript kopiert das serienspezifische Lernmaterial aus Level-0 (`~/home-baseline-tmp/docs/learning-units/`) in die zugehoerigen Repos: Lastenhefte (Intakes), Uebersichten, `Rahmenlehrplan-Lernfeld-Mapping.md`, das IT-Berufe-Mapping, die Lernbegleiter unter `lernbegleiter/`, die Vorlagen unter `templates/`, das gemeinsame Secure-Trader-Universum (`Secure-Trader-*.md`, u. a. die Systemlandschaft), beide Lernenden-Startanleitungen und den geteilten Datensatz-Baum unter `datasets/` (Generator, CSVs, `schema.sql`). Beide Startanleitungen werden zusaetzlich in die Repo-Wurzel gespiegelt und dort aus der README verlinkt. Der bilinguale Leitsatz `Programmierung #include<everyone>` / `Programming #include<everyone>` wird idempotent direkt nach der ersten README-Ueberschrift verankert; vorhandener README-Inhalt bleibt erhalten.
+Das Skript kopiert das serienspezifische Lernmaterial aus Level-0 (`~/home-baseline-source/docs/learning-units/`) in die zugehoerigen Repos: Lastenhefte (Intakes), Uebersichten, `Rahmenlehrplan-Lernfeld-Mapping.md`, das IT-Berufe-Mapping, die Lernbegleiter unter `lernbegleiter/`, die Vorlagen unter `templates/`, das gemeinsame Secure-Trader-Universum (`Secure-Trader-*.md`, u. a. die Systemlandschaft), beide Lernenden-Startanleitungen und den geteilten Datensatz-Baum unter `datasets/` (Generator, CSVs, `schema.sql`). Beide Startanleitungen werden zusaetzlich in die Repo-Wurzel gespiegelt und dort aus der README verlinkt. Der bilinguale Leitsatz `Programmierung #include<everyone>` / `Programming #include<everyone>` wird idempotent direkt nach der ersten README-Ueberschrift verankert; vorhandener README-Inhalt bleibt erhalten.
 
 Die Ziel-Repos werden aus `~/.home-baseline/level2-repository-registry.json` ermittelt und ueber den Serien-Praefix gefiltert. Level-2-Repos erhalten die Intakes zusaetzlich in der Repo-Wurzel (Bootstrap-Layout); Level-1 erhaelt nur `docs/learning-units/`. Andere Reihen (z. B. Secure InventoryHub) und die Ordner `dist/` und `presentations/` bleiben unberuehrt.
 
@@ -55,7 +55,7 @@ pwsh -NoProfile -File scripts/propagate-learning-series.ps1 -DryRun
 
 ## FILES
 
-- Quelle / source: `~/home-baseline-tmp/docs/learning-units/`
+- Quelle / source: `~/home-baseline-source/docs/learning-units/`
 - Registry: `~/.home-baseline/level2-repository-registry.json`
 - Ziel / target: `<repo>/docs/learning-units/`, beide Startanleitungen, README-Verweis und sichtbarer Leitsatz in der Repo-Wurzel sowie bei Level-2 die Root-Intakes
 

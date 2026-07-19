@@ -464,7 +464,7 @@ Git's `includeIf "gitdir:..."` Direktive lädt automatisch die passende `.inc`-D
     name  = Thorsten Hindermann
     email = hindermath@googlemail.com
 
-[includeIf "gitdir:~/home-baseline-tmp/"]
+[includeIf "gitdir:~/home-baseline-source/"]
     path = ~/.gitconfig.d/home-baseline.inc
 
 [includeIf "gitdir:~/MyProjects/"]
@@ -498,7 +498,7 @@ nano ~/.gitconfig.d/home-baseline.inc
 #   email = work@company.example
 
 # Verifikation / Verification:
-git -C ~/home-baseline-tmp config user.email   # → work@company.example
+git -C ~/home-baseline-source config user.email   # → work@company.example
 git config --show-origin user.email             # → zeigt ~/.gitconfig.d/home-baseline.inc
 git -C ~/MyProjects config user.email           # → globaler Default / global default
 ```
@@ -548,7 +548,7 @@ gh auth setup-git    # git Credential-Helper konfigurieren
 glab auth login
 
 # Option B — Personal Access Token (PAT) direkt beim Klonen eingeben:
-# git clone https://gitlab.com/YOUR_USERNAME/home-baseline.git home-baseline-tmp
+# git clone https://gitlab.com/YOUR_USERNAME/home-baseline.git home-baseline-source
 # → Benutzername / username:  YOUR_USERNAME
 # → Passwort / password:      DEIN_PAT  (Scope: read_repository + write_repository)
 ```
@@ -566,18 +566,18 @@ cd ~
 gh auth status
 gh repo fork hindermath/home-baseline --clone=false
 GH_USER="$(gh api user --jq .login)"
-gh repo clone "${GH_USER}/home-baseline" ~/home-baseline-tmp
-git -C ~/home-baseline-tmp remote add upstream https://github.com/hindermath/home-baseline.git
-git -C ~/home-baseline-tmp remote -v
-git -C ~/home-baseline-tmp fetch upstream
-git -C ~/home-baseline-tmp merge --ff-only upstream/main
-git -C ~/home-baseline-tmp push origin main
-bash ~/home-baseline-tmp/scripts/install-hooks.sh
-bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
+gh repo clone "${GH_USER}/home-baseline" ~/home-baseline-source
+git -C ~/home-baseline-source remote add upstream https://github.com/hindermath/home-baseline.git
+git -C ~/home-baseline-source remote -v
+git -C ~/home-baseline-source fetch upstream
+git -C ~/home-baseline-source merge --ff-only upstream/main
+git -C ~/home-baseline-source push origin main
+bash ~/home-baseline-source/scripts/install-hooks.sh
+bash ~/home-baseline-source/scripts/sync-home.sh --no-pull
 ```
 
 `origin` muss auf den persoenlichen Fork zeigen; `upstream` muss
-`hindermath/home-baseline` sein. Der Klon `~/home-baseline-tmp` bleibt dauerhaft
+`hindermath/home-baseline` sein. Der Klon `~/home-baseline-source` bleibt dauerhaft
 bestehen. `~/` ist die lokale Betriebskopie ohne Remote.
 
 ### Windows (PowerShell Core >= 7) / Windows (PowerShell Core >= 7)
@@ -587,18 +587,18 @@ Set-Location ~
 gh auth status
 gh repo fork hindermath/home-baseline --clone=false
 $GitHubUser = gh api user --jq '.login'
-gh repo clone "${GitHubUser}/home-baseline" "$HOME/home-baseline-tmp"
-git -C "$HOME/home-baseline-tmp" remote add upstream https://github.com/hindermath/home-baseline.git
-git -C "$HOME/home-baseline-tmp" remote -v
-git -C "$HOME/home-baseline-tmp" fetch upstream
-git -C "$HOME/home-baseline-tmp" merge --ff-only upstream/main
-git -C "$HOME/home-baseline-tmp" push origin main
-pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/install-hooks.ps1"
-pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -NoPull
+gh repo clone "${GitHubUser}/home-baseline" "$HOME/home-baseline-source"
+git -C "$HOME/home-baseline-source" remote add upstream https://github.com/hindermath/home-baseline.git
+git -C "$HOME/home-baseline-source" remote -v
+git -C "$HOME/home-baseline-source" fetch upstream
+git -C "$HOME/home-baseline-source" merge --ff-only upstream/main
+git -C "$HOME/home-baseline-source" push origin main
+pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/install-hooks.ps1"
+pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/sync-home.ps1" -NoPull
 ```
 
 `origin` must point to the personal fork; `upstream` must point to
-`hindermath/home-baseline`. Keep `~/home-baseline-tmp` permanently. `~/` remains
+`hindermath/home-baseline`. Keep `~/home-baseline-source` permanently. `~/` remains
 the local runtime copy without a remote.
 
 ### Workspaces auf neuem Gerät wiederherstellen / Restoring workspaces on a new device
@@ -845,24 +845,24 @@ Dieser Abschnitt richtet sich an **`hindermath`** — also die Person, die diese
 ```bash
 # macOS / Linux / Ubuntu (auch WSL)
 # Mit git:
-git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
+git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-source
 # Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
-# gh repo clone hindermath/home-baseline ~/home-baseline-tmp
-bash ~/home-baseline-tmp/scripts/install-hooks.sh   # pre-push Hook im Klon installieren
-bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull
+# gh repo clone hindermath/home-baseline ~/home-baseline-source
+bash ~/home-baseline-source/scripts/install-hooks.sh   # pre-push Hook im Klon installieren
+bash ~/home-baseline-source/scripts/sync-home.sh --no-pull
 ```
 
 ```powershell
 # Windows (PowerShell Core >= 7)
 # Mit git:
-git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-tmp
+git clone https://github.com/hindermath/home-baseline.git ~/home-baseline-source
 # Alternativ mit gh CLI (falls installiert und angemeldet / alternatively with gh CLI):
-# gh repo clone hindermath/home-baseline ~/home-baseline-tmp
-pwsh ~/home-baseline-tmp/scripts/install-hooks.ps1   # pre-push Hook im Klon installieren
-pwsh ~/home-baseline-tmp/scripts/sync-home.ps1 -NoPull
+# gh repo clone hindermath/home-baseline ~/home-baseline-source
+pwsh ~/home-baseline-source/scripts/install-hooks.ps1   # pre-push Hook im Klon installieren
+pwsh ~/home-baseline-source/scripts/sync-home.ps1 -NoPull
 ```
 
-> **Hinweis / Note:** `--no-pull` / `-NoPull` überspringt `git pull`, da der Klon gerade frisch erstellt wurde. `install-hooks` installiert den `pre-push`-Hook in `home-baseline-tmp/.git/hooks/` — ohne diesen Schritt meldet `check-homogeneity` ein WARN.
+> **Hinweis / Note:** `--no-pull` / `-NoPull` überspringt `git pull`, da der Klon gerade frisch erstellt wurde. `install-hooks` installiert den `pre-push`-Hook in `home-baseline-source/.git/hooks/` — ohne diesen Schritt meldet `check-homogeneity` ein WARN.
 
 ---
 
@@ -874,9 +874,9 @@ Da Outputs zwischen verschiedenen Maschinen nicht direkt ins Terminal kopiert we
 
 | Plattform / Platform | Skript / Script | Ausgabe / Output |
 |---|---|---|
-| macOS | `bash ~/home-baseline-tmp/scripts/mac-test.sh` | `mac-test-output.txt` |
-| Linux / WSL | `bash ~/home-baseline-tmp/scripts/linux-test.sh` | `linux-test-output.txt` |
-| Windows | `pwsh ~/home-baseline-tmp/scripts/windows-test.ps1` | `windows-test-output.txt` |
+| macOS | `bash ~/home-baseline-source/scripts/mac-test.sh` | `mac-test-output.txt` |
+| Linux / WSL | `bash ~/home-baseline-source/scripts/linux-test.sh` | `linux-test-output.txt` |
+| Windows | `pwsh ~/home-baseline-source/scripts/windows-test.ps1` | `windows-test-output.txt` |
 
 Jedes Script erfasst / Each script collects:
 - OS-Version, Architektur
@@ -891,8 +891,8 @@ Danach liegt die Ausgabedatei im Repo und kann von jedem anderen Gerät direkt g
 *After running, the output file is in the repo and can be read and evaluated from any other device — e.g. by Copilot CLI on Windows:*
 
 ```powershell
-git -C "$HOME\home-baseline-tmp" pull
-Get-Content "$HOME\home-baseline-tmp\windows-test-output.txt"  # oder mac-test-output.txt, linux-test-output.txt
+git -C "$HOME\home-baseline-source" pull
+Get-Content "$HOME\home-baseline-source\windows-test-output.txt"  # oder mac-test-output.txt, linux-test-output.txt
 ```
 
 ---
@@ -902,7 +902,7 @@ Get-Content "$HOME\home-baseline-tmp\windows-test-output.txt"  # oder mac-test-o
 ```bash
 # macOS / Linux / Ubuntu — pull + kopieren + Commit in ~/
 bash ~/scripts/sync-home.sh
-# Das Script erkennt ~/home-baseline-tmp automatisch als Quelle.
+# Das Script erkennt ~/home-baseline-source automatisch als Quelle.
 
 # Optional: Compliance prüfen / Optional: check compliance
 bash ~/scripts/check-homogeneity.sh ~/
@@ -911,7 +911,7 @@ bash ~/scripts/check-homogeneity.sh ~/
 ```powershell
 # Windows — pull + kopieren + Commit in ~/
 pwsh ~/scripts/sync-home.ps1
-# Das Script erkennt ~/home-baseline-tmp automatisch als Quelle.
+# Das Script erkennt ~/home-baseline-source automatisch als Quelle.
 
 # Optional: Compliance prüfen / Optional: check compliance
 pwsh ~/scripts/check-homogeneity.ps1
@@ -925,7 +925,7 @@ pwsh ~/scripts/check-homogeneity.ps1
 
 ```bash
 # 1. In den Klon wechseln
-cd ~/home-baseline-tmp
+cd ~/home-baseline-source
 
 # 2. KI-Agent starten — der Agent macht Änderungen, committet und pusht selbst
 claude      # Claude Code
@@ -942,7 +942,7 @@ bash ~/scripts/sync-home.sh --no-pull
 
 ```bash
 # 1. In den Klon wechseln
-cd ~/home-baseline-tmp
+cd ~/home-baseline-source
 
 # 2. Änderungen vornehmen (z. B. SDD via specs/ + .specify/)
 
@@ -992,7 +992,7 @@ for convenience when an existing repository script already solves the task.*
 | `--check-only` / `-CheckOnly` | Pull-frei auf Drift und Konflikte pruefen / Check drift and conflicts without pulling |
 | `--force` / `-Force`          | Gepruefte Konflikte verwalteter Dateien ueberschreiben / Overwrite reviewed managed-file conflicts |
 
-`~/home-baseline-tmp` bleibt dauerhaft der versionierte Level-0-Klon mit
+`~/home-baseline-source` bleibt dauerhaft der versionierte Level-0-Klon mit
 `origin`, `upstream` und nachvollziehbarer Historie. `~/` ist nur die lokale
 Betriebskopie. Der Sync verwendet
 `scripts/config/home-sync-manifest.json` und ausschliesslich mit Git
@@ -1001,7 +1001,7 @@ Spec-Kit-Agentenflaechen werden nur fuer `speckit-*` synchronisiert; private
 Agentenzustaende, globale Skills und installierte `.specify/presets/` werden
 nicht gespiegelt.
 
-*`~/home-baseline-tmp` permanently remains the versioned level-0 clone with
+*`~/home-baseline-source` permanently remains the versioned level-0 clone with
 `origin`, `upstream`, and auditable history. `~/` is only the local runtime
 copy. Sync uses `scripts/config/home-sync-manifest.json` and Git-tracked source
 files only. Unmanaged local files are preserved. Agent surfaces are synced only
@@ -1034,16 +1034,16 @@ nicht kopiert.
 *Because the source set comes from `git ls-files`, `.DS_Store`, nested `.git`
 directories, caches, and other untracked artifacts are never copied.*
 
-Wenn `sync-home` aus `~/scripts/` gestartet wird, delegiert es automatisch an die Repo-Kopie in `~/home-baseline-tmp/scripts/`. Dadurch kann es `~/scripts/` aktualisieren, ohne das gerade laufende Skript zu überschreiben.
+Wenn `sync-home` aus `~/scripts/` gestartet wird, delegiert es automatisch an die Repo-Kopie in `~/home-baseline-source/scripts/`. Dadurch kann es `~/scripts/` aktualisieren, ohne das gerade laufende Skript zu überschreiben.
 
-*When `sync-home` is started from `~/scripts/`, it automatically delegates to the repository copy in `~/home-baseline-tmp/scripts/`. This lets it update `~/scripts/` without overwriting the script that is currently running.*
+*When `sync-home` is started from `~/scripts/`, it automatically delegates to the repository copy in `~/home-baseline-source/scripts/`. This lets it update `~/scripts/` without overwriting the script that is currently running.*
 
 In der ABS-DD-Sandbox wird die Level-0-Referenz direkt unter
-`~/home-baseline-tmp` gelesen. Schreibende `sync-home`-Laeufe nach
+`~/home-baseline-source` gelesen. Schreibende `sync-home`-Laeufe nach
 `/home/adedev` sind gesperrt; der Home-Sync wird immer auf dem Host ausgefuehrt.
 
 *Inside the ABS-DD sandbox, read the level-0 reference directly at
-`~/home-baseline-tmp`. Writing `sync-home` runs targeting `/home/adedev` are
+`~/home-baseline-source`. Writing `sync-home` runs targeting `/home/adedev` are
 blocked; always run Home sync on the host.*
 
 ---
@@ -1087,11 +1087,11 @@ GitLab-Repositories verwenden `scripts/setup-gitlab-release.sh` bzw. `scripts/se
 1. Release-Basis in das Repo einhaengen:
 
 ```bash
-bash ~/home-baseline-tmp/scripts/setup-gitlab-release.sh ~/RiderProjects/MyGitLabRepo --gitlab-url https://gitlab-ce.gwdg.de
+bash ~/home-baseline-source/scripts/setup-gitlab-release.sh ~/RiderProjects/MyGitLabRepo --gitlab-url https://gitlab-ce.gwdg.de
 ```
 
 ```powershell
-pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/RiderProjects/MyGitLabRepo -GitLabUrl https://gitlab-ce.gwdg.de
+pwsh ~/home-baseline-source/scripts/setup-gitlab-release.ps1 -TargetRepository ~/RiderProjects/MyGitLabRepo -GitLabUrl https://gitlab-ce.gwdg.de
 ```
 
 2. Danach laeuft auf dem Default-Branch ein manueller `release`-Job in GitLab CI
@@ -1103,6 +1103,46 @@ pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/Ri
 ---
 
 ## Inhalt / Contents
+
+Die vollstaendige, aus dem Git-Index erzeugte Skriptdokumentation steht unter
+[`docs/scripts/`](docs/scripts/README.md). Sie inventarisiert alle kanonischen
+Skriptdateien und alle eingebetteten Kopien, nennt Voraussetzungen und
+Nebenwirkungen und zeigt sichere Beispiele. Die folgenden Abschnitte bleiben
+als aufgabenorientierte Einfuehrung bestehen.
+
+*The complete script documentation generated from the Git index is available
+under [`docs/scripts/`](docs/scripts/README.md). It inventories every canonical
+script file and every embedded copy, lists prerequisites and side effects, and
+provides safe examples. The following sections remain as task-oriented
+guidance.*
+
+### Dauerhaften Level-0-Checkout migrieren / Migrate the permanent Level 0 checkout
+
+Bestehende Installationen mit `~/home-baseline-tmp` werden kontrolliert auf
+`~/home-baseline-source` migriert. Der Preflight verlangt einen sauberen
+`main`-Branch, `HEAD == origin/main`, genau einen Worktree und ein freies Ziel.
+
+```bash
+bash scripts/migrate-level0-source-checkout.sh --check-only
+bash scripts/migrate-level0-source-checkout.sh --dry-run
+bash ~/scripts/migrate-level0-source-checkout.sh
+```
+
+```powershell
+pwsh -NoProfile -File scripts/migrate-level0-source-checkout.ps1 -CheckOnly
+pwsh -NoProfile -File scripts/migrate-level0-source-checkout.ps1 -WhatIf
+pwsh -NoProfile -File "$HOME/scripts/migrate-level0-source-checkout.ps1"
+```
+
+Der echte Lauf wird aus der stabilen Home-Kopie gestartet, schreibt
+`~/.home-baseline/source-repository.json` und behaelt voruebergehend einen
+Kompatibilitaetslink. Erst nach plattformgerechter Validierung entfernt
+`--finalize` beziehungsweise `-Finalize` diesen Link.
+
+*Existing `~/home-baseline-tmp` installations migrate to
+`~/home-baseline-source` through a strict preflight. Run the writing operation
+from the stable Home copy. It records local discovery state and retains a
+temporary compatibility link until explicit finalization.*
 
 ### Workspace-Bootstrap / Workspace Bootstrap
 
@@ -1137,9 +1177,9 @@ Als praktische Kurzregel gilt: **neu anlegen = Bootstrap**, **vorhandenen Bestan
 
 *A practical short rule is: **create new = bootstrap**, **align existing estate = migration**, **only evaluate = check**, **only initialize statistics = init-stats**. This exact separation helps you avoid using the scripts for the wrong purpose by accident.*
 
-Die Basishierarchie dieses Setups ist bewusst generisch aufgebaut, aber aus zwei Blickwinkeln zu lesen: Fuer Maintainer dieses Repositories ist `~/home-baseline-tmp` das Arbeits-Repository, in dem die **Level-0 home-baseline** entwickelt wird. Fuer Nutzende, Azubis und alle bereits gebootstrappten Umgebungen ist dagegen `~/` das eigentliche Root der Arbeitsumgebung. Direkt darunter liegen die **Level-1 workspaces** als fachliche oder toolbezogene Sammelcontainer, und darin liegen die eigentlichen **Level-2 projects**. Diese Benennung ist absichtlich neutral gehalten, damit sie nicht von bestimmten IDEs, Programmiersprachen oder persoenlichen Workspace-Namen abhaengt.
+Die Basishierarchie dieses Setups ist bewusst generisch aufgebaut, aber aus zwei Blickwinkeln zu lesen: Fuer Maintainer dieses Repositories ist `~/home-baseline-source` das Arbeits-Repository, in dem die **Level-0 home-baseline** entwickelt wird. Fuer Nutzende, Azubis und alle bereits gebootstrappten Umgebungen ist dagegen `~/` das eigentliche Root der Arbeitsumgebung. Direkt darunter liegen die **Level-1 workspaces** als fachliche oder toolbezogene Sammelcontainer, und darin liegen die eigentlichen **Level-2 projects**. Diese Benennung ist absichtlich neutral gehalten, damit sie nicht von bestimmten IDEs, Programmiersprachen oder persoenlichen Workspace-Namen abhaengt.
 
-*The base hierarchy of this setup is intentionally generic, but it needs to be read from two perspectives: for maintainers of this repository, `~/home-baseline-tmp` is the working repository in which the **level-0 home baseline** is developed. For end users, apprentices, and already bootstrapped environments, however, `~/` is the actual root of the working environment. Directly below it sit the **level-1 workspaces** as domain- or tool-oriented containers, and inside them live the actual **level-2 projects**. This naming is intentionally neutral so it does not depend on specific IDEs, programming languages, or personal workspace names.*
+*The base hierarchy of this setup is intentionally generic, but it needs to be read from two perspectives: for maintainers of this repository, `~/home-baseline-source` is the working repository in which the **level-0 home baseline** is developed. For end users, apprentices, and already bootstrapped environments, however, `~/` is the actual root of the working environment. Directly below it sit the **level-1 workspaces** as domain- or tool-oriented containers, and inside them live the actual **level-2 projects**. This naming is intentionally neutral so it does not depend on specific IDEs, programming languages, or personal workspace names.*
 
 Ein typischer Grenzfall ist deshalb ein bereits vorhandenes **Level-2 project** innerhalb eines bestehenden **Level-1 workspace**. Auch dafuer ist **nicht** `bootstrap-project.*`, sondern `migrate-workspace.*` fuer den uebergeordneten Workspace die richtige Wahl, weil die Migration die enthaltenen Level-2-Repositories automatisch mit betrachtet und angleicht.
 
@@ -1367,7 +1407,7 @@ Die Paketmanager-Registries unterscheiden `required` und `optional`;
 Standardlaeufe installieren nur `required`. `xquartz` ist lokal erlaubt, aber
 bewusst aus der Brew-Registry ausgeschlossen.
 
-Level-0 unter `~/home-baseline-tmp` ist zugleich die kanonische Quelle fuer das
+Level-0 unter `~/home-baseline-source` ist zugleich die kanonische Quelle fuer das
 Wartungspaket in bestehenden Level-1-/Level-2-Repositories. Die kontrollierte
 Dateiliste steht in
 [`scripts/config/agentic-toolchain-maintenance-files.json`](scripts/config/agentic-toolchain-maintenance-files.json).
@@ -1394,14 +1434,14 @@ The package-manager registries distinguish `required` from `optional`; default
 runs install only `required`. `xquartz` may be installed locally, but is
 intentionally excluded from the Brew registry.*
 
-*Level-0 under `~/home-baseline-tmp` is also the canonical source for the
+*Level-0 under `~/home-baseline-source` is also the canonical source for the
 maintenance package in existing Level-1/Level-2 repositories. The controlled
 file list lives in
 [`scripts/config/agentic-toolchain-maintenance-files.json`](scripts/config/agentic-toolchain-maintenance-files.json).
 The propagation tool updates only these files, never overwrites a locally
 modified managed file, and performs no Git commits or pushes itself.*
 
-Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-tmp` startet und keine
+Wenn ein bekannter KI-Agent in `~` oder `~/home-baseline-source` startet und keine
 strengere Read-only-Aufgabe im Vordergrund steht, soll er einmal nachfragen, ob
 die wiederkehrende Workspace-Wartung ausgefuehrt werden soll. Die vier Optionen
 sind: nur pruefen; pruefen und fehlende Required-Tools installieren; vollstaendig
@@ -1409,7 +1449,7 @@ inklusive GSDB-Preflight vorbereiten; oder ueberspringen. Fehlende
 Required-Tools aus `--compare-only` / `-CompareOnly` werden bei freigegebener
 Wartung installiert. Optionale Tools bleiben zustimmungspflichtig.
 
-*When a known AI agent starts in `~` or `~/home-baseline-tmp` and no stricter
+*When a known AI agent starts in `~` or `~/home-baseline-source` and no stricter
 read-only task is in focus, it should ask once whether recurring workspace
 maintenance should run. The four options are: check only; check and install
 missing required tools; full maintenance including GSDB preflight preparation;
@@ -1669,9 +1709,9 @@ Die zentralen Spec-Kit-Intakes der Lernreihe liegen ebenfalls unter [`docs/learn
 
 *The central Spec Kit intake files of the learning series also live under [`docs/learning-units/`](docs/learning-units/) as `Lastenheft_Secure-CaseTracker*.md`. This keeps the introduction, teaching guide, presentations, and runnable intake files in one didactically discoverable place.*
 
-Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Level-2-Struktur vorgesehen: `home-baseline-tmp` bleibt die Level-0-Quelle, ein privates Level-1-Repo `SecureCaseTrackerProjects` koordiniert Status und Reihenfolge, und sechs private Level-2-Repos bilden die getrennten MSL-Pfade für C#, Go, Java, Python, Rust und Swift. Die Spec-Kit-Läufe werden dort später manuell durch Lehrende oder Lernende gestartet; C# ist als erster Referenzpfad vorgesehen.
+Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Level-2-Struktur vorgesehen: `home-baseline-source` bleibt die Level-0-Quelle, ein privates Level-1-Repo `SecureCaseTrackerProjects` koordiniert Status und Reihenfolge, und sechs private Level-2-Repos bilden die getrennten MSL-Pfade für C#, Go, Java, Python, Rust und Swift. Die Spec-Kit-Läufe werden dort später manuell durch Lehrende oder Lernende gestartet; C# ist als erster Referenzpfad vorgesehen.
 
-*For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-tmp` remains the Level 0 source, a private Level 1 repository `SecureCaseTrackerProjects` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by instructors or learners; C# is planned as the first reference path.*
+*For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-source` remains the Level 0 source, a private Level 1 repository `SecureCaseTrackerProjects` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by instructors or learners; C# is planned as the first reference path.*
 
 Die lokalen Level-2-Ordner nutzen CamelCase, z. B. `SecureCaseTracker-CSharp`. Die Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, z. B. `securecasetracker-csharp`.
 
@@ -1879,9 +1919,9 @@ pwsh ~/scripts/init-stats.ps1 -WorkspaceName MyProjects
 
 ### Bestehenden Workspace migrieren / Migrate existing workspace
 
-Die folgenden Kommandos kannst du technisch von **jedem** Verzeichnis aus starten, weil der Skriptpfad explizit ist und `migrate-workspace.*` den Ziel-Workspace ueber `~/<WorkspaceName>` aufloest. Praktisch haengt der beste Startpunkt vom Blickwinkel ab: Wenn du die Baseline selbst weiterentwickelst, ist `~/home-baseline-tmp` sinnvoll. Wenn du die Skripte als Nutzender oder Azubi auf deine bestehende Umgebung anwendest, ist `~/` der natuerlichere Ausgangspunkt, weil dort die Level-1-Workspaces direkt sichtbar sind.
+Die folgenden Kommandos kannst du technisch von **jedem** Verzeichnis aus starten, weil der Skriptpfad explizit ist und `migrate-workspace.*` den Ziel-Workspace ueber `~/<WorkspaceName>` aufloest. Praktisch haengt der beste Startpunkt vom Blickwinkel ab: Wenn du die Baseline selbst weiterentwickelst, ist `~/home-baseline-source` sinnvoll. Wenn du die Skripte als Nutzender oder Azubi auf deine bestehende Umgebung anwendest, ist `~/` der natuerlichere Ausgangspunkt, weil dort die Level-1-Workspaces direkt sichtbar sind.
 
-*You can technically start the following commands from **any** directory, because the script path is explicit and `migrate-workspace.*` resolves the target workspace via `~/<WorkspaceName>`. In practice, the best starting point depends on perspective: if you are evolving the baseline itself, `~/home-baseline-tmp` is sensible. If you are using the scripts as an end user or apprentice on your existing environment, `~/` is the more natural starting point because the level-1 workspaces are directly visible there.*
+*You can technically start the following commands from **any** directory, because the script path is explicit and `migrate-workspace.*` resolves the target workspace via `~/<WorkspaceName>`. In practice, the best starting point depends on perspective: if you are evolving the baseline itself, `~/home-baseline-source` is sensible. If you are using the scripts as an end user or apprentice on your existing environment, `~/` is the more natural starting point because the level-1 workspaces are directly visible there.*
 
 Wenn du ein bereits vorhandenes **Level-2 project** in einen bestehenden **Level-1 workspace** integrieren willst, migrierst du den **Level-1 workspace**, nicht das einzelne Unterverzeichnis. Die empfohlene Reihenfolge ist also immer: erst `check-homogeneity.*` fuer den Workspace-Pfad, dann `migrate-workspace.* --dry-run <WorkspaceName>`, und erst danach die echte Migration.
 
@@ -2033,14 +2073,14 @@ bis 5 der Startanleitung. Ausbildende beginnen mit
 
 ### Schritt 2: Deinen Computer mit dem Git-Hosting verbinden / Step 2: Connect to Git Hosting
 
-Klone deinen persoenlichen Fork dauerhaft als `~/home-baseline-tmp`, richte
+Klone deinen persoenlichen Fork dauerhaft als `~/home-baseline-source`, richte
 `upstream` ein und pruefe beide Remotes. Loesche diesen Ordner nicht: Er ist deine
 mit deinem Git-Hosting verbundene Wartungs- und Entwicklungsarbeitskopie. `~/` bleibt die
 lokale Betriebskopie ohne Remote. Die genauen macOS/Linux- und Windows-Befehle
 stehen in den Schritten 5 bis 10 der
 [Startanleitung](docs/learning-units/START-HERE-FUER-LERNENDE.md#5-persoenlichen-fork-dauerhaft-klonen--clone-your-fork-permanently).
 
-*Clone your personal fork permanently as `~/home-baseline-tmp`, configure
+*Clone your personal fork permanently as `~/home-baseline-source`, configure
 `upstream`, and verify both remotes. Do not delete this directory: it is your
 Git-hosting-connected maintenance and development checkout. `~/` remains the local
 runtime copy without a remote. The exact macOS/Linux and Windows commands are in
@@ -3161,7 +3201,7 @@ Als Leseregel gilt: Die Spalte `Ursache / Cause` erklaert den eigentlichen techn
 | `ssh-agent` startet nicht / does not start (Windows) | Der OpenSSH-Agent-Dienst ist auf vielen Windows-Systemen standardmaessig deaktiviert und laesst sich oft nur mit Admin-Rechten aktivieren. / The OpenSSH agent service is disabled by default on many Windows systems and often requires admin rights to enable. | Fuer diesen Workflow lieber HTTPS plus `gh auth setup-git` verwenden, statt sich auf einen lokal aktivierten SSH-Agenten zu verlassen. / Prefer HTTPS plus `gh auth setup-git` for this workflow instead of relying on a locally enabled SSH agent. |
 | `CursorPosition`-Fehler in PS-Subprozessen / `CursorPosition` error in PS subprocesses | Subprozesse laden ohne Schutz das normale PowerShell-Profil mit Oh-My-Posh oder anderer TUI-Logik. In nicht interaktiven Kontexten ist das Konsolen-Handle dann oft ungueltig. / Subprocesses load the normal PowerShell profile unless prevented, including Oh-My-Posh or other TUI logic. In non-interactive contexts the console handle is then often invalid. | `pwsh`-Subprozesse grundsaetzlich mit `-NoProfile` starten, wenn sie nur Skripte ausfuehren sollen und keine interaktive Shell brauchen. / Start `pwsh` subprocesses with `-NoProfile` by default when they only need to run scripts and do not require an interactive shell profile. |
 | Parallele `migrate-workspace.*`-Laeufe laufen in Timeouts / parallel `migrate-workspace.*` runs time out | Jeder Migrationslauf startet `init-stats.*`, das die Level-0/1/2-Statistiken global aktualisiert. Mehrere parallele Laeufe koennen sich gegenseitig ausbremsen oder Dateien gleichzeitig anfassen. / Each migration starts `init-stats.*`, which updates level 0/1/2 statistics globally. Several parallel runs can slow each other down or touch the same files at the same time. | Erst Vorschau mit `-WhatIf`/`--dry-run`, dann echte Migrationen seriell pro Workspace ausfuehren und bei Bedarf laengere Timeouts verwenden. / First run a preview with `-WhatIf`/`--dry-run`, then execute real migrations serially per workspace and use longer timeouts when needed. |
-| `sync-home` bricht beim Aktualisieren von `scripts/` ab / fails while updating `scripts/` | Ein Lauf aus `~/scripts/` kann sein eigenes Skript waehrend des Kopierens ueberschreiben. / A run started from `~/scripts/` can overwrite its own running script while copying. | `sync-home.*` delegiert an die Repo-Kopie in `~/home-baseline-tmp/scripts/`; bei Aenderungen immer `bash -n`, `--dry-run` und `-WhatIf` pruefen. / `sync-home.*` delegates to the repository copy in `~/home-baseline-tmp/scripts/`; after changes, always check `bash -n`, `--dry-run`, and `-WhatIf`. |
+| `sync-home` bricht beim Aktualisieren von `scripts/` ab / fails while updating `scripts/` | Ein Lauf aus `~/scripts/` kann sein eigenes Skript waehrend des Kopierens ueberschreiben. / A run started from `~/scripts/` can overwrite its own running script while copying. | `sync-home.*` delegiert an die Repo-Kopie in `~/home-baseline-source/scripts/`; bei Aenderungen immer `bash -n`, `--dry-run` und `-WhatIf` pruefen. / `sync-home.*` delegates to the repository copy in `~/home-baseline-source/scripts/`; after changes, always check `bash -n`, `--dry-run`, and `-WhatIf`. |
 | `git pull` „divergent branches" (Linux) | Ohne globale Rebase-Strategie weiss Git bei bestimmten Abweichungen nicht, ob Merge oder Rebase der gewuenschte Standard sein soll, und stoppt mit Rueckfrage. / Without a global rebase strategy, Git may not know whether merge or rebase should be the default for certain branch divergences and stops with a prompt. | Einmalig `git config --global pull.rebase true` setzen, damit `git pull` fuer diesen Workflow konsistent auf Rebase ausgerichtet ist. / Set `git config --global pull.rebase true` once so `git pull` follows a consistent rebase-based workflow. |
 | Push rejected: `fetch first` | Der Remote-Branch ist inzwischen weiter als der lokale Branch. Ein direkter Push wuerde fremde oder spaetere Commits ueberschreiben und wird deshalb abgelehnt. / The remote branch has moved ahead of the local branch. A direct push would overwrite foreign or later commits and is therefore rejected. | Erst mit `git pull --rebase --autostash` den Remote-Stand sauber einarbeiten und danach erneut `git push` ausfuehren. / First integrate the remote state cleanly with `git pull --rebase --autostash`, then run `git push` again. |
 | Remote-`README.md` wird bei Migration ueberschrieben / Remote `README.md` overwritten during migration | Lokale Migrationscommits wurden auf einem aelteren Stand erstellt, waehrend `origin/main` eine neuere oder kanonische README enthaelt. / Local migration commits were created on an older state while `origin/main` contains a newer or canonical README. | Vor dem finalen Push `fetch`/Rebase ausfuehren und die README aus `origin/main` bewusst erhalten oder wiederherstellen, wenn sie kanonisch ist. / Before the final push, fetch/rebase and deliberately preserve or restore the README from `origin/main` when it is canonical. |

@@ -2,7 +2,7 @@
 
 ## NAME
 
-`sync-home.sh`, `sync-home.ps1` - synchronisiert `~/home-baseline-tmp` nach `~/`. *Synchronizes `~/home-baseline-tmp` into `~/`.*
+`sync-home.sh`, `sync-home.ps1` - synchronisiert `~/home-baseline-source` nach `~/`. *Synchronizes `~/home-baseline-source` into `~/`.*
 
 ## SYNOPSIS
 
@@ -16,9 +16,9 @@ pwsh -NoProfile -File scripts/sync-home.ps1 [options]
 
 ## DESCRIPTION
 
-Das Skript synchronisiert die im Home-Sync-Manifest verwalteten, mit Git versionierten Dateien aus `~/home-baseline-tmp` in die lokale Betriebskopie `~/`. Standardmaessig wird zuvor `git pull` im Klon und danach ein pfadbegrenzter `git commit` in `~/` ausgefuehrt; beide Schritte lassen sich abschalten.
+Das Skript synchronisiert die im Home-Sync-Manifest verwalteten, mit Git versionierten Dateien aus `~/home-baseline-source` in die lokale Betriebskopie `~/`. Standardmaessig wird zuvor `git pull` im Klon und danach ein pfadbegrenzter `git commit` in `~/` ausgefuehrt; beide Schritte lassen sich abschalten.
 
-*The script synchronizes Git-tracked files selected by the Home sync manifest from `~/home-baseline-tmp` into the local runtime copy `~/`. By default it runs `git pull` in the clone beforehand and a path-limited `git commit` in `~/` afterwards; both steps can be disabled.*
+*The script synchronizes Git-tracked files selected by the Home sync manifest from `~/home-baseline-source` into the local runtime copy `~/`. By default it runs `git pull` in the clone beforehand and a path-limited `git commit` in `~/` afterwards; both steps can be disabled.*
 
 Der Klon bleibt dauerhaft die versionierte Level-0-Quelle. SHA-256, Dateimodus
 und Quell-Commit werden unter `~/.home-baseline/home-sync-state.json`

@@ -1,14 +1,14 @@
 #Requires -Version 7
 # windows-test.ps1 — Sammelt System-Info und Testergebnisse auf Windows
-# Ausgabe wird nach ~/home-baseline-tmp/windows-test-output.txt geschrieben
+# Ausgabe wird nach ~/home-baseline-source/windows-test-output.txt geschrieben
 # und automatisch committet + gepusht.
 #
-# Verwendung: pwsh ~/home-baseline-tmp/scripts/windows-test.ps1
+# Verwendung: pwsh ~/home-baseline-source/scripts/windows-test.ps1
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $HomeDir   = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
-$RepoDir   = Join-Path $HomeDir 'home-baseline-tmp'
+$RepoDir   = Join-Path $HomeDir 'home-baseline-source'
 $OutFile   = Join-Path $RepoDir 'windows-test-output.txt'
 $Date      = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 $Lines     = [System.Collections.Generic.List[string]]::new()

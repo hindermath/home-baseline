@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # propagate-security-guidance.sh
-# Propagiert Security-Guidance-Updates aus Level-0 (~/home-baseline-tmp) auf alle
+# Propagiert Security-Guidance-Updates aus Level-0 (~/home-baseline-source) auf alle
 # gefundenen Level-1- und Level-2-Repos unter dem Home-Verzeichnis.
 #
 # Kernprinzipien:
@@ -33,7 +33,7 @@ set -euo pipefail
 # --- Konfiguration / Configuration --------------------------------------------
 
 HOME_DIR="$(cd ~ && pwd)"
-LEVEL0_DIR="${HOME_DIR}/home-baseline-tmp"
+LEVEL0_DIR="${HOME_DIR}/home-baseline-source"
 LEVEL0_CLAUDE="${LEVEL0_DIR}/CLAUDE.md"
 LEVEL0_AGENTS="${LEVEL0_DIR}/AGENTS.md"
 LEVEL0_GEMINI="${LEVEL0_DIR}/GEMINI.md"

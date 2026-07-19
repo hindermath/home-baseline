@@ -1,5 +1,5 @@
 #Requires -Version 7
-# sync-home.ps1 — Synchronisiert ~/home-baseline-tmp nach ~/
+# sync-home.ps1 — Synchronisiert die dauerhafte Level-0-Quelle nach ~/
 # Verwendung: pwsh ~/scripts/sync-home.ps1 [-NoPull] [-NoCommit] [-CheckOnly] [-Force] [-WhatIf]
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -17,13 +17,10 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepoDir   = Split-Path -Parent $ScriptDir   # ein Verzeichnis über scripts/
 $HomeDir   = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 
-# Falls aus ~/scripts/ aufgerufen (RepoDir == HomeDir), automatisch home-baseline-tmp nutzen
+# A copied Home script resolves the permanent source through the shared contract.
 if ($RepoDir -eq $HomeDir) {
-    $RepoDir = Join-Path $HomeDir 'home-baseline-tmp'
-    if (-not (Test-Path $RepoDir)) {
-        [Console]::Error.WriteLine("~/home-baseline-tmp nicht gefunden.`nBitte zuerst den persoenlichen Fork gemaess docs/learning-units/START-HERE-FUER-LERNENDE.md nach ~/home-baseline-tmp klonen.")
-        exit 1
-    }
+    . (Join-Path $ScriptDir 'lib/resolve-home-baseline-source.ps1')
+    $RepoDir = Resolve-HBSourceRepository -StartPath $MyInvocation.MyCommand.Path -AllowLegacy
 }
 
 $homeScriptsDir = Join-Path $HomeDir 'scripts'
@@ -64,7 +61,7 @@ if ($isAbsddContainer -and -not $WhatIfPreference -and -not $CheckOnly) {
     [Console]::Error.WriteLine(@'
 Schreibende sync-home-Laeufe sind in der ABS-DD-Sandbox gesperrt.
 Writing sync-home runs are blocked inside the ABS-DD sandbox.
-Die Level-0-Referenz direkt unter ~/home-baseline-tmp verwenden und den Home-Sync auf dem Host ausfuehren.
+Die Level-0-Referenz direkt unter ~/home-baseline-source verwenden und den Home-Sync auf dem Host ausfuehren.
 '@)
     exit 2
 }
@@ -143,8 +140,8 @@ function Ensure-GitconfigBaseline {
     git config --global pull.rebase true
 
     $content = Get-Content -Raw -Path $gitconfigPath -ErrorAction SilentlyContinue
-    if ($content -notmatch [regex]::Escape('gitdir:~/home-baseline-tmp/')) {
-        Add-Content -Path $gitconfigPath -Value "`n[includeIf `"gitdir:~/home-baseline-tmp/`"]`n`tpath = ~/.gitconfig.d/home-baseline.inc"
+    if ($content -notmatch [regex]::Escape('gitdir:~/home-baseline-source/')) {
+        Add-Content -Path $gitconfigPath -Value "`n[includeIf `"gitdir:~/home-baseline-source/`"]`n`tpath = ~/.gitconfig.d/home-baseline.inc"
     }
 
     Write-Host "  ✓ ~/.gitconfig Baseline-Einstellungen geprüft / baseline settings checked"

@@ -130,9 +130,13 @@ HOME_DIR="$(cd -- "$HOME_DIR" && pwd -P)"
 REGISTRY="${HOME_DIR}/.home-baseline/level2-repository-registry.json"
 
 # A stale copy in ~/scripts must delegate before it updates that directory.
-if [ "$SCRIPT_DIR" = "${HOME_DIR}/scripts" ] &&
-   [ -f "${HOME_DIR}/home-baseline-tmp/scripts/maintain-agentic-workspace.sh" ]; then
-  exec bash "${HOME_DIR}/home-baseline-tmp/scripts/maintain-agentic-workspace.sh" "${ORIGINAL_ARGS[@]}"
+if [ "$SCRIPT_DIR" = "${HOME_DIR}/scripts" ]; then
+  # shellcheck source=scripts/lib/resolve-home-baseline-source.sh
+  source "${SCRIPT_DIR}/lib/resolve-home-baseline-source.sh"
+  source_repository="$(resolve_hb_source_repository "${BASH_SOURCE[0]}" 1)"
+  repo_script="${source_repository}/scripts/maintain-agentic-workspace.sh"
+  [ -f "$repo_script" ] || die "Kanonisches Wartungsskript fehlt / canonical maintenance script missing"
+  exec bash "$repo_script" "${ORIGINAL_ARGS[@]}"
 fi
 
 STATE_DIR="${HOME_DIR}/.home-baseline"

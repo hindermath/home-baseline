@@ -115,7 +115,7 @@ function Get-SdhSourceDir {
     foreach ($candidate in @(
         (Join-Path $repoDir 'docs/secure-development'),
         (Join-Path $HOME 'docs/secure-development'),
-        (Join-Path $HOME 'home-baseline-tmp/docs/secure-development')
+        (Join-Path $HOME 'home-baseline-source/docs/secure-development')
     )) {
         if ((Test-Path $candidate) `
             -and (Test-Path (Join-Path $candidate 'README.md')) `
@@ -203,7 +203,7 @@ function Get-SdhTemplateFile {
         (Join-Path $ScriptDir 'templates/secure-development-hardening-lastenheft.md'),
         (Join-Path $repoDir 'scripts/templates/secure-development-hardening-lastenheft.md'),
         (Join-Path $HOME 'scripts/templates/secure-development-hardening-lastenheft.md'),
-        (Join-Path $HOME 'home-baseline-tmp/scripts/templates/secure-development-hardening-lastenheft.md')
+        (Join-Path $HOME 'home-baseline-source/scripts/templates/secure-development-hardening-lastenheft.md')
     )) {
         if (Test-Path $candidate) { return $candidate }
     }

@@ -27,6 +27,9 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $scriptRoot 'lib/resolve-home-baseline-source.ps1')
+$level0Source = Resolve-HBSourceRepository -StartPath $MyInvocation.MyCommand.Path -AllowLegacy
 
 function Test-HBSpecRepository {
     param([Parameter(Mandatory)][string] $Path)
@@ -34,14 +37,16 @@ function Test-HBSpecRepository {
 }
 
 function Get-HBRepositories {
-    param([Parameter(Mandatory)][string] $Root)
+    param(
+        [Parameter(Mandatory)][string] $Root,
+        [Parameter(Mandatory)][string] $Level0
+    )
     $items = [System.Collections.Generic.List[object]]::new()
-    $level0 = Join-Path $Root 'home-baseline-tmp'
-    if (Test-HBSpecRepository -Path $level0) {
-        $items.Add([pscustomobject]@{ Level = 0; Path = $level0 })
+    if (Test-HBSpecRepository -Path $Level0) {
+        $items.Add([pscustomobject]@{ Level = 0; Path = $Level0 })
     }
     foreach ($workspace in Get-ChildItem -Path $Root -Directory -ErrorAction SilentlyContinue | Sort-Object FullName) {
-        if ($workspace.FullName -eq $level0 -or -not (Test-HBSpecRepository -Path $workspace.FullName)) { continue }
+        if ($workspace.FullName -eq $Level0 -or -not (Test-HBSpecRepository -Path $workspace.FullName)) { continue }
         $items.Add([pscustomobject]@{ Level = 1; Path = $workspace.FullName })
         foreach ($project in Get-ChildItem -Path $workspace.FullName -Directory -ErrorAction SilentlyContinue | Sort-Object FullName) {
             if (Test-HBSpecRepository -Path $project.FullName) {
@@ -77,7 +82,7 @@ function Get-HBActiveGeminiReferences {
 }
 
 $results = [System.Collections.Generic.List[object]]::new()
-foreach ($repo in Get-HBRepositories -Root (Resolve-Path $HomeDir).ProviderPath) {
+foreach ($repo in Get-HBRepositories -Root (Resolve-Path $HomeDir).ProviderPath -Level0 $level0Source) {
     $findings = [System.Collections.Generic.List[string]]::new()
     if (-not (Test-Path (Join-Path $repo.Path '.specify/integrations/agy.manifest.json'))) {
         $findings.Add('missing agy integration manifest')
