@@ -204,6 +204,8 @@ Security comes from requirements, architecture, code, tests, operation, and evid
 | a11y-governance | accessibility and didactic comments |
 | cross-platform-governance | cross-platform usability |
 | agent-parity-governance | agent parity and traceable work |
+| autonomous-run-governance | protected individual autonomous runs |
+| parallel-autonomous-run-governance | governed parallel autonomous campaigns |
 
 ::: notes
 The presets do not provide a finished solution.

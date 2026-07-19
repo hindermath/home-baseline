@@ -238,6 +238,8 @@ Bei einer relationalen Domäne stehen SQL-Sicherheit und Datenschutz besonders i
 | a11y-governance | Barrierefreiheit und didaktische Kommentare |
 | cross-platform-governance | plattformübergreifende Nutzbarkeit |
 | agent-parity-governance | Agenten-Parität und nachvollziehbare Arbeitsweise |
+| autonomous-run-governance | geschützte einzelne autonome Läufe |
+| parallel-autonomous-run-governance | gesteuerte parallele autonome Kampagnen |
 
 ::: notes
 Die Presets liefern keine fertige Lösung.
