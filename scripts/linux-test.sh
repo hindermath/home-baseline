@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # linux-test.sh — Sammelt System-Info und Testergebnisse auf Linux
-# Ausgabe wird nach ~/home-baseline-tmp/linux-test-output.txt geschrieben
+# Ausgabe wird nach ~/home-baseline-source/linux-test-output.txt geschrieben
 # und automatisch committet + gepusht.
 #
-# Verwendung: bash ~/home-baseline-tmp/scripts/linux-test.sh
+# Verwendung: bash ~/home-baseline-source/scripts/linux-test.sh
 set -euo pipefail
 
-OUT="$HOME/home-baseline-tmp/linux-test-output.txt"
+OUT="$HOME/home-baseline-source/linux-test-output.txt"
 DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
 {
@@ -42,23 +42,23 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo ""
   echo "=== Agentic Brew Registry Vergleich ==="
   if command -v brew > /dev/null 2>&1; then
-    bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
+    bash "$HOME/home-baseline-source/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1
   else
-    bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1 || true
+    bash "$HOME/home-baseline-source/scripts/maintain-agentic-brew-apps.sh" --compare-only 2>&1 || true
   fi
   echo ""
 
   echo "=== PSScriptAnalyzer ==="
   if command -v pwsh > /dev/null 2>&1; then
-    pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/maintain-powershell-modules.ps1" -CompareOnly 2>&1
-    pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/invoke-psscriptanalyzer.ps1" 2>&1
+    pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/maintain-powershell-modules.ps1" -CompareOnly 2>&1
+    pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/invoke-psscriptanalyzer.ps1" 2>&1
   else
     echo "pwsh: nicht installiert"
   fi
   echo ""
 
   echo "=== Workspace Maintenance Check ==="
-  bash "$HOME/home-baseline-tmp/scripts/maintain-agentic-workspace.sh" --check-only --scripts-only 2>&1 || true
+  bash "$HOME/home-baseline-source/scripts/maintain-agentic-workspace.sh" --check-only --scripts-only 2>&1 || true
   echo ""
 
   echo "=== VS Code / Helix ==="
@@ -82,7 +82,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
   echo ""
 
   echo "=== sync-home ==="
-  bash ~/home-baseline-tmp/scripts/sync-home.sh --no-pull 2>&1
+  bash ~/home-baseline-source/scripts/sync-home.sh --no-pull 2>&1
   echo ""
 
   echo "=== check-homogeneity ==="
@@ -90,7 +90,7 @@ DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
 } | tee "$OUT"
 
-cd ~/home-baseline-tmp
+cd ~/home-baseline-source
 git pull --rebase --autostash origin main 2>&1 | cat
 git add linux-test-output.txt
 {

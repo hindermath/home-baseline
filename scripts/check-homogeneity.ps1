@@ -399,6 +399,17 @@ foreach ($entry in $scanResults) {
         } else {
             Emit-Result 'WARN' 'scripts/hooks/pre-push' 'canonical hook missing' $dir
         }
+        $scriptReference = Join-Path $dir 'scripts/render-script-reference.ps1'
+        if (Test-Path -LiteralPath $scriptReference -PathType Leaf) {
+            & $scriptReference -Repo $dir -CheckOnly *> $null
+            if ($LASTEXITCODE -eq 0) {
+                Emit-Result 'PASS' 'docs/scripts/reference.md' `
+                    'script catalog complete and current' $dir
+            } else {
+                Emit-Result 'FAIL' 'docs/scripts/reference.md' `
+                    'script catalog incomplete or generated documentation drifted' $dir
+            }
+        }
     }
 
     # Level 0: Git Scope Isolation checks (GIT-SCOPE-001, GIT-SCOPE-002)
@@ -414,12 +425,12 @@ foreach ($entry in $scanResults) {
                 '~/.gitconfig.d/ fehlt — Scope-Isolierung nicht konfiguriert / missing — scope isolation not configured' `
                 $dir
         } elseif (-not ((Get-Content $gitconfig2 -ErrorAction SilentlyContinue) |
-                Select-String -SimpleMatch 'gitdir:~/home-baseline-tmp/' -Quiet)) {
+                Select-String -SimpleMatch 'gitdir:~/home-baseline-source/' -Quiet)) {
             if ($Json) {
-                Write-Host '{"check":"GIT-SCOPE-002","status":"WARN","message":"includeIf für home-baseline-tmp nicht gefunden / not found for home-baseline-tmp"}'
+                Write-Host '{"check":"GIT-SCOPE-002","status":"WARN","message":"includeIf fuer home-baseline-source nicht gefunden / not found for home-baseline-source"}'
             }
             Emit-Result 'WARN' '~/.gitconfig' `
-                'includeIf für home-baseline-tmp nicht gefunden / not found for home-baseline-tmp' `
+                'includeIf fuer home-baseline-source nicht gefunden / not found for home-baseline-source' `
                 $dir
         }
     }

@@ -133,13 +133,13 @@ Die generische [Git-Start-Anleitung für Lernende](GIT-START-FUER-LERNENDE.md) w
 
 **DE:** Die Lernreihen sind für ein dreistufiges Arbeitsmodell vorbereitet:
 
-- **Level 0:** `home-baseline-tmp` bleibt die zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, mitgeltende Dokumente, Spec-Kit-Presets und Intake-Vorlagen.
+- **Level 0:** `home-baseline-source` bleibt die zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, mitgeltende Dokumente, Spec-Kit-Presets und Intake-Vorlagen.
 - **Level 1:** Ein späteres privates Workspace-Repo pro Reihe koordiniert Statusmatrix, Abarbeitungsreihenfolge und Links zu den Sprachpfaden.
 - **Level 2:** Je Ziel-Sprache entsteht ein eigenes privates Projekt-Repo. Für sprachneutrale Reihen sind C#, Go, Java, Python, Rust und Swift die Standardpfade. Jedes Level-2-Repo führt die Secure-Development-Basis lokal mit: Richtlinie, 12 Einzel-Checklisten, Checklistensammelband, mitgeltende Dokumente, Preset-Verzahnung und installierte Governance-Presets aus der zentralen Matrix.
 
 **EN:** The learning series are prepared for a three-level working model:
 
-- **Level 0:** `home-baseline-tmp` remains the central source for learning material, guideline, checklists, related documents, Spec Kit presets, and intake templates.
+- **Level 0:** `home-baseline-source` remains the central source for learning material, guideline, checklists, related documents, Spec Kit presets, and intake templates.
 - **Level 1:** A later private workspace repository per series coordinates the status matrix, processing order, and links to the language paths.
 - **Level 2:** Each target language gets its own private project repository. For language-neutral series, C#, Go, Java, Python, Rust, and Swift are the standard paths. Each level-2 repository carries the secure-development baseline locally: guideline, 12 individual checklists, compendium, related documents, preset alignment, and installed governance presets from the central matrix.
 

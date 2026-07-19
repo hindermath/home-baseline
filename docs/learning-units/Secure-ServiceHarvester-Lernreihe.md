@@ -99,9 +99,9 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 
 ## Empfohlene Repo-Struktur / Recommended Repository Structure
 
-**DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-tmp` bleibt Level 0 und hält die generischen Materialien. Ein privates Level-1-Workspace-Repo `SecureServiceHarvesterProjects` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.
+**DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-source` bleibt Level 0 und hält die generischen Materialien. Ein privates Level-1-Workspace-Repo `SecureServiceHarvesterProjects` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.
 
-**EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-tmp` remains Level 0 and keeps the generic material. A private Level 1 workspace repository `SecureServiceHarvesterProjects` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
+**EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-source` remains Level 0 and keeps the generic material. A private Level 1 workspace repository `SecureServiceHarvesterProjects` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
 
 | Rolle / Role | Lokaler Ordner / Local folder | Repository-Slug | Primärsprache / Primary language | Zweck / Purpose |
 |---|---|---|---|---|

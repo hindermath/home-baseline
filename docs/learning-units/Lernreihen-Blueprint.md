@@ -53,9 +53,9 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 | Level 1 | Koordination / Coordination | Statusmatrix, Reihenfolge, Lernpaket, Links zu Sprachpfaden |
 | Level 2 | Umsetzung / Implementation | ein Repo je MSL-Sprache, lokale Secure-Development-Basis, manuelle Spec-Kit-Laeufe, Projektnachweise |
 
-**DE:** Level 0 bleibt `home-baseline-tmp`. Level 1 ist ein eigenes Koordinations-Repo pro Lernreihe. Level 2 enthaelt die konkreten Sprachpfade und spaeteren Projektergebnisse.
+**DE:** Level 0 bleibt `home-baseline-source`. Level 1 ist ein eigenes Koordinations-Repo pro Lernreihe. Level 2 enthaelt die konkreten Sprachpfade und spaeteren Projektergebnisse.
 
-**EN:** Level 0 remains `home-baseline-tmp`. Level 1 is a dedicated coordination repository per learning series. Level 2 contains the concrete language paths and later project results.
+**EN:** Level 0 remains `home-baseline-source`. Level 1 is a dedicated coordination repository per learning series. Level 2 contains the concrete language paths and later project results.
 
 ## Standard-Sprachpfade / Standard Language Paths
 

@@ -5,6 +5,10 @@ set -euo pipefail
 HOME_DIR="$HOME"
 OUTPUT_JSON=false
 FAIL_ON_OPEN=false
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/lib/resolve-home-baseline-source.sh
+source "${SCRIPT_DIR}/lib/resolve-home-baseline-source.sh"
+LEVEL0_SOURCE="$(resolve_hb_source_repository "${BASH_SOURCE[0]}" 1)"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -20,7 +24,7 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
-python3 - "$HOME_DIR" "$OUTPUT_JSON" "$FAIL_ON_OPEN" <<'PY'
+python3 - "$HOME_DIR" "$OUTPUT_JSON" "$FAIL_ON_OPEN" "$LEVEL0_SOURCE" <<'PY'
 import json
 import pathlib
 import re
@@ -30,6 +34,7 @@ import sys
 home = pathlib.Path(sys.argv[1]).expanduser().resolve()
 output_json = sys.argv[2].lower() == "true"
 fail_on_open = sys.argv[3].lower() == "true"
+level0_source = pathlib.Path(sys.argv[4]).expanduser().resolve()
 
 
 def is_repo(path):
@@ -38,7 +43,7 @@ def is_repo(path):
 
 def discover():
     repos = []
-    level0 = home / "home-baseline-tmp"
+    level0 = level0_source
     if is_repo(level0):
         repos.append((0, level0))
     for workspace in sorted(home.iterdir()):

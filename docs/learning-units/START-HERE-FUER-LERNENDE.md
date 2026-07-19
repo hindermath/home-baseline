@@ -153,9 +153,9 @@ HTTPS-URLs.
 ```bash
 LEARNER_REPO_URL="<HTTPS-URL-DEINES-PERSOENLICHEN-REPOSITORYS>"
 INSTITUTION_UPSTREAM_URL="<HTTPS-URL-DER-INSTITUTIONELLEN-REFERENZ>"
-git clone "$LEARNER_REPO_URL" "$HOME/home-baseline-tmp"
-git -C "$HOME/home-baseline-tmp" remote add upstream "$INSTITUTION_UPSTREAM_URL"
-git -C "$HOME/home-baseline-tmp" remote -v
+git clone "$LEARNER_REPO_URL" "$HOME/home-baseline-source"
+git -C "$HOME/home-baseline-source" remote add upstream "$INSTITUTION_UPSTREAM_URL"
+git -C "$HOME/home-baseline-source" remote -v
 ```
 
 **Host - Windows, PowerShell 7:**
@@ -163,9 +163,9 @@ git -C "$HOME/home-baseline-tmp" remote -v
 ```powershell
 $LearnerRepoUrl = '<HTTPS-URL-DEINES-PERSOENLICHEN-REPOSITORYS>'
 $InstitutionUpstreamUrl = '<HTTPS-URL-DER-INSTITUTIONELLEN-REFERENZ>'
-git clone $LearnerRepoUrl "$HOME/home-baseline-tmp"
-git -C "$HOME/home-baseline-tmp" remote add upstream $InstitutionUpstreamUrl
-git -C "$HOME/home-baseline-tmp" remote -v
+git clone $LearnerRepoUrl "$HOME/home-baseline-source"
+git -C "$HOME/home-baseline-source" remote add upstream $InstitutionUpstreamUrl
+git -C "$HOME/home-baseline-source" remote -v
 ```
 
 ### Profil B: Direkte GitHub-Nutzung
@@ -174,9 +174,9 @@ git -C "$HOME/home-baseline-tmp" remote -v
 
 ```bash
 GH_USER="$(gh api user --jq .login)"
-gh repo clone "${GH_USER}/home-baseline" "$HOME/home-baseline-tmp"
-git -C "$HOME/home-baseline-tmp" remote add upstream https://github.com/hindermath/home-baseline.git
-git -C "$HOME/home-baseline-tmp" remote -v
+gh repo clone "${GH_USER}/home-baseline" "$HOME/home-baseline-source"
+git -C "$HOME/home-baseline-source" remote add upstream https://github.com/hindermath/home-baseline.git
+git -C "$HOME/home-baseline-source" remote -v
 ```
 
 Unter Windows verwendest du denselben Ablauf in PowerShell mit
@@ -185,7 +185,7 @@ Unter Windows verwendest du denselben Ablauf in PowerShell mit
 **Erfolg / Success:** `origin` zeigt auf dein persoenliches Lernenden-Repository.
 `upstream` zeigt auf die institutionelle Referenz oder in Profil B auf
 `https://github.com/hindermath/home-baseline.git`.
-Vertausche diese beiden Remotes nicht. Der Ordner `~/home-baseline-tmp` wird nach
+Vertausche diese beiden Remotes nicht. Der Ordner `~/home-baseline-source` wird nach
 der Einrichtung nicht geloescht.
 
 Falls `upstream` bereits existiert, pruefe nur seine URL. Fuehre keinen zweiten
@@ -196,11 +196,11 @@ Falls `upstream` bereits existiert, pruefe nur seine URL. Fuehre keinen zweiten
 **Host:**
 
 ```bash
-git -C "$HOME/home-baseline-tmp" status --short
-git -C "$HOME/home-baseline-tmp" switch main
-git -C "$HOME/home-baseline-tmp" fetch upstream
-git -C "$HOME/home-baseline-tmp" merge --ff-only upstream/main
-git -C "$HOME/home-baseline-tmp" push origin main
+git -C "$HOME/home-baseline-source" status --short
+git -C "$HOME/home-baseline-source" switch main
+git -C "$HOME/home-baseline-source" fetch upstream
+git -C "$HOME/home-baseline-source" merge --ff-only upstream/main
+git -C "$HOME/home-baseline-source" push origin main
 ```
 
 **Erfolg / Success:** Der Arbeitsbaum war vor dem Abgleich sauber, der
@@ -213,14 +213,14 @@ Betreuungsperson um Konflikthilfe.
 **Host - macOS/Linux:**
 
 ```bash
-cd "$HOME/home-baseline-tmp"
+cd "$HOME/home-baseline-source"
 bash scripts/maintain-agentic-brew-apps.sh --dry-run
 ```
 
 **Host - Windows, PowerShell 7:**
 
 ```powershell
-Set-Location "$HOME/home-baseline-tmp"
+Set-Location "$HOME/home-baseline-source"
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf
 ```
 
@@ -277,18 +277,18 @@ Wartung sie als offene manuelle Luecke melden; sie darf nicht still fehlen.
 **Host - macOS/Linux:**
 
 ```bash
-bash "$HOME/home-baseline-tmp/scripts/install-hooks.sh"
-bash "$HOME/home-baseline-tmp/scripts/sync-home.sh" --no-pull
+bash "$HOME/home-baseline-source/scripts/install-hooks.sh"
+bash "$HOME/home-baseline-source/scripts/sync-home.sh" --no-pull
 ```
 
 **Host - Windows, PowerShell 7:**
 
 ```powershell
-pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/install-hooks.ps1"
-pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -NoPull
+pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/install-hooks.ps1"
+pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/sync-home.ps1" -NoPull
 ```
 
-`~/home-baseline-tmp` bleibt die Git-Arbeitskopie mit `origin` und `upstream`.
+`~/home-baseline-source` bleibt die Git-Arbeitskopie mit `origin` und `upstream`.
 `~/` ist die lokale Betriebskopie ohne Remote-Verbindung.
 
 Loesche den Klon nach dem ersten Sync nicht. Nur dort koennen Updates aus
@@ -297,20 +297,20 @@ gepusht und spaetere Home-Sync-Laeufe sicher geprueft werden. Vor einem echten
 Sync kannst du den Zustand schreibfrei pruefen:
 
 ```bash
-bash "$HOME/home-baseline-tmp/scripts/sync-home.sh" --check-only
+bash "$HOME/home-baseline-source/scripts/sync-home.sh" --check-only
 ```
 
 ```powershell
-pwsh -NoProfile -File "$HOME/home-baseline-tmp/scripts/sync-home.ps1" -CheckOnly
+pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/sync-home.ps1" -CheckOnly
 ```
 
-Im ABS-DD-Container nutzt du `~/home-baseline-tmp` direkt. Starte dort keinen
+Im ABS-DD-Container nutzt du `~/home-baseline-source` direkt. Starte dort keinen
 schreibenden Home-Sync; dieser gehoert auf den Host.
 
 *Do not delete the clone after the first sync. It is the only place where you
 can trace updates from `upstream`, push your changes to `origin`, and verify
 later Home sync runs safely. Inside the ABS-DD container, use
-`~/home-baseline-tmp` directly and run writing Home sync operations on the host.*
+`~/home-baseline-source` directly and run writing Home sync operations on the host.*
 
 ## 11. Referenz-Sandbox klonen / Clone the Reference Sandbox
 

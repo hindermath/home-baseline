@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# sync-home.sh — Synchronisiert ~/home-baseline-tmp nach ~/
+# sync-home.sh — Synchronisiert die dauerhafte Level-0-Quelle nach ~/
 # Verwendung: bash ~/scripts/sync-home.sh [--pull] [--commit] [--check-only] [--dry-run] [--force]
 #
-# --pull     : git pull in home-baseline-tmp vor dem Sync (Standard: ja)
+# --pull     : git pull in der Level-0-Quelle vor dem Sync (Standard: ja)
 # --commit   : git commit in ~/ nach dem Sync (Standard: ja)
 # --dry-run  : Nur anzeigen, was gemacht würde
 # --check-only: Pull-frei und schreibfrei auf Drift pruefen
@@ -17,14 +17,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 HOME_DIR="${HOME}"
 
-# Falls aus ~/scripts/ aufgerufen (REPO_DIR == HOME_DIR), automatisch home-baseline-tmp nutzen
+# A copied Home script resolves the permanent source through the shared contract.
 if [ "$REPO_DIR" = "$HOME_DIR" ]; then
-  REPO_DIR="${HOME_DIR}/home-baseline-tmp"
-  if [ ! -d "$REPO_DIR" ]; then
-    echo "Fehler: ~/home-baseline-tmp nicht gefunden." >&2
-    echo "Bitte zuerst den persoenlichen Fork gemaess docs/learning-units/START-HERE-FUER-LERNENDE.md nach ~/home-baseline-tmp klonen." >&2
-    exit 1
-  fi
+  # shellcheck source=scripts/lib/resolve-home-baseline-source.sh
+  source "${SCRIPT_DIR}/lib/resolve-home-baseline-source.sh"
+  REPO_DIR="$(resolve_hb_source_repository "${BASH_SOURCE[0]}" 1)"
 fi
 
 if [ "$SCRIPT_DIR" = "${HOME_DIR}/scripts" ] && [ -f "${REPO_DIR}/scripts/sync-home.sh" ]; then
@@ -68,7 +65,7 @@ if [ "$HOME_DIR" = "/home/adedev" ] && { [ -f /.dockerenv ] || [ -f /run/.contai
    ! $OPT_DRY_RUN && ! $OPT_CHECK_ONLY; then
   echo "Fehler: Schreibender sync-home-Lauf in der ABS-DD-Sandbox ist gesperrt." >&2
   echo "Error: Writing sync-home runs are blocked inside the ABS-DD sandbox." >&2
-  echo "Die Level-0-Referenz direkt unter ~/home-baseline-tmp verwenden und den Home-Sync auf dem Host ausfuehren." >&2
+  echo "Die Level-0-Referenz direkt unter ~/home-baseline-source verwenden und den Home-Sync auf dem Host ausfuehren." >&2
   exit 2
 fi
 
@@ -125,8 +122,8 @@ EOF
   git config --global core.autocrlf input
   git config --global pull.rebase true
 
-  if ! grep -qF 'gitdir:~/home-baseline-tmp/' "${HOME_DIR}/.gitconfig" 2>/dev/null; then
-    printf '\n[includeIf "gitdir:~/home-baseline-tmp/"]\n\tpath = ~/.gitconfig.d/home-baseline.inc\n' >> "${HOME_DIR}/.gitconfig"
+  if ! grep -qF 'gitdir:~/home-baseline-source/' "${HOME_DIR}/.gitconfig" 2>/dev/null; then
+    printf '\n[includeIf "gitdir:~/home-baseline-source/"]\n\tpath = ~/.gitconfig.d/home-baseline.inc\n' >> "${HOME_DIR}/.gitconfig"
   fi
 
   echo "  ✓ ~/.gitconfig Baseline-Einstellungen geprüft / baseline settings checked"

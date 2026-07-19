@@ -53,7 +53,7 @@
 
 **DE:** Dieses Master-Lastenheft beschreibt die Gesamtlandkarte der Basis-Reihe. Die spätere praktische Bearbeitung soll in einer privaten Level-1-/Level-2-Struktur erfolgen:
 
-- **Level 0:** `home-baseline-tmp` als zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, Presets und Intakes.
+- **Level 0:** `home-baseline-source` als zentrale Quelle für Lernmaterial, Richtlinie, Checklisten, Presets und Intakes.
 - **Level 1:** `SecureServiceHarvesterProjects` als privates Koordinations-Repo mit README, Statusmatrix und Abarbeitungsreihenfolge.
 - **Level 2:** sechs private Sprach-Repos: `SecureServiceHarvester-CSharp`, `SecureServiceHarvester-Go`, `SecureServiceHarvester-Java`, `SecureServiceHarvester-Python`, `SecureServiceHarvester-Rust`, `SecureServiceHarvester-Swift`.
 
@@ -61,7 +61,7 @@
 
 **EN:** This master intake describes the overall map of the base series. Later practical work should use a private Level 1 / Level 2 structure:
 
-- **Level 0:** `home-baseline-tmp` as the central source for learning material, guideline, checklists, presets, and intakes.
+- **Level 0:** `home-baseline-source` as the central source for learning material, guideline, checklists, presets, and intakes.
 - **Level 1:** `SecureServiceHarvesterProjects` as the private coordination repository with README, status matrix, and processing order.
 - **Level 2:** six private language repositories: `SecureServiceHarvester-CSharp`, `SecureServiceHarvester-Go`, `SecureServiceHarvester-Java`, `SecureServiceHarvester-Python`, `SecureServiceHarvester-Rust`, `SecureServiceHarvester-Swift`.
 

@@ -75,22 +75,22 @@ These files are local machine state and are not intended to be committed.
 
 ```bash
 # Initial baseline for the current machine
-bash ~/home-baseline-tmp/scripts/audit-agent-changes.sh snapshot
+bash ~/home-baseline-source/scripts/audit-agent-changes.sh snapshot
 ```
 
 ```bash
 # Compare current state and keep the old baseline
-bash ~/home-baseline-tmp/scripts/audit-agent-changes.sh report
+bash ~/home-baseline-source/scripts/audit-agent-changes.sh report
 ```
 
 ```bash
 # Compare current state and accept the current files as the new baseline
-bash ~/home-baseline-tmp/scripts/audit-agent-changes.sh report --refresh-baseline
+bash ~/home-baseline-source/scripts/audit-agent-changes.sh report --refresh-baseline
 ```
 
 ```powershell
-pwsh -NoProfile ~/home-baseline-tmp/scripts/audit-agent-changes.ps1 -Action snapshot
-pwsh -NoProfile ~/home-baseline-tmp/scripts/audit-agent-changes.ps1 -Action report -RefreshBaseline
+pwsh -NoProfile ~/home-baseline-source/scripts/audit-agent-changes.ps1 -Action snapshot
+pwsh -NoProfile ~/home-baseline-source/scripts/audit-agent-changes.ps1 -Action report -RefreshBaseline
 ```
 
 ## FILES

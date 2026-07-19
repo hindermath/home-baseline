@@ -458,6 +458,22 @@ do not shift points. Phase `1` stands out clearly; Phase `6` contains the
 governance preset follow-up, Phase `7` the autonomous package, Phase `8`
 the parallel field-test package, and Phase `9` the fleet rollout.*
 
+### 2026-07-19 - Skriptkatalog und dauerhafte Level-0-Quelle / Script catalog and permanent Level 0 source
+
+- Alle kanonischen und eingebetteten Skriptdateien werden nun reproduzierbar
+  inventarisiert; eine bilinguale Zentralreferenz dokumentiert Rolle,
+  Voraussetzungen, Nebenwirkungen und sichere Aufrufbeispiele.
+- Die dauerhafte Level-0-Quelle wechselt von der historischen
+  Temp-Bezeichnung zu `~/home-baseline-source`. Ein gemeinsamer Resolver,
+  strikter Preflight, lokaler JSON-Nachweis und befristeter
+  Kompatibilitaetslink machen die Migration plattformuebergreifend pruefbar.
+
+*All canonical and embedded script files are now inventoried reproducibly. A
+bilingual central reference documents roles, prerequisites, side effects, and
+safe invocation examples. The permanent Level 0 source moves to
+`~/home-baseline-source` through shared discovery, a strict preflight, local
+JSON evidence, and a temporary compatibility link.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -468,29 +484,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 284814 lines |
-| Textdateien / Text files | 1680 |
+| Textbasis / Text base | 287564 lines |
+| Textdateien / Text files | 1694 |
 | Beobachtbarer Zeitraum / Observable period | 2026-03-31..2026-07-19 |
 | Aktivtage / Active days | 67 |
-| Relevante Commits / Relevant commits | 446 |
-| Zeilen je Aktivtag / Lines per active day | 4251.0 |
+| Relevante Commits / Relevant commits | 450 |
+| Zeilen je Aktivtag / Lines per active day | 4292.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 24 days |
-| Speedup vs. 80 lines/day | 53.1x |
-| Speedup vs. 100 lines/day | 42.5x |
-| Methodik / Methodology | v2; source `11828684fd42` |
+| Speedup vs. 80 lines/day | 53.7x |
+| Speedup vs. 100 lines/day | 42.9x |
+| Methodik / Methodology | v2; source `bae64b8ede3b` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   2.4% | 6724
-Dokumentation / Documentation   [#################...]  83.7% | 238461
-Skripte / Scripts               [###.................]  12.8% | 36362
-Konfiguration / Configuration   [#...................]   0.9% | 2639
+Tests                           [#...................]   2.3% | 6726
+Dokumentation / Documentation   [#################...]  83.5% | 240137
+Skripte / Scripts               [###.................]  13.0% | 37427
+Konfiguration / Configuration   [#...................]   0.9% | 2643
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.2% | 628
+Sonstiger Text / Other text     [#...................]   0.2% | 631
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -572,15 +588,15 @@ Die kumulative Kurve summiert nur das Brutto-Aenderungsvolumen im Fenster. Sie d
 ### Phasenvolumen / Phase Volume
 
 ```text
-Slots 0..9
-   cap 50000 | . . . . . . . . . .
-       41667 | . . . . . . . . . .
-       33333 | . . . . . . . . . .
-       25000 | . # . . . . . . . .
-       16667 | . # . . . . . . . #
-        8333 | . # . . # . # # . #
-           0 +---------------------
-             00 01 02 03 04 05 06 07 08 09
+Slots 0..10
+   cap 50000 | . . . . . . . . . . .
+       41667 | . . . . . . . . . . .
+       33333 | . . . . . . . . . . .
+       25000 | . # . . . . . . . . .
+       16667 | . # . . . . . . . # .
+        8333 | . # . . # . # # . # .
+           0 +-----------------------
+             00 01 02 03 04 05 06 07 08 09 10
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -595,6 +611,7 @@ Slots 0..9
 | 7 | Autonome Laeufe / Autonomous runs | 9639 |
 | 8 | Paralleler Feldtest / Parallel field test | 5323 |
 | 9 | Flottenrollout / Fleet rollout | 19465 |
+| 10 | Skriptkatalog und Quellmigration / Script catalog and source migration | 2731 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -604,8 +621,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 53.1x
-100 lines/day      [#########...........] 42.5x
+80 lines/day       [###########.........] 53.7x
+100 lines/day      [#########...........] 42.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -618,7 +635,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4251.0
+Visible repository [#################...] 4292.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -644,6 +661,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-19. Es enthaelt 67 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 191601 |
+| 2026-07 | 195025 |
 
 <!-- project-statistics-v2:end -->

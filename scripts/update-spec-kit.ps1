@@ -21,7 +21,7 @@
 
 .PARAMETER TemplateSource
     Repository, dessen lokale Governance-Templates kanonisch sind. Standard:
-    das Repository, aus dem dieses Skript laeuft; danach ~/home-baseline-tmp.
+    das Repository, aus dem dieses Skript laeuft; danach ~/home-baseline-source.
 
 .PARAMETER Agents
     Spec-Kit-Integrationen. Standard: claude, opencode, agy, copilot, codex.
@@ -55,6 +55,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepositoryRoot = Split-Path -Parent $ScriptRoot
+. (Join-Path $ScriptRoot 'lib/resolve-home-baseline-source.ps1')
+$Level0Source = Resolve-HBSourceRepository -StartPath $MyInvocation.MyCommand.Path -AllowLegacy
 
 function Test-HBSpecKitRepo {
     param([Parameter(Mandatory)][string]$Path)
@@ -73,13 +75,16 @@ function Add-HBRepo {
 }
 
 function Get-HBSpecKitRepos {
-    param([Parameter(Mandatory)][string]$Root)
+    param(
+        [Parameter(Mandatory)][string]$Root,
+        [Parameter(Mandatory)][string]$Level0
+    )
 
     $repos = [System.Collections.Generic.List[string]]::new()
-    Add-HBRepo -Repos $repos -Path (Join-Path $Root 'home-baseline-tmp')
+    Add-HBRepo -Repos $repos -Path $Level0
 
     Get-ChildItem -Path $Root -Directory -ErrorAction SilentlyContinue |
-        Where-Object { $_.FullName -ne (Join-Path $Root 'home-baseline-tmp') } |
+        Where-Object { $_.FullName -ne $Level0 } |
         ForEach-Object {
             Add-HBRepo -Repos $repos -Path $_.FullName
             if (Test-HBSpecKitRepo -Path $_.FullName) {
@@ -101,7 +106,7 @@ function Select-HBTemplateSource {
 
     if (Test-Path (Join-Path $RepositoryRoot '.specify/templates')) { return $RepositoryRoot }
 
-    $level0 = Join-Path $Root 'home-baseline-tmp'
+    $level0 = $Level0Source
     if (Test-Path (Join-Path $level0 '.specify/templates')) { return $level0 }
 
     throw 'Keine Governance-Template-Quelle gefunden; nutze -TemplateSource PATH'
@@ -335,7 +340,7 @@ if (-not $WhatIfPreference) {
     if (-not $specify) { throw 'specify nicht gefunden' }
 }
 
-$repos = Get-HBSpecKitRepos -Root $HomeDir
+$repos = Get-HBSpecKitRepos -Root $HomeDir -Level0 $Level0Source
 if (-not $repos) { throw "Keine Spec-Kit-Repos unter $HomeDir gefunden" }
 
 $selectedTemplateSource = Select-HBTemplateSource -Root $HomeDir -Requested $TemplateSource

@@ -20,7 +20,7 @@ pwsh -NoProfile -File scripts/propagate-agentic-toolchain-maintenance.ps1 [-DryR
 
 ## Beschreibung / Description
 
-Level-0 unter `~/home-baseline-tmp` ist die kanonische Quelle fuer die beiden
+Level-0 unter `~/home-baseline-source` ist die kanonische Quelle fuer die beiden
 Toolchain-Wartungsskripte, deren fuenf JSON-Registries und die beiden
 Wartungs-Manpages. Die verwaltete Dateiliste steht in
 `scripts/config/agentic-toolchain-maintenance-files.json`.
@@ -31,7 +31,7 @@ nichts. Wenn eine verwaltete Zieldatei lokal veraendert oder als abweichende
 unversionierte Datei vorhanden ist, wird das gesamte Repository uebersprungen.
 Andere lokale Aenderungen bleiben unberuehrt.
 
-*Level-0 under `~/home-baseline-tmp` is the canonical source for both toolchain
+*Level-0 under `~/home-baseline-source` is the canonical source for both toolchain
 maintenance scripts, their five JSON registries, and both maintenance man
 pages. The managed file list lives in
 `scripts/config/agentic-toolchain-maintenance-files.json`.*

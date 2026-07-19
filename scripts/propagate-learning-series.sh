@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # propagate-learning-series.sh
-# Propagiert Lernreihen-Material aus Level-0 (~/home-baseline-tmp/docs/learning-units)
+# Propagiert Lernreihen-Material aus Level-0 (~/home-baseline-source/docs/learning-units)
 # in die zugehoerigen Level-1- und Level-2-Repos einer Lernreihe.
 #
 # Propagates learning-series material from Level-0 into the matching Level-1 and

@@ -49,11 +49,11 @@ The generated release job is designed as a GitLab-native replacement for GitHub 
 ## EXAMPLES
 
 ```bash
-bash ~/home-baseline-tmp/scripts/setup-gitlab-release.sh ~/RiderProjects/inventarworkerservice2 --gitlab-url https://gitlab-ce.gwdg.de
+bash ~/home-baseline-source/scripts/setup-gitlab-release.sh ~/RiderProjects/inventarworkerservice2 --gitlab-url https://gitlab-ce.gwdg.de
 ```
 
 ```powershell
-pwsh ~/home-baseline-tmp/scripts/setup-gitlab-release.ps1 -TargetRepository ~/RiderProjects/inventarworkerservice2 -GitLabUrl https://gitlab-ce.gwdg.de
+pwsh ~/home-baseline-source/scripts/setup-gitlab-release.ps1 -TargetRepository ~/RiderProjects/inventarworkerservice2 -GitLabUrl https://gitlab-ce.gwdg.de
 ```
 
 ## FILES

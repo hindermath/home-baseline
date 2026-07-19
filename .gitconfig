@@ -19,3 +19,6 @@
 
 [includeIf "gitdir:~/home-baseline-tmp/"]
 	path = ~/.gitconfig.d/home-baseline.inc
+
+[includeIf "gitdir:~/home-baseline-source/"]
+	path = ~/.gitconfig.d/home-baseline.inc

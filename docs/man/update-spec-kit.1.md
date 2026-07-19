@@ -52,14 +52,14 @@ trailing whitespace before optional commits.*
 
 Standard-Erkennung:
 
-- Level 0: `~/home-baseline-tmp`, sofern `.git` und `.specify/` vorhanden sind
+- Level 0: `~/home-baseline-source`, sofern `.git` und `.specify/` vorhanden sind
 - Level 1: direkte Unterverzeichnisse von `~/` mit `.git` und `.specify/`
 - Level 2: direkte Unterverzeichnisse erkannter Level-1-Repos mit `.git` und
   `.specify/`
 - Git-Worktrees mit einer `.git`-Datei werden ebenso erkannt wie normale
   Klone mit einem `.git`-Verzeichnis.
 
-*Default discovery: Level 0 is `~/home-baseline-tmp`; Level 1 is each direct
+*Default discovery: Level 0 is `~/home-baseline-source`; Level 1 is each direct
 child of `~/` with `.git` and `.specify/`; Level 2 is each direct child of a
 Level-1 repository with `.git` and `.specify/`. Git worktrees with a
 `.git` file are recognized in the same way as regular clones with a `.git`
@@ -79,13 +79,13 @@ directory.*
 
 Ohne explizite Template-Quelle nutzt das Skript die `.specify/templates/` aus
 dem Repository, aus dem es ausgefuehrt wird. Falls das Skript aus einer lokalen
-Home-Kopie laeuft, ist `~/home-baseline-tmp` der Fallback. Private Projekt-
+Home-Kopie laeuft, ist `~/home-baseline-source` der Fallback. Private Projekt-
 Repos wie `TuiVision` sind keine implizite Voraussetzung; sie koennen nur
 bewusst ueber `--template-source` / `-TemplateSource` gesetzt werden.
 
 *Without an explicit template source, the script uses `.specify/templates/` from
 the repository that runs it. If the script is executed from a local home copy,
-`~/home-baseline-tmp` is the fallback. Private project repositories such as
+`~/home-baseline-source` is the fallback. Private project repositories such as
 `TuiVision` are not an implicit requirement; they can only be selected
 deliberately via `--template-source` / `-TemplateSource`.*
 
