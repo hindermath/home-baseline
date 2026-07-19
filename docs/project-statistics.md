@@ -99,6 +99,7 @@
 | 2026-07-18 | `parallel-autonomous-run-governance` v0.1.0 und nativer Real-Agent-Smoke | 66 | — | — | Experimentelles achtes Preset mit vier Topologien, UUID-Vertraegen, isolierten Worktrees, maximal drei parallelen Workern, DAG-Pruefung, gehashten Handoffs, kooperativem Stop/Resume und expliziter Alternativauswahl umgesetzt. Der vom Repository-Eigentuemer bewusst autorisierte native macOS-Entwicklungs-Smoke fuehrte 13 echte Codex-/Spec-Kit-Autonomous-Worker ohne Remote-Schreibzugriff aus: 13/13 Exitcode 0, Replicated/Independent/Alternative jeweils beobachtete Parallelitaet 3, Pipeline `A -> {B,C} -> D` mit Parallelitaet 2 und vier validierten Handoffs. Kanonisches Preset, Publikationskopie und Feature-Artefakte umfassen vor dieser Ledger-Zeile 4.180 Zeilen; konservative Manualreferenz `52,3` Tage beziehungsweise `407,6` Stunden bei 80 Zeilen/Tag, Thorsten-Solo `41,8` Tage beziehungsweise `326,0` Stunden bei 100 Zeilen/Tag. Das Preset bleibt bis zum nativen Secure-CaseTracker-Feldtest experimentell und opt-in; Container-First bleibt ausserhalb dieses ausdruecklichen Entwicklungs-Overrides verbindlich. |
 | 2026-07-19 | `parallel-autonomous-run-governance` v0.2.0 und 24-Worker-Feldtest | 68 | 267 166 | 500 | Native Secure-CaseTracker-Kampagne `91c2c1a0-1526-479a-b8a3-e36a7d15d2b1` ueber C#, Go, Java, Python, Rust und Swift kontrolliert abgeschlossen: 24/24 Worker und exakte PR-Heads gemergt, sechs Closeout-PRs einschliesslich Lastenheft-Archivierung abgeschlossen sowie sprachspezifische Hauptbranch-Gates bestanden. Stop, Status, Resume und zweiter idempotenter Resume-Versuch wurden praktisch nachgewiesen; konfigurierte und beobachtete Parallelitaet blieben bei drei. Die portablen Erkenntnisse flossen in Schema 1.1, pro-Worker-Runnerprofile, agentenneutrale Modellmetadaten, providergebundene Preflights, fortsetzbare Teilmerges, gestapelte PR-Basen, kooperativen Konsolidierungsstopp und manifestgebundene Post-Merge-Aktionen ein. v0.2.0 ist im geschuetzten Preset-Repo veroeffentlicht, per exaktem Tag-ZIP isoliert mit allen acht Presets validiert, lokal in 25 registrierten Level-2-Repositories ausgerollt und als `github/spec-kit#3591` eingereicht. Der v0.2.0-Arbeitsstand umfasst vor dieser Ledger-Zeile `+5994/-671`, also 5323 Nettozeilen; konservative Manualreferenz `74,9` Tage beziehungsweise `584,4` Stunden fuer hinzugefuegte oder aktualisierte Zeilen, Thorsten-Solo `59,9` Tage beziehungsweise `467,5` Stunden. Der native Entwicklungs-Override endet mit diesem Closeout; spaetere Secure-Trader-Kampagnen unterliegen wieder Container-First. |
 | 2026-07-19 | Standard-Achtermatrix als 33-Repository-Flottenrollout | 68 | 286 594 | 503 | Die Standard-Achtermatrix auf Level 0, alle sieben registrierten Level-1-Repositories und alle 25 registrierten Level-2-Repositories ausgerollt; bestehende Sechser-/Siebenerprofile als Kompatibilitaetsaliase migriert und aktuelle Dokumentation vollstaendig auf acht Presets geprueft. Portable Feld- und Rollout-Erkenntnisse wurden in alle sieben bestehenden Presets uebernommen und zusammen mit `parallel-autonomous-run-governance` als Patch-Releases veroeffentlicht. 33/33 lokale Preset-, Parser-, Matrix-, Drift- und Idempotenzpruefungen bestanden; alle PR-Heads waren exakt, alle Copilot-Threads beantwortet und geschlossen. GitHub Actions lief in einzelnen Repositories wieder real und erfolgreich, waehrend die verbliebenen Null-Schritt-Ablehnungen weiterhin den identischen Billing-/Spending-Limit-Providergrund meldeten und deshalb gemaess Feldtest-Override als `N/A`, nicht als technischer Erfolg, dokumentiert wurden. Der Flottenbranch umfasst einschliesslich dieser Ledger-Zeile `+20917/-1452`, also 19 465 Nettozeilen. Konservative Manualreferenz: `243,3` Tage beziehungsweise `1 897,8` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `194,7` Tage beziehungsweise `1 518,3` Stunden bei 100 Zeilen/Tag. |
+| 2026-07-19 | ASCII-Statistikprofil 2 Toolchain und Level-0-Migration | 67 | 284 814 | 511 | Reproduzierbaren PowerShell-7-Renderer mit Bash-Einstieg, JSON-Schema, Repository-Konfiguration, 52-Wochen-Heatmap, Wochen- und kumulativem Volumen, festen Phasenslots, Monatsfallback, ASCII-Gauges und bilingualer Textalternative eingefuehrt. Bootstrap, Homogeneity-Pruefung, Propagationsmanifest, Constitution, fuenf Agentenflaechen, Vorlagen, README und Manpage wurden synchron aktualisiert; historische Gesamtstatistik blieb als Profil-1-Archiv erhalten und `STATS.md` wurde ohne Aenderung von Scores, Zeitstempeln oder Reihenfolge auf `#` normalisiert. 146 deterministische Assertions pruefen unter anderem leere Aktivitaet, Binaerdaten, Umbenennungen, Statistik-only-Commits, ungueltige Konfigurationen, 49 Phasen, Idempotenz, `>500x`, Dry-Run-Ausgabe im aktuellen Zustand, Bootstrap-Commit-Trailer, explizite PowerShell-7-Diagnose und bytegleiche Bash-/PowerShell-Ausgabe. Der Toolchain-Commit umfasst `+3235/-63`, also 3172 Nettozeilen; konservative Manualreferenz fuer 3235 hinzugefuegte oder aktualisierte Zeilen: `40,4` Tage beziehungsweise `315,4` Stunden, Thorsten-Solo: `32,4` Tage beziehungsweise `252,3` Stunden. Aktivtage und Textbasis folgen erstmals durchgehend Methodik v2 und sind deshalb nicht unmittelbar mit den vorherigen Profil-1-Zeilen vergleichbar. Der Homogeneity-Workflow laedt die vollstaendige Git-Historie, damit der synthetische PR-Merge-Commit dieselbe reproduzierbare Statistik wie der Branch-Head validiert. Die Copilot-Hinweise zu PowerShell-Synopsis und Bootstrap-Anzeigename sind umgesetzt; ein gepufferter, kompilierter Dateiscanner beschleunigt besonders die Windows-Validierung, ohne den Datenvertrag zu aendern. Der Windows-Workflow verwendet entsprechend der OS-Regel die native PowerShell-7-Homogeneity-Pruefung statt Git Bash. Homogeneity unterscheidet Renderer-Drift, Validierungs-/Toolingfehler und unerwartete Exitcodes nun in beiden Skriptvarianten eindeutig. Die abschließende Review-Runde harmonisiert außerdem den Dry-Run-Vertrag, Commit-Trailer und die Diagnose eines fehlenden `pwsh`. |
 
 ---
 
@@ -251,8 +252,7 @@ main phase or a maintenance round in this statistics ledger.*
 
 ---
 
-## Gesamtstatistik / Overall Statistics
-
+## Statistikprofil-1-Archiv / Statistics Profile 1 Archive
 Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
 dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
@@ -457,3 +457,193 @@ axis. The X positions use fixed slots so later two-digit or missing phase values
 do not shift points. Phase `1` stands out clearly; Phase `6` contains the
 governance preset follow-up, Phase `7` the autonomous package, Phase `8`
 the parallel field-test package, and Phase `9` the fleet rollout.*
+
+## Gesamtstatistik / Overall Statistics
+
+<!-- project-statistics-v2:begin -->
+
+Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die Werte beschreiben Lieferdichte, keine persoenliche Arbeitszeit.
+
+*Profile 2 uses Git-tracked text files and visible Git activity. The values describe delivery density, not personal working time.*
+
+| Kennzahl / Metric | Wert / Value |
+|---|---:|
+| Textbasis / Text base | 284814 lines |
+| Textdateien / Text files | 1680 |
+| Beobachtbarer Zeitraum / Observable period | 2026-03-31..2026-07-19 |
+| Aktivtage / Active days | 67 |
+| Relevante Commits / Relevant commits | 446 |
+| Zeilen je Aktivtag / Lines per active day | 4251.0 |
+| Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
+| Laengste Serie / Longest streak | 24 days |
+| Speedup vs. 80 lines/day | 53.1x |
+| Speedup vs. 100 lines/day | 42.5x |
+| Methodik / Methodology | v2; source `11828684fd42` |
+
+### Artefaktmix / Artifact Mix
+
+```text
+Produktiv / Production          [....................]   0.0% | 0
+Tests                           [#...................]   2.4% | 6724
+Dokumentation / Documentation   [#################...]  83.7% | 238461
+Skripte / Scripts               [###.................]  12.8% | 36362
+Konfiguration / Configuration   [#...................]   0.9% | 2639
+Daten und Medien / Data and media [....................]   0.0% | 0
+Sonstiger Text / Other text     [#...................]   0.2% | 628
+```
+
+Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
+
+*The bars split the current tracked text base into stable categories. Percentages and line counts provide the exact text-first result.*
+
+### Tagesaktivitaet / Daily Activity
+
+```text
+Wochen / Weeks 01..26 | 2025-07-27..2026-01-24
+So/Su  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Mo/Mo  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Di/Tu  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Mi/We  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Do/Th  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Fr/Fr  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+
+```text
+Wochen / Weeks 27..52 | 2026-01-25..2026-07-25
+So/Su  0 0 0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4
+Mo/Mo  0 0 0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 -
+Di/Tu  0 0 0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 -
+Mi/We  0 0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 -
+Do/Th  0 0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 -
+Fr/Fr  0 0 0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 -
+Sa/Sa  0 0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 -
+```
+
+DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
+
+*EN: 0 = no change; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ changed text lines; - = not elapsed.*
+
+### Wochenvolumen / Weekly Volume
+
+```text
+Wochen / Weeks 01..26 | 2025-07-27..2026-01-24
+Keine Aktivitaet / No activity
+```
+
+```text
+Wochen / Weeks 27..52 | 2026-01-25..2026-07-25
+  cap 200000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      166667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      133333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      100000 | . . . . . . . . . . . . . . . . . . . . . . . # . .
+       66667 | . . . . . . . . . . . . . . . . . . . . . . . # . .
+       33333 | . . . . . . . . . # . . . . . . . . . . # . . # . #
+           0 +-----------------------------------------------------
+```
+
+Das Wochenvolumen zeigt Additionen plus Loeschungen. Es ist Aenderungsaktivitaet, nicht die aktuelle Groesse des Repositories.
+
+*Weekly volume shows additions plus deletions. It represents change activity, not the current repository size.*
+
+### Kumulative Entwicklung / Cumulative Development
+
+```text
+Wochen / Weeks 01..26 | 2025-07-27..2026-01-24
+Keine Aktivitaet / No activity
+```
+
+```text
+Wochen / Weeks 27..52 | 2026-01-25..2026-07-25
+  cap 500000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      416667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      250000 | . . . . . . . . . . . . . . . . . . . . . . . # # #
+      166667 | . . . . . . . . . . . . . . . . . . . . . . . # # #
+       83333 | . . . . . . . . . . . . . . . . . . . . # # # # # #
+           0 +-----------------------------------------------------
+```
+
+Die kumulative Kurve summiert nur das Brutto-Aenderungsvolumen im Fenster. Sie darf nicht als aktuelle Codebasis gelesen werden.
+
+*The cumulative curve sums gross change volume within the window only. It must not be read as the current code base.*
+
+### Phasenvolumen / Phase Volume
+
+```text
+Slots 0..9
+   cap 50000 | . . . . . . . . . .
+       41667 | . . . . . . . . . .
+       33333 | . . . . . . . . . .
+       25000 | . # . . . . . . . .
+       16667 | . # . . . . . . . #
+        8333 | . # . . # . # # . #
+           0 +---------------------
+             00 01 02 03 04 05 06 07 08 09
+```
+
+| Slot | Phase | Nettozeilen / Net lines |
+|---:|---|---:|
+| 0 | Initialisierung / Initialization | 954 |
+| 1 | Spec-Kit-Batch / Spec Kit batch | 26519 |
+| 2 | Publikation / Publication | 6168 |
+| 3 | CI und 003 / CI and 003 | 1523 |
+| 4 | Governance-Ausbau / Governance expansion | 10769 |
+| 5 | Projektpflege / Project maintenance | 686 |
+| 6 | Governance-Presets / Governance presets | 8733 |
+| 7 | Autonome Laeufe / Autonomous runs | 9639 |
+| 8 | Paralleler Feldtest / Parallel field test | 5323 |
+| 9 | Flottenrollout / Fleet rollout | 19465 |
+
+Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
+
+*Stable slots keep the phase comparison consistent when values are missing or added later.*
+
+### Beschleunigungsfaktoren / Acceleration Factors
+
+```text
+Scale: 0..100x
+80 lines/day       [###########.........] 53.1x
+100 lines/day      [#########...........] 42.5x
+```
+
+Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
+
+*The factors compare visible delivery density with documented manual references. They do not measure working time.*
+
+### Durchsatzvergleich / Throughput Comparison
+
+```text
+Scale: 0..5000 lines/day
+Experienced manual [#...................] 80
+Thorsten solo      [#...................] 100
+Visible repository [#################...] 4251.0
+```
+
+Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
+
+*The common scale compares references with visible delivery density. It does not attribute Git activity to a person or AI by default.*
+
+### Textalternative / Text Alternative
+
+DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-19. Es enthaelt 67 aktive und 291 inaktive vergangene Tage. Peak-Tag: 2026-07-08 / 40319. Peak-Woche: 2026-07-05 / 121867. Laengste Serie: 24 Tage (2026-06-26..2026-07-19).
+
+*EN: The window starts on 2025-07-27 and ends on 2026-07-19. It contains 67 active and 291 inactive elapsed days. Peak day: 2026-07-08 / 40319. Peak week: 2026-07-05 / 121867. Longest streak: 24 days (2026-06-26..2026-07-19).*
+
+| Monat / Month | Geaenderte Textzeilen / Changed text lines |
+|---|---:|
+| 2025-08 | 0 |
+| 2025-09 | 0 |
+| 2025-10 | 0 |
+| 2025-11 | 0 |
+| 2025-12 | 0 |
+| 2026-01 | 0 |
+| 2026-02 | 0 |
+| 2026-03 | 5591 |
+| 2026-04 | 72825 |
+| 2026-05 | 2454 |
+| 2026-06 | 49106 |
+| 2026-07 | 191601 |
+
+<!-- project-statistics-v2:end -->

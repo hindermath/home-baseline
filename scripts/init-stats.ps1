@@ -29,7 +29,7 @@ function Get-AsciiBar {
     $rounded = [int]([Math]::Round($Score / 5.0) * 5)
     $filled  = [Math]::Min([int]($rounded / 5), 20)
     $empty   = 20 - $filled
-    $bar     = ('█' * $filled) + ('░' * $empty)
+    $bar     = ('#' * $filled) + ('.' * $empty)
     return "$bar $Score%"
 }
 

@@ -87,6 +87,16 @@ repo_name_from_url() {
   printf '%s' "${repo_url##*/}"
 }
 
+json_escape() {
+  local value="$1"
+  value="${value//\\/\\\\}"
+  value="${value//\"/\\\"}"
+  value="${value//$'\n'/\\n}"
+  value="${value//$'\r'/\\r}"
+  value="${value//$'\t'/\\t}"
+  printf '%s' "$value"
+}
+
 while [ $# -gt 0 ]; do
   case "$1" in
     --preview|--dry-run) OPT_PREVIEW=true; OPT_DRY_RUN=true ;;
@@ -661,6 +671,31 @@ STATSDOC
   step_done
 fi
 
+stats_config="${TARGET_DIR}/docs/project-statistics.config.json"
+if [ -f "$stats_config" ] && ! $OPT_FORCE; then
+  step_skip "Statistikprofil-2-Konfiguration vorhanden"
+else
+  repository_name_json="$(json_escape "$PROJECT_NAME")"
+  cat > "$stats_config" <<STATSCONFIG
+{
+  "\$schema": "../scripts/config/project-statistics.schema.json",
+  "schemaVersion": 1,
+  "methodologyVersion": 2,
+  "repositoryName": "${repository_name_json}",
+  "timeZone": "Europe/Berlin",
+  "activityWindowWeeks": 52,
+  "references": {
+    "conservativeLinesPerDay": 80,
+    "thorstenLinesPerDay": 125
+  },
+  "phases": [],
+  "excludedPaths": [],
+  "categoryOverrides": []
+}
+STATSCONFIG
+  step_done "Statistikprofil-2-Konfiguration"
+fi
+
 # ─── Step 7e: Secure-Development-Hardening vorbereiten ──────────────────────
 step_start "Secure-Development-Hardening vorbereiten"
 if [ ! -f "$SECURE_DEV_LIB" ] || ! declare -F sdh_prepare_repo >/dev/null 2>&1; then
@@ -834,6 +869,21 @@ else
   git -C "$TARGET_DIR" add -A >/dev/null 2>&1
   git -C "$TARGET_DIR" commit -m "feat: initial project bootstrap — ${PROJECT_NAME}" >/dev/null 2>&1
   step_done
+fi
+
+step_start "ASCII-Statistikprofil 2 initialisieren"
+if [ ! -f "${TARGET_DIR}/scripts/render-project-statistics.sh" ]; then
+  step_warn "Statistikrenderer nicht gefunden"
+elif bash "${TARGET_DIR}/scripts/render-project-statistics.sh" --repo "$TARGET_DIR" >/dev/null; then
+  if [ -n "$(git -C "$TARGET_DIR" status --porcelain -- docs/project-statistics.md)" ]; then
+    git -C "$TARGET_DIR" add docs/project-statistics.md >/dev/null 2>&1
+    git -C "$TARGET_DIR" commit -m "docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null 2>&1
+  fi
+  step_done
+else
+  step_warn "ASCII-Statistikprofil 2 konnte nicht initialisiert werden"
 fi
 
 # ─── Step 13: gh repo create ─────────────────────────────────────────────────

@@ -189,14 +189,16 @@ At the start of each session, detect the OS and call the matching script variant
 - Update it after each completed feature/Lastenheft, each completed Spec-Kit phase, or when explicitly requested.
 - Keep the `## Fortschreibungsprotokoll` section chronological: oldest entry first, newest entry last.
 - Keep `## Gesamtstatistik` as the final top-level section; do not append later top-level sections after it.
-- Place compact ASCII-only diagrams directly below the metrics table inside `## Gesamtstatistik`; include at least artefact mix, phase volume, conservative reference bars, acceleration factors, and the experienced/Thorsten-Solo/AI-visible comparison.
-- ASCII X/Y charts must use fixed-width X slots: every documented phase keeps its slot, missing values stay blank, and overly wide series are split into labelled blocks such as `0..15`, `16..31`, and `32..47`.
-- Add a short CEFR-B2 explanation below every ASCII diagram in German first and English second.
-- Use text-friendly presentation only: no color-dependent signalling and no symbols that are unreadable on Braille displays or screen readers.
+- Treat `docs/project-statistics.config.json` plus the marked Profile 2 block as the binding data and presentation contract; update it with `render-project-statistics.*`.
+- Profile 2 includes KPIs, artifact mix, 52-week daily activity, weekly and cumulative volume, phase or monthly volume, speedup gauges, and the experienced/Thorsten-Solo/AI-visible comparison.
+- Charts use ASCII only: heatmap digits `0..4`, `-` for days not elapsed, and `#`/`.` gauges. Do not use Unicode blocks, color-only signals, or `\ | /` as an intensity scale.
+- Keep phase slots stable and split series into blocks of 16. If no reliable phase data exists, show monthly volume without inventing phases.
+- Keep every chart at 100 characters or fewer and add exact values plus a CEFR-B2 text alternative in German first and English second.
+- Methodology v2 uses Git-tracked text and gross changes from non-merge commits while excluding the ledger, `STATS.md`, and binaries.
 - Manual references for this repository are `80` lines/workday (conservative) and `100` lines/workday (Thorsten-Solo, scripting infrastructure).
 - Default C#/.NET Thorsten-Solo baseline is `125` lines/workday unless the individual repository documents a justified deviation.
 - TVöD conversion basis: `7.8 h` (`7h 48m`) per workday, `21.5` workdays per month, 30 vacation days until the end of 2026, 31 from 2027 onward.
-- Shared guidance or statistics-method changes must update `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` together in the same change.
+- Shared guidance or statistics-method changes must update all five shared agent surfaces, including `.github/agents/copilot-instructions.md`, together in the same change.
 
 ## Inklusion & Barrierefreiheit / Inclusion & Accessibility
 

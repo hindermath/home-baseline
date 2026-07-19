@@ -388,6 +388,23 @@ Stand / As of: $today — *Erste Einträge nach dem initialen Arbeitspaket eintr
 | Repo-weiter Speedup gg. Thorsten-Referenz | — |
 "@ | Set-Content (Join-Path $workspaceDir 'docs/project-statistics.md') -Encoding UTF8
 
+    [ordered]@{
+        '$schema' = '../scripts/config/project-statistics.schema.json'
+        schemaVersion = 1
+        methodologyVersion = 2
+        repositoryName = $WorkspaceName
+        timeZone = 'Europe/Berlin'
+        activityWindowWeeks = 52
+        references = [ordered]@{
+            conservativeLinesPerDay = 80
+            thorstenLinesPerDay = 100
+        }
+        phases = @()
+        excludedPaths = @()
+        categoryOverrides = @()
+    } | ConvertTo-Json -Depth 10 |
+        Set-Content (Join-Path $workspaceDir 'docs/project-statistics.config.json') -Encoding UTF8
+
     "# STATS.md -- $WorkspaceName`n`n## Überblick / Overview`n`nCompliance-Historie -- Compliance History`n`n## Verwendung / Usage`n`nJeder ``check-homogeneity.sh``-Aufruf fügt hier einen Eintrag hinzu.`n`nEach ``check-homogeneity.sh`` run appends an entry here.`n" |
         Set-Content (Join-Path $workspaceDir 'STATS.md') -Encoding UTF8
 
@@ -476,6 +493,27 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 "@
     & git -C $workspaceDir commit -m $commitMsg
     Write-Host '    OK  Initialer Commit erstellt' -ForegroundColor Green
+
+    $statisticsRenderer = Join-Path $workspaceDir 'scripts/render-project-statistics.ps1'
+    if (Test-Path $statisticsRenderer) {
+        Write-Host '→ Initialisiere ASCII-Statistikprofil 2 …'
+        & pwsh -NoProfile -File $statisticsRenderer -Repo $workspaceDir 2>$null | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            $statisticsStatus = (& git -C $workspaceDir status --porcelain -- docs/project-statistics.md 2>$null | Out-String).Trim()
+            if ($statisticsStatus) {
+                & git -C $workspaceDir add docs/project-statistics.md
+                $statisticsCommitMessage = @'
+docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+'@
+                & git -C $workspaceDir commit -m $statisticsCommitMessage
+            }
+            Write-Host '    OK  ASCII-Statistikprofil 2 initialisiert' -ForegroundColor Green
+        } else {
+            Write-Host '    WARN: ASCII-Statistikprofil 2 konnte nicht initialisiert werden' -ForegroundColor Yellow
+        }
+    }
 }
 
 # --- Remote-Repo erstellen und pushen ------------------------------------------

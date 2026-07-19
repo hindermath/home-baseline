@@ -48,9 +48,9 @@ make_bar() {
   local empty=$(( 20 - filled ))
   local bar=""
   local i=0
-  while [ $i -lt $filled ]; do bar="${bar}█"; i=$((i+1)); done
+  while [ $i -lt $filled ]; do bar="${bar}#"; i=$((i+1)); done
   i=0
-  while [ $i -lt $empty ]; do bar="${bar}░"; i=$((i+1)); done
+  while [ $i -lt $empty ]; do bar="${bar}."; i=$((i+1)); done
   printf '%s %d%%' "$bar" "$score"
 }
 

@@ -508,6 +508,28 @@ Stand / As of: $today — *Erste Einträge nach dem initialen Arbeitspaket eintr
     Step-Done
 }
 
+$statsConfig = Join-Path $TargetDir 'docs/project-statistics.config.json'
+if ((Test-Path $statsConfig) -and -not $Force) {
+    Step-Skip "Statistikprofil-2-Konfiguration vorhanden"
+} else {
+    [ordered]@{
+        '$schema' = '../scripts/config/project-statistics.schema.json'
+        schemaVersion = 1
+        methodologyVersion = 2
+        repositoryName = $ProjectName
+        timeZone = 'Europe/Berlin'
+        activityWindowWeeks = 52
+        references = [ordered]@{
+            conservativeLinesPerDay = 80
+            thorstenLinesPerDay = 125
+        }
+        phases = @()
+        excludedPaths = @()
+        categoryOverrides = @()
+    } | ConvertTo-Json -Depth 10 | Set-Content $statsConfig -Encoding UTF8
+    Step-Done "Statistikprofil-2-Konfiguration"
+}
+
 # 7e. Secure-Development-Hardening vorbereiten
 Step-Start "Secure-Development-Hardening vorbereiten"
 if (-not (Test-Path $SecureDevLib) -or -not (Get-Command Invoke-SdhPrepareRepo -ErrorAction SilentlyContinue)) {
@@ -657,6 +679,29 @@ else {
     git -C $TargetDir add -A 2>$null | Out-Null
     git -C $TargetDir commit -m "feat: initial project bootstrap -- $ProjectName" 2>$null | Out-Null
     Step-Done
+}
+
+Step-Start "ASCII-Statistikprofil 2 initialisieren"
+$statisticsRenderer = Join-Path $TargetDir 'scripts/render-project-statistics.ps1'
+if (-not (Test-Path $statisticsRenderer)) {
+    Step-Warn "Statistikrenderer nicht gefunden"
+} else {
+    & pwsh -NoProfile -File $statisticsRenderer -Repo $TargetDir 2>$null | Out-Null
+    if ($LASTEXITCODE -eq 0) {
+        $statisticsStatus = (& git -C $TargetDir status --porcelain -- docs/project-statistics.md 2>$null | Out-String).Trim()
+        if ($statisticsStatus) {
+            git -C $TargetDir add docs/project-statistics.md 2>$null | Out-Null
+            $statisticsCommitMessage = @'
+docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+'@
+            git -C $TargetDir commit -m $statisticsCommitMessage 2>$null | Out-Null
+        }
+        Step-Done
+    } else {
+        Step-Warn "ASCII-Statistikprofil 2 konnte nicht initialisiert werden"
+    }
 }
 
 # 13. Repo create

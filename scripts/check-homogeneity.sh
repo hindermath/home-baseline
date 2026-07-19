@@ -376,6 +376,43 @@ check_antigravity_integration() {
   fi
 }
 
+check_statistics_profile() {
+  local dir="$1"
+  local ledger="${dir}/docs/project-statistics.md"
+  local config="${dir}/docs/project-statistics.config.json"
+  local renderer="${dir}/scripts/render-project-statistics.sh"
+
+  [ -f "$ledger" ] || return 0
+  if [ ! -f "$config" ]; then
+    emit_result "FAIL" "docs/project-statistics.config.json" \
+      "ASCII Statistics Profile 2 configuration missing" "$dir"
+    return
+  fi
+  if [ ! -f "$renderer" ]; then
+    emit_result "FAIL" "scripts/render-project-statistics.sh" \
+      "ASCII Statistics Profile 2 renderer missing" "$dir"
+    return
+  fi
+  if ! command -v pwsh >/dev/null 2>&1; then
+    emit_result "FAIL" "pwsh" \
+      "PowerShell 7 required by ASCII Statistics Profile 2 renderer" "$dir"
+    return
+  fi
+
+  if bash "$renderer" --repo "$dir" --check-only --json >/dev/null 2>&1; then
+    emit_result "PASS" "docs/project-statistics.md" \
+      "ASCII Statistics Profile 2 current" "$dir"
+  else
+    renderer_exit=$?
+    case "$renderer_exit" in
+      1) renderer_message="ASCII Statistics Profile 2 drift" ;;
+      2) renderer_message="ASCII Statistics Profile 2 validation or tooling error" ;;
+      *) renderer_message="ASCII Statistics Profile 2 unexpected renderer exit ${renderer_exit}" ;;
+    esac
+    emit_result "FAIL" "docs/project-statistics.md" "$renderer_message" "$dir"
+  fi
+}
+
 # ─── Header ──────────────────────────────────────────────────────────────────
 
 if ! $OPT_JSON; then
@@ -405,6 +442,7 @@ while IFS='|' read -r level dir _type; do
     check_file_presence "$dir" "$req_file"
     check_markdown_file "$dir" "$req_file"
   done
+  check_statistics_profile "$dir"
 
   # README.md content checks (A11Y, Spec-kit, Azubis)
   check_readme_sections "$dir"
@@ -559,9 +597,9 @@ else
     bar_empty=$(( 10 - bar_filled ))
     bar=""
     j=0
-    while [ $j -lt $bar_filled ]; do bar="${bar}█"; j=$((j+1)); done
+    while [ $j -lt $bar_filled ]; do bar="${bar}#"; j=$((j+1)); done
     j=0
-    while [ $j -lt $bar_empty ]; do bar="${bar}░"; j=$((j+1)); done
+    while [ $j -lt $bar_empty ]; do bar="${bar}."; j=$((j+1)); done
     short_name="${d/#$HOME/~}"
     printf "%-30s [%s] %3d %%  (%d/%d checks)\n" \
       "$short_name" "$bar" "$ls_score" "$lp" "$lt"

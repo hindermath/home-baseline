@@ -164,14 +164,16 @@ Zu Beginn jeder Session das Betriebssystem ermitteln und die passende Skript-Var
 - Nach jedem abgeschlossenen Feature/Lastenheft, nach jeder abgeschlossenen Spec-Kit-Phase und auf explizite Anforderung aktualisieren.
 - `## Fortschreibungsprotokoll` chronologisch halten: ältester Eintrag oben, neuester unten.
 - `## Gesamtstatistik` bleibt immer der letzte Top-Level-Abschnitt.
-- Direkt unter der Kennzahlen-Tabelle in `## Gesamtstatistik` kompakte ASCII-only-Diagramme pflegen: mindestens Artefaktmix, Phasenvolumen, konservative Referenz-Balken, Beschleunigungsfaktoren und Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
-- ASCII-X/Y-Diagramme verwenden feste X-Slots: jeder dokumentierte Phasenwert behält seinen Slot, fehlende Werte bleiben leer, und zu breite Reihen werden in beschriftete Blöcke wie `0..15`, `16..31` und `32..47` geteilt.
-- Jedes ASCII-Diagramm bekommt eine kurze CEFR-B2-Erklärung in DE zuerst, EN danach.
-- Textfreundlich bleiben: keine farbabhängigen Signale und keine Symbole, die auf Braille-Zeilen oder mit Screenreadern schlecht lesbar sind.
+- `docs/project-statistics.config.json` und der markierte Profil-2-Block bilden den verbindlichen Vertrag; mit `render-project-statistics.*` aktualisieren.
+- Profil 2 zeigt KPI, Artefaktmix, 52-Wochen-Tagesaktivität, Wochen- und kumulatives Volumen, Phasen- oder Monatsvolumen, Speedup-Gauges und den Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
+- Nur ASCII verwenden: Heatmap `0..4`, `-` für noch nicht abgelaufene Tage, Gauges `#`/`.`. Keine Unicode-Blöcke, Farbcodierung oder `\ | /` als Intensitätsskala.
+- Phasenslots stabil halten und ab 17 Einträgen in 16er-Blöcke teilen. Ohne belastbare Phasendaten Monatsvolumen zeigen und keine Phasen erfinden.
+- Jedes Diagramm bleibt höchstens 100 Zeichen breit und erhält genaue Werte sowie eine CEFR-B2-Textalternative in DE zuerst, EN danach.
+- Methodik v2 nutzt Git-getrackten Text und Bruttoänderungen aus Nicht-Merge-Commits; Ledger, `STATS.md` und Binärdaten bleiben ausgeschlossen.
 - Für dieses Repository gelten `80` Zeilen/Arbeitstag als konservative Referenz und `100` Zeilen/Arbeitstag als Thorsten-Solo-Basis für Scripting-Infrastruktur.
 - Gemeinsame Default-Basis für C#/.NET-Repositories: `125` Zeilen/Arbeitstag, sofern das jeweilige Repo keinen abweichenden, begründeten Wert dokumentiert.
 - TVöD-Basis: `7.8 h` pro Arbeitstag, `21.5` Arbeitstage pro Monat, 30 Urlaubstage bis Ende 2026 und 31 ab 2027.
-- Änderungen an Statistikmethodik oder gemeinsamer Guidance immer gleichzeitig in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` und `.github/copilot-instructions.md` pflegen.
+- Änderungen an Statistikmethodik oder gemeinsamer Guidance immer gleichzeitig in allen fünf Agentenflächen einschließlich `.github/agents/copilot-instructions.md` pflegen.
 
 ## Inklusion & Barrierefreiheit / Inclusion & Accessibility
 

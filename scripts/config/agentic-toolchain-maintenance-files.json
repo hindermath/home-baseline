@@ -28,6 +28,38 @@
       "executable": false
     },
     {
+      "path": "scripts/render-project-statistics.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/render-project-statistics.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/init-stats.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/init-stats.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/check-homogeneity.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/check-homogeneity.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-stats.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-stats.ps1",
+      "executable": false
+    },
+    {
       "path": "scripts/config/brew-apps-registry.json",
       "executable": false
     },
@@ -57,6 +89,10 @@
     },
     {
       "path": "scripts/config/spec-kit-governance-presets.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/project-statistics.schema.json",
       "executable": false
     },
     {
@@ -96,6 +132,10 @@
       "executable": false
     },
     {
+      "path": "scripts/templates/project-statistics.config.json.tmpl",
+      "executable": false
+    },
+    {
       "path": ".github/workflows/powershell-analysis.yml",
       "executable": false
     },
@@ -117,6 +157,10 @@
     },
     {
       "path": "docs/man/install-spec-kit-governance-presets.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/render-project-statistics.1.md",
       "executable": false
     }
   ]
