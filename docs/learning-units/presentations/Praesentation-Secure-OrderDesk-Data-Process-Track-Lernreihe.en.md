@@ -80,7 +80,7 @@ EuFPA builds three interlocking but individually independent systems for Secure 
 - secure development guideline
 - 12 individual checklists and compendium
 - related documents
-- seven governance presets
+- eight governance presets
 - `Applicable`, `N/A`, `Open` with rationale
 
 ---

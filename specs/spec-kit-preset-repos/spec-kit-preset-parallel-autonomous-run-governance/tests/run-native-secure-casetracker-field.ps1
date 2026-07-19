@@ -1,3 +1,4 @@
+#Requires -Version 7.0
 <#
 .SYNOPSIS
     Bereitet den nativen Secure-CaseTracker-Feldtest vor und fuehrt ihn aus.

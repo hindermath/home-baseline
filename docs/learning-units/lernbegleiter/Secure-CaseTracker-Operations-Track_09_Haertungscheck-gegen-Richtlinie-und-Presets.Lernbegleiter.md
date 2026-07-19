@@ -30,11 +30,11 @@ means deliberately making a system more resilient and closing open gaps. A **har
 structured cross-check: what does the rule require, what is met, what is missing, and what has which priority?
 
 **DE:** In dieser Einheit lernst du, eine Härtungsmatrix aufzubauen, jede Anforderung gegen Richtlinie und
-Presets zu prüfen, offene Punkte ehrlich mit Priorität zu notieren und die sieben Governance-Presets als
+Presets zu prüfen, offene Punkte ehrlich mit Priorität zu notieren und die acht Governance-Presets als
 prüfbaren Rahmen zu nutzen.
 
 **EN:** In this unit you learn to build a hardening matrix, check each requirement against the guideline and
-presets, honestly note open items with a priority, and use the seven governance presets as a verifiable frame.
+presets, honestly note open items with a priority, and use the eight governance presets as a verifiable frame.
 
 ## Kernbegriffe / Key Terms
 
@@ -50,13 +50,15 @@ presets, honestly note open items with a priority, and use the seven governance 
 ## Erklärung Schritt für Schritt / Step-by-Step Explanation
 
 **DE:** **Schritt 1 – Prüfrahmen festlegen.** Der Rahmen ist die Richtlinie Sichere Entwicklung plus die
-sechs Presets: `security-governance`, `architecture-governance`, `isaqb-architecture-governance`,
-`a11y-governance`, `cross-platform-governance` und `agent-parity-governance`. Sie geben vor, was geprüft
-wird. Ein klarer Rahmen verhindert, dass die Prüfung beliebig wird.
+acht Presets: `security-governance`, `architecture-governance`, `isaqb-architecture-governance`,
+`a11y-governance`, `cross-platform-governance`, `agent-parity-governance`,
+`autonomous-run-governance` und `parallel-autonomous-run-governance`. Sie geben vor, was geprüft wird.
+Ein klarer Rahmen verhindert, dass die Prüfung beliebig wird.
 
-**EN:** **Step 1 – Define the check frame.** The frame is the Secure Development Guideline plus the six
+**EN:** **Step 1 – Define the check frame.** The frame is the Secure Development Guideline plus the eight
 presets: `security-governance`, `architecture-governance`, `isaqb-architecture-governance`,
-`a11y-governance`, `cross-platform-governance`, and `agent-parity-governance`. They define what is checked. A
+`a11y-governance`, `cross-platform-governance`, `agent-parity-governance`,
+`autonomous-run-governance`, and `parallel-autonomous-run-governance`. They define what is checked. A
 clear frame prevents the review from becoming arbitrary.
 
 **DE:** **Schritt 2 – Härtungsmatrix aufbauen.** Lege eine Tabelle an: pro Anforderung eine Zeile mit Status
@@ -222,7 +224,7 @@ is at the same time the subject of the `a11y-governance` preset.
 
 **DE:** Ich kann …
 
-- [ ] den Prüfrahmen aus Richtlinie und den sechs Presets benennen.
+- [ ] den Prüfrahmen aus Richtlinie und den acht Presets benennen.
 - [ ] eine Härtungsmatrix mit Status, Lücke, Priorität und Nachweis aufbauen.
 - [ ] positive Aussagen nur mit Nachweis, sonst `Open`/`N/A` mit Begründung führen.
 - [ ] offene Härtungspunkte nach Risiko und Aufwand priorisieren.
@@ -230,7 +232,7 @@ is at the same time the subject of the `a11y-governance` preset.
 
 **EN:** I can …
 
-- [ ] name the check frame of the guideline and the seven presets.
+- [ ] name the check frame of the guideline and the eight presets.
 - [ ] build a hardening matrix with status, gap, priority, and evidence.
 - [ ] keep positive claims only with evidence, else `Open`/`N/A` with a rationale.
 - [ ] prioritize open hardening items by risk and effort.

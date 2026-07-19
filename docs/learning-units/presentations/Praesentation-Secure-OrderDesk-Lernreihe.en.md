@@ -215,7 +215,7 @@ Spec Kit accompanies the SDD tasks, but it does not replace occupation learning.
 - Secure Programming Guideline
 - Secure Development Sandbox Guideline
 - 12 checklists and compendium
-- six installed Spec Kit governance presets
+- eight installed Spec Kit governance presets
 - audit-ready documentation with status, evidence, and rationale
 - Special focus: parameterized SQL access and protection of customer/order data
 
@@ -228,7 +228,7 @@ For a relational domain, SQL security and privacy are especially prominent.
 
 ---
 
-# The Seven Governance Presets
+# The Eight Governance Presets
 
 | Preset | Focus |
 |---|---|

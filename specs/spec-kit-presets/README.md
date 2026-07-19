@@ -1,6 +1,6 @@
 # Spec Kit Preset Scaffolds
 
-This directory contains local scaffolds for the eight standard and optional
+This directory contains local scaffolds for the eight standard
 Spec Kit governance presets derived from the `home-baseline` governance work.
 
 Target split:
@@ -12,7 +12,7 @@ Target split:
 - `cross-platform-governance` — version `0.2.0`
 - `agent-parity-governance` — version `0.3.0`
 - `autonomous-run-governance` — version `0.2.2`
-- `parallel-autonomous-run-governance` — version `0.1.2`
+- `parallel-autonomous-run-governance` — version `0.2.0`
 
 The standard eight-preset profile requires `spec-kit >= 0.8.3`.
 The original six presets depend on the `wrap` and `append` composition
@@ -107,8 +107,8 @@ Current status:
   resume commands, adds a mandatory-rule delta audit for preset drift, provides
   a detailed operating guide, and distinguishes the readable `Deliver` heading
   from canonical `Publish`, `Review`, and `MergeAndSync` run-state stages
-- `parallel-autonomous-run-governance` v0.1.2 is the current experimental,
-  opt-in preset for bounded parallel autonomous campaigns
+- `parallel-autonomous-run-governance` v0.2.0 is the validated eighth standard
+  preset; starting a parallel campaign remains explicitly delegable
 
 Recommended publication order:
 
@@ -131,7 +131,7 @@ specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
 specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.2.2.zip --priority 70
-specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.1.2.zip --priority 80
+specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.0.zip --priority 80
 ```
 
 Notes:

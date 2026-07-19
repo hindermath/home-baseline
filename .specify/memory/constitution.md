@@ -1,23 +1,31 @@
 <!--
 Sync Impact Report
-Version change: 1.14.0 -> 1.14.1
+Version change: 1.15.0 -> 1.16.0
 Modified principles:
-- Level-2 Project Environment Registry (normalize active Level-2 repository paths)
+- Spec Kit preset governance (promote parallel autonomous governance to the standard eight-preset profile)
 Added sections:
 - None
 Removed sections:
 - None
 Templates requiring updates:
-- None
+- ✅ scripts/templates/speckit-workflow-section.md
+- ✅ scripts/templates/AGENTS.md.tmpl
+- ✅ scripts/templates/CLAUDE.md.tmpl
+- ✅ scripts/templates/GEMINI.md.tmpl
+- ✅ scripts/templates/copilot-instructions.tmpl
 Runtime guidance requiring updates:
 - ✅ .specify/memory/constitution.md (mirror)
+- ✅ AGENTS.md
+- ✅ CLAUDE.md
+- ✅ GEMINI.md
+- ✅ .github/copilot-instructions.md
 New scripts:
 - None
 Follow-up TODOs:
-- None
+- None.
 -->
 
-# Constitution v1.14.1
+# Constitution v1.16.0
 
 # home-baseline Constitution
 
@@ -945,8 +953,9 @@ workspace family consists of:
 | `cross-platform-governance` | `v0.2.0` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.3.0` | `60` | synchronized agent guidance and agent-neutral Spec-Kit model routing across declared AI-agent files |
 | `autonomous-run-governance` | `v0.2.2` | `70` | permission-bounded, evidence-first governance for explicitly delegated autonomous Spec Kit runs |
+| `parallel-autonomous-run-governance` | `v0.2.0` | `80` | isolated bounded campaigns, mixed runner profiles, cooperative stop/resume, provider-gated resumable consolidation, and declared post-merge closeout |
 
-`autonomous-run-governance` is installed as part of the mandatory seven-preset
+`autonomous-run-governance` is installed as part of the mandatory eight-preset
 governance matrix. Installation does not authorize an autonomous run.
 `LocalImplementation` is its safe default; installation grants no remote write, merge, bypass,
 cancellation, secret, or provider-administration authority.
@@ -961,7 +970,17 @@ Analyze reruns; accepted scope and efficiency-only guidance remain unchanged.
 The readable generated-skill heading `Deliver` is not a run-state value;
 remote closeout persists only `Publish`, `Review`, or `MergeAndSync`.
 
-All seven governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint records applicability as `Applicable`, `N/A`, or `Open` and implementation separately as `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`, plus rationale, evidence path, owner, reviewer, residual risk, re-evaluation trigger, and follow-up. `N/A` keeps implementation at `Not Assessed` and always needs a rationale.
+`parallel-autonomous-run-governance` is also installed by default, but starting
+a campaign remains explicitly delegable work. It grants no worker additional
+remote, merge, bypass, cancellation, secret, or provider-administration
+authority. Its validated concurrency ceiling is three. Schema `1.1` supports
+per-worker runner profiles with agent-neutral model metadata, exact-head and
+review-aware provider preflights, resumable partial consolidation, cooperative
+stop during consolidation, and manifest-declared idempotent post-merge actions.
+Schema `1.0` artifacts remain readable, but their legacy merge form is not
+executed without migration to the provider-gated `1.1` contract.
+
+All eight governance presets MUST produce or require audit-ready Spec-Kit run evidence for applicable checks. Each relevant checkpoint records applicability as `Applicable`, `N/A`, or `Open` and implementation separately as `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`, plus rationale, evidence path, owner, reviewer, residual risk, re-evaluation trigger, and follow-up. `N/A` keeps implementation at `Not Assessed` and always needs a rationale.
 
 The central secure-development baseline is versioned by `docs/secure-development/baseline-manifest.json`. Its twelve individual checklists and 157 stable CL IDs are canonical; the compendium is generated and MUST pass `build-secure-development-docs.*` check mode. Reusable templates are separate from project evidence under `docs/security/secure-development/<date>-<scope>/`. Secure-development teaching starts with the first repository access and coding task and follows the year 1 to year 3 learning path. Registry-based baseline-only propagation MUST NOT modify Lastenhefte, project evidence, or start Spec Kit.
 
@@ -974,21 +993,22 @@ four agent guidance files, `scripts/templates/speckit-workflow-section.md`, and
 the matching agent templates under `scripts/templates/` in the same change.
 The deprecated compatibility matrix
 `scripts/config/spec-kit-autonomous-governance-presets.json` MUST remain
-identical to the canonical seven-preset matrix until it is removed in a later
+identical to the canonical eight-preset matrix until it is removed in a later
 breaking cleanup.
 
-All seven presets are published as standalone repositories under
-`https://github.com/hindermath/spec-kit-preset-*` and are included in the
-`github/spec-kit` community preset catalog. The original six have been listed
-since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified in the catalog
-on 2026-07-17. New MSL Level-2
+All eight presets are published as standalone repositories under
+`https://github.com/hindermath/spec-kit-preset-*`. The original six have been
+listed in the `github/spec-kit` community preset catalog since 2026-05-04;
+`autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
+`parallel-autonomous-run-governance` v0.2.0 was submitted to the community
+catalog as `github/spec-kit#3591`. New MSL Level-2
 projects SHOULD install presets from the central matrix during Spec-Kit
 initialization. For C#/.NET and learning Level-2 projects, the default subset is
-all seven presets unless the project documents a narrow reason to omit one.
+all eight presets unless the project documents a narrow reason to omit one.
 Existing C# Level-2 projects
 `RiderProjects/TinyPl0`, `RiderProjects/TinyCalc`, `RiderProjects/TuiVision`,
 and `RiderProjects/InventarWorkerService` are the reference rollout set for
-all-seven installation.
+all-eight installation.
 
 Use `install-spec-kit-governance-presets.*` for normal installation so versions
 and priorities stay centralized in the matrix. Community catalog and direct
@@ -1013,7 +1033,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.15.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-17
+**Version**: 1.16.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-19
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

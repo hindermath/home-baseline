@@ -80,7 +80,7 @@ EuFPA baut für Secure Trader drei ineinandergreifende, aber je eigenständige S
 - Richtlinie Sichere Entwicklung
 - 12 Einzel-Checklisten und Checklistensammelband
 - mitgeltende Dokumente
-- sieben Governance-Presets
+- acht Governance-Presets
 - `Applicable`, `N/A`, `Open` mit Begründung
 
 ---

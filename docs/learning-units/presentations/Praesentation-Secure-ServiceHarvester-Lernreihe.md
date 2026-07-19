@@ -196,7 +196,7 @@ Spec Kit begleitet die SDD-Aufgaben, ersetzt aber nicht das Berufsbildlernen.
 - Leitlinie Sichere Programmierung
 - Leitlinie Sichere Entwicklungs-Sandbox
 - 12 Checklisten und Sammelband
-- sechs installierte Spec-Kit-Governance-Presets
+- acht installierte Spec-Kit-Governance-Presets
 - Auditfähige Dokumentation mit Status, Evidenz und Begründung
 
 ::: notes
@@ -207,7 +207,7 @@ Sicherheit entsteht aus Anforderungen, Architektur, Code, Tests, Betrieb und Nac
 
 ---
 
-# Die sieben Governance-Presets
+# Die acht Governance-Presets
 
 | Preset | Fokus |
 |---|---|

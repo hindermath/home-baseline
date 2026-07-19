@@ -62,7 +62,7 @@ Diese Präsentation führt in die Lernreihe ein. Sie ersetzt keinen Spec-Kit-Lau
 - Richtlinie Sichere Entwicklung
 - 12 Einzel-Checklisten und Checklistensammelband
 - mitgeltende Dokumente
-- sieben Governance-Presets
+- acht Governance-Presets
 - `Applicable`, `N/A`, `Open` mit Begründung
 
 ---

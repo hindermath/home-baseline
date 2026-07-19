@@ -10,8 +10,9 @@
 - [x] T008 Add deterministic fixtures for all topologies and failure modes.
 - [x] T009 Run 13 local real-agent smoke workers natively on the authorized
   development Mac.
-- [x] T010 Publish protected experimental repository and v0.1.0.
-- [ ] T011 Run Secure CaseTracker Units 00-03 across six MSL repositories
+- [x] T010 Publish protected experimental repository and the v0.1.0-v0.1.2
+  development line.
+- [x] T011 Run Secure CaseTracker Units 00-03 across six MSL repositories
   natively under the explicit, temporary native and GitHub-Billing development
   overrides.
-- [ ] T012 Promote field findings, v0.2.0, standard matrix, and catalog entry.
+- [x] T012 Promote field findings, v0.2.0, standard matrix, and catalog entry.

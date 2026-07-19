@@ -64,7 +64,7 @@
 ## Governance und Nachweise / Governance and Evidence
 
 - Richtlinie Sichere Entwicklung, 12 Einzel-Checklisten, Checklistensammelband und mitgeltende Dokumente werden als lokale Arbeitsgrundlage erwartet.
-- Die sieben Governance-Presets aus der zentralen Matrix sind für spätere MSL-Level-2-Repos Voraussetzung.
+- Die acht Governance-Presets aus der zentralen Matrix sind für spätere MSL-Level-2-Repos Voraussetzung.
 - Nicht anwendbare Punkte werden als `N/A` mit Begründung dokumentiert.
 - Offene Punkte werden als `Open` mit Folgeaktion, Risiko und Priorität dokumentiert.
 - Jede positive Aussage zur Einhaltung verweist auf konkrete Evidenz.

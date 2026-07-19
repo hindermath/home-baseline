@@ -156,7 +156,7 @@ Before installation:
 3. Keep the repository's agent guidance and constitution under version control.
 4. Decide which remote actions the current run may perform.
 5. Install the normal governance presets first when the project uses the
-   recommended seven-preset composition.
+   recommended eight-preset composition.
 6. Have `bash` plus Python on macOS/Linux or PowerShell 7 on Windows for the
    bundled validators.
 
@@ -574,7 +574,7 @@ Zustandsvokabular geschlossen: Im Run State gelten `Publish`, `Review` oder
 
 - optional and stackable; no Spec Kit core patch required
 - Spec Kit `>=0.8.3`
-- priority `70` after the standard seven-preset matrix
+- priority `70` within the standard eight-preset matrix
 - Bash/Python and PowerShell validator parity
 - provider-neutral evidence schema
 - agent-vendor-neutral workflow contracts

@@ -65,11 +65,12 @@ or permission boundaries.
 
 ## Boundaries
 
-- Version 0.1.0 is experimental and opt-in.
+- The v0.1.0-v0.1.2 development line is experimental and opt-in; v0.2.0 is
+  promoted only after field closeout.
 - No model name is prescribed.
 - Provider-specific merge behavior is supplied through a local runner profile.
-- The workspace standard matrix remains at seven presets until field validation
-  succeeds.
+- Following successful field validation, v0.2.0 is the eighth preset in the
+  workspace standard matrix with priority `80`.
 - The repository owner's 2026-07-18 instruction explicitly overrides
   Container-First only for the native macOS development smoke set and the
   Secure CaseTracker field campaign for this preset. The override is not a

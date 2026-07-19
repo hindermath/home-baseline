@@ -37,12 +37,12 @@ same reliable point.
 
 **DE:** Der spätere ServiceHarvester ist ein **langlaufender Dienst** (Worker). Als C#-Referenz dient das
 Projekt `InventarWorkerService`, ein Worker-Service-Projekttyp. In dieser Einheit lernst du, eine minimale
-Projektstruktur zu wählen, Build- und Testkommandos zu dokumentieren, die sieben Governance-Presets
+Projektstruktur zu wählen, Build- und Testkommandos zu dokumentieren, die acht Governance-Presets
 nachzuweisen und die lokale Secure-Development-Basis zu prüfen – ohne Fachlogik vorwegzunehmen.
 
 **EN:** The later ServiceHarvester is a **long-running service** (worker). The C# reference is the project
 `InventarWorkerService`, a worker-service project type. In this unit you learn to choose a minimal project
-structure, document build and test commands, prove the seven governance presets, and check the local
+structure, document build and test commands, prove the eight governance presets, and check the local
 secure-development baseline – without anticipating any domain logic.
 
 ## Kernbegriffe / Key Terms
@@ -89,12 +89,12 @@ wiederholen.
 (e.g. `dotnet test`, `go test ./...`, `cargo test`, `swift test`). Why document? Without noted commands a run
 is not reproducible, and others cannot repeat it.
 
-**DE:** **Schritt 4 – Governance und Secure-Development prüfen.** Weise die sieben Governance-Presets nach,
+**DE:** **Schritt 4 – Governance und Secure-Development prüfen.** Weise die acht Governance-Presets nach,
 z. B. mit `specify preset list`. Prüfe, ob `docs/secure-development/` als Arbeitsbasis vorhanden ist. Fehlt
 etwas, wird es als **Blocker** oder `Open` mit konkretem Behebungsweg dokumentiert – nicht stillschweigend
 übersprungen.
 
-**EN:** **Step 4 – Check governance and secure development.** Prove the seven governance presets, e.g. with
+**EN:** **Step 4 – Check governance and secure development.** Prove the eight governance presets, e.g. with
 `specify preset list`. Check whether `docs/secure-development/` exists as a working baseline. If something is
 missing, document it as a **blocker** or `Open` with a concrete fix path – do not silently skip it.
 
@@ -294,7 +294,7 @@ convenience.
 
 - [ ] genau eine MSL-Zielsprache wählen und ein minimales lauffähiges Projekt anlegen.
 - [ ] Build- und Testbefehle vollständig dokumentieren.
-- [ ] die sieben Governance-Presets und die Secure-Development-Basis nachweisen.
+- [ ] die acht Governance-Presets und die Secure-Development-Basis nachweisen.
 - [ ] fehlende Werkzeuge als Blocker oder `Open` statt als stille Lücke behandeln.
 - [ ] begründen, warum in diesem Schritt keine Fachlogik entsteht.
 - [ ] das Container-First-Gate anwenden: einen KI-Agenten nur im Container starten, nie auf dem Arbeitsplatz-Rechner.
@@ -303,7 +303,7 @@ convenience.
 
 - [ ] choose exactly one MSL target language and create a minimal runnable project.
 - [ ] fully document the build and test commands.
-- [ ] prove the seven governance presets and the secure-development baseline.
+- [ ] prove the eight governance presets and the secure-development baseline.
 - [ ] treat missing tools as a blocker or `Open` rather than a silent gap.
 - [ ] explain why no domain logic is created in this step.
 - [ ] apply the container-first gate: start an AI agent only inside the container, never on the workstation.

@@ -195,7 +195,7 @@ Spec Kit accompanies the SDD tasks, but it does not replace occupation learning.
 - Secure Programming Guideline
 - Secure Development Sandbox Guideline
 - 12 checklists and compendium
-- six installed Spec Kit governance presets
+- eight installed Spec Kit governance presets
 - audit-ready documentation with status, evidence, and rationale
 
 ::: notes
@@ -206,7 +206,7 @@ Security comes from requirements, architecture, code, tests, operation, and evid
 
 ---
 
-# The Seven Governance Presets
+# The Eight Governance Presets
 
 | Preset | Focus |
 |---|---|

@@ -22,7 +22,8 @@ of the required workspace toolchain.
 
 ## Delivery
 
-Implement and validate in Level 0, publish v0.1.0 in a protected standalone
+Implement and validate in Level 0, publish the experimental line from v0.1.0
+through the publication-alignment patch v0.1.2 in a protected standalone
 repository, then opt in the Secure CaseTracker coordinator and six language
 repositories. Promote to v0.2.0 and the standard eight-preset matrix only after
 the Units 00-03 field campaign succeeds.

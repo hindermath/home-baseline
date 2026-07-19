@@ -1218,13 +1218,13 @@ Der Ordner [`docs/secure-development/`](docs/secure-development/README.md) entha
 
 *The folder [`docs/secure-development/`](docs/secure-development/README.md) contains a generic, bilingual guide for secure development. It is aimed especially at IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects. The documents are organization-neutral while preserving the rigor of ISO/IEC 27001/27002-oriented secure development.*
 
-Der Bereich besteht aus Richtlinie, zwölf kanonischen Einzelchecklisten mit 157 stabilen CL-IDs, einem daraus generierten Sammelband, einem Lernpfad für Lehrjahr 1 bis 3 und vertieften mitgeltenden Dokumenten. `docs/secure-development/baseline-manifest.json` steuert Dateien und Versionen. Die Verzahnungsdatei verbindet Richtlinie, Checklisten, Dokumente und die sieben Governance-Presets. Projektnachweise liegen getrennt unter `docs/security/secure-development/<datum>-<scope>/` und verwenden die Statusachsen Anwendbarkeit und Umsetzung. Sicherheit beginnt mit dem ersten Repository-Zugriff und der ersten Programmieraufgabe.
+Der Bereich besteht aus Richtlinie, zwölf kanonischen Einzelchecklisten mit 157 stabilen CL-IDs, einem daraus generierten Sammelband, einem Lernpfad für Lehrjahr 1 bis 3 und vertieften mitgeltenden Dokumenten. `docs/secure-development/baseline-manifest.json` steuert Dateien und Versionen. Die Verzahnungsdatei verbindet Richtlinie, Checklisten, Dokumente und die acht Governance-Presets. Projektnachweise liegen getrennt unter `docs/security/secure-development/<datum>-<scope>/` und verwenden die Statusachsen Anwendbarkeit und Umsetzung. Sicherheit beginnt mit dem ersten Repository-Zugriff und der ersten Programmieraufgabe.
 
 *The area contains the guideline, twelve canonical individual checklists with 157 stable CL IDs, a generated compendium, a year 1-to-3 learning path, and expanded related documents. `baseline-manifest.json` controls files and versions. Project evidence is stored separately under `docs/security/secure-development/<date>-<scope>/` and uses separate applicability and implementation axes. Security starts with the first repository access and coding task.*
 
-Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative lokale Merkliste der GSDB-relevanten Repositories liegt ausserhalb des public Repos unter `~/.home-baseline/level2-repository-registry.json`. Im Repo bleibt nur `scripts/config/level2-repository-registry.example.json` als public-safe Vorlage. Level-2-Repositories werden beim Bootstrap standardmaessig unabhaengig vom MSL-Status als GSDB-pflichtig mit dem Sieben-Preset-Profil registriert; begruendete Ausnahmen muessen explizit gesetzt werden. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
+Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative lokale Merkliste der GSDB-relevanten Repositories liegt ausserhalb des public Repos unter `~/.home-baseline/level2-repository-registry.json`. Im Repo bleibt nur `scripts/config/level2-repository-registry.example.json` als public-safe Vorlage. Level-2-Repositories werden beim Bootstrap standardmaessig unabhaengig vom MSL-Status als GSDB-pflichtig mit dem Acht-Preset-Profil registriert; begruendete Ausnahmen muessen explizit gesetzt werden. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
 
-*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The local operational registry of GSDB-relevant repositories lives outside the public repo at `~/.home-baseline/level2-repository-registry.json`. The repository only keeps `scripts/config/level2-repository-registry.example.json` as a public-safe seed. Level-2 repositories default to GSDB-required with the seven-preset profile independently of MSL status; justified exceptions must be explicit. Existing repositories can be added later with the same tool.*
+*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The local operational registry of GSDB-relevant repositories lives outside the public repo at `~/.home-baseline/level2-repository-registry.json`. The repository only keeps `scripts/config/level2-repository-registry.example.json` as a public-safe seed. Level-2 repositories default to GSDB-required with the eight-preset profile independently of MSL status; justified exceptions must be explicit. Existing repositories can be added later with the same tool.*
 
 Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` prueft rein lesend. Ein normaler Lauf schreibt `docs/security/gsdb-self-assessment.md`, erzeugt oder aktualisiert `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md` und nimmt dieses Lastenheft in `Lastenheft_Abarbeitungsreihenfolge.md` auf. Der Preflight startet keinen Spec-Kit-Lauf; das erzeugte Lastenheft ist Intake fuer einen spaeter manuell gestarteten `/speckit-specify`-Lauf.
 
@@ -2580,17 +2580,21 @@ Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
 - [Community Presets Table](https://github.com/github/spec-kit/blob/main/docs/community/presets.md)
 - [Community Presets Catalog JSON](https://github.com/github/spec-kit/blob/main/presets/catalog.community.json)
 
-Die ursprünglichen sieben Governance-Presets sind seit 2026-05-04 im Spec-Kit
+Die ursprünglichen sechs Governance-Presets sind seit 2026-05-04 im Spec-Kit
 Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
-2026-07-17 verifiziert. Die direkte Installation über versionierte ZIP-URLs
-bleibt trotzdem die bevorzugte Variante, wenn ein Projekt einen exakt
-reproduzierbaren Preset-Stand pinnen soll.
+2026-07-17 verifiziert. `parallel-autonomous-run-governance` v0.2.0 ist
+eigenstaendig veroeffentlicht und wurde mit `github/spec-kit#3591` fuer den
+Community-Katalog eingereicht. Die direkte Installation über
+versionierte ZIP-URLs bleibt die bevorzugte Variante, wenn ein Projekt einen
+exakt reproduzierbaren Preset-Stand pinnen soll.
 
-*The original seven governance presets have been in the Spec-Kit community
+*The original six governance presets have been in the Spec-Kit community
 catalog since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified there
-on 2026-07-17. Direct installation via versioned ZIP URLs is still the
-preferred variant when a project should pin one exactly reproducible preset
-state.*
+on 2026-07-17. `parallel-autonomous-run-governance` v0.2.0 is published
+independently and was submitted to the community catalog as
+`github/spec-kit#3591`. Direct
+installation via versioned ZIP URLs is still the preferred variant when a
+project should pin one exactly reproducible preset state.*
 
 #### Welche Presets gibt es? / Which presets exist?
 
@@ -2613,13 +2617,14 @@ updated together.*
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.3.0` | `60` |
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.2.2` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.0` | `80` |
 
-Hinweis: Alle sieben Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begründung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
+Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begründung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
 
-*Note: All seven presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
+*Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
 `autonomous-run-governance` v0.2.2 mit Priorität `70` ist Teil der
-Standard-Siebenermatrix. Es ergänzt
+Standard-Achtermatrix. Es ergänzt
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume` und
 `speckit.autonomous-retrospective`. Ergänzt werden konvergente
@@ -2634,9 +2639,13 @@ lesbare Skill-Überschrift `Deliver` ist kein Run-State-Wert; für Remote-Closeo
 gelten `Publish`, `Review` oder `MergeAndSync`. Der bisherige Pfad
 [`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json)
 bleibt vorübergehend als deprecated Kompatibilitätsalias erhalten.
+Das Registrierungsprofil `standard-eight-governance-presets` ist der aktuelle
+Name. Die früheren Profilnamen `standard-six-governance-presets` und
+`standard-seven-governance-presets` werden beim erneuten Registrieren als
+Kompatibilitätsaliase auf dieselbe aktuelle Achtermatrix migriert.
 
 *`autonomous-run-governance` v0.2.2 at priority `70` is part of the standard
-seven-preset matrix. It adds
+eight-preset matrix. It adds
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume`, and
 `speckit.autonomous-retrospective`. It adds convergence-based
@@ -2650,6 +2659,27 @@ skill heading `Deliver` is not a run-state value; remote closeout uses
 `Publish`, `Review`, or `MergeAndSync`. The former
 [`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json)
 path remains temporarily as a deprecated compatibility alias.*
+*The current registry profile is `standard-eight-governance-presets`. On
+re-registration, the former profile names `standard-six-governance-presets`
+and `standard-seven-governance-presets` are compatibility aliases migrated to
+the same current eight-preset matrix.*
+
+`parallel-autonomous-run-governance` v0.2.0 mit Prioritaet `80` koordiniert
+ausdruecklich delegierte Kampagnen mit getrennten Worktrees und maximal drei
+gleichzeitig aktiven Workern. Schema `1.1` erlaubt `runnerProfile` je Worker,
+agentenneutrale optionale Modell-/Reasoning-Metadaten, barrierearme Text- und
+JSON-Statusausgabe, Stop/Resume waehrend Konsolidierung, exakte
+Head-/Review-/Check-Preflights, fortsetzbare Teilmerges und deklarierte
+Post-Merge-Aktionen. Installation allein startet keine Kampagne und erteilt
+keine zusaetzlichen Rechte.
+
+*`parallel-autonomous-run-governance` v0.2.0 at priority `80` coordinates
+explicitly delegated campaigns with separate worktrees and at most three
+active workers. Schema `1.1` adds per-worker `runnerProfile`, optional
+agent-neutral model/reasoning metadata, accessible text and JSON status,
+stop/resume during consolidation, exact-head/review/check preflights, resumable
+partial merges, and declared post-merge actions. Installation alone starts no
+campaign and grants no additional authority.*
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
 |---|---|---|
@@ -2660,12 +2690,13 @@ path remains temporarily as a deprecated compatibility alias.*
 | `cross-platform-governance` | macOS/Linux/Windows-Parität, Shell-Auswahl, Pfadregeln, Testhinweise. / macOS/Linux/Windows parity, shell choice, path rules, test guidance. | Für Skripte, CLIs, Tooling und Workspace-Infrastruktur installieren. / Install for scripts, CLIs, tooling, and workspace infrastructure. |
 | `agent-parity-governance` | Gemeinsame Pflege von Agent-Guidance plus agentenneutrales Spec-Kit-Modell-Routing. / Joint maintenance of agent guidance plus agent-neutral Spec-Kit model routing. | Für Repos mit mehreren KI-Agenten-Oberflächen installieren. / Install for repos with multiple AI-agent surfaces. |
 | `autonomous-run-governance` | Berechtigungsgebundene, evidenzbasierte Steuerung ausdrücklich delegierter autonomer Spec-Kit-Läufe. / Permission-bounded, evidence-first control for explicitly delegated autonomous Spec Kit runs. | Standardmäßig installieren; einen Lauf nur nach ausdrücklicher Delegation starten. / Install by default; start a run only after explicit delegation. |
+| `parallel-autonomous-run-governance` | Isolierte, begrenzte Multi-Worker-Kampagnen mit fortsetzbarer Konsolidierung und Closeout. / Isolated bounded multi-worker campaigns with resumable consolidation and closeout. | Standardmäßig installieren; parallele Kampagnen nur nach ausdrücklicher Delegation starten. / Install by default; start parallel campaigns only after explicit delegation. |
 
-Nicht jedes Projekt braucht alle sieben Presets. Für kleine Lern- oder
+Nicht jedes Projekt braucht alle acht Presets. Für kleine Lern- oder
 Experimentierprojekte reicht oft eine Teilmenge. Für ernsthafte Level-2-Projekte
 ist diese Startkombination sinnvoll:
 
-*Not every project needs all seven presets. For small learning or experimental
+*Not every project needs all eight presets. For small learning or experimental
 projects, a subset is often enough. For serious Level-2 projects, this starting
 combination is useful:*
 
@@ -2674,12 +2705,12 @@ combination is useful:*
 - `a11y-governance`
 
 Für C#/.NET-Level-2-Projekte ist die Standardentscheidung in dieser
-Workspace-Familie: alle sieben Presets installieren, sofern das Projekt keine
+Workspace-Familie: alle acht Presets installieren, sofern das Projekt keine
 begründete Ausnahme dokumentiert. Die Referenz-Rollouts sind `TinyPl0`,
 `TinyCalc`, `TuiVision` und `InventarWorkerService`.
 
 *For C#/.NET Level-2 projects, the default decision in this workspace family is
-to install all seven presets unless the project documents a justified exception.
+to install all eight presets unless the project documents a justified exception.
 The reference rollouts are `TinyPl0`, `TinyCalc`, `TuiVision`, and
 `InventarWorkerService`.*
 
