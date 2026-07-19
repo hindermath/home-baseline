@@ -243,18 +243,21 @@ try {
     $errors = [Collections.Generic.List[string]]::new()
     foreach ($path in $canonical) {
         $relative = $path.Substring('scripts/'.Length)
-        $matches = @($catalog.categories | Where-Object {
+        $categoryMatches = @($catalog.categories | Where-Object {
             $category = $_
             @($category.patterns | Where-Object {
                 $relative -match (ConvertTo-HBRegex -Pattern $_)
             }).Count -gt 0
         })
         if ($path -in @($catalog.excluded)) { continue }
-        if ($matches.Count -ne 1) {
-            $errors.Add("$path must match exactly one category; matched $($matches.Count).")
+        if ($categoryMatches.Count -ne 1) {
+            $errors.Add("$path must match exactly one category; matched $($categoryMatches.Count).")
             continue
         }
-        $assignments.Add([pscustomobject]@{ Path = $path; CategoryId = $matches[0].id })
+        $assignments.Add([pscustomobject]@{
+            Path = $path
+            CategoryId = $categoryMatches[0].id
+        })
     }
     foreach ($excluded in @($catalog.excluded)) {
         if ($excluded -notin $canonical) {
