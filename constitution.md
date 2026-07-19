@@ -207,18 +207,21 @@ Every repository — including `home-baseline` and every Level-2 workspace — M
 Mandatory content and update rules:
 
 - **Fortschreibungsprotokoll**: chronological table (oldest entry first, newest last) recording cumulative lines, active days, and commit count at each milestone.
-- **Gesamtstatistik**: always the final top-level section; includes compact ASCII-only diagrams (artefakt mix, phase volume, speedup factors, manual-reference comparison).
-- **ASCII X/Y charts**: use fixed-width X slots; every documented phase keeps its slot, missing values stay blank, and overly wide series are split into labelled blocks such as `0..15`, `16..31`, and `32..47`.
+- **Gesamtstatistik**: always the final top-level section; its marked ASCII Statistics Profile 2 block is rendered from `docs/project-statistics.config.json`.
+- **Profile 2 chart set**: KPI summary, artifact mix, 52-week daily activity, weekly and cumulative gross change volume, phase or monthly volume, speedup gauges, manual-reference comparison, and an exact bilingual text alternative.
+- **ASCII and width contract**: heatmaps use `0..4`, `-` marks days not elapsed, gauges use `#`/`.`, and every chart line is at most 100 characters. Unicode blocks, color-only meaning, and `\ | /` intensity scales are forbidden.
+- **Stable phase slots**: configured phases keep their slot and split into blocks of 16; absent reliable phase data falls back to monthly volume without inventing phases.
+- **Methodology version 2**: derives gross text changes from non-merge commits and current volume from Git-tracked text while excluding `docs/project-statistics.md`, `STATS.md`, and binaries.
 - **Update triggers**: after each completed Spec-Kit implementation phase, after each merged feature, or when explicitly requested.
 - **Reference baselines**:
   - Manual reference: `80` lines/workday (conservative) — project-specific Thorsten-Solo baseline documented consistently in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md`.
   - Default C#/.NET Thorsten-Solo baseline: `125` lines/workday unless a repository documents and justifies a different project-specific value. `home-baseline` itself keeps `100` lines/workday as the scripting-infrastructure Thorsten-Solo reference.
   - TVöD workday: `7.8 h` (`7h 48m`). Month: `21.5` workdays. Vacation: 30 days until end of 2026, 31 days from 2027 onwards.
 - **Acceleration factor** = blended repository speedup — delivery density against manual reference, **not** stopwatch time.
-- **Diagram format**: compact ASCII-only; each diagram followed by a CEFR-B2 bilingual explanation (DE + EN).
-- **Consistency rule**: When statistics methodology or shared guidance changes, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` MUST be updated together in the same commit. The same shared rules MUST also be propagated to the relevant project templates and `.specify/memory/constitution.md`.
+- **Diagram format**: compact ASCII-only; exact values and a CEFR-B2 bilingual text alternative follow every visualization group (DE first, EN second).
+- **Consistency rule**: When statistics methodology or shared guidance changes, all five shared agent surfaces, including `.github/agents/copilot-instructions.md`, MUST be updated together in the same commit. The same rules MUST also reach project templates and `.specify/memory/constitution.md`.
 
-The bootstrap scripts (`bootstrap-project.sh` / `.ps1`) MUST create an initial `docs/project-statistics.md` stub at project creation time. `docs/` MUST be whitelisted in every project `.gitignore`.
+The bootstrap scripts (`bootstrap-project.sh` / `.ps1`) MUST create the initial ledger plus its Profile 2 configuration. `docs/` MUST be whitelisted in every project `.gitignore`.
 
 **Rationale**: Blended speedup metrics are educational for developers and apprentices. They make the productivity impact of AI-assisted workflows visible and comparable across projects. A living ledger that accumulates over the project lifetime is the only reliable source of this data.
 

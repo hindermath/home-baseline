@@ -49,6 +49,16 @@ normalize_name() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
 }
 
+json_escape() {
+  local value="$1"
+  value="${value//\\/\\\\}"
+  value="${value//\"/\\\"}"
+  value="${value//$'\n'/\\n}"
+  value="${value//$'\r'/\\r}"
+  value="${value//$'\t'/\\t}"
+  printf '%s' "$value"
+}
+
 # --- Parameter parsen ----------------------------------------------------------
 
 DRY_RUN=0
@@ -465,6 +475,25 @@ Stand / As of: $(date +%Y-%m-%d) — *Erste Einträge nach dem initialen Arbeits
 | Repo-weiter Speedup gg. Thorsten-Referenz | — |
 STATSDOC
 
+  workspace_name_json="$(json_escape "$WORKSPACE_NAME")"
+  cat > "$WORKSPACE_DIR/docs/project-statistics.config.json" <<STATSCONFIG
+{
+  "\$schema": "../scripts/config/project-statistics.schema.json",
+  "schemaVersion": 1,
+  "methodologyVersion": 2,
+  "repositoryName": "${workspace_name_json}",
+  "timeZone": "Europe/Berlin",
+  "activityWindowWeeks": 52,
+  "references": {
+    "conservativeLinesPerDay": 80,
+    "thorstenLinesPerDay": 100
+  },
+  "phases": [],
+  "excludedPaths": [],
+  "categoryOverrides": []
+}
+STATSCONFIG
+
   printf '# STATS.md — %s\n\n## Überblick / Overview\n\nCompliance-Historie — Compliance History\n\n## Verwendung / Usage\n\nJeder `check-homogeneity.sh`-Aufruf fügt hier einen Eintrag hinzu.\n\nEach `check-homogeneity.sh` run appends an entry here.\n\n' "$WORKSPACE_NAME" > "$WORKSPACE_DIR/STATS.md"
 
   if [ "$PLATFORM" = "github" ] && [ "$NO_REMOTE" -eq 0 ]; then
@@ -543,6 +572,19 @@ Nach dem Clonen auf neuem Gerät:
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
 ok "Initialer Commit erstellt"
+
+if [ -f "$WORKSPACE_DIR/scripts/render-project-statistics.sh" ]; then
+  info "Initialisiere ASCII-Statistikprofil 2 ..."
+  if bash "$WORKSPACE_DIR/scripts/render-project-statistics.sh" --repo "$WORKSPACE_DIR" >/dev/null; then
+    if [ -n "$(git -C "$WORKSPACE_DIR" status --porcelain -- docs/project-statistics.md)" ]; then
+      git -C "$WORKSPACE_DIR" add docs/project-statistics.md
+      git -C "$WORKSPACE_DIR" commit -m "docs: initialize ASCII statistics profile 2"
+    fi
+    ok "ASCII-Statistikprofil 2 initialisiert"
+  else
+    warn "ASCII-Statistikprofil 2 konnte nicht initialisiert werden"
+  fi
+fi
 
 # --- Remote-Repo erstellen und pushen ------------------------------------------
 

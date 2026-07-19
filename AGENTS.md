@@ -27,6 +27,8 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/maintain-agentic-winget-apps.ps1`: maintains the Windows WinGet agentic-development toolchain from `scripts/config/winget-apps-registry.json`, VS Code extensions from `scripts/config/vscode-extensions-registry.json`, required CLI checks from `scripts/config/required-cli-tools-registry.json`, and npm agent CLIs from `scripts/config/npm-agent-cli-registry.json`.
 - `scripts/maintain-powershell-modules.ps1`: installs and verifies pinned required PowerShell modules from `scripts/config/powershell-modules-registry.json`.
 - `scripts/invoke-psscriptanalyzer.ps1`: analyzes every Git-tracked, repository-owned PowerShell script, module, and data file with the pinned PSScriptAnalyzer version and repository settings; generated GitHub Spec Kit upstream paths documented in the module registry are excluded.
+- `scripts/render-project-statistics.*`: renders and verifies the reproducible ASCII Statistics Profile 2 block from the repository JSON configuration.
+- `scripts/test-render-project-statistics.ps1`: runs deterministic fixture tests for schema, Git-history filtering, accessibility, phase splitting, idempotency, and Bash/PowerShell parity.
 - `scripts/maintain-agentic-workspace.*`: orchestrates complete Level-0/1/2 fast-forward maintenance, home sync, registry/propagation checks, and the matching platform toolchain without committing or pushing target repositories.
 - `scripts/propagate-agentic-toolchain-maintenance.*`: checks and synchronizes the canonical maintenance scripts, registries, and manpages across existing Level-1/Level-2 repositories without committing or pushing.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories; uses `gitleaks` for pushed commit ranges when available and keeps the regex fallback.
@@ -48,6 +50,7 @@ bash scripts/update-spec-kit.sh --dry-run
 bash scripts/maintain-agentic-workspace.sh --check-only
 bash scripts/maintain-agentic-workspace.sh --dry-run
 bash scripts/maintain-agentic-brew-apps.sh --dry-run
+pwsh -NoProfile -File scripts/test-render-project-statistics.ps1
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
 pwsh scripts/install-hooks.ps1 -Verbose
 pwsh scripts/setup-git-identity.ps1 -CheckOnly     # Git-Identität prüfen / check identity
@@ -201,18 +204,20 @@ Or view at: `https://github.com/hindermath/home-baseline/blob/main/`
 - Aktualisiere die Datei nach jedem abgeschlossenen Feature/Lastenheft, nach jeder abgeschlossenen Spec-Kit-Implementierungsphase und wenn explizit angefordert.
 - Im `## Fortschreibungsprotokoll`-Abschnitt gilt: ältester Eintrag oben, neuester Eintrag unten; Einträge mit gleichem Datum behalten ihre Reihenfolge.
 - Halte den `## Gesamtstatistik`-Abschnitt als letzten Top-Level-Abschnitt; hänge danach keine weiteren Top-Level-Abschnitte an.
-- Innerhalb von `## Gesamtstatistik` stehen kompakte ASCII-Only-Diagramme direkt unter der Kennzahlen-Tabelle; zeige mindestens Artefaktmix, Phasenvolumen, konservative Referenz-Balken, Beschleunigungsfaktoren und den Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
-- ASCII-X/Y-Diagramme verwenden feste X-Slots: jeder dokumentierte Phasenwert behält seinen Slot, fehlende Werte bleiben leer, und zu breite Reihen werden in beschriftete Blöcke wie `0..15`, `16..31` und `32..47` geteilt.
-- Jedes ASCII-Diagramm erhält eine kurze CEFR-B2-Erklärung direkt darunter (deutsch und englisch).
-- Halte die Statistik textfreundlich: keine Farben, keine Symbole, die auf Braille-Zeilen oder Screenreadern nicht lesbar sind.
+- `docs/project-statistics.config.json` und der markierte Profil-2-Block in `## Gesamtstatistik` sind der verbindliche Daten- und Darstellungsvertrag; aktualisiere ihn mit `render-project-statistics.*`.
+- Profil 2 zeigt KPI-Kopf, Artefaktmix, 52-Wochen-Tagesaktivität, Wochenvolumen, kumulative Entwicklung, Phasen- oder Monatsvolumen, Speedup-Gauges und den Vergleich Erfahren/Thorsten-Solo/KI-sichtbar.
+- Diagramme verwenden nur ASCII: Heatmaps `0..4`, `-` für noch nicht abgelaufene Tage und Gauges `#`/`.`. Unicode-Blöcke, farbabhängige Signale und die Zeichenfolge `\ | /` als Intensitätsskala sind unzulässig.
+- Phasen behalten feste Slots und werden ab 17 Einträgen in beschriftete 16er-Blöcke geteilt. Fehlen belastbare Phasenwerte, zeigt Profil 2 Monatsvolumen und erfindet keine Phasen.
+- Jedes Diagramm bleibt höchstens 100 Zeichen breit und erhält exakte Zahlen sowie eine kurze CEFR-B2-Textalternative direkt darunter (Deutsch zuerst, Englisch danach).
+- Methodik v2 zählt Git-getrackte Textdateien und Brutto-Textänderungen aus Nicht-Merge-Commits; `docs/project-statistics.md`, `STATS.md` und Binärdaten werden aus Volumen und Aktivität ausgeschlossen.
 - Manuelle Referenzen für dieses Repository: `80` Zeilen/Arbeitstag (konservative Untergrenze) und `100` Zeilen/Arbeitstag (Thorsten-Solo, Scripting-Infra).
 - Gemeinsame Default-Referenz für C#/.NET-Projekte: `125` Zeilen/Arbeitstag (Thorsten-Solo), sofern das jeweilige Repo keinen abweichenden, begründeten Wert dokumentiert.
 - Beim Umrechnen in Stunden: `7.8` Stunden (`7h 48m`) pro Arbeitstag (TVöD-Basis).
 - Beim Umrechnen in Monate: `21.5` Arbeitstage/Monat; Urlaubstage: 30 Tage bis Ende 2026, ab 2027 dann 31 Tage pro Jahr (TVöD, 5-Tage-Woche).
 - Beschleunigungsfaktoren vergleichen die manuelle Referenz gegen sichtbare Git-Aktivtage — keine Stoppuhrmessung, sondern blended repository speedup.
-- Shared guidance darf nicht nur in einer der Agenten-Dateien aktualisiert werden; intentionale Abweichungen müssen in derselben Änderung dokumentiert sein.
+- Shared guidance darf nicht nur in einer Agenten-Datei aktualisiert werden; `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` und `.github/agents/copilot-instructions.md` werden gemeinsam gepflegt. Intentionale Abweichungen müssen in derselben Änderung dokumentiert sein.
 
-*Maintain `docs/project-statistics.md` as the living statistics ledger for this repository. Update after each completed feature/Lastenheft, Spec-Kit phase, or on explicit request. Keep the Fortschreibungsprotokoll in chronological order (oldest first). Keep `## Gesamtstatistik` as the final top-level section. ASCII X/Y charts use fixed X slots and split overly wide series into labelled blocks. Manual references: `80` lines/workday (conservative) and `100` lines/workday (Thorsten-Solo, scripting infra). Default C#/.NET Thorsten-Solo baseline: `125` lines/workday unless the repo documents a justified deviation. TVöD workday: `7.8 h`. Acceleration factors compare manual reference against observable Git active days — not stopwatch time.*
+*Maintain `docs/project-statistics.md` as the living statistics ledger and render its marked Profile 2 block from `docs/project-statistics.config.json`. Profile 2 uses ASCII digits `0..4`, `-`, and `#`/`.` gauges, exact values, bilingual text alternatives, fixed phase slots in blocks of 16, and a 100-character chart limit. It derives visible delivery density from Git-tracked text while excluding the ledger, `STATS.md`, and binaries. Manual references remain `80` and repository-specific Thorsten-Solo lines/workday; acceleration is not stopwatch time.*
 
 ## Inklusion & Barrierefreiheit / Inclusion & Accessibility
 
