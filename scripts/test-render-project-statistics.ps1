@@ -341,6 +341,48 @@ try {
     Confirm-TestCondition -Condition ($checkPowerShell.StdOut -ceq $checkBash.StdOut) `
         -Message 'Bash and PowerShell JSON status are byte-identical'
 
+    $currentPreviewPowerShell = Invoke-TestRenderer -Repository $repository `
+        -Options @('--dry-run')
+    $currentPreviewBash = Invoke-TestRenderer -Repository $repository -EntryPoint bash `
+        -Options @('--dry-run')
+    Confirm-TestCondition -Condition ($currentPreviewPowerShell.ExitCode -eq 0) `
+        -Message 'dry-run succeeds when the generated block is already current'
+    Confirm-TestCondition -Condition (
+        $currentPreviewPowerShell.StdOut.Contains('project-statistics-v2:begin') -and
+        $currentPreviewPowerShell.StdOut.Contains('[DRY_RUN]')
+    ) -Message 'current dry-run still prints the generated block and dry-run status'
+    Confirm-TestCondition -Condition (
+        $currentPreviewPowerShell.StdOut -ceq $currentPreviewBash.StdOut
+    ) -Message 'current Bash and PowerShell dry-run output is byte-identical'
+
+    foreach ($bootstrapFile in @(
+            'bootstrap-workspace.sh',
+            'bootstrap-workspace.ps1',
+            'bootstrap-project.sh',
+            'bootstrap-project.ps1'
+        )) {
+        $bootstrapContent = [IO.File]::ReadAllText(
+            (Join-Path $script:ScriptRoot $bootstrapFile)
+        )
+        Confirm-TestCondition -Condition (
+            $bootstrapContent -match (
+                'docs: initialize ASCII statistics profile 2[\s\S]{0,120}' +
+                'Co-authored-by: Copilot <223556219\+Copilot@users\.noreply\.github\.com>'
+            )
+        ) -Message "$bootstrapFile includes the required statistics commit trailer"
+    }
+
+    $bashHomogeneity = [IO.File]::ReadAllText(
+        (Join-Path $script:ScriptRoot 'check-homogeneity.sh')
+    )
+    $powerShellHomogeneity = [IO.File]::ReadAllText(
+        (Join-Path $script:ScriptRoot 'check-homogeneity.ps1')
+    )
+    Confirm-TestCondition -Condition (
+        $bashHomogeneity.Contains('command -v pwsh') -and
+        $powerShellHomogeneity.Contains('Get-Command pwsh')
+    ) -Message 'both homogeneity entry points diagnose a missing pwsh executable'
+
     $null = New-Item -ItemType Directory -Path (
         Join-Path $repository 'src'
     ) -Force

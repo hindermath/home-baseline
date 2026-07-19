@@ -502,7 +502,12 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
             $statisticsStatus = (& git -C $workspaceDir status --porcelain -- docs/project-statistics.md 2>$null | Out-String).Trim()
             if ($statisticsStatus) {
                 & git -C $workspaceDir add docs/project-statistics.md
-                & git -C $workspaceDir commit -m 'docs: initialize ASCII statistics profile 2'
+                $statisticsCommitMessage = @'
+docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+'@
+                & git -C $workspaceDir commit -m $statisticsCommitMessage
             }
             Write-Host '    OK  ASCII-Statistikprofil 2 initialisiert' -ForegroundColor Green
         } else {

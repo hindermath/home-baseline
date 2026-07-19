@@ -1224,19 +1224,19 @@ try {
         exit 0
     }
 
-    if (-not $changed) {
-        Write-Status -Status 'CURRENT' -Repository $repository -Ledger $ledger `
-            -SourceRevision $sourceRevision -Changed $false `
-            -TotalLines $snapshot.TotalLines -ActiveDays $activeDays
-        exit 0
-    }
-
     if ($WhatIfPreference) {
         if (-not $Json) {
             $generated
         }
         Write-Status -Status 'DRY_RUN' -Repository $repository -Ledger $ledger `
-            -SourceRevision $sourceRevision -Changed $true `
+            -SourceRevision $sourceRevision -Changed $changed `
+            -TotalLines $snapshot.TotalLines -ActiveDays $activeDays
+        exit 0
+    }
+
+    if (-not $changed) {
+        Write-Status -Status 'CURRENT' -Repository $repository -Ledger $ledger `
+            -SourceRevision $sourceRevision -Changed $false `
             -TotalLines $snapshot.TotalLines -ActiveDays $activeDays
         exit 0
     }

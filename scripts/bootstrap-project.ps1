@@ -691,7 +691,12 @@ if (-not (Test-Path $statisticsRenderer)) {
         $statisticsStatus = (& git -C $TargetDir status --porcelain -- docs/project-statistics.md 2>$null | Out-String).Trim()
         if ($statisticsStatus) {
             git -C $TargetDir add docs/project-statistics.md 2>$null | Out-Null
-            git -C $TargetDir commit -m "docs: initialize ASCII statistics profile 2" 2>$null | Out-Null
+            $statisticsCommitMessage = @'
+docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+'@
+            git -C $TargetDir commit -m $statisticsCommitMessage 2>$null | Out-Null
         }
         Step-Done
     } else {

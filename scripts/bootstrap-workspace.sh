@@ -578,7 +578,9 @@ if [ -f "$WORKSPACE_DIR/scripts/render-project-statistics.sh" ]; then
   if bash "$WORKSPACE_DIR/scripts/render-project-statistics.sh" --repo "$WORKSPACE_DIR" >/dev/null; then
     if [ -n "$(git -C "$WORKSPACE_DIR" status --porcelain -- docs/project-statistics.md)" ]; then
       git -C "$WORKSPACE_DIR" add docs/project-statistics.md
-      git -C "$WORKSPACE_DIR" commit -m "docs: initialize ASCII statistics profile 2"
+      git -C "$WORKSPACE_DIR" commit -m "docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
     fi
     ok "ASCII-Statistikprofil 2 initialisiert"
   else

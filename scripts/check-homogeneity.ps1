@@ -247,6 +247,11 @@ function Check-StatisticsProfile {
             'ASCII Statistics Profile 2 renderer missing' $Dir
         return
     }
+    if (-not (Get-Command pwsh -ErrorAction SilentlyContinue)) {
+        Emit-Result 'FAIL' 'pwsh' `
+            'PowerShell 7 required by ASCII Statistics Profile 2 renderer' $Dir
+        return
+    }
 
     & pwsh -NoProfile -File $renderer -Repo $Dir -CheckOnly -Json *> $null
     switch ($LASTEXITCODE) {

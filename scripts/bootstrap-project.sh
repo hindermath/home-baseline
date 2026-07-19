@@ -877,7 +877,9 @@ if [ ! -f "${TARGET_DIR}/scripts/render-project-statistics.sh" ]; then
 elif bash "${TARGET_DIR}/scripts/render-project-statistics.sh" --repo "$TARGET_DIR" >/dev/null; then
   if [ -n "$(git -C "$TARGET_DIR" status --porcelain -- docs/project-statistics.md)" ]; then
     git -C "$TARGET_DIR" add docs/project-statistics.md >/dev/null 2>&1
-    git -C "$TARGET_DIR" commit -m "docs: initialize ASCII statistics profile 2" >/dev/null 2>&1
+    git -C "$TARGET_DIR" commit -m "docs: initialize ASCII statistics profile 2
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null 2>&1
   fi
   step_done
 else

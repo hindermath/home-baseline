@@ -393,6 +393,11 @@ check_statistics_profile() {
       "ASCII Statistics Profile 2 renderer missing" "$dir"
     return
   fi
+  if ! command -v pwsh >/dev/null 2>&1; then
+    emit_result "FAIL" "pwsh" \
+      "PowerShell 7 required by ASCII Statistics Profile 2 renderer" "$dir"
+    return
+  fi
 
   if bash "$renderer" --repo "$dir" --check-only --json >/dev/null 2>&1; then
     emit_result "PASS" "docs/project-statistics.md" \
