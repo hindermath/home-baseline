@@ -33,7 +33,10 @@ set -euo pipefail
 # --- Konfiguration / Configuration --------------------------------------------
 
 HOME_DIR="$(cd ~ && pwd)"
-LEVEL0_DIR="${HOME_DIR}/home-baseline-source"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/lib/resolve-home-baseline-source.sh
+source "${SCRIPT_DIR}/lib/resolve-home-baseline-source.sh"
+LEVEL0_DIR="$(resolve_hb_source_repository "${BASH_SOURCE[0]}" 1)"
 LEVEL0_CLAUDE="${LEVEL0_DIR}/CLAUDE.md"
 LEVEL0_AGENTS="${LEVEL0_DIR}/AGENTS.md"
 LEVEL0_GEMINI="${LEVEL0_DIR}/GEMINI.md"

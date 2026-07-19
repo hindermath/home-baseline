@@ -8,7 +8,9 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $HomeDir   = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
-$RepoDir   = Join-Path $HomeDir 'home-baseline-source'
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $ScriptDir 'lib/resolve-home-baseline-source.ps1')
+$RepoDir   = Resolve-HBSourceRepository -StartPath $MyInvocation.MyCommand.Path -AllowLegacy
 $OutFile   = Join-Path $RepoDir 'windows-test-output.txt'
 $Date      = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 $Lines     = [System.Collections.Generic.List[string]]::new()
