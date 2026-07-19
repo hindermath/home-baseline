@@ -36,6 +36,7 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/parallel-autonomous-run-governance/tests/fixture-provider.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/fixture-worker.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/run-native-secure-casetracker-field.ps1` | `.specify` |
+| `.specify/presets/parallel-autonomous-run-governance/tests/test-autonomous-preset-dependency.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-consolidation-v2.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `.specify` |
@@ -57,6 +58,7 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/fixture-provider.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/fixture-worker.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/run-native-secure-casetracker-field.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-autonomous-preset-dependency.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-consolidation-v2.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `specs` |
@@ -70,6 +72,7 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/fixture-provider.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/fixture-worker.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/run-native-secure-casetracker-field.ps1` | `specs` |
+| `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-autonomous-preset-dependency.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-consolidation-v2.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `specs` |
