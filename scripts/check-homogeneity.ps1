@@ -249,12 +249,23 @@ function Check-StatisticsProfile {
     }
 
     & pwsh -NoProfile -File $renderer -Repo $Dir -CheckOnly -Json *> $null
-    if ($LASTEXITCODE -eq 0) {
-        Emit-Result 'PASS' 'docs/project-statistics.md' `
-            'ASCII Statistics Profile 2 current' $Dir
-    } else {
-        Emit-Result 'FAIL' 'docs/project-statistics.md' `
-            'ASCII Statistics Profile 2 drift or validation error' $Dir
+    switch ($LASTEXITCODE) {
+        0 {
+            Emit-Result 'PASS' 'docs/project-statistics.md' `
+                'ASCII Statistics Profile 2 current' $Dir
+        }
+        1 {
+            Emit-Result 'FAIL' 'docs/project-statistics.md' `
+                'ASCII Statistics Profile 2 drift' $Dir
+        }
+        2 {
+            Emit-Result 'FAIL' 'docs/project-statistics.md' `
+                'ASCII Statistics Profile 2 validation or tooling error' $Dir
+        }
+        default {
+            Emit-Result 'FAIL' 'docs/project-statistics.md' `
+                "ASCII Statistics Profile 2 unexpected renderer exit $LASTEXITCODE" $Dir
+        }
     }
 }
 

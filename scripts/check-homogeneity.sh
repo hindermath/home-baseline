@@ -398,8 +398,13 @@ check_statistics_profile() {
     emit_result "PASS" "docs/project-statistics.md" \
       "ASCII Statistics Profile 2 current" "$dir"
   else
-    emit_result "FAIL" "docs/project-statistics.md" \
-      "ASCII Statistics Profile 2 drift or validation error" "$dir"
+    renderer_exit=$?
+    case "$renderer_exit" in
+      1) renderer_message="ASCII Statistics Profile 2 drift" ;;
+      2) renderer_message="ASCII Statistics Profile 2 validation or tooling error" ;;
+      *) renderer_message="ASCII Statistics Profile 2 unexpected renderer exit ${renderer_exit}" ;;
+    esac
+    emit_result "FAIL" "docs/project-statistics.md" "$renderer_message" "$dir"
   fi
 }
 
