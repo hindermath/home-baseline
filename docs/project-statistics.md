@@ -98,6 +98,7 @@
 | 2026-07-17 | Verbindliche Spec-Kit-Standard-Siebenermatrix | 65 | — | 484 | `autonomous-run-governance` v0.2.2 als siebtes Standard-Preset in zentraler Matrix, Installern, Registry-Profil, Constitution, Agenten-Dateien, Templates, Secure-Development-Basis 3.1.0 und Lernreihen verankert. Das bisherige Profil `standard-six-governance-presets` bleibt als deprecated Kompatibilitaetsalias mit exakt identischer Preset-Matrix erhalten. Installation erteilt weiterhin weder autonome Ausfuehrungs- noch Remote-, Merge-, Bypass- oder Provider-Berechtigungen. Bash-/PowerShell-Syntax, Generatoren, Matrixparitaet, Manifest und isolierte Neuinstallation samt Idempotenz sind geprueft; der Bash-Installer erkennt zusätzlich normale Klone und verknüpfte Git-Worktrees über `git rev-parse --git-dir`. |
 | 2026-07-18 | `parallel-autonomous-run-governance` v0.1.0 und nativer Real-Agent-Smoke | 66 | — | — | Experimentelles achtes Preset mit vier Topologien, UUID-Vertraegen, isolierten Worktrees, maximal drei parallelen Workern, DAG-Pruefung, gehashten Handoffs, kooperativem Stop/Resume und expliziter Alternativauswahl umgesetzt. Der vom Repository-Eigentuemer bewusst autorisierte native macOS-Entwicklungs-Smoke fuehrte 13 echte Codex-/Spec-Kit-Autonomous-Worker ohne Remote-Schreibzugriff aus: 13/13 Exitcode 0, Replicated/Independent/Alternative jeweils beobachtete Parallelitaet 3, Pipeline `A -> {B,C} -> D` mit Parallelitaet 2 und vier validierten Handoffs. Kanonisches Preset, Publikationskopie und Feature-Artefakte umfassen vor dieser Ledger-Zeile 4.180 Zeilen; konservative Manualreferenz `52,3` Tage beziehungsweise `407,6` Stunden bei 80 Zeilen/Tag, Thorsten-Solo `41,8` Tage beziehungsweise `326,0` Stunden bei 100 Zeilen/Tag. Das Preset bleibt bis zum nativen Secure-CaseTracker-Feldtest experimentell und opt-in; Container-First bleibt ausserhalb dieses ausdruecklichen Entwicklungs-Overrides verbindlich. |
 | 2026-07-19 | `parallel-autonomous-run-governance` v0.2.0 und 24-Worker-Feldtest | 68 | 267 166 | 500 | Native Secure-CaseTracker-Kampagne `91c2c1a0-1526-479a-b8a3-e36a7d15d2b1` ueber C#, Go, Java, Python, Rust und Swift kontrolliert abgeschlossen: 24/24 Worker und exakte PR-Heads gemergt, sechs Closeout-PRs einschliesslich Lastenheft-Archivierung abgeschlossen sowie sprachspezifische Hauptbranch-Gates bestanden. Stop, Status, Resume und zweiter idempotenter Resume-Versuch wurden praktisch nachgewiesen; konfigurierte und beobachtete Parallelitaet blieben bei drei. Die portablen Erkenntnisse flossen in Schema 1.1, pro-Worker-Runnerprofile, agentenneutrale Modellmetadaten, providergebundene Preflights, fortsetzbare Teilmerges, gestapelte PR-Basen, kooperativen Konsolidierungsstopp und manifestgebundene Post-Merge-Aktionen ein. v0.2.0 ist im geschuetzten Preset-Repo veroeffentlicht, per exaktem Tag-ZIP isoliert mit allen acht Presets validiert, lokal in 25 registrierten Level-2-Repositories ausgerollt und als `github/spec-kit#3591` eingereicht. Der v0.2.0-Arbeitsstand umfasst vor dieser Ledger-Zeile `+5994/-671`, also 5323 Nettozeilen; konservative Manualreferenz `74,9` Tage beziehungsweise `584,4` Stunden fuer hinzugefuegte oder aktualisierte Zeilen, Thorsten-Solo `59,9` Tage beziehungsweise `467,5` Stunden. Der native Entwicklungs-Override endet mit diesem Closeout; spaetere Secure-Trader-Kampagnen unterliegen wieder Container-First. |
+| 2026-07-19 | Standard-Achtermatrix als 33-Repository-Flottenrollout | 68 | 286 594 | 503 | Die Standard-Achtermatrix auf Level 0, alle sieben registrierten Level-1-Repositories und alle 25 registrierten Level-2-Repositories ausgerollt; bestehende Sechser-/Siebenerprofile als Kompatibilitaetsaliase migriert und aktuelle Dokumentation vollstaendig auf acht Presets geprueft. Portable Feld- und Rollout-Erkenntnisse wurden in alle sieben bestehenden Presets uebernommen und zusammen mit `parallel-autonomous-run-governance` als Patch-Releases veroeffentlicht. 33/33 lokale Preset-, Parser-, Matrix-, Drift- und Idempotenzpruefungen bestanden; alle PR-Heads waren exakt, alle Copilot-Threads beantwortet und geschlossen. GitHub Actions lief in einzelnen Repositories wieder real und erfolgreich, waehrend die verbliebenen Null-Schritt-Ablehnungen weiterhin den identischen Billing-/Spending-Limit-Providergrund meldeten und deshalb gemaess Feldtest-Override als `N/A`, nicht als technischer Erfolg, dokumentiert wurden. Der Flottenbranch umfasst einschliesslich dieser Ledger-Zeile `+20917/-1452`, also 19 465 Nettozeilen. Konservative Manualreferenz: `243,3` Tage beziehungsweise `1 897,8` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `194,7` Tage beziehungsweise `1 518,3` Stunden bei 100 Zeilen/Tag. |
 
 ---
 
@@ -107,23 +108,23 @@ Stand / As of: **2026-07-19**
 
 | Kategorie / Category | Dateien / Files | Zeilen / Lines | Anteil / Share |
 |---|---:|---:|---:|
-| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 146 | 39 517 | 14.8 % |
-| Strukturierte Konfiguration und Templates / Structured config and templates | 88 | 5 483 | 2.1 % |
-| Dokumentation / Documentation (`.md`, `LICENSE`, `.txt`, Manpages) | 1 216 | 195 541 | 73.2 % |
-| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 10.0 % |
+| Skripte / Scripts (`.sh`, `.ps1`, `.py`) | 159 | 44 624 | 15.6 % |
+| Strukturierte Konfiguration und Templates / Structured config and templates | 105 | 7 164 | 2.5 % |
+| Dokumentation / Documentation (`.md`, `LICENSE`, `.txt`, Manpages) | 1 399 | 208 181 | 72.6 % |
+| Daten und Medien / Data and media (`.csv`, `.sql`, `.pdf`, `.pptx`) | 12 | 26 625 | 9.3 % |
 | Sonstiges / Other | 0 | 0 | 0.0 % |
-| **Gesamt / Total** | **1 462** | **267 166** | **100 %** |
+| **Gesamt / Total** | **1 675** | **286 594** | **100 %** |
 
 ### Aufgliederung Dokumentation / Documentation Breakdown
 
 | Untertyp / Subtype | Zeilen / Lines | Anteil an Doku / Share of Docs |
 |---|---:|---:|
-| Spec-Kit-Artefakte (`specs/`) | 35 586 | 18.2 % |
-| Secure Development (`docs/secure-development/`) | 32 965 | 16.9 % |
-| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 696 | 43.3 % |
-| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 4 444 | 2.3 % |
-| README / CHANGELOG / STATS / Projektstatistik | 4 403 | 2.3 % |
-| Sonstige Markdown-Artefakte / Other Markdown artifacts | 33 447 | 17.1 % |
+| Spec-Kit-Artefakte (`specs/`) | 36 167 | 17.4 % |
+| Secure Development (`docs/secure-development/`) | 32 965 | 15.8 % |
+| Lernmaterialien und Lernreihen-Intakes (`docs/learning-units/`) | 84 696 | 40.7 % |
+| Governance (AGENTS / CLAUDE / GEMINI / constitution / Copilot) | 4 482 | 2.2 % |
+| README / CHANGELOG / STATS / Projektstatistik | 4 417 | 2.1 % |
+| Sonstige Markdown-Artefakte / Other Markdown artifacts | 45 454 | 21.8 % |
 
 ---
 
@@ -146,6 +147,7 @@ Die Spalte „Insertions" gibt den dokumentierten Netto-Beitrag der Phase an
 | 6 | presets — Spec-Kit Governance Presets | 8 733 | 10 | 2 | 2026-04-25 bis 2026-06-11 |
 | 7 | autonomous — Feld-Inputs 018-024 + Preset v0.1.0 | 9 639 | 7 | 1 | 2026-07-12 |
 | 8 | parallel — v0.2.0 + 24-Worker-Feldtest | 5 323 | 14 | 2 | 2026-07-18 bis 2026-07-19 |
+| 9 | fleet — v0.2.1 + Standard-Achtermatrix | 19 465 | 3 | 1 | 2026-07-19 |
 
 **Hinweis zu spaeteren Maintenance-Runden:** Die Snapshot- und Gesamtwerte oben
 enthalten auch die nachfolgenden Maintenance-Arbeiten bis `2026-07-11`. Dazu
@@ -254,60 +256,62 @@ main phase or a maintenance round in this statistics ledger.*
 Basis dieses Schlussblocks sind der aktuelle Repository-Snapshot sowie die
 dokumentierten Hauptphasen und Maintenance-Runden aus den Abschnitten oben.
 
-Die Standard-Achtermatrix enthaelt `autonomous-run-governance` v0.2.2 und
-`parallel-autonomous-run-governance` v0.2.0. Das achte Preset wurde durch 24
+Die Standard-Achtermatrix enthaelt `autonomous-run-governance` v0.3.0 und
+`parallel-autonomous-run-governance` v0.2.1. Das achte Preset wurde durch 24
 Worker in sechs MSL-Sprachen mit Stop/Status/Resume, exakten PR-Head- und
 Review-Gates, fortsetzbarer Konsolidierung und Post-Merge-Closeout validiert.
 Installation und Ausfuehrungsberechtigung bleiben getrennt; weder gespeicherter
 Zustand noch ein Runnerprofil erteilen neue Remote-, Merge- oder
-Bypass-Berechtigungen. Das exakte v0.2.0-Tag-ZIP ist veroeffentlicht und als
+Bypass-Berechtigungen. Das exakte v0.2.1-Tag-ZIP ist veroeffentlicht und als
 `github/spec-kit#3591` beim Community-Katalog eingereicht.
 
 *This closing block is based on the current repository snapshot plus the
 documented main phases and maintenance rounds from the sections above.*
 
-*The standard eight-preset matrix includes `autonomous-run-governance` v0.2.2
-and `parallel-autonomous-run-governance` v0.2.0. The eighth preset was validated
+*The standard eight-preset matrix includes `autonomous-run-governance` v0.3.0
+and `parallel-autonomous-run-governance` v0.2.1. The eighth preset was validated
 by 24 workers across six MSL languages with stop/status/resume, exact PR-head
 and review gates, resumable consolidation, and post-merge closeout.
 Installation remains separate from execution authority; neither stored state
 nor a runner profile grants new remote, merge, or bypass authority. The exact
-v0.2.0 tag ZIP is published and submitted to the Community Catalog as
+v0.2.1 tag ZIP is published and submitted to the Community Catalog as
 `github/spec-kit#3591`.*
 
 | Kennzahl / Metric | Verdichteter Gesamtblick / Condensed Overview |
 |---|---:|
-| Artefaktbasis gesamt / Total artifact base | `267 166` Zeilen |
-| Operativer Code und Konfiguration / Operational code and configuration | `45 000` Zeilen (`16.8 %`) |
-| Dokumentationsanteil / Documentation share | `195 541` Zeilen (`73.2 %`) |
+| Artefaktbasis gesamt / Total artifact base | `286 594` Zeilen |
+| Operativer Code und Konfiguration / Operational code and configuration | `51 788` Zeilen (`18.1 %`) |
+| Dokumentationsanteil / Documentation share | `208 181` Zeilen (`72.6 %`) |
 | Beobachtbarer Projektzeitraum / Observable project window | `2026-03-31` bis `2026-07-19` |
 | Sichtbare Git-Aktivtage / Observable active days | `68` |
-| Git-Commits gesamt / Total commits | `500` |
-| Git-Commits pro Aktivtag / Commits per active day | `7.4` (`500 / 68`) |
-| Zeilen pro Aktivtag / Lines per active day | `3 928.9` (`267 166 / 68`) |
-| Zeilen pro Commit / Lines per commit | `534.3` (`267 166 / 500`) |
-| Konservative Einzelentwickler-Untergrenze | `3 339.6` Arbeitstage / `26 048.7` Stunden |
-| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 671.7` Arbeitstage / `20 838.9` Stunden |
-| Kleines 3er-Team mit Koordinationsaufschlag | `1 335.8` Arbeitstage |
-| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `49.1x` |
-| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `39.3x` |
+| Git-Commits gesamt / Total commits | `503` |
+| Git-Commits pro Aktivtag / Commits per active day | `7.4` (`503 / 68`) |
+| Zeilen pro Aktivtag / Lines per active day | `4 214.6` (`286 594 / 68`) |
+| Zeilen pro Commit / Lines per commit | `569.8` (`286 594 / 503`) |
+| Konservative Einzelentwickler-Untergrenze | `3 582.4` Arbeitstage / `27 942.9` Stunden |
+| Thorsten-Solo-Untergrenze (Scripting-Infra, 100 Z./Tag) | `2 865.9` Arbeitstage / `22 354.3` Stunden |
+| Kleines 3er-Team mit Koordinationsaufschlag | `1 433.0` Arbeitstage |
+| Repo-weiter Speedup gg. 80-Zeilen-Referenz | `52.7x` |
+| Repo-weiter Speedup gg. Thorsten-Referenz (100 Z./Tag) | `42.1x` |
 
 Kurzfazit:
-`home-baseline` bleibt dokumentations- und Governance-getrieben: `73.2 %` der
+`home-baseline` bleibt dokumentations- und Governance-getrieben: `72.6 %` der
 sichtbaren Basis liegen in Dokumentationsartefakten. Operative Skripte und
-strukturierte Konfiguration machen zusammen `16.8 %` aus. Der groesste
+strukturierte Konfiguration machen zusammen `18.1 %` aus. Der groesste
 dokumentierte Volumensprung bleibt Phase `1` (Spec-Kit-Batch fuer Homogeneity
 Guardian). Phase `8` dokumentiert den vollstaendigen 24-Worker-Feldtest, die
-v0.2.0-Haertung, Veroeffentlichung, Achtermatrix und Katalogeinreichung. Die
+v0.2.0-Haertung, Veroeffentlichung, Achtermatrix und Katalogeinreichung. Phase
+`9` bildet die Patch-Releases und den vollstaendigen 33-Repository-Rollout ab. Die
 Beschleunigungsfaktoren beschreiben keine Stoppuhrzeit, sondern sichtbare
 Lieferdichte gegen konservative manuelle Referenzmodelle.
 
 *Short summary: `home-baseline` remains documentation- and governance-driven:
-`73.2 %` of the visible base consists of documentation artifacts. Operational
-scripts and structured configuration together account for `16.8 %`. The
+`72.6 %` of the visible base consists of documentation artifacts. Operational
+scripts and structured configuration together account for `18.1 %`. The
 largest documented volume jump remains Phase `1` (Spec-Kit batch for
 Homogeneity Guardian). Phase `8` records the complete 24-worker field test,
 v0.2.0 hardening, publication, eight-preset matrix, and catalog submission.
+Phase `9` records the patch releases and complete 33-repository rollout.
 Acceleration factors describe visible delivery density, not stopwatch
 measurements.*
 
@@ -315,10 +319,10 @@ measurements.*
 
 ```text
 Artefaktmix nach aktuell dokumentiertem Snapshot (Zeilen)
-Skripte         | ####                           | 39 517 | 14.8 %
-Konfiguration   | #                              |  5 483 |  2.1 %
-Dokumentation   | ######################         |195 541 | 73.2 %
-Daten/Medien    | ###                            | 26 625 | 10.0 %
+Skripte         | #####                          | 44 624 | 15.6 %
+Konfiguration   | #                              |  7 164 |  2.5 %
+Dokumentation   | ######################         |208 181 | 72.6 %
+Daten/Medien    | ###                            | 26 625 |  9.3 %
 Sonstiges       |                                |      0 |  0.0 %
 ```
 
@@ -344,6 +348,7 @@ Phasenvolumen nach dokumentierter Netto-Basis (Insertions)
 6 presets | ########                 |  8 733
 7 autonom | #########                |  9 639
 8 parallel| #####                    |  5 323
+9 fleet   | ##################       | 19 465
 ```
 
 Dieses Diagramm zeigt den Netto-Insertions-Beitrag der dokumentierten Phasen.
@@ -352,7 +357,8 @@ Phase `7` umfasst die autonomen Feld-Inputs; Phase `8` den parallelen
 
 *This chart shows the net insertion contribution per documented phase. Phase
 `7` contains the autonomous field inputs; Phase `8` contains the parallel
-24-worker field test and v0.2.0 productization.*
+24-worker field test and v0.2.0 productization. Phase `9` contains the
+repository-fleet rollout and patch releases.*
 
 ```text
 Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Tag)
@@ -365,6 +371,7 @@ Konservative Handarbeits-Referenz je dokumentierter Phase (Arbeitstage, 80 Z./Ta
 6 presets | ########                 |  109.2 d
 7 autonom | ###########              |  120.5 d
 8 parallel| ######                   |   66.5 d
+9 fleet   | ######################## |  243.3 d
 ```
 
 Jeder Balken zeigt, wie viele Arbeitstage ein erfahrener Einzelentwickler
@@ -379,7 +386,7 @@ governance output; the parallel v0.2.0 package represents about `66` days.*
 
 ```text
 Dokumentierte Beschleunigungsfaktoren (Phasen-Speedup vs. 80-Zeilen-Referenz)
-Repo ges. | ################################################ | 49.1x
+Repo ges. | ################################################ | 52.7x
 0 Init    | ############                     | 11.9x
 1 001+    | >> Spec-Kit-Batch: 331.5x (ausserhalb Skala)
 2 pub     | ################################# | 38.6x
@@ -389,6 +396,7 @@ Repo ges. | ################################################ | 49.1x
 6 presets | ################################################ | 54.6x
 7 autonom | >> complete field package: 120.5x (outside scale)
 8 parallel| #################################                | 33.3x
+9 fleet   | >> complete fleet rollout: 243.3x (outside scale)
 ```
 
 Hier werden keine Stoppuhrzeiten gemessen. Verglichen wird die dokumentierte
@@ -396,19 +404,21 @@ Lieferdichte pro Aktivtag gegen die 80-Zeilen-Referenz. Phase `6` ist hoch,
 weil mehrere Preset-Folge-Releases, externe Preset-Repos und Smoke-Test-Runden
 in zwei sichtbaren Preset-Aktivtagen abgeschlossen wurden. Phase `7` buendelt
 autonome Feldlaeufe; Phase `8` bildet Feldkonsolidierung und Produktisierung
-ueber zwei sichtbare Aktivtage ab.
+ueber zwei sichtbare Aktivtage ab. Phase `9` fasst den repo-uebergreifenden
+Rollout an einem sichtbaren Aktivtag zusammen.
 
 *This chart does not measure stopwatch time. It compares documented delivery
 density per active day against the 80-line reference. Phase `6` is high because
 multiple preset follow-up releases, external preset repositories, and several
 smoke-test rounds were completed in two visible preset active days. Phase `7`
 bundles autonomous field runs; Phase `8` covers field consolidation and
-productization across two visible active days.*
+productization across two visible active days. Phase `9` records the
+repository-wide rollout on one visible active day.*
 
 ```text
 Vergleich dokumentierter Gesamtaufwand / sichtbares KI-Lieferfenster
-Erfahren (80 Z./Tag)   | ######################## | 3 339.6 d / 26 048.7 h
-Thorsten (100 Z./Tag)  | ###################      | 2 671.7 d / 20 838.9 h
+Erfahren (80 Z./Tag)   | ######################## | 3 582.4 d / 27 942.8 h
+Thorsten (100 Z./Tag)  | ###################      | 2 865.9 d / 22 354.3 h
 KI sichtbar            | #                        |    68.0 d
 ```
 
@@ -423,26 +433,27 @@ That documented compression is what the ledger labels as blended repository
 speedup.*
 
 ```text
-X/Y-Diagramm: Phasenvolumen (X = Phase 0..8, Y = Insertions)
-30000 |                                    |
-25000 |     *                              |
-20000 |                                    |
-15000 |                                    |
-10000 |                 *       *   *      |
- 5000 |         *                       *  |
-    0 | *           *       *              |
-      +------------------------------------+
-        0   1   2   3   4   5   6   7   8
+X/Y-Diagramm: Phasenvolumen (X = Phase 0..9, Y = Insertions)
+30000 |                                        |
+25000 |     *                                  |
+20000 |                                     *  |
+15000 |                                        |
+10000 |                 *       *   *          |
+ 5000 |         *                       *      |
+    0 | *           *       *                  |
+      +----------------------------------------+
+        0   1   2   3   4   5   6   7   8   9
 ```
 
 Als zweite Ansicht zeigt diese X/Y-Kurve denselben Verlauf ueber die
 Phasenachse. Die X-Positionen nutzen feste Slots, damit spaetere zweistellige
 oder fehlende Phasenwerte keine Punkte verschieben. Phase `1` ragt deutlich
 heraus; Phase `6` bildet den Governance-Preset-Nachlauf und Phase `7` das
-autonome Paket. Phase `8` zeigt das parallele Feldtestpaket.
+autonome Paket. Phase `8` zeigt das parallele Feldtestpaket und Phase `9` den
+Flottenrollout.
 
 *As a second view, this X/Y curve shows the same progression across the phase
 axis. The X positions use fixed slots so later two-digit or missing phase values
 do not shift points. Phase `1` stands out clearly; Phase `6` contains the
-governance preset follow-up, Phase `7` the autonomous package, and Phase `8`
-the parallel field-test package.*
+governance preset follow-up, Phase `7` the autonomous package, Phase `8`
+the parallel field-test package, and Phase `9` the fleet rollout.*
