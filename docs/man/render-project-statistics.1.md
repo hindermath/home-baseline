@@ -12,7 +12,7 @@ bash scripts/render-project-statistics.sh --repo PATH [--check-only|--dry-run] [
 ```
 
 ```powershell
-pwsh -NoProfile -File scripts/render-project-statistics.ps1 -Repo PATH \
+pwsh -NoProfile -File scripts/render-project-statistics.ps1 -Repo PATH `
   [-CheckOnly] [-WhatIf] [-Json]
 ```
 
@@ -31,7 +31,7 @@ English text alternatives.*
 ## OPTIONS
 
 | Bash | PowerShell | Bedeutung / Meaning |
-|---|---|---|
+| --- | --- | --- |
 | `--repo PATH` | `-Repo PATH` | Zielrepository / target repository |
 | `--check-only` | `-CheckOnly` | Drift pruefen / check drift |
 | `--dry-run` | `-WhatIf` | Vorschau ohne Schreiben / preview without writing |
@@ -41,7 +41,7 @@ English text alternatives.*
 ## EXIT STATUS
 
 | Code | Bedeutung / Meaning |
-|---:|---|
+| ---: | --- |
 | 0 | Aktuell oder erfolgreich / current or successful |
 | 1 | Generierter Block driftet / generated block has drift |
 | 2 | Aufruf/Schema/Git/Tooling fehlerhaft / invalid |

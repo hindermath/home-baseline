@@ -675,8 +675,7 @@ stats_config="${TARGET_DIR}/docs/project-statistics.config.json"
 if [ -f "$stats_config" ] && ! $OPT_FORCE; then
   step_skip "Statistikprofil-2-Konfiguration vorhanden"
 else
-  repository_name="$(basename -- "$TARGET_DIR")"
-  repository_name_json="$(json_escape "$repository_name")"
+  repository_name_json="$(json_escape "$PROJECT_NAME")"
   cat > "$stats_config" <<STATSCONFIG
 {
   "\$schema": "../scripts/config/project-statistics.schema.json",

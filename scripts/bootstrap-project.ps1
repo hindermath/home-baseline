@@ -512,12 +512,11 @@ $statsConfig = Join-Path $TargetDir 'docs/project-statistics.config.json'
 if ((Test-Path $statsConfig) -and -not $Force) {
     Step-Skip "Statistikprofil-2-Konfiguration vorhanden"
 } else {
-    $repositoryName = Split-Path $TargetDir -Leaf
     [ordered]@{
         '$schema' = '../scripts/config/project-statistics.schema.json'
         schemaVersion = 1
         methodologyVersion = 2
-        repositoryName = $repositoryName
+        repositoryName = $ProjectName
         timeZone = 'Europe/Berlin'
         activityWindowWeeks = 52
         references = [ordered]@{

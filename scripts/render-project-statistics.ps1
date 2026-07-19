@@ -40,6 +40,70 @@ $script:BeginMarker = '<!-- project-statistics-v2:begin -->'
 $script:EndMarker = '<!-- project-statistics-v2:end -->'
 $script:Invariant = [Globalization.CultureInfo]::InvariantCulture
 
+if (-not ('HomeBaseline.StatisticsTextFile' -as [type])) {
+    Add-Type -TypeDefinition @'
+using System.IO;
+
+namespace HomeBaseline
+{
+    public static class StatisticsTextFile
+    {
+        public static long? CountLines(string path)
+        {
+            const int BufferSize = 65536;
+            byte[] buffer = new byte[BufferSize];
+            long lineFeeds = 0;
+            long carriageReturns = 0;
+            int lastByte = -1;
+            bool hasBytes = false;
+
+            using (FileStream stream = new FileStream(
+                path,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.ReadWrite,
+                BufferSize,
+                FileOptions.SequentialScan))
+            {
+                int bytesRead;
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    hasBytes = true;
+                    for (int index = 0; index < bytesRead; index++)
+                    {
+                        byte value = buffer[index];
+                        if (value == 0)
+                        {
+                            return null;
+                        }
+                        if (value == 10)
+                        {
+                            lineFeeds++;
+                        }
+                        else if (value == 13)
+                        {
+                            carriageReturns++;
+                        }
+                    }
+                    lastByte = buffer[bytesRead - 1];
+                }
+            }
+
+            if (!hasBytes)
+            {
+                return 0;
+            }
+            if (lineFeeds > 0)
+            {
+                return lineFeeds + (lastByte == 10 ? 0 : 1);
+            }
+            return carriageReturns + (lastByte == 13 ? 0 : 1);
+        }
+    }
+}
+'@
+}
+
 function Invoke-NativeCapture {
     param(
         [Parameter(Mandatory)][string]$Executable,
@@ -228,28 +292,7 @@ function Test-ExcludedPath {
 function Get-TextLineCount {
     param([Parameter(Mandatory)][string]$File)
 
-    $bytes = [IO.File]::ReadAllBytes($File)
-    if ($bytes.Count -eq 0) {
-        return 0L
-    }
-    if ($bytes -contains [byte]0) {
-        return $null
-    }
-
-    $lineFeeds = 0L
-    $carriageReturns = 0L
-    foreach ($byte in $bytes) {
-        if ($byte -eq 10) {
-            $lineFeeds++
-        } elseif ($byte -eq 13) {
-            $carriageReturns++
-        }
-    }
-
-    if ($lineFeeds -gt 0) {
-        return $lineFeeds + $(if ($bytes[-1] -eq 10) { 0 } else { 1 })
-    }
-    $carriageReturns + $(if ($bytes[-1] -eq 13) { 0 } else { 1 })
+    [HomeBaseline.StatisticsTextFile]::CountLines($File)
 }
 
 function Get-ArtifactCategory {
