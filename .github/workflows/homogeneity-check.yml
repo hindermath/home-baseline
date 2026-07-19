@@ -41,11 +41,11 @@ jobs:
           cd "$PARENT"
           bash "${REPO}/scripts/check-homogeneity.sh" "${REPO}"
 
-      - name: Run Homogeneity Check (Bash on Windows)
+      - name: Run Homogeneity Check (PowerShell on Windows)
         if: runner.os == 'Windows'
-        shell: bash
+        shell: pwsh
         run: |
-          PARENT="$(dirname "$GITHUB_WORKSPACE")"
-          REPO="$(basename "$GITHUB_WORKSPACE")"
-          cd "$PARENT"
-          bash "${REPO}/scripts/check-homogeneity.sh" "${REPO}"
+          $parent = Split-Path -Parent $env:GITHUB_WORKSPACE
+          $repo = Split-Path -Leaf $env:GITHUB_WORKSPACE
+          Set-Location $parent
+          pwsh -NoProfile -File "$repo/scripts/check-homogeneity.ps1" -TargetDir $repo
