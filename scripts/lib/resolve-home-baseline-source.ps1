@@ -1,6 +1,19 @@
 #Requires -Version 7
 Set-StrictMode -Version Latest
 
+function Test-HBSourceRepository {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Path)
+
+    if (-not (Test-Path -LiteralPath (Join-Path $Path '.git')) -or
+        -not (Test-Path -LiteralPath (Join-Path $Path 'scripts/sync-home.ps1'))) {
+        return $false
+    }
+    $remote = & git -C $Path remote get-url origin 2>$null
+    $LASTEXITCODE -eq 0 -and
+        [string]$remote -match 'hindermath/home-baseline(?:\.git)?$'
+}
+
 function Resolve-HBSourceRepository {
     [CmdletBinding()]
     param(
@@ -13,8 +26,7 @@ function Resolve-HBSourceRepository {
         $candidate = Split-Path -Parent $candidate
     }
     while ($candidate) {
-        if ((Test-Path -LiteralPath (Join-Path $candidate '.git')) -and
-            (Test-Path -LiteralPath (Join-Path $candidate 'scripts/sync-home.ps1'))) {
+        if (Test-HBSourceRepository -Path $candidate) {
             return $candidate
         }
         $parent = Split-Path -Parent $candidate
@@ -44,8 +56,7 @@ function Resolve-HBSourceRepository {
 
     foreach ($item in $candidates) {
         $path = [IO.Path]::GetFullPath([Environment]::ExpandEnvironmentVariables($item.Path))
-        if ((Test-Path -LiteralPath (Join-Path $path '.git')) -and
-            (Test-Path -LiteralPath (Join-Path $path 'scripts/sync-home.ps1'))) {
+        if (Test-HBSourceRepository -Path $path) {
             if ($item.Legacy) {
                 Write-Warning 'Legacy checkout ~/home-baseline-tmp is deprecated; migrate to ~/home-baseline-source.'
             }
