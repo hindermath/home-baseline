@@ -97,6 +97,22 @@
       "labelEn": "Script catalog and source migration",
       "netLines": 2731,
       "activeDays": 1
+    },
+    {
+      "slot": 11,
+      "id": "one-command-maintenance-intake",
+      "labelDe": "Ein-Kommando-Wartungsintake",
+      "labelEn": "One-command maintenance intake",
+      "netLines": 720,
+      "activeDays": 1
+    },
+    {
+      "slot": 12,
+      "id": "maintenance-tui-intake",
+      "labelDe": "Wartungs-TUI-Intake",
+      "labelEn": "Maintenance TUI intake",
+      "netLines": 679,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

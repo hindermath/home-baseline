@@ -102,6 +102,8 @@
 | 2026-07-19 | ASCII-Statistikprofil 2 Toolchain und Level-0-Migration | 67 | 284 814 | 511 | Reproduzierbaren PowerShell-7-Renderer mit Bash-Einstieg, JSON-Schema, Repository-Konfiguration, 52-Wochen-Heatmap, Wochen- und kumulativem Volumen, festen Phasenslots, Monatsfallback, ASCII-Gauges und bilingualer Textalternative eingefuehrt. Bootstrap, Homogeneity-Pruefung, Propagationsmanifest, Constitution, fuenf Agentenflaechen, Vorlagen, README und Manpage wurden synchron aktualisiert; historische Gesamtstatistik blieb als Profil-1-Archiv erhalten und `STATS.md` wurde ohne Aenderung von Scores, Zeitstempeln oder Reihenfolge auf `#` normalisiert. 146 deterministische Assertions pruefen unter anderem leere Aktivitaet, Binaerdaten, Umbenennungen, Statistik-only-Commits, ungueltige Konfigurationen, 49 Phasen, Idempotenz, `>500x`, Dry-Run-Ausgabe im aktuellen Zustand, Bootstrap-Commit-Trailer, explizite PowerShell-7-Diagnose und bytegleiche Bash-/PowerShell-Ausgabe. Der Toolchain-Commit umfasst `+3235/-63`, also 3172 Nettozeilen; konservative Manualreferenz fuer 3235 hinzugefuegte oder aktualisierte Zeilen: `40,4` Tage beziehungsweise `315,4` Stunden, Thorsten-Solo: `32,4` Tage beziehungsweise `252,3` Stunden. Aktivtage und Textbasis folgen erstmals durchgehend Methodik v2 und sind deshalb nicht unmittelbar mit den vorherigen Profil-1-Zeilen vergleichbar. Der Homogeneity-Workflow laedt die vollstaendige Git-Historie, damit der synthetische PR-Merge-Commit dieselbe reproduzierbare Statistik wie der Branch-Head validiert. Die Copilot-Hinweise zu PowerShell-Synopsis und Bootstrap-Anzeigename sind umgesetzt; ein gepufferter, kompilierter Dateiscanner beschleunigt besonders die Windows-Validierung, ohne den Datenvertrag zu aendern. Der Windows-Workflow verwendet entsprechend der OS-Regel die native PowerShell-7-Homogeneity-Pruefung statt Git Bash. Homogeneity unterscheidet Renderer-Drift, Validierungs-/Toolingfehler und unerwartete Exitcodes nun in beiden Skriptvarianten eindeutig. Die abschließende Review-Runde harmonisiert außerdem den Dry-Run-Vertrag, Commit-Trailer und die Diagnose eines fehlenden `pwsh`. |
 | 2026-07-20 | Preset-7-/Preset-8-Handbuecher und Dokumentations-Releases | — | — | — | `autonomous-run-governance` v0.3.1 und `parallel-autonomous-run-governance` v0.2.2 als Dokumentations-Patch-Releases veroeffentlicht. Zwei kompakte README-Einstiege, 17 ausfuehrliche Handbuch- und Indexdateien, 14 GitHub-gerenderte Mermaid-Diagramme mit vollstaendigen DE-/EN-Textalternativen und ein Feldnachweis-Index machen Einzel- und Parallelbetrieb nachvollziehbar. Der bestehende Produktionsvertrag `Preset 8 -> Preset 7 >=0.2.2 je Worker` ist nun in Doku, Constitution, Matrix, Guidance, Vorlagen und deterministischen Fixtures verbindlich sichtbar. Exakte Public-PR-Heads, Tags, Archive, SHA-256, Mermaid-Syntax, Hell-/Dunkel-Darstellung, Pandoc-Lesereihenfolge, Lychee, PSScriptAnalyzer, Coordinator-/Consolidation-Tests sowie ein isolierter Acht-Preset-Installations-, Resolve-, Idempotenz- und Remove/Reinstall-Smoke wurden verifiziert; Commands, Skripte, Templates, Schemas und Berechtigungsverhalten blieben unveraendert. |
 | 2026-07-20 | Preset-7-/Preset-8-Dokumentations-Patches: Flottenabschluss | — | — | — | Die Dokumentations-Releases auf Level 0, alle sieben Level-1- und alle 25 Level-2-Repositories ausgerollt und ueber die noch offenen 31 PRs kontrolliert abgeschlossen. Vor jedem Admin-Bypass wurden exakter Head, Mergefaehigkeit, Checks und aktuelle Review-Threads erneut geprueft. 25 private Repositories zeigten in den neuesten Current-Head-Laeufen 117 verifizierte Null-Schritt-Jobs ohne Runner und mit 25/25 identischen Billing-/Spending-Limit-Annotationen; diese blieben Provider-`N/A`. Drei oeffentliche Claude-Review-Jobs scheiterten nach Runner-Start ohne Reviewbefund, waehrend alle technischen Checks gruen waren. Der vollstaendige `cc65`-Build bestand unter Linux und Windows; der fremd geaenderte Original-Worktree blieb unangetastet. Nach den Merges bestanden 33/33 exakte Preset-, Propagations-, Statistik-, Clean-Tree- und Remote-Paritaetspruefungen. |
+| 2026-07-20 | Lastenheft fuer plattformuebergreifende Ein-Kommando-Wartung | 68 | — | — | Neuen aktiven Spec-Kit-Intake fuer macOS, Linux/Ubuntu und Windows angelegt und den aelteren prueforientierten Intake als historischen Vorgaenger eingeordnet. Der Sollvertrag umfasst Bash-3.2-No-op-Regression, Desired-State-Fleet-Manifest, sicheres Clone-on-missing, fortsetzbare Stufen, optionale Formeln, administratorpflichtige Deferred-Befunde, leise Git-Ausgabe und JSON-Abschlussbericht. Zwei alternative Prompts bereiten einen schrittweisen Specify-Lauf oder einen vollstaendigen autonomen Lauf mit explizit begrenzter `MergeAndSync`-Autoritaet vor; kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst `+722/-2`, also 720 Nettozeilen. Konservative Manualreferenz fuer 722 hinzugefuegte oder aktualisierte Zeilen: `9,0` Tage beziehungsweise `70,4` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `7,2` Tage beziehungsweise `56,3` Stunden bei 100 Zeilen/Tag. |
+| 2026-07-20 | Lastenheft fuer die Agentic-Workspace-Wartungs-TUI | 69 | — | — | Entscheidungsvollstaendigen, durch den Wartungsvorgaenger hart gesperrten Spec-Kit-Intake fuer eine plattformuebergreifende Spectre.Console-TUI angelegt. Der Vertrag bewahrt den argumentlosen Headless-Lauf ohne TTY, startet interaktiv mit vorausgewaehltem Dry-run, delegiert jede Wartungsaktion an Bash beziehungsweise PowerShell und definiert JSONL-Ereignisse, content-adressierten Build-Cache, Plaintext-Fallback, Exitcodes, sichere Prozessargumente sowie barrierearme ASCII- und Screenreader-Ausgabe. Abarbeitungsposition 25 folgt zwingend auf den Plattform-Wartungsintake; Specify- und Autonomous-Prompt stoppen bei fehlender Vorgaenger-Evidenz vor jeder Feature- oder Repository-Aenderung. Kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst 679 Nettozeilen. Konservative Manualreferenz: `8,5` Tage beziehungsweise `66,2` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `6,8` Tage beziehungsweise `53,0` Stunden bei 100 Zeilen/Tag. |
 
 ---
 
@@ -476,6 +478,44 @@ safe invocation examples. The permanent Level 0 source moves to
 `~/home-baseline-source` through shared discovery, a strict preflight, local
 JSON evidence, and a temporary compatibility link.*
 
+### 2026-07-20 - Plattformuebergreifender Ein-Kommando-Wartungsintake / Cross-platform one-command maintenance intake
+
+- Ein neues, entscheidungsvollstaendiges Lastenheft verbindet
+  Bash-3.2-Kompatibilitaet, PowerShell-Paritaet, Desired-State-Flotte,
+  Clone-on-missing, fortsetzbare Wartung und kompakte JSON-Nachweise.
+- Der fruehere Intake bleibt als historischer Kontext erhalten; die aktive
+  Abarbeitungsreihenfolge verweist auf den neuen plattformuebergreifenden
+  Vertrag.
+- Schrittweiser und autonomer Spec-Kit-Einstieg sind als Alternativen
+  dokumentiert. Der autonome Prompt begrenzt `MergeAndSync` auf den
+  Wartungsscope und erteilt keine Bypass-, Secret- oder Provider-Admin-Rechte.
+
+*A decision-complete intake now combines Bash 3.2 compatibility, PowerShell
+parity, desired-state fleet management, safe cloning, resumable maintenance,
+and compact JSON evidence. The historical predecessor remains available, the
+active order points to the new contract, and staged versus autonomous Spec Kit
+entry points are documented as alternatives with tightly bounded delivery
+authority.*
+
+### 2026-07-20 - Agentic-Workspace-Wartungs-TUI-Intake / Agentic workspace maintenance TUI intake
+
+- Ein eigener Spectre.Console-Intake definiert TTY-Erkennung, vorausgewaehlten
+  Dry-run, Headless-Kompatibilitaet, Live-Phasenanzeige und sicheren
+  Plaintext-Fallback fuer macOS, Linux/Ubuntu und Windows.
+- Bash und PowerShell bleiben alleinige Wartungs-Engines. Die TUI verwendet
+  typisierte Prozessargumente und einen versionierten JSONL-Ereigniskanal,
+  statt Wartungslogik oder Konsolentext-Parsing zu duplizieren.
+- Ein hartes Gate sperrt die Abarbeitung, bis der Plattform-Wartungsvorgaenger
+  vollstaendig umgesetzt, validiert und gemaess seiner Delivery Authority
+  abgeschlossen ist. Beide kopierbaren Spec-Kit-Prompts erzwingen dieses Gate.
+
+*A separate Spectre.Console intake defines terminal detection, dry-run as the
+safe initial choice, headless compatibility, live phase status, and a plain
+fallback across macOS, Linux/Ubuntu, and Windows. Bash and PowerShell remain the
+only maintenance engines. A hard gate blocks all TUI feature work until the
+platform-maintenance predecessor is implemented, validated, and closed out
+under its delivery authority.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -486,17 +526,17 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 293227 lines |
-| Textdateien / Text files | 1751 |
+| Textbasis / Text base | 294643 lines |
+| Textdateien / Text files | 1753 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-20 |
 | Aktivtage / Active days | 68 |
 | Relevante Commits / Relevant commits | 467 |
-| Zeilen je Aktivtag / Lines per active day | 4312.2 |
+| Zeilen je Aktivtag / Lines per active day | 4333.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 25 days |
-| Speedup vs. 80 lines/day | 53.9x |
-| Speedup vs. 100 lines/day | 43.1x |
+| Speedup vs. 80 lines/day | 54.2x |
+| Speedup vs. 100 lines/day | 43.3x |
 | Methodik / Methodology | v2; source `876ca7c6d676` |
 
 ### Artefaktmix / Artifact Mix
@@ -504,8 +544,8 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.4% | 7064
-Dokumentation / Documentation   [#################...]  83.7% | 245353
-Skripte / Scripts               [###.................]  12.8% | 37536
+Dokumentation / Documentation   [#################...]  83.8% | 246769
+Skripte / Scripts               [###.................]  12.7% | 37536
 Konfiguration / Configuration   [#...................]   0.9% | 2643
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 631
@@ -590,15 +630,15 @@ Die kumulative Kurve summiert nur das Brutto-Aenderungsvolumen im Fenster. Sie d
 ### Phasenvolumen / Phase Volume
 
 ```text
-Slots 0..10
-   cap 50000 | . . . . . . . . . . .
-       41667 | . . . . . . . . . . .
-       33333 | . . . . . . . . . . .
-       25000 | . # . . . . . . . . .
-       16667 | . # . . . . . . . # .
-        8333 | . # . . # . # # . # .
-           0 +-----------------------
-             00 01 02 03 04 05 06 07 08 09 10
+Slots 0..12
+   cap 50000 | . . . . . . . . . . . . .
+       41667 | . . . . . . . . . . . . .
+       33333 | . . . . . . . . . . . . .
+       25000 | . # . . . . . . . . . . .
+       16667 | . # . . . . . . . # . . .
+        8333 | . # . . # . # # . # . . .
+           0 +---------------------------
+             00 01 02 03 04 05 06 07 08 09 10 11 12
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -614,6 +654,8 @@ Slots 0..10
 | 8 | Paralleler Feldtest / Parallel field test | 5323 |
 | 9 | Flottenrollout / Fleet rollout | 19465 |
 | 10 | Skriptkatalog und Quellmigration / Script catalog and source migration | 2731 |
+| 11 | Ein-Kommando-Wartungsintake / One-command maintenance intake | 720 |
+| 12 | Wartungs-TUI-Intake / Maintenance TUI intake | 679 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -623,8 +665,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 53.9x
-100 lines/day      [#########...........] 43.1x
+80 lines/day       [###########.........] 54.2x
+100 lines/day      [#########...........] 43.3x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -637,7 +679,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4312.2
+Visible repository [#################...] 4333.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.

@@ -54,7 +54,17 @@ added to the active order once they have been assessed.*
 | 21 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
 | 22 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
 | 23 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
-| 24 | `Lastenheft_agentische-umgebung-pruefen-und-syncen.md` | Prüft und synchronisiert die agentische Level-0-/Level-1-/Level-2-Umgebung. / Reviews and synchronizes the agentic Level-0/Level-1/Level-2 environment. |
+| 24 | `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` | Plant eine fortsetzbare Ein-Kommando-Wartung mit Desired-State-Flotte, sicherem Clone-on-missing, Plattformparität und kompaktem JSON-Abschlussbericht. / Plans resumable one-command maintenance with a desired-state fleet, safe clone-on-missing, platform parity, and a compact JSON closeout report. |
+| 25 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis Eintrag 24 vollständig implementiert, plattformübergreifend validiert und gemäß seiner Delivery Authority abgeschlossen ist. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until item 24 is fully implemented, validated across platforms, and closed out under its delivery authority. |
+
+Eintrag 25 ist eine harte Abhaengigkeit und kein nur empfohlener
+Reihenfolgehinweis. Vor Feature-, Branch- oder Spec-Kit-Artefakterstellung fuer
+die TUI muessen die im TUI-Lastenheft definierten Abschlussnachweise fuer
+Eintrag 24 vorliegen. Fehlt ein Nachweis, bleibt Eintrag 25 `BLOCKED`.
+
+*Item 25 is a hard dependency rather than an ordering recommendation. Its
+predecessor evidence must pass before any TUI feature, branch, or Spec Kit
+artifact is created; otherwise item 25 remains `BLOCKED`.*
 
 ## Historisch / Nicht erneut ausfuehren
 
@@ -80,3 +90,11 @@ Secure-Development-Arbeiten ueberholt wurde.
 *`Lastenheft_Workspace_Migration.md` remains available as functional context.
 Before a later run, check whether it is still independently open or has already
 been superseded by later homogeneity, migration, or secure-development work.*
+
+`Lastenheft_agentische-umgebung-pruefen-und-syncen.md` bleibt als historischer
+Vorgaenger der plattformuebergreifenden Ein-Kommando-Wartung erhalten. Es wird
+nicht mehr als eigener aktiver Spec-Kit-Lauf eingeplant.
+
+*`Lastenheft_agentische-umgebung-pruefen-und-syncen.md` remains as the
+historical predecessor of cross-platform one-command maintenance. It is no
+longer scheduled as a separate active Spec Kit run.*

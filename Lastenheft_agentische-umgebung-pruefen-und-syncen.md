@@ -3,9 +3,27 @@
 
 **Feature Branch**: `noch-offen / pending` *(wird nach Spec-Kit-Lauf aktualisiert / updated after Spec-Kit run)*
 **Erstellt / Created**: 2026-04-24
-**Status**: Draft
+**Status**: Superseded / Abgeloest
 **Konstitutions-Version / Constitution Version**: 1.6.0
 **Autor / Author**: Thorsten Hindermann / KI-Agent-Unterstuetzung
+
+---
+
+## Abloesung / Supersession
+
+Dieses Lastenheft bleibt als historischer Anforderungsnachweis erhalten. Als
+aktiver Intake wird es durch
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` abgeloest. Das
+neue Lastenheft verwendet den dauerhaften Level-0-Quellpfad, ergaenzt
+plattformuebergreifendes Clone-on-missing, fortsetzbare Wartung, kompakte
+JSON-Berichte und einen expliziten Spec-Kit-Autonomous-Einstieg.
+
+*This requirements document remains available as historical evidence. It is
+superseded as the active intake by
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`, which uses the
+permanent Level 0 source path and adds cross-platform clone-on-missing,
+resumable maintenance, compact JSON reporting, and an explicit Spec Kit
+Autonomous entry point.*
 
 ---
 
