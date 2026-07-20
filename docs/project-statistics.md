@@ -104,6 +104,7 @@
 | 2026-07-20 | Preset-7-/Preset-8-Dokumentations-Patches: Flottenabschluss | — | — | — | Die Dokumentations-Releases auf Level 0, alle sieben Level-1- und alle 25 Level-2-Repositories ausgerollt und ueber die noch offenen 31 PRs kontrolliert abgeschlossen. Vor jedem Admin-Bypass wurden exakter Head, Mergefaehigkeit, Checks und aktuelle Review-Threads erneut geprueft. 25 private Repositories zeigten in den neuesten Current-Head-Laeufen 117 verifizierte Null-Schritt-Jobs ohne Runner und mit 25/25 identischen Billing-/Spending-Limit-Annotationen; diese blieben Provider-`N/A`. Drei oeffentliche Claude-Review-Jobs scheiterten nach Runner-Start ohne Reviewbefund, waehrend alle technischen Checks gruen waren. Der vollstaendige `cc65`-Build bestand unter Linux und Windows; der fremd geaenderte Original-Worktree blieb unangetastet. Nach den Merges bestanden 33/33 exakte Preset-, Propagations-, Statistik-, Clean-Tree- und Remote-Paritaetspruefungen. |
 | 2026-07-20 | Lastenheft fuer plattformuebergreifende Ein-Kommando-Wartung | 68 | — | — | Neuen aktiven Spec-Kit-Intake fuer macOS, Linux/Ubuntu und Windows angelegt und den aelteren prueforientierten Intake als historischen Vorgaenger eingeordnet. Der Sollvertrag umfasst Bash-3.2-No-op-Regression, Desired-State-Fleet-Manifest, sicheres Clone-on-missing, fortsetzbare Stufen, optionale Formeln, administratorpflichtige Deferred-Befunde, leise Git-Ausgabe und JSON-Abschlussbericht. Zwei alternative Prompts bereiten einen schrittweisen Specify-Lauf oder einen vollstaendigen autonomen Lauf mit explizit begrenzter `MergeAndSync`-Autoritaet vor; kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst `+722/-2`, also 720 Nettozeilen. Konservative Manualreferenz fuer 722 hinzugefuegte oder aktualisierte Zeilen: `9,0` Tage beziehungsweise `70,4` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `7,2` Tage beziehungsweise `56,3` Stunden bei 100 Zeilen/Tag. |
 | 2026-07-20 | Lastenheft fuer die Agentic-Workspace-Wartungs-TUI | 69 | — | — | Entscheidungsvollstaendigen, durch den Wartungsvorgaenger hart gesperrten Spec-Kit-Intake fuer eine plattformuebergreifende Spectre.Console-TUI angelegt. Der Vertrag bewahrt den argumentlosen Headless-Lauf ohne TTY, startet interaktiv mit vorausgewaehltem Dry-run, delegiert jede Wartungsaktion an Bash beziehungsweise PowerShell und definiert JSONL-Ereignisse, content-adressierten Build-Cache, Plaintext-Fallback, Exitcodes, sichere Prozessargumente sowie barrierearme ASCII- und Screenreader-Ausgabe. Abarbeitungsposition 25 folgt zwingend auf den Plattform-Wartungsintake; Specify- und Autonomous-Prompt stoppen bei fehlender Vorgaenger-Evidenz vor jeder Feature- oder Repository-Aenderung. Kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst 679 Nettozeilen. Konservative Manualreferenz: `8,5` Tage beziehungsweise `66,2` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `6,8` Tage beziehungsweise `53,0` Stunden bei 100 Zeilen/Tag. |
+| 2026-07-20 | Aktive Lastenheft-Queue repriorisiert | — | — | — | Die plattformuebergreifende Ein-Kommando-Wartung und ihre abhaengige Spectre.Console-TUI von den bisherigen Positionen 24/25 auf 1/2 vorgezogen. Die verbleibenden aktiven Intakes unter Beibehaltung ihrer relativen Reihenfolge lueckenlos bis Position 11 neu nummeriert. Die zuvor auf Position 5 bis 18 gelisteten 14 Secure-CaseTracker-Lernreihen-Intakes aus der zentralen aktiven Queue entfernt; ihre Dateien und die gesamte Lernreihen-Dokumentation unter `docs/learning-units/` bleiben unveraendert erhalten. Der harte TUI-Vorgaenger-Gate verweist nun auf Eintrag 1. Kein Spec-Kit-Lauf wurde gestartet. |
 
 ---
 
@@ -516,6 +517,21 @@ only maintenance engines. A hard gate blocks all TUI feature work until the
 platform-maintenance predecessor is implemented, validated, and closed out
 under its delivery authority.*
 
+### 2026-07-20 - Aktive Lastenheft-Queue repriorisiert / Active intake queue reprioritized
+
+- Ein-Kommando-Wartung und Wartungs-TUI stehen jetzt auf Position 1 und 2;
+  der harte TUI-Gate verweist auf den direkten Vorgaenger auf Position 1.
+- Die uebrigen aktiven Intakes sind unter Wahrung ihrer relativen Reihenfolge
+  lueckenlos bis Position 11 neu nummeriert.
+- Die 14 Secure-CaseTracker-Eintraege der frueheren Positionen 5 bis 18 sind
+  nur aus der zentralen aktiven Queue entfernt. Die Lernreihen-Dateien bleiben
+  unter `docs/learning-units/` erhalten.
+
+*One-command maintenance and its dependent TUI now occupy positions 1 and 2.
+The remaining active intakes are numbered contiguously through 11. The 14
+Secure CaseTracker items were removed only from the central active queue; their
+learning-series files remain unchanged.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -526,12 +542,12 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 294643 lines |
+| Textbasis / Text base | 294637 lines |
 | Textdateien / Text files | 1753 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-20 |
 | Aktivtage / Active days | 68 |
 | Relevante Commits / Relevant commits | 468 |
-| Zeilen je Aktivtag / Lines per active day | 4333.0 |
+| Zeilen je Aktivtag / Lines per active day | 4332.9 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 25 days |
@@ -544,7 +560,7 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.4% | 7064
-Dokumentation / Documentation   [#################...]  83.8% | 246769
+Dokumentation / Documentation   [#################...]  83.8% | 246763
 Skripte / Scripts               [###.................]  12.7% | 37536
 Konfiguration / Configuration   [#...................]   0.9% | 2643
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -679,7 +695,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4333.0
+Visible repository [#################...] 4332.9
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.

@@ -31,40 +31,34 @@ added to the active order once they have been assessed.*
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
 |---:|---|---|
-| 1 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
-| 2 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
-| 3 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
-| 4 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
-| 5 | `docs/learning-units/Lastenheft_Secure-CaseTracker-Lernreihe.md` | Gesamtlandkarte für die EuFPA-Lernreihe Secure CaseTracker; nicht als einzelner großer Implementierungslauf starten. / Overall map for the EuFPA Secure CaseTracker learning series; do not start it as one large implementation run. |
-| 6 | `docs/learning-units/Lastenheft_Secure-CaseTracker_00_Sprachrepo-Projekt-Scaffold.md` | Bereitet pro MSL-Sprachrepo minimales Projekt, Build/Test, Secure-Development-Basis und Governance-Presets vor, ohne Fachlogik zu erzeugen. / Prepares the minimal project, build/test, secure-development baseline, and governance presets per MSL language repository without creating domain logic. |
-| 7 | `docs/learning-units/Lastenheft_Secure-CaseTracker_01_Kundenauftrag-und-Scope.md` | Klärt Kundenauftrag, Scope, Rollen, Akzeptanzkriterien und erste Datenschutz-/Sicherheitsannahmen. / Clarifies customer task, scope, roles, acceptance criteria, and first privacy/security assumptions. |
-| 8 | `docs/learning-units/Lastenheft_Secure-CaseTracker_02_Domaenenmodell-und-Zustaende.md` | Definiert Domänenmodell, Pflichtfelder, erlaubte Zustände und verbotene Zustandswechsel. / Defines domain model, mandatory fields, allowed states, and forbidden state transitions. |
-| 9 | `docs/learning-units/Lastenheft_Secure-CaseTracker_03_Eingabevalidierung-und-Trust-Boundaries.md` | Plant Trust Boundaries, Validierungsregeln, sichere Fehlermeldungen und negative Tests. / Plans trust boundaries, validation rules, safe error messages, and negative tests. |
-| 10 | `docs/learning-units/Lastenheft_Secure-CaseTracker_04_Datenschutz-und-Audit-Logging.md` | Plant datensparsames Audit-Logging, Datenschutznotiz und Log-Injection-Schutz. / Plans data-minimizing audit logging, privacy note, and log-injection protection. |
-| 11 | `docs/learning-units/Lastenheft_Secure-CaseTracker_05_Rollen-und-Berechtigungen.md` | Definiert Rollenmatrix, sichere Defaults, geschützte Aktionen und Autorisierungstests. / Defines role matrix, secure defaults, protected actions, and authorization tests. |
-| 12 | `docs/learning-units/Lastenheft_Secure-CaseTracker_06_Persistenz-und-Import-Export.md` | Plant sichere Persistenz, Import, Export, Pfadprüfung und sichere Deserialisierung. / Plans safe persistence, import, export, path checks, and safe deserialization. |
-| 13 | `docs/learning-units/Lastenheft_Secure-CaseTracker_07_Testbarkeit-und-Qualitaet.md` | Plant fachliche Tests, Sicherheitstests, Datenschutztests und offene Testlücken. / Plans functional tests, security tests, privacy tests, and open test gaps. |
-| 14 | `docs/learning-units/Lastenheft_Secure-CaseTracker_08_Supply-Chain-und-MSL-Bewertung.md` | Bewertet Abhängigkeiten, Audit-Werkzeuge, MSL-Status und SBOM-/N/A-Entscheidungen. / Reviews dependencies, audit tools, MSL status, and SBOM/N/A decisions. |
-| 15 | `docs/learning-units/Lastenheft_Secure-CaseTracker_09_Sandbox-und-Agentische-Entwicklung.md` | Plant Sandbox-Nutzung, Mounts, Schreibgrenzen, Secret-Regeln, Netzwerkannahmen und KI-Agenten-Grenzen. / Plans sandbox use, mounts, write boundaries, secret rules, network assumptions, and AI-agent boundaries. |
-| 16 | `docs/learning-units/Lastenheft_Secure-CaseTracker_10_Prozessanalyse-und-Kennzahlen.md` | Definiert Prozesskennzahlen, Datenqualität, Datenschutz und Grenzen der Aussagekraft. / Defines process metrics, data quality, privacy, and limits of interpretation. |
-| 17 | `docs/learning-units/Lastenheft_Secure-CaseTracker_11_Spec-Kit-Review-und-Abschluss.md` | Plant Abschlussreview, Evidenzmatrix, Restrisiken, Folgeaufgaben und EuFPA-Präsentation. / Plans final review, evidence matrix, residual risks, follow-up tasks, and EuFPA presentation. |
-| 18 | `docs/learning-units/Lastenheft_Secure-CaseTracker_12_Jahr-2-Baseline-und-Track-Ableitung.md` | Sichert den abgeschlossenen Jahr-2-Stand als Baseline und bereitet spätere AE-/SI-/DPA-Track-Ableitungen vor. / Preserves the completed year-2 state as a baseline and prepares later AE/SI/DPA track derivations. |
-| 19 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
-| 20 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
-| 21 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
-| 22 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
-| 23 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
-| 24 | `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` | Plant eine fortsetzbare Ein-Kommando-Wartung mit Desired-State-Flotte, sicherem Clone-on-missing, Plattformparität und kompaktem JSON-Abschlussbericht. / Plans resumable one-command maintenance with a desired-state fleet, safe clone-on-missing, platform parity, and a compact JSON closeout report. |
-| 25 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis Eintrag 24 vollständig implementiert, plattformübergreifend validiert und gemäß seiner Delivery Authority abgeschlossen ist. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until item 24 is fully implemented, validated across platforms, and closed out under its delivery authority. |
+| 1 | `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` | Plant eine fortsetzbare Ein-Kommando-Wartung mit Desired-State-Flotte, sicherem Clone-on-missing, Plattformparität und kompaktem JSON-Abschlussbericht. / Plans resumable one-command maintenance with a desired-state fleet, safe clone-on-missing, platform parity, and a compact JSON closeout report. |
+| 2 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis Eintrag 1 vollständig implementiert, plattformübergreifend validiert und gemäß seiner Delivery Authority abgeschlossen ist. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until item 1 is fully implemented, validated across platforms, and closed out under its delivery authority. |
+| 3 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
+| 4 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
+| 5 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
+| 6 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
+| 7 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
+| 8 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
+| 9 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
+| 10 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
+| 11 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
 
-Eintrag 25 ist eine harte Abhaengigkeit und kein nur empfohlener
+Eintrag 2 ist eine harte Abhaengigkeit und kein nur empfohlener
 Reihenfolgehinweis. Vor Feature-, Branch- oder Spec-Kit-Artefakterstellung fuer
 die TUI muessen die im TUI-Lastenheft definierten Abschlussnachweise fuer
-Eintrag 24 vorliegen. Fehlt ein Nachweis, bleibt Eintrag 25 `BLOCKED`.
+Eintrag 1 vorliegen. Fehlt ein Nachweis, bleibt Eintrag 2 `BLOCKED`.
 
-*Item 25 is a hard dependency rather than an ordering recommendation. Its
+*Item 2 is a hard dependency rather than an ordering recommendation. Its
 predecessor evidence must pass before any TUI feature, branch, or Spec Kit
-artifact is created; otherwise item 25 remains `BLOCKED`.*
+artifact is created; otherwise item 2 remains `BLOCKED`.*
+
+Die zuvor auf den Positionen 5 bis 18 gefuehrten
+Secure-CaseTracker-Lernreihen-Intakes bleiben unter `docs/learning-units/`
+erhalten, sind aber nicht mehr Teil dieser zentralen aktiven Reihenfolge.
+
+*The Secure CaseTracker learning-series intakes previously listed as items 5
+through 18 remain under `docs/learning-units/`, but are no longer part of this
+central active order.*
 
 ## Historisch / Nicht erneut ausfuehren
 
