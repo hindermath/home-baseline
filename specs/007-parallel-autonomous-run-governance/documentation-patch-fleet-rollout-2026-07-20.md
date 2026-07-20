@@ -177,8 +177,10 @@ produced no review finding or unresolved thread.*
   Acht-Preset-Matrix validiert
 - `14/14` Mermaid-Diagramme syntaktisch gerendert und in GitHub hell/dunkel
   kontrolliert
-- vollstaendige DE-/EN-Textalternativen, Pandoc-Lesereihenfolge und
-  Lychee-Linkpruefung bestanden
+- vollstaendige DE-/EN-Textalternativen und Pandoc-Lesereihenfolge bestanden
+- `12/12` oeffentliche GitHub-Links wurden live mit Lychee geprueft; `26/26`
+  private PR-Links wurden wegen des erwarteten anonymen GitHub-`404` stattdessen
+  authentifiziert mit `gh pr view` verifiziert
 - Release-ZIPs isoliert entpackt, gehasht und mit den Publikationskopien
   verglichen
 - Missing-, Disabled-, Outdated-, Minimum- und Current-Fixtures des
