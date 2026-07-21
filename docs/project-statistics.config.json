@@ -137,6 +137,14 @@
       "labelEn": "Intake review fleet closeout",
       "netLines": 48,
       "activeDays": 1
+    },
+    {
+      "slot": 16,
+      "id": "intake-authoring-governance-v010",
+      "labelDe": "Intake-Authoring-Preset v0.1.0",
+      "labelEn": "Intake authoring preset v0.1.0",
+      "netLines": 6337,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

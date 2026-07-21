@@ -1,9 +1,9 @@
 <!--
 Sync Impact Report
-Version change: 1.18.0 -> 1.18.1
+Version change: 1.18.1 -> 1.19.0
 Modified principles:
-- Spec Kit preset governance (add registry-selected managed nine-preset fleet profile)
-- Learning series governance (carry portable intake-review policy without implicit learner runs)
+- Spec Kit preset governance (add optional intake authoring and managed ten-preset fleet profile)
+- Learning series governance (prepare intakes without implicit review or learner runs)
 Added sections:
 - None
 Removed sections:
@@ -959,21 +959,28 @@ workspace family consists of:
 | `autonomous-run-governance` | `v0.3.2` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
 | `parallel-autonomous-run-governance` | `v0.2.3` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`intake-review-governance` v0.1.0 at priority `65` is an optional ninth preset,
-not part of the standard eight. When explicitly installed and activated by
-project or campaign policy, its normalized-hash-bound result is a mandatory
-gate before feature creation or worker scheduling. Only `Ready` and
-human-approved `ReadyWithAcceptedRisks` pass. Critical/High findings,
-unanswered material questions, stale hashes, missing series relations, or
-missing worker coverage block. Review and status are read-only; repair requires
-explicit target-mutation authority.
+`intake-authoring-governance` v0.1.0 at priority `64` and
+`intake-review-governance` v0.1.0 at priority `65` are optional presets, not
+part of the standard eight. Authoring creates exactly one Markdown intake and
+one normalized-hash-bound receipt from explicitly named ordered UTF-8 sources.
+It asks at most five material questions per pass, protects existing targets,
+uses `LocalImplementation` when remote authority is absent, and starts no
+downstream command. `ReadyForReview` is authoring evidence, not review
+acceptance.
 
-The managed Thorsten fleet selects this optional preset through registry
-profile `intake-review-nine-governance-presets`. This fleet-local choice does
-not change the public eight-preset default. A registry
+When Intake Review is explicitly activated by project or campaign policy, only
+`Ready` and human-approved `ReadyWithAcceptedRisks` pass. Critical/High
+findings, unanswered material questions, stale hashes, missing series
+relations, or missing worker coverage block. Review and status are read-only;
+repair requires explicit target-mutation authority.
+
+The managed Thorsten fleet selects both optional presets through registry
+profile `intake-authoring-ten-governance-presets`. The compatible
+`intake-review-nine-governance-presets` profile remains available. These
+fleet-local choices do not change the public eight-preset default. A registry
 `defaultPresetProfile` is inherited by newly registered fleet repositories.
-Learning-series repositories may carry the preset and portable policy
-material, but no learner Spec-Kit run starts without explicit authorization.
+Learning-series repositories may author and review intakes, but no learner
+Spec-Kit run starts without explicit authorization.
 
 `autonomous-run-governance` is installed as part of the mandatory eight-preset
 governance matrix. Installation does not authorize an autonomous run.
@@ -1028,7 +1035,8 @@ All eight presets are published as standalone repositories under
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
 The current standalone releases are `autonomous-run-governance` v0.3.2,
-`parallel-autonomous-run-governance` v0.2.3, and optional
+`parallel-autonomous-run-governance` v0.2.3, optional
+`intake-authoring-governance` v0.1.0, and optional
 `intake-review-governance` v0.1.0; Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
@@ -1037,9 +1045,11 @@ cover installation, exact matrix validation, commit, push, and remote
 synchronization for every target repository.
 
 Repositories assigned `intake-review-nine-governance-presets` MUST instead
-match the explicit nine-preset matrix exactly. Unknown profile names fail
-closed; selecting the profile installs governance but grants no execution,
-repair, remote, merge, or learner-run authority.
+match the explicit nine-preset matrix exactly. Repositories assigned
+`intake-authoring-ten-governance-presets` MUST match the explicit ten-preset
+matrix with Authoring at `64` and Review at `65`. Unknown profile names fail
+closed; selecting either profile installs governance but grants no authoring,
+review, execution, repair, remote, merge, or learner-run authority.
 
 Use `install-spec-kit-governance-presets.*` for normal installation so versions
 and priorities stay centralized in the matrix. Community catalog and direct
@@ -1064,7 +1074,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.18.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-21
+**Version**: 1.19.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-21
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

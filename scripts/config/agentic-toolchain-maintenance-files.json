@@ -172,6 +172,10 @@
       "executable": false
     },
     {
+      "path": "scripts/config/spec-kit-intake-authoring-governance-presets.json",
+      "executable": false
+    },
+    {
       "path": "scripts/config/project-statistics.schema.json",
       "executable": false
     },

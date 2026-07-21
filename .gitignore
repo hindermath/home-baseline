@@ -47,6 +47,7 @@
 # Spec-Kit Konfiguration und Templates
 !.specify/
 !.specify/init-options.json
+!.specify/intake-authoring-policy.json
 !.specify/memory/
 !.specify/memory/constitution.md
 !scripts/templates/

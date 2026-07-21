@@ -30,6 +30,9 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-run-state.ps1` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-run-state.sh` | `.specify` |
+| `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.ps1` | `.specify` |
+| `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.sh` | `.specify` |
+| `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1` | `.specify` |
 | `.specify/presets/intake-review-governance/scripts/validate-intake-review-result.ps1` | `.specify` |
 | `.specify/presets/intake-review-governance/scripts/validate-intake-review-result.sh` | `.specify` |
 | `.specify/presets/intake-review-governance/tests/test-intake-review-validator.ps1` | `.specify` |
@@ -56,6 +59,9 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-run-state.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-run-state.sh` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-authoring-governance/scripts/validate-intake-authoring-receipt.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-authoring-governance/scripts/validate-intake-authoring-receipt.sh` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-authoring-governance/tests/test-intake-authoring-validator.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/scripts/validate-intake-review-result.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/scripts/validate-intake-review-result.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/tests/test-intake-review-validator.ps1` | `specs` |
@@ -74,6 +80,9 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/validate-autonomous-run-state.ps1` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/validate-autonomous-run-state.sh` | `specs` |
+| `specs/spec-kit-presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.ps1` | `specs` |
+| `specs/spec-kit-presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.sh` | `specs` |
+| `specs/spec-kit-presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1` | `specs` |
 | `specs/spec-kit-presets/intake-review-governance/scripts/validate-intake-review-result.ps1` | `specs` |
 | `specs/spec-kit-presets/intake-review-governance/scripts/validate-intake-review-result.sh` | `specs` |
 | `specs/spec-kit-presets/intake-review-governance/tests/test-intake-review-validator.ps1` | `specs` |

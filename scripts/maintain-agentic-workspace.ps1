@@ -369,6 +369,9 @@ function Get-HBPresetConfig {
         'intake-review-nine-governance-presets' {
             return (Join-Path $sourceRoot 'scripts/config/spec-kit-intake-review-governance-presets.json')
         }
+        'intake-authoring-ten-governance-presets' {
+            return (Join-Path $sourceRoot 'scripts/config/spec-kit-intake-authoring-governance-presets.json')
+        }
         'none' { return $null }
         default { throw "Unbekanntes Preset-Profil / unknown preset profile: ${ProfileName}" }
     }

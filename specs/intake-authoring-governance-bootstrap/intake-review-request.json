@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "6924289d-c796-47ec-a31c-6a8a3f51bf7d",
+  "mode": "Single",
+  "policy": "generic-markdown",
+  "targets": [
+    {
+      "path": "Lastenheft_Spec-Kit-Intake-Authoring-Governance.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

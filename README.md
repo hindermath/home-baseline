@@ -2722,30 +2722,33 @@ Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evid
 
 *Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
-`intake-review-governance` v0.1.0 ist ein optionales neuntes Preset mit
-Prioritaet `65`; es veraendert die Standard-Achtermatrix nicht. Es prueft
-einzelne Intakes, Reihen und Kampagnen vor Feature-Erstellung. Review und Status
-sind read-only. Repair braucht ausdrueckliche Aenderungsautoritaet. Bei aktiver
-Policy blockieren Critical/High, offene Fragen, Hash-Drift oder fehlende
-Worker-Coverage Preset 7 beziehungsweise Preset 8.
+`intake-authoring-governance` v0.1.0 ist ein optionales Preset mit Prioritaet
+`64`. Es erzeugt aus ausdruecklich benannten, geordneten UTF-8-Quellen genau
+einen Intake und ein hashgebundenes Receipt. Es fragt materielle Entscheidungen
+einzeln und hoechstens fuenfmal pro Durchgang ab, schuetzt vorhandene Ziele und
+startet weder Review noch Specify oder einen autonomen Lauf. Ohne ausdrueckliche
+Remote-Autoritaet verwendet der erzeugte Autonomous-Prompt
+`LocalImplementation`.
 
-Thorstens registrierte Level-0-/Level-1-/Level-2-Flotte waehlt dieses optionale
-Preset ueber `intake-review-nine-governance-presets`. Diese lokale Profilwahl
-aendert weder die oeffentliche Standardmatrix noch die Installationsvorgabe fuer
-andere Nutzer. Die drei Secure-Trader-Lernreihen und ihre Sprach-Repositories
-sind Teil dieser Flotte; ihre Intakes werden nur bei aktiver Policy blockierend
-geprueft, und kein Lernendenlauf startet ohne ausdruecklichen Auftrag.
+`intake-review-governance` v0.1.0 bleibt als getrenntes optionales Preset mit
+Prioritaet `65` bestehen. Es prueft einzelne Intakes, Reihen und Kampagnen vor
+Feature-Erstellung. Review und Status sind read-only. Repair braucht
+ausdrueckliche Aenderungsautoritaet. `ReadyForReview` aus Intake Authoring ist
+keine Review-Freigabe.
 
-*`intake-review-governance` v0.1.0 is an optional ninth preset at priority `65`;
-it does not change the standard eight. It reviews single intakes, series, and
-campaigns before feature creation. Review and status are read-only; repair
-needs explicit mutation authority.*
+Thorstens registrierte Level-0-/Level-1-/Level-2-Flotte waehlt beide optionalen
+Intake-Presets ueber `intake-authoring-ten-governance-presets`. Das bisherige
+`intake-review-nine-governance-presets` bleibt fuer kompatible, bewusst nur mit
+Review ausgestattete Projekte verfuegbar. Keine dieser lokalen Profilwahlen
+aendert die oeffentliche Standard-Achtermatrix.
 
-*Thorsten's registered fleet selects this optional preset through
-`intake-review-nine-governance-presets`. This local choice does not change the
-public default. The three Secure Trader learning-series families are included;
-their intake review becomes blocking only through an active policy, and learner
-runs still require explicit authorization.*
+*`intake-authoring-governance` v0.1.0 is an optional preset at priority `64`.
+It creates one traceable intake and receipt from explicit ordered UTF-8 sources,
+asks no more than five material questions per pass, protects existing targets,
+and starts no downstream command. `intake-review-governance` v0.1.0 remains a
+separate optional preset at priority `65`; authoring evidence is not review
+acceptance. Thorsten's managed fleet selects both through the explicit
+ten-preset profile, while the public standard eight remain unchanged.*
 
 `autonomous-run-governance` v0.3.2 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt
@@ -2829,6 +2832,7 @@ explains topologies, scheduling, consolidation, and recovery.*
 | `a11y-governance` | Barrierefreiheit nach WCAG 2.2 Level AA für UI, HTML, CLI, Doku, Templates und didaktische Inline-Code-Kommentare. / Accessibility based on WCAG 2.2 Level AA for UI, HTML, CLI, docs, templates, and didactic inline-code comments. | Für alle nutzerseitigen Artefakte und Lern-/Referenzprojekte installieren. / Install for all user-facing artefacts and learning/reference projects. |
 | `cross-platform-governance` | macOS/Linux/Windows-Parität, Shell-Auswahl, Pfadregeln, Testhinweise. / macOS/Linux/Windows parity, shell choice, path rules, test guidance. | Für Skripte, CLIs, Tooling und Workspace-Infrastruktur installieren. / Install for scripts, CLIs, tooling, and workspace infrastructure. |
 | `agent-parity-governance` | Gemeinsame Pflege von Agent-Guidance plus agentenneutrales Spec-Kit-Modell-Routing. / Joint maintenance of agent guidance plus agent-neutral Spec-Kit model routing. | Für Repos mit mehreren KI-Agenten-Oberflächen installieren. / Install for repos with multiple AI-agent surfaces. |
+| `intake-authoring-governance` | Erzeugt aus Prompt, eingefuegter Planung und geordneten UTF-8-Dateien einen nachvollziehbaren Intake mit sicheren Specify-/Autonomous-Prompts. / Creates one traceable intake with safe Specify and Autonomous prompts from raw planning sources. | Optional installieren, wenn Rohplanung vor Review oder Specify strukturiert und gespeichert werden soll. / Install optionally when raw planning should be structured and stored before review or Specify. |
 | `intake-review-governance` | Hashgebundener Review einzelner Intakes, Reihen und Kampagnen vor Specify oder Worker-Start. / Hash-bound review of single intakes, series, and campaigns before Specify or worker scheduling. | Optional installieren, wenn Intake-Qualitaet ein verbindliches Gate sein soll. / Install optionally when intake quality must be a binding gate. |
 | `autonomous-run-governance` | Berechtigungsgebundene, evidenzbasierte Steuerung ausdrücklich delegierter autonomer Spec-Kit-Läufe. / Permission-bounded, evidence-first control for explicitly delegated autonomous Spec Kit runs. | Standardmäßig installieren; einen Lauf nur nach ausdrücklicher Delegation starten. / Install by default; start a run only after explicit delegation. |
 | `parallel-autonomous-run-governance` | Isolierte, begrenzte Multi-Worker-Kampagnen mit fortsetzbarer Konsolidierung und Closeout. / Isolated bounded multi-worker campaigns with resumable consolidation and closeout. | Standardmäßig installieren; parallele Kampagnen nur nach ausdrücklicher Delegation starten. / Install by default; start parallel campaigns only after explicit delegation. |
@@ -2900,19 +2904,25 @@ pwsh ~/scripts/install-spec-kit-governance-presets.ps1 -Repo .
 ```
 
 Fuer das explizite neunte Intake-Review-Preset dieselben Installer mit
-`scripts/config/spec-kit-intake-review-governance-presets.json` ueber
-`--preset-config` beziehungsweise `-PresetConfig` aufrufen. Ohne diese Auswahl
-bleibt die Standard-Achtermatrix unveraendert.
+`scripts/config/spec-kit-intake-review-governance-presets.json` aufrufen. Fuer
+Authoring plus Review gilt das getrennte Zehnerprofil
+`scripts/config/spec-kit-intake-authoring-governance-presets.json`. Beide
+Auswahlen verwenden `--preset-config` beziehungsweise `-PresetConfig`; ohne
+Auswahl bleibt die Standard-Achtermatrix unveraendert.
 
 Die lokale Registry kann `defaultPresetProfile` setzen. Der Wartungslauf prueft
 dann jedes registrierte Repository gegen die zugeordnete exakte Matrix. Das
 Profil `intake-review-nine-governance-presets` verweist auf die oben genannte
-Neunermatrix; unbekannte Profile brechen fail-closed ab.
+Neunermatrix. `intake-authoring-ten-governance-presets` verweist auf die
+Zehnermatrix mit Authoring `64` und Review `65`; unbekannte Profile brechen
+fail-closed ab.
 
-*To select the optional ninth intake-review preset, call the same installers
-with `scripts/config/spec-kit-intake-review-governance-presets.json` through
-`--preset-config` or `-PresetConfig`. Without that explicit selection, the
-standard eight remain unchanged.*
+*To select optional Intake Review only, use
+`scripts/config/spec-kit-intake-review-governance-presets.json`. To select
+Intake Authoring plus Review, use
+`scripts/config/spec-kit-intake-authoring-governance-presets.json`. Pass either
+through `--preset-config` or `-PresetConfig`; the standard eight remain
+unchanged without an explicit selection.*
 
 *A local registry may set `defaultPresetProfile`. Workspace maintenance then
 checks every registered repository against its assigned exact matrix. Unknown
