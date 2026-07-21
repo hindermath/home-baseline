@@ -66,7 +66,7 @@ exit code 0 in every non-blocked repository.*
 | `repo-10` | `InventarWorkerService` | [#31](https://github.com/hindermath/InventarWorkerService/pull/31) | Gemergt und lokal synchron |
 | `repo-11` | `TinyCalc` | [#25](https://github.com/hindermath/TinyCalc/pull/25) | Gemergt und lokal synchron |
 | `repo-12` | `TinyPl0` | [#37](https://github.com/hindermath/TinyPl0/pull/37) | Gemergt und lokal synchron |
-| `repo-13` | `TuiVision` | [#111](https://github.com/hindermath/TuiVision/pull/111) | Technisch gruen; Review laeuft |
+| `repo-13` | `TuiVision` | [#111](https://github.com/hindermath/TuiVision/pull/111) | Gemergt als `f0c344c` und lokal synchron |
 | `repo-14` | `securecasetracker-csharp` | [#11](https://github.com/hindermath/securecasetracker-csharp/pull/11) | Provider-blockiert |
 | `repo-15` | `securecasetracker-go` | [#11](https://github.com/hindermath/securecasetracker-go/pull/11) | Provider-blockiert |
 | `repo-16` | `securecasetracker-java` | [#11](https://github.com/hindermath/securecasetracker-java/pull/11) | Provider-blockiert |
@@ -126,10 +126,9 @@ exakten PR-Heads erneut ausgefuehrt werden.
 
 ## Naechste exakte Aktionen / Next Exact Actions
 
-1. TuiVision PR #111 nach abgeschlossenem Review mergen und lokal synchronisieren.
-2. GitHub Billing beziehungsweise Spending Limit beheben und die 26 blockierten
+1. GitHub Billing beziehungsweise Spending Limit beheben und die 26 blockierten
    exakten PR-Heads erneut validieren.
-3. Worker `repo-08` nur ueber einen getrennt autorisierten Dokumentations-Fix
+2. Worker `repo-08` nur ueber einen getrennt autorisierten Dokumentations-Fix
    schliessen; danach denselben Runtime-Branch erneut validieren und liefern.
-4. Erst nach allen 31 Worker-Abschluessen die Kampagnen-Evidence finalisieren,
+3. Erst nach allen 31 Worker-Abschluessen die Kampagnen-Evidence finalisieren,
    Home-Baseline-PR mergen und die Flottenparitaet als abgeschlossen markieren.
