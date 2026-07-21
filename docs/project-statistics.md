@@ -532,6 +532,22 @@ The remaining active intakes are numbered contiguously through 11. The 14
 Secure CaseTracker items were removed only from the central active queue; their
 learning-series files remain unchanged.*
 
+### 2026-07-21 - Homogeneity-Runtime fail-closed gehaertet / Homogeneity runtime hardened fail-closed
+
+- Das Wartungsmanifest verteilt nun alle 21 kanonischen `hg-*`-Bibliotheken
+  zusammen mit beiden Homogeneity-Wrappern.
+- Bash und PowerShell pruefen ihre benoetigten Funktionen vor jedem Scan und
+  liefern bei einem unvollstaendigen Paket eindeutig Exitcode 2.
+- Ein plattformparitaetisches Regressionstestpaar reproduziert den frueheren
+  False-Positive in temporaeren Installationen und prueft danach das
+  vollstaendige Paket.
+
+*The maintenance manifest now distributes all 21 canonical `hg-*` libraries
+with both Homogeneity wrappers. Bash and PowerShell validate their required
+functions before scanning and return exit code 2 for an incomplete package. A
+cross-platform regression pair reproduces the former false positive in
+temporary installations and then verifies the complete package.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

@@ -20,6 +20,14 @@ Das Skript prueft ein Zielverzeichnis gegen die Homogenitaets-Baseline des Works
 
 *The script checks a target directory against the workspace homogeneity baseline, produces a compliance score, and optionally writes `STATS.md` and a `memory-patch.md`. Output is human-readable or JSON; with `--apply-patch` a patch is applied and committed.*
 
+Vor jedem Scan wird geprueft, ob alle benoetigten Funktionen aus
+`scripts/lib/hg-*` geladen wurden. Ein unvollstaendiges Hilfspaket ist ein
+fataler Installationsfehler und liefert Exitcode `2`.
+
+*Before scanning, the command verifies that all required functions from
+`scripts/lib/hg-*` were loaded. An incomplete helper package is a fatal
+installation error and returns exit code `2`.*
+
 ## OPTIONS
 
 | Bash | PowerShell | Bedeutung / Meaning |
@@ -53,4 +61,4 @@ pwsh -NoProfile -File scripts/check-homogeneity.ps1 -TargetDir ~/RiderProjects -
 
 ## SEE ALSO
 
-`migrate-workspace.1`, `init-stats.1`
+`migrate-workspace.1`, `init-stats.1`, `test-homogeneity-runtime-closure.1`

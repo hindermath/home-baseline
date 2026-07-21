@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-19",
+  "updated": "2026-07-21",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "files": [
     {
@@ -52,11 +52,87 @@
       "executable": false
     },
     {
-      "path": "scripts/lib/hg-stats.sh",
+      "path": "scripts/lib/hg-a11y.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-a11y.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-bilingual.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-bilingual.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-deps.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-deps.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-forgejo.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-forgejo.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-git-scope.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-hook.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-hook.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-patch.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-patch.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-scan.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-scan.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-secrets.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-secrets.sh",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-speckit.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-speckit.sh",
       "executable": false
     },
     {
       "path": "scripts/lib/hg-stats.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/hg-stats.sh",
       "executable": false
     },
     {

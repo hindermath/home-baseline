@@ -1883,6 +1883,29 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/MyProjects
 pwsh ~/scripts/check-homogeneity.ps1 -Json
 ```
 
+Beide Varianten laden das vollstaendige `scripts/lib/hg-*`-Hilfspaket. Fehlt
+eine benoetigte Funktion, brechen sie vor dem Scan mit Exitcode `2` ab; ein
+unvollstaendiges Paket kann deshalb nicht als bestandener Check erscheinen.
+Der Runtime-Vertrag kann gezielt mit den folgenden Kommandos geprueft werden:
+
+*Both variants load the complete `scripts/lib/hg-*` helper package. If a
+required function is missing, they stop before scanning with exit code `2`, so
+an incomplete package cannot appear as a passing check. Use these commands to
+validate the runtime contract directly:*
+
+```bash
+bash scripts/test-homogeneity-runtime-closure.sh .
+pwsh -NoProfile -File scripts/test-homogeneity-runtime-closure.ps1 -RepoRoot .
+```
+
+Fuer einen begrenzten Fleet-Abgleich enthaelt
+`scripts/config/homogeneity-runtime-files.json` nur die beiden Wrapper und ihre
+21 Bibliotheken. Andere Wartungsdateien werden dabei nicht nebenbei verteilt.
+
+*For a bounded fleet alignment,
+`scripts/config/homogeneity-runtime-files.json` contains only the two wrappers
+and their 21 libraries. It does not propagate unrelated maintenance files.*
+
 ### Agent-Audit / Agent audit
 
 Wenn lokale Agent-Dateien spaeter nachvollziehbar bleiben sollen, erstelle zuerst eine Baseline und vergleiche dann spaetere Aenderungen gegen diese Baseline. `audit-agent-changes.*` speichert die lokale Audit-State-Datei unter `~/.home-baseline/agent-audit/`, listet geaenderte Dateien auf und sucht anschliessend in lokalen Codex-, Claude-, Copilot- und Continue-Logs nach pfadbasierten Hinweisen. Das ist bewusst eine Heuristik und kein manipulationssicherer Herkunftsnachweis.

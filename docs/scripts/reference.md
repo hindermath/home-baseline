@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-07-19  
-Kanonische Skriptdateien / Canonical script files: 108
+Kanonische Skriptdateien / Canonical script files: 110
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -594,6 +594,30 @@ pwsh -NoProfile -File scripts/install-hooks.ps1 -WhatIf  # falls SupportsShouldP
 ```text
 bash scripts/install-hooks.sh --help
 bash scripts/install-hooks.sh --dry-run  # falls angeboten / when supported
+```
+
+### `scripts/test-homogeneity-runtime-closure.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Prueft den Fail-closed-Vertrag des Homogeneity-Hilfspakets.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/test-homogeneity-runtime-closure.ps1 -Full
+pwsh -NoProfile -File scripts/test-homogeneity-runtime-closure.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/test-homogeneity-runtime-closure.sh`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Validates fail-closed loading and a complete Homogeneity runtime package.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+bash scripts/test-homogeneity-runtime-closure.sh --help
+bash scripts/test-homogeneity-runtime-closure.sh --dry-run  # falls angeboten / when supported
 ```
 
 ## Statistik / Statistics
