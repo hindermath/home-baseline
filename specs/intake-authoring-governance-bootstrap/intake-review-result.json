@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "6924289d-c796-47ec-a31c-6a8a3f51bf7d",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "generic-markdown",
+  "reviewedAt": "2026-07-21T20:45:21Z",
+  "repository": {
+    "root": ".",
+    "head": "079e49b09c62a7dba129e4c410f0ba552e19ce03"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Spec-Kit-Intake-Authoring-Governance.md",
+      "role": "Primary",
+      "normalizedSha256": "1f05cc6b9616bc7f522d0f0595a7e042e1a9454248e037f037e537ee998bc5ff",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Spec-Kit-Intake-Authoring-Governance.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

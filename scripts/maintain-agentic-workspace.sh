@@ -348,6 +348,9 @@ preset_config_for_profile() {
     intake-review-nine-governance-presets)
       printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-intake-review-governance-presets.json"
       ;;
+    intake-authoring-ten-governance-presets)
+      printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-intake-authoring-governance-presets.json"
+      ;;
     none) return 1 ;;
     *) die "Unbekanntes Preset-Profil / unknown preset profile: $1" ;;
   esac

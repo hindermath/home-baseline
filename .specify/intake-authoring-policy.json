@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "enabled": true,
+  "defaultTargetDirectory": ".",
+  "receiptDirectory": "specs/intake-authoring-receipts",
+  "defaultProfile": "home-baseline-lastenheft",
+  "profiles": {
+    "home-baseline-lastenheft": ".specify/templates/intake-authoring-lastenheft-profile.md",
+    "home-baseline-learning-series": ".specify/templates/intake-authoring-learning-series-profile.md",
+    "generic-markdown": ".specify/presets/intake-authoring-governance/templates/project-profile-template.md"
+  },
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "defaultDeliveryAuthority": "LocalImplementation",
+  "maximumQuestionsPerPass": 5,
+  "allowExternalSources": true,
+  "allowOverwrite": false,
+  "nextAction": "speckit.intake-review"
+}

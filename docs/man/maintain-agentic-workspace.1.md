@@ -28,8 +28,9 @@ Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
    nachgezogen.
 5. Das kanonische Wartungspaket wird mit
    `propagate-agentic-toolchain-maintenance.*` geprueft.
-6. Das Registry-Profil jedes Repositories wird gegen die exakte Acht- oder
-   Neun-Preset-Matrix geprueft; Drift-Reparatur bleibt lokal und uncommittet.
+6. Das Registry-Profil jedes Repositories wird gegen die exakte Acht-, Neun-
+   oder Zehn-Preset-Matrix geprueft; Drift-Reparatur bleibt lokal und
+   uncommittet.
 7. Homebrew/apt oder WinGet, Required-CLI-Tools, VS-Code-Extensions und
    Required-Agenten-CLIs werden gepflegt.
 8. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
