@@ -78,6 +78,29 @@ reports drift in a shallow checkout. Every Homogeneity workflow therefore
 loads full Git history. After this correction, both local wrappers returned
 exit code 0 in every non-blocked repository.*
 
+### Nachgelagerter Paritaetsabschluss / Post-Merge Parity Closeout
+
+Die read-only Abschlusspruefung nach Home-Baseline-PR #84 fand in
+`securecasetracker-python` einen zweiten Homogeneity-Aufruf im bestehenden
+`python-quality.yml`, dessen Checkout noch keine vollstaendige Git-Historie
+lud. PR #12 ergaenzte ausschliesslich `fetch-depth: 0` und aktualisierte die
+deterministische Statistik. Beide lokalen Wrapper bestanden mit 29/29
+Pruefungen. Die GitHub-Jobs wurden erneut vor ihrem ersten Schritt mit der
+bestaetigten Billing-/Spending-Limit-Annotation abgelehnt und deshalb unter
+derselben ausdruecklichen Exact-Head-Autoritaet gemergt. Die danach wiederholte
+Flottenpruefung bestaetigte 31/31 saubere, synchrone `main`-Branches,
+bytegleiche Runtime-Manifeste und vollstaendige Workflow-Historie.
+
+*The read-only final check after Home Baseline PR #84 found a second
+Homogeneity invocation in `securecasetracker-python` whose existing
+`python-quality.yml` checkout still lacked full Git history. PR #12 added only
+`fetch-depth: 0` and refreshed deterministic statistics. Both local wrappers
+passed 29/29 checks. GitHub again rejected the jobs before their first step
+with the confirmed billing or spending-limit annotation, so the pull request
+was merged under the same explicit exact-head authority. The repeated fleet
+check then confirmed 31/31 clean synchronized `main` branches, byte-identical
+runtime manifests, and complete workflow history.*
+
 ## Worker- und PR-Matrix / Worker and PR Matrix
 
 | Worker | Repository | PR | Status |
@@ -98,7 +121,7 @@ exit code 0 in every non-blocked repository.*
 | `repo-14` | `securecasetracker-csharp` | [#11](https://github.com/hindermath/securecasetracker-csharp/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
 | `repo-15` | `securecasetracker-go` | [#11](https://github.com/hindermath/securecasetracker-go/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
 | `repo-16` | `securecasetracker-java` | [#11](https://github.com/hindermath/securecasetracker-java/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
-| `repo-17` | `securecasetracker-python` | [#11](https://github.com/hindermath/securecasetracker-python/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-17` | `securecasetracker-python` | [#11](https://github.com/hindermath/securecasetracker-python/pull/11), [#12](https://github.com/hindermath/securecasetracker-python/pull/12) | Rollout und Workflow-Closeout mit autorisiertem Provider-Bypass gemergt; lokal synchron |
 | `repo-18` | `securecasetracker-rust` | [#11](https://github.com/hindermath/securecasetracker-rust/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
 | `repo-19` | `securecasetracker-swift` | [#11](https://github.com/hindermath/securecasetracker-swift/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
 | `repo-20` | `secureorderdesk-csharp` | [#6](https://github.com/hindermath/secureorderdesk-csharp/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
@@ -160,10 +183,10 @@ Provider-Laeufe bleiben als `ProviderUnavailable` dokumentiert.
 
 ## Naechste exakte Aktionen / Next Exact Actions
 
-Keine Worker-Aktion bleibt offen. Nach Merge dieser Kampagnen-Evidence wird
-Home Baseline lokal auf `main` synchronisiert und die 31-Repository-Paritaet
-abschliessend read-only bestaetigt.
+Keine Aktion bleibt offen. Home Baseline wurde nach PR #84 lokal auf `main`
+synchronisiert; die nachgelagerte Workflow-Korrektur und die erneut bestaetigte
+31/31-Flottenparitaet werden mit diesem kausalen Closeout abgeschlossen.
 
-*No worker action remains open. After merging this campaign evidence, Home
-Baseline is synchronized locally on `main` and the 31-repository parity is
-confirmed one final time through read-only checks.*
+*No action remains open. Home Baseline was synchronized locally on `main`
+after PR #84; this causal closeout records the subsequent workflow correction
+and the repeated 31/31 fleet-parity confirmation.*
