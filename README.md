@@ -994,19 +994,33 @@ for convenience when an existing repository script already solves the task.*
 
 `~/home-baseline-source` bleibt dauerhaft der versionierte Level-0-Klon mit
 `origin`, `upstream` und nachvollziehbarer Historie. `~/` ist nur die lokale
-Betriebskopie. Der Sync verwendet
-`scripts/config/home-sync-manifest.json` und ausschliesslich mit Git
-versionierte Quelldateien. Lokale, nicht verwaltete Dateien bleiben erhalten.
-Spec-Kit-Agentenflaechen werden nur fuer `speckit-*` synchronisiert; private
-Agentenzustaende, globale Skills und installierte `.specify/presets/` werden
-nicht gespiegelt.
+Betriebskopie. Home Sync v2 verteilt deshalb nur noch Host-Runtime-Dateien:
+Skripte samt Configs und Templates, gemeinsame Agent-Guidance sowie ausgewaehlte
+`speckit-*`-Oberflaechen. Kanonische Dokumentation, Specs, Lastenhefte,
+Preset-Quellen und Kampagnen-Evidence werden direkt aus dem Level-0-Klon gelesen
+und nicht mehr nach `~/` gespiegelt. `STATS.md`, private Agentenzustaende,
+globale Skills und installierte `.specify/presets/` bleiben maschinenlokal.
 
 *`~/home-baseline-source` permanently remains the versioned level-0 clone with
-`origin`, `upstream`, and auditable history. `~/` is only the local runtime
-copy. Sync uses `scripts/config/home-sync-manifest.json` and Git-tracked source
-files only. Unmanaged local files are preserved. Agent surfaces are synced only
-for `speckit-*`; private agent state, global skills, and installed
-`.specify/presets/` are not mirrored.*
+`origin`, `upstream`, and auditable history. Home Sync v2 distributes only host
+runtime files: scripts with their configs and templates, shared agent guidance,
+and selected `speckit-*` surfaces. Canonical documentation, specs, intakes,
+preset sources, and campaign evidence are read directly from the Level 0 clone.
+`STATS.md`, private agent state, global skills, and installed presets remain
+machine-local.*
+
+Ein Sync ist nach Aenderungen an diesen Runtime-Oberflaechen erforderlich, nicht
+nach reinen Dokumentations-, Spec-, Preset-Quell- oder Evidence-Commits. Beim
+ersten v2-Lauf werden nicht mehr verwaltete v1-Pfade nur freigegeben und niemals
+automatisch geloescht. Ausschliesslich `legacyCleanupPaths` duerfen eine
+gepruefte Entfernung ausloesen. Freigegebene Pfade bleiben im lokalen
+Sync-State als Provenienz vermerkt.
+
+*Sync is required after runtime-surface changes, not after documentation,
+specification, preset-source, or evidence-only commits. The first v2 run releases
+former v1 targets without deleting them. Only explicit `legacyCleanupPaths` may
+trigger reviewed removal. Released paths remain recorded as provenance in the
+local sync state.*
 
 Der letzte erfolgreiche Stand steht lokal in
 `~/.home-baseline/home-sync-state.json` mit Quell-Commit, SHA-256 und
@@ -2637,6 +2651,18 @@ plattformübergreifende Arbeit.
 standard Spec-Kit templates without replacing the whole project. They provide
 additional governance rules, addenda, and template building blocks for security,
 architecture, accessibility, agent parity, and cross-platform work.*
+
+Die versionierten
+[Erkenntnisse fuer Preset-Entwicklung und Flottenbetrieb](docs/maintenance/Preset-and-Fleet-Operations-Lessons-Learned.md)
+beschreiben den gemeinsamen Betriebsvertrag fuer State, Autoritaet,
+Unterbrechung, Evidence, Konvergenz, Promotion und Kampagnenabschluss. Neue
+Preset-Regeln brauchen weiterhin reproduzierbare Feld-Evidence.
+
+*The versioned
+[preset and fleet operations lessons](docs/maintenance/Preset-and-Fleet-Operations-Lessons-Learned.md)
+define the shared operating contract for state, authority, interruption,
+evidence, convergence, promotion, and campaign closeout. New preset rules still
+require reproducible field evidence.*
 
 Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
 

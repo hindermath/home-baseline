@@ -4,8 +4,8 @@
 >
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
-Stand / Updated: 2026-07-19  
-Kanonische Skriptdateien / Canonical script files: 110
+Stand / Updated: 2026-07-21
+Kanonische Skriptdateien / Canonical script files: 111
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -618,6 +618,17 @@ pwsh -NoProfile -File scripts/test-homogeneity-runtime-closure.ps1 -WhatIf  # fa
 ```text
 bash scripts/test-homogeneity-runtime-closure.sh --help
 bash scripts/test-homogeneity-runtime-closure.sh --dry-run  # falls angeboten / when supported
+```
+
+### `scripts/tests/test_home_sync_files.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_home_sync_files.py --help
 ```
 
 ## Statistik / Statistics

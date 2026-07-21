@@ -113,6 +113,14 @@
       "labelEn": "Maintenance TUI intake",
       "netLines": 679,
       "activeDays": 1
+    },
+    {
+      "slot": 13,
+      "id": "home-sync-v2-operations-learning",
+      "labelDe": "Home-Sync v2 und Betriebslernen",
+      "labelEn": "Home Sync v2 and operations learning",
+      "netLines": 513,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

@@ -105,6 +105,7 @@
 | 2026-07-20 | Lastenheft fuer plattformuebergreifende Ein-Kommando-Wartung | 68 | — | — | Neuen aktiven Spec-Kit-Intake fuer macOS, Linux/Ubuntu und Windows angelegt und den aelteren prueforientierten Intake als historischen Vorgaenger eingeordnet. Der Sollvertrag umfasst Bash-3.2-No-op-Regression, Desired-State-Fleet-Manifest, sicheres Clone-on-missing, fortsetzbare Stufen, optionale Formeln, administratorpflichtige Deferred-Befunde, leise Git-Ausgabe und JSON-Abschlussbericht. Zwei alternative Prompts bereiten einen schrittweisen Specify-Lauf oder einen vollstaendigen autonomen Lauf mit explizit begrenzter `MergeAndSync`-Autoritaet vor; kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst `+722/-2`, also 720 Nettozeilen. Konservative Manualreferenz fuer 722 hinzugefuegte oder aktualisierte Zeilen: `9,0` Tage beziehungsweise `70,4` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `7,2` Tage beziehungsweise `56,3` Stunden bei 100 Zeilen/Tag. |
 | 2026-07-20 | Lastenheft fuer die Agentic-Workspace-Wartungs-TUI | 69 | — | — | Entscheidungsvollstaendigen, durch den Wartungsvorgaenger hart gesperrten Spec-Kit-Intake fuer eine plattformuebergreifende Spectre.Console-TUI angelegt. Der Vertrag bewahrt den argumentlosen Headless-Lauf ohne TTY, startet interaktiv mit vorausgewaehltem Dry-run, delegiert jede Wartungsaktion an Bash beziehungsweise PowerShell und definiert JSONL-Ereignisse, content-adressierten Build-Cache, Plaintext-Fallback, Exitcodes, sichere Prozessargumente sowie barrierearme ASCII- und Screenreader-Ausgabe. Abarbeitungsposition 25 folgt zwingend auf den Plattform-Wartungsintake; Specify- und Autonomous-Prompt stoppen bei fehlender Vorgaenger-Evidenz vor jeder Feature- oder Repository-Aenderung. Kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst 679 Nettozeilen. Konservative Manualreferenz: `8,5` Tage beziehungsweise `66,2` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `6,8` Tage beziehungsweise `53,0` Stunden bei 100 Zeilen/Tag. |
 | 2026-07-20 | Aktive Lastenheft-Queue repriorisiert | — | — | — | Die plattformuebergreifende Ein-Kommando-Wartung und ihre abhaengige Spectre.Console-TUI von den bisherigen Positionen 24/25 auf 1/2 vorgezogen. Die verbleibenden aktiven Intakes unter Beibehaltung ihrer relativen Reihenfolge lueckenlos bis Position 11 neu nummeriert. Die zuvor auf Position 5 bis 18 gelisteten 14 Secure-CaseTracker-Lernreihen-Intakes aus der zentralen aktiven Queue entfernt; ihre Dateien und die gesamte Lernreihen-Dokumentation unter `docs/learning-units/` bleiben unveraendert erhalten. Der harte TUI-Vorgaenger-Gate verweist nun auf Eintrag 1. Kein Spec-Kit-Lauf wurde gestartet. |
+| 2026-07-21 | Home-Sync v2 und agentisches Betriebslernen | — | — | — | 27 lokale Codex-Sessions dedupliziert ausgewertet und wiederverwendbare Regeln fuer Preset-Entwicklung, Unterbrechung/Resume, Evidence, Promotion und Flottenbetrieb versioniert. Home-Sync von 1.547 ausgewaehlten Quellartefakten auf 234 Host-Runtime-Dateien begrenzt; kanonische Dokumentation, Specs, Preset-Quellen und Evidence bleiben im dauerhaften Level-0-Klon. v1-State-Migration gibt 1.261 Altpfade ohne Loeschung frei, bewahrt lokale Abweichungen und erlaubt Entfernung nur ueber explizite Legacy-Cleanup-Pfade. Vier isolierte Migrations- und Konflikt-Fixtures sowie ein einreichungsfertiger, noch nicht publizierter OpenAI-Codex-Entwurf fuer repositorybewussten sanitisierten Task-Handoff ergaenzt. Das fachliche Delta vor Statistikpflege umfasst 513 Nettozeilen. |
 
 ---
 
@@ -558,26 +559,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 299384 lines |
-| Textdateien / Text files | 1807 |
+| Textbasis / Text base | 299905 lines |
+| Textdateien / Text files | 1810 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-21 |
 | Aktivtage / Active days | 69 |
-| Relevante Commits / Relevant commits | 480 |
-| Zeilen je Aktivtag / Lines per active day | 4338.9 |
+| Relevante Commits / Relevant commits | 481 |
+| Zeilen je Aktivtag / Lines per active day | 4346.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 26 days |
-| Speedup vs. 80 lines/day | 54.2x |
-| Speedup vs. 100 lines/day | 43.4x |
-| Methodik / Methodology | v2; source `7deea7e8ca75` |
+| Speedup vs. 80 lines/day | 54.3x |
+| Speedup vs. 100 lines/day | 43.5x |
+| Methodik / Methodology | v2; source `d66e2efa8084` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   2.5% | 7448
-Dokumentation / Documentation   [#################...]  82.9% | 248288
-Skripte / Scripts               [###.................]  13.0% | 38851
+Tests                           [#...................]   2.5% | 7616
+Dokumentation / Documentation   [#################...]  82.9% | 248552
+Skripte / Scripts               [###.................]  13.0% | 38940
 Konfiguration / Configuration   [#...................]   1.4% | 4124
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 673
@@ -662,15 +663,15 @@ Die kumulative Kurve summiert nur das Brutto-Aenderungsvolumen im Fenster. Sie d
 ### Phasenvolumen / Phase Volume
 
 ```text
-Slots 0..12
-   cap 50000 | . . . . . . . . . . . . .
-       41667 | . . . . . . . . . . . . .
-       33333 | . . . . . . . . . . . . .
-       25000 | . # . . . . . . . . . . .
-       16667 | . # . . . . . . . # . . .
-        8333 | . # . . # . # # . # . . .
-           0 +---------------------------
-             00 01 02 03 04 05 06 07 08 09 10 11 12
+Slots 0..13
+   cap 50000 | . . . . . . . . . . . . . .
+       41667 | . . . . . . . . . . . . . .
+       33333 | . . . . . . . . . . . . . .
+       25000 | . # . . . . . . . . . . . .
+       16667 | . # . . . . . . . # . . . .
+        8333 | . # . . # . # # . # . . . .
+           0 +-----------------------------
+             00 01 02 03 04 05 06 07 08 09 10 11 12 13
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -688,6 +689,7 @@ Slots 0..12
 | 10 | Skriptkatalog und Quellmigration / Script catalog and source migration | 2731 |
 | 11 | Ein-Kommando-Wartungsintake / One-command maintenance intake | 720 |
 | 12 | Wartungs-TUI-Intake / Maintenance TUI intake | 679 |
+| 13 | Home-Sync v2 und Betriebslernen / Home Sync v2 and operations learning | 513 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -697,8 +699,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 54.2x
-100 lines/day      [#########...........] 43.4x
+80 lines/day       [###########.........] 54.3x
+100 lines/day      [#########...........] 43.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -711,7 +713,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4338.9
+Visible repository [#################...] 4346.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -737,6 +739,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-21. Es enthaelt 69 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 212529 |
+| 2026-07 | 213342 |
 
 <!-- project-statistics-v2:end -->

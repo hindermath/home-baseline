@@ -148,7 +148,7 @@ function ConvertTo-HBMarkdown {
     $null = $reference.AppendLine('>')
     $null = $reference.AppendLine('> Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.')
     $null = $reference.AppendLine()
-    $null = $reference.AppendLine("Stand / Updated: $($Catalog.updated)  ")
+    $null = $reference.AppendLine("Stand / Updated: $($Catalog.updated)")
     $null = $reference.AppendLine("Kanonische Skriptdateien / Canonical script files: $($Assignments.Count)")
     $null = $reference.AppendLine()
 

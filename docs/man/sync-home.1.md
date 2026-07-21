@@ -16,15 +16,37 @@ pwsh -NoProfile -File scripts/sync-home.ps1 [options]
 
 ## DESCRIPTION
 
-Das Skript synchronisiert die im Home-Sync-Manifest verwalteten, mit Git versionierten Dateien aus `~/home-baseline-source` in die lokale Betriebskopie `~/`. Standardmaessig wird zuvor `git pull` im Klon und danach ein pfadbegrenzter `git commit` in `~/` ausgefuehrt; beide Schritte lassen sich abschalten.
+Das Skript synchronisiert die im Home-Sync-v2-Manifest als `homeRuntime`
+klassifizierten, mit Git versionierten Dateien aus `~/home-baseline-source` in
+die lokale Betriebskopie `~/`. Dazu gehoeren Skripte, gemeinsame Agent-Guidance
+und ausgewaehlte Spec-Kit-Oberflaechen. `sourceOnly`-Artefakte werden direkt aus
+dem dauerhaften Klon gelesen; `machineLocal`-Dateien bleiben lokal verwaltet.
+Standardmaessig wird zuvor `git pull` im Klon und danach ein pfadbegrenzter
+`git commit` in `~/` ausgefuehrt; beide Schritte lassen sich abschalten.
 
-*The script synchronizes Git-tracked files selected by the Home sync manifest from `~/home-baseline-source` into the local runtime copy `~/`. By default it runs `git pull` in the clone beforehand and a path-limited `git commit` in `~/` afterwards; both steps can be disabled.*
+*The script synchronizes Git-tracked files classified as `homeRuntime` by the
+Home Sync v2 manifest from `~/home-baseline-source` into the local runtime copy
+`~/`. `sourceOnly` artifacts are read from the permanent clone and
+`machineLocal` files remain locally managed. By default, sync pulls the clone
+first and creates a path-limited Home commit afterwards; both steps are
+optional.*
 
 Der Klon bleibt dauerhaft die versionierte Level-0-Quelle. SHA-256, Dateimodus
 und Quell-Commit werden unter `~/.home-baseline/home-sync-state.json`
 protokolliert. Lokale Konflikte stoppen den Lauf vor dem ersten Schreibzugriff.
 In der ABS-DD-Sandbox sind schreibende Sync-Laeufe nach `/home/adedev`
 gesperrt; dort wird die eingebundene Referenz direkt verwendet.
+
+Beim Wechsel von State v1 auf v2 werden Pfade ausserhalb von `homeRuntime` aus
+der Verwaltung entlassen, aber nicht geloescht. Nur explizite
+`legacyCleanupPaths` erlauben eine Entfernung. Ein lokal veraenderter
+Cleanup-Pfad bleibt ein blockierender Konflikt. Freigegebene Pfade bleiben im
+lokalen State als Provenienz erhalten.
+
+*During the v1-to-v2 state transition, paths outside `homeRuntime` are released
+from management without deletion. Only explicit `legacyCleanupPaths` permit
+removal. A locally modified cleanup target remains a blocking conflict.
+Released paths remain in local state as provenance.*
 
 ## OPTIONS
 

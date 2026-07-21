@@ -18,7 +18,8 @@ import tempfile
 from typing import Any
 
 
-STATE_SCHEMA_VERSION = 1
+STATE_SCHEMA_VERSION = 2
+SUPPORTED_STATE_SCHEMA_VERSIONS = {1, STATE_SCHEMA_VERSION}
 SUPPORTED_GIT_MODES = {"100644", "100755"}
 
 
@@ -59,10 +60,9 @@ def string_list(manifest: dict[str, Any], name: str) -> list[str]:
     return [validate_relative_path(item, name) for item in value]
 
 
-def load_manifest(path: Path) -> dict[str, Any]:
-    manifest = load_json(path)
-    if manifest.get("schemaVersion") != 1:
-        raise HomeSyncError("home-sync manifest schemaVersion must be 1")
+def load_selector(value: Any, name: str) -> dict[str, list[str]]:
+    if not isinstance(value, dict):
+        raise HomeSyncError(f"Manifest field {name} must be an object")
     required = (
         "rootFiles",
         "rootGlobs",
@@ -71,9 +71,35 @@ def load_manifest(path: Path) -> dict[str, Any]:
         "excludePaths",
         "excludePrefixes",
         "excludeGlobs",
-        "legacyCleanupPaths",
     )
-    return {name: string_list(manifest, name) for name in required}
+    return {field: string_list(value, field) for field in required}
+
+
+def load_manifest(path: Path) -> dict[str, Any]:
+    manifest = load_json(path)
+    schema_version = manifest.get("schemaVersion")
+    if schema_version == 1:
+        required = (
+            "rootFiles",
+            "rootGlobs",
+            "trackedPrefixes",
+            "trackedGlobs",
+            "excludePaths",
+            "excludePrefixes",
+            "excludeGlobs",
+        )
+        normalized = {name: string_list(manifest, name) for name in required}
+    elif schema_version == 2:
+        normalized = load_selector(manifest.get("homeRuntime"), "homeRuntime")
+        load_selector(manifest.get("sourceOnly"), "sourceOnly")
+        load_selector(manifest.get("machineLocal"), "machineLocal")
+        if manifest.get("retiredPathPolicy") != "preserve":
+            raise HomeSyncError("home-sync v2 retiredPathPolicy must be 'preserve'")
+    else:
+        raise HomeSyncError("home-sync manifest schemaVersion must be 1 or 2")
+    normalized["legacyCleanupPaths"] = string_list(manifest, "legacyCleanupPaths")
+    normalized["schemaVersion"] = schema_version
+    return normalized
 
 
 def tracked_files(repository: Path) -> dict[str, str]:
@@ -145,14 +171,18 @@ def identities_equal(left: dict[str, str] | None, right: dict[str, str] | None) 
 
 def load_state(path: Path) -> dict[str, Any]:
     if not path.exists():
-        return {"files": {}}
+        return {"schemaVersion": STATE_SCHEMA_VERSION, "files": {}, "releasedPaths": []}
     state = load_json(path)
-    if state.get("schemaVersion") != STATE_SCHEMA_VERSION or not isinstance(state.get("files"), dict):
+    if state.get("schemaVersion") not in SUPPORTED_STATE_SCHEMA_VERSIONS or not isinstance(state.get("files"), dict):
         raise HomeSyncError(f"Unsupported home-sync state: {path}")
     for relative_path, identity in state["files"].items():
         validate_relative_path(relative_path, "state files")
         if not isinstance(identity, dict) or set(identity) != {"sha256", "mode"}:
             raise HomeSyncError(f"Invalid state identity for {relative_path}")
+    released_paths = state.get("releasedPaths", [])
+    if not isinstance(released_paths, list) or not all(isinstance(item, str) for item in released_paths):
+        raise HomeSyncError(f"Invalid releasedPaths in home-sync state: {path}")
+    state["releasedPaths"] = [validate_relative_path(item, "releasedPaths") for item in released_paths]
     return state
 
 
@@ -202,6 +232,7 @@ def build_plan(
     actions: list[dict[str, Any]] = []
     conflicts: list[dict[str, str]] = []
     preserved: list[dict[str, str]] = []
+    released: list[dict[str, str]] = []
 
     for relative_path, source_identity in sources.items():
         target = safe_target(home, relative_path)
@@ -227,10 +258,17 @@ def build_plan(
         current = file_identity(target)
         if current is None:
             continue
-        if identities_equal(current, old_identity) or force:
-            actions.append({"action": "delete", "path": relative_path, "reason": "stale", "expected": current})
+        if relative_path in manifest["legacyCleanupPaths"]:
+            if identities_equal(current, old_identity) or force:
+                actions.append(
+                    {"action": "delete", "path": relative_path, "reason": "explicit-legacy-cleanup", "expected": current}
+                )
+            else:
+                conflicts.append({"path": relative_path, "reason": "legacy-cleanup-locally-modified"})
         else:
-            conflicts.append({"path": relative_path, "reason": "stale-locally-modified"})
+            # Ein engeres Manifest gibt alte Ziele frei, statt sie zu loeschen.
+            # A narrower manifest releases former targets instead of deleting them.
+            released.append({"path": relative_path, "reason": "retired-from-home-runtime"})
 
     action_paths = {entry["path"] for entry in actions}
     for relative_path in manifest["legacyCleanupPaths"]:
@@ -256,6 +294,7 @@ def build_plan(
         "actions": sorted(actions, key=lambda item: (item["path"], item["action"])),
         "conflicts": sorted(conflicts, key=lambda item: item["path"]),
         "preserved": sorted(preserved, key=lambda item: item["path"]),
+        "released": sorted(released, key=lambda item: item["path"]),
     }
 
 
@@ -267,7 +306,9 @@ def print_plan(plan: dict[str, Any]) -> None:
         print(f"  [CONFLICT] {conflict['path']} ({conflict['reason']})")
     for preserved in plan["preserved"]:
         print(f"  [KEEP] {preserved['path']} ({preserved['reason']})")
-    if not plan["actions"] and not plan["conflicts"] and not plan["preserved"]:
+    for released in plan["released"]:
+        print(f"  [RELEASE] {released['path']} ({released['reason']})")
+    if not plan["actions"] and not plan["conflicts"] and not plan["preserved"] and not plan["released"]:
         print("  [OK] Managed home files are current / Verwaltete Home-Dateien sind aktuell")
 
 
@@ -330,6 +371,8 @@ def write_state(
     source_commit: str,
     sources: dict[str, dict[str, str]],
     changed_paths: list[str],
+    manifest_schema_version: int,
+    released_paths: list[str],
 ) -> None:
     for relative_path, expected in sources.items():
         if not identities_equal(file_identity(safe_target(home, relative_path)), expected):
@@ -340,7 +383,9 @@ def write_state(
         "sourcePath": str(repository.resolve()),
         "sourceCommit": source_commit,
         "syncedAt": timestamp,
+        "manifestSchemaVersion": manifest_schema_version,
         "files": sources,
+        "releasedPaths": sorted(set(released_paths)),
     }
     atomic_json_write(state_path, state)
     atomic_json_write(
@@ -350,6 +395,7 @@ def write_state(
             "sourceCommit": source_commit,
             "completedAt": timestamp,
             "changedPaths": sorted(set(changed_paths)),
+            "releasedPaths": sorted(set(released_paths)),
         },
     )
 
@@ -368,7 +414,7 @@ def sync_command(arguments: argparse.Namespace) -> int:
     source_commit = run_git(repository, "rev-parse", "HEAD").stdout.decode("ascii").strip()
     plan = build_plan(repository, home, manifest, previous, arguments.force)
     print_plan(plan)
-    has_drift = bool(plan["actions"] or plan["conflicts"] or plan["preserved"])
+    has_drift = bool(plan["actions"] or plan["conflicts"] or plan["preserved"] or plan["released"])
 
     if arguments.check_only:
         return 1 if has_drift else 0
@@ -379,7 +425,17 @@ def sync_command(arguments: argparse.Namespace) -> int:
         return 1
 
     changed_paths = apply_plan(repository, home, plan)
-    write_state(state_path, result_path, repository, home, source_commit, plan["sources"], changed_paths)
+    write_state(
+        state_path,
+        result_path,
+        repository,
+        home,
+        source_commit,
+        plan["sources"],
+        changed_paths,
+        manifest["schemaVersion"],
+        previous["releasedPaths"] + [item["path"] for item in plan["released"]],
+    )
     return 0
 
 
