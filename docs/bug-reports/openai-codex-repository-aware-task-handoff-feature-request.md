@@ -1,6 +1,6 @@
-# OpenAI Codex Feature Request Draft: Repository-Aware Task Handoff
+# OpenAI Codex Feature Request: Repository-Aware Task Handoff
 
-Status: Draft for explicit approval; not submitted
+Status: Submitted as [openai/codex#34582](https://github.com/openai/codex/issues/34582) on 2026-07-21
 
 ## What variant of Codex are you using?
 
