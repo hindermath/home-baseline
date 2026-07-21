@@ -2626,8 +2626,10 @@ Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
 Die ursprünglichen sechs Governance-Presets sind seit 2026-05-04 im Spec-Kit
 Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
 2026-07-17 verifiziert. Die aktuellen eigenstaendigen Releases sind
-`autonomous-run-governance` v0.3.1 und
-`parallel-autonomous-run-governance` v0.2.2; Preset 8 wurde mit
+`autonomous-run-governance` v0.3.2 und
+`parallel-autonomous-run-governance` v0.2.3. Das optionale
+`intake-review-governance` v0.1.0 wird separat mit Prioritaet `65` angeboten;
+Preset 8 wurde mit
 `github/spec-kit#3591` fuer den Community-Katalog eingereicht. Die direkte
 Installation über
 versionierte ZIP-URLs bleibt die bevorzugte Variante, wenn ein Projekt einen
@@ -2636,8 +2638,10 @@ exakt reproduzierbaren Preset-Stand pinnen soll.
 *The original six governance presets have been in the Spec-Kit community
 catalog since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified there
 on 2026-07-17. The current standalone releases are
-`autonomous-run-governance` v0.3.1 and
-`parallel-autonomous-run-governance` v0.2.2; Preset 8 was submitted to the
+`autonomous-run-governance` v0.3.2 and
+`parallel-autonomous-run-governance` v0.2.3. Optional
+`intake-review-governance` v0.1.0 is offered separately at priority `65`;
+Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Direct
 installation via versioned ZIP URLs is still the preferred variant when a
 project should pin one exactly reproducible preset state.*
@@ -2662,14 +2666,26 @@ updated together.*
 | `a11y-governance` | A11Y Governance | `v0.4.1` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.1` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.4.0` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.3.1` | `70` |
-| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.2` | `80` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.3.2` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.3` | `80` |
 
 Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begründung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
 
 *Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
-`autonomous-run-governance` v0.3.1 mit Priorität `70` ist Teil der
+`intake-review-governance` v0.1.0 ist ein optionales neuntes Preset mit
+Prioritaet `65`; es veraendert die Standard-Achtermatrix nicht. Es prueft
+einzelne Intakes, Reihen und Kampagnen vor Feature-Erstellung. Review und Status
+sind read-only. Repair braucht ausdrueckliche Aenderungsautoritaet. Bei aktiver
+Policy blockieren Critical/High, offene Fragen, Hash-Drift oder fehlende
+Worker-Coverage Preset 7 beziehungsweise Preset 8.
+
+*`intake-review-governance` v0.1.0 is an optional ninth preset at priority `65`;
+it does not change the standard eight. It reviews single intakes, series, and
+campaigns before feature creation. Review and status are read-only; repair
+needs explicit mutation authority.*
+
+`autonomous-run-governance` v0.3.2 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume` und
@@ -2681,6 +2697,8 @@ mit akzeptierten Plan-/Task-/Checklist-Artefakten ab. Vollständige autonome
 Läufe bleiben ausdrücklich delegationspflichtig. `LocalImplementation` bleibt
 der sichere Default; die Installation erteilt keine Remote-, Merge-, Bypass-
 oder Provider-Rechte. Die
+optionale Intake-Pruefung ist ohne installiertes Preset 9 oder aktive Policy
+`N/A`; bei Aktivierung wird ihr Ergebnis als akzeptiertes Artefakt gebunden.
 lesbare Skill-Überschrift `Deliver` ist kein Run-State-Wert; für Remote-Closeout
 gelten `Publish`, `Review` oder `MergeAndSync`. Der bisherige Pfad
 [`scripts/config/spec-kit-autonomous-governance-presets.json`](scripts/config/spec-kit-autonomous-governance-presets.json)
@@ -2690,7 +2708,7 @@ Name. Die früheren Profilnamen `standard-six-governance-presets` und
 `standard-seven-governance-presets` werden beim erneuten Registrieren als
 Kompatibilitätsaliase auf dieselbe aktuelle Achtermatrix migriert.
 
-*`autonomous-run-governance` v0.3.1 at priority `70` is part of the standard
+*`autonomous-run-governance` v0.3.2 at priority `70` is part of the standard
 eight-preset matrix. It adds
 `speckit.autonomous`, `speckit.autonomous-status`,
 `speckit.autonomous-stop`, `speckit.autonomous-resume`, and
@@ -2710,9 +2728,10 @@ re-registration, the former profile names `standard-six-governance-presets`
 and `standard-seven-governance-presets` are compatibility aliases migrated to
 the same current eight-preset matrix.*
 
-`parallel-autonomous-run-governance` v0.2.2 mit Prioritaet `80` koordiniert
+`parallel-autonomous-run-governance` v0.2.3 mit Prioritaet `80` koordiniert
 ausdruecklich delegierte Kampagnen mit getrennten Worktrees und maximal drei
-gleichzeitig aktiven Workern. Schema `1.1` erlaubt `runnerProfile` je Worker,
+gleichzeitig aktiven Workern. Schema `1.2` ergaenzt ein optionales
+`intakeReview`-Gate; Schema `1.1` liefert weiterhin `runnerProfile` je Worker,
 agentenneutrale optionale Modell-/Reasoning-Metadaten, barrierearme Text- und
 JSON-Statusausgabe, Stop/Resume waehrend Konsolidierung, exakte
 Head-/Review-/Check-Preflights, fortsetzbare Teilmerges und deklarierte
@@ -2722,12 +2741,13 @@ Preset 7 mit Prioritaet `70` liefert den Worker-Lebenszyklus, Preset 8 mit
 Prioritaet `80` die Kampagnenkoordination. Ein fehlendes, deaktiviertes oder zu
 altes Preset 7 beendet den Preflight vor dem Worker-Start. Installation allein
 startet keine Kampagne und erteilt keine zusaetzlichen Rechte. Das ausfuehrliche
-[Preset-8-Handbuch](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.2/docs)
+[Preset-8-Handbuch](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.3/docs)
 erklaert Topologien, Scheduling, Konsolidierung und Recovery.
 
-*`parallel-autonomous-run-governance` v0.2.2 at priority `80` coordinates
+*`parallel-autonomous-run-governance` v0.2.3 at priority `80` coordinates
 explicitly delegated campaigns with separate worktrees and at most three
-active workers. Schema `1.1` adds per-worker `runnerProfile`, optional
+active workers. Schema `1.2` adds an optional `intakeReview` gate; schema
+`1.1` continues to provide per-worker `runnerProfile`, optional
 agent-neutral model/reasoning metadata, accessible text and JSON status,
 stop/resume during consolidation, exact-head/review/check preflights, resumable
 partial merges, and declared post-merge actions. Real campaigns require
@@ -2736,7 +2756,7 @@ repository: Preset 7 at priority `70` provides the worker lifecycle, while
 Preset 8 at priority `80` provides campaign coordination. A missing, disabled,
 or outdated Preset 7 fails preflight before any worker starts. Installation
 alone starts no campaign and grants no additional authority. The detailed
-[Preset 8 manual](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.2/docs)
+[Preset 8 manual](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.3/docs)
 explains topologies, scheduling, consolidation, and recovery.*
 
 | Preset | Zweck / Purpose | Empfehlung / Recommendation |
@@ -2747,6 +2767,7 @@ explains topologies, scheduling, consolidation, and recovery.*
 | `a11y-governance` | Barrierefreiheit nach WCAG 2.2 Level AA für UI, HTML, CLI, Doku, Templates und didaktische Inline-Code-Kommentare. / Accessibility based on WCAG 2.2 Level AA for UI, HTML, CLI, docs, templates, and didactic inline-code comments. | Für alle nutzerseitigen Artefakte und Lern-/Referenzprojekte installieren. / Install for all user-facing artefacts and learning/reference projects. |
 | `cross-platform-governance` | macOS/Linux/Windows-Parität, Shell-Auswahl, Pfadregeln, Testhinweise. / macOS/Linux/Windows parity, shell choice, path rules, test guidance. | Für Skripte, CLIs, Tooling und Workspace-Infrastruktur installieren. / Install for scripts, CLIs, tooling, and workspace infrastructure. |
 | `agent-parity-governance` | Gemeinsame Pflege von Agent-Guidance plus agentenneutrales Spec-Kit-Modell-Routing. / Joint maintenance of agent guidance plus agent-neutral Spec-Kit model routing. | Für Repos mit mehreren KI-Agenten-Oberflächen installieren. / Install for repos with multiple AI-agent surfaces. |
+| `intake-review-governance` | Hashgebundener Review einzelner Intakes, Reihen und Kampagnen vor Specify oder Worker-Start. / Hash-bound review of single intakes, series, and campaigns before Specify or worker scheduling. | Optional installieren, wenn Intake-Qualitaet ein verbindliches Gate sein soll. / Install optionally when intake quality must be a binding gate. |
 | `autonomous-run-governance` | Berechtigungsgebundene, evidenzbasierte Steuerung ausdrücklich delegierter autonomer Spec-Kit-Läufe. / Permission-bounded, evidence-first control for explicitly delegated autonomous Spec Kit runs. | Standardmäßig installieren; einen Lauf nur nach ausdrücklicher Delegation starten. / Install by default; start a run only after explicit delegation. |
 | `parallel-autonomous-run-governance` | Isolierte, begrenzte Multi-Worker-Kampagnen mit fortsetzbarer Konsolidierung und Closeout. / Isolated bounded multi-worker campaigns with resumable consolidation and closeout. | Standardmäßig installieren; parallele Kampagnen nur nach ausdrücklicher Delegation starten. / Install by default; start parallel campaigns only after explicit delegation. |
 
@@ -2815,6 +2836,16 @@ bash ~/scripts/install-spec-kit-governance-presets.sh --repo .
 ```powershell
 pwsh ~/scripts/install-spec-kit-governance-presets.ps1 -Repo .
 ```
+
+Fuer das explizite neunte Intake-Review-Preset dieselben Installer mit
+`scripts/config/spec-kit-intake-review-governance-presets.json` ueber
+`--preset-config` beziehungsweise `-PresetConfig` aufrufen. Ohne diese Auswahl
+bleibt die Standard-Achtermatrix unveraendert.
+
+*To select the optional ninth intake-review preset, call the same installers
+with `scripts/config/spec-kit-intake-review-governance-presets.json` through
+`--preset-config` or `-PresetConfig`. Without that explicit selection, the
+standard eight remain unchanged.*
 
 Wenn eine neue Preset-Version freigegeben wird, zuerst die Matrix aktualisieren.
 Neue registrierte Level-0-, Level-1- und Level-2-Repositories nutzen danach

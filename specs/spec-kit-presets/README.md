@@ -2,6 +2,8 @@
 
 This directory contains local scaffolds for the eight standard
 Spec Kit governance presets derived from the `home-baseline` governance work.
+The optional `intake-review-governance` scaffold is deliberately excluded from
+that standard profile until a project selects it.
 
 Target split:
 
@@ -11,8 +13,9 @@ Target split:
 - `a11y-governance` — version `0.4.1`
 - `cross-platform-governance` — version `0.2.1`
 - `agent-parity-governance` — version `0.4.0`
-- `autonomous-run-governance` — version `0.3.1`
-- `parallel-autonomous-run-governance` — version `0.2.2`
+- `intake-review-governance` — version `0.1.0`, optional priority `65`
+- `autonomous-run-governance` — version `0.3.2`
+- `parallel-autonomous-run-governance` — version `0.2.3`
 
 The standard eight-preset profile requires `spec-kit >= 0.8.3`.
 The original six presets depend on the `wrap` and `append` composition
@@ -32,6 +35,7 @@ Recommended future repository names:
 - `hindermath/spec-kit-preset-architecture-governance`
 - `hindermath/spec-kit-preset-a11y-governance`
 - `hindermath/spec-kit-preset-agent-parity-governance`
+- `hindermath/spec-kit-preset-intake-review-governance`
 - `hindermath/spec-kit-preset-cross-platform-governance`
 - `hindermath/spec-kit-preset-autonomous-run-governance`
 - `hindermath/spec-kit-preset-parallel-autonomous-run-governance`
@@ -123,8 +127,9 @@ Recommended publication order:
 4. `a11y-governance`
 5. `cross-platform-governance`
 6. `agent-parity-governance`
-7. `autonomous-run-governance`
-8. `parallel-autonomous-run-governance`
+7. optional `intake-review-governance`
+8. `autonomous-run-governance`
+9. `parallel-autonomous-run-governance`
 
 Recommended install order for stacked use:
 
@@ -135,8 +140,10 @@ specify preset add isaqb-architecture-governance --priority 30
 specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
-specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.1.zip --priority 70
-specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.2.zip --priority 80
+# Optional; omit to retain the standard eight-preset profile.
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.1.0.zip --priority 65
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.2.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.3.zip --priority 80
 ```
 
 Notes:

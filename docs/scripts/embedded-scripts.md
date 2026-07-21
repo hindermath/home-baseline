@@ -52,6 +52,10 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-run-state.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-run-state.sh` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/scripts/validate-intake-review-result.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/scripts/validate-intake-review-result.sh` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/tests/test-intake-review-validator.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-intake-review-governance/tests/test-secure-casetracker-field.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `specs` |
@@ -66,6 +70,10 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/validate-autonomous-run-state.ps1` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/validate-autonomous-run-state.sh` | `specs` |
+| `specs/spec-kit-presets/intake-review-governance/scripts/validate-intake-review-result.ps1` | `specs` |
+| `specs/spec-kit-presets/intake-review-governance/scripts/validate-intake-review-result.sh` | `specs` |
+| `specs/spec-kit-presets/intake-review-governance/tests/test-intake-review-validator.ps1` | `specs` |
+| `specs/spec-kit-presets/intake-review-governance/tests/test-secure-casetracker-field.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `specs` |
