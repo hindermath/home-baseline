@@ -145,6 +145,14 @@
       "labelEn": "Intake authoring preset v0.1.0",
       "netLines": 6337,
       "activeDays": 1
+    },
+    {
+      "slot": 17,
+      "id": "intake-authoring-fleet-closeout",
+      "labelDe": "Intake-Authoring-Flottenabschluss",
+      "labelEn": "Intake authoring fleet closeout",
+      "netLines": 357,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

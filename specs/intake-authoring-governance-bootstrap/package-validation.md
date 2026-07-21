@@ -52,10 +52,20 @@ action remained a visible, unexecuted Intake Review handoff.
 
 The public repository uses the same active `main` pull-request protection and
 automatic Copilot review rulesets as the other standalone governance presets.
-No bypass was used for validation, release, or fleet delivery.
+No bypass was used for package validation or the public repository release.
+The separately documented fleet rollout used the narrow owner-authorized path
+only after effective technical gates, provider-unavailable classification, and
+zero actionable review threads were established.
 
-## Remaining External Boundary
+## Fleet And Community Boundary
 
-Fleet installation and the Community Catalog submission are recorded
-separately after completion. An external catalog merge is not a local package
+The optional profile is installed in 33/33 managed repositories, including
+21/21 learning-series repositories. Detailed PR, check, review, and local-sync
+evidence is recorded under `specs/intake-authoring-preset-fleet-rollout/`.
+
+The official Community Catalog submission is
+[github/spec-kit#3621](https://github.com/github/spec-kit/issues/3621). It was
+submitted through the official Preset Submission issue form. The current form
+applied `enhancement`; a maintainer must still apply the workflow's
+`preset-submission` label. An external catalog merge is not a local package
 completion condition.

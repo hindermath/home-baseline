@@ -552,6 +552,28 @@ functions before scanning and return exit code 2 for an incomplete package. A
 cross-platform regression pair reproduces the former false positive in
 temporary installations and then verifies the complete package.*
 
+### 2026-07-21 - Intake-Authoring-Flottenabschluss / Intake authoring fleet closeout
+
+- Das optionale Preset `intake-authoring-governance` v0.1.0 ist in allen 33
+  verwalteten Level-0-, Level-1- und Level-2-Repositories installiert. Die
+  bestehende Acht-Preset-Standardmatrix und das Neun-Preset-Profil bleiben
+  unveraendert.
+- Alle 21 Lernreihen-Repositories in drei Familien verwenden das explizite
+  Zehn-Preset-Profil. Bash- und PowerShell-Paketvorschauen sind gruen; kein
+  Spec-Kit-Lauf fuer Lernende wurde gestartet.
+- 33 nicht leere PRs sind gemergt. Providerseitige Billing-Ausfaelle wurden
+  einzeln als nicht verfuegbare Evidence klassifiziert und nie als technische
+  Erfolge gewertet. Die offizielle Community-Einreichung ist
+  `github/spec-kit#3621`.
+
+*The optional `intake-authoring-governance` v0.1.0 preset is installed across
+all 33 managed Level 0, Level 1, and Level 2 repositories while the existing
+eight- and nine-preset profiles remain unchanged. All 21 learning-series
+repositories use the explicit ten-preset profile, both package previews pass,
+and no learner Spec Kit run was started. All 33 non-empty PRs are merged;
+provider billing failures remain unavailable evidence rather than technical
+passes. The official community submission is `github/spec-kit#3621`.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -562,27 +584,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 308185 lines |
-| Textdateien / Text files | 1921 |
-| Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-21 |
-| Aktivtage / Active days | 69 |
-| Relevante Commits / Relevant commits | 486 |
-| Zeilen je Aktivtag / Lines per active day | 4466.4 |
+| Textbasis / Text base | 308553 lines |
+| Textdateien / Text files | 1927 |
+| Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-22 |
+| Aktivtage / Active days | 70 |
+| Relevante Commits / Relevant commits | 489 |
+| Zeilen je Aktivtag / Lines per active day | 4407.9 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
-| Laengste Serie / Longest streak | 26 days |
-| Speedup vs. 80 lines/day | 55.8x |
-| Speedup vs. 100 lines/day | 44.7x |
-| Methodik / Methodology | v2; source `f5b0e2d1770b` |
+| Laengste Serie / Longest streak | 27 days |
+| Speedup vs. 80 lines/day | 55.1x |
+| Speedup vs. 100 lines/day | 44.1x |
+| Methodik / Methodology | v2; source `3c49cd06a9d0` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.7% | 8230
-Dokumentation / Documentation   [################....]  82.5% | 254147
+Dokumentation / Documentation   [################....]  82.5% | 254456
 Skripte / Scripts               [###.................]  13.2% | 40626
-Konfiguration / Configuration   [#...................]   1.4% | 4466
+Konfiguration / Configuration   [#...................]   1.5% | 4525
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 716
 ```
@@ -609,7 +631,7 @@ Wochen / Weeks 27..52 | 2026-01-25..2026-07-25
 So/Su  0 0 0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4
 Di/Tu  0 0 0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4
-Mi/We  0 0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 -
+Mi/We  0 0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 2
 Do/Th  0 0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 -
 Fr/Fr  0 0 0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 -
 Sa/Sa  0 0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 -
@@ -678,15 +700,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..16
-   cap 10000 | .
-        8333 | .
-        6667 | .
-        5000 | #
-        3333 | #
-        1667 | #
-           0 +---
-             16
+Slots 16..17
+   cap 10000 | . .
+        8333 | . .
+        6667 | . .
+        5000 | # .
+        3333 | # .
+        1667 | # .
+           0 +-----
+             16 17
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -708,6 +730,7 @@ Slots 16..16
 | 14 | Intake-Review-Flottenprofil / Intake review fleet profile | 1879 |
 | 15 | Intake-Review-Flottenabschluss / Intake review fleet closeout | 48 |
 | 16 | Intake-Authoring-Preset v0.1.0 / Intake authoring preset v0.1.0 | 6337 |
+| 17 | Intake-Authoring-Flottenabschluss / Intake authoring fleet closeout | 357 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -717,8 +740,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 55.8x
-100 lines/day      [#########...........] 44.7x
+80 lines/day       [###########.........] 55.1x
+100 lines/day      [#########...........] 44.1x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -731,7 +754,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##################..] 4466.4
+Visible repository [##################..] 4407.9
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -740,9 +763,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-21. Es enthaelt 69 aktive und 291 inaktive vergangene Tage. Peak-Tag: 2026-07-08 / 40319. Peak-Woche: 2026-07-05 / 121867. Laengste Serie: 26 Tage (2026-06-26..2026-07-21).
+DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-22. Es enthaelt 70 aktive und 291 inaktive vergangene Tage. Peak-Tag: 2026-07-08 / 40319. Peak-Woche: 2026-07-05 / 121867. Laengste Serie: 27 Tage (2026-06-26..2026-07-22).
 
-*EN: The window starts on 2025-07-27 and ends on 2026-07-21. It contains 69 active and 291 inactive elapsed days. Peak day: 2026-07-08 / 40319. Peak week: 2026-07-05 / 121867. Longest streak: 26 days (2026-06-26..2026-07-21).*
+*EN: The window starts on 2025-07-27 and ends on 2026-07-22. It contains 70 active and 291 inactive elapsed days. Peak day: 2026-07-08 / 40319. Peak week: 2026-07-05 / 121867. Longest streak: 27 days (2026-06-26..2026-07-22).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -757,6 +780,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-21. Es enthaelt 69 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 222078 |
+| 2026-07 | 222462 |
 
 <!-- project-statistics-v2:end -->

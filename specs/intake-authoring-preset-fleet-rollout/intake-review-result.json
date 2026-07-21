@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "95516e47-c6a2-4b95-8047-37a79386f24b",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "fleet-governance-rollout",
+  "reviewedAt": "2026-07-21T22:00:50Z",
+  "repository": {
+    "root": ".",
+    "head": "f0ab10072af66efe10fd16c556b43f9f8ce95088"
+  },
+  "targets": [
+    {
+      "path": "specs/intake-authoring-preset-fleet-rollout/intake.md",
+      "role": "Primary",
+      "normalizedSha256": "bff0e563ef14a663a1e1558d5564f13f7e85ab88505a728aaf47be6a8ffad895",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "specs/intake-authoring-preset-fleet-rollout/intake.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}
