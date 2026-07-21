@@ -2,16 +2,20 @@
 
 ## Ergebnisstatus / Result Status
 
-Stand: 2026-07-21. Die lokale Runtime- und Workflow-Validierung ist fuer 30
-Worker abgeschlossen. Worker `repo-08` ist wegen vorhandener fachlicher
-Homogeneity-Befunde gestoppt. Der Remote-Abschluss ist teilweise durch eine
-GitHub-seitige Billing-/Spending-Limit-Ablehnung vor dem ersten Jobschritt
-blockiert.
+Stand: 2026-07-21. Alle 31 Worker sind lokal validiert, ueber nicht leere PRs
+gemergt und auf sauberem `main` mit `HEAD == origin/main` synchronisiert.
+Worker `repo-08` schloss seine vier autorisierten Dokumentationsbefunde vor
+dem Merge. Bei 26 Workern blieb die GitHub-Ausfuehrung wegen der bestaetigten
+Billing-/Spending-Limit-Ablehnung vor dem ersten Jobschritt nicht verfuegbar;
+dieser fehlende Provider-Nachweis wurde nicht als technischer Pass gewertet.
 
-*As of 2026-07-21, local runtime and workflow validation is complete for 30
-workers. Worker `repo-08` is stopped by pre-existing substantive Homogeneity
-findings. Remote completion is partially blocked by a GitHub billing or
-spending-limit rejection before the first job step.*
+*As of 2026-07-21, all 31 workers have been validated locally, merged through
+non-empty pull requests, and synchronized on clean `main` branches with
+`HEAD == origin/main`. Worker `repo-08` closed its four authorized
+documentation findings before merge. For 26 workers, GitHub execution remained
+unavailable because of the confirmed billing or spending-limit rejection
+before the first job step; this missing provider evidence was not reported as a
+technical pass.*
 
 ## Autoritaetsaenderung / Authority Amendment
 
@@ -57,7 +61,7 @@ remain mandatory.*
 | Bash-Syntax und Diff-Pruefung | 31/31 bestanden |
 | Bash-Fail-closed-Test | 31/31 bestanden; unvollstaendiges Paket liefert Exitcode 2 |
 | PowerShell-Fail-closed-Test | 31/31 bestanden; unvollstaendiges Paket liefert Exitcode 2 |
-| Vollstaendiger Bash-/PowerShell-Scan | 30/31 Exitcode 0 |
+| Vollstaendiger Bash-/PowerShell-Scan | 31/31 Exitcode 0; `repo-08` mit drei nicht blockierenden Bestandswarnungen |
 | Workflow-YAML | 31/31 parsebar |
 | Git-Historie fuer Statistikprofil | 31/31 mit `fetch-depth: 0` |
 | Statistikprofil 2 | 31/31 nach dem jeweiligen Workflow-Commit reproduzierbar aktualisiert |
@@ -78,43 +82,43 @@ exit code 0 in every non-blocked repository.*
 
 | Worker | Repository | PR | Status |
 |---|---|---:|---|
-| `repo-01` | `c64-baseline` | [#8](https://github.com/hindermath/c64-baseline/pull/8) | Provider-blockiert |
-| `repo-02` | `container-images` | [#6](https://github.com/hindermath/container-images/pull/6) | Provider-blockiert |
-| `repo-03` | `datagrip-baseline` | [#8](https://github.com/hindermath/datagrip-baseline/pull/8) | Provider-blockiert |
-| `repo-04` | `rider-baseline` | [#8](https://github.com/hindermath/rider-baseline/pull/8) | Provider-blockiert |
-| `repo-05` | `secure-casetracker-baseline` | [#6](https://github.com/hindermath/secure-casetracker-baseline/pull/6) | Provider-blockiert |
-| `repo-06` | `secure-orderdesk-baseline` | [#6](https://github.com/hindermath/secure-orderdesk-baseline/pull/6) | Provider-blockiert |
-| `repo-07` | `secure-serviceharvester` | [#6](https://github.com/hindermath/secure-serviceharvester/pull/6) | Provider-blockiert |
-| `repo-08` | `absdd-image-sandbox` | - | Lokal gestoppt: vier Bestandsbefunde |
-| `repo-09` | `InventarDb` | [#7](https://github.com/hindermath/InventarDb/pull/7) | Provider-blockiert |
+| `repo-01` | `c64-baseline` | [#8](https://github.com/hindermath/c64-baseline/pull/8) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-02` | `container-images` | [#6](https://github.com/hindermath/container-images/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-03` | `datagrip-baseline` | [#8](https://github.com/hindermath/datagrip-baseline/pull/8) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-04` | `rider-baseline` | [#8](https://github.com/hindermath/rider-baseline/pull/8) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-05` | `secure-casetracker-baseline` | [#6](https://github.com/hindermath/secure-casetracker-baseline/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-06` | `secure-orderdesk-baseline` | [#6](https://github.com/hindermath/secure-orderdesk-baseline/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-07` | `secure-serviceharvester` | [#6](https://github.com/hindermath/secure-serviceharvester/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-08` | `absdd-image-sandbox` | [#14](https://github.com/hindermath/absdd-image-sandbox/pull/14) | Vier Befunde korrigiert; alle 16 Checks gruen; gemergt als `87c6829` und lokal synchron |
+| `repo-09` | `InventarDb` | [#7](https://github.com/hindermath/InventarDb/pull/7) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
 | `repo-10` | `InventarWorkerService` | [#31](https://github.com/hindermath/InventarWorkerService/pull/31) | Gemergt und lokal synchron |
 | `repo-11` | `TinyCalc` | [#25](https://github.com/hindermath/TinyCalc/pull/25) | Gemergt und lokal synchron |
 | `repo-12` | `TinyPl0` | [#37](https://github.com/hindermath/TinyPl0/pull/37) | Gemergt und lokal synchron |
 | `repo-13` | `TuiVision` | [#111](https://github.com/hindermath/TuiVision/pull/111) | Gemergt als `f0c344c` und lokal synchron |
-| `repo-14` | `securecasetracker-csharp` | [#11](https://github.com/hindermath/securecasetracker-csharp/pull/11) | Provider-blockiert |
-| `repo-15` | `securecasetracker-go` | [#11](https://github.com/hindermath/securecasetracker-go/pull/11) | Provider-blockiert |
-| `repo-16` | `securecasetracker-java` | [#11](https://github.com/hindermath/securecasetracker-java/pull/11) | Provider-blockiert |
-| `repo-17` | `securecasetracker-python` | [#11](https://github.com/hindermath/securecasetracker-python/pull/11) | Provider-blockiert |
-| `repo-18` | `securecasetracker-rust` | [#11](https://github.com/hindermath/securecasetracker-rust/pull/11) | Provider-blockiert |
-| `repo-19` | `securecasetracker-swift` | [#11](https://github.com/hindermath/securecasetracker-swift/pull/11) | Provider-blockiert |
-| `repo-20` | `secureorderdesk-csharp` | [#6](https://github.com/hindermath/secureorderdesk-csharp/pull/6) | Provider-blockiert |
-| `repo-21` | `secureorderdesk-go` | [#6](https://github.com/hindermath/secureorderdesk-go/pull/6) | Provider-blockiert |
-| `repo-22` | `secureorderdesk-java` | [#6](https://github.com/hindermath/secureorderdesk-java/pull/6) | Provider-blockiert |
-| `repo-23` | `secureorderdesk-python` | [#6](https://github.com/hindermath/secureorderdesk-python/pull/6) | Provider-blockiert |
-| `repo-24` | `secureorderdesk-rust` | [#6](https://github.com/hindermath/secureorderdesk-rust/pull/6) | Provider-blockiert |
-| `repo-25` | `secureorderdesk-swift` | [#6](https://github.com/hindermath/secureorderdesk-swift/pull/6) | Provider-blockiert |
-| `repo-26` | `secureserviceharvester-csharp` | [#6](https://github.com/hindermath/secureserviceharvester-csharp/pull/6) | Provider-blockiert |
-| `repo-27` | `secureserviceharvester-go` | [#6](https://github.com/hindermath/secureserviceharvester-go/pull/6) | Provider-blockiert |
-| `repo-28` | `secureserviceharvester-java` | [#6](https://github.com/hindermath/secureserviceharvester-java/pull/6) | Provider-blockiert |
-| `repo-29` | `secureserviceharvester-python` | [#6](https://github.com/hindermath/secureserviceharvester-python/pull/6) | Provider-blockiert |
-| `repo-30` | `secureserviceharvester-rust` | [#6](https://github.com/hindermath/secureserviceharvester-rust/pull/6) | Provider-blockiert |
-| `repo-31` | `secureserviceharvester-swift` | [#6](https://github.com/hindermath/secureserviceharvester-swift/pull/6) | Provider-blockiert |
+| `repo-14` | `securecasetracker-csharp` | [#11](https://github.com/hindermath/securecasetracker-csharp/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-15` | `securecasetracker-go` | [#11](https://github.com/hindermath/securecasetracker-go/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-16` | `securecasetracker-java` | [#11](https://github.com/hindermath/securecasetracker-java/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-17` | `securecasetracker-python` | [#11](https://github.com/hindermath/securecasetracker-python/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-18` | `securecasetracker-rust` | [#11](https://github.com/hindermath/securecasetracker-rust/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-19` | `securecasetracker-swift` | [#11](https://github.com/hindermath/securecasetracker-swift/pull/11) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-20` | `secureorderdesk-csharp` | [#6](https://github.com/hindermath/secureorderdesk-csharp/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-21` | `secureorderdesk-go` | [#6](https://github.com/hindermath/secureorderdesk-go/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-22` | `secureorderdesk-java` | [#6](https://github.com/hindermath/secureorderdesk-java/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-23` | `secureorderdesk-python` | [#6](https://github.com/hindermath/secureorderdesk-python/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-24` | `secureorderdesk-rust` | [#6](https://github.com/hindermath/secureorderdesk-rust/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-25` | `secureorderdesk-swift` | [#6](https://github.com/hindermath/secureorderdesk-swift/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-26` | `secureserviceharvester-csharp` | [#6](https://github.com/hindermath/secureserviceharvester-csharp/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-27` | `secureserviceharvester-go` | [#6](https://github.com/hindermath/secureserviceharvester-go/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-28` | `secureserviceharvester-java` | [#6](https://github.com/hindermath/secureserviceharvester-java/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-29` | `secureserviceharvester-python` | [#6](https://github.com/hindermath/secureserviceharvester-python/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-30` | `secureserviceharvester-rust` | [#6](https://github.com/hindermath/secureserviceharvester-rust/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
+| `repo-31` | `secureserviceharvester-swift` | [#6](https://github.com/hindermath/secureserviceharvester-swift/pull/6) | Gemergt mit autorisiertem Provider-Bypass und lokal synchron |
 
-## Blocker / Blockers
+## Abschlussgrenzen / Completion Boundaries
 
 ### Worker `repo-08`
 
-`absdd-image-sandbox` meldet in Bash und PowerShell dieselben vier bereits vor
+`absdd-image-sandbox` meldete in Bash und PowerShell dieselben vier bereits vor
 dem Rollout vorhandenen fachlichen Befunde:
 
 - `STATS.md` fehlt;
@@ -122,9 +126,11 @@ dem Rollout vorhandenen fachlichen Befunde:
 - README-Abschnitt Spec-kit fehlt in der vom Validator geforderten Form;
 - README-Abschnitt fuer Azubis oder Auszubildende fehlt.
 
-Die spaetere ausdrueckliche Autoritaetsaenderung erlaubt ausschliesslich die
-minimale Korrektur dieser vier Befunde. Produkt-, Container- und
-Laufzeitverhalten bleiben unveraendert.
+Die ausdrueckliche Autoritaetsaenderung erlaubte ausschliesslich die minimale
+Korrektur dieser vier Befunde. PR #14 schloss sie; alle 16 Remote-Checks waren
+gruen. Produkt-, Container- und Laufzeitverhalten blieben unveraendert. Drei
+Warnungen zu fehlenden bilingualen Abschnitten in Agent-Kontextdateien bleiben
+als nicht blockierender Bestandshinweis ausserhalb dieser Korrektur.
 
 ### GitHub Provider
 
@@ -133,10 +139,12 @@ dem ersten Workflow-Schritt abgelehnt. Die GitHub-Annotation lautet:
 
 > The job was not started because recent account payments have failed or your spending limit needs to be increased.
 
-Dieser Zustand ist kein technischer Pass. Die spaetere ausdrueckliche
-Autoritaetsaenderung erlaubt einen eng begrenzten Admin-Bypass, wenn der exakte
-PR-Head lokal vollstaendig validiert ist, keine umsetzbaren Review-Threads
-offen sind und keine weitere technische oder fachliche Blockade vorliegt.
+Dieser Zustand ist kein technischer Pass. Die ausdrueckliche
+Autoritaetsaenderung erlaubte einen eng begrenzten Admin-Bypass, nachdem jeder
+exakte PR-Head lokal vollstaendig validiert war, keine umsetzbaren
+Review-Threads offen waren und keine weitere technische oder fachliche
+Blockade vorlag. 26 PRs wurden unter diesen Bedingungen gemergt; die fehlenden
+Provider-Laeufe bleiben als `ProviderUnavailable` dokumentiert.
 
 ## Community-Preset-Status
 
@@ -152,8 +160,10 @@ offen sind und keine weitere technische oder fachliche Blockade vorliegt.
 
 ## Naechste exakte Aktionen / Next Exact Actions
 
-1. Die 26 unveraenderten exakten PR-Heads auf lokale Evidence, Providerursache
-   und null umsetzbare Threads pruefen und mit dem autorisierten Bypass liefern.
-2. Worker `repo-08` minimal korrigieren, erneut validieren und liefern.
-3. Nach allen 31 Worker-Abschluessen die Kampagnen-Evidence finalisieren,
-   Home-Baseline-PR mergen und die Flottenparitaet als abgeschlossen markieren.
+Keine Worker-Aktion bleibt offen. Nach Merge dieser Kampagnen-Evidence wird
+Home Baseline lokal auf `main` synchronisiert und die 31-Repository-Paritaet
+abschliessend read-only bestaetigt.
+
+*No worker action remains open. After merging this campaign evidence, Home
+Baseline is synchronized locally on `main` and the 31-repository parity is
+confirmed one final time through read-only checks.*
