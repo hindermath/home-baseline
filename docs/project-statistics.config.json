@@ -129,6 +129,14 @@
       "labelEn": "Intake review fleet profile",
       "netLines": 1879,
       "activeDays": 1
+    },
+    {
+      "slot": 15,
+      "id": "intake-review-fleet-closeout",
+      "labelDe": "Intake-Review-Flottenabschluss",
+      "labelEn": "Intake review fleet closeout",
+      "netLines": 48,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

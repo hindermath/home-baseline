@@ -107,6 +107,7 @@
 | 2026-07-20 | Aktive Lastenheft-Queue repriorisiert | — | — | — | Die plattformuebergreifende Ein-Kommando-Wartung und ihre abhaengige Spectre.Console-TUI von den bisherigen Positionen 24/25 auf 1/2 vorgezogen. Die verbleibenden aktiven Intakes unter Beibehaltung ihrer relativen Reihenfolge lueckenlos bis Position 11 neu nummeriert. Die zuvor auf Position 5 bis 18 gelisteten 14 Secure-CaseTracker-Lernreihen-Intakes aus der zentralen aktiven Queue entfernt; ihre Dateien und die gesamte Lernreihen-Dokumentation unter `docs/learning-units/` bleiben unveraendert erhalten. Der harte TUI-Vorgaenger-Gate verweist nun auf Eintrag 1. Kein Spec-Kit-Lauf wurde gestartet. |
 | 2026-07-21 | Home-Sync v2 und agentisches Betriebslernen | — | — | — | 27 lokale Codex-Sessions dedupliziert ausgewertet und wiederverwendbare Regeln fuer Preset-Entwicklung, Unterbrechung/Resume, Evidence, Promotion und Flottenbetrieb versioniert. Home-Sync von 1.547 ausgewaehlten Quellartefakten auf 235 Host-Runtime-Dateien begrenzt; kanonische Dokumentation, Specs, Preset-Quellen und Evidence bleiben im dauerhaften Level-0-Klon. v1-State-Migration gibt 1.261 Altpfade ohne Loeschung frei, bewahrt lokale Abweichungen und erlaubt Entfernung nur ueber explizite Legacy-Cleanup-Pfade. Vier isolierte Migrations- und Konflikt-Fixtures sowie der veroeffentlichte OpenAI-Codex-Request `openai/codex#34582` fuer repositorybewussten sanitisierten Task-Handoff ergaenzt. Das fachliche Delta vor Statistikpflege umfasst 513 Nettozeilen. |
 | 2026-07-21 | Optionales Intake-Review-Flottenprofil | 69 | — | — | Das optionale Preset `intake-review-governance` v0.1.0 als ausdruecklich gewaehltes Neunerprofil fuer Level 0 und die verwaltete Level-1-/Level-2-Flotte vorbereitet, ohne die oeffentliche Standard-Achtermatrix zu veraendern. Registry, Wartungsorchestratoren, Installationspruefung, gemeinsame Agenten-Guidance und Lernreihen-Paketierung unterscheiden nun explizit zwischen portabler Intake-Review-Policy und lokalen Review-Ergebnissen. Bash-/PowerShell-Paritaet, PSScriptAnalyzer, exakte Preset-Aufloesung und Paketvorschauen fuer alle drei Lernreihen-Familien sind gruen. Der Implementierungscommit umfasst `+1917/-38`, also 1879 Nettozeilen vor Statistikpflege. |
+| 2026-07-21 | Intake-Review-Flottenabschluss | 69 | — | — | Das ausdruecklich optionale Neunerprofil in Level 0, sieben Level-1- und 25 Level-2-Repositories installiert und ueber 33 gemergte PRs abgeschlossen. Alle 33 Repositories tragen exakt neun Presets; die 21 Lernreihen-Repositories aus drei Familien sind vollstaendig enthalten, ohne einen Lernenden-Spec-Kit-Lauf zu starten. 119 reale Exact-Head-Checks waren gruen; 228 vor dem ersten Schritt abgewiesene Billing-/Spending-Checks blieben Provider-`N/A`. Null nicht-providerbedingte Fehler und null Review-Threads. Der fremd geaenderte `cc65`-Worktree blieb unangetastet; dessen Linux- und Windows-Volltests bestanden im isolierten Worktree. Das Closeout-Delta umfasst vor Statistikrendering 48 Nettozeilen. |
 
 ---
 
@@ -560,25 +561,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 301793 lines |
+| Textbasis / Text base | 301840 lines |
 | Textdateien / Text files | 1851 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-21 |
 | Aktivtage / Active days | 69 |
-| Relevante Commits / Relevant commits | 484 |
-| Zeilen je Aktivtag / Lines per active day | 4373.8 |
+| Relevante Commits / Relevant commits | 485 |
+| Zeilen je Aktivtag / Lines per active day | 4374.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 26 days |
 | Speedup vs. 80 lines/day | 54.7x |
 | Speedup vs. 100 lines/day | 43.7x |
-| Methodik / Methodology | v2; source `98a27d198d45` |
+| Methodik / Methodology | v2; source `b8e46dede04c` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.5% | 7616
-Dokumentation / Documentation   [#################...]  82.9% | 250215
+Dokumentation / Documentation   [#################...]  82.9% | 250262
 Skripte / Scripts               [###.................]  13.0% | 39122
 Konfiguration / Configuration   [#...................]   1.4% | 4167
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -664,15 +665,15 @@ Die kumulative Kurve summiert nur das Brutto-Aenderungsvolumen im Fenster. Sie d
 ### Phasenvolumen / Phase Volume
 
 ```text
-Slots 0..14
-   cap 50000 | . . . . . . . . . . . . . . .
-       41667 | . . . . . . . . . . . . . . .
-       33333 | . . . . . . . . . . . . . . .
-       25000 | . # . . . . . . . . . . . . .
-       16667 | . # . . . . . . . # . . . . .
-        8333 | . # . . # . # # . # . . . . .
-           0 +-------------------------------
-             00 01 02 03 04 05 06 07 08 09 10 11 12 13 14
+Slots 0..15
+   cap 50000 | . . . . . . . . . . . . . . . .
+       41667 | . . . . . . . . . . . . . . . .
+       33333 | . . . . . . . . . . . . . . . .
+       25000 | . # . . . . . . . . . . . . . .
+       16667 | . # . . . . . . . # . . . . . .
+        8333 | . # . . # . # # . # . . . . . .
+           0 +---------------------------------
+             00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -692,6 +693,7 @@ Slots 0..14
 | 12 | Wartungs-TUI-Intake / Maintenance TUI intake | 679 |
 | 13 | Home-Sync v2 und Betriebslernen / Home Sync v2 and operations learning | 513 |
 | 14 | Intake-Review-Flottenprofil / Intake review fleet profile | 1879 |
+| 15 | Intake-Review-Flottenabschluss / Intake review fleet closeout | 48 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -715,7 +717,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4373.8
+Visible repository [#################...] 4374.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -741,6 +743,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-21. Es enthaelt 69 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 215314 |
+| 2026-07 | 215403 |
 
 <!-- project-statistics-v2:end -->
