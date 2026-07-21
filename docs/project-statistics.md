@@ -562,29 +562,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 301840 lines |
-| Textdateien / Text files | 1851 |
+| Textbasis / Text base | 308185 lines |
+| Textdateien / Text files | 1921 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-21 |
 | Aktivtage / Active days | 69 |
-| Relevante Commits / Relevant commits | 485 |
-| Zeilen je Aktivtag / Lines per active day | 4374.5 |
+| Relevante Commits / Relevant commits | 486 |
+| Zeilen je Aktivtag / Lines per active day | 4466.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 26 days |
-| Speedup vs. 80 lines/day | 54.7x |
-| Speedup vs. 100 lines/day | 43.7x |
-| Methodik / Methodology | v2; source `b8e46dede04c` |
+| Speedup vs. 80 lines/day | 55.8x |
+| Speedup vs. 100 lines/day | 44.7x |
+| Methodik / Methodology | v2; source `f5b0e2d1770b` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   2.5% | 7616
-Dokumentation / Documentation   [#################...]  82.9% | 250262
-Skripte / Scripts               [###.................]  13.0% | 39122
-Konfiguration / Configuration   [#...................]   1.4% | 4167
+Tests                           [#...................]   2.7% | 8230
+Dokumentation / Documentation   [################....]  82.5% | 254147
+Skripte / Scripts               [###.................]  13.2% | 40626
+Konfiguration / Configuration   [#...................]   1.4% | 4466
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.2% | 673
+Sonstiger Text / Other text     [#...................]   0.2% | 716
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -677,6 +677,18 @@ Slots 0..15
              00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
 ```
 
+```text
+Slots 16..16
+   cap 10000 | .
+        8333 | .
+        6667 | .
+        5000 | #
+        3333 | #
+        1667 | #
+           0 +---
+             16
+```
+
 | Slot | Phase | Nettozeilen / Net lines |
 |---:|---|---:|
 | 0 | Initialisierung / Initialization | 954 |
@@ -695,6 +707,7 @@ Slots 0..15
 | 13 | Home-Sync v2 und Betriebslernen / Home Sync v2 and operations learning | 513 |
 | 14 | Intake-Review-Flottenprofil / Intake review fleet profile | 1879 |
 | 15 | Intake-Review-Flottenabschluss / Intake review fleet closeout | 48 |
+| 16 | Intake-Authoring-Preset v0.1.0 / Intake authoring preset v0.1.0 | 6337 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -704,8 +717,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 54.7x
-100 lines/day      [#########...........] 43.7x
+80 lines/day       [###########.........] 55.8x
+100 lines/day      [#########...........] 44.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -718,7 +731,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4374.5
+Visible repository [##################..] 4466.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -744,6 +757,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-21. Es enthaelt 69 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 215403 |
+| 2026-07 | 222078 |
 
 <!-- project-statistics-v2:end -->
