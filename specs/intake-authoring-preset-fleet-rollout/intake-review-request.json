@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "95516e47-c6a2-4b95-8047-37a79386f24b",
+  "mode": "Single",
+  "policy": "fleet-governance-rollout",
+  "targets": [
+    {
+      "path": "specs/intake-authoring-preset-fleet-rollout/intake.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

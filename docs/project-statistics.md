@@ -552,6 +552,28 @@ functions before scanning and return exit code 2 for an incomplete package. A
 cross-platform regression pair reproduces the former false positive in
 temporary installations and then verifies the complete package.*
 
+### 2026-07-21 - Intake-Authoring-Flottenabschluss / Intake authoring fleet closeout
+
+- Das optionale Preset `intake-authoring-governance` v0.1.0 ist in allen 33
+  verwalteten Level-0-, Level-1- und Level-2-Repositories installiert. Die
+  bestehende Acht-Preset-Standardmatrix und das Neun-Preset-Profil bleiben
+  unveraendert.
+- Alle 21 Lernreihen-Repositories in drei Familien verwenden das explizite
+  Zehn-Preset-Profil. Bash- und PowerShell-Paketvorschauen sind gruen; kein
+  Spec-Kit-Lauf fuer Lernende wurde gestartet.
+- 33 nicht leere PRs sind gemergt. Providerseitige Billing-Ausfaelle wurden
+  einzeln als nicht verfuegbare Evidence klassifiziert und nie als technische
+  Erfolge gewertet. Die offizielle Community-Einreichung ist
+  `github/spec-kit#3620`.
+
+*The optional `intake-authoring-governance` v0.1.0 preset is installed across
+all 33 managed Level 0, Level 1, and Level 2 repositories while the existing
+eight- and nine-preset profiles remain unchanged. All 21 learning-series
+repositories use the explicit ten-preset profile, both package previews pass,
+and no learner Spec Kit run was started. All 33 non-empty PRs are merged;
+provider billing failures remain unavailable evidence rather than technical
+passes. The official community submission is `github/spec-kit#3620`.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
