@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$EvidenceRoot = "$HOME/.specify/parallel-runs/secure-casetracker-native-field-20260718/evidence/pre-consolidation-20260719T073505Z"
+    [string]$EvidenceRoot = "$HOME/.specify/parallel-runs/secure-casetracker-native-field-20260718/evidence/pre-consolidation-20260719T073505Z",
+    [string]$CoordinatorPath = ''
 )
 
 Set-StrictMode -Version Latest
@@ -13,7 +14,16 @@ if (-not (Test-Path -LiteralPath $ManifestSource -PathType Leaf)) {
 }
 
 $HomeBaseline = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSCommandPath))
-$Coordinator = Join-Path $HomeBaseline 'parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1'
+$CoordinatorCandidates = @(
+    $CoordinatorPath
+    (Join-Path $HomeBaseline 'parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1')
+    (Join-Path $HomeBaseline 'spec-kit-preset-parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1')
+) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+$Coordinator = $CoordinatorCandidates | Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } | Select-Object -First 1
+if (-not $Coordinator) {
+    Write-Output 'SKIP: Parallel Autonomous coordinator is not installed beside the optional field fixture.'
+    exit 0
+}
 $TempRoot = Join-Path ([IO.Path]::GetTempPath()) "intake-field-$([Guid]::NewGuid())"
 New-Item -ItemType Directory -Path $TempRoot | Out-Null
 
@@ -101,7 +111,8 @@ try {
     })
     Save-Json $Result (Join-Path $TempRoot 'intake-review-result.json')
     Invoke-FieldValidation 0 'PASS: campaign'
-    $Standalone = Join-Path $HomeBaseline 'intake-review-governance/scripts/validate-intake-review-result.ps1'
+    $PresetRoot = Split-Path -Parent $PSScriptRoot
+    $Standalone = Join-Path $PresetRoot 'scripts/validate-intake-review-result.ps1'
     & pwsh -NoProfile -File $Standalone -Result (Join-Path $TempRoot 'intake-review-result.json') -Repo $TempRoot
     if ($LASTEXITCODE -ne 0) { throw 'Standalone campaign review validation failed.' }
 
