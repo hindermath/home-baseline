@@ -18,7 +18,7 @@
 | Managed fleet profile | `intake-authoring-ten-governance-presets` |
 | Repositories | 33/33 |
 | Learning-series repositories | 21/21 across 3/3 families |
-| Community submission | [github/spec-kit#3620](https://github.com/github/spec-kit/issues/3620) |
+| Community submission | [github/spec-kit#3621](https://github.com/github/spec-kit/issues/3621), official form |
 
 ## Repository Results
 

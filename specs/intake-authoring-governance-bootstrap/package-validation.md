@@ -64,5 +64,8 @@ The optional profile is installed in 33/33 managed repositories, including
 evidence is recorded under `specs/intake-authoring-preset-fleet-rollout/`.
 
 The official Community Catalog submission is
-[github/spec-kit#3620](https://github.com/github/spec-kit/issues/3620). An
-external catalog merge is not a local package completion condition.
+[github/spec-kit#3621](https://github.com/github/spec-kit/issues/3621). It was
+submitted through the official Preset Submission issue form. The current form
+applied `enhancement`; a maintainer must still apply the workflow's
+`preset-submission` label. An external catalog merge is not a local package
+completion condition.
