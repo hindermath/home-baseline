@@ -47,8 +47,8 @@ try {
         required = $true; resultPath = 'intake-review-result.json'
     }) -Force
     $Profiles.schemaVersion = '1.2'
-    foreach ($Profile in $Profiles.profiles.PSObject.Properties) {
-        $Profile.Value | Add-Member -NotePropertyName agentFamily -NotePropertyValue 'codex' -Force
+    foreach ($RunnerProfile in $Profiles.profiles.PSObject.Properties) {
+        $RunnerProfile.Value | Add-Member -NotePropertyName agentFamily -NotePropertyValue 'codex' -Force
     }
     $RuntimeWorktrees = Join-Path (Split-Path -Parent (Split-Path -Parent $EvidenceRoot)) 'runtime/worktrees'
     foreach ($Worker in $Campaign.workers) {
@@ -61,13 +61,13 @@ try {
     $WorkerCoverage = @()
     $Edges = @()
     foreach ($Worker in $Campaign.workers) {
-        $Input = Join-Path ([string]$Worker.repository) ([string]$Worker.featureInput)
+        $FeatureInputPath = Join-Path ([string]$Worker.repository) ([string]$Worker.featureInput)
         $TargetPath = "review-targets/$([string]$Worker.featureInput)"
         if (-not $Targets.Contains($TargetPath)) {
-            Copy-Item -LiteralPath $Input -Destination (Join-Path $TempRoot $TargetPath)
+            Copy-Item -LiteralPath $FeatureInputPath -Destination (Join-Path $TempRoot $TargetPath)
             $Targets[$TargetPath] = [ordered]@{
                 path = $TargetPath; role = 'UniqueCampaignIntake'
-                normalizedSha256 = Get-NormalizedHash $Input; gitBlob = 'N/A'
+                normalizedSha256 = Get-NormalizedHash $FeatureInputPath; gitBlob = 'N/A'
             }
         }
         $WorkerCoverage += [ordered]@{
