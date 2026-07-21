@@ -272,9 +272,9 @@
       "installed_at": "2026-07-19T22:40:16.431197+00:00"
     },
     "autonomous-run-governance": {
-      "version": "0.3.1",
+      "version": "0.3.2",
       "source": "local",
-      "manifest_hash": "sha256:8607f274aafcfc2cf510c5a26b02db48bf69ececf5fdfbecb91352d5d81cdec1",
+      "manifest_hash": "sha256:738af513e3e4c4345d2d3f7061e24d6d9a670d3b8546c254e5afe4ea2196b410",
       "enabled": true,
       "priority": 70,
       "registered_commands": {
@@ -328,12 +328,12 @@
         "speckit-autonomous-stop",
         "speckit-autonomous-resume"
       ],
-      "installed_at": "2026-07-19T22:40:18.608768+00:00"
+      "installed_at": "2026-07-21T10:59:49.966457+00:00"
     },
     "parallel-autonomous-run-governance": {
-      "version": "0.2.2",
+      "version": "0.2.3",
       "source": "local",
-      "manifest_hash": "sha256:8c99569befd1fb6e7ca57841057337ff3cd92e4af40440b5c6fdf3f0e08a53e8",
+      "manifest_hash": "sha256:c06d28abc580458ddd69b33023f2a45951d59ca1f31305cc6b1d03299e5f3509",
       "enabled": true,
       "priority": 80,
       "registered_commands": {
@@ -387,7 +387,7 @@
         "speckit-parallel-autonomous-resume",
         "speckit-parallel-autonomous-consolidate"
       ],
-      "installed_at": "2026-07-19T22:40:20.335977+00:00"
+      "installed_at": "2026-07-21T10:59:50.388451+00:00"
     }
   }
 }

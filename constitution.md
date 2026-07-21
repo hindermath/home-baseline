@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report
-Version change: 1.16.0 -> 1.17.0
+Version change: 1.17.0 -> 1.18.0
 Modified principles:
-- Spec Kit preset governance (document Preset 8's mandatory Preset 7 worker dependency and publish the documentation patch releases)
+- Spec Kit preset governance (add optional intake review and policy-driven Preset 7/8 gates)
 Added sections:
 - None
 Removed sections:
@@ -25,7 +25,7 @@ Follow-up TODOs:
 - None.
 -->
 
-# Constitution v1.17.0
+# Constitution v1.18.0
 
 # home-baseline Constitution
 
@@ -955,8 +955,17 @@ workspace family consists of:
 | `a11y-governance` | `v0.4.1` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.1` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.4.0` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.3.1` | `70` | permission-bounded, evidence-first governance with resumable, validated closeout |
-| `parallel-autonomous-run-governance` | `v0.2.2` | `80` | isolated bounded campaigns, mixed runner profiles, cooperative stop/resume, provider-gated resumable consolidation, and declared post-merge closeout |
+| `autonomous-run-governance` | `v0.3.2` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
+| `parallel-autonomous-run-governance` | `v0.2.3` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
+
+`intake-review-governance` v0.1.0 at priority `65` is an optional ninth preset,
+not part of the standard eight. When explicitly installed and activated by
+project or campaign policy, its normalized-hash-bound result is a mandatory
+gate before feature creation or worker scheduling. Only `Ready` and
+human-approved `ReadyWithAcceptedRisks` pass. Critical/High findings,
+unanswered material questions, stale hashes, missing series relations, or
+missing worker coverage block. Review and status are read-only; repair requires
+explicit target-mutation authority.
 
 `autonomous-run-governance` is installed as part of the mandatory eight-preset
 governance matrix. Installation does not authorize an autonomous run.
@@ -976,7 +985,8 @@ remote closeout persists only `Publish`, `Review`, or `MergeAndSync`.
 `parallel-autonomous-run-governance` is also installed by default, but starting
 a campaign remains explicitly delegable work. It grants no worker additional
 remote, merge, bypass, cancellation, secret, or provider-administration
-authority. Its validated concurrency ceiling is three. Schema `1.1` supports
+authority. Its validated concurrency ceiling is three. Schema `1.2` adds an
+optional `intakeReview` gate, while schema `1.1` supports
 per-worker runner profiles with agent-neutral model metadata, exact-head and
 review-aware provider preflights, resumable partial consolidation, cooperative
 stop during consolidation, and manifest-declared idempotent post-merge actions.
@@ -1009,8 +1019,9 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-The current standalone releases are `autonomous-run-governance` v0.3.1 and
-`parallel-autonomous-run-governance` v0.2.2; Preset 8 was submitted to the
+The current standalone releases are `autonomous-run-governance` v0.3.2,
+`parallel-autonomous-run-governance` v0.2.3, and optional
+`intake-review-governance` v0.1.0; Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
@@ -1040,7 +1051,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.17.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-20
+**Version**: 1.18.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-21
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
