@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "d0f4a11e-2026-4721-9000-000000000001",
+  "mode": "Campaign",
+  "status": "Ready",
+  "policy": "homogeneity-runtime-fleet",
+  "reviewedAt": "2026-07-21T12:34:30Z",
+  "repository": {
+    "root": ".",
+    "head": "1a400192e8d504bb322a558aca815bee6585c39d"
+  },
+  "targets": [
+    {
+      "path": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+      "role": "Primary",
+      "normalizedSha256": "30824e7f3a07e1b38777c3a0eeb6affb16ff101eb3721c912d731c1425e5857c",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "specs/homogeneity-runtime-fleet-rollout/campaign.json",
+      "role": "CampaignManifest",
+      "normalizedSha256": "7cb3f46340052e1db4470cb787146fe3a2b8330d44d5dc7499bd883c71ce80dc",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "specs/homogeneity-runtime-fleet-rollout/intake.md",
+      "specs/homogeneity-runtime-fleet-rollout/campaign.json"
+    ],
+    "series": [],
+    "workers": [
+      {
+        "workerId": "repo-01",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-02",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-03",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-04",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-05",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-06",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-07",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-08",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-09",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-10",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-11",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-12",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-13",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-14",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-15",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-16",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-17",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-18",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-19",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-20",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-21",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-22",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-23",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-24",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-25",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-26",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-27",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-28",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-29",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-30",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      },
+      {
+        "workerId": "repo-31",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+        "applicability": "Applicable: bounded Homogeneity runtime and workflow proof for the pinned repository."
+      }
+    ]
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

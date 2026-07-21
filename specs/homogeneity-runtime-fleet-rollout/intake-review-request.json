@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "d0f4a11e-2026-4721-9000-000000000001",
+  "mode": "Campaign",
+  "policy": "homogeneity-runtime-fleet",
+  "targets": [
+    {
+      "path": "specs/homogeneity-runtime-fleet-rollout/intake.md",
+      "role": "Primary"
+    },
+    {
+      "path": "specs/homogeneity-runtime-fleet-rollout/campaign.json",
+      "role": "CampaignManifest"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [
+      "specs/homogeneity-runtime-fleet-rollout/intake.md",
+      "specs/homogeneity-runtime-fleet-rollout/campaign.json"
+    ],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "specs/homogeneity-runtime-fleet-rollout/campaign.json",
+    "workers": [
+      {
+        "workerId": "repo-01",
+        "repository": "/Users/thorstenhindermann/C64Projects",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-02",
+        "repository": "/Users/thorstenhindermann/container-images",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-03",
+        "repository": "/Users/thorstenhindermann/DataGripProjects",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-04",
+        "repository": "/Users/thorstenhindermann/RiderProjects",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-05",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-06",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-07",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-08",
+        "repository": "/Users/thorstenhindermann/container-images/absdd-image-sandbox",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-09",
+        "repository": "/Users/thorstenhindermann/DataGripProjects/InventarDb",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-10",
+        "repository": "/Users/thorstenhindermann/RiderProjects/InventarWorkerService",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-11",
+        "repository": "/Users/thorstenhindermann/RiderProjects/TinyCalc",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-12",
+        "repository": "/Users/thorstenhindermann/RiderProjects/TinyPl0",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-13",
+        "repository": "/Users/thorstenhindermann/RiderProjects/TuiVision",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-14",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline/securecasetracker-csharp",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-15",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline/securecasetracker-go",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-16",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline/securecasetracker-java",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-17",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline/securecasetracker-python",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-18",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline/securecasetracker-rust",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-19",
+        "repository": "/Users/thorstenhindermann/secure-casetracker-baseline/securecasetracker-swift",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-20",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects/SecureOrderDesk-CSharp",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-21",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects/SecureOrderDesk-Go",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-22",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects/SecureOrderDesk-Java",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-23",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects/SecureOrderDesk-Python",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-24",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects/SecureOrderDesk-Rust",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-25",
+        "repository": "/Users/thorstenhindermann/SecureOrderDeskProjects/SecureOrderDesk-Swift",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-26",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects/SecureServiceHarvester-CSharp",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-27",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects/SecureServiceHarvester-Go",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-28",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects/SecureServiceHarvester-Java",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-29",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects/SecureServiceHarvester-Python",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-30",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects/SecureServiceHarvester-Rust",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      },
+      {
+        "workerId": "repo-31",
+        "repository": "/Users/thorstenhindermann/SecureServiceHarvesterProjects/SecureServiceHarvester-Swift",
+        "targetPath": "specs/homogeneity-runtime-fleet-rollout/intake.md"
+      }
+    ],
+    "operatorExceptions": []
+  }
+}
