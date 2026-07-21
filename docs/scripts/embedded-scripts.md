@@ -30,6 +30,10 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-run-state.ps1` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-run-state.sh` | `.specify` |
+| `.specify/presets/intake-review-governance/scripts/validate-intake-review-result.ps1` | `.specify` |
+| `.specify/presets/intake-review-governance/scripts/validate-intake-review-result.sh` | `.specify` |
+| `.specify/presets/intake-review-governance/tests/test-intake-review-validator.ps1` | `.specify` |
+| `.specify/presets/intake-review-governance/tests/test-secure-casetracker-field.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `.specify` |

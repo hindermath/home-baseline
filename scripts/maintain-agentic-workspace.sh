@@ -340,6 +340,81 @@ handle_propagation() {
   esac
 }
 
+preset_config_for_profile() {
+  case "$1" in
+    standard-eight-governance-presets)
+      printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-governance-presets.json"
+      ;;
+    intake-review-nine-governance-presets)
+      printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-intake-review-governance-presets.json"
+      ;;
+    none) return 1 ;;
+    *) die "Unbekanntes Preset-Profil / unknown preset profile: $1" ;;
+  esac
+}
+
+discover_preset_targets() {
+  python3 - "$HOME_DIR" "$REGISTRY" "$SOURCE_ROOT" <<'PY'
+import json
+import pathlib
+import sys
+
+home = pathlib.Path(sys.argv[1]).resolve()
+registry_path = pathlib.Path(sys.argv[2])
+source = pathlib.Path(sys.argv[3]).resolve()
+data = json.loads(registry_path.read_text(encoding="utf-8"))
+default_profile = data.get("defaultPresetProfile", "standard-eight-governance-presets")
+print(f"0\t{source}\t{default_profile}")
+for entry in data.get("repositories", []):
+    raw = entry.get("path")
+    profile = entry.get("presetProfile", default_profile)
+    if not isinstance(raw, str) or not raw or not isinstance(profile, str) or not profile:
+        raise SystemExit("Invalid repository preset-profile entry")
+    path = (home / raw).resolve()
+    try:
+        path.relative_to(home)
+    except ValueError as exc:
+        raise SystemExit(f"Repository outside home: {path}") from exc
+    if not (path / ".git").exists():
+        raise SystemExit(f"Registered Git repository missing: {path}")
+    print(f"{entry.get('level', '?')}\t{path}\t{profile}")
+PY
+}
+
+handle_preset_profiles() {
+  local installer="${SOURCE_ROOT}/scripts/install-spec-kit-governance-presets.sh"
+  local level repo profile config status
+  [ -f "$installer" ] || die "Preset-Installer fehlt / missing: $installer"
+
+  while IFS=$'\t' read -r level repo profile; do
+    [ -n "$repo" ] || continue
+    if [ "$profile" = "none" ]; then
+      continue
+    fi
+    config="$(preset_config_for_profile "$profile")"
+    [ -f "$config" ] || die "Preset-Matrix fehlt / missing: $config"
+    info "Preset-Profil Level-${level}: ${repo} -> ${profile}"
+
+    if [ "$DRY_RUN" -eq 1 ]; then
+      HOME="$HOME_DIR" bash "$installer" --repo "$repo" --preset-config "$config" --dry-run
+      continue
+    fi
+
+    status=0
+    HOME="$HOME_DIR" bash "$installer" --repo "$repo" --preset-config "$config" --check-only || status=$?
+    if [ "$status" -eq 0 ]; then
+      continue
+    fi
+    if [ "$CHECK_ONLY" -eq 1 ] || [ "$REPAIR_DRIFT" -ne 1 ]; then
+      warn "Preset-Profil-Drift gefunden / preset profile drift found: $repo"
+      FINDINGS=$((FINDINGS + 1))
+      continue
+    fi
+    HOME="$HOME_DIR" bash "$installer" --repo "$repo" --preset-config "$config" --force
+    REPAIR_APPLIED=1
+  done < <(discover_preset_targets)
+}
+
 info "Level-0 aktualisieren / Update Level-0"
 check_repository "$SOURCE_ROOT" "Level-0" || true
 
@@ -367,6 +442,11 @@ fi
 if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ -f "$REGISTRY" ]; then
   info "Kanonisches Wartungspaket pruefen / Check canonical maintenance package"
   handle_propagation
+fi
+
+if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ -f "$REGISTRY" ]; then
+  info "Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles"
+  handle_preset_profiles
 fi
 
 if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$SCRIPTS_ONLY" -eq 0 ]; then

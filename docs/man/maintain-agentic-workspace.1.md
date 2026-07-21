@@ -28,9 +28,11 @@ Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
    nachgezogen.
 5. Das kanonische Wartungspaket wird mit
    `propagate-agentic-toolchain-maintenance.*` geprueft.
-6. Homebrew/apt oder WinGet, Required-CLI-Tools, VS-Code-Extensions und
+6. Das Registry-Profil jedes Repositories wird gegen die exakte Acht- oder
+   Neun-Preset-Matrix geprueft; Drift-Reparatur bleibt lokal und uncommittet.
+7. Homebrew/apt oder WinGet, Required-CLI-Tools, VS-Code-Extensions und
    Required-Agenten-CLIs werden gepflegt.
-7. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
+8. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
 
 Im Check-only-Modus wird der manifestgesteuerte Home-Sync jetzt ebenfalls
 schreibfrei ausgefuehrt. Nach einem echten Sync wiederholt die
@@ -51,8 +53,8 @@ ein Lock parallele Wartungslaeufe. Pro Lauf entsteht ein lokales Log unter
 *Without options, the script performs full maintenance: it fast-forwards
 Level-0, synchronizes the local home baseline, dynamically discovers and
 fast-forwards Level-1/Level-2 repositories, maintains the local registry,
-checks the canonical maintenance package, maintains the platform toolchain,
-and verifies the final state. It never switches branches, clones repositories,
+checks the canonical maintenance package and registry-selected preset profile,
+maintains the platform toolchain, and verifies the final state. It never switches branches, clones repositories,
 resets worktrees, or commits/pushes target changes. A per-home lock prevents
 parallel runs, and local logs are written below `~/.home-baseline/logs/`.*
 

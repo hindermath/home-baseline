@@ -2729,10 +2729,23 @@ sind read-only. Repair braucht ausdrueckliche Aenderungsautoritaet. Bei aktiver
 Policy blockieren Critical/High, offene Fragen, Hash-Drift oder fehlende
 Worker-Coverage Preset 7 beziehungsweise Preset 8.
 
+Thorstens registrierte Level-0-/Level-1-/Level-2-Flotte waehlt dieses optionale
+Preset ueber `intake-review-nine-governance-presets`. Diese lokale Profilwahl
+aendert weder die oeffentliche Standardmatrix noch die Installationsvorgabe fuer
+andere Nutzer. Die drei Secure-Trader-Lernreihen und ihre Sprach-Repositories
+sind Teil dieser Flotte; ihre Intakes werden nur bei aktiver Policy blockierend
+geprueft, und kein Lernendenlauf startet ohne ausdruecklichen Auftrag.
+
 *`intake-review-governance` v0.1.0 is an optional ninth preset at priority `65`;
 it does not change the standard eight. It reviews single intakes, series, and
 campaigns before feature creation. Review and status are read-only; repair
 needs explicit mutation authority.*
+
+*Thorsten's registered fleet selects this optional preset through
+`intake-review-nine-governance-presets`. This local choice does not change the
+public default. The three Secure Trader learning-series families are included;
+their intake review becomes blocking only through an active policy, and learner
+runs still require explicit authorization.*
 
 `autonomous-run-governance` v0.3.2 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt
@@ -2891,10 +2904,19 @@ Fuer das explizite neunte Intake-Review-Preset dieselben Installer mit
 `--preset-config` beziehungsweise `-PresetConfig` aufrufen. Ohne diese Auswahl
 bleibt die Standard-Achtermatrix unveraendert.
 
+Die lokale Registry kann `defaultPresetProfile` setzen. Der Wartungslauf prueft
+dann jedes registrierte Repository gegen die zugeordnete exakte Matrix. Das
+Profil `intake-review-nine-governance-presets` verweist auf die oben genannte
+Neunermatrix; unbekannte Profile brechen fail-closed ab.
+
 *To select the optional ninth intake-review preset, call the same installers
 with `scripts/config/spec-kit-intake-review-governance-presets.json` through
 `--preset-config` or `-PresetConfig`. Without that explicit selection, the
 standard eight remain unchanged.*
+
+*A local registry may set `defaultPresetProfile`. Workspace maintenance then
+checks every registered repository against its assigned exact matrix. Unknown
+profiles fail closed.*
 
 Wenn eine neue Preset-Version freigegeben wird, zuerst die Matrix aktualisieren.
 Neue registrierte Level-0-, Level-1- und Level-2-Repositories nutzen danach

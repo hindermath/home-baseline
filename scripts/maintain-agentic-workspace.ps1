@@ -360,6 +360,73 @@ function Invoke-HBPropagation {
     }
 }
 
+function Get-HBPresetConfig {
+    param([Parameter(Mandatory)][string] $ProfileName)
+    switch ($ProfileName) {
+        'standard-eight-governance-presets' {
+            return (Join-Path $sourceRoot 'scripts/config/spec-kit-governance-presets.json')
+        }
+        'intake-review-nine-governance-presets' {
+            return (Join-Path $sourceRoot 'scripts/config/spec-kit-intake-review-governance-presets.json')
+        }
+        'none' { return $null }
+        default { throw "Unbekanntes Preset-Profil / unknown preset profile: ${ProfileName}" }
+    }
+}
+
+function Get-HBPresetTargets {
+    if (-not (Test-Path -LiteralPath $registry -PathType Leaf)) { return @() }
+    $data = Get-Content -LiteralPath $registry -Raw | ConvertFrom-Json
+    $defaultProfile = if (($data.PSObject.Properties.Name -contains 'defaultPresetProfile') -and $data.defaultPresetProfile) {
+        [string]$data.defaultPresetProfile
+    } else {
+        'standard-eight-governance-presets'
+    }
+    $targets = @([pscustomobject]@{ Level = 0; Path = $sourceRoot; Profile = $defaultProfile })
+    foreach ($entry in @($data.repositories)) {
+        if (-not $entry.path -or $entry.level -notin @(1, 2)) { throw 'Ungueltiger Registry-Eintrag / invalid registry entry.' }
+        $path = [IO.Path]::GetFullPath((Join-Path $HomeDir ([string]$entry.path)))
+        if (-not $path.StartsWith($HomeDir, [StringComparison]::OrdinalIgnoreCase) -or
+            -not (Test-Path -LiteralPath (Join-Path $path '.git'))) {
+            throw "Registriertes Git-Repository fehlt oder liegt ausserhalb HOME / missing or outside HOME: ${path}"
+        }
+        $presetProfile = if (($entry.PSObject.Properties.Name -contains 'presetProfile') -and $entry.presetProfile) {
+            [string]$entry.presetProfile
+        } else {
+            $defaultProfile
+        }
+        $targets += [pscustomobject]@{ Level = [int]$entry.level; Path = $path; Profile = $presetProfile }
+    }
+    return @($targets)
+}
+
+function Invoke-HBPresetProfiles {
+    $installer = Join-Path $sourceRoot 'scripts/install-spec-kit-governance-presets.ps1'
+    if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) {
+        throw "Preset-Installer fehlt / missing: ${installer}"
+    }
+    foreach ($target in Get-HBPresetTargets) {
+        $config = Get-HBPresetConfig -ProfileName $target.Profile
+        if (-not $config) { continue }
+        if (-not (Test-Path -LiteralPath $config -PathType Leaf)) { throw "Preset-Matrix fehlt / missing: ${config}" }
+        Write-HBInfo "Preset-Profil Level-$($target.Level): $($target.Path) -> $($target.Profile)"
+        if ($WhatIfPreference) {
+            & $installer -Repo @($target.Path) -PresetConfig $config -WhatIf
+            continue
+        }
+        & $installer -Repo @($target.Path) -PresetConfig $config -CheckOnly
+        if ($LASTEXITCODE -eq 0) { continue }
+        if ($CheckOnly -or -not $RepairDrift) {
+            Write-HBWarning "Preset-Profil-Drift gefunden / preset profile drift found: $($target.Path)"
+            $script:Findings++
+            continue
+        }
+        & $installer -Repo @($target.Path) -PresetConfig $config -Force
+        if ($LASTEXITCODE -ne 0) { throw "Preset-Reparatur fehlgeschlagen / repair failed: $($target.Path)" }
+        $script:RepairApplied = $true
+    }
+}
+
 New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir -Force | Out-Null
 try {
     New-Item -ItemType Directory -Path $lockDir -ErrorAction Stop | Out-Null
@@ -414,6 +481,11 @@ try {
         if (Test-Path -LiteralPath $registry -PathType Leaf) {
             Invoke-HBPropagation
         }
+    }
+
+    if (($script:Findings -eq 0 -or $CheckOnly) -and (Test-Path -LiteralPath $registry -PathType Leaf)) {
+        Write-HBInfo 'Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles'
+        Invoke-HBPresetProfiles
     }
 
     if (($script:Findings -eq 0 -or $CheckOnly) -and -not $ScriptsOnly) {

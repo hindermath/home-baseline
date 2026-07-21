@@ -23,7 +23,8 @@ specific paths to the public repository.
 
 Maintenance scans preserve stronger existing language, MSL, GSDB, and preset
 metadata. Level-2 repositories default to GSDB scope independently of their MSL
-classification; documented exceptions must be set explicitly.
+classification. When the registry defines defaultPresetProfile, new entries use
+that opt-in profile unless -PresetProfile overrides it.
 
 .PARAMETER Repo
 Ein oder mehrere Repositories. / One or more repositories to register.
@@ -161,10 +162,6 @@ function Register-HBRepository {
         $gsdbRequiredValue = if ($effectiveLevel -eq '2') { 'true' } else { 'false' }
     }
 
-    $effectivePresetProfile = $PresetProfile
-    if (-not $effectivePresetProfile) {
-        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($gsdbRequiredValue -eq 'true')) { 'standard-eight-governance-presets' } else { 'none' }
-    }
     $effectiveRole = $Role
     if (-not $effectiveRole) {
         $effectiveRole = if ($effectiveLevel -eq '2') { 'level-2-project' } else { 'level-1-workspace' }
@@ -179,9 +176,20 @@ function Register-HBRepository {
         $data = [pscustomobject]@{
             schemaVersion = 1
             description = "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
+            defaultPresetProfile = 'standard-eight-governance-presets'
             updatedAt = $today
             repositories = @()
         }
+    }
+
+    $effectivePresetProfile = $PresetProfile
+    if (-not $effectivePresetProfile -and
+        ($data.PSObject.Properties.Name -contains 'defaultPresetProfile') -and
+        $data.defaultPresetProfile) {
+        $effectivePresetProfile = [string]$data.defaultPresetProfile
+    }
+    if (-not $effectivePresetProfile) {
+        $effectivePresetProfile = if (($effectiveLevel -eq '2') -and ($gsdbRequiredValue -eq 'true')) { 'standard-eight-governance-presets' } else { 'none' }
     }
 
     $repos = @($data.repositories)

@@ -16,9 +16,9 @@ pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir DIR [option
 
 ## DESCRIPTION
 
-Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Paket enthaelt keine `.git`-Verzeichnisse, keine urspruenglichen Remote-URLs und keine lokalen Build- oder IDE-Artefakte. `START-HERE-FUER-LERNENDE.md` ist der verbindliche Root-Einstieg; `GIT-START-FUER-LERNENDE.md` und `INSTITUTIONELLES-GIT-HOSTING.md` werden ebenfalls aufgenommen. Fehlt eine dieser Dateien, bricht die Paketierung ab.
+Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Paket enthaelt keine `.git`-Verzeichnisse, keine urspruenglichen Remote-URLs, keine lokalen Build-/IDE-Artefakte und keine lokalen `intake-review-result.json`- oder `intake-review-report.md`-Nachweise. Portable Preset-, Policy- und Guidance-Dateien bleiben enthalten. `START-HERE-FUER-LERNENDE.md` ist der verbindliche Root-Einstieg; `GIT-START-FUER-LERNENDE.md` und `INSTITUTIONELLES-GIT-HOSTING.md` werden ebenfalls aufgenommen. Fehlt eine dieser Dateien, bricht die Paketierung ab.
 
-*The scripts create a ZIP package from a level-1 learning-series folder. The package contains no `.git` directories, no original remote URLs, and no local build or IDE artefacts. `START-HERE-FUER-LERNENDE.md` is the required root entry; `GIT-START-FUER-LERNENDE.md` and `INSTITUTIONELLES-GIT-HOSTING.md` are included as well. Packaging fails when one of these files is missing.*
+*The scripts create a ZIP package from a level-1 learning-series folder. The package contains no `.git` directories, original remotes, local build/IDE artefacts, or local intake-review result/report evidence. Portable preset, policy, and guidance files remain included. `START-HERE-FUER-LERNENDE.md` is the required root entry; `GIT-START-FUER-LERNENDE.md` and `INSTITUTIONELLES-GIT-HOSTING.md` are included as well.*
 
 ## OPTIONS
 

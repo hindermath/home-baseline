@@ -40,7 +40,8 @@ Options:
   --primary-language LANG     Optional primary language. Default: detect from governance, project suffix, or files.
   --msl-status STATUS         Override: msl, non-msl, msl-mixed-tooling, n/a, or unknown.
   --gsdb-required true|false  Whether GSDB applies. Default: true for Level-2 repos.
-  --preset-profile NAME       Preset profile note. Default: standard-eight-governance-presets for GSDB Level-2.
+  --preset-profile NAME       Preset profile note. Default: registry defaultPresetProfile,
+                              otherwise standard-eight-governance-presets for GSDB Level-2.
   --role NAME                 Registry role note. Default: level-2-project or level-1-workspace.
   --source NAME               Registration source. Default: manual-registration or maintenance-discovery.
   --dry-run                   Show the registry update without writing.
@@ -236,6 +237,18 @@ register_repository() {
   esac
 
   preset_profile="$OPT_PRESET_PROFILE"
+  if [ -z "$preset_profile" ] && [ -f "$OPT_REGISTRY" ]; then
+    preset_profile="$(python3 - "$OPT_REGISTRY" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    value = json.load(handle).get("defaultPresetProfile", "")
+if isinstance(value, str):
+    print(value)
+PY
+)"
+  fi
   if [ -z "$preset_profile" ]; then
     if [ "$level" = "2" ] && [ "$gsdb_required" = "true" ]; then
       preset_profile="standard-eight-governance-presets"
@@ -291,6 +304,7 @@ else:
     data = {
         "schemaVersion": 1,
         "description": "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory.",
+        "defaultPresetProfile": "standard-eight-governance-presets",
         "updatedAt": today,
         "repositories": [],
     }

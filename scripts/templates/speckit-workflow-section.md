@@ -38,6 +38,9 @@ Agent Parity und Preset 7 installiert werden. Es bleibt ausserhalb der
 Standard-Achtermatrix. Bei aktiver Policy prueft es einzelne Intakes, Reihen
 oder Kampagnen hashgebunden vor Feature-Erstellung beziehungsweise Worker-Start.
 Review und Status sind read-only; Repair benoetigt ausdrueckliche Autoritaet.
+Das Registry-Profil `intake-review-nine-governance-presets` waehlt diese
+Neunermatrix fuer eine verwaltete Flotte, ohne den oeffentlichen Default zu
+aendern. Lernendenlaeufe bleiben separat beauftragungspflichtig.
 
 `autonomous-run-governance` ist Teil der Standard-Achtermatrix. Vollständige
 autonome Läufe bleiben ausdrücklich delegationspflichtig. `LocalImplementation` ist der
@@ -122,6 +125,9 @@ Agent Parity and Preset 7. It remains outside the standard eight. An active
 policy performs hash-bound review of single intakes, series, or campaigns
 before feature creation or worker scheduling. Review and status are read-only;
 repair requires explicit authority.
+Registry profile `intake-review-nine-governance-presets` selects this matrix
+for a managed fleet without changing the public default. Learner runs still
+require separate explicit authorization.
 
 `autonomous-run-governance` is part of the standard eight-preset matrix.
 Complete autonomous runs still require explicit delegation. `LocalImplementation` is the safe default;
