@@ -46,8 +46,9 @@ Mit `--scan-root` / `-ScanRoot` kann die Wartungsrunde bekannte Workspace-
 Wurzeln nach Git-Repositories durchsuchen. Das ist fuer Registry-Drift gedacht:
 neu hinzugekommene Level-2-Repositories werden sichtbar und koennen idempotent
 in die lokale GSDB-Registry uebernommen werden. Level-2-Repositories sind
-standardmaessig unabhaengig vom MSL-Status GSDB-pflichtig und verwenden das
-Acht-Preset-Profil. Begruendete Ausnahmen werden explizit gesetzt.
+standardmaessig unabhaengig vom MSL-Status GSDB-pflichtig. Ohne lokale Vorgabe
+verwenden sie das Acht-Preset-Profil; `defaultPresetProfile` laesst eine
+verwaltete Flotte ausdruecklich ein anderes Profil waehlen.
 Eindeutige Sprachsuffixe wie `-CSharp`, `-Go` oder `-Rust` dokumentieren bei
 vorbereiteten Lernrepos die Zielsprache bereits vor dem Runtime-Scaffold.
 Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
@@ -56,9 +57,9 @@ Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
 *With `--scan-root` / `-ScanRoot`, the maintenance round can scan known
 workspace roots for Git repositories. This is intended for registry drift:
 newly added level-2 repositories become visible and can be idempotently added
-to the local GSDB registry. Level-2 repositories default to GSDB-required with
-the eight-preset profile independently of MSL status; justified exceptions are
-explicit. Unambiguous suffixes such as `-CSharp`, `-Go`, or `-Rust` provide the
+to the local GSDB registry. Without a local override they use the eight-preset
+profile; `defaultPresetProfile` lets a managed fleet select another profile.
+Unambiguous suffixes such as `-CSharp`, `-Go`, or `-Rust` provide the
 target language for prepared learning repositories before a runtime scaffold
 exists. Maintenance scans preserve stronger existing metadata instead of
 downgrading it to `unknown`, `false`, or `none`.*

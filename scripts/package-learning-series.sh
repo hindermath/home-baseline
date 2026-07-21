@@ -157,6 +157,8 @@ excludes=(
   --exclude='settings.local.json'
   --exclude='.vscode/settings.json'
   --exclude='.vscode/c_cpp_properties.json'
+  --exclude='intake-review-result.json'
+  --exclude='intake-review-report.md'
 )
 
 if [ "$DRY_RUN" -eq 1 ]; then
@@ -167,7 +169,7 @@ if [ "$DRY_RUN" -eq 1 ]; then
   echo "Start:  ${START_GUIDE_PATH}"
   echo "Git:    ${GIT_GUIDE_PATH}"
   echo "Hosting:${HOSTING_GUIDE_PATH}"
-  echo "Ausgeschlossen: .git, dist, Build-, IDE- und lokale Settings-Artefakte"
+  echo "Ausgeschlossen: .git, dist, Build-, IDE-, lokale Settings- und Intake-Review-Ergebnisartefakte"
   rsync -an --delete "${excludes[@]}" "${SOURCE_DIR}/" "/tmp/${package_name}/${ROOT_NAME}/" | sed -n '1,80p'
   exit 0
 fi

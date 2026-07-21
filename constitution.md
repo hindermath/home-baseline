@@ -1,8 +1,9 @@
 <!--
 Sync Impact Report
-Version change: 1.17.0 -> 1.18.0
+Version change: 1.18.0 -> 1.18.1
 Modified principles:
-- Spec Kit preset governance (add optional intake review and policy-driven Preset 7/8 gates)
+- Spec Kit preset governance (add registry-selected managed nine-preset fleet profile)
+- Learning series governance (carry portable intake-review policy without implicit learner runs)
 Added sections:
 - None
 Removed sections:
@@ -25,7 +26,7 @@ Follow-up TODOs:
 - None.
 -->
 
-# Constitution v1.18.0
+# Constitution v1.18.1
 
 # home-baseline Constitution
 
@@ -967,6 +968,13 @@ unanswered material questions, stale hashes, missing series relations, or
 missing worker coverage block. Review and status are read-only; repair requires
 explicit target-mutation authority.
 
+The managed Thorsten fleet selects this optional preset through registry
+profile `intake-review-nine-governance-presets`. This fleet-local choice does
+not change the public eight-preset default. A registry
+`defaultPresetProfile` is inherited by newly registered fleet repositories.
+Learning-series repositories may carry the preset and portable policy
+material, but no learner Spec-Kit run starts without explicit authorization.
+
 `autonomous-run-governance` is installed as part of the mandatory eight-preset
 governance matrix. Installation does not authorize an autonomous run.
 `LocalImplementation` is its safe default; installation grants no remote write, merge, bypass,
@@ -1028,6 +1036,11 @@ matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote
 synchronization for every target repository.
 
+Repositories assigned `intake-review-nine-governance-presets` MUST instead
+match the explicit nine-preset matrix exactly. Unknown profile names fail
+closed; selecting the profile installs governance but grants no execution,
+repair, remote, merge, or learner-run authority.
+
 Use `install-spec-kit-governance-presets.*` for normal installation so versions
 and priorities stay centralized in the matrix. Community catalog and direct
 single ZIP installs remain valid for diagnostics or smoke tests. Commit
@@ -1051,7 +1064,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.18.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-21
+**Version**: 1.18.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-21
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

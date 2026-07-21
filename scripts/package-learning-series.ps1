@@ -84,6 +84,7 @@ function Test-HBExcludedLearningPath {
     if ((Split-Path $path -Leaf) -eq 'settings.local.json') { return $true }
     if ($path -eq '.vscode/settings.json' -or $path -like '*/.vscode/settings.json') { return $true }
     if ($path -eq '.vscode/c_cpp_properties.json' -or $path -like '*/.vscode/c_cpp_properties.json') { return $true }
+    if ((Split-Path $path -Leaf) -in @('intake-review-result.json', 'intake-review-report.md')) { return $true }
     return $false
 }
 
@@ -152,7 +153,7 @@ if ($WhatIfPreference) {
     Write-Host "Start:  $startGuidePath"
     Write-Host "Git:    $gitGuidePath"
     Write-Host "Hosting:$hostingGuidePath"
-    Write-Host 'Ausgeschlossen: .git, dist, Build-, IDE- und lokale Settings-Artefakte'
+    Write-Host 'Ausgeschlossen: .git, dist, Build-, IDE-, lokale Settings- und Intake-Review-Ergebnisartefakte'
     return
 }
 

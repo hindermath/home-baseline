@@ -157,9 +157,9 @@ bilingual in both patterns.
 
 **EN:** Each learning task may reference `CL_01` through `CL_12`, the compendium, and the related documents. These materials therefore must be locally available in each level-2 repository under `docs/secure-development/`. They are working and evidence material for later manual Spec Kit runs, not only external references.
 
-**DE:** Die acht Governance-Presets werden fuer MSL-Level-2-Repos aus der zentralen Matrix `scripts/config/spec-kit-governance-presets.json` installiert. Der konkrete Spec-Kit-Lauf bleibt manuell; die installierten Presets sind aber Vorbedingung und Nachweisbasis.
+**DE:** Die oeffentliche Basis fuer MSL-Level-2-Repos bleibt die zentrale Acht-Preset-Matrix. Thorstens registrierte Lernreihen-Flotte waehlt zusaetzlich `intake-review-governance` ueber `intake-review-nine-governance-presets`. Das installierte Preset erlaubt die hashgebundene Pruefung einzelner Aufgaben, ganzer Reihen und spaeterer Kampagnen; blockierend wird sie nur durch eine ausdrueckliche Projekt- oder Kampagnenpolicy. Der konkrete Spec-Kit-Lauf bleibt manuell.
 
-**EN:** The eight governance presets are installed for MSL level-2 repositories from the central matrix `scripts/config/spec-kit-governance-presets.json`. The actual Spec Kit run remains manual, but the installed presets are prerequisite and evidence baseline.
+**EN:** The public baseline for MSL level-2 repositories remains the central eight-preset matrix. Thorsten's registered learning-series fleet additionally selects `intake-review-governance` through `intake-review-nine-governance-presets`. It supports hash-bound review of tasks, series, and later campaigns, but becomes blocking only through an explicit project or campaign policy. The actual Spec Kit run remains manual.
 
 **DE:** Jede Lernreihe plant fuer Level-2-Repos einen separaten RL-SE-/Checklist-Selbstpruefungs-Intake vor spaeterer Haertung ein. Dieser Intake gilt unabhaengig von MSL und verlangt eine Evidenzmatrix mit `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp`.
 
@@ -194,6 +194,7 @@ bilingual in both patterns.
 - Spec-Kit-Laeufe sind begleitende SDD-Aufgaben und ersetzen nicht das jeweilige Berufsbild.
 - Der optimale Specify-Prompt steht am Ende jedes Aufgaben-Lastenhefts.
 - Agenten duerfen Dateien vorbereiten, Reihenfolgen pflegen und Pakete erzeugen.
+- Lernreihen-Pakete duerfen Preset-, Policy- und Guidance-Dateien enthalten, aber keine lokalen Review-Ergebnisse, Remotes oder maschinenspezifischen Pfade.
 - Agenten starten keine Lernenden-Laeufe, erstellen keine Feature-Branches fuer Lernende und befuellen keine projektspezifischen `docs/security/`-Nachweise ohne ausdruecklichen Auftrag.
 
 *The master intake maps the full series and is not started as one large run. Task intakes are started one by one with `/speckit-specify`. Agents prepare structure and packages, but do not run learner Spec Kit flows without an explicit instruction.*

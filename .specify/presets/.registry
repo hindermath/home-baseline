@@ -388,6 +388,51 @@
         "speckit-parallel-autonomous-consolidate"
       ],
       "installed_at": "2026-07-21T10:59:50.388451+00:00"
+    },
+    "intake-review-governance": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:2f3d325882dff24249cf0160c1b7dfa98d1053ac2ad10c7ca6045a107d8138ed",
+      "enabled": true,
+      "priority": 65,
+      "registered_commands": {
+        "agy": [
+          "speckit.intake-review",
+          "speckit.intake-repair",
+          "speckit.intake-review-status"
+        ],
+        "claude": [
+          "speckit.intake-review",
+          "speckit.intake-repair",
+          "speckit.intake-review-status"
+        ],
+        "codex": [
+          "speckit.intake-review",
+          "speckit.intake-repair",
+          "speckit.intake-review-status"
+        ],
+        "copilot": [
+          "speckit.intake-review",
+          "speckit.intake-repair",
+          "speckit.intake-review-status"
+        ],
+        "opencode": [
+          "speckit.intake-review",
+          "speckit.intake-repair",
+          "speckit.intake-review-status"
+        ],
+        "zed": [
+          "speckit.intake-review",
+          "speckit.intake-repair",
+          "speckit.intake-review-status"
+        ]
+      },
+      "registered_skills": [
+        "speckit-intake-review",
+        "speckit-intake-repair",
+        "speckit-intake-review-status"
+      ],
+      "installed_at": "2026-07-21T18:53:41.854836+00:00"
     }
   }
 }
