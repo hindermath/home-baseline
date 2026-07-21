@@ -121,6 +121,14 @@
       "labelEn": "Home Sync v2 and operations learning",
       "netLines": 513,
       "activeDays": 1
+    },
+    {
+      "slot": 14,
+      "id": "intake-review-fleet-opt-in",
+      "labelDe": "Intake-Review-Flottenprofil",
+      "labelEn": "Intake review fleet profile",
+      "netLines": 1879,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

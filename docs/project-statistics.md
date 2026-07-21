@@ -106,6 +106,7 @@
 | 2026-07-20 | Lastenheft fuer die Agentic-Workspace-Wartungs-TUI | 69 | — | — | Entscheidungsvollstaendigen, durch den Wartungsvorgaenger hart gesperrten Spec-Kit-Intake fuer eine plattformuebergreifende Spectre.Console-TUI angelegt. Der Vertrag bewahrt den argumentlosen Headless-Lauf ohne TTY, startet interaktiv mit vorausgewaehltem Dry-run, delegiert jede Wartungsaktion an Bash beziehungsweise PowerShell und definiert JSONL-Ereignisse, content-adressierten Build-Cache, Plaintext-Fallback, Exitcodes, sichere Prozessargumente sowie barrierearme ASCII- und Screenreader-Ausgabe. Abarbeitungsposition 25 folgt zwingend auf den Plattform-Wartungsintake; Specify- und Autonomous-Prompt stoppen bei fehlender Vorgaenger-Evidenz vor jeder Feature- oder Repository-Aenderung. Kein Spec-Kit-Lauf wurde gestartet. Das fachliche Dokumentationsdelta vor Statistikpflege umfasst 679 Nettozeilen. Konservative Manualreferenz: `8,5` Tage beziehungsweise `66,2` Stunden bei 80 Zeilen/Tag; Thorsten-Solo: `6,8` Tage beziehungsweise `53,0` Stunden bei 100 Zeilen/Tag. |
 | 2026-07-20 | Aktive Lastenheft-Queue repriorisiert | — | — | — | Die plattformuebergreifende Ein-Kommando-Wartung und ihre abhaengige Spectre.Console-TUI von den bisherigen Positionen 24/25 auf 1/2 vorgezogen. Die verbleibenden aktiven Intakes unter Beibehaltung ihrer relativen Reihenfolge lueckenlos bis Position 11 neu nummeriert. Die zuvor auf Position 5 bis 18 gelisteten 14 Secure-CaseTracker-Lernreihen-Intakes aus der zentralen aktiven Queue entfernt; ihre Dateien und die gesamte Lernreihen-Dokumentation unter `docs/learning-units/` bleiben unveraendert erhalten. Der harte TUI-Vorgaenger-Gate verweist nun auf Eintrag 1. Kein Spec-Kit-Lauf wurde gestartet. |
 | 2026-07-21 | Home-Sync v2 und agentisches Betriebslernen | — | — | — | 27 lokale Codex-Sessions dedupliziert ausgewertet und wiederverwendbare Regeln fuer Preset-Entwicklung, Unterbrechung/Resume, Evidence, Promotion und Flottenbetrieb versioniert. Home-Sync von 1.547 ausgewaehlten Quellartefakten auf 235 Host-Runtime-Dateien begrenzt; kanonische Dokumentation, Specs, Preset-Quellen und Evidence bleiben im dauerhaften Level-0-Klon. v1-State-Migration gibt 1.261 Altpfade ohne Loeschung frei, bewahrt lokale Abweichungen und erlaubt Entfernung nur ueber explizite Legacy-Cleanup-Pfade. Vier isolierte Migrations- und Konflikt-Fixtures sowie der veroeffentlichte OpenAI-Codex-Request `openai/codex#34582` fuer repositorybewussten sanitisierten Task-Handoff ergaenzt. Das fachliche Delta vor Statistikpflege umfasst 513 Nettozeilen. |
+| 2026-07-21 | Optionales Intake-Review-Flottenprofil | 69 | — | — | Das optionale Preset `intake-review-governance` v0.1.0 als ausdruecklich gewaehltes Neunerprofil fuer Level 0 und die verwaltete Level-1-/Level-2-Flotte vorbereitet, ohne die oeffentliche Standard-Achtermatrix zu veraendern. Registry, Wartungsorchestratoren, Installationspruefung, gemeinsame Agenten-Guidance und Lernreihen-Paketierung unterscheiden nun explizit zwischen portabler Intake-Review-Policy und lokalen Review-Ergebnissen. Bash-/PowerShell-Paritaet, PSScriptAnalyzer, exakte Preset-Aufloesung und Paketvorschauen fuer alle drei Lernreihen-Familien sind gruen. Der Implementierungscommit umfasst `+1917/-38`, also 1879 Nettozeilen vor Statistikpflege. |
 
 ---
 
@@ -559,27 +560,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 299905 lines |
-| Textdateien / Text files | 1810 |
+| Textbasis / Text base | 301784 lines |
+| Textdateien / Text files | 1851 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-21 |
 | Aktivtage / Active days | 69 |
-| Relevante Commits / Relevant commits | 481 |
-| Zeilen je Aktivtag / Lines per active day | 4346.4 |
+| Relevante Commits / Relevant commits | 483 |
+| Zeilen je Aktivtag / Lines per active day | 4373.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 26 days |
-| Speedup vs. 80 lines/day | 54.3x |
-| Speedup vs. 100 lines/day | 43.5x |
-| Methodik / Methodology | v2; source `d66e2efa8084` |
+| Speedup vs. 80 lines/day | 54.7x |
+| Speedup vs. 100 lines/day | 43.7x |
+| Methodik / Methodology | v2; source `af141f25b7fe` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.5% | 7616
-Dokumentation / Documentation   [#################...]  82.9% | 248552
-Skripte / Scripts               [###.................]  13.0% | 38940
-Konfiguration / Configuration   [#...................]   1.4% | 4124
+Dokumentation / Documentation   [#################...]  82.9% | 250206
+Skripte / Scripts               [###.................]  13.0% | 39122
+Konfiguration / Configuration   [#...................]   1.4% | 4167
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 673
 ```
@@ -699,8 +700,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 54.3x
-100 lines/day      [#########...........] 43.5x
+80 lines/day       [###########.........] 54.7x
+100 lines/day      [#########...........] 43.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -713,7 +714,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4346.4
+Visible repository [#################...] 4373.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -739,6 +740,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-21. Es enthaelt 69 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 213342 |
+| 2026-07 | 215301 |
 
 <!-- project-statistics-v2:end -->
