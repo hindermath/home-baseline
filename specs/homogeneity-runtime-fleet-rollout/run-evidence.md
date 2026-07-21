@@ -13,6 +13,30 @@ workers. Worker `repo-08` is stopped by pre-existing substantive Homogeneity
 findings. Remote completion is partially blocked by a GitHub billing or
 spending-limit rejection before the first job step.*
 
+## Autoritaetsaenderung / Authority Amendment
+
+Am 2026-07-21 hat Thorsten Hindermann als Repository-Eigentuemer zwei zuvor
+gesperrte Abschlussaktionen ausdruecklich freigegeben:
+
+1. einen eng begrenzten Admin-Bypass fuer die exakten PR-Heads, deren GitHub-
+   Jobs ausschliesslich vor dem ersten Schritt an der bestaetigten Billing-/
+   Spending-Limit-Ablehnung scheitern;
+2. die minimale Dokumentationskorrektur der vier reproduzierten Befunde in
+   `absdd-image-sandbox`.
+
+Die Freigabe macht die ausgefallenen Provider-Jobs nicht zu technischen
+Passes. Lokale gleichwertige Pruefungen, unveraenderte exakte Heads, null
+umsetzbare Review-Threads und der dokumentierte Providerfehler bleiben
+Pflichtnachweise vor jedem Bypass.
+
+*On 2026-07-21, repository owner Thorsten Hindermann explicitly authorized a
+narrow admin bypass for exact PR heads affected only by the confirmed zero-step
+billing or spending-limit rejection, and the minimal remediation of the four
+reproduced `absdd-image-sandbox` documentation findings. Provider failures are
+still not reported as technical passes; equivalent local validation, unchanged
+exact heads, zero actionable review threads, and the recorded provider error
+remain mandatory.*
+
 ## Verbindliche Basis / Binding Baseline
 
 | Nachweis / Evidence | Wert / Value |
@@ -98,8 +122,9 @@ dem Rollout vorhandenen fachlichen Befunde:
 - README-Abschnitt Spec-kit fehlt in der vom Validator geforderten Form;
 - README-Abschnitt fuer Azubis oder Auszubildende fehlt.
 
-Die Befunde werden in dieser Kampagne nicht automatisch behoben, weil der
-verbindliche Intake Lerninhaltsaenderungen und fachliche Remediation ausschliesst.
+Die spaetere ausdrueckliche Autoritaetsaenderung erlaubt ausschliesslich die
+minimale Korrektur dieser vier Befunde. Produkt-, Container- und
+Laufzeitverhalten bleiben unveraendert.
 
 ### GitHub Provider
 
@@ -108,9 +133,10 @@ dem ersten Workflow-Schritt abgelehnt. Die GitHub-Annotation lautet:
 
 > The job was not started because recent account payments have failed or your spending limit needs to be increased.
 
-Dieser Zustand ist kein technischer Pass und erlaubt keinen Admin-Bypass. Nach
-Behebung der Konto- oder Spending-Limit-Ursache muessen die betroffenen
-exakten PR-Heads erneut ausgefuehrt werden.
+Dieser Zustand ist kein technischer Pass. Die spaetere ausdrueckliche
+Autoritaetsaenderung erlaubt einen eng begrenzten Admin-Bypass, wenn der exakte
+PR-Head lokal vollstaendig validiert ist, keine umsetzbaren Review-Threads
+offen sind und keine weitere technische oder fachliche Blockade vorliegt.
 
 ## Community-Preset-Status
 
@@ -126,9 +152,8 @@ exakten PR-Heads erneut ausgefuehrt werden.
 
 ## Naechste exakte Aktionen / Next Exact Actions
 
-1. GitHub Billing beziehungsweise Spending Limit beheben und die 26 blockierten
-   exakten PR-Heads erneut validieren.
-2. Worker `repo-08` nur ueber einen getrennt autorisierten Dokumentations-Fix
-   schliessen; danach denselben Runtime-Branch erneut validieren und liefern.
-3. Erst nach allen 31 Worker-Abschluessen die Kampagnen-Evidence finalisieren,
+1. Die 26 unveraenderten exakten PR-Heads auf lokale Evidence, Providerursache
+   und null umsetzbare Threads pruefen und mit dem autorisierten Bypass liefern.
+2. Worker `repo-08` minimal korrigieren, erneut validieren und liefern.
+3. Nach allen 31 Worker-Abschluessen die Kampagnen-Evidence finalisieren,
    Home-Baseline-PR mergen und die Flottenparitaet als abgeschlossen markieren.
