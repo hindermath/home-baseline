@@ -33,25 +33,27 @@ added to the active order once they have been assessed.*
 |---:|---|---|
 | 1 | `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` | Plant eine fortsetzbare Ein-Kommando-Wartung mit Desired-State-Flotte, sicherem Clone-on-missing, Plattformparität und kompaktem JSON-Abschlussbericht. / Plans resumable one-command maintenance with a desired-state fleet, safe clone-on-missing, platform parity, and a compact JSON closeout report. |
 | 2 | `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md` | Plant die Windows-Haertungsrunde fuer Python-Bootstrap, stabile WhatIf-Ermittlung, sichere Wiederaufnahme, Zehn-Preset-Registry, Git-normalisierten Drift, begrenzte GitHub-Retries und WinGet-Prozesskontrolle. / Plans the Windows hardening round for Python bootstrap, stable WhatIf discovery, safe resume, the ten-preset registry, Git-normalized drift, bounded GitHub retries, and WinGet process control. |
-| 3 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis die Eintraege 1 und 2 vollstaendig implementiert, validiert und gemaess ihrer jeweiligen Delivery Authority abgeschlossen sind. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until items 1 and 2 are fully implemented, validated, and closed out under their respective delivery authority. |
-| 4 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
-| 5 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
-| 6 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
-| 7 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
-| 8 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
-| 9 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
-| 10 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
-| 11 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
-| 12 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
+| 3 | `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md` | Plant die Linux-/Ubuntu-Haertung fuer stdin-sichere Homebrew-Iteration, fail-closed Required-Pruefung, korrekte Gesamt-Exitcodes und einen automatisierten Swift-Installationsweg. / Plans Linux and Ubuntu hardening for input-safe Homebrew iteration, fail-closed required checks, correct overall exit codes, and automated Swift installation. |
+| 4 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis die Eintraege 1 bis 3 vollstaendig implementiert, validiert und gemaess ihrer jeweiligen Delivery Authority abgeschlossen sind. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until items 1 through 3 are fully implemented, validated, and closed out under their respective delivery authority. |
+| 5 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
+| 6 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
+| 7 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
+| 8 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
+| 9 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
+| 10 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
+| 11 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
+| 12 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
+| 13 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
 
-Eintrag 3 ist eine harte Abhaengigkeit und kein nur empfohlener
+Eintrag 4 ist eine harte Abhaengigkeit und kein nur empfohlener
 Reihenfolgehinweis. Vor Feature-, Branch- oder Spec-Kit-Artefakterstellung fuer
-die TUI muessen die im TUI-Lastenheft definierten Abschlussnachweise fuer die
-Eintraege 1 und 2 vorliegen. Fehlt ein Nachweis, bleibt Eintrag 3 `BLOCKED`.
+die TUI muessen die im TUI-Lastenheft und in dieser Reihenfolgedatei definierten
+Abschlussnachweise fuer die Eintraege 1 bis 3 vorliegen. Fehlt ein Nachweis,
+bleibt Eintrag 4 `BLOCKED`.
 
-*Item 3 is a hard dependency rather than an ordering recommendation. Evidence
-for both predecessor items must pass before any TUI feature, branch, or Spec
-Kit artifact is created; otherwise item 3 remains `BLOCKED`.*
+*Item 4 is a hard dependency rather than an ordering recommendation. Evidence
+for all three predecessor items must pass before any TUI feature, branch, or
+Spec Kit artifact is created; otherwise item 4 remains `BLOCKED`.*
 
 Die zuvor auf den Positionen 5 bis 18 gefuehrten
 Secure-CaseTracker-Lernreihen-Intakes bleiben unter `docs/learning-units/`

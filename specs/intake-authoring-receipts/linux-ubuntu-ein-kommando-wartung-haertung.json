@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "receiptId": "f48ba546-58fe-4aef-a018-52b093de0458",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.0"
+  },
+  "createdAt": "2026-07-22T20:12:20Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+    "normalizedSha256": "b44d0794ff23d5025ca9147c97fd1a0cb4e6d16b2e49eada98a78c3c904623c5"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Inline",
+      "label": "Linux-/Ubuntu-Findings aus dem Nutzerauftrag vom 2026-07-22",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "a8dd250a4d27924bcfcc06864c36703d3f685a135dae43b3e7f06ea5e2ce9e21",
+      "gitBlob": "N/A"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher repository-relative Zielpfad soll verwendet werden?",
+      "answer": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "evidence": "Der Nutzer verlangt die Ablage in home-baseline-source und Linux/Ubuntu im Dateinamen; das aktive Profil verlangt Lastenheft_<descriptive-slug>.md im Repository-Root."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wo wird der neue Intake in die aktive Abarbeitungsreihenfolge eingeordnet?",
+      "answer": "Als Position 3 nach dem Plattform- und dem bereits eingeordneten Windows-Wartungsintake sowie vor der hart gesperrten Wartungs-TUI.",
+      "evidence": "Die Ubuntu-Findings haerten die bestehende Ein-Kommando-Wartung; die bestehende relative Queue-Reihenfolge bleibt erhalten und die TUI darf erst nach allen Wartungshaertungen folgen."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer einen spaeteren Autonomous-Lauf?",
+      "answer": "LocalImplementation",
+      "evidence": "Der Nutzer erteilt im aktuellen Auftrag Autoritaet fuer Intake-Authoring und Queue-Integration, aber nicht fuer Commit, Push, Pull Request, Merge oder andere Remote-Schreiboperationen."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Remote-Schreiboperationen.",
+  "promptState": "Enabled",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "updateAuthorized": false,
+  "nextAction": "$speckit-intake-review Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md"
+}

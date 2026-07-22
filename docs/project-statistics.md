@@ -112,6 +112,7 @@
 | 2026-07-22 | Ein-Kommando-Wartung gehaertet | — | — | — | Den macOS-Bash-3.2-No-op von `sync-home.sh` durch eine leere-array-sichere Schleife repariert und auf macOS sowie Linux im CI-Vertrag abgesichert. Ein zentraler Preset-Profilkatalog ersetzt duplizierte Orchestrator-Zuordnungen und laesst Registry-Eintraege bei unbekannten Profilen fail-closed scheitern. Die Homebrew-Registry klassifiziert MongoDB Community 8.0, Mono, SQLite und Telnet als optional; PowerShell wird als erforderliche Formel mit pruefbarem Link-Vertrag statt als Cask gefuehrt. Manpages, README, Skriptreferenz und plattformparitaetische PowerShell-Analyse wurden synchronisiert. |
 | 2026-07-22 | Wartungshaertung: Flottenabschluss | — | — | — | Das kanonische Wartungspaket ueber 30 Level-1-/Level-2-Repositories mit jeweils eigenem PR ausgerollt. Alle Source- und Statistik-Commits wurden als Merge-Commits erhalten; dadurch blieben 30/30 Statistikprofile `CURRENT`. Sechs Repositories lieferten vollstaendige reale Checks einschliesslich `cc65`-Linux-/Windows-Build und `TuiVision`-Build-, Test-, SBOM-, Tooling- und DocFX-Suites. In 24 privaten Repositories starteten die Jobs wegen derselben Billing-/Spending-Limit-Annotation nicht und blieben Provider-`N/A`. Nach dem Merge sind alle 30 Repositories sauber, remote-paritaetisch, wartungspakethomogen und auf dem exakten Zehn-Preset-Profil. Check-only, Dry-run und der argumentlose Wartungslauf endeten mit Exitcode 0. |
 | 2026-07-22 | Windows-Intake fuer Ein-Kommando-Wartungshaertung | — | — | — | Tracebaren, entscheidungsvollstaendigen Windows-Folgeintake mit Receipt aus neun realen Wartungsbefunden erstellt. Der Vertrag umfasst validierte Python-Fallbacks und Bootstrap-Reihenfolge, stabile WhatIf-Ermittlung, sichere phasenbasierte Wiederaufnahme, Erhalt des Zehn-Preset-Profils, Git-normalisierten Drift, begrenzte GitHub-Retries, WinGet-/UAC-Timeouts mit Prozessbereinigung und widerspruchsfreie Paketstatus. Der Intake steht als Position 2 vor der weiterhin hart gesperrten Wartungs-TUI. Kein Intake-Review-, Specify-, Autonomous- oder Remote-Lauf wurde gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+593/-17`, also 576 Nettozeilen. |
+| 2026-07-22 | Linux-/Ubuntu-Intake fuer Ein-Kommando-Wartungshaertung | — | — | — | Tracebaren, entscheidungsvollstaendigen Linux-/Ubuntu-Folgeintake mit Receipt aus vier realen Wartungsbefunden erstellt. Der Vertrag umfasst stdin-sichere Homebrew-Iteration, vollstaendige Paketstatus, fail-closed Required-Pruefung und Exitcodepropagation, einen sicheren automatisierten Swift-Installationsweg sowie einen isolierten interaktiven Homebrew-Regressionstest. Der Intake steht als Position 3 vor der nun von drei Wartungsvorgaengern hart gesperrten TUI. Kein Intake-Review-, Specify-, Autonomous- oder Remote-Lauf wurde gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+654/-17`, also 637 Nettozeilen. |
 
 ---
 
@@ -647,6 +648,33 @@ authority; local validation passes. No Intake Review, Specify, Autonomous,
 commit, or remote run was started. The authoring delta before statistics work
 is +593/-17, or 576 net lines.*
 
+### 2026-07-22 - Linux-/Ubuntu-Intake fuer Ein-Kommando-Wartungshaertung / Linux and Ubuntu one-command maintenance hardening intake
+
+- Ein tracebarer Linux-/Ubuntu-Folgeintake bildet die vier real beobachteten
+  Befunde einzeln auf acht atomare Anforderungen und zwoelf messbare
+  Abnahmekriterien ab.
+- Die aktive Queue fuehrt ihn unter Wahrung der bestehenden Reihenfolge auf
+  Position 3. Die Wartungs-TUI rueckt auf Position 4 und bleibt bis zum
+  nachgewiesenen Abschluss aller drei Wartungsvorgaenger hart gesperrt.
+- Das Receipt weist eine geordnete Inline-Quelle, drei beantwortete
+  Authoring-Entscheidungen, keine offene Frage und die begrenzte Authority
+  `LocalImplementation` nach. Der lokale Bash-Receipt-Validator ist gruen.
+- Kein Intake-Review-, Specify-, Autonomous-, Commit- oder Remote-Lauf wurde
+  gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+654/-17`, also
+  637 Nettozeilen. Die konservative Manualreferenz fuer 654 hinzugefuegte oder
+  aktualisierte Zeilen betraegt 8,2 Tage beziehungsweise 63,8 Stunden;
+  Thorsten-Solo 6,5 Tage beziehungsweise 51,0 Stunden.
+
+*A traceable Linux and Ubuntu follow-up intake maps all four observed findings
+to eight atomic requirements and twelve measurable acceptance criteria. It is
+queued at position 3 while preserving existing relative order; the TUI moves
+to position 4 and remains hard blocked by all three maintenance predecessors.
+The receipt records one ordered inline source, three answered authoring
+decisions, no open question, and LocalImplementation authority; the local Bash
+validator passes. No Intake Review, Specify, Autonomous, commit, or remote run
+was started. The authoring delta before statistics work is +654/-17, or 637 net
+lines.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -657,27 +685,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 309507 lines |
-| Textdateien / Text files | 1932 |
+| Textbasis / Text base | 310152 lines |
+| Textdateien / Text files | 1934 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-22 |
 | Aktivtage / Active days | 70 |
-| Relevante Commits / Relevant commits | 492 |
-| Zeilen je Aktivtag / Lines per active day | 4421.5 |
+| Relevante Commits / Relevant commits | 493 |
+| Zeilen je Aktivtag / Lines per active day | 4430.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 27 days |
-| Speedup vs. 80 lines/day | 55.3x |
-| Speedup vs. 100 lines/day | 44.2x |
-| Methodik / Methodology | v2; source `7865087f4db6` |
+| Speedup vs. 80 lines/day | 55.4x |
+| Speedup vs. 100 lines/day | 44.3x |
+| Methodik / Methodology | v2; source `2c35094b7e50` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.7% | 8391
-Dokumentation / Documentation   [################....]  82.4% | 255023
-Skripte / Scripts               [###.................]  13.2% | 40781
-Konfiguration / Configuration   [#...................]   1.5% | 4596
+Dokumentation / Documentation   [################....]  82.4% | 255601
+Skripte / Scripts               [###.................]  13.1% | 40781
+Konfiguration / Configuration   [#...................]   1.5% | 4663
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 716
 ```
@@ -704,7 +732,7 @@ Wochen / Weeks 27..52 | 2026-01-25..2026-07-25
 So/Su  0 0 0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4
 Di/Tu  0 0 0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4
-Mi/We  0 0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 3
+Mi/We  0 0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4
 Do/Th  0 0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 -
 Fr/Fr  0 0 0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 -
 Sa/Sa  0 0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 -
@@ -773,15 +801,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..18
-   cap 10000 | . . .
-        8333 | . . .
-        6667 | . . .
-        5000 | # . .
-        3333 | # . .
-        1667 | # . .
-           0 +-------
-             16 17 18
+Slots 16..19
+   cap 10000 | . . . .
+        8333 | . . . .
+        6667 | . . . .
+        5000 | # . . .
+        3333 | # . . .
+        1667 | # . . .
+           0 +---------
+             16 17 18 19
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -805,6 +833,7 @@ Slots 16..18
 | 16 | Intake-Authoring-Preset v0.1.0 / Intake authoring preset v0.1.0 | 6337 |
 | 17 | Intake-Authoring-Flottenabschluss / Intake authoring fleet closeout | 357 |
 | 18 | Windows-Wartungshaertungsintake / Windows maintenance hardening intake | 576 |
+| 19 | Linux-/Ubuntu-Wartungshaertungsintake / Linux and Ubuntu maintenance hardening intake | 637 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -814,8 +843,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 55.3x
-100 lines/day      [#########...........] 44.2x
+80 lines/day       [###########.........] 55.4x
+100 lines/day      [#########...........] 44.3x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -828,7 +857,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##################..] 4421.5
+Visible repository [##################..] 4430.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -854,6 +883,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-22. Es enthaelt 70 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 223552 |
+| 2026-07 | 224231 |
 
 <!-- project-statistics-v2:end -->
