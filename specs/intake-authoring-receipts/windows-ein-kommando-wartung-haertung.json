@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "receiptId": "c32918dc-ace6-4d68-8c7f-ffa721e0da4b",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.0"
+  },
+  "createdAt": "2026-07-22T19:50:26Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+    "normalizedSha256": "2c88933e98764a475efbbad26152f1fe6c9c18204096b95e44eb45252c42ecc4"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Inline",
+      "label": "Windows-Findings aus dem Nutzerauftrag vom 2026-07-22",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "9324967097065c613b0ed7072bef22a0da8b4a1b1fdc5f84f636b474b81ef30e",
+      "gitBlob": "N/A"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher repository-relative Zielpfad soll verwendet werden?",
+      "answer": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "evidence": "Der Nutzer verlangt die Ablage im Repository home-baseline-source und Windows im Dateinamen; das aktive Profil verlangt Lastenheft_<descriptive-slug>.md."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wo wird der neue Intake in die aktive Abarbeitungsreihenfolge eingeordnet?",
+      "answer": "Direkt nach der plattformuebergreifenden Ein-Kommando-Wartung und vor der davon abhaengigen Wartungs-TUI.",
+      "evidence": "Die Findings sind eine eigene Haertungsrunde der bestehenden Ein-Kommando-Wartung; die TUI ist bereits bis zum Abschluss des Wartungsvertrags hart gesperrt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer einen spaeteren Autonomous-Lauf?",
+      "answer": "LocalImplementation",
+      "evidence": "Der Nutzer erteilt im aktuellen Auftrag keine ausdrueckliche Autoritaet fuer Commit, Push, Pull Request oder Merge."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Remote-Schreiboperationen.",
+  "promptState": "Enabled",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "updateAuthorized": false,
+  "nextAction": "$speckit-intake-review Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md"
+}

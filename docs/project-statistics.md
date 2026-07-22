@@ -111,6 +111,7 @@
 | 2026-07-21 | `intake-authoring-governance` v0.1.0 | 69 | — | — | Optionales Preset zur nachvollziehbaren Umwandlung geordneter direkter Texte, eingefuegter Planungen und explizit benannter UTF-8-Dateien in genau einen Spec-Kit-Intake samt Hash-Receipt veroeffentlicht. Zwei Commands, sieben Templates, Bash-/PowerShell-Validatorparitaet, maximal fuenf materielle Rueckfragen, gesperrte Entwuerfe, ausdrueckliche Update-Autoritaet und sicherer `LocalImplementation`-Default halten Authoring von Review und Ausfuehrung getrennt. Zehn-Preset-Dev- und Tag-ZIP-Smokes, fuenf Agentenoberflaechen sowie ein unabhaengiger Authoring-zu-Intake-Review-Nachweis ohne Remote oder nachgelagerten Run-State sind gruen. Release `v0.1.0` nutzt die gepruefte ZIP-SHA-256 `0aee506690ac2753ad683c751705c18cef60fa8c226a3d6da68733659ad83bb6`. Das Paketdelta umfasst vor Statistikrendering `+6502/-165`, also 6337 Nettozeilen. Die Standard-Achtermatrix und das bestehende Neunerprofil bleiben unveraendert; das neue Zehnerprofil ist opt-in. |
 | 2026-07-22 | Ein-Kommando-Wartung gehaertet | — | — | — | Den macOS-Bash-3.2-No-op von `sync-home.sh` durch eine leere-array-sichere Schleife repariert und auf macOS sowie Linux im CI-Vertrag abgesichert. Ein zentraler Preset-Profilkatalog ersetzt duplizierte Orchestrator-Zuordnungen und laesst Registry-Eintraege bei unbekannten Profilen fail-closed scheitern. Die Homebrew-Registry klassifiziert MongoDB Community 8.0, Mono, SQLite und Telnet als optional; PowerShell wird als erforderliche Formel mit pruefbarem Link-Vertrag statt als Cask gefuehrt. Manpages, README, Skriptreferenz und plattformparitaetische PowerShell-Analyse wurden synchronisiert. |
 | 2026-07-22 | Wartungshaertung: Flottenabschluss | — | — | — | Das kanonische Wartungspaket ueber 30 Level-1-/Level-2-Repositories mit jeweils eigenem PR ausgerollt. Alle Source- und Statistik-Commits wurden als Merge-Commits erhalten; dadurch blieben 30/30 Statistikprofile `CURRENT`. Sechs Repositories lieferten vollstaendige reale Checks einschliesslich `cc65`-Linux-/Windows-Build und `TuiVision`-Build-, Test-, SBOM-, Tooling- und DocFX-Suites. In 24 privaten Repositories starteten die Jobs wegen derselben Billing-/Spending-Limit-Annotation nicht und blieben Provider-`N/A`. Nach dem Merge sind alle 30 Repositories sauber, remote-paritaetisch, wartungspakethomogen und auf dem exakten Zehn-Preset-Profil. Check-only, Dry-run und der argumentlose Wartungslauf endeten mit Exitcode 0. |
+| 2026-07-22 | Windows-Intake fuer Ein-Kommando-Wartungshaertung | — | — | — | Tracebaren, entscheidungsvollstaendigen Windows-Folgeintake mit Receipt aus neun realen Wartungsbefunden erstellt. Der Vertrag umfasst validierte Python-Fallbacks und Bootstrap-Reihenfolge, stabile WhatIf-Ermittlung, sichere phasenbasierte Wiederaufnahme, Erhalt des Zehn-Preset-Profils, Git-normalisierten Drift, begrenzte GitHub-Retries, WinGet-/UAC-Timeouts mit Prozessbereinigung und widerspruchsfreie Paketstatus. Der Intake steht als Position 2 vor der weiterhin hart gesperrten Wartungs-TUI. Kein Intake-Review-, Specify-, Autonomous- oder Remote-Lauf wurde gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+593/-17`, also 576 Nettozeilen. |
 
 ---
 
@@ -621,6 +622,31 @@ Level 0 and all 30 registered targets now use the exact ten-preset profile, and
 check-only, dry-run, and the no-argument maintenance run all returned exit code
 0.*
 
+### 2026-07-22 - Windows-Intake fuer Ein-Kommando-Wartungshaertung / Windows one-command maintenance hardening intake
+
+- Ein tracebarer Windows-Folgeintake bildet die neun real beobachteten Befunde
+  einzeln auf Anforderungen und messbare Abnahmekriterien ab.
+- Die aktive Queue fuehrt ihn direkt nach der plattformuebergreifenden Wartung.
+  Die Wartungs-TUI rueckt auf Position 3 und bleibt bis zum nachgewiesenen
+  Abschluss beider Vorgaenger hart gesperrt.
+- Das Receipt weist eine geordnete Inline-Quelle, drei beantwortete
+  Authoring-Entscheidungen, keine offene Frage und die begrenzte Authority
+  `LocalImplementation` nach. Der lokale Receipt-Validator ist gruen.
+- Kein Intake-Review-, Specify-, Autonomous-, Commit- oder Remote-Lauf wurde
+  gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+593/-17`, also
+  576 Nettozeilen. Die konservative Manualreferenz fuer 593 hinzugefuegte oder
+  aktualisierte Zeilen betraegt 7,4 Tage beziehungsweise 57,8 Stunden;
+  Thorsten-Solo 5,9 Tage beziehungsweise 46,3 Stunden.
+
+*A traceable Windows follow-up intake maps all nine observed findings to atomic
+requirements and measurable acceptance criteria. It is queued directly after
+cross-platform maintenance, while the TUI moves to position 3 and remains hard
+blocked by both predecessors. The receipt records one ordered inline source,
+three answered authoring decisions, no open question, and LocalImplementation
+authority; local validation passes. No Intake Review, Specify, Autonomous,
+commit, or remote run was started. The authoring delta before statistics work
+is +593/-17, or 576 net lines.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -631,17 +657,17 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 308923 lines |
-| Textdateien / Text files | 1930 |
+| Textbasis / Text base | 309507 lines |
+| Textdateien / Text files | 1932 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-22 |
 | Aktivtage / Active days | 70 |
 | Relevante Commits / Relevant commits | 491 |
-| Zeilen je Aktivtag / Lines per active day | 4413.2 |
+| Zeilen je Aktivtag / Lines per active day | 4421.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 27 days |
-| Speedup vs. 80 lines/day | 55.2x |
-| Speedup vs. 100 lines/day | 44.1x |
+| Speedup vs. 80 lines/day | 55.3x |
+| Speedup vs. 100 lines/day | 44.2x |
 | Methodik / Methodology | v2; source `7cc306765d5d` |
 
 ### Artefaktmix / Artifact Mix
@@ -649,9 +675,9 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.7% | 8391
-Dokumentation / Documentation   [################....]  82.4% | 254506
+Dokumentation / Documentation   [################....]  82.4% | 255023
 Skripte / Scripts               [###.................]  13.2% | 40781
-Konfiguration / Configuration   [#...................]   1.5% | 4529
+Konfiguration / Configuration   [#...................]   1.5% | 4596
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 716
 ```
@@ -747,15 +773,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..17
-   cap 10000 | . .
-        8333 | . .
-        6667 | . .
-        5000 | # .
-        3333 | # .
-        1667 | # .
-           0 +-----
-             16 17
+Slots 16..18
+   cap 10000 | . . .
+        8333 | . . .
+        6667 | . . .
+        5000 | # . .
+        3333 | # . .
+        1667 | # . .
+           0 +-------
+             16 17 18
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -778,6 +804,7 @@ Slots 16..17
 | 15 | Intake-Review-Flottenabschluss / Intake review fleet closeout | 48 |
 | 16 | Intake-Authoring-Preset v0.1.0 / Intake authoring preset v0.1.0 | 6337 |
 | 17 | Intake-Authoring-Flottenabschluss / Intake authoring fleet closeout | 357 |
+| 18 | Windows-Wartungshaertungsintake / Windows maintenance hardening intake | 576 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -787,8 +814,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 55.2x
-100 lines/day      [#########...........] 44.1x
+80 lines/day       [###########.........] 55.3x
+100 lines/day      [#########...........] 44.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -801,7 +828,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##################..] 4413.2
+Visible repository [##################..] 4421.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.

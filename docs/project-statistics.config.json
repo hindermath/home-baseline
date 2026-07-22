@@ -153,6 +153,14 @@
       "labelEn": "Intake authoring fleet closeout",
       "netLines": 357,
       "activeDays": 1
+    },
+    {
+      "slot": 18,
+      "id": "windows-one-command-maintenance-hardening-intake",
+      "labelDe": "Windows-Wartungshaertungsintake",
+      "labelEn": "Windows maintenance hardening intake",
+      "netLines": 576,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
