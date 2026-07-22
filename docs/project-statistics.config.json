@@ -161,6 +161,14 @@
       "labelEn": "Windows maintenance hardening intake",
       "netLines": 576,
       "activeDays": 1
+    },
+    {
+      "slot": 19,
+      "id": "linux-ubuntu-one-command-maintenance-hardening-intake",
+      "labelDe": "Linux-/Ubuntu-Wartungshaertungsintake",
+      "labelEn": "Linux and Ubuntu maintenance hardening intake",
+      "netLines": 637,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
