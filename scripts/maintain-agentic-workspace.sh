@@ -7,6 +7,7 @@ SOURCE_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
 HOME_DIR="${HOME}"
 ORIGINAL_ARGS=("$@")
 REGISTRY=""
+PRESET_PROFILE_CATALOG="${SOURCE_ROOT}/scripts/config/spec-kit-preset-profiles.json"
 
 CHECK_ONLY=0
 DRY_RUN=0
@@ -341,19 +342,28 @@ handle_propagation() {
 }
 
 preset_config_for_profile() {
-  case "$1" in
-    standard-eight-governance-presets)
-      printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-governance-presets.json"
-      ;;
-    intake-review-nine-governance-presets)
-      printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-intake-review-governance-presets.json"
-      ;;
-    intake-authoring-ten-governance-presets)
-      printf '%s\n' "${SOURCE_ROOT}/scripts/config/spec-kit-intake-authoring-governance-presets.json"
-      ;;
-    none) return 1 ;;
-    *) die "Unbekanntes Preset-Profil / unknown preset profile: $1" ;;
-  esac
+  python3 - "$PRESET_PROFILE_CATALOG" "$SOURCE_ROOT" "$1" <<'PY'
+import json
+import pathlib
+import sys
+
+catalog_path = pathlib.Path(sys.argv[1])
+source_root = pathlib.Path(sys.argv[2]).resolve()
+profile_name = sys.argv[3]
+catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+profiles = catalog.get("profiles", {})
+if profile_name not in profiles:
+    raise SystemExit(f"Unbekanntes Preset-Profil / unknown preset profile: {profile_name}")
+relative = profiles[profile_name].get("presetConfig")
+if relative is None:
+    raise SystemExit(1)
+config = (source_root / relative).resolve()
+try:
+    config.relative_to(source_root)
+except ValueError as exc:
+    raise SystemExit(f"Preset-Konfiguration liegt ausserhalb der Quelle: {config}") from exc
+print(config)
+PY
 }
 
 discover_preset_targets() {
@@ -388,6 +398,7 @@ handle_preset_profiles() {
   local installer="${SOURCE_ROOT}/scripts/install-spec-kit-governance-presets.sh"
   local level repo profile config status
   [ -f "$installer" ] || die "Preset-Installer fehlt / missing: $installer"
+  [ -f "$PRESET_PROFILE_CATALOG" ] || die "Preset-Profilkatalog fehlt / missing: $PRESET_PROFILE_CATALOG"
 
   while IFS=$'\t' read -r level repo profile; do
     [ -n "$repo" ] || continue

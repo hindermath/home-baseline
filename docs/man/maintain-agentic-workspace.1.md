@@ -35,6 +35,10 @@ Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
    Required-Agenten-CLIs werden gepflegt.
 8. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
 
+Die unterstuetzten Profilnamen und ihre Matrixdateien stehen zentral in
+`scripts/config/spec-kit-preset-profiles.json`. Lokale Registry-Eintraege mit
+unbekannten Profilen brechen weiterhin fail-closed ab.
+
 Im Check-only-Modus wird der manifestgesteuerte Home-Sync jetzt ebenfalls
 schreibfrei ausgefuehrt. Nach einem echten Sync wiederholt die
 Abschlusspruefung diesen Check, damit SHA-256-, Dateimodus- oder

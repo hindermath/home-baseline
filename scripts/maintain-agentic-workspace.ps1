@@ -82,6 +82,7 @@ if ($IncludeOptional -and $ScriptsOnly) {
 }
 
 $sourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
+$presetProfileCatalog = Join-Path $sourceRoot 'scripts/config/spec-kit-preset-profiles.json'
 $HomeDir = (Resolve-Path -LiteralPath $HomeDir).Path
 $homeScriptsDir = Join-Path $HomeDir 'scripts'
 if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
@@ -362,19 +363,21 @@ function Invoke-HBPropagation {
 
 function Get-HBPresetConfig {
     param([Parameter(Mandatory)][string] $ProfileName)
-    switch ($ProfileName) {
-        'standard-eight-governance-presets' {
-            return (Join-Path $sourceRoot 'scripts/config/spec-kit-governance-presets.json')
-        }
-        'intake-review-nine-governance-presets' {
-            return (Join-Path $sourceRoot 'scripts/config/spec-kit-intake-review-governance-presets.json')
-        }
-        'intake-authoring-ten-governance-presets' {
-            return (Join-Path $sourceRoot 'scripts/config/spec-kit-intake-authoring-governance-presets.json')
-        }
-        'none' { return $null }
-        default { throw "Unbekanntes Preset-Profil / unknown preset profile: ${ProfileName}" }
+    if (-not (Test-Path -LiteralPath $presetProfileCatalog -PathType Leaf)) {
+        throw "Preset-Profilkatalog fehlt / missing: ${presetProfileCatalog}"
     }
+    $catalog = Get-Content -LiteralPath $presetProfileCatalog -Raw | ConvertFrom-Json
+    $property = $catalog.profiles.PSObject.Properties[$ProfileName]
+    if ($null -eq $property) {
+        throw "Unbekanntes Preset-Profil / unknown preset profile: ${ProfileName}"
+    }
+    $relative = $property.Value.presetConfig
+    if ([string]::IsNullOrWhiteSpace([string]$relative)) { return $null }
+    $config = [IO.Path]::GetFullPath((Join-Path $sourceRoot ([string]$relative)))
+    if (-not $config.StartsWith($sourceRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Preset-Konfiguration liegt ausserhalb der Quelle / outside source: ${config}"
+    }
+    return $config
 }
 
 function Get-HBPresetTargets {

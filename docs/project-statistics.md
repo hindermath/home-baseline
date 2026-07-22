@@ -109,6 +109,7 @@
 | 2026-07-21 | Optionales Intake-Review-Flottenprofil | 69 | — | — | Das optionale Preset `intake-review-governance` v0.1.0 als ausdruecklich gewaehltes Neunerprofil fuer Level 0 und die verwaltete Level-1-/Level-2-Flotte vorbereitet, ohne die oeffentliche Standard-Achtermatrix zu veraendern. Registry, Wartungsorchestratoren, Installationspruefung, gemeinsame Agenten-Guidance und Lernreihen-Paketierung unterscheiden nun explizit zwischen portabler Intake-Review-Policy und lokalen Review-Ergebnissen. Bash-/PowerShell-Paritaet, PSScriptAnalyzer, exakte Preset-Aufloesung und Paketvorschauen fuer alle drei Lernreihen-Familien sind gruen. Der Implementierungscommit umfasst `+1917/-38`, also 1879 Nettozeilen vor Statistikpflege. |
 | 2026-07-21 | Intake-Review-Flottenabschluss | 69 | — | — | Das ausdruecklich optionale Neunerprofil in Level 0, sieben Level-1- und 25 Level-2-Repositories installiert und ueber 33 gemergte PRs abgeschlossen. Alle 33 Repositories tragen exakt neun Presets; die 21 Lernreihen-Repositories aus drei Familien sind vollstaendig enthalten, ohne einen Lernenden-Spec-Kit-Lauf zu starten. 119 reale Exact-Head-Checks waren gruen; 228 vor dem ersten Schritt abgewiesene Billing-/Spending-Checks blieben Provider-`N/A`. Null nicht-providerbedingte Fehler und null Review-Threads. Der fremd geaenderte `cc65`-Worktree blieb unangetastet; dessen Linux- und Windows-Volltests bestanden im isolierten Worktree. Das Closeout-Delta umfasst vor Statistikrendering 48 Nettozeilen. |
 | 2026-07-21 | `intake-authoring-governance` v0.1.0 | 69 | — | — | Optionales Preset zur nachvollziehbaren Umwandlung geordneter direkter Texte, eingefuegter Planungen und explizit benannter UTF-8-Dateien in genau einen Spec-Kit-Intake samt Hash-Receipt veroeffentlicht. Zwei Commands, sieben Templates, Bash-/PowerShell-Validatorparitaet, maximal fuenf materielle Rueckfragen, gesperrte Entwuerfe, ausdrueckliche Update-Autoritaet und sicherer `LocalImplementation`-Default halten Authoring von Review und Ausfuehrung getrennt. Zehn-Preset-Dev- und Tag-ZIP-Smokes, fuenf Agentenoberflaechen sowie ein unabhaengiger Authoring-zu-Intake-Review-Nachweis ohne Remote oder nachgelagerten Run-State sind gruen. Release `v0.1.0` nutzt die gepruefte ZIP-SHA-256 `0aee506690ac2753ad683c751705c18cef60fa8c226a3d6da68733659ad83bb6`. Das Paketdelta umfasst vor Statistikrendering `+6502/-165`, also 6337 Nettozeilen. Die Standard-Achtermatrix und das bestehende Neunerprofil bleiben unveraendert; das neue Zehnerprofil ist opt-in. |
+| 2026-07-22 | Ein-Kommando-Wartung gehaertet | — | — | — | Den macOS-Bash-3.2-No-op von `sync-home.sh` durch eine leere-array-sichere Schleife repariert und auf macOS sowie Linux im CI-Vertrag abgesichert. Ein zentraler Preset-Profilkatalog ersetzt duplizierte Orchestrator-Zuordnungen und laesst Registry-Eintraege bei unbekannten Profilen fail-closed scheitern. Die Homebrew-Registry klassifiziert MongoDB Community 8.0, Mono, SQLite und Telnet als optional; PowerShell wird als erforderliche Formel mit pruefbarem Link-Vertrag statt als Cask gefuehrt. Manpages, README, Skriptreferenz und plattformparitaetische PowerShell-Analyse wurden synchronisiert. |
 
 ---
 
@@ -573,6 +574,27 @@ repositories use the explicit ten-preset profile, both package previews pass,
 and no learner Spec Kit run was started. All 33 non-empty PRs are merged;
 provider billing failures remain unavailable evidence rather than technical
 passes. The official community submission is `github/spec-kit#3621`.*
+
+### 2026-07-22 - Ein-Kommando-Wartung gehaertet / One-command maintenance hardened
+
+- Ein echter zweiter `sync-home.sh --no-pull`-Lauf bleibt nun auch mit
+  macOS-Bash 3.2 unter `set -u` ein erfolgreicher No-op. Derselbe Regressionstest
+  laeuft im Linux-Job mit Bash 5.
+- Ein versionierter Profilkatalog verbindet die Acht-, Neun- und
+  Zehn-Preset-Matrizen mit den lokalen Registry-Profilnamen. Bash- und
+  PowerShell-Orchestrator sowie beide Registrierungsvarianten lehnen unbekannte
+  Profile eindeutig ab.
+- Die Maschinen-Registry behandelt MongoDB Community 8.0, Mono, SQLite und
+  Telnet als optionale, bewusst installierbare Formeln. PowerShell ist eine
+  erforderliche Formel; `ensureLinked` prueft, dass `pwsh` tatsaechlich aus dem
+  aktiven Homebrew-Praefix aufgeloest wird.
+
+*A real second `sync-home.sh --no-pull` invocation is now a successful no-op
+under macOS Bash 3.2 with `set -u`, while the same regression runs with Bash 5
+on Linux. A versioned profile catalog maps the eight-, nine-, and ten-preset
+matrices to supported registry names, and both Bash and PowerShell paths reject
+unknown profiles. MongoDB Community 8.0, Mono, SQLite, and Telnet are explicitly
+optional; required formula PowerShell now has a verifiable `pwsh` link contract.*
 
 ## Gesamtstatistik / Overall Statistics
 

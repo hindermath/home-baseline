@@ -1523,6 +1523,19 @@ bash scripts/maintain-agentic-brew-apps.sh --compare-only
 bash scripts/maintain-agentic-brew-apps.sh
 ```
 
+Required-Homebrew-Formulae koennen in der Registry mit `ensureLinked: true`
+markiert werden. Der Wartungslauf stellt ihren Link nach Upgrades wieder her;
+`--compare-only` meldet stattdessen schreibfrei `LINK-DRIFT`. PowerShell wird
+als Required-Formula gepflegt, nicht als Cask. Die bewusst vorhandenen
+Formulae MongoDB Community 8.0, Mono, SQLite und Telnet sind optional und
+werden ohne `--include-optional` nicht auf weiteren Rechnern installiert.
+
+*Required Homebrew formulae may use `ensureLinked: true`. Maintenance restores
+their link after upgrades, while `--compare-only` reports read-only
+`LINK-DRIFT`. PowerShell is maintained as the required formula rather than a
+cask. MongoDB Community 8.0, Mono, SQLite, and Telnet are optional and are not
+installed on additional machines without `--include-optional`.*
+
 ```powershell
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -CompareOnly

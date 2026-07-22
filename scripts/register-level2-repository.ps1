@@ -80,6 +80,7 @@ $ErrorActionPreference = 'Stop'
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $LibFile = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
+$PresetProfileCatalog = Join-Path $ScriptDir 'config/spec-kit-preset-profiles.json'
 if (Test-Path $LibFile) {
     . $LibFile
 }
@@ -92,6 +93,17 @@ function Resolve-HBPath {
 
 function Get-DefaultRegistry {
     return (Join-Path $HOME '.home-baseline/level2-repository-registry.json')
+}
+
+function Assert-HBPresetProfile {
+    param([Parameter(Mandatory)][string]$Name)
+    if (-not (Test-Path -LiteralPath $PresetProfileCatalog -PathType Leaf)) {
+        throw "Preset-Profilkatalog fehlt / missing: ${PresetProfileCatalog}"
+    }
+    $catalog = Get-Content -LiteralPath $PresetProfileCatalog -Raw | ConvertFrom-Json
+    if ($null -eq $catalog.profiles.PSObject.Properties[$Name]) {
+        throw "Unbekanntes Preset-Profil / unknown preset profile: ${Name}"
+    }
 }
 
 function Get-HomeRelativePath {
@@ -220,6 +232,8 @@ function Register-HBRepository {
             $RegistrationSource = [string]$existing.source
         }
     }
+
+    Assert-HBPresetProfile -Name $effectivePresetProfile
 
     $entry = [pscustomobject]@{
         path = $repoRel
