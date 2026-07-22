@@ -110,6 +110,7 @@
 | 2026-07-21 | Intake-Review-Flottenabschluss | 69 | — | — | Das ausdruecklich optionale Neunerprofil in Level 0, sieben Level-1- und 25 Level-2-Repositories installiert und ueber 33 gemergte PRs abgeschlossen. Alle 33 Repositories tragen exakt neun Presets; die 21 Lernreihen-Repositories aus drei Familien sind vollstaendig enthalten, ohne einen Lernenden-Spec-Kit-Lauf zu starten. 119 reale Exact-Head-Checks waren gruen; 228 vor dem ersten Schritt abgewiesene Billing-/Spending-Checks blieben Provider-`N/A`. Null nicht-providerbedingte Fehler und null Review-Threads. Der fremd geaenderte `cc65`-Worktree blieb unangetastet; dessen Linux- und Windows-Volltests bestanden im isolierten Worktree. Das Closeout-Delta umfasst vor Statistikrendering 48 Nettozeilen. |
 | 2026-07-21 | `intake-authoring-governance` v0.1.0 | 69 | — | — | Optionales Preset zur nachvollziehbaren Umwandlung geordneter direkter Texte, eingefuegter Planungen und explizit benannter UTF-8-Dateien in genau einen Spec-Kit-Intake samt Hash-Receipt veroeffentlicht. Zwei Commands, sieben Templates, Bash-/PowerShell-Validatorparitaet, maximal fuenf materielle Rueckfragen, gesperrte Entwuerfe, ausdrueckliche Update-Autoritaet und sicherer `LocalImplementation`-Default halten Authoring von Review und Ausfuehrung getrennt. Zehn-Preset-Dev- und Tag-ZIP-Smokes, fuenf Agentenoberflaechen sowie ein unabhaengiger Authoring-zu-Intake-Review-Nachweis ohne Remote oder nachgelagerten Run-State sind gruen. Release `v0.1.0` nutzt die gepruefte ZIP-SHA-256 `0aee506690ac2753ad683c751705c18cef60fa8c226a3d6da68733659ad83bb6`. Das Paketdelta umfasst vor Statistikrendering `+6502/-165`, also 6337 Nettozeilen. Die Standard-Achtermatrix und das bestehende Neunerprofil bleiben unveraendert; das neue Zehnerprofil ist opt-in. |
 | 2026-07-22 | Ein-Kommando-Wartung gehaertet | — | — | — | Den macOS-Bash-3.2-No-op von `sync-home.sh` durch eine leere-array-sichere Schleife repariert und auf macOS sowie Linux im CI-Vertrag abgesichert. Ein zentraler Preset-Profilkatalog ersetzt duplizierte Orchestrator-Zuordnungen und laesst Registry-Eintraege bei unbekannten Profilen fail-closed scheitern. Die Homebrew-Registry klassifiziert MongoDB Community 8.0, Mono, SQLite und Telnet als optional; PowerShell wird als erforderliche Formel mit pruefbarem Link-Vertrag statt als Cask gefuehrt. Manpages, README, Skriptreferenz und plattformparitaetische PowerShell-Analyse wurden synchronisiert. |
+| 2026-07-22 | Wartungshaertung: Flottenabschluss | — | — | — | Das kanonische Wartungspaket ueber 30 Level-1-/Level-2-Repositories mit jeweils eigenem PR ausgerollt. Alle Source- und Statistik-Commits wurden als Merge-Commits erhalten; dadurch blieben 30/30 Statistikprofile `CURRENT`. Sechs Repositories lieferten vollstaendige reale Checks einschliesslich `cc65`-Linux-/Windows-Build und `TuiVision`-Build-, Test-, SBOM-, Tooling- und DocFX-Suites. In 24 privaten Repositories starteten die Jobs wegen derselben Billing-/Spending-Limit-Annotation nicht und blieben Provider-`N/A`. Nach dem Merge sind alle 30 Repositories sauber, remote-paritaetisch, wartungspakethomogen und auf dem exakten Zehn-Preset-Profil. Check-only, Dry-run und der argumentlose Wartungslauf endeten mit Exitcode 0. |
 
 ---
 
@@ -595,6 +596,30 @@ on Linux. A versioned profile catalog maps the eight-, nine-, and ten-preset
 matrices to supported registry names, and both Bash and PowerShell paths reject
 unknown profiles. MongoDB Community 8.0, Mono, SQLite, and Telnet are explicitly
 optional; required formula PowerShell now has a verifiable `pwsh` link contract.*
+
+### 2026-07-22 - Wartungshaertung: Flottenabschluss / Maintenance hardening fleet closeout
+
+- 30/30 manifestverwaltete Repositories erhielten exakt die drei kanonischen
+  Wartungsdateien ueber getrennte PRs. Merge-Commits bewahren die
+  reproduzierbaren Source- und Statistik-Commit-IDs.
+- Sechs Repositories lieferten reale gruene Checks. 24 private Repositories
+  meldeten ausschliesslich die identische Billing-/Spending-Limit-Annotation,
+  bevor ein Runner startete; diese Evidence bleibt Provider-`N/A`.
+- Level 0 und die 30 registrierten Ziele verwenden exakt das
+  Zehn-Preset-Profil. Wartungspaket, Arbeitsbaeume, Upstreams und Statistik sind
+  nach dem Merge homogen beziehungsweise `CURRENT`.
+- `maintain-agentic-workspace.sh --check-only`, `--dry-run` und der
+  argumentlose Wartungslauf endeten jeweils mit Exitcode 0. Homebrew ist nach
+  dem Cleanup ohne Doctor-Befund; `pwsh` wird aus der Formel 7.6.4 aufgeloest.
+
+*All 30 manifest-managed repositories received exactly the three canonical
+maintenance files through separate PRs, preserving reproducible source and
+statistics commit IDs with merge commits. Six repositories produced real green
+checks; 24 private repositories only reported the identical billing or spending
+limit annotation before runner startup and therefore remain provider `N/A`.
+Level 0 and all 30 registered targets now use the exact ten-preset profile, and
+check-only, dry-run, and the no-argument maintenance run all returned exit code
+0.*
 
 ## Gesamtstatistik / Overall Statistics
 
