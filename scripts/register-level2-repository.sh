@@ -6,6 +6,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_FILE="$SCRIPT_DIR/lib/secure-development-hardening.sh"
+PRESET_PROFILE_CATALOG="$SCRIPT_DIR/config/spec-kit-preset-profiles.json"
 
 if [ -f "$LIB_FILE" ]; then
   # shellcheck source=/dev/null
@@ -276,7 +277,8 @@ PY
     "$([ -n "$OPT_MSL_STATUS" ] && printf true || printf false)" \
     "$([ -n "$OPT_GSDB_REQUIRED" ] && printf true || printf false)" \
     "$([ -n "$OPT_PRESET_PROFILE" ] && printf true || printf false)" \
-    "$([ -n "$OPT_ROLE" ] && printf true || printf false)" <<'PY'
+    "$([ -n "$OPT_ROLE" ] && printf true || printf false)" \
+    "$PRESET_PROFILE_CATALOG" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -297,6 +299,7 @@ msl_explicit = sys.argv[13] == "true"
 gsdb_explicit = sys.argv[14] == "true"
 preset_explicit = sys.argv[15] == "true"
 role_explicit = sys.argv[16] == "true"
+profile_catalog_path = Path(sys.argv[17])
 
 if registry_path.exists():
     data = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -345,6 +348,14 @@ if existing:
         entry["source"] = existing["source"]
     entry["registeredAt"] = existing.get("registeredAt", today)
 
+profile_catalog = json.loads(profile_catalog_path.read_text(encoding="utf-8"))
+supported_profiles = profile_catalog.get("profiles", {})
+if entry["presetProfile"] not in supported_profiles:
+    raise SystemExit(
+        f"Unbekanntes Preset-Profil / unknown preset profile: {entry['presetProfile']}"
+    )
+
+if existing:
     changed = any(existing.get(key) != value for key, value in entry.items())
     if changed:
         existing.update(entry)

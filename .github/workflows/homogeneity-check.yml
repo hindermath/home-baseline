@@ -41,6 +41,10 @@ jobs:
           cd "$PARENT"
           bash "${REPO}/scripts/check-homogeneity.sh" "${REPO}"
 
+      - name: Run maintenance regression tests
+        if: runner.os != 'Windows'
+        run: python3 -m unittest discover -s scripts/tests -p 'test_*.py'
+
       - name: Run Homogeneity Check (PowerShell on Windows)
         if: runner.os == 'Windows'
         shell: pwsh

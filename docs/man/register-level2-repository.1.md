@@ -52,7 +52,9 @@ verwaltete Flotte ausdruecklich ein anderes Profil waehlen.
 Eindeutige Sprachsuffixe wie `-CSharp`, `-Go` oder `-Rust` dokumentieren bei
 vorbereiteten Lernrepos die Zielsprache bereits vor dem Runtime-Scaffold.
 Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
-`unknown`, `false` oder `none` herab.
+`unknown`, `false` oder `none` herab. Profilnamen werden gegen
+`scripts/config/spec-kit-preset-profiles.json` validiert; unbekannte Namen
+werden nicht in die Registry geschrieben.
 
 *With `--scan-root` / `-ScanRoot`, the maintenance round can scan known
 workspace roots for Git repositories. This is intended for registry drift:
@@ -62,7 +64,8 @@ profile; `defaultPresetProfile` lets a managed fleet select another profile.
 Unambiguous suffixes such as `-CSharp`, `-Go`, or `-Rust` provide the
 target language for prepared learning repositories before a runtime scaffold
 exists. Maintenance scans preserve stronger existing metadata instead of
-downgrading it to `unknown`, `false`, or `none`.*
+downgrading it to `unknown`, `false`, or `none`. Profile names are validated
+against the central catalog and unknown names are rejected.*
 
 ## Optionen / Options
 

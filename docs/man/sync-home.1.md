@@ -22,14 +22,16 @@ die lokale Betriebskopie `~/`. Dazu gehoeren Skripte, gemeinsame Agent-Guidance
 und ausgewaehlte Spec-Kit-Oberflaechen. `sourceOnly`-Artefakte werden direkt aus
 dem dauerhaften Klon gelesen; `machineLocal`-Dateien bleiben lokal verwaltet.
 Standardmaessig wird zuvor `git pull` im Klon und danach ein pfadbegrenzter
-`git commit` in `~/` ausgefuehrt; beide Schritte lassen sich abschalten.
+`git commit` in `~/` ausgefuehrt; beide Schritte lassen sich abschalten. Ein
+echter No-op erzeugt auch unter dem mit macOS gelieferten Bash 3.2 keinen Commit
+und endet erfolgreich.
 
 *The script synchronizes Git-tracked files classified as `homeRuntime` by the
 Home Sync v2 manifest from `~/home-baseline-source` into the local runtime copy
 `~/`. `sourceOnly` artifacts are read from the permanent clone and
 `machineLocal` files remain locally managed. By default, sync pulls the clone
 first and creates a path-limited Home commit afterwards; both steps are
-optional.*
+optional. A real no-op creates no commit and succeeds under macOS Bash 3.2.*
 
 Der Klon bleibt dauerhaft die versionierte Level-0-Quelle. SHA-256, Dateimodus
 und Quell-Commit werden unter `~/.home-baseline/home-sync-state.json`

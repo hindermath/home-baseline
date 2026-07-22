@@ -4,8 +4,8 @@
 >
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
-Stand / Updated: 2026-07-21
-Kanonische Skriptdateien / Canonical script files: 111
+Stand / Updated: 2026-07-22
+Kanonische Skriptdateien / Canonical script files: 113
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -629,6 +629,28 @@ bash scripts/test-homogeneity-runtime-closure.sh --dry-run  # falls angeboten / 
 
 ```text
 python3 scripts/tests/test_home_sync_files.py --help
+```
+
+### `scripts/tests/test_maintenance_contracts.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_maintenance_contracts.py --help
+```
+
+### `scripts/tests/test_sync_home_cli.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_sync_home_cli.py --help
 ```
 
 ## Statistik / Statistics

@@ -217,14 +217,18 @@ if $OPT_COMMIT; then
   fi
 
   commit_paths=()
-  for path in "${changed_paths[@]}"; do
-    if [ -e "${HOME_DIR}/${path}" ] || git ls-files --error-unmatch -- "$path" >/dev/null 2>&1; then
-      git add -A -- "$path"
-      if ! git diff --cached --quiet -- "$path"; then
-        commit_paths+=("$path")
+  # Bash 3.2 treats an empty array expansion as an unbound variable under
+  # `set -u`. Guard the loop so a real no-op remains a successful no-op.
+  if [ "${#changed_paths[@]}" -gt 0 ]; then
+    for path in "${changed_paths[@]}"; do
+      if [ -e "${HOME_DIR}/${path}" ] || git ls-files --error-unmatch -- "$path" >/dev/null 2>&1; then
+        git add -A -- "$path"
+        if ! git diff --cached --quiet -- "$path"; then
+          commit_paths+=("$path")
+        fi
       fi
-    fi
-  done
+    done
+  fi
 
   if [ "${#commit_paths[@]}" -eq 0 ]; then
     echo "→ Keine verwalteten Änderungen in ~/ — kein Commit nötig."
