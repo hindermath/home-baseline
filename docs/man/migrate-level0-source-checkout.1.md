@@ -25,7 +25,8 @@ lokalen, geheimnisfreien Zustandsnachweis und behaelt voruebergehend einen
 Kompatibilitaetslink.
 
 Use `--finalize` or `-Finalize` only after every local tool has been validated
-at the new path.
+at the new path. Finalization is idempotent: an already absent compatibility
+link or legacy Git `includeIf` is accepted as the completed state.
 
 ## EXIT STATUS
 

@@ -152,9 +152,19 @@ try {
                 Remove-Item -LiteralPath $legacy -Force
             }
         }
-        if ($PSCmdlet.ShouldProcess('global Git configuration', 'Remove legacy includeIf')) {
+        $legacyIncludeKey = 'includeIf.gitdir:~/home-baseline-tmp/.path'
+        $legacyInclude = Invoke-HBNative git @(
+            'config', '--global', '--get-all', $legacyIncludeKey
+        ) -AllowFailure
+        if ($legacyInclude.ExitCode -notin @(0, 1)) {
+            throw 'Could not inspect legacy Git includeIf section.'
+        }
+        # A missing key is the intended state after finalization. Probe first because
+        # current Git versions return exit code 128 when removing an absent section.
+        if ($legacyInclude.ExitCode -eq 0 -and
+            $PSCmdlet.ShouldProcess('global Git configuration', 'Remove legacy includeIf')) {
             & git config --global --remove-section 'includeIf.gitdir:~/home-baseline-tmp/' 2>$null
-            if ($LASTEXITCODE -notin @(0, 5)) {
+            if ($LASTEXITCODE -ne 0) {
                 throw 'Could not remove legacy Git includeIf section.'
             }
         }
