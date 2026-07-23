@@ -43,7 +43,8 @@ remaining gate.
 
 ## Fleet boundary
 
-This document proves publication and Level-0 adoption readiness. Fleet
-installation and Series-evidence migration are recorded separately after every
-registered repository has been evaluated. A repository is not reported as
-migrated when its predecessor graph cannot be established without guessing.
+Publication, Level-0 adoption, and the fleet rollout are complete. The
+authoritative fleet and Series migration evidence is recorded in
+`series-graph-migration-v0.1.1.md`: 33 installations, 32 fleet pull requests,
+and nine request-bound Series reviews covering 241 targets. No repository was
+reported as migrated without a proven predecessor graph.

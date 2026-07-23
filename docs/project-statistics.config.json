@@ -217,6 +217,14 @@
       "labelEn": "Intake Review v0.1.1 release adoption",
       "netLines": 86,
       "activeDays": 1
+    },
+    {
+      "slot": 26,
+      "id": "intake-review-v011-fleet-series-closeout",
+      "labelDe": "Intake-Review-v0.1.1-Flotten- und Series-Abschluss",
+      "labelEn": "Intake Review v0.1.1 fleet and Series closeout",
+      "netLines": 138,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
