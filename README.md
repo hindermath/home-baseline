@@ -1509,13 +1509,21 @@ Repositories auf. Dirty Worktrees, fehlende Upstreams, Ahead-/Diverged-Zustaende
 und detached HEAD werden nicht automatisch aufgeloest. Ein Lock verhindert
 parallele Laeufe; Logs liegen lokal unter `~/.home-baseline/logs/`.
 
+Die Preset-Profilpruefung behandelt einen ausgecheckten Feature-Branch nicht
+als fehlende Spec-Kit-Initialisierung, wenn `origin/HEAD` bereits initialisiert
+ist. In diesem Fall wird die kanonische Revision in einem temporaeren detached
+Worktree nur gelesen und geprueft. Der aktive Branch und unversionierte Dateien
+bleiben unveraendert; eine dort gefundene Drift wird nicht temporaer repariert.
+
 *Use `--scripts-only` / `-ScriptsOnly` to leave the machine toolchain unchanged.
 Maintenance-package drift is reported by default and repaired locally only with
 `--repair-drift` / `-RepairDrift`. Repair mode never commits or pushes; exit `3`
 requests separate review of affected repositories. Dirty worktrees, missing
 upstreams, ahead/diverged states, and detached HEAD are never resolved
 automatically. A lock prevents parallel runs; local logs are stored below
-`~/.home-baseline/logs/`.*
+`~/.home-baseline/logs/`. Preset checks use an isolated detached worktree when
+the active checkout differs from `origin/HEAD`, preserving the active branch
+and all untracked files.*
 
 ```bash
 bash scripts/maintain-agentic-brew-apps.sh --dry-run

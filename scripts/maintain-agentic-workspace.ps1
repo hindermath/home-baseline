@@ -406,6 +406,74 @@ function Get-HBPresetTargets {
     return @($targets)
 }
 
+function Get-HBDefaultRemoteRef {
+    param([Parameter(Mandatory)][string] $Repository)
+
+    $symbolic = (& git -C $Repository symbolic-ref --quiet refs/remotes/origin/HEAD 2>$null | Out-String).Trim()
+    if ($LASTEXITCODE -eq 0 -and $symbolic) {
+        & git -C $Repository show-ref --verify --quiet $symbolic
+        if ($LASTEXITCODE -eq 0) { return $symbolic }
+        return $null
+    }
+
+    $candidates = @()
+    foreach ($candidate in @('refs/remotes/origin/main', 'refs/remotes/origin/master')) {
+        & git -C $Repository show-ref --verify --quiet $candidate
+        if ($LASTEXITCODE -eq 0) { $candidates += $candidate }
+    }
+    if ($candidates.Count -ne 1) { return $null }
+    return $candidates[0]
+}
+
+function New-HBPresetValidationTarget {
+    param([Parameter(Mandatory)][string] $Repository)
+
+    if ($Repository -eq $sourceRoot) {
+        if (-not (Test-Path -LiteralPath (Join-Path $Repository '.specify') -PathType Container)) {
+            throw "Spec Kit ist nicht initialisiert / Spec Kit is not initialized: ${Repository}"
+        }
+        return [pscustomobject]@{ Path = $Repository; Isolated = $false; Root = $null; Repository = $Repository }
+    }
+
+    $defaultRef = Get-HBDefaultRemoteRef -Repository $Repository
+    if (-not $defaultRef) {
+        throw "Kanonischer origin-Default-Branch ist nicht eindeutig / canonical origin default branch is ambiguous: ${Repository}"
+    }
+    $currentCommit = (& git -C $Repository rev-parse HEAD 2>$null | Out-String).Trim()
+    $defaultCommit = (& git -C $Repository rev-parse $defaultRef 2>$null | Out-String).Trim()
+    if (
+        (Test-Path -LiteralPath (Join-Path $Repository '.specify') -PathType Container) -and
+        $currentCommit -and
+        $currentCommit -eq $defaultCommit
+    ) {
+        return [pscustomobject]@{ Path = $Repository; Isolated = $false; Root = $null; Repository = $Repository }
+    }
+
+    & git -C $Repository cat-file -e "${defaultRef}:.specify/presets/.registry" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Spec Kit ist auch auf ${defaultRef} nicht initialisiert / is not initialized on the canonical default ref: ${Repository}"
+    }
+
+    $root = Join-Path (Join-Path $HomeDir '.home-baseline') ("preset-validation." + [Guid]::NewGuid().ToString('N'))
+    $worktree = Join-Path $root 'worktree'
+    New-Item -ItemType Directory -Path $root -Force | Out-Null
+    & git -C $Repository worktree add --detach $worktree $defaultRef | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Remove-Item -LiteralPath $root -Recurse -Force -ErrorAction SilentlyContinue
+        throw "Temporärer Preset-Prüf-Worktree konnte nicht erstellt werden / temporary preset validation worktree failed: ${Repository}"
+    }
+    Write-HBInfo "Preset-Profil wird isoliert auf ${defaultRef} geprüft / validating preset profile on canonical ref"
+    return [pscustomobject]@{ Path = $worktree; Isolated = $true; Root = $root; Repository = $Repository }
+}
+
+function Remove-HBPresetValidationTarget {
+    param([Parameter(Mandatory)][object] $Target)
+
+    if (-not $Target.Isolated) { return }
+    & git -C $Target.Repository worktree remove --force $Target.Path 2>$null
+    Remove-Item -LiteralPath $Target.Root -Recurse -Force -ErrorAction SilentlyContinue
+}
+
 function Invoke-HBPresetProfiles {
     $installer = Join-Path $sourceRoot 'scripts/install-spec-kit-governance-presets.ps1'
     if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) {
@@ -416,20 +484,36 @@ function Invoke-HBPresetProfiles {
         if (-not $config) { continue }
         if (-not (Test-Path -LiteralPath $config -PathType Leaf)) { throw "Preset-Matrix fehlt / missing: ${config}" }
         Write-HBInfo "Preset-Profil Level-$($target.Level): $($target.Path) -> $($target.Profile)"
-        if ($WhatIfPreference) {
-            & $installer -Repo @($target.Path) -PresetConfig $config -WhatIf
-            continue
-        }
-        & $installer -Repo @($target.Path) -PresetConfig $config -CheckOnly
-        if ($LASTEXITCODE -eq 0) { continue }
-        if ($CheckOnly -or -not $RepairDrift) {
-            Write-HBWarning "Preset-Profil-Drift gefunden / preset profile drift found: $($target.Path)"
+        $validationTarget = $null
+        try {
+            $validationTarget = New-HBPresetValidationTarget -Repository $target.Path
+            if ($WhatIfPreference) {
+                & $installer -Repo @($validationTarget.Path) -PresetConfig $config -WhatIf
+                continue
+            }
+            & $installer -Repo @($validationTarget.Path) -PresetConfig $config -CheckOnly
+            if ($LASTEXITCODE -eq 0) { continue }
+            if ($validationTarget.Isolated) {
+                Write-HBWarning "Preset-Profil-Drift auf dem kanonischen Default-Branch erfordert einen eigenen Branch/PR / requires a dedicated branch/PR: $($target.Path)"
+                $script:Findings++
+                continue
+            }
+            if ($CheckOnly -or -not $RepairDrift) {
+                Write-HBWarning "Preset-Profil-Drift gefunden / preset profile drift found: $($target.Path)"
+                $script:Findings++
+                continue
+            }
+            & $installer -Repo @($target.Path) -PresetConfig $config -Force
+            if ($LASTEXITCODE -ne 0) { throw "Preset-Reparatur fehlgeschlagen / repair failed: $($target.Path)" }
+            $script:RepairApplied = $true
+        } catch {
+            Write-HBWarning $_.Exception.Message
             $script:Findings++
-            continue
+        } finally {
+            if ($null -ne $validationTarget) {
+                Remove-HBPresetValidationTarget -Target $validationTarget
+            }
         }
-        & $installer -Repo @($target.Path) -PresetConfig $config -Force
-        if ($LASTEXITCODE -ne 0) { throw "Preset-Reparatur fehlgeschlagen / repair failed: $($target.Path)" }
-        $script:RepairApplied = $true
     }
 }
 

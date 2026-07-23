@@ -29,8 +29,10 @@ Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
 5. Das kanonische Wartungspaket wird mit
    `propagate-agentic-toolchain-maintenance.*` geprueft.
 6. Das Registry-Profil jedes Repositories wird gegen die exakte Acht-, Neun-
-   oder Zehn-Preset-Matrix geprueft; Drift-Reparatur bleibt lokal und
-   uncommittet.
+   oder Zehn-Preset-Matrix geprueft. Liegt der aktive Arbeitsbaum nicht exakt
+   auf `origin/HEAD`, erfolgt die schreibfreie Profilpruefung in einem
+   kurzlebigen detached Worktree des kanonischen Default-Branches. Drift dort
+   erfordert einen eigenen Branch beziehungsweise PR.
 7. Homebrew/apt oder WinGet, Required-CLI-Tools, VS-Code-Extensions und
    Required-Agenten-CLIs werden gepflegt.
 8. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
@@ -47,6 +49,12 @@ Konfliktabweichungen nicht unbemerkt bleiben.
 *Check-only now also runs the manifest-based Home sync check without writing.
 After a real sync, final verification repeats this check so SHA-256, file-mode,
 or conflict drift cannot remain unnoticed.*
+
+*Preset validation resolves the canonical default branch through
+`refs/remotes/origin/HEAD`. If the active worktree is on another or an older
+commit, an isolated temporary worktree validates the exact preset matrix
+without switching branches or touching untracked files. Drift on that
+canonical ref requires a dedicated branch or pull request.*
 
 Das Skript wechselt keine Branches, klont keine Repositories, fuehrt keinen
 Reset aus und commitet oder pusht keine Level-1-/Level-2-Aenderungen. Bei

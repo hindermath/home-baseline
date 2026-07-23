@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import shlex
 import subprocess
 import tempfile
 import unittest
@@ -17,6 +18,26 @@ CONFIG = REPOSITORY / "scripts" / "config"
 
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def run_git(repository: Path, *arguments: str) -> None:
+    subprocess.run(
+        ["git", *arguments],
+        cwd=repository,
+        check=True,
+        stdout=subprocess.DEVNULL,
+    )
+
+
+def preset_helper_source() -> str:
+    source = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(
+        encoding="utf-8"
+    )
+    cleanup_start = source.index("cleanup_preset_validation_target() {")
+    cleanup_end = source.index("\nwhile [ $# -gt 0 ]; do", cleanup_start)
+    start = source.index("resolve_default_remote_ref() {")
+    end = source.index("\nhandle_preset_profiles() {", start)
+    return source[cleanup_start:cleanup_end] + "\n" + source[start:end]
 
 
 class MaintenanceContractTests(unittest.TestCase):
@@ -88,6 +109,212 @@ class MaintenanceContractTests(unittest.TestCase):
             )
             self.assertNotEqual(completed.returncode, 0, completed.stdout)
             self.assertIn("unknown preset profile", completed.stdout)
+
+    @unittest.skipIf(os.name == "nt", "The Bash registration test runs on macOS and Linux.")
+    def test_registration_preserves_explicit_cc65_non_msl_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            repository = home / "C64Projects" / "cc65"
+            repository.mkdir(parents=True)
+            subprocess.run(["git", "init", "-q"], cwd=repository, check=True)
+            registry = home / ".home-baseline" / "registry.json"
+            environment = os.environ.copy()
+            environment["HOME"] = str(home)
+            subprocess.run(
+                [
+                    "bash",
+                    str(REPOSITORY / "scripts" / "register-level2-repository.sh"),
+                    "--repo",
+                    str(repository),
+                    "--level",
+                    "2",
+                    "--registry",
+                    str(registry),
+                    "--primary-language",
+                    "cc65",
+                    "--msl-status",
+                    "non-msl",
+                    "--gsdb-required",
+                    "true",
+                    "--preset-profile",
+                    "intake-authoring-ten-governance-presets",
+                ],
+                env=environment,
+                text=True,
+                check=True,
+            )
+            entry = read_json(registry)["repositories"][0]
+            self.assertEqual(entry["primaryLanguage"], "cc65")
+            self.assertEqual(entry["mslStatus"], "non-msl")
+            self.assertIs(entry["gsdbRequired"], True)
+            self.assertEqual(
+                entry["presetProfile"],
+                "intake-authoring-ten-governance-presets",
+            )
+
+    @unittest.skipIf(os.name == "nt", "The isolated worktree test uses Bash.")
+    def test_preset_check_uses_initialized_origin_default_without_touching_feature_branch(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            remote = root / "remote.git"
+            repository = root / "cc65"
+            home = root / "home"
+            home.mkdir()
+            subprocess.run(["git", "init", "--bare", "-q", str(remote)], check=True)
+            subprocess.run(
+                ["git", "clone", "-q", str(remote), str(repository)],
+                check=True,
+            )
+            run_git(repository, "config", "user.name", "Fixture")
+            run_git(repository, "config", "user.email", "fixture@example.invalid")
+            run_git(repository, "switch", "-c", "master")
+            (repository / "README.md").write_text("baseline\n", encoding="utf-8")
+            run_git(repository, "add", "README.md")
+            run_git(repository, "commit", "-q", "-m", "baseline")
+            baseline = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=repository, text=True
+            ).strip()
+            run_git(repository, "push", "-q", "-u", "origin", "master")
+            run_git(repository, "switch", "-c", "feature-old", baseline)
+            run_git(repository, "switch", "master")
+            registry = repository / ".specify" / "presets" / ".registry"
+            registry.parent.mkdir(parents=True)
+            registry.write_text('{"presets": {}}\n', encoding="utf-8")
+            run_git(repository, "add", ".specify")
+            run_git(repository, "commit", "-q", "-m", "initialize spec kit")
+            run_git(repository, "push", "-q", "origin", "master")
+            run_git(repository, "remote", "set-head", "origin", "master")
+            run_git(repository, "switch", "feature-old")
+            (repository / "local.dbg").write_text("local\n", encoding="utf-8")
+
+            status_before = subprocess.check_output(
+                ["git", "status", "--porcelain=v1", "-uall"],
+                cwd=repository,
+                text=True,
+            )
+            worktrees_before = subprocess.check_output(
+                ["git", "worktree", "list", "--porcelain"],
+                cwd=repository,
+                text=True,
+            )
+            harness = f"""set -euo pipefail
+SOURCE_ROOT=/not-the-fixture
+HOME_DIR={shlex.quote(str(home))}
+PRESET_WORKTREE_REPO=''
+PRESET_WORKTREE_PATH=''
+PRESET_WORKTREE_ROOT=''
+PRESET_VALIDATION_TARGET=''
+PRESET_VALIDATION_ISOLATED=0
+warn() {{ :; }}
+info() {{ :; }}
+{preset_helper_source()}
+prepare_preset_validation_target {shlex.quote(str(repository))}
+[ "$PRESET_VALIDATION_ISOLATED" -eq 1 ]
+[ -f "$PRESET_VALIDATION_TARGET/.specify/presets/.registry" ]
+cleanup_preset_validation_target
+"""
+            subprocess.run(["bash", "-c", harness], check=True)
+
+            self.assertEqual(
+                subprocess.check_output(
+                    ["git", "status", "--porcelain=v1", "-uall"],
+                    cwd=repository,
+                    text=True,
+                ),
+                status_before,
+            )
+            self.assertEqual(
+                subprocess.check_output(
+                    ["git", "worktree", "list", "--porcelain"],
+                    cwd=repository,
+                    text=True,
+                ),
+                worktrees_before,
+            )
+
+    @unittest.skipIf(os.name == "nt", "The isolated worktree test uses Bash.")
+    def test_preset_check_rejects_uninitialized_origin_default(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            repository = root / "repository"
+            home = root / "home"
+            home.mkdir()
+            repository.mkdir()
+            run_git(repository, "init", "-q", "-b", "master")
+            run_git(repository, "config", "user.name", "Fixture")
+            run_git(repository, "config", "user.email", "fixture@example.invalid")
+            (repository / "README.md").write_text("baseline\n", encoding="utf-8")
+            run_git(repository, "add", "README.md")
+            run_git(repository, "commit", "-q", "-m", "baseline")
+            run_git(repository, "remote", "add", "origin", str(root / "unused.git"))
+            run_git(
+                repository,
+                "update-ref",
+                "refs/remotes/origin/master",
+                "HEAD",
+            )
+            run_git(
+                repository,
+                "symbolic-ref",
+                "refs/remotes/origin/HEAD",
+                "refs/remotes/origin/master",
+            )
+
+            harness = f"""set -euo pipefail
+SOURCE_ROOT=/not-the-fixture
+HOME_DIR={shlex.quote(str(home))}
+PRESET_WORKTREE_REPO=''
+PRESET_WORKTREE_PATH=''
+PRESET_WORKTREE_ROOT=''
+PRESET_VALIDATION_TARGET=''
+PRESET_VALIDATION_ISOLATED=0
+warn() {{ :; }}
+info() {{ :; }}
+{preset_helper_source()}
+prepare_preset_validation_target {shlex.quote(str(repository))}
+"""
+            completed = subprocess.run(["bash", "-c", harness], check=False)
+            self.assertNotEqual(completed.returncode, 0)
+
+    @unittest.skipIf(os.name == "nt", "The isolated worktree test uses Bash.")
+    def test_preset_check_rejects_ambiguous_default_refs(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            repository = root / "repository"
+            home = root / "home"
+            home.mkdir()
+            repository.mkdir()
+            run_git(repository, "init", "-q", "-b", "feature")
+            run_git(repository, "config", "user.name", "Fixture")
+            run_git(repository, "config", "user.email", "fixture@example.invalid")
+            (repository / "README.md").write_text("baseline\n", encoding="utf-8")
+            run_git(repository, "add", "README.md")
+            run_git(repository, "commit", "-q", "-m", "baseline")
+            for name in ("main", "master"):
+                run_git(
+                    repository,
+                    "update-ref",
+                    f"refs/remotes/origin/{name}",
+                    "HEAD",
+                )
+
+            harness = f"""set -euo pipefail
+SOURCE_ROOT=/not-the-fixture
+HOME_DIR={shlex.quote(str(home))}
+PRESET_WORKTREE_REPO=''
+PRESET_WORKTREE_PATH=''
+PRESET_WORKTREE_ROOT=''
+PRESET_VALIDATION_TARGET=''
+PRESET_VALIDATION_ISOLATED=0
+warn() {{ :; }}
+info() {{ :; }}
+{preset_helper_source()}
+prepare_preset_validation_target {shlex.quote(str(repository))}
+"""
+            completed = subprocess.run(["bash", "-c", harness], check=False)
+            self.assertNotEqual(completed.returncode, 0)
 
 
 if __name__ == "__main__":
