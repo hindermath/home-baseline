@@ -13,8 +13,6 @@ in the eight C# Level 2 repositories and the cc65 Level 2 repository.*
 - `fleet-evidence.md`: Kardinalitaeten, Grenzen, Validierung und Delivery.
 - `preset-follow-up-intake-review-request-graph.md`: reproduzierbarer,
   providerneutraler Preset-Folgebefund.
-- `tools/`: Kampagnengebundene PowerShell-Helfer fuer Legacy-Adoption und
-  Evidence-Erzeugung; keine verteilte Runtime.
 
 Die Ziel-Repositories enthalten jeweils ihr eigenes Manifest, ihre Receipts,
 den Review-Request, das Review-Ergebnis, den Bericht und die

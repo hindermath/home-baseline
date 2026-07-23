@@ -90,13 +90,12 @@ Statuszeilen bestehen.
 
 ## Kampagnenwerkzeuge / Campaign Tools
 
-`tools/Invoke-Level2IntakeNormalization.ps1` und
-`tools/New-Level2IntakeReviewEvidence.ps1` dokumentieren die deterministische
-Legacy-Adoption fuer die kleinen Repositoryserien. Sie sind begrenzte
-Kampagnen-Evidence, keine installierte Runtime und keine verteilte
-Level-0-Automation. Eine Promotion wuerde zuerst eine portable
-Bash-/PowerShell-Schnittstelle, Fixtures, Katalogeintrag und Manpages
-erfordern.
+Die kleinen Repositoryserien wurden mit begrenzten, lokal geprueften
+PowerShell-Helfern normalisiert. Ihre Quellen werden nicht als Level-0-Produkt
+getrackt, weil keine Promotion beschlossen wurde. Die verbindliche Evidence
+liegt in den Ziel-Repositories. Eine spaetere Promotion wuerde zuerst eine
+portable Bash-/PowerShell-Schnittstelle, Fixtures, einen Katalogeintrag und
+Manpages erfordern.
 
 ## Offene Promotion / Open Promotion
 
