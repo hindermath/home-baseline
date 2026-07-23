@@ -1,17 +1,13 @@
 {
-  "schemaVersion": "1.1",
-  "reviewId": "dfcf1ff5-95ad-488a-879a-65e81e8e350f",
+  "schemaVersion": "1.0",
+  "reviewId": "4c059d46-adda-48ef-934a-a7158ca565bc",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-23T21:53:10Z",
+  "reviewedAt": "2026-07-23T12:12:12Z",
   "repository": {
     "root": ".",
-    "head": "ebc00bda6b4b0bf4cb91936717178b220cd705ff"
-  },
-  "requestEvidence": {
-    "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "37d1d3b87d9f4057f2c7b6c54e11a289c2cce516c383807e4b2175733b9f32bc"
+    "head": "f4755988fa4c82d16a58bc7ee62859f465d992a1"
   },
   "targets": [
     {
@@ -35,7 +31,7 @@
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5",
+      "normalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913",
       "gitBlob": "N/A"
     },
     {
@@ -121,10 +117,8 @@
       "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
     ],
     "series": [
-      "All 14 active paths, roles, and exact order match the bound schema-1.1 request",
-      "Eight declared roots equal the zero-indegree target set",
-      "Nine unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Hard predecessor graph for maintenance items 1 through 5, including the fleet-wide Remote Freshness Barrier",
+      "All 14 active paths and their exact order",
+      "Hard predecessor graph for maintenance items 1 through 5",
       "Ownership and overlap boundaries for governance, sandbox, documentation, cmdlet, comment, and GSDB work",
       "Creator markers, receipts, prompt parity, delivery authority, and no-auto-start boundary"
     ],
@@ -136,5 +130,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "4c059d46-adda-48ef-934a-a7158ca565bc"
+  "supersedes": "N/A"
 }

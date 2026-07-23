@@ -5,8 +5,8 @@
 - Active root intakes: 14
 - Creator-native before normalization: 3
 - Legacy intakes adopted from exact Git blobs: 11
-- Regular receipt supersessions: 2
-- New schema-1.1 intake: 1
+- Regular receipt supersessions: 3
+- Creator-native position-4 intake: 1, now superseded in place
 - Historical root intakes changed: 0
 - Learning-series intakes changed: 0 of 222
 
@@ -18,9 +18,29 @@
 - Every generated Autonomous prompt uses `LocalImplementation`.
 - Bash and PowerShell accepted all 14 current receipts.
 - Bash and PowerShell accepted the 14-target series review as `Ready`.
-- Intake Review Governance v0.1.0 accepted the Authoring v0.1.1 targets without
-  a receipt-schema change, proving the target/hash handoff remains compatible.
+- Intake Review Governance v0.1.1 accepted the schema-1.1 request binding,
+  eight exact roots, nine unique order-consistent DAG edges, all target roles,
+  and all 14 current target hashes.
 - The queue-to-receipt mapping is exactly 14:14 without duplicate targets.
+
+## Remote-Freshness-Barrier Supersession
+
+- The position-4 intake preserves `PWH-001` through `PWH-011` and `AC-001`
+  through `AC-012`.
+- `PWH-012` through `PWH-015` define complete fleet inventory, safe fetch,
+  fast-forward-only pull classification, the downstream mutation barrier, and
+  deterministic text-first fleet evidence.
+- `AC-013` through `AC-017` require operation ordering, safe fast-forward
+  behavior, non-mutating refusal cases, continued audit after an early
+  finding, and Bash/PowerShell parity.
+- The previous intake-authoring receipt is archived byte-for-byte and the new
+  receipt uses schema-1.1 `Supersession` provenance with explicit update
+  authority.
+- The previous Series request, result, and report are archived byte-for-byte
+  under their former review ID.
+- The new Series result supersedes
+  `4c059d46-adda-48ef-934a-a7158ca565bc` and binds request SHA-256
+  `37d1d3b87d9f4057f2c7b6c54e11a289c2cce516c383807e4b2175733b9f32bc`.
 
 ## Preset Validation
 

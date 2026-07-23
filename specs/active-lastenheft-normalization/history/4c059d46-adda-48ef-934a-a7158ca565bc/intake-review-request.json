@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "1.1",
-  "reviewId": "dfcf1ff5-95ad-488a-879a-65e81e8e350f",
+  "schemaVersion": "1.0",
+  "reviewId": "4c059d46-adda-48ef-934a-a7158ca565bc",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -72,16 +72,6 @@
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
-      "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "Lastenheft_Script_Dokumentation.md",
-      "Lastenheft_PowerShell_Cmdlets.md",
-      "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-      "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
-    ],
-    "roots": [
-      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-      "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_PowerShell_Cmdlets.md",
