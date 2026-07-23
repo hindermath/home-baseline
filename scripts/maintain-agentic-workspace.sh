@@ -18,6 +18,11 @@ FINDINGS=0
 REPAIR_APPLIED=0
 LOCK_DIR=""
 LOG_FILE=""
+PRESET_WORKTREE_REPO=""
+PRESET_WORKTREE_PATH=""
+PRESET_WORKTREE_ROOT=""
+PRESET_VALIDATION_TARGET=""
+PRESET_VALIDATION_ISOLATED=0
 
 usage() {
   cat <<'USAGE'
@@ -78,6 +83,7 @@ run_home_sync_check() {
 
 cleanup() {
   local status=$?
+  cleanup_preset_validation_target
   if [ -n "$LOCK_DIR" ] && [ -d "$LOCK_DIR" ]; then
     rm -rf -- "$LOCK_DIR"
   fi
@@ -85,6 +91,20 @@ cleanup() {
     printf '\nLog / log: %s\n' "$LOG_FILE"
   fi
   return "$status"
+}
+
+cleanup_preset_validation_target() {
+  if [ -n "$PRESET_WORKTREE_PATH" ] && [ -n "$PRESET_WORKTREE_REPO" ]; then
+    git -C "$PRESET_WORKTREE_REPO" worktree remove --force "$PRESET_WORKTREE_PATH" >/dev/null 2>&1 || true
+  fi
+  if [ -n "$PRESET_WORKTREE_ROOT" ] && [ -d "$PRESET_WORKTREE_ROOT" ]; then
+    rm -rf -- "$PRESET_WORKTREE_ROOT"
+  fi
+  PRESET_WORKTREE_REPO=""
+  PRESET_WORKTREE_PATH=""
+  PRESET_WORKTREE_ROOT=""
+  PRESET_VALIDATION_TARGET=""
+  PRESET_VALIDATION_ISOLATED=0
 }
 
 while [ $# -gt 0 ]; do
@@ -394,9 +414,72 @@ for entry in data.get("repositories", []):
 PY
 }
 
+resolve_default_remote_ref() {
+  local repo="$1"
+  local ref candidates=()
+
+  ref="$(git -C "$repo" symbolic-ref --quiet refs/remotes/origin/HEAD 2>/dev/null || true)"
+  if [ -n "$ref" ]; then
+    git -C "$repo" show-ref --verify --quiet "$ref" || return 1
+    printf '%s\n' "$ref"
+    return 0
+  fi
+
+  for ref in refs/remotes/origin/main refs/remotes/origin/master; do
+    if git -C "$repo" show-ref --verify --quiet "$ref"; then
+      candidates+=("$ref")
+    fi
+  done
+  [ "${#candidates[@]}" -eq 1 ] || return 1
+  printf '%s\n' "${candidates[0]}"
+}
+
+prepare_preset_validation_target() {
+  local repo="$1"
+  local default_ref current_commit default_commit
+
+  cleanup_preset_validation_target
+  PRESET_VALIDATION_TARGET="$repo"
+
+  # Level-0 validates the executing source checkout so pending source changes
+  # remain visible. Registered repositories are checked against origin/HEAD.
+  if [ "$repo" = "$SOURCE_ROOT" ]; then
+    [ -d "$repo/.specify" ]
+    return
+  fi
+
+  default_ref="$(resolve_default_remote_ref "$repo")" || {
+    warn "Kanonischer origin-Default-Branch ist nicht eindeutig / canonical origin default branch is ambiguous: $repo"
+    return 1
+  }
+  current_commit="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
+  default_commit="$(git -C "$repo" rev-parse "$default_ref" 2>/dev/null || true)"
+
+  if [ -d "$repo/.specify" ] && [ -n "$current_commit" ] && [ "$current_commit" = "$default_commit" ]; then
+    return
+  fi
+  if ! git -C "$repo" cat-file -e "${default_ref}:.specify/presets/.registry" 2>/dev/null; then
+    warn "Spec Kit ist auch auf ${default_ref} nicht initialisiert / is not initialized on the canonical default ref: $repo"
+    return 1
+  fi
+
+  mkdir -p "${HOME_DIR}/.home-baseline"
+  PRESET_WORKTREE_ROOT="$(mktemp -d "${HOME_DIR}/.home-baseline/preset-validation.XXXXXX")"
+  PRESET_WORKTREE_PATH="${PRESET_WORKTREE_ROOT}/worktree"
+  PRESET_WORKTREE_REPO="$repo"
+  if ! git -C "$repo" worktree add --detach "$PRESET_WORKTREE_PATH" "$default_ref" >/dev/null; then
+    cleanup_preset_validation_target
+    warn "Temporärer Preset-Prüf-Worktree konnte nicht erstellt werden / temporary preset validation worktree failed: $repo"
+    return 1
+  fi
+  PRESET_VALIDATION_TARGET="$PRESET_WORKTREE_PATH"
+  PRESET_VALIDATION_ISOLATED=1
+  info "Preset-Profil wird isoliert auf ${default_ref} geprüft / validating preset profile on canonical ref"
+}
+
 handle_preset_profiles() {
   local installer="${SOURCE_ROOT}/scripts/install-spec-kit-governance-presets.sh"
-  local level repo profile config status
+  local level repo profile config status target isolated
   [ -f "$installer" ] || die "Preset-Installer fehlt / missing: $installer"
   [ -f "$PRESET_PROFILE_CATALOG" ] || die "Preset-Profilkatalog fehlt / missing: $PRESET_PROFILE_CATALOG"
 
@@ -408,15 +491,29 @@ handle_preset_profiles() {
     config="$(preset_config_for_profile "$profile")"
     [ -f "$config" ] || die "Preset-Matrix fehlt / missing: $config"
     info "Preset-Profil Level-${level}: ${repo} -> ${profile}"
+    if ! prepare_preset_validation_target "$repo"; then
+      FINDINGS=$((FINDINGS + 1))
+      cleanup_preset_validation_target
+      continue
+    fi
+    target="$PRESET_VALIDATION_TARGET"
+    isolated="$PRESET_VALIDATION_ISOLATED"
 
     if [ "$DRY_RUN" -eq 1 ]; then
-      HOME="$HOME_DIR" bash "$installer" --repo "$repo" --preset-config "$config" --dry-run
+      HOME="$HOME_DIR" bash "$installer" --repo "$target" --preset-config "$config" --dry-run
+      cleanup_preset_validation_target
       continue
     fi
 
     status=0
-    HOME="$HOME_DIR" bash "$installer" --repo "$repo" --preset-config "$config" --check-only || status=$?
+    HOME="$HOME_DIR" bash "$installer" --repo "$target" --preset-config "$config" --check-only || status=$?
+    cleanup_preset_validation_target
     if [ "$status" -eq 0 ]; then
+      continue
+    fi
+    if [ "$isolated" -eq 1 ]; then
+      warn "Preset-Profil-Drift auf dem kanonischen Default-Branch erfordert einen eigenen Branch/PR / requires a dedicated branch/PR: $repo"
+      FINDINGS=$((FINDINGS + 1))
       continue
     fi
     if [ "$CHECK_ONLY" -eq 1 ] || [ "$REPAIR_DRIFT" -ne 1 ]; then
