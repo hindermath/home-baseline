@@ -2698,7 +2698,7 @@ Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
 2026-07-17 verifiziert. Die aktuellen eigenstaendigen Releases sind
 `autonomous-run-governance` v0.3.2 und
 `parallel-autonomous-run-governance` v0.2.3. Das optionale
-`intake-review-governance` v0.1.0 wird separat mit Prioritaet `65` angeboten;
+`intake-review-governance` v0.1.1 wird separat mit Prioritaet `65` angeboten;
 Preset 8 wurde mit
 `github/spec-kit#3591` fuer den Community-Katalog eingereicht. Die direkte
 Installation über
@@ -2710,7 +2710,7 @@ catalog since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified there
 on 2026-07-17. The current standalone releases are
 `autonomous-run-governance` v0.3.2 and
 `parallel-autonomous-run-governance` v0.2.3. Optional
-`intake-review-governance` v0.1.0 is offered separately at priority `65`;
+`intake-review-governance` v0.1.1 is offered separately at priority `65`;
 Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Direct
 installation via versioned ZIP URLs is still the preferred variant when a
@@ -2756,11 +2756,16 @@ Receipt. Die Uebernahme benoetigt ausdrueckliche aktuelle Update-Autoritaet und
 einen exakten Git-Blob- oder klar begrenzten Snapshot-Nachweis; ein erfundenes
 Vorgaenger-Receipt ist unzulaessig.
 
-`intake-review-governance` v0.1.0 bleibt als getrenntes optionales Preset mit
+`intake-review-governance` v0.1.1 bleibt als getrenntes optionales Preset mit
 Prioritaet `65` bestehen. Es prueft einzelne Intakes, Reihen und Kampagnen vor
 Feature-Erstellung. Review und Status sind read-only. Repair braucht
 ausdrueckliche Aenderungsautoritaet. `ReadyForReview` aus Intake Authoring ist
 keine Review-Freigabe.
+
+Reihen verwenden ab v0.1.1 einen hashgebundenen Request-/Result-Vertrag nach
+Schema 1.1. Zielrollen, exakte Reihenfolge, Roots, Kanten und Zyklen werden
+gemeinsam geprüft; nicht eindeutig belegbare Vorgängerbeziehungen führen zu
+`NeedsClarification`.
 
 Thorstens registrierte Level-0-/Level-1-/Level-2-Flotte waehlt beide optionalen
 Intake-Presets ueber `intake-authoring-ten-governance-presets`. Das bisherige
@@ -2773,10 +2778,13 @@ It creates one traceable intake and receipt from explicit ordered UTF-8 sources,
 asks no more than five material questions per pass, protects existing targets,
 and starts no downstream command. Schema 1.1 adds explicitly authorized,
 Git-blob- or snapshot-bound legacy adoption without inventing predecessor
-receipts. `intake-review-governance` v0.1.0 remains a separate optional preset
+receipts. `intake-review-governance` v0.1.1 remains a separate optional preset
 at priority `65`; authoring evidence is not review acceptance. Thorsten's
 managed fleet selects both through the explicit ten-preset profile, while the
-public standard eight remain unchanged.*
+public standard eight remain unchanged. Series mode uses schema 1.1 and binds
+the normalized request hash while validating target roles, exact order, roots,
+edges, and acyclicity; ambiguous predecessors result in
+`NeedsClarification`.*
 
 `autonomous-run-governance` v0.3.2 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt
