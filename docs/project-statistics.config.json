@@ -201,6 +201,14 @@
       "labelEn": "Level 2 intake normalization",
       "netLines": 188,
       "activeDays": 1
+    },
+    {
+      "slot": 24,
+      "id": "intake-review-v011-series-graph-hardening",
+      "labelDe": "Intake-Review-v0.1.1-Series-Graph-Härtung",
+      "labelEn": "Intake Review v0.1.1 series graph hardening",
+      "netLines": 1830,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
