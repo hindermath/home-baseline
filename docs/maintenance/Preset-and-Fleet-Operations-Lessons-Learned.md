@@ -54,6 +54,20 @@ independent observations. The figures are anonymized process evidence only.*
    fail-closed Validatoren und textorientierte Evidence sind Release-Gates.
 10. **Lernbarkeit ist Qualitaet:** Bedienungsbeispiele, A11Y, CEFR-B2-Erklaerung
     und didaktische Kommentare werden mit der technischen Funktion geprueft.
+11. **Upstream-Katalog bleibt seriell:** Community-Preset-Updates fuer
+    `github/spec-kit` werden exakt einzeln eingereicht und aktiviert. Erst wenn
+    der erzeugte PR geprueft und gemergt sowie das zugehoerige Issue
+    abgeschlossen ist, wird das naechste Issue eingereicht beziehungsweise bei
+    einer bereits vorhandenen Warteschlange als naechster Label-Kandidat
+    benannt. Mehrere gleichzeitige Issues oder Label-Anfragen erhoehen das
+    Verwechslungsrisiko im Maintainer-Review. Diese Regel folgt dem
+    [Maintainer-Hinweis in `github/spec-kit#3679`](https://github.com/github/spec-kit/issues/3679#issuecomment-5060400721).
+
+*Upstream community catalog updates for `github/spec-kit` are submitted and
+activated strictly one at a time. Wait until the generated PR is reviewed and
+merged and its issue is complete before filing the next issue or, for an
+existing queue, naming the next label candidate. This follows the maintainer's
+guidance and avoids ordering mistakes during review.*
 
 ## Flottenbetrieb
 

@@ -2693,6 +2693,20 @@ Die offizielle Spec-Kit-Dokumentation zu Presets steht hier:
 - [Community Presets Table](https://github.com/github/spec-kit/blob/main/docs/community/presets.md)
 - [Community Presets Catalog JSON](https://github.com/github/spec-kit/blob/main/presets/catalog.community.json)
 
+Community-Preset-Updates fuer `github/spec-kit` werden nach dem
+[Maintainer-Hinweis zu Issue #3679](https://github.com/github/spec-kit/issues/3679#issuecomment-5060400721)
+strikt einzeln eingereicht und aktiviert: erst den erzeugten PR pruefen und
+mergen lassen sowie das Issue abschliessen, dann das naechste Issue einreichen.
+Bei einer bereits vorhandenen Warteschlange wird nur der naechste Kandidat fuer
+`preset-submission` benannt. Neue Batch-Einreichungen und parallele
+Label-Anfragen sind zu vermeiden.
+
+*Community preset updates for `github/spec-kit` are submitted and activated
+strictly one at a time: wait until the generated PR has been reviewed and
+merged and its issue is complete before filing the next issue. If a queue
+already exists, name only the next candidate for `preset-submission`. Avoid new
+batch submissions and parallel label requests.*
+
 Die ursprünglichen sechs Governance-Presets sind seit 2026-05-04 im Spec-Kit
 Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
 2026-07-17 verifiziert. Die aktuellen eigenstaendigen Releases sind
