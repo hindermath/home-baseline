@@ -209,6 +209,14 @@
       "labelEn": "Intake Review v0.1.1 series graph hardening",
       "netLines": 1830,
       "activeDays": 1
+    },
+    {
+      "slot": 25,
+      "id": "intake-review-v011-release-adoption",
+      "labelDe": "Intake-Review-v0.1.1-Release-Adoption",
+      "labelEn": "Intake Review v0.1.1 release adoption",
+      "netLines": 86,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
