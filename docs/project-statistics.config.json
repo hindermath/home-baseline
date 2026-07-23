@@ -193,6 +193,14 @@
       "labelEn": "Intake Authoring v0.1.1 fleet closeout",
       "netLines": 116,
       "activeDays": 1
+    },
+    {
+      "slot": 23,
+      "id": "level2-intake-authoring-review-normalization",
+      "labelDe": "Level-2-Intake-Normalisierung",
+      "labelEn": "Level 2 intake normalization",
+      "netLines": 188,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
