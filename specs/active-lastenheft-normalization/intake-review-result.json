@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "4c059d46-adda-48ef-934a-a7158ca565bc",
+  "mode": "Series",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-07-23T12:12:12Z",
+  "repository": {
+    "root": ".",
+    "head": "f4755988fa4c82d16a58bc7ee62859f465d992a1"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+      "role": "Primary",
+      "normalizedSha256": "99afe5a50989879b310ccf8114ff2419a7e258fe6c9d543a5b4b2f1fac0663af",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "d7bd19f6e8b69b87d500c6f527dcddc1d360a08955da46f38afae39c6a359d09",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "be33e0fe5cf8ea59b2a5e6f63f96df12172d8c0592d8eb07fd9e7d929768a9b2",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "18bb7f7399246b79ee27851787762d1a4db3dfd85b6430c5d161bdfd5b858bdd",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "934165f9efde2e6e44c5e9e87445a1b1cbb7813bb75569785e0ebbd2c1a9efb9",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "45e3193c3f37808bc27500b3b00f9739f65e63f6f7e1d757aa58d2533b10af0c",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4fe0fcf8119c3261345f763bef11bc474496b626ed8aea5e5bc0cf4f8c9df4c5",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "38742d2bff07e8ab799d46cbbf0e68fe03c147e5da94974a759bc7336c008b23",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Script_Dokumentation.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "430dfa80f8c45946179c07e38a5478dbfcf9e22dca4793986861fdfc99070555",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_PowerShell_Cmdlets.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "a6cb0539e65612537931a3d458b149da945135e699f7fe3ffd26e8896bce42fb",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c44e7f980eda6f3cfe2e1efc0157cbc5389f57e68d2ee54517c7c3966c4503d4",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "16ea6b7ba62b08fd4e02532b75521cc5b6c7700cb41f9704021ea755c74e2833",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_Script_Dokumentation.md",
+      "Lastenheft_PowerShell_Cmdlets.md",
+      "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
+    ],
+    "series": [
+      "All 14 active paths and their exact order",
+      "Hard predecessor graph for maintenance items 1 through 5",
+      "Ownership and overlap boundaries for governance, sandbox, documentation, cmdlet, comment, and GSDB work",
+      "Creator markers, receipts, prompt parity, delivery authority, and no-auto-start boundary"
+    ],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Plattformuebergreifende Ein-Kommando-Wartung
 
 **Repository:** `home-baseline`
@@ -217,7 +218,7 @@ Verbindliche Schema- und Konsistenzregeln:
 
 *The schema rejects duplicate paths and remotes, orphan Level 2 targets,
 repository fields on collections, and unsafe paths. The 30 operational targets
-are canonical fleet members; the collection plus eight preset repositories are
+are canonical fleet members; the collection plus ten preset repositories are
 maintained separately.*
 
 ## 6. Repository-Wartungsvertrag / Repository Maintenance Contract
@@ -274,12 +275,12 @@ continue.*
 Collections werden bei Bedarf nur als Verzeichnis angelegt. Ihre Mitglieder
 werden ausschliesslich ueber eigene Manifestziele gewartet. Die kanonische
 Wartungspaket-Propagation richtet sich an die 30
-`canonical-fleet`-Repositories. Die acht `preset`-Repositories werden per
+`canonical-fleet`-Repositories. Die zehn `preset`-Repositories werden per
 Fetch und sicherem Fast-Forward aktualisiert und mit ihren eigenen Tests
 geprueft, erhalten aber keine kanonischen Propagationsaenderungen.
 
 *Collections are directory boundaries. Canonical maintenance files propagate
-to the 30 canonical fleet repositories only. The eight preset repositories are
+to the 30 canonical fleet repositories only. The ten preset repositories are
 updated and tested under their own contracts but are excluded from canonical
 propagation.*
 
@@ -566,7 +567,7 @@ Logartefakt.
 ### AC-011: Sollflotte
 
 Der Abschlussbericht unterscheidet 30 aktive `canonical-fleet`-Repositories,
-acht aktive `preset`-Repositories und die Collection
+zehn aktive `preset`-Repositories und die Collection
 `SpecKitPresetProjects`. Presets werden nicht propagiert.
 
 ### AC-012: Plattformparitaet
@@ -605,7 +606,7 @@ large-fleet output, target-class boundaries, and Bash/PowerShell parity.*
 4. Die notwendigen kanonischen Aenderungen in die 30 aktiven
    `canonical-fleet`-Repositories propagieren und dort jeweils die lokalen
    Governance-, Branch-, Test- und PR-Regeln beachten.
-5. Die acht Preset-Repositories separat warten und testen, aber nicht durch die
+5. Die zehn Preset-Repositories separat warten und testen, aber nicht durch die
    kanonische Wartungspaket-Propagation veraendern.
 6. Am Ende alle betroffenen Standardbranches synchronisieren und saubere
    Arbeitsbaeume sowie Divergenz `0 0` belegen.
@@ -615,19 +616,14 @@ the merged canonical state may then propagate to the 30 canonical fleet
 repositories. Presets remain separate, and final clean-tree plus remote parity
 is proven everywhere.*
 
-## 16. Alternative Spec-Kit-Einstiege / Alternative Spec Kit Entry Points
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
 
-Fuer dasselbe Feature wird genau einer der beiden folgenden Einstiege
-verwendet. Der schrittweise und der autonome Einstieg duerfen nicht parallel
-fuer denselben aktiven Feature-Stand gestartet werden.
-
-*Use exactly one of the following entry points for the feature. Do not run the
-staged and autonomous variants in parallel for the same active feature state.*
-
-### 16.1 Kopierbarer `/speckit-specify`-Prompt
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md als verbindliche Eingabedatei.
+$speckit-specify Nutze Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md als verbindliche Eingabedatei.
 
 Erstelle eine Feature-Spezifikation fuer eine unbeaufsichtigte, fortsetzbare und plattformuebergreifende Ein-Kommando-Wartung der Level-0-/Level-1-/Level-2-Flotte unter macOS, Linux/Ubuntu und Windows. Uebernimm alle funktionalen Anforderungen, Sicherheitsgrenzen, Plattformanforderungen, Fehlerfaelle und Akzeptanzszenarien des Lastenhefts.
 
@@ -639,44 +635,18 @@ Verbindlich:
 - Behandle administratorpflichtige Aktualisierungen als DEFERRED_ADMIN_REQUIRED und setze unabhaengige Schritte fort.
 - Klassifiziere mongodb-community@8.0, mono, sqlite und telnet als optional.
 - Definiere leise Git-Ausgabe, vollstaendige Logdateien und den kompakten JSON-Abschlussbericht.
-- Erhalte die Trennung zwischen 30 canonical-fleet-Repositories, acht preset-Repositories und dem Collection-Pfad SpecKitPresetProjects.
+- Erhalte die Trennung zwischen 30 canonical-fleet-Repositories, zehn preset-Repositories und dem Collection-Pfad SpecKitPresetProjects.
 - Plane Bash-/PowerShell-Paritaet, Manpages, comment-based help, Skriptkatalog, Sicherheitspruefungen und Projektstatistik ein.
 
 Starte noch keine Implementierung, keinen Flottenrollout und keine Remote-Schreibaktion.
 ```
 
-### 16.2 Kopierbarer `$speckit-autonomous`-Prompt
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
 
 ```text
-$speckit-autonomous Nutze Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md als verbindliche Eingabedatei und fuehre den vollstaendigen Spec-Kit-Lebenszyklus von Specify ueber wiederholtes Clarify, Requirements-Checklists, Plan, Plan-Review, Tasks und Analyze bis zur Implementierung, Validierung und autorisierten Auslieferung aus.
-
-Delivery authority: MergeAndSync, ausschliesslich fuer den in diesem Lastenheft beschriebenen Wartungsumfang.
-
-Verbindliche Auslieferungsgrenzen:
-- Pruefe vor dem Anlegen eines Features Repository-Metadaten und vorhandene autonomous-run-state.json-Dateien. Ueberschreibe keinen aktiven, pausierten oder ungeprueft unterbrochenen Lauf.
-- Erzeuge vor der ersten Implementierungsaenderung Schema-1.1-State und die vorgeschriebene Evidence. Aktualisiere beides an allen logischen Gates.
-- Implementiere und validiere zuerst Level 0 in einem eigenen Feature-Branch.
-- Stage nur die beabsichtigten Pfade, validiere den exakten Lieferkandidaten und erstelle einen fokussierten Commit.
-- Pushe niemals direkt auf den Standardbranch. Erstelle oder aktualisiere einen Pull Request mit dem validierten exakten Head.
-- Warte alle erforderlichen Checks und verwertbaren Reviews ab. Ein nicht verfuegbarer Reviewer ist keine Freigabe.
-- Merge einen gruenen Level-0-PR ausschliesslich per Squash und synchronisiere danach den lokalen Standardbranch mit nachgewiesener Divergenz 0 0.
-- Verwende erst danach den gemergten kanonischen Level-0-Stand fuer die Propagation in die 30 aktiven canonical-fleet-Repositories.
-- Beachte in jedem Ziel-Repository dessen lokale AGENTS.md-, Branch-, Test-, Statistik-, Sicherheits- und PR-Regeln.
-- Liefere notwendige Propagationsaenderungen ebenfalls ueber fokussierte Branches und Pull Requests aus. Warte die erforderlichen Gates ab, merge gruene PRs per Squash und synchronisiere anschliessend die lokalen Standardbranches.
-- Die acht preset-Repositories werden gewartet und mit ihren eigenen Tests validiert, erhalten aber keine kanonischen Propagationsaenderungen.
-- Release-Please-PRs und andere ausserhalb dieses Features erzeugte PRs duerfen nicht gemergt, geschlossen oder veraendert werden.
-- Keine Force-Push-, Admin-Bypass-, Check-Cancellation-, Secret-, Ruleset-, Branch-Protection-, Sichtbarkeits- oder Provider-Abrechnungsberechtigung ist erteilt.
-- Erforderliche Administratorinteraktion fuer lokale Pakete bleibt DEFERRED_ADMIN_REQUIRED; dieser Prompt erteilt kein Passwort und keine Berechtigung zum Speichern oder Protokollieren von Zugangsdaten.
-- Fehlende oder widerspruechliche Gate-Evidenz blockiert den Merge und darf nicht durch Berechtigungs- oder Ruleset-Bypass ersetzt werden.
-- Bei destruktiver Mehrdeutigkeit, nicht zuordenbaren bestehenden Aenderungen, fehlenden Zugangsdaten, einem PausedByUser-Zustand, blockierenden Pflichtpruefungen oder ueberschrittenem Berechtigungsumfang sicher pausieren und einen validierten fortsetzbaren Zustand hinterlassen.
-- Starte nach erfolgreichem Abschluss kein weiteres Feature implizit.
-
-Abschlussnachweis:
-- Berichte implementierte Anforderungen, offene Follow-ups, Aufgaben- und Artefaktzaehler, Plattformtests, Ziel- und Toolchainstatus, uebersprungene optionale oder administratorpflichtige Befunde und Restrisiken.
-- Nenne Level-0-PR und alle im Scope erzeugten Flotten-PRs beziehungsweise begruende pro Ziel, warum keine Remote-Aktion erforderlich war.
-- Belege saubere Arbeitsbaeume, exakte lokale/remote Synchronisation und Divergenz 0 0 fuer Level 0 und alle im Lauf erfolgreich ausgelieferten Ziel-Repositories.
+$speckit-autonomous Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
-
 ## 17. Abnahme dieses Lastenhefts / Acceptance of This Intake
 
 - Das Dokument ist DE zuerst und EN danach aufgebaut.
@@ -684,11 +654,14 @@ Abschlussnachweis:
   historisch lesbar.
 - Die Abarbeitungsreihenfolge verweist aktiv nur auf dieses neue Lastenheft.
 - Beide Prompt-Bloecke nennen exakt diesen Dateinamen.
-- Der autonome Prompt erteilt genau `MergeAndSync` fuer den beschriebenen
-  Scope, aber keinen Bypass, keine Secrets und keine Provider-Administration.
+- Der normalisierte autonome Prompt verwendet `LocalImplementation` und
+  erteilt keinen Bypass, keine Secrets, keine Provider-Administration und
+  keine Remote-Schreibrechte.
 - Das Anlegen des Lastenhefts startet keinen Spec-Kit-Lauf, Feature-Branch,
   Commit, Push, Pull Request oder Flottenrollout.
 
 *The intake is bilingual, discoverable, explicitly supersedes the old active
 entry, contains exact staged and autonomous prompts, grants only the bounded
 autonomous delivery authority, and starts no implementation or remote action.*
+
+<!-- intake-authoring:end -->

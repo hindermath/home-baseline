@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "e5d228fd-b432-4358-9eb3-fb49fce32ed5",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-23T12:08:19Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+    "normalizedSha256": "16ea6b7ba62b08fd4e02532b75521cc5b6c7700cb41f9704021ea755c74e2833"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Legacy target before Intake Creator adoption",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "4c6ee6a891a91f49ffada982be930c61bd1140dd5920ccaa1655930d6bf1df05",
+      "gitBlob": "633db49920c7f705dcbc473c5afc446c13fa8705"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
+      "answer": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
+      "answer": "Ja, als diff-arme LegacyAdoption.",
+      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welcher fachliche Umfang bleibt erhalten?",
+      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
+      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
+      "answer": "LocalImplementation.",
+      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "promptState": "Enabled",
+  "nextAction": "$speckit-intake-review Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+  "provenanceMode": "LegacyAdoption",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "GitBlob",
+    "priorTargetNormalizedSha256": "4c6ee6a891a91f49ffada982be930c61bd1140dd5920ccaa1655930d6bf1df05",
+    "priorGitBlob": "633db49920c7f705dcbc473c5afc446c13fa8705"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+}

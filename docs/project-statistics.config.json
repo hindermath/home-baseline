@@ -169,6 +169,14 @@
       "labelEn": "Linux and Ubuntu maintenance hardening intake",
       "netLines": 637,
       "activeDays": 1
+    },
+    {
+      "slot": 20,
+      "id": "active-intake-creator-normalization",
+      "labelDe": "Aktive Intake-Creator-Normalisierung",
+      "labelEn": "Active Intake Creator normalization",
+      "netLines": 3046,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

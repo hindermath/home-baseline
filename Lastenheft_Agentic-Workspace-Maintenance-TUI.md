@@ -1,11 +1,15 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Agentic-Workspace-Wartungs-TUI
 
 **Repository:** `home-baseline`
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** wartend; Abarbeitung durch hartes Vorgaenger-Gate gesperrt
 **Stand:** 2026-07-20
-**Verbindlicher Vorgaenger:**
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`
+**Verbindliche Vorgaenger / Binding predecessors:**
+1. `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`
+2. `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md`
+3. `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md`
+4. `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md`
 
 ## 1. Zweck / Purpose
 
@@ -23,7 +27,7 @@ controlled selection of existing maintenance modes, and live phase status
 without duplicating the Bash and PowerShell maintenance logic.*
 
 Das Anlegen dieses Dokuments startet keinen Spec-Kit-Lauf. Am Ende stehen ein
-kopierbarer `/speckit-specify`-Prompt und ein kopierbarer
+kopierbarer `$speckit-specify`-Prompt und ein kopierbarer
 `$speckit-autonomous`-Prompt bereit. Beide unterliegen demselben harten
 Vorgaenger-Gate.
 
@@ -33,28 +37,29 @@ predecessor gate.*
 
 ## 2. Hartes Vorgaenger-Gate / Hard Predecessor Gate
 
-Die fachliche Abarbeitung dieses Lastenhefts DARF erst beginnen, wenn
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` nachweislich
-vollstaendig umgesetzt und validiert wurde. Die Existenz des
-Vorgaenger-Lastenhefts oder einer begonnenen Feature-Spezifikation genuegt
-nicht.
+Die fachliche Abarbeitung dieses Lastenhefts DARF erst beginnen, wenn alle vier
+in der aktiven Reihenfolge vorangestellten Wartungs- und Haertungsintakes
+nachweislich vollstaendig umgesetzt und validiert wurden. Die Existenz der
+Vorgaenger-Lastenhefte oder begonnener Feature-Spezifikationen genuegt nicht.
 
-*Processing this intake MUST NOT begin until the cross-platform one-command
-maintenance predecessor has demonstrably been implemented and validated in
-full. Merely having the predecessor document or a started feature specification
-is insufficient.*
+*Processing this intake MUST NOT begin until all four preceding maintenance
+and hardening intakes in the active order have demonstrably been implemented
+and validated in full. Merely having the predecessor documents or started
+feature specifications is insufficient.*
 
 Vor Feature-, Branch- oder Artefakterstellung fuer die TUI muessen alle
 folgenden Nachweise gemeinsam vorliegen:
 
-1. Das zum Vorgaenger gehoerende Feature ist eindeutig ueber seine
-   `spec.md`-Referenz auf das Vorgaenger-Lastenheft identifizierbar.
-2. Alle verpflichtenden Tasks sind abgeschlossen; Requirements-Checklisten und
-   Analyze enthalten keinen offenen blockierenden Befund.
+1. Jedes der vier zu den Vorgaengern gehoerenden Features ist eindeutig ueber
+   seine `spec.md`-Referenz auf das jeweilige Vorgaenger-Lastenheft
+   identifizierbar.
+2. Fuer jeden Vorgaenger sind alle verpflichtenden Tasks abgeschlossen;
+   Requirements-Checklisten und Analyze enthalten keinen offenen blockierenden
+   Befund.
 3. Bei einem autonomen Vorgaengerlauf ist dessen
    `autonomous-run-state.json` gueltig und `Completed`. Bei einem schrittweisen
-   Lauf belegen die Feature-Artefakte und Abschlussnachweise denselben
-   terminalen Zustand.
+   Lauf belegen die jeweiligen Feature-Artefakte und Abschlussnachweise
+   denselben terminalen Zustand.
 4. Die Akzeptanznachweise fuer macOS, Linux/Ubuntu und Windows sind vorhanden.
    Dazu gehoeren macOS-Bash 3.2, modernes Bash und PowerShell 7.
 5. Desired-State-Fleet-Manifest, sicheres Clone-on-missing, fortsetzbare
@@ -68,10 +73,11 @@ folgenden Nachweise gemeinsam vorliegen:
 7. Der Wartungsbaum ist frei von nicht zugeordnetem Drift, der die
    TUI-Schnittstelle oder deren Tests unzuverlaessig machen wuerde.
 
-*The gate requires an identifiable predecessor feature, completed tasks and
-quality findings, terminal staged or autonomous evidence, all required
-platform validation, the complete maintenance-engine contract, authorized
-delivery closeout, and a trustworthy repository state.*
+*The gate requires four identifiable predecessor features, completed tasks
+and quality findings, terminal staged or autonomous evidence, all required
+platform validation, the complete maintenance-engine contract plus its three
+hardening rounds, authorized delivery closeout, and a trustworthy repository
+state.*
 
 Fehlt auch nur ein Nachweis, ist das Gate `BLOCKED`. Der TUI-Lauf meldet die
 fehlenden Nachweise und stoppt vor Feature-Branch, Specify, Plan, Tasks,
@@ -579,21 +585,16 @@ veraendert.
 *The completed feature updates the statistics ledger through its canonical
 renderer, with shared evidence writers serialized.*
 
-## 17. Alternative Spec-Kit-Einstiege / Alternative Spec Kit Entry Points
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
 
-Fuer dieses Feature wird spaeter genau einer der beiden Einstiege verwendet.
-Beide beginnen mit der Vorgaengerpruefung. Sie duerfen nicht parallel fuer
-denselben Feature-Stand ausgefuehrt werden.
-
-*Exactly one of the staged or autonomous entry points is used later. Both begin
-with the predecessor gate and cannot run concurrently for the same feature.*
-
-### 17.1 Kopierbarer `/speckit-specify`-Prompt
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Agentic-Workspace-Maintenance-TUI.md als verbindliche Eingabedatei.
+$speckit-specify Nutze Lastenheft_Agentic-Workspace-Maintenance-TUI.md als verbindliche Eingabedatei.
 
-Pruefe vor Feature-Erstellung oder Artefaktaenderung das harte Vorgaenger-Gate aus Abschnitt 2. Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md muss nachweislich vollstaendig implementiert, auf macOS, Linux/Ubuntu und Windows validiert und gemaess seiner Delivery Authority abgeschlossen sein. Fehlt ein Nachweis, stoppe ohne Feature, Branch, Specify-Artefakt oder Repository-Aenderung und berichte die fehlenden Gate-Nachweise.
+Pruefe vor Feature-Erstellung oder Artefaktaenderung das harte Vorgaenger-Gate aus Abschnitt 2. Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md, Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md, Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md und Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md muessen jeweils nachweislich vollstaendig implementiert, fuer ihren Scope validiert und gemaess ihrer Delivery Authority abgeschlossen sein. Fehlt ein Nachweis, stoppe ohne Feature, Branch, Specify-Artefakt oder Repository-Aenderung und berichte die fehlenden Gate-Nachweise.
 
 Wenn das Gate erfuellt ist, erstelle eine Feature-Spezifikation fuer eine plattformuebergreifende, barrierearme Spectre.Console-TUI fuer maintain-agentic-workspace.*. Uebernimm alle Aufruf-, Kompatibilitaets-, Ereignis-, Cache-, Fallback-, Sicherheits-, Barrierefreiheits-, Test- und Abnahmeanforderungen dieses Lastenhefts.
 
@@ -611,53 +612,18 @@ Verbindlich:
 Starte noch keine Implementierung oder Remote-Schreibaktion.
 ```
 
-### 17.2 Kopierbarer `$speckit-autonomous`-Prompt
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
 
 ```text
-$speckit-autonomous
-
-Arbeite Lastenheft_Agentic-Workspace-Maintenance-TUI.md autonom nach der Repository-Constitution, den Agentenregeln und den installierten Spec-Kit-Governance-Vorgaben ab.
-
-HARTES VORGÄNGER-GATE:
-
-Prüfe vor Feature-Erstellung, Branch-Erstellung oder Artefaktänderungen, ob Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md vollständig abgeschlossen ist.
-
-Akzeptiere den Vorgänger nur als abgeschlossen, wenn die Repository-Nachweise Folgendes bestätigen:
-
-1. Das zugehörige Feature ist eindeutig identifiziert und alle verpflichtenden Tasks, Checklisten und Analysebefunde sind abgeschlossen.
-2. Bei einem autonomen Lauf besitzt autonomous-run-state.json den gültigen Status Completed; bei einem schrittweisen Lauf belegen Feature-Artefakte und Abschlussnachweise denselben terminalen Zustand.
-3. Die geforderten Validierungen für macOS, Ubuntu und Windows liegen vor.
-4. Desired-State-Fleet-Manifest, sicheres Clone-on-missing, fortsetzbare Befundbehandlung, optionale Paketklassifikation, leise Git-Ausgabe und kompakter JSON-Abschlussbericht sind implementiert und validiert.
-5. Der gemäß aktueller Delivery Authority freigegebene Lieferumfang ist abgeschlossen und der lokale beziehungsweise veröffentlichte Stand ist konsistent.
-
-Fehlt ein Nachweis oder besteht ein widersprüchlicher Zustand, STOPPE ohne Feature-Erstellung, ohne Specify, Plan, Tasks oder Implement und ohne Änderungen. Berichte ausschließlich die fehlenden oder widersprüchlichen Gate-Nachweise.
-
-Wenn das Vorgänger-Gate erfüllt ist:
-
-- Verwende Lastenheft_Agentic-Workspace-Maintenance-TUI.md als verbindlichen Intake.
-- Prüfe vor Beginn aktive, pausierte oder unterbrochene autonome Läufe.
-- Führe Specify, wiederholtes Clarify, Requirements-Checklisten, Plan, Plan-Review, Tasks, wiederholtes Analyze, Implement und vollständige Validierung in dieser Reihenfolge aus.
-- Erzeuge und validiere vor der ersten Implementierungsänderung den vorgeschriebenen autonomen State und die Gate-Evidenz.
-- Bewahre die vorhandene Headless-CLI, Konsolenausgabe und deren Exitcodes.
-- Dupliziere keine Wartungslogik in der TUI; Bash und PowerShell bleiben die ausführenden Engines.
-- Implementiere die Spectre.Console-Oberfläche, den Plaintext-Fallback, den content-adressierten Build-Cache und den versionierten JSONL-Ereigniskanal.
-- Setze die Tastatur-, NO_COLOR-, TERM=dumb-, Screenreader-, ASCII- und Schmalterminal-Anforderungen um.
-- Validiere macOS, Ubuntu und Windows, einschließlich macOS-Bash 3.2, modernem Bash, .NET 10 und PowerShell 7.
-- Behandle nicht ausführbare Plattformtests als fehlende Gate-Nachweise und nicht als implizit bestanden.
-- Prüfe den exakten Lieferkandidaten mit Locked Restore, Build, Tests und Dependency-Audit.
-- Ermittle genau einen Delivery-Modus aus der aktuell ausdrücklich erteilten Berechtigung. Ohne eindeutige Remote-Berechtigung gilt LocalImplementation.
-- Führe Commit, Push, Pull Request oder Merge nur aus, wenn die aktuelle Berechtigung ausdrücklich PublishPR beziehungsweise MergeAndSync umfasst.
-- Nutze keine Admin-, Bypass-, Secret-, Ruleset-, Branch-Protection- oder Provider-Abrechnungsberechtigung, die nicht ausdrücklich erteilt wurde.
-- Setze den autonomen Lauf erst auf Completed, wenn sämtliche anwendbaren Abnahmekriterien, Evidenzen und Abschlussfelder terminal erfüllt sind.
-- Starte danach kein weiteres Lastenheft automatisch.
+$speckit-autonomous Lastenheft_Agentic-Workspace-Maintenance-TUI.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Pruefe vor Feature-Erstellung das harte Gate fuer die aktiven Vorgaengerpositionen 1 bis 4 und stoppe ohne Aenderung, falls auch nur ein Abschlussnachweis fehlt. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
-
 ## 18. Abnahme dieses Lastenhefts / Acceptance of This Intake
 
 - Das Lastenheft ist DE zuerst und EN danach aufgebaut.
 - Der Status nennt das harte Vorgaenger-Gate sichtbar.
-- Die Abarbeitungsreihenfolge fuehrt den TUI-Intake direkt nach dem
-  Plattform-Wartungsintake und markiert die Abhaengigkeit.
+- Die Abarbeitungsreihenfolge fuehrt den TUI-Intake auf Position 5 nach allen
+  vier Wartungs- und Haertungsintakes und markiert das harte Gate.
 - Aufruf-, Engine-, Ereignis-, Cache-, Fallback-, Barrierefreiheits-,
   Sicherheits- und Testvertraege sind entscheidungsvollstaendig.
 - Specify- und Autonomous-Prompt nennen den exakten Dateinamen und pruefen das
@@ -668,3 +634,5 @@ Wenn das Vorgänger-Gate erfüllt ist:
 *This bilingual intake visibly records its predecessor gate, provides
 decision-complete behavioral and quality contracts, includes exact staged and
 autonomous prompts, and starts no implementation or delivery action.*
+
+<!-- intake-authoring:end -->

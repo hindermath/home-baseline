@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Didactic Script and Config Comment Hardening
 
 **Repository:** home-baseline
@@ -156,10 +157,14 @@ Der spaetere Lauf soll mindestens diese Bereiche pruefen:
 | Parser-Nachweis | Bash/PowerShell/Python-Leser fuer JSONC-Kandidaten dokumentiert |
 | Validierung | `git diff --check`, JSON/JSONC-Parserpruefung und relevante Syntaxchecks |
 
-## 10. Kopierbarer `/speckit-specify`-Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation fuer einen didaktischen Skript- und Konfigurations-Kommentar-Haertungslauf im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation fuer einen didaktischen Skript- und Konfigurations-Kommentar-Haertungslauf im home-baseline-Repository.
 
 Ziel: Nicht-triviale Bash-, PowerShell-, YAML- und geeignete JSONC-Konfigurationslogik soll fuer Auszubildende, Maintainer und KI-Agenten besser nachvollziehbar werden. Kommentare muessen Warum, Trade-off, Randbedingung, Sicherheitsgrenze, Cross-Platform-Abweichung oder Proof-Grenze erklaeren und duerfen offensichtlichen Code nicht nacherzaehlen.
 
@@ -172,3 +177,12 @@ Wichtig:
 - Halte die Kommentarintensitaet moderat: normalerweise 1 bis 3 Zeilen vor nicht-trivialer Logik.
 - Dokumentiere Evidence, gepruefte Dateien, Entscheidung, Kommentarbedarf, JSONC-Status, Restrisiko und Follow-up-Grenzen.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->
