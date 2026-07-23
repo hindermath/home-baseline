@@ -15,7 +15,7 @@ Target split:
 - `cross-platform-governance` — version `0.2.1`
 - `agent-parity-governance` — version `0.4.0`
 - `intake-authoring-governance` — version `0.1.0`, optional priority `64`
-- `intake-review-governance` — version `0.1.0`, optional priority `65`
+- `intake-review-governance` — version `0.1.1`, optional priority `65`
 - `autonomous-run-governance` — version `0.3.2`
 - `parallel-autonomous-run-governance` — version `0.2.3`
 
@@ -146,7 +146,7 @@ specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
 # Optional; omit to retain the standard eight-preset profile.
 specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.1.0.zip --priority 64
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.1.0.zip --priority 65
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.1.1.zip --priority 65
 specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.2.zip --priority 70
 specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.3.zip --priority 80
 ```
