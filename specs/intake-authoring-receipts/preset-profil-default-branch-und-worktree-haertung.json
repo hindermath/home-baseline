@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "89febe38-5a7e-4a46-bcea-60dc1e045c2d",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-23T10:43:14Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+    "normalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Fünf allgemeine Härtungspunkte aus dem Nutzerauftrag vom 2026-07-23",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "9e2c94413d408e871ba5a2b7de59a479d5696c7212726672c64200a4e1356cb4",
+      "gitBlob": "N/A"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher repository-relative Zielpfad soll verwendet werden?",
+      "answer": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "evidence": "Das Home-Baseline-Profil verlangt einen beschreibenden Lastenheft-Dateinamen im Repository-Root; der Name bildet Preset-Profil, Default-Branch und Worktree-Härtung ab."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wird ein eigener Intake erzeugt oder ein bestehender Wartungsintake überschrieben?",
+      "answer": "Ein eigener ergänzender Intake wird erzeugt; bestehende Intakes bleiben unverändert.",
+      "evidence": "Der Nutzer verlangt ausdrücklich, aus der ausgewählten Chat-Passage eine Intake-Datei zu erzeugen. Der Scope ist eine begrenzte Folge-Härtung des bereits gelieferten Fixes."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Wo wird der neue Intake in die aktive Abarbeitungsreihenfolge eingeordnet?",
+      "answer": "Position 4 nach der plattformübergreifenden, Windows- und Linux-/Ubuntu-Wartung sowie vor der auf Position 5 verschobenen Wartungs-TUI.",
+      "evidence": "Die fünf Punkte härten die gemeinsame Wartungsbasis und müssen vor der darauf aufbauenden TUI abgeschlossen sein; die vorhandene Reihenfolge der drei Wartungsintakes bleibt erhalten."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für einen späteren Autonomous-Lauf?",
+      "answer": "LocalImplementation",
+      "evidence": "Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Commits, Pushes, Pull Requests, Merges, Bypässe oder anderen Remote-Schreibaktionen."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Remote-Schreiboperationen.",
+  "promptState": "Enabled",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "updateAuthorized": false,
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+  "provenanceMode": "New",
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorityEvidence": "N/A"
+}

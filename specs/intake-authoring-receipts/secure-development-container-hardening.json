@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "5125345a-66bf-46a5-b98d-274e20e07ec3",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-23T12:08:19Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+    "normalizedSha256": "45e3193c3f37808bc27500b3b00f9739f65e63f6f7e1d757aa58d2533b10af0c"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Legacy target before Intake Creator adoption",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "69288c93155e29639376514529ad398b44490d4302418cee65c9ab7f16c3d741",
+      "gitBlob": "7dce8ad0fe32bee0f7d2fa3fb79a2f02eeed2849"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
+      "answer": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
+      "answer": "Ja, als diff-arme LegacyAdoption.",
+      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welcher fachliche Umfang bleibt erhalten?",
+      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
+      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
+      "answer": "LocalImplementation.",
+      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "promptState": "Enabled",
+  "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-Container-Hardening.md",
+  "provenanceMode": "LegacyAdoption",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "GitBlob",
+    "priorTargetNormalizedSha256": "69288c93155e29639376514529ad398b44490d4302418cee65c9ab7f16c3d741",
+    "priorGitBlob": "7dce8ad0fe32bee0f7d2fa3fb79a2f02eeed2849"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+}

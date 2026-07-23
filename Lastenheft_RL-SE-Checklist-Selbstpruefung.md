@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: RL-SE-/Checklist-Selbstpruefung
 
 **Repository:** home-baseline
@@ -110,13 +111,26 @@ Im spaeteren Prueflauf werden insbesondere behandelt:
 - Jede positive Aussage verweist auf konkrete Evidenz.
 - Das Projekt bleibt nach der Pruefung baubar, testbar und fuer Lernende nachvollziehbar.
 
-## 10. Optimaler Specify-Prompt / Optimal Specify Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify
+$speckit-specify
 Nutze Lastenheft_RL-SE-Checklist-Selbstpruefung.md als verbindlichen Intake fuer einen separaten RL-SE-/Checklist-Selbstpruefungslauf.
 Starte keinen Sammellauf ueber mehrere Repositories, erzeuge keine automatische Haertung und befuelle keine docs/security/-Nachweise ohne konkrete Spec-Kit-Aufgabe.
 Erstelle eine fokussierte Feature-Spezifikation, die docs/secure-development/, Richtlinie_Sichere-Entwicklung.md, Checklistensammelband_Sichere-Entwicklung.md, CL_01 bis CL_12, mitgeltende Dokumente, Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md, constitution.md, .specify/memory/constitution.md und installierte Governance-Presets als Pruefgrundlagen beruecksichtigt.
 Dokumentiere jeden relevanten Pruefpunkt als Applicable, AlreadySatisfied, N/A, Open oder FollowUp mit Begruendung, Evidenzpfad, Owner, Follow-up, Re-Evaluation-Trigger und Restrisiko.
 Behandle sichere Entwicklung als Must-have. MSL-Status ist ein Pruefpunkt, aber keine Voraussetzung fuer diesen Selbstpruefungslauf.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_RL-SE-Checklist-Selbstpruefung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

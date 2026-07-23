@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Script and Config GSDB-Pruefung
 
 **Repository:** home-baseline
@@ -149,10 +150,14 @@ Ohne diesen Nachweis bleibt die Datei strict JSON.
 - Der Lauf startet keine formale Freigabe und behauptet keine Human-only-Punkte
   als erledigt.
 
-## 11. Kopierbarer `/speckit-specify`-Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Script-and-Config-GSDB-Pruefung.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation fuer eine GSDB-Pruefung der Skript-, JSON/JSONC-, YAML- und Workflow-Flaechen im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_Script-and-Config-GSDB-Pruefung.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation fuer eine GSDB-Pruefung der Skript-, JSON/JSONC-, YAML- und Workflow-Flaechen im home-baseline-Repository.
 
 Ziel: Pruefe Bash-, PowerShell-, JSON/JSONC-, YAML- und CI-Workflow-Flaechen gegen docs/secure-development/, constitution.md, .specify/memory/constitution.md, vorhandene docs/security/-Nachweise und installierte Governance-Presets. Erzeuge eine Evidenzmatrix mit Applicable, AlreadySatisfied, N/A, Open und FollowUp.
 
@@ -165,3 +170,12 @@ Wichtig:
 - JSONC ist nur zulaessig, wenn alle Leser und Tests Parser-Kompatibilitaet belegen; ansonsten bleibt strict JSON.
 - Dokumentiere je Pruefpunkt Evidenzpfad, Begruendung, Owner, Restrisiko, Follow-up und Re-Evaluation-Trigger.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_Script-and-Config-GSDB-Pruefung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

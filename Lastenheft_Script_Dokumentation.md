@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Skript-Dokumentation (Unix man-Pages & PowerShell Hilfe)
 
 ## 1. Einleitung / Introduction
@@ -97,10 +98,14 @@ Out of Scope:
 | README/Guidance | Dokumentationspflicht fuer neue/geaenderte Skripte ist sichtbar |
 | Pruefung | `git diff --check` und eine nachvollziehbare Hilfeabdeckungspruefung laufen |
 
-## 10. Kopierbarer `/speckit-specify`-Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Script_Dokumentation.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Dokumentationslauf zu Bash-Manpages und PowerShell-Hilfe im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_Script_Dokumentation.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Dokumentationslauf zu Bash-Manpages und PowerShell-Hilfe im home-baseline-Repository.
 
 Ziel: Alle relevanten Skripte sollen eine aktuelle, zweisprachige und wartbare Hilfe haben. Bash-Skripte brauchen passende Manpages in `docs/man/`; PowerShell-Skripte brauchen vollstaendige kommentarbasierte Hilfe. Neue oder geaenderte Skripte duerfen kuenftig nicht ohne passende Dokumentation entstehen.
 
@@ -114,3 +119,12 @@ Pflichtpunkte:
 
 Erzeuge eine Spezifikation mit Bestandsanalyse, Scope, Nicht-Zielen, Anforderungen, Akzeptanzkriterien, Teststrategie und erwarteten Dokumentationsartefakten.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_Script_Dokumentation.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

@@ -113,6 +113,7 @@
 | 2026-07-22 | Wartungshaertung: Flottenabschluss | — | — | — | Das kanonische Wartungspaket ueber 30 Level-1-/Level-2-Repositories mit jeweils eigenem PR ausgerollt. Alle Source- und Statistik-Commits wurden als Merge-Commits erhalten; dadurch blieben 30/30 Statistikprofile `CURRENT`. Sechs Repositories lieferten vollstaendige reale Checks einschliesslich `cc65`-Linux-/Windows-Build und `TuiVision`-Build-, Test-, SBOM-, Tooling- und DocFX-Suites. In 24 privaten Repositories starteten die Jobs wegen derselben Billing-/Spending-Limit-Annotation nicht und blieben Provider-`N/A`. Nach dem Merge sind alle 30 Repositories sauber, remote-paritaetisch, wartungspakethomogen und auf dem exakten Zehn-Preset-Profil. Check-only, Dry-run und der argumentlose Wartungslauf endeten mit Exitcode 0. |
 | 2026-07-22 | Windows-Intake fuer Ein-Kommando-Wartungshaertung | — | — | — | Tracebaren, entscheidungsvollstaendigen Windows-Folgeintake mit Receipt aus neun realen Wartungsbefunden erstellt. Der Vertrag umfasst validierte Python-Fallbacks und Bootstrap-Reihenfolge, stabile WhatIf-Ermittlung, sichere phasenbasierte Wiederaufnahme, Erhalt des Zehn-Preset-Profils, Git-normalisierten Drift, begrenzte GitHub-Retries, WinGet-/UAC-Timeouts mit Prozessbereinigung und widerspruchsfreie Paketstatus. Der Intake steht als Position 2 vor der weiterhin hart gesperrten Wartungs-TUI. Kein Intake-Review-, Specify-, Autonomous- oder Remote-Lauf wurde gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+593/-17`, also 576 Nettozeilen. |
 | 2026-07-22 | Linux-/Ubuntu-Intake fuer Ein-Kommando-Wartungshaertung | — | — | — | Tracebaren, entscheidungsvollstaendigen Linux-/Ubuntu-Folgeintake mit Receipt aus vier realen Wartungsbefunden erstellt. Der Vertrag umfasst stdin-sichere Homebrew-Iteration, vollstaendige Paketstatus, fail-closed Required-Pruefung und Exitcodepropagation, einen sicheren automatisierten Swift-Installationsweg sowie einen isolierten interaktiven Homebrew-Regressionstest. Der Intake steht als Position 3 vor der nun von drei Wartungsvorgaengern hart gesperrten TUI. Kein Intake-Review-, Specify-, Autonomous- oder Remote-Lauf wurde gestartet. Das Authoring-Delta vor Statistikpflege umfasst `+654/-17`, also 637 Nettozeilen. |
+| 2026-07-23 | Intake Creator v0.1.1 und aktive Lastenheft-Normalisierung | — | — | — | `intake-authoring-governance` rückwärtskompatibel um Schema 1.1 und den nachweisbaren Modus `LegacyAdoption` erweitert. Alle 14 aktiven Root-Intakes besitzen nun genau ein gültiges Receipt und genau einen Specify-/Autonomous-Prompt mit `LocalImplementation`: elf Git-Blob-gebundene Legacy-Adoptions, zwei reguläre Supersessions und ein neuer Intake. Linux-/Windows-Reihenfolge, das harte TUI-Gate über die Positionen 1 bis 4 und die aktuelle Zehner-Preset-Flottenkardinalität wurden konsolidiert. Bash-/PowerShell-Validatoren, Preset-Parität, PSScriptAnalyzer, Secret Scan und der unabhängige 14-Ziel-Serien-Review sind grün. Historische Root-Dateien und 222 Lernreihen-Intakes blieben unverändert. Das Delta vor Statistikpflege umfasst `+3413/-367`, also 3046 Nettozeilen. |
 
 ---
 
@@ -685,27 +686,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 310576 lines |
-| Textdateien / Text files | 1934 |
+| Textbasis / Text base | 313622 lines |
+| Textdateien / Text files | 1953 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-23 |
 | Aktivtage / Active days | 71 |
-| Relevante Commits / Relevant commits | 494 |
-| Zeilen je Aktivtag / Lines per active day | 4374.3 |
+| Relevante Commits / Relevant commits | 495 |
+| Zeilen je Aktivtag / Lines per active day | 4417.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 28 days |
-| Speedup vs. 80 lines/day | 54.7x |
-| Speedup vs. 100 lines/day | 43.7x |
-| Methodik / Methodology | v2; source `692f99cc2ad3` |
+| Speedup vs. 80 lines/day | 55.2x |
+| Speedup vs. 100 lines/day | 44.2x |
+| Methodik / Methodology | v2; source `e822803b7441` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   2.8% | 8618
-Dokumentation / Documentation   [################....]  82.3% | 255617
-Skripte / Scripts               [###.................]  13.2% | 40962
-Konfiguration / Configuration   [#...................]   1.5% | 4663
+Tests                           [#...................]   2.8% | 8726
+Dokumentation / Documentation   [################....]  81.9% | 256719
+Skripte / Scripts               [###.................]  13.2% | 41382
+Konfiguration / Configuration   [#...................]   1.9% | 6079
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 716
 ```
@@ -733,7 +734,7 @@ So/Su  0 0 0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4
 Di/Tu  0 0 0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4
 Mi/We  0 0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4
-Do/Th  0 0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 3
+Do/Th  0 0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4
 Fr/Fr  0 0 0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 -
 Sa/Sa  0 0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 -
 ```
@@ -801,15 +802,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..19
-   cap 10000 | . . . .
-        8333 | . . . .
-        6667 | . . . .
-        5000 | # . . .
-        3333 | # . . .
-        1667 | # . . .
-           0 +---------
-             16 17 18 19
+Slots 16..20
+   cap 10000 | . . . . .
+        8333 | . . . . .
+        6667 | . . . . .
+        5000 | # . . . .
+        3333 | # . . . .
+        1667 | # . . . #
+           0 +-----------
+             16 17 18 19 20
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -834,6 +835,7 @@ Slots 16..19
 | 17 | Intake-Authoring-Flottenabschluss / Intake authoring fleet closeout | 357 |
 | 18 | Windows-Wartungshaertungsintake / Windows maintenance hardening intake | 576 |
 | 19 | Linux-/Ubuntu-Wartungshaertungsintake / Linux and Ubuntu maintenance hardening intake | 637 |
+| 20 | Aktive Intake-Creator-Normalisierung / Active Intake Creator normalization | 3046 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -843,8 +845,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 54.7x
-100 lines/day      [#########...........] 43.7x
+80 lines/day       [###########.........] 55.2x
+100 lines/day      [#########...........] 44.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -857,7 +859,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#################...] 4374.3
+Visible repository [##################..] 4417.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -883,6 +885,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-23. Es enthaelt 71 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 224691 |
+| 2026-07 | 228471 |
 
 <!-- project-statistics-v2:end -->

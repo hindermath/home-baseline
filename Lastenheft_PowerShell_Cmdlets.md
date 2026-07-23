@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: PowerShell Cmdlets (Advanced Functions)
 
 ## 1. Einleitung / Introduction
@@ -90,10 +91,14 @@ Out of Scope:
 | README/Guidance | Nutzung und Profilintegration sind erklaert |
 | Tests | Import, `Get-Command`, `Get-Help`, `-WhatIf` und direkte Skriptaufrufe bleiben pruefbar |
 
-## 10. Kopierbarer `/speckit-specify`-Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_PowerShell_Cmdlets.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer eine PowerShell-Cmdlet- und Modulstrategie im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_PowerShell_Cmdlets.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer eine PowerShell-Cmdlet- und Modulstrategie im home-baseline-Repository.
 
 Ziel: Bestehende PowerShell-Skripte sollen langfristig als native Advanced Functions mit PowerShell-konformen `Verb-Noun`-Namen nutzbar werden, ohne die vorhandenen Skriptaufrufe zu brechen.
 
@@ -111,3 +116,12 @@ Nicht-Ziele:
 
 Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, Modulentscheidung, Mapping-Artefakten, Anforderungen, Akzeptanzkriterien und Teststrategie.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_PowerShell_Cmdlets.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

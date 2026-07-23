@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Feature Specification: CI/CD-Pipeline-Konfiguration
 # Lastenheft: CI/CD-Pipeline-Konfiguration für Bootstrap-Projekte
 
@@ -383,10 +384,14 @@ Der spaetere Lauf muss zuerst klassifizieren:
 - `N/A`: nicht mehr passend, mit kurzer Begruendung.
 - `FollowUp`: sinnvoll, aber zu gross oder zu unabhaengig fuer diesen Lauf.
 
-## Kopierbarer `/speckit-specify`-Prompt / Copyable `/speckit-specify` Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_CICD_Pipeline_Konfiguration.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen CI/CD-Pipeline-Konfigurationslauf im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_CICD_Pipeline_Konfiguration.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen CI/CD-Pipeline-Konfigurationslauf im home-baseline-Repository.
 
 Ziel: Pruefe und haerte die CI/CD-Template-Strategie fuer neue Level-1- und Level-2-Repositories. Beruecksichtige GitHub Actions primaer und GitLab CI sekundaer, ohne bereits erledigte historische Anforderungen blind erneut umzusetzen.
 
@@ -405,3 +410,12 @@ Nicht-Ziele:
 
 Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, aktualisierter Ist-/Soll-Klassifikation, funktionalen Anforderungen, Akzeptanzkriterien, Risiken, Teststrategie und klaren Folgeentscheidungen.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_CICD_Pipeline_Konfiguration.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

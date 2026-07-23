@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "4c059d46-adda-48ef-934a-a7158ca565bc",
+  "mode": "Series",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+      "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Script_Dokumentation.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_PowerShell_Cmdlets.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "role": "OrderedMember"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [
+      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_Script_Dokumentation.md",
+      "Lastenheft_PowerShell_Cmdlets.md",
+      "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
+    ],
+    "dependencies": [
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+        "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+        "kind": "BindingFunctionalPredecessor"
+      },
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+        "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+        "kind": "BindingFunctionalPredecessor"
+      },
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+        "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+        "kind": "BindingFunctionalPredecessor"
+      },
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "kind": "AssessmentBaseline"
+      },
+      {
+        "from": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+        "kind": "SandboxBaseline"
+      }
+    ]
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

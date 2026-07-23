@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "253dd719-3d4c-4e5e-bea2-2cc4805be225",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-23T12:08:19Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+    "normalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Legacy target before Intake Creator adoption",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "27e682ea4a95a6193bf0ca3ea3b0e516e744499f594280de4d00700dc36fe79f",
+      "gitBlob": "5a7e06584eafbe31dfcf272789123f0706badcc8"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
+      "answer": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
+      "answer": "Ja, als diff-arme LegacyAdoption.",
+      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welcher fachliche Umfang bleibt erhalten?",
+      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
+      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
+      "answer": "LocalImplementation.",
+      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "promptState": "Enabled",
+  "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+  "provenanceMode": "LegacyAdoption",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "GitBlob",
+    "priorTargetNormalizedSha256": "27e682ea4a95a6193bf0ca3ea3b0e516e744499f594280de4d00700dc36fe79f",
+    "priorGitBlob": "5a7e06584eafbe31dfcf272789123f0706badcc8"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+}

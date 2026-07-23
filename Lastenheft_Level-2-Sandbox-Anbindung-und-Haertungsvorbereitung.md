@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Level-2-Sandbox-Anbindung und Haertungsvorbereitung
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft  
@@ -68,10 +69,14 @@ Die erste konkrete Zielmenge sind die vier C#/.NET-Referenzrepos:
 | Sandbox-Kontext | `container-images/absdd-image-sandbox` und dortige `docs/security/`-Nachweise |
 | Preset-Kontext | `.specify/presets/`, `specify preset list`, Preset-Versionen und Prioritaeten |
 
-## Optimaler Spec-Kit Specify Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation fuer die Vorbereitung MSL-basierter Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung.
+$speckit-specify Nutze Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation fuer die Vorbereitung MSL-basierter Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung.
 
 Ziel: Level-2-Repositories sollen sicher, nachvollziehbar und ausbildungsgeeignet in oder mit der absdd-image-sandbox bearbeitet werden koennen. Die Spezifikation darf noch keine technische Haertung eines konkreten Level-2-Repositories starten.
 
@@ -83,3 +88,12 @@ Beruecksichtige:
 - Die vier C#/.NET-Referenzrepos TuiVision, TinyCalc, TinyPl0 und InventarWorkerService als erste Zielmenge.
 - Keine Spec-Kit-Implementierung und keine Projekt-Haertung in diesem Lauf.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

@@ -43,17 +43,18 @@ existing maintenance implementation. This intake does not supersede that
 predecessor. It specifies Windows defects that became visible only during a
 real maintenance run.*
 
-Die Abarbeitung erfolgt unmittelbar nach dem plattformuebergreifenden
-Wartungs-Intake und vor
-`Lastenheft_Agentic-Workspace-Maintenance-TUI.md`. Die TUI bleibt gesperrt,
-bis sowohl der plattformuebergreifende Vertrag als auch diese Windows-Haertung
-vollstaendig implementiert, validiert und gemaess ihrer jeweiligen Delivery
-Authority abgeschlossen sind.
+Die Abarbeitung erfolgt auf Position 2 unmittelbar nach dem
+plattformuebergreifenden Wartungs-Intake. Danach folgen die getrennte
+Linux-/Ubuntu-Haertung und die Preset-/Profil-/Default-Branch-/Worktree-
+Haertung. Die Wartungs-TUI bleibt auf Position 5 gesperrt, bis alle Eintraege
+1 bis 4 vollstaendig implementiert, validiert und gemaess ihrer jeweiligen
+Delivery Authority abgeschlossen sind.
 
-*Processing follows the cross-platform maintenance intake and precedes the
-Agentic Workspace Maintenance TUI. The TUI remains blocked until both the
-cross-platform contract and this Windows hardening round are fully
-implemented, validated, and closed under their respective delivery authority.*
+*Processing takes place at position 2 directly after the cross-platform
+maintenance intake. The separate Linux/Ubuntu and preset/profile/default-
+branch/worktree hardening rounds follow. The maintenance TUI remains blocked
+at position 5 until all items 1 through 4 are fully implemented, validated,
+and closed under their respective delivery authority.*
 
 ## 3. Ausgangslage / Current State
 
@@ -495,14 +496,14 @@ Autonomous run stops before commit, push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und seinen bindenden Vorgaengern. Bewahre WEM-001 bis WEM-009, AC-001 bis AC-012, die Windows-Prioritaet, die TUI-Sperre und alle Sicherheits-, A11Y- und Kompatibilitaetsgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und seinen bindenden Vorgaengern. Bewahre WEM-001 bis WEM-009, AC-001 bis AC-012, die Position-2-Reihenfolge, die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4 und alle Sicherheits-, A11Y- und Kompatibilitaetsgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender Vorgaenger-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges und veraendere keine Remote-Zustaende.
+$speckit-autonomous Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Position-2-Reihenfolge und die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender Vorgaenger-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

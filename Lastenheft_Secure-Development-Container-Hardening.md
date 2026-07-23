@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Secure-Development-Container-Hardening
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
@@ -130,10 +131,14 @@ stillschweigend ausgelassen werden.
 - Der Container-Scope ist fuer Auszubildende, Reviewer und KI-Agenten
   nachvollziehbar.
 
-## 9. Kopierbarer `/speckit-specify`-Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Secure-Development-Container-Hardening.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen sicheren Softwareentwicklungscontainer bzw. eine Entwicklungs-Sandbox.
+$speckit-specify Nutze Lastenheft_Secure-Development-Container-Hardening.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen sicheren Softwareentwicklungscontainer bzw. eine Entwicklungs-Sandbox.
 
 Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden Dokumenten und den acht Governance-Presets soll ein belastbares Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer entstehen.
 
@@ -154,3 +159,12 @@ Nicht-Ziele:
 
 Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, Schutzmodell, Evidenzmatrix, Anforderungen, Akzeptanzkriterien, Risiken und Teststrategie.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_Secure-Development-Container-Hardening.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->

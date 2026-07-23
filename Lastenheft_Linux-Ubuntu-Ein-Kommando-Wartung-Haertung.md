@@ -54,16 +54,18 @@ a real package-manager run.*
 Die aktive Abarbeitungsreihenfolge fuehrt diesen Intake auf Position 3 nach der
 plattformuebergreifenden Wartung und der bereits eingeordneten Windows-Haertung.
 Die Windows-Haertung ist kein technischer Vorgaenger dieser Linux-Arbeit; ihre
-relative Position bleibt erhalten. Die Wartungs-TUI folgt auf Position 4 und
-bleibt gesperrt, bis die plattformuebergreifende Wartung sowie die Windows- und
-Linux-/Ubuntu-Haertungen vollstaendig implementiert und validiert sind.
+relative Position bleibt erhalten. Danach folgt die Preset-/Profil-/Default-
+Branch-/Worktree-Haertung auf Position 4. Die Wartungs-TUI folgt auf Position 5
+und bleibt gesperrt, bis alle Eintraege 1 bis 4 vollstaendig implementiert,
+validiert und gemaess ihrer jeweiligen Delivery Authority abgeschlossen sind.
 
 *The active processing order places this intake at position 3 after
 cross-platform maintenance and the already queued Windows hardening round.
 Windows hardening is not a technical dependency of this Linux work; its
 existing relative position is preserved. The maintenance TUI follows at
-position 4 and remains blocked until cross-platform maintenance plus the
-Windows and Linux/Ubuntu hardening rounds have been implemented and validated.*
+position 5 after the preset/profile/default-branch/worktree hardening round at
+position 4. It remains blocked until all items 1 through 4 have been fully
+implemented, validated, and closed under their respective delivery authority.*
 
 ## 3. Ausgangslage / Current State
 
@@ -555,14 +557,14 @@ push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und seinem bindenden Vorgaenger. Bewahre LUM-001 bis LUM-008, AC-001 bis AC-012, die Linux-/Ubuntu-Prioritaet, die TUI-Sperre und alle Sicherheits-, Supply-Chain-, A11Y-, Exitcode- und Plattformgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und seinem bindenden Vorgaenger. Bewahre LUM-001 bis LUM-008, AC-001 bis AC-012, die Position-3-Reihenfolge, die Position-4-Haertung, die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4 und alle Sicherheits-, Supply-Chain-, A11Y-, Exitcode- und Plattformgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender Vorgaenger-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges und veraendere keine Remote-Zustaende.
+$speckit-autonomous Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Position-3-Reihenfolge, die nachfolgende Position-4-Haertung und die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender Vorgaenger-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

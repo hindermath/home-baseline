@@ -1,3 +1,4 @@
+<!-- intake-authoring:begin -->
 # Lastenheft: Mitgeltende Dokumente und Spec-Kit-Verzahnung
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
@@ -97,10 +98,14 @@ Der spaetere Lauf muss ausdruecklich dokumentieren:
 - welche Level-2-Propagation danach erforderlich ist,
 - welche Punkte als `N/A` gelten und warum.
 
-## 10. Kopierbarer `/speckit-specify`-Prompt
+<!-- intake-authoring:prompts -->
+## Copy-Ready Spec Kit Prompts
+
+<!-- spec-kit-command-id: speckit.specify -->
+### Specify
 
 ```text
-/speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den acht Governance-Presets.
+$speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und den acht Governance-Presets.
 
 Ziel: Die sichere-Entwicklung-Basis soll fuer Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten so klar werden, dass spaetere Level-2-Spec-Kit-Laeufe dieselbe Bewertungslogik fuer `Applicable`, `N/A`, `Open`, Evidenzpfad, Restrisiko und Follow-up verwenden.
 
@@ -118,3 +123,12 @@ Nicht-Ziele:
 
 Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, betroffenen Artefakten, Anforderungen, Akzeptanzkriterien, Pruefstrategie und klarer Entscheidung, ob Presets, Agenten-Guidance, Templates oder nur Dokumentation betroffen sind.
 ```
+
+<!-- spec-kit-command-id: speckit.autonomous -->
+### Autonomous
+
+```text
+$speckit-autonomous Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+```
+
+<!-- intake-authoring:end -->
