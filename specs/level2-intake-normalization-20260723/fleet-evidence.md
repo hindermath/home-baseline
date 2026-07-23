@@ -21,15 +21,15 @@ finding, or accepted risk. No later Spec Kit command was started.*
 
 | Repository | Aktive Intakes | Ausgeschlossen | Review | Lokaler Head | PR | Merge |
 |---|---:|---:|---|---|---|---|
-| `InventarDb` | 3 | 0 | `Ready` | `639a5bf` | Pending | Pending |
-| `InventarWorkerService` | 13 | 0 | `Ready` | `c6e167b` | Pending | Pending |
-| `TinyCalc` | 9 | 0 | `Ready` | `f81aa1e` | Pending | Pending |
-| `TinyPl0` | 14 | 1 | `Ready` | `516a2c1` | Pending | Pending |
-| `TuiVision` | 5 | 0 | `Ready` | `d36757d` | Pending | Pending |
-| `SecureOrderDesk-CSharp` | 66 | 7 | `Ready` | `fa7086e` | Pending | Pending |
-| `SecureServiceHarvester-CSharp` | 66 | 7 | `Ready` | `da11b79` | Pending | Pending |
-| `SecureCaseTracker-CSharp` | 62 | 11 | `Ready` | `064c2f9` | Pending | Pending |
-| `cc65` | 3 | 0 | `Ready` | `b228d1a2b` | Pending | Pending |
+| `InventarDb` | 3 | 0 | `Ready` | `639a5bf` | #12 | `3a22396` |
+| `InventarWorkerService` | 13 | 0 | `Ready` | `c6e167b` | #36 | `37bd502` |
+| `TinyCalc` | 9 | 0 | `Ready` | `f81aa1e` | #30 | `8a0d50b` |
+| `TinyPl0` | 14 | 1 | `Ready` | `516a2c1` | #42 | `127c95f` |
+| `TuiVision` | 5 | 0 | `Ready` | `d36757d` | #116 | `0f4014d` |
+| `SecureOrderDesk-CSharp` | 66 | 7 | `Ready` | `fa7086e` | #11 | `9cf3236` |
+| `SecureServiceHarvester-CSharp` | 66 | 7 | `Ready` | `da11b79` | #11 | `c25ae6c` |
+| `SecureCaseTracker-CSharp` | 62 | 11 | `Ready` | `064c2f9` | #16 | `cc0d564` |
+| `cc65` | 3 | 0 | `Ready` | `b228d1a2b` | #12 | `b0316b8` |
 
 Die Ausschluesse sind archivierte Features sowie Reihen-, Track- und
 Ordnungsdokumente, die keinen einzeln startbaren Feature-Intake darstellen.
@@ -66,6 +66,27 @@ versehen.
   und nicht die Intake-Vertraege.
 - Der cc65-Lauf erfolgte in einem isolierten Worktree. Der vorhandene
   schmutzige Upstream-Arbeitsbaum und dessen Branch blieben unveraendert.
+
+## Remote-Abschluss / Remote Closeout
+
+Alle neun PRs wurden mit Merge-Commit gemergt. InventarDb, Secure OrderDesk,
+Secure ServiceHarvester und Secure CaseTracker hatten ausschliesslich
+Provider-Abweisungen mit leerem Runner und null ausgefuehrten Schritten; ihre
+lokalen Pflichtpruefungen waren gruen. Bei den anderen fuenf PRs liefen alle
+technischen Remote-Gates erfolgreich, einschliesslich der Linux- und
+Windows-Regressionen von cc65.
+
+Unmittelbar vor jedem Merge bestanden null offene, aktuelle Review-Threads.
+Der zuvor ausdruecklich genehmigte Admin-Bypass wurde nur fuer die
+Provider-Zero-Step-Grenze beziehungsweise die danach allein verbleibende
+Human-Approval-Regel verwendet. Kein technischer Fehler wurde als Pass
+umgedeutet.
+
+Alle acht C#-Arbeitskopien stehen sauber auf `main` und entsprechen
+`origin/main`. Der isolierte cc65-Kampagnen-Worktree und sein Branch wurden
+nach dem Merge entfernt. Der urspruengliche cc65-Arbeitsbaum blieb auf
+`upstream/noexec-bsd-find` mit denselben 23 bereits vorhandenen lokalen
+Statuszeilen bestehen.
 
 ## Kampagnenwerkzeuge / Campaign Tools
 
