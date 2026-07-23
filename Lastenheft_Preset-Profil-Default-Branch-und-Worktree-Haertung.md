@@ -6,7 +6,7 @@
 **Profil / Profile:** `home-baseline-lastenheft`  
 **Repository:** `home-baseline`  
 **Dokumenttyp / Document type:** Spec-Kit-Intake für eine allgemeine Wartungshärtung / Spec Kit intake for general maintenance hardening  
-**Version:** 1.0  
+**Version:** 1.1
 **Stand / Date:** 2026-07-23  
 **Delivery Authority:** `LocalImplementation`
 
@@ -144,17 +144,35 @@ PowerShell liefern für dieselben Fixtures dieselben Statusklassen und
 Sicherheitsgrenzen. Registry-Widersprüche werden gemeldet, nicht still
 korrigiert.
 
+Vor Home-Sync, Preset-Reparatur, Propagation, Paketmanager-, Toolchain- oder
+anderen mutierenden Wartungsphasen MUSS ein flottenweiter
+Remote-Freshness-Preflight abgeschlossen sein. Er inventarisiert Level 0 und
+alle registrierten Level-1-/Level-2-Repositories, aktualisiert jedes
+erreichbare `origin` sicher und sammelt Befunde weiter, auch wenn ein früheres
+Repository nicht synchronisiert werden kann. Nur eindeutig sichere
+Fast-forward-Fälle dürfen gepullt werden. Jeder andere Pflichtbefund sperrt
+alle nachfolgenden mutierenden Phasen.
+
 *Default branches are resolved read-only regardless of their name. Temporary
 validation worktrees carry bounded ownership evidence and can be cleaned up
 safely by the next run after a hard abort. Bash and PowerShell produce the same
 status classes and safety boundaries for identical fixtures. Registry
-contradictions are reported rather than silently corrected.*
+contradictions are reported rather than silently corrected. Before Home Sync,
+preset repair, propagation, package-manager, toolchain, or other mutating
+maintenance phases, a fleet-wide remote-freshness preflight must finish. It
+continues read-only inventory after individual findings, pulls only proven
+fast-forward cases, and blocks downstream mutations when a required repository
+cannot be proven synchronized.*
 
 ## 5. Scope und Nicht-Ziele / Scope and Non-Goals
 
 ### In Scope
 
 - sichere Remote-Aktualisierung vor der Preset-Profilentscheidung;
+- flottenweiter Remote-Freshness-Preflight vor mutierenden Wartungsphasen;
+- sichere, explizite Fast-forward-Pull-Klassifikation;
+- vollständige Bestandsaufnahme trotz einzelner Repository-Befunde;
+- fail-closed Sperre für Home-Sync, Reparatur, Propagation und Toolchain;
 - read-only Auflösung beliebiger `origin`-Default-Branches;
 - fail-closed Behandlung von fehlendem, nicht erreichbarem oder mehrdeutigem
   Remote-HEAD;
@@ -165,11 +183,12 @@ contradictions are reported rather than silently corrected.*
 - textorientierte, farbunabhängige Status- und Evidence-Ausgabe;
 - betroffene Manpages, Help, Skriptinventur und Projektstatistik.
 
-*In scope are fresh remote evidence, arbitrary read-only default-branch
-resolution, fail-closed ambiguity, owned temporary-worktree leases, safe
-hard-abort recovery, cross-platform Bash/PowerShell behavior fixtures,
-MSL-registry consistency checks, accessible text evidence, and affected
-documentation.*
+*In scope are a fleet-wide remote-freshness preflight, safe fast-forward
+classification, complete inventory despite individual findings, a fail-closed
+downstream mutation barrier, arbitrary read-only default-branch resolution,
+owned temporary-worktree leases, safe hard-abort recovery, cross-platform
+Bash/PowerShell behavior fixtures, MSL-registry consistency checks, accessible
+text evidence, and affected documentation.*
 
 ### Non-Goals
 
@@ -317,6 +336,68 @@ ref, commit, status, and next action in text. Color may only be supplementary.
 Publishable evidence must exclude private absolute paths, secrets, and
 unnecessary personal data.*
 
+### PWH-012 - Flottenweiter Remote-Freshness-Preflight
+
+Vor jeder nachfolgenden mutierenden Wartungsphase MUSS der Lauf Level 0 und
+alle registrierten Level-1-/Level-2-Repositories vollständig inventarisieren.
+Für jedes erreichbare `origin` MUSS `fetch --prune` oder ein semantisch
+gleichwertiger sicherer Fetch ausgeführt werden, auch bei schmutzigem
+Arbeitsbaum. Ein Befund in einem Repository DARF die read-only Fetch- und
+Bestandsprüfung der übrigen Flotte nicht überspringen.
+
+*Before any downstream mutating maintenance phase, the run must fully inventory
+Level 0 and every registered Level 1/Level 2 repository. It must run
+`fetch --prune`, or a semantically equivalent safe fetch, for every reachable
+`origin`, including dirty worktrees. A finding in one repository must not skip
+the read-only fetch and inventory checks for the remaining fleet.*
+
+### PWH-013 - Sichere Pull-Entscheidung
+
+`pull --ff-only` DARF ausschließlich für ein sauberes Repository auf seinem
+eindeutig aufgelösten kanonischen Default-Branch mit eindeutigem Upstream,
+null Ahead-Commits und einem reinen Behind-Zustand ausgeführt werden. Dirty,
+Ahead, Diverged, Detached HEAD, Non-Default-Branch, fehlender Upstream,
+nicht erreichbarer Remote oder uneindeutiger Remote-HEAD MÜSSEN ohne Pull und
+ohne andere Worktree-Mutation enden.
+
+*`pull --ff-only` may run only for a clean repository on its unambiguously
+resolved canonical default branch with an unambiguous upstream, zero ahead
+commits, and a purely behind state. Dirty, Ahead, Diverged, Detached HEAD,
+Non-Default-Branch, missing-upstream, unreachable-remote, or ambiguous
+remote-HEAD states must end without pull or any other worktree mutation.*
+
+### PWH-014 - Fail-closed Folgeaktionsbarriere
+
+Home-Sync, Preset-Reparatur, Propagation, Paketmanager-, Toolchain- und andere
+mutierende Wartungsphasen DÜRFEN erst beginnen, wenn der gesamte
+Remote-Freshness-Preflight abgeschlossen ist und jedes Pflicht-Repository
+nachweislich synchron oder sicher fast-forward aktualisiert wurde.
+Fetch-Fehler, Drift oder ein nicht sicher aktualisierbarer Pflichtzustand
+MÜSSEN diese Folgephasen sperren. `--check-only` sammelt alle Befunde, verändert
+keine Arbeitsdateien und führt keinen Pull aus.
+
+*Home Sync, preset repair, propagation, package-manager, toolchain, and other
+mutating maintenance phases may start only after the complete
+remote-freshness preflight and after every required repository is proven
+synchronized or safely fast-forwarded. Fetch failures, drift, or an unsafe
+required state must block these downstream phases. `--check-only` collects all
+findings, changes no working files, and performs no pull.*
+
+### PWH-015 - Deterministischer Flottenbericht
+
+Die textorientierte Flotten-Evidence MUSS für jedes inventarisierte Repository
+mindestens Level, repository-relativen Bezeichner, lokalen Branch,
+kanonischen Remote-Ref, exakten Remote-Commit, Fetch-Ergebnis, Ahead-/Behind-
+Zähler, Pull-Entscheidung, Sperrgrund und genaue nächste Aktion ausgeben.
+Zusätzlich MUSS ein Gesamtergebnis eindeutig angeben, ob mutierende
+Folgephasen freigegeben oder gesperrt sind.
+
+*Text-first fleet evidence must report at least level, repository-relative
+identifier, local branch, canonical remote ref, exact remote commit, fetch
+result, ahead/behind counts, pull decision, blocking reason, and exact next
+action for every inventoried repository. An aggregate result must state
+unambiguously whether downstream mutating phases are permitted or blocked.*
+
 ## 7. Betroffene Flächen / Affected Surfaces
 
 Voraussichtlich betroffen sind die Bash- und PowerShell-Varianten der
@@ -367,6 +448,8 @@ languages remain valid GSDB targets.*
 - gehärtete Bash- und PowerShell-Orchestratoren oder klar abgegrenzte interne
   Helfer;
 - dokumentierter Freshness- und Default-Ref-Vertrag;
+- dokumentierter flottenweiter Preflight- und Folgeaktionsbarrieren-Vertrag;
+- deterministischer textorientierter Flottenbericht;
 - maschinenlokales Lease-Schema mit sicherer Wiederanlaufbereinigung;
 - positive und negative Git-/Worktree-Fixtures für beide Skriptvarianten;
 - Registry-Konsistenzprüfung ohne automatische Reparatur;
@@ -375,14 +458,19 @@ languages remain valid GSDB targets.*
 - reproduzierbare Validation-Evidence und aktualisierte Projektstatistik.
 
 *Expected artifacts include hardened cross-platform orchestrators or bounded
-internal helpers, documented freshness/default-ref contracts, a local lease
-schema with safe recovery, positive and negative fixtures for both shells,
-non-mutating registry consistency validation, affected documentation, and
-reproducible evidence.*
+internal helpers, documented freshness/default-ref and fleet-barrier
+contracts, deterministic text-first fleet evidence, a local lease schema with
+safe recovery, positive and negative fixtures for both shells, non-mutating
+registry consistency validation, affected documentation, and reproducible
+evidence.*
 
 ## 10. Risiken und Fehlergrenzen / Risks and Failure Boundaries
 
 - Ein Fetch-Fehler darf nicht als erfolgreiche Preset-Prüfung kaschiert werden.
+- Ein früher Flottenbefund darf die read-only Prüfung späterer registrierter
+  Repositories nicht unterdrücken.
+- Eine unvollständige oder nicht eindeutig synchrone Flotte darf keine
+  mutierende Folgephase freigeben.
 - Ein wiederverwendeter PID-Wert allein reicht nicht als Eigentumsnachweis.
 - Ein Lease mit ungültigem oder aus dem State-Verzeichnis ausbrechendem Pfad
   darf keine Löschaktion auslösen.
@@ -393,9 +481,10 @@ reproducible evidence.*
 - Registry-Konflikte blockieren die betroffene Governance-Aussage, aber
   verändern nicht automatisch Sprache, MSL-Status oder GSDB-Pflicht.
 
-*Fetch failure, PID reuse, path escape, mismatched remote HEAD, platform
-differences, and contradictory registry metadata must fail safely without
-mutating unrelated state.*
+*Fetch failure, incomplete fleet inventory, unsafe downstream release, PID
+reuse, path escape, mismatched remote HEAD, platform differences, and
+contradictory registry metadata must fail safely without mutating unrelated
+state.*
 
 ## 11. Messbare Abnahmekriterien / Measurable Acceptance Criteria
 
@@ -429,11 +518,29 @@ mutating unrelated state.*
 - **AC-012:** Dokumentation und Evidence sind DE zuerst/EN danach,
   textorientiert, ohne farbabhängige Bedeutung und ohne veröffentlichte private
   Pfade.
+- **AC-013:** Ein Mehr-Repository-Fixture beweist über eine geordnete
+  Operations-Evidence, dass alle vorgesehenen Fetch-Versuche abgeschlossen
+  sind, bevor Home-Sync, Toolchain-Wartung oder eine andere mutierende
+  Folgephase beginnen kann.
+- **AC-014:** Ein sauberes Repository auf seinem kanonischen Default-Branch mit
+  null Ahead-Commits und reinem Behind-Zustand wird ausschließlich per
+  `pull --ff-only` aktualisiert und endet mit Ahead/Behind `0/0`.
+- **AC-015:** Dirty, Ahead, Diverged, Non-Default-Branch, Detached HEAD,
+  fehlender Upstream, nicht erreichbarer Remote und uneindeutiger Remote-HEAD
+  blockieren mutierende Folgephasen, ohne Index oder Arbeitsdateien zu ändern.
+- **AC-016:** Ein Fehler im ersten Repository verhindert weder Fetch-Versuche
+  noch textorientierte Statuszeilen für alle späteren registrierten
+  Repositories; das Gesamtergebnis bleibt fail-closed.
+- **AC-017:** Bash und PowerShell liefern für den flottenweiten Preflight, alle
+  Pull-Klassifikationen, die Folgeaktionsbarriere und den Bericht dieselben
+  semantischen Statusklassen und Exitcodes.
 
-*Acceptance covers fresh dirty-worktree validation, arbitrary default branch
-names, fail-closed remote ambiguity, normal and hard-abort cleanup, foreign
-lease protection, Bash/PowerShell parity, non-mutating MSL consistency checks,
-safe preview modes, complete validation, and accessible evidence.*
+*Acceptance covers fresh dirty-worktree validation, a complete fleet preflight
+before downstream mutations, safe fast-forward classification, continued
+inventory after individual errors, arbitrary default branch names, fail-closed
+remote ambiguity, normal and hard-abort cleanup, foreign lease protection,
+Bash/PowerShell parity, non-mutating MSL consistency checks, safe preview
+modes, complete validation, and accessible evidence.*
 
 ## 12. Annahmen und offene Fragen / Assumptions and Open Questions
 
@@ -475,14 +582,14 @@ the later run stops before commit, push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Erstelle die Spezifikation ausschließlich aus diesem Intake und seinem bindenden Vorgänger. Bewahre PWH-001 bis PWH-011, AC-001 bis AC-012, die Position-4-Reihenfolge, die TUI-Sperre sowie alle Git-, Hard-Abort-, Registry-, Nicht-MSL-, Plattform-, Sicherheits- und A11Y-Grenzen. Implementiere nichts, verändere keine Remote-Zustände und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Erstelle die Spezifikation ausschließlich aus diesem Intake und seinem bindenden Vorgänger. Bewahre PWH-001 bis PWH-015, AC-001 bis AC-017, die flottenweite Remote-Freshness-Barriere vor allen mutierenden Folgephasen, die sichere Fast-forward-Klassifikation, die vollständige Bestandsaufnahme trotz Einzelbefunden, die Position-4-Reihenfolge, die TUI-Sperre sowie alle Git-, Hard-Abort-, Registry-, Nicht-MSL-, Plattform-, Sicherheits- und A11Y-Grenzen. Implementiere nichts, verändere keine Remote-Zustände und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Führe den vollständigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Bewahre aktive Arbeitsbäume und fremde Worktrees, repariere Registry-Widersprüche nicht still und stoppe bei fehlender Vorgänger-Evidence oder einem harten Sicherheitsstopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges und verändere keine Remote-Zustände. Starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Führe den vollständigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Implementiere und validiere PWH-001 bis PWH-015 sowie AC-001 bis AC-017 lokal bis zur definierten Abschlussgrenze. Beweise, dass der flottenweite Remote-Freshness-Preflight vor jeder mutierenden Folgephase abgeschlossen wird, nur sichere Fast-forward-Fälle gepullt werden und Einzelbefunde die restliche read-only Bestandsaufnahme nicht abbrechen. Bewahre aktive Arbeitsbäume und fremde Worktrees, repariere Registry-Widersprüche nicht still und stoppe bei fehlender Vorgänger-Evidence oder einem harten Sicherheitsstopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges und verändere keine Remote-Zustände. Starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

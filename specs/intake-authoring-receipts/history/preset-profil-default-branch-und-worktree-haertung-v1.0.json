@@ -1,33 +1,24 @@
 {
   "schemaVersion": "1.1",
-  "receiptId": "40faffea-1f68-416c-9ca3-d932c9a3fda1",
+  "receiptId": "89febe38-5a7e-4a46-bcea-60dc1e045c2d",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.1.1"
   },
-  "createdAt": "2026-07-23T21:51:25Z",
+  "createdAt": "2026-07-23T10:43:14Z",
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-    "normalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5"
+    "normalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913"
   },
   "sources": [
     {
       "order": 1,
       "kind": "Pasted",
-      "label": "Bestehender Intake vor der autorisierten In-place-Aktualisierung",
+      "label": "Fünf allgemeine Härtungspunkte aus dem Nutzerauftrag vom 2026-07-23",
       "location": "SnapshotOnly",
       "path": "N/A",
-      "normalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913",
-      "gitBlob": "N/A"
-    },
-    {
-      "order": 2,
-      "kind": "File",
-      "label": "Genehmigter Plan zur flottenweiten Remote-Freshness-Barriere",
-      "location": "ExternalSnapshot",
-      "path": "N/A",
-      "normalizedSha256": "0d4dc2c37e7c8bf23b09f17af00992c70100350f8cfda51ca2ad44c77c2f0753",
+      "normalizedSha256": "9e2c94413d408e871ba5a2b7de59a479d5696c7212726672c64200a4e1356cb4",
       "gitBlob": "N/A"
     }
   ],
@@ -61,27 +52,6 @@
       "question": "Welche Delivery Authority gilt für einen späteren Autonomous-Lauf?",
       "answer": "LocalImplementation",
       "evidence": "Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Commits, Pushes, Pull Requests, Merges, Bypässe oder anderen Remote-Schreibaktionen."
-    },
-    {
-      "id": "IAD005",
-      "status": "Answered",
-      "question": "Darf der bestehende Intake und sein Receipt in place aktualisiert werden?",
-      "answer": "Ja, als nachvollziehbare Supersession ohne neuen Intake und ohne Änderung der Position 4.",
-      "evidence": "Der aktuelle Nutzerauftrag genehmigt ausdrücklich die vollständige Umsetzung des Plans zur Intake-Nachschärfung."
-    },
-    {
-      "id": "IAD006",
-      "status": "Answered",
-      "question": "Welche Flottengrenze muss vor mutierenden Wartungsphasen gelten?",
-      "answer": "Level 0 und alle registrierten Level-1-/Level-2-Repositories müssen vollständig read-only inventarisiert und gefetcht sein; unsichere Pflichtzustände sperren alle mutierenden Folgephasen.",
-      "evidence": "Der genehmigte Plan definiert PWH-012 bis PWH-015 und AC-013 bis AC-017 als fail-closed Remote-Freshness-Barriere."
-    },
-    {
-      "id": "IAD007",
-      "status": "Answered",
-      "question": "Welcher Review-Umfang ist nach der Intake-Änderung verbindlich?",
-      "answer": "Der vollständige aktive 14-Ziel-Series-Review wird auf Schema 1.1 migriert und supersediert.",
-      "evidence": "Der geänderte Intake ist Teil der aktiven Serie; ein isolierter Single-Review würde die bestehende Series-Evidence nicht wieder aktuell machen."
     }
   ],
   "openDecisionIds": [],
@@ -93,19 +63,19 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Der aktuelle Nutzerauftrag autorisiert die In-place-Aktualisierung des Intakes, seines Receipts und der lokalen Series-Evidence. Remote-Schreiboperationen bleiben ausgeschlossen.",
+  "authorityEvidence": "Default: Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Remote-Schreiboperationen.",
   "promptState": "Enabled",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-receipts/history/preset-profil-default-branch-und-worktree-haertung-v1.0.json",
-    "targetNormalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913"
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
   },
-  "updateAuthorized": true,
+  "updateAuthorized": false,
   "nextAction": "$speckit-intake-review Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-  "provenanceMode": "Supersession",
+  "provenanceMode": "New",
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: PLEASE IMPLEMENT THIS PLAN zur flottenweiten Remote-Freshness-Barriere."
+  "updateAuthorityEvidence": "N/A"
 }
