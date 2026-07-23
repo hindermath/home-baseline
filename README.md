@@ -2743,13 +2743,18 @@ Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evid
 
 *Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
-`intake-authoring-governance` v0.1.0 ist ein optionales Preset mit Prioritaet
+`intake-authoring-governance` v0.1.1 ist ein optionales Preset mit Prioritaet
 `64`. Es erzeugt aus ausdruecklich benannten, geordneten UTF-8-Quellen genau
 einen Intake und ein hashgebundenes Receipt. Es fragt materielle Entscheidungen
 einzeln und hoechstens fuenfmal pro Durchgang ab, schuetzt vorhandene Ziele und
 startet weder Review noch Specify oder einen autonomen Lauf. Ohne ausdrueckliche
 Remote-Autoritaet verwendet der erzeugte Autonomous-Prompt
 `LocalImplementation`.
+
+Schema 1.1 ergaenzt `LegacyAdoption` fuer bestehende Intakes ohne frueheres
+Receipt. Die Uebernahme benoetigt ausdrueckliche aktuelle Update-Autoritaet und
+einen exakten Git-Blob- oder klar begrenzten Snapshot-Nachweis; ein erfundenes
+Vorgaenger-Receipt ist unzulaessig.
 
 `intake-review-governance` v0.1.0 bleibt als getrenntes optionales Preset mit
 Prioritaet `65` bestehen. Es prueft einzelne Intakes, Reihen und Kampagnen vor
@@ -2763,13 +2768,15 @@ Intake-Presets ueber `intake-authoring-ten-governance-presets`. Das bisherige
 Review ausgestattete Projekte verfuegbar. Keine dieser lokalen Profilwahlen
 aendert die oeffentliche Standard-Achtermatrix.
 
-*`intake-authoring-governance` v0.1.0 is an optional preset at priority `64`.
+*`intake-authoring-governance` v0.1.1 is an optional preset at priority `64`.
 It creates one traceable intake and receipt from explicit ordered UTF-8 sources,
 asks no more than five material questions per pass, protects existing targets,
-and starts no downstream command. `intake-review-governance` v0.1.0 remains a
-separate optional preset at priority `65`; authoring evidence is not review
-acceptance. Thorsten's managed fleet selects both through the explicit
-ten-preset profile, while the public standard eight remain unchanged.*
+and starts no downstream command. Schema 1.1 adds explicitly authorized,
+Git-blob- or snapshot-bound legacy adoption without inventing predecessor
+receipts. `intake-review-governance` v0.1.0 remains a separate optional preset
+at priority `65`; authoring evidence is not review acceptance. Thorsten's
+managed fleet selects both through the explicit ten-preset profile, while the
+public standard eight remain unchanged.*
 
 `autonomous-run-governance` v0.3.2 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt
