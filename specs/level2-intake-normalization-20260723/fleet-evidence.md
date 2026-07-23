@@ -97,9 +97,15 @@ liegt in den Ziel-Repositories. Eine spaetere Promotion wuerde zuerst eine
 portable Bash-/PowerShell-Schnittstelle, Fixtures, einen Katalogeintrag und
 Manpages erfordern.
 
-## Offene Promotion / Open Promotion
+## Abgeschlossene Promotion / Completed Promotion
 
-Der einzige generische Befund steht in
-`preset-follow-up-intake-review-request-graph.md`. Er betrifft die
-Request-Graph-Validierung des Intake-Review-Presets und aendert weder den
-`Ready`-Status dieser Kampagne noch die Kompatibilitaet der beiden Presets.
+Der generische Befund aus
+`preset-follow-up-intake-review-request-graph.md` wurde mit
+`intake-review-governance` v0.1.1 behoben. Alle neun Series-Reviews wurden
+anschliessend unter dem hashgebundenen Schema 1.1 neu erstellt und bestanden
+die Bash- und PowerShell-Validierung. Der vollstaendige Flottenabschluss steht
+in `../intake-review-preset-fleet-rollout/series-graph-migration-v0.1.1.md`.
+
+*The generic request-graph finding was resolved in
+`intake-review-governance` v0.1.1. All nine Series reviews were recreated under
+the request-bound schema 1.1 and passed Bash and PowerShell validation.*
