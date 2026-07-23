@@ -185,6 +185,14 @@
       "labelEn": "Intake Authoring v0.1.1 release adoption",
       "netLines": 55,
       "activeDays": 1
+    },
+    {
+      "slot": 22,
+      "id": "intake-authoring-v011-fleet-closeout",
+      "labelDe": "Intake-Authoring-v0.1.1-Flottenabschluss",
+      "labelEn": "Intake Authoring v0.1.1 fleet closeout",
+      "netLines": 116,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
