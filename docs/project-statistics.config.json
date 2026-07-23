@@ -177,6 +177,14 @@
       "labelEn": "Active Intake Creator normalization",
       "netLines": 3046,
       "activeDays": 1
+    },
+    {
+      "slot": 21,
+      "id": "intake-authoring-v011-release-adoption",
+      "labelDe": "Intake-Authoring-v0.1.1-Release-Adoption",
+      "labelEn": "Intake Authoring v0.1.1 release adoption",
+      "netLines": 55,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
