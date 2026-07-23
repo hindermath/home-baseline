@@ -123,9 +123,14 @@ thread or technical failure was bypassed.*
 
 ## Community-Grenze / Community Boundary
 
-Issue `github/spec-kit#3604` wird nach diesem lokalen Abschluss genau einmal
-mit Release-, ZIP-, Flotten- und Series-Evidence aktualisiert. Ein externes
-Katalog-Merge ist keine lokale Abschlussbedingung.
+Issue `github/spec-kit#3604` und der erzeugte PR #3613 sind bereits
+abgeschlossen. Das offizielle v0.1.1-Update wird deshalb als neuer
+Preset-Submission-Issue mit Referenz auf #3604 eingereicht. Entsprechend der
+Maintainer-Anweisung bleibt es hinter der bereits vorhandenen seriellen
+Warteschlange #3682, #3683 und #3684. #3682 wurde nach Abschluss von #3681 als
+naechster Kandidat benannt. `@mnriem` wurde dabei nicht erneut gepingt.
 
-*The community submission is updated once after this local closeout. An
-external catalog merge is not a local completion condition.*
+*Issue `github/spec-kit#3604` and generated PR #3613 are complete. The official
+v0.1.1 update will therefore use a new preset-submission issue referencing
+#3604 after the existing serial queue #3682-#3684. An external catalog merge is
+not a local completion condition.*
