@@ -64,6 +64,33 @@ Koordination, nicht eine automatische Befehlskette. Die wirksame Auflösung wird
 mit `specify preset list`, `specify preset info <id>` und
 `specify preset resolve <template>` geprüft.
 
+#### Zusammenspiel von Intake und autonomen Läufen
+
+Die vier Workflow-Presets können eine kontrollierte, hashgebundene Kette
+bilden:
+
+```text
+Quellen
+  -> speckit.intake-create
+  -> Intake + Receipt (`ReadyForReview`)
+  -> speckit.intake-review
+  -> `Ready` oder menschlich akzeptiertes `ReadyWithAcceptedRisks`
+  -> speckit.autonomous oder speckit.parallel-autonomous
+```
+
+Die Pfeile sind manuelle Übergaben. `ReadyForReview` ist noch keine
+Review-Freigabe. Wenn die Repository-Policy Intake Review verlangt, prüft
+Preset 7 das aktuelle Ergebnis und den normalisierten Intake-Hash vor Branch,
+Feature und Specify. Preset 8 prüft ein verpflichtendes Campaign-Review vor
+der Worktree-Erstellung, ordnet jeden eindeutigen Intake und jeden Worker zu,
+gleicht den Kampagnen-DAG ab und validiert den Review-Hash bei Resume erneut.
+Preset 8 koordiniert; Preset 7 steuert weiterhin jeden Worker-Lebenszyklus.
+
+Fehlende Evidence, Hashdrift, offene materielle Fragen, Critical-/High-Findings
+oder nicht menschlich akzeptierte Risiken blockieren ein aktiviertes Gate.
+Kein Receipt, Review-Ergebnis oder Prioritätswert erteilt Delivery- oder
+Admin-Rechte.
+
 `autonomous-run-governance` ist Teil der Standard-Achtermatrix. Vollständige
 autonome Läufe bleiben ausdrücklich delegationspflichtig. `LocalImplementation` ist der
 sichere Default; Installation erteilt keine Remote-, Merge- oder Bypass-Rechte.
@@ -167,6 +194,31 @@ layering of Authoring, Review, one autonomous run, and parallel coordination;
 it is not an automatic command chain. Verify effective resolution with
 `specify preset list`, `specify preset info <id>`, and
 `specify preset resolve <template>`.
+
+#### How intake and autonomous runs work together
+
+The four workflow presets can form a controlled, hash-bound chain:
+
+```text
+Sources
+  -> speckit.intake-create
+  -> intake + receipt (`ReadyForReview`)
+  -> speckit.intake-review
+  -> `Ready` or human-approved `ReadyWithAcceptedRisks`
+  -> speckit.autonomous or speckit.parallel-autonomous
+```
+
+The arrows are manual handoffs. `ReadyForReview` is not review acceptance.
+When repository policy requires Intake Review, Preset 7 validates the current
+result and normalized intake hash before branch, feature, and Specify. Preset
+8 validates required campaign review before worktree creation, maps each
+unique intake and worker, aligns the campaign DAG, and revalidates the review
+hash on resume. Preset 8 coordinates while Preset 7 continues to govern every
+worker lifecycle.
+
+Missing evidence, hash drift, unanswered material questions, Critical/High
+findings, or risks without human acceptance block an enabled gate. No receipt,
+review result, or priority value grants delivery or administrative authority.
 
 `autonomous-run-governance` is part of the standard eight-preset matrix.
 Complete autonomous runs still require explicit delegation. `LocalImplementation` is the safe default;

@@ -147,6 +147,167 @@ and `65` without renumbering the standard stack. The sequence from authoring
 through review and autonomous coordination describes conceptual layering, not
 an automatically executed command chain.*
 
+## Wie die vier Workflow-Presets zusammenarbeiten
+
+Die Presets mit den Prioritäten `64`, `65`, `70` und `80` können eine
+durchgängige Qualitätskette bilden. Sie bleiben trotzdem unabhängig
+installierbar und werden nur aktiv, wenn ein Mensch oder eine verbindliche
+Repository-Policy den jeweiligen Schritt verlangt.
+
+```text
+Rohtext oder geordnete Quelldateien
+  |
+  |  $speckit-intake-create
+  v
+Intake + Authoring-Receipt (`ReadyForReview`)
+  |
+  |  $speckit-intake-review
+  v
+Review-Ergebnis (`Ready` oder akzeptiertes `ReadyWithAcceptedRisks`)
+  |
+  +--> $speckit-autonomous          Ein Feature-Lauf
+  |
+  +--> $speckit-parallel-autonomous Mehrere isolierte Feature-Läufe
+```
+
+Die Pfeile zeigen empfohlene **manuelle Übergaben**. Kein Preset ruft den
+nächsten Befehl selbst auf. Eine niedrigere oder höhere Prioritätszahl ändert
+daran nichts.
+
+### 1. Intake Authoring bereitet die fachliche Grundlage vor
+
+`intake-authoring-governance` erzeugt aus ausdrücklich benanntem Rohtext,
+einer Planung oder geordneten UTF-8-Quelldateien genau einen strukturierten
+Intake. Zusätzlich entsteht ein Receipt mit Quellenreihenfolge, normalisierten
+SHA-256-Hashes, offenen Entscheidungen, Sprachregel, Delivery Authority und
+Zielhash.
+
+Der Status `ReadyForReview` bedeutet nur:
+
+- der Authoring-Schritt ist intern konsistent;
+- keine materielle Authoring-Frage ist mehr offen;
+- der gespeicherte Intake kann an eine unabhängige Prüfung übergeben werden.
+
+`ReadyForReview` ist **keine fachliche Freigabe** für Specify oder einen
+autonomen Lauf. Bei `NeedsClarification` bleiben die erzeugten Prompts sichtbar,
+sind aber ausdrücklich gesperrt.
+
+### 2. Intake Review prüft unabhängig
+
+`intake-review-governance` verändert den Intake nicht. Es prüft unter anderem
+Ziel, Zielgruppe, Scope, Nicht-Ziele, atomare Anforderungen, messbare
+Abnahmekriterien, Reihenfolge, Risiken, Sicherheit, A11Y, Plattformgrenzen,
+Evidence und Delivery Authority. Das Ergebnis bindet die normalisierten Hashes
+der geprüften Ziele.
+
+Die möglichen Ergebnisse sind:
+
+| Ergebnis | Bedeutung für einen folgenden autonomen Lauf |
+|---|---|
+| `Ready` | Der aktuelle Intake darf das Review-Gate passieren. |
+| `ReadyWithAcceptedRisks` | Nur mit dokumentierten Medium-/Low-Risiken und ausdrücklicher menschlicher Akzeptanz zulässig. |
+| `NeedsClarification` | Wesentliche Antworten fehlen; der Lauf bleibt gesperrt. |
+| `NeedsRemediation` | Der Intake muss vor dem Lauf gezielt verbessert werden. |
+| `Rejected` | Der geprüfte Intake ist in dieser Form nicht ausführbar. |
+
+Critical- oder High-Findings blockieren immer. Ein autonomer Agent darf Risiken
+nicht selbst akzeptieren.
+
+### 3. Autonomous Run nutzt das Review als optionales Start-Gate
+
+`autonomous-run-governance` v0.3.2 prüft vor Branch-, Feature- und
+Specify-Erstellung, ob Intake Review installiert und laut Repository-Policy
+verpflichtend ist:
+
+- Ist das Gate nicht anwendbar, wird es nachvollziehbar als `N/A` erfasst.
+- Ist es verpflichtend, muss genau ein aktuelles Ergebnis zum verbindlichen
+  Intake vorhanden sein.
+- Der normalisierte Intake-Hash muss mit dem Review-Ergebnis übereinstimmen.
+- Nur `Ready` oder ein menschlich akzeptiertes `ReadyWithAcceptedRisks`
+  passiert das Gate.
+- Fehlende Evidence, Hashdrift, offene Fragen oder blockierende Findings
+  stoppen den Lauf, bevor Implementierungsarbeit beginnt.
+
+Das akzeptierte Review und die Zielhashes werden in den `acceptedArtifacts`
+des autonomen Run-States aufgenommen. Status und Resume können dadurch später
+erkennen, ob die ursprünglich akzeptierte Grundlage noch unverändert ist.
+
+### 4. Parallel Autonomous prüft zusätzlich die Kampagne
+
+`parallel-autonomous-run-governance` v0.2.3 koordiniert mehrere Worker, führt
+deren einzelne Feature-Läufe aber nicht selbst aus. Jeder reale Worker benötigt
+Preset 7 für seinen vollständigen Lebenszyklus.
+
+Bei einer Kampagne mit aktiviertem Intake-Review-Gate:
+
+- wird jeder eindeutige Intake genau einmal semantisch geprüft;
+- erhält trotzdem jeder Worker genau eine eigene Applicability-Zeile;
+- müssen Review, Worker-Ziele, Abhängigkeiten, Handoffs und Kampagnen-DAG
+  übereinstimmen;
+- wird das Review vor der ersten Worktree-Erstellung geprüft;
+- wird der gespeicherte Review-Hash bei Resume erneut validiert.
+
+Damit starten parallele Worker nicht mit unterschiedlichen oder veralteten
+Anforderungsständen. Preset 8 koordiniert Isolation, Reihenfolge und
+Konsolidierung; Preset 7 schützt weiterhin jeden einzelnen Worker-Lauf.
+
+### Welcher Umfang ist sinnvoll?
+
+| Situation | Empfohlene Presets |
+|---|---|
+| Ein vorhandener, bereits geprüfter Intake soll lokal umgesetzt werden | Autonomous Run |
+| Ein vorhandener Intake braucht zuerst eine unabhängige Qualitätsprüfung | Intake Review + Autonomous Run |
+| Rohmaterial soll strukturiert und anschließend geprüft werden | Intake Authoring + Intake Review |
+| Rohmaterial soll bis zum einzelnen autonomen Feature-Lauf geführt werden | Intake Authoring + Intake Review + Autonomous Run |
+| Mehrere geprüfte Intakes sollen isoliert koordiniert werden | Intake Review + Autonomous Run + Parallel Autonomous |
+| Eine vollständige Kampagne beginnt mit Rohmaterial | Alle vier Presets |
+
+Die strengere Kette verursacht zusätzliche Evidence und Prüfschritte. Dieser
+Aufwand lohnt sich besonders bei langen autonomen Läufen, mehreren Quellen,
+abhängigen Features, Parallelität oder hohen Sicherheits- und
+Nachweisanforderungen. Für einen kleinen, bereits eindeutigen lokalen Intake
+kann die Repository-Policy Authoring oder Review bewusst als `N/A` behandeln.
+
+### Gemeinsame Sicherheitsgrenzen
+
+Keiner der vier Schritte darf aus einer Priorität oder einem älteren Receipt
+neue Autorität ableiten. Ohne aktuelle ausdrückliche Freigabe bleibt
+`LocalImplementation` der sichere Autonomous-Standard. Commit, Push, PR,
+Merge, Admin-Bypass, Secrets und Provider-Administration benötigen jeweils
+eine eigene zulässige Autorität.
+
+Hashbindung schützt nur die nachgewiesene Identität des Inhalts. Sie ersetzt
+keine fachliche Prüfung, keine Tests und keine menschliche Risikoentscheidung.
+
+## How the four workflow presets cooperate
+
+The presets at priorities `64`, `65`, `70`, and `80` can form one traceable
+quality chain while remaining independently installable. A user or binding
+repository policy must request each transition.
+
+1. **Intake Authoring** creates one structured intake plus a hash-bound receipt
+   from explicit ordered sources. `ReadyForReview` confirms authoring
+   consistency only; it is not review acceptance.
+2. **Intake Review** evaluates the saved intake without modifying it. Only
+   `Ready` or human-approved `ReadyWithAcceptedRisks` can pass an enabled
+   downstream gate. Critical/High findings and unanswered material questions
+   block.
+3. **Autonomous Run** checks the optional policy gate before creating a branch,
+   feature, or Specify artifact. It binds the accepted review and target hashes
+   into `acceptedArtifacts`, so drift can be detected during status or resume.
+4. **Parallel Autonomous** validates campaign-wide review coverage before
+   creating worktrees. It reviews each unique intake once, retains one
+   applicability row per worker, checks the campaign DAG, and revalidates the
+   review hash on resume. Preset 8 coordinates; Preset 7 still governs every
+   worker lifecycle.
+
+The arrows in the workflow are manual handoffs, not automatic calls. Priority
+does not trigger Authoring, Review, Autonomous Run, or Parallel Autonomous and
+grants no delivery authority. The full chain is most useful for long-running,
+multi-source, dependent, parallel, or evidence-sensitive work. Repository
+policy may legitimately mark optional gates `N/A` for a small, already
+unambiguous local intake.
+
 ## Drei praktische Beispiele
 
 ### Beispiel 1: Keine Überschneidung

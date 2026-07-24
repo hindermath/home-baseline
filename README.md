@@ -3054,17 +3054,31 @@ erteilt keine Commit-, Push-, PR-, Merge- oder Bypass-Rechte. Die Folge
 Review, autonomem Einzel-Lauf und paralleler Koordination. Sie ist keine
 automatische Befehlskette.
 
+Gemeinsam können diese vier Presets eine hashgebundene Qualitätskette bilden:
+Authoring erzeugt Intake und Receipt mit `ReadyForReview`; Review entscheidet
+unabhängig über `Ready`, menschlich akzeptiertes `ReadyWithAcceptedRisks` oder
+einen blockierenden Zustand. Preset 7 kann das aktuelle Review vor Branch,
+Feature und Specify als Start-Gate verlangen. Preset 8 prüft bei einer
+Kampagne zusätzlich jeden eindeutigen Intake, die Worker-Zuordnung und den DAG,
+bevor Worktrees entstehen. Preset 8 koordiniert die Kampagne, während Preset 7
+weiterhin jeden Worker-Lebenszyklus steuert.
+
 Die ausführliche Anleitung
 [Spec-Kit-Preset-Prioritäten verstehen](docs/maintenance/Spec-Kit-Preset-Priorities.md)
-erklärt die Strategien, die vollständige Matrix, praktische Beispiele,
-Fehlannahmen und die sichere Änderung einer Priorität.
+erklärt die Strategien, die vollständige Matrix, den Artefakt- und
+Gate-Fluss, praktische Beispiele, Fehlannahmen und die sichere Änderung einer
+Priorität.
 
 *Priority controls which enabled preset is considered first when templates,
 commands, or addenda overlap. In Spec Kit, a lower number means higher
 precedence; project-local overrides still come first. `replace` selects the
 highest-precedence content, while `prepend`, `append`, and `wrap` compose
 ordered layers. Priority starts no command and grants no delivery authority.
-See the detailed guide for examples, diagnostics, and safe reprioritisation.*
+Together, the four workflow presets can form a hash-bound quality chain:
+Authoring prepares the intake, Review accepts or blocks it, Preset 7 governs
+one run, and Preset 8 coordinates multiple Preset-7 workers. See the detailed
+guide for artifact flow, gates, examples, diagnostics, and safe
+reprioritisation.*
 
 #### Installation prüfen / Verify installation
 
