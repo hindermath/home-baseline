@@ -1,25 +1,65 @@
 {
-  "schemaVersion": "1.1",
-  "receiptId": "9fa195a8-8485-405d-b6d4-d23153ec0a9f",
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "ee971b7c-65b3-4160-932d-0657e4e73fa8",
+  "intakeId": "70511f9f-2b76-4e3c-9d32-1cbba518a920",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.1.1"
+    "version": "0.2.0"
   },
-  "createdAt": "2026-07-23T12:08:19Z",
+  "createdAt": "2026-07-24T17:29:05Z",
+  "operation": {
+    "operationId": "ac4de3fe-46c5-4068-8dd4-218e847831ee",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to implement the approved in-place intake update and renew its active review."
+  },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-    "normalizedSha256": "99afe5a50989879b310ccf8114ff2419a7e258fe6c9d543a5b4b2f1fac0663af"
+    "normalizedSha256": "8cc50f591e9b73db85070413395099d73fbaaf526ee89a1666aa9b679915a839"
   },
   "sources": [
     {
+      "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/70511f9f-2b76-4e3c-9d32-1cbba518a920/ac4de3fe-46c5-4068-8dd4-218e847831ee/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "99afe5a50989879b310ccf8114ff2419a7e258fe6c9d543a5b4b2f1fac0663af",
+      "gitBlob": "ae44bc7219b97fbcac36c8990a503c46ad02976e",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
       "kind": "Pasted",
-      "label": "Legacy target before Intake Creator adoption",
+      "label": "Approved current in-place update request",
       "location": "SnapshotOnly",
       "path": "N/A",
-      "normalizedSha256": "1fbf5ffee434725d3b714d5fd8775100b29be555ff6c6cf5b96bd4c1d8414d10",
-      "gitBlob": "a0be66af6588f8d69428330e1efab08cf01d929e"
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "14995cfd646973087c73e864492b567fa7ebd845752914ac1b78bf8e4559c7db",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -37,7 +77,7 @@
       "status": "Answered",
       "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
       "answer": "Ja, als diff-arme LegacyAdoption.",
-      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im damaligen Auftrag ausdruecklich genehmigt."
     },
     {
       "id": "IAD003",
@@ -51,7 +91,21 @@
       "status": "Answered",
       "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
       "answer": "LocalImplementation.",
-      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+      "evidence": "Im aktuellen Aktualisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche aktuelle Flotten- und Preset-Baseline muss der Intake abbilden?",
+      "answer": "32 registrierte Level-1-/Level-2-Repositories sowie drei vorhandene und zehn gewuenschte Preset-Repositories.",
+      "evidence": "Die aktuelle lokale Registry enthaelt sieben Level-1- und 25 Level-2-Ziele; das bestehende Zehn-Preset-Profil definiert die gewuenschte Preset-Matrix."
+    },
+    {
+      "id": "IAD006",
+      "status": "Answered",
+      "question": "Wie wird der Scope gegenueber dem spaeteren Position-4-Hardening abgegrenzt?",
+      "answer": "Position 1 liefert Manifest, Orchestrierung, Clone-on-missing und Reporting; Position 4 bleibt fuer Remote-Freshness-, Default-Branch-, Worktree- und Hard-Abort-Hardening verantwortlich.",
+      "evidence": "Die bestehende Abarbeitungsreihenfolge fuehrt beide Intakes getrennt und in dieser Reihenfolge."
     }
   ],
   "openDecisionIds": [],
@@ -63,19 +117,28 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "authorityEvidence": "Default: Dieser Aktualisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
   "promptState": "Enabled",
-  "nextAction": "$speckit-intake-review Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-  "provenanceMode": "LegacyAdoption",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/70511f9f-2b76-4e3c-9d32-1cbba518a920/ac4de3fe-46c5-4068-8dd4-218e847831ee/receipt.json",
+    "targetNormalizedSha256": "99afe5a50989879b310ccf8114ff2419a7e258fe6c9d543a5b4b2f1fac0663af",
+    "archiveTargetPath": "specs/intake-authoring-archive/70511f9f-2b76-4e3c-9d32-1cbba518a920/ac4de3fe-46c5-4068-8dd4-218e847831ee/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/70511f9f-2b76-4e3c-9d32-1cbba518a920/ac4de3fe-46c5-4068-8dd4-218e847831ee/receipt.json"
   },
   "legacyAdoption": {
-    "evidenceType": "GitBlob",
-    "priorTargetNormalizedSha256": "1fbf5ffee434725d3b714d5fd8775100b29be555ff6c6cf5b96bd4c1d8414d10",
-    "priorGitBlob": "a0be66af6588f8d69428330e1efab08cf01d929e"
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+  "updateAuthorityEvidence": "The user explicitly approved implementing the proposed in-place update and renewed review in the current task.",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md"
 }

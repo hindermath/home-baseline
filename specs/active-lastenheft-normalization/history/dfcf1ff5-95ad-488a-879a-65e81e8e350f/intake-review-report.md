@@ -4,37 +4,31 @@
 
 `Ready`
 
-- Review-ID: `5ce575e0-90a0-4946-b183-b8c3e1d83a71`
-- Ersetzt: `dfcf1ff5-95ad-488a-879a-65e81e8e350f`
+- Review-ID: `dfcf1ff5-95ad-488a-879a-65e81e8e350f`
+- Ersetzt: `4c059d46-adda-48ef-934a-a7158ca565bc`
 - Schema: `1.1`
 Request SHA-256:
-`df0b897e276ab82eaa6ad90f76abad3370211a897942a5d094da60b2a421e187`
+`37d1d3b87d9f4057f2c7b6c54e11a289c2cce516c383807e4b2175733b9f32bc`
 
 Alle 14 aktiven Root-Intakes sind einzeln und als geordnete, hashgebundene
 Serie geprüft.
 Identität, Ziel, Scope, Nicht-Ziele, Anforderungen, Abnahme, Evidence,
 Delivery Authority und Prompt-Vertrag sind für die spätere Spec-Kit-Planung
 ausreichend bestimmt. Es bleiben keine offenen Critical-, High-, Medium- oder
-Low-Findings. Der aktualisierte Position-1-Intake bildet die aktuelle
-32-Repository-Flotte, die drei vorhandenen und zehn gewuenschten
-Preset-Repositories sowie die bereits ausgelieferten Bash-3.2- und
-Toolchain-Baselines ab. Seine Grenze zur flottenweiten
-Remote-Freshness-Haertung auf Position 4 ist entscheidungsvollstaendig.
+Low-Findings. Die flottenweite Remote-Freshness-Barriere ist in PWH-012 bis
+PWH-015 und AC-013 bis AC-017 entscheidungsvollständig beschrieben.
 
 *All 14 active root intakes were reviewed individually and as an ordered
 request-bound series. Identity, goal, scope, non-goals, requirements,
 acceptance, evidence, delivery authority, and prompt contracts are sufficiently
-defined for later Spec Kit planning. The updated position-1 intake reflects
-the current 32-repository fleet, the three present and ten desired preset
-repositories, and the already delivered Bash 3.2 and toolchain baselines. Its
-boundary to the fleet-wide position-4 Remote Freshness hardening is
-decision-complete. No Critical, High, Medium, or Low finding remains.*
+defined for later Spec Kit planning. The fleet-wide Remote Freshness Barrier
+is decision-complete. No Critical, High, Medium, or Low finding remains.*
 
 ## Abdeckung / Coverage
 
 - Aktive Intakes: 14/14
 - Intake-Creator-Marker: 14/14
-- Gültige Receipts: 14/14, davon 1 Schema 2.0 und 13 Schema 1.1
+- Gültige Receipts: 14/14
 - Specify-Prompts: 14/14
 - Autonomous-Prompts: 14/14
 - Delivery Authority: 14/14 `LocalImplementation`
@@ -59,10 +53,9 @@ decision-complete. No Critical, High, Medium, or Low finding remains.*
 5. Frühere oder fehlende Prompt-Blöcke wurden auf genau einen Specify- und
    einen Autonomous-Prompt normalisiert. Die aktuelle Normalisierung erteilt
    keine Remote-Autorität.
-6. Der breite Wartungsintake unterscheidet nun die 32 registrierten
-   Level-1-/Level-2-Repositories, drei aktuell ausgecheckte und zehn
-   gewuenschte Preset-Repositories. Die portable Acht-Preset-Standardmatrix
-   bleibt davon ausdruecklich unberuehrt.
+6. Der breite Wartungsintake nennt nun die aktuelle Flottenkardinalität von
+   zehn separat gewarteten Preset-Repositories. Die portable
+   Acht-Preset-Standardmatrix bleibt davon ausdrücklich unberührt.
 7. Der Position-4-Intake verlangt nun einen vollständigen Flotten-Preflight vor
    Home-Sync, Preset-Reparatur, Propagation, Paketmanager-, Toolchain- oder
    anderen mutierenden Folgephasen. Nur nachweislich sichere
@@ -71,11 +64,6 @@ decision-complete. No Critical, High, Medium, or Low finding remains.*
 8. Der bisherige Schema-1.0-Series-Review wurde unverändert archiviert. Der
    neue Review bindet Request-Pfad und Hash, deklariert alle Roots und
    validiert Zielmenge, Rollen, Reihenfolge, Referenzen und Azyklizität.
-9. Der Position-1-Intake wurde als nachvollziehbare Schema-2.0-Supersession
-   aktualisiert. PR #90 und die optionale Toolchain-Klassifikation sind
-   verbindliche Baselines statt erneut zu implementierender Arbeit. Position 4
-   behaelt die Ownership fuer Remote-Freshness-, Default-Branch-, Worktree- und
-   Hard-Abort-Hardening.
 
 ## Seriengrenzen / Series Boundaries
 
@@ -95,8 +83,8 @@ decision-complete. No Critical, High, Medium, or Low finding remains.*
 
 Der nächste zulässige Befehl ist:
 
-`$speckit-specify Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`
+`$speckit-specify Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md`
 
-Vor dem Lauf sind weiterhin die aktuelle Benutzerfreigabe und der unveraenderte
-`LocalImplementation`-Vertrag zu pruefen. Der Review startet weder Specify noch
-einen autonomen Lauf automatisch.
+Vor dem Lauf sind weiterhin das Vorgänger-Gate, die aktuelle Benutzerfreigabe
+und der unveränderte `LocalImplementation`-Vertrag zu prüfen. Der Review startet
+weder Specify noch einen autonomen Lauf automatisch.

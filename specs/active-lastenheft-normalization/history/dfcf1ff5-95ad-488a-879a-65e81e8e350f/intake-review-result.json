@@ -1,23 +1,23 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "5ce575e0-90a0-4946-b183-b8c3e1d83a71",
+  "reviewId": "dfcf1ff5-95ad-488a-879a-65e81e8e350f",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-24T17:32:40Z",
+  "reviewedAt": "2026-07-23T21:53:10Z",
   "repository": {
     "root": ".",
-    "head": "e019ce2e4abbe68df35b926d9a8b8106305f5588"
+    "head": "ebc00bda6b4b0bf4cb91936717178b220cd705ff"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "df0b897e276ab82eaa6ad90f76abad3370211a897942a5d094da60b2a421e187"
+    "normalizedSha256": "37d1d3b87d9f4057f2c7b6c54e11a289c2cce516c383807e4b2175733b9f32bc"
   },
   "targets": [
     {
       "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
       "role": "Primary",
-      "normalizedSha256": "8cc50f591e9b73db85070413395099d73fbaaf526ee89a1666aa9b679915a839",
+      "normalizedSha256": "99afe5a50989879b310ccf8114ff2419a7e258fe6c9d543a5b4b2f1fac0663af",
       "gitBlob": "N/A"
     },
     {
@@ -126,9 +126,6 @@
       "Nine unique dependencies are reference-valid, order-consistent, and acyclic",
       "Hard predecessor graph for maintenance items 1 through 5, including the fleet-wide Remote Freshness Barrier",
       "Ownership and overlap boundaries for governance, sandbox, documentation, cmdlet, comment, and GSDB work",
-      "One schema-2.0 authoring receipt and 13 compatible schema-1.1 receipts",
-      "Current 32-repository canonical fleet and three-present versus ten-desired preset baseline",
-      "Position-1 orchestration scope remains distinct from position-4 remote-freshness and worktree hardening",
       "Creator markers, receipts, prompt parity, delivery authority, and no-auto-start boundary"
     ],
     "workers": []
@@ -139,5 +136,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "dfcf1ff5-95ad-488a-879a-65e81e8e350f"
+  "supersedes": "4c059d46-adda-48ef-934a-a7158ca565bc"
 }
