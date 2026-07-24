@@ -14,7 +14,7 @@ Target split:
 - `a11y-governance` — version `0.4.1`
 - `cross-platform-governance` — version `0.2.1`
 - `agent-parity-governance` — version `0.4.0`
-- `intake-authoring-governance` — version `0.1.0`, optional priority `64`
+- `intake-authoring-governance` — version `0.1.1`, optional priority `64`
 - `intake-review-governance` — version `0.1.1`, optional priority `65`
 - `autonomous-run-governance` — version `0.3.2`
 - `parallel-autonomous-run-governance` — version `0.2.3`
@@ -109,13 +109,13 @@ MSL integration:
 Current status:
 
 - the six original governance presets are published and catalogued
-- `autonomous-run-governance` v0.3.1 is the current patch release; it retains
+- `autonomous-run-governance` v0.3.2 is the current patch release; it retains
   validated lifecycle state plus explicit status, graceful-stop, and protected
   resume commands, adds a mandatory-rule delta audit for preset drift, provides
   a detailed bilingual operating guide with five Mermaid diagrams, and
   distinguishes the readable `Deliver` heading from canonical `Publish`,
   `Review`, and `MergeAndSync` run-state stages
-- `parallel-autonomous-run-governance` v0.2.2 is the validated eighth standard
+- `parallel-autonomous-run-governance` v0.2.3 is the validated eighth standard
   preset with a bilingual campaign manual and nine Mermaid diagrams; starting
   a parallel campaign remains explicitly delegable
 - real Preset 8 campaigns require enabled
@@ -145,11 +145,45 @@ specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
 # Optional; omit to retain the standard eight-preset profile.
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.1.0.zip --priority 64
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.1.1.zip --priority 64
 specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.1.1.zip --priority 65
 specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.2.zip --priority 70
 specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.3.zip --priority 80
 ```
+
+### How priority resolution works
+
+A preset priority is a positive integer used to order enabled presets during
+template and command resolution. Lower numbers have higher precedence:
+
+```text
+10 → 20 → 30 → 40 → 50 → 60 → 64 → 65 → 70 → 80
+```
+
+Priority is relevant only where names overlap. It works together with the
+component strategy:
+
+| Strategy | Resolution behaviour |
+|---|---|
+| `replace` | The highest-precedence layer wins completely. |
+| `prepend` | The layer is placed before lower-precedence content. |
+| `append` | The layer is placed after lower-precedence content. |
+| `wrap` | The layer surrounds lower-precedence or core content at its placeholder. |
+
+Project-local overrides are resolved before installed presets. Equal preset
+priorities are ordered deterministically by preset ID, but distinct values are
+preferred because they document the intended stack. Number gaps are
+intentional: priorities `64` and `65` fit between Agent Parity at `60` and
+Autonomous Run at `70` without renumbering the established stack.
+
+Priority does not install, enable, or execute a preset. It grants no commit,
+push, PR, merge, bypass, secret, or provider authority. The ordering from
+Intake Authoring through Parallel Autonomous describes conceptual layering,
+not an automatically executed workflow.
+
+For a beginner-oriented bilingual explanation, examples, diagnostics, and safe
+reprioritisation guidance, see
+[Spec Kit Preset Priorities](../../docs/maintenance/Spec-Kit-Preset-Priorities.md).
 
 Notes:
 

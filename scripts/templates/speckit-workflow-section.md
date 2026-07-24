@@ -47,6 +47,23 @@ Request-Hash, Zielrollen, exakte Reihenfolge, Roots und der azyklische
 Vorgaengergraph werden gemeinsam validiert; unklare Beziehungen fuehren zu
 `NeedsClarification`.
 
+#### Preset-Prioritäten lesen
+
+Kleinere Zahlen haben bei Spec Kit die höhere Auflösungspriorität. Die Zahl
+entscheidet nur bei gleichnamigen Templates, Befehlen oder Addenda, welche
+Preset-Schicht zuerst berücksichtigt wird. `replace` lässt die höchste Schicht
+gewinnen; `prepend`, `append` und `wrap` kombinieren geordnete Schichten.
+Projektlokale Overrides stehen vor installierten Presets. Gleiche Zahlen werden
+nach Preset-ID sortiert, sollten für eine verständliche Policy aber vermieden
+werden.
+
+Priorität installiert, aktiviert oder startet nichts und erteilt keine
+Remote- oder Admin-Rechte. `64 → 65 → 70 → 80` beschreibt die fachliche
+Schichtung von Authoring, Review, autonomem Einzel-Lauf und paralleler
+Koordination, nicht eine automatische Befehlskette. Die wirksame Auflösung wird
+mit `specify preset list`, `specify preset info <id>` und
+`specify preset resolve <template>` geprüft.
+
 `autonomous-run-governance` ist Teil der Standard-Achtermatrix. Vollständige
 autonome Läufe bleiben ausdrücklich delegationspflichtig. `LocalImplementation` ist der
 sichere Default; Installation erteilt keine Remote-, Merge- oder Bypass-Rechte.
@@ -135,6 +152,21 @@ profile remains compatible. Learner runs still require explicit authorization.
 Series reviews use schema 1.1 for request and result. They jointly validate the
 normalized request hash, target roles, exact order, roots, and the acyclic
 predecessor graph; ambiguous relations result in `NeedsClarification`.
+
+#### Reading preset priorities
+
+Lower numbers have higher resolution precedence in Spec Kit. Priority matters
+only when templates, commands, or addenda share a name. `replace` lets the
+highest-precedence layer win; `prepend`, `append`, and `wrap` compose ordered
+layers. Project-local overrides come before installed presets. Equal numbers
+are ordered by preset ID, but distinct values communicate policy more clearly.
+
+Priority installs, enables, and starts nothing, and it grants no remote or
+administrative authority. `64 → 65 → 70 → 80` describes the conceptual
+layering of Authoring, Review, one autonomous run, and parallel coordination;
+it is not an automatic command chain. Verify effective resolution with
+`specify preset list`, `specify preset info <id>`, and
+`specify preset resolve <template>`.
 
 `autonomous-run-governance` is part of the standard eight-preset matrix.
 Complete autonomous runs still require explicit delegation. `LocalImplementation` is the safe default;
