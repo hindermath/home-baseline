@@ -4,7 +4,7 @@
 **Repository:** `home-baseline`
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** vorbereitet fuer einen spaeteren Spec-Kit-Lauf
-**Stand:** 2026-07-24
+**Stand:** 2026-07-20
 **Vorgaenger:** `Lastenheft_agentische-umgebung-pruefen-und-syncen.md`
 
 ## 1. Zweck / Purpose
@@ -59,10 +59,6 @@ Die aktuelle Wartungsflaeche besteht insbesondere aus:
 - `scripts/maintain-agentic-winget-apps.ps1`
 - `scripts/maintain-powershell-modules.ps1`
 - den Registries unter `scripts/config/`
-- dem Preset-Profilkatalog
-  `scripts/config/spec-kit-preset-profiles.json`
-- dem aktuellen Zehn-Preset-Profil
-  `scripts/config/spec-kit-intake-authoring-governance-presets.json`
 - der lokalen operativen Registry
   `~/.home-baseline/level2-repository-registry.json`
 
@@ -70,25 +66,18 @@ Die aktuelle Wartungsflaeche besteht insbesondere aus:
 home-sync, propagation, package-manager, PowerShell-module, and registry
 scripts listed above.*
 
-Der verifizierte lokale Bestand umfasst derzeit 32 registrierte aktive
-Level-1-/Level-2-Ziele: sieben Level-1- und 25 Level-2-Repositories. Unter dem
-nicht selbst gitbasierten Sammelordner `~/SpecKitPresetProjects` sind aktuell
-drei Git-Repositories ausgecheckt. Das bestehende Profil
-`intake-authoring-ten-governance-presets` definiert zehn gewuenschte
-Preset-Pakete; die sieben fehlenden Repositories sind nach erfolgreicher
-Manifestvalidierung kontrollierte Clone-on-missing-Ziele. Level 0 wird weiterhin
+Der verifizierte lokale Bestand umfasst derzeit 30 registrierte aktive
+Level-1-/Level-2-Ziele sowie acht Git-Repositories unter dem nicht selbst
+gitbasierten Sammelordner `~/SpecKitPresetProjects`. Level 0 wird weiterhin
 ueber den gemeinsamen Source-Resolver auf `~/home-baseline-source` aufgeloest
 und nicht als zweiter Checkout im Fleet-Manifest dupliziert.
 
-*The verified local inventory currently contains 32 active registered Level 1
-and Level 2 targets: seven Level 1 and 25 Level 2 repositories. Three Git
-repositories are currently checked out below the collection directory
-`~/SpecKitPresetProjects`, which is not itself a Git repository. The existing
-`intake-authoring-ten-governance-presets` profile defines ten desired preset
-packages; the seven missing repositories become controlled clone-on-missing
-targets after successful manifest validation. Level 0 continues to resolve
-through the shared source resolver to `~/home-baseline-source` and is not
-duplicated as a second checkout in the fleet manifest.*
+*The verified local inventory currently contains 30 registered active Level 1
+and Level 2 targets plus eight Git repositories under the collection directory
+`~/SpecKitPresetProjects`, which is not itself a Git repository. Level 0
+continues to resolve through the shared source resolver to
+`~/home-baseline-source` and is not duplicated as a second checkout in the
+fleet manifest.*
 
 ## 3. Erkenntnisse aus dem fehlgeschlagenen Wartungslauf / Failed-Run Findings
 
@@ -111,17 +100,6 @@ Toolchain in diesem Lauf nicht mehr bewertet.
 Level 0 and the semantic home-sync no-op had already succeeded, but the abrupt
 process termination prevented evaluation of the repository fleet,
 propagation, and toolchain.*
-
-Die konkrete Empty-Array-Korrektur und ihre Regressionstests wurden mit PR #90
-bereits ausgeliefert und sind fuer dieses Feature verbindliche Baseline. Der
-spaetere Wartungslauf darf sie nicht erneut als offene Produktkorrektur
-implementieren, sondern MUSS sie in den erweiterten Orchestrator integrieren,
-erneut pruefen und vor Regression schuetzen.
-
-*The concrete empty-array correction and its regression tests were already
-delivered through PR #90 and are a binding baseline for this feature. The later
-maintenance run must not implement them again as open product work; it must
-integrate, revalidate, and preserve them within the broader orchestrator.*
 
 Daraus folgen verbindlich:
 
@@ -152,8 +130,6 @@ first-class regression scenarios.*
 - Bash-3.2- und modernes-Bash-Vertraeglichkeit der Unix-Einstiege
 - PowerShell-7-Paritaet der Windows-Einstiege
 - ein versioniertes Desired-State-Fleet-Manifest
-- Nutzung des vorhandenen Preset-Profilkatalogs und des aktuellen
-  Zehn-Preset-Profils als verbindliche Eingabe
 - kontrolliertes Clone-on-missing fuer aktive Git-Ziele
 - nicht-gitbasierte Sammelordner mit expliziter Mitgliedschaft
 - `fetch` und ausschliesslich sichere `pull --ff-only`-Aktualisierungen
@@ -230,11 +206,10 @@ Verbindliche Schema- und Konsistenzregeln:
 - Ein Level-2-Ziel MUSS unter einem aktiven Level-1- oder Collection-Pfad
   liegen.
 - `collection`-Eintraege werden nie als Git-Repository behandelt.
-- `~/SpecKitPresetProjects` wird als Collection eingetragen; die zehn
-  gewuenschten Preset-Repositories werden als eigene aktive Git-Ziele der
-  `maintenanceClass: preset` eingetragen. Drei sind aktuell vorhanden, sieben
-  sind kontrollierte Clone-on-missing-Ziele.
-- Die 32 bisherigen Level-1-/Level-2-Ziele werden als
+- `~/SpecKitPresetProjects` wird als Collection eingetragen; die acht
+  Preset-Repositories werden als eigene aktive Git-Ziele der
+  `maintenanceClass: preset` eingetragen.
+- Die 30 bisherigen Level-1-/Level-2-Ziele werden als
   `maintenanceClass: canonical-fleet` uebernommen.
 - Inaktive Eintraege bleiben dokumentierbar, werden aber weder geklont noch
   gepullt noch propagiert.
@@ -242,9 +217,9 @@ Verbindliche Schema- und Konsistenzregeln:
   mit genauer JSON-Pointer- beziehungsweise Zielangabe berichtet.
 
 *The schema rejects duplicate paths and remotes, orphan Level 2 targets,
-repository fields on collections, and unsafe paths. The 32 operational targets
-are canonical fleet members; the collection plus ten desired preset
-repositories are maintained separately.*
+repository fields on collections, and unsafe paths. The 30 operational targets
+are canonical fleet members; the collection plus ten preset repositories are
+maintained separately.*
 
 ## 6. Repository-Wartungsvertrag / Repository Maintenance Contract
 
@@ -299,13 +274,13 @@ continue.*
 
 Collections werden bei Bedarf nur als Verzeichnis angelegt. Ihre Mitglieder
 werden ausschliesslich ueber eigene Manifestziele gewartet. Die kanonische
-Wartungspaket-Propagation richtet sich an die 32
+Wartungspaket-Propagation richtet sich an die 30
 `canonical-fleet`-Repositories. Die zehn `preset`-Repositories werden per
 Fetch und sicherem Fast-Forward aktualisiert und mit ihren eigenen Tests
 geprueft, erhalten aber keine kanonischen Propagationsaenderungen.
 
 *Collections are directory boundaries. Canonical maintenance files propagate
-to the 32 canonical fleet repositories only. The ten preset repositories are
+to the 30 canonical fleet repositories only. The ten preset repositories are
 updated and tested under their own contracts but are excluded from canonical
 propagation.*
 
@@ -369,16 +344,14 @@ work, and 2 for fatal invocation, schema, source, or orchestration failures.*
 
 ## 8. Bash-3.2-Kompatibilitaet / Bash 3.2 Compatibility
 
-Der bereits korrigierte echte No-op-Pfad von `sync-home.sh` MUSS unter
-`set -euo pipefail` ohne Zugriff auf ein ungebundenes leeres Array funktionieren.
-Der spaetere Orchestrator integriert die mit PR #90 ausgelieferte Baseline und
-MUSS ihr Aenderungs-, Commit-, Check-only-, Dry-run- und Force-Verhalten
-unveraendert erhalten.
+Der echte No-op-Pfad von `sync-home.sh` MUSS unter `set -euo pipefail` ohne
+Zugriff auf ein ungebundenes leeres Array funktionieren. Die Korrektur darf
+das Aenderungs-, Commit-, Check-only-, Dry-run- und Force-Verhalten nicht
+veraendern.
 
-*The already corrected real `sync-home.sh` no-op path must work under
-`set -euo pipefail` without dereferencing an unbound empty array. The later
-orchestrator integrates the baseline delivered through PR #90 and must preserve
-its change, commit, check-only, preview, and force behavior.*
+*The real `sync-home.sh` no-op path must work under `set -euo pipefail` without
+dereferencing an unbound empty array. The fix must preserve all change,
+commit, check-only, preview, and force behavior.*
 
 Ein deterministischer Test-Harness MUSS mindestens ausfuehren:
 
@@ -413,9 +386,8 @@ Workspace-Wartung nicht.
 or upgraded only through the existing opt-in and never block workspace
 maintenance when absent.*
 
-Die folgenden bereits installierten Homebrew-Formeln sind in der aktuellen
-Baseline als optional klassifiziert. Der spaetere Lauf MUSS diese Einordnung
-verifizieren und vor Regression schuetzen:
+Die folgenden bereits installierten, bisher nicht vollstaendig registrierten
+Homebrew-Formeln werden als optional klassifiziert:
 
 | Homebrew-Formel | Scope | Plattformhinweis |
 |---|---|---|
@@ -425,9 +397,8 @@ verifizieren und vor Regression schuetzen:
 | `telnet` | `optional` | Diagnosewerkzeug; nicht automatisch als Windows-Feature aktivieren |
 
 *The installed `mongodb-community@8.0`, `mono`, `sqlite`, and `telnet`
-formulae are explicitly optional in the current baseline. The later run must
-verify and preserve this classification. Provider-specific equivalents are
-added only when their package identifiers are verified; Windows Telnet is not
+formulae are explicitly optional. Provider-specific equivalents are added only
+when their package identifiers are verified; Windows Telnet is not
 automatically enabled.*
 
 Der Wartungslauf MUSS installierte, aber unregistrierte Top-Level-Pakete
@@ -533,23 +504,6 @@ pro Blocker den sicheren Wiedereinstieg.
 *Repeated runs are idempotent, revalidate completed targets, avoid duplicate
 mutations, and provide a safe resume action for every blocker.*
 
-Dieses Lastenheft auf Position 1 fuehrt Manifest, Orchestrierung,
-Clone-on-missing und Abschlussbericht ein. Das spaetere
-`Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md` auf Position 4
-haertet darauf aufbauend insbesondere die flottenweite
-Remote-Freshness-Barriere, beliebige Default-Branches sowie Worktree- und
-Hard-Abort-Bereinigung. Position 1 MUSS kompatible Schnittstellen und Evidence
-bereitstellen, darf diese spaetere Haertung aber weder vorwegnehmen noch als
-abgeschlossen ausweisen.
-
-*This position-1 intake introduces the manifest, orchestration,
-clone-on-missing, and final reporting. The later
-`Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md` at position 4
-builds on it to harden the fleet-wide remote-freshness barrier, arbitrary
-default branches, and worktree and hard-abort cleanup. Position 1 must provide
-compatible interfaces and evidence but must neither pre-empt nor claim
-completion of that later hardening.*
-
 ## 13. Akzeptanzszenarien / Acceptance Scenarios
 
 ### AC-001: Vollstaendiger No-op
@@ -612,11 +566,9 @@ Logartefakt.
 
 ### AC-011: Sollflotte
 
-Der Abschlussbericht unterscheidet 32 aktive `canonical-fleet`-Repositories,
-zehn gewuenschte `preset`-Repositories und die Collection
-`SpecKitPresetProjects`. Er weist aus, welche drei Preset-Repositories bereits
-vorhanden und welche sieben Clone-on-missing-Ziele sind. Presets werden nicht
-propagiert.
+Der Abschlussbericht unterscheidet 30 aktive `canonical-fleet`-Repositories,
+zehn aktive `preset`-Repositories und die Collection
+`SpecKitPresetProjects`. Presets werden nicht propagiert.
 
 ### AC-012: Plattformparitaet
 
@@ -635,9 +587,9 @@ large-fleet output, target-class boundaries, and Bash/PowerShell parity.*
 |---|---|
 | Fleet-Manifest und Schema | portable Sollquelle fuer Collections und Git-Ziele |
 | Unix-/Windows-Orchestrator | funktionsgleiche sichere Wartungsablaeufe |
-| Home-Sync-Baseline | Schutz des mit PR #90 korrigierten Bash-3.2-No-op |
+| Home-Sync-Korrektur | Bash-3.2-sicherer echter No-op |
 | Test-Harness | isolierte No-op-, Clone-, Drift-, Fehler- und Paritaetsfixtures |
-| Toolchain-Registries | Regressionsevidence fuer vier bereits optionale Formeln |
+| Toolchain-Registries | vier zusaetzliche optionale Formeln und Plattformpolitik |
 | Manpages und Help | neue Optionen, Exitcodes, JSON und Sicherheitsgrenzen |
 | JSON-Abschlussbericht | kompakter stabiler Maschinenvertrag |
 | Vollstaendiges Log | leise Git-Ausgabe im Terminal, Details im Artefakt |
@@ -651,7 +603,7 @@ large-fleet output, target-class boundaries, and Bash/PowerShell parity.*
    ausliefern.
 3. Erst nach Squash-Merge und lokaler `main...origin/main`-Paritaet den
    gemergten kanonischen Wartungsstand als Propagationsquelle verwenden.
-4. Die notwendigen kanonischen Aenderungen in die 32 aktiven
+4. Die notwendigen kanonischen Aenderungen in die 30 aktiven
    `canonical-fleet`-Repositories propagieren und dort jeweils die lokalen
    Governance-, Branch-, Test- und PR-Regeln beachten.
 5. Die zehn Preset-Repositories separat warten und testen, aber nicht durch die
@@ -660,7 +612,7 @@ large-fleet output, target-class boundaries, and Bash/PowerShell parity.*
    Arbeitsbaeume sowie Divergenz `0 0` belegen.
 
 *Level 0 is implemented, reviewed, squash-merged, and synchronized first. Only
-the merged canonical state may then propagate to the 32 canonical fleet
+the merged canonical state may then propagate to the 30 canonical fleet
 repositories. Presets remain separate, and final clean-tree plus remote parity
 is proven everywhere.*
 
@@ -678,14 +630,12 @@ Erstelle eine Feature-Spezifikation fuer eine unbeaufsichtigte, fortsetzbare und
 Verbindlich:
 - Behandle das versionierte Desired-State-Fleet-Manifest mit Zielpfad, Remote, Ebene, Forge, Standardbranch, Aktivstatus, Zielart und Wartungsklasse als kanonische Sollquelle.
 - Unterstuetze sicheres Clone-on-missing fuer aktive Git-Ziele und nicht-gitbasierte Collections wie SpecKitPresetProjects.
-- Integriere und pruefe die mit PR #90 bereits korrigierte sync-home-No-op-Baseline unter macOS-Bash 3.2 und Bash 5, ohne sie als neue Produktkorrektur zu behandeln.
+- Korrigiere und teste den echten sync-home-No-op unter macOS-Bash 3.2 und Bash 5.
 - Setze den Dry-run nach Registry-Drift fort und prognostiziere alle weiteren sicheren Aktionen.
 - Behandle administratorpflichtige Aktualisierungen als DEFERRED_ADMIN_REQUIRED und setze unabhaengige Schritte fort.
-- Verifiziere und erhalte die bestehende optionale Klassifikation von mongodb-community@8.0, mono, sqlite und telnet.
+- Klassifiziere mongodb-community@8.0, mono, sqlite und telnet als optional.
 - Definiere leise Git-Ausgabe, vollstaendige Logdateien und den kompakten JSON-Abschlussbericht.
-- Erhalte die Trennung zwischen 32 canonical-fleet-Repositories, zehn gewuenschten preset-Repositories und dem Collection-Pfad SpecKitPresetProjects; drei Preset-Repositories sind vorhanden, sieben bleiben kontrollierte Clone-on-missing-Ziele.
-- Nutze den vorhandenen Preset-Profilkatalog und das Profil intake-authoring-ten-governance-presets als verbindliche Eingabe.
-- Liefere kompatible Schnittstellen und Evidence fuer die spaetere Position-4-Haertung, ohne Remote-Freshness-, Default-Branch-, Worktree- oder Hard-Abort-Hardening vorwegzunehmen.
+- Erhalte die Trennung zwischen 30 canonical-fleet-Repositories, zehn preset-Repositories und dem Collection-Pfad SpecKitPresetProjects.
 - Plane Bash-/PowerShell-Paritaet, Manpages, comment-based help, Skriptkatalog, Sicherheitspruefungen und Projektstatistik ein.
 
 Starte noch keine Implementierung, keinen Flottenrollout und keine Remote-Schreibaktion.
@@ -697,7 +647,7 @@ Starte noch keine Implementierung, keinen Flottenrollout und keine Remote-Schrei
 ```text
 $speckit-autonomous Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
-## 16. Abnahme dieses Lastenhefts / Acceptance of This Intake
+## 17. Abnahme dieses Lastenhefts / Acceptance of This Intake
 
 - Das Dokument ist DE zuerst und EN danach aufgebaut.
 - Der alte Intake ist sichtbar als abgeloest gekennzeichnet, bleibt aber
