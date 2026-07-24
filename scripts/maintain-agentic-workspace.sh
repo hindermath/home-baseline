@@ -8,16 +8,21 @@ HOME_DIR="${HOME}"
 ORIGINAL_ARGS=("$@")
 REGISTRY=""
 PRESET_PROFILE_CATALOG="${SOURCE_ROOT}/scripts/config/spec-kit-preset-profiles.json"
+FLEET_ENGINE="${SOURCE_ROOT}/scripts/lib/agentic_workspace_fleet.py"
+FLEET_MANIFEST="${SOURCE_ROOT}/scripts/config/agentic-workspace-fleet.json"
 
 CHECK_ONLY=0
 DRY_RUN=0
 SCRIPTS_ONLY=0
 REPAIR_DRIFT=0
 INCLUDE_OPTIONAL=0
+ALLOW_ADMIN_PROMPTS=0
 FINDINGS=0
 REPAIR_APPLIED=0
 LOCK_DIR=""
 LOG_FILE=""
+REPORT_FILE=""
+RUN_ID=""
 PRESET_WORKTREE_REPO=""
 PRESET_WORKTREE_PATH=""
 PRESET_WORKTREE_ROOT=""
@@ -46,6 +51,11 @@ and the machine toolchain is updated.
                      Repair maintenance-package drift locally; never commit/push
   --include-optional Auch optionale Maschinenpakete installieren
                      Install optional machine packages too
+  --allow-admin-prompts
+                     Administratorabfragen nur fuer diesen Lauf erlauben
+                     Allow administrator prompts for this run only
+  --manifest PFAD    Alternatives Desired-State-Manifest
+                     Alternative desired-state manifest
   --home-dir PFAD    Alternatives Home-Verzeichnis (Tests/zweites Profil)
                      Alternative home directory (tests/second profile)
   -h, --help         Diese Hilfe anzeigen / Show this help
@@ -114,6 +124,12 @@ while [ $# -gt 0 ]; do
     --scripts-only) SCRIPTS_ONLY=1 ;;
     --repair-drift) REPAIR_DRIFT=1 ;;
     --include-optional) INCLUDE_OPTIONAL=1 ;;
+    --allow-admin-prompts) ALLOW_ADMIN_PROMPTS=1 ;;
+    --manifest)
+      [ $# -ge 2 ] || die "--manifest benoetigt einen Pfad / requires a path"
+      FLEET_MANIFEST="$2"
+      shift
+      ;;
     --home-dir)
       [ $# -ge 2 ] || die "--home-dir benoetigt einen Pfad / requires a path"
       HOME_DIR="$2"
@@ -140,6 +156,7 @@ fi
 for tool in git python3 tee; do
   command -v "$tool" >/dev/null 2>&1 || die "$tool ist erforderlich / is required"
 done
+[ -f "$FLEET_ENGINE" ] || die "Fleet-Vertragskern fehlt / fleet contract engine missing: $FLEET_ENGINE"
 
 case "$(uname -s)" in
   Darwin|Linux) ;;
@@ -163,7 +180,8 @@ fi
 STATE_DIR="${HOME_DIR}/.home-baseline"
 LOCK_DIR="${STATE_DIR}/locks/agentic-workspace-maintenance.lock"
 LOG_DIR="${STATE_DIR}/logs"
-mkdir -p -- "$(dirname -- "$LOCK_DIR")" "$LOG_DIR"
+REPORT_DIR="${STATE_DIR}/reports"
+mkdir -p -- "$(dirname -- "$LOCK_DIR")" "$LOG_DIR" "$REPORT_DIR"
 if ! mkdir -- "$LOCK_DIR" 2>/dev/null; then
   holder="$(cat "$LOCK_DIR/pid" 2>/dev/null || printf 'unbekannt / unknown')"
   die "Wartung laeuft bereits (PID ${holder}) / maintenance already running"
@@ -172,6 +190,8 @@ printf '%s\n' "$$" > "$LOCK_DIR/pid"
 trap cleanup EXIT INT TERM
 
 LOG_FILE="${LOG_DIR}/agentic-workspace-$(date +%Y%m%d-%H%M%S).log"
+RUN_ID="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+REPORT_FILE="${REPORT_DIR}/agentic-workspace-${RUN_ID}.json"
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 mode="update"
@@ -182,6 +202,33 @@ printf 'Agentic workspace maintenance\n'
 printf 'Mode / Modus: %s\n' "$mode"
 printf 'Level-0: %s\n' "$SOURCE_ROOT"
 printf 'Home: %s\n' "$HOME_DIR"
+printf 'Run-ID: %s\n' "$RUN_ID"
+
+record_stage() {
+  local stage_id="$1" status="$2" exit_code="$3" summary="$4" next_action="${5:-N/A}"
+  [ -f "$REPORT_FILE" ] || return 0
+  python3 "$FLEET_ENGINE" stage \
+    --report "$REPORT_FILE" \
+    --stage-id "$stage_id" \
+    --status "$status" \
+    --exit-code "$exit_code" \
+    --summary "$summary" \
+    --next-action "$next_action"
+}
+
+run_fleet_contract() {
+  local fleet_mode="update" status=0
+  [ "$CHECK_ONLY" -eq 1 ] && fleet_mode="check-only"
+  [ "$DRY_RUN" -eq 1 ] && fleet_mode="dry-run"
+  python3 "$FLEET_ENGINE" fleet \
+    --manifest "$FLEET_MANIFEST" \
+    --home-dir "$HOME_DIR" \
+    --mode "$fleet_mode" \
+    --report "$REPORT_FILE" \
+    --log "$LOG_FILE" \
+    --run-id "$RUN_ID" || status=$?
+  return "$status"
+}
 
 git_counts() {
   local repo="$1" upstream="$2"
@@ -527,10 +574,13 @@ handle_preset_profiles() {
 }
 
 info "Level-0 aktualisieren / Update Level-0"
-check_repository "$SOURCE_ROOT" "Level-0" || true
+level0_result="Passed"
+check_repository "$SOURCE_ROOT" "Level-0" || level0_result="Blocked"
 
+home_result="Skipped"
 if [ "$FINDINGS" -eq 0 ]; then
   info "Lokale Home-Baseline synchronisieren / Synchronize local home baseline"
+  findings_before="$FINDINGS"
   if [ "$CHECK_ONLY" -eq 1 ]; then
     run_home_sync_check
   elif [ "$DRY_RUN" -eq 1 ]; then
@@ -538,26 +588,73 @@ if [ "$FINDINGS" -eq 0 ]; then
   else
     HOME="$HOME_DIR" bash "${SOURCE_ROOT}/scripts/sync-home.sh" --no-pull
   fi
+  if [ "$FINDINGS" -gt "$findings_before" ]; then
+    home_result="Blocked"
+  else
+    home_result="Passed"
+  fi
 fi
 
-info "Level-1/Level-2 ermitteln und Registry pruefen / Discover repositories and check registry"
+info "Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet"
+fleet_status=0
+run_fleet_contract || fleet_status=$?
+case "$fleet_status" in
+  0) ;;
+  1) FINDINGS=$((FINDINGS + 1)) ;;
+  *) record_stage "fleet" "Failed" 2 "Fleet-Vertrag fehlgeschlagen / fleet contract failed" \
+       "Manifest und Log pruefen / review manifest and log"; exit 2 ;;
+esac
+record_stage "level0" "$level0_result" "$([ "$level0_result" = "Passed" ] && printf 0 || printf 1)" \
+  "Level-0-Pruefung / Level-0 check" "Branch und Upstream pruefen / review branch and upstream"
+record_stage "home-sync" "$home_result" "$([ "$home_result" = "Blocked" ] && printf 1 || printf 0)" \
+  "Home-Sync / home sync" "$([ "$home_result" = "Skipped" ] && printf 'Nach Level-0-Freigabe erneut ausfuehren / rerun after Level-0 passes' || printf 'N/A')"
+
+info "Level-1/Level-2 Registry pruefen / Check Level-1/Level-2 registry"
+findings_before="$FINDINGS"
 ensure_registry || true
-
-if [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; then
-  while IFS=$'\t' read -r level repo; do
-    [ -n "$repo" ] || continue
-    check_repository "$repo" "Level-${level}" || true
-  done < <(discover_repositories)
+registry_safe=0
+registry_status=2
+if [ -f "$REGISTRY" ]; then
+  registry_status=0
+  python3 "$FLEET_ENGINE" registry --manifest "$FLEET_MANIFEST" --registry "$REGISTRY" || registry_status=$?
+  [ "$registry_status" -eq 0 ] && registry_safe=1
+  [ "$registry_status" -eq 0 ] || FINDINGS=$((FINDINGS + 1))
+fi
+if [ "$FINDINGS" -gt "$findings_before" ] || [ "$registry_safe" -ne 1 ]; then
+  record_stage "registry" "Blocked" 1 "Registry-Pruefung mit Befund / registry check has findings" \
+    "Registry-Befund beheben / resolve registry finding"
+else
+  record_stage "registry" "Passed" 0 "Registry-Pruefung abgeschlossen / registry check completed"
 fi
 
-if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ -f "$REGISTRY" ]; then
+if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -eq 1 ]; then
   info "Kanonisches Wartungspaket pruefen / Check canonical maintenance package"
+  findings_before="$FINDINGS"
   handle_propagation
+  if [ "$FINDINGS" -gt "$findings_before" ]; then
+    record_stage "propagation" "Blocked" 1 "Wartungspaket-Drift / maintenance package drift" \
+      "Drift separat pruefen / review drift separately"
+  else
+    record_stage "propagation" "Passed" 0 "Wartungspaket geprueft / maintenance package checked"
+  fi
+else
+  record_stage "propagation" "Skipped" 0 "Propagation wegen Vorbedingung uebersprungen / skipped by prerequisite" \
+    "Blockierende Vorbedingung beheben / resolve blocking prerequisite"
 fi
 
-if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ -f "$REGISTRY" ]; then
+if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -eq 1 ]; then
   info "Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles"
+  findings_before="$FINDINGS"
   handle_preset_profiles
+  if [ "$FINDINGS" -gt "$findings_before" ]; then
+    record_stage "preset-profiles" "Blocked" 1 "Preset-Profil-Befund / preset profile finding" \
+      "Preset-Drift separat beheben / resolve preset drift separately"
+  else
+    record_stage "preset-profiles" "Passed" 0 "Preset-Profile geprueft / preset profiles checked"
+  fi
+else
+  record_stage "preset-profiles" "Skipped" 0 "Preset-Pruefung wegen Vorbedingung uebersprungen / skipped by prerequisite" \
+    "Blockierende Vorbedingung beheben / resolve blocking prerequisite"
 fi
 
 if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$SCRIPTS_ONLY" -eq 0 ]; then
@@ -568,8 +665,32 @@ if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$SCRIPTS_ONLY" -e
   elif [ "$DRY_RUN" -eq 1 ]; then
     maintenance+=(--dry-run)
   fi
-  [ "$INCLUDE_OPTIONAL" -eq 1 ] && maintenance+=(--include-optional)
-  "${maintenance[@]}"
+  optional_deferred=0
+  if [ "$INCLUDE_OPTIONAL" -eq 1 ]; then
+    if [ "$ALLOW_ADMIN_PROMPTS" -eq 1 ]; then
+      maintenance+=(--include-optional)
+    else
+      optional_deferred=1
+      warn "DEFERRED_ADMIN_REQUIRED: optionale Pakete benoetigen aktuelle Admin-Prompt-Autoritaet"
+      warn "DEFERRED_ADMIN_REQUIRED: optional packages require current admin-prompt authority"
+    fi
+  fi
+  if [ "$(uname -s)" = "Linux" ] && [ "$ALLOW_ADMIN_PROMPTS" -ne 1 ] && [ "$CHECK_ONLY" -eq 0 ] && [ "$DRY_RUN" -eq 0 ]; then
+    warn "DEFERRED_ADMIN_REQUIRED: Linux-Toolchain benoetigt ausdrueckliche --allow-admin-prompts-Autoritaet"
+    warn "DEFERRED_ADMIN_REQUIRED: Linux toolchain requires explicit --allow-admin-prompts authority"
+    record_stage "toolchain" "Warning" 0 "DEFERRED_ADMIN_REQUIRED" \
+      "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority"
+  else
+    "${maintenance[@]}"
+    if [ "$optional_deferred" -eq 1 ]; then
+      record_stage "toolchain" "Warning" 0 "DEFERRED_ADMIN_REQUIRED" \
+        "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority"
+    else
+      record_stage "toolchain" "Passed" 0 "Toolchain-Wartung abgeschlossen / toolchain maintenance completed"
+    fi
+  fi
+else
+  record_stage "toolchain" "Skipped" 0 "Toolchain durch Modus oder Vorbedingung uebersprungen / skipped by mode or prerequisite"
 fi
 
 if [ "$FINDINGS" -eq 0 ]; then
@@ -584,13 +705,20 @@ if [ "$FINDINGS" -eq 0 ]; then
 fi
 
 if [ "$FINDINGS" -gt 0 ]; then
+  record_stage "final" "Blocked" 1 "Wartung mit offenen Befunden / maintenance has open findings" \
+    "Befunde im Bericht beheben / resolve report findings"
   warn "Wartung mit ${FINDINGS} offenem Befund beendet / maintenance ended with open finding(s)"
+  printf 'Report / Bericht: %s\n' "$REPORT_FILE"
   exit 1
 fi
 if [ "$REPAIR_APPLIED" -eq 1 ]; then
+  record_stage "final" "Warning" 3 "Drift lokal repariert / drift repaired locally" \
+    "Aenderungen separat pruefen / review changes separately"
   warn "Drift wurde lokal repariert. Betroffene Repositories separat pruefen, committen und pushen."
   warn "Drift was repaired locally. Review, commit, and push affected repositories separately."
   exit 3
 fi
 
+record_stage "final" "Passed" 0 "Wartung abgeschlossen / maintenance completed"
 ok "Wartung abgeschlossen / maintenance completed"
+printf 'Report / Bericht: %s\n' "$REPORT_FILE"

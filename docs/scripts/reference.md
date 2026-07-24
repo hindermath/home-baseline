@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-07-22
-Kanonische Skriptdateien / Canonical script files: 113
+Kanonische Skriptdateien / Canonical script files: 115
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -620,6 +620,17 @@ bash scripts/test-homogeneity-runtime-closure.sh --help
 bash scripts/test-homogeneity-runtime-closure.sh --dry-run  # falls angeboten / when supported
 ```
 
+### `scripts/tests/test_agentic_workspace_maintenance.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_agentic_workspace_maintenance.py --help
+```
+
 ### `scripts/tests/test_home_sync_files.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -1018,6 +1029,18 @@ pwsh -NoProfile -File scripts/windows-test.ps1 -WhatIf  # falls SupportsShouldPr
 
 Stellt wiederverwendbare interne Funktionen fuer die oeffentlichen Skripte bereit.  
 *Provides reusable internal functions for public scripts.*
+
+### `scripts/lib/agentic_workspace_fleet.py`
+
+- **Rolle / Role:** intern oder installiert / internal or installed
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Nicht direkt aufrufen; wird von oeffentlichen Skripten geladen.
+Do not invoke directly; it is loaded by public scripts.
+```
 
 ### `scripts/lib/hg-a11y.ps1`
 
