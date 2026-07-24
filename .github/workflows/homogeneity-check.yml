@@ -73,9 +73,16 @@ jobs:
         run: |
           $isolatedHome = Join-Path $env:RUNNER_TEMP 'maintenance-safe-mode'
           New-Item -ItemType Directory -Path $isolatedHome -Force | Out-Null
-          pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 `
-            -HomeDir $isolatedHome -ScriptsOnly -WhatIf
-          $status = $LASTEXITCODE
+          $arguments = @(
+              '-NoProfile',
+              '-File', 'scripts/maintain-agentic-workspace.ps1',
+              '-HomeDir', $isolatedHome,
+              '-ScriptsOnly',
+              '-WhatIf'
+          )
+          $process = Start-Process -FilePath 'pwsh' -ArgumentList $arguments `
+            -Wait -PassThru -NoNewWindow
+          $status = $process.ExitCode
           if ($status -ne 1) {
               throw "Expected drift exit code 1, received $status."
           }

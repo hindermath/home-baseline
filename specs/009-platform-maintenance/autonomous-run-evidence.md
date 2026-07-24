@@ -57,6 +57,7 @@ scope remains outside this feature.
 | Exact staged path inventory | Pass, four metadata/statistics paths | No generated output or unrelated path |
 | CI fixture identity revalidation | Pass, 23 tests with empty temporary HOME | Remote matrix initially exposed inherited local Git identity; fixture checkouts now set deterministic local identity |
 | Exact-head gate coverage review | Corrected before merge | Added isolated macOS and Windows safe-mode workflow steps because aggregate Homogeneity and static-analysis jobs did not prove the wrapper commands themselves |
+| Expected Windows drift exit handling | Corrected before merge | GitHub PowerShell fail-fast intercepted native exit `1`; `Start-Process` now exposes it to the explicit contract assertion |
 
 The deliberately invalid manifest fixtures return the fatal contract boundary
 and make the negative path red; the complete unit suite passes because those
