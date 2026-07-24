@@ -197,6 +197,8 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                 fixture = FleetFixture(Path(directory))
                 fixture.run("update")
                 checkout = fixture.home / "Fleet" / "Example"
+                git(checkout, "config", "user.name", "Fixture")
+                git(checkout, "config", "user.email", "fixture@example.invalid")
                 if expected == "BRANCH_MISMATCH":
                     git(checkout, "switch", "-c", "feature")
                 elif expected == "DETACHED":

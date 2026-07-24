@@ -55,6 +55,7 @@ scope remains outside this feature.
 | Script-reference and project-statistics check-only | Pass, current | Canonical generated documentation |
 | `specify check` | Pass | Installed tools and Spec Kit integration |
 | Exact staged path inventory | Pass, four metadata/statistics paths | No generated output or unrelated path |
+| CI fixture identity revalidation | Pass, 23 tests with empty temporary HOME | Remote matrix initially exposed inherited local Git identity; fixture checkouts now set deterministic local identity |
 
 The deliberately invalid manifest fixtures return the fatal contract boundary
 and make the negative path red; the complete unit suite passes because those
