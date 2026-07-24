@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "38e8c44e-296f-499d-9f09-a54d95687c35",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-24T14:14:53Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "specs/intake-authoring-governance-v020/intake.md",
+    "normalizedSha256": "9c519ff62c0f14aa661a35bdcc1a9db9f9b269ee301f422d021f37702a477a44"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Inline",
+      "label": "Approved CRUD, URL, and Series plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "9c519ff62c0f14aa661a35bdcc1a9db9f9b269ee301f422d021f37702a477a44",
+      "gitBlob": "N/A"
+    }
+  ],
+  "profile": "generic-markdown",
+  "languagePolicy": "RepositoryPolicyOrDominantSource",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Which delete semantics are binding?",
+      "answer": "Archive plus tombstone; no purge in v0.2.0.",
+      "evidence": "Explicit user selection"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "When may large input be split?",
+      "answer": "Only after a concrete split proposal and explicit approval.",
+      "evidence": "Explicit user selection"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Which URL trust boundary applies?",
+      "answer": "Public static HTTPS with a bounded approved same-origin crawl.",
+      "evidence": "Explicit user selection"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 3,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Bootstrap authoring only; remote delivery is separately authorized by the approved implementation plan",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "nextAction": "$speckit-intake-review specs/intake-authoring-governance-v020/intake.md"
+}

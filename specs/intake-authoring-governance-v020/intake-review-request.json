@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "febca0b8-706a-4a5f-954e-e900578650ad",
+  "mode": "Single",
+  "policy": "preset-lifecycle-bootstrap",
+  "targets": [
+    {
+      "path": "specs/intake-authoring-governance-v020/intake.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

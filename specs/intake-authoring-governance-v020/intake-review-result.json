@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "febca0b8-706a-4a5f-954e-e900578650ad",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "preset-lifecycle-bootstrap",
+  "reviewedAt": "2026-07-24T14:14:53Z",
+  "repository": {
+    "root": ".",
+    "head": "d4872bafe220214c8d5934ee0228d1f3dcf6b627"
+  },
+  "targets": [
+    {
+      "path": "specs/intake-authoring-governance-v020/intake.md",
+      "role": "Primary",
+      "normalizedSha256": "9c519ff62c0f14aa661a35bdcc1a9db9f9b269ee301f422d021f37702a477a44",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "specs/intake-authoring-governance-v020/intake.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

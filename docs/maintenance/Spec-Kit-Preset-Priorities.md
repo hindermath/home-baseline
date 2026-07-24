@@ -176,11 +176,19 @@ daran nichts.
 
 ### 1. Intake Authoring bereitet die fachliche Grundlage vor
 
-`intake-authoring-governance` erzeugt aus ausdrücklich benanntem Rohtext,
-einer Planung oder geordneten UTF-8-Quelldateien genau einen strukturierten
-Intake. Zusätzlich entsteht ein Receipt mit Quellenreihenfolge, normalisierten
-SHA-256-Hashes, offenen Entscheidungen, Sprachregel, Delivery Authority und
-Zielhash.
+`intake-authoring-governance` v0.2.0 verwaltet Intakes mit getrennten
+Create-, Read-, Update- und Delete-Befehlen. Create erzeugt neue Ziele aus
+ausdrücklich benanntem Rohtext, Planungen, UTF-8-Dateien oder begrenzten
+öffentlichen HTTPS-Snapshots. Read fasst standardmäßig nur zusammen. Update
+braucht aktuelle Autorität und archiviert den Vorgänger. Delete entfernt keine
+Historie, sondern verschiebt Ziel und Receipt in ein hashgebundenes Archiv und
+legt einen Tombstone an.
+
+Wenn der Quellenumfang fachlich mehrere Intakes rechtfertigt, wird zuerst ein
+vollständiger Series-Vorschlag mit Quellenabdeckung, Reihenfolge, Rollen,
+Abhängigkeiten und Überschneidungsentscheidungen erzeugt. Erst eine
+ausdrückliche Freigabe erlaubt die transaktionale Veröffentlichung aller
+Mitglieder. Eine teilweise veröffentlichte Reihe gilt als Fehler.
 
 Der Status `ReadyForReview` bedeutet nur:
 
@@ -191,6 +199,10 @@ Der Status `ReadyForReview` bedeutet nur:
 `ReadyForReview` ist **keine fachliche Freigabe** für Specify oder einen
 autonomen Lauf. Bei `NeedsClarification` bleiben die erzeugten Prompts sichtbar,
 sind aber ausdrücklich gesperrt.
+
+Die Priorität `64` bedeutet dabei nur, dass Authoring-Bausteine vor Review
+(`65`) aufgelöst werden. Sie startet weder Create noch einen anderen
+Lifecycle-Befehl automatisch.
 
 ### 2. Intake Review prüft unabhängig
 
