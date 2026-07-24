@@ -181,6 +181,42 @@ push, PR, merge, bypass, secret, or provider authority. The ordering from
 Intake Authoring through Parallel Autonomous describes conceptual layering,
 not an automatically executed workflow.
 
+### How the four workflow presets cooperate
+
+The optional workflow stack can turn explicit source material into a reviewed
+and hash-bound execution basis:
+
+```text
+Sources
+  -> speckit.intake-create
+  -> intake + receipt (`ReadyForReview`)
+  -> speckit.intake-review
+  -> current `Ready` or human-approved `ReadyWithAcceptedRisks`
+  -> speckit.autonomous or speckit.parallel-autonomous
+```
+
+These arrows are manual handoffs. Authoring never starts Review, Review never
+starts Specify, and neither autonomous preset starts merely because it is
+installed or has a later priority.
+
+- Preset 10 records ordered sources, normalized hashes, decisions, authority,
+  and the target hash. `ReadyForReview` proves authoring consistency only.
+- Preset 9 reviews the target independently and produces the acceptance result
+  consumed by enabled downstream policy gates.
+- Preset 7 v0.3.2 validates one current result and the binding intake hash
+  before branch, feature, or Specify creation. Accepted hashes become
+  autonomous `acceptedArtifacts`.
+- Preset 8 v0.2.3 validates campaign review coverage before worktree creation,
+  checks one semantic review per unique intake plus one applicability row per
+  worker, aligns the review with the campaign DAG, and revalidates the stored
+  result hash on resume. Preset 7 still governs each worker lifecycle.
+
+Missing evidence, target drift, unanswered material questions, Critical/High
+findings, or an unaccepted risk blocks an enabled gate. When repository policy
+does not require Intake Review, Preset 7 records `N/A`; campaigns can likewise
+declare the optional schema-1.2 gate inactive. No gate grants delivery or
+administrative authority.
+
 For a beginner-oriented bilingual explanation, examples, diagnostics, and safe
 reprioritisation guidance, see
 [Spec Kit Preset Priorities](../../docs/maintenance/Spec-Kit-Preset-Priorities.md).
