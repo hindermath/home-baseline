@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 import os
 from pathlib import Path
 import shlex
@@ -14,6 +15,7 @@ import unittest
 
 REPOSITORY = Path(__file__).resolve().parents[2]
 CONFIG = REPOSITORY / "scripts" / "config"
+FLEET_ENGINE = REPOSITORY / "scripts" / "lib" / "agentic_workspace_fleet.py"
 
 
 def read_json(path: Path) -> dict:
@@ -41,6 +43,72 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    def test_fleet_manifest_has_exact_declared_cardinalities(self) -> None:
+        specification = importlib.util.spec_from_file_location("fleet_engine", FLEET_ENGINE)
+        self.assertIsNotNone(specification)
+        module = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(module)
+        manifest = module.load_manifest(CONFIG / "agentic-workspace-fleet.json")
+        targets = manifest["targets"]
+        self.assertEqual(len(targets), 43)
+        self.assertEqual(sum(item["kind"] == "git-repository" for item in targets), 42)
+        self.assertEqual(sum(item["kind"] == "collection" for item in targets), 1)
+        self.assertEqual(
+            sum(item["maintenanceClass"] == "canonical-fleet" for item in targets),
+            32,
+        )
+        self.assertEqual(
+            sum(
+                item["kind"] == "git-repository"
+                and item["maintenanceClass"] == "preset"
+                for item in targets
+            ),
+            10,
+        )
+
+    def test_fleet_manifest_rejects_unsafe_semantics(self) -> None:
+        specification = importlib.util.spec_from_file_location("fleet_engine_invalid", FLEET_ENGINE)
+        module = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(module)
+        base = {
+            "schemaVersion": "1.0",
+            "targets": [
+                {
+                    "id": "root",
+                    "kind": "git-repository",
+                    "level": 1,
+                    "path": "Root",
+                    "active": True,
+                    "maintenanceClass": "canonical-fleet",
+                    "remote": "https://example.invalid/root.git",
+                    "forge": "generic-git",
+                    "defaultBranch": "main",
+                }
+            ],
+        }
+        invalid_variants = []
+        traversal = json.loads(json.dumps(base))
+        traversal["targets"][0]["path"] = "../Root"
+        invalid_variants.append(traversal)
+        duplicate = json.loads(json.dumps(base))
+        duplicate["targets"].append(dict(duplicate["targets"][0]))
+        invalid_variants.append(duplicate)
+        invalid_collection = json.loads(json.dumps(base))
+        invalid_collection["targets"][0].update(
+            {"kind": "collection", "memberDiscovery": "declared-targets"}
+        )
+        invalid_variants.append(invalid_collection)
+        orphan = json.loads(json.dumps(base))
+        orphan["targets"][0].update({"level": 2, "path": "Missing/Child"})
+        invalid_variants.append(orphan)
+
+        for index, content in enumerate(invalid_variants):
+            with self.subTest(index=index), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "manifest.json"
+                path.write_text(json.dumps(content), encoding="utf-8")
+                with self.assertRaises(module.ContractError):
+                    module.load_manifest(path)
+
     def test_preset_profile_catalog_resolves_exact_matrices(self) -> None:
         catalog = read_json(CONFIG / "spec-kit-preset-profiles.json")
         expected = {

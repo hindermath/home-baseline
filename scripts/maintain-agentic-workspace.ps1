@@ -29,6 +29,13 @@
 .PARAMETER IncludeOptional
     Install optional WinGet, VS Code, CLI, and npm registry entries too.
 
+.PARAMETER AllowAdminPrompts
+    Allow administrator prompts for the current run only. No credentials are
+    stored or written to logs.
+
+.PARAMETER ManifestPath
+    Alternative desired-state fleet manifest, primarily for isolated tests.
+
 .PARAMETER HomeDir
     Alternative home directory, primarily for isolated tests or a second profile.
 
@@ -62,11 +69,49 @@ param(
     [switch] $ScriptsOnly,
     [switch] $RepairDrift,
     [switch] $IncludeOptional,
+    [switch] $AllowAdminPrompts,
+    [string] $ManifestPath,
     [string] $HomeDir = [Environment]::GetFolderPath('UserProfile')
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$script:HBMaintenanceScriptPath = $PSCommandPath
+
+function Invoke-HBAgenticWorkspaceMaintenance {
+    <#
+    .SYNOPSIS
+        Runs the cross-platform one-command workspace maintenance.
+    .DESCRIPTION
+        Invokes the repository-owned script with native PowerShell parameter
+        binding. Use CheckOnly or WhatIf before an update run.
+    #>
+    [CmdletBinding(SupportsShouldProcess)]
+    param(
+        [switch] $CheckOnly,
+        [switch] $ScriptsOnly,
+        [switch] $RepairDrift,
+        [switch] $IncludeOptional,
+        [switch] $AllowAdminPrompts,
+        [string] $ManifestPath,
+        [string] $HomeDir = [Environment]::GetFolderPath('UserProfile')
+    )
+    $parameters = @{
+        CheckOnly = $CheckOnly
+        ScriptsOnly = $ScriptsOnly
+        RepairDrift = $RepairDrift
+        IncludeOptional = $IncludeOptional
+        AllowAdminPrompts = $AllowAdminPrompts
+        HomeDir = $HomeDir
+    }
+    if ($ManifestPath) { $parameters.ManifestPath = $ManifestPath }
+    if ($WhatIfPreference) { $parameters.WhatIf = $true }
+    & $script:HBMaintenanceScriptPath @parameters
+}
+
+if ($MyInvocation.InvocationName -eq '.') {
+    return
+}
 
 if ($CheckOnly -and $WhatIfPreference) {
     Write-Host 'Fehler / Error: -CheckOnly und / and -WhatIf sind nicht kombinierbar / cannot be combined.' -ForegroundColor Red
@@ -83,6 +128,10 @@ if ($IncludeOptional -and $ScriptsOnly) {
 
 $sourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
 $presetProfileCatalog = Join-Path $sourceRoot 'scripts/config/spec-kit-preset-profiles.json'
+$fleetEngine = Join-Path $sourceRoot 'scripts/lib/agentic_workspace_fleet.py'
+if (-not $ManifestPath) {
+    $ManifestPath = Join-Path $sourceRoot 'scripts/config/agentic-workspace-fleet.json'
+}
 $HomeDir = (Resolve-Path -LiteralPath $HomeDir).Path
 $homeScriptsDir = Join-Path $HomeDir 'scripts'
 if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
@@ -98,6 +147,8 @@ if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
     if ($ScriptsOnly) { $forward.ScriptsOnly = $true }
     if ($RepairDrift) { $forward.RepairDrift = $true }
     if ($IncludeOptional) { $forward.IncludeOptional = $true }
+    if ($AllowAdminPrompts) { $forward.AllowAdminPrompts = $true }
+    if ($ManifestPath) { $forward.ManifestPath = $ManifestPath }
     if ($WhatIfPreference) { $forward.WhatIf = $true }
     $forward.HomeDir = $HomeDir
     & $repoScript @forward
@@ -107,10 +158,54 @@ $registry = Join-Path $HomeDir '.home-baseline/level2-repository-registry.json'
 $stateDir = Join-Path $HomeDir '.home-baseline'
 $lockDir = Join-Path $stateDir 'locks/agentic-workspace-maintenance.lock'
 $logDir = Join-Path $stateDir 'logs'
+$reportDir = Join-Path $stateDir 'reports'
 $script:Findings = 0
 $script:RepairApplied = $false
 $exitCode = 0
 $transcriptStarted = $false
+$runId = [Guid]::NewGuid().ToString()
+$reportFile = Join-Path $reportDir "agentic-workspace-${runId}.json"
+$pythonCommand = Get-Command python3, python -ErrorAction SilentlyContinue | Select-Object -First 1
+if ($null -eq $pythonCommand) {
+    throw 'Python 3 ist erforderlich / Python 3 is required.'
+}
+if (-not (Test-Path -LiteralPath $fleetEngine -PathType Leaf)) {
+    throw "Fleet-Vertragskern fehlt / fleet contract engine missing: ${fleetEngine}"
+}
+
+function Add-HBReportStage {
+    param(
+        [Parameter(Mandatory)][string] $StageId,
+        [Parameter(Mandatory)][ValidateSet('Passed', 'Warning', 'Blocked', 'Failed', 'Skipped')][string] $Status,
+        [Parameter(Mandatory)][int] $ExitCode,
+        [Parameter(Mandatory)][string] $Summary,
+        [string] $NextAction = 'N/A'
+    )
+    if (-not (Test-Path -LiteralPath $reportFile -PathType Leaf)) { return }
+    & $pythonCommand.Source $fleetEngine stage `
+        --report $reportFile `
+        --stage-id $StageId `
+        --status $Status `
+        --exit-code $ExitCode `
+        --summary $Summary `
+        --next-action $NextAction
+    if ($LASTEXITCODE -ne 0) {
+        throw "Run-Bericht konnte nicht aktualisiert werden / run report update failed: ${StageId}"
+    }
+}
+
+function Invoke-HBFleetContract {
+    $mode = if ($CheckOnly) { 'check-only' } elseif ($WhatIfPreference) { 'dry-run' } else { 'update' }
+    & $pythonCommand.Source $fleetEngine fleet `
+        --manifest $ManifestPath `
+        --home-dir $HomeDir `
+        --mode $mode `
+        --report $reportFile `
+        --log $logFile `
+        --run-id $runId | ForEach-Object { Write-Host $_ }
+    $status = $LASTEXITCODE
+    return [int]$status
+}
 
 function Write-HBInfo {
     param([Parameter(Mandatory)][string] $Message)
@@ -517,7 +612,7 @@ function Invoke-HBPresetProfiles {
     }
 }
 
-New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir -Force | Out-Null
+New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir, $reportDir -Force | Out-Null
 try {
     New-Item -ItemType Directory -Path $lockDir -ErrorAction Stop | Out-Null
 } catch {
@@ -540,12 +635,15 @@ try {
     Write-Host "Mode / Modus: ${mode}"
     Write-Host "Level-0: ${sourceRoot}"
     Write-Host "Home: ${HomeDir}"
+    Write-Host "Run-ID: ${runId}"
 
     Write-HBInfo 'Level-0 aktualisieren / Update Level-0'
-    [void](Test-HBRepository -Repository $sourceRoot -Label 'Level-0')
+    $level0Passed = Test-HBRepository -Repository $sourceRoot -Label 'Level-0'
 
+    $homeStatus = 'Skipped'
     if ($script:Findings -eq 0) {
         Write-HBInfo 'Lokale Home-Baseline synchronisieren / Synchronize local home baseline'
+        $findingsBefore = $script:Findings
         $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
         if ($CheckOnly) {
             Test-HBHomeSync
@@ -555,27 +653,86 @@ try {
             & $syncScript -NoPull
         }
         if ($LASTEXITCODE -notin @(0, $null)) { throw 'sync-home fehlgeschlagen / failed.' }
+        $homeStatus = if ($script:Findings -gt $findingsBefore) { 'Blocked' } else { 'Passed' }
     }
 
-    Write-HBInfo 'Level-1/Level-2 ermitteln und Registry pruefen / Discover repositories and check registry'
-    Test-HBRegistry
-
-    if ($script:Findings -eq 0 -or $CheckOnly) {
-        foreach ($repo in Get-HBManagedRepositories) {
-            [void](Test-HBRepository -Repository $repo.Path -Label "Level-$($repo.Level)")
+    Write-HBInfo 'Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet'
+    $fleetStatus = Invoke-HBFleetContract
+    switch ($fleetStatus) {
+        0 { }
+        1 { $script:Findings++ }
+        default {
+            Add-HBReportStage -StageId 'fleet' -Status Failed -ExitCode 2 `
+                -Summary 'Fleet-Vertrag fehlgeschlagen / fleet contract failed' `
+                -NextAction 'Manifest und Log pruefen / review manifest and log'
+            throw 'Fleet-Vertrag fehlgeschlagen / fleet contract failed.'
         }
     }
+    Add-HBReportStage -StageId 'level0' -Status $(if ($level0Passed) { 'Passed' } else { 'Blocked' }) `
+        -ExitCode $(if ($level0Passed) { 0 } else { 1 }) `
+        -Summary 'Level-0-Pruefung / Level-0 check' `
+        -NextAction $(if ($level0Passed) { 'N/A' } else { 'Branch und Upstream pruefen / review branch and upstream' })
+    Add-HBReportStage -StageId 'home-sync' -Status $homeStatus `
+        -ExitCode $(if ($homeStatus -eq 'Blocked') { 1 } else { 0 }) `
+        -Summary 'Home-Sync / home sync' `
+        -NextAction $(if ($homeStatus -eq 'Skipped') { 'Nach Level-0-Freigabe erneut ausfuehren / rerun after Level-0 passes' } else { 'N/A' })
 
-    if ($script:Findings -eq 0 -or $CheckOnly) {
+    Write-HBInfo 'Level-1/Level-2 Registry pruefen / Check Level-1/Level-2 registry'
+    $findingsBefore = $script:Findings
+    Test-HBRegistry
+    $registrySafe = $false
+    if (Test-Path -LiteralPath $registry -PathType Leaf) {
+        & $pythonCommand.Source $fleetEngine registry --manifest $ManifestPath --registry $registry |
+            ForEach-Object { Write-Host $_ }
+        $registryStatus = $LASTEXITCODE
+        $registrySafe = $registryStatus -eq 0
+        if (-not $registrySafe) { $script:Findings++ }
+    }
+    if ($script:Findings -gt $findingsBefore -or -not $registrySafe) {
+        Add-HBReportStage -StageId 'registry' -Status Blocked -ExitCode 1 `
+            -Summary 'Registry-Pruefung mit Befund / registry check has findings' `
+            -NextAction 'Registry-Befund beheben / resolve registry finding'
+    } else {
+        Add-HBReportStage -StageId 'registry' -Status Passed -ExitCode 0 `
+            -Summary 'Registry-Pruefung abgeschlossen / registry check completed'
+    }
+
+    if (($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
         Write-HBInfo 'Kanonisches Wartungspaket pruefen / Check canonical maintenance package'
         if (Test-Path -LiteralPath $registry -PathType Leaf) {
+            $findingsBefore = $script:Findings
             Invoke-HBPropagation
+            if ($script:Findings -gt $findingsBefore) {
+                Add-HBReportStage -StageId 'propagation' -Status Blocked -ExitCode 1 `
+                    -Summary 'Wartungspaket-Drift / maintenance package drift' `
+                    -NextAction 'Drift separat pruefen / review drift separately'
+            } else {
+                Add-HBReportStage -StageId 'propagation' -Status Passed -ExitCode 0 `
+                    -Summary 'Wartungspaket geprueft / maintenance package checked'
+            }
         }
+    } else {
+        Add-HBReportStage -StageId 'propagation' -Status Skipped -ExitCode 0 `
+            -Summary 'Propagation wegen Vorbedingung uebersprungen / skipped by prerequisite' `
+            -NextAction 'Blockierende Vorbedingung beheben / resolve blocking prerequisite'
     }
 
-    if (($script:Findings -eq 0 -or $CheckOnly) -and (Test-Path -LiteralPath $registry -PathType Leaf)) {
+    if (($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
         Write-HBInfo 'Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles'
+        $findingsBefore = $script:Findings
         Invoke-HBPresetProfiles
+        if ($script:Findings -gt $findingsBefore) {
+            Add-HBReportStage -StageId 'preset-profiles' -Status Blocked -ExitCode 1 `
+                -Summary 'Preset-Profil-Befund / preset profile finding' `
+                -NextAction 'Preset-Drift separat beheben / resolve preset drift separately'
+        } else {
+            Add-HBReportStage -StageId 'preset-profiles' -Status Passed -ExitCode 0 `
+                -Summary 'Preset-Profile geprueft / preset profiles checked'
+        }
+    } else {
+        Add-HBReportStage -StageId 'preset-profiles' -Status Skipped -ExitCode 0 `
+            -Summary 'Preset-Pruefung wegen Vorbedingung uebersprungen / skipped by prerequisite' `
+            -NextAction 'Blockierende Vorbedingung beheben / resolve blocking prerequisite'
     }
 
     if (($script:Findings -eq 0 -or $CheckOnly) -and -not $ScriptsOnly) {
@@ -584,9 +741,25 @@ try {
         $parameters = @{}
         if ($CheckOnly) { $parameters.CompareOnly = $true }
         if ($WhatIfPreference) { $parameters.WhatIf = $true }
-        if ($IncludeOptional) { $parameters.IncludeOptional = $true }
+        $optionalDeferred = $IncludeOptional -and -not $AllowAdminPrompts
+        if ($IncludeOptional -and $AllowAdminPrompts) { $parameters.IncludeOptional = $true }
+        if ($optionalDeferred) {
+            Write-HBWarning 'DEFERRED_ADMIN_REQUIRED: optionale Pakete benoetigen aktuelle Admin-Prompt-Autoritaet / optional packages require current authority.'
+        }
+        $env:HB_ALLOW_ADMIN_PROMPTS = if ($AllowAdminPrompts) { '1' } else { '0' }
         & $maintenance @parameters
         if ($LASTEXITCODE -notin @(0, $null)) { throw 'WinGet-Wartung fehlgeschlagen / maintenance failed.' }
+        if ($optionalDeferred) {
+            Add-HBReportStage -StageId 'toolchain' -Status Warning -ExitCode 0 `
+                -Summary 'DEFERRED_ADMIN_REQUIRED' `
+                -NextAction 'Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority'
+        } else {
+            Add-HBReportStage -StageId 'toolchain' -Status Passed -ExitCode 0 `
+                -Summary 'Toolchain-Wartung abgeschlossen / toolchain maintenance completed'
+        }
+    } else {
+        Add-HBReportStage -StageId 'toolchain' -Status Skipped -ExitCode 0 `
+            -Summary 'Toolchain durch Modus oder Vorbedingung uebersprungen / skipped by mode or prerequisite'
     }
 
     if ($script:Findings -eq 0) {
@@ -600,13 +773,21 @@ try {
     }
 
     if ($script:Findings -gt 0) {
+        Add-HBReportStage -StageId 'final' -Status Blocked -ExitCode 1 `
+            -Summary 'Wartung mit offenen Befunden / maintenance has open findings' `
+            -NextAction 'Befunde im Bericht beheben / resolve report findings'
         Write-HBWarning "Wartung mit $($script:Findings) offenem Befund beendet / maintenance ended with open finding(s)."
         $exitCode = 1
     } elseif ($script:RepairApplied) {
+        Add-HBReportStage -StageId 'final' -Status Warning -ExitCode 3 `
+            -Summary 'Drift lokal repariert / drift repaired locally' `
+            -NextAction 'Aenderungen separat pruefen / review changes separately'
         Write-HBWarning 'Drift wurde lokal repariert. Betroffene Repositories separat pruefen, committen und pushen.'
         Write-HBWarning 'Drift was repaired locally. Review, commit, and push affected repositories separately.'
         $exitCode = 3
     } else {
+        Add-HBReportStage -StageId 'final' -Status Passed -ExitCode 0 `
+            -Summary 'Wartung abgeschlossen / maintenance completed'
         Write-Host 'OK: Wartung abgeschlossen / maintenance completed'
     }
 } catch {
@@ -616,6 +797,9 @@ try {
     if ($transcriptStarted) { Stop-Transcript | Out-Null }
     if (Test-Path -LiteralPath $lockDir) { Remove-Item -LiteralPath $lockDir -Recurse -Force }
     Write-Host "Log / log: ${logFile}"
+    if (Test-Path -LiteralPath $reportFile -PathType Leaf) {
+        Write-Host "Report / Bericht: ${reportFile}"
+    }
 }
 
 exit $exitCode

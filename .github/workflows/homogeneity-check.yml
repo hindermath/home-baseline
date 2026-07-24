@@ -45,6 +45,19 @@ jobs:
         if: runner.os != 'Windows'
         run: python3 -m unittest discover -s scripts/tests -p 'test_*.py'
 
+      - name: Validate maintenance safe mode on macOS
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          isolated_home="$(mktemp -d)"
+          set +e
+          HOME="$isolated_home" bash scripts/maintain-agentic-workspace.sh \
+            --home-dir "$isolated_home" --dry-run --scripts-only
+          status=$?
+          set -e
+          test "$status" -eq 1
+          test ! -e "$isolated_home/CSharpProjects"
+
       - name: Run Homogeneity Check (PowerShell on Windows)
         if: runner.os == 'Windows'
         shell: pwsh
@@ -53,6 +66,29 @@ jobs:
           $repo = Split-Path -Leaf $env:GITHUB_WORKSPACE
           Set-Location $parent
           pwsh -NoProfile -File "$repo/scripts/check-homogeneity.ps1" -TargetDir $repo
+
+      - name: Validate maintenance safe mode on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $isolatedHome = Join-Path $env:RUNNER_TEMP 'maintenance-safe-mode'
+          New-Item -ItemType Directory -Path $isolatedHome -Force | Out-Null
+          $arguments = @(
+              '-NoProfile',
+              '-File', 'scripts/maintain-agentic-workspace.ps1',
+              '-HomeDir', $isolatedHome,
+              '-ScriptsOnly',
+              '-WhatIf'
+          )
+          $process = Start-Process -FilePath 'pwsh' -ArgumentList $arguments `
+            -Wait -PassThru -NoNewWindow
+          $status = $process.ExitCode
+          if ($status -ne 1) {
+              throw "Expected drift exit code 1, received $status."
+          }
+          if (Test-Path -LiteralPath (Join-Path $isolatedHome 'CSharpProjects')) {
+              throw 'Dry-run created a target checkout.'
+          }
 
       - name: Validate generated script reference
         shell: pwsh

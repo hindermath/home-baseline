@@ -122,6 +122,7 @@
 | 2026-07-24 | Intake Authoring Governance v0.2.0 CRUD, URL und Series | — | — | — | Das optionale Preset um getrennte Create-, Read-, Update- und logische Delete-Befehle, Schema-2.0-Receipts, hashgebundene Archive und Tombstones, begrenzte öffentliche HTTPS-Snapshots sowie ausdrücklich freizugebende transaktionale Intake-Reihen erweitert. Schema 1.0/1.1 bleibt lesbar. Bash-/PowerShell-Fixtures, SQLite-URL-Feldnachweis, Zehn-Preset-Komposition, Paket-Homogenität und jeweils fünf eindeutige Commands auf allen gepflegten Agentenoberflächen sind grün. Kein Review-, Specify- oder autonomer Lauf wurde automatisch gestartet. Das Delta vor Statistikrendering umfasst 5768 Nettozeilen. |
 | 2026-07-24 | Intake Authoring Governance v0.2.0 Flottenabschluss | — | — | — | Intake Authoring v0.2.0 wurde in 33/33 Level-0-/Level-1-/Level-2-Repositories installiert und über 33 PRs gemergt. Die Flotte verwendet exakt zehn Presets; 21/21 Lernreihen-Repositories aus drei Familien sind enthalten, ohne einen Lernenden-Spec-Kit-Lauf zu starten. Alle Receipt-, Lifecycle-, Matrix-, Command-Paritäts-, Statistik-, Diff- und Secret-Prüfungen bestanden. 119 echte Exact-Head-Checks waren grün. Weitere 119 Workflow-Runs mit 229 Jobs wurden vor dem ersten Schritt durch GitHub Billing oder Spending abgewiesen und blieben fehlende Provider-Evidence. Jede Annotation wurde geprüft; null Review-Threads waren offen. Die Abschluss-Evidence umfasst vor Statistikrendering 125 Nettozeilen. |
 | 2026-07-24 | Intake Authoring Governance v0.2.0 im Community-Katalog | — | — | — | Die offizielle Preset-Einreichung `github/spec-kit#3720` wurde mit `preset-submission` und `validation-passed` abgeschlossen. Der von Spec Kit erzeugte Katalog-PR #3721 erhielt die Maintainer-Freigabe durch `mnriem` und wurde nach 14 erfolgreichen Checks sowie einem planmäßig übersprungenen Matrix-Job als `b0850c97e648dfd6b6ef253e91b503a030a17532` gemergt. Es gab keine Korrekturanforderung und keinen offenen Review-Thread; der abschließende Maintainer-Kommentar lautet „Thank you!“. Damit sind Paketentwicklung, Release, Flottenverteilung und Community-Katalogaufnahme vollständig abgeschlossen. |
+| 2026-07-24 | Plattformübergreifende Ein-Kommando-Wartung | — | — | — | Feature 009 führt ein versioniertes Desired-State-Manifest mit 42 aktiven Git-Zielen und einer Collection, transaktionales Clone-on-missing, fail-closed Repositoryentscheidungen sowie korrelierte lokale Logs und JSON-Berichte ein. Bash und PowerShell behalten native Oberflächen und verwenden denselben Python-Standardbibliothekskern für Pfad-, Remote-, Git- und Reportsemantik. 18 gezielte Vertrags- und Git-Fixture-Tests, Bash-Syntax, PowerShell-Parser und PSScriptAnalyzer sind grün. Eine reale macOS-Vorschau erfasste alle 43 Ziele ohne Clone oder Pull und wies vorhandene Hostdrift wahrheitsgemäß aus. Das Feature ändert und publiziert keine Ziel-Repositories; der Flottenrollout bleibt separat. Das Implementierungsdelta vor Statistikrendering umfasst 2585 Nettozeilen. |
 
 ---
 
@@ -694,27 +695,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 324693 lines |
-| Textdateien / Text files | 2023 |
+| Textbasis / Text base | 327334 lines |
+| Textdateien / Text files | 2044 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-24 |
 | Aktivtage / Active days | 72 |
-| Relevante Commits / Relevant commits | 517 |
-| Zeilen je Aktivtag / Lines per active day | 4509.6 |
+| Relevante Commits / Relevant commits | 522 |
+| Zeilen je Aktivtag / Lines per active day | 4546.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 29 days |
-| Speedup vs. 80 lines/day | 56.4x |
-| Speedup vs. 100 lines/day | 45.1x |
-| Methodik / Methodology | v2; source `f0c80db6c110` |
+| Speedup vs. 80 lines/day | 56.8x |
+| Speedup vs. 100 lines/day | 45.5x |
+| Methodik / Methodology | v2; source `751808ca4aec` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   2.9% | 9488
-Dokumentation / Documentation   [################....]  81.1% | 263209
-Skripte / Scripts               [###.................]  13.5% | 43894
-Konfiguration / Configuration   [#...................]   2.3% | 7386
+Tests                           [#...................]   3.1% | 10202
+Dokumentation / Documentation   [################....]  80.7% | 264089
+Skripte / Scripts               [###.................]  13.7% | 44748
+Konfiguration / Configuration   [#...................]   2.3% | 7579
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 716
 ```
@@ -810,15 +811,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..29
-   cap 10000 | . . . . . . . . . . . . . .
-        8333 | . . . . . . . . . . . . . .
-        6667 | . . . . . . . . . . . . . .
-        5000 | # . . . . . . . . . . # . .
-        3333 | # . . . . . . . . . . # . .
-        1667 | # . . . # . . . # . . # . .
-           0 +-----------------------------
-             16 17 18 19 20 21 22 23 24 25 26 27 28 29
+Slots 16..30
+   cap 10000 | . . . . . . . . . . . . . . .
+        8333 | . . . . . . . . . . . . . . .
+        6667 | . . . . . . . . . . . . . . .
+        5000 | # . . . . . . . . . . # . . .
+        3333 | # . . . . . . . . . . # . . .
+        1667 | # . . . # . . . # . . # . . #
+           0 +-------------------------------
+             16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -853,6 +854,7 @@ Slots 16..29
 | 27 | Intake-Authoring-v0.2.0-CRUD-URL-Series / Intake Authoring v0.2.0 CRUD URL series | 5768 |
 | 28 | Intake-Authoring-v0.2.0-Flottenabschluss / Intake Authoring v0.2.0 fleet closeout | 125 |
 | 29 | Intake-Authoring-v0.2.0-Community-Katalogabschluss / Intake Authoring v0.2.0 community catalog closeout | 29 |
+| 30 | Plattformübergreifende Ein-Kommando-Wartung / Cross-platform one-command maintenance | 2585 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -862,8 +864,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 56.4x
-100 lines/day      [#########...........] 45.1x
+80 lines/day       [###########.........] 56.8x
+100 lines/day      [#########...........] 45.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -876,7 +878,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##################..] 4509.6
+Visible repository [##################..] 4546.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -902,6 +904,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-24. Es enthaelt 72 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 242706 |
+| 2026-07 | 245531 |
 
 <!-- project-statistics-v2:end -->

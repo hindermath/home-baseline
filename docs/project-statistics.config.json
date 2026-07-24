@@ -249,6 +249,14 @@
       "labelEn": "Intake Authoring v0.2.0 community catalog closeout",
       "netLines": 29,
       "activeDays": 1
+    },
+    {
+      "slot": 30,
+      "id": "platform-one-command-maintenance",
+      "labelDe": "Plattformübergreifende Ein-Kommando-Wartung",
+      "labelEn": "Cross-platform one-command maintenance",
+      "netLines": 2585,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

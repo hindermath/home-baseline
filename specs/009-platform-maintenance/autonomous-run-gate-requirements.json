@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "manifest-contract",
+      "applicability": "Applicable",
+      "requiredScope": "Validate positive and negative desired-state manifest fixtures.",
+      "requiredCommandTokens": ["test_maintenance_contracts"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "maintenance-behavior",
+      "applicability": "Applicable",
+      "requiredScope": "Validate clone, pull, blocker, no-op, continuation and report behavior.",
+      "requiredCommandTokens": ["test_agentic_workspace_maintenance"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "bash-macos",
+      "applicability": "Applicable",
+      "requiredScope": "Validate Bash syntax, Bash 3.2 compatibility and macOS behavior.",
+      "requiredCommandTokens": ["bash", "maintain-agentic-workspace.sh"],
+      "requiredRunnerOrPlatformTokens": ["macOS"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "linux",
+      "applicability": "Applicable",
+      "requiredScope": "Validate Bash behavior on Ubuntu/Linux.",
+      "requiredCommandTokens": ["test_agentic_workspace_maintenance"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "windows-powershell",
+      "applicability": "Applicable",
+      "requiredScope": "Validate PowerShell parsing, behavior and report parity on Windows.",
+      "requiredCommandTokens": ["maintain-agentic-workspace.ps1"],
+      "requiredRunnerOrPlatformTokens": ["windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "powershell-static-analysis",
+      "applicability": "Applicable",
+      "requiredScope": "Run the repository-owned PSScriptAnalyzer gate.",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer.ps1"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "homogeneity",
+      "applicability": "Applicable",
+      "requiredScope": "Validate repository statistics, documentation, agent parity and tracked-file contracts.",
+      "requiredCommandTokens": ["homogeneity"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "secret-scan",
+      "applicability": "Applicable",
+      "requiredScope": "Scan the delivery candidate for secrets and unsafe tracked paths.",
+      "requiredCommandTokens": ["scan-agent-secrets.sh", "--fail-on-high"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "docfx-web-a11y",
+      "applicability": "N/A",
+      "requiredScope": "DocFX and browser accessibility validation.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "The repository has no DocFX site or browser UI; CLI and Markdown use text-first review.",
+      "reevaluationTrigger": "Re-evaluate if generated HTML, navigation or a web UI changes."
+    },
+    {
+      "gateId": "sbom-vex-slsa",
+      "applicability": "N/A",
+      "requiredScope": "Supply-chain artifact generation.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No dependency, package or release artifact is added.",
+      "reevaluationTrigger": "Re-evaluate when dependencies or packaged release artifacts change."
+    }
+  ]
+}

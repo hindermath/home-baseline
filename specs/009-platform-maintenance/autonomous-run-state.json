@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "8e7a473b-e9b9-414a-9e93-006a98b81b61",
+  "featurePath": "specs/009-platform-maintenance",
+  "branch": "009-platform-maintenance",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "459c8d6a99e3bd9b14321252c947be7733649df7",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "sha256": "8cc50f591e9b73db85070413395099d73fbaaf526ee89a1666aa9b679915a839"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/plattformuebergreifende-ein-kommando-wartung.json",
+      "sha256": "d2daecb7630b7ed7dd0e327e14a9d003f57cad3a497af354691c8a9c0e35dc06"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "df0b897e276ab82eaa6ad90f76abad3370211a897942a5d094da60b2a421e187"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "0b45cf38e4f79aa15bc8245a0dd81c3e466abcdb01b9d1a8c06481a3cd0c9f6f"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-report.md",
+      "sha256": "acd647ecfb4120fc9bb1c8f2119486b4337b645542b049ca358be5b28a605f93"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "d8a0681e6b6dadb612bff03acc3b7efb9b52987ea772fb7042430868d7c59acc"
+    }
+  ],
+  "tasks": {
+    "path": "specs/009-platform-maintenance/tasks.md",
+    "sha256": "a79e39f6c970724cfd9b3b7f478289b04b7033257a897dd4f345b3a68747dc53",
+    "completed": 59,
+    "total": 65
+  },
+  "lastPassingGate": "Validate: 23 tests, Bash/PowerShell, PSScriptAnalyzer, Homogeneity 30/30, secrets, statistics, agent parity and Spec Kit passed",
+  "nextExactAction": "Push the Windows expected-exit handling correction and converge the new exact PR head.",
+  "lastOperation": {
+    "kind": "Publish",
+    "state": "Completed",
+    "summary": "PR 111 created; fixture identity is isolated, wrapper gates are explicit, and Windows expected drift exit handling is corrected."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "N/A",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-24T18:49:00Z"
+}
