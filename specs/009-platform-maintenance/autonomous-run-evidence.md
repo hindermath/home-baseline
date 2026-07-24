@@ -29,8 +29,8 @@
 | Analyze | Pass | 42 requirements and ten success criteria mapped; no Critical, High or unresolved Medium finding |
 | Implement | Pass | Desired-state engine, Bash/PowerShell surfaces, tests and documentation |
 | Validate | Pass | Full local gate set recorded below |
-| Publish/Review/Merge | Pending | Current repository only; no fleet repository writes |
-| Retrospective | Pending | Promotion only for reproducible provider-neutral learning |
+| Publish/Review/Merge | Pass | PR #111, exact head `4a19b20d5d844a3beea99e5b57efffe5209dd7b9`, merge `848dfbc60468c60a17310f2a39a42b3fa6e25270` |
+| Retrospective | Pass | `NoPromotion`; repository CI and fixture gaps corrected in the feature |
 
 ## Scope guard
 
@@ -120,3 +120,17 @@ The real dry-run truthfully reports local fleet state outside Feature 009:
 
 Feature 009 does not repair these host states or create target-repository PRs.
 They are safe next-run findings, not implementation failures.
+
+## Remote closeout
+
+- Feature PR: [#111](https://github.com/hindermath/home-baseline/pull/111)
+- Reviewed head: `4a19b20d5d844a3beea99e5b57efffe5209dd7b9`
+- Mandatory checks: 20 successful; Ubuntu, macOS and Windows included
+- Actionable review threads: zero
+- Exact-head evidence: ten Primary rows; Bash and PowerShell validators passed
+- Merge decision: narrow admin bypass used only for the remaining Human
+  Approval rule after all technical gates were green
+- Merge commit: `848dfbc60468c60a17310f2a39a42b3fa6e25270`
+- Feature branch: deleted remotely
+- Local synchronization: clean `main`, `HEAD == origin/main == 848dfbc`
+- Fleet writes: none; no target-repository commit, push or pull request

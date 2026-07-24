@@ -109,12 +109,12 @@ exitcode and normalized report projections.
 - [X] T057 Update and canonically render `docs/project-statistics.md`
 - [X] T058 Reconcile all tasks, hashes, scope boundaries and final local validation in `specs/009-platform-maintenance/autonomous-run-state.json`
 - [X] T059 Stage only intended paths and validate the exact delivery candidate recorded in `specs/009-platform-maintenance/autonomous-run-evidence.md`
-- [ ] T060 Commit, push and create the Feature 009 PR under MergeAndSync authority and record it in `specs/009-platform-maintenance/autonomous-run-evidence.md`
-- [ ] T061 Converge mandatory macOS/Linux/Windows checks and actionable review threads for the exact PR head in `specs/009-platform-maintenance/autonomous-run-evidence.md`
-- [ ] T062 Generate and validate temporary exact-head provider gate evidence using `specs/009-platform-maintenance/autonomous-run-gate-requirements.json`
-- [ ] T063 Merge with the authorized narrow bypass only if Human Approval is the sole remaining gate and record the decision in `specs/009-platform-maintenance/autonomous-run-evidence.md`
-- [ ] T064 Delete the feature branch, synchronize clean local `main`, and prove `HEAD == origin/main`
-- [ ] T065 Complete retrospective and any genuinely required non-empty causal closeout evidence in `specs/009-platform-maintenance/retrospective.md`
+- [X] T060 Commit, push and create the Feature 009 PR under MergeAndSync authority and record it in `specs/009-platform-maintenance/autonomous-run-evidence.md`
+- [X] T061 Converge mandatory macOS/Linux/Windows checks and actionable review threads for the exact PR head in `specs/009-platform-maintenance/autonomous-run-evidence.md`
+- [X] T062 Generate and validate temporary exact-head provider gate evidence using `specs/009-platform-maintenance/autonomous-run-gate-requirements.json`
+- [X] T063 Merge with the authorized narrow bypass only if Human Approval is the sole remaining gate and record the decision in `specs/009-platform-maintenance/autonomous-run-evidence.md`
+- [X] T064 Delete the feature branch, synchronize clean local `main`, and prove `HEAD == origin/main`
+- [X] T065 Complete retrospective and any genuinely required non-empty causal closeout evidence in `specs/009-platform-maintenance/retrospective.md`
 
 ## Dependencies and Execution Order
 
