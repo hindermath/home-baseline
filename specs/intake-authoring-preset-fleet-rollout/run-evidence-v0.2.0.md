@@ -120,6 +120,13 @@ Fresh temporary clones preserved their existing local branches and files.
 The accepted v0.1.1 submission
 [github/spec-kit#3676](https://github.com/github/spec-kit/issues/3676) and
 catalog PR [#3678](https://github.com/github/spec-kit/pull/3678) remain the
-history for this preset. Version 0.2.0 requires a new official Preset Submission
-issue because the previous submission is closed and merged. External catalog
-processing is not a local completion condition.
+history for this preset.
+
+The v0.2.0 update was accepted through
+[github/spec-kit#3720](https://github.com/github/spec-kit/issues/3720) and
+generated catalog PR [#3721](https://github.com/github/spec-kit/pull/3721).
+The issue is closed with `preset-submission` and `validation-passed`. PR #3721
+was approved by `mnriem` and merged as
+`b0850c97e648dfd6b6ef253e91b503a030a17532` after 14 successful checks and
+one planned skipped matrix job. No correction request or unresolved review
+thread remained. The final maintainer response was `Thank you!`.
