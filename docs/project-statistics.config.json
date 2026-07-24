@@ -241,6 +241,14 @@
       "labelEn": "Intake Authoring v0.2.0 fleet closeout",
       "netLines": 125,
       "activeDays": 1
+    },
+    {
+      "slot": 29,
+      "id": "intake-authoring-v020-community-catalog-closeout",
+      "labelDe": "Intake-Authoring-v0.2.0-Community-Katalogabschluss",
+      "labelEn": "Intake Authoring v0.2.0 community catalog closeout",
+      "netLines": 29,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

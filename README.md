@@ -2712,6 +2712,10 @@ Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
 2026-07-17 verifiziert. Die aktuellen eigenstaendigen Releases sind
 `autonomous-run-governance` v0.3.2 und
 `parallel-autonomous-run-governance` v0.2.3. Das optionale
+`intake-authoring-governance` v0.2.0 ist nach
+[Issue #3720](https://github.com/github/spec-kit/issues/3720) und
+[Katalog-PR #3721](https://github.com/github/spec-kit/pull/3721) ebenfalls im
+Community-Katalog enthalten. Das optionale
 `intake-review-governance` v0.1.1 wird separat mit Prioritaet `65` angeboten;
 Preset 8 wurde mit
 `github/spec-kit#3591` fuer den Community-Katalog eingereicht. Die direkte
@@ -2724,6 +2728,10 @@ catalog since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified there
 on 2026-07-17. The current standalone releases are
 `autonomous-run-governance` v0.3.2 and
 `parallel-autonomous-run-governance` v0.2.3. Optional
+`intake-authoring-governance` v0.2.0 is also available from the community
+catalog after
+[issue #3720](https://github.com/github/spec-kit/issues/3720) and
+[catalog PR #3721](https://github.com/github/spec-kit/pull/3721). Optional
 `intake-review-governance` v0.1.1 is offered separately at priority `65`;
 Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Direct
