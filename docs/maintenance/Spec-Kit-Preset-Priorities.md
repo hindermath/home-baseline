@@ -1,0 +1,269 @@
+# Spec-Kit-Preset-Prioritäten verstehen
+
+Diese Anleitung richtet sich an Lernende und Nutzende, die mehrere
+Spec-Kit-Presets gemeinsam einsetzen. Vorkenntnisse über Template-Auflösung
+oder Preset-Komposition sind nicht erforderlich.
+
+*This guide is for learners and users who combine multiple Spec Kit presets.
+No prior knowledge of template resolution or preset composition is required.*
+
+## Kurzantwort
+
+Eine Preset-Priorität bestimmt, **welches installierte Preset bei einer
+Überschneidung zuerst berücksichtigt wird**.
+
+```text
+Kleinere Zahl = höhere Priorität = frühere Berücksichtigung
+```
+
+Ein Preset mit Priorität `10` hat deshalb Vorrang vor einem Preset mit
+Priorität `40`. Die Zahl ist weder eine Qualitätsnote noch eine
+Ausführungsfreigabe.
+
+*A preset priority determines which installed preset is considered first when
+their contributions overlap. A lower number means higher precedence. The
+number is neither a quality score nor permission to execute anything.*
+
+## Was ist ein Preset?
+
+Ein Preset ist ein versioniertes Paket für Spec Kit. Es kann beispielsweise
+folgende Inhalte bereitstellen:
+
+- Templates für Spezifikation, Plan, Aufgaben oder Agent-Guidance;
+- Ergänzungen zu vorhandenen Templates;
+- gewrappte oder zusätzliche Spec-Kit-Befehle;
+- Validatoren, Skripte und Evidence-Vorlagen;
+- Regeln für Sicherheit, Architektur, A11Y oder den Ablauf autonomer Läufe.
+
+Mehrere Presets können als **Preset-Stack** gemeinsam installiert sein. Die
+Prioritäten machen die Auflösung dieses Stacks reproduzierbar.
+
+*A preset is a versioned Spec Kit package. It may provide templates, addenda,
+wrapped or additional commands, validators, scripts, and governance rules.
+Several installed presets form a preset stack. Priorities make resolution of
+that stack reproducible.*
+
+## Was die Priorität tatsächlich steuert
+
+Spec Kit ordnet aktivierte Presets aufsteigend nach ihrer Prioritätszahl:
+
+```text
+10 → 20 → 30 → 40 → 50 → 60 → 64 → 65 → 70 → 80
+```
+
+Diese Reihenfolge wird relevant, wenn mehrere Presets denselben Namen für ein
+Template, einen Befehl oder ein Addendum verwenden. Das Preset mit der
+kleineren Zahl wird zuerst betrachtet.
+
+Projektlokale Overrides stehen außerhalb dieser Preset-Reihenfolge und werden
+vor installierten Presets aufgelöst. Die Priorität `10` kann daher keinen
+bewussten lokalen Projekt-Override verdrängen.
+
+Bei gleicher Prioritätszahl sortiert die verwendete Spec-Kit-Version
+deterministisch nach Preset-ID. Gleiche Prioritäten sollten trotzdem vermieden
+werden: Unterschiedliche Zahlen zeigen die beabsichtigte Schichtung deutlicher
+und erleichtern Reviews.
+
+*Spec Kit sorts enabled presets by ascending priority number. The order matters
+when presets provide the same template, command, or addendum name. Project
+overrides are resolved before installed presets and are not displaced by
+priority `10`. Equal priorities are resolved deterministically by preset ID,
+but distinct numbers communicate intent more clearly.*
+
+## Die Kompositionsstrategie entscheidet mit
+
+Priorität allein sagt noch nicht, ob nur ein Inhalt gewinnt oder mehrere
+Inhalte kombiniert werden. Das bestimmt die Strategie des jeweiligen
+Preset-Bausteins:
+
+| Strategie | Wirkung |
+|---|---|
+| `replace` | Der Inhalt mit der höchsten Priorität ersetzt die niedrigeren Beiträge vollständig. |
+| `prepend` | Der Beitrag wird vor den Inhalt niedriger priorisierter Schichten gesetzt. |
+| `append` | Der Beitrag wird nach den Inhalt niedriger priorisierter Schichten gesetzt. |
+| `wrap` | Der Beitrag umschließt den niedrigeren beziehungsweise den Core-Inhalt an einem vorgesehenen Platzhalter. |
+
+Beispiel: Security und A11Y können denselben Plan-Befehl ergänzen. Bei
+komponierbaren Addenda bleiben beide Anforderungen erhalten; Security wird
+wegen Priorität `10` vor A11Y mit Priorität `40` berücksichtigt. Verwendet der
+höchste Beitrag dagegen `replace`, gewinnt dieser Inhalt vollständig.
+
+*Priority alone does not decide whether content is replaced or combined. The
+component strategy does: `replace` selects the highest-precedence content,
+while `prepend`, `append`, and `wrap` compose layers in defined positions.*
+
+## Was die Priorität nicht bedeutet
+
+Eine Preset-Priorität:
+
+- installiert oder aktiviert kein Preset;
+- startet keinen Spec-Kit-Befehl;
+- führt keinen Intake, Review oder autonomen Lauf automatisch aus;
+- erteilt keine Commit-, Push-, PR-, Merge-, Bypass- oder Provider-Rechte;
+- ersetzt keine Abhängigkeit oder Kompatibilitätsprüfung;
+- bewertet nicht, welches Fachgebiet allgemein „wichtiger“ ist;
+- verändert keine Runtime-Reihenfolge der entwickelten Anwendung.
+
+Security steht mit `10` an der Basis, weil Sicherheitsregeln bei
+Überschneidungen früh berücksichtigt werden sollen. A11Y mit `40` bleibt
+trotzdem verbindlich, wenn es auf das konkrete Artefakt anwendbar ist.
+
+*Priority does not install, enable, or run a preset. It grants no remote or
+administrative authority, replaces no dependency check, and does not rank the
+general importance of quality concerns.*
+
+## Die Matrix dieser Workspace-Familie
+
+| Priorität | Preset | Rolle im Stack |
+|---:|---|---|
+| `10` | `security-governance` | Sicherheitsbasis und sichere Code-Erzeugung |
+| `20` | `architecture-governance` | Sichere Architektur und Threat Modeling |
+| `30` | `isaqb-architecture-governance` | Allgemeine Architektur nach iSAQB und arc42 |
+| `40` | `a11y-governance` | Barrierefreiheit, Inklusion und didaktische Verständlichkeit |
+| `50` | `cross-platform-governance` | macOS-, Linux- und Windows-Parität |
+| `60` | `agent-parity-governance` | Parität der Agenten- und Command-Oberflächen |
+| `64` | `intake-authoring-governance` | Optional: Intake erzeugen oder kontrolliert aktualisieren |
+| `65` | `intake-review-governance` | Optional: gespeicherten Intake unabhängig prüfen |
+| `70` | `autonomous-run-governance` | Lebenszyklus eines ausdrücklich delegierten autonomen Laufs |
+| `80` | `parallel-autonomous-run-governance` | Koordination mehrerer isolierter autonomer Läufe |
+
+Die Abstände sind absichtlich gewählt. Zwischen `60` und `70` konnten die
+optionalen Intake-Schichten mit `64` und `65` eingefügt werden, ohne die
+bestehende Standardmatrix neu zu nummerieren.
+
+Die Zahlen `64`, `65`, `70` und `80` spiegeln zusätzlich eine fachlich sinnvolle
+Schichtung:
+
+```text
+Intake erstellen → Intake prüfen → Einzel-Lauf steuern → Kampagne koordinieren
+```
+
+Das ist eine Modellierung des Stacks, **keine automatische Befehlskette**.
+Jeder Übergang benötigt weiterhin den passenden Befehl und die erforderliche
+Autorität.
+
+*The gaps are intentional. Optional intake layers could be inserted at `64`
+and `65` without renumbering the standard stack. The sequence from authoring
+through review and autonomous coordination describes conceptual layering, not
+an automatically executed command chain.*
+
+## Drei praktische Beispiele
+
+### Beispiel 1: Keine Überschneidung
+
+Security stellt eine Sicherheitscheckliste bereit, A11Y eine
+Barrierefreiheitscheckliste. Die Namen unterscheiden sich. Beide Dateien
+bleiben verfügbar; die Priorität entscheidet hier nichts Sichtbares.
+
+### Beispiel 2: Gemeinsamer Plan-Befehl
+
+Security, Architektur und A11Y ergänzen denselben Plan-Befehl mit
+komponierbaren Strategien. Spec Kit bildet den Inhalt aus den geordneten
+Schichten. Keine fachliche Anforderung soll allein wegen einer niedrigeren
+Priorität verschwinden.
+
+### Beispiel 3: Gleichnamiges `replace`-Template
+
+Zwei Presets stellen dasselbe Template mit `replace` bereit. Das Preset mit der
+kleineren Prioritätszahl gewinnt. Genau diesen Fall zeigt
+`specify preset resolve`.
+
+*If names do not overlap, both contributions remain available. Composable
+strategies combine ordered layers. If two `replace` templates share a name,
+the lower priority number wins.*
+
+## Installation und wirksame Auflösung prüfen
+
+Zuerst die installierte Matrix anzeigen:
+
+```bash
+specify preset list
+```
+
+Details eines Presets prüfen:
+
+```bash
+specify preset info security-governance
+specify preset info intake-review-governance
+```
+
+Die wirksame Quelle eines konkreten Template-Namens prüfen:
+
+```bash
+specify preset resolve constitution-template.md
+specify preset resolve agent-guidance-addendum-template.md
+```
+
+`resolve` beantwortet eine konkrete Namensfrage. Der Befehl beweist nicht
+automatisch, dass alle fachlichen Anforderungen des gesamten Stacks erfüllt
+sind. Dafür bleiben Checklisten, Analyze, Tests und Evidence notwendig.
+
+*Use `list` for the installed stack, `info` for one preset, and `resolve` for
+the effective source of one concrete template name. `resolve` does not replace
+requirements review, tests, or evidence.*
+
+## Eine Priorität sicher ändern
+
+Eine vorhandene Priorität kann technisch geändert werden:
+
+```bash
+specify preset set-priority <preset-id> <neue-priorität>
+```
+
+Beispiel:
+
+```bash
+specify preset set-priority intake-review-governance 65
+```
+
+Eine solche Änderung ist Projekt-Policy und keine kosmetische Sortierung.
+Danach sind mindestens diese Schritte erforderlich:
+
+1. `specify preset list` ausführen.
+2. Betroffene Namen mit `specify preset resolve` prüfen.
+3. Generierte Commands und Skills auf Duplikate oder fehlende Beiträge prüfen.
+4. `git diff` und die projektspezifischen Tests ausführen.
+5. Matrix, Dokumentation und Evidence gemeinsam aktualisieren.
+
+Prioritäten nicht spontan „optimieren“. Eine Änderung kann bei `replace`,
+`prepend`, `append` oder `wrap` andere wirksame Inhalte erzeugen.
+
+*Changing a priority changes project policy. Re-check the stack, effective
+resolution, generated commands and skills, Git diff, tests, documentation, and
+evidence. Do not treat reprioritisation as cosmetic.*
+
+## Häufige Missverständnisse
+
+**„Priorität 80 wird zuerst ausgeführt, weil 80 größer ist.“**
+
+Nein. Kleinere Zahlen haben höhere Auflösungspriorität. Außerdem startet die
+Priorität keinen Befehl.
+
+**„Ein Preset mit Priorität 10 ist immer fachlich wichtiger.“**
+
+Nein. Die Zahl steuert Konfliktauflösung. Anwendbare A11Y-, Architektur- oder
+Plattformanforderungen bleiben verbindlich.
+
+**„Priorität 64 startet vor 65 automatisch Intake Authoring.“**
+
+Nein. Die Zahlen bilden nur die Schichten ab. Authoring und Review werden
+getrennt aufgerufen.
+
+**„Wenn `resolve` einen Gewinner zeigt, sind alle anderen Presets wirkungslos.“**
+
+Nein. Andere Presets können andere Namen oder komponierbare Beiträge liefern.
+
+**„Ich kann allen Presets dieselbe Zahl geben.“**
+
+Technisch ist das möglich. Spec Kit sortiert dann nach Preset-ID. Für
+nachvollziehbare Projekt-Governance sind eindeutige Zahlen besser.
+
+## Merksatz
+
+```text
+Priorität ordnet Beiträge. Strategie kombiniert Beiträge.
+Befehle starten Arbeit. Autorität erlaubt Arbeit.
+```
+
+*Priority orders contributions. Strategy composes contributions. Commands start
+work. Authority permits work.*

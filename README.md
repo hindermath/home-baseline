@@ -3035,16 +3035,36 @@ scope exists. `a11y-governance` v0.4.1 adds didactic inline-code-comment
 governance: new or changed non-trivial logic is reviewed for comment need when
 learning comprehension or maintainability is affected.*
 
-Die Priorität steuert, welches Preset bei gleichnamigen Dateien oder Addenda
-zuerst berücksichtigt wird. Bei Spec-Kit gilt: kleinere Zahl = höhere Priorität.
-Deshalb steht `security-governance` bewusst ganz oben. Sicherheit ist die
-verbindliche Grundschicht; Architektur, iSAQB, A11Y, Plattform-Parität und
-Agenten-Parität ergänzen sie.
+#### Preset-Prioritäten verstehen / Understanding preset priorities
 
-*Priority controls which preset is considered first when files or addenda overlap.
-In Spec-Kit, a lower number means higher priority. That is why
-`security-governance` is placed first. Security is the binding base layer;
-architecture, iSAQB, A11Y, platform parity, and agent parity extend it.*
+Die Priorität steuert, welches aktivierte Preset bei gleichnamigen Templates,
+Befehlen oder Addenda zuerst berücksichtigt wird. Bei Spec Kit gilt:
+**kleinere Zahl = höhere Priorität**. Projektlokale Overrides stehen weiterhin
+vor installierten Presets.
+
+Die Priorität wirkt zusammen mit der Kompositionsstrategie. Bei `replace`
+gewinnt der höchst priorisierte Inhalt vollständig. `prepend`, `append` und
+`wrap` kombinieren dagegen geordnete Schichten. Gleiche Prioritätszahlen werden
+deterministisch nach Preset-ID aufgelöst, sollten für eine verständliche
+Projekt-Policy aber vermieden werden.
+
+Die Zahl startet keinen Befehl, installiert oder aktiviert kein Preset und
+erteilt keine Commit-, Push-, PR-, Merge- oder Bypass-Rechte. Die Folge
+`64 → 65 → 70 → 80` beschreibt die Schichtung von Intake Authoring, Intake
+Review, autonomem Einzel-Lauf und paralleler Koordination. Sie ist keine
+automatische Befehlskette.
+
+Die ausführliche Anleitung
+[Spec-Kit-Preset-Prioritäten verstehen](docs/maintenance/Spec-Kit-Preset-Priorities.md)
+erklärt die Strategien, die vollständige Matrix, praktische Beispiele,
+Fehlannahmen und die sichere Änderung einer Priorität.
+
+*Priority controls which enabled preset is considered first when templates,
+commands, or addenda overlap. In Spec Kit, a lower number means higher
+precedence; project-local overrides still come first. `replace` selects the
+highest-precedence content, while `prepend`, `append`, and `wrap` compose
+ordered layers. Priority starts no command and grants no delivery authority.
+See the detailed guide for examples, diagnostics, and safe reprioritisation.*
 
 #### Installation prüfen / Verify installation
 
