@@ -2757,18 +2757,21 @@ Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evid
 
 *Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
-`intake-authoring-governance` v0.1.1 ist ein optionales Preset mit Prioritaet
-`64`. Es erzeugt aus ausdruecklich benannten, geordneten UTF-8-Quellen genau
-einen Intake und ein hashgebundenes Receipt. Es fragt materielle Entscheidungen
-einzeln und hoechstens fuenfmal pro Durchgang ab, schuetzt vorhandene Ziele und
-startet weder Review noch Specify oder einen autonomen Lauf. Ohne ausdrueckliche
-Remote-Autoritaet verwendet der erzeugte Autonomous-Prompt
-`LocalImplementation`.
+`intake-authoring-governance` v0.2.0 ist ein optionales Preset mit Prioritaet
+`64`. Es trennt die Befehle Create, Read, Update und Delete. Create schreibt
+nur neue Ziele. Update benoetigt aktuelle ausdrueckliche Autoritaet, behaelt die
+stabile Intake-Identitaet und archiviert den Vorgaenger. Delete ist logisch:
+Ziel und Receipt werden hashgebunden archiviert und ein Tombstone bleibt
+erhalten. Read ist standardmaessig eine kurze, read-only Summary; Detailed und
+JSON sind ausdruecklich waehlbar.
 
-Schema 1.1 ergaenzt `LegacyAdoption` fuer bestehende Intakes ohne frueheres
-Receipt. Die Uebernahme benoetigt ausdrueckliche aktuelle Update-Autoritaet und
-einen exakten Git-Blob- oder klar begrenzten Snapshot-Nachweis; ein erfundenes
-Vorgaenger-Receipt ist unzulaessig.
+Schema 2.0 ergaenzt oeffentliche, statische HTTPS-Quellen mit
+SSRF-Schutz, Antwort- und Redirect-Grenzen sowie Snapshot-Evidence. Ein
+begrenzter Same-Origin-Crawl und mehrere Intakes werden erst nach einem
+vollstaendigen Vorschlag und ausdruecklicher Freigabe ausgefuehrt. Die
+Publikation ist transaktional; ein Teilstand darf nicht als Erfolg gelten.
+Schema 1.0 und 1.1 bleiben fuer bestehende Receipts lesbar. Kein
+Authoring-Befehl startet Review, Specify oder einen autonomen Lauf.
 
 `intake-review-governance` v0.1.1 bleibt als getrenntes optionales Preset mit
 Prioritaet `65` bestehen. Es prueft einzelne Intakes, Reihen und Kampagnen vor
@@ -2787,12 +2790,12 @@ Intake-Presets ueber `intake-authoring-ten-governance-presets`. Das bisherige
 Review ausgestattete Projekte verfuegbar. Keine dieser lokalen Profilwahlen
 aendert die oeffentliche Standard-Achtermatrix.
 
-*`intake-authoring-governance` v0.1.1 is an optional preset at priority `64`.
-It creates one traceable intake and receipt from explicit ordered UTF-8 sources,
-asks no more than five material questions per pass, protects existing targets,
-and starts no downstream command. Schema 1.1 adds explicitly authorized,
-Git-blob- or snapshot-bound legacy adoption without inventing predecessor
-receipts. `intake-review-governance` v0.1.1 remains a separate optional preset
+*`intake-authoring-governance` v0.2.0 is an optional preset at priority `64`.
+It provides separate Create, read-only Read, explicitly authorized Update, and
+archive-and-tombstone Delete commands. Schema 2.0 adds bounded public HTTPS
+snapshot evidence and explicitly approved, transactional intake series while
+schemas 1.0 and 1.1 remain readable. No authoring command starts downstream
+review or execution. `intake-review-governance` v0.1.1 remains a separate optional preset
 at priority `65`; authoring evidence is not review acceptance. Thorsten's
 managed fleet selects both through the explicit ten-preset profile, while the
 public standard eight remain unchanged. Series mode uses schema 1.1 and binds

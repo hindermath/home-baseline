@@ -225,6 +225,14 @@
       "labelEn": "Intake Review v0.1.1 fleet and Series closeout",
       "netLines": 279,
       "activeDays": 1
+    },
+    {
+      "slot": 27,
+      "id": "intake-authoring-v020-crud-url-series",
+      "labelDe": "Intake-Authoring-v0.2.0-CRUD-URL-Series",
+      "labelEn": "Intake Authoring v0.2.0 CRUD URL series",
+      "netLines": 5768,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
