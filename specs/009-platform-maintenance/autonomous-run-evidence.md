@@ -25,10 +25,10 @@
 | Specify | Pass | `spec.md`; requirements checklist complete |
 | Clarify | Pass | No material ambiguity that changes planning |
 | Plan | Pass | Plan, research, model, contracts, quickstart and checklists |
-| Tasks | Pending | Generated after plan convergence |
-| Analyze | Pending | Read-only consistency pass after tasks |
-| Implement | Pending | No implementation edit before this evidence file |
-| Validate | Pending | Commands and results appended during implementation |
+| Tasks | Pass | 65 dependency-ordered tasks after plan convergence |
+| Analyze | Pass | 42 requirements and ten success criteria mapped; no Critical, High or unresolved Medium finding |
+| Implement | Pass | Desired-state engine, Bash/PowerShell surfaces, tests and documentation |
+| Validate | Pass | Full local gate set recorded below |
 | Publish/Review/Merge | Pending | Current repository only; no fleet repository writes |
 | Retrospective | Pending | Promotion only for reproducible provider-neutral learning |
 
@@ -43,16 +43,22 @@ scope remains outside this feature.
 
 | Command / proof | Result | Boundary |
 |---|---|---|
-| `python3 -m unittest scripts.tests.test_maintenance_contracts scripts.tests.test_agentic_workspace_maintenance` | Pass, 17 tests | Local bare remotes and temporary HOME only |
+| `python3 -m unittest discover -s scripts/tests -p 'test_*.py'` | Pass, 23 tests | Local bare remotes and temporary HOME only |
 | `bash -n scripts/maintain-agentic-workspace.sh` | Pass | Bash syntax |
 | PowerShell parser | Pass | `maintain-agentic-workspace.ps1` |
 | `pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1` | Pass, 114 files, zero findings | Repository-owned PowerShell |
 | Bash real-home `--dry-run --scripts-only` | Expected `1`, complete 43-target report | No clone or pull; six `WOULD_CLONE`, one `PathConflict`, one `BranchMismatch` |
 | PowerShell isolated-HOME `-ScriptsOnly -WhatIf` | Expected `1`, complete 43-target report | No target checkout created |
+| `git diff --check` | Pass | Exact local candidate |
+| `bash scripts/check-homogeneity.sh --dry-run --no-patch .` | Pass, 30/30 | Level-0 homogeneity |
+| `bash scripts/scan-agent-secrets.sh --fail-on-high .` | Pass, zero High | Expected local agent metadata classifications only |
+| Script-reference and project-statistics check-only | Pass, current | Canonical generated documentation |
+| `specify check` | Pass | Installed tools and Spec Kit integration |
+| Exact staged path inventory | Pass, four metadata/statistics paths | No generated output or unrelated path |
 
 The deliberately invalid manifest fixtures return the fatal contract boundary
 and make the negative path red; the complete unit suite passes because those
-failures are asserted. The first integrated green run contained 17 tests.
+failures are asserted. The final integrated green run contains 23 tests.
 
 ## Design and behavior evidence
 

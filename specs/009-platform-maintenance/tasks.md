@@ -104,11 +104,11 @@ exitcode and normalized report projections.
 
 - [X] T053 Run manifest and maintenance behavior tests and record results in `specs/009-platform-maintenance/autonomous-run-evidence.md`
 - [X] T054 Run Bash syntax, Bash safe modes and PowerShell parser/PSScriptAnalyzer gates and record results in `specs/009-platform-maintenance/autonomous-run-evidence.md`
-- [ ] T055 Run `git diff --check`, secret scan, homogeneity and agent-parity gates and record results in `specs/009-platform-maintenance/autonomous-run-evidence.md`
+- [X] T055 Run `git diff --check`, secret scan, homogeneity and agent-parity gates and record results in `specs/009-platform-maintenance/autonomous-run-evidence.md`
 - [X] T056 Validate real macOS check-only and dry-run without fleet mutations and record results in `specs/009-platform-maintenance/autonomous-run-evidence.md`
-- [ ] T057 Update and canonically render `docs/project-statistics.md`
-- [ ] T058 Reconcile all tasks, hashes, scope boundaries and final local validation in `specs/009-platform-maintenance/autonomous-run-state.json`
-- [ ] T059 Stage only intended paths and validate the exact delivery candidate recorded in `specs/009-platform-maintenance/autonomous-run-evidence.md`
+- [X] T057 Update and canonically render `docs/project-statistics.md`
+- [X] T058 Reconcile all tasks, hashes, scope boundaries and final local validation in `specs/009-platform-maintenance/autonomous-run-state.json`
+- [X] T059 Stage only intended paths and validate the exact delivery candidate recorded in `specs/009-platform-maintenance/autonomous-run-evidence.md`
 - [ ] T060 Commit, push and create the Feature 009 PR under MergeAndSync authority and record it in `specs/009-platform-maintenance/autonomous-run-evidence.md`
 - [ ] T061 Converge mandatory macOS/Linux/Windows checks and actionable review threads for the exact PR head in `specs/009-platform-maintenance/autonomous-run-evidence.md`
 - [ ] T062 Generate and validate temporary exact-head provider gate evidence using `specs/009-platform-maintenance/autonomous-run-gate-requirements.json`
