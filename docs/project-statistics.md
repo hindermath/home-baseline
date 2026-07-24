@@ -120,6 +120,7 @@
 | 2026-07-23 | Intake Review Governance v0.1.1 Series-Graph-Härtung | — | — | — | Den reproduzierten Request-Graph-Befund mit einem hashgebundenen Schema-1.1-Vertrag geschlossen. Series-Reviews prüfen nun Request-Identität, Ziel- und Rollenmenge, exakte Reihenfolge, explizite Roots, eindeutige gerichtete Kanten, Vorgängerabdeckung und Zyklen in Bash und PowerShell mit stabilen Fehlerklassen; Single und Campaign 1.0 bleiben kompatibel. Eine Drei-Ziel-Serie, alle negativen Graph-Fixtures, LF/CRLF/BOM-Normalisierung, der unveränderte Secure-CaseTracker-Campaign-Test, die Zehn-Preset-Komposition sowie jeweils drei eindeutige Commands für Codex, Claude, Copilot Skills und Antigravity sind grün. Kanonischer Scaffold, Publikationskopie und lokale Preset-Kopie sind bytegleich. Der Paketquellen-Commit umfasst `+1892/-62`, also 1830 Nettozeilen vor Statistikpflege. |
 | 2026-07-23 | Intake Review Governance v0.1.1 veröffentlicht und in Level 0 adoptiert | — | — | — | Das öffentliche Preset wurde über PR #2 als v0.1.1 veröffentlicht. Die versionierte GitHub-ZIP hat SHA-256 `c34d5ef0d5787ee69dcca8a8f38abaf98ffa6e391bd96225b3aa9463227ce8c6` und bestand Installation sowie beide Validator-Suiten im Zehn-Preset-Stack. Home Baseline verwendet nun v0.1.1 bei Priorität 65 in beiden optionalen Profilen; Constitution, README, Agentenflächen, Vorlagen und generierte Commands tragen denselben hashgebundenen Series-1.1-Vertrag. Die Standard-Achtermatrix bleibt unverändert. Der Adoptionscommit umfasst `+174/-88`, also 86 Nettozeilen vor Statistikpflege. |
 | 2026-07-24 | Intake Authoring Governance v0.2.0 CRUD, URL und Series | — | — | — | Das optionale Preset um getrennte Create-, Read-, Update- und logische Delete-Befehle, Schema-2.0-Receipts, hashgebundene Archive und Tombstones, begrenzte öffentliche HTTPS-Snapshots sowie ausdrücklich freizugebende transaktionale Intake-Reihen erweitert. Schema 1.0/1.1 bleibt lesbar. Bash-/PowerShell-Fixtures, SQLite-URL-Feldnachweis, Zehn-Preset-Komposition, Paket-Homogenität und jeweils fünf eindeutige Commands auf allen gepflegten Agentenoberflächen sind grün. Kein Review-, Specify- oder autonomer Lauf wurde automatisch gestartet. Das Delta vor Statistikrendering umfasst 5768 Nettozeilen. |
+| 2026-07-24 | Intake Authoring Governance v0.2.0 Flottenabschluss | — | — | — | Intake Authoring v0.2.0 wurde in 33/33 Level-0-/Level-1-/Level-2-Repositories installiert und über 33 PRs gemergt. Die Flotte verwendet exakt zehn Presets; 21/21 Lernreihen-Repositories aus drei Familien sind enthalten, ohne einen Lernenden-Spec-Kit-Lauf zu starten. Alle Receipt-, Lifecycle-, Matrix-, Command-Paritäts-, Statistik-, Diff- und Secret-Prüfungen bestanden. 119 echte Exact-Head-Checks waren grün. Weitere 119 Workflow-Runs mit 229 Jobs wurden vor dem ersten Schritt durch GitHub Billing oder Spending abgewiesen und blieben fehlende Provider-Evidence. Jede Annotation wurde geprüft; null Review-Threads waren offen. Die Abschluss-Evidence umfasst vor Statistikrendering 125 Nettozeilen. |
 
 ---
 
@@ -692,25 +693,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 323260 lines |
-| Textdateien / Text files | 2017 |
+| Textbasis / Text base | 323393 lines |
+| Textdateien / Text files | 2018 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-24 |
 | Aktivtage / Active days | 72 |
-| Relevante Commits / Relevant commits | 514 |
-| Zeilen je Aktivtag / Lines per active day | 4489.7 |
+| Relevante Commits / Relevant commits | 515 |
+| Zeilen je Aktivtag / Lines per active day | 4491.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 29 days |
 | Speedup vs. 80 lines/day | 56.1x |
 | Speedup vs. 100 lines/day | 44.9x |
-| Methodik / Methodology | v2; source `78609703d17b` |
+| Methodik / Methodology | v2; source `2c0202763d3c` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   2.9% | 9488
-Dokumentation / Documentation   [################....]  81.1% | 262207
+Dokumentation / Documentation   [################....]  81.1% | 262340
 Skripte / Scripts               [###.................]  13.6% | 43894
 Konfiguration / Configuration   [#...................]   2.2% | 6955
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -808,15 +809,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..27
-   cap 10000 | . . . . . . . . . . . .
-        8333 | . . . . . . . . . . . .
-        6667 | . . . . . . . . . . . .
-        5000 | # . . . . . . . . . . #
-        3333 | # . . . . . . . . . . #
-        1667 | # . . . # . . . # . . #
-           0 +-------------------------
-             16 17 18 19 20 21 22 23 24 25 26 27
+Slots 16..28
+   cap 10000 | . . . . . . . . . . . . .
+        8333 | . . . . . . . . . . . . .
+        6667 | . . . . . . . . . . . . .
+        5000 | # . . . . . . . . . . # .
+        3333 | # . . . . . . . . . . # .
+        1667 | # . . . # . . . # . . # .
+           0 +---------------------------
+             16 17 18 19 20 21 22 23 24 25 26 27 28
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -849,6 +850,7 @@ Slots 16..27
 | 25 | Intake-Review-v0.1.1-Release-Adoption / Intake Review v0.1.1 release adoption | 86 |
 | 26 | Intake-Review-v0.1.1-Flotten- und Series-Abschluss / Intake Review v0.1.1 fleet and Series closeout | 279 |
 | 27 | Intake-Authoring-v0.2.0-CRUD-URL-Series / Intake Authoring v0.2.0 CRUD URL series | 5768 |
+| 28 | Intake-Authoring-v0.2.0-Flottenabschluss / Intake Authoring v0.2.0 fleet closeout | 125 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -872,7 +874,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##################..] 4489.7
+Visible repository [##################..] 4491.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -898,6 +900,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-24. Es enthaelt 72 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 241087 |
+| 2026-07 | 241220 |
 
 <!-- project-statistics-v2:end -->

@@ -233,6 +233,14 @@
       "labelEn": "Intake Authoring v0.2.0 CRUD URL series",
       "netLines": 5768,
       "activeDays": 1
+    },
+    {
+      "slot": 28,
+      "id": "intake-authoring-v020-fleet-closeout",
+      "labelDe": "Intake-Authoring-v0.2.0-Flottenabschluss",
+      "labelEn": "Intake Authoring v0.2.0 fleet closeout",
+      "netLines": 125,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
