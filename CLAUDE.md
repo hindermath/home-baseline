@@ -640,6 +640,32 @@ and passing evidence are distinct; bypass is not technical proof.*
 - 007-gitlab-release-automation: Added `setup-gitlab-release.*`, reusable GitLab release templates, detached-head and changelog-refresh fixes, and a non-blocking manual `release` job validated with real GitLab releases in `sysinfotool` (`v0.1.0`) and `inventarworkerservice2` (`v0.0.1`)
 - 008-spec-kit-update-automation: Added `update-spec-kit.*` for dynamic Level-0/1/2 Spec-Kit refreshes, governance-template preservation, TuiVision inclusion, and `.opencode/command` tracking
 
+<!-- learner-a11y-baseline:start -->
+## Hinweise zur Lernenden- und A11Y-Basis / Notes on the Learner and A11Y Baseline
+
+- Verbindliche Zielgruppen ab dem ersten Ausbildungsjahr sind
+  Fachinformatiker*innen, Kaufleute für IT-System-Management und Kaufleute für
+  Digitalisierungsmanagement.
+- Lern-, Bedien-, Governance- und Spec-Kit-Inhalte stehen auf Deutsch zuerst
+  und Englisch danach, verwenden ungefähr CEFR B2 und erklären Fachbegriffe
+  beim ersten Auftreten.
+- Spec-Kit-Erfahrung wird nicht vorausgesetzt. Befehle, Artefakte, Zustände und
+  Übergänge werden beim ersten Gebrauch verständlich eingeführt.
+- Abhängigkeiten, Zustände und Entscheidungen erhalten eine vollständige
+  textorientierte Erklärung; eine ausschließlich visuelle Darstellung genügt
+  nicht.
+- `Programmierung #include<everyone>` und WCAG 2.2 Level AA gelten als
+  verbindliche Prüfbasis, soweit die Kriterien auf das Artefakt anwendbar sind.
+
+*The binding audience starts in the first training year and includes IT
+specialist apprentices and both IT management occupations. Learner, usage,
+governance, and Spec Kit content is German-first/English-second at about CEFR
+B2, explains technical terms at first use, assumes no prior Spec Kit
+experience, and never relies on visual-only dependency, state, or decision
+information. `Programmierung #include<everyone>` and WCAG 2.2 Level AA are the
+review baseline wherever applicable.*
+<!-- learner-a11y-baseline:end -->
+
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan

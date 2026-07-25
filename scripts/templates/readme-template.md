@@ -8,6 +8,19 @@ Beschreibe hier den Zweck und den Umfang des Projekts.
 
 *Describe the purpose and scope of the project here.*
 
+## Lernenden- und A11Y-Basis / Learner and A11Y Baseline
+
+Inhalte stehen auf Deutsch zuerst und Englisch danach, verwenden ungefähr CEFR
+B2, erklären Fachbegriffe beim ersten Auftreten und setzen keine
+Spec-Kit-Erfahrung voraus. Abhängigkeiten, Zustände und Entscheidungen erhalten
+immer eine textorientierte Erklärung. WCAG 2.2 Level AA ist die Prüfbasis,
+soweit die Kriterien anwendbar sind.
+
+*Content is German-first/English-second at about CEFR B2, explains technical
+terms at first use, and assumes no prior Spec Kit experience. Dependencies,
+states, and decisions always receive a text-first explanation. WCAG 2.2 Level
+AA is the review baseline wherever applicable.*
+
 ## Voraussetzungen / Prerequisites
 
 - Git ≥ 2.30
