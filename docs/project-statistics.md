@@ -699,14 +699,14 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 | Textdateien / Text files | 2151 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-25 |
 | Aktivtage / Active days | 73 |
-| Relevante Commits / Relevant commits | 526 |
+| Relevante Commits / Relevant commits | 527 |
 | Zeilen je Aktivtag / Lines per active day | 4611.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 30 days |
 | Speedup vs. 80 lines/day | 57.6x |
 | Speedup vs. 100 lines/day | 46.1x |
-| Methodik / Methodology | v2; source `f165e2a346e2` |
+| Methodik / Methodology | v2; source `2da5ea412c62` |
 
 ### Artefaktmix / Artifact Mix
 
@@ -855,7 +855,7 @@ Slots 16..31
 | 28 | Intake-Authoring-v0.2.0-Flottenabschluss / Intake Authoring v0.2.0 fleet closeout | 125 |
 | 29 | Intake-Authoring-v0.2.0-Community-Katalogabschluss / Intake Authoring v0.2.0 community catalog closeout | 29 |
 | 30 | Plattformübergreifende Ein-Kommando-Wartung / Cross-platform one-command maintenance | 2585 |
-| 31 | Intake-Sequencing-Preset v0.1.0 / Intake sequencing preset v0.1.0 | 3180 |
+| 31 | Intake-Sequencing-Preset v0.1.0 / Intake sequencing preset v0.1.0 | 3231 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -905,6 +905,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-25. Es enthaelt 73 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 256447 |
+| 2026-07 | 256451 |
 
 <!-- project-statistics-v2:end -->
