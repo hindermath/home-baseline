@@ -126,6 +126,7 @@
 | 2026-07-25 | Intake Sequencing Governance v0.1.0 | — | — | — | Das optionale Preset ergänzt sechs getrennte Series-Befehle, typisierte harte und beratende Abhängigkeiten, azyklische Graphen, unveränderliche Receipts, logisches Löschen und eine sichere Next-Auswahl ohne automatischen Folgelauf. Release-ZIP, Elf-Preset-Komposition und der 13-Ziele-/6-Roots-/15-Kanten-Feldnachweis sind grün. Die Installation wurde über 33 gemergte Repository-PRs einschließlich 21 Lernreihen-Repositories abgeschlossen. 139 Remote-Checks waren erfolgreich; 228 Jobs wurden nachweislich vor dem ersten Schritt durch Billing oder Spending abgewiesen und 17 abhängige Jobs abgebrochen. Es gab null umsetzbare Review-Threads. Die Community-Einreichung ist `github/spec-kit#3742`. |
 | 2026-07-25 | Lernenden- und A11Y-Vertrag für Presets und Lernreihen | — | — | — | Alle elf Presets auf den verbindlichen Zielgruppen- und Verständlichkeitsvertrag geprüft. Sieben portable Patch-Releases transportieren Zielgruppe, Vorwissen, Sprachreihenfolge, CEFR B2, Begriffserklärungen und textorientierte Abhängigkeits-, Status-, Entscheidungs- und Next-Action-Information durch A11Y, Agent Parity, Intake Authoring, Intake Review, Intake Sequencing, Autonomous und Parallel Autonomous; Security, Architecture, iSAQB und Cross-Platform bleiben begründet unverändert. Die 44 aktiven Lernreihenwurzeln, Startseite, Blueprint, Register und Vorlagen erben die zentrale Lernenden- und A11Y-Basis für Fachinformatiker*innen sowie die beiden kaufmännischen IT-Berufe ab dem 1. Lehrjahr. Sieben Preset-PRs und Releases, ZIP-Integrität, Elf-Preset-Komposition, eindeutige Codex-Skills und native Validator-Fixtures sind grün. |
 | 2026-07-25 | Lernenden- und A11Y-Flottenabschluss | — | — | — | Das optionale Elf-Preset-Profil wurde über 32 gemergte Level-1/2-PRs verteilt; zusammen mit Home Baseline sind 33 von 33 registrierten Repositories aktuell. Alle lokalen Checkouts sind sauber und exakt mit ihrem Default-Branch synchron. 119 Checks waren grün, vier planmäßig übersprungen, 226 vor dem ersten Arbeitsschritt durch GitHub-Billing oder Spending-Limits abgewiesen und 19 abhängige Matrix-Jobs abgebrochen. Es gab null Kommentare, Reviews oder umsetzbare Threads. Die exakte Elf-Preset-Matrix besteht in allen 32 Ziel-Repositories; `cc65` bestand den nativen Linux- und Windows-Build. |
+| 2026-07-25 | Secure-Development-Assurance-Intakes vorbereitet | — | — | — | Vier getrennte, noch nicht gestartete Intakes bereiten Gap-Audit, optionales Assurance-Preset v0.1.0 auf Priorität 15, Home-Baseline-3.3-Synchronisierung und ABSDD-Feldadoption vor. Jeder Intake besitzt ein Schema-2.0-Authoring-Receipt sowie kopierbare Review-, Specify- und Autonomous-Prompts mit `MergeAndSync`. Der aktive Series-Review ist `Ready` und belegt 17 Ziele, sechs Roots, 22 eindeutige azyklische Kanten, null Findings und null offene Entscheidungen. Bestehende Positionen 1 bis 13 bleiben unverändert; kein Preset und kein Spec-Kit-Featurelauf wurde gestartet. |
 
 ---
 
@@ -698,27 +699,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 339813 lines |
-| Textdateien / Text files | 2209 |
+| Textbasis / Text base | 341428 lines |
+| Textdateien / Text files | 2220 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-25 |
 | Aktivtage / Active days | 73 |
-| Relevante Commits / Relevant commits | 537 |
-| Zeilen je Aktivtag / Lines per active day | 4655.0 |
+| Relevante Commits / Relevant commits | 539 |
+| Zeilen je Aktivtag / Lines per active day | 4677.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 30 days |
-| Speedup vs. 80 lines/day | 58.2x |
-| Speedup vs. 100 lines/day | 46.5x |
-| Methodik / Methodology | v2; source `d95f045c89f5` |
+| Speedup vs. 80 lines/day | 58.5x |
+| Speedup vs. 100 lines/day | 46.8x |
+| Methodik / Methodology | v2; source `926086436a93` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
 Tests                           [#...................]   3.2% | 10821
-Dokumentation / Documentation   [################....]  80.2% | 272695
+Dokumentation / Documentation   [################....]  80.1% | 273517
 Skripte / Scripts               [###.................]  13.4% | 45639
-Konfiguration / Configuration   [#...................]   2.9% | 9900
+Konfiguration / Configuration   [#...................]   3.1% | 10693
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 758
 ```
@@ -868,8 +869,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [############........] 58.2x
-100 lines/day      [#########...........] 46.5x
+80 lines/day       [############........] 58.5x
+100 lines/day      [#########...........] 46.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -882,7 +883,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###################.] 4655.0
+Visible repository [###################.] 4677.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -908,6 +909,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-25. Es enthaelt 73 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 260614 |
+| 2026-07 | 262271 |
 
 <!-- project-statistics-v2:end -->

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "b56bb6a3-0be9-4c78-a416-57f846b4f288",
+  "intakeId": "d3d33cb2-117a-4742-bd64-45098760069c",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "54498cc0-daa2-4416-99ba-7a24c516f364",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the Secure Development Assurance preset and RL/CL alignment intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+    "normalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved Secure Development Assurance preset and RL/CL alignment plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "fbf58af7996d73340b4375178e834ab0c9e71e09c7d7e62aa163c71463b08058",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Änderungsgrenze besitzt der erste Lauf?",
+      "answer": "Read-only Gap-Audit ohne Änderung an Richtlinie, Presets, ABSDD oder Produktcode.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Mapping-Werte sind verbindlich?",
+      "answer": "Covered, Partial, ProjectOnly, DuplicateRisk und N/A.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
+      "answer": "MergeAndSync; der Intake startet den Lauf nicht automatisch.",
+      "evidence": "Explicit current and standing user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md"
+}

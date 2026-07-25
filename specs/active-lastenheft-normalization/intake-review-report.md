@@ -1,29 +1,48 @@
 # Active Lastenheft Series Review
 
-**Review ID:** `c30d5615-ea7f-4e38-8cf1-4aeb1323f76a`
+**Review ID:** `2a89837a-8733-488e-87b3-68b82b77b03a`
 **Status:** `Ready`
-**Supersedes:** `5ce575e0-90a0-4946-b183-b8c3e1d83a71`
-**Reviewed:** 2026-07-25T12:58:33Z
+**Supersedes:** `c30d5615-ea7f-4e38-8cf1-4aeb1323f76a`
+**Reviewed:** 2026-07-25T21:40:01Z
 
 ## Ergebnis / Result
 
-Alle 13 aktiven Intakes sind in der sichtbaren Reihenfolge erfasst. Der archivierte Feature-009-Intake ist kein aktiver Knoten mehr und bleibt nur historische Evidence fuer das harte TUI-Gate. Es bestehen keine offenen Entscheidungen, Findings oder akzeptierten Risiken.
+Alle 17 aktiven Intakes sind in der sichtbaren Reihenfolge erfasst. Die ersten
+13 Positionen bleiben unverändert. Die Positionen 14 bis 17 ergänzen danach
+einen eigenen Assurance-Strang aus Gap-Audit, Preset-Produktisierung,
+Home-Baseline-Synchronisierung und ABSDD-Adoption. Der archivierte
+Feature-009-Intake ist kein aktiver Knoten mehr und bleibt nur historische
+Evidence für das harte TUI-Gate. Es bestehen keine offenen Entscheidungen,
+Findings oder akzeptierten Risiken.
 
-*All 13 active intakes are covered in visible order. The archived Feature 009 intake is no longer an active node and remains historical evidence for the hard TUI gate. No decisions, findings, or accepted risks remain open.*
+*All 17 active intakes are covered in visible order. The first 13 positions
+remain unchanged. Positions 14 through 17 add a separate assurance track for
+gap audit, preset productization, Home Baseline synchronization, and ABSDD
+adoption. The archived Feature 009 intake remains historical evidence only.
+No decisions, findings, or accepted risks remain open.*
 
 ## Graphnachweis / Graph Evidence
 
-- Ziele / targets: 13
+- Ziele / targets: 17
 - Roots: 6 (Positionen 1, 2, 3, 5, 9 und 10)
-- Kanten / edges: 15
+- Kanten / edges: 22
 - Zyklen / cycles: 0
 - Fehlende oder doppelte Ziele / missing or duplicate targets: 0
 
-Die fruehere Angabe von 14 Kanten war ein Rechenfehler. Die genehmigten Beziehungen ergeben 15: drei TUI-Gates, drei Kanten von Position 5, eine Sandbox-Kante, eine Dokumentationskante, drei Kommentar-Surface-Kanten und vier zusaetzliche Final-Audit-Kanten. Keine fachlich geforderte Kante wurde entfernt.
+Die 15 bestehenden Kanten bleiben unverändert. Sieben neue Kanten binden den
+Assurance-Strang: Position 5 und 13 liefern Eingaben für Position 14, Position
+14 liefert Eingaben für 15 und 16, Position 15 liefert Eingaben für 16 und 17,
+und Position 16 liefert die Baseline für Position 17. Die sechs Roots bleiben
+deshalb unverändert.
 
 ## Lernendenhinweis / Learner Note
 
-Die sichtbare Nummer ist die bevorzugte serielle Lieferreihenfolge. Nur die im Request aufgefuehrten Kanten sind bindende fachliche Abhaengigkeiten. Native Windows- und Linux-Pruefungen sind erlaubt, aber gemeinsame Git-Lieferungen werden seriell abgeschlossen. Das GSDB-Audit auf Position 13 laeuft zuletzt, weil es die Ergebnisse der Positionen 5 und 9 bis 12 prueft.
+Die sichtbare Nummer ist die bevorzugte serielle Lieferreihenfolge. Nur die im
+Request aufgeführten Kanten sind bindende fachliche Abhängigkeiten. Native
+Windows- und Linux-Prüfungen sind erlaubt, aber gemeinsame Git-Lieferungen
+werden seriell abgeschlossen. Das GSDB-Audit auf Position 13 schließt den
+bisherigen Skript-/Konfigurationsstrang ab. Erst danach beginnt der getrennte
+Assurance-Strang. Kein Intake startet seinen Nachfolger automatisch.
 
 ## Validierungsgrenze / Validation Boundary
 

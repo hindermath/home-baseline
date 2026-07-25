@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "2a89837a-8733-488e-87b3-68b82b77b03a",
+  "reviewId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -55,22 +55,6 @@
     {
       "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
       "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "role": "OrderedMember"
     }
   ],
   "series": {
@@ -87,11 +71,7 @@
       "Lastenheft_PowerShell_Cmdlets.md",
       "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-      "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-      "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-      "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-      "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+      "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
     ],
     "roots": [
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -176,41 +156,6 @@
         "from": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
         "kind": "FinalAuditInput"
-      },
-      {
-        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-        "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-        "kind": "AssessmentBaseline"
-      },
-      {
-        "from": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-        "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-        "kind": "FinalAuditInput"
-      },
-      {
-        "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-        "to": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-        "kind": "AssuranceAuditBaseline"
-      },
-      {
-        "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-        "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "kind": "AssuranceAuditBaseline"
-      },
-      {
-        "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-        "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "kind": "PublishedPresetBaseline"
-      },
-      {
-        "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-        "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "kind": "PublishedPresetBaseline"
-      },
-      {
-        "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "kind": "SecureDevelopmentBaseline"
       }
     ]
   },
