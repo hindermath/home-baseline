@@ -76,6 +76,10 @@ review input. A final audit runs last so it can assess all intended changes.*
 | 11 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen, nachdem die Cmdlet-Oberflächen feststehen. / Aligns script and usage documentation after the cmdlet surfaces are known. |
 | 12 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
 | 13 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
+| 14 | `Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md` | Prüft Richtlinie, zwölf Checklisten, Sammelband, Manifest, mitgeltende Dokumente, Presets und ABSDD read-only auf belegte Assurance-Lücken. / Audits the guideline, twelve checklists, compendium, manifest, related documents, presets, and ABSDD for evidenced assurance gaps without changing them. |
+| 15 | `Lastenheft_Preset-Secure-Development-Assurance-Governance.md` | Produktisiert ausschließlich bestätigte Audit-Findings als optionales Assurance-Preset auf Priorität 15. / Productizes only confirmed audit findings as an optional assurance preset at priority 15. |
+| 16 | `Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md` | Synchronisiert die projektgeführte Dokumentfamilie evidenzbasiert auf Baseline 3.3.0 und ergänzt das Zwölferprofil. / Synchronizes the project-owned document family to baseline 3.3.0 based on evidence and adds the twelve-preset profile. |
+| 17 | `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` | Adoptiert Baseline und Assurance-Preset kontrolliert in `absdd-image-sandbox` und liefert den ersten Feldnachweis. / Adopts the baseline and assurance preset into `absdd-image-sandbox` under controlled conditions and produces the first field validation. |
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
 
@@ -100,6 +104,14 @@ Grundlage fuer den rechten Intake.
 10 Cmdlets -----------+--> 13 Abschliessendes GSDB-Audit
 11 Dokumentation -----+
 12 Kommentare -------/
+
+5 Mitgeltende Dokumente --\
+13 GSDB-Audit -------------+--> 14 Assurance-Gap-Audit
+14 Gap-Audit ------------------> 15 Assurance-Preset
+15 Assurance-Preset --\
+14 Gap-Audit ----------+-------> 16 Baseline 3.3
+15 Assurance-Preset --\
+16 Baseline 3.3 --------+------> 17 ABSDD-Adoption
 ```
 
 Die Roots dieser Serie sind die Positionen `1`, `2`, `3`, `5`, `9` und `10`.
@@ -122,6 +134,21 @@ for Feature 009 and all three active predecessor items must pass before any TUI
 feature, branch, or Spec Kit artifact is created; otherwise item 4 remains
 `BLOCKED`. Items 5, 7, and 10 provide binding baselines for their successors.
 Items 9 through 12 feed the final GSDB audit, so item 13 must run last.*
+
+„Abschließend“ bei Position 13 bezieht sich auf den bestehenden
+Skript-/Konfigurationsstrang der Positionen 9 bis 12. Die Positionen 14 bis 17
+bilden danach einen eigenen Assurance-Strang. Position 14 darf erst starten,
+wenn die aktuelle Dokumentverzahnung aus Position 5 und das GSDB-Audit aus
+Position 13 abgeschlossen sind. Position 15 übernimmt nur bestätigte portable
+Findings. Position 16 benötigt den Audit und das veröffentlichte Preset.
+Position 17 benötigt zusätzlich die gemergte Baseline 3.3.0. Keine dieser
+Positionen startet ihren Nachfolger automatisch.
+
+*“Final” at item 13 refers to the existing script and configuration track from
+items 9 through 12. Items 14 through 17 form a separate assurance track. The
+gap audit requires items 5 and 13; productization requires item 14; baseline
+synchronization requires items 14 and 15; and ABSDD adoption requires items 15
+and 16. No item starts its successor automatically.*
 
 ## Serielle Ausfuehrung und native Systeme / Serial Delivery and Native Systems
 

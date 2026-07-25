@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "b096b9c7-eff6-4785-9811-d0da454c5c34",
+  "intakeId": "d4ccfbee-2c51-4524-919d-48190f89d05e",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "d530e682-b213-4778-8352-98730a02289e",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the Secure Development Assurance preset and RL/CL alignment intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+    "normalizedSha256": "57ed0c7b90513465c5f1a7221ffefe2ce81abe8aa129953b9424daeb61a49c7e"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved Secure Development Assurance preset and RL/CL alignment plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "fbf58af7996d73340b4375178e834ab0c9e71e09c7d7e62aa163c71463b08058",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wie lautet die öffentliche Preset-Schnittstelle?",
+      "answer": "secure-development-assurance-governance v0.1.0, Priorität 15, mit genau Status- und Review-Command.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wie grenzt sich das Preset von Security Governance ab?",
+      "answer": "Es prüft Policy-, Checklisten-, Manifest- und Evidence-Konsistenz und dupliziert keine technischen Security-Regeln.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
+      "answer": "MergeAndSync; externe Katalogaufnahme ist keine lokale Abschlussbedingung.",
+      "evidence": "Explicit current and standing user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Secure-Development-Assurance-Governance.md"
+}

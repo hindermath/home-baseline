@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "2a89837a-8733-488e-87b3-68b82b77b03a",
+  "reviewId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-25T21:40:01Z",
+  "reviewedAt": "2026-07-25T12:58:33Z",
   "repository": {
     "root": ".",
-    "head": "f1308ddfa2d4e645a360c3f05c57c810ac5820d1"
+    "head": "0f1da25fa906a5c0dffaf40804fc1985c3cbc70e"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "0a094f1faf2f1e4ab3c1a06d841d7d86c30e4376783e496a8fe68ba15439a1e1"
+    "normalizedSha256": "c80435220b6044e711d1fe4ad06b16ff31b7646ab68c02192f650dc0a17d28b6"
   },
   "targets": [
     {
@@ -91,30 +91,6 @@
       "role": "OrderedMember",
       "normalizedSha256": "d7ac2e47e5077b41c9887f57fd39b1bf227457571f8c3145bac3de5cf0132ec4",
       "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "57ed0c7b90513465c5f1a7221ffefe2ce81abe8aa129953b9424daeb61a49c7e",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
-      "gitBlob": "N/A"
     }
   ],
   "findings": [],
@@ -135,21 +111,15 @@
       "Lastenheft_PowerShell_Cmdlets.md",
       "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-      "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-      "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-      "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-      "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+      "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
     ],
     "series": [
-      "All 17 active paths, roles, and exact order match the bound schema-1.1 request",
+      "All 13 active paths, roles, and exact order match the bound schema-1.1 request",
       "Six declared roots equal the zero-indegree target set",
-      "Twenty-two unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Fifteen unique dependencies are reference-valid, order-consistent, and acyclic",
       "Feature 009 is excluded from the active target set and retained only as historical gate evidence",
       "Positions 1 through 4, 5 through 8, and 9 through 13 have explicit learner-readable dependency boundaries",
-      "Positions 14 through 17 form one explicit assurance chain without changing the established first thirteen positions",
-      "The four new intakes separate read-only audit, portable preset productization, Home Baseline synchronization, and ABSDD adoption",
-      "All active intakes use copy-ready prompts and explicitly bounded delivery authority"
+      "All active intakes use current ordering, ten-preset context where applicable, copy-ready prompts, and LocalImplementation boundaries"
     ],
     "workers": []
   },
@@ -159,5 +129,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a"
+  "supersedes": "5ce575e0-90a0-4946-b183-b8c3e1d83a71"
 }
