@@ -67,12 +67,12 @@
 
 ## Phase 6: Delivery
 
-- [ ] T051 Commit and push the Home Baseline feature branch.
-- [ ] T052 Create the Home Baseline PR and converge mandatory checks/reviews.
-- [ ] T053 Merge normally and synchronize local `main`.
-- [ ] T054 Create or update the owned publication repository through a PR.
-- [ ] T055 Publish tag and release `v0.1.0`.
-- [ ] T056 Validate the versioned GitHub ZIP and checksum.
+- [x] T051 Commit and push the Home Baseline feature branch.
+- [x] T052 Create the Home Baseline PR and converge mandatory checks/reviews.
+- [x] T053 Merge normally and synchronize local `main`.
+- [x] T054 Create or update the owned publication repository through a PR.
+- [x] T055 Publish tag and release `v0.1.0`.
+- [x] T056 Validate the versioned GitHub ZIP and checksum.
 - [ ] T057 Propagate the optional profile with `required: false` to the registered fleet.
 - [ ] T058 Converge non-empty fleet PRs without inferred bypass.
 - [ ] T059 Submit through the official community preset template and ping `@mnriem` once.

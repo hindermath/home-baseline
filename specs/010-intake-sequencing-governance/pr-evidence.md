@@ -73,7 +73,19 @@
   classes.
 - Agent parity: Applicable to five maintained generation surfaces.
 
-## Pending Delivery Evidence
+## Delivery Evidence
 
-Home Baseline PR, publication PR/release, ZIP checksum, fleet PRs, and community
-submission are recorded here after their exact heads are known.
+| Boundary | Evidence | Result |
+|---|---|---|
+| Home Baseline feature | [PR #115](https://github.com/hindermath/home-baseline/pull/115), merge `044a17be98af6d3c2c0b00a5e0d51f9a4debe8e7` | Merged and synchronized |
+| Publication package | [PR #1](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/pull/1), merge `030d1473ba01b58b56b7215077269fc244ba52ce` | Merged and synchronized |
+| Public release | [v0.1.0](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/releases/tag/v0.1.0) | Published from the reviewed merge head |
+| Versioned ZIP | `https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.1.0.zip` | `c2fed951047fd0ab1b0edae7e4e6cdc06f2779488c585d0064c46b8974b19bbe` |
+| Eleven-preset smoke | Fresh Spec Kit 0.12.11 project | Add, list, info, resolve, disable, enable, remove, reinstall, and six Codex skills passed |
+
+PR #115 and publication PR #1 used the explicitly authorized narrow bypass
+only after local validation passed, no actionable thread existed, and Human
+Approval was the sole remaining merge rule. No technical failure was bypassed.
+
+Fleet PRs and the community submission remain pending until their exact heads
+and remote outcomes are known.
