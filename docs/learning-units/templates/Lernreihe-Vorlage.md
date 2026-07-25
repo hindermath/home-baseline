@@ -1,5 +1,10 @@
 # <Lernreihe> / <Learning Series>
 
+> Diese Reihe erbt die
+> [Lernenden- und A11Y-Basis](../LERNENDEN-UND-A11Y-BASIS.md).
+> *This series inherits the
+> [Learner and A11Y Baseline](../LERNENDEN-UND-A11Y-BASIS.md).*
+
 <!-- include-everyone-guiding-principle -->
 > **Leitsatz:** `Programmierung #include<everyone>`.
 >
@@ -29,6 +34,9 @@
 | Fachrichtung SI | <hoch/mittel/niedrig> |
 | Fachrichtung DPA | <hoch/mittel/niedrig> |
 | Fachrichtung DV | <hoch/mittel/niedrig> |
+| Kaufleute für IT-System-Management | <hoch/mittel/niedrig> |
+| Kaufleute für Digitalisierungsmanagement | <hoch/mittel/niedrig> |
+| Spec-Kit-Vorkenntnisse / Prior Spec Kit knowledge | keine vorausgesetzt / none assumed |
 | Sprachniveau / Language level | DE-first, EN-second, CEFR B2 |
 | Barrierefreiheit / Accessibility | WCAG 2.2 AA, textfreundliches Markdown |
 

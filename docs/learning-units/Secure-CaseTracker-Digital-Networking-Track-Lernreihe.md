@@ -1,5 +1,10 @@
 # Secure CaseTracker Digital Networking Track Lernreihe / Secure CaseTracker Digital Networking Track Learning Series
 
+<!-- learner-a11y-baseline -->
+> **DE:** Diese Reihenwurzel erbt die [Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md) für Fachinformatiker*innen, Kaufleute für IT-System-Management und Kaufleute für Digitalisierungsmanagement ab dem 1. Lehrjahr. Es werden keine Spec-Kit-Vorkenntnisse vorausgesetzt.
+>
+> **EN:** This series root inherits the [Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md) for IT specialist apprentices, IT system management trainees, and digitalisation management trainees from training year 1. No prior Spec Kit knowledge is assumed.
+
 **Stand / Date:** 2026-07-05
 **Übungsfirma / Training company:** EuFPA - Europäische Firma Programmiert Alles
 **Zielgruppe / Audience:** Fachinformatiker*innen ab dem 3. Lehrjahr / IT specialist apprentices from the third training year onward

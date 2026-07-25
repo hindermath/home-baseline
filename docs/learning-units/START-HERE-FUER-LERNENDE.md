@@ -15,6 +15,16 @@
 
 ## Ziel / Goal
 
+**DE:** Für diese Anleitung gilt die
+[Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md). Sie richtet sich ab
+dem 1. Lehrjahr an Fachinformatiker*innen, Kaufleute für
+IT-System-Management und Kaufleute für Digitalisierungsmanagement.
+
+**EN:** This guide follows the
+[Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md). It addresses IT
+specialist apprentices, IT system management trainees, and digitalisation
+management trainees from training year 1.
+
 **DE:** Diese Anleitung fuehrt dich vom ersten Terminalfenster bis zu einem
 kontrollierten KI-Agentenlauf in der Podman-Sandbox. Du brauchst keine
 Vorkenntnisse mit Containern oder KI-Agenten. Arbeite die Schritte der Reihe nach

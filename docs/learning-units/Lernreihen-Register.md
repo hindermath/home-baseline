@@ -1,5 +1,14 @@
 # Lernreihen-Register / Learning Series Register
 
+**DE:** Alle registrierten Reihen erben die
+[Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md). Das Register macht
+Reihenfolge und Status als Text sichtbar; eine grafische Darstellung wäre nur
+eine Ergänzung.
+
+**EN:** Every registered series inherits the
+[Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md). This register exposes
+order and status as text; a visual representation would only be supplementary.
+
 ## Zweck / Purpose
 
 **DE:** Dieses Register macht sichtbar, welche Lernreihen existieren, für welches Lehrjahr sie gedacht sind und wo ihre kanonischen Dateien liegen.

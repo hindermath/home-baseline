@@ -15,9 +15,9 @@
 
 **Zweck / Purpose**
 
-**DE:** Dieses Verzeichnis enthält ausführliche Lernmaterialien für sichere Entwicklung mit GitHub Spec Kit, Memory-Safe Languages (MSL), Sandbox-Nutzung und auditfähiger Dokumentation. Die Materialien sind DE-first, EN-second, CEFR-B2-orientiert und für Fachinformatiker*innen ab dem 1. Lehrjahr verständlich aufgebaut.
+**DE:** Dieses Verzeichnis enthält ausführliche Lernmaterialien für sichere Entwicklung mit GitHub Spec Kit, Memory-Safe Languages (MSL), Sandbox-Nutzung und auditfähiger Dokumentation. Die verbindliche [Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md) gilt für Fachinformatiker*innen, Kaufleute für IT-System-Management und Kaufleute für Digitalisierungsmanagement ab dem 1. Lehrjahr. Sie verlangt Deutsch zuerst, Englisch danach, CEFR B2, Erklärungen beim ersten Auftreten, textorientierte Informationswege, Verständlichkeit ohne vorherige Spec-Kit-Erfahrung und WCAG 2.2 AA.
 
-**EN:** This directory contains detailed learning material for secure development with GitHub Spec Kit, memory-safe languages (MSL), sandbox use, and audit-ready documentation. The material is DE-first, EN-second, CEFR-B2-oriented, and written for IT specialist apprentices from the first training year onward.
+**EN:** This directory contains detailed learning material for secure development with GitHub Spec Kit, memory-safe languages (MSL), sandbox use, and audit-ready documentation. The binding [Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md) applies to IT specialist apprentices, IT system management trainees, and digitalisation management trainees from training year 1. It requires German first, English second, CEFR B2, first-use explanations, text-first information paths, understanding without prior Spec Kit experience, and WCAG 2.2 AA.
 
 ## Start fuer Lernende / Start for Learners
 
