@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "0cc750db-4913-4891-b3ff-a2b7f6c05de7",
+  "intakeId": "a71f89db-e152-48ba-a646-c28870b6ac1a",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "1d8e0b99-5c47-489b-8e44-6f4d181ab5a4",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user instruction to prepare documentation reality reconciliation intakes with MergeAndSync delivery."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
+    "normalizedSha256": "66e21c99930ec3ccf9cc01129583b39d7afa7e85c8f184bfe50f37407467421a"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved documentation reality and continuous-governance request",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "47dd23a1739799af1489324a282832e38ee35f25bcbab7867c7e633b80c39040",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wo wird die dauerhafte Documentation-Impact-Regel verankert?",
+      "answer": "Normativ in Constitution und Memory, operativ in Spec-/Plan-/Tasks-/Checklist-/PR-Flächen und synchron in allen fünf Agentenflächen.",
+      "evidence": "Current repository audit and user request"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wird ein neues Preset vorab verlangt?",
+      "answer": "Nein. Position 18 bewertet zuerst den portablen Bedarf; ohne reproduzierbaren Befund entsteht kein Preset.",
+      "evidence": "Evidence-first implementation decision"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync ausschließlich für findings-basierte Level-0-Remediation; Position 20 startet nicht automatisch.",
+      "evidence": "Explicit current user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md"
+}
