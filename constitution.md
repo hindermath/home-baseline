@@ -959,7 +959,7 @@ workspace family consists of:
 | `autonomous-run-governance` | `v0.3.2` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
 | `parallel-autonomous-run-governance` | `v0.2.3` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`intake-authoring-governance` v0.1.1 at priority `64` and
+`intake-authoring-governance` v0.2.0 at priority `64` and
 `intake-review-governance` v0.1.1 at priority `65` are optional presets, not
 part of the standard eight. Authoring creates exactly one Markdown intake and
 one normalized-hash-bound receipt from explicitly named ordered UTF-8 sources.
@@ -1041,7 +1041,7 @@ listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
 The current standalone releases are `autonomous-run-governance` v0.3.2,
 `parallel-autonomous-run-governance` v0.2.3, optional
-`intake-authoring-governance` v0.1.1, and optional
+`intake-authoring-governance` v0.2.0, and optional
 `intake-review-governance` v0.1.1; Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
