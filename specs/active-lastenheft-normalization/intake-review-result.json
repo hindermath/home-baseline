@@ -7,7 +7,7 @@
   "reviewedAt": "2026-07-25T21:40:01Z",
   "repository": {
     "root": ".",
-    "head": "f1308ddfa2d4e645a360c3f05c57c810ac5820d1"
+    "head": "a06bff58367f0d25f4fcdc65dadf8f6d500cae46"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
