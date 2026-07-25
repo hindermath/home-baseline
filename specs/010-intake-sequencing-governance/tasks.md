@@ -63,7 +63,7 @@
 - [x] T047 Validate add/list/info/resolve/disable/enable/remove/reinstall in a temporary project.
 - [x] T048 Prove all six commands appear exactly once on supported agent surfaces.
 - [x] T049 Prove no downstream workflow starts implicitly.
-- [ ] T050 Update project statistics and final evidence.
+- [x] T050 Update project statistics and final evidence.
 
 ## Phase 6: Delivery
 

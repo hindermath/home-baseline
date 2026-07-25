@@ -695,29 +695,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 333399 lines |
-| Textdateien / Text files | 2074 |
+| Textbasis / Text base | 336630 lines |
+| Textdateien / Text files | 2151 |
 | Beobachtbarer Zeitraum / Observable period | 2025-07-27..2026-07-25 |
 | Aktivtage / Active days | 73 |
-| Relevante Commits / Relevant commits | 525 |
-| Zeilen je Aktivtag / Lines per active day | 4567.1 |
+| Relevante Commits / Relevant commits | 526 |
+| Zeilen je Aktivtag / Lines per active day | 4611.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 30 days |
-| Speedup vs. 80 lines/day | 57.1x |
-| Speedup vs. 100 lines/day | 45.7x |
-| Methodik / Methodology | v2; source `a249c795b35a` |
+| Speedup vs. 80 lines/day | 57.6x |
+| Speedup vs. 100 lines/day | 46.1x |
+| Methodik / Methodology | v2; source `f165e2a346e2` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   3.1% | 10202
-Dokumentation / Documentation   [################....]  80.5% | 268255
-Skripte / Scripts               [###.................]  13.4% | 44748
-Konfiguration / Configuration   [#...................]   2.8% | 9478
+Tests                           [#...................]   3.2% | 10821
+Dokumentation / Documentation   [################....]  80.1% | 269584
+Skripte / Scripts               [###.................]  13.5% | 45567
+Konfiguration / Configuration   [#...................]   2.9% | 9900
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.2% | 716
+Sonstiger Text / Other text     [#...................]   0.2% | 758
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -764,7 +764,7 @@ Wochen / Weeks 27..52 | 2026-01-25..2026-07-25
   cap 200000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       166667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       133333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      100000 | . . . . . . . . . . . . . . . . . . . . . . . # . .
+      100000 | . . . . . . . . . . . . . . . . . . . . . . . # . #
        66667 | . . . . . . . . . . . . . . . . . . . . . . . # . #
        33333 | . . . . . . . . . # . . . . . . . . . . # . . # . #
            0 +-----------------------------------------------------
@@ -811,15 +811,15 @@ Slots 0..15
 ```
 
 ```text
-Slots 16..30
-   cap 10000 | . . . . . . . . . . . . . . .
-        8333 | . . . . . . . . . . . . . . .
-        6667 | . . . . . . . . . . . . . . .
-        5000 | # . . . . . . . . . . # . . .
-        3333 | # . . . . . . . . . . # . . .
-        1667 | # . . . # . . . # . . # . . #
-           0 +-------------------------------
-             16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+Slots 16..31
+   cap 10000 | . . . . . . . . . . . . . . . .
+        8333 | . . . . . . . . . . . . . . . .
+        6667 | . . . . . . . . . . . . . . . .
+        5000 | # . . . . . . . . . . # . . . .
+        3333 | # . . . . . . . . . . # . . . .
+        1667 | # . . . # . . . # . . # . . # #
+           0 +---------------------------------
+             16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -855,6 +855,7 @@ Slots 16..30
 | 28 | Intake-Authoring-v0.2.0-Flottenabschluss / Intake Authoring v0.2.0 fleet closeout | 125 |
 | 29 | Intake-Authoring-v0.2.0-Community-Katalogabschluss / Intake Authoring v0.2.0 community catalog closeout | 29 |
 | 30 | Plattformübergreifende Ein-Kommando-Wartung / Cross-platform one-command maintenance | 2585 |
+| 31 | Intake-Sequencing-Preset v0.1.0 / Intake sequencing preset v0.1.0 | 3180 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -864,8 +865,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###########.........] 57.1x
-100 lines/day      [#########...........] 45.7x
+80 lines/day       [############........] 57.6x
+100 lines/day      [#########...........] 46.1x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -878,7 +879,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..5000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##################..] 4567.1
+Visible repository [##################..] 4611.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -904,6 +905,6 @@ DE: Das Fenster beginnt am 2025-07-27 und endet am 2026-07-25. Es enthaelt 73 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 253140 |
+| 2026-07 | 256447 |
 
 <!-- project-statistics-v2:end -->
