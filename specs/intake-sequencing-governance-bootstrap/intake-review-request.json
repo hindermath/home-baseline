@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "d6f03eb8-93c2-4bae-8cdc-2192ea61bb1b",
+  "mode": "Single",
+  "policy": "home-baseline-preset-bootstrap-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

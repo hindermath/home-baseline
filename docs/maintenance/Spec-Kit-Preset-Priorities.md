@@ -48,7 +48,7 @@ that stack reproducible.*
 Spec Kit ordnet aktivierte Presets aufsteigend nach ihrer Prioritätszahl:
 
 ```text
-10 → 20 → 30 → 40 → 50 → 60 → 64 → 65 → 70 → 80
+10 → 20 → 30 → 40 → 50 → 60 → 64 → 65 → 66 → 70 → 80
 ```
 
 Diese Reihenfolge wird relevant, wenn mehrere Presets denselben Namen für ein
@@ -124,32 +124,33 @@ general importance of quality concerns.*
 | `60` | `agent-parity-governance` | Parität der Agenten- und Command-Oberflächen |
 | `64` | `intake-authoring-governance` | Optional: Intake erzeugen oder kontrolliert aktualisieren |
 | `65` | `intake-review-governance` | Optional: gespeicherten Intake unabhängig prüfen |
+| `66` | `intake-sequencing-governance` | Optional: Reihenfolge, Abhängigkeiten und nächste Kandidaten verwalten |
 | `70` | `autonomous-run-governance` | Lebenszyklus eines ausdrücklich delegierten autonomen Laufs |
 | `80` | `parallel-autonomous-run-governance` | Koordination mehrerer isolierter autonomer Läufe |
 
 Die Abstände sind absichtlich gewählt. Zwischen `60` und `70` konnten die
-optionalen Intake-Schichten mit `64` und `65` eingefügt werden, ohne die
+optionalen Intake-Schichten mit `64`, `65` und `66` eingefügt werden, ohne die
 bestehende Standardmatrix neu zu nummerieren.
 
-Die Zahlen `64`, `65`, `70` und `80` spiegeln zusätzlich eine fachlich sinnvolle
+Die Zahlen `64`, `65`, `66`, `70` und `80` spiegeln zusätzlich eine fachlich sinnvolle
 Schichtung:
 
 ```text
-Intake erstellen → Intake prüfen → Einzel-Lauf steuern → Kampagne koordinieren
+Intake erstellen → Intake prüfen → Reihe steuern → Einzel-Lauf steuern → Kampagne koordinieren
 ```
 
 Das ist eine Modellierung des Stacks, **keine automatische Befehlskette**.
 Jeder Übergang benötigt weiterhin den passenden Befehl und die erforderliche
 Autorität.
 
-*The gaps are intentional. Optional intake layers could be inserted at `64`
-and `65` without renumbering the standard stack. The sequence from authoring
+*The gaps are intentional. Optional intake layers could be inserted at `64`,
+`65`, and `66` without renumbering the standard stack. The sequence from authoring
 through review and autonomous coordination describes conceptual layering, not
 an automatically executed command chain.*
 
-## Wie die vier Workflow-Presets zusammenarbeiten
+## Wie die fünf Workflow-Presets zusammenarbeiten
 
-Die Presets mit den Prioritäten `64`, `65`, `70` und `80` können eine
+Die Presets mit den Prioritäten `64`, `65`, `66`, `70` und `80` können eine
 durchgängige Qualitätskette bilden. Sie bleiben trotzdem unabhängig
 installierbar und werden nur aktiv, wenn ein Mensch oder eine verbindliche
 Repository-Policy den jeweiligen Schritt verlangt.
@@ -165,6 +166,10 @@ Intake + Authoring-Receipt (`ReadyForReview`)
   v
 Review-Ergebnis (`Ready` oder akzeptiertes `ReadyWithAcceptedRisks`)
   |
+  |  $speckit-intake-series-status / $speckit-intake-series-next
+  v
+Geprüfte Reihenfolge + startfähige Kandidaten oder konkrete Blocker
+  |
   +--> $speckit-autonomous          Ein Feature-Lauf
   |
   +--> $speckit-parallel-autonomous Mehrere isolierte Feature-Läufe
@@ -173,6 +178,21 @@ Review-Ergebnis (`Ready` oder akzeptiertes `ReadyWithAcceptedRisks`)
 Die Pfeile zeigen empfohlene **manuelle Übergaben**. Kein Preset ruft den
 nächsten Befehl selbst auf. Eine niedrigere oder höhere Prioritätszahl ändert
 daran nichts.
+
+### Intake Sequencing verwaltet die Reihe, nicht die Intake-Inhalte
+
+`intake-sequencing-governance` v0.1.0 verwendet Priorität `66`. Es übernimmt
+bereits vorhandene und unabhängig geprüfte Intakes, dokumentiert ihre sichtbare
+Reihenfolge, Roots, bindenden Vorgänger und reine
+Shared-Writer-Serialisierungen. Die Commands `read`, `status` und `next`
+bleiben read-only. `next` nennt alle derzeit startfähigen Ziele oder deren
+konkrete Blocker, startet aber keinen Review, kein Specify und keinen
+autonomen Lauf.
+
+*Intake Sequencing at priority `66` manages the order and lifecycle of existing
+intakes. It distinguishes binding predecessors from delivery-only
+serialization. Its read, status, and next commands are read-only, and next
+never starts downstream work.*
 
 ### 1. Intake Authoring bereitet die fachliche Grundlage vor
 

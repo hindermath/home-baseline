@@ -2792,11 +2792,17 @@ Schema 1.1. Zielrollen, exakte Reihenfolge, Roots, Kanten und Zyklen werden
 gemeinsam geprüft; nicht eindeutig belegbare Vorgängerbeziehungen führen zu
 `NeedsClarification`.
 
-Thorstens registrierte Level-0-/Level-1-/Level-2-Flotte waehlt beide optionalen
-Intake-Presets ueber `intake-authoring-ten-governance-presets`. Das bisherige
-`intake-review-nine-governance-presets` bleibt fuer kompatible, bewusst nur mit
-Review ausgestattete Projekte verfuegbar. Keine dieser lokalen Profilwahlen
-aendert die oeffentliche Standard-Achtermatrix.
+Thorstens registrierte Level-0-/Level-1-/Level-2-Flotte waehlt alle drei
+optionalen Intake-Presets ueber
+`intake-sequencing-eleven-governance-presets`. Die bisherigen Neun- und
+Zehn-Preset-Profile bleiben kompatibel verfuegbar. Keine dieser lokalen
+Profilwahlen aendert die oeffentliche Standard-Achtermatrix.
+
+`intake-sequencing-governance` v0.1.0 ist eine dritte optionale
+Intake-Schicht mit Prioritaet `66`. Das getrennte
+`intake-sequencing-eleven-governance-presets`-Profil verwaltet Reihenfolge,
+typisierte Abhaengigkeiten, Lifecycle und naechste Kandidaten. Es aendert keine
+Intake-Inhalte und startet keinen nachgelagerten Spec-Kit-Befehl.
 
 *`intake-authoring-governance` v0.2.0 is an optional preset at priority `64`.
 It provides separate Create, read-only Read, explicitly authorized Update, and
@@ -3061,14 +3067,16 @@ Projekt-Policy aber vermieden werden.
 
 Die Zahl startet keinen Befehl, installiert oder aktiviert kein Preset und
 erteilt keine Commit-, Push-, PR-, Merge- oder Bypass-Rechte. Die Folge
-`64 → 65 → 70 → 80` beschreibt die Schichtung von Intake Authoring, Intake
-Review, autonomem Einzel-Lauf und paralleler Koordination. Sie ist keine
+`64 → 65 → 66 → 70 → 80` beschreibt die Schichtung von Intake Authoring,
+Intake Review, Intake Sequencing, autonomem Einzel-Lauf und paralleler
+Koordination. Sie ist keine
 automatische Befehlskette.
 
-Gemeinsam können diese vier Presets eine hashgebundene Qualitätskette bilden:
+Gemeinsam können diese fünf Presets eine hashgebundene Qualitätskette bilden:
 Authoring erzeugt Intake und Receipt mit `ReadyForReview`; Review entscheidet
 unabhängig über `Ready`, menschlich akzeptiertes `ReadyWithAcceptedRisks` oder
-einen blockierenden Zustand. Preset 7 kann das aktuelle Review vor Branch,
+einen blockierenden Zustand. Sequencing verwaltet danach Reihenfolge, bindende
+Vorgaenger und startfaehige Kandidaten, ohne Arbeit zu starten. Preset 7 kann das aktuelle Review vor Branch,
 Feature und Specify als Start-Gate verlangen. Preset 8 prüft bei einer
 Kampagne zusätzlich jeden eindeutigen Intake, die Worker-Zuordnung und den DAG,
 bevor Worktrees entstehen. Preset 8 koordiniert die Kampagne, während Preset 7
@@ -3085,9 +3093,10 @@ commands, or addenda overlap. In Spec Kit, a lower number means higher
 precedence; project-local overrides still come first. `replace` selects the
 highest-precedence content, while `prepend`, `append`, and `wrap` compose
 ordered layers. Priority starts no command and grants no delivery authority.
-Together, the four workflow presets can form a hash-bound quality chain:
-Authoring prepares the intake, Review accepts or blocks it, Preset 7 governs
-one run, and Preset 8 coordinates multiple Preset-7 workers. See the detailed
+Together, the five workflow presets can form a hash-bound quality chain:
+Authoring prepares the intake, Review accepts or blocks it, Sequencing manages
+order and candidates, Preset 7 governs one run, and Preset 8 coordinates
+multiple Preset-7 workers. See the detailed
 guide for artifact flow, gates, examples, diagnostics, and safe
 reprioritisation.*
 
