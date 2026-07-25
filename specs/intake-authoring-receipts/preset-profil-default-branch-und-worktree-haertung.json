@@ -1,34 +1,65 @@
 {
-  "schemaVersion": "1.1",
-  "receiptId": "40faffea-1f68-416c-9ca3-d932c9a3fda1",
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "a0a5dfc8-4527-4542-a0dd-a46feaf3ce5b",
+  "intakeId": "40faffea-1f68-416c-9ca3-d932c9a3fda1",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.1.1"
+    "version": "0.2.0"
   },
-  "createdAt": "2026-07-23T21:51:25Z",
+  "createdAt": "2026-07-25T12:58:33Z",
+  "operation": {
+    "operationId": "51366eb0-5c0d-42fb-80b4-6946a27ff155",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+  },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-    "normalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5"
+    "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b"
   },
   "sources": [
     {
+      "sourceId": "SRC001",
       "order": 1,
-      "kind": "Pasted",
-      "label": "Bestehender Intake vor der autorisierten In-place-Aktualisierung",
-      "location": "SnapshotOnly",
-      "path": "N/A",
-      "normalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913",
-      "gitBlob": "N/A"
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5",
+      "gitBlob": "8d72337cbc0f946c0c07db3ad5653d1b6480fd0f",
+      "proofBoundary": "ArchivedSupersededTarget"
     },
     {
+      "sourceId": "SRC002",
       "order": 2,
-      "kind": "File",
-      "label": "Genehmigter Plan zur flottenweiten Remote-Freshness-Barriere",
-      "location": "ExternalSnapshot",
+      "kind": "Pasted",
+      "label": "Approved active intake series normalization request",
+      "location": "SnapshotOnly",
       "path": "N/A",
-      "normalizedSha256": "0d4dc2c37e7c8bf23b09f17af00992c70100350f8cfda51ca2ad44c77c2f0753",
-      "gitBlob": "N/A"
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -37,51 +68,23 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welcher repository-relative Zielpfad soll verwendet werden?",
-      "answer": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-      "evidence": "Das Home-Baseline-Profil verlangt einen beschreibenden Lastenheft-Dateinamen im Repository-Root; der Name bildet Preset-Profil, Default-Branch und Worktree-Härtung ab."
+      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
+      "answer": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
+      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Wird ein eigener Intake erzeugt oder ein bestehender Wartungsintake überschrieben?",
-      "answer": "Ein eigener ergänzender Intake wird erzeugt; bestehende Intakes bleiben unverändert.",
-      "evidence": "Der Nutzer verlangt ausdrücklich, aus der ausgewählten Chat-Passage eine Intake-Datei zu erzeugen. Der Scope ist eine begrenzte Folge-Härtung des bereits gelieferten Fixes."
+      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
+      "answer": "Root position 3; historical Feature 009 baseline; hard gate input for position 4.",
+      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Wo wird der neue Intake in die aktive Abarbeitungsreihenfolge eingeordnet?",
-      "answer": "Position 4 nach der plattformübergreifenden, Windows- und Linux-/Ubuntu-Wartung sowie vor der auf Position 5 verschobenen Wartungs-TUI.",
-      "evidence": "Die fünf Punkte härten die gemeinsame Wartungsbasis und müssen vor der darauf aufbauenden TUI abgeschlossen sein; die vorhandene Reihenfolge der drei Wartungsintakes bleibt erhalten."
-    },
-    {
-      "id": "IAD004",
-      "status": "Answered",
-      "question": "Welche Delivery Authority gilt für einen späteren Autonomous-Lauf?",
-      "answer": "LocalImplementation",
-      "evidence": "Der aktuelle Nutzerauftrag autorisiert Intake-Authoring und Queue-Integration, aber keine Commits, Pushes, Pull Requests, Merges, Bypässe oder anderen Remote-Schreibaktionen."
-    },
-    {
-      "id": "IAD005",
-      "status": "Answered",
-      "question": "Darf der bestehende Intake und sein Receipt in place aktualisiert werden?",
-      "answer": "Ja, als nachvollziehbare Supersession ohne neuen Intake und ohne Änderung der Position 4.",
-      "evidence": "Der aktuelle Nutzerauftrag genehmigt ausdrücklich die vollständige Umsetzung des Plans zur Intake-Nachschärfung."
-    },
-    {
-      "id": "IAD006",
-      "status": "Answered",
-      "question": "Welche Flottengrenze muss vor mutierenden Wartungsphasen gelten?",
-      "answer": "Level 0 und alle registrierten Level-1-/Level-2-Repositories müssen vollständig read-only inventarisiert und gefetcht sein; unsichere Pflichtzustände sperren alle mutierenden Folgephasen.",
-      "evidence": "Der genehmigte Plan definiert PWH-012 bis PWH-015 und AC-013 bis AC-017 als fail-closed Remote-Freshness-Barriere."
-    },
-    {
-      "id": "IAD007",
-      "status": "Answered",
-      "question": "Welcher Review-Umfang ist nach der Intake-Änderung verbindlich?",
-      "answer": "Der vollständige aktive 14-Ziel-Series-Review wird auf Schema 1.1 migriert und supersediert.",
-      "evidence": "Der geänderte Intake ist Teil der aktiven Serie; ein isolierter Single-Review würde die bestehende Series-Evidence nicht wieder aktuell machen."
+      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
+      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
+      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
     }
   ],
   "openDecisionIds": [],
@@ -93,19 +96,28 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Der aktuelle Nutzerauftrag autorisiert die In-place-Aktualisierung des Intakes, seines Receipts und der lokalen Series-Evidence. Remote-Schreiboperationen bleiben ausgeschlossen.",
+  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
   "promptState": "Enabled",
-  "supersedes": {
-    "receiptPath": "specs/intake-authoring-receipts/history/preset-profil-default-branch-und-worktree-haertung-v1.0.json",
-    "targetNormalizedSha256": "8bb844db56f68269a5b5b35ed674dce277d385d2033b3d446749efc54838a913"
-  },
-  "updateAuthorized": true,
-  "nextAction": "$speckit-intake-review Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
   "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/receipt.json",
+    "targetNormalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5",
+    "archiveTargetPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/receipt.json"
+  },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: PLEASE IMPLEMENT THIS PLAN zur flottenweiten Remote-Freshness-Barriere."
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "series": {
+    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
+    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "order": 3,
+    "role": "Root",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md"
 }

@@ -25,6 +25,15 @@ governance presets. It does not build a container or start implementation; it
 first creates a reliable specification for a later container or sandbox
 hardening run.*
 
+### Reihenfolge und Abhaengigkeiten / Order and Dependencies
+
+Dieser Intake steht auf Position 7. Position 5 liefert seine bindende
+Assessment Baseline. Das Ergebnis von Position 7 ist wiederum die Sandbox
+Baseline fuer die Level-2-Anbindung auf Position 8.
+
+*This intake is position 7. Position 5 provides its binding assessment
+baseline, and position 7 provides the sandbox baseline for position 8.*
+
 ## 2. Ausgangslage
 
 Die Secure-Development-Basis beschreibt bereits Anforderungen an sichere
@@ -41,7 +50,7 @@ Relevante Bezugspunkte sind insbesondere:
 - `docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md`
 - `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md`
 - `constitution.md`, Prinzipien XII bis XIX
-- die acht Governance-Presets
+- die aktive Zehn-Preset-Matrix
 
 ## 3. Zielbild
 
@@ -138,9 +147,9 @@ stillschweigend ausgelassen werden.
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Secure-Development-Container-Hardening.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen sicheren Softwareentwicklungscontainer bzw. eine Entwicklungs-Sandbox.
+$speckit-specify Nutze Lastenheft_Secure-Development-Container-Hardening.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen sicheren Softwareentwicklungscontainer bzw. eine Entwicklungs-Sandbox. Pruefe zuerst die Assessment Baseline von Position 5 und bewahre die Position 7 sowie die Sandbox Baseline fuer Position 8.
 
-Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden Dokumenten und den acht Governance-Presets soll ein belastbares Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer entstehen.
+Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden Dokumenten und der aktiven Zehn-Preset-Matrix soll ein belastbares Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer entstehen. Bewahre die Abhaengigkeit von Position 5 und die Sandbox-Baseline fuer Position 8.
 
 Pflichtpunkte:
 - Container-/Sandbox-Typ, Schutzgrenzen und Nicht-Ziele klaeren.
@@ -164,7 +173,7 @@ Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, Schutzmodell, Evidenzmatrix,
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Secure-Development-Container-Hardening.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Secure-Development-Container-Hardening.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake. Pruefe zuerst die Assessment Baseline von Position 5 und bewahre die Position 7, die Sandbox-Baseline fuer Position 8 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

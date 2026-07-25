@@ -6,8 +6,8 @@
 **Profil / Profile:** `home-baseline-lastenheft`
 **Repository:** `home-baseline`
 **Dokumenttyp / Document type:** Windows-spezifischer Spec-Kit-Intake / Windows-specific Spec Kit intake
-**Version:** 1.0
-**Stand / Date:** 2026-07-22
+**Version:** 1.1
+**Stand / Date:** 2026-07-25
 **Delivery Authority:** `LocalImplementation`
 
 ## 1. Zweck / Purpose
@@ -31,30 +31,33 @@ authority to commit, push, open pull requests, or merge.*
 
 ## 2. Bindende Vorgaenger und Reihenfolge / Binding Predecessors and Order
 
-Bindender fachlicher Vorgaenger ist
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` einschliesslich
-der daraus bereits entstandenen Wartungsimplementierung. Dieses Lastenheft
-ersetzt den Vorgaenger nicht. Es praezisiert Windows-Defekte, die erst im
-realen Betrieb sichtbar wurden.
+Historische fachliche Grundlage ist Feature 009 mit dem archivierten Intake
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
+und der daraus entstandenen Wartungsimplementierung. Feature 009 ist kein
+aktiver Knoten der aktuellen Intake-Serie mehr. Dieses Lastenheft ersetzt die
+Grundlage nicht. Es praezisiert Windows-Defekte, die erst im realen Betrieb
+sichtbar wurden.
 
-*The binding functional predecessor is
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`, including its
-existing maintenance implementation. This intake does not supersede that
-predecessor. It specifies Windows defects that became visible only during a
-real maintenance run.*
+*The historical functional baseline is Feature 009 with the archived intake
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
+and its delivered maintenance implementation. Feature 009 is no longer an
+active node in the current intake series. This intake specifies Windows
+defects that became visible only during a real maintenance run.*
 
-Die Abarbeitung erfolgt auf Position 2 unmittelbar nach dem
-plattformuebergreifenden Wartungs-Intake. Danach folgen die getrennte
-Linux-/Ubuntu-Haertung und die Preset-/Profil-/Default-Branch-/Worktree-
-Haertung. Die Wartungs-TUI bleibt auf Position 5 gesperrt, bis alle Eintraege
-1 bis 4 vollstaendig implementiert, validiert und gemaess ihrer jeweiligen
-Delivery Authority abgeschlossen sind.
+Die Abarbeitung erfolgt als Root auf Position 1. Danach folgen die getrennte
+Linux-/Ubuntu-Haertung auf Position 2 und die
+Preset-/Profil-/Default-Branch-/Worktree-Haertung auf Position 3. Diese drei
+Intakes sind untereinander keine technischen Vorgaenger. Ihre serielle
+Reihenfolge vermeidet Konflikte an gemeinsamen Wartungsdateien. Die
+Wartungs-TUI bleibt auf Position 4 gesperrt, bis Feature 009 und die aktiven
+Positionen 1 bis 3 vollstaendig abgeschlossen sind.
 
-*Processing takes place at position 2 directly after the cross-platform
-maintenance intake. The separate Linux/Ubuntu and preset/profile/default-
-branch/worktree hardening rounds follow. The maintenance TUI remains blocked
-at position 5 until all items 1 through 4 are fully implemented, validated,
-and closed under their respective delivery authority.*
+*Processing takes place as a root at position 1. Linux/Ubuntu hardening follows
+at position 2 and preset/profile/default-branch/worktree hardening at position
+3. These roots are not technical predecessors of each other; serial delivery
+avoids conflicts in shared maintenance files. The maintenance TUI at position
+4 remains blocked until Feature 009 and active positions 1 through 3 are
+closed.*
 
 ## 3. Ausgangslage / Current State
 
@@ -496,14 +499,14 @@ Autonomous run stops before commit, push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und seinen bindenden Vorgaengern. Bewahre WEM-001 bis WEM-009, AC-001 bis AC-012, die Position-2-Reihenfolge, die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4 und alle Sicherheits-, A11Y- und Kompatibilitaetsgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre WEM-001 bis WEM-009, AC-001 bis AC-012, die Root-Position 1, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Sicherheits-, A11Y- und Kompatibilitaetsgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Position-2-Reihenfolge und die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender Vorgaenger-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Root-Position 1 und die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender historischer Baseline-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

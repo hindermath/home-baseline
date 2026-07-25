@@ -12,9 +12,16 @@ Dieses Lastenheft beschreibt, wie Level-2-Repositories von einer sicheren Entwic
 
 *This intake document describes how level-2 repositories should benefit from a secure development sandbox. It creates only intake, ordering, and preparation. The actual hardening of individual level-2 repositories remains a separate Spec Kit run per repository.*
 
+Dieser Intake steht auf Position 8 und benoetigt die abgeschlossene Sandbox
+Baseline aus `Lastenheft_Secure-Development-Container-Hardening.md` auf
+Position 7. Ohne diesen Nachweis bleibt Position 8 gesperrt.
+
+*This intake is position 8 and requires the completed sandbox baseline from
+position 7. Position 8 remains blocked until that evidence exists.*
+
 ## Kontext / Context
 
-Die zentrale Secure-Development-Basis besteht aus Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten und acht Governance-Presets. `absdd-image-sandbox` ist das vorgesehene Referenzprofil fuer eine oeffentlichkeitsfaehige Ausbildungs-Sandbox. Level-2-Repositories bleiben die konkreten Entwicklungs- und Haertungsziele.
+Die zentrale Secure-Development-Basis besteht aus Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten und der aktiven Zehn-Preset-Matrix. `absdd-image-sandbox` ist das vorgesehene Referenzprofil fuer eine oeffentlichkeitsfaehige Ausbildungs-Sandbox. Level-2-Repositories bleiben die konkreten Entwicklungs- und Haertungsziele.
 
 ## Geltungsbereich / Scope
 
@@ -37,7 +44,7 @@ Dieses Lastenheft gilt fuer Level-2-Repositories, die:
 
 1. Fuer jedes betroffene Level-2-Repository wird eine konkrete Intake-Datei fuer einen spaeteren Sandbox-gestuetzten Secure-Development-Haertungslauf bereitgestellt.
 2. Die Intake-Datei nennt Projektkontext, Runtime, Build/Test-Baseline, Dokumentations-/A11Y-Basis und Agentenflaechen aus dem zentralen Level-2-Register.
-3. Die Intake-Datei verweist auf Richtlinie, `CL_12`, `Leitlinie_Sichere-Entwicklungs-Sandbox.md`, vorhandene Secure-Development-Lastenhefte und die acht Governance-Presets.
+3. Die Intake-Datei verweist auf Richtlinie, `CL_12`, `Leitlinie_Sichere-Entwicklungs-Sandbox.md`, vorhandene Secure-Development-Lastenhefte und die aktive Zehn-Preset-Matrix.
 4. Die Intake-Datei prueft, wie das Projekt sicher in oder mit der Sandbox bearbeitet werden kann: Mounts, Schreibgrenzen, Secrets, Build/Test, SBOM, Scans, KI-Agenten, Statistik und Review.
 5. Jede Intake-Datei endet mit einem kopierbaren `/speckit-specify` Prompt.
 6. `Lastenheft_Abarbeitungsreihenfolge.md` wird geschuetzt ergaenzt. Branch-spezifische Lastenhefte mit Feature-Branch-Kennung werden nicht erneut eingeplant.
@@ -76,14 +83,14 @@ Die erste konkrete Zielmenge sind die vier C#/.NET-Referenzrepos:
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation fuer die Vorbereitung MSL-basierter Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung.
+$speckit-specify Nutze Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md als verbindliche Eingabedatei. Pruefe zuerst die Sandbox Baseline von Position 7 und bewahre die Position 8. Erstelle eine Feature-Spezifikation fuer die Vorbereitung MSL-basierter Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung.
 
 Ziel: Level-2-Repositories sollen sicher, nachvollziehbar und ausbildungsgeeignet in oder mit der absdd-image-sandbox bearbeitet werden koennen. Die Spezifikation darf noch keine technische Haertung eines konkreten Level-2-Repositories starten.
 
 Beruecksichtige:
 - Richtlinie Sichere Entwicklung und CL_12 Agentische KI in Sandbox-Umgebungen.
 - Leitlinie_Sichere-Entwicklungs-Sandbox.md.
-- Die acht Governance-Presets mit auditfaehigen Applicable/N/A/Open-Entscheidungen.
+- Die aktive Zehn-Preset-Matrix mit auditfaehigen Applicable/N/A/Open-Entscheidungen.
 - MSL-Scope: Rust, Swift, C#, F#, Java, Kotlin, Scala, Go, Dart, Python, Ruby, JavaScript, TypeScript, Haskell, OCaml, Erlang, Elixir, Ada und SPARK.
 - Die vier C#/.NET-Referenzrepos TuiVision, TinyCalc, TinyPl0 und InventarWorkerService als erste Zielmenge.
 - Keine Spec-Kit-Implementierung und keine Projekt-Haertung in diesem Lauf.
@@ -93,7 +100,7 @@ Beruecksichtige:
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake. Pruefe zuerst die Sandbox Baseline von Position 7 und bewahre die Position 8 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

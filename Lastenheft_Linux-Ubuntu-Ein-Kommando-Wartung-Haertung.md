@@ -6,8 +6,8 @@
 **Profil / Profile:** `home-baseline-lastenheft`
 **Repository:** `home-baseline`
 **Dokumenttyp / Document type:** Linux-/Ubuntu-spezifischer Spec-Kit-Intake / Linux-/Ubuntu-specific Spec Kit intake
-**Version:** 1.0
-**Stand / Date:** 2026-07-22
+**Version:** 1.1
+**Stand / Date:** 2026-07-25
 **Delivery Authority:** `LocalImplementation`
 
 ## 1. Zweck / Purpose
@@ -39,33 +39,30 @@ and grants no authority to commit, push, open a pull request, or merge.*
 
 ## 2. Bindende Vorgaenger und Reihenfolge / Binding Predecessors and Order
 
-Bindender fachlicher Vorgaenger ist
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md` einschliesslich
-der daraus bereits entstandenen Wartungsimplementierung. Dieses Lastenheft
-ersetzt den Vorgaenger nicht. Es praezisiert Linux-/Ubuntu-Defekte, die erst im
-realen Paketmanagerlauf sichtbar wurden.
+Historische fachliche Grundlage ist Feature 009 mit dem archivierten Intake
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
+und der daraus entstandenen Wartungsimplementierung. Feature 009 ist kein
+aktiver Knoten der aktuellen Intake-Serie mehr. Dieses Lastenheft praezisiert
+Linux-/Ubuntu-Defekte, die erst im realen Paketmanagerlauf sichtbar wurden.
 
-*The binding functional predecessor is
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`, including its
-existing maintenance implementation. This intake does not supersede that
-predecessor. It specifies Linux and Ubuntu defects that became visible only in
-a real package-manager run.*
+*The historical functional baseline is Feature 009 with the archived intake
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
+and its delivered maintenance implementation. Feature 009 is no longer an
+active node in the current intake series. This intake specifies Linux and
+Ubuntu defects that became visible only in a real package-manager run.*
 
-Die aktive Abarbeitungsreihenfolge fuehrt diesen Intake auf Position 3 nach der
-plattformuebergreifenden Wartung und der bereits eingeordneten Windows-Haertung.
-Die Windows-Haertung ist kein technischer Vorgaenger dieser Linux-Arbeit; ihre
-relative Position bleibt erhalten. Danach folgt die Preset-/Profil-/Default-
-Branch-/Worktree-Haertung auf Position 4. Die Wartungs-TUI folgt auf Position 5
-und bleibt gesperrt, bis alle Eintraege 1 bis 4 vollstaendig implementiert,
-validiert und gemaess ihrer jeweiligen Delivery Authority abgeschlossen sind.
+Die aktive Abarbeitungsreihenfolge fuehrt diesen Intake als Root auf Position 2
+nach der Windows-Haertung. Die Windows-Haertung ist kein technischer
+Vorgaenger; die serielle Reihenfolge schuetzt gemeinsame Wartungsdateien.
+Danach folgt die Preset-/Profil-/Default-Branch-/Worktree-Haertung auf Position
+3. Die Wartungs-TUI folgt auf Position 4 und bleibt gesperrt, bis Feature 009
+und die aktiven Positionen 1 bis 3 vollstaendig abgeschlossen sind.
 
-*The active processing order places this intake at position 3 after
-cross-platform maintenance and the already queued Windows hardening round.
-Windows hardening is not a technical dependency of this Linux work; its
-existing relative position is preserved. The maintenance TUI follows at
-position 5 after the preset/profile/default-branch/worktree hardening round at
-position 4. It remains blocked until all items 1 through 4 have been fully
-implemented, validated, and closed under their respective delivery authority.*
+*The active order places this root at position 2 after Windows hardening.
+Windows hardening is not a technical dependency; serial delivery protects
+shared maintenance files. Preset/profile/default-branch/worktree hardening
+follows at position 3. The maintenance TUI at position 4 remains blocked until
+Feature 009 and active positions 1 through 3 are closed.*
 
 ## 3. Ausgangslage / Current State
 
@@ -557,14 +554,14 @@ push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und seinem bindenden Vorgaenger. Bewahre LUM-001 bis LUM-008, AC-001 bis AC-012, die Position-3-Reihenfolge, die Position-4-Haertung, die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4 und alle Sicherheits-, Supply-Chain-, A11Y-, Exitcode- und Plattformgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre LUM-001 bis LUM-008, AC-001 bis AC-012, die Root-Position 2, die nachfolgende Position-3-Haertung, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Sicherheits-, Supply-Chain-, A11Y-, Exitcode- und Plattformgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Position-3-Reihenfolge, die nachfolgende Position-4-Haertung und die TUI-Sperre bis zum Abschluss aller Eintraege 1 bis 4. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender Vorgaenger-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Root-Position 2, die nachfolgende Position-3-Haertung und die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender historischer Baseline-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

@@ -18,6 +18,16 @@ Das Lastenheft ist die Level-0-Referenz fuer spaetere repo-spezifische
 `Lastenheft_RL-SE-Checklist-Selbstpruefung.md`-Dateien. Es startet keinen
 Spec-Kit-Lauf und erzeugt keine projektspezifischen `docs/security/`-Nachweise.
 
+### Reihenfolge und Abhaengigkeiten / Order and Dependencies
+
+Dieser Intake steht auf Position 6. Er darf erst nach Position 5 beginnen, weil
+`Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` die bindende
+Assessment Baseline liefert. Diese Kante ist eine fachliche Abhaengigkeit und
+nicht nur eine Reihenfolgeempfehlung.
+
+*This intake is position 6 and depends on the binding assessment baseline from
+position 5. This is a functional dependency, not merely ordering advice.*
+
 ## 2. Ausgangslage
 
 Die Secure-Development-Basis unter `docs/secure-development/` ist als
@@ -118,7 +128,7 @@ Im spaeteren Prueflauf werden insbesondere behandelt:
 ### Specify
 
 ```text
-$speckit-specify
+$speckit-specify Nutze Lastenheft_RL-SE-Checklist-Selbstpruefung.md als verbindliche Eingabedatei. Pruefe zuerst die bindende Assessment Baseline von Position 5 und bewahre die Position 6.
 Nutze Lastenheft_RL-SE-Checklist-Selbstpruefung.md als verbindlichen Intake fuer einen separaten RL-SE-/Checklist-Selbstpruefungslauf.
 Starte keinen Sammellauf ueber mehrere Repositories, erzeuge keine automatische Haertung und befuelle keine docs/security/-Nachweise ohne konkrete Spec-Kit-Aufgabe.
 Erstelle eine fokussierte Feature-Spezifikation, die docs/secure-development/, Richtlinie_Sichere-Entwicklung.md, Checklistensammelband_Sichere-Entwicklung.md, CL_01 bis CL_12, mitgeltende Dokumente, Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md, constitution.md, .specify/memory/constitution.md und installierte Governance-Presets als Pruefgrundlagen beruecksichtigt.
@@ -130,7 +140,7 @@ Behandle sichere Entwicklung als Must-have. MSL-Status ist ein Pruefpunkt, aber 
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_RL-SE-Checklist-Selbstpruefung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_RL-SE-Checklist-Selbstpruefung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake. Pruefe zuerst den Abschluss der Assessment Baseline auf Position 5 und bewahre die Position 6 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

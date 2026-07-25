@@ -18,6 +18,17 @@ review of script and configuration surfaces. The goal is a traceable evidence
 matrix for operational tooling paths, not a broad hardening pass over the whole
 repository.*
 
+### 1.1 Reihenfolge und Abhaengigkeiten / Order and Dependencies
+
+Dieser Intake ist das abschliessende Audit auf Position 13. Er darf erst
+beginnen, wenn die Assessment Baseline von Position 5 und die Flaechen aus
+CI/CD (9), PowerShell-Cmdlets (10), Skript-Dokumentation (11) und didaktischer
+Kommentarhaertung (12) abgeschlossen sind. Ein frueherer Lauf koennte diese
+spaeteren Aenderungen nicht bewerten und waere deshalb unvollstaendig.
+
+*This intake is the final audit at position 13. It depends on position 5 and
+the completed surfaces from positions 9 through 12.*
+
 ## 2. Ausgangslage / Current State
 
 `home-baseline` steuert Workspaces, Level-2-Repos, Spec-Kit-Integrationen,
@@ -157,7 +168,7 @@ Ohne diesen Nachweis bleibt die Datei strict JSON.
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Script-and-Config-GSDB-Pruefung.md als verbindliche Eingabedatei. Erstelle eine fokussierte Feature-Spezifikation fuer eine GSDB-Pruefung der Skript-, JSON/JSONC-, YAML- und Workflow-Flaechen im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_Script-and-Config-GSDB-Pruefung.md als verbindliche Eingabedatei. Pruefe zuerst die Assessment Baseline von Position 5 und die abgeschlossenen Flaechen der Positionen 9 bis 12. Bewahre die finale Position 13. Erstelle eine fokussierte Feature-Spezifikation fuer eine GSDB-Pruefung der Skript-, JSON/JSONC-, YAML- und Workflow-Flaechen im home-baseline-Repository.
 
 Ziel: Pruefe Bash-, PowerShell-, JSON/JSONC-, YAML- und CI-Workflow-Flaechen gegen docs/secure-development/, constitution.md, .specify/memory/constitution.md, vorhandene docs/security/-Nachweise und installierte Governance-Presets. Erzeuge eine Evidenzmatrix mit Applicable, AlreadySatisfied, N/A, Open und FollowUp.
 
@@ -175,7 +186,7 @@ Wichtig:
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Script-and-Config-GSDB-Pruefung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Script-and-Config-GSDB-Pruefung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake. Pruefe zuerst die Assessment Baseline von Position 5 und die abgeschlossenen Flaechen der Positionen 9 bis 12. Bewahre die finale Position 13 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

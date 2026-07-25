@@ -27,6 +27,38 @@ name are not executed again. Historical Lastenhefte remain useful as context,
 evidence, and rationale. New Lastenhefte without a feature-branch marker are
 added to the active order once they have been assessed.*
 
+## Begriffe fuer den Einstieg / Terms for Getting Started
+
+Diese Begriffe helfen Auszubildenden ab dem ersten Ausbildungsjahr,
+Fachinformatikerinnen und Fachinformatikern sowie Kaufleuten fuer
+IT-System-Management und Digitalisierungsmanagement:
+
+- Ein **Lastenheft** oder **Intake** beschreibt das fachliche Problem, die
+  Grenzen und die Abnahme. Es ist noch keine Implementierung.
+- Die **sichtbare Position** ist die bevorzugte serielle Lieferreihenfolge. Sie
+  verhindert unnoetige Konflikte an gemeinsam genutzten Dateien.
+- Eine **Root** ist ein Intake ohne bindenden Vorgaenger innerhalb dieser
+  aktiven Serie. Eine Root darf dennoch allgemeine Projekt-Gates besitzen.
+- Ein **bindender Vorgaenger** muss fachlich abgeschlossen sein, bevor die
+  abhaengige Arbeit beginnen darf.
+- Ein **hartes Abschluss-Gate** blockiert bereits Feature-, Branch- oder
+  Spec-Kit-Artefakte, solange der geforderte Abschlussnachweis fehlt.
+- Eine **Assessment Baseline** liefert die Bewertungsgrundlage fuer eine
+  spaetere Pruefung.
+- Eine **Sandbox Baseline** liefert die Sicherheitsgrundlage fuer eine
+  spaetere Sandbox-Anbindung.
+- Eine **Surface Baseline** liefert Code- oder Dokumentationsflaechen, die ein
+  spaeterer Lauf prueft.
+- Ein **Final Audit** ist die letzte unabhaengige Kontrolle. Es wird nicht
+  vorgezogen, weil sonst noch nicht gelieferte Aenderungen fehlen wuerden.
+
+*A Lastenheft or intake defines the problem, boundaries, and acceptance, but
+does not implement anything. The visible position is the preferred serial
+delivery order. A root has no binding predecessor inside this active series.
+Binding predecessors and hard completion gates must be satisfied before
+dependent work starts. Assessment, sandbox, and surface baselines provide
+review input. A final audit runs last so it can assess all intended changes.*
+
 ## Aktive Reihenfolge / Active Order
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
@@ -40,21 +72,77 @@ added to the active order once they have been assessed.*
 | 7 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
 | 8 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
 | 9 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
-| 10 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen. / Aligns script and usage documentation. |
-| 11 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität. / Reviews PowerShell cmdlet conventions and Windows parity. |
+| 10 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität und liefert damit eine Oberfläche für die nachfolgende Dokumentation. / Reviews PowerShell cmdlet conventions and Windows parity and provides a surface for the following documentation work. |
+| 11 | `Lastenheft_Script_Dokumentation.md` | Führt Skript- und Bedienungsdokumentation zusammen, nachdem die Cmdlet-Oberflächen feststehen. / Aligns script and usage documentation after the cmdlet surfaces are known. |
 | 12 | `Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md` | Prüft didaktische Kommentare in Skript- und Konfigurationslogik inklusive JSONC-Migrationskandidaten. / Reviews didactic comments in script and configuration logic, including JSONC migration candidates. |
 | 13 | `Lastenheft_Script-and-Config-GSDB-Pruefung.md` | Prüft Skript-, JSON/JSONC-, YAML- und Workflow-Flächen fokussiert gegen die GSDB. / Reviews script, JSON/JSONC, YAML, and workflow surfaces against the GSDB. |
 
-Eintrag 4 ist eine harte Abhaengigkeit und kein nur empfohlener
-Reihenfolgehinweis. Vor Feature-, Branch- oder Spec-Kit-Artefakterstellung fuer
-die TUI muessen der Abschlussnachweis fuer Feature 009 sowie die im
-TUI-Lastenheft definierten Nachweise fuer die aktiven Eintraege 1 bis 3
-vorliegen. Fehlt ein Nachweis, bleibt Eintrag 4 `BLOCKED`.
+## Verbindliche Abhaengigkeiten / Binding Dependencies
+
+Die folgende Textmatrix ist der maschinenpruefbaren Series-Evidence
+gleichgestellt. Ein Pfeil bedeutet: Der linke Intake liefert eine bindende
+Grundlage fuer den rechten Intake.
+
+```text
+1 Windows -----------\
+2 Linux --------------+--> 4 Maintenance TUI
+3 Preset/Branch ------/
+
+5 Mitgeltende Dokumente --> 6 RL-SE-Selbstpruefung
+5 Mitgeltende Dokumente --> 7 Container-Haertung --> 8 Level-2-Sandbox
+5 Mitgeltende Dokumente --------------------------------> 13 GSDB-Audit
+
+10 PowerShell-Cmdlets --> 11 Skript-Dokumentation
+9 CI/CD -----------\
+10 Cmdlets ----------+--> 12 Didaktische Kommentare
+11 Dokumentation ---/
+9 CI/CD ------------\
+10 Cmdlets -----------+--> 13 Abschliessendes GSDB-Audit
+11 Dokumentation -----+
+12 Kommentare -------/
+```
+
+Die Roots dieser Serie sind die Positionen `1`, `2`, `3`, `5`, `9` und `10`.
+Feature 009 ist kein aktiver Serienknoten mehr. Sein archiviertes Lastenheft
+und sein Abschluss bleiben historische Evidence fuer das TUI-Gate.
+
+Eintrag 4 besitzt ein hartes Abschluss-Gate. Vor Feature-, Branch- oder
+Spec-Kit-Artefakterstellung fuer die TUI muessen der Abschlussnachweis fuer
+Feature 009 sowie die im TUI-Lastenheft definierten Nachweise fuer die aktiven
+Eintraege 1 bis 3 vorliegen. Fehlt ein Nachweis, bleibt Eintrag 4 `BLOCKED`.
+
+Position 5 liefert die gemeinsame Bewertungsgrundlage fuer 6, 7 und 13.
+Position 7 liefert die Sandbox-Grundlage fuer 8. Position 10 wird vor 11
+ausgefuehrt, damit neue oder geaenderte Cmdlet-Oberflaechen unmittelbar
+dokumentiert werden koennen. Die Positionen 9 bis 12 liefern Eingaben fuer den
+abschliessenden GSDB-Lauf. Position 13 muss deshalb zuletzt laufen.
 
 *Item 4 is a hard dependency rather than an ordering recommendation. Evidence
 for Feature 009 and all three active predecessor items must pass before any TUI
 feature, branch, or Spec Kit artifact is created; otherwise item 4 remains
-`BLOCKED`.*
+`BLOCKED`. Items 5, 7, and 10 provide binding baselines for their successors.
+Items 9 through 12 feed the final GSDB audit, so item 13 must run last.*
+
+## Serielle Ausfuehrung und native Systeme / Serial Delivery and Native Systems
+
+Windows- und Linux-/Ubuntu-Haertung duerfen fachlich auf dem jeweiligen nativen
+System geprueft werden. Die sichtbare Reihenfolge bleibt trotzdem erhalten:
+Jeder Lauf beginnt auf dem aktuellen Default-Branch und uebernimmt nur
+nachweislich gemergte Vorgaenger. Git-Lieferungen werden seriell abgeschlossen,
+wenn mehrere Laeufe gemeinsame Evidence-, Workflow-, Agent-, Statistik- oder
+Registry-Dateien beruehren.
+
+Die sichtbare Reihenfolge allein ist kein technisches Startverbot. Ein Start ist
+jedoch verboten, wenn eine oben dokumentierte Graphkante oder ein allgemeines
+Projekt-Gate noch offen ist. Vor jedem Lauf muessen Intake-Hash,
+Review-Freshness, Branch, Remote-Stand und aktuelle Benutzerautoritaet erneut
+geprueft werden.
+
+*Windows and Linux/Ubuntu validation may run on their respective native
+systems. Delivery still follows the visible order and starts from the current
+default branch. Runs that touch shared evidence, workflow, agent, statistics,
+or registry files are merged serially. The visible order is guidance unless a
+documented graph edge or project gate makes it binding.*
 
 Die zuvor auf den Positionen 5 bis 18 gefuehrten
 Secure-CaseTracker-Lernreihen-Intakes bleiben unter `docs/learning-units/`
