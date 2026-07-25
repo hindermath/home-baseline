@@ -91,3 +91,52 @@ approval rule.
 - Intake Authoring, Intake Review und Intake Sequencing bestehen ihre
   Bash-/PowerShell-Paritäts- und Negativfixtures. Die Parallel-Abhängigkeit
   zum Autonomous-Preset besteht.
+
+## Flottenabschluss / Fleet Closeout
+
+**DE:** Das optionale Elf-Preset-Profil wurde über 32 Level-1/2-PRs verteilt.
+Zusammen mit Home Baseline sind 33 von 33 registrierten Repositories auf dem
+Profil. Alle PRs hatten null Kommentare, null Reviews und null umsetzbare
+Review-Threads. 119 Checks waren erfolgreich und vier planmäßige Jobs wurden
+übersprungen. 226 Jobs wurden nachweislich vor dem ersten Arbeitsschritt wegen
+GitHub-Billing oder Spending-Limits abgewiesen; 19 davon abhängige Matrix-Jobs
+wurden abgebrochen. Diese Provider-Abweisungen wurden nicht als technische
+Erfolge gewertet. Der genehmigte enge Admin-Bypass wurde nur nach dieser
+Klassifizierung und bei fehlenden umsetzbaren Threads verwendet. Der native
+`cc65`-Build bestand auf Linux und Windows.
+
+**EN:** The optional eleven-preset profile was distributed through 32 Level
+1/2 pull requests. Together with Home Baseline, 33 of 33 registered
+repositories now use the profile. All pull requests had zero comments, zero
+reviews, and zero actionable review threads. 119 checks succeeded and four
+planned jobs were skipped. GitHub rejected 226 jobs before their first step
+because of billing or spending limits; 19 dependent matrix jobs were
+cancelled. These provider rejections were not counted as technical passes. The
+authorized narrow admin bypass was used only after this classification and
+with no actionable threads. The native `cc65` build passed on Linux and
+Windows.
+
+| Repository-Gruppe / Repository group | PRs | Merge-Commits / Merge commits |
+|---|---|---|
+| C64 | `c64-baseline#17`, `cc65#17` | `33874470`, `80f7c622` |
+| DataGrip | `datagrip-baseline#18`, `InventarDb#17` | `9fc68d81`, `102ef0fb` |
+| Rider | `rider-baseline#17`, `InventarWorkerService#42`, `TinyCalc#36`, `TinyPl0#48`, `TuiVision#124` | `1175e6e3`, `833b8e35`, `73bb85da`, `044a7ad7`, `13405be6` |
+| Secure OrderDesk | `secure-orderdesk-baseline#15`, `secureorderdesk-csharp#16`, `-go#15`, `-java#15`, `-python#15`, `-rust#15`, `-swift#15` | `44ed91d4`, `fdc833dc`, `b4bf1b76`, `f0aff62e`, `c69d2767`, `357c1c94`, `c840d920` |
+| Secure ServiceHarvester | `secure-serviceharvester#15`, `secureserviceharvester-csharp#16`, `-go#15`, `-java#15`, `-python#15`, `-rust#15`, `-swift#15` | `5e72e055`, `6023e962`, `590c7c27`, `e241aeea`, `e897b6b1`, `2e212042`, `76453a88` |
+| Container | `container-images#15`, `absdd-image-sandbox#24` | `7b9ef552`, `61f861a5` |
+| Secure CaseTracker | `secure-casetracker-baseline#15`, `securecasetracker-csharp#21`, `-go#20`, `-java#20`, `-python#21`, `-rust#20`, `-swift#20` | `13dfeb65`, `faead6e4`, `6898ef72`, `4a9eb02f`, `2b191e36`, `b45b7234`, `9fa759c4` |
+
+**DE:** Nach dem Merge wurden alle 32 lokalen Checkouts auf ihren über
+`origin/HEAD` ermittelten Default-Branch umgestellt, mit `fetch --prune` und
+`pull --ff-only` aktualisiert und gegen den exakten Remote-Commit geprüft.
+`cc65` verwendet dabei korrekt `master`; alle übrigen Repositories verwenden
+`main`. Jeder Arbeitsbaum ist sauber. Die Prüfung mit
+`spec-kit-intake-sequencing-governance-presets.json` bestätigt in allen 32
+Repositories genau die elf erwarteten Presets.
+
+**EN:** After merge, all 32 local checkouts were switched to the default branch
+resolved through `origin/HEAD`, updated with `fetch --prune` and
+`pull --ff-only`, and compared with the exact remote commit. `cc65` correctly
+uses `master`; all other repositories use `main`. Every worktree is clean. The
+check with `spec-kit-intake-sequencing-governance-presets.json` confirms exactly
+the expected eleven presets in all 32 repositories.
