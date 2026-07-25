@@ -2,6 +2,8 @@
 description: Create one traceable intake series from explicitly named existing intakes.
 ---
 
+
+<!-- Source: intake-sequencing-governance -->
 ## User Input
 
 ```text
