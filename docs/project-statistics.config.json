@@ -257,6 +257,14 @@
       "labelEn": "Cross-platform one-command maintenance",
       "netLines": 2585,
       "activeDays": 1
+    },
+    {
+      "slot": 31,
+      "id": "intake-sequencing-governance-v010",
+      "labelDe": "Intake-Sequencing-Preset v0.1.0",
+      "labelEn": "Intake sequencing preset v0.1.0",
+      "netLines": 3231,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

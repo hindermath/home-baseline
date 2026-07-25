@@ -50,8 +50,8 @@ class MaintenanceContractTests(unittest.TestCase):
         specification.loader.exec_module(module)
         manifest = module.load_manifest(CONFIG / "agentic-workspace-fleet.json")
         targets = manifest["targets"]
-        self.assertEqual(len(targets), 43)
-        self.assertEqual(sum(item["kind"] == "git-repository" for item in targets), 42)
+        self.assertEqual(len(targets), 44)
+        self.assertEqual(sum(item["kind"] == "git-repository" for item in targets), 43)
         self.assertEqual(sum(item["kind"] == "collection" for item in targets), 1)
         self.assertEqual(
             sum(item["maintenanceClass"] == "canonical-fleet" for item in targets),
@@ -63,7 +63,7 @@ class MaintenanceContractTests(unittest.TestCase):
                 and item["maintenanceClass"] == "preset"
                 for item in targets
             ),
-            10,
+            11,
         )
 
     def test_fleet_manifest_rejects_unsafe_semantics(self) -> None:

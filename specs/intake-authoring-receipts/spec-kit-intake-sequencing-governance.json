@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "1f8b2874-c61e-40de-91c7-6132076da21d",
+  "intakeId": "06bc56ff-88a9-4bae-97ce-42bd47e0091f",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.0"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "7a8963d7-93a5-4fab-bd49-8d08f84ab8af",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the proposed intake-sequencing preset plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+    "normalizedSha256": "d07c32df565c2057d7a19b02d39714d457d66d94ff8865a6e5325b14cf43979a"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved intake sequencing governance plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "5dafa8e1600fa8233646b8e17519fbcc6da00aaa3dcb496ba6686561cf99be85",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche fachliche Grenze besitzt das Preset?",
+      "answer": "Sequencing und Lifecycle vorhandener Intakes; keine Inhaltserstellung, kein Review und keine Feature-Ausfuehrung.",
+      "evidence": "Approved preset plan"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Position besitzt das Preset in der optionalen Matrix?",
+      "answer": "Prioritaet 66 nach Intake Review 65 und vor Autonomous Run 70.",
+      "evidence": "Approved preset plan"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer die Preset-Entwicklung?",
+      "answer": "MergeAndSync fuer Home Baseline, das eigene Publikationsrepository und die optionale Flotteninstallation; kein Admin-Bypass.",
+      "evidence": "Approved preset plan"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user instruction to implement the proposed plan.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md"
+}

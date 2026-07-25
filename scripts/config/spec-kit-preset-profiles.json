@@ -12,6 +12,9 @@
     "intake-authoring-ten-governance-presets": {
       "presetConfig": "scripts/config/spec-kit-intake-authoring-governance-presets.json"
     },
+    "intake-sequencing-eleven-governance-presets": {
+      "presetConfig": "scripts/config/spec-kit-intake-sequencing-governance-presets.json"
+    },
     "none": {
       "presetConfig": null
     }
