@@ -20,11 +20,27 @@
 
 **EN:** This blueprint describes how new learning series for IT specialist apprentices are prepared in this workspace. It is the canonical template for later series from the first, second, and third training year onward.
 
+**DE:** Jede neue oder geänderte Lernreihe bindet die
+[Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md) ein. Die Basis gilt ab
+dem 1. Lehrjahr auch für Kaufleute für IT-System-Management und Kaufleute für
+Digitalisierungsmanagement. Reihenwurzeln müssen diese Vererbung sichtbar
+nennen; einzelne Lernaufgaben dürfen sie über die Reihenwurzel übernehmen.
+
+**EN:** Every new or changed learning series binds the
+[Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md). From training year 1,
+the baseline also covers IT system management and digitalisation management
+trainees. Series roots must state this inheritance; individual units may
+inherit it through the series root.
+
 ## Grundregeln / Core Rules
 
 - **DE-first, EN-second:** Deutsche Fassung zuerst, englische Erlaeuterung danach.
 - **CEFR B2:** Saetze klar, fachlich genau und ohne unnoetige Fremdwoerter.
 - **WCAG 2.2 AA:** Markdown muss mit Tastatur, Screenreader, Braille-Zeile und Textbrowser nutzbar bleiben.
+- **Vorkenntnisse:** Keine vorherige Spec-Kit-Erfahrung voraussetzen; Fach- und
+  Workflow-Begriffe beim ersten Auftreten erklären.
+- **Text-first:** Abhängigkeiten, Status, Entscheidungen und nächste Schritte
+  immer als Text erklären; Diagramme sind nur Ergänzungen.
 - **MSL-neutral:** Aufgaben duerfen nicht von einer einzelnen Sprache abhaengen, solange das Lernziel sprachneutral ist.
 - **Manuelle Spec-Kit-Laeufe:** KI-Agenten bereiten Intakes und Struktur vor, starten aber keine Spec-Kit-Laeufe fuer Lernende.
 - **Berufsbild bleibt fuehrend:** Spec-Kit-Laeufe begleiten Aufgaben pro Lehrjahr, Track, Sprachpfad und Aufgaben-Lastenheft; sie ersetzen nicht Berufsschule, betriebliche Ausbildung, Rahmenlehrplan, Ausbilderentscheidung oder Pruefungsvorbereitung.

@@ -1,5 +1,10 @@
 # Lernbegleiter: <Lernreihe> <Nr.> <Thema> / Study Companion
 
+> Dieser Lernbegleiter erbt die
+> [Lernenden- und A11Y-Basis](../LERNENDEN-UND-A11Y-BASIS.md).
+> *This learning companion inherits the
+> [Learner and A11Y Baseline](../LERNENDEN-UND-A11Y-BASIS.md).*
+
 <!-- include-everyone-guiding-principle -->
 > **Leitsatz:** `Programmierung #include<everyone>`.
 >

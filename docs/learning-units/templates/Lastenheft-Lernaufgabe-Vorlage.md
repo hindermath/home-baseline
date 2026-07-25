@@ -1,5 +1,10 @@
 # Lastenheft: <Lernreihe> <Nr.> <Thema>
 
+> Diese Lernaufgabe erbt die
+> [Lernenden- und A11Y-Basis](../LERNENDEN-UND-A11Y-BASIS.md).
+> *This learning task inherits the
+> [Learner and A11Y Baseline](../LERNENDEN-UND-A11Y-BASIS.md).*
+
 ## Zweck / Purpose
 
 **DE:** Beschreibe das konkrete Lernziel dieser Aufgabe. Die Aufgabe muss einzeln als Spec-Kit-Intake nutzbar sein.

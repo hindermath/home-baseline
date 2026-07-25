@@ -1,5 +1,16 @@
 # Lernreihen-Vorlagen / Learning Series Templates
 
+Alle Vorlagen erben die
+[Lernenden- und A11Y-Basis](../LERNENDEN-UND-A11Y-BASIS.md). Neue Vorlagen
+dürfen Zielgruppe, Sprachreihenfolge, CEFR-B2-Niveau, Begriffserklärungen,
+textorientierte Informationswege, Spec-Kit-Einstieg und WCAG 2.2 AA nicht
+abschwächen.
+
+*All templates inherit the
+[Learner and A11Y Baseline](../LERNENDEN-UND-A11Y-BASIS.md). New templates must
+not weaken audience, language order, CEFR-B2 level, term explanations,
+text-first information paths, first-time Spec Kit support, or WCAG 2.2 AA.*
+
 <!-- include-everyone-guiding-principle -->
 > **Leitsatz:** `Programmierung #include<everyone>`.
 >
