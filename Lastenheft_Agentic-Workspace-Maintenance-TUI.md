@@ -4,12 +4,15 @@
 **Repository:** `home-baseline`
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** wartend; Abarbeitung durch hartes Vorgaenger-Gate gesperrt
-**Stand:** 2026-07-20
-**Verbindliche Vorgaenger / Binding predecessors:**
-1. `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`
-2. `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md`
-3. `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md`
-4. `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md`
+**Stand:** 2026-07-25
+**Historische Gate-Evidence / Historical gate evidence:** Feature 009 mit
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
+
+**Aktive bindende Vorgaenger / Active binding predecessors:**
+
+1. `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md`
+2. `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md`
+3. `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md`
 
 ## 1. Zweck / Purpose
 
@@ -37,21 +40,22 @@ predecessor gate.*
 
 ## 2. Hartes Vorgaenger-Gate / Hard Predecessor Gate
 
-Die fachliche Abarbeitung dieses Lastenhefts DARF erst beginnen, wenn alle vier
-in der aktiven Reihenfolge vorangestellten Wartungs- und Haertungsintakes
-nachweislich vollstaendig umgesetzt und validiert wurden. Die Existenz der
-Vorgaenger-Lastenhefte oder begonnener Feature-Spezifikationen genuegt nicht.
+Die fachliche Abarbeitung dieses Lastenhefts DARF erst beginnen, wenn Feature
+009 sowie alle drei aktiven Wartungs- und Haertungsintakes auf den Positionen 1
+bis 3 nachweislich vollstaendig umgesetzt und validiert wurden. Feature 009 ist
+historische Gate-Evidence und kein aktiver Serienknoten. Die Existenz der
+Lastenhefte oder begonnener Feature-Spezifikationen genuegt nicht.
 
-*Processing this intake MUST NOT begin until all four preceding maintenance
-and hardening intakes in the active order have demonstrably been implemented
-and validated in full. Merely having the predecessor documents or started
-feature specifications is insufficient.*
+*Processing this intake MUST NOT begin until Feature 009 and all three active
+maintenance and hardening intakes at positions 1 through 3 have demonstrably
+been implemented and validated. Feature 009 is historical gate evidence, not
+an active series node.*
 
 Vor Feature-, Branch- oder Artefakterstellung fuer die TUI muessen alle
 folgenden Nachweise gemeinsam vorliegen:
 
-1. Jedes der vier zu den Vorgaengern gehoerenden Features ist eindeutig ueber
-   seine `spec.md`-Referenz auf das jeweilige Vorgaenger-Lastenheft
+1. Feature 009 und jedes der drei aktiven Vorgaenger-Features sind ueber ihre
+   jeweilige `spec.md`-Referenz auf das zugehoerige Lastenheft eindeutig
    identifizierbar.
 2. Fuer jeden Vorgaenger sind alle verpflichtenden Tasks abgeschlossen;
    Requirements-Checklisten und Analyze enthalten keinen offenen blockierenden
@@ -594,7 +598,7 @@ renderer, with shared evidence writers serialized.*
 ```text
 $speckit-specify Nutze Lastenheft_Agentic-Workspace-Maintenance-TUI.md als verbindliche Eingabedatei.
 
-Pruefe vor Feature-Erstellung oder Artefaktaenderung das harte Vorgaenger-Gate aus Abschnitt 2. Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md, Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md, Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md und Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md muessen jeweils nachweislich vollstaendig implementiert, fuer ihren Scope validiert und gemaess ihrer Delivery Authority abgeschlossen sein. Fehlt ein Nachweis, stoppe ohne Feature, Branch, Specify-Artefakt oder Repository-Aenderung und berichte die fehlenden Gate-Nachweise.
+Pruefe vor Feature-Erstellung oder Artefaktaenderung das harte Vorgaenger-Gate aus Abschnitt 2. Feature 009 mit dem archivierten Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md sowie die aktiven Positionen 1 bis 3, Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md, Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md und Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md, muessen jeweils nachweislich vollstaendig implementiert, fuer ihren Scope validiert und gemaess ihrer Delivery Authority abgeschlossen sein. Fehlt ein Nachweis, stoppe ohne Feature, Branch, Specify-Artefakt oder Repository-Aenderung und berichte die fehlenden Gate-Nachweise.
 
 Wenn das Gate erfuellt ist, erstelle eine Feature-Spezifikation fuer eine plattformuebergreifende, barrierearme Spectre.Console-TUI fuer maintain-agentic-workspace.*. Uebernimm alle Aufruf-, Kompatibilitaets-, Ereignis-, Cache-, Fallback-, Sicherheits-, Barrierefreiheits-, Test- und Abnahmeanforderungen dieses Lastenhefts.
 
@@ -616,14 +620,15 @@ Starte noch keine Implementierung oder Remote-Schreibaktion.
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Agentic-Workspace-Maintenance-TUI.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Pruefe vor Feature-Erstellung das harte Gate fuer die aktiven Vorgaengerpositionen 1 bis 4 und stoppe ohne Aenderung, falls auch nur ein Abschlussnachweis fehlt. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Agentic-Workspace-Maintenance-TUI.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Pruefe vor Feature-Erstellung das harte Gate fuer Feature 009 sowie die aktiven Vorgaengerpositionen 1 bis 3 und stoppe ohne Aenderung, falls auch nur ein Abschlussnachweis fehlt. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 ## 18. Abnahme dieses Lastenhefts / Acceptance of This Intake
 
 - Das Lastenheft ist DE zuerst und EN danach aufgebaut.
 - Der Status nennt das harte Vorgaenger-Gate sichtbar.
-- Die Abarbeitungsreihenfolge fuehrt den TUI-Intake auf Position 5 nach allen
-  vier Wartungs- und Haertungsintakes und markiert das harte Gate.
+- Die Abarbeitungsreihenfolge fuehrt den TUI-Intake auf Position 4 nach den
+  drei aktiven Wartungs- und Haertungsintakes und markiert Feature 009 als
+  historische Gate-Evidence.
 - Aufruf-, Engine-, Ereignis-, Cache-, Fallback-, Barrierefreiheits-,
   Sicherheits- und Testvertraege sind entscheidungsvollstaendig.
 - Specify- und Autonomous-Prompt nennen den exakten Dateinamen und pruefen das

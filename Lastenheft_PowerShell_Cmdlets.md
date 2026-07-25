@@ -6,6 +6,16 @@ Dieses Lastenheft beschreibt die Anforderungen für die Umwandlung der bestehend
 
 *This specification describes the requirements for converting existing PowerShell scripts into PowerShell Cmdlets (Advanced Functions). The goal is to integrate the scripts more easily into daily PowerShell work by making them available as native commands.*
 
+### 1.1 Reihenfolge und Abhaengigkeiten / Order and Dependencies
+
+Dieser Intake ist eine Root auf Position 10. Er muss vor der
+Skript-Dokumentation auf Position 11 laufen, damit die tatsaechlichen
+Cmdlet-Oberflaechen dokumentiert werden. Er liefert ausserdem Surface Baselines
+fuer die Positionen 12 und 13.
+
+*This intake is a root at position 10. It precedes documentation at position
+11 and provides surface baselines for positions 12 and 13.*
+
 ## 2. Funktionale Anforderungen / Functional Requirements
 
 ### 2.1 Umwandlung der Skripte in Cmdlets
@@ -98,7 +108,7 @@ Out of Scope:
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_PowerShell_Cmdlets.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer eine PowerShell-Cmdlet- und Modulstrategie im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_PowerShell_Cmdlets.md als verbindliche Eingabedatei. Bewahre die Root-Position 10, die Dokumentations-Baseline fuer Position 11 und die Surface Baselines fuer die Positionen 12 und 13. Erstelle die Feature-Spezifikation fuer eine PowerShell-Cmdlet- und Modulstrategie im home-baseline-Repository.
 
 Ziel: Bestehende PowerShell-Skripte sollen langfristig als native Advanced Functions mit PowerShell-konformen `Verb-Noun`-Namen nutzbar werden, ohne die vorhandenen Skriptaufrufe zu brechen.
 
@@ -121,7 +131,7 @@ Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, Modulentscheidung, Mapping-A
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_PowerShell_Cmdlets.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_PowerShell_Cmdlets.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre die Root-Position 10, die Dokumentations-Baseline fuer Position 11, die Surface Baselines fuer die Positionen 12 und 13 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

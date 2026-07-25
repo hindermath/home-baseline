@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "307ea31d-022e-4cd2-b94f-896eaea411a1",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-23T12:08:19Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+    "normalizedSha256": "4fe0fcf8119c3261345f763bef11bc474496b626ed8aea5e5bc0cf4f8c9df4c5"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Legacy target before Intake Creator adoption",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "5126605efe7881878508be548c03db9b24a88f2118841487b8e1bcc4df0aa2f4",
+      "gitBlob": "777046d7f875e20a983324b66ca211f1710420f6"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
+      "answer": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
+      "answer": "Ja, als diff-arme LegacyAdoption.",
+      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welcher fachliche Umfang bleibt erhalten?",
+      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
+      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
+      "answer": "LocalImplementation.",
+      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "promptState": "Enabled",
+  "nextAction": "$speckit-intake-review Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+  "provenanceMode": "LegacyAdoption",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "GitBlob",
+    "priorTargetNormalizedSha256": "5126605efe7881878508be548c03db9b24a88f2118841487b8e1bcc4df0aa2f4",
+    "priorGitBlob": "777046d7f875e20a983324b66ca211f1710420f6"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+}

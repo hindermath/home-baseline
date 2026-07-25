@@ -11,6 +11,18 @@
 
 ---
 
+## Aktive Serienrolle / Active Series Role
+
+Dieser Intake ist eine Root auf Position 9 der aktiven Reihe. Er liefert eine
+Surface Baseline fuer die didaktische Kommentarhaertung auf Position 12 und
+das abschliessende GSDB-Audit auf Position 13. Die historische
+Implementierungsreihenfolge unten bleibt fachlicher Kontext innerhalb dieses
+Intakes; sie ersetzt nicht die zentrale aktive Reihe.
+
+*This intake is a root at position 9. It provides a surface baseline for
+positions 12 and 13. The historical implementation order below remains
+internal context and does not replace the central active series.*
+
 > ## ⚠️ Implementierungsreihenfolge / Implementation Order
 >
 > Diese Lastenheft-Dateien bauen aufeinander auf und **müssen in dieser
@@ -391,7 +403,7 @@ Der spaetere Lauf muss zuerst klassifizieren:
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_CICD_Pipeline_Konfiguration.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen CI/CD-Pipeline-Konfigurationslauf im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_CICD_Pipeline_Konfiguration.md als verbindliche Eingabedatei. Bewahre die Root-Position 9 und die Surface Baselines fuer die Positionen 12 und 13. Erstelle die Feature-Spezifikation fuer einen CI/CD-Pipeline-Konfigurationslauf im home-baseline-Repository.
 
 Ziel: Pruefe und haerte die CI/CD-Template-Strategie fuer neue Level-1- und Level-2-Repositories. Beruecksichtige GitHub Actions primaer und GitLab CI sekundaer, ohne bereits erledigte historische Anforderungen blind erneut umzusetzen.
 
@@ -415,7 +427,7 @@ Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, aktualisierter Ist-/Soll-Kla
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_CICD_Pipeline_Konfiguration.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_CICD_Pipeline_Konfiguration.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre die Root-Position 9, die Surface Baselines fuer die Positionen 12 und 13 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

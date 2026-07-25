@@ -6,6 +6,16 @@ Dieses Lastenheft beschreibt die Anforderungen für die Einführung von Unix man
 
 *This specification describes the requirements for introducing Unix man pages and standardizing PowerShell help for all scripts in the `home-baseline` repository. The goal is to provide professional and consistent documentation that goes beyond standard usage lines.*
 
+### 1.1 Reihenfolge und Abhaengigkeiten / Order and Dependencies
+
+Dieser Intake steht auf Position 11 und benoetigt die Cmdlet-Oberflaechen aus
+Position 10. Sein Ergebnis liefert eine Surface Baseline fuer die didaktische
+Kommentarhaertung auf Position 12 und das abschliessende GSDB-Audit auf
+Position 13.
+
+*This intake is position 11 and depends on the cmdlet surfaces from position
+10. It provides a surface baseline for positions 12 and 13.*
+
 ## 2. Funktionale Anforderungen / Functional Requirements
 
 ### 2.1 Unix man-Pages für Bash-Skripte
@@ -105,7 +115,7 @@ Out of Scope:
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Script_Dokumentation.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Dokumentationslauf zu Bash-Manpages und PowerShell-Hilfe im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_Script_Dokumentation.md als verbindliche Eingabedatei. Pruefe zuerst die Cmdlet-Baseline von Position 10 und bewahre die Position 11 sowie die Surface Baselines fuer die Positionen 12 und 13. Erstelle die Feature-Spezifikation fuer einen Dokumentationslauf zu Bash-Manpages und PowerShell-Hilfe im home-baseline-Repository.
 
 Ziel: Alle relevanten Skripte sollen eine aktuelle, zweisprachige und wartbare Hilfe haben. Bash-Skripte brauchen passende Manpages in `docs/man/`; PowerShell-Skripte brauchen vollstaendige kommentarbasierte Hilfe. Neue oder geaenderte Skripte duerfen kuenftig nicht ohne passende Dokumentation entstehen.
 
@@ -124,7 +134,7 @@ Erzeuge eine Spezifikation mit Bestandsanalyse, Scope, Nicht-Zielen, Anforderung
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Script_Dokumentation.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Script_Dokumentation.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake. Pruefe zuerst den Abschluss von Position 10 und bewahre die Position 11, die Surface Baselines fuer die Positionen 12 und 13 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

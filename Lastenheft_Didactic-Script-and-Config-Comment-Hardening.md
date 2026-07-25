@@ -20,6 +20,16 @@ text everywhere, but better traceability where apprentices, maintainers, or AI
 agents would otherwise see that a flow works without understanding why it is
 built that way.*
 
+### 1.1 Reihenfolge und Abhaengigkeiten / Order and Dependencies
+
+Dieser Intake steht auf Position 12. Er prueft die gelieferten Flaechen aus
+CI/CD auf Position 9, PowerShell-Cmdlets auf Position 10 und
+Skript-Dokumentation auf Position 11. Sein Ergebnis ist eine bindende Eingabe
+fuer das abschliessende GSDB-Audit auf Position 13.
+
+*This intake is position 12. It reviews surfaces delivered by positions 9, 10,
+and 11 and provides binding input for the final audit at position 13.*
+
 ## 2. Ausgangslage / Current State
 
 `Lastenheft_Script_Dokumentation.md` behandelt Unix-Manpages und PowerShell
@@ -164,7 +174,7 @@ Der spaetere Lauf soll mindestens diese Bereiche pruefen:
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md als verbindliche Eingabedatei. Erstelle eine Feature-Spezifikation fuer einen didaktischen Skript- und Konfigurations-Kommentar-Haertungslauf im home-baseline-Repository.
+$speckit-specify Nutze Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md als verbindliche Eingabedatei. Pruefe zuerst die Surface Baselines der Positionen 9, 10 und 11 und bewahre die Position 12 als Audit-Eingabe fuer Position 13. Erstelle eine Feature-Spezifikation fuer einen didaktischen Skript- und Konfigurations-Kommentar-Haertungslauf im home-baseline-Repository.
 
 Ziel: Nicht-triviale Bash-, PowerShell-, YAML- und geeignete JSONC-Konfigurationslogik soll fuer Auszubildende, Maintainer und KI-Agenten besser nachvollziehbar werden. Kommentare muessen Warum, Trade-off, Randbedingung, Sicherheitsgrenze, Cross-Platform-Abweichung oder Proof-Grenze erklaeren und duerfen offensichtlichen Code nicht nacherzaehlen.
 
@@ -182,7 +192,7 @@ Wichtig:
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake. Pruefe zuerst die Surface Baselines der Positionen 9, 10 und 11 und bewahre die Position 12, die Audit-Eingabe fuer Position 13 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

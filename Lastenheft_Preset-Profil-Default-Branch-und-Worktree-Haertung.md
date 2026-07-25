@@ -6,8 +6,8 @@
 **Profil / Profile:** `home-baseline-lastenheft`  
 **Repository:** `home-baseline`  
 **Dokumenttyp / Document type:** Spec-Kit-Intake für eine allgemeine Wartungshärtung / Spec Kit intake for general maintenance hardening  
-**Version:** 1.1
-**Stand / Date:** 2026-07-23  
+**Version:** 1.2
+**Stand / Date:** 2026-07-25
 **Delivery Authority:** `LocalImplementation`
 
 ## 1. Zweck / Purpose
@@ -36,29 +36,30 @@ administer providers, or change functional target repositories.*
 
 ## 2. Bindende Vorgänger und Reihenfolge / Binding Predecessors and Order
 
-Fachlicher Vorgänger ist
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`. Der vorhandene
-Stand aus Home-Baseline-PR #94 ist die technische Ausgangslage. Dieses
+Historische fachliche Grundlage ist Feature 009 mit dem archivierten Intake
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`.
+Der vorhandene Stand aus Home-Baseline-PR #94 ist die technische Ausgangslage.
+Feature 009 ist kein aktiver Knoten der aktuellen Intake-Serie mehr. Dieses
 Lastenheft ersetzt weder den breiten Wartungsintake noch die getrennten
 Windows- und Linux-/Ubuntu-Härtungen.
 
-*The functional predecessor is
-`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md`. Home Baseline
-PR #94 provides the technical starting point. This intake replaces neither the
-broad maintenance intake nor the separate Windows and Linux/Ubuntu hardening
-rounds.*
+*The historical functional baseline is Feature 009 with the archived intake
+`Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`.
+Home Baseline PR #94 provides the technical starting point. Feature 009 is no
+longer an active node in the current intake series.*
 
-Die aktive Abarbeitungsreihenfolge führt diesen Intake auf Position 4 nach der
-plattformübergreifenden Wartung sowie den Windows- und Linux-/Ubuntu-
-Härtungen. Die Wartungs-TUI folgt auf Position 5 und bleibt gesperrt, bis die
-Positionen 1 bis 4 vollständig implementiert, validiert und gemäß ihrer
-jeweiligen Delivery Authority abgeschlossen sind.
+Die aktive Abarbeitungsreihenfolge führt diesen Intake als Root auf Position 3
+nach den getrennten Windows- und Linux-/Ubuntu-Härtungen. Diese sichtbare
+Reihenfolge schützt gemeinsame Wartungsdateien; Windows und Linux sind keine
+technischen Vorgänger dieses Intakes. Die Wartungs-TUI folgt auf Position 4
+und bleibt gesperrt, bis Feature 009 und die aktiven Positionen 1 bis 3
+vollständig abgeschlossen sind.
 
-*The active processing order places this intake at position 4 after
-cross-platform, Windows, and Linux/Ubuntu maintenance hardening. The
-maintenance TUI moves to position 5 and remains blocked until items 1 through
-4 are fully implemented, validated, and closed under their respective delivery
-authority.*
+*The active order places this root at position 3 after the separate Windows
+and Linux/Ubuntu hardening rounds. This visible order protects shared
+maintenance files; Windows and Linux are not technical predecessors. The
+maintenance TUI at position 4 remains blocked until Feature 009 and active
+positions 1 through 3 are closed.*
 
 ## 3. Ausgangslage / Current State
 
@@ -582,14 +583,14 @@ the later run stops before commit, push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Erstelle die Spezifikation ausschließlich aus diesem Intake und seinem bindenden Vorgänger. Bewahre PWH-001 bis PWH-015, AC-001 bis AC-017, die flottenweite Remote-Freshness-Barriere vor allen mutierenden Folgephasen, die sichere Fast-forward-Klassifikation, die vollständige Bestandsaufnahme trotz Einzelbefunden, die Position-4-Reihenfolge, die TUI-Sperre sowie alle Git-, Hard-Abort-, Registry-, Nicht-MSL-, Plattform-, Sicherheits- und A11Y-Grenzen. Implementiere nichts, verändere keine Remote-Zustände und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Erstelle die Spezifikation ausschließlich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre PWH-001 bis PWH-015, AC-001 bis AC-017, die flottenweite Remote-Freshness-Barriere vor allen mutierenden Folgephasen, die sichere Fast-forward-Klassifikation, die vollständige Bestandsaufnahme trotz Einzelbefunden, die Root-Position 3, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Git-, Hard-Abort-, Registry-, Nicht-MSL-, Plattform-, Sicherheits- und A11Y-Grenzen. Implementiere nichts, verändere keine Remote-Zustände und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Führe den vollständigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Implementiere und validiere PWH-001 bis PWH-015 sowie AC-001 bis AC-017 lokal bis zur definierten Abschlussgrenze. Beweise, dass der flottenweite Remote-Freshness-Preflight vor jeder mutierenden Folgephase abgeschlossen wird, nur sichere Fast-forward-Fälle gepullt werden und Einzelbefunde die restliche read-only Bestandsaufnahme nicht abbrechen. Bewahre aktive Arbeitsbäume und fremde Worktrees, repariere Registry-Widersprüche nicht still und stoppe bei fehlender Vorgänger-Evidence oder einem harten Sicherheitsstopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges und verändere keine Remote-Zustände. Starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md Führe den vollständigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Implementiere und validiere PWH-001 bis PWH-015 sowie AC-001 bis AC-017 lokal bis zur definierten Abschlussgrenze. Beweise, dass der flottenweite Remote-Freshness-Preflight vor jeder mutierenden Folgephase abgeschlossen wird, nur sichere Fast-forward-Fälle gepullt werden und Einzelbefunde die restliche read-only Bestandsaufnahme nicht abbrechen. Bewahre die Root-Position 3 und das TUI-Gate für Feature 009 sowie die aktiven Positionen 1 bis 3. Bewahre aktive Arbeitsbäume und fremde Worktrees, repariere Registry-Widersprüche nicht still und stoppe bei fehlender historischer Baseline-Evidence oder einem harten Sicherheitsstopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges und verändere keine Remote-Zustände. Starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

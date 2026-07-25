@@ -1,16 +1,12 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "5ce575e0-90a0-4946-b183-b8c3e1d83a71",
+  "reviewId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-      "role": "Primary"
-    },
-    {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "role": "OrderedMember"
+      "role": "Primary"
     },
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -45,11 +41,11 @@
       "role": "OrderedMember"
     },
     {
-      "path": "Lastenheft_Script_Dokumentation.md",
+      "path": "Lastenheft_PowerShell_Cmdlets.md",
       "role": "OrderedMember"
     },
     {
-      "path": "Lastenheft_PowerShell_Cmdlets.md",
+      "path": "Lastenheft_Script_Dokumentation.md",
       "role": "OrderedMember"
     },
     {
@@ -63,7 +59,6 @@
   ],
   "series": {
     "orderedTargetPaths": [
-      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -73,42 +68,20 @@
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_PowerShell_Cmdlets.md",
+      "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
       "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
     ],
     "roots": [
-      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-      "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "Lastenheft_Script_Dokumentation.md",
-      "Lastenheft_PowerShell_Cmdlets.md",
-      "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-      "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
+      "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
-      {
-        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-        "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-        "kind": "BindingFunctionalPredecessor"
-      },
-      {
-        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-        "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
-        "kind": "BindingFunctionalPredecessor"
-      },
-      {
-        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-        "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-        "kind": "BindingFunctionalPredecessor"
-      },
-      {
-        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-        "kind": "HardCompletionGate"
-      },
       {
         "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
         "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -130,9 +103,59 @@
         "kind": "AssessmentBaseline"
       },
       {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "kind": "AssessmentBaseline"
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "AssessmentBaseline"
+      },
+      {
         "from": "Lastenheft_Secure-Development-Container-Hardening.md",
         "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
         "kind": "SandboxBaseline"
+      },
+      {
+        "from": "Lastenheft_PowerShell_Cmdlets.md",
+        "to": "Lastenheft_Script_Dokumentation.md",
+        "kind": "DocumentationSurfaceBaseline"
+      },
+      {
+        "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+        "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "kind": "CommentSurfaceBaseline"
+      },
+      {
+        "from": "Lastenheft_PowerShell_Cmdlets.md",
+        "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "kind": "CommentSurfaceBaseline"
+      },
+      {
+        "from": "Lastenheft_Script_Dokumentation.md",
+        "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "kind": "CommentSurfaceBaseline"
+      },
+      {
+        "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput"
+      },
+      {
+        "from": "Lastenheft_PowerShell_Cmdlets.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput"
+      },
+      {
+        "from": "Lastenheft_Script_Dokumentation.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput"
+      },
+      {
+        "from": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput"
       }
     ]
   },

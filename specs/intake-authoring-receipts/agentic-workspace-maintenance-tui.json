@@ -1,25 +1,65 @@
 {
-  "schemaVersion": "1.1",
-  "receiptId": "253dd719-3d4c-4e5e-bea2-2cc4805be225",
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "c920bce4-61fa-4cca-b45d-0c823da2af75",
+  "intakeId": "253dd719-3d4c-4e5e-bea2-2cc4805be225",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.1.1"
+    "version": "0.2.0"
   },
-  "createdAt": "2026-07-23T12:08:19Z",
+  "createdAt": "2026-07-25T12:58:33Z",
+  "operation": {
+    "operationId": "c3d61358-f535-4829-9f99-f782111aee15",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+  },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-    "normalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90"
+    "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35"
   },
   "sources": [
     {
+      "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90",
+      "gitBlob": "45bfbfa9994d7ade7acbb30aa236406cf67c4a5a",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
       "kind": "Pasted",
-      "label": "Legacy target before Intake Creator adoption",
+      "label": "Approved active intake series normalization request",
       "location": "SnapshotOnly",
       "path": "N/A",
-      "normalizedSha256": "27e682ea4a95a6193bf0ca3ea3b0e516e744499f594280de4d00700dc36fe79f",
-      "gitBlob": "5a7e06584eafbe31dfcf272789123f0706badcc8"
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -28,30 +68,23 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
-      "answer": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
+      "answer": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
+      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
-      "answer": "Ja, als diff-arme LegacyAdoption.",
-      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
+      "answer": "Position 4; hard-gated by Feature 009 evidence and active positions 1 through 3.",
+      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welcher fachliche Umfang bleibt erhalten?",
-      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
-      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
-    },
-    {
-      "id": "IAD004",
-      "status": "Answered",
-      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
-      "answer": "LocalImplementation.",
-      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
+      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
+      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
     }
   ],
   "openDecisionIds": [],
@@ -63,19 +96,28 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
   "promptState": "Enabled",
-  "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-  "provenanceMode": "LegacyAdoption",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/receipt.json",
+    "targetNormalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90",
+    "archiveTargetPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/receipt.json"
   },
   "legacyAdoption": {
-    "evidenceType": "GitBlob",
-    "priorTargetNormalizedSha256": "27e682ea4a95a6193bf0ca3ea3b0e516e744499f594280de4d00700dc36fe79f",
-    "priorGitBlob": "5a7e06584eafbe31dfcf272789123f0706badcc8"
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "series": {
+    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
+    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "order": 4,
+    "role": "OrderedMember",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-Maintenance-TUI.md"
 }

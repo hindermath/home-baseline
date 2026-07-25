@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.1",
+  "receiptId": "c958d6dc-548c-429d-b35b-f12d8ac7dd10",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.1.1"
+  },
+  "createdAt": "2026-07-23T12:08:19Z",
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_PowerShell_Cmdlets.md",
+    "normalizedSha256": "a6cb0539e65612537931a3d458b149da945135e699f7fe3ffd26e8896bce42fb"
+  },
+  "sources": [
+    {
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Legacy target before Intake Creator adoption",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "normalizedSha256": "617e8d27c9d3072a4faea415a1ab4d32ad9f1ebee38883820f0bcafdc1657136",
+      "gitBlob": "56393e2156194993e3399c104ae90e3fc5f9ba1b"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
+      "answer": "Lastenheft_PowerShell_Cmdlets.md",
+      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
+      "answer": "Ja, als diff-arme LegacyAdoption.",
+      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welcher fachliche Umfang bleibt erhalten?",
+      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
+      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
+      "answer": "LocalImplementation.",
+      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "promptState": "Enabled",
+  "nextAction": "$speckit-intake-review Lastenheft_PowerShell_Cmdlets.md",
+  "provenanceMode": "LegacyAdoption",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "GitBlob",
+    "priorTargetNormalizedSha256": "617e8d27c9d3072a4faea415a1ab4d32ad9f1ebee38883820f0bcafdc1657136",
+    "priorGitBlob": "56393e2156194993e3399c104ae90e3fc5f9ba1b"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+}

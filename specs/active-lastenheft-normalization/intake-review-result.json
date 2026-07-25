@@ -1,101 +1,95 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "5ce575e0-90a0-4946-b183-b8c3e1d83a71",
+  "reviewId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-24T17:32:40Z",
+  "reviewedAt": "2026-07-25T12:58:33Z",
   "repository": {
     "root": ".",
-    "head": "e019ce2e4abbe68df35b926d9a8b8106305f5588"
+    "head": "0f1da25fa906a5c0dffaf40804fc1985c3cbc70e"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "df0b897e276ab82eaa6ad90f76abad3370211a897942a5d094da60b2a421e187"
+    "normalizedSha256": "c80435220b6044e711d1fe4ad06b16ff31b7646ab68c02192f650dc0a17d28b6"
   },
   "targets": [
     {
-      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
-      "role": "Primary",
-      "normalizedSha256": "8cc50f591e9b73db85070413395099d73fbaaf526ee89a1666aa9b679915a839",
-      "gitBlob": "N/A"
-    },
-    {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "d7bd19f6e8b69b87d500c6f527dcddc1d360a08955da46f38afae39c6a359d09",
+      "role": "Primary",
+      "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "be33e0fe5cf8ea59b2a5e6f63f96df12172d8c0592d8eb07fd9e7d929768a9b2",
+      "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5",
+      "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "role": "OrderedMember",
-      "normalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90",
+      "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "18bb7f7399246b79ee27851787762d1a4db3dfd85b6430c5d161bdfd5b858bdd",
+      "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "934165f9efde2e6e44c5e9e87445a1b1cbb7813bb75569785e0ebbd2c1a9efb9",
+      "normalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
       "role": "OrderedMember",
-      "normalizedSha256": "45e3193c3f37808bc27500b3b00f9739f65e63f6f7e1d757aa58d2533b10af0c",
+      "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "4fe0fcf8119c3261345f763bef11bc474496b626ed8aea5e5bc0cf4f8c9df4c5",
+      "normalizedSha256": "9a253fc5cf0f6f7979866c14fc71ddfd317c13e195d363967c3c2de641dfb666",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "role": "OrderedMember",
-      "normalizedSha256": "38742d2bff07e8ab799d46cbbf0e68fe03c147e5da94974a759bc7336c008b23",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Script_Dokumentation.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "430dfa80f8c45946179c07e38a5478dbfcf9e22dca4793986861fdfc99070555",
+      "normalizedSha256": "79e6bf0f11144239d620753ca481fad5e092c3b53f73f3bfffd115145b67f8ae",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_PowerShell_Cmdlets.md",
       "role": "OrderedMember",
-      "normalizedSha256": "a6cb0539e65612537931a3d458b149da945135e699f7fe3ffd26e8896bce42fb",
+      "normalizedSha256": "389ec1655b7f67fd6ef59ec55b06a7050d93326eca362f68c239f1f0d8f9d541",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Script_Dokumentation.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "81dd3f3384778ff08724956887fa126affa3e072555fb14a1bb3845937771ee4",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
       "role": "OrderedMember",
-      "normalizedSha256": "c44e7f980eda6f3cfe2e1efc0157cbc5389f57e68d2ee54517c7c3966c4503d4",
+      "normalizedSha256": "2821a734685453bc93df26eb092c6c08da8bc19bad397258ca2e2bf9faa9c3da",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "16ea6b7ba62b08fd4e02532b75521cc5b6c7700cb41f9704021ea755c74e2833",
+      "normalizedSha256": "d7ac2e47e5077b41c9887f57fd39b1bf227457571f8c3145bac3de5cf0132ec4",
       "gitBlob": "N/A"
     }
   ],
@@ -105,7 +99,6 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
-      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -115,21 +108,18 @@
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_PowerShell_Cmdlets.md",
+      "Lastenheft_Script_Dokumentation.md",
       "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
       "Lastenheft_Script-and-Config-GSDB-Pruefung.md"
     ],
     "series": [
-      "All 14 active paths, roles, and exact order match the bound schema-1.1 request",
-      "Eight declared roots equal the zero-indegree target set",
-      "Nine unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Hard predecessor graph for maintenance items 1 through 5, including the fleet-wide Remote Freshness Barrier",
-      "Ownership and overlap boundaries for governance, sandbox, documentation, cmdlet, comment, and GSDB work",
-      "One schema-2.0 authoring receipt and 13 compatible schema-1.1 receipts",
-      "Current 32-repository canonical fleet and three-present versus ten-desired preset baseline",
-      "Position-1 orchestration scope remains distinct from position-4 remote-freshness and worktree hardening",
-      "Creator markers, receipts, prompt parity, delivery authority, and no-auto-start boundary"
+      "All 13 active paths, roles, and exact order match the bound schema-1.1 request",
+      "Six declared roots equal the zero-indegree target set",
+      "Fifteen unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Feature 009 is excluded from the active target set and retained only as historical gate evidence",
+      "Positions 1 through 4, 5 through 8, and 9 through 13 have explicit learner-readable dependency boundaries",
+      "All active intakes use current ordering, ten-preset context where applicable, copy-ready prompts, and LocalImplementation boundaries"
     ],
     "workers": []
   },
@@ -139,5 +129,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "dfcf1ff5-95ad-488a-879a-65e81e8e350f"
+  "supersedes": "5ce575e0-90a0-4946-b183-b8c3e1d83a71"
 }

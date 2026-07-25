@@ -1,25 +1,65 @@
 {
-  "schemaVersion": "1.1",
-  "receiptId": "c958d6dc-548c-429d-b35b-f12d8ac7dd10",
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "1da10bcf-07ec-45cd-8474-32d9af8d2c3f",
+  "intakeId": "c958d6dc-548c-429d-b35b-f12d8ac7dd10",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.1.1"
+    "version": "0.2.0"
   },
-  "createdAt": "2026-07-23T12:08:19Z",
+  "createdAt": "2026-07-25T12:58:33Z",
+  "operation": {
+    "operationId": "6302a484-2285-4c06-9081-c4798cc35507",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+  },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_PowerShell_Cmdlets.md",
-    "normalizedSha256": "a6cb0539e65612537931a3d458b149da945135e699f7fe3ffd26e8896bce42fb"
+    "normalizedSha256": "389ec1655b7f67fd6ef59ec55b06a7050d93326eca362f68c239f1f0d8f9d541"
   },
   "sources": [
     {
+      "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/c958d6dc-548c-429d-b35b-f12d8ac7dd10/6302a484-2285-4c06-9081-c4798cc35507/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "a6cb0539e65612537931a3d458b149da945135e699f7fe3ffd26e8896bce42fb",
+      "gitBlob": "93c858eb27bd1402678ea85feda799332afc1750",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
       "kind": "Pasted",
-      "label": "Legacy target before Intake Creator adoption",
+      "label": "Approved active intake series normalization request",
       "location": "SnapshotOnly",
       "path": "N/A",
-      "normalizedSha256": "617e8d27c9d3072a4faea415a1ab4d32ad9f1ebee38883820f0bcafdc1657136",
-      "gitBlob": "56393e2156194993e3399c104ae90e3fc5f9ba1b"
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -28,30 +68,23 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welcher Zielpfad bleibt fuer den aktiven Intake verbindlich?",
-      "answer": "Lastenheft_PowerShell_Cmdlets.md",
-      "evidence": "Die aktive Abarbeitungsreihenfolge benennt diesen bestehenden Pfad."
+      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
+      "answer": "Lastenheft_PowerShell_Cmdlets.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
+      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Darf der bestehende Alt-Intake ohne frueheres Receipt aktualisiert werden?",
-      "answer": "Ja, als diff-arme LegacyAdoption.",
-      "evidence": "Der Nutzer hat Creator-Erweiterung und aktive 14er-Normalisierung im aktuellen Auftrag ausdruecklich genehmigt."
+      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
+      "answer": "Root position 10; baseline for positions 11, 12, and 13.",
+      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welcher fachliche Umfang bleibt erhalten?",
-      "answer": "Alle bestehenden IDs, Anforderungen, Nicht-Ziele, Risiken und Abnahmegrenzen; nur Creator-Struktur und nachgewiesene Konsistenzkorrekturen werden ergaenzt.",
-      "evidence": "Ausdruecklich gewaehlter Modus: diff-arm erhalten."
-    },
-    {
-      "id": "IAD004",
-      "status": "Answered",
-      "question": "Welche Delivery Authority gilt fuer den kopierbaren Autonomous-Prompt?",
-      "answer": "LocalImplementation.",
-      "evidence": "Im aktuellen Normalisierungsauftrag wurde keine Remote-, PR- oder Merge-Autoritaet fuer spaetere Feature-Laeufe erteilt."
+      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
+      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
+      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
     }
   ],
   "openDecisionIds": [],
@@ -63,19 +96,28 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Default: Dieser Normalisierungslauf erteilt keine Remote-Schreib- oder Lieferautoritaet.",
+  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
   "promptState": "Enabled",
-  "nextAction": "$speckit-intake-review Lastenheft_PowerShell_Cmdlets.md",
-  "provenanceMode": "LegacyAdoption",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/c958d6dc-548c-429d-b35b-f12d8ac7dd10/6302a484-2285-4c06-9081-c4798cc35507/receipt.json",
+    "targetNormalizedSha256": "a6cb0539e65612537931a3d458b149da945135e699f7fe3ffd26e8896bce42fb",
+    "archiveTargetPath": "specs/intake-authoring-archive/c958d6dc-548c-429d-b35b-f12d8ac7dd10/6302a484-2285-4c06-9081-c4798cc35507/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/c958d6dc-548c-429d-b35b-f12d8ac7dd10/6302a484-2285-4c06-9081-c4798cc35507/receipt.json"
   },
   "legacyAdoption": {
-    "evidenceType": "GitBlob",
-    "priorTargetNormalizedSha256": "617e8d27c9d3072a4faea415a1ab4d32ad9f1ebee38883820f0bcafdc1657136",
-    "priorGitBlob": "56393e2156194993e3399c104ae90e3fc5f9ba1b"
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Aktueller Nutzerauftrag: Creator-Erweiterung und diff-arme Normalisierung der 14 aktiven Lastenhefte."
+  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "series": {
+    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
+    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "order": 10,
+    "role": "Root",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_PowerShell_Cmdlets.md"
 }
