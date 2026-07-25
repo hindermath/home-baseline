@@ -82,10 +82,17 @@
 | Public release | [v0.1.0](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/releases/tag/v0.1.0) | Published from the reviewed merge head |
 | Versioned ZIP | `https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.1.0.zip` | `c2fed951047fd0ab1b0edae7e4e6cdc06f2779488c585d0064c46b8974b19bbe` |
 | Eleven-preset smoke | Fresh Spec Kit 0.12.11 project | Add, list, info, resolve, disable, enable, remove, reinstall, and six Codex skills passed |
+| Level-0 adoption | [PR #116](https://github.com/hindermath/home-baseline/pull/116), merge `991cada7d11472f360b6f0d3ac7a445f7334456c` | Merged and synchronized |
+| Fleet rollout | [Fleet evidence](fleet-rollout-v0.1.0.md) | 33/33 repositories, 21/21 learning repositories |
+| Community submission | [github/spec-kit#3742](https://github.com/github/spec-kit/issues/3742) | Submitted through the official template |
 
 PR #115 and publication PR #1 used the explicitly authorized narrow bypass
 only after local validation passed, no actionable thread existed, and Human
 Approval was the sole remaining merge rule. No technical failure was bypassed.
 
-Fleet PRs and the community submission remain pending until their exact heads
-and remote outcomes are known.
+The fleet delivered 139 successful exact-head checks. Another 228 jobs were
+rejected with zero steps by GitHub Billing or Spending controls, followed by 17
+dependent cancellations; none was counted as a technical pass. All 32 fleet
+PRs had zero actionable review threads and were merged under the explicitly
+authorized narrow boundary. Home Sync, the maintenance package, and all 33
+eleven-preset matrices are current.

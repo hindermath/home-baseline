@@ -73,7 +73,7 @@
 - [x] T054 Create or update the owned publication repository through a PR.
 - [x] T055 Publish tag and release `v0.1.0`.
 - [x] T056 Validate the versioned GitHub ZIP and checksum.
-- [ ] T057 Propagate the optional profile with `required: false` to the registered fleet.
-- [ ] T058 Converge non-empty fleet PRs without inferred bypass.
-- [ ] T059 Submit through the official community preset template and ping `@mnriem` once.
-- [ ] T060 Verify all changed repositories are clean and synchronized.
+- [x] T057 Propagate the optional profile with `required: false` to the registered fleet.
+- [x] T058 Converge non-empty fleet PRs without inferred bypass.
+- [x] T059 Submit through the official community preset template and ping `@mnriem` once.
+- [x] T060 Verify all changed repositories are clean and synchronized.
