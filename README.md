@@ -13,6 +13,21 @@
 > and accessible. WCAG 2.2 AA, keyboard operation, screen-reader support, and
 > text usability are considered and verified from the start.
 
+<!-- learner-a11y-baseline:start -->
+Die verbindliche Zielgruppen-, Sprach- und A11Y-Basis für Home Baseline,
+ABS-DD-Sandbox, TuiVision, TinyPl0, TinyCalc und InventarWorkerService steht in
+[`docs/learning-units/LERNENDEN-UND-A11Y-BASIS.md`](docs/learning-units/LERNENDEN-UND-A11Y-BASIS.md).
+Sie richtet alle Lern- und Bedieninhalte ab dem ersten Ausbildungsjahr aus und
+setzt keine Spec-Kit-Erfahrung voraus.
+
+*The binding audience, language, and accessibility baseline for Home Baseline,
+the ABS-DD sandbox, TuiVision, TinyPl0, TinyCalc, and InventarWorkerService is
+defined in
+[`docs/learning-units/LERNENDEN-UND-A11Y-BASIS.md`](docs/learning-units/LERNENDEN-UND-A11Y-BASIS.md).
+It targets learners from their first training year and assumes no prior Spec
+Kit experience.*
+<!-- learner-a11y-baseline:end -->
+
 Dieses Repository ist die **oberste Ebene** der privaten Workspace-Infrastruktur.
 Es enthält die Bootstrap-Scripts, mit denen jedes neue Projektverzeichnis in wenigen
 Sekunden als synchronisiertes privates Repository auf GitHub, GitLab, Codeberg,
