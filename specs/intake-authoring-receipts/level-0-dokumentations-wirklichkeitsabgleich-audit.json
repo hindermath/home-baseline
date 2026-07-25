@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "b81c3088-21c2-47fc-85d7-df78bfea675e",
+  "intakeId": "89fb991b-1191-445b-8500-abce8e922b11",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "f97ee2ec-1f15-4f5e-a2ad-1bde7d9c2ebd",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user instruction to prepare documentation reality reconciliation intakes with MergeAndSync delivery."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+    "normalizedSha256": "86d936d37e75bd34f203b81150223ab1170cf82c7954e10b7f1edb9853473aaf"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved documentation reality and continuous-governance request",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "47dd23a1739799af1489324a282832e38ee35f25bcbab7867c7e633b80c39040",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher Umfang gilt als gesamte Dokumentation?",
+      "answer": "Alle repository-eigenen Git-getrackten Dokumentations-, Hilfe-, Governance-, Spec-Kit- und Generated-Doc-Flächen; historische und externe Inhalte werden nur innerhalb ihrer Beweisgrenze bewertet.",
+      "evidence": "Current user request and repository policy"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf der Audit Dokumente korrigieren?",
+      "answer": "Nein. Position 18 bleibt read-only und liefert Findings für Position 19.",
+      "evidence": "Three-stage implementation decision"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync; der Intake startet keinen nachgelagerten Lauf.",
+      "evidence": "Explicit current user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md"
+}

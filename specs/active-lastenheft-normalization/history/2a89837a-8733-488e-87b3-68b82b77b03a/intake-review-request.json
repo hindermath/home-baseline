@@ -1,24 +1,12 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "4d090715-0053-4246-b1e4-a04b03d14fb1",
+  "reviewId": "2a89837a-8733-488e-87b3-68b82b77b03a",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
-      "role": "Primary"
-    },
-    {
-      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-      "role": "OrderedMember"
-    },
-    {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "role": "OrderedMember"
+      "role": "Primary"
     },
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -87,9 +75,6 @@
   ],
   "series": {
     "orderedTargetPaths": [
-      "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
-      "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
-      "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -109,49 +94,14 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "roots": [
-      "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md"
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
-      {
-        "from": "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
-        "to": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
-        "kind": "DocumentationAuditBaseline"
-      },
-      {
-        "from": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
-        "to": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "kind": "DocumentationGovernanceBaseline"
-      },
-      {
-        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-        "kind": "DocumentationGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
-        "kind": "DocumentationGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-        "kind": "DocumentationGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-        "kind": "DocumentationGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "to": "Lastenheft_CICD_Pipeline_Konfiguration.md",
-        "kind": "DocumentationGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
-        "to": "Lastenheft_PowerShell_Cmdlets.md",
-        "kind": "DocumentationGovernanceGate"
-      },
       {
         "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
         "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",

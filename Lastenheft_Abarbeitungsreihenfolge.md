@@ -59,6 +59,21 @@ Binding predecessors and hard completion gates must be satisfied before
 dependent work starts. Assessment, sandbox, and surface baselines provide
 review input. A final audit runs last so it can assess all intended changes.*
 
+## Verbindlicher Dokumentationsvorlauf / Mandatory Documentation Preflight
+
+Dieser Vorlauf wird einmal vollständig abgeschlossen, bevor die bestehende
+nummerierte Reihenfolge fortgesetzt wird. Dadurch verwenden alle späteren
+Änderungen bereits die geprüfte Documentation-Impact-Regel.
+
+| Vorlauf | Lastenheft | Zweck / Purpose |
+|---:|---|---|
+| D1 | `Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md` | Inventarisiert alle repository-eigenen Dokumentationsflächen und prüft dokumentierte Aussagen read-only gegen die Level-0-Wirklichkeit. / Inventories every repository-owned documentation surface and audits documented claims read-only against Level 0 reality. |
+| D2 | `Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md` | Behebt bestätigte Findings und verankert den Documentation-Impact-Vertrag in Constitution, Templates, Checklists, PR-Evidence, Agentenflächen und prüfbaren Gates. / Remediates confirmed findings and anchors the documentation-impact contract across policy, workflow, agents, and verifiable gates. |
+| D3 | `Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md` | Prüft und korrigiert anschließend alle registrierten Level-2-Repositories gegen ihre jeweilige Projektwirklichkeit. / Then audits and corrects every registered Level 2 repository against its own project reality. |
+
+*The mandatory D1–D3 preflight completes before the numbered order resumes, so
+all later work uses the validated documentation-impact baseline.*
+
 ## Aktive Reihenfolge / Active Order
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
@@ -88,9 +103,14 @@ gleichgestellt. Ein Pfeil bedeutet: Der linke Intake liefert eine bindende
 Grundlage fuer den rechten Intake.
 
 ```text
-1 Windows -----------\
-2 Linux --------------+--> 4 Maintenance TUI
-3 Preset/Branch ------/
+D1 Level-0-Doku-Audit --> D2 Level-0-Remediation --> D3 Level-2-Flotte
+
+D3 Doku-Baseline --+--> 1 Windows -----------\
+                   +--> 2 Linux --------------+--> 4 Maintenance TUI
+                   +--> 3 Preset/Branch ------/
+                   +--> 5 Mitgeltende Dokumente
+                   +--> 9 CI/CD
+                   +--> 10 PowerShell-Cmdlets
 
 5 Mitgeltende Dokumente --> 6 RL-SE-Selbstpruefung
 5 Mitgeltende Dokumente --> 7 Container-Haertung --> 8 Level-2-Sandbox
@@ -112,9 +132,12 @@ Grundlage fuer den rechten Intake.
 14 Gap-Audit ----------+-------> 16 Baseline 3.3
 15 Assurance-Preset --\
 16 Baseline 3.3 --------+------> 17 ABSDD-Adoption
+
 ```
 
-Die Roots dieser Serie sind die Positionen `1`, `2`, `3`, `5`, `9` und `10`.
+Die einzige Root dieser Serie ist Vorlauf `D1`. Nach D3 werden die bisherigen
+Roots der nummerierten Reihenfolge freigegeben: `1`, `2`, `3`, `5`, `9` und
+`10`.
 Feature 009 ist kein aktiver Serienknoten mehr. Sein archiviertes Lastenheft
 und sein Abschluss bleiben historische Evidence fuer das TUI-Gate.
 
@@ -149,6 +172,21 @@ items 9 through 12. Items 14 through 17 form a separate assurance track. The
 gap audit requires items 5 and 13; productization requires item 14; baseline
 synchronization requires items 14 and 15; and ABSDD adoption requires items 15
 and 16. No item starts its successor automatically.*
+
+Der Vorlauf D1 bis D3 bildet den Dokumentations-Wirklichkeitsabgleich. D1 prüft
+die vollständige Level-0-Dokumentation zunächst ohne fachliche Korrekturen. D2
+darf nur bestätigte Findings beheben und verankert die dauerhafte
+Documentation-Impact-Regel. Erst diese gemergte Baseline darf D3 in die
+registrierte Level-2-Flotte übernehmen. D3 ist das harte Dokumentations-Gate
+für die bisherigen Roots 1, 2, 3, 5, 9 und 10. Ein neues portables Preset wird
+nicht vorab unterstellt; ein solcher Follow-up braucht einen reproduzierbaren
+Befund aus D1 oder D2.
+
+*Preflight D1 through D3 is the documentation-reality track. D1 audits Level 0
+without remediation. D2 remediates confirmed findings and establishes the
+durable documentation-impact rule. D3 applies that merged baseline to
+registered Level 2 repositories and gates the former roots. A new portable
+preset requires reproducible evidence and is not assumed in advance.*
 
 ## Serielle Ausfuehrung und native Systeme / Serial Delivery and Native Systems
 

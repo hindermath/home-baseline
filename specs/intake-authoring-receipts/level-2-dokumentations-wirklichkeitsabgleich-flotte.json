@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "2ce054e9-594f-40ae-b05a-a00ede1d68c5",
+  "intakeId": "317ab772-2a24-4312-b184-e7e32dd4aaba",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "33fa8b35-cafe-4f77-8602-ef1e0344f1ed",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user instruction to prepare documentation reality reconciliation intakes with MergeAndSync delivery."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+    "normalizedSha256": "28d811b66d80ead89f9e910b9dad4a1727740ec827714a2742b657c1fd1f4938"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved documentation reality and continuous-governance request",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "47dd23a1739799af1489324a282832e38ee35f25bcbab7867c7e633b80c39040",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Repositories gehören zum Lauf?",
+      "answer": "Alle beim Laufbeginn zentral registrierten Level-2-Repositories; die Anzahl wird nicht historisch festgeschrieben.",
+      "evidence": "Current user request and registry-based fleet policy"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf Home-Baseline-Dokumentation blind propagiert werden?",
+      "answer": "Nein. Jedes Repository wird gegen seine eigene Sprache, Runtime, Toolchain und Evidence geprüft.",
+      "evidence": "Project-ownership and fleet-safety policy"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync über separate nicht leere Repository-PRs mit Remote-Freshness-Barriere und engem bestehendem Bypass-Vertrag.",
+      "evidence": "Explicit current user instruction and existing approved boundary"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md"
+}
