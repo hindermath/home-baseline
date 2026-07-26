@@ -1,35 +1,22 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "2fd432d9-b2d2-4058-96c6-a05f9c9a504b",
+  "reviewId": "ccee74f4-5f22-4a56-a7b9-949f54a6d738",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-26T22:48:38.892Z",
+  "reviewedAt": "2026-07-26T16:47:44.792Z",
   "repository": {
     "root": ".",
-    "head": "4b4ceff8d9841d8b8f3e7b948f9ad628e6d6b15b"
+    "head": "e0e54f6e1a972f8f4c7c9ffde84d29716775be17"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "dbfd95a099dbb06192adaa51af5587ec23352c1253e1ded6c8d4978874625a31"
+    "normalizedSha256": "33370ff9c21341af9a1d7540ed4e09e752ecba45c38473fa18429d7ae9c8f4ee"
   },
-  "summary": {
-    "critical": 0,
-    "high": 0,
-    "medium": 0,
-    "low": 0
-  },
-  "supersedes": "ccee74f4-5f22-4a56-a7b9-949f54a6d738",
   "targets": [
     {
-      "path": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "role": "Primary",
-      "normalizedSha256": "c8f21c06f52cd26f5d9678ebdd15cd3b8cb65c0a72118ec24e646a1adaf20020",
-      "gitBlob": "N/A"
-    },
-    {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
       "gitBlob": "N/A"
     },
@@ -130,12 +117,12 @@
       "gitBlob": "N/A"
     }
   ],
-  "findings": [
-
-  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
   "coverage": {
     "individual": [
-      "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -155,25 +142,21 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 18 active paths, roles, and exact order match the bound schema-1.1 request",
-      "Feature 014 is the only declared root and the only zero-indegree target",
-      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Six RequirementsGovernanceGate edges bind Feature 014 to the previous roots 1, 2, 3, 5, 9, and 10",
-      "The three verified field migrations and the seven-pilot boundary are explicit",
-      "MergeAndSync authority is current and does not authorize automatic successor execution",
-      "After Feature 014 closeout, the gate is archived and Windows hardening becomes next without being started"
+      "All 17 active paths, roles, and exact order match the bound schema-1.1 request",
+      "The six declared roots equal the zero-indegree target set after the merged D3 closeout",
+      "Twenty-two unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Features 011 through 013 and their causal closeouts remain archived evidence",
+      "Exactly 32 repository deliveries and DOC001 through DOC015 are closed",
+      "Positions 1 through 17 retain their learner-readable dependency boundaries",
+      "No successor feature or intake run was started automatically"
     ],
-    "workers": [
-
-    ]
+    "workers": []
   },
-  "questions": [
-
-  ],
-  "acceptedRisks": [
-
-  ],
-  "operatorExceptions": [
-
-  ]
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "a8235f46-1f98-4d77-9f32-e504a99420c2"
 }
