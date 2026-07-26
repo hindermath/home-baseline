@@ -703,27 +703,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 378518 lines |
-| Textdateien / Text files | 2302 |
+| Textbasis / Text base | 380077 lines |
+| Textdateien / Text files | 2317 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-26 |
 | Aktivtage / Active days | 74 |
-| Relevante Commits / Relevant commits | 555 |
-| Zeilen je Aktivtag / Lines per active day | 5115.1 |
+| Relevante Commits / Relevant commits | 557 |
+| Zeilen je Aktivtag / Lines per active day | 5136.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 31 days |
-| Speedup vs. 80 lines/day | 63.9x |
-| Speedup vs. 100 lines/day | 51.2x |
-| Methodik / Methodology | v2; source `3a14d6f3ec39` |
+| Speedup vs. 80 lines/day | 64.2x |
+| Speedup vs. 100 lines/day | 51.4x |
+| Methodik / Methodology | v2; source `dcf2d178fb95` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.1% | 11633
-Dokumentation / Documentation   [###############.....]  73.0% | 276372
+Tests                           [#...................]   3.1% | 11689
+Dokumentation / Documentation   [###############.....]  72.8% | 276685
 Skripte / Scripts               [##..................]  12.1% | 45940
-Konfiguration / Configuration   [##..................]  11.4% | 43185
+Konfiguration / Configuration   [##..................]  11.7% | 44375
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 758
 ```
@@ -831,15 +831,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..34
-   cap 50000 | . . .
-       41667 | . . .
-       33333 | . . .
-       25000 | . # .
-       16667 | . # .
-        8333 | . # .
-           0 +-------
-             32 33 34
+Slots 32..35
+   cap 50000 | . . . .
+       41667 | . . . .
+       33333 | . . . .
+       25000 | . # . .
+       16667 | . # . .
+        8333 | . # . .
+           0 +---------
+             32 33 34 35
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -879,6 +879,7 @@ Slots 32..34
 | 32 | Canonical-Fleet-Wartungshärtung / Canonical fleet maintenance hardening | 388 |
 | 33 | Dokumentations-Wirklichkeitsaudit / Documentation reality audit | 31164 |
 | 34 | Documentation-Impact-Governance / Documentation Impact governance | 1407 |
+| 35 | Dokumentations-Wirklichkeitsabgleich Flotte / Documentation reality remediation fleet | 1553 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -888,8 +889,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 63.9x
-100 lines/day      [##########..........] 51.2x
+80 lines/day       [#############.......] 64.2x
+100 lines/day      [##########..........] 51.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -902,7 +903,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##########..........] 5115.1
+Visible repository [##########..........] 5136.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -928,6 +929,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-26. Es enthaelt 74 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 300471 |
+| 2026-07 | 302158 |
 
 <!-- project-statistics-v2:end -->

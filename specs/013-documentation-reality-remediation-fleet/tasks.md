@@ -72,8 +72,8 @@
 - [X] T056 Validate 32 package deliveries and 15 finding dispositions
 - [X] T057 Re-run fleet Remote Freshness and package Homogeneity
 - [X] T058 Revalidate Level 0 against the merged D2 baseline
-- [ ] T059 Run Level-0 Homogeneity, PSScriptAnalyzer, secrets, and Spec Kit
-- [ ] T060 Update and render project statistics
+- [X] T059 Run Level-0 Homogeneity, PSScriptAnalyzer, secrets, and Spec Kit
+- [X] T060 Update and render project statistics
 - [ ] T061 Validate exact staged Level-0 candidate
 
 ## Phase 6: Feature Delivery and Closeout
