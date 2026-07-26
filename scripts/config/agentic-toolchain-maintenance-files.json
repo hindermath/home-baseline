@@ -36,6 +36,26 @@
       "executable": false
     },
     {
+      "path": "scripts/tests/documentation-impact/fixtures/valid.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/missing-decision.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/duplicate-id.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/invalid-followup.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/unsafe-defer.json",
+      "executable": false
+    },
+    {
       "path": "scripts/install-spec-kit-governance-presets.sh",
       "executable": true
     },
