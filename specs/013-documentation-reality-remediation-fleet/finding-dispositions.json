@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "013-documentation-reality-remediation-fleet",
+  "source": "specs/011-documentation-reality-audit/documentation-audit.json",
+  "expectedCount": 15,
+  "dispositions": [
+    {
+      "findingId": "DOC001",
+      "repositoryId": "secure-orderdesk-csharp",
+      "originalClaim": "CLAUDE.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-csharp#18",
+        "reviewedHead": "a21edd2afbe01857c5dde45cced05ff1e741d837",
+        "mergeCommit": "d6c0e01b5b71f5ee8b444c609584ab6cad559c13",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-csharp",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC002",
+      "repositoryId": "secure-orderdesk-csharp",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-csharp#18",
+        "reviewedHead": "a21edd2afbe01857c5dde45cced05ff1e741d837",
+        "mergeCommit": "d6c0e01b5b71f5ee8b444c609584ab6cad559c13",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-csharp",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC003",
+      "repositoryId": "secure-orderdesk-go",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-go#17",
+        "reviewedHead": "9d04edec4d3d105734f0dd1f11f336e6f6240b3a",
+        "mergeCommit": "2d40f21825e61c7c33d39cf2a6c829eaf138709b",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-go",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC004",
+      "repositoryId": "secure-orderdesk-java",
+      "originalClaim": "CLAUDE.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-java#17",
+        "reviewedHead": "365df2dd8c33af163a15f6134038fb8051aa5ff3",
+        "mergeCommit": "454954f3e293548aa50ca33aa6c2e0d4f9419c8d",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-java",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC005",
+      "repositoryId": "secure-orderdesk-java",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-java#17",
+        "reviewedHead": "365df2dd8c33af163a15f6134038fb8051aa5ff3",
+        "mergeCommit": "454954f3e293548aa50ca33aa6c2e0d4f9419c8d",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-java",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC006",
+      "repositoryId": "secure-orderdesk-python",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-python#17",
+        "reviewedHead": "fc0665220b5344b92e1eb63456db3f238832d5c3",
+        "mergeCommit": "a74117e80bd6449ad18ee471de6aef5222ec121c",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-python",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC007",
+      "repositoryId": "secure-orderdesk-rust",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-rust#17",
+        "reviewedHead": "4ac92677afe9f7d5ee02d0d3e96b84958967b692",
+        "mergeCommit": "a898a206993825c16aa0cea1fb9ecaa70bb98250",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-rust",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC008",
+      "repositoryId": "secure-orderdesk-swift",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureorderdesk-swift#17",
+        "reviewedHead": "441af96041b5b126ce03e83c29ce22859c00d1f1",
+        "mergeCommit": "dee2e24f7f7fabbd880ffc332c7fd05512f987ae",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-orderdesk-swift",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC009",
+      "repositoryId": "secure-service-harvester-csharp",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-csharp#18",
+        "reviewedHead": "4f4b341baddc82e26e0f776ef0aa13f19fc72931",
+        "mergeCommit": "7290924609c1089a9f421b55c93125587910c043",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-csharp",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC010",
+      "repositoryId": "secure-service-harvester-go",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-go#17",
+        "reviewedHead": "03e51a09cea7f7e699a023e2ba403a7d0f6de33e",
+        "mergeCommit": "a3901c4d7cbf051c0141c758cf616a59bc73388d",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-go",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC011",
+      "repositoryId": "secure-service-harvester-java",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-java#17",
+        "reviewedHead": "91f448688fc187337ba128595057119e1dac1be6",
+        "mergeCommit": "d5ae59eb38f6f32423bd0274013ecd0e78580027",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-java",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC012",
+      "repositoryId": "secure-service-harvester-python",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-python#17",
+        "reviewedHead": "1a68865fc056ab52be0e1224282fc4e259b7231b",
+        "mergeCommit": "d753f3cf75bd88b4bb71ce4df01026d4a527ad59",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-python",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC013",
+      "repositoryId": "secure-service-harvester-rust",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-rust#17",
+        "reviewedHead": "3957622c2c9871d825798fef756838837c538c10",
+        "mergeCommit": "c849fbddd00460ee3b4e5dafd663186e2bac55a6",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-rust",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC014",
+      "repositoryId": "secure-service-harvester-swift",
+      "originalClaim": "CLAUDE.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-swift#17",
+        "reviewedHead": "9194a075033922b952b80bb0d69b96356e028532",
+        "mergeCommit": "f3c9e03c0e3b21aaad53130fa1a470abe545c82c",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-swift",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    },
+    {
+      "findingId": "DOC015",
+      "repositoryId": "secure-service-harvester-swift",
+      "originalClaim": "README.md: required bilingual section is missing",
+      "postPropagationResult": "Resolved; repository-native Homogeneity now passes.",
+      "decision": "Resolved",
+      "evidence": {
+        "pullRequest": "hindermath/secureserviceharvester-swift#17",
+        "reviewedHead": "9194a075033922b952b80bb0d69b96356e028532",
+        "mergeCommit": "f3c9e03c0e3b21aaad53130fa1a470abe545c82c",
+        "validation": "Bash and PowerShell Documentation Impact fixtures and Homogeneity passed."
+      },
+      "owner": "secure-service-harvester-swift",
+      "residualRisk": "N/A",
+      "reevaluationTrigger": "Any later change to the corrected README or agent-guidance section."
+    }
+  ]
+}

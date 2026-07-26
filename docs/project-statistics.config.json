@@ -289,6 +289,14 @@
       "labelEn": "Documentation Impact governance",
       "netLines": 1407,
       "activeDays": 1
+    },
+    {
+      "slot": 35,
+      "id": "documentation-reality-remediation-fleet",
+      "labelDe": "Dokumentations-Wirklichkeitsabgleich Flotte",
+      "labelEn": "Documentation reality remediation fleet",
+      "netLines": 1553,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
