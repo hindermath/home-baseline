@@ -1,42 +1,43 @@
 # Active Lastenheft Series Review
 
-**Review ID:** `6b072e8d-3393-4e04-8de2-1b0ed761b9f9`
+**Review ID:** `d9ca67af-26df-4adc-93e7-e1f6ffc34da3`
 **Status:** `Ready`
-**Supersedes:** `4d090715-0053-4246-b1e4-a04b03d14fb1`
-**Reviewed:** 2026-07-26T13:57:56Z
+**Supersedes:** `6b072e8d-3393-4e04-8de2-1b0ed761b9f9`
+**Reviewed:** 2026-07-26T14:58:49Z
 
 ## Ergebnis / Result
 
-Alle 20 aktiven Intakes sind in der sichtbaren Reihenfolge erfasst. Der
-verbindliche Vorlauf D1 prüft Level 0 und alle beim Laufbeginn registrierten
-Level-1-/Level-2-Repositories read-only. D2 behebt bestätigte zentrale
-Level-0-Findings, disponiert jedes D1-Finding und verankert einen dauerhaften
-Documentation-Impact-Vertrag für die Flotte. D3 überträgt erst danach die
-gemergte Baseline kontrolliert auf alle registrierten Level-1- und
-Level-2-Repositories und revalidiert Level 0 vor und nach der Auslieferung.
-Nach D3 bleiben die bisherigen Positionen 1 bis 17 unverändert. Der archivierte
-Feature-009-Intake bleibt historische Evidence. Es bestehen keine offenen
-Entscheidungen, Findings oder akzeptierten Risiken im Intake-Review.
+Alle 19 aktiven Intakes sind in der sichtbaren Reihenfolge erfasst. D1 wurde
+mit Feature 011 und PR #126 abgeschlossen und archiviert. Der Audit bestätigte
+keinen zentralen Level-0-Remediation-Bedarf; seine 15 mittleren Findings sind
+ausschließlich D3 zugeordnet. D2 ist deshalb jetzt die einzige Root. D2
+verankert den dauerhaften Documentation-Impact-Vertrag für die Flotte. D3
+überträgt diese gemergte Baseline kontrolliert auf alle registrierten
+Level-1- und Level-2-Repositories und revalidiert Level 0 vor und nach der
+Auslieferung. Es bestehen keine offenen Entscheidungen, Findings oder
+akzeptierten Risiken im Intake-Review.
 
-*All 20 active intakes are covered in visible order. Mandatory preflight D1
-through D3 separates the read-only audit of Level 0 and every registered Level
-1 and Level 2 repository, central Level 0 remediation and fleet governance,
-and controlled Level 1/2 delivery with Level 0 revalidation. Existing
-Positions 1 through 17 remain unchanged after that preflight. No intake-review
-decisions, findings, or accepted risks remain open.*
+*All 19 active intakes are covered in visible order. D1 was completed and
+archived through Feature 011 and PR #126. Its audit found no central Level 0
+remediation need and routed all 15 medium findings exclusively to D3. D2 is
+therefore the single active root and establishes the durable Documentation
+Impact contract before D3 performs controlled fleet remediation and Level 0
+revalidation. No intake-review decisions, findings, or accepted risks remain
+open.*
 
 ## Graphnachweis / Graph Evidence
 
-- Ziele / targets: 20
-- Roots: 1 (Vorlauf D1)
-- Kanten / edges: 30
+- Ziele / targets: 19
+- Roots: 1 (Vorlauf D2)
+- Kanten / edges: 29
 - Zyklen / cycles: 0
 - Fehlende oder doppelte Ziele / missing or duplicate targets: 0
 
-Die 30 Kanten behalten ihre fachliche Richtung. D1 bindet D2 und D2 bindet D3.
-D3 bildet danach ein hartes Documentation-Governance-Gate für die sechs
-bisherigen Roots 1, 2, 3, 5, 9 und 10. Damit besitzt die Serie genau eine Root
-und bleibt azyklisch.
+Die 29 aktiven Kanten behalten ihre fachliche Richtung. Der abgeschlossene
+D1-zu-D2-Übergang ist in der archivierten Review-Evidence belegt. D2 bindet
+weiterhin D3. D3 bildet danach ein hartes Documentation-Governance-Gate für
+die sechs bisherigen Roots 1, 2, 3, 5, 9 und 10. Damit besitzt die aktive
+Serie genau eine Root und bleibt azyklisch.
 
 ## Lernendenhinweis / Learner Note
 
@@ -58,6 +59,6 @@ Der Review prueft Intake-Inhalt, Hashbindung, Zielmenge, Rollen, Reihenfolge, Ro
 
 ## Naechste Aktion / Next Action
 
-Der erste zulässige fachliche Lauf ist jetzt Vorlauf D1:
+Der erste zulässige fachliche Lauf ist jetzt Vorlauf D2:
 
-`$speckit-specify Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md`
+`$speckit-specify Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md`

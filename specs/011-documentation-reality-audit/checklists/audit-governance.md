@@ -25,6 +25,6 @@
 ## Delivery
 
 - [x] Statistics and feature evidence are current.
-- [ ] Intake is archived without starting D2.
-- [ ] Exact-head gates and review threads converge.
-- [ ] Local `main` is clean and equals `origin/main`.
+- [x] Intake is archived without starting D2.
+- [x] Exact-head gates and review threads converge.
+- [x] Local `main` was clean and equal to `origin/main` after the feature merge.

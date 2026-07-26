@@ -67,7 +67,7 @@ nummerierte Reihenfolge fortgesetzt wird. Dadurch verwenden alle späteren
 
 | Vorlauf | Lastenheft | Zweck / Purpose |
 |---:|---|---|
-| D1 | `Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md` | Inventarisiert Level 0 und alle registrierten Level-1-/Level-2-Repositories und prüft ihre Dokumentation read-only gegen die jeweilige Wirklichkeit. / Inventories Level 0 and every registered Level 1 and Level 2 repository and audits their documentation read-only against each repository's reality. |
+| D1 (abgeschlossen / completed) | `Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.011-documentation-reality-audit.md` | Feature 011 und PR #126 inventarisierten Level 0 und alle registrierten Level-1-/Level-2-Repositories read-only. Die 15 mittleren Findings sind D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. / Feature 011 and PR #126 audited Level 0 and every registered Level 1 and Level 2 repository read-only. Its 15 medium findings are assigned to D3; no central Level 0 remediation need was found. |
 | D2 | `Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md` | Behebt zentrale Level-0-Findings, disponiert alle D1-Findings und verankert den flottenweiten Documentation-Impact-Vertrag. / Remediates central Level 0 findings, dispositions every D1 finding, and anchors the fleet documentation-impact contract. |
 | D3 | `Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md` | Prüft und korrigiert alle registrierten Level-1-/Level-2-Repositories gegen ihre jeweilige Wirklichkeit und revalidiert Level 0 als Baseline. / Audits and corrects every registered Level 1 and Level 2 repository against its own reality and revalidates Level 0 as the baseline. |
 
@@ -103,8 +103,11 @@ gleichgestellt. Ein Pfeil bedeutet: Der linke Intake liefert eine bindende
 Grundlage fuer den rechten Intake.
 
 ```text
-D1 Level-0/1/2-Doku-Audit --> D2 Level-0-Remediation und Flotten-Governance
-                         --> D3 Level-1/2-Flotte und Level-0-Revalidierung
+D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
+  |
+  +--> D2 Level-0-Remediation und Flotten-Governance
+         |
+         +--> D3 Level-1/2-Flotte und Level-0-Revalidierung
 
 D3 Doku-Baseline --+--> 1 Windows -----------\
                    +--> 2 Linux --------------+--> 4 Maintenance TUI
@@ -136,7 +139,9 @@ D3 Doku-Baseline --+--> 1 Windows -----------\
 
 ```
 
-Die einzige Root dieser Serie ist Vorlauf `D1`. Nach D3 werden die bisherigen
+Die einzige aktive Root dieser Serie ist nach dem Abschluss von D1 Vorlauf
+`D2`. Der D1-zu-D2-Übergang bleibt in der archivierten Schema-1.1-Review-
+Evidence nachweisbar. Nach D3 werden die bisherigen
 Roots der nummerierten Reihenfolge freigegeben: `1`, `2`, `3`, `5`, `9` und
 `10`.
 Feature 009 ist kein aktiver Serienknoten mehr. Sein archiviertes Lastenheft

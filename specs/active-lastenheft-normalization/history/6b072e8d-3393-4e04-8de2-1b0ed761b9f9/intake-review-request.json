@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "d9ca67af-26df-4adc-93e7-e1f6ffc34da3",
+  "reviewId": "6b072e8d-3393-4e04-8de2-1b0ed761b9f9",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+      "path": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
@@ -83,6 +87,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
       "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -104,9 +109,14 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "roots": [
-      "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md"
+      "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+        "to": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+        "kind": "DocumentationAuditBaseline"
+      },
       {
         "from": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
         "to": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",

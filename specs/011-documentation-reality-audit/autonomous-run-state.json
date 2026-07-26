@@ -5,12 +5,12 @@
   "branch": "011-documentation-reality-audit",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Review",
-  "status": "Active",
-  "checkpointCommit": "030f6a979c2e88e1d96347e6faafbdc0c8b8b723",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "b5292e8219c7e74db6bb6a064219af50c0f641a3",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+      "path": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.011-documentation-reality-audit.md",
       "sha256": "75a21348aaf46d1d81b6673903f5144bcb4c7fae64bcff435859c08705eead3e"
     },
     {
@@ -18,11 +18,11 @@
       "sha256": "9941989751a3ceefa3b87cb9e224ec5588129081dbce6caf2f5568437001fb7a"
     },
     {
-      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "path": "specs/active-lastenheft-normalization/history/6b072e8d-3393-4e04-8de2-1b0ed761b9f9/intake-review-request.json",
       "sha256": "67dd910a6a8c2ec93ab2cd70012d24ba18352b3fbbe7e90e2a7521882c5b9ff8"
     },
     {
-      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "path": "specs/active-lastenheft-normalization/history/6b072e8d-3393-4e04-8de2-1b0ed761b9f9/intake-review-result.json",
       "sha256": "110ca23566830ee4535a33749779f378beb742aef77ab99c3cad534fdc980646"
     },
     {
@@ -32,16 +32,16 @@
   ],
   "tasks": {
     "path": "specs/011-documentation-reality-audit/tasks.md",
-    "sha256": "d95668ff7d5dc12ba17ceb102c098c4f159a3b0e8325e0da39fc771247c03695",
-    "completed": 49,
+    "sha256": "5bafef2b112e1c524f2810a9282ff8e447ab8e0a3a9a45f147febfd55c766d7e",
+    "completed": 55,
     "total": 55
   },
-  "lastPassingGate": "Exact pre-push candidate: audit, tests, Homogeneity 30/30, generated docs, statistics, PSScriptAnalyzer and secrets passed",
-  "nextExactAction": "Push the synchronized PR evidence and converge exact-head checks and reviews for PR 126",
+  "lastPassingGate": "PR 126 reviewed head: 20 mandatory checks and seven exact-head provider gates passed with zero actionable review threads",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "Publish",
+    "kind": "MergeAndSync",
     "state": "Completed",
-    "summary": "Feature 011 was pushed and PR 126 was created without changing any audited target repository."
+    "summary": "PR 126 merged as b5292e8219c7e74db6bb6a064219af50c0f641a3; D1 was archived and the active Series advanced to D2 without starting it."
   },
   "stop": {
     "reason": "N/A",
@@ -49,10 +49,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-07-26T17:25:00Z"
+  "updatedAt": "2026-07-26T14:58:49Z"
 }
