@@ -75,3 +75,7 @@ for D3.
 | PSScriptAnalyzer | Pass before staged-candidate rerun |
 | Secret scan | Pass, zero High |
 | `specify check` | Pass |
+| Homogeneity | Pass, 30/30 |
+| Script reference | Current, 119 canonical scripts |
+| Project statistics | Current at implementation checkpoint |
+| Agent guidance parity | Pass, all five maintained surfaces |

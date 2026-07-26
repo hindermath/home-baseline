@@ -50,10 +50,10 @@
 - [X] T034 Complete governance checklist
 - [X] T035 Run validator and fixture suite
 - [X] T036 Run `git diff --check`
-- [ ] T037 Run Homogeneity and generated-doc checks
+- [X] T037 Run Homogeneity and generated-doc checks
 - [X] T038 Run PSScriptAnalyzer and secret scan
 - [X] T039 Run Spec Kit and agent parity checks
-- [ ] T040 Update and render project statistics
+- [X] T040 Update and render project statistics
 - [ ] T041 Validate exact staged candidate
 - [ ] T042 Commit, push and create PR
 - [ ] T043 Converge mandatory checks and review threads
