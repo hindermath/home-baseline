@@ -102,6 +102,34 @@ class FleetFixture:
 
 
 class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
+    def test_secure_casetracker_uses_the_declared_workspace_paths_only(self) -> None:
+        manifest_path = REPOSITORY / "scripts" / "config" / "agentic-workspace-fleet.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        targets = {
+            item["id"]: item["path"]
+            for item in manifest["targets"]
+            if item["id"].startswith("secure-casetracker")
+        }
+        self.assertEqual(
+            targets,
+            {
+                "secure-casetracker-baseline": "SecureCaseTrackerProjects",
+                "secure-casetracker-csharp": "SecureCaseTrackerProjects/SecureCaseTracker-CSharp",
+                "secure-casetracker-go": "SecureCaseTrackerProjects/SecureCaseTracker-Go",
+                "secure-casetracker-java": "SecureCaseTrackerProjects/SecureCaseTracker-Java",
+                "secure-casetracker-python": "SecureCaseTrackerProjects/SecureCaseTracker-Python",
+                "secure-casetracker-rust": "SecureCaseTrackerProjects/SecureCaseTracker-Rust",
+                "secure-casetracker-swift": "SecureCaseTrackerProjects/SecureCaseTracker-Swift",
+            },
+        )
+        self.assertFalse(
+            any(
+                path == "secure-casetracker-baseline"
+                or path.startswith("secure-casetracker-baseline/")
+                for path in targets.values()
+            )
+        )
+
     @unittest.skipIf(os.name == "nt", "This local fixture invokes the installed PowerShell on Unix.")
     def test_powershell_surface_exposes_approved_cmdlet_and_manifest_parameter(self) -> None:
         completed = subprocess.run(
