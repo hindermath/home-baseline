@@ -5,9 +5,9 @@
   "branch": "013-documentation-reality-remediation-fleet",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "dcf2d178fb959f4084d86693872e6667b0207e5c",
+  "checkpointCommit": "5ade9ef0da3ac8e307b9c41fc4a3850ed7884b55",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
@@ -32,12 +32,12 @@
   ],
   "tasks": {
     "path": "specs/013-documentation-reality-remediation-fleet/tasks.md",
-    "sha256": "a9fee32dfa59d8f0a232c67f16ba2ab864e88cb4e695b227a01008f891bf0e18",
-    "completed": 60,
+    "sha256": "51665b74328498e9d4b7086327c28fb4799a5f9154865f5b244b065122aaded4",
+    "completed": 61,
     "total": 70
   },
-  "lastPassingGate": "Level-0 Homogeneity, PSScriptAnalyzer, secret scan, Spec Kit, and statistics rendering passed",
-  "nextExactAction": "Commit the rendered statistics checkpoint and validate the exact Level-0 candidate",
+  "lastPassingGate": "Exact Level-0 candidate passed Homogeneity, state parity, evidence cardinality, diff, secret, Spec Kit, and statistics gates",
+  "nextExactAction": "Commit and push the Feature-013 candidate, then create its non-empty PR",
   "lastOperation": {
     "kind": "Validate",
     "state": "Completed",
@@ -54,5 +54,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-26T16:36:36Z"
+  "updatedAt": "2026-07-26T16:39:20Z"
 }

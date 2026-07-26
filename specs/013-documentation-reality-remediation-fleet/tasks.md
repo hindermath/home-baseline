@@ -74,7 +74,7 @@
 - [X] T058 Revalidate Level 0 against the merged D2 baseline
 - [X] T059 Run Level-0 Homogeneity, PSScriptAnalyzer, secrets, and Spec Kit
 - [X] T060 Update and render project statistics
-- [ ] T061 Validate exact staged Level-0 candidate
+- [X] T061 Validate exact staged Level-0 candidate
 
 ## Phase 6: Feature Delivery and Closeout
 
