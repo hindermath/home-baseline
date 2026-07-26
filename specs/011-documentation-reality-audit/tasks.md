@@ -72,7 +72,7 @@ and delivery files are shared.
 
 ## Phase 7: MergeAndSync Delivery
 
-- [ ] T049 Validate and stage only the exact intended feature candidate
+- [X] T049 Validate and stage only the exact intended feature candidate
 - [ ] T050 Commit, push, and create the Feature 011 PR
 - [ ] T051 Converge mandatory checks and actionable review threads
 - [ ] T052 Generate and validate temporary exact-head provider evidence

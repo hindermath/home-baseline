@@ -32,11 +32,11 @@
   ],
   "tasks": {
     "path": "specs/011-documentation-reality-audit/tasks.md",
-    "sha256": "92efead1520b76c115cbd6725a01d6a927810017b9871b0813a840289b70b1c0",
-    "completed": 47,
+    "sha256": "14661e832237092839783e33a7592654b672a71748c68befa54e8157777c2619",
+    "completed": 48,
     "total": 55
   },
-  "lastPassingGate": "Local validation: audit, tests, Homogeneity 30/30, generated docs, statistics, PSScriptAnalyzer and secrets passed",
+  "lastPassingGate": "Exact pre-push candidate: audit, tests, Homogeneity 30/30, generated docs, statistics, PSScriptAnalyzer and secrets passed",
   "nextExactAction": "Finalize the single feature commit, push it, and create the Feature 011 PR",
   "lastOperation": {
     "kind": "Validate",

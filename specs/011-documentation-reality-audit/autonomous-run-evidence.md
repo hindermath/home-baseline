@@ -78,6 +78,7 @@ archive, statistics, and delivery evidence.
 | Script-reference check-only | Pass | 115 canonical scripts, 118 embedded code blocks |
 | Project-statistics check-only | Pass | Profile 2 current at implementation checkpoint |
 | Level-0 Homogeneity | Pass, 30/30 | Final local implementation candidate |
+| Exact pre-push candidate | Pass | Clean two-commit branch; tests, audit, Homogeneity, PSScriptAnalyzer, secret scan, generated docs and statistics current |
 
 ## Audit outcome
 
