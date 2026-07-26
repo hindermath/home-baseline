@@ -89,10 +89,26 @@ from the corrected Level-0 baseline.
   one Level 0, eight Level 1, and 36 Level 2.
 - Exactly 32 outcomes are `UpdateRequired`; the twelve independent preset or
   preset-collection outcomes are `NoUpdateRequired`.
-- The Level-0 outcome remains explicitly pending until the reviewed Feature-013
-  head and merge commit can be recorded by causal closeout.
+- The Level-0 outcome is finalized by this causal closeout with the reviewed
+  Feature-013 head and merge commit.
 - `finding-dispositions.json` contains exactly 15 unique findings and 15
   `Resolved` decisions.
+
+## Feature Delivery and Causal Closeout
+
+- Feature PR: `#131`
+- Reviewed head: `fa6df64aa9d8bef5b2aeecba86cba99f01fe2feb`
+- Merge commit: `e0e54f6e1a972f8f4c7c9ffde84d29716775be17`
+- Exact-head checks: 20/20 passed.
+- Exact-head review state: zero threads, zero comments, zero requested changes.
+- Temporary autonomous gate evidence: six primary entries, zero supplemental
+  entries, Bash and PowerShell validators passed.
+- The Level-0 outcome is finalized in `fleet-remediation-evidence.json`.
+- The completed D3 intake and its prior 18-target Series review are archived
+  without rewriting their historical evidence.
+- The successor Series is `Ready` with 17 targets, six roots, 22 dependencies,
+  zero findings, and zero open questions.
+- No successor feature or intake run was started.
 
 ## Governance Boundary
 

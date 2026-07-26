@@ -1,22 +1,28 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "ccee74f4-5f22-4a56-a7b9-949f54a6d738",
+  "reviewId": "a8235f46-1f98-4d77-9f32-e504a99420c2",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-26T16:47:44.792Z",
+  "reviewedAt": "2026-07-26T15:37:57Z",
   "repository": {
     "root": ".",
-    "head": "e0e54f6e1a972f8f4c7c9ffde84d29716775be17"
+    "head": "18ff5a69341a9fa5dbdacbc0418b6c3a24a4262b"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "33370ff9c21341af9a1d7540ed4e09e752ecba45c38473fa18429d7ae9c8f4ee"
+    "normalizedSha256": "b15fb85a824410f2e96b051772209f9238fa451abb54a9d4451ddc2788f5c4a4"
   },
   "targets": [
     {
-      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "role": "Primary",
+      "normalizedSha256": "198ed4a6795a2784d66774d4a76913962fe8efaed4316ead6648385e2d68ac69",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
       "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
       "gitBlob": "N/A"
     },
@@ -123,6 +129,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -142,13 +149,14 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 17 active paths, roles, and exact order match the bound schema-1.1 request",
-      "The six declared roots equal the zero-indegree target set after the merged D3 closeout",
-      "Twenty-two unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Features 011 through 013 and their causal closeouts remain archived evidence",
-      "Exactly 32 repository deliveries and DOC001 through DOC015 are closed",
+      "All 18 active paths, roles, and exact order match the bound schema-1.1 request",
+      "The single declared root D3 equals the zero-indegree target set after the merged D2 closeout",
+      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Feature 012 is archived after PR #128 and all 15 D1 findings remain routed exclusively to D3",
+      "D3 applies the merged Documentation Impact baseline to every registered Level-1 and Level-2 repository and revalidates Level 0",
+      "Feature 009 remains historical gate evidence and is not an active Series target",
       "Positions 1 through 17 retain their learner-readable dependency boundaries",
-      "No successor feature or intake run was started automatically"
+      "All active intakes retain copy-ready prompts and bounded delivery authority"
     ],
     "workers": []
   },
@@ -158,5 +166,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "a8235f46-1f98-4d77-9f32-e504a99420c2"
+  "supersedes": "d9ca67af-26df-4adc-93e7-e1f6ffc34da3"
 }

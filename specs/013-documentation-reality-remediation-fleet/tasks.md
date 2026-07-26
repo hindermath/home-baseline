@@ -79,11 +79,11 @@
 ## Phase 6: Feature Delivery and Closeout
 
 - [X] T062 Commit, push, and create the Feature-013 PR
-- [ ] T063 Converge mandatory checks and review threads
-- [ ] T064 Validate exact-head provider evidence
-- [ ] T065 Merge Feature 013 under the authorized policy boundary
-- [ ] T066 Synchronize clean local Level-0 `main`
-- [ ] T067 Archive D3 and advance the active Series
-- [ ] T068 Complete retrospective and causal closeout if required
-- [ ] T069 Prove all changed repositories clean and synchronized
-- [ ] T070 Finish without starting Position 1 or another intake
+- [X] T063 Converge mandatory checks and review threads
+- [X] T064 Validate exact-head provider evidence
+- [X] T065 Merge Feature 013 under the authorized policy boundary
+- [X] T066 Synchronize clean local Level-0 `main`
+- [X] T067 Archive D3 and advance the active Series
+- [X] T068 Complete retrospective and causal closeout if required
+- [X] T069 Prove all changed repositories clean and synchronized
+- [X] T070 Finish without starting Position 1 or another intake
