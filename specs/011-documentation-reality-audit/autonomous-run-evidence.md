@@ -34,7 +34,7 @@ both passed before feature creation.
 | Analyze | Pass | 14 FR, 9 CR, 9 SC mapped; no Critical/High/Medium finding |
 | Implement | Pass | 45 targets, 248 areas, 15 Level-2 findings |
 | Validate | Pass | Feature tests, audit ledger, Homogeneity, generated docs, statistics, PSScriptAnalyzer, secret scan |
-| Deliver | Pending | Feature PR and MergeAndSync closeout |
+| Publish/Review | In progress | Feature PR #126 |
 | Retrospective | Pending | D1 result without automatic D2 start |
 
 ## Scope guard
@@ -96,3 +96,11 @@ The transient Level-0 script-reference drift was reproduced only in the
 feature worktree, where new Quickstart code blocks legitimately change the
 embedded-script inventory. The clean base commit passes 30/30 and therefore no
 false `DOC###` finding was retained.
+
+## Remote closeout
+
+- Feature PR: [#126](https://github.com/hindermath/home-baseline/pull/126)
+- Publication authority: explicit `MergeAndSync`
+- Reviewed head: pending after evidence synchronization
+- Actionable review threads: pending
+- Merge and D1 archival: pending
