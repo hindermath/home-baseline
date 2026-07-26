@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "5df6ef6a-a64b-4b59-9a08-83db7e78593e",
+  "intakeId": "317ab772-2a24-4312-b184-e7e32dd4aaba",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-26T13:55:42Z",
+  "operation": {
+    "operationId": "26f2128e-24f5-48a9-a8e9-4c20b9e1e36a",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction on 2026-07-26 to target the three documentation preflight intakes at the registered Level-0/1/2 fleet."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+    "normalizedSha256": "198ed4a6795a2784d66774d4a76913962fe8efaed4316ead6648385e2d68ac69"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved documentation reality and continuous-governance request",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "47dd23a1739799af1489324a282832e38ee35f25bcbab7867c7e633b80c39040",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved Level-0/1/2 fleet scope correction",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "23df1f1213c4d12920e3c4145ba70f63572334e0a18a02a844e0c5aa227c64d6",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: explicit current update authority in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Repositories gehören zum Lauf?",
+      "answer": "Level 0 als revalidierte Governance-Baseline sowie alle beim Laufbeginn zentral registrierten Level-1- und Level-2-Repositories; die Anzahl wird nicht historisch festgeschrieben.",
+      "evidence": "Current user request and registry-based fleet policy"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Darf Home-Baseline-Dokumentation blind propagiert werden?",
+      "answer": "Nein. Jedes Repository wird gegen seine eigene Sprache, Runtime, Toolchain und Evidence geprüft.",
+      "evidence": "Project-ownership and fleet-safety policy"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync über separate nicht leere Repository-PRs mit Remote-Freshness-Barriere und engem bestehendem Bypass-Vertrag.",
+      "evidence": "Explicit current user instruction and existing approved boundary"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/317ab772-2a24-4312-b184-e7e32dd4aaba/2ce054e9-594f-40ae-b05a-a00ede1d68c5/receipt.json",
+    "targetNormalizedSha256": "28d811b66d80ead89f9e910b9dad4a1727740ec827714a2742b657c1fd1f4938",
+    "archiveTargetPath": "specs/intake-authoring-archive/317ab772-2a24-4312-b184-e7e32dd4aaba/2ce054e9-594f-40ae-b05a-a00ede1d68c5/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/317ab772-2a24-4312-b184-e7e32dd4aaba/2ce054e9-594f-40ae-b05a-a00ede1d68c5/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Explicit current user instruction on 2026-07-26.",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md"
+}

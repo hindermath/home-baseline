@@ -1,19 +1,19 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "6b072e8d-3393-4e04-8de2-1b0ed761b9f9",
+  "reviewId": "4d090715-0053-4246-b1e4-a04b03d14fb1",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+      "path": "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
       "role": "Primary"
     },
     {
-      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
       "role": "OrderedMember"
     },
     {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+      "path": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "role": "OrderedMember"
     },
     {
@@ -87,9 +87,9 @@
   ],
   "series": {
     "orderedTargetPaths": [
-      "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
-      "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
-      "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+      "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+      "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
+      "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -109,46 +109,46 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "roots": [
-      "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md"
+      "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md"
     ],
     "dependencies": [
       {
-        "from": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
-        "to": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+        "from": "Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+        "to": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
         "kind": "DocumentationAuditBaseline"
       },
       {
-        "from": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
-        "to": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md",
+        "to": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "kind": "DocumentationGovernanceBaseline"
       },
       {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
         "kind": "DocumentationGovernanceGate"
       },
       {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
         "kind": "DocumentationGovernanceGate"
       },
       {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
         "kind": "DocumentationGovernanceGate"
       },
       {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
         "kind": "DocumentationGovernanceGate"
       },
       {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "to": "Lastenheft_CICD_Pipeline_Konfiguration.md",
         "kind": "DocumentationGovernanceGate"
       },
       {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "from": "Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
         "to": "Lastenheft_PowerShell_Cmdlets.md",
         "kind": "DocumentationGovernanceGate"
       },
