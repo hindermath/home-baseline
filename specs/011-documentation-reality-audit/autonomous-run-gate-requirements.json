@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "audit-contract",
+      "applicability": "Applicable",
+      "requiredScope": "Validate positive and negative documentation-audit ledger contracts.",
+      "requiredCommandTokens": ["test_documentation_audit"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "audit-ledger",
+      "applicability": "Applicable",
+      "requiredScope": "Validate exact registry coverage, decisions, findings, handoffs, and privacy boundaries.",
+      "requiredCommandTokens": ["validate_documentation_audit.py"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "homogeneity",
+      "applicability": "Applicable",
+      "requiredScope": "Validate documentation, statistics, generated content, and agent parity.",
+      "requiredCommandTokens": ["check-homogeneity.sh"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "powershell-static-analysis",
+      "applicability": "Applicable",
+      "requiredScope": "Validate tracked PowerShell surfaces remain compliant.",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer.ps1"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "secret-scan",
+      "applicability": "Applicable",
+      "requiredScope": "Reject secrets and private path evidence.",
+      "requiredCommandTokens": ["scan-agent-secrets.sh", "--fail-on-high"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "docfx-web-a11y",
+      "applicability": "N/A",
+      "requiredScope": "DocFX and browser accessibility validation.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "D1 changes feature Markdown and JSON only; there is no DocFX or browser UI.",
+      "reevaluationTrigger": "Re-evaluate if generated HTML, navigation, or browser UI changes."
+    },
+    {
+      "gateId": "sbom-vex-slsa",
+      "applicability": "N/A",
+      "requiredScope": "Supply-chain artifact generation.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "D1 adds no package, dependency, binary, or release artifact.",
+      "reevaluationTrigger": "Re-evaluate when dependencies or distributable artifacts change."
+    }
+  ]
+}

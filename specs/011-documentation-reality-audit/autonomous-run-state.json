@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "c5a34f9c-ec2f-467c-937e-2c6e2915dfba",
+  "featurePath": "specs/011-documentation-reality-audit",
+  "branch": "011-documentation-reality-audit",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "030f6a979c2e88e1d96347e6faafbdc0c8b8b723",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
+      "sha256": "75a21348aaf46d1d81b6673903f5144bcb4c7fae64bcff435859c08705eead3e"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/registrierte-level-0-1-2-dokumentations-wirklichkeitsabgleich-audit.json",
+      "sha256": "9941989751a3ceefa3b87cb9e224ec5588129081dbce6caf2f5568437001fb7a"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "67dd910a6a8c2ec93ab2cd70012d24ba18352b3fbbe7e90e2a7521882c5b9ff8"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "110ca23566830ee4535a33749779f378beb742aef77ab99c3cad534fdc980646"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "8a2e3740d2183122f0ba9b83d1504b7824a670289cd08358ce38da189c3c590e"
+    }
+  ],
+  "tasks": {
+    "path": "specs/011-documentation-reality-audit/tasks.md",
+    "sha256": "92efead1520b76c115cbd6725a01d6a927810017b9871b0813a840289b70b1c0",
+    "completed": 47,
+    "total": 55
+  },
+  "lastPassingGate": "Local validation: audit, tests, Homogeneity 30/30, generated docs, statistics, PSScriptAnalyzer and secrets passed",
+  "nextExactAction": "Finalize the single feature commit, push it, and create the Feature 011 PR",
+  "lastOperation": {
+    "kind": "Validate",
+    "state": "Completed",
+    "summary": "All local feature and repository gates passed; 44 fleet targets remain unchanged."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-26T17:10:00Z"
+}
