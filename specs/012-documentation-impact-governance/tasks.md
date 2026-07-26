@@ -54,7 +54,7 @@
 - [X] T038 Run PSScriptAnalyzer and secret scan
 - [X] T039 Run Spec Kit and agent parity checks
 - [X] T040 Update and render project statistics
-- [ ] T041 Validate exact staged candidate
+- [X] T041 Validate exact staged candidate
 - [ ] T042 Commit, push and create PR
 - [ ] T043 Converge mandatory checks and review threads
 - [ ] T044 Validate exact-head provider evidence

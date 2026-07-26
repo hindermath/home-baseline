@@ -79,3 +79,4 @@ for D3.
 | Script reference | Current, 119 canonical scripts |
 | Project statistics | Current at implementation checkpoint |
 | Agent guidance parity | Pass, all five maintained surfaces |
+| Exact local candidate | Pass, intended paths only and clean structured output |
