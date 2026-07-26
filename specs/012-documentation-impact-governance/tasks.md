@@ -55,10 +55,10 @@
 - [X] T039 Run Spec Kit and agent parity checks
 - [X] T040 Update and render project statistics
 - [X] T041 Validate exact staged candidate
-- [ ] T042 Commit, push and create PR
-- [ ] T043 Converge mandatory checks and review threads
-- [ ] T044 Validate exact-head provider evidence
-- [ ] T045 Merge with authorized policy boundary
-- [ ] T046 Synchronize clean local main
-- [ ] T047 Archive D2 and advance active Series to D3
-- [ ] T048 Complete retrospective without starting D3
+- [X] T042 Commit, push and create PR
+- [X] T043 Converge mandatory checks and review threads
+- [X] T044 Validate exact-head provider evidence
+- [X] T045 Merge with authorized policy boundary
+- [X] T046 Synchronize clean local main
+- [X] T047 Archive D2 and advance active Series to D3
+- [X] T048 Complete retrospective without starting D3

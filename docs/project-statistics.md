@@ -130,6 +130,7 @@
 | 2026-07-25 | Dokumentations-Wirklichkeitsabgleich als verbindlicher Vorlauf | — | — | — | Drei neue, noch nicht gestartete Intakes bilden den Vorlauf D1 bis D3: vollständiger read-only Level-0-Audit, findings-basierte Remediation mit dauerhaftem Documentation-Impact-Vertrag und kontrollierter Level-2-Flottenabgleich. Die normative Zielablage umfasst Constitution und Spec-Kit-Memory; Templates, Checklists, PR-Evidence, fünf Agentenflächen und deterministische Gates übernehmen den operativen Vertrag. Der Schema-1.1-Series-Review ist `Ready` und belegt 20 Ziele, eine Root, 30 eindeutige azyklische Kanten, null Findings und null offene Entscheidungen. D3 sperrt die sechs bisherigen Roots, damit Positionen 1 bis 17 erst mit der gemergten Dokumentationsbaseline fortfahren. |
 | 2026-07-26 | Canonical-Fleet-Wartungshärtung | — | — | — | Ein formaler Series-Review belegt, dass kein noch aktives Lastenheft die erneut erkannten Legacy-Ziele oder die lokale Elf-Preset-Profilmigration übernimmt. Der gemeinsame Fleet-Vertragskern liefert deshalb ausschließlich aktive Git-Ziele der Klasse `canonical-fleet`; Bash- und PowerShell-Orchestrator registrieren jedes deklarierte Ziel einzeln, und die Propagation verwendet nur die validierte Registry. Plattformübergreifende Regressionen schließen nicht deklarierte, Preset- und inaktive Repositories aus. Der Dry-run führt Preset- und Toolchain-Vorschauen trotz vorhergesagtem Drift vollständig aus und schreibt anschließend einen wahrheitsgemäßen blockierten JSON-Abschlussstatus. Die lokale Registry wurde bei unverändert 32 eindeutigen Pfaden vollständig auf das Elf-Preset-Profil migriert; die sieben Legacy-Ordner blieben unangetastet. Das Delta vor Statistikpflege umfasst `+586/-198`, also 388 Nettozeilen. |
 | 2026-07-26 | Feature 011 Dokumentations-Wirklichkeitsaudit | — | — | — | D1 hat Level 0, acht registrierte Level-1- und 36 Level-2-Ziele am exakten Git-Stand read-only geprüft. Die maschinenlesbare Evidence umfasst 248 Dokumentationsfamilien mit genau einer Entscheidung. 33 repository-native Homogeneity-Läufe bestanden, zwölf Preset-/Koordinationsziele besitzen begründet keinen solchen Wrapper. 15 Level-2-Findings dokumentieren fehlende bilinguale README-/CLAUDE-Abschnitte und werden vollständig an D3 übergeben; ein zunächst sichtbarer Level-0-Drift wurde im sauberen Basis-Worktree als feature-eigener Generierungseffekt widerlegt. Kein Ziel-Repository wurde verändert. Das Implementierungsdelta vor Statistikpflege umfasst 31 164 Nettozeilen, überwiegend vollständige strukturierte Flotten-Evidence. |
+| 2026-07-26 | Feature 012 Documentation-Impact-Governance | — | — | — | D2 hat den verbindlichen Documentation-Impact-Vertrag in Constitution, Spec-Kit-, PR-, Workflow- und Agentenflaechen verankert. Deterministische Bash-/PowerShell-Tests pruefen die vier Entscheidungen und unzulaessige Deferred-Zustaende. Alle 15 D1-Findings bleiben D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. PR #128 wurde nach 20 gruenen Checks, null Review-Threads und bestandenem Exact-Head-Nachweis gemergt. Das Implementierungsdelta vor Statistikpflege umfasst 1 407 Nettozeilen. |
 
 ---
 
@@ -702,27 +703,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 377817 lines |
-| Textdateien / Text files | 2293 |
+| Textbasis / Text base | 378381 lines |
+| Textdateien / Text files | 2297 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-26 |
 | Aktivtage / Active days | 74 |
-| Relevante Commits / Relevant commits | 553 |
-| Zeilen je Aktivtag / Lines per active day | 5105.6 |
+| Relevante Commits / Relevant commits | 554 |
+| Zeilen je Aktivtag / Lines per active day | 5113.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 31 days |
-| Speedup vs. 80 lines/day | 63.8x |
+| Speedup vs. 80 lines/day | 63.9x |
 | Speedup vs. 100 lines/day | 51.1x |
-| Methodik / Methodology | v2; source `59d64823a62d` |
+| Methodik / Methodology | v2; source `76818a5f5704` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.1% | 11534
-Dokumentation / Documentation   [###############.....]  73.1% | 276245
-Skripte / Scripts               [##..................]  12.2% | 45920
-Konfiguration / Configuration   [##..................]  11.3% | 42730
+Tests                           [#...................]   3.0% | 11534
+Dokumentation / Documentation   [###############.....]  73.0% | 276354
+Skripte / Scripts               [##..................]  12.1% | 45920
+Konfiguration / Configuration   [##..................]  11.4% | 43185
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 758
 ```
@@ -830,15 +831,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..33
-   cap 50000 | . .
-       41667 | . .
-       33333 | . .
-       25000 | . #
-       16667 | . #
-        8333 | . #
-           0 +-----
-             32 33
+Slots 32..34
+   cap 50000 | . . .
+       41667 | . . .
+       33333 | . . .
+       25000 | . # .
+       16667 | . # .
+        8333 | . # .
+           0 +-------
+             32 33 34
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -877,6 +878,7 @@ Slots 32..33
 | 31 | Intake-Sequencing-Preset v0.1.0 / Intake sequencing preset v0.1.0 | 3231 |
 | 32 | Canonical-Fleet-Wartungshärtung / Canonical fleet maintenance hardening | 388 |
 | 33 | Dokumentations-Wirklichkeitsaudit / Documentation reality audit | 31164 |
+| 34 | Documentation-Impact-Governance / Documentation Impact governance | 1407 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -886,7 +888,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 63.8x
+80 lines/day       [#############.......] 63.9x
 100 lines/day      [##########..........] 51.1x
 ```
 
@@ -900,7 +902,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##########..........] 5105.6
+Visible repository [##########..........] 5113.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -926,6 +928,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-26. Es enthaelt 74 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 299558 |
+| 2026-07 | 300330 |
 
 <!-- project-statistics-v2:end -->
