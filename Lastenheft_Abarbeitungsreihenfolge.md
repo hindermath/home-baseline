@@ -69,7 +69,7 @@ nummerierte Reihenfolge fortgesetzt wird. Dadurch verwenden alle späteren
 |---:|---|---|
 | D1 (abgeschlossen / completed) | `Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.011-documentation-reality-audit.md` | Feature 011 und PR #126 inventarisierten Level 0 und alle registrierten Level-1-/Level-2-Repositories read-only. Die 15 mittleren Findings sind D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. / Feature 011 and PR #126 audited Level 0 and every registered Level 1 and Level 2 repository read-only. Its 15 medium findings are assigned to D3; no central Level 0 remediation need was found. |
 | D2 (abgeschlossen / completed) | `Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.012-documentation-impact-governance.md` | Feature 012 und PR #128 bestaetigten null zentrale Level-0-Remediation-Findings, disponierten alle 15 D1-Findings nach D3 und verankerten den flottenweiten Documentation-Impact-Vertrag. / Feature 012 and PR #128 confirmed zero central Level 0 remediation findings, assigned all 15 D1 findings to D3, and established the fleet-wide Documentation Impact contract. |
-| D3 | `Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md` | Prüft und korrigiert alle registrierten Level-1-/Level-2-Repositories gegen ihre jeweilige Wirklichkeit und revalidiert Level 0 als Baseline. / Audits and corrects every registered Level 1 and Level 2 repository against its own reality and revalidates Level 0 as the baseline. |
+| D3 (abgeschlossen / completed) | `Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.013-documentation-reality-remediation-fleet.md` | Feature 013 und PR #131 lieferten die Documentation-Impact-Baseline über 32 nicht leere Repository-PRs aus, schlossen `DOC001` bis `DOC015` und revalidierten Level 0. / Feature 013 and PR #131 delivered the Documentation Impact baseline through 32 non-empty repository PRs, closed `DOC001` through `DOC015`, and revalidated Level 0. |
 
 *The mandatory D1–D3 preflight completes before the numbered order resumes, so
 all later work uses the validated documentation-impact baseline.*
@@ -139,11 +139,9 @@ D3 Doku-Baseline --+--> 1 Windows -----------\
 
 ```
 
-Die einzige aktive Root dieser Serie ist nach dem Abschluss von D1 und D2
-`D3`. Die Uebergaenge D1 zu D2 und D2 zu D3 bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. Nach D3 werden die bisherigen
-Roots der nummerierten Reihenfolge freigegeben: `1`, `2`, `3`, `5`, `9` und
-`10`.
+Nach dem Abschluss von D1, D2 und D3 sind die aktiven Roots der nummerierten
+Reihenfolge `1`, `2`, `3`, `5`, `9` und `10`. Die Uebergaenge D1 zu D2 und D2
+zu D3 bleiben in der archivierten Schema-1.1-Review-Evidence nachweisbar.
 Feature 009 ist kein aktiver Serienknoten mehr. Sein archiviertes Lastenheft
 und sein Abschluss bleiben historische Evidence fuer das TUI-Gate.
 

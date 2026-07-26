@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "ccee74f4-5f22-4a56-a7b9-949f54a6d738",
+  "reviewId": "a8235f46-1f98-4d77-9f32-e504a99420c2",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -75,6 +79,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -94,14 +99,39 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "roots": [
-      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
-      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-      "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "Lastenheft_PowerShell_Cmdlets.md"
+      "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+        "kind": "DocumentationGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+        "kind": "DocumentationGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+        "kind": "DocumentationGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "kind": "DocumentationGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "to": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+        "kind": "DocumentationGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+        "to": "Lastenheft_PowerShell_Cmdlets.md",
+        "kind": "DocumentationGovernanceGate"
+      },
       {
         "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
         "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
