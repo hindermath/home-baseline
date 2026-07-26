@@ -1302,22 +1302,28 @@ Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`
 
 *The GSDB preflight without a Spec Kit run is performed with `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` is read-only. A normal run writes `docs/security/gsdb-self-assessment.md`, creates or updates `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md`, and adds that requirements document to `Lastenheft_Abarbeitungsreihenfolge.md`. The preflight does not start a Spec Kit run; the generated requirements document is intake for a later manually started `/speckit-specify` run.*
 
-Die wiederkehrende Wartung nutzt `register-level2-repository.* --scan-root` /
-`-ScanRoot`, um bekannte Level-1-Wurzeln nach neuen Git-Repositories zu
-durchsuchen. Das ist die Registry-Drift-Pruefung: neue Level-2-Repos werden als
-GSDB-Kandidaten sichtbar und koennen in die lokale Merkliste uebernommen werden.
-Eindeutige Sprachsuffixe gelten bei vorbereiteten Lernrepos bereits vor dem
-Runtime-Scaffold. Wartungsscans bewahren bekannte Sprach-, MSL-, GSDB- und
+Eine bewusst manuell gestartete Kandidatensuche kann
+`register-level2-repository.* --scan-root` / `-ScanRoot` verwenden, um eine
+bekannte Level-1-Wurzel nach neuen Git-Repositories zu durchsuchen. Das
+Ein-Kommando-Wartungsskript verwendet diese breite Suche absichtlich nicht:
+Es registriert nur aktive `canonical-fleet`-Ziele des Fleet-Manifests. Neue
+Level-2-Repos werden daher erst nach ausdruecklicher Sollzustandsentscheidung
+in Manifest und lokaler Registry Teil der Wartungsflotte. Eindeutige
+Sprachsuffixe gelten bei vorbereiteten Lernrepos bereits vor dem
+Runtime-Scaffold. Manuelle Scans bewahren bekannte Sprach-, MSL-, GSDB- und
 Preset-Metadaten; explizite Parameter bleiben der einzige Weg fuer eine
 begruendete Herabstufung oder Ausnahme.
 
-*Recurring maintenance uses `register-level2-repository.* --scan-root` /
-`-ScanRoot` to scan known level-1 roots for new Git repositories. This is the
-registry drift check: new level-2 repositories become visible as GSDB candidates
-and can be added to the local memory list. Unambiguous language suffixes apply
-to prepared learning repositories before their runtime scaffold exists.
-Maintenance scans preserve known language, MSL, GSDB, and preset metadata;
-explicit parameters are the only way to record a justified downgrade or exception.*
+*A deliberately initiated manual candidate search may use
+`register-level2-repository.* --scan-root` / `-ScanRoot` to scan a known
+level-1 root for new Git repositories. The one-command maintenance script
+intentionally does not use this broad discovery. It registers only active
+`canonical-fleet` targets from the fleet manifest. A new level-2 repository
+therefore joins the maintenance fleet only after an explicit desired-state
+decision updates the manifest and local registry. Unambiguous language suffixes
+apply to prepared learning repositories before their runtime scaffold exists.
+Manual scans preserve known language, MSL, GSDB, and preset metadata; explicit
+parameters are the only way to record a justified downgrade or exception.*
 
 ```bash
 bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run
@@ -1357,11 +1363,12 @@ synchronization.*
    Rust/Cargo und Swift. Auf macOS fehlende Homebrew-verfuegbare Toolchains mit
    `brew install` nachziehen; Swift ueber die installierte Apple-Toolchain
    pruefen.
-5. Die GSDB-Registry-Drift pruefen: bekannte Level-1-Wurzeln mit
-   `register-level2-repository.* --scan-root` / `-ScanRoot` zuerst im
-   Trockenlauf durchsuchen, neu erkannte GSDB-relevante Repositories
-   bestaetigen und in `~/.home-baseline/level2-repository-registry.json`
-   registrieren. Die public-safe Vorlage bleibt
+5. Die GSDB-Registry gegen die aktiven `canonical-fleet`-Ziele des
+   Fleet-Manifests pruefen. Eine zusaetzliche manuelle Kandidatensuche mit
+   `register-level2-repository.* --scan-root` / `-ScanRoot` erfolgt nur bei
+   ausdruecklichem Bedarf; neue Ziele werden erst nach Bestaetigung in Manifest
+   und `~/.home-baseline/level2-repository-registry.json` aufgenommen. Die
+   public-safe Vorlage bleibt
    `scripts/config/level2-repository-registry.example.json`.
 6. `constitution.md` und `.specify/memory/constitution.md` nur aktualisieren,
    wenn sich verbindliche Level-2-Umgebungsdaten wie Runtime, Build/Test,
@@ -1392,11 +1399,13 @@ synchronization.*
 4. Check the six MSL CLI toolchains: `.NET`, Go, Java/Javac, Python, Rust/Cargo,
    and Swift. On macOS, install missing Homebrew-available toolchains with
    `brew install`; verify Swift through the installed Apple toolchain.
-5. Check GSDB registry drift: scan known level-1 roots first in dry-run mode
-   with `register-level2-repository.* --scan-root` / `-ScanRoot`, confirm newly
-   detected GSDB-relevant repositories, and register them in
-   `~/.home-baseline/level2-repository-registry.json`. The public-safe seed
-   remains `scripts/config/level2-repository-registry.example.json`.
+5. Check the GSDB registry against active `canonical-fleet` targets in the
+   fleet manifest. Run an additional manual candidate scan with
+   `register-level2-repository.* --scan-root` / `-ScanRoot` only when
+   explicitly needed; new targets join the manifest and
+   `~/.home-baseline/level2-repository-registry.json` only after confirmation.
+   The public-safe seed remains
+   `scripts/config/level2-repository-registry.example.json`.
 6. Update `constitution.md` and `.specify/memory/constitution.md` only when
    binding level-2 environment facts change, such as runtime, build/test, A11Y,
    statistics, or agent surfaces.
@@ -1490,17 +1499,20 @@ explicit approval.*
 
 Fuer die normale Gesamtwartung ist nur noch der passende Orchestrator noetig.
 Ohne Optionen aktualisiert er Level-0, synchronisiert `~/`, aktualisiert alle
-dynamisch erkannten Level-1-/Level-2-Repositories per Fast-forward, pflegt die
-lokale GSDB-Registry, prueft die Wartungspaket-Verteilung und wartet danach die
-Maschinen-Toolchain. Vor dem ersten echten Lauf auf einem weiteren System sind
-`--check-only` / `-CheckOnly` und anschliessend die Vorschau empfohlen.
+aktiven `canonical-fleet`-Ziele des Fleet-Manifests per Fast-forward, pflegt
+die lokale GSDB-Registry, prueft die Wartungspaket-Verteilung und wartet danach
+die Maschinen-Toolchain. Nicht deklarierte Legacy-Ordner werden weder erneut
+registriert noch in die Propagation aufgenommen. Vor dem ersten echten Lauf
+auf einem weiteren System sind `--check-only` / `-CheckOnly` und anschliessend
+die Vorschau empfohlen.
 
 *Normal full maintenance now needs only the matching orchestrator. Without
-options it updates Level-0, synchronizes `~/`, fast-forwards all dynamically
-discovered Level-1/Level-2 repositories, maintains the local GSDB registry,
-checks maintenance-package distribution, and then maintains the machine
-toolchain. On another machine, run check-only and then preview before the first
-actual run.*
+options it updates Level-0, synchronizes `~/`, fast-forwards all declared
+active `canonical-fleet` Level-1/Level-2 targets, maintains the local
+GSDB registry, checks maintenance-package distribution, and then maintains the
+machine toolchain. Undeclared legacy directories are neither re-registered nor
+included in propagation. On another machine, run check-only and then preview
+before the first actual run.*
 
 ```bash
 # macOS / Linux

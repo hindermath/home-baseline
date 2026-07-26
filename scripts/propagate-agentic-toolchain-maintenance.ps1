@@ -5,14 +5,15 @@
     Propagates the canonical toolchain maintenance package to Level-1/Level-2 repositories.
 
 .DESCRIPTION
-    Liest die zentral verwaltete Dateiliste aus Level-0, erkennt bestehende
-    Level-1- und Level-2-Repositories dynamisch sowie ueber die lokale Registry
-    und kopiert nur fehlende oder abweichende Wartungsdateien. Lokal veraenderte
-    verwaltete Dateien werden nicht ueberschrieben.
+    Liest die zentral verwaltete Dateiliste aus Level-0 und verarbeitet
+    bestehende Level-1- und Level-2-Repositories ausschliesslich aus der zuvor
+    validierten lokalen Registry. Nicht registrierte Verzeichnisse bleiben
+    unangetastet. Lokal veraenderte verwaltete Dateien werden nicht
+    ueberschrieben.
 
-    Reads the centrally managed Level-0 file manifest, discovers existing
-    Level-1 and Level-2 repositories dynamically and through the local registry,
-    and copies only missing or different maintenance files. Locally modified
+    Reads the centrally managed Level-0 file manifest and processes existing
+    Level-1 and Level-2 repositories exclusively from the previously validated
+    local registry. Unregistered directories remain untouched. Locally modified
     managed files are never overwritten.
 
 .PARAMETER DryRun
@@ -138,19 +139,6 @@ function Get-HBManagedRepositories {
     }
 
     $repositories = @{}
-    foreach ($directory in Get-ChildItem -LiteralPath $HomeDir -Directory -Force -ErrorAction SilentlyContinue) {
-        $path = $directory.FullName
-        if ($path -eq $sourceRoot -or -not (Test-HBManagedRepository -Path $path)) {
-            continue
-        }
-        $repositories[$path] = 1
-        foreach ($child in Get-ChildItem -LiteralPath $path -Directory -Force -ErrorAction SilentlyContinue) {
-            if (Test-HBManagedRepository -Path $child.FullName) {
-                $repositories[$child.FullName] = 2
-            }
-        }
-    }
-
     $registryData = Get-Content -LiteralPath $Registry -Raw | ConvertFrom-Json
     foreach ($entry in @($registryData.repositories)) {
         if ($entry.level -notin 1, 2 -or -not $entry.path) {
@@ -161,7 +149,7 @@ function Get-HBManagedRepositories {
         if (-not $path.StartsWith($homePrefix, [StringComparison]::OrdinalIgnoreCase)) {
             continue
         }
-        if (Test-HBManagedRepository -Path $path) {
+        if ($path -ne $sourceRoot -and (Test-HBManagedRepository -Path $path)) {
             $repositories[$path] = [int] $entry.level
         }
     }

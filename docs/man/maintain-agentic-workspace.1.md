@@ -47,13 +47,19 @@ Die portable Sollquelle steht in
 `scripts/config/agentic-workspace-fleet.json`. Sie unterscheidet kanonische
 Flottenziele, Preset-Repositories und reine Collections. Der gemeinsame
 Python-Standardbibliothekskern validiert Pfade, Remotes, Branches und
-Ahead-/Behind-Zustaende fuer beide Einstiegspunkte identisch.
+Ahead-/Behind-Zustaende fuer beide Einstiegspunkte identisch. Registry-Aufbau
+und Wartungspaket-Propagation werden auf aktive Git-Ziele der Klasse
+`canonical-fleet` begrenzt. Eine Dateisystemsuche darf keine nicht
+deklarierten Legacy-Repositories erneut registrieren oder propagieren.
 
 *The portable desired state lives in
 `scripts/config/agentic-workspace-fleet.json`. It distinguishes canonical
 fleet targets, preset repositories, and directory-only collections. The
 shared Python standard-library core validates paths, remotes, branches, and
-ahead/behind states identically for both entry points.*
+ahead/behind states identically for both entry points. Registry maintenance
+and maintenance-package propagation are restricted to active Git targets in
+the `canonical-fleet` class. Filesystem discovery cannot re-register or
+propagate undeclared legacy repositories.*
 
 Im Check-only-Modus wird der manifestgesteuerte Home-Sync jetzt ebenfalls
 schreibfrei ausgefuehrt. Nach einem echten Sync wiederholt die
@@ -83,8 +89,8 @@ entstehen ein vollstaendiges lokales Log unter `~/.home-baseline/logs/` und ein
 JSON-Bericht unter `~/.home-baseline/reports/`. Beide verwenden dieselbe Run-ID.
 
 *Without options, the script performs full maintenance: it fast-forwards
-Level-0, synchronizes the local home baseline, dynamically discovers and
-fast-forwards Level-1/Level-2 repositories, maintains the local registry,
+Level-0, synchronizes the local home baseline, resolves declared active
+Level-1/Level-2 repositories from the fleet manifest, maintains the local registry,
 checks the canonical maintenance package and registry-selected preset profile,
 maintains the platform toolchain, and verifies the final state. It never
 switches an existing branch, resets worktrees, or commits/pushes target

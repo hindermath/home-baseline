@@ -426,6 +426,42 @@ def validate_registry(args: argparse.Namespace) -> int:
     return 0
 
 
+def list_canonical_repositories(args: argparse.Namespace) -> int:
+    """Print active canonical Git repositories as level/path TSV records."""
+    try:
+        manifest = load_manifest(args.manifest)
+    except ContractError as exc:
+        print(f"REPOSITORIES\tFAILED\t{exc}", file=sys.stderr)
+        return 2
+
+    home = args.home_dir.resolve()
+    repositories: list[tuple[int, pathlib.Path]] = []
+    for target in manifest["targets"]:
+        if (
+            not target["active"]
+            or target["kind"] != "git-repository"
+            or target["maintenanceClass"] != "canonical-fleet"
+        ):
+            continue
+        relative = validate_relative_path(target["path"])
+        repository = home.joinpath(*relative.parts).resolve()
+        try:
+            repository.relative_to(home)
+        except ValueError:
+            print(
+                f"REPOSITORIES\tFAILED\ttarget resolves outside HOME: {target['path']}",
+                file=sys.stderr,
+            )
+            return 2
+        if args.existing_only and not (repository / ".git").is_dir():
+            continue
+        repositories.append((target["level"], repository))
+
+    for level, repository in sorted(repositories, key=lambda item: (item[0], str(item[1]).casefold())):
+        print(f"{level}\t{repository}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -450,6 +486,11 @@ def build_parser() -> argparse.ArgumentParser:
     registry.add_argument("--manifest", type=pathlib.Path, required=True)
     registry.add_argument("--registry", type=pathlib.Path, required=True)
     registry.set_defaults(handler=validate_registry)
+    repositories = subparsers.add_parser("canonical-repositories")
+    repositories.add_argument("--manifest", type=pathlib.Path, required=True)
+    repositories.add_argument("--home-dir", type=pathlib.Path, required=True)
+    repositories.add_argument("--existing-only", action="store_true")
+    repositories.set_defaults(handler=list_canonical_repositories)
     return parser
 
 

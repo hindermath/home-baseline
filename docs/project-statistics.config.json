@@ -265,6 +265,14 @@
       "labelEn": "Intake sequencing preset v0.1.0",
       "netLines": 3231,
       "activeDays": 1
+    },
+    {
+      "slot": 32,
+      "id": "canonical-fleet-maintenance-discovery-hardening",
+      "labelDe": "Canonical-Fleet-Wartungshärtung",
+      "labelEn": "Canonical fleet maintenance hardening",
+      "netLines": 340,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

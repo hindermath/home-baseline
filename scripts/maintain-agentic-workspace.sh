@@ -296,49 +296,10 @@ check_repository() {
 }
 
 discover_repositories() {
-  python3 - "$HOME_DIR" "$REGISTRY" "$SOURCE_ROOT" <<'PY'
-import json
-import pathlib
-import sys
-
-home = pathlib.Path(sys.argv[1]).resolve()
-registry = pathlib.Path(sys.argv[2])
-source = pathlib.Path(sys.argv[3]).resolve()
-
-def is_repo(path):
-    return (path / ".git").exists() and (
-        (path / "AGENTS.md").is_file() or (path / "CLAUDE.md").is_file()
-    )
-
-repos = {}
-for path in home.iterdir():
-    if not path.is_dir() or path.resolve() == source or not is_repo(path):
-        continue
-    repos[path.resolve()] = 1
-    for child in path.iterdir():
-        if child.is_dir() and is_repo(child):
-            repos[child.resolve()] = 2
-
-if registry.is_file():
-    data = json.loads(registry.read_text(encoding="utf-8"))
-    entries = data.get("repositories", []) if isinstance(data, dict) else data
-    for entry in entries:
-        if not isinstance(entry, dict) or entry.get("level") not in (1, 2):
-            continue
-        raw = entry.get("path")
-        if not isinstance(raw, str) or not raw:
-            continue
-        path = (home / raw).resolve()
-        try:
-            path.relative_to(home)
-        except ValueError:
-            continue
-        if path != source and is_repo(path) and path not in repos:
-            repos[path] = int(entry["level"])
-
-for path, level in sorted(repos.items(), key=lambda item: (item[1], str(item[0]).lower())):
-    print(f"{level}\t{path}")
-PY
+  python3 "$FLEET_ENGINE" canonical-repositories \
+    --manifest "$FLEET_MANIFEST" \
+    --home-dir "$HOME_DIR" \
+    --existing-only
 }
 
 ensure_registry() {
@@ -348,17 +309,12 @@ ensure_registry() {
 
   while IFS=$'\t' read -r level repo; do
     [ -n "$repo" ] || continue
-    [ "$level" = "1" ] || continue
     if [ "$CHECK_ONLY" -eq 1 ] || [ "$DRY_RUN" -eq 1 ]; then
-      preview_output="$(HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level 1 --registry "$REGISTRY" --source maintenance-discovery --dry-run)"
-      printf '%s\n' "$preview_output"
-      [[ "$preview_output" =~ \[dry-run\][[:space:]]+(added|updated): ]] && registry_drift=1
-      preview_output="$(HOME="$HOME_DIR" bash "$register_script" --scan-root "$repo" --level 2 --registry "$REGISTRY" --source maintenance-discovery --dry-run)"
+      preview_output="$(HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level "$level" --registry "$REGISTRY" --source maintenance-discovery --dry-run)"
       printf '%s\n' "$preview_output"
       [[ "$preview_output" =~ \[dry-run\][[:space:]]+(added|updated): ]] && registry_drift=1
     else
-      HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level 1 --registry "$REGISTRY" --source maintenance-discovery
-      HOME="$HOME_DIR" bash "$register_script" --scan-root "$repo" --level 2 --registry "$REGISTRY" --source maintenance-discovery
+      HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level "$level" --registry "$REGISTRY" --source maintenance-discovery
     fi
   done < <(discover_repositories)
 

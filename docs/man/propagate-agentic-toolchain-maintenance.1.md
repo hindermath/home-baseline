@@ -25,22 +25,26 @@ Toolchain-Wartungsskripte, deren fuenf JSON-Registries und die beiden
 Wartungs-Manpages. Die verwaltete Dateiliste steht in
 `scripts/config/agentic-toolchain-maintenance-files.json`.
 
-Das Werkzeug vereinigt die dynamische Repository-Erkennung mit der lokalen
-Level-2-Registry. Es kopiert nur fehlende oder abweichende Dateien und loescht
-nichts. Wenn eine verwaltete Zieldatei lokal veraendert oder als abweichende
-unversionierte Datei vorhanden ist, wird das gesamte Repository uebersprungen.
-Andere lokale Aenderungen bleiben unberuehrt.
+Das Werkzeug verarbeitet ausschliesslich vorhandene Repository-Ziele aus der
+zuvor gegen das Fleet-Manifest validierten lokalen Level-2-Registry. Eine
+zusaetzliche Verzeichnissuche findet nicht statt; nicht registrierte
+Legacy-Ordner bleiben unangetastet. Es kopiert nur fehlende oder abweichende
+Dateien und loescht nichts. Wenn eine verwaltete Zieldatei lokal veraendert
+oder als abweichende unversionierte Datei vorhanden ist, wird das gesamte
+Repository uebersprungen. Andere lokale Aenderungen bleiben unberuehrt.
 
 *Level-0 under `~/home-baseline-source` is the canonical source for both toolchain
 maintenance scripts, their five JSON registries, and both maintenance man
 pages. The managed file list lives in
 `scripts/config/agentic-toolchain-maintenance-files.json`.*
 
-*The tool combines dynamic repository discovery with the local Level-2
-registry. It copies only missing or different files and deletes nothing. If a
-managed target file has a local modification or exists as a different
-untracked file, the complete repository is skipped. Other local changes remain
-untouched.*
+*The tool processes only existing repository targets from the local Level-2
+registry after that registry has been validated against the fleet manifest. It
+does not perform additional directory discovery, so unregistered legacy
+directories remain untouched. It copies only missing or different files and
+deletes nothing. If a managed target file has a local modification or exists
+as a different untracked file, the complete repository is skipped. Other local
+changes remain untouched.*
 
 ## Optionen / Options
 
