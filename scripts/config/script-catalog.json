@@ -112,7 +112,12 @@
       "id": "documentation",
       "titleDe": "Skriptdokumentation",
       "titleEn": "Script documentation",
-      "patterns": ["render-script-reference.*", "test-script-reference.ps1"],
+      "patterns": [
+        "render-script-reference.*",
+        "test-script-reference.ps1",
+        "validate-documentation-impact.*",
+        "test-documentation-impact.*"
+      ],
       "purposeDe": "Validiert den Skriptbestand und erzeugt die zentrale Referenz.",
       "purposeEn": "Validates the script inventory and renders the central reference."
     }

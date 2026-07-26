@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-07-22
-Kanonische Skriptdateien / Canonical script files: 115
+Kanonische Skriptdateien / Canonical script files: 119
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -1441,6 +1441,30 @@ bash scripts/render-script-reference.sh --help
 bash scripts/render-script-reference.sh --dry-run  # falls angeboten / when supported
 ```
 
+### `scripts/test-documentation-impact.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Runs deterministic Documentation Impact contract fixtures.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/test-documentation-impact.ps1 -Full
+pwsh -NoProfile -File scripts/test-documentation-impact.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/test-documentation-impact.sh`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Run Documentation Impact fixtures through the Bash entry point.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+bash scripts/test-documentation-impact.sh --help
+bash scripts/test-documentation-impact.sh --dry-run  # falls angeboten / when supported
+```
+
 ### `scripts/test-script-reference.ps1`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -1451,4 +1475,28 @@ bash scripts/render-script-reference.sh --dry-run  # falls angeboten / when supp
 ```text
 Get-Help ./scripts/test-script-reference.ps1 -Full
 pwsh -NoProfile -File scripts/test-script-reference.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/validate-documentation-impact.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Validates Documentation Impact evidence.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/validate-documentation-impact.ps1 -Full
+pwsh -NoProfile -File scripts/validate-documentation-impact.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/validate-documentation-impact.sh`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Validate Documentation Impact evidence through the portable PowerShell core.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+bash scripts/validate-documentation-impact.sh --help
+bash scripts/validate-documentation-impact.sh --dry-run  # falls angeboten / when supported
 ```

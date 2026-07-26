@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "012-documentation-impact-governance",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Normative governance and workflow surfaces",
+      "decision": "UpdateRequired",
+      "rationale": "The new Documentation Impact contract must be visible in policy and daily workflow.",
+      "documents": [
+        "constitution.md",
+        ".specify/memory/constitution.md",
+        ".specify/templates/spec-template.md",
+        ".specify/templates/plan-template.md",
+        ".specify/templates/tasks-template.md",
+        ".specify/templates/checklist-template.md",
+        ".github/pull_request_template.md"
+      ],
+      "owner": "Level-0 maintainers",
+      "evidence": "specs/012-documentation-impact-governance/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Normal"
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "Generated script reference and project statistics",
+      "decision": "GeneratedUpdate",
+      "rationale": "New scripts change the canonical inventory and feature delivery changes statistics.",
+      "documents": [
+        "docs/scripts/reference.md",
+        "docs/scripts/embedded-scripts.md",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Level-0 maintainers",
+      "evidence": "specs/012-documentation-impact-governance/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "scripts/render-script-reference.sh and scripts/render-project-statistics.ps1"
+      }
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "Level-1 and Level-2 documentation findings",
+      "decision": "FollowUp",
+      "rationale": "D2 is restricted to Level 0; the repository-specific corrections belong to D3.",
+      "documents": [
+        "specs/012-documentation-impact-governance/d1-finding-disposition.json"
+      ],
+      "owner": "Feature 013",
+      "evidence": "specs/011-documentation-reality-audit/documentation-audit.json",
+      "risk": "Existing learner guidance remains incomplete until D3.",
+      "criticality": "Normal",
+      "dueDate": "2026-08-31",
+      "reevaluationTrigger": "Before Feature 013 implementation or any affected repository release",
+      "scopeReason": "Writing to Level-1 or Level-2 repositories is prohibited in D2."
+    }
+  ]
+}
