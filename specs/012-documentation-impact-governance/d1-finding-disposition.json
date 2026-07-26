@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "1.0",
+  "source": {
+    "path": "specs/011-documentation-reality-audit/documentation-audit.json",
+    "sha256": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+    "feature": "011-documentation-reality-audit"
+  },
+  "d2RemediationCount": 0,
+  "d3HandoffCount": 15,
+  "dispositions": [
+    {
+      "findingId": "DOC001",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-csharp",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC002",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-csharp",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC003",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-go",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC004",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-java",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC005",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-java",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC006",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-python",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC007",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-rust",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC008",
+      "decision": "D3Handoff",
+      "owner": "secure-orderdesk-swift",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC009",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-csharp",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC010",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-go",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC011",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-java",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC012",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-python",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC013",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-rust",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC014",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-swift",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    },
+    {
+      "findingId": "DOC015",
+      "decision": "D3Handoff",
+      "owner": "secure-service-harvester-swift",
+      "ownerLevel": "Level2",
+      "evidenceHash": "e7364b70827cc7a3a9469356ee2e029d46579ec88bc3ca6dbcd2f6e53e2020f7",
+      "handoff": "D3",
+      "residualRisk": "Learners or maintainers may receive incomplete or stale guidance.",
+      "reevaluationTrigger": "Re-run repository-native Homogeneity after the owner updates the cited documentation."
+    }
+  ]
+}

@@ -69,6 +69,21 @@ match exactly one catalog category. Read help and use a check or preview mode
 before writing. Resolve Level 0 through the shared contract rather than a
 hard-coded absolute path.*
 
+## Dokumentationsauswirkung / Documentation Impact
+
+Jede technische oder fachliche Änderung erhält genau eine Entscheidung:
+`UpdateRequired`, `NoUpdateRequired`, `GeneratedUpdate` oder `FollowUp`.
+Quelle, Owner, betroffene Dokumente und Evidence richten sich nach
+`docs/documentation-governance.md`. `GeneratedUpdate` ändert die kanonische
+Quelle und führt den Renderer aus. `FollowUp` benötigt Owner, Risiko, Frist,
+Wiedervorlage, Evidence und Scope-Grund; Sicherheits-, Bedienungs- oder
+Breaking-Change-Dokumentation zusätzlich akzeptierte Risikoevidence.
+
+*Every technical or professional change records exactly one Documentation
+Impact decision. Follow the source, ownership, generated-output, and evidence
+contract in `docs/documentation-governance.md`; deterministic validation does
+not replace semantic review.*
+
 ## Lernreihen-Governance / Learning Series Governance
 
 ### Git-Hosting fuer Lernende / Git Hosting for Learners

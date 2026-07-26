@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "012-documentation-impact-governance",
+  "gates": [
+    {"gateId":"G001","name":"Documentation Impact contract","applicability":"Applicable","requiredCommandTokens":["test-documentation-impact"],"requiredRunnerTokens":["ubuntu","macos","windows"]},
+    {"gateId":"G002","name":"Homogeneity","applicability":"Applicable","requiredCommandTokens":["check-homogeneity"],"requiredRunnerTokens":["ubuntu","macos","windows"]},
+    {"gateId":"G003","name":"PowerShell analysis","applicability":"Applicable","requiredCommandTokens":["invoke-psscriptanalyzer"],"requiredRunnerTokens":["ubuntu","macos","windows"]},
+    {"gateId":"G004","name":"Markdown links","applicability":"Applicable","requiredCommandTokens":["markdown-link-check"],"requiredRunnerTokens":["ubuntu"]},
+    {"gateId":"G005","name":"Secret scan","applicability":"Applicable","requiredCommandTokens":["scan-agent-secrets"],"requiredRunnerTokens":["local"]},
+    {"gateId":"G006","name":"DocFX/A11Y web","applicability":"N/A","rationale":"No DocFX site, navigation or web UI changes","reevaluationTrigger":"DocFX, navigation or web output changes"},
+    {"gateId":"G007","name":"Supply chain","applicability":"N/A","rationale":"No dependency or distributable artifact changes","reevaluationTrigger":"Dependency or release artifact changes"}
+  ]
+}

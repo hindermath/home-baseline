@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "###-feature-name",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "repository-relative path or named change area",
+      "decision": "NoUpdateRequired",
+      "rationale": "Explain why this decision is correct.",
+      "documents": [],
+      "owner": "Maintainer",
+      "evidence": "specs/###-feature/pr-evidence.md",
+      "risk": "N/A",
+      "criticality": "Normal"
+    }
+  ]
+}

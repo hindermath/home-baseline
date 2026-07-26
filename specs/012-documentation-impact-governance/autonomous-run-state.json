@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "cc4301e7-b458-4bd3-8863-64eeadadd444",
+  "featurePath": "specs/012-documentation-impact-governance",
+  "branch": "012-documentation-impact-governance",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "0c94e79db6f218fedd3bb38c3af1766a6b52373c",
+  "acceptedArtifacts": [
+    {"path":"Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md","sha256":"652d236f5d47155f1c61db38cdbc36af74b24896c30595c0f86854e47221fde6"},
+    {"path":"specs/intake-authoring-receipts/level-0-dokumentations-konsistenz-remediation-und-flotten-governance.json","sha256":"7cf5bfb96fe357cbb7ad93e82cffb1e3b5b605efaf2f073d249d97c3c626e6d8"},
+    {"path":"specs/active-lastenheft-normalization/intake-review-request.json","sha256":"1c7c2f4ef1d0db4885de62bce71736c5e921c4a52fdf0a59a220826fc6d8a9e1"},
+    {"path":"specs/active-lastenheft-normalization/intake-review-result.json","sha256":"b5555d2dd809073232288515009e2c4ca621bf87a40d3d0fd3c0d495dbc20755"},
+    {"path":".specify/memory/constitution.md","sha256":"8a2e3740d2183122f0ba9b83d1504b7824a670289cd08358ce38da189c3c590e"}
+  ],
+  "tasks":{"path":"specs/012-documentation-impact-governance/tasks.md","sha256":"2e3913e86885445a2f4a5a1f5f97971a66247060f4e6aa4cdbb4ea2e814ad0a4","completed":38,"total":48},
+  "lastPassingGate":"Documentation Impact fixtures, evidence, D1 handoff cardinality, Constitution parity, PSScriptAnalyzer, secrets and Spec Kit passed",
+  "nextExactAction":"Render generated documentation and project statistics, then validate the exact staged candidate",
+  "lastOperation":{"kind":"Implement","state":"Completed","summary":"Documentation Impact governance, validator, guidance, workflow surfaces and D1 handoff were implemented."},
+  "stop":{"reason":"N/A","requestedAt":"N/A","safeBoundary":"N/A"},
+  "closeout":{"mergeOrPublication":"Pending","defaultBranchSync":"Pending","postMergeActions":"Pending","finalValidation":"Pending"},
+  "updatedAt":"2026-07-26T15:15:00Z"
+}

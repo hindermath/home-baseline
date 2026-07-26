@@ -37,4 +37,8 @@
 - Check items off as completed: `[x]`
 - Add comments or findings inline
 - Link to relevant resources or documentation
+- Confirm exactly one Documentation Impact decision for the change:
+  `UpdateRequired`, `NoUpdateRequired`, `GeneratedUpdate`, or `FollowUp`.
+- For `GeneratedUpdate`, verify source and renderer. For `FollowUp`, verify
+  owner, risk, due date, trigger, evidence, and accepted scope boundary.
 - Items are numbered sequentially for easy reference

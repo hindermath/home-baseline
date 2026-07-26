@@ -854,6 +854,36 @@ management. Recording CRA applicability and aligning practices proactively
 reduces legal and reputational risk and builds on the security work already
 required by Principles XII–XIX.
 
+### XX. Documentation Impact & Source-of-Truth Governance
+
+Every technical or professional change MUST record exactly one documentation
+impact decision: `UpdateRequired`, `NoUpdateRequired`, `GeneratedUpdate`, or
+`FollowUp`.
+
+Mandatory rules:
+- `UpdateRequired` updates every affected current document in the same change.
+- `NoUpdateRequired` records a short, evidence-based rationale.
+- `GeneratedUpdate` changes the canonical source and runs the documented
+  renderer; generated output is never edited as an independent source.
+- `FollowUp` is allowed only when immediate work exceeds the accepted scope.
+  It MUST name owner, residual risk, due date, re-evaluation trigger, evidence,
+  and the scope boundary. Security, usage, or breaking-change documentation
+  additionally requires explicit accepted-risk evidence.
+- Level 0 owns shared policy and reusable workflow contracts. Level 1 owns
+  workspace-wide composition. Level 2 owns product/runtime truth. Repositories
+  MUST preserve these ownership boundaries instead of copying every document
+  everywhere.
+- Specs, plans, tasks, checklists, pull-request evidence, and affected agent
+  guidance MUST carry the same decision. Semantic truth remains a reviewer
+  responsibility; deterministic validators prove only structure, paths,
+  hashes, markers, and required evidence fields.
+- The bilingual learner reference is `docs/documentation-governance.md`.
+
+**Rationale**: Documentation becomes unreliable when its maintenance is left
+to memory or isolated agent instructions. One explicit decision across policy,
+workflow, review, and evidence keeps documentation aligned with repository
+reality without demanding unnecessary text changes.
+
 ## Level-2 Project Environment Registry / Level-2-Projektumgebungsregister
 
 This registry consolidates the constitution-relevant Level-2 project facts

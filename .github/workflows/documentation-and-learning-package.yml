@@ -58,3 +58,12 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: pwsh -NoProfile -File scripts/build-secure-development-docs.ps1 -Check
+
+      - name: Test Documentation Impact contract with Bash
+        if: runner.os != 'Windows'
+        run: bash scripts/test-documentation-impact.sh
+
+      - name: Test Documentation Impact contract with PowerShell
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: pwsh -NoProfile -File scripts/test-documentation-impact.ps1

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-22",
+  "updated": "2026-07-26",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "files": [
     {
@@ -17,6 +17,22 @@
     },
     {
       "path": "scripts/invoke-psscriptanalyzer.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/validate-documentation-impact.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/validate-documentation-impact.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/test-documentation-impact.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/test-documentation-impact.ps1",
       "executable": false
     },
     {
@@ -249,6 +265,14 @@
     },
     {
       "path": "docs/man/render-project-statistics.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/validate-documentation-impact.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/documentation-governance.md",
       "executable": false
     }
   ]
