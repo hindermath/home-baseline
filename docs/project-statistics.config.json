@@ -281,6 +281,14 @@
       "labelEn": "Documentation reality audit",
       "netLines": 31164,
       "activeDays": 1
+    },
+    {
+      "slot": 34,
+      "id": "documentation-impact-governance",
+      "labelDe": "Documentation-Impact-Governance",
+      "labelEn": "Documentation Impact governance",
+      "netLines": 1407,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

@@ -1,22 +1,28 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "a8235f46-1f98-4d77-9f32-e504a99420c2",
+  "reviewId": "d9ca67af-26df-4adc-93e7-e1f6ffc34da3",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-26T15:37:57Z",
+  "reviewedAt": "2026-07-26T14:58:49Z",
   "repository": {
     "root": ".",
-    "head": "18ff5a69341a9fa5dbdacbc0418b6c3a24a4262b"
+    "head": "b5292e8219c7e74db6bb6a064219af50c0f641a3"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "b15fb85a824410f2e96b051772209f9238fa451abb54a9d4451ddc2788f5c4a4"
+    "normalizedSha256": "1c7c2f4ef1d0db4885de62bce71736c5e921c4a52fdf0a59a220826fc6d8a9e1"
   },
   "targets": [
     {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
       "role": "Primary",
+      "normalizedSha256": "652d236f5d47155f1c61db38cdbc36af74b24896c30595c0f86854e47221fde6",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
+      "role": "OrderedMember",
       "normalizedSha256": "198ed4a6795a2784d66774d4a76913962fe8efaed4316ead6648385e2d68ac69",
       "gitBlob": "N/A"
     },
@@ -129,6 +135,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -149,14 +156,16 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 18 active paths, roles, and exact order match the bound schema-1.1 request",
-      "The single declared root D3 equals the zero-indegree target set after the merged D2 closeout",
-      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Feature 012 is archived after PR #128 and all 15 D1 findings remain routed exclusively to D3",
-      "D3 applies the merged Documentation Impact baseline to every registered Level-1 and Level-2 repository and revalidates Level 0",
-      "Feature 009 remains historical gate evidence and is not an active Series target",
-      "Positions 1 through 17 retain their learner-readable dependency boundaries",
-      "All active intakes retain copy-ready prompts and bounded delivery authority"
+      "All 19 active paths, roles, and exact order match the bound schema-1.1 request",
+      "The single declared root D2 equals the zero-indegree target set after the merged D1 closeout",
+      "Twenty-nine unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Feature 011 is archived after PR #126 and its 15 remediation findings remain routed exclusively to D3",
+      "Feature 009 is excluded from the active target set and retained only as historical gate evidence",
+      "Mandatory preflight D2 establishes the Documentation Impact baseline before D3 performs fleet remediation",
+      "Positions 1 through 4, 5 through 8, and 9 through 13 have explicit learner-readable dependency boundaries",
+      "Positions 14 through 17 form one explicit assurance chain without changing the established first thirteen positions",
+      "The Documentation Impact rule remains planned across Constitution, workflow templates, checklists, PR evidence, agent parity, and deterministic gates",
+      "All active intakes use copy-ready prompts and explicitly bounded delivery authority"
     ],
     "workers": []
   },
@@ -166,5 +175,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "d9ca67af-26df-4adc-93e7-e1f6ffc34da3"
+  "supersedes": "6b072e8d-3393-4e04-8de2-1b0ed761b9f9"
 }
