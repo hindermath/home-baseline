@@ -63,6 +63,9 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/scripts/bash/setup-plan.sh` | `.specify` |
 | `.specify/scripts/bash/update-agent-context.sh` | `.specify` |
 | `docs/learning-units/datasets/generate-secure-trader-dataset.py` | `docs` |
+| `specs/011-documentation-reality-audit/tests/test_documentation_audit.py` | `specs` |
+| `specs/011-documentation-reality-audit/tools/collect_documentation_audit.py` | `specs` |
+| `specs/011-documentation-reality-audit/tools/validate_documentation_audit.py` | `specs` |
 | `specs/autonomous-run-governance/field-inputs/023/scripts/check-homogeneity.ps1` | `specs` |
 | `specs/autonomous-run-governance/field-inputs/023/scripts/check-homogeneity.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-gate-evidence.ps1` | `specs` |

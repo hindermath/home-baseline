@@ -129,6 +129,7 @@
 | 2026-07-25 | Secure-Development-Assurance-Intakes vorbereitet | — | — | — | Vier getrennte, noch nicht gestartete Intakes bereiten Gap-Audit, optionales Assurance-Preset v0.1.0 auf Priorität 15, Home-Baseline-3.3-Synchronisierung und ABSDD-Feldadoption vor. Jeder Intake besitzt ein Schema-2.0-Authoring-Receipt sowie kopierbare Review-, Specify- und Autonomous-Prompts mit `MergeAndSync`. Der aktive Series-Review ist `Ready` und belegt 17 Ziele, sechs Roots, 22 eindeutige azyklische Kanten, null Findings und null offene Entscheidungen. Bestehende Positionen 1 bis 13 bleiben unverändert; kein Preset und kein Spec-Kit-Featurelauf wurde gestartet. |
 | 2026-07-25 | Dokumentations-Wirklichkeitsabgleich als verbindlicher Vorlauf | — | — | — | Drei neue, noch nicht gestartete Intakes bilden den Vorlauf D1 bis D3: vollständiger read-only Level-0-Audit, findings-basierte Remediation mit dauerhaftem Documentation-Impact-Vertrag und kontrollierter Level-2-Flottenabgleich. Die normative Zielablage umfasst Constitution und Spec-Kit-Memory; Templates, Checklists, PR-Evidence, fünf Agentenflächen und deterministische Gates übernehmen den operativen Vertrag. Der Schema-1.1-Series-Review ist `Ready` und belegt 20 Ziele, eine Root, 30 eindeutige azyklische Kanten, null Findings und null offene Entscheidungen. D3 sperrt die sechs bisherigen Roots, damit Positionen 1 bis 17 erst mit der gemergten Dokumentationsbaseline fortfahren. |
 | 2026-07-26 | Canonical-Fleet-Wartungshärtung | — | — | — | Ein formaler Series-Review belegt, dass kein noch aktives Lastenheft die erneut erkannten Legacy-Ziele oder die lokale Elf-Preset-Profilmigration übernimmt. Der gemeinsame Fleet-Vertragskern liefert deshalb ausschließlich aktive Git-Ziele der Klasse `canonical-fleet`; Bash- und PowerShell-Orchestrator registrieren jedes deklarierte Ziel einzeln, und die Propagation verwendet nur die validierte Registry. Plattformübergreifende Regressionen schließen nicht deklarierte, Preset- und inaktive Repositories aus. Der Dry-run führt Preset- und Toolchain-Vorschauen trotz vorhergesagtem Drift vollständig aus und schreibt anschließend einen wahrheitsgemäßen blockierten JSON-Abschlussstatus. Die lokale Registry wurde bei unverändert 32 eindeutigen Pfaden vollständig auf das Elf-Preset-Profil migriert; die sieben Legacy-Ordner blieben unangetastet. Das Delta vor Statistikpflege umfasst `+586/-198`, also 388 Nettozeilen. |
+| 2026-07-26 | Feature 011 Dokumentations-Wirklichkeitsaudit | — | — | — | D1 hat Level 0, acht registrierte Level-1- und 36 Level-2-Ziele am exakten Git-Stand read-only geprüft. Die maschinenlesbare Evidence umfasst 248 Dokumentationsfamilien mit genau einer Entscheidung. 33 repository-native Homogeneity-Läufe bestanden, zwölf Preset-/Koordinationsziele besitzen begründet keinen solchen Wrapper. 15 Level-2-Findings dokumentieren fehlende bilinguale README-/CLAUDE-Abschnitte und werden vollständig an D3 übergeben; ein zunächst sichtbarer Level-0-Drift wurde im sauberen Basis-Worktree als feature-eigener Generierungseffekt widerlegt. Kein Ziel-Repository wurde verändert. Das Implementierungsdelta vor Statistikpflege umfasst 31 164 Nettozeilen, überwiegend vollständige strukturierte Flotten-Evidence. |
 
 ---
 
@@ -701,27 +702,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 344651 lines |
-| Textdateien / Text files | 2241 |
+| Textbasis / Text base | 375856 lines |
+| Textdateien / Text files | 2260 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-26 |
 | Aktivtage / Active days | 74 |
-| Relevante Commits / Relevant commits | 544 |
-| Zeilen je Aktivtag / Lines per active day | 4657.4 |
+| Relevante Commits / Relevant commits | 547 |
+| Zeilen je Aktivtag / Lines per active day | 5079.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-08 / 40319 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 31 days |
-| Speedup vs. 80 lines/day | 58.2x |
-| Speedup vs. 100 lines/day | 46.6x |
-| Methodik / Methodology | v2; source `cd8453243832` |
+| Speedup vs. 80 lines/day | 63.5x |
+| Speedup vs. 100 lines/day | 50.8x |
+| Methodik / Methodology | v2; source `2f271585c7be` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
-Produktiv / Production          [....................]   0.0% | 0
-Tests                           [#...................]   3.2% | 10960
-Dokumentation / Documentation   [################....]  79.7% | 274829
-Skripte / Scripts               [###.................]  13.2% | 45632
-Konfiguration / Configuration   [#...................]   3.6% | 12472
+Produktiv / Production          [#...................]   0.2% | 630
+Tests                           [#...................]   3.0% | 11338
+Dokumentation / Documentation   [###############.....]  73.3% | 275478
+Skripte / Scripts               [##..................]  12.1% | 45632
+Konfiguration / Configuration   [##..................]  11.2% | 42020
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 758
 ```
@@ -772,7 +773,7 @@ Wochen / Weeks 27..52 | 2026-02-01..2026-08-01
       133333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       100000 | . . . . . . . . . . . . . . . . . . . . . . # . # .
        66667 | . . . . . . . . . . . . . . . . . . . . . . # . # .
-       33333 | . . . . . . . . # . . . . . . . . . . # . . # . # .
+       33333 | . . . . . . . . # . . . . . . . . . . # . . # . # #
            0 +-----------------------------------------------------
 ```
 
@@ -790,7 +791,7 @@ Keine Aktivitaet / No activity
 ```text
 Wochen / Weeks 27..52 | 2026-02-01..2026-08-01
   cap 500000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      416667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      416667 | . . . . . . . . . . . . . . . . . . . . . . . . . #
       333333 | . . . . . . . . . . . . . . . . . . . . . . . . # #
       250000 | . . . . . . . . . . . . . . . . . . . . . . # # # #
       166667 | . . . . . . . . . . . . . . . . . . . . . . # # # #
@@ -829,15 +830,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..32
-     cap 500 | .
-         417 | .
-         333 | #
-         250 | #
-         167 | #
-          83 | #
-           0 +---
-             32
+Slots 32..33
+   cap 50000 | . .
+       41667 | . .
+       33333 | . .
+       25000 | . #
+       16667 | . #
+        8333 | . #
+           0 +-----
+             32 33
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -875,6 +876,7 @@ Slots 32..32
 | 30 | Plattformübergreifende Ein-Kommando-Wartung / Cross-platform one-command maintenance | 2585 |
 | 31 | Intake-Sequencing-Preset v0.1.0 / Intake sequencing preset v0.1.0 | 3231 |
 | 32 | Canonical-Fleet-Wartungshärtung / Canonical fleet maintenance hardening | 388 |
+| 33 | Dokumentations-Wirklichkeitsaudit / Documentation reality audit | 31164 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -884,8 +886,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [############........] 58.2x
-100 lines/day      [#########...........] 46.6x
+80 lines/day       [#############.......] 63.5x
+100 lines/day      [##########..........] 50.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -895,10 +897,10 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 ### Durchsatzvergleich / Throughput Comparison
 
 ```text
-Scale: 0..5000 lines/day
+Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###################.] 4657.4
+Visible repository [##########..........] 5079.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -924,6 +926,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-26. Es enthaelt 74 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 266132 |
+| 2026-07 | 297365 |
 
 <!-- project-statistics-v2:end -->
