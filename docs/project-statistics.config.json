@@ -297,6 +297,14 @@
       "labelEn": "Documentation reality remediation fleet",
       "netLines": 2359,
       "activeDays": 1
+    },
+    {
+      "slot": 36,
+      "id": "requirements-intake-consolidation-handoff",
+      "labelDe": "Requirements-Intake-Konsolidierungsübergabe",
+      "labelEn": "Requirements intake consolidation handoff",
+      "netLines": 372,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
