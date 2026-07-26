@@ -1,10 +1,10 @@
 # Arbeitsnotiz: sprachbewusste Requirements- und Intake-Konsolidierung
 
-Status: offen / open  
-Owner: Level-0 Spec-Kit-Preset-Maintainer  
-Datum: 2026-07-27  
-Quellen: `hindermath/TuiVision`, `hindermath/TinyCalc`,
-`hindermath/TinyPl0`
+- Status: offen / open
+- Owner: Level-0 Spec-Kit-Preset-Maintainer
+- Datum: 2026-07-27
+- Quellen: `hindermath/TuiVision`, `hindermath/TinyCalc`,
+  `hindermath/TinyPl0`
 
 ## Anlass / Motivation
 
@@ -44,11 +44,32 @@ worden.
 *All listed merge commits are present on the corresponding synchronized
 `main` branch. The pull requests were verified as `MERGED` on 2026-07-27.*
 
-| Repository | Reconciliation | Consolidation | Ergebnis / Result |
-|---|---|---|---|
-| `hindermath/TuiVision` | [PR #127](https://github.com/hindermath/TuiVision/pull/127), `664304a89b85b8d7c8f119bd2867580d51759852` | [PR #128](https://github.com/hindermath/TuiVision/pull/128), `38e0c1cb271322302742c1c0b70420e3c2cb3441` | schlanker Index, umfangreiche aktive/archivierte/backlog Historie |
-| `hindermath/TinyCalc` | [PR #39](https://github.com/hindermath/TinyCalc/pull/39), `7a485268cdf2ad716acd309c8d8064ab2a9e5b16` | [PR #40](https://github.com/hindermath/TinyCalc/pull/40), `71148636c191b0a70203a0286d270a4d9f694660` | eine Baseline, neun aktive Intakes, keine archivierten Intakes |
-| `hindermath/TinyPl0` | [PR #51](https://github.com/hindermath/TinyPl0/pull/51), `f18d89ced41a4e6f1aae62884e3ad479ef90c324` | [PR #52](https://github.com/hindermath/TinyPl0/pull/52), `38488d30c5c109f0bacc01879573594ea83e42d0` | drei Baselines, 14 aktive und zwei archivierte Intakes, historische Abhängigkeiten |
+- `hindermath/TuiVision`
+  - Reconciliation: [PR #127][tui-pr-127],
+    `664304a89b85b8d7c8f119bd2867580d51759852`
+  - Consolidation: [PR #128][tui-pr-128],
+    `38e0c1cb271322302742c1c0b70420e3c2cb3441`
+  - Result: slim index with extensive active, archived, and backlog history
+- `hindermath/TinyCalc`
+  - Reconciliation: [PR #39][calc-pr-39],
+    `7a485268cdf2ad716acd309c8d8064ab2a9e5b16`
+  - Consolidation: [PR #40][calc-pr-40],
+    `71148636c191b0a70203a0286d270a4d9f694660`
+  - Result: one baseline, nine active intakes, and no archived intakes
+- `hindermath/TinyPl0`
+  - Reconciliation: [PR #51][pl0-pr-51],
+    `f18d89ced41a4e6f1aae62884e3ad479ef90c324`
+  - Consolidation: [PR #52][pl0-pr-52],
+    `38488d30c5c109f0bacc01879573594ea83e42d0`
+  - Result: three baselines, 14 active intakes, two archived intakes, and
+    historical dependencies
+
+[tui-pr-127]: https://github.com/hindermath/TuiVision/pull/127
+[tui-pr-128]: https://github.com/hindermath/TuiVision/pull/128
+[calc-pr-39]: https://github.com/hindermath/TinyCalc/pull/39
+[calc-pr-40]: https://github.com/hindermath/TinyCalc/pull/40
+[pl0-pr-51]: https://github.com/hindermath/TinyPl0/pull/51
+[pl0-pr-52]: https://github.com/hindermath/TinyPl0/pull/52
 
 Die drei Repositories blieben bei der Erstellung dieser Arbeitsnotiz
 unverändert. Ihre lokalen Alignment-Skripte sind Evidence, aber noch keine
@@ -91,12 +112,11 @@ manifest.*
 Preset-Verträge sollen nicht von deutschen Dateinamen abhängen. Sie verwenden
 stabile fachliche Rollen:
 
-| Rollen-ID / Role ID | Bedeutung / Meaning |
-|---|---|
-| `requirements-index` | kanonischer Einstieg in Anforderungen und Intake-Zustand |
-| `requirements-intake` | einzelner prüf- und ausführbarer Anforderungsumfang |
-| `intake-order` | lesbare, aus der Serie abgeleitete Reihenfolge |
-| `requirements-baseline` | unveränderliche historische Produktgrundlage |
+- `requirements-index`: kanonischer Einstieg in Anforderungen und
+  Intake-Zustand
+- `requirements-intake`: einzelner prüf- und ausführbarer Anforderungsumfang
+- `intake-order`: lesbare, aus der Serie abgeleitete Reihenfolge
+- `requirements-baseline`: unveränderliche historische Produktgrundlage
 
 *Preset contracts must not depend on German file names. Stable domain role IDs
 identify the requirements entry point, one reviewable intake, the rendered
@@ -114,10 +134,14 @@ language-neutral. A naming profile resolves only the visible artifact names.*
 
 Die ersten portablen Profile sind Deutsch und Englisch:
 
-| Dokumentationssprache | Index | Intake | Reihenfolge |
-|---|---|---|---|
-| `de-DE` | `Pflichtenheft.md` | `Lastenheft_<slug>.md` | `Lastenheft_Abarbeitungsreihenfolge.md` |
-| `en` | `RequirementsIndex.md` | `RequirementsIntake_<slug>.md` | `RequirementsIntakeOrder.md` |
+- Profil `de` mit Dokumentationssprache `de-DE`
+  - Index: `Pflichtenheft.md`
+  - Intake: `Lastenheft_<slug>.md`
+  - Reihenfolge: `Lastenheft_Abarbeitungsreihenfolge.md`
+- Profile `en` with documentation language `en`
+  - Index: `RequirementsIndex.md`
+  - Intake: `RequirementsIntake_<slug>.md`
+  - Order view: `RequirementsIntakeOrder.md`
 
 Die englischen Namen sind rollenbasiert. Sie vermeiden eine scheinbar exakte
 Übersetzung deutscher Vertragsbegriffe, deren Bedeutung außerhalb des
@@ -233,11 +257,12 @@ new prefixes are invalid.*
 
 ## Preset-Zuordnung / Preset Allocation
 
-| Preset | Aktueller Stand / Current Version | Folgeumfang / Follow-up Scope |
-|---|---:|---|
-| `intake-authoring-governance` | `0.2.1` | Dokumentationssprache, Namensprofil und Erzeugung neuer Artefakte |
-| `intake-review-governance` | `0.1.2` | Sprach-, Namens-, Herkunfts- und Konsistenzprüfung |
-| `intake-sequencing-governance` | `0.1.1` | aufgelöste Pfade in Manifest, Reihenfolge und Receipts |
+- `intake-authoring-governance` `0.2.1`: Dokumentationssprache,
+  Namensprofil und Erzeugung neuer Artefakte
+- `intake-review-governance` `0.1.2`: Sprach-, Namens-, Herkunfts- und
+  Konsistenzprüfung
+- `intake-sequencing-governance` `0.1.1`: aufgelöste Pfade in Manifest,
+  Reihenfolge und Receipts
 
 Diese Arbeitsnotiz erhöht keine Preset-Version und verändert weder Scaffold
 noch Publikationskopie.
