@@ -152,14 +152,6 @@ if target:
     raise SystemExit(0)
 
 repos = {}
-for path in home.iterdir():
-    if not path.is_dir() or path.resolve() == source or not is_repo(path):
-        continue
-    repos[path.resolve()] = 1
-    for child in path.iterdir():
-        if child.is_dir() and is_repo(child):
-            repos[child.resolve()] = 2
-
 data = json.loads(registry.read_text(encoding="utf-8"))
 entries = data.get("repositories", []) if isinstance(data, dict) else data
 for entry in entries:
@@ -173,7 +165,7 @@ for entry in entries:
         path.relative_to(home)
     except ValueError:
         continue
-    if is_repo(path):
+    if path != source and is_repo(path):
         repos[path] = int(entry["level"])
 
 for path, level in sorted(repos.items(), key=lambda item: (item[1], str(item[0]).lower())):

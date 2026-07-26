@@ -4,11 +4,12 @@
     Orchestrates repository and agentic toolchain maintenance on Windows.
 
 .DESCRIPTION
-    Updates the Level-0 checkout and all discovered Level-1/Level-2 repositories
-    by fast-forward only, synchronizes the local home baseline, checks the local
-    GSDB registry and canonical maintenance package, and then maintains the
-    WinGet-based machine toolchain. The script never commits or pushes target
-    repositories and never switches branches.
+    Updates the Level-0 checkout and all active canonical-fleet Level-1/Level-2
+    repositories declared by the desired-state manifest by fast-forward only,
+    synchronizes the local home baseline, checks the local GSDB registry and
+    canonical maintenance package, and then maintains the WinGet-based machine
+    toolchain. The script never commits or pushes target repositories and never
+    switches branches.
 
     Without parameters, the script performs the complete mutating maintenance
     workflow. Use -CheckOnly for a read-oriented status run or -WhatIf for a
@@ -161,6 +162,7 @@ $logDir = Join-Path $stateDir 'logs'
 $reportDir = Join-Path $stateDir 'reports'
 $script:Findings = 0
 $script:RepairApplied = $false
+$script:PreviewDrift = $false
 $exitCode = 0
 $transcriptStarted = $false
 $runId = [Guid]::NewGuid().ToString()
@@ -326,45 +328,24 @@ function Test-HBRepository {
     return $true
 }
 
-function Test-HBManagedRepository {
-    param([Parameter(Mandatory)][string] $Path)
-    return (Test-Path -LiteralPath (Join-Path $Path '.git')) -and
-        ((Test-Path -LiteralPath (Join-Path $Path 'AGENTS.md')) -or
-         (Test-Path -LiteralPath (Join-Path $Path 'CLAUDE.md')))
-}
-
 function Get-HBManagedRepositories {
-    $repos = @{}
-    if (Test-Path -LiteralPath $HomeDir -PathType Container) {
-        foreach ($path in Get-ChildItem -LiteralPath $HomeDir -Directory -Force -ErrorAction SilentlyContinue) {
-            if ($path.FullName -eq $sourceRoot -or -not (Test-HBManagedRepository -Path $path.FullName)) { continue }
-            $repos[$path.FullName] = 1
-            foreach ($child in Get-ChildItem -LiteralPath $path.FullName -Directory -Force -ErrorAction SilentlyContinue) {
-                if (Test-HBManagedRepository -Path $child.FullName) {
-                    $repos[$child.FullName] = 2
-                }
-            }
-        }
-    }
-
-    if (Test-Path -LiteralPath $registry -PathType Leaf) {
-        $data = Get-Content -LiteralPath $registry -Raw | ConvertFrom-Json
-        foreach ($entry in @($data.repositories)) {
-            if ($entry.level -notin @(1, 2) -or -not $entry.path) { continue }
-            $path = [IO.Path]::GetFullPath((Join-Path $HomeDir ([string]$entry.path)))
-            if ($path.StartsWith($HomeDir, [StringComparison]::OrdinalIgnoreCase) -and
-                $path -ne $sourceRoot -and -not $repos.ContainsKey($path) -and
-                (Test-HBManagedRepository -Path $path)) {
-                $repos[$path] = [int]$entry.level
-            }
-        }
-    }
-
-    return @(
-        $repos.GetEnumerator() |
-            ForEach-Object { [pscustomobject]@{ Path = $_.Key; Level = $_.Value } } |
-            Sort-Object Level, Path
+    $lines = @(
+        & $pythonCommand.Source $fleetEngine canonical-repositories `
+            --manifest $ManifestPath `
+            --home-dir $HomeDir `
+            --existing-only
     )
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Kanonische Fleet-Ziele konnten nicht ermittelt werden / canonical fleet targets could not be resolved.'
+    }
+
+    return @($lines | ForEach-Object {
+        $fields = [string]$_ -split "`t", 2
+        if ($fields.Count -ne 2 -or $fields[0] -notin @('1', '2')) {
+            throw "Ungueltige Fleet-Zielausgabe / invalid fleet target output: $_"
+        }
+        [pscustomobject]@{ Path = $fields[1]; Level = [int]$fields[0] }
+    })
 }
 
 function Test-HBRegistry {
@@ -372,44 +353,35 @@ function Test-HBRegistry {
     if (-not (Test-Path -LiteralPath $registerScript -PathType Leaf)) {
         throw "Registry-Skript fehlt / missing: ${registerScript}"
     }
-    $level1 = @(Get-HBManagedRepositories | Where-Object Level -eq 1 | ForEach-Object Path)
-    if ($level1.Count -eq 0) {
+    $repositories = @(Get-HBManagedRepositories)
+    if ($repositories.Count -eq 0) {
         if (-not (Test-Path -LiteralPath $registry -PathType Leaf)) {
-            Write-HBWarning 'Keine Level-1-Wurzel fuer Registry-Aufbau gefunden / no Level-1 root found for registry creation.'
+            Write-HBWarning 'Keine kanonischen Fleet-Ziele fuer Registry-Aufbau gefunden / no canonical fleet targets found for registry creation.'
             $script:Findings++
             return
         }
         return
     }
 
-    foreach ($root in $level1) {
-        $rootParameters = @{
-            Repo     = @($root)
-            Level    = '1'
-            Registry = $registry
-            Source   = 'maintenance-discovery'
-        }
-        $childParameters = @{
-            ScanRoot = @($root)
-            Level    = '2'
+    foreach ($repository in $repositories) {
+        $parameters = @{
+            Repo     = @($repository.Path)
+            Level    = [string]$repository.Level
             Registry = $registry
             Source   = 'maintenance-discovery'
         }
         if ($CheckOnly -or $WhatIfPreference) {
-            $rootParameters.WhatIf = $true
-            $childParameters.WhatIf = $true
+            $parameters.WhatIf = $true
         }
         if ($CheckOnly -or $WhatIfPreference) {
-            $rootOutput = @(& $registerScript @rootParameters 6>&1)
-            $childOutput = @(& $registerScript @childParameters 6>&1)
-            @($rootOutput + $childOutput) | ForEach-Object { Write-Host "$_" }
-            if (@($rootOutput + $childOutput) -match '^\[WhatIf\] (added|updated):') {
+            $output = @(& $registerScript @parameters 6>&1)
+            $output | ForEach-Object { Write-Host "$_" }
+            if ($output -match '^\[WhatIf\] (added|updated):') {
                 Write-HBWarning 'Registry-Drift gefunden / registry drift found.'
                 $script:Findings++
             }
         } else {
-            & $registerScript @rootParameters
-            & $registerScript @childParameters
+            & $registerScript @parameters
         }
     }
     if (-not (Test-Path -LiteralPath $registry -PathType Leaf)) {
@@ -431,8 +403,14 @@ function Invoke-HBPropagation {
     }
 
     if ($WhatIfPreference) {
-        & $propagation -HomeDir $HomeDir -Registry $registry -DryRun
-        if ($LASTEXITCODE -ne 0) { $script:Findings++ }
+        $previewOutput = @(& $propagation -HomeDir $HomeDir -Registry $registry -DryRun 6>&1)
+        $previewStatus = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+        $previewOutput | ForEach-Object { Write-Host "$_" }
+        if ($previewStatus -ne 0) {
+            $script:Findings++
+        } elseif ($previewOutput -match 'repositories\.drifted:\s+[1-9][0-9]*') {
+            $script:PreviewDrift = $true
+        }
         return
     }
 
@@ -706,6 +684,10 @@ try {
                 Add-HBReportStage -StageId 'propagation' -Status Blocked -ExitCode 1 `
                     -Summary 'Wartungspaket-Drift / maintenance package drift' `
                     -NextAction 'Drift separat pruefen / review drift separately'
+            } elseif ($WhatIfPreference -and $script:PreviewDrift) {
+                Add-HBReportStage -StageId 'propagation' -Status Warning -ExitCode 1 `
+                    -Summary 'Wartungspaket-Drift vorhergesagt / maintenance package drift predicted' `
+                    -NextAction 'Mit -RepairDrift lokal reparieren / repair locally with -RepairDrift'
             } else {
                 Add-HBReportStage -StageId 'propagation' -Status Passed -ExitCode 0 `
                     -Summary 'Wartungspaket geprueft / maintenance package checked'
@@ -764,11 +746,24 @@ try {
 
     if ($script:Findings -eq 0) {
         Write-HBInfo 'Abschlusspruefung / Final verification'
-        Test-HBHomeSync
-        if ((Invoke-HBPropagationCheck) -ne 0) { throw 'Abschliessende Propagationspruefung fehlgeschlagen / final propagation check failed.' }
+        if ($WhatIfPreference) {
+            $findingsBefore = $script:Findings
+            Test-HBHomeSync
+            if ($script:Findings -gt $findingsBefore) {
+                Add-HBReportStage -StageId 'home-sync' -Status Blocked -ExitCode 1 `
+                    -Summary 'Home-Sync-Drift vorhergesagt / home sync drift predicted' `
+                    -NextAction 'Echten Home-Sync nach dem Merge ausfuehren / run actual home sync after merge'
+            }
+        } else {
+            Test-HBHomeSync
+            if ((Invoke-HBPropagationCheck) -ne 0) { throw 'Abschliessende Propagationspruefung fehlgeschlagen / final propagation check failed.' }
+        }
         [void](Test-HBRepository -Repository $sourceRoot -Label 'Level-0')
         foreach ($repo in Get-HBManagedRepositories) {
             [void](Test-HBRepository -Repository $repo.Path -Label "Level-$($repo.Level)" -AllowRepairDirty:$script:RepairApplied)
+        }
+        if ($WhatIfPreference -and $script:PreviewDrift) {
+            $script:Findings++
         }
     }
 

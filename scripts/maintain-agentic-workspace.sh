@@ -19,6 +19,7 @@ INCLUDE_OPTIONAL=0
 ALLOW_ADMIN_PROMPTS=0
 FINDINGS=0
 REPAIR_APPLIED=0
+PREVIEW_DRIFT=0
 LOCK_DIR=""
 LOG_FILE=""
 REPORT_FILE=""
@@ -296,49 +297,10 @@ check_repository() {
 }
 
 discover_repositories() {
-  python3 - "$HOME_DIR" "$REGISTRY" "$SOURCE_ROOT" <<'PY'
-import json
-import pathlib
-import sys
-
-home = pathlib.Path(sys.argv[1]).resolve()
-registry = pathlib.Path(sys.argv[2])
-source = pathlib.Path(sys.argv[3]).resolve()
-
-def is_repo(path):
-    return (path / ".git").exists() and (
-        (path / "AGENTS.md").is_file() or (path / "CLAUDE.md").is_file()
-    )
-
-repos = {}
-for path in home.iterdir():
-    if not path.is_dir() or path.resolve() == source or not is_repo(path):
-        continue
-    repos[path.resolve()] = 1
-    for child in path.iterdir():
-        if child.is_dir() and is_repo(child):
-            repos[child.resolve()] = 2
-
-if registry.is_file():
-    data = json.loads(registry.read_text(encoding="utf-8"))
-    entries = data.get("repositories", []) if isinstance(data, dict) else data
-    for entry in entries:
-        if not isinstance(entry, dict) or entry.get("level") not in (1, 2):
-            continue
-        raw = entry.get("path")
-        if not isinstance(raw, str) or not raw:
-            continue
-        path = (home / raw).resolve()
-        try:
-            path.relative_to(home)
-        except ValueError:
-            continue
-        if path != source and is_repo(path) and path not in repos:
-            repos[path] = int(entry["level"])
-
-for path, level in sorted(repos.items(), key=lambda item: (item[1], str(item[0]).lower())):
-    print(f"{level}\t{path}")
-PY
+  python3 "$FLEET_ENGINE" canonical-repositories \
+    --manifest "$FLEET_MANIFEST" \
+    --home-dir "$HOME_DIR" \
+    --existing-only
 }
 
 ensure_registry() {
@@ -348,17 +310,12 @@ ensure_registry() {
 
   while IFS=$'\t' read -r level repo; do
     [ -n "$repo" ] || continue
-    [ "$level" = "1" ] || continue
     if [ "$CHECK_ONLY" -eq 1 ] || [ "$DRY_RUN" -eq 1 ]; then
-      preview_output="$(HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level 1 --registry "$REGISTRY" --source maintenance-discovery --dry-run)"
-      printf '%s\n' "$preview_output"
-      [[ "$preview_output" =~ \[dry-run\][[:space:]]+(added|updated): ]] && registry_drift=1
-      preview_output="$(HOME="$HOME_DIR" bash "$register_script" --scan-root "$repo" --level 2 --registry "$REGISTRY" --source maintenance-discovery --dry-run)"
+      preview_output="$(HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level "$level" --registry "$REGISTRY" --source maintenance-discovery --dry-run)"
       printf '%s\n' "$preview_output"
       [[ "$preview_output" =~ \[dry-run\][[:space:]]+(added|updated): ]] && registry_drift=1
     else
-      HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level 1 --registry "$REGISTRY" --source maintenance-discovery
-      HOME="$HOME_DIR" bash "$register_script" --scan-root "$repo" --level 2 --registry "$REGISTRY" --source maintenance-discovery
+      HOME="$HOME_DIR" bash "$register_script" --repo "$repo" --level "$level" --registry "$REGISTRY" --source maintenance-discovery
     fi
   done < <(discover_repositories)
 
@@ -381,12 +338,17 @@ run_propagation_check() {
 
 handle_propagation() {
   local propagation="${SOURCE_ROOT}/scripts/propagate-agentic-toolchain-maintenance.sh"
-  local status=0
+  local status=0 preview_output=""
   [ -f "$propagation" ] || die "Propagationsskript fehlt / missing: $propagation"
 
   if [ "$DRY_RUN" -eq 1 ]; then
-    HOME="$HOME_DIR" bash "$propagation" --home-dir "$HOME_DIR" --registry "$REGISTRY" --dry-run || status=$?
-    [ "$status" -eq 0 ] || FINDINGS=$((FINDINGS + 1))
+    preview_output="$(HOME="$HOME_DIR" bash "$propagation" --home-dir "$HOME_DIR" --registry "$REGISTRY" --dry-run)" || status=$?
+    printf '%s\n' "$preview_output"
+    if [ "$status" -ne 0 ]; then
+      FINDINGS=$((FINDINGS + 1))
+    elif grep -Eq 'repositories\.drifted:[[:space:]]+[1-9][0-9]*' <<< "$preview_output"; then
+      PREVIEW_DRIFT=1
+    fi
     return
   fi
 
@@ -634,6 +596,9 @@ if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -
   if [ "$FINDINGS" -gt "$findings_before" ]; then
     record_stage "propagation" "Blocked" 1 "Wartungspaket-Drift / maintenance package drift" \
       "Drift separat pruefen / review drift separately"
+  elif [ "$DRY_RUN" -eq 1 ] && [ "$PREVIEW_DRIFT" -eq 1 ]; then
+    record_stage "propagation" "Warning" 1 "Wartungspaket-Drift vorhergesagt / maintenance package drift predicted" \
+      "Mit --repair-drift lokal reparieren / repair locally with --repair-drift"
   else
     record_stage "propagation" "Passed" 0 "Wartungspaket geprueft / maintenance package checked"
   fi
@@ -695,13 +660,25 @@ fi
 
 if [ "$FINDINGS" -eq 0 ]; then
   info "Abschlusspruefung / Final verification"
-  run_home_sync_check
-  run_propagation_check
+  if [ "$DRY_RUN" -eq 1 ]; then
+    findings_before="$FINDINGS"
+    run_home_sync_check || true
+    if [ "$FINDINGS" -gt "$findings_before" ]; then
+      record_stage "home-sync" "Blocked" 1 "Home-Sync-Drift vorhergesagt / home sync drift predicted" \
+        "Echten Home-Sync nach dem Merge ausfuehren / run actual home sync after merge"
+    fi
+  else
+    run_home_sync_check
+    run_propagation_check
+  fi
   check_repository "$SOURCE_ROOT" "Level-0" || true
   while IFS=$'\t' read -r level repo; do
     [ -n "$repo" ] || continue
     check_repository "$repo" "Level-${level}" "$REPAIR_APPLIED" || true
   done < <(discover_repositories)
+  if [ "$DRY_RUN" -eq 1 ] && [ "$PREVIEW_DRIFT" -eq 1 ]; then
+    FINDINGS=$((FINDINGS + 1))
+  fi
 fi
 
 if [ "$FINDINGS" -gt 0 ]; then

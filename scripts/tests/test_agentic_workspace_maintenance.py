@@ -274,9 +274,148 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
     def test_public_surfaces_share_admin_deferral_and_report_contract(self) -> None:
         bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")
         powershell = (REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1").read_text(encoding="utf-8")
-        for token in ("DEFERRED_ADMIN_REQUIRED", "agentic_workspace_fleet.py", "agentic-workspace-fleet.json"):
+        for token in (
+            "DEFERRED_ADMIN_REQUIRED",
+            "agentic_workspace_fleet.py",
+            "agentic-workspace-fleet.json",
+            "canonical-repositories",
+            "maintenance package drift predicted",
+        ):
             self.assertIn(token, bash)
             self.assertIn(token, powershell)
+
+    def test_canonical_repository_listing_ignores_unmanifested_preset_and_inactive_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            manifest = json.loads(fixture.manifest().read_text(encoding="utf-8"))
+            manifest["targets"].extend(
+                [
+                    {
+                        "id": "preset",
+                        "kind": "git-repository",
+                        "level": 2,
+                        "path": "Fleet/Preset",
+                        "active": True,
+                        "maintenanceClass": "preset",
+                        "remote": str(fixture.root / "preset.git"),
+                        "forge": "generic-git",
+                        "defaultBranch": "main",
+                    },
+                    {
+                        "id": "inactive",
+                        "kind": "git-repository",
+                        "level": 2,
+                        "path": "Fleet/Inactive",
+                        "active": False,
+                        "maintenanceClass": "canonical-fleet",
+                        "remote": str(fixture.root / "inactive.git"),
+                        "forge": "generic-git",
+                        "defaultBranch": "main",
+                    },
+                ]
+            )
+            manifest_path = fixture.root / "listing-manifest.json"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            for relative in ("Fleet/Preset", "Fleet/Inactive", "Legacy/Old"):
+                repository = fixture.home / relative
+                repository.mkdir(parents=True)
+                subprocess.run(["git", "init", "-q", str(repository)], check=True)
+
+            completed = subprocess.run(
+                [
+                    "python3",
+                    str(ENGINE),
+                    "canonical-repositories",
+                    "--manifest",
+                    str(manifest_path),
+                    "--home-dir",
+                    str(fixture.home),
+                    "--existing-only",
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            self.assertEqual(
+                completed.stdout.strip(),
+                f"2\t{(fixture.home / 'Fleet' / 'Example').resolve()}",
+            )
+            self.assertNotIn("Legacy", completed.stdout)
+            self.assertNotIn("Preset", completed.stdout)
+            self.assertNotIn("Inactive", completed.stdout)
+
+    def test_propagation_surfaces_ignore_unregistered_legacy_repository(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            home = root / "home"
+            canonical = home / "Fleet" / "Canonical"
+            legacy = home / "Legacy" / "Old"
+            guidance = (REPOSITORY / "AGENTS.md").read_text(encoding="utf-8")
+            for repository in (canonical, legacy):
+                repository.mkdir(parents=True)
+                subprocess.run(["git", "init", "-q", str(repository)], check=True)
+                (repository / "AGENTS.md").write_text(guidance, encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "repositories": [{"path": "Fleet/Canonical", "level": 2}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest = root / "propagation-manifest.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "files": [{"path": "AGENTS.md", "executable": False}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            commands = [
+                [
+                    "bash",
+                    str(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.sh"),
+                    "--home-dir",
+                    str(home),
+                    "--registry",
+                    str(registry),
+                    "--manifest",
+                    str(manifest),
+                    "--check-only",
+                ],
+                [
+                    "pwsh",
+                    "-NoProfile",
+                    "-File",
+                    str(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.ps1"),
+                    "-HomeDir",
+                    str(home),
+                    "-Registry",
+                    str(registry),
+                    "-Manifest",
+                    str(manifest),
+                    "-CheckOnly",
+                ],
+            ]
+            for command in commands:
+                with self.subTest(surface=command[0]):
+                    completed = subprocess.run(
+                        command,
+                        text=True,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        check=False,
+                    )
+                    self.assertEqual(completed.returncode, 0, completed.stdout)
+                    self.assertIn(str(canonical), completed.stdout)
+                    self.assertNotIn(str(legacy), completed.stdout)
 
     def test_registry_rejects_preset_or_unknown_propagation_targets(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

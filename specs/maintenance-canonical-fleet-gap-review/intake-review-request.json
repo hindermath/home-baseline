@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "22275e90-59dd-4c62-ad42-b539b3f067d2",
+  "mode": "Series",
+  "policy": "home-baseline-maintenance-gap-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "role": "OrderedMember"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [
+      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "Lastenheft_Agentic-Workspace-Maintenance-TUI.md"
+    ],
+    "roots": [
+      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md"
+    ],
+    "dependencies": [
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+        "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+        "kind": "HistoricalBaseline"
+      },
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+        "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+        "kind": "HistoricalBaseline"
+      },
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+        "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+        "kind": "HistoricalBaseline"
+      },
+      {
+        "from": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      }
+    ]
+  }
+}

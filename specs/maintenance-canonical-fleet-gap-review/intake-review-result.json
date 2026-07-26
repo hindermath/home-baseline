@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "22275e90-59dd-4c62-ad42-b539b3f067d2",
+  "mode": "Series",
+  "status": "NeedsRemediation",
+  "policy": "home-baseline-maintenance-gap-v1",
+  "reviewedAt": "2026-07-26T11:16:32Z",
+  "repository": {
+    "root": ".",
+    "head": "2d9ca8aa634271c80a09ab33ac272f87317f3fcc"
+  },
+  "requestEvidence": {
+    "path": "specs/maintenance-canonical-fleet-gap-review/intake-review-request.json",
+    "normalizedSha256": "317680547c7514fc92e5a1f01a85f4815634fc9ca95941fbd8adb6f3b2a11fb4"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "role": "Primary",
+      "normalizedSha256": "8cc50f591e9b73db85070413395099d73fbaaf526ee89a1666aa9b679915a839",
+      "gitBlob": "2d88cce5940b362079273072fe62c99d56e1d2ac"
+    },
+    {
+      "path": "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "d07c32df565c2057d7a19b02d39714d457d66d94ff8865a6e5325b14cf43979a",
+      "gitBlob": "341bbc0097e6676a48372527ee65110d327991f8"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
+      "gitBlob": "b616d092d3be51664a21ec8328cfc8a5e9531838"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
+      "gitBlob": "3cbf6dba6c07b57aee35bc37456b3e03568e218d"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
+      "gitBlob": "66067386d970d06c3c388de2f2952646dc56db5a"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
+      "gitBlob": "1d8e2e03ac2ef21a4909b38a6aaf8ecbc19dbd07"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR001",
+      "severity": "High",
+      "category": "FutureScopeCoverage",
+      "target": "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "disposition": "ImmediateRepairAuthorized",
+      "owner": "home-baseline maintainer",
+      "evidence": "Feature 009 requires propagation only to active canonical-fleet targets, while Lastenheft_Abarbeitungsreihenfolge.md classifies Feature 009 as historical and not scheduled for another Spec Kit run. The active Windows, Linux, preset/worktree, and TUI intakes do not replace this target-selection contract.",
+      "reevaluationTrigger": "Re-run isolated discovery tests with an unregistered legacy checkout after the MergeAndSync correction."
+    },
+    {
+      "id": "IR002",
+      "severity": "High",
+      "category": "PresetProfileAdoption",
+      "target": "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+      "disposition": "ImmediateRepairAuthorized",
+      "owner": "home-baseline maintainer",
+      "evidence": "ISR-018 and AC-008 require a separate eleven-preset profile and fleet proof. This bootstrap intake is not an active future series node. The active Windows and preset/worktree intakes explicitly preserve the older ten-preset profile, so neither can be relied on to migrate the operational registry.",
+      "reevaluationTrigger": "Validate the operational registry against the eleven-preset profile and complete a no-op maintenance check after fleet repair."
+    }
+  ],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md",
+      "Lastenheft_Spec-Kit-Intake-Sequencing-Governance.md",
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "Lastenheft_Agentic-Workspace-Maintenance-TUI.md"
+    ],
+    "series": [
+      "The current active series review is fresh and excludes Feature 009 from future execution",
+      "No active future intake owns canonical-fleet-only discovery repair",
+      "No active future intake owns operational migration from ten to eleven presets",
+      "The TUI consumes the maintenance engine and explicitly excludes reimplementation of repository, registry, propagation, or package-manager logic"
+    ],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 2,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}
