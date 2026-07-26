@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "9c5c64ef-e5a8-498f-bac2-e2f8f959c7dc",
+  "intakeId": "33354a61-772d-4c75-b2bf-cda99a0b88be",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-27T00:00:00Z",
+  "operation": {
+    "operationId": "ec4a5ce7-c011-4f6a-9333-239cc94326a4",
+    "type": "Create",
+    "authorityEvidence": "Explicit user approval to convert the merged field handoff into the next executable intake and deliver Feature 014 in MergeAndSync mode."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
+    "normalizedSha256": "c8f21c06f52cd26f5d9678ebdd15cd3b8cb65c0a72118ec24e646a1adaf20020"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Merged requirements-intake consolidation field handoff",
+      "location": "Repository",
+      "path": "docs/work-items/2026-07-27-requirements-intake-consolidation-field-handoff.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "c6f315524d456f39e272a6f51cde04f6a05dbc0844785102ad2a021ffb0897aa",
+      "gitBlob": "6e08cef804aa185a97fe5a0c653bb77cf3e92f8f",
+      "proofBoundary": "Merged workitem from home-baseline PR #134 at merge commit 4b4ceff8d9841d8b8f3e7b948f9ad628e6d6b15b."
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved Feature 014 implementation plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "c8f21c06f52cd26f5d9678ebdd15cd3b8cb65c0a72118ec24e646a1adaf20020",
+      "gitBlob": "N/A",
+      "proofBoundary": "Current Codex task; this hash binds the synthesized approved plan in the target intake because the conversation source has no repository file."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wird ein neues Preset benötigt?",
+      "answer": "Nein. Die bestätigte portable Funktion wird auf die drei vorhandenen Intake-Presets verteilt.",
+      "evidence": "Ausdrücklich genehmigter Plan und Preset-Zuordnung im gemergten Workitem."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Reihenfolge und Sperrwirkung besitzt Feature 014?",
+      "answer": "Feature 014 ist vorübergehend die einzige Root und sperrt die sechs bisherigen Roots bis zu seinem Closeout.",
+      "evidence": "Ausdrücklich genehmigter 18-Ziel-/28-Kanten-Series-Vertrag."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync einschließlich der begrenzten, ausdrücklich definierten Admin-Ausnahme.",
+      "evidence": "Aktuelle ausdrückliche Benutzerautorisierung."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Repositories erhalten eine fachliche Migration?",
+      "answer": "Ausschließlich TuiVision, TinyCalc, TinyPl0, home-baseline-source, InventarWorkerService, cc65 und absdd-image-sandbox.",
+      "evidence": "Genehmigter Pilotumfang; die übrige Flotte erhält nur Preset-Versionen."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "The current user explicitly approved the complete plan with MergeAndSync delivery.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
+    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "order": 1,
+    "role": "Root",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md"
+}

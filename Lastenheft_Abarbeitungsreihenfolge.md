@@ -74,6 +74,28 @@ nummerierte Reihenfolge fortgesetzt wird. Dadurch verwenden alle späteren
 *The mandatory D1–D3 preflight completes before the numbered order resumes, so
 all later work uses the validated documentation-impact baseline.*
 
+## Aktuelles Requirements-Gate / Current Requirements Gate
+
+Feature 014 ist der verbindliche, einmalige Vorlauf vor allen sechs bisherigen
+Roots. Es macht Dateinamen nicht zu einer technischen Voraussetzung, sondern
+führt sprachneutrale Artefaktrollen, kontrollierte Namensprofile und einen
+atomaren Migrationsvertrag für die drei vorhandenen Intake-Presets ein.
+
+| Gate | Lastenheft | Zustand und Wirkung / State and Effect |
+|---:|---|---|
+| G1 | `Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md` | `Eligible`: Muss als Feature `014-requirements-intake-consolidation-governance` vollständig abgeschlossen werden. Bis zum Closeout sind die bisherigen Roots 1, 2, 3, 5, 9 und 10 gesperrt. / Must complete as Feature 014. The previous roots 1, 2, 3, 5, 9, and 10 remain blocked until closeout. |
+
+Das Gate verändert die fachliche Reihenfolge der vorhandenen Intakes nicht.
+Nach seinem Abschluss wird G1 archiviert und aus der aktiven Series entfernt.
+Dann sind die sechs bisherigen Roots wieder freigegeben und Position 1,
+`Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md`, ist der nächste
+serielle Intake. Der Closeout startet diesen Lauf nicht automatisch.
+
+*The gate does not reorder the existing domain work. After completion, G1 is
+archived and removed from the active series. The six previous roots become
+available again, and Windows hardening at item 1 is the next serial intake.
+The closeout does not start it automatically.*
+
 ## Aktive Reihenfolge / Active Order
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
@@ -109,12 +131,14 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
          |
          +--> D3 Level-1/2-Flotte und Level-0-Revalidierung
 
-D3 Doku-Baseline --+--> 1 Windows -----------\
-                   +--> 2 Linux --------------+--> 4 Maintenance TUI
-                   +--> 3 Preset/Branch ------/
-                   +--> 5 Mitgeltende Dokumente
-                   +--> 9 CI/CD
-                   +--> 10 PowerShell-Cmdlets
+G1 Requirements-Konsolidierung
+  |
+  +--> 1 Windows -----------\
+  +--> 2 Linux --------------+--> 4 Maintenance TUI
+  +--> 3 Preset/Branch ------/
+  +--> 5 Mitgeltende Dokumente
+  +--> 9 CI/CD
+  +--> 10 PowerShell-Cmdlets
 
 5 Mitgeltende Dokumente --> 6 RL-SE-Selbstpruefung
 5 Mitgeltende Dokumente --> 7 Container-Haertung --> 8 Level-2-Sandbox
@@ -139,11 +163,13 @@ D3 Doku-Baseline --+--> 1 Windows -----------\
 
 ```
 
-Nach dem Abschluss von D1, D2 und D3 sind die aktiven Roots der nummerierten
-Reihenfolge `1`, `2`, `3`, `5`, `9` und `10`. Die Uebergaenge D1 zu D2 und D2
-zu D3 bleiben in der archivierten Schema-1.1-Review-Evidence nachweisbar.
-Feature 009 ist kein aktiver Serienknoten mehr. Sein archiviertes Lastenheft
-und sein Abschluss bleiben historische Evidence fuer das TUI-Gate.
+Nach dem Abschluss von D1, D2 und D3 waren die aktiven Roots der nummerierten
+Reihenfolge `1`, `2`, `3`, `5`, `9` und `10`. Solange G1 aktiv ist, ist G1 die
+einzige Root und besitzt zu jeder dieser sechs bisherigen Roots eine
+`RequirementsGovernanceGate`-Kante. Die Uebergaenge D1 zu D2 und D2 zu D3
+bleiben in der archivierten Schema-1.1-Review-Evidence nachweisbar. Feature 009
+ist kein aktiver Serienknoten mehr. Sein archiviertes Lastenheft und sein
+Abschluss bleiben historische Evidence fuer das TUI-Gate.
 
 Eintrag 4 besitzt ein hartes Abschluss-Gate. Vor Feature-, Branch- oder
 Spec-Kit-Artefakterstellung fuer die TUI muessen der Abschlussnachweis fuer
