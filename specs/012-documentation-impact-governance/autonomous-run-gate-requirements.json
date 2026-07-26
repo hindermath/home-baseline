@@ -2,12 +2,12 @@
   "schemaVersion": "1.0",
   "feature": "012-documentation-impact-governance",
   "gates": [
-    {"gateId":"G001","name":"Documentation Impact contract","applicability":"Applicable","requiredCommandTokens":["test-documentation-impact"],"requiredRunnerTokens":["ubuntu","macos","windows"]},
-    {"gateId":"G002","name":"Homogeneity","applicability":"Applicable","requiredCommandTokens":["check-homogeneity"],"requiredRunnerTokens":["ubuntu","macos","windows"]},
-    {"gateId":"G003","name":"PowerShell analysis","applicability":"Applicable","requiredCommandTokens":["invoke-psscriptanalyzer"],"requiredRunnerTokens":["ubuntu","macos","windows"]},
-    {"gateId":"G004","name":"Markdown links","applicability":"Applicable","requiredCommandTokens":["markdown-link-check"],"requiredRunnerTokens":["ubuntu"]},
-    {"gateId":"G005","name":"Secret scan","applicability":"Applicable","requiredCommandTokens":["scan-agent-secrets"],"requiredRunnerTokens":["local"]},
-    {"gateId":"G006","name":"DocFX/A11Y web","applicability":"N/A","rationale":"No DocFX site, navigation or web UI changes","reevaluationTrigger":"DocFX, navigation or web output changes"},
-    {"gateId":"G007","name":"Supply chain","applicability":"N/A","rationale":"No dependency or distributable artifact changes","reevaluationTrigger":"Dependency or release artifact changes"}
+    {"gateId":"G001","applicability":"Applicable","requiredScope":"Documentation Impact fixtures and accepted evidence","requiredCommandTokens":["test-documentation-impact"],"requiredRunnerOrPlatformTokens":["ubuntu","macos","windows"],"rationale":"","reevaluationTrigger":""},
+    {"gateId":"G002","applicability":"Applicable","requiredScope":"Level-0 Homogeneity including generated-document drift","requiredCommandTokens":["check-homogeneity"],"requiredRunnerOrPlatformTokens":["ubuntu","macos","windows"],"rationale":"","reevaluationTrigger":""},
+    {"gateId":"G003","applicability":"Applicable","requiredScope":"All tracked repository-owned PowerShell files","requiredCommandTokens":["invoke-psscriptanalyzer"],"requiredRunnerOrPlatformTokens":["ubuntu","macos","windows"],"rationale":"","reevaluationTrigger":""},
+    {"gateId":"G004","applicability":"Applicable","requiredScope":"Local Markdown links and heading fragments","requiredCommandTokens":["lychee"],"requiredRunnerOrPlatformTokens":["ubuntu"],"rationale":"","reevaluationTrigger":""},
+    {"gateId":"G005","applicability":"Applicable","requiredScope":"Exact local candidate secret scan","requiredCommandTokens":["scan-agent-secrets"],"requiredRunnerOrPlatformTokens":["local"],"rationale":"","reevaluationTrigger":""},
+    {"gateId":"G006","applicability":"N/A","requiredScope":"DocFX and web A11Y","requiredCommandTokens":[],"requiredRunnerOrPlatformTokens":[],"rationale":"No DocFX site, navigation or web UI changes","reevaluationTrigger":"DocFX, navigation or web output changes"},
+    {"gateId":"G007","applicability":"N/A","requiredScope":"Supply-chain release evidence","requiredCommandTokens":[],"requiredRunnerOrPlatformTokens":[],"rationale":"No dependency or distributable artifact changes","reevaluationTrigger":"Dependency or release artifact changes"}
   ]
 }
