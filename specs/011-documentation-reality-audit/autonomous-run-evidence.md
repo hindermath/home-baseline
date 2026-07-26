@@ -34,8 +34,8 @@ both passed before feature creation.
 | Analyze | Pass | 14 FR, 9 CR, 9 SC mapped; no Critical/High/Medium finding |
 | Implement | Pass | 45 targets, 248 areas, 15 Level-2 findings |
 | Validate | Pass | Feature tests, audit ledger, Homogeneity, generated docs, statistics, PSScriptAnalyzer, secret scan |
-| Publish/Review | In progress | Feature PR #126 |
-| Retrospective | Pending | D1 result without automatic D2 start |
+| Publish/Review | Pass | Feature PR #126, 20 green checks, zero actionable threads |
+| Retrospective | Pass | `NoPromotion`; D1 closed without starting D2 |
 
 ## Scope guard
 
@@ -101,6 +101,12 @@ false `DOC###` finding was retained.
 
 - Feature PR: [#126](https://github.com/hindermath/home-baseline/pull/126)
 - Publication authority: explicit `MergeAndSync`
-- Reviewed head: pending after evidence synchronization
-- Actionable review threads: pending
-- Merge and D1 archival: pending
+- Reviewed head: `7fdbd4b5c2068d2104844fe68a0b0511c6bbd190`
+- Mandatory checks: 20 passed, zero failed
+- Actionable review threads: zero
+- Exact-head provider evidence: seven gates passed in Bash and PowerShell
+- Merge commit: `b5292e8219c7e74db6bb6a064219af50c0f641a3`
+- Admin bypass boundary: Human Approval was the only remaining rule
+- D1 archival: completed in the causal closeout
+- Active Series after archival: 19 targets, D2 as the only root, 29 edges
+- Automatic successor start: none

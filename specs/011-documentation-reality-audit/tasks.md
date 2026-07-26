@@ -67,18 +67,18 @@ and delivery files are shared.
 - [X] T044 Run PSScriptAnalyzer, secret scan, agent-parity, and `specify check`
 - [X] T045 Confirm no audited repository worktree or remote was changed
 - [X] T046 Update and canonically render `docs/project-statistics.md`
-- [ ] T047 Archive the D1 intake through the repository rename workflow
+- [X] T047 Archive the D1 intake through the repository rename workflow
 - [X] T048 Reconcile tasks, accepted hashes, scope, and final local evidence
 
 ## Phase 7: MergeAndSync Delivery
 
 - [X] T049 Validate and stage only the exact intended feature candidate
 - [X] T050 Commit, push, and create the Feature 011 PR
-- [ ] T051 Converge mandatory checks and actionable review threads
-- [ ] T052 Generate and validate temporary exact-head provider evidence
-- [ ] T053 Merge only after every technical gate passes
-- [ ] T054 Delete the feature branch and synchronize clean local `main`
-- [ ] T055 Complete the retrospective without starting D2
+- [X] T051 Converge mandatory checks and actionable review threads
+- [X] T052 Generate and validate temporary exact-head provider evidence
+- [X] T053 Merge only after every technical gate passes
+- [X] T054 Delete the feature branch and synchronize clean local `main`
+- [X] T055 Complete the retrospective without starting D2
 
 ## Dependencies and Coverage
 

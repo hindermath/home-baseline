@@ -1,22 +1,28 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "d9ca67af-26df-4adc-93e7-e1f6ffc34da3",
+  "reviewId": "6b072e8d-3393-4e04-8de2-1b0ed761b9f9",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-26T14:58:49Z",
+  "reviewedAt": "2026-07-26T13:57:56Z",
   "repository": {
     "root": ".",
-    "head": "b5292e8219c7e74db6bb6a064219af50c0f641a3"
+    "head": "aa4c9bdd4c6026f1f23bdb822e7408b4ae1897f0"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "1c7c2f4ef1d0db4885de62bce71736c5e921c4a52fdf0a59a220826fc6d8a9e1"
+    "normalizedSha256": "67dd910a6a8c2ec93ab2cd70012d24ba18352b3fbbe7e90e2a7521882c5b9ff8"
   },
   "targets": [
     {
-      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+      "path": "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
       "role": "Primary",
+      "normalizedSha256": "75a21348aaf46d1d81b6673903f5144bcb4c7fae64bcff435859c08705eead3e",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+      "role": "OrderedMember",
       "normalizedSha256": "652d236f5d47155f1c61db38cdbc36af74b24896c30595c0f86854e47221fde6",
       "gitBlob": "N/A"
     },
@@ -135,6 +141,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md",
       "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -156,15 +163,16 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 19 active paths, roles, and exact order match the bound schema-1.1 request",
-      "The single declared root D2 equals the zero-indegree target set after the merged D1 closeout",
-      "Twenty-nine unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Feature 011 is archived after PR #126 and its 15 remediation findings remain routed exclusively to D3",
+      "All 20 active paths, roles, and exact order match the bound schema-1.1 request",
+      "The single declared root D1 equals the zero-indegree target set",
+      "Thirty unique dependencies are reference-valid, order-consistent, and acyclic",
       "Feature 009 is excluded from the active target set and retained only as historical gate evidence",
-      "Mandatory preflight D2 establishes the Documentation Impact baseline before D3 performs fleet remediation",
+      "Mandatory preflight D1 audits Level 0 and every registered Level 1 and Level 2 repository before Positions 1 through 17 continue",
       "Positions 1 through 4, 5 through 8, and 9 through 13 have explicit learner-readable dependency boundaries",
       "Positions 14 through 17 form one explicit assurance chain without changing the established first thirteen positions",
-      "The Documentation Impact rule remains planned across Constitution, workflow templates, checklists, PR evidence, agent parity, and deterministic gates",
+      "The four new intakes separate read-only audit, portable preset productization, Home Baseline synchronization, and ABSDD adoption",
+      "Preflight D1 through D3 separates fleet-wide read-only audit, central Level-0 remediation and fleet governance, and registered Level-1/2 delivery with Level-0 revalidation",
+      "The Documentation Impact rule is planned across Constitution, workflow templates, checklists, PR evidence, agent parity, and deterministic gates instead of agent guidance alone",
       "All active intakes use copy-ready prompts and explicitly bounded delivery authority"
     ],
     "workers": []
@@ -175,5 +183,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "6b072e8d-3393-4e04-8de2-1b0ed761b9f9"
+  "supersedes": "4d090715-0053-4246-b1e4-a04b03d14fb1"
 }
