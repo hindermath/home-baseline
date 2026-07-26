@@ -67,9 +67,9 @@ nummerierte Reihenfolge fortgesetzt wird. Dadurch verwenden alle späteren
 
 | Vorlauf | Lastenheft | Zweck / Purpose |
 |---:|---|---|
-| D1 | `Lastenheft_Level-0-Dokumentations-Wirklichkeitsabgleich-Audit.md` | Inventarisiert alle repository-eigenen Dokumentationsflächen und prüft dokumentierte Aussagen read-only gegen die Level-0-Wirklichkeit. / Inventories every repository-owned documentation surface and audits documented claims read-only against Level 0 reality. |
-| D2 | `Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Governance.md` | Behebt bestätigte Findings und verankert den Documentation-Impact-Vertrag in Constitution, Templates, Checklists, PR-Evidence, Agentenflächen und prüfbaren Gates. / Remediates confirmed findings and anchors the documentation-impact contract across policy, workflow, agents, and verifiable gates. |
-| D3 | `Lastenheft_Level-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md` | Prüft und korrigiert anschließend alle registrierten Level-2-Repositories gegen ihre jeweilige Projektwirklichkeit. / Then audits and corrects every registered Level 2 repository against its own project reality. |
+| D1 | `Lastenheft_Registrierte-Level-0-1-2-Dokumentations-Wirklichkeitsabgleich-Audit.md` | Inventarisiert Level 0 und alle registrierten Level-1-/Level-2-Repositories und prüft ihre Dokumentation read-only gegen die jeweilige Wirklichkeit. / Inventories Level 0 and every registered Level 1 and Level 2 repository and audits their documentation read-only against each repository's reality. |
+| D2 | `Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md` | Behebt zentrale Level-0-Findings, disponiert alle D1-Findings und verankert den flottenweiten Documentation-Impact-Vertrag. / Remediates central Level 0 findings, dispositions every D1 finding, and anchors the fleet documentation-impact contract. |
+| D3 | `Lastenheft_Registrierte-Level-1-2-Dokumentations-Wirklichkeitsabgleich-Flotte.md` | Prüft und korrigiert alle registrierten Level-1-/Level-2-Repositories gegen ihre jeweilige Wirklichkeit und revalidiert Level 0 als Baseline. / Audits and corrects every registered Level 1 and Level 2 repository against its own reality and revalidates Level 0 as the baseline. |
 
 *The mandatory D1–D3 preflight completes before the numbered order resumes, so
 all later work uses the validated documentation-impact baseline.*
@@ -103,7 +103,8 @@ gleichgestellt. Ein Pfeil bedeutet: Der linke Intake liefert eine bindende
 Grundlage fuer den rechten Intake.
 
 ```text
-D1 Level-0-Doku-Audit --> D2 Level-0-Remediation --> D3 Level-2-Flotte
+D1 Level-0/1/2-Doku-Audit --> D2 Level-0-Remediation und Flotten-Governance
+                         --> D3 Level-1/2-Flotte und Level-0-Revalidierung
 
 D3 Doku-Baseline --+--> 1 Windows -----------\
                    +--> 2 Linux --------------+--> 4 Maintenance TUI
@@ -174,19 +175,23 @@ synchronization requires items 14 and 15; and ABSDD adoption requires items 15
 and 16. No item starts its successor automatically.*
 
 Der Vorlauf D1 bis D3 bildet den Dokumentations-Wirklichkeitsabgleich. D1 prüft
-die vollständige Level-0-Dokumentation zunächst ohne fachliche Korrekturen. D2
-darf nur bestätigte Findings beheben und verankert die dauerhafte
-Documentation-Impact-Regel. Erst diese gemergte Baseline darf D3 in die
-registrierte Level-2-Flotte übernehmen. D3 ist das harte Dokumentations-Gate
-für die bisherigen Roots 1, 2, 3, 5, 9 und 10. Ein neues portables Preset wird
-nicht vorab unterstellt; ein solcher Follow-up braucht einen reproduzierbaren
-Befund aus D1 oder D2.
+Level 0 und jedes aktuell registrierte Level-1-/Level-2-Repository zunächst
+ohne fachliche Korrekturen. D2 darf nur bestätigte zentrale Level-0-Findings
+beheben, disponiert alle übrigen Findings und verankert die dauerhafte
+Documentation-Impact-Regel. Erst diese gemergte Baseline darf D3 in alle
+registrierten Level-1-/Level-2-Repositories übernehmen; Level 0 wird dabei vor
+und nach der Flottenauslieferung revalidiert. D3 ist das harte
+Dokumentations-Gate für die bisherigen Roots 1, 2, 3, 5, 9 und 10. Ein neues
+portables Preset wird nicht vorab unterstellt; ein solcher Follow-up braucht
+einen reproduzierbaren Befund aus D1 oder D2.
 
 *Preflight D1 through D3 is the documentation-reality track. D1 audits Level 0
-without remediation. D2 remediates confirmed findings and establishes the
-durable documentation-impact rule. D3 applies that merged baseline to
-registered Level 2 repositories and gates the former roots. A new portable
-preset requires reproducible evidence and is not assumed in advance.*
+and every registered Level 1 and Level 2 repository without remediation. D2
+remediates confirmed central Level 0 findings and establishes the durable
+documentation-impact rule. D3 applies that merged baseline to all registered
+Level 1 and Level 2 repositories, revalidates Level 0, and gates the former
+roots. A new portable preset requires reproducible evidence and is not assumed
+in advance.*
 
 ## Serielle Ausfuehrung und native Systeme / Serial Delivery and Native Systems
 

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "bb4b60e5-5437-4482-a319-5061207216ed",
+  "intakeId": "a71f89db-e152-48ba-a646-c28870b6ac1a",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-26T13:55:42Z",
+  "operation": {
+    "operationId": "7ccaeb86-1203-4d78-be46-ce63aa3128c4",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction on 2026-07-26 to target the three documentation preflight intakes at the registered Level-0/1/2 fleet."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md",
+    "normalizedSha256": "652d236f5d47155f1c61db38cdbc36af74b24896c30595c0f86854e47221fde6"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved documentation reality and continuous-governance request",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "47dd23a1739799af1489324a282832e38ee35f25bcbab7867c7e633b80c39040",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved Level-0/1/2 fleet scope correction",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "23df1f1213c4d12920e3c4145ba70f63572334e0a18a02a844e0c5aa227c64d6",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: explicit current update authority in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wo wird die dauerhafte Documentation-Impact-Regel verankert?",
+      "answer": "Normativ in Constitution und Memory, operativ in Spec-/Plan-/Tasks-/Checklist-/PR-Flächen und synchron in allen fünf Agentenflächen.",
+      "evidence": "Current repository audit and user request"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wird ein neues Preset vorab verlangt?",
+      "answer": "Nein. Position 18 bewertet zuerst den portablen Bedarf; ohne reproduzierbaren Befund entsteht kein Preset.",
+      "evidence": "Evidence-first implementation decision"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync ausschließlich für findings-basierte zentrale Level-0-Remediation und die flottenweite Governance; D3 startet nicht automatisch.",
+      "evidence": "Explicit current user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/a71f89db-e152-48ba-a646-c28870b6ac1a/0cc750db-4913-4891-b3ff-a2b7f6c05de7/receipt.json",
+    "targetNormalizedSha256": "66e21c99930ec3ccf9cc01129583b39d7afa7e85c8f184bfe50f37407467421a",
+    "archiveTargetPath": "specs/intake-authoring-archive/a71f89db-e152-48ba-a646-c28870b6ac1a/0cc750db-4913-4891-b3ff-a2b7f6c05de7/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/a71f89db-e152-48ba-a646-c28870b6ac1a/0cc750db-4913-4891-b3ff-a2b7f6c05de7/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Explicit current user instruction on 2026-07-26.",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Level-0-Dokumentations-Konsistenz-Remediation-und-Flotten-Governance.md"
+}
