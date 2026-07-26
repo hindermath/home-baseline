@@ -271,7 +271,7 @@
       "id": "canonical-fleet-maintenance-discovery-hardening",
       "labelDe": "Canonical-Fleet-Wartungshärtung",
       "labelEn": "Canonical fleet maintenance hardening",
-      "netLines": 340,
+      "netLines": 388,
       "activeDays": 1
     }
   ],

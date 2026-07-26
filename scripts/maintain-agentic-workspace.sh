@@ -19,6 +19,7 @@ INCLUDE_OPTIONAL=0
 ALLOW_ADMIN_PROMPTS=0
 FINDINGS=0
 REPAIR_APPLIED=0
+PREVIEW_DRIFT=0
 LOCK_DIR=""
 LOG_FILE=""
 REPORT_FILE=""
@@ -337,12 +338,17 @@ run_propagation_check() {
 
 handle_propagation() {
   local propagation="${SOURCE_ROOT}/scripts/propagate-agentic-toolchain-maintenance.sh"
-  local status=0
+  local status=0 preview_output=""
   [ -f "$propagation" ] || die "Propagationsskript fehlt / missing: $propagation"
 
   if [ "$DRY_RUN" -eq 1 ]; then
-    HOME="$HOME_DIR" bash "$propagation" --home-dir "$HOME_DIR" --registry "$REGISTRY" --dry-run || status=$?
-    [ "$status" -eq 0 ] || FINDINGS=$((FINDINGS + 1))
+    preview_output="$(HOME="$HOME_DIR" bash "$propagation" --home-dir "$HOME_DIR" --registry "$REGISTRY" --dry-run)" || status=$?
+    printf '%s\n' "$preview_output"
+    if [ "$status" -ne 0 ]; then
+      FINDINGS=$((FINDINGS + 1))
+    elif grep -Eq 'repositories\.drifted:[[:space:]]+[1-9][0-9]*' <<< "$preview_output"; then
+      PREVIEW_DRIFT=1
+    fi
     return
   fi
 
@@ -590,6 +596,9 @@ if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -
   if [ "$FINDINGS" -gt "$findings_before" ]; then
     record_stage "propagation" "Blocked" 1 "Wartungspaket-Drift / maintenance package drift" \
       "Drift separat pruefen / review drift separately"
+  elif [ "$DRY_RUN" -eq 1 ] && [ "$PREVIEW_DRIFT" -eq 1 ]; then
+    record_stage "propagation" "Warning" 1 "Wartungspaket-Drift vorhergesagt / maintenance package drift predicted" \
+      "Mit --repair-drift lokal reparieren / repair locally with --repair-drift"
   else
     record_stage "propagation" "Passed" 0 "Wartungspaket geprueft / maintenance package checked"
   fi
@@ -651,13 +660,25 @@ fi
 
 if [ "$FINDINGS" -eq 0 ]; then
   info "Abschlusspruefung / Final verification"
-  run_home_sync_check
-  run_propagation_check
+  if [ "$DRY_RUN" -eq 1 ]; then
+    findings_before="$FINDINGS"
+    run_home_sync_check || true
+    if [ "$FINDINGS" -gt "$findings_before" ]; then
+      record_stage "home-sync" "Blocked" 1 "Home-Sync-Drift vorhergesagt / home sync drift predicted" \
+        "Echten Home-Sync nach dem Merge ausfuehren / run actual home sync after merge"
+    fi
+  else
+    run_home_sync_check
+    run_propagation_check
+  fi
   check_repository "$SOURCE_ROOT" "Level-0" || true
   while IFS=$'\t' read -r level repo; do
     [ -n "$repo" ] || continue
     check_repository "$repo" "Level-${level}" "$REPAIR_APPLIED" || true
   done < <(discover_repositories)
+  if [ "$DRY_RUN" -eq 1 ] && [ "$PREVIEW_DRIFT" -eq 1 ]; then
+    FINDINGS=$((FINDINGS + 1))
+  fi
 fi
 
 if [ "$FINDINGS" -gt 0 ]; then

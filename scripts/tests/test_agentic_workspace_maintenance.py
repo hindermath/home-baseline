@@ -279,6 +279,7 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             "agentic_workspace_fleet.py",
             "agentic-workspace-fleet.json",
             "canonical-repositories",
+            "maintenance package drift predicted",
         ):
             self.assertIn(token, bash)
             self.assertIn(token, powershell)

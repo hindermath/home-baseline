@@ -162,6 +162,7 @@ $logDir = Join-Path $stateDir 'logs'
 $reportDir = Join-Path $stateDir 'reports'
 $script:Findings = 0
 $script:RepairApplied = $false
+$script:PreviewDrift = $false
 $exitCode = 0
 $transcriptStarted = $false
 $runId = [Guid]::NewGuid().ToString()
@@ -402,8 +403,14 @@ function Invoke-HBPropagation {
     }
 
     if ($WhatIfPreference) {
-        & $propagation -HomeDir $HomeDir -Registry $registry -DryRun
-        if ($LASTEXITCODE -ne 0) { $script:Findings++ }
+        $previewOutput = @(& $propagation -HomeDir $HomeDir -Registry $registry -DryRun 6>&1)
+        $previewStatus = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+        $previewOutput | ForEach-Object { Write-Host "$_" }
+        if ($previewStatus -ne 0) {
+            $script:Findings++
+        } elseif ($previewOutput -match 'repositories\.drifted:\s+[1-9][0-9]*') {
+            $script:PreviewDrift = $true
+        }
         return
     }
 
@@ -677,6 +684,10 @@ try {
                 Add-HBReportStage -StageId 'propagation' -Status Blocked -ExitCode 1 `
                     -Summary 'Wartungspaket-Drift / maintenance package drift' `
                     -NextAction 'Drift separat pruefen / review drift separately'
+            } elseif ($WhatIfPreference -and $script:PreviewDrift) {
+                Add-HBReportStage -StageId 'propagation' -Status Warning -ExitCode 1 `
+                    -Summary 'Wartungspaket-Drift vorhergesagt / maintenance package drift predicted' `
+                    -NextAction 'Mit -RepairDrift lokal reparieren / repair locally with -RepairDrift'
             } else {
                 Add-HBReportStage -StageId 'propagation' -Status Passed -ExitCode 0 `
                     -Summary 'Wartungspaket geprueft / maintenance package checked'
@@ -735,11 +746,24 @@ try {
 
     if ($script:Findings -eq 0) {
         Write-HBInfo 'Abschlusspruefung / Final verification'
-        Test-HBHomeSync
-        if ((Invoke-HBPropagationCheck) -ne 0) { throw 'Abschliessende Propagationspruefung fehlgeschlagen / final propagation check failed.' }
+        if ($WhatIfPreference) {
+            $findingsBefore = $script:Findings
+            Test-HBHomeSync
+            if ($script:Findings -gt $findingsBefore) {
+                Add-HBReportStage -StageId 'home-sync' -Status Blocked -ExitCode 1 `
+                    -Summary 'Home-Sync-Drift vorhergesagt / home sync drift predicted' `
+                    -NextAction 'Echten Home-Sync nach dem Merge ausfuehren / run actual home sync after merge'
+            }
+        } else {
+            Test-HBHomeSync
+            if ((Invoke-HBPropagationCheck) -ne 0) { throw 'Abschliessende Propagationspruefung fehlgeschlagen / final propagation check failed.' }
+        }
         [void](Test-HBRepository -Repository $sourceRoot -Label 'Level-0')
         foreach ($repo in Get-HBManagedRepositories) {
             [void](Test-HBRepository -Repository $repo.Path -Label "Level-$($repo.Level)" -AllowRepairDirty:$script:RepairApplied)
+        }
+        if ($WhatIfPreference -and $script:PreviewDrift) {
+            $script:Findings++
         }
     }
 
