@@ -113,19 +113,19 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
         self.assertEqual(
             targets,
             {
-                "secure-casetracker-baseline": "SecureCaseTrackerProjects",
-                "secure-casetracker-csharp": "SecureCaseTrackerProjects/SecureCaseTracker-CSharp",
-                "secure-casetracker-go": "SecureCaseTrackerProjects/SecureCaseTracker-Go",
-                "secure-casetracker-java": "SecureCaseTrackerProjects/SecureCaseTracker-Java",
-                "secure-casetracker-python": "SecureCaseTrackerProjects/SecureCaseTracker-Python",
-                "secure-casetracker-rust": "SecureCaseTrackerProjects/SecureCaseTracker-Rust",
-                "secure-casetracker-swift": "SecureCaseTrackerProjects/SecureCaseTracker-Swift",
+                "secure-casetracker-baseline": "secure-casetracker-baseline",
+                "secure-casetracker-csharp": "secure-casetracker-baseline/securecasetracker-csharp",
+                "secure-casetracker-go": "secure-casetracker-baseline/securecasetracker-go",
+                "secure-casetracker-java": "secure-casetracker-baseline/securecasetracker-java",
+                "secure-casetracker-python": "secure-casetracker-baseline/securecasetracker-python",
+                "secure-casetracker-rust": "secure-casetracker-baseline/securecasetracker-rust",
+                "secure-casetracker-swift": "secure-casetracker-baseline/securecasetracker-swift",
             },
         )
         self.assertFalse(
             any(
-                path == "secure-casetracker-baseline"
-                or path.startswith("secure-casetracker-baseline/")
+                path == "SecureCaseTrackerProjects"
+                or path.startswith("SecureCaseTrackerProjects/")
                 for path in targets.values()
             )
         )

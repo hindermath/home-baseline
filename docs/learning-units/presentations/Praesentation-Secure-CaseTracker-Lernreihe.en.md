@@ -127,13 +127,13 @@ where the later Spec Kit runs and implementations happen.
 
 | Role | Local folder | GitHub slug |
 |---|---|---|
-| Coordination | `SecureCaseTrackerProjects` | `secure-casetracker-baseline` |
-| Reference | `SecureCaseTracker-CSharp` | `securecasetracker-csharp` |
-| Comparison | `SecureCaseTracker-Go` | `securecasetracker-go` |
-| Comparison | `SecureCaseTracker-Java` | `securecasetracker-java` |
-| Comparison | `SecureCaseTracker-Python` | `securecasetracker-python` |
-| Comparison | `SecureCaseTracker-Rust` | `securecasetracker-rust` |
-| Comparison | `SecureCaseTracker-Swift` | `securecasetracker-swift` |
+| Coordination | `secure-casetracker-baseline` | `secure-casetracker-baseline` |
+| Reference | `securecasetracker-csharp` | `securecasetracker-csharp` |
+| Comparison | `securecasetracker-go` | `securecasetracker-go` |
+| Comparison | `securecasetracker-java` | `securecasetracker-java` |
+| Comparison | `securecasetracker-python` | `securecasetracker-python` |
+| Comparison | `securecasetracker-rust` | `securecasetracker-rust` |
+| Comparison | `securecasetracker-swift` | `securecasetracker-swift` |
 
 ::: notes
 Local folders use CamelCase.

@@ -416,7 +416,7 @@ mit `Toolchain smoke tests passed.`
 vorgegeben hat, zum Beispiel:
 
 ```bash
-cd /secure-case-tracker-projects/SecureCaseTracker-CSharp
+cd /secure-case-tracker-projects/securecasetracker-csharp
 git status --short
 ```
 

@@ -112,7 +112,7 @@
 | Ebene / Level | Aufgabe / Task | Lehrnutzen / Teaching value |
 |---|---|---|
 | Level 0 | Zentrale Quelle in `home-baseline-source` | gemeinsame Richtlinie, Checklisten, Presets und Intakes bleiben stabil |
-| Level 1 | Koordination in `SecureCaseTrackerProjects` | Status, Reihenfolge, Links und Vergleich bleiben an einer Stelle sichtbar |
+| Level 1 | Koordination in `secure-casetracker-baseline` | Status, Reihenfolge, Links und Vergleich bleiben an einer Stelle sichtbar |
 | Level 2 | Umsetzung in sechs Sprach-Repos | jede MSL-Sprache erhält eigene Spec-Kit-Artefakte, Tests und Nachweise |
 
 **DE:** Die Spec-Kit-Läufe werden später pro Level-2-Repo manuell gestartet. C# ist als erster Referenzpfad vorgesehen. Danach können Go, Java, Python, Rust und Swift als Vergleichspfade folgen. Diese Reihenfolge hilft, zuerst eine gut verstandene Referenz zu erzeugen und anschließend Unterschiede zwischen Toolchains, Validierung, Dependency-Audits und Secure-Coding-Regeln sichtbar zu machen.

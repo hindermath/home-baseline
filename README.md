@@ -1771,24 +1771,24 @@ Die zentralen Spec-Kit-Intakes der Lernreihe liegen ebenfalls unter [`docs/learn
 
 *The central Spec Kit intake files of the learning series also live under [`docs/learning-units/`](docs/learning-units/) as `Lastenheft_Secure-CaseTracker*.md`. This keeps the introduction, teaching guide, presentations, and runnable intake files in one didactically discoverable place.*
 
-Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Level-2-Struktur vorgesehen: `home-baseline-source` bleibt die Level-0-Quelle, ein privates Level-1-Repo `SecureCaseTrackerProjects` koordiniert Status und Reihenfolge, und sechs private Level-2-Repos bilden die getrennten MSL-Pfade für C#, Go, Java, Python, Rust und Swift. Die Spec-Kit-Läufe werden dort später manuell durch Lehrende oder Lernende gestartet; C# ist als erster Referenzpfad vorgesehen.
+Für die spätere praktische Bearbeitung ist Secure CaseTracker als Level-1-/Level-2-Struktur vorgesehen: `home-baseline-source` bleibt die Level-0-Quelle, ein privates Level-1-Repo `secure-casetracker-baseline` koordiniert Status und Reihenfolge, und sechs private Level-2-Repos bilden die getrennten MSL-Pfade für C#, Go, Java, Python, Rust und Swift. Die Spec-Kit-Läufe werden dort später manuell durch Lehrende oder Lernende gestartet; C# ist als erster Referenzpfad vorgesehen.
 
-*For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-source` remains the Level 0 source, a private Level 1 repository `SecureCaseTrackerProjects` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by instructors or learners; C# is planned as the first reference path.*
+*For later practical work, Secure CaseTracker is intended as a Level 1 / Level 2 structure: `home-baseline-source` remains the Level 0 source, a private Level 1 repository `secure-casetracker-baseline` coordinates status and order, and six private Level 2 repositories provide the separate MSL paths for C#, Go, Java, Python, Rust, and Swift. The Spec Kit runs are started there later and manually by instructors or learners; C# is planned as the first reference path.*
 
-Die lokalen Level-2-Ordner nutzen CamelCase, z. B. `SecureCaseTracker-CSharp`. Die Repository-Slugs werden durch `bootstrap-project.sh` lowercase erzeugt, z. B. `securecasetracker-csharp`.
+Die lokalen Level-2-Ordner und Repository-Slugs nutzen einheitlich lowercase, z. B. `securecasetracker-csharp`. Dadurch stimmen dokumentierte Pfade, Flottenregister und echte Checkouts überein.
 
-*The local Level 2 folders use CamelCase, for example `SecureCaseTracker-CSharp`. The repository slugs are created lowercase by `bootstrap-project.sh`, for example `securecasetracker-csharp`.*
+*Local Level 2 folders and repository slugs consistently use lowercase, for example `securecasetracker-csharp`. This keeps documented paths, the fleet registry, and real checkouts aligned.*
 
 Lernreihen koennen fuer die Weitergabe mit `package-learning-series.*` als ZIP ohne `.git`-Verzeichnisse, ohne urspruengliche Remote-URLs und ohne lokale Build-/IDE-Artefakte gepackt werden. Die generische Startanleitung [`docs/learning-units/GIT-START-FUER-LERNENDE.md`](docs/learning-units/GIT-START-FUER-LERNENDE.md) erklaert Lernenden danach den eigenen Git-Start.
 
 *Learning series can be packaged for distribution with `package-learning-series.*` as a ZIP without `.git` directories, original remote URLs, or local build/IDE artefacts. The generic start guide [`docs/learning-units/GIT-START-FUER-LERNENDE.md`](docs/learning-units/GIT-START-FUER-LERNENDE.md) then explains how learners start their own Git history.*
 
 ```bash
-bash scripts/package-learning-series.sh --source-dir ~/SecureCaseTrackerProjects --series-name "Secure CaseTracker" --package-prefix secure-casetracker --dry-run
+bash scripts/package-learning-series.sh --source-dir ~/secure-casetracker-baseline --series-name "Secure CaseTracker" --package-prefix secure-casetracker --dry-run
 ```
 
 ```powershell
-pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/SecureCaseTrackerProjects -SeriesName 'Secure CaseTracker' -PackagePrefix secure-casetracker -WhatIf
+pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/secure-casetracker-baseline -SeriesName 'Secure CaseTracker' -PackagePrefix secure-casetracker -WhatIf
 ```
 
 Neue Level-2-Projekte erhalten beim Bootstrap einen RL-SE-/Checklist-Selbstpruefungs-Intake unabhaengig von MSL. Wenn ihre Primaersprache als MSL deklariert oder erkannt wird, wird zusaetzlich der Secure-Development-Hardening-Intake vorbereitet:
