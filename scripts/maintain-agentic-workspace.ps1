@@ -861,19 +861,22 @@ function Invoke-HBPresetProfiles {
     }
 }
 
-New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir, $reportDir -Force | Out-Null
+New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir, $reportDir `
+    -Force -WhatIf:$false | Out-Null
 try {
-    New-Item -ItemType Directory -Path $lockDir -ErrorAction Stop | Out-Null
+    New-Item -ItemType Directory -Path $lockDir -ErrorAction Stop -WhatIf:$false | Out-Null
 } catch {
     $holder = if (Test-Path (Join-Path $lockDir 'pid')) { Get-Content (Join-Path $lockDir 'pid') -Raw } else { 'unbekannt / unknown' }
     Write-Host "Fehler / Error: Wartung laeuft bereits (PID $($holder.Trim())) / maintenance already running." -ForegroundColor Red
     exit 2
 }
-Set-Content -LiteralPath (Join-Path $lockDir 'pid') -Value $PID
+Set-Content -LiteralPath (Join-Path $lockDir 'pid') -Value $PID -WhatIf:$false
 $logFile = Join-Path $logDir "agentic-workspace-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"
 
 try {
-    Start-Transcript -Path $logFile -Append | Out-Null
+    # Lock, log and report are mode-independent control evidence, not a
+    # previewed workspace mutation.
+    Start-Transcript -Path $logFile -Append -WhatIf:$false | Out-Null
     $transcriptStarted = $true
     $env:HOME = $HomeDir
     $env:USERPROFILE = $HomeDir

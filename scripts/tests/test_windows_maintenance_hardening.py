@@ -245,7 +245,9 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "Get-HBCanonicalExitCode",
             "homeInvocationStatus",
             "& $syncScript -NoPull -CheckOnly -WhatIf:$false",
+            "Start-Transcript -Path $logFile -Append -WhatIf:$false",
             "Stop-Transcript -WhatIf:$false",
+            "Set-Content -LiteralPath (Join-Path $lockDir 'pid') -Value $PID -WhatIf:$false",
         ):
             self.assertIn(token, workspace)
         self.assertNotIn(
