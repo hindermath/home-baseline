@@ -345,6 +345,14 @@
       "labelEn": "Windows one-command maintenance hardening",
       "netLines": 4063,
       "activeDays": 1
+    },
+    {
+      "slot": 42,
+      "id": "kdm-kitsm-learning-series-intake-chain",
+      "labelDe": "KDM-/KITSM-Lernreihen-Intake-Kette",
+      "labelEn": "KDM/KITSM learning-series intake chain",
+      "netLines": 3824,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

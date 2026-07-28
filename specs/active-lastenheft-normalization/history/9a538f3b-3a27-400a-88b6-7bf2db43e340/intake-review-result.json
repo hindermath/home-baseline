@@ -1,18 +1,25 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "47c855a9-b945-4e95-bcaa-9db9a2e5b6f1",
+  "reviewId": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T17:41:34Z",
+  "reviewedAt": "2026-07-28T14:58:27Z",
   "repository": {
     "root": ".",
-    "head": "82e7ba62a53024d4c949c394adb0cbb34d080a0a"
+    "head": "694429cd0c0a8f683ab1ef93531d36ad5de8625b"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "871efe117497225fcfe5dd64f041acfe2246bddf7c66a3b03027bcaab0855ce8"
+    "normalizedSha256": "1549c172358cd2f52f6d5293aa27799c0f1a26d5c6ca2f8216a600515a07c452"
   },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "1a688fd4-666c-4fed-99bc-d33f042c382a",
   "targets": [
     {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -139,60 +146,9 @@
       "role": "OrderedMember",
       "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
       "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "d1fb8be21c58cb28074488d68466843553495cbb03e1f2a742781b134fc01737",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "90a022f93952d28b96817e38cf5c78cd92793683b523d7146180876eff954543",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "35ee962e70b0d918754dc07e369446ffbe563ad21b38085802b5402ad065376c",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "06b38066938ed59b54fee799be1fa82bc4c49c3de932a3b2d4c462abc9f00e8f",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KITSM-Professional-Jahr3.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "0fb243c3b9a8645eb1892a6c6a578da5805c75e147059fca6747fd7e595e63fd",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-Professional-Jahr3.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "f301744d6159246715b8f40b0e32b1fa18560dc39f2f6ad51e037bfdb1cbf354",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e34f608ae13cd01b8542adba930e0381cf9aa31143c78fd13baff8b4ee379d0a",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "eb4b663bf89296c62b1cc174a8ebc250429e31d9c45bbb7281aaa699b591d28a",
-      "gitBlob": "N/A"
     }
   ],
   "findings": [],
-  "questions": [],
-  "acceptedRisks": [],
-  "operatorExceptions": [],
   "coverage": {
     "individual": [
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -215,31 +171,21 @@
       "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
       "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
       "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "Lastenheft_KITSM-Professional-Jahr3.md",
-      "Lastenheft_KDM-Professional-Jahr3.md",
-      "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md"
+      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "ordered paths",
-      "roots",
-      "dependencies",
-      "cross-intake invariants",
-      "delivery authority",
-      "learner and accessibility contract"
+      "All 21 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "The five declared roots equal the zero-indegree target set",
+      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
+      "D4 through D7 form a binding post-item-4 documentation architecture chain",
+      "D6 provides an additional documentation-surface baseline for the existing script-documentation intake",
+      "Windows maintenance v1.2 binds WEM-001 through WEM-013, AC-001 through AC-016, the eleven-preset profile, and MergeAndSync authority",
+      "Nested preview coherence, truthful exit propagation, Windows path parity, and early toolchain gates are atomic and testable",
+      "Windows maintenance remains the single declared Eligible candidate; no successor feature was started"
     ],
     "workers": []
   },
-  "summary": {
-    "critical": 0,
-    "high": 0,
-    "medium": 0,
-    "low": 0
-  },
-  "supersedes": "9a538f3b-3a27-400a-88b6-7bf2db43e340"
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": []
 }

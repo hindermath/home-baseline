@@ -88,9 +88,25 @@ Neue sprachneutrale Lernreihen verwenden standardmaessig diese sechs MSL-Pfade:
 
 ## IT-Berufsbild-Mapping / IT Occupation Mapping
 
-**DE:** Lernreihen koennen neben Fachinformatiker-Fachrichtungen auch weitere IT-Ausbildungsberufe didaktisch adressieren. Das Mapping bleibt eine Unterrichtshilfe und erzeugt keine neuen Repositories. Als Mindestmatrix gelten FI/AE, FI/SI, FI/DPA, FI/DV, IT-System-Elektroniker/-in, Kaufmann/-frau fuer IT-System-Management und Kaufmann/-frau fuer Digitalisierungsmanagement. Fuer die beiden kaufmaennischen Berufe (KITSM, KDM) beschreibt die `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md`, wie viel Programmierung im agentischen SDD dazugehoert (Rolle Auftraggeber:in/Abnehmer:in, SQL als deklarative Bruecken-Programmiersprache, verpflichtender SQL-Schreib-Touch, evidenzbasierte Abnahme) und wird ohne neue Repos ueber bestehende Lernbegleiter-Overlays und die drei `IT-Berufe-Secure-*-Mapping.md` integriert.
+**DE:** Lernreihen koennen neben Fachinformatiker-Fachrichtungen auch weitere IT-Ausbildungsberufe didaktisch adressieren. Das Mapping bleibt eine Unterrichtshilfe und erzeugt keine neuen Repositories. Als Mindestmatrix gelten FI/AE, FI/SI, FI/DPA, FI/DV, IT-System-Elektroniker/-in, Kaufmann/-frau fuer IT-System-Management (KITSM) und Kaufmann/-frau fuer Digitalisierungsmanagement (KDM).
 
-**EN:** Learning series may also address additional IT training occupations didactically. The mapping remains a teaching aid and does not create repositories. The minimum matrix covers FI/AE, FI/SI, FI/DPA, FI/DV, IT systems electronics technician, IT systems management clerk, and digitalization management clerk. For the two commercial occupations (KITSM, KDM) the `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` describes how much programming belongs to agentic SDD (client/acceptor role, SQL as declarative bridge language, mandatory SQL write touch, evidence-based acceptance) and is integrated without new repositories through existing study-companion overlays and the three `IT-Berufe-Secure-*-Mapping.md`.
+Fuer KITSM und KDM ist eine eigenstaendige, fachlich gleichwertige Progression vorbereitet. Sie verwendet C# als Referenzsprache, SQL als verpflichtende deklarative Bruecke und die vorhandenen Secure-Trader-Domaenen als gemeinsame Fallbeispiele:
+
+1. Im ersten Lehrjahr werden vorhandene Grundlagen um kaufmaennische Rollen, einfache C#- und SQL-Arbeit, Datenschutz, sichere Abnahme und nachvollziehbare Evidence ergaenzt.
+2. Im zweiten Lehrjahr folgt ein gemeinsamer kaufmaennischer Kern zu Anforderungen, Kosten, Beschaffung, Verträgen, Servicequalitaet, Daten und Prozessverbesserung.
+3. Im dritten Lehrjahr trennen sich KITSM und KDM in eigene berufsspezifische Vertiefungen.
+
+Die Positionen 18 bis 25 der aktiven Intake-Reihenfolge bereiten Audit, Lernarchitektur, Jahrgaenge, kontrollierten C#-Rollout und Abschlusspruefung vor. Bis diese Laeufe umgesetzt sind, bleibt die `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` die gueltige Uebergangsbasis. Die Vorbereitung startet keinen Lernenden- oder Spec-Kit-Lauf automatisch.
+
+**EN:** Learning series may also address additional IT training occupations didactically. The mapping remains a teaching aid and does not create repositories. The minimum matrix covers FI/AE, FI/SI, FI/DPA, FI/DV, IT systems electronics technician, IT systems management clerk (KITSM), and digitalization management clerk (KDM).
+
+A dedicated, professionally equivalent progression is prepared for KITSM and KDM. It uses C# as the reference language, SQL as the mandatory declarative bridge, and the existing Secure Trader domains as shared case studies:
+
+1. Year 1 extends the existing foundations with commercial roles, basic C# and SQL work, data protection, secure acceptance, and traceable evidence.
+2. Year 2 provides a shared commercial core covering requirements, cost, procurement, contracts, service quality, data, and process improvement.
+3. Year 3 separates into occupation-specific KITSM and KDM advanced tracks.
+
+Positions 18 through 25 of the active intake order prepare the audit, learning architecture, training years, controlled C# rollout, and final closure review. Until those runs are implemented, `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` remains the valid transitional baseline. Preparation does not automatically start a learner or Spec Kit run.
 
 ## Mindestartefakte / Minimum Artefacts
 

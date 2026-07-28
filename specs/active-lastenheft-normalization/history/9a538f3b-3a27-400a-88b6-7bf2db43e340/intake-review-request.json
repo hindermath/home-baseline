@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "47c855a9-b945-4e95-bcaa-9db9a2e5b6f1",
+  "reviewId": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -87,38 +87,6 @@
     {
       "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
       "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KITSM-Professional-Jahr3.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-Professional-Jahr3.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-      "role": "OrderedMember"
     }
   ],
   "series": {
@@ -143,15 +111,7 @@
       "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
       "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
       "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "Lastenheft_KITSM-Professional-Jahr3.md",
-      "Lastenheft_KDM-Professional-Jahr3.md",
-      "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md"
+      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "roots": [
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -300,46 +260,6 @@
         "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
         "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
         "kind": "AssessmentBaseline"
-      },
-      {
-        "from": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "to": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-        "kind": "SecureDevelopmentBaseline"
-      },
-      {
-        "from": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-        "to": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-        "kind": "AssessmentBaseline"
-      },
-      {
-        "from": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-        "to": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-        "kind": "RequirementsGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-        "to": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-        "kind": "RequirementsGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-        "to": "Lastenheft_KITSM-Professional-Jahr3.md",
-        "kind": "RequirementsGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_KITSM-Professional-Jahr3.md",
-        "to": "Lastenheft_KDM-Professional-Jahr3.md",
-        "kind": "HardCompletionGate"
-      },
-      {
-        "from": "Lastenheft_KDM-Professional-Jahr3.md",
-        "to": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-        "kind": "DocumentationSurfaceBaseline"
-      },
-      {
-        "from": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-        "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-        "kind": "FinalAuditInput"
       }
     ]
   },

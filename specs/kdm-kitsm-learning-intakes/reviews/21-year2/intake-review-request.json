@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "e4165759-90ff-4851-8b20-4f07aa092a29",
+  "mode": "Single",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

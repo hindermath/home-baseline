@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "128e0839-9113-46b7-9535-2c4e20e23a1f",
+  "mode": "Single",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_KDM-Professional-Jahr3.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

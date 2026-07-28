@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "b7fb7c8d-766e-4895-b1ee-8bdb192fabd6",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user approval to implement and MergeAndSync the complete KDM/KITSM eight-intake preparation plan.",
+  "proposalNormalizedSha256": "813565c32712f0777450e4890958129e7c56e173cbdc0e959d4f6ccb2ec29259",
+  "preparedPaths": [
+    "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+    "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+    "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+    "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+    "Lastenheft_KITSM-Professional-Jahr3.md",
+    "Lastenheft_KDM-Professional-Jahr3.md",
+    "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+    "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "specs/intake-authoring-receipts/kdm-kitsm-lernreihen-gap-audit.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-lernarchitektur-und-kompetenzmodell.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-jahr1-retrofit.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-kaufmaennischer-kern-jahr2.json",
+    "specs/intake-authoring-receipts/kitsm-professional-jahr3.json",
+    "specs/intake-authoring-receipts/kdm-professional-jahr3.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-csharp-lernreihen-rollout.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-lernreihen-closure.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

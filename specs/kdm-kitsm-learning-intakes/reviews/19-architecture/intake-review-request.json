@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "946fd981-a905-41b5-b5d7-2bf34b41f7ce",
+  "mode": "Single",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

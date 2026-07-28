@@ -131,54 +131,6 @@
       "role": "OrderedMember",
       "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
       "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "d1fb8be21c58cb28074488d68466843553495cbb03e1f2a742781b134fc01737",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "90a022f93952d28b96817e38cf5c78cd92793683b523d7146180876eff954543",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "35ee962e70b0d918754dc07e369446ffbe563ad21b38085802b5402ad065376c",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "06b38066938ed59b54fee799be1fa82bc4c49c3de932a3b2d4c462abc9f00e8f",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KITSM-Professional-Jahr3.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "0fb243c3b9a8645eb1892a6c6a578da5805c75e147059fca6747fd7e595e63fd",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-Professional-Jahr3.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "f301744d6159246715b8f40b0e32b1fa18560dc39f2f6ad51e037bfdb1cbf354",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e34f608ae13cd01b8542adba930e0381cf9aa31143c78fd13baff8b4ee379d0a",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "eb4b663bf89296c62b1cc174a8ebc250429e31d9c45bbb7281aaa699b591d28a",
-      "status": "Blocked"
     }
   ],
   "roots": [
@@ -356,54 +308,6 @@
       "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
       "kind": "AssessmentBaseline",
       "binding": true
-    },
-    {
-      "from": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "to": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "kind": "SecureDevelopmentBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "to": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "kind": "AssessmentBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "to": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "to": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "to": "Lastenheft_KITSM-Professional-Jahr3.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KITSM-Professional-Jahr3.md",
-      "to": "Lastenheft_KDM-Professional-Jahr3.md",
-      "kind": "HardCompletionGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KDM-Professional-Jahr3.md",
-      "to": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "kind": "DocumentationSurfaceBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-      "kind": "FinalAuditInput",
-      "binding": true
     }
   ],
   "evidencePaths": [
@@ -414,14 +318,6 @@
     "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
-    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
-    "specs/kdm-kitsm-learning-intakes/reviews/18-gap-audit/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/19-architecture/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/20-year1/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/21-year2/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/22-kitsm/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/23-kdm/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/25-closure/intake-review-result.json"
+    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md"
   ]
 }

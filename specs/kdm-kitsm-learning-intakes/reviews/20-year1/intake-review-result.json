@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "9f95f820-66e3-4c09-9bae-9085cde1e814",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
+  "reviewedAt": "2026-07-28T17:38:40Z",
+  "repository": {
+    "root": ".",
+    "head": "82e7ba62a53024d4c949c394adb0cbb34d080a0a"
+  },
+  "requestEvidence": {
+    "path": "specs/kdm-kitsm-learning-intakes/reviews/20-year1/intake-review-request.json",
+    "normalizedSha256": "6c53046707a49c2b1d94a6a82508f7a14714011a183d18ccc93a1dbb98aad6c5"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+      "role": "Primary",
+      "normalizedSha256": "35ee962e70b0d918754dc07e369446ffbe563ad21b38085802b5402ad065376c",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

@@ -3,47 +3,28 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `9a538f3b-3a27-400a-88b6-7bf2db43e340`
-- Supersedes: `1a688fd4-666c-4fed-99bc-d33f042c382a`
-- Ziele / Targets: 21
+- Review-ID: `47c855a9-b945-4e95-bcaa-9db9a2e5b6f1`
+- Supersedes: `9a538f3b-3a27-400a-88b6-7bf2db43e340`
+- Ziele / Targets: 29
 - Roots: 5
-- Abhängigkeiten / Dependencies: 28
+- Abhängigkeiten / Dependencies: 36
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Die Windows-Härtung v1.2 bindet WEM-001 bis WEM-013, AC-001 bis AC-016, das
-Profil mit elf Governance-Presets sowie die Lieferautorität `MergeAndSync`.
-Die aktuelle Wartungsevidenz wurde in vier zusätzliche, atomare und prüfbare
-Bereiche überführt: kohärente verschachtelte Vorschauparameter, wahrheitsgetreue
-Exitcode-Weitergabe, Windows-Pfad- und Test-Harness-Parität sowie frühe
-Toolchain- und PSScriptAnalyzer-Gates. Es bestehen keine Findings, offenen
-Fragen, akzeptierten Risiken oder Operator-Ausnahmen.
+Die acht neuen KDM-/KITSM-Intakes sind als Positionen 18 bis 25 vollständig und seriell hinter Position 17 eingeordnet. C#/.NET ist als Referenzsprache gebunden. Jahr-1-Retrofit, gemeinsamer Jahr-2-Kern, getrennte Jahr-3-Reihen, sechs Zielrepositories und die abschließende read-only Closure besitzen eindeutige Dokument-, Evidence-, Accessibility- und Stop-Grenzen. Es bestehen keine Findings, offenen Fragen, akzeptierten Risiken oder Operator-Ausnahmen.
 
-Die Windows-Härtung bleibt der einzige im Manifest ausdrücklich als `Eligible`
-markierte nächste Kandidat. Kein Folgelauf wurde vor diesem Review gestartet.
-
-*Windows hardening v1.2 binds WEM-001 through WEM-013, AC-001 through AC-016,
-the eleven-governance-preset profile, and `MergeAndSync` delivery authority.
-Current maintenance evidence is expressed as four additional atomic and
-testable areas: coherent nested preview parameters, truthful exit-code
-propagation, Windows path and test-harness parity, and early toolchain and
-PSScriptAnalyzer gates. There are no findings, open questions, accepted risks,
-or operator exceptions. Windows hardening remains the only explicitly
-declared `Eligible` candidate, and no successor run began before this review.*
+*The eight new KDM/KITSM intakes are complete and serially ordered as items 18 through 25 after item 17. C#/.NET is the binding reference language. The year-1 retrofit, shared year-2 core, separate year-3 series, six rollout targets, and read-only closure have explicit document, evidence, accessibility, and stop boundaries.*
 
 ## Graphnachweis / Graph Evidence
 
-- Alle 21 Pfade, Rollen, Hashes und Positionen stimmen mit dem gebundenen
-  Schema-1.1-Request überein.
-- Die fünf Roots entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 28 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und
-  azyklisch.
-- Die unveränderten 20 Serienmitglieder wurden gegen ihre gebundenen Hashes
-  revalidiert; der Windows-Hash entspricht exakt Intake v1.2.
-- Die bestehende Reihenfolge, die D4-D7-Kette und alle abgeschlossenen
-  D1-D3-/G1-Nachweise bleiben unverändert erhalten.
+- Alle 29 Pfade, Rollen, Hashes und Positionen stimmen mit dem Schema-1.1-Request überein.
+- Die fünf bestehenden Roots bleiben unverändert und entsprechen exakt den Knoten ohne eingehende Kante.
+- Alle 36 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und azyklisch.
+- Position 18 ist durch Position 17 blockiert; die Positionen 19 bis 25 bilden danach eine bindende serielle Kette.
+- Die zuvor deklarierte Eligible-Auswahl wird durch die Erweiterung nicht verändert.
 
-*All targets, roots, and dependencies are complete, unique, order-consistent,
-and acyclic. The 20 unchanged members were revalidated against their bound
-hashes, and the Windows target exactly matches intake v1.2. Existing ordering
-and completed evidence remain unchanged.*
+*All 29 targets, five roots, and 36 dependencies are complete, unique, order-consistent, and acyclic. Item 18 remains blocked by item 17, and items 19 through 25 form the binding continuation. Existing eligibility is unchanged.*
+
+## Nächste Aktion / Next Action
+
+Der Status darf read-only mit `$speckit-intake-series-status` geprüft werden. Kein KDM-/KITSM-Featurelauf wurde gestartet.
