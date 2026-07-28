@@ -161,3 +161,10 @@ strict `Idle` series, and v0.2.2 excluded independently owned nested Git
 repositories from the parent index-uniqueness check. The original Feature-014
 retrospective remains historically correct for the original run; the later
 promotion is recorded separately in `fleet-adoption-retrospective.md`.
+
+The final profile-parity closeout is recorded in
+`fleet-v022-profile-evidence.json`. All 32 canonical Level-1/Level-2
+repositories now carry the v0.2.2 profile. The six original Schema-2 pilots
+were reinstalled at v0.2.2; their real CI found only stale generated statistics,
+which were rendered from the exact profile heads before all checks passed. The
+other 26 repositories retained their documented provider-zero-step boundary.

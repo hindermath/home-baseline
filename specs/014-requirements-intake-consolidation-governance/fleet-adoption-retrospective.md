@@ -61,4 +61,6 @@ success.*
 - Pull Requests: `26/26` gemergt / merged
 - Lokale Synchronisierung: `26/26` exakt / exact
 - Preset-Endstand: `intake-sequencing-governance` v0.2.2
+- Flottenprofile auf v0.2.2: `32/32`
+- Ursprüngliche Pilotinstallationen auf v0.2.2: `6/6`
 - Weiterer Feature-Lauf gestartet: nein / no
