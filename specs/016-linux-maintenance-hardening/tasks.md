@@ -191,11 +191,11 @@ MergeAndSync-Grenze liefern und die Serie genau einmal fortschreiben.
 - [X] T052 Stage only intended paths and validate the exact candidate against `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
 - [X] T053 Commit the reviewed candidate with required co-author trailer and push branch `016-linux-maintenance-hardening`
 - [X] T054 Open the feature pull request and record its URL/head in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T055 Converge all Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and write temporary provider-neutral gate evidence from `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
-- [ ] T056 Merge only the converged exact head with the authorized repository admin bypass and record the merge result in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T057 Delete the feature branch, fast-forward local `main`, prove equality with `origin/main` and sync Home Runtime through `scripts/sync-home.sh`
-- [ ] T058 Execute the manifest-declared post-merge intake archive/series advancement and fresh review for `requirements/intakes/series/home-baseline-delivery/manifest.json` without starting the next feature
-- [ ] T059 Complete `specs/016-linux-maintenance-hardening/retrospective.md`, final autonomous state and the final Level-0 Git fetch/pull/commit/push inventory
+- [X] T055 Converge all Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and write temporary provider-neutral gate evidence from `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
+- [X] T056 Merge only the converged exact head with the authorized repository admin bypass and record the merge result in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T057 Delete the feature branch, fast-forward local `main`, prove equality with `origin/main` and sync Home Runtime through `scripts/sync-home.sh`
+- [X] T058 Execute the manifest-declared post-merge intake archive/series advancement and fresh review for `requirements/intakes/series/home-baseline-delivery/manifest.json` without starting the next feature
+- [X] T059 Complete `specs/016-linux-maintenance-hardening/retrospective.md`, final autonomous state and the final Level-0 Git fetch/pull/commit/push inventory
 
 ## Dependencies and execution order
 

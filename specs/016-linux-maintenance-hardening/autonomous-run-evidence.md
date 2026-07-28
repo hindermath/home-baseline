@@ -236,3 +236,37 @@ Folgefeature.
   nochmals. Die verbindliche Exact-Head-Zuordnung bleibt deshalb bis zur
   G007-Konvergenz in temporärer providerneutraler Evidence und wird nicht
   selbstreferenziell in diesen Feature-Head geschrieben.
+
+## Merge und kausaler Closeout / Merge and Causal Closeout
+
+- Verbindlicher geprüfter Head:
+  `028383b1312b9e85c8ebd375cf45ad9b3ffb9b67`.
+- PR #146 bestand auf diesem Head 20 technische Prüfungen auf Ubuntu, macOS
+  und Windows. Es gab null Kommentare, null Reviews und null umsetzbare
+  Threads.
+- Der Merge erfolgte am `2026-07-28T21:00:51Z` als Commit
+  `8a12143941a791528f856e6f7cfd77e6af9860d4`. Der eng begrenzte
+  Admin-Bypass wurde ausschließlich für die verbleibende Human-Approval-Regel
+  eingesetzt; alle technischen Gates waren grün.
+- Die providerneutrale Datei `autonomous-run-gate-evidence.json` bindet G001
+  bis G008 an den geprüften Head. Beide Preset-Validatoren akzeptieren acht
+  Primärzeilen; G008 bleibt mit unverändertem Trigger `N/A`.
+- Home Runtime wurde nach dem Merge mit `scripts/sync-home.sh --no-pull`
+  synchronisiert. Der lokale Home-Commit lautet `a436bbe`; er besitzt
+  absichtlich keinen Remote.
+- Series-Operation `6822cc9a-d1ee-41d7-a1bb-a7db1dec813f` archiviert den
+  erledigten Linux-Intake und seinen Vorgängerzustand. Das neue Manifest
+  enthält 35 Ziele, drei Roots und 42 Abhängigkeiten.
+- Review `6d53e96f-3a76-487f-a357-c862cf0c237d` bestätigt den aktualisierten
+  Series-Zustand als `Ready`. Position 3 ist der einzige `Eligible`-Kandidat;
+  kein Folgelauf wurde gestartet.
+- Die Retrospektive lautet `NoPromotion`: Es wurde kein reproduzierbarer,
+  providerneutraler Preset-Defekt gefunden.
+
+*The binding reviewed head is `028383b1312b9e85c8ebd375cf45ad9b3ffb9b67`.
+PR #146 passed 20 technical checks across Ubuntu, macOS, and Windows with no
+comments, reviews, or actionable threads. It was merged as
+`8a12143941a791528f856e6f7cfd77e6af9860d4`; the narrow administrator bypass
+covered only the remaining human-approval rule. The causal Series operation
+archives the completed Linux intake, and the fresh `Ready` review identifies
+position 3 as the sole eligible candidate without starting it.*

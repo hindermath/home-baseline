@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary",
-      "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
+      "normalizedSha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -218,11 +224,18 @@
     }
   ],
   "roots": [
+    "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
     "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
+    {
+      "from": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
     {
       "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -478,15 +491,22 @@
   ],
   "evidencePaths": [
     "Lastenheft_Abarbeitungsreihenfolge.md",
-    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
-    "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
-    "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
     "specs/active-lastenheft-normalization/intake-review-request.json",
     "specs/active-lastenheft-normalization/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
+    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
+    "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
+    "specs/kdm-kitsm-learning-intakes/reviews/18-gap-audit/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/19-architecture/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/20-year1/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/21-year2/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/22-kitsm/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/23-kdm/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/25-closure/intake-review-result.json",
     "specs/intake-authoring-series/itse-learning-series/series.json",
     "specs/itse-learning-intakes/reviews/26-gap-audit/intake-review-result.json",
     "specs/itse-learning-intakes/reviews/27-architecture/intake-review-result.json",
@@ -495,14 +515,6 @@
     "specs/itse-learning-intakes/reviews/30-year3/intake-review-result.json",
     "specs/itse-learning-intakes/reviews/31-rollout/intake-review-result.json",
     "specs/itse-learning-intakes/reviews/32-closure/intake-review-result.json",
-    "specs/itse-learning-intakes/reviews/33-global-closure/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/18-gap-audit/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/19-architecture/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/20-year1/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/21-year2/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/22-kitsm/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/23-kdm/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/25-closure/intake-review-result.json"
+    "specs/itse-learning-intakes/reviews/33-global-closure/intake-review-result.json"
   ]
 }

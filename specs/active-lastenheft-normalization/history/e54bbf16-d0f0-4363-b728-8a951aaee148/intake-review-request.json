@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "6d53e96f-3a76-487f-a357-c862cf0c237d",
+  "reviewId": "e54bbf16-d0f0-4363-b728-8a951aaee148",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -147,6 +151,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -184,11 +189,17 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
       {
         "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
         "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",

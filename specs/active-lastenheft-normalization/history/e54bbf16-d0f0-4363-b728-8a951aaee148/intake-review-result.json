@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "6d53e96f-3a76-487f-a357-c862cf0c237d",
+  "reviewId": "e54bbf16-d0f0-4363-b728-8a951aaee148",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T21:16:47Z",
+  "reviewedAt": "2026-07-28T20:24:12Z",
   "repository": {
     "root": ".",
-    "head": "8a12143941a791528f856e6f7cfd77e6af9860d4"
+    "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "767230f8fb0d043c1a55cdfbd36d15c75f0c2c667352b2f993f57e29b79743f6"
+    "normalizedSha256": "8a92a9773c3ca8e22bbb3c5035253e05ce2e667c5621937a4467234812f1c6f9"
   },
   "summary": {
     "critical": 0,
@@ -19,11 +19,17 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "e54bbf16-d0f0-4363-b728-8a951aaee148",
+  "supersedes": "0005ff81-a7a4-4803-ad33-12a25393ae8b",
   "targets": [
     {
-      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary",
+      "normalizedSha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "role": "OrderedMember",
       "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
       "gitBlob": "N/A"
     },
@@ -235,6 +241,7 @@
   "findings": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -272,14 +279,14 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 35 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
-      "The three declared roots equal the zero-indegree target set",
-      "Forty-two unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Linux maintenance Feature 016 is merged and archived with preserved review lineage",
+      "All 36 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "The four declared roots equal the zero-indegree target set",
+      "Forty-three unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Windows maintenance Feature 015 remains archived with preserved review lineage",
       "The eight KDM/KITSM intakes form one binding chain after item 17",
       "The seven ITSE intakes and the global consistency closure form one binding chain after item 25",
       "Every ITSE intake was independently reviewed as Ready before series publication",
-      "Preset, default-branch and worktree hardening is the single declared Eligible candidate",
+      "Linux and Ubuntu maintenance remains the single declared Eligible candidate",
       "No successor feature, branch, or Spec Kit run was started"
     ],
     "workers": []
