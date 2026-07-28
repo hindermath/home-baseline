@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "d09c5e0f-0826-49f7-9dba-3739c161cb93",
+  "receiptId": "2b590c7b-01bd-4ea5-9d9f-642a6cdef45c",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-28T14:48:15Z",
+  "createdAt": "2026-07-28T17:08:18Z",
   "operation": {
-    "operationId": "7a3d198e-c296-4148-821b-e678d81e33e7",
+    "operationId": "ac2354e0-e00a-4637-84b1-4f055a18b5c5",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to update the Eligible Windows hardening intake before autonomous MergeAndSync delivery."
+    "authorityEvidence": "Explicit current user instruction to complete the autonomous Windows hardening run with DeliveryMode MergeAndSync and perform the post-run repository closeout."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
+    "normalizedSha256": "2f567b229e5351d6083508e0215734b2bbae1877f7cb0bb59cc460a3c154397a"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/7a3d198e-c296-4148-821b-e678d81e33e7/receipt.json",
-    "receiptNormalizedSha256": "68921973142a69fc72389c75d2e02242e51f3ca4034b60612de8fe3fa6430392",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/7a3d198e-c296-4148-821b-e678d81e33e7/manifest.json",
-    "manifestArchiveSha256": "753044cda41b716de072a114ca96b78ee445144ab1254f889c7f617606134e7e"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ac2354e0-e00a-4637-84b1-4f055a18b5c5/receipt.json",
+    "receiptNormalizedSha256": "dd9820f809948e1516a1a09b19ebf50c2652aa11aa02917fcb2848ba7223ed99",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ac2354e0-e00a-4637-84b1-4f055a18b5c5/manifest.json",
+    "manifestArchiveSha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
   },
   "tombstone": {
     "path": "N/A",

@@ -101,7 +101,7 @@
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "order": 25,
+    "order": 24,
     "role": "Year2CommercialCore",
     "supersedesIntakeIds": []
   },

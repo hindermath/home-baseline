@@ -7,7 +7,7 @@
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-28T17:40:32Z",
+  "createdAt": "2026-07-28T17:58:16Z",
   "operation": {
     "operationId": "b7fb7c8d-766e-4895-b1ee-8bdb192fabd6",
     "type": "Update",
@@ -16,13 +16,13 @@
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "62374dbf5ae90c8af9208ce2afdf10e7256a1f8062b1a87db11acf2bbced3625"
+    "normalizedSha256": "d520a70165b62d3e48e956065550cd5686e16fa6fc41fec62be66ec5fd093ad2"
   },
   "supersedes": {
     "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/b7fb7c8d-766e-4895-b1ee-8bdb192fabd6/receipt.json",
-    "receiptNormalizedSha256": "dd9820f809948e1516a1a09b19ebf50c2652aa11aa02917fcb2848ba7223ed99",
+    "receiptNormalizedSha256": "a1123d6dd8f79db0fc3ac8f81145c6bb4f30987054ed4dd612dee2cc21cccf46",
     "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/b7fb7c8d-766e-4895-b1ee-8bdb192fabd6/manifest.json",
-    "manifestArchiveSha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
+    "manifestArchiveSha256": "2f567b229e5351d6083508e0215734b2bbae1877f7cb0bb59cc460a3c154397a"
   },
   "tombstone": {
     "path": "N/A",
