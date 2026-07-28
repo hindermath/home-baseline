@@ -3,61 +3,73 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `292b5f47-6164-49a9-9107-b62a23a032a7`
-- Supersedes: `e857d07c-f629-4e79-80db-ea9f72afd99c`
+- Review-ID: `9eab8a9a-14be-401f-b002-719f4becc269`
+- Supersedes: `292b5f47-6164-49a9-9107-b62a23a032a7`
 - Ziele / Targets: 39
 - Roots: 3
 - Abhängigkeiten / Dependencies: 46
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Die Linux-/Ubuntu-Wartungshärtung ist nach dem Merge von Feature 016 mit
-vollständiger Review-Lineage archiviert. Die Preset-Profil-, Default-Branch-
-und Worktree-Härtung ist dadurch der einzige deklarierte `Eligible`-Kandidat.
-CI/CD und PowerShell sind weiterhin technisch eingangsfreie Roots, werden aber
-wegen der seriellen Auswahl bewusst noch nicht als `Eligible` deklariert.
+Das Intake zur Preset-Profil-, Default-Branch- und Worktree-Härtung wurde
+in-place auf Version 1.3 aktualisiert. Identität, Position 3, Reihenfolge,
+Roots, Abhängigkeiten und Status blieben unverändert. Position 3 ist weiterhin
+der einzige deklarierte `Eligible`-Kandidat. Der Review startet weder Feature
+017 noch einen anderen Spec-Kit-Lauf.
 
-Die KDM-/KITSM- und ITSE-Ketten bleiben vollständig, eindeutig und blockiert,
-bis ihre bindenden Vorgänger abgeschlossen sind. Die neue Kette 33 bis 37
-prüft danach zuerst Lernreihen- und KI-Kompetenzlücken, erweitert den
-allgemeinen Intake Review, produktisiert bei bestätigtem Bedarf das optionale
-Lernreihen-Preset, führt einen IHK-Pilot durch und schließt erst dann die
-Gesamtkonsistenz. Es bestehen keine Findings, offenen Fragen, akzeptierten
-Risiken oder Operator-Ausnahmen.
+*The preset-profile, default-branch, and worktree-hardening intake was updated
+in place to version 1.3. Identity, position 3, order, roots, dependencies, and
+status remain unchanged. Position 3 is still the single declared `Eligible`
+candidate. This review starts neither Feature 017 nor another Spec Kit run.*
 
-*Linux/Ubuntu maintenance hardening is archived with complete review lineage
-after Feature 016 was merged. Preset-profile, default-branch, and worktree
-hardening is now the sole declared `Eligible` candidate. CI/CD and PowerShell
-remain zero-indegree roots but are intentionally not declared eligible under
-the serial selection. The KDM/KITSM and ITSE chains remain complete and
-blocked by their binding predecessors. Items 33 through 37 add the reviewed
-learning-series consistency and AI-competence governance chain before final
-closure.*
+## Aktualisierte Evidence / Updated Evidence
+
+- Features 015 und 016 bleiben als gemergte Windows-/Linux-Regressionsbasis
+  gebunden.
+- Die Freshness-Menge umfasst Level 0 und 43 aktive Manifest-Git-Ziele. Das
+  Collection-Ziel wird getrennt und ohne Git-Netzwerkzugriff inventarisiert.
+- Elf Presets sind der aktuelle Feldnachweis. Die erwartete Preset-Menge wird
+  dynamisch aus dem Profilkatalog gelesen und nicht im Programmcode gezählt.
+- Remote Freshness ist die erste Fachphase. Kontroll-Evidence darf vorher
+  angelegt werden, aber keine Repository-, Home-, Registry-, Preset-,
+  Paketmanager- oder Toolchain-Mutation auslösen.
+- Checkout-Bereinigung benötigt nach jedem relevanten Zustandswechsel eine
+  neue exakte Inventur. Breite Bereinigungsbefehle bleiben ausgeschlossen.
+- Fetch und Pull besitzen begrenzte Versuche, Dauer, Endstatus und eine genaue
+  nächste Aktion. Timeout oder stille Unvollständigkeit ist kein Erfolg.
+- `MergeAndSync` gilt nur für die spätere Feature-017-Lieferung im
+  Home-Baseline-Repository. Ziel-Repositories erhalten keine Remote-
+  Schreibautorität.
+
+*Features 015 and 016 remain the merged Windows/Linux regression baseline.
+The fleet distinguishes Level 0 plus 43 active manifest Git targets from one
+separately inventoried collection. Eleven presets are current field evidence,
+not a coded limit. Remote freshness precedes domain mutations, cleanup needs
+fresh exact authorization after state changes, network evidence is bounded,
+and `MergeAndSync` applies only to the later Feature 017 delivery in Home
+Baseline.*
 
 ## Graphnachweis / Graph Evidence
 
-- Alle 39 Pfade, Rollen, Hashes und Positionen stimmen mit dem Schema-1.1-Request überein.
+- Alle 39 Pfade, Rollen, Hashes und Positionen stimmen mit dem gebundenen
+  Schema-1.1-Request überein.
 - Die drei Roots entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 46 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und azyklisch.
-- Position 18 ist durch Position 17 blockiert; die Positionen 19 bis 25 bilden danach eine bindende serielle Kette.
-- Position 26 ist durch Position 25 blockiert; die Positionen 27 bis 32 bilden danach eine bindende serielle Kette.
-- Die Positionen 33 bis 37 bilden die geprüfte Lernreihen-Governance-Kette; alle fünf Intakes und ihre Teilserie besitzen jeweils ein Ergebnis `Ready`.
-- Position 3 ist der einzige deklarierte `Eligible`-Kandidat.
+- Alle 46 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und
+  azyklisch.
+- Nur der Hash von Position 3 wurde aktualisiert. Ziele, Roots, Kanten,
+  Reihenfolge und Status wurden nicht verändert.
+- Position 3 bleibt der einzige deklarierte `Eligible`-Kandidat.
 
-*All 39 targets, three roots, and 46 dependencies are complete, unique,
-order-consistent, and acyclic. Items 18 through 25 retain their binding chain;
-items 26 through 32 form its binding continuation, followed by the reviewed
-items 33 through 37. Item 3 is the sole eligible candidate.*
+*All 39 paths, roles, hashes, and positions match the bound schema-1.1
+request. The three roots equal the zero-indegree nodes, and all 46 edges are
+unique, reference-valid, order-consistent, and acyclic. Only the position-3
+hash changed; position 3 remains the sole declared eligible candidate.*
 
 ## Nächste Aktion / Next Action
 
-Dieser Review dokumentiert nur den kausalen Abschluss von Feature 016. Die
-Preset-Profil-, Default-Branch- und Worktree-Härtung ist der nächste autonome
-Kandidat, wird aber durch diesen Review nicht gestartet. Die ITSE-Intakes
-bleiben `Blocked`, bis ihre bindenden Vorgänger abgeschlossen sind.
+Die Intake-Aktualisierung darf per `MergeAndSync` geliefert werden. Danach
+bleibt Feature 017 der nächste serielle Kandidat, wird durch diesen Auftrag
+aber nicht gestartet.
 
-*This review records only the causal closeout of Feature 016. Preset-profile,
-default-branch, and worktree hardening is the next autonomous candidate but is
-not started by this review. The ITSE intakes remain `Blocked` until their
-binding predecessors complete. The new learning-series governance chain also
-remains blocked and starts no feature automatically.*
+*The intake update may be delivered through `MergeAndSync`. Feature 017 then
+remains the next serial candidate but is not started by this work.*

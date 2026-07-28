@@ -136,6 +136,7 @@
 | 2026-07-28 | ITSE-Lernreihen- und Gesamtkonsistenz-Intakes vorbereitet | — | — | — | Acht getrennte, noch nicht gestartete Intakes bereiten den ITSE-Gap-Audit, das Kompetenzmodell, LF1–LF5, LF6–LF9, die achtteilige LF10–LF12-Professional-Reihe, den kontrollierten C#-Rollout, die ITSE-Closure und eine globale Lernreihen-Konsistenzprüfung vor. Alle vier FI-Fachrichtungen bilden den primären Vergleich; KDM und KITSM ergänzen die Perspektive. C# bleibt auf Simulation, Diagnose, Testautomation und Dokumentation begrenzt; elektrische Praxis erfordert eine freigegebene Lernumgebung und fachkundige Aufsicht. Acht Authoring-Receipts und acht Einzelreviews sind gültig und `Ready`. Der aktive Schema-1.1-Series-Review belegt 36 Ziele, vier unveränderte Roots, 43 eindeutige azyklische Abhängigkeiten, null Findings und weiterhin genau einen `Eligible`-Kandidaten. Kein Lernenden-, Specify- oder autonomer Lauf wurde gestartet. Das Delta vor Statistikpflege umfasst 3 607 Nettozeilen. |
 | 2026-07-28 | Feature 016 Linux-Ein-Kommando-Wartungshärtung | — | — | — | Die Linux-Orchestrierung verarbeitet Paket- und CLI-Registries mit stdin-sicheren Snapshots, eindeutigen geordneten Ergebnissen und wahrheitsgemäßem Required-Exitcode. Begrenzte Prozessgruppen-Probes unterscheiden fehlende, unbrauchbare, zeitüberschrittene und durch Fähigkeiten blockierte Werkzeuge. Swiftly 1.1.2 und Swift 6.3.3 werden für die offizielle Ubuntu-/Architekturmatrix verifiziert installiert, ohne Profile zu verändern oder Admin-Autorität zu erschleichen. Der Flottenabschluss ist atomar und genau einmal; 13 gezielte Linux- sowie 52 entdeckte Vertragstests sind grün. Vorschauen meldeten reale Host-/Flottendrift und verhinderten deshalb einen erzwungenen Paketlauf. Das exakte Implementierungsdelta vor Statistikpflege umfasst 4 054 Nettozeilen. |
 | 2026-07-28 | Lernreihen-Governance- und KI-Kompetenz-Intake-Kette vorbereitet | — | — | — | Vier neue Intakes und die aktualisierte globale Closure bilden die Positionen 33 bis 37: read-only Gap-Audit, domänenneutrale Drei-Ebenen-Erweiterung des Intake Reviews, optionales Learning-Series-Governance-Preset, IHK-Pilot und abschließende Gesamtkonsistenzprüfung. Acht stabile KI-Kompetenzen, vier Lernphasen und vier Quellenstatus trennen amtliche Anforderungen, gestützte Ziele, Projektergänzungen und begründete Zukunftsannahmen. Fünf Authoring-Receipts, fünf Einzelreviews und der gemeinsame Fünf-Ziel-Review sind in Bash und PowerShell `Ready`. Der aktive Series-Vertrag umfasst 39 Ziele, drei Roots, 46 eindeutige azyklische Abhängigkeiten und weiterhin genau einen `Eligible`-Kandidaten an Position 3. Kein Specify-, autonomer oder Lernendenlauf wurde gestartet. Das Delta vor Statistikpflege umfasst 1 816 Nettozeilen. |
+| 2026-07-29 | Preset-Profil- und Worktree-Härtungsintake v1.3 | — | — | — | Der bestehende Intake auf Position 3 bindet jetzt die gemergten Features 015/016, Level 0 plus 43 aktive Manifest-Git-Ziele, das separat inventarisierte Collection-Ziel und den dynamischen Elf-Preset-Feldstand. PWH-016 bis PWH-020 sowie AC-018 bis AC-027 ergänzen exakte Bereinigungsfreigaben, begrenzte Netzwerk-Evidence, Regressionsschutz und die Zielrepository-Grenze. Intake-ID, 39 Series-Ziele, drei Roots, 46 Abhängigkeiten, Reihenfolge und alleiniger `Eligible`-Status blieben erhalten. Authoring-, Review- und Series-Validatoren bestehen in Bash und PowerShell. Feature 017, Specify und Autonomous wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 2 453 Nettozeilen. |
 
 ---
 
@@ -822,6 +823,35 @@ roots, and 46 unique acyclic dependencies; item 3 remains the sole Eligible
 candidate. No preset, Spec Kit feature, or learner run was started. The exact
 pre-statistics delta is 1,816 net lines.*
 
+### 2026-07-29 - Preset-Profil- und Worktree-Härtungsintake v1.3 / Preset Profile and Worktree Hardening Intake v1.3
+
+- Die bestehende Intake-ID und Position 3 bleiben erhalten. Der Inhalt bindet
+  nun die gemergten Windows-/Linux-Features 015/016 als Regressionsbasis.
+- Die Remote-Freshness-Barriere umfasst Level 0 und 43 aktive
+  Manifest-Git-Ziele einschließlich Preset-Repositories. Das Collection-Ziel
+  wird getrennt und ohne Git-Netzwerkzugriff inventarisiert.
+- Der aktuelle Elf-Preset-Stand ist Feldnachweis für einen dynamischen
+  Profilkatalog und keine feste Programmgrenze.
+- Exakte Bereinigungsfreigaben nach Zustandswechseln, begrenzte
+  Netzwerk-Evidence, sichere Lease-Grenzen und Exact-Head-Revalidierung sind
+  als PWH-016 bis PWH-020 und AC-018 bis AC-027 ergänzt.
+- Der erneuerte Schema-1.1-Review ist `Ready`: 39 Ziele, drei Roots, 46
+  eindeutige azyklische Abhängigkeiten, null Findings und genau Position 3 als
+  `Eligible`.
+- Das fachliche Delta vor Statistikpflege umfasst 2 453 Nettozeilen. Feature
+  017, Specify und Autonomous wurden nicht gestartet.
+
+*The stable intake identity and position 3 now bind the merged Windows/Linux
+Features 015 and 016 as regression evidence. The freshness barrier covers
+Level 0 plus 43 active manifest Git targets, while the collection is reported
+separately. Eleven presets are evidence for a dynamic catalog rather than a
+coded limit. Exact cleanup authority, bounded network evidence, lease safety,
+and exact-head revalidation are explicit. The renewed schema-1.1 review is
+Ready with 39 targets, three roots, 46 unique acyclic dependencies, no
+findings, and position 3 as the sole Eligible candidate. The exact
+pre-statistics delta is 2,453 net lines. Feature 017, Specify, and Autonomous
+were not started.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -832,27 +862,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 417887 lines |
-| Textdateien / Text files | 2633 |
+| Textbasis / Text base | 420348 lines |
+| Textdateien / Text files | 2641 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
 | Aktivtage / Active days | 77 |
-| Relevante Commits / Relevant commits | 603 |
-| Zeilen je Aktivtag / Lines per active day | 5427.1 |
+| Relevante Commits / Relevant commits | 605 |
+| Zeilen je Aktivtag / Lines per active day | 5459.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 34 days |
-| Speedup vs. 80 lines/day | 67.8x |
-| Speedup vs. 100 lines/day | 54.3x |
-| Methodik / Methodology | v2; source `2b50fb5884d1` |
+| Speedup vs. 80 lines/day | 68.2x |
+| Speedup vs. 100 lines/day | 54.6x |
+| Methodik / Methodology | v2; source `751aa83779a9` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
-Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.6% | 14905
-Dokumentation / Documentation   [##############......]  69.4% | 289918
-Skripte / Scripts               [##..................]  12.3% | 51236
-Konfiguration / Configuration   [###.................]  14.5% | 60437
+Produktiv / Production          [#...................]   0.1% | 630
+Tests                           [#...................]   3.5% | 14905
+Dokumentation / Documentation   [##############......]  69.2% | 290766
+Skripte / Scripts               [##..................]  12.2% | 51236
+Konfiguration / Configuration   [###.................]  14.8% | 62050
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -960,15 +990,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..45
-   cap 50000 | . . . . . . . . . . . . . .
-       41667 | . . . . . . . . . . . . . .
-       33333 | . . . . . . . . . . . . . .
-       25000 | . # . . . . . . . . . . . .
-       16667 | . # . . . . . . . . . . . .
-        8333 | . # . . . . # . . . . . . .
-           0 +-----------------------------
-             32 33 34 35 36 37 38 39 40 41 42 43 44 45
+Slots 32..46
+   cap 50000 | . . . . . . . . . . . . . . .
+       41667 | . . . . . . . . . . . . . . .
+       33333 | . . . . . . . . . . . . . . .
+       25000 | . # . . . . . . . . . . . . .
+       16667 | . # . . . . . . . . . . . . .
+        8333 | . # . . . . # . . . . . . . .
+           0 +-------------------------------
+             32 33 34 35 36 37 38 39 40 41 42 43 44 45 46
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1019,6 +1049,7 @@ Slots 32..45
 | 43 | ITSE-Lernreihen- und Gesamtkonsistenz-Intakes / ITSE learning-series and consistency intakes | 3607 |
 | 44 | Linux-Ein-Kommando-Wartungshärtung / Linux one-command maintenance hardening | 4054 |
 | 45 | Lernreihen-Governance- und KI-Kompetenz-Intakes / Learning-series governance and AI competence intakes | 1816 |
+| 46 | Preset-Profil- und Worktree-Härtungsintake v1.3 / Preset profile and worktree hardening intake v1.3 | 2453 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1028,8 +1059,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 67.8x
-100 lines/day      [###########.........] 54.3x
+80 lines/day       [##############......] 68.2x
+100 lines/day      [###########.........] 54.6x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1042,7 +1073,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5427.1
+Visible repository [###########.........] 5459.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1068,6 +1099,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 351401 |
+| 2026-07 | 354418 |
 
 <!-- project-statistics-v2:end -->

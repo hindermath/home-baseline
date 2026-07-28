@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "9eab8a9a-14be-401f-b002-719f4becc269",
+  "reviewId": "292b5f47-6164-49a9-9107-b62a23a032a7",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T23:12:52Z",
+  "reviewedAt": "2026-07-28T22:05:08Z",
   "repository": {
     "root": ".",
-    "head": "77677765f220e19c9227494238478731a60c8041"
+    "head": "9cb0d9e2705d61ed3d799eacf17884726c7eb1ab"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "03681686dfbdc565a0a664360e8401d5b59cc19da33c0a3ee0f6b84780ec3b3c"
+    "normalizedSha256": "8b7e93c1643335ec1e0961b43fa22883461ff322d692664098ace2e05aa63a55"
   },
   "summary": {
     "critical": 0,
@@ -19,12 +19,12 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "292b5f47-6164-49a9-9107-b62a23a032a7",
+  "supersedes": "e857d07c-f629-4e79-80db-ea9f72afd99c",
   "targets": [
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "role": "Primary",
-      "normalizedSha256": "5c5d1c27d7328d4ae784bdcebdb1b7163d37443637eb10dc2d4f646a794c8f6e",
+      "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
       "gitBlob": "N/A"
     },
     {
@@ -303,12 +303,13 @@
       "All 39 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The three declared roots equal the zero-indegree target set",
       "Forty-six unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Position 3 preserves its identity and is the single declared Eligible candidate",
-      "The v1.3 intake binds merged Windows Feature 015 and Linux Feature 016 regression evidence",
-      "The fleet baseline distinguishes Level 0 plus 43 manifest Git targets from one separately inventoried collection target",
-      "The eleven-preset field state is evidence for a dynamic profile catalog and not a coded cardinality",
-      "Cleanup authority, bounded network evidence, target-repository delivery boundaries, and exact-head revalidation are explicit",
-      "No target, root, dependency, position, successor feature, branch, or Spec Kit run was added or started"
+      "Windows maintenance Feature 015 and Linux maintenance Feature 016 remain archived with preserved review lineage",
+      "The eight KDM/KITSM intakes form one binding chain after item 17",
+      "The seven ITSE intakes form one binding chain after item 25",
+      "Items 33 through 37 form the reviewed learning-series consistency and AI-competence governance chain",
+      "All five learning-series governance intakes and their five-target subseries were independently reviewed as Ready",
+      "Preset profile, default-branch, and worktree hardening is the single declared Eligible candidate",
+      "No successor feature, branch, or Spec Kit run was started"
     ],
     "workers": []
   },
