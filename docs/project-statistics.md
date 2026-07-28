@@ -759,27 +759,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 397623 lines |
-| Textdateien / Text files | 2459 |
+| Textbasis / Text base | 398638 lines |
+| Textdateien / Text files | 2466 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
-| Relevante Commits / Relevant commits | 583 |
-| Zeilen je Aktivtag / Lines per active day | 5231.9 |
+| Relevante Commits / Relevant commits | 584 |
+| Zeilen je Aktivtag / Lines per active day | 5245.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
-| Speedup vs. 80 lines/day | 65.4x |
-| Speedup vs. 100 lines/day | 52.3x |
-| Methodik / Methodology | v2; source `832f65e20a90` |
+| Speedup vs. 80 lines/day | 65.6x |
+| Speedup vs. 100 lines/day | 52.5x |
+| Methodik / Methodology | v2; source `8e297cb2128f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
 Tests                           [#...................]   3.4% | 13579
-Dokumentation / Documentation   [##############......]  71.2% | 283015
+Dokumentation / Documentation   [##############......]  71.0% | 283082
 Skripte / Scripts               [###.................]  12.5% | 49847
-Konfiguration / Configuration   [###.................]  12.5% | 49791
+Konfiguration / Configuration   [###.................]  12.7% | 50739
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -941,7 +941,7 @@ Slots 32..41
 | 38 | Requirements-Intake-Schema-2-Flottenübernahme / Requirements intake schema-2 fleet adoption | 10918 |
 | 39 | Intake-Sequencing-v0.2.2-Profilabgleich / Intake Sequencing v0.2.2 profile alignment | 3348 |
 | 40 | Dokumentationsarchitektur-Intake-Kette / Documentation architecture intake chain | 2672 |
-| 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4063 |
+| 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4209 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -951,8 +951,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 65.4x
-100 lines/day      [##########..........] 52.3x
+80 lines/day       [#############.......] 65.6x
+100 lines/day      [##########..........] 52.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -965,7 +965,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##########..........] 5231.9
+Visible repository [##########..........] 5245.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -991,6 +991,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 322650 |
+| 2026-07 | 323885 |
 
 <!-- project-statistics-v2:end -->
