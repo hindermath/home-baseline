@@ -131,7 +131,7 @@
 | 2026-07-26 | Canonical-Fleet-Wartungshärtung | — | — | — | Ein formaler Series-Review belegt, dass kein noch aktives Lastenheft die erneut erkannten Legacy-Ziele oder die lokale Elf-Preset-Profilmigration übernimmt. Der gemeinsame Fleet-Vertragskern liefert deshalb ausschließlich aktive Git-Ziele der Klasse `canonical-fleet`; Bash- und PowerShell-Orchestrator registrieren jedes deklarierte Ziel einzeln, und die Propagation verwendet nur die validierte Registry. Plattformübergreifende Regressionen schließen nicht deklarierte, Preset- und inaktive Repositories aus. Der Dry-run führt Preset- und Toolchain-Vorschauen trotz vorhergesagtem Drift vollständig aus und schreibt anschließend einen wahrheitsgemäßen blockierten JSON-Abschlussstatus. Die lokale Registry wurde bei unverändert 32 eindeutigen Pfaden vollständig auf das Elf-Preset-Profil migriert; die sieben Legacy-Ordner blieben unangetastet. Das Delta vor Statistikpflege umfasst `+586/-198`, also 388 Nettozeilen. |
 | 2026-07-26 | Feature 011 Dokumentations-Wirklichkeitsaudit | — | — | — | D1 hat Level 0, acht registrierte Level-1- und 36 Level-2-Ziele am exakten Git-Stand read-only geprüft. Die maschinenlesbare Evidence umfasst 248 Dokumentationsfamilien mit genau einer Entscheidung. 33 repository-native Homogeneity-Läufe bestanden, zwölf Preset-/Koordinationsziele besitzen begründet keinen solchen Wrapper. 15 Level-2-Findings dokumentieren fehlende bilinguale README-/CLAUDE-Abschnitte und werden vollständig an D3 übergeben; ein zunächst sichtbarer Level-0-Drift wurde im sauberen Basis-Worktree als feature-eigener Generierungseffekt widerlegt. Kein Ziel-Repository wurde verändert. Das Implementierungsdelta vor Statistikpflege umfasst 31 164 Nettozeilen, überwiegend vollständige strukturierte Flotten-Evidence. |
 | 2026-07-26 | Feature 012 Documentation-Impact-Governance | — | — | — | D2 hat den verbindlichen Documentation-Impact-Vertrag in Constitution, Spec-Kit-, PR-, Workflow- und Agentenflaechen verankert. Deterministische Bash-/PowerShell-Tests pruefen die vier Entscheidungen und unzulaessige Deferred-Zustaende. Alle 15 D1-Findings bleiben D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. PR #128 wurde nach 20 gruenen Checks, null Review-Threads und bestandenem Exact-Head-Nachweis gemergt. Das Implementierungsdelta vor Statistikpflege umfasst 1 407 Nettozeilen. |
-| 2026-07-28 | Feature 015 Windows-Ein-Kommando-Wartungshärtung | — | — | — | Die Windows-Orchestrierung verwendet jetzt genau einen Modus, begrenzte Python-3-Probes, transiente Git-Retries, WinGet-Zeitgrenzen mit Prozessbaum-Bereinigung, atomare hashgebundene Resume-Evidence und einen Run-ID-korrelierten Abschlussstatus. Registry und Flottenprüfung binden das Elf-Preset-Profil; Git-normalisierte Driftzählung trennt Rohabweichungen von aktionsfähigen Änderungen. Zehn gezielte Windows-Vertragstests einschließlich `rawDifferences=93` und `actionableDrift=3`, bestehende Wartungs- und Home-Sync-Suiten, 146 Statistik-Assertions, Parser und PSScriptAnalyzer 1.25.0 sind lokal grün. Admin-Autorität umgeht weder UAC noch Sicherheits-, Test- oder Review-Gates. Das Implementierungsdelta vor Statistikpflege umfasst vorläufig 4 063 Nettozeilen. |
+| 2026-07-28 | Feature 015 Windows-Ein-Kommando-Wartungshärtung | — | — | — | Die Windows-Orchestrierung verwendet jetzt genau einen Modus, begrenzte Python-3-Probes, transiente Git-Retries, WinGet-Zeitgrenzen mit Prozessbaum-Bereinigung, atomare hashgebundene Resume-Evidence und einen Run-ID-korrelierten Abschlussstatus. Registry und Flottenprüfung binden das Elf-Preset-Profil; Git-normalisierte Driftzählung trennt Rohabweichungen von aktionsfähigen Änderungen. Zehn gezielte Windows-Vertragstests einschließlich `rawDifferences=93` und `actionableDrift=3`, bestehende Wartungs- und Home-Sync-Suiten, 146 Statistik-Assertions, Parser und PSScriptAnalyzer 1.25.0 sind lokal grün. Admin-Autorität umgeht weder UAC noch Sicherheits-, Test- oder Review-Gates. Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209 Nettozeilen. |
 
 ---
 
@@ -732,7 +732,7 @@ Kit run was started. The intake and evidence delta before statistics work is
   Paket-IDs und eine gemeinsame Run-ID-/Exitcode-Wahrheit. Zehn neue Windows-
   Vertragstests, die bestehenden Wartungs- und Home-Sync-Suiten, 146
   Statistik-Assertions, Parser und PSScriptAnalyzer sind lokal gruen.
-- Das Implementierungsdelta vor Statistikpflege umfasst vorlaeufig 4 063
+- Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209
   Nettozeilen. Gemeinsame Agenten-Guidance blieb nach dokumentierter Pruefung
   unveraendert; es entstand keine neue dauerhafte Agentenregel.
 
@@ -746,8 +746,8 @@ state, while propagation separates 93 reproduced raw differences from three
 actionable content changes. The eleven-preset profile, canonical package IDs,
 and run-ID/exitcode truth are preserved. Ten Windows contract tests, existing
 maintenance and Home Sync suites, 146 statistics assertions, parser checks,
-and PSScriptAnalyzer pass locally. The preliminary delta before statistics is
-4,063 net lines.*
+and PSScriptAnalyzer pass locally. The exact PR #142 delta before statistics is
+4,209 net lines.*
 
 ## Gesamtstatistik / Overall Statistics
 
