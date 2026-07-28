@@ -8,6 +8,10 @@
       "executable": true
     },
     {
+      "path": "scripts/lib/linux-maintenance-hardening.py",
+      "executable": true
+    },
+    {
       "path": "scripts/maintain-agentic-winget-apps.ps1",
       "executable": false
     },

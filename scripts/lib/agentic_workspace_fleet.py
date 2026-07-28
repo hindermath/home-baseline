@@ -450,11 +450,41 @@ def record_stage(args: argparse.Namespace) -> int:
         "summary": args.summary,
         "nextAction": args.next_action,
     })
+    if args.toolchain_results:
+        try:
+            toolchain_result = json.loads(
+                args.toolchain_results.read_text(encoding="utf-8")
+            )
+        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+            print(f"ERROR\ttoolchain-results\tFAILED\t{exc}")
+            return 2
+        items = toolchain_result.get("items")
+        if (
+            toolchain_result.get("schemaVersion") != "1.0"
+            or not isinstance(items, list)
+        ):
+            print("ERROR\ttoolchain-results\tFAILED\tinvalid result schema")
+            return 2
+        report["toolchain"] = items
+        report["toolchainResult"] = {
+            "overallStatus": toolchain_result.get("overallStatus"),
+            "exitCode": toolchain_result.get("exitCode"),
+            "remainingRequired": toolchain_result.get("remainingRequired", []),
+            "optionalDrift": toolchain_result.get("optionalDrift", []),
+            "nextAction": toolchain_result.get("nextAction", "N/A"),
+        }
     report["completedAt"] = utc_now()
     statuses = {item.get("status") for item in stages}
-    if "Failed" in statuses:
+    if "Interrupted" in statuses:
+        report["overallStatus"] = "INTERRUPTED"
+        report["exitCode"] = max(
+            int(item.get("exitCode", 0))
+            for item in stages
+            if item.get("status") == "Interrupted"
+        )
+    elif "Failed" in statuses:
         report["overallStatus"], report["exitCode"] = "FAILED", 2
-    elif "Blocked" in statuses:
+    elif statuses.intersection({"Blocked", "DeferredAdminRequired"}):
         report["overallStatus"], report["exitCode"] = "PARTIAL", 1
     elif "Warning" in statuses:
         warning_exit = max(
@@ -465,6 +495,71 @@ def record_stage(args: argparse.Namespace) -> int:
         report["overallStatus"] = "SUCCESS_WITH_WARNINGS"
         report["exitCode"] = warning_exit
     write_report(args.report, report)
+    return 0
+
+
+def finalize_report(args: argparse.Namespace) -> int:
+    """Finalize exactly one run-correlated report through atomic replacement."""
+    try:
+        report = json.loads(args.report.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        print(f"ERROR\treport\tFAILED\t{exc}")
+        return 2
+    if report.get("finalized") is True:
+        print(
+            f"FINALIZE\t{report.get('runId', 'unknown')}\tALREADY_FINALIZED\t"
+            f"{report.get('exitCode', 2)}"
+        )
+        return 0
+
+    signal_name = args.signal
+    canonical_signal_exit = {"INT": 130, "TERM": 143}
+    if signal_name != "N/A":
+        expected = canonical_signal_exit.get(signal_name)
+        if expected is None or args.status != "Interrupted" or args.exit_code != expected:
+            print("ERROR\tfinalize\tFAILED\tinvalid signal finalization contract")
+            return 2
+
+    stages = report.setdefault("stages", [])
+    stages[:] = [item for item in stages if item.get("stageId") != args.stage_id]
+    stages.append(
+        {
+            "stageId": args.stage_id,
+            "status": args.status,
+            "exitCode": args.exit_code,
+            "durationMs": args.duration_ms,
+            "summary": args.summary,
+            "nextAction": args.next_action,
+        }
+    )
+    if args.status == "Interrupted":
+        overall = "INTERRUPTED"
+    elif args.status == "Failed":
+        overall = "FAILED"
+    elif args.status in {"Blocked", "DeferredAdminRequired"}:
+        overall = "PARTIAL"
+    elif args.status == "Warning":
+        overall = "SUCCESS_WITH_WARNINGS"
+    else:
+        overall = "SUCCESS"
+    completed_at = utc_now()
+    report.update(
+        {
+            "completedAt": completed_at,
+            "overallStatus": overall,
+            "exitCode": args.exit_code,
+            "lastStage": args.stage_id,
+            "signal": signal_name,
+            "finalized": True,
+            "finalizedAt": completed_at,
+            "nextAction": args.next_action,
+        }
+    )
+    write_report(args.report, report)
+    print(
+        f"FINALIZE\t{report.get('runId', 'unknown')}\t{overall}\t"
+        f"{args.exit_code}\t{args.stage_id}"
+    )
     return 0
 
 
@@ -557,12 +652,46 @@ def build_parser() -> argparse.ArgumentParser:
     stage = subparsers.add_parser("stage")
     stage.add_argument("--report", type=pathlib.Path, required=True)
     stage.add_argument("--stage-id", required=True)
-    stage.add_argument("--status", choices=("Passed", "Warning", "Blocked", "Failed", "Skipped"), required=True)
+    stage.add_argument(
+        "--status",
+        choices=(
+            "Passed",
+            "Warning",
+            "Blocked",
+            "Failed",
+            "Skipped",
+            "DeferredAdminRequired",
+            "Interrupted",
+        ),
+        required=True,
+    )
     stage.add_argument("--exit-code", type=int, required=True)
     stage.add_argument("--duration-ms", type=int, default=0)
     stage.add_argument("--summary", required=True)
     stage.add_argument("--next-action", default="N/A")
+    stage.add_argument("--toolchain-results", type=pathlib.Path)
     stage.set_defaults(handler=record_stage)
+    finalize = subparsers.add_parser("finalize")
+    finalize.add_argument("--report", type=pathlib.Path, required=True)
+    finalize.add_argument("--stage-id", required=True)
+    finalize.add_argument(
+        "--status",
+        choices=(
+            "Passed",
+            "Warning",
+            "Blocked",
+            "Failed",
+            "DeferredAdminRequired",
+            "Interrupted",
+        ),
+        required=True,
+    )
+    finalize.add_argument("--exit-code", type=int, required=True)
+    finalize.add_argument("--duration-ms", type=int, default=0)
+    finalize.add_argument("--signal", choices=("N/A", "INT", "TERM"), default="N/A")
+    finalize.add_argument("--summary", required=True)
+    finalize.add_argument("--next-action", default="N/A")
+    finalize.set_defaults(handler=finalize_report)
     registry = subparsers.add_parser("registry")
     registry.add_argument("--manifest", type=pathlib.Path, required=True)
     registry.add_argument("--registry", type=pathlib.Path, required=True)

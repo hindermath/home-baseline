@@ -20,10 +20,14 @@ ALLOW_ADMIN_PROMPTS=0
 FINDINGS=0
 REPAIR_APPLIED=0
 PREVIEW_DRIFT=0
+OPERATIONAL_FAILURE=0
 LOCK_DIR=""
 LOG_FILE=""
 REPORT_FILE=""
+TOOLCHAIN_RESULT_FILE=""
 RUN_ID=""
+CURRENT_STAGE="startup"
+FINALIZED=0
 PRESET_WORKTREE_REPO=""
 PRESET_WORKTREE_PATH=""
 PRESET_WORKTREE_ROOT=""
@@ -92,8 +96,7 @@ run_home_sync_check() {
   esac
 }
 
-cleanup() {
-  local status=$?
+release_resources() {
   cleanup_preset_validation_target
   if [ -n "$LOCK_DIR" ] && [ -d "$LOCK_DIR" ]; then
     rm -rf -- "$LOCK_DIR"
@@ -101,7 +104,6 @@ cleanup() {
   if [ -n "$LOG_FILE" ]; then
     printf '\nLog / log: %s\n' "$LOG_FILE"
   fi
-  return "$status"
 }
 
 cleanup_preset_validation_target() {
@@ -116,6 +118,53 @@ cleanup_preset_validation_target() {
   PRESET_WORKTREE_ROOT=""
   PRESET_VALIDATION_TARGET=""
   PRESET_VALIDATION_ISOLATED=0
+}
+
+finalize_run() {
+  local status="$1" exit_code="$2" summary="$3" next_action="$4"
+  local signal_name="${5:-N/A}"
+  [ "$FINALIZED" -eq 0 ] || return 0
+  FINALIZED=1
+  if [ -f "$REPORT_FILE" ]; then
+    python3 "$FLEET_ENGINE" finalize \
+      --report "$REPORT_FILE" \
+      --stage-id "$CURRENT_STAGE" \
+      --status "$status" \
+      --exit-code "$exit_code" \
+      --signal "$signal_name" \
+      --summary "$summary" \
+      --next-action "$next_action" || true
+  fi
+  printf 'ABSCHLUSS / FINAL\t%s\t%s\t%s\t%s\n' \
+    "$status" "$CURRENT_STAGE" "$exit_code" "$next_action"
+}
+
+handle_exit() {
+  local exit_code=$?
+  trap - EXIT INT TERM
+  if [ "$FINALIZED" -eq 0 ]; then
+    if [ "$exit_code" -eq 0 ]; then
+      finalize_run Passed 0 \
+        "Wartung abgeschlossen / maintenance completed" "N/A"
+    else
+      finalize_run Failed "$exit_code" \
+        "Ungefangener Stufenfehler / unhandled stage failure" \
+        "Letzte Stufe und Log prüfen / review last stage and log."
+    fi
+  fi
+  release_resources
+  exit "$exit_code"
+}
+
+handle_signal() {
+  local signal_name="$1" exit_code="$2"
+  trap - EXIT INT TERM
+  finalize_run Interrupted "$exit_code" \
+    "Signalabbruch / INTERRUPTED by signal" \
+    "Lauf ab letzter Stufe erneut starten / rerun from the last stage." \
+    "$signal_name"
+  release_resources
+  exit "$exit_code"
 }
 
 while [ $# -gt 0 ]; do
@@ -188,11 +237,14 @@ if ! mkdir -- "$LOCK_DIR" 2>/dev/null; then
   die "Wartung laeuft bereits (PID ${holder}) / maintenance already running"
 fi
 printf '%s\n' "$$" > "$LOCK_DIR/pid"
-trap cleanup EXIT INT TERM
+trap handle_exit EXIT
+trap 'handle_signal INT 130' INT
+trap 'handle_signal TERM 143' TERM
 
 LOG_FILE="${LOG_DIR}/agentic-workspace-$(date +%Y%m%d-%H%M%S).log"
 RUN_ID="$(python3 -c 'import uuid; print(uuid.uuid4())')"
 REPORT_FILE="${REPORT_DIR}/agentic-workspace-${RUN_ID}.json"
+TOOLCHAIN_RESULT_FILE="${REPORT_DIR}/agentic-toolchain-${RUN_ID}.json"
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 mode="update"
@@ -207,14 +259,20 @@ printf 'Run-ID: %s\n' "$RUN_ID"
 
 record_stage() {
   local stage_id="$1" status="$2" exit_code="$3" summary="$4" next_action="${5:-N/A}"
+  local toolchain_results="${6:-}"
+  local -a arguments
   [ -f "$REPORT_FILE" ] || return 0
-  python3 "$FLEET_ENGINE" stage \
+  arguments=(
+    python3 "$FLEET_ENGINE" stage
     --report "$REPORT_FILE" \
     --stage-id "$stage_id" \
     --status "$status" \
     --exit-code "$exit_code" \
     --summary "$summary" \
     --next-action "$next_action"
+  )
+  [ -n "$toolchain_results" ] && arguments+=(--toolchain-results "$toolchain_results")
+  "${arguments[@]}"
 }
 
 run_fleet_contract() {
@@ -535,6 +593,7 @@ handle_preset_profiles() {
   done < <(discover_preset_targets)
 }
 
+CURRENT_STAGE="level0"
 info "Level-0 aktualisieren / Update Level-0"
 level0_result="Passed"
 check_repository "$SOURCE_ROOT" "Level-0" || level0_result="Blocked"
@@ -557,6 +616,7 @@ if [ "$FINDINGS" -eq 0 ]; then
   fi
 fi
 
+CURRENT_STAGE="fleet"
 info "Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet"
 fleet_status=0
 run_fleet_contract || fleet_status=$?
@@ -571,6 +631,7 @@ record_stage "level0" "$level0_result" "$([ "$level0_result" = "Passed" ] && pri
 record_stage "home-sync" "$home_result" "$([ "$home_result" = "Blocked" ] && printf 1 || printf 0)" \
   "Home-Sync / home sync" "$([ "$home_result" = "Skipped" ] && printf 'Nach Level-0-Freigabe erneut ausfuehren / rerun after Level-0 passes' || printf 'N/A')"
 
+CURRENT_STAGE="registry"
 info "Level-1/Level-2 Registry pruefen / Check Level-1/Level-2 registry"
 findings_before="$FINDINGS"
 ensure_registry || true
@@ -590,6 +651,7 @@ else
 fi
 
 if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -eq 1 ]; then
+  CURRENT_STAGE="propagation"
   info "Kanonisches Wartungspaket pruefen / Check canonical maintenance package"
   findings_before="$FINDINGS"
   handle_propagation
@@ -608,6 +670,7 @@ else
 fi
 
 if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -eq 1 ]; then
+  CURRENT_STAGE="preset-profiles"
   info "Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles"
   findings_before="$FINDINGS"
   handle_preset_profiles
@@ -623,8 +686,12 @@ else
 fi
 
 if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$SCRIPTS_ONLY" -eq 0 ]; then
+  CURRENT_STAGE="toolchain"
   info "Maschinen-Toolchain pflegen / Maintain machine toolchain"
-  maintenance=(bash "${SOURCE_ROOT}/scripts/maintain-agentic-brew-apps.sh")
+  maintenance=(
+    bash "${SOURCE_ROOT}/scripts/maintain-agentic-brew-apps.sh"
+    --result-file "$TOOLCHAIN_RESULT_FILE"
+  )
   if [ "$CHECK_ONLY" -eq 1 ]; then
     maintenance+=(--compare-only)
   elif [ "$DRY_RUN" -eq 1 ]; then
@@ -640,25 +707,46 @@ if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$SCRIPTS_ONLY" -e
       warn "DEFERRED_ADMIN_REQUIRED: optional packages require current admin-prompt authority"
     fi
   fi
-  if [ "$(uname -s)" = "Linux" ] && [ "$ALLOW_ADMIN_PROMPTS" -ne 1 ] && [ "$CHECK_ONLY" -eq 0 ] && [ "$DRY_RUN" -eq 0 ]; then
-    warn "DEFERRED_ADMIN_REQUIRED: Linux-Toolchain benoetigt ausdrueckliche --allow-admin-prompts-Autoritaet"
-    warn "DEFERRED_ADMIN_REQUIRED: Linux toolchain requires explicit --allow-admin-prompts authority"
-    record_stage "toolchain" "Warning" 0 "DEFERRED_ADMIN_REQUIRED" \
-      "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority"
-  else
-    "${maintenance[@]}"
-    if [ "$optional_deferred" -eq 1 ]; then
-      record_stage "toolchain" "Warning" 0 "DEFERRED_ADMIN_REQUIRED" \
-        "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority"
-    else
-      record_stage "toolchain" "Passed" 0 "Toolchain-Wartung abgeschlossen / toolchain maintenance completed"
-    fi
+  deferred_linux=0
+  if [ "$(uname -s)" = "Linux" ] && [ "$ALLOW_ADMIN_PROMPTS" -ne 1 ] \
+      && [ "$CHECK_ONLY" -eq 0 ] && [ "$DRY_RUN" -eq 0 ]; then
+    deferred_linux=1
+    maintenance+=(--compare-only)
+  elif [ "$ALLOW_ADMIN_PROMPTS" -eq 1 ]; then
+    maintenance+=(--allow-admin-prompts)
+  fi
+  toolchain_status=0
+  "${maintenance[@]}" || toolchain_status=$?
+  if [ "$toolchain_status" -eq 0 ] && [ "$optional_deferred" -eq 0 ]; then
+    record_stage "toolchain" "Passed" 0 \
+      "Toolchain-Wartung abgeschlossen / toolchain maintenance completed" \
+      "N/A" "$TOOLCHAIN_RESULT_FILE"
+  elif [ "$toolchain_status" -ge 2 ]; then
+    OPERATIONAL_FAILURE=1
+    record_stage "toolchain" "Failed" 2 \
+      "Toolchain-Vertrag fehlgeschlagen / toolchain contract failed" \
+      "Toolchain-Log und Registry prüfen / review toolchain log and registry." \
+      "$([ -f "$TOOLCHAIN_RESULT_FILE" ] && printf '%s' "$TOOLCHAIN_RESULT_FILE" || true)"
+  elif [ "$deferred_linux" -eq 1 ] || [ "$optional_deferred" -eq 1 ]; then
+    warn "DEFERRED_ADMIN_REQUIRED: Linux-Toolchain-Drift wurde nur geprüft."
+    warn "DEFERRED_ADMIN_REQUIRED: Linux toolchain drift was compared only."
+    FINDINGS=$((FINDINGS + 1))
+    record_stage "toolchain" "DeferredAdminRequired" 1 "DEFERRED_ADMIN_REQUIRED" \
+      "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority" \
+      "$TOOLCHAIN_RESULT_FILE"
+  elif [ "$toolchain_status" -eq 1 ]; then
+    FINDINGS=$((FINDINGS + 1))
+    record_stage "toolchain" "Blocked" 1 \
+      "Required-Toolchain-Drift bleibt offen / required toolchain drift remains" \
+      "Toolchain-Befunde beheben / resolve toolchain findings." \
+      "$TOOLCHAIN_RESULT_FILE"
   fi
 else
   record_stage "toolchain" "Skipped" 0 "Toolchain durch Modus oder Vorbedingung uebersprungen / skipped by mode or prerequisite"
 fi
 
 if [ "$FINDINGS" -eq 0 ]; then
+  CURRENT_STAGE="verification"
   info "Abschlusspruefung / Final verification"
   if [ "$DRY_RUN" -eq 1 ]; then
     findings_before="$FINDINGS"
@@ -681,21 +769,32 @@ if [ "$FINDINGS" -eq 0 ]; then
   fi
 fi
 
+CURRENT_STAGE="final"
+if [ "$OPERATIONAL_FAILURE" -gt 0 ]; then
+  finalize_run Failed 2 \
+    "Wartung mit Betriebsfehler beendet / maintenance ended with an operational failure" \
+    "Letzte Stufe und Log prüfen / review last stage and log."
+  warn "Wartung mit Betriebsfehler beendet / maintenance ended with an operational failure"
+  printf 'Report / Bericht: %s\n' "$REPORT_FILE"
+  exit 2
+fi
 if [ "$FINDINGS" -gt 0 ]; then
-  record_stage "final" "Blocked" 1 "Wartung mit offenen Befunden / maintenance has open findings" \
+  finalize_run Blocked 1 \
+    "Wartung mit offenen Befunden / maintenance has open findings" \
     "Befunde im Bericht beheben / resolve report findings"
   warn "Wartung mit ${FINDINGS} offenem Befund beendet / maintenance ended with open finding(s)"
   printf 'Report / Bericht: %s\n' "$REPORT_FILE"
   exit 1
 fi
 if [ "$REPAIR_APPLIED" -eq 1 ]; then
-  record_stage "final" "Warning" 3 "Drift lokal repariert / drift repaired locally" \
+  finalize_run Warning 3 \
+    "Drift lokal repariert / drift repaired locally" \
     "Aenderungen separat pruefen / review changes separately"
   warn "Drift wurde lokal repariert. Betroffene Repositories separat pruefen, committen und pushen."
   warn "Drift was repaired locally. Review, commit, and push affected repositories separately."
   exit 3
 fi
 
-record_stage "final" "Passed" 0 "Wartung abgeschlossen / maintenance completed"
+finalize_run Passed 0 "Wartung abgeschlossen / maintenance completed" "N/A"
 ok "Wartung abgeschlossen / maintenance completed"
 printf 'Report / Bericht: %s\n' "$REPORT_FILE"

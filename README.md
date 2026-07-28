@@ -1518,7 +1518,7 @@ before the first actual run.*
 # macOS / Linux
 bash scripts/maintain-agentic-workspace.sh --check-only
 bash scripts/maintain-agentic-workspace.sh --dry-run
-bash scripts/maintain-agentic-workspace.sh
+bash scripts/maintain-agentic-workspace.sh --allow-admin-prompts
 ```
 
 ```powershell
@@ -1552,10 +1552,27 @@ automatically. A lock prevents parallel runs; local logs are stored below
 the active checkout differs from `origin/HEAD`, preserving the active branch
 and all untracked files.*
 
+Auf Linux bleibt Administratorinteraktion standardmaessig gesperrt. Ohne
+aktuelle `--allow-admin-prompts`-Freigabe vergleicht der Orchestrator die
+Toolchain nur und meldet installierbaren Required-Drift als
+`DEFERRED_ADMIN_REQUIRED` mit Exit `1`. Mit der Freigabe duerfen sichtbare
+`sudo`-Prompts erscheinen; Integritaetspruefungen, Prozessgrenzen,
+Repositoryregeln und Tests werden nicht umgangen. Jeder Lauf schreibt
+geordnete Toolchain-Einzelresultate in den Run-Bericht und finalisiert Erfolg,
+spaete Fehler sowie `INT`/`TERM` genau einmal atomar.
+
+*On Linux, administrator interaction is denied by default. Without current
+`--allow-admin-prompts` authority, the orchestrator compares the toolchain only
+and reports installable required drift as `DEFERRED_ADMIN_REQUIRED` with exit
+`1`. With authority, visible `sudo` prompts may appear; integrity checks,
+process boundaries, repository rules, and tests are never bypassed. Every run
+writes ordered toolchain item results into its report and finalizes success,
+late errors, and `INT`/`TERM` exactly once through atomic replacement.*
+
 ```bash
 bash scripts/maintain-agentic-brew-apps.sh --dry-run
 bash scripts/maintain-agentic-brew-apps.sh --compare-only
-bash scripts/maintain-agentic-brew-apps.sh
+bash scripts/maintain-agentic-brew-apps.sh --allow-admin-prompts
 ```
 
 Required-Homebrew-Formulae koennen in der Registry mit `ensureLinked: true`
@@ -1570,6 +1587,22 @@ their link after upgrades, while `--compare-only` reports read-only
 `LINK-DRIFT`. PowerShell is maintained as the required formula rather than a
 cask. MongoDB Community 8.0, Mono, SQLite, and Telnet are optional and are not
 installed on additional machines without `--include-optional`.*
+
+Die Bash-Wartung verarbeitet Registry-Eintraege ueber stdin-isolierte,
+geordnete Snapshots. Begrenzte Funktionsproben unterscheiden fehlende,
+defekte, zeitueberschreitende und durch Container-Capabilities blockierte
+CLI-Launcher. Auf Ubuntu 22.04/24.04 (`x86_64`/`aarch64`) verwendet der
+automatisierte Swift-Pfad ausschließlich das SHA-256-gebundene offizielle
+Swiftly `1.1.2` fuer Swift `6.3.3`, ohne Shell-Profile zu veraendern.
+`--result-file PATH` schreibt den atomaren maschinenlesbaren Abschluss.
+
+*Bash maintenance processes registry entries from ordered, stdin-isolated
+snapshots. Bounded functional probes distinguish missing, broken, timed-out,
+and capability-blocked CLI launchers. On Ubuntu 22.04/24.04
+(`x86_64`/`aarch64`), automated Swift provisioning exclusively uses the
+SHA-256-pinned official Swiftly `1.1.2` contract for Swift `6.3.3` without
+modifying shell profiles. `--result-file PATH` writes the atomic
+machine-readable outcome.*
 
 ```powershell
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf

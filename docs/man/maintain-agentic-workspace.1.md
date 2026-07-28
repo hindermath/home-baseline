@@ -89,8 +89,11 @@ Repository. Unabhaengige Ziele werden weiter geprueft.
 Pro Home-Verzeichnis verhindert ein Lock parallele Wartungslaeufe. Pro Lauf
 entstehen ein vollstaendiges lokales Log unter `~/.home-baseline/logs/` und ein
 JSON-Bericht unter `~/.home-baseline/reports/`. Beide verwenden dieselbe Run-ID.
-Der sichtbare Abschluss und der Prozess-Exitcode werden aus genau diesem
-Bericht abgeleitet. Eigene reparierte Dirty-Zwischenstaende werden nur mit
+Der Toolchain-Kindprozess liefert seine geordneten Einzelresultate an denselben
+Bericht. Normaler Abschluss, ein spaeter Fehler sowie `INT`/`TERM` ersetzen
+einen Zwischenstatus genau einmal atomar. Terminal, Log, Reportstatus,
+letzte Stufe und Prozess-Exitcode bleiben dadurch konsistent. Eigene reparierte
+Dirty-Zwischenstaende werden nur mit
 atomarer Resume-Evidence unter `~/.home-baseline/` fortgesetzt, wenn Pfade und
 Nachher-Hashes exakt passen. Fremde oder teilweise passende Aenderungen
 blockieren.
@@ -103,8 +106,10 @@ maintains the platform toolchain, and verifies the final state. It never
 switches an existing branch, resets worktrees, or commits/pushes target
 changes. Missing declared repositories use a verified sibling clone. A
 per-home lock prevents parallel runs; correlated local logs and JSON reports
-are written below `~/.home-baseline/`. The visible terminal state and process
-exit code are derived from that exact report. Self-created dirty intermediate
+are written below `~/.home-baseline/`. Ordered child toolchain results flow
+into that report. Normal completion, a late failure, and `INT`/`TERM` finalize
+exactly once through atomic replacement, keeping terminal, log, last stage,
+report status, and process exit code consistent. Self-created dirty intermediate
 state resumes only from atomically written evidence with exact paths and
 after-hashes; unknown or partial changes block.*
 
@@ -152,6 +157,18 @@ Teilabschluss mit Exitcode `1` berichtet.
 *A WinGet administrator operation that cannot complete safely is classified
 internally as `DEFERRED_ADMIN_REQUIRED` and reported by the orchestrator as a
 blocked partial result with exit code `1`.*
+
+Dasselbe gilt auf Linux: Ohne aktuelle `--allow-admin-prompts`-Autoritaet wird
+die Toolchain schreibfrei verglichen. Bei installierbarem Required-Drift erfolgt
+kein `sudo`; Bericht und Exitcode `1` nennen
+`DEFERRED_ADMIN_REQUIRED` und die vollständige Restmenge. Signale enden
+kanonisch mit `130` (`INT`) beziehungsweise `143` (`TERM`).
+
+*The same applies on Linux: without current `--allow-admin-prompts` authority,
+the toolchain is compared without mutation. Installable required drift never
+starts `sudo`; the report and exit `1` preserve `DEFERRED_ADMIN_REQUIRED` and
+the complete remaining set. Signals use canonical exit `130` (`INT`) or `143`
+(`TERM`).*
 
 ## EXAMPLES
 

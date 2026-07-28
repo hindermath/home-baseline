@@ -191,6 +191,42 @@ class MaintenanceContractTests(unittest.TestCase):
         self.assertEqual(formulae["powershell"]["linkCommands"], ["pwsh"])
         self.assertNotIn("powershell", {item["name"] for item in registry["casks"]})
 
+    def test_required_cli_registry_and_swift_platform_contract_are_closed(self) -> None:
+        registry = read_json(CONFIG / "required-cli-tools-registry.json")
+        tools = registry["tools"]
+        ids = [item["id"] for item in tools]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertTrue(ids)
+        allowed_platforms = {"Darwin", "Linux", "Windows"}
+        for item in tools:
+            self.assertIn(item.get("scope", "required"), {"required", "optional"})
+            self.assertTrue(set(item["platforms"]))
+            self.assertLessEqual(set(item["platforms"]), allowed_platforms)
+            self.assertTrue(item["command"])
+            self.assertIsInstance(item["args"], list)
+
+        swift = next(item for item in tools if item["id"] == "swift")
+        install = swift["install"]
+        self.assertEqual(install["manager"], "swiftly")
+        linux = install["linux"]
+        self.assertEqual(linux["swiftlyVersion"], "1.1.2")
+        self.assertEqual(linux["swiftVersion"], "6.3.3")
+        self.assertEqual(
+            linux["profiles"],
+            {
+                "ubuntu:22.04": "ubuntu2204",
+                "ubuntu:24.04": "ubuntu2404",
+            },
+        )
+        self.assertEqual(set(linux["artifacts"]), {"x86_64", "aarch64"})
+        for architecture, artifact in linux["artifacts"].items():
+            self.assertEqual(
+                artifact["url"],
+                "https://download.swift.org/swiftly/linux/"
+                f"swiftly-1.1.2-{architecture}.tar.gz",
+            )
+            self.assertRegex(artifact["sha256"], r"^[0-9a-f]{64}$")
+
     @unittest.skipIf(os.name == "nt", "The Bash registration test runs on macOS and Linux.")
     def test_registration_rejects_unknown_preset_profile(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

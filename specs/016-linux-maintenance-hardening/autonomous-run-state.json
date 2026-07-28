@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "142ec996-e896-4dd7-8983-6fede46a339f",
+  "featurePath": "specs/016-linux-maintenance-hardening",
+  "branch": "016-linux-maintenance-hardening",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Review",
+  "status": "Active",
+  "checkpointCommit": "f0fc01854270ac70ed6b4a90ac075100f6f69a77",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.016-linux-maintenance-hardening.md",
+      "sha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/linux-ubuntu-ein-kommando-wartung-haertung.json",
+      "sha256": "b813b3d4253600ccd3a2d69da5d843f0b85bc8a5fb57e5932b9a27d83d514119"
+    },
+    {
+      "path": "specs/linux-ubuntu-ein-kommando-wartung-haertung-intake-review/intake-review-result.json",
+      "sha256": "4222ab711e235c32dec255a0daa18a12dcb09b4e4829572a37912551a2b3f176"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "9bfc03953a987f8d4dbfc8f120760676a1e6f165022d2005465f9889a7e98a2e"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "07d2b797d1d706419a19bd8acc82ca62368d05a41aaeb7cff49d8e46fb376d50"
+    }
+  ],
+  "tasks": {
+    "path": "specs/016-linux-maintenance-hardening/tasks.md",
+    "sha256": "ce5e6319ffdaa7af842a683de204b6e4581335c7e95962cc48849e6b9c46e027",
+    "completed": 54,
+    "total": 59
+  },
+  "lastPassingGate": "Head ff1df0d passed 20 provider checks, zero actionable threads and 8/8 provider-neutral gates; the merge was correctly refused after concurrent origin/main advancement and now requires replacement-head validation.",
+  "nextExactAction": "Complete the conflict-free origin/main merge with both statistics milestones, rerender statistics, push the replacement PR head and reconverge all exact-head gates.",
+  "lastOperation": {
+    "kind": "Review",
+    "state": "Completed",
+    "summary": "Validated head ff1df0d completely, then stopped the admin merge when GitHub reported a real conflict; integrated the concurrent ITSE intake baseline while preserving both statistics milestones and refreshed accepted Series hashes."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "N/A",
+    "defaultBranchSync": "N/A",
+    "postMergeActions": "N/A",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-28T21:08:00Z"
+}

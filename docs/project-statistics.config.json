@@ -361,6 +361,14 @@
       "labelEn": "ITSE learning-series and consistency intakes",
       "netLines": 3607,
       "activeDays": 1
+    },
+    {
+      "slot": 44,
+      "id": "linux-one-command-maintenance-hardening",
+      "labelDe": "Linux-Ein-Kommando-Wartungshärtung",
+      "labelEn": "Linux one-command maintenance hardening",
+      "netLines": 4054,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
