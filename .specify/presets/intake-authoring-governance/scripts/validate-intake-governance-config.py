@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
+import uuid
 from pathlib import Path, PurePosixPath
 
 BCP47 = re.compile(r"^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$")
@@ -84,6 +86,96 @@ def validate_path(value: str, label: str) -> None:
         fail("RIG004", f"{label} must be repository-relative")
 
 
+def normalized_bytes(path: Path) -> bytes:
+    try:
+        raw = path.read_bytes()
+        if raw.startswith(b"\xef\xbb\xbf"):
+            raw = raw[3:]
+        text = raw.decode("utf-8", errors="strict")
+    except (OSError, UnicodeDecodeError) as exc:
+        fail("RIG014", f"cannot read strict UTF-8 target {path}: {exc}")
+    if "\x00" in text:
+        fail("RIG014", f"binary NUL is not allowed in {path}")
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
+def normalized_sha256(path: Path) -> str:
+    return hashlib.sha256(normalized_bytes(path)).hexdigest()
+
+
+def intake_name_matches(name: str, pattern: str) -> bool:
+    prefix, suffix = pattern.split("<slug>", 1)
+    return name.startswith(prefix) and name.endswith(suffix) and len(name) > len(prefix) + len(suffix)
+
+
+def validate_series_manifest(
+    path: Path,
+    repo: Path,
+    active_dir: Path,
+    pattern: str,
+    inventory_mode: str,
+) -> dict:
+    manifest = load_json(path)
+    targets = manifest.get("orderedTargets")
+    if not isinstance(targets, list) or not targets:
+        fail("RIG014", "series manifest must contain non-empty orderedTargets")
+
+    active_paths = {
+        item.relative_to(repo).as_posix()
+        for item in active_dir.iterdir()
+        if item.is_file() and intake_name_matches(item.name, pattern)
+    }
+    target_paths: list[str] = []
+    eligible: list[str] = []
+    for index, target in enumerate(targets):
+        if not isinstance(target, dict):
+            fail("RIG014", f"orderedTargets[{index}] must be an object")
+        target_path = required_text(target, "path", "RIG014")
+        validate_path(target_path, f"orderedTargets[{index}].path")
+        if target_path in target_paths:
+            fail("RIG013", f"duplicate active target {target_path}")
+        target_paths.append(target_path)
+        target_file = repo / target_path
+        if not target_file.is_file():
+            fail("RIG014", f"missing active target {target_path}")
+        expected_hash = required_text(target, "normalizedSha256", "RIG015")
+        if not re.fullmatch(r"[0-9a-f]{64}", expected_hash):
+            fail("RIG015", f"invalid normalizedSha256 for {target_path}")
+        if normalized_sha256(target_file) != expected_hash:
+            fail("RIG015", f"hash drift for {target_path}")
+        status = required_text(target, "status", "RIG017")
+        if status == "Eligible":
+            eligible.append(target_path)
+
+    if inventory_mode == "DirectoryStrict" and set(target_paths) != active_paths:
+        missing = sorted(active_paths - set(target_paths))
+        extra = sorted(set(target_paths) - active_paths)
+        fail("RIG013", f"active inventory mismatch; missing={missing}, extra={extra}")
+    if len(eligible) != 1:
+        fail("RIG017", f"exactly one Eligible target is required, found {len(eligible)}")
+
+    dependencies = manifest.get("dependencies", [])
+    if not isinstance(dependencies, list):
+        fail("RIG016", "dependencies must be an array")
+    positions = {value: index for index, value in enumerate(target_paths)}
+    for index, edge in enumerate(dependencies):
+        if not isinstance(edge, dict):
+            fail("RIG016", f"dependencies[{index}] must be an object")
+        source = required_text(edge, "from", "RIG016")
+        target = required_text(edge, "to", "RIG016")
+        if source not in positions or target not in positions or source == target:
+            fail("RIG016", f"dependency {source} -> {target} has invalid references")
+        if positions[source] >= positions[target]:
+            fail("RIG016", f"dependency {source} -> {target} contradicts order")
+
+    return {
+        "activeIntakeCount": len(target_paths),
+        "seriesTargetCount": len(target_paths),
+        "eligibleCandidate": eligible[0],
+        "dependencyCount": len(dependencies),
+    }
+
+
 def validate_config(data: dict, repo: Path) -> dict:
     schema = data.get("schemaVersion")
     if schema == "1.0":
@@ -147,6 +239,20 @@ def validate_config(data: dict, repo: Path) -> dict:
         validate_path(alias, f"legacyArtifactNames[{index}]")
     if len(aliases) != len(set(aliases)):
         fail("RIG008", "legacyArtifactNames must be unique")
+    inventory_mode = data.get("inventoryMode", "DirectoryStrict")
+    if inventory_mode not in {"DirectoryStrict", "SeriesManifest"}:
+        fail("RIG013", "inventoryMode must be DirectoryStrict or SeriesManifest")
+    role_paths = list(roles.values())
+    if len(role_paths) != len(set(role_paths)):
+        fail("RIG006", "portable role paths must be unique")
+    if roles["requirements-index"] != resolved["canonicalIndex"]:
+        fail("RIG006", "requirements-index must equal the resolved canonicalIndex")
+    if roles["intake-order"] != resolved["orderView"]:
+        fail("RIG006", "intake-order must equal the resolved orderView")
+    if roles["requirements-intake"] != collections["active"]:
+        fail("RIG007", "requirements-intake must equal collections.active")
+    if roles["requirements-baseline"] != collections["baseline"]:
+        fail("RIG007", "requirements-baseline must equal collections.baseline")
 
     missing: list[str] = []
     for key in ("requirements-index", "intake-order"):
@@ -159,6 +265,49 @@ def validate_config(data: dict, repo: Path) -> dict:
         missing.append(collections["seriesManifest"])
 
     outcome = "Aligned" if not missing else "MigrationRequired"
+    inventory = {
+        "baselineCount": 0,
+        "activeIntakeCount": 0,
+        "archiveIntakeCount": 0,
+        "backlogIntakeCount": 0,
+        "historyIntakeCount": 0,
+        "seriesTargetCount": 0,
+        "dependencyCount": 0,
+        "eligibleCandidate": "N/A",
+    }
+    if outcome == "Aligned":
+        pattern = resolved["intakePattern"]
+        active_dir = repo / collections["active"]
+        inventory.update(
+            validate_series_manifest(
+                repo / collections["seriesManifest"],
+                repo,
+                active_dir,
+                pattern,
+                inventory_mode,
+            )
+        )
+        for key, result_key in (
+            ("baseline", "baselineCount"),
+            ("archive", "archiveIntakeCount"),
+            ("backlog", "backlogIntakeCount"),
+            ("history", "historyIntakeCount"),
+        ):
+            directory = repo / collections[key]
+            if directory.is_dir():
+                inventory[result_key] = sum(1 for item in directory.rglob("*") if item.is_file())
+
+        canonical_name = Path(resolved["canonicalIndex"]).name
+        canonical_candidates = [
+            item
+            for item in repo.rglob(canonical_name)
+            if ".git" not in item.parts
+            and "history" not in item.parts
+            and "archive" not in item.parts
+        ]
+        if canonical_candidates != [repo / roles["requirements-index"]]:
+            fail("RIG013", f"exactly one current canonical index is required: {canonical_candidates}")
+
     return {
         "schemaVersion": "2.0",
         "outcome": outcome,
@@ -168,6 +317,8 @@ def validate_config(data: dict, repo: Path) -> dict:
         "roles": roles,
         "collections": collections,
         "legacyArtifactNames": aliases,
+        "inventoryMode": inventory_mode,
+        "inventory": inventory,
         "missingPaths": sorted(set(missing)),
         "nextAction": "N/A" if outcome == "Aligned" else "$speckit-intake-update",
     }
@@ -190,6 +341,20 @@ def validate_journal(data: dict) -> dict:
         fail("RIG011", "Completed requires afterSha256")
     if state == "NeedsRepair" and not data.get("repairBoundary"):
         fail("RIG012", "NeedsRepair requires repairBoundary")
+    operation_id = required_text(data, "operationId", "RIG009")
+    try:
+        uuid.UUID(operation_id)
+    except ValueError:
+        fail("RIG009", "operationId must be a UUID")
+    for key in ("moves", "updatedReferences", "validation"):
+        value = data.get(key)
+        if not isinstance(value, list):
+            fail("RIG009", f"{key} must be an array")
+    if state == "Completed":
+        if not data["validation"]:
+            fail("RIG011", "Completed requires validation evidence")
+        if required_text(data, "rollback", "RIG011") == "N/A":
+            fail("RIG011", "Completed requires a documented rollback boundary")
     return {"schemaVersion": "2.0", "outcome": state, "nextAction": "N/A"}
 
 

@@ -12,6 +12,7 @@ handoffs:
 scripts:
   sh: .specify/scripts/bash/setup-plan.sh --json
   ps: .specify/scripts/powershell/setup-plan.ps1 -Json
+  py: .specify/scripts/python/setup_plan.py --json
 ---
 
 

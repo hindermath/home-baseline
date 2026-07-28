@@ -321,11 +321,18 @@ nur über `$speckit-intake-update`, benötigt aktuelle Autorität und ein
 Operationsjournal. Sie aktualisiert Referenzen atomar oder endet nach Rollback
 beziehungsweise als `NeedsRepair`.
 
+`DirectoryStrict` prueft ein Verzeichnis, das nur aktive Intakes enthaelt.
+`SeriesManifest` bewahrt vorhandene flache oder gemischte Ablagen und verwendet
+die hashgebundene Zielmenge des Serienmanifests als aktiven Bestand. Beide Modi
+berechnen Bestandszahlen; handgepflegte Zaehler sind keine Evidence.
+
 *Version 0.3.0 describes requirements collections with schema 2.0.
 Documentation language is explicit and independent from implementation
 language and locale. Portable roles resolve localized names. Migration is
 authority-bound, hash-bound, and atomic. `Eligible` selects order but grants no
-implementation or remote authority.*
+implementation or remote authority. `DirectoryStrict` validates a dedicated
+active directory; `SeriesManifest` supports established flat or mixed layouts
+without trusting manual counts.*
 
 ## Status / Statuspruefung
 
