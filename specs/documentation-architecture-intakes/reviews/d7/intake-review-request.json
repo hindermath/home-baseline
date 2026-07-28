@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "44d2b7cb-2051-4dba-8d3f-3eb17c71f72c",
+  "mode": "Single",
+  "policy": "home-baseline-documentation-architecture-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

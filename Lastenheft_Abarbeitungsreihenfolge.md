@@ -87,15 +87,18 @@ atomaren Migrationsvertrag für die drei vorhandenen Intake-Presets ein.
 
 Das Gate veränderte die fachliche Reihenfolge der vorhandenen Intakes nicht.
 G1 ist archiviert und aus der aktiven Series entfernt. Die sechs früheren
-Roots sind wieder freigegeben. Position 1,
+Roots wurden durch G1 wieder freigegeben. Mit der später ergänzten
+Dokumentationskette D4 bis D7 besitzt die bisherige Position 5 nun erneut einen
+bindenden Vorgänger. Position 1,
 `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md`, ist als einziger
 Kandidat `Eligible` und damit der nächste serielle Intake. Der Closeout hat
 diesen Lauf nicht gestartet.
 
 *The gate did not reorder the existing domain work. G1 is archived and removed
-from the active series. The six previous roots are available again. Windows
-hardening at item 1 is the only declared `Eligible` candidate and therefore the
-next serial intake. The closeout did not start it.*
+from the active series. It released the six previous roots; the later D4-D7
+documentation chain now provides a new binding predecessor for former item 5.
+Windows hardening at item 1 remains the only declared `Eligible` candidate and
+therefore the next serial intake. The closeout did not start it.*
 
 ## Aktive Reihenfolge / Active Order
 
@@ -105,6 +108,10 @@ next serial intake. The closeout did not start it.*
 | 2 | `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md` | Plant die Linux-/Ubuntu-Haertung fuer stdin-sichere Homebrew-Iteration, fail-closed Required-Pruefung, korrekte Gesamt-Exitcodes und einen automatisierten Swift-Installationsweg. / Plans Linux and Ubuntu hardening for input-safe Homebrew iteration, fail-closed required checks, correct overall exit codes, and automated Swift installation. |
 | 3 | `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md` | Härtet Remote-Aktualität, beliebige Default-Branches, Hard-Abort-Bereinigung, PowerShell-Verhaltensparität und Nicht-MSL-Registry-Konsistenz. / Hardens remote freshness, arbitrary default branches, hard-abort cleanup, PowerShell behavior parity, and non-MSL registry consistency. |
 | 4 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis Feature 009 und die aktiven Eintraege 1 bis 3 vollstaendig abgeschlossen sind. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until Feature 009 and active items 1 through 3 are fully closed. |
+| D4 | `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` | Prüft nach Position 4 die gesamte Git-getrackte Level-0-Dokumentation read-only auf Informationsarchitektur, Leserpfade, Sprachstrategie und gestufte Tiefe. / Audits all Git-tracked Level 0 documentation after item 4 for information architecture, reader paths, language strategy, and progressive depth without remediation. |
+| D5 | `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` | Setzt ausschließlich bestätigte D4-Findings um und verankert Einstiegspunkte, Sprachpartner und den dauerhaften Dokumentationsarchitektur-Vertrag. / Implements only accepted D4 findings and establishes entry pages, language pairs, and the durable documentation-architecture contract. |
+| D6 | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` | Dokumentiert das nach Position 4 stabile Wartungsverhalten für Lernende, Nutzende, Maintainer/KI-Agenten und Audit, ohne Skriptverhalten zu ändern. / Documents the stable post-item-4 maintenance behavior for learners, operators, maintainers/AI agents, and audit without changing script behavior. |
+| D7 | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` | Übernimmt nur belegte portable Regeln repository-spezifisch in die registrierte Level-1-/Level-2-Flotte; unveränderte Repositories erhalten keinen Leer-PR. / Adopts only proven portable rules per repository across the registered Level 1/2 fleet; unchanged repositories receive no empty pull request. |
 | 5 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
 | 6 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
 | 7 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
@@ -135,6 +142,21 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 1 Windows -----------\
 2 Linux --------------+--> 4 Maintenance TUI
 3 Preset/Branch ------/
+                             |
+                             v
+              D4 Informationsarchitektur-Audit
+                             |
+                             v
+              D5 Level-0-Architektur und Sprache
+                             |
+                             v
+              D6 Workspace-Effizienzleitfaden ----------> 11 Skript-Dokumentation
+                             |
+                             v
+              D7 Level-1/2-Flottenadoption
+                             |
+                             v
+              5 Mitgeltende Dokumente
 
 5 Mitgeltende Dokumente --> 6 RL-SE-Selbstpruefung
 5 Mitgeltende Dokumente --> 7 Container-Haertung --> 8 Level-2-Sandbox
@@ -159,9 +181,10 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 
 ```
 
-Nach dem Abschluss von D1, D2, D3 und G1 sind die aktiven Roots der
-nummerierten Reihenfolge wieder `1`, `2`, `3`, `5`, `9` und `10`. G1 und seine
-sechs `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
+Nach der Einordnung von D4 bis D7 sind die aktiven Roots `1`, `2`, `3`, `9`
+und `10`. Die bisherige Position 5 ist kein Root mehr, weil D7 ihre bindende
+Dokumentationsarchitektur-Basis liefert. G1 und seine sechs
+`RequirementsGovernanceGate`-Kanten bleiben in der archivierten
 Schema-1.1-Review-Evidence nachweisbar. Position 1 ist als nächster serieller
 Kandidat ausgewählt; die anderen Roots bleiben fachlich verfügbar, starten
 aber nicht automatisch. Feature 009 ist kein aktiver Serienknoten mehr. Sein
@@ -178,6 +201,19 @@ Position 7 liefert die Sandbox-Grundlage fuer 8. Position 10 wird vor 11
 ausgefuehrt, damit neue oder geaenderte Cmdlet-Oberflaechen unmittelbar
 dokumentiert werden koennen. Die Positionen 9 bis 12 liefern Eingaben fuer den
 abschliessenden GSDB-Lauf. Position 13 muss deshalb zuletzt laufen.
+
+D4 bis D7 bilden einen neuen, bindenden Dokumentationsarchitektur-Strang nach
+Position 4. D4 auditiert ohne Remediation. D5 setzt nur bestätigte
+Level-0-Findings um. D6 dokumentiert das dann stabile Betriebsverhalten und
+liefert zusätzlich eine bindende Oberfläche für Position 11. D7 übernimmt nur
+portable Regeln in die registrierte Flotte und gibt danach Position 5 frei.
+Keiner dieser Läufe startet seinen Nachfolger automatisch.
+
+*D4 through D7 form a new binding documentation-architecture track after item
+4. D4 audits without remediation, D5 implements accepted Level 0 findings, D6
+documents the stable operating surface and also feeds item 11, and D7 adopts
+portable rules across the registered fleet before releasing item 5. No run
+starts its successor automatically.*
 
 *Item 4 is a hard dependency rather than an ordering recommendation. Evidence
 for Feature 009 and all three active predecessor items must pass before any TUI

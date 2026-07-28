@@ -1,8 +1,8 @@
 # Validation Evidence: Active Lastenheft Normalization
 
-## Scope
+## Historical Normalization Scope
 
-- Active root intakes: 14
+- Normalized root intakes at the original run: 14
 - Creator-native before normalization: 3
 - Current `LegacyAdoption` receipts: 10
 - Current `Supersession` receipts: 4
@@ -10,6 +10,26 @@
 - Creator-native position-4 intake: 1, now superseded in place
 - Historical root intakes changed: 0
 - Learning-series intakes changed: 0 of 222
+
+The values in this section describe the completed original normalization run.
+They are not current Series cardinalities.
+
+## Current D4-D7 Series Update
+
+- Current active Series targets: 21.
+- Current roots: 5.
+- Current unique dependencies: 28.
+- D4 through D7 are ordered after active item 4 and before former item 5.
+- D6 also provides a binding documentation-surface baseline for the existing
+  script-documentation intake.
+- Each new intake has one schema-2.0 Authoring receipt with two ordered
+  conversation-snapshot sources and `MergeAndSync` authority.
+- All four individual reviews are `Ready` with zero findings, open questions,
+  or accepted risks.
+- The schema-1.1 Series review is `Ready` under review ID
+  `1a688fd4-666c-4fed-99bc-d33f042c382a`.
+- Windows maintenance remains the single declared `Eligible` candidate.
+- No D4-D7 feature or other successor run was started.
 
 ## Intake And Review Validation
 

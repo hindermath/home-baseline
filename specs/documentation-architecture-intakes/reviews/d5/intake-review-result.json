@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "24b839ac-fd95-4914-981c-0f99a94413c9",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-documentation-architecture-v1",
+  "reviewedAt": "2026-07-28T13:45:51Z",
+  "repository": {
+    "root": ".",
+    "head": "824e1fb5eb80f3850d9c98427551d7c315dc59b6"
+  },
+  "requestEvidence": {
+    "path": "specs/documentation-architecture-intakes/reviews/d5/intake-review-request.json",
+    "normalizedSha256": "ea549188904287b5bde33bf586c4e953a2d1f597218c430e931100a05e9d3223"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "role": "Primary",
+      "normalizedSha256": "0cc322e87ad28130eb8661d77289084a9ae56365b91b7f96778923ce0d6fedc5",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

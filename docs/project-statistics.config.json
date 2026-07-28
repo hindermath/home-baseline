@@ -329,6 +329,14 @@
       "labelEn": "Intake Sequencing v0.2.2 profile alignment",
       "netLines": 3348,
       "activeDays": 1
+    },
+    {
+      "slot": 40,
+      "id": "documentation-architecture-intake-chain",
+      "labelDe": "Dokumentationsarchitektur-Intake-Kette",
+      "labelEn": "Documentation architecture intake chain",
+      "netLines": 2672,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
