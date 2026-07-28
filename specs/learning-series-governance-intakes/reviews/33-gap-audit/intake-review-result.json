@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "bf00738d-bbaf-4780-b4e6-9db65d6ace4b",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "reviewedAt": "2026-07-28T21:37:12Z",
+  "repository": {
+    "root": ".",
+    "head": "99a2eb6598e5bd92d83b3c6e58be75d8b34d262f"
+  },
+  "requestEvidence": {
+    "path": "specs/learning-series-governance-intakes/reviews/33-gap-audit/intake-review-request.json",
+    "normalizedSha256": "d04caf7ffbe31492cafd5e1706a1b0db40a0b64ea57b2b298a82f80711ff21e6"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "role": "Primary",
+      "normalizedSha256": "184a435639c688d76954c2fa0d4bf62db66633ec7238dc07609a3596d6ce207e",
+      "gitBlob": "c1892ed46661d9dee71ce6a9485aa47afa850208"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

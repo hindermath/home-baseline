@@ -211,33 +211,9 @@
       "status": "Blocked"
     },
     {
-      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "184a435639c688d76954c2fa0d4bf62db66633ec7238dc07609a3596d6ce207e",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "4cd24a16b876a79554d7408dc0fd4f78dcb6ecfb55b1206041ad2e4628f8a533",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "20c9039b5aa9efd538a4bfd14409ccda0ce7f1c7903a4d0d3d0cc11c03ed66a9",
-      "status": "Blocked"
-    },
-    {
       "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
       "role": "OrderedMember",
-      "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
+      "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
       "status": "Blocked"
     }
   ],
@@ -495,30 +471,6 @@
     },
     {
       "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
-      "to": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "kind": "FinalAuditInput",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "to": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "kind": "AssessmentBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "to": "Lastenheft_Preset-Learning-Series-Governance.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Preset-Learning-Series-Governance.md",
-      "to": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-      "kind": "PublishedPresetBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
       "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
       "kind": "FinalAuditInput",
       "binding": true
@@ -551,12 +503,6 @@
     "specs/itse-learning-intakes/reviews/30-year3/intake-review-result.json",
     "specs/itse-learning-intakes/reviews/31-rollout/intake-review-result.json",
     "specs/itse-learning-intakes/reviews/32-closure/intake-review-result.json",
-    "specs/intake-authoring-series/learning-series-governance/series.json",
-    "specs/learning-series-governance-intakes/reviews/33-gap-audit/intake-review-result.json",
-    "specs/learning-series-governance-intakes/reviews/34-review-preset/intake-review-result.json",
-    "specs/learning-series-governance-intakes/reviews/35-learning-preset/intake-review-result.json",
-    "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
-    "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
-    "specs/learning-series-governance-intakes/series/intake-review-result.json"
+    "specs/itse-learning-intakes/reviews/33-global-closure/intake-review-result.json"
   ]
 }

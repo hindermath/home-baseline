@@ -37,9 +37,10 @@ Schalt-, Mess- und Inbetriebnahmearbeit bleibt beaufsichtigte Fachpraxis und
 wird niemals von einem KI-Agenten ausgeführt.
 
 Die Positionen 26 bis 32 der zentralen Intake-Reihenfolge bereiten den
-dreijährigen ITSE-Pfad und seinen kontrollierten C#-Rollout vor. Position 33
-prüft danach die Konsistenz mit FI, KITSM und KDM. Diese Vorbereitung startet
-keinen Spec-Kit- oder Lernendenlauf.
+dreijährigen ITSE-Pfad und seinen kontrollierten C#-Rollout vor. Die Positionen
+33 bis 37 prüfen danach Lernreihen-Konsistenz, KI-Kompetenz, portable
+Governance und den gemeinsamen Abschluss mit FI, KITSM und KDM. Diese
+Vorbereitung startet keinen Spec-Kit- oder Lernendenlauf.
 
 **EN:** Secure ServiceHarvester is the complete technical reference context for
 the prepared ITSE learning series. The ITSE path compares with all four
@@ -51,8 +52,9 @@ switching, measurement, and commissioning remain supervised professional
 practice and are never performed by an AI agent.
 
 Positions 26 through 32 prepare the three-year ITSE path and its controlled C#
-rollout. Position 33 then checks consistency with FI, KITSM, and KDM. This
-preparation starts no Spec Kit or learner run.
+rollout. Positions 33 through 37 then cover learning-series consistency, AI
+competence, portable governance, and final closure with FI, KITSM, and KDM.
+This preparation starts no Spec Kit or learner run.
 
 ## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
 

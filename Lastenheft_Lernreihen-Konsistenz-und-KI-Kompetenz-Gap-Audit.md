@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: Lernreihen-Konsistenz- und KI-Kompetenz-Gap-Audit
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 33, nach Position 32  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 33, nach Position 32
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende, Lehrende, Ausbildende, Maintainer und Reviewer in
-dualen IHK-Ausbildungsgängen ab dem ersten Ausbildungsjahr  
+dualen IHK-Ausbildungsgängen ab dem ersten Ausbildungsjahr
 **Vorausgesetztes Wissen:** keine Spec-Kit- oder KI-Vorkenntnisse; Fachbegriffe
 werden beim ersten Auftreten erklärt
 

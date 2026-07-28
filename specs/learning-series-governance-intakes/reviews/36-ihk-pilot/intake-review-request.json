@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "26f43e0e-28c4-4311-be73-8dd73442976b",
+  "mode": "Single",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

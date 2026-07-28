@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: Preset Learning Series Governance
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 35, nach Position 34  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 35, nach Position 34
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Maintainer von Lernreihen, Lehrende, Ausbildende,
-Bildungsplanende und Preset-Reviewer  
+Bildungsplanende und Preset-Reviewer
 **Vorausgesetztes Wissen:** keine Vorkenntnisse zum neuen Preset; die Begriffe
 Lernreihe, Kompetenzmodell, Evidence und Agentenautorität werden erklärt
 

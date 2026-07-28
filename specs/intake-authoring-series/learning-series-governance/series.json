@@ -30,7 +30,7 @@
       "title": "Lernreihen-Konsistenz- und KI-Kompetenz-Gap-Audit",
       "role": "GapAudit",
       "order": 1,
-      "normalizedSha256": "ac0ee49fd4eac1b30ff51e1b96ed6fb1c666d593ea64088b034417f0918f7b7d",
+      "normalizedSha256": "184a435639c688d76954c2fa0d4bf62db66633ec7238dc07609a3596d6ce207e",
       "supersedesIntakeIds": []
     },
     {
@@ -40,7 +40,7 @@
       "title": "Preset Intake Review - Drei-Ebenen-Konsistenz",
       "role": "ReviewFoundation",
       "order": 2,
-      "normalizedSha256": "3e88c8f941d367e6a7d09b953836d18d088a15e70d95dc993017d2bc677fd959",
+      "normalizedSha256": "4cd24a16b876a79554d7408dc0fd4f78dcb6ecfb55b1206041ad2e4628f8a533",
       "supersedesIntakeIds": []
     },
     {
@@ -50,7 +50,7 @@
       "title": "Preset Learning Series Governance",
       "role": "PresetProductization",
       "order": 3,
-      "normalizedSha256": "14f22ac8e26874ba166a701548e9c58fd84ce038b021a3b0ebdef4ca4c0f587d",
+      "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b",
       "supersedesIntakeIds": []
     },
     {
@@ -60,7 +60,7 @@
       "title": "Learning Series Governance - IHK-Pilot",
       "role": "FieldPilot",
       "order": 4,
-      "normalizedSha256": "fa1d9093fd484d175039e578f145f97f3e30945ba39fe8642559ceb53c2b50be",
+      "normalizedSha256": "20c9039b5aa9efd538a4bfd14409ccda0ce7f1c7903a4d0d3d0cc11c03ed66a9",
       "supersedesIntakeIds": []
     },
     {

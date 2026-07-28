@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "85f7ff57-cf62-4dcb-8598-ec1c2ead433a",
+  "mode": "Series",
+  "status": "Ready",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "reviewedAt": "2026-07-28T21:37:12Z",
+  "repository": {
+    "root": ".",
+    "head": "99a2eb6598e5bd92d83b3c6e58be75d8b34d262f"
+  },
+  "requestEvidence": {
+    "path": "specs/learning-series-governance-intakes/series/intake-review-request.json",
+    "normalizedSha256": "94fec31e8d0603278ff5d99f69eb3ed321a45e220c6bc3e3754327132539a0a5"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "role": "Primary",
+      "normalizedSha256": "184a435639c688d76954c2fa0d4bf62db66633ec7238dc07609a3596d6ce207e",
+      "gitBlob": "c1892ed46661d9dee71ce6a9485aa47afa850208"
+    },
+    {
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4cd24a16b876a79554d7408dc0fd4f78dcb6ecfb55b1206041ad2e4628f8a533",
+      "gitBlob": "5edee69bae3e72b5fdcb0781ecee61a3c4a95b9c"
+    },
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b",
+      "gitBlob": "d07c6c765392b61db374e010e9c6e303d0f5b8e4"
+    },
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "20c9039b5aa9efd538a4bfd14409ccda0ce7f1c7903a4d0d3d0cc11c03ed66a9",
+      "gitBlob": "f9161d4033f36f01844939a116ce07e850fee501"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
+      "gitBlob": "c7560eaa55d3516f42c7d34358cbd778b393e5e3"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "Lastenheft_Preset-Learning-Series-Governance.md",
+      "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+    ],
+    "series": [
+      "All five target paths, roles, hashes and exact order match the bound schema-1.1 request",
+      "The single declared root equals the zero-indegree target set",
+      "Four unique dependencies are reference-valid, order-consistent and acyclic",
+      "Generic Intake Review consistency precedes the domain-specific learning-series preset",
+      "Field validation precedes release and the read-only global closure",
+      "Official requirements, supported claims and project future skills remain explicitly distinguishable",
+      "No Specify, autonomous or successor feature run was started"
+    ],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

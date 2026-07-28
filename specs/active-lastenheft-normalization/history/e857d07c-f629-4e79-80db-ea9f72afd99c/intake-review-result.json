@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "292b5f47-6164-49a9-9107-b62a23a032a7",
+  "reviewId": "e857d07c-f629-4e79-80db-ea9f72afd99c",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T21:54:39Z",
+  "reviewedAt": "2026-07-28T21:08:41Z",
   "repository": {
     "root": ".",
-    "head": "99a2eb6598e5bd92d83b3c6e58be75d8b34d262f"
+    "head": "8a12143941a791528f856e6f7cfd77e6af9860d4"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "8b7e93c1643335ec1e0961b43fa22883461ff322d692664098ace2e05aa63a55"
+    "normalizedSha256": "4f8a4adf6e86beabea0cbafaeddf118f09d36b037bf100ec5729c15c43e5ed93"
   },
   "summary": {
     "critical": 0,
@@ -19,7 +19,7 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "e857d07c-f629-4e79-80db-ea9f72afd99c",
+  "supersedes": "e54bbf16-d0f0-4363-b728-8a951aaee148",
   "targets": [
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -226,33 +226,9 @@
       "gitBlob": "N/A"
     },
     {
-      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "184a435639c688d76954c2fa0d4bf62db66633ec7238dc07609a3596d6ce207e",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "4cd24a16b876a79554d7408dc0fd4f78dcb6ecfb55b1206041ad2e4628f8a533",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "20c9039b5aa9efd538a4bfd14409ccda0ce7f1c7903a4d0d3d0cc11c03ed66a9",
-      "gitBlob": "N/A"
-    },
-    {
       "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
       "role": "OrderedMember",
-      "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
+      "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
       "gitBlob": "N/A"
     }
   ],
@@ -293,21 +269,16 @@
       "Lastenheft_ITSE-Professional-Jahr3.md",
       "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
       "Lastenheft_ITSE-Lernreihen-Closure.md",
-      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "Lastenheft_Preset-Learning-Series-Governance.md",
-      "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 39 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 35 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The three declared roots equal the zero-indegree target set",
-      "Forty-six unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Forty-two unique dependencies are reference-valid, order-consistent, and acyclic",
       "Windows maintenance Feature 015 and Linux maintenance Feature 016 remain archived with preserved review lineage",
       "The eight KDM/KITSM intakes form one binding chain after item 17",
-      "The seven ITSE intakes form one binding chain after item 25",
-      "Items 33 through 37 form the reviewed learning-series consistency and AI-competence governance chain",
-      "All five learning-series governance intakes and their five-target subseries were independently reviewed as Ready",
+      "The seven ITSE intakes and the global consistency closure form one binding chain after item 25",
+      "Every ITSE intake was independently reviewed as Ready before series publication",
       "Preset profile, default-branch, and worktree hardening is the single declared Eligible candidate",
       "No successor feature, branch, or Spec Kit run was started"
     ],

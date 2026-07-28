@@ -369,6 +369,14 @@
       "labelEn": "Linux one-command maintenance hardening",
       "netLines": 4054,
       "activeDays": 1
+    },
+    {
+      "slot": 45,
+      "id": "learning-series-governance-intake-chain",
+      "labelDe": "Lernreihen-Governance- und KI-Kompetenz-Intakes",
+      "labelEn": "Learning-series governance and AI competence intakes",
+      "netLines": 1816,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

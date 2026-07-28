@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: Preset Intake Review – Drei-Ebenen-Konsistenz
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 34, nach Position 33  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 34, nach Position 33
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Preset-Maintainer, Requirements Engineers, Lehrende,
-Ausbildende und Reviewer  
+Ausbildende und Reviewer
 **Vorausgesetztes Wissen:** Grundverständnis von Intake Review; Fachbegriffe
 und Schemaänderungen werden beim ersten Auftreten erklärt
 

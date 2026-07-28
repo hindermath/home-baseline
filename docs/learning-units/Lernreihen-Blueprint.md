@@ -118,8 +118,9 @@ Dokumentation. C# ersetzt keine elektrotechnische Praxis. Elektrische
 Schalt-, Mess- oder Inbetriebnahmearbeit findet nur in freigegebenen
 Lernumgebungen und unter fachkundiger Aufsicht statt; ein KI-Agent steuert
 keine elektrische Anlage. Die Positionen 26 bis 32 bereiten den ITSE-Strang
-vor. Position 33 prüft danach alle FI-, ITSE-, KITSM- und KDM-Reihen in sich,
-gegen ihre normativen Quellen und insgesamt zueinander.
+vor. Die Positionen 33 bis 37 prüfen danach alle FI-, ITSE-, KITSM- und
+KDM-Reihen in sich, gegen ihre normativen Quellen und insgesamt zueinander,
+einschließlich nachvollziehbarer berufsbezogener KI-Kompetenz.
 
 **EN:** Learning series may also address additional IT training occupations didactically. The mapping remains a teaching aid and does not create repositories. The minimum matrix covers FI/AE, FI/SI, FI/DPA, FI/DV, IT systems electronics technician, IT systems management clerk (KITSM), and digitalization management clerk (KDM).
 
@@ -150,8 +151,9 @@ automation, and documentation. It does not replace electrical practice.
 Electrical switching, measurement, or commissioning takes place only in
 approved learning environments under qualified supervision; an AI agent never
 controls an electrical installation. Positions 26 through 32 prepare the ITSE
-track. Position 33 then checks all FI, ITSE, KITSM, and KDM series internally,
-against their normative sources, and together.
+track. Positions 33 through 37 then check all FI, ITSE, KITSM, and KDM series
+internally, against their normative sources, and together, including traceable
+occupation-specific AI competence.
 
 ## Mindestartefakte / Minimum Artefacts
 

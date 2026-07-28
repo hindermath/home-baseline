@@ -135,6 +135,7 @@
 | 2026-07-28 | KDM-/KITSM-Lernreihen-Intake-Kette vorbereitet | — | — | — | Acht getrennte, noch nicht gestartete Intakes bereiten Gap-Audit, Lernarchitektur, Jahr-1-Retrofit, gemeinsamen kaufmännischen Jahr-2-Kern, getrennte KITSM-/KDM-Vertiefungen im dritten Lehrjahr, kontrollierten C#-Rollout und read-only Abschlussprüfung vor. C# bleibt Referenzsprache; SQL, sichere Entwicklung, Lernenden-Evidence und agentische Evidence besitzen ausdrückliche Grenzen. Acht Schema-2.0-Receipts und acht Einzelreviews sind gültig und `Ready`. Der erneuerte aktive Schema-1.1-Series-Review belegt 28 Ziele, vier Roots, 35 eindeutige azyklische Abhängigkeiten, null Findings und null offene Entscheidungen. Die künftige Auslieferung ist auf drei Level-1- und drei C#-Level-2-Repositories begrenzt; andere MSL-Pfade bleiben unverändert. Kein Lernenden-, Specify- oder autonomer Lauf wurde gestartet. Das Delta vor Statistikpflege umfasst 3 795 Nettozeilen. |
 | 2026-07-28 | ITSE-Lernreihen- und Gesamtkonsistenz-Intakes vorbereitet | — | — | — | Acht getrennte, noch nicht gestartete Intakes bereiten den ITSE-Gap-Audit, das Kompetenzmodell, LF1–LF5, LF6–LF9, die achtteilige LF10–LF12-Professional-Reihe, den kontrollierten C#-Rollout, die ITSE-Closure und eine globale Lernreihen-Konsistenzprüfung vor. Alle vier FI-Fachrichtungen bilden den primären Vergleich; KDM und KITSM ergänzen die Perspektive. C# bleibt auf Simulation, Diagnose, Testautomation und Dokumentation begrenzt; elektrische Praxis erfordert eine freigegebene Lernumgebung und fachkundige Aufsicht. Acht Authoring-Receipts und acht Einzelreviews sind gültig und `Ready`. Der aktive Schema-1.1-Series-Review belegt 36 Ziele, vier unveränderte Roots, 43 eindeutige azyklische Abhängigkeiten, null Findings und weiterhin genau einen `Eligible`-Kandidaten. Kein Lernenden-, Specify- oder autonomer Lauf wurde gestartet. Das Delta vor Statistikpflege umfasst 3 607 Nettozeilen. |
 | 2026-07-28 | Feature 016 Linux-Ein-Kommando-Wartungshärtung | — | — | — | Die Linux-Orchestrierung verarbeitet Paket- und CLI-Registries mit stdin-sicheren Snapshots, eindeutigen geordneten Ergebnissen und wahrheitsgemäßem Required-Exitcode. Begrenzte Prozessgruppen-Probes unterscheiden fehlende, unbrauchbare, zeitüberschrittene und durch Fähigkeiten blockierte Werkzeuge. Swiftly 1.1.2 und Swift 6.3.3 werden für die offizielle Ubuntu-/Architekturmatrix verifiziert installiert, ohne Profile zu verändern oder Admin-Autorität zu erschleichen. Der Flottenabschluss ist atomar und genau einmal; 13 gezielte Linux- sowie 52 entdeckte Vertragstests sind grün. Vorschauen meldeten reale Host-/Flottendrift und verhinderten deshalb einen erzwungenen Paketlauf. Das exakte Implementierungsdelta vor Statistikpflege umfasst 4 054 Nettozeilen. |
+| 2026-07-28 | Lernreihen-Governance- und KI-Kompetenz-Intake-Kette vorbereitet | — | — | — | Vier neue Intakes und die aktualisierte globale Closure bilden die Positionen 33 bis 37: read-only Gap-Audit, domänenneutrale Drei-Ebenen-Erweiterung des Intake Reviews, optionales Learning-Series-Governance-Preset, IHK-Pilot und abschließende Gesamtkonsistenzprüfung. Acht stabile KI-Kompetenzen, vier Lernphasen und vier Quellenstatus trennen amtliche Anforderungen, gestützte Ziele, Projektergänzungen und begründete Zukunftsannahmen. Fünf Authoring-Receipts, fünf Einzelreviews und der gemeinsame Fünf-Ziel-Review sind in Bash und PowerShell `Ready`. Der aktive Series-Vertrag umfasst 39 Ziele, drei Roots, 46 eindeutige azyklische Abhängigkeiten und weiterhin genau einen `Eligible`-Kandidaten an Position 3. Kein Specify-, autonomer oder Lernendenlauf wurde gestartet. Das Delta vor Statistikpflege umfasst 1 816 Nettozeilen. |
 
 ---
 
@@ -789,6 +790,37 @@ Linux tests and 52 discovered contract tests pass. Mutation-free previews
 reported real package and fleet drift, so no technical gate was bypassed and
 no forced package run occurred. The exact pre-statistics delta is 4,054 net
 lines.*
+
+### 2026-07-28 - Lernreihen-Governance und KI-Kompetenz / Learning-Series Governance and AI Competence
+
+- Die neue Kette auf den Positionen 33 bis 37 trennt Audit, generische
+  Intake-Review-Grundlage, lernreihenspezifische Preset-Produktisierung,
+  IHK-Pilot und globale Closure. Kein Schritt startet seinen Nachfolger
+  automatisch.
+- Der Audit prüft jede Lernreihe **in sich**, **an sich** und **insgesamt**.
+  Acht stabile Kompetenz-IDs decken Grundlagen, sichere Nutzung, klare
+  Aufträge, unabhängige Verifikation, begrenzte Werkzeuge, agentische
+  Stop-/Resume-Abläufe, Verantwortung und Reflexion ab.
+- Vier Quellenstatus verhindern, dass lokale KI-Zukunftskompetenz als bereits
+  amtlich vorgeschriebener oder prüfungsrelevanter Inhalt erscheint.
+- Fünf Authoring-Receipts, fünf Einzelreviews und der gemeinsame Series-Review
+  sind in Bash und PowerShell `Ready`. Der globale Graph umfasst 39 Ziele,
+  drei Roots und 46 eindeutige, reihenfolgekonforme, azyklische
+  Abhängigkeiten. Position 3 bleibt der einzige `Eligible`-Kandidat.
+- Das gemessene fachliche Delta vor Statistikpflege umfasst 1 816
+  Nettozeilen. Weder ein Preset noch ein Spec-Kit-Feature- oder Lernendenlauf
+  wurde gestartet.
+
+*The new items 33 through 37 separate auditing, the generic Intake Review
+foundation, learning-series preset productization, an IHK field pilot, and
+final closure. Eight stable AI competence IDs and four source statuses make
+safe agent use, independent verification, human responsibility, and the
+difference between official requirements and project future skills explicit.
+Five receipts, five individual reviews, and the combined series review are
+Ready in Bash and PowerShell. The global graph contains 39 targets, three
+roots, and 46 unique acyclic dependencies; item 3 remains the sole Eligible
+candidate. No preset, Spec Kit feature, or learner run was started. The exact
+pre-statistics delta is 1,816 net lines.*
 
 ## Gesamtstatistik / Overall Statistics
 

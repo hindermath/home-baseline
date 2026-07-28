@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: Learning Series Governance – IHK-Pilot
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 36, nach Position 35  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 36, nach Position 35
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende, Lehrende, Ausbildende, Bildungsplanende,
-Preset-Maintainer und Reviewer  
+Preset-Maintainer und Reviewer
 **Vorausgesetztes Wissen:** Ergebnisse aus Positionen 33 bis 35; keine
 Vorkenntnisse zur Preset-Veröffentlichung
 

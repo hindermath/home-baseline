@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "292b5f47-6164-49a9-9107-b62a23a032a7",
+  "reviewId": "e857d07c-f629-4e79-80db-ea9f72afd99c",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -141,22 +141,6 @@
       "role": "OrderedMember"
     },
     {
-      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-      "role": "OrderedMember"
-    },
-    {
       "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
       "role": "OrderedMember"
     }
@@ -197,10 +181,6 @@
       "Lastenheft_ITSE-Professional-Jahr3.md",
       "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
       "Lastenheft_ITSE-Lernreihen-Closure.md",
-      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-      "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-      "Lastenheft_Preset-Learning-Series-Governance.md",
-      "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
@@ -416,26 +396,6 @@
       },
       {
         "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
-        "to": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-        "kind": "FinalAuditInput"
-      },
-      {
-        "from": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-        "to": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-        "kind": "AssessmentBaseline"
-      },
-      {
-        "from": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-        "to": "Lastenheft_Preset-Learning-Series-Governance.md",
-        "kind": "RequirementsGovernanceGate"
-      },
-      {
-        "from": "Lastenheft_Preset-Learning-Series-Governance.md",
-        "to": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-        "kind": "PublishedPresetBaseline"
-      },
-      {
-        "from": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
         "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
         "kind": "FinalAuditInput"
       }
