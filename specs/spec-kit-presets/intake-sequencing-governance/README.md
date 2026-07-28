@@ -1,7 +1,7 @@
 # Intake Sequencing Governance
 
 Optional Spec Kit preset for managing the order and lifecycle of existing
-intakes. Version `0.2.1` uses priority `66`: after Intake Review at `65` and
+intakes. Version `0.2.2` uses priority `66`: after Intake Review at `65` and
 before Autonomous Run at `70`.
 
 ## Why This Preset Exists
@@ -11,25 +11,34 @@ delivery order. This preset stores both a learner-readable order and a
 machine-checkable typed graph. It never writes intake content and never starts
 the work it selects.
 
-Version `0.2.1` preserves the project-declared learner contract in the readable
+Version `0.2.2` preserves the project-declared learner contract in the readable
 order: audience, prior knowledge, language and readability, first-use terms,
 and a normative text representation of dependencies, blockers, status,
 decisions, and next actions.
 
-Version `0.2.1` adds the explicit state `Idle` for a repository that currently
+Version `0.2.2` adds the explicit state `Idle` for a repository that currently
 has no active intake of its own. An idle series has no targets, roots, or
 dependencies. This state prevents tools from inventing a placeholder intake
 only to satisfy a non-empty graph rule.
 
-*Version `0.2.1` ergänzt den ausdrücklichen Zustand `Idle` für ein Repository
+*Version `0.2.2` ergänzt den ausdrücklichen Zustand `Idle` für ein Repository
 ohne eigenen aktiven Intake. Eine solche Serie enthält keine Ziele, Roots oder
 Abhängigkeiten. Werkzeuge dürfen dafür keinen künstlichen Platzhalter erzeugen.*
+
+Version `0.2.2` keeps canonical-index validation inside the current Git
+repository boundary. An index owned by a nested repository is not a duplicate
+of its parent index, while an ordinary second index in the same repository
+still blocks validation.
+
+*Version `0.2.2` begrenzt die Indexprüfung auf das aktuelle Git-Repository. Der
+Index eines verschachtelten Repositories ist kein Duplikat des Eltern-Indexes.
+Ein gewöhnlicher zweiter Index im selben Repository bleibt ein Fehler.*
 
 ## Installation
 
 ```bash
 specify preset add \
-  --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.1.zip \
+  --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.2.zip \
   --priority 66
 ```
 

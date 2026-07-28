@@ -494,9 +494,9 @@
       "installed_at": "2026-07-28T08:29:17.468195+00:00"
     },
     "intake-sequencing-governance": {
-      "version": "0.2.1",
+      "version": "0.2.2",
       "source": "local",
-      "manifest_hash": "sha256:f213c8113d46fe85849a7e31372913974ab9d1714a6964be5dae22781321b25d",
+      "manifest_hash": "sha256:9fe9bb521e0d985f359e0d7208e75b404f1d2a91ba68a4bc7f2384232926eb16",
       "enabled": true,
       "priority": 66,
       "registered_commands": {
@@ -557,7 +557,7 @@
         "speckit-intake-series-status",
         "speckit-intake-series-next"
       ],
-      "installed_at": "2026-07-28T10:40:15.809301+00:00"
+      "installed_at": "2026-07-28T11:02:39.749555+00:00"
     }
   }
 }

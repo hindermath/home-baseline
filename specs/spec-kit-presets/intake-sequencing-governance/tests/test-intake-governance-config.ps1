@@ -104,6 +104,20 @@ try {
     $Base = New-BaseConfig
     Invoke-Fixture (Write-JsonFixture 'de.json' $Base) 0 '"outcome": "Aligned"'
 
+    $NestedRepository = Join-Path $Root 'nested-repository'
+    New-Item -ItemType Directory -Path (Join-Path $NestedRepository '.git') -Force |
+        Out-Null
+    Set-Content -LiteralPath (Join-Path $NestedRepository 'Pflichtenheft.md') `
+        -Value '# Nested repository index' -Encoding utf8NoBOM
+    Invoke-Fixture (Write-JsonFixture 'nested-repository.json' $Base) 0 '"outcome": "Aligned"'
+
+    $NestedDirectory = Join-Path $Root 'ordinary-directory'
+    New-Item -ItemType Directory -Path $NestedDirectory -Force | Out-Null
+    Set-Content -LiteralPath (Join-Path $NestedDirectory 'Pflichtenheft.md') `
+        -Value '# Invalid duplicate index' -Encoding utf8NoBOM
+    Invoke-Fixture (Write-JsonFixture 'nested-duplicate.json' $Base) 2 'RIG013'
+    Remove-Item -LiteralPath $NestedDirectory -Recurse -Force
+
     $Bilingual = New-BaseConfig -Language 'de-DE' -NamingProfile 'de'
     Invoke-Fixture (Write-JsonFixture 'bilingual.json' $Bilingual) 0 '"documentationLanguage": "de-DE"'
 
