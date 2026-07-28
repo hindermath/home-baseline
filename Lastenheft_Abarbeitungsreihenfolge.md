@@ -133,6 +133,14 @@ closeout does not start it.*
 | 23 | `Lastenheft_KDM-Professional-Jahr3.md` | Erstellt die achtteilige KDM-Reihe für Prozesse, Daten, C#-/SQL-Integration, Kennzahlen, Wirtschaftlichkeit, Geschäftsmodelle und Veränderung. / Creates the eight-unit KDM series for processes, data, C#/SQL integration, metrics, economics, business models, and change. |
 | 24 | `Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md` | Verteilt die gemergten Lernmaterialien kontrolliert in drei Level-1- und drei C#-Referenzrepositories; andere MSL-Pfade und Produktcode bleiben unverändert. / Rolls out the merged materials to three Level-1 and three C# reference repositories while leaving other MSL paths and product code unchanged. |
 | 25 | `Lastenheft_KDM-KITSM-Lernreihen-Closure.md` | Revalidiert Lernfelder, 24 Einheiten, Dokumentpakete, C#-/SQL-Proofs und sechs Rolloutziele unabhängig und ohne Remediation. / Independently revalidates learning fields, 24 units, document packages, C#/SQL proof, and six rollout targets without remediation. |
+| 26 | `Lastenheft_ITSE-Lernreihen-Gap-Audit.md` | Prüft die vorhandene ITSE-Abdeckung read-only gegen amtliche Quellen und alle vier FI-Fachrichtungen; KITSM und KDM liefern eine ergänzende Vergleichsperspektive. / Audits current ITSE coverage against official sources and all four IT-specialist tracks; KITSM and KDM provide a secondary comparison. |
+| 27 | `Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md` | Definiert die eigenständige ITSE-Progression, Wiederverwendung aus FI-Reihen, C#-Referenzgrenzen sowie sichere Praxis-, Simulations- und Agentenkontexte. / Defines the dedicated ITSE progression, FI-series reuse, C# reference boundaries, and safe practical, simulation, and agent contexts. |
+| 28 | `Lastenheft_ITSE-Jahr1-Retrofit.md` | Ergänzt ITSE-Pfade für LF1 bis LF5 in vorhandenen Grundreihen, ohne gemeinsame FI-Inhalte zu duplizieren. / Adds ITSE paths for LF1 through LF5 to existing base series without duplicating shared FI content. |
+| 29 | `Lastenheft_ITSE-Technischer-Kern-Jahr2.md` | Erstellt den technischen ITSE-Kern für LF6 bis LF9 mit SI-/DV-Schwerpunkt und sichtbaren AE-/DPA-Beiträgen. / Creates the technical ITSE core for LF6 through LF9 with an SI/DV emphasis and visible AE/DPA contributions. |
+| 30 | `Lastenheft_ITSE-Professional-Jahr3.md` | Erstellt eine achtteilige ITSE-Professional-Reihe für Energieversorgung, vernetzte Systeme, Betriebssicherheit und Instandhaltung. / Creates an eight-unit ITSE professional series for power supply, networked systems, operational safety, and maintenance. |
+| 31 | `Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md` | Verteilt freigegebene ITSE-Materialien kontrolliert in drei Level-1- und drei C#-Level-2-Repositories; ServiceHarvester ist der vollständige Referenzkontext. / Rolls accepted ITSE material out to three Level-1 and three C# Level-2 repositories; ServiceHarvester is the complete reference context. |
+| 32 | `Lastenheft_ITSE-Lernreihen-Closure.md` | Revalidiert die ITSE-Reihe, LF1 bis LF12, Prüfungsbezug, Evidence, Sicherheitsgrenzen und sechs Rolloutziele unabhängig und read-only. / Independently revalidates the ITSE series, LF1 through LF12, examination relation, evidence, safety boundaries, and six rollout targets without remediation. |
+| 33 | `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` | Prüft abschließend jede Reihe in sich, gegen ihre normativen Quellen und alle Reihen gemeinsam auf konsistente Lernziele, Evidence und Sicherheitsgrenzen. / Finally checks every series internally, against its normative sources, and across all series for consistent learning goals, evidence, and safety boundaries. |
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
 
@@ -211,6 +219,30 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
   |
   v
 25 KDM/KITSM Closure
+  |
+  v
+26 ITSE Gap-Audit
+  |
+  v
+27 ITSE Lernarchitektur
+  |
+  v
+28 ITSE Jahr 1
+  |
+  v
+29 ITSE Technischer Kern Jahr 2
+  |
+  v
+30 ITSE Professional Jahr 3
+  |
+  v
+31 ITSE C#-Lernreihen-Rollout
+  |
+  v
+32 ITSE Closure
+  |
+  v
+33 Lernreihen-Gesamtkonsistenz-Closure
 
 ```
 
@@ -285,6 +317,27 @@ assurance adoption. Audits remain read-only, learning documents are prepared
 at Level 0 first, and only item 24 rolls merged material out to three Level-1
 and three C# Level-2 reference repositories. Other MSL paths remain unchanged,
 and no run starts its successor automatically.*
+
+Die Positionen 26 bis 32 bilden danach den eigenständigen ITSE-Strang. Der
+Gap-Audit vergleicht zuerst mit allen vier FI-Fachrichtungen; SI und DV sind
+fachlich besonders nah, AE und DPA bleiben als Software-, Daten- und
+Diagnoseperspektiven sichtbar. KITSM und KDM liefern nur einen ergänzenden
+Vergleich. Position 31 verteilt erst nach den drei Lehrjahresstufen in dieselben
+drei Level-1- und drei C#-Level-2-Referenzrepositories. Position 32 schließt
+ITSE read-only ab. Position 33 prüft anschließend die FI-, ITSE-, KITSM- und
+KDM-Lernreihen in sich, gegen ihre normativen Grundlagen und insgesamt
+zueinander. Absichtliche berufsspezifische Unterschiede werden dokumentiert,
+nicht eingeebnet. Kein Lauf startet seinen Nachfolger automatisch.
+
+*Items 26 through 32 form the dedicated ITSE track. The initial audit compares
+ITSE with all four IT-specialist tracks; SI and DV are especially close, while
+AE and DPA remain visible as software, data, and diagnostic perspectives.
+KITSM and KDM provide secondary comparison only. Item 31 performs the
+controlled C# rollout, item 32 closes ITSE read-only, and item 33 then checks
+the FI, ITSE, KITSM, and KDM learning series internally, against their
+normative sources, and together. Intentional occupation-specific differences
+are documented rather than removed. No run starts its successor
+automatically.*
 
 Der Vorlauf D1 bis D3 bildet den Dokumentations-Wirklichkeitsabgleich. D1 prüft
 Level 0 und jedes aktuell registrierte Level-1-/Level-2-Repository zunächst

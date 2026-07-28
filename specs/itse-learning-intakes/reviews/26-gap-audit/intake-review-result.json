@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "9cc31772-8f79-48c0-a5da-b10c70671345",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-itse-learning-v1",
+  "reviewedAt": "2026-07-28T19:57:41Z",
+  "repository": {"root": ".", "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"},
+  "requestEvidence": {"path": "specs/itse-learning-intakes/reviews/26-gap-audit/intake-review-request.json", "normalizedSha256": "c86cd1206c8b153e8e2a00998dbab5e21bbf3657e4b0371ece705c00c1622603"},
+  "targets": [{"path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md", "role": "Primary", "normalizedSha256": "b9cf4b049cfb0d553d333021c088528339549efe35c7d1a4e5f48dfaf3548d9f", "gitBlob": "N/A"}],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {"individual": ["Lastenheft_ITSE-Lernreihen-Gap-Audit.md"], "series": [], "workers": []},
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

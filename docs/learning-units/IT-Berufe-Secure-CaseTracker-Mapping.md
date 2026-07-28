@@ -1,6 +1,6 @@
 # IT-Berufe und Secure CaseTracker / IT Occupations and Secure CaseTracker
 
-**Stand / Date:** 2026-07-05
+**Stand / Date:** 2026-07-28
 
 ## Zweck / Purpose
 
@@ -24,6 +24,36 @@
 | IT-System-Elektroniker/-in | Operations Track, Digital Networking Track, Secure InventoryHub | Geräte, Netzwerke, Inbetriebnahme, Sicherheitsprüfung, Betriebs- und Übergabenachweise |
 | Kaufmann/-frau für IT-System-Management | Secure CaseTracker, Secure InventoryHub, ausgewählte Application-/Operations-Aufgaben | Kundenanforderungen, Angebote, Beschaffung, Services, Verträge, Kosten/Nutzen und Übergabe |
 | Kaufmann/-frau für Digitalisierungsmanagement | Data & Process Track, Secure InventoryHub, ausgewählte v2-Aufgaben | Geschäftsprozesse, Digitalisierung, Datenbedarf, Kennzahlen, Datenschutz, Wirtschaftlichkeit |
+
+## ITSE als eigenständiger Lernpfad / ITSE as a Dedicated Learning Path
+
+**DE:** Secure CaseTracker und Secure InventoryHub sind begrenzte ergänzende
+ITSE-Kontexte. Geeignete Aufgaben behandeln Geräte- und Assetzustände,
+Netzwerkbezug, Schutzbedarf, Diagnose, Wartungsplanung und technische
+Übergabe. Die vollständige ITSE-Professional-Reihe bleibt im
+ServiceHarvester-Kontext. Der Vergleich umfasst alle vier FI-Fachrichtungen:
+FI/SI und FI/DV liefern die engsten technischen Bezüge, FI/AE und FI/DPA
+bleiben für Softwareanpassung, Datenqualität und Diagnose sichtbar. C#
+unterstützt Simulation und Tests, ersetzt aber keine beaufsichtigte
+elektrotechnische Praxis.
+
+Die Positionen 26 bis 32 der zentralen Intake-Reihenfolge bereiten diesen
+Zuschnitt und den kontrollierten C#-Rollout vor. Position 33 prüft anschließend
+die Konsistenz mit FI, KITSM und KDM. Diese Vorbereitung startet keinen
+Spec-Kit- oder Lernendenlauf.
+
+**EN:** Secure CaseTracker and Secure InventoryHub are bounded supporting ITSE
+contexts. Suitable tasks cover device and asset state, network relations,
+protection needs, diagnostics, maintenance planning, and technical handover.
+The complete ITSE professional series remains in the ServiceHarvester context.
+Comparison covers all four IT-specialist tracks: FI/SI and FI/DV provide the
+closest technical relations, while FI/AE and FI/DPA remain visible for software
+adaptation, data quality, and diagnostics. C# supports simulation and tests but
+does not replace supervised electrical practice.
+
+Positions 26 through 32 prepare this scope and the controlled C# rollout.
+Position 33 then checks consistency with FI, KITSM, and KDM. This preparation
+starts no Spec Kit or learner run.
 
 ## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
 
@@ -69,5 +99,7 @@ are in the "Commercial Role Switch" section of the affected study companions.
 **DE:** Berufsbildbezeichnungen und 2020-Neuordnung werden bei fachlicher Aktualisierung gegen offizielle Quellen wie BIBB Berufesuche, BIBB "Ausbildung gestalten", BERUFENET und die einschlägigen Ausbildungsordnungen geprüft. Relevante öffentliche Einstiegspunkte sind:
 
 - BIBB Fachinformatiker/Fachinformatikerin: <https://www.bibb.de/dienst/berufesuche/de/index_berufesuche.php/profile/apprenticeship/80000?page=3>
+- BIBB IT-System-Elektroniker/-in: <https://www.bibb.de/dienst/publikationen/de/16664>
+- KMK-Rahmenlehrplan FI/ITSE: <https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene?tx_fedownloads_single%5Baction%5D=forceDownload&tx_fedownloads_single%5Bcontroller%5D=Downloads&tx_fedownloads_single%5Bdownload%5D=45009&type=150>
 - BIBB Kaufmann/Kauffrau für IT-System-Management: <https://www.bibb.de/dienst/berufesuche/de/index_berufesuche.php/profile/apprenticeship/dsafsf?page=3>
 - BIBB Verzeichnis der anerkannten Ausbildungsberufe 2026: <https://www.bibb.de/dienst/publikationen/de/21008>

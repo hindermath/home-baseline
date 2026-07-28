@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "67d7b287-e1e1-4683-b673-9fcf471dbcee",
+  "intakeId": "1afb9897-78e7-42c5-bdc7-d9fd2ce8bcef",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T19:57:41Z",
+  "operation": {
+    "operationId": "8900dfda-6c6b-42c0-9560-3d5038c87f02",
+    "type": "Create",
+    "authorityEvidence": "Approved eight-intake ITSE proposal and MergeAndSync instruction."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+    "normalizedSha256": "b9cf4b049cfb0d553d333021c088528339549efe35c7d1a4e5f48dfaf3548d9f"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved ITSE and cross-series consistency plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot plus official KMK, ITSEAusbV, and BIBB references named in the intake"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Vergleichsbasis gilt?",
+      "answer": "All four FI tracks are the primary comparison; KDM and KITSM are secondary.",
+      "evidence": "Approved proposal."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync for intake preparation; no autonomous follow-up starts implicitly.",
+      "evidence": "Current explicit user approval."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current explicit user approval.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "3f1e0f33-2255-4e2d-bf0c-af251351ef28",
+    "manifestPath": "specs/intake-authoring-series/itse-learning-series/series.json",
+    "order": 1,
+    "role": "GapAudit",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_ITSE-Lernreihen-Gap-Audit.md"
+}

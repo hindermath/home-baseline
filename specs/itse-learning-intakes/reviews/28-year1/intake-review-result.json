@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "8c559c89-594b-4d4f-893b-feb36b325dc5",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-itse-learning-v1",
+  "reviewedAt": "2026-07-28T19:57:41Z",
+  "repository": {"root": ".", "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"},
+  "requestEvidence": {"path": "specs/itse-learning-intakes/reviews/28-year1/intake-review-request.json", "normalizedSha256": "74f2a13339028de3725038a4ce31e01e4b96e8d1b8e0fe2ceeb32ce8502ed2fa"},
+  "targets": [{"path": "Lastenheft_ITSE-Jahr1-Retrofit.md", "role": "Primary", "normalizedSha256": "c879f2a04218098458306397b3034ae5c7f5f8767271496f2273c82964969a67", "gitBlob": "N/A"}],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {"individual": ["Lastenheft_ITSE-Jahr1-Retrofit.md"], "series": [], "workers": []},
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "5a3c4ead-be32-4c01-ba55-91f78285cec5",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-itse-learning-v1",
+  "reviewedAt": "2026-07-28T19:57:41Z",
+  "repository": {"root": ".", "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"},
+  "requestEvidence": {"path": "specs/itse-learning-intakes/reviews/29-year2/intake-review-request.json", "normalizedSha256": "3191b17939eb79d016c4a631e6b25102b9b0252acf1ef6244ff4aab6c702d4f3"},
+  "targets": [{"path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md", "role": "Primary", "normalizedSha256": "095348df1019acdf5608fe0f178cedbbda850c525fd2e0b9f767a8f9b5c52014", "gitBlob": "N/A"}],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {"individual": ["Lastenheft_ITSE-Technischer-Kern-Jahr2.md"], "series": [], "workers": []},
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

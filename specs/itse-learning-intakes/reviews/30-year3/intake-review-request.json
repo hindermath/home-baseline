@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "c91c2523-c809-4634-82f3-9eaaaf72c5d7",
+  "mode": "Single",
+  "policy": "home-baseline-itse-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

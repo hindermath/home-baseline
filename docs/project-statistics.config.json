@@ -353,6 +353,14 @@
       "labelEn": "KDM/KITSM learning-series intake chain",
       "netLines": 3795,
       "activeDays": 1
+    },
+    {
+      "slot": 43,
+      "id": "itse-learning-series-intake-chain",
+      "labelDe": "ITSE-Lernreihen- und Gesamtkonsistenz-Intakes",
+      "labelEn": "ITSE learning-series and consistency intakes",
+      "netLines": 3607,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

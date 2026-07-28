@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "344e7555-8045-4ce0-922d-381f1ea91a9f",
+  "mode": "Single",
+  "policy": "home-baseline-itse-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

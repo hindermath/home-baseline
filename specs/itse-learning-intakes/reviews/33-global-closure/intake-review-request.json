@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "a0423da1-2f9e-4cb9-9390-6727940849e4",
+  "mode": "Single",
+  "policy": "home-baseline-itse-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

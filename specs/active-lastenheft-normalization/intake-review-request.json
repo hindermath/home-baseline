@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "0005ff81-a7a4-4803-ad33-12a25393ae8b",
+  "reviewId": "e54bbf16-d0f0-4363-b728-8a951aaee148",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -115,6 +115,38 @@
     {
       "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
       "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember"
     }
   ],
   "series": {
@@ -146,7 +178,15 @@
       "Lastenheft_KITSM-Professional-Jahr3.md",
       "Lastenheft_KDM-Professional-Jahr3.md",
       "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md"
+      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "Lastenheft_ITSE-Professional-Jahr3.md",
+      "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -328,6 +368,46 @@
       {
         "from": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
         "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+        "kind": "FinalAuditInput"
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+        "to": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+        "kind": "FinalAuditInput"
+      },
+      {
+        "from": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+        "to": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+        "kind": "AssessmentBaseline"
+      },
+      {
+        "from": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+        "to": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+        "kind": "RequirementsGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+        "to": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+        "to": "Lastenheft_ITSE-Professional-Jahr3.md",
+        "kind": "HardCompletionGate"
+      },
+      {
+        "from": "Lastenheft_ITSE-Professional-Jahr3.md",
+        "to": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+        "kind": "DocumentationSurfaceBaseline"
+      },
+      {
+        "from": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+        "to": "Lastenheft_ITSE-Lernreihen-Closure.md",
+        "kind": "FinalAuditInput"
+      },
+      {
+        "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
+        "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
         "kind": "FinalAuditInput"
       }
     ]
