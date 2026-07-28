@@ -492,6 +492,72 @@
         "speckit-parallel-autonomous-consolidate"
       ],
       "installed_at": "2026-07-28T12:02:15.603911+00:00"
+    },
+    "intake-sequencing-governance": {
+      "version": "0.2.2",
+      "source": "local",
+      "manifest_hash": "sha256:9fe9bb521e0d985f359e0d7208e75b404f1d2a91ba68a4bc7f2384232926eb16",
+      "enabled": true,
+      "priority": 66,
+      "registered_commands": {
+        "agy": [
+          "speckit.intake-series-create",
+          "speckit.intake-series-read",
+          "speckit.intake-series-update",
+          "speckit.intake-series-delete",
+          "speckit.intake-series-status",
+          "speckit.intake-series-next"
+        ],
+        "claude": [
+          "speckit.intake-series-create",
+          "speckit.intake-series-read",
+          "speckit.intake-series-update",
+          "speckit.intake-series-delete",
+          "speckit.intake-series-status",
+          "speckit.intake-series-next"
+        ],
+        "codex": [
+          "speckit.intake-series-create",
+          "speckit.intake-series-read",
+          "speckit.intake-series-update",
+          "speckit.intake-series-delete",
+          "speckit.intake-series-status",
+          "speckit.intake-series-next"
+        ],
+        "copilot": [
+          "speckit.intake-series-create",
+          "speckit.intake-series-read",
+          "speckit.intake-series-update",
+          "speckit.intake-series-delete",
+          "speckit.intake-series-status",
+          "speckit.intake-series-next"
+        ],
+        "opencode": [
+          "speckit.intake-series-create",
+          "speckit.intake-series-read",
+          "speckit.intake-series-update",
+          "speckit.intake-series-delete",
+          "speckit.intake-series-status",
+          "speckit.intake-series-next"
+        ],
+        "zed": [
+          "speckit.intake-series-create",
+          "speckit.intake-series-read",
+          "speckit.intake-series-update",
+          "speckit.intake-series-delete",
+          "speckit.intake-series-status",
+          "speckit.intake-series-next"
+        ]
+      },
+      "registered_skills": [
+        "speckit-intake-series-create",
+        "speckit-intake-series-read",
+        "speckit-intake-series-update",
+        "speckit-intake-series-delete",
+        "speckit-intake-series-status",
+        "speckit-intake-series-next"
+      ],
+      "installed_at": "2026-07-28T21:35:18.415713+00:00"
     }
   }
 }

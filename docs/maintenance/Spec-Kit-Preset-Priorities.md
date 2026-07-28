@@ -181,7 +181,7 @@ daran nichts.
 
 ### Intake Sequencing verwaltet die Reihe, nicht die Intake-Inhalte
 
-`intake-sequencing-governance` v0.2.0 verwendet Priorität `66`. Es übernimmt
+`intake-sequencing-governance` v0.2.2 verwendet Priorität `66`. Es übernimmt
 bereits vorhandene und unabhängig geprüfte Intakes, dokumentiert ihre sichtbare
 Reihenfolge, Roots, bindenden Vorgänger und reine
 Shared-Writer-Serialisierungen. Die Commands `read`, `status` und `next`

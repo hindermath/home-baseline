@@ -993,15 +993,16 @@ workspace family consists of:
 | `security-governance` | `v0.6.1` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
 | `architecture-governance` | `v0.5.1` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
 | `isaqb-architecture-governance` | `v0.2.1` | `30` | general iSAQB/arc42 architecture governance |
-| `a11y-governance` | `v0.4.1` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
+| `a11y-governance` | `v0.4.2` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.1` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
-| `agent-parity-governance` | `v0.4.0` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.3.2` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
-| `parallel-autonomous-run-governance` | `v0.2.3` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
+| `agent-parity-governance` | `v0.4.1` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
+| `autonomous-run-governance` | `v0.3.3` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
+| `parallel-autonomous-run-governance` | `v0.2.4` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`intake-authoring-governance` v0.2.0 at priority `64` and
-`intake-review-governance` v0.1.1 at priority `65` are optional presets, not
-part of the standard eight. Authoring creates exactly one Markdown intake and
+`intake-authoring-governance` v0.3.0 at priority `64`,
+`intake-review-governance` v0.2.0 at priority `65`, and
+`intake-sequencing-governance` v0.2.2 at priority `66` are optional presets,
+not part of the standard eight. Authoring creates exactly one Markdown intake and
 one normalized-hash-bound receipt from explicitly named ordered UTF-8 sources.
 It asks at most five material questions per pass, protects existing targets,
 uses `LocalImplementation` when remote authority is absent, and starts no
@@ -1019,11 +1020,13 @@ roles, order, roots, edge references, predecessor coverage, and acyclicity are
 validated together. Ambiguous predecessor relations produce
 `NeedsClarification` and MUST NOT be guessed.
 
-The managed Thorsten fleet selects both optional presets through registry
-profile `intake-authoring-ten-governance-presets`. The compatible
-`intake-review-nine-governance-presets` profile remains available. These
-fleet-local choices do not change the public eight-preset default. A registry
-`defaultPresetProfile` is inherited by newly registered fleet repositories.
+The managed Thorsten fleet selects all three optional presets through registry
+profile `intake-sequencing-eleven-governance-presets`. The compatible
+`intake-review-nine-governance-presets` and
+`intake-authoring-ten-governance-presets` profiles remain available but MUST
+NOT replace the eleven-preset fleet profile. These fleet-local choices do not
+change the public eight-preset default. A registry `defaultPresetProfile` is
+inherited by newly registered fleet repositories.
 Learning-series repositories may author and review intakes, but no learner
 Spec-Kit run starts without explicit authorization.
 
@@ -1079,11 +1082,11 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-The current standalone releases are `autonomous-run-governance` v0.3.2,
-`parallel-autonomous-run-governance` v0.2.3, optional
-`intake-authoring-governance` v0.2.0, and optional
-`intake-review-governance` v0.1.1; Preset 8 was submitted to the
-community catalog as `github/spec-kit#3591`. Registered Level-0, Level-1, and Level-2
+The current standalone releases are `autonomous-run-governance` v0.3.3,
+`parallel-autonomous-run-governance` v0.2.4, optional
+`intake-authoring-governance` v0.3.0, optional
+`intake-review-governance` v0.2.0, and optional
+`intake-sequencing-governance` v0.2.2. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote
@@ -1092,8 +1095,10 @@ synchronization for every target repository.
 Repositories assigned `intake-review-nine-governance-presets` MUST instead
 match the explicit nine-preset matrix exactly. Repositories assigned
 `intake-authoring-ten-governance-presets` MUST match the explicit ten-preset
-matrix with Authoring at `64` and Review at `65`. Unknown profile names fail
-closed; selecting either profile installs governance but grants no authoring,
+matrix with Authoring at `64` and Review at `65`. Repositories assigned
+`intake-sequencing-eleven-governance-presets` MUST match the explicit
+eleven-preset matrix with Sequencing at `66`. Unknown profile names fail
+closed; selecting any profile installs governance but grants no authoring,
 review, execution, repair, remote, merge, or learner-run authority.
 
 Use `install-spec-kit-governance-presets.*` for normal installation so versions
