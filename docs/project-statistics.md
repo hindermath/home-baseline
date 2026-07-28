@@ -760,27 +760,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 397623 lines |
-| Textdateien / Text files | 2459 |
+| Textbasis / Text base | 401455 lines |
+| Textdateien / Text files | 2505 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
-| Relevante Commits / Relevant commits | 583 |
-| Zeilen je Aktivtag / Lines per active day | 5231.9 |
+| Relevante Commits / Relevant commits | 584 |
+| Zeilen je Aktivtag / Lines per active day | 5282.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
-| Speedup vs. 80 lines/day | 65.4x |
-| Speedup vs. 100 lines/day | 52.3x |
-| Methodik / Methodology | v2; source `832f65e20a90` |
+| Speedup vs. 80 lines/day | 66.0x |
+| Speedup vs. 100 lines/day | 52.8x |
+| Methodik / Methodology | v2; source `bad6371970e7` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
 Tests                           [#...................]   3.4% | 13579
-Dokumentation / Documentation   [##############......]  71.2% | 283015
-Skripte / Scripts               [###.................]  12.5% | 49847
-Konfiguration / Configuration   [###.................]  12.5% | 49791
+Dokumentation / Documentation   [##############......]  70.8% | 284366
+Skripte / Scripts               [##..................]  12.4% | 49847
+Konfiguration / Configuration   [###.................]  13.0% | 52272
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -888,15 +888,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..41
-   cap 50000 | . . . . . . . . . .
-       41667 | . . . . . . . . . .
-       33333 | . . . . . . . . . .
-       25000 | . # . . . . . . . .
-       16667 | . # . . . . . . . .
-        8333 | . # . . . . # . . .
-           0 +---------------------
-             32 33 34 35 36 37 38 39 40 41
+Slots 32..42
+   cap 50000 | . . . . . . . . . . .
+       41667 | . . . . . . . . . . .
+       33333 | . . . . . . . . . . .
+       25000 | . # . . . . . . . . .
+       16667 | . # . . . . . . . . .
+        8333 | . # . . . . # . . . .
+           0 +-----------------------
+             32 33 34 35 36 37 38 39 40 41 42
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -943,6 +943,7 @@ Slots 32..41
 | 39 | Intake-Sequencing-v0.2.2-Profilabgleich / Intake Sequencing v0.2.2 profile alignment | 3348 |
 | 40 | Dokumentationsarchitektur-Intake-Kette / Documentation architecture intake chain | 2672 |
 | 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4063 |
+| 42 | KDM-/KITSM-Lernreihen-Intake-Kette / KDM/KITSM learning-series intake chain | 3824 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -952,8 +953,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 65.4x
-100 lines/day      [##########..........] 52.3x
+80 lines/day       [#############.......] 66.0x
+100 lines/day      [###########.........] 52.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -966,7 +967,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##########..........] 5231.9
+Visible repository [###########.........] 5282.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -992,6 +993,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 322650 |
+| 2026-07 | 326636 |
 
 <!-- project-statistics-v2:end -->
