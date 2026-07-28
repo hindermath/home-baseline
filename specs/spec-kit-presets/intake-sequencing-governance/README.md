@@ -1,7 +1,7 @@
 # Intake Sequencing Governance
 
 Optional Spec Kit preset for managing the order and lifecycle of existing
-intakes. Version `0.2.0` uses priority `66`: after Intake Review at `65` and
+intakes. Version `0.2.1` uses priority `66`: after Intake Review at `65` and
 before Autonomous Run at `70`.
 
 ## Why This Preset Exists
@@ -11,16 +11,25 @@ delivery order. This preset stores both a learner-readable order and a
 machine-checkable typed graph. It never writes intake content and never starts
 the work it selects.
 
-Version `0.2.0` preserves the project-declared learner contract in the readable
+Version `0.2.1` preserves the project-declared learner contract in the readable
 order: audience, prior knowledge, language and readability, first-use terms,
 and a normative text representation of dependencies, blockers, status,
 decisions, and next actions.
+
+Version `0.2.1` adds the explicit state `Idle` for a repository that currently
+has no active intake of its own. An idle series has no targets, roots, or
+dependencies. This state prevents tools from inventing a placeholder intake
+only to satisfy a non-empty graph rule.
+
+*Version `0.2.1` ergänzt den ausdrücklichen Zustand `Idle` für ein Repository
+ohne eigenen aktiven Intake. Eine solche Serie enthält keine Ziele, Roots oder
+Abhängigkeiten. Werkzeuge dürfen dafür keinen künstlichen Platzhalter erzeugen.*
 
 ## Installation
 
 ```bash
 specify preset add \
-  --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.0.zip \
+  --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.1.zip \
   --priority 66
 ```
 
@@ -43,6 +52,10 @@ A --> B --> C
 
 If `A` is completed, `B` may be eligible. `next` reports that fact, but does
 not invoke Intake Review, Specify, Autonomous, or Parallel Autonomous.
+
+For an `Idle` series, `next` reports that no active intake exists and returns no
+candidate. `Idle` is invalid as soon as a target, root, or dependency is
+present.
 
 ## Edge Types
 
@@ -74,7 +87,8 @@ does not grant execution or remote authority.
 requirements migration must finish before existing roots are released. Under
 schema 2.0, target paths are resolved from portable roles and collection paths.
 At most one target may explicitly declare `Eligible`; that state selects order
-only and grants no implementation or remote authority.
+only and grants no implementation or remote authority. A valid `Idle` series
+has no eligible target.
 
 *`RequirementsGovernanceGate` sperrt bestehende Roots bis zum gemeinsamen
 Requirements-Abschluss. Schema 2.0 löst Pfade über Rollen auf. Höchstens ein

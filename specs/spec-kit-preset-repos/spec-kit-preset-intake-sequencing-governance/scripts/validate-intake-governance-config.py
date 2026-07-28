@@ -117,7 +117,19 @@ def validate_series_manifest(
 ) -> dict:
     manifest = load_json(path)
     targets = manifest.get("orderedTargets")
-    if not isinstance(targets, list) or not targets:
+    if not isinstance(targets, list):
+        fail("RIG014", "series manifest must contain orderedTargets")
+    series_status = manifest.get("status")
+    if series_status == "Idle":
+        if targets or manifest.get("roots") != [] or manifest.get("dependencies") != []:
+            fail("RIG017", "Idle requires zero targets, roots, and dependencies")
+        return {
+            "activeIntakeCount": 0,
+            "seriesTargetCount": 0,
+            "eligibleCandidate": "N/A",
+            "dependencyCount": 0,
+        }
+    if not targets:
         fail("RIG014", "series manifest must contain non-empty orderedTargets")
 
     active_paths = {
