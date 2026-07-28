@@ -8,6 +8,7 @@ import importlib.util
 import os
 from pathlib import Path
 import shlex
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -43,6 +44,50 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is required.")
+    def test_powershell_rename_accepts_repository_root_filename(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            repository = Path(directory)
+            run_git(repository, "init", "-q")
+            run_git(repository, "config", "user.name", "Fixture")
+            run_git(repository, "config", "user.email", "fixture@example.invalid")
+            source = repository / "Lastenheft_Foo.md"
+            source.write_text("# Fixture\n", encoding="utf-8")
+            run_git(repository, "add", source.name)
+            run_git(repository, "commit", "-q", "-m", "fixture")
+
+            completed = subprocess.run(
+                [
+                    "pwsh",
+                    "-NoProfile",
+                    "-File",
+                    str(REPOSITORY / "scripts" / "rename-lastenheft.ps1"),
+                    "-File",
+                    source.name,
+                    "-BranchName",
+                    "015-fixture",
+                ],
+                cwd=repository,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+
+            target = repository / "Lastenheft_Foo.015-fixture.md"
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            self.assertFalse(source.exists())
+            self.assertTrue(target.is_file())
+            subject = subprocess.check_output(
+                ["git", "log", "-1", "--format=%s"],
+                cwd=repository,
+                text=True,
+            ).strip()
+            self.assertEqual(
+                subject,
+                "chore: rename Lastenheft to Lastenheft_Foo.015-fixture.md",
+            )
+
     def test_fleet_manifest_has_exact_declared_cardinalities(self) -> None:
         specification = importlib.util.spec_from_file_location("fleet_engine", FLEET_ENGINE)
         self.assertIsNotNone(specification)

@@ -733,7 +733,7 @@ Kit run was started. The intake and evidence delta before statistics work is
   Paket-IDs und eine gemeinsame Run-ID-/Exitcode-Wahrheit. Zehn neue Windows-
   Vertragstests, die bestehenden Wartungs- und Home-Sync-Suiten, 146
   Statistik-Assertions, Parser und PSScriptAnalyzer sind lokal gruen.
-- Das Implementierungsdelta vor Statistikpflege umfasst vorlaeufig 4 063
+- Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209
   Nettozeilen. Gemeinsame Agenten-Guidance blieb nach dokumentierter Pruefung
   unveraendert; es entstand keine neue dauerhafte Agentenregel.
 
@@ -747,8 +747,8 @@ state, while propagation separates 93 reproduced raw differences from three
 actionable content changes. The eleven-preset profile, canonical package IDs,
 and run-ID/exitcode truth are preserved. Ten Windows contract tests, existing
 maintenance and Home Sync suites, 146 statistics assertions, parser checks,
-and PSScriptAnalyzer pass locally. The preliminary delta before statistics is
-4,063 net lines.*
+and PSScriptAnalyzer pass locally. The exact PR #142 delta before statistics is
+4,209 net lines.*
 
 ## Gesamtstatistik / Overall Statistics
 
@@ -760,27 +760,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 401455 lines |
-| Textdateien / Text files | 2505 |
+| Textbasis / Text base | 398745 lines |
+| Textdateien / Text files | 2467 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
 | Relevante Commits / Relevant commits | 585 |
-| Zeilen je Aktivtag / Lines per active day | 5282.3 |
+| Zeilen je Aktivtag / Lines per active day | 5246.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
-| Speedup vs. 80 lines/day | 66.0x |
-| Speedup vs. 100 lines/day | 52.8x |
-| Methodik / Methodology | v2; source `92fc5429574f` |
+| Speedup vs. 80 lines/day | 65.6x |
+| Speedup vs. 100 lines/day | 52.5x |
+| Methodik / Methodology | v2; source `882ea0c7d12f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.4% | 13579
-Dokumentation / Documentation   [##############......]  70.8% | 284366
-Skripte / Scripts               [##..................]  12.4% | 49847
-Konfiguration / Configuration   [###.................]  13.0% | 52272
+Tests                           [#...................]   3.4% | 13624
+Dokumentation / Documentation   [##############......]  71.0% | 283126
+Skripte / Scripts               [###.................]  12.5% | 49852
+Konfiguration / Configuration   [###.................]  12.7% | 50752
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -888,15 +888,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..42
-   cap 50000 | . . . . . . . . . . .
-       41667 | . . . . . . . . . . .
-       33333 | . . . . . . . . . . .
-       25000 | . # . . . . . . . . .
-       16667 | . # . . . . . . . . .
-        8333 | . # . . . . # . . . .
-           0 +-----------------------
-             32 33 34 35 36 37 38 39 40 41 42
+Slots 32..41
+   cap 50000 | . . . . . . . . . .
+       41667 | . . . . . . . . . .
+       33333 | . . . . . . . . . .
+       25000 | . # . . . . . . . .
+       16667 | . # . . . . . . . .
+        8333 | . # . . . . # . . .
+           0 +---------------------
+             32 33 34 35 36 37 38 39 40 41
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -942,8 +942,7 @@ Slots 32..42
 | 38 | Requirements-Intake-Schema-2-Flottenübernahme / Requirements intake schema-2 fleet adoption | 10918 |
 | 39 | Intake-Sequencing-v0.2.2-Profilabgleich / Intake Sequencing v0.2.2 profile alignment | 3348 |
 | 40 | Dokumentationsarchitektur-Intake-Kette / Documentation architecture intake chain | 2672 |
-| 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4063 |
-| 42 | KDM-/KITSM-Lernreihen-Intake-Kette / KDM/KITSM learning-series intake chain | 3824 |
+| 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4209 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -953,8 +952,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 66.0x
-100 lines/day      [###########.........] 52.8x
+80 lines/day       [#############.......] 65.6x
+100 lines/day      [##########..........] 52.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -967,7 +966,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5282.3
+Visible repository [##########..........] 5246.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -993,6 +992,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 326814 |
+| 2026-07 | 324044 |
 
 <!-- project-statistics-v2:end -->

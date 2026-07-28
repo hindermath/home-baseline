@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "ac2354e0-e00a-4637-84b1-4f055a18b5c5",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user instruction to complete the autonomous Windows hardening run with DeliveryMode MergeAndSync and perform the post-run repository closeout.",
+  "proposalNormalizedSha256": "23870821c68ed6f7b91850c6a54dcaedabf5c4eb175aa6a28a144fbbf4a24c83",
+  "preparedPaths": [
+    "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.015-windows-maintenance-hardening.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"
+  ],
+  "validation": {
+    "bash": "NotRunOnWindows",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
