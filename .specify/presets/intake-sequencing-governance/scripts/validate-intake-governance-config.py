@@ -108,6 +108,18 @@ def intake_name_matches(name: str, pattern: str) -> bool:
     return name.startswith(prefix) and name.endswith(suffix) and len(name) > len(prefix) + len(suffix)
 
 
+def belongs_to_nested_repository(path: Path, repo: Path) -> bool:
+    """Return true when a candidate belongs to a nested Git checkout."""
+    current = path.parent
+    while current != repo:
+        if (current / ".git").exists():
+            return True
+        if current == current.parent:
+            break
+        current = current.parent
+    return False
+
+
 def validate_series_manifest(
     path: Path,
     repo: Path,
@@ -316,6 +328,7 @@ def validate_config(data: dict, repo: Path) -> dict:
             if ".git" not in item.parts
             and "history" not in item.parts
             and "archive" not in item.parts
+            and not belongs_to_nested_repository(item, repo)
         ]
         if canonical_candidates != [repo / roles["requirements-index"]]:
             fail("RIG013", f"exactly one current canonical index is required: {canonical_candidates}")
