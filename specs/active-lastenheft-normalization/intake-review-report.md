@@ -3,61 +3,53 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `e54bbf16-d0f0-4363-b728-8a951aaee148`
-- Supersedes: `0005ff81-a7a4-4803-ad33-12a25393ae8b`
-- Ziele / Targets: 36
-- Roots: 4
-- Abhängigkeiten / Dependencies: 43
+- Review-ID: `e857d07c-f629-4e79-80db-ea9f72afd99c`
+- Supersedes: `e54bbf16-d0f0-4363-b728-8a951aaee148`
+- Ziele / Targets: 35
+- Roots: 3
+- Abhängigkeiten / Dependencies: 42
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Die acht neuen Ziele sind als Positionen 26 bis 33 vollständig hinter der
-KDM-/KITSM-Closure eingeordnet. Positionen 26 bis 32 bilden den eigenständigen
-ITSE-Strang aus Gap-Audit, Lernarchitektur, drei Lehrjahresstufen,
-kontrolliertem C#-Rollout und read-only Closure. Position 33 prüft danach jede
-FI-, ITSE-, KITSM- und KDM-Reihe in sich, gegen ihre normativen Quellen und
-insgesamt zueinander. Alle acht Intakes besitzen bereits einen unabhängigen
-Einzelreview mit Status `Ready`.
+Die Linux-/Ubuntu-Wartungshärtung ist nach dem Merge von Feature 016 mit
+vollständiger Review-Lineage archiviert. Die Preset-Profil-, Default-Branch-
+und Worktree-Härtung ist dadurch der einzige deklarierte `Eligible`-Kandidat.
+CI/CD und PowerShell sind weiterhin technisch eingangsfreie Roots, werden aber
+wegen der seriellen Auswahl bewusst noch nicht als `Eligible` deklariert.
 
-Der Review bestätigt den Vergleich mit allen vier FI-Fachrichtungen, die
-ergänzende KDM-/KITSM-Perspektive, C# als begrenzte Referenzsprache,
-ServiceHarvester als vollständigen technischen Referenzkontext sowie die
-eindeutige Trennung von Simulation, beaufsichtigter Praxis und Agentenarbeit.
-Es bestehen keine Findings, offenen Fragen, akzeptierten Risiken oder
-Operator-Ausnahmen.
+Die KDM-/KITSM- und ITSE-Ketten bleiben vollständig, eindeutig und blockiert,
+bis ihre bindenden Vorgänger abgeschlossen sind. Es bestehen keine Findings,
+offenen Fragen, akzeptierten Risiken oder Operator-Ausnahmen.
 
-*The eight new targets are fully ordered as positions 26 through 33 after the
-KDM/KITSM closure. Positions 26 through 32 form the dedicated ITSE track;
-position 33 then checks every FI, ITSE, KITSM, and KDM series internally,
-against its normative sources, and together. All eight intakes already have an
-independent `Ready` review. The review confirms comparison with all four
-IT-specialist tracks, the secondary KDM/KITSM perspective, bounded C# use,
-ServiceHarvester as the complete technical reference context, and explicit
-separation of simulation, supervised practice, and agent work.*
+*Linux/Ubuntu maintenance hardening is archived with complete review lineage
+after Feature 016 was merged. Preset-profile, default-branch, and worktree
+hardening is now the sole declared `Eligible` candidate. CI/CD and PowerShell
+remain zero-indegree roots but are intentionally not declared eligible under
+the serial selection. The KDM/KITSM and ITSE chains remain complete and
+blocked by their binding predecessors.*
 
 ## Graphnachweis / Graph Evidence
 
-- Alle 36 Pfade, Rollen, Hashes und Positionen stimmen mit dem Schema-1.1-Request überein.
-- Die vier bestehenden Roots bleiben unverändert und entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 43 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und azyklisch.
+- Alle 35 Pfade, Rollen, Hashes und Positionen stimmen mit dem Schema-1.1-Request überein.
+- Die drei Roots entsprechen exakt den Knoten ohne eingehende Kante.
+- Alle 42 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und azyklisch.
 - Position 18 ist durch Position 17 blockiert; die Positionen 19 bis 25 bilden danach eine bindende serielle Kette.
 - Position 26 ist durch Position 25 blockiert; die Positionen 27 bis 33 bilden danach eine bindende serielle Kette.
-- Position 2 bleibt der einzige deklarierte `Eligible`-Kandidat.
+- Position 3 ist der einzige deklarierte `Eligible`-Kandidat.
 
-*All 36 targets, four roots, and 43 dependencies are complete, unique,
+*All 35 targets, three roots, and 42 dependencies are complete, unique,
 order-consistent, and acyclic. Items 18 through 25 retain their binding chain;
-items 26 through 33 form its binding continuation. Item 2 remains the sole
+items 26 through 33 form its binding continuation. Item 3 is the sole
 eligible candidate.*
 
 ## Nächste Aktion / Next Action
 
-Nach Merge und Synchronisierung ist die Manifest-Eligibility erneut read-only
-zu prüfen. Der Linux-/Ubuntu-Intake muss der einzige `Eligible`-Kandidat
-bleiben. Die ITSE-Intakes bleiben `Blocked`, bis ihre bindenden Vorgänger
-abgeschlossen sind. Dieser Review startet keinen Featurelauf und erteilt keine
-Delivery Authority.
+Dieser Review dokumentiert nur den kausalen Abschluss von Feature 016. Die
+Preset-Profil-, Default-Branch- und Worktree-Härtung ist der nächste autonome
+Kandidat, wird aber durch diesen Review nicht gestartet. Die ITSE-Intakes
+bleiben `Blocked`, bis ihre bindenden Vorgänger abgeschlossen sind.
 
-*After merge and synchronization, recheck manifest eligibility read-only. The
-Linux/Ubuntu intake must remain the sole `Eligible` candidate. The ITSE
-intakes remain `Blocked` until their binding predecessors are complete. This
-review starts no feature run and grants no delivery authority.*
+*This review records only the causal closeout of Feature 016. Preset-profile,
+default-branch, and worktree hardening is the next autonomous candidate but is
+not started by this review. The ITSE intakes remain `Blocked` until their
+binding predecessors complete.*

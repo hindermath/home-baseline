@@ -214,11 +214,10 @@ bestand anschließend 20 von 20 GitHub-Checks auf Ubuntu, macOS und Windows,
 hatte null Review-Threads und bestand 8 von 8 providerneutrale Gates. GitHub
 verweigerte den anschließenden Admin-Merge trotzdem korrekt wegen eines realen
 Konflikts: Während der Prüfung war PR #147 mit den ITSE-Lernreihen-Intakes in
-`main` gemergt worden. Die neue Baseline wird als regulärer Merge integriert;
-beide gleichzeitigen Statistikmeilensteine bleiben erhalten (ITSE Slot 43,
-Linux Slot 44). Das aktualisierte Series-Review bleibt `Ready` und erklärt
-Linux weiterhin zum einzigen `Eligible`-Kandidaten. Sämtliche bisherigen
-Exact-Head-Ergebnisse werden für den entstehenden Ersatz-Head erneut geprüft.
+`main` gemergt worden. Die neue Baseline wurde als regulärer Merge integriert;
+beide gleichzeitigen Statistikmeilensteine blieben erhalten (ITSE Slot 43,
+Linux Slot 44). Sämtliche Exact-Head-Ergebnisse wurden für den daraus
+entstandenen Ersatz-Head vollständig neu geprüft.
 
 ## Delivery boundary
 
@@ -236,3 +235,35 @@ Folgefeature.
   nochmals. Die verbindliche Exact-Head-Zuordnung bleibt deshalb bis zur
   G007-Konvergenz in temporärer providerneutraler Evidence und wird nicht
   selbstreferenziell in diesen Feature-Head geschrieben.
+
+## Merge and causal closeout
+
+- Der verbindliche Ersatz-Head
+  `028383b1312b9e85c8ebd375cf45ad9b3ffb9b67` bestand 20 von 20
+  GitHub-Checks auf Ubuntu, macOS und Windows. Es bestanden null
+  umsetzbare Review-Threads; der providerneutrale Gatevertrag bestand 8 von 8
+  Anforderungen und ist unter `autonomous-run-gate-evidence.json`
+  unverändert gesichert.
+- PR #146 wurde exakt auf diesem Head mit dem autorisierten
+  Repository-Admin-Bypass gemergt. Der Bypass betraf ausschließlich das
+  verbleibende Human-Approval-Schutzgate; kein technischer, Sicherheits-,
+  Paket- oder Testbefund wurde umgangen. Merge-Commit:
+  `8a12143941a791528f856e6f7cfd77e6af9860d4`.
+- Der Feature-Branch wurde lokal und remote entfernt. Lokales `main` und
+  `origin/main` waren danach bytegenau auf dem Merge-Commit synchron.
+  `scripts/sync-home.sh --check-only` zeigte die erwartete Runtime-Verteilung;
+  `scripts/sync-home.sh --no-pull` schloss sie mit lokalem Home-Commit
+  `5540818` ab.
+- Die exakten post-merge Vorschauen blieben wahrheitsgetreu `PARTIAL/1`:
+  Paket-Compare und Paket-Dry-run meldeten Required-Drift; die
+  Workspace-Läufe `b509dbe9-b907-4482-9868-fc188dead752` und
+  `58a91be6-61de-4202-942e-3328e9ff28cc` meldeten zusätzlich vorhandenen
+  Flottenzustand außerhalb dieses Features. Deshalb wurde kein echter
+  Admin-/Paketlauf erzwungen.
+- Serienoperation `cb9df01b-e1bd-405a-9892-4baa74cab11b` archivierte die
+  abgeschlossene Linux-Härtung und veröffentlichte 35 aktive Ziele, drei
+  Roots und 42 Abhängigkeiten. Der frische Series-Review
+  `e857d07c-f629-4e79-80db-ea9f72afd99c` ist `Ready` und weist ausschließlich
+  die Preset-Profil-, Default-Branch- und Worktree-Härtung als nächsten
+  deklarierten `Eligible`-Kandidaten aus. Ein Nachfolgefeature wurde nicht
+  gestartet.
