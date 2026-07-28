@@ -363,7 +363,9 @@ function Write-HBWarning {
 
 function Test-HBHomeSync {
     $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
-    & $syncScript -NoPull -CheckOnly
+    # The parent preview must not implicitly add WhatIf to the nested,
+    # intentionally read-only CheckOnly contract.
+    & $syncScript -NoPull -CheckOnly -WhatIf:$false
     $status = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
     switch ($status) {
         0 { Write-Host 'OK: Lokale Home-Baseline ist manifestkonform / local home baseline matches manifest' }
@@ -1103,8 +1105,10 @@ try {
         }
     }
 } finally {
-    if ($transcriptStarted) { Stop-Transcript | Out-Null }
-    if (Test-Path -LiteralPath $lockDir) { Remove-Item -LiteralPath $lockDir -Recurse -Force }
+    if ($transcriptStarted) { Stop-Transcript -WhatIf:$false | Out-Null }
+    if (Test-Path -LiteralPath $lockDir) {
+        Remove-Item -LiteralPath $lockDir -Recurse -Force -WhatIf:$false
+    }
     Write-Host "Log / log: ${logFile}"
     if (Test-Path -LiteralPath $reportFile -PathType Leaf) {
         try {

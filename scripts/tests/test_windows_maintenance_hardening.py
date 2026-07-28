@@ -244,6 +244,8 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "Test-HBResumeEvidence",
             "Get-HBCanonicalExitCode",
             "homeInvocationStatus",
+            "& $syncScript -NoPull -CheckOnly -WhatIf:$false",
+            "Stop-Transcript -WhatIf:$false",
         ):
             self.assertIn(token, workspace)
         self.assertNotIn(
