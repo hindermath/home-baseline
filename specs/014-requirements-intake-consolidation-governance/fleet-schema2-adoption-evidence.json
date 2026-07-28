@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceType": "RequirementsIntakeSchema2FleetAdoption",
+  "recordedAt": "2026-07-28",
+  "preset": {
+    "id": "intake-sequencing-governance",
+    "version": "0.2.2",
+    "releaseZipSha256": "38d09147b2fad646e65365c2d17689484396046f77facf58d22ca8c39bb10754"
+  },
+  "scope": {
+    "remainingRepositories": 26,
+    "activeSeries": 20,
+    "idleSeries": 6,
+    "existingIntakesChanged": 0,
+    "productFilesChanged": 0
+  },
+  "gateContract": {
+    "localValidation": [
+      "Bash configuration validator",
+      "PowerShell configuration validator",
+      "Bash series validator",
+      "PowerShell series validator",
+      "Bash migration-journal validator",
+      "PowerShell migration-journal validator",
+      "specify check",
+      "git diff --check",
+      "Gitleaks current-diff scan"
+    ],
+    "remoteClassification": "ProviderZeroStep",
+    "remoteRationale": "Every rejected GitHub Actions job contained zero executed steps and no job log.",
+    "actionableReviewThreads": 0,
+    "adminBypassBoundary": "Human Approval was the only remaining protection gate after local technical validation and provider-zero-step proof."
+  },
+  "repositories": [
+    {"repository":"hindermath/c64-baseline","pr":21,"headSha":"07c0594185db60a5e66f17ffb10e52c810c73576","mergeCommit":"91095a21da99f7768577f722c843d22b79902a75","seriesStatus":"Idle","targets":0,"roots":0,"dependencies":0},
+    {"repository":"hindermath/secure-orderdesk-baseline","pr":19,"headSha":"d42b14b393702b9674b8458d09b0613f02962af0","mergeCommit":"e6062b50f7a8f89973c708fc0128e17f05727c75","seriesStatus":"Idle","targets":0,"roots":0,"dependencies":0},
+    {"repository":"hindermath/secure-serviceharvester","pr":19,"headSha":"8dda01682c11230d0f7fb4c560f825e0dae96f36","mergeCommit":"75e8e35a264330661c39430c49711ea2003ca6bc","seriesStatus":"Idle","targets":0,"roots":0,"dependencies":0},
+    {"repository":"hindermath/container-images","pr":19,"headSha":"6ea27300fc20b13d4bd425b15b4bd5aee619d0eb","mergeCommit":"d0547085844614aa75064e7d7968dcd034f1de11","seriesStatus":"Idle","targets":0,"roots":0,"dependencies":0},
+    {"repository":"hindermath/datagrip-baseline","pr":22,"headSha":"1add2902603d28f62a58ceb92285015dc8ef9aec","mergeCommit":"a56a2aff9526690e7989df5bcc4fd5d5ca53dff6","seriesStatus":"Idle","targets":0,"roots":0,"dependencies":0},
+    {"repository":"hindermath/rider-baseline","pr":21,"headSha":"418955d9c0fd60fc613ad347f6cb6a6839f2f9c7","mergeCommit":"f068708b1bd2d4b40b2a2a3361e7dff9f566a6c1","seriesStatus":"Idle","targets":0,"roots":0,"dependencies":0},
+    {"repository":"hindermath/secureorderdesk-csharp","pr":20,"headSha":"57fcc59c22021fbe2d2d9646e5464ce64eb183f3","mergeCommit":"b2c8cb5b51b9a4ddd44e32fd8222ec5f7f1c6dc8","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureorderdesk-go","pr":19,"headSha":"36baae073b7edae5cac1d2f33ea866479bf85588","mergeCommit":"e9f9ae42a921a7c39ae7bc865cc443d066e989a0","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureorderdesk-java","pr":19,"headSha":"525a16715c325066a0819c7431f403eeb77e9aee","mergeCommit":"91b129da41f801d2f51d6604ed724db2a249ecb8","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureorderdesk-python","pr":19,"headSha":"b4c77799200da7888b1367ec17981ff8cfc76e95","mergeCommit":"e6527f7307102785df8baf88a13f1c8a65a6736d","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureorderdesk-rust","pr":19,"headSha":"fa340dc8230a2a1dc740cbe84978a2eff402c2c9","mergeCommit":"657be75a20a013b30631be79abf6cfeebde055a1","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureorderdesk-swift","pr":19,"headSha":"8967169cc46e4ab3be22655979d782ad59daa4ec","mergeCommit":"64c3cb6ac74d53f3329682def6f1fbdf7e41078a","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureserviceharvester-csharp","pr":20,"headSha":"fb620dc7dd05d3c569f32aa65b5956f3947139f8","mergeCommit":"7415d9e15dc965e00769ed4d14b86fb9483f6474","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureserviceharvester-go","pr":19,"headSha":"9bf6ec491140e3d7d1ca7a8b04f285cf9c9f8461","mergeCommit":"851477fbabd5d14fe1f6d4aefa5f10c93f03cf9e","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureserviceharvester-java","pr":19,"headSha":"01029876fe87237170e2d46c0ce10c01ed886569","mergeCommit":"777b45bb41e83fcb689a1ad262a4d9bdd37b7e3f","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureserviceharvester-python","pr":19,"headSha":"eafcf4f9c5335b7667d46e0fe97b0f10d7a63b27","mergeCommit":"81319c07be0762c04398947629156b4200d9f0d3","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureserviceharvester-rust","pr":19,"headSha":"32656bece4b768909c2c9f660b81732f875624d0","mergeCommit":"5e0ffe354c34f6889b29fa2d78cc6396a469b95c","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secureserviceharvester-swift","pr":19,"headSha":"0aa5f055ab7024181a4ab9609bf0da5aeda20c9b","mergeCommit":"47063e228d4c3bebd29f3567bf1818376c13c3f0","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/secure-casetracker-baseline","pr":19,"headSha":"46b100d08cff6f545cfddb46e8cffb75d350fae9","mergeCommit":"60db4d7eebd9a64d10cc61d373cd8d3c9c25b217","seriesStatus":"Active","targets":2,"roots":2,"dependencies":0},
+    {"repository":"hindermath/securecasetracker-csharp","pr":25,"headSha":"0ed519eb21a5f7eb97f5a035df3cacde993b161b","mergeCommit":"64ad9c19e6c7b76574a47b6e4eb2d89f0c2a8074","seriesStatus":"Active","targets":73,"roots":73,"dependencies":0},
+    {"repository":"hindermath/securecasetracker-go","pr":24,"headSha":"e93b9c29b091d9a35bf61d41251b812a46b3c900","mergeCommit":"c6f12f65544acd7fbca20b4bf9b4c4dbf24653d3","seriesStatus":"Active","targets":60,"roots":60,"dependencies":0},
+    {"repository":"hindermath/securecasetracker-java","pr":24,"headSha":"d39ebef09a6d395e2cbd6de4cb9e1d3d32e3e09b","mergeCommit":"71e7115a7775940e081b33e7c35f14eeabb9cd4e","seriesStatus":"Active","targets":60,"roots":60,"dependencies":0},
+    {"repository":"hindermath/securecasetracker-python","pr":25,"headSha":"6242205f79c9de388a41487274cb723f0d1746ff","mergeCommit":"1cd1d3cb600f61ec78da97a74b308c674423351c","seriesStatus":"Active","targets":60,"roots":60,"dependencies":0},
+    {"repository":"hindermath/securecasetracker-rust","pr":24,"headSha":"010cde354f14b183337ac018907e41a954a5d75a","mergeCommit":"a368847c321d554dce19f9abb5e43087b1ecaa86","seriesStatus":"Active","targets":60,"roots":60,"dependencies":0},
+    {"repository":"hindermath/securecasetracker-swift","pr":24,"headSha":"13a2d05833448ee1af1d979e751a0d984b33fd59","mergeCommit":"0b62fbff36433ab1c04df9e63065251309088bec","seriesStatus":"Active","targets":60,"roots":60,"dependencies":0},
+    {"repository":"hindermath/InventarDb","pr":21,"headSha":"3ce764ec1248dc212f17ddd3eff94daac0cc8dfa","mergeCommit":"69fff7ce1ba580d71c34fa02594cb4e39c8c1e49","seriesStatus":"Active","targets":3,"roots":3,"dependencies":0}
+  ],
+  "result": "Completed"
+}

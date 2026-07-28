@@ -313,6 +313,14 @@
       "labelEn": "Requirements intake consolidation",
       "netLines": 7338,
       "activeDays": 1
+    },
+    {
+      "slot": 38,
+      "id": "requirements-intake-schema2-fleet-adoption",
+      "labelDe": "Requirements-Intake-Schema-2-Flottenübernahme",
+      "labelEn": "Requirements intake schema-2 fleet adoption",
+      "netLines": 10918,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

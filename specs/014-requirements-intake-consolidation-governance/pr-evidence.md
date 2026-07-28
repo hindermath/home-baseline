@@ -133,3 +133,31 @@ next candidate without starting it.
   run was started.
 - The causal closeout normalizes six project-specific assurance edge labels in
   the portable manifest to `AssessmentBaseline`; graph meaning is unchanged.
+
+## Schema-2 Fleet Adoption Closeout
+
+The 26 repositories that had received the preset versions but had not yet
+received the professional Schema-2 requirements migration were migrated
+separately through non-empty pull requests. The machine-readable ledger is
+`fleet-schema2-adoption-evidence.json`.
+
+- 20 existing intake collections remain `Active`.
+- Six repositories without active intakes use the strict empty `Idle` state.
+- No existing intake text, product file, project name, or historical structure
+  changed.
+- Bash and PowerShell configuration, series, and migration-journal validators
+  passed for every repository.
+- `specify check`, `git diff --check`, and Gitleaks current-diff checks passed
+  for every repository.
+- All 26 remote PRs had zero actionable review threads.
+- GitHub Actions rejected all remote jobs before their first step; the approved
+  narrow Admin bypass applied only after this provider-zero-step evidence and
+  local Exact-Head validation.
+- Every PR was merged with a merge commit, its feature branch was removed, and
+  every local checkout was returned to a clean exact default branch.
+
+The field run promoted two portable sequencing fixes: v0.2.1 introduced a
+strict `Idle` series, and v0.2.2 excluded independently owned nested Git
+repositories from the parent index-uniqueness check. The original Feature-014
+retrospective remains historically correct for the original run; the later
+promotion is recorded separately in `fleet-adoption-retrospective.md`.
