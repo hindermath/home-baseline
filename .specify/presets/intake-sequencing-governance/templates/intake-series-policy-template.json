@@ -5,6 +5,7 @@
   "requireExplicitWriteAuthority": true,
   "allowPhysicalPurge": false,
   "allowedEdgeTypes": [
+    "RequirementsGovernanceGate",
     "HardCompletionGate",
     "AssessmentBaseline",
     "SandboxBaseline",

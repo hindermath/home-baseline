@@ -181,7 +181,7 @@ daran nichts.
 
 ### Intake Sequencing verwaltet die Reihe, nicht die Intake-Inhalte
 
-`intake-sequencing-governance` v0.1.1 verwendet Priorität `66`. Es übernimmt
+`intake-sequencing-governance` v0.2.0 verwendet Priorität `66`. Es übernimmt
 bereits vorhandene und unabhängig geprüfte Intakes, dokumentiert ihre sichtbare
 Reihenfolge, Roots, bindenden Vorgänger und reine
 Shared-Writer-Serialisierungen. Die Commands `read`, `status` und `next`
@@ -196,7 +196,7 @@ never starts downstream work.*
 
 ### 1. Intake Authoring bereitet die fachliche Grundlage vor
 
-`intake-authoring-governance` v0.2.1 verwaltet Intakes mit getrennten
+`intake-authoring-governance` v0.3.0 verwaltet Intakes mit getrennten
 Create-, Read-, Update- und Delete-Befehlen. Create erzeugt neue Ziele aus
 ausdrücklich benanntem Rohtext, Planungen, UTF-8-Dateien oder begrenzten
 öffentlichen HTTPS-Snapshots. Read fasst standardmäßig nur zusammen. Update

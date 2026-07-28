@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeGovernanceMigrationJournal",
+  "operationId": "2f9fa80f-051f-4b67-8b1e-67c3ad82054d",
+  "state": "Completed",
+  "authorityEvidence": "Explicit MergeAndSync authority for Feature 014 requirements-intake consolidation",
+  "beforeSha256": "N/A",
+  "afterSha256": "2fde97094c694836fa35c45666cac36daf1340a582f61c27f4cefda7244c8ad2",
+  "moves": [],
+  "updatedReferences": [
+    "Pflichtenheft.md",
+    "requirements/intake-governance-config.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json"
+  ],
+  "validation": [
+    "Bash config validator PASS",
+    "PowerShell config validator PASS",
+    "Existing 18-target review remains hash-bound and Ready"
+  ],
+  "rollback": "Remove the four new schema-2 adoption artifacts; no existing intake content or path was changed.",
+  "repairBoundary": "N/A"
+}

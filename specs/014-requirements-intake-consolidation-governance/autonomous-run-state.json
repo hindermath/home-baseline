@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "b3153101-6528-4e4d-b769-38ff03efe181",
+  "featurePath": "specs/014-requirements-intake-consolidation-governance",
+  "branch": "014-requirements-intake-consolidation-governance",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "ddc6481396a368ecb4d440dafb13a4daf2bc07c8",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
+      "sha256": "c8f21c06f52cd26f5d9678ebdd15cd3b8cb65c0a72118ec24e646a1adaf20020"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/requirements-intake-konsolidierungs-governance.json",
+      "sha256": "f7f1f6b10781a81bd27086fe482f21ccc60f2a83d71e60b5e3b016cc45edb664"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "dbfd95a099dbb06192adaa51af5587ec23352c1253e1ded6c8d4978874625a31"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "b48e4f1258540fcfcd21b89662cd4f27e8abcb039db96cf738a33b60da68ab0c"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "35decceb8c82823b4197250abdaaa01b6d1b66f4665cb2951b9dfc4c5e7a5c8e"
+    }
+  ],
+  "tasks": {
+    "path": "specs/014-requirements-intake-consolidation-governance/tasks.md",
+    "sha256": "46c58408db25cdf59869b8b03e5f12f510c2a1ba24361cb29cc06392188e8e29",
+    "completed": 64,
+    "total": 75
+  },
+  "lastPassingGate": "Three preset releases, seven pilots, and 26 version-only fleet updates passed local gates and were merged.",
+  "nextExactAction": "Commit the validated Feature-014 implementation, then render project statistics.",
+  "lastOperation": {
+    "kind": "CommunitySubmission",
+    "state": "Completed",
+    "summary": "Authoring v0.3.0 is submitted as github/spec-kit#3780; Review and Sequencing remain serially deferred."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-28T09:48:29Z"
+}

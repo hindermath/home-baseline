@@ -15,9 +15,9 @@ Target split:
 - `a11y-governance` — version `0.4.2`
 - `cross-platform-governance` — version `0.2.1`
 - `agent-parity-governance` — version `0.4.1`
-- `intake-authoring-governance` — version `0.2.1`, optional priority `64`
-- `intake-review-governance` — version `0.1.2`, optional priority `65`
-- `intake-sequencing-governance` — version `0.1.1`, optional priority `66`
+- `intake-authoring-governance` — version `0.3.0`, optional priority `64`
+- `intake-review-governance` — version `0.2.0`, optional priority `65`
+- `intake-sequencing-governance` — version `0.2.0`, optional priority `66`
 - `autonomous-run-governance` — version `0.3.3`
 - `parallel-autonomous-run-governance` — version `0.2.4`
 
@@ -112,7 +112,7 @@ MSL integration:
 Current status:
 
 - the six original governance presets are published and catalogued
-- `intake-authoring-governance` v0.2.1 is published and catalogued through
+- `intake-authoring-governance` v0.3.0 is published and catalogued through
   [submission #3720](https://github.com/github/spec-kit/issues/3720) and
   [catalog PR #3721](https://github.com/github/spec-kit/pull/3721); its five
   commands provide explicit Create, Read, Update, Delete, and Status boundaries
@@ -154,9 +154,9 @@ specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
 # Optional; omit to retain the standard eight-preset profile.
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.2.1.zip --priority 64
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.1.2.zip --priority 65
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.1.1.zip --priority 66
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.0.zip --priority 64
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.0.zip --priority 65
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.0.zip --priority 66
 specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.3.zip --priority 70
 specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.4.zip --priority 80
 ```

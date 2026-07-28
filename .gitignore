@@ -35,6 +35,9 @@
 
 # Lastenheft-Dateien und Spezifikationen (alle Ebenen)
 !Lastenheft*.md
+!Pflichtenheft.md
+!requirements/
+!requirements/**
 !STATS.md
 !docs/
 !STATS-archive*.md
