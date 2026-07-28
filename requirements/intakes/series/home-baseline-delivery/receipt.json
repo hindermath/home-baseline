@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "ec5656e1-6dcc-467e-8517-9ff08f514f96",
+  "receiptId": "6e0282cd-6c58-48d0-9ecc-3ab4a2859de6",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-28T21:03:16Z",
+  "createdAt": "2026-07-28T21:53:26Z",
   "operation": {
-    "operationId": "cb9df01b-e1bd-405a-9892-4baa74cab11b",
+    "operationId": "9fa390ac-5180-47ff-b784-8be94c5f922e",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to complete autonomous Linux hardening with DeliveryMode MergeAndSync and perform the manifest-declared post-merge closeout."
+    "authorityEvidence": "Explicit current user instruction to implement the approved learning-series consistency and AI-competence intake plan with DeliveryMode MergeAndSync."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "02c9fe23bc6ff971e400a7ffe85ad7499d455c11921c2dfbbf8aa40233d040ec"
+    "normalizedSha256": "ce0eebdf1172b3d43ccf9e5e4b61d0f2f1ac77f5ada5e18b065b3f705484df45"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/cb9df01b-e1bd-405a-9892-4baa74cab11b/receipt.json",
-    "receiptNormalizedSha256": "9b250d87ea451194a9c1825b74264d6778d472e3ccdb0a3d8c778d79cdad5cc0",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/cb9df01b-e1bd-405a-9892-4baa74cab11b/manifest.json",
-    "manifestArchiveSha256": "07d2b797d1d706419a19bd8acc82ca62368d05a41aaeb7cff49d8e46fb376d50"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/9fa390ac-5180-47ff-b784-8be94c5f922e/receipt.json",
+    "receiptNormalizedSha256": "dfdd440ab38ec126387459e90625c77d9a48757e99c29b82cb772738aa57c622",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/9fa390ac-5180-47ff-b784-8be94c5f922e/manifest.json",
+    "manifestArchiveSha256": "02c9fe23bc6ff971e400a7ffe85ad7499d455c11921c2dfbbf8aa40233d040ec"
   },
   "tombstone": {
     "path": "N/A",

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+  "type": "CreateSeries",
+  "status": "Completed",
+  "createdAt": "2026-07-28T21:37:12Z",
+  "authorityEvidence": "Thorsten approved the universal learning-series-governance intake plan and requested implementation with MergeAndSync.",
+  "proposalPath": "specs/intake-authoring-operations/a8c94baa-a357-4bb2-9826-4ee9ddbea0b4/proposal.json",
+  "proposalNormalizedSha256": "929e8bbf84e6a7b6127aee206efe9b55ce5688c4bce6a37de569ad53cfa3fdd2",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-07-28T21:37:12Z",
+    "evidence": "Current conversation: Implement the proposed plan."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/a8c94baa-a357-4bb2-9826-4ee9ddbea0b4/staging",
+  "intendedTargets": [
+    "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+    "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+    "Lastenheft_Preset-Learning-Series-Governance.md",
+    "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+    "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+    "Lastenheft_Preset-Learning-Series-Governance.md",
+    "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+    "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+    "Lastenheft_Preset-Learning-Series-Governance.md",
+    "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+  ],
+  "rollbackBoundary": "No new target or updated global closure remains published unless all five targets, receipts, archive evidence, the approved series, and review handoff validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review the approved learning-series-governance intake series"
+}

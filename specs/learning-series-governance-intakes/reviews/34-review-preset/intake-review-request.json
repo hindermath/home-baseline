@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "94c0b3b7-678b-49de-b2e6-d0cb2ec555ab",
+  "mode": "Single",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

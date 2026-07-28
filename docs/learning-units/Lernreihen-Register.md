@@ -43,7 +43,9 @@ order and status as text; a visual representation would only be supplementary.
 | Intake vorbereitet / intake prepared | ITSE technischer Kern | [ITSE-Jahr-2-Intake](../../Lastenheft_ITSE-Technischer-Kern-Jahr2.md) | 2. Lehrjahr | LF6 bis LF9, cyber-physische Systeme, Dienste, Diagnose, Betriebssicherheit und C#-Nachweise |
 | Intake vorbereitet / intake prepared | ITSE Professional | [ITSE-Jahr-3-Intake](../../Lastenheft_ITSE-Professional-Jahr3.md) | 3. Lehrjahr | Energieversorgung, Sicherheit vernetzter Systeme, Instandhaltung, beaufsichtigte Praxis und dokumentierte Agentengrenzen |
 | Intake vorbereitet / intake prepared | ITSE C#-Rollout und Abschluss | [ITSE-Rollout-Intake](../../Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md) | nach Jahr 1 bis 3 | vollständiger ServiceHarvester-Referenzpfad, begrenzte OrderDesk-/CaseTracker-Bezüge und unabhängige ITSE-Closure |
-| Intake vorbereitet / intake prepared | Lernreihen-Gesamtkonsistenz | [Gesamtkonsistenz-Intake](../../Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md) | nach allen Berufsreihen | read-only Abschlussprüfung jeder Reihe in sich, gegen amtliche Grundlagen und über FI, ITSE, KITSM und KDM hinweg |
+| Intake vorbereitet / intake prepared | Lernreihen-Konsistenz und KI-Kompetenz | [Gap-Audit](../../Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md) | nach allen Berufsreihen | read-only Prüfung jeder Reihe in sich, gegen amtliche Grundlagen und über FI, ITSE, KITSM und KDM hinweg; zusätzlich acht berufsbezogene KI-Kompetenzen |
+| Intake vorbereitet / intake prepared | Learning Series Governance | [Preset-Intake](../../Lastenheft_Preset-Learning-Series-Governance.md) und [IHK-Pilot](../../Lastenheft_Learning-Series-Governance-IHK-Pilot.md) | nach Gap-Audit und Intake-Review-Erweiterung | optionale portable Governance für Lernreihen, Ausbildungsprofile, Lernbegleiter, Quellenstatus und KI-Kompetenz |
+| Intake vorbereitet / intake prepared | Lernreihen-Gesamtkonsistenz | [Gesamtkonsistenz-Intake](../../Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md) | nach dem IHK-Pilot | read-only Abschlussprüfung jeder Reihe in sich, gegen amtliche Grundlagen und über FI, ITSE, KITSM und KDM hinweg |
 | vorbereitet / prepared | Lernbegleiter / Study Companions | [lernbegleiter/](lernbegleiter/) | berufsbegleitend / supporting all years | ausführliche Erklärungen und Verständnisfragen mit Musterantworten je Aufgaben-Einheit (CEFR B2, WCAG 2.2 AA) |
 | geplant / planned | Weitere Reihe ab 3. Lehrjahr | noch offen / open | ab dem 3. Lehrjahr | Härtung, Lieferkette, Compliance, Deployment, Review |
 
@@ -69,10 +71,11 @@ Die ITSE-Intakes der Positionen 26 bis 32 bilden danach eine eigenständige
 dreijährige Progression. Sie vergleichen vorrangig mit allen vier
 FI-Fachrichtungen, verwenden ServiceHarvester als vollständigen technischen
 Referenzkontext und begrenzen elektrische Tätigkeiten auf Simulation oder
-beaufsichtigte Praxis. Position 33 ist eine separate, read-only
-Gesamtkonsistenzprüfung über FI, ITSE, KITSM und KDM. Auch hier bedeutet
-`Intake vorbereitet`, dass weder Lernmaterial ausgerollt noch ein Spec-Kit-Lauf
-gestartet wurde.
+beaufsichtigte Praxis. Die Positionen 33 bis 37 bilden eine separate Kette aus
+Gap-Audit, allgemeiner Intake-Review-Erweiterung, optionalem
+Lernreihen-Preset, IHK-Pilot und read-only Gesamtkonsistenz-Closure. Auch hier
+bedeutet `Intake vorbereitet`, dass weder Lernmaterial ausgerollt noch ein
+Spec-Kit-Lauf gestartet wurde.
 
 **EN:** New learning series are registered here first and then built from the [Learning Series Blueprint](Lernreihen-Blueprint.md). Secure CaseTracker remains a reference for depth and packaging; the intake structure follows the uniform 12-section pattern shared by Secure CaseTracker and Secure ServiceHarvester (see the Blueprint). Secure CaseTracker v2 and Secure InventoryHub show the pattern for second-year series. Secure CaseTracker Professional Tracks shows the specialization pattern for the third training year. The Secure ServiceHarvester family mirrors this family pattern (base, v2, Professional Tracks) for the worker/service-operation domain and accompanies the apprenticeship from year 1 to year 3 in working with agentic AI and SDD. The Secure OrderDesk family adds a relational trading/ordering domain on a Northwind data base (fictional client company Secure Trader, mandatory record `ALFKI`) and forms a deliberately lightly coupled shared system landscape with Secure ServiceHarvester and Secure CaseTracker (see [`Secure-Trader-Systemlandschaft.md`](Secure-Trader-Systemlandschaft.md) and the Blueprint); every series stays usable on its own.
 
@@ -81,7 +84,8 @@ The KDM/KITSM intakes at positions 18 through 25 form a serial preparation chain
 The ITSE intakes at positions 26 through 32 then form a dedicated three-year
 progression. They compare primarily with all four IT-specialist tracks, use
 ServiceHarvester as the complete technical reference context, and restrict
-electrical work to simulation or supervised practice. Position 33 is a
-separate read-only consistency review across FI, ITSE, KITSM, and KDM.
-`Intake prepared` still means that no learning material has been rolled out and
-no Spec Kit run has been started.
+electrical work to simulation or supervised practice. Positions 33 through 37
+form a separate chain of gap audit, general Intake Review extension, optional
+learning-series preset, IHK field pilot, and read-only final consistency
+closure. `Intake prepared` still means that no learning material has been
+rolled out and no Spec Kit run has been started.

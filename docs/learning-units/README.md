@@ -110,17 +110,21 @@ Jeder Track enthält einen Unterrichtsleitfaden, ein Master-Lastenheft, zehn ein
 Intake-Kette auf den Positionen 26 bis 32 vorbereitet. Sie vergleicht mit allen
 vier FI-Fachrichtungen, nutzt Secure ServiceHarvester als vollständigen
 technischen Referenzkontext und begrenzt elektrische Tätigkeiten auf
-Simulation oder beaufsichtigte Praxis. Position 33 ist die anschließende
-read-only Gesamtkonsistenzprüfung über FI, ITSE, KITSM und KDM. Die
-Vorbereitung startet keinen Lauf automatisch; Details und aktueller Status
-stehen im [Lernreihen-Register](Lernreihen-Register.md).
+Simulation oder beaufsichtigte Praxis. Die Positionen 33 bis 37 bilden danach
+die read-only Prüfung, Governance-Produktisierung, Pilotierung und
+Gesamtkonsistenz-Closure für FI, ITSE, KITSM und KDM einschließlich
+berufsbezogener KI-Kompetenz. Die Vorbereitung startet keinen Lauf automatisch;
+Details und aktueller Status stehen im
+[Lernreihen-Register](Lernreihen-Register.md).
 
 **EN:** A dedicated three-year ITSE intake chain is prepared at positions 26
 through 32. It compares with all four IT-specialist tracks, uses Secure
 ServiceHarvester as the complete technical reference context, and limits
-electrical activities to simulation or supervised practice. Position 33 is
-the subsequent read-only consistency review across FI, ITSE, KITSM, and KDM.
-Preparation starts no run automatically; see the
+electrical activities to simulation or supervised practice. Positions 33
+through 37 then cover read-only auditing, governance productization, field
+validation, and final consistency closure for FI, ITSE, KITSM, and KDM,
+including occupational AI competence. Preparation starts no run automatically;
+see the
 [Learning Series Register](Lernreihen-Register.md) for details and status.
 
 ## Präsentationen / Presentations

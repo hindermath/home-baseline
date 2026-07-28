@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "8faa570f-bf92-43bd-a5fc-606b8b6ebb8b",
+  "intakeId": "277e7304-224c-4ddb-a2c5-702d97556da5",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T21:37:12Z",
+  "operation": {
+    "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+    "type": "Create",
+    "authorityEvidence": "Approved learning-series-governance proposal and MergeAndSync instruction."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+    "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved learning-series consistency and AI competence plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "929e8bbf84e6a7b6127aee206efe9b55ce5688c4bce6a37de569ad53cfa3fdd2",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved conversation proposal plus the existing Level-0 learning-series governance and current preset matrix"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Ist ein eigenes Preset erforderlich?",
+      "answer": "Yes, one optional learning-series-governance v0.1.0 preset specializes the generic Intake Review axes.",
+      "evidence": "Approved plan."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Priorität und Profile gelten?",
+      "answer": "Priority 45; the standard eight remain unchanged and an optional twelve-preset learning profile is added.",
+      "evidence": "Approved plan."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current explicit user approval.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "ea2b9cb3-40c4-499e-9575-e73939ff2d2c",
+    "manifestPath": "specs/intake-authoring-series/learning-series-governance/series.json",
+    "order": 3,
+    "role": "PresetProductization",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Learning-Series-Governance.md"
+}

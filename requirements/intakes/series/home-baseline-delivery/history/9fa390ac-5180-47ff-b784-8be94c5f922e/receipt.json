@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "ec5656e1-6dcc-467e-8517-9ff08f514f96",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-28T21:03:16Z",
+  "operation": {
+    "operationId": "cb9df01b-e1bd-405a-9892-4baa74cab11b",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to complete autonomous Linux hardening with DeliveryMode MergeAndSync and perform the manifest-declared post-merge closeout."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "02c9fe23bc6ff971e400a7ffe85ad7499d455c11921c2dfbbf8aa40233d040ec"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/cb9df01b-e1bd-405a-9892-4baa74cab11b/receipt.json",
+    "receiptNormalizedSha256": "9b250d87ea451194a9c1825b74264d6778d472e3ccdb0a3d8c778d79cdad5cc0",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/cb9df01b-e1bd-405a-9892-4baa74cab11b/manifest.json",
+    "manifestArchiveSha256": "07d2b797d1d706419a19bd8acc82ca62368d05a41aaeb7cff49d8e46fb376d50"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

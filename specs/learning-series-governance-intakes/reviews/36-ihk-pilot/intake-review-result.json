@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "26f43e0e-28c4-4311-be73-8dd73442976b",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "reviewedAt": "2026-07-28T22:05:08Z",
+  "repository": {
+    "root": ".",
+    "head": "9cb0d9e2705d61ed3d799eacf17884726c7eb1ab"
+  },
+  "requestEvidence": {
+    "path": "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-request.json",
+    "normalizedSha256": "09ca2a0ec928d4305dbc4378b2bec759d9b6f2a2f6555c3235a15963e05c10f0"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "Primary",
+      "normalizedSha256": "20c9039b5aa9efd538a4bfd14409ccda0ce7f1c7903a4d0d3d0cc11c03ed66a9",
+      "gitBlob": "b4e254ff44167549fa859b79fffc973a2333ed7b"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Learning-Series-Governance-IHK-Pilot.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

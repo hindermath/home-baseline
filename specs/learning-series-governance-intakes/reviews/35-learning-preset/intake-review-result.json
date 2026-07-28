@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "03cafe38-3f4e-4fdc-9fc1-d25cc63184a8",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "reviewedAt": "2026-07-28T22:05:08Z",
+  "repository": {
+    "root": ".",
+    "head": "9cb0d9e2705d61ed3d799eacf17884726c7eb1ab"
+  },
+  "requestEvidence": {
+    "path": "specs/learning-series-governance-intakes/reviews/35-learning-preset/intake-review-request.json",
+    "normalizedSha256": "15ae41703bcbf0d0359c5db1f859dc7df86224dfc24e0c09fe04e4db90c2c93e"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "Primary",
+      "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b",
+      "gitBlob": "126f918a58c99a1c26b912ce3fdd775103c772a5"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Preset-Learning-Series-Governance.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

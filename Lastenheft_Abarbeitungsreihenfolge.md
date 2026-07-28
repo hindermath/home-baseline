@@ -141,7 +141,11 @@ the successor run.*
 | 30 | `Lastenheft_ITSE-Professional-Jahr3.md` | Erstellt eine achtteilige ITSE-Professional-Reihe für Energieversorgung, vernetzte Systeme, Betriebssicherheit und Instandhaltung. / Creates an eight-unit ITSE professional series for power supply, networked systems, operational safety, and maintenance. |
 | 31 | `Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md` | Verteilt freigegebene ITSE-Materialien kontrolliert in drei Level-1- und drei C#-Level-2-Repositories; ServiceHarvester ist der vollständige Referenzkontext. / Rolls accepted ITSE material out to three Level-1 and three C# Level-2 repositories; ServiceHarvester is the complete reference context. |
 | 32 | `Lastenheft_ITSE-Lernreihen-Closure.md` | Revalidiert die ITSE-Reihe, LF1 bis LF12, Prüfungsbezug, Evidence, Sicherheitsgrenzen und sechs Rolloutziele unabhängig und read-only. / Independently revalidates the ITSE series, LF1 through LF12, examination relation, evidence, safety boundaries, and six rollout targets without remediation. |
-| 33 | `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` | Prüft abschließend jede Reihe in sich, gegen ihre normativen Quellen und alle Reihen gemeinsam auf konsistente Lernziele, Evidence und Sicherheitsgrenzen. / Finally checks every series internally, against its normative sources, and across all series for consistent learning goals, evidence, and safety boundaries. |
+| 33 | `Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md` | Prüft read-only, ob die vorhandenen Lernreihen auf drei Ebenen konsistent sind und ob acht berufsübergreifende KI-Kompetenzen nachvollziehbar abgedeckt werden. / Audits without remediation whether the existing learning series are consistent on three levels and traceably cover eight cross-occupational AI competencies. |
+| 34 | `Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md` | Erweitert das allgemeine Intake Review um die universellen Prüfdimensionen „in sich“, „an sich“ und „insgesamt“, ohne lernreihenspezifische Fachlogik vorwegzunehmen. / Extends general Intake Review with the universal dimensions internal, normative, and ecosystem consistency without pre-empting learning-series-specific domain logic. |
+| 35 | `Lastenheft_Preset-Learning-Series-Governance.md` | Produktisiert nur bestätigte Audit-Findings als optionales `learning-series-governance`-Preset für Lernreihen, Ausbildungsprofile, Lernbegleiter und KI-Handlungskompetenz. / Productizes only confirmed audit findings as an optional `learning-series-governance` preset for learning series, training profiles, learner guidance, and applied AI competence. |
+| 36 | `Lastenheft_Learning-Series-Governance-IHK-Pilot.md` | Validiert das neue Preset an sieben bestehenden IT-Ausbildungsprofilen und zwei begrenzten synthetischen Nicht-IT-Profilen, ohne Lernmaterial automatisch zu verändern. / Validates the new preset against seven existing IT training profiles and two bounded synthetic non-IT profiles without automatically changing learning content. |
+| 37 | `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` | Prüft abschließend jede Reihe in sich, gegen ihre normativen Quellen und alle Reihen gemeinsam auf konsistente Lernziele, Evidence, KI-Kompetenz und Sicherheitsgrenzen. / Finally checks every series internally, against its normative sources, and across all series for consistent learning goals, evidence, AI competence, and safety boundaries. |
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
 
@@ -242,7 +246,19 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 32 ITSE Closure
   |
   v
-33 Lernreihen-Gesamtkonsistenz-Closure
+33 Lernreihen-/KI-Kompetenz-Gap-Audit
+  |
+  v
+34 Intake-Review-Drei-Ebenen-Konsistenz
+  |
+  v
+35 Learning-Series-Governance-Preset
+  |
+  v
+36 IHK-Pilot
+  |
+  v
+37 Lernreihen-Gesamtkonsistenz-Closure
 
 ```
 
@@ -324,20 +340,43 @@ fachlich besonders nah, AE und DPA bleiben als Software-, Daten- und
 Diagnoseperspektiven sichtbar. KITSM und KDM liefern nur einen ergänzenden
 Vergleich. Position 31 verteilt erst nach den drei Lehrjahresstufen in dieselben
 drei Level-1- und drei C#-Level-2-Referenzrepositories. Position 32 schließt
-ITSE read-only ab. Position 33 prüft anschließend die FI-, ITSE-, KITSM- und
-KDM-Lernreihen in sich, gegen ihre normativen Grundlagen und insgesamt
-zueinander. Absichtliche berufsspezifische Unterschiede werden dokumentiert,
-nicht eingeebnet. Kein Lauf startet seinen Nachfolger automatisch.
+ITSE read-only ab.
 
 *Items 26 through 32 form the dedicated ITSE track. The initial audit compares
 ITSE with all four IT-specialist tracks; SI and DV are especially close, while
 AE and DPA remain visible as software, data, and diagnostic perspectives.
 KITSM and KDM provide secondary comparison only. Item 31 performs the
-controlled C# rollout, item 32 closes ITSE read-only, and item 33 then checks
-the FI, ITSE, KITSM, and KDM learning series internally, against their
-normative sources, and together. Intentional occupation-specific differences
-are documented rather than removed. No run starts its successor
-automatically.*
+controlled C# rollout, and item 32 closes ITSE read-only.*
+
+Die Positionen 33 bis 37 bilden eine eigene Governance-Kette. Position 33
+prüft zunächst ohne Änderungen, ob FI-, ITSE-, KITSM- und KDM-Lernreihen
+**in sich**, **an sich** und **insgesamt** konsistent sind. Dabei bedeutet
+„in sich“ die Übereinstimmung innerhalb einer Reihe, „an sich“ den Abgleich
+mit offiziellen Ausbildungsgrundlagen und Level-0-Regeln und „insgesamt“ den
+widerspruchsfreien Zusammenhang aller Reihen. Der Audit bewertet zusätzlich
+acht KI-Kompetenzen von Grundlagen und sicherer Werkzeugnutzung bis zu
+agentischer Planung, Verifikation und verantwortlicher Reflexion.
+
+Position 34 verankert nur die drei allgemeinen Konsistenzebenen im bestehenden
+Intake Review. Position 35 erstellt daraus ausschließlich bei bestätigtem
+Bedarf das optionale Lernreihen-Preset; Position 36 prüft dessen Übertragbarkeit
+an realen IT-Profilen und begrenzten synthetischen Nicht-IT-Fixtures. Erst
+Position 37 darf den Gesamtschluss ziehen. Offizielle Vorgaben, durch Quellen
+gestützte Lernziele, bewusste Projektergänzungen und ausdrücklich als
+Zukunftskompetenz angenommene KI-Inhalte bleiben dabei unterscheidbar.
+Berufsspezifische Unterschiede werden dokumentiert, nicht eingeebnet. Kein
+Lauf startet seinen Nachfolger automatisch.
+
+*Items 33 through 37 form a separate governance chain. Item 33 first audits the
+FI, ITSE, KITSM, and KDM learning series for internal, normative, and ecosystem
+consistency and maps eight AI competencies. Item 34 adds only the universal
+three-level consistency model to Intake Review. Item 35 creates the optional
+learning-series preset only from confirmed findings, item 36 validates its
+portability, and item 37 performs the final closure. Official requirements,
+source-supported goals, project supplements, and explicit future-skill
+assumptions remain distinguishable. Intentional occupation-specific
+differences are documented rather than removed, and no run starts its
+successor automatically.*
 
 Der Vorlauf D1 bis D3 bildet den Dokumentations-Wirklichkeitsabgleich. D1 prüft
 Level 0 und jedes aktuell registrierte Level-1-/Level-2-Repository zunächst

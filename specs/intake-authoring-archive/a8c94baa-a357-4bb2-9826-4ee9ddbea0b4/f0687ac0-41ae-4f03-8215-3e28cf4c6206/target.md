@@ -4,7 +4,7 @@
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
 **Stand:** 2026-07-28
-**Reihenfolge:** Position 37, nach Position 36
+**Reihenfolge:** Position 33, nach Position 32
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende aller integrierten IT-Berufe, Lehrende, Ausbildende,
 Maintainer und Reviewer
@@ -15,10 +15,7 @@ keine Spec-Kit-Erfahrung
 
 Dieser unabhängige read-only Abschluss prüft die Lernreihen **in sich**, **an
 sich** und **insgesamt zueinander**. Er umfasst alle Fachinformatiker-
-Fachrichtungen, ITSE, KITSM und KDM, die drei Secure-Trader-Familien sowie die
-in Position 36 validierte Lernreihen-Governance. Er läuft erst, nachdem
-KI-Kompetenzmodell, generischer Drei-Ebenen-Vertrag und IHK-Pilot
-nachweislich abgeschlossen sind.
+Fachrichtungen, ITSE, KITSM und KDM sowie die drei Secure-Trader-Familien.
 
 *This independent read-only closure validates internal, normative, and
 cross-series consistency across all integrated IT occupations and Secure
@@ -46,10 +43,6 @@ ungeklärte Duplikation oder widersprüchliche Aussage zusammen.
 - Kaufleute für Digitalisierungsmanagement;
 - Secure OrderDesk, Secure ServiceHarvester und Secure CaseTracker;
 - Level-0-Quellen sowie die freigegebenen Level-1-/C#-Level-2-Rollouts.
-- `AIK001` bis `AIK008`, die vier Lernphasen und die vier Quellenstatus aus
-  Position 33;
-- Intake-Review-Drei-Ebenen-Vertrag, Lernreihen-Preset und IHK-Pilot aus
-  Positionen 34 bis 36.
 
 ## 4. Entscheidungsmodell / Decision Model
 
@@ -109,15 +102,6 @@ Ein autonomer Agent akzeptiert kein Restrisiko stellvertretend für Menschen.
 - **LGC-017:** Der Lauf ist read-only und behebt keine Findings.
 - **LGC-018:** Folge-Intakes entstehen nur aus belegten, deduplizierten
   Findings und werden nicht automatisch gestartet.
-- **LGC-019:** `AIK001` bis `AIK008` sind je Beruf und Lernphase mit
-  überprüfbarer Evidence oder begründetem Finding abgedeckt.
-- **LGC-020:** `OfficiallyRequired`, `Supported`, `ProjectSupplement` und
-  `FutureSkillAssumption` werden nicht vermischt; lokale Zukunftskompetenz
-  bleibt als solche sichtbar.
-- **LGC-021:** Die Ergebnisse des IHK-Piloten aus Position 36 sind vollständig,
-  hashgebunden und ohne offene Critical-/High-Befunde.
-- **LGC-022:** Der Abschluss prüft, dass Preset-Governance keine amtliche
-  Ausbildungs-, Prüfungs- oder Zertifizierungsbehauptung ersetzt.
 
 ## 6. Ergebnisartefakte / Expected Artifacts
 
@@ -144,10 +128,6 @@ Ein autonomer Agent akzeptiert kein Restrisiko stellvertretend für Menschen.
   Produktentscheidungen.
 - **AC-LGC-007:** Der Lauf enthält keine Remediation und startet keinen
   Folge-Intake.
-- **AC-LGC-008:** Alle acht KI-Kompetenzen und vier Lernphasen besitzen für
-  jedes integrierte Berufsprofil eine nachvollziehbare Entscheidung.
-- **AC-LGC-009:** Quellenstatus, Pilot-Evidence und Drei-Ebenen-Reviews sind
-  vollständig und widerspruchsfrei.
 
 ## 8. Nicht-Ziele / Non-Goals
 
@@ -163,21 +143,21 @@ Ein autonomer Agent akzeptiert kein Restrisiko stellvertretend für Menschen.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` as position 37 after position 36. Verify the three consistency levels, complete seven-occupation and three-product-family inventory, AIK001-AIK008, four learning phases, exact source statuses, position-36 pilot evidence, internal task/companion consistency, official-source alignment, canonical competency reuse, justified differences, year transitions, rollout parity, exact decision model, read-only boundary, accessibility, and no automatic follow-up.
+$speckit-intake-review Review `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` as position 33. Verify the three consistency levels, complete seven-occupation and three-product-family inventory, internal task/companion consistency, official-source alignment, canonical competency reuse, justified differences, year transitions, rollout parity, exact decision model, read-only boundary, accessibility, and no automatic follow-up.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` as the binding intake for position 37 after position 36. Create a read-only audit specification for internal, normative, cross-occupation, cross-series, product-family, rollout, AI-competence, source-status, and learning-governance consistency across FI/AE, FI/SI, FI/DPA, FI/DV, ITSE, KITSM, and KDM. Preserve LGC-001 through LGC-022 and AC-LGC-001 through AC-LGC-009. Do not remediate findings, harmonize intentional differences, change product code, or start any follow-up.
+$speckit-specify Use `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` as the binding intake for position 33. Create a read-only audit specification for internal, normative, cross-occupation, cross-series, product-family, and rollout consistency across FI/AE, FI/SI, FI/DPA, FI/DV, ITSE, KITSM, and KDM. Preserve LGC-001 through LGC-018 and AC-LGC-001 through AC-LGC-007. Do not remediate findings, harmonize intentional differences, change product code, or start any follow-up.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete read-only Spec Kit run for `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` with deliveryAuthority=MergeAndSync after position 36 is complete. Produce only consistency evidence, deterministic validators, statistics, archive/order updates, and one non-empty PR. Return to clean synchronized main, do not remediate findings, and do not start any follow-up intake.
+$speckit-autonomous Execute the complete read-only Spec Kit run for `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` with deliveryAuthority=MergeAndSync after position 32 is complete. Produce only consistency evidence, deterministic validators, statistics, archive/order updates, and one non-empty PR. Return to clean synchronized main, do not remediate findings, and do not start any follow-up intake.
 ```
 
 <!-- intake-authoring:end -->

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "85f7ff57-cf62-4dcb-8598-ec1c2ead433a",
+  "mode": "Series",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [
+      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "Lastenheft_Preset-Learning-Series-Governance.md",
+      "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+    ],
+    "roots": [
+      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md"
+    ],
+    "dependencies": [
+      {
+        "from": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+        "to": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+        "kind": "AssessmentBaseline"
+      },
+      {
+        "from": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+        "to": "Lastenheft_Preset-Learning-Series-Governance.md",
+        "kind": "RequirementsGovernanceGate"
+      },
+      {
+        "from": "Lastenheft_Preset-Learning-Series-Governance.md",
+        "to": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+        "kind": "FieldValidationGate"
+      },
+      {
+        "from": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+        "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+        "kind": "GlobalConsistencyInput"
+      }
+    ]
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

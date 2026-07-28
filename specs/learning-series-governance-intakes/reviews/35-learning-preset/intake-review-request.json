@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "03cafe38-3f4e-4fdc-9fc1-d25cc63184a8",
+  "mode": "Single",
+  "policy": "home-baseline-learning-series-governance-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

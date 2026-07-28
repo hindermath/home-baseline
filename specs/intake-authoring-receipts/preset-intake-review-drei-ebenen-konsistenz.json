@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "df620414-4388-41dc-9814-88c447cf0f63",
+  "intakeId": "cd078fe8-d5c9-4cc5-bae5-ca9eb5363c50",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T21:37:12Z",
+  "operation": {
+    "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+    "type": "Create",
+    "authorityEvidence": "Approved learning-series-governance proposal and MergeAndSync instruction."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+    "normalizedSha256": "4cd24a16b876a79554d7408dc0fd4f78dcb6ecfb55b1206041ad2e4628f8a533"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved learning-series consistency and AI competence plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "929e8bbf84e6a7b6127aee206efe9b55ce5688c4bce6a37de569ad53cfa3fdd2",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved conversation proposal and current Intake Review v0.2.0 contract"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wo liegt die generische Konsistenzlogik?",
+      "answer": "Intake Review v0.3.0 owns an optional domain-neutral schema-1.2 three-axis assessment.",
+      "evidence": "Approved plan."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Bleibt Schema 1.1 kompatibel?",
+      "answer": "Yes, unchanged Single, Series and Campaign schema-1.1 results remain valid.",
+      "evidence": "Approved plan."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current explicit user approval.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "ea2b9cb3-40c4-499e-9575-e73939ff2d2c",
+    "manifestPath": "specs/intake-authoring-series/learning-series-governance/series.json",
+    "order": 2,
+    "role": "ReviewFoundation",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md"
+}

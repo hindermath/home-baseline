@@ -3,7 +3,12 @@
   "documentType": "IntakeSeries",
   "seriesId": "3f1e0f33-2255-4e2d-bf0c-af251351ef28",
   "version": 1,
-  "status": "ReadyForReview",
+  "status": "Superseded",
+  "supersededBy": {
+    "seriesId": "ea2b9cb3-40c4-499e-9575-e73939ff2d2c",
+    "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+    "reason": "The seven ITSE targets remain valid, while the shared global closure moved from position 33 to the new learning-series-governance chain at position 37."
+  },
   "operationId": "8900dfda-6c6b-42c0-9560-3d5038c87f02",
   "proposalNormalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69",
   "approval": {
@@ -168,9 +173,9 @@
     },
     {
       "topic": "Two closures",
-      "decision": "Position 32 closes ITSE specifically; position 33 independently closes internal, normative, and cross-series consistency."
+      "decision": "Position 32 closes ITSE specifically. This superseded series originally placed the independent global closure at position 33; the successor learning-series-governance series now starts its audit at position 33 and moves the global closure to position 37."
     }
   ],
   "reviewRequestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
-  "nextAction": "$speckit-intake-review the approved ITSE learning series"
+  "nextAction": "N/A - superseded by specs/intake-authoring-series/learning-series-governance/series.json"
 }

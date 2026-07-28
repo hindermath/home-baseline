@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "9fa390ac-5180-47ff-b784-8be94c5f922e",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user instruction to implement the approved learning-series consistency and AI-competence intake plan with DeliveryMode MergeAndSync.",
+  "proposalNormalizedSha256": "ce0eebdf1172b3d43ccf9e5e4b61d0f2f1ac77f5ada5e18b065b3f705484df45",
+  "preparedPaths": [
+    "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+    "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+    "Lastenheft_Preset-Learning-Series-Governance.md",
+    "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/learning-series-governance-intakes/series/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

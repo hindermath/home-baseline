@@ -38,9 +38,10 @@ unterstützt Simulation und Tests, ersetzt aber keine beaufsichtigte
 elektrotechnische Praxis.
 
 Die Positionen 26 bis 32 der zentralen Intake-Reihenfolge bereiten diesen
-Zuschnitt und den kontrollierten C#-Rollout vor. Position 33 prüft anschließend
-die Konsistenz mit FI, KITSM und KDM. Diese Vorbereitung startet keinen
-Spec-Kit- oder Lernendenlauf.
+Zuschnitt und den kontrollierten C#-Rollout vor. Die Positionen 33 bis 37
+prüfen anschließend Lernreihen-Konsistenz, KI-Kompetenz, portable Governance
+und den gemeinsamen Abschluss mit FI, KITSM und KDM. Diese Vorbereitung
+startet keinen Spec-Kit- oder Lernendenlauf.
 
 **EN:** Secure CaseTracker and Secure InventoryHub are bounded supporting ITSE
 contexts. Suitable tasks cover device and asset state, network relations,
@@ -52,8 +53,9 @@ adaptation, data quality, and diagnostics. C# supports simulation and tests but
 does not replace supervised electrical practice.
 
 Positions 26 through 32 prepare this scope and the controlled C# rollout.
-Position 33 then checks consistency with FI, KITSM, and KDM. This preparation
-starts no Spec Kit or learner run.
+Positions 33 through 37 then cover learning-series consistency, AI competence,
+portable governance, and final closure with FI, KITSM, and KDM. This
+preparation starts no Spec Kit or learner run.
 
 ## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
 

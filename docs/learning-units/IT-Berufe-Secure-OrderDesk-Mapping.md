@@ -36,8 +36,9 @@ Software-, Daten- und Diagnoseperspektive. C# unterstützt Simulation und
 Tests, ersetzt aber keine beaufsichtigte elektrotechnische Praxis.
 
 Die Positionen 26 bis 32 der zentralen Intake-Reihenfolge bestimmen den
-ITSE-Umfang und den kontrollierten C#-Rollout. Position 33 prüft anschließend
-die Konsistenz mit FI, KITSM und KDM. Diese Vorbereitung startet keinen
+ITSE-Umfang und den kontrollierten C#-Rollout. Die Positionen 33 bis 37 prüfen
+anschließend Lernreihen-Konsistenz, KI-Kompetenz, portable Governance und den
+gemeinsamen Abschluss mit FI, KITSM und KDM. Diese Vorbereitung startet keinen
 Spec-Kit- oder Lernendenlauf.
 
 **EN:** Secure OrderDesk is a bounded supporting ITSE context. It uses suitable
@@ -49,8 +50,9 @@ software, data, and diagnostic perspectives. C# supports simulation and tests
 but does not replace supervised electrical practice.
 
 Positions 26 through 32 define the ITSE scope and controlled C# rollout.
-Position 33 then checks consistency with FI, KITSM, and KDM. This preparation
-starts no Spec Kit or learner run.
+Positions 33 through 37 then cover learning-series consistency, AI competence,
+portable governance, and final closure with FI, KITSM, and KDM. This
+preparation starts no Spec Kit or learner run.
 
 ## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
 
