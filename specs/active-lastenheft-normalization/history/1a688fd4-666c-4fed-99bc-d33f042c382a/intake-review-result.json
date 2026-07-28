@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
+  "reviewId": "1a688fd4-666c-4fed-99bc-d33f042c382a",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T14:58:27Z",
+  "reviewedAt": "2026-07-28T13:50:57Z",
   "repository": {
     "root": ".",
-    "head": "694429cd0c0a8f683ab1ef93531d36ad5de8625b"
+    "head": "824e1fb5eb80f3850d9c98427551d7c315dc59b6"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "1549c172358cd2f52f6d5293aa27799c0f1a26d5c6ca2f8216a600515a07c452"
+    "normalizedSha256": "f4fb1fc1a4f4cdd358a80cd5c2c94e20b405b466853c25ecbad45c0754f45f71"
   },
   "summary": {
     "critical": 0,
@@ -19,12 +19,12 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "1a688fd4-666c-4fed-99bc-d33f042c382a",
+  "supersedes": "6d6124be-2758-4973-af4c-00a68463e8d8",
   "targets": [
     {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary",
-      "normalizedSha256": "5f6effea7eb4f4a3c7a4f321f62695f78e9a6bec16ea5a085d2ecba711d4732f",
+      "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
       "gitBlob": "N/A"
     },
     {
@@ -179,9 +179,7 @@
       "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
       "D4 through D7 form a binding post-item-4 documentation architecture chain",
       "D6 provides an additional documentation-surface baseline for the existing script-documentation intake",
-      "Windows maintenance v1.2 binds WEM-001 through WEM-013, AC-001 through AC-016, the eleven-preset profile, and MergeAndSync authority",
-      "Nested preview coherence, truthful exit propagation, Windows path parity, and early toolchain gates are atomic and testable",
-      "Windows maintenance remains the single declared Eligible candidate; no successor feature was started"
+      "Windows maintenance remains the single declared Eligible candidate; no documentation feature was started"
     ],
     "workers": []
   },

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "7a3d198e-c296-4148-821b-e678d81e33e7",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user instruction to update the Eligible Windows hardening intake before autonomous MergeAndSync delivery.",
+  "proposalNormalizedSha256": "2eb77116d3a2e0ba066980d2507bb899992f999e4d45197e63a34815aaa5169b",
+  "preparedPaths": [
+    "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "specs/intake-authoring-receipts/windows-ein-kommando-wartung-haertung.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json"
+  ],
+  "validation": {
+    "bash": "NotRunOnWindows",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

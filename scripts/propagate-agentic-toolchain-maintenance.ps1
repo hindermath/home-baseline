@@ -68,6 +68,11 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $sourceRoot = Split-Path -Parent $PSScriptRoot
+$hardeningModule = Join-Path $sourceRoot 'scripts/lib/windows-maintenance-hardening.psm1'
+if (-not (Test-Path -LiteralPath $hardeningModule -PathType Leaf)) {
+    throw "Windows-Wartungsmodul fehlt / Windows maintenance module missing: ${hardeningModule}"
+}
+Import-Module $hardeningModule -Force
 $HomeDir = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $HomeDir).Path)
 if (-not $Registry) {
     $Registry = Join-Path $HomeDir '.home-baseline/level2-repository-registry.json'
@@ -175,7 +180,7 @@ function Test-HBExecutableMode {
     return $isExecutable -eq $Executable
 }
 
-function Test-HBFileMatches {
+function Test-HBRawFileMatches {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)][string] $Source,
@@ -190,6 +195,25 @@ function Test-HBFileMatches {
         (Test-HBExecutableMode -Path $Target -Executable $Executable)
 }
 
+function Test-HBFileMatches {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string] $Repository,
+        [Parameter(Mandatory)][string] $Source,
+        [Parameter(Mandatory)][string] $Target,
+        [Parameter(Mandatory)][string] $RepositoryRelativePath,
+        [Parameter(Mandatory)][bool] $Executable
+    )
+
+    if (-not (Test-Path -LiteralPath $Target -PathType Leaf)) { return $false }
+    $sourceHash = Get-HBGitNormalizedHash -Repository $Repository -Path $Source `
+        -RepositoryRelativePath $RepositoryRelativePath
+    $targetHash = Get-HBGitNormalizedHash -Repository $Repository -Path $Target `
+        -RepositoryRelativePath $RepositoryRelativePath
+    return $sourceHash -eq $targetHash -and
+        (Test-HBExecutableMode -Path $Target -Executable $Executable)
+}
+
 function Test-HBManagedPathDirty {
     [CmdletBinding()]
     param(
@@ -198,7 +222,8 @@ function Test-HBManagedPathDirty {
     )
 
     $target = Join-Path $Repository $File.Path
-    if (Test-HBFileMatches -Source $File.Source -Target $target -Executable $File.Executable) {
+    if (Test-HBFileMatches -Repository $Repository -Source $File.Source -Target $target `
+        -RepositoryRelativePath $File.Path -Executable $File.Executable) {
         return $false
     }
     if (-not (Test-Path -LiteralPath $target)) {
@@ -219,6 +244,7 @@ $reposChanged = 0
 $reposDrifted = 0
 $reposSkipped = 0
 $filesDifferent = 0
+$rawDifferences = 0
 
 foreach ($repository in $repositories) {
     $repoPath = [string] $repository.Path
@@ -240,7 +266,11 @@ foreach ($repository in $repositories) {
     $repoDifferences = 0
     foreach ($file in $managedFiles) {
         $target = Join-Path $repoPath $file.Path
-        if (Test-HBFileMatches -Source $file.Source -Target $target -Executable $file.Executable) {
+        if (-not (Test-HBRawFileMatches -Source $file.Source -Target $target -Executable $file.Executable)) {
+            $rawDifferences++
+        }
+        if (Test-HBFileMatches -Repository $repoPath -Source $file.Source -Target $target `
+            -RepositoryRelativePath $file.Path -Executable $file.Executable) {
             Write-Verbose "[CURRENT] $($file.Path)"
             continue
         }
@@ -289,6 +319,8 @@ Write-Host "  repositories.current: ${reposCurrent}"
 Write-Host "  repositories.changed: ${reposChanged}"
 Write-Host "  repositories.drifted: ${reposDrifted}"
 Write-Host "  repositories.skipped: ${reposSkipped}"
+Write-Host "  files.raw_differences: ${rawDifferences}"
+Write-Host "  files.actionable_drift: ${filesDifferent}"
 Write-Host "  files.different:       ${filesDifferent}"
 
 if ($repositories.Count -eq 0 -or $reposSkipped -gt 0) { exit 2 }

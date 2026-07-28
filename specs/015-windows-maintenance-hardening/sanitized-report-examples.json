@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "examples": [
+    {
+      "name": "success",
+      "runId": "00000000-0000-4000-8000-000000000001",
+      "overallStatus": "SUCCESS",
+      "exitCode": 0,
+      "stage": {
+        "status": "Passed",
+        "summary": "Wartung abgeschlossen / maintenance completed"
+      }
+    },
+    {
+      "name": "deferred-admin",
+      "runId": "00000000-0000-4000-8000-000000000002",
+      "overallStatus": "PARTIAL",
+      "exitCode": 1,
+      "stage": {
+        "status": "Blocked",
+        "summary": "DEFERRED_ADMIN_REQUIRED",
+        "nextAction": "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority"
+      }
+    },
+    {
+      "name": "retry-exhausted",
+      "runId": "00000000-0000-4000-8000-000000000003",
+      "overallStatus": "PARTIAL",
+      "exitCode": 1,
+      "target": {
+        "status": "UNAVAILABLE",
+        "retryAttempts": 3,
+        "findingCode": "FetchFailed"
+      }
+    },
+    {
+      "name": "resume-hard-stop",
+      "runId": "00000000-0000-4000-8000-000000000004",
+      "overallStatus": "BLOCKED",
+      "exitCode": 1,
+      "stage": {
+        "status": "Blocked",
+        "summary": "Resume-Evidence passt nicht exakt / does not match exactly",
+        "nextAction": "Resume-Evidence und alle Dirty-Pfade manuell pruefen / manually review resume evidence and every dirty path"
+      }
+    }
+  ]
+}

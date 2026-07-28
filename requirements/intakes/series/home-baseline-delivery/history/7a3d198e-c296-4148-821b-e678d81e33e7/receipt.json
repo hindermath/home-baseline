@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "a3dea1f2-007a-43af-80dd-97e65432ecf3",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-28T13:45:51Z",
+  "operation": {
+    "operationId": "5f1c715a-1251-456b-89dc-f7ee17255aa5",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user approval to implement and merge the D4-D7 documentation-intake plan."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "753044cda41b716de072a114ca96b78ee445144ab1254f889c7f617606134e7e"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/5f1c715a-1251-456b-89dc-f7ee17255aa5/receipt.json",
+    "receiptNormalizedSha256": "9a5273e7f40ffc8c56a792be0dc7098d1713fdb1d118fa04f511a20747ba432c",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/5f1c715a-1251-456b-89dc-f7ee17255aa5/manifest.json",
+    "manifestArchiveSha256": "b7c7211e0b7241345ac72ab33fd40100bd659ed95db76b681930c2b25381825a"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

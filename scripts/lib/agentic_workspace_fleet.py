@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import pathlib
+import random
 import re
 import shutil
 import subprocess
@@ -52,6 +53,56 @@ def run_git(repository: pathlib.Path | None, *arguments: str, check: bool = True
         detail = (result.stderr or result.stdout).strip().splitlines()
         raise RuntimeError(detail[-1] if detail else f"git exited {result.returncode}")
     return result
+
+
+def is_transient_git_failure(detail: str) -> bool:
+    """Retry network failures, never auth or repository-state failures."""
+    if re.search(
+        r"auth(?:entication|orization)?|permission|forbidden|not found|dirty|ahead|diverged",
+        detail,
+        re.IGNORECASE,
+    ):
+        return False
+    return bool(
+        re.search(
+            r"timed?\s*out|timeout|connection\s+(?:reset|closed|aborted)|temporary failure|"
+            r"could not resolve host|name resolution|http\s+50[234]",
+            detail,
+            re.IGNORECASE,
+        )
+    )
+
+
+def run_git_network(
+    repository: pathlib.Path | None, *arguments: str
+) -> tuple[subprocess.CompletedProcess[str], int]:
+    attempts = max(1, min(10, int(os.environ.get("HB_GIT_RETRY_ATTEMPTS", "3"))))
+    timeout = max(5, min(3600, int(os.environ.get("HB_GIT_TIMEOUT_SECONDS", "300"))))
+    command = ["git"]
+    if repository is not None:
+        command.extend(["-C", str(repository)])
+    command.extend(arguments)
+    result: subprocess.CompletedProcess[str] | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            result = subprocess.run(
+                command,
+                text=True,
+                capture_output=True,
+                check=False,
+                timeout=timeout,
+            )
+        except subprocess.TimeoutExpired:
+            result = subprocess.CompletedProcess(
+                command, 124, stdout="", stderr=f"operation timed out after {timeout}s"
+            )
+        detail = (result.stderr or result.stdout).strip()
+        if result.returncode == 0 or attempt == attempts or not is_transient_git_failure(detail):
+            return result, attempt
+        delay = min(3.0, 0.25 * (2 ** (attempt - 1)))
+        time.sleep(delay + random.uniform(0, delay / 4))
+    assert result is not None
+    return result, attempts
 
 
 def normalize_remote(remote: str) -> str:
@@ -162,12 +213,16 @@ def target_result(target: dict, **values: object) -> dict:
         "behind": 0,
         "findingCode": "N/A",
         "nextAction": "N/A",
+        "retryAttempts": 0,
+        "resumeAccepted": False,
     }
     result.update(values)
     return result
 
 
-def classify_repository(target: dict, path: pathlib.Path, mode: str) -> dict:
+def classify_repository(
+    target: dict, path: pathlib.Path, mode: str, allowed_dirty_paths: set[str] | None = None
+) -> dict:
     if path.is_symlink() or (path.exists() and not path.is_dir()):
         return target_result(target, status="PATH_CONFLICT", result="Blocked", findingCode="PathConflict",
                              nextAction="Konfliktpfad nach manueller Prüfung entfernen oder verschieben / remove or relocate it after review.")
@@ -195,15 +250,27 @@ def classify_repository(target: dict, path: pathlib.Path, mode: str) -> dict:
     if origin.returncode != 0 or normalize_remote(origin.stdout) != normalize_remote(target["remote"]):
         return target_result(target, status="REMOTE_MISMATCH", result="Blocked", branch=branch_name,
                              findingCode="RemoteMismatch", nextAction="origin nur nach manueller Prüfung korrigieren / correct origin only after review.")
-    dirty = run_git(path, "status", "--porcelain=v1", "--untracked-files=all").stdout
+    dirty = run_git(path, "-c", "core.quotePath=false", "status", "--porcelain=v1", "--untracked-files=all").stdout
+    resume_accepted = False
     if dirty:
+        dirty_paths = {
+            f"{target['path']}/{line[3:].split(' -> ')[-1]}".replace("\\", "/")
+            for line in dirty.splitlines()
+            if len(line) >= 4
+        }
+        resume_accepted = bool(allowed_dirty_paths) and dirty_paths.issubset(allowed_dirty_paths)
+    if dirty and not resume_accepted:
         return target_result(target, status="DIRTY", result="Blocked", branch=branch_name,
                              findingCode="DirtyWorktree", nextAction="Lokale Arbeit ausdrücklich committen, stashen oder verwerfen / handle local work explicitly.")
     if mode != "dry-run":
-        fetch = run_git(path, "fetch", "--prune", check=False)
+        fetch, fetch_attempts = run_git_network(path, "fetch", "--prune")
         if fetch.returncode != 0:
             return target_result(target, status="UNAVAILABLE", result="Blocked", branch=branch_name,
-                                 findingCode="FetchFailed", nextAction="Remote-Zugriff wiederherstellen und erneut ausführen / restore access and retry.")
+                                 findingCode="FetchFailed", retryAttempts=fetch_attempts,
+                                 resumeAccepted=resume_accepted,
+                                 nextAction="Remote-Zugriff wiederherstellen und erneut ausführen / restore access and retry.")
+    else:
+        fetch_attempts = 0
     upstream = run_git(path, "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}", check=False)
     if upstream.returncode != 0:
         return target_result(target, status="MISSING_UPSTREAM", result="Blocked", branch=branch_name,
@@ -227,13 +294,16 @@ def classify_repository(target: dict, path: pathlib.Path, mode: str) -> dict:
             return target_result(target, status="BEHIND", action="WOULD_PULL", result="Warning",
                                  branch=branch_name, upstream=upstream_name, behind=behind,
                                  findingCode="Behind", nextAction="Update-Modus zum Fast-forward ausführen / run update to fast-forward.")
-        pull = run_git(path, "pull", "--ff-only", check=False)
+        pull, pull_attempts = run_git_network(path, "pull", "--ff-only")
         if pull.returncode != 0:
             return target_result(target, status="UNAVAILABLE", action="PULL", result="Failed",
                                  branch=branch_name, upstream=upstream_name, behind=behind,
+                                 retryAttempts=pull_attempts, resumeAccepted=resume_accepted,
                                  findingCode="PullFailed", nextAction="Log prüfen, manuell reparieren und erneut ausführen / inspect, repair and retry.")
-        return target_result(target, status="UPDATED", action="PULL", branch=branch_name, upstream=upstream_name)
-    return target_result(target, branch=branch_name, upstream=upstream_name)
+        return target_result(target, status="UPDATED", action="PULL", branch=branch_name, upstream=upstream_name,
+                             retryAttempts=pull_attempts, resumeAccepted=resume_accepted)
+    return target_result(target, branch=branch_name, upstream=upstream_name,
+                         retryAttempts=fetch_attempts, resumeAccepted=resume_accepted)
 
 
 def clone_repository(target: dict, path: pathlib.Path) -> dict:
@@ -243,10 +313,13 @@ def clone_repository(target: dict, path: pathlib.Path) -> dict:
     temporary = pathlib.Path(tempfile.mkdtemp(prefix=f".{path.name}.clone-", dir=path.parent))
     try:
         shutil.rmtree(temporary)
-        clone = run_git(None, "clone", "--origin", "origin", "--branch", target["defaultBranch"],
-                        "--single-branch", "--", target["remote"], str(temporary), check=False)
+        clone, clone_attempts = run_git_network(
+            None, "clone", "--origin", "origin", "--branch", target["defaultBranch"],
+            "--single-branch", "--", target["remote"], str(temporary)
+        )
         if clone.returncode != 0:
             return target_result(target, status="UNAVAILABLE", action="CLONE", result="Failed",
+                                 retryAttempts=clone_attempts,
                                  findingCode="CloneFailed", nextAction="Remote prüfen und erneut ausführen; Ziel nicht akzeptiert / inspect and retry; target not accepted.")
         origin = run_git(temporary, "remote", "get-url", "origin").stdout
         branch = run_git(temporary, "branch", "--show-current").stdout.strip()
@@ -257,7 +330,7 @@ def clone_repository(target: dict, path: pathlib.Path) -> dict:
                                  nextAction="Temporäre Clone-Evidence prüfen; Ziel nicht akzeptiert / inspect clone evidence; target not accepted.")
         os.replace(temporary, path)
         return target_result(target, status="CREATED", action="CLONE", branch=branch,
-                             upstream=f"origin/{branch}")
+                             upstream=f"origin/{branch}", retryAttempts=clone_attempts)
     finally:
         if temporary.exists():
             shutil.rmtree(temporary, ignore_errors=True)
@@ -319,6 +392,7 @@ def execute_fleet(args: argparse.Namespace) -> int:
         return 2
 
     home = args.home_dir.resolve()
+    allowed_dirty_paths = {item.replace("\\", "/") for item in args.allowed_dirty_path}
     results: list[dict] = []
     for target in manifest["targets"]:
         if not target["active"]:
@@ -327,7 +401,7 @@ def execute_fleet(args: argparse.Namespace) -> int:
         target_path = home.joinpath(*relative.parts)
         result = (collection_result(target, target_path, args.mode)
                   if target["kind"] == "collection"
-                  else classify_repository(target, target_path, args.mode))
+                  else classify_repository(target, target_path, args.mode, allowed_dirty_paths))
         results.append(result)
         print(f"TARGET\t{target['id']}\t{result['status']}\t{result['action']}\t{result['nextAction']}")
 
@@ -382,8 +456,14 @@ def record_stage(args: argparse.Namespace) -> int:
         report["overallStatus"], report["exitCode"] = "FAILED", 2
     elif "Blocked" in statuses:
         report["overallStatus"], report["exitCode"] = "PARTIAL", 1
-    elif "Warning" in statuses and report.get("overallStatus") == "SUCCESS":
+    elif "Warning" in statuses:
+        warning_exit = max(
+            int(item.get("exitCode", 0))
+            for item in stages
+            if item.get("status") == "Warning"
+        )
         report["overallStatus"] = "SUCCESS_WITH_WARNINGS"
+        report["exitCode"] = warning_exit
     write_report(args.report, report)
     return 0
 
@@ -472,6 +552,7 @@ def build_parser() -> argparse.ArgumentParser:
     fleet.add_argument("--report", type=pathlib.Path, required=True)
     fleet.add_argument("--log", type=pathlib.Path, required=True)
     fleet.add_argument("--run-id")
+    fleet.add_argument("--allowed-dirty-path", action="append", default=[])
     fleet.set_defaults(handler=execute_fleet)
     stage = subparsers.add_parser("stage")
     stage.add_argument("--report", type=pathlib.Path, required=True)

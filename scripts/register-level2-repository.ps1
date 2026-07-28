@@ -188,9 +188,19 @@ function Register-HBRepository {
         $data = [pscustomobject]@{
             schemaVersion = 1
             description = "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
-            defaultPresetProfile = 'standard-eight-governance-presets'
+            defaultPresetProfile = if ($PresetProfile) { $PresetProfile } else { 'standard-eight-governance-presets' }
             updatedAt = $today
             repositories = @()
+        }
+    }
+    $defaultProfileChanged = $false
+    if ($PresetProfile) {
+        if ($data.PSObject.Properties.Name -notcontains 'defaultPresetProfile') {
+            $data | Add-Member -NotePropertyName defaultPresetProfile -NotePropertyValue $PresetProfile
+            $defaultProfileChanged = $true
+        } elseif ([string]$data.defaultPresetProfile -ne $PresetProfile) {
+            $data.defaultPresetProfile = $PresetProfile
+            $defaultProfileChanged = $true
         }
     }
 
@@ -264,6 +274,9 @@ function Register-HBRepository {
     } else {
         $repos = @($repos) + @($entry)
         $action = 'added'
+    }
+    if ($defaultProfileChanged -and $action -eq 'unchanged') {
+        $action = 'updated'
     }
 
     if ($action -ne 'unchanged') {

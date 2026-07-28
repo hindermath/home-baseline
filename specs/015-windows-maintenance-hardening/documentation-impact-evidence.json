@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "015-windows-maintenance-hardening",
+  "entries": [
+    {
+      "changeId": "CHG015001",
+      "scope": "Public Windows maintenance parameters, timeout behavior, resume safety, and exit statuses",
+      "decision": "UpdateRequired",
+      "criticality": "Usage",
+      "rationale": "Maintainers need the new bounded-operation and deferred-admin contracts at the command surface.",
+      "documents": [
+        "scripts/maintain-agentic-workspace.ps1",
+        "scripts/maintain-agentic-winget-apps.ps1",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/man/maintain-agentic-winget-apps.1.md"
+      ],
+      "owner": "Feature 015",
+      "evidence": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"
+    },
+    {
+      "changeId": "CHG015002",
+      "scope": "Feature specification, contracts, validation, and sanitized report examples",
+      "decision": "UpdateRequired",
+      "criticality": "Security",
+      "rationale": "The security and recovery boundaries require durable, reviewable feature-local evidence.",
+      "documents": [
+        "specs/015-windows-maintenance-hardening/spec.md",
+        "specs/015-windows-maintenance-hardening/plan.md",
+        "specs/015-windows-maintenance-hardening/contracts/maintenance-mode.md",
+        "specs/015-windows-maintenance-hardening/contracts/process-result.md",
+        "specs/015-windows-maintenance-hardening/contracts/resume-evidence.md",
+        "specs/015-windows-maintenance-hardening/sanitized-report-examples.json",
+        "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"
+      ],
+      "owner": "Feature 015",
+      "evidence": "specs/015-windows-maintenance-hardening/checklists/governance.md"
+    },
+    {
+      "changeId": "CHG015003",
+      "scope": "Central script inventory",
+      "decision": "GeneratedUpdate",
+      "criticality": "Normal",
+      "rationale": "The new internal PowerShell module and Windows regression test extend the tracked script inventory.",
+      "documents": [
+        "docs/scripts/reference.md",
+        "docs/scripts/embedded-scripts.md"
+      ],
+      "owner": "Feature 015",
+      "evidence": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "pwsh -NoProfile -File scripts/render-script-reference.ps1 -Repo ."
+      }
+    },
+    {
+      "changeId": "CHG015004",
+      "scope": "Living project statistics ledger and Profile 2",
+      "decision": "GeneratedUpdate",
+      "criticality": "Normal",
+      "rationale": "Repository guidance requires one ledger entry and a reproducibly rendered profile after the completed feature.",
+      "documents": [
+        "docs/project-statistics.config.json",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Feature 015",
+      "evidence": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "pwsh -NoProfile -File scripts/render-project-statistics.ps1 -Repo ."
+      }
+    },
+    {
+      "changeId": "CHG015005",
+      "scope": "Shared agent guidance surfaces",
+      "decision": "NoUpdateRequired",
+      "criticality": "Normal",
+      "rationale": "The feature implements an existing maintenance contract and creates no new durable instruction for AI agents.",
+      "documents": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md"
+      ],
+      "owner": "Feature 015",
+      "evidence": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"
+    }
+  ]
+}

@@ -40,6 +40,26 @@
 .PARAMETER HomeDir
     Alternative home directory, primarily for isolated tests or a second profile.
 
+.PARAMETER GitRetryAttempts
+    Maximale begrenzte Versuche fuer transiente Fetch-/Fast-forward-Fehler.
+    Authentifizierungs- und Repository-Zustandsfehler werden nicht wiederholt.
+
+    Maximum bounded attempts for transient fetch and fast-forward pull
+    failures. Authentication and repository-state failures are not retried.
+
+.PARAMETER GitTimeoutSeconds
+    Harte Zeitgrenze fuer einen Fetch- oder Pull-Versuch.
+
+    Hard timeout for one fetch or pull attempt.
+
+.PARAMETER WinGetTimeoutSeconds
+    Harte Zeitgrenze fuer jeden weitergereichten WinGet-Unterprozess. Ein
+    Upgrade oder Installer, der nicht sicher abgeschlossen werden kann, wird
+    als DEFERRED_ADMIN_REQUIRED gemeldet.
+
+    Hard timeout forwarded to every WinGet subprocess. An upgrade or installer
+    that cannot complete safely is reported as DEFERRED_ADMIN_REQUIRED.
+
 .EXAMPLE
     pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1
 
@@ -63,6 +83,9 @@
 .NOTES
     Exit codes: 0 = current/success, 1 = drift found, 2 = operational error,
     3 = drift repaired and affected repositories need separate review/commit/push.
+    Exitcode, sichtbarer Abschluss und JSON-Bericht werden aus derselben Run-ID
+    abgeleitet. Eigene reparierte Dirty-Zwischenstaende werden nur mit exakt
+    passender atomarer Resume-Evidence akzeptiert.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -72,12 +95,20 @@ param(
     [switch] $IncludeOptional,
     [switch] $AllowAdminPrompts,
     [string] $ManifestPath,
-    [string] $HomeDir = [Environment]::GetFolderPath('UserProfile')
+    [string] $HomeDir = [Environment]::GetFolderPath('UserProfile'),
+    [ValidateRange(1, 10)][int] $GitRetryAttempts = 3,
+    [ValidateRange(5, 3600)][int] $GitTimeoutSeconds = 300,
+    [ValidateRange(5, 86400)][int] $WinGetTimeoutSeconds = 1800
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $script:HBMaintenanceScriptPath = $PSCommandPath
+$hardeningModule = Join-Path $PSScriptRoot 'lib/windows-maintenance-hardening.psm1'
+if (-not (Test-Path -LiteralPath $hardeningModule -PathType Leaf)) {
+    throw "Windows-Wartungsmodul fehlt / Windows maintenance module missing: ${hardeningModule}"
+}
+Import-Module $hardeningModule -Force
 
 function Invoke-HBAgenticWorkspaceMaintenance {
     <#
@@ -95,7 +126,10 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         [switch] $IncludeOptional,
         [switch] $AllowAdminPrompts,
         [string] $ManifestPath,
-        [string] $HomeDir = [Environment]::GetFolderPath('UserProfile')
+        [string] $HomeDir = [Environment]::GetFolderPath('UserProfile'),
+        [ValidateRange(1, 10)][int] $GitRetryAttempts = 3,
+        [ValidateRange(5, 3600)][int] $GitTimeoutSeconds = 300,
+        [ValidateRange(5, 86400)][int] $WinGetTimeoutSeconds = 1800
     )
     $parameters = @{
         CheckOnly = $CheckOnly
@@ -104,6 +138,9 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         IncludeOptional = $IncludeOptional
         AllowAdminPrompts = $AllowAdminPrompts
         HomeDir = $HomeDir
+        GitRetryAttempts = $GitRetryAttempts
+        GitTimeoutSeconds = $GitTimeoutSeconds
+        WinGetTimeoutSeconds = $WinGetTimeoutSeconds
     }
     if ($ManifestPath) { $parameters.ManifestPath = $ManifestPath }
     if ($WhatIfPreference) { $parameters.WhatIf = $true }
@@ -126,9 +163,11 @@ if ($IncludeOptional -and $ScriptsOnly) {
     Write-Host 'Fehler / Error: -IncludeOptional passt nicht zu / cannot be combined with -ScriptsOnly.' -ForegroundColor Red
     exit 2
 }
+$maintenanceMode = Get-HBMaintenanceMode -CheckOnly:$CheckOnly -Preview:$WhatIfPreference
 
 $sourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
 $presetProfileCatalog = Join-Path $sourceRoot 'scripts/config/spec-kit-preset-profiles.json'
+$fleetPresetProfile = 'intake-sequencing-eleven-governance-presets'
 $fleetEngine = Join-Path $sourceRoot 'scripts/lib/agentic_workspace_fleet.py'
 if (-not $ManifestPath) {
     $ManifestPath = Join-Path $sourceRoot 'scripts/config/agentic-workspace-fleet.json'
@@ -152,6 +191,9 @@ if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
     if ($ManifestPath) { $forward.ManifestPath = $ManifestPath }
     if ($WhatIfPreference) { $forward.WhatIf = $true }
     $forward.HomeDir = $HomeDir
+    $forward.GitRetryAttempts = $GitRetryAttempts
+    $forward.GitTimeoutSeconds = $GitTimeoutSeconds
+    $forward.WinGetTimeoutSeconds = $WinGetTimeoutSeconds
     & $repoScript @forward
     exit $LASTEXITCODE
 }
@@ -160,19 +202,112 @@ $stateDir = Join-Path $HomeDir '.home-baseline'
 $lockDir = Join-Path $stateDir 'locks/agentic-workspace-maintenance.lock'
 $logDir = Join-Path $stateDir 'logs'
 $reportDir = Join-Path $stateDir 'reports'
+$resumeEvidenceFile = Join-Path $stateDir 'agentic-workspace-resume.json'
 $script:Findings = 0
 $script:RepairApplied = $false
 $script:PreviewDrift = $false
+$script:ResumeAllowedPaths = @()
 $exitCode = 0
 $transcriptStarted = $false
 $runId = [Guid]::NewGuid().ToString()
 $reportFile = Join-Path $reportDir "agentic-workspace-${runId}.json"
-$pythonCommand = Get-Command python3, python -ErrorAction SilentlyContinue | Select-Object -First 1
-if ($null -eq $pythonCommand) {
-    throw 'Python 3 ist erforderlich / Python 3 is required.'
-}
 if (-not (Test-Path -LiteralPath $fleetEngine -PathType Leaf)) {
     throw "Fleet-Vertragskern fehlt / fleet contract engine missing: ${fleetEngine}"
+}
+
+function Write-HBEarlyFailureReport {
+    param(
+        [Parameter(Mandatory)][string]$Status,
+        [Parameter(Mandatory)][int]$ExitCode,
+        [Parameter(Mandatory)][string]$Summary,
+        [Parameter(Mandatory)][string]$NextAction
+    )
+    New-Item -ItemType Directory -Path $reportDir -Force | Out-Null
+    $payload = [ordered]@{
+        schemaVersion = '1.0'
+        runId = $runId
+        platform = 'win32'
+        mode = $maintenanceMode.FleetMode
+        startedAt = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
+        completedAt = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
+        overallStatus = $Status
+        exitCode = $ExitCode
+        stages = @([ordered]@{
+            stageId = 'prerequisites'
+            status = if ($ExitCode -eq 2) { 'Failed' } else { 'Blocked' }
+            exitCode = $ExitCode
+            durationMs = 0
+            summary = $Summary
+            nextAction = $NextAction
+        })
+        targets = @()
+        toolchain = @()
+        findings = @([ordered]@{
+            code = 'PrerequisiteUnavailable'
+            severity = if ($ExitCode -eq 2) { 'Fatal' } else { 'Blocking' }
+            summary = $Summary
+            nextAction = $NextAction
+        })
+        artifacts = [ordered]@{ logPath = 'N/A'; reportPath = $reportFile }
+    }
+    [IO.File]::WriteAllText(
+        $reportFile,
+        ($payload | ConvertTo-Json -Depth 8) + "`n",
+        [Text.UTF8Encoding]::new($false)
+    )
+}
+
+try {
+    $script:HBPythonLauncher = Resolve-HBPythonLauncher
+} catch {
+    $message = 'Kein validierter Python-3-Launcher / no validated Python 3 launcher.'
+    $next = 'Python 3 installieren oder den defekten Store-Alias deaktivieren, dann erneut ausfuehren / install Python 3 or disable the broken Store alias, then retry'
+    Write-HBEarlyFailureReport -Status FAILED -ExitCode 2 -Summary $message -NextAction $next
+    Write-Host "Fehler / Error: ${message}" -ForegroundColor Red
+    Write-Host "Report / Bericht: ${reportFile}"
+    exit 2
+}
+
+try {
+    $profileCatalogData = Get-Content -LiteralPath $presetProfileCatalog -Raw -Encoding UTF8 | ConvertFrom-Json
+    $profileProperty = $profileCatalogData.profiles.PSObject.Properties[$fleetPresetProfile]
+    if ($null -eq $profileProperty -or -not $profileProperty.Value.presetConfig) {
+        throw "Unbekanntes Flottenprofil / unknown fleet profile: ${fleetPresetProfile}"
+    }
+    $fleetPresetConfig = Join-Path $sourceRoot ([string]$profileProperty.Value.presetConfig)
+    $fleetPresetCount = @(
+        (Get-Content -LiteralPath $fleetPresetConfig -Raw -Encoding UTF8 | ConvertFrom-Json).presets
+    ).Count
+    if ($fleetPresetCount -ne 11) {
+        throw "Flottenprofil hat ${fleetPresetCount} statt 11 Presets / has an unexpected preset count."
+    }
+} catch {
+    Write-HBEarlyFailureReport -Status FAILED -ExitCode 2 -Summary $_.Exception.Message `
+        -NextAction 'Preset-Profilkatalog und Matrix pruefen / review profile catalog and matrix'
+    Write-Host "Fehler / Error: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Report / Bericht: ${reportFile}"
+    exit 2
+}
+
+function Invoke-HBPythonCommand {
+    param([Parameter(Mandatory)][string[]]$Arguments)
+    $commandArguments = @($script:HBPythonLauncher.PrefixArguments) + @($Arguments)
+    & $script:HBPythonLauncher.FilePath @commandArguments
+}
+
+$requiredAnalyzerVersion = [Version]'1.25.0'
+$analyzerAvailable = $null -ne (
+    Get-Module -ListAvailable PSScriptAnalyzer |
+        Where-Object { $_.Version -eq $requiredAnalyzerVersion } |
+        Select-Object -First 1
+)
+if (-not $analyzerAvailable -and $maintenanceMode.AllowsMutation) {
+    $message = "PSScriptAnalyzer ${requiredAnalyzerVersion} fehlt vor der ersten Mutation / is missing before the first mutation."
+    $next = 'pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1 ausfuehren / run the module maintainer, then retry'
+    Write-HBEarlyFailureReport -Status BLOCKED -ExitCode 1 -Summary $message -NextAction $next
+    Write-Warning $message
+    Write-Host "Report / Bericht: ${reportFile}"
+    exit 1
 }
 
 function Add-HBReportStage {
@@ -184,27 +319,34 @@ function Add-HBReportStage {
         [string] $NextAction = 'N/A'
     )
     if (-not (Test-Path -LiteralPath $reportFile -PathType Leaf)) { return }
-    & $pythonCommand.Source $fleetEngine stage `
-        --report $reportFile `
-        --stage-id $StageId `
-        --status $Status `
-        --exit-code $ExitCode `
-        --summary $Summary `
-        --next-action $NextAction
+    Invoke-HBPythonCommand -Arguments @(
+        $fleetEngine, 'stage',
+        '--report', $reportFile,
+        '--stage-id', $StageId,
+        '--status', $Status,
+        '--exit-code', [string]$ExitCode,
+        '--summary', $Summary,
+        '--next-action', $NextAction
+    )
     if ($LASTEXITCODE -ne 0) {
         throw "Run-Bericht konnte nicht aktualisiert werden / run report update failed: ${StageId}"
     }
 }
 
 function Invoke-HBFleetContract {
-    $mode = if ($CheckOnly) { 'check-only' } elseif ($WhatIfPreference) { 'dry-run' } else { 'update' }
-    & $pythonCommand.Source $fleetEngine fleet `
-        --manifest $ManifestPath `
-        --home-dir $HomeDir `
-        --mode $mode `
-        --report $reportFile `
-        --log $logFile `
-        --run-id $runId | ForEach-Object { Write-Host $_ }
+    $arguments = @(
+        $fleetEngine, 'fleet',
+        '--manifest', $ManifestPath,
+        '--home-dir', $HomeDir,
+        '--mode', $maintenanceMode.FleetMode,
+        '--report', $reportFile,
+        '--log', $logFile,
+        '--run-id', $runId
+    )
+    foreach ($path in $script:ResumeAllowedPaths) {
+        $arguments += @('--allowed-dirty-path', $path)
+    }
+    Invoke-HBPythonCommand -Arguments $arguments | ForEach-Object { Write-Host $_ }
     $status = $LASTEXITCODE
     return [int]$status
 }
@@ -221,7 +363,9 @@ function Write-HBWarning {
 
 function Test-HBHomeSync {
     $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
-    & $syncScript -NoPull -CheckOnly
+    # The parent preview must not implicitly add WhatIf to the nested,
+    # intentionally read-only CheckOnly contract.
+    & $syncScript -NoPull -CheckOnly -WhatIf:$false
     $status = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
     switch ($status) {
         0 { Write-Host 'OK: Lokale Home-Baseline ist manifestkonform / local home baseline matches manifest' }
@@ -239,6 +383,25 @@ function Invoke-HBGit {
         [Parameter(Mandatory)][string[]] $Arguments,
         [switch] $Capture
     )
+    $isNetworkOperation = $Arguments.Count -gt 0 -and $Arguments[0] -in @('fetch', 'pull')
+    if ($isNetworkOperation) {
+        $gitCommand = Get-Command git -ErrorAction Stop
+        $networkResult = Invoke-HBWithRetry -MaximumAttempts $GitRetryAttempts -Operation {
+            Invoke-HBBoundedProcess -FilePath $gitCommand.Source `
+                -Arguments (@('-C', $Repository) + $Arguments) `
+                -TimeoutMilliseconds ($GitTimeoutSeconds * 1000) `
+                -CommandLabel "git $($Arguments[0])"
+        }
+        if (-not $networkResult.Succeeded) {
+            throw "git $($Arguments -join ' ') fehlgeschlagen / failed nach $($networkResult.Attempts) Versuch(en): $($networkResult.Summary)"
+        }
+        if ($Capture) {
+            return @($networkResult.StandardOutput -split '\r?\n' | Where-Object { $_ })
+        }
+        if ($networkResult.StandardOutput) { Write-Host $networkResult.StandardOutput }
+        if ($networkResult.StandardError) { Write-Verbose $networkResult.StandardError }
+        return
+    }
     if ($Capture) {
         $output = & git -C $Repository @Arguments 2>$null
         if ($LASTEXITCODE -ne 0) {
@@ -298,7 +461,13 @@ function Test-HBRepository {
         return $false
     }
 
-    Invoke-HBGit -Repository $Repository -Arguments @('fetch', '--prune')
+    try {
+        Invoke-HBGit -Repository $Repository -Arguments @('fetch', '--prune')
+    } catch {
+        Write-HBWarning "${Label} Netzwerkzugriff fehlgeschlagen / network operation failed: $($_.Exception.Message)"
+        $script:Findings++
+        return $false
+    }
     $counts = Get-HBGitCounts -Repository $Repository -Upstream $upstream
     if ($counts.Ahead -gt 0) {
         Write-HBWarning "${Label} ist $($counts.Ahead) Commit(s) voraus; kein automatischer Push / is ahead; no automatic push: ${Repository}"
@@ -315,7 +484,13 @@ function Test-HBRepository {
             Write-Host "[WhatIf] git -C `"${Repository}`" pull --ff-only"
             return $true
         }
-        Invoke-HBGit -Repository $Repository -Arguments @('pull', '--ff-only')
+        try {
+            Invoke-HBGit -Repository $Repository -Arguments @('pull', '--ff-only')
+        } catch {
+            Write-HBWarning "${Label} Fast-forward fehlgeschlagen / failed: $($_.Exception.Message)"
+            $script:Findings++
+            return $false
+        }
     }
 
     $counts = Get-HBGitCounts -Repository $Repository -Upstream $upstream
@@ -330,10 +505,12 @@ function Test-HBRepository {
 
 function Get-HBManagedRepositories {
     $lines = @(
-        & $pythonCommand.Source $fleetEngine canonical-repositories `
-            --manifest $ManifestPath `
-            --home-dir $HomeDir `
-            --existing-only
+        Invoke-HBPythonCommand -Arguments @(
+            $fleetEngine, 'canonical-repositories',
+            '--manifest', $ManifestPath,
+            '--home-dir', $HomeDir,
+            '--existing-only'
+        )
     )
     if ($LASTEXITCODE -ne 0) {
         throw 'Kanonische Fleet-Ziele konnten nicht ermittelt werden / canonical fleet targets could not be resolved.'
@@ -346,6 +523,83 @@ function Get-HBManagedRepositories {
         }
         [pscustomobject]@{ Path = $fields[1]; Level = [int]$fields[0] }
     })
+}
+
+function Get-HBManagedDirtyPaths {
+    $paths = [Collections.Generic.List[string]]::new()
+    foreach ($repository in Get-HBManagedRepositories) {
+        $repositoryRelative = [IO.Path]::GetRelativePath($HomeDir, $repository.Path).Replace('\', '/')
+        $statusLines = @(& git -C $repository.Path -c core.quotePath=false status --porcelain=v1 --untracked-files=all)
+        if ($LASTEXITCODE -ne 0) {
+            throw "Dirty-Pfade konnten nicht gelesen werden / could not read dirty paths: $($repository.Path)"
+        }
+        foreach ($line in $statusLines) {
+            if ([string]::IsNullOrWhiteSpace([string]$line) -or ([string]$line).Length -lt 4) { continue }
+            $relative = ([string]$line).Substring(3).Trim()
+            if ($relative -match ' -> ') { $relative = ($relative -split ' -> ', 2)[1] }
+            $paths.Add("${repositoryRelative}/$($relative.Replace('\', '/'))")
+        }
+    }
+    return @($paths | Sort-Object -Unique)
+}
+
+function Initialize-HBResumeState {
+    if (-not (Test-Path -LiteralPath $resumeEvidenceFile -PathType Leaf)) { return }
+    $evidence = Get-Content -LiteralPath $resumeEvidenceFile -Raw -Encoding UTF8 | ConvertFrom-Json
+    $dirtyPaths = @(Get-HBManagedDirtyPaths)
+    if ($evidence.status -eq 'Applied') {
+        if ($dirtyPaths.Count -eq 0) {
+            $files = @($evidence.files | ForEach-Object {
+                [pscustomobject]@{
+                    Path = $_.path
+                    BeforeSha256 = $_.beforeSha256
+                    AfterSha256 = $_.afterSha256
+                }
+            })
+            $null = Write-HBResumeEvidence -Path $resumeEvidenceFile -RunId ([string]$evidence.runId) `
+                -Phase ([string]$evidence.phase) -Files $files -Status Archived `
+                -NextAction 'N/A'
+            return
+        }
+        $validation = Test-HBResumeEvidence -Path $resumeEvidenceFile -Root $HomeDir -DirtyPaths $dirtyPaths
+        if (-not $validation.Valid) {
+            throw "Resume-Evidence passt nicht exakt / does not match exactly: $($validation.Reason)"
+        }
+        $script:ResumeAllowedPaths = @($evidence.files | ForEach-Object { [string]$_.path })
+        $script:RepairApplied = $true
+        Write-Host "OK: Resume-Evidence exakt validiert / exact resume evidence validated: $($validation.RunId)"
+        return
+    }
+    if ($evidence.status -eq 'Prepared' -and $dirtyPaths.Count -gt 0) {
+        throw 'Unterbrochene Reparatur ist nur teilweise belegt; manueller Review erforderlich / interrupted repair is only partially evidenced; manual review required.'
+    }
+}
+
+function Get-HBPropagationPlan {
+    $manifestPath = Join-Path $sourceRoot 'scripts/config/agentic-toolchain-maintenance-files.json'
+    $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $changes = [Collections.Generic.List[object]]::new()
+    foreach ($repository in Get-HBManagedRepositories) {
+        foreach ($file in @($manifest.files)) {
+            $source = Join-Path $sourceRoot ([string]$file.path)
+            $target = Join-Path $repository.Path ([string]$file.path)
+            $different = -not (Test-Path -LiteralPath $target -PathType Leaf)
+            if (-not $different) {
+                $sourceHash = Get-HBGitNormalizedHash -Repository $repository.Path -Path $source `
+                    -RepositoryRelativePath ([string]$file.path)
+                $targetHash = Get-HBGitNormalizedHash -Repository $repository.Path -Path $target `
+                    -RepositoryRelativePath ([string]$file.path)
+                $different = $sourceHash -ne $targetHash
+            }
+            if (-not $different) { continue }
+            $changes.Add([pscustomobject]@{
+                Path = [IO.Path]::GetRelativePath($HomeDir, $target).Replace('\', '/')
+                BeforeSha256 = Get-HBFileSha256 -Path $target
+                AfterSha256 = Get-HBFileSha256 -Path $source
+            })
+        }
+    }
+    return @($changes | Sort-Object Path)
 }
 
 function Test-HBRegistry {
@@ -369,6 +623,7 @@ function Test-HBRegistry {
             Level    = [string]$repository.Level
             Registry = $registry
             Source   = 'maintenance-discovery'
+            PresetProfile = $fleetPresetProfile
         }
         if ($CheckOnly -or $WhatIfPreference) {
             $parameters.WhatIf = $true
@@ -425,8 +680,24 @@ function Invoke-HBPropagation {
             }
             & $propagation -HomeDir $HomeDir -Registry $registry -DryRun
             if ($LASTEXITCODE -ne 0) { throw 'Propagation-Vorschau fehlgeschlagen / preview failed.' }
+            $plannedChanges = @(Get-HBPropagationPlan)
+            if ($plannedChanges.Count -eq 0) {
+                throw 'Propagation meldet Drift ohne aktionsfaehige Dateien / reported drift without actionable files.'
+            }
+            $null = Write-HBResumeEvidence -Path $resumeEvidenceFile -RunId $runId `
+                -Phase 'propagation' -Files $plannedChanges -Status Prepared `
+                -NextAction 'Propagation ausfuehren und Hashes verifizieren / execute propagation and verify hashes'
             & $propagation -HomeDir $HomeDir -Registry $registry
             if ($LASTEXITCODE -ne 0) { throw 'Propagation fehlgeschlagen / failed.' }
+            foreach ($change in $plannedChanges) {
+                $current = Get-HBFileSha256 -Path (Join-Path $HomeDir $change.Path)
+                if ($current -ne $change.AfterSha256) {
+                    throw "Propagation-Nachher-Hash stimmt nicht / after-hash mismatch: $($change.Path)"
+                }
+            }
+            $null = Write-HBResumeEvidence -Path $resumeEvidenceFile -RunId $runId `
+                -Phase 'propagation' -Files $plannedChanges -Status Applied `
+                -NextAction 'Geaenderte Ziel-Repositories separat pruefen und liefern / review and deliver changed target repositories separately'
             if ((Invoke-HBPropagationCheck) -ne 0) { throw 'Propagation-Abschlusspruefung fehlgeschlagen / final check failed.' }
             $script:RepairApplied = $true
         }
@@ -590,30 +861,44 @@ function Invoke-HBPresetProfiles {
     }
 }
 
-New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir, $reportDir -Force | Out-Null
+New-Item -ItemType Directory -Path (Split-Path -Parent $lockDir), $logDir, $reportDir `
+    -Force -WhatIf:$false | Out-Null
 try {
-    New-Item -ItemType Directory -Path $lockDir -ErrorAction Stop | Out-Null
+    New-Item -ItemType Directory -Path $lockDir -ErrorAction Stop -WhatIf:$false | Out-Null
 } catch {
     $holder = if (Test-Path (Join-Path $lockDir 'pid')) { Get-Content (Join-Path $lockDir 'pid') -Raw } else { 'unbekannt / unknown' }
     Write-Host "Fehler / Error: Wartung laeuft bereits (PID $($holder.Trim())) / maintenance already running." -ForegroundColor Red
     exit 2
 }
-Set-Content -LiteralPath (Join-Path $lockDir 'pid') -Value $PID
+Set-Content -LiteralPath (Join-Path $lockDir 'pid') -Value $PID -WhatIf:$false
 $logFile = Join-Path $logDir "agentic-workspace-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"
 
 try {
-    Start-Transcript -Path $logFile -Append | Out-Null
+    # Lock, log and report are mode-independent control evidence, not a
+    # previewed workspace mutation.
+    Start-Transcript -Path $logFile -Append -WhatIf:$false | Out-Null
     $transcriptStarted = $true
     $env:HOME = $HomeDir
     $env:USERPROFILE = $HomeDir
+    $env:HB_GIT_RETRY_ATTEMPTS = [string]$GitRetryAttempts
+    $env:HB_GIT_TIMEOUT_SECONDS = [string]$GitTimeoutSeconds
 
-    $mode = if ($CheckOnly) { 'check-only' } elseif ($WhatIfPreference) { 'WhatIf' } else { 'update' }
+    $mode = $maintenanceMode.Name
     if ($ScriptsOnly) { $mode += ', scripts-only' }
     Write-Host 'Agentic workspace maintenance'
     Write-Host "Mode / Modus: ${mode}"
     Write-Host "Level-0: ${sourceRoot}"
     Write-Host "Home: ${HomeDir}"
     Write-Host "Run-ID: ${runId}"
+
+    try {
+        Initialize-HBResumeState
+    } catch {
+        Write-HBEarlyFailureReport -Status BLOCKED -ExitCode 1 `
+            -Summary $_.Exception.Message `
+            -NextAction 'Resume-Evidence und alle Dirty-Pfade manuell pruefen / manually review resume evidence and every dirty path'
+        throw
+    }
 
     Write-HBInfo 'Level-0 aktualisieren / Update Level-0'
     $level0Passed = Test-HBRepository -Repository $sourceRoot -Label 'Level-0'
@@ -623,14 +908,21 @@ try {
         Write-HBInfo 'Lokale Home-Baseline synchronisieren / Synchronize local home baseline'
         $findingsBefore = $script:Findings
         $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
-        if ($CheckOnly) {
-            Test-HBHomeSync
-        } elseif ($WhatIfPreference) {
-            & $syncScript -NoPull -WhatIf
-        } else {
-            & $syncScript -NoPull
+        $homeInvocationStatus = 0
+        switch ($maintenanceMode.Name) {
+            'CheckOnly' {
+                Test-HBHomeSync
+            }
+            'Preview' {
+                & $syncScript -NoPull -WhatIf
+                $homeInvocationStatus = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+            }
+            'Update' {
+                & $syncScript -NoPull
+                $homeInvocationStatus = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+            }
         }
-        if ($LASTEXITCODE -notin @(0, $null)) { throw 'sync-home fehlgeschlagen / failed.' }
+        if ($homeInvocationStatus -ne 0) { throw 'sync-home fehlgeschlagen / failed.' }
         $homeStatus = if ($script:Findings -gt $findingsBefore) { 'Blocked' } else { 'Passed' }
     }
 
@@ -654,13 +946,24 @@ try {
         -ExitCode $(if ($homeStatus -eq 'Blocked') { 1 } else { 0 }) `
         -Summary 'Home-Sync / home sync' `
         -NextAction $(if ($homeStatus -eq 'Skipped') { 'Nach Level-0-Freigabe erneut ausfuehren / rerun after Level-0 passes' } else { 'N/A' })
+    if ($analyzerAvailable) {
+        Add-HBReportStage -StageId 'prerequisites' -Status Passed -ExitCode 0 `
+            -Summary "Python 3 und PSScriptAnalyzer ${requiredAnalyzerVersion} validiert / validated"
+    } else {
+        Add-HBReportStage -StageId 'prerequisites' -Status Blocked -ExitCode 1 `
+            -Summary "PSScriptAnalyzer ${requiredAnalyzerVersion} fehlt / is missing" `
+            -NextAction 'pwsh -NoProfile -File scripts/maintain-powershell-modules.ps1 ausfuehren / run the module maintainer'
+        $script:Findings++
+    }
 
     Write-HBInfo 'Level-1/Level-2 Registry pruefen / Check Level-1/Level-2 registry'
     $findingsBefore = $script:Findings
     Test-HBRegistry
     $registrySafe = $false
     if (Test-Path -LiteralPath $registry -PathType Leaf) {
-        & $pythonCommand.Source $fleetEngine registry --manifest $ManifestPath --registry $registry |
+        Invoke-HBPythonCommand -Arguments @(
+            $fleetEngine, 'registry', '--manifest', $ManifestPath, '--registry', $registry
+        ) |
             ForEach-Object { Write-Host $_ }
         $registryStatus = $LASTEXITCODE
         $registrySafe = $registryStatus -eq 0
@@ -672,7 +975,7 @@ try {
             -NextAction 'Registry-Befund beheben / resolve registry finding'
     } else {
         Add-HBReportStage -StageId 'registry' -Status Passed -ExitCode 0 `
-            -Summary 'Registry-Pruefung abgeschlossen / registry check completed'
+            -Summary "Registry-Pruefung abgeschlossen / completed; source=scripts/config/spec-kit-preset-profiles.json; profile=${fleetPresetProfile}; presets=${fleetPresetCount}"
     }
 
     if (($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
@@ -723,6 +1026,7 @@ try {
         $parameters = @{}
         if ($CheckOnly) { $parameters.CompareOnly = $true }
         if ($WhatIfPreference) { $parameters.WhatIf = $true }
+        $parameters.ProcessTimeoutSeconds = $WinGetTimeoutSeconds
         $optionalDeferred = $IncludeOptional -and -not $AllowAdminPrompts
         if ($IncludeOptional -and $AllowAdminPrompts) { $parameters.IncludeOptional = $true }
         if ($optionalDeferred) {
@@ -730,11 +1034,14 @@ try {
         }
         $env:HB_ALLOW_ADMIN_PROMPTS = if ($AllowAdminPrompts) { '1' } else { '0' }
         & $maintenance @parameters
-        if ($LASTEXITCODE -notin @(0, $null)) { throw 'WinGet-Wartung fehlgeschlagen / maintenance failed.' }
-        if ($optionalDeferred) {
-            Add-HBReportStage -StageId 'toolchain' -Status Warning -ExitCode 0 `
+        $toolchainExit = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+        if ($toolchainExit -eq 75 -or $optionalDeferred) {
+            $script:Findings++
+            Add-HBReportStage -StageId 'toolchain' -Status Blocked -ExitCode 1 `
                 -Summary 'DEFERRED_ADMIN_REQUIRED' `
                 -NextAction 'Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority'
+        } elseif ($toolchainExit -ne 0) {
+            throw 'WinGet-Wartung fehlgeschlagen / maintenance failed.'
         } else {
             Add-HBReportStage -StageId 'toolchain' -Status Passed -ExitCode 0 `
                 -Summary 'Toolchain-Wartung abgeschlossen / toolchain maintenance completed'
@@ -788,13 +1095,44 @@ try {
 } catch {
     Write-Host "Fehler / Error: $($_.Exception.Message)" -ForegroundColor Red
     $exitCode = 2
+    if (Test-Path -LiteralPath $reportFile -PathType Leaf) {
+        try {
+            $existingReport = Get-Content -LiteralPath $reportFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            if ($existingReport.runId -eq $runId -and $existingReport.overallStatus -ne 'BLOCKED') {
+                Add-HBReportStage -StageId 'final' -Status Failed -ExitCode 2 `
+                    -Summary 'Wartung fehlgeschlagen / maintenance failed' `
+                    -NextAction 'Log und Bericht pruefen / review log and report'
+            }
+        } catch {
+            $exitCode = 2
+        }
+    }
 } finally {
-    if ($transcriptStarted) { Stop-Transcript | Out-Null }
-    if (Test-Path -LiteralPath $lockDir) { Remove-Item -LiteralPath $lockDir -Recurse -Force }
+    if ($transcriptStarted) { Stop-Transcript -WhatIf:$false | Out-Null }
+    if (Test-Path -LiteralPath $lockDir) {
+        Remove-Item -LiteralPath $lockDir -Recurse -Force -WhatIf:$false
+    }
     Write-Host "Log / log: ${logFile}"
     if (Test-Path -LiteralPath $reportFile -PathType Leaf) {
+        try {
+            $terminalReport = Get-Content -LiteralPath $reportFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            if ($terminalReport.runId -ne $runId) {
+                throw 'Report-Run-ID stimmt nicht mit dem aktuellen Lauf ueberein / does not match the current run.'
+            }
+            $exitCode = [int]$terminalReport.exitCode
+            Write-Host "Status / status: $($terminalReport.overallStatus) (exit ${exitCode})"
+        } catch {
+            Write-Host "Fehler / Error: $($_.Exception.Message)" -ForegroundColor Red
+            $exitCode = 2
+        }
         Write-Host "Report / Bericht: ${reportFile}"
     }
 }
 
-exit $exitCode
+exit (Get-HBCanonicalExitCode -Status $(switch ($exitCode) {
+    0 { 'SUCCESS' }
+    1 { 'PARTIAL' }
+    2 { 'FAILED' }
+    3 { 'REPAIRED' }
+    default { 'FAILED' }
+}))

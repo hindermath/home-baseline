@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "2b72e80e-30e1-4b5e-bc62-3a8697105d5b",
+  "featurePath": "specs/015-windows-maintenance-hardening",
+  "branch": "015-windows-maintenance-hardening",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Review",
+  "status": "Active",
+  "checkpointCommit": "5d8ab53591fdffab1e84a028fb8eee6d257cc6ee",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "sha256": "5f6effea7eb4f4a3c7a4f321f62695f78e9a6bec16ea5a085d2ecba711d4732f"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/windows-ein-kommando-wartung-haertung.json",
+      "sha256": "083221e9ef021f4838a86c093be5d4daea6f477245b67f7fd50fe06d3ab15aee"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "f8ce8c44600f49cd4b9ab3757a132e4e3fad2ded98818854f3d5c1be8c692807"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
+    }
+  ],
+  "tasks": {
+    "path": "specs/015-windows-maintenance-hardening/tasks.md",
+    "sha256": "4bf0ca961f5a26557deed447c0530a75c74624632507533929e35f52fc370a82",
+    "completed": 36,
+    "total": 44
+  },
+  "lastPassingGate": "Complete CheckOnly and WhatIf field runs proved deterministic non-mutation, and every exact-head local regression, parser, static-analysis, security, homogeneity, documentation and statistics gate passed.",
+  "nextExactAction": "Reconcile the exact candidate, commit and push the field-validation evidence, and create the Feature 015 pull request.",
+  "lastOperation": {
+    "kind": "Validate",
+    "state": "Completed",
+    "summary": "Complete orchestrator CheckOnly and WhatIf field runs and all exact-head candidate gates converged without unintended mutation."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-28T16:59:06Z"
+}
