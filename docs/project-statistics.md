@@ -800,27 +800,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 405925 lines |
-| Textdateien / Text files | 2515 |
+| Textbasis / Text base | 410039 lines |
+| Textdateien / Text files | 2534 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
-| Relevante Commits / Relevant commits | 593 |
-| Zeilen je Aktivtag / Lines per active day | 5341.1 |
+| Relevante Commits / Relevant commits | 597 |
+| Zeilen je Aktivtag / Lines per active day | 5395.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
-| Speedup vs. 80 lines/day | 66.8x |
-| Speedup vs. 100 lines/day | 53.4x |
+| Speedup vs. 80 lines/day | 67.4x |
+| Speedup vs. 100 lines/day | 54.0x |
 | Methodik / Methodology | v2; source `2bd6dfb3c0a7` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.4% | 13624
-Dokumentation / Documentation   [##############......]  70.2% | 284939
-Skripte / Scripts               [##..................]  12.3% | 49852
-Konfiguration / Configuration   [###.................]  13.8% | 56119
+Tests                           [#...................]   3.6% | 14855
+Dokumentation / Documentation   [##############......]  69.8% | 286139
+Skripte / Scripts               [##..................]  12.5% | 51236
+Konfiguration / Configuration   [###.................]  13.8% | 56418
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -928,15 +928,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..43
-   cap 50000 | . . . . . . . . . . . .
-       41667 | . . . . . . . . . . . .
-       33333 | . . . . . . . . . . . .
-       25000 | . # . . . . . . . . . .
-       16667 | . # . . . . . . . . . .
-        8333 | . # . . . . # . . . . .
-           0 +-------------------------
-             32 33 34 35 36 37 38 39 40 41 42 43
+Slots 32..44
+   cap 50000 | . . . . . . . . . . . . .
+       41667 | . . . . . . . . . . . . .
+       33333 | . . . . . . . . . . . . .
+       25000 | . # . . . . . . . . . . .
+       16667 | . # . . . . . . . . . . .
+        8333 | . # . . . . # . . . . . .
+           0 +---------------------------
+             32 33 34 35 36 37 38 39 40 41 42 43 44
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -985,6 +985,7 @@ Slots 32..43
 | 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4209 |
 | 42 | KDM-/KITSM-Lernreihen-Intake-Kette / KDM/KITSM learning-series intake chain | 3795 |
 | 43 | ITSE-Lernreihen- und Gesamtkonsistenz-Intakes / ITSE learning-series and consistency intakes | 3607 |
+| 44 | Linux-Ein-Kommando-Wartungshärtung / Linux one-command maintenance hardening | 4054 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -994,8 +995,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 66.8x
-100 lines/day      [###########.........] 53.4x
+80 lines/day       [#############.......] 67.4x
+100 lines/day      [###########.........] 54.0x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1008,7 +1009,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5341.1
+Visible repository [###########.........] 5395.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1034,6 +1035,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 338086 |
+| 2026-07 | 342671 |
 
 <!-- project-statistics-v2:end -->
