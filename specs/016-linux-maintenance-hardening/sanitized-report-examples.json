@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "examples": [
+    {
+      "name": "required-state-reached",
+      "runId": "00000000-0000-4000-8000-000000000016",
+      "overallStatus": "SUCCESS",
+      "exitCode": 0,
+      "lastStage": "final",
+      "signal": "N/A",
+      "toolchain": [
+        {
+          "sequence": 1,
+          "kind": "cli",
+          "itemId": "swift",
+          "scope": "required",
+          "attempted": true,
+          "finalStatus": "Installed",
+          "probeStatus": "Available",
+          "sanitizedEvidence": "Swift version 6.3.3",
+          "nextAction": "N/A"
+        }
+      ]
+    },
+    {
+      "name": "required-drift",
+      "runId": "00000000-0000-4000-8000-000000000017",
+      "overallStatus": "PARTIAL",
+      "exitCode": 1,
+      "lastStage": "final",
+      "signal": "N/A",
+      "remainingRequired": [
+        "required-tool-a",
+        "required-tool-b"
+      ],
+      "nextAction": "Fehlende Pflichtwerkzeuge beheben / resolve missing required tools."
+    },
+    {
+      "name": "deferred-admin",
+      "runId": "00000000-0000-4000-8000-000000000018",
+      "overallStatus": "PARTIAL",
+      "exitCode": 1,
+      "stage": {
+        "stageId": "toolchain",
+        "status": "DeferredAdminRequired",
+        "summary": "DEFERRED_ADMIN_REQUIRED",
+        "nextAction": "Mit aktueller Autoritaet erneut ausfuehren / rerun with current authority"
+      }
+    },
+    {
+      "name": "capability-blocked-probe",
+      "probe": {
+        "toolId": "fixture-tool",
+        "commandLabel": "fixture-tool",
+        "status": "CapabilityBlocked",
+        "exitCode": 1,
+        "timedOut": false,
+        "processTreeCleaned": true,
+        "sanitizedEvidence": "launcher lacks a required container capability",
+        "nextAction": "Container-/Capability-Grenze pruefen / inspect container capabilities."
+      }
+    },
+    {
+      "name": "signal-interrupted",
+      "runId": "00000000-0000-4000-8000-000000000019",
+      "overallStatus": "INTERRUPTED",
+      "exitCode": 143,
+      "lastStage": "toolchain",
+      "signal": "TERM",
+      "finalized": true,
+      "nextAction": "Lauf ab letzter Stufe erneut starten / rerun from the last stage."
+    }
+  ]
+}

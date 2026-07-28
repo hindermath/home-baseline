@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "016-linux-maintenance-hardening",
+  "entries": [
+    {
+      "changeId": "CHG016001",
+      "scope": "Public Linux package and workspace maintenance behavior",
+      "decision": "UpdateRequired",
+      "criticality": "Usage",
+      "rationale": "Maintainers need the stdin-safe processing, required-drift, admin-authority, Swift, result-file, and finalization contracts at the command surface.",
+      "documents": [
+        "README.md",
+        "docs/man/maintain-agentic-brew-apps.1.md",
+        "docs/man/maintain-agentic-workspace.1.md"
+      ],
+      "owner": "Feature 016",
+      "evidence": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md"
+    },
+    {
+      "changeId": "CHG016002",
+      "scope": "Feature specification, contracts, threat review, validation, and sanitized examples",
+      "decision": "UpdateRequired",
+      "criticality": "Security",
+      "rationale": "The process, privilege, supply-chain, path, and report boundaries require durable feature-local evidence.",
+      "documents": [
+        "specs/016-linux-maintenance-hardening/spec.md",
+        "specs/016-linux-maintenance-hardening/plan.md",
+        "specs/016-linux-maintenance-hardening/contracts/cli-probe-result.md",
+        "specs/016-linux-maintenance-hardening/contracts/registry-item-result.md",
+        "specs/016-linux-maintenance-hardening/contracts/run-finalization.md",
+        "specs/016-linux-maintenance-hardening/contracts/swift-install-contract.md",
+        "specs/016-linux-maintenance-hardening/sanitized-report-examples.json",
+        "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md"
+      ],
+      "owner": "Feature 016",
+      "evidence": "specs/016-linux-maintenance-hardening/checklists/governance.md"
+    },
+    {
+      "changeId": "CHG016003",
+      "scope": "Central script inventory and propagated maintenance package",
+      "decision": "GeneratedUpdate",
+      "criticality": "Normal",
+      "rationale": "The new internal Linux hardening helper extends the tracked and propagated script inventory.",
+      "documents": [
+        "scripts/config/agentic-toolchain-maintenance-files.json",
+        "docs/scripts/reference.md"
+      ],
+      "owner": "Feature 016",
+      "evidence": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "pwsh -NoProfile -File scripts/render-script-reference.ps1 -Repo ."
+      }
+    },
+    {
+      "changeId": "CHG016004",
+      "scope": "Living project statistics ledger and Profile 2",
+      "decision": "GeneratedUpdate",
+      "criticality": "Normal",
+      "rationale": "Repository guidance requires one ledger milestone and reproducibly rendered statistics after the completed feature.",
+      "documents": [
+        "docs/project-statistics.config.json",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Feature 016",
+      "evidence": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "pwsh -NoProfile -File scripts/render-project-statistics.ps1 -Repo ."
+      }
+    },
+    {
+      "changeId": "CHG016005",
+      "scope": "Shared agent guidance surfaces",
+      "decision": "NoUpdateRequired",
+      "criticality": "Normal",
+      "rationale": "The feature implements existing repository security, admin-authority, testing, and documentation rules without creating a new durable instruction for AI agents.",
+      "documents": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md"
+      ],
+      "owner": "Feature 016",
+      "evidence": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md"
+    }
+  ]
+}

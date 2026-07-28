@@ -353,6 +353,14 @@
       "labelEn": "KDM/KITSM learning-series intake chain",
       "netLines": 3795,
       "activeDays": 1
+    },
+    {
+      "slot": 43,
+      "id": "linux-one-command-maintenance-hardening",
+      "labelDe": "Linux-Ein-Kommando-Wartungshärtung",
+      "labelEn": "Linux one-command maintenance hardening",
+      "netLines": 4054,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

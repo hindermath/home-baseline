@@ -5,12 +5,12 @@
   "branch": "016-linux-maintenance-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Analyze",
+  "stage": "Validate",
   "status": "Active",
-  "checkpointCommit": "N/A",
+  "checkpointCommit": "f0fc01854270ac70ed6b4a90ac075100f6f69a77",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.016-linux-maintenance-hardening.md",
       "sha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4"
     },
     {
@@ -32,16 +32,16 @@
   ],
   "tasks": {
     "path": "specs/016-linux-maintenance-hardening/tasks.md",
-    "sha256": "0d1d08a354b0ced7a17c09e15b0e1a227e2316ecaed1568edb5e9aaa461dc92e",
-    "completed": 0,
+    "sha256": "46b8668caeabccd10a75fb7476d7de533e0f889c998a57f2147989c236e6617f",
+    "completed": 52,
     "total": 59
   },
-  "lastPassingGate": "Analyze rerun: 28/28 requirements and 15/15 success criteria have task coverage, 59/59 tasks are mapped, no placeholders or constitution conflicts remain, and all four precision findings are remediated.",
-  "nextExactAction": "Validate checklist completion, commit the pre-implementation checkpoint, then execute tasks test-first.",
+  "lastPassingGate": "Local G001-G006 candidate gates passed: 52 discovered tests, 13 focused Linux tests, 146 statistics assertions, Documentation Impact, generated inventory, secret fallback, JSON/Bash validation and Homogeneity score 100.",
+  "nextExactAction": "Stage the exact candidate, push branch 016-linux-maintenance-hardening, open its pull request and converge G007 on the exact head.",
   "lastOperation": {
-    "kind": "Analyze",
+    "kind": "Validate",
     "state": "Completed",
-    "summary": "The read-only cross-artifact analysis converged after pinning Swiftly 1.1.2 and Swift 6.3.3, limiting support to the official Ubuntu 22.04/24.04 matrix, adding helper catalog coverage and clarifying allowed operational writes."
+    "summary": "Implementation, security review, mutation-free previews and local gates G001-G006 completed; real host and fleet drift remains visible and was not technically bypassed."
   },
   "stop": {
     "reason": "N/A",
@@ -54,5 +54,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-28T19:38:00Z"
+  "updatedAt": "2026-07-28T20:36:00Z"
 }

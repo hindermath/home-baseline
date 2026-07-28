@@ -56,15 +56,146 @@
   der neue Helfer erhält Katalog-/Propagationspflege, und Vorschauwege
   unterscheiden Paket-/Profilmutation von erlaubten Fetch-/Log-/Reportwrites.
 
-## Planned validation
+## Test-first baseline
 
-Die exakten Befehle und Ergebnisse werden nach der Implementierung ergänzt.
-Pflichtklassen sind Linux-Härtungsfixtures, bestehende Wartungs-/Home-Sync-/
-Registry-Regressionssuiten, Bash-/JSON-/PowerShell-Parität, macOS-Homebrew,
-paket- und profilmutationfreie Compare-/Check-/Dry-run-Wege,
-Secret-/Dokumentations-/
-Statistik-/Homogeneity-Gates, exakter gestagter Kandidat und exakter
-PR-Head auf Ubuntu, macOS und Windows.
+- Die unveränderte Baseline blieb grün: 13
+  `test_agentic_workspace_maintenance`-, 10 `test_maintenance_contracts`- und
+  4 `test_home_sync_files`-Tests.
+- `python3 scripts/tests/test_linux_maintenance_hardening.py` wurde vor dem
+  ersten Produktionsedit ausgeführt. Alle neun Tests scheiterten
+  erwartungsgemäß ausschließlich an den noch fehlenden neuen Verträgen:
+  `--cli-registry`/Result-JSON, Linux-Helfer, atomarer Finalize-Unterbefehl und
+  Orchestrator-Integration.
+- Die rote Baseline deckt stdin-Konsum und Idempotenz, Required-/Optional-
+  Exitcodes, begrenzte Probe-/Capability-Klassen, Swift-Plattform und
+  Integrität, stale Success, `INT`/`TERM` sowie öffentliche Integration ab.
+
+## Implementation result
+
+- Geordnete Registry-Snapshots und eigene Dateideskriptoren entkoppeln alle
+  mutierenden Homebrew-, apt-, VS-Code-, CLI- und npm-Schleifen von stdin.
+  Jede ausgewählte Reihenposition erhält genau ein finales JSON-Resultat.
+- Required-/Optional-Aggregation liefert `0` nur bei erreichtem
+  Required-Sollzustand. `Planned`, `Failed` und `StillMissing` bleiben für
+  Required fatal; optionaler Drift bleibt sichtbar und nicht allein fatal.
+- CLI-Proben laufen in einer eigenen Prozessgruppe mit 5-Sekunden-Grenze,
+  begrenzter bereinigter Evidence und den Klassen `Missing`, `Unusable`,
+  `TimedOut` und `CapabilityBlocked`.
+- Der offizielle Swift-Vertrag ist auf Swiftly `1.1.2`, Swift `6.3.3`,
+  Ubuntu 22.04/24.04 und `x86_64`/`aarch64` geschlossen. Beide Archive sind
+  HTTPS- und SHA-256-gebunden; Extraktion akzeptiert genau ein reguläres
+  `swiftly`-Binary. `--no-modify-profile`, aktuelle Shell-Aktivierung,
+  autorisierte Post-Installation und Same-run-Probe sind umgesetzt.
+- Der Orchestrator importiert Toolchain-Einzelresultate, erhält
+  `DEFERRED_ADMIN_REQUIRED` und finalisiert Erfolg, späten Fehler, `INT` und
+  `TERM` genau einmal durch atomaren Ersatz. `INT=130`, `TERM=143`.
+
+## Test and validation evidence
+
+- `python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v`:
+  52 Tests grün; 42 auf Linux ausgeführt, 10 ausschließlich
+  Windows-spezifische Prozessfixtures erwartungsgemäß übersprungen.
+- Die fokussierte Linux-Suite umfasst nach Erweiterung 13 Tests. Sie belegt
+  drei stdin-konsumierende Formeln in Reihenfolge, idempotenten Zweitlauf,
+  Required-/Optional-Exitcodes und Parent-Propagation, Swift-Erfolg,
+  falschen Hash, fehlende Admin-Autorität, Plattformablehnung,
+  Timeout/Capability/Redaction sowie späten Fehler und `TERM` in einem echten
+  Bash-Prozessharness mit genau einer Finalisierung.
+- `bash -n` ist für beide geänderten öffentlichen Bash-Skripte grün.
+  Sämtliche geänderten JSON-Dateien bestehen `python3 -m json.tool`.
+- PowerShell-Parität: Die gemeinsame Registry bleibt additiv kompatibel;
+  `swiftly` ist ausschließlich der Linux-Zweig, WinGet-Swift bleibt
+  unverändert. Parserprüfung und PSScriptAnalyzer `1.25.0` sind für
+  `maintain-agentic-workspace.ps1` und `maintain-agentic-winget-apps.ps1`
+  grün. Der unveränderte repositoryweite Analyzerlauf lieferte innerhalb von
+  mehr als fünf Minuten kein Ergebnis und wurde beendet; daraus wird kein
+  Full-repository-Pass abgeleitet.
+- Documentation Impact: fünf exakte Entscheidungen validiert; der neue
+  Report-Beispielsatz ist valides JSON. Die Skriptreferenz wurde auf 122
+  kanonische Skripte regeneriert und anschließend als `CURRENT` verifiziert.
+- Das Statistikprofil enthält den neuen Slot 43 und ist nach dem
+  reproduzierbaren Schreiblauf `CURRENT`; die deterministische Suite besteht
+  146 Assertions. Ein erster Paritätslauf erbte unter WSL ein
+  plattformfremdes Windows-`pwsh.exe` und wurde von dessen unveränderter
+  Execution Policy abgewiesen. Der vorgeschriebene Linux-Lauf mit
+  Linux-only-PATH und nativem `/snap/bin/pwsh` bestand vollständig.
+- `check-homogeneity.sh --dry-run --no-patch --json` meldet mit derselben
+  Linux-Toolauswahl Score 100, null Fehler und null Warnungen.
+  `scan-agent-secrets.sh --fail-on-high .` meldet null High-/Medium-Befunde;
+  `gitleaks` ist nicht installiert, deshalb blieb der dokumentierte
+  repositoryweite Regex-Fallback aktiv und meldete ausschließlich fünf
+  erwartete Low-Hinweise für Agenten-Promptverzeichnisse.
+- `git diff --check`, `git diff --cached --check`, Bash-Syntax und alle
+  geänderten JSON-Dateien sind fehlerfrei. Der unveränderte Gatevertrag
+  G001-G006 ist lokal vollständig abgedeckt; G007 bleibt bis zum exakten
+  PR-Head bewusst ausstehend und G008 bleibt begründet `N/A`.
+
+## Mutation-free operational evidence
+
+- Direkter `--compare-only`- und `--dry-run`-Paketlauf veränderten keine
+  Pakete oder Profile und meldeten wahrheitsgetreu Exit `1`: neun fehlende
+  Required-Homebrew-Formeln, 13 optionale Formeln und null fehlende
+  Required-CLI-, npm-CLI- oder VS-Code-Extension-Ziele. Die vormals
+  widersprüchliche Erfolgsausgabe ist damit geschlossen.
+- Der echte `maintain-agentic-workspace.sh --check-only`-Lauf
+  `bbbeca5c-2275-4a77-9e42-d4e496b4ba5a` schrieb nur erlaubte Fetch-/Log-/
+  Reportzustände. Sein atomarer Report ist `PARTIAL/1`, `finalized=true` und
+  enthält 59 Toolchain-Einzelresultate samt vollständiger Restmenge.
+- Der Dry-run
+  `f2c98a31-662a-4ea3-9749-9ca36d7fb9a8` blieb ebenfalls paket- und
+  profilmutationfrei und finalisierte `PARTIAL/1`.
+- Beide Orchestratorläufe zeigten außerhalb dieses Level-0-Features
+  vorhandenen Hostzustand: Feature-Branch ohne Upstream, 25 bereits dirty
+  Flotten-Worktrees, sieben deklarierte noch fehlende Secure-CaseTracker-
+  Ziele und einen dadurch vorübergehend nicht kanonischen Registry-Eintrag.
+  Diese fremden/operativen Zielzustände wurden nicht verändert. Wegen der
+  nicht grünen Vorschau wurde der echte Admin-/Paketlauf nicht technisch
+  erzwungen.
+
+## Security, architecture and accessibility review
+
+- Trust Boundaries für Registry, stdin, Prozesse, PATH, Temp-Dateien,
+  Downloads, Admin-Prompts und Reportpfade sind durch Validierung,
+  stdin-Isolation, Prozessgruppen, Zeit-/Größenlimits, verifizierte Hashes und
+  atomaren Ersatz abgesichert. Least Privilege, Fail-safe Defaults, Defense in
+  Depth und getrennte Probe-/Mutation-/Finalisierungspfade sind erfüllt.
+- NIST SSDF: PW.4/PW.5/PW.7/PW.8 und RV.1 sind durch Threat Review,
+  fail-closed Verträge, Code-/Diff-Review, Test-first-Fixtures und
+  Restdrift-Nachweis abgedeckt. Relevante CWE/CAPEC-Klassen sind
+  OS-Command-Injection, Path Traversal, unkontrollierter Ressourcenverbrauch,
+  unsichere Temp-/Downloadverarbeitung, Informationspreisgabe und
+  Privilegienmissbrauch; die Gegenmaßnahmen sind im Code und in den
+  Negativtests nachgewiesen.
+- OWASP SAMM Secure Build und Security Testing sind durch den reproduzierbaren
+  Registry-/Fixture-/Gate-Pfad erfüllt. OpenSSF-Supply-Chain-Prüfung bindet
+  die offizielle Swift.org-Herkunft, konkrete Versionen und beide
+  SHA-256-Werte; Swiftly prüft die nachgelagerte Toolchain zusätzlich mit dem
+  offiziellen Signaturvertrag.
+- ASVS, SBOM/VEX/AI-SBOM, SLSA, BSI C3A/C5, Zero Trust, NIS2, CRA, EU AI Act
+  und DORA bleiben mangels Web-/Cloud-/Produkt-/Release-/KI-Runtime-Scope
+  `N/A`; Re-Evaluation erfolgt bei entsprechender Scope-Erweiterung.
+- Status, Restdrift, letzte Stufe und nächste Aktion sind text-first,
+  farbunabhängig und DE-first/EN-second. CLI-Hilfe, Manpages und README wurden
+  auf CEFR-B2-Nutzbarkeit geprüft; nicht triviale Grenzlogik besitzt
+  didaktische Warum-/Sicherheitskommentare.
+- `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
+  `.github/copilot-instructions.md` und
+  `.github/agents/copilot-instructions.md` wurden gemeinsam geprüft. Das
+  Feature setzt bestehende Regeln um und erzeugt keine neue dauerhafte
+  Agentenregel; daher ist die dokumentierte Entscheidung
+  `NoUpdateRequired`.
+
+## Corrective validation event
+
+Ein frühes Swift-Positivfixture erbte unbeabsichtigt die drei lokalen
+`SWIFTLY_*`-Variablen und ersetzte dadurch den vorhandenen Swiftly-Launcher.
+Der Launcher wurde unmittelbar aus dem gepinnten offiziellen
+Swiftly-`1.1.2`-Archiv mit exakt geprüftem
+`21ad3d6376af0b423435f1f7295364add66c7173ea342654f4ae536c20ae88ba`
+wiederhergestellt. Toolchains und Konfiguration blieben erhalten;
+`swift --version` bestätigt Swift `6.3.3`. Das Fixture entfernt die drei
+Variablen nun ausdrücklich; Positivlauf, Fehlerlauf und idempotenter Zweitlauf
+sind danach grün.
 
 ## Delivery boundary
 

@@ -10,10 +10,10 @@ unzulässig.
 **Purpose**: Akzeptierte Artefakte einfrieren und den testbaren Fixture-Rahmen
 vor Produktionsänderungen herstellen.
 
-- [ ] T001 Validate `specs/016-linux-maintenance-hardening/autonomous-run-state.json`, `autonomous-run-gate-requirements.json` and both files under `checklists/`
-- [ ] T002 Run and record the unchanged maintenance baseline from `scripts/tests/test_agentic_workspace_maintenance.py`, `scripts/tests/test_maintenance_contracts.py` and `scripts/tests/test_home_sync_files.py`
-- [ ] T003 Create isolated HOME, PATH, registry, process and report fixture helpers in `scripts/tests/test_linux_maintenance_hardening.py`
-- [ ] T004 Execute the new fixture suite before product implementation and record the expected red baseline in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T001 Validate `specs/016-linux-maintenance-hardening/autonomous-run-state.json`, `autonomous-run-gate-requirements.json` and both files under `checklists/`
+- [X] T002 Run and record the unchanged maintenance baseline from `scripts/tests/test_agentic_workspace_maintenance.py`, `scripts/tests/test_maintenance_contracts.py` and `scripts/tests/test_home_sync_files.py`
+- [X] T003 Create isolated HOME, PATH, registry, process and report fixture helpers in `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T004 Execute the new fixture suite before product implementation and record the expected red baseline in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
 
 ---
 
@@ -25,10 +25,10 @@ bereitstellen, die alle fünf User Stories benötigen.
 **Critical**: Keine User-Story-Implementierung beginnt vor dem roten
 TDD-Nachweis aus Phase 1.
 
-- [ ] T005 Implement traversal-safe temp paths, bounded process-group execution, evidence sanitization and JSON result serialization in `scripts/lib/linux-maintenance-hardening.py`
-- [ ] T006 [P] Add schema and platform validation fixtures for the shared CLI registry in `scripts/tests/test_maintenance_contracts.py`
-- [ ] T007 Add `--cli-registry PATH` and `--allow-admin-prompts` parsing without mutation to `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T008 Re-run the fixture harness in `scripts/tests/test_linux_maintenance_hardening.py` and preserve only story-specific expected failures
+- [X] T005 Implement traversal-safe temp paths, bounded process-group execution, evidence sanitization and JSON result serialization in `scripts/lib/linux-maintenance-hardening.py`
+- [X] T006 [P] Add schema and platform validation fixtures for the shared CLI registry in `scripts/tests/test_maintenance_contracts.py`
+- [X] T007 Add `--cli-registry PATH` and `--allow-admin-prompts` parsing without mutation to `scripts/maintain-agentic-brew-apps.sh`
+- [X] T008 Re-run the fixture harness in `scripts/tests/test_linux_maintenance_hardening.py` and preserve only story-specific expected failures
 
 **Checkpoint**: Sichere Grundverträge und rote Story-Nachweise sind vorhanden.
 
@@ -45,14 +45,14 @@ zweiter Lauf startet keine Installation.
 
 ### Tests for User Story 1
 
-- [ ] T009 [US1] Add failing stdin-consumption, three-item ordering and idempotent-second-run tests to `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T009 [US1] Add failing stdin-consumption, three-item ordering and idempotent-second-run tests to `scripts/tests/test_linux_maintenance_hardening.py`
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Implement ordered registry snapshots and one `RegistryItemResult` per sequence in `scripts/lib/linux-maintenance-hardening.py`
-- [ ] T011 [US1] Isolate Homebrew formula and cask iteration descriptors and child stdin in `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T012 [US1] Apply the same complete per-item accounting to apt, CLI, npm and VS Code loops in `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T013 [US1] Prove SC-001, SC-002 and SC-009 with the isolated fixtures in `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T010 [US1] Implement ordered registry snapshots and one `RegistryItemResult` per sequence in `scripts/lib/linux-maintenance-hardening.py`
+- [X] T011 [US1] Isolate Homebrew formula and cask iteration descriptors and child stdin in `scripts/maintain-agentic-brew-apps.sh`
+- [X] T012 [US1] Apply the same complete per-item accounting to apt, CLI, npm and VS Code loops in `scripts/maintain-agentic-brew-apps.sh`
+- [X] T013 [US1] Prove SC-001, SC-002 and SC-009 with the isolated fixtures in `scripts/tests/test_linux_maintenance_hardening.py`
 
 **Checkpoint**: User Story 1 ist unabhängig grün und liefert ein
 stdin-sicheres MVP.
@@ -69,15 +69,15 @@ optionaler Drift und Parent-Aggregation liefern die dokumentierte Exitmatrix.
 
 ### Tests for User Story 2
 
-- [ ] T014 [US2] Add failing Required-empty, Required-missing, Optional-only and parent-propagation tests to `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T014 [US2] Add failing Required-empty, Required-missing, Optional-only and parent-propagation tests to `scripts/tests/test_linux_maintenance_hardening.py`
 
 ### Implementation for User Story 2
 
-- [ ] T015 [US2] Implement Required/Optional aggregation and canonical package exitcodes in `scripts/lib/linux-maintenance-hardening.py`
-- [ ] T016 [US2] Return complete Required drift and the canonical non-zero exitcode from `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T017 [US2] Capture the toolchain child exitcode and preserve it in stage and final status in `scripts/maintain-agentic-workspace.sh`
-- [ ] T018 [US2] Store the same toolchain result in the atomic JSON report through `scripts/lib/agentic_workspace_fleet.py`
-- [ ] T019 [US2] Prove SC-003, SC-004 and SC-005 in `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T015 [US2] Implement Required/Optional aggregation and canonical package exitcodes in `scripts/lib/linux-maintenance-hardening.py`
+- [X] T016 [US2] Return complete Required drift and the canonical non-zero exitcode from `scripts/maintain-agentic-brew-apps.sh`
+- [X] T017 [US2] Capture the toolchain child exitcode and preserve it in stage and final status in `scripts/maintain-agentic-workspace.sh`
+- [X] T018 [US2] Store the same toolchain result in the atomic JSON report through `scripts/lib/agentic_workspace_fleet.py`
+- [X] T019 [US2] Prove SC-003, SC-004 and SC-005 in `scripts/tests/test_linux_maintenance_hardening.py`
 
 **Checkpoint**: User Story 2 ist unabhängig über Paketlauf, Terminal und
 Report prüfbar.
@@ -95,15 +95,15 @@ idempotenten Zweitlauf ohne Netzwerk oder Paketmutation.
 
 ### Tests for User Story 3
 
-- [ ] T020 [US3] Add failing supported-platform, checksum, unsupported-platform, activation and idempotence tests to `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T020 [US3] Add failing supported-platform, checksum, unsupported-platform, activation and idempotence tests to `scripts/tests/test_linux_maintenance_hardening.py`
 
 ### Implementation for User Story 3
 
-- [ ] T021 [US3] Add Swiftly `1.1.2`, Swift `6.3.3`, the Ubuntu 22.04/24.04 platform matrix, architecture URLs and reviewed SHA-256 values to `scripts/config/required-cli-tools-registry.json`
-- [ ] T022 [US3] Implement fail-closed Ubuntu/os-release, architecture and Swift contract resolution in `scripts/lib/linux-maintenance-hardening.py`
-- [ ] T023 [US3] Implement verified download, extraction and unattended profile-safe Swiftly bootstrap in `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T024 [US3] Implement authorized post-install, current-shell environment activation and same-run Swift probe in `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T025 [US3] Prove SC-006, SC-007 and SC-008 in `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T021 [US3] Add Swiftly `1.1.2`, Swift `6.3.3`, the Ubuntu 22.04/24.04 platform matrix, architecture URLs and reviewed SHA-256 values to `scripts/config/required-cli-tools-registry.json`
+- [X] T022 [US3] Implement fail-closed Ubuntu/os-release, architecture and Swift contract resolution in `scripts/lib/linux-maintenance-hardening.py`
+- [X] T023 [US3] Implement verified download, extraction and unattended profile-safe Swiftly bootstrap in `scripts/maintain-agentic-brew-apps.sh`
+- [X] T024 [US3] Implement authorized post-install, current-shell environment activation and same-run Swift probe in `scripts/maintain-agentic-brew-apps.sh`
+- [X] T025 [US3] Prove SC-006, SC-007 and SC-008 in `scripts/tests/test_linux_maintenance_hardening.py`
 
 **Checkpoint**: User Story 3 ist ohne reale Swift-Installation unabhängig
 prüfbar.
@@ -120,15 +120,15 @@ Capability-gesperrte und hängende Launcher erhalten getrennte Status.
 
 ### Tests for User Story 4
 
-- [ ] T026 [US4] Add failing no-admin, Unusable, TimedOut, CapabilityBlocked and sanitized-evidence tests to `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T026 [US4] Add failing no-admin, Unusable, TimedOut, CapabilityBlocked and sanitized-evidence tests to `scripts/tests/test_linux_maintenance_hardening.py`
 
 ### Implementation for User Story 4
 
-- [ ] T027 [US4] Implement bounded process-group probes and status classification in `scripts/lib/linux-maintenance-hardening.py`
-- [ ] T028 [US4] Replace presence-only CLI checks with structured bounded probes in `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T029 [US4] Bound and classify the Unix PowerShell-module launcher path in `scripts/maintain-agentic-brew-apps.sh`
-- [ ] T030 [US4] Forward current admin-prompt authority and preserve `DEFERRED_ADMIN_REQUIRED` plus remaining Required drift in `scripts/maintain-agentic-workspace.sh`
-- [ ] T031 [US4] Prove SC-012, SC-013 and SC-014 in `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T027 [US4] Implement bounded process-group probes and status classification in `scripts/lib/linux-maintenance-hardening.py`
+- [X] T028 [US4] Replace presence-only CLI checks with structured bounded probes in `scripts/maintain-agentic-brew-apps.sh`
+- [X] T029 [US4] Bound and classify the Unix PowerShell-module launcher path in `scripts/maintain-agentic-brew-apps.sh`
+- [X] T030 [US4] Forward current admin-prompt authority and preserve `DEFERRED_ADMIN_REQUIRED` plus remaining Required drift in `scripts/maintain-agentic-workspace.sh`
+- [X] T031 [US4] Prove SC-012, SC-013 and SC-014 in `scripts/tests/test_linux_maintenance_hardening.py`
 
 **Checkpoint**: User Story 4 ist unabhängig ohne `sudo` oder hängende
 Prozesse prüfbar.
@@ -146,14 +146,14 @@ Exitcode, nächste Aktion und fehlende Teil-JSON-Dateien.
 
 ### Tests for User Story 5
 
-- [ ] T032 [US5] Add failing late-error, stale-success, INT, TERM and exactly-once finalization tests to `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T032 [US5] Add failing late-error, stale-success, INT, TERM and exactly-once finalization tests to `scripts/tests/test_linux_maintenance_hardening.py`
 
 ### Implementation for User Story 5
 
-- [ ] T033 [US5] Add idempotent atomic run-finalization support to `scripts/lib/agentic_workspace_fleet.py`
-- [ ] T034 [US5] Track the current stage and install separate EXIT/INT/TERM finalization paths in `scripts/maintain-agentic-workspace.sh`
-- [ ] T035 [US5] Reconcile final terminal text, log text, report status and process exitcode in `scripts/maintain-agentic-workspace.sh`
-- [ ] T036 [US5] Prove SC-015 and the linear text-first status contract in `scripts/tests/test_linux_maintenance_hardening.py`
+- [X] T033 [US5] Add idempotent atomic run-finalization support to `scripts/lib/agentic_workspace_fleet.py`
+- [X] T034 [US5] Track the current stage and install separate EXIT/INT/TERM finalization paths in `scripts/maintain-agentic-workspace.sh`
+- [X] T035 [US5] Reconcile final terminal text, log text, report status and process exitcode in `scripts/maintain-agentic-workspace.sh`
+- [X] T036 [US5] Prove SC-015 and the linear text-first status contract in `scripts/tests/test_linux_maintenance_hardening.py`
 
 **Checkpoint**: Alle fünf User Stories funktionieren und bleiben einzeln
 regressionsprüfbar.
@@ -165,21 +165,21 @@ regressionsprüfbar.
 **Purpose**: Dokumentation, Parität, Sicherheit, Statistik und lokale
 Lieferkandidatenprüfung schließen.
 
-- [ ] T037 [P] Update bilingual CLI help and exit/status matrices in `scripts/maintain-agentic-brew-apps.sh` and `scripts/maintain-agentic-workspace.sh`
-- [ ] T038 [P] Update DE-first/EN-second operational guidance in `docs/man/maintain-agentic-brew-apps.1.md`, `docs/man/maintain-agentic-workspace.1.md` and `README.md`
-- [ ] T039 Register the new helper in `scripts/config/script-catalog.json` and update runtime propagation/package declarations in `scripts/config/agentic-toolchain-maintenance-files.json` plus matching propagation scripts if required
-- [ ] T040 Regenerate and verify the canonical script inventory under `docs/scripts/` with `scripts/render-script-reference.ps1`
-- [ ] T041 [P] Review Bash/PowerShell shared registry and status parity in `scripts/maintain-agentic-winget-apps.ps1`, `scripts/maintain-agentic-workspace.ps1` and `scripts/tests/test_windows_maintenance_hardening.py`; record `N/A` where behavior is Linux-only
-- [ ] T042 [P] Review text-first A11Y, DE-first/EN-second CEFR-B2 wording and didactic comments in all changed user-facing files and record the result in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T043 Record secure-coding, architecture, NIST SSDF, CWE, CAPEC, SAMM, OpenSSF and explicit N/A dispositions in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T044 Create the exact Documentation Impact decisions in `specs/016-linux-maintenance-hardening/documentation-impact-evidence.json` and sanitized terminal/report examples in `specs/016-linux-maintenance-hardening/sanitized-report-examples.json`
-- [ ] T045 Review `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` and `.github/agents/copilot-instructions.md`; record the no-new-rule disposition in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T046 Run focused and existing test suites, Bash syntax, JSON validation and applicable PowerShell/PSScriptAnalyzer gates and record results in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T047 Run package- and profile-mutation-free compare-only, check-only and dry-run validation from `specs/016-linux-maintenance-hardening/quickstart.md` and reconcile allowed fetch/log/report writes in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T048 Render the new milestone and current Profile 2 block in `docs/project-statistics.md` from `docs/project-statistics.config.json`
-- [ ] T049 Run Documentation Impact, diff, secret, generated-reference, statistics and Homogeneity gates and record results in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
-- [ ] T050 Reconcile all LUM/AC coverage, completed tasks, Analyze findings and autonomous hashes in `specs/016-linux-maintenance-hardening/tasks.md` and `specs/016-linux-maintenance-hardening/autonomous-run-state.json`
-- [ ] T051 Archive the completed intake with `scripts/rename-lastenheft.sh` from `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md` to the branch-stamped Level-0 filename
+- [X] T037 [P] Update bilingual CLI help and exit/status matrices in `scripts/maintain-agentic-brew-apps.sh` and `scripts/maintain-agentic-workspace.sh`
+- [X] T038 [P] Update DE-first/EN-second operational guidance in `docs/man/maintain-agentic-brew-apps.1.md`, `docs/man/maintain-agentic-workspace.1.md` and `README.md`
+- [X] T039 Register the new helper in `scripts/config/script-catalog.json` and update runtime propagation/package declarations in `scripts/config/agentic-toolchain-maintenance-files.json` plus matching propagation scripts if required
+- [X] T040 Regenerate and verify the canonical script inventory under `docs/scripts/` with `scripts/render-script-reference.ps1`
+- [X] T041 [P] Review Bash/PowerShell shared registry and status parity in `scripts/maintain-agentic-winget-apps.ps1`, `scripts/maintain-agentic-workspace.ps1` and `scripts/tests/test_windows_maintenance_hardening.py`; record `N/A` where behavior is Linux-only
+- [X] T042 [P] Review text-first A11Y, DE-first/EN-second CEFR-B2 wording and didactic comments in all changed user-facing files and record the result in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T043 Record secure-coding, architecture, NIST SSDF, CWE, CAPEC, SAMM, OpenSSF and explicit N/A dispositions in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T044 Create the exact Documentation Impact decisions in `specs/016-linux-maintenance-hardening/documentation-impact-evidence.json` and sanitized terminal/report examples in `specs/016-linux-maintenance-hardening/sanitized-report-examples.json`
+- [X] T045 Review `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` and `.github/agents/copilot-instructions.md`; record the no-new-rule disposition in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T046 Run focused and existing test suites, Bash syntax, JSON validation and applicable PowerShell/PSScriptAnalyzer gates and record results in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T047 Run package- and profile-mutation-free compare-only, check-only and dry-run validation from `specs/016-linux-maintenance-hardening/quickstart.md` and reconcile allowed fetch/log/report writes in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T048 Render the new milestone and current Profile 2 block in `docs/project-statistics.md` from `docs/project-statistics.config.json`
+- [X] T049 Run Documentation Impact, diff, secret, generated-reference, statistics and Homogeneity gates and record results in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T050 Reconcile all LUM/AC coverage, completed tasks, Analyze findings and autonomous hashes in `specs/016-linux-maintenance-hardening/tasks.md` and `specs/016-linux-maintenance-hardening/autonomous-run-state.json`
+- [X] T051 Archive the completed intake with `scripts/rename-lastenheft.sh` from `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md` to the branch-stamped Level-0 filename
 
 ---
 
@@ -188,7 +188,7 @@ Lieferkandidatenprüfung schließen.
 **Purpose**: Den exakten Kandidaten reviewen, mit der autorisierten
 MergeAndSync-Grenze liefern und die Serie genau einmal fortschreiben.
 
-- [ ] T052 Stage only intended paths and validate the exact candidate against `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
+- [X] T052 Stage only intended paths and validate the exact candidate against `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
 - [ ] T053 Commit the reviewed candidate with required co-author trailer and push branch `016-linux-maintenance-hardening`
 - [ ] T054 Open the feature pull request and record its URL/head in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
 - [ ] T055 Converge all Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and write temporary provider-neutral gate evidence from `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
