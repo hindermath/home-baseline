@@ -91,9 +91,9 @@
 ## Feature Delivery and Closeout
 
 - [X] T065 Complete evidence and project statistics.
-- [ ] T066 Validate feature exact-head evidence.
+- [X] T066 Validate feature exact-head evidence.
 - [X] T067 Commit, push, and create feature PR.
-- [ ] T068 Converge checks and reviews.
+- [X] T068 Converge checks and reviews.
 - [ ] T069 Merge feature PR and synchronize `main`.
 - [ ] T070 Deliver one causal closeout PR if required.
 - [ ] T071 Archive Feature 014 and restore six roots.
