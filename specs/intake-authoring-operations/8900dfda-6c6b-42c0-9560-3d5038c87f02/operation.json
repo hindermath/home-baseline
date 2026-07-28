@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "8900dfda-6c6b-42c0-9560-3d5038c87f02",
+  "type": "CreateSeries",
+  "status": "Completed",
+  "createdAt": "2026-07-28T19:57:41Z",
+  "authorityEvidence": "Thorsten explicitly approved proposal hash 5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69 and requested implementation with MergeAndSync.",
+  "proposalPath": "specs/intake-authoring-operations/8900dfda-6c6b-42c0-9560-3d5038c87f02/proposal.json",
+  "proposalNormalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-07-28T19:57:41Z",
+    "evidence": "Current conversation: Implement the proposed plan."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/8900dfda-6c6b-42c0-9560-3d5038c87f02/staging",
+  "intendedTargets": [
+    "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+    "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+    "Lastenheft_ITSE-Jahr1-Retrofit.md",
+    "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+    "Lastenheft_ITSE-Professional-Jahr3.md",
+    "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+    "Lastenheft_ITSE-Lernreihen-Closure.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+    "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+    "Lastenheft_ITSE-Jahr1-Retrofit.md",
+    "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+    "Lastenheft_ITSE-Professional-Jahr3.md",
+    "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+    "Lastenheft_ITSE-Lernreihen-Closure.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+    "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+    "Lastenheft_ITSE-Jahr1-Retrofit.md",
+    "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+    "Lastenheft_ITSE-Professional-Jahr3.md",
+    "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+    "Lastenheft_ITSE-Lernreihen-Closure.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless all eight targets, receipts, the approved series, and review handoff validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review the approved ITSE learning series"
+}

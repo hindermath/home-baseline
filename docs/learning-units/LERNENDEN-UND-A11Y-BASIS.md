@@ -14,13 +14,14 @@ Alle Lern-, Bedien-, Governance- und Spec-Kit-Inhalte müssen ab dem ersten
 Ausbildungsjahr verständlich sein für:
 
 - Fachinformatikerinnen und Fachinformatiker;
+- IT-System-Elektronikerinnen und IT-System-Elektroniker;
 - Kaufleute für IT-System-Management;
 - Kaufleute für Digitalisierungsmanagement.
 
 *All learning, usage, governance, and Spec Kit content must be understandable
-from the first training year for IT specialist apprentices, management
-assistants for IT system management, and management assistants for
-digitalisation management.*
+from the first training year for IT specialist apprentices, IT systems
+electronics technician apprentices, management assistants for IT system
+management, and management assistants for digitalisation management.*
 
 ## Verbindliche Regeln / Binding Rules
 

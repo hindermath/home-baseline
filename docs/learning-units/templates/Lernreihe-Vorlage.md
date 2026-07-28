@@ -21,9 +21,11 @@
 
 ## Zweck / Purpose
 
-**DE:** Beschreibe hier kurz, welches fachliche Problem die Lernreihe behandelt und warum sie fuer Fachinformatiker*innen relevant ist.
+**DE:** Beschreibe hier kurz, welches fachliche Problem die Lernreihe behandelt
+und warum es für die ausgewählten IT-Ausbildungsberufe relevant ist.
 
-**EN:** Briefly describe which practical problem the learning series covers and why it matters for IT specialist apprentices.
+**EN:** Briefly describe which practical problem the learning series covers
+and why it matters for the selected IT training occupations.
 
 ## Zielgruppe / Target Group
 
@@ -34,6 +36,7 @@
 | Fachrichtung SI | <hoch/mittel/niedrig> |
 | Fachrichtung DPA | <hoch/mittel/niedrig> |
 | Fachrichtung DV | <hoch/mittel/niedrig> |
+| IT-System-Elektroniker/-in | <hoch/mittel/niedrig> |
 | Kaufleute für IT-System-Management | <hoch/mittel/niedrig> |
 | Kaufleute für Digitalisierungsmanagement | <hoch/mittel/niedrig> |
 | Spec-Kit-Vorkenntnisse / Prior Spec Kit knowledge | keine vorausgesetzt / none assumed |

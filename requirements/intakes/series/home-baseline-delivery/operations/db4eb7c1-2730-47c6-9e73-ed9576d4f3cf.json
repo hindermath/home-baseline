@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "db4eb7c1-2730-47c6-9e73-ed9576d4f3cf",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user approval to implement the complete ITSE learning-series and cross-series consistency intake plan with MergeAndSync delivery.",
+  "proposalNormalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69",
+  "preparedPaths": [
+    "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+    "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+    "Lastenheft_ITSE-Jahr1-Retrofit.md",
+    "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+    "Lastenheft_ITSE-Professional-Jahr3.md",
+    "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+    "Lastenheft_ITSE-Lernreihen-Closure.md",
+    "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "specs/intake-authoring-series/itse-learning-series/series.json",
+    "specs/itse-learning-intakes",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

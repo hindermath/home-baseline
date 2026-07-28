@@ -1,6 +1,6 @@
 # Rahmenlehrplan-Lernfeld-Mapping / Curriculum Learning-Field Mapping
 
-**Stand / Date:** 2026-07-08
+**Stand / Date:** 2026-07-28
 **Bezug / Scope:** Secure-CaseTracker-Familie (Basis, v2, Professional Tracks), Secure InventoryHub, Secure-ServiceHarvester-Familie (Basis, v2, Professional Tracks) und Secure-OrderDesk-Familie (Basis, v2, Professional Tracks)
 **Ausrichtung / Orientation:** DE-first, EN-second, CEFR B2, WCAG 2.2 AA
 
@@ -22,13 +22,17 @@ curriculum, vocational school, workplace training, or exam preparation.
 
 ## Lernfelder der IT-Berufe 2020 / Learning Fields of the 2020 IT Occupations
 
-**DE:** Grundlage ist der KMK-Rahmenlehrplan für die IT-Berufe (Beschluss vom 13.12.2019, gültig ab
-Ausbildungsjahr 2020) für Fachinformatiker*innen. Die übliche Jahres-Zuordnung ist: LF 1–4 im 1. Jahr,
-LF 5–9 im 2. Jahr, LF 10–12 fachrichtungsspezifisch im 3. Jahr.
+**DE:** Grundlage ist der
+[KMK-Rahmenlehrplan für Fachinformatiker*innen und IT-System-Elektroniker*innen](https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene?tx_fedownloads_single%5Baction%5D=forceDownload&tx_fedownloads_single%5Bcontroller%5D=Downloads&tx_fedownloads_single%5Bdownload%5D=45009&type=150)
+(Beschluss vom 13.12.2019, gültig ab Ausbildungsjahr 2020). Die verbindliche
+Jahreszuordnung ist: LF 1–5 im 1. Jahr, LF 6–9 im 2. Jahr und LF 10–12 im
+3. Jahr.
 
-**EN:** The basis is the KMK curriculum for the 2020 IT occupations (decision of 13 Dec 2019, effective
-from training year 2020) for IT specialists. The usual year assignment is: LF 1–4 in year 1, LF 5–9 in
-year 2, LF 10–12 specialization-specific in year 3.
+**EN:** The basis is the
+[KMK curriculum for IT specialists and IT systems electronics technicians](https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene?tx_fedownloads_single%5Baction%5D=forceDownload&tx_fedownloads_single%5Bcontroller%5D=Downloads&tx_fedownloads_single%5Bdownload%5D=45009&type=150)
+(decision of 13 December 2019, effective from training year 2020). The binding
+year assignment is LF1 through LF5 in year 1, LF6 through LF9 in year 2, and
+LF10 through LF12 in year 3.
 
 | LF | Titel / Title | Jahr / Year |
 |---:|---|---|
@@ -36,7 +40,7 @@ year 2, LF 10–12 specialization-specific in year 3.
 | 2 | Arbeitsplätze nach Kundenwunsch ausstatten | 1 |
 | 3 | Clients in Netzwerke einbinden | 1 |
 | 4 | Schutzbedarfsanalyse im eigenen Arbeitsbereich durchführen | 1 |
-| 5 | Software zur Verwaltung von Daten anpassen | 2 |
+| 5 | Software zur Verwaltung von Daten anpassen | 1 |
 | 6 | Serviceanfragen bearbeiten | 2 |
 | 7 | Cyber-physische Systeme ergänzen | 2 |
 | 8 | Daten systemübergreifend bereitstellen | 2 |
@@ -49,6 +53,30 @@ year 2, LF 10–12 specialization-specific in year 3.
 | 10 | 10a Benutzerschnittstellen gestalten und entwickeln | 10b Serverdienste bereitstellen und Administrationsaufgaben automatisieren | 10c Werkzeuge des maschinellen Lernens einsetzen | 10d Cyber-physische Systeme entwickeln |
 | 11 | 11a Funktionalität in Anwendungen realisieren | 11b Betrieb und Sicherheit vernetzter Systeme gewährleisten | 11c Prozesse analysieren und gestalten | 11d Betrieb und Sicherheit vernetzter Systeme gewährleisten |
 | 12 | 12a Kundenspezifische Anwendungsentwicklung durchführen | 12b Kundenspezifische Systemintegration durchführen | 12c Kundenspezifische Prozess- und Datenanalyse durchführen | 12d Kundenspezifisches cyber-physisches System optimieren |
+
+### Lernfelder IT-System-Elektroniker/-in / ITSE Learning Fields (Jahr / Year 3)
+
+**DE:** ITSE und die vier FI-Fachrichtungen verwenden LF1 bis LF9 gemeinsam.
+Für LF10 bis LF12 besitzt ITSE einen eigenen berufsspezifischen Pfad. LF11
+vermittelt dieselben Kernkompetenzen wie LF11b für FI/SI und LF11d für FI/DV;
+die berufstypische Anwendung bleibt unterschiedlich. Elektrotechnische
+Kompetenzen beginnen bereits in LF2 und werden insbesondere in LF7, LF10 und
+LF11 fortgeführt. Grundlage sind der KMK-Rahmenlehrplan und die
+[BIBB-Umsetzungshilfe IT-System-Elektroniker/-in](https://www.bibb.de/dienst/publikationen/de/16664).
+
+**EN:** ITSE and all four IT-specialist tracks share LF1 through LF9. ITSE has
+its own occupation-specific path for LF10 through LF12. LF11 teaches the same
+core competencies as LF11b for FI/SI and LF11d for FI/DV, while the
+occupation-specific application remains different. Electrical competencies
+start in LF2 and continue especially in LF7, LF10, and LF11. The binding
+sources are the KMK curriculum and the
+[BIBB ITSE implementation guide](https://www.bibb.de/dienst/publikationen/de/16664).
+
+| LF | Titel / Title | Jahr / Year |
+|---:|---|---|
+| 10 (SE) | Energieversorgung bereitstellen und Betriebssicherheit gewährleisten | 3 |
+| 11 (SE) | Betrieb und Sicherheit vernetzter Systeme gewährleisten | 3 |
+| 12 (SE) | Instandhaltung planen und durchführen | 3 |
 
 ### Lernfelder der kaufmännischen IT-Berufe / Learning Fields of the Commercial IT Occupations
 

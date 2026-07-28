@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeries",
+  "seriesId": "3f1e0f33-2255-4e2d-bf0c-af251351ef28",
+  "version": 1,
+  "status": "ReadyForReview",
+  "operationId": "8900dfda-6c6b-42c0-9560-3d5038c87f02",
+  "proposalNormalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-07-28T19:57:41Z",
+    "evidence": "Current conversation: Implement the proposed plan."
+  },
+  "orderedIntakeIds": [
+    "1afb9897-78e7-42c5-bdc7-d9fd2ce8bcef",
+    "2cbb2377-cb1e-42a6-9766-c77fb911491f",
+    "eb8f5ceb-abb0-40c4-a249-c7ba4112a93f",
+    "c69fbe98-963f-40de-95fa-a7db73617740",
+    "e5600610-6252-4a8d-b938-2c3e0af91a67",
+    "76ba0685-85df-40b4-a2bd-a106d1e15a82",
+    "1c27f5de-2d58-4aa3-9ba4-2d9f0f944c89",
+    "f0687ac0-41ae-4f03-8215-3e28cf4c6206"
+  ],
+  "roots": [
+    "1afb9897-78e7-42c5-bdc7-d9fd2ce8bcef"
+  ],
+  "members": [
+    {
+      "intakeId": "1afb9897-78e7-42c5-bdc7-d9fd2ce8bcef",
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-lernreihen-gap-audit.json",
+      "title": "ITSE-Lernreihen-Gap-Audit",
+      "role": "GapAudit",
+      "order": 1,
+      "normalizedSha256": "b9cf4b049cfb0d553d333021c088528339549efe35c7d1a4e5f48dfaf3548d9f",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "2cbb2377-cb1e-42a6-9766-c77fb911491f",
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-lernarchitektur-und-kompetenzmodell.json",
+      "title": "ITSE-Lernarchitektur und Kompetenzmodell",
+      "role": "Architecture",
+      "order": 2,
+      "normalizedSha256": "0e57ff6dfbdd5cff5e8d1fe3d8c0705462da5980b052bf3163d3cc6de7345024",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "eb8f5ceb-abb0-40c4-a249-c7ba4112a93f",
+      "path": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-jahr1-retrofit.json",
+      "title": "ITSE-Jahr-1-Retrofit",
+      "role": "Year1Retrofit",
+      "order": 3,
+      "normalizedSha256": "c879f2a04218098458306397b3034ae5c7f5f8767271496f2273c82964969a67",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "c69fbe98-963f-40de-95fa-a7db73617740",
+      "path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-technischer-kern-jahr2.json",
+      "title": "ITSE-Technischer Kern Jahr 2",
+      "role": "Year2TechnicalCore",
+      "order": 4,
+      "normalizedSha256": "095348df1019acdf5608fe0f178cedbbda850c525fd2e0b9f767a8f9b5c52014",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "e5600610-6252-4a8d-b938-2c3e0af91a67",
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-professional-jahr3.json",
+      "title": "ITSE Professional Jahr 3",
+      "role": "Year3Professional",
+      "order": 5,
+      "normalizedSha256": "c5d59e5df2c14b03e751097ba43bbf3061decb6f2810e6c3f87b077218686b17",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "76ba0685-85df-40b4-a2bd-a106d1e15a82",
+      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-csharp-lernreihen-rollout.json",
+      "title": "ITSE-C#-Lernreihen-Rollout",
+      "role": "CSharpRollout",
+      "order": 6,
+      "normalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "1c27f5de-2d58-4aa3-9ba4-2d9f0f944c89",
+      "path": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "receiptPath": "specs/intake-authoring-receipts/itse-lernreihen-closure.json",
+      "title": "ITSE-Lernreihen-Closure",
+      "role": "ITSEClosure",
+      "order": 7,
+      "normalizedSha256": "135a80646e5b91715da0704edab9450866e4d7205ec5ef648a78c2be6915ff08",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "f0687ac0-41ae-4f03-8215-3e28cf4c6206",
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "receiptPath": "specs/intake-authoring-receipts/lernreihen-gesamtkonsistenz-closure.json",
+      "title": "Lernreihen-Gesamtkonsistenz-Closure",
+      "role": "GlobalClosure",
+      "order": 8,
+      "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
+      "supersedesIntakeIds": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "1afb9897-78e7-42c5-bdc7-d9fd2ce8bcef",
+      "to": "2cbb2377-cb1e-42a6-9766-c77fb911491f",
+      "kind": "AssessmentBaseline"
+    },
+    {
+      "from": "2cbb2377-cb1e-42a6-9766-c77fb911491f",
+      "to": "eb8f5ceb-abb0-40c4-a249-c7ba4112a93f",
+      "kind": "RequirementsGovernanceGate"
+    },
+    {
+      "from": "eb8f5ceb-abb0-40c4-a249-c7ba4112a93f",
+      "to": "c69fbe98-963f-40de-95fa-a7db73617740",
+      "kind": "HardCompletionGate"
+    },
+    {
+      "from": "c69fbe98-963f-40de-95fa-a7db73617740",
+      "to": "e5600610-6252-4a8d-b938-2c3e0af91a67",
+      "kind": "HardCompletionGate"
+    },
+    {
+      "from": "e5600610-6252-4a8d-b938-2c3e0af91a67",
+      "to": "76ba0685-85df-40b4-a2bd-a106d1e15a82",
+      "kind": "DocumentationSurfaceBaseline"
+    },
+    {
+      "from": "76ba0685-85df-40b4-a2bd-a106d1e15a82",
+      "to": "1c27f5de-2d58-4aa3-9ba4-2d9f0f944c89",
+      "kind": "FinalAuditInput"
+    },
+    {
+      "from": "1c27f5de-2d58-4aa3-9ba4-2d9f0f944c89",
+      "to": "f0687ac0-41ae-4f03-8215-3e28cf4c6206",
+      "kind": "GlobalConsistencyInput"
+    }
+  ],
+  "coverage": [
+    {
+      "sourceId": "SRC001",
+      "topic": "Approved ITSE and cross-series consistency plan",
+      "intakeIds": [
+        "1afb9897-78e7-42c5-bdc7-d9fd2ce8bcef",
+        "2cbb2377-cb1e-42a6-9766-c77fb911491f",
+        "eb8f5ceb-abb0-40c4-a249-c7ba4112a93f",
+        "c69fbe98-963f-40de-95fa-a7db73617740",
+        "e5600610-6252-4a8d-b938-2c3e0af91a67",
+        "76ba0685-85df-40b4-a2bd-a106d1e15a82",
+        "1c27f5de-2d58-4aa3-9ba4-2d9f0f944c89",
+        "f0687ac0-41ae-4f03-8215-3e28cf4c6206"
+      ],
+      "disposition": "Covered"
+    }
+  ],
+  "overlapDecisions": [
+    {
+      "topic": "FI comparison",
+      "decision": "Every ITSE stage compares with all four FI tracks; canonical FI content is reused rather than copied."
+    },
+    {
+      "topic": "Two closures",
+      "decision": "Position 32 closes ITSE specifically; position 33 independently closes internal, normative, and cross-series consistency."
+    }
+  ],
+  "reviewRequestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+  "nextAction": "$speckit-intake-review the approved ITSE learning series"
+}

@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "0005ff81-a7a4-4803-ad33-12a25393ae8b",
+  "reviewId": "e54bbf16-d0f0-4363-b728-8a951aaee148",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T18:43:31Z",
+  "reviewedAt": "2026-07-28T20:24:12Z",
   "repository": {
     "root": ".",
-    "head": "c980ba589c929c5ca0e4ec2a75a8881692276168"
+    "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "f87b9ca644fd2824a3598bf1e2a984fc16bd9388d18efc9de9b47f9324559f13"
+    "normalizedSha256": "8a92a9773c3ca8e22bbb3c5035253e05ce2e667c5621937a4467234812f1c6f9"
   },
   "summary": {
     "critical": 0,
@@ -19,7 +19,7 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "47c855a9-b945-4e95-bcaa-9db9a2e5b6f1",
+  "supersedes": "0005ff81-a7a4-4803-ad33-12a25393ae8b",
   "targets": [
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -188,6 +188,54 @@
       "role": "OrderedMember",
       "normalizedSha256": "13cd99d4940482fd4992ea70896d74b50ea0c100c46ee4cb09675201be55d59c",
       "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "b9cf4b049cfb0d553d333021c088528339549efe35c7d1a4e5f48dfaf3548d9f",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "0e57ff6dfbdd5cff5e8d1fe3d8c0705462da5980b052bf3163d3cc6de7345024",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c879f2a04218098458306397b3034ae5c7f5f8767271496f2273c82964969a67",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "095348df1019acdf5608fe0f178cedbbda850c525fd2e0b9f767a8f9b5c52014",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c5d59e5df2c14b03e751097ba43bbf3061decb6f2810e6c3f87b077218686b17",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "135a80646e5b91715da0704edab9450866e4d7205ec5ef648a78c2be6915ff08",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
+      "gitBlob": "N/A"
     }
   ],
   "findings": [],
@@ -220,14 +268,24 @@
       "Lastenheft_KITSM-Professional-Jahr3.md",
       "Lastenheft_KDM-Professional-Jahr3.md",
       "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md"
+      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "Lastenheft_ITSE-Professional-Jahr3.md",
+      "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 28 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 36 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The four declared roots equal the zero-indegree target set",
-      "Thirty-five unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Forty-three unique dependencies are reference-valid, order-consistent, and acyclic",
       "Windows maintenance Feature 015 remains archived with preserved review lineage",
       "The eight KDM/KITSM intakes form one binding chain after item 17",
+      "The seven ITSE intakes and the global consistency closure form one binding chain after item 25",
+      "Every ITSE intake was independently reviewed as Ready before series publication",
       "Linux and Ubuntu maintenance remains the single declared Eligible candidate",
       "No successor feature, branch, or Spec Kit run was started"
     ],
