@@ -36,12 +36,12 @@
     "completed": 54,
     "total": 59
   },
-  "lastPassingGate": "Local G001-G006 candidate gates passed: 52 discovered tests, 13 focused Linux tests, 146 statistics assertions, Documentation Impact, generated inventory, secret fallback, JSON/Bash validation and Homogeneity score 100.",
-  "nextExactAction": "Push the PR #146 evidence update, converge every required provider check and actionable review thread on its exact head, then validate temporary G007 evidence.",
+  "lastPassingGate": "After the first macOS matrix failure, platform-correct fixtures passed all 13 focused and all 52 discovered tests locally; previous remote results are stale for the replacement head.",
+  "nextExactAction": "Commit and push the macOS fixture correction, then reconverge every PR #146 provider check and actionable review thread on the replacement exact head.",
   "lastOperation": {
-    "kind": "Publish",
+    "kind": "Review",
     "state": "Completed",
-    "summary": "Reviewed candidate pushed and PR #146 opened; local G001-G006 remain green and G007 awaits the final exact feature head."
+    "summary": "Diagnosed the macOS-only fixture mismatch from GitHub Actions and validated the narrow cross-platform test correction locally without bypassing the failed gate."
   },
   "stop": {
     "reason": "N/A",
@@ -54,5 +54,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-28T20:47:00Z"
+  "updatedAt": "2026-07-28T20:58:00Z"
 }

@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import platform
 import shlex
 import signal
 import stat
@@ -334,14 +335,14 @@ class LinuxMaintenanceHardeningTests(unittest.TestCase):
                         {
                             "id": "required-missing",
                             "scope": "required",
-                            "platforms": ["Linux"],
+                            "platforms": [platform.system()],
                             "command": "required-missing",
                             "args": ["--version"],
                         },
                         {
                             "id": "optional-missing",
                             "scope": "optional",
-                            "platforms": ["Linux"],
+                            "platforms": [platform.system()],
                             "command": "optional-missing",
                             "args": ["--version"],
                         },
@@ -361,7 +362,7 @@ class LinuxMaintenanceHardeningTests(unittest.TestCase):
                         {
                             "id": "optional-missing",
                             "scope": "optional",
-                            "platforms": ["Linux"],
+                            "platforms": [platform.system()],
                             "command": "optional-missing",
                             "args": ["--version"],
                         }
@@ -503,6 +504,7 @@ class LinuxMaintenanceHardeningTests(unittest.TestCase):
             self.assertEqual(rejected.returncode, 1, rejected.stdout)
             self.assertEqual(json.loads(rejected.stdout)["status"], "IntegrityMismatch")
 
+    @unittest.skipUnless(platform.system() == "Linux", "Linux-only Swift provisioning")
     def test_swiftly_install_is_verified_active_and_idempotent(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -562,6 +564,7 @@ cp "${HB_TEST_SWIFT_ARCHIVE:?}" "$output"
             self.assertEqual(second.returncode, 0, second.stdout)
             self.assertEqual(install_log.read_text(encoding="utf-8").splitlines(), ["6.3.3"])
 
+    @unittest.skipUnless(platform.system() == "Linux", "Linux-only Swift provisioning")
     def test_swiftly_bad_hash_and_missing_admin_authority_do_not_execute(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

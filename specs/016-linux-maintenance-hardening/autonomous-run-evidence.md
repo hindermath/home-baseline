@@ -197,6 +197,18 @@ wiederhergestellt. Toolchains und Konfiguration blieben erhalten;
 Variablen nun ausdrücklich; Positivlauf, Fehlerlauf und idempotenter Zweitlauf
 sind danach grün.
 
+Der erste veröffentlichte Exact-Head lief auf Ubuntu und Windows erfolgreich,
+deckte auf macOS aber drei falsch plattformgebundene Testfixtures auf:
+Required-/Optional-CLI-Einträge deklarierten ausschließlich `Linux`, und zwei
+echte Swiftly-Bereitstellungsfixtures liefen trotz ihres Linux-Vertrags auch
+unter Darwin. Der portable CLI-Statusvertrag verwendet nun die aktuelle
+Unix-Plattform des Testläufers; ausschließlich die beiden realen
+Swiftly-Bereitstellungsfälle werden auf Nicht-Linux-Systemen explizit
+übersprungen. Die fokussierten 13 Linux-Tests und die vollständigen 52
+entdeckten Tests sind nach der Korrektur lokal grün. Der fehlgeschlagene
+Remote-Head wird nicht als Gate-Pass angerechnet; G007 wird vollständig auf
+dem neuen Head wiederholt.
+
 ## Delivery boundary
 
 Nur Level 0 und die deklarierte Home-Runtime werden geliefert. Der Lauf
