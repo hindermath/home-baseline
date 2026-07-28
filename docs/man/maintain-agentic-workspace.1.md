@@ -30,8 +30,10 @@ Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
    nachgezogen.
 5. Das kanonische Wartungspaket wird mit
    `propagate-agentic-toolchain-maintenance.*` geprueft.
-6. Das Registry-Profil jedes Repositories wird gegen die exakte Acht-, Neun-
-   oder Zehn-Preset-Matrix geprueft. Liegt der aktive Arbeitsbaum nicht exakt
+6. Das Registry-Profil jedes Repositories wird gegen die explizit konfigurierte
+   Matrix geprueft. Der Flottenpfad bindet
+   `intake-sequencing-eleven-governance-presets` mit exakt elf Presets. Liegt
+   der aktive Arbeitsbaum nicht exakt
    auf `origin/HEAD`, erfolgt die schreibfreie Profilpruefung in einem
    kurzlebigen detached Worktree des kanonischen Default-Branches. Drift dort
    erfordert einen eigenen Branch beziehungsweise PR.
@@ -87,6 +89,11 @@ Repository. Unabhaengige Ziele werden weiter geprueft.
 Pro Home-Verzeichnis verhindert ein Lock parallele Wartungslaeufe. Pro Lauf
 entstehen ein vollstaendiges lokales Log unter `~/.home-baseline/logs/` und ein
 JSON-Bericht unter `~/.home-baseline/reports/`. Beide verwenden dieselbe Run-ID.
+Der sichtbare Abschluss und der Prozess-Exitcode werden aus genau diesem
+Bericht abgeleitet. Eigene reparierte Dirty-Zwischenstaende werden nur mit
+atomarer Resume-Evidence unter `~/.home-baseline/` fortgesetzt, wenn Pfade und
+Nachher-Hashes exakt passen. Fremde oder teilweise passende Aenderungen
+blockieren.
 
 *Without options, the script performs full maintenance: it fast-forwards
 Level-0, synchronizes the local home baseline, resolves declared active
@@ -96,7 +103,10 @@ maintains the platform toolchain, and verifies the final state. It never
 switches an existing branch, resets worktrees, or commits/pushes target
 changes. Missing declared repositories use a verified sibling clone. A
 per-home lock prevents parallel runs; correlated local logs and JSON reports
-are written below `~/.home-baseline/`.*
+are written below `~/.home-baseline/`. The visible terminal state and process
+exit code are derived from that exact report. Self-created dirty intermediate
+state resumes only from atomically written evidence with exact paths and
+after-hashes; unknown or partial changes block.*
 
 ## OPTIONS
 
@@ -110,6 +120,9 @@ are written below `~/.home-baseline/`.*
 | `--allow-admin-prompts` | `-AllowAdminPrompts` | Administratorabfragen nur fuer diesen Lauf erlauben / Allow administrator prompts for this run only |
 | `--manifest PATH` | `-ManifestPath PATH` | Alternatives Fleet-Manifest / Alternative fleet manifest |
 | `--home-dir PATH` | `-HomeDir PATH` | Alternatives Home fuer Tests/Profile / Alternative home for tests/profiles |
+| — | `-GitRetryAttempts N` | Begrenzte Versuche nur fuer transiente Git-Netzwerkfehler / Bounded attempts for transient Git network failures only |
+| — | `-GitTimeoutSeconds N` | Harte Grenze je Fetch-/Pull-Versuch / Hard limit per fetch/pull attempt |
+| — | `-WinGetTimeoutSeconds N` | Harte Grenze je WinGet-Unterprozess / Hard limit per WinGet subprocess |
 
 `--check-only` / `-CheckOnly` und Vorschau sind gegenseitig exklusiv.
 Drift-Reparatur ist nur in einem echten Lauf erlaubt. Optionale Pakete sind im
@@ -120,7 +133,8 @@ speichert keine Zugangsdaten.
 *Check-only and preview are mutually exclusive. Drift repair is only allowed
 in an actual run. Optional packages do not apply to scripts-only mode.
 Administrator interaction is denied by default; the opt-in applies only to
-the current process and stores no credentials.*
+the current process and stores no credentials. It never bypasses UAC, process
+timeouts, repository safety checks, tests, or review gates.*
 
 ## EXIT STATUS
 
@@ -130,6 +144,14 @@ the current process and stores no credentials.*
 | `1` | Drift oder nicht synchroner Zustand gefunden / Drift or unsynchronized state found |
 | `2` | Betriebs-, Parameter- oder Sicherheitsfehler / Operational, parameter, or safety error |
 | `3` | Drift lokal repariert; separate Pruefung, Commit und Push erforderlich / Drift repaired locally; separate review, commit, and push required |
+
+Ein nicht sicher abschliessbarer WinGet-Adminvorgang wird intern als
+`DEFERRED_ADMIN_REQUIRED` klassifiziert und am Orchestrator als blockierter
+Teilabschluss mit Exitcode `1` berichtet.
+
+*A WinGet administrator operation that cannot complete safely is classified
+internally as `DEFERRED_ADMIN_REQUIRED` and reported by the orchestrator as a
+blocked partial result with exit code `1`.*
 
 ## EXAMPLES
 
@@ -144,6 +166,7 @@ bash scripts/maintain-agentic-workspace.sh --scripts-only --repair-drift
 ```powershell
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CheckOnly
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf -GitRetryAttempts 3 -GitTimeoutSeconds 300 -WinGetTimeoutSeconds 1800
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -ManifestPath C:\Temp\fleet.json -HomeDir C:\Temp\TestHome -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -ScriptsOnly -RepairDrift

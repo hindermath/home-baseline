@@ -238,8 +238,21 @@ function Invoke-TestRenderer {
 
     $environment = @{ SOURCE_DATE_EPOCH = '1784455200' }
     if ($EntryPoint -eq 'bash') {
+        $bashRenderer = $script:BashRenderer
+        $bashRepository = $Repository
+        if ($IsWindows) {
+            $toWslPath = {
+                param([string]$Path)
+                $resolved = [IO.Path]::GetFullPath($Path)
+                $drive = $resolved.Substring(0, 1).ToLowerInvariant()
+                $remainder = $resolved.Substring(3).Replace('\', '/')
+                return "/mnt/${drive}/${remainder}"
+            }
+            $bashRenderer = & $toWslPath $script:BashRenderer
+            $bashRepository = & $toWslPath $Repository
+        }
         return Invoke-TestProcess -Executable 'bash' `
-            -Arguments (@($script:BashRenderer, '--repo', $Repository) + $Options) `
+            -Arguments (@($bashRenderer, '--repo', $bashRepository) + $Options) `
             -WorkingDirectory $Repository -Environment $environment
     }
     $mapped = [Collections.Generic.List[string]]::new()
@@ -339,7 +352,7 @@ try {
     Confirm-TestCondition -Condition ($checkPowerShell.ExitCode -eq 0) `
         -Message 'statistics-only commit does not create drift'
     Confirm-TestCondition -Condition ($checkPowerShell.StdOut -ceq $checkBash.StdOut) `
-        -Message 'Bash and PowerShell JSON status are byte-identical'
+        -Message "Bash and PowerShell JSON status are byte-identical`nPowerShell: $($checkPowerShell.StdOut)`nBash: $($checkBash.StdOut)`nBash stderr: $($checkBash.StdErr)"
 
     $currentPreviewPowerShell = Invoke-TestRenderer -Repository $repository `
         -Options @('--dry-run')

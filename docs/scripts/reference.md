@@ -4,8 +4,8 @@
 >
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
-Stand / Updated: 2026-07-22
-Kanonische Skriptdateien / Canonical script files: 119
+Stand / Updated: 2026-07-28
+Kanonische Skriptdateien / Canonical script files: 120
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -662,6 +662,17 @@ python3 scripts/tests/test_maintenance_contracts.py --help
 
 ```text
 python3 scripts/tests/test_sync_home_cli.py --help
+```
+
+### `scripts/tests/test_windows_maintenance_hardening.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_windows_maintenance_hardening.py --help
 ```
 
 ## Statistik / Statistics

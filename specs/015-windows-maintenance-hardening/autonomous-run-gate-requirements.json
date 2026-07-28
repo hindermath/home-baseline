@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "015-windows-maintenance-hardening",
+  "gates": [
+    {
+      "gateId": "G001",
+      "applicability": "Applicable",
+      "requiredScope": "Windows maintenance hardening fixtures",
+      "requiredCommandTokens": ["test_windows_maintenance_hardening"],
+      "requiredRunnerOrPlatformTokens": ["windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G002",
+      "applicability": "Applicable",
+      "requiredScope": "Existing maintenance and contract regression suites",
+      "requiredCommandTokens": ["test_agentic_workspace_maintenance", "test_maintenance_contracts"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G003",
+      "applicability": "Applicable",
+      "requiredScope": "PowerShell parser and pinned static analysis",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer"],
+      "requiredRunnerOrPlatformTokens": ["windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G004",
+      "applicability": "Applicable",
+      "requiredScope": "Windows project statistics and path parity",
+      "requiredCommandTokens": ["test-render-project-statistics"],
+      "requiredRunnerOrPlatformTokens": ["windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G005",
+      "applicability": "Applicable",
+      "requiredScope": "Secret, homogeneity and agent-surface checks",
+      "requiredCommandTokens": ["scan-agent-secrets", "check-homogeneity"],
+      "requiredRunnerOrPlatformTokens": ["local"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G006",
+      "applicability": "Applicable",
+      "requiredScope": "Check-only and WhatIf complete without mutation",
+      "requiredCommandTokens": ["CheckOnly", "WhatIf"],
+      "requiredRunnerOrPlatformTokens": ["windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G007",
+      "applicability": "N/A",
+      "requiredScope": "Web, API, product runtime or release artifact tests",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No web, API, product runtime, dependency, package, or release artifact is changed.",
+      "reevaluationTrigger": "Any such scope change."
+    }
+  ]
+}

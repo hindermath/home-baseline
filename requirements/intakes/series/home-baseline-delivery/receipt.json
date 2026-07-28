@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "a3dea1f2-007a-43af-80dd-97e65432ecf3",
+  "receiptId": "d09c5e0f-0826-49f7-9dba-3739c161cb93",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-28T13:45:51Z",
+  "createdAt": "2026-07-28T14:48:15Z",
   "operation": {
-    "operationId": "5f1c715a-1251-456b-89dc-f7ee17255aa5",
+    "operationId": "7a3d198e-c296-4148-821b-e678d81e33e7",
     "type": "Update",
-    "authorityEvidence": "Explicit current user approval to implement and merge the D4-D7 documentation-intake plan."
+    "authorityEvidence": "Explicit current user instruction to update the Eligible Windows hardening intake before autonomous MergeAndSync delivery."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "753044cda41b716de072a114ca96b78ee445144ab1254f889c7f617606134e7e"
+    "normalizedSha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/5f1c715a-1251-456b-89dc-f7ee17255aa5/receipt.json",
-    "receiptNormalizedSha256": "9a5273e7f40ffc8c56a792be0dc7098d1713fdb1d118fa04f511a20747ba432c",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/5f1c715a-1251-456b-89dc-f7ee17255aa5/manifest.json",
-    "manifestArchiveSha256": "b7c7211e0b7241345ac72ab33fd40100bd659ed95db76b681930c2b25381825a"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/7a3d198e-c296-4148-821b-e678d81e33e7/receipt.json",
+    "receiptNormalizedSha256": "68921973142a69fc72389c75d2e02242e51f3ca4034b60612de8fe3fa6430392",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/7a3d198e-c296-4148-821b-e678d81e33e7/manifest.json",
+    "manifestArchiveSha256": "753044cda41b716de072a114ca96b78ee445144ab1254f889c7f617606134e7e"
   },
   "tombstone": {
     "path": "N/A",

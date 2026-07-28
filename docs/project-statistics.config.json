@@ -337,6 +337,14 @@
       "labelEn": "Documentation architecture intake chain",
       "netLines": 2672,
       "activeDays": 1
+    },
+    {
+      "slot": 41,
+      "id": "windows-one-command-maintenance-hardening",
+      "labelDe": "Windows-Ein-Kommando-Wartungshärtung",
+      "labelEn": "Windows one-command maintenance hardening",
+      "netLines": 4063,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

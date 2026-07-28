@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-26",
+  "updated": "2026-07-28",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "files": [
     {
@@ -9,6 +9,10 @@
     },
     {
       "path": "scripts/maintain-agentic-winget-apps.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/windows-maintenance-hardening.psm1",
       "executable": false
     },
     {

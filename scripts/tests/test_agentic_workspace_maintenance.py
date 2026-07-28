@@ -15,6 +15,16 @@ REPOSITORY = Path(__file__).resolve().parents[2]
 ENGINE = REPOSITORY / "scripts" / "lib" / "agentic_workspace_fleet.py"
 
 
+def bash_path(path: Path) -> str:
+    """Translate an absolute Windows path for the installed Git-Bash surface."""
+    resolved = path.resolve()
+    if os.name != "nt":
+        return str(resolved)
+    drive = resolved.drive.rstrip(":").lower()
+    remainder = resolved.as_posix().split(":", 1)[1].lstrip("/")
+    return f"/mnt/{drive}/{remainder}"
+
+
 def git(repository: Path | None, *arguments: str) -> str:
     command = ["git"]
     if repository is not None:
@@ -74,11 +84,15 @@ class FleetFixture:
         target.write_text(json.dumps(content), encoding="utf-8")
         return target
 
-    def run(self, mode: str, manifest: Path | None = None) -> tuple[subprocess.CompletedProcess[str], dict]:
+    def run(
+        self,
+        mode: str,
+        manifest: Path | None = None,
+        allowed_dirty_paths: tuple[str, ...] = (),
+    ) -> tuple[subprocess.CompletedProcess[str], dict]:
         report = self.root / f"report-{mode}.json"
         log = self.root / f"run-{mode}.log"
-        completed = subprocess.run(
-            [
+        command = [
                 "python3",
                 str(ENGINE),
                 "fleet",
@@ -92,7 +106,11 @@ class FleetFixture:
                 str(report),
                 "--log",
                 str(log),
-            ],
+            ]
+        for path in allowed_dirty_paths:
+            command.extend(["--allowed-dirty-path", path])
+        completed = subprocess.run(
+            command,
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
@@ -299,6 +317,21 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertEqual(updated["overallStatus"], "PARTIAL")
             self.assertEqual(updated["exitCode"], 1)
 
+    def test_exact_resume_dirty_path_is_accepted_but_remains_visible(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            (checkout / "README.md").write_text("managed repair\n", encoding="utf-8")
+            completed, report = fixture.run(
+                "update",
+                allowed_dirty_paths=("Fleet/Example/README.md",),
+            )
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            target = next(item for item in report["targets"] if item["targetId"] == "example")
+            self.assertEqual(target["status"], "CURRENT")
+            self.assertTrue(target["resumeAccepted"])
+
     def test_public_surfaces_share_admin_deferral_and_report_contract(self) -> None:
         bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")
         powershell = (REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1").read_text(encoding="utf-8")
@@ -409,13 +442,13 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             commands = [
                 [
                     "bash",
-                    str(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.sh"),
+                    bash_path(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.sh"),
                     "--home-dir",
-                    str(home),
+                    bash_path(home),
                     "--registry",
-                    str(registry),
+                    bash_path(registry),
                     "--manifest",
-                    str(manifest),
+                    bash_path(manifest),
                     "--check-only",
                 ],
                 [
@@ -442,8 +475,10 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                         check=False,
                     )
                     self.assertEqual(completed.returncode, 0, completed.stdout)
-                    self.assertIn(str(canonical), completed.stdout)
-                    self.assertNotIn(str(legacy), completed.stdout)
+                    expected_canonical = bash_path(canonical) if command[0] == "bash" else str(canonical)
+                    unexpected_legacy = bash_path(legacy) if command[0] == "bash" else str(legacy)
+                    self.assertIn(expected_canonical, completed.stdout)
+                    self.assertNotIn(unexpected_legacy, completed.stdout)
 
     def test_registry_rejects_preset_or_unknown_propagation_targets(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

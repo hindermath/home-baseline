@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "2b72e80e-30e1-4b5e-bc62-3a8697105d5b",
+  "featurePath": "specs/015-windows-maintenance-hardening",
+  "branch": "015-windows-maintenance-hardening",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Validate",
+  "status": "Active",
+  "checkpointCommit": "694429cd0c0a8f683ab1ef93531d36ad5de8625b",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "sha256": "5f6effea7eb4f4a3c7a4f321f62695f78e9a6bec16ea5a085d2ecba711d4732f"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/windows-ein-kommando-wartung-haertung.json",
+      "sha256": "083221e9ef021f4838a86c093be5d4daea6f477245b67f7fd50fe06d3ab15aee"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "f8ce8c44600f49cd4b9ab3757a132e4e3fad2ded98818854f3d5c1be8c692807"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
+    }
+  ],
+  "tasks": {
+    "path": "specs/015-windows-maintenance-hardening/tasks.md",
+    "sha256": "62d63c03c27d0c749edaac19c4eeb1effe3d3f2287a981e56bba869577c9bca8",
+    "completed": 29,
+    "total": 44
+  },
+  "lastPassingGate": "Implementation, documentation, parser, PSScriptAnalyzer 1.25.0, 146 statistics assertions and all targeted local regression suites pass.",
+  "nextExactAction": "Run the remaining candidate-wide security and homogeneity gates, commit and push the first exact candidate.",
+  "lastOperation": {
+    "kind": "Implement",
+    "state": "Completed",
+    "summary": "Windows hardening contracts, public integrations, tests, documentation and feature-local governance evidence are implemented."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-28T15:51:49Z"
+}

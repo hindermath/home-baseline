@@ -6,34 +6,28 @@
 **Profil / Profile:** `home-baseline-lastenheft`
 **Repository:** `home-baseline`
 **Dokumenttyp / Document type:** Windows-spezifischer Spec-Kit-Intake / Windows-specific Spec Kit intake
-**Version:** 1.2
-**Stand / Date:** 2026-07-28
-**Delivery Authority:** `MergeAndSync`
+**Version:** 1.1
+**Stand / Date:** 2026-07-25
+**Delivery Authority:** `LocalImplementation`
 
 ## 1. Zweck / Purpose
 
 Dieses Lastenheft beschreibt eine eigene Windows-Haertungsrunde fuer das
-Ein-Kommando-Wartungsskript. Grundlage sind dreizehn Befunde aus realen
-Windows-Laeufen vom 22. und 28. Juli 2026. Der lokal festgestellte
-Repository- und Registry-Drift ist bereinigt; offen ist die belastbare
-Korrektur der Orchestrierung, damit Pruefung, Reparatur, Toolchain-Wartung und
+Ein-Kommando-Wartungsskript. Grundlage sind neun Befunde aus einem realen
+Windows-Lauf. Der lokal festgestellte Drift ist bereits bereinigt; offen ist
+die belastbare Korrektur der Orchestrierung, damit Pruefung, Reparatur und
 Fortsetzung reproduzierbar funktionieren.
 
 *This intake defines a dedicated Windows hardening round for the one-command
-maintenance script. It is based on thirteen findings from real Windows runs on
-22 and 28 July 2026. The observed repository and registry drift has already
-been repaired; the remaining work is to make inspection, repair, toolchain
-maintenance, and resume behavior reliable and reproducible.*
+maintenance script. It is based on nine findings from a real Windows run. The
+observed local drift has already been repaired; the remaining work is to make
+inspection, repair, and resume behavior reliable and reproducible.*
 
 Dieses Dokument startet weder eine Implementierung noch einen Wartungslauf.
-Der aktuelle Nutzerauftrag autorisiert den spaeteren autonomen Feature-Lauf mit
-`MergeAndSync`. Technische, Sicherheits-, Test- und Review-Gates bleiben auch
-bei administrativer Merge-Freigabe verbindlich.
+Es authorisiert keine Commits, Pushes, Pull Requests oder Merges.
 
-*This document starts neither implementation nor maintenance. The current
-user instruction authorizes the later autonomous feature run with
-`MergeAndSync`. Technical, security, test, and review gates remain binding even
-when administrative merge authority is available.*
+*This document starts neither implementation nor maintenance. It grants no
+authority to commit, push, open pull requests, or merge.*
 
 ## 2. Bindende Vorgaenger und Reihenfolge / Binding Predecessors and Order
 
@@ -67,7 +61,7 @@ closed.*
 
 ## 3. Ausgangslage / Current State
 
-Die Windows-Laeufe zeigten folgende geordnete Befunde:
+Der Windows-Lauf zeigte folgende geordnete Befunde:
 
 1. `scripts/sync-home.ps1:69` verlangt an der betroffenen Stelle `python3`.
    Unter Windows war nur ein defekter Microsoft-Store-Alias sichtbar, obwohl
@@ -80,9 +74,8 @@ Die Windows-Laeufe zeigten folgende geordnete Befunde:
    Zielmenge wie der echte Lauf.
 4. Nach `-RepairDrift` konnte der Lauf nicht neu gestartet werden. Die vom Lauf
    selbst erzeugten Aenderungen wurden als fremder Dirty-Worktree abgelehnt.
-5. Die lokale Registry blieb auf einem aelteren Preset-Soll stehen. Die
-   vollstaendige kanonische Flotte verwendet inzwischen nachweislich das
-   Elf-Preset-Profil `intake-sequencing-eleven-governance-presets`.
+5. Die Registry wurde mit dem Acht-Preset-Profil erzeugt, obwohl die vollstaendige
+   lokale Flotte nachweislich das Zehn-Preset-Profil verwendet.
 6. 90 von 93 Drift-Meldungen waren nur Zeilenendennormalisierungen und erzeugten
    keinen Git-Diff.
 7. GitHub-Timeouts beendeten den gesamten Lauf ohne begrenzten Retry.
@@ -91,30 +84,12 @@ Die Windows-Laeufe zeigten folgende geordnete Befunde:
    Deferred-Status und zuverlaessige Prozessbereinigung fehlen.
 9. Die WinGet-Zusammenfassung meldete teilweise Pakete als fehlend, die zuvor
    als vorhandenes `OK package` erkannt worden waren.
-10. Die vollstaendige `-WhatIf`-Vorschau wies alle Ziele aus, scheiterte aber
-    am Abschluss, weil der Orchestrator fuer den verschachtelten Home-Sync
-    gegenseitig ausschliessende Check- und Preview-Flags kombinierte.
-11. Ein strukturierter Wartungsbericht meldete `overallStatus=PARTIAL` und
-    `exitCode=1`, waehrend der umgebende PowerShell-Prozess mit Exitcode 0
-    endete. Aufrufer konnten den fachlichen Fehlschlag dadurch uebersehen.
-12. Windows-Regressionslaeufe zeigten drei Harness-Abweichungen: ein
-    Bash-Untertest verstuemmelte absolute Windows-Pfade, ein
-    PowerShell-Fixture klassifizierte eine verwaltete `AGENTS.md` als fremden
-    Dirty-Zustand, und die Statistikpruefung verfehlte die erwartete
-    Bash-/PowerShell-JSON-Byteparitaet.
-13. PSScriptAnalyzer 1.25.0 war vor der uebersprungenen Toolchain-Stufe nicht
-    verfuegbar. Der spaetere echte Toolchain-Lauf blieb mehr als 50 Minuten in
-    `winget upgrade --all`, oeffnete mehrere UAC-Dialoge, erzeugte
-    MSI-Abbrueche 1602 und musste mit seinem Prozessbaum explizit beendet
-    werden.
 
-*The Windows runs exposed thirteen ordered findings: unreliable Python command
+*The Windows run exposed nine ordered findings: unreliable Python command
 resolution, a Python bootstrap cycle, unstable WhatIf repository discovery,
-non-resumable self-created drift repair, a stale fleet preset profile,
-line-ending-only false drift, missing bounded GitHub retries, unbounded WinGet
-or UAC waits, contradictory package summaries, invalid nested preview flag
-composition, contradictory report and process exit status, Windows path and
-test-harness divergence, and late or unavailable static-analysis prerequisites.*
+non-resumable self-created drift repair, an incorrect eight-preset registry
+profile, line-ending-only false drift, missing bounded GitHub retries,
+unbounded WinGet or UAC waits, and contradictory package status summaries.*
 
 Der Drift ist lokal bereinigt. Diese Bereinigung ist kein Nachweis, dass der
 Orchestrator die gleichen Bedingungen bei einem neuen Lauf sicher behandelt.
@@ -168,23 +143,17 @@ Windows-specific process and UAC behavior remains in PowerShell.*
 - validierte Python-Aufloesung und Aufbrechen des Bootstrap-Zirkels
 - identische, read-only Repository-Ermittlung in `-WhatIf` und echtem Lauf
 - sichere, phasenbasierte Wiederaufnahme nach selbst erzeugten Aenderungen
-- korrekte Auswahl des dokumentierten Elf-Preset-Flottenprofils
+- korrekte Auswahl des dokumentierten Zehn-Preset-Flottenprofils
 - Git-normalisierte Driftpruefung
 - begrenzte Retries fuer transiente GitHub-Netzwerkfehler
 - Timeout, Deferred-Status und Prozessbereinigung fuer WinGet und UAC
 - widerspruchsfreie Paketklassifikation und Zusammenfassung
-- widerspruchsfreie verschachtelte Check-/Preview-Parameter
-- identische fachliche Report- und Prozess-Exitcodes
-- Windows-native Pfad-, Fixture- und Bash-/PowerShell-Paritaet
-- fruehe, deterministische Toolchain- und Static-Analysis-Voraussetzungen
 - deterministische Logs, strukturierter Bericht und Regressionstests
 
 *In scope are validated Python resolution, bootstrap ordering, stable WhatIf
-discovery, safe phase resume, the eleven-preset fleet profile, Git-normalized
+discovery, safe phase resume, the ten-preset fleet profile, Git-normalized
 drift checks, bounded GitHub retries, bounded WinGet execution, process
-cleanup, consistent package status, coherent nested preview flags, truthful
-exit codes, Windows path and harness parity, early toolchain prerequisites,
-and deterministic evidence.*
+cleanup, consistent package status, and deterministic evidence.*
 
 ### Non-Goals
 
@@ -264,22 +233,20 @@ accepts a dirty intermediate state only when it fully matches that evidence.
 Unknown, later modified, or partially matching dirty files remain a hard stop.
 Successful resume closes or clearly archives the intermediate state.*
 
-### WEM-005 - Elf-Preset-Flottenprofil bewahren
+### WEM-005 - Zehn-Preset-Flottenprofil bewahren
 
 Registry-Erzeugung und -Reparatur MUESSEN das explizit konfigurierte und lokal
 nachgewiesene Flottenprofil verwenden. Fuer die aktuelle vollstaendige Flotte
-ist dies `intake-sequencing-eleven-governance-presets`. Aeltere Acht- oder
-Zehn-Preset-Matrizen duerfen nicht stillschweigend als lokaler Istzustand
-eingesetzt werden. Profilquelle, Profil-ID, erwartete Preset-Anzahl und
-Migration des lokalen Sollzustands muessen im Bericht nachvollziehbar sein;
+ist dies das Zehn-Preset-Profil. Die portable Acht-Preset-Standardmatrix darf
+nicht stillschweigend als lokaler Istzustand eingesetzt werden. Profilquelle,
+Profil-ID und erwartete Preset-Anzahl muessen im Bericht nachvollziehbar sein;
 unbekannte oder widerspruechliche Profile scheitern fail-closed.
 
 *Registry creation and repair preserve the explicitly configured and locally
-verified fleet profile. The current complete fleet uses
-`intake-sequencing-eleven-governance-presets`. Older eight- or ten-preset
-matrices must not silently replace local state. Reports show profile source,
-profile ID, expected count, and local desired-state migration; unknown or
-conflicting profiles fail closed.*
+verified fleet profile. The current complete fleet uses ten presets. The
+portable eight-preset default must not silently replace local state. Reports
+show profile source, profile ID, and expected count; unknown or conflicting
+profiles fail closed.*
 
 ### WEM-006 - Git-normalisierte Driftpruefung
 
@@ -340,68 +307,6 @@ alias resolution, and status precedence. A package recognized as `OK package`
 cannot also be missing in the same run. Conflicting sources or unresolved
 aliases receive a distinct conflict status with evidence.*
 
-### WEM-010 - Widerspruchsfreie Preview-Parameter
-
-Der Orchestrator MUSS Check-, Preview- und Mutationsparameter fuer jeden
-verschachtelten Skriptaufruf aus genau einem kanonischen Modus ableiten.
-Gegenseitig ausschliessende Flags wie Check-only und WhatIf duerfen niemals
-gemeinsam weitergereicht werden. Eine vollstaendige Vorschau MUSS nach
-Ausweisung aller Ziele mit einem fachlich korrekten Exitcode und einem
-vollstaendigen Bericht enden.
-
-*The orchestrator derives check, preview, and mutation parameters for every
-nested script invocation from exactly one canonical mode. Mutually exclusive
-flags such as check-only and WhatIf are never forwarded together. A complete
-preview ends with a truthful exit code and complete report after listing all
-targets.*
-
-### WEM-011 - Wahrheitsgetreue Prozess- und Report-Exitcodes
-
-Der fachliche Abschlussstatus im JSON-Bericht, der sichtbare Terminalstatus und
-der Exitcode des obersten PowerShell-Prozesses MUESSEN dieselbe kanonische
-Erfolgsklassifikation abbilden. `PARTIAL`, `Blocked`, `Failed` und nicht
-akzeptierte Deferred-Zustaende duerfen nicht mit Prozess-Exitcode 0 enden.
-Wrapper MUESSEN den Bericht eindeutig dem gestarteten Lauf zuordnen und duerfen
-nicht versehentlich einen aelteren Bericht auswerten.
-
-*The JSON result, visible terminal result, and top-level PowerShell process
-exit code represent the same canonical outcome. `PARTIAL`, `Blocked`, `Failed`,
-and unaccepted deferred states do not exit with process code zero. Wrappers
-bind exactly the report produced by their run and never select stale evidence.*
-
-### WEM-012 - Windows-Pfad- und Testharness-Paritaet
-
-Gemeinsame Tests und Hilfsprogramme MUESSEN Windows-Pfade als undurchsichtige
-native Pfade behandeln und duerfen Laufwerksbuchstaben, Backslashes oder
-Gross-/Kleinschreibung nicht durch Bash-Konvertierung beschaedigen. Fixtures
-MUESSEN verwaltete, vom Test selbst erzeugte Aenderungen von fremdem
-Dirty-Worktree unterscheiden. Gemeinsame JSON-Vertraege vergleichen
-kanonischen Inhalt; wenn Byteparitaet gefordert ist, MUSS die Encoding- und
-Zeilenendenregel plattformunabhaengig festgelegt sein.
-
-*Shared tests and helpers treat Windows paths as opaque native paths and do not
-damage drive letters, backslashes, or path casing through Bash conversion.
-Fixtures distinguish managed, test-created changes from foreign dirty work.
-Shared JSON contracts compare canonical content; any required byte parity has
-an explicit cross-platform encoding and line-ending rule.*
-
-### WEM-013 - Fruehe Toolchain- und Static-Analysis-Gates
-
-Erforderliche Validierungswerkzeuge, insbesondere die gepinnte
-PSScriptAnalyzer-Version, MUESSEN vor dem ersten davon abhaengigen Gate
-verfuegbar sein oder frueh als eigener, fortsetzbarer Prerequisite-Status
-erscheinen. Eine blockierte Flottenphase darf fehlende Toolchain-Evidence nicht
-als `N/A` verschleiern. Nach Toolchain-Wartung MUSS derselbe Lauf die
-installierte Version pruefen und die statische Analyse entweder ausfuehren oder
-einen eindeutigen Deferred-/Fehlerstatus berichten.
-
-*Required validation tools, especially the pinned PSScriptAnalyzer version,
-are available before their first dependent gate or reported early as a
-resumable prerequisite state. A blocked fleet phase does not disguise missing
-toolchain evidence as `N/A`. After toolchain maintenance, the same run verifies
-the installed version and either performs static analysis or reports a clear
-deferred or failed result.*
-
 ## 8. Qualitaet und Governance / Quality and Governance
 
 ### Sicherheit und Datenschutz / Security and Privacy
@@ -411,17 +316,12 @@ deferred or failed result.*
 - Fremde Dirty-Aenderungen bleiben unangetastet; ein eigener Resume-Nachweis
   erweitert keine Git-Berechtigung.
 - UAC wird nicht automatisiert bestaetigt oder umgangen.
-- Die administrative Freigabe erlaubt erforderliche Prompts und einen
-  regelkonformen administrativen Merge, ersetzt aber kein technisches,
-  Sicherheits-, Test- oder Review-Gate.
 - Git-Aktualisierungen bleiben auf `fetch` und `pull --ff-only` begrenzt.
 - Prozessargumente und Logs duerfen keine Secrets offenlegen.
 
 *Resume evidence contains no credentials or private absolute paths. Foreign
-dirty changes remain untouched, UAC is not bypassed, and administrative
-authority does not replace technical, security, test, or review gates. Git
-updates remain limited to fetch and fast-forward pull, and process arguments or
-logs expose no secrets.*
+dirty changes remain untouched, UAC is not bypassed, Git updates remain limited
+to fetch and fast-forward pull, and process arguments or logs expose no secrets.*
 
 ### Barrierefreiheit und Sprache / Accessibility and Language
 
@@ -478,14 +378,13 @@ mutation, while final reporting and independent read-only checks continue.*
 
 Wesentliche Risiken sind Store-Alias-Falschpositive, falsche Uebernahme
 fremder Aenderungen, Plattformabweichungen der Git-Zeilenendennormalisierung,
-Windows-Pfadkonvertierung, widerspruechliche Exitcodes, prozesslokale
-WinGet-Kindprozesse und eine zu breite Retry-Klassifikation. Diese Risiken sind
-durch isolierte Fixtures und Negativtests abzudecken.
+prozesslokale WinGet-Kindprozesse und eine zu breite Retry-Klassifikation.
+Diese Risiken sind durch isolierte Fixtures und Negativtests abzudecken.
 
 *Main risks are Store alias false positives, accidental adoption of foreign
-changes, platform-specific Git line-ending behavior, Windows path conversion,
-contradictory exit codes, WinGet child processes, and over-broad retry
-classification. Isolated fixtures and negative tests must cover them.*
+changes, platform-specific Git line-ending behavior, WinGet child processes,
+and over-broad retry classification. Isolated fixtures and negative tests must
+cover them.*
 
 ## 10. Erwartete Artefakte und Evidence / Expected Artifacts and Evidence
 
@@ -494,7 +393,7 @@ Die spaetere Implementierung liefert mindestens:
 - gezielte Aenderungen an den betroffenen PowerShell-Skripten
 - ein dokumentiertes, atomar geschriebenes Resume-State-Format mit
   Versionskennung und Validierung
-- Regressionstests fuer alle dreizehn Anforderungen einschliesslich Fehler- und
+- Regressionstests fuer alle neun Anforderungen einschliesslich Fehler- und
   Resume-Pfade
 - bei gemeinsam geaenderten Vertraegen passende Bash-Paritaetstests
 - aktualisierte bilinguale comment-based help, README-Abschnitte und
@@ -504,7 +403,7 @@ Die spaetere Implementierung liefert mindestens:
 - die gemaess Repository-Guidance aktualisierte Projektstatistik
 
 *Later implementation provides focused PowerShell changes, a versioned and
-validated atomic resume-state format, regression tests for all thirteen findings,
+validated atomic resume-state format, regression tests for all nine findings,
 Bash parity where shared contracts change, bilingual help and documentation,
 sanitized sample reports for important outcomes, and updated project
 statistics.*
@@ -525,9 +424,8 @@ statistics.*
   nachtraeglich veraenderte Datei und eine fremde Dirty-Datei fuehren jeweils
   vor Mutation zu einem harten Stopp.
 - **AC-005:** Registry-Neuanlage und -Reparatur bewahren fuer die vollstaendige
-  lokale Flotte das Elf-Preset-Profil. Aeltere Acht- oder Zehn-Preset-Defaults
-  werden nur bei explizit passender Konfiguration verwendet; unbekannte
-  Profile scheitern.
+  lokale Flotte das Zehn-Preset-Profil. Ein Acht-Preset-Default wird nur bei
+  explizit passender Konfiguration verwendet; unbekannte Profile scheitern.
 - **AC-006:** Ein Fixture mit 90 CRLF-/LF-only-Abweichungen und drei echten
   Inhaltsabweichungen meldet `rawDifferences=93` und `actionableDrift=3`.
   Nach Reparatur der drei Dateien ist `git diff --exit-code` erfolgreich.
@@ -551,31 +449,12 @@ statistics.*
   partiellem Fehler, Deferred-Status und hartem Stopp; die sichtbare Ausgabe
   bleibt textorientiert und enthaelt keine Secrets oder privaten absoluten
   Pfade.
-- **AC-013:** Check-only und `-WhatIf` erzeugen fuer jeden verschachtelten
-  Aufruf jeweils genau einen Modus. Kein Aufruf enthaelt gegenseitig
-  ausschliessende Flags; die vollstaendige Vorschau endet mit Exitcode 0 und
-  einem vollstaendigen Bericht.
-- **AC-014:** Fuer erfolgreiche, partielle, blockierte, fehlgeschlagene und
-  Deferred-Fixtures stimmen JSON-Status, JSON-Exitcode, sichtbarer Status und
-  oberster Prozess-Exitcode exakt ueberein. Ein absichtlich bereitgestellter
-  aelterer Bericht wird nicht dem neuen Lauf zugeordnet.
-- **AC-015:** Windows-Tests bewahren Laufwerksbuchstaben, Backslashes und
-  kanonische CaseTracker-Pfade, akzeptieren ausschliesslich nachgewiesene
-  verwaltete Fixture-Aenderungen und bestehen den dokumentierten
-  Bash-/PowerShell-JSON-Paritaetsvertrag.
-- **AC-016:** Ein Fixture ohne PSScriptAnalyzer 1.25.0 meldet vor dem ersten
-  Analyse-Gate einen fortsetzbaren Prerequisite-Status. Nach simulierter
-  Toolchain-Installation prueft derselbe Lauf die Version und fuehrt die
-  Analyse aus; eine blockierte Flottenphase markiert die Toolchain nicht als
-  `N/A`.
 
 *Acceptance covers working Python fallbacks, early bootstrap behavior, stable
 WhatIf discovery, safe resume and rejection of foreign changes, exact
-eleven-preset preservation, Git-normalized drift counts, bounded network
-retries, bounded WinGet and UAC handling, unique package status, coherent
-preview flags, truthful exit codes, Windows path and harness parity, early
-static-analysis prerequisites, idempotence, and complete accessible reports
-for every outcome.*
+ten-preset preservation, Git-normalized drift counts, bounded network retries,
+bounded WinGet and UAC handling, unique package status, static and regression
+checks, idempotence, and complete accessible reports for every outcome.*
 
 ## 12. Annahmen und offene Fragen / Assumptions and Open Questions
 
@@ -583,17 +462,16 @@ Annahmen:
 
 - Die Zielumgebung verwendet Windows 10 oder 11 und PowerShell 7.
 - Die vollstaendige verwaltete lokale Flotte verwendet zum Stand dieses
-  Intakes das dokumentierte Elf-Preset-Profil.
+  Intakes das dokumentierte Zehn-Preset-Profil.
 - Der bereits lokal bereinigte Drift muss nicht rekonstruiert werden; die
   Zahlen 90 Zeilenenden-Abweichungen und drei echte Abweichungen dienen als
   verbindliches Regressionstest-Szenario.
-- `MergeAndSync` erlaubt Commit, Push, Pull Request, regelkonformen Merge und
-  lokale Default-Branch-Synchronisierung erst nach bestandenen Gates.
+- `LocalImplementation` erlaubt nur lokale Implementierung und Validierung im
+  aktuellen Repository.
 
-*Assumptions are Windows 10 or 11 with PowerShell 7, the documented
-eleven-preset profile for the complete managed local fleet, use of the observed
-90 plus 3 drift split as a regression scenario, and MergeAndSync delivery only
-after all gates pass.*
+*Assumptions are Windows 10 or 11 with PowerShell 7, the documented ten-preset
+profile for the complete managed local fleet, use of the observed 90 plus 3
+drift split as a regression scenario, and local-only implementation authority.*
 
 Offene materielle Fragen: keine.
 
@@ -604,17 +482,15 @@ Offene materielle Fragen: keine.
 Die Windows-Haertungsrunde ist erst abgeschlossen, wenn alle Abnahmekriterien
 mit lokaler, reproduzierbarer Evidence bestanden sind und kein offener
 High-Severity-Befund fuer Python-Bootstrap, WhatIf-Ermittlung, Resume-Sicherheit,
-Git-Drift, GitHub-Retry, Exitcode-Wahrheit, Windows-Testparitaet,
-Toolchain-Gates oder WinGet-Prozesskontrolle verbleibt. Mit der aktuellen
-`MergeAndSync`-Authority umfasst der Abschluss den regelkonformen Merge, die
-lokale Default-Branch-Synchronisierung und eine abschliessende Git-Inventur.
+Git-Drift, GitHub-Retry oder WinGet-Prozesskontrolle verbleibt. Mit der
+aktuellen `LocalImplementation`-Authority endet ein spaeterer Autonomous-Lauf
+vor Commit, Push, Pull Request oder Merge.
 
 *The hardening round is complete only when all acceptance criteria pass with
 local reproducible evidence and no high-severity finding remains for Python
-bootstrap, WhatIf discovery, resume safety, Git drift, GitHub retry, exit-code
-truth, Windows test parity, toolchain gates, or WinGet process control. Under
-the current MergeAndSync authority, completion includes policy-compliant merge,
-local default-branch synchronization, and a final Git inventory.*
+bootstrap, WhatIf discovery, resume safety, Git drift, GitHub retry, or WinGet
+process control. Under the current LocalImplementation authority, a later
+Autonomous run stops before commit, push, pull request, or merge.*
 
 <!-- intake-authoring:prompts -->
 ## Copy-Ready Spec Kit Prompts
@@ -623,14 +499,14 @@ local default-branch synchronization, and a final Git inventory.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre WEM-001 bis WEM-013, AC-001 bis AC-016, die Root-Position 1, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Sicherheits-, A11Y- und Kompatibilitaetsgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre WEM-001 bis WEM-009, AC-001 bis AC-012, die Root-Position 1, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Sicherheits-, A11Y- und Kompatibilitaetsgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=MergeAndSync aus. Bewahre WEM-001 bis WEM-013, AC-001 bis AC-016, die Root-Position 1 und die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3. Implementiere, validiere und liefere bis zum regelkonformen Merge und zur lokalen Default-Branch-Synchronisierung. Stoppe bei fehlender historischer Baseline-Evidence oder einem harten Stopp. Administrative Freigabe ersetzt kein technisches, Sicherheits-, Test- oder Review-Gate. Fuehre nach Abschluss die Git-Inventur in der Reihenfolge Status, Fetch, sichere Pulls, absichtliche Commits und Pushes aus und starte kein Folgefeature.
+$speckit-autonomous Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Root-Position 1 und die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender historischer Baseline-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->

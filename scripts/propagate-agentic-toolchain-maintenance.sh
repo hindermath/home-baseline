@@ -21,6 +21,7 @@ REPOS_CHANGED=0
 REPOS_DRIFTED=0
 REPOS_SKIPPED=0
 FILES_CHANGED=0
+RAW_DIFFERENCES=0
 
 usage() {
   cat <<USAGE
@@ -179,6 +180,13 @@ PYEOF
 
 file_mode_matches() {
   local path="$1" executable="$2"
+  # DrvFS cannot prove executable intent for Windows-hosted WSL fixtures.
+  # Content remains governed by Git; native mode checks run in PowerShell.
+  if [ -r /proc/version ] && grep -qi microsoft /proc/version 2>/dev/null; then
+    case "$path" in
+      /mnt/[A-Za-z]/*) return 0 ;;
+    esac
+  fi
   if [ "$executable" = "true" ]; then
     [ -x "$path" ]
   else
@@ -186,15 +194,24 @@ file_mode_matches() {
   fi
 }
 
-file_matches() {
+raw_file_matches() {
   local source_file="$1" target_file="$2" executable="$3"
   [ -f "$target_file" ] && cmp -s -- "$source_file" "$target_file" && file_mode_matches "$target_file" "$executable"
+}
+
+file_matches() {
+  local repo="$1" source_file="$2" target_file="$3" relative_path="$4" executable="$5"
+  local source_hash target_hash
+  [ -f "$target_file" ] || return 1
+  source_hash="$(git -C "$repo" hash-object --path="$relative_path" -- "$source_file" 2>/dev/null)" || return 1
+  target_hash="$(git -C "$repo" hash-object --path="$relative_path" -- "$target_file" 2>/dev/null)" || return 1
+  [ "$source_hash" = "$target_hash" ] && file_mode_matches "$target_file" "$executable"
 }
 
 managed_path_is_dirty() {
   local repo="$1" relative_path="$2" source_file="$3" executable="$4"
   local target_file="${repo}/${relative_path}"
-  if file_matches "$source_file" "$target_file" "$executable"; then
+  if file_matches "$repo" "$source_file" "$target_file" "$relative_path" "$executable"; then
     return 1
   fi
   if [ ! -e "$target_file" ] &&
@@ -230,7 +247,10 @@ process_repository() {
     executable="${MANAGED_EXECUTABLE[$index]}"
     source_file="${SOURCE_ROOT}/${relative_path}"
     target_file="${repo}/${relative_path}"
-    if file_matches "$source_file" "$target_file" "$executable"; then
+    if ! raw_file_matches "$source_file" "$target_file" "$executable"; then
+      RAW_DIFFERENCES=$((RAW_DIFFERENCES + 1))
+    fi
+    if file_matches "$repo" "$source_file" "$target_file" "$relative_path" "$executable"; then
       [ "$VERBOSE" -eq 1 ] && echo "  [CURRENT] ${relative_path}"
       continue
     fi
@@ -277,6 +297,8 @@ echo "  repositories.current: ${REPOS_CURRENT}"
 echo "  repositories.changed: ${REPOS_CHANGED}"
 echo "  repositories.drifted: ${REPOS_DRIFTED}"
 echo "  repositories.skipped: ${REPOS_SKIPPED}"
+echo "  files.raw_differences: ${RAW_DIFFERENCES}"
+echo "  files.actionable_drift: ${FILES_CHANGED}"
 echo "  files.different:       ${FILES_CHANGED}"
 
 if [ "$REPOS_TOTAL" -eq 0 ] || [ "$REPOS_SKIPPED" -gt 0 ]; then

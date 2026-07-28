@@ -12,6 +12,10 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+if ($CheckOnly -and $WhatIfPreference) {
+    [Console]::Error.WriteLine('CheckOnly und WhatIf sind nicht kombinierbar / cannot be combined.')
+    exit 2
+}
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepoDir   = Split-Path -Parent $ScriptDir   # ein Verzeichnis über scripts/
@@ -66,9 +70,17 @@ Die Level-0-Referenz direkt unter ~/home-baseline-source verwenden und den Home-
     exit 2
 }
 
-$pythonCommand = Get-Command python3 -ErrorAction SilentlyContinue
-if (-not $pythonCommand) {
-    [Console]::Error.WriteLine('python3 wird fuer den manifestgesteuerten Home-Sync benoetigt.')
+$hardeningModule = Join-Path $RepoDir 'scripts/lib/windows-maintenance-hardening.psm1'
+if (-not (Test-Path -LiteralPath $hardeningModule -PathType Leaf)) {
+    [Console]::Error.WriteLine("Windows-Wartungsmodul fehlt / Windows maintenance module missing: ${hardeningModule}")
+    exit 2
+}
+Import-Module $hardeningModule -Force
+try {
+    $pythonLauncher = Resolve-HBPythonLauncher
+    Write-Host "  Python : $($pythonLauncher.Display) (major $($pythonLauncher.MajorVersion))"
+} catch {
+    [Console]::Error.WriteLine('Kein validierter Python-3-Launcher fuer den manifestgesteuerten Home-Sync / no validated Python 3 launcher.')
     exit 2
 }
 
@@ -161,7 +173,8 @@ $syncArguments = @(
 if ($WhatIfPreference) { $syncArguments += '--dry-run' }
 if ($CheckOnly) { $syncArguments += '--check-only' }
 if ($Force) { $syncArguments += '--force' }
-& $pythonCommand.Source @syncArguments
+$pythonArguments = @($pythonLauncher.PrefixArguments) + @($syncArguments)
+& $pythonLauncher.FilePath @pythonArguments
 $syncStatus = $LASTEXITCODE
 if ($CheckOnly) { exit $syncStatus }
 if ($syncStatus -ne 0) { exit $syncStatus }
