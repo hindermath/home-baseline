@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "014-requirements-intake-consolidation-governance",
+  "gates": [
+    {
+      "gateId": "G001",
+      "applicability": "Applicable",
+      "requiredScope": "Three preset validator suites",
+      "requiredCommandTokens": ["test-intake"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G002",
+      "applicability": "Applicable",
+      "requiredScope": "PowerShell source quality",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G003",
+      "applicability": "Applicable",
+      "requiredScope": "Homogeneity and agent parity",
+      "requiredCommandTokens": ["check-homogeneity"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G004",
+      "applicability": "Applicable",
+      "requiredScope": "Secret scan",
+      "requiredCommandTokens": ["scan-agent-secrets"],
+      "requiredRunnerOrPlatformTokens": ["local"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G005",
+      "applicability": "Applicable",
+      "requiredScope": "Eleven-preset composition and tag ZIP installation",
+      "requiredCommandTokens": ["preset", "resolve"],
+      "requiredRunnerOrPlatformTokens": ["local"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G006",
+      "applicability": "N/A",
+      "requiredScope": "Product runtime tests",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No product runtime, API, or dependency change is permitted.",
+      "reevaluationTrigger": "Any executable product change."
+    },
+    {
+      "gateId": "G007",
+      "applicability": "N/A",
+      "requiredScope": "DocFX and browser accessibility",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No DocFX site, web navigation, or web UI is changed.",
+      "reevaluationTrigger": "Any generated web or navigation change."
+    }
+  ]
+}

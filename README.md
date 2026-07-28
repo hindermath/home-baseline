@@ -2739,11 +2739,11 @@ Community-Katalog enthalten; `autonomous-run-governance` v0.2.2 wurde dort am
 2026-07-17 verifiziert. Die aktuellen eigenstaendigen Releases sind
 `autonomous-run-governance` v0.3.3 und
 `parallel-autonomous-run-governance` v0.2.4. Das optionale
-`intake-authoring-governance` v0.2.1 ist nach
+`intake-authoring-governance` v0.3.0 ist nach
 [Issue #3720](https://github.com/github/spec-kit/issues/3720) und
 [Katalog-PR #3721](https://github.com/github/spec-kit/pull/3721) ebenfalls im
 Community-Katalog enthalten. Das optionale
-`intake-review-governance` v0.1.2 wird separat mit Prioritaet `65` angeboten;
+`intake-review-governance` v0.2.0 wird separat mit Prioritaet `65` angeboten;
 Preset 8 wurde mit
 `github/spec-kit#3591` fuer den Community-Katalog eingereicht. Die direkte
 Installation über
@@ -2755,11 +2755,11 @@ catalog since 2026-05-04; `autonomous-run-governance` v0.2.2 was verified there
 on 2026-07-17. The current standalone releases are
 `autonomous-run-governance` v0.3.3 and
 `parallel-autonomous-run-governance` v0.2.4. Optional
-`intake-authoring-governance` v0.2.1 is also available from the community
+`intake-authoring-governance` v0.3.0 is also available from the community
 catalog after
 [issue #3720](https://github.com/github/spec-kit/issues/3720) and
 [catalog PR #3721](https://github.com/github/spec-kit/pull/3721). Optional
-`intake-review-governance` v0.1.2 is offered separately at priority `65`;
+`intake-review-governance` v0.2.0 is offered separately at priority `65`;
 Preset 8 was submitted to the
 community catalog as `github/spec-kit#3591`. Direct
 installation via versioned ZIP URLs is still the preferred variant when a
@@ -2781,9 +2781,9 @@ updated together.*
 |---|---|---:|---:|
 | `security-governance` | Security Governance | `v0.6.1` | `10` |
 | `architecture-governance` | Architecture Governance | `v0.5.1` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.1` | `30` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.3.0` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.4.2` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.2.1` | `50` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.3.0` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.4.1` | `60` |
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.3.3` | `70` |
 | `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.4` | `80` |
@@ -2792,7 +2792,7 @@ Hinweis: Alle acht Presets erzeugen bzw. verlangen audit-ready Spec-Kit-Run-Evid
 
 *Note: All eight presets generate or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.*
 
-`intake-authoring-governance` v0.2.1 ist ein optionales Preset mit Prioritaet
+`intake-authoring-governance` v0.3.0 ist ein optionales Preset mit Prioritaet
 `64`. Es trennt die Befehle Create, Read, Update und Delete. Create schreibt
 nur neue Ziele. Update benoetigt aktuelle ausdrueckliche Autoritaet, behaelt die
 stabile Intake-Identitaet und archiviert den Vorgaenger. Delete ist logisch:
@@ -2808,13 +2808,13 @@ Publikation ist transaktional; ein Teilstand darf nicht als Erfolg gelten.
 Schema 1.0 und 1.1 bleiben fuer bestehende Receipts lesbar. Kein
 Authoring-Befehl startet Review, Specify oder einen autonomen Lauf.
 
-`intake-review-governance` v0.1.2 bleibt als getrenntes optionales Preset mit
+`intake-review-governance` v0.2.0 bleibt als getrenntes optionales Preset mit
 Prioritaet `65` bestehen. Es prueft einzelne Intakes, Reihen und Kampagnen vor
 Feature-Erstellung. Review und Status sind read-only. Repair braucht
 ausdrueckliche Aenderungsautoritaet. `ReadyForReview` aus Intake Authoring ist
 keine Review-Freigabe.
 
-Reihen verwenden ab v0.1.2 einen hashgebundenen Request-/Result-Vertrag nach
+Reihen verwenden ab v0.2.0 einen hashgebundenen Request-/Result-Vertrag nach
 Schema 1.1. Zielrollen, exakte Reihenfolge, Roots, Kanten und Zyklen werden
 gemeinsam geprüft; nicht eindeutig belegbare Vorgängerbeziehungen führen zu
 `NeedsClarification`.
@@ -2825,18 +2825,18 @@ optionalen Intake-Presets ueber
 Zehn-Preset-Profile bleiben kompatibel verfuegbar. Keine dieser lokalen
 Profilwahlen aendert die oeffentliche Standard-Achtermatrix.
 
-`intake-sequencing-governance` v0.1.1 ist eine dritte optionale
+`intake-sequencing-governance` v0.2.0 ist eine dritte optionale
 Intake-Schicht mit Prioritaet `66`. Das getrennte
 `intake-sequencing-eleven-governance-presets`-Profil verwaltet Reihenfolge,
 typisierte Abhaengigkeiten, Lifecycle und naechste Kandidaten. Es aendert keine
 Intake-Inhalte und startet keinen nachgelagerten Spec-Kit-Befehl.
 
-*`intake-authoring-governance` v0.2.1 is an optional preset at priority `64`.
+*`intake-authoring-governance` v0.3.0 is an optional preset at priority `64`.
 It provides separate Create, read-only Read, explicitly authorized Update, and
 archive-and-tombstone Delete commands. Schema 2.0 adds bounded public HTTPS
 snapshot evidence and explicitly approved, transactional intake series while
 schemas 1.0 and 1.1 remain readable. No authoring command starts downstream
-review or execution. `intake-review-governance` v0.1.2 remains a separate optional preset
+review or execution. `intake-review-governance` v0.2.0 remains a separate optional preset
 at priority `65`; authoring evidence is not review acceptance. Thorsten's
 managed fleet selects both through the explicit ten-preset profile, while the
 public standard eight remain unchanged. Series mode uses schema 1.1 and binds
