@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "86f8ece6-d921-4430-9283-6f6417edd87d",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-documentation-architecture-v1",
+  "reviewedAt": "2026-07-28T13:45:51Z",
+  "repository": {
+    "root": ".",
+    "head": "824e1fb5eb80f3850d9c98427551d7c315dc59b6"
+  },
+  "requestEvidence": {
+    "path": "specs/documentation-architecture-intakes/reviews/d6/intake-review-request.json",
+    "normalizedSha256": "b8771548201e57073d47907b015c2515f14f83aad12850a054f63f285aed3be5"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "role": "Primary",
+      "normalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

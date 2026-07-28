@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "98fd2d9f-4d91-4e3e-a84c-ce99793e6e8a",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-28T13:45:51Z",
+  "operation": {
+    "operationId": "878bdc30-6ee9-4eaf-b821-ffcd2b10afaf",
+    "type": "LegacyAdoption",
+    "authorityEvidence": "The accepted 17-target manifest predates a repository-owned series receipt and is adopted as the immutable update baseline."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/history/5f1c715a-1251-456b-89dc-f7ee17255aa5/manifest.json",
+    "normalizedSha256": "b7c7211e0b7241345ac72ab33fd40100bd659ed95db76b681930c2b25381825a"
+  },
+  "supersedes": {
+    "receiptPath": "N/A",
+    "receiptNormalizedSha256": "N/A",
+    "manifestArchivePath": "N/A",
+    "manifestArchiveSha256": "N/A"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "Historical baseline for the approved D4-D7 series update"
+}

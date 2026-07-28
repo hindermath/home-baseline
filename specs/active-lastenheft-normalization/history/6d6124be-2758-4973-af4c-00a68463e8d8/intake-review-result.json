@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "1a688fd4-666c-4fed-99bc-d33f042c382a",
+  "reviewId": "6d6124be-2758-4973-af4c-00a68463e8d8",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T13:50:57Z",
+  "reviewedAt": "2026-07-28T10:04:12Z",
   "repository": {
     "root": ".",
-    "head": "824e1fb5eb80f3850d9c98427551d7c315dc59b6"
+    "head": "c9058d3139e5ab24954c3b77acade63576b6bf68"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "f4fb1fc1a4f4cdd358a80cd5c2c94e20b405b466853c25ecbad45c0754f45f71"
+    "normalizedSha256": "31525f22b39454a93b54fcfd1f369421825c92c38aaf0b8d68b2655cf113649d"
   },
   "summary": {
     "critical": 0,
@@ -19,7 +19,7 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "6d6124be-2758-4973-af4c-00a68463e8d8",
+  "supersedes": "2fd432d9-b2d2-4058-96c6-a05f9c9a504b",
   "targets": [
     {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -43,30 +43,6 @@
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "role": "OrderedMember",
       "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "0cc322e87ad28130eb8661d77289084a9ae56365b91b7f96778923ce0d6fedc5",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794",
       "gitBlob": "N/A"
     },
     {
@@ -155,10 +131,6 @@
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -174,12 +146,12 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 21 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
-      "The five declared roots equal the zero-indegree target set",
-      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
-      "D4 through D7 form a binding post-item-4 documentation architecture chain",
-      "D6 provides an additional documentation-surface baseline for the existing script-documentation intake",
-      "Windows maintenance remains the single declared Eligible candidate; no documentation feature was started"
+      "All 17 active paths, roles, and exact order match the bound schema-1.1 request",
+      "The six declared roots equal the zero-indegree target set after the merged Feature-014 closeout",
+      "Twenty-two unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Feature 014 and PR #136 remain archived evidence for the completed requirements-governance gate",
+      "Windows maintenance is the single declared Eligible candidate; no successor run was started",
+      "The remaining active intakes preserve their learner-readable dependency and authority boundaries"
     ],
     "workers": []
   },

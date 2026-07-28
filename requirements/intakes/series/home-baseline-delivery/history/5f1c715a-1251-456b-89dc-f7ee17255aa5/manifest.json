@@ -31,30 +31,6 @@
       "status": "Blocked"
     },
     {
-      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "0cc322e87ad28130eb8661d77289084a9ae56365b91b7f96778923ce0d6fedc5",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df",
-      "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794",
-      "status": "Blocked"
-    },
-    {
       "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "role": "OrderedMember",
       "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
@@ -137,6 +113,7 @@
     "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
     "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
     "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+    "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
@@ -157,42 +134,6 @@
       "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "kind": "HardCompletionGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-      "to": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "kind": "DocumentationSurfaceBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "to": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "kind": "DocumentationSurfaceBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "to": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "kind": "DocumentationSurfaceBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "to": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-      "kind": "DocumentationSurfaceBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-      "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-      "kind": "DocumentationSurfaceBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "to": "Lastenheft_Script_Dokumentation.md",
-      "kind": "DocumentationSurfaceBaseline",
       "binding": true
     },
     {
@@ -314,10 +255,6 @@
     "Lastenheft_Abarbeitungsreihenfolge.md",
     "specs/active-lastenheft-normalization/intake-review-request.json",
     "specs/active-lastenheft-normalization/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
     "specs/014-requirements-intake-consolidation-governance/pr-evidence.md"
   ]
 }

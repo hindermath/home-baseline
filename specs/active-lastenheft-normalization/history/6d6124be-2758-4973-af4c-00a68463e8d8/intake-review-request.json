@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "1a688fd4-666c-4fed-99bc-d33f042c382a",
+  "reviewId": "6d6124be-2758-4973-af4c-00a68463e8d8",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -18,22 +18,6 @@
     },
     {
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "role": "OrderedMember"
     },
     {
@@ -95,10 +79,6 @@
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -117,6 +97,7 @@
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
@@ -135,36 +116,6 @@
         "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
         "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
         "kind": "HardCompletionGate"
-      },
-      {
-        "from": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-        "to": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-        "kind": "DocumentationSurfaceBaseline"
-      },
-      {
-        "from": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-        "to": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-        "kind": "DocumentationSurfaceBaseline"
-      },
-      {
-        "from": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
-        "to": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-        "kind": "DocumentationSurfaceBaseline"
-      },
-      {
-        "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-        "to": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-        "kind": "DocumentationSurfaceBaseline"
-      },
-      {
-        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-        "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-        "kind": "DocumentationSurfaceBaseline"
-      },
-      {
-        "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-        "to": "Lastenheft_Script_Dokumentation.md",
-        "kind": "DocumentationSurfaceBaseline"
       },
       {
         "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
@@ -239,27 +190,27 @@
       {
         "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
         "to": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-        "kind": "AssessmentBaseline"
+        "kind": "AssuranceAuditBaseline"
       },
       {
         "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
         "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "kind": "AssessmentBaseline"
+        "kind": "AssuranceAuditBaseline"
       },
       {
         "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
         "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "kind": "AssessmentBaseline"
+        "kind": "PublishedPresetBaseline"
       },
       {
         "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
         "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "kind": "AssessmentBaseline"
+        "kind": "PublishedPresetBaseline"
       },
       {
         "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
         "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "kind": "AssessmentBaseline"
+        "kind": "SecureDevelopmentBaseline"
       }
     ]
   },
