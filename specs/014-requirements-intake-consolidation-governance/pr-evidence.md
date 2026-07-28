@@ -168,3 +168,9 @@ repositories now carry the v0.2.2 profile. The six original Schema-2 pilots
 were reinstalled at v0.2.2; their real CI found only stale generated statistics,
 which were rendered from the exact profile heads before all checks passed. The
 other 26 repositories retained their documented provider-zero-step boundary.
+
+The final one-command maintenance check reports no sequencing-profile or
+installed-profile drift. It still reports pre-existing shared agent-template
+drift in `absdd-image-sandbox`, `TinyCalc`, `TinyPl0`, and `TuiVision`. That
+separate propagation concern does not change the Schema-2 contract and remains
+outside this closeout rather than being silently bundled into it.
