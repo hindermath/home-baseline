@@ -5,9 +5,9 @@
   "branch": "015-windows-maintenance-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Validate",
+  "stage": "Review",
   "status": "Active",
-  "checkpointCommit": "694429cd0c0a8f683ab1ef93531d36ad5de8625b",
+  "checkpointCommit": "5d8ab53591fdffab1e84a028fb8eee6d257cc6ee",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
@@ -28,16 +28,16 @@
   ],
   "tasks": {
     "path": "specs/015-windows-maintenance-hardening/tasks.md",
-    "sha256": "62d63c03c27d0c749edaac19c4eeb1effe3d3f2287a981e56bba869577c9bca8",
-    "completed": 29,
+    "sha256": "4bf0ca961f5a26557deed447c0530a75c74624632507533929e35f52fc370a82",
+    "completed": 36,
     "total": 44
   },
-  "lastPassingGate": "Implementation, documentation, parser, PSScriptAnalyzer 1.25.0, 146 statistics assertions and all targeted local regression suites pass.",
-  "nextExactAction": "Run the remaining candidate-wide security and homogeneity gates, commit and push the first exact candidate.",
+  "lastPassingGate": "Complete CheckOnly and WhatIf field runs proved deterministic non-mutation, and every exact-head local regression, parser, static-analysis, security, homogeneity, documentation and statistics gate passed.",
+  "nextExactAction": "Reconcile the exact candidate, commit and push the field-validation evidence, and create the Feature 015 pull request.",
   "lastOperation": {
-    "kind": "Implement",
+    "kind": "Validate",
     "state": "Completed",
-    "summary": "Windows hardening contracts, public integrations, tests, documentation and feature-local governance evidence are implemented."
+    "summary": "Complete orchestrator CheckOnly and WhatIf field runs and all exact-head candidate gates converged without unintended mutation."
   },
   "stop": {
     "reason": "N/A",
@@ -50,5 +50,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-28T15:51:49Z"
+  "updatedAt": "2026-07-28T16:59:06Z"
 }

@@ -100,6 +100,38 @@ eleven-preset profile.
   host drift is not a product-code pass and was not repaired by the feature
   run.
 
+## Complete orchestrator field validation
+
+The first complete CheckOnly field run exposed and fixed a double evaluation
+of the handled Home Sync drift exitcode. The second and third WhatIf attempts
+then exposed and fixed implicit inheritance of the parent WhatIf preference
+into the nested CheckOnly contract and into mode-independent lock/transcript
+evidence. These are promoted product fixes, not accepted test exceptions.
+
+The converged exact-head evidence is:
+
+- CheckOnly run `01caed3d-ab27-4c58-ad57-bbbb2ae8a425`: `PARTIAL`, exit `1`,
+  44 ordered fleet targets, 32 current registry targets, all 33 Level-0/1/2
+  preset profiles at exactly eleven entries, and no working-tree mutation.
+- WhatIf run `a1da86f1-0035-458e-81f4-8f87d743ba17`: `PARTIAL`, exit `1`,
+  nine report stages, 44 targets, a 68,685-byte transcript, empty stderr,
+  released lock, and no working-tree mutation.
+- Both partial results are intentional and truthful: the feature branch is
+  newer than the local Home runtime, and the new distributable module plus
+  companion files produce 128 actionable package differences across the 32
+  registered repositories. This Level-0 feature neither repairs nor commits
+  those target repositories.
+- All 44 repositories finished the final fetch/synchronization check at 0/0.
+  The Level-0 feature branch also remained clean and 0/0 with its upstream.
+- Final exact-head local gates on `5d8ab53591fdffab1e84a028fb8eee6d257cc6ee`
+  passed: 10 Windows hardening tests; 13 maintenance tests with one
+  platform skip; 9 contract tests with five platform skips; 4 Home Sync
+  tests; 146 statistics assertions; 147-file PSScriptAnalyzer; seven
+  PowerShell parser checks; two Bash parser checks; 30/30 Homogeneity;
+  Documentation Impact; script-reference idempotence; diff check; Gitleaks;
+  current statistics; current script inventory; and unchanged shared
+  agent-guidance paths.
+
 ## Security, architecture, accessibility and standards disposition
 
 - Trust boundaries are explicit at filesystem paths, Git remotes, Python

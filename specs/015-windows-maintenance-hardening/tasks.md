@@ -50,16 +50,16 @@
 - [X] T028 Record A11Y, secure coding, architecture and standards evidence
 - [X] T029 Review all maintained agent guidance surfaces and record disposition
 - [ ] T030 Archive the completed intake through the Windows rename workflow
-- [ ] T031 Update and render `docs/project-statistics.md`
+- [X] T031 Update and render `docs/project-statistics.md`
 
 ## Phase 7: Validation and delivery
 
-- [ ] T032 Run Windows hardening and existing maintenance suites
-- [ ] T033 Run parser, PSScriptAnalyzer and project-statistics suites
-- [ ] T034 Run CheckOnly and WhatIf and prove no mutation
-- [ ] T035 Run diff, secret, homogeneity and agent-parity gates
-- [ ] T036 Reconcile tasks, hashes and final autonomous state
-- [ ] T037 Stage only intended paths and validate the exact candidate
+- [X] T032 Run Windows hardening and existing maintenance suites
+- [X] T033 Run parser, PSScriptAnalyzer and project-statistics suites
+- [X] T034 Run CheckOnly and WhatIf and prove no mutation
+- [X] T035 Run diff, secret, homogeneity and agent-parity gates
+- [X] T036 Reconcile tasks, hashes and final autonomous state
+- [X] T037 Stage only intended paths and validate the exact candidate
 - [ ] T038 Commit, push and open the Feature 015 PR
 - [ ] T039 Converge exact-head checks and actionable review threads
 - [ ] T040 Validate provider-neutral exact-head gate evidence
