@@ -243,8 +243,13 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "Resolve-HBPythonLauncher",
             "Test-HBResumeEvidence",
             "Get-HBCanonicalExitCode",
+            "homeInvocationStatus",
         ):
             self.assertIn(token, workspace)
+        self.assertNotIn(
+            "if ($LASTEXITCODE -notin @(0, $null)) { throw 'sync-home",
+            workspace,
+        )
         for token in (
             "Invoke-HBBoundedProcess",
             "DEFERRED_ADMIN_REQUIRED",

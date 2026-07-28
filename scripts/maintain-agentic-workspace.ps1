@@ -903,12 +903,21 @@ try {
         Write-HBInfo 'Lokale Home-Baseline synchronisieren / Synchronize local home baseline'
         $findingsBefore = $script:Findings
         $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
+        $homeInvocationStatus = 0
         switch ($maintenanceMode.Name) {
-            'CheckOnly' { Test-HBHomeSync }
-            'Preview' { & $syncScript -NoPull -WhatIf }
-            'Update' { & $syncScript -NoPull }
+            'CheckOnly' {
+                Test-HBHomeSync
+            }
+            'Preview' {
+                & $syncScript -NoPull -WhatIf
+                $homeInvocationStatus = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+            }
+            'Update' {
+                & $syncScript -NoPull
+                $homeInvocationStatus = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
+            }
         }
-        if ($LASTEXITCODE -notin @(0, $null)) { throw 'sync-home fehlgeschlagen / failed.' }
+        if ($homeInvocationStatus -ne 0) { throw 'sync-home fehlgeschlagen / failed.' }
         $homeStatus = if ($script:Findings -gt $findingsBefore) { 'Blocked' } else { 'Passed' }
     }
 
