@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM-/KITSM-Jahr-1-Retrofit
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 20, nach Position 19  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 20, nach Position 19
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** KDM- und KITSM-Lernende, Fachinformatiker*innen, Lehrende,
-Ausbildende und Maintainer ab dem ersten Ausbildungsjahr  
+Ausbildende und Maintainer ab dem ersten Ausbildungsjahr
 **Vorausgesetztes Wissen:** freigegebenes Kompetenzmodell aus Position 19;
 keine vorherige Spec-Kit-Erfahrung
 

@@ -16,7 +16,7 @@
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KDM-Professional-Jahr3.md",
-    "normalizedSha256": "f301744d6159246715b8f40b0e32b1fa18560dc39f2f6ad51e037bfdb1cbf354"
+    "normalizedSha256": "a6467f26a72dacd3cdd53c0a17e51ba39c1a66922b6bad29925c9a14bd80d742"
   },
   "sources": [
     {
@@ -36,7 +36,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "f301744d6159246715b8f40b0e32b1fa18560dc39f2f6ad51e037bfdb1cbf354",
+      "normalizedSha256": "a6467f26a72dacd3cdd53c0a17e51ba39c1a66922b6bad29925c9a14bd80d742",
       "gitBlob": "N/A",
       "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
     }

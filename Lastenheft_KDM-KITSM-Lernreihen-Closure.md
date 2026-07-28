@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM-/KITSM-Lernreihen-Closure
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 25, nach Position 24  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 25, nach Position 24
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** KDM-/KITSM-Lernende, Fachinformatiker*innen, Lehrende,
-Ausbildende, Maintainer, Flotten-Operatoren und Reviewer  
+Ausbildende, Maintainer, Flotten-Operatoren und Reviewer
 **Vorausgesetztes Wissen:** gemergte Positionen 18 bis 24; keine vorherige
 Spec-Kit-Erfahrung
 

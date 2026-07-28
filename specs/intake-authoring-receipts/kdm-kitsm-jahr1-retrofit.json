@@ -16,7 +16,7 @@
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-    "normalizedSha256": "35ee962e70b0d918754dc07e369446ffbe563ad21b38085802b5402ad065376c"
+    "normalizedSha256": "ed74b408fd7b454323b3b65412dd97a585693e845f9b84a9e0ed7fb5869d896b"
   },
   "sources": [
     {
@@ -36,7 +36,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "35ee962e70b0d918754dc07e369446ffbe563ad21b38085802b5402ad065376c",
+      "normalizedSha256": "ed74b408fd7b454323b3b65412dd97a585693e845f9b84a9e0ed7fb5869d896b",
       "gitBlob": "N/A",
       "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
     }

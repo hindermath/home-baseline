@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM Professional Jahr 3
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 23, nach Position 22  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 23, nach Position 22
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Kaufleute für Digitalisierungsmanagement, Lehrende, Ausbildende,
-Maintainer und Reviewer ab dem dritten Ausbildungsjahr  
+Maintainer und Reviewer ab dem dritten Ausbildungsjahr
 **Vorausgesetztes Wissen:** abgeschlossener kaufmännischer Jahr-2-Kern; keine
 vorherige Spec-Kit-Erfahrung
 

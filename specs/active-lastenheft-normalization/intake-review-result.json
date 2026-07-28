@@ -143,49 +143,49 @@
     {
       "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
       "role": "OrderedMember",
-      "normalizedSha256": "d1fb8be21c58cb28074488d68466843553495cbb03e1f2a742781b134fc01737",
+      "normalizedSha256": "17fdf30279d42f7335088a625d581d24b5773ae8df9091685120f01b7c01d858",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
       "role": "OrderedMember",
-      "normalizedSha256": "90a022f93952d28b96817e38cf5c78cd92793683b523d7146180876eff954543",
+      "normalizedSha256": "4445e570bfa91e60aeea84a69230bf5d485590ac5082011641979e1925a44d8a",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
       "role": "OrderedMember",
-      "normalizedSha256": "35ee962e70b0d918754dc07e369446ffbe563ad21b38085802b5402ad065376c",
+      "normalizedSha256": "ed74b408fd7b454323b3b65412dd97a585693e845f9b84a9e0ed7fb5869d896b",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
       "role": "OrderedMember",
-      "normalizedSha256": "06b38066938ed59b54fee799be1fa82bc4c49c3de932a3b2d4c462abc9f00e8f",
+      "normalizedSha256": "5a38b85feb0dca3aa512ece2f6e372210ad8db3a7e195f87351f0bc1a894347f",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KITSM-Professional-Jahr3.md",
       "role": "OrderedMember",
-      "normalizedSha256": "0fb243c3b9a8645eb1892a6c6a578da5805c75e147059fca6747fd7e595e63fd",
+      "normalizedSha256": "5029bcf406b343dc24b919f240fd7b5c4e5f583ff17dd29bb53c16869770151e",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KDM-Professional-Jahr3.md",
       "role": "OrderedMember",
-      "normalizedSha256": "f301744d6159246715b8f40b0e32b1fa18560dc39f2f6ad51e037bfdb1cbf354",
+      "normalizedSha256": "a6467f26a72dacd3cdd53c0a17e51ba39c1a66922b6bad29925c9a14bd80d742",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
       "role": "OrderedMember",
-      "normalizedSha256": "e34f608ae13cd01b8542adba930e0381cf9aa31143c78fd13baff8b4ee379d0a",
+      "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
       "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
       "role": "OrderedMember",
-      "normalizedSha256": "eb4b663bf89296c62b1cc174a8ebc250429e31d9c45bbb7281aaa699b591d28a",
+      "normalizedSha256": "13cd99d4940482fd4992ea70896d74b50ea0c100c46ee4cb09675201be55d59c",
       "gitBlob": "N/A"
     }
   ],

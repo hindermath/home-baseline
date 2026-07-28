@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM-/KITSM-C#-Lernreihen-Rollout
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 24, nach Position 23  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 24, nach Position 23
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** KDM-/KITSM-Lernende, Lehrende, Ausbildende, C#-Maintainer,
-Flotten-Operatoren und Reviewer  
+Flotten-Operatoren und Reviewer
 **Vorausgesetztes Wissen:** abgeschlossene Positionen 20 bis 23; Grundwissen
 über Git-Branches und Pull Requests, aber keine Spec-Kit-Erfahrung
 

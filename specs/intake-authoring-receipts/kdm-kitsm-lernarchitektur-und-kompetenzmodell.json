@@ -16,7 +16,7 @@
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-    "normalizedSha256": "90a022f93952d28b96817e38cf5c78cd92793683b523d7146180876eff954543"
+    "normalizedSha256": "4445e570bfa91e60aeea84a69230bf5d485590ac5082011641979e1925a44d8a"
   },
   "sources": [
     {
@@ -36,7 +36,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "90a022f93952d28b96817e38cf5c78cd92793683b523d7146180876eff954543",
+      "normalizedSha256": "4445e570bfa91e60aeea84a69230bf5d485590ac5082011641979e1925a44d8a",
       "gitBlob": "N/A",
       "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
     }

@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM-/KITSM-Kaufmännischer Kern Jahr 2
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 21, nach Position 20  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 21, nach Position 20
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** KDM- und KITSM-Lernende, Lehrende, Ausbildende, Maintainer und
-Reviewer ab dem zweiten Ausbildungsjahr  
+Reviewer ab dem zweiten Ausbildungsjahr
 **Vorausgesetztes Wissen:** abgeschlossener Jahr-1-Pfad und Grundkenntnisse in
 C#, SQL, Tests, Datenschutz und Kundenkommunikation
 

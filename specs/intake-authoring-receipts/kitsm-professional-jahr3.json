@@ -16,7 +16,7 @@
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KITSM-Professional-Jahr3.md",
-    "normalizedSha256": "0fb243c3b9a8645eb1892a6c6a578da5805c75e147059fca6747fd7e595e63fd"
+    "normalizedSha256": "5029bcf406b343dc24b919f240fd7b5c4e5f583ff17dd29bb53c16869770151e"
   },
   "sources": [
     {
@@ -36,7 +36,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "0fb243c3b9a8645eb1892a6c6a578da5805c75e147059fca6747fd7e595e63fd",
+      "normalizedSha256": "5029bcf406b343dc24b919f240fd7b5c4e5f583ff17dd29bb53c16869770151e",
       "gitBlob": "N/A",
       "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
     }

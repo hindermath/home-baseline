@@ -1,13 +1,13 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM-/KITSM-Lernarchitektur und Kompetenzmodell
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 19, nach Position 18  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 19, nach Position 18
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** KDM- und KITSM-Lernende, Lehrende, Ausbildende, Maintainer und
-Reviewer ab dem ersten Ausbildungsjahr  
+Reviewer ab dem ersten Ausbildungsjahr
 **Vorausgesetztes Wissen:** Ergebnisse des Gap-Audits; keine vorherige
 Spec-Kit-Erfahrung
 

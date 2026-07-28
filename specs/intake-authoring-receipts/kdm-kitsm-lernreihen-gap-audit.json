@@ -16,7 +16,7 @@
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-    "normalizedSha256": "d1fb8be21c58cb28074488d68466843553495cbb03e1f2a742781b134fc01737"
+    "normalizedSha256": "17fdf30279d42f7335088a625d581d24b5773ae8df9091685120f01b7c01d858"
   },
   "sources": [
     {
@@ -36,7 +36,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "d1fb8be21c58cb28074488d68466843553495cbb03e1f2a742781b134fc01737",
+      "normalizedSha256": "17fdf30279d42f7335088a625d581d24b5773ae8df9091685120f01b7c01d858",
       "gitBlob": "N/A",
       "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
     }

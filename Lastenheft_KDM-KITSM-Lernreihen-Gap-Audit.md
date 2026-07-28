@@ -1,14 +1,14 @@
 <!-- intake-authoring:begin -->
 # Lastenheft: KDM-/KITSM-Lernreihen-Gap-Audit
 
-**Dokumenttyp:** Spec-Kit Intake / Lastenheft  
-**Status:** bereit für Intake Review  
-**Stand:** 2026-07-28  
-**Reihenfolge:** Position 18, nach Position 17  
-**Delivery Mode:** `MergeAndSync`  
+**Dokumenttyp:** Spec-Kit Intake / Lastenheft
+**Status:** bereit für Intake Review
+**Stand:** 2026-07-28
+**Reihenfolge:** Position 18, nach Position 17
+**Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Kaufleute für Digitalisierungsmanagement (KDM), Kaufleute für
 IT-System-Management (KITSM), Fachinformatiker*innen, Lehrende, Ausbildende,
-Maintainer und Reviewer ab dem ersten Ausbildungsjahr  
+Maintainer und Reviewer ab dem ersten Ausbildungsjahr
 **Vorausgesetztes Wissen:** Grundverständnis von Ausbildung und
 Softwareprojekten; keine vorherige Spec-Kit-Erfahrung
 
