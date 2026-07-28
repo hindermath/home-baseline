@@ -84,6 +84,19 @@
       ],
       "owner": "Feature 015",
       "evidence": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"
+    },
+    {
+      "changeId": "CHG015006",
+      "scope": "PowerShell Lastenheft rename root-path correction",
+      "decision": "NoUpdateRequired",
+      "criticality": "Usage",
+      "rationale": "The existing contract and manpage already document a repository-root filename without a path prefix; the correction makes PowerShell conform to that published interface.",
+      "documents": [
+        "specs/002-homogeneity-guardian-revision/contracts/rename-lastenheft-cli.md",
+        "docs/man/rename-lastenheft.1.md"
+      ],
+      "owner": "Feature 015 retrospective",
+      "evidence": "specs/015-windows-maintenance-hardening/retrospective.md"
     }
   ]
 }

@@ -185,4 +185,12 @@ The converged exact-head evidence is:
 
 Only Level 0 is delivered. The feature does not commit or push maintenance
 target repositories, bypass UAC, discard foreign changes, or start a successor
-feature. Final Git inventory runs after merge and local default-branch sync.
+feature. Final CheckOnly run
+`42950e7a-6098-4d2b-b678-b4dce81bc05b` fetched and classified all 44 fleet
+targets as `CURRENT` with no Git action or pull required; all 32 registry
+targets and all 33 eleven-preset profiles are current. Its truthful `PARTIAL`
+status contains only the 128 already documented distributable-package
+differences plus the then-unpublished closeout branch without an upstream.
+No target repository was mutated. The retrospective promoted the independently
+reproduced repository-root filename fix in `rename-lastenheft.ps1` and retained
+three single-observation candidates for another field gate.
