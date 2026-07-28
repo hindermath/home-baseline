@@ -90,7 +90,7 @@
 
 ## Feature Delivery and Closeout
 
-- [ ] T065 Complete evidence and project statistics.
+- [X] T065 Complete evidence and project statistics.
 - [ ] T066 Validate feature exact-head evidence.
 - [ ] T067 Commit, push, and create feature PR.
 - [ ] T068 Converge checks and reviews.
