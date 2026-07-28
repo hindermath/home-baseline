@@ -203,3 +203,13 @@ Nur Level 0 und die deklarierte Home-Runtime werden geliefert. Der Lauf
 committet oder pusht keine Flottenziel-Repositories, umgeht keine
 Administrator- oder Sicherheitsgrenze und startet nach dem Closeout kein
 Folgefeature.
+
+## Pull request
+
+- Feature-PR: <https://github.com/hindermath/home-baseline/pull/146>
+- Beim Öffnen veröffentlichter Head:
+  `0562956897ca2eb6bc0b5603fd3c3dd778d58b31`.
+- Der nachfolgende Evidence-Commit verändert den PR-Head erwartungsgemäß
+  nochmals. Die verbindliche Exact-Head-Zuordnung bleibt deshalb bis zur
+  G007-Konvergenz in temporärer providerneutraler Evidence und wird nicht
+  selbstreferenziell in diesen Feature-Head geschrieben.

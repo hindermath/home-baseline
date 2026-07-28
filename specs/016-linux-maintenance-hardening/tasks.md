@@ -189,8 +189,8 @@ Lieferkandidatenprüfung schließen.
 MergeAndSync-Grenze liefern und die Serie genau einmal fortschreiben.
 
 - [X] T052 Stage only intended paths and validate the exact candidate against `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
-- [ ] T053 Commit the reviewed candidate with required co-author trailer and push branch `016-linux-maintenance-hardening`
-- [ ] T054 Open the feature pull request and record its URL/head in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
+- [X] T053 Commit the reviewed candidate with required co-author trailer and push branch `016-linux-maintenance-hardening`
+- [X] T054 Open the feature pull request and record its URL/head in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
 - [ ] T055 Converge all Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and write temporary provider-neutral gate evidence from `specs/016-linux-maintenance-hardening/autonomous-run-gate-requirements.json`
 - [ ] T056 Merge only the converged exact head with the authorized repository admin bypass and record the merge result in `specs/016-linux-maintenance-hardening/autonomous-run-evidence.md`
 - [ ] T057 Delete the feature branch, fast-forward local `main`, prove equality with `origin/main` and sync Home Runtime through `scripts/sync-home.sh`

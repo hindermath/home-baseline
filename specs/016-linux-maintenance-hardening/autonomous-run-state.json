@@ -5,7 +5,7 @@
   "branch": "016-linux-maintenance-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Validate",
+  "stage": "Review",
   "status": "Active",
   "checkpointCommit": "f0fc01854270ac70ed6b4a90ac075100f6f69a77",
   "acceptedArtifacts": [
@@ -32,16 +32,16 @@
   ],
   "tasks": {
     "path": "specs/016-linux-maintenance-hardening/tasks.md",
-    "sha256": "46b8668caeabccd10a75fb7476d7de533e0f889c998a57f2147989c236e6617f",
-    "completed": 52,
+    "sha256": "ce5e6319ffdaa7af842a683de204b6e4581335c7e95962cc48849e6b9c46e027",
+    "completed": 54,
     "total": 59
   },
   "lastPassingGate": "Local G001-G006 candidate gates passed: 52 discovered tests, 13 focused Linux tests, 146 statistics assertions, Documentation Impact, generated inventory, secret fallback, JSON/Bash validation and Homogeneity score 100.",
-  "nextExactAction": "Stage the exact candidate, push branch 016-linux-maintenance-hardening, open its pull request and converge G007 on the exact head.",
+  "nextExactAction": "Push the PR #146 evidence update, converge every required provider check and actionable review thread on its exact head, then validate temporary G007 evidence.",
   "lastOperation": {
-    "kind": "Validate",
+    "kind": "Publish",
     "state": "Completed",
-    "summary": "Implementation, security review, mutation-free previews and local gates G001-G006 completed; real host and fleet drift remains visible and was not technically bypassed."
+    "summary": "Reviewed candidate pushed and PR #146 opened; local G001-G006 remain green and G007 awaits the final exact feature head."
   },
   "stop": {
     "reason": "N/A",
@@ -54,5 +54,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-28T20:36:00Z"
+  "updatedAt": "2026-07-28T20:47:00Z"
 }
