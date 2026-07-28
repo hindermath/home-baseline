@@ -693,6 +693,28 @@ validator passes. No Intake Review, Specify, Autonomous, commit, or remote run
 was started. The authoring delta before statistics work is +654/-17, or 637 net
 lines.*
 
+### 2026-07-28 - Dokumentationsarchitektur-Intake-Kette D4-D7 / Documentation architecture intake chain D4-D7
+
+- Vier aufeinander aufbauende Intakes erweitern die abgeschlossene
+  D1-D3-Dokumentationsbasis um ein read-only Informationsarchitektur-Audit,
+  eine Level-0-Neustrukturierung, einen Agentic-Workspace-Effizienzleitfaden
+  und die anschliessende registrierte Level-1/2-Adoption.
+- Alle vier Einzelreviews und der vollstaendige Series-Review stehen auf
+  `Ready`. Die aktive Series umfasst 21 Ziele, fuenf Roots und 28
+  Abhaengigkeiten; der Windows-Wartungsintake bleibt der einzige deklarierte
+  naechste serielle Lauf.
+- Kein D4-D7-Spec-Kit-Lauf wurde gestartet. Das Intake- und Evidence-Delta vor
+  Statistikpflege umfasst `+2712/-40`, also 2672 Nettozeilen.
+
+*Four dependent intakes extend the completed D1-D3 documentation baseline with
+a read-only information-architecture audit, Level 0 restructuring, an agentic
+workspace efficiency guide, and subsequent registered Level 1/2 adoption. All
+four individual reviews and the complete Series review are Ready. The active
+Series contains 21 targets, five roots, and 28 dependencies; the Windows
+maintenance intake remains the only declared next serial run. No D4-D7 Spec
+Kit run was started. The intake and evidence delta before statistics work is
+2712 additions and 40 deletions, or 2672 net lines.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
