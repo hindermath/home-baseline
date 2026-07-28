@@ -23,11 +23,11 @@
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-result.json",
-      "sha256": "b306e21202cd3b3377fc2ec70841a7462a5bfcc6d9b4813dfc5b8898ae2df8b0"
+      "sha256": "9bfc03953a987f8d4dbfc8f120760676a1e6f165022d2005465f9889a7e98a2e"
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "6d5ccb3692c2808bca2d7b8efb3426997240b290f69b484e8f72c7567678dbef"
+      "sha256": "07d2b797d1d706419a19bd8acc82ca62368d05a41aaeb7cff49d8e46fb376d50"
     }
   ],
   "tasks": {
@@ -36,12 +36,12 @@
     "completed": 54,
     "total": 59
   },
-  "lastPassingGate": "After the first macOS matrix failure, platform-correct fixtures passed all 13 focused and all 52 discovered tests locally; previous remote results are stale for the replacement head.",
-  "nextExactAction": "Commit and push the macOS fixture correction, then reconverge every PR #146 provider check and actionable review thread on the replacement exact head.",
+  "lastPassingGate": "Head ff1df0d passed 20 provider checks, zero actionable threads and 8/8 provider-neutral gates; the merge was correctly refused after concurrent origin/main advancement and now requires replacement-head validation.",
+  "nextExactAction": "Complete the conflict-free origin/main merge with both statistics milestones, rerender statistics, push the replacement PR head and reconverge all exact-head gates.",
   "lastOperation": {
     "kind": "Review",
     "state": "Completed",
-    "summary": "Diagnosed the macOS-only fixture mismatch from GitHub Actions and validated the narrow cross-platform test correction locally without bypassing the failed gate."
+    "summary": "Validated head ff1df0d completely, then stopped the admin merge when GitHub reported a real conflict; integrated the concurrent ITSE intake baseline while preserving both statistics milestones and refreshed accepted Series hashes."
   },
   "stop": {
     "reason": "N/A",
@@ -54,5 +54,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-28T20:58:00Z"
+  "updatedAt": "2026-07-28T21:08:00Z"
 }

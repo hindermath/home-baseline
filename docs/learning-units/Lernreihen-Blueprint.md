@@ -98,6 +98,29 @@ Fuer KITSM und KDM ist eine eigenstaendige, fachlich gleichwertige Progression v
 
 Die Positionen 18 bis 25 der aktiven Intake-Reihenfolge bereiten Audit, Lernarchitektur, Jahrgaenge, kontrollierten C#-Rollout und Abschlusspruefung vor. Bis diese Laeufe umgesetzt sind, bleibt die `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` die gueltige Uebergangsbasis. Die Vorbereitung startet keinen Lernenden- oder Spec-Kit-Lauf automatisch.
 
+Für IT-System-Elektroniker*innen (ITSE) ist eine eigene, fachlich gleichwertige
+Progression vorbereitet. Sie vergleicht vorrangig mit allen vier
+FI-Fachrichtungen. Systemintegration und Digitale Vernetzung liegen fachlich
+besonders nah; Anwendungsentwicklung sowie Daten- und Prozessanalyse bleiben
+für Softwareanpassung, Diagnose, Messdatenauswertung und sichere
+Automatisierung sichtbar:
+
+1. Im ersten Lehrjahr werden LF1 bis LF5 gemeinsam wiederverwendet und ab LF2
+   um Energie-, Leitungsdimensionierungs- und Schutzgrenzen ergänzt.
+2. Im zweiten Lehrjahr folgen LF6 bis LF9 mit Service, cyber-physischen
+   Systemen, Datenbereitstellung, Netzwerken und Diagnose.
+3. Im dritten Lehrjahr bilden LF10 bis LF12 eine eigene ITSE-Reihe zu
+   Energieversorgung, Betriebssicherheit vernetzter Systeme und
+   Instandhaltung.
+
+C# bleibt die Referenzsprache für Simulation, Diagnose, Testautomation und
+Dokumentation. C# ersetzt keine elektrotechnische Praxis. Elektrische
+Schalt-, Mess- oder Inbetriebnahmearbeit findet nur in freigegebenen
+Lernumgebungen und unter fachkundiger Aufsicht statt; ein KI-Agent steuert
+keine elektrische Anlage. Die Positionen 26 bis 32 bereiten den ITSE-Strang
+vor. Position 33 prüft danach alle FI-, ITSE-, KITSM- und KDM-Reihen in sich,
+gegen ihre normativen Quellen und insgesamt zueinander.
+
 **EN:** Learning series may also address additional IT training occupations didactically. The mapping remains a teaching aid and does not create repositories. The minimum matrix covers FI/AE, FI/SI, FI/DPA, FI/DV, IT systems electronics technician, IT systems management clerk (KITSM), and digitalization management clerk (KDM).
 
 A dedicated, professionally equivalent progression is prepared for KITSM and KDM. It uses C# as the reference language, SQL as the mandatory declarative bridge, and the existing Secure Trader domains as shared case studies:
@@ -107,6 +130,28 @@ A dedicated, professionally equivalent progression is prepared for KITSM and KDM
 3. Year 3 separates into occupation-specific KITSM and KDM advanced tracks.
 
 Positions 18 through 25 of the active intake order prepare the audit, learning architecture, training years, controlled C# rollout, and final closure review. Until those runs are implemented, `Secure-Trader-Kaufmaennische-Berufsrollen-Linse.md` remains the valid transitional baseline. Preparation does not automatically start a learner or Spec Kit run.
+
+A dedicated, professionally equivalent progression is prepared for IT systems
+electronics technicians (ITSE). It compares primarily with all four
+IT-specialist tracks. System Integration and Digital Networking are especially
+close; Application Development and Data and Process Analysis remain visible
+for software adaptation, diagnostics, measurement-data evaluation, and safe
+automation:
+
+1. Year 1 reuses LF1 through LF5 and adds ITSE power, conductor-sizing, and
+   protection boundaries from LF2 onward.
+2. Year 2 covers LF6 through LF9 with service, cyber-physical systems, data
+   exchange, networks, and diagnostics.
+3. Year 3 provides a dedicated LF10 through LF12 series for power supply,
+   operational safety of networked systems, and maintenance.
+
+C# remains the reference language for simulation, diagnostics, test
+automation, and documentation. It does not replace electrical practice.
+Electrical switching, measurement, or commissioning takes place only in
+approved learning environments under qualified supervision; an AI agent never
+controls an electrical installation. Positions 26 through 32 prepare the ITSE
+track. Position 33 then checks all FI, ITSE, KITSM, and KDM series internally,
+against their normative sources, and together.
 
 ## Mindestartefakte / Minimum Artefacts
 
@@ -189,9 +234,9 @@ bilingual in both patterns.
 
 **EN:** Each learning task may reference `CL_01` through `CL_12`, the compendium, and the related documents. These materials therefore must be locally available in each level-2 repository under `docs/secure-development/`. They are working and evidence material for later manual Spec Kit runs, not only external references.
 
-**DE:** Die oeffentliche Basis fuer MSL-Level-2-Repos bleibt die zentrale Acht-Preset-Matrix. Thorstens registrierte Lernreihen-Flotte waehlt zusaetzlich Intake Authoring, Intake Review und Intake Sequencing ueber `intake-sequencing-eleven-governance-presets`. Authoring bereitet Intakes vor, Review prueft sie hashgebunden und Sequencing verwaltet Reihenfolge und naechste Kandidaten. Kein Lernendenlauf startet ohne ausdruecklichen Auftrag.
+**DE:** Die öffentliche Basis für MSL-Level-2-Repos bleibt die zentrale Acht-Preset-Matrix. Thorstens registrierte Lernreihen-Flotte wählt zusätzlich Intake Authoring und Intake Review über `intake-authoring-ten-governance-presets`. Authoring verwaltet Intakes und ausdrücklich freigegebene Serien; Review prüft Inhalte, Hashes, Reihenfolge und Abhängigkeiten unabhängig. Das ältere eigenständige Sequencing-Preset gehört nicht zum aktiven Zehn-Preset-Profil. Kein Lernendenlauf startet ohne ausdrücklichen Auftrag.
 
-**EN:** The public baseline for MSL level-2 repositories remains the central eight-preset matrix. Thorsten's registered learning-series fleet additionally selects Intake Authoring, Intake Review, and Intake Sequencing through `intake-sequencing-eleven-governance-presets`. Authoring prepares intakes, Review validates them against hashes, and Sequencing manages order and next candidates. No learner run starts without explicit authorization.
+**EN:** The public baseline for MSL level-2 repositories remains the central eight-preset matrix. Thorsten's registered learning-series fleet additionally selects Intake Authoring and Intake Review through `intake-authoring-ten-governance-presets`. Authoring manages intakes and explicitly approved series; Review independently validates content, hashes, order, and dependencies. The older standalone Sequencing preset is not part of the active ten-preset profile. No learner run starts without explicit authorization.
 
 **DE:** Jede Lernreihe plant fuer Level-2-Repos einen separaten RL-SE-/Checklist-Selbstpruefungs-Intake vor spaeterer Haertung ein. Dieser Intake gilt unabhaengig von MSL und verlangt eine Evidenzmatrix mit `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp`.
 

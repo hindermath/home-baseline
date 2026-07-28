@@ -1,6 +1,6 @@
 # IT-Berufe und Secure ServiceHarvester / IT Occupations and Secure ServiceHarvester
 
-**Stand / Date:** 2026-07-06
+**Stand / Date:** 2026-07-28
 
 ## Zweck / Purpose
 
@@ -24,6 +24,35 @@
 | IT-System-Elektroniker/-in | Operations Track, Digital Networking Track | Geräte, Netzwerke, Dienst-Inbetriebnahme, Sicherheitsprüfung, Betriebs- und Übergabenachweise |
 | Kaufmann/-frau für IT-System-Management | Basis, ausgewählte Application-/Operations-Aufgaben | Kundenanforderungen, Services, Serviceanfragen, Verträge, Kosten/Nutzen und Übergabe |
 | Kaufmann/-frau für Digitalisierungsmanagement | Data & Process Track, ausgewählte v2-Aufgaben | Geschäftsprozesse, Datenbedarf, Betriebskennzahlen, Datenschutz, Wirtschaftlichkeit |
+
+## ITSE als eigenständiger Lernpfad / ITSE as a Dedicated Learning Path
+
+**DE:** Secure ServiceHarvester ist der vollständige technische
+Referenzkontext für die vorbereitete ITSE-Lernreihe. Der ITSE-Pfad vergleicht
+mit allen vier FI-Fachrichtungen: FI/SI und FI/DV liefern die engsten
+Betriebs-, Netzwerk- und Cyber-Physical-Bezüge; FI/AE und FI/DPA bleiben für
+Softwareanpassung, Diagnose, Telemetrie und Messdatenauswertung sichtbar. C#
+dient als Referenzsprache für Simulation, Diagnose und Tests. Elektrische
+Schalt-, Mess- und Inbetriebnahmearbeit bleibt beaufsichtigte Fachpraxis und
+wird niemals von einem KI-Agenten ausgeführt.
+
+Die Positionen 26 bis 32 der zentralen Intake-Reihenfolge bereiten den
+dreijährigen ITSE-Pfad und seinen kontrollierten C#-Rollout vor. Position 33
+prüft danach die Konsistenz mit FI, KITSM und KDM. Diese Vorbereitung startet
+keinen Spec-Kit- oder Lernendenlauf.
+
+**EN:** Secure ServiceHarvester is the complete technical reference context for
+the prepared ITSE learning series. The ITSE path compares with all four
+IT-specialist tracks: FI/SI and FI/DV provide the closest operations, network,
+and cyber-physical relations; FI/AE and FI/DPA remain visible for software
+adaptation, diagnostics, telemetry, and measurement-data evaluation. C# is the
+reference language for simulation, diagnostics, and tests. Electrical
+switching, measurement, and commissioning remain supervised professional
+practice and are never performed by an AI agent.
+
+Positions 26 through 32 prepare the three-year ITSE path and its controlled C#
+rollout. Position 33 then checks consistency with FI, KITSM, and KDM. This
+preparation starts no Spec Kit or learner run.
 
 ## Kaufmännische Berufsrollen im agentischen SDD / Commercial IT Roles in Agentic SDD
 
@@ -75,4 +104,6 @@ are in the "Commercial Role Switch" section of the affected study companions.
 **DE:** Berufsbildbezeichnungen und 2020-Neuordnung werden bei fachlicher Aktualisierung gegen offizielle Quellen wie BIBB Berufesuche, BIBB "Ausbildung gestalten", BERUFENET und die einschlägigen Ausbildungsordnungen geprüft. Relevante öffentliche Einstiegspunkte sind:
 
 - BIBB Fachinformatiker/Fachinformatikerin: <https://www.bibb.de/dienst/berufesuche/de/index_berufesuche.php/profile/apprenticeship/80000?page=3>
+- BIBB IT-System-Elektroniker/-in: <https://www.bibb.de/dienst/publikationen/de/16664>
+- KMK-Rahmenlehrplan FI/ITSE: <https://www.kmk.org/service/servicebereich-berufliche-schulen/downloadbereich-rahmenlehrplaene?tx_fedownloads_single%5Baction%5D=forceDownload&tx_fedownloads_single%5Bcontroller%5D=Downloads&tx_fedownloads_single%5Bdownload%5D=45009&type=150>
 - BIBB Verzeichnis der anerkannten Ausbildungsberufe 2026: <https://www.bibb.de/dienst/publikationen/de/21008>

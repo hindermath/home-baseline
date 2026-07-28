@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "344e7555-8045-4ce0-922d-381f1ea91a9f",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-itse-learning-v1",
+  "reviewedAt": "2026-07-28T19:57:41Z",
+  "repository": {"root": ".", "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"},
+  "requestEvidence": {"path": "specs/itse-learning-intakes/reviews/27-architecture/intake-review-request.json", "normalizedSha256": "c4240657ae5d8dba5a267364260c106cc308d1d824d1241ba14162cc1c96c0ec"},
+  "targets": [{"path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md", "role": "Primary", "normalizedSha256": "0e57ff6dfbdd5cff5e8d1fe3d8c0705462da5980b052bf3163d3cc6de7345024", "gitBlob": "N/A"}],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {"individual": ["Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md"], "series": [], "workers": []},
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

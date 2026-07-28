@@ -54,15 +54,17 @@ Alle nutzerseitigen Artefakte werden textorientiert gepflegt und sollen mit Tast
 ## Für Auszubildende / For IT Apprentices
 
 Dieses Projekt richtet sich ab dem ersten Ausbildungsjahr an
-Fachinformatiker*innen, Kaufleute für IT-System-Management und Kaufleute für
-Digitalisierungsmanagement. Fachbegriffe werden beim ersten Auftreten erklärt;
-Spec-Kit-Erfahrung wird nicht vorausgesetzt. Abhängigkeiten, Zustände und
-Entscheidungen bleiben auch ohne visuelle Darstellung verständlich.
+Fachinformatiker*innen, IT-System-Elektroniker*innen, Kaufleute für
+IT-System-Management und Kaufleute für Digitalisierungsmanagement. Fachbegriffe
+werden beim ersten Auftreten erklärt; Spec-Kit-Erfahrung wird nicht
+vorausgesetzt. Abhängigkeiten, Zustände und Entscheidungen bleiben auch ohne
+visuelle Darstellung verständlich.
 
-*This project targets IT specialist apprentices and both IT management
-occupations from their first training year. Technical terms are explained at
-first use; no prior Spec Kit experience is assumed. Dependencies, states, and
-decisions remain understandable without a visual-only representation.*
+*This project targets IT specialist apprentices, IT systems electronics
+technician apprentices, and both IT management occupations from their first
+training year. Technical terms are explained at first use; no prior Spec Kit
+experience is assumed. Dependencies, states, and decisions remain
+understandable without a visual-only representation.*
 
 In diesem Ordner schreibst du deinen eigentlichen Code. Hier sind ein paar wichtige Regeln für die Arbeit an diesem Projekt:
 

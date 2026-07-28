@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "9cc31772-8f79-48c0-a5da-b10c70671345",
+  "mode": "Single",
+  "policy": "home-baseline-itse-learning-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

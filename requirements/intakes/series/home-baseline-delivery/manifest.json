@@ -173,6 +173,54 @@
       "role": "OrderedMember",
       "normalizedSha256": "13cd99d4940482fd4992ea70896d74b50ea0c100c46ee4cb09675201be55d59c",
       "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "b9cf4b049cfb0d553d333021c088528339549efe35c7d1a4e5f48dfaf3548d9f",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "0e57ff6dfbdd5cff5e8d1fe3d8c0705462da5980b052bf3163d3cc6de7345024",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c879f2a04218098458306397b3034ae5c7f5f8767271496f2273c82964969a67",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "095348df1019acdf5608fe0f178cedbbda850c525fd2e0b9f767a8f9b5c52014",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c5d59e5df2c14b03e751097ba43bbf3061decb6f2810e6c3f87b077218686b17",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "135a80646e5b91715da0704edab9450866e4d7205ec5ef648a78c2be6915ff08",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
+      "status": "Blocked"
     }
   ],
   "roots": [
@@ -391,6 +439,54 @@
       "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
       "kind": "FinalAuditInput",
       "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "to": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "to": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "to": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "kind": "RequirementsGovernanceGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "to": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "to": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "to": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "to": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "kind": "FinalAuditInput",
+      "binding": true
     }
   ],
   "evidencePaths": [
@@ -410,6 +506,15 @@
     "specs/kdm-kitsm-learning-intakes/reviews/22-kitsm/intake-review-result.json",
     "specs/kdm-kitsm-learning-intakes/reviews/23-kdm/intake-review-result.json",
     "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-result.json",
-    "specs/kdm-kitsm-learning-intakes/reviews/25-closure/intake-review-result.json"
+    "specs/kdm-kitsm-learning-intakes/reviews/25-closure/intake-review-result.json",
+    "specs/intake-authoring-series/itse-learning-series/series.json",
+    "specs/itse-learning-intakes/reviews/26-gap-audit/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/27-architecture/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/28-year1/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/29-year2/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/30-year3/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/31-rollout/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/32-closure/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/33-global-closure/intake-review-result.json"
   ]
 }

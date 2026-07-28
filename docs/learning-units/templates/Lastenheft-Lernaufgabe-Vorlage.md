@@ -20,6 +20,9 @@
 | Fachrichtung SI | <hoch/mittel/niedrig> |
 | Fachrichtung DPA | <hoch/mittel/niedrig> |
 | Fachrichtung DV | <hoch/mittel/niedrig> |
+| IT-System-Elektroniker/-in | <hoch/mittel/niedrig/nicht anwendbar> |
+| Kaufleute für IT-System-Management | <hoch/mittel/niedrig/nicht anwendbar> |
+| Kaufleute für Digitalisierungsmanagement | <hoch/mittel/niedrig/nicht anwendbar> |
 | MSL-Sprachen | C#, Go, Java, Python, Rust, Swift |
 
 ## Ausgangslage / Starting Point

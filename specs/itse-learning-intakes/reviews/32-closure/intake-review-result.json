@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "f49cd67e-4dbb-4cbf-86de-81f5500d7c6e",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-itse-learning-v1",
+  "reviewedAt": "2026-07-28T19:57:41Z",
+  "repository": {"root": ".", "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"},
+  "requestEvidence": {"path": "specs/itse-learning-intakes/reviews/32-closure/intake-review-request.json", "normalizedSha256": "c0b33ef3cb34bc025a5dab2938f8ece6611a41d1237fd6fe7f9cb53c09eb61e0"},
+  "targets": [{"path": "Lastenheft_ITSE-Lernreihen-Closure.md", "role": "Primary", "normalizedSha256": "135a80646e5b91715da0704edab9450866e4d7205ec5ef648a78c2be6915ff08", "gitBlob": "N/A"}],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {"individual": ["Lastenheft_ITSE-Lernreihen-Closure.md"], "series": [], "workers": []},
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

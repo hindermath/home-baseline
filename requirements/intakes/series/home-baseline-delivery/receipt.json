@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "926977cf-fcbf-452b-a565-7b900e12d185",
+  "receiptId": "fef62255-ef33-45cd-902e-f3539b9d63cb",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-28T17:58:16Z",
+  "createdAt": "2026-07-28T20:24:12Z",
   "operation": {
-    "operationId": "b7fb7c8d-766e-4895-b1ee-8bdb192fabd6",
+    "operationId": "db4eb7c1-2730-47c6-9e73-ed9576d4f3cf",
     "type": "Update",
-    "authorityEvidence": "Current explicit user approval to implement and MergeAndSync the complete KDM/KITSM eight-intake preparation plan."
+    "authorityEvidence": "Current explicit user approval to implement the complete ITSE learning-series and cross-series consistency intake plan with MergeAndSync delivery."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "d520a70165b62d3e48e956065550cd5686e16fa6fc41fec62be66ec5fd093ad2"
+    "normalizedSha256": "07d2b797d1d706419a19bd8acc82ca62368d05a41aaeb7cff49d8e46fb376d50"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/b7fb7c8d-766e-4895-b1ee-8bdb192fabd6/receipt.json",
-    "receiptNormalizedSha256": "a1123d6dd8f79db0fc3ac8f81145c6bb4f30987054ed4dd612dee2cc21cccf46",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/b7fb7c8d-766e-4895-b1ee-8bdb192fabd6/manifest.json",
-    "manifestArchiveSha256": "2f567b229e5351d6083508e0215734b2bbae1877f7cb0bb59cc460a3c154397a"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/db4eb7c1-2730-47c6-9e73-ed9576d4f3cf/receipt.json",
+    "receiptNormalizedSha256": "636dd1142c5db5f392fa79131d23303769424a95d0c4050af98cd2f3b93773f0",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/db4eb7c1-2730-47c6-9e73-ed9576d4f3cf/manifest.json",
+    "manifestArchiveSha256": "6d5ccb3692c2808bca2d7b8efb3426997240b290f69b484e8f72c7567678dbef"
   },
   "tombstone": {
     "path": "N/A",

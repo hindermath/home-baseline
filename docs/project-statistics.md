@@ -133,6 +133,7 @@
 | 2026-07-26 | Feature 012 Documentation-Impact-Governance | — | — | — | D2 hat den verbindlichen Documentation-Impact-Vertrag in Constitution, Spec-Kit-, PR-, Workflow- und Agentenflaechen verankert. Deterministische Bash-/PowerShell-Tests pruefen die vier Entscheidungen und unzulaessige Deferred-Zustaende. Alle 15 D1-Findings bleiben D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. PR #128 wurde nach 20 gruenen Checks, null Review-Threads und bestandenem Exact-Head-Nachweis gemergt. Das Implementierungsdelta vor Statistikpflege umfasst 1 407 Nettozeilen. |
 | 2026-07-28 | Feature 015 Windows-Ein-Kommando-Wartungshärtung | — | — | — | Die Windows-Orchestrierung verwendet jetzt genau einen Modus, begrenzte Python-3-Probes, transiente Git-Retries, WinGet-Zeitgrenzen mit Prozessbaum-Bereinigung, atomare hashgebundene Resume-Evidence und einen Run-ID-korrelierten Abschlussstatus. Registry und Flottenprüfung binden das Elf-Preset-Profil; Git-normalisierte Driftzählung trennt Rohabweichungen von aktionsfähigen Änderungen. Zehn gezielte Windows-Vertragstests einschließlich `rawDifferences=93` und `actionableDrift=3`, bestehende Wartungs- und Home-Sync-Suiten, 146 Statistik-Assertions, Parser und PSScriptAnalyzer 1.25.0 sind lokal grün. Admin-Autorität umgeht weder UAC noch Sicherheits-, Test- oder Review-Gates. Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209 Nettozeilen. |
 | 2026-07-28 | KDM-/KITSM-Lernreihen-Intake-Kette vorbereitet | — | — | — | Acht getrennte, noch nicht gestartete Intakes bereiten Gap-Audit, Lernarchitektur, Jahr-1-Retrofit, gemeinsamen kaufmännischen Jahr-2-Kern, getrennte KITSM-/KDM-Vertiefungen im dritten Lehrjahr, kontrollierten C#-Rollout und read-only Abschlussprüfung vor. C# bleibt Referenzsprache; SQL, sichere Entwicklung, Lernenden-Evidence und agentische Evidence besitzen ausdrückliche Grenzen. Acht Schema-2.0-Receipts und acht Einzelreviews sind gültig und `Ready`. Der erneuerte aktive Schema-1.1-Series-Review belegt 28 Ziele, vier Roots, 35 eindeutige azyklische Abhängigkeiten, null Findings und null offene Entscheidungen. Die künftige Auslieferung ist auf drei Level-1- und drei C#-Level-2-Repositories begrenzt; andere MSL-Pfade bleiben unverändert. Kein Lernenden-, Specify- oder autonomer Lauf wurde gestartet. Das Delta vor Statistikpflege umfasst 3 795 Nettozeilen. |
+| 2026-07-28 | ITSE-Lernreihen- und Gesamtkonsistenz-Intakes vorbereitet | — | — | — | Acht getrennte, noch nicht gestartete Intakes bereiten den ITSE-Gap-Audit, das Kompetenzmodell, LF1–LF5, LF6–LF9, die achtteilige LF10–LF12-Professional-Reihe, den kontrollierten C#-Rollout, die ITSE-Closure und eine globale Lernreihen-Konsistenzprüfung vor. Alle vier FI-Fachrichtungen bilden den primären Vergleich; KDM und KITSM ergänzen die Perspektive. C# bleibt auf Simulation, Diagnose, Testautomation und Dokumentation begrenzt; elektrische Praxis erfordert eine freigegebene Lernumgebung und fachkundige Aufsicht. Acht Authoring-Receipts und acht Einzelreviews sind gültig und `Ready`. Der aktive Schema-1.1-Series-Review belegt 36 Ziele, vier unveränderte Roots, 43 eindeutige azyklische Abhängigkeiten, null Findings und weiterhin genau einen `Eligible`-Kandidaten. Kein Lernenden-, Specify- oder autonomer Lauf wurde gestartet. Das Delta vor Statistikpflege umfasst 3 607 Nettozeilen. |
 | 2026-07-28 | Feature 016 Linux-Ein-Kommando-Wartungshärtung | — | — | — | Die Linux-Orchestrierung verarbeitet Paket- und CLI-Registries mit stdin-sicheren Snapshots, eindeutigen geordneten Ergebnissen und wahrheitsgemäßem Required-Exitcode. Begrenzte Prozessgruppen-Probes unterscheiden fehlende, unbrauchbare, zeitüberschrittene und durch Fähigkeiten blockierte Werkzeuge. Swiftly 1.1.2 und Swift 6.3.3 werden für die offizielle Ubuntu-/Architekturmatrix verifiziert installiert, ohne Profile zu verändern oder Admin-Autorität zu erschleichen. Der Flottenabschluss ist atomar und genau einmal; 13 gezielte Linux- sowie 52 entdeckte Vertragstests sind grün. Vorschauen meldeten reale Host-/Flottendrift und verhinderten deshalb einen erzwungenen Paketlauf. Das exakte Implementierungsdelta vor Statistikpflege umfasst 4 054 Nettozeilen. |
 
 ---
@@ -799,27 +800,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 406413 lines |
-| Textdateien / Text files | 2485 |
+| Textbasis / Text base | 405925 lines |
+| Textdateien / Text files | 2515 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
-| Relevante Commits / Relevant commits | 596 |
-| Zeilen je Aktivtag / Lines per active day | 5347.5 |
+| Relevante Commits / Relevant commits | 593 |
+| Zeilen je Aktivtag / Lines per active day | 5341.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
 | Speedup vs. 80 lines/day | 66.8x |
-| Speedup vs. 100 lines/day | 53.5x |
-| Methodik / Methodology | v2; source `1c15715d7d48` |
+| Speedup vs. 100 lines/day | 53.4x |
+| Methodik / Methodology | v2; source `2bd6dfb3c0a7` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.7% | 14855
-Dokumentation / Documentation   [##############......]  70.0% | 284660
-Skripte / Scripts               [###.................]  12.6% | 51236
-Konfiguration / Configuration   [###.................]  13.4% | 54271
+Tests                           [#...................]   3.4% | 13624
+Dokumentation / Documentation   [##############......]  70.2% | 284939
+Skripte / Scripts               [##..................]  12.3% | 49852
+Konfiguration / Configuration   [###.................]  13.8% | 56119
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -983,7 +984,7 @@ Slots 32..43
 | 40 | Dokumentationsarchitektur-Intake-Kette / Documentation architecture intake chain | 2672 |
 | 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4209 |
 | 42 | KDM-/KITSM-Lernreihen-Intake-Kette / KDM/KITSM learning-series intake chain | 3795 |
-| 43 | Linux-Ein-Kommando-Wartungshärtung / Linux one-command maintenance hardening | 4054 |
+| 43 | ITSE-Lernreihen- und Gesamtkonsistenz-Intakes / ITSE learning-series and consistency intakes | 3607 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -994,7 +995,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [#############.......] 66.8x
-100 lines/day      [###########.........] 53.5x
+100 lines/day      [###########.........] 53.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1007,7 +1008,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5347.5
+Visible repository [###########.........] 5341.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1033,6 +1034,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 338804 |
+| 2026-07 | 338086 |
 
 <!-- project-statistics-v2:end -->

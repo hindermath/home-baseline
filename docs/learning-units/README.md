@@ -15,9 +15,9 @@
 
 **Zweck / Purpose**
 
-**DE:** Dieses Verzeichnis enthält ausführliche Lernmaterialien für sichere Entwicklung mit GitHub Spec Kit, Memory-Safe Languages (MSL), Sandbox-Nutzung und auditfähiger Dokumentation. Die verbindliche [Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md) gilt für Fachinformatiker*innen, Kaufleute für IT-System-Management und Kaufleute für Digitalisierungsmanagement ab dem 1. Lehrjahr. Sie verlangt Deutsch zuerst, Englisch danach, CEFR B2, Erklärungen beim ersten Auftreten, textorientierte Informationswege, Verständlichkeit ohne vorherige Spec-Kit-Erfahrung und WCAG 2.2 AA.
+**DE:** Dieses Verzeichnis enthält ausführliche Lernmaterialien für sichere Entwicklung mit GitHub Spec Kit, Memory-Safe Languages (MSL), Sandbox-Nutzung und auditfähiger Dokumentation. Die verbindliche [Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md) gilt für Fachinformatiker*innen, IT-System-Elektroniker*innen, Kaufleute für IT-System-Management und Kaufleute für Digitalisierungsmanagement ab dem 1. Lehrjahr. Sie verlangt Deutsch zuerst, Englisch danach, CEFR B2, Erklärungen beim ersten Auftreten, textorientierte Informationswege, Verständlichkeit ohne vorherige Spec-Kit-Erfahrung und WCAG 2.2 AA.
 
-**EN:** This directory contains detailed learning material for secure development with GitHub Spec Kit, memory-safe languages (MSL), sandbox use, and audit-ready documentation. The binding [Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md) applies to IT specialist apprentices, IT system management trainees, and digitalisation management trainees from training year 1. It requires German first, English second, CEFR B2, first-use explanations, text-first information paths, understanding without prior Spec Kit experience, and WCAG 2.2 AA.
+**EN:** This directory contains detailed learning material for secure development with GitHub Spec Kit, memory-safe languages (MSL), sandbox use, and audit-ready documentation. The binding [Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md) applies to IT specialist apprentices, IT systems electronics technician apprentices, IT system management trainees, and digitalisation management trainees from training year 1. It requires German first, English second, CEFR B2, first-use explanations, text-first information paths, understanding without prior Spec Kit experience, and WCAG 2.2 AA.
 
 ## Start fuer Lernende / Start for Learners
 
@@ -105,6 +105,23 @@ Jeder Track enthält einen Unterrichtsleitfaden, ein Master-Lastenheft, zehn ein
 **DE:** Das [IT-Berufe-Mapping für Secure CaseTracker](IT-Berufe-Secure-CaseTracker-Mapping.md) ordnet die vorhandenen Reihen den Fachinformatiker-Fachrichtungen AE, SI, DPA und DV sowie den weiteren IT-Berufen IT-System-Elektroniker/-in, Kaufmann/-frau für IT-System-Management und Kaufmann/-frau für Digitalisierungsmanagement zu.
 
 **EN:** The [IT occupation mapping for Secure CaseTracker](IT-Berufe-Secure-CaseTracker-Mapping.md) maps the existing series to the IT specialist specializations AE, SI, DPA, and DV, and to the additional IT occupations IT systems electronics technician, IT systems management clerk, and digitalization management clerk.
+
+**DE:** Für IT-System-Elektroniker*innen ist eine eigene dreijährige
+Intake-Kette auf den Positionen 26 bis 32 vorbereitet. Sie vergleicht mit allen
+vier FI-Fachrichtungen, nutzt Secure ServiceHarvester als vollständigen
+technischen Referenzkontext und begrenzt elektrische Tätigkeiten auf
+Simulation oder beaufsichtigte Praxis. Position 33 ist die anschließende
+read-only Gesamtkonsistenzprüfung über FI, ITSE, KITSM und KDM. Die
+Vorbereitung startet keinen Lauf automatisch; Details und aktueller Status
+stehen im [Lernreihen-Register](Lernreihen-Register.md).
+
+**EN:** A dedicated three-year ITSE intake chain is prepared at positions 26
+through 32. It compares with all four IT-specialist tracks, uses Secure
+ServiceHarvester as the complete technical reference context, and limits
+electrical activities to simulation or supervised practice. Position 33 is
+the subsequent read-only consistency review across FI, ITSE, KITSM, and KDM.
+Preparation starts no run automatically; see the
+[Learning Series Register](Lernreihen-Register.md) for details and status.
 
 ## Präsentationen / Presentations
 

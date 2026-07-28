@@ -3,51 +3,61 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `0005ff81-a7a4-4803-ad33-12a25393ae8b`
-- Supersedes: `47c855a9-b945-4e95-bcaa-9db9a2e5b6f1`
-- Ziele / Targets: 28
+- Review-ID: `e54bbf16-d0f0-4363-b728-8a951aaee148`
+- Supersedes: `0005ff81-a7a4-4803-ad33-12a25393ae8b`
+- Ziele / Targets: 36
 - Roots: 4
-- Abhängigkeiten / Dependencies: 35
+- Abhängigkeiten / Dependencies: 43
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Der aktualisierte Linux-/Ubuntu-Intake ist unter seinem neuen normalisierten
-Hash vollständig gebunden. Feature 015 und der Windows-Intake bleiben
-abgeschlossen und archiviert. Die acht KDM-/KITSM-Intakes sind als Positionen
-18 bis 25 vollständig und seriell hinter Position 17 eingeordnet. C#/.NET ist
-als Referenzsprache gebunden. Jahr-1-Retrofit, gemeinsamer Jahr-2-Kern,
-getrennte Jahr-3-Reihen, sechs Zielrepositories und die abschließende
-read-only Closure besitzen eindeutige Dokument-, Evidence-, Accessibility-
-und Stop-Grenzen. Es bestehen keine Findings, offenen Fragen, akzeptierten
-Risiken oder Operator-Ausnahmen.
+Die acht neuen Ziele sind als Positionen 26 bis 33 vollständig hinter der
+KDM-/KITSM-Closure eingeordnet. Positionen 26 bis 32 bilden den eigenständigen
+ITSE-Strang aus Gap-Audit, Lernarchitektur, drei Lehrjahresstufen,
+kontrolliertem C#-Rollout und read-only Closure. Position 33 prüft danach jede
+FI-, ITSE-, KITSM- und KDM-Reihe in sich, gegen ihre normativen Quellen und
+insgesamt zueinander. Alle acht Intakes besitzen bereits einen unabhängigen
+Einzelreview mit Status `Ready`.
 
-*The updated Linux/Ubuntu intake is fully bound under its new normalized hash.
-Feature 015 and the Windows intake remain completed and archived. The eight
-KDM/KITSM intakes are complete and serially ordered as items 18 through 25
-after item 17. C#/.NET is the binding reference language. The year-1 retrofit,
-shared year-2 core, separate year-3 series, six rollout targets, and read-only
-closure have explicit document, evidence, accessibility, and stop boundaries.*
+Der Review bestätigt den Vergleich mit allen vier FI-Fachrichtungen, die
+ergänzende KDM-/KITSM-Perspektive, C# als begrenzte Referenzsprache,
+ServiceHarvester als vollständigen technischen Referenzkontext sowie die
+eindeutige Trennung von Simulation, beaufsichtigter Praxis und Agentenarbeit.
+Es bestehen keine Findings, offenen Fragen, akzeptierten Risiken oder
+Operator-Ausnahmen.
+
+*The eight new targets are fully ordered as positions 26 through 33 after the
+KDM/KITSM closure. Positions 26 through 32 form the dedicated ITSE track;
+position 33 then checks every FI, ITSE, KITSM, and KDM series internally,
+against its normative sources, and together. All eight intakes already have an
+independent `Ready` review. The review confirms comparison with all four
+IT-specialist tracks, the secondary KDM/KITSM perspective, bounded C# use,
+ServiceHarvester as the complete technical reference context, and explicit
+separation of simulation, supervised practice, and agent work.*
 
 ## Graphnachweis / Graph Evidence
 
-- Alle 28 Pfade, Rollen, Hashes und Positionen stimmen mit dem Schema-1.1-Request überein.
+- Alle 36 Pfade, Rollen, Hashes und Positionen stimmen mit dem Schema-1.1-Request überein.
 - Die vier bestehenden Roots bleiben unverändert und entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 35 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und azyklisch.
+- Alle 43 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und azyklisch.
 - Position 18 ist durch Position 17 blockiert; die Positionen 19 bis 25 bilden danach eine bindende serielle Kette.
+- Position 26 ist durch Position 25 blockiert; die Positionen 27 bis 33 bilden danach eine bindende serielle Kette.
 - Position 2 bleibt der einzige deklarierte `Eligible`-Kandidat.
 
-*All 28 targets, four roots, and 35 dependencies are complete, unique, order-consistent, and acyclic. Item 18 remains blocked by item 17, items 19 through 25 form the binding continuation, and item 2 remains the sole eligible candidate.*
+*All 36 targets, four roots, and 43 dependencies are complete, unique,
+order-consistent, and acyclic. Items 18 through 25 retain their binding chain;
+items 26 through 33 form its binding continuation. Item 2 remains the sole
+eligible candidate.*
 
 ## Nächste Aktion / Next Action
 
 Nach Merge und Synchronisierung ist die Manifest-Eligibility erneut read-only
-zu prüfen. Bleibt der Linux-/Ubuntu-Intake der einzige `Eligible`-Kandidat,
-darf der vom Benutzer ausdrücklich beauftragte autonome Lauf mit dessen
-Delivery Authority gestartet werden. Dieser Review selbst startet keinen
-Featurelauf und erteilt keine Delivery Authority.
+zu prüfen. Der Linux-/Ubuntu-Intake muss der einzige `Eligible`-Kandidat
+bleiben. Die ITSE-Intakes bleiben `Blocked`, bis ihre bindenden Vorgänger
+abgeschlossen sind. Dieser Review startet keinen Featurelauf und erteilt keine
+Delivery Authority.
 
-*After merge and synchronization, recheck manifest eligibility read-only. If
-the Linux/Ubuntu intake remains the sole `Eligible` candidate, the autonomous
-run explicitly requested by the user may start with that user's delivery
-authority. This review itself starts no feature run and grants no delivery
-authority.*
+*After merge and synchronization, recheck manifest eligibility read-only. The
+Linux/Ubuntu intake must remain the sole `Eligible` candidate. The ITSE
+intakes remain `Blocked` until their binding predecessors are complete. This
+review starts no feature run and grants no delivery authority.*

@@ -209,6 +209,17 @@ entdeckten Tests sind nach der Korrektur lokal grün. Der fehlgeschlagene
 Remote-Head wird nicht als Gate-Pass angerechnet; G007 wird vollständig auf
 dem neuen Head wiederholt.
 
+Der korrigierte Head `ff1df0d26258736db47f20c998f58f5a633f699f`
+bestand anschließend 20 von 20 GitHub-Checks auf Ubuntu, macOS und Windows,
+hatte null Review-Threads und bestand 8 von 8 providerneutrale Gates. GitHub
+verweigerte den anschließenden Admin-Merge trotzdem korrekt wegen eines realen
+Konflikts: Während der Prüfung war PR #147 mit den ITSE-Lernreihen-Intakes in
+`main` gemergt worden. Die neue Baseline wird als regulärer Merge integriert;
+beide gleichzeitigen Statistikmeilensteine bleiben erhalten (ITSE Slot 43,
+Linux Slot 44). Das aktualisierte Series-Review bleibt `Ready` und erklärt
+Linux weiterhin zum einzigen `Eligible`-Kandidaten. Sämtliche bisherigen
+Exact-Head-Ergebnisse werden für den entstehenden Ersatz-Head erneut geprüft.
+
 ## Delivery boundary
 
 Nur Level 0 und die deklarierte Home-Runtime werden geliefert. Der Lauf
