@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "016-linux-maintenance-hardening",
+  "gates": [
+    {
+      "gateId": "G001",
+      "applicability": "Applicable",
+      "requiredScope": "Linux maintenance hardening fixtures: stdin isolation, per-item results, required drift, Swift contract, probes, admin boundary, errors and signals",
+      "requiredCommandTokens": ["test_linux_maintenance_hardening"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G002",
+      "applicability": "Applicable",
+      "requiredScope": "Existing maintenance, Home Sync and registry contract regressions",
+      "requiredCommandTokens": ["test_agentic_workspace_maintenance", "test_maintenance_contracts", "test_home_sync_files"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G003",
+      "applicability": "Applicable",
+      "requiredScope": "Bash syntax, JSON validity and shared PowerShell parity",
+      "requiredCommandTokens": ["bash -n", "json.tool", "invoke-psscriptanalyzer"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G004",
+      "applicability": "Applicable",
+      "requiredScope": "macOS Homebrew formula and cask regression coverage",
+      "requiredCommandTokens": ["maintain-agentic-brew-apps", "test_linux_maintenance_hardening"],
+      "requiredRunnerOrPlatformTokens": ["macos"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G005",
+      "applicability": "Applicable",
+      "requiredScope": "Compare-only, check-only and dry-run remain package- and profile-mutation-free, document allowed fetch/log/report writes, and truthfully expose Required drift",
+      "requiredCommandTokens": ["compare-only", "check-only", "dry-run"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G006",
+      "applicability": "Applicable",
+      "requiredScope": "Secret, documentation-impact, generated inventory, statistics and homogeneity checks",
+      "requiredCommandTokens": ["scan-agent-secrets", "validate-documentation-impact", "test-script-reference", "test-render-project-statistics", "check-homogeneity"],
+      "requiredRunnerOrPlatformTokens": ["local"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G007",
+      "applicability": "Applicable",
+      "requiredScope": "Exact-head provider checks on every required repository runner",
+      "requiredCommandTokens": ["GitHub Actions", "exact head"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G008",
+      "applicability": "N/A",
+      "requiredScope": "Web, API, product AI, cloud runtime or new release-artifact tests",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "The feature changes local maintenance scripts and no web/API, runtime AI, cloud service, product dependency, package, or release artifact.",
+      "reevaluationTrigger": "Any such scope change."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "142ec996-e896-4dd7-8983-6fede46a339f",
+  "featurePath": "specs/016-linux-maintenance-hardening",
+  "branch": "016-linux-maintenance-hardening",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Analyze",
+  "status": "Active",
+  "checkpointCommit": "N/A",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "sha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/linux-ubuntu-ein-kommando-wartung-haertung.json",
+      "sha256": "b813b3d4253600ccd3a2d69da5d843f0b85bc8a5fb57e5932b9a27d83d514119"
+    },
+    {
+      "path": "specs/linux-ubuntu-ein-kommando-wartung-haertung-intake-review/intake-review-result.json",
+      "sha256": "4222ab711e235c32dec255a0daa18a12dcb09b4e4829572a37912551a2b3f176"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "b306e21202cd3b3377fc2ec70841a7462a5bfcc6d9b4813dfc5b8898ae2df8b0"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "6d5ccb3692c2808bca2d7b8efb3426997240b290f69b484e8f72c7567678dbef"
+    }
+  ],
+  "tasks": {
+    "path": "specs/016-linux-maintenance-hardening/tasks.md",
+    "sha256": "0d1d08a354b0ced7a17c09e15b0e1a227e2316ecaed1568edb5e9aaa461dc92e",
+    "completed": 0,
+    "total": 59
+  },
+  "lastPassingGate": "Analyze rerun: 28/28 requirements and 15/15 success criteria have task coverage, 59/59 tasks are mapped, no placeholders or constitution conflicts remain, and all four precision findings are remediated.",
+  "nextExactAction": "Validate checklist completion, commit the pre-implementation checkpoint, then execute tasks test-first.",
+  "lastOperation": {
+    "kind": "Analyze",
+    "state": "Completed",
+    "summary": "The read-only cross-artifact analysis converged after pinning Swiftly 1.1.2 and Swift 6.3.3, limiting support to the official Ubuntu 22.04/24.04 matrix, adding helper catalog coverage and clarifying allowed operational writes."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "N/A",
+    "defaultBranchSync": "N/A",
+    "postMergeActions": "N/A",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-07-28T19:38:00Z"
+}
