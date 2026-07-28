@@ -48,17 +48,6 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/intake-review-governance/tests/test-intake-governance-config.ps1` | `.specify` |
 | `.specify/presets/intake-review-governance/tests/test-intake-review-validator.ps1` | `.specify` |
 | `.specify/presets/intake-review-governance/tests/test-secure-casetracker-field.ps1` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-governance-config.ps1` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-governance-config.py` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-governance-config.sh` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-series-manifest.ps1` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-series-manifest.sh` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-series-receipt.ps1` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-series-receipt.sh` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/scripts/validate-intake-series.py` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/tests/test-home-baseline-field.ps1` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/tests/test-intake-governance-config.ps1` | `.specify` |
-| `.specify/presets/intake-sequencing-governance/tests/test-intake-sequencing-validator.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `.specify` |
