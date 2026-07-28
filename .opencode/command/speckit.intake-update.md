@@ -47,7 +47,7 @@ Update is the only normal command that changes an active intake.
     and links atomically. A partial failure must roll back completely or end as
     `NeedsRepair`; never report a mixed state as success.
 12. Supersede any old Intake Review result explicitly. Never report an old
-    review as current after target or series drift.
+   review as current after target or series drift.
 13. Run both installed validators before completion.
 
 Finish with updated identities, old/new hashes, lineage, archive paths,

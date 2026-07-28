@@ -13,6 +13,7 @@ handoffs:
 scripts:
   sh: .specify/scripts/bash/setup-tasks.sh --json
   ps: .specify/scripts/powershell/setup-tasks.ps1 -Json
+  py: .specify/scripts/python/setup_tasks.py --json
 ---
 
 

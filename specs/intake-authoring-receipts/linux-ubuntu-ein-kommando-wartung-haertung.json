@@ -1,31 +1,31 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "dad41b0a-909b-4225-9f43-47e3f5c3df95",
+  "receiptId": "9e8e3167-2ff6-4c7e-90c3-c99accfce7b6",
   "intakeId": "0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
-  "createdAt": "2026-07-25T12:58:33Z",
+  "createdAt": "2026-07-28T12:46:01Z",
   "operation": {
-    "operationId": "ce60976a-989b-456c-a3a1-47109a92a0b3",
+    "operationId": "167861c5-8a77-49e0-9452-626da15fe54e",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+    "authorityEvidence": "Explicit current user instruction to re-check and update the Linux hardening intake from the just-completed migration and maintenance actions."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
-    "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7"
+    "normalizedSha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
       "kind": "File",
-      "label": "Archived prior accepted intake",
+      "label": "Archived prior accepted Linux hardening intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/ce60976a-989b-456c-a3a1-47109a92a0b3/target.md",
+      "path": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/167861c5-8a77-49e0-9452-626da15fe54e/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,15 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "be33e0fe5cf8ea59b2a5e6f63f96df12172d8c0592d8eb07fd9e7d929768a9b2",
-      "gitBlob": "d42603a07eeb3e238b0eb1c1ddd88895af0ff710",
+      "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
+      "gitBlob": "3cbf6dba6c07b57aee35bc37456b3e03568e218d",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
       "kind": "Pasted",
-      "label": "Approved active intake series normalization request",
+      "label": "Current user-authorized Linux hardening re-check and update request",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,9 +57,30 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "normalizedSha256": "0639c3aad0d79af96d14478995755a11c963c60640ca7d5871a76a09a75c0f92",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+      "proofBoundary": "ConversationSnapshot: current user instruction"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "Pasted",
+      "label": "Bounded 2026-07-28 Ubuntu migration, maintenance, toolchain, and report evidence summary",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "a68114a3bbd650089378b2f86f0af33bf0625fd39feef3d144c757a11b545f76",
+      "gitBlob": "N/A",
+      "proofBoundary": "SnapshotOnly: local runtime evidence was inspected but is not repository-portable"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -68,23 +89,30 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
-      "answer": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
-      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
+      "question": "Bleiben Zielpfad, Intake-Identitaet, Scope und Serienposition erhalten?",
+      "answer": "Ja. Der bestehende Linux-Haertungsintake wird in place als Version 1.2 fortgefuehrt; intakeId, Root-Position 2 und HardCompletionGate zur TUI bleiben erhalten.",
+      "evidence": "Die aktuelle Nutzeranweisung autorisiert eine erneute Pruefung und Aktualisierung, aber keine Umbenennung, Teilung, Zusammenfuehrung oder Scope-Loeschung."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
-      "answer": "Root position 2; historical Feature 009 baseline; hard gate input for position 4.",
-      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
+      "question": "Welche bisherigen Anforderungen gelten nach dem realen Wartungslauf als erledigt?",
+      "answer": "Keine der bisherigen LUM-001 bis LUM-008 oder AC-001 bis AC-012 ist durch den Maschinenlauf reproduzierbar abgenommen. Nur Migration, tmp-Entfernung und die bereits vorhandene Admin-Prompt-Schutzgrenze sind als beobachtete Fortschritte dokumentiert.",
+      "evidence": "Quellpruefung und Compare-Evidence zeigen weiterhin stdin-Risiko, nicht fatalen Required-Vergleich, fehlenden automatisierten Swift-Pfad und fehlende fokussierte Regressionsevidence."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
-      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
-      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
+      "question": "Welche neuen Linux-Haertungsbefunde werden aufgenommen?",
+      "answer": "Admin-Deferral darf nicht als Sollzustand gelten; aufloesbare, aber unbrauchbare oder Capability-gesperrte CLI-Launcher brauchen begrenzte Status; spaete Fehler und Signale muessen den strukturierten Bericht atomar finalisieren.",
+      "evidence": "Der reale Lauf meldete DEFERRED_ADMIN_REQUIRED, einen snap-confine-Capability-Fehler fuer pwsh und einen nach spaeterem Fehler auf SUCCESS/0 stehengebliebenen Teilbericht."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche heutigen Befunde bleiben ausserhalb dieses Linux-Intakes?",
+      "answer": "Exakte Preset-Profilmatrix, unerwartete Zusatzprofile und deren Netzwerk-Retry bleiben im separaten Position-3-Intake; die abgeschlossene Source-Migration erzeugt keine weitere Haertungsanforderung.",
+      "evidence": "Die aktive Serie trennt Linux-Haertung auf Position 2 von Preset-/Profil-/Default-Branch-/Worktree-Haertung auf Position 3."
     }
   ],
   "openDecisionIds": [],
@@ -100,10 +128,10 @@
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/ce60976a-989b-456c-a3a1-47109a92a0b3/receipt.json",
-    "targetNormalizedSha256": "be33e0fe5cf8ea59b2a5e6f63f96df12172d8c0592d8eb07fd9e7d929768a9b2",
-    "archiveTargetPath": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/ce60976a-989b-456c-a3a1-47109a92a0b3/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/ce60976a-989b-456c-a3a1-47109a92a0b3/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/167861c5-8a77-49e0-9452-626da15fe54e/receipt.json",
+    "targetNormalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
+    "archiveTargetPath": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/167861c5-8a77-49e0-9452-626da15fe54e/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/0a2a277b-b0b0-4b2d-853c-1cf637d3a7c9/167861c5-8a77-49e0-9452-626da15fe54e/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -111,12 +139,12 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "updateAuthorityEvidence": "Current user instruction: re-check and update the Linux hardening intake from completed migration and maintenance actions.",
   "series": {
-    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
-    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
     "order": 2,
-    "role": "Root",
+    "role": "Root and OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md"
