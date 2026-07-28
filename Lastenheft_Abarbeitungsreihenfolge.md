@@ -125,6 +125,14 @@ closeout does not start it.*
 | 15 | `Lastenheft_Preset-Secure-Development-Assurance-Governance.md` | Produktisiert ausschließlich bestätigte Audit-Findings als optionales Assurance-Preset auf Priorität 15. / Productizes only confirmed audit findings as an optional assurance preset at priority 15. |
 | 16 | `Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md` | Synchronisiert die projektgeführte Dokumentfamilie evidenzbasiert auf Baseline 3.3.0 und ergänzt das Zwölferprofil. / Synchronizes the project-owned document family to baseline 3.3.0 based on evidence and adds the twelve-preset profile. |
 | 17 | `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` | Adoptiert Baseline und Assurance-Preset kontrolliert in `absdd-image-sandbox` und liefert den ersten Feldnachweis. / Adopts the baseline and assurance preset into `absdd-image-sandbox` under controlled conditions and produces the first field validation. |
+| 18 | `Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md` | Prüft die bisherige Integration der beiden kaufmännischen IT-Berufe read-only gegen Rahmenlehrplan, Ausbildungsordnungen, BIBB-Quellen, Lernmaterialien und C#-/SQL-Nachweise. / Audits the current integration of both commercial IT occupations against official sources, learning materials, and C#/SQL evidence without remediation. |
+| 19 | `Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md` | Definiert Jahr-1-Retrofit, gemeinsamen Jahr-2-Kern, getrennte Jahr-3-Reihen, C# als Referenzsprache und den vollständigen Dokument- und Evidence-Vertrag. / Defines the year-1 retrofit, shared year-2 core, separate year-3 series, C# reference language, and complete document/evidence contract. |
+| 20 | `Lastenheft_KDM-KITSM-Jahr1-Retrofit.md` | Ergänzt vollständige KDM-/KITSM-Pfade in den vorhandenen Secure-Trader-Grundreihen für LF1 bis LF5, ohne FI-Inhalte oder Produktcode zu ersetzen. / Adds complete KDM/KITSM paths to the existing LF1-LF5 Secure Trader base series without replacing FI content or product code. |
+| 21 | `Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md` | Erstellt den gemeinsamen achtteiligen Jahr-2-Kern für Service, C#-/SQL-Projekt, Tests, Beschaffung, Netzwerk, Einführung und Abnahme. / Creates the shared eight-unit year-2 core for service, a C#/SQL project, tests, procurement, networking, introduction, and acceptance. |
+| 22 | `Lastenheft_KITSM-Professional-Jahr3.md` | Erstellt die achtteilige KITSM-Reihe für Kundenauftrag, IT-Lösung, Kosten, Beschaffung, Vertrag, Marketing, Netzwerk und Service. / Creates the eight-unit KITSM series for customer orders, IT solutions, costing, procurement, contracts, marketing, networking, and service. |
+| 23 | `Lastenheft_KDM-Professional-Jahr3.md` | Erstellt die achtteilige KDM-Reihe für Prozesse, Daten, C#-/SQL-Integration, Kennzahlen, Wirtschaftlichkeit, Geschäftsmodelle und Veränderung. / Creates the eight-unit KDM series for processes, data, C#/SQL integration, metrics, economics, business models, and change. |
+| 24 | `Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md` | Verteilt die gemergten Lernmaterialien kontrolliert in drei Level-1- und drei C#-Referenzrepositories; andere MSL-Pfade und Produktcode bleiben unverändert. / Rolls out the merged materials to three Level-1 and three C# reference repositories while leaving other MSL paths and product code unchanged. |
+| 25 | `Lastenheft_KDM-KITSM-Lernreihen-Closure.md` | Revalidiert Lernfelder, 24 Einheiten, Dokumentpakete, C#-/SQL-Proofs und sechs Rolloutziele unabhängig und ohne Remediation. / Independently revalidates learning fields, 24 units, document packages, C#/SQL proof, and six rollout targets without remediation. |
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
 
@@ -177,6 +185,32 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 14 Gap-Audit ----------+-------> 16 Baseline 3.3
 15 Assurance-Preset --\
 16 Baseline 3.3 --------+------> 17 ABSDD-Adoption
+
+17 ABSDD-Adoption
+  |
+  v
+18 KDM/KITSM Gap-Audit
+  |
+  v
+19 Lernarchitektur und Kompetenzmodell
+  |
+  v
+20 Jahr-1-Retrofit
+  |
+  v
+21 Gemeinsamer kaufmaennischer Kern Jahr 2
+  |
+  v
+22 KITSM Professional Jahr 3
+  |
+  v
+23 KDM Professional Jahr 3
+  |
+  v
+24 C#-Lernreihen-Rollout
+  |
+  v
+25 KDM/KITSM Closure
 
 ```
 
@@ -235,6 +269,22 @@ items 9 through 12. Items 14 through 17 form a separate assurance track. The
 gap audit requires items 5 and 13; productization requires item 14; baseline
 synchronization requires items 14 and 15; and ABSDD adoption requires items 15
 and 16. No item starts its successor automatically.*
+
+Die Positionen 18 bis 25 bilden danach einen seriellen KDM-/KITSM-
+Lernreihenstrang. Position 18 beginnt erst nach der ABSDD-Adoption, damit
+Audit, Lernarchitektur und Lernmaterialien die dann gültige
+Secure-Development-Baseline verwenden. Positionen 18 und 25 sind read-only
+Audits. Positionen 19 bis 23 ändern ausschließlich kanonisches
+Level-0-Lernmaterial. Erst Position 24 verteilt die gemergten Inhalte in drei
+Level-1- und drei C#-Level-2-Referenzrepositories. C# ist vorerst die
+verbindliche Referenzsprache; Go, Java, Python, Rust und Swift bleiben
+unverändert. Kein Lauf startet seinen Nachfolger automatisch.
+
+*Items 18 through 25 form a serial KDM/KITSM learning-series track after the
+assurance adoption. Audits remain read-only, learning documents are prepared
+at Level 0 first, and only item 24 rolls merged material out to three Level-1
+and three C# Level-2 reference repositories. Other MSL paths remain unchanged,
+and no run starts its successor automatically.*
 
 Der Vorlauf D1 bis D3 bildet den Dokumentations-Wirklichkeitsabgleich. D1 prüft
 Level 0 und jedes aktuell registrierte Level-1-/Level-2-Repository zunächst

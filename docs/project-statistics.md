@@ -132,6 +132,7 @@
 | 2026-07-26 | Feature 011 Dokumentations-Wirklichkeitsaudit | — | — | — | D1 hat Level 0, acht registrierte Level-1- und 36 Level-2-Ziele am exakten Git-Stand read-only geprüft. Die maschinenlesbare Evidence umfasst 248 Dokumentationsfamilien mit genau einer Entscheidung. 33 repository-native Homogeneity-Läufe bestanden, zwölf Preset-/Koordinationsziele besitzen begründet keinen solchen Wrapper. 15 Level-2-Findings dokumentieren fehlende bilinguale README-/CLAUDE-Abschnitte und werden vollständig an D3 übergeben; ein zunächst sichtbarer Level-0-Drift wurde im sauberen Basis-Worktree als feature-eigener Generierungseffekt widerlegt. Kein Ziel-Repository wurde verändert. Das Implementierungsdelta vor Statistikpflege umfasst 31 164 Nettozeilen, überwiegend vollständige strukturierte Flotten-Evidence. |
 | 2026-07-26 | Feature 012 Documentation-Impact-Governance | — | — | — | D2 hat den verbindlichen Documentation-Impact-Vertrag in Constitution, Spec-Kit-, PR-, Workflow- und Agentenflaechen verankert. Deterministische Bash-/PowerShell-Tests pruefen die vier Entscheidungen und unzulaessige Deferred-Zustaende. Alle 15 D1-Findings bleiben D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. PR #128 wurde nach 20 gruenen Checks, null Review-Threads und bestandenem Exact-Head-Nachweis gemergt. Das Implementierungsdelta vor Statistikpflege umfasst 1 407 Nettozeilen. |
 | 2026-07-28 | Feature 015 Windows-Ein-Kommando-Wartungshärtung | — | — | — | Die Windows-Orchestrierung verwendet jetzt genau einen Modus, begrenzte Python-3-Probes, transiente Git-Retries, WinGet-Zeitgrenzen mit Prozessbaum-Bereinigung, atomare hashgebundene Resume-Evidence und einen Run-ID-korrelierten Abschlussstatus. Registry und Flottenprüfung binden das Elf-Preset-Profil; Git-normalisierte Driftzählung trennt Rohabweichungen von aktionsfähigen Änderungen. Zehn gezielte Windows-Vertragstests einschließlich `rawDifferences=93` und `actionableDrift=3`, bestehende Wartungs- und Home-Sync-Suiten, 146 Statistik-Assertions, Parser und PSScriptAnalyzer 1.25.0 sind lokal grün. Admin-Autorität umgeht weder UAC noch Sicherheits-, Test- oder Review-Gates. Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209 Nettozeilen. |
+| 2026-07-28 | KDM-/KITSM-Lernreihen-Intake-Kette vorbereitet | — | — | — | Acht getrennte, noch nicht gestartete Intakes bereiten Gap-Audit, Lernarchitektur, Jahr-1-Retrofit, gemeinsamen kaufmännischen Jahr-2-Kern, getrennte KITSM-/KDM-Vertiefungen im dritten Lehrjahr, kontrollierten C#-Rollout und read-only Abschlussprüfung vor. C# bleibt Referenzsprache; SQL, sichere Entwicklung, Lernenden-Evidence und agentische Evidence besitzen ausdrückliche Grenzen. Acht Schema-2.0-Receipts und acht Einzelreviews sind gültig und `Ready`. Der erneuerte aktive Schema-1.1-Series-Review belegt 28 Ziele, vier Roots, 35 eindeutige azyklische Abhängigkeiten, null Findings und null offene Entscheidungen. Die künftige Auslieferung ist auf drei Level-1- und drei C#-Level-2-Repositories begrenzt; andere MSL-Pfade bleiben unverändert. Kein Lernenden-, Specify- oder autonomer Lauf wurde gestartet. Das Delta vor Statistikpflege umfasst 3 795 Nettozeilen. |
 
 ---
 
@@ -759,27 +760,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 398745 lines |
-| Textdateien / Text files | 2467 |
+| Textbasis / Text base | 402548 lines |
+| Textdateien / Text files | 2513 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
-| Relevante Commits / Relevant commits | 585 |
-| Zeilen je Aktivtag / Lines per active day | 5246.6 |
+| Relevante Commits / Relevant commits | 589 |
+| Zeilen je Aktivtag / Lines per active day | 5296.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
-| Speedup vs. 80 lines/day | 65.6x |
-| Speedup vs. 100 lines/day | 52.5x |
-| Methodik / Methodology | v2; source `882ea0c7d12f` |
+| Speedup vs. 80 lines/day | 66.2x |
+| Speedup vs. 100 lines/day | 53.0x |
+| Methodik / Methodology | v2; source `574d6ee0aeba` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
 Tests                           [#...................]   3.4% | 13624
-Dokumentation / Documentation   [##############......]  71.0% | 283126
-Skripte / Scripts               [###.................]  12.5% | 49852
-Konfiguration / Configuration   [###.................]  12.7% | 50752
+Dokumentation / Documentation   [##############......]  70.7% | 284477
+Skripte / Scripts               [##..................]  12.4% | 49852
+Konfiguration / Configuration   [###.................]  13.2% | 53204
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -887,15 +888,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..41
-   cap 50000 | . . . . . . . . . .
-       41667 | . . . . . . . . . .
-       33333 | . . . . . . . . . .
-       25000 | . # . . . . . . . .
-       16667 | . # . . . . . . . .
-        8333 | . # . . . . # . . .
-           0 +---------------------
-             32 33 34 35 36 37 38 39 40 41
+Slots 32..42
+   cap 50000 | . . . . . . . . . . .
+       41667 | . . . . . . . . . . .
+       33333 | . . . . . . . . . . .
+       25000 | . # . . . . . . . . .
+       16667 | . # . . . . . . . . .
+        8333 | . # . . . . # . . . .
+           0 +-----------------------
+             32 33 34 35 36 37 38 39 40 41 42
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -942,6 +943,7 @@ Slots 32..41
 | 39 | Intake-Sequencing-v0.2.2-Profilabgleich / Intake Sequencing v0.2.2 profile alignment | 3348 |
 | 40 | Dokumentationsarchitektur-Intake-Kette / Documentation architecture intake chain | 2672 |
 | 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4209 |
+| 42 | KDM-/KITSM-Lernreihen-Intake-Kette / KDM/KITSM learning-series intake chain | 3795 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -951,8 +953,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 65.6x
-100 lines/day      [##########..........] 52.5x
+80 lines/day       [#############.......] 66.2x
+100 lines/day      [###########.........] 53.0x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -965,7 +967,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##########..........] 5246.6
+Visible repository [###########.........] 5296.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -991,6 +993,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 324044 |
+| 2026-07 | 328933 |
 
 <!-- project-statistics-v2:end -->

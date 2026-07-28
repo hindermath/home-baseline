@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "2b590c7b-01bd-4ea5-9d9f-642a6cdef45c",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-28T17:08:18Z",
+  "operation": {
+    "operationId": "ac2354e0-e00a-4637-84b1-4f055a18b5c5",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to complete the autonomous Windows hardening run with DeliveryMode MergeAndSync and perform the post-run repository closeout."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "2f567b229e5351d6083508e0215734b2bbae1877f7cb0bb59cc460a3c154397a"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ac2354e0-e00a-4637-84b1-4f055a18b5c5/receipt.json",
+    "receiptNormalizedSha256": "dd9820f809948e1516a1a09b19ebf50c2652aa11aa02917fcb2848ba7223ed99",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ac2354e0-e00a-4637-84b1-4f055a18b5c5/manifest.json",
+    "manifestArchiveSha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

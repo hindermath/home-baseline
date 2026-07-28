@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "47c855a9-b945-4e95-bcaa-9db9a2e5b6f1",
+  "reviewId": "df2c77df-60bd-4569-8fde-e9c0098e89d1",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T17:58:16Z",
+  "reviewedAt": "2026-07-28T17:12:31Z",
   "repository": {
     "root": ".",
-    "head": "51769be1d7ea191a4d19b163668df19d2a4c2232"
+    "head": "8da788d7a904a2f1c8e714226557043faad6e272"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "0409b82599fbb65898f955b47c215d7fa6ce74875ec9af344e7c6e2cb03f6eaf"
+    "normalizedSha256": "d4e14a64da516e8644668025865baa218550a40c712771694f8f30a1d2695d63"
   },
   "summary": {
     "critical": 0,
@@ -19,7 +19,7 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "df2c77df-60bd-4569-8fde-e9c0098e89d1",
+  "supersedes": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
   "targets": [
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
@@ -140,54 +140,6 @@
       "role": "OrderedMember",
       "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
       "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "17fdf30279d42f7335088a625d581d24b5773ae8df9091685120f01b7c01d858",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "4445e570bfa91e60aeea84a69230bf5d485590ac5082011641979e1925a44d8a",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "ed74b408fd7b454323b3b65412dd97a585693e845f9b84a9e0ed7fb5869d896b",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "5a38b85feb0dca3aa512ece2f6e372210ad8db3a7e195f87351f0bc1a894347f",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KITSM-Professional-Jahr3.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "5029bcf406b343dc24b919f240fd7b5c4e5f583ff17dd29bb53c16869770151e",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-Professional-Jahr3.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "a6467f26a72dacd3cdd53c0a17e51ba39c1a66922b6bad29925c9a14bd80d742",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "13cd99d4940482fd4992ea70896d74b50ea0c100c46ee4cb09675201be55d59c",
-      "gitBlob": "N/A"
     }
   ],
   "findings": [],
@@ -212,23 +164,16 @@
       "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
       "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
       "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-      "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-      "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-      "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-      "Lastenheft_KITSM-Professional-Jahr3.md",
-      "Lastenheft_KDM-Professional-Jahr3.md",
-      "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md"
+      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 28 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 20 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The four declared roots equal the zero-indegree target set",
-      "Thirty-five unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Windows maintenance Feature 015 remains archived with preserved review lineage",
-      "The eight KDM/KITSM intakes form one binding chain after item 17",
-      "Linux and Ubuntu maintenance remains the single declared Eligible candidate",
+      "Twenty-seven unique dependencies are reference-valid, order-consistent, and acyclic",
+      "D4 through D7 form a binding post-item-4 documentation architecture chain",
+      "D6 provides an additional documentation-surface baseline for the existing script-documentation intake",
+      "Windows maintenance Feature 015 completed through PR #142 and its intake is archived with preserved review lineage",
+      "Linux and Ubuntu maintenance is the single declared Eligible candidate",
       "No successor feature, branch, or Spec Kit run was started"
     ],
     "workers": []

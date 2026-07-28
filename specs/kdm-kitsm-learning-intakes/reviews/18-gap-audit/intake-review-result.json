@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "cc96dd30-0923-43b4-8495-39e94e5c365e",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
+  "reviewedAt": "2026-07-28T17:58:16Z",
+  "repository": {
+    "root": ".",
+    "head": "51769be1d7ea191a4d19b163668df19d2a4c2232"
+  },
+  "requestEvidence": {
+    "path": "specs/kdm-kitsm-learning-intakes/reviews/18-gap-audit/intake-review-request.json",
+    "normalizedSha256": "0351099b0fd479adc3af02d75371b092fce9b23560de232b9871b7b422fc497d"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+      "role": "Primary",
+      "normalizedSha256": "17fdf30279d42f7335088a625d581d24b5773ae8df9091685120f01b7c01d858",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}
