@@ -1,6 +1,6 @@
 # Intake Review: Position 34
 
-**Ergebnis / Result:** `Ready`  
+**Ergebnis / Result:** `Ready`
 **Befunde / Findings:** keine / none
 
 Der Intake hält die Erweiterung domänenneutral, bewahrt Schema 1.1 und bindet

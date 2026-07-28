@@ -1,6 +1,6 @@
 # Intake Review: Position 37
 
-**Ergebnis / Result:** `Ready`  
+**Ergebnis / Result:** `Ready`
 **Befunde / Findings:** keine / none
 
 Der aktualisierte Abschluss behält seine read-only Grenze und ergänzt

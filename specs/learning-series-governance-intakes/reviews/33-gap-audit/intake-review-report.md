@@ -1,6 +1,6 @@
 # Intake Review: Position 33
 
-**Ergebnis / Result:** `Ready`  
+**Ergebnis / Result:** `Ready`
 **Befunde / Findings:** keine / none
 
 Der Intake trennt die drei Konsistenzebenen, acht KI-Kompetenzen, vier

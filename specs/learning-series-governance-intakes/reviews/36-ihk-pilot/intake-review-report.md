@@ -1,6 +1,6 @@
 # Intake Review: Position 36
 
-**Ergebnis / Result:** `Ready`  
+**Ergebnis / Result:** `Ready`
 **Befunde / Findings:** keine / none
 
 Der Pilot umfasst sieben reale Berufsprofile und zwei klar begrenzte

@@ -1,6 +1,6 @@
 # Intake Review: Position 35
 
-**Ergebnis / Result:** `Ready`  
+**Ergebnis / Result:** `Ready`
 **Befunde / Findings:** keine / none
 
 Preset-ID, Version, Priorität, zwei Commands, Zwölferprofil und
