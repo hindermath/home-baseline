@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeries",
+  "seriesId": "ea2b9cb3-40c4-499e-9575-e73939ff2d2c",
+  "version": 1,
+  "status": "ReadyForReview",
+  "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+  "proposalNormalizedSha256": "929e8bbf84e6a7b6127aee206efe9b55ce5688c4bce6a37de569ad53cfa3fdd2",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-07-28T21:37:12Z",
+    "evidence": "Current conversation: Implement the proposed plan."
+  },
+  "orderedIntakeIds": [
+    "ee9dfa2b-6756-4c77-9c56-22a691f1dc1d",
+    "cd078fe8-d5c9-4cc5-bae5-ca9eb5363c50",
+    "277e7304-224c-4ddb-a2c5-702d97556da5",
+    "b3fd37f6-faca-4de0-97fe-6e83e9ac29b6",
+    "f0687ac0-41ae-4f03-8215-3e28cf4c6206"
+  ],
+  "roots": [
+    "ee9dfa2b-6756-4c77-9c56-22a691f1dc1d"
+  ],
+  "members": [
+    {
+      "intakeId": "ee9dfa2b-6756-4c77-9c56-22a691f1dc1d",
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "receiptPath": "specs/intake-authoring-receipts/lernreihen-konsistenz-und-ki-kompetenz-gap-audit.json",
+      "title": "Lernreihen-Konsistenz- und KI-Kompetenz-Gap-Audit",
+      "role": "GapAudit",
+      "order": 1,
+      "normalizedSha256": "ac0ee49fd4eac1b30ff51e1b96ed6fb1c666d593ea64088b034417f0918f7b7d",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "cd078fe8-d5c9-4cc5-bae5-ca9eb5363c50",
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "receiptPath": "specs/intake-authoring-receipts/preset-intake-review-drei-ebenen-konsistenz.json",
+      "title": "Preset Intake Review - Drei-Ebenen-Konsistenz",
+      "role": "ReviewFoundation",
+      "order": 2,
+      "normalizedSha256": "3e88c8f941d367e6a7d09b953836d18d088a15e70d95dc993017d2bc677fd959",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "277e7304-224c-4ddb-a2c5-702d97556da5",
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "receiptPath": "specs/intake-authoring-receipts/preset-learning-series-governance.json",
+      "title": "Preset Learning Series Governance",
+      "role": "PresetProductization",
+      "order": 3,
+      "normalizedSha256": "14f22ac8e26874ba166a701548e9c58fd84ce038b021a3b0ebdef4ca4c0f587d",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "b3fd37f6-faca-4de0-97fe-6e83e9ac29b6",
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "receiptPath": "specs/intake-authoring-receipts/learning-series-governance-ihk-pilot.json",
+      "title": "Learning Series Governance - IHK-Pilot",
+      "role": "FieldPilot",
+      "order": 4,
+      "normalizedSha256": "fa1d9093fd484d175039e578f145f97f3e30945ba39fe8642559ceb53c2b50be",
+      "supersedesIntakeIds": []
+    },
+    {
+      "intakeId": "f0687ac0-41ae-4f03-8215-3e28cf4c6206",
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "receiptPath": "specs/intake-authoring-receipts/lernreihen-gesamtkonsistenz-closure.json",
+      "title": "Lernreihen-Gesamtkonsistenz-Closure",
+      "role": "GlobalClosure",
+      "order": 5,
+      "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
+      "supersedesIntakeIds": [
+        "f0687ac0-41ae-4f03-8215-3e28cf4c6206"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "ee9dfa2b-6756-4c77-9c56-22a691f1dc1d",
+      "to": "cd078fe8-d5c9-4cc5-bae5-ca9eb5363c50",
+      "kind": "AssessmentBaseline"
+    },
+    {
+      "from": "cd078fe8-d5c9-4cc5-bae5-ca9eb5363c50",
+      "to": "277e7304-224c-4ddb-a2c5-702d97556da5",
+      "kind": "RequirementsGovernanceGate"
+    },
+    {
+      "from": "277e7304-224c-4ddb-a2c5-702d97556da5",
+      "to": "b3fd37f6-faca-4de0-97fe-6e83e9ac29b6",
+      "kind": "FieldValidationGate"
+    },
+    {
+      "from": "b3fd37f6-faca-4de0-97fe-6e83e9ac29b6",
+      "to": "f0687ac0-41ae-4f03-8215-3e28cf4c6206",
+      "kind": "GlobalConsistencyInput"
+    }
+  ],
+  "coverage": [
+    {
+      "sourceId": "SRC001",
+      "topic": "Universal learning-series consistency and AI competence governance",
+      "intakeIds": [
+        "ee9dfa2b-6756-4c77-9c56-22a691f1dc1d",
+        "cd078fe8-d5c9-4cc5-bae5-ca9eb5363c50",
+        "277e7304-224c-4ddb-a2c5-702d97556da5",
+        "b3fd37f6-faca-4de0-97fe-6e83e9ac29b6",
+        "f0687ac0-41ae-4f03-8215-3e28cf4c6206"
+      ],
+      "disposition": "Covered"
+    }
+  ],
+  "overlapDecisions": [
+    {
+      "topic": "Generic versus learning-specific consistency",
+      "decision": "Intake Review owns the domain-neutral three-axis contract; Learning Series Governance owns occupations, learning phases, AI competence and curriculum-source semantics."
+    },
+    {
+      "topic": "Official and supplemental AI competence",
+      "decision": "Every claim uses an explicit source status; local future skills never masquerade as official examination requirements."
+    },
+    {
+      "topic": "Global closure",
+      "decision": "The existing closure is updated in place and moves to position 37 after the field pilot; its previous content and receipt remain archived."
+    }
+  ],
+  "reviewRequestPath": "specs/learning-series-governance-intakes/series/intake-review-request.json",
+  "nextAction": "$speckit-intake-review the approved learning-series-governance intake series"
+}

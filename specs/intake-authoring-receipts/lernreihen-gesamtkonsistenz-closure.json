@@ -1,28 +1,118 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "597aa05a-502b-4df7-a7f8-529176e66032",
+  "receiptId": "177c5517-1419-475c-b4e6-6264f1caed16",
   "intakeId": "f0687ac0-41ae-4f03-8215-3e28cf4c6206",
-  "generator": {"preset": "intake-authoring-governance", "version": "0.3.0"},
-  "createdAt": "2026-07-28T19:57:41Z",
-  "operation": {"operationId": "8900dfda-6c6b-42c0-9560-3d5038c87f02", "type": "Create", "authorityEvidence": "Approved eight-intake ITSE proposal and MergeAndSync instruction."},
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T21:37:12Z",
+  "operation": {
+    "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+    "type": "Update",
+    "authorityEvidence": "Approved learning-series-governance proposal explicitly moves the existing global closure from position 33 to position 37 and extends its accepted scope."
+  },
   "status": "ReadyForReview",
-  "target": {"path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md", "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0"},
-  "sources": [{"sourceId": "SRC001", "order": 1, "kind": "Pasted", "label": "Approved ITSE and cross-series consistency plan", "location": "SnapshotOnly", "path": "N/A", "requestedUrl": "N/A", "finalUrl": "N/A", "retrievedAt": "N/A", "httpStatus": "N/A", "contentType": "N/A", "contentLength": "N/A", "etag": "N/A", "lastModified": "N/A", "redirectChain": [], "rawSha256": "N/A", "normalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69", "gitBlob": "N/A", "proofBoundary": "ConversationSnapshot plus approved global consistency model"}],
+  "target": {
+    "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+    "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Previous active global closure",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/a8c94baa-a357-4bb2-9826-4ee9ddbea0b4/f0687ac0-41ae-4f03-8215-3e28cf4c6206/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
+      "gitBlob": "20ce1089b9a5b2a42ef24822d10418e0d51bfb52",
+      "proofBoundary": "Exact previous target archived before the authorized in-place update"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved learning-series consistency and AI competence plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "929e8bbf84e6a7b6127aee206efe9b55ce5688c4bce6a37de569ad53cfa3fdd2",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved conversation proposal plus official BIBB, KMK and EU references named in the preceding audit"
+    }
+  ],
   "profile": "home-baseline-lastenheft",
   "languagePolicy": "GermanFirstEnglishSecond",
-  "decisions": [{"id": "IAD001", "status": "Answered", "question": "Welche Konsistenzebenen gelten?", "answer": "Internal, normative, and cross-series consistency are independently required.", "evidence": "Approved proposal."}, {"id": "IAD002", "status": "Answered", "question": "Welche Berufe werden geprüft?", "answer": "FI/AE, FI/SI, FI/DPA, FI/DV, ITSE, KITSM, and KDM.", "evidence": "Approved proposal."}],
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche neue Position und welcher Vorgänger gelten?",
+      "answer": "The existing global closure moves to position 37 and requires the completed position-36 field pilot.",
+      "evidence": "Approved learning-series-governance proposal."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche zusätzliche Abdeckung gilt?",
+      "answer": "AIK001-AIK008, learning phases, source statuses and the position-36 pilot evidence are added without changing the read-only closure boundary.",
+      "evidence": "Approved learning-series-governance proposal."
+    }
+  ],
   "openDecisionIds": [],
   "questionCount": 0,
-  "agentSurface": {"specifyCanonicalId": "speckit.specify", "specifyInvocation": "$speckit-specify", "autonomousCanonicalId": "speckit.autonomous", "autonomousInvocation": "$speckit-autonomous"},
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
   "deliveryAuthority": "MergeAndSync",
   "authorityEvidence": "Current explicit user approval.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
-  "supersedes": {"receiptPath": "N/A", "targetNormalizedSha256": "N/A", "archiveTargetPath": "N/A", "archiveReceiptPath": "N/A"},
-  "legacyAdoption": {"evidenceType": "N/A", "priorTargetNormalizedSha256": "N/A", "priorGitBlob": "N/A"},
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
-  "series": {"seriesId": "3f1e0f33-2255-4e2d-bf0c-af251351ef28", "manifestPath": "specs/intake-authoring-series/itse-learning-series/series.json", "order": 8, "role": "GlobalClosure", "supersedesIntakeIds": []},
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/a8c94baa-a357-4bb2-9826-4ee9ddbea0b4/f0687ac0-41ae-4f03-8215-3e28cf4c6206/receipt.json",
+    "targetNormalizedSha256": "f26a4f553968a00dca06c847ac35cded1ad62b44042d32a394c71f8f645ff2e0",
+    "archiveTargetPath": "specs/intake-authoring-archive/a8c94baa-a357-4bb2-9826-4ee9ddbea0b4/f0687ac0-41ae-4f03-8215-3e28cf4c6206/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/a8c94baa-a357-4bb2-9826-4ee9ddbea0b4/f0687ac0-41ae-4f03-8215-3e28cf4c6206/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current explicit approval to implement the proposed intake series and move the existing closure to position 37.",
+  "series": {
+    "seriesId": "ea2b9cb3-40c4-499e-9575-e73939ff2d2c",
+    "manifestPath": "specs/intake-authoring-series/learning-series-governance/series.json",
+    "order": 5,
+    "role": "GlobalClosure",
+    "supersedesIntakeIds": [
+      "f0687ac0-41ae-4f03-8215-3e28cf4c6206"
+    ]
+  },
   "nextAction": "$speckit-intake-review Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
 }

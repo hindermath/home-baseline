@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "b3344fdd-b71a-4015-b496-2e3f9ce28a3c",
+  "intakeId": "ee9dfa2b-6756-4c77-9c56-22a691f1dc1d",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T21:37:12Z",
+  "operation": {
+    "operationId": "a8c94baa-a357-4bb2-9826-4ee9ddbea0b4",
+    "type": "Create",
+    "authorityEvidence": "Approved learning-series-governance proposal and MergeAndSync instruction."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+    "normalizedSha256": "ac0ee49fd4eac1b30ff51e1b96ed6fb1c666d593ea64088b034417f0918f7b7d"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved learning-series consistency and AI competence plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "929e8bbf84e6a7b6127aee206efe9b55ce5688c4bce6a37de569ad53cfa3fdd2",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved conversation proposal plus official BIBB, KMK and EU references named in the intake"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wie werden Konsistenz und KI-Kompetenz geprüft?",
+      "answer": "Internal, normative and ecosystem consistency plus AIK001-AIK008 and four learning phases are independently assessed.",
+      "evidence": "Approved plan."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wie werden amtliche und lokale Lernziele getrennt?",
+      "answer": "Every claim uses OfficiallyRequired, Supported, ProjectSupplement or FutureSkillAssumption.",
+      "evidence": "Approved plan."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current explicit user approval.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "ea2b9cb3-40c4-499e-9575-e73939ff2d2c",
+    "manifestPath": "specs/intake-authoring-series/learning-series-governance/series.json",
+    "order": 1,
+    "role": "GapAudit",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md"
+}

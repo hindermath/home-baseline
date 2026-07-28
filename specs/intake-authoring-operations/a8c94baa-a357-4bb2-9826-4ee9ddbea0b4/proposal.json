@@ -1,0 +1,63 @@
+{
+  "series": "Lernreihen-Governance und KI-Kompetenz",
+  "authority": "MergeAndSync",
+  "source": "Approved discussion and implementation request for a universal IHK learning-series governance preset",
+  "order": [
+    33,
+    34,
+    35,
+    36,
+    37
+  ],
+  "root": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+  "targets": [
+    {
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "role": "GapAudit",
+      "coverage": "Three consistency levels, official source hierarchy, AIK001-AIK008, learning phases and current FI/ITSE/KITSM/KDM series"
+    },
+    {
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "role": "ReviewFoundation",
+      "coverage": "Domain-neutral schema-1.2 consistency assessment for Intake Review v0.3.0"
+    },
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "PresetProductization",
+      "coverage": "Optional learning-series-governance v0.1.0 scaffold and twelve-preset profile"
+    },
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "FieldPilot",
+      "coverage": "Seven existing IT occupation profiles, two bounded non-IT portability fixtures, release and submission gates"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "GlobalClosure",
+      "coverage": "Updated position-37 read-only closure after the IHK pilot"
+    }
+  ],
+  "edges": [
+    [
+      32,
+      33
+    ],
+    [
+      33,
+      34
+    ],
+    [
+      34,
+      35
+    ],
+    [
+      35,
+      36
+    ],
+    [
+      36,
+      37
+    ]
+  ],
+  "nextAction": "Intake Review only; no Specify or autonomous feature starts"
+}
