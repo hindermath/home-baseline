@@ -49,7 +49,7 @@
 - [X] T027 Update bilingual PowerShell help and maintenance manpage
 - [X] T028 Record A11Y, secure coding, architecture and standards evidence
 - [X] T029 Review all maintained agent guidance surfaces and record disposition
-- [ ] T030 Archive the completed intake through the Windows rename workflow
+- [X] T030 Archive the completed intake through the Windows rename workflow
 - [X] T031 Update and render `docs/project-statistics.md`
 
 ## Phase 7: Validation and delivery
@@ -60,13 +60,13 @@
 - [X] T035 Run diff, secret, homogeneity and agent-parity gates
 - [X] T036 Reconcile tasks, hashes and final autonomous state
 - [X] T037 Stage only intended paths and validate the exact candidate
-- [ ] T038 Commit, push and open the Feature 015 PR
-- [ ] T039 Converge exact-head checks and actionable review threads
-- [ ] T040 Validate provider-neutral exact-head gate evidence
-- [ ] T041 Merge under authorized MergeAndSync authority only after all gates
-- [ ] T042 Delete feature branch, sync clean local `main` and prove exact equality
-- [ ] T043 Complete retrospective and genuinely required causal closeout
-- [ ] T044 Inventory Git state, fetch, perform safe pulls, then intentional commits and pushes
+- [X] T038 Commit, push and open the Feature 015 PR
+- [X] T039 Converge exact-head checks and actionable review threads
+- [X] T040 Validate provider-neutral exact-head gate evidence
+- [X] T041 Merge under authorized MergeAndSync authority only after all gates
+- [X] T042 Delete feature branch, sync clean local `main` and prove exact equality
+- [X] T043 Complete retrospective and genuinely required causal closeout
+- [X] T044 Inventory Git state, fetch, perform safe pulls, then intentional commits and pushes
 
 ## Requirement Coverage
 

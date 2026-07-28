@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary",
-      "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
+      "normalizedSha256": "5f6effea7eb4f4a3c7a4f321f62695f78e9a6bec16ea5a085d2ecba711d4732f",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -128,12 +134,19 @@
     }
   ],
   "roots": [
+    "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
     "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
     "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
+    {
+      "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
     {
       "from": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -305,7 +318,6 @@
     "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
-    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
-    "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"
+    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md"
   ]
 }

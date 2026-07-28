@@ -5,12 +5,12 @@
   "branch": "015-windows-maintenance-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Review",
-  "status": "Active",
-  "checkpointCommit": "5d8ab53591fdffab1e84a028fb8eee6d257cc6ee",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "82e7ba62a53024d4c949c394adb0cbb34d080a0a",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.015-windows-maintenance-hardening.md",
       "sha256": "5f6effea7eb4f4a3c7a4f321f62695f78e9a6bec16ea5a085d2ecba711d4732f"
     },
     {
@@ -19,25 +19,25 @@
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-result.json",
-      "sha256": "f8ce8c44600f49cd4b9ab3757a132e4e3fad2ded98818854f3d5c1be8c692807"
+      "sha256": "3058d8254fd2b38544d7e4170a6d2ca9fc7e1ad174aa0388c58232dc7d73de1e"
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "b9d9c17ecd0329f0c1c1aeaf55dd130bd3ddea712afbd35ead9f6f6486e6c59c"
+      "sha256": "2f567b229e5351d6083508e0215734b2bbae1877f7cb0bb59cc460a3c154397a"
     }
   ],
   "tasks": {
     "path": "specs/015-windows-maintenance-hardening/tasks.md",
-    "sha256": "4bf0ca961f5a26557deed447c0530a75c74624632507533929e35f52fc370a82",
-    "completed": 36,
+    "sha256": "a8aaa08941fe1362b6cde324f8f745e67ed360475c93fd3adf2d67a7146e0087",
+    "completed": 44,
     "total": 44
   },
-  "lastPassingGate": "Complete CheckOnly and WhatIf field runs proved deterministic non-mutation, and every exact-head local regression, parser, static-analysis, security, homogeneity, documentation and statistics gate passed.",
-  "nextExactAction": "Reconcile the exact candidate, commit and push the field-validation evidence, and create the Feature 015 pull request.",
+  "lastPassingGate": "PR #142 passed all 20 exact-head checks with zero actionable threads; 44 fleet targets are Git-current, the successor Series is Ready, and Linux is the sole declared Eligible intake.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "Validate",
+    "kind": "MergeAndSync",
     "state": "Completed",
-    "summary": "Complete orchestrator CheckOnly and WhatIf field runs and all exact-head candidate gates converged without unintended mutation."
+    "summary": "Feature 015 merged, main synchronized, intake archived, 20-target successor Series reviewed, retrospective completed, and final Git inventory recorded without hidden target mutation."
   },
   "stop": {
     "reason": "N/A",
@@ -45,10 +45,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-07-28T16:59:06Z"
+  "updatedAt": "2026-07-28T17:30:32Z"
 }

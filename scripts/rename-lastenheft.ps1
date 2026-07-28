@@ -20,6 +20,11 @@ $fileName  = Split-Path $File -Leaf
 $stem      = [IO.Path]::GetFileNameWithoutExtension($fileName)
 $newName   = "$stem.$BranchName.md"
 $targetDir = Split-Path $File -Parent
+# A repository-root filename has no textual parent; Join-Path still needs an
+# explicit current-directory base to preserve the documented root-file call.
+if ([string]::IsNullOrWhiteSpace($targetDir)) {
+    $targetDir = '.'
+}
 $newPath   = Join-Path $targetDir $newName
 
 if ($File -eq $newPath) {

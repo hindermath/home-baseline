@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "df2c77df-60bd-4569-8fde-e9c0098e89d1",
+  "reviewId": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T17:12:31Z",
+  "reviewedAt": "2026-07-28T14:58:27Z",
   "repository": {
     "root": ".",
-    "head": "8da788d7a904a2f1c8e714226557043faad6e272"
+    "head": "694429cd0c0a8f683ab1ef93531d36ad5de8625b"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "d4e14a64da516e8644668025865baa218550a40c712771694f8f30a1d2695d63"
+    "normalizedSha256": "1549c172358cd2f52f6d5293aa27799c0f1a26d5c6ca2f8216a600515a07c452"
   },
   "summary": {
     "critical": 0,
@@ -19,11 +19,17 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
+  "supersedes": "1a688fd4-666c-4fed-99bc-d33f042c382a",
   "targets": [
     {
-      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary",
+      "normalizedSha256": "5f6effea7eb4f4a3c7a4f321f62695f78e9a6bec16ea5a085d2ecba711d4732f",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
       "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
       "gitBlob": "N/A"
     },
@@ -145,6 +151,7 @@
   "findings": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -167,14 +174,14 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 20 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
-      "The four declared roots equal the zero-indegree target set",
-      "Twenty-seven unique dependencies are reference-valid, order-consistent, and acyclic",
+      "All 21 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "The five declared roots equal the zero-indegree target set",
+      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
       "D4 through D7 form a binding post-item-4 documentation architecture chain",
       "D6 provides an additional documentation-surface baseline for the existing script-documentation intake",
-      "Windows maintenance Feature 015 completed through PR #142 and its intake is archived with preserved review lineage",
-      "Linux and Ubuntu maintenance is the single declared Eligible candidate",
-      "No successor feature, branch, or Spec Kit run was started"
+      "Windows maintenance v1.2 binds WEM-001 through WEM-013, AC-001 through AC-016, the eleven-preset profile, and MergeAndSync authority",
+      "Nested preview coherence, truthful exit propagation, Windows path parity, and early toolchain gates are atomic and testable",
+      "Windows maintenance remains the single declared Eligible candidate; no successor feature was started"
     ],
     "workers": []
   },

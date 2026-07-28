@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "df2c77df-60bd-4569-8fde-e9c0098e89d1",
+  "reviewId": "9a538f3b-3a27-400a-88b6-7bf2db43e340",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -87,6 +91,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -109,12 +114,18 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "roots": [
+      "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
       {
         "from": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
         "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",

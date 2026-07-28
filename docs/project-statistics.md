@@ -131,7 +131,7 @@
 | 2026-07-26 | Canonical-Fleet-Wartungshärtung | — | — | — | Ein formaler Series-Review belegt, dass kein noch aktives Lastenheft die erneut erkannten Legacy-Ziele oder die lokale Elf-Preset-Profilmigration übernimmt. Der gemeinsame Fleet-Vertragskern liefert deshalb ausschließlich aktive Git-Ziele der Klasse `canonical-fleet`; Bash- und PowerShell-Orchestrator registrieren jedes deklarierte Ziel einzeln, und die Propagation verwendet nur die validierte Registry. Plattformübergreifende Regressionen schließen nicht deklarierte, Preset- und inaktive Repositories aus. Der Dry-run führt Preset- und Toolchain-Vorschauen trotz vorhergesagtem Drift vollständig aus und schreibt anschließend einen wahrheitsgemäßen blockierten JSON-Abschlussstatus. Die lokale Registry wurde bei unverändert 32 eindeutigen Pfaden vollständig auf das Elf-Preset-Profil migriert; die sieben Legacy-Ordner blieben unangetastet. Das Delta vor Statistikpflege umfasst `+586/-198`, also 388 Nettozeilen. |
 | 2026-07-26 | Feature 011 Dokumentations-Wirklichkeitsaudit | — | — | — | D1 hat Level 0, acht registrierte Level-1- und 36 Level-2-Ziele am exakten Git-Stand read-only geprüft. Die maschinenlesbare Evidence umfasst 248 Dokumentationsfamilien mit genau einer Entscheidung. 33 repository-native Homogeneity-Läufe bestanden, zwölf Preset-/Koordinationsziele besitzen begründet keinen solchen Wrapper. 15 Level-2-Findings dokumentieren fehlende bilinguale README-/CLAUDE-Abschnitte und werden vollständig an D3 übergeben; ein zunächst sichtbarer Level-0-Drift wurde im sauberen Basis-Worktree als feature-eigener Generierungseffekt widerlegt. Kein Ziel-Repository wurde verändert. Das Implementierungsdelta vor Statistikpflege umfasst 31 164 Nettozeilen, überwiegend vollständige strukturierte Flotten-Evidence. |
 | 2026-07-26 | Feature 012 Documentation-Impact-Governance | — | — | — | D2 hat den verbindlichen Documentation-Impact-Vertrag in Constitution, Spec-Kit-, PR-, Workflow- und Agentenflaechen verankert. Deterministische Bash-/PowerShell-Tests pruefen die vier Entscheidungen und unzulaessige Deferred-Zustaende. Alle 15 D1-Findings bleiben D3 zugeordnet; ein zentraler Level-0-Remediation-Bedarf entstand nicht. PR #128 wurde nach 20 gruenen Checks, null Review-Threads und bestandenem Exact-Head-Nachweis gemergt. Das Implementierungsdelta vor Statistikpflege umfasst 1 407 Nettozeilen. |
-| 2026-07-28 | Feature 015 Windows-Ein-Kommando-Wartungshärtung | — | — | — | Die Windows-Orchestrierung verwendet jetzt genau einen Modus, begrenzte Python-3-Probes, transiente Git-Retries, WinGet-Zeitgrenzen mit Prozessbaum-Bereinigung, atomare hashgebundene Resume-Evidence und einen Run-ID-korrelierten Abschlussstatus. Registry und Flottenprüfung binden das Elf-Preset-Profil; Git-normalisierte Driftzählung trennt Rohabweichungen von aktionsfähigen Änderungen. Zehn gezielte Windows-Vertragstests einschließlich `rawDifferences=93` und `actionableDrift=3`, bestehende Wartungs- und Home-Sync-Suiten, 146 Statistik-Assertions, Parser und PSScriptAnalyzer 1.25.0 sind lokal grün. Admin-Autorität umgeht weder UAC noch Sicherheits-, Test- oder Review-Gates. Das Implementierungsdelta vor Statistikpflege umfasst vorläufig 4 063 Nettozeilen. |
+| 2026-07-28 | Feature 015 Windows-Ein-Kommando-Wartungshärtung | — | — | — | Die Windows-Orchestrierung verwendet jetzt genau einen Modus, begrenzte Python-3-Probes, transiente Git-Retries, WinGet-Zeitgrenzen mit Prozessbaum-Bereinigung, atomare hashgebundene Resume-Evidence und einen Run-ID-korrelierten Abschlussstatus. Registry und Flottenprüfung binden das Elf-Preset-Profil; Git-normalisierte Driftzählung trennt Rohabweichungen von aktionsfähigen Änderungen. Zehn gezielte Windows-Vertragstests einschließlich `rawDifferences=93` und `actionableDrift=3`, bestehende Wartungs- und Home-Sync-Suiten, 146 Statistik-Assertions, Parser und PSScriptAnalyzer 1.25.0 sind lokal grün. Admin-Autorität umgeht weder UAC noch Sicherheits-, Test- oder Review-Gates. Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209 Nettozeilen. |
 
 ---
 
@@ -732,7 +732,7 @@ Kit run was started. The intake and evidence delta before statistics work is
   Paket-IDs und eine gemeinsame Run-ID-/Exitcode-Wahrheit. Zehn neue Windows-
   Vertragstests, die bestehenden Wartungs- und Home-Sync-Suiten, 146
   Statistik-Assertions, Parser und PSScriptAnalyzer sind lokal gruen.
-- Das Implementierungsdelta vor Statistikpflege umfasst vorlaeufig 4 063
+- Das exakte Implementierungsdelta von PR #142 vor Statistikpflege umfasst 4 209
   Nettozeilen. Gemeinsame Agenten-Guidance blieb nach dokumentierter Pruefung
   unveraendert; es entstand keine neue dauerhafte Agentenregel.
 
@@ -746,8 +746,8 @@ state, while propagation separates 93 reproduced raw differences from three
 actionable content changes. The eleven-preset profile, canonical package IDs,
 and run-ID/exitcode truth are preserved. Ten Windows contract tests, existing
 maintenance and Home Sync suites, 146 statistics assertions, parser checks,
-and PSScriptAnalyzer pass locally. The preliminary delta before statistics is
-4,063 net lines.*
+and PSScriptAnalyzer pass locally. The exact PR #142 delta before statistics is
+4,209 net lines.*
 
 ## Gesamtstatistik / Overall Statistics
 
@@ -759,27 +759,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 397623 lines |
-| Textdateien / Text files | 2459 |
+| Textbasis / Text base | 398745 lines |
+| Textdateien / Text files | 2467 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-28 |
 | Aktivtage / Active days | 76 |
-| Relevante Commits / Relevant commits | 583 |
-| Zeilen je Aktivtag / Lines per active day | 5231.9 |
+| Relevante Commits / Relevant commits | 585 |
+| Zeilen je Aktivtag / Lines per active day | 5246.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-26 / 40732 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 33 days |
-| Speedup vs. 80 lines/day | 65.4x |
-| Speedup vs. 100 lines/day | 52.3x |
-| Methodik / Methodology | v2; source `832f65e20a90` |
+| Speedup vs. 80 lines/day | 65.6x |
+| Speedup vs. 100 lines/day | 52.5x |
+| Methodik / Methodology | v2; source `882ea0c7d12f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.2% | 630
-Tests                           [#...................]   3.4% | 13579
-Dokumentation / Documentation   [##############......]  71.2% | 283015
-Skripte / Scripts               [###.................]  12.5% | 49847
-Konfiguration / Configuration   [###.................]  12.5% | 49791
+Tests                           [#...................]   3.4% | 13624
+Dokumentation / Documentation   [##############......]  71.0% | 283126
+Skripte / Scripts               [###.................]  12.5% | 49852
+Konfiguration / Configuration   [###.................]  12.7% | 50752
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -941,7 +941,7 @@ Slots 32..41
 | 38 | Requirements-Intake-Schema-2-Flottenübernahme / Requirements intake schema-2 fleet adoption | 10918 |
 | 39 | Intake-Sequencing-v0.2.2-Profilabgleich / Intake Sequencing v0.2.2 profile alignment | 3348 |
 | 40 | Dokumentationsarchitektur-Intake-Kette / Documentation architecture intake chain | 2672 |
-| 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4063 |
+| 41 | Windows-Ein-Kommando-Wartungshärtung / Windows one-command maintenance hardening | 4209 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -951,8 +951,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#############.......] 65.4x
-100 lines/day      [##########..........] 52.3x
+80 lines/day       [#############.......] 65.6x
+100 lines/day      [##########..........] 52.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -965,7 +965,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##########..........] 5231.9
+Visible repository [##########..........] 5246.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -991,6 +991,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-28. Es enthaelt 76 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 322650 |
+| 2026-07 | 324044 |
 
 <!-- project-statistics-v2:end -->

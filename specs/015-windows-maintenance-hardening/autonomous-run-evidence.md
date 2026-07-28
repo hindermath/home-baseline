@@ -90,7 +90,7 @@ eleven-preset profile.
 - PowerShell parser: all seven changed `.ps1`/`.psm1` files passed.
 - Bash parser: both changed `.sh` files passed `bash -n`.
 - `pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1`:
-  PSScriptAnalyzer 1.25.0 analyzed 146 files with zero Error or Warning
+  PSScriptAnalyzer 1.25.0 analyzed 147 files with zero Error or Warning
   findings.
 - `pwsh -NoProfile -File scripts/test-script-reference.ps1`: generated
   inventory is idempotent with 120 canonical and 154 embedded scripts.
@@ -158,8 +158,39 @@ The converged exact-head evidence is:
   exhaustion and resume hard-stop examples are stored in
   `sanitized-report-examples.json`.
 
+## Merge and closeout
+
+- Feature PR #142 reviewed exact head
+  `7d2e6981a183905510699988898bacf40d9d5623`. All 20 reported GitHub checks
+  passed on Ubuntu, macOS and Windows; there were no review comments or
+  actionable threads.
+- The provider-neutral evidence file validates all seven predeclared gates
+  against that reviewed head. The administrator merge bypassed only the
+  one-review policy after technical convergence; it did not bypass UAC,
+  security, test, analysis or review findings.
+- PR #142 merged as
+  `82e7ba62a53024d4c949c394adb0cbb34d080a0a`, after which local `main` and
+  `origin/main` were identical.
+- The completed intake is archived as
+  `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.015-windows-maintenance-hardening.md`.
+  Series operation `ac2354e0-e00a-4637-84b1-4f055a18b5c5` preserves the prior
+  manifest and receipt byte-identically and publishes a 20-target, four-root,
+  27-dependency successor.
+- Fresh review `df2c77df-60bd-4569-8fde-e9c0098e89d1` is `Ready` with zero
+  findings and zero open questions. Linux/Ubuntu hardening is the only
+  declared `Eligible` candidate; no successor feature, branch or Spec Kit run
+  was started.
+
 ## Delivery boundary
 
 Only Level 0 is delivered. The feature does not commit or push maintenance
 target repositories, bypass UAC, discard foreign changes, or start a successor
-feature. Final Git inventory runs after merge and local default-branch sync.
+feature. Final CheckOnly run
+`42950e7a-6098-4d2b-b678-b4dce81bc05b` fetched and classified all 44 fleet
+targets as `CURRENT` with no Git action or pull required; all 32 registry
+targets and all 33 eleven-preset profiles are current. Its truthful `PARTIAL`
+status contains only the 128 already documented distributable-package
+differences plus the then-unpublished closeout branch without an upstream.
+No target repository was mutated. The retrospective promoted the independently
+reproduced repository-root filename fix in `rename-lastenheft.ps1` and retained
+three single-observation candidates for another field gate.
