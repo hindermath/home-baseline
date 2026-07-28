@@ -117,3 +117,19 @@ next candidate without starting it.
   reason to expand Feature 014.
 - Catalog updates for Review and Sequencing remain externally serialized behind
   #3780.
+
+## Post-Merge Closeout
+
+- Feature PR #136 merged as
+  `c9058d3139e5ab24954c3b77acade63576b6bf68`.
+- The reviewed feature head `16fa245` passed Homogeneity, PSScriptAnalyzer,
+  local Markdown links, and the learning-package matrix on macOS, Ubuntu, and
+  Windows.
+- The completed intake is archived with the Feature-014 suffix.
+- The prior 18-target review is preserved unchanged under its review ID.
+- The successor review is `Ready` with 17 targets, six roots, 22 dependencies,
+  zero findings, and zero open questions.
+- Windows hardening is the only declared `Eligible` candidate. No successor
+  run was started.
+- The causal closeout normalizes six project-specific assurance edge labels in
+  the portable manifest to `AssessmentBaseline`; graph meaning is unchanged.

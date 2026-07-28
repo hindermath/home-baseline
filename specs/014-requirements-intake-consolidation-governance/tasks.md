@@ -94,10 +94,10 @@
 - [X] T066 Validate feature exact-head evidence.
 - [X] T067 Commit, push, and create feature PR.
 - [X] T068 Converge checks and reviews.
-- [ ] T069 Merge feature PR and synchronize `main`.
-- [ ] T070 Deliver one causal closeout PR if required.
-- [ ] T071 Archive Feature 014 and restore six roots.
-- [ ] T072 Mark Windows hardening next without starting it.
-- [ ] T073 Complete retrospective with promotion decision.
-- [ ] T074 Prove all touched repositories clean and synchronized.
-- [ ] T075 Complete state as `Retrospective`, `Completed`, `75/75`, `N/A`.
+- [X] T069 Merge feature PR and synchronize `main`.
+- [X] T070 Deliver one causal closeout PR if required.
+- [X] T071 Archive Feature 014 and restore six roots.
+- [X] T072 Mark Windows hardening next without starting it.
+- [X] T073 Complete retrospective with promotion decision.
+- [X] T074 Prove all touched repositories clean and synchronized.
+- [X] T075 Complete state as `Retrospective`, `Completed`, `75/75`, `N/A`.

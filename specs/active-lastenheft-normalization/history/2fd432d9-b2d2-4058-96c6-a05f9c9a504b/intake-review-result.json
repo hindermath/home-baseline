@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "6d6124be-2758-4973-af4c-00a68463e8d8",
+  "reviewId": "2fd432d9-b2d2-4058-96c6-a05f9c9a504b",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-28T10:04:12Z",
+  "reviewedAt": "2026-07-26T22:48:38.892Z",
   "repository": {
     "root": ".",
-    "head": "c9058d3139e5ab24954c3b77acade63576b6bf68"
+    "head": "4b4ceff8d9841d8b8f3e7b948f9ad628e6d6b15b"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "31525f22b39454a93b54fcfd1f369421825c92c38aaf0b8d68b2655cf113649d"
+    "normalizedSha256": "dbfd95a099dbb06192adaa51af5587ec23352c1253e1ded6c8d4978874625a31"
   },
   "summary": {
     "critical": 0,
@@ -19,11 +19,17 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "2fd432d9-b2d2-4058-96c6-a05f9c9a504b",
+  "supersedes": "ccee74f4-5f22-4a56-a7b9-949f54a6d738",
   "targets": [
     {
-      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "path": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
       "role": "Primary",
+      "normalizedSha256": "c8f21c06f52cd26f5d9678ebdd15cd3b8cb65c0a72118ec24e646a1adaf20020",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+      "role": "OrderedMember",
       "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
       "gitBlob": "N/A"
     },
@@ -124,9 +130,12 @@
       "gitBlob": "N/A"
     }
   ],
-  "findings": [],
+  "findings": [
+
+  ],
   "coverage": {
     "individual": [
+      "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
       "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -146,16 +155,25 @@
       "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
     ],
     "series": [
-      "All 17 active paths, roles, and exact order match the bound schema-1.1 request",
-      "The six declared roots equal the zero-indegree target set after the merged Feature-014 closeout",
-      "Twenty-two unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Feature 014 and PR #136 remain archived evidence for the completed requirements-governance gate",
-      "Windows maintenance is the single declared Eligible candidate; no successor run was started",
-      "The remaining active intakes preserve their learner-readable dependency and authority boundaries"
+      "All 18 active paths, roles, and exact order match the bound schema-1.1 request",
+      "Feature 014 is the only declared root and the only zero-indegree target",
+      "Twenty-eight unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Six RequirementsGovernanceGate edges bind Feature 014 to the previous roots 1, 2, 3, 5, 9, and 10",
+      "The three verified field migrations and the seven-pilot boundary are explicit",
+      "MergeAndSync authority is current and does not authorize automatic successor execution",
+      "After Feature 014 closeout, the gate is archived and Windows hardening becomes next without being started"
     ],
-    "workers": []
+    "workers": [
+
+    ]
   },
-  "questions": [],
-  "acceptedRisks": [],
-  "operatorExceptions": []
+  "questions": [
+
+  ],
+  "acceptedRisks": [
+
+  ],
+  "operatorExceptions": [
+
+  ]
 }

@@ -7,28 +7,22 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "role": "Primary",
-      "normalizedSha256": "c8f21c06f52cd26f5d9678ebdd15cd3b8cb65c0a72118ec24e646a1adaf20020",
-      "status": "Eligible"
-    },
-    {
       "path": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "be3098370ba63bc8a4aae433baf9f02c6942c15a5bd0c8e8412bdb81bc278f2d",
-      "status": "Blocked"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
       "role": "OrderedMember",
       "normalizedSha256": "9a2a297ef87919c47741fda8825d10de86276206c909d20388438ca780589db7",
-      "status": "Blocked"
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "role": "OrderedMember",
       "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
-      "status": "Blocked"
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -40,7 +34,7 @@
       "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "role": "OrderedMember",
       "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
-      "status": "Blocked"
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -64,13 +58,13 @@
       "path": "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "role": "OrderedMember",
       "normalizedSha256": "79e6bf0f11144239d620753ca481fad5e092c3b53f73f3bfffd115145b67f8ae",
-      "status": "Blocked"
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_PowerShell_Cmdlets.md",
       "role": "OrderedMember",
       "normalizedSha256": "389ec1655b7f67fd6ef59ec55b06a7050d93326eca362f68c239f1f0d8f9d541",
-      "status": "Blocked"
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_Script_Dokumentation.md",
@@ -116,45 +110,14 @@
     }
   ],
   "roots": [
-    "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md"
+    "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
+    "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+    "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+    "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+    "Lastenheft_CICD_Pipeline_Konfiguration.md",
+    "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
-    {
-      "from": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "to": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "to": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "to": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "to": "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Requirements-Intake-Konsolidierungs-Governance.md",
-      "to": "Lastenheft_PowerShell_Cmdlets.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
     {
       "from": "Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md",
       "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
@@ -260,31 +223,31 @@
     {
       "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
       "to": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-      "kind": "AssuranceAuditBaseline",
+      "kind": "AssessmentBaseline",
       "binding": true
     },
     {
       "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
       "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "kind": "AssuranceAuditBaseline",
+      "kind": "AssessmentBaseline",
       "binding": true
     },
     {
       "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
       "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-      "kind": "PublishedPresetBaseline",
+      "kind": "AssessmentBaseline",
       "binding": true
     },
     {
       "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
       "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "kind": "PublishedPresetBaseline",
+      "kind": "AssessmentBaseline",
       "binding": true
     },
     {
       "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
       "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-      "kind": "SecureDevelopmentBaseline",
+      "kind": "AssessmentBaseline",
       "binding": true
     }
   ],
