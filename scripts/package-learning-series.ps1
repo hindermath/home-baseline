@@ -34,7 +34,7 @@ docs/learning-units/GIT-START-FUER-LERNENDE.md.
 Leitfaden fuer institutionelles Git-Hosting relativ zu SourceDir oder absolut.
 
 .EXAMPLE
-pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/SecureCaseTrackerProjects -SeriesName 'Secure CaseTracker' -WhatIf
+pwsh -NoProfile -File scripts/package-learning-series.ps1 -SourceDir ~/secure-casetracker-baseline -SeriesName 'Secure CaseTracker' -WhatIf
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
