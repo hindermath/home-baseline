@@ -305,6 +305,14 @@
       "labelEn": "Requirements intake consolidation handoff",
       "netLines": 397,
       "activeDays": 1
+    },
+    {
+      "slot": 37,
+      "id": "requirements-intake-consolidation-governance",
+      "labelDe": "Requirements-Intake-Konsolidierung",
+      "labelEn": "Requirements intake consolidation",
+      "netLines": 7338,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
