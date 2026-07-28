@@ -2858,7 +2858,7 @@ optionalen Intake-Presets ueber
 Zehn-Preset-Profile bleiben kompatibel verfuegbar. Keine dieser lokalen
 Profilwahlen aendert die oeffentliche Standard-Achtermatrix.
 
-`intake-sequencing-governance` v0.2.0 ist eine dritte optionale
+`intake-sequencing-governance` v0.2.2 ist eine dritte optionale
 Intake-Schicht mit Prioritaet `66`. Das getrennte
 `intake-sequencing-eleven-governance-presets`-Profil verwaltet Reihenfolge,
 typisierte Abhaengigkeiten, Lifecycle und naechste Kandidaten. Es aendert keine
@@ -3033,7 +3033,9 @@ pwsh ~/scripts/install-spec-kit-governance-presets.ps1 -Repo .
 Fuer das explizite neunte Intake-Review-Preset dieselben Installer mit
 `scripts/config/spec-kit-intake-review-governance-presets.json` aufrufen. Fuer
 Authoring plus Review gilt das getrennte Zehnerprofil
-`scripts/config/spec-kit-intake-authoring-governance-presets.json`. Beide
+`scripts/config/spec-kit-intake-authoring-governance-presets.json`. Fuer
+Authoring, Review und Sequencing gilt das Elf-Preset-Profil
+`scripts/config/spec-kit-intake-sequencing-governance-presets.json`. Alle
 Auswahlen verwenden `--preset-config` beziehungsweise `-PresetConfig`; ohne
 Auswahl bleibt die Standard-Achtermatrix unveraendert.
 
@@ -3041,15 +3043,18 @@ Die lokale Registry kann `defaultPresetProfile` setzen. Der Wartungslauf prueft
 dann jedes registrierte Repository gegen die zugeordnete exakte Matrix. Das
 Profil `intake-review-nine-governance-presets` verweist auf die oben genannte
 Neunermatrix. `intake-authoring-ten-governance-presets` verweist auf die
-Zehnermatrix mit Authoring `64` und Review `65`; unbekannte Profile brechen
-fail-closed ab.
+Zehnermatrix mit Authoring `64` und Review `65`.
+`intake-sequencing-eleven-governance-presets` verweist auf die Elf-Preset-Matrix
+mit Sequencing `66`; unbekannte Profile brechen fail-closed ab.
 
 *To select optional Intake Review only, use
 `scripts/config/spec-kit-intake-review-governance-presets.json`. To select
 Intake Authoring plus Review, use
-`scripts/config/spec-kit-intake-authoring-governance-presets.json`. Pass either
-through `--preset-config` or `-PresetConfig`; the standard eight remain
-unchanged without an explicit selection.*
+`scripts/config/spec-kit-intake-authoring-governance-presets.json`. To select
+Intake Authoring, Review, and Sequencing, use
+`scripts/config/spec-kit-intake-sequencing-governance-presets.json`. Pass the
+selected matrix through `--preset-config` or `-PresetConfig`; the standard
+eight remain unchanged without an explicit selection.*
 
 *A local registry may set `defaultPresetProfile`. Workspace maintenance then
 checks every registered repository against its assigned exact matrix. Unknown
