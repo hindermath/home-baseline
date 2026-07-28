@@ -3,17 +3,30 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `47c855a9-b945-4e95-bcaa-9db9a2e5b6f1`
-- Supersedes: `df2c77df-60bd-4569-8fde-e9c0098e89d1`
+- Review-ID: `0005ff81-a7a4-4803-ad33-12a25393ae8b`
+- Supersedes: `47c855a9-b945-4e95-bcaa-9db9a2e5b6f1`
 - Ziele / Targets: 28
 - Roots: 4
 - Abhängigkeiten / Dependencies: 35
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Feature 015 und der Windows-Intake bleiben abgeschlossen und archiviert. Die acht neuen KDM-/KITSM-Intakes sind als Positionen 18 bis 25 vollständig und seriell hinter Position 17 eingeordnet. C#/.NET ist als Referenzsprache gebunden. Jahr-1-Retrofit, gemeinsamer Jahr-2-Kern, getrennte Jahr-3-Reihen, sechs Zielrepositories und die abschließende read-only Closure besitzen eindeutige Dokument-, Evidence-, Accessibility- und Stop-Grenzen. Es bestehen keine Findings, offenen Fragen, akzeptierten Risiken oder Operator-Ausnahmen.
+Der aktualisierte Linux-/Ubuntu-Intake ist unter seinem neuen normalisierten
+Hash vollständig gebunden. Feature 015 und der Windows-Intake bleiben
+abgeschlossen und archiviert. Die acht KDM-/KITSM-Intakes sind als Positionen
+18 bis 25 vollständig und seriell hinter Position 17 eingeordnet. C#/.NET ist
+als Referenzsprache gebunden. Jahr-1-Retrofit, gemeinsamer Jahr-2-Kern,
+getrennte Jahr-3-Reihen, sechs Zielrepositories und die abschließende
+read-only Closure besitzen eindeutige Dokument-, Evidence-, Accessibility-
+und Stop-Grenzen. Es bestehen keine Findings, offenen Fragen, akzeptierten
+Risiken oder Operator-Ausnahmen.
 
-*Feature 015 and the Windows intake remain completed and archived. The eight new KDM/KITSM intakes are complete and serially ordered as items 18 through 25 after item 17. C#/.NET is the binding reference language. The year-1 retrofit, shared year-2 core, separate year-3 series, six rollout targets, and read-only closure have explicit document, evidence, accessibility, and stop boundaries.*
+*The updated Linux/Ubuntu intake is fully bound under its new normalized hash.
+Feature 015 and the Windows intake remain completed and archived. The eight
+KDM/KITSM intakes are complete and serially ordered as items 18 through 25
+after item 17. C#/.NET is the binding reference language. The year-1 retrofit,
+shared year-2 core, separate year-3 series, six rollout targets, and read-only
+closure have explicit document, evidence, accessibility, and stop boundaries.*
 
 ## Graphnachweis / Graph Evidence
 
@@ -27,4 +40,14 @@ Feature 015 und der Windows-Intake bleiben abgeschlossen und archiviert. Die ach
 
 ## Nächste Aktion / Next Action
 
-Der Status darf read-only mit `$speckit-intake-series-status` geprüft werden. Kein KDM-/KITSM-Featurelauf wurde gestartet.
+Nach Merge und Synchronisierung ist die Manifest-Eligibility erneut read-only
+zu prüfen. Bleibt der Linux-/Ubuntu-Intake der einzige `Eligible`-Kandidat,
+darf der vom Benutzer ausdrücklich beauftragte autonome Lauf mit dessen
+Delivery Authority gestartet werden. Dieser Review selbst startet keinen
+Featurelauf und erteilt keine Delivery Authority.
+
+*After merge and synchronization, recheck manifest eligibility read-only. If
+the Linux/Ubuntu intake remains the sole `Eligible` candidate, the autonomous
+run explicitly requested by the user may start with that user's delivery
+authority. This review itself starts no feature run and grants no delivery
+authority.*

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "reviewId": "48ca0b20-22e0-47f0-bee0-a19672c48b42",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-07-28T13:30:11Z",
+  "repository": {
+    "root": ".",
+    "head": "2716dcec9410b362be7dbe43049f9e76441b0345"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md",
+      "role": "Primary",
+      "normalizedSha256": "b9b6c57e89a0fa58199879a41306239f3dedcb5961e72cb81dc67f204d4d38f4",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "47c855a9-b945-4e95-bcaa-9db9a2e5b6f1"
+}

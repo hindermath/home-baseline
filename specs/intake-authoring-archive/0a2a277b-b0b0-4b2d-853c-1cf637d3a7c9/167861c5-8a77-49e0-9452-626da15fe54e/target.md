@@ -6,47 +6,36 @@
 **Profil / Profile:** `home-baseline-lastenheft`
 **Repository:** `home-baseline`
 **Dokumenttyp / Document type:** Linux-/Ubuntu-spezifischer Spec-Kit-Intake / Linux-/Ubuntu-specific Spec Kit intake
-**Version:** 1.2
-**Stand / Date:** 2026-07-28
+**Version:** 1.1
+**Stand / Date:** 2026-07-25
 **Delivery Authority:** `LocalImplementation`
 
 ## 1. Zweck / Purpose
 
 Dieses Lastenheft beschreibt eine eigene Linux-/Ubuntu-Haertungsrunde fuer die
-Ein-Kommando-Wartung. Grundlage sind die vier Befunde des ersten realen
-Ubuntu-Laufs sowie drei zusaetzliche Befunde des realen Wartungslaufs vom
-2026-07-28: Eine Homebrew-Installationsschleife verliert Pakete an den
+Ein-Kommando-Wartung. Grundlage sind vier Befunde aus einem realen
+Ubuntu-Lauf: Eine Homebrew-Installationsschleife verliert Pakete an den
 Standardeingabekanal eines interaktiven Unterprozesses, fehlende
 Pflichtwerkzeuge beeinflussen den Exitcode nicht, Swift besitzt unter Linux
-keinen automatisierten Installationsweg, das fehlerhafte Zusammenspiel ist
-nicht durch einen Regressionstest abgesichert, Admin-Prompt-Autoritaet muss
-klar von einem erreichten Sollzustand getrennt bleiben, aufloesbare aber nicht
-nutzbare CLI-Launcher benoetigen einen eigenen Fehlerstatus, und ein spaeter
-abgebrochener Lauf darf keinen veralteten Erfolgsbericht hinterlassen.
+keinen automatisierten Installationsweg, und das fehlerhafte Zusammenspiel ist
+nicht durch einen Regressionstest abgesichert.
 
 *This intake defines a dedicated Linux and Ubuntu hardening round for
-one-command maintenance. It preserves the four findings from the first real
-Ubuntu run and adds three findings from the real maintenance run on
-2026-07-28: input-consuming package-manager children, non-failing required
-drift, the missing automated Swift path, absent regression evidence, the need
-to distinguish admin-prompt authority from achieved desired state, a separate
-state for resolvable but unusable CLI launchers, and interruption-safe final
-reporting.*
+one-command maintenance. It is based on four findings from a real Ubuntu run:
+an interactive Homebrew child process consumes package names from its parent's
+standard input, missing required tools do not affect the exit code, Swift has
+no automated Linux installation path, and no regression test covers this
+interaction.*
 
-Der aktuelle Vergleich meldete Swift und weitere Pflichtwerkzeuge weiterhin als
-fehlend. Die erfolgreiche Migration auf `home-baseline-source` und das
-Entfernen von `home-baseline-tmp` sind dagegen abgeschlossen und erzeugen keine
-offene Linux-Haertungsanforderung. Ein einzelner Maschinenzustand bleibt
-grundsaetzlich kein Nachweis fuer die Korrektheit des Skripts. Das Dokument
-startet weder Implementierung noch Wartung und erteilt keine Autoritaet fuer
-Commit, Push, Pull Request oder Merge.
+Der betroffene Rechner besteht die aktuelle Pflichtwerkzeugpruefung nur nach
+manueller Nachinstallation. Dieser Maschinenzustand ist kein Nachweis fuer die
+Korrektheit des Skripts. Das Dokument startet weder Implementierung noch
+Wartung und erteilt keine Autoritaet fuer Commit, Push, Pull Request oder Merge.
 
-*The current comparison still reported Swift and other required tools as
-missing. Migration to `home-baseline-source` and removal of
-`home-baseline-tmp`, however, are complete and add no open Linux-hardening
-requirement. A single machine state never proves script correctness. This
-document starts neither implementation nor maintenance and grants no authority
-to commit, push, open a pull request, or merge.*
+*The affected machine currently passes the required-tool check only because
+the tools were installed manually. That machine state does not prove the
+script is correct. This document starts neither implementation nor maintenance
+and grants no authority to commit, push, open a pull request, or merge.*
 
 ## 2. Bindende Vorgaenger und Reihenfolge / Binding Predecessors and Order
 
@@ -130,42 +119,6 @@ interaktiver Mock kann den Fehler deshalb nicht sichtbar machen.
 during the first installation. A normal non-interactive mock therefore cannot
 expose the defect.*
 
-### 3.5 Explizite Admin-Prompt-Grenze
-
-Der Unix-Orchestrator besitzt inzwischen `--allow-admin-prompts`. Ohne diese
-aktuelle Autoritaet wird die Linux-Toolchain-Mutation als
-`DEFERRED_ADMIN_REQUIRED` verschoben und es wird kein `sudo` erzwungen. Diese
-Schutzgrenze ist ein erledigter Sicherheitsfortschritt, aber kein Nachweis,
-dass der Required-Sollzustand erreicht ist. Der strukturierte Bericht muss
-Deferred-Zustand, verbleibenden Drift und konkrete naechste Aktion dauerhaft
-auseinanderhalten.
-
-*The Unix orchestrator now provides `--allow-admin-prompts`. Without that
-current authority, Linux toolchain mutation is deferred as
-`DEFERRED_ADMIN_REQUIRED` and does not force `sudo`. This boundary is a
-completed security improvement, but it does not prove the required desired
-state. Structured reporting must keep deferral, remaining drift, and the exact
-next action distinct.*
-
-### 3.6 Aufloesbare, aber nicht nutzbare CLI und veralteter Erfolgsbericht
-
-Im realen Lauf wurde `pwsh` per Befehlsaufloesung gefunden, der Snap-Launcher
-scheiterte im Container jedoch an einer fehlenden `cap_dac_override`-Capability
-von `snap-confine`. Eine reine `command -v`-Pruefung unterscheidet diesen Zustand
-nicht verlaesslich von einem nutzbaren Werkzeug. Der ungefangene spaetere
-Fehlerabbruch liess zudem einen zuvor geschriebenen JSON-Bericht mit
-`overallStatus: SUCCESS`, Exitcode 0 und nur den frueher abgeschlossenen Stufen
-zurueck. Terminal, Log, Prozessstatus und Bericht konnten dadurch verschiedene
-Wahrheiten anzeigen.
-
-*During the real run, command resolution found `pwsh`, but the Snap launcher
-failed in the container because `snap-confine` lacked the
-`cap_dac_override` capability. Command presence alone cannot reliably
-distinguish this from a usable tool. The uncaught late failure also left an
-earlier JSON report at `overallStatus: SUCCESS`, exit code 0, and only the
-previously completed stages. Terminal, log, process status, and report could
-therefore tell different stories.*
-
 ## 4. Zielzustand / Target State
 
 Ein Lauf auf einer unterstuetzten Linux-/Ubuntu-Umgebung verarbeitet jeden
@@ -194,20 +147,6 @@ installs and then verifies it. Unsupported distributions or architectures and
 installation failures are explicit failures rather than successful
 one-command maintenance.*
 
-Ein Lauf ohne aktuelle Admin-Prompt-Autoritaet veraendert keine
-administratorgeschuetzte Toolchain und meldet `DEFERRED_ADMIN_REQUIRED` als
-offenen, nicht erfuellten Zustand. Ein vorhandener Befehlsname gilt erst nach
-einer begrenzten Funktionsprobe als nutzbar. Jeder normale, fehlerhafte oder
-unterbrochene Abschluss finalisiert Bericht und Log atomar mit dem tatsaechlichen
-Gesamtstatus; ein alter Erfolgsstatus darf keinen spaeteren Fehler ueberleben.
-
-*A run without current admin-prompt authority changes no administrator-protected
-toolchain and reports `DEFERRED_ADMIN_REQUIRED` as an open, unmet state. A
-resolved command name counts as usable only after a bounded functional probe.
-Every normal, failed, or interrupted completion atomically finalizes report and
-log with the actual aggregate status; an earlier success state cannot survive a
-later failure.*
-
 ## 5. Betroffene Flaechen / Affected Surfaces
 
 Primaer betroffen sind:
@@ -215,12 +154,7 @@ Primaer betroffen sind:
 - `scripts/maintain-agentic-brew-apps.sh`
 - `scripts/config/required-cli-tools-registry.json`
 - `scripts/maintain-agentic-workspace.sh`, soweit der Toolchain-Exitcode und
-  der Admin-Prompt-, Toolchain-, Abbruch- und Abschlussstatus propagiert werden
-- `scripts/lib/agentic_workspace_fleet.py`, soweit Stufen- und Gesamtberichte
-  atomar fortgeschrieben oder finalisiert werden
-- der Aufruf von `scripts/maintain-powershell-modules.ps1` aus dem Unix-Pfad,
-  soweit ein aufloesbares, aber nicht ausfuehrbares `pwsh` begrenzt behandelt
-  werden muss
+  der Abschlussstatus propagiert werden
 - die vorhandene Linux-Testflaeche und ein isoliertes Homebrew-/CLI-Registry-
   Fixture
 - `docs/man/maintain-agentic-brew-apps.1.md`, README und Skriptinventur, soweit
@@ -229,10 +163,9 @@ Primaer betroffen sind:
   Wartungsdateien geaendert werden
 
 *Primary surfaces are the Linux and macOS package-maintenance script, the
-required CLI registry, parent status and interruption propagation, atomic fleet
-report finalization, bounded invocation of the PowerShell-module step, isolated
-Linux regression fixtures, affected documentation, and propagation of changed
-canonical maintenance files.*
+required CLI registry, parent status propagation, isolated Linux regression
+fixtures, affected manual and repository documentation, and propagation of
+changed canonical maintenance files.*
 
 Gemeinsam genutzte Registry-Felder und Statusvertraege sind auf
 PowerShell-/Windows-Paritaet zu pruefen. Die konkrete Linux-Installation und
@@ -261,21 +194,12 @@ status contract changes.*
 - isolierter Regressionstest mit einem stdin-lesenden, interaktiv simulierten
   Homebrew-Aufruf
 - kompatible Check-, Compare- und Dry-run-Ausgabe ohne reale Paketmutation
-- explizite und unveraenderte Admin-Prompt-Grenze: ohne
-  `--allow-admin-prompts` keine privilegierte Toolchain-Mutation und kein
-  vorgetaeuschter Sollzustand
-- begrenzte Nutzbarkeitspruefung fuer externe CLI-Launcher mit getrennten
-  Zustaenden fuer fehlend, nicht nutzbar, Timeout und Capability-Sperre
-- abbruchfeste, atomare Finalisierung von Terminalstatus, Log, Exitcode und
-  strukturiertem Bericht
 
 *In scope are input-safe package iteration, per-item result accounting,
 fail-closed required checks, non-fatal optional drift, automated and verified
 Swift installation on supported Linux targets, same-run verification,
 idempotence, an interactive input-consuming Homebrew regression fixture, and
-safe check or preview behavior. It also preserves the explicit admin boundary,
-distinguishes unusable launchers from missing commands, and finalizes reports
-correctly after late failures or interruption.*
+safe check or preview behavior.*
 
 ### Non-Goals
 
@@ -289,15 +213,12 @@ correctly after late failures or interruption.*
 - keine Veraenderung fremder lokaler Dateien, Shell-Profile oder Toolchains
   ausserhalb eines dokumentierten, minimalen Installationsvertrags
 - keine Implementierung der Wartungs-TUI
-- keine Loesung des separaten Preset-/Profil-/Default-Branch-/Worktree-Intakes
-  auf Position 3; dessen exakte Profilmatrix und Retry-Vertrag bleiben dort
 - keine Commits, Pushes, Pull Requests oder Merges im Rahmen dieses Authorings
 
 *The work does not redesign all maintenance, install optional tools without
 opt-in, promise every Linux distribution or architecture, use unverified
 download execution, bypass administrative boundaries, modify unrelated local
-state, implement the TUI, solve the separate position-3 preset/profile intake,
-or perform Git or remote delivery actions.*
+state, implement the TUI, or perform Git or remote delivery actions.*
 
 ## 7. Atomare Anforderungen / Atomic Requirements
 
@@ -416,60 +337,6 @@ state is met. Help and the manual document the exact exit-code matrix. The fix
 must not regress macOS formula or cask processing, and shared contract changes
 need Bash and PowerShell parity evidence.*
 
-### LUM-009 - Admin-Prompt-Autoritaet ist kein Sollzustand
-
-Auf Linux DARF der Orchestrator eine administratorgeschuetzte Toolchain-Mutation
-nur nach aktueller, ausdruecklicher `--allow-admin-prompts`-Autoritaet starten.
-Fehlt sie, MUSS die Stufe ohne Privilegieneskalation als
-`DEFERRED_ADMIN_REQUIRED` enden, verbleibende Required-Werkzeuge und eine
-konkrete naechste Aktion nennen und im strukturierten Bericht als offen
-erkennbar bleiben. Der Deferred-Zustand DARF weder als installierter Sollzustand
-noch als vollstaendig erfolgreiche Ein-Kommando-Wartung gezaehlt werden.
-
-*On Linux, the orchestrator may start administrator-protected toolchain mutation
-only with current explicit `--allow-admin-prompts` authority. Without it, the
-stage must avoid privilege escalation, end as `DEFERRED_ADMIN_REQUIRED`, name
-remaining required tools and an exact next action, and remain visibly open in
-the structured report. Deferral cannot count as installed desired state or as
-fully successful one-command maintenance.*
-
-### LUM-010 - Begrenzte CLI-Nutzbarkeits- und Capability-Pruefung
-
-Externe Pflichtwerkzeuge MUESSEN mindestens die Zustaende `Missing`,
-`Unusable`, `TimedOut` und `CapabilityBlocked` unterscheidbar machen, wenn eine
-begrenzte, seiteneffektarme Funktionsprobe dies belegen kann. Ein per
-`command -v` gefundener Launcher DARF nicht allein deshalb als nutzbar gelten.
-Fehlertext wird begrenzt und secret-frei erfasst; der Fehler eines optionalen
-Folgeschritts DARF den Abschlussbericht nicht ungefangen abschneiden. Fuer
-`pwsh` MUSS ein Snap-/Container-Capability-Fehler als nicht nutzbare Toolchain
-mit naechster Aktion erscheinen.
-
-*Required external tools must distinguish at least `Missing`, `Unusable`,
-`TimedOut`, and `CapabilityBlocked` when a bounded, low-side-effect functional
-probe can establish that state. A launcher found by `command -v` is not usable
-by presence alone. Error evidence is bounded and secret-free, and failure of an
-optional follow-up step cannot truncate final reporting. For `pwsh`, a Snap or
-container capability failure must become an unusable-toolchain result with a
-next action.*
-
-### LUM-011 - Abbruchfeste und atomare Berichtsfinalisierung
-
-Jeder nicht gefangene Stufenfehler, jedes relevante Signal und jeder normale
-Abschluss MUSS genau eine Finalisierung ausloesen. Der strukturierte Bericht
-MUSS die letzte gestartete beziehungsweise fehlgeschlagene Stufe, den
-tatsaechlichen Gesamtstatus, den Prozess-Exitcode und die naechste Aktion
-enthalten. Ein Bericht mit `SUCCESS` und Exitcode 0 DARF nach einem spaeteren
-Fehler nicht bestehen bleiben. Aktualisierungen verwenden temporaere Dateien
-und atomaren Ersatz; Terminal, Log, Report und Prozessstatus MUESSEN denselben
-Abschluss abbilden.
-
-*Every uncaught stage error, relevant signal, and normal completion must trigger
-exactly one finalization. The structured report must identify the last started
-or failed stage, actual aggregate status, process exit code, and next action. A
-report at `SUCCESS` and exit code 0 cannot remain after a later failure.
-Updates use temporary files and atomic replacement, and terminal, log, report,
-and process status must describe the same outcome.*
-
 ## 8. Qualitaet und Governance / Quality and Governance
 
 ### Sicherheit und Supply Chain / Security and Supply Chain
@@ -482,11 +349,6 @@ and process status must describe the same outcome.*
   eine gepflegte SHA-256-Pruefsumme oder eine verifizierte Signatur.
 - Eine geaenderte Pruefsumme oder unklare Plattformzuordnung scheitert vor
   Ausfuehrung fail-closed.
-- Administratorrechte werden weder impliziert noch erzwungen; aktuelle
-  Autoritaet, tatsaechliche Privilegien und erreichter Sollzustand bleiben drei
-  getrennte Nachweise.
-- Funktionsproben externer CLI-Launcher sind zeitlich begrenzt, vermeiden
-  Mutation und begrenzen uebernommene Fehlerausgabe.
 - Logs, Fixtures und Abschlussberichte enthalten keine Tokens, Zugangsdaten
   oder privaten absoluten Pfade.
 - Temporaere Test- und Downloadartefakte werden eng begrenzt und sicher
@@ -494,10 +356,8 @@ and process status must describe the same outcome.*
 
 *Registry values are data rather than evaluated code. Bash quoting and option
 boundaries remain safe. Downloads use TLS plus versioned integrity evidence.
-Unknown platforms or changed integrity values fail closed. Admin authority,
-actual privileges, and achieved state remain separate evidence; CLI probes are
-bounded and low-side-effect. Logs expose no credentials or private paths, and
-temporary artifacts remain isolated.*
+Unknown platforms or changed integrity values fail closed. Logs expose no
+credentials or private paths, and temporary artifacts remain isolated.*
 
 ### Barrierefreiheit und Sprache / Accessibility and Language
 
@@ -544,33 +404,26 @@ installations and must simulate them.*
 
 Harte Stopps gelten bei ungueltiger Registry, unbekanntem Required-Installer,
 nicht verifizierbarer Swift-Herkunft oder Integritaet, nicht unterstuetzter
-Plattform vor einer Mutation, fehlender Admin-Prompt-Autoritaet vor
-privilegierter Mutation, einem Capability-gesperrten Pflichtwerkzeug und bei
-einem weiterhin fehlenden Pflichtwerkzeug nach Abschluss der
-Installationsphase. Ein harter Stopp verhindert abhaengige Mutation, aber nicht
-vollstaendige Fehlerausgabe, Berichtsfinalisierung und sichere read-only
-Evidence.
+Plattform vor einer Mutation und bei einem weiterhin fehlenden Pflichtwerkzeug
+nach Abschluss der Installationsphase. Ein harter Stopp verhindert abhaengige
+Mutation, aber nicht vollstaendige Fehlerausgabe und sichere read-only Evidence.
 
 *Hard stops apply to invalid registry data, unknown required installers,
 unverifiable Swift provenance or integrity, unsupported platforms before
-mutation, absent admin-prompt authority before privileged mutation,
-capability-blocked required tools, and required tools still missing after
-installation. A hard stop blocks dependent mutation but not complete reporting,
-report finalization, or safe read-only evidence.*
+mutation, and required tools still missing after installation. A hard stop
+blocks dependent mutation but not complete reporting or safe read-only
+evidence.*
 
 Wesentliche Risiken sind ein unbeabsichtigter Eingabekanal zur echten
 Terminalsession, eine zu fruehe Fehlerbeendigung ohne vollstaendige Missing-
-Liste, ein Exitcodeverlust im Orchestrator, ein als Erfolg stehenbleibender
-Teilbericht, ein nur syntaktisch vorhandener CLI-Launcher, veraltete
-Swift-Downloadmetadaten und eine PATH-Aenderung, die erst in einer neuen Shell
-wirkt. Isolierte Positiv-, Negativ-, Signal-, Timeout- und Idempotenztests
-muessen diese Risiken abdecken.
+Liste, ein Exitcodeverlust im Orchestrator, veraltete Swift-Downloadmetadaten
+und eine PATH-Aenderung, die erst in einer neuen Shell wirkt. Isolierte
+Positiv-, Negativ- und Idempotenztests muessen diese Risiken abdecken.
 
 *Main risks are accidental attachment to the real terminal input, early exit
-without the complete missing list, parent exit-code loss, a partial report left
-at success, a launcher that is present but unusable, stale Swift download
+without the complete missing list, parent exit-code loss, stale Swift download
 metadata, and PATH activation that works only in a new shell. Isolated positive,
-negative, signal, timeout, and idempotence tests must cover these risks.*
+negative, and idempotence tests must cover these risks.*
 
 ## 10. Erwartete Artefakte und Evidence / Expected Artifacts and Evidence
 
@@ -586,13 +439,6 @@ Die spaetere Implementierung liefert mindestens:
   mehreren aufeinanderfolgenden Paketen
 - Positiv-, Negativ-, Dry-run-, Compare-, Fehlerpropagations- und
   Idempotenztests ohne reale Paketmutation
-- ein Linux-Fixture fuer fehlende Admin-Prompt-Autoritaet, das keine
-  Privilegieneskalation zulaesst und `DEFERRED_ADMIN_REQUIRED` als offenen
-  Zustand prueft
-- ein `pwsh`-/Snap-Fixture fuer aufloesbare, aber Capability-gesperrte Launcher
-  sowie Timeout- und Nicht-Nutzbar-Status
-- Fehler- und Signal-Fixtures, die einen Abbruch nach frueheren erfolgreichen
-  Stufen erzwingen und die atomare Nicht-Erfolgsfinalisierung pruefen
 - aktualisierte Hilfe, Manpage, README-, Registry- und Skriptinventurtexte,
   soweit der oeffentliche Vertrag betroffen ist
 - bei kanonischen Wartungsdateien eine Vorschau, Anwendung und abschliessende
@@ -602,10 +448,9 @@ Die spaetere Implementierung liefert mindestens:
 
 *Later implementation provides a focused input-safe loop fix, fail-closed
 required status propagation, a versioned and integrity-checked Swift installer
-contract, an isolated stdin-consuming Homebrew fixture, admin-boundary and
-unusable-launcher fixtures, interruption-safe report tests, positive and
-negative mode or idempotence tests, synchronized public documentation, safe
-propagation evidence where applicable, and updated project statistics.*
+contract, an isolated stdin-consuming Homebrew fixture, positive and negative
+mode or idempotence tests, synchronized public documentation, safe propagation
+evidence where applicable, and updated project statistics.*
 
 ## 11. Abnahmekriterien / Acceptance Criteria
 
@@ -649,31 +494,13 @@ propagation evidence where applicable, and updated project statistics.*
 - **AC-012:** Keine Ausgabe oder Evidence enthaelt Secrets oder private
   absolute Pfade. Status bleiben ohne Farbe und in linearer Screenreader-Ausgabe
   unterscheidbar.
-- **AC-013:** Ein Linux-Fixture ohne `--allow-admin-prompts` bietet einen
-  installierbaren Required-Tool-Drift an. Es erfolgt kein `sudo`- oder anderer
-  privilegierter Aufruf; Stufe, Abschlussbericht und naechste Aktion enthalten
-  `DEFERRED_ADMIN_REQUIRED`, und der Sollzustand bleibt ausdruecklich offen.
-- **AC-014:** Ein temporaerer `pwsh`-Launcher ist per `command -v` auffindbar,
-  scheitert aber mit einer simulierten `snap-confine`-/Capability-Meldung. Der
-  Lauf klassifiziert ihn begrenzt und secret-frei als `CapabilityBlocked`
-  beziehungsweise `Unusable`, startet keine abhaengige PowerShell-Mutation und
-  finalisiert den Bericht. Ein haengender Launcher wird deterministisch als
-  `TimedOut` begrenzt.
-- **AC-015:** Ein Fixture erzwingt nach mindestens zwei erfolgreichen Stufen
-  einen spaeten Stufenfehler sowie separat `INT` und `TERM`. In keinem Fall
-  bleibt `overallStatus: SUCCESS` mit Exitcode 0 bestehen. JSON-Bericht, Log,
-  Terminalstatus und Prozess-Exitcode nennen konsistent die letzte
-  fehlgeschlagene oder unterbrochene Stufe; es bleibt keine teilweise
-  geschriebene JSON-Datei.
 
 *Acceptance proves complete ordered processing despite a stdin-consuming first
 install, exact per-item accounting, fail-closed required checks and parent exit
 codes, non-fatal optional drift, safe same-run Swift installation, clear
-unsupported or integrity failures, mutation-free preview modes, an explicit
-non-privileged deferral path, bounded unusable-launcher classification,
-interruption-safe atomic final reporting, isolated CI fixtures, macOS and
-shared-contract parity, syntax and regression checks, and accessible
-secret-free evidence.*
+unsupported or integrity failures, mutation-free preview modes, isolated CI
+fixtures, macOS and shared-contract parity, syntax and regression checks, and
+accessible secret-free evidence.*
 
 ## 12. Annahmen und offene Fragen / Assumptions and Open Questions
 
@@ -686,22 +513,16 @@ Annahmen:
   `scripts/maintain-agentic-brew-apps.sh` im Bereich von
   `compare_cli_scope` und `install_brew_items`; Anforderungen binden an das
   Verhalten und bleiben auch nach Zeilenverschiebungen gueltig.
-- Der aktuelle Rechner meldet Swift und weitere Required-Werkzeuge als fehlend;
-  dieser Zustand darf fuer Tests weder als feste Vorbedingung noch als
-  Abschlussnachweis verwendet werden. Fixtures bilden fehlende, nutzbare und
-  Capability-gesperrte Ausgangszustaende isoliert nach.
-- Der heutige `DEFERRED_ADMIN_REQUIRED`-Pfad bestaetigt die Schutzgrenze, nicht
-  die vollstaendige Erfuellung des Toolchain-Sollzustands.
-- Der Preset-Profil-Drift und dessen Netzwerkwiederholung bleiben bindender
-  Kontext des separaten Position-3-Intakes und werden hier nicht dupliziert.
+- Die manuelle Nachinstallation auf dem aktuellen Rechner darf fuer Tests
+  nicht als Vorbedingung verwendet werden. Fixtures bilden den fehlenden
+  Ausgangszustand isoliert nach.
 - `LocalImplementation` erlaubt nur lokale Implementierung und Validierung im
   aktuellen Repository.
 
 *Assumptions are that the findings originate on Ubuntu, source line numbers are
-evidence rather than permanent interfaces, tests must not rely on the current
-machine state, admin deferral proves only the security boundary, preset-profile
-drift remains in the position-3 intake, and LocalImplementation permits only
-local work in this repository.*
+evidence rather than permanent interfaces, tests must not rely on the machine's
+manual repair, and LocalImplementation permits only local work in this
+repository.*
 
 Offene materielle Fragen: keine.
 
@@ -712,24 +533,19 @@ Offene materielle Fragen: keine.
 Die Linux-/Ubuntu-Haertungsrunde ist erst abgeschlossen, wenn alle
 Abnahmekriterien mit lokaler, reproduzierbarer Evidence bestanden sind und kein
 offener High-Severity-Befund fuer stdin-sichere Paketiteration, Required-
-Exitcodepropagation, den Swift-Installationsweg, die Admin-Prompt-Grenze,
-CLI-Nutzbarkeit oder die abbruchfeste Berichtsfinalisierung verbleibt. Weder
-`DEFERRED_ADMIN_REQUIRED` noch ein zufaellig reparierter oder defekter
-Maschinenzustand zaehlen ohne isolierte Regressionstests als
-Abschlussnachweis. Die Migration nach `home-baseline-source` und das Entfernen
-von `home-baseline-tmp` sind abgeschlossen und gehoeren nicht zu den offenen
-Abnahmepunkten. Mit der aktuellen `LocalImplementation`-Authority endet ein
-spaeterer Autonomous-Lauf vor Commit, Push, Pull Request oder Merge.
+Exitcodepropagation oder den Swift-Installationsweg verbleibt. Der aktuelle
+Maschinenzustand `missing_on_machine.required.cli_tools: none` zaehlt ohne die
+isolierten Regressionstests nicht als Abschlussnachweis. Mit der aktuellen
+`LocalImplementation`-Authority endet ein spaeterer Autonomous-Lauf vor
+Commit, Push, Pull Request oder Merge.
 
 *The Linux and Ubuntu hardening round is complete only when every acceptance
 criterion passes with local reproducible evidence and no high-severity finding
-remains for input-safe iteration, required exit-code propagation, automated
-Swift installation, the admin boundary, CLI usability, or interruption-safe
-report finalization. Neither `DEFERRED_ADMIN_REQUIRED` nor an accidentally
-repaired or broken machine state is completion evidence without isolated
-regression tests. The source migration and temporary-link removal are complete
-and not open acceptance items. Under LocalImplementation authority, a later
-Autonomous run stops before commit, push, pull request, or merge.*
+remains for input-safe iteration, required exit-code propagation, or automated
+Swift installation. The current machine's no-missing-tools output is not
+completion evidence without isolated regression tests. Under
+LocalImplementation authority, a later Autonomous run stops before commit,
+push, pull request, or merge.*
 
 <!-- intake-authoring:prompts -->
 ## Copy-Ready Spec Kit Prompts
@@ -738,14 +554,14 @@ Autonomous run stops before commit, push, pull request, or merge.*
 ### Specify
 
 ```text
-$speckit-specify Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre LUM-001 bis LUM-011, AC-001 bis AC-015, die Root-Position 2, die nachfolgende Position-3-Haertung, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Sicherheits-, Admin-Autoritaets-, Capability-, Supply-Chain-, A11Y-, Exitcode-, Berichts- und Plattformgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
+$speckit-specify Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Erstelle die Spezifikation ausschliesslich aus diesem Intake und der historischen Feature-009-Baseline. Bewahre LUM-001 bis LUM-008, AC-001 bis AC-012, die Root-Position 2, die nachfolgende Position-3-Haertung, die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3 sowie alle Sicherheits-, Supply-Chain-, A11Y-, Exitcode- und Plattformgrenzen. Implementiere nichts, veraendere keine Remote-Zustaende und starte keinen Autonomous- oder Parallel-Autonomous-Lauf.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre LUM-001 bis LUM-011, AC-001 bis AC-015, die Root-Position 2, die separate nachfolgende Position-3-Haertung und die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3. Implementiere und validiere lokal bis zur definierten Abschlussgrenze einschliesslich Admin-Autoritaets-, Capability- und abbruchfester Berichtstests. Stoppe bei fehlender historischer Baseline-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md Fuehre den vollstaendigen Spec-Kit-Lauf gebunden an diesen Intake mit deliveryAuthority=LocalImplementation aus. Bewahre die Root-Position 2, die nachfolgende Position-3-Haertung und die TUI-Sperre bis zum Abschluss von Feature 009 und der aktiven Positionen 1 bis 3. Implementiere und validiere lokal bis zur definierten Abschlussgrenze. Stoppe bei fehlender historischer Baseline-Evidence oder einem harten Stopp. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 
 <!-- intake-authoring:end -->
