@@ -377,6 +377,14 @@
       "labelEn": "Learning-series governance and AI competence intakes",
       "netLines": 1816,
       "activeDays": 1
+    },
+    {
+      "slot": 46,
+      "id": "preset-profile-worktree-hardening-intake-v13",
+      "labelDe": "Preset-Profil- und Worktree-Härtungsintake v1.3",
+      "labelEn": "Preset profile and worktree hardening intake v1.3",
+      "netLines": 2453,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
