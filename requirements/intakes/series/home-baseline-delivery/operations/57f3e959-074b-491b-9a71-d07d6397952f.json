@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "57f3e959-074b-491b-9a71-d07d6397952f",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user approval to update only the position-3 intake hash while preserving all Series identities, targets, roots, dependencies, order, and statuses.",
+  "proposalNormalizedSha256": "c4e40fe218984a2897b09ae420b5a4ac85668960fcc14eb9dc41006acc547075",
+  "preparedPaths": [
+    "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+    "specs/intake-authoring-receipts/preset-profil-default-branch-und-worktree-haertung.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/active-lastenheft-normalization/intake-review-request.json",
+    "specs/active-lastenheft-normalization/intake-review-result.json",
+    "specs/active-lastenheft-normalization/intake-review-report.md",
+    "specs/active-lastenheft-normalization/validation.md"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

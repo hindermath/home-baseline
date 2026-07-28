@@ -1,31 +1,31 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "a0a5dfc8-4527-4542-a0dd-a46feaf3ce5b",
+  "receiptId": "1410b35d-f653-4794-9f89-83bb5eec81a9",
   "intakeId": "40faffea-1f68-416c-9ca3-d932c9a3fda1",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
-  "createdAt": "2026-07-25T12:58:33Z",
+  "createdAt": "2026-07-28T23:12:52Z",
   "operation": {
-    "operationId": "51366eb0-5c0d-42fb-80b4-6946a27ff155",
+    "operationId": "3c66b483-29a8-44d9-9003-82d281d04540",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+    "authorityEvidence": "Explicit current user approval of the in-place v1.3 intake update and MergeAndSync delivery for this intake-only change."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
-    "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b"
+    "normalizedSha256": "5c5d1c27d7328d4ae784bdcebdb1b7163d37443637eb10dc2d4f646a794c8f6e"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
       "kind": "File",
-      "label": "Archived prior accepted intake",
+      "label": "Archived prior accepted intake v1.2",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/target.md",
+      "path": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/3c66b483-29a8-44d9-9003-82d281d04540/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,99 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5",
-      "gitBlob": "8d72337cbc0f946c0c07db3ad5653d1b6480fd0f",
+      "normalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
+      "gitBlob": "66067386d970d06c3c388de2f2952646dc56db5a",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
+      "kind": "File",
+      "label": "Feature 015 Windows maintenance retrospective",
+      "location": "Repository",
+      "path": "specs/015-windows-maintenance-hardening/retrospective.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "48442a61b1849a12ff7853789acb88eec69f1b39502d5e6c8a7d5dd751c0c096",
+      "gitBlob": "20dae488f7a96206243bb82db338a6962591f2dd",
+      "proofBoundary": "MergedFeatureEvidence: PR #142"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Feature 016 Linux maintenance retrospective",
+      "location": "Repository",
+      "path": "specs/016-linux-maintenance-hardening/retrospective.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "a78cf337a31f7162c6e6fc711d257cf9f428ab8eed151386142217743b9c94ee",
+      "gitBlob": "469d49c952c17157ab04be5f884195166b937c14",
+      "proofBoundary": "MergedFeatureEvidence: PRs #146 and #148"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "File",
+      "label": "Current agentic workspace fleet manifest",
+      "location": "Repository",
+      "path": "scripts/config/agentic-workspace-fleet.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "394e74a786b007603f7bf27ba8efe17cf87bbe8ed6b9629e3b61c3e2b9439c56",
+      "gitBlob": "94911566402d079131df920e49d48aeca045f41c",
+      "proofBoundary": "CurrentFleetInventory: 43 Git targets and one collection target"
+    },
+    {
+      "sourceId": "SRC005",
+      "order": 5,
+      "kind": "File",
+      "label": "Current installed Spec Kit preset registry",
+      "location": "Repository",
+      "path": ".specify/presets/.registry",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "b4c730c2c514a2b597c0ff8a6b3191d679ac0171bf2a362d4741b64950500189",
+      "gitBlob": "0b020ff30879b4b03b906ea8134a4abac9194b6c",
+      "proofBoundary": "CurrentPresetEvidence: eleven installed presets"
+    },
+    {
+      "sourceId": "SRC006",
+      "order": 6,
       "kind": "Pasted",
-      "label": "Approved active intake series normalization request",
+      "label": "Approved v1.3 intake update plan",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,7 +141,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "normalizedSha256": "d2efe738eef9f0b6f5829c7ca7bbd2f53facb58d75eac16f39e5d9b175d4398e",
       "gitBlob": "N/A",
       "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
@@ -68,23 +152,37 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
-      "answer": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
-      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
+      "question": "Welche Intake-Identitaet, Position und Series-Struktur bleiben erhalten?",
+      "answer": "Die bestehende intakeId, Position 3, 39 Ziele, drei Roots und 46 Abhaengigkeiten bleiben unveraendert.",
+      "evidence": "Der genehmigte Plan autorisiert nur ein In-place-Update von Inhalt, Hash und Review-Evidence."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
-      "answer": "Root position 3; historical Feature 009 baseline; hard gate input for position 4.",
-      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
+      "question": "Welche aktuelle Flotten- und Preset-Basis ist bindend?",
+      "answer": "Level 0 plus 43 aktive Manifest-Git-Ziele bilden 44 Git-Repositories; eine Collection wird getrennt inventarisiert. Presets werden dynamisch aus dem Profilkatalog aufgeloest; elf Presets sind der aktuelle Feldnachweis.",
+      "evidence": "SRC004 bindet das aktuelle Fleet-Manifest; SRC005 bindet die aktuelle Preset-Registry."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
-      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
-      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
+      "question": "Welche frueheren Haertungen duerfen nicht regressieren?",
+      "answer": "Die Windows-Vertraege aus Feature 015 und die Linux-, Eingabe-, Aggregations-, Plattform- und Exact-Head-Vertraege aus Feature 016 bleiben bindend.",
+      "evidence": "SRC002 und SRC003 sind die gemergten Feature-Retrospektiven."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Bereinigungs- und Netzwerkgrenzen gelten?",
+      "answer": "Keine breite Checkout-Bereinigung; nach Zustandswechseln ist die Kandidatenmenge neu zu inventarisieren. Fetch und Pull benoetigen begrenzte Versuche, Dauer, Endstatus und naechste Aktion.",
+      "evidence": "Der genehmigte Plan und der dokumentierte lokale Bereinigungsnachweis definieren die fail-closed Grenzen."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync gilt nur fuer die spaetere Feature-017-Lieferung im Home-Baseline-Repository. Der Wartungsbefehl erhaelt keine Remote-Schreibautoritaet fuer Ziel-Repositories.",
+      "evidence": "Explizite aktuelle Benutzerfreigabe mit enger Admin-Bypass-Grenze."
     }
   ],
   "openDecisionIds": [],
@@ -95,15 +193,15 @@
     "autonomousCanonicalId": "speckit.autonomous",
     "autonomousInvocation": "$speckit-autonomous"
   },
-  "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval: deliver this intake-only update with MergeAndSync; the embedded future Feature 017 prompt uses the same authority under the narrow reviewed bypass boundary.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/receipt.json",
-    "targetNormalizedSha256": "d1a7710ea1c96573dd12505e6527552df82f71de12d83e97c41630844f2857d5",
-    "archiveTargetPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/51366eb0-5c0d-42fb-80b4-6946a27ff155/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/3c66b483-29a8-44d9-9003-82d281d04540/receipt.json",
+    "targetNormalizedSha256": "4c7eb6cae94f8341f5a4d6bb1be7a21a06752df5ec3c10902688f555e24ff54b",
+    "archiveTargetPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/3c66b483-29a8-44d9-9003-82d281d04540/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/40faffea-1f68-416c-9ca3-d932c9a3fda1/3c66b483-29a8-44d9-9003-82d281d04540/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -111,10 +209,10 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "updateAuthorityEvidence": "Explicit current user approval of the complete Intake-Update plan, including stable identity, no Series reorder, no Feature 017 start, and MergeAndSync delivery.",
   "series": {
-    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
-    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
     "order": 3,
     "role": "Root",
     "supersedesIntakeIds": []
