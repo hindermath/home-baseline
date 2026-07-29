@@ -5,7 +5,7 @@
   "branch": "018-agentic-workspace-tui",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
+  "stage": "Review",
   "status": "Active",
   "checkpointCommit": "495f865ac0cf8c484448fa340d4a2d678f7c8357",
   "acceptedArtifacts": [
@@ -75,21 +75,21 @@
     },
     {
       "path": "specs/018-agentic-workspace-tui/tasks.md",
-      "sha256": "26cfdb2534edcd609f8025fa3caf2dca0627650441e471820799670e63dfe36f"
+      "sha256": "6bbb4137f32e6bd18e74727d64dee7f34d8066b29b4901de28a386e38b0707ba"
     }
   ],
   "tasks": {
     "path": "specs/018-agentic-workspace-tui/tasks.md",
-    "sha256": "26cfdb2534edcd609f8025fa3caf2dca0627650441e471820799670e63dfe36f",
-    "completed": 126,
+    "sha256": "6bbb4137f32e6bd18e74727d64dee7f34d8066b29b4901de28a386e38b0707ba",
+    "completed": 127,
     "total": 133
   },
   "lastPassingGate": "Exact local candidate: 62 .NET, 79 maintenance, 30/30 Homogeneity and all affected validators",
-  "nextExactAction": "Create the non-empty Feature 018 pull request and record its exact head.",
+  "nextExactAction": "Push the PR evidence commit, then converge exact-head checks and actionable review threads for PR 160.",
   "lastOperation": {
     "kind": "Publish",
     "state": "Completed",
-    "summary": "The reviewed local candidate was committed and pushed through T126."
+    "summary": "Non-empty PR 160 was created and recorded through T127."
   },
   "stop": {
     "reason": "N/A",
@@ -102,5 +102,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-29T14:48:18Z"
+  "updatedAt": "2026-07-29T14:49:55Z"
 }

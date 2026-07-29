@@ -191,7 +191,7 @@
 | Item | Result | Evidence |
 |---|---|---|
 | Push | Pass | Branch `018-agentic-workspace-tui` pushed after the repository pre-push secret scan passed |
-| Pull request | Open | Pending |
+| Pull request | Pass | [PR #160](https://github.com/hindermath/home-baseline/pull/160), non-empty creation head `533412d3b6cafe677eebf3f3b588e88c94ed175f`; the following evidence commit becomes the exact review head |
 | Required checks | Open | Pending exact-head provider checks |
 | Acceptance execution map | Open | Pending temporary provider-neutral evidence |
 | Actionable threads | Open | Pending |
