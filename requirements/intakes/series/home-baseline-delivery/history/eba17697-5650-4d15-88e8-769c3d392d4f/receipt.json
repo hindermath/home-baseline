@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "8d8be7c6-6f10-4e26-9aec-896bb6352247",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-28T23:12:52Z",
+  "operation": {
+    "operationId": "57f3e959-074b-491b-9a71-d07d6397952f",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user approval to update only the position-3 intake hash while preserving all Series identities, targets, roots, dependencies, order, and statuses."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "c4e40fe218984a2897b09ae420b5a4ac85668960fcc14eb9dc41006acc547075"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/57f3e959-074b-491b-9a71-d07d6397952f/receipt.json",
+    "receiptNormalizedSha256": "ce2e56037af3775a870c0e18e6378beb2d43d9d052e80fd6e460cc8dc6c842ef",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/57f3e959-074b-491b-9a71-d07d6397952f/manifest.json",
+    "manifestArchiveSha256": "ce0eebdf1172b3d43ccf9e5e4b61d0f2f1ac77f5ada5e18b065b3f705484df45"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

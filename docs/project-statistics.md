@@ -137,6 +137,7 @@
 | 2026-07-28 | Feature 016 Linux-Ein-Kommando-Wartungshärtung | — | — | — | Die Linux-Orchestrierung verarbeitet Paket- und CLI-Registries mit stdin-sicheren Snapshots, eindeutigen geordneten Ergebnissen und wahrheitsgemäßem Required-Exitcode. Begrenzte Prozessgruppen-Probes unterscheiden fehlende, unbrauchbare, zeitüberschrittene und durch Fähigkeiten blockierte Werkzeuge. Swiftly 1.1.2 und Swift 6.3.3 werden für die offizielle Ubuntu-/Architekturmatrix verifiziert installiert, ohne Profile zu verändern oder Admin-Autorität zu erschleichen. Der Flottenabschluss ist atomar und genau einmal; 13 gezielte Linux- sowie 52 entdeckte Vertragstests sind grün. Vorschauen meldeten reale Host-/Flottendrift und verhinderten deshalb einen erzwungenen Paketlauf. Das exakte Implementierungsdelta vor Statistikpflege umfasst 4 054 Nettozeilen. |
 | 2026-07-28 | Lernreihen-Governance- und KI-Kompetenz-Intake-Kette vorbereitet | — | — | — | Vier neue Intakes und die aktualisierte globale Closure bilden die Positionen 33 bis 37: read-only Gap-Audit, domänenneutrale Drei-Ebenen-Erweiterung des Intake Reviews, optionales Learning-Series-Governance-Preset, IHK-Pilot und abschließende Gesamtkonsistenzprüfung. Acht stabile KI-Kompetenzen, vier Lernphasen und vier Quellenstatus trennen amtliche Anforderungen, gestützte Ziele, Projektergänzungen und begründete Zukunftsannahmen. Fünf Authoring-Receipts, fünf Einzelreviews und der gemeinsame Fünf-Ziel-Review sind in Bash und PowerShell `Ready`. Der aktive Series-Vertrag umfasst 39 Ziele, drei Roots, 46 eindeutige azyklische Abhängigkeiten und weiterhin genau einen `Eligible`-Kandidaten an Position 3. Kein Specify-, autonomer oder Lernendenlauf wurde gestartet. Das Delta vor Statistikpflege umfasst 1 816 Nettozeilen. |
 | 2026-07-29 | Preset-Profil- und Worktree-Härtungsintake v1.3 | — | — | — | Der bestehende Intake auf Position 3 bindet jetzt die gemergten Features 015/016, Level 0 plus 43 aktive Manifest-Git-Ziele, das separat inventarisierte Collection-Ziel und den dynamischen Elf-Preset-Feldstand. PWH-016 bis PWH-020 sowie AC-018 bis AC-027 ergänzen exakte Bereinigungsfreigaben, begrenzte Netzwerk-Evidence, Regressionsschutz und die Zielrepository-Grenze. Intake-ID, 39 Series-Ziele, drei Roots, 46 Abhängigkeiten, Reihenfolge und alleiniger `Eligible`-Status blieben erhalten. Authoring-, Review- und Series-Validatoren bestehen in Bash und PowerShell. Feature 017, Specify und Autonomous wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 2 453 Nettozeilen. |
+| 2026-07-29 | Feature 017 Preset-Profil-, Branch- und Worktree-Härtung | — | — | — | Die Flottenwartung führt jetzt für Level 0 und jedes aktive Git-Ziel eine begrenzte Remote-Freshness-Prüfung vor nachfolgenden Mutationen aus. Beliebige Default-Branches werden aus symbolischer Remote-Evidence statt aus Namensannahmen bestimmt. Pull bleibt auf saubere, eindeutig zugeordnete Behind-only-Checkouts begrenzt. Eigentumsgebundene Worktree-Leases, dynamische Preset-Profile, nicht mutierende MSL-Konfliktprüfung und plattformparitätische Bash-/PowerShell-Evidence sind durch 60 Tests und 20 Provider-Jobs abgesichert. PR #153 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 3 und gibt Position 4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. |
 
 ---
 
@@ -852,6 +853,43 @@ findings, and position 3 as the sole Eligible candidate. The exact
 pre-statistics delta is 2,453 net lines. Feature 017, Specify, and Autonomous
 were not started.*
 
+### 2026-07-29 - Feature 017 Preset-Profil-, Branch- und Worktree-Härtung / Preset Profile, Branch, and Worktree Hardening
+
+- Die Remote-Freshness-Barriere inventarisiert Level 0, alle aktiven
+  Manifest-Git-Ziele und das getrennte Collection-Ziel vollständig, bevor
+  eine Fachmutation erlaubt werden kann.
+- Default-Branch, Tracking-Ref und exakter Commit werden aus lokaler oder
+  entfernter symbolischer HEAD-Evidence gebunden. Nur ein sauberer,
+  kanonischer, eindeutig zugeordneter Behind-only-Checkout darf per
+  Fast-forward aktualisiert werden.
+- Eigentumsgebundene Worktree-Leases schützen aktive, fremde, manipulierte,
+  verlassene und PID-wiederverwendete Zustände. Breite Checkout-Bereinigung
+  bleibt ausgeschlossen.
+- Preset-Profile werden dynamisch aus dem Katalog aufgelöst. Elf Presets sind
+  der aktuelle Feldnachweis und keine feste Programmgrenze.
+- 60 lokale Tests, 20 Provider-Jobs auf Ubuntu, macOS und Windows,
+  PSScriptAnalyzer, Homogeneity, Secret-Scan und acht providerneutrale Gates
+  bestanden. PR #153 wurde am exakten Head
+  `7c46069b40cce595091440de18741d59ca48a3d1` gemergt.
+- Home Runtime ist synchron. Der reale `--check-only`-Lauf inventarisierte
+  alle Ziele, löste alle kurzlebigen Preset-Worktrees auf und blieb wegen
+  vorhandener Flotten- und Propagationsdrift korrekt fail-closed.
+- Der kausale Series-Closeout enthält 38 aktive Ziele, drei Roots und 45
+  Abhängigkeiten. Position 4 ist der einzige `Eligible`-Kandidat; kein
+  Folgefeature wurde gestartet.
+
+*The Remote Freshness Barrier inventories Level 0, every active manifest Git
+target, and the separate collection before domain mutation can be authorized.
+Symbolic remote evidence binds the default branch, tracking ref, and exact
+commit; only a clean canonical behind-only checkout may fast-forward. Owned
+worktree leases protect active, foreign, tampered, abandoned, and PID-reused
+state. Preset profiles resolve dynamically. Sixty local tests, twenty
+cross-platform provider jobs, and eight provider-neutral gates passed before
+PR #153 merged the exact reviewed head. Home Runtime is synchronized. The real
+check-only run remained fail-closed on existing fleet drift, and the causal
+Series closeout publishes 38 targets, three roots, and 45 dependencies with
+item 4 as the sole Eligible candidate without starting it.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -862,27 +900,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 423676 lines |
-| Textdateien / Text files | 2660 |
+| Textbasis / Text base | 425328 lines |
+| Textdateien / Text files | 2668 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
 | Aktivtage / Active days | 77 |
-| Relevante Commits / Relevant commits | 609 |
-| Zeilen je Aktivtag / Lines per active day | 5502.3 |
+| Relevante Commits / Relevant commits | 610 |
+| Zeilen je Aktivtag / Lines per active day | 5523.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 34 days |
-| Speedup vs. 80 lines/day | 68.8x |
-| Speedup vs. 100 lines/day | 55.0x |
-| Methodik / Methodology | v2; source `8508c8b80448` |
+| Speedup vs. 80 lines/day | 69.0x |
+| Speedup vs. 100 lines/day | 55.2x |
+| Methodik / Methodology | v2; source `dad5975ab47c` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
 Tests                           [#...................]   3.7% | 15866
-Dokumentation / Documentation   [##############......]  68.9% | 292105
-Skripte / Scripts               [##..................]  12.3% | 51992
-Konfiguration / Configuration   [###.................]  14.7% | 62322
+Dokumentation / Documentation   [##############......]  68.7% | 292246
+Skripte / Scripts               [##..................]  12.2% | 51992
+Konfiguration / Configuration   [###.................]  15.0% | 63833
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -1060,8 +1098,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 68.8x
-100 lines/day      [###########.........] 55.0x
+80 lines/day       [##############......] 69.0x
+100 lines/day      [###########.........] 55.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1074,7 +1112,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5502.3
+Visible repository [###########.........] 5523.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1100,6 +1138,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 358248 |
+| 2026-07 | 360286 |
 
 <!-- project-statistics-v2:end -->

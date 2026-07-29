@@ -5,12 +5,12 @@
   "branch": "017-preset-profile-worktree-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Deliver",
-  "status": "Active",
-  "checkpointCommit": "52e9a9f89c047a87d9e6f10ff7a1332bc98cdb74",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "9ae8ecbe9cd19d9f7d7cfab9ce960361082f872a",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md",
       "sha256": "5c5d1c27d7328d4ae784bdcebdb1b7163d37443637eb10dc2d4f646a794c8f6e"
     },
     {
@@ -19,29 +19,29 @@
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-      "sha256": "03681686dfbdc565a0a664360e8401d5b59cc19da33c0a3ee0f6b84780ec3b3c"
+      "sha256": "0e0a3f2af6cd01aec8c3a6fd7699267b6440be365940507f29592fbdcd7c3cd4"
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-result.json",
-      "sha256": "9672fc055e26c6ca8c76492788878b334f84eae02d5ec6fa8ca0d884ab75b06c"
+      "sha256": "c96a9420afe85d8d1865ee8e3f7bb9b4807a88a61daa4e8e1255dba805dfdcaf"
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "c4e40fe218984a2897b09ae420b5a4ac85668960fcc14eb9dc41006acc547075"
+      "sha256": "3306edd96ba08a863435f812140265f3d71e5e8b22c65828b55ca8fb3d702d4f"
     }
   ],
   "tasks": {
     "path": "specs/017-preset-profile-worktree-hardening/tasks.md",
-    "sha256": "2c193955045d389adfe237ef2aece077dc0d5066acaa4e235d29a88ef671cf57",
-    "completed": 81,
+    "sha256": "16c6168a202b77abb5885ceaa502fcaf8d367fe3c7c32b39676e2ed03fc0b3a6",
+    "completed": 89,
     "total": 89
   },
-  "lastPassingGate": "Local exact-candidate validation passed: 60 tests, 12 platform skips, Homogeneity 30/30, parser, analyzer, Documentation Impact, generated references, statistics, secrets and diff checks.",
-  "nextExactAction": "Open the non-empty pull request and collect exact-head provider evidence.",
+  "lastPassingGate": "PR #153 head 7c46069 passed 20 provider checks on Ubuntu, macOS and Windows, zero actionable threads and 8/8 provider-neutral gates; Series review 6851ba2b is Ready with Position 4 as the sole declared Eligible successor.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "Validation",
+    "kind": "MergeAndSync",
     "state": "Completed",
-    "summary": "Implemented all five stories and completed the local acceptance gates without target-repository delivery actions."
+    "summary": "Feature 017 merged at the exact reviewed head, main and Home Runtime synchronized, the Position-3 intake archived, the 38-target successor Series reviewed, and the real fleet check-only result recorded without target-repository mutation or successor start."
   },
   "stop": {
     "reason": "N/A",
@@ -49,10 +49,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-07-29T11:07:32Z"
+  "updatedAt": "2026-07-29T11:22:07Z"
 }

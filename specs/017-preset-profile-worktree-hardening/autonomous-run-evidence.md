@@ -90,7 +90,7 @@ outside the maintenance contract changed.
 | Branch and pull safety | PWH-002, PWH-003, PWH-013 | AC-001, AC-002, AC-003, AC-014, AC-015, AC-019 | G001 | Pass |
 | Worktree ownership and cleanup | PWH-004, PWH-005, PWH-006, PWH-018 | AC-004, AC-005, AC-006, AC-022, AC-023 | G002 | Pass |
 | Dynamic profiles and Registry | PWH-008, PWH-009, PWH-016, PWH-020 | AC-008, AC-009, AC-010, AC-024 | G004, G006 | Pass |
-| Evidence and platform parity | PWH-001, PWH-007, PWH-010, PWH-011, PWH-015, PWH-017 | AC-007, AC-011, AC-012, AC-017, AC-025, AC-027 | G003, G005, G007 | Pass locally; provider exact-head evidence pending |
+| Evidence and platform parity | PWH-001, PWH-007, PWH-010, PWH-011, PWH-015, PWH-017 | AC-007, AC-011, AC-012, AC-017, AC-025, AC-027 | G003, G005, G007 | Pass locally and on the exact provider-reviewed head |
 
 All PWH-001 through PWH-020 and AC-001 through AC-027 are mapped exactly
 once in the accepted spec and covered by T001 through T089. Analyze produced
@@ -118,8 +118,8 @@ N/A recorded in the gate declaration.
 |---|---|---|
 | Intended paths | Pass | Feature artifacts, maintenance core/orchestrators/tests, operator docs and generated references only |
 | Tracked worktree diff | Pass | `git diff --check` passed locally |
-| Exact staged candidate | Open | `git diff --cached --check` before commit |
-| Status reconciliation | Open | No unrelated paths accepted |
+| Exact staged candidate | Pass | Reviewed feature head `7c46069b40cce595091440de18741d59ca48a3d1` |
+| Status reconciliation | Pass | No unrelated paths entered PR #153 |
 | Index preservation | N/A | Clean index at feature start |
 
 ## Acceptance Gate Contract
@@ -128,42 +128,73 @@ N/A recorded in the gate declaration.
 |---|---|
 | Requirements artifact | `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-requirements.json` |
 | Requirements SHA-256 | `5ba37a51c6df7e01cd5747f18e32a7bdf90a68d54b24da72a3258e1bab7e1fad` |
-| Temporary evidence snapshot | Provider-neutral exact-head artifact; not committed before merge |
-| Reviewed head | Pending |
+| Exact-head evidence snapshot | `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-evidence.json` |
+| Reviewed head | `7c46069b40cce595091440de18741d59ca48a3d1` |
 | Validator | Installed Bash and PowerShell autonomous gate validators |
-| Validator result | Open |
+| Validator result | Pass, 8/8 in Bash and PowerShell |
 
 ## Remote Delivery
 
 | Item | Result | Evidence |
 |---|---|---|
 | Push | Pass | `017-preset-profile-worktree-hardening` pushed without target-repository writes |
-| Pull request | Open | Non-empty PR required |
-| Required checks | Open | Exact provider state pending |
-| Acceptance execution map | Open | Requirements hash and exact-head evidence pending |
-| Actionable threads | Open | Provider review pending |
-| Unavailable reviews | None known | Must be recorded as missing, never Pass |
-| Merge | Open | `MergeAndSync` authority |
-| Default-branch sync | Open | Clean `HEAD == origin/main` required |
-| Causal closeout | Open | Use only if post-merge Series facts cannot truthfully exist on reviewed head |
+| Pull request | Pass | PR #153, non-empty feature delivery |
+| Required checks | Pass | 20 successful jobs across Ubuntu, macOS and Windows |
+| Acceptance execution map | Pass | Requirements hash and exact-head evidence validated 8/8 |
+| Actionable threads | Pass | Zero review threads and zero comments |
+| Unavailable reviews | Missing | No human or bot review was submitted; never represented as Pass |
+| Merge | Pass | Exact reviewed head merged as `9ae8ecbe9cd19d9f7d7cfab9ce960361082f872a` |
+| Default-branch sync | Pass | Local `main == origin/main` immediately after feature merge |
+| Causal closeout | Applicable | Post-merge archive and successor eligibility require this separate closeout |
 | Duplicate events | N/A | No duplicate delivery event observed |
 
 ## Closeout State
 
 | Step | State | Evidence |
 |---|---|---|
-| Merge or publication | Pending | Feature PR not created |
-| Default-branch synchronization | Pending | Feature branch active |
-| Manifest-declared post-merge actions | Pending | Intake archive and successor Series disposition after merge |
-| Final validation | Pending | Full acceptance pending |
+| Merge or publication | Completed | PR #153 merged; narrow bypass affected only Human Approval |
+| Default-branch synchronization | Completed | Feature branch removed and merged `main` synchronized |
+| Manifest-declared post-merge actions | Completed | Intake archived; 38-target Series and fresh review published |
+| Final validation | Completed | Exact-head, Series, Home Runtime and real fleet check-only evidence recorded |
 
 ## Resume and Follow-up
 
-- Checkpoint commit: `b1e0110864cd7a6aa75c7cf42e7eec70bfe942c9`
-- Last operation: local implementation, final regression and repository quality gates completed
-- Last passing gate: 60 tests passed, 12 platform skips; Homogeneity 30/30 and all local gates passed
-- Next exact action: align exact candidate state, push and collect provider exact-head evidence
+- Checkpoint commit: `9ae8ecbe9cd19d9f7d7cfab9ce960361082f872a`
+- Last operation: feature merge, Home Runtime synchronization and causal Series closeout completed
+- Last passing gate: PR #153 exact head passed 20 provider checks, zero actionable threads and 8/8 provider-neutral gates; Series review `6851ba2b-edbe-4348-af93-c0d48d337701` is `Ready`
+- Next exact action: N/A
 - Stop reason and safe boundary: N/A
 - Authority revalidation required: false
-- Residual risk: Native provider validation and exact-head review remain pending.
-- Out-of-scope follow-up: Position 4 remains blocked and is not started.
+- Residual risk: Real fleet check-only run
+  `4b7757d6-705f-41c3-aa12-83d97fefd25c` correctly remained `PARTIAL/1`
+  because Level 0 was on the closeout branch, 32 canonical repositories
+  reported maintenance-package drift and clean target checkouts were behind
+  their remotes. These are fleet operations outside Feature 017.
+- Out-of-scope follow-up: Position 4 is `Eligible` but is not started.
+
+## Merge and causal closeout
+
+- PR #153 merged reviewed head
+  `7c46069b40cce595091440de18741d59ca48a3d1` as merge commit
+  `9ae8ecbe9cd19d9f7d7cfab9ce960361082f872a`. Twenty GitHub checks passed
+  across Ubuntu, macOS and Windows, and both installed gate validators accepted
+  all eight exact-head requirements. No actionable review thread existed.
+- The explicitly authorized narrow admin bypass applied only to GitHub's
+  remaining Human Approval rule. It did not replace a technical, security,
+  platform, evidence or review-thread gate.
+- `scripts/sync-home.sh --no-pull` distributed the merged runtime and created
+  local Home commit `aafd293`; the following `--check-only` run was current.
+- Real check-only run `4b7757d6-705f-41c3-aa12-83d97fefd25c` completed all 44
+  Git-target fetch attempts plus the separate Collection inventory. Its
+  mutation barrier remained fail-closed. All eleven-preset validations used
+  exact remote heads and released every temporary lease and worktree.
+- The run reported existing fleet state rather than changing it: the Level-0
+  checkout was intentionally on the closeout branch, clean target repositories
+  were behind their remotes, and all 32 canonical repositories had the
+  expected post-feature maintenance-package propagation drift. Toolchain
+  required findings were zero; three optional formulae remained absent.
+- Series operation `eba17697-5650-4d15-88e8-769c3d392d4f` archives the
+  completed Position-3 intake and publishes 38 active targets, three roots and
+  45 dependencies. Fresh Series review
+  `6851ba2b-edbe-4348-af93-c0d48d337701` is `Ready` and selects Position 4 as
+  the sole declared `Eligible` candidate without starting it.
