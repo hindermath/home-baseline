@@ -6,17 +6,18 @@
 - Roots: 3
 - Eindeutige Abhaengigkeiten / Unique dependencies: 44
 - Bevorzugte `Eligible`-Kandidaten: genau D4
-- Review-ID: `31370a44-3c7a-4e7e-a9db-ac82bfa533d3`
-- Supersedes: `05b38977-2b41-451f-947c-d9ac93c385f4`
+- Review-ID: `7fd2b056-6e21-4108-bf09-237f294a6024`
+- Supersedes: `31370a44-3c7a-4e7e-a9db-ac82bfa533d3`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils 0
 
 Die Werte beschreiben die vollstaendige aktive Serie nach dem kausalen
-Closeout von Feature 018. Historische Reviews und Series-Staende bleiben
-bytegleich in ihren Archiven erhalten.
+Closeout von Feature 018 und der anschließenden D4-In-place-Supersession.
+Historische Reviews und Series-Staende bleiben bytegleich in ihren Archiven
+erhalten.
 
-*These values describe the complete active series after the causal closeout of
-Feature 018. Historical reviews and series states remain byte-identical in
-their archives.*
+*These values describe the complete active series after the causal Feature 018
+closeout and the subsequent in-place D4 supersession. Historical reviews and
+series states remain byte-identical in their archives.*
 
 ## Feature-Abschluss / Feature Closeout
 
@@ -40,6 +41,10 @@ maintenance-target or provider authority.*
 ## Series- und Review-Bindung
 
 - Die Series-ID bleibt unveraendert.
+- D4 behält Pfad, Intake-ID, Rolle `Primary`, Root-Status und `Eligible`;
+  ausschließlich sein normalisierter Hash wurde aktualisiert.
+- Der vorherige 37-Ziel-Stand sowie sein Receipt sind unter
+  `history/7862b534-0dd3-4ebb-9db4-ca27135155bb/` bytegleich archiviert.
 - Der vorherige 38-Ziel-Stand mit 45 Kanten sowie sein Receipt sind unter
   `history/57442be4-5c21-43d4-a3cd-d46690aaa62d/` bytegleich archiviert.
 - Das aktuelle Manifest umfasst 37 Ziele, drei Roots und 44 Kanten.
@@ -55,12 +60,10 @@ accepted by both validator implementations.*
 
 ## Liefergrenze / Delivery Boundary
 
-Dieser Closeout archiviert nur den abgeschlossenen Intake, aktualisiert
-Reihenfolge und Evidence und schliesst den autonomen Run-State. D4 wird nicht
-gestartet. `Eligible` beschreibt die fachliche Reihenfolge und erteilt keine
-Feature-, Remote-, Merge- oder Administratorautoritaet.
+Diese Aktualisierung ersetzt D4 und seine Evidence in-place, ohne einen
+Featurelauf zu starten. `Eligible` beschreibt die fachliche Reihenfolge und
+erteilt keine Feature-, Remote-, Merge- oder Administratorautoritaet.
 
-*This closeout only archives the completed intake, updates order and evidence,
-and completes the autonomous run state. It does not start D4. Eligible
-describes sequence readiness and grants no feature, remote, merge, or
-administrator authority.*
+*This update supersedes D4 and its evidence in place without starting a
+feature run. Eligible describes sequence readiness and grants no feature,
+remote, merge, or administrator authority.*

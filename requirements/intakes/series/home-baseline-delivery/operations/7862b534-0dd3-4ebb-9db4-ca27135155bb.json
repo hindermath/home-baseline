@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "7862b534-0dd3-4ebb-9db4-ca27135155bb",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user authority to update D4 in place, preserve the accepted Series topology, and deliver the refreshed intake evidence through MergeAndSync without starting D4.",
+  "proposalNormalizedSha256": "f3b890dbed497862f03b91792b123e1a0302ff11ad9dc0431bf1904c08d24e18",
+  "preparedPaths": [
+    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
+    "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

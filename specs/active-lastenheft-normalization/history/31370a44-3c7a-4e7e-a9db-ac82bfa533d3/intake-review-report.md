@@ -3,26 +3,24 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `7fd2b056-6e21-4108-bf09-237f294a6024`
-- Supersedes: `31370a44-3c7a-4e7e-a9db-ac82bfa533d3`
+- Review-ID: `31370a44-3c7a-4e7e-a9db-ac82bfa533d3`
+- Supersedes: `05b38977-2b41-451f-947c-d9ac93c385f4`
 - Ziele / Targets: 37
 - Roots: 3
 - Abhaengigkeiten / Dependencies: 44
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Feature 018 und sein kausaler Closeout sind über PRs #160 und #165
-abgeschlossen. D4 bindet jetzt zusätzlich die gemergten Plattform-,
-Remote-/Worktree- und Wartungs-TUI-Nachweise aus Features 015 bis 018. Die
-Aktualisierung ändert nur den D4-Inhalt und dessen Hash; D4 bleibt der einzige
-bevorzugte `Eligible`-Kandidat. Dieser Review startet D4 oder einen anderen
+Feature 018 und PR #160 sind am exakten geprüften Head abgeschlossen. Das
+bindende Lastenheft ist mit seiner Feature-Kennung archiviert und nicht mehr
+Teil der aktiven Serie. D4 ist jetzt der einzige bevorzugte
+`Eligible`-Kandidat. Dieser Review startet D4 oder einen anderen
 Spec-Kit-Lauf nicht.
 
-*Feature 018 and its causal closeout are complete through PRs #160 and #165.
-D4 now also binds the merged platform, remote/worktree, and maintenance-TUI
-evidence from Features 015 through 018. Only D4 content and its hash changed;
-D4 remains the single preferred Eligible candidate. This review does not start
-D4 or another Spec Kit run.*
+*Feature 018 and PR #160 are complete at the exact reviewed head. The binding
+intake is archived with its feature marker and is no longer part of the active
+series. D4 is now the single preferred `Eligible` candidate. This review does
+not start D4 or another Spec Kit run.*
 
 ## Abschluss-Evidence / Closeout Evidence
 
@@ -38,12 +36,6 @@ D4 or another Spec Kit run.*
 - Das Lastenheft liegt unverändert als
   `Lastenheft_Agentic-Workspace-Maintenance-TUI.018-agentic-workspace-tui.md`
   vor.
-- PR #165 mergte den kausalen Closeout als
-  `af743976b1c98a2ed28b8c446eb421df6a53d8e9`.
-- D4-Operation `dc8756a6-c32d-4cf3-ac7b-612162fda899`, Receipt
-  `dc6ab9bf-7649-47f6-8bf0-49a2dd04cf9b` und Einzelreview
-  `5955846b-83d4-48f9-a26a-3b1fa93c1e40` belegen die in-place
-  Supersession.
 - Kein Folgefeature und kein D4-Lauf wurde gestartet.
 
 *PR #160 merged exact head `64df267a9fb4c695e142de3ae5654f6edc3af149`
@@ -56,8 +48,6 @@ unchanged intake is archived and no successor run was started.*
 
 - Alle 37 aktiven Pfade, Rollen, Hashes und Positionen stimmen mit dem
   gebundenen Schema-1.1-Request ueberein.
-- Gegenüber dem Vorgänger änderte sich ausschließlich der normalisierte
-  D4-Hash; Zielmenge, Rollen, Reihenfolge, Roots und Kanten blieben gleich.
 - Die drei Roots `D4`, `9` und `10` entsprechen exakt den Knoten ohne
   eingehende Kante.
 - Alle 44 Kanten sind eindeutig, referenzgueltig, reihenfolgekonform und
