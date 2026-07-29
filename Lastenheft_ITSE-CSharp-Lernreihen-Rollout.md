@@ -32,7 +32,7 @@ Level 2:
 
 - `SecureOrderDeskProjects/SecureOrderDesk-CSharp`;
 - `SecureServiceHarvesterProjects/SecureServiceHarvester-CSharp`;
-- `secure-casetracker-baseline/securecasetracker-csharp`.
+- `SecureCaseTrackerProjects/SecureCaseTracker-CSharp`.
 
 ServiceHarvester erhält die vollständige ITSE-Professional-Reihe. OrderDesk und
 CaseTracker erhalten nur passende Aufgaben, Mappings und Verweise.

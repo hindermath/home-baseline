@@ -37,7 +37,7 @@ Die Skripte erstellen ein ZIP-Paket aus einem Level-1-Lernreihenordner. Das Pake
 
 ```bash
 bash scripts/package-learning-series.sh \
-  --source-dir ~/secure-casetracker-baseline \
+  --source-dir ~/SecureCaseTrackerProjects \
   --series-name "Secure CaseTracker" \
   --package-prefix secure-casetracker \
   --dry-run
@@ -45,7 +45,7 @@ bash scripts/package-learning-series.sh \
 
 ```powershell
 pwsh -NoProfile -File scripts/package-learning-series.ps1 `
-  -SourceDir ~/secure-casetracker-baseline `
+  -SourceDir ~/SecureCaseTrackerProjects `
   -SeriesName 'Secure CaseTracker' `
   -PackagePrefix secure-casetracker `
   -WhatIf

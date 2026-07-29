@@ -87,18 +87,18 @@ against the central catalog and unknown names are rejected.*
 
 ```bash
 bash scripts/register-level2-repository.sh --repo ~/RiderProjects/TuiVision --dry-run
-bash scripts/register-level2-repository.sh --repo ~/secure-casetracker-baseline/securecasetracker-rust --primary-language Rust
+bash scripts/register-level2-repository.sh --repo ~/SecureCaseTrackerProjects/SecureCaseTracker-Rust --primary-language Rust
 bash scripts/register-level2-repository.sh --repo ~/C64Projects/cc65 --primary-language cc65 --msl-status non-msl --gsdb-required true
 bash scripts/register-level2-repository.sh --scan-root ~/RiderProjects --dry-run
-bash scripts/register-level2-repository.sh --scan-root ~/secure-casetracker-baseline --source maintenance-discovery
+bash scripts/register-level2-repository.sh --scan-root ~/SecureCaseTrackerProjects --source maintenance-discovery
 ```
 
 ```powershell
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
-pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/secure-casetracker-baseline/securecasetracker-rust -PrimaryLanguage Rust
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/SecureCaseTrackerProjects/SecureCaseTracker-Rust -PrimaryLanguage Rust
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -Repo ~/C64Projects/cc65 -PrimaryLanguage cc65 -MslStatus non-msl -GsdbRequired true
 pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/RiderProjects -WhatIf
-pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/secure-casetracker-baseline -Source maintenance-discovery
+pwsh -NoProfile -File scripts/register-level2-repository.ps1 -ScanRoot ~/SecureCaseTrackerProjects -Source maintenance-discovery
 ```
 
 ## Sicherheit / Security

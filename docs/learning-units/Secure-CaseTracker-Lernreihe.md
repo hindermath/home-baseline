@@ -102,19 +102,19 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 
 ## Empfohlene Repo-Struktur / Recommended Repository Structure
 
-**DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-source` bleibt Level 0 und hält die generischen Materialien. Ein privates Level-1-Workspace-Repo `secure-casetracker-baseline` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.
+**DE:** Für die spätere praktische Bearbeitung ist die Reihe als Level-1-/Level-2-Struktur gedacht. `home-baseline-source` bleibt Level 0 und hält die generischen Materialien. Der private lokale Level-1-Workspace-Checkout `SecureCaseTrackerProjects` für das Remote-Repo `secure-casetracker-baseline` koordiniert die Lernreihe. Darunter liegen sechs private Level-2-Repos, damit jede Sprache eigene Toolchain, Tests, Dependency-Audits, Spec-Kit-Artefakte und Sicherheitsnachweise erhält.
 
-**EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-source` remains Level 0 and keeps the generic material. A private Level 1 workspace repository `secure-casetracker-baseline` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
+**EN:** For later practical work, the series is intended as a Level 1 / Level 2 structure. `home-baseline-source` remains Level 0 and keeps the generic material. The private local Level 1 workspace checkout `SecureCaseTrackerProjects` for the remote repository `secure-casetracker-baseline` coordinates the learning series. Six private Level 2 repositories sit below it so each language has its own toolchain, tests, dependency audits, Spec Kit artifacts, and security evidence.
 
 | Rolle / Role | Lokaler Ordner / Local folder | Repository-Slug | Primärsprache / Primary language | Zweck / Purpose |
 |---|---|---|---|---|
-| Koordination / Coordination | `secure-casetracker-baseline` | `secure-casetracker-baseline` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
-| Referenz / Reference | `securecasetracker-csharp` | `securecasetracker-csharp` | C# | erste manuelle Referenzimplementierung durch Lehrende |
-| Vergleich / Comparison | `securecasetracker-go` | `securecasetracker-go` | Go | MSL-Vergleich mit Go-Toolchain und Go-Sicherheitsprüfungen |
-| Vergleich / Comparison | `securecasetracker-java` | `securecasetracker-java` | Java | MSL-Vergleich mit Java-Toolchain und Java-Sicherheitsprüfungen |
-| Vergleich / Comparison | `securecasetracker-python` | `securecasetracker-python` | Python | MSL-Vergleich mit Python-Toolchain und Python-Sicherheitsprüfungen |
-| Vergleich / Comparison | `securecasetracker-rust` | `securecasetracker-rust` | Rust | MSL-Vergleich mit Rust-Toolchain und Rust-Sicherheitsprüfungen |
-| Vergleich / Comparison | `securecasetracker-swift` | `securecasetracker-swift` | Swift | MSL-Vergleich mit Swift-Toolchain und Apple-Plattform-Hinweisen |
+| Koordination / Coordination | `SecureCaseTrackerProjects` | `secure-casetracker-baseline` | keine Implementierung / no implementation | Statusmatrix, Reihenfolge, Links und Vergleich der Sprachpfade |
+| Referenz / Reference | `SecureCaseTracker-CSharp` | `securecasetracker-csharp` | C# | erste manuelle Referenzimplementierung durch Lehrende |
+| Vergleich / Comparison | `SecureCaseTracker-Go` | `securecasetracker-go` | Go | MSL-Vergleich mit Go-Toolchain und Go-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Java` | `securecasetracker-java` | Java | MSL-Vergleich mit Java-Toolchain und Java-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Python` | `securecasetracker-python` | Python | MSL-Vergleich mit Python-Toolchain und Python-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Rust` | `securecasetracker-rust` | Rust | MSL-Vergleich mit Rust-Toolchain und Rust-Sicherheitsprüfungen |
+| Vergleich / Comparison | `SecureCaseTracker-Swift` | `securecasetracker-swift` | Swift | MSL-Vergleich mit Swift-Toolchain und Apple-Plattform-Hinweisen |
 
 **DE:** In jedem Level-2-Repo werden die gleichen fachlichen Intakes genutzt. Die fachlichen Regeln bleiben gleich; nur Umsetzung, Toolchain, Tests und sprachspezifische Sicherheitsprüfungen unterscheiden sich. Spec-Kit-Läufe werden nicht automatisch gestartet, sondern später manuell pro Repo und pro Aufgaben-Lastenheft.
 
@@ -134,12 +134,12 @@ Die Verzahnung ist bewusst leicht: anreichernder Kontext, keine harte Abhängigk
 
 | Sprache / Language | Level-2-Repo | MSL | Intakes kopiert / Intakes copied | Spec-Kit-Stand / Spec Kit state | Reviewstatus / Review state | Rolle / Role |
 |---|---|---|---|---|---|---|
-| C# | `securecasetracker-csharp` | ja / yes | offen / open | manuell offen / manually open | offen / open | Referenz / Reference |
-| Go | `securecasetracker-go` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
-| Java | `securecasetracker-java` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
-| Python | `securecasetracker-python` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
-| Rust | `securecasetracker-rust` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
-| Swift | `securecasetracker-swift` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| C# | `SecureCaseTracker-CSharp` | ja / yes | offen / open | manuell offen / manually open | offen / open | Referenz / Reference |
+| Go | `SecureCaseTracker-Go` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Java | `SecureCaseTracker-Java` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Python | `SecureCaseTracker-Python` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Rust | `SecureCaseTracker-Rust` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
+| Swift | `SecureCaseTracker-Swift` | ja / yes | offen / open | manuell offen / manually open | offen / open | Vergleich / Comparison |
 
 ## Reihenfolge der Lerneinheiten / Order of Learning Units
 
