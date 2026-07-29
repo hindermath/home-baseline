@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
+import os
 import shutil
 import subprocess
 import tempfile
@@ -19,6 +20,7 @@ FLEET_ENGINE = REPOSITORY / "scripts" / "lib" / "agentic_workspace_fleet.py"
 
 
 class MaintenanceTuiWrapperTests(unittest.TestCase):
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_bash_help_exposes_all_ui_selectors(self) -> None:
         result = subprocess.run(
             ["bash", str(BASH_WRAPPER), "--help"],
@@ -30,6 +32,7 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
         for selector in ("--tui", "--plain-ui", "--no-tui"):
             self.assertIn(selector, result.stdout)
 
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_bash_rejects_conflicting_ui_selectors_before_engine_start(self) -> None:
         for selectors in (
             ("--tui", "--plain-ui"),
@@ -46,6 +49,7 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
                 )
                 self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
 
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_bash_unsupported_terminal_falls_back_and_cancels_before_engine(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             result = subprocess.run(
@@ -70,6 +74,7 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
             self.assertIn("lineare Ausgabe", result.stdout + result.stderr)
             self.assertIn("Cancelled before engine start", result.stdout)
 
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_bash_rejects_ui_with_preselected_maintenance_mode(self) -> None:
         cases = (
             ("--check-only",),
@@ -225,7 +230,7 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
             self.assertEqual(event["runId"], run_id)
             self.assertEqual(event["sequence"], 1)
             self.assertEqual(event["details"]["mode"], "dry-run")
-            if hasattr(event_stream.stat(), "st_mode"):
+            if os.name != "nt":
                 self.assertEqual(event_stream.stat().st_mode & 0o077, 0)
 
     def test_event_writer_rejects_non_object_details(self) -> None:

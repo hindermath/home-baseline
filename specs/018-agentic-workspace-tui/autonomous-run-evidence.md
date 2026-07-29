@@ -75,6 +75,7 @@
 | `bash scripts/scan-agent-secrets.sh --fail-on-high .` | Secret boundary | N/A | repository root | 0 | no high finding | Gitleaks reports no secret in the Git diff; the pre-existing local Claude settings classification remains outside the feature |
 | JSON parse, Documentation Impact validators, `git diff --check` and `specify check` | Final repository contracts | N/A | repository root | 0 | clean | All changed JSON parses; Bash/PowerShell Documentation Impact, whitespace and Spec Kit checks pass |
 | Complete local acceptance rerun | Post-documentation/statistics gate | N/A | repository root | 0 | clean | Locked restore, warning-free Release build, 62 .NET tests, both format gates, 14 focused wrapper tests, 79 maintenance tests, package audit, Bash syntax and PSScriptAnalyzer all pass |
+| PR #160 Windows `Maintenance TUI` on head `39d9e9e` | Exact-head cross-platform gate | N/A | `windows-2022` | 1 | expected remediation evidence | The job exposed two test-harness assumptions: Windows `bash.exe` may be an unusable WSL launcher, and Unix mode bits are not a Windows privacy proof. Bash execution fixtures are now Unix-only; source parity and PowerShell behavior remain active on Windows |
 
 ## User-Story Acceptance Evidence
 
@@ -192,7 +193,7 @@
 |---|---|---|
 | Push | Pass | Branch `018-agentic-workspace-tui` pushed after the repository pre-push secret scan passed |
 | Pull request | Pass | [PR #160](https://github.com/hindermath/home-baseline/pull/160), non-empty creation head `533412d3b6cafe677eebf3f3b588e88c94ed175f`; the following evidence commit becomes the exact review head |
-| Required checks | Open | Pending exact-head provider checks |
+| Required checks | Remediating | First exact-head Windows job found a platform-specific test-harness defect; the bounded fix is locally green and a new exact head will rerun every gate |
 | Acceptance execution map | Open | Pending temporary provider-neutral evidence |
 | Actionable threads | Open | Pending |
 | Unavailable reviews | None observed | Pending remote review |
