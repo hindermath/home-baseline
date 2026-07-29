@@ -999,7 +999,7 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 |---|---:|
 | Textbasis / Text base | 439062 lines |
 | Textdateien / Text files | 2770 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-30 |
 | Aktivtage / Active days | 77 |
 | Relevante Commits / Relevant commits | 622 |
 | Zeilen je Aktivtag / Lines per active day | 5702.1 |
@@ -1045,7 +1045,7 @@ So/Su  0 0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3
 Di/Tu  0 0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4
 Mi/We  0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4
-Do/Th  0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 -
+Do/Th  0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 0
 Fr/Fr  0 0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 -
 Sa/Sa  0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 -
 ```
@@ -1231,9 +1231,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-05 / 121867. Laengste Serie: 34 Tage (2026-06-26..2026-07-29).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-30. Es enthaelt 77 aktive und 285 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-05 / 121867. Laengste Serie: 34 Tage (2026-06-26..2026-07-29).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-07-29. It contains 77 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-05 / 121867. Longest streak: 34 days (2026-06-26..2026-07-29).*
+*EN: The window starts on 2025-08-03 and ends on 2026-07-30. It contains 77 active and 285 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-05 / 121867. Longest streak: 34 days (2026-06-26..2026-07-29).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
