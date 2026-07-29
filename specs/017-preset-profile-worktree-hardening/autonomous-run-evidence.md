@@ -60,6 +60,7 @@ freshness, continuation, ordering, pull and unsafe-state suite passed.
 | PSScriptAnalyzer 1.25.0 | Static PowerShell proof | N/A | 147 tracked files | 0 | clean | Zero errors or warnings; four generated upstream files excluded by policy |
 | JSON parsing | Evidence schema proof | N/A | Feature 017 JSON artifacts | 0 | clean | Every JSON artifact accepted by `jq` |
 | `git diff --check` | Text integrity | N/A | current candidate | 0 | clean | No whitespace errors |
+| Isolated CheckOnly/DryRun fixtures | Safe-mode boundary | N/A | disposable local remotes and homes | 0 | clean | Bash tokens `--check-only`/`--dry-run` and PowerShell mode projection permit control/fetch evidence while clone, pull and domain mutation remain prohibited |
 
 ## Implementation Evidence
 
@@ -75,6 +76,21 @@ The normal comment budget remains selective. New comments explain atomic
 replacement, ordering and re-inventory boundaries; they do not narrate obvious
 assignments. No public API, package, dependency or target-repository behavior
 outside the maintenance contract changed.
+
+## Requirement Reconciliation
+
+| Contract group | Requirements | Acceptance criteria | Gate mapping | Result |
+|---|---|---|---|---|
+| Fleet freshness and ordering | PWH-012, PWH-014, PWH-019 | AC-013, AC-016, AC-018, AC-020, AC-021, AC-026 | G001 | Pass |
+| Branch and pull safety | PWH-002, PWH-003, PWH-013 | AC-001, AC-002, AC-003, AC-014, AC-015, AC-019 | G001 | Pass |
+| Worktree ownership and cleanup | PWH-004, PWH-005, PWH-006, PWH-018 | AC-004, AC-005, AC-006, AC-022, AC-023 | G002 | Pass |
+| Dynamic profiles and Registry | PWH-008, PWH-009, PWH-016, PWH-020 | AC-008, AC-009, AC-010, AC-024 | G004, G006 | Pass |
+| Evidence and platform parity | PWH-001, PWH-007, PWH-010, PWH-011, PWH-015, PWH-017 | AC-007, AC-011, AC-012, AC-017, AC-025, AC-027 | G003, G005, G007 | Pass locally; provider exact-head evidence pending |
+
+All PWH-001 through PWH-020 and AC-001 through AC-027 are mapped exactly
+once in the accepted spec and covered by T001 through T089. Analyze produced
+no unresolved Critical/High finding. G008 remains the justified trigger-based
+N/A recorded in the gate declaration.
 
 ## Governance Applicability
 

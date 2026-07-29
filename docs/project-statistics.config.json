@@ -391,7 +391,7 @@
       "id": "preset-profile-worktree-hardening",
       "labelDe": "Preset-Profil-, Branch- und Worktree-Härtung",
       "labelEn": "Preset profile, branch and worktree hardening",
-      "netLines": 4000,
+      "netLines": 3751,
       "activeDays": 1
     }
   ],

@@ -205,10 +205,10 @@ lokalen Lieferkandidaten schließen.
 - [X] T071 Review `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` and `.github/agents/copilot-instructions.md` together and record the parity decision in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [X] T072 Run all maintenance Python tests and record counts/results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [X] T073 Run Bash syntax, PowerShell parser, PSScriptAnalyzer and JSON validation and record results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
-- [ ] T074 Run `--check-only`, `--dry-run`, `-CheckOnly` and `-WhatIf` in isolated fixtures and record permitted control/fetch effects and prohibited mutations
+- [X] T074 Run `--check-only`, `--dry-run`, `-CheckOnly` and `-WhatIf` in isolated fixtures and record permitted control/fetch effects and prohibited mutations
 - [ ] T075 Run Documentation Impact, generated-reference, Homogeneity, diff and secret gates and record results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [ ] T076 Render the Feature 017 milestone and Profile 2 block in `docs/project-statistics.md` from `docs/project-statistics.config.json`
-- [ ] T077 Reconcile PWH-001 through PWH-020, AC-001 through AC-027, all Analyze findings and all gate requirements in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
+- [X] T077 Reconcile PWH-001 through PWH-020, AC-001 through AC-027, all Analyze findings and all gate requirements in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [ ] T078 Archive the completed intake with `scripts/rename-lastenheft.sh` to `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md`
 - [ ] T079 Re-run the complete local acceptance suite after the archived intake and statistics update
 

@@ -862,27 +862,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 420348 lines |
-| Textdateien / Text files | 2641 |
+| Textbasis / Text base | 423655 lines |
+| Textdateien / Text files | 2660 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
 | Aktivtage / Active days | 77 |
-| Relevante Commits / Relevant commits | 605 |
-| Zeilen je Aktivtag / Lines per active day | 5459.1 |
+| Relevante Commits / Relevant commits | 606 |
+| Zeilen je Aktivtag / Lines per active day | 5502.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 34 days |
-| Speedup vs. 80 lines/day | 68.2x |
-| Speedup vs. 100 lines/day | 54.6x |
-| Methodik / Methodology | v2; source `751aa83779a9` |
+| Speedup vs. 80 lines/day | 68.8x |
+| Speedup vs. 100 lines/day | 55.0x |
+| Methodik / Methodology | v2; source `7acefda07f71` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
-Tests                           [#...................]   3.5% | 14905
-Dokumentation / Documentation   [##############......]  69.2% | 290766
-Skripte / Scripts               [##..................]  12.2% | 51236
-Konfiguration / Configuration   [###.................]  14.8% | 62050
+Tests                           [#...................]   3.7% | 15866
+Dokumentation / Documentation   [##############......]  68.9% | 292084
+Skripte / Scripts               [##..................]  12.3% | 51992
+Konfiguration / Configuration   [###.................]  14.7% | 62322
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 761
 ```
@@ -990,15 +990,15 @@ Slots 16..31
 ```
 
 ```text
-Slots 32..46
-   cap 50000 | . . . . . . . . . . . . . . .
-       41667 | . . . . . . . . . . . . . . .
-       33333 | . . . . . . . . . . . . . . .
-       25000 | . # . . . . . . . . . . . . .
-       16667 | . # . . . . . . . . . . . . .
-        8333 | . # . . . . # . . . . . . . .
-           0 +-------------------------------
-             32 33 34 35 36 37 38 39 40 41 42 43 44 45 46
+Slots 32..47
+   cap 50000 | . . . . . . . . . . . . . . . .
+       41667 | . . . . . . . . . . . . . . . .
+       33333 | . . . . . . . . . . . . . . . .
+       25000 | . # . . . . . . . . . . . . . .
+       16667 | . # . . . . . . . . . . . . . .
+        8333 | . # . . . . # . . . . . . . . .
+           0 +---------------------------------
+             32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1050,6 +1050,7 @@ Slots 32..46
 | 44 | Linux-Ein-Kommando-Wartungshärtung / Linux one-command maintenance hardening | 4054 |
 | 45 | Lernreihen-Governance- und KI-Kompetenz-Intakes / Learning-series governance and AI competence intakes | 1816 |
 | 46 | Preset-Profil- und Worktree-Härtungsintake v1.3 / Preset profile and worktree hardening intake v1.3 | 2453 |
+| 47 | Preset-Profil-, Branch- und Worktree-Härtung / Preset profile, branch and worktree hardening | 4000 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1059,8 +1060,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 68.2x
-100 lines/day      [###########.........] 54.6x
+80 lines/day       [##############......] 68.8x
+100 lines/day      [###########.........] 55.0x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1073,7 +1074,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5459.1
+Visible repository [###########.........] 5502.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1099,6 +1100,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 354418 |
+| 2026-07 | 358169 |
 
 <!-- project-statistics-v2:end -->
