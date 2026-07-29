@@ -248,6 +248,11 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "Start-Transcript -Path $logFile -Append -WhatIf:$false",
             "Stop-Transcript -WhatIf:$false",
             "Set-Content -LiteralPath (Join-Path $lockDir 'pid') -Value $PID -WhatIf:$false",
+            "'lease-recover'",
+            "'lease-create'",
+            "'lease-release'",
+            "$fleetReport.mutationBarrier.fleetReady",
+            "'--level0-dir', $sourceRoot",
         ):
             self.assertIn(token, workspace)
         self.assertNotIn(
@@ -263,7 +268,7 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
         for token in ("Get-HBGitNormalizedHash", "raw_differences", "actionable_drift"):
             self.assertIn(token, propagation)
 
-    def test_eleven_preset_profile_is_explicit_and_has_eleven_entries(self) -> None:
+    def test_preset_profile_count_is_data_driven_from_the_catalog(self) -> None:
         catalog = json.loads(
             (
                 REPOSITORY / "scripts" / "config" / "spec-kit-preset-profiles.json"
@@ -279,7 +284,9 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
         workspace = (
             REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1"
         ).read_text(encoding="utf-8")
-        self.assertIn(profile, workspace)
+        self.assertNotIn("$fleetPresetCount -ne 11", workspace)
+        self.assertIn("$profileCatalogData.defaultProfile", workspace)
+        self.assertIn("'profile'", workspace)
 
 
 if __name__ == "__main__":

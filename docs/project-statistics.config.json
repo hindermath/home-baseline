@@ -385,6 +385,14 @@
       "labelEn": "Preset profile and worktree hardening intake v1.3",
       "netLines": 2453,
       "activeDays": 1
+    },
+    {
+      "slot": 47,
+      "id": "preset-profile-worktree-hardening",
+      "labelDe": "Preset-Profil-, Branch- und Worktree-Härtung",
+      "labelEn": "Preset profile, branch and worktree hardening",
+      "netLines": 3751,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

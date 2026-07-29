@@ -1498,21 +1498,26 @@ explicit approval.*
 ### Ein Wartungsbefehl pro Betriebssystem / One maintenance command per OS
 
 Fuer die normale Gesamtwartung ist nur noch der passende Orchestrator noetig.
-Ohne Optionen aktualisiert er Level-0, synchronisiert `~/`, aktualisiert alle
-aktiven `canonical-fleet`-Ziele des Fleet-Manifests per Fast-forward, pflegt
-die lokale GSDB-Registry, prueft die Wartungspaket-Verteilung und wartet danach
-die Maschinen-Toolchain. Nicht deklarierte Legacy-Ordner werden weder erneut
+Ohne Optionen legt er zuerst Kontroll-Evidence an. Danach schliesst die
+**Remote-Freshness-Barriere** alle begrenzten Fetch-Versuche fuer Level 0 und
+jedes aktive Git-Ziel ab. Erst dann darf das Skript sichere Behind-only-Ziele
+per Fast-forward aktualisieren, `~/` synchronisieren, die lokale GSDB-Registry
+und Wartungspaket-Verteilung pruefen sowie die Maschinen-Toolchain warten.
+Ein Befund beendet die Inventur der restlichen Flotte nicht, blockiert aber
+spaetere Mutationen. Nicht deklarierte Legacy-Ordner werden weder erneut
 registriert noch in die Propagation aufgenommen. Vor dem ersten echten Lauf
 auf einem weiteren System sind `--check-only` / `-CheckOnly` und anschliessend
 die Vorschau empfohlen.
 
 *Normal full maintenance now needs only the matching orchestrator. Without
-options it updates Level-0, synchronizes `~/`, fast-forwards all declared
-active `canonical-fleet` Level-1/Level-2 targets, maintains the local
-GSDB registry, checks maintenance-package distribution, and then maintains the
-machine toolchain. Undeclared legacy directories are neither re-registered nor
-included in propagation. On another machine, run check-only and then preview
-before the first actual run.*
+options it creates control evidence, completes bounded fetch attempts for
+Level 0 and every active Git target, and closes the Remote Freshness Barrier.
+Only then may it fast-forward safe behind-only targets, synchronize `~/`,
+maintain the GSDB registry, check maintenance-package distribution, and
+maintain the machine toolchain. One finding does not hide the remaining fleet
+inventory, but it blocks later mutations. Undeclared legacy directories are
+neither re-registered nor included in propagation. On another machine, run
+check-only and then preview before the first actual run.*
 
 ```bash
 # macOS / Linux
@@ -1537,10 +1542,16 @@ und detached HEAD werden nicht automatisch aufgeloest. Ein Lock verhindert
 parallele Laeufe; Logs liegen lokal unter `~/.home-baseline/logs/`.
 
 Die Preset-Profilpruefung behandelt einen ausgecheckten Feature-Branch nicht
-als fehlende Spec-Kit-Initialisierung, wenn `origin/HEAD` bereits initialisiert
-ist. In diesem Fall wird die kanonische Revision in einem temporaeren detached
-Worktree nur gelesen und geprueft. Der aktive Branch und unversionierte Dateien
-bleiben unveraendert; eine dort gefundene Drift wird nicht temporaer repariert.
+als fehlende Spec-Kit-Initialisierung, wenn der kanonische Default-Branch
+bereits initialisiert ist. Dieser wird aus validierter lokaler
+`origin/HEAD`-Evidence oder `git ls-remote --symref origin HEAD` bestimmt;
+`main`, `master` oder `trunk` werden nicht geraten. In diesem Fall wird die
+kanonische Revision in einem temporaeren detached Worktree nur gelesen und
+geprueft. Ein atomarer Lease bindet diesen Worktree an Lauf, Prozessstart,
+Repository, Commit und reservierte State-Pfade. Der aktive Branch und
+unversionierte Dateien bleiben unveraendert. Mehrdeutige oder nachtraeglich
+veraenderte Lease-Evidence wird nicht geloescht, sondern als Befund gemeldet.
+Preset-Anzahl und IDs stammen dynamisch aus Profilkatalog und Matrixdatei.
 
 *Use `--scripts-only` / `-ScriptsOnly` to leave the machine toolchain unchanged.
 Maintenance-package drift is reported by default and repaired locally only with
@@ -1548,9 +1559,11 @@ Maintenance-package drift is reported by default and repaired locally only with
 requests separate review of affected repositories. Dirty worktrees, missing
 upstreams, ahead/diverged states, and detached HEAD are never resolved
 automatically. A lock prevents parallel runs; local logs are stored below
-`~/.home-baseline/logs/`. Preset checks use an isolated detached worktree when
-the active checkout differs from `origin/HEAD`, preserving the active branch
-and all untracked files.*
+`~/.home-baseline/logs/`. Preset checks resolve the remote symbolic HEAD
+without guessing branch names and use a lease-owned isolated detached worktree
+when required. Ambiguous or changed lease evidence is retained, preserving the
+active branch and all user files. Preset IDs and counts come from the selected
+catalog profile and matrix.*
 
 Auf Linux bleibt Administratorinteraktion standardmaessig gesperrt. Ohne
 aktuelle `--allow-admin-prompts`-Freigabe vergleicht der Orchestrator die

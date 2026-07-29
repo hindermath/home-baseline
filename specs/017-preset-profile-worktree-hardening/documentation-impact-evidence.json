@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "017-preset-profile-worktree-hardening",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Remote Freshness Barrier, safe pull, dynamic profiles and leases",
+      "decision": "UpdateRequired",
+      "rationale": "Operator-visible ordering, terminology, recovery and refusal boundaries changed.",
+      "documents": [
+        "README.md",
+        "docs/man/maintain-agentic-workspace.1.md"
+      ],
+      "owner": "Home Baseline maintainers",
+      "evidence": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Usage"
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "Public script inventory",
+      "decision": "GeneratedUpdate",
+      "rationale": "The canonical renderer owns the public script reference.",
+      "documents": [
+        "docs/scripts/reference.md",
+        "docs/scripts/embedded-scripts.md"
+      ],
+      "owner": "Script reference renderer",
+      "evidence": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "scripts/render-script-reference.sh"
+      }
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "Shared agent guidance",
+      "decision": "NoUpdateRequired",
+      "rationale": "Existing guidance already requires safe previews, dynamic source resolution, documentation impact review and no broad cleanup.",
+      "documents": [],
+      "owner": "Agent parity governance",
+      "evidence": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Normal"
+    },
+    {
+      "changeId": "CHG004",
+      "scope": "DocFX and web navigation",
+      "decision": "NoUpdateRequired",
+      "rationale": "No API XML comments, DocFX navigation, generated web content or learner guide structure changed.",
+      "documents": [],
+      "owner": "Documentation maintainers",
+      "evidence": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Normal"
+    }
+  ]
+}
