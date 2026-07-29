@@ -963,25 +963,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 435392 lines |
+| Textbasis / Text base | 435409 lines |
 | Textdateien / Text files | 2752 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
 | Aktivtage / Active days | 77 |
-| Relevante Commits / Relevant commits | 617 |
-| Zeilen je Aktivtag / Lines per active day | 5654.4 |
+| Relevante Commits / Relevant commits | 618 |
+| Zeilen je Aktivtag / Lines per active day | 5654.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 34 days |
 | Speedup vs. 80 lines/day | 70.7x |
 | Speedup vs. 100 lines/day | 56.5x |
-| Methodik / Methodology | v2; source `89be05a00e14` |
+| Methodik / Methodology | v2; source `645bf8fc0621` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
-Tests                           [#...................]   4.1% | 17768
-Dokumentation / Documentation   [##############......]  67.8% | 295344
+Tests                           [#...................]   4.1% | 17782
+Dokumentation / Documentation   [##############......]  67.8% | 295347
 Skripte / Scripts               [###.................]  12.6% | 54943
 Konfiguration / Configuration   [###.................]  15.1% | 65937
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1164,7 +1164,7 @@ Slots 48..48
 | 45 | Lernreihen-Governance- und KI-Kompetenz-Intakes / Learning-series governance and AI competence intakes | 1816 |
 | 46 | Preset-Profil- und Worktree-Härtungsintake v1.3 / Preset profile and worktree hardening intake v1.3 | 2453 |
 | 47 | Preset-Profil-, Branch- und Worktree-Härtung / Preset profile, branch and worktree hardening | 3751 |
-| 48 | Agentic-Workspace-Wartungs-TUI / Agentic workspace maintenance TUI | 7622 |
+| 48 | Agentic-Workspace-Wartungs-TUI / Agentic workspace maintenance TUI | 7639 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1188,7 +1188,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5654.4
+Visible repository [###########.........] 5654.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1214,6 +1214,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 371298 |
+| 2026-07 | 371365 |
 
 <!-- project-statistics-v2:end -->
