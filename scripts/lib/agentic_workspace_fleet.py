@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import ctypes
 import json
 import os
 import pathlib
@@ -22,6 +23,14 @@ from urllib.parse import urlsplit
 VALID_KINDS = {"git-repository", "collection"}
 VALID_CLASSES = {"canonical-fleet", "preset"}
 VALID_FORGES = {"github", "gitlab", "codeberg", "forgejo", "generic-git"}
+KNOWN_MSL_LANGUAGES = {
+    "ada", "c#", "csharp", "dart", "elixir", "erlang", "f#", "fsharp",
+    "go", "haskell", "java", "javascript", "kotlin", "ocaml", "python",
+    "ruby", "rust", "scala", "spark", "swift", "typescript",
+}
+KNOWN_NON_MSL_LANGUAGES = {
+    "assembly", "c", "c++", "c89", "cc65", "d", "nim", "objective-c", "zig",
+}
 BLOCKING_STATES = {
     "AHEAD",
     "DIVERGED",
@@ -75,7 +84,7 @@ def is_transient_git_failure(detail: str) -> bool:
 
 def run_git_network(
     repository: pathlib.Path | None, *arguments: str
-) -> tuple[subprocess.CompletedProcess[str], int]:
+) -> tuple[subprocess.CompletedProcess[str], int, int]:
     attempts = max(1, min(10, int(os.environ.get("HB_GIT_RETRY_ATTEMPTS", "3"))))
     timeout = max(5, min(3600, int(os.environ.get("HB_GIT_TIMEOUT_SECONDS", "300"))))
     command = ["git"]
@@ -83,6 +92,7 @@ def run_git_network(
         command.extend(["-C", str(repository)])
     command.extend(arguments)
     result: subprocess.CompletedProcess[str] | None = None
+    started = time.monotonic()
     for attempt in range(1, attempts + 1):
         try:
             result = subprocess.run(
@@ -98,11 +108,53 @@ def run_git_network(
             )
         detail = (result.stderr or result.stdout).strip()
         if result.returncode == 0 or attempt == attempts or not is_transient_git_failure(detail):
-            return result, attempt
+            return result, attempt, int((time.monotonic() - started) * 1000)
         delay = min(3.0, 0.25 * (2 ** (attempt - 1)))
         time.sleep(delay + random.uniform(0, delay / 4))
     assert result is not None
-    return result, attempts
+    return result, attempts, int((time.monotonic() - started) * 1000)
+
+
+def network_attempt(
+    operation: str,
+    result: subprocess.CompletedProcess[str],
+    attempts: int,
+    duration_ms: int,
+) -> dict:
+    detail = (result.stderr or result.stdout).strip().splitlines()
+    evidence = detail[-1][:512] if detail and result.returncode != 0 else "N/A"
+    if evidence != "N/A":
+        evidence = evidence.replace(str(pathlib.Path.home()), "<home>")
+        evidence = re.sub(
+            r"(?i)\b(https?://)[^/@\s]+:[^@\s]+@",
+            r"\1<redacted>@",
+            evidence,
+        )
+        evidence = re.sub(
+            r"(?i)\b(token|password|secret)=([^\s&]+)",
+            r"\1=<redacted>",
+            evidence,
+        )
+    status = (
+        "Succeeded"
+        if result.returncode == 0
+        else "TimedOut"
+        if result.returncode == 124
+        else "Failed"
+    )
+    return {
+        "operation": operation,
+        "attemptCount": attempts,
+        "durationMs": duration_ms,
+        "exitCode": result.returncode,
+        "status": status,
+        "sanitizedEvidence": evidence,
+        "nextAction": (
+            "N/A"
+            if result.returncode == 0
+            else "Remote-Zugriff prüfen und den Lauf erneut ausführen / review remote access and rerun."
+        ),
+    }
 
 
 def normalize_remote(remote: str) -> str:
@@ -215,9 +267,86 @@ def target_result(target: dict, **values: object) -> dict:
         "nextAction": "N/A",
         "retryAttempts": 0,
         "resumeAccepted": False,
+        "freshnessAttempt": None,
+        "defaultBranchEvidence": None,
+        "mutationAllowed": target.get("kind") != "git-repository",
     }
     result.update(values)
     return result
+
+
+def resolve_default_branch_evidence(
+    target: dict,
+    path: pathlib.Path,
+    local_symbolic_ref: str,
+) -> tuple[dict | None, dict | None, str | None]:
+    if local_symbolic_ref:
+        prefix = "refs/remotes/origin/"
+        if not local_symbolic_ref.startswith(prefix):
+            return None, None, "RemoteHeadInvalid"
+        branch_name = local_symbolic_ref.removeprefix(prefix)
+        if target.get("defaultBranch") and target["defaultBranch"] != branch_name:
+            return None, None, "RemoteHeadMismatch"
+        tracking = run_git(
+            path, "rev-parse", "--verify", local_symbolic_ref, check=False
+        )
+        if tracking.returncode != 0:
+            return None, None, "RemoteTrackingRefMissing"
+        tracking_commit = tracking.stdout.strip().lower()
+        return {
+            "source": "LocalSymbolicHead",
+            "symbolicRef": f"refs/heads/{branch_name}",
+            "trackingRef": local_symbolic_ref,
+            "remoteCommit": tracking_commit,
+            "trackingCommit": tracking_commit,
+            "validatedAt": utc_now(),
+            "remoteHeadAttempt": None,
+        }, None, None
+
+    remote, attempts, duration_ms = run_git_network(
+        path, "ls-remote", "--symref", "origin", "HEAD"
+    )
+    attempt = network_attempt("ls-remote", remote, attempts, duration_ms)
+    if remote.returncode != 0:
+        return None, attempt, "RemoteHeadUnavailable"
+
+    symbolic_refs = []
+    remote_commits = []
+    for line in remote.stdout.splitlines():
+        fields = line.split()
+        if len(fields) >= 3 and fields[0] == "ref:" and fields[2] == "HEAD":
+            symbolic_refs.append(fields[1])
+        elif len(fields) >= 2 and fields[1] == "HEAD" and re.fullmatch(
+            r"[0-9a-fA-F]{40,64}", fields[0]
+        ):
+            remote_commits.append(fields[0].lower())
+    if len(set(symbolic_refs)) != 1 or len(set(remote_commits)) != 1:
+        return None, attempt, "RemoteHeadAmbiguous"
+
+    symbolic_ref = symbolic_refs[0]
+    if not symbolic_ref.startswith("refs/heads/"):
+        return None, attempt, "RemoteHeadInvalid"
+    branch_name = symbolic_ref.removeprefix("refs/heads/")
+    tracking_ref = f"refs/remotes/origin/{branch_name}"
+    if target.get("defaultBranch") and target["defaultBranch"] != branch_name:
+        return None, attempt, "RemoteHeadMismatch"
+
+    tracking = run_git(path, "rev-parse", "--verify", tracking_ref, check=False)
+    if tracking.returncode != 0:
+        return None, attempt, "RemoteTrackingRefMissing"
+    tracking_commit = tracking.stdout.strip().lower()
+    remote_commit = remote_commits[0]
+    if tracking_commit != remote_commit:
+        return None, attempt, "RemoteCommitMismatch"
+    return {
+        "source": "RemoteSymbolicHead",
+        "symbolicRef": symbolic_ref,
+        "trackingRef": tracking_ref,
+        "remoteCommit": remote_commit,
+        "trackingCommit": tracking_commit,
+        "validatedAt": utc_now(),
+        "remoteHeadAttempt": attempt,
+    }, attempt, None
 
 
 def classify_repository(
@@ -238,18 +367,68 @@ def classify_repository(
         return target_result(target, status="PATH_CONFLICT", result="Blocked", findingCode="PathConflict",
                              nextAction="Nicht-Git-Verzeichnis prüfen; es wird nie automatisch entfernt / review the directory; it is never removed.")
 
-    branch = run_git(path, "symbolic-ref", "--quiet", "--short", "HEAD", check=False)
-    if branch.returncode != 0:
-        return target_result(target, status="DETACHED", result="Blocked", findingCode="DetachedHead",
-                             nextAction="Deklarierten Branch manuell auswählen / select the declared branch manually.")
-    branch_name = branch.stdout.strip()
-    if branch_name != target["defaultBranch"]:
-        return target_result(target, status="BRANCH_MISMATCH", result="Blocked", branch=branch_name,
-                             findingCode="BranchMismatch", nextAction="Nach Prüfung zum deklarierten Branch wechseln / switch after review.")
     origin = run_git(path, "remote", "get-url", "origin", check=False)
     if origin.returncode != 0 or normalize_remote(origin.stdout) != normalize_remote(target["remote"]):
-        return target_result(target, status="REMOTE_MISMATCH", result="Blocked", branch=branch_name,
+        return target_result(target, status="REMOTE_MISMATCH", result="Blocked",
                              findingCode="RemoteMismatch", nextAction="origin nur nach manueller Prüfung korrigieren / correct origin only after review.")
+
+    local_symbolic = run_git(
+        path, "symbolic-ref", "--quiet", "refs/remotes/origin/HEAD", check=False
+    )
+    local_symbolic_ref = local_symbolic.stdout.strip() if local_symbolic.returncode == 0 else ""
+    fetch, fetch_attempts, fetch_duration = run_git_network(path, "fetch", "--prune")
+    freshness = network_attempt("fetch", fetch, fetch_attempts, fetch_duration)
+    if fetch.returncode != 0:
+        finding = "FetchTimedOut" if fetch.returncode == 124 else "FetchFailed"
+        return target_result(
+            target,
+            status="UNAVAILABLE",
+            result="Blocked",
+            findingCode=finding,
+            retryAttempts=fetch_attempts,
+            freshnessAttempt=freshness,
+            nextAction="Remote-Zugriff wiederherstellen und erneut ausführen / restore access and retry.",
+        )
+
+    default_evidence, _, default_error = resolve_default_branch_evidence(
+        target, path, local_symbolic_ref
+    )
+    if default_error:
+        return target_result(
+            target,
+            status="REMOTE_HEAD_INVALID",
+            result="Blocked",
+            findingCode=default_error,
+            retryAttempts=fetch_attempts,
+            freshnessAttempt=freshness,
+            nextAction="Symbolischen origin-HEAD und Tracking-Ref prüfen / review the symbolic origin HEAD and tracking ref.",
+        )
+
+    branch = run_git(path, "symbolic-ref", "--quiet", "--short", "HEAD", check=False)
+    if branch.returncode != 0:
+        return target_result(
+            target,
+            status="DETACHED",
+            result="Blocked",
+            findingCode="DetachedHead",
+            freshnessAttempt=freshness,
+            defaultBranchEvidence=default_evidence,
+            nextAction="Deklarierten Branch manuell auswählen / select the declared branch manually.",
+        )
+    branch_name = branch.stdout.strip()
+    canonical_branch = default_evidence["symbolicRef"].removeprefix("refs/heads/")
+    if branch_name != canonical_branch:
+        return target_result(
+            target,
+            status="BRANCH_MISMATCH",
+            result="Blocked",
+            branch=branch_name,
+            findingCode="BranchMismatch",
+            freshnessAttempt=freshness,
+            defaultBranchEvidence=default_evidence,
+            nextAction="Nach Prüfung zum kanonischen Branch wechseln / switch to the canonical branch after review.",
+        )
+
     dirty = run_git(path, "-c", "core.quotePath=false", "status", "--porcelain=v1", "--untracked-files=all").stdout
     resume_accepted = False
     if dirty:
@@ -260,50 +439,107 @@ def classify_repository(
         }
         resume_accepted = bool(allowed_dirty_paths) and dirty_paths.issubset(allowed_dirty_paths)
     if dirty and not resume_accepted:
-        return target_result(target, status="DIRTY", result="Blocked", branch=branch_name,
-                             findingCode="DirtyWorktree", nextAction="Lokale Arbeit ausdrücklich committen, stashen oder verwerfen / handle local work explicitly.")
-    if mode != "dry-run":
-        fetch, fetch_attempts = run_git_network(path, "fetch", "--prune")
-        if fetch.returncode != 0:
-            return target_result(target, status="UNAVAILABLE", result="Blocked", branch=branch_name,
-                                 findingCode="FetchFailed", retryAttempts=fetch_attempts,
-                                 resumeAccepted=resume_accepted,
-                                 nextAction="Remote-Zugriff wiederherstellen und erneut ausführen / restore access and retry.")
-    else:
-        fetch_attempts = 0
+        return target_result(
+            target,
+            status="DIRTY",
+            result="Blocked",
+            branch=branch_name,
+            findingCode="DirtyWorktree",
+            retryAttempts=fetch_attempts,
+            freshnessAttempt=freshness,
+            defaultBranchEvidence=default_evidence,
+            nextAction="Lokale Arbeit ausdrücklich committen, stashen oder verwerfen / handle local work explicitly.",
+        )
     upstream = run_git(path, "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}", check=False)
     if upstream.returncode != 0:
-        return target_result(target, status="MISSING_UPSTREAM", result="Blocked", branch=branch_name,
-                             findingCode="MissingUpstream", nextAction="Deklarierten origin-Branch als Upstream setzen / set the declared origin branch as upstream.")
+        return target_result(
+            target,
+            status="MISSING_UPSTREAM",
+            result="Blocked",
+            branch=branch_name,
+            findingCode="MissingUpstream",
+            freshnessAttempt=freshness,
+            defaultBranchEvidence=default_evidence,
+            nextAction="Deklarierten origin-Branch als Upstream setzen / set the declared origin branch as upstream.",
+        )
     upstream_name = upstream.stdout.strip()
+    if upstream_name != f"origin/{canonical_branch}":
+        return target_result(
+            target,
+            status="MISSING_UPSTREAM",
+            result="Blocked",
+            branch=branch_name,
+            upstream=upstream_name,
+            findingCode="UpstreamMismatch",
+            freshnessAttempt=freshness,
+            defaultBranchEvidence=default_evidence,
+            nextAction="Upstream auf den kanonischen origin-Branch ausrichten / align upstream with the canonical origin branch.",
+        )
     counts = run_git(path, "rev-list", "--left-right", "--count", f"HEAD...{upstream_name}").stdout.split()
     ahead, behind = map(int, counts)
     if ahead and behind:
-        return target_result(target, status="DIVERGED", result="Blocked", branch=branch_name, upstream=upstream_name,
-                             ahead=ahead, behind=behind, findingCode="Diverged",
-                             nextAction="Divergenz manuell lösen; kein Reset oder Force-Push / resolve manually; no reset or force push.")
+        return target_result(
+            target, status="DIVERGED", result="Blocked", branch=branch_name,
+            upstream=upstream_name, ahead=ahead, behind=behind, findingCode="Diverged",
+            freshnessAttempt=freshness, defaultBranchEvidence=default_evidence,
+            nextAction="Divergenz manuell lösen; kein Reset oder Force-Push / resolve manually; no reset or force push."
+        )
     if ahead:
-        return target_result(target, status="AHEAD", result="Blocked", branch=branch_name, upstream=upstream_name,
-                             ahead=ahead, findingCode="Ahead", nextAction="Lokale Commits separat prüfen und pushen / review and push separately.")
+        return target_result(
+            target, status="AHEAD", result="Blocked", branch=branch_name,
+            upstream=upstream_name, ahead=ahead, findingCode="Ahead",
+            freshnessAttempt=freshness, defaultBranchEvidence=default_evidence,
+            nextAction="Lokale Commits separat prüfen und pushen / review and push separately."
+        )
     if behind:
+        if dirty:
+            return target_result(
+                target, status="DIRTY", result="Blocked", branch=branch_name,
+                upstream=upstream_name, behind=behind, findingCode="DirtyWorktree",
+                retryAttempts=fetch_attempts, resumeAccepted=resume_accepted,
+                freshnessAttempt=freshness, defaultBranchEvidence=default_evidence,
+                nextAction="Dirty-Zustand vor einem Fast-forward ausdrücklich auflösen / resolve dirty state before fast-forward."
+            )
         if mode == "check-only":
-            return target_result(target, status="BEHIND", action="PULL_REQUIRED", result="Blocked",
-                                 branch=branch_name, upstream=upstream_name, behind=behind,
-                                 findingCode="Behind", nextAction="Update-Modus für Fast-forward ausführen / run update for fast-forward.")
+            return target_result(
+                target, status="BEHIND", action="PULL_REQUIRED", result="Blocked",
+                branch=branch_name, upstream=upstream_name, behind=behind,
+                findingCode="Behind", freshnessAttempt=freshness,
+                defaultBranchEvidence=default_evidence,
+                nextAction="Update-Modus für Fast-forward ausführen / run update for fast-forward."
+            )
         if mode == "dry-run":
-            return target_result(target, status="BEHIND", action="WOULD_PULL", result="Warning",
-                                 branch=branch_name, upstream=upstream_name, behind=behind,
-                                 findingCode="Behind", nextAction="Update-Modus zum Fast-forward ausführen / run update to fast-forward.")
-        pull, pull_attempts = run_git_network(path, "pull", "--ff-only")
+            return target_result(
+                target, status="BEHIND", action="WOULD_PULL", result="Warning",
+                branch=branch_name, upstream=upstream_name, behind=behind,
+                findingCode="Behind", freshnessAttempt=freshness,
+                defaultBranchEvidence=default_evidence,
+                nextAction="Update-Modus zum Fast-forward ausführen / run update to fast-forward."
+            )
+        pull, pull_attempts, pull_duration = run_git_network(path, "pull", "--ff-only")
+        pull_evidence = network_attempt("pull", pull, pull_attempts, pull_duration)
         if pull.returncode != 0:
-            return target_result(target, status="UNAVAILABLE", action="PULL", result="Failed",
-                                 branch=branch_name, upstream=upstream_name, behind=behind,
-                                 retryAttempts=pull_attempts, resumeAccepted=resume_accepted,
-                                 findingCode="PullFailed", nextAction="Log prüfen, manuell reparieren und erneut ausführen / inspect, repair and retry.")
-        return target_result(target, status="UPDATED", action="PULL", branch=branch_name, upstream=upstream_name,
-                             retryAttempts=pull_attempts, resumeAccepted=resume_accepted)
-    return target_result(target, branch=branch_name, upstream=upstream_name,
-                         retryAttempts=fetch_attempts, resumeAccepted=resume_accepted)
+            return target_result(
+                target, status="UNAVAILABLE", action="PULL", result="Failed",
+                branch=branch_name, upstream=upstream_name, behind=behind,
+                retryAttempts=pull_attempts, resumeAccepted=resume_accepted,
+                findingCode="PullFailed", freshnessAttempt=freshness,
+                defaultBranchEvidence=default_evidence, pullAttempt=pull_evidence,
+                nextAction="Log prüfen, manuell reparieren und erneut ausführen / inspect, repair and retry."
+            )
+        return target_result(
+            target, status="UPDATED", action="PULL", branch=branch_name,
+            upstream=upstream_name, retryAttempts=pull_attempts,
+            resumeAccepted=resume_accepted, freshnessAttempt=freshness,
+            defaultBranchEvidence=default_evidence, pullAttempt=pull_evidence,
+            mutationAllowed=not dirty
+        )
+    return target_result(
+        target, branch=branch_name, upstream=upstream_name,
+        retryAttempts=fetch_attempts, resumeAccepted=resume_accepted,
+        freshnessAttempt=freshness, defaultBranchEvidence=default_evidence,
+        mutationAllowed=not dirty
+    )
 
 
 def clone_repository(target: dict, path: pathlib.Path) -> dict:
@@ -313,13 +549,16 @@ def clone_repository(target: dict, path: pathlib.Path) -> dict:
     temporary = pathlib.Path(tempfile.mkdtemp(prefix=f".{path.name}.clone-", dir=path.parent))
     try:
         shutil.rmtree(temporary)
-        clone, clone_attempts = run_git_network(
+        clone, clone_attempts, clone_duration = run_git_network(
             None, "clone", "--origin", "origin", "--branch", target["defaultBranch"],
             "--single-branch", "--", target["remote"], str(temporary)
         )
         if clone.returncode != 0:
             return target_result(target, status="UNAVAILABLE", action="CLONE", result="Failed",
                                  retryAttempts=clone_attempts,
+                                 freshnessAttempt=network_attempt(
+                                     "clone", clone, clone_attempts, clone_duration
+                                 ),
                                  findingCode="CloneFailed", nextAction="Remote prüfen und erneut ausführen; Ziel nicht akzeptiert / inspect and retry; target not accepted.")
         origin = run_git(temporary, "remote", "get-url", "origin").stdout
         branch = run_git(temporary, "branch", "--show-current").stdout.strip()
@@ -329,8 +568,12 @@ def clone_repository(target: dict, path: pathlib.Path) -> dict:
                                  findingCode="CloneVerificationFailed",
                                  nextAction="Temporäre Clone-Evidence prüfen; Ziel nicht akzeptiert / inspect clone evidence; target not accepted.")
         os.replace(temporary, path)
-        return target_result(target, status="CREATED", action="CLONE", branch=branch,
-                             upstream=f"origin/{branch}", retryAttempts=clone_attempts)
+        return target_result(
+            target, status="CREATED", action="CLONE", branch=branch,
+            upstream=f"origin/{branch}", retryAttempts=clone_attempts,
+            freshnessAttempt=network_attempt("clone", clone, clone_attempts, clone_duration),
+            mutationAllowed=True
+        )
     finally:
         if temporary.exists():
             shutil.rmtree(temporary, ignore_errors=True)
@@ -371,6 +614,240 @@ def write_report(path: pathlib.Path, report: dict) -> None:
     os.replace(temporary, path)
 
 
+def process_identity(pid: int) -> str | None:
+    if pid <= 0:
+        return None
+    if os.name == "nt":
+        kernel32 = ctypes.windll.kernel32
+        process = kernel32.OpenProcess(0x1000, False, pid)
+        if not process:
+            return None
+        try:
+            creation = ctypes.c_ulonglong()
+            exit_time = ctypes.c_ulonglong()
+            kernel = ctypes.c_ulonglong()
+            user = ctypes.c_ulonglong()
+            if not kernel32.GetProcessTimes(
+                process,
+                ctypes.byref(creation),
+                ctypes.byref(exit_time),
+                ctypes.byref(kernel),
+                ctypes.byref(user),
+            ):
+                return None
+            return f"windows-filetime:{creation.value}"
+        finally:
+            kernel32.CloseHandle(process)
+    proc_stat = pathlib.Path(f"/proc/{pid}/stat")
+    if proc_stat.is_file():
+        try:
+            fields = proc_stat.read_text(encoding="utf-8").split()
+            return f"proc-start-ticks:{fields[21]}"
+        except (OSError, UnicodeError, IndexError):
+            return None
+    result = subprocess.run(
+        ["ps", "-o", "lstart=", "-p", str(pid)],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    value = result.stdout.strip()
+    return f"ps-lstart:{value}" if result.returncode == 0 and value else None
+
+
+def contained_path(raw: pathlib.Path, root: pathlib.Path, label: str) -> pathlib.Path:
+    resolved = raw.resolve()
+    try:
+        resolved.relative_to(root.resolve())
+    except ValueError as exc:
+        raise ContractError(f"{label} escapes the reserved state directory") from exc
+    return resolved
+
+
+def load_worktree_lease(path: pathlib.Path, state_root: pathlib.Path) -> dict:
+    lease_path = contained_path(path, state_root, "lease path")
+    try:
+        data = json.loads(lease_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ContractError(f"lease cannot be read: {exc}") from exc
+    required = {
+        "schemaVersion",
+        "runId",
+        "ownerPid",
+        "ownerProcessStartedAt",
+        "repository",
+        "remoteRef",
+        "commit",
+        "worktreePath",
+        "leasePath",
+        "createdAt",
+    }
+    if not isinstance(data, dict) or set(data) != required:
+        raise ContractError("lease fields are incomplete or unknown")
+    if data["schemaVersion"] != "1.0" or not isinstance(data["ownerPid"], int):
+        raise ContractError("lease schema or owner PID is invalid")
+    if pathlib.Path(data["leasePath"]).resolve() != lease_path:
+        raise ContractError("lease path does not match its evidence")
+    repository = pathlib.Path(data["repository"]).resolve()
+    if not (repository / ".git").exists():
+        raise ContractError("lease repository is not a Git checkout")
+    worktree = contained_path(
+        pathlib.Path(data["worktreePath"]), state_root, "worktree path"
+    )
+    if worktree == state_root.resolve():
+        raise ContractError("worktree path cannot be the state root")
+    if not re.fullmatch(r"[0-9a-fA-F]{40}|[0-9a-fA-F]{64}", str(data["commit"])):
+        raise ContractError("lease commit is invalid")
+    if not re.fullmatch(r"refs/remotes/origin/[A-Za-z0-9._/-]+", str(data["remoteRef"])):
+        raise ContractError("lease remote ref is invalid")
+    commit = run_git(repository, "cat-file", "-e", f"{data['commit']}^{{commit}}", check=False)
+    if commit.returncode != 0:
+        raise ContractError("lease commit is not present in its repository")
+    data["_leasePath"] = lease_path
+    data["_repository"] = repository
+    data["_worktreePath"] = worktree
+    return data
+
+
+def worktree_registered(repository: pathlib.Path, worktree: pathlib.Path) -> bool:
+    result = run_git(repository, "worktree", "list", "--porcelain", check=False)
+    if result.returncode != 0:
+        return False
+    registered = {
+        pathlib.Path(line.removeprefix("worktree ")).resolve()
+        for line in result.stdout.splitlines()
+        if line.startswith("worktree ")
+    }
+    return worktree.resolve() in registered
+
+
+def remove_owned_worktree(lease: dict) -> None:
+    repository = lease["_repository"]
+    worktree = lease["_worktreePath"]
+    lease_path = lease["_leasePath"]
+    registered = worktree_registered(repository, worktree)
+    if registered:
+        worktree_head = run_git(worktree, "rev-parse", "HEAD", check=False)
+        if (
+            worktree_head.returncode != 0
+            or worktree_head.stdout.strip().lower() != lease["commit"].lower()
+        ):
+            raise ContractError("registered worktree no longer matches its leased commit")
+        status = run_git(worktree, "status", "--porcelain=v1", "-uall", check=False)
+        if status.returncode != 0 or status.stdout:
+            raise ContractError("registered worktree changed after cleanup authorization")
+        removed = run_git(
+            repository, "worktree", "remove", "--force", str(worktree), check=False
+        )
+        if removed.returncode != 0:
+            raise ContractError("owned worktree could not be removed")
+    elif worktree.exists():
+        raise ContractError("unregistered worktree path is not safe to remove")
+    # Die Kandidatenmenge wird nach Git erneut bestimmt; nur der nun leere,
+    # leasegebundene Elternpfad darf entfernt werden.
+    # Re-inventory after Git; only the now-empty lease-owned parent may be removed.
+    parent = worktree.parent
+    if parent.is_dir() and not any(parent.iterdir()):
+        parent.rmdir()
+    lease_path.unlink(missing_ok=True)
+
+
+def create_worktree_lease(args: argparse.Namespace) -> int:
+    try:
+        state_root = args.state_root.resolve()
+        state_root.mkdir(parents=True, exist_ok=True)
+        lease_path = contained_path(args.lease, state_root, "lease path")
+        worktree = contained_path(args.worktree, state_root, "worktree path")
+        if lease_path.exists() or worktree.exists():
+            raise ContractError("lease or worktree path already exists")
+        if not args.run_id.strip():
+            raise ContractError("lease run ID is empty")
+        repository = args.repository.resolve()
+        if not (repository / ".git").exists():
+            raise ContractError("lease repository is not a Git checkout")
+        identity = args.owner_process_identity or process_identity(args.owner_pid)
+        if not identity:
+            raise ContractError("owner process identity is unavailable")
+        payload = {
+            "schemaVersion": "1.0",
+            "runId": args.run_id,
+            "ownerPid": args.owner_pid,
+            "ownerProcessStartedAt": identity,
+            "repository": str(repository),
+            "remoteRef": args.remote_ref,
+            "commit": args.commit.lower(),
+            "worktreePath": str(worktree),
+            "leasePath": str(lease_path),
+            "createdAt": utc_now(),
+        }
+        if not re.fullmatch(r"[0-9a-fA-F]{40}|[0-9a-fA-F]{64}", payload["commit"]):
+            raise ContractError("lease commit is invalid")
+        lease_path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = lease_path.with_name(f".{lease_path.name}.{uuid.uuid4().hex}.tmp")
+        temporary.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        os.replace(temporary, lease_path)
+        print(f"LEASE\tCREATED\t{lease_path}")
+        return 0
+    except ContractError as exc:
+        print(f"LEASE\tFAILED\t{exc}", file=sys.stderr)
+        return 2
+
+
+def release_worktree_lease(args: argparse.Namespace) -> int:
+    try:
+        lease_path = contained_path(args.lease, args.state_root.resolve(), "lease path")
+        if not lease_path.exists():
+            print(f"LEASE\tALREADY_RELEASED\t{lease_path}")
+            return 0
+        lease = load_worktree_lease(args.lease, args.state_root)
+        if lease["runId"] != args.run_id:
+            raise ContractError("lease run ID does not match release authority")
+        remove_owned_worktree(lease)
+        print(f"LEASE\tRELEASED\t{args.lease}")
+        return 0
+    except ContractError as exc:
+        print(f"LEASE\tAMBIGUOUS\t{exc}", file=sys.stderr)
+        return 1
+
+
+def recover_worktree_leases(args: argparse.Namespace) -> int:
+    state_root = args.state_root.resolve()
+    lease_dir = contained_path(args.lease_dir, state_root, "lease directory")
+    if not lease_dir.exists():
+        print("LEASE_RECOVERY\tCURRENT\t0")
+        return 0
+    blocked = 0
+    recovered = 0
+    for lease_path in sorted(lease_dir.glob("*.json")):
+        try:
+            lease = load_worktree_lease(lease_path, state_root)
+            current_identity = process_identity(lease["ownerPid"])
+            if current_identity == lease["ownerProcessStartedAt"]:
+                print(f"LEASE_RECOVERY\tACTIVE\t{lease_path.name}")
+                continue
+            if current_identity is not None:
+                blocked += 1
+                print(
+                    f"LEASE_RECOVERY\tAMBIGUOUS_PID_REUSE\t{lease_path.name}",
+                    file=sys.stderr,
+                )
+                continue
+            remove_owned_worktree(lease)
+            recovered += 1
+            print(f"LEASE_RECOVERY\tRECOVERED\t{lease_path.name}")
+        except ContractError as exc:
+            blocked += 1
+            print(
+                f"LEASE_RECOVERY\tAMBIGUOUS\t{lease_path.name}\t{exc}",
+                file=sys.stderr,
+            )
+    print(f"LEASE_RECOVERY\tSUMMARY\trecovered={recovered}\tblocked={blocked}")
+    return 1 if blocked else 0
+
+
 def execute_fleet(args: argparse.Namespace) -> int:
     started = time.monotonic()
     started_at = utc_now()
@@ -394,6 +871,42 @@ def execute_fleet(args: argparse.Namespace) -> int:
     home = args.home_dir.resolve()
     allowed_dirty_paths = {item.replace("\\", "/") for item in args.allowed_dirty_path}
     results: list[dict] = []
+    if args.level0_dir is not None:
+        level0 = args.level0_dir.resolve()
+        origin = run_git(level0, "remote", "get-url", "origin", check=False)
+        branch = run_git(level0, "branch", "--show-current", check=False)
+        if origin.returncode == 0 and branch.returncode == 0 and branch.stdout.strip():
+            level0_target = {
+                "id": "level0",
+                "path": ".",
+                "kind": "git-repository",
+                "maintenanceClass": "canonical-fleet",
+                "remote": origin.stdout.strip(),
+                "defaultBranch": branch.stdout.strip(),
+            }
+            level0_result = classify_repository(
+                level0_target, level0, args.mode, allowed_dirty_paths
+            )
+            results.append(level0_result)
+            print(
+                f"TARGET\tlevel0\t{level0_result['status']}\t"
+                f"{level0_result['action']}\t{level0_result['nextAction']}"
+            )
+        else:
+            results.append(
+                target_result(
+                    {
+                        "id": "level0",
+                        "path": ".",
+                        "kind": "git-repository",
+                        "maintenanceClass": "canonical-fleet",
+                    },
+                    status="REMOTE_MISMATCH",
+                    result="Blocked",
+                    findingCode="Level0OriginMissing",
+                    nextAction="Level-0 origin und Branch prüfen / review Level 0 origin and branch.",
+                )
+            )
     for target in manifest["targets"]:
         if not target["active"]:
             continue
@@ -412,6 +925,44 @@ def execute_fleet(args: argparse.Namespace) -> int:
          "summary": item["status"], "nextAction": item["nextAction"]}
         for item in results if item["findingCode"] != "N/A"
     ]
+    git_results = [item for item in results if item["kind"] == "git-repository"]
+    collection_results = [item for item in results if item["kind"] == "collection"]
+    completed_freshness = sum(
+        isinstance(item.get("freshnessAttempt"), dict)
+        and item["freshnessAttempt"].get("status") == "Succeeded"
+        for item in git_results
+    )
+    fleet_ready = (
+        len(git_results) == completed_freshness
+        and all(item["result"] == "Pass" and item.get("mutationAllowed") for item in git_results)
+    )
+    operations = []
+    for sequence, item in enumerate(results, start=1):
+        attempt = item.get("freshnessAttempt")
+        operations.append(
+            {
+                "sequence": sequence,
+                "kind": (
+                    attempt.get("operation", "inventory")
+                    if isinstance(attempt, dict)
+                    else "inventory"
+                ),
+                "targetId": item["targetId"],
+                "status": (
+                    attempt.get("status", item["status"])
+                    if isinstance(attempt, dict)
+                    else item["status"]
+                ),
+            }
+        )
+    operations.append(
+        {
+            "sequence": len(operations) + 1,
+            "kind": "mutation-barrier",
+            "targetId": "fleet",
+            "status": "Open" if fleet_ready else "Blocked",
+        }
+    )
     report = {
         "schemaVersion": "1.0", "runId": run_id, "platform": sys.platform, "mode": args.mode,
         "startedAt": started_at, "completedAt": utc_now(), "overallStatus": overall, "exitCode": exit_code,
@@ -420,6 +971,21 @@ def execute_fleet(args: argparse.Namespace) -> int:
                     "summary": f"{len(results)} active targets evaluated.",
                     "nextAction": "N/A" if exit_code == 0 else "Blockierende Zielbefunde beheben / resolve blocking target findings."}],
         "targets": results, "toolchain": [], "findings": findings,
+        "operations": operations,
+        "mutationBarrier": {
+            "expectedGitTargets": len(git_results),
+            "completedGitTargets": completed_freshness,
+            "collectionTargets": len(collection_results),
+            "allFetchAttemptsCompleted": completed_freshness == len(git_results),
+            "fleetReady": fleet_ready,
+            "domainMutationAllowed": fleet_ready and args.mode == "update",
+            "decidedAt": utc_now(),
+            "nextAction": (
+                "N/A"
+                if fleet_ready
+                else "Alle blockierenden Flottenbefunde beheben / resolve all blocking fleet findings."
+            ),
+        },
         "counts": {
             "targets": len(results),
             "passed": sum(item["result"] == "Pass" for item in results),
@@ -581,6 +1147,7 @@ def validate_registry(args: argparse.Namespace) -> int:
         print("REGISTRY\tFAILED\trepositories must be an array")
         return 2
     actual: set[str] = set()
+    language_findings: list[str] = []
     for entry in entries:
         if not isinstance(entry, dict) or not isinstance(entry.get("path"), str):
             print("REGISTRY\tFAILED\tinvalid repository entry")
@@ -593,12 +1160,72 @@ def validate_registry(args: argparse.Namespace) -> int:
             print(f"REGISTRY\tFAILED\tduplicate propagation target: {entry['path']}")
             return 2
         actual.add(path)
+        language = str(entry.get("primaryLanguage", "")).strip().casefold()
+        status = str(entry.get("mslStatus", "")).strip().casefold()
+        expected_status = None
+        if language in KNOWN_MSL_LANGUAGES:
+            expected_status = "msl"
+        elif language in KNOWN_NON_MSL_LANGUAGES:
+            expected_status = "non-msl"
+        elif language == "none":
+            expected_status = "n/a"
+        if expected_status is not None and status != expected_status:
+            language_findings.append(
+                f"{entry['path']}: language={entry.get('primaryLanguage')} "
+                f"expects mslStatus={expected_status}, found {entry.get('mslStatus')}"
+            )
     missing = expected - actual
     if missing:
         print(f"REGISTRY\tDRIFT\tmissing canonical targets: {len(missing)}")
         return 1
+    if language_findings:
+        for finding in language_findings:
+            print(
+                "REGISTRY\tLANGUAGE_MSL_CONFLICT\t"
+                f"{finding}\tnext=Kuratierte Registry-Einstufung prüfen / review curated classification"
+            )
+        return 1
     print(f"REGISTRY\tCURRENT\tcanonical targets: {len(actual)}")
     return 0
+
+
+def resolve_preset_profile(args: argparse.Namespace) -> int:
+    try:
+        catalog = json.loads(args.catalog.read_text(encoding="utf-8-sig"))
+        profiles = catalog.get("profiles", {}) if isinstance(catalog, dict) else {}
+        if not isinstance(profiles, dict):
+            raise ContractError("preset profiles must be an object")
+        profile_name = args.profile or catalog.get("defaultProfile")
+        if not isinstance(profile_name, str) or profile_name not in profiles:
+            raise ContractError(f"unknown preset profile: {profile_name}")
+        profile = profiles[profile_name]
+        relative = profile.get("presetConfig") if isinstance(profile, dict) else None
+        if not isinstance(relative, str) or not relative:
+            raise ContractError(f"preset profile has no matrix: {profile_name}")
+        source_root = args.source_root.resolve()
+        config = contained_path(source_root / relative, source_root, "preset matrix")
+        matrix = json.loads(config.read_text(encoding="utf-8-sig"))
+        presets = matrix.get("presets", []) if isinstance(matrix, dict) else []
+        preset_ids = [
+            item.get("id") for item in presets
+            if isinstance(item, dict) and isinstance(item.get("id"), str)
+        ]
+        if not preset_ids or len(preset_ids) != len(presets) or len(set(preset_ids)) != len(preset_ids):
+            raise ContractError("preset matrix IDs are empty, invalid or duplicated")
+        result = {
+            "profileName": profile_name,
+            "presetConfig": str(config),
+            "presetIds": preset_ids,
+            "presetCount": len(preset_ids),
+        }
+        if args.field == "path":
+            print(result["presetConfig"])
+        else:
+            print(json.dumps(result, ensure_ascii=False, separators=(",", ":")))
+        return 0
+    except (ContractError, OSError, UnicodeError, json.JSONDecodeError) as exc:
+        print(f"PROFILE\tFAILED\t{exc}", file=sys.stderr)
+        return 2
 
 
 def list_canonical_repositories(args: argparse.Namespace) -> int:
@@ -637,6 +1264,32 @@ def list_canonical_repositories(args: argparse.Namespace) -> int:
     return 0
 
 
+def print_default_remote_ref(args: argparse.Namespace) -> int:
+    repository = args.repository.resolve()
+    origin = run_git(repository, "remote", "get-url", "origin", check=False)
+    if origin.returncode != 0:
+        print("DEFAULT_REF\tFAILED\torigin is unavailable", file=sys.stderr)
+        return 2
+    local = run_git(
+        repository,
+        "symbolic-ref",
+        "--quiet",
+        "refs/remotes/origin/HEAD",
+        check=False,
+    )
+    local_ref = local.stdout.strip() if local.returncode == 0 else ""
+    evidence, _, error = resolve_default_branch_evidence(
+        {"remote": origin.stdout.strip(), "defaultBranch": ""},
+        repository,
+        local_ref,
+    )
+    if error or evidence is None:
+        print(f"DEFAULT_REF\tFAILED\t{error or 'unknown'}", file=sys.stderr)
+        return 1
+    print(evidence["trackingRef"])
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -648,6 +1301,7 @@ def build_parser() -> argparse.ArgumentParser:
     fleet.add_argument("--log", type=pathlib.Path, required=True)
     fleet.add_argument("--run-id")
     fleet.add_argument("--allowed-dirty-path", action="append", default=[])
+    fleet.add_argument("--level0-dir", type=pathlib.Path)
     fleet.set_defaults(handler=execute_fleet)
     stage = subparsers.add_parser("stage")
     stage.add_argument("--report", type=pathlib.Path, required=True)
@@ -696,11 +1350,40 @@ def build_parser() -> argparse.ArgumentParser:
     registry.add_argument("--manifest", type=pathlib.Path, required=True)
     registry.add_argument("--registry", type=pathlib.Path, required=True)
     registry.set_defaults(handler=validate_registry)
+    profile = subparsers.add_parser("profile")
+    profile.add_argument("--catalog", type=pathlib.Path, required=True)
+    profile.add_argument("--source-root", type=pathlib.Path, required=True)
+    profile.add_argument("--profile")
+    profile.add_argument("--field", choices=("json", "path"), default="json")
+    profile.set_defaults(handler=resolve_preset_profile)
     repositories = subparsers.add_parser("canonical-repositories")
     repositories.add_argument("--manifest", type=pathlib.Path, required=True)
     repositories.add_argument("--home-dir", type=pathlib.Path, required=True)
     repositories.add_argument("--existing-only", action="store_true")
     repositories.set_defaults(handler=list_canonical_repositories)
+    default_ref = subparsers.add_parser("default-ref")
+    default_ref.add_argument("--repository", type=pathlib.Path, required=True)
+    default_ref.set_defaults(handler=print_default_remote_ref)
+    lease_create = subparsers.add_parser("lease-create")
+    lease_create.add_argument("--state-root", type=pathlib.Path, required=True)
+    lease_create.add_argument("--lease", type=pathlib.Path, required=True)
+    lease_create.add_argument("--run-id", required=True)
+    lease_create.add_argument("--owner-pid", type=int, required=True)
+    lease_create.add_argument("--owner-process-identity")
+    lease_create.add_argument("--repository", type=pathlib.Path, required=True)
+    lease_create.add_argument("--remote-ref", required=True)
+    lease_create.add_argument("--commit", required=True)
+    lease_create.add_argument("--worktree", type=pathlib.Path, required=True)
+    lease_create.set_defaults(handler=create_worktree_lease)
+    lease_release = subparsers.add_parser("lease-release")
+    lease_release.add_argument("--state-root", type=pathlib.Path, required=True)
+    lease_release.add_argument("--lease", type=pathlib.Path, required=True)
+    lease_release.add_argument("--run-id", required=True)
+    lease_release.set_defaults(handler=release_worktree_lease)
+    lease_recover = subparsers.add_parser("lease-recover")
+    lease_recover.add_argument("--state-root", type=pathlib.Path, required=True)
+    lease_recover.add_argument("--lease-dir", type=pathlib.Path, required=True)
+    lease_recover.set_defaults(handler=recover_worktree_leases)
     return parser
 
 

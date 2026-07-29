@@ -4,12 +4,14 @@
     Orchestrates repository and agentic toolchain maintenance on Windows.
 
 .DESCRIPTION
-    Updates the Level-0 checkout and all active canonical-fleet Level-1/Level-2
-    repositories declared by the desired-state manifest by fast-forward only,
-    synchronizes the local home baseline, checks the local GSDB registry and
-    canonical maintenance package, and then maintains the WinGet-based machine
-    toolchain. The script never commits or pushes target repositories and never
-    switches branches.
+    Completes bounded fetch attempts for Level 0 and every active Git target
+    before any domain mutation. Only clean canonical behind-only branches are
+    fast-forwarded. It then synchronizes the local home baseline, checks the
+    GSDB registry, maintenance package and data-driven preset profiles, and
+    maintains the WinGet-based machine toolchain. Lease-owned temporary
+    worktrees preserve ambiguous evidence instead of deleting user paths.
+    The script never commits or pushes target repositories and never switches
+    branches.
 
     Without parameters, the script performs the complete mutating maintenance
     workflow. Use -CheckOnly for a read-oriented status run or -WhatIf for a
@@ -167,7 +169,7 @@ $maintenanceMode = Get-HBMaintenanceMode -CheckOnly:$CheckOnly -Preview:$WhatIfP
 
 $sourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
 $presetProfileCatalog = Join-Path $sourceRoot 'scripts/config/spec-kit-preset-profiles.json'
-$fleetPresetProfile = 'intake-sequencing-eleven-governance-presets'
+$fleetPresetProfile = $null
 $fleetEngine = Join-Path $sourceRoot 'scripts/lib/agentic_workspace_fleet.py'
 if (-not $ManifestPath) {
     $ManifestPath = Join-Path $sourceRoot 'scripts/config/agentic-workspace-fleet.json'
@@ -203,6 +205,8 @@ $lockDir = Join-Path $stateDir 'locks/agentic-workspace-maintenance.lock'
 $logDir = Join-Path $stateDir 'logs'
 $reportDir = Join-Path $stateDir 'reports'
 $resumeEvidenceFile = Join-Path $stateDir 'agentic-workspace-resume.json'
+$presetWorktreeLeaseDir = Join-Path $stateDir 'preset-validation-leases'
+$presetWorktreeStateDir = Join-Path $stateDir 'preset-validation-worktrees'
 $script:Findings = 0
 $script:RepairApplied = $false
 $script:PreviewDrift = $false
@@ -270,6 +274,14 @@ try {
 
 try {
     $profileCatalogData = Get-Content -LiteralPath $presetProfileCatalog -Raw -Encoding UTF8 | ConvertFrom-Json
+    $fleetPresetProfile = if (
+        (Test-Path -LiteralPath $registry -PathType Leaf) -and
+        ((Get-Content -LiteralPath $registry -Raw -Encoding UTF8 | ConvertFrom-Json).defaultPresetProfile)
+    ) {
+        [string](Get-Content -LiteralPath $registry -Raw -Encoding UTF8 | ConvertFrom-Json).defaultPresetProfile
+    } else {
+        [string]$profileCatalogData.defaultProfile
+    }
     $profileProperty = $profileCatalogData.profiles.PSObject.Properties[$fleetPresetProfile]
     if ($null -eq $profileProperty -or -not $profileProperty.Value.presetConfig) {
         throw "Unbekanntes Flottenprofil / unknown fleet profile: ${fleetPresetProfile}"
@@ -278,8 +290,8 @@ try {
     $fleetPresetCount = @(
         (Get-Content -LiteralPath $fleetPresetConfig -Raw -Encoding UTF8 | ConvertFrom-Json).presets
     ).Count
-    if ($fleetPresetCount -ne 11) {
-        throw "Flottenprofil hat ${fleetPresetCount} statt 11 Presets / has an unexpected preset count."
+    if ($fleetPresetCount -lt 1) {
+        throw "Flottenprofil enthaelt keine Presets / fleet profile contains no presets."
     }
 } catch {
     Write-HBEarlyFailureReport -Status FAILED -ExitCode 2 -Summary $_.Exception.Message `
@@ -341,7 +353,8 @@ function Invoke-HBFleetContract {
         '--mode', $maintenanceMode.FleetMode,
         '--report', $reportFile,
         '--log', $logFile,
-        '--run-id', $runId
+        '--run-id', $runId,
+        '--level0-dir', $sourceRoot
     )
     foreach ($path in $script:ResumeAllowedPaths) {
         $arguments += @('--allowed-dirty-path', $path)
@@ -710,18 +723,19 @@ function Get-HBPresetConfig {
     if (-not (Test-Path -LiteralPath $presetProfileCatalog -PathType Leaf)) {
         throw "Preset-Profilkatalog fehlt / missing: ${presetProfileCatalog}"
     }
-    $catalog = Get-Content -LiteralPath $presetProfileCatalog -Raw | ConvertFrom-Json
-    $property = $catalog.profiles.PSObject.Properties[$ProfileName]
-    if ($null -eq $property) {
-        throw "Unbekanntes Preset-Profil / unknown preset profile: ${ProfileName}"
+    $resolved = @(
+        Invoke-HBPythonCommand -Arguments @(
+            $fleetEngine, 'profile',
+            '--catalog', $presetProfileCatalog,
+            '--source-root', $sourceRoot,
+            '--profile', $ProfileName,
+            '--field', 'path'
+        )
+    )
+    if ($LASTEXITCODE -ne 0 -or $resolved.Count -ne 1) {
+        throw "Unbekanntes oder ungueltiges Preset-Profil / unknown or invalid preset profile: ${ProfileName}"
     }
-    $relative = $property.Value.presetConfig
-    if ([string]::IsNullOrWhiteSpace([string]$relative)) { return $null }
-    $config = [IO.Path]::GetFullPath((Join-Path $sourceRoot ([string]$relative)))
-    if (-not $config.StartsWith($sourceRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
-        throw "Preset-Konfiguration liegt ausserhalb der Quelle / outside source: ${config}"
-    }
-    return $config
+    return [string]$resolved[0]
 }
 
 function Get-HBPresetTargets {
@@ -753,20 +767,16 @@ function Get-HBPresetTargets {
 function Get-HBDefaultRemoteRef {
     param([Parameter(Mandatory)][string] $Repository)
 
-    $symbolic = (& git -C $Repository symbolic-ref --quiet refs/remotes/origin/HEAD 2>$null | Out-String).Trim()
-    if ($LASTEXITCODE -eq 0 -and $symbolic) {
-        & git -C $Repository show-ref --verify --quiet $symbolic
-        if ($LASTEXITCODE -eq 0) { return $symbolic }
-        return $null
-    }
-
-    $candidates = @()
-    foreach ($candidate in @('refs/remotes/origin/main', 'refs/remotes/origin/master')) {
-        & git -C $Repository show-ref --verify --quiet $candidate
-        if ($LASTEXITCODE -eq 0) { $candidates += $candidate }
-    }
-    if ($candidates.Count -ne 1) { return $null }
-    return $candidates[0]
+    $resolved = @(
+        Invoke-HBPythonCommand -Arguments @(
+            $fleetEngine,
+            'default-ref',
+            '--repository',
+            $Repository
+        )
+    )
+    if ($LASTEXITCODE -ne 0 -or $resolved.Count -ne 1) { return $null }
+    return [string]$resolved[0]
 }
 
 function New-HBPresetValidationTarget {
@@ -776,7 +786,7 @@ function New-HBPresetValidationTarget {
         if (-not (Test-Path -LiteralPath (Join-Path $Repository '.specify') -PathType Container)) {
             throw "Spec Kit ist nicht initialisiert / Spec Kit is not initialized: ${Repository}"
         }
-        return [pscustomobject]@{ Path = $Repository; Isolated = $false; Root = $null; Repository = $Repository }
+        return [pscustomobject]@{ Path = $Repository; Isolated = $false; Root = $null; Repository = $Repository; Lease = $null }
     }
 
     $defaultRef = Get-HBDefaultRemoteRef -Repository $Repository
@@ -790,7 +800,7 @@ function New-HBPresetValidationTarget {
         $currentCommit -and
         $currentCommit -eq $defaultCommit
     ) {
-        return [pscustomobject]@{ Path = $Repository; Isolated = $false; Root = $null; Repository = $Repository }
+        return [pscustomobject]@{ Path = $Repository; Isolated = $false; Root = $null; Repository = $Repository; Lease = $null }
     }
 
     & git -C $Repository cat-file -e "${defaultRef}:.specify/presets/.registry" 2>$null
@@ -798,24 +808,51 @@ function New-HBPresetValidationTarget {
         throw "Spec Kit ist auch auf ${defaultRef} nicht initialisiert / is not initialized on the canonical default ref: ${Repository}"
     }
 
-    $root = Join-Path (Join-Path $HomeDir '.home-baseline') ("preset-validation." + [Guid]::NewGuid().ToString('N'))
+    $leaseId = [Guid]::NewGuid().ToString()
+    $root = Join-Path $presetWorktreeStateDir $leaseId
     $worktree = Join-Path $root 'worktree'
-    New-Item -ItemType Directory -Path $root -Force | Out-Null
+    $lease = Join-Path $presetWorktreeLeaseDir "${leaseId}.json"
+    Invoke-HBPythonCommand -Arguments @(
+        $fleetEngine, 'lease-create',
+        '--state-root', $stateDir,
+        '--lease', $lease,
+        '--run-id', $runId,
+        '--owner-pid', [string]$PID,
+        '--repository', $Repository,
+        '--remote-ref', $defaultRef,
+        '--commit', $defaultCommit,
+        '--worktree', $worktree
+    ) | ForEach-Object { Write-Host $_ }
+    if ($LASTEXITCODE -ne 0) {
+        throw "Preset-Worktree-Lease konnte nicht erstellt werden / could not create lease: ${Repository}"
+    }
     & git -C $Repository worktree add --detach $worktree $defaultRef | Out-Null
     if ($LASTEXITCODE -ne 0) {
-        Remove-Item -LiteralPath $root -Recurse -Force -ErrorAction SilentlyContinue
+        Invoke-HBPythonCommand -Arguments @(
+            $fleetEngine, 'lease-release',
+            '--state-root', $stateDir,
+            '--lease', $lease,
+            '--run-id', $runId
+        ) | Out-Null
         throw "Temporärer Preset-Prüf-Worktree konnte nicht erstellt werden / temporary preset validation worktree failed: ${Repository}"
     }
     Write-HBInfo "Preset-Profil wird isoliert auf ${defaultRef} geprüft / validating preset profile on canonical ref"
-    return [pscustomobject]@{ Path = $worktree; Isolated = $true; Root = $root; Repository = $Repository }
+    return [pscustomobject]@{ Path = $worktree; Isolated = $true; Root = $root; Repository = $Repository; Lease = $lease }
 }
 
 function Remove-HBPresetValidationTarget {
     param([Parameter(Mandatory)][object] $Target)
 
     if (-not $Target.Isolated) { return }
-    & git -C $Target.Repository worktree remove --force $Target.Path 2>$null
-    Remove-Item -LiteralPath $Target.Root -Recurse -Force -ErrorAction SilentlyContinue
+    Invoke-HBPythonCommand -Arguments @(
+        $fleetEngine, 'lease-release',
+        '--state-root', $stateDir,
+        '--lease', $Target.Lease,
+        '--run-id', $runId
+    ) | ForEach-Object { Write-Host $_ }
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Preset-Worktree bleibt wegen mehrdeutiger Lease-Evidence erhalten / retained because lease evidence is ambiguous.'
+    }
 }
 
 function Invoke-HBPresetProfiles {
@@ -900,11 +937,38 @@ try {
         throw
     }
 
-    Write-HBInfo 'Level-0 aktualisieren / Update Level-0'
-    $level0Passed = Test-HBRepository -Repository $sourceRoot -Label 'Level-0'
+    Write-HBInfo 'Verwaiste eigene Preset-Worktrees prüfen / Check owned orphaned preset worktrees'
+    Invoke-HBPythonCommand -Arguments @(
+        $fleetEngine, 'lease-recover',
+        '--state-root', $stateDir,
+        '--lease-dir', $presetWorktreeLeaseDir
+    ) | ForEach-Object { Write-Host $_ }
+    $leaseRecoveryReady = $LASTEXITCODE -eq 0
+    if (-not $leaseRecoveryReady) {
+        $script:Findings++
+        Write-HBWarning 'Mehrdeutige Lease-Evidence blockiert mutierende Folgephasen / ambiguous lease evidence blocks later mutations.'
+    }
+
+    Write-HBInfo 'Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet'
+    $fleetStatus = Invoke-HBFleetContract
+    switch ($fleetStatus) {
+        0 { }
+        1 { $script:Findings++ }
+        default {
+            Add-HBReportStage -StageId 'fleet' -Status Failed -ExitCode 2 `
+                -Summary 'Fleet-Vertrag fehlgeschlagen / fleet contract failed' `
+                -NextAction 'Manifest und Log pruefen / review manifest and log'
+            throw 'Fleet-Vertrag fehlgeschlagen / fleet contract failed.'
+        }
+    }
+    $fleetReport = Get-Content -LiteralPath $reportFile -Raw -Encoding UTF8 | ConvertFrom-Json
+    $fleetReady = $fleetReport.mutationBarrier.fleetReady -eq $true
+    $level0Row = @($fleetReport.targets | Where-Object { $_.targetId -eq 'level0' }) |
+        Select-Object -First 1
+    $level0Passed = $null -ne $level0Row -and $level0Row.result -eq 'Pass'
 
     $homeStatus = 'Skipped'
-    if ($script:Findings -eq 0) {
+    if (($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) {
         Write-HBInfo 'Lokale Home-Baseline synchronisieren / Synchronize local home baseline'
         $findingsBefore = $script:Findings
         $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
@@ -924,19 +988,6 @@ try {
         }
         if ($homeInvocationStatus -ne 0) { throw 'sync-home fehlgeschlagen / failed.' }
         $homeStatus = if ($script:Findings -gt $findingsBefore) { 'Blocked' } else { 'Passed' }
-    }
-
-    Write-HBInfo 'Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet'
-    $fleetStatus = Invoke-HBFleetContract
-    switch ($fleetStatus) {
-        0 { }
-        1 { $script:Findings++ }
-        default {
-            Add-HBReportStage -StageId 'fleet' -Status Failed -ExitCode 2 `
-                -Summary 'Fleet-Vertrag fehlgeschlagen / fleet contract failed' `
-                -NextAction 'Manifest und Log pruefen / review manifest and log'
-            throw 'Fleet-Vertrag fehlgeschlagen / fleet contract failed.'
-        }
     }
     Add-HBReportStage -StageId 'level0' -Status $(if ($level0Passed) { 'Passed' } else { 'Blocked' }) `
         -ExitCode $(if ($level0Passed) { 0 } else { 1 }) `
@@ -978,7 +1029,7 @@ try {
             -Summary "Registry-Pruefung abgeschlossen / completed; source=scripts/config/spec-kit-preset-profiles.json; profile=${fleetPresetProfile}; presets=${fleetPresetCount}"
     }
 
-    if (($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
+    if ((($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) -and ($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
         Write-HBInfo 'Kanonisches Wartungspaket pruefen / Check canonical maintenance package'
         if (Test-Path -LiteralPath $registry -PathType Leaf) {
             $findingsBefore = $script:Findings
@@ -1002,7 +1053,7 @@ try {
             -NextAction 'Blockierende Vorbedingung beheben / resolve blocking prerequisite'
     }
 
-    if (($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
+    if ((($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) -and ($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe -and $leaseRecoveryReady) {
         Write-HBInfo 'Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles'
         $findingsBefore = $script:Findings
         Invoke-HBPresetProfiles
@@ -1020,7 +1071,7 @@ try {
             -NextAction 'Blockierende Vorbedingung beheben / resolve blocking prerequisite'
     }
 
-    if (($script:Findings -eq 0 -or $CheckOnly) -and -not $ScriptsOnly) {
+    if ((($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) -and ($script:Findings -eq 0 -or $CheckOnly) -and -not $ScriptsOnly) {
         Write-HBInfo 'Maschinen-Toolchain pflegen / Maintain machine toolchain'
         $maintenance = Join-Path $sourceRoot 'scripts/maintain-agentic-winget-apps.ps1'
         $parameters = @{}

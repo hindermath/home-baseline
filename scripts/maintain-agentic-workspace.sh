@@ -31,20 +31,23 @@ FINALIZED=0
 PRESET_WORKTREE_REPO=""
 PRESET_WORKTREE_PATH=""
 PRESET_WORKTREE_ROOT=""
+PRESET_WORKTREE_LEASE=""
 PRESET_VALIDATION_TARGET=""
 PRESET_VALIDATION_ISOLATED=0
+LEASE_RECOVERY_READY=1
 
 usage() {
   cat <<'USAGE'
 Verwendung / Usage: maintain-agentic-workspace.sh [OPTIONEN]
 
-Ohne Optionen wird die vollstaendige Wartung ausgefuehrt: Repositories werden
-per Fast-forward aktualisiert, die lokale Home-Baseline wird synchronisiert,
-das Wartungspaket wird geprueft und die Maschinen-Toolchain wird aktualisiert.
+Ohne Optionen wird die vollstaendige Wartung ausgefuehrt: Die
+Remote-Freshness-Barriere schliesst zuerst alle Fetch-Versuche ab. Nur sichere
+Behind-only-Repositories werden per Fast-forward aktualisiert. Danach werden
+Home-Baseline, Wartungspaket, Preset-Profile und Maschinen-Toolchain gepflegt.
 
-Without options, full maintenance is performed: repositories are fast-forwarded,
-the local home baseline is synchronized, the maintenance package is checked,
-and the machine toolchain is updated.
+Without options, the Remote Freshness Barrier first completes every fetch
+attempt. Only safe behind-only repositories are fast-forwarded. Home baseline,
+maintenance package, preset profiles, and machine toolchain follow afterward.
 
   --check-only       Nur pruefen und fetchen; keine Pulls oder Paketupdates
                      Check and fetch only; no pulls or package updates
@@ -97,7 +100,7 @@ run_home_sync_check() {
 }
 
 release_resources() {
-  cleanup_preset_validation_target
+  cleanup_preset_validation_target || true
   if [ -n "$LOCK_DIR" ] && [ -d "$LOCK_DIR" ]; then
     rm -rf -- "$LOCK_DIR"
   fi
@@ -107,17 +110,23 @@ release_resources() {
 }
 
 cleanup_preset_validation_target() {
-  if [ -n "$PRESET_WORKTREE_PATH" ] && [ -n "$PRESET_WORKTREE_REPO" ]; then
-    git -C "$PRESET_WORKTREE_REPO" worktree remove --force "$PRESET_WORKTREE_PATH" >/dev/null 2>&1 || true
-  fi
-  if [ -n "$PRESET_WORKTREE_ROOT" ] && [ -d "$PRESET_WORKTREE_ROOT" ]; then
-    rm -rf -- "$PRESET_WORKTREE_ROOT"
+  local status=0
+  if [ -n "$PRESET_WORKTREE_LEASE" ]; then
+    python3 "$FLEET_ENGINE" lease-release \
+      --state-root "$STATE_DIR" \
+      --lease "$PRESET_WORKTREE_LEASE" \
+      --run-id "$RUN_ID" || status=$?
+    if [ "$status" -ne 0 ]; then
+      warn "Preset-Worktree bleibt wegen mehrdeutiger Lease-Evidence erhalten / retained because lease evidence is ambiguous"
+    fi
   fi
   PRESET_WORKTREE_REPO=""
   PRESET_WORKTREE_PATH=""
   PRESET_WORKTREE_ROOT=""
+  PRESET_WORKTREE_LEASE=""
   PRESET_VALIDATION_TARGET=""
   PRESET_VALIDATION_ISOLATED=0
+  return "$status"
 }
 
 finalize_run() {
@@ -228,6 +237,8 @@ if [ "$SCRIPT_DIR" = "${HOME_DIR}/scripts" ]; then
 fi
 
 STATE_DIR="${HOME_DIR}/.home-baseline"
+PRESET_WORKTREE_LEASE_DIR="${STATE_DIR}/preset-validation-leases"
+PRESET_WORKTREE_STATE_DIR="${STATE_DIR}/preset-validation-worktrees"
 LOCK_DIR="${STATE_DIR}/locks/agentic-workspace-maintenance.lock"
 LOG_DIR="${STATE_DIR}/logs"
 REPORT_DIR="${STATE_DIR}/reports"
@@ -285,7 +296,8 @@ run_fleet_contract() {
     --mode "$fleet_mode" \
     --report "$REPORT_FILE" \
     --log "$LOG_FILE" \
-    --run-id "$RUN_ID" || status=$?
+    --run-id "$RUN_ID" \
+    --level0-dir "$SOURCE_ROOT" || status=$?
   return "$status"
 }
 
@@ -429,28 +441,11 @@ handle_propagation() {
 }
 
 preset_config_for_profile() {
-  python3 - "$PRESET_PROFILE_CATALOG" "$SOURCE_ROOT" "$1" <<'PY'
-import json
-import pathlib
-import sys
-
-catalog_path = pathlib.Path(sys.argv[1])
-source_root = pathlib.Path(sys.argv[2]).resolve()
-profile_name = sys.argv[3]
-catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
-profiles = catalog.get("profiles", {})
-if profile_name not in profiles:
-    raise SystemExit(f"Unbekanntes Preset-Profil / unknown preset profile: {profile_name}")
-relative = profiles[profile_name].get("presetConfig")
-if relative is None:
-    raise SystemExit(1)
-config = (source_root / relative).resolve()
-try:
-    config.relative_to(source_root)
-except ValueError as exc:
-    raise SystemExit(f"Preset-Konfiguration liegt ausserhalb der Quelle: {config}") from exc
-print(config)
-PY
+  python3 "$FLEET_ENGINE" profile \
+    --catalog "$PRESET_PROFILE_CATALOG" \
+    --source-root "$SOURCE_ROOT" \
+    --profile "$1" \
+    --field path
 }
 
 discover_preset_targets() {
@@ -483,29 +478,14 @@ PY
 
 resolve_default_remote_ref() {
   local repo="$1"
-  local ref candidates=()
-
-  ref="$(git -C "$repo" symbolic-ref --quiet refs/remotes/origin/HEAD 2>/dev/null || true)"
-  if [ -n "$ref" ]; then
-    git -C "$repo" show-ref --verify --quiet "$ref" || return 1
-    printf '%s\n' "$ref"
-    return 0
-  fi
-
-  for ref in refs/remotes/origin/main refs/remotes/origin/master; do
-    if git -C "$repo" show-ref --verify --quiet "$ref"; then
-      candidates+=("$ref")
-    fi
-  done
-  [ "${#candidates[@]}" -eq 1 ] || return 1
-  printf '%s\n' "${candidates[0]}"
+  python3 "$FLEET_ENGINE" default-ref --repository "$repo"
 }
 
 prepare_preset_validation_target() {
   local repo="$1"
-  local default_ref current_commit default_commit
+  local default_ref current_commit default_commit lease_id
 
-  cleanup_preset_validation_target
+  cleanup_preset_validation_target || return 1
   PRESET_VALIDATION_TARGET="$repo"
 
   # Level-0 validates the executing source checkout so pending source changes
@@ -530,12 +510,26 @@ prepare_preset_validation_target() {
     return 1
   fi
 
-  mkdir -p "${HOME_DIR}/.home-baseline"
-  PRESET_WORKTREE_ROOT="$(mktemp -d "${HOME_DIR}/.home-baseline/preset-validation.XXXXXX")"
+  lease_id="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+  PRESET_WORKTREE_ROOT="${PRESET_WORKTREE_STATE_DIR}/${lease_id}"
   PRESET_WORKTREE_PATH="${PRESET_WORKTREE_ROOT}/worktree"
+  PRESET_WORKTREE_LEASE="${PRESET_WORKTREE_LEASE_DIR}/${lease_id}.json"
   PRESET_WORKTREE_REPO="$repo"
+  if ! python3 "$FLEET_ENGINE" lease-create \
+      --state-root "$STATE_DIR" \
+      --lease "$PRESET_WORKTREE_LEASE" \
+      --run-id "$RUN_ID" \
+      --owner-pid "$$" \
+      --repository "$repo" \
+      --remote-ref "$default_ref" \
+      --commit "$default_commit" \
+      --worktree "$PRESET_WORKTREE_PATH"; then
+    cleanup_preset_validation_target || true
+    warn "Preset-Worktree-Lease konnte nicht erstellt werden / could not create lease: $repo"
+    return 1
+  fi
   if ! git -C "$repo" worktree add --detach "$PRESET_WORKTREE_PATH" "$default_ref" >/dev/null; then
-    cleanup_preset_validation_target
+    cleanup_preset_validation_target || true
     warn "Temporärer Preset-Prüf-Worktree konnte nicht erstellt werden / temporary preset validation worktree failed: $repo"
     return 1
   fi
@@ -593,13 +587,44 @@ handle_preset_profiles() {
   done < <(discover_preset_targets)
 }
 
-CURRENT_STAGE="level0"
-info "Level-0 aktualisieren / Update Level-0"
-level0_result="Passed"
-check_repository "$SOURCE_ROOT" "Level-0" || level0_result="Blocked"
+CURRENT_STAGE="fleet"
+info "Verwaiste eigene Preset-Worktrees prüfen / Check owned orphaned preset worktrees"
+if ! python3 "$FLEET_ENGINE" lease-recover \
+    --state-root "$STATE_DIR" \
+    --lease-dir "$PRESET_WORKTREE_LEASE_DIR"; then
+  LEASE_RECOVERY_READY=0
+  FINDINGS=$((FINDINGS + 1))
+  warn "Mehrdeutige Lease-Evidence blockiert mutierende Folgephasen / ambiguous lease evidence blocks later mutations"
+fi
+info "Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet"
+fleet_status=0
+run_fleet_contract || fleet_status=$?
+case "$fleet_status" in
+  0) ;;
+  1) FINDINGS=$((FINDINGS + 1)) ;;
+  *) record_stage "fleet" "Failed" 2 "Fleet-Vertrag fehlgeschlagen / fleet contract failed" \
+       "Manifest und Log pruefen / review manifest and log"; exit 2 ;;
+esac
+fleet_ready="$(
+  python3 - "$REPORT_FILE" <<'PY'
+import json
+import sys
+report = json.load(open(sys.argv[1], encoding="utf-8"))
+print("1" if report.get("mutationBarrier", {}).get("fleetReady") is True else "0")
+PY
+)"
+level0_result="$(
+  python3 - "$REPORT_FILE" <<'PY'
+import json
+import sys
+report = json.load(open(sys.argv[1], encoding="utf-8"))
+row = next((item for item in report.get("targets", []) if item.get("targetId") == "level0"), {})
+print("Passed" if row.get("result") == "Pass" else "Blocked")
+PY
+)"
 
 home_result="Skipped"
-if [ "$FINDINGS" -eq 0 ]; then
+if { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHECK_ONLY" -eq 1 ]; then
   info "Lokale Home-Baseline synchronisieren / Synchronize local home baseline"
   findings_before="$FINDINGS"
   if [ "$CHECK_ONLY" -eq 1 ]; then
@@ -615,17 +640,6 @@ if [ "$FINDINGS" -eq 0 ]; then
     home_result="Passed"
   fi
 fi
-
-CURRENT_STAGE="fleet"
-info "Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet"
-fleet_status=0
-run_fleet_contract || fleet_status=$?
-case "$fleet_status" in
-  0) ;;
-  1) FINDINGS=$((FINDINGS + 1)) ;;
-  *) record_stage "fleet" "Failed" 2 "Fleet-Vertrag fehlgeschlagen / fleet contract failed" \
-       "Manifest und Log pruefen / review manifest and log"; exit 2 ;;
-esac
 record_stage "level0" "$level0_result" "$([ "$level0_result" = "Passed" ] && printf 0 || printf 1)" \
   "Level-0-Pruefung / Level-0 check" "Branch und Upstream pruefen / review branch and upstream"
 record_stage "home-sync" "$home_result" "$([ "$home_result" = "Blocked" ] && printf 1 || printf 0)" \
@@ -650,7 +664,10 @@ else
   record_stage "registry" "Passed" 0 "Registry-Pruefung abgeschlossen / registry check completed"
 fi
 
-if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -eq 1 ]; then
+if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && [ "$registry_safe" -eq 1 ] \
+    && [ "$LEASE_RECOVERY_READY" -eq 1 ]; then
   CURRENT_STAGE="propagation"
   info "Kanonisches Wartungspaket pruefen / Check canonical maintenance package"
   findings_before="$FINDINGS"
@@ -669,7 +686,10 @@ else
     "Blockierende Vorbedingung beheben / resolve blocking prerequisite"
 fi
 
-if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$registry_safe" -eq 1 ]; then
+if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && [ "$registry_safe" -eq 1 ] \
+    && [ "$LEASE_RECOVERY_READY" -eq 1 ]; then
   CURRENT_STAGE="preset-profiles"
   info "Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles"
   findings_before="$FINDINGS"
@@ -685,7 +705,9 @@ else
     "Blockierende Vorbedingung beheben / resolve blocking prerequisite"
 fi
 
-if { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } && [ "$SCRIPTS_ONLY" -eq 0 ]; then
+if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && [ "$SCRIPTS_ONLY" -eq 0 ]; then
   CURRENT_STAGE="toolchain"
   info "Maschinen-Toolchain pflegen / Maintain machine toolchain"
   maintenance=(

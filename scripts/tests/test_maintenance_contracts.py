@@ -44,6 +44,41 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    def test_network_attempt_contract_distinguishes_success_failure_and_timeout(self) -> None:
+        specification = importlib.util.spec_from_file_location(
+            "fleet_engine_attempts", FLEET_ENGINE
+        )
+        module = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(module)
+        cases = ((0, "Succeeded"), (1, "Failed"), (124, "TimedOut"))
+        for exit_code, expected in cases:
+            with self.subTest(exit_code=exit_code):
+                completed = subprocess.CompletedProcess(
+                    ["git", "fetch"],
+                    exit_code,
+                    stdout="",
+                    stderr="" if exit_code == 0 else "bounded failure",
+                )
+                result = module.network_attempt("fetch", completed, 2, 125)
+                self.assertEqual(result["status"], expected)
+                self.assertEqual(result["attemptCount"], 2)
+                self.assertEqual(result["durationMs"], 125)
+                self.assertEqual(result["exitCode"], exit_code)
+                self.assertEqual(result["nextAction"] == "N/A", exit_code == 0)
+        sensitive = subprocess.CompletedProcess(
+            ["git", "fetch"],
+            1,
+            stdout="",
+            stderr=(
+                f"failure at {Path.home()}/private "
+                "https://user:credential@example.invalid/repo.git token=value"
+            ),
+        )
+        sanitized = module.network_attempt("fetch", sensitive, 1, 10)
+        self.assertNotIn(str(Path.home()), sanitized["sanitizedEvidence"])
+        self.assertNotIn("credential", sanitized["sanitizedEvidence"])
+        self.assertNotIn("token=value", sanitized["sanitizedEvidence"])
+
     @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is required.")
     def test_powershell_rename_accepts_repository_root_filename(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -110,6 +145,11 @@ class MaintenanceContractTests(unittest.TestCase):
             ),
             11,
         )
+        self.assertEqual(
+            1 + sum(item["kind"] == "git-repository" for item in targets),
+            44,
+            "Level 0 plus manifest Git targets define the freshness barrier.",
+        )
 
     def test_fleet_manifest_rejects_unsafe_semantics(self) -> None:
         specification = importlib.util.spec_from_file_location("fleet_engine_invalid", FLEET_ENGINE)
@@ -174,6 +214,143 @@ class MaintenanceContractTests(unittest.TestCase):
         self.assertIn(example["defaultPresetProfile"], supported)
         for entry in example["repositories"]:
             self.assertIn(entry["presetProfile"], supported)
+
+        current = subprocess.run(
+            [
+                "python3", str(FLEET_ENGINE), "profile",
+                "--catalog", str(CONFIG / "spec-kit-preset-profiles.json"),
+                "--source-root", str(REPOSITORY),
+                "--profile", "intake-sequencing-eleven-governance-presets",
+            ],
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(current.returncode, 0, current.stderr)
+        self.assertEqual(json.loads(current.stdout)["presetCount"], 11)
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            matrix = root / "matrix.json"
+            matrix.write_text(
+                json.dumps({"presets": [{"id": f"fixture-{index}"} for index in range(12)]}),
+                encoding="utf-8",
+            )
+            synthetic_catalog = root / "catalog.json"
+            synthetic_catalog.write_text(
+                json.dumps(
+                    {
+                        "defaultProfile": "synthetic",
+                        "profiles": {"synthetic": {"presetConfig": "matrix.json"}},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            synthetic = subprocess.run(
+                [
+                    "python3", str(FLEET_ENGINE), "profile",
+                    "--catalog", str(synthetic_catalog),
+                    "--source-root", str(root),
+                    "--profile", "synthetic",
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertEqual(synthetic.returncode, 0, synthetic.stderr)
+            self.assertEqual(json.loads(synthetic.stdout)["presetCount"], 12)
+
+    def test_registry_reports_language_msl_conflicts_without_mutating_curated_data(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / "manifest.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": "1.0",
+                        "targets": [
+                            {
+                                "id": "fleet", "kind": "collection", "level": 1,
+                                "path": "Fleet", "active": True,
+                                "maintenanceClass": "canonical-fleet",
+                                "memberDiscovery": "declared-targets",
+                            },
+                            {
+                                "id": "csharp", "kind": "git-repository", "level": 2,
+                                "path": "Fleet/CSharp", "active": True,
+                                "maintenanceClass": "canonical-fleet",
+                                "remote": "https://example.invalid/csharp.git",
+                                "forge": "generic-git", "defaultBranch": "main",
+                            },
+                            {
+                                "id": "cc65", "kind": "git-repository", "level": 2,
+                                "path": "Fleet/cc65", "active": True,
+                                "maintenanceClass": "canonical-fleet",
+                                "remote": "https://example.invalid/cc65.git",
+                                "forge": "generic-git", "defaultBranch": "master",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            registry = root / "registry.json"
+            entries = {
+                "repositories": [
+                    {"path": "Fleet/CSharp", "primaryLanguage": "C#", "mslStatus": "msl"},
+                    {"path": "Fleet/cc65", "primaryLanguage": "cc65", "mslStatus": "non-msl"},
+                ]
+            }
+            registry.write_text(json.dumps(entries), encoding="utf-8")
+            accepted_before = registry.read_bytes()
+            accepted = subprocess.run(
+                [
+                    "python3", str(FLEET_ENGINE), "registry",
+                    "--manifest", str(manifest), "--registry", str(registry),
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertEqual(accepted.returncode, 0, accepted.stdout)
+            self.assertEqual(registry.read_bytes(), accepted_before)
+
+            entries["repositories"][0]["mslStatus"] = "non-msl"
+            entries["repositories"][1]["mslStatus"] = "msl"
+            registry.write_text(json.dumps(entries), encoding="utf-8")
+            conflict_before = registry.read_bytes()
+            conflict = subprocess.run(
+                [
+                    "python3", str(FLEET_ENGINE), "registry",
+                    "--manifest", str(manifest), "--registry", str(registry),
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertEqual(conflict.returncode, 1, conflict.stdout)
+            self.assertEqual(conflict.stdout.count("LANGUAGE_MSL_CONFLICT"), 2)
+            self.assertEqual(registry.read_bytes(), conflict_before)
+
+    def test_bash_and_powershell_share_barrier_lease_and_status_terms(self) -> None:
+        bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(
+            encoding="utf-8"
+        )
+        powershell = (
+            REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1"
+        ).read_text(encoding="utf-8")
+        for token in (
+            "lease-recover",
+            "lease-create",
+            "lease-release",
+            "fleetReady",
+            "Blocked",
+            "Passed",
+            "Skipped",
+            "N/A",
+        ):
+            self.assertIn(token, bash)
+            self.assertIn(token, powershell)
 
     def test_brew_registry_classifies_local_formulae_and_formula_powershell(self) -> None:
         registry = read_json(CONFIG / "brew-apps-registry.json")
@@ -352,9 +529,15 @@ class MaintenanceContractTests(unittest.TestCase):
             harness = f"""set -euo pipefail
 SOURCE_ROOT=/not-the-fixture
 HOME_DIR={shlex.quote(str(home))}
+FLEET_ENGINE={shlex.quote(str(FLEET_ENGINE))}
+STATE_DIR={shlex.quote(str(home / '.home-baseline'))}
+PRESET_WORKTREE_LEASE_DIR={shlex.quote(str(home / '.home-baseline/preset-validation-leases'))}
+PRESET_WORKTREE_STATE_DIR={shlex.quote(str(home / '.home-baseline/preset-validation-worktrees'))}
+RUN_ID=fixture-run
 PRESET_WORKTREE_REPO=''
 PRESET_WORKTREE_PATH=''
 PRESET_WORKTREE_ROOT=''
+PRESET_WORKTREE_LEASE=''
 PRESET_VALIDATION_TARGET=''
 PRESET_VALIDATION_ISOLATED=0
 warn() {{ :; }}
@@ -415,9 +598,15 @@ cleanup_preset_validation_target
             harness = f"""set -euo pipefail
 SOURCE_ROOT=/not-the-fixture
 HOME_DIR={shlex.quote(str(home))}
+FLEET_ENGINE={shlex.quote(str(FLEET_ENGINE))}
+STATE_DIR={shlex.quote(str(home / '.home-baseline'))}
+PRESET_WORKTREE_LEASE_DIR={shlex.quote(str(home / '.home-baseline/preset-validation-leases'))}
+PRESET_WORKTREE_STATE_DIR={shlex.quote(str(home / '.home-baseline/preset-validation-worktrees'))}
+RUN_ID=fixture-run
 PRESET_WORKTREE_REPO=''
 PRESET_WORKTREE_PATH=''
 PRESET_WORKTREE_ROOT=''
+PRESET_WORKTREE_LEASE=''
 PRESET_VALIDATION_TARGET=''
 PRESET_VALIDATION_ISOLATED=0
 warn() {{ :; }}
@@ -453,9 +642,15 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
             harness = f"""set -euo pipefail
 SOURCE_ROOT=/not-the-fixture
 HOME_DIR={shlex.quote(str(home))}
+FLEET_ENGINE={shlex.quote(str(FLEET_ENGINE))}
+STATE_DIR={shlex.quote(str(home / '.home-baseline'))}
+PRESET_WORKTREE_LEASE_DIR={shlex.quote(str(home / '.home-baseline/preset-validation-leases'))}
+PRESET_WORKTREE_STATE_DIR={shlex.quote(str(home / '.home-baseline/preset-validation-worktrees'))}
+RUN_ID=fixture-run
 PRESET_WORKTREE_REPO=''
 PRESET_WORKTREE_PATH=''
 PRESET_WORKTREE_ROOT=''
+PRESET_WORKTREE_LEASE=''
 PRESET_VALIDATION_TARGET=''
 PRESET_VALIDATION_ISOLATED=0
 warn() {{ :; }}

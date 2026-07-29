@@ -20,26 +20,38 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 [OPTIONEN]
 
 Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
 
-1. Level-0 wird gefetcht und nur per Fast-forward aktualisiert.
-2. Die kanonische Baseline wird nach `~/` synchronisiert.
-3. Das versionierte Desired-State-Manifest wird validiert. Fehlende aktive
+1. Lock, Log und atomarer Bericht werden als Kontroll-Evidence angelegt.
+2. Die **Remote-Freshness-Barriere** prueft Level 0 und jedes aktive
+   Git-Ziel. Sie fuehrt alle begrenzten `fetch --prune`-Versuche aus, bevor
+   Home-Sync, Registry, Propagation, Preset-Reparatur oder Toolchain beginnen.
+3. Nur ein sauberer kanonischer Default-Branch mit eindeutigem Upstream,
+   `ahead=0` und `behind>0` wird per `pull --ff-only` aktualisiert.
+4. Die kanonische Baseline wird nach `~/` synchronisiert.
+5. Das versionierte Desired-State-Manifest wird validiert. Fehlende aktive
    Repositories werden ueber einen geprueften temporaeren Geschwisterklon
    bereitgestellt; bestehende sichere Repositories werden nur per Fast-forward
    aktualisiert.
-4. Fehlende Registry-Eintraege werden ueber `register-level2-repository.*`
+6. Fehlende Registry-Eintraege werden ueber `register-level2-repository.*`
    nachgezogen.
-5. Das kanonische Wartungspaket wird mit
+7. Das kanonische Wartungspaket wird mit
    `propagate-agentic-toolchain-maintenance.*` geprueft.
-6. Das Registry-Profil jedes Repositories wird gegen die explizit konfigurierte
-   Matrix geprueft. Der Flottenpfad bindet
-   `intake-sequencing-eleven-governance-presets` mit exakt elf Presets. Liegt
+8. Das Registry-Profil jedes Repositories wird gegen die im Profilkatalog
+   referenzierte Matrix geprueft. Anzahl und IDs werden aus den Daten gelesen;
+   elf Presets sind der aktuelle Flottennachweis, keine Code-Obergrenze. Liegt
    der aktive Arbeitsbaum nicht exakt
    auf `origin/HEAD`, erfolgt die schreibfreie Profilpruefung in einem
    kurzlebigen detached Worktree des kanonischen Default-Branches. Drift dort
    erfordert einen eigenen Branch beziehungsweise PR.
-7. Homebrew/apt oder WinGet, Required-CLI-Tools, VS-Code-Extensions und
+9. Homebrew/apt oder WinGet, Required-CLI-Tools, VS-Code-Extensions und
    Required-Agenten-CLIs werden gepflegt.
-8. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
+10. Repository-Paritaet und Wartungspaket werden abschliessend erneut geprueft.
+
+*Control evidence is created first. The Remote Freshness Barrier then attempts
+bounded fetches for Level 0 and every active Git target before any domain
+mutation. Only a clean canonical default branch with an unambiguous upstream,
+zero ahead commits, and a purely behind state may use `pull --ff-only`.
+Profiles and preset counts are resolved from the catalog and referenced
+matrices; the current count is evidence, not a coded maximum.*
 
 Die unterstuetzten Profilnamen und ihre Matrixdateien stehen zentral in
 `scripts/config/spec-kit-preset-profiles.json`. Lokale Registry-Eintraege mit
@@ -73,10 +85,28 @@ After a real sync, final verification repeats this check so SHA-256, file-mode,
 or conflict drift cannot remain unnoticed.*
 
 *Preset validation resolves the canonical default branch through
-`refs/remotes/origin/HEAD`. If the active worktree is on another or an older
+validated `refs/remotes/origin/HEAD` evidence or
+`git ls-remote --symref origin HEAD`; branch names are never guessed. If the
+active worktree is on another or an older
 commit, an isolated temporary worktree validates the exact preset matrix
 without switching branches or touching untracked files. Drift on that
 canonical ref requires a dedicated branch or pull request.*
+
+Jeder temporaere Preset-Worktree besitzt vor seiner Erzeugung einen atomaren
+**Lease**, also einen zeitlich begrenzten Eigentumsnachweis. Der Lease bindet
+Lauf, Prozessstart, Repository, Commit und reservierte State-Pfade. Normaler
+Abschluss und der naechste Start entfernen nur einen weiterhin sauberen,
+Git-registrierten und eindeutig eigenen Worktree. Aktive, manipulierte,
+fremde oder durch PID-Wiederverwendung mehrdeutige Evidence bleibt erhalten
+und blockiert weitere mutierende Phasen. Es gibt kein globales `git clean`,
+`git worktree prune`, Reset oder Stash.
+
+*Every temporary preset worktree receives an atomic lease before creation. It
+binds the run, process start, repository, commit, and reserved state paths.
+Normal release and startup recovery remove only a still-clean, Git-registered,
+unambiguously owned worktree. Active, tampered, foreign, or PID-reuse-ambiguous
+evidence is retained and blocks later mutations. No global clean, prune,
+reset, or stash is used.*
 
 Das Skript wechselt vorhandene Branches nicht, fuehrt keinen Reset aus und
 commitet oder pusht keine Level-1-/Level-2-Aenderungen. Clone-on-missing ist

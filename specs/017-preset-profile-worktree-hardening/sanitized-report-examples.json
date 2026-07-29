@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "examples": [
+    {
+      "name": "fleet-ready",
+      "mutationBarrier": {
+        "expectedGitTargets": 44,
+        "completedGitTargets": 44,
+        "collectionTargets": 1,
+        "allFetchAttemptsCompleted": true,
+        "fleetReady": true,
+        "domainMutationAllowed": true,
+        "nextAction": "N/A"
+      }
+    },
+    {
+      "name": "dirty-after-fetch",
+      "target": {
+        "targetId": "example",
+        "status": "DIRTY",
+        "result": "Blocked",
+        "freshnessAttempt": {
+          "operation": "fetch",
+          "attemptCount": 1,
+          "durationMs": 42,
+          "exitCode": 0,
+          "status": "Succeeded",
+          "sanitizedEvidence": "N/A",
+          "nextAction": "N/A"
+        },
+        "mutationAllowed": false,
+        "nextAction": "Lokale Arbeit ausdruecklich behandeln / handle local work explicitly."
+      }
+    },
+    {
+      "name": "owned-worktree-lease",
+      "lease": {
+        "schemaVersion": "1.0",
+        "runId": "00000000-0000-0000-0000-000000000000",
+        "ownerPid": 1234,
+        "ownerProcessStartedAt": "fixture-process-start",
+        "repository": "<repository>",
+        "remoteRef": "refs/remotes/origin/trunk",
+        "commit": "1111111111111111111111111111111111111111",
+        "worktreePath": "<state>/preset-validation-worktrees/<lease>/worktree",
+        "leasePath": "<state>/preset-validation-leases/<lease>.json",
+        "createdAt": "2026-07-29T00:00:00Z"
+      }
+    },
+    {
+      "name": "dynamic-profile",
+      "profile": {
+        "profileName": "example-extended-profile",
+        "presetConfig": "<source>/scripts/config/example-presets.json",
+        "presetIds": [
+          "example-a",
+          "example-b"
+        ],
+        "presetCount": 2
+      }
+    }
+  ]
+}

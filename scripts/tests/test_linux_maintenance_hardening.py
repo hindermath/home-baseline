@@ -390,12 +390,13 @@ class LinuxMaintenanceHardeningTests(unittest.TestCase):
 
             results = {}
             for label in ("unusable", "blocked", "hang"):
+                timeout_seconds = "0.2" if label == "hang" else "1"
                 completed = run_helper(
                     "probe",
                     "--tool-id",
                     label,
                     "--timeout-seconds",
-                    "0.2",
+                    timeout_seconds,
                     "--redact",
                     str(root),
                     "--",
@@ -857,6 +858,11 @@ exit 2
             "CURRENT_STAGE",
             "INTERRUPTED",
             "--toolchain-results",
+            "lease-recover",
+            "lease-create",
+            "lease-release",
+            "mutationBarrier",
+            "--level0-dir",
         ):
             self.assertIn(token, workspace)
 

@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -34,8 +35,9 @@ def git(repository: Path | None, *arguments: str) -> str:
 
 
 class FleetFixture:
-    def __init__(self, root: Path) -> None:
+    def __init__(self, root: Path, default_branch: str = "main") -> None:
         self.root = root
+        self.default_branch = default_branch
         self.home = root / "home"
         self.home.mkdir()
         self.remote = root / "remote.git"
@@ -44,13 +46,20 @@ class FleetFixture:
         subprocess.run(["git", "clone", "-q", str(self.remote), str(self.seed)], check=True)
         git(self.seed, "config", "user.name", "Fixture")
         git(self.seed, "config", "user.email", "fixture@example.invalid")
-        git(self.seed, "switch", "-c", "main")
+        git(self.seed, "switch", "-c", default_branch)
         (self.seed / "README.md").write_text("baseline\n", encoding="utf-8")
         git(self.seed, "add", "README.md")
         git(self.seed, "commit", "-q", "-m", "baseline")
-        git(self.seed, "push", "-q", "-u", "origin", "main")
+        git(self.seed, "push", "-q", "-u", "origin", default_branch)
         subprocess.run(
-            ["git", "--git-dir", str(self.remote), "symbolic-ref", "HEAD", "refs/heads/main"],
+            [
+                "git",
+                "--git-dir",
+                str(self.remote),
+                "symbolic-ref",
+                "HEAD",
+                f"refs/heads/{default_branch}",
+            ],
             check=True,
         )
 
@@ -76,7 +85,7 @@ class FleetFixture:
                     "maintenanceClass": "canonical-fleet",
                     "remote": remote or str(self.remote),
                     "forge": "generic-git",
-                    "defaultBranch": "main",
+                    "defaultBranch": self.default_branch,
                 },
             ],
         }
@@ -89,6 +98,7 @@ class FleetFixture:
         mode: str,
         manifest: Path | None = None,
         allowed_dirty_paths: tuple[str, ...] = (),
+        level0_dir: Path | None = None,
     ) -> tuple[subprocess.CompletedProcess[str], dict]:
         report = self.root / f"report-{mode}.json"
         log = self.root / f"run-{mode}.log"
@@ -109,6 +119,8 @@ class FleetFixture:
             ]
         for path in allowed_dirty_paths:
             command.extend(["--allowed-dirty-path", path])
+        if level0_dir is not None:
+            command.extend(["--level0-dir", str(level0_dir)])
         completed = subprocess.run(
             command,
             text=True,
@@ -120,6 +132,374 @@ class FleetFixture:
 
 
 class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
+    def run_engine(self, *arguments: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            [sys.executable, str(ENGINE), *arguments],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+
+    def create_lease(
+        self,
+        fixture: FleetFixture,
+        state_root: Path,
+        lease: Path,
+        worktree: Path,
+        *,
+        run_id: str = "fixture-run",
+        owner_pid: int | None = None,
+        owner_identity: str | None = None,
+    ) -> subprocess.CompletedProcess[str]:
+        checkout = fixture.home / "Fleet" / "Example"
+        arguments = [
+            "lease-create",
+            "--state-root",
+            str(state_root),
+            "--lease",
+            str(lease),
+            "--run-id",
+            run_id,
+            "--owner-pid",
+            str(owner_pid or os.getpid()),
+            "--repository",
+            str(checkout),
+            "--remote-ref",
+            f"refs/remotes/origin/{fixture.default_branch}",
+            "--commit",
+            git(checkout, "rev-parse", f"origin/{fixture.default_branch}"),
+            "--worktree",
+            str(worktree),
+        ]
+        if owner_identity is not None:
+            arguments.extend(["--owner-process-identity", owner_identity])
+        return self.run_engine(*arguments)
+
+    def test_dirty_repository_fetches_before_it_is_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            local = checkout / "local.txt"
+            local.write_text("keep me\n", encoding="utf-8")
+            status_before = git(checkout, "status", "--porcelain=v1", "-uall")
+
+            (fixture.seed / "README.md").write_text("remote update\n", encoding="utf-8")
+            git(fixture.seed, "add", "README.md")
+            git(fixture.seed, "commit", "-q", "-m", "remote update")
+            git(fixture.seed, "push", "-q")
+            remote_head = git(fixture.seed, "rev-parse", "HEAD")
+
+            completed, report = fixture.run("check-only")
+
+            self.assertEqual(completed.returncode, 1, completed.stdout)
+            target = next(item for item in report["targets"] if item["targetId"] == "example")
+            self.assertEqual(target["status"], "DIRTY")
+            self.assertEqual(target["freshnessAttempt"]["status"], "Succeeded")
+            self.assertEqual(git(checkout, "rev-parse", "origin/main"), remote_head)
+            self.assertEqual(git(checkout, "status", "--porcelain=v1", "-uall"), status_before)
+
+    def test_remote_symbolic_trunk_is_resolved_without_local_origin_head(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory), default_branch="trunk")
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            subprocess.run(
+                ["git", "-C", str(checkout), "update-ref", "-d", "refs/remotes/origin/HEAD"],
+                check=True,
+            )
+
+            completed, report = fixture.run("check-only")
+
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            target = next(item for item in report["targets"] if item["targetId"] == "example")
+            self.assertEqual(target["defaultBranchEvidence"]["symbolicRef"], "refs/heads/trunk")
+            self.assertEqual(target["defaultBranchEvidence"]["trackingRef"], "refs/remotes/origin/trunk")
+
+    def test_default_head_failures_block_without_branch_name_guessing(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            subprocess.run(
+                ["git", "-C", str(checkout), "update-ref", "-d", "refs/remotes/origin/HEAD"],
+                check=True,
+            )
+            subprocess.run(
+                ["git", "--git-dir", str(fixture.remote), "symbolic-ref", "HEAD", "refs/heads/missing"],
+                check=True,
+            )
+
+            completed, report = fixture.run("check-only")
+
+            self.assertEqual(completed.returncode, 1, completed.stdout)
+            target = next(item for item in report["targets"] if item["targetId"] == "example")
+            self.assertEqual(target["status"], "REMOTE_HEAD_INVALID")
+            self.assertIsNone(target["defaultBranchEvidence"])
+            self.assertNotIn("main", target["nextAction"].lower())
+
+    def test_remote_head_commit_mismatch_blocks_stale_tracking_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            subprocess.run(
+                ["git", "-C", str(checkout), "update-ref", "-d", "refs/remotes/origin/HEAD"],
+                check=True,
+            )
+            git(fixture.seed, "branch", "not-selected")
+            git(fixture.seed, "push", "-q", "origin", "not-selected")
+            git(
+                checkout,
+                "config",
+                "remote.origin.fetch",
+                "+refs/heads/not-selected:refs/remotes/origin/not-selected",
+            )
+            (fixture.seed / "README.md").write_text("new remote head\n", encoding="utf-8")
+            git(fixture.seed, "add", "README.md")
+            git(fixture.seed, "commit", "-q", "-m", "advance remote")
+            git(fixture.seed, "push", "-q")
+
+            completed, report = fixture.run("check-only")
+
+            self.assertEqual(completed.returncode, 1, completed.stdout)
+            target = next(item for item in report["targets"] if item["targetId"] == "example")
+            self.assertEqual(target["status"], "REMOTE_HEAD_INVALID")
+            self.assertEqual(target["findingCode"], "RemoteCommitMismatch")
+            self.assertIsNone(target["defaultBranchEvidence"])
+
+    def test_owned_worktree_lease_releases_normally_and_idempotently(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            state_root = fixture.root / "state"
+            lease = state_root / "leases" / "normal.json"
+            worktree = state_root / "worktrees" / "normal" / "worktree"
+            created = self.create_lease(fixture, state_root, lease, worktree)
+            self.assertEqual(created.returncode, 0, created.stdout)
+            payload = json.loads(lease.read_text(encoding="utf-8"))
+            self.assertEqual(set(payload), {
+                "schemaVersion", "runId", "ownerPid", "ownerProcessStartedAt",
+                "repository", "remoteRef", "commit", "worktreePath", "leasePath",
+                "createdAt",
+            })
+            subprocess.run(
+                ["git", "-C", str(checkout), "worktree", "add", "--detach", str(worktree), payload["commit"]],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+
+            released = self.run_engine(
+                "lease-release", "--state-root", str(state_root),
+                "--lease", str(lease), "--run-id", "fixture-run",
+            )
+            repeated = self.run_engine(
+                "lease-release", "--state-root", str(state_root),
+                "--lease", str(lease), "--run-id", "fixture-run",
+            )
+
+            self.assertEqual(released.returncode, 0, released.stdout)
+            self.assertEqual(repeated.returncode, 0, repeated.stdout)
+            self.assertFalse(lease.exists())
+            self.assertFalse(worktree.exists())
+
+    def test_orphaned_lease_recovers_once_but_active_and_pid_reuse_remain(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            state_root = fixture.root / "state"
+            lease_dir = state_root / "leases"
+
+            orphan = lease_dir / "orphan.json"
+            orphan_worktree = state_root / "worktrees" / "orphan" / "worktree"
+            self.assertEqual(
+                self.create_lease(
+                    fixture, state_root, orphan, orphan_worktree,
+                    owner_pid=99999999, owner_identity="fixture-dead",
+                ).returncode,
+                0,
+            )
+            orphan_payload = json.loads(orphan.read_text(encoding="utf-8"))
+            subprocess.run(
+                ["git", "-C", str(checkout), "worktree", "add", "--detach",
+                 str(orphan_worktree), orphan_payload["commit"]],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+            recovered = self.run_engine(
+                "lease-recover", "--state-root", str(state_root),
+                "--lease-dir", str(lease_dir),
+            )
+            repeated = self.run_engine(
+                "lease-recover", "--state-root", str(state_root),
+                "--lease-dir", str(lease_dir),
+            )
+            self.assertEqual(recovered.returncode, 0, recovered.stdout)
+            self.assertEqual(repeated.returncode, 0, repeated.stdout)
+            self.assertFalse(orphan.exists())
+
+            active = lease_dir / "active.json"
+            active_worktree = state_root / "worktrees" / "active" / "worktree"
+            self.assertEqual(
+                self.create_lease(fixture, state_root, active, active_worktree).returncode,
+                0,
+            )
+            active_payload = json.loads(active.read_text(encoding="utf-8"))
+            subprocess.run(
+                ["git", "-C", str(checkout), "worktree", "add", "--detach",
+                 str(active_worktree), active_payload["commit"]],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+            active_result = self.run_engine(
+                "lease-recover", "--state-root", str(state_root),
+                "--lease-dir", str(lease_dir),
+            )
+            self.assertEqual(active_result.returncode, 0, active_result.stdout)
+            self.assertTrue(active.exists())
+            self.assertTrue(active_worktree.exists())
+            self.assertEqual(
+                self.run_engine(
+                    "lease-release", "--state-root", str(state_root),
+                    "--lease", str(active), "--run-id", "fixture-run",
+                ).returncode,
+                0,
+            )
+
+            reused = lease_dir / "reused.json"
+            reused_worktree = state_root / "worktrees" / "reused" / "worktree"
+            self.assertEqual(
+                self.create_lease(
+                    fixture, state_root, reused, reused_worktree,
+                    owner_identity="forged-start",
+                ).returncode,
+                0,
+            )
+            reused_payload = json.loads(reused.read_text(encoding="utf-8"))
+            subprocess.run(
+                ["git", "-C", str(checkout), "worktree", "add", "--detach",
+                 str(reused_worktree), reused_payload["commit"]],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+            reused_result = self.run_engine(
+                "lease-recover", "--state-root", str(state_root),
+                "--lease-dir", str(lease_dir),
+            )
+            self.assertEqual(reused_result.returncode, 1, reused_result.stdout)
+            self.assertTrue(reused.exists())
+            self.assertTrue(reused_worktree.exists())
+
+    def test_lease_rejects_path_escape_foreign_repository_and_new_untracked_data(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            checkout = fixture.home / "Fleet" / "Example"
+            state_root = fixture.root / "state"
+            escaped = self.create_lease(
+                fixture, state_root, state_root / "leases" / "escape.json",
+                fixture.root / "outside" / "worktree",
+            )
+            self.assertEqual(escaped.returncode, 2, escaped.stdout)
+
+            lease = state_root / "leases" / "changed.json"
+            worktree = state_root / "worktrees" / "changed" / "worktree"
+            self.assertEqual(self.create_lease(fixture, state_root, lease, worktree).returncode, 0)
+            payload = json.loads(lease.read_text(encoding="utf-8"))
+            subprocess.run(
+                ["git", "-C", str(checkout), "worktree", "add", "--detach",
+                 str(worktree), payload["commit"]],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+            (worktree / "new-evidence.txt").write_text("must survive\n", encoding="utf-8")
+            release = self.run_engine(
+                "lease-release", "--state-root", str(state_root),
+                "--lease", str(lease), "--run-id", "fixture-run",
+            )
+            self.assertEqual(release.returncode, 1, release.stdout)
+            self.assertTrue((worktree / "new-evidence.txt").exists())
+            self.assertTrue(lease.exists())
+
+            payload["repository"] = str(fixture.seed)
+            payload["ownerPid"] = 99999999
+            payload["ownerProcessStartedAt"] = "fixture-dead"
+            lease.write_text(json.dumps(payload), encoding="utf-8")
+            recovery = self.run_engine(
+                "lease-recover", "--state-root", str(state_root),
+                "--lease-dir", str(lease.parent),
+            )
+            self.assertEqual(recovery.returncode, 1, recovery.stdout)
+            self.assertTrue((worktree / "new-evidence.txt").exists())
+
+    def test_fleet_failure_does_not_skip_later_target_inventory(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            fixture.run("update")
+            content = json.loads(fixture.manifest().read_text(encoding="utf-8"))
+            missing = dict(content["targets"][1])
+            missing.update(
+                {
+                    "id": "missing",
+                    "path": "Fleet/Missing",
+                    "remote": str(fixture.root / "missing.git"),
+                }
+            )
+            content["targets"].insert(1, missing)
+            manifest = fixture.root / "multi-manifest.json"
+            manifest.write_text(json.dumps(content), encoding="utf-8")
+
+            completed, report = fixture.run("check-only", manifest)
+
+            self.assertEqual(completed.returncode, 1, completed.stdout)
+            self.assertEqual(
+                [item["targetId"] for item in report["targets"]],
+                ["fleet", "missing", "example"],
+            )
+            self.assertEqual(
+                next(item for item in report["targets"] if item["targetId"] == "example")["status"],
+                "CURRENT",
+            )
+
+    def test_orchestrators_place_domain_mutations_after_fleet_barrier(self) -> None:
+        bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(
+            encoding="utf-8"
+        )
+        powershell = (
+            REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1"
+        ).read_text(encoding="utf-8")
+        self.assertLess(
+            bash.index('CURRENT_STAGE="fleet"'),
+            bash.index("Lokale Home-Baseline synchronisieren"),
+        )
+        self.assertLess(
+            powershell.index("Soll-Flotte pruefen und sicher warten"),
+            powershell.index("Lokale Home-Baseline synchronisieren"),
+        )
+
+    def test_target_repository_boundary_has_no_delivery_commands(self) -> None:
+        engine = ENGINE.read_text(encoding="utf-8")
+        for prohibited in (
+            'run_git(repository, "commit"',
+            'run_git(repository, "push"',
+            'run_git(repository, "merge"',
+            'run_git(repository, "checkout"',
+            'run_git(repository, "switch"',
+            '"pr", "create"',
+        ):
+            self.assertNotIn(prohibited, engine)
+        bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(
+            encoding="utf-8"
+        )
+        powershell = (
+            REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("git worktree remove --force", bash)
+        self.assertNotIn("Remove-Item -LiteralPath $Target.Root -Recurse", powershell)
+
     def test_secure_casetracker_uses_the_declared_workspace_paths_only(self) -> None:
         manifest_path = REPOSITORY / "scripts" / "config" / "agentic-workspace-fleet.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -184,6 +564,17 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             first, first_report = fixture.run("update")
             self.assertEqual(first.returncode, 0, first.stdout)
             self.assertEqual(first_report["overallStatus"], "SUCCESS")
+            barrier = first_report["mutationBarrier"]
+            self.assertEqual(barrier["expectedGitTargets"], 1)
+            self.assertEqual(barrier["completedGitTargets"], 1)
+            self.assertEqual(barrier["collectionTargets"], 1)
+            self.assertIs(barrier["allFetchAttemptsCompleted"], True)
+            self.assertIs(barrier["fleetReady"], True)
+            self.assertIs(barrier["domainMutationAllowed"], True)
+            self.assertEqual(
+                [item["kind"] for item in first_report["operations"]],
+                ["inventory", "clone", "mutation-barrier"],
+            )
             checkout = fixture.home / "Fleet" / "Example"
             self.assertTrue((checkout / ".git").exists())
             first_head = git(checkout, "rev-parse", "HEAD")
