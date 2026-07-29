@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "8d8be7c6-6f10-4e26-9aec-896bb6352247",
+  "receiptId": "5136c2a6-5444-424c-b3e1-16a91a3f75c2",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-28T23:12:52Z",
+  "createdAt": "2026-07-29T11:22:07Z",
   "operation": {
-    "operationId": "57f3e959-074b-491b-9a71-d07d6397952f",
+    "operationId": "eba17697-5650-4d15-88e8-769c3d392d4f",
     "type": "Update",
-    "authorityEvidence": "Explicit current user approval to update only the position-3 intake hash while preserving all Series identities, targets, roots, dependencies, order, and statuses."
+    "authorityEvidence": "Explicit current user instruction to execute the next autonomous Spec Kit intake with MergeAndSync delivery and complete its manifest-declared post-merge closeout."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "c4e40fe218984a2897b09ae420b5a4ac85668960fcc14eb9dc41006acc547075"
+    "normalizedSha256": "3306edd96ba08a863435f812140265f3d71e5e8b22c65828b55ca8fb3d702d4f"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/57f3e959-074b-491b-9a71-d07d6397952f/receipt.json",
-    "receiptNormalizedSha256": "ce2e56037af3775a870c0e18e6378beb2d43d9d052e80fd6e460cc8dc6c842ef",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/57f3e959-074b-491b-9a71-d07d6397952f/manifest.json",
-    "manifestArchiveSha256": "ce0eebdf1172b3d43ccf9e5e4b61d0f2f1ac77f5ada5e18b065b3f705484df45"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/eba17697-5650-4d15-88e8-769c3d392d4f/receipt.json",
+    "receiptNormalizedSha256": "33f786dc0e66f27efa9dcc2de6189b1bada5c43a203a06282fad6b38409eed24",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/eba17697-5650-4d15-88e8-769c3d392d4f/manifest.json",
+    "manifestArchiveSha256": "c4e40fe218984a2897b09ae420b5a4ac85668960fcc14eb9dc41006acc547075"
   },
   "tombstone": {
     "path": "N/A",

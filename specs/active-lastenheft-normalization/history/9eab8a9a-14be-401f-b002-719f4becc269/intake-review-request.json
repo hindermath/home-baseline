@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "6851ba2b-edbe-4348-af93-c0d48d337701",
+  "reviewId": "9eab8a9a-14be-401f-b002-719f4becc269",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -159,6 +163,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
@@ -199,11 +204,16 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
-      "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
+        "to": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+        "kind": "HardCompletionGate"
+      },
       {
         "from": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
         "to": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",

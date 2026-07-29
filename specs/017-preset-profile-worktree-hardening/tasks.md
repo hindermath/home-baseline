@@ -209,7 +209,7 @@ lokalen Lieferkandidaten schließen.
 - [X] T075 Run Documentation Impact, generated-reference, Homogeneity, diff and secret gates and record results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [X] T076 Render the Feature 017 milestone and Profile 2 block in `docs/project-statistics.md` from `docs/project-statistics.config.json`
 - [X] T077 Reconcile PWH-001 through PWH-020, AC-001 through AC-027, all Analyze findings and all gate requirements in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
-- [ ] T078 Archive the completed intake with `scripts/rename-lastenheft.sh` to `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md`
+- [X] T078 Archive the completed intake with `scripts/rename-lastenheft.sh` to `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md`
 - [X] T079 Re-run the complete local acceptance suite after the archived intake and statistics update
 
 ---
@@ -222,13 +222,13 @@ ohne Start von Position 4 kausal fortschreiben.
 - [X] T080 Stage only intended paths and validate the exact candidate against `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-requirements.json`
 - [X] T081 Align all autonomous hashes and task counts in `specs/017-preset-profile-worktree-hardening/autonomous-run-state.json`
 - [X] T082 Commit the reviewed candidate with required co-author trailer and push branch `017-preset-profile-worktree-hardening`
-- [ ] T083 Open a non-empty feature pull request and record URL and exact head in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
-- [ ] T084 Converge Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and validate temporary provider-neutral gate evidence
-- [ ] T085 Merge only the converged exact head, using the authorized narrow admin bypass solely for a remaining Human Approval rule
-- [ ] T086 Delete the feature branch, fast-forward local `main`, prove `HEAD == origin/main` and synchronize Home Runtime if runtime-distributed files changed
-- [ ] T087 Execute the manifest-declared intake archive and Series advancement through a causal closeout PR only if required, without starting Position 4
-- [ ] T088 Complete `specs/017-preset-profile-worktree-hardening/retrospective.md` with `NoPromotion` or a reproducible provider-neutral PresetFollowUp
-- [ ] T089 Validate final autonomous state, exact Series status, clean `(0 0)` main and the final Level-0 Git inventory
+- [X] T083 Open a non-empty feature pull request and record URL and exact head in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
+- [X] T084 Converge Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and validate temporary provider-neutral gate evidence
+- [X] T085 Merge only the converged exact head, using the authorized narrow admin bypass solely for a remaining Human Approval rule
+- [X] T086 Delete the feature branch, fast-forward local `main`, prove `HEAD == origin/main` and synchronize Home Runtime if runtime-distributed files changed
+- [X] T087 Execute the manifest-declared intake archive and Series advancement through a causal closeout PR only if required, without starting Position 4
+- [X] T088 Complete `specs/017-preset-profile-worktree-hardening/retrospective.md` with `NoPromotion` or a reproducible provider-neutral PresetFollowUp
+- [X] T089 Validate final autonomous state, exact Series status, clean `(0 0)` main and the final Level-0 Git inventory
 
 ## Dependencies and execution order
 

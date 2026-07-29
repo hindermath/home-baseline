@@ -3,73 +3,69 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `9eab8a9a-14be-401f-b002-719f4becc269`
-- Supersedes: `292b5f47-6164-49a9-9107-b62a23a032a7`
-- Ziele / Targets: 39
+- Review-ID: `6851ba2b-edbe-4348-af93-c0d48d337701`
+- Supersedes: `9eab8a9a-14be-401f-b002-719f4becc269`
+- Ziele / Targets: 38
 - Roots: 3
-- Abhängigkeiten / Dependencies: 46
+- Abhängigkeiten / Dependencies: 45
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Das Intake zur Preset-Profil-, Default-Branch- und Worktree-Härtung wurde
-in-place auf Version 1.3 aktualisiert. Identität, Position 3, Reihenfolge,
-Roots, Abhängigkeiten und Status blieben unverändert. Position 3 ist weiterhin
-der einzige deklarierte `Eligible`-Kandidat. Der Review startet weder Feature
-017 noch einen anderen Spec-Kit-Lauf.
+Die Preset-Profil-, Default-Branch- und Worktree-Härtung ist nach dem Merge von
+Feature 017 mit vollständiger Review-Lineage archiviert. Position 4, die
+Agentic-Workspace-Wartungs-TUI, ist dadurch der einzige deklarierte
+`Eligible`-Kandidat. Dieser Review startet weder Position 4 noch einen anderen
+Spec-Kit-Lauf.
 
-*The preset-profile, default-branch, and worktree-hardening intake was updated
-in place to version 1.3. Identity, position 3, order, roots, dependencies, and
-status remain unchanged. Position 3 is still the single declared `Eligible`
-candidate. This review starts neither Feature 017 nor another Spec Kit run.*
+*Preset-profile, default-branch, and worktree hardening is archived with
+complete review lineage after Feature 017 was merged. Item 4, the agentic
+workspace maintenance TUI, is now the single declared `Eligible` candidate.
+This review starts neither item 4 nor another Spec Kit run.*
 
 ## Aktualisierte Evidence / Updated Evidence
 
-- Features 015 und 016 bleiben als gemergte Windows-/Linux-Regressionsbasis
-  gebunden.
-- Die Freshness-Menge umfasst Level 0 und 43 aktive Manifest-Git-Ziele. Das
-  Collection-Ziel wird getrennt und ohne Git-Netzwerkzugriff inventarisiert.
-- Elf Presets sind der aktuelle Feldnachweis. Die erwartete Preset-Menge wird
-  dynamisch aus dem Profilkatalog gelesen und nicht im Programmcode gezählt.
-- Remote Freshness ist die erste Fachphase. Kontroll-Evidence darf vorher
-  angelegt werden, aber keine Repository-, Home-, Registry-, Preset-,
-  Paketmanager- oder Toolchain-Mutation auslösen.
-- Checkout-Bereinigung benötigt nach jedem relevanten Zustandswechsel eine
-  neue exakte Inventur. Breite Bereinigungsbefehle bleiben ausgeschlossen.
-- Fetch und Pull besitzen begrenzte Versuche, Dauer, Endstatus und eine genaue
-  nächste Aktion. Timeout oder stille Unvollständigkeit ist kein Erfolg.
-- `MergeAndSync` gilt nur für die spätere Feature-017-Lieferung im
-  Home-Baseline-Repository. Ziel-Repositories erhalten keine Remote-
-  Schreibautorität.
+- PR #153 wurde auf dem exakt geprüften Head
+  `7c46069b40cce595091440de18741d59ca48a3d1` gemergt.
+- 20 GitHub-Checks auf Ubuntu, macOS und Windows sowie acht providerneutrale
+  Gates bestanden. Es gab keine umsetzbaren Review-Threads.
+- Home Runtime wurde auf den gemergten Stand synchronisiert und anschließend
+  mit `sync-home.sh --check-only` bestätigt.
+- Der reale Wartungs-Check inventarisierte die gesamte Flotte, prüfte alle
+  elf Presets in kurzlebigen, leasegebundenen Worktrees und beendete diese
+  Worktrees vollständig. Vorhandene Behind- und Wartungspaket-Drift blieb
+  korrekt ein blockierender Flottenbefund; Ziel-Repositories wurden nicht
+  verändert.
 
-*Features 015 and 016 remain the merged Windows/Linux regression baseline.
-The fleet distinguishes Level 0 plus 43 active manifest Git targets from one
-separately inventoried collection. Eleven presets are current field evidence,
-not a coded limit. Remote freshness precedes domain mutations, cleanup needs
-fresh exact authorization after state changes, network evidence is bounded,
-and `MergeAndSync` applies only to the later Feature 017 delivery in Home
-Baseline.*
+*PR #153 merged the exact reviewed head after 20 GitHub checks across Ubuntu,
+macOS, and Windows plus eight provider-neutral gates passed with no actionable
+review threads. Home Runtime is synchronized. The real maintenance check
+inventoried the full fleet, validated all eleven presets in lease-bound
+worktrees, and retained existing behind and maintenance-package drift as a
+blocking fleet finding without changing target repositories.*
 
 ## Graphnachweis / Graph Evidence
 
-- Alle 39 Pfade, Rollen, Hashes und Positionen stimmen mit dem gebundenen
+- Alle 38 Pfade, Rollen, Hashes und Positionen stimmen mit dem gebundenen
   Schema-1.1-Request überein.
 - Die drei Roots entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 46 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und
+- Alle 45 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und
   azyklisch.
-- Nur der Hash von Position 3 wurde aktualisiert. Ziele, Roots, Kanten,
-  Reihenfolge und Status wurden nicht verändert.
-- Position 3 bleibt der einzige deklarierte `Eligible`-Kandidat.
+- Position 3 wurde nach Abschluss entfernt; ihre historische Evidence bleibt
+  über Intake-Archiv, Feature-Evidence und Series-History erhalten.
+- Position 4 ist der einzige deklarierte `Eligible`-Kandidat.
 
-*All 39 paths, roles, hashes, and positions match the bound schema-1.1
-request. The three roots equal the zero-indegree nodes, and all 46 edges are
-unique, reference-valid, order-consistent, and acyclic. Only the position-3
-hash changed; position 3 remains the sole declared eligible candidate.*
+*All 38 paths, roles, hashes, and positions match the bound schema-1.1
+request. The three roots equal the zero-indegree nodes, and all 45 edges are
+unique, reference-valid, order-consistent, and acyclic. Item 3 was removed
+after completion while its history remains preserved; item 4 is the sole
+declared eligible candidate.*
 
 ## Nächste Aktion / Next Action
 
-Die Intake-Aktualisierung darf per `MergeAndSync` geliefert werden. Danach
-bleibt Feature 017 der nächste serielle Kandidat, wird durch diesen Auftrag
-aber nicht gestartet.
+Dieser Review dokumentiert nur den kausalen Abschluss von Feature 017. Die
+Agentic-Workspace-Wartungs-TUI ist der nächste serielle Kandidat, wird aber
+durch diesen Closeout nicht gestartet.
 
-*The intake update may be delivered through `MergeAndSync`. Feature 017 then
-remains the next serial candidate but is not started by this work.*
+*This review records only the causal closeout of Feature 017. The agentic
+workspace maintenance TUI is the next serial candidate but is not started by
+this closeout.*

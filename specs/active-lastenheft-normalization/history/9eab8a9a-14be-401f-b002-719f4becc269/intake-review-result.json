@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "6851ba2b-edbe-4348-af93-c0d48d337701",
+  "reviewId": "9eab8a9a-14be-401f-b002-719f4becc269",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-29T11:22:07Z",
+  "reviewedAt": "2026-07-28T23:12:52Z",
   "repository": {
     "root": ".",
-    "head": "9ae8ecbe9cd19d9f7d7cfab9ce960361082f872a"
+    "head": "77677765f220e19c9227494238478731a60c8041"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "0e0a3f2af6cd01aec8c3a6fd7699267b6440be365940507f29592fbdcd7c3cd4"
+    "normalizedSha256": "03681686dfbdc565a0a664360e8401d5b59cc19da33c0a3ee0f6b84780ec3b3c"
   },
   "summary": {
     "critical": 0,
@@ -19,11 +19,17 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "9eab8a9a-14be-401f-b002-719f4becc269",
+  "supersedes": "292b5f47-6164-49a9-9107-b62a23a032a7",
   "targets": [
     {
-      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "role": "Primary",
+      "normalizedSha256": "5c5d1c27d7328d4ae784bdcebdb1b7163d37443637eb10dc2d4f646a794c8f6e",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "role": "OrderedMember",
       "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
       "gitBlob": "N/A"
     },
@@ -253,6 +259,7 @@
   "findings": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
       "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
@@ -293,14 +300,15 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 38 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 39 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The three declared roots equal the zero-indegree target set",
-      "Forty-five unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Feature 017 remains archived with exact-head provider, merge, Home Runtime and fleet check-only evidence",
-      "Position 4 is the single declared Eligible candidate and no successor run was started",
-      "CI/CD and PowerShell remain zero-indegree roots but are intentionally not selected under serial execution",
-      "The documentation, secure-development, KDM/KITSM, ITSE and learning-governance chains retain every binding predecessor",
-      "No intake content, product code, successor feature, branch, or Spec Kit run was added or started"
+      "Forty-six unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Position 3 preserves its identity and is the single declared Eligible candidate",
+      "The v1.3 intake binds merged Windows Feature 015 and Linux Feature 016 regression evidence",
+      "The fleet baseline distinguishes Level 0 plus 43 manifest Git targets from one separately inventoried collection target",
+      "The eleven-preset field state is evidence for a dynamic profile catalog and not a coded cardinality",
+      "Cleanup authority, bounded network evidence, target-repository delivery boundaries, and exact-head revalidation are explicit",
+      "No target, root, dependency, position, successor feature, branch, or Spec Kit run was added or started"
     ],
     "workers": []
   },

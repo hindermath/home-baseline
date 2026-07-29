@@ -90,25 +90,24 @@ G1 ist archiviert und aus der aktiven Series entfernt. Die sechs früheren
 Roots wurden durch G1 wieder freigegeben. Mit der später ergänzten
 Dokumentationskette D4 bis D7 besitzt die bisherige Position 5 nun erneut einen
 bindenden Vorgänger. Position 1 wurde als Feature 015 über PR #142 und
-Position 2 als Feature 016 über PR #146 abgeschlossen und archiviert.
-Position 3,
-`Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md`, ist jetzt
-als einziger Kandidat `Eligible`. Dieser Closeout startet den Folgelauf nicht.
+Position 2 als Feature 016 über PR #146 und Position 3 als Feature 017 über
+PR #153 abgeschlossen und archiviert. Position 4,
+`Lastenheft_Agentic-Workspace-Maintenance-TUI.md`, ist jetzt als einziger
+Kandidat `Eligible`. Dieser Closeout startet den Folgelauf nicht.
 
 *The gate did not reorder the existing domain work. G1 is archived and removed
 from the active series. It released the six previous roots; the later D4-D7
 documentation chain now provides a new binding predecessor for former item 5.
-Item 1 completed as Feature 015 through PR #142 and item 2 as Feature 016
-through PR #146; both are archived. Preset/default-branch hardening at item 3
-is now the only declared `Eligible` candidate. This closeout does not start
-the successor run.*
+Item 1 completed as Feature 015 through PR #142, item 2 as Feature 016 through
+PR #146, and item 3 as Feature 017 through PR #153; all three are archived.
+The maintenance TUI at item 4 is now the only declared `Eligible` candidate.
+This closeout does not start the successor run.*
 
 ## Aktive Reihenfolge / Active Order
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
 |---:|---|---|
-| 3 | `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md` | Härtet Remote-Aktualität, beliebige Default-Branches, Hard-Abort-Bereinigung, PowerShell-Verhaltensparität und Nicht-MSL-Registry-Konsistenz. / Hardens remote freshness, arbitrary default branches, hard-abort cleanup, PowerShell behavior parity, and non-MSL registry consistency. |
-| 4 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI; Abarbeitung ist hart gesperrt, bis Feature 009 und die aktiven Eintraege 1 bis 3 vollstaendig abgeschlossen sind. / Plans the Spectre.Console maintenance TUI; processing is hard-blocked until Feature 009 and active items 1 through 3 are fully closed. |
+| 4 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI. Feature 009 und die Einträge 1 bis 3 sind vollständig abgeschlossen; Position 4 ist jetzt der einzige deklarierte `Eligible`-Kandidat. / Plans the Spectre.Console maintenance TUI. Feature 009 and items 1 through 3 are fully closed; item 4 is now the sole declared `Eligible` candidate. |
 | D4 | `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` | Prüft nach Position 4 die gesamte Git-getrackte Level-0-Dokumentation read-only auf Informationsarchitektur, Leserpfade, Sprachstrategie und gestufte Tiefe. / Audits all Git-tracked Level 0 documentation after item 4 for information architecture, reader paths, language strategy, and progressive depth without remediation. |
 | D5 | `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` | Setzt ausschließlich bestätigte D4-Findings um und verankert Einstiegspunkte, Sprachpartner und den dauerhaften Dokumentationsarchitektur-Vertrag. / Implements only accepted D4 findings and establishes entry pages, language pairs, and the durable documentation-architecture contract. |
 | D6 | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` | Dokumentiert das nach Position 4 stabile Wartungsverhalten für Lernende, Nutzende, Maintainer/KI-Agenten und Audit, ohne Skriptverhalten zu ändern. / Documents the stable post-item-4 maintenance behavior for learners, operators, maintainers/AI agents, and audit without changing script behavior. |
@@ -160,9 +159,9 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
          |
          +--> D3 Level-1/2-Flotte und Level-0-Revalidierung
 
-3 Preset/Branch -----> 4 Maintenance TUI
-                             |
-                             v
+4 Maintenance TUI
+        |
+        v
               D4 Informationsarchitektur-Audit
                              |
                              v
@@ -262,21 +261,20 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 
 ```
 
-Nach dem Abschluss von Feature 016 sind die aktiven Roots `3`, `9` und `10`.
+Nach dem Abschluss von Feature 017 sind die aktiven Roots `4`, `9` und `10`.
 Die bisherige Position 5 ist kein Root, weil D7 ihre bindende
 Dokumentationsarchitektur-Basis liefert. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. Position 3 ist als nächster serieller
+Schema-1.1-Review-Evidence nachweisbar. Position 4 ist als nächster serieller
 Kandidat ausgewählt; die anderen Roots bleiben fachlich verfügbar, starten
-aber nicht automatisch. Die abgeschlossenen Features 009, 015 und 016 sind
-keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte und Abschlüsse
-bleiben historische Evidence fuer das TUI-Gate.
+aber nicht automatisch. Die abgeschlossenen Features 009, 015, 016 und 017
+sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte und
+Abschlüsse bleiben historische Evidence für die weitere Reihenfolge.
 
-Eintrag 4 besitzt ein hartes Abschluss-Gate. Vor Feature-, Branch- oder
-Spec-Kit-Artefakterstellung fuer die TUI muessen die Abschlussnachweise fuer
-Feature 009 sowie die Positionen 1 und 2 und die im TUI-Lastenheft definierten
-Nachweise für den aktiven Eintrag 3 vorliegen. Fehlt ein Nachweis, bleibt
-Eintrag 4 `BLOCKED`.
+Eintrag 4 besaß ein hartes Abschluss-Gate. Die Abschlussnachweise für
+Feature 009 sowie die Positionen 1 bis 3 liegen jetzt vor. Der Series-Review
+gibt Position 4 als einzigen seriellen Kandidaten frei; dieser Closeout
+erteilt jedoch keine Start- oder Delivery-Autorität für den Folgelauf.
 
 Position 5 liefert die gemeinsame Bewertungsgrundlage fuer 6, 7 und 13.
 Position 7 liefert die Sandbox-Grundlage fuer 8. Position 10 wird vor 11
@@ -442,6 +440,7 @@ are not scheduled as new Spec Kit runs:*
 - `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
 - `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.015-windows-maintenance-hardening.md`
 - `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.016-linux-maintenance-hardening.md`
+- `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md`
 
 ## Kontext ohne Feature-Branch-Kennung
 
