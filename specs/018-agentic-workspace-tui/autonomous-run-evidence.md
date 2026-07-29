@@ -171,7 +171,7 @@
 |---|---|---|
 | Intended paths | Pass | Feature artifacts, implementation, tests and required documentation only |
 | Tracked worktree diff | Pass | `git diff --check` clean before and after canonical statistics rendering |
-| Exact staged candidate | Pending validation | Feature implementation, tests, documentation, statistics and Evidence metadata are the only candidate paths |
+| Exact staged candidate | Pass | Feature implementation, tests, documentation, statistics and Evidence metadata are the only candidate paths; all affected validators pass against the reconciled candidate |
 | Status reconciliation | Pass | No unstaged, untracked, foreign or generated path remains after exact index reconciliation |
 | Index preservation | N/A | MergeAndSync authorizes the final staged feature candidate |
 
@@ -206,7 +206,7 @@
 - Checkpoint commit: `495f865ac0cf8c484448fa340d4a2d678f7c8357`
 - Last operation: Validate `Completed`
 - Last passing gate: complete local acceptance, including 62 .NET, 14 wrapper and 79 maintenance tests plus 30/30 Homogeneity checks
-- Next exact action: finalize T123-T125 against the staged candidate, amend and push the reviewed feature head
+- Next exact action: commit the finalized T124/T125 metadata, render the resulting source revision, then push the reviewed feature head
 - Stop reason and safe boundary: N/A
 - Authority revalidation required: false
 - Residual risk: exact-head provider, review, merge and post-merge closeout evidence remain open
