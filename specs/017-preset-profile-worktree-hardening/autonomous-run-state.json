@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Deliver",
   "status": "Active",
-  "checkpointCommit": "cef70a27cfca01c883db098e57f549c541e3beb9",
+  "checkpointCommit": "52e9a9f89c047a87d9e6f10ff7a1332bc98cdb74",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md",
@@ -32,12 +32,12 @@
   ],
   "tasks": {
     "path": "specs/017-preset-profile-worktree-hardening/tasks.md",
-    "sha256": "365a39d67999d27a72cb18943f52d495953a61d982af23d0527a0f0a56f5f1b4",
-    "completed": 80,
+    "sha256": "2c193955045d389adfe237ef2aece077dc0d5066acaa4e235d29a88ef671cf57",
+    "completed": 81,
     "total": 89
   },
   "lastPassingGate": "Local exact-candidate validation passed: 60 tests, 12 platform skips, Homogeneity 30/30, parser, analyzer, Documentation Impact, generated references, statistics, secrets and diff checks.",
-  "nextExactAction": "Commit and push the reviewed feature candidate, then open the non-empty pull request and collect exact-head provider evidence.",
+  "nextExactAction": "Open the non-empty pull request and collect exact-head provider evidence.",
   "lastOperation": {
     "kind": "Validation",
     "state": "Completed",
@@ -54,5 +54,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-29T11:06:34Z"
+  "updatedAt": "2026-07-29T11:07:32Z"
 }

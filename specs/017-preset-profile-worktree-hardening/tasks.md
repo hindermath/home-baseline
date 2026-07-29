@@ -221,7 +221,7 @@ ohne Start von Position 4 kausal fortschreiben.
 
 - [X] T080 Stage only intended paths and validate the exact candidate against `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-requirements.json`
 - [X] T081 Align all autonomous hashes and task counts in `specs/017-preset-profile-worktree-hardening/autonomous-run-state.json`
-- [ ] T082 Commit the reviewed candidate with required co-author trailer and push branch `017-preset-profile-worktree-hardening`
+- [X] T082 Commit the reviewed candidate with required co-author trailer and push branch `017-preset-profile-worktree-hardening`
 - [ ] T083 Open a non-empty feature pull request and record URL and exact head in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [ ] T084 Converge Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and validate temporary provider-neutral gate evidence
 - [ ] T085 Merge only the converged exact head, using the authorized narrow admin bypass solely for a remaining Human Approval rule

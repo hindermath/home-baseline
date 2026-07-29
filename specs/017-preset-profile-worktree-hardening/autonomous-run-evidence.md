@@ -137,7 +137,7 @@ N/A recorded in the gate declaration.
 
 | Item | Result | Evidence |
 |---|---|---|
-| Push | Open | Feature branch only |
+| Push | Pass | `017-preset-profile-worktree-hardening` pushed without target-repository writes |
 | Pull request | Open | Non-empty PR required |
 | Required checks | Open | Exact provider state pending |
 | Acceptance execution map | Open | Requirements hash and exact-head evidence pending |
