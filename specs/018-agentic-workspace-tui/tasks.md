@@ -260,7 +260,7 @@ and return to synchronized main without starting a successor.
 - [X] T123 Stage only intended paths and reconcile staged, unstaged and untracked inventory in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
 - [X] T124 Run `git diff --cached --check` and every affected validator against the exact staged candidate
 - [X] T125 Finalize task counts, accepted artifact hashes and gate-requirements hash in `specs/018-agentic-workspace-tui/autonomous-run-state.json`
-- [ ] T126 Commit the reviewed candidate and push branch `018-agentic-workspace-tui`
+- [X] T126 Commit the reviewed candidate and push branch `018-agentic-workspace-tui`
 - [ ] T127 Create a non-empty pull request and record URL and exact head in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
 - [ ] T128 Converge all mandatory checks and actionable review threads for the exact PR head and record them in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
 - [ ] T129 Generate `.git/spec-kit-autonomous/018-gate-evidence.json` and validate it with `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` and `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.ps1`

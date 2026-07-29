@@ -190,7 +190,7 @@
 
 | Item | Result | Evidence |
 |---|---|---|
-| Push | Open | `018-agentic-workspace-tui` |
+| Push | Pass | Branch `018-agentic-workspace-tui` pushed after the repository pre-push secret scan passed |
 | Pull request | Open | Pending |
 | Required checks | Open | Pending exact-head provider checks |
 | Acceptance execution map | Open | Pending temporary provider-neutral evidence |

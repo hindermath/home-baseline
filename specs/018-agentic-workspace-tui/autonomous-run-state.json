@@ -75,21 +75,21 @@
     },
     {
       "path": "specs/018-agentic-workspace-tui/tasks.md",
-      "sha256": "b85953858cfc4af34032d712945d75c460bc58a665a859d355b05094e3b5956c"
+      "sha256": "26cfdb2534edcd609f8025fa3caf2dca0627650441e471820799670e63dfe36f"
     }
   ],
   "tasks": {
     "path": "specs/018-agentic-workspace-tui/tasks.md",
-    "sha256": "b85953858cfc4af34032d712945d75c460bc58a665a859d355b05094e3b5956c",
-    "completed": 125,
+    "sha256": "26cfdb2534edcd609f8025fa3caf2dca0627650441e471820799670e63dfe36f",
+    "completed": 126,
     "total": 133
   },
   "lastPassingGate": "Exact local candidate: 62 .NET, 79 maintenance, 30/30 Homogeneity and all affected validators",
-  "nextExactAction": "Commit finalized T124-T125 metadata, render the resulting source revision, then push branch 018-agentic-workspace-tui.",
+  "nextExactAction": "Create the non-empty Feature 018 pull request and record its exact head.",
   "lastOperation": {
-    "kind": "Validate",
+    "kind": "Publish",
     "state": "Completed",
-    "summary": "Implementation, documentation, statistics and all local acceptance gates are complete through T122."
+    "summary": "The reviewed local candidate was committed and pushed through T126."
   },
   "stop": {
     "reason": "N/A",
@@ -102,5 +102,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-29T14:46:18Z"
+  "updatedAt": "2026-07-29T14:48:18Z"
 }
