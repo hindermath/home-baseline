@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "591a4ba1-d24f-47cf-b8a5-3dc486540a90",
+  "intakeId": "620a9f83-41fe-4d0c-9f09-03637ef52a01",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T12:00:00Z",
+  "operation": {
+    "operationId": "ac21cfa2-a6f5-4418-9783-9c9c045db426",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the D4-D7 documentation-intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved D4-D7 documentation architecture plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "463a0ac889a34a3b8bb8f8dc051ed0856a8147149e89a5ffdf408860c1edaefe",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved durable additions to the completed D1-D3 baseline",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "1c2ae969446734aca8984b0fb1368c51fa9a0dca2467648dd8ec1c96b48611ef",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wie wird maximale Ausführlichkeit ohne überlange Einstiegsseiten erreicht?",
+      "answer": "Durch gestufte Tiefe mit kompakten Einstiegen und verlinkten Lern-, Betriebs-, Referenz- und Fehleranalyse-Dokumenten.",
+      "evidence": "Approved discussion decision: Progressive Disclosure"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wie werden große zweisprachige Dokumente behandelt?",
+      "answer": "Kriterienbasiert durch synchron gepflegte Sprachpartner, ohne starre Zeilengrenze.",
+      "evidence": "Approved discussion decision: parallel files by criteria"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Wie tief werden aktive, generierte und historische Dokumente geprüft?",
+      "answer": "Aktive Dokumente semantisch, generierte gegen Quellen und Archive nur innerhalb ihrer Provenienz- und Navigationsgrenze.",
+      "evidence": "Approved discussion decision: artifact-class-specific audit"
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wann darf D4 ausgeführt werden?",
+      "answer": "Nach den aktiven Positionen 1 bis 4; die Intake-Vorbereitung startet den Lauf nicht.",
+      "evidence": "Approved execution-order decision"
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
+      "answer": "MergeAndSync mit den bestehenden engen Remote- und Admin-Grenzen.",
+      "evidence": "Explicit current user approval and standing delivery instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"
+}

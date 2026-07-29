@@ -139,6 +139,7 @@
 | 2026-07-29 | Preset-Profil- und Worktree-Härtungsintake v1.3 | — | — | — | Der bestehende Intake auf Position 3 bindet jetzt die gemergten Features 015/016, Level 0 plus 43 aktive Manifest-Git-Ziele, das separat inventarisierte Collection-Ziel und den dynamischen Elf-Preset-Feldstand. PWH-016 bis PWH-020 sowie AC-018 bis AC-027 ergänzen exakte Bereinigungsfreigaben, begrenzte Netzwerk-Evidence, Regressionsschutz und die Zielrepository-Grenze. Intake-ID, 39 Series-Ziele, drei Roots, 46 Abhängigkeiten, Reihenfolge und alleiniger `Eligible`-Status blieben erhalten. Authoring-, Review- und Series-Validatoren bestehen in Bash und PowerShell. Feature 017, Specify und Autonomous wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 2 453 Nettozeilen. |
 | 2026-07-29 | Feature 017 Preset-Profil-, Branch- und Worktree-Härtung | — | — | — | Die Flottenwartung führt jetzt für Level 0 und jedes aktive Git-Ziel eine begrenzte Remote-Freshness-Prüfung vor nachfolgenden Mutationen aus. Beliebige Default-Branches werden aus symbolischer Remote-Evidence statt aus Namensannahmen bestimmt. Pull bleibt auf saubere, eindeutig zugeordnete Behind-only-Checkouts begrenzt. Eigentumsgebundene Worktree-Leases, dynamische Preset-Profile, nicht mutierende MSL-Konfliktprüfung und plattformparitätische Bash-/PowerShell-Evidence sind durch 60 Tests und 20 Provider-Jobs abgesichert. PR #153 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 3 und gibt Position 4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. |
 | 2026-07-29 | Feature 018 Agentic-Workspace-Wartungs-TUI | — | — | — | Die vorhandenen Bash-/PowerShell-Wartungs-Engines erhalten eine optionale Spectre.Console-TUI mit ausdrücklich vorausgewählter Vorschau, typisierten Argumenten und linearem Fallback. Ein privater JSONL-Kanal liefert nur Live-Evidence; finalisierter Bericht und Prozess-Exitcode bleiben kanonisch. Cache, Event-Degradierung, genau-einmaliger Abbruch, A11Y, Supply Chain und Verteilungsgrenzen sind durch 62 .NET-, 14 fokussierte Wrapper- und 79 vollständige Wartungstests sowie die grüne macOS-/Ubuntu-/Windows-Matrix abgesichert. PR #160 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 4, veröffentlicht 37 Ziele, drei Roots und 44 Kanten und gibt D4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. Das Implementierungsdelta vor Statistikpflege umfasst 7 639 Nettozeilen. |
+| 2026-07-29 | D4-Dokumentationsaudit-Intake aktualisiert | — | — | — | Der bestehende read-only D4-Intake bindet jetzt die gemergten Implementierungs- und Abschlussnachweise der Features 015 bis 018. DIA-019 bis DIA-023 und AC-DIA-013 bis AC-DIA-017 ergänzen konkrete Prüfpunkte für Remote-Freshness, sichere Pull-Klassen, Worktree-Leases, dynamische Preset-Profile sowie die TUI-, Plain-, Headless-, Live-Evidence-, Abschluss-, Unterbrechungs- und Fallback-Dokumentation. Intake-ID, Position, 37 Series-Ziele, drei Roots und 44 Abhängigkeiten blieben unverändert; Authoring-, Einzelreview- und Series-Nachweise bestehen in Bash und PowerShell. D4 bleibt der einzige `Eligible`-Kandidat, wurde aber nicht gestartet. |
 
 ---
 
@@ -958,6 +959,33 @@ seventy-nine full maintenance regressions pass locally and in the exact
 cross-platform provider matrix. PR #160 merged the reviewed head, Home Runtime
 is synchronized, and the causal closeout publishes 37 targets, three roots,
 and 44 edges with D4 as the sole Eligible candidate without starting it.*
+
+### 2026-07-29 - D4-Dokumentationsaudit-Intake aktualisiert / D4 documentation audit intake refreshed
+
+- D4 bindet nun ausdrücklich die gemergten Implementierungs- und
+  Abschlussnachweise der Features 015 bis 018.
+- Die neuen Anforderungen `DIA-019` bis `DIA-023` und Abnahmekriterien
+  `AC-DIA-013` bis `AC-DIA-017` prüfen die Dokumentationswirklichkeit der
+  Remote-Freshness-, Pull-, Worktree-, Preset- und Wartungsoberflächenverträge.
+- Die Wartungsoberflächen-Matrix umfasst Enhanced-, Plain- und Headless-Modus,
+  sichere Vorschau und Bestätigung, JSONL-Live-Evidence, kanonischen Bericht
+  und Exitcode, `EVENT_STREAM_DEGRADED`, Fallback und genau einmaliges
+  `Ctrl+C`.
+- Authoring-Receipt, D4-Einzelreview und vollständiger Series-Review wurden
+  nachvollziehbar supersediert. Die Series bleibt unverändert bei 37 Zielen,
+  drei Roots und 44 Abhängigkeiten.
+- Der aktualisierte Intake ist `Ready`. D4 bleibt der einzige
+  `Eligible`-Kandidat, wurde in diesem Auftrag jedoch nicht gestartet.
+
+*D4 now explicitly binds the merged implementation and closeout evidence from
+Features 015 through 018. Requirements `DIA-019` through `DIA-023` and
+acceptance criteria `AC-DIA-013` through `AC-DIA-017` cover the current
+documentation contracts for Remote Freshness, safe pull classification,
+worktree leases, dynamic preset profiles, and the enhanced, plain, and headless
+maintenance surfaces. The authoring receipt, the individual D4 review, and the
+complete series review were superseded with traceable evidence. Series
+cardinality remains 37 targets, three roots, and 44 dependencies; D4 remains
+the sole Eligible candidate and was not started.*
 
 ## Gesamtstatistik / Overall Statistics
 

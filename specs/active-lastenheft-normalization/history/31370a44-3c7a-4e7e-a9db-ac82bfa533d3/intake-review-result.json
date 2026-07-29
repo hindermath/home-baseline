@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "7fd2b056-6e21-4108-bf09-237f294a6024",
+  "reviewId": "31370a44-3c7a-4e7e-a9db-ac82bfa533d3",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-29T17:07:58Z",
+  "reviewedAt": "2026-07-29T15:11:14Z",
   "repository": {
     "root": ".",
-    "head": "af743976b1c98a2ed28b8c446eb421df6a53d8e9"
+    "head": "65693ef5981f93a54d1c230df4da1715bf13f877"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "99463ae32622eb7d35d8df85bc7cb2f725af2263c6574be95b3cfc85bca4a188"
+    "normalizedSha256": "5511c9e443ca790eaa1e3ee60cd83f7b7dfd9ce39a34d5b8e16634432707833e"
   },
   "summary": {
     "critical": 0,
@@ -19,12 +19,12 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "31370a44-3c7a-4e7e-a9db-ac82bfa533d3",
+  "supersedes": "05b38977-2b41-451f-947c-d9ac93c385f4",
   "targets": [
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "role": "Primary",
-      "normalizedSha256": "410bca250ae5ec0c6d2ddf3100e8f5f5766e4533ec8e8141eb5641026466f2cc",
+      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
       "gitBlob": "N/A"
     },
     {

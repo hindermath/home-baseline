@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-29
+**Stand:** 2026-07-28
 **Reihenfolge:** Dokumentationsvorlauf D4, nach aktiver Position 4
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Fachinformatiker*innen, Kaufleute für IT-System-Management,
@@ -36,24 +36,13 @@ Verbindliche Grundlagen sind:
 - D1 und PR #126: vollständiger Dokumentations-Wirklichkeitsabgleich;
 - D2 und PR #128: Source-of-Truth, Ownership und Documentation Impact;
 - D3 und PR #131: flottenweite Baseline und Abschluss `DOC001` bis `DOC015`;
-- Feature 015 und PRs #142/#143: Windows-, Vorschau-, Ergebnis- und
-  Wiederanlauf-Härtung;
-- Feature 016 und PRs #146/#148: Linux-/Ubuntu-, Eingabe-, Aggregations-,
-  Plattform- und Exact-Head-Härtung;
-- Feature 017 und PRs #153/#154: Remote-Freshness, sichere Pull-Klassifikation,
-  Worktree-Leases und dynamische Preset-Profile;
-- Feature 018 und PRs #160/#165: interaktive Wartungs-TUI, Headless- und
-  Fallback-Grenzen, Live-Evidence sowie kausaler Abschluss;
 - `docs/documentation-governance.md`;
 - `constitution.md` und `.specify/memory/constitution.md`;
-- die gemergten Feature-Artefakte und Abschluss-Evidence der Positionen 1 bis
-  4.
+- die gemergten Ergebnisse der aktiven Positionen 1 bis 4.
 
 D4 startet erst, wenn Windows-, Linux-/Ubuntu-, Default-Branch-/Worktree-
-Härtung und Maintenance-TUI abgeschlossen sind. Die genannten PRs und ihre
-gemergten Heads bilden die fachliche Baseline; aktuelle Dateihashes werden beim
-Audit neu aus Git abgeleitet und nicht aus diesem Lastenheft geraten. Der Audit
-verändert keine fachliche Dokumentation und startet D5 nicht automatisch.
+Härtung und Maintenance-TUI abgeschlossen sind. Der Audit verändert keine
+fachliche Dokumentation und startet D5 nicht automatisch.
 
 ## 3. Prüfumfang / Audit Scope
 
@@ -64,14 +53,9 @@ Dokumentationsflächen von Level 0:
 - alle nutzerseitigen Dateien unter `docs/`;
 - Lernreihen, sichere Entwicklung, Checklisten und mitgeltende Dokumente;
 - Manpages, PowerShell Comment-Based Help und CLI-Nutzungstexte;
-- die Wartungs-TUI-Dokumentfamilie in Root-README, Manpage, Architektur-,
-  A11Y-, Sicherheits- und Skriptreferenz-Dokumentation;
 - Spec-Kit-Templates, Commands, Skills, Preset-Dokumentation und Receipts;
 - Agenten-Guidance auf allen gepflegten Oberflächen;
 - Specs, Pläne, Tasks, Checklists, Contracts und Evidence;
-- die Feature-015-bis-018-Verträge für Plattform, Remote-Freshness, Worktree,
-  Headless-/TUI-Auswahl, JSONL-Live-Evidence, kanonisches Ergebnis,
-  Unterbrechung und Fallback;
 - generierte Sammelbände, Referenzen und Statistikdokumente;
 - aktive, historische und archivierte Intakes.
 
@@ -182,22 +166,6 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
   empfohlen, wenn ein reproduzierbarer projektunabhängiger Defekt vorliegt.
 - **DIA-018:** Der Lauf verändert keine fachliche Dokumentation, Runtime,
   Wartungsskripte, Presets oder Flotten-Repositories.
-- **DIA-019:** Der Audit bindet die gemergten Feature- und Closeout-Nachweise
-  015 bis 018 und trennt damalige Implementierungs-Evidence von der aktuellen,
-  aus Git abgeleiteten Dokumentationswirklichkeit.
-- **DIA-020:** Für die Wartungsoberfläche wird eine Konsistenzmatrix über
-  Root-README, Manpage, Architektur, A11Y, Sicherheit, Skriptreferenz und
-  Feature-Verträge erstellt.
-- **DIA-021:** Die Matrix prüft Enhanced-, Plain- und Headless-Auswahl,
-  No-Args-/TTY-Verhalten, sichere Vorschau, vorausgewähltes `DryRun`,
-  Default-No-Bestätigung und unveränderte explizite Headless-Parameter.
-- **DIA-022:** Die Matrix prüft den additiven JSONL-Live-Kanal,
-  `EVENT_STREAM_DEGRADED`, Fallback nur vor Engine-Start, genau einmaliges
-  `Ctrl+C` sowie Bericht und Prozess-Exitcode als kanonische Abschlusswahrheit.
-- **DIA-023:** Remote-Freshness, sichere Pull-Klassifikation, begrenzte
-  Netzwerk-Evidence, Worktree-Leases, Bereinigungsgrenzen und dynamische
-  Preset-Profile werden auf widerspruchsfreie Dokumentation ohne dauerhaft
-  fest codierte Flotten- oder Preset-Anzahl geprüft.
 
 ## 9. Ergebnisartefakte / Result Artifacts
 
@@ -207,9 +175,6 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 - Alt-nach-Neu-Pfadmatrix mit Link- und Redirect-Grenzen;
 - Liste validierter und nicht validierbarer Beispiele;
 - Findings mit stabilen `DIA###`-IDs;
-- Konsistenzmatrix der Feature-015-bis-018-Dokumentationsverträge;
-- Wartungsoberflächen-Matrix für TUI, Plain, Headless, Live-Evidence,
-  Abschlusswahrheit, Unterbrechung und Fallback;
 - D5-, D6- oder D7-Handoff je bestätigtem Finding;
 - textorientierter Abschlussbericht.
 
@@ -233,20 +198,6 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 - **AC-DIA-011:** Preset-Follow-ups sind entweder reproduzierbar belegt oder
   ausdrücklich `NoPromotion`.
 - **AC-DIA-012:** D5 wurde nicht automatisch gestartet.
-- **AC-DIA-013:** Die gemergten Feature- und Closeout-Nachweise 015 bis 018
-  sind vollständig zugeordnet, ohne historische Evidence umzuschreiben.
-- **AC-DIA-014:** README, Manpage, Architektur-, A11Y-, Sicherheits-,
-  Skriptreferenz- und Feature-Verträge besitzen für dieselbe
-  Wartungsoberfläche keine unaufgelösten Critical-/High-Widersprüche.
-- **AC-DIA-015:** Auswahlmodus, sichere Vorschau, Bestätigung,
-  Live-Evidence, kanonisches Ergebnis, Unterbrechung und Fallback besitzen
-  jeweils eine konkrete Dokumentationsentscheidung und Proof-Grenze.
-- **AC-DIA-016:** Remote-Freshness, Pull-Klassen, Netzwerkversuche,
-  Worktree-Leases und Bereinigungsgrenzen sind über alle aktiven
-  Dokumentationsflächen konsistent bewertet.
-- **AC-DIA-017:** Flotten- und Preset-Zahlen sind als zeitgebundene Evidence
-  oder dynamisch abgeleitete Werte gekennzeichnet und werden nicht als
-  dauerhafte technische Obergrenze verwendet.
 
 ## 11. Nicht-Ziele / Non-Goals
 
@@ -263,21 +214,21 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as documentation preflight D4. Verify the completed D1-D3 baseline and merged Feature 015-018 evidence, read-only Level-0 scope, complete Git-derived inventory, exact artifact classes and decision vocabulary, four reader paths, criteria-based language splitting, progressive disclosure, generated and historical boundaries, maintenance TUI/plain/headless and canonical-result documentation consistency, Remote-Freshness and Worktree documentation, measurable acceptance, learner accessibility, and the prohibition on documentation or runtime remediation. Do not modify the intake or start D4.
+$speckit-intake-review Review `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as documentation preflight D4. Verify the completed D1-D3 baseline, read-only Level-0 scope, complete Git-derived inventory, exact artifact classes and decision vocabulary, four reader paths, criteria-based language splitting, progressive disclosure, generated and historical boundaries, measurable acceptance, learner accessibility, and the prohibition on documentation or runtime remediation. Do not modify the intake or start D4.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as the binding intake for documentation preflight D4. Create a feature specification for a complete read-only Level-0 documentation information-architecture and learner-path audit after Features 015 through 018 and their causal closeouts. Preserve DIA-001 through DIA-023, AC-DIA-001 through AC-DIA-017, the exact artifact classes and decisions, four reader paths, progressive disclosure, criteria-based language splitting, D1-D3 evidence boundaries, the Feature-015-to-018 documentation consistency matrices, and no-remediation scope. Do not implement documentation changes, alter runtime behavior, create a preset, or start D5.
+$speckit-specify Use `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as the binding intake for documentation preflight D4. Create a feature specification for a complete read-only Level-0 documentation information-architecture and learner-path audit after active positions 1 through 4. Preserve DIA-001 through DIA-018, AC-DIA-001 through AC-DIA-012, the exact artifact classes and decisions, four reader paths, progressive disclosure, criteria-based language splitting, D1-D3 evidence boundaries, and no-remediation scope. Do not implement documentation changes, alter runtime behavior, create a preset, or start D5.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` with deliveryAuthority=MergeAndSync after Features 015 through 018 and their causal closeouts are complete. Keep all existing documentation, runtime, scripts, presets, and fleet repositories read-only except for accepted feature artifacts, deterministic audit-only tooling, audit evidence, statistics, archive/order updates, and delivery evidence. Audit the complete Git-derived Level-0 documentation inventory and explicitly reconcile Remote-Freshness, safe pull and Worktree contracts plus TUI/plain/headless selection, safe preview, JSONL advisory evidence, canonical report/exit, interruption and fallback documentation across README, manpage, architecture, A11Y, security, script reference and Feature contracts. Converge all required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D5 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` with deliveryAuthority=MergeAndSync after active positions 1 through 4 are complete. Keep all existing documentation, runtime, scripts, presets, and fleet repositories read-only except for accepted feature artifacts, deterministic audit-only tooling, audit evidence, statistics, archive/order updates, and delivery evidence. Converge all required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D5 automatically.
 ```
 
 <!-- intake-authoring:end -->

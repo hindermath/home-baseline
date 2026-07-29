@@ -1,23 +1,23 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "5955846b-83d4-48f9-a26a-3b1fa93c1e40",
+  "reviewId": "efc0be0d-a200-49ac-a363-3b944982977d",
   "mode": "Single",
   "status": "Ready",
   "policy": "home-baseline-documentation-architecture-v1",
-  "reviewedAt": "2026-07-29T17:07:58Z",
+  "reviewedAt": "2026-07-28T13:45:51Z",
   "repository": {
     "root": ".",
-    "head": "af743976b1c98a2ed28b8c446eb421df6a53d8e9"
+    "head": "824e1fb5eb80f3850d9c98427551d7c315dc59b6"
   },
   "requestEvidence": {
     "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-request.json",
-    "normalizedSha256": "bba4b68df253eac2eb3f8899865d5f205d42d4fc52dabcb58d4f0bf361a4711b"
+    "normalizedSha256": "b8e544f9fa52aa67a00233b1646e08ff4179a17cfe1ab9d1ae318e82043889c3"
   },
   "targets": [
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "role": "Primary",
-      "normalizedSha256": "410bca250ae5ec0c6d2ddf3100e8f5f5766e4533ec8e8141eb5641026466f2cc",
+      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
       "gitBlob": "N/A"
     }
   ],
@@ -38,5 +38,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "efc0be0d-a200-49ac-a363-3b944982977d"
+  "supersedes": "N/A"
 }
