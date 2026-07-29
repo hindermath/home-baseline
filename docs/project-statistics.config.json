@@ -393,6 +393,14 @@
       "labelEn": "Preset profile, branch and worktree hardening",
       "netLines": 3751,
       "activeDays": 1
+    },
+    {
+      "slot": 48,
+      "id": "agentic-workspace-maintenance-tui",
+      "labelDe": "Agentic-Workspace-Wartungs-TUI",
+      "labelEn": "Agentic workspace maintenance TUI",
+      "netLines": 7639,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

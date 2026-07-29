@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "018-agentic-workspace-tui",
+  "entries": [
+    {
+      "changeId": "CHG018001",
+      "scope": "Interactive maintenance entry, plain fallback, event stream, local build cache, security and accessibility",
+      "decision": "UpdateRequired",
+      "criticality": "Security",
+      "rationale": "Learners and maintainers need the safe default, confirmation, fallback, authority, cache, event, result, accessibility, and recovery boundaries at the public command surface.",
+      "documents": [
+        "README.md",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/architecture/maintenance-tui.md",
+        "docs/accessibility/maintenance-tui.md",
+        "docs/security/threat-model.md",
+        "docs/security/adr/ADR-001-maintenance-tui-boundary.md",
+        "docs/security/arc42-security.md",
+        "docs/security/security-quality-scenarios.md",
+        "docs/security/dependency-audit.md",
+        "docs/security/supply-chain-evidence.md",
+        "docs/security/security-checklist.md",
+        "docs/security/samm-assessment.md",
+        "docs/scripts/reference.md"
+      ],
+      "owner": "Feature 018",
+      "evidence": "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
+      "risk": "N/A"
+    },
+    {
+      "changeId": "CHG018002",
+      "scope": "Shared agent guidance",
+      "decision": "NoUpdateRequired",
+      "criticality": "Normal",
+      "rationale": "Existing guidance already requires preview-first maintenance, least privilege, secure argument handling, cross-platform parity, accessibility, and synchronized documentation impact decisions.",
+      "documents": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md"
+      ],
+      "owner": "Agent parity governance",
+      "evidence": "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
+      "risk": "N/A"
+    },
+    {
+      "changeId": "CHG018003",
+      "scope": "DocFX and generated web navigation",
+      "decision": "NoUpdateRequired",
+      "criticality": "Normal",
+      "rationale": "The feature changes repository Markdown and terminal behavior but no API XML comments, generated DocFX content, navigation, or web guide structure.",
+      "documents": [],
+      "owner": "Documentation maintainers",
+      "evidence": "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
+      "risk": "N/A"
+    }
+  ]
+}

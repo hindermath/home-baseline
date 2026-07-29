@@ -1,51 +1,56 @@
 # Bedrohungsmodell / Threat Model: home-baseline
 
-**Projekt / Project**: home-baseline (Level-1)
-**Erstellt / Created**: 2026-04-24
-**Status**: Stub — mit projektspezifischen Inhalten zu befuellen / Stub — to be populated with project-specific content
-**Template-Quelle / Template Source**: `.specify/templates/threat-model-template.md`
-**Constitution-Referenz / Constitution Reference**: Principle XIII (A.8.27), Principle XII (A.8.28)
+**Stand / State**: 2026-07-29
+**Umfang / Scope**: Agentic Workspace Maintenance und Wartungs-TUI
 
-<!--
-  Dieses Dokument ist ein Stub. Die vollstaendige Struktur findet sich im
-  Template unter .specify/templates/threat-model-template.md.
-  Bei der Befuellung das Template als Vorlage verwenden.
-
-  This document is a stub. The complete structure can be found in the
-  template at .specify/templates/threat-model-template.md.
-  Use the template as a guide when populating.
--->
-
-## Geltungsbereich / Scope
-
-home-baseline verwaltet Workspace-Bootstrapping, Git-Hook-Installation,
-Credential-Scanning und KI-Agenten-Auditing. Es laeuft ausschliesslich
-lokal auf dem Entwickler-Rechner (macOS, Linux, Windows).
-
-*home-baseline manages workspace bootstrapping, git hook installation,
-credential scanning, and AI agent auditing. It runs exclusively on the
-developer's local machine (macOS, Linux, Windows).*
-
-## Trust Boundaries / Vertrauensgrenzen
+## Systemgrenze / System Boundary
 
 ```text
-  +-----------+    TB1    +------------------+    TB2    +----------+
-  | Benutzer  | --------> | home-baseline    | --------> | GitHub / |
-  | / User    |  lokal    | Scripts & Hooks  |  HTTPS    | GitLab   |
-  +-----------+           +------------------+           +----------+
-                               |
-                          TB3  |
-                               v
-                          +------------------+
-                          | Credential Store |
-                          | (Keychain / CM)  |
-                          +------------------+
+Benutzer/Tastatur
+  -> TUI oder Plain-Assistent
+  -> typisierte Prozessargumente
+  -> Bash-/PowerShell-Engine
+  -> Python-Vertragskern, lokale Git-Repositories und Paketmanager
+
+Engine -> private JSONL-Ereignisse -> TUI-Live-Anzeige
+Engine -> atomarer JSON-Bericht + Exitcode -> Ergebnisabgleich
 ```
 
-## STRIDE-Analyse / STRIDE Analysis
+Die TUI ist keine neue Wartungs-Engine. Sie darf keine Zielrepository-Aktion,
+kein Secret, keine Providerberechtigung und keine
+Administratorautorisierung hinzufügen.
 
-[Zu befuellen / To be populated — see template]
+## STRIDE
 
-## Risikobewertung / Risk Assessment
+| Kategorie | Bedrohung | Kontrolle |
+|---|---|---|
+| Spoofing | Fremdes Ereignis oder Bericht behauptet einen anderen Lauf | UUID-Bindung, Sequenz, finalisierter Bericht |
+| Tampering | Cache, JSONL oder Bericht wird verändert | SHA-256-/Plattformprüfung, striktes JSON, Ergebnisabgleich |
+| Repudiation | Unklar, welche Auswahl gestartet wurde | sichtbarer Befehl, Run-ID, Log, Bericht und Eventpfad |
+| Information Disclosure | Pfad oder Meldung enthält Secret/Markup | privates State-Verzeichnis, Secret-Scan, Markup-Escaping |
+| Denial of Service | Hängender Build, Lock oder langsamer Eventstrom | Plain-Fallback, begrenzter Lock-Wait, 10-Hz-Anzeige |
+| Elevation of Privilege | UI-Bestätigung wird als Adminrecht behandelt | Least Privilege, getrennte `allow-admin-prompts`-Autorität |
 
-[Zu befuellen / To be populated — see template]
+## CIA und CAPEC / CIA and CAPEC
+
+- **Confidentiality:** Ereignisse und Cache liegen unter dem privaten
+  Home-State. Freie Konsolentexte werden nicht als Protokoll geparst.
+- **Integrity:** Prozessargumente sind typisiert; Event, Bericht und Exitcode
+  werden unabhängig geprüft.
+- **Availability:** Der Plain-Assistent bleibt ohne Enhanced-TUI verfügbar.
+- **CAPEC-15 Command Delimiters:** Kein `eval`, `Invoke-Expression` oder
+  ausführbarer zusammengesetzter Befehlsstring.
+- **CAPEC-23 File Content Injection:** Striktes JSON und Spectre-Markup-Escaping.
+- **CAPEC-126 Path Traversal:** Eventpfad ist auf
+  `.home-baseline/events` begrenzt; Cachepfade werden intern abgeleitet.
+
+## Restrisiko und Wiedervorlage / Residual Risk and Re-evaluation
+
+Ein kompromittiertes Benutzerkonto kann private lokale Dateien verändern.
+Das System ersetzt keine Betriebssystem-Isolation. Neu bewerten bei
+öffentlicher Binärverteilung, Netzwerk-UI, Remote-Events, Plugin-System,
+automatischer Elevation oder zusätzlicher Providerautorität.
+
+<!-- EN: docs/security/threat-model.md
+[DE-Zusammenfassung: STRIDE-, CIA- und CAPEC-Modell für Wartungs-TUI und Engine.]
+-->

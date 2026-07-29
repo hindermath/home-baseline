@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hindermath.example/schemas/maintenance-event-v1.json",
+  "title": "Home Baseline Maintenance Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "sequence",
+    "timestampUtc",
+    "eventType",
+    "status",
+    "messageDe",
+    "messageEn",
+    "details"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "runId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "timestampUtc": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "eventType": {
+      "enum": [
+        "run-started",
+        "phase-started",
+        "phase-progress",
+        "finding",
+        "phase-completed",
+        "run-completed"
+      ]
+    },
+    "status": {
+      "enum": [
+        "RUNNING",
+        "PASSED",
+        "PARTIAL",
+        "BLOCKED",
+        "WARNING",
+        "SKIPPED",
+        "FAILED"
+      ]
+    },
+    "phaseId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "fleet",
+        "level0",
+        "home-sync",
+        "registry",
+        "propagation",
+        "preset-profiles",
+        "toolchain",
+        "final",
+        null
+      ]
+    },
+    "targetId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "messageDe": {
+      "type": "string",
+      "minLength": 1
+    },
+    "messageEn": {
+      "type": "string",
+      "minLength": 1
+    },
+    "details": {
+      "type": "object"
+    }
+  }
+}

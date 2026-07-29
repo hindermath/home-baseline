@@ -6,6 +6,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 SOURCE_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
 HOME_DIR="${HOME}"
 ORIGINAL_ARGS=("$@")
+ARGUMENT_COUNT=$#
 REGISTRY=""
 PRESET_PROFILE_CATALOG="${SOURCE_ROOT}/scripts/config/spec-kit-preset-profiles.json"
 FLEET_ENGINE="${SOURCE_ROOT}/scripts/lib/agentic_workspace_fleet.py"
@@ -17,6 +18,14 @@ SCRIPTS_ONLY=0
 REPAIR_DRIFT=0
 INCLUDE_OPTIONAL=0
 ALLOW_ADMIN_PROMPTS=0
+UI_MODE="auto"
+UI_SELECTOR_COUNT=0
+MAINTENANCE_OPTION_SEEN=0
+EVENT_STREAM=""
+REQUESTED_RUN_ID=""
+EVENT_SEQUENCE=0
+STARTED_EVENT_PHASES=" "
+TUI_CONTRACT_VERSION="1"
 FINDINGS=0
 REPAIR_APPLIED=0
 PREVIEW_DRIFT=0
@@ -40,15 +49,20 @@ usage() {
   cat <<'USAGE'
 Verwendung / Usage: maintain-agentic-workspace.sh [OPTIONEN]
 
-Ohne Optionen wird die vollstaendige Wartung ausgefuehrt: Die
-Remote-Freshness-Barriere schliesst zuerst alle Fetch-Versuche ab. Nur sichere
-Behind-only-Repositories werden per Fast-forward aktualisiert. Danach werden
-Home-Baseline, Wartungspaket, Preset-Profile und Maschinen-Toolchain gepflegt.
+Ohne Optionen startet an einem interaktiven Terminal die TUI mit Vorschau als
+Standard. Umgeleitete Aufrufe behalten den bisherigen Headless-Ablauf. Vor
+jeder Mutation schliesst die Remote-Freshness-Barriere alle Fetch-Versuche ab.
 
-Without options, the Remote Freshness Barrier first completes every fetch
-attempt. Only safe behind-only repositories are fast-forwarded. Home baseline,
-maintenance package, preset profiles, and machine toolchain follow afterward.
+Without options, an interactive terminal starts the TUI with dry-run selected.
+Redirected invocations preserve the existing headless flow. The Remote
+Freshness Barrier completes every fetch attempt before any mutation.
 
+  --tui              Erweiterte TUI starten; bei fehlender Fähigkeit linear
+                     Start enhanced TUI; fall back to the plain assistant
+  --plain-ui         Lineare, textorientierte Auswahl starten
+                     Start the line-oriented text assistant
+  --no-tui           Wartungs-Engine ohne interaktive Oberfläche starten
+                     Start the maintenance engine without an interactive UI
   --check-only       Nur pruefen und fetchen; keine Pulls oder Paketupdates
                      Check and fetch only; no pulls or package updates
   --dry-run          Schreibende Schritte als Vorschau ausgeben
@@ -82,6 +96,270 @@ die() {
 info() { printf '\n==> %s\n' "$*"; }
 ok() { printf 'OK: %s\n' "$*"; }
 warn() { printf 'WARN: %s\n' "$*" >&2; }
+
+ask_yes_no() {
+  local prompt="$1" answer=""
+  printf '%s' "$prompt"
+  IFS= read -r answer || answer=""
+  case "$answer" in
+    [yY]|[jJ]) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+run_plain_ui() {
+  local choice="" mode="dry-run" scripts_only=0 include_optional=0 repair_drift=0
+  local -a engine_args display_args
+  printf 'Agentischer Workspace: Wartung / Agentic workspace maintenance\n'
+  printf 'Die Vorschau zeigt geplante Änderungen und nimmt keine Änderung vor.\n'
+  printf 'The dry-run shows planned changes and does not modify the workspace.\n'
+  printf '1) Vorschau / Dry-run [Standard / default]\n'
+  printf '2) Nur prüfen / Check-only\n'
+  printf '3) Aktualisieren / Update\n'
+  printf 'Auswahl / Selection [1]: '
+  IFS= read -r choice || choice=""
+  case "$choice" in
+    2) mode="check-only" ;;
+    3) mode="update" ;;
+    *) mode="dry-run" ;;
+  esac
+  ask_yes_no 'Nur Skripte? / Scripts only? [y/N]: ' && scripts_only=1
+  if [ "$scripts_only" -eq 0 ]; then
+    ask_yes_no 'Optionale Werkzeuge? / Optional tools? [y/N]: ' && include_optional=1
+  fi
+  if [ "$mode" = "update" ]; then
+    ask_yes_no 'Wartungspaket-Drift lokal reparieren? / Repair maintenance-package drift locally? [y/N]: ' \
+      && repair_drift=1
+    if ! ask_yes_no 'Schreibenden Lauf einmal starten? / Start one mutating run? [y/N]: '; then
+      printf 'Vor dem Engine-Start abgebrochen. / Cancelled before engine start.\n'
+      return 130
+    fi
+  fi
+
+  engine_args=(--no-tui)
+  case "$mode" in
+    check-only) engine_args+=(--check-only) ;;
+    dry-run) engine_args+=(--dry-run) ;;
+  esac
+  [ "$scripts_only" -eq 1 ] && engine_args+=(--scripts-only)
+  [ "$include_optional" -eq 1 ] && engine_args+=(--include-optional)
+  [ "$repair_drift" -eq 1 ] && engine_args+=(--repair-drift)
+  engine_args+=(--home-dir "$HOME_DIR")
+
+  display_args=(bash "$SCRIPT_DIR/maintain-agentic-workspace.sh" "${engine_args[@]}")
+  printf 'Befehl / command:'
+  printf ' %q' "${display_args[@]}"
+  printf '\n'
+  exec bash "$SCRIPT_DIR/maintain-agentic-workspace.sh" "${engine_args[@]}"
+}
+
+tui_platform_id() {
+  local os_name architecture
+  case "$(uname -s)" in
+    Darwin) os_name="macos" ;;
+    Linux) os_name="linux" ;;
+    *) return 1 ;;
+  esac
+  case "$(uname -m)" in
+    arm64|aarch64) architecture="arm64" ;;
+    x86_64|amd64) architecture="x64" ;;
+    *) return 1 ;;
+  esac
+  printf '%s-%s\n' "$os_name" "$architecture"
+}
+
+tui_source_fingerprint() {
+  python3 - "$SOURCE_ROOT" "$TUI_CONTRACT_VERSION" <<'PY'
+import hashlib
+import pathlib
+import sys
+
+root = pathlib.Path(sys.argv[1]).resolve()
+contract = sys.argv[2]
+patterns = (
+    "scripts/lib/maintenance-tui/NuGet.config",
+    "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/**/*.cs",
+    "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/*.csproj",
+    "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/packages.lock.json",
+    "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json",
+)
+paths = set()
+for pattern in patterns:
+    paths.update(path for path in root.glob(pattern) if path.is_file())
+digest = hashlib.sha256()
+digest.update(f"contract:{contract}\n".encode())
+for path in sorted(paths, key=lambda item: item.relative_to(root).as_posix()):
+    relative = path.relative_to(root).as_posix()
+    content = path.read_bytes()
+    digest.update(f"path:{relative}\nlength:{len(content)}\n".encode())
+    digest.update(content)
+    digest.update(b"\n")
+print(digest.hexdigest())
+PY
+}
+
+tui_cache_is_complete() {
+  local cache_dir="$1" fingerprint="$2" platform="$3"
+  [ -f "${cache_dir}/HomeBaseline.MaintenanceTui.dll" ] \
+    && [ -f "${cache_dir}/cache.json" ] \
+    && python3 - "${cache_dir}/cache.json" "$fingerprint" "$platform" <<'PY'
+import json
+import sys
+
+try:
+    metadata = json.load(open(sys.argv[1], encoding="utf-8"))
+except (OSError, UnicodeError, json.JSONDecodeError):
+    raise SystemExit(1)
+valid = (
+    metadata.get("schemaVersion") == 1
+    and metadata.get("fingerprint") == sys.argv[2]
+    and metadata.get("platform") == sys.argv[3]
+)
+raise SystemExit(0 if valid else 1)
+PY
+}
+
+run_enhanced_ui() {
+  local project platform fingerprint cache_parent cache_dir entry metadata temporary=""
+  local build_lock acquired=0 attempt=0
+  if [ ! -t 0 ] || [ ! -t 1 ] || [ "${TERM:-}" = "dumb" ]; then
+    warn "Erweiterte TUI nicht verfügbar; lineare Ausgabe wird verwendet / enhanced TUI unavailable; using plain output"
+    run_plain_ui
+    return $?
+  fi
+  command -v dotnet >/dev/null 2>&1 || {
+    warn ".NET 10 fehlt; lineare Ausgabe wird verwendet / .NET 10 is missing; using plain output"
+    run_plain_ui
+    return $?
+  }
+  [[ "$(dotnet --version 2>/dev/null || true)" = 10.* ]] || {
+    warn ".NET-10-SDK fehlt; lineare Ausgabe wird verwendet / .NET 10 SDK is missing; using plain output"
+    run_plain_ui
+    return $?
+  }
+  project="${SOURCE_ROOT}/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/HomeBaseline.MaintenanceTui.csproj"
+  platform="$(tui_platform_id)" || {
+    warn "Plattform wird nicht unterstützt / platform is unsupported"
+    run_plain_ui
+    return $?
+  }
+  fingerprint="$(tui_source_fingerprint)" || {
+    warn "TUI-Quellen konnten nicht geprüft werden / TUI sources could not be fingerprinted"
+    run_plain_ui
+    return $?
+  }
+  cache_parent="${HOME_DIR}/.home-baseline/cache/maintenance-tui/${platform}"
+  cache_dir="${cache_parent}/${fingerprint}"
+  entry="${cache_dir}/HomeBaseline.MaintenanceTui.dll"
+  metadata="${cache_dir}/cache.json"
+  if ! tui_cache_is_complete "$cache_dir" "$fingerprint" "$platform"; then
+    if ! mkdir -p -- "$cache_parent"; then
+      warn "TUI-Cache ist nicht beschreibbar; lineare Ausgabe wird verwendet / TUI cache is not writable; using plain output"
+      run_plain_ui
+      return $?
+    fi
+    build_lock="${cache_parent}/${fingerprint}.lock"
+    while [ "$attempt" -lt 100 ]; do
+      if mkdir -- "$build_lock" 2>/dev/null; then
+        acquired=1
+        break
+      fi
+      if tui_cache_is_complete "$cache_dir" "$fingerprint" "$platform"; then
+        break
+      fi
+      attempt=$((attempt + 1))
+      sleep 0.1
+    done
+    if tui_cache_is_complete "$cache_dir" "$fingerprint" "$platform"; then
+      [ "$acquired" -eq 0 ] || rmdir -- "$build_lock" 2>/dev/null || true
+    elif [ "$acquired" -ne 1 ]; then
+      warn "TUI-Build-Lock blieb belegt; lineare Ausgabe wird verwendet / TUI build lock remained busy; using plain output"
+      run_plain_ui
+      return $?
+    fi
+  fi
+  if ! tui_cache_is_complete "$cache_dir" "$fingerprint" "$platform"; then
+    [ ! -e "$cache_dir" ] || rm -rf -- "$cache_dir"
+    if ! temporary="$(mktemp -d "${cache_parent}/.build.XXXXXX")"; then
+      warn "Temporärer TUI-Buildpfad ist nicht verfügbar; lineare Ausgabe wird verwendet / temporary TUI build path is unavailable; using plain output"
+      run_plain_ui
+      return $?
+    fi
+    if ! dotnet restore "$project" --locked-mode >/dev/null \
+        || ! dotnet publish "$project" --configuration Release --no-restore \
+          --output "${temporary}/publish" >/dev/null; then
+      rm -rf -- "$temporary"
+      rmdir -- "$build_lock" 2>/dev/null || true
+      warn "TUI-Build fehlgeschlagen; lineare Ausgabe wird verwendet / TUI build failed; using plain output"
+      run_plain_ui
+      return $?
+    fi
+    printf '{"schemaVersion":1,"fingerprint":"%s","platform":"%s"}\n' \
+      "$fingerprint" "$platform" > "${temporary}/publish/cache.json"
+    if ! mv -- "${temporary}/publish" "$cache_dir" 2>/dev/null; then
+      rm -rf -- "$temporary"
+      [ -f "$entry" ] && [ -f "$metadata" ] || {
+        warn "TUI-Cache konnte nicht atomar veröffentlicht werden / TUI cache could not be published atomically"
+        rmdir -- "$build_lock" 2>/dev/null || true
+        run_plain_ui
+        return $?
+      }
+    else
+      rmdir -- "$temporary" 2>/dev/null || true
+    fi
+    rmdir -- "$build_lock" 2>/dev/null || true
+  fi
+  if ! tui_cache_is_complete "$cache_dir" "$fingerprint" "$platform"; then
+    warn "TUI-Cache ist unvollständig; lineare Ausgabe wird verwendet / TUI cache is incomplete; using plain output"
+    run_plain_ui
+    return $?
+  fi
+  exec dotnet "$entry" \
+    --wrapper "$SCRIPT_DIR/maintain-agentic-workspace.sh" \
+    --home-dir "$HOME_DIR"
+}
+
+emit_event() {
+  local event_type="$1" status="$2" phase_id="$3" target_id="$4"
+  local message_de="$5" message_en="$6" details_json="${7:-{}}"
+  [ -n "$EVENT_STREAM" ] || return 0
+  EVENT_SEQUENCE=$((EVENT_SEQUENCE + 1))
+  local -a arguments
+  arguments=(
+    python3 "$FLEET_ENGINE" event
+    --event-stream "$EVENT_STREAM"
+    --run-id "$RUN_ID"
+    --sequence "$EVENT_SEQUENCE"
+    --event-type "$event_type"
+    --status "$status"
+    --message-de "$message_de"
+    --message-en "$message_en"
+    --details-json "$details_json"
+  )
+  [ -n "$phase_id" ] && arguments+=(--phase-id "$phase_id")
+  [ -n "$target_id" ] && arguments+=(--target-id "$target_id")
+  "${arguments[@]}" || warn "Ereignis konnte nicht geschrieben werden / event could not be written"
+}
+
+event_status() {
+  case "$1" in
+    Passed) printf 'PASSED' ;;
+    Warning|DeferredAdminRequired) printf 'WARNING' ;;
+    Blocked) printf 'BLOCKED' ;;
+    Skipped) printf 'SKIPPED' ;;
+    Failed|Interrupted) printf 'FAILED' ;;
+    *) printf 'PARTIAL' ;;
+  esac
+}
+
+start_event_phase() {
+  local phase_id="$1" message_de="$2" message_en="$3"
+  case "$STARTED_EVENT_PHASES" in
+    *" ${phase_id} "*) return 0 ;;
+  esac
+  STARTED_EVENT_PHASES="${STARTED_EVENT_PHASES}${phase_id} "
+  emit_event phase-started RUNNING "$phase_id" "" "$message_de" "$message_en"
+}
 
 run_home_sync_check() {
   local status=0
@@ -144,6 +422,27 @@ finalize_run() {
       --summary "$summary" \
       --next-action "$next_action" || true
   fi
+  start_event_phase "final" "Abschlussprüfung gestartet." "Final check started."
+  local completion_status completion_details
+  completion_status="$(event_status "$status")"
+  completion_details="$(
+    python3 - "$REPORT_FILE" "$exit_code" <<'PY'
+import json
+import sys
+report = json.loads(open(sys.argv[1], encoding="utf-8").read())
+print(json.dumps(
+    {
+        "reportPath": sys.argv[1],
+        "exitCode": int(sys.argv[2]),
+        "overallStatus": report.get("overallStatus"),
+    },
+    ensure_ascii=False,
+    separators=(",", ":"),
+))
+PY
+  )"
+  emit_event run-completed "$completion_status" "final" "" \
+    "Wartung abgeschlossen." "Maintenance completed." "$completion_details"
   printf 'ABSCHLUSS / FINAL\t%s\t%s\t%s\t%s\n' \
     "$status" "$CURRENT_STAGE" "$exit_code" "$next_action"
 }
@@ -178,20 +477,34 @@ handle_signal() {
 
 while [ $# -gt 0 ]; do
   case "${1:-}" in
-    --check-only) CHECK_ONLY=1 ;;
-    --dry-run) DRY_RUN=1 ;;
-    --scripts-only) SCRIPTS_ONLY=1 ;;
-    --repair-drift) REPAIR_DRIFT=1 ;;
-    --include-optional) INCLUDE_OPTIONAL=1 ;;
-    --allow-admin-prompts) ALLOW_ADMIN_PROMPTS=1 ;;
+    --tui) UI_MODE="enhanced"; UI_SELECTOR_COUNT=$((UI_SELECTOR_COUNT + 1)) ;;
+    --plain-ui) UI_MODE="plain"; UI_SELECTOR_COUNT=$((UI_SELECTOR_COUNT + 1)) ;;
+    --no-tui) UI_MODE="headless"; UI_SELECTOR_COUNT=$((UI_SELECTOR_COUNT + 1)) ;;
+    --check-only) CHECK_ONLY=1; MAINTENANCE_OPTION_SEEN=1 ;;
+    --dry-run) DRY_RUN=1; MAINTENANCE_OPTION_SEEN=1 ;;
+    --scripts-only) SCRIPTS_ONLY=1; MAINTENANCE_OPTION_SEEN=1 ;;
+    --repair-drift) REPAIR_DRIFT=1; MAINTENANCE_OPTION_SEEN=1 ;;
+    --include-optional) INCLUDE_OPTIONAL=1; MAINTENANCE_OPTION_SEEN=1 ;;
+    --allow-admin-prompts) ALLOW_ADMIN_PROMPTS=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --manifest)
       [ $# -ge 2 ] || die "--manifest benoetigt einen Pfad / requires a path"
       FLEET_MANIFEST="$2"
+      MAINTENANCE_OPTION_SEEN=1
       shift
       ;;
     --home-dir)
       [ $# -ge 2 ] || die "--home-dir benoetigt einen Pfad / requires a path"
       HOME_DIR="$2"
+      shift
+      ;;
+    --event-stream)
+      [ $# -ge 2 ] || die "--event-stream benoetigt einen Pfad / requires a path"
+      EVENT_STREAM="$2"
+      shift
+      ;;
+    --run-id)
+      [ $# -ge 2 ] || die "--run-id benoetigt eine UUID / requires a UUID"
+      REQUESTED_RUN_ID="$2"
       shift
       ;;
     -h|--help) usage; exit 0 ;;
@@ -202,6 +515,16 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+if [ "$UI_SELECTOR_COUNT" -gt 1 ]; then
+  die "--tui, --plain-ui und --no-tui sind gegenseitig ausgeschlossen / are mutually exclusive"
+fi
+if { [ "$UI_MODE" = "enhanced" ] || [ "$UI_MODE" = "plain" ]; } \
+    && [ "$MAINTENANCE_OPTION_SEEN" -eq 1 ]; then
+  die "Interaktive UI-Auswahl darf keine Wartungsoption vorwegnehmen / interactive UI selectors cannot include maintenance options"
+fi
+if { [ -n "$EVENT_STREAM" ] || [ -n "$REQUESTED_RUN_ID" ]; } && [ "$UI_MODE" != "headless" ]; then
+  die "Interne Ereignisparameter erfordern --no-tui / internal event parameters require --no-tui"
+fi
 if [ "$CHECK_ONLY" -eq 1 ] && [ "$DRY_RUN" -eq 1 ]; then
   die "--check-only und / and --dry-run sind nicht kombinierbar / cannot be combined"
 fi
@@ -236,6 +559,16 @@ if [ "$SCRIPT_DIR" = "${HOME_DIR}/scripts" ]; then
   exec bash "$repo_script" "${ORIGINAL_ARGS[@]}"
 fi
 
+if [ "$UI_MODE" = "enhanced" ] \
+    || { [ "$UI_MODE" = "auto" ] && [ "$ARGUMENT_COUNT" -eq 0 ] && [ -t 0 ] && [ -t 1 ]; }; then
+  run_enhanced_ui
+  exit $?
+fi
+if [ "$UI_MODE" = "plain" ]; then
+  run_plain_ui
+  exit $?
+fi
+
 STATE_DIR="${HOME_DIR}/.home-baseline"
 PRESET_WORKTREE_LEASE_DIR="${STATE_DIR}/preset-validation-leases"
 PRESET_WORKTREE_STATE_DIR="${STATE_DIR}/preset-validation-worktrees"
@@ -253,7 +586,26 @@ trap 'handle_signal INT 130' INT
 trap 'handle_signal TERM 143' TERM
 
 LOG_FILE="${LOG_DIR}/agentic-workspace-$(date +%Y%m%d-%H%M%S).log"
-RUN_ID="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+RUN_ID="${REQUESTED_RUN_ID:-$(python3 -c 'import uuid; print(uuid.uuid4())')}"
+python3 -c 'import sys, uuid; uuid.UUID(sys.argv[1])' "$RUN_ID" \
+  || die "Run-ID ist keine gültige UUID / run ID is not a valid UUID"
+if [ -n "$EVENT_STREAM" ]; then
+  EVENT_STREAM="$(
+    python3 - "$HOME_DIR" "$EVENT_STREAM" <<'PY'
+import pathlib
+import sys
+
+home = pathlib.Path(sys.argv[1]).resolve()
+path = pathlib.Path(sys.argv[2]).resolve()
+allowed = (home / ".home-baseline" / "events").resolve()
+path.relative_to(allowed)
+print(path)
+PY
+  )" || die "Event-Pfad liegt außerhalb des privaten Evidence-Verzeichnisses / event path is outside private evidence"
+  mkdir -p -- "$(dirname -- "$EVENT_STREAM")"
+  (umask 077; : > "$EVENT_STREAM")
+  chmod 600 "$EVENT_STREAM"
+fi
 REPORT_FILE="${REPORT_DIR}/agentic-workspace-${RUN_ID}.json"
 TOOLCHAIN_RESULT_FILE="${REPORT_DIR}/agentic-toolchain-${RUN_ID}.json"
 exec > >(tee -a "$LOG_FILE") 2>&1
@@ -267,6 +619,9 @@ printf 'Mode / Modus: %s\n' "$mode"
 printf 'Level-0: %s\n' "$SOURCE_ROOT"
 printf 'Home: %s\n' "$HOME_DIR"
 printf 'Run-ID: %s\n' "$RUN_ID"
+emit_event run-started RUNNING "" "" \
+  "Wartung gestartet." "Maintenance started." \
+  "$(printf '{"mode":"%s"}' "$mode")"
 
 record_stage() {
   local stage_id="$1" status="$2" exit_code="$3" summary="$4" next_action="${5:-N/A}"
@@ -284,6 +639,11 @@ record_stage() {
   )
   [ -n "$toolchain_results" ] && arguments+=(--toolchain-results "$toolchain_results")
   "${arguments[@]}"
+  start_event_phase "$stage_id" \
+    "Phase ${stage_id} gestartet." "Phase ${stage_id} started."
+  emit_event phase-completed "$(event_status "$status")" "$stage_id" "" \
+    "Phase abgeschlossen: ${stage_id}." "Phase completed: ${stage_id}." \
+    "$(printf '{"exitCode":%s}' "$exit_code")"
 }
 
 run_fleet_contract() {
@@ -588,6 +948,7 @@ handle_preset_profiles() {
 }
 
 CURRENT_STAGE="fleet"
+start_event_phase "fleet" "Flottenprüfung gestartet." "Fleet check started."
 info "Verwaiste eigene Preset-Worktrees prüfen / Check owned orphaned preset worktrees"
 if ! python3 "$FLEET_ENGINE" lease-recover \
     --state-root "$STATE_DIR" \
@@ -600,8 +961,15 @@ info "Soll-Flotte pruefen und sicher warten / Check and safely maintain desired 
 fleet_status=0
 run_fleet_contract || fleet_status=$?
 case "$fleet_status" in
-  0) ;;
-  1) FINDINGS=$((FINDINGS + 1)) ;;
+  0)
+    emit_event phase-completed PASSED "fleet" "" \
+      "Flottenprüfung abgeschlossen." "Fleet check completed." '{"exitCode":0}'
+    ;;
+  1)
+    emit_event phase-completed BLOCKED "fleet" "" \
+      "Flottenprüfung mit Befund abgeschlossen." "Fleet check completed with findings." '{"exitCode":1}'
+    FINDINGS=$((FINDINGS + 1))
+    ;;
   *) record_stage "fleet" "Failed" 2 "Fleet-Vertrag fehlgeschlagen / fleet contract failed" \
        "Manifest und Log pruefen / review manifest and log"; exit 2 ;;
 esac
@@ -622,9 +990,13 @@ row = next((item for item in report.get("targets", []) if item.get("targetId") =
 print("Passed" if row.get("result") == "Pass" else "Blocked")
 PY
 )"
+start_event_phase "level0" "Level-0-Auswertung gestartet." "Level 0 evaluation started."
+record_stage "level0" "$level0_result" "$([ "$level0_result" = "Passed" ] && printf 0 || printf 1)" \
+  "Level-0-Pruefung / Level-0 check" "Branch und Upstream pruefen / review branch and upstream"
 
 home_result="Skipped"
 if { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHECK_ONLY" -eq 1 ]; then
+  start_event_phase "home-sync" "Home-Sync gestartet." "Home sync started."
   info "Lokale Home-Baseline synchronisieren / Synchronize local home baseline"
   findings_before="$FINDINGS"
   if [ "$CHECK_ONLY" -eq 1 ]; then
@@ -640,12 +1012,11 @@ if { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHE
     home_result="Passed"
   fi
 fi
-record_stage "level0" "$level0_result" "$([ "$level0_result" = "Passed" ] && printf 0 || printf 1)" \
-  "Level-0-Pruefung / Level-0 check" "Branch und Upstream pruefen / review branch and upstream"
 record_stage "home-sync" "$home_result" "$([ "$home_result" = "Blocked" ] && printf 1 || printf 0)" \
   "Home-Sync / home sync" "$([ "$home_result" = "Skipped" ] && printf 'Nach Level-0-Freigabe erneut ausfuehren / rerun after Level-0 passes' || printf 'N/A')"
 
 CURRENT_STAGE="registry"
+start_event_phase "registry" "Registry-Prüfung gestartet." "Registry check started."
 info "Level-1/Level-2 Registry pruefen / Check Level-1/Level-2 registry"
 findings_before="$FINDINGS"
 ensure_registry || true
@@ -669,6 +1040,7 @@ if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$C
     && [ "$registry_safe" -eq 1 ] \
     && [ "$LEASE_RECOVERY_READY" -eq 1 ]; then
   CURRENT_STAGE="propagation"
+  start_event_phase "propagation" "Propagationsprüfung gestartet." "Propagation check started."
   info "Kanonisches Wartungspaket pruefen / Check canonical maintenance package"
   findings_before="$FINDINGS"
   handle_propagation
@@ -691,6 +1063,7 @@ if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$C
     && [ "$registry_safe" -eq 1 ] \
     && [ "$LEASE_RECOVERY_READY" -eq 1 ]; then
   CURRENT_STAGE="preset-profiles"
+  start_event_phase "preset-profiles" "Preset-Profilprüfung gestartet." "Preset profile check started."
   info "Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles"
   findings_before="$FINDINGS"
   handle_preset_profiles
@@ -709,6 +1082,7 @@ if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$C
     && { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } \
     && [ "$SCRIPTS_ONLY" -eq 0 ]; then
   CURRENT_STAGE="toolchain"
+  start_event_phase "toolchain" "Toolchain-Wartung gestartet." "Toolchain maintenance started."
   info "Maschinen-Toolchain pflegen / Maintain machine toolchain"
   maintenance=(
     bash "${SOURCE_ROOT}/scripts/maintain-agentic-brew-apps.sh"
@@ -769,6 +1143,7 @@ fi
 
 if [ "$FINDINGS" -eq 0 ]; then
   CURRENT_STAGE="verification"
+  start_event_phase "final" "Abschlussprüfung gestartet." "Final verification started."
   info "Abschlusspruefung / Final verification"
   if [ "$DRY_RUN" -eq 1 ]; then
     findings_before="$FINDINGS"

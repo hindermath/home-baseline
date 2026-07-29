@@ -832,17 +832,6 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
 
             commands = [
                 [
-                    "bash",
-                    bash_path(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.sh"),
-                    "--home-dir",
-                    bash_path(home),
-                    "--registry",
-                    bash_path(registry),
-                    "--manifest",
-                    bash_path(manifest),
-                    "--check-only",
-                ],
-                [
                     "pwsh",
                     "-NoProfile",
                     "-File",
@@ -856,6 +845,21 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                     "-CheckOnly",
                 ],
             ]
+            if os.name != "nt":
+                commands.insert(
+                    0,
+                    [
+                        "bash",
+                        bash_path(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.sh"),
+                        "--home-dir",
+                        bash_path(home),
+                        "--registry",
+                        bash_path(registry),
+                        "--manifest",
+                        bash_path(manifest),
+                        "--check-only",
+                    ],
+                )
             for command in commands:
                 with self.subTest(surface=command[0]):
                     completed = subprocess.run(
@@ -866,10 +870,19 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                         check=False,
                     )
                     self.assertEqual(completed.returncode, 0, completed.stdout)
-                    expected_canonical = bash_path(canonical) if command[0] == "bash" else str(canonical)
-                    unexpected_legacy = bash_path(legacy) if command[0] == "bash" else str(legacy)
-                    self.assertIn(expected_canonical, completed.stdout)
-                    self.assertNotIn(unexpected_legacy, completed.stdout)
+                    if os.name == "nt":
+                        expected_canonical = str(Path("Fleet") / "Canonical")
+                        unexpected_legacy = str(Path("Legacy") / "Old")
+                    else:
+                        expected_canonical = (
+                            bash_path(canonical) if command[0] == "bash" else str(canonical)
+                        )
+                        unexpected_legacy = (
+                            bash_path(legacy) if command[0] == "bash" else str(legacy)
+                        )
+                    normalized_output = completed.stdout.casefold()
+                    self.assertIn(expected_canonical.casefold(), normalized_output)
+                    self.assertNotIn(unexpected_legacy.casefold(), normalized_output)
 
     def test_registry_rejects_preset_or_unknown_propagation_targets(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

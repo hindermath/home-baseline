@@ -280,6 +280,7 @@ def base_report(run_id: str) -> dict:
     }
 
 
+@unittest.skipIf(os.name == "nt", "Linux maintenance fixtures require a POSIX host.")
 class LinuxMaintenanceHardeningTests(unittest.TestCase):
     def test_stdin_consuming_brew_processes_all_formulae_once(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -791,6 +792,9 @@ exit 2
                         "LOCK_DIR=''\n"
                         "LOG_FILE=''\n"
                         "release_resources() { :; }\n"
+                        "start_event_phase() { :; }\n"
+                        "event_status() { printf 'FAILED'; }\n"
+                        "emit_event() { :; }\n"
                         f"{finalization_functions}\n"
                         "trap handle_exit EXIT\n"
                         "trap 'handle_signal INT 130' INT\n"

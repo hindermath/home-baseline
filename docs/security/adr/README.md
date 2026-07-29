@@ -18,7 +18,7 @@ in the format `ADR-NNN-title.md`.*
 
 | ADR | Titel / Title | Status | Datum / Date |
 |---|---|---|---|
-| — | Noch keine ADRs erstellt / No ADRs created yet | — | — |
+| [ADR-001](ADR-001-maintenance-tui-boundary.md) | Wartungs-TUI bleibt Darstellungsschicht / Maintenance TUI remains a presentation layer | Accepted | 2026-07-29 |
 
 <!-- EN: docs/security/adr/README.md
 [DE-Zusammenfassung: Index der Security Architecture Decision Records fuer home-baseline.]
