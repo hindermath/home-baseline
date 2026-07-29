@@ -206,11 +206,11 @@ lokalen Lieferkandidaten schließen.
 - [X] T072 Run all maintenance Python tests and record counts/results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [X] T073 Run Bash syntax, PowerShell parser, PSScriptAnalyzer and JSON validation and record results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [X] T074 Run `--check-only`, `--dry-run`, `-CheckOnly` and `-WhatIf` in isolated fixtures and record permitted control/fetch effects and prohibited mutations
-- [ ] T075 Run Documentation Impact, generated-reference, Homogeneity, diff and secret gates and record results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
-- [ ] T076 Render the Feature 017 milestone and Profile 2 block in `docs/project-statistics.md` from `docs/project-statistics.config.json`
+- [X] T075 Run Documentation Impact, generated-reference, Homogeneity, diff and secret gates and record results in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
+- [X] T076 Render the Feature 017 milestone and Profile 2 block in `docs/project-statistics.md` from `docs/project-statistics.config.json`
 - [X] T077 Reconcile PWH-001 through PWH-020, AC-001 through AC-027, all Analyze findings and all gate requirements in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [ ] T078 Archive the completed intake with `scripts/rename-lastenheft.sh` to `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md`
-- [ ] T079 Re-run the complete local acceptance suite after the archived intake and statistics update
+- [X] T079 Re-run the complete local acceptance suite after the archived intake and statistics update
 
 ---
 
@@ -219,8 +219,8 @@ lokalen Lieferkandidaten schließen.
 **Purpose**: Exakten Kandidaten liefern, Reviews konvergieren und die Serie
 ohne Start von Position 4 kausal fortschreiben.
 
-- [ ] T080 Stage only intended paths and validate the exact candidate against `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-requirements.json`
-- [ ] T081 Align all autonomous hashes and task counts in `specs/017-preset-profile-worktree-hardening/autonomous-run-state.json`
+- [X] T080 Stage only intended paths and validate the exact candidate against `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-requirements.json`
+- [X] T081 Align all autonomous hashes and task counts in `specs/017-preset-profile-worktree-hardening/autonomous-run-state.json`
 - [ ] T082 Commit the reviewed candidate with required co-author trailer and push branch `017-preset-profile-worktree-hardening`
 - [ ] T083 Open a non-empty feature pull request and record URL and exact head in `specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md`
 - [ ] T084 Converge Ubuntu, macOS and Windows checks plus actionable review threads for the exact PR head and validate temporary provider-neutral gate evidence

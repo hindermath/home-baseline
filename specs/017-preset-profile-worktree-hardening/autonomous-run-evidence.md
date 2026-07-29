@@ -54,13 +54,18 @@ freshness, continuation, ordering, pull and unsafe-state suite passed.
 | `git status`, `fetch`, ahead/behind comparison | Autonomous preflight | N/A | repository root | 0 | clean | Branch base and synchronization proved before feature creation |
 | Intake Series Bash validator | Intake eligibility | N/A | active Series | 0 | clean | Current 39-target Series and sole `Eligible` intake accepted |
 | Active Series review validator | Binding review | N/A | active review | 0 | clean | Schema 1.1 result `Ready`, zero findings |
-| Four maintenance unittest modules | Product and regression proof | N/A | repository root | 0 | clean | 59 tests passed; 12 Windows-only process tests skipped on macOS |
+| Four maintenance unittest modules | Product and regression proof | N/A | repository root | 0 | clean | 60 tests passed; 12 Windows-only process tests skipped on macOS |
 | Bash parser and Python bytecode compilation | Syntax proof | N/A | changed scripts/tests | 0 | clean | Bash and Python syntax accepted |
 | PowerShell parser | Syntax proof | N/A | changed PowerShell orchestrator | 0 | clean | Zero parser findings |
 | PSScriptAnalyzer 1.25.0 | Static PowerShell proof | N/A | 147 tracked files | 0 | clean | Zero errors or warnings; four generated upstream files excluded by policy |
 | JSON parsing | Evidence schema proof | N/A | Feature 017 JSON artifacts | 0 | clean | Every JSON artifact accepted by `jq` |
 | `git diff --check` | Text integrity | N/A | current candidate | 0 | clean | No whitespace errors |
 | Isolated CheckOnly/DryRun fixtures | Safe-mode boundary | N/A | disposable local remotes and homes | 0 | clean | Bash tokens `--check-only`/`--dry-run` and PowerShell mode projection permit control/fetch evidence while clone, pull and domain mutation remain prohibited |
+| Documentation Impact validator | Documentation governance | N/A | Feature 017 evidence | 0 | clean | Four decisions accepted |
+| Script reference and statistics checks | Generated documentation | N/A | repository root | 0 | clean | Both generated surfaces report `CURRENT` |
+| Homogeneity Check | Repository governance | N/A | repository root | 0 | clean | 30/30 checks, score 100 percent |
+| Gitleaks and agent secret scan | Secret boundary | N/A | repository diff | 0 | clean | No high-severity or diff secret finding |
+| `specify check` | Spec Kit installation | N/A | repository root | 0 | clean | Installed integrations accepted |
 
 ## Implementation Evidence
 
@@ -122,7 +127,7 @@ N/A recorded in the gate declaration.
 | Item | Value |
 |---|---|
 | Requirements artifact | `specs/017-preset-profile-worktree-hardening/autonomous-run-gate-requirements.json` |
-| Requirements SHA-256 | Pending until the gate declaration is finalized |
+| Requirements SHA-256 | `5ba37a51c6df7e01cd5747f18e32a7bdf90a68d54b24da72a3258e1bab7e1fad` |
 | Temporary evidence snapshot | Provider-neutral exact-head artifact; not committed before merge |
 | Reviewed head | Pending |
 | Validator | Installed Bash and PowerShell autonomous gate validators |
@@ -155,9 +160,9 @@ N/A recorded in the gate declaration.
 ## Resume and Follow-up
 
 - Checkpoint commit: `b1e0110864cd7a6aa75c7cf42e7eec70bfe942c9`
-- Last operation: local implementation and four-suite regression completed
-- Last passing gate: 59 tests passed, 12 platform skips; parser, analyzer, JSON and diff checks passed
-- Next exact action: complete isolated mode, homogeneity, secret, statistics and archive validation
+- Last operation: local implementation, final regression and repository quality gates completed
+- Last passing gate: 60 tests passed, 12 platform skips; Homogeneity 30/30 and all local gates passed
+- Next exact action: align exact candidate state, push and collect provider exact-head evidence
 - Stop reason and safe boundary: N/A
 - Authority revalidation required: false
 - Residual risk: Native provider validation and exact-head review remain pending.
