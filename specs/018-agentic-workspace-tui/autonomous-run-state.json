@@ -5,25 +5,25 @@
   "branch": "018-agentic-workspace-tui",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Review",
-  "status": "Active",
-  "checkpointCommit": "495f865ac0cf8c484448fa340d4a2d678f7c8357",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "65693ef5981f93a54d1c230df4da1715bf13f877",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.018-agentic-workspace-tui.md",
       "sha256": "ccb60052526ba2dddf649b4e9f1827668c8c3430e80fefbaa4fcc4ed263b2783"
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-      "sha256": "87ef2a9ef35f1055954a8de4feb85dec215b01a064d55c6ed59c7e7aec8ac59c"
+      "sha256": "5511c9e443ca790eaa1e3ee60cd83f7b7dfd9ce39a34d5b8e16634432707833e"
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-result.json",
-      "sha256": "61bc7b6d9bd6256a821cf8811c9f13c8763b7f3de272818ce85a37dd14493989"
+      "sha256": "feb91e99f20917c4ed17d720ac81563104d9ae18908c5d17318157fa5d979cd7"
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "f47998add47b26de234684a9c78237a3b1a3f8efb666bdef1b7fc0bbb35b3104"
+      "sha256": "51d9b59d2bd3161945e4a8acd300ac3954d620be80fa8d64705c4b7546bbcb4c"
     },
     {
       "path": "specs/015-windows-maintenance-hardening/autonomous-run-state.json",
@@ -75,21 +75,25 @@
     },
     {
       "path": "specs/018-agentic-workspace-tui/tasks.md",
-      "sha256": "6bbb4137f32e6bd18e74727d64dee7f34d8066b29b4901de28a386e38b0707ba"
+      "sha256": "9d50423b6a9e40c6a4100369436c912c4d5b2390a7fada88934823fca8f46165"
+    },
+    {
+      "path": "specs/018-agentic-workspace-tui/autonomous-run-gate-evidence.json",
+      "sha256": "e1cd1cd3188edf6c6ddfc765092f96fc70c6f3c5ec764104187216d7eeec1d84"
     }
   ],
   "tasks": {
     "path": "specs/018-agentic-workspace-tui/tasks.md",
-    "sha256": "6bbb4137f32e6bd18e74727d64dee7f34d8066b29b4901de28a386e38b0707ba",
-    "completed": 127,
+    "sha256": "9d50423b6a9e40c6a4100369436c912c4d5b2390a7fada88934823fca8f46165",
+    "completed": 133,
     "total": 133
   },
-  "lastPassingGate": "Second bounded remediation: 36 directly affected and 79 full maintenance tests pass locally",
-  "nextExactAction": "Commit and push the second Windows test-harness correction, then reconverge every exact-head check and review thread for PR 160.",
+  "lastPassingGate": "PR 160 exact head passed all provider checks, zero actionable threads and both 8/8 gate validators; successor Series review is Ready",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "Review",
-    "state": "NeedsRevalidation",
-    "summary": "PR 160 exposed further POSIX-only discovery and Windows path-normalization assumptions; the bounded test-only remediation is locally green and product behavior is unchanged."
+    "kind": "MergeAndSync",
+    "state": "Completed",
+    "summary": "Feature 018 merged at the exact reviewed head, Home Runtime synchronized, the Position-4 intake archived, the 37-target successor Series reviewed, and D4 left Eligible without starting it."
   },
   "stop": {
     "reason": "N/A",
@@ -97,10 +101,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-07-29T15:01:56Z"
+  "updatedAt": "2026-07-29T15:19:36Z"
 }

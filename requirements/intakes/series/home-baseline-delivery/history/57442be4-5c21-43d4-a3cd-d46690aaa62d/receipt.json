@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "e0d3f8e7-b857-49e3-8fbf-edba4d51a0e3",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-29T11:47:17Z",
+  "operation": {
+    "operationId": "764f4606-51fb-4c9b-a6ec-8ee28e700d5e",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user approval to update the Position 4 TUI intake in place while preserving the active 38-target order, three roots, and 45 dependencies."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "f47998add47b26de234684a9c78237a3b1a3f8efb666bdef1b7fc0bbb35b3104"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/764f4606-51fb-4c9b-a6ec-8ee28e700d5e/receipt.json",
+    "receiptNormalizedSha256": "cded5b488f49f111a64af5528d1e0acbd5c9a2bae47a6b0f08d48bc6f197bf86",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/764f4606-51fb-4c9b-a6ec-8ee28e700d5e/manifest.json",
+    "manifestArchiveSha256": "3306edd96ba08a863435f812140265f3d71e5e8b22c65828b55ca8fb3d702d4f"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

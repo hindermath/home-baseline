@@ -3,82 +3,83 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `05b38977-2b41-451f-947c-d9ac93c385f4`
-- Supersedes: `6851ba2b-edbe-4348-af93-c0d48d337701`
-- Ziele / Targets: 38
+- Review-ID: `31370a44-3c7a-4e7e-a9db-ac82bfa533d3`
+- Supersedes: `05b38977-2b41-451f-947c-d9ac93c385f4`
+- Ziele / Targets: 37
 - Roots: 3
-- Abhaengigkeiten / Dependencies: 45
+- Abhaengigkeiten / Dependencies: 44
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Der Intake fuer die Agentic-Workspace-Wartungs-TUI ist jetzt auf dem
-nachgewiesenen Abschlussstand der Features 015 bis 017. Position 4 bleibt der
-einzige bevorzugte `Eligible`-Kandidat. Dieser Review startet weder das
-TUI-Feature noch einen anderen Spec-Kit-Lauf.
+Feature 018 und PR #160 sind am exakten geprüften Head abgeschlossen. Das
+bindende Lastenheft ist mit seiner Feature-Kennung archiviert und nicht mehr
+Teil der aktiven Serie. D4 ist jetzt der einzige bevorzugte
+`Eligible`-Kandidat. Dieser Review startet D4 oder einen anderen
+Spec-Kit-Lauf nicht.
 
-*The agentic workspace maintenance TUI intake now reflects the evidenced
-closeout of Features 015 through 017. Item 4 remains the single preferred
-`Eligible` candidate. This review starts neither the TUI feature nor another
-Spec Kit run.*
+*Feature 018 and PR #160 are complete at the exact reviewed head. The binding
+intake is archived with its feature marker and is no longer part of the active
+series. D4 is now the single preferred `Eligible` candidate. This review does
+not start D4 or another Spec Kit run.*
 
-## Aktualisierte Intake-Evidence / Updated Intake Evidence
+## Abschluss-Evidence / Closeout Evidence
 
-- Feature 009 bleibt die historische Grundlage der Ein-Kommando-Wartung.
-- Feature 015 und PR #142 belegen Preview-, Prozess-, Ergebnis- und
-  Resume-Haertung fuer Windows.
-- Feature 016 sowie PRs #146 und #148 belegen Eingabeisolation,
-  Required-Aggregation, Plattformgrenzen und atomaren Abschluss fuer Linux.
-- Feature 017 sowie PRs #153 und #154 belegen Remote-Freshness- und
-  Mutation-Barriere, sichere Pull-Klassifikation, Worktree-Leases und
-  dynamische Preset-Profile.
-- Das Lastenheft trennt nun den additiven Ereignisstrom von atomarem
-  Abschlussbericht und Prozess-Exitcode.
-- Die `.NET 10`-Basis bleibt erhalten; Spectre.Console und
-  Spectre.Console.Testing sind fuer die spaetere Implementierung auf `0.57.2`
-  mit Locked Restore und Supply-Chain-Nachweis festgelegt.
-- Der Autonomous-Prompt verwendet `MergeAndSync`, erteilt der
-  Wartungs-Engine aber keine Zielrepository-, Provider-, Bereinigungs- oder
-  Administratorautoritaet.
+- PR #160 mergte den exakten Feature-Head
+  `64df267a9fb4c695e142de3ae5654f6edc3af149` als
+  `65693ef5981f93a54d1c230df4da1715bf13f877`.
+- Alle TUI-, Homogeneity-, PowerShell-, Dokumentations- und Lernpaket-Gates
+  bestanden auf macOS, Ubuntu und Windows.
+- Acht providerneutrale Gate-Anforderungen wurden mit Bash und PowerShell an
+  denselben Head gebunden.
+- Null umsetzbare Review-Threads blieben offen. Der eng begrenzte
+  Admin-Bypass wurde nur für die verbleibende Human-Approval-Regel verwendet.
+- Das Lastenheft liegt unverändert als
+  `Lastenheft_Agentic-Workspace-Maintenance-TUI.018-agentic-workspace-tui.md`
+  vor.
+- Kein Folgefeature und kein D4-Lauf wurde gestartet.
 
-*Feature 009 remains the historical maintenance foundation. Features 015,
-016, and 017 provide the accepted Windows, Linux, fleet barrier, safe-pull,
-lease, dynamic-profile, result, and resume contracts. The intake separates
-live events from canonical final evidence, pins the later .NET dependency
-validation, and keeps feature delivery authority distinct from maintenance
-target authority.*
+*PR #160 merged exact head `64df267a9fb4c695e142de3ae5654f6edc3af149`
+as `65693ef5981f93a54d1c230df4da1715bf13f877`. All cross-platform,
+documentation, parity, and provider-neutral gates passed. No actionable review
+thread remained, and the narrow bypass covered only Human Approval. The
+unchanged intake is archived and no successor run was started.*
 
 ## Graphnachweis / Graph Evidence
 
-- Alle 38 Pfade, Rollen, Hashes und Positionen stimmen mit dem gebundenen
-  Schema-1.1-Request ueberein.
-- Die drei Roots entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 45 Kanten sind eindeutig, referenzgueltig, reihenfolgekonform und
+- Alle 37 aktiven Pfade, Rollen, Hashes und Positionen stimmen mit dem
+  gebundenen Schema-1.1-Request ueberein.
+- Die drei Roots `D4`, `9` und `10` entsprechen exakt den Knoten ohne
+  eingehende Kante.
+- Alle 44 Kanten sind eindeutig, referenzgueltig, reihenfolgekonform und
   azyklisch.
-- Nur der Hash von
-  `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` wurde aktualisiert.
-- Reihenfolge, Rollen, Roots und Abhaengigkeiten blieben unveraendert.
-- Position 4 ist weiterhin der einzige bevorzugte `Eligible`-Kandidat.
+- Der abgeschlossene Position-4-Knoten und seine einzelne
+  `DocumentationSurfaceBaseline`-Kante zu D4 wurden entfernt.
+- D4 ist `Primary` und der einzige bevorzugte `Eligible`-Kandidat.
+- Die Dokumentations-, Secure-Development-, KDM/KITSM-, ITSE- und
+  Learning-Series-Stränge behalten ihre bindenden Vorgaenger.
 
-*All 38 paths, roles, hashes, and positions match the bound schema-1.1
-request. The three roots equal the zero-indegree nodes, all 45 edges are
-unique, reference-valid, order-consistent, and acyclic, and only the updated
-item-4 target hash changed.*
+*All 37 active paths, roles, hashes, and positions match the bound schema-1.1
+request. Roots D4, 9, and 10 equal the zero-indegree nodes, and all 44 edges
+are unique, reference-valid, order-consistent, and acyclic. The completed
+item-4 node and its single edge to D4 were removed. D4 is Primary and the sole
+preferred Eligible candidate; all other binding tracks remain intact.*
 
 ## Findings und Risiken / Findings and Risks
 
 Es bestehen keine Critical-, High-, Medium- oder Low-Findings, keine
-akzeptierten Risiken und keine offenen Fragen. Die Gate-Freigabe ist keine
-dauerhafte Statusbehauptung: Der spaetere Lauf muss Vorgaenger-, Repository-
-und Series-Evidence vor Feature-Erstellung erneut fail-closed pruefen.
+akzeptierten Risiken und keine offenen Fragen. `Eligible` ist keine
+Delivery-Autoritaet: Ein spaeterer Lauf muss Repository-, Intake- und
+Series-Evidence vor der Feature-Erstellung erneut fail-closed pruefen.
 
-*There are no findings, accepted risks, or open questions. Eligibility is not
-a permanent status claim: the later run must revalidate predecessor,
-repository, and series evidence fail-closed before feature creation.*
+*There are no findings, accepted risks, or open questions. Eligible is not
+delivery authority: a later run must revalidate repository, intake, and series
+evidence fail-closed before creating a feature.*
 
 ## Naechste Aktion / Next Action
 
-Der Intake ist bereit fuer den kopierbaren `$speckit-autonomous`-Prompt aus
-dem Lastenheft. Feature 018 wird durch diesen Review nicht gestartet.
+D4 kann nach einem ausdruecklichen Auftrag mit seinem kopierbaren
+`$speckit-autonomous`-Prompt gestartet werden. Dieser Closeout startet D4
+nicht.
 
-*The intake is ready for its copyable `$speckit-autonomous` prompt. This review
-does not start Feature 018.*
+*D4 may be started later through its copyable `$speckit-autonomous` prompt
+after explicit instruction. This closeout does not start D4.*

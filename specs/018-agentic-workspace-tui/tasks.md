@@ -262,12 +262,12 @@ and return to synchronized main without starting a successor.
 - [X] T125 Finalize task counts, accepted artifact hashes and gate-requirements hash in `specs/018-agentic-workspace-tui/autonomous-run-state.json`
 - [X] T126 Commit the reviewed candidate and push branch `018-agentic-workspace-tui`
 - [X] T127 Create a non-empty pull request and record URL and exact head in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
-- [ ] T128 Converge all mandatory checks and actionable review threads for the exact PR head and record them in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
-- [ ] T129 Generate `.git/spec-kit-autonomous/018-gate-evidence.json` and validate it with `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` and `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.ps1`
-- [ ] T130 Merge the exact reviewed head, using the narrow admin bypass only if Human Approval is the sole open rule, and record the merge in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
-- [ ] T131 Delete the remote feature branch, switch locally to `main`, fetch/prune and fast-forward pull
-- [ ] T132 Complete a genuinely required causal closeout for `Lastenheft_Agentic-Workspace-Maintenance-TUI.md`, `requirements/intakes/series/home-baseline-delivery/manifest.json`, its Schema-1.1 review evidence, `specs/018-agentic-workspace-tui/retrospective.md` and `specs/018-agentic-workspace-tui/autonomous-run-state.json` without starting the successor feature
-- [ ] T133 Validate final `specs/018-agentic-workspace-tui/retrospective.md` and `specs/018-agentic-workspace-tui/autonomous-run-state.json`, prove clean `(0 0)`, and run `scripts/sync-home.sh --check-only` plus `scripts/sync-home.sh --no-pull` when `scripts/config/home-sync-manifest.json` classifies changed files as Home Runtime
+- [X] T128 Converge all mandatory checks and actionable review threads for the exact PR head and record them in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
+- [X] T129 Generate `.git/spec-kit-autonomous/018-gate-evidence.json` and validate it with `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` and `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.ps1`
+- [X] T130 Merge the exact reviewed head, using the narrow admin bypass only if Human Approval is the sole open rule, and record the merge in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
+- [X] T131 Delete the remote feature branch, switch locally to `main`, fetch/prune and fast-forward pull
+- [X] T132 Complete a genuinely required causal closeout for `Lastenheft_Agentic-Workspace-Maintenance-TUI.md`, `requirements/intakes/series/home-baseline-delivery/manifest.json`, its Schema-1.1 review evidence, `specs/018-agentic-workspace-tui/retrospective.md` and `specs/018-agentic-workspace-tui/autonomous-run-state.json` without starting the successor feature
+- [X] T133 Validate final `specs/018-agentic-workspace-tui/retrospective.md` and `specs/018-agentic-workspace-tui/autonomous-run-state.json`, prove clean `(0 0)`, and run `scripts/sync-home.sh --check-only` plus `scripts/sync-home.sh --no-pull` when `scripts/config/home-sync-manifest.json` classifies changed files as Home Runtime
 
 ## Dependencies and execution order
 
