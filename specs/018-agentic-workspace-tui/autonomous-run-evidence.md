@@ -76,6 +76,9 @@
 | JSON parse, Documentation Impact validators, `git diff --check` and `specify check` | Final repository contracts | N/A | repository root | 0 | clean | All changed JSON parses; Bash/PowerShell Documentation Impact, whitespace and Spec Kit checks pass |
 | Complete local acceptance rerun | Post-documentation/statistics gate | N/A | repository root | 0 | clean | Locked restore, warning-free Release build, 62 .NET tests, both format gates, 14 focused wrapper tests, 79 maintenance tests, package audit, Bash syntax and PSScriptAnalyzer all pass |
 | PR #160 Windows `Maintenance TUI` on head `39d9e9e` | Exact-head cross-platform gate | N/A | `windows-2022` | 1 | expected remediation evidence | The job exposed two test-harness assumptions: Windows `bash.exe` may be an unusable WSL launcher, and Unix mode bits are not a Windows privacy proof. Bash execution fixtures are now Unix-only; source parity and PowerShell behavior remain active on Windows |
+| PR #160 Windows `Maintenance TUI` on head `8930f398` | Repeated exact-head cross-platform gate | N/A | `windows-2022` | 1 | expected remediation evidence | Full discovery exposed further pre-existing POSIX-only Linux fixtures and a Windows short-path versus long-path assertion. Linux fixtures are now explicitly POSIX-only; the mixed propagation fixture executes the native PowerShell surface on Windows and compares the repository-relative semantic path |
+| `python3 -m unittest scripts.tests.test_agentic_workspace_maintenance scripts.tests.test_linux_maintenance_hardening -v` | Second Windows-harness remediation proof | N/A | repository root | 0 | clean | 36 directly affected tests pass on macOS with two expected Linux-only Swift skips |
+| `python3 -m unittest discover -s scripts/tests -p 'test_*.py'` | Full regression after second Windows-harness remediation | N/A | repository root | 0 | clean | 79 tests pass with 12 expected platform skips |
 
 ## User-Story Acceptance Evidence
 
@@ -193,7 +196,7 @@
 |---|---|---|
 | Push | Pass | Branch `018-agentic-workspace-tui` pushed after the repository pre-push secret scan passed |
 | Pull request | Pass | [PR #160](https://github.com/hindermath/home-baseline/pull/160), non-empty creation head `533412d3b6cafe677eebf3f3b588e88c94ed175f`; the following evidence commit becomes the exact review head |
-| Required checks | Remediating | First exact-head Windows job found a platform-specific test-harness defect; the bounded fix is locally green and a new exact head will rerun every gate |
+| Required checks | Remediating | Two exact-head Windows jobs exposed bounded platform-specific test-harness assumptions; both fixes are locally green and a new exact head must rerun every gate |
 | Acceptance execution map | Open | Pending temporary provider-neutral evidence |
 | Actionable threads | Open | Pending |
 | Unavailable reviews | None observed | Pending remote review |
@@ -206,10 +209,10 @@
 
 - Checkpoint commit: `495f865ac0cf8c484448fa340d4a2d678f7c8357`
 - Last operation: Validate `Completed`
-- Last passing gate: complete local acceptance, including 62 .NET, 14 wrapper and 79 maintenance tests plus 30/30 Homogeneity checks
-- Next exact action: commit the finalized T124/T125 metadata, render the resulting source revision, then push the reviewed feature head
+- Last passing gate: second bounded remediation, including 36 directly affected and 79 full maintenance tests
+- Next exact action: commit and push the second Windows test-harness correction, then reconverge all checks and review threads for the new exact head
 - Stop reason and safe boundary: N/A
 - Authority revalidation required: false
-- Residual risk: exact-head provider, review, merge and post-merge closeout evidence remain open
+- Residual risk: Windows has not yet accepted the second bounded harness correction; exact-head provider, review, merge and post-merge closeout evidence remain open
 - Out-of-scope follow-up: route newly discovered product or fleet defects to a
   named intake; do not broaden Feature 018

@@ -280,6 +280,7 @@ def base_report(run_id: str) -> dict:
     }
 
 
+@unittest.skipIf(os.name == "nt", "Linux maintenance fixtures require a POSIX host.")
 class LinuxMaintenanceHardeningTests(unittest.TestCase):
     def test_stdin_consuming_brew_processes_all_formulae_once(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

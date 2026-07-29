@@ -938,7 +938,7 @@ was not started.*
   Wartungsregressionen sind lokal grün. Supply-Chain-, Dokumentations-,
   Sicherheits- und A11Y-Evidence liegen vor; exakte Plattform- und
   Merge-Evidence folgen am PR-Head.
-- Das Delta vor Statistikpflege umfasst 7 622 Nettozeilen. Die TUI erteilt
+- Das Delta vor Statistikpflege umfasst 7 639 Nettozeilen. Die TUI erteilt
   keine Commit-, Push-, PR-, Merge-, Secret-, Cleanup- oder Adminautorität für
   Ziel-Repositories.
 

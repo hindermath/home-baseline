@@ -84,12 +84,12 @@
     "completed": 127,
     "total": 133
   },
-  "lastPassingGate": "Exact local candidate: 62 .NET, 79 maintenance, 30/30 Homogeneity and all affected validators",
-  "nextExactAction": "Commit and push the bounded Windows test-harness correction, then reconverge every exact-head check and review thread for PR 160.",
+  "lastPassingGate": "Second bounded remediation: 36 directly affected and 79 full maintenance tests pass locally",
+  "nextExactAction": "Commit and push the second Windows test-harness correction, then reconverge every exact-head check and review thread for PR 160.",
   "lastOperation": {
     "kind": "Review",
     "state": "NeedsRevalidation",
-    "summary": "PR 160 exposed and locally remediated a Windows-only test-harness assumption; product behavior is unchanged."
+    "summary": "PR 160 exposed further POSIX-only discovery and Windows path-normalization assumptions; the bounded test-only remediation is locally green and product behavior is unchanged."
   },
   "stop": {
     "reason": "N/A",
@@ -102,5 +102,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-29T14:54:44Z"
+  "updatedAt": "2026-07-29T15:01:56Z"
 }
