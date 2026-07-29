@@ -91,24 +91,26 @@ Roots wurden durch G1 wieder freigegeben. Mit der später ergänzten
 Dokumentationskette D4 bis D7 besitzt die bisherige Position 5 nun erneut einen
 bindenden Vorgänger. Position 1 wurde als Feature 015 über PR #142 und
 Position 2 als Feature 016 über PR #146 und Position 3 als Feature 017 über
-PR #153 abgeschlossen und archiviert. Position 4,
-`Lastenheft_Agentic-Workspace-Maintenance-TUI.md`, ist jetzt als einziger
-Kandidat `Eligible`. Dieser Closeout startet den Folgelauf nicht.
+PR #153 abgeschlossen und archiviert. Position 4 wurde als Feature 018 über
+PR #160 abgeschlossen und als
+`Lastenheft_Agentic-Workspace-Maintenance-TUI.018-agentic-workspace-tui.md`
+archiviert. D4 ist jetzt der einzige deklarierte `Eligible`-Kandidat. Dieser
+Closeout startet den Folgelauf nicht.
 
 *The gate did not reorder the existing domain work. G1 is archived and removed
 from the active series. It released the six previous roots; the later D4-D7
 documentation chain now provides a new binding predecessor for former item 5.
 Item 1 completed as Feature 015 through PR #142, item 2 as Feature 016 through
 PR #146, and item 3 as Feature 017 through PR #153; all three are archived.
-The maintenance TUI at item 4 is now the only declared `Eligible` candidate.
-This closeout does not start the successor run.*
+Item 4 completed as Feature 018 through PR #160 and is archived. D4 is now the
+only declared `Eligible` candidate. This closeout does not start the successor
+run.*
 
 ## Aktive Reihenfolge / Active Order
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
 |---:|---|---|
-| 4 | `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` | Plant die Spectre.Console-Wartungs-TUI. Feature 009 und die Einträge 1 bis 3 sind vollständig abgeschlossen; Position 4 ist jetzt der einzige deklarierte `Eligible`-Kandidat. / Plans the Spectre.Console maintenance TUI. Feature 009 and items 1 through 3 are fully closed; item 4 is now the sole declared `Eligible` candidate. |
-| D4 | `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` | Prüft nach Position 4 die gesamte Git-getrackte Level-0-Dokumentation read-only auf Informationsarchitektur, Leserpfade, Sprachstrategie und gestufte Tiefe. / Audits all Git-tracked Level 0 documentation after item 4 for information architecture, reader paths, language strategy, and progressive depth without remediation. |
+| D4 | `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` | Prüft nach der abgeschlossenen Position 4 die gesamte Git-getrackte Level-0-Dokumentation read-only auf Informationsarchitektur, Leserpfade, Sprachstrategie und gestufte Tiefe. D4 ist der einzige deklarierte `Eligible`-Kandidat. / Audits all Git-tracked Level 0 documentation after completed item 4 for information architecture, reader paths, language strategy, and progressive depth without remediation. D4 is the sole declared `Eligible` candidate. |
 | D5 | `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` | Setzt ausschließlich bestätigte D4-Findings um und verankert Einstiegspunkte, Sprachpartner und den dauerhaften Dokumentationsarchitektur-Vertrag. / Implements only accepted D4 findings and establishes entry pages, language pairs, and the durable documentation-architecture contract. |
 | D6 | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` | Dokumentiert das nach Position 4 stabile Wartungsverhalten für Lernende, Nutzende, Maintainer/KI-Agenten und Audit, ohne Skriptverhalten zu ändern. / Documents the stable post-item-4 maintenance behavior for learners, operators, maintainers/AI agents, and audit without changing script behavior. |
 | D7 | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` | Übernimmt nur belegte portable Regeln repository-spezifisch in die registrierte Level-1-/Level-2-Flotte; unveränderte Repositories erhalten keinen Leer-PR. / Adopts only proven portable rules per repository across the registered Level 1/2 fleet; unchanged repositories receive no empty pull request. |
@@ -159,10 +161,7 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
          |
          +--> D3 Level-1/2-Flotte und Level-0-Revalidierung
 
-4 Maintenance TUI
-        |
-        v
-              D4 Informationsarchitektur-Audit
+D4 Informationsarchitektur-Audit [Eligible]
                              |
                              v
               D5 Level-0-Architektur und Sprache
@@ -261,20 +260,21 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 
 ```
 
-Nach dem Abschluss von Feature 017 sind die aktiven Roots `4`, `9` und `10`.
+Nach dem Abschluss von Feature 018 sind die aktiven Roots `D4`, `9` und `10`.
 Die bisherige Position 5 ist kein Root, weil D7 ihre bindende
 Dokumentationsarchitektur-Basis liefert. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. Position 4 ist als nächster serieller
-Kandidat ausgewählt; die anderen Roots bleiben fachlich verfügbar, starten
-aber nicht automatisch. Die abgeschlossenen Features 009, 015, 016 und 017
-sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte und
+Schema-1.1-Review-Evidence nachweisbar. D4 ist als nächster serieller Kandidat
+ausgewählt; die anderen Roots bleiben fachlich verfügbar, starten aber nicht
+automatisch. Die abgeschlossenen Features 009 sowie 015 bis 018 sind keine
+aktiven Serienknoten mehr. Ihre archivierten Lastenhefte und
 Abschlüsse bleiben historische Evidence für die weitere Reihenfolge.
 
-Eintrag 4 besaß ein hartes Abschluss-Gate. Die Abschlussnachweise für
-Feature 009 sowie die Positionen 1 bis 3 liegen jetzt vor. Der Series-Review
-gibt Position 4 als einzigen seriellen Kandidaten frei; dieser Closeout
-erteilt jedoch keine Start- oder Delivery-Autorität für den Folgelauf.
+Eintrag 4 besaß ein hartes Abschluss-Gate und ist als Feature 018
+abgeschlossen. Der erneuerte Series-Review entfernt den archivierten Knoten
+samt seiner ausgehenden Kante und gibt D4 als einzigen seriellen Kandidaten
+frei; dieser Closeout erteilt jedoch keine Start- oder Delivery-Autorität für
+den Folgelauf.
 
 Position 5 liefert die gemeinsame Bewertungsgrundlage fuer 6, 7 und 13.
 Position 7 liefert die Sandbox-Grundlage fuer 8. Position 10 wird vor 11
@@ -295,13 +295,12 @@ documents the stable operating surface and also feeds item 11, and D7 adopts
 portable rules across the registered fleet before releasing item 5. No run
 starts its successor automatically.*
 
-*Item 4 is a hard dependency rather than an ordering recommendation. Feature
-009 and completed Features 015 through 017 currently satisfy that gate, and
-the schema-1.1 series review declares item 4 the single preferred `Eligible`
-candidate. The closeout evidence is revalidated before feature creation; only
-missing or drifted evidence returns item 4 to `BLOCKED`. Items 5, 7, and 10
-provide binding baselines for their successors. Items 9 through 12 feed the
-final GSDB audit, so item 13 must run last.*
+*Item 4 was a hard dependency rather than an ordering recommendation and is
+now completed as Feature 018. The renewed schema-1.1 review removes its
+archived node and outgoing edge, then declares D4 the single preferred
+`Eligible` candidate. The closeout grants no authority to start D4. Items 5,
+7, and 10 provide binding baselines for their successors. Items 9 through 12
+feed the final GSDB audit, so item 13 must run last.*
 
 „Abschließend“ bei Position 13 bezieht sich auf den bestehenden
 Skript-/Konfigurationsstrang der Positionen 9 bis 12. Die Positionen 14 bis 17

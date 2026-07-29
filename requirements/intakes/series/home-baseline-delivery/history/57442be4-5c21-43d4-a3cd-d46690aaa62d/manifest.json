@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+      "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "role": "Primary",
-      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
+      "normalizedSha256": "ccb60052526ba2dddf649b4e9f1827668c8c3430e80fefbaa4fcc4ed263b2783",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
+      "status": "Blocked"
     },
     {
       "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
@@ -230,11 +236,17 @@
     }
   ],
   "roots": [
-    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
+    {
+      "from": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
+      "to": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
     {
       "from": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "to": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
@@ -534,7 +546,6 @@
     "specs/learning-series-governance-intakes/reviews/35-learning-preset/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
-    "specs/learning-series-governance-intakes/series/intake-review-result.json",
-    "specs/018-agentic-workspace-tui/autonomous-run-evidence.md"
+    "specs/learning-series-governance-intakes/series/intake-review-result.json"
   ]
 }

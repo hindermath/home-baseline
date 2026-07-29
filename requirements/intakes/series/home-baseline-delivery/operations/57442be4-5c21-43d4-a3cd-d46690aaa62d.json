@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "57442be4-5c21-43d4-a3cd-d46690aaa62d",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user authority for the complete Feature 018 MergeAndSync run, including its manifest-declared post-merge archive, Series closeout, and successor eligibility proof without starting the successor.",
+  "proposalNormalizedSha256": "51d9b59d2bd3161945e4a8acd300ac3954d620be80fa8d64705c4b7546bbcb4c",
+  "preparedPaths": [
+    "Lastenheft_Agentic-Workspace-Maintenance-TUI.018-agentic-workspace-tui.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/018-agentic-workspace-tui/autonomous-run-evidence.md"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

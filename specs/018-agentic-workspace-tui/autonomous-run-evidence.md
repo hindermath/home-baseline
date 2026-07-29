@@ -11,7 +11,7 @@
 | Admin bypass | Narrowly authorized only for the sole remaining Human Approval gate |
 | Evidence owner | Thorsten Hindermann |
 | Run-state path | `specs/018-agentic-workspace-tui/autonomous-run-state.json` |
-| Run-state status | `Active` |
+| Run-state status | `Completed` |
 
 ## Scope and Convergence
 
@@ -24,7 +24,7 @@
 | Plan review | Pass | Plan, research, data model, quickstart, four contracts and 20/20 `checklists/plan-review.md` |
 | Tasks | Pass | 133 dependency-ordered tasks, stable IDs `T001`-`T133`, no parallel writes |
 | Analyze | Pass | First pass remediated path specificity, propagation and causal-closeout ordering; repeated pass has zero Critical, High or Medium findings |
-| Implementation | Pass | T001-T122 complete; all five user stories, documentation, security evidence and local repository gates are implemented and verified |
+| Implementation | Pass | T001-T133 complete; all five user stories, delivery, causal closeout, documentation, security evidence and repository gates are implemented and verified |
 
 ## Preflight Evidence
 
@@ -71,7 +71,7 @@
 | `pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1` | PowerShell quality | N/A | repository root | 0 | clean | PSScriptAnalyzer `1.25.0` reports zero warnings/errors across 147 files |
 | `bash scripts/render-script-reference.sh --repo . --check-only --json` | Script inventory | N/A | repository root | 0 | clean | `CURRENT`, 123 canonical and 154 embedded scripts, zero drift |
 | `bash scripts/check-homogeneity.sh --dry-run --no-patch .` | Repository-local Homogeneity | N/A | repository root | 0 | clean | 30/30 checks and 100% compliance after canonical statistics rendering |
-| `bash scripts/render-project-statistics.sh --repo . --check-only --json` | Statistics reproducibility | N/A | repository root | 0 | clean | Profile 2 is current at source `fe52aa81a308`, 435380 text lines and Feature 018 slot 48 with 7610 net lines |
+| `bash scripts/render-project-statistics.sh --repo . --check-only --json` | Statistics reproducibility | N/A | repository root | 0 | clean | Profile 2 is reproducibly current and Feature 018 slot 48 records the final implementation delta of 7,639 net lines |
 | `bash scripts/scan-agent-secrets.sh --fail-on-high .` | Secret boundary | N/A | repository root | 0 | no high finding | Gitleaks reports no secret in the Git diff; the pre-existing local Claude settings classification remains outside the feature |
 | JSON parse, Documentation Impact validators, `git diff --check` and `specify check` | Final repository contracts | N/A | repository root | 0 | clean | All changed JSON parses; Bash/PowerShell Documentation Impact, whitespace and Spec Kit checks pass |
 | Complete local acceptance rerun | Post-documentation/statistics gate | N/A | repository root | 0 | clean | Locked restore, warning-free Release build, 62 .NET tests, both format gates, 14 focused wrapper tests, 79 maintenance tests, package audit, Bash syntax and PSScriptAnalyzer all pass |
@@ -79,6 +79,11 @@
 | PR #160 Windows `Maintenance TUI` on head `8930f398` | Repeated exact-head cross-platform gate | N/A | `windows-2022` | 1 | expected remediation evidence | Full discovery exposed further pre-existing POSIX-only Linux fixtures and a Windows short-path versus long-path assertion. Linux fixtures are now explicitly POSIX-only; the mixed propagation fixture executes the native PowerShell surface on Windows and compares the repository-relative semantic path |
 | `python3 -m unittest scripts.tests.test_agentic_workspace_maintenance scripts.tests.test_linux_maintenance_hardening -v` | Second Windows-harness remediation proof | N/A | repository root | 0 | clean | 36 directly affected tests pass on macOS with two expected Linux-only Swift skips |
 | `python3 -m unittest discover -s scripts/tests -p 'test_*.py'` | Full regression after second Windows-harness remediation | N/A | repository root | 0 | clean | 79 tests pass with 12 expected platform skips |
+| Autonomous state validators, Bash and PowerShell | Causal closeout | N/A | repository root | 0 | clean | Both validators accept `Retrospective`, `Completed` and 133/133 tasks |
+| Exact-head gate validators, Bash and PowerShell | Causal closeout | N/A | repository root | 0 | clean | Both validators accept 8/8 requirements for reviewed head `64df267a9fb4c695e142de3ae5654f6edc3af149` |
+| Intake review validators, Bash and PowerShell | Causal closeout | N/A | repository root | 0 | clean | Both validators accept review `31370a44-3c7a-4e7e-a9db-ac82bfa533d3` as `Ready` with 37 targets |
+| Series manifest and receipt validators, Bash and PowerShell | Causal closeout | N/A | repository root | 0 | clean | Both validator pairs accept 37 targets, 3 roots and 44 dependencies |
+| `bash scripts/sync-home.sh --check-only` | Home Runtime closeout | N/A | Home Runtime | 0 | clean | Local Home commit `09506a8` contains the merged runtime and the managed Home files are current |
 
 ## User-Story Acceptance Evidence
 
@@ -141,33 +146,33 @@
 
 | Gate | State | Evidence |
 |---|---|---|
-| G001 selection and A11Y | Local Pass, remote pending | 62 .NET tests; three platform jobs require `dotnet test` |
-| G002 event/result/cancellation | Local Pass, remote pending | Schema fixtures plus .NET contracts; three platform jobs require `dotnet test` |
-| G003 wrapper/cache/headless | Local Pass, remote pending | 14 wrapper tests and locked cache contracts; all three platforms run the named wrapper gate |
-| G004 maintenance regression/authority | Local Pass, remote pending | 79 tests, 12 expected platform skips; all three platforms run `unittest discover` |
-| G005 dependency/supply chain | Pass | Locked restore, direct/transitive inventory, licenses/source and zero vulnerable packages |
-| G006 documentation/parity | Pass | Documentation Impact, script reference, PSScriptAnalyzer, secret scan, canonical statistics and repository-local Homogeneity all pass |
-| G007 exact-head provider evidence | Pending remote | Generated only after provider checks converge on the reviewed PR head |
+| G001 selection and A11Y | Pass | 62 .NET tests and the exact-head `dotnet test` matrix pass on macOS, Ubuntu and Windows |
+| G002 event/result/cancellation | Pass | Schema fixtures and .NET contracts pass locally and on all three provider platforms |
+| G003 wrapper/cache/headless | Pass | 14 focused tests plus native Bash/PowerShell wrapper execution pass on all applicable provider platforms |
+| G004 maintenance regression/authority | Pass | 79 local regressions and exact-head `unittest discover` jobs pass on macOS, Ubuntu and Windows with only declared platform skips |
+| G005 dependency/supply chain | Pass | Locked restore, direct/transitive inventory, licenses/source and zero vulnerable packages pass in the three-platform workflow |
+| G006 documentation/parity | Pass | Documentation, learning package, PSScriptAnalyzer and Homogeneity workflows pass across their complete matrices |
+| G007 exact-head provider evidence | Pass | Eight primary entries bind every required command and platform to reviewed head `64df267a9fb4c695e142de3ae5654f6edc3af149`; Bash and PowerShell validators pass |
 | G008 web/cloud/AI/regulatory | N/A | Trigger rationale and reevaluation boundary are recorded in gate requirements and security evidence |
 
 ## Causal Closeout Mapping
 
-- The feature PR keeps
+- The feature PR kept
   `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` and the active Series
   unchanged because merge facts cannot truthfully exist on the reviewed head.
-- After the feature merge, the intake is archived through the repository
+- After the feature merge, the intake was archived through the repository
   rename workflow as
   `Lastenheft_Agentic-Workspace-Maintenance-TUI.018-agentic-workspace-tui.md`.
-- The Series operation removes exactly that target and its single
+- Series operation `57442be4-5c21-43d4-a3cd-d46690aaa62d` removes exactly that target and its single
   `DocumentationSurfaceBaseline` edge to
   `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md`.
-  Expected cardinality is 37 targets, 3 roots and 44 dependencies.
-- A fresh schema-1.1 Series review must bind the new request hash and prove
-  that D4 is the sole declared `Eligible` candidate. The closeout does not
-  create its feature branch or start Specify/Autonomous.
-- `Pflichtenheft.md`, `Lastenheft_Abarbeitungsreihenfolge.md`, maintained
-  agent context where applicable, project statistics, retrospective and final
-  run state are updated only with attributable post-merge facts.
+  The resulting cardinality is 37 targets, 3 roots and 44 dependencies.
+- Schema-1.1 Series review `31370a44-3c7a-4e7e-a9db-ac82bfa533d3` binds the
+  new request hash and proves D4 as the sole declared `Eligible` candidate.
+  The closeout did not create its feature branch or start Specify/Autonomous.
+- `Lastenheft_Abarbeitungsreihenfolge.md`, project statistics,
+  retrospective and final run state contain only attributable post-merge
+  facts. Shared agent guidance remains unchanged.
 
 ## Delivery Candidate Integrity
 
@@ -186,9 +191,9 @@
 | Requirements artifact | `specs/018-agentic-workspace-tui/autonomous-run-gate-requirements.json` |
 | Requirements SHA-256 | `42cb3776a84d88d22683073d1bfeb5e907fe3aa84081dee4e60ca01c9a9d8fb6` |
 | Temporary evidence snapshot | `.git/spec-kit-autonomous/018-gate-evidence.json` |
-| Reviewed head | Pending |
+| Reviewed head | `64df267a9fb4c695e142de3ae5654f6edc3af149` |
 | Validator | `.specify/presets/autonomous-run-governance/scripts/validate-autonomous-gate-evidence.sh` |
-| Validator result | Open |
+| Validator result | Pass in Bash and PowerShell: 8 requirements, 8 primary entries, 0 supplemental entries |
 
 ## Remote Delivery
 
@@ -196,23 +201,55 @@
 |---|---|---|
 | Push | Pass | Branch `018-agentic-workspace-tui` pushed after the repository pre-push secret scan passed |
 | Pull request | Pass | [PR #160](https://github.com/hindermath/home-baseline/pull/160), non-empty creation head `533412d3b6cafe677eebf3f3b588e88c94ed175f`; the following evidence commit becomes the exact review head |
-| Required checks | Remediating | Two exact-head Windows jobs exposed bounded platform-specific test-harness assumptions; both fixes are locally green and a new exact head must rerun every gate |
-| Acceptance execution map | Open | Pending temporary provider-neutral evidence |
-| Actionable threads | Open | Pending |
-| Unavailable reviews | None observed | Pending remote review |
-| Merge | Open | Explicit `MergeAndSync` authority |
-| Default-branch sync | Open | Pending post-merge proof |
-| Causal closeout | Open | Required only for truthful post-merge facts |
-| Duplicate events | N/A | No duplicate provider events observed yet |
+| Required checks | Pass | Eight exact-head workflow runs and 26 visible push/pull check jobs completed successfully; the pull-request platform and quality runs are bound in the gate evidence |
+| Acceptance execution map | Pass | `specs/018-agentic-workspace-tui/autonomous-run-gate-evidence.json`, SHA-256 `e1cd1cd3188edf6c6ddfc765092f96fc70c6f3c5ec764104187216d7eeec1d84` |
+| Actionable threads | Pass | GraphQL review-thread inventory: 0 total, 0 actionable |
+| Unavailable reviews | Missing, non-blocking | No optional automated reviewer submitted a review; this is not recorded as a Pass and produced no actionable thread |
+| Merge | Pass | Reviewed head `64df267a9fb4c695e142de3ae5654f6edc3af149` merged through PR #160 as `65693ef5981f93a54d1c230df4da1715bf13f877` |
+| Default-branch sync | Pass | After feature merge, local `main` was clean and equal to `origin/main` before the causal closeout branch |
+| Causal closeout | Pass | Lastenheft archived; operation `57442be4-5c21-43d4-a3cd-d46690aaa62d` and review `31370a44-3c7a-4e7e-a9db-ac82bfa533d3` publish 37/3/44 and D4 eligibility |
+| Duplicate events | N/A | Push and pull-request runs are separately configured provider events; no run or review event was duplicated within one event class |
 
 ## Resume and Follow-up
 
-- Checkpoint commit: `495f865ac0cf8c484448fa340d4a2d678f7c8357`
-- Last operation: Validate `Completed`
-- Last passing gate: second bounded remediation, including 36 directly affected and 79 full maintenance tests
-- Next exact action: commit and push the second Windows test-harness correction, then reconverge all checks and review threads for the new exact head
+- Checkpoint commit: `65693ef5981f93a54d1c230df4da1715bf13f877`
+- Last operation: feature merge, Home Runtime synchronization and causal Series closeout completed
+- Last passing gate: PR #160 exact head passed all provider checks, zero actionable threads and 8/8 provider-neutral gates; Series review `31370a44-3c7a-4e7e-a9db-ac82bfa533d3` is `Ready`
+- Next exact action: N/A
 - Stop reason and safe boundary: N/A
 - Authority revalidation required: false
-- Residual risk: Windows has not yet accepted the second bounded harness correction; exact-head provider, review, merge and post-merge closeout evidence remain open
+- Residual risk: No product or delivery blocker remains. A future D4 run must revalidate its own repository, intake and Series evidence before creation.
 - Out-of-scope follow-up: route newly discovered product or fleet defects to a
-  named intake; do not broaden Feature 018
+  named intake; D4 is `Eligible` but was not started
+
+## Closeout State
+
+| Step | State | Evidence |
+|---|---|---|
+| Merge or publication | Completed | PR #160 merged; narrow bypass affected only Human Approval |
+| Default-branch synchronization | Completed | Feature branch removed and merged `main` synchronized before closeout |
+| Manifest-declared post-merge actions | Completed | Intake archived; 37-target Series and fresh schema-1.1 review published |
+| Final validation | Completed | Exact-head, Series and Home Runtime evidence recorded; D4 remains unstarted |
+
+## Merge and causal closeout
+
+- PR #160 merged exact reviewed head
+  `64df267a9fb4c695e142de3ae5654f6edc3af149` as
+  `65693ef5981f93a54d1c230df4da1715bf13f877`.
+- Every pull-request and push workflow completed successfully. The TUI,
+  Homogeneity and PSScriptAnalyzer matrices passed on Ubuntu, macOS and
+  Windows; documentation links and learning-package jobs passed on their
+  complete declared platforms.
+- Both installed gate validators accepted all eight provider-neutral
+  requirements for the exact head. No actionable review thread existed.
+- The authorized narrow admin bypass applied only to the remaining Human
+  Approval rule and replaced no technical, security, platform, Evidence or
+  review-thread gate.
+- `scripts/sync-home.sh --no-pull` distributed the merged Home Runtime and
+  created local Home commit `09506a8`; the following `--check-only` run was
+  current.
+- Series operation `57442be4-5c21-43d4-a3cd-d46690aaa62d` archives the
+  completed Position-4 intake and publishes 37 active targets, three roots
+  and 44 dependencies.
+- Fresh Series review `31370a44-3c7a-4e7e-a9db-ac82bfa533d3` is `Ready` and
+  selects D4 as the sole declared `Eligible` candidate without starting it.

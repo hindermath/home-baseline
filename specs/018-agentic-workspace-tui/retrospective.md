@@ -4,10 +4,10 @@
 
 | Field | Value |
 |---|---|
-| Feature and source revision | `018-agentic-workspace-tui`; reviewed head pending |
+| Feature and source revision | `018-agentic-workspace-tui`; reviewed head `64df267a9fb4c695e142de3ae5654f6edc3af149` |
 | Delivery evidence | `specs/018-agentic-workspace-tui/autonomous-run-evidence.md` |
 | Delivery mode | `MergeAndSync` |
-| Remote result | Pending exact-head PR delivery |
+| Remote result | PR #160 merged as `65693ef5981f93a54d1c230df4da1715bf13f877`; causal closeout prepared |
 | Interruptions and resumes | No interruption or resume |
 
 ## Observations
@@ -22,14 +22,19 @@
 
 ## Outcome
 
-- Provisional decision: `NoPromotion`.
+- Final decision: `NoPromotion`.
 - The observations are implemented in this repository's code, tests,
   documentation and feature gate requirements. No reproducible defect has
   been found in Autonomous Run Governance or another reusable preset.
 - Shared agent guidance and `.specify/templates/` remain
   `NoUpdateRequired`; Feature 018 changes the maintenance product and its
   evidence, not the durable autonomous workflow contract.
-- Remote check, review, merge, Home Runtime sync and causal Series closeout
-  remain pending. This retrospective is finalized only against their exact
-  identifiers.
+- Eight exact-head workflow runs, all platform jobs, both provider-neutral
+  gate validators, zero actionable review threads, PR #160, Home Runtime
+  commit `09506a8`, Series operation
+  `57442be4-5c21-43d4-a3cd-d46690aaa62d` and schema-1.1 review
+  `31370a44-3c7a-4e7e-a9db-ac82bfa533d3` complete the attributable Evidence.
+- The two Windows findings were repository-specific test-fixture assumptions,
+  not defects in Autonomous Run Governance. Their reproducible fixes remain in
+  the repository tests and workflow without a preset release.
 - No successor feature is started by this run.

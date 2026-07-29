@@ -138,7 +138,7 @@
 | 2026-07-28 | Lernreihen-Governance- und KI-Kompetenz-Intake-Kette vorbereitet | — | — | — | Vier neue Intakes und die aktualisierte globale Closure bilden die Positionen 33 bis 37: read-only Gap-Audit, domänenneutrale Drei-Ebenen-Erweiterung des Intake Reviews, optionales Learning-Series-Governance-Preset, IHK-Pilot und abschließende Gesamtkonsistenzprüfung. Acht stabile KI-Kompetenzen, vier Lernphasen und vier Quellenstatus trennen amtliche Anforderungen, gestützte Ziele, Projektergänzungen und begründete Zukunftsannahmen. Fünf Authoring-Receipts, fünf Einzelreviews und der gemeinsame Fünf-Ziel-Review sind in Bash und PowerShell `Ready`. Der aktive Series-Vertrag umfasst 39 Ziele, drei Roots, 46 eindeutige azyklische Abhängigkeiten und weiterhin genau einen `Eligible`-Kandidaten an Position 3. Kein Specify-, autonomer oder Lernendenlauf wurde gestartet. Das Delta vor Statistikpflege umfasst 1 816 Nettozeilen. |
 | 2026-07-29 | Preset-Profil- und Worktree-Härtungsintake v1.3 | — | — | — | Der bestehende Intake auf Position 3 bindet jetzt die gemergten Features 015/016, Level 0 plus 43 aktive Manifest-Git-Ziele, das separat inventarisierte Collection-Ziel und den dynamischen Elf-Preset-Feldstand. PWH-016 bis PWH-020 sowie AC-018 bis AC-027 ergänzen exakte Bereinigungsfreigaben, begrenzte Netzwerk-Evidence, Regressionsschutz und die Zielrepository-Grenze. Intake-ID, 39 Series-Ziele, drei Roots, 46 Abhängigkeiten, Reihenfolge und alleiniger `Eligible`-Status blieben erhalten. Authoring-, Review- und Series-Validatoren bestehen in Bash und PowerShell. Feature 017, Specify und Autonomous wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 2 453 Nettozeilen. |
 | 2026-07-29 | Feature 017 Preset-Profil-, Branch- und Worktree-Härtung | — | — | — | Die Flottenwartung führt jetzt für Level 0 und jedes aktive Git-Ziel eine begrenzte Remote-Freshness-Prüfung vor nachfolgenden Mutationen aus. Beliebige Default-Branches werden aus symbolischer Remote-Evidence statt aus Namensannahmen bestimmt. Pull bleibt auf saubere, eindeutig zugeordnete Behind-only-Checkouts begrenzt. Eigentumsgebundene Worktree-Leases, dynamische Preset-Profile, nicht mutierende MSL-Konfliktprüfung und plattformparitätische Bash-/PowerShell-Evidence sind durch 60 Tests und 20 Provider-Jobs abgesichert. PR #153 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 3 und gibt Position 4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. |
-| 2026-07-29 | Feature 018 Agentic-Workspace-Wartungs-TUI | — | — | — | Die vorhandenen Bash-/PowerShell-Wartungs-Engines erhalten eine optionale Spectre.Console-TUI mit ausdrücklich vorausgewählter Vorschau, typisierten Argumenten und linearem Fallback. Ein privater JSONL-Kanal liefert nur Live-Evidence; finalisierter Bericht und Prozess-Exitcode bleiben kanonisch. Cache, Event-Degradierung, genau-einmaliger Abbruch, A11Y, Supply Chain und Verteilungsgrenzen sind lokal durch 62 .NET-, 14 Wrapper- und 79 vollständige Wartungstests abgesichert. Plattform- und Merge-Evidence bleiben bis zum exakten PR-Head offen. Das Implementierungsdelta vor Statistikpflege umfasst 7 622 Nettozeilen. |
+| 2026-07-29 | Feature 018 Agentic-Workspace-Wartungs-TUI | — | — | — | Die vorhandenen Bash-/PowerShell-Wartungs-Engines erhalten eine optionale Spectre.Console-TUI mit ausdrücklich vorausgewählter Vorschau, typisierten Argumenten und linearem Fallback. Ein privater JSONL-Kanal liefert nur Live-Evidence; finalisierter Bericht und Prozess-Exitcode bleiben kanonisch. Cache, Event-Degradierung, genau-einmaliger Abbruch, A11Y, Supply Chain und Verteilungsgrenzen sind durch 62 .NET-, 14 fokussierte Wrapper- und 79 vollständige Wartungstests sowie die grüne macOS-/Ubuntu-/Windows-Matrix abgesichert. PR #160 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 4, veröffentlicht 37 Ziele, drei Roots und 44 Kanten und gibt D4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. Das Implementierungsdelta vor Statistikpflege umfasst 7 639 Nettozeilen. |
 
 ---
 
@@ -935,9 +935,13 @@ was not started.*
   vollständige Locked-Restore-Builds atomar. Jede Vorbereitungslücke fällt vor
   Engine-Start auf den funktional gleichen Plain-Assistenten zurück.
 - 62 .NET-Tests, 14 fokussierte Wrapper-Tests und 79 vollständige
-  Wartungsregressionen sind lokal grün. Supply-Chain-, Dokumentations-,
-  Sicherheits- und A11Y-Evidence liegen vor; exakte Plattform- und
-  Merge-Evidence folgen am PR-Head.
+  Wartungsregressionen sind lokal grün. Die exakte macOS-/Ubuntu-/Windows-
+  Matrix, Supply Chain, Dokumentation, PowerShell und Homogeneity bestehen.
+- PR #160 mergte den exakten geprüften Head. Home Runtime ist synchron, und
+  beide providerneutralen Gate-Validatoren akzeptieren alle acht Gates.
+- Der kausale Closeout archiviert Position 4 und veröffentlicht 37 aktive
+  Ziele, drei Roots und 44 Kanten. D4 ist der einzige `Eligible`-Kandidat und
+  wurde nicht gestartet.
 - Das Delta vor Statistikpflege umfasst 7 639 Nettozeilen. Die TUI erteilt
   keine Commit-, Push-, PR-, Merge-, Secret-, Cleanup- oder Adminautorität für
   Ziel-Repositories.
@@ -950,8 +954,10 @@ degradation is visible and the finalized report plus process exit remain
 canonical. The platform-bound content-addressed cache publishes only complete
 locked builds and otherwise selects the equivalent plain assistant before
 engine start. Sixty-two .NET tests, fourteen focused wrapper tests, and
-seventy-nine full maintenance regressions pass locally. Exact platform and
-merge evidence remain pending on the reviewed PR head.*
+seventy-nine full maintenance regressions pass locally and in the exact
+cross-platform provider matrix. PR #160 merged the reviewed head, Home Runtime
+is synchronized, and the causal closeout publishes 37 targets, three roots,
+and 44 edges with D4 as the sole Eligible candidate without starting it.*
 
 ## Gesamtstatistik / Overall Statistics
 
@@ -963,27 +969,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 435409 lines |
-| Textdateien / Text files | 2752 |
+| Textbasis / Text base | 437020 lines |
+| Textdateien / Text files | 2759 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
 | Aktivtage / Active days | 77 |
-| Relevante Commits / Relevant commits | 618 |
-| Zeilen je Aktivtag / Lines per active day | 5654.7 |
+| Relevante Commits / Relevant commits | 620 |
+| Zeilen je Aktivtag / Lines per active day | 5675.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 34 days |
-| Speedup vs. 80 lines/day | 70.7x |
-| Speedup vs. 100 lines/day | 56.5x |
-| Methodik / Methodology | v2; source `645bf8fc0621` |
+| Speedup vs. 80 lines/day | 70.9x |
+| Speedup vs. 100 lines/day | 56.8x |
+| Methodik / Methodology | v2; source `2e61ab2fe5df` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
 Tests                           [#...................]   4.1% | 17782
-Dokumentation / Documentation   [##############......]  67.8% | 295347
+Dokumentation / Documentation   [##############......]  67.6% | 295470
 Skripte / Scripts               [###.................]  12.6% | 54943
-Konfiguration / Configuration   [###.................]  15.1% | 65937
+Konfiguration / Configuration   [###.................]  15.4% | 67425
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 770
 ```
@@ -1174,8 +1180,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.7x
-100 lines/day      [###########.........] 56.5x
+80 lines/day       [##############......] 70.9x
+100 lines/day      [###########.........] 56.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1188,7 +1194,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5654.7
+Visible repository [###########.........] 5675.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1214,6 +1220,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 371365 |
+| 2026-07 | 373506 |
 
 <!-- project-statistics-v2:end -->
