@@ -36,7 +36,7 @@ Level 2:
 
 - `SecureOrderDeskProjects/SecureOrderDesk-CSharp`
 - `SecureServiceHarvesterProjects/SecureServiceHarvester-CSharp`
-- `secure-casetracker-baseline/securecasetracker-csharp`
+- `SecureCaseTrackerProjects/SecureCaseTracker-CSharp`
 
 ## 3. Rollout-Profil / Rollout Profile
 

@@ -127,13 +127,13 @@ an dem später die eigentlichen Spec-Kit-Läufe und Implementierungen stattfinde
 
 | Rolle | Lokaler Ordner | Repository-Slug |
 |---|---|---|
-| Koordination | `secure-casetracker-baseline` | `secure-casetracker-baseline` |
-| Referenz | `securecasetracker-csharp` | `securecasetracker-csharp` |
-| Vergleich | `securecasetracker-go` | `securecasetracker-go` |
-| Vergleich | `securecasetracker-java` | `securecasetracker-java` |
-| Vergleich | `securecasetracker-python` | `securecasetracker-python` |
-| Vergleich | `securecasetracker-rust` | `securecasetracker-rust` |
-| Vergleich | `securecasetracker-swift` | `securecasetracker-swift` |
+| Koordination | `SecureCaseTrackerProjects` | `secure-casetracker-baseline` |
+| Referenz | `SecureCaseTracker-CSharp` | `securecasetracker-csharp` |
+| Vergleich | `SecureCaseTracker-Go` | `securecasetracker-go` |
+| Vergleich | `SecureCaseTracker-Java` | `securecasetracker-java` |
+| Vergleich | `SecureCaseTracker-Python` | `securecasetracker-python` |
+| Vergleich | `SecureCaseTracker-Rust` | `securecasetracker-rust` |
+| Vergleich | `SecureCaseTracker-Swift` | `securecasetracker-swift` |
 
 ::: notes
 Lokale Ordner nutzen CamelCase.
