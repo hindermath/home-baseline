@@ -862,25 +862,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 423655 lines |
+| Textbasis / Text base | 423671 lines |
 | Textdateien / Text files | 2660 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-29 |
 | Aktivtage / Active days | 77 |
-| Relevante Commits / Relevant commits | 606 |
-| Zeilen je Aktivtag / Lines per active day | 5502.0 |
+| Relevante Commits / Relevant commits | 607 |
+| Zeilen je Aktivtag / Lines per active day | 5502.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 34 days |
 | Speedup vs. 80 lines/day | 68.8x |
 | Speedup vs. 100 lines/day | 55.0x |
-| Methodik / Methodology | v2; source `7acefda07f71` |
+| Methodik / Methodology | v2; source `57fcc2137a28` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
 Tests                           [#...................]   3.7% | 15866
-Dokumentation / Documentation   [##############......]  68.9% | 292084
+Dokumentation / Documentation   [##############......]  68.9% | 292100
 Skripte / Scripts               [##..................]  12.3% | 51992
 Konfiguration / Configuration   [###.................]  14.7% | 62322
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1050,7 +1050,7 @@ Slots 32..47
 | 44 | Linux-Ein-Kommando-Wartungshärtung / Linux one-command maintenance hardening | 4054 |
 | 45 | Lernreihen-Governance- und KI-Kompetenz-Intakes / Learning-series governance and AI competence intakes | 1816 |
 | 46 | Preset-Profil- und Worktree-Härtungsintake v1.3 / Preset profile and worktree hardening intake v1.3 | 2453 |
-| 47 | Preset-Profil-, Branch- und Worktree-Härtung / Preset profile, branch and worktree hardening | 4000 |
+| 47 | Preset-Profil-, Branch- und Worktree-Härtung / Preset profile, branch and worktree hardening | 3751 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1074,7 +1074,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5502.0
+Visible repository [###########.........] 5502.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1100,6 +1100,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-29. Es enthaelt 77 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 358169 |
+| 2026-07 | 358191 |
 
 <!-- project-statistics-v2:end -->
