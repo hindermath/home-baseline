@@ -24,7 +24,7 @@
 | Plan review | Pass | Plan, research, data model, quickstart, four contracts and 20/20 `checklists/plan-review.md` |
 | Tasks | Pass | 133 dependency-ordered tasks, stable IDs `T001`-`T133`, no parallel writes |
 | Analyze | Pass | First pass remediated path specificity, propagation and causal-closeout ordering; repeated pass has zero Critical, High or Medium findings |
-| Implementation | In progress | T001-T116 complete; all five user stories, documentation, security evidence and exact-head workflow are implemented; final repository gates remain |
+| Implementation | Pass | T001-T122 complete; all five user stories, documentation, security evidence and local repository gates are implemented and verified |
 
 ## Preflight Evidence
 
@@ -62,7 +62,7 @@
 | `dotnet format ... --verify-no-changes --no-restore` for both projects | C# formatting | N/A | repository root | 0 | clean | Source and test projects need no formatting changes |
 | `dotnet test ... --no-restore --configuration Release` | Complete local TUI suite | N/A | repository root | 0 | clean | 62 tests cover routing, selection, typed arguments, events, cache, result reconciliation, cancellation, accessibility and language |
 | `python3 -m unittest scripts.tests.test_maintenance_tui_wrappers -v` | Complete wrapper contract | N/A | repository root | 0 | clean | 14 tests cover Bash/PowerShell selectors, no-argument routing contract, default-No cancellation, private events, phase order and cache fallback branches |
-| `python3 -m unittest discover -s scripts/tests -p 'test_*.py'` | Full maintenance regression after implementation | N/A | repository root | 0 | clean | 77 tests run, 12 platform skips, zero failures; a final rerun follows documentation/statistics completion |
+| `python3 -m unittest discover -s scripts/tests -p 'test_*.py'` | Full maintenance regression after implementation | N/A | repository root | 0 | clean | 79 tests run, 12 expected platform skips, zero failures |
 | AJV CLI `5.0.0` plus ajv-formats `3.0.1` against `valid-*.json` | Event schema positive fixtures | N/A | repository root | 0 | clean | Both schema-1 fixtures validate under JSON Schema 2020-12 |
 | AJV CLI `5.0.0` plus ajv-formats `3.0.1` against `invalid-*.json` | Event schema negative fixtures | N/A | repository root | 1 expected | validation diagnostics only | Invalid event type and sequence zero are both rejected at their exact schema properties |
 | Lockfile SHA-256 before and after locked restore | Cache/dependency reproducibility | N/A | repository root | 0 | clean | Runtime `ba4a734fa99dc9fee3c203befa0d4aa2c645f311651630befc139df7f651d123`; tests `6bec086f0ba783778681d52a869c6cddeaf3b9fccc0f2f35985dd67003e8318b` |
@@ -70,6 +70,11 @@
 | `dotnet list ... package --vulnerable --include-transitive` for both projects | Vulnerability gate | N/A | repository root | 0 | clean | NuGet.org reports no known vulnerable package |
 | `pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1` | PowerShell quality | N/A | repository root | 0 | clean | PSScriptAnalyzer `1.25.0` reports zero warnings/errors across 147 files |
 | `bash scripts/render-script-reference.sh --repo . --check-only --json` | Script inventory | N/A | repository root | 0 | clean | `CURRENT`, 123 canonical and 154 embedded scripts, zero drift |
+| `bash scripts/check-homogeneity.sh --dry-run --no-patch .` | Repository-local Homogeneity | N/A | repository root | 0 | clean | 30/30 checks and 100% compliance after canonical statistics rendering |
+| `bash scripts/render-project-statistics.sh --repo . --check-only --json` | Statistics reproducibility | N/A | repository root | 0 | clean | Profile 2 is current at source `fe52aa81a308`, 435380 text lines and Feature 018 slot 48 with 7610 net lines |
+| `bash scripts/scan-agent-secrets.sh --fail-on-high .` | Secret boundary | N/A | repository root | 0 | no high finding | Gitleaks reports no secret in the Git diff; the pre-existing local Claude settings classification remains outside the feature |
+| JSON parse, Documentation Impact validators, `git diff --check` and `specify check` | Final repository contracts | N/A | repository root | 0 | clean | All changed JSON parses; Bash/PowerShell Documentation Impact, whitespace and Spec Kit checks pass |
+| Complete local acceptance rerun | Post-documentation/statistics gate | N/A | repository root | 0 | clean | Locked restore, warning-free Release build, 62 .NET tests, both format gates, 14 focused wrapper tests, 79 maintenance tests, package audit, Bash syntax and PSScriptAnalyzer all pass |
 
 ## User-Story Acceptance Evidence
 
@@ -77,8 +82,8 @@
 |---|---|---|
 | US1 / AC-01–AC-03 | Pass | Argumentless full TTY routing is explicitly gated; redirected and parameterized calls remain headless; enhanced, plain and `TERM=dumb` paths are covered without starting maintenance in fixtures |
 | US2 / AC-04–AC-06 | Pass | `DryRun` is the explicit Spectre default, all mutable choices default to No, forbidden selector/maintenance combinations return `2`, typed arguments preserve untrusted path text, and pre-start cancellation returns `130` |
-| US3 / AC-07–AC-09, AC-15–AC-16 | Pass | Strict schema/run/sequence handling, permanent `EVENT_STREAM_DEGRADED`, report/event/exit reconciliation, all canonical exits and exactly-once interrupt/no-retry behavior are covered |
-| US4 / AC-10 | Pass | Six platform IDs, source/lock fingerprint drift, complete/corrupt/foreign cache states, locked atomic publication and visible plain fallback for SDK, restore, build, write and publication failures are covered |
+| US3 / AC-07–AC-09, AC-15–AC-16 | Pass | Strict schema/run/sequence handling, permanent `EVENT_STREAM_DEGRADED`, report/event/exit reconciliation and all canonical exits are covered; the wrapper receives the original `Ctrl+C` once through the shared OS console group and the TUI emits no duplicate signal or retry |
+| US4 / AC-10 | Pass | Six platform IDs, source and both-lockfile fingerprint drift, complete/corrupt/foreign cache states, locked atomic publication and visible plain fallback for SDK, restore, build, write and publication failures are covered |
 | US5 / AC-11 | Pass | Keyboard-only prompt flow, German-first/English-second labels, first-use term explanation, widths 39/79/120, NO_COLOR-compatible text, markup escaping, 10-Hz cap and copyable final fields are covered |
 
 ## Governance and Documentation
@@ -137,7 +142,7 @@
 | G003 wrapper/cache/headless | Local Pass, remote pending | 14 wrapper tests and locked cache contracts; all three platforms run the named wrapper gate |
 | G004 maintenance regression/authority | Local Pass, remote pending | 79 tests, 12 expected platform skips; all three platforms run `unittest discover` |
 | G005 dependency/supply chain | Pass | Locked restore, direct/transitive inventory, licenses/source and zero vulnerable packages |
-| G006 documentation/parity | In progress | Documentation Impact, script reference, PSScriptAnalyzer and secret scan pass; final Homogeneity/statistics gate remains |
+| G006 documentation/parity | Pass | Documentation Impact, script reference, PSScriptAnalyzer, secret scan, canonical statistics and repository-local Homogeneity all pass |
 | G007 exact-head provider evidence | Pending remote | Generated only after provider checks converge on the reviewed PR head |
 | G008 web/cloud/AI/regulatory | N/A | Trigger rationale and reevaluation boundary are recorded in gate requirements and security evidence |
 
@@ -164,10 +169,10 @@
 
 | Check | Result | Evidence |
 |---|---|---|
-| Intended paths | Open | Feature artifacts, implementation, tests and required documentation only |
-| Tracked worktree diff | Open | Final `git diff --check` pending |
-| Exact staged candidate | Open | Final `git diff --cached --check` pending |
-| Status reconciliation | Open | Final staged/untracked/unstaged inventory pending |
+| Intended paths | Pass | Feature artifacts, implementation, tests and required documentation only |
+| Tracked worktree diff | Pass | `git diff --check` clean before and after canonical statistics rendering |
+| Exact staged candidate | Pending validation | Feature implementation, tests, documentation, statistics and Evidence metadata are the only candidate paths |
+| Status reconciliation | Pass | No unstaged, untracked, foreign or generated path remains after exact index reconciliation |
 | Index preservation | N/A | MergeAndSync authorizes the final staged feature candidate |
 
 ## Acceptance Gate Contract
@@ -199,11 +204,11 @@
 ## Resume and Follow-up
 
 - Checkpoint commit: `495f865ac0cf8c484448fa340d4a2d678f7c8357`
-- Last operation: Implement `InProgress`
-- Last passing gate: foundational vertical slice, 46 .NET tests
-- Next exact action: complete T028-T122 in dependency order
+- Last operation: Validate `Completed`
+- Last passing gate: complete local acceptance, including 62 .NET, 14 wrapper and 79 maintenance tests plus 30/30 Homogeneity checks
+- Next exact action: finalize T123-T125 against the staged candidate, amend and push the reviewed feature head
 - Stop reason and safe boundary: N/A
 - Authority revalidation required: false
-- Residual risk: implementation and platform evidence remain open
+- Residual risk: exact-head provider, review, merge and post-merge closeout evidence remain open
 - Out-of-scope follow-up: route newly discovered product or fleet defects to a
   named intake; do not broaden Feature 018

@@ -244,11 +244,11 @@ local candidate evidence.
 - [X] T115 Add exact macOS/Ubuntu/Windows restore/build/test jobs to `.github/workflows/maintenance-tui.yml`
 - [X] T116 Run locked restore, build and TUI tests locally and record results in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
 - [X] T117 Run all Python maintenance regressions in `scripts/tests/`, Bash syntax for affected `scripts/*.sh`, and PSScriptAnalyzer for affected `scripts/*.ps1`, recording results in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
-- [ ] T118 Run `scripts/check-homogeneity.sh`, `scripts/scan-agent-secrets.sh`, Git diff checks, JSON parsing and `specify check`, recording results in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
-- [ ] T119 Reconcile FR-001–FR-035, SC-001–SC-012, AC-01–AC-22 and every gate in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
-- [ ] T120 Render the Feature 018 milestone in `docs/project-statistics.md` through `docs/project-statistics.config.json`
+- [X] T118 Run `scripts/check-homogeneity.sh`, `scripts/scan-agent-secrets.sh`, Git diff checks, JSON parsing and `specify check`, recording results in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
+- [X] T119 Reconcile FR-001–FR-035, SC-001–SC-012, AC-01–AC-22 and every gate in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
+- [X] T120 Render the Feature 018 milestone in `docs/project-statistics.md` through `docs/project-statistics.config.json`
 - [X] T121 Prepare the exact post-merge archive and Series-closeout mapping for `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md` without changing the active Series before feature merge
-- [ ] T122 Re-run the complete local acceptance suite after documentation and statistics updates, and draft `specs/018-agentic-workspace-tui/retrospective.md` for exact-head review
+- [X] T122 Re-run the complete local acceptance suite after documentation and statistics updates, and draft `specs/018-agentic-workspace-tui/retrospective.md` for exact-head review
 
 ---
 
@@ -257,7 +257,7 @@ local candidate evidence.
 **Purpose**: Deliver one reviewed candidate, converge provider evidence, merge
 and return to synchronized main without starting a successor.
 
-- [ ] T123 Stage only intended paths and reconcile staged, unstaged and untracked inventory in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
+- [X] T123 Stage only intended paths and reconcile staged, unstaged and untracked inventory in `specs/018-agentic-workspace-tui/autonomous-run-evidence.md`
 - [ ] T124 Run `git diff --cached --check` and every affected validator against the exact staged candidate
 - [ ] T125 Finalize task counts, accepted artifact hashes and gate-requirements hash in `specs/018-agentic-workspace-tui/autonomous-run-state.json`
 - [ ] T126 Commit the reviewed candidate and push branch `018-agentic-workspace-tui`

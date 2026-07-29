@@ -5,7 +5,7 @@
   "branch": "018-agentic-workspace-tui",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Validate",
   "status": "Active",
   "checkpointCommit": "495f865ac0cf8c484448fa340d4a2d678f7c8357",
   "acceptedArtifacts": [
@@ -75,21 +75,21 @@
     },
     {
       "path": "specs/018-agentic-workspace-tui/tasks.md",
-      "sha256": "379e5154b21d06c2d9e443a2c1e517c175b780729df0fcc4b0002638cd944608"
+      "sha256": "44522fffbaa152766e7b152a964dd3a8ff544e60f3da46ecfc9f2185818eb5b0"
     }
   ],
   "tasks": {
     "path": "specs/018-agentic-workspace-tui/tasks.md",
-    "sha256": "379e5154b21d06c2d9e443a2c1e517c175b780729df0fcc4b0002638cd944608",
-    "completed": 118,
+    "sha256": "44522fffbaa152766e7b152a964dd3a8ff544e60f3da46ecfc9f2185818eb5b0",
+    "completed": 123,
     "total": 133
   },
-  "lastPassingGate": "Complete local test suites: 62 .NET, 14 focused wrapper and 79 maintenance tests",
-  "nextExactAction": "Complete Homogeneity and remaining T118-T120/T122 gates, then prepare the exact staged delivery candidate.",
+  "lastPassingGate": "Complete local acceptance: 62 .NET, 14 wrapper, 79 maintenance and 30/30 Homogeneity checks",
+  "nextExactAction": "Commit the reconciled local metadata checkpoint, render statistics for that source, then execute T124-T125 against the exact candidate.",
   "lastOperation": {
-    "kind": "Implement",
+    "kind": "Validate",
     "state": "Completed",
-    "summary": "Implementation, documentation, security evidence, distribution manifest and exact-head workflow are complete through T116."
+    "summary": "Implementation, documentation, statistics and all local acceptance gates are complete through T122."
   },
   "stop": {
     "reason": "N/A",
@@ -102,5 +102,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-07-29T14:35:52Z"
+  "updatedAt": "2026-07-29T14:42:32Z"
 }
