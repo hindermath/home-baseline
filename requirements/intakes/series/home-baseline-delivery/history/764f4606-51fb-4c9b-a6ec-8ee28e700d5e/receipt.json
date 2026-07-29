@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "5136c2a6-5444-424c-b3e1-16a91a3f75c2",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-29T11:22:07Z",
+  "operation": {
+    "operationId": "eba17697-5650-4d15-88e8-769c3d392d4f",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to execute the next autonomous Spec Kit intake with MergeAndSync delivery and complete its manifest-declared post-merge closeout."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "3306edd96ba08a863435f812140265f3d71e5e8b22c65828b55ca8fb3d702d4f"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/eba17697-5650-4d15-88e8-769c3d392d4f/receipt.json",
+    "receiptNormalizedSha256": "33f786dc0e66f27efa9dcc2de6189b1bada5c43a203a06282fad6b38409eed24",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/eba17697-5650-4d15-88e8-769c3d392d4f/manifest.json",
+    "manifestArchiveSha256": "c4e40fe218984a2897b09ae420b5a4ac85668960fcc14eb9dc41006acc547075"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

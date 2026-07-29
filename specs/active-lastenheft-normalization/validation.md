@@ -2,64 +2,68 @@
 
 ## Aktueller Umfang / Current Scope
 
-- Aktive Ziele / Active targets: 39
+- Aktive Ziele / Active targets: 38
 - Roots: 3
-- Eindeutige Abhängigkeiten / Unique dependencies: 46
-- Deklarierte `Eligible`-Kandidaten: genau Position 3
-- Review-ID: `9eab8a9a-14be-401f-b002-719f4becc269`
-- Supersedes: `292b5f47-6164-49a9-9107-b62a23a032a7`
+- Eindeutige Abhaengigkeiten / Unique dependencies: 45
+- Bevorzugte `Eligible`-Kandidaten: genau Position 4
+- Review-ID: `05b38977-2b41-451f-947c-d9ac93c385f4`
+- Supersedes: `6851ba2b-edbe-4348-af93-c0d48d337701`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils 0
 
-Die Zahlen beschreiben die aktuelle vollständige Series. Historische
-Normalisierungs- und Migrationsläufe bleiben unverändert in ihren jeweiligen
-Archiven erhalten.
+Die Werte beschreiben die vollstaendige aktive Series nach dem in-place
+Update der Agentic-Workspace-Wartungs-TUI. Historische Reviews und
+Series-Staende bleiben bytegleich in ihren Archiven erhalten.
 
-*These values describe the complete current series. Historical normalization
-and migration runs remain unchanged in their respective archives.*
+*These values describe the complete active series after the in-place agentic
+workspace maintenance TUI update. Historical reviews and series states remain
+byte-identical in their archives.*
 
 ## Intake-Supersession
 
-- Die Intake-ID `40faffea-1f68-416c-9ca3-d932c9a3fda1` bleibt erhalten.
-- Der frühere Zielstand und sein Receipt sind bytegleich unter der neuen
-  Operations-ID archiviert.
-- Das neue Schema-2.0-Receipt verwendet Authoring Governance v0.3.0,
-  nachvollziehbare geordnete Quellen und `MergeAndSync`.
-- PWH-001 bis PWH-015 und AC-001 bis AC-017 bleiben erhalten.
-- PWH-016 bis PWH-020 und AC-018 bis AC-027 binden dynamische Preset-Profile,
-  die Features 015/016, exakte Bereinigungsfreigaben, begrenzte
-  Netzwerk-Evidence und die Zielrepository-Grenze.
+- Die Intake-ID `253dd719-3d4c-4e5e-bea2-2cc4805be225` bleibt erhalten.
+- Der vorherige Zielstand und sein Receipt sind unter der neuen Operations-ID
+  `2d5d8799-b0a6-4d7c-a525-f4b33897ab9e` bytegleich archiviert.
+- Das Schema-2.0-Receipt verwendet Intake Authoring Governance `0.3.0`, sieben
+  geordnete Quellen und `MergeAndSync`.
+- Das Lastenheft nennt Features 009 sowie 015 bis 017 als abgeschlossene,
+  vor Laufstart erneut fail-closed zu pruefende Gate-Evidence.
+- Die TUI bleibt eine Darstellungsschicht fuer die Bash- und
+  PowerShell-Engine; Zielrepository- und Administratorautoritaet werden nicht
+  erweitert.
 
-*The stable intake identity and archived predecessor are preserved. The new
-schema-2.0 receipt binds Authoring Governance v0.3.0, ordered evidence, and
-`MergeAndSync`. Existing requirements remain, while the added requirements
-cover dynamic profiles, prior regression contracts, exact cleanup authority,
-bounded network evidence, and target-repository delivery boundaries.*
+*The stable intake identity and prior target remain preserved. The schema-2.0
+receipt binds Intake Authoring Governance 0.3.0, seven ordered sources,
+MergeAndSync feature delivery, completed predecessor evidence, and unchanged
+maintenance-engine authority boundaries.*
 
 ## Series- und Review-Bindung
 
-- Series-ID, 39 Ziele, drei Roots, 46 Abhängigkeiten, Rollen, Reihenfolge und
-  Status sind unverändert.
-- Nur der normalisierte Hash des in-place aktualisierten Intake wurde im
+- Series-ID, 38 Ziele, drei Roots, 45 Abhaengigkeiten, Rollen, Reihenfolge und
+  Status sind unveraendert.
+- Nur der normalisierte Hash des in-place aktualisierten TUI-Intakes wurde im
   Series-Manifest ersetzt.
-- Alter Series-Receipt, altes Series-Manifest sowie der frühere Review-Request,
-  das Ergebnis und der Bericht sind bytegleich archiviert.
+- Alter Series-Receipt, altes Series-Manifest sowie vorheriger
+  Review-Request, Ergebnis und Bericht sind bytegleich archiviert.
 - Der neue Schema-1.1-Review bindet seinen Request per normalisiertem SHA-256.
-- Bash- und PowerShell-Validatoren akzeptieren Intake, Receipt,
-  Series-Manifest, Series-Receipt und Review-Ergebnis jeweils ohne Befund.
+- Bash- und PowerShell-Validatoren akzeptieren Intake-Receipt,
+  Series-Manifest, Series-Receipt und Review-Ergebnis ohne Befund.
 
-*Series identity and structure remain unchanged. Only the updated intake hash
-was replaced. Previous series and review artifacts are archived byte-for-byte,
-the new schema-1.1 result is hash-bound to its request, and both validator
-implementations pass.*
+*Series identity and topology remain unchanged. Only the updated TUI intake
+hash was replaced. Previous series and review artifacts are archived
+byte-for-byte, and the new schema-1.1 result is hash-bound to its request and
+accepted by both validator implementations.*
 
 ## Liefergrenze / Delivery Boundary
 
-Dieser Auftrag aktualisiert nur Intake-, Receipt-, Series- und Review-Evidence.
-Er startet weder Specify noch Autonomous, Feature 017 oder die Wartungs-TUI.
-`MergeAndSync` autorisiert nur diese Intake-Lieferung und den später ausdrücklich
-gestarteten Feature-017-Lauf im Home-Baseline-Repository.
+Dieser Auftrag aktualisiert nur Intake-, Receipt-, Series-, Review- und
+Reihenfolge-Evidence. Er startet weder Specify noch Autonomous, Feature 018
+oder die Wartungs-TUI. `MergeAndSync` autorisiert die Lieferung dieses
+Intake-Updates und den spaeter ausdruecklich gestarteten Feature-Lauf im
+Level-0-Repository, aber keine Remote-Aktion der Wartungs-Engine in
+Ziel-Repositories.
 
-*This work updates only intake, receipt, series, and review evidence. It starts
-neither Specify nor Autonomous, Feature 017, nor the maintenance TUI.
-`MergeAndSync` authorizes only this intake delivery and a later explicitly
-started Feature 017 run in Home Baseline.*
+*This work updates only intake, receipt, series, review, and order evidence. It
+starts neither Specify nor Autonomous, Feature 018, nor the maintenance TUI.
+MergeAndSync authorizes this intake delivery and the later explicitly started
+Level-0 feature, but no maintenance-engine remote action in target
+repositories.*

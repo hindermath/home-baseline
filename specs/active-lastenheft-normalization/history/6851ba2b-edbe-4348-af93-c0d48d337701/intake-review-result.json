@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "05b38977-2b41-451f-947c-d9ac93c385f4",
+  "reviewId": "6851ba2b-edbe-4348-af93-c0d48d337701",
   "mode": "Series",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-07-29T11:54:22Z",
+  "reviewedAt": "2026-07-29T11:22:07Z",
   "repository": {
     "root": ".",
-    "head": "49f5f5d6e8f44e1c3ee18d47b7f8a30ee63e6928"
+    "head": "9ae8ecbe9cd19d9f7d7cfab9ce960361082f872a"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "87ef2a9ef35f1055954a8de4feb85dec215b01a064d55c6ed59c7e7aec8ac59c"
+    "normalizedSha256": "0e0a3f2af6cd01aec8c3a6fd7699267b6440be365940507f29592fbdcd7c3cd4"
   },
   "summary": {
     "critical": 0,
@@ -19,13 +19,13 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "6851ba2b-edbe-4348-af93-c0d48d337701",
+  "supersedes": "9eab8a9a-14be-401f-b002-719f4becc269",
   "targets": [
     {
       "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
       "role": "Primary",
-      "normalizedSha256": "ccb60052526ba2dddf649b4e9f1827668c8c3430e80fefbaa4fcc4ed263b2783",
-      "gitBlob": "5119a5a1fa44f86b3cd15bfabade0aa5f8775754"
+      "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
+      "gitBlob": "N/A"
     },
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -296,14 +296,11 @@
       "All 38 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The three declared roots equal the zero-indegree target set",
       "Forty-five unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Features 015 through 017 remain archived with completed run states, exact-head, platform, merge and closeout evidence",
-      "Position 4 is the single declared Eligible candidate and its gate now truthfully records the completed predecessors",
-      "The TUI intake preserves the Bash and PowerShell engines while binding current partial-result, fleet-barrier, lease and dynamic-profile contracts",
-      "The copy-ready prompts separate MergeAndSync feature delivery from target-repository, provider, cleanup and administrator authority",
-      "The .NET 10 helper pins Spectre.Console and Spectre.Console.Testing 0.57.2 with locked restore and supply-chain validation",
+      "Feature 017 remains archived with exact-head provider, merge, Home Runtime and fleet check-only evidence",
+      "Position 4 is the single declared Eligible candidate and no successor run was started",
       "CI/CD and PowerShell remain zero-indegree roots but are intentionally not selected under serial execution",
       "The documentation, secure-development, KDM/KITSM, ITSE and learning-governance chains retain every binding predecessor",
-      "No target count, root, dependency, successor feature, product code, or Spec Kit run was added or started"
+      "No intake content, product code, successor feature, branch, or Spec Kit run was added or started"
     ],
     "workers": []
   },

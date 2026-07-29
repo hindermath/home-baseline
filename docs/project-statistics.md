@@ -890,6 +890,35 @@ check-only run remained fail-closed on existing fleet drift, and the causal
 Series closeout publishes 38 targets, three roots, and 45 dependencies with
 item 4 as the sole Eligible candidate without starting it.*
 
+### 2026-07-29 - Intake-Update Agentic-Workspace-Wartungs-TUI / Agentic Workspace Maintenance TUI Intake Update
+
+- Das Lastenheft fuer Position 4 bildet jetzt die abgeschlossenen
+  Wartungshaertungen 015 bis 017 als erneut zu pruefende Gate-Evidence ab.
+- Ereignisstrom, atomarer Abschlussbericht und Prozess-Exitcode besitzen
+  getrennte Verantwortungsgrenzen. `PARTIAL`, Mutation Barrier, sichere
+  Pull-Entscheidungen, Worktree-Leases und dynamische Preset-Profile bleiben
+  wahrheitsgetreu sichtbar.
+- Spectre.Console und Spectre.Console.Testing sind fuer die spaetere
+  Implementierung auf die aktuelle stabile Version `0.57.2` mit Locked
+  Restore und Supply-Chain-Nachweis festgelegt.
+- Authoring- und Series-Receipts wurden mit bytegleichen Archiven erneuert.
+  Der Schema-1.1-Review ist `Ready`: 38 Ziele, drei Roots, 45
+  Abhaengigkeiten, null Findings und Position 4 als einziger bevorzugter
+  `Eligible`-Kandidat.
+- Der Autonomous-Prompt verwendet `MergeAndSync`, ohne der Wartungs-Engine
+  Remote-, Provider-, Bereinigungs- oder Administratorautoritaet fuer
+  Ziel-Repositories zu erteilen. Feature 018 wurde nicht gestartet.
+
+*The item-4 intake now binds completed Features 015 through 017 as
+revalidated gate evidence. Live events, atomic final reports, process exits,
+partial results, fleet barriers, safe pull decisions, leases, and dynamic
+profiles retain truthful boundaries. The future implementation pins the
+stable Spectre packages at 0.57.2. Hash-bound authoring and series
+supersessions plus a Ready schema-1.1 review preserve 38 targets, three roots,
+45 dependencies, and item 4 as the sole preferred Eligible candidate.
+MergeAndSync delivery grants no maintenance-target authority, and Feature 018
+was not started.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

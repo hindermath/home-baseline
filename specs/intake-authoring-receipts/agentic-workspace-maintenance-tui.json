@@ -1,22 +1,22 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "c920bce4-61fa-4cca-b45d-0c823da2af75",
+  "receiptId": "57f41d4c-2df4-4c2b-97af-bbf86bb8c309",
   "intakeId": "253dd719-3d4c-4e5e-bea2-2cc4805be225",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
-  "createdAt": "2026-07-25T12:58:33Z",
+  "createdAt": "2026-07-29T11:47:17Z",
   "operation": {
-    "operationId": "c3d61358-f535-4829-9f99-f782111aee15",
+    "operationId": "2d5d8799-b0a6-4d7c-a525-f4b33897ab9e",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+    "authorityEvidence": "Explicit current user approval to implement the in-place TUI intake update and deliver it through MergeAndSync."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md",
-    "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35"
+    "normalizedSha256": "ccb60052526ba2dddf649b4e9f1827668c8c3430e80fefbaa4fcc4ed263b2783"
   },
   "sources": [
     {
@@ -25,7 +25,7 @@
       "kind": "File",
       "label": "Archived prior accepted intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/target.md",
+      "path": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/2d5d8799-b0a6-4d7c-a525-f4b33897ab9e/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,78 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90",
-      "gitBlob": "45bfbfa9994d7ade7acbb30aa236406cf67c4a5a",
+      "normalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
+      "gitBlob": "1d8e2e03ac2ef21a4909b38a6aaf8ecbc19dbd07",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
+      "kind": "File",
+      "label": "Feature 015 Windows maintenance closeout evidence",
+      "location": "Repository",
+      "path": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "b22b58bbfbaf4e48922e1d9f93414b8ea6b94d2fe0bbd4c45c309ede51bc7595",
+      "gitBlob": "b9df9653adf52c47d709bfbadd95191eebeeb990",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Feature 016 Linux maintenance closeout evidence",
+      "location": "Repository",
+      "path": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "94e1248d36108f32fda592134f80f769106e4656cfe3e02ab7b712b16e36020a",
+      "gitBlob": "deba0f564e02e5eacfae79eb60eaf1b09e8a4e36",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "File",
+      "label": "Feature 017 fleet and worktree closeout evidence",
+      "location": "Repository",
+      "path": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "4650c8d6aba154afe0e530cfb455425fdfef4b72f8014b1290316abba0133786",
+      "gitBlob": "b09f16fad883369f27e0e70e22f54127b147219d",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC005",
+      "order": 5,
       "kind": "Pasted",
-      "label": "Approved active intake series normalization request",
+      "label": "Approved current TUI intake update plan",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,9 +120,51 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "normalizedSha256": "c24960f3dde4abfc5c15c02a59d6d0fb380d57ea06e3710b48c075ad8286995c",
       "gitBlob": "N/A",
       "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    },
+    {
+      "sourceId": "SRC006",
+      "order": 6,
+      "kind": "Url",
+      "label": "Official NuGet Spectre.Console version inventory",
+      "location": "RemoteSnapshot",
+      "path": "N/A",
+      "requestedUrl": "https://api.nuget.org/v3-flatcontainer/spectre.console/index.json",
+      "finalUrl": "https://api.nuget.org/v3-flatcontainer/spectre.console/index.json",
+      "retrievedAt": "2026-07-29T11:59:35Z",
+      "httpStatus": 200,
+      "contentType": "application/json",
+      "contentLength": 19017,
+      "etag": "0x8DEEC16DD4D3504",
+      "lastModified": "Mon, 27 Jul 2026 19:40:07 GMT",
+      "redirectChain": [],
+      "rawSha256": "929f4f5aedf665c32f092e40f6b317148f3e8afb6b04fd2d5917690abdd7c423",
+      "normalizedSha256": "929f4f5aedf665c32f092e40f6b317148f3e8afb6b04fd2d5917690abdd7c423",
+      "gitBlob": "N/A",
+      "proofBoundary": "RemoteSnapshot"
+    },
+    {
+      "sourceId": "SRC007",
+      "order": 7,
+      "kind": "Url",
+      "label": "Official NuGet Spectre.Console.Testing version inventory",
+      "location": "RemoteSnapshot",
+      "path": "N/A",
+      "requestedUrl": "https://api.nuget.org/v3-flatcontainer/spectre.console.testing/index.json",
+      "finalUrl": "https://api.nuget.org/v3-flatcontainer/spectre.console.testing/index.json",
+      "retrievedAt": "2026-07-29T11:59:35Z",
+      "httpStatus": 200,
+      "contentType": "application/json",
+      "contentLength": 13223,
+      "etag": "0x8DEEC16DD43C080",
+      "lastModified": "Mon, 27 Jul 2026 19:40:07 GMT",
+      "redirectChain": [],
+      "rawSha256": "5c89d1eb2cb904246cfc405c27627599e9949a27adf41f177fd76eacb7476ae7",
+      "normalizedSha256": "5c89d1eb2cb904246cfc405c27627599e9949a27adf41f177fd76eacb7476ae7",
+      "gitBlob": "N/A",
+      "proofBoundary": "RemoteSnapshot"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -69,22 +174,36 @@
       "id": "IAD001",
       "status": "Answered",
       "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
-      "answer": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
-      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
+      "answer": "Lastenheft_Agentic-Workspace-Maintenance-TUI.md und intakeId 253dd719-3d4c-4e5e-bea2-2cc4805be225 bleiben erhalten.",
+      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake oder neue Series-Position."
     },
     {
       "id": "IAD002",
       "status": "Answered",
       "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
-      "answer": "Position 4; hard-gated by Feature 009 evidence and active positions 1 through 3.",
-      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
+      "answer": "Sichtbare Position 4, im aktiven Manifest Primary und einziger bevorzugter Eligible-Kandidat; Features 009 sowie 015 bis 017 bilden das erneut zu pruefende Abschluss-Gate.",
+      "evidence": "Die Abarbeitungsreihenfolge, die abgeschlossenen Feature-Evidenzen und der erneuerte Schema-1.1-Series-Review definieren dieselbe Grenze."
     },
     {
       "id": "IAD003",
       "status": "Answered",
       "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
-      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
-      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
+      "answer": "Dynamisch aufgeloestes Preset-Profil mit derzeit elf Eintraegen; MergeAndSync fuer den kopierbaren Autonomous-Prompt.",
+      "evidence": "Feature 017 belegt dynamische Profile. Die aktuelle Benutzerentscheidung autorisiert MergeAndSync mit dem engen Human-Approval-Bypass."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche TUI-Abhaengigkeitsbasis gilt?",
+      "answer": ".NET 10 sowie Spectre.Console und Spectre.Console.Testing 0.57.2 mit Locked Restore und Supply-Chain-Nachweis.",
+      "evidence": "Die offiziellen NuGet-Versionsinventare belegen 0.57.2 als aktuelle stabile, net10.0-kompatible Version beider Pakete."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Wie werden Live-Status, Abschlusswahrheit und Autoritaet getrennt?",
+      "answer": "JSONL liefert additive Live-Evidence; atomarer Abschlussbericht und Prozess-Exitcode bleiben kanonisch. Feature-Delivery erteilt keine Zielrepository-, Provider-, Bereinigungs- oder Administratorautoritaet.",
+      "evidence": "Die Vertrage und Closeout-Evidence der Features 015 bis 017 bleiben verbindlich."
     }
   ],
   "openDecisionIds": [],
@@ -95,15 +214,15 @@
     "autonomousCanonicalId": "speckit.autonomous",
     "autonomousInvocation": "$speckit-autonomous"
   },
-  "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current explicit user approval authorizes MergeAndSync for the later autonomous feature and for this intake-update delivery; the narrow bypass applies only to Human Approval after all technical gates pass.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/receipt.json",
-    "targetNormalizedSha256": "a38aa98ebee303432a0046f25706c5d7583b273f6deac347e460ae553703ec90",
-    "archiveTargetPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/c3d61358-f535-4829-9f99-f782111aee15/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/2d5d8799-b0a6-4d7c-a525-f4b33897ab9e/receipt.json",
+    "targetNormalizedSha256": "9276812d6d494ac48330b61a325e27dd0b8d785f1650ca825dec1ebf24026e35",
+    "archiveTargetPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/2d5d8799-b0a6-4d7c-a525-f4b33897ab9e/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/253dd719-3d4c-4e5e-bea2-2cc4805be225/2d5d8799-b0a6-4d7c-a525-f4b33897ab9e/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -111,12 +230,12 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "updateAuthorityEvidence": "Current user instruction: implement the approved TUI intake update plan.",
   "series": {
-    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
-    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "order": 4,
-    "role": "OrderedMember",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "Primary",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-Maintenance-TUI.md"

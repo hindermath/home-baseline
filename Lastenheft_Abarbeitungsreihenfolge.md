@@ -295,11 +295,13 @@ documents the stable operating surface and also feeds item 11, and D7 adopts
 portable rules across the registered fleet before releasing item 5. No run
 starts its successor automatically.*
 
-*Item 4 is a hard dependency rather than an ordering recommendation. Evidence
-for Feature 009 and all three active predecessor items must pass before any TUI
-feature, branch, or Spec Kit artifact is created; otherwise item 4 remains
-`BLOCKED`. Items 5, 7, and 10 provide binding baselines for their successors.
-Items 9 through 12 feed the final GSDB audit, so item 13 must run last.*
+*Item 4 is a hard dependency rather than an ordering recommendation. Feature
+009 and completed Features 015 through 017 currently satisfy that gate, and
+the schema-1.1 series review declares item 4 the single preferred `Eligible`
+candidate. The closeout evidence is revalidated before feature creation; only
+missing or drifted evidence returns item 4 to `BLOCKED`. Items 5, 7, and 10
+provide binding baselines for their successors. Items 9 through 12 feed the
+final GSDB audit, so item 13 must run last.*
 
 „Abschließend“ bei Position 13 bezieht sich auf den bestehenden
 Skript-/Konfigurationsstrang der Positionen 9 bis 12. Die Positionen 14 bis 17
