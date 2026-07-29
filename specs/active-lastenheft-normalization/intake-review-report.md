@@ -3,69 +3,82 @@
 ## Ergebnis / Result
 
 - Status: `Ready`
-- Review-ID: `6851ba2b-edbe-4348-af93-c0d48d337701`
-- Supersedes: `9eab8a9a-14be-401f-b002-719f4becc269`
+- Review-ID: `05b38977-2b41-451f-947c-d9ac93c385f4`
+- Supersedes: `6851ba2b-edbe-4348-af93-c0d48d337701`
 - Ziele / Targets: 38
 - Roots: 3
-- Abhängigkeiten / Dependencies: 45
+- Abhaengigkeiten / Dependencies: 45
 - Findings: 0
 - Offene Fragen / Open questions: 0
 
-Die Preset-Profil-, Default-Branch- und Worktree-Härtung ist nach dem Merge von
-Feature 017 mit vollständiger Review-Lineage archiviert. Position 4, die
-Agentic-Workspace-Wartungs-TUI, ist dadurch der einzige deklarierte
-`Eligible`-Kandidat. Dieser Review startet weder Position 4 noch einen anderen
-Spec-Kit-Lauf.
+Der Intake fuer die Agentic-Workspace-Wartungs-TUI ist jetzt auf dem
+nachgewiesenen Abschlussstand der Features 015 bis 017. Position 4 bleibt der
+einzige bevorzugte `Eligible`-Kandidat. Dieser Review startet weder das
+TUI-Feature noch einen anderen Spec-Kit-Lauf.
 
-*Preset-profile, default-branch, and worktree hardening is archived with
-complete review lineage after Feature 017 was merged. Item 4, the agentic
-workspace maintenance TUI, is now the single declared `Eligible` candidate.
-This review starts neither item 4 nor another Spec Kit run.*
+*The agentic workspace maintenance TUI intake now reflects the evidenced
+closeout of Features 015 through 017. Item 4 remains the single preferred
+`Eligible` candidate. This review starts neither the TUI feature nor another
+Spec Kit run.*
 
-## Aktualisierte Evidence / Updated Evidence
+## Aktualisierte Intake-Evidence / Updated Intake Evidence
 
-- PR #153 wurde auf dem exakt geprüften Head
-  `7c46069b40cce595091440de18741d59ca48a3d1` gemergt.
-- 20 GitHub-Checks auf Ubuntu, macOS und Windows sowie acht providerneutrale
-  Gates bestanden. Es gab keine umsetzbaren Review-Threads.
-- Home Runtime wurde auf den gemergten Stand synchronisiert und anschließend
-  mit `sync-home.sh --check-only` bestätigt.
-- Der reale Wartungs-Check inventarisierte die gesamte Flotte, prüfte alle
-  elf Presets in kurzlebigen, leasegebundenen Worktrees und beendete diese
-  Worktrees vollständig. Vorhandene Behind- und Wartungspaket-Drift blieb
-  korrekt ein blockierender Flottenbefund; Ziel-Repositories wurden nicht
-  verändert.
+- Feature 009 bleibt die historische Grundlage der Ein-Kommando-Wartung.
+- Feature 015 und PR #142 belegen Preview-, Prozess-, Ergebnis- und
+  Resume-Haertung fuer Windows.
+- Feature 016 sowie PRs #146 und #148 belegen Eingabeisolation,
+  Required-Aggregation, Plattformgrenzen und atomaren Abschluss fuer Linux.
+- Feature 017 sowie PRs #153 und #154 belegen Remote-Freshness- und
+  Mutation-Barriere, sichere Pull-Klassifikation, Worktree-Leases und
+  dynamische Preset-Profile.
+- Das Lastenheft trennt nun den additiven Ereignisstrom von atomarem
+  Abschlussbericht und Prozess-Exitcode.
+- Die `.NET 10`-Basis bleibt erhalten; Spectre.Console und
+  Spectre.Console.Testing sind fuer die spaetere Implementierung auf `0.57.2`
+  mit Locked Restore und Supply-Chain-Nachweis festgelegt.
+- Der Autonomous-Prompt verwendet `MergeAndSync`, erteilt der
+  Wartungs-Engine aber keine Zielrepository-, Provider-, Bereinigungs- oder
+  Administratorautoritaet.
 
-*PR #153 merged the exact reviewed head after 20 GitHub checks across Ubuntu,
-macOS, and Windows plus eight provider-neutral gates passed with no actionable
-review threads. Home Runtime is synchronized. The real maintenance check
-inventoried the full fleet, validated all eleven presets in lease-bound
-worktrees, and retained existing behind and maintenance-package drift as a
-blocking fleet finding without changing target repositories.*
+*Feature 009 remains the historical maintenance foundation. Features 015,
+016, and 017 provide the accepted Windows, Linux, fleet barrier, safe-pull,
+lease, dynamic-profile, result, and resume contracts. The intake separates
+live events from canonical final evidence, pins the later .NET dependency
+validation, and keeps feature delivery authority distinct from maintenance
+target authority.*
 
 ## Graphnachweis / Graph Evidence
 
 - Alle 38 Pfade, Rollen, Hashes und Positionen stimmen mit dem gebundenen
-  Schema-1.1-Request überein.
+  Schema-1.1-Request ueberein.
 - Die drei Roots entsprechen exakt den Knoten ohne eingehende Kante.
-- Alle 45 Kanten sind eindeutig, referenzgültig, reihenfolgekonform und
+- Alle 45 Kanten sind eindeutig, referenzgueltig, reihenfolgekonform und
   azyklisch.
-- Position 3 wurde nach Abschluss entfernt; ihre historische Evidence bleibt
-  über Intake-Archiv, Feature-Evidence und Series-History erhalten.
-- Position 4 ist der einzige deklarierte `Eligible`-Kandidat.
+- Nur der Hash von
+  `Lastenheft_Agentic-Workspace-Maintenance-TUI.md` wurde aktualisiert.
+- Reihenfolge, Rollen, Roots und Abhaengigkeiten blieben unveraendert.
+- Position 4 ist weiterhin der einzige bevorzugte `Eligible`-Kandidat.
 
 *All 38 paths, roles, hashes, and positions match the bound schema-1.1
-request. The three roots equal the zero-indegree nodes, and all 45 edges are
-unique, reference-valid, order-consistent, and acyclic. Item 3 was removed
-after completion while its history remains preserved; item 4 is the sole
-declared eligible candidate.*
+request. The three roots equal the zero-indegree nodes, all 45 edges are
+unique, reference-valid, order-consistent, and acyclic, and only the updated
+item-4 target hash changed.*
 
-## Nächste Aktion / Next Action
+## Findings und Risiken / Findings and Risks
 
-Dieser Review dokumentiert nur den kausalen Abschluss von Feature 017. Die
-Agentic-Workspace-Wartungs-TUI ist der nächste serielle Kandidat, wird aber
-durch diesen Closeout nicht gestartet.
+Es bestehen keine Critical-, High-, Medium- oder Low-Findings, keine
+akzeptierten Risiken und keine offenen Fragen. Die Gate-Freigabe ist keine
+dauerhafte Statusbehauptung: Der spaetere Lauf muss Vorgaenger-, Repository-
+und Series-Evidence vor Feature-Erstellung erneut fail-closed pruefen.
 
-*This review records only the causal closeout of Feature 017. The agentic
-workspace maintenance TUI is the next serial candidate but is not started by
-this closeout.*
+*There are no findings, accepted risks, or open questions. Eligibility is not
+a permanent status claim: the later run must revalidate predecessor,
+repository, and series evidence fail-closed before feature creation.*
+
+## Naechste Aktion / Next Action
+
+Der Intake ist bereit fuer den kopierbaren `$speckit-autonomous`-Prompt aus
+dem Lastenheft. Feature 018 wird durch diesen Review nicht gestartet.
+
+*The intake is ready for its copyable `$speckit-autonomous` prompt. This review
+does not start Feature 018.*

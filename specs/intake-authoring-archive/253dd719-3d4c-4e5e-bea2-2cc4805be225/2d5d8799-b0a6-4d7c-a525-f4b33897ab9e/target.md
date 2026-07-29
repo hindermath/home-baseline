@@ -3,22 +3,16 @@
 
 **Repository:** `home-baseline`
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
-**Status:** bereit; Vorgaenger-Gate erfuellt und Position 4 `Eligible`
-**Stand:** 2026-07-29
+**Status:** wartend; Abarbeitung durch hartes Vorgaenger-Gate gesperrt
+**Stand:** 2026-07-25
 **Historische Gate-Evidence / Historical gate evidence:** Feature 009 mit
 `Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md`
 
-**Abgeschlossene bindende Vorgaenger / Completed binding predecessors:**
+**Aktive bindende Vorgaenger / Active binding predecessors:**
 
-1. Feature 015 mit
-   `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.015-windows-maintenance-hardening.md`
-   und PR #142
-2. Feature 016 mit
-   `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.016-linux-maintenance-hardening.md`
-   sowie PRs #146 und #148
-3. Feature 017 mit
-   `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.017-preset-profile-worktree-hardening.md`
-   sowie PRs #153 und #154
+1. `Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md`
+2. `Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md`
+3. `Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md`
 
 ## 1. Zweck / Purpose
 
@@ -37,58 +31,67 @@ without duplicating the Bash and PowerShell maintenance logic.*
 
 Das Anlegen dieses Dokuments startet keinen Spec-Kit-Lauf. Am Ende stehen ein
 kopierbarer `$speckit-specify`-Prompt und ein kopierbarer
-`$speckit-autonomous`-Prompt bereit. Beide pruefen den aktuell erfuellten
-Vorgaengerabschluss vor jeder Feature-Erstellung erneut.
+`$speckit-autonomous`-Prompt bereit. Beide unterliegen demselben harten
+Vorgaenger-Gate.
 
 *Creating this document starts no Spec Kit run. Copyable staged and autonomous
-entry points are provided at the end, and both revalidate the currently
-satisfied predecessor closeout before feature creation.*
+entry points are provided at the end, and both are subject to the same hard
+predecessor gate.*
 
 ## 2. Hartes Vorgaenger-Gate / Hard Predecessor Gate
 
-Feature 009 sowie die Wartungshaertungen 015, 016 und 017 sind vollstaendig
-umgesetzt, validiert, gemergt und archiviert. Der aktuelle Schema-1.1-
-Series-Review fuehrt dieses Lastenheft als einzigen bevorzugten
-`Eligible`-Kandidaten. Feature 009 bleibt historische Gate-Evidence und ist
-kein aktiver Serienknoten.
+Die fachliche Abarbeitung dieses Lastenhefts DARF erst beginnen, wenn Feature
+009 sowie alle drei aktiven Wartungs- und Haertungsintakes auf den Positionen 1
+bis 3 nachweislich vollstaendig umgesetzt und validiert wurden. Feature 009 ist
+historische Gate-Evidence und kein aktiver Serienknoten. Die Existenz der
+Lastenhefte oder begonnener Feature-Spezifikationen genuegt nicht.
 
-*Feature 009 and maintenance hardening Features 015, 016, and 017 are
-implemented, validated, merged, and archived. The current schema-1.1 series
-review identifies this intake as the single preferred `Eligible` candidate.
-Feature 009 remains historical gate evidence, not an active series node.*
+*Processing this intake MUST NOT begin until Feature 009 and all three active
+maintenance and hardening intakes at positions 1 through 3 have demonstrably
+been implemented and validated. Feature 009 is historical gate evidence, not
+an active series node.*
 
-Vor Feature-, Branch- oder Specify-Artefakterstellung wird dieser Abschluss
-erneut fail-closed geprueft:
+Vor Feature-, Branch- oder Artefakterstellung fuer die TUI muessen alle
+folgenden Nachweise gemeinsam vorliegen:
 
-1. Die archivierten Lastenhefte und die Feature-Verzeichnisse `009`, `015`,
-   `016` und `017` sind eindeutig zugeordnet.
-2. `autonomous-run-state.json` der Features 015 bis 017 ist gueltig,
-   `Completed`, und alle verpflichtenden Tasks sind abgeschlossen.
-3. Requirements-, Analyze-, Plattform-, Sicherheits-, A11Y- und
-   Exact-Head-Nachweise enthalten keinen offenen blockierenden Befund.
-4. Die Merge- und Closeout-Evidence fuer PRs #142, #146, #148, #153 und #154
-   ist vorhanden; `main` und `origin/main` sind synchron.
-5. Der aktive Series-Vertrag ist hashkonsistent, besitzt 38 Ziele, drei Roots,
-   45 Abhaengigkeiten und genau diesen Intake als bevorzugten
-   `Eligible`-Kandidaten.
-6. Der Wartungsbaum enthaelt keinen nicht zugeordneten Drift, der den
-   Maschinenvertrag oder die TUI-Tests unzuverlaessig machen wuerde.
+1. Feature 009 und jedes der drei aktiven Vorgaenger-Features sind ueber ihre
+   jeweilige `spec.md`-Referenz auf das zugehoerige Lastenheft eindeutig
+   identifizierbar.
+2. Fuer jeden Vorgaenger sind alle verpflichtenden Tasks abgeschlossen;
+   Requirements-Checklisten und Analyze enthalten keinen offenen blockierenden
+   Befund.
+3. Bei einem autonomen Vorgaengerlauf ist dessen
+   `autonomous-run-state.json` gueltig und `Completed`. Bei einem schrittweisen
+   Lauf belegen die jeweiligen Feature-Artefakte und Abschlussnachweise
+   denselben terminalen Zustand.
+4. Die Akzeptanznachweise fuer macOS, Linux/Ubuntu und Windows sind vorhanden.
+   Dazu gehoeren macOS-Bash 3.2, modernes Bash und PowerShell 7.
+5. Desired-State-Fleet-Manifest, sicheres Clone-on-missing, fortsetzbare
+   Phasen, optionale Paketklassifikation, fortsetzbare Administratorbefunde,
+   leise Git-Ausgabe und kompakter JSON-Abschlussbericht sind implementiert
+   und validiert.
+6. Der gemaess ausdruecklich erteilter Delivery Authority geschuldete
+   Lieferabschluss ist erfolgt. Bei Remote-Auslieferung sind Merge,
+   Standardbranch-Synchronisation und die geforderten Paritaetsnachweise
+   abgeschlossen.
+7. Der Wartungsbaum ist frei von nicht zugeordnetem Drift, der die
+   TUI-Schnittstelle oder deren Tests unzuverlaessig machen wuerde.
 
-*Before feature, branch, or Specify artifact creation, the run revalidates the
-archived predecessor identities, completed autonomous states and tasks,
-quality and platform evidence, merge closeouts, exact repository state, and
-the hash-bound 38-target series contract.*
+*The gate requires four identifiable predecessor features, completed tasks
+and quality findings, terminal staged or autonomous evidence, all required
+platform validation, the complete maintenance-engine contract plus its three
+hardening rounds, authorized delivery closeout, and a trustworthy repository
+state.*
 
-Fehlt ein Nachweis oder ist er gedriftet, wird das Gate erneut `BLOCKED`. Der
-Lauf stoppt vor Feature-Erstellung oder Repository-Aenderung und nennt den
-fehlenden Nachweis sowie die naechste sichere Aktion. Adminrechte, manuelle
-Statusbehauptungen oder Ruleset-Bypass duerfen dieses fachliche Gate nicht
-ersetzen.
+Fehlt auch nur ein Nachweis, ist das Gate `BLOCKED`. Der TUI-Lauf meldet die
+fehlenden Nachweise und stoppt vor Feature-Branch, Specify, Plan, Tasks,
+Implementierung oder sonstigen Repository-Aenderungen. Eine Umgehung durch
+Adminrechte, manuelle Statusbehauptung oder Ruleset-Bypass ist unzulaessig.
 
-*Missing or drifted evidence returns the gate to `BLOCKED`. The run stops
-before feature creation or repository changes and names the evidence gap and
-next safe action. Administrative rights or ruleset bypass cannot replace this
-domain gate.*
+*If any evidence is missing, the gate is `BLOCKED`. The TUI run reports the
+missing evidence and stops before feature creation or repository changes. It
+cannot be bypassed through administrative rights or an unsupported status
+claim.*
 
 ## 3. Ausgangslage und Zielbild / Current State and Target State
 
@@ -102,33 +105,6 @@ kanonisch.
 parameters and expose check-only, preview, scripts-only, drift repair, optional
 packages, and an alternative home directory. That engine and its safety
 boundaries remain canonical.*
-
-Die abgeschlossenen Features 015 bis 017 erweitern diesen kanonischen Vertrag.
-Die TUI muss insbesondere folgende bereits vorhandene Ergebnisse abbilden,
-nicht neu implementieren:
-
-- genau einen Wartungsmodus je Lauf und eine einmalige terminale
-  Ergebnisbewertung;
-- atomare, hashgebundene Resume- und Abschluss-Evidence;
-- begrenzte Prozess-, Netzwerk- und Tool-Probes mit Versuchszahl, Dauer,
-  Endstatus und sicherer Prozessbaumbeendigung;
-- stdin- und umgebungsisolierte Registry- und Toolchain-Verarbeitung;
-- wahrheitsgetreue Required-/Optional-Aggregation, einschliesslich
-  `PARTIAL` mit Exitcode `1`;
-- die Remote-Freshness-Barriere vor jeder Fachmutation;
-- sichere Pull-Freigabe nur fuer saubere, eindeutig zugeordnete und
-  ausschliesslich zurueckliegende Default-Branches;
-- Worktree-Leases mit Besitz-, Prozessstart-, Pfad- und Commit-Bindung;
-- dynamisch aufgeloeste Preset-Profile statt fest eingebauter Anzahl;
-- keine Commit-, Push-, PR- oder Merge-Autoritaet fuer gewartete
-  Ziel-Repositories.
-
-*Features 015 through 017 added canonical single-mode finalization, atomic
-resume evidence, bounded processes and network attempts, isolated input and
-environment handling, truthful partial results, the fleet freshness and
-mutation barriers, safe pull classification, owned worktree leases, dynamic
-preset profiles, and a strict no-publication boundary for maintenance targets.
-The TUI presents these outcomes and does not reimplement them.*
 
 Die neue Oberflaeche wird als internes `.NET 10`-Hilfsprogramm mit
 Spectre.Console umgesetzt. C# ist hier gegenueber zusaetzlicher Bash- oder
@@ -290,16 +266,6 @@ Zulaessige initiale Ereignistypen sind:
 *Version 1 defines ordered run, phase, progress, finding, and completion events
 with stable identifiers and bilingual text.*
 
-`phaseId` verwendet die vorhandenen stabilen Wartungsphasen `fleet`, `level0`,
-`home-sync`, `registry`, `propagation`, `preset-profiles`, `toolchain` und
-`final`. Der Ereignisstatus wird auf die kanonischen Maschinenzustaende der
-Engine abgebildet, darunter `RUNNING`, `PASSED`, `PARTIAL`, `BLOCKED`,
-`WARNING`, `SKIPPED` und `FAILED`. Weder die TUI noch der Ereigniskanal
-erfinden aus stiller Ausgabe einen erfolgreichen Zustand.
-
-*Phase identifiers and status values reuse the engine's canonical vocabulary.
-Silence or missing progress never implies success.*
-
 Die Engine schreibt abgeschlossene Zeilen append-only in eine nur fuer den
 aktuellen Benutzer zugaengliche Datei. Die TUI liest diese Datei fortlaufend,
 wertet aber niemals freie Standardausgabe als Statusprotokoll aus.
@@ -313,16 +279,14 @@ Exitcode veraendert.
 unsupported event data degrades presentation to linear logs without changing
 the engine process or result.*
 
-Der atomar finalisierte JSON-Abschlussbericht bleibt die kanonische
-Maschinenwahrheit. `run-completed` nennt dessen Pfad, Logpfad, Lauf-ID,
-Gesamtstatus und Exitcode. Die TUI prueft Lauf-ID, Finalisierungsstatus,
-Gesamtstatus und Exitcode gegeneinander. Widersprechen sich Ereignis,
-Abschlussbericht oder Prozess-Exitcode, hat der Prozess-Exitcode Vorrang und
-die TUI meldet `RESULT_MISMATCH`.
+Der JSON-Abschlussbericht aus dem Vorgaenger bleibt der kanonische
+Maschinenabschluss. `run-completed` nennt dessen Pfad, Logpfad, Gesamtstatus
+und Exitcode. Widersprechen sich Ereignis und Prozess-Exitcode, hat der
+Prozess-Exitcode Vorrang und die TUI meldet `RESULT_MISMATCH`.
 
-*The atomically finalized JSON report remains canonical. Run identity,
-finalization, result, and process exit are reconciled; the process exit wins
-over contradictory data and produces a visible mismatch finding.*
+*The predecessor's JSON closeout report remains canonical. The process exit
+code wins over contradictory event data and produces a visible mismatch
+finding.*
 
 ## 8. Build-Cache und Plaintext-Fallback / Build Cache and Plain Fallback
 
@@ -359,15 +323,13 @@ nicht mit einem veralteten Build ausgefuehrt. `OS-Arch` wird auf
 version, preventing stale cache reuse. Platform and architecture names are
 normalized.*
 
-Spectre.Console und Spectre.Console.Testing werden auf `0.57.2` festgelegt.
+Spectre.Console und Spectre.Console.Testing werden auf `0.55.0` festgelegt.
 `RestorePackagesWithLockFile` und Locked Restore sind verpflichtend.
-Die Aktualisierung ist durch die offizielle NuGet-Metadatenquelle, MIT-Lizenz,
-den Upstream-Commit und einen Schwachstellennachweis zu belegen. Spaetere
 Abhaengigkeitsaktualisierungen erfolgen nur als eigene nachvollziehbare
 Aenderung mit Lizenz-, Wartungs- und Schwachstellenpruefung.
 
-*Spectre.Console dependencies are pinned to 0.57.2 with locked restore and
-supply-chain evidence. Later dependency upgrades require a separate review.*
+*Spectre.Console dependencies are pinned to 0.55.0 with locked restore.
+Dependency upgrades require a separate supply-chain review.*
 
 Der Plaintext-Assistent besitzt denselben Auswahl-, Konflikt-, Vorschau- und
 Bestaetigungsvertrag wie die TUI. Er verwendet nur zeilenorientierte Prompts
@@ -381,19 +343,15 @@ line-oriented ASCII prompts.*
 Die normale Spectre-Ansicht zeigt:
 
 - Laufmodus, Plattform, Quelle und Home-Verzeichnis
-- aktuelle Phase, textuellen Status und Zustand der Mutation Barrier
+- aktuelle Phase und textuellen Status
 - Anzahl geplanter, laufender, erfolgreicher, uebersprungener und
   fehlgeschlagener Repository-Ziele
-- sichere Pull-Kandidaten und gesperrte Dirty-, Ahead-, Diverged-, Detached-,
-  Non-Default-, Upstream- oder Remote-Zustaende
-- Anzahl Warnungen, Required-/Optional-Drift-, Admin- und Betriebsbefunde
-- Worktree-Lease- und dynamisch aufgeloesten Preset-Profilstatus
+- Anzahl Warnungen, Drift-, Admin- und Betriebsbefunde
 - zuletzt abgeschlossenes Ziel beziehungsweise letzte sichere Aktion
 - Log- und Berichtspfade nach Abschluss
 
-*The normal view shows run context, phase and mutation barrier, repository and
-pull classifications, required and optional findings, lease and profile
-status, the latest safe action, and final evidence paths.*
+*The normal view shows the run context, current phase, repository counts,
+findings, latest safe action, and final evidence paths.*
 
 Live-Anzeigen duerfen hoechstens zehnmal pro Sekunde aktualisiert werden.
 Fortschritt ohne belastbaren Nenner wird nicht als erfundener Prozentwert
@@ -409,8 +367,8 @@ narrow terminals automatically use a compact linear view.*
 - Alle Funktionen sind vollstaendig per Tastatur bedienbar.
 - Farbe, Position, Fortschrittsbalken oder Animation sind nie der einzige
   Informationstraeger.
-- Maschinenstatus wird mit ASCII-Text wie `RUNNING`, `PASSED`, `PARTIAL`,
-  `BLOCKED`, `WARNING`, `FAILED` und `SKIPPED` ergaenzt.
+- Maschinenstatus wird mit ASCII-Text wie `RUNNING`, `OK`, `WARNING`,
+  `DEFERRED`, `FAILED` und `SKIPPED` ergaenzt.
 - `NO_COLOR` wird respektiert.
 - `TERM=dumb`, schmale Terminals und Screenreader erhalten lineare Ausgabe in
   stabiler Lesereihenfolge.
@@ -437,8 +395,6 @@ require rationale and a re-evaluation trigger.*
   sonstigen Secrets an.
 - Administratorpflichtige Paketaktionen bleiben strukturierte
   `DEFERRED_ADMIN_REQUIRED`-Befunde der Engine.
-- Die Bestaetigung eines echten TUI-Laufs erteilt keine
-  Zielrepository-Publikations-, Provider- oder Administratorautoritaet.
 - Pfade, Remotes und Meldungen werden vor Spectre-Markup maskiert.
 - Ereignisstrom, Cache und temporaere Dateien sind nur fuer den aktuellen
   Benutzer zugaenglich.
@@ -451,13 +407,10 @@ require rationale and a re-evaluation trigger.*
 - Kindprozesse erben nur die fuer den Wartungslauf benoetigte Umgebung.
 - Abbruch sendet zuerst ein kontrolliertes Interruptsignal und verwendet
   keine rekursive Prozess- oder Dateiloeschung.
-- Die TUI bietet weder breites `git clean`, Reset, Stash noch rekursives
-  Loeschen in Nutzer-Checkouts an.
 
 *The TUI never requests secrets or administrator credentials, preserves
 deferred administrator findings, sanitizes markup, restricts local evidence,
-delegates path security to the canonical engine, and grants no publication,
-provider, cleanup, or elevation authority.*
+and delegates path security to the canonical engine.*
 
 ## 12. Exitcodes, Abbruch und Fehlerfaelle / Exit Codes, Cancellation, and Failures
 
@@ -514,23 +467,17 @@ Eine deterministische Fake-Engine erzeugt Ereignisse und Exitcodes fuer:
 
 - vollstaendigen Erfolg
 - `SUCCESS_WITH_WARNINGS`
-- wahrheitsgetreues `PARTIAL` mit Exitcode `1` und vollstaendiger Evidence
-- blockierte Mutation Barrier nach vollstaendiger Fleet-Inventur
-- sicheren Pull-Kandidaten sowie Dirty-, Ahead-, Diverged-, Detached- und
-  Non-Default-Zustand
+- Drift mit Exitcode `1`
 - Betriebsfehler mit Exitcode `2`
 - reparierten Drift mit Exitcode `3`
 - `DEFERRED_ADMIN_REQUIRED`
 - partiellen Lauf mit unabhaengiger Fortsetzung
-- gueltige, verwaiste, fremde und manipulierte Worktree-Leases
-- aktuelles Elf-Preset-Profil und ein synthetisch erweitertes Profil
 - ungueltiges JSONL, Sequenzluecke und unbekannte Schema-Version
-- Widerspruch zwischen `run-completed`, Abschlussbericht und Prozess-Exitcode
+- Widerspruch zwischen `run-completed` und Prozess-Exitcode
 - langsame Ausgabe und `Ctrl+C`
 
-*A deterministic fake engine covers terminal results, fleet and barrier
-classification, leases, dynamic profiles, resumable findings, malformed
-events, result mismatch, slow output, and interruption.*
+*A deterministic fake engine covers all terminal results, resumable findings,
+malformed events, result mismatch, slow output, and interruption.*
 
 ### 13.3 Wrapper- und Kompatibilitaetstests
 
@@ -545,12 +492,6 @@ events, result mismatch, slow output, and interruption.*
 - Bash 3.2, Bash 5 oder neuer und PowerShell 7 erzeugen dieselbe fachliche
   Auswahl.
 - Headless-Ausgabe und Exitcodes bestehender Aufrufe bleiben unveraendert.
-- Die Windows-Vertraege fuer Preview, Timeout, atomare Resume-Evidence und
-  einmalige Abschlussbewertung bleiben gruen.
-- Die Linux-Vertraege fuer stdin-Isolation, Required-Aggregation,
-  Umgebungsisolation und atomare Finalisierung bleiben gruen.
-- Die Fleet-Vertraege fuer Freshness Barrier, sichere Pull-Entscheidung,
-  Worktree-Leases und dynamische Profile bleiben gruen.
 
 *Wrapper tests prove TTY routing, backward compatibility, safe fallback,
 fingerprinted caching, and Bash/PowerShell parity.*
@@ -606,33 +547,11 @@ macOS, Ubuntu, and Windows. Missing required platform evidence is not a pass.*
 - **AC-12:** macOS-, Ubuntu- und Windows-Nachweise bestehen fuer den exakten
   Lieferkandidaten.
 - **AC-13:** Das Vorgaenger-Gate stoppt nachweislich vor jeder TUI-Feature- oder
-  Implementierungsaenderung, wenn einer der aktuell abgeschlossenen
-  Vorgaengernachweise fehlt oder gedriftet ist.
-- **AC-14:** Das aktuelle Gate bestaetigt Feature 009 sowie Features 015 bis
-  017 und gibt Position 4 als einzigen bevorzugten `Eligible`-Kandidaten frei.
-- **AC-15:** `PARTIAL` mit Exitcode `1` und vollstaendiger Evidence wird weder
-  als UI-Absturz noch als Erfolg dargestellt.
-- **AC-16:** Ereignisstrom, atomarer Abschlussbericht und Prozess-Exitcode
-  werden laufgebunden abgeglichen; Widerspruch ergibt `RESULT_MISMATCH`.
-- **AC-17:** Alle Fetch-Versuche sind vor der ersten Fachmutation sichtbar
-  abgeschlossen; ein Einzelbefund beendet die Bestandsaufnahme nicht.
-- **AC-18:** Mutation Barrier, Pull-Freigaben und blockierte
-  Repository-Zustaende bleiben ohne Farbe und ohne Checkout-Mutation
-  nachvollziehbar.
-- **AC-19:** Eigene, fremde, aktive, verwaiste und manipulierte
-  Worktree-Leases werden mit der kanonischen Engine-Entscheidung dargestellt.
-- **AC-20:** Das aktuelle Elf-Preset-Profil und ein synthetisch erweitertes
-  Profil funktionieren ohne TUI-Codeaenderung.
-- **AC-21:** Preview-, Resume-, Eingabe-, Umgebungs- und Abschlussvertraege
-  aus Features 015 und 016 bleiben gruen.
-- **AC-22:** TUI-Bestaetigung oder Delivery Authority fuer dieses Feature
-  erteilt der Wartungs-Engine keine Commit-, Push-, PR-, Merge-, Provider-
-  oder Administratorautoritaet fuer Ziel-Repositories.
+  Implementierungsaenderung, solange der Vorgaenger nicht abgeschlossen ist.
 
 *Acceptance preserves headless behavior, delegates all maintenance, proves the
 event and fallback contracts, covers accessibility and all platforms, and
-revalidates predecessor evidence, truthful partial and barrier states, leases,
-dynamic profiles, and strict target-repository authority boundaries.*
+enforces the predecessor gate before any TUI feature work.*
 
 ## 15. Nicht-Ziele / Non-Goals
 
@@ -643,13 +562,11 @@ dynamic profiles, and strict target-repository authority boundaries.*
 - kein automatischer Admin-Elevations- oder Passwortdialog
 - kein Einchecken erzeugter Binaerdateien
 - keine Mauspflicht
-- keine erneute Umsetzung der bereits abgeschlossenen Features 015 bis 017
-- keine Spec-Kit-Abarbeitung bei gedriftetem Vorgaenger- oder Series-Nachweis
+- keine Spec-Kit-Abarbeitung vor Abschluss des Vorgaengers
 
 *The feature is not a desktop or web UI, does not replace or duplicate the
-maintenance engines, does not redo predecessor hardening, does not add
-repository publication or privilege escalation, and cannot start with drifted
-predecessor evidence.*
+maintenance engines, does not add repository publication or privilege
+escalation, and cannot start before its predecessor is complete.*
 
 ## 16. Dokumentation und Statistik / Documentation and Statistics
 
@@ -681,7 +598,7 @@ renderer, with shared evidence writers serialized.*
 ```text
 $speckit-specify Nutze Lastenheft_Agentic-Workspace-Maintenance-TUI.md als verbindliche Eingabedatei.
 
-Pruefe vor Feature-Erstellung oder Artefaktaenderung das aktuell erfuellte Vorgaenger-Gate aus Abschnitt 2 erneut. Feature 009 sowie Features 015, 016 und 017 muessen anhand ihrer archivierten Lastenhefte, vollstaendigen Tasks, Completed-Run-States, Plattform- und Exact-Head-Evidence, Merge-/Closeout-Nachweise und des aktuellen Schema-1.1-Series-Reviews weiterhin konsistent abgeschlossen sein. Der Series-Vertrag muss 38 Ziele, drei Roots, 45 Abhaengigkeiten und dieses Lastenheft als einzigen bevorzugten Eligible-Kandidaten ausweisen. Fehlt ein Nachweis oder ist er gedriftet, stoppe ohne Feature, Branch, Specify-Artefakt oder Repository-Aenderung und berichte den fehlenden Nachweis sowie die naechste sichere Aktion.
+Pruefe vor Feature-Erstellung oder Artefaktaenderung das harte Vorgaenger-Gate aus Abschnitt 2. Feature 009 mit dem archivierten Lastenheft_Plattformuebergreifende-Ein-Kommando-Wartung.009-platform-maintenance.md sowie die aktiven Positionen 1 bis 3, Lastenheft_Windows-Ein-Kommando-Wartung-Haertung.md, Lastenheft_Linux-Ubuntu-Ein-Kommando-Wartung-Haertung.md und Lastenheft_Preset-Profil-Default-Branch-und-Worktree-Haertung.md, muessen jeweils nachweislich vollstaendig implementiert, fuer ihren Scope validiert und gemaess ihrer Delivery Authority abgeschlossen sein. Fehlt ein Nachweis, stoppe ohne Feature, Branch, Specify-Artefakt oder Repository-Aenderung und berichte die fehlenden Gate-Nachweise.
 
 Wenn das Gate erfuellt ist, erstelle eine Feature-Spezifikation fuer eine plattformuebergreifende, barrierearme Spectre.Console-TUI fuer maintain-agentic-workspace.*. Uebernimm alle Aufruf-, Kompatibilitaets-, Ereignis-, Cache-, Fallback-, Sicherheits-, Barrierefreiheits-, Test- und Abnahmeanforderungen dieses Lastenhefts.
 
@@ -689,13 +606,10 @@ Verbindlich:
 - Keine Argumente plus interaktives TTY startet die TUI mit Dry-run als Anfangsauswahl.
 - Keine Argumente ohne TTY und alle bestehenden Wartungsparameter behalten den Headless-Vertrag.
 - Bash und PowerShell bleiben die alleinigen Wartungs-Engines; keine Wartungslogik wird in C# dupliziert.
-- Das interne net10.0-Hilfsprogramm verwendet Spectre.Console und Spectre.Console.Testing 0.57.2 mit Locked Restore, Supply-Chain-Nachweis und content-adressiertem Home-Cache.
+- Das interne net10.0-Hilfsprogramm verwendet Spectre.Console 0.55.0 mit Locked Restore und content-adressiertem Home-Cache.
 - Ein linearer Plaintext-Assistent ist der sichere Fallback bei ungeeignetem Terminal oder nicht verfuegbarem Build.
-- Live-Status verwendet den versionierten JSONL-Ereigniskanal, parst keine freien Konsolentexte und leitet Erfolg nie aus stiller Ausgabe ab.
-- Der atomare JSON-Abschlussbericht und der Prozess-Exitcode bleiben kanonisch; Widersprueche ergeben RESULT_MISMATCH.
-- Die TUI bildet Remote Freshness, Mutation Barrier, sichere Pull-Entscheidungen, Worktree-Leases, dynamische Preset-Profile und wahrheitsgetreues PARTIAL/1 ab.
-- Die Windows-, Linux- und Fleet-Vertraege aus Features 015 bis 017 duerfen nicht regressieren.
-- Weder die TUI noch dieser Feature-Lauf erteilen der Wartungs-Engine Remote-, Provider-, Bereinigungs- oder Administratorautoritaet fuer Ziel-Repositories.
+- Live-Status verwendet den versionierten JSONL-Ereigniskanal und parst keine freien Konsolentexte.
+- Exitcodes, Ctrl+C, ungueltige Ereignisse und widerspruechliche Abschlussdaten folgen dem Lastenheft.
 - Tastatur, NO_COLOR, TERM=dumb, Screenreader-Lesereihenfolge, ASCII-Status und schmale Terminals sind verpflichtend.
 - Plane Tests und exakte Gate-Evidenz fuer macOS inklusive Bash 3.2, Ubuntu und Windows mit PowerShell 7.
 
@@ -706,29 +620,19 @@ Starte noch keine Implementierung oder Remote-Schreibaktion.
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete autonomous Spec Kit run for Lastenheft_Agentic-Workspace-Maintenance-TUI.md with deliveryAuthority=MergeAndSync.
-
-Use this intake as the binding source and preserve all scope, non-goals, security, accessibility, platform, evidence, and acceptance boundaries. Before feature creation, revalidate Feature 009 and completed Features 015, 016, and 017 through their archived intakes, completed tasks and run states, exact-head and platform evidence, merged closeouts, and the current schema-1.1 Series review. Require 38 targets, three roots, 45 dependencies, and this intake as the single preferred Eligible candidate. Stop without repository changes if any evidence is missing or drifted.
-
-Execute Specify, repeated Clarify, useful checklists, Plan, plan review, Tasks, repeated Analyze, Implement, validation, delivery, and retrospective until their convergence criteria are met. Implement only the cross-platform maintenance TUI and its additive event contract. Keep Bash and PowerShell as the sole maintenance engines. Preserve the Windows, Linux, Remote-Freshness, Mutation-Barrier, safe-pull, Worktree-Lease, dynamic-profile, result, resume, input-isolation, and target-repository authority contracts from Features 015 through 017.
-
-Use .NET 10 with Spectre.Console and Spectre.Console.Testing 0.57.2, locked restore, content-addressed cache, supply-chain evidence, and the specified plaintext fallback. Validate keyboard-only use, NO_COLOR, TERM=dumb, narrow and linear terminals, screen-reader reading order, ASCII status, truthful PARTIAL/1, RESULT_MISMATCH, cancellation, cache failure, malformed events, and exact macOS, Ubuntu, and Windows gates.
-
-Commit, push, create and converge a non-empty PR, merge, remove obsolete feature branches, return locally to main, fetch/prune, pull with fast-forward only, and prove a clean HEAD == origin/main. The narrow admin bypass is authorized only when every technical gate is green, zero actionable review threads remain, and Human Approval is the sole open rule. This authority applies only to delivery of the Level-0 feature; the maintenance engine receives no commit, push, PR, merge, provider, cleanup, secret, or administrator authority for target repositories. Do not start a successor feature.
+$speckit-autonomous Lastenheft_Agentic-Workspace-Maintenance-TUI.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Pruefe vor Feature-Erstellung das harte Gate fuer Feature 009 sowie die aktiven Vorgaengerpositionen 1 bis 3 und stoppe ohne Aenderung, falls auch nur ein Abschlussnachweis fehlt. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
 ```
 ## 18. Abnahme dieses Lastenhefts / Acceptance of This Intake
 
 - Das Lastenheft ist DE zuerst und EN danach aufgebaut.
-- Der Status nennt das aktuell erfuellte und vor Laufstart erneut zu pruefende
-  Vorgaenger-Gate sichtbar.
+- Der Status nennt das harte Vorgaenger-Gate sichtbar.
 - Die Abarbeitungsreihenfolge fuehrt den TUI-Intake auf Position 4 nach den
-  abgeschlossenen Features 015 bis 017 und markiert Feature 009 als
+  drei aktiven Wartungs- und Haertungsintakes und markiert Feature 009 als
   historische Gate-Evidence.
 - Aufruf-, Engine-, Ereignis-, Cache-, Fallback-, Barrierefreiheits-,
   Sicherheits- und Testvertraege sind entscheidungsvollstaendig.
-- Specify- und Autonomous-Prompt nennen den exakten Dateinamen, pruefen das
-  Gate vor jeder Feature- oder Repository-Aenderung und trennen
-  Feature-Delivery von Zielrepository-Autoritaet.
+- Specify- und Autonomous-Prompt nennen den exakten Dateinamen und pruefen das
+  Gate vor jeder Feature- oder Repository-Aenderung.
 - Das Anlegen des Lastenhefts startet weder Feature-Branch noch Spec-Kit-Lauf,
   Implementierung, Commit, Push, Pull Request oder Merge.
 
