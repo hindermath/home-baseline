@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "runId": "c5542c5f-c616-4ada-9a0e-34a94d443fcc",
+  "sequence": 1,
+  "timestampUtc": "2026-07-29T12:00:00Z",
+  "eventType": "run-started",
+  "status": "RUNNING",
+  "phaseId": null,
+  "targetId": null,
+  "messageDe": "Wartung gestartet.",
+  "messageEn": "Maintenance started.",
+  "details": {}
+}

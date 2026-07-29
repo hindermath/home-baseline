@@ -1290,6 +1290,49 @@ def print_default_remote_ref(args: argparse.Namespace) -> int:
     return 0
 
 
+def append_maintenance_event(args: argparse.Namespace) -> int:
+    """Append one validated, complete JSONL maintenance event."""
+    try:
+        run_id = str(uuid.UUID(args.run_id))
+        details = json.loads(args.details_json)
+        if not isinstance(details, dict):
+            raise ContractError("event details must be an object")
+        if args.sequence < 1:
+            raise ContractError("event sequence must be positive")
+        event_stream = args.event_stream.resolve()
+        event_stream.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        payload = {
+            "schemaVersion": 1,
+            "runId": run_id,
+            "sequence": args.sequence,
+            "timestampUtc": utc_now(),
+            "eventType": args.event_type,
+            "status": args.status,
+            "phaseId": args.phase_id,
+            "targetId": args.target_id,
+            "messageDe": args.message_de,
+            "messageEn": args.message_en,
+            "details": details,
+        }
+        encoded = (
+            json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n"
+        ).encode("utf-8")
+        descriptor = os.open(
+            event_stream,
+            os.O_APPEND | os.O_CREAT | os.O_WRONLY,
+            0o600,
+        )
+        try:
+            os.write(descriptor, encoded)
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+        return 0
+    except (ContractError, OSError, UnicodeError, ValueError, json.JSONDecodeError) as exc:
+        print(f"EVENT\tFAILED\t{exc}", file=sys.stderr)
+        return 2
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -1364,6 +1407,53 @@ def build_parser() -> argparse.ArgumentParser:
     default_ref = subparsers.add_parser("default-ref")
     default_ref.add_argument("--repository", type=pathlib.Path, required=True)
     default_ref.set_defaults(handler=print_default_remote_ref)
+    event = subparsers.add_parser("event")
+    event.add_argument("--event-stream", type=pathlib.Path, required=True)
+    event.add_argument("--run-id", required=True)
+    event.add_argument("--sequence", type=int, required=True)
+    event.add_argument(
+        "--event-type",
+        choices=(
+            "run-started",
+            "phase-started",
+            "phase-progress",
+            "finding",
+            "phase-completed",
+            "run-completed",
+        ),
+        required=True,
+    )
+    event.add_argument(
+        "--status",
+        choices=(
+            "RUNNING",
+            "PASSED",
+            "PARTIAL",
+            "BLOCKED",
+            "WARNING",
+            "SKIPPED",
+            "FAILED",
+        ),
+        required=True,
+    )
+    event.add_argument(
+        "--phase-id",
+        choices=(
+            "fleet",
+            "level0",
+            "home-sync",
+            "registry",
+            "propagation",
+            "preset-profiles",
+            "toolchain",
+            "final",
+        ),
+    )
+    event.add_argument("--target-id")
+    event.add_argument("--message-de", required=True)
+    event.add_argument("--message-en", required=True)
+    event.add_argument("--details-json", default="{}")
+    event.set_defaults(handler=append_maintenance_event)
     lease_create = subparsers.add_parser("lease-create")
     lease_create.add_argument("--state-root", type=pathlib.Path, required=True)
     lease_create.add_argument("--lease", type=pathlib.Path, required=True)

@@ -18,7 +18,27 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 [OPTIONEN]
 
 ## DESCRIPTION
 
-Ohne Optionen fuehrt das Skript die vollstaendige Wartung aus:
+Ohne Optionen öffnet ein vollständig interaktives Terminal zuerst die
+Wartungs-TUI. TUI bedeutet Terminal User Interface, also eine
+textbasierte Benutzungsoberfläche im Terminal. Die Vorauswahl ist
+`Dry-run`. Bei umgeleiteter Ein- oder Ausgabe bleibt der bisherige
+unbeaufsichtigte Vollwartungsvertrag erhalten. Jeder vorhandene
+Wartungsparameter bleibt headless.
+
+Die TUI zeigt die typisierte Auswahl und den entsprechenden Shell-Befehl,
+bevor sie genau einen Engine-Prozess startet. Eine echte Mutation benötigt
+eine Bestätigung mit Standard `Nein`. Die Oberfläche erteilt keine
+Repository-, Provider-, Secret- oder Administratorrechte.
+
+*With no options, a fully interactive terminal first opens the maintenance
+TUI with Dry-run selected. Redirected input or output preserves the previous
+unattended full-maintenance contract. Every existing maintenance option
+remains headless. The UI displays the typed selection and equivalent command
+before starting exactly one engine process. Mutation confirmation defaults to
+No, and the UI grants no repository, provider, secret, or administrator
+authority.*
+
+Nach dem Engine-Start gilt folgende Reihenfolge:
 
 1. Lock, Log und atomarer Bericht werden als Kontroll-Evidence angelegt.
 2. Die **Remote-Freshness-Barriere** prueft Level 0 und jedes aktive
@@ -147,6 +167,9 @@ after-hashes; unknown or partial changes block.*
 
 | Bash | PowerShell | Wirkung / Effect |
 |---|---|---|
+| `--tui` | `-Tui` | Erweiterte TUI; sichtbarer linearer Fallback nur vor Engine-Start / Enhanced TUI; visible plain fallback only before engine start |
+| `--plain-ui` | `-PlainUi` | Lineare, textorientierte Auswahl / Line-oriented text assistant |
+| `--no-tui` | `-NoTui` | Headless Engine und interner Rekursionsschutz / Headless engine and internal recursion guard |
 | `--check-only` | `-CheckOnly` | Nur fetchen und pruefen; keine Pulls, Datei- oder Paketupdates / Fetch and check only |
 | `--dry-run` | `-WhatIf` | Schreibende Schritte als Vorschau / Preview mutating steps |
 | `--scripts-only` | `-ScriptsOnly` | Maschinenpakete ueberspringen / Skip machine packages |
@@ -171,6 +194,41 @@ Administrator interaction is denied by default; the opt-in applies only to
 the current process and stores no credentials. It never bypasses UAC, process
 timeouts, repository safety checks, tests, or review gates.*
 
+Die drei UI-Schalter sind gegenseitig ausgeschlossen. Enhanced und Plain
+dürfen außer dem Home-Verzeichnis keine Wartungsoption vorwegnehmen. Ein
+ungeeignetes Terminal, fehlendes .NET-10-SDK, Locked-Restore-/Buildfehler oder
+ein nicht sicher nutzbarer Cache führt vor Engine-Start zum linearen
+Assistenten. Nach Engine-Start wird nie ein zweiter Prozess gestartet.
+
+Der TUI-Build liegt in einem inhaltsadressierten, plattformgebundenen Cache
+unter `~/.home-baseline/cache/maintenance-tui/`. Quellfingerabdruck,
+Plattform und Metadaten müssen exakt stimmen. Temporäre Builds werden erst
+nach erfolgreicher Prüfung atomar veröffentlicht.
+
+Ein interner JSONL-Kanal unter `~/.home-baseline/events/` enthält vollständige
+UTF-8-Ereigniszeilen mit Schema, Run-ID und streng steigender Sequenz. Diese
+Ereignisse unterstützen nur die Live-Anzeige. Bei Drift oder Beschädigung
+zeigt die Anzeige dauerhaft `EVENT_STREAM_DEGRADED` und wechselt in den
+linearen Modus. Bericht und Exitcode bleiben die Abschlusswahrheit. Die
+Schlussansicht nennt Mutationsbarriere, Repository-Zählung, Preset-Phase,
+Bericht, Log und nächste Aktion als kopierbaren Text.
+
+Ein erstes `Ctrl+C` wird genau einmal an den laufenden Engine-Prozess
+weitergegeben. Weitere Signale starten keinen zweiten Prozess und lösen keine
+automatische Bereinigung aus. Der kontrollierte Abbruch endet mit Exitcode
+`130`, sobald die Engine ihren Abschlusszustand geschrieben hat.
+
+*UI selectors are mutually exclusive. Enhanced and plain UI cannot preselect
+maintenance options. Unsupported terminal capability, missing .NET 10, locked
+restore or build failure, or an unsafe cache falls back before engine start.
+The platform-bound content-addressed cache accepts only exact source and
+metadata. Internal JSONL events support live display only. Event drift causes
+permanent linear degradation with `EVENT_STREAM_DEGRADED`, while report and
+process exit remain canonical. The final view keeps the mutation barrier,
+repository counts, preset phase, report, log, and next action copyable. The
+first `Ctrl+C` is forwarded exactly once; later signals cannot start another
+process or trigger automatic cleanup.*
+
 ## EXIT STATUS
 
 | Code | Bedeutung / Meaning |
@@ -179,6 +237,7 @@ timeouts, repository safety checks, tests, or review gates.*
 | `1` | Drift oder nicht synchroner Zustand gefunden / Drift or unsynchronized state found |
 | `2` | Betriebs-, Parameter- oder Sicherheitsfehler / Operational, parameter, or safety error |
 | `3` | Drift lokal repariert; separate Pruefung, Commit und Push erforderlich / Drift repaired locally; separate review, commit, and push required |
+| `130` | Vor oder während des Laufs durch den Benutzer abgebrochen / Cancelled by the user before or during the run |
 
 Ein nicht sicher abschliessbarer WinGet-Adminvorgang wird intern als
 `DEFERRED_ADMIN_REQUIRED` klassifiziert und am Orchestrator als blockierter
@@ -203,6 +262,8 @@ the complete remaining set. Signals use canonical exit `130` (`INT`) or `143`
 ## EXAMPLES
 
 ```bash
+bash scripts/maintain-agentic-workspace.sh --tui
+bash scripts/maintain-agentic-workspace.sh --plain-ui
 bash scripts/maintain-agentic-workspace.sh --check-only
 bash scripts/maintain-agentic-workspace.sh --dry-run
 bash scripts/maintain-agentic-workspace.sh --manifest /tmp/fleet.json --home-dir /tmp/test-home --dry-run
@@ -211,6 +272,8 @@ bash scripts/maintain-agentic-workspace.sh --scripts-only --repair-drift
 ```
 
 ```powershell
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -Tui
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -PlainUi
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CheckOnly
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf -GitRetryAttempts 3 -GitTimeoutSeconds 300 -WinGetTimeoutSeconds 1800

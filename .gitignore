@@ -107,3 +107,12 @@ scripts/config/*repository-registry.local.json
 **/.DS_Store
 docs/.vscode/settings.json
 docs/learning-units/.vscode/settings.json
+
+# Feature 018: lokale .NET-TUI-Ausgaben und Laufzeit-Cache
+# Feature 018: local .NET TUI output and runtime cache
+scripts/lib/maintenance-tui/**/bin/
+scripts/lib/maintenance-tui/**/obj/
+scripts/lib/maintenance-tui/.build/
+scripts/lib/maintenance-tui/.cache/
+**/__pycache__/
+**/*.pyc

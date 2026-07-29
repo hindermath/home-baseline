@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "G001-tui-selection-and-a11y",
+      "applicability": "Applicable",
+      "requiredScope": "Interactive selection, safe defaults, keyboard-only operation, no-color, dumb and narrow terminals, stable linear reading order and markup escaping.",
+      "requiredCommandTokens": [
+        "dotnet test"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G002-event-result-and-cancellation",
+      "applicability": "Applicable",
+      "requiredScope": "Versioned JSONL events, malformed-stream degradation, atomic result reconciliation, all exit codes, partial outcomes and cooperative cancellation.",
+      "requiredCommandTokens": [
+        "dotnet test"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G003-wrapper-cache-and-headless-compatibility",
+      "applicability": "Applicable",
+      "requiredScope": "TTY routing, explicit selectors, unchanged headless behavior, content-addressed cache, locked restore and plaintext fallback across Bash and PowerShell.",
+      "requiredCommandTokens": [
+        "test-maintenance-tui-wrappers"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G004-maintenance-regression-and-authority",
+      "applicability": "Applicable",
+      "requiredScope": "Features 015-017 preview, resume, isolation, finalization, freshness, mutation, pull, lease, dynamic-profile and target-repository authority contracts remain green.",
+      "requiredCommandTokens": [
+        "unittest discover"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G005-dependency-and-supply-chain",
+      "applicability": "Applicable",
+      "requiredScope": "Locked Spectre.Console 0.57.2 restore, transitive package inventory, vulnerability audit, license and source provenance.",
+      "requiredCommandTokens": [
+        "dotnet list",
+        "vulnerable"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G006-documentation-quality-and-parity",
+      "applicability": "Applicable",
+      "requiredScope": "Bilingual CEFR-B2 README, manpage and PowerShell help, architecture/test description, documentation impact, homogeneity, PSScriptAnalyzer, secret scan and statistics.",
+      "requiredCommandTokens": [
+        "check-homogeneity"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G007-exact-head-provider-evidence",
+      "applicability": "Applicable",
+      "requiredScope": "Every mandatory provider check and platform token is mapped to the exact reviewed PR head before merge.",
+      "requiredCommandTokens": [
+        "validate-autonomous-gate-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G008-web-cloud-ai-and-regulatory",
+      "applicability": "N/A",
+      "requiredScope": "DocFX or web accessibility, cloud architecture, AI-SBOM, Zero Trust, BSI C3A/C5, NIS2, CRA, EU AI Act and DORA evidence.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Feature 018 adds a local terminal helper and package evidence, not web navigation, cloud services, AI models, regulated services or a public product release.",
+      "reevaluationTrigger": "Reevaluate if web output, cloud/provider boundaries, AI models, regulated delivery or public product release enter the actual diff."
+    }
+  ]
+}

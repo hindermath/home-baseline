@@ -1,19 +1,43 @@
-# Sicherheits-Querschnittskonzepte / Security Cross-Cutting Concepts: home-baseline
+# Sicherheits-Querschnittskonzepte / Security Cross-Cutting Concepts
 
-**Projekt / Project**: home-baseline (Level-1)
-**Erstellt / Created**: 2026-04-24
-**Status**: Stub — mit projektspezifischen Inhalten zu befuellen / Stub — to be populated with project-specific content
-**Template-Quelle / Template Source**: `.specify/templates/arc42-security-template.md`
-**Constitution-Referenz / Constitution Reference**: Principle XIII (A.8.27)
+**Stand / State**: 2026-07-29
 
-<!--
-  Dieses Dokument ist ein Stub. Die vollstaendige Struktur findet sich im
-  Template unter .specify/templates/arc42-security-template.md.
-  Bei der Befuellung das Template als Vorlage verwenden.
+## Leitprinzipien / Principles
 
-  This document is a stub. The complete structure can be found in the
-  template at .specify/templates/arc42-security-template.md.
-  Use the template as a guide when populating.
+1. **Fail-safe defaults:** Dry-run ist vorausgewählt; Update-Bestätigung ist
+   standardmäßig Nein.
+2. **Least privilege:** UI-Auswahl erteilt nur Autorität für genau einen
+   lokalen Engine-Prozess.
+3. **Complete mediation:** Routing, Kombinationen, Eventzeilen,
+   Cachemetadaten und Abschlussquellen werden bei jeder Nutzung geprüft.
+4. **Separation of concerns:** C# präsentiert, Bash/PowerShell warten,
+   Python validiert gemeinsame Datenverträge.
+5. **Defense in depth:** Typed Arguments, striktes JSON, Markup-Escaping,
+   SHA-256, atomare Veröffentlichung und Exact-Head-CI wirken gemeinsam.
+
+## Sicherheitsrelevante Bausteine / Security-Relevant Building Blocks
+
+| Baustein | Eingabe | Sicherheitsausgabe |
+|---|---|---|
+| Invocation Router | TTY-Fakten und UI-Schalter | Enhanced, Plain oder Headless |
+| Selection Validator | typisierte Modusauswahl | gültige Kombination oder Exit 2/130 |
+| Command Builder | Auswahl und Plattform | Argumentliste plus reine Textdarstellung |
+| Event Reader | vollständige JSONL-Zeilen | validierter Live-Status oder dauerhafte Degradation |
+| Result Reconciler | Prozess, Bericht, Abschlussereignis | Status oder `RESULT_MISMATCH` |
+| UI Cache | Quellen, Lockfiles, Plattform | vollständiger atomarer Build oder Plain-Fallback |
+
+## Betriebsgrenzen / Operational Boundaries
+
+Die bestehenden Freshness-, Mutation-, Cleanup-, Admin- und
+Zielrepository-Grenzen aus Features 015 bis 017 bleiben unverändert. Die TUI
+besitzt keinen Bypass. NIS2, CRA, EU AI Act, DORA, BSI C3A und BSI C5 sind für
+den lokalen internen Helfer nicht ausgelöst. Neu bewerten bei Marktfreigabe,
+reguliertem Dienst, Cloudbetrieb oder KI-Laufzeit.
+
+*Existing safety barriers remain unchanged and the UI has no bypass. Cloud,
+regulated-service, market-release, and AI-runtime controls are re-evaluated
+only when such a boundary enters scope.*
+
+<!-- EN: docs/security/arc42-security.md
+[DE-Zusammenfassung: Sichere Querschnittsprinzipien und Bausteine der Wartungs-TUI.]
 -->
-
-[Zu befuellen / To be populated — see template]

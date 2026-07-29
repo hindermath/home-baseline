@@ -138,6 +138,7 @@
 | 2026-07-28 | Lernreihen-Governance- und KI-Kompetenz-Intake-Kette vorbereitet | — | — | — | Vier neue Intakes und die aktualisierte globale Closure bilden die Positionen 33 bis 37: read-only Gap-Audit, domänenneutrale Drei-Ebenen-Erweiterung des Intake Reviews, optionales Learning-Series-Governance-Preset, IHK-Pilot und abschließende Gesamtkonsistenzprüfung. Acht stabile KI-Kompetenzen, vier Lernphasen und vier Quellenstatus trennen amtliche Anforderungen, gestützte Ziele, Projektergänzungen und begründete Zukunftsannahmen. Fünf Authoring-Receipts, fünf Einzelreviews und der gemeinsame Fünf-Ziel-Review sind in Bash und PowerShell `Ready`. Der aktive Series-Vertrag umfasst 39 Ziele, drei Roots, 46 eindeutige azyklische Abhängigkeiten und weiterhin genau einen `Eligible`-Kandidaten an Position 3. Kein Specify-, autonomer oder Lernendenlauf wurde gestartet. Das Delta vor Statistikpflege umfasst 1 816 Nettozeilen. |
 | 2026-07-29 | Preset-Profil- und Worktree-Härtungsintake v1.3 | — | — | — | Der bestehende Intake auf Position 3 bindet jetzt die gemergten Features 015/016, Level 0 plus 43 aktive Manifest-Git-Ziele, das separat inventarisierte Collection-Ziel und den dynamischen Elf-Preset-Feldstand. PWH-016 bis PWH-020 sowie AC-018 bis AC-027 ergänzen exakte Bereinigungsfreigaben, begrenzte Netzwerk-Evidence, Regressionsschutz und die Zielrepository-Grenze. Intake-ID, 39 Series-Ziele, drei Roots, 46 Abhängigkeiten, Reihenfolge und alleiniger `Eligible`-Status blieben erhalten. Authoring-, Review- und Series-Validatoren bestehen in Bash und PowerShell. Feature 017, Specify und Autonomous wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 2 453 Nettozeilen. |
 | 2026-07-29 | Feature 017 Preset-Profil-, Branch- und Worktree-Härtung | — | — | — | Die Flottenwartung führt jetzt für Level 0 und jedes aktive Git-Ziel eine begrenzte Remote-Freshness-Prüfung vor nachfolgenden Mutationen aus. Beliebige Default-Branches werden aus symbolischer Remote-Evidence statt aus Namensannahmen bestimmt. Pull bleibt auf saubere, eindeutig zugeordnete Behind-only-Checkouts begrenzt. Eigentumsgebundene Worktree-Leases, dynamische Preset-Profile, nicht mutierende MSL-Konfliktprüfung und plattformparitätische Bash-/PowerShell-Evidence sind durch 60 Tests und 20 Provider-Jobs abgesichert. PR #153 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 3 und gibt Position 4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. |
+| 2026-07-29 | Feature 018 Agentic-Workspace-Wartungs-TUI | — | — | — | Die vorhandenen Bash-/PowerShell-Wartungs-Engines erhalten eine optionale Spectre.Console-TUI mit ausdrücklich vorausgewählter Vorschau, typisierten Argumenten und linearem Fallback. Ein privater JSONL-Kanal liefert nur Live-Evidence; finalisierter Bericht und Prozess-Exitcode bleiben kanonisch. Cache, Event-Degradierung, genau-einmaliger Abbruch, A11Y, Supply Chain und Verteilungsgrenzen sind lokal durch 62 .NET-, 14 Wrapper- und 79 vollständige Wartungstests abgesichert. Plattform- und Merge-Evidence bleiben bis zum exakten PR-Head offen. Das Implementierungsdelta vor Statistikpflege umfasst 7 610 Nettozeilen. |
 
 ---
 
@@ -918,6 +919,39 @@ supersessions plus a Ready schema-1.1 review preserve 38 targets, three roots,
 45 dependencies, and item 4 as the sole preferred Eligible candidate.
 MergeAndSync delivery grants no maintenance-target authority, and Feature 018
 was not started.*
+
+### 2026-07-29 - Feature 018 Agentic-Workspace-Wartungs-TUI / Agentic Workspace Maintenance TUI
+
+- Die argumentlose interaktive Ausführung startet die optionale
+  Spectre.Console-Oberfläche. Parametrisierte oder umgeleitete Aufrufe bleiben
+  auf dem bisherigen Headless-Pfad.
+- `DryRun` ist ausdrücklich vorausgewählt. Schreibende Optionen und der
+  eigentliche Lauf benötigen getrennte, standardmäßig verneinte
+  Bestätigungen.
+- Ein benutzerprivater append-only JSONL-Kanal zeigt Phasen und Findings.
+  Ungültige Daten erzeugen dauerhaft `EVENT_STREAM_DEGRADED`; Abschlussbericht
+  und Prozess-Exitcode bleiben die Wahrheit.
+- Der plattformgebundene, inhaltsadressierte Cache veröffentlicht nur
+  vollständige Locked-Restore-Builds atomar. Jede Vorbereitungslücke fällt vor
+  Engine-Start auf den funktional gleichen Plain-Assistenten zurück.
+- 62 .NET-Tests, 14 fokussierte Wrapper-Tests und 79 vollständige
+  Wartungsregressionen sind lokal grün. Supply-Chain-, Dokumentations-,
+  Sicherheits- und A11Y-Evidence liegen vor; exakte Plattform- und
+  Merge-Evidence folgen am PR-Head.
+- Das Delta vor Statistikpflege umfasst 7 610 Nettozeilen. Die TUI erteilt
+  keine Commit-, Push-, PR-, Merge-, Secret-, Cleanup- oder Adminautorität für
+  Ziel-Repositories.
+
+*Interactive no-argument execution starts the optional Spectre.Console UI,
+while parameterized or redirected calls retain the existing headless path.
+DryRun is an explicit default and mutation remains separately confirmed. A
+private append-only event channel supports live status only; permanent
+degradation is visible and the finalized report plus process exit remain
+canonical. The platform-bound content-addressed cache publishes only complete
+locked builds and otherwise selects the equivalent plain assistant before
+engine start. Sixty-two .NET tests, fourteen focused wrapper tests, and
+seventy-nine full maintenance regressions pass locally. Exact platform and
+merge evidence remain pending on the reviewed PR head.*
 
 ## Gesamtstatistik / Overall Statistics
 

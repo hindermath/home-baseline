@@ -13,9 +13,21 @@
     The script never commits or pushes target repositories and never switches
     branches.
 
-    Without parameters, the script performs the complete mutating maintenance
-    workflow. Use -CheckOnly for a read-oriented status run or -WhatIf for a
-    preview of mutating operations.
+    Without parameters, an interactive terminal starts the enhanced TUI with
+    Dry-run selected. Redirected or parameterized use preserves the existing
+    headless maintenance workflow. Use -CheckOnly for a read-oriented status
+    run or -WhatIf for a preview of mutating operations.
+
+.PARAMETER Tui
+    Start the enhanced terminal UI. Unsupported terminal or build capability
+    falls back visibly to the line-oriented assistant before engine start.
+
+.PARAMETER PlainUi
+    Start the line-oriented, text-first maintenance assistant.
+
+.PARAMETER NoTui
+    Run the maintenance engine without interactive selection. This switch is
+    also the recursion guard used by the TUI.
 
 .PARAMETER CheckOnly
     Fetch and report only. Do not pull repositories, synchronize files, update
@@ -41,6 +53,18 @@
 
 .PARAMETER HomeDir
     Alternative home directory, primarily for isolated tests or a second profile.
+
+.PARAMETER EventStream
+    Interner, benutzerprivater JSONL-Ereignispfad für die TUI. Nur zusammen
+    mit -NoTui und unterhalb von .home-baseline/events zulässig.
+
+    Internal user-private JSONL event path for the TUI. Valid only with
+    -NoTui and below .home-baseline/events.
+
+.PARAMETER RunId
+    Interne UUID zur Korrelation von Prozess, Ereignissen und Bericht.
+
+    Internal UUID correlating process, events, and report.
 
 .PARAMETER GitRetryAttempts
     Maximale begrenzte Versuche fuer transiente Fetch-/Fast-forward-Fehler.
@@ -91,6 +115,9 @@
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
+    [switch] $Tui,
+    [switch] $PlainUi,
+    [switch] $NoTui,
     [switch] $CheckOnly,
     [switch] $ScriptsOnly,
     [switch] $RepairDrift,
@@ -98,11 +125,15 @@ param(
     [switch] $AllowAdminPrompts,
     [string] $ManifestPath,
     [string] $HomeDir = [Environment]::GetFolderPath('UserProfile'),
+    [string] $EventStream,
+    [string] $RunId,
     [ValidateRange(1, 10)][int] $GitRetryAttempts = 3,
     [ValidateRange(5, 3600)][int] $GitTimeoutSeconds = 300,
     [ValidateRange(5, 86400)][int] $WinGetTimeoutSeconds = 1800
 )
 
+$entryBoundParameters = @{} + $PSBoundParameters
+$requestedRunId = $RunId
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $script:HBMaintenanceScriptPath = $PSCommandPath
@@ -122,6 +153,9 @@ function Invoke-HBAgenticWorkspaceMaintenance {
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
+        [switch] $Tui,
+        [switch] $PlainUi,
+        [switch] $NoTui,
         [switch] $CheckOnly,
         [switch] $ScriptsOnly,
         [switch] $RepairDrift,
@@ -129,11 +163,16 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         [switch] $AllowAdminPrompts,
         [string] $ManifestPath,
         [string] $HomeDir = [Environment]::GetFolderPath('UserProfile'),
+        [string] $EventStream,
+        [string] $RunId,
         [ValidateRange(1, 10)][int] $GitRetryAttempts = 3,
         [ValidateRange(5, 3600)][int] $GitTimeoutSeconds = 300,
         [ValidateRange(5, 86400)][int] $WinGetTimeoutSeconds = 1800
     )
     $parameters = @{
+        Tui = $Tui
+        PlainUi = $PlainUi
+        NoTui = $NoTui
         CheckOnly = $CheckOnly
         ScriptsOnly = $ScriptsOnly
         RepairDrift = $RepairDrift
@@ -144,6 +183,8 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         GitTimeoutSeconds = $GitTimeoutSeconds
         WinGetTimeoutSeconds = $WinGetTimeoutSeconds
     }
+    if ($EventStream) { $parameters.EventStream = $EventStream }
+    if ($RunId) { $parameters.RunId = $RunId }
     if ($ManifestPath) { $parameters.ManifestPath = $ManifestPath }
     if ($WhatIfPreference) { $parameters.WhatIf = $true }
     & $script:HBMaintenanceScriptPath @parameters
@@ -153,6 +194,34 @@ if ($MyInvocation.InvocationName -eq '.') {
     return
 }
 
+$uiSelectors = @($Tui, $PlainUi, $NoTui).Where({ [bool]$_ }).Count
+if ($uiSelectors -gt 1) {
+    Write-Host 'Fehler / Error: -Tui, -PlainUi und -NoTui sind gegenseitig ausgeschlossen / are mutually exclusive.' -ForegroundColor Red
+    exit 2
+}
+$maintenanceParameterNames = @(
+    'CheckOnly',
+    'ScriptsOnly',
+    'RepairDrift',
+    'IncludeOptional',
+    'AllowAdminPrompts',
+    'ManifestPath',
+    'GitRetryAttempts',
+    'GitTimeoutSeconds',
+    'WinGetTimeoutSeconds',
+    'WhatIf'
+)
+$hasExplicitMaintenanceParameter = @(
+    $maintenanceParameterNames | Where-Object { $entryBoundParameters.ContainsKey($_) }
+).Count -gt 0
+if (($Tui -or $PlainUi) -and $hasExplicitMaintenanceParameter) {
+    Write-Host 'Fehler / Error: Interaktive UI-Auswahl darf keine Wartungsoption vorwegnehmen / interactive UI selectors cannot include maintenance options.' -ForegroundColor Red
+    exit 2
+}
+if (($EventStream -or $requestedRunId) -and -not $NoTui) {
+    Write-Host 'Fehler / Error: Interne Ereignisparameter erfordern -NoTui / internal event parameters require -NoTui.' -ForegroundColor Red
+    exit 2
+}
 if ($CheckOnly -and $WhatIfPreference) {
     Write-Host 'Fehler / Error: -CheckOnly und / and -WhatIf sind nicht kombinierbar / cannot be combined.' -ForegroundColor Red
     exit 2
@@ -190,6 +259,11 @@ if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
     if ($RepairDrift) { $forward.RepairDrift = $true }
     if ($IncludeOptional) { $forward.IncludeOptional = $true }
     if ($AllowAdminPrompts) { $forward.AllowAdminPrompts = $true }
+    if ($Tui) { $forward.Tui = $true }
+    if ($PlainUi) { $forward.PlainUi = $true }
+    if ($NoTui) { $forward.NoTui = $true }
+    if ($EventStream) { $forward.EventStream = $EventStream }
+    if ($requestedRunId) { $forward.RunId = $requestedRunId }
     if ($ManifestPath) { $forward.ManifestPath = $ManifestPath }
     if ($WhatIfPreference) { $forward.WhatIf = $true }
     $forward.HomeDir = $HomeDir
@@ -199,6 +273,222 @@ if ((Test-Path -LiteralPath $homeScriptsDir -PathType Container) -and
     & $repoScript @forward
     exit $LASTEXITCODE
 }
+
+function Read-HBPlainYesNo {
+    param([Parameter(Mandatory)][string] $Prompt)
+    $answer = Read-Host $Prompt
+    return $answer -in @('y', 'Y', 'j', 'J')
+}
+
+function Invoke-HBPlainMaintenanceUi {
+    Write-Host 'Agentischer Workspace: Wartung / Agentic workspace maintenance'
+    Write-Host 'Die Vorschau zeigt geplante Änderungen und nimmt keine Änderung vor.'
+    Write-Host 'The dry-run shows planned changes and does not modify the workspace.'
+    Write-Host '1) Vorschau / Dry-run [Standard / default]'
+    Write-Host '2) Nur prüfen / Check-only'
+    Write-Host '3) Aktualisieren / Update'
+    $choice = Read-Host 'Auswahl / Selection [1]'
+    $engineArguments = [Collections.Generic.List[object]]::new()
+    $engineArguments.Add('-NoTui')
+    switch ($choice) {
+        '2' { $engineArguments.Add('-CheckOnly') }
+        '3' { }
+        default { $engineArguments.Add('-WhatIf') }
+    }
+    $scriptsOnlyChoice = Read-HBPlainYesNo -Prompt 'Nur Skripte? / Scripts only? [y/N]'
+    if ($scriptsOnlyChoice) {
+        $engineArguments.Add('-ScriptsOnly')
+    } elseif (Read-HBPlainYesNo -Prompt 'Optionale Werkzeuge? / Optional tools? [y/N]') {
+        $engineArguments.Add('-IncludeOptional')
+    }
+    if ($choice -eq '3') {
+        if (Read-HBPlainYesNo -Prompt 'Wartungspaket-Drift lokal reparieren? / Repair maintenance-package drift locally? [y/N]') {
+            $engineArguments.Add('-RepairDrift')
+        }
+        if (-not (Read-HBPlainYesNo -Prompt 'Schreibenden Lauf einmal starten? / Start one mutating run? [y/N]')) {
+            Write-Host 'Vor dem Engine-Start abgebrochen. / Cancelled before engine start.'
+            exit 130
+        }
+    }
+    $engineArguments.Add('-HomeDir')
+    $engineArguments.Add($HomeDir)
+    $display = @('pwsh', '-NoProfile', '-File', $PSCommandPath) + @(
+        $engineArguments | ForEach-Object { "'$($_.ToString().Replace("'", "''"))'" }
+    )
+    Write-Host "Befehl / command: $($display -join ' ')"
+    & $PSCommandPath @engineArguments
+    exit $LASTEXITCODE
+}
+
+function Get-HBTuiFingerprint {
+    param([Parameter(Mandatory)][string] $Root)
+    $incremental = [Security.Cryptography.IncrementalHash]::CreateHash(
+        [Security.Cryptography.HashAlgorithmName]::SHA256
+    )
+    try {
+        $utf8 = [Text.UTF8Encoding]::new($false)
+        $incremental.AppendData($utf8.GetBytes("contract:1`n"))
+        $paths = @(
+            Get-ChildItem -LiteralPath (Join-Path $Root 'scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui') `
+                -Recurse -File |
+                Where-Object { $_.Extension -in @('.cs', '.csproj', '.json') }
+            Get-Item -LiteralPath (Join-Path $Root 'scripts/lib/maintenance-tui/NuGet.config')
+            Get-Item -LiteralPath (
+                Join-Path $Root `
+                    'scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json'
+            )
+        ) | Sort-Object { [IO.Path]::GetRelativePath($Root, $_.FullName).Replace('\', '/') }
+        foreach ($path in $paths) {
+            $relative = [IO.Path]::GetRelativePath($Root, $path.FullName).Replace('\', '/')
+            $bytes = [IO.File]::ReadAllBytes($path.FullName)
+            $incremental.AppendData($utf8.GetBytes("path:${relative}`nlength:$($bytes.Length)`n"))
+            $incremental.AppendData($bytes)
+            $incremental.AppendData($utf8.GetBytes("`n"))
+        }
+        return [Convert]::ToHexStringLower($incremental.GetHashAndReset())
+    } finally {
+        $incremental.Dispose()
+    }
+}
+
+function Test-HBTuiCacheComplete {
+    param(
+        [Parameter(Mandatory)][string] $CacheDirectory,
+        [Parameter(Mandatory)][string] $Fingerprint,
+        [Parameter(Mandatory)][string] $Platform
+    )
+    $entry = Join-Path $CacheDirectory 'HomeBaseline.MaintenanceTui.dll'
+    $metadataPath = Join-Path $CacheDirectory 'cache.json'
+    if (-not (Test-Path $entry -PathType Leaf) -or -not (Test-Path $metadataPath -PathType Leaf)) {
+        return $false
+    }
+    try {
+        $metadata = Get-Content -LiteralPath $metadataPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        return (
+            $metadata.schemaVersion -eq 1 -and
+            $metadata.fingerprint -eq $Fingerprint -and
+            $metadata.platform -eq $Platform
+        )
+    } catch {
+        return $false
+    }
+}
+
+function Invoke-HBEnhancedMaintenanceUi {
+    if ([Console]::IsInputRedirected -or [Console]::IsOutputRedirected -or $env:TERM -eq 'dumb') {
+        Write-Warning 'Erweiterte TUI nicht verfügbar; lineare Ausgabe wird verwendet / enhanced TUI unavailable; using plain output.'
+        Invoke-HBPlainMaintenanceUi
+    }
+    $dotnet = Get-Command dotnet -ErrorAction SilentlyContinue
+    $dotnetVersion = if ($dotnet) { (& dotnet --version 2>$null) } else { '' }
+    if (-not $dotnet -or -not $dotnetVersion.StartsWith('10.', [StringComparison]::Ordinal)) {
+        Write-Warning '.NET-10-SDK fehlt; lineare Ausgabe wird verwendet / .NET 10 SDK is missing; using plain output.'
+        Invoke-HBPlainMaintenanceUi
+    }
+    $project = Join-Path $sourceRoot 'scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/HomeBaseline.MaintenanceTui.csproj'
+    $architecture = [Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLowerInvariant()
+    if ($architecture -notin @('arm64', 'x64')) {
+        Write-Warning 'Plattform wird nicht unterstützt / platform is unsupported.'
+        Invoke-HBPlainMaintenanceUi
+    }
+    $fingerprint = Get-HBTuiFingerprint -Root $sourceRoot
+    $platform = "windows-${architecture}"
+    $cacheParent = Join-Path $HomeDir ".home-baseline/cache/maintenance-tui/${platform}"
+    $cacheDirectory = Join-Path $cacheParent $fingerprint
+    $entry = Join-Path $cacheDirectory 'HomeBaseline.MaintenanceTui.dll'
+    $metadata = Join-Path $cacheDirectory 'cache.json'
+    $buildLock = Join-Path $cacheParent "${fingerprint}.lock"
+    $lockAcquired = $false
+    if (-not (Test-HBTuiCacheComplete -CacheDirectory $cacheDirectory -Fingerprint $fingerprint -Platform $platform)) {
+        try {
+            New-Item -ItemType Directory -Path $cacheParent -Force -ErrorAction Stop | Out-Null
+        } catch {
+            Write-Warning 'TUI-Cache ist nicht beschreibbar; lineare Ausgabe wird verwendet / TUI cache is not writable; using plain output.'
+            Invoke-HBPlainMaintenanceUi
+        }
+        foreach ($attempt in 0..99) {
+            try {
+                New-Item -ItemType Directory -Path $buildLock -ErrorAction Stop | Out-Null
+                $lockAcquired = $true
+                break
+            } catch {
+                if (Test-HBTuiCacheComplete -CacheDirectory $cacheDirectory -Fingerprint $fingerprint -Platform $platform) {
+                    break
+                }
+                Start-Sleep -Milliseconds 100
+            }
+        }
+        if (-not $lockAcquired -and
+            -not (Test-HBTuiCacheComplete -CacheDirectory $cacheDirectory -Fingerprint $fingerprint -Platform $platform)) {
+            Write-Warning 'TUI-Build-Lock blieb belegt; lineare Ausgabe wird verwendet / TUI build lock remained busy; using plain output.'
+            Invoke-HBPlainMaintenanceUi
+        }
+    }
+    if (-not (Test-HBTuiCacheComplete -CacheDirectory $cacheDirectory -Fingerprint $fingerprint -Platform $platform)) {
+        if (Test-Path $cacheDirectory) {
+            Remove-Item -LiteralPath $cacheDirectory -Recurse -Force
+        }
+        $temporary = Join-Path $cacheParent ".build.$([Guid]::NewGuid())"
+        try {
+            New-Item -ItemType Directory -Path $temporary -ErrorAction Stop | Out-Null
+        } catch {
+            Write-Warning 'Temporärer TUI-Buildpfad ist nicht verfügbar; lineare Ausgabe wird verwendet / temporary TUI build path is unavailable; using plain output.'
+            Invoke-HBPlainMaintenanceUi
+        }
+        & dotnet restore $project --locked-mode | Out-Null
+        $restoreExit = $LASTEXITCODE
+        if ($restoreExit -eq 0) {
+            & dotnet publish $project --configuration Release --no-restore --output (Join-Path $temporary 'publish') | Out-Null
+        }
+        if ($restoreExit -ne 0 -or $LASTEXITCODE -ne 0) {
+            Remove-Item -LiteralPath $temporary -Recurse -Force
+            if ($lockAcquired -and (Test-Path $buildLock)) {
+                Remove-Item -LiteralPath $buildLock -Recurse -Force
+            }
+            Write-Warning 'TUI-Build fehlgeschlagen; lineare Ausgabe wird verwendet / TUI build failed; using plain output.'
+            Invoke-HBPlainMaintenanceUi
+        }
+        $publish = Join-Path $temporary 'publish'
+        [IO.File]::WriteAllText(
+            (Join-Path $publish 'cache.json'),
+            (@{ schemaVersion = 1; fingerprint = $fingerprint; platform = $platform } |
+                ConvertTo-Json -Compress) + "`n",
+            [Text.UTF8Encoding]::new($false)
+        )
+        try {
+            Move-Item -LiteralPath $publish -Destination $cacheDirectory -ErrorAction Stop
+        } catch {
+            if (-not (Test-Path $entry -PathType Leaf) -or -not (Test-Path $metadata -PathType Leaf)) {
+                Write-Warning 'TUI-Cache konnte nicht atomar veröffentlicht werden; lineare Ausgabe wird verwendet / TUI cache could not be published atomically; using plain output.'
+                Invoke-HBPlainMaintenanceUi
+            }
+        } finally {
+            if (Test-Path $temporary) { Remove-Item -LiteralPath $temporary -Recurse -Force }
+            if ($lockAcquired -and (Test-Path $buildLock)) {
+                Remove-Item -LiteralPath $buildLock -Recurse -Force
+            }
+        }
+    }
+    if (-not (Test-HBTuiCacheComplete -CacheDirectory $cacheDirectory -Fingerprint $fingerprint -Platform $platform)) {
+        Write-Warning 'TUI-Cache ist unvollständig; lineare Ausgabe wird verwendet / TUI cache is incomplete; using plain output.'
+        Invoke-HBPlainMaintenanceUi
+    }
+    & dotnet $entry --wrapper $PSCommandPath --home-dir $HomeDir
+    exit $LASTEXITCODE
+}
+
+$implicitInteractiveUi = (
+    $entryBoundParameters.Count -eq 0 -and
+    -not [Console]::IsInputRedirected -and
+    -not [Console]::IsOutputRedirected
+)
+if ($Tui -or $implicitInteractiveUi) {
+    Invoke-HBEnhancedMaintenanceUi
+}
+if ($PlainUi) {
+    Invoke-HBPlainMaintenanceUi
+}
+
 $registry = Join-Path $HomeDir '.home-baseline/level2-repository-registry.json'
 $stateDir = Join-Path $HomeDir '.home-baseline'
 $lockDir = Join-Path $stateDir 'locks/agentic-workspace-maintenance.lock'
@@ -207,14 +497,45 @@ $reportDir = Join-Path $stateDir 'reports'
 $resumeEvidenceFile = Join-Path $stateDir 'agentic-workspace-resume.json'
 $presetWorktreeLeaseDir = Join-Path $stateDir 'preset-validation-leases'
 $presetWorktreeStateDir = Join-Path $stateDir 'preset-validation-worktrees'
+$eventRoot = [IO.Path]::GetFullPath((Join-Path $stateDir 'events'))
+if ($EventStream) {
+    $EventStream = [IO.Path]::GetFullPath($EventStream)
+    $eventPrefix = $eventRoot.TrimEnd(
+        [IO.Path]::DirectorySeparatorChar,
+        [IO.Path]::AltDirectorySeparatorChar
+    ) + [IO.Path]::DirectorySeparatorChar
+    if (-not $EventStream.StartsWith($eventPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        Write-Host 'Fehler / Error: Event-Pfad liegt außerhalb des privaten Evidence-Verzeichnisses / event path is outside private evidence.' -ForegroundColor Red
+        exit 2
+    }
+    New-Item -ItemType Directory -Path (Split-Path -Parent $EventStream) -Force | Out-Null
+    [IO.File]::WriteAllText($EventStream, '', [Text.UTF8Encoding]::new($false))
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent().Name
+    & icacls $EventStream /inheritance:r /grant:r "${identity}:(F)" | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host 'Fehler / Error: Event-Datei konnte nicht auf den aktuellen Benutzer begrenzt werden / event file could not be restricted to the current user.' -ForegroundColor Red
+        exit 2
+    }
+}
 $script:Findings = 0
 $script:RepairApplied = $false
 $script:PreviewDrift = $false
 $script:ResumeAllowedPaths = @()
 $exitCode = 0
 $transcriptStarted = $false
-$runId = [Guid]::NewGuid().ToString()
+$runId = if ($requestedRunId) {
+    try { ([Guid]$requestedRunId).ToString() } catch {
+        Write-Host 'Fehler / Error: Run-ID ist keine gültige UUID / run ID is not a valid UUID.' -ForegroundColor Red
+        exit 2
+    }
+} else {
+    [Guid]::NewGuid().ToString()
+}
 $reportFile = Join-Path $reportDir "agentic-workspace-${runId}.json"
+$script:MaintenanceEventSequence = 0
+$script:StartedMaintenanceEventPhases = [Collections.Generic.HashSet[string]]::new(
+    [StringComparer]::Ordinal
+)
 if (-not (Test-Path -LiteralPath $fleetEngine -PathType Leaf)) {
     throw "Fleet-Vertragskern fehlt / fleet contract engine missing: ${fleetEngine}"
 }
@@ -307,6 +628,71 @@ function Invoke-HBPythonCommand {
     & $script:HBPythonLauncher.FilePath @commandArguments
 }
 
+function ConvertTo-HBEventStatus {
+    param([Parameter(Mandatory)][string] $Status)
+    return $(switch ($Status) {
+        'Passed' { 'PASSED' }
+        'Warning' { 'WARNING' }
+        'DeferredAdminRequired' { 'WARNING' }
+        'Blocked' { 'BLOCKED' }
+        'Skipped' { 'SKIPPED' }
+        'Failed' { 'FAILED' }
+        'Interrupted' { 'FAILED' }
+        default { 'PARTIAL' }
+    })
+}
+
+function Write-HBMaintenanceEvent {
+    param(
+        [Parameter(Mandatory)][string] $EventType,
+        [Parameter(Mandatory)][string] $Status,
+        [string] $PhaseId,
+        [string] $TargetId,
+        [Parameter(Mandatory)][string] $MessageDe,
+        [Parameter(Mandatory)][string] $MessageEn,
+        [string] $DetailsJson = '{}'
+    )
+    if (-not $EventStream) { return }
+    $script:MaintenanceEventSequence++
+    $arguments = @(
+        $fleetEngine, 'event',
+        '--event-stream', $EventStream,
+        '--run-id', $runId,
+        '--sequence', [string]$script:MaintenanceEventSequence,
+        '--event-type', $EventType,
+        '--status', $Status,
+        '--message-de', $MessageDe,
+        '--message-en', $MessageEn,
+        '--details-json', $DetailsJson
+    )
+    if ($PhaseId) { $arguments += @('--phase-id', $PhaseId) }
+    if ($TargetId) { $arguments += @('--target-id', $TargetId) }
+    Invoke-HBPythonCommand -Arguments $arguments | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warning 'Ereignis konnte nicht geschrieben werden / event could not be written.'
+    }
+}
+
+function Start-HBMaintenanceEventPhase {
+    param(
+        [Parameter(Mandatory)][ValidateSet(
+            'fleet',
+            'level0',
+            'home-sync',
+            'registry',
+            'propagation',
+            'preset-profiles',
+            'toolchain',
+            'final'
+        )][string] $PhaseId
+    )
+    if (-not $script:StartedMaintenanceEventPhases.Add($PhaseId)) { return }
+    Write-HBMaintenanceEvent -EventType 'phase-started' -Status 'RUNNING' `
+        -PhaseId $PhaseId `
+        -MessageDe "Phase ${PhaseId} gestartet." `
+        -MessageEn "Phase ${PhaseId} started."
+}
+
 $requiredAnalyzerVersion = [Version]'1.25.0'
 $analyzerAvailable = $null -ne (
     Get-Module -ListAvailable PSScriptAnalyzer |
@@ -342,6 +728,24 @@ function Add-HBReportStage {
     )
     if ($LASTEXITCODE -ne 0) {
         throw "Run-Bericht konnte nicht aktualisiert werden / run report update failed: ${StageId}"
+    }
+    if ($StageId -in @(
+        'fleet',
+        'level0',
+        'home-sync',
+        'registry',
+        'propagation',
+        'preset-profiles',
+        'toolchain',
+        'final'
+    )) {
+        Start-HBMaintenanceEventPhase -PhaseId $StageId
+        Write-HBMaintenanceEvent -EventType 'phase-completed' `
+            -Status (ConvertTo-HBEventStatus -Status $Status) `
+            -PhaseId $StageId `
+            -MessageDe "Phase ${StageId} abgeschlossen." `
+            -MessageEn "Phase ${StageId} completed." `
+            -DetailsJson (@{ exitCode = $ExitCode } | ConvertTo-Json -Compress)
     }
 }
 
@@ -927,6 +1331,10 @@ try {
     Write-Host "Level-0: ${sourceRoot}"
     Write-Host "Home: ${HomeDir}"
     Write-Host "Run-ID: ${runId}"
+    Write-HBMaintenanceEvent -EventType 'run-started' -Status 'RUNNING' `
+        -MessageDe 'Wartung gestartet.' `
+        -MessageEn 'Maintenance started.' `
+        -DetailsJson (@{ mode = $maintenanceMode.FleetMode } | ConvertTo-Json -Compress)
 
     try {
         Initialize-HBResumeState
@@ -950,10 +1358,24 @@ try {
     }
 
     Write-HBInfo 'Soll-Flotte pruefen und sicher warten / Check and safely maintain desired fleet'
+    Start-HBMaintenanceEventPhase -PhaseId 'fleet'
     $fleetStatus = Invoke-HBFleetContract
     switch ($fleetStatus) {
-        0 { }
-        1 { $script:Findings++ }
+        0 {
+            Write-HBMaintenanceEvent -EventType 'phase-completed' -Status 'PASSED' `
+                -PhaseId 'fleet' `
+                -MessageDe 'Flottenprüfung abgeschlossen.' `
+                -MessageEn 'Fleet check completed.' `
+                -DetailsJson '{"exitCode":0}'
+        }
+        1 {
+            Write-HBMaintenanceEvent -EventType 'phase-completed' -Status 'BLOCKED' `
+                -PhaseId 'fleet' `
+                -MessageDe 'Flottenprüfung mit Befund abgeschlossen.' `
+                -MessageEn 'Fleet check completed with findings.' `
+                -DetailsJson '{"exitCode":1}'
+            $script:Findings++
+        }
         default {
             Add-HBReportStage -StageId 'fleet' -Status Failed -ExitCode 2 `
                 -Summary 'Fleet-Vertrag fehlgeschlagen / fleet contract failed' `
@@ -966,9 +1388,15 @@ try {
     $level0Row = @($fleetReport.targets | Where-Object { $_.targetId -eq 'level0' }) |
         Select-Object -First 1
     $level0Passed = $null -ne $level0Row -and $level0Row.result -eq 'Pass'
+    Start-HBMaintenanceEventPhase -PhaseId 'level0'
+    Add-HBReportStage -StageId 'level0' -Status $(if ($level0Passed) { 'Passed' } else { 'Blocked' }) `
+        -ExitCode $(if ($level0Passed) { 0 } else { 1 }) `
+        -Summary 'Level-0-Pruefung / Level-0 check' `
+        -NextAction $(if ($level0Passed) { 'N/A' } else { 'Branch und Upstream pruefen / review branch and upstream' })
 
     $homeStatus = 'Skipped'
     if (($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) {
+        Start-HBMaintenanceEventPhase -PhaseId 'home-sync'
         Write-HBInfo 'Lokale Home-Baseline synchronisieren / Synchronize local home baseline'
         $findingsBefore = $script:Findings
         $syncScript = Join-Path $sourceRoot 'scripts/sync-home.ps1'
@@ -989,10 +1417,6 @@ try {
         if ($homeInvocationStatus -ne 0) { throw 'sync-home fehlgeschlagen / failed.' }
         $homeStatus = if ($script:Findings -gt $findingsBefore) { 'Blocked' } else { 'Passed' }
     }
-    Add-HBReportStage -StageId 'level0' -Status $(if ($level0Passed) { 'Passed' } else { 'Blocked' }) `
-        -ExitCode $(if ($level0Passed) { 0 } else { 1 }) `
-        -Summary 'Level-0-Pruefung / Level-0 check' `
-        -NextAction $(if ($level0Passed) { 'N/A' } else { 'Branch und Upstream pruefen / review branch and upstream' })
     Add-HBReportStage -StageId 'home-sync' -Status $homeStatus `
         -ExitCode $(if ($homeStatus -eq 'Blocked') { 1 } else { 0 }) `
         -Summary 'Home-Sync / home sync' `
@@ -1007,6 +1431,7 @@ try {
         $script:Findings++
     }
 
+    Start-HBMaintenanceEventPhase -PhaseId 'registry'
     Write-HBInfo 'Level-1/Level-2 Registry pruefen / Check Level-1/Level-2 registry'
     $findingsBefore = $script:Findings
     Test-HBRegistry
@@ -1030,6 +1455,7 @@ try {
     }
 
     if ((($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) -and ($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe) {
+        Start-HBMaintenanceEventPhase -PhaseId 'propagation'
         Write-HBInfo 'Kanonisches Wartungspaket pruefen / Check canonical maintenance package'
         if (Test-Path -LiteralPath $registry -PathType Leaf) {
             $findingsBefore = $script:Findings
@@ -1054,6 +1480,7 @@ try {
     }
 
     if ((($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) -and ($script:Findings -eq 0 -or $CheckOnly) -and $registrySafe -and $leaseRecoveryReady) {
+        Start-HBMaintenanceEventPhase -PhaseId 'preset-profiles'
         Write-HBInfo 'Registry-gesteuerte Preset-Profile pruefen / Check registry-controlled preset profiles'
         $findingsBefore = $script:Findings
         Invoke-HBPresetProfiles
@@ -1072,6 +1499,7 @@ try {
     }
 
     if ((($fleetReady -and $leaseRecoveryReady) -or $CheckOnly) -and ($script:Findings -eq 0 -or $CheckOnly) -and -not $ScriptsOnly) {
+        Start-HBMaintenanceEventPhase -PhaseId 'toolchain'
         Write-HBInfo 'Maschinen-Toolchain pflegen / Maintain machine toolchain'
         $maintenance = Join-Path $sourceRoot 'scripts/maintain-agentic-winget-apps.ps1'
         $parameters = @{}
@@ -1103,6 +1531,7 @@ try {
     }
 
     if ($script:Findings -eq 0) {
+        Start-HBMaintenanceEventPhase -PhaseId 'final'
         Write-HBInfo 'Abschlusspruefung / Final verification'
         if ($WhatIfPreference) {
             $findingsBefore = $script:Findings
@@ -1166,11 +1595,55 @@ try {
     Write-Host "Log / log: ${logFile}"
     if (Test-Path -LiteralPath $reportFile -PathType Leaf) {
         try {
+            $preFinalReport = Get-Content -LiteralPath $reportFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $finalizedProperty = $preFinalReport.PSObject.Properties['finalized']
+            if ($null -eq $finalizedProperty -or $finalizedProperty.Value -ne $true) {
+                $finalStatus = switch ($exitCode) {
+                    0 { 'Passed' }
+                    1 { 'Blocked' }
+                    2 { 'Failed' }
+                    3 { 'Warning' }
+                    default { 'Failed' }
+                }
+                Invoke-HBPythonCommand -Arguments @(
+                    $fleetEngine, 'finalize',
+                    '--report', $reportFile,
+                    '--stage-id', 'final',
+                    '--status', $finalStatus,
+                    '--exit-code', [string]$exitCode,
+                    '--summary', 'Wartung abgeschlossen / maintenance completed',
+                    '--next-action', $(if ($exitCode -eq 0) {
+                        'N/A'
+                    } else {
+                        'Bericht und Log prüfen / review report and log'
+                    })
+                ) | Out-Null
+                if ($LASTEXITCODE -ne 0) {
+                    throw 'Run-Bericht konnte nicht finalisiert werden / run report finalization failed.'
+                }
+            }
             $terminalReport = Get-Content -LiteralPath $reportFile -Raw -Encoding UTF8 | ConvertFrom-Json
             if ($terminalReport.runId -ne $runId) {
                 throw 'Report-Run-ID stimmt nicht mit dem aktuellen Lauf ueberein / does not match the current run.'
             }
             $exitCode = [int]$terminalReport.exitCode
+            Start-HBMaintenanceEventPhase -PhaseId 'final'
+            Write-HBMaintenanceEvent -EventType 'run-completed' `
+                -Status (ConvertTo-HBEventStatus -Status $(switch ($exitCode) {
+                    0 { 'Passed' }
+                    1 { 'Blocked' }
+                    2 { 'Failed' }
+                    3 { 'Warning' }
+                    default { 'Failed' }
+                })) `
+                -PhaseId 'final' `
+                -MessageDe 'Wartung abgeschlossen.' `
+                -MessageEn 'Maintenance completed.' `
+                -DetailsJson (@{
+                    reportPath = $reportFile
+                    exitCode = $exitCode
+                    overallStatus = [string]$terminalReport.overallStatus
+                } | ConvertTo-Json -Compress)
             Write-Host "Status / status: $($terminalReport.overallStatus) (exit ${exitCode})"
         } catch {
             Write-Host "Fehler / Error: $($_.Exception.Message)" -ForegroundColor Red

@@ -1497,8 +1497,36 @@ explicit approval.*
 
 ### Ein Wartungsbefehl pro Betriebssystem / One maintenance command per OS
 
-Fuer die normale Gesamtwartung ist nur noch der passende Orchestrator noetig.
-Ohne Optionen legt er zuerst Kontroll-Evidence an. Danach schliesst die
+Für die normale Gesamtwartung ist nur noch der passende Orchestrator nötig.
+Ein argumentloser Aufruf in einem vollständig interaktiven Terminal öffnet
+zuerst eine Wartungs-TUI, also eine textbasierte Benutzungsoberfläche im
+Terminal. Die sichere Vorauswahl ist **Vorschau (Dry-run)**. Ein
+argumentloser Aufruf mit umgeleiteter Ein- oder Ausgabe behält dagegen den
+bisherigen unbeaufsichtigten Wartungsvertrag. Jeder vorhandene
+Wartungsparameter bleibt ebenfalls headless, also ohne vorgeschaltete
+Interaktion.
+
+Die TUI sammelt nur eine typisierte Auswahl, zeigt den entsprechenden Befehl
+und startet genau einmal den unveränderten Bash- oder PowerShell-Orchestrator.
+Vor einem schreibenden Lauf ist eine Bestätigung erforderlich, deren Standard
+`Nein` ist. Die TUI erteilt keine Commit-, Push-, Merge-, Secret-,
+Provider- oder Administratorrechte. Sie übernimmt auch keine
+Wartungsentscheidung aus dem Skript.
+
+*For normal maintenance, only the matching orchestrator is needed. An
+argument-free invocation in a fully interactive terminal first opens a
+terminal user interface (TUI). Its safe default is **Dry-run**. An
+argument-free invocation with redirected input or output preserves the
+existing unattended maintenance contract. Every existing maintenance option
+also remains headless.*
+
+*The TUI collects one typed selection, displays the equivalent command, and
+starts the unchanged Bash or PowerShell orchestrator exactly once. A mutating
+run requires confirmation with a default of `No`. The TUI grants no commit,
+push, merge, secret, provider, or administrator authority and does not replace
+an engine decision.*
+
+Nach dem Start legt die Engine zuerst Kontroll-Evidence an. Danach schließt die
 **Remote-Freshness-Barriere** alle begrenzten Fetch-Versuche fuer Level 0 und
 jedes aktive Git-Ziel ab. Erst dann darf das Skript sichere Behind-only-Ziele
 per Fast-forward aktualisieren, `~/` synchronisieren, die lokale GSDB-Registry
@@ -1509,9 +1537,9 @@ registriert noch in die Propagation aufgenommen. Vor dem ersten echten Lauf
 auf einem weiteren System sind `--check-only` / `-CheckOnly` und anschliessend
 die Vorschau empfohlen.
 
-*Normal full maintenance now needs only the matching orchestrator. Without
-options it creates control evidence, completes bounded fetch attempts for
-Level 0 and every active Git target, and closes the Remote Freshness Barrier.
+*After engine start, control evidence is created first. The Remote Freshness
+Barrier then completes bounded fetch attempts for Level 0 and every active Git
+target.
 Only then may it fast-forward safe behind-only targets, synchronize `~/`,
 maintain the GSDB registry, check maintenance-package distribution, and
 maintain the machine toolchain. One finding does not hide the remaining fleet
@@ -1521,6 +1549,9 @@ check-only and then preview before the first actual run.*
 
 ```bash
 # macOS / Linux
+bash scripts/maintain-agentic-workspace.sh             # TUI im interaktiven Terminal / TUI in an interactive terminal
+bash scripts/maintain-agentic-workspace.sh --tui       # TUI ausdrücklich / explicit TUI
+bash scripts/maintain-agentic-workspace.sh --plain-ui  # lineare Auswahl / line-oriented assistant
 bash scripts/maintain-agentic-workspace.sh --check-only
 bash scripts/maintain-agentic-workspace.sh --dry-run
 bash scripts/maintain-agentic-workspace.sh --allow-admin-prompts
@@ -1528,10 +1559,54 @@ bash scripts/maintain-agentic-workspace.sh --allow-admin-prompts
 
 ```powershell
 # Windows
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1          # TUI im interaktiven Terminal
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -Tui
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -PlainUi
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CheckOnly
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1
 ```
+
+`--tui` / `-Tui`, `--plain-ui` / `-PlainUi` und
+`--no-tui` / `-NoTui` sind gegenseitig ausgeschlossen. Die ersten beiden
+dürfen nur mit einer Home-Verzeichnis-Angabe kombiniert werden, weil die
+Wartungsoptionen erst in der Oberfläche gewählt werden. `--no-tui` /
+`-NoTui` ist der öffentliche Headless-Schalter und zugleich der interne
+Rekursionsschutz.
+
+Fehlen Terminalfähigkeiten oder das .NET-10-SDK, schlägt ein Locked Restore
+fehl oder kann der benutzereigene Cache nicht sicher veröffentlicht werden,
+wechselt die Oberfläche **vor** dem Engine-Start sichtbar in einen linearen
+ASCII-Assistenten. Nach Engine-Start gibt es keinen zweiten Versuch und keinen
+UI-Fallback. Ein versionierter, append-only JSONL-Ereigniskanal liefert
+lediglich Live-Hinweise. Der atomar finalisierte Bericht und der
+Prozess-Exitcode bleiben maßgeblich. Cache und Ereignisse liegen privat unter
+`~/.home-baseline/` und werden nicht eingecheckt.
+
+Ein erstes `Ctrl+C` wird genau einmal an den laufenden Engine-Prozess
+weitergegeben und als kontrollierter Abbruch behandelt; weitere Signale starten
+weder einen zweiten Prozess noch eine automatische Bereinigung. Bei einem
+ungültigen Ereignis zeigt die Oberfläche dauerhaft
+`EVENT_STREAM_DEGRADED` und liest den kanonischen Abschluss aus Bericht und
+Exitcode. Die Schlussansicht nennt mindestens Mutationsbarriere,
+Repository-Zählung, Preset-Phase, Bericht, Log und nächste Aktion als
+kopierbaren Text.
+
+*The three UI selectors are mutually exclusive. Enhanced and plain UI may only
+carry a home-directory override because maintenance options are selected in
+the interface. Missing terminal capability, .NET 10, locked restore, or a safe
+user cache causes a visible plain fallback before engine start. There is no
+second attempt or fallback after engine start. Versioned append-only JSONL
+events are advisory live information; the atomically finalized report and
+process exit remain canonical. Cache and events stay private below
+`~/.home-baseline/` and are never committed.*
+
+*The first `Ctrl+C` is forwarded to the running engine exactly once and is
+handled as a controlled interruption; later signals start neither another
+process nor automatic cleanup. Invalid event input permanently shows
+`EVENT_STREAM_DEGRADED`, while the canonical report and exit code determine the
+outcome. The final view exposes the mutation barrier, repository counts, preset
+phase, report, log, and next action as copyable text.*
 
 Mit `--scripts-only` / `-ScriptsOnly` bleibt die Maschinen-Toolchain
 unveraendert. Wartungspaket-Drift wird standardmaessig nur gemeldet und nur mit
