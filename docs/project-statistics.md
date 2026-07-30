@@ -141,6 +141,7 @@
 | 2026-07-29 | Feature 018 Agentic-Workspace-Wartungs-TUI | — | — | — | Die vorhandenen Bash-/PowerShell-Wartungs-Engines erhalten eine optionale Spectre.Console-TUI mit ausdrücklich vorausgewählter Vorschau, typisierten Argumenten und linearem Fallback. Ein privater JSONL-Kanal liefert nur Live-Evidence; finalisierter Bericht und Prozess-Exitcode bleiben kanonisch. Cache, Event-Degradierung, genau-einmaliger Abbruch, A11Y, Supply Chain und Verteilungsgrenzen sind durch 62 .NET-, 14 fokussierte Wrapper- und 79 vollständige Wartungstests sowie die grüne macOS-/Ubuntu-/Windows-Matrix abgesichert. PR #160 wurde am exakten geprüften Head gemergt; Home Runtime ist synchron. Der kausale Closeout archiviert Position 4, veröffentlicht 37 Ziele, drei Roots und 44 Kanten und gibt D4 als einzigen `Eligible`-Kandidaten frei, ohne ihn zu starten. Das Implementierungsdelta vor Statistikpflege umfasst 7 639 Nettozeilen. |
 | 2026-07-29 | D4-Dokumentationsaudit-Intake aktualisiert | — | — | — | Der bestehende read-only D4-Intake bindet jetzt die gemergten Implementierungs- und Abschlussnachweise der Features 015 bis 018. DIA-019 bis DIA-023 und AC-DIA-013 bis AC-DIA-017 ergänzen konkrete Prüfpunkte für Remote-Freshness, sichere Pull-Klassen, Worktree-Leases, dynamische Preset-Profile sowie die TUI-, Plain-, Headless-, Live-Evidence-, Abschluss-, Unterbrechungs- und Fallback-Dokumentation. Intake-ID, Position, 37 Series-Ziele, drei Roots und 44 Abhängigkeiten blieben unverändert; Authoring-, Einzelreview- und Series-Nachweise bestehen in Bash und PowerShell. D4 bleibt der einzige `Eligible`-Kandidat, wurde aber nicht gestartet. |
 | 2026-07-30 | D4-D7 Source-/Home-Runtime-Vertrag verfeinert | — | — | — | Documentation Impact `UpdateRequired`: Die vier noch nicht gestarteten Dokumentationsintakes unterscheiden nun die versionierte Level-0-Quelle `~/home-baseline-source`, die manifestgesteuerte Home-Baseline Runtime unter `~/` und `machineLocal`-Zustand. D4 auditiert Artefaktklassen, Inhalt, Vorteile, Einweg-Sync und Autorität; D5 verankert Navigation und Distributionsklasse; D6 liefert das betriebliche Entscheidungsmodell; D7 verhindert pauschale Level-0-Pfadkopien und verdeckte Propagation. 29 neue Requirements und 19 neue Akzeptanzkriterien präzisieren die Kette. Reihenfolge, 37 Series-Ziele, drei Roots, 44 Kanten und D4 als einziger `Eligible`-Kandidat bleiben unverändert. Die früheren D4-D7- und Series-Reviews sind hashbedingt archiviert; kein D4-D7-Spec-Kit-Lauf wurde gestartet. Zusätzlich wurden die durch PR #176 veralteten Receipt- und Serienhashes der Positionen 24 und 31 metadata-seitig repariert. Ihre vollständigen neuen Reviews melden jeweils einen verbleibenden Medium-Befund zum noch alten Level-1-Namen `secure-casetracker-baseline`, ohne den nicht freigegebenen Lastenheft-Inhalt zu ändern. |
+| 2026-07-30 | CaseTracker-Pfade in Rollout-Intakes kanonisiert | — | — | — | Documentation Impact `UpdateRequired`: Die Level-1-Ziele der Positionen 24 und 31 verwenden nun den kanonischen lokalen Fleet-Pfad `SecureCaseTrackerProjects`; Fleet-ID, Remote-Repositoryname und Remote-URL `secure-casetracker-baseline` bleiben unverändert. Beide Intake-Receipts und die aktive Series wurden mit vollständiger Supersession und byteidentischen Archiven neu gebunden. Die vollständigen Re-Reviews sind `Ready` und schließen beide Medium-Befunde `IR001`. Zielzahl, Reihenfolge, drei Roots, 44 Abhängigkeiten und D4 als einziger deklarierter `Eligible`-Kandidat bleiben unverändert. Es wurde kein Specify-, Autonomous- oder Lernreihenlauf gestartet. |
 
 ---
 
@@ -998,27 +999,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 442302 lines |
-| Textdateien / Text files | 2791 |
+| Textbasis / Text base | 443796 lines |
+| Textdateien / Text files | 2804 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-30 |
 | Aktivtage / Active days | 78 |
-| Relevante Commits / Relevant commits | 623 |
-| Zeilen je Aktivtag / Lines per active day | 5670.5 |
+| Relevante Commits / Relevant commits | 624 |
+| Zeilen je Aktivtag / Lines per active day | 5689.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-05 / 121867 |
 | Laengste Serie / Longest streak | 35 days |
-| Speedup vs. 80 lines/day | 70.9x |
-| Speedup vs. 100 lines/day | 56.7x |
-| Methodik / Methodology | v2; source `e38b8602795a` |
+| Speedup vs. 80 lines/day | 71.1x |
+| Speedup vs. 100 lines/day | 56.9x |
+| Methodik / Methodology | v2; source `a5b1703c786c` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
 Tests                           [#...................]   4.0% | 17782
-Dokumentation / Documentation   [#############.......]  67.2% | 297340
+Dokumentation / Documentation   [#############.......]  67.1% | 297700
 Skripte / Scripts               [##..................]  12.4% | 54943
-Konfiguration / Configuration   [###.................]  16.0% | 70837
+Konfiguration / Configuration   [###.................]  16.2% | 71971
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 770
 ```
@@ -1209,8 +1210,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.9x
-100 lines/day      [###########.........] 56.7x
+80 lines/day       [##############......] 71.1x
+100 lines/day      [###########.........] 56.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1223,7 +1224,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5670.5
+Visible repository [###########.........] 5689.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1249,6 +1250,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-30. Es enthaelt 78 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 379860 |
+| 2026-07 | 381720 |
 
 <!-- project-statistics-v2:end -->

@@ -147,7 +147,7 @@
     {
       "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
       "role": "OrderedMember",
-      "normalizedSha256": "3a734bef6d8161609b8530150c5329bb1c6819245c241cc8a73539f5feece530",
+      "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
       "status": "Blocked"
     },
     {
@@ -189,7 +189,7 @@
     {
       "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
       "role": "OrderedMember",
-      "normalizedSha256": "9822aad90c08f0e0ea75b4bbec4faff224508cb69010dbcfb7ec3b17aa6f0a84",
+      "normalizedSha256": "ce5652e3136dfcaa490be381edf828f09a770cc5a17b1e43be3188d97c0ac52b",
       "status": "Blocked"
     },
     {

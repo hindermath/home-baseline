@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "b3a365d1-d186-4ca8-89e5-af02cf49436a",
+  "mode": "Single",
+  "status": "NeedsRemediation",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
+  "reviewedAt": "2026-07-30T11:04:44Z",
+  "repository": {
+    "root": ".",
+    "head": "77bff70be6ce106739a51f4f3c95d7dd8f601dd4"
+  },
+  "requestEvidence": {
+    "path": "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-request.json",
+    "normalizedSha256": "5bbb56764dfdf4a7ca5b403ecbdf9a453d9d5f9d504fb6d7046b529d6f452587"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "role": "Primary",
+      "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
+      "gitBlob": "0c4b2ae943d6f63ad2f6d00173748ed6a26d27ad"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR001",
+      "severity": "Medium",
+      "category": "CanonicalFleetPath",
+      "target": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "disposition": "Open; content change is outside the explicitly authorized metadata-only repair.",
+      "owner": "Intake owner",
+      "evidence": "The Level-1 target still names secure-casetracker-baseline, while scripts/config/agentic-workspace-fleet.json declares SecureCaseTrackerProjects as the active canonical Level-1 path.",
+      "reevaluationTrigger": "Run $speckit-intake-repair Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md after explicit content-update authority."
+    }
+  ],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  },
+  "supersedes": "d4b2c966-f845-4b27-b2d3-cfeaf144d0c7"
+}

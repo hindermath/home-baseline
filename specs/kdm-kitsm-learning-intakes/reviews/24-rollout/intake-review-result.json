@@ -1,38 +1,27 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "b3a365d1-d186-4ca8-89e5-af02cf49436a",
+  "reviewId": "05527d86-c922-4afe-beac-eaa3c30740f4",
   "mode": "Single",
-  "status": "NeedsRemediation",
+  "status": "Ready",
   "policy": "home-baseline-kdm-kitsm-learning-v1",
-  "reviewedAt": "2026-07-30T11:04:44Z",
+  "reviewedAt": "2026-07-30T13:59:42Z",
   "repository": {
     "root": ".",
-    "head": "77bff70be6ce106739a51f4f3c95d7dd8f601dd4"
+    "head": "8dc12a36290642bbd1022de298546bf1b8d4eee6"
   },
   "requestEvidence": {
     "path": "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-request.json",
-    "normalizedSha256": "5bbb56764dfdf4a7ca5b403ecbdf9a453d9d5f9d504fb6d7046b529d6f452587"
+    "normalizedSha256": "fbdf4219a4724d93b62213dbef2b51810f4cb1fb934a2475b95fddd8916a89b8"
   },
   "targets": [
     {
       "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
       "role": "Primary",
-      "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
-      "gitBlob": "0c4b2ae943d6f63ad2f6d00173748ed6a26d27ad"
+      "normalizedSha256": "3a734bef6d8161609b8530150c5329bb1c6819245c241cc8a73539f5feece530",
+      "gitBlob": "e883e4522e5e8980b5466096a6fe5be6754de5b7"
     }
   ],
-  "findings": [
-    {
-      "id": "IR001",
-      "severity": "Medium",
-      "category": "CanonicalFleetPath",
-      "target": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-      "disposition": "Open; content change is outside the explicitly authorized metadata-only repair.",
-      "owner": "Intake owner",
-      "evidence": "The Level-1 target still names secure-casetracker-baseline, while scripts/config/agentic-workspace-fleet.json declares SecureCaseTrackerProjects as the active canonical Level-1 path.",
-      "reevaluationTrigger": "Run $speckit-intake-repair Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md after explicit content-update authority."
-    }
-  ],
+  "findings": [],
   "questions": [],
   "acceptedRisks": [],
   "operatorExceptions": [],
@@ -46,8 +35,8 @@
   "summary": {
     "critical": 0,
     "high": 0,
-    "medium": 1,
+    "medium": 0,
     "low": 0
   },
-  "supersedes": "d4b2c966-f845-4b27-b2d3-cfeaf144d0c7"
+  "supersedes": "b3a365d1-d186-4ca8-89e5-af02cf49436a"
 }

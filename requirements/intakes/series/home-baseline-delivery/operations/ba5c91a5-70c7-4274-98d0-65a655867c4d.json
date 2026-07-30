@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "ba5c91a5-70c7-4274-98d0-65a655867c4d",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user authority to repair the two canonical CaseTracker Level-1 paths and deliver through MergeAndSync with Admin-Bypass.",
+  "proposalNormalizedSha256": "432d39c87fcde69a82e17734938539a8b937659945744a78d8603d3cfe23d007",
+  "differences": {
+    "targetCount": {
+      "before": 37,
+      "after": 37
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 44,
+      "after": 44
+    },
+    "targetHashUpdates": [
+      {
+        "order": 24,
+        "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+        "before": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
+        "after": "3a734bef6d8161609b8530150c5329bb1c6819245c241cc8a73539f5feece530"
+      },
+      {
+        "order": 31,
+        "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+        "before": "ce5652e3136dfcaa490be381edf828f09a770cc5a17b1e43be3188d97c0ac52b",
+        "after": "9822aad90c08f0e0ea75b4bbec4faff224508cb69010dbcfb7ec3b17aa6f0a84"
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": false,
+    "reason": "The repair changes two canonical path values but no target order, root, edge, lifecycle, or delivery state."
+  },
+  "preparedPaths": [
+    "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+    "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-csharp-lernreihen-rollout.json",
+    "specs/intake-authoring-receipts/itse-csharp-lernreihen-rollout.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

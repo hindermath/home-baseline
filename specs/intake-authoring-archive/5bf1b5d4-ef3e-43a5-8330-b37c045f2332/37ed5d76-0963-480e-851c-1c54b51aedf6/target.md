@@ -30,7 +30,7 @@ Level 1:
 
 - `SecureOrderDeskProjects`
 - `SecureServiceHarvesterProjects`
-- `SecureCaseTrackerProjects`
+- `secure-casetracker-baseline`
 
 Level 2:
 
