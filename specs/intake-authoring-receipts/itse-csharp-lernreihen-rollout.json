@@ -1,28 +1,186 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "4ffb3471-6017-41de-920a-bf4d16adae5e",
+  "receiptId": "efa66f19-56b1-4352-a2f2-d86f2f2fde5f",
   "intakeId": "76ba0685-85df-40b4-a2bd-a106d1e15a82",
-  "generator": {"preset": "intake-authoring-governance", "version": "0.3.0"},
-  "createdAt": "2026-07-28T19:57:41Z",
-  "operation": {"operationId": "8900dfda-6c6b-42c0-9560-3d5038c87f02", "type": "Create", "authorityEvidence": "Approved eight-intake ITSE proposal and MergeAndSync instruction."},
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-30T11:04:44Z",
+  "operation": {
+    "operationId": "157de14d-615d-4671-9387-14a399d5ee01",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user authority to repair the two PR #176 metadata drifts without changing either rollout intake and include the repair in the current MergeAndSync delivery."
+  },
   "status": "ReadyForReview",
-  "target": {"path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md", "normalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da"},
-  "sources": [{"sourceId": "SRC001", "order": 1, "kind": "Pasted", "label": "Approved ITSE and cross-series consistency plan", "location": "SnapshotOnly", "path": "N/A", "requestedUrl": "N/A", "finalUrl": "N/A", "retrievedAt": "N/A", "httpStatus": "N/A", "contentType": "N/A", "contentLength": "N/A", "etag": "N/A", "lastModified": "N/A", "redirectChain": [], "rawSha256": "N/A", "normalizedSha256": "5712b3cac6afce15b1892c2568c70c8cf2e54c96a62107a60feb1a383a865e69", "gitBlob": "N/A", "proofBoundary": "ConversationSnapshot plus approved repository inventory"}],
+  "target": {
+    "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+    "normalizedSha256": "ce5652e3136dfcaa490be381edf828f09a770cc5a17b1e43be3188d97c0ac52b"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted rollout intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/76ba0685-85df-40b4-a2bd-a106d1e15a82/157de14d-615d-4671-9387-14a399d5ee01/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da",
+      "gitBlob": "8ccd2decfa23ce513edebfce85616745e24c007a",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Archived superseded Intake Review result",
+      "location": "Repository",
+      "path": "specs/itse-learning-intakes/reviews/31-rollout/history/641da191-e289-4603-a66b-f8c3f62526df/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "08952c28a31232e2aaca1ac1705a354ba4a8c94ef4d23d2cb0448fddaa687783",
+      "gitBlob": "09b9f9ff1f3bae6545dbc8a51b2cdc0d5637f533",
+      "proofBoundary": "ArchivedSupersededReview"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "Pasted",
+      "label": "Merged PR #176 target-path correction evidence",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "ce5652e3136dfcaa490be381edf828f09a770cc5a17b1e43be3188d97c0ac52b",
+      "gitBlob": "N/A",
+      "proofBoundary": "MergedCommit:1fd1c5048ace8d6eaf7c1d4834ef2b04e6b9707c"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "Pasted",
+      "label": "Current authorization for metadata-only repair",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "b5b6123df50c809d95558ac1c2098624288dd9938f7169a81a9b0be5408438c3",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
+    }
+  ],
   "profile": "home-baseline-lastenheft",
   "languagePolicy": "GermanFirstEnglishSecond",
-  "decisions": [{"id": "IAD001", "status": "Answered", "question": "Welche Rolloutziele gelten?", "answer": "Three Level-1 workspaces and their three C# Level-2 references.", "evidence": "Approved proposal and existing rollout contract."}, {"id": "IAD002", "status": "Answered", "question": "Welche Produktfamilie ist ITSE-Primärkontext?", "answer": "Secure ServiceHarvester; OrderDesk and CaseTracker receive bounded applicable material.", "evidence": "Approved proposal."}],
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Änderung wird repariert?",
+      "answer": "Der bereits durch PR #176 gemergte Level-2-Pfad SecureCaseTrackerProjects/SecureCaseTracker-CSharp wird mit dem aktuellen Zielhash und vollständiger Provenienz gebunden.",
+      "evidence": "Merged commit 1fd1c50 and current user authority."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Bleibt der Lastenheft-Inhalt in dieser Reparatur unverändert?",
+      "answer": "Ja. Diese Reparatur ändert ausschließlich Receipt-, Review- und Serienmetadaten.",
+      "evidence": "Die aktuelle Benutzerfreigabe begrenzt die Korrektur ausdrücklich auf Metadaten."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Serienbindung ist aktuell?",
+      "answer": "Home Baseline Delivery Intake Series, Position 31, Rolle OrderedMember; die frühere ITSE-Serie ist superseded und bleibt historisch unverändert.",
+      "evidence": "Das aktive Manifest ist die aktuelle konsolidierte Serienquelle."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wie wird der alte Review behandelt?",
+      "answer": "Review 641da191-e289-4603-a66b-f8c3f62526df wird byte-identisch archiviert und durch einen vollständigen neuen Review supersediert.",
+      "evidence": "Der alte Review bindet den vor PR #176 gültigen Zielhash."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync mit dem aktuell genehmigten engen Admin-Bypass; kein Lernreihenlauf startet automatisch.",
+      "evidence": "Explizite aktuelle Benutzerautorität."
+    },
+    {
+      "id": "IAD006",
+      "status": "Answered",
+      "question": "Welcher inhaltliche Restbefund bleibt außerhalb dieser Metadatenreparatur?",
+      "answer": "Der Level-1-Zielname secure-casetracker-baseline weicht weiterhin vom kanonischen Fleet-Pfad SecureCaseTrackerProjects ab und wird im neuen Review als NeedsRemediation ausgewiesen.",
+      "evidence": "scripts/config/agentic-workspace-fleet.json und lokale Registry belegen den kanonischen Level-1-Pfad."
+    }
+  ],
   "openDecisionIds": [],
   "questionCount": 0,
-  "agentSurface": {"specifyCanonicalId": "speckit.specify", "specifyInvocation": "$speckit-specify", "autonomousCanonicalId": "speckit.autonomous", "autonomousInvocation": "$speckit-autonomous"},
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Current explicit user approval.",
+  "authorityEvidence": "Explicit current user approval for the metadata-only repair and current MergeAndSync delivery with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
-  "supersedes": {"receiptPath": "N/A", "targetNormalizedSha256": "N/A", "archiveTargetPath": "N/A", "archiveReceiptPath": "N/A"},
-  "legacyAdoption": {"evidenceType": "N/A", "priorTargetNormalizedSha256": "N/A", "priorGitBlob": "N/A"},
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
-  "series": {"seriesId": "3f1e0f33-2255-4e2d-bf0c-af251351ef28", "manifestPath": "specs/intake-authoring-series/itse-learning-series/series.json", "order": 6, "role": "CSharpRollout", "supersedesIntakeIds": []},
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/76ba0685-85df-40b4-a2bd-a106d1e15a82/157de14d-615d-4671-9387-14a399d5ee01/receipt.json",
+    "targetNormalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da",
+    "archiveTargetPath": "specs/intake-authoring-archive/76ba0685-85df-40b4-a2bd-a106d1e15a82/157de14d-615d-4671-9387-14a399d5ee01/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/76ba0685-85df-40b4-a2bd-a106d1e15a82/157de14d-615d-4671-9387-14a399d5ee01/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user answer: yes, include the limited metadata repair in the same pull request.",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 31,
+    "role": "OrderedMember",
+    "supersedesIntakeIds": []
+  },
   "nextAction": "$speckit-intake-review Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md"
 }

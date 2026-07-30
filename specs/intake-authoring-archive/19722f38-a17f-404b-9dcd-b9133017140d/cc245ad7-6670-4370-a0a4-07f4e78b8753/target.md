@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-30
+**Stand:** 2026-07-28
 **Reihenfolge:** Dokumentationsvorlauf D7, nach abgeschlossenem D6
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Auszubildende in IT-Berufen, Lehrende, Repository-Owner,
@@ -50,27 +50,6 @@ Level-0-Einstiegsseiten werden nicht pauschal kopiert. Lernreihen,
 Nicht-MSL-Projekte, Sandbox-Repositories und Technologieprojekte behalten ihre
 fachlichen und sprachlichen Besonderheiten.
 
-### 3.1 Portable Source-/Runtime-Regel
-
-Die in D4 bis D6 geklärte Level-0-Grenze ist zunächst ein Rollenvertrag für
-`home-baseline`: versionierte Quelle, manifestgesteuerte Home-Baseline Runtime
-und maschinenlokaler Zustand. D7 darf daraus portable Fragen und
-Erklärungsmuster übernehmen, aber weder `~/home-baseline-source` noch
-`homeRuntime` als universelle Pfade oder Dateimengen in Level-1/2 behaupten.
-
-Jedes Ziel entscheidet repository-spezifisch:
-
-- welche versionierte Quelle und welcher Default-Branch kanonisch sind;
-- ob überhaupt eine getrennte lokale Runtime- oder Deployment-Kopie existiert;
-- welche Dateien generiert, verteilt oder ausschließlich lokal gehalten
-  werden;
-- welcher Sync-, Build-, Installations- oder Deployment-Vertrag gilt;
-- welche Vorteile und Risiken diese konkrete Trennung besitzt.
-
-Level-0-Home-Runtime-Dateien werden nur über den bestehenden
-Wartungs-/Propagationsvertrag verteilt. Eine Dokumentationsadoption erweitert
-diese technische Zielmenge nicht stillschweigend.
-
 ## 4. Anforderungen / Requirements
 
 - **DFA-001:** Die Zielmenge wird aus dem aktuellen Flottenmanifest und der
@@ -107,24 +86,6 @@ diese technische Zielmenge nicht stillschweigend.
   unmittelbaren Korrektheits-/Sicherheitsfehler.
 - **DFA-016:** D7 verändert kein Produktverhalten und startet keinen
   fachlichen Folge-Intake automatisch.
-- **DFA-017:** D7 übernimmt die Source-/Runtime-Regel nur als portables
-  Entscheidungsmodell und nicht als pauschale Level-0-Pfad- oder
-  Dateikopie.
-- **DFA-018:** Jedes Repository dokumentiert seine eigene kanonische Quelle,
-  mögliche Runtime-/Deployment-Kopie, maschinenlokalen Zustand und
-  Sync-/Installationsgrenze nur bei belegter Anwendbarkeit.
-- **DFA-019:** `homeRuntime`, `sourceOnly` und `machineLocal` werden außerhalb
-  von Level 0 nur verwendet, wenn die Begriffe mit dem repository-eigenen
-  Vertrag semantisch übereinstimmen; andernfalls bleiben lokale Begriffe
-  erhalten.
-- **DFA-020:** Die Dokumentationsadoption erweitert weder
-  Propagationsmanifest noch Runtime-Zielmenge und führt keine verdeckte
-  Toolchain- oder Deployment-Änderung ein.
-- **DFA-021:** Lernreihen-, Sandbox-, Nicht-MSL- und Produkt-Repositories
-  behalten ihre eigenen Source-/Runtime- und Container-Grenzen.
-- **DFA-022:** Abweichende Architekturentscheidungen werden als
-  repository-spezifische Evidence dokumentiert und nicht als
-  Homogenitätsfehler normalisiert.
 
 ## 5. Validierung / Validation
 
@@ -159,15 +120,6 @@ plattformabhängige Bedienung oder Ausgabe betrifft.
   in als abgeschlossen gemeldeten Repositories.
 - **AC-DFA-009:** Level 0 ist am Ende sauber und exakt auf `origin/main`.
 - **AC-DFA-010:** Kein Folge-Intake wurde automatisch gestartet.
-- **AC-DFA-011:** Kein Level-1-/Level-2-Repository enthält ungeprüft
-  `~/home-baseline-source` oder `~/` als eigene Source-/Runtime-Vorgabe.
-- **AC-DFA-012:** Jede übernommene Source-/Runtime-Aussage ist auf den
-  repository-eigenen Build-, Installations-, Deployment- oder
-  Lernreihenvertrag zurückführbar.
-- **AC-DFA-013:** Die technische Propagationszielmenge ist vor und nach D7
-  identisch, sofern kein getrennt genehmigter Follow-up sie ändert.
-- **AC-DFA-014:** Projektbezogene Abweichungen bleiben erhalten und besitzen
-  eine verständliche Begründung statt einer pauschalen Level-0-Kopie.
 
 ## 7. Nicht-Ziele / Non-Goals
 
@@ -184,21 +136,21 @@ plattformabhängige Bedienung oder Ausgabe betrifft.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` as documentation preflight D7. Verify its hard dependency on D4 through D6, registry-derived fleet scope, Remote Freshness Barrier, repository-specific evidence and ownership, portable-versus-project-specific source/runtime boundary, prohibition on copying Level-0 paths or expanding propagation implicitly, non-empty PR rule, language and A11Y policy, generated and historical handling, bounded admin bypass, preset-promotion evidence, no-product-change scope, and measurable fleet completion. Do not modify the intake or start D7.
+$speckit-intake-review Review `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` as documentation preflight D7. Verify its hard dependency on D4 through D6, registry-derived fleet scope, Remote Freshness Barrier, repository-specific evidence and ownership, portable-versus-project-specific boundary, non-empty PR rule, language and A11Y policy, generated and historical handling, bounded admin bypass, preset-promotion evidence, no-product-change scope, and measurable fleet completion. Do not modify the intake or start D7.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` and the merged D4 through D6 evidence as binding input for documentation preflight D7. Create the feature specification for controlled adoption of proven portable documentation-architecture rules across every currently registered Level 1 and Level 2 repository. Preserve DFA-001 through DFA-022, AC-DFA-001 through AC-DFA-014, Remote Freshness, repository-specific inventories and PRs, the portable source/runtime decision model, project and learning boundaries, unchanged propagation scope, generated and historical limits, preset-promotion evidence, and no-product-change/no-follow-up-start constraints.
+$speckit-specify Use `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` and the merged D4 through D6 evidence as binding input for documentation preflight D7. Create the feature specification for controlled adoption of proven portable documentation-architecture rules across every currently registered Level 1 and Level 2 repository. Preserve DFA-001 through DFA-016, AC-DFA-001 through AC-DFA-010, Remote Freshness, repository-specific inventories and PRs, project and learning boundaries, generated and historical limits, preset-promotion evidence, and no-product-change/no-follow-up-start constraints.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` with deliveryAuthority=MergeAndSync after D4 through D6 are merged. Revalidate Level 0, inventory every currently registered Level 1 and Level 2 repository, adopt only proven portable rules through repository-specific non-empty PRs, apply the source/runtime model only where the repository's own contract proves it applicable, preserve propagation scope plus runtime, language, learning, non-MSL, sandbox, generated, and historical boundaries, serialize shared writes, converge exact-head checks and actionable review threads, return every changed repository and Level 0 to clean synchronized default branches, and do not start the previous position 5 or any other intake automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` with deliveryAuthority=MergeAndSync after D4 through D6 are merged. Revalidate Level 0, inventory every currently registered Level 1 and Level 2 repository, adopt only proven portable rules through repository-specific non-empty PRs, preserve runtime, language, learning, non-MSL, sandbox, generated, and historical boundaries, serialize shared writes, converge exact-head checks and actionable review threads, return every changed repository and Level 0 to clean synchronized default branches, and do not start the previous position 5 or any other intake automatically.
 ```
 
 <!-- intake-authoring:end -->

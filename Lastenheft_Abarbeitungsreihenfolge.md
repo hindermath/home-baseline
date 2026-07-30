@@ -110,10 +110,10 @@ run.*
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
 |---:|---|---|
-| D4 | `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` | Prüft nach der abgeschlossenen Position 4 die gesamte Git-getrackte Level-0-Dokumentation read-only auf Informationsarchitektur, Leserpfade, Sprachstrategie und gestufte Tiefe. Die aktualisierte Baseline bindet die gemergten Plattform-, Remote-/Worktree- und Wartungs-TUI-Nachweise aus Features 015 bis 018. D4 ist der einzige deklarierte `Eligible`-Kandidat. / Audits all Git-tracked Level 0 documentation after completed item 4 for information architecture, reader paths, language strategy, and progressive depth without remediation. The refreshed baseline binds the merged platform, remote/worktree, and maintenance-TUI evidence from Features 015 through 018. D4 is the sole declared `Eligible` candidate. |
-| D5 | `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` | Setzt ausschließlich bestätigte D4-Findings um und verankert Einstiegspunkte, Sprachpartner und den dauerhaften Dokumentationsarchitektur-Vertrag. / Implements only accepted D4 findings and establishes entry pages, language pairs, and the durable documentation-architecture contract. |
-| D6 | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` | Dokumentiert das nach Position 4 stabile Wartungsverhalten für Lernende, Nutzende, Maintainer/KI-Agenten und Audit, ohne Skriptverhalten zu ändern. / Documents the stable post-item-4 maintenance behavior for learners, operators, maintainers/AI agents, and audit without changing script behavior. |
-| D7 | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` | Übernimmt nur belegte portable Regeln repository-spezifisch in die registrierte Level-1-/Level-2-Flotte; unveränderte Repositories erhalten keinen Leer-PR. / Adopts only proven portable rules per repository across the registered Level 1/2 fleet; unchanged repositories receive no empty pull request. |
+| D4 | `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` | Prüft nach der abgeschlossenen Position 4 die gesamte Git-getrackte Level-0-Dokumentation read-only auf Informationsarchitektur, Leserpfade, Sprachstrategie, gestufte Tiefe und die Grenze zwischen versionierter Level-0-Quelle, manifestgesteuerter Home-Baseline Runtime und maschinenlokalem Zustand. Die aktualisierte Baseline bindet die gemergten Plattform-, Remote-/Worktree- und Wartungs-TUI-Nachweise aus Features 015 bis 018. D4 ist der einzige deklarierte `Eligible`-Kandidat. / Audits all Git-tracked Level 0 documentation after completed item 4 for information architecture, reader paths, language strategy, progressive depth, and the boundary between the versioned Level 0 source, manifest-managed Home Baseline Runtime, and machine-local state without remediation. The refreshed baseline binds the merged platform, remote/worktree, and maintenance-TUI evidence from Features 015 through 018. D4 is the sole declared `Eligible` candidate. |
+| D5 | `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` | Setzt ausschließlich bestätigte D4-Findings um und verankert Einstiegspunkte, Sprachpartner, Distributionsklassen sowie den dauerhaften Source-/Home-Runtime- und Dokumentationsarchitektur-Vertrag. / Implements only accepted D4 findings and establishes entry pages, language pairs, distribution classes, and the durable source/Home Runtime and documentation-architecture contract. |
+| D6 | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` | Dokumentiert das nach Position 4 stabile Wartungsverhalten und erklärt Inhalt, Vorteile, Einweg-Sync, Änderungsort und Autoritätsgrenzen von Level-0-Quelle, Home Runtime und maschinenlokalem Zustand für Lernende, Nutzende, Maintainer/KI-Agenten und Audit, ohne Skriptverhalten zu ändern. / Documents the stable post-item-4 maintenance behavior and explains the contents, benefits, one-way sync, edit location, and authority boundaries of the Level 0 source, Home Runtime, and machine-local state for learners, operators, maintainers/AI agents, and audit without changing script behavior. |
+| D7 | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` | Übernimmt nur belegte portable Regeln repository-spezifisch in die registrierte Level-1-/Level-2-Flotte, ohne Level-0-Pfade oder die Home-Runtime-Zielmenge pauschal zu kopieren; unveränderte Repositories erhalten keinen Leer-PR. / Adopts only proven portable rules per repository across the registered Level 1/2 fleet without copying Level 0 paths or the Home Runtime target set wholesale; unchanged repositories receive no empty pull request. |
 | 5 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
 | 6 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
 | 7 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
@@ -147,6 +147,20 @@ run.*
 | 35 | `Lastenheft_Preset-Learning-Series-Governance.md` | Produktisiert nur bestätigte Audit-Findings als optionales `learning-series-governance`-Preset für Lernreihen, Ausbildungsprofile, Lernbegleiter und KI-Handlungskompetenz. / Productizes only confirmed audit findings as an optional `learning-series-governance` preset for learning series, training profiles, learner guidance, and applied AI competence. |
 | 36 | `Lastenheft_Learning-Series-Governance-IHK-Pilot.md` | Validiert das neue Preset an sieben bestehenden IT-Ausbildungsprofilen und zwei begrenzten synthetischen Nicht-IT-Profilen, ohne Lernmaterial automatisch zu verändern. / Validates the new preset against seven existing IT training profiles and two bounded synthetic non-IT profiles without automatically changing learning content. |
 | 37 | `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` | Prüft abschließend jede Reihe in sich, gegen ihre normativen Quellen und alle Reihen gemeinsam auf konsistente Lernziele, Evidence, KI-Kompetenz und Sicherheitsgrenzen. / Finally checks every series internally, against its normative sources, and across all series for consistent learning goals, evidence, AI competence, and safety boundaries. |
+
+`Eligible` beschreibt hier ausschließlich den Graphzustand. Die
+Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
+den früheren Series-Review hashbedingt archiviert. Vor einem D4-Start werden
+zuerst `$speckit-intake-series-status` und danach der im D4-Receipt benannte
+`$speckit-intake-review` ausgeführt. D5 bis D7 erhalten ihren neuen
+Einzelreview jeweils vor dem eigenen späteren Lauf.
+
+*`Eligible` describes the graph state only. The source/Home Runtime refinement
+archived the former D4-D7 individual reviews and the former Series review
+because their hashes changed. Before D4 starts, run
+`$speckit-intake-series-status` and then the `$speckit-intake-review` named by
+the D4 receipt. D5 through D7 receive fresh individual reviews before their own
+later runs.*
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
 
@@ -289,11 +303,27 @@ liefert zusätzlich eine bindende Oberfläche für Position 11. D7 übernimmt nu
 portable Regeln in die registrierte Flotte und gibt danach Position 5 frei.
 Keiner dieser Läufe startet seinen Nachfolger automatisch.
 
+Die Kette behandelt die Workspace-Grenze ausdrücklich kausal: D4 inventarisiert
+und bewertet die bestehende Trennung von `~/home-baseline-source`,
+manifestgesteuerter Home-Baseline Runtime und `machineLocal`-Zustand; D5
+verankert nur akzeptierte Findings in Navigation und Dokumentationsvertrag; D6
+erklärt Inhalt, Vorteile, Änderungsort, Einweg-Sync und Authority für den
+täglichen Betrieb; D7 übernimmt nur portable Entscheidungsregeln und erweitert
+weder Level-0-Pfade noch die technische Propagationszielmenge stillschweigend.
+
 *D4 through D7 form a new binding documentation-architecture track after item
 4. D4 audits without remediation, D5 implements accepted Level 0 findings, D6
 documents the stable operating surface and also feeds item 11, and D7 adopts
 portable rules across the registered fleet before releasing item 5. No run
 starts its successor automatically.*
+
+*The chain treats the workspace boundary causally: D4 inventories and evaluates
+the existing separation between `~/home-baseline-source`, the manifest-managed
+Home Baseline Runtime, and `machineLocal` state; D5 anchors only accepted
+findings in navigation and the documentation contract; D6 explains contents,
+benefits, edit location, one-way sync, and authority for daily operation; and
+D7 adopts only portable decision rules without silently expanding Level 0
+paths or the technical propagation target set.*
 
 *Item 4 was a hard dependency rather than an ordering recommendation and is
 now completed as Feature 018. The renewed schema-1.1 review removes its

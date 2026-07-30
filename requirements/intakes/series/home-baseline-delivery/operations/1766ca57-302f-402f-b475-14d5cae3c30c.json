@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "1766ca57-302f-402f-b475-14d5cae3c30c",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current user authority to refine D4-D7, repair the two PR #176 metadata drifts, preserve all target content outside D4-D7, and deliver through MergeAndSync with the approved narrow Admin-Bypass.",
+  "proposalNormalizedSha256": "aa8b3496b77680facffe8e35d0c2fa129dcf8b64da1ef5fb249aa70a7b81bdc3",
+  "preparedPaths": [
+    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+    "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+    "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
+    "specs/intake-authoring-receipts/level-0-dokumentationsarchitektur-und-sprachtrennung.json",
+    "specs/intake-authoring-receipts/agentic-workspace-und-ein-kommando-wartung-effizienzleitfaden.json",
+    "specs/intake-authoring-receipts/registrierte-level-1-2-dokumentationsarchitektur-adoption.json",
+    "specs/intake-authoring-receipts/kdm-kitsm-csharp-lernreihen-rollout.json",
+    "specs/intake-authoring-receipts/itse-csharp-lernreihen-rollout.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/31-rollout/intake-review-result.json",
+    "docs/project-statistics.md"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

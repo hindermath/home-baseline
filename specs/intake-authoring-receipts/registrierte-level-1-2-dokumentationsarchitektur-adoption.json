@@ -1,31 +1,31 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "d147fef0-004e-4c9a-9f97-b432aef47b34",
+  "receiptId": "5fe7c147-33ce-4561-8f68-49a95a7e15d9",
   "intakeId": "19722f38-a17f-404b-9dcd-b9133017140d",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-07-28T12:00:00Z",
+  "createdAt": "2026-07-30T10:52:17Z",
   "operation": {
-    "operationId": "4e75136a-5844-4b24-8661-b45d792d8839",
-    "type": "Create",
-    "authorityEvidence": "Explicit current user approval to implement the D4-D7 documentation-intake plan."
+    "operationId": "cc245ad7-6670-4370-a0a4-07f4e78b8753",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user authority to refine D4-D7 with the canonical Level-0 source and manifest-managed Home-Baseline Runtime contract and deliver this intake update through MergeAndSync with the approved narrow Admin-Bypass."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-    "normalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794"
+    "normalizedSha256": "3c40e3ff236d7187e71b53616c220de6c8a7b0578a00ecde780da2fc582013bf"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
-      "kind": "Pasted",
-      "label": "Approved D4-D7 documentation architecture plan",
-      "location": "SnapshotOnly",
-      "path": "N/A",
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,36 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "463a0ac889a34a3b8bb8f8dc051ed0856a8147149e89a5ffdf408860c1edaefe",
-      "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+      "normalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794",
+      "gitBlob": "7c598cd1f507ca9c5bb9c7358af845ac1a1fb0e5",
+      "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
+      "kind": "File",
+      "label": "Archived superseded Intake Review result",
+      "location": "Repository",
+      "path": "specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "8984cdbabe03b6c3951288b357a29775e5ba13cd229513029ef8d3d587d3051a",
+      "gitBlob": "f5f3616e98cb9221b9a54c2fa454a00aa1db7adc",
+      "proofBoundary": "ArchivedSupersededReview"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
       "kind": "Pasted",
-      "label": "Approved durable additions to the completed D1-D3 baseline",
+      "label": "Approved Source and Home Runtime clarification for D4-D7",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,7 +78,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "1c2ae969446734aca8984b0fb1368c51fa9a0dca2467648dd8ec1c96b48611ef",
+      "normalizedSha256": "8e74830018ecae57934407f4f93d18abdc85e9de4d5ac4bbb36c97cf4c6a53bf",
       "gitBlob": "N/A",
       "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
@@ -68,37 +89,44 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welche Repository-Zielmenge gilt?",
-      "answer": "Alle beim Laufbeginn registrierten Level-1- und Level-2-Repositories, abgeleitet aus Flottenmanifest und Registry.",
-      "evidence": "Approved Level-0-first fleet rollout"
+      "question": "Bleiben D7-Identität, Zielpfad und Position erhalten?",
+      "answer": "Ja. D7 bleibt OrderedMember an Position 4 hinter D6.",
+      "evidence": "Die Änderung präzisiert die bestehende Flottenadoption."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Werden Level-0-Dokumente pauschal kopiert?",
-      "answer": "Nein, nur portable Regeln werden nach repository-spezifischem Finding übernommen.",
-      "evidence": "Approved project-specific adoption boundary"
+      "question": "Welche Source-/Runtime-Regel ist portabel?",
+      "answer": "Jedes Zielrepository dokumentiert seine eigene versionierte Quelle, seine eigenen Betriebsoberflächen und maschinenlokalen Zustände; Level-0-Hostpfade werden nicht kopiert.",
+      "evidence": "Die Benutzerklärung betrifft ein Level-0-Modell, dessen Prinzipien portabel, dessen konkrete Pfade aber lokal sind."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Wie werden unveränderte Repositories behandelt?",
-      "answer": "Sie erhalten Evidence, aber keinen Leer-PR.",
-      "evidence": "Approved no-empty-PR rule"
+      "question": "Darf die Level-0-homeRuntime-Zielmenge pauschal propagiert werden?",
+      "answer": "Nein. Adoption erfolgt finding- und repository-spezifisch; Manifest, Runtime, Sprache, Lernreihe und Containergrenzen des Ziels bleiben maßgeblich.",
+      "evidence": "Die bestehende Flotten- und Propagationsgrenze wird ausdrücklich verschärft."
     },
     {
       "id": "IAD004",
       "status": "Answered",
-      "question": "Welche besonderen Projektgrenzen bleiben erhalten?",
-      "answer": "Runtime, Sprache, Lernreihen, Nicht-MSL, Sandbox, generierte Dokumente und historische Evidence.",
-      "evidence": "Approved fleet-scope boundary"
+      "question": "Wie werden unveränderte Repositories behandelt?",
+      "answer": "Sie erhalten Evidence, aber keinen Leer-PR.",
+      "evidence": "Die bestehende No-empty-PR-Regel bleibt erhalten."
     },
     {
       "id": "IAD005",
       "status": "Answered",
       "question": "Welche Delivery Authority gilt?",
-      "answer": "MergeAndSync mit dem bestehenden engen Admin-Bypass; kein Folge-Intake startet automatisch.",
-      "evidence": "Explicit current user approval"
+      "answer": "MergeAndSync mit engem Admin-Bypass für diese Intake-Aktualisierung; kein Flottenlauf startet automatisch.",
+      "evidence": "Explizite aktuelle Benutzerautorität."
+    },
+    {
+      "id": "IAD006",
+      "status": "Answered",
+      "question": "Wie wird der bisherige Review behandelt?",
+      "answer": "Review 44d2b7cb-2051-4dba-8d3f-3eb17c71f72c ist wegen des neuen Zielhashes archiviert und nicht mehr aktuell; genau ein neuer Intake Review ist die nächste Aktion.",
+      "evidence": "Archivpfad: specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json"
     }
   ],
   "openDecisionIds": [],
@@ -110,27 +138,27 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "authorityEvidence": "Explicit current user approval to refine D4-D7 and deliver the intake update through MergeAndSync with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A",
-    "archiveTargetPath": "N/A",
-    "archiveReceiptPath": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/receipt.json",
+    "targetNormalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794",
+    "archiveTargetPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user instruction: refine the upcoming D4-D7 documentation work with the canonical Level-0 source and Home-Baseline Runtime model.",
   "series": {
-    "seriesId": "N/A",
-    "manifestPath": "N/A",
-    "order": "N/A",
-    "role": "N/A",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 4,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md"

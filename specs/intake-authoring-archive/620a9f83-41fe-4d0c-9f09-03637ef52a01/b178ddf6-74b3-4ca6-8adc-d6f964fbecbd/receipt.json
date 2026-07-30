@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "dc6ab9bf-7649-47f6-8bf0-49a2dd04cf9b",
+  "intakeId": "620a9f83-41fe-4d0c-9f09-03637ef52a01",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-29T17:07:58Z",
+  "operation": {
+    "operationId": "dc8756a6-c32d-4cf3-ac7b-612162fda899",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user approval to update D4 in place with the merged Feature 015-018 documentation baseline."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "normalizedSha256": "410bca250ae5ec0c6d2ddf3100e8f5f5766e4533ec8e8141eb5641026466f2cc"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted D4 intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/dc8756a6-c32d-4cf3-ac7b-612162fda899/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
+      "gitBlob": "3299ecd1060f8374b94a627ade04de58d069b780",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Feature 015 Windows maintenance closeout evidence",
+      "location": "Repository",
+      "path": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "b22b58bbfbaf4e48922e1d9f93414b8ea6b94d2fe0bbd4c45c309ede51bc7595",
+      "gitBlob": "b9df9653adf52c47d709bfbadd95191eebeeb990",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Feature 016 Linux maintenance closeout evidence",
+      "location": "Repository",
+      "path": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "94e1248d36108f32fda592134f80f769106e4656cfe3e02ab7b712b16e36020a",
+      "gitBlob": "deba0f564e02e5eacfae79eb60eaf1b09e8a4e36",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "File",
+      "label": "Feature 017 fleet and worktree closeout evidence",
+      "location": "Repository",
+      "path": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "4650c8d6aba154afe0e530cfb455425fdfef4b72f8014b1290316abba0133786",
+      "gitBlob": "b09f16fad883369f27e0e70e22f54127b147219d",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC005",
+      "order": 5,
+      "kind": "File",
+      "label": "Feature 018 maintenance TUI closeout evidence",
+      "location": "Repository",
+      "path": "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "08ba5f017fb8af894f126f856891e8e4616e47bef6ace375b5907cd2f6851bde",
+      "gitBlob": "fab157b0638cff8eceac522ec44b5ee7e99a3af3",
+      "proofBoundary": "MergedFeatureEvidence"
+    },
+    {
+      "sourceId": "SRC006",
+      "order": 6,
+      "kind": "Pasted",
+      "label": "Approved current D4 freshness update",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "aaa2a881c5bcef67e6f3e8f5abebedd74af36995c1a1e923c9afa96fa3fa3c5a",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Bleiben D4-Identität, Zielpfad und Series-Position erhalten?",
+      "answer": "Ja. Intake-ID, Zielpfad, Rolle Primary, Root-Status und alleinige Eligible-Auswahl bleiben unverändert.",
+      "evidence": "Die aktuelle Benutzerentscheidung verlangt eine begrenzte In-place-Aktualisierung."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche neue fachliche Baseline wird gebunden?",
+      "answer": "Die gemergten Feature- und Closeout-Nachweise 015 bis 018 einschließlich Plattform, Remote-Freshness, Worktree und Wartungs-TUI.",
+      "evidence": "PRs #142/#143, #146/#148, #153/#154 und #160/#165 sind gemergt."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Erweitert das Update den D4-Lauf um Remediation?",
+      "answer": "Nein. D4 bleibt ein read-only Audit; Produkt-, Dokumentations-, Preset- und Flottenänderungen bleiben ausgeschlossen.",
+      "evidence": "DIA-018 und die unveränderten Nicht-Ziele bewahren die Audit-Grenze."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Werden D5 bis D7 vorsorglich geändert?",
+      "answer": "Nein. D5 bleibt findings-gesteuert; D6 und D7 werden erst vor ihrem jeweiligen Lauf gegen gemergte Vorgänger aktualisiert.",
+      "evidence": "Die genehmigte Empfehlung trennt aktuelle D4-Baseline von späteren Remediation- und Adoptionsentscheidungen."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery- und Startgrenze gilt?",
+      "answer": "MergeAndSync gilt für diese Intake-Aktualisierung und den später ausdrücklich gestarteten D4-Lauf; dieses Update startet weder D4 noch D5.",
+      "evidence": "Aktuelle Benutzerautorität und der unveränderte autonome Prompt."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval to update D4 as proposed; standing MergeAndSync authority applies to this delivery.",
+  "promptState": "Enabled",
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/dc8756a6-c32d-4cf3-ac7b-612162fda899/receipt.json",
+    "targetNormalizedSha256": "cfa18496fcd9ef7fd5df58fa6967b0c65627d1c9e552733930eba5fa357b885c",
+    "archiveTargetPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/dc8756a6-c32d-4cf3-ac7b-612162fda899/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/dc8756a6-c32d-4cf3-ac7b-612162fda899/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user instruction: update D4 as proposed.",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "Primary",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"
+}

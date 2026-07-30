@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "2cd8862d-9112-4be0-8455-5cfd80538804",
+  "reviewId": "d4b2c966-f845-4b27-b2d3-cfeaf144d0c7",
   "mode": "Single",
-  "policy": "home-baseline-itse-learning-v1",
+  "policy": "home-baseline-kdm-kitsm-learning-v1",
   "targets": [
     {
-      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
       "role": "Primary"
     }
   ],

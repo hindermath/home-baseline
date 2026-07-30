@@ -1,29 +1,71 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "1174d557-b772-49da-bce4-b3a75d16b676",
+  "receiptId": "59569222-dcfd-423a-a6b4-1063603cbac3",
   "intakeId": "5bf1b5d4-ef3e-43a5-8330-b37c045f2332",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-07-28T17:37:45Z",
+  "createdAt": "2026-07-30T11:04:44Z",
   "operation": {
-    "operationId": "aef95e49-bbe8-4653-9ffa-d2ec53d83eba",
-    "type": "Create",
-    "authorityEvidence": "Current explicit user approval to implement the complete eight-intake KDM/KITSM learning-series plan and deliver the intake preparation with MergeAndSync."
+    "operationId": "462c0597-9b0d-41ff-856f-bfeaf5dae2a9",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user authority to repair the two PR #176 metadata drifts without changing either rollout intake and include the repair in the current MergeAndSync delivery."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-    "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d"
+    "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted rollout intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
+      "gitBlob": "f25069a33a4eb2a961a90803413219d33aafd899",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Archived superseded Intake Review result",
+      "location": "Repository",
+      "path": "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/history/d4b2c966-f845-4b27-b2d3-cfeaf144d0c7/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "87ccc7e684cbf29831569900f44c1a4422092e1dc8fe050124d727a337d8675f",
+      "gitBlob": "fc357dc0d6971d80b32ee26e1e1a0875807303f2",
+      "proofBoundary": "ArchivedSupersededReview"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
       "kind": "Pasted",
-      "label": "Approved KDM/KITSM learning-series and C# rollout plan",
+      "label": "Merged PR #176 target-path correction evidence",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -36,9 +78,30 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
+      "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
       "gitBlob": "N/A",
-      "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
+      "proofBoundary": "MergedCommit:1fd1c5048ace8d6eaf7c1d4834ef2b04e6b9707c"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "Pasted",
+      "label": "Current authorization for metadata-only repair",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "b5b6123df50c809d95558ac1c2098624288dd9938f7169a81a9b0be5408438c3",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -47,30 +110,44 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Wie wird die Lernarchitektur strukturiert?",
-      "answer": "Jahr 1 wird vertieft, Jahr 2 erhält einen gemeinsamen kaufmännischen Kern, und Jahr 3 erhält getrennte KITSM- und KDM-Reihen.",
-      "evidence": "Current approved plan."
+      "question": "Welche Änderung wird repariert?",
+      "answer": "Der bereits durch PR #176 gemergte Level-2-Pfad SecureCaseTrackerProjects/SecureCaseTracker-CSharp wird mit dem aktuellen Zielhash und vollständiger Provenienz gebunden.",
+      "evidence": "Merged commit 1fd1c50 and current user authority."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche Referenzsprache und Praxisuntergrenze gelten?",
-      "answer": "C#/.NET is the binding reference language, with required SQL and automated-test evidence where the curriculum requires implementation.",
-      "evidence": "Explicit user confirmation and approved plan."
+      "question": "Bleibt der Lastenheft-Inhalt in dieser Reparatur unverändert?",
+      "answer": "Ja. Diese Reparatur ändert ausschließlich Receipt-, Review- und Serienmetadaten.",
+      "evidence": "Die aktuelle Benutzerfreigabe begrenzt die Korrektur ausdrücklich auf Metadaten."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Dokumente gehören zu einer vollständigen Reihe?",
-      "answer": "Overview, eight unit intakes, eight study companions, one teaching guide, mappings, assessment, evidence, C#/SQL proof, accessibility, and closeout are mandatory.",
-      "evidence": "Approved document-package clarification."
+      "question": "Welche Serienbindung ist aktuell?",
+      "answer": "Home Baseline Delivery Intake Series, Position 24, Rolle OrderedMember.",
+      "evidence": "Das aktive Manifest ist die aktuelle konsolidierte Serienquelle."
     },
     {
       "id": "IAD004",
       "status": "Answered",
+      "question": "Wie wird der alte Review behandelt?",
+      "answer": "Review d4b2c966-f845-4b27-b2d3-cfeaf144d0c7 wird byte-identisch archiviert und durch einen vollständigen neuen Review supersediert.",
+      "evidence": "Der alte Review bindet den vor PR #176 gültigen Zielhash."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
       "question": "Welche Delivery Authority gilt?",
-      "answer": "MergeAndSync for intake preparation and each later explicitly started run; no autonomous follow-up starts implicitly.",
-      "evidence": "Current explicit user approval."
+      "answer": "MergeAndSync mit dem aktuell genehmigten engen Admin-Bypass; kein Lernreihenlauf startet automatisch.",
+      "evidence": "Explizite aktuelle Benutzerautorität."
+    },
+    {
+      "id": "IAD006",
+      "status": "Answered",
+      "question": "Welcher inhaltliche Restbefund bleibt außerhalb dieser Metadatenreparatur?",
+      "answer": "Der Level-1-Zielname secure-casetracker-baseline weicht weiterhin vom kanonischen Fleet-Pfad SecureCaseTrackerProjects ab und wird im neuen Review als NeedsRemediation ausgewiesen.",
+      "evidence": "scripts/config/agentic-workspace-fleet.json und lokale Registry belegen den kanonischen Level-1-Pfad."
     }
   ],
   "openDecisionIds": [],
@@ -82,27 +159,27 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "The current user explicitly approved implementation of the complete plan with MergeAndSync delivery.",
+  "authorityEvidence": "Explicit current user approval for the metadata-only repair and current MergeAndSync delivery with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A",
-    "archiveTargetPath": "N/A",
-    "archiveReceiptPath": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/receipt.json",
+    "targetNormalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
+    "archiveTargetPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user answer: yes, include the limited metadata repair in the same pull request.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "order": 27,
-    "role": "CSharpRollout",
+    "order": 24,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md"

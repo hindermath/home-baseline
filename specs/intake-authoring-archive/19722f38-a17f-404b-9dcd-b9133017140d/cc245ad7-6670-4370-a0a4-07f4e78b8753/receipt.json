@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "d147fef0-004e-4c9a-9f97-b432aef47b34",
+  "intakeId": "19722f38-a17f-404b-9dcd-b9133017140d",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T12:00:00Z",
+  "operation": {
+    "operationId": "4e75136a-5844-4b24-8661-b45d792d8839",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the D4-D7 documentation-intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+    "normalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved D4-D7 documentation architecture plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "463a0ac889a34a3b8bb8f8dc051ed0856a8147149e89a5ffdf408860c1edaefe",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved durable additions to the completed D1-D3 baseline",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "1c2ae969446734aca8984b0fb1368c51fa9a0dca2467648dd8ec1c96b48611ef",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Repository-Zielmenge gilt?",
+      "answer": "Alle beim Laufbeginn registrierten Level-1- und Level-2-Repositories, abgeleitet aus Flottenmanifest und Registry.",
+      "evidence": "Approved Level-0-first fleet rollout"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Werden Level-0-Dokumente pauschal kopiert?",
+      "answer": "Nein, nur portable Regeln werden nach repository-spezifischem Finding übernommen.",
+      "evidence": "Approved project-specific adoption boundary"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Wie werden unveränderte Repositories behandelt?",
+      "answer": "Sie erhalten Evidence, aber keinen Leer-PR.",
+      "evidence": "Approved no-empty-PR rule"
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche besonderen Projektgrenzen bleiben erhalten?",
+      "answer": "Runtime, Sprache, Lernreihen, Nicht-MSL, Sandbox, generierte Dokumente und historische Evidence.",
+      "evidence": "Approved fleet-scope boundary"
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync mit dem bestehenden engen Admin-Bypass; kein Folge-Intake startet automatisch.",
+      "evidence": "Explicit current user approval"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md"
+}

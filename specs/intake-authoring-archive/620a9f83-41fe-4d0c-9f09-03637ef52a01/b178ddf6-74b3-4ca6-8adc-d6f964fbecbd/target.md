@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-30
+**Stand:** 2026-07-29
 **Reihenfolge:** Dokumentationsvorlauf D4, nach aktiver Position 4
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Fachinformatiker*innen, Kaufleute für IT-System-Management,
@@ -72,46 +72,11 @@ Dokumentationsflächen von Level 0:
 - die Feature-015-bis-018-Verträge für Plattform, Remote-Freshness, Worktree,
   Headless-/TUI-Auswahl, JSONL-Live-Evidence, kanonisches Ergebnis,
   Unterbrechung und Fallback;
-- den Workspace-Grenzvertrag zwischen der versionierten Level-0-Quelle
-  `~/home-baseline-source`, der manifestgesteuerten Home-Baseline Runtime unter
-  `~/` und ausschließlich maschinenlokalem Zustand;
-- `scripts/config/home-sync-manifest.json`, `sync-home.*`, die zugehörige
-  Manpage, Source-Resolver, Zustandsnachweise und alle aktiven Anleitungen, die
-  Arbeits-, Lese-, Sync- oder Veröffentlichungsorte benennen;
 - generierte Sammelbände, Referenzen und Statistikdokumente;
 - aktive, historische und archivierte Intakes.
 
 Nicht Git-getrackte Maschinenzustände, Secrets, Caches und private Agentenlogs
 gehören nicht zum veröffentlichbaren Inventar.
-
-### 3.1 Verbindliche Source-/Home-Runtime-Grenze / Binding Source/Home Runtime Boundary
-
-Der Audit behandelt die Workspace-Grenze als eigene Informationsarchitektur:
-
-- `~/home-baseline-source` ist der dauerhafte, versionierte Level-0-Checkout
-  mit Remote-Autorität für Entwicklung, Commit, PR und Veröffentlichung.
-- **Home-Baseline Runtime**, kurz **Home Runtime**, bezeichnet ausschließlich
-  die durch das aktuelle Manifest ausgewählten Betriebsdateien unter `~/`.
-  Das gesamte persönliche Home-Verzeichnis wird dadurch weder zur Runtime noch
-  zu einer zweiten Level-0-Quelle.
-- `homeRuntime` umfasst manifestgesteuert verteilte Skripte, gemeinsame
-  Agenten-Guidance und ausgewählte Spec-Kit-Oberflächen.
-- `sourceOnly` umfasst unter anderem Dokumentation, Specs, Lastenhefte,
-  Preset-Quellen und Evidence, die direkt aus dem Source-Checkout gelesen
-  werden.
-- `machineLocal` umfasst lokalen Zustand wie Registry, Logs, Audit-State,
-  `STATS.md` und vergleichbare maschinengebundene Nachweise; diese werden nicht
-  allein durch ihre Lage unter `~/` zu veröffentlichbaren Quellen.
-
-Der Audit leitet die konkrete Pfadmenge aus Manifest, Resolver und Git ab,
-nicht aus einer dauerhaft festgeschriebenen Dateiliste. Er prüft den
-gerichteten Sync von Source nach Home Runtime, den Änderungsort, den
-Home-Sync-Trigger, Konflikt- und Force-Grenzen, lokale Home-Commits ohne
-Remote-Autorität sowie die Host-/Container-Grenze. Die Dokumentation muss
-außerdem die Vorteile erklären: nachvollziehbare Versions- und
-Veröffentlichungshistorie in der Quelle, stabile betriebliche Einstiegspunkte,
-kleinere Verteilungs- und Fehlerfläche, Schutz maschinenlokaler Daten und
-prüfbare manifestgesteuerte Aktualisierung.
 
 ## 4. Artefaktklassen / Artifact Classes
 
@@ -233,30 +198,6 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
   Netzwerk-Evidence, Worktree-Leases, Bereinigungsgrenzen und dynamische
   Preset-Profile werden auf widerspruchsfreie Dokumentation ohne dauerhaft
   fest codierte Flotten- oder Preset-Anzahl geprüft.
-- **DIA-024:** Der Audit erstellt eine eigene Source-/Home-Runtime-Matrix über
-  `homeRuntime`, `sourceOnly` und `machineLocal`, deren konkrete Pfade aus den
-  aktuellen Quellen abgeleitet werden.
-- **DIA-025:** Alle aktiven Leserpfade werden darauf geprüft, ob
-  `~/home-baseline-source` als einzige versionierte Level-0-Quelle und die
-  Home-Baseline Runtime als abgeleitete Betriebskopie verständlich getrennt
-  sind.
-- **DIA-026:** Der Audit erfasst Inhalt, Zweck, Vorteile und Nicht-Ziele der
-  Home Runtime einschließlich der Aussage, dass nicht das gesamte `~/`
-  Bestandteil der Runtime ist.
-- **DIA-027:** Für `sourceOnly`-, `homeRuntime`- und `machineLocal`-Änderungen
-  werden Arbeitsort, Sync-Bedarf, Commit-/Remote-Autorität und sichere nächste
-  Aktion dokumentiert.
-- **DIA-028:** Direkte Änderungen in der Home Runtime werden nicht als
-  kanonische Source-Änderung oder als veröffentlichbarer Ersatz für einen
-  Source-PR dargestellt.
-- **DIA-029:** Lokale Home-Commits werden als Audit- und
-  Wiederherstellungsnachweis ohne Remote-Autorität von Level-0-Commits
-  unterschieden.
-- **DIA-030:** Host-Sync, Source-Resolver und die schreibgeschützte
-  Container-Referenz werden als getrennte Betriebsgrenzen geprüft.
-- **DIA-031:** Widersprüche bei Arbeitsverzeichnis, Lesequelle, Sync-Trigger,
-  Force-Verwendung oder Veröffentlichungsort erhalten stabile Findings und
-  einen eindeutigen D5- oder D6-Handoff.
 
 ## 9. Ergebnisartefakte / Result Artifacts
 
@@ -269,8 +210,6 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 - Konsistenzmatrix der Feature-015-bis-018-Dokumentationsverträge;
 - Wartungsoberflächen-Matrix für TUI, Plain, Headless, Live-Evidence,
   Abschlusswahrheit, Unterbrechung und Fallback;
-- Source-/Home-Runtime-Matrix mit Artefaktklasse, Owner, Änderungsort,
-  Sync-Trigger, Remote-Autorität, Nutzen und Proof-Grenze;
 - D5-, D6- oder D7-Handoff je bestätigtem Finding;
 - textorientierter Abschlussbericht.
 
@@ -308,17 +247,6 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 - **AC-DIA-017:** Flotten- und Preset-Zahlen sind als zeitgebundene Evidence
   oder dynamisch abgeleitete Werte gekennzeichnet und werden nicht als
   dauerhafte technische Obergrenze verwendet.
-- **AC-DIA-018:** Die drei Artefaktklassen `homeRuntime`, `sourceOnly` und
-  `machineLocal` sind aus aktuellen Quellen vollständig und widerspruchsfrei
-  zugeordnet.
-- **AC-DIA-019:** Alle vier Leserpfade können Quelle, Home Runtime,
-  maschinenlokalen Zustand und deren jeweilige Autorität unterscheiden.
-- **AC-DIA-020:** Inhalt und Vorteile der Home Runtime sind belegt, ohne `~/`
-  pauschal als Runtime oder Remote-Checkout zu bezeichnen.
-- **AC-DIA-021:** Für jede Artefaktklasse sind Änderungsort, Sync-Bedarf,
-  Commit-/Push-Grenze und sichere nächste Aktion entschieden.
-- **AC-DIA-022:** Source-Resolver, Host-Sync und Container-Referenz besitzen
-  keine unaufgelöste Critical-/High-Ambiguität.
 
 ## 11. Nicht-Ziele / Non-Goals
 
@@ -335,21 +263,21 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as documentation preflight D4. Verify the completed D1-D3 baseline and merged Feature 015-018 evidence, read-only Level-0 scope, complete Git-derived inventory, exact artifact classes and decision vocabulary, four reader paths, criteria-based language splitting, progressive disclosure, generated and historical boundaries, the source/home-runtime contract with `homeRuntime`, `sourceOnly`, and `machineLocal`, maintenance TUI/plain/headless and canonical-result documentation consistency, Remote-Freshness and Worktree documentation, measurable acceptance, learner accessibility, and the prohibition on documentation or runtime remediation. Do not modify the intake or start D4.
+$speckit-intake-review Review `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as documentation preflight D4. Verify the completed D1-D3 baseline and merged Feature 015-018 evidence, read-only Level-0 scope, complete Git-derived inventory, exact artifact classes and decision vocabulary, four reader paths, criteria-based language splitting, progressive disclosure, generated and historical boundaries, maintenance TUI/plain/headless and canonical-result documentation consistency, Remote-Freshness and Worktree documentation, measurable acceptance, learner accessibility, and the prohibition on documentation or runtime remediation. Do not modify the intake or start D4.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as the binding intake for documentation preflight D4. Create a feature specification for a complete read-only Level-0 documentation information-architecture and learner-path audit after Features 015 through 018 and their causal closeouts. Preserve DIA-001 through DIA-031, AC-DIA-001 through AC-DIA-022, the exact artifact classes and decisions, four reader paths, progressive disclosure, criteria-based language splitting, the source/home-runtime matrix and authority boundaries, D1-D3 evidence boundaries, the Feature-015-to-018 documentation consistency matrices, and no-remediation scope. Do not implement documentation changes, alter runtime behavior, create a preset, or start D5.
+$speckit-specify Use `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as the binding intake for documentation preflight D4. Create a feature specification for a complete read-only Level-0 documentation information-architecture and learner-path audit after Features 015 through 018 and their causal closeouts. Preserve DIA-001 through DIA-023, AC-DIA-001 through AC-DIA-017, the exact artifact classes and decisions, four reader paths, progressive disclosure, criteria-based language splitting, D1-D3 evidence boundaries, the Feature-015-to-018 documentation consistency matrices, and no-remediation scope. Do not implement documentation changes, alter runtime behavior, create a preset, or start D5.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` with deliveryAuthority=MergeAndSync after Features 015 through 018 and their causal closeouts are complete. Keep all existing documentation, runtime, scripts, presets, and fleet repositories read-only except for accepted feature artifacts, deterministic audit-only tooling, audit evidence, statistics, archive/order updates, and delivery evidence. Audit the complete Git-derived Level-0 documentation inventory; produce the source/home-runtime matrix for `homeRuntime`, `sourceOnly`, and `machineLocal`; and explicitly reconcile Remote-Freshness, safe pull and Worktree contracts plus TUI/plain/headless selection, safe preview, JSONL advisory evidence, canonical report/exit, interruption and fallback documentation across README, manpage, architecture, A11Y, security, script reference and Feature contracts. Converge all required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D5 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` with deliveryAuthority=MergeAndSync after Features 015 through 018 and their causal closeouts are complete. Keep all existing documentation, runtime, scripts, presets, and fleet repositories read-only except for accepted feature artifacts, deterministic audit-only tooling, audit evidence, statistics, archive/order updates, and delivery evidence. Audit the complete Git-derived Level-0 documentation inventory and explicitly reconcile Remote-Freshness, safe pull and Worktree contracts plus TUI/plain/headless selection, safe preview, JSONL advisory evidence, canonical report/exit, interruption and fallback documentation across README, manpage, architecture, A11Y, security, script reference and Feature contracts. Converge all required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D5 automatically.
 ```
 
 <!-- intake-authoring:end -->
