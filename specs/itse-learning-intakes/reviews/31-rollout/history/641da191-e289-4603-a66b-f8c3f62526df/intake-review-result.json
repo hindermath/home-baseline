@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "641da191-e289-4603-a66b-f8c3f62526df",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-itse-learning-v1",
+  "reviewedAt": "2026-07-28T19:57:41Z",
+  "repository": {"root": ".", "head": "2d778931e0e24cd14be345a7b7b2684b39cca4a0"},
+  "requestEvidence": {"path": "specs/itse-learning-intakes/reviews/31-rollout/intake-review-request.json", "normalizedSha256": "7550b6def3a7e5d30fb8eecb3754e7b1291088ab4b189ac3a2c957e9eff0f151"},
+  "targets": [{"path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md", "role": "Primary", "normalizedSha256": "ef2f1e07ba2ed2323198d02742d4979ddf8e1c8a99a833681ada7d477dde08da", "gitBlob": "N/A"}],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {"individual": ["Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md"], "series": [], "workers": []},
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

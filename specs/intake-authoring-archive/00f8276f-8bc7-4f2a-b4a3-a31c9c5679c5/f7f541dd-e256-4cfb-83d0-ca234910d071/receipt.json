@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "99224dda-f061-47a4-b7e9-a1b77b61ab2f",
+  "intakeId": "00f8276f-8bc7-4f2a-b4a3-a31c9c5679c5",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T12:00:00Z",
+  "operation": {
+    "operationId": "7039cfd9-02ed-4831-836a-7cfb9ce8f407",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the D4-D7 documentation-intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+    "normalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved D4-D7 documentation architecture plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "463a0ac889a34a3b8bb8f8dc051ed0856a8147149e89a5ffdf408860c1edaefe",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved durable additions to the completed D1-D3 baseline",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "1c2ae969446734aca8984b0fb1368c51fa9a0dca2467648dd8ec1c96b48611ef",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Darf D6 Wartungsskripte funktional ändern?",
+      "answer": "Nein, D6 dokumentiert nachweisbares Verhalten und erzeugt für Automatisierungslücken getrennte Follow-up-Intakes.",
+      "evidence": "Approved efficiency boundary"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wie wird Effizienz bewertet?",
+      "answer": "Als weniger unnötige Wiederholungen und klarere sichere Abläufe; Qualitätsgates werden nicht abgekürzt.",
+      "evidence": "Approved evidence-based efficiency definition"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Rollen deckt der Leitfaden ab?",
+      "answer": "Erstnutzung, täglicher Betrieb, Maintainer/KI-Agenten und Audit/Fehleranalyse.",
+      "evidence": "Approved four-reader-path decision"
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wann ist D6 fachlich stabil ausführbar?",
+      "answer": "Nach den aktiven Positionen 1 bis 4 sowie D4 und D5.",
+      "evidence": "Approved execution-order decision"
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync; D7 startet nicht automatisch.",
+      "evidence": "Explicit current user approval"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md"
+}

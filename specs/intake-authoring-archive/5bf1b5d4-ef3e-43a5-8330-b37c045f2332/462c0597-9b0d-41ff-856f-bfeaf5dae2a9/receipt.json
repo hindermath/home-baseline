@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "1174d557-b772-49da-bce4-b3a75d16b676",
+  "intakeId": "5bf1b5d4-ef3e-43a5-8330-b37c045f2332",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-28T17:37:45Z",
+  "operation": {
+    "operationId": "aef95e49-bbe8-4653-9ffa-d2ec53d83eba",
+    "type": "Create",
+    "authorityEvidence": "Current explicit user approval to implement the complete eight-intake KDM/KITSM learning-series plan and deliver the intake preparation with MergeAndSync."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+    "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved KDM/KITSM learning-series and C# rollout plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
+      "gitBlob": "N/A",
+      "proofBoundary": "Current approved Codex plan and follow-up decisions; the conversation source has no repository file, so the synthesized target hash is the bounded snapshot evidence."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wie wird die Lernarchitektur strukturiert?",
+      "answer": "Jahr 1 wird vertieft, Jahr 2 erhält einen gemeinsamen kaufmännischen Kern, und Jahr 3 erhält getrennte KITSM- und KDM-Reihen.",
+      "evidence": "Current approved plan."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Referenzsprache und Praxisuntergrenze gelten?",
+      "answer": "C#/.NET is the binding reference language, with required SQL and automated-test evidence where the curriculum requires implementation.",
+      "evidence": "Explicit user confirmation and approved plan."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Dokumente gehören zu einer vollständigen Reihe?",
+      "answer": "Overview, eight unit intakes, eight study companions, one teaching guide, mappings, assessment, evidence, C#/SQL proof, accessibility, and closeout are mandatory.",
+      "evidence": "Approved document-package clarification."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt?",
+      "answer": "MergeAndSync for intake preparation and each later explicitly started run; no autonomous follow-up starts implicitly.",
+      "evidence": "Current explicit user approval."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "The current user explicitly approved implementation of the complete plan with MergeAndSync delivery.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 27,
+    "role": "CSharpRollout",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md"
+}

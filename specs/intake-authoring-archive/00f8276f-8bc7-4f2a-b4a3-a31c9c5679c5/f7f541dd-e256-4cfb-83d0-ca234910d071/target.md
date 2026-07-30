@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-30
+**Stand:** 2026-07-28
 **Reihenfolge:** Dokumentationsvorlauf D6, nach abgeschlossenem D5
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende und Nutzende ohne Spec-Kit-Vorkenntnisse, Lehrende,
@@ -66,46 +66,9 @@ Jeder Schritt erhält Zweck, Voraussetzungen, erwartetes Ergebnis, Fehlergrenze
 und exakte nächste Aktion. Keine Bedeutung wird ausschließlich durch Farbe,
 Symbol oder visuelle Position vermittelt.
 
-## 5. Verbindliches Source-/Home-Runtime-Betriebsmodell
+## 5. Inhaltliche Mindestabdeckung / Required Content
 
-Der Leitfaden verwendet folgende Begriffe und Grenzen:
-
-| Klasse | Bedeutung | Kanonischer Änderungsort | Sync-/Remote-Grenze |
-|---|---|---|---|
-| Level-0-Quelle | Dauerhafter Git-Checkout `~/home-baseline-source` | im Checkout auf Branch und über PR | besitzt die dokumentierte Remote-Autorität |
-| `homeRuntime` | Manifestgesteuerte Betriebsdateien unter `~/`, insbesondere Skripte, gemeinsame Agenten-Guidance und ausgewählte Spec-Kit-Oberflächen | zuerst in der Level-0-Quelle | nach gemergter Änderung über geprüften Home-Sync; lokaler Home-Commit ohne Push |
-| `sourceOnly` | Dokumentation, Specs, Lastenhefte, Preset-Quellen und Evidence | ausschließlich in der Level-0-Quelle | direkt aus dem Checkout lesen; kein Home-Sync nur wegen dieser Änderung |
-| `machineLocal` | Registry, Logs, Audit-State, `STATS.md` und anderer maschinengebundener Zustand | lokal nach dem jeweiligen Zustandsvertrag | keine implizite Übernahme in Source oder Remote |
-
-**Home-Baseline Runtime**, kurz **Home Runtime**, bezeichnet nur die
-manifestgesteuerte `homeRuntime`-Auswahl mit Wurzel `~/`. Das übrige persönliche
-Home-Verzeichnis gehört nicht automatisch dazu. Die Runtime ist eine
-abgeleitete Betriebskopie und weder ein zweiter Level-0-Checkout noch ein
-Ersatz für Source-Commits und PRs.
-
-Der Leitfaden erklärt die Vorteile dieser Trennung:
-
-- nachvollziehbare Versions-, Review- und Veröffentlichungshistorie in der
-  Quelle;
-- stabile betriebliche Skript- und Agentenoberflächen im Home-Kontext;
-- kleinere Sync-, Konflikt- und Fehlerfläche durch minimale Verteilung;
-- Schutz von maschinenlokalem Zustand vor unbeabsichtigtem Push;
-- reproduzierbare Aktualisierung aus Manifest, Check, Vorschau und
-  Zustandsnachweis;
-- klare Entscheidung, wann ein Source-only-Stand ohne Home-Sync abgeschlossen
-  ist und wann ein Home-Runtime-Sync zum Delivery-Closeout gehört.
-
-Direkte Änderungen unter `~/` gelten nicht als kanonische Reparatur. Ein
-schreibender Sync läuft nur auf dem Host, nach `--check-only`/`-CheckOnly` und
-Vorschau; `--force`/`-Force` benötigt eine konkrete Konfliktprüfung. In der
-Sandbox wird die eingebundene Source-Referenz direkt gelesen. Exakte Pfade der
-Runtime werden aus dem Manifest oder dem Source-Resolver abgeleitet und nicht
-in einer zweiten statischen Liste gepflegt.
-
-## 6. Inhaltliche Mindestabdeckung / Required Content
-
-- dauerhafte Level-0-Quelle gegenüber manifestgesteuerter Home-Baseline
-  Runtime und maschinenlokalem Zustand;
+- dauerhafte Level-0-Quelle gegenüber lokaler Home-Runtime;
 - Remote-Freshness-Barriere für Level 0/1/2;
 - Clean, Dirty, Ahead, Behind, Diverged, Detached und Non-Default;
 - `--check-only`, `--dry-run`/`-WhatIf` und echter Lauf;
@@ -122,7 +85,7 @@ in einer zweiten statischen Liste gepflegt.
 - Secrets, Administratorrechte, Sandbox und Providerfehler;
 - Troubleshooting mit textorientierter Ursache und nächster Aktion.
 
-## 7. Effizienzregeln für KI-Agenten / AI-Agent Efficiency Rules
+## 6. Effizienzregeln für KI-Agenten / AI-Agent Efficiency Rules
 
 - Der Agent erhält exakte Repository-, Branch-, Intake- und Evidence-Pfade.
 - Vorhandene Skripte und Check-Modi werden genutzt, statt gleiche Prüfungen
@@ -138,7 +101,7 @@ in einer zweiten statischen Liste gepflegt.
 - Geschwindigkeit ist ein Sekundärindikator; überprüfbare Arbeit pro
   vollständigem Qualitätszyklus bleibt maßgeblich.
 
-## 8. Anforderungen / Requirements
+## 7. Anforderungen / Requirements
 
 - **AEG-001:** Es entstehen synchron gepflegte deutsche und englische
   Betriebs- und Effizienzleitfäden.
@@ -178,28 +141,8 @@ in einer zweiten statischen Liste gepflegt.
   nicht leere Follow-up-Intakes statt stiller Skriptänderungen.
 - **AEG-020:** D6 verändert kein ausführbares Wartungsverhalten und startet D7
   nicht automatisch.
-- **AEG-021:** Der Leitfaden definiert Level-0-Quelle, Home-Baseline Runtime,
-  `homeRuntime`, `sourceOnly` und `machineLocal` ohne das gesamte `~/` zur
-  Runtime zu erklären.
-- **AEG-022:** Inhalt, Zweck, Vorteile und Nicht-Ziele der Home Runtime werden
-  für Lernende, tägliche Nutzende, Maintainer/KI-Agenten und Audit jeweils in
-  geeigneter Tiefe erklärt.
-- **AEG-023:** Für jede Distributionsklasse werden kanonischer Änderungsort,
-  Leseort, Sync-Trigger, lokaler Commit und Remote-/Push-Grenze dokumentiert.
-- **AEG-024:** Source-only-, Home-Runtime-, Runtime-Drift- und
-  maschinenlokale Änderungen erhalten je einen sicheren Entscheidungs- und
-  Abschlussablauf.
-- **AEG-025:** Direkte Home-Änderungen, lokale Home-Commits und Force-Sync
-  werden ausdrücklich von kanonischer Source-Lieferung getrennt.
-- **AEG-026:** Der Leitfaden leitet die aktuelle Runtime-Menge aus Manifest und
-  Resolver ab und behauptet keine dauerhaft vollständige manuelle Dateiliste.
-- **AEG-027:** Host-Sync, Sandbox-Referenz und Container-Pfad werden mit ihren
-  Schreib- und Autoritätsgrenzen erklärt.
-- **AEG-028:** Der `MergeAndSync`-Closeout unterscheidet Source-only-Änderungen
-  ohne Home-Sync von Änderungen an `homeRuntime`, deren gemergter Stand
-  anschließend geprüft synchronisiert wird.
 
-## 9. Akzeptanzkriterien / Acceptance Criteria
+## 8. Akzeptanzkriterien / Acceptance Criteria
 
 - **AC-AEG-001:** Ein Lernender kann aus der Dokumentation einen sicheren
   schreibfreien Erstlauf auswählen und dessen Ergebnis erklären.
@@ -220,49 +163,36 @@ in einer zweiten statischen Liste gepflegt.
 - **AC-AEG-009:** Semantischer, A11Y-, Link-, Secret- und Plattformreview sind
   nachgewiesen.
 - **AC-AEG-010:** D7 wurde nicht automatisch gestartet.
-- **AC-AEG-011:** Ein Lernender kann Quelle, Home Runtime und
-  maschinenlokalen Zustand anhand eines Beispiels korrekt unterscheiden.
-- **AC-AEG-012:** Ein täglicher Nutzer kann für eine geänderte Datei bestimmen,
-  ob sie direkt aus der Quelle gelesen oder nach `~/` synchronisiert wird.
-- **AC-AEG-013:** Ein Maintainer kann erklären, warum ein lokaler Home-Commit
-  keinen Source-PR und keine Remote-Autorität ersetzt.
-- **AC-AEG-014:** Ein KI-Agent kann aus Distributionsklasse und Delivery Mode
-  den korrekten Arbeitsort, Sync-Schritt und Stop-Zustand ableiten.
-- **AC-AEG-015:** Manifest, Manpage, Resolver, Host-/Container-Grenze und beide
-  Sprachfassungen widersprechen dem Betriebsmodell nicht.
 
-## 10. Nicht-Ziele / Non-Goals
+## 9. Nicht-Ziele / Non-Goals
 
 - Keine Änderung von Wartungs-, Sync-, Registry- oder Toolchain-Skripten.
 - Keine Garantie einer absoluten maximalen Laufzeit oder Agentengeschwindigkeit.
 - Keine implizite Remote-, Admin- oder Bypass-Autorität.
-- Keine Umklassifizierung des gesamten persönlichen Home-Verzeichnisses als
-  Home Runtime.
-- Keine zweite kanonische Dateiliste neben dem Home-Sync-Manifest.
 - Kein Ersatz für Ausbildung, Review oder menschliche Betriebsentscheidung.
 
 <!-- intake-authoring:prompts -->
-## 11. Kopierbare Spec-Kit-Prompts / Copy-Ready Prompts
+## 10. Kopierbare Spec-Kit-Prompts / Copy-Ready Prompts
 
 <!-- spec-kit-command-id: speckit.intake-review -->
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as documentation preflight D6. Verify its dependencies on active positions 1 through 4 and D5, four reader paths, evidenced safe operating flow, the source/home-runtime operating model with `homeRuntime`, `sourceOnly`, and `machineLocal`, exact maintenance options and exit-code boundaries, AI-agent authority and prompt guidance, interruption and recovery, platform parity, criteria for efficiency claims, separate automation follow-ups, learner accessibility, and strict no-runtime-change scope. Do not modify the intake or start D6.
+$speckit-intake-review Review `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as documentation preflight D6. Verify its dependencies on active positions 1 through 4 and D5, four reader paths, evidenced safe operating flow, exact maintenance options and exit-code boundaries, AI-agent authority and prompt guidance, interruption and recovery, platform parity, criteria for efficiency claims, separate automation follow-ups, learner accessibility, and strict no-runtime-change scope. Do not modify the intake or start D6.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as the binding intake for documentation preflight D6 after active positions 1 through 4 and D5 are complete. Create the feature specification for synchronized German and English learner, operator, maintainer/AI-agent, and audit guidance for the agentic workspace and one-command maintenance. Preserve AEG-001 through AEG-028, AC-AEG-001 through AC-AEG-015, the source/home-runtime operating model and distribution-class decisions, evidenced efficiency claims, safe command validation, authority and interruption boundaries, separate automation follow-ups, and no executable behavior changes. Do not start D7.
+$speckit-specify Use `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as the binding intake for documentation preflight D6 after active positions 1 through 4 and D5 are complete. Create the feature specification for synchronized German and English learner, operator, maintainer/AI-agent, and audit guidance for the agentic workspace and one-command maintenance. Preserve AEG-001 through AEG-020, AC-AEG-001 through AC-AEG-010, evidenced efficiency claims, safe command validation, authority and interruption boundaries, separate automation follow-ups, and no executable behavior changes. Do not start D7.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` with deliveryAuthority=MergeAndSync after active positions 1 through 4 and D5 are merged. Document only the actual supported workspace and maintenance behavior, including the manifest-derived source/home-runtime model, distribution classes, benefits, sync triggers, and authority boundaries; validate safe examples and both language paths; create separate follow-up intakes for evidenced automation gaps; preserve all executable behavior; converge required and useful optional checks and reviews; merge one non-empty Level-0 PR; return to clean synchronized main; and do not start D7 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` with deliveryAuthority=MergeAndSync after active positions 1 through 4 and D5 are merged. Document only the actual supported workspace and maintenance behavior, validate safe examples and both language paths, create separate follow-up intakes for evidenced automation gaps, preserve all executable behavior and authority boundaries, converge required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D7 automatically.
 ```
 
 <!-- intake-authoring:end -->

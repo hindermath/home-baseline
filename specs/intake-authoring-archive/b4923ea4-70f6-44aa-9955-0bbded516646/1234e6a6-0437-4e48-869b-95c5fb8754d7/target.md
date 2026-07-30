@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-30
+**Stand:** 2026-07-28
 **Reihenfolge:** Dokumentationsvorlauf D5, nach abgeschlossenem D4
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende und Nutzende ohne Spec-Kit-Vorkenntnisse, Lehrende,
@@ -65,27 +65,6 @@ empfohlene Reihenfolge und nächste Aktion:
 3. Maintainer und KI-Agenten;
 4. Prüfung und Fehleranalyse.
 
-### 3.4 Source- und Home-Runtime-Orientierung
-
-Die D4-Matrix liefert einen sichtbaren, sprachgleichen Orientierungspfad für:
-
-- `~/home-baseline-source` als dauerhaften versionierten Level-0-Checkout und
-  einzigen Ort für kanonische Änderungen, Commits, PRs und Pushes;
-- die **Home-Baseline Runtime** beziehungsweise **Home Runtime** als
-  manifestgesteuerte Auswahl betrieblicher Dateien unter `~/`, nicht als
-  Bezeichnung für das gesamte Home-Verzeichnis;
-- `homeRuntime`, `sourceOnly` und `machineLocal` mit Zweck, typischen
-  Artefakten, Owner, Änderungsort, Sync-Trigger und Remote-Grenze;
-- den gerichteten Source-zu-Runtime-Sync, sichere Vorschau, Konfliktverhalten,
-  lokale Home-Commits und die Host-/Container-Grenze;
-- die belegten Vorteile der Trennung: saubere Versions- und
-  Veröffentlichungshistorie, stabile betriebliche Einstiegspunkte, begrenzte
-  Verteilungsfläche, Schutz maschinenlokaler Daten und reproduzierbare
-  Aktualisierung.
-
-Konkrete Runtime-Pfade werden aus dem Manifest dargestellt oder verlinkt und
-nicht als manuell gepflegte, dauerhaft vollständige Liste dupliziert.
-
 ## 4. Dauerhafter Dokumentationsarchitektur-Vertrag
 
 Die bestehende Documentation-Impact-Entscheidung bleibt genau eine von:
@@ -98,8 +77,6 @@ Zusätzlich dokumentiert jede relevante Änderung:
 - Dokumentklasse und Generatorgrenze;
 - Sprachstrategie und Sprachpartner;
 - Beispiel- und Plattformvalidierung;
-- Distributionsklasse (`homeRuntime`, `sourceOnly` oder `machineLocal`) und
-  daraus folgender Home-Sync-Bedarf;
 - Evidence und Re-Evaluation-Trigger.
 
 Diese Regel wird in Constitution, `.specify/memory/constitution.md`,
@@ -160,25 +137,6 @@ und allen gepflegten Agentenoberflächen synchron verankert.
 - **DAS-019:** Ein Preset-Follow-up entsteht nur bei einem reproduzierbaren,
   projektunabhängigen Defekt.
 - **DAS-020:** D5 startet weder D6 noch eine Flottenänderung automatisch.
-- **DAS-021:** D5 implementiert die akzeptierten D4-Findings zur
-  Source-/Home-Runtime-Grenze in Einstieg, Dokumentationsportal und
-  Maintainer-/Agentenpfad.
-- **DAS-022:** Die Begriffe Level-0-Quelle, Home-Baseline Runtime,
-  `homeRuntime`, `sourceOnly` und `machineLocal` werden deutsch und englisch
-  eindeutig und ohne Gleichsetzung des gesamten `~/` verwendet.
-- **DAS-023:** Inhalt, Zweck, Vorteile, Nicht-Ziele und Autoritätsgrenzen der
-  Home Runtime werden in gestufter Tiefe erklärt.
-- **DAS-024:** Jede relevante Dokumentationsfläche kann ihren
-  Home-Sync-Bedarf aus der Distributionsklasse ableiten; konkrete Dateimengen
-  verweisen auf das aktuelle Manifest.
-- **DAS-025:** Source-only-Änderungen lösen keinen unnötigen Home-Sync aus;
-  Home-Runtime-Änderungen werden erst kanonisch in der Quelle geliefert und
-  danach geprüft synchronisiert.
-- **DAS-026:** Maschinenlokaler Zustand, lokale Home-Commits und direkte
-  Runtime-Änderungen erhalten keine implizite Remote- oder
-  Veröffentlichungsautorität.
-- **DAS-027:** Host-Sync, Source-Resolver und Container-Referenz werden ohne
-  neue absolute Pfadkopplung oder funktionale Skriptänderung dokumentiert.
 
 ## 7. Nicht-Ziele / Non-Goals
 
@@ -207,16 +165,6 @@ und allen gepflegten Agentenoberflächen synchron verankert.
 - **AC-DAS-009:** Die finale Änderung enthält keine Runtime-, API-,
   Abhängigkeits- oder Wartungsverhaltensänderung.
 - **AC-DAS-010:** D6 und D7 wurden nicht automatisch gestartet.
-- **AC-DAS-011:** Quelle, Home Runtime und maschinenlokaler Zustand sind aus
-  beiden Spracheinstiegen in höchstens zwei Navigationsschritten erreichbar.
-- **AC-DAS-012:** Ein Lernender kann erklären, welche Artefakte aus der Quelle
-  gelesen, nach `~/` synchronisiert oder ausschließlich lokal gehalten werden.
-- **AC-DAS-013:** Ein Maintainer kann für eine Änderung den kanonischen
-  Arbeitsort, Home-Sync-Bedarf und erlaubten Veröffentlichungsweg bestimmen.
-- **AC-DAS-014:** Keine aktive Dokumentation bezeichnet das gesamte `~/` als
-  Home Runtime oder die Runtime als zweite Level-0-Quelle.
-- **AC-DAS-015:** Die Source-/Runtime-Dokumentation stimmt mit Manifest,
-  `sync-home.*`, Manpage, Resolver und Container-Grenze überein.
 
 <!-- intake-authoring:prompts -->
 ## 9. Kopierbare Spec-Kit-Prompts / Copy-Ready Prompts
@@ -225,21 +173,21 @@ und allen gepflegten Agentenoberflächen synchron verankert.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` as documentation preflight D5. Verify its hard dependency on the merged D4 findings, compact German and English entry pages, documentation portals, four reader paths, progressive disclosure, criteria-based language splitting, exact Documentation Impact vocabulary, the source/home-runtime orientation and distribution classes, normative placement, generated and historical boundaries, link migration, semantic review, no-runtime scope, and measurable acceptance. Do not modify the intake or start D5.
+$speckit-intake-review Review `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` as documentation preflight D5. Verify its hard dependency on the merged D4 findings, compact German and English entry pages, documentation portals, four reader paths, progressive disclosure, criteria-based language splitting, exact Documentation Impact vocabulary, normative placement, generated and historical boundaries, link migration, semantic review, no-runtime scope, and measurable acceptance. Do not modify the intake or start D5.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` and the accepted merged D4 findings as binding input for documentation preflight D5. Create the feature specification for Level-0 documentation restructuring, synchronized German and English entry paths, four reader paths, the source/home-runtime orientation, and the durable documentation-architecture contract. Preserve DAS-001 through DAS-027, AC-DAS-001 through AC-DAS-015, the exact four Documentation Impact decisions, criteria-based splitting, distribution classes, generated and historical boundaries, link migration, semantic validation, and no-runtime/no-fleet scope. Do not start D6 or D7.
+$speckit-specify Use `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` and the accepted merged D4 findings as binding input for documentation preflight D5. Create the feature specification for Level-0 documentation restructuring, synchronized German and English entry paths, four reader paths, and the durable documentation-architecture contract. Preserve DAS-001 through DAS-020, AC-DAS-001 through AC-DAS-010, the exact four Documentation Impact decisions, criteria-based splitting, generated and historical boundaries, link migration, semantic validation, and no-runtime/no-fleet scope. Do not start D6 or D7.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` with deliveryAuthority=MergeAndSync after D4 is merged and Ready. Implement only accepted Level-0 D4 findings, establish the bilingual source/home-runtime orientation and distribution-class contract, preserve runtime and maintenance behavior, synchronize all normative and agent surfaces, validate both language paths and migrated links, converge required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D6 or D7 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` with deliveryAuthority=MergeAndSync after D4 is merged and Ready. Implement only accepted Level-0 D4 findings, preserve runtime and maintenance behavior, synchronize all normative and agent surfaces, validate both language paths and migrated links, converge required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D6 or D7 automatically.
 ```
 
 <!-- intake-authoring:end -->

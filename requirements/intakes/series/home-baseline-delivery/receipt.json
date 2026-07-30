@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "37436acb-b6a4-4840-8f76-de3227221a92",
+  "receiptId": "2aab0443-64bd-4e84-ac3f-f60af9e8adcd",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-07-29T17:07:58Z",
+  "createdAt": "2026-07-30T11:04:44Z",
   "operation": {
-    "operationId": "7862b534-0dd3-4ebb-9db4-ca27135155bb",
+    "operationId": "1766ca57-302f-402f-b475-14d5cae3c30c",
     "type": "Update",
-    "authorityEvidence": "Explicit current user authority to update D4 in place, preserve the accepted Series topology, and deliver the refreshed intake evidence through MergeAndSync without starting D4."
+    "authorityEvidence": "Explicit current user authority to refine D4-D7, repair the two PR #176 metadata drifts, preserve the accepted Series topology, and deliver through MergeAndSync with the approved narrow Admin-Bypass."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "f3b890dbed497862f03b91792b123e1a0302ff11ad9dc0431bf1904c08d24e18"
+    "normalizedSha256": "0f6222d93d837b5305c57eb44727d4090955079546420bf3de388dbfe7125b79"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/7862b534-0dd3-4ebb-9db4-ca27135155bb/receipt.json",
-    "receiptNormalizedSha256": "e6bb0fbe566a73aec93ce9b2f0241e182d66a8308b5ca3eb33f7cf755e127903",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/7862b534-0dd3-4ebb-9db4-ca27135155bb/manifest.json",
-    "manifestArchiveSha256": "51d9b59d2bd3161945e4a8acd300ac3954d620be80fa8d64705c4b7546bbcb4c"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/1766ca57-302f-402f-b475-14d5cae3c30c/receipt.json",
+    "receiptNormalizedSha256": "eb101e84f43333da341b47c30e6fa77204cf04b1a1be38a9a5b79e59a8dd6d6d",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/1766ca57-302f-402f-b475-14d5cae3c30c/manifest.json",
+    "manifestArchiveSha256": "f3b890dbed497862f03b91792b123e1a0302ff11ad9dc0431bf1904c08d24e18"
   },
   "tombstone": {
     "path": "N/A",

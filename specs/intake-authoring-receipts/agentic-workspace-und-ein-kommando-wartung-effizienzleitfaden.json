@@ -1,31 +1,31 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "99224dda-f061-47a4-b7e9-a1b77b61ab2f",
+  "receiptId": "a8e1349a-39ec-4710-a351-64910626f504",
   "intakeId": "00f8276f-8bc7-4f2a-b4a3-a31c9c5679c5",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-07-28T12:00:00Z",
+  "createdAt": "2026-07-30T10:52:17Z",
   "operation": {
-    "operationId": "7039cfd9-02ed-4831-836a-7cfb9ce8f407",
-    "type": "Create",
-    "authorityEvidence": "Explicit current user approval to implement the D4-D7 documentation-intake plan."
+    "operationId": "f7f541dd-e256-4cfb-83d0-ca234910d071",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user authority to refine D4-D7 with the canonical Level-0 source and manifest-managed Home-Baseline Runtime contract and deliver this intake update through MergeAndSync with the approved narrow Admin-Bypass."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
-    "normalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df"
+    "normalizedSha256": "5e4cb1b6dc81f81c5c24eceeb176431dabfb6e078ca145c65c721b094148ffb4"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
-      "kind": "Pasted",
-      "label": "Approved D4-D7 documentation architecture plan",
-      "location": "SnapshotOnly",
-      "path": "N/A",
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/00f8276f-8bc7-4f2a-b4a3-a31c9c5679c5/f7f541dd-e256-4cfb-83d0-ca234910d071/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,36 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "463a0ac889a34a3b8bb8f8dc051ed0856a8147149e89a5ffdf408860c1edaefe",
-      "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+      "normalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df",
+      "gitBlob": "07ae45cb7ad3c08ce1860e2288e519acf95a18be",
+      "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
+      "kind": "File",
+      "label": "Archived superseded Intake Review result",
+      "location": "Repository",
+      "path": "specs/documentation-architecture-intakes/reviews/d6/history/86f8ece6-d921-4430-9283-6f6417edd87d/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "7f8dda38a11853273680635486966113d44e5b220123f8c4e7bc948a2642e267",
+      "gitBlob": "067eed4ae49c7071804b4bbea47cd7c21f7d1fb2",
+      "proofBoundary": "ArchivedSupersededReview"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
       "kind": "Pasted",
-      "label": "Approved durable additions to the completed D1-D3 baseline",
+      "label": "Approved Source and Home Runtime clarification for D4-D7",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,7 +78,7 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "1c2ae969446734aca8984b0fb1368c51fa9a0dca2467648dd8ec1c96b48611ef",
+      "normalizedSha256": "8e74830018ecae57934407f4f93d18abdc85e9de4d5ac4bbb36c97cf4c6a53bf",
       "gitBlob": "N/A",
       "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
@@ -68,37 +89,44 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Darf D6 Wartungsskripte funktional ändern?",
-      "answer": "Nein, D6 dokumentiert nachweisbares Verhalten und erzeugt für Automatisierungslücken getrennte Follow-up-Intakes.",
-      "evidence": "Approved efficiency boundary"
+      "question": "Bleiben D6-Identität, Zielpfad und Position erhalten?",
+      "answer": "Ja. D6 bleibt OrderedMember an Position 3 hinter D5.",
+      "evidence": "Die Änderung präzisiert den bestehenden Effizienzleitfaden."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Wie wird Effizienz bewertet?",
-      "answer": "Als weniger unnötige Wiederholungen und klarere sichere Abläufe; Qualitätsgates werden nicht abgekürzt.",
-      "evidence": "Approved evidence-based efficiency definition"
+      "question": "Welche Inhalte der Home Runtime muss D6 erklären?",
+      "answer": "Manifestgesteuerte Skripte, gemeinsame Agenten-Guidance und ausgewählte Spec-Kit-Oberflächen sowie die Abgrenzung zu sourceOnly und machineLocal.",
+      "evidence": "Der Leitfaden soll das tatsächlich benutzte Betriebsmodell nachvollziehbar machen."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Rollen deckt der Leitfaden ab?",
-      "answer": "Erstnutzung, täglicher Betrieb, Maintainer/KI-Agenten und Audit/Fehleranalyse.",
-      "evidence": "Approved four-reader-path decision"
+      "question": "Welche Vorteile müssen ausdrücklich benannt werden?",
+      "answer": "Saubere Quellhistorie, stabile Home-Einstiegspunkte, kleinerer Änderungsradius, lokale Zustandsgrenzen und reproduzierbare Check-/Dry-Run-Nachweise.",
+      "evidence": "Diese Vorteile beantworten die aktuelle Benutzerfrage und sind betrieblich prüfbar."
     },
     {
       "id": "IAD004",
       "status": "Answered",
-      "question": "Wann ist D6 fachlich stabil ausführbar?",
-      "answer": "Nach den aktiven Positionen 1 bis 4 sowie D4 und D5.",
-      "evidence": "Approved execution-order decision"
+      "question": "Darf D6 Wartungsskripte funktional ändern?",
+      "answer": "Nein. D6 dokumentiert belegtes Verhalten und erzeugt für Automatisierungslücken getrennte Follow-up-Intakes.",
+      "evidence": "Die bestehende Effizienz- und Scope-Grenze bleibt erhalten."
     },
     {
       "id": "IAD005",
       "status": "Answered",
-      "question": "Welche Delivery Authority gilt?",
-      "answer": "MergeAndSync; D7 startet nicht automatisch.",
-      "evidence": "Explicit current user approval"
+      "question": "Welche Betriebsgrenzen bleiben verbindlich?",
+      "answer": "Einweg-Sync von Source zu Home Runtime, Resolver statt hart codierter Hostpfade, host-only schreibender Sync, keine Container-Autorität und Force nur nach Konfliktprüfung.",
+      "evidence": "Der bestehende Workspace- und Sicherheitsvertrag bleibt maßgeblich."
+    },
+    {
+      "id": "IAD006",
+      "status": "Answered",
+      "question": "Wie wird der bisherige Review behandelt?",
+      "answer": "Review 86f8ece6-d921-4430-9283-6f6417edd87d ist wegen des neuen Zielhashes archiviert und nicht mehr aktuell; genau ein neuer Intake Review ist die nächste Aktion.",
+      "evidence": "Archivpfad: specs/documentation-architecture-intakes/reviews/d6/history/86f8ece6-d921-4430-9283-6f6417edd87d/intake-review-result.json"
     }
   ],
   "openDecisionIds": [],
@@ -110,27 +138,27 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "authorityEvidence": "Explicit current user approval to refine D4-D7 and deliver the intake update through MergeAndSync with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A",
-    "archiveTargetPath": "N/A",
-    "archiveReceiptPath": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/00f8276f-8bc7-4f2a-b4a3-a31c9c5679c5/f7f541dd-e256-4cfb-83d0-ca234910d071/receipt.json",
+    "targetNormalizedSha256": "e8dd124d7aa3a4e09af27f41029f511e4b76f5c4899d5505bef98b7d9c78e1df",
+    "archiveTargetPath": "specs/intake-authoring-archive/00f8276f-8bc7-4f2a-b4a3-a31c9c5679c5/f7f541dd-e256-4cfb-83d0-ca234910d071/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/00f8276f-8bc7-4f2a-b4a3-a31c9c5679c5/f7f541dd-e256-4cfb-83d0-ca234910d071/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user instruction: refine the upcoming D4-D7 documentation work with the canonical Level-0 source and Home-Baseline Runtime model.",
   "series": {
-    "seriesId": "N/A",
-    "manifestPath": "N/A",
-    "order": "N/A",
-    "role": "N/A",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 3,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md"
