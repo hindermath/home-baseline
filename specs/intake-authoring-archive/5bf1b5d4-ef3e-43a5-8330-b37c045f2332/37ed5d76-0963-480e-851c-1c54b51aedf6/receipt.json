@@ -1,22 +1,22 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "c8d0bc59-0173-43bd-8943-ed3f2833ea7b",
+  "receiptId": "59569222-dcfd-423a-a6b4-1063603cbac3",
   "intakeId": "5bf1b5d4-ef3e-43a5-8330-b37c045f2332",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-07-30T13:59:42Z",
+  "createdAt": "2026-07-30T11:04:44Z",
   "operation": {
-    "operationId": "37ed5d76-0963-480e-851c-1c54b51aedf6",
+    "operationId": "462c0597-9b0d-41ff-856f-bfeaf5dae2a9",
     "type": "Update",
-    "authorityEvidence": "Explicit current user authority to correct both canonical CaseTracker Level-1 paths and deliver through MergeAndSync with Admin-Bypass."
+    "authorityEvidence": "Explicit current user authority to repair the two PR #176 metadata drifts without changing either rollout intake and include the repair in the current MergeAndSync delivery."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-    "normalizedSha256": "3a734bef6d8161609b8530150c5329bb1c6819245c241cc8a73539f5feece530"
+    "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632"
   },
   "sources": [
     {
@@ -25,7 +25,7 @@
       "kind": "File",
       "label": "Archived prior accepted rollout intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/37ed5d76-0963-480e-851c-1c54b51aedf6/target.md",
+      "path": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,8 +36,8 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
-      "gitBlob": "0c4b2ae943d6f63ad2f6d00173748ed6a26d27ad",
+      "normalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
+      "gitBlob": "f25069a33a4eb2a961a90803413219d33aafd899",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
@@ -46,7 +46,7 @@
       "kind": "File",
       "label": "Archived superseded Intake Review result",
       "location": "Repository",
-      "path": "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/history/b3a365d1-d186-4ca8-89e5-af02cf49436a/intake-review-result.json",
+      "path": "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/history/d4b2c966-f845-4b27-b2d3-cfeaf144d0c7/intake-review-result.json",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -57,36 +57,15 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "83f69e2723249f626cee0bd2669e6c7aa4ce0245955f5fd6e1369b0d09a4141f",
-      "gitBlob": "14608351efd6d49aa660060069f69639af86ff7d",
+      "normalizedSha256": "87ccc7e684cbf29831569900f44c1a4422092e1dc8fe050124d727a337d8675f",
+      "gitBlob": "fc357dc0d6971d80b32ee26e1e1a0875807303f2",
       "proofBoundary": "ArchivedSupersededReview"
     },
     {
       "sourceId": "SRC003",
       "order": 3,
-      "kind": "File",
-      "label": "Canonical active Fleet manifest",
-      "location": "Repository",
-      "path": "scripts/config/agentic-workspace-fleet.json",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "39168bed30b29f5df50212d2262caa4d6f922558b8a721e2b619de300256bc9d",
-      "gitBlob": "d1d02d8646484e600bb9793528dd3e7f4b53c9e0",
-      "proofBoundary": "CanonicalFleetPathEvidence"
-    },
-    {
-      "sourceId": "SRC004",
-      "order": 4,
       "kind": "Pasted",
-      "label": "Current authorization for canonical path repair",
+      "label": "Merged PR #176 target-path correction evidence",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -99,7 +78,28 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "432d39c87fcde69a82e17734938539a8b937659945744a78d8603d3cfe23d007",
+      "normalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
+      "gitBlob": "N/A",
+      "proofBoundary": "MergedCommit:1fd1c5048ace8d6eaf7c1d4834ef2b04e6b9707c"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "Pasted",
+      "label": "Current authorization for metadata-only repair",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "b5b6123df50c809d95558ac1c2098624288dd9938f7169a81a9b0be5408438c3",
       "gitBlob": "N/A",
       "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
     }
@@ -111,15 +111,15 @@
       "id": "IAD001",
       "status": "Answered",
       "question": "Welche Änderung wird repariert?",
-      "answer": "Der veraltete Level-1-Zielpfad secure-casetracker-baseline wird durch den kanonischen lokalen Fleet-Pfad SecureCaseTrackerProjects ersetzt.",
-      "evidence": "scripts/config/agentic-workspace-fleet.json und die lokale Registry stimmen im kanonischen Pfad überein."
+      "answer": "Der bereits durch PR #176 gemergte Level-2-Pfad SecureCaseTrackerProjects/SecureCaseTracker-CSharp wird mit dem aktuellen Zielhash und vollständiger Provenienz gebunden.",
+      "evidence": "Merged commit 1fd1c50 and current user authority."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche inhaltliche Grenze gilt für die Reparatur?",
-      "answer": "Nur der eindeutig veraltete Level-1-Pfad wird korrigiert; Ziele, Scope, Anforderungen, Akzeptanzkriterien und Prompts bleiben unverändert.",
-      "evidence": "Explizite Benutzerfreigabe und Finding IR001."
+      "question": "Bleibt der Lastenheft-Inhalt in dieser Reparatur unverändert?",
+      "answer": "Ja. Diese Reparatur ändert ausschließlich Receipt-, Review- und Serienmetadaten.",
+      "evidence": "Die aktuelle Benutzerfreigabe begrenzt die Korrektur ausdrücklich auf Metadaten."
     },
     {
       "id": "IAD003",
@@ -132,8 +132,8 @@
       "id": "IAD004",
       "status": "Answered",
       "question": "Wie wird der alte Review behandelt?",
-      "answer": "Review b3a365d1-d186-4ca8-89e5-af02cf49436a wird byte-identisch archiviert und durch einen vollständigen neuen Review supersediert.",
-      "evidence": "Der alte Review enthält den nun behobenen Medium-Befund IR001."
+      "answer": "Review d4b2c966-f845-4b27-b2d3-cfeaf144d0c7 wird byte-identisch archiviert und durch einen vollständigen neuen Review supersediert.",
+      "evidence": "Der alte Review bindet den vor PR #176 gültigen Zielhash."
     },
     {
       "id": "IAD005",
@@ -145,9 +145,9 @@
     {
       "id": "IAD006",
       "status": "Answered",
-      "question": "Welche Pfadnamen bleiben absichtlich unverändert?",
-      "answer": "Fleet-ID, Remote-Repositoryname und Remote-URL secure-casetracker-baseline bleiben erhalten; ausschließlich der lokale Level-1-Pfad lautet SecureCaseTrackerProjects.",
-      "evidence": "Das Fleet-Manifest trennt id, path und remote ausdrücklich."
+      "question": "Welcher inhaltliche Restbefund bleibt außerhalb dieser Metadatenreparatur?",
+      "answer": "Der Level-1-Zielname secure-casetracker-baseline weicht weiterhin vom kanonischen Fleet-Pfad SecureCaseTrackerProjects ab und wird im neuen Review als NeedsRemediation ausgewiesen.",
+      "evidence": "scripts/config/agentic-workspace-fleet.json und lokale Registry belegen den kanonischen Level-1-Pfad."
     }
   ],
   "openDecisionIds": [],
@@ -159,14 +159,14 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit current user approval for the canonical path correction and DeliveryMode MergeAndSync with Admin-Bypass.",
+  "authorityEvidence": "Explicit current user approval for the metadata-only repair and current MergeAndSync delivery with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/37ed5d76-0963-480e-851c-1c54b51aedf6/receipt.json",
-    "targetNormalizedSha256": "3b1b29e25bb1f6fde8bd3f07b7d3cbb34e9fdf6af52fb31e462289feaccd2632",
-    "archiveTargetPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/37ed5d76-0963-480e-851c-1c54b51aedf6/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/37ed5d76-0963-480e-851c-1c54b51aedf6/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/receipt.json",
+    "targetNormalizedSha256": "343e8a15e93d03d3bd12699db6a43c99d98383a59f37594a71a864869b9fb38d",
+    "archiveTargetPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/5bf1b5d4-ef3e-43a5-8330-b37c045f2332/462c0597-9b0d-41ff-856f-bfeaf5dae2a9/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -174,7 +174,7 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user request: correct the paths and deliver through MergeAndSync with Admin-Bypass.",
+  "updateAuthorityEvidence": "Current user answer: yes, include the limited metadata repair in the same pull request.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
