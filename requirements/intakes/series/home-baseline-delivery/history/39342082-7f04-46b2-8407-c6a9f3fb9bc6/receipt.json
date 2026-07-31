@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "5dc6349a-8463-4548-90e7-e8cb4491fbc0",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-07-30T13:59:42Z",
+  "operation": {
+    "operationId": "ba5c91a5-70c7-4274-98d0-65a655867c4d",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user authority to repair the two canonical CaseTracker Level-1 paths, preserve the accepted Series topology, and deliver through MergeAndSync with Admin-Bypass."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "fbe5457d9b9d174665a5cf30d9173b8b35dcc0a25654d729dec061afe63510a0"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ba5c91a5-70c7-4274-98d0-65a655867c4d/receipt.json",
+    "receiptNormalizedSha256": "58cfe3f6561f9f61c98a286237a419656b9c963a4b471e2040a793295bde02bc",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ba5c91a5-70c7-4274-98d0-65a655867c4d/manifest.json",
+    "manifestArchiveSha256": "0f6222d93d837b5305c57eb44727d4090955079546420bf3de388dbfe7125b79"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

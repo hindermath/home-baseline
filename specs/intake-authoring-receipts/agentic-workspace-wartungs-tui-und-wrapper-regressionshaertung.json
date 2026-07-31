@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "f341c5f0-711e-43e1-925f-a35619d16545",
+  "intakeId": "09a0766d-04c5-438d-b7c7-d556e64301ee",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-07-31T14:48:07Z",
+  "operation": {
+    "operationId": "eb5a0dd0-d884-4183-a98c-10fc9b4512c8",
+    "type": "Create",
+    "authorityEvidence": "Current explicit user instruction to create the regression-hardening intake, place it before D4, and deliver the authoring and Series update through MergeAndSync with a narrowly bounded Admin-Bypass."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+    "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved conversation decisions for maintenance TUI and wrapper regression hardening",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "35ec2320f5bfc433edaa8fdf9e77789e14cd33b1f05aacfffc1de21fbfa4b0f7",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved defects, A11Y boundary, delivery authority, and final placement before D4"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Current Bash Agentic Workspace maintenance wrapper",
+      "location": "Repository",
+      "path": "scripts/maintain-agentic-workspace.sh",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "c8cbf36be31148a0ea63e3b47f181df68eaa2da667d197a3fadd939f3ff23ad9",
+      "gitBlob": "3b527e8736c1f0afb3e2d9c3efaeb954beb8e03f",
+      "proofBoundary": "CurrentRepositoryFile"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche beiden beobachteten Fehler gehoeren in einen gemeinsamen Intake?",
+      "answer": "Der lueckenhafte JSONL-Live-Status mit fehlendem run-completed und falschem RESULT_MISMATCH sowie die Bash-3.2-unsichere argumentlose ORIGINAL_ARGS-Weitergabe.",
+      "evidence": "Current approved plan and the two reproduced command outputs named by the user."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Bedienungsdarstellung ist das Ziel?",
+      "answer": "Die vorhandene schlichte, lineare und barrierearme Darstellung bleibt erhalten; Dashboard und Spectre.Console LiveDisplay expansion are out of scope.",
+      "evidence": "Explicit user decision that the simple presentation is acceptable for accessibility."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Ergebnis- und Kompatibilitaetsvertraege bleiben bindend?",
+      "answer": "Valid details objects, continuous schema-1 events from sequence 1 through run-completed, deterministic finalized-report recovery, mismatch only for real contradictions, unchanged CLI and safety barriers, one engine process, Bash 3.2 compatibility, and PowerShell 7 parity.",
+      "evidence": "Approved implementation contract in the current conversation."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wo wird der neue Intake in der aktiven Series eingeordnet?",
+      "answer": "Als erste bevorzugte Root vor D4, declared Eligible, with D4 changed to Pending and no binding dependency edge between the two roots.",
+      "evidence": "Latest explicit user instruction: create the intake and place it before D4."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery-Autoritaet gilt fuer den spaeteren autonomen Lauf?",
+      "answer": "MergeAndSync with Admin-Bypass only when every technical, security, accessibility, validator, CI, review-thread, hash, and freshness gate passes and only formal human approval remains.",
+      "evidence": "Current explicit user approval of DeliveryMode MergeAndSync with the bounded Admin-Bypass."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 2,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current explicit user approval of MergeAndSync and Admin-Bypass limited to a sole formal human-approval blocker after all technical, security, accessibility, validator, CI, review, hash, and freshness gates pass.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "Root",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md"
+}
