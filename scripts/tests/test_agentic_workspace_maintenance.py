@@ -884,6 +884,142 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                     self.assertIn(expected_canonical.casefold(), normalized_output)
                     self.assertNotIn(unexpected_legacy.casefold(), normalized_output)
 
+    def test_propagation_surfaces_accept_only_clean_tracked_exact_exceptions(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            home = root / "home"
+            canonical = home / "Fleet" / "Canonical"
+            canonical.mkdir(parents=True)
+            subprocess.run(["git", "init", "-q", str(canonical)], check=True)
+            git(canonical, "config", "user.name", "Fixture")
+            git(canonical, "config", "user.email", "fixture@example.invalid")
+            target = canonical / "AGENTS.md"
+            target.write_text("project-specific guidance\n", encoding="utf-8")
+            git(canonical, "add", "AGENTS.md")
+            git(canonical, "commit", "-q", "-m", "project-specific variant")
+
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "repositories": [{"path": "Fleet/Canonical", "level": 2}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest = root / "propagation-manifest.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "files": [{"path": "AGENTS.md", "executable": False}],
+                        "exceptions": [
+                            {
+                                "repositoryPath": "Fleet/Canonical",
+                                "path": "AGENTS.md",
+                                "reason": "fixture-specific guidance",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            commands = [
+                [
+                    "pwsh",
+                    "-NoProfile",
+                    "-File",
+                    str(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.ps1"),
+                    "-HomeDir",
+                    str(home),
+                    "-Registry",
+                    str(registry),
+                    "-Manifest",
+                    str(manifest),
+                    "-CheckOnly",
+                ],
+            ]
+            if os.name != "nt":
+                commands.insert(
+                    0,
+                    [
+                        "bash",
+                        bash_path(REPOSITORY / "scripts" / "propagate-agentic-toolchain-maintenance.sh"),
+                        "--home-dir",
+                        bash_path(home),
+                        "--registry",
+                        bash_path(registry),
+                        "--manifest",
+                        bash_path(manifest),
+                        "--check-only",
+                    ],
+                )
+
+            for command in commands:
+                with self.subTest(surface=command[0], state="clean-tracked"):
+                    completed = subprocess.run(
+                        command,
+                        text=True,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        check=False,
+                    )
+                    self.assertEqual(completed.returncode, 0, completed.stdout)
+                    self.assertIn("[EXCEPTED] AGENTS.md", completed.stdout)
+                    self.assertIn("files.raw_differences: 1", completed.stdout)
+                    self.assertIn("files.exceptions:      1", completed.stdout)
+                    self.assertIn("files.actionable_drift: 0", completed.stdout)
+
+            invalid_manifest = root / "invalid-propagation-manifest.json"
+            invalid_manifest.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "files": [{"path": "AGENTS.md", "executable": False}],
+                        "exceptions": [
+                            {
+                                "repositoryPath": "Fleet/Canonical",
+                                "path": "CLAUDE.md",
+                                "reason": "not a managed path",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            for command in commands:
+                invalid_command = list(command)
+                manifest_option = "--manifest" if command[0] == "bash" else "-Manifest"
+                invalid_command[invalid_command.index(manifest_option) + 1] = str(
+                    invalid_manifest
+                )
+                with self.subTest(surface=command[0], state="invalid-exception"):
+                    completed = subprocess.run(
+                        invalid_command,
+                        text=True,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        check=False,
+                    )
+                    self.assertNotEqual(completed.returncode, 0, completed.stdout)
+                    self.assertIn("exception", completed.stdout.casefold())
+
+            target.write_text("uncommitted local change\n", encoding="utf-8")
+            for command in commands:
+                with self.subTest(surface=command[0], state="locally-modified"):
+                    completed = subprocess.run(
+                        command,
+                        text=True,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        check=False,
+                    )
+                    self.assertEqual(completed.returncode, 2, completed.stdout)
+                    self.assertIn("local managed-file change", completed.stdout)
+                    self.assertNotIn("[EXCEPTED]", completed.stdout)
+
     def test_registry_rejects_preset_or_unknown_propagation_targets(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = FleetFixture(Path(directory))

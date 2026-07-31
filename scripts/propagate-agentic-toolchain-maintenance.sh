@@ -22,6 +22,7 @@ REPOS_DRIFTED=0
 REPOS_SKIPPED=0
 FILES_CHANGED=0
 RAW_DIFFERENCES=0
+FILES_EXCEPTED=0
 
 usage() {
   cat <<USAGE
@@ -129,6 +130,88 @@ for index in "${!MANAGED_PATHS[@]}"; do
   fi
 done
 
+EXCEPTION_REPOSITORIES=()
+EXCEPTION_PATHS=()
+EXCEPTION_REASONS=()
+if ! EXCEPTION_ROWS="$(python3 - "$MANIFEST" <<'PYEOF'
+import json
+import pathlib
+import sys
+
+manifest_path = pathlib.Path(sys.argv[1])
+data = json.loads(manifest_path.read_text(encoding="utf-8"))
+managed = {
+    entry["path"]
+    for entry in data["files"]
+    if isinstance(entry, dict) and isinstance(entry.get("path"), str)
+}
+seen = set()
+for entry in data.get("exceptions", []):
+    if not isinstance(entry, dict):
+        raise SystemExit("Invalid propagation exception")
+    repository = entry.get("repositoryPath")
+    path = entry.get("path")
+    reason = entry.get("reason")
+    for label, value in (
+        ("repositoryPath", repository),
+        ("path", path),
+        ("reason", reason),
+    ):
+        if (
+            not isinstance(value, str)
+            or not value
+            or "\t" in value
+            or "\n" in value
+            or "\r" in value
+        ):
+            raise SystemExit(f"Invalid propagation exception {label}: {value!r}")
+    repository_parts = pathlib.PurePosixPath(repository).parts
+    if (
+        pathlib.PurePosixPath(repository).is_absolute()
+        or ".." in repository_parts
+        or repository in (".", "")
+    ):
+        raise SystemExit(f"Unsafe propagation exception repository: {repository}")
+    if path not in managed:
+        raise SystemExit(f"Exception path is not managed: {path}")
+    key = (repository, path)
+    if key in seen:
+        raise SystemExit(
+            f"Duplicate propagation exception: {repository} / {path}"
+        )
+    seen.add(key)
+    print(f"{repository}\t{path}\t{reason}")
+PYEOF
+)"; then
+  fail "Ausnahmen im Manifest sind ungueltig / Manifest exceptions are invalid."
+fi
+while IFS=$'\t' read -r repository_path relative_path reason; do
+  [ -n "$repository_path" ] || continue
+  EXCEPTION_REPOSITORIES+=("$repository_path")
+  EXCEPTION_PATHS+=("$relative_path")
+  EXCEPTION_REASONS+=("$reason")
+done <<EOF
+${EXCEPTION_ROWS}
+EOF
+
+exception_reason() {
+  local repo="$1" relative_path="$2"
+  local repository_relative index
+  case "$repo" in
+    "${HOME_DIR}/"*) repository_relative="${repo#"${HOME_DIR}/"}" ;;
+    *) return 1 ;;
+  esac
+  [ -n "${EXCEPTION_REPOSITORIES[*]-}" ] || return 1
+  for index in "${!EXCEPTION_REPOSITORIES[@]}"; do
+    if [ "${EXCEPTION_REPOSITORIES[$index]}" = "$repository_relative" ] &&
+       [ "${EXCEPTION_PATHS[$index]}" = "$relative_path" ]; then
+      printf '%s' "${EXCEPTION_REASONS[$index]}"
+      return 0
+    fi
+  done
+  return 1
+}
+
 discover_repositories() {
   python3 - "$HOME_DIR" "$REGISTRY" "$SOURCE_ROOT" "$TARGET_REPO" "$ONLY_LEVEL1" "$ONLY_LEVEL2" <<'PYEOF'
 import json
@@ -222,7 +305,8 @@ managed_path_is_dirty() {
 }
 
 process_repository() {
-  local level="$1" repo="$2" index relative_path executable source_file target_file dirty=0 drift=0
+  local level="$1" repo="$2" index relative_path executable source_file target_file
+  local exception dirty=0 drift=0
   REPOS_TOTAL=$((REPOS_TOTAL + 1))
   echo ""
   info "Level ${level}: ${repo}"
@@ -252,6 +336,14 @@ process_repository() {
     fi
     if file_matches "$repo" "$source_file" "$target_file" "$relative_path" "$executable"; then
       [ "$VERBOSE" -eq 1 ] && echo "  [CURRENT] ${relative_path}"
+      continue
+    fi
+    if [ -f "$target_file" ] &&
+       file_mode_matches "$target_file" "$executable" &&
+       git -C "$repo" ls-files --error-unmatch -- "$relative_path" >/dev/null 2>&1 &&
+       exception="$(exception_reason "$repo" "$relative_path")"; then
+      FILES_EXCEPTED=$((FILES_EXCEPTED + 1))
+      echo "  [EXCEPTED] ${relative_path}: ${exception}"
       continue
     fi
 
@@ -298,6 +390,7 @@ echo "  repositories.changed: ${REPOS_CHANGED}"
 echo "  repositories.drifted: ${REPOS_DRIFTED}"
 echo "  repositories.skipped: ${REPOS_SKIPPED}"
 echo "  files.raw_differences: ${RAW_DIFFERENCES}"
+echo "  files.exceptions:      ${FILES_EXCEPTED}"
 echo "  files.actionable_drift: ${FILES_CHANGED}"
 echo "  files.different:       ${FILES_CHANGED}"
 
