@@ -7,16 +7,10 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
-      "role": "Primary",
-      "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567",
-      "status": "Eligible"
-    },
-    {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e",
-      "status": "Pending"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
@@ -236,7 +230,6 @@
     }
   ],
   "roots": [
-    "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
     "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
@@ -542,7 +535,6 @@
     "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
     "specs/learning-series-governance-intakes/series/intake-review-result.json",
-    "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
-    "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json"
+    "specs/018-agentic-workspace-tui/autonomous-run-evidence.md"
   ]
 }

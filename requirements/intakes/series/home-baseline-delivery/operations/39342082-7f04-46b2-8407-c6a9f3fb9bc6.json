@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "39342082-7f04-46b2-8407-c6a9f3fb9bc6",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user instruction to create the maintenance TUI and wrapper regression-hardening intake, place it before D4, and deliver through MergeAndSync with Admin-Bypass bounded by all technical and review gates.",
+  "proposalNormalizedSha256": "8141cfe1cae7d0dadf8c1413a3c3ced0eda4571b8c8fe20a2a940c87c43f2f10",
+  "differences": {
+    "targetCount": {
+      "before": 37,
+      "after": 38
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 4
+    },
+    "dependencyCount": {
+      "before": 44,
+      "after": 44
+    },
+    "addedTargets": [
+      {
+        "order": 1,
+        "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+        "role": "Primary",
+        "status": "Eligible",
+        "root": true,
+        "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "orderBefore": 1,
+        "orderAfter": 2,
+        "roleBefore": "Primary",
+        "roleAfter": "OrderedMember",
+        "statusBefore": "Eligible",
+        "statusAfter": "Pending",
+        "rootBefore": true,
+        "rootAfter": true
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md"
+    ],
+    "removedRoots": [],
+    "addedDependencies": [],
+    "removedDependencies": [],
+    "preservedDependencySha256": "da49b40fbccf413bca5fa5f8bc31a4e265a451bd5f19f84a3679353a6be6ed2e"
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Adds the visible R-TUI position before D4, identifies R-TUI as the sole declared Eligible candidate, retains D4 as an independent Pending root, and preserves every existing numbered position."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/39342082-7f04-46b2-8407-c6a9f3fb9bc6/manifest.json",
+    "manifestNormalizedSha256": "fbe5457d9b9d174665a5cf30d9173b8b35dcc0a25654d729dec061afe63510a0",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/39342082-7f04-46b2-8407-c6a9f3fb9bc6/receipt.json",
+    "receiptNormalizedSha256": "ac74d1bf0e4e3903354eb403397818dfd01960505138684b9c5ccad3f5f479e1"
+  },
+  "preparedPaths": [
+    "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "docs/project-statistics.md",
+    "requirements/intakes/series/home-baseline-delivery/history/39342082-7f04-46b2-8407-c6a9f3fb9bc6/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/39342082-7f04-46b2-8407-c6a9f3fb9bc6/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/39342082-7f04-46b2-8407-c6a9f3fb9bc6.json",
+    "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
