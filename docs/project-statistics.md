@@ -1005,14 +1005,14 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 | Textdateien / Text files | 2814 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-31 |
 | Aktivtage / Active days | 79 |
-| Relevante Commits / Relevant commits | 630 |
+| Relevante Commits / Relevant commits | 631 |
 | Zeilen je Aktivtag / Lines per active day | 5660.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 123072 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 123074 |
 | Laengste Serie / Longest streak | 36 days |
 | Speedup vs. 80 lines/day | 70.8x |
 | Speedup vs. 100 lines/day | 56.6x |
-| Methodik / Methodology | v2; source `e3792956f8de` |
+| Methodik / Methodology | v2; source `2dbd9cf31694` |
 
 ### Artefaktmix / Artifact Mix
 
@@ -1236,9 +1236,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 123072. Laengste Serie: 36 Tage (2026-06-26..2026-07-31).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 123074. Laengste Serie: 36 Tage (2026-06-26..2026-07-31).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-07-31. It contains 79 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 123072. Longest streak: 36 days (2026-06-26..2026-07-31).*
+*EN: The window starts on 2025-08-03 and ends on 2026-07-31. It contains 79 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 123074. Longest streak: 36 days (2026-06-26..2026-07-31).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1253,6 +1253,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 385343 |
+| 2026-07 | 385345 |
 
 <!-- project-statistics-v2:end -->
