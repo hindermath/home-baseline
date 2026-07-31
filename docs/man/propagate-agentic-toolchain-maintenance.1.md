@@ -33,6 +33,15 @@ Dateien und loescht nichts. Wenn eine verwaltete Zieldatei lokal veraendert
 oder als abweichende unversionierte Datei vorhanden ist, wird das gesamte
 Repository uebersprungen. Andere lokale Aenderungen bleiben unberuehrt.
 
+Das Manifest darf eng begrenzte, begruendete Ausnahmen fuer ein exaktes Paar
+aus registriertem Repository-Pfad und verwaltetem Dateipfad enthalten. Eine
+Ausnahme gilt nur, wenn die abweichende Zieldatei vorhanden, Git-getrackt,
+moduskonform und frei von lokalen Aenderungen ist. Fehlende, unversionierte,
+modusfalsche oder lokal veraenderte Dateien bleiben blockierende Befunde.
+Akzeptierte Varianten werden als `[EXCEPTED]` ausgegeben, unter
+`files.raw_differences` mitgezaehlt und von `files.actionable_drift`
+ausgenommen.
+
 *Level-0 under `~/home-baseline-source` is the canonical source for both toolchain
 maintenance scripts, their five JSON registries, and both maintenance man
 pages. The managed file list lives in
@@ -45,6 +54,14 @@ directories remain untouched. It copies only missing or different files and
 deletes nothing. If a managed target file has a local modification or exists
 as a different untracked file, the complete repository is skipped. Other local
 changes remain untouched.*
+
+*The manifest may contain narrowly scoped, justified exceptions for an exact
+pair of registered repository path and managed file path. An exception applies
+only when the different target file exists, is tracked by Git, has the expected
+mode, and has no local modifications. Missing, untracked, mode-mismatched, or
+locally modified files remain blocking findings. Accepted variants are reported
+as `[EXCEPTED]`, counted under `files.raw_differences`, and excluded from
+`files.actionable_drift`.*
 
 ## Optionen / Options
 

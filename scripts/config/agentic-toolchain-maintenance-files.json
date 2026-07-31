@@ -1,7 +1,21 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-07-29",
+  "updated": "2026-07-31",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
+  "exceptions": [
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/HomeBaseline.MaintenanceTui.csproj",
+      "reason": "TuiVision enforces CS1591 for its public API; the distributed maintenance application is operational tooling outside that API contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/pull/133"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj",
+      "reason": "TuiVision enforces CS1591 for its public API; the distributed maintenance tests are operational tooling outside that API contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/pull/133"
+    }
+  ],
   "files": [
     {
       "path": "scripts/maintain-agentic-workspace.sh",

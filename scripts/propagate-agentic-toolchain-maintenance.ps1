@@ -14,7 +14,9 @@
     Reads the centrally managed Level-0 file manifest and processes existing
     Level-1 and Level-2 repositories exclusively from the previously validated
     local registry. Unregistered directories remain untouched. Locally modified
-    managed files are never overwritten.
+    managed files are never overwritten. Exact manifest exceptions can accept
+    clean, tracked, mode-correct project-specific variants without masking
+    missing, untracked, or locally modified files.
 
 .PARAMETER DryRun
     Zeigt geplante Aenderungen, ohne Dateien zu schreiben.
@@ -120,6 +122,38 @@ foreach ($entry in $manifestData.files) {
 }
 if ($managedFiles.Count -eq 0) {
     throw 'Manifest enthaelt keine Dateien / Manifest contains no files.'
+}
+
+$exceptionMap = [Collections.Generic.Dictionary[string, string]]::new(
+    [StringComparer]::OrdinalIgnoreCase
+)
+$exceptionsProperty = $manifestData.PSObject.Properties['exceptions']
+$exceptions = if ($null -eq $exceptionsProperty) { @() } else { @($exceptionsProperty.Value) }
+foreach ($entry in $exceptions) {
+    if ($null -eq $entry -or $entry -isnot [pscustomobject]) {
+        throw 'Ungueltige Propagationsausnahme / Invalid propagation exception.'
+    }
+    $repositoryPath = [string] $entry.repositoryPath
+    $relativePath = [string] $entry.path
+    $reason = [string] $entry.reason
+    if (-not $repositoryPath -or $repositoryPath.Contains("`t") -or
+        $repositoryPath.Contains("`n") -or $repositoryPath.Contains("`r") -or
+        [IO.Path]::IsPathRooted($repositoryPath) -or
+        $repositoryPath.Split([char[]]@('/', '\')) -contains '..' -or
+        $repositoryPath -eq '.') {
+        throw "Unsicherer Ausnahmepfad / Unsafe exception repository: ${repositoryPath}"
+    }
+    if (-not $relativePath -or -not $reason -or
+        $relativePath.Contains("`t") -or $relativePath.Contains("`n") -or
+        $relativePath.Contains("`r") -or $reason.Contains("`t") -or
+        $reason.Contains("`n") -or $reason.Contains("`r") -or
+        -not $seenPaths.Contains($relativePath)) {
+        throw "Ungueltige Propagationsausnahme / Invalid propagation exception: ${repositoryPath} / ${relativePath}"
+    }
+    $key = "${repositoryPath}`n${relativePath}"
+    if (-not $exceptionMap.TryAdd($key, $reason)) {
+        throw "Doppelte Propagationsausnahme / Duplicate propagation exception: ${repositoryPath} / ${relativePath}"
+    }
 }
 
 function Test-HBManagedRepository {
@@ -237,6 +271,27 @@ function Test-HBManagedPathDirty {
     return $status.Count -gt 0
 }
 
+function Get-HBPropagationExceptionReason {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string] $Repository,
+        [Parameter(Mandatory)][string] $RepositoryRelativePath
+    )
+
+    $relativeRepository = [IO.Path]::GetRelativePath($HomeDir, $Repository).Replace('\', '/')
+    if ($relativeRepository -eq '..' -or $relativeRepository.StartsWith('../')) {
+        return $null
+    }
+    $reason = ''
+    if ($exceptionMap.TryGetValue(
+        "${relativeRepository}`n${RepositoryRelativePath}",
+        [ref] $reason
+    )) {
+        return $reason
+    }
+    return $null
+}
+
 $repositories = @(Get-HBManagedRepositories)
 $preview = $DryRun -or $WhatIfPreference
 $reposCurrent = 0
@@ -245,6 +300,7 @@ $reposDrifted = 0
 $reposSkipped = 0
 $filesDifferent = 0
 $rawDifferences = 0
+$filesExcepted = 0
 
 foreach ($repository in $repositories) {
     $repoPath = [string] $repository.Path
@@ -273,6 +329,19 @@ foreach ($repository in $repositories) {
             -RepositoryRelativePath $file.Path -Executable $file.Executable) {
             Write-Verbose "[CURRENT] $($file.Path)"
             continue
+        }
+
+        $exceptionReason = Get-HBPropagationExceptionReason -Repository $repoPath `
+            -RepositoryRelativePath $file.Path
+        if ($null -ne $exceptionReason -and
+            (Test-Path -LiteralPath $target -PathType Leaf) -and
+            (Test-HBExecutableMode -Path $target -Executable $file.Executable)) {
+            $null = & git -C $repoPath ls-files --error-unmatch -- $file.Path 2>$null
+            if ($LASTEXITCODE -eq 0) {
+                $filesExcepted++
+                Write-Host "  [EXCEPTED] $($file.Path): ${exceptionReason}"
+                continue
+            }
         }
 
         $repoDifferences++
@@ -320,6 +389,7 @@ Write-Host "  repositories.changed: ${reposChanged}"
 Write-Host "  repositories.drifted: ${reposDrifted}"
 Write-Host "  repositories.skipped: ${reposSkipped}"
 Write-Host "  files.raw_differences: ${rawDifferences}"
+Write-Host "  files.exceptions:      ${filesExcepted}"
 Write-Host "  files.actionable_drift: ${filesDifferent}"
 Write-Host "  files.different:       ${filesDifferent}"
 

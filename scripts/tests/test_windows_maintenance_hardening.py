@@ -265,7 +265,13 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "Get-HBPackageResults",
         ):
             self.assertIn(token, winget)
-        for token in ("Get-HBGitNormalizedHash", "raw_differences", "actionable_drift"):
+        for token in (
+            "Get-HBGitNormalizedHash",
+            "Get-HBPropagationExceptionReason",
+            "raw_differences",
+            "files.exceptions",
+            "actionable_drift",
+        ):
             self.assertIn(token, propagation)
 
     def test_preset_profile_count_is_data_driven_from_the_catalog(self) -> None:
