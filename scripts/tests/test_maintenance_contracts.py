@@ -661,6 +661,281 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
             completed = subprocess.run(["bash", "-c", harness], check=False)
             self.assertNotEqual(completed.returncode, 0)
 
+    @unittest.skipIf(os.name == "nt", "The Bash bootstrap contract test runs on macOS and Linux.")
+    def test_bash_bootstrap_resolves_registry_profile_and_constitution_version(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            (home / "constitution.md").write_text(
+                "# Constitution v1.20.0\n",
+                encoding="utf-8",
+            )
+            registry_directory = home / ".home-baseline"
+            registry_directory.mkdir()
+            (registry_directory / "level2-repository-registry.json").write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "defaultPresetProfile": (
+                            "intake-sequencing-eleven-governance-presets"
+                        ),
+                        "repositories": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            environment = os.environ.copy()
+            environment["HOME"] = str(home)
+            completed = subprocess.run(
+                [
+                    "bash",
+                    str(REPOSITORY / "scripts" / "bootstrap-project.sh"),
+                    "Fixture",
+                    str(home / "workspace"),
+                    "--no-remote",
+                    "--preview",
+                ],
+                env=environment,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            self.assertIn("Constitution v1.20.0", completed.stdout)
+            self.assertIn(
+                "intake-sequencing-eleven-governance-presets",
+                completed.stdout,
+            )
+            self.assertFalse((home / "workspace").exists())
+
+    @unittest.skipIf(os.name == "nt", "The Bash bootstrap contract test runs on macOS and Linux.")
+    def test_bash_bootstrap_rejects_missing_or_ambiguous_constitution_version(self) -> None:
+        for content in (
+            "# Constitution\n",
+            "# Constitution v1.20.0\n# Constitution v1.21.0\n",
+        ):
+            with self.subTest(content=content), tempfile.TemporaryDirectory() as directory:
+                home = Path(directory)
+                (home / "constitution.md").write_text(content, encoding="utf-8")
+                environment = os.environ.copy()
+                environment["HOME"] = str(home)
+                completed = subprocess.run(
+                    [
+                        "bash",
+                        str(REPOSITORY / "scripts" / "bootstrap-project.sh"),
+                        "Fixture",
+                        str(home / "workspace"),
+                        "--no-remote",
+                        "--preview",
+                    ],
+                    env=environment,
+                    text=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    check=False,
+                )
+                self.assertNotEqual(completed.returncode, 0, completed.stdout)
+                self.assertIn("genau einmal", completed.stdout)
+                self.assertFalse((home / "workspace").exists())
+
+    @unittest.skipIf(os.name == "nt", "The Bash registration test runs on macOS and Linux.")
+    def test_bash_registration_dry_run_creates_no_registry_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            repository = home / "Projects" / "Fixture"
+            repository.mkdir(parents=True)
+            run_git(repository, "init", "-q")
+            registry = home / "state" / "nested" / "registry.json"
+            environment = os.environ.copy()
+            environment["HOME"] = str(home)
+            completed = subprocess.run(
+                [
+                    "bash",
+                    str(REPOSITORY / "scripts" / "register-level2-repository.sh"),
+                    "--repo",
+                    str(repository),
+                    "--level",
+                    "2",
+                    "--registry",
+                    str(registry),
+                    "--dry-run",
+                ],
+                env=environment,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            self.assertFalse(registry.parent.exists())
+
+    @unittest.skipIf(os.name == "nt", "The Bash registration test runs on macOS and Linux.")
+    def test_bash_entry_profile_does_not_change_registry_default(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            repository = home / "Projects" / "Fixture"
+            repository.mkdir(parents=True)
+            run_git(repository, "init", "-q")
+            registry = home / "state" / "registry.json"
+            registry.parent.mkdir()
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "defaultPresetProfile": "standard-eight-governance-presets",
+                        "updatedAt": "2026-07-31",
+                        "repositories": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            environment = os.environ.copy()
+            environment["HOME"] = str(home)
+            completed = subprocess.run(
+                [
+                    "bash",
+                    str(REPOSITORY / "scripts" / "register-level2-repository.sh"),
+                    "--repo",
+                    str(repository),
+                    "--level",
+                    "2",
+                    "--registry",
+                    str(registry),
+                    "--preset-profile",
+                    "intake-sequencing-eleven-governance-presets",
+                ],
+                env=environment,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            data = read_json(registry)
+            self.assertEqual(
+                data["defaultPresetProfile"],
+                "standard-eight-governance-presets",
+            )
+            self.assertEqual(
+                data["repositories"][0]["presetProfile"],
+                "intake-sequencing-eleven-governance-presets",
+            )
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is required.")
+    def test_powershell_bootstrap_and_registration_preserve_profile_contracts(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            (home / "constitution.md").write_text(
+                "# Constitution v1.20.0\n",
+                encoding="utf-8",
+            )
+            registry_directory = home / ".home-baseline"
+            registry_directory.mkdir()
+            registry = registry_directory / "level2-repository-registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": 1,
+                        "defaultPresetProfile": "standard-eight-governance-presets",
+                        "updatedAt": "2026-07-31",
+                        "repositories": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            environment = os.environ.copy()
+            environment["HOME"] = str(home)
+            preview = subprocess.run(
+                [
+                    "pwsh",
+                    "-NoProfile",
+                    "-File",
+                    str(REPOSITORY / "scripts" / "bootstrap-project.ps1"),
+                    "-ProjectName",
+                    "Fixture",
+                    "-TargetWorkspace",
+                    str(home / "workspace"),
+                    "-NoRemote",
+                    "-PresetProfile",
+                    "intake-sequencing-eleven-governance-presets",
+                    "-Preview",
+                ],
+                env=environment,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            self.assertEqual(preview.returncode, 0, preview.stdout)
+            self.assertIn("Constitution v1.20.0", preview.stdout)
+            self.assertIn(
+                "intake-sequencing-eleven-governance-presets",
+                preview.stdout,
+            )
+            self.assertFalse((home / "workspace").exists())
+
+            dry_run_registry = home / "dry-run" / "nested" / "registry.json"
+            dry_run_repository = home / "DryRunProjects" / "Fixture"
+            dry_run_repository.mkdir(parents=True)
+            run_git(dry_run_repository, "init", "-q")
+            dry_run = subprocess.run(
+                [
+                    "pwsh",
+                    "-NoProfile",
+                    "-File",
+                    str(REPOSITORY / "scripts" / "register-level2-repository.ps1"),
+                    "-Repo",
+                    str(dry_run_repository),
+                    "-Level",
+                    "2",
+                    "-Registry",
+                    str(dry_run_registry),
+                    "-WhatIf",
+                ],
+                env=environment,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            self.assertEqual(dry_run.returncode, 0, dry_run.stdout)
+            self.assertFalse(dry_run_registry.parent.exists())
+
+            repository = home / "Projects" / "Fixture"
+            repository.mkdir(parents=True)
+            run_git(repository, "init", "-q")
+            registration = subprocess.run(
+                [
+                    "pwsh",
+                    "-NoProfile",
+                    "-File",
+                    str(REPOSITORY / "scripts" / "register-level2-repository.ps1"),
+                    "-Repo",
+                    str(repository),
+                    "-Level",
+                    "2",
+                    "-Registry",
+                    str(registry),
+                    "-PresetProfile",
+                    "intake-sequencing-eleven-governance-presets",
+                ],
+                env=environment,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            self.assertEqual(registration.returncode, 0, registration.stdout)
+            data = read_json(registry)
+            self.assertEqual(
+                data["defaultPresetProfile"],
+                "standard-eight-governance-presets",
+            )
+            self.assertEqual(
+                data["repositories"][0]["presetProfile"],
+                "intake-sequencing-eleven-governance-presets",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

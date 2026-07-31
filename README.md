@@ -698,6 +698,7 @@ bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform git
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform gitlab --gitlab-url https://gitlab.example.com --preview
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform codeberg --preview
 bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --platform forgejo --forgejo-url https://git.institution.example --preview
+bash ~/scripts/bootstrap-project.sh MeinProjekt ~/FlutterProjects --no-remote --preset-profile intake-sequencing-eleven-governance-presets --preview
 bash ~/scripts/check-homogeneity.sh ~/FlutterProjects
 ```
 
@@ -709,6 +710,7 @@ pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform gitlab -GitLabUrl https://gitlab.example.com -Preview
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform codeberg -Preview
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -Platform forgejo -ForgejoUrl https://git.institution.example -Preview
+pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/FlutterProjects -NoRemote -PresetProfile intake-sequencing-eleven-governance-presets -Preview
 pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 ```
 
@@ -716,6 +718,8 @@ pwsh ~/scripts/check-homogeneity.ps1 -TargetDir ~/FlutterProjects
 > `git init` · initialer Commit · privates Remote ueber `gh`, `glab` oder die Forgejo-API anlegen · Remote `origin` setzen · `git push`
 >
 > *For self-hosted GitLab or Forgejo, pass the matching base URL. Codeberg uses `https://codeberg.org`. Forgejo and Codeberg use HTTPS credentials from the configured Git credential helper.*
+
+Soll ein Projekt später öffentlich werden, wird es zuerst mit `--no-remote` beziehungsweise `-NoRemote` lokal initialisiert. Das öffentliche Remote und der erste Push folgen erst nach einer getrennten Public-Readiness-Freigabe. Der eingebaute Remote-Pfad bleibt privat. *For a repository intended to become public, initialize locally with `--no-remote` or `-NoRemote`; add its public remote and push only after separate public-readiness approval. The built-in remote path remains private.*
 
 **2b — Workspace oder Projekt entfernen / Remove a workspace or project** *(bei Bedarf / when needed)*
 
@@ -1294,9 +1298,9 @@ Der Bereich besteht aus Richtlinie, zwölf kanonischen Einzelchecklisten mit 157
 
 *The area contains the guideline, twelve canonical individual checklists with 157 stable CL IDs, a generated compendium, a year 1-to-3 learning path, and expanded related documents. `baseline-manifest.json` controls files and versions. Project evidence is stored separately under `docs/security/secure-development/<date>-<scope>/` and uses separate applicability and implementation axes. Security starts with the first repository access and coding task.*
 
-Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative lokale Merkliste der GSDB-relevanten Repositories liegt ausserhalb des public Repos unter `~/.home-baseline/level2-repository-registry.json`. Im Repo bleibt nur `scripts/config/level2-repository-registry.example.json` als public-safe Vorlage. Level-2-Repositories werden beim Bootstrap standardmaessig unabhaengig vom MSL-Status als GSDB-pflichtig mit dem Acht-Preset-Profil registriert; begruendete Ausnahmen muessen explizit gesetzt werden. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
+Die Kurzform **GSDB** steht in diesem Repository fuer diese **Generische Secure-Development Basis**. Die operative lokale Merkliste der GSDB-relevanten Repositories liegt ausserhalb des public Repos unter `~/.home-baseline/level2-repository-registry.json`. Im Repo bleibt nur `scripts/config/level2-repository-registry.example.json` als public-safe Vorlage. Level-2-Repositories werden beim Bootstrap standardmaessig unabhaengig vom MSL-Status als GSDB-pflichtig registriert. Das Preset-Profil folgt der Reihenfolge explizite Bootstrap-Option, lokale Registry-Vorgabe, zentraler Katalog-Standard; genau derselbe aufgeloeste Wert wird installiert und registriert. Begruendete Ausnahmen muessen explizit gesetzt werden. Bestehende Repositories koennen mit demselben Werkzeug nachgetragen werden.
 
-*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The local operational registry of GSDB-relevant repositories lives outside the public repo at `~/.home-baseline/level2-repository-registry.json`. The repository only keeps `scripts/config/level2-repository-registry.example.json` as a public-safe seed. Level-2 repositories default to GSDB-required with the eight-preset profile independently of MSL status; justified exceptions must be explicit. Existing repositories can be added later with the same tool.*
+*The short form **GSDB** means this **Generic Secure Development Baseline** in this repository. The local operational registry of GSDB-relevant repositories lives outside the public repo at `~/.home-baseline/level2-repository-registry.json`. The repository only keeps `scripts/config/level2-repository-registry.example.json` as a public-safe seed. Level-2 repositories default to GSDB-required independently of MSL status. Preset selection follows the explicit bootstrap option, local registry default, and central catalog default; the same resolved value is installed and registered. Justified exceptions must be explicit. Existing repositories can be added later with the same tool.*
 
 Der GSDB-Preflight ohne Spec-Kit-Lauf erfolgt mit `check-gsdb-self-assessment.*`. `--check-only` / `-CheckOnly` prueft rein lesend. Ein normaler Lauf schreibt `docs/security/gsdb-self-assessment.md`, erzeugt oder aktualisiert `Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md` und nimmt dieses Lastenheft in `Lastenheft_Abarbeitungsreihenfolge.md` auf. Der Preflight startet keinen Spec-Kit-Lauf; das erzeugte Lastenheft ist Intake fuer einen spaeter manuell gestarteten `/speckit-specify`-Lauf.
 
@@ -1922,21 +1926,22 @@ bash ~/scripts/bootstrap-project.sh MeinProjekt ~/RiderProjects --primary-langua
 pwsh ~/scripts/bootstrap-project.ps1 -ProjectName MeinProjekt -TargetWorkspace ~/RiderProjects -PrimaryLanguage C#
 ```
 
-Bei MSL-Level-2-Projekten installiert `bootstrap-project.*` nach der
-Spec-Kit-Initialisierung auch die Governance-Presets aus der zentralen Matrix
-[`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json).
-Die Matrix ist die einzige Stelle fuer aktuelle Preset-Versionen und
-Prioritaeten. Soll ein Projekt bewusst ohne diese Presets entstehen, kann
-`--no-governance-presets` / `-NoGovernancePresets` gesetzt werden.
+Bei Level-2-Projekten waehlt `bootstrap-project.*` nach der Spec-Kit-
+Initialisierung ein Governance-Profil aus dem zentralen Katalog
+[`scripts/config/spec-kit-preset-profiles.json`](scripts/config/spec-kit-preset-profiles.json).
+Die Auswahl folgt der Reihenfolge explizite Option, lokale Registry-Vorgabe,
+Katalog-Standard. Der aufgeloeste Profilwert steuert sowohl die Installation
+als auch den Registry-Eintrag. `--no-governance-presets` /
+`-NoGovernancePresets` waehlt das Profil `none`; die Ausnahme muss bewusst sein.
 
 *New level-2 projects receive an RL-SE/checklist self-assessment intake during
-bootstrap independently of MSL. For MSL level-2 projects, `bootstrap-project.*`
-also installs the governance
-presets from the central matrix
-[`scripts/config/spec-kit-governance-presets.json`](scripts/config/spec-kit-governance-presets.json)
-after Spec Kit initialization. The matrix is the single source for current preset
-versions and priorities. Use `--no-governance-presets` /
-`-NoGovernancePresets` only for a documented exception.*
+bootstrap independently of MSL. After Spec Kit initialization,
+`bootstrap-project.*` selects a governance profile from the central catalog
+[`scripts/config/spec-kit-preset-profiles.json`](scripts/config/spec-kit-preset-profiles.json).
+Selection follows the explicit option, local registry default, and catalog
+default. The resolved profile controls both installation and registration.
+`--no-governance-presets` / `-NoGovernancePresets` selects `none` and should be
+a deliberate exception.*
 
 Fuer bestehende Level-2-Repositories synchronisiert `prepare-secure-development-hardening.*` dieselbe Basis, erzeugt bei Bedarf `Lastenheft_Secure-Development-Hardening.md` und pflegt `Lastenheft_Abarbeitungsreihenfolge.md` anhand des strikten Suchmusters `Lastenheft*.md`. Vorhandene Reihenfolge-Dateien werden geschuetzt: nur der markierte generierte Abschnitt wird aktualisiert, manuelle Begruendungen bleiben erhalten.
 
@@ -2958,12 +2963,12 @@ archive-and-tombstone Delete commands. Schema 2.0 adds bounded public HTTPS
 snapshot evidence and explicitly approved, transactional intake series while
 schemas 1.0 and 1.1 remain readable. No authoring command starts downstream
 review or execution. `intake-review-governance` v0.2.0 remains a separate optional preset
-at priority `65`; authoring evidence is not review acceptance. Thorsten's
-managed fleet selects both through the explicit ten-preset profile, while the
-public standard eight remain unchanged. Series mode uses schema 1.1 and binds
+at priority `65`; authoring evidence is not review acceptance. Series mode uses schema 1.1 and binds
 the normalized request hash while validating target roles, exact order, roots,
 edges, and acyclicity; ambiguous predecessors result in
-`NeedsClarification`.*
+`NeedsClarification`. Thorsten's managed fleet selects all three optional
+Intake presets through the explicit eleven-preset profile; the compatible
+nine- and ten-preset profiles and the public standard eight remain available.*
 
 `autonomous-run-governance` v0.3.3 mit Priorität `70` ist Teil der
 Standard-Achtermatrix. Es ergänzt

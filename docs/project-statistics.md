@@ -143,6 +143,7 @@
 | 2026-07-30 | D4-D7 Source-/Home-Runtime-Vertrag verfeinert | — | — | — | Documentation Impact `UpdateRequired`: Die vier noch nicht gestarteten Dokumentationsintakes unterscheiden nun die versionierte Level-0-Quelle `~/home-baseline-source`, die manifestgesteuerte Home-Baseline Runtime unter `~/` und `machineLocal`-Zustand. D4 auditiert Artefaktklassen, Inhalt, Vorteile, Einweg-Sync und Autorität; D5 verankert Navigation und Distributionsklasse; D6 liefert das betriebliche Entscheidungsmodell; D7 verhindert pauschale Level-0-Pfadkopien und verdeckte Propagation. 29 neue Requirements und 19 neue Akzeptanzkriterien präzisieren die Kette. Reihenfolge, 37 Series-Ziele, drei Roots, 44 Kanten und D4 als einziger `Eligible`-Kandidat bleiben unverändert. Die früheren D4-D7- und Series-Reviews sind hashbedingt archiviert; kein D4-D7-Spec-Kit-Lauf wurde gestartet. Zusätzlich wurden die durch PR #176 veralteten Receipt- und Serienhashes der Positionen 24 und 31 metadata-seitig repariert. Ihre vollständigen neuen Reviews melden jeweils einen verbleibenden Medium-Befund zum noch alten Level-1-Namen `secure-casetracker-baseline`, ohne den nicht freigegebenen Lastenheft-Inhalt zu ändern. |
 | 2026-07-30 | CaseTracker-Pfade in Rollout-Intakes kanonisiert | — | — | — | Documentation Impact `UpdateRequired`: Die Level-1-Ziele der Positionen 24 und 31 verwenden nun den kanonischen lokalen Fleet-Pfad `SecureCaseTrackerProjects`; Fleet-ID, Remote-Repositoryname und Remote-URL `secure-casetracker-baseline` bleiben unverändert. Beide Intake-Receipts und die aktive Series wurden mit vollständiger Supersession und byteidentischen Archiven neu gebunden. Die vollständigen Re-Reviews sind `Ready` und schließen beide Medium-Befunde `IR001`. Zielzahl, Reihenfolge, drei Roots, 44 Abhängigkeiten und D4 als einziger deklarierter `Eligible`-Kandidat bleiben unverändert. Es wurde kein Specify-, Autonomous- oder Lernreihenlauf gestartet. |
 | 2026-07-31 | Wartungs-TUI- und Wrapper-Regressionshaertungsintake | — | — | — | Documentation Impact `UpdateRequired`: Ein neuer Schema-2.0-Intake spezifiziert die Reparatur des lueckenhaften JSONL-Live-Status, des fehlenden `run-completed`, der falschen `RESULT_MISMATCH`-Abschlussmeldung und der Bash-3.2-unsicheren argumentlosen Home-Runtime-Delegation. Die lineare barrierearme Darstellung, Eventschema 1, CLI- und Sicherheitsvertraege bleiben erhalten. Die aktive Series umfasst nun 38 Ziele, vier Roots und unveraendert 44 Abhaengigkeiten; `R-TUI` steht als einziger deklarierter `Eligible`-Kandidat vor der unabhaengigen `Pending`-Root D4. Intake-Receipt, Series-Supersession, Reihenfolge und Archive sind hashgebunden; kein Intake Review, Specify-, Autonomous- oder Parallel-Autonomous-Lauf wurde gestartet. |
+| 2026-07-31 | Phase-2-Readiness-Korrekturen im Level-0-Bootstrap | — | — | — | Documentation Impact `GeneratedUpdate`: RF-15 bis RF-18 wurden auf die autoritative Review-Bedeutung korrigiert. `bootstrap-project.*` liest die Constitution-Version fail-closed, loest das Preset-Profil nach expliziter Option, lokaler Registry und Katalog-Standard auf und verwendet denselben Wert fuer Installation und Registrierung. Eintragsbezogene Profiloptionen aendern den Flottenstandard nicht; Registry-Dry-Runs erzeugen auch keine Elternverzeichnisse. Bilinguale Manpages, README und Lernreihen-Dokumentation bilden das Elf-Preset-Profil und die getrennte Public-Readiness-Freigabe ab. Regressionstests decken Bash und PowerShell ab. Kein Level-2-Repository, Bootstrap, Spec-Kit-Lauf oder Remote wurde erzeugt. Das Implementierungsdelta vor Statistikpflege umfasst 511 Nettozeilen. |
 
 ---
 
@@ -1000,26 +1001,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 446646 lines |
+| Textbasis / Text base | 447165 lines |
 | Textdateien / Text files | 2814 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-31 |
 | Aktivtage / Active days | 79 |
-| Relevante Commits / Relevant commits | 629 |
-| Zeilen je Aktivtag / Lines per active day | 5653.7 |
+| Relevante Commits / Relevant commits | 631 |
+| Zeilen je Aktivtag / Lines per active day | 5660.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 122383 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 123074 |
 | Laengste Serie / Longest streak | 36 days |
-| Speedup vs. 80 lines/day | 70.7x |
-| Speedup vs. 100 lines/day | 56.5x |
-| Methodik / Methodology | v2; source `8155c6b8f15d` |
+| Speedup vs. 80 lines/day | 70.8x |
+| Speedup vs. 100 lines/day | 56.6x |
+| Methodik / Methodology | v2; source `2dbd9cf31694` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
-Tests                           [#...................]   4.0% | 17924
-Dokumentation / Documentation   [#############.......]  67.0% | 299362
-Skripte / Scripts               [##..................]  12.3% | 55120
+Tests                           [#...................]   4.1% | 18199
+Dokumentation / Documentation   [#############.......]  67.0% | 299395
+Skripte / Scripts               [##..................]  12.4% | 55331
 Konfiguration / Configuration   [###.................]  16.3% | 72840
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 770
@@ -1140,15 +1141,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..48
-   cap 10000 | .
-        8333 | .
-        6667 | #
-        5000 | #
-        3333 | #
-        1667 | #
-           0 +---
-             48
+Slots 48..49
+   cap 10000 | . .
+        8333 | . .
+        6667 | # .
+        5000 | # .
+        3333 | # .
+        1667 | # .
+           0 +-----
+             48 49
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1202,6 +1203,7 @@ Slots 48..48
 | 46 | Preset-Profil- und Worktree-Härtungsintake v1.3 / Preset profile and worktree hardening intake v1.3 | 2453 |
 | 47 | Preset-Profil-, Branch- und Worktree-Härtung / Preset profile, branch and worktree hardening | 3751 |
 | 48 | Agentic-Workspace-Wartungs-TUI / Agentic workspace maintenance TUI | 7639 |
+| 49 | Level-0-Phase-2-Readiness-Korrekturen / Level 0 phase 2 readiness corrections | 511 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1211,8 +1213,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.7x
-100 lines/day      [###########.........] 56.5x
+80 lines/day       [##############......] 70.8x
+100 lines/day      [###########.........] 56.6x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1225,7 +1227,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5653.7
+Visible repository [###########.........] 5660.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1234,9 +1236,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 122383. Laengste Serie: 36 Tage (2026-06-26..2026-07-31).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 123074. Laengste Serie: 36 Tage (2026-06-26..2026-07-31).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-07-31. It contains 79 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 122383. Longest streak: 36 days (2026-06-26..2026-07-31).*
+*EN: The window starts on 2025-08-03 and ends on 2026-07-31. It contains 79 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 123074. Longest streak: 36 days (2026-06-26..2026-07-31).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1251,6 +1253,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 ak
 | 2026-04 | 72825 |
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
-| 2026-07 | 384654 |
+| 2026-07 | 385345 |
 
 <!-- project-statistics-v2:end -->

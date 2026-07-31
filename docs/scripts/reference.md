@@ -15,7 +15,7 @@ Erstellt, migriert, synchronisiert oder entfernt verwaltete Arbeitsumgebungen.
 ### `scripts/bootstrap-project.ps1`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** bootstrap-project.ps1 — Idempotenter Projekt-Bootstrap v1.1 (PowerShell)
+- **Kurzbeschreibung / Summary:** Initialisiert ein Level-2-Projekt idempotent. / Idempotently initializes a level-2 project.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 

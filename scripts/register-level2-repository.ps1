@@ -48,7 +48,11 @@ Explizite MSL-Klassifikation. / Explicit MSL classification.
 Explizite GSDB-Pflicht. / Explicit GSDB requirement.
 
 .PARAMETER PresetProfile
-Explizites Governance-Preset-Profil. / Explicit governance preset profile.
+Explizites, eintragsbezogenes Governance-Preset-Profil. Der globale Registry-
+Default wird dadurch nicht geaendert.
+
+Explicit entry-scoped governance preset profile. This does not change the
+global registry default.
 
 .PARAMETER Role
 Repository-Rolle in der Registry. / Repository role in the registry.
@@ -188,22 +192,11 @@ function Register-HBRepository {
         $data = [pscustomobject]@{
             schemaVersion = 1
             description = "Local operational registry for GSDB-relevant level-1 and level-2 repositories. Paths are relative to the user's home directory."
-            defaultPresetProfile = if ($PresetProfile) { $PresetProfile } else { 'standard-eight-governance-presets' }
+            defaultPresetProfile = 'standard-eight-governance-presets'
             updatedAt = $today
             repositories = @()
         }
     }
-    $defaultProfileChanged = $false
-    if ($PresetProfile) {
-        if ($data.PSObject.Properties.Name -notcontains 'defaultPresetProfile') {
-            $data | Add-Member -NotePropertyName defaultPresetProfile -NotePropertyValue $PresetProfile
-            $defaultProfileChanged = $true
-        } elseif ([string]$data.defaultPresetProfile -ne $PresetProfile) {
-            $data.defaultPresetProfile = $PresetProfile
-            $defaultProfileChanged = $true
-        }
-    }
-
     $effectivePresetProfile = $PresetProfile
     if (-not $effectivePresetProfile -and
         ($data.PSObject.Properties.Name -contains 'defaultPresetProfile') -and
@@ -275,10 +268,6 @@ function Register-HBRepository {
         $repos = @($repos) + @($entry)
         $action = 'added'
     }
-    if ($defaultProfileChanged -and $action -eq 'unchanged') {
-        $action = 'updated'
-    }
-
     if ($action -ne 'unchanged') {
         $data.updatedAt = $today
         $data.repositories = @($repos | Sort-Object path)

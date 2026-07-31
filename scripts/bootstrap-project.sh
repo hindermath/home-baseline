@@ -12,6 +12,7 @@
 #                       Skip Spec-kit governance preset installation
 #   --no-remote          No remote repo create (local git init only)
 #   --no-release-please  Skip Release Please workflow setup
+#   --preset-profile     Governance preset profile from the central profile catalog
 #   --platform           github|gitlab|forgejo|codeberg
 #   --gitlab-url         https://gitlab.example.com
 #   --forgejo-url        https://forgejo.example.com
@@ -23,6 +24,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMPLATES_DIR="${SCRIPT_DIR}/templates"
 SECURE_DEV_LIB="${SCRIPT_DIR}/lib/secure-development-hardening.sh"
 FORGEJO_LIB="${SCRIPT_DIR}/lib/hg-forgejo.sh"
+PRESET_PROFILE_CATALOG="${SCRIPT_DIR}/config/spec-kit-preset-profiles.json"
 
 if [ -f "$SECURE_DEV_LIB" ]; then
   # shellcheck source=/dev/null
@@ -45,6 +47,7 @@ OPT_NO_SPECKIT=false
 OPT_NO_GOVERNANCE_PRESETS=false
 OPT_NO_REMOTE=false
 OPT_NO_RELEASE_PLEASE=false
+OPT_PRESET_PROFILE=""
 OPT_PLATFORM="github"
 OPT_GITLAB_URL="https://gitlab.com"
 OPT_GITLAB_HOSTNAME=""
@@ -59,9 +62,90 @@ PROJECT_SLUG=""
 PROJECT_SLUG_CHANGED=false
 SUMMARY_REPO_URL=""
 SUMMARY_DISPLAY_REPO=""
+RESOLVED_PRESET_PROFILE=""
+RESOLVED_PRESET_CONFIG=""
+RESOLVED_CONSTITUTION_VERSION=""
 
 normalize_name() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
+}
+
+resolve_constitution_version() {
+  local constitution_path="$1"
+  local versions version_count
+
+  [ -f "$constitution_path" ] || {
+    echo "FATAL: Constitution fehlt / missing: $constitution_path" >&2
+    return 2
+  }
+
+  versions="$(sed -nE 's/^# Constitution (v[0-9]+\.[0-9]+\.[0-9]+)$/\1/p' "$constitution_path")"
+  version_count="$(printf '%s\n' "$versions" | awk 'NF { count++ } END { print count + 0 }')"
+  if [ "$version_count" -ne 1 ]; then
+    echo "FATAL: Constitution-Version muss genau einmal als '# Constitution vX.Y.Z' vorkommen / must occur exactly once: $constitution_path" >&2
+    return 2
+  fi
+
+  printf '%s\n' "$versions"
+}
+
+resolve_preset_profile() {
+  local requested_profile="$1"
+  local registry_path="${HOME}/.home-baseline/level2-repository-registry.json"
+
+  command -v python3 >/dev/null 2>&1 || {
+    echo "FATAL: python3 nicht gefunden; Preset-Profil kann nicht aufgeloest werden / preset profile cannot be resolved" >&2
+    return 2
+  }
+  [ -f "$PRESET_PROFILE_CATALOG" ] || {
+    echo "FATAL: Preset-Profilkatalog fehlt / missing: $PRESET_PROFILE_CATALOG" >&2
+    return 2
+  }
+
+  python3 - "$PRESET_PROFILE_CATALOG" "$registry_path" "$requested_profile" \
+    "$OPT_NO_SPECKIT" "$OPT_NO_GOVERNANCE_PRESETS" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+catalog_path = Path(sys.argv[1])
+registry_path = Path(sys.argv[2])
+requested = sys.argv[3]
+skip_speckit = sys.argv[4] == "true"
+skip_presets = sys.argv[5] == "true"
+
+catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+profiles = catalog.get("profiles", {})
+default_profile = catalog.get("defaultProfile", "")
+
+if (skip_speckit or skip_presets) and requested not in ("", "none"):
+    raise SystemExit(
+        "--preset-profile conflicts with --no-speckit/--no-governance-presets"
+    )
+
+if skip_speckit or skip_presets:
+    selected = "none"
+elif requested:
+    selected = requested
+elif registry_path.is_file():
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    selected = registry.get("defaultPresetProfile") or default_profile
+else:
+    selected = default_profile
+
+if selected not in profiles:
+    raise SystemExit(f"unknown preset profile: {selected}")
+
+config = profiles[selected].get("presetConfig")
+if config is None:
+    config_path = "none"
+else:
+    config_path = str((catalog_path.parent.parent.parent / config).resolve())
+    if not Path(config_path).is_file():
+        raise SystemExit(f"preset config missing: {config_path}")
+
+print(f"{selected}\t{config_path}")
+PY
 }
 
 repo_url_from_remote() {
@@ -106,6 +190,11 @@ while [ $# -gt 0 ]; do
     --no-governance-presets) OPT_NO_GOVERNANCE_PRESETS=true ;;
     --no-remote)          OPT_NO_REMOTE=true ;;
     --no-release-please)  OPT_NO_RELEASE_PLEASE=true ;;
+    --preset-profile)
+      [ $# -ge 2 ] || { echo "ERROR: --preset-profile braucht einen Wert" >&2; exit 2; }
+      OPT_PRESET_PROFILE="$2"
+      shift
+      ;;
     --platform)   OPT_PLATFORM="${2:-github}"; shift ;;
     --gitlab-url) OPT_GITLAB_URL="${2:-https://gitlab.com}"; shift ;;
     --forgejo-url) OPT_FORGEJO_URL="${2:-}"; shift ;;
@@ -137,6 +226,11 @@ TARGET_WORKSPACE="${TARGET_WORKSPACE:-$PWD}"
 TARGET_WORKSPACE="${TARGET_WORKSPACE/#\~/$HOME}"
 TARGET_WORKSPACE="${TARGET_WORKSPACE%/}"
 TARGET_DIR="${TARGET_WORKSPACE}/${PROJECT_NAME}"
+
+RESOLVED_CONSTITUTION_VERSION="$(resolve_constitution_version "${HOME}/constitution.md")" || exit $?
+IFS=$'\t' read -r RESOLVED_PRESET_PROFILE RESOLVED_PRESET_CONFIG < <(
+  resolve_preset_profile "$OPT_PRESET_PROFILE"
+) || exit $?
 
 case "$OPT_PLATFORM" in
   github|gitlab|forgejo|codeberg) ;;
@@ -375,7 +469,7 @@ if $OPT_PREVIEW; then
   preview_action "CREATE" "${TARGET_DIR}/.github/copilot-instructions.md" "aus copilot-instructions.tmpl"
   preview_action "CREATE" "${TARGET_DIR}/README.md" "aus readme-template.md / README.md.tmpl"
   preview_action "COPY" "${TARGET_DIR}/constitution.md" "von ~/constitution.md"
-  preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml"
+  preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml" "Constitution ${RESOLVED_CONSTITUTION_VERSION}"
   preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
   preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "Hardening bei erkannter MSL; RL-SE unabhaengig davon"
   preview_action "CREATE" "${TARGET_DIR}/Lastenheft_Secure-Development-Hardening.md" "bei erkannter MSL"
@@ -422,10 +516,10 @@ if $OPT_PREVIEW; then
   for agent in "${SPECIFY_AGENTS[@]}"; do
     preview_action "EXEC" "specify init --here --force --integration ${agent}" "optional"
   done
-  if ! $OPT_NO_SPECKIT && ! $OPT_NO_GOVERNANCE_PRESETS; then
-    preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR}" "GSDB-Level-2-Standard"
+  if [ "$RESOLVED_PRESET_PROFILE" != "none" ]; then
+    preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR} --preset-config ${RESOLVED_PRESET_CONFIG}" "$RESOLVED_PRESET_PROFILE"
   fi
-  preview_action "UPDATE" "~/.home-baseline/level2-repository-registry.json" "GSDB-Level-2-Standard; MSL getrennt klassifiziert"
+  preview_action "UPDATE" "~/.home-baseline/level2-repository-registry.json" "${RESOLVED_PRESET_PROFILE}; MSL getrennt klassifiziert"
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
   preview_action "UPDATE" "${HOME}/README.md" "Zeile nach <!-- workspace-table-end -->"
@@ -455,6 +549,7 @@ echo ""
 printf "Projekt:    %s\n" "$PROJECT_NAME"
 printf "Workspace:  %s\n" "${TARGET_WORKSPACE/#$HOME/\~}"
 printf "Ziel:       %s\n" "${TARGET_DIR/#$HOME/\~}"
+printf "Presets:    %s\n" "$RESOLVED_PRESET_PROFILE"
 echo ""
 
 # Check if already bootstrapped
@@ -586,10 +681,6 @@ if [ -f "$wf_file" ] && ! $OPT_FORCE; then
   step_skip "Datei existiert"
 else
   mkdir -p "$wf_dir"
-  constitution_ver="v1.0.0"
-  if [ -f "${HOME}/constitution.md" ]; then
-    constitution_ver=$(head -1 "${HOME}/constitution.md" | grep -o 'v[0-9]*\.[0-9]*\.[0-9]*' || echo "v1.0.0")
-  fi
   cat > "$wf_file" <<EOF
 name: Homogeneity Check
 
@@ -609,7 +700,7 @@ jobs:
       - name: Run homogeneity check
         run: bash scripts/check-homogeneity.sh --json --fail-fast .
         env:
-          CONSTITUTION_VERSION: "${constitution_ver}"
+          CONSTITUTION_VERSION: "${RESOLVED_CONSTITUTION_VERSION}"
 EOF
   step_done
 fi
@@ -1033,17 +1124,17 @@ fi
 step_start "Governance-Presets installieren"
 if $OPT_NO_SPECKIT; then
   step_skip "--no-speckit"
-elif $OPT_NO_GOVERNANCE_PRESETS; then
-  step_skip "--no-governance-presets"
+elif [ "$RESOLVED_PRESET_PROFILE" = "none" ]; then
+  step_skip "Preset-Profil none"
 elif [ ! -d "${TARGET_DIR}/.specify" ]; then
   step_skip "Spec Kit nicht initialisiert"
 elif [ ! -f "${SCRIPT_DIR}/install-spec-kit-governance-presets.sh" ]; then
   step_warn "Preset-Installer nicht gefunden"
 else
-  preset_args=(--repo "$TARGET_DIR")
+  preset_args=(--repo "$TARGET_DIR" --preset-config "$RESOLVED_PRESET_CONFIG")
   $OPT_FORCE && preset_args+=(--force)
   if bash "${SCRIPT_DIR}/install-spec-kit-governance-presets.sh" "${preset_args[@]}"; then
-    step_done "aus zentraler Preset-Matrix"
+    step_done "$RESOLVED_PRESET_PROFILE"
   else
     step_warn "Governance-Preset-Installation fehlgeschlagen"
   fi
@@ -1070,7 +1161,7 @@ if [ ! -f "${SCRIPT_DIR}/register-level2-repository.sh" ]; then
 else
   registry_args=(--repo "$TARGET_DIR" --level 2 --source "bootstrap-project")
   [ -n "$OPT_PRIMARY_LANGUAGE" ] && registry_args+=(--primary-language "$OPT_PRIMARY_LANGUAGE")
-  $OPT_NO_GOVERNANCE_PRESETS && registry_args+=(--preset-profile "none")
+  registry_args+=(--preset-profile "$RESOLVED_PRESET_PROFILE")
   if bash "${SCRIPT_DIR}/register-level2-repository.sh" "${registry_args[@]}" >/dev/null; then
     step_done "Level-2-Repo registriert"
   else
