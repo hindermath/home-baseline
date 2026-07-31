@@ -49,6 +49,9 @@ in die lokale GSDB-Registry uebernommen werden. Level-2-Repositories sind
 standardmaessig unabhaengig vom MSL-Status GSDB-pflichtig. Ohne lokale Vorgabe
 verwenden sie das Acht-Preset-Profil; `defaultPresetProfile` laesst eine
 verwaltete Flotte ausdruecklich ein anderes Profil waehlen.
+Ein mit `--preset-profile` beziehungsweise `-PresetProfile` gesetztes Profil
+gilt nur fuer den eingetragenen Repository-Datensatz und aendert diesen
+globalen Standard nicht.
 Eindeutige Sprachsuffixe wie `-CSharp`, `-Go` oder `-Rust` dokumentieren bei
 vorbereiteten Lernrepos die Zielsprache bereits vor dem Runtime-Scaffold.
 Wartungsscans bewahren staerkere vorhandene Metadaten und stufen sie nicht auf
@@ -61,6 +64,8 @@ workspace roots for Git repositories. This is intended for registry drift:
 newly added level-2 repositories become visible and can be idempotently added
 to the local GSDB registry. Without a local override they use the eight-preset
 profile; `defaultPresetProfile` lets a managed fleet select another profile.
+An explicit `--preset-profile` or `-PresetProfile` applies only to the
+registered repository entry and does not change that global default.
 Unambiguous suffixes such as `-CSharp`, `-Go`, or `-Rust` provide the
 target language for prepared learning repositories before a runtime scaffold
 exists. Maintenance scans preserve stronger existing metadata instead of
@@ -78,10 +83,12 @@ against the central catalog and unknown names are rejected.*
 | `--primary-language LANG` | `-PrimaryLanguage LANG` | Primaersprache explizit setzen |
 | `--msl-status STATUS` | `-MslStatus STATUS` | MSL-Klassifikation explizit setzen |
 | `--gsdb-required true\|false` | `-GsdbRequired true\|false` | GSDB-Pflicht explizit setzen |
-| `--preset-profile NAME` | `-PresetProfile NAME` | Preset-Profil dokumentieren |
+| `--preset-profile NAME` | `-PresetProfile NAME` | Preset-Profil nur fuer diesen Eintrag dokumentieren |
 | `--role NAME` | `-Role NAME` | Rolle im Repo-Bestand dokumentieren |
 | `--source NAME` | `-Source NAME` | Quelle der Registrierung dokumentieren |
 | `--dry-run` | `-WhatIf` | Nur anzeigen, nicht schreiben |
+
+`--dry-run` und `-WhatIf` erzeugen weder die Registry-Datei noch deren Elternverzeichnis. *Neither dry-run mode creates the registry file or its parent directory.*
 
 ## Beispiele / Examples
 

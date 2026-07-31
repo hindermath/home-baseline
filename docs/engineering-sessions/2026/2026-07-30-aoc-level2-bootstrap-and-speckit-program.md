@@ -454,21 +454,21 @@ Keine Dateien, Repositories, Commits oder Implementierung.
 
 Jedes Finding muss bis zu Zielartefakt, Akzeptanzkriterium und Evidence nachverfolgt werden.
 
-### RF-15 – Zielgruppe IHK-IT-Auszubildende ab 1. Ausbildungsjahr
+### RF-15 – Level-0-Übergabepaket muss inhaltlich selbständig sein
 
-Anforderungen und Dokumentation müssen ohne interne Vorwissenserwartung verständlich sein.
+Phase 2 darf andere Level-0-Issues nur als Provenienz benötigen. Alle erforderlichen Inhalte, Constraints, Findings, Entscheidungen, Glossarbegriffe und Stop-Gates müssen im Übergabepaket selbst enthalten sein.
 
-### RF-16 – CEFR B2 als Verständlichkeitsbaseline
+### RF-16 – Das Meta-Lastenheft-Programm muss selbsttragend sein
 
-Technische Genauigkeit bleibt erhalten, Fachsprache wird jedoch erklärt und strukturiert vermittelt.
+Die Meta-Reihe muss die Ableitung, Erzeugung, Prüfung und Einordnung der fachlichen Lastenhefte ohne unausgesprochene Wissens- oder Prozessabhängigkeiten steuern können.
 
-### RF-17 – WCAG 2.2 AA als Accessibility-Ziel
+### RF-17 – Zielgruppe, Sprache, Verständlichkeit und Barrierefreiheit sind Querschnittsanforderungen
 
-Anwendbare Oberflächen und Dokumentationsmuster müssen zugänglich entworfen und geprüft werden.
+Alle späteren Artefakte richten sich an IHK-IT-Auszubildende ab dem ersten Ausbildungsjahr und erfahrene Fachkräfte, verwenden CEFR B2, Deutsch zuerst mit terminologisch konsistentem Englisch danach und erfüllen WCAG 2.2 AA, soweit anwendbar.
 
-### RF-18 – Deutsch zuerst, Englisch danach
+### RF-18 – Autonomie und Parallelität müssen pro Lastenheft klassifiziert werden
 
-Die deutsche Fassung ist zunächst autoritativ; die englische Fassung folgt nachvollziehbar und terminologisch konsistent.
+Jedes Lastenheft beziehungsweise jede Reihe benötigt eine prüfbare Einstufung einschließlich Authority, Side Effects, Reversibilität, Schreibscope, Decision-Abhängigkeiten, Integrationsrisiko, Reviewbedarf sowie Abbruch- und Recovery-Regeln.
 
 ## 14. Finding-Coverage-Modell
 

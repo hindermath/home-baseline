@@ -1,4 +1,54 @@
-# bootstrap-project.ps1 — Idempotenter Projekt-Bootstrap v1.1 (PowerShell)
+<#
+.SYNOPSIS
+Initialisiert ein Level-2-Projekt idempotent. / Idempotently initializes a level-2 project.
+
+.DESCRIPTION
+Kopiert die Level-0-Basis, richtet Agenten und Spec Kit ein und installiert das
+aufgeloeste Governance-Preset-Profil. Die Constitution-Version wird fail-closed
+aus genau einer Überschrift `# Constitution vX.Y.Z` gelesen. `-Preview` und
+`-WhatIf` schreiben nichts.
+
+Copies the level-0 baseline, initializes agents and Spec Kit, and installs the
+resolved governance preset profile. The constitution version is read
+fail-closed from exactly one `# Constitution vX.Y.Z` heading. `-Preview` and
+`-WhatIf` do not write.
+
+.PARAMETER ProjectName
+Projektname. / Project name.
+.PARAMETER TargetWorkspace
+Ziel-Workspace. / Target workspace.
+.PARAMETER Preview
+Nur Vorschau. / Preview only.
+.PARAMETER Force
+Vorhandene Dateien überschreiben. / Overwrite existing files.
+.PARAMETER NoAgents
+Agenten-Initialisierung auslassen. / Skip agent initialization.
+.PARAMETER NoSpeckit
+Spec Kit auslassen. / Skip Spec Kit.
+.PARAMETER NoGovernancePresets
+Governance-Presets auslassen und Profil `none` registrieren. / Skip presets and register `none`.
+.PARAMETER NoRemote
+Nur lokal initialisieren. / Initialize locally only.
+.PARAMETER NoReleasePlease
+Release Please auslassen. / Skip Release Please.
+.PARAMETER PresetProfile
+Explizites Profil aus `spec-kit-preset-profiles.json`; überschreibt Registry- und Katalog-Standard.
+
+Explicit profile from `spec-kit-preset-profiles.json`; overrides registry and catalog defaults.
+.PARAMETER Platform
+Git-Hosting-Plattform. / Git hosting platform.
+.PARAMETER GitLabUrl
+GitLab-Basis-URL. / GitLab base URL.
+.PARAMETER ForgejoUrl
+Forgejo-Basis-URL. / Forgejo base URL.
+.PARAMETER Lang
+Primärsprache der Vorlagen. / Primary template language.
+.PARAMETER PrimaryLanguage
+Primäre Implementierungssprache. / Primary implementation language.
+
+.EXAMPLE
+pwsh -NoProfile -File scripts/bootstrap-project.ps1 -ProjectName Example -NoRemote -PresetProfile intake-sequencing-eleven-governance-presets -Preview
+#>
 # FR-009–016; Contract: bootstrap-project-cli.md
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -12,6 +62,7 @@ param(
     [switch]$NoGovernancePresets,
     [switch]$NoRemote,
     [switch]$NoReleasePlease,
+    [string]$PresetProfile = '',
     [string]$Platform = 'github',
     [string]$GitLabUrl = 'https://gitlab.com',
     [string]$ForgejoUrl = '',
@@ -19,10 +70,14 @@ param(
     [string]$PrimaryLanguage = ''
 )
 
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
 $ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $TemplatesDir = Join-Path $ScriptDir 'templates'
 $SecureDevLib = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
 $ForgejoLib   = Join-Path $ScriptDir 'lib/hg-forgejo.ps1'
+$PresetProfileCatalog = Join-Path $ScriptDir 'config/spec-kit-preset-profiles.json'
 if (Test-Path $SecureDevLib) {
     . $SecureDevLib
 }
@@ -47,6 +102,84 @@ $summaryRepoUrl = ''
 $summaryDisplayRepo = ''
 $WorkspaceGitignoreHeader = '# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)'
 $SpecifyAgents = @('agy', 'opencode', 'claude', 'copilot', 'codex')
+$HomeRoot = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
+$HomeConstitution = Join-Path $HomeRoot 'constitution.md'
+
+function Get-HBConstitutionVersion {
+    param([Parameter(Mandatory)][string] $Path)
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "Constitution fehlt / missing: ${Path}"
+    }
+    $versionMatches = @(
+        Get-Content -LiteralPath $Path |
+            Where-Object { $_ -match '^# Constitution (v\d+\.\d+\.\d+)$' } |
+            ForEach-Object { [regex]::Match($_, '^# Constitution (v\d+\.\d+\.\d+)$').Groups[1].Value }
+    )
+    if ($versionMatches.Count -ne 1) {
+        throw "Constitution-Version muss genau einmal als '# Constitution vX.Y.Z' vorkommen / must occur exactly once: ${Path}"
+    }
+    return $versionMatches[0]
+}
+
+function Resolve-HBBootstrapPresetProfile {
+    param(
+        [string] $RequestedProfile,
+        [switch] $SkipSpecKit,
+        [switch] $SkipGovernancePresets
+    )
+
+    if (-not (Test-Path -LiteralPath $PresetProfileCatalog -PathType Leaf)) {
+        throw "Preset-Profilkatalog fehlt / missing: ${PresetProfileCatalog}"
+    }
+    if (($SkipSpecKit -or $SkipGovernancePresets) -and $RequestedProfile -notin @('', 'none')) {
+        throw '-PresetProfile conflicts with -NoSpeckit/-NoGovernancePresets'
+    }
+
+    $catalog = Get-Content -LiteralPath $PresetProfileCatalog -Raw -Encoding UTF8 | ConvertFrom-Json
+    $registryPath = Join-Path $HomeRoot '.home-baseline/level2-repository-registry.json'
+    if ($SkipSpecKit -or $SkipGovernancePresets) {
+        $selected = 'none'
+    } elseif ($RequestedProfile) {
+        $selected = $RequestedProfile
+    } elseif (Test-Path -LiteralPath $registryPath -PathType Leaf) {
+        $registry = Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $selected = if (($registry.PSObject.Properties.Name -contains 'defaultPresetProfile') -and $registry.defaultPresetProfile) {
+            [string]$registry.defaultPresetProfile
+        } else {
+            [string]$catalog.defaultProfile
+        }
+    } else {
+        $selected = [string]$catalog.defaultProfile
+    }
+
+    $profileProperty = $catalog.profiles.PSObject.Properties[$selected]
+    if ($null -eq $profileProperty) {
+        throw "Unbekanntes Preset-Profil / unknown preset profile: ${selected}"
+    }
+
+    $configuredPath = $profileProperty.Value.presetConfig
+    if ($null -eq $configuredPath) {
+        $resolvedConfig = 'none'
+    } else {
+        $repositoryRoot = Split-Path -Parent $ScriptDir
+        $resolvedConfig = Join-Path $repositoryRoot ([string]$configuredPath)
+        if (-not (Test-Path -LiteralPath $resolvedConfig -PathType Leaf)) {
+            throw "Preset-Konfiguration fehlt / missing: ${resolvedConfig}"
+        }
+    }
+
+    return [pscustomobject]@{
+        Name = $selected
+        ConfigPath = $resolvedConfig
+    }
+}
+
+$ResolvedConstitutionVersion = Get-HBConstitutionVersion -Path $HomeConstitution
+$ResolvedPresetProfile = Resolve-HBBootstrapPresetProfile `
+    -RequestedProfile $PresetProfile `
+    -SkipSpecKit:$NoSpeckit `
+    -SkipGovernancePresets:$NoGovernancePresets
 
 function Render-Template {
     param([string]$Template, [string]$Output)
@@ -257,7 +390,7 @@ if ($Preview) {
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/copilot-instructions.md", 'aus copilot-instructions.tmpl'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/README.md", 'aus readme-template.md / README.md.tmpl'))
     $null = $previewActions.Add(@('COPY', "$TargetDir/constitution.md", 'von ~/constitution.md'))
-    $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml"))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml", "Constitution $ResolvedConstitutionVersion"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/project-statistics.md", 'Statistik-Ledger (initial)'))
     $null = $previewActions.Add(@('PREPARE', "$TargetDir/docs/secure-development/", 'Hardening bei erkannter MSL; RL-SE unabhaengig davon'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/Lastenheft_Secure-Development-Hardening.md", 'bei erkannter MSL'))
@@ -305,10 +438,10 @@ if ($Preview) {
     foreach ($agent in $SpecifyAgents) {
         $null = $previewActions.Add(@('EXEC', "specify init --here --force --integration $agent", 'optional'))
     }
-    if (-not $NoSpeckit -and -not $NoGovernancePresets) {
-        $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir", 'GSDB-Level-2-Standard'))
+    if ($ResolvedPresetProfile.Name -ne 'none') {
+        $null = $previewActions.Add(@('EXEC', "install-spec-kit-governance-presets.ps1 -Repo $TargetDir -PresetConfig $($ResolvedPresetProfile.ConfigPath)", $ResolvedPresetProfile.Name))
     }
-    $null = $previewActions.Add(@('UPDATE', '~/.home-baseline/level2-repository-registry.json', 'GSDB-Level-2-Standard; MSL getrennt klassifiziert'))
+    $null = $previewActions.Add(@('UPDATE', '~/.home-baseline/level2-repository-registry.json', "$($ResolvedPresetProfile.Name); MSL getrennt klassifiziert"))
     $null = $previewActions.Add(@('EXEC', "init-stats.sh (Baseline)", 'STATS.md'))
     $null = $previewActions.Add(@('UPDATE', "$(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })/README.md"))
 
@@ -341,6 +474,7 @@ $wsShort = $TargetWorkspace -replace [regex]::Escape($(if ($env:HOME) { $env:HOM
 Write-Host "Workspace:  $wsShort"
 $tdShort = $TargetDir -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
 Write-Host "Ziel:       $tdShort"
+Write-Host "Presets:    $($ResolvedPresetProfile.Name)"
 Write-Host ""
 
 # ─── Steps ────────────────────────────────────────────────────────────────────
@@ -409,11 +543,10 @@ else {
 
 # 7b. constitution.md
 Step-Start "constitution.md kopieren"
-$homeConstitution = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'constitution.md'
 $fc = Join-Path $TargetDir 'constitution.md'
-if (-not (Test-Path $homeConstitution)) { Step-Warn "~/constitution.md fehlt — bitte sync-constitution.ps1 ausfuehren" }
+if (-not (Test-Path $HomeConstitution)) { Step-Warn "~/constitution.md fehlt — bitte sync-constitution.ps1 ausfuehren" }
 elseif ((Test-Path $fc) -and -not $Force) { Step-Skip "Datei existiert" }
-else { Copy-Item $homeConstitution $fc; Step-Done }
+else { Copy-Item $HomeConstitution $fc; Step-Done }
 
 # 7c. homogeneity-check.yml
 Step-Start "homogeneity-check.yml erzeugen"
@@ -422,11 +555,6 @@ $wfFile = Join-Path $wfDir 'homogeneity-check.yml'
 if ((Test-Path $wfFile) -and -not $Force) { Step-Skip "Datei existiert" }
 else {
     New-Item -ItemType Directory -Path $wfDir -Force | Out-Null
-    $constVer = 'v1.0.0'
-    if (Test-Path $homeConstitution) {
-        $firstLine = Get-Content $homeConstitution -TotalCount 1
-        if ($firstLine -match '(v\d+\.\d+\.\d+)') { $constVer = $Matches[1] }
-    }
     @"
 name: Homogeneity Check
 
@@ -446,7 +574,7 @@ jobs:
       - name: Run homogeneity check
         run: bash scripts/check-homogeneity.sh --json --fail-fast .
         env:
-          CONSTITUTION_VERSION: "$constVer"
+          CONSTITUTION_VERSION: "$ResolvedConstitutionVersion"
 "@ | Set-Content $wfFile -Encoding UTF8
     Step-Done
 }
@@ -844,8 +972,8 @@ if ((Test-Path $projectConstitution) -and (Test-Path $specifyMemoryDir)) {
 Step-Start "Governance-Presets installieren"
 if ($NoSpeckit) {
     Step-Skip "-NoSpeckit"
-} elseif ($NoGovernancePresets) {
-    Step-Skip "-NoGovernancePresets"
+} elseif ($ResolvedPresetProfile.Name -eq 'none') {
+    Step-Skip "Preset-Profil none"
 } elseif (-not (Test-Path (Join-Path $TargetDir '.specify'))) {
     Step-Skip "Spec Kit nicht initialisiert"
 } else {
@@ -853,10 +981,10 @@ if ($NoSpeckit) {
     if (-not (Test-Path $presetInstaller)) {
         Step-Warn "Preset-Installer nicht gefunden"
     } else {
-        $presetArgs = @('-Repo', $TargetDir)
+        $presetArgs = @('-Repo', $TargetDir, '-PresetConfig', $ResolvedPresetProfile.ConfigPath)
         if ($Force) { $presetArgs += '-Force' }
         & $presetInstaller @presetArgs
-        if ($LASTEXITCODE -eq 0) { Step-Done "aus zentraler Preset-Matrix" }
+        if ($LASTEXITCODE -eq 0) { Step-Done $ResolvedPresetProfile.Name }
         else { Step-Warn "Governance-Preset-Installation fehlgeschlagen" }
     }
 }
@@ -869,7 +997,7 @@ if (-not (Test-Path $registryHelper)) {
 } else {
     $registryArgs = @('-Repo', $TargetDir, '-Level', '2', '-Source', 'bootstrap-project')
     if ($PrimaryLanguage) { $registryArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
-    if ($NoGovernancePresets) { $registryArgs += @('-PresetProfile', 'none') }
+    $registryArgs += @('-PresetProfile', $ResolvedPresetProfile.Name)
     try {
         & $registryHelper @registryArgs | Out-Null
         Step-Done "Level-2-Repo registriert"

@@ -16,9 +16,13 @@ pwsh -NoProfile -File scripts/bootstrap-project.ps1 -ProjectName <Name> [-Target
 
 ## DESCRIPTION
 
-Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialisiert die KI-Agenten, installiert Spec-Kit samt Governance-Presets, richtet optional ein Remote-Repository sowie den Release-Please-Workflow ein und setzt die deklarierte Primaersprache fuer das MSL-Setup. Jedes erzeugte Level-2-Projekt wird unabhaengig vom MSL-Status als GSDB-Ziel registriert; das Acht-Preset-Profil ist der Standard, sofern es nicht explizit abgeschaltet wird. Bereits vorhandene Dateien bleiben ohne `--force` unangetastet.
+Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialisiert die KI-Agenten, installiert Spec-Kit samt Governance-Presets, richtet optional ein Remote-Repository sowie den Release-Please-Workflow ein und setzt die deklarierte Primaersprache fuer das MSL-Setup. Jedes erzeugte Level-2-Projekt wird unabhaengig vom MSL-Status als GSDB-Ziel registriert. Das Preset-Profil wird in dieser Reihenfolge bestimmt: explizite Option, lokale Registry-Vorgabe, zentraler Katalog-Standard. Genau dieses Profil wird installiert und registriert. Bereits vorhandene Dateien bleiben ohne `--force` unangetastet.
 
-*The script creates a new project idempotently: it copies templates, initializes the AI agents, installs Spec Kit and its governance presets, optionally sets up a remote repository and the Release Please workflow, and applies the declared primary language for the MSL setup. Every generated level-2 project is registered for GSDB scope independently of MSL status; the eight-preset profile is the default unless explicitly disabled. Existing files are left untouched unless `--force` is given.*
+Die Constitution-Version wird ausschließlich aus genau einer Überschrift im Format `# Constitution vX.Y.Z` gelesen. Fehlt sie oder ist sie mehrdeutig, bricht der Bootstrap vor Schreibaktionen ab.
+
+*The script creates a new project idempotently: it copies templates, initializes the AI agents, installs Spec Kit and its governance presets, optionally sets up a remote repository and the Release Please workflow, and applies the declared primary language for the MSL setup. Every generated level-2 project is registered for GSDB scope independently of MSL status. Preset selection follows this precedence: explicit option, local registry default, central catalog default. The same resolved profile is installed and registered. Existing files are left untouched unless `--force` is given.*
+
+*The constitution version is read exclusively from exactly one heading matching `# Constitution vX.Y.Z`. A missing or ambiguous heading stops bootstrap before any write action.*
 
 ## OPTIONS
 
@@ -31,6 +35,7 @@ Das Skript legt ein neues Projekt idempotent an: es kopiert Templates, initialis
 | `--no-agents` | `-NoAgents` | KI-Agenten-Initialisierung ueberspringen |
 | `--no-speckit` | `-NoSpeckit` | Spec-Kit-Installation ueberspringen |
 | `--no-governance-presets` | `-NoGovernancePresets` | Governance-Preset-Installation ueberspringen |
+| `--preset-profile NAME` | `-PresetProfile NAME` | Installiertes und registriertes Preset-Profil explizit wählen |
 | `--no-remote` | `-NoRemote` | Kein Remote-Repo, nur lokales `git init` |
 | `--no-release-please` | `-NoReleasePlease` | Release-Please-Workflow ueberspringen |
 | `--platform <github\|gitlab\|forgejo\|codeberg>` | `-Platform <github\|gitlab\|forgejo\|codeberg>` | Zielplattform |
@@ -49,9 +54,17 @@ bash scripts/bootstrap-project.sh MyTool ~/RiderProjects --primary-language csha
 bash scripts/bootstrap-project.sh MyTool ~/RiderProjects --platform codeberg --preview
 ```
 
+```bash
+bash scripts/bootstrap-project.sh MyTool ~/RiderProjects --no-remote --preset-profile intake-sequencing-eleven-governance-presets --preview
+```
+
 ```powershell
 pwsh -NoProfile -File scripts/bootstrap-project.ps1 -ProjectName MyTool -NoRemote -Lang de
 ```
+
+Für ein später öffentliches Repository wird zuerst mit `--no-remote` beziehungsweise `-NoRemote` lokal initialisiert. Ein öffentliches Remote und der erste Push folgen erst nach der getrennten Public-Readiness-Freigabe. Der eingebaute Remote-Pfad bleibt aus Kompatibilitäts- und Sicherheitsgründen privat.
+
+*For a repository intended to become public, initialize locally with `--no-remote` or `-NoRemote`. Add the public remote and perform the first push only after the separate public-readiness approval. The built-in remote path remains private for compatibility and safety.*
 
 ## EXIT STATUS
 

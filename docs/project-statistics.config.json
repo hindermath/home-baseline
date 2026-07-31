@@ -401,6 +401,14 @@
       "labelEn": "Agentic workspace maintenance TUI",
       "netLines": 7639,
       "activeDays": 1
+    },
+    {
+      "slot": 49,
+      "id": "level0-phase2-readiness-corrections",
+      "labelDe": "Level-0-Phase-2-Readiness-Korrekturen",
+      "labelEn": "Level 0 phase 2 readiness corrections",
+      "netLines": 511,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

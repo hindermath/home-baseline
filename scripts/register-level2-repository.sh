@@ -41,7 +41,8 @@ Options:
   --primary-language LANG     Optional primary language. Default: detect from governance, project suffix, or files.
   --msl-status STATUS         Override: msl, non-msl, msl-mixed-tooling, n/a, or unknown.
   --gsdb-required true|false  Whether GSDB applies. Default: true for Level-2 repos.
-  --preset-profile NAME       Preset profile note. Default: registry defaultPresetProfile,
+  --preset-profile NAME       Entry-scoped preset profile. It never changes the registry default.
+                              Default: registry defaultPresetProfile,
                               otherwise standard-eight-governance-presets for GSDB Level-2.
   --role NAME                 Registry role note. Default: level-2-project or level-1-workspace.
   --source NAME               Registration source. Default: manual-registration or maintenance-discovery.
@@ -169,7 +170,9 @@ done
 command -v python3 >/dev/null 2>&1 || die "python3 nicht gefunden"
 
 OPT_REGISTRY="${OPT_REGISTRY:-$(default_registry)}"
-mkdir -p "$(dirname "$OPT_REGISTRY")"
+if ! $OPT_DRY_RUN; then
+  mkdir -p "$(dirname "$OPT_REGISTRY")"
+fi
 
 if [ -z "$OPT_SOURCE" ]; then
   if [ "${#OPT_SCAN_ROOTS[@]}" -gt 0 ]; then
