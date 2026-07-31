@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "0fa86221-8fce-4fa0-b76e-7d7b0fec124c",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-07-31T15:14:16Z",
+  "repository": {
+    "root": ".",
+    "head": "7110afedd22aa42ba431e5836de58e4ed9504cd0"
+  },
+  "requestEvidence": {
+    "path": "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-request.json",
+    "normalizedSha256": "c4bb08866d6109bab2d0cf6e0e6e57b0cf63f03b8d2bff1c0558102843b952df"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+      "role": "Primary",
+      "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567",
+      "gitBlob": "47b9771eeac262b89c6471ed68cc7db3d96469a6"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}
