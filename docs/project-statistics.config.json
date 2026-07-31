@@ -409,6 +409,14 @@
       "labelEn": "Level 0 phase 2 readiness corrections",
       "netLines": 511,
       "activeDays": 1
+    },
+    {
+      "slot": 50,
+      "id": "aoc-level0-level1-handoff-closeout",
+      "labelDe": "AOC-Level-0-/Level-1-Handoff-Abschluss",
+      "labelEn": "AOC Level 0/Level 1 handoff closeout",
+      "netLines": 5,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

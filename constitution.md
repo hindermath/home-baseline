@@ -1,32 +1,24 @@
 <!--
 Sync Impact Report
-Version change: 1.19.0 -> 1.20.0
+Version change: 1.20.0 -> 1.20.1
 Modified principles:
-- VII. Inclusion & Accessibility By Default (bind first-year learner audiences and text-first dependency evidence)
-- VIII. DE-First / EN-Second Bilingual Delivery (explain first-use terms and require no prior Spec Kit experience)
-Added sections:
 - None
+Added sections:
+- Level-2 Project Environment Registry: Agent Operations Cockpit operational row
 Removed sections:
 - None
 Templates requiring updates:
-- ✅ scripts/templates/speckit-workflow-section.md
-- ✅ scripts/templates/AGENTS.md.tmpl
-- ✅ scripts/templates/CLAUDE.md.tmpl
-- ✅ scripts/templates/GEMINI.md.tmpl
-- ✅ scripts/templates/copilot-instructions.tmpl
+- None (operational registry fact only)
 Runtime guidance requiring updates:
 - ✅ .specify/memory/constitution.md (mirror)
-- ✅ AGENTS.md
-- ✅ CLAUDE.md
-- ✅ GEMINI.md
-- ✅ .github/copilot-instructions.md
+- ✅ AGENTS.md / CLAUDE.md / GEMINI.md / .github/copilot-instructions.md reviewed; no rule change required
 New scripts:
 - None
 Follow-up TODOs:
 - None.
 -->
 
-# Constitution v1.20.0
+# Constitution v1.20.1
 
 # home-baseline Constitution
 
@@ -895,6 +887,7 @@ project context.
 |---|---|---|---|---|---|
 | `C64Projects/cc65` | C/C89-oriented host tools, 6502 assembler/runtime libraries, C64 and 8-bit target support | GNU `make`; `make`, `make test`, `make check`, `make checkstyle`, `make -C targettest SYS=c64` | `doc/`, `samples/`, generated `html/`; DE-first/EN-second additions where local scope allows; no color-only meaning | Manual conservative `80` lines/workday; no C# default unless a justified Thorsten-Solo baseline is documented | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit command/prompt surfaces |
 | `container-images/absdd-image-sandbox` | Python helper scripts plus Bash/PowerShell automation for a Docker/Podman Compose agent-sandbox image | `podman compose config --no-interpolate`; `podman compose build --pull`; `podman compose up -d`; `uvx pre-commit run --all-files`; SBOM scripts under `scripts/` | README, compliance plan, `docs/security/`, audit-log guidance, SBOM notes, and CLI output remain text-first and WCAG 2.2 AA-oriented where applicable | Manual conservative `80`; no C#/.NET default | `AGENTS.md`, `COMPLIANCE-PLAN_RL-SE-001.md`, `.gitlab/` review surfaces, container/security docs, and local hook surfaces |
+| `RiderProjects/AgentOperationsCockpit` | .NET 10 / C# 14 target for the public Agent Operations Cockpit; currently a requirements and governance scaffold without an approved product solution | Until the product scaffold exists: intake, series, review, receipt, public-readiness, and homogeneity validation; then `dotnet restore/build/test` on the single approved solution | Requirements, Spec-Kit artefacts, and user/developer documentation remain DE-first/EN-second at CEFR B2 and follow WCAG 2.2 AA where applicable | Manual conservative `80`; C#/.NET Thorsten-Solo `125` lines/workday unless the repo documents a justified deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.agents/`, `.claude/`, `.opencode/`, and Spec-Kit surfaces |
 | `RiderProjects/InventarWorkerService` | .NET 10 / C# 14 multi-project inventory solution: worker/API, harvester, Terminal UI, shared libraries, SQLite/MongoDB/PostgreSQL | `dotnet restore/build/test` on `InventarWorkerService.sln`; MSTest unit/integration tests; Playwright setup when required | DocFX output and learner-facing docs require text-oriented A11Y review; generated `api/` and `_site/` remain build artefacts | Manual conservative `80`; repo-specific Thorsten-Solo `100` lines/workday unless all agent files change it | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit surfaces |
 | `RiderProjects/TinyCalc` | .NET 10 / C# spreadsheet and Terminal.Gui TUI port; Pascal reference artefacts for behaviour parity | `dotnet restore/build/test MicroCalc.sln`; xUnit suites; non-interactive TUI smoke mode | DocFX changes require text-oriented A11Y smoke review; documentation and didactic comments stay DE-first/EN-second at CEFR B2 | Manual conservative `80`; Thorsten-Solo `125` lines/workday for this Pascal-derived C#/.NET port | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit surfaces |
 | `RiderProjects/TinyPl0` | .NET 10 / C# 14 compiler, VM, CLI, and Terminal.Gui IDE for PL/0 | `dotnet restore/build/test`; coverage collection; `scripts/update-golden-code.sh` for intentional compiler-output changes | Learner-facing compiler docs, examples, generated API docs, and IDE flows follow DE-first/EN-second and WCAG 2.2 AA-oriented review | Manual conservative `80`; C#/.NET Thorsten-Solo `125` unless all agent files justify a deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.codex` prompt/rule surfaces, Spec-Kit surfaces; `.codex` credentials/logs/history/SQLite state are forbidden |
@@ -1124,7 +1117,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.20.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-25
+**Version**: 1.20.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-31
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]
