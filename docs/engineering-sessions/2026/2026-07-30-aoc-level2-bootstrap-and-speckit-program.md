@@ -2,7 +2,7 @@
 engineering_session_id: ES-2026-07-30-AOC-01
 date: 2026-07-30
 language: de
-status: proposed
+status: completed
 repository: hindermath/home-baseline
 program: Agent Operations Cockpit
 related_issues:
@@ -28,6 +28,7 @@ outputs:
   - Review-Findings-Register
   - Phase-2-Level-2-Repository-Contract
   - Meta-Lastenheft-Programm
+  - Level-0-to-Level-2-Handoff-Completion
 ---
 
 # Engineering Session: AOC Level-2 Bootstrap und Spec-Kit-Lastenheftprogramm
@@ -620,4 +621,21 @@ Vor Phase 2 sind insbesondere zu bestätigen:
 
 ## 23. Status dieses Dokuments
 
-Dieses Dokument ist ein Engineering-Session-Archiv und eine konsolidierte Wissensquelle. Es dokumentiert den Stand der Zusammenarbeit und die daraus entstandenen Verträge. Die verbindliche operative Autorität verbleibt bei den jeweils freigegebenen Repository-Artefakten und GitHub-Issues.
+Dieses Dokument ist ein abgeschlossenes Engineering-Session-Archiv und eine konsolidierte Wissensquelle. Die operative Autorität für das AOC-Lastenheftprogramm liegt seit dem Phase-2-Handoff im öffentlichen Level-2-Repository. Die Level-0-Issues bleiben ausschließlich gemäß ihrem dokumentierten Abschluss- oder Provenienzstatus autoritativ.
+
+## 24. Phase-2-Handoff und Level-0-Abschluss
+
+Der getrennt freigegebene Phase-2-Lauf hat das öffentliche Repository `hindermath/agent-operations-cockpit` aus dem geprüften Ausgangscommit `bd9429889233799a81f38108d5276d0f288a087f` erzeugt. Die Lastenheft- und Governance-Lieferung wurde über PR `hindermath/agent-operations-cockpit#3` mit Merge-Commit `07409ac286859bd716c47a46504be0ca1b3f0492` auf `main` übernommen.
+
+Das Level-2-Repository enthält:
+
+- das selbständige Source Pack, Constraint Register und Review Findings Ledger,
+- die Coverage-, Authority-, Ownership-, Glossar- und Autonomiegrundlagen,
+- fünf Meta-Lastenhefte und neun fachliche Owner-Reihen,
+- 14 gültige Authoring Receipts,
+- ein azyklisches Series-Manifest und dessen Receipt,
+- einen formalen Series-Review und das Phase-2-Completion-Receipt.
+
+Vier Reihen bleiben aufgrund von 13 menschlich zu entscheidenden Decision Intakes im Zustand `NeedsClarification`: Workspace Orchestrator, CLI/Environment Orchestration, Hardware Capability Layer und Preset Evolution. Diese offenen Review-Gates sind Level-2-Arbeit und keine verbleibende Autorität für Produktarbeit in Level 0 oder Level 1.
+
+Level 1 wurde mit `hindermath/rider-baseline#26` und Merge-Commit `e54cacacb5d290bd5f42220b28b14f249dfef5b1` für den eingebetteten AOC-Checkout vorbereitet. Level 0 führt `RiderProjects/AgentOperationsCockpit` anschließend als kanonisches Fleet-Ziel und im Level-2 Project Environment Registry. Documentation Impact: `GeneratedUpdate`; die kanonischen Quellen und das reproduzierbare Statistikprofil werden gemeinsam fortgeschrieben.
