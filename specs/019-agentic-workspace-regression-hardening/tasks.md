@@ -136,20 +136,20 @@ action without relying on color or layout, and native platform tests agree.
 - [X] T087 Run Feature-015-018 maintenance regression suites under `scripts/tests/`.
 - [X] T088 Run full repository Python test discovery for `scripts/tests/`.
 - [X] T089 Run `scripts/invoke-psscriptanalyzer.ps1` against tracked PowerShell files.
-- [ ] T090 Run homogeneity and agent-parity checks from `scripts/`.
+- [X] T090 Run homogeneity and agent-parity checks from `scripts/`.
 - [X] T091 Run `scripts/scan-agent-secrets.sh --fail-on-high .`.
 - [X] T092 Run `git diff --check` and review UTF-8, LF/CRLF and personal-path boundaries.
 - [X] T093 Confirm locked package and vulnerability state under `scripts/lib/maintenance-tui/` is unchanged.
 - [X] T094 Confirm DocFX/web-A11Y is not triggered unless the final documentation diff meets its trigger.
-- [ ] T095 Create a validated local implementation checkpoint commit, then render and verify `docs/project-statistics.md` with `scripts/render-project-statistics.sh`.
-- [ ] T096 Confirm no dependency, CLI, schema, target-repository or maintenance-authority diff.
+- [X] T095 Create a validated local implementation checkpoint commit, then render and verify `docs/project-statistics.md` with `scripts/render-project-statistics.sh`.
+- [X] T096 Confirm no dependency, CLI, schema, target-repository or maintenance-authority diff.
 - [X] T097 Re-run `specify check` and Feature-019 acceptance cardinalities.
-- [ ] T098 Validate the Validate checkpoint in `autonomous-run-state.json` with Bash and PowerShell.
+- [X] T098 Validate the Validate checkpoint in `autonomous-run-state.json` with Bash and PowerShell.
 
 ## Phase 8 - Publish, Review and Exact-Head Delivery
 
-- [ ] T099 Align accepted-artifact hashes and final implementation evidence in `autonomous-run-state.json` and `autonomous-run-evidence.md`.
-- [ ] T100 Commit the non-empty Feature-019 implementation on the exact feature branch.
+- [X] T099 Align accepted-artifact hashes and final implementation evidence in `autonomous-run-state.json` and `autonomous-run-evidence.md`.
+- [X] T100 Commit the non-empty Feature-019 implementation on the exact feature branch.
 - [ ] T101 Push the branch and create the MergeAndSync pull request with evidence-based description.
 - [ ] T102 Inspect every mandatory technical check for the exact PR head.
 - [ ] T103 Confirm macOS, Ubuntu and Windows proof; treat absent native evidence as missing.

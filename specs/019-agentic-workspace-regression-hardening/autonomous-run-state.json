@@ -5,9 +5,9 @@
   "branch": "019-agentic-workspace-regression-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Validate",
   "status": "Active",
-  "checkpointCommit": "2b1e51fb1a80f1d43a7be8b2d1ed52926df3bed8",
+  "checkpointCommit": "2c481460914ee14bdfb1e2b4cf38aaa95c01e2f7",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
@@ -68,20 +68,48 @@
     {
       "path": "specs/019-agentic-workspace-regression-hardening/checklists/plan-review.md",
       "sha256": "e3358acb73adb183797ce499f3a0f489e99237c06dde89c8eff5bdabf79415de"
+    },
+    {
+      "path": "scripts/maintain-agentic-workspace.sh",
+      "sha256": "78bbbea14402bffa7043ad6765a34ed5dfbb40aa8c2fff7f0cfd66ebe4791ecd"
+    },
+    {
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceCommandBuilder.cs",
+      "sha256": "7e3cc8b4ebf17e6026d37c38e14f58838539cc5421147451e9ada151c05bc9e0"
+    },
+    {
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceProcessRunner.cs",
+      "sha256": "15bff97a05952bb7d74caa53ea33f35ce86e99bb818c8bb9a5ca56f1addc9f09"
+    },
+    {
+      "path": "scripts/tests/test_maintenance_tui_wrappers.py",
+      "sha256": "f3ffbdba8ce406d4516a3f2db7f14d12092b3ec26cd35d25b7062bd08211890f"
+    },
+    {
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Infrastructure/MaintenanceProcessRunnerTests.cs",
+      "sha256": "15ff2dd14464f8097007b05604defbd3eb9062426ef02f6480bf332bfbfb7e31"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/documentation-impact-evidence.json",
+      "sha256": "6bda4bd85159eaaf57d3b65af7e03d6792d54e127a204201e8f95d1006107f21"
+    },
+    {
+      "path": "docs/project-statistics.md",
+      "sha256": "497317c4684bca2bbe86eda7433ad33ace2e579ca916a2da95ed2e7a06a9f872"
     }
   ],
   "tasks": {
     "path": "specs/019-agentic-workspace-regression-hardening/tasks.md",
-    "sha256": "c3474f1e8d5d502506367b0450708eb94e159055d308d7769802d6725d423d93",
-    "completed": 94,
+    "sha256": "469381ba53dc1283a19d8a9a91eefe1d64dccf4fa49ac752e129672cc5b59e5b",
+    "completed": 100,
     "total": 122
   },
-  "lastPassingGate": "All three regression slices and the full 89-test local maintenance suite pass; static, secret, format and dependency checks are green",
-  "nextExactAction": "Create the validated implementation checkpoint required by the clean-tree statistics renderer.",
+  "lastPassingGate": "All local product, regression, static, security, dependency, statistics and repository-homogeneity gates pass",
+  "nextExactAction": "Commit the generated statistics and final local evidence, then publish the exact candidate PR.",
   "lastOperation": {
-    "kind": "Implement",
+    "kind": "Validate",
     "state": "Completed",
-    "summary": "Event emission, deterministic report discovery and Bash-3.2 delegation are repaired with focused and full regression proof."
+    "summary": "The exact local implementation checkpoint is validated and the canonical statistics ledger is current."
   },
   "stop": {
     "reason": "N/A",
@@ -94,5 +122,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T14:09:28Z"
+  "updatedAt": "2026-08-01T14:13:49Z"
 }

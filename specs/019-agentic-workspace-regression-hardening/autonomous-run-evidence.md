@@ -40,6 +40,8 @@ Entries are added only after the corresponding acceptance condition is met.
 | EV-GREEN-007 | Formatting and diff | `dotnet format ... --verify-no-changes --no-restore`; `git diff --check` | Pass | Changed C#, Markdown, Bash and tests are format/whitespace clean |
 | EV-GREEN-008 | Dependency vulnerability | `dotnet list ... package --vulnerable --include-transitive` | Pass | No vulnerable package; no project, lock or dependency file changed |
 | EV-GREEN-009 | Spec Kit | `specify check` | Pass | Installed integration is ready |
+| EV-GREEN-010 | Project statistics | `render-project-statistics.sh` plus `--check-only` | Updated and Current | Profile 2 is bound to implementation checkpoint `2c481460914e` |
+| EV-GREEN-011 | Repository homogeneity | `check-homogeneity.sh --dry-run --no-patch .` | Pass, 30/30 | Feature repository is locally homogeneous; no agent-parity drift |
 | EV-BOUNDARY-001 | Fleet homogeneity | `bash scripts/check-homogeneity.sh` | Existing fleet findings | Full 36-checkout inventory completed; Feature-019 local statistics/hook drift is handled here, unrelated repository findings remain outside this feature |
 | EV-NA-001 | DocFX and web A11Y | Trigger review | Not triggered | No XML/API, generated navigation or web-guide structure changed |
 

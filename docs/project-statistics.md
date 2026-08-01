@@ -1003,27 +1003,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 449102 lines |
-| Textdateien / Text files | 2824 |
+| Textbasis / Text base | 450855 lines |
+| Textdateien / Text files | 2844 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-08-01 |
 | Aktivtage / Active days | 80 |
-| Relevante Commits / Relevant commits | 633 |
-| Zeilen je Aktivtag / Lines per active day | 5613.8 |
+| Relevante Commits / Relevant commits | 634 |
+| Zeilen je Aktivtag / Lines per active day | 5635.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 125525 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 127380 |
 | Laengste Serie / Longest streak | 37 days |
-| Speedup vs. 80 lines/day | 70.2x |
-| Speedup vs. 100 lines/day | 56.1x |
-| Methodik / Methodology | v2; source `d2c5b0b39264` |
+| Speedup vs. 80 lines/day | 70.4x |
+| Speedup vs. 100 lines/day | 56.4x |
+| Methodik / Methodology | v2; source `2c481460914e` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
-Tests                           [#...................]   4.1% | 18199
-Dokumentation / Documentation   [#############.......]  66.9% | 300279
-Skripte / Scripts               [##..................]  12.3% | 55332
-Konfiguration / Configuration   [###.................]  16.5% | 73892
+Tests                           [#...................]   4.2% | 18818
+Dokumentation / Documentation   [#############.......]  66.8% | 301128
+Skripte / Scripts               [##..................]  12.3% | 55396
+Konfiguration / Configuration   [###.................]  16.4% | 74113
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 770
 ```
@@ -1216,8 +1216,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.2x
-100 lines/day      [###########.........] 56.1x
+80 lines/day       [##############......] 70.4x
+100 lines/day      [###########.........] 56.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1230,7 +1230,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5613.8
+Visible repository [###########.........] 5635.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1239,9 +1239,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 125525. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 127380. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 125525. Longest streak: 37 days (2026-06-26..2026-08-01).*
+*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 127380. Longest streak: 37 days (2026-06-26..2026-08-01).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1256,6 +1256,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 2366 |
+| 2026-08 | 4221 |
 
 <!-- project-statistics-v2:end -->
