@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
       "role": "Primary",
-      "normalizedSha256": "0c0c75222f9305fddaba8dd7d3f693c906f363c12c8c7c426ea094ff605ff5c1",
+      "normalizedSha256": "f2bfdcd46841551e33962536eaf397c6715403c6df9531acf08bdd4ad4e959ef",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "5e4cb1b6dc81f81c5c24eceeb176431dabfb6e078ca145c65c721b094148ffb4",
+      "status": "Blocked"
     },
     {
       "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
@@ -218,11 +224,17 @@
     }
   ],
   "roots": [
-    "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+    "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
+    {
+      "from": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "to": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
     {
       "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "to": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
@@ -486,8 +498,6 @@
     "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
     "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
     "specs/020-documentation-architecture-audit/documentation-architecture-audit.json",
-    "specs/021-level0-documentation-architecture/autonomous-run-evidence.md",
-    "specs/021-level0-documentation-architecture/retrospective.md",
     "specs/active-lastenheft-normalization/history/7fd2b056-6e21-4108-bf09-237f294a6024/intake-review-result.json",
     "specs/active-lastenheft-normalization/intake-review-request.json",
     "specs/active-lastenheft-normalization/intake-review-result.json",
@@ -498,7 +508,6 @@
     "specs/documentation-architecture-intakes/reviews/d5/history/24b839ac-fd95-4914-981c-0f99a94413c9/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d6/history/86f8ece6-d921-4430-9283-6f6417edd87d/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json",
     "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
     "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",

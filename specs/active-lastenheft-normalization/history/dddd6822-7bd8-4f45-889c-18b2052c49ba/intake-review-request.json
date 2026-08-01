@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "8ea4fe3c-73c2-43d1-89a7-4823d4dc048e",
+  "reviewId": "dddd6822-7bd8-4f45-889c-18b2052c49ba",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
@@ -147,6 +151,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
       "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
@@ -184,11 +189,16 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
-      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+        "to": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+        "kind": "DocumentationSurfaceBaseline"
+      },
       {
         "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
         "to": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",

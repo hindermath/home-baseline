@@ -128,17 +128,17 @@ templates, evidence, Series, and statistics are common write surfaces.
 
 - [X] T098 Update `autonomous-run-evidence.md` with every command, result, skipped trigger, and proof boundary
 - [X] T099 Update and render `docs/project-statistics.md`
-- [ ] T100 Archive the completed D5 intake using the repository workflow
-- [ ] T101 Update Pflichtenheft and Series state without starting D6 or D7
-- [ ] T102 Validate the successor Series and identify the sole next preferred candidate
-- [ ] T103 Complete all tasks and bind final artifact hashes in run state
-- [ ] T104 Stage the exact delivery candidate and validate its path inventory and cached diff
-- [ ] T105 Commit, push, and create one non-empty Feature-021 PR
-- [ ] T106 Converge mandatory provider checks and actionable review threads on the exact head
-- [ ] T107 Validate exact-head gate evidence in Bash and PowerShell
-- [ ] T108 Merge under repository policy, delete the feature branch, and synchronize local `main`
-- [ ] T109 Create one causal evidence closeout only if post-merge facts require it
-- [ ] T110 Complete retrospective, final state, clean-worktree proof, and successor lock evidence
+- [X] T100 Archive the completed D5 intake using the repository workflow
+- [X] T101 Update Pflichtenheft and Series state without starting D6 or D7
+- [X] T102 Validate the successor Series and identify the sole next preferred candidate
+- [X] T103 Complete all tasks and bind final artifact hashes in run state
+- [X] T104 Stage the exact delivery candidate and validate its path inventory and cached diff
+- [X] T105 Commit, push, and create one non-empty Feature-021 PR
+- [X] T106 Converge mandatory provider checks and actionable review threads on the exact head
+- [X] T107 Validate exact-head gate evidence in Bash and PowerShell
+- [X] T108 Merge under repository policy, delete the feature branch, and synchronize local `main`
+- [X] T109 Create one causal evidence closeout only if post-merge facts require it
+- [X] T110 Complete retrospective, final state, clean-worktree proof, and successor lock evidence
 
 ## Requirement Mapping
 

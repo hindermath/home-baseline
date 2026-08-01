@@ -140,6 +140,12 @@ are recorded separately.
   several independent fields. It is now atomic, and separate distribution,
   Home-sync-type, and language-partner-type fixtures preserve regression
   sensitivity. Both shell entry points now pass `10` focused cases.
+- Copilot's final corrective pass identified one inconsistent phrase in the
+  Tasks template: `re-evaluation evidence` instead of the normative
+  `re-evaluation trigger`. The template and this evidence now use the exact
+  shared term. Both ten-case Documentation Impact suites pass; the final
+  Copilot review on head `663807ef0cd19c245fb171bc017dda5d5f84209a`
+  reports `Ready to approve`.
 
 ## Governance
 
@@ -149,4 +155,23 @@ processing boundary changes.
 
 ## Delivery
 
-Pending.
+- Product PR: #197, merged on 2026-08-01.
+- Exact reviewed head: `663807ef0cd19c245fb171bc017dda5d5f84209a`.
+- Merge commit: `468924a261996dd245f8f21e4e6693fd2cbe513c`.
+- Provider checks: `26/26` passed across macOS, Ubuntu, and Windows.
+- Review: five actionable Copilot findings were corrected; the exact-head
+  review is green and zero review threads remain open. Claude was not an
+  available required reviewer and therefore was not counted as approval.
+- Exact-head gate evidence: seven Primary rows passed the Bash and PowerShell
+  validators for the reviewed head. The evidence was kept temporary until the
+  product merge and is preserved here only through this causal closeout.
+- Merge policy: the approved narrow Admin Bypass was used only after every
+  technical gate passed and Human Approval was the sole remaining rule.
+- Scope: the product diff changes documentation, documentation governance,
+  test-only validators, CI wiring, evidence, and statistics. It changes no
+  maintenance behavior, API, dependency, package, fleet repository, D6/D7
+  implementation, or historical source.
+- Successor: D5 is archived. D6 is updated against the merged Features 018
+  through 021, its individual review is `Ready`, and the active Series is
+  `35/3/42` with D6 as the sole preferred `Eligible` candidate. D6 is not
+  started by this closeout.
