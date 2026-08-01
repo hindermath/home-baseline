@@ -64,7 +64,7 @@ order, not importance. See
 [Spec Kit preset priorities](maintenance/Spec-Kit-Preset-Priorities.md).
 
 For a first maintenance run, the
-[efficiency guide](maintenance/agentic-workspace-efficiency-guide.en.md#erster-sicherer-lauf--first-safe-run)
+[efficiency guide](maintenance/agentic-workspace-efficiency-guide.en.md#erster-sicherer-lauf-first-safe-run)
 leads from help through check-only and preview to the safe next action.
 
 ## Next action

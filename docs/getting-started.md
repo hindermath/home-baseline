@@ -66,7 +66,7 @@ bestimmt die Kompositionsreihenfolge, nicht ihre Wichtigkeit. Details stehen in
 [Spec-Kit-Preset-Prioritäten](maintenance/Spec-Kit-Preset-Priorities.md).
 
 Für den ersten Wartungslauf führt der
-[Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md#erster-sicherer-lauf--first-safe-run)
+[Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md#erster-sicherer-lauf-first-safe-run)
 schrittweise von der Hilfe über Check-only und Vorschau bis zur sicheren
 nächsten Aktion.
 

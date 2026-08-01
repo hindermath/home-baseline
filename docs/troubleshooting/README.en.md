@@ -39,7 +39,7 @@ implementation head. A technical validator proves structure; semantic review
 checks meaning and comprehensibility.
 
 The
-[efficiency guide audit path](../maintenance/agentic-workspace-efficiency-guide.en.md#fehleranalyse-und-audit--troubleshooting-and-audit)
+[efficiency guide audit path](../maintenance/agentic-workspace-efficiency-guide.en.md#fehleranalyse-und-audit-troubleshooting-and-audit)
 places lock, Run ID, report, exit code, JSONL, and recovery in a fixed diagnostic
 order.
 

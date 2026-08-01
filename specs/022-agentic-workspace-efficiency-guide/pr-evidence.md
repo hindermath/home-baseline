@@ -99,6 +99,8 @@ no material semantic difference was found.
   exit values, proof boundaries and next actions as visual readers.
 - Stable explicit anchors avoid language-dependent generated heading IDs. Link
   text names the destination and purpose instead of using ambiguous "here".
+  Four additional invisible heading-slug aliases preserve compatibility with
+  the older Feature-021 link validator without changing visible navigation.
 - The guide grants no remote, administrator, provider or secret authority and
   does not expose private paths or machine-local evidence.
 
@@ -178,6 +180,7 @@ interruption or documentation impact triggers renewed parity review.
 | Homogeneity | Level 0 | Pass; 30/30 | Includes generated statistics and embedded-script inventory |
 | Project-statistics renderer | Profile 2 at checkpoint `c9cf11e` | Pass; `CURRENT` after render | Git-history-derived metrics, not elapsed work time |
 | Requirements/task closure | 31 FR, 10 SC, 84 ordered tasks and three complete checklists | Pass | Six delivery/closeout tasks remain operational until remote completion |
+| Feature-021 migration validator | 12 fixtures, 16 sections, four reader paths and 17 linked files | Pass after compatibility-alias remediation | Older validator derives heading slugs; Lychee validates explicit IDs |
 
 ## Local Implementation Acceptance
 
@@ -193,6 +196,12 @@ interruption or documentation impact triggers renewed parity review.
 - Conditional DocFX/browser and supply-chain runtime gates remain `N/A` because
   their declared triggers did not occur. Existing provider workflows remain
   mandatory at the exact pushed head.
+
+The first provider run exposed one actionable compatibility issue: Lychee
+accepted the explicit stable IDs while the Feature-021 migration validator
+recognized generated heading slugs only. The paired guide now carries both ID
+forms at each of the four sections. Both validators pass locally; no validator
+or workflow behavior was changed.
 
 ## Residual Risks And Follow-Ups
 

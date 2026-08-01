@@ -56,7 +56,7 @@ ist; der Abschluss darf dann nicht aus dem Stream allein abgeleitet werden.
 
 ## Vertiefung
 
-- [Ausführlicher Effizienzleitfaden](agentic-workspace-efficiency-guide.md#regelmaessiger-betrieb--regular-operation)
+- [Ausführlicher Effizienzleitfaden](agentic-workspace-efficiency-guide.md#regelmäßiger-betrieb-regular-operation)
 - [Manpage des Ein-Kommando-Laufs](../man/maintain-agentic-workspace.1.md)
 - [Wartungs-TUI-Architektur](../architecture/maintenance-tui.md)
 - [A11Y der Wartungs-TUI](../accessibility/maintenance-tui.md)

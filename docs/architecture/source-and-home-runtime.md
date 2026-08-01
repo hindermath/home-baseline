@@ -60,7 +60,7 @@ Commit-, Push-, Merge-, Force- oder Adminrechte werden nie aus einem lokalen
 Pfad, einer Runtime-Kopie oder allgemeiner Autonomie abgeleitet.
 
 Der
-[Maintainer- und Agentenpfad](../maintenance/agentic-workspace-efficiency-guide.md#maintainer-und-ki-agenten--maintainers-and-ai-agents)
+[Maintainer- und Agentenpfad](../maintenance/agentic-workspace-efficiency-guide.md#maintainer-und-ki-agenten-maintainers-and-ai-agents)
 ergänzt dazu Authority-Modi, Serialisierungsgrenzen und einen
 wiederverwendbaren Agenten-Prompt.
 

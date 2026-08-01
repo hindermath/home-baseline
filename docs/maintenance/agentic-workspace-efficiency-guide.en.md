@@ -37,6 +37,7 @@ The primary measure is more reviewable work per complete quality cycle.
 | Authority | Current explicit permission for local or remote actions |
 
 <a id="erster-sicherer-lauf--first-safe-run"></a>
+<a id="erster-sicherer-lauf-first-safe-run"></a>
 ## Erster sicherer Lauf / First safe run
 
 ### 1. Open the canonical source
@@ -134,6 +135,7 @@ headless for compatibility.
 - [ ] Assumed no remote, admin, or secret authority.
 
 <a id="regelmaessiger-betrieb--regular-operation"></a>
+<a id="regelmäßiger-betrieb-regular-operation"></a>
 ## Regelmäßiger Betrieb / Regular operation
 
 ### Binding sequence
@@ -231,6 +233,7 @@ derive success from events.
 6. Use a dedicated branch and PR only after review.
 
 <a id="maintainer-und-ki-agenten--maintainers-and-ai-agents"></a>
+<a id="maintainer-und-ki-agenten-maintainers-and-ai-agents"></a>
 ## Maintainer und KI-Agenten / Maintainers and AI agents
 
 ### Source, runtime, and local state
@@ -312,6 +315,7 @@ through repository-specific branches and non-empty PRs.
 8. Fast-forward the default branch afterward and prove `(0 0)`.
 
 <a id="fehleranalyse-und-audit--troubleshooting-and-audit"></a>
+<a id="fehleranalyse-und-audit-troubleshooting-and-audit"></a>
 ## Fehleranalyse und Audit / Troubleshooting and audit
 
 ### Diagnostic order

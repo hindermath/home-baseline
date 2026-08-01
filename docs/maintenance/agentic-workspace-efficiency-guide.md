@@ -39,6 +39,7 @@ mehr überprüfbare Arbeit pro vollständigem Qualitätszyklus.
 | Authority | Aktuelle ausdrückliche Berechtigung für lokale oder entfernte Aktionen |
 
 <a id="erster-sicherer-lauf--first-safe-run"></a>
+<a id="erster-sicherer-lauf-first-safe-run"></a>
 ## Erster sicherer Lauf / First safe run
 
 ### 1. Kanonische Quelle öffnen
@@ -138,6 +139,7 @@ standardmäßig. Umgeleitete Aufrufe bleiben aus Kompatibilitätsgründen headle
 - [ ] Keine Remote-, Admin- oder Secret-Berechtigung angenommen.
 
 <a id="regelmaessiger-betrieb--regular-operation"></a>
+<a id="regelmäßiger-betrieb-regular-operation"></a>
 ## Regelmäßiger Betrieb / Regular operation
 
 ### Verbindliche Reihenfolge
@@ -238,6 +240,7 @@ darf aus Events keinen Erfolg ableiten.
 6. Erst nach Review einen eigenen Branch und PR verwenden.
 
 <a id="maintainer-und-ki-agenten--maintainers-and-ai-agents"></a>
+<a id="maintainer-und-ki-agenten-maintainers-and-ai-agents"></a>
 ## Maintainer und KI-Agenten / Maintainers and AI agents
 
 ### Source, Runtime und lokaler Zustand
@@ -321,6 +324,7 @@ danach repositoryweise über getrennte Branches und nicht leere PRs geliefert.
 8. Danach Default-Branch per Fast-forward synchronisieren und `(0 0)` belegen.
 
 <a id="fehleranalyse-und-audit--troubleshooting-and-audit"></a>
+<a id="fehleranalyse-und-audit-troubleshooting-and-audit"></a>
 ## Fehleranalyse und Audit / Troubleshooting and audit
 
 ### Diagnose-Reihenfolge
