@@ -70,5 +70,9 @@ DocFX/web output are `NoUpdateRequired`. Structured evidence is in
 
 ## Delivery evidence
 
+- Feature PR: `hindermath/home-baseline#192`
+- Published head: pending final delivery-evidence commit
+- Pre-push secret gate: Pass
+
 Exact-head provider evidence, review convergence, merge and synchronization are
 recorded only after they exist. D4 is not started by this run.

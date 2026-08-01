@@ -5,9 +5,9 @@
   "branch": "019-agentic-workspace-regression-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Validate",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "2c481460914ee14bdfb1e2b4cf38aaa95c01e2f7",
+  "checkpointCommit": "0c945291ce9a01df89d9ee2a5247a5012119d112",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
@@ -100,16 +100,16 @@
   ],
   "tasks": {
     "path": "specs/019-agentic-workspace-regression-hardening/tasks.md",
-    "sha256": "469381ba53dc1283a19d8a9a91eefe1d64dccf4fa49ac752e129672cc5b59e5b",
-    "completed": 100,
+    "sha256": "076ff89f658390bc34a6ff691c3e8f58f4c163bcca785e1cca97e33d18d31fde",
+    "completed": 101,
     "total": 122
   },
-  "lastPassingGate": "All local product, regression, static, security, dependency, statistics and repository-homogeneity gates pass",
-  "nextExactAction": "Commit the generated statistics and final local evidence, then publish the exact candidate PR.",
+  "lastPassingGate": "Feature PR 192 was created after all local product, security, dependency, statistics and homogeneity gates passed",
+  "nextExactAction": "Publish this delivery-evidence checkpoint and evaluate all mandatory checks and reviews on its exact head.",
   "lastOperation": {
-    "kind": "Validate",
+    "kind": "Publish",
     "state": "Completed",
-    "summary": "The exact local implementation checkpoint is validated and the canonical statistics ledger is current."
+    "summary": "The non-empty MergeAndSync pull request exists and no successor feature has started."
   },
   "stop": {
     "reason": "N/A",
@@ -122,5 +122,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T14:13:49Z"
+  "updatedAt": "2026-08-01T14:14:54Z"
 }
