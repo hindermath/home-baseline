@@ -175,6 +175,24 @@ interruption or documentation impact triggers renewed parity review.
 | `specify check` | Installed Spec Kit integrations | Pass | Tool availability only |
 | Changed-path scope assertion | 32 candidate paths | Pass | No executable maintenance, dependency, preset, registry, workflow or fleet change |
 | `git diff --check` | Staged candidate | Pass | Whitespace and conflict-marker boundary only |
+| Homogeneity | Level 0 | Pass; 30/30 | Includes generated statistics and embedded-script inventory |
+| Project-statistics renderer | Profile 2 at checkpoint `c9cf11e` | Pass; `CURRENT` after render | Git-history-derived metrics, not elapsed work time |
+| Requirements/task closure | 31 FR, 10 SC, 84 ordered tasks and three complete checklists | Pass | Six delivery/closeout tasks remain operational until remote completion |
+
+## Local Implementation Acceptance
+
+- Four reader paths, two language partners, four stable anchors and 17 current
+  source claims are complete.
+- All documented options, required status classes and exit values are covered
+  by current primary sources with proof and re-evaluation boundaries.
+- No active `[NEEDS CLARIFICATION]`, TODO or TBD marker remains in accepted
+  feature artifacts.
+- Product scope contains documentation, generated inventory/statistics and
+  feature-local tests only. Runtime, dependency, preset, registry, workflow and
+  fleet files are unchanged.
+- Conditional DocFX/browser and supply-chain runtime gates remain `N/A` because
+  their declared triggers did not occur. Existing provider workflows remain
+  mandatory at the exact pushed head.
 
 ## Residual Risks And Follow-Ups
 

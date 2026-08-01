@@ -5,9 +5,9 @@
   "branch": "022-agentic-workspace-efficiency-guide",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "7c438bf332626c48eb87b9139f863dc2e8e861c7",
+  "checkpointCommit": "c9cf11efaa2f90604fd1662cdf86b42a67196f03",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
@@ -84,16 +84,16 @@
   ],
   "tasks": {
     "path": "specs/022-agentic-workspace-efficiency-guide/tasks.md",
-    "sha256": "41213ed014b8edd4c3a358e533433abb8b795e371c3dc03f7f2cb383950d281c",
-    "completed": 74,
+    "sha256": "9f7f11345050d076740c20e310a1bf122fed4fe79dfd4982b0bfdddda0050514",
+    "completed": 78,
     "total": 84
   },
-  "lastPassingGate": "Paired guide, 17-claim source matrix, six negative fixtures, 3,558-link Lychee run, learning package, generated-document check, Documentation Impact fixtures, PSScriptAnalyzer, secret scan, Spec Kit and scope proof passed; statistics rendering remains.",
-  "nextExactAction": "Commit the locally validated implementation checkpoint, render statistics on the resulting clean tree, then complete Homogeneity and exact-candidate validation.",
+  "lastPassingGate": "Local exact candidate passed source-matrix tests, 3,558-link Lychee, learning package, generated-document checks, Documentation Impact, Homogeneity 30/30, PSScriptAnalyzer, secret scan, Spec Kit, statistics, scope and requirements/task closure.",
+  "nextExactAction": "Commit validation and statistics evidence, push the Feature 022 branch, create its non-empty PR and converge exact-head provider gates and reviews.",
   "lastOperation": {
     "kind": "Validate",
-    "state": "NeedsRevalidation",
-    "summary": "All non-statistics local gates passed. The statistics renderer correctly requires a clean committed tree before writing the generated profile."
+    "state": "Completed",
+    "summary": "All local documentation, matrix, accessibility, generated-document, quality, statistics and scope gates passed on the committed implementation checkpoint."
   },
   "stop": {
     "reason": "N/A",
@@ -106,5 +106,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T20:01:38Z"
+  "updatedAt": "2026-08-01T20:05:11Z"
 }

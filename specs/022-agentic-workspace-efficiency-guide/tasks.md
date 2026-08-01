@@ -116,12 +116,12 @@ without assuming successful completion.
 - [X] T070 Perform WCAG 2.2 AA, text-first, keyboard, screenreader, Braille and text-browser applicability review
 - [X] T071 Run the exact Lychee command from `.github/workflows/documentation-and-learning-package.yml`, or record local-tool absence and require its exact-head provider job
 - [X] T072 Run source-matrix tests and production validation from `quickstart.md`
-- [ ] T073 Run `git diff --check`, secret scan, Homogeneity, PSScriptAnalyzer and `specify check`
+- [X] T073 Run `git diff --check`, secret scan, Homogeneity, PSScriptAnalyzer and `specify check`
 - [X] T074 Run changed-path scope proof and confirm zero executable, dependency, preset, registry, workflow or fleet changes
 - [X] T075 Decide automation follow-up as `NoFollowUpRequired` or create one evidenced non-empty intake
-- [ ] T076 Update and render `docs/project-statistics.md`
-- [ ] T077 Complete `specs/022-agentic-workspace-efficiency-guide/pr-evidence.md` with all commands, results, skips and risks
-- [ ] T078 Validate all requirements, success criteria, checklists, contracts and task coverage
+- [X] T076 Update and render `docs/project-statistics.md`
+- [X] T077 Complete `specs/022-agentic-workspace-efficiency-guide/pr-evidence.md` with all commands, results, skips and risks
+- [X] T078 Validate all requirements, success criteria, checklists, contracts and task coverage
 
 ## Phase 8: Delivery And Causal Closeout
 
