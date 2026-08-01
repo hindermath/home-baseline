@@ -120,7 +120,7 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
                 (
                     "set -euo pipefail",
                     extract_bash_function("completion_event_details"),
-                    f"completion_event_details {shlex.quote(str(report))} 0",
+                    f"completion_event_details {shlex.quote(str(report))} 0 PASSED",
                 )
             )
 
@@ -137,6 +137,40 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
             self.assertEqual(details["logPath"], str(root / "run.log"))
             self.assertEqual(details["overallStatus"], "PASSED")
             self.assertEqual(details["exitCode"], 0)
+
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
+    def test_completion_details_survive_missing_or_invalid_report(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            cases = (
+                (root / "missing.json", False),
+                (root / "invalid.json", True),
+            )
+            for report, create_invalid_report in cases:
+                with self.subTest(report=report.name):
+                    if create_invalid_report:
+                        report.write_text("not-json\n", encoding="utf-8")
+                    script = "\n".join(
+                        (
+                            "set -euo pipefail",
+                            extract_bash_function("completion_event_details"),
+                            f"completion_event_details {shlex.quote(str(report))} 17 FAILED",
+                        )
+                    )
+
+                    completed = subprocess.run(
+                        ["bash", "-c", script],
+                        text=True,
+                        capture_output=True,
+                        check=False,
+                    )
+
+                    self.assertEqual(completed.returncode, 0, completed.stderr)
+                    details = json.loads(completed.stdout)
+                    self.assertEqual(details["reportPath"], str(report))
+                    self.assertEqual(details["logPath"], "N/A")
+                    self.assertEqual(details["overallStatus"], "FAILED")
+                    self.assertEqual(details["exitCode"], 17)
 
     @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_home_runtime_delegates_zero_one_and_many_arguments_under_bin_bash(self) -> None:

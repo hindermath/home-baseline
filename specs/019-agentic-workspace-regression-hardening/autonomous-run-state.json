@@ -5,9 +5,9 @@
   "branch": "019-agentic-workspace-regression-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
+  "stage": "Review",
   "status": "Active",
-  "checkpointCommit": "0c945291ce9a01df89d9ee2a5247a5012119d112",
+  "checkpointCommit": "97e0f95c24842490ba8e20b99b8275d8e641223e",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
@@ -71,7 +71,7 @@
     },
     {
       "path": "scripts/maintain-agentic-workspace.sh",
-      "sha256": "78bbbea14402bffa7043ad6765a34ed5dfbb40aa8c2fff7f0cfd66ebe4791ecd"
+      "sha256": "9310dfe38a14bb9cf4b198c8cd91dc20cafdc139160d197fb388b8e203671234"
     },
     {
       "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceCommandBuilder.cs",
@@ -83,7 +83,7 @@
     },
     {
       "path": "scripts/tests/test_maintenance_tui_wrappers.py",
-      "sha256": "f3ffbdba8ce406d4516a3f2db7f14d12092b3ec26cd35d25b7062bd08211890f"
+      "sha256": "a2cdc66b41193a197434ca7be478d246e4144beeb3f916776fdfd2546a46c3a6"
     },
     {
       "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Infrastructure/MaintenanceProcessRunnerTests.cs",
@@ -92,10 +92,6 @@
     {
       "path": "specs/019-agentic-workspace-regression-hardening/documentation-impact-evidence.json",
       "sha256": "6bda4bd85159eaaf57d3b65af7e03d6792d54e127a204201e8f95d1006107f21"
-    },
-    {
-      "path": "docs/project-statistics.md",
-      "sha256": "497317c4684bca2bbe86eda7433ad33ace2e579ca916a2da95ed2e7a06a9f872"
     }
   ],
   "tasks": {
@@ -104,12 +100,12 @@
     "completed": 101,
     "total": 122
   },
-  "lastPassingGate": "Feature PR 192 was created after all local product, security, dependency, statistics and homogeneity gates passed",
-  "nextExactAction": "Publish this delivery-evidence checkpoint and evaluate all mandatory checks and reviews on its exact head.",
+  "lastPassingGate": "Copilot review correction passed focused and full Python regression tests plus Bash syntax validation",
+  "nextExactAction": "Commit and publish the review correction, render final statistics, then evaluate all exact-head checks and review threads again.",
   "lastOperation": {
-    "kind": "Publish",
-    "state": "Completed",
-    "summary": "The non-empty MergeAndSync pull request exists and no successor feature has started."
+    "kind": "ReviewCorrection",
+    "state": "NeedsRevalidation",
+    "summary": "Two actionable Copilot findings were corrected locally; provider checks and thread resolution must run on the new exact head."
   },
   "stop": {
     "reason": "N/A",
@@ -122,5 +118,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T14:14:54Z"
+  "updatedAt": "2026-08-01T14:23:59Z"
 }

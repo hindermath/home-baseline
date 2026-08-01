@@ -31,6 +31,7 @@ Entries are added only after the corresponding acceptance condition is met.
 | EV-RED-001 | Bash event emission | Focused `unittest` cases in `test_maintenance_tui_wrappers.py` | Expected failure | Existing Bash helper appends an extra brace; no valid event is persisted |
 | EV-RED-002 | Deterministic report fallback | Filtered Release `dotnet test` for `DeterministicFinalReportIsLoadedWithoutCompletionEvent` | Expected failure | Existing runner returns `null` although the finalized run-owned report exists |
 | EV-RED-003 | Bash 3.2 delegation | Focused `/bin/bash` Home Runtime delegation fixture | Expected failure | Zero-argument call fails at `ORIGINAL_ARGS[@]`; one and many arguments reach exactly one fake engine |
+| EV-RED-004 | Early finalization | Focused missing/invalid-report `unittest` | Expected failure, 2/2 cases | The EXIT path raises before emitting deterministic completion details |
 | EV-GREEN-001 | Wrapper, events and delegation | `python3 -m unittest scripts.tests.test_maintenance_tui_wrappers` | Pass, 18/18 | Real Bash helper plus Python writer, Bash-3.2 delegation and paired wrapper contract |
 | EV-GREEN-002 | TUI report and result contract | Release `dotnet test` for the complete TUI test project | Pass, 68/68 | Deterministic report fallback, negative ownership/finalization fixtures, mismatch and cancellation |
 | EV-GREEN-003 | Documentation and A11Y review | Semantic review of README, manpage, architecture, security and accessibility surfaces | Pass | Public CLI unchanged; report/delegation claims synchronized; text-first behavior unchanged |
@@ -40,8 +41,10 @@ Entries are added only after the corresponding acceptance condition is met.
 | EV-GREEN-007 | Formatting and diff | `dotnet format ... --verify-no-changes --no-restore`; `git diff --check` | Pass | Changed C#, Markdown, Bash and tests are format/whitespace clean |
 | EV-GREEN-008 | Dependency vulnerability | `dotnet list ... package --vulnerable --include-transitive` | Pass | No vulnerable package; no project, lock or dependency file changed |
 | EV-GREEN-009 | Spec Kit | `specify check` | Pass | Installed integration is ready |
-| EV-GREEN-010 | Project statistics | `render-project-statistics.sh` plus `--check-only` | Updated and Current | Profile 2 is bound to implementation checkpoint `2c481460914e` |
+| EV-GREEN-010 | Project statistics | `render-project-statistics.sh` plus `--check-only` | Updated and Current | Intermediate publication head `97e0f95` repaired the detected statistics drift; the review correction receives a fresh final render |
 | EV-GREEN-011 | Repository homogeneity | `check-homogeneity.sh --dry-run --no-patch .` | Pass, 30/30 | Feature repository is locally homogeneous; no agent-parity drift |
+| EV-GREEN-012 | Review correction | Focused completion tests; complete wrapper suite; full Python discovery; `bash -n` | Pass, 2/2; 19/19; 90 passed with 12 native skips; Pass | Missing or invalid reports now use explicit final status without suppressing EXIT finalization |
+| EV-REVIEW-001 | Copilot review on PR #192 | Two actionable threads | Addressed locally | Early-report finalization is hardened; checklist command syntax is aligned with repository `/speckit-plan` guidance |
 | EV-BOUNDARY-001 | Fleet homogeneity | `bash scripts/check-homogeneity.sh` | Existing fleet findings | Full 36-checkout inventory completed; Feature-019 local statistics/hook drift is handled here, unrelated repository findings remain outside this feature |
 | EV-NA-001 | DocFX and web A11Y | Trigger review | Not triggered | No XML/API, generated navigation or web-guide structure changed |
 
@@ -71,7 +74,7 @@ DocFX/web output are `NoUpdateRequired`. Structured evidence is in
 ## Delivery evidence
 
 - Feature PR: `hindermath/home-baseline#192`
-- Published head: pending final delivery-evidence commit
+- Last evaluated head: `97e0f95`; a review-correction head is pending publication
 - Pre-push secret gate: Pass
 
 Exact-head provider evidence, review convergence, merge and synchronization are

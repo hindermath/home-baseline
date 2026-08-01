@@ -415,12 +415,20 @@ cleanup_preset_validation_target() {
 }
 
 completion_event_details() {
-  local report_file="$1" exit_code="$2"
-  python3 - "$report_file" "$exit_code" <<'PY'
+  local report_file="$1" exit_code="$2" fallback_status="$3"
+  python3 - "$report_file" "$exit_code" "$fallback_status" <<'PY'
 import json
 import sys
 
-report = json.loads(open(sys.argv[1], encoding="utf-8").read())
+# Ein frueher Abbruch darf das EXIT-Trap nicht an einem noch fehlenden Report hindern.
+# An early failure must not prevent the EXIT trap when the report is not ready yet.
+try:
+    with open(sys.argv[1], encoding="utf-8") as report_stream:
+        report = json.load(report_stream)
+    if not isinstance(report, dict):
+        report = {}
+except (OSError, UnicodeError, json.JSONDecodeError):
+    report = {}
 artifacts = report.get("artifacts", {})
 log_path = artifacts.get("logPath") if isinstance(artifacts, dict) else None
 print(json.dumps(
@@ -428,7 +436,7 @@ print(json.dumps(
         "reportPath": sys.argv[1],
         "logPath": log_path or "N/A",
         "exitCode": int(sys.argv[2]),
-        "overallStatus": report.get("overallStatus"),
+        "overallStatus": report.get("overallStatus") or sys.argv[3],
     },
     ensure_ascii=False,
     separators=(",", ":"),
@@ -454,7 +462,7 @@ finalize_run() {
   start_event_phase "final" "Abschlussprüfung gestartet." "Final check started."
   local completion_status completion_details
   completion_status="$(event_status "$status")"
-  completion_details="$(completion_event_details "$REPORT_FILE" "$exit_code")"
+  completion_details="$(completion_event_details "$REPORT_FILE" "$exit_code" "$completion_status")"
   emit_event run-completed "$completion_status" "final" "" \
     "Wartung abgeschlossen." "Maintenance completed." "$completion_details"
   printf 'ABSCHLUSS / FINAL\t%s\t%s\t%s\t%s\n' \

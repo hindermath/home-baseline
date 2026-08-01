@@ -15,4 +15,4 @@
 - [x] R-TUI-to-D4 ordering is explicit
 - [x] No answer would materially change planning or validation strategy
 
-Recommendation: proceed to `$speckit-plan` without asking the user questions.
+Recommendation: proceed to `/speckit-plan` without asking the user questions.
