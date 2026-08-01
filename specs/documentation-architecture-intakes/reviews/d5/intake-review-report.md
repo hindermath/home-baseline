@@ -19,7 +19,9 @@ commit, and exactly one accepted finding: `DIA001`.*
   Leserpfaden; eine Migrationsmatrix schützt Inhalt, Links und Sprachpartner.
 - Runtime, Produktcode, Flotten-Repositories sowie D6-/D7-Themen bleiben
   außerhalb des Scopes.
-- Findings: Critical `0`, High `0`, Medium `0`, Low `0`.
+- Neue Findings dieses Intake-Reviews / New findings from this intake review:
+  Critical `0`, High `0`, Medium `0`, Low `0`. Das übernommene `DIA001` bleibt
+  der bestätigte D5-Scope und ist kein neuer Review-Befund.
 - Offene Fragen und akzeptierte Risiken: `0`.
 
 ## Nächste Aktion / Next Action
