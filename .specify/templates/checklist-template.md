@@ -39,6 +39,9 @@
 - Link to relevant resources or documentation
 - Confirm exactly one Documentation Impact decision for the change:
   `UpdateRequired`, `NoUpdateRequired`, `GeneratedUpdate`, or `FollowUp`.
+- Confirm audience and reader path, source and owner, navigation, document
+  class, language partner, platform/example proof, distribution class,
+  Home-sync need, evidence, and re-evaluation trigger.
 - For `GeneratedUpdate`, verify source and renderer. For `FollowUp`, verify
   owner, risk, due date, trigger, evidence, and accepted scope boundary.
 - Items are numbered sequentially for easy reference

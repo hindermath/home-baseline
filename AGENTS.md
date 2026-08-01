@@ -165,11 +165,17 @@ Quelle, Owner, betroffene Dokumente und Evidence richten sich nach
 Quelle und führt den Renderer aus. `FollowUp` benötigt Owner, Risiko, Frist,
 Wiedervorlage, Evidence und Scope-Grund; Sicherheits-, Bedienungs- oder
 Breaking-Change-Dokumentation zusätzlich akzeptierte Risikoevidence.
+Erfasse außerdem Zielgruppen und Leserpfade, kanonische Quelle und Owner,
+Navigation, Dokumentklasse, Sprachpartner, Plattform-/Beispielnachweis,
+Distributionsklasse, Home-Sync-Bedarf und Re-Evaluation. Große Einstiegsseiten
+verwenden Progressive Disclosure und bei Bedarf synchron gepflegte `.en.md`-
+Sprachpartner.
 
 *Every technical or professional change records exactly one Documentation
 Impact decision. Follow the source, ownership, generated-output, and evidence
 contract in `docs/documentation-governance.md`; deterministic validation does
-not replace semantic review.*
+not replace semantic review. Also record reader paths, navigation, language
+partners, distribution class, Home-sync need, and reevaluation.*
 
 ## Lernreihen-Governance / Learning Series Governance
 

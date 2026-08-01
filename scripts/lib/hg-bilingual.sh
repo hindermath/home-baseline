@@ -24,6 +24,19 @@ hg_check_bilingual() {
 
   if [ "$has_de" -gt 0 ] && [ "$has_en" -gt 0 ]; then
     echo "PASS|${file}|bilingual-ok"
+  elif [[ "$file" == *.md ]]; then
+    local partner base_name partner_name
+    partner="${file%.md}.en.md"
+    base_name="$(basename -- "$file")"
+    partner_name="$(basename -- "$partner")"
+    # A language pair counts only when both files link back to each other.
+    if [ -f "$partner" ] &&
+       rg -Fq "(${partner_name})" "$file" 2>/dev/null &&
+       rg -Fq "(${base_name})" "$partner" 2>/dev/null; then
+      echo "PASS|${file}|bilingual-language-pair"
+    else
+      echo "WARN|${file}|bilingual-section-missing"
+    fi
   else
     echo "WARN|${file}|bilingual-section-missing"
   fi

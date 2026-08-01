@@ -869,6 +869,17 @@ Mandatory rules:
   guidance MUST carry the same decision. Semantic truth remains a reviewer
   responsibility; deterministic validators prove only structure, paths,
   hashes, markers, and required evidence fields.
+- The decision record MUST identify affected audiences and reader paths,
+  canonical source and owner, navigation impact, document class, language
+  strategy and partner, platform/example proof, distribution class, Home-sync
+  need, evidence, and re-evaluation trigger.
+- Entry documentation MUST use progressive disclosure: purpose, prerequisites,
+  safety boundaries, and one safe next action precede deeper references. Large
+  documents MUST use synchronized language partners when one bilingual file
+  harms orientation or maintainability.
+- Distribution decisions MUST distinguish `homeRuntime`, `sourceOnly`, and
+  `machineLocal`. The Home Runtime is a manifest-bound operational selection,
+  not the complete home directory or a second Level 0 source.
 - The bilingual learner reference is `docs/documentation-governance.md`.
 
 **Rationale**: Documentation becomes unreliable when its maintenance is left

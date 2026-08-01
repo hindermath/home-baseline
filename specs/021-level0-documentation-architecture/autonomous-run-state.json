@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "cf8e7a2f-baac-44cc-b5a5-b660906adf8d",
+  "featurePath": "specs/021-level0-documentation-architecture",
+  "branch": "021-level0-documentation-architecture",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "edf33bc88029edea261e9c461d45c347d449ad3f",
+  "acceptedArtifacts": [
+    {"path": ".specify/memory/constitution.md", "sha256": "629ee3de68cb3010c5d90a7332e7414e304b0892d13b2918a33eb4cb1c0369e0"},
+    {"path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md", "sha256": "f2bfdcd46841551e33962536eaf397c6715403c6df9531acf08bdd4ad4e959ef"},
+    {"path": "requirements/intakes/series/home-baseline-delivery/manifest.json", "sha256": "442d549f08dba795acc356bf0d4f13f14161b61ad377497c3dca5570d0f6983e"},
+    {"path": "requirements/intakes/series/home-baseline-delivery/receipt.json", "sha256": "028551481424cc57a2144c14bb77f86ddc27e9b674f11644b457e1930ec25862"},
+    {"path": "specs/documentation-architecture-intakes/reviews/d5/intake-review-request.json", "sha256": "15183c7a4a87962d19e18c6f07f2f7bdb3301562ebff3cef2d1fa0619391a3dc"},
+    {"path": "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json", "sha256": "05ee0478a27d0425ad739eca909d88b138d95839178304429d8a88f419c70159"}
+  ],
+  "tasks": {
+    "path": "specs/021-level0-documentation-architecture/tasks.md",
+    "sha256": "beff51249d3937e52c9deea24972e06126c060c8d4f8d485cc21f91f38102dd5",
+    "completed": 95,
+    "total": 110
+  },
+  "lastPassingGate": "DIA001 migration, language pairs, links, Documentation Impact, learning package, generated documents, PowerShell, secrets, presets, and agent parity pass locally.",
+  "nextExactAction": "Validate and commit the exact implementation candidate, then render project statistics from the clean checkpoint.",
+  "lastOperation": {
+    "kind": "Implement",
+    "state": "Completed",
+    "summary": "The D5 documentation architecture is implemented; only clean-checkpoint statistics, final validation, delivery, Series closeout, and retrospective remain."
+  },
+  "stop": {"reason": "N/A", "requestedAt": "N/A", "safeBoundary": "N/A"},
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-01T17:13:06Z"
+}

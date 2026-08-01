@@ -9,9 +9,20 @@
       "rationale": "Explain why this decision is correct.",
       "documents": [],
       "owner": "Maintainer",
+      "audiences": [],
+      "readerPaths": [],
+      "canonicalSource": "repository-relative path",
+      "navigationImpact": "Describe entry-point and navigation effects.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "DE-first/EN-second or synchronized language partners",
+      "languagePartners": [],
+      "platformAndExampleProof": "Name applicable platforms and validated examples.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
       "evidence": "specs/###-feature/pr-evidence.md",
       "risk": "N/A",
-      "criticality": "Normal"
+      "criticality": "Normal",
+      "reevaluationTrigger": "Describe what makes this decision stale."
     }
   ]
 }

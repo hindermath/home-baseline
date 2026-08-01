@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "migration-contract",
+      "applicability": "Applicable",
+      "requiredScope": "Section migration, reader paths, language partners, links, and scope boundaries",
+      "requiredCommandTokens": ["test_documentation_migration.py", "validate_documentation_migration.py"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": "Migration schema or documentation architecture changes"
+    },
+    {
+      "gateId": "repository-quality",
+      "applicability": "Applicable",
+      "requiredScope": "Repository homogeneity, PowerShell static analysis, diff, and secret checks",
+      "requiredCommandTokens": ["check-homogeneity", "invoke-psscriptanalyzer", "git diff --check", "scan-agent-secrets"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": "Changed path inventory changes"
+    },
+    {
+      "gateId": "documentation-links",
+      "applicability": "Applicable",
+      "requiredScope": "Local Markdown links, anchors, and language partner navigation",
+      "requiredCommandTokens": ["--include-fragments"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu"],
+      "rationale": "",
+      "reevaluationTrigger": "Markdown path or anchor handling changes"
+    },
+    {
+      "gateId": "learning-accessibility",
+      "applicability": "Applicable",
+      "requiredScope": "Learner package, generated secure-development documentation, and text-first documentation impact proof",
+      "requiredCommandTokens": ["check-learning-package", "build-secure-development-docs", "test-documentation-impact"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": "Learner, A11Y, generated-document, or Documentation Impact contract changes"
+    },
+    {
+      "gateId": "docfx-web-a11y",
+      "applicability": "N/A",
+      "requiredScope": "DocFX generation and browser Playwright/Axe validation",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "This repository has no DocFX configuration or browser documentation test project; Markdown, learner-package, semantic WCAG, and link gates cover its documentation surfaces.",
+      "reevaluationTrigger": "A DocFX configuration, generated HTML site, or browser documentation test enters the repository"
+    },
+    {
+      "gateId": "runtime-tests",
+      "applicability": "N/A",
+      "requiredScope": "Executable product or maintenance runtime tests",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Feature 021 changes documentation, CI validation, and feature-local test-only tooling without changing maintenance runtime behavior.",
+      "reevaluationTrigger": "Executable product or maintenance logic changes"
+    },
+    {
+      "gateId": "supply-chain-runtime",
+      "applicability": "N/A",
+      "requiredScope": "SBOM, VEX, SLSA, Scorecard, AI-SBOM, and dependency evidence",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No dependency, package, build, or release artifact changes.",
+      "reevaluationTrigger": "Dependency, package, build, or release scope changes"
+    }
+  ]
+}
