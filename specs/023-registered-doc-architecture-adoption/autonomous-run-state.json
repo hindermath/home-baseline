@@ -5,8 +5,8 @@
   "branch": "023-registered-doc-architecture-adoption",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
+  "stage": "Retrospective",
+  "status": "Completed",
   "checkpointCommit": "b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c",
   "acceptedArtifacts": [
     {
@@ -63,7 +63,7 @@
     },
     {
       "path": "specs/023-registered-doc-architecture-adoption/pr-evidence.md",
-      "sha256": "9d8dda3f697772237f71a89495d4a7e8fa6dcbb1a74f1afdbc08fa96db243cd2"
+      "sha256": "dfd472ba86a0c1e8db64f23afe5731d0c03efa95c3b3e8bce3b9443c8c00548f"
     },
     {
       "path": "specs/023-registered-doc-architecture-adoption/retrospective.md",
@@ -120,16 +120,16 @@
   ],
   "tasks": {
     "path": "specs/023-registered-doc-architecture-adoption/tasks.md",
-    "sha256": "f89ae07f27ec75116dad8b32bbcb27f620e6cef344d8b2f9869cc5d1cf46e0e4",
-    "completed": 111,
+    "sha256": "e035d91a8d6f5109ae75094c9f49003564cbdcb07ade991423b9e05d597cf4bb",
+    "completed": 112,
     "total": 112
   },
-  "lastPassingGate": "Feature PR #201 merged its exact reviewed head after 26 green jobs, seven exact-head gate requirements, a no-comment Copilot review and zero actionable threads; the successor Series is Ready with 33 targets, three roots and 39 dependencies.",
-  "nextExactAction": "Converge all mandatory checks and exact-head reviews for closeout PR #202, then record terminal validation without starting a successor intake.",
+  "lastPassingGate": "Closeout PR #202 head cd5672f5cf0bd2ec029834d8f88feeadbe2b9272 passed 26 jobs, exact-head Copilot review with no new comments and zero actionable threads; the successor Series is Ready with 33 targets, three roots and 39 dependencies.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "CausalSeriesCloseout",
+    "kind": "Retrospective",
     "state": "Completed",
-    "summary": "D7 is archived, its outgoing dependency is removed, and the Ready successor Series releases position 5 without starting it."
+    "summary": "Feature 023 and its causal closeout are validated, all 112 tasks are complete, the decision is NoPromotion, and no successor intake starts."
   },
   "stop": {
     "reason": "N/A",
@@ -139,8 +139,8 @@
   "closeout": {
     "mergeOrPublication": "Completed",
     "defaultBranchSync": "Completed",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-01T23:32:20Z"
+  "updatedAt": "2026-08-01T23:40:33Z"
 }

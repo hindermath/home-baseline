@@ -138,7 +138,7 @@
 ## Phase 8: Causal Closeout And Retrospective
 
 - [X] T111 Archive D7, update the active Series and create a non-empty evidence-only closeout PR only if post-merge facts require it.
-- [ ] T112 Complete retrospective, terminal schema-1.1 state, final fleet/Series validation and confirm that no successor intake starts.
+- [X] T112 Complete retrospective, terminal schema-1.1 state, final fleet/Series validation and confirm that no successor intake starts.
 
 ## Dependencies
 
