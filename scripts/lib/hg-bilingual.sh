@@ -26,9 +26,12 @@ hg_check_bilingual() {
     echo "PASS|${file}|bilingual-ok"
   elif [[ "$file" == *.md ]]; then
     local partner base_name partner_name
-    partner="${file%.md}.en.md"
-    base_name="$(basename -- "$file")"
-    partner_name="$(basename -- "$partner")"
+    case "$file" in
+      *.en.md) partner="${file%.en.md}.md" ;;
+      *) partner="${file%.md}.en.md" ;;
+    esac
+    base_name="${file##*/}"
+    partner_name="${partner##*/}"
     # A language pair counts only when both files link back to each other.
     if [ -f "$partner" ] &&
        rg -Fq "(${partner_name})" "$file" 2>/dev/null &&

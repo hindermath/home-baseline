@@ -123,6 +123,12 @@ are recorded separately.
   original recursive string values. The expanded four-path fixture and the
   complete migration validator pass locally; exact-head provider confirmation
   remains required before merge.
+- Copilot then identified the reciprocal language-partner defect in both
+  Homogeneity helpers and the BSD-incompatible `basename --` call. New
+  bidirectional DE-to-EN and EN-to-DE fixtures failed first, then passed after
+  symmetric partner derivation and shell-native basename extraction. The
+  correction changes validation only and preserves the documented migration
+  scope.
 
 ## Governance
 

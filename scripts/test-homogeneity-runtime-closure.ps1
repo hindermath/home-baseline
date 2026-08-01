@@ -53,6 +53,20 @@ try {
         throw 'Complete run contains a helper-package error.'
     }
 
+    $pairRoot = Join-Path $tempRoot 'language pair'
+    New-Item -ItemType Directory -Path $pairRoot -Force | Out-Null
+    $dePath = Join-Path $pairRoot 'Guide.md'
+    $enPath = Join-Path $pairRoot 'Guide.en.md'
+    Set-Content -LiteralPath $dePath -Value "# Einstieg`n`n[English](Guide.en.md)" -Encoding utf8NoBOM
+    Set-Content -LiteralPath $enPath -Value "# Entry`n`n[Deutsch](Guide.md)" -Encoding utf8NoBOM
+    . (Join-Path $PSScriptRoot 'lib/hg-bilingual.ps1')
+    foreach ($pairPath in @($dePath, $enPath)) {
+        $pairResult = Invoke-HgCheckBilingual -FilePath $pairPath
+        if ($pairResult.Status -ne 'PASS' -or $pairResult.Message -ne 'bilingual-language-pair') {
+            throw "Language partner was not detected bidirectionally: $($pairResult | ConvertTo-Json -Compress)"
+        }
+    }
+
     Write-Host 'PASS: Homogeneity-Runtime-Abschluss (PowerShell) ist fail-closed und vollstaendig.'
 }
 finally {

@@ -18,7 +18,11 @@ function Invoke-HgCheckBilingual {
     if ($hasDE -gt 0 -and $hasEN -gt 0) {
         [PSCustomObject]@{ Status = 'PASS'; File = $FilePath; Message = 'bilingual-ok' }
     } else {
-        $partner = $FilePath -replace '\.md$', '.en.md'
+        $partner = if ($FilePath -match '(?i)\.en\.md$') {
+            $FilePath -replace '(?i)\.en\.md$', '.md'
+        } else {
+            $FilePath -replace '(?i)\.md$', '.en.md'
+        }
         $baseName = [IO.Path]::GetFileName($FilePath)
         $partnerName = [IO.Path]::GetFileName($partner)
         $paired = (Test-Path -LiteralPath $partner -PathType Leaf) -and
