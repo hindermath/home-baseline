@@ -41,7 +41,7 @@
 - Red baseline: the 17-fixture contract suite failed with
   `FileNotFoundError` because
   `tools/collect_documentation_architecture.py` did not yet exist.
-- Green baseline: all 17 positive and negative fixtures pass after the
+- Green baseline: all 17 initial positive and negative fixtures pass after the
   collector and fail-closed validator were implemented.
 - Provider discovery: `scripts/tests/test_feature_020_documentation_architecture.py`
   executes the feature suite and validates the accepted aggregate through the
@@ -88,7 +88,7 @@ canonical catalog and renderer remain unchanged.
 
 | Command or gate | Result | Proof boundary |
 |---|---|---|
-| Feature contract suite | Pass, 17 tests | Positive and required negative fixtures |
+| Feature contract suite | Pass, 19 tests | Positive and required negative fixtures, including both Windows private-path spellings |
 | Provider discovery bridge | Pass, 2 tests | Feature suite plus accepted aggregate |
 | Full aggregate validator | Pass | 2,624 units, 4 paths, 23 contracts, 3 classes, 1 finding |
 | Deterministic second collection | Pass | Inventory and aggregate byte-identical |
@@ -121,7 +121,7 @@ path `Secure-OrderDesk-` + `Unterrichtsleitfaden.md` contains the substring
 `sk-` followed by more than 20 letters. Gitleaks had already passed. The audit
 serializer now emits the JSON-equivalent escape `sk\u002d`, and secret-test
 prefixes are assembled at runtime. The validator remains fail-closed, all 17
-fixtures and the provider bridge pass again, and the fallback scan reports no
+initial fixtures and the provider bridge pass again, and the fallback scan reports no
 matching Feature-020 file.
 
 The first provider head then exposed a shallow-checkout boundary: macOS
@@ -135,3 +135,7 @@ A synthetic `--depth=1` clone proved the boundary and fix together: the
 accepted commit was absent before test discovery, both provider tests passed,
 and the exact commit existed afterward. The bridge did not repeat collection
 or alter the committed audit result.
+
+Copilot's exact-head review identified a second Windows spelling for private
+absolute paths. G5 extends the path and privacy checks to `C:/Users/...` and
+adds two negative fixtures; the complete contract suite now passes 19 tests.

@@ -44,7 +44,7 @@ SOURCE_CLASSES = {"homeRuntime", "sourceOnly", "machineLocal"}
 UNIT_STATUSES = {"Pass", "Gap", "N/A"}
 DIMENSION_STATUSES = {"Pass", "IntentionalBoundary", "Gap", "N/A"}
 FINDING_SUCCESSORS = {"D5", "D6", "D7", "NonRemediation"}
-PRIVATE_PATH = re.compile(r"(?:/Users/|/home/|[A-Za-z]:\\Users\\)[^\s\"']+")
+PRIVATE_PATH = re.compile(r"(?:/Users/|/home/|[A-Za-z]:[\\/]+Users[\\/])[^\s\"']+")
 SECRET_PATTERNS = (
     re.compile(r"gh" + r"p_[A-Za-z0-9]{20,}"),
     re.compile(r"github" + r"_pat_[A-Za-z0-9_]{20,}"),
@@ -80,7 +80,12 @@ def required_text(errors: list[str], value: Any, category: str, label: str) -> s
 
 
 def valid_relative(path: Any) -> bool:
-    if not isinstance(path, str) or not path or "\\" in path:
+    if (
+        not isinstance(path, str)
+        or not path
+        or "\\" in path
+        or re.match(r"^[A-Za-z]:/", path)
+    ):
         return False
     pure = PurePosixPath(path)
     return not pure.is_absolute() and ".." not in pure.parts

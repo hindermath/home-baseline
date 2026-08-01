@@ -63,7 +63,7 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/analyze.md",
-      "sha256": "bc0ccdfcdd226e3c19d228c785f1ed01d6d05067796e54662df801b6999b4fd0"
+      "sha256": "fc0f6c6e9f81095652a39dce4b9501750be57625a230128604023977c39ce7b6"
     },
     {
       "path": "specs/020-documentation-architecture-audit/audit-decisions.json",
@@ -87,11 +87,11 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/tools/validate_documentation_architecture.py",
-      "sha256": "89ff865686ecafc57b3b422f6ae80bde4753045a6c92731f2087886cd25096c7"
+      "sha256": "44f07486234fb239ca4ca8b05a1b225d36956e6bf20a3b92a9901f23aedc1f42"
     },
     {
       "path": "specs/020-documentation-architecture-audit/tests/test_documentation_architecture.py",
-      "sha256": "7443b36569ca394ac455b3f90ea921ad51a4cec361f196dec7248d8d80c9c5cc"
+      "sha256": "ba066b666b6881fffb585b095a72d8b91cb918e57d4b71245c4cf50db8f62baa"
     },
     {
       "path": "scripts/tests/test_feature_020_documentation_architecture.py",
@@ -99,7 +99,7 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-      "sha256": "bf8084d77df898449781ffdba1eb024b71a875354c18141362072f65e335fae0"
+      "sha256": "933da26a799abc01a7952259ef1b59c0ab7ea2d728c1bfe9ca39abfbca87e08e"
     },
     {
       "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",

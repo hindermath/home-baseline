@@ -9,6 +9,7 @@
 | G2 | Medium | Gate tokens used a test filename or job label instead of actual workflow command tokens. | Requirements now bind `unittest discover`, `dotnet test`, and `--include-fragments` with their runner tokens. | Resolved |
 | G3 | Medium | A live-index inventory would become self-referential after Feature-020 files are staged. | The collector contract now binds the accepted pre-feature Git tree by exact commit. | Resolved |
 | G4 | Medium | The provider's depth-1 checkout does not contain the accepted pre-feature commit required by the frozen-tree validator. | The test-only discovery bridge performs one bounded read-only fetch of the exact accepted commit only when it is absent; collector and validator remain network-free. | Resolved |
+| G5 | Medium | Windows private absolute paths using forward slashes could pass the path and privacy checks. | The validator now rejects drive-rooted forward-slash paths in both repository-relative identities and nested evidence, with two negative fixtures. | Resolved |
 
 ## Coverage Summary
 

@@ -260,6 +260,14 @@ class DocumentationArchitectureContractTests(unittest.TestCase):
         audit["documentationUnits"][0]["rationale"] = "/Users/example/private"
         self.assert_invalid(audit, "PRIVATE_PATH")
 
+    def test_windows_forward_slash_private_path_is_rejected(self) -> None:
+        audit = copy.deepcopy(self.audit)
+        audit["documentationUnits"][0]["rationale"] = "C:/Users/example/private"
+        self.assert_invalid(audit, "PRIVATE_PATH")
+
+    def test_windows_drive_path_is_not_repository_relative(self) -> None:
+        self.assertFalse(validator.valid_relative("C:/Users/example/private"))
+
     def test_secret_like_value_is_rejected(self) -> None:
         audit = copy.deepcopy(self.audit)
         audit["documentationUnits"][0]["rationale"] = (
