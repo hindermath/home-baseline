@@ -1,50 +1,29 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "43ca337a-bfb9-40f2-aa1e-dbc51e157f89",
+  "receiptId": "f341c5f0-711e-43e1-925f-a35619d16545",
   "intakeId": "09a0766d-04c5-438d-b7c7-d556e64301ee",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-08-01T12:48:47Z",
+  "createdAt": "2026-07-31T14:48:07Z",
   "operation": {
-    "operationId": "45f907f2-d443-4f0e-baaa-f7a77e296836",
-    "type": "Update",
-    "authorityEvidence": "Current explicit user instruction to make R-TUI the binding predecessor of D4, prevent an accidental parallel start, and correct the stale order text."
+    "operationId": "eb5a0dd0-d884-4183-a98c-10fc9b4512c8",
+    "type": "Create",
+    "authorityEvidence": "Current explicit user instruction to create the regression-hardening intake, place it before D4, and deliver the authoring and Series update through MergeAndSync with a narrowly bounded Admin-Bypass."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
-    "normalizedSha256": "b78cc1951eb34a9a52e3e6479a4b9f264c38d4eed393155f78ccb7031fadde2b"
+    "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
-      "kind": "File",
-      "label": "Archived prior accepted R-TUI intake",
-      "location": "Repository",
-      "path": "specs/intake-authoring-archive/09a0766d-04c5-438d-b7c7-d556e64301ee/45f907f2-d443-4f0e-baaa-f7a77e296836/target.md",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567",
-      "gitBlob": "47b9771eeac262b89c6471ed68cc7db3d96469a6",
-      "proofBoundary": "ArchivedSupersededTarget"
-    },
-    {
-      "sourceId": "SRC002",
-      "order": 2,
       "kind": "Pasted",
-      "label": "Approved binding R-TUI to D4 governance correction",
+      "label": "Approved conversation decisions for maintenance TUI and wrapper regression hardening",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,9 +36,30 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "b8b5c8ebb2e698e998e72f1d5814a1ed26304b4b42b27ddfb986d2e163a52663",
+      "normalizedSha256": "35ec2320f5bfc433edaa8fdf9e77789e14cd33b1f05aacfffc1de21fbfa4b0f7",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: explicit current update authority"
+      "proofBoundary": "ConversationSnapshot: approved defects, A11Y boundary, delivery authority, and final placement before D4"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Current Bash Agentic Workspace maintenance wrapper",
+      "location": "Repository",
+      "path": "scripts/maintain-agentic-workspace.sh",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "c8cbf36be31148a0ea63e3b47f181df68eaa2da667d197a3fadd939f3ff23ad9",
+      "gitBlob": "3b527e8736c1f0afb3e2d9c3efaeb954beb8e03f",
+      "proofBoundary": "CurrentRepositoryFile"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -90,8 +90,8 @@
       "id": "IAD004",
       "status": "Answered",
       "question": "Wo wird der neue Intake in der aktiven Series eingeordnet?",
-      "answer": "Als erste bevorzugte Root vor D4 und declared Eligible. Eine bindende DocumentationSurfaceBaseline-Kante führt von R-TUI zu D4, damit D4 nicht parallel auf einer veralteten Wartungsoberfläche startet.",
-      "evidence": "Current explicit user instruction on 2026-08-01 to perform the binding-edge and stale-order corrections."
+      "answer": "Als erste bevorzugte Root vor D4, declared Eligible, with D4 changed to Pending and no binding dependency edge between the two roots.",
+      "evidence": "Latest explicit user instruction: create the intake and place it before D4."
     },
     {
       "id": "IAD005",
@@ -102,7 +102,7 @@
     }
   ],
   "openDecisionIds": [],
-  "questionCount": 0,
+  "questionCount": 2,
   "agentSurface": {
     "specifyCanonicalId": "speckit.specify",
     "specifyInvocation": "$speckit-specify",
@@ -110,22 +110,22 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Current explicit user approval to update the R-TUI and D4 governance relation and deliver the correction through MergeAndSync with the previously approved narrow Admin-Bypass.",
+  "authorityEvidence": "Current explicit user approval of MergeAndSync and Admin-Bypass limited to a sole formal human-approval blocker after all technical, security, accessibility, validator, CI, review, hash, and freshness gates pass.",
   "promptState": "Enabled",
-  "provenanceMode": "Supersession",
+  "provenanceMode": "New",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/09a0766d-04c5-438d-b7c7-d556e64301ee/45f907f2-d443-4f0e-baaa-f7a77e296836/receipt.json",
-    "targetNormalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567",
-    "archiveTargetPath": "specs/intake-authoring-archive/09a0766d-04c5-438d-b7c7-d556e64301ee/45f907f2-d443-4f0e-baaa-f7a77e296836/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/09a0766d-04c5-438d-b7c7-d556e64301ee/45f907f2-d443-4f0e-baaa-f7a77e296836/receipt.json"
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user instruction: execute the recommended R-TUI to D4 binding-edge and stale-order corrections.",
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",

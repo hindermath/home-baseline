@@ -1,24 +1,24 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "1600a6c8-a818-4f02-8eda-1600b98b0f36",
+  "reviewId": "0fa86221-8fce-4fa0-b76e-7d7b0fec124c",
   "mode": "Single",
   "status": "Ready",
   "policy": "home-baseline-active-lastenhefte-v1",
-  "reviewedAt": "2026-08-01T12:48:47Z",
+  "reviewedAt": "2026-07-31T15:14:16Z",
   "repository": {
     "root": ".",
-    "head": "07e26ff1f43aceebce7898d36293751bcce1a10d"
+    "head": "7110afedd22aa42ba431e5836de58e4ed9504cd0"
   },
   "requestEvidence": {
     "path": "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-request.json",
-    "normalizedSha256": "f9b5f647240d416e94644d003064c9450e13593485e7481f78a48bb5fa6586c3"
+    "normalizedSha256": "c4bb08866d6109bab2d0cf6e0e6e57b0cf63f03b8d2bff1c0558102843b952df"
   },
   "targets": [
     {
       "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
       "role": "Primary",
-      "normalizedSha256": "b78cc1951eb34a9a52e3e6479a4b9f264c38d4eed393155f78ccb7031fadde2b",
-      "gitBlob": "N/A"
+      "normalizedSha256": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567",
+      "gitBlob": "47b9771eeac262b89c6471ed68cc7db3d96469a6"
     }
   ],
   "findings": [],
@@ -38,5 +38,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "0fa86221-8fce-4fa0-b76e-7d7b0fec124c"
+  "supersedes": "N/A"
 }
