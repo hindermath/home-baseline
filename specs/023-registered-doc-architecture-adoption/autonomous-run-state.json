@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "6c1dce79-aaa0-4011-a752-b5899faa5426",
+  "featurePath": "specs/023-registered-doc-architecture-adoption",
+  "branch": "023-registered-doc-architecture-adoption",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "a7dc876a284a49e6d9cfe271d76642a6a9b027e7",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "sha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/registrierte-level-1-2-dokumentationsarchitektur-adoption.json",
+      "sha256": "3e141e9be131cca63fe0d26982bab604939f1af3fb3f72bada813ea4e0b7f5e1"
+    },
+    {
+      "path": "specs/documentation-architecture-intakes/reviews/d7/intake-review-request.json",
+      "sha256": "6b2ed944e1ca84c39bfc16e39975885d505a5396671fa5b40c5ec5faedc7961a"
+    },
+    {
+      "path": "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
+      "sha256": "1d272d298228ddfaeca93a09fd8bdb232ac0770869b3dd274966738c2871b2e9"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "1f660d0c1abf7330d067093f0662320ac4688f90d0a9061b8b2e54cedd38d209"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "4ded78735d0311e1bb614e4e205ac01b94c17583400e8febae813c850e841503"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "c0e327db3f366a374053ae0c806a00360c6602b5b42651c59da71eee390af9b7"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "527e9ebe253736fbe36bfc297f15450e9e366f0626627f483a06cbf6dd8d2e68"
+    },
+    {
+      "path": "scripts/config/agentic-workspace-fleet.json",
+      "sha256": "31c9dec982e6fb49dc44a5b1c3a98adb78f34b6e34eda221f5591a8c7e850cf9"
+    },
+    {
+      "path": "docs/maintenance/agentic-workspace-efficiency-source-matrix.json",
+      "sha256": "1ee1fd25b64c7b43eb82cff952f4f615f2b973051f823e71d4e4d47682be5d07"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/spec.md",
+      "sha256": "50bc4c95d5385a5f748a5c099c30b8a2ddcf43677332e6cc7df435c0a1f84378"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/plan.md",
+      "sha256": "ec07089c13ea48bb1cdf1f341cb681f70337eadd6cfbfcd79457345bb7200122"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/research.md",
+      "sha256": "c7a8ed1978e3ab149e74b12913bec44bb7cb964cf67e72e119a276b1e36862c3"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/data-model.md",
+      "sha256": "79e670d75e46d986964471b50219902a6de44aef19b4156f98546ee0c7597125"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/quickstart.md",
+      "sha256": "57f2845231be5412d63dc1b65b3129bf084b8ab3d7b40701256b343adeb63b84"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/contracts/fleet-adoption-acceptance.md",
+      "sha256": "082be67034d2f219b4d1265f4a654ce3fa73d3730231d5f23b853a36ba8bbfaa"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/checklists/requirements.md",
+      "sha256": "96a99b2b3596945ee758430ed2e39dd92d12a1f1d62008b9fe5d1b16cfce31f7"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/checklists/fleet-adoption-contract.md",
+      "sha256": "d24da7252fee9c145cd6132b7cc8a4e01d440ccf502711089fcbaf15acdf2a04"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/checklists/plan-review.md",
+      "sha256": "8eef7cde0b94290ce5ef9099f177c6449fb637841a6154e067e30066913a311d"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/autonomous-run-gate-requirements.json",
+      "sha256": "6dbe556e04269d2e79df4c3745eac4bdf3c3cedb72509606833de6c15417ff9d"
+    }
+  ],
+  "tasks": {
+    "path": "specs/023-registered-doc-architecture-adoption/tasks.md",
+    "sha256": "8139fe2a6f23c44a340382d63428a8ed80bc56aa417d69c40a78080d37d873ac",
+    "completed": 104,
+    "total": 112
+  },
+  "lastPassingGate": "All Level-0 local acceptance gates pass: links, learning package, secure-development generation, migration, Documentation Impact, script reference, PowerShell analysis, secrets, Homogeneity, statistics, Spec Kit integrity, matrix and whitespace.",
+  "nextExactAction": "Commit the final local evidence and generated statistics, then push branch 023 and create the non-empty Feature-023 PR.",
+  "lastOperation": {
+    "kind": "LocalFeatureCommit",
+    "state": "Completed",
+    "summary": "The validated semantic Feature-023 candidate is committed at the recorded checkpoint; generated statistics and final local evidence are being stabilized."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-01T22:57:37Z"
+}
