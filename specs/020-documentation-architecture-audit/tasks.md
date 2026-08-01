@@ -152,9 +152,9 @@ successor; speculative or empty work is not created.
 
 ## Phase 8: Statistics and MergeAndSync Delivery
 
-- [ ] T103 Commit the stable feature candidate before statistics rendering
-- [ ] T104 Add the Feature-020 source-ledger entry to `docs/project-statistics.md`
-- [ ] T105 Add the Feature-020 phase input to `docs/project-statistics.config.json`
+- [X] T103 Commit the stable feature candidate before statistics rendering
+- [X] T104 Add the Feature-020 source-ledger entry to `docs/project-statistics.md`
+- [X] T105 Add the Feature-020 phase input to `docs/project-statistics.config.json`
 - [ ] T106 Commit the statistics source inputs
 - [ ] T107 Render and verify the deterministic statistics block in `docs/project-statistics.md`
 - [ ] T108 Commit the generated statistics block without other file changes
