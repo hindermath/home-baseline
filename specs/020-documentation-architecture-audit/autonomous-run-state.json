@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "81321427492b862a04f065111fb77128f15118be",
+  "checkpointCommit": "72e871a3be0e17efaab708d5e55cebafa5da1704",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -112,14 +112,6 @@
     {
       "path": "docs/scripts/embedded-scripts.md",
       "sha256": "a1169cf72a949cd456a165e8a3465e5d70009e69e6917ecc831e550f95ecca95"
-    },
-    {
-      "path": "docs/project-statistics.md",
-      "sha256": "eac197390449ad6e923158ca6c4e90d6afdae5db10789eddbf3907a583a2ee17"
-    },
-    {
-      "path": "docs/project-statistics.config.json",
-      "sha256": "652c28182e19c0632dc0a3e535982f8c0f598ab23dd4c672141a2f1b117a75a7"
     }
   ],
   "tasks": {
@@ -146,5 +138,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T16:01:00Z"
+  "updatedAt": "2026-08-01T16:18:00Z"
 }
