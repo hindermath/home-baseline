@@ -119,15 +119,15 @@
 - [X] T096 Run learning-package and generated secure-development-document checks.
 - [X] T097 Run PSScriptAnalyzer discovery and repository PowerShell quality gates.
 - [X] T098 Run the Level-0 secret scan and confirm no private paths or logs are tracked.
-- [ ] T099 Run Homogeneity and Documentation Impact validators.
+- [X] T099 Run Homogeneity and Documentation Impact validators.
 - [X] T100 Run `specify check` and Spec-Kit artifact integrity checks.
-- [ ] T101 Render and verify `docs/project-statistics.md` from its canonical configuration.
-- [ ] T102 Re-run matrix, scope and whitespace validation after statistics rendering.
+- [X] T101 Render and verify `docs/project-statistics.md` from its canonical configuration.
+- [X] T102 Re-run matrix, scope and whitespace validation after statistics rendering.
 
 ## Phase 7: Feature Delivery
 
-- [ ] T103 Stage only intended Feature-023 and generated statistics paths and validate the exact candidate.
-- [ ] T104 Commit Feature 023 on the numbered branch.
+- [X] T103 Stage only intended Feature-023 and generated statistics paths and validate the exact candidate.
+- [X] T104 Commit Feature 023 on the numbered branch.
 - [ ] T105 Push the feature branch and create a non-empty PR from `pr-evidence.md`.
 - [ ] T106 Converge all provider checks and classify duplicate workflow noise without cancellation.
 - [ ] T107 Obtain exact-head Copilot/reviewer evidence and resolve every actionable thread.

@@ -5,9 +5,9 @@
   "branch": "023-registered-doc-architecture-adoption",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Validate",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "ee46c47728dc5263a37b0889b8bb41e723b274bf",
+  "checkpointCommit": "a7dc876a284a49e6d9cfe271d76642a6a9b027e7",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
@@ -92,16 +92,16 @@
   ],
   "tasks": {
     "path": "specs/023-registered-doc-architecture-adoption/tasks.md",
-    "sha256": "d75dee416d9f70cc70e9bd2555507c272bbd3b06e054102a93da5b0be557921e",
-    "completed": 99,
+    "sha256": "8139fe2a6f23c44a340382d63428a8ed80bc56aa417d69c40a78080d37d873ac",
+    "completed": 104,
     "total": 112
   },
-  "lastPassingGate": "Level-0 links, learning package, secure-development documents, migration, Documentation Impact, PowerShell analysis, secret scan, script reference, Spec Kit integrity and whitespace gates pass; final statistics and Homogeneity rerun remain.",
-  "nextExactAction": "Create the validated local semantic checkpoint, render statistics from that Git history, then complete Homogeneity and final matrix validation.",
+  "lastPassingGate": "All Level-0 local acceptance gates pass: links, learning package, secure-development generation, migration, Documentation Impact, script reference, PowerShell analysis, secrets, Homogeneity, statistics, Spec Kit integrity, matrix and whitespace.",
+  "nextExactAction": "Commit the final local evidence and generated statistics, then push branch 023 and create the non-empty Feature-023 PR.",
   "lastOperation": {
-    "kind": "Level0Validation",
+    "kind": "LocalFeatureCommit",
     "state": "Completed",
-    "summary": "Tasks T094 through T098 and T100 pass; generated script reference is current."
+    "summary": "The validated semantic Feature-023 candidate is committed at the recorded checkpoint; generated statistics and final local evidence are being stabilized."
   },
   "stop": {
     "reason": "N/A",
@@ -114,5 +114,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T22:53:16Z"
+  "updatedAt": "2026-08-01T22:57:37Z"
 }

@@ -123,6 +123,23 @@ that recorded boundary.
 | Final target reviews | 32 final target heads | 6 substantive reviews, 26 provider-unavailable responses, 0 actionable threads | Missing reviews are recorded as missing and never reclassified as approval |
 | Target PR delivery | 32 adopted targets plus TinyCalc reference PR | 33 non-empty PRs merged; 32 final default branches clean and `(0,0)` | Target-local delivery only; blocked and inapplicable targets received no PR |
 | Propagation target-set hash | Before and after target delivery | PASS; `eef16047e705b4795e193677b2ef48824c6a2fe46697c21e1afcca29ec97230c` unchanged | No maintenance-package propagation was performed |
+| Lychee `--offline --include-fragments` | 3,562 Markdown targets, 1,972 unique links | PASS; 1,701 local links valid, 0 errors | Excluded generated/template paths match the workflow contract |
+| Learning-package self-tests, Bash and PowerShell | Package structure, checksums, exclusions and secret scan | PASS | Temporary packages remain outside Git |
+| Secure-development generated documents, Bash and PowerShell | Baseline manifest, checklists and compendium | PASS; current | No source document changed |
+| Feature-021 migration tests and validator | 12 tests plus 16-section migration contract | PASS | Regression proof for the Level-0 documentation architecture |
+| Documentation Impact fixtures, Bash and PowerShell | 10 cases per implementation | PASS | Structural contract only; semantic decisions remain reviewed evidence |
+| Script-reference renderer and tests | 124 canonical and 163 embedded scripts | PASS; current | Feature-023 test and validator are listed as embedded scripts |
+| PSScriptAnalyzer | 147 files; 4 generated upstream exclusions | PASS; 0 errors or warnings | Repository-owned PowerShell quality |
+| Secret scan | Current diff and agent surfaces | PASS; high=0, one known machine-local medium configuration | No credentials or private paths enter the feature |
+| Homogeneity, Bash and PowerShell | Level 0 | PASS; 30/30, 100% in both implementations | Includes generated statistics and script-reference checks |
+| Statistics renderer and fixtures | Exact semantic checkpoint | PASS; Bash/PowerShell current, 146 assertions | `docs/project-statistics.md` is generated from the committed feature history |
+| `specify check`, final matrix and whitespace | Feature candidate | PASS; 8 matrix tests, final Complete validator, no whitespace drift | Spec-Kit readiness and feature-local structural acceptance |
+
+Two invocation mistakes were corrected before acceptance: the initial
+Feature-021 validator call omitted its required migration path, and the first
+run-state validator call used obsolete names and an unsupported repository
+parameter. Their corrected commands passed; neither failed invocation changed
+repository files or acceptance evidence.
 
 ## Follow-up Boundaries
 
