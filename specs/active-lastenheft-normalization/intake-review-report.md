@@ -2,39 +2,39 @@
 
 ## Ergebnis / Outcome
 
-- Review-ID: `8ea4fe3c-73c2-43d1-89a7-4823d4dc048e`
+- Review-ID: `e0cb3910-a6f0-4737-8cb5-9965e2ca9615`
 - Ergebnis: `Ready`
-- Ziele: `35`
+- Ziele: `34`
 - Roots: `3`
-- Abhängigkeiten: `42`
+- Abhängigkeiten: `40`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils `0`
 
-Der kausale Closeout entfernt ausschließlich den als Feature 021
-abgeschlossenen D5-Knoten und seine bindende Kante zu D6. D6 ist jetzt
+Der kausale Closeout entfernt ausschließlich den als Feature 022
+abgeschlossenen D6-Knoten und seine zwei ausgehenden Kanten. D7 ist jetzt
 `Primary`, Root und der einzige bevorzugte `Eligible`-Kandidat. Die anderen
 Zielpfade, fachlichen Kanten und Intake-Inhalte bleiben erhalten.
 
-*The causal closeout removes only the D5 node completed as Feature 021 and its
-binding edge to D6. D6 is now Primary, a root, and the sole preferred Eligible
+*The causal closeout removes only the D6 node completed as Feature 022 and its
+two outgoing edges. D7 is now Primary, a root, and the sole preferred Eligible
 candidate. All other targets, dependencies, and intake contents are preserved.*
 
 ## Dokumentationsübergabe / Documentation Handoff
 
-Feature 021 hat `DIA001` geschlossen. D6 bindet seine Aussagen nun an die
-gemergten Features 018 bis 021, die DE-/EN-Root-Portale, vier Leserpfade,
-kanonische Skripte, Manpages, Reports und den streng validierten
-Documentation-Impact-Vertrag. Der D6-Review enthält null neue Findings; D7
-wurde nicht gestartet.
+Feature 022 liefert den bilingualen Effizienzleitfaden, vier Leserpfade und 17
+hashgebundene Claims. D7 übernimmt daraus nur portable Regeln mit
+repository-spezifischer Anwendbarkeits- und Documentation-Impact-Evidence. Der
+D7-Einzelreview ist `Ready`; Feature 023 wurde durch diesen Review nicht
+automatisch gestartet.
 
-*Feature 021 closed `DIA001`. D6 now binds its claims to merged Features 018
-through 021, the DE/EN root portals, four reader paths, canonical scripts,
-manpages, reports, and the strictly validated Documentation Impact contract.
-The D6 review has zero new findings; D7 was not started.*
+*Feature 022 provides the bilingual efficiency guide, four reader paths, and
+17 hash-bound claims. D7 adopts only portable rules backed by
+repository-specific applicability and Documentation Impact evidence. The D7
+single review is Ready; this review did not automatically start Feature 023.*
 
 ## Liefergrenze / Delivery Boundary
 
 `Eligible` beschreibt Reihenfolge, nicht Delivery Authority. Dieser Review
-startet D6 oder einen anderen Spec-Kit-Lauf nicht automatisch.
+startet D7 oder einen anderen Spec-Kit-Lauf nicht automatisch.
 
 *Eligible describes sequence, not delivery authority. This review does not
-start D6 or any other Spec Kit run automatically.*
+start D7 or any other Spec Kit run automatically.*

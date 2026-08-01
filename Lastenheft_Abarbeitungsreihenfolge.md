@@ -102,9 +102,12 @@ archiviert. Der Audit lieferte genau `DIA001` an D5 und keine D6-/D7-Findings.
 D5 wurde als Feature 021 über PR #197 umgesetzt und als
 `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.021-level0-documentation-architecture.md`
 archiviert. Der Lauf schloss `DIA001`, lieferte das Root-Portal und vier
-Leserpfade und erzeugte keinen neuen D6-/D7-Remediation-Befund. D6 ist jetzt
-der einzige deklarierte `Eligible`-Kandidat. Dieser Closeout startet keinen
-Folgelauf.
+Leserpfade und erzeugte keinen neuen D6-/D7-Remediation-Befund. D6 wurde als
+Feature 022 über PR #199 umgesetzt und als
+`Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.022-agentic-workspace-efficiency-guide.md`
+archiviert. Der Lauf lieferte einen bilingualen Leitfaden, vier Leserpfade und
+17 hashgebundene Claims ohne Runtime-Änderung. D7 ist jetzt der einzige
+deklarierte `Eligible`-Kandidat. Dieser Closeout startet keinen Folgelauf.
 
 *The gate did not reorder the existing domain work. G1 is archived and removed
 from the active series. It released the six previous roots; the later D4-D7
@@ -115,24 +118,26 @@ Item 4 completed as Feature 018 through PR #160 and is archived. R-TUI
 completed as Feature 019 through PR #192 and is archived. D4 completed as
 Feature 020 through PR #194 and is archived. It handed exactly `DIA001` to D5
 and no findings to D6 or D7. D5 completed as Feature 021 through PR #197,
-closed `DIA001`, and is archived. D6 is now the sole declared `Eligible`
-candidate. This closeout starts no successor run.*
+closed `DIA001`, and is archived. D6 completed as Feature 022 through PR #199
+and is archived. It delivered a bilingual guide, four reader paths, and 17
+hash-bound claims without runtime changes. D7 is now the sole declared
+`Eligible` candidate. This closeout starts no successor run.*
 
 ## Aktive Reihenfolge / Active Order
 
-Der aktuelle maschinenpruefbare Vertrag umfasst 35 Ziele, drei Roots und
-42 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
+Der aktuelle maschinenpruefbare Vertrag umfasst 34 Ziele, drei Roots und
+40 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
 Manifest als bevorzugtes `Eligible` deklariert.
 
-*The current machine-verifiable contract contains 35 targets, three roots, and
-42 binding or advisory dependencies. Exactly one target is
+*The current machine-verifiable contract contains 34 targets, three roots, and
+40 binding or advisory dependencies. Exactly one target is
 declared as the preferred `Eligible` candidate in the manifest.*
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
 |---:|---|---|
 | D5 (abgeschlossen / completed) | `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.021-level0-documentation-architecture.md` | Feature 021 und PR #197 schlossen `DIA001`, ersetzten die monolithische Root-README durch DE-/EN-Portale und verankerten vier Leserpfade sowie einen streng validierten Documentation-Impact-Vertrag. / Feature 021 and PR #197 closed `DIA001`, replaced the monolithic root README with DE/EN portals, and established four reader paths plus a strictly validated Documentation Impact contract. |
-| D6 | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` | Dokumentiert das nach Feature 021 stabile Wartungsverhalten und erklärt Inhalt, Vorteile, Einweg-Sync, Änderungsort, Quellenbindung und Autoritätsgrenzen von Level-0-Quelle, Home Runtime und maschinenlokalem Zustand für Lernende, Nutzende, Maintainer/KI-Agenten und Audit, ohne Skriptverhalten zu ändern. D6 ist der einzige deklarierte `Eligible`-Kandidat. / Documents the stable post-Feature-021 maintenance behavior and explains the contents, benefits, one-way sync, edit location, source binding, and authority boundaries of the Level 0 source, Home Runtime, and machine-local state for learners, operators, maintainers/AI agents, and audit without changing script behavior. D6 is the sole declared `Eligible` candidate. |
-| D7 | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` | Übernimmt nur belegte portable Regeln repository-spezifisch in die registrierte Level-1-/Level-2-Flotte, ohne Level-0-Pfade oder die Home-Runtime-Zielmenge pauschal zu kopieren; unveränderte Repositories erhalten keinen Leer-PR. / Adopts only proven portable rules per repository across the registered Level 1/2 fleet without copying Level 0 paths or the Home Runtime target set wholesale; unchanged repositories receive no empty pull request. |
+| D6 (abgeschlossen / completed) | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.022-agentic-workspace-efficiency-guide.md` | Feature 022 und PR #199 lieferten den bilingualen Betriebsleitfaden, vier Leserpfade und 17 hashgebundene Claims ohne Runtime-, Preset-, Registry- oder Flottenänderung. / Feature 022 and PR #199 delivered the bilingual operating guide, four reader paths, and 17 hash-bound claims without runtime, preset, registry, or fleet changes. |
+| D7 | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` | Übernimmt nur belegte portable Regeln repository-spezifisch in die registrierte Level-1-/Level-2-Flotte, ohne Level-0-Pfade oder die Home-Runtime-Zielmenge pauschal zu kopieren; unveränderte Repositories erhalten keinen Leer-PR. D7 ist der einzige deklarierte `Eligible`-Kandidat. / Adopts only proven portable rules per repository across the registered Level 1/2 fleet without copying Level 0 paths or the Home Runtime target set wholesale; unchanged repositories receive no empty pull request. D7 is the sole declared `Eligible` candidate. |
 | 5 | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` | Verzahnt Richtlinie, Checklisten, Sammelband, mitgeltende Dokumente und Governance-Presets, damit spaetere Spec-Kit-Laeufe dieselbe Bewertungslogik nutzen. / Aligns guideline, checklists, compendium, related documents, and governance presets so later Spec Kit runs use the same assessment logic. |
 | 6 | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. |
 | 7 | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. |
@@ -170,16 +175,16 @@ declared as the preferred `Eligible` candidate in the manifest.*
 Der deklarierte Status `Eligible` markiert genau einen bevorzugten Kandidaten;
 der Validator weist daneben alle fachlich unblocked Roots rechnerisch aus. Die
 Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
-den früheren Series-Review hashbedingt archiviert. Nach dem Feature-021-
+den früheren Series-Review hashbedingt archiviert. Nach dem Feature-022-
 Closeout werden zuerst `$speckit-intake-series-status` und danach der im neuen
-D6-Receipt benannte `$speckit-intake-review` ausgeführt. D7 erhält seinen
-aktuellen Einzelreview vor dem eigenen späteren Lauf.
+D7-Receipt benannte `$speckit-intake-review` ausgeführt. D7 besitzt vor dem
+eigenen Lauf einen aktuellen Einzelreview mit Status `Ready`.
 
 *The declared `Eligible` lifecycle marks exactly one preferred candidate; the
 validator separately reports every domain-unblocked root as computationally
 eligible. The source/Home Runtime refinement archived the former D4-D7 reviews.
-After Feature 021 closes, run `$speckit-intake-series-status` and the D6 Intake
-Review named by its receipt. D7 receives a current individual review before
+After Feature 022 closes, run `$speckit-intake-series-status` and the D7 Intake
+Review named by its receipt. D7 has a current individual Ready review before
 its own later run.*
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
@@ -198,12 +203,9 @@ D1 Level-0/1/2-Doku-Audit [abgeschlossen / completed]
 D4 Informationsarchitektur-Audit [abgeschlossen / completed]
 D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
 
-              D6 Workspace-Effizienzleitfaden [Eligible, Root]
-                             |
-                             +------------------------------> 11 Skript-Dokumentation
-                             |
-                             v
-              D7 Level-1/2-Flottenadoption
+              D6 Workspace-Effizienzleitfaden [abgeschlossen / completed]
+
+              D7 Level-1/2-Flottenadoption [Eligible, Root]
                              |
                              v
               5 Mitgeltende Dokumente
@@ -293,21 +295,22 @@ D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
 
 ```
 
-Nach dem Abschluss von Feature 021 sind die aktiven Roots `D6`, `9` und `10`.
+Nach dem Abschluss von Feature 022 sind die aktiven Roots `D7`, `9` und `10`.
 Die bisherige Position 5 ist kein Root, weil D7 ihre bindende
 Dokumentationsarchitektur-Basis liefert. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. D6 ist als naechster serieller Kandidat
+Schema-1.1-Review-Evidence nachweisbar. D7 ist als naechster serieller Kandidat
 ausgewaehlt; die anderen Roots starten nicht automatisch. Die abgeschlossenen
-Features 009 sowie 015 bis 021 sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte
+Features 009 sowie 015 bis 022 sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte
 und Abschluesse bleiben historische Evidence fuer die weitere Reihenfolge.
 
 Eintrag 4 besaß ein hartes Abschluss-Gate und ist als Feature 018
 abgeschlossen. R-TUI wurde als Feature 019 abgeschlossen und lieferte D4s
 bindende Dokumentationsoberfläche. D4 wurde als Feature 020 abgeschlossen. Der
 Feature-020-Closeout entfernte D4 und gab D5 mit genau `DIA001` frei. D5 wurde
-als Feature 021 abgeschlossen. Der aktuelle Series-Closeout entfernt D5 samt
-seiner einen Kante zu D6 und gibt D6 als einzigen bevorzugten Kandidaten frei.
+als Feature 021 abgeschlossen. D6 wurde als Feature 022 abgeschlossen. Der
+aktuelle Series-Closeout entfernt D6 samt seinen zwei ausgehenden Kanten und
+gibt D7 als einzigen bevorzugten Kandidaten frei.
 Diese Einordnung
 erteilt keine Start- oder Delivery-Autoritaet fuer einen Folgelauf.
 
@@ -350,8 +353,9 @@ paths or the technical propagation target set.*
 now completed as Feature 018. R-TUI completed as Feature 019 and provided
 D4's binding documentation-surface baseline. D4 completed as Feature 020 and
 handed exactly `DIA001` to D5. D5 completed as Feature 021 and closed `DIA001`.
-D6 is the single preferred `Eligible` candidate; this closeout grants no
-authority to start it. Items 5, 7, and 10 provide binding
+D6 completed as Feature 022 and is archived. D7 is the single preferred
+`Eligible` candidate; this closeout grants no authority to start it. Items 5,
+7, and 10 provide binding
 baselines for their successors. Items 9 through 12 feed the final GSDB audit,
 so item 13 must run last.*
 

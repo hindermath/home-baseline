@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-08-01
+**Stand:** 2026-07-30
 **Reihenfolge:** Dokumentationsvorlauf D7, nach abgeschlossenem D6
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Auszubildende in IT-Berufen, Lehrende, Repository-Owner,
@@ -23,13 +23,7 @@ runtime, language, learning, security, and evidence contracts.*
 
 ## 2. Voraussetzungen und Flottenbarriere / Preconditions and Fleet Barrier
 
-- D1 bis D6 sind abgeschlossen und gemergt. Feature 022 wurde über PR #199
-  mit dem geprüften Head `746a1afe18ee1ee9716907c94222915ed9003865`
-  und Merge-Commit `b018ef78233260659c596b29d4ffb8f018afd61c`
-  abgeschlossen.
-- Der bilinguale Effizienzleitfaden und seine 17 hashgebundenen Claims bilden
-  die aktuelle D6-Evidence. Sie sind eine Entscheidungsgrundlage, aber keine
-  Vorlage zum pauschalen Kopieren von Level-0-Pfaden oder Dateistrukturen.
+- D1 bis D6 sind abgeschlossen und gemergt.
 - Level 0 ist sauber und exakt auf `origin/main`.
 - Das versionierte Flottenmanifest und die lokale Registry sind validiert.
 - Vor Änderungen wird für jedes erreichbare `origin` gefetcht.
@@ -131,27 +125,6 @@ diese technische Zielmenge nicht stillschweigend.
 - **DFA-022:** Abweichende Architekturentscheidungen werden als
   repository-spezifische Evidence dokumentiert und nicht als
   Homogenitätsfehler normalisiert.
-- **DFA-023:** D7 leitet portable Kandidaten aus dem gemergten D6-Leitfaden,
-  seiner Source-Matrix und dem Documentation-Impact-Vertrag ab. Jeder Kandidat
-  benötigt vor einer Übernahme eine repository-spezifische
-  Anwendbarkeitsentscheidung.
-- **DFA-024:** Für Lernende, Nutzende, Maintainer/KI-Agenten und Audit wird je
-  Repository geprüft, welche Leserpfade tatsächlich vorhanden oder sinnvoll
-  sind. Vier Level-0-Leserpfade sind keine verpflichtende Zielanzahl.
-- **DFA-025:** Der Flotten-Preflight inventarisiert alle beim Laufbeginn aktiven
-  Level-1- und Level-2-Git-Ziele vollständig, bevor die erste Zieländerung
-  erfolgt. Collection-Ziele und lokale Sonderzustände werden getrennt
-  ausgewiesen.
-- **DFA-026:** Jede Übernahme nennt Quelle, Owner, Documentation-Impact-
-  Entscheidung, Zielpfad, Validierung, Restrisiko und
-  Wiederbewertungsauslöser. Zeitgebundene Flottenzahlen gelten nur als
-  Evidence, nicht als fest codierter Vertrag.
-- **DFA-027:** Ein nach Preflight oder Review veränderter Ziel-Head verwirft
-  ältere Exact-Head-Evidence und erzwingt die erneute Prüfung des betroffenen
-  Repositories vor Commit, Push oder Merge.
-- **DFA-028:** Der Abschlussbericht trennt geänderte, unveränderte, blockierte
-  und nicht anwendbare Repositories. Nur geänderte Ziele dürfen einen PR
-  erhalten.
 
 ## 5. Validierung / Validation
 
@@ -195,15 +168,6 @@ plattformabhängige Bedienung oder Ausgabe betrifft.
   identisch, sofern kein getrennt genehmigter Follow-up sie ändert.
 - **AC-DFA-014:** Projektbezogene Abweichungen bleiben erhalten und besitzen
   eine verständliche Begründung statt einer pauschalen Level-0-Kopie.
-- **AC-DFA-015:** Jede aus D6 übernommene Regel besitzt eine
-  repository-spezifische Anwendbarkeits- und Documentation-Impact-Evidence.
-- **AC-DFA-016:** Der vollständige Flotten-Preflight endet vor der ersten
-  Zielmutation und setzt die Bestandsaufnahme nach Einzelbefunden fort.
-- **AC-DFA-017:** Der Abschluss weist für jedes inventarisierte Ziel genau eine
-  Hauptentscheidung und bei Änderungen einen nicht leeren Exact-Head-geprüften
-  PR nach.
-- **AC-DFA-018:** D6-Leitfaden, Source-Matrix, Agent-Guidance und technische
-  Propagationszielmenge bleiben nach D7 semantisch widerspruchsfrei.
 
 ## 7. Nicht-Ziele / Non-Goals
 
@@ -220,21 +184,21 @@ plattformabhängige Bedienung oder Ausgabe betrifft.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` as documentation preflight D7. Bind the review to merged Feature 022, PR #199, its bilingual efficiency guide, 17-claim source matrix and Documentation Impact contract. Verify DFA-001 through DFA-028, AC-DFA-001 through AC-DFA-018, registry-derived fleet scope, complete Remote Freshness preflight before target mutation, repository-specific evidence and ownership, portable-versus-project-specific source/runtime and reader-path decisions, exact-head revalidation, prohibition on copying Level-0 paths or expanding propagation implicitly, non-empty PR rule, language and A11Y policy, generated and historical handling, bounded admin bypass, preset-promotion evidence, no-product-change scope, and measurable fleet completion. Do not modify the intake or start D7.
+$speckit-intake-review Review `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` as documentation preflight D7. Verify its hard dependency on D4 through D6, registry-derived fleet scope, Remote Freshness Barrier, repository-specific evidence and ownership, portable-versus-project-specific source/runtime boundary, prohibition on copying Level-0 paths or expanding propagation implicitly, non-empty PR rule, language and A11Y policy, generated and historical handling, bounded admin bypass, preset-promotion evidence, no-product-change scope, and measurable fleet completion. Do not modify the intake or start D7.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md`, merged Feature 022 and PR #199 as binding input for documentation preflight D7. Create the feature specification for controlled adoption of proven portable documentation-architecture rules across every currently registered Level 1 and Level 2 repository. Preserve DFA-001 through DFA-028, AC-DFA-001 through AC-DFA-018, the complete Remote Freshness preflight, repository-specific inventories, reader paths, Documentation Impact decisions and non-empty PRs, exact-head revalidation, the portable source/runtime decision model, project and learning boundaries, unchanged propagation scope, generated and historical limits, preset-promotion evidence, and no-product-change/no-follow-up-start constraints.
+$speckit-specify Use `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` and the merged D4 through D6 evidence as binding input for documentation preflight D7. Create the feature specification for controlled adoption of proven portable documentation-architecture rules across every currently registered Level 1 and Level 2 repository. Preserve DFA-001 through DFA-022, AC-DFA-001 through AC-DFA-014, Remote Freshness, repository-specific inventories and PRs, the portable source/runtime decision model, project and learning boundaries, unchanged propagation scope, generated and historical limits, preset-promotion evidence, and no-product-change/no-follow-up-start constraints.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` with deliveryAuthority=MergeAndSync after D4 through D6 and Feature 022 PR #199 are merged. Revalidate Level 0, complete the full Remote Freshness inventory before any target mutation, inspect every currently registered Level 1 and Level 2 repository, and adopt only proven portable D6 rules through repository-specific Documentation Impact evidence and non-empty PRs. Apply source/runtime and reader-path models only where each repository proves them applicable; preserve propagation scope plus runtime, language, learning, non-MSL, sandbox, generated, and historical boundaries; invalidate stale exact-head evidence; serialize shared writes; converge checks and actionable review threads; return every changed repository and Level 0 to clean synchronized default branches; and do not start the previous position 5 or any other intake automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md` with deliveryAuthority=MergeAndSync after D4 through D6 are merged. Revalidate Level 0, inventory every currently registered Level 1 and Level 2 repository, adopt only proven portable rules through repository-specific non-empty PRs, apply the source/runtime model only where the repository's own contract proves it applicable, preserve propagation scope plus runtime, language, learning, non-MSL, sandbox, generated, and historical boundaries, serialize shared writes, converge exact-head checks and actionable review threads, return every changed repository and Level 0 to clean synchronized default branches, and do not start the previous position 5 or any other intake automatically.
 ```
 
 <!-- intake-authoring:end -->

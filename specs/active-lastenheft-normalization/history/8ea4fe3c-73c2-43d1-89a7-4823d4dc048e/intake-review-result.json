@@ -1,23 +1,29 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "e0cb3910-a6f0-4737-8cb5-9965e2ca9615",
+  "reviewId": "8ea4fe3c-73c2-43d1-89a7-4823d4dc048e",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-01T20:30:00Z",
+  "reviewedAt": "2026-08-01T18:54:00Z",
   "repository": {
     "root": ".",
-    "head": "b018ef78233260659c596b29d4ffb8f018afd61c"
+    "head": "468924a261996dd245f8f21e4e6693fd2cbe513c"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "c0e327db3f366a374053ae0c806a00360c6602b5b42651c59da71eee390af9b7"
+    "normalizedSha256": "b8d881866635b94cb48322a774996d403e63bc699c54d7f117deb26d15f2d321"
   },
   "targets": [
     {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "role": "Primary",
-      "normalizedSha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22",
+      "normalizedSha256": "0c0c75222f9305fddaba8dd7d3f693c906f363c12c8c7c426ea094ff605ff5c1",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "3c40e3ff236d7187e71b53616c220de6c8a7b0578a00ecde780da2fc582013bf",
       "gitBlob": "N/A"
     },
     {
@@ -225,6 +231,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -261,13 +268,13 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 34 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 35 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The three declared roots equal the zero-indegree target set",
-      "Forty unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Features 015 through 022 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
-      "D7 is the single declared Eligible candidate and no successor run was started",
-      "Feature 022 provides the paired efficiency guide, four reader paths and 17 hash-bound source claims without runtime changes",
-      "D7 binds portable adoption to repository-specific applicability and Documentation Impact evidence",
+      "Forty-two unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Features 015 through 021 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
+      "D6 is the single declared Eligible candidate and no successor run was started",
+      "Feature 021 closes DIA001 through paired root portals, four reader paths, 16 migrated sections, and strict Documentation Impact evidence",
+      "D6 binds current Feature-018-through-021 behavior and keeps runtime, D7, and fleet mutation outside scope",
       "CI/CD and PowerShell remain zero-indegree roots but are intentionally not selected under serial execution"
     ],
     "workers": []
@@ -278,5 +285,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "8ea4fe3c-73c2-43d1-89a7-4823d4dc048e"
+  "supersedes": "dddd6822-7bd8-4f45-889c-18b2052c49ba"
 }

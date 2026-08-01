@@ -1,31 +1,31 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "112b898e-fe53-4275-9a91-fdbc359abad2",
+  "receiptId": "5fe7c147-33ce-4561-8f68-49a95a7e15d9",
   "intakeId": "19722f38-a17f-404b-9dcd-b9133017140d",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-08-01T20:25:00Z",
+  "createdAt": "2026-07-30T10:52:17Z",
   "operation": {
-    "operationId": "a841d920-0c9c-4119-a1d1-49be6b8fbb1c",
+    "operationId": "cc245ad7-6670-4370-a0a4-07f4e78b8753",
     "type": "Update",
-    "authorityEvidence": "Explicit serial-run authority covers the causal Feature-022 archive, evidence-bound D7 update and independent review without starting Feature 023 inside the closeout."
+    "authorityEvidence": "Explicit current user authority to refine D4-D7 with the canonical Level-0 source and manifest-managed Home-Baseline Runtime contract and deliver this intake update through MergeAndSync with the approved narrow Admin-Bypass."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
-    "normalizedSha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22"
+    "normalizedSha256": "3c40e3ff236d7187e71b53616c220de6c8a7b0578a00ecde780da2fc582013bf"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
       "kind": "File",
-      "label": "Archived prior accepted D7 intake",
+      "label": "Archived prior accepted intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/a841d920-0c9c-4119-a1d1-49be6b8fbb1c/target.md",
+      "path": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,17 +36,17 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "3c40e3ff236d7187e71b53616c220de6c8a7b0578a00ecde780da2fc582013bf",
-      "gitBlob": "9db17cd50a02358c14b020d3e1402fdd49dc4da4",
+      "normalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794",
+      "gitBlob": "7c598cd1f507ca9c5bb9c7358af845ac1a1fb0e5",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
       "kind": "File",
-      "label": "Archived prior D7 receipt",
+      "label": "Archived superseded Intake Review result",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/a841d920-0c9c-4119-a1d1-49be6b8fbb1c/receipt.json",
+      "path": "specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -57,17 +57,17 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "f409bc43741b2b8f85da54f9a99ebc1f91a813172d5045ddf25932c49548f963",
-      "gitBlob": "N/A",
-      "proofBoundary": "ArchivedSupersededReceipt"
+      "normalizedSha256": "8984cdbabe03b6c3951288b357a29775e5ba13cd229513029ef8d3d587d3051a",
+      "gitBlob": "f5f3616e98cb9221b9a54c2fa454a00aa1db7adc",
+      "proofBoundary": "ArchivedSupersededReview"
     },
     {
       "sourceId": "SRC003",
       "order": 3,
-      "kind": "File",
-      "label": "Merged Feature 022 delivery evidence",
-      "location": "Repository",
-      "path": "specs/022-agentic-workspace-efficiency-guide/pr-evidence.md",
+      "kind": "Pasted",
+      "label": "Approved Source and Home Runtime clarification for D4-D7",
+      "location": "SnapshotOnly",
+      "path": "N/A",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -78,30 +78,9 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "b3f60b267d4d8be0a073003c9b90d0997b05575ae46f39862c1bb92de113db12",
-      "gitBlob": "beb06033d4511d5a19d9dd2d7767b56a1f91d323",
-      "proofBoundary": "MergedFeatureEvidence"
-    },
-    {
-      "sourceId": "SRC004",
-      "order": 4,
-      "kind": "File",
-      "label": "Merged D6 source matrix",
-      "location": "Repository",
-      "path": "docs/maintenance/agentic-workspace-efficiency-source-matrix.json",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "1ee1fd25b64c7b43eb82cff952f4f615f2b973051f823e71d4e4d47682be5d07",
-      "gitBlob": "d4ed8b1deff17accecb6627dc84914da371250c8",
-      "proofBoundary": "CurrentPortableRuleEvidence"
+      "normalizedSha256": "8e74830018ecae57934407f4f93d18abdc85e9de4d5ac4bbb36c97cf4c6a53bf",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -148,13 +127,6 @@
       "question": "Wie wird der bisherige Review behandelt?",
       "answer": "Review 44d2b7cb-2051-4dba-8d3f-3eb17c71f72c ist wegen des neuen Zielhashes archiviert und nicht mehr aktuell; genau ein neuer Intake Review ist die nächste Aktion.",
       "evidence": "Archivpfad: specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json"
-    },
-    {
-      "id": "IAD007",
-      "status": "Answered",
-      "question": "Welche neue bindende Evidence liefert D6 für D7?",
-      "answer": "Feature 022 PR #199, der bilinguale Effizienzleitfaden und seine 17-Claim-Source-Matrix begrenzen portable Adoption auf repository-spezifisch belegte Regeln.",
-      "evidence": "Exact reviewed head 746a1afe18ee1ee9716907c94222915ed9003865; merge b018ef78233260659c596b29d4ffb8f018afd61c."
     }
   ],
   "openDecisionIds": [],
@@ -166,14 +138,14 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit current serial-run authority covers MergeAndSync for the Feature-022 causal closeout and the later Feature-023 run.",
+  "authorityEvidence": "Explicit current user approval to refine D4-D7 and deliver the intake update through MergeAndSync with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/a841d920-0c9c-4119-a1d1-49be6b8fbb1c/receipt.json",
-    "targetNormalizedSha256": "3c40e3ff236d7187e71b53616c220de6c8a7b0578a00ecde780da2fc582013bf",
-    "archiveTargetPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/a841d920-0c9c-4119-a1d1-49be6b8fbb1c/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/a841d920-0c9c-4119-a1d1-49be6b8fbb1c/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/receipt.json",
+    "targetNormalizedSha256": "8d538266b22d513d8698c558da837fcae9a6a350d07a3ac9be3f8cf9ce0ad794",
+    "archiveTargetPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/19722f38-a17f-404b-9dcd-b9133017140d/cc245ad7-6670-4370-a0a4-07f4e78b8753/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -181,12 +153,12 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current serial-run instruction requires the causal Feature-022 handoff to D7 before Feature 023 starts.",
+  "updateAuthorityEvidence": "Current user instruction: refine the upcoming D4-D7 documentation work with the canonical Level-0 source and Home-Baseline Runtime model.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "order": 1,
-    "role": "Primary",
+    "order": 4,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md"
