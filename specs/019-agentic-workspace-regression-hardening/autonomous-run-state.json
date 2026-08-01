@@ -5,12 +5,12 @@
   "branch": "019-agentic-workspace-regression-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Review",
-  "status": "Active",
-  "checkpointCommit": "97e0f95c24842490ba8e20b99b8275d8e641223e",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "901266ff8bd76edc0b40ebb98409d24a4c99e19e",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+      "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.019-agentic-workspace-regression-hardening.md",
       "sha256": "b78cc1951eb34a9a52e3e6479a4b9f264c38d4eed393155f78ccb7031fadde2b"
     },
     {
@@ -23,11 +23,11 @@
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "707f7eec7546146965ca9c8c07c507635119bbaac551ef23289d8b78eb5dc64a"
+      "sha256": "e35c39d63d25e1728db66e6c09bad6855e96386820e8c09a8633c19bd3a97680"
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
-      "sha256": "7ccf85250b15839caa480fb1f3109661cb17df7896d15292704246c9da4d998d"
+      "sha256": "13fae6a72068c1a06314771660021b3d351e647883244125695c71dc030eb9fd"
     },
     {
       "path": ".specify/memory/constitution.md",
@@ -92,20 +92,36 @@
     {
       "path": "specs/019-agentic-workspace-regression-hardening/documentation-impact-evidence.json",
       "sha256": "6bda4bd85159eaaf57d3b65af7e03d6792d54e127a204201e8f95d1006107f21"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/autonomous-run-gate-evidence.json",
+      "sha256": "4643bf81267a66eaa13865f5acdd1c0e4fa67d1e6639f3e2c31688057f361c45"
+    },
+    {
+      "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
+      "sha256": "709a2ec11c81a0898db74a240836c9bbd4af4b1125d850d11197c7fb0886b7e6"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "80499d360837e2af8fa5c3f151bbaf1ba3ed33180e4bdf8d1cb225aacf54a158"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/retrospective.md",
+      "sha256": "d950df7c91bc0710e1dcbc8087a01526f0c47d17149b13704edf86f7c0c6c183"
     }
   ],
   "tasks": {
     "path": "specs/019-agentic-workspace-regression-hardening/tasks.md",
-    "sha256": "076ff89f658390bc34a6ff691c3e8f58f4c163bcca785e1cca97e33d18d31fde",
-    "completed": 101,
+    "sha256": "2d87d0e08dc5cb8240d003ee71fc9c9ba6400b90fb11ca72a8029cd49eda060a",
+    "completed": 122,
     "total": 122
   },
-  "lastPassingGate": "Copilot review correction passed focused and full Python regression tests plus Bash syntax validation",
-  "nextExactAction": "Commit and publish the review correction, render final statistics, then evaluate all exact-head checks and review threads again.",
+  "lastPassingGate": "PR #192 merged exact head 4d002f7cd5c58dc1d2bc3367e7a7ddb51653298d after all required macOS, Ubuntu and Windows checks passed, both Copilot threads were resolved, Copilot approved the exact head, and both autonomous gate validators accepted 7/7 Primary gates; successor D4 and Series reviews are Ready.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "ReviewCorrection",
-    "state": "NeedsRevalidation",
-    "summary": "Two actionable Copilot findings were corrected locally; provider checks and thread resolution must run on the new exact head."
+    "kind": "MergeAndSync",
+    "state": "Completed",
+    "summary": "Feature PR #192 merged as 901266ff8bd76edc0b40ebb98409d24a4c99e19e; the causal closeout archives the intake, records final evidence and advances D4 without starting it."
   },
   "stop": {
     "reason": "N/A",
@@ -113,10 +129,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-01T14:23:59Z"
+  "updatedAt": "2026-08-01T15:09:00Z"
 }

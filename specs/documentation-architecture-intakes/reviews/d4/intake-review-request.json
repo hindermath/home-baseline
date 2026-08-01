@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "3041d8d8-57dc-4c4c-a052-7277bb0cfbe2",
+  "mode": "Single",
+  "policy": "home-baseline-documentation-architecture-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

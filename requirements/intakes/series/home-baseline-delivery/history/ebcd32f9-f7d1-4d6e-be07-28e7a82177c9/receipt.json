@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "bae30a85-fa06-4c02-9b02-567f229f8cf5",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-08-01T12:48:47Z",
+  "operation": {
+    "operationId": "a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a",
+    "type": "Update",
+    "authorityEvidence": "Current explicit user instruction to make R-TUI the binding predecessor of D4, prevent an accidental parallel start, correct the stale order text, and deliver through MergeAndSync."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "707f7eec7546146965ca9c8c07c507635119bbaac551ef23289d8b78eb5dc64a"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a/receipt.json",
+    "receiptNormalizedSha256": "08113ba07b3b1f5c82d27ff40f2f7b64e2cc2d8fe99c81a92717434a62d8a6a3",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a/manifest.json",
+    "manifestArchiveSha256": "fbad9e035d6b0882ffc60158e122c5ae55647c36a6fe6cff85f84d65f7ca6e81"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

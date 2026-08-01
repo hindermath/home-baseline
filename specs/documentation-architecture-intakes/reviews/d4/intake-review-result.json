@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "3041d8d8-57dc-4c4c-a052-7277bb0cfbe2",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-documentation-architecture-v1",
+  "reviewedAt": "2026-08-01T14:33:54Z",
+  "repository": {
+    "root": ".",
+    "head": "901266ff8bd76edc0b40ebb98409d24a4c99e19e"
+  },
+  "requestEvidence": {
+    "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-request.json",
+    "normalizedSha256": "a3b30acdd1b728ef33250c978991cc303ca22bf244f2323db6ba398ddea725de"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+      "role": "Primary",
+      "normalizedSha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "5955846b-83d4-48f9-a26a-3b1fa93c1e40"
+}
