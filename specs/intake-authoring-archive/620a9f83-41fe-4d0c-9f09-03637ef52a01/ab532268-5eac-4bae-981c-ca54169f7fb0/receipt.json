@@ -1,31 +1,31 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "f0333761-6187-44cd-927f-12e36b501ccc",
+  "receiptId": "09d91102-4822-4f2e-8fd0-3304472cc036",
   "intakeId": "620a9f83-41fe-4d0c-9f09-03637ef52a01",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-08-01T12:48:47Z",
+  "createdAt": "2026-07-30T10:52:17Z",
   "operation": {
-    "operationId": "ab532268-5eac-4bae-981c-ca54169f7fb0",
+    "operationId": "b178ddf6-74b3-4ca6-8adc-d6f964fbecbd",
     "type": "Update",
-    "authorityEvidence": "Current explicit user instruction to make R-TUI the binding predecessor of D4, prevent an accidental parallel start, and correct the stale order text."
+    "authorityEvidence": "Explicit current user authority to refine D4-D7 with the canonical Level-0 source and manifest-managed Home-Baseline Runtime contract and deliver this intake update through MergeAndSync with the approved narrow Admin-Bypass."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-    "normalizedSha256": "4bd7afbeede3e0271bf653a8c082d4b4b70f9818aa3950fea5e4422b932705ee"
+    "normalizedSha256": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
       "kind": "File",
-      "label": "Archived prior accepted D4 intake",
+      "label": "Archived prior accepted intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/target.md",
+      "path": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/b178ddf6-74b3-4ca6-8adc-d6f964fbecbd/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,36 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e",
-      "gitBlob": "4d9589fc0afb52aa60348c201207832a635298b2",
+      "normalizedSha256": "410bca250ae5ec0c6d2ddf3100e8f5f5766e4533ec8e8141eb5641026466f2cc",
+      "gitBlob": "3f21b63455955e2db35aba1cb5d2acba528b5016",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
+      "kind": "File",
+      "label": "Archived superseded Intake Review result",
+      "location": "Repository",
+      "path": "specs/documentation-architecture-intakes/reviews/d4/history/5955846b-83d4-48f9-a26a-3b1fa93c1e40/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "a01a1e4a3301e02a8ccf75dd7d036a4007a0fb8c70fe1c597427397918c78d54",
+      "gitBlob": "79d2230d7979e4c2e6852ce422b47b83651f1b98",
+      "proofBoundary": "ArchivedSupersededReview"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
       "kind": "Pasted",
-      "label": "Approved binding R-TUI to D4 governance correction",
+      "label": "Approved Source and Home Runtime clarification for D4-D7",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,9 +78,9 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "b8b5c8ebb2e698e998e72f1d5814a1ed26304b4b42b27ddfb986d2e163a52663",
+      "normalizedSha256": "8e74830018ecae57934407f4f93d18abdc85e9de4d5ac4bbb36c97cf4c6a53bf",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: explicit current update authority"
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -69,8 +90,8 @@
       "id": "IAD001",
       "status": "Answered",
       "question": "Bleiben D4-Identität, Zielpfad, Rolle und Reihenfolge erhalten?",
-      "answer": "Ja. D4 bleibt derselbe OrderedMember an Position 2, ist aber bis zum gemergten R-TUI-Abschluss durch eine bindende DocumentationSurfaceBaseline-Kante blockiert.",
-      "evidence": "Current explicit user instruction on 2026-08-01 to bind R-TUI before D4 and prevent a parallel start."
+      "answer": "Ja. D4 bleibt Primary an Position 1 und der einzige deklarierte Eligible-Kandidat; es wird kein Feature gestartet.",
+      "evidence": "Die aktuelle Autorität verlangt eine inhaltliche Verfeinerung ohne Umordnung oder Start."
     },
     {
       "id": "IAD002",
@@ -104,15 +125,8 @@
       "id": "IAD006",
       "status": "Answered",
       "question": "Wie wird der bisherige Review behandelt?",
-      "answer": "Alle bisherigen D4-Reviews bleiben archiviert. Ein neuer Intake Review wird erst nach dem gemergten R-TUI-Abschluss mit dessen tatsächlicher Evidence erzeugt.",
-      "evidence": "The active D4 target changed and its new binding predecessor has not been delivered yet."
-    },
-    {
-      "id": "IAD007",
-      "status": "Answered",
-      "question": "Welche neue bindende Vorgängerfläche muss D4 abwarten?",
-      "answer": "R-TUI muss JSONL-Kontinuität, wahrheitsgemäße Ergebnisabstimmung und Bash-3.2-sichere argumentlose Home-Runtime-Delegation gemergt nachweisen.",
-      "evidence": "Current explicit governance correction and updated R-TUI/D4 order contract."
+      "answer": "Review 5955846b-83d4-48f9-a26a-3b1fa93c1e40 ist wegen des neuen Zielhashes archiviert und nicht mehr aktuell; genau ein neuer Intake Review ist die nächste Aktion.",
+      "evidence": "Archivpfad: specs/documentation-architecture-intakes/reviews/d4/history/5955846b-83d4-48f9-a26a-3b1fa93c1e40/intake-review-result.json"
     }
   ],
   "openDecisionIds": [],
@@ -124,14 +138,14 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Current explicit user approval to update the R-TUI and D4 governance relation and deliver the correction through MergeAndSync with the previously approved narrow Admin-Bypass.",
+  "authorityEvidence": "Explicit current user approval to refine D4-D7 and deliver the intake update through MergeAndSync with the approved narrow Admin-Bypass.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/receipt.json",
-    "targetNormalizedSha256": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e",
-    "archiveTargetPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/b178ddf6-74b3-4ca6-8adc-d6f964fbecbd/receipt.json",
+    "targetNormalizedSha256": "410bca250ae5ec0c6d2ddf3100e8f5f5766e4533ec8e8141eb5641026466f2cc",
+    "archiveTargetPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/b178ddf6-74b3-4ca6-8adc-d6f964fbecbd/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/b178ddf6-74b3-4ca6-8adc-d6f964fbecbd/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -139,12 +153,12 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user instruction: execute the recommended R-TUI to D4 binding-edge and stale-order corrections.",
+  "updateAuthorityEvidence": "Current user instruction: refine the upcoming D4-D7 documentation work with the canonical Level-0 source and Home-Baseline Runtime model.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "order": 2,
-    "role": "OrderedMember",
+    "order": 1,
+    "role": "Primary",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"

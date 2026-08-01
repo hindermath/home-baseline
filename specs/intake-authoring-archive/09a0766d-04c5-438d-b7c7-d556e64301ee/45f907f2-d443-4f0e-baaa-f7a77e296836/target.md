@@ -4,10 +4,10 @@
 **Repository:** `home-baseline`
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** `ReadyForReview`
-**Version:** 1.1
-**Stand:** 2026-08-01
-**Series:** `home-baseline-delivery`, bevorzugte Root und bindender Vorgänger von D4, `Eligible`
-**Bindende Vorgaenger:** keine; R-TUI liefert die bindende Dokumentationsoberfläche für D4
+**Version:** 1.0
+**Stand:** 2026-07-31
+**Series:** `home-baseline-delivery`, bevorzugte Root vor D4, `Eligible`
+**Bindende Vorgaenger:** keine; D4 bleibt eine unabhaengige Root
 **Documentation Impact:** `UpdateRequired`
 
 ## 1. Zweck / Purpose
@@ -369,18 +369,15 @@ defects are in generation, forwarding, or evaluation. No open decisions remain.*
 ## 13. Ausfuehrungsreihenfolge und Abschlussgrenze / Execution Order and Completion Boundary
 
 Dieses Lastenheft ist die erste bevorzugte Root der aktiven
-`home-baseline-delivery`-Serie und steht sichtbar vor D4. Eine bindende
-`DocumentationSurfaceBaseline`-Kante führt von R-TUI zu D4, weil D4 genau die
-hier korrigierten Wartungs-, Ereignis-, Ergebnis- und Dokumentationsflächen
-auditiert. Nach Abschluss wird die Series erneut autorisiert aktualisiert,
-bevor D4 als bevorzugter Kandidat deklariert und erneut geprüft wird.
+`home-baseline-delivery`-Serie und steht sichtbar vor D4. Zwischen diesem
+Lastenheft und D4 besteht keine bindende fachliche Kante. Nach Abschluss wird
+die Series erneut autorisiert aktualisiert, bevor ein anderer Kandidat als
+bevorzugt deklariert wird.
 
 *This intake is the first preferred root in the active
-`home-baseline-delivery` series and appears before D4. A binding
-`DocumentationSurfaceBaseline` edge leads from R-TUI to D4 because D4 audits
-the maintenance, event, result, and documentation surfaces corrected here.
-After completion, the series requires another authorized update before D4 is
-declared preferred and reviewed again.*
+`home-baseline-delivery` series and appears before D4. No binding domain edge
+connects it to D4. After completion, the series requires another authorized
+update before another candidate becomes the declared preference.*
 
 Die spaetere Implementierung ist erst abgeschlossen, wenn alle funktionalen,
 Sicherheits-, A11Y-, Plattform-, Dokumentations- und Evidence-Gates bestanden

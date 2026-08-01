@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user instruction to make R-TUI the binding predecessor of D4, prevent an accidental parallel start, correct the stale order text, and deliver through MergeAndSync.",
+  "proposalNormalizedSha256": "b8b5c8ebb2e698e998e72f1d5814a1ed26304b4b42b27ddfb986d2e163a52663",
+  "differences": {
+    "targetCount": {
+      "before": 38,
+      "after": 38
+    },
+    "rootCount": {
+      "before": 4,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 44,
+      "after": 45
+    },
+    "addedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+        "orderBefore": 1,
+        "orderAfter": 1,
+        "roleBefore": "Primary",
+        "roleAfter": "Primary",
+        "statusBefore": "Eligible",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "1bbc49f13ad67fc3f80fe915f7d8b03a2324a74a25924c23a5529e65a0447567",
+        "normalizedSha256After": "b78cc1951eb34a9a52e3e6479a4b9f264c38d4eed393155f78ccb7031fadde2b"
+      },
+      {
+        "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "orderBefore": 2,
+        "orderAfter": 2,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "OrderedMember",
+        "statusBefore": "Pending",
+        "statusAfter": "Blocked",
+        "rootBefore": true,
+        "rootAfter": false,
+        "normalizedSha256Before": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e",
+        "normalizedSha256After": "4bd7afbeede3e0271bf653a8c082d4b4b70f9818aa3950fea5e4422b932705ee"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [
+      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"
+    ],
+    "addedDependencies": [
+      {
+        "from": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+        "to": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      }
+    ],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Makes R-TUI the binding predecessor of D4, updates the text-first dependency view, corrects the stale preferred-candidate paragraph, and preserves every other target and edge."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a/manifest.json",
+    "manifestNormalizedSha256": "fbad9e035d6b0882ffc60158e122c5ae55647c36a6fe6cff85f84d65f7ca6e81",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a/receipt.json",
+    "receiptNormalizedSha256": "08113ba07b3b1f5c82d27ff40f2f7b64e2cc2d8fe99c81a92717434a62d8a6a3"
+  },
+  "preparedPaths": [
+    "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "docs/project-statistics.md",
+    "requirements/intakes/series/home-baseline-delivery/history/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/a1af2ba2-b5e0-4cc0-875c-8f0549a4ee0a.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/history/0fa86221-8fce-4fa0-b76e-7d7b0fec124c/intake-review-request.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/history/0fa86221-8fce-4fa0-b76e-7d7b0fec124c/intake-review-result.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/history/0fa86221-8fce-4fa0-b76e-7d7b0fec124c/intake-review-report.md",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-request.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-result.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-report.md",
+    "specs/intake-authoring-archive/09a0766d-04c5-438d-b7c7-d556e64301ee/45f907f2-d443-4f0e-baaa-f7a77e296836/target.md",
+    "specs/intake-authoring-archive/09a0766d-04c5-438d-b7c7-d556e64301ee/45f907f2-d443-4f0e-baaa-f7a77e296836/receipt.json",
+    "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/target.md",
+    "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/receipt.json",
+    "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
+    "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

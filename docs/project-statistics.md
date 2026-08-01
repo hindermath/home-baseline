@@ -145,6 +145,7 @@
 | 2026-07-31 | Wartungs-TUI- und Wrapper-Regressionshaertungsintake | — | — | — | Documentation Impact `UpdateRequired`: Ein neuer Schema-2.0-Intake spezifiziert die Reparatur des lueckenhaften JSONL-Live-Status, des fehlenden `run-completed`, der falschen `RESULT_MISMATCH`-Abschlussmeldung und der Bash-3.2-unsicheren argumentlosen Home-Runtime-Delegation. Die lineare barrierearme Darstellung, Eventschema 1, CLI- und Sicherheitsvertraege bleiben erhalten. Die aktive Series umfasst nun 38 Ziele, vier Roots und unveraendert 44 Abhaengigkeiten; `R-TUI` steht als einziger deklarierter `Eligible`-Kandidat vor der unabhaengigen `Pending`-Root D4. Intake-Receipt, Series-Supersession, Reihenfolge und Archive sind hashgebunden; kein Intake Review, Specify-, Autonomous- oder Parallel-Autonomous-Lauf wurde gestartet. |
 | 2026-07-31 | Phase-2-Readiness-Korrekturen im Level-0-Bootstrap | — | — | — | Documentation Impact `GeneratedUpdate`: RF-15 bis RF-18 wurden auf die autoritative Review-Bedeutung korrigiert. `bootstrap-project.*` liest die Constitution-Version fail-closed, loest das Preset-Profil nach expliziter Option, lokaler Registry und Katalog-Standard auf und verwendet denselben Wert fuer Installation und Registrierung. Eintragsbezogene Profiloptionen aendern den Flottenstandard nicht; Registry-Dry-Runs erzeugen auch keine Elternverzeichnisse. Bilinguale Manpages, README und Lernreihen-Dokumentation bilden das Elf-Preset-Profil und die getrennte Public-Readiness-Freigabe ab. Regressionstests decken Bash und PowerShell ab. Kein Level-2-Repository, Bootstrap, Spec-Kit-Lauf oder Remote wurde erzeugt. Das Implementierungsdelta vor Statistikpflege umfasst 511 Nettozeilen. |
 | 2026-07-31 | AOC-Level-0-/Level-1-Handoff abgeschlossen | — | — | — | Documentation Impact `GeneratedUpdate`: Das öffentliche `AgentOperationsCockpit` ist als aktives kanonisches Fleet-Ziel und als .NET-10-/C#-14-Ziel im gespiegelten Level-2-Umgebungsregister verankert. Die Engineering Session dokumentiert den realen Phase-2-Merge, 14 Authoring Receipts, den azyklischen Series-Nachweis sowie 13 nach Level 2 übergebene Decision Intakes. Level 1 ist durch Rider-PR #26 abgeschlossen; die breiteren Level-0-Initiativen bleiben Provenienz. Das fachliche Delta vor Statistikpflege umfasst 5 Nettozeilen. |
+| 2026-08-01 | R-TUI-zu-D4-Series-Governance gehärtet | — | — | — | Documentation Impact `UpdateRequired`: R-TUI ist nun der bindende Vorgänger des Dokumentationsaudits D4. Die neue `DocumentationSurfaceBaseline`-Kante verhindert einen parallelen oder vorgezogenen D4-Start; D4 bleibt bis zum nachgewiesenen R-TUI-Abschluss `Blocked`. Der aktive Vertrag umfasst 38 Ziele, drei Roots und 45 eindeutige Abhängigkeiten. Beide Intakes, ihre Authoring-Receipts, das Series-Manifest und der neue R-TUI-Einzelreview sind hashgebunden; alte Stände bleiben bytegleich archiviert. Authoring-, Review-, Konfigurations- und Series-Validatoren bestehen in Bash und PowerShell. Kein Specify-, Autonomous- oder D4-Lauf wurde gestartet. |
 
 ---
 
@@ -1002,27 +1003,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 447178 lines |
-| Textdateien / Text files | 2814 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-07-31 |
-| Aktivtage / Active days | 79 |
-| Relevante Commits / Relevant commits | 632 |
-| Zeilen je Aktivtag / Lines per active day | 5660.5 |
+| Textbasis / Text base | 449102 lines |
+| Textdateien / Text files | 2824 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-08-01 |
+| Aktivtage / Active days | 80 |
+| Relevante Commits / Relevant commits | 633 |
+| Zeilen je Aktivtag / Lines per active day | 5613.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 123159 |
-| Laengste Serie / Longest streak | 36 days |
-| Speedup vs. 80 lines/day | 70.8x |
-| Speedup vs. 100 lines/day | 56.6x |
-| Methodik / Methodology | v2; source `703664f9e17a` |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 125525 |
+| Laengste Serie / Longest streak | 37 days |
+| Speedup vs. 80 lines/day | 70.2x |
+| Speedup vs. 100 lines/day | 56.1x |
+| Methodik / Methodology | v2; source `d2c5b0b39264` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.1% | 630
 Tests                           [#...................]   4.1% | 18199
-Dokumentation / Documentation   [#############.......]  67.0% | 299407
-Skripte / Scripts               [##..................]  12.4% | 55332
-Konfiguration / Configuration   [###.................]  16.3% | 72840
+Dokumentation / Documentation   [#############.......]  66.9% | 300279
+Skripte / Scripts               [##..................]  12.3% | 55332
+Konfiguration / Configuration   [###.................]  16.5% | 73892
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.2% | 770
 ```
@@ -1052,7 +1053,7 @@ Di/Tu  0 0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4
 Mi/We  0 0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4
 Do/Th  0 0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4
 Fr/Fr  0 0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4
-Sa/Sa  0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 -
+Sa/Sa  0 0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1215,8 +1216,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.8x
-100 lines/day      [###########.........] 56.6x
+80 lines/day       [##############......] 70.2x
+100 lines/day      [###########.........] 56.1x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1229,7 +1230,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5660.5
+Visible repository [###########.........] 5613.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1238,13 +1239,12 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 123159. Laengste Serie: 36 Tage (2026-06-26..2026-07-31).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 125525. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-07-31. It contains 79 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 123159. Longest streak: 36 days (2026-06-26..2026-07-31).*
+*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 125525. Longest streak: 37 days (2026-06-26..2026-08-01).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
-| 2025-08 | 0 |
 | 2025-09 | 0 |
 | 2025-10 | 0 |
 | 2025-11 | 0 |
@@ -1256,5 +1256,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-07-31. Es enthaelt 79 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
+| 2026-08 | 2366 |
 
 <!-- project-statistics-v2:end -->
