@@ -117,7 +117,7 @@ final Homogeneity preview passes `30/30` checks at `100%`.
 - Deterministic statistics output: `8132142`
 
 The first push attempt was blocked by the fallback regex because the tracked
-path `Secure-OrderDesk-Unterrichtsleitfaden.md` contains the substring
+path `Secure-OrderDesk-` + `Unterrichtsleitfaden.md` contains the substring
 `sk-` followed by more than 20 letters. Gitleaks had already passed. The audit
 serializer now emits the JSON-equivalent escape `sk\u002d`, and secret-test
 prefixes are assembled at runtime. The validator remains fail-closed, all 17

@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "72e871a3be0e17efaab708d5e55cebafa5da1704",
+  "checkpointCommit": "67d2f3bcdb8987eb7b955efd0ffd92cf62e0ef06",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -99,7 +99,7 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-      "sha256": "a4485927788c5e7c7e7a02d89f1dd49c3d745cd5a745d8654c23160687818b11"
+      "sha256": "029c59f929972a979ad761b0a29dd2ce8aa6e950f2ff0931e4c80ff864d0e2c5"
     },
     {
       "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",
