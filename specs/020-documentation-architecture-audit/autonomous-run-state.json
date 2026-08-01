@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "67d2f3bcdb8987eb7b955efd0ffd92cf62e0ef06",
+  "checkpointCommit": "7b549003bfe496a67cd7de53f00656796f9911dd",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
