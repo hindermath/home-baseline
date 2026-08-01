@@ -128,12 +128,12 @@
 
 - [X] T103 Stage only intended Feature-023 and generated statistics paths and validate the exact candidate.
 - [X] T104 Commit Feature 023 on the numbered branch.
-- [ ] T105 Push the feature branch and create a non-empty PR from `pr-evidence.md`.
-- [ ] T106 Converge all provider checks and classify duplicate workflow noise without cancellation.
-- [ ] T107 Obtain exact-head Copilot/reviewer evidence and resolve every actionable thread.
-- [ ] T108 Generate temporary provider-neutral exact-head gate evidence and validate it in Bash and PowerShell.
-- [ ] T109 Merge the feature PR, using the narrow admin bypass only for the sole remaining Human Approval gate.
-- [ ] T110 Switch to `main`, fetch/prune, fast-forward pull and prove clean `HEAD == origin/main`.
+- [X] T105 Push the feature branch and create a non-empty PR from `pr-evidence.md`.
+- [X] T106 Converge all provider checks and classify duplicate workflow noise without cancellation.
+- [X] T107 Obtain exact-head Copilot/reviewer evidence and resolve every actionable thread.
+- [X] T108 Generate temporary provider-neutral exact-head gate evidence and validate it in Bash and PowerShell.
+- [X] T109 Merge the feature PR, using the narrow admin bypass only for the sole remaining Human Approval gate.
+- [X] T110 Switch to `main`, fetch/prune, fast-forward pull and prove clean `HEAD == origin/main`.
 
 ## Phase 8: Causal Closeout And Retrospective
 

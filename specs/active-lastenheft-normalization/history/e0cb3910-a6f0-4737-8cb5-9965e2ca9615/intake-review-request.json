@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "48e34132-a308-43f6-8280-2d74defb0ed7",
+  "reviewId": "e0cb3910-a6f0-4737-8cb5-9965e2ca9615",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -139,6 +143,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -174,11 +179,17 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
-      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+        "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      },
       {
         "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
         "to": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",

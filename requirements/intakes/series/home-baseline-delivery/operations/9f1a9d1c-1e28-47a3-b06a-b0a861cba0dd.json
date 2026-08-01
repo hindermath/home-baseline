@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit MergeAndSync authority requires the causal Feature-023 archive, evidence-bound Position-5 handoff, and no automatic successor start inside the closeout.",
+  "proposalNormalizedSha256": "9a983bd29bc27ae0f533965e05b97f92c4e4c2d6c0126e7ec649d38192d1b8ba",
+  "differences": {
+    "targetCount": {
+      "before": 34,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 40,
+      "after": 39
+    },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+        "role": "Primary",
+        "normalizedSha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "orderBefore": 2,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Pending",
+        "statusAfter": "Eligible",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+        "normalizedSha256After": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+        "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed Feature 023, removes its outgoing edge, and exposes Position 5 as the sole preferred Eligible candidate without starting a successor."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd/manifest.json",
+    "manifestNormalizedSha256": "1f660d0c1abf7330d067093f0662320ac4688f90d0a9061b8b2e54cedd38d209",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd/receipt.json",
+    "receiptNormalizedSha256": "4ded78735d0311e1bb614e4e205ac01b94c17583400e8febae813c850e841503"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.023-registered-doc-architecture-adoption.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/023-registered-doc-architecture-adoption/pr-evidence.md",
+    "specs/023-registered-doc-architecture-adoption/retrospective.md",
+    "specs/active-lastenheft-normalization/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
