@@ -4,7 +4,7 @@
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
 **Stand:** 2026-08-01
-**Reihenfolge:** Dokumentationsvorlauf D4, nach abgeschlossener Position 4 und Feature 019 (R-TUI)
+**Reihenfolge:** Dokumentationsvorlauf D4, nach aktiver Position 4 und abgeschlossenem R-TUI
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Fachinformatiker*innen, Kaufleute für IT-System-Management,
 Kaufleute für Digitalisierungsmanagement, Lehrende, Maintainer und Reviewer ab
@@ -44,21 +44,16 @@ Verbindliche Grundlagen sind:
   Worktree-Leases und dynamische Preset-Profile;
 - Feature 018 und PRs #160/#165: interaktive Wartungs-TUI, Headless- und
   Fallback-Grenzen, Live-Evidence sowie kausaler Abschluss;
-- Feature 019 und PR #192: exakter geprüfter Head
-  `4d002f7cd5c58dc1d2bc3367e7a7ddb51653298d`, gemergt als
-  `901266ff8bd76edc0b40ebb98409d24a4c99e19e`; kontinuierlicher
-  JSONL-Ereignisstrom, vorgebundener kanonischer Berichtspfad,
-  wahrheitsgemäße Ergebnisabstimmung, robuste frühe Finalisierung bei
-  fehlendem oder ungültigem Report sowie Bash-3.2-sichere argumentlose
-  Home-Runtime-Delegation;
+- das vor D4 abgeschlossene und gemergte R-TUI-Feature: korrigierter
+  JSONL-Ereignisstrom, wahrheitsgemäße Ergebnisabstimmung und Bash-3.2-sichere
+  argumentlose Home-Runtime-Delegation;
 - `docs/documentation-governance.md`;
 - `constitution.md` und `.specify/memory/constitution.md`;
 - die gemergten Feature-Artefakte und Abschluss-Evidence der Positionen 1 bis
   4.
 
 D4 startet erst, wenn Windows-, Linux-/Ubuntu-, Default-Branch-/Worktree-
-Härtung, Maintenance-TUI und R-TUI abgeschlossen und gemergt sind. Diese
-Voraussetzung ist durch PR #192 und Merge-Commit `901266f` erfüllt. Die
+Härtung, Maintenance-TUI und R-TUI abgeschlossen und gemergt sind. Die
 genannten PRs und ihre gemergten Heads bilden die fachliche Baseline; aktuelle
 Dateihashes werden beim Audit neu aus Git abgeleitet und nicht aus diesem
 Lastenheft geraten. Der Audit verändert keine fachliche Dokumentation und
@@ -345,21 +340,21 @@ Owner, Zielpfad oder Beibehaltung, Risiko, Evidence und Re-Evaluation-Trigger.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as documentation preflight D4 after Feature 019 merged through PR #192. Verify the completed D1-D3 baseline, merged Feature 015-018 evidence, and the merged Feature-019 evidence for JSONL continuity, pre-bound report ownership, robust early finalization, truthful result reconciliation, and Bash-3.2-safe argumentless Home-Runtime delegation; then verify read-only Level-0 scope, complete Git-derived inventory, exact artifact classes and decision vocabulary, four reader paths, criteria-based language splitting, progressive disclosure, generated and historical boundaries, the source/home-runtime contract with `homeRuntime`, `sourceOnly`, and `machineLocal`, maintenance TUI/plain/headless and canonical-result documentation consistency, Remote-Freshness and Worktree documentation, measurable acceptance, learner accessibility, and the prohibition on documentation or runtime remediation. Do not modify the intake or start D4.
+$speckit-intake-review Review `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as documentation preflight D4 after R-TUI is merged. Verify the completed D1-D3 baseline, merged Feature 015-018 evidence, and the merged R-TUI evidence for JSONL continuity, truthful result reconciliation, and Bash-3.2-safe argumentless Home-Runtime delegation; then verify read-only Level-0 scope, complete Git-derived inventory, exact artifact classes and decision vocabulary, four reader paths, criteria-based language splitting, progressive disclosure, generated and historical boundaries, the source/home-runtime contract with `homeRuntime`, `sourceOnly`, and `machineLocal`, maintenance TUI/plain/headless and canonical-result documentation consistency, Remote-Freshness and Worktree documentation, measurable acceptance, learner accessibility, and the prohibition on documentation or runtime remediation. Do not modify the intake or start D4.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as the binding intake for documentation preflight D4. Create a feature specification for a complete read-only Level-0 documentation information-architecture and learner-path audit after Features 015 through 019 and their causal closeouts are merged. Preserve DIA-001 through DIA-031, AC-DIA-001 through AC-DIA-022, the exact artifact classes and decisions, four reader paths, progressive disclosure, criteria-based language splitting, the source/home-runtime matrix and authority boundaries, D1-D3 evidence boundaries, the Feature-015-to-019 documentation consistency matrices, and no-remediation scope. Do not implement documentation changes, alter runtime behavior, create a preset, or start D5.
+$speckit-specify Use `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` as the binding intake for documentation preflight D4. Create a feature specification for a complete read-only Level-0 documentation information-architecture and learner-path audit after Features 015 through 018, R-TUI, and their causal closeouts are merged. Preserve DIA-001 through DIA-031, AC-DIA-001 through AC-DIA-022, the exact artifact classes and decisions, four reader paths, progressive disclosure, criteria-based language splitting, the source/home-runtime matrix and authority boundaries, D1-D3 evidence boundaries, the Feature-015-to-018 and R-TUI documentation consistency matrices, and no-remediation scope. Do not implement documentation changes, alter runtime behavior, create a preset, or start D5.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` with deliveryAuthority=MergeAndSync after Features 015 through 019 and their causal closeouts are merged. Keep all existing documentation, runtime, scripts, presets, and fleet repositories read-only except for accepted feature artifacts, deterministic audit-only tooling, audit evidence, statistics, archive/order updates, and delivery evidence. Audit the complete Git-derived Level-0 documentation inventory; produce the source/home-runtime matrix for `homeRuntime`, `sourceOnly`, and `machineLocal`; and explicitly reconcile Remote-Freshness, safe pull and Worktree contracts plus TUI/plain/headless selection, safe preview, JSONL advisory evidence, canonical report/exit, interruption and fallback documentation across README, manpage, architecture, A11Y, security, script reference and Feature contracts. Bind the merged Feature-019 proof for continuous JSONL, pre-bound report ownership, robust early finalization, truthful result reconciliation, and Bash-3.2-safe argumentless delegation. Converge all required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D5 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md` with deliveryAuthority=MergeAndSync after Features 015 through 018, R-TUI, and their causal closeouts are merged. Keep all existing documentation, runtime, scripts, presets, and fleet repositories read-only except for accepted feature artifacts, deterministic audit-only tooling, audit evidence, statistics, archive/order updates, and delivery evidence. Audit the complete Git-derived Level-0 documentation inventory; produce the source/home-runtime matrix for `homeRuntime`, `sourceOnly`, and `machineLocal`; and explicitly reconcile Remote-Freshness, safe pull and Worktree contracts plus TUI/plain/headless selection, safe preview, JSONL advisory evidence, canonical report/exit, interruption and fallback documentation across README, manpage, architecture, A11Y, security, script reference and Feature contracts. Bind the merged R-TUI proof for continuous JSONL, truthful result reconciliation, and Bash-3.2-safe argumentless delegation. Converge all required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D5 automatically.
 ```
 
 <!-- intake-authoring:end -->

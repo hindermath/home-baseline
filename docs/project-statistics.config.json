@@ -417,6 +417,14 @@
       "labelEn": "AOC Level 0/Level 1 handoff closeout",
       "netLines": 5,
       "activeDays": 1
+    },
+    {
+      "slot": 51,
+      "id": "agentic-workspace-regression-hardening",
+      "labelDe": "Wartungs-TUI- und Wrapper-Regressionshärtung",
+      "labelEn": "Maintenance TUI and wrapper regression hardening",
+      "netLines": 1828,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

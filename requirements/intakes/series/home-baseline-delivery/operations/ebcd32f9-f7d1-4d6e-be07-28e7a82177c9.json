@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "ebcd32f9-f7d1-4d6e-be07-28e7a82177c9",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit serial-run authority requires the causal Feature-019 archive, D4 evidence binding, and no automatic D4 start.",
+  "proposalNormalizedSha256": "02babe2d84e2508d006704e8542b07e5b08a2752654aa6c428d90e146b837cd6",
+  "differences": {
+    "targetCount": {
+      "before": 38,
+      "after": 37
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 45,
+      "after": 44
+    },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+        "role": "Primary",
+        "normalizedSha256": "b78cc1951eb34a9a52e3e6479a4b9f264c38d4eed393155f78ccb7031fadde2b",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "orderBefore": 2,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Blocked",
+        "statusAfter": "Eligible",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "4bd7afbeede3e0271bf653a8c082d4b4b70f9818aa3950fea5e4422b932705ee",
+        "normalizedSha256After": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+        "to": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed Feature 019, removes its single edge, and exposes D4 as the sole preferred Eligible candidate without starting it."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9/manifest.json",
+    "manifestNormalizedSha256": "707f7eec7546146965ca9c8c07c507635119bbaac551ef23289d8b78eb5dc64a",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9/receipt.json",
+    "receiptNormalizedSha256": "7ccf85250b15839caa480fb1f3109661cb17df7896d15292704246c9da4d998d"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9.json",
+    "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
+    "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/e96282b9-1e4a-4bd6-b227-b83e1feed27b/target.md",
+    "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/e96282b9-1e4a-4bd6-b227-b83e1feed27b/receipt.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

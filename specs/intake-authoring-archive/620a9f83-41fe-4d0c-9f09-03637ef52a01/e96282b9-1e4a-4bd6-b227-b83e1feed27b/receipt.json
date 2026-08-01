@@ -1,22 +1,22 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "b8e165b8-7225-4e5f-a500-e64a783da699",
+  "receiptId": "f0333761-6187-44cd-927f-12e36b501ccc",
   "intakeId": "620a9f83-41fe-4d0c-9f09-03637ef52a01",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-08-01T14:33:54Z",
+  "createdAt": "2026-08-01T12:48:47Z",
   "operation": {
-    "operationId": "e96282b9-1e4a-4bd6-b227-b83e1feed27b",
+    "operationId": "ab532268-5eac-4bae-981c-ca54169f7fb0",
     "type": "Update",
-    "authorityEvidence": "Explicit serial-run authority includes the causal Feature-019 closeout and the evidence-bound D4 handoff."
+    "authorityEvidence": "Current explicit user instruction to make R-TUI the binding predecessor of D4, prevent an accidental parallel start, and correct the stale order text."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-    "normalizedSha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b"
+    "normalizedSha256": "4bd7afbeede3e0271bf653a8c082d4b4b70f9818aa3950fea5e4422b932705ee"
   },
   "sources": [
     {
@@ -25,7 +25,7 @@
       "kind": "File",
       "label": "Archived prior accepted D4 intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/e96282b9-1e4a-4bd6-b227-b83e1feed27b/target.md",
+      "path": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,15 +36,15 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "4bd7afbeede3e0271bf653a8c082d4b4b70f9818aa3950fea5e4422b932705ee",
-      "gitBlob": "3db0b11cae9c7137eb154061c42c8da0b6001029",
+      "normalizedSha256": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e",
+      "gitBlob": "4d9589fc0afb52aa60348c201207832a635298b2",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
       "kind": "Pasted",
-      "label": "Merged Feature-019 causal evidence snapshot",
+      "label": "Approved binding R-TUI to D4 governance correction",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -57,9 +57,9 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "5857157d5e46c21b878bb3ebf62a6f10819935888426997030e575a67c61bbe2",
+      "normalizedSha256": "b8b5c8ebb2e698e998e72f1d5814a1ed26304b4b42b27ddfb986d2e163a52663",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationAndProviderSnapshot: PR #192 exact-head merge evidence"
+      "proofBoundary": "ConversationSnapshot: explicit current update authority"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -69,8 +69,8 @@
       "id": "IAD001",
       "status": "Answered",
       "question": "Bleiben D4-Identität, Zielpfad, Rolle und Reihenfolge erhalten?",
-      "answer": "Ja. D4 bleibt derselbe Intake und wird nach Entfernung des abgeschlossenen R-TUI-Knotens als Primary, Root und einziger bevorzugter Eligible-Kandidat geführt.",
-      "evidence": "Feature 019 merged through PR #192; the causal Series closeout removes only R-TUI and its single outgoing edge."
+      "answer": "Ja. D4 bleibt derselbe OrderedMember an Position 2, ist aber bis zum gemergten R-TUI-Abschluss durch eine bindende DocumentationSurfaceBaseline-Kante blockiert.",
+      "evidence": "Current explicit user instruction on 2026-08-01 to bind R-TUI before D4 and prevent a parallel start."
     },
     {
       "id": "IAD002",
@@ -104,15 +104,15 @@
       "id": "IAD006",
       "status": "Answered",
       "question": "Wie wird der bisherige Review behandelt?",
-      "answer": "Der neue D4-Einzelreview bindet die tatsächliche Feature-019-Merge-Evidence und supersediert den letzten fachlich passenden historischen Review.",
-      "evidence": "D4 review 3041d8d8-57dc-4c4c-a052-7277bb0cfbe2 follows merged Feature 019."
+      "answer": "Alle bisherigen D4-Reviews bleiben archiviert. Ein neuer Intake Review wird erst nach dem gemergten R-TUI-Abschluss mit dessen tatsächlicher Evidence erzeugt.",
+      "evidence": "The active D4 target changed and its new binding predecessor has not been delivered yet."
     },
     {
       "id": "IAD007",
       "status": "Answered",
       "question": "Welche neue bindende Vorgängerfläche muss D4 abwarten?",
-      "answer": "Erfüllt: Feature 019 belegt JSONL-Kontinuität, vorgebundene Report-Ownership, robuste frühe Finalisierung, wahrheitsgemäße Ergebnisabstimmung und Bash-3.2-sichere argumentlose Delegation.",
-      "evidence": "PR #192; exact head 4d002f7cd5c58dc1d2bc3367e7a7ddb51653298d; merge 901266ff8bd76edc0b40ebb98409d24a4c99e19e."
+      "answer": "R-TUI muss JSONL-Kontinuität, wahrheitsgemäße Ergebnisabstimmung und Bash-3.2-sichere argumentlose Home-Runtime-Delegation gemergt nachweisen.",
+      "evidence": "Current explicit governance correction and updated R-TUI/D4 order contract."
     }
   ],
   "openDecisionIds": [],
@@ -124,14 +124,14 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit serial autonomous-run authority covers the Feature-019 causal closeout; D4 itself starts only after this closeout is merged and revalidated.",
+  "authorityEvidence": "Current explicit user approval to update the R-TUI and D4 governance relation and deliver the correction through MergeAndSync with the previously approved narrow Admin-Bypass.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/e96282b9-1e4a-4bd6-b227-b83e1feed27b/receipt.json",
-    "targetNormalizedSha256": "4bd7afbeede3e0271bf653a8c082d4b4b70f9818aa3950fea5e4422b932705ee",
-    "archiveTargetPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/e96282b9-1e4a-4bd6-b227-b83e1feed27b/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/e96282b9-1e4a-4bd6-b227-b83e1feed27b/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/receipt.json",
+    "targetNormalizedSha256": "6b2509b833e53ad3ba07a90d07ed5271c4a749c8b0b86277fd74868cb91d887e",
+    "archiveTargetPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/620a9f83-41fe-4d0c-9f09-03637ef52a01/ab532268-5eac-4bae-981c-ca54169f7fb0/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -139,12 +139,12 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current serial-run instruction authorizes the causal Feature-019 evidence handoff to D4.",
+  "updateAuthorityEvidence": "Current user instruction: execute the recommended R-TUI to D4 binding-edge and stale-order corrections.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "order": 1,
-    "role": "Primary",
+    "order": 2,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"

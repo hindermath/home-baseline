@@ -74,8 +74,29 @@ DocFX/web output are `NoUpdateRequired`. Structured evidence is in
 ## Delivery evidence
 
 - Feature PR: `hindermath/home-baseline#192`
-- Last evaluated head: `97e0f95`; a review-correction head is pending publication
+- Exact reviewed head: `4d002f7cd5c58dc1d2bc3367e7a7ddb51653298d`
+- Merge commit: `901266ff8bd76edc0b40ebb98409d24a4c99e19e`
+- Provider runs: Maintenance TUI `30703777056`; Homogeneity
+  `30703777023`; PowerShell Static Analysis `30703777037`; Documentation and
+  Learning Package `30703777006`
+- Exact-head gates: 7/7 Primary entries accepted by Bash and PowerShell
+- Reviews: two actionable Copilot threads corrected and resolved; Copilot
+  approved exact head `4d002f7`; zero unresolved GraphQL threads
+- Merge rule: all technical gates green and Human Approval was the sole
+  remaining branch rule; the authorized narrow Admin Bypass was used
 - Pre-push secret gate: Pass
 
-Exact-head provider evidence, review convergence, merge and synchronization are
-recorded only after they exist. D4 is not started by this run.
+## Causal closeout
+
+- R-TUI archive:
+  `Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.019-agentic-workspace-regression-hardening.md`
+- Series operation: `ebcd32f9-f7d1-4d6e-be07-28e7a82177c9`
+- Successor Series: 37 targets, 3 roots, 44 dependencies; D4 is the sole
+  preferred `Eligible` candidate
+- D4 review: `3041d8d8-57dc-4c4c-a052-7277bb0cfbe2`, `Ready`
+- Series review: `1c3aae4c-af2f-41e7-90c9-9208f56f1059`, `Ready`
+- Authoring, sequencing and review validators: Bash and PowerShell Pass
+- Retrospective: `NoPromotion`
+
+The closeout records post-merge facts without changing product behavior. D4 is
+not started by Feature 019.

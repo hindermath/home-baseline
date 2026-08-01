@@ -151,30 +151,30 @@ action without relying on color or layout, and native platform tests agree.
 - [X] T099 Align accepted-artifact hashes and final implementation evidence in `autonomous-run-state.json` and `autonomous-run-evidence.md`.
 - [X] T100 Commit the non-empty Feature-019 implementation on the exact feature branch.
 - [X] T101 Push the branch and create the MergeAndSync pull request with evidence-based description.
-- [ ] T102 Inspect every mandatory technical check for the exact PR head.
-- [ ] T103 Confirm macOS, Ubuntu and Windows proof; treat absent native evidence as missing.
-- [ ] T104 Create temporary provider-neutral `autonomous-run-gate-evidence.json` for the exact head.
-- [ ] T105 Validate exact-head gate evidence with Bash and PowerShell gate validators.
-- [ ] T106 Inspect Copilot, Claude and GraphQL review threads and resolve every actionable finding.
-- [ ] T107 Re-run affected gates after corrections and invalidate stale exact-head evidence.
-- [ ] T108 Confirm all technical gates green and zero actionable review threads.
-- [ ] T109 Use the authorized narrow Admin Bypass only if Human Approval is the sole remaining rule.
-- [ ] T110 Merge with a merge commit and delete the remote feature branch.
-- [ ] T111 Switch to `main`, fetch/prune, fast-forward pull and prove clean `HEAD == origin/main`.
+- [X] T102 Inspect every mandatory technical check for the exact PR head.
+- [X] T103 Confirm macOS, Ubuntu and Windows proof; treat absent native evidence as missing.
+- [X] T104 Create temporary provider-neutral `autonomous-run-gate-evidence.json` for the exact head.
+- [X] T105 Validate exact-head gate evidence with Bash and PowerShell gate validators.
+- [X] T106 Inspect Copilot, Claude and GraphQL review threads and resolve every actionable finding.
+- [X] T107 Re-run affected gates after corrections and invalidate stale exact-head evidence.
+- [X] T108 Confirm all technical gates green and zero actionable review threads.
+- [X] T109 Use the authorized narrow Admin Bypass only if Human Approval is the sole remaining rule.
+- [X] T110 Merge with a merge commit and delete the remote feature branch.
+- [X] T111 Switch to `main`, fetch/prune, fast-forward pull and prove clean `HEAD == origin/main`.
 
 ## Phase 9 - Causal Series Closeout and Retrospective
 
-- [ ] T112 Create a non-empty causal closeout branch from synchronized `main` because merge facts could not exist on the reviewed head.
-- [ ] T113 Archive the R-TUI intake through the repository archive workflow.
-- [ ] T114 Update the active Series manifest, receipt and visible order for completed R-TUI.
-- [ ] T115 Bind actual Feature-019 PR and merge evidence into D4 without inventing D4 findings.
-- [ ] T116 Re-review affected Intake/Series evidence and validate Bash/PowerShell authoring, review and sequencing contracts.
-- [ ] T117 Confirm D4 is the one eligible documentation-audit candidate and do not start it in Feature 019.
-- [ ] T118 Deliver the non-empty closeout PR with exact-head checks, review convergence and narrow bypass rules.
-- [ ] T119 Merge the closeout and prove local `main` is clean, synchronized and `(0 0)`.
-- [ ] T120 Complete `retrospective.md` with the established promotion decision taxonomy.
-- [ ] T121 Promote no preset change unless a reproducible provider-neutral defect is proven.
-- [ ] T122 Finalize `autonomous-run-state.json` as `Retrospective`, `Completed`, with `nextExactAction: N/A`.
+- [X] T112 Create a non-empty causal closeout branch from synchronized `main` because merge facts could not exist on the reviewed head.
+- [X] T113 Archive the R-TUI intake through the repository archive workflow.
+- [X] T114 Update the active Series manifest, receipt and visible order for completed R-TUI.
+- [X] T115 Bind actual Feature-019 PR and merge evidence into D4 without inventing D4 findings.
+- [X] T116 Re-review affected Intake/Series evidence and validate Bash/PowerShell authoring, review and sequencing contracts.
+- [X] T117 Confirm D4 is the one eligible documentation-audit candidate and do not start it in Feature 019.
+- [X] T118 Deliver the non-empty closeout PR with exact-head checks, review convergence and narrow bypass rules.
+- [X] T119 Merge the closeout and prove local `main` is clean, synchronized and `(0 0)`.
+- [X] T120 Complete `retrospective.md` with the established promotion decision taxonomy.
+- [X] T121 Promote no preset change unless a reproducible provider-neutral defect is proven.
+- [X] T122 Finalize `autonomous-run-state.json` as `Retrospective`, `Completed`, with `nextExactAction: N/A`.
 
 ## Requirement Traceability
 
