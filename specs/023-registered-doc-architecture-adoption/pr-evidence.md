@@ -166,3 +166,8 @@ byte-for-byte, and publishes a `Ready` successor Series with 33 targets, three
 roots and 39 dependencies. Position 5 is the sole preferred `Eligible`
 candidate. `Eligible` grants no delivery authority, and no successor feature
 starts inside this closeout.
+
+The required non-empty causal evidence closeout is published as PR #202 from
+branch `codex/023-registered-doc-architecture-adoption-closeout`. Its reviewed
+exact head, provider outcome and merge evidence are recorded after the final
+head converges; no successor intake is started by that pull request.

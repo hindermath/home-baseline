@@ -63,7 +63,7 @@
     },
     {
       "path": "specs/023-registered-doc-architecture-adoption/pr-evidence.md",
-      "sha256": "4fc7914cdf47b7a26acd9eb11c62ddcba21b8d77aa9a86c662370ca4e747107d"
+      "sha256": "9d8dda3f697772237f71a89495d4a7e8fa6dcbb1a74f1afdbc08fa96db243cd2"
     },
     {
       "path": "specs/023-registered-doc-architecture-adoption/retrospective.md",
@@ -120,12 +120,12 @@
   ],
   "tasks": {
     "path": "specs/023-registered-doc-architecture-adoption/tasks.md",
-    "sha256": "0f65328032deda6d065d4278e3ae608101972390bb5809f53177dc3214bb8219",
-    "completed": 110,
+    "sha256": "f89ae07f27ec75116dad8b32bbcb27f620e6cef344d8b2f9869cc5d1cf46e0e4",
+    "completed": 111,
     "total": 112
   },
   "lastPassingGate": "Feature PR #201 merged its exact reviewed head after 26 green jobs, seven exact-head gate requirements, a no-comment Copilot review and zero actionable threads; the successor Series is Ready with 33 targets, three roots and 39 dependencies.",
-  "nextExactAction": "Validate and commit the causal closeout, then push this branch and create its non-empty evidence-only pull request.",
+  "nextExactAction": "Converge all mandatory checks and exact-head reviews for closeout PR #202, then record terminal validation without starting a successor intake.",
   "lastOperation": {
     "kind": "CausalSeriesCloseout",
     "state": "Completed",
@@ -142,5 +142,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T23:19:03Z"
+  "updatedAt": "2026-08-01T23:26:33Z"
 }
