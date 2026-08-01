@@ -8,7 +8,7 @@
 | Delivery evidence | `specs/021-level0-documentation-architecture/autonomous-run-evidence.md` |
 | Delivery mode | `MergeAndSync` |
 | Remote result | PR #197 merged as `468924a261996dd245f8f21e4e6693fd2cbe513c`; causal closeout prepared |
-| Interruptions and resumes | No interruption or resume |
+| Interruptions and resumes | No interruptions or resumes |
 
 ## Beobachtungen / Observations
 
