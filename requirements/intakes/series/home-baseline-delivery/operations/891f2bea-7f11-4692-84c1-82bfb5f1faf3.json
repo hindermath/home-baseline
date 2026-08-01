@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "891f2bea-7f11-4692-84c1-82bfb5f1faf3",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit serial-run authority requires the causal Feature-020 archive, exact DIA001 handoff to D5, and no automatic D5 start.",
+  "proposalNormalizedSha256": "9f6f6bf3829d3f17ef5bd26072ec794521592b1fce38d0af01b2a4b488b4d6a4",
+  "differences": {
+    "targetCount": { "before": 37, "after": 36 },
+    "rootCount": { "before": 3, "after": 3 },
+    "dependencyCount": { "before": 44, "after": 43 },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "role": "Primary",
+        "normalizedSha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+        "orderBefore": 2,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Blocked",
+        "statusAfter": "Eligible",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "af27b6aae1f081c9115392949c19d56008fee99a459a6cdf0d190ea923f6e758",
+        "normalizedSha256After": "f2bfdcd46841551e33962536eaf397c6715403c6df9531acf08bdd4ad4e959ef"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "to": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed Feature 020, removes its single outgoing edge, and exposes D5 as the sole preferred Eligible candidate without starting it."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/891f2bea-7f11-4692-84c1-82bfb5f1faf3/manifest.json",
+    "manifestNormalizedSha256": "e35c39d63d25e1728db66e6c09bad6855e96386820e8c09a8633c19bd3a97680",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/891f2bea-7f11-4692-84c1-82bfb5f1faf3/receipt.json",
+    "receiptNormalizedSha256": "13fae6a72068c1a06314771660021b3d351e647883244125695c71dc030eb9fd"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.020-documentation-architecture-audit.md",
+    "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/891f2bea-7f11-4692-84c1-82bfb5f1faf3/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/891f2bea-7f11-4692-84c1-82bfb5f1faf3/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/891f2bea-7f11-4692-84c1-82bfb5f1faf3.json",
+    "specs/intake-authoring-receipts/level-0-dokumentationsarchitektur-und-sprachtrennung.json",
+    "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

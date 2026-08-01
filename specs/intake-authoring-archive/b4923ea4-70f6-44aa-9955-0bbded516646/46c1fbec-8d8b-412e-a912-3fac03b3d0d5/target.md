@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-08-01
+**Stand:** 2026-07-30
 **Reihenfolge:** Dokumentationsvorlauf D5, nach abgeschlossenem D4
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende und Nutzende ohne Spec-Kit-Vorkenntnisse, Lehrende,
@@ -24,31 +24,12 @@ clear sources of truth, and accessible navigation.*
 ## 2. Voraussetzungen und Grenzen / Preconditions and Boundaries
 
 - D1 bis D3 sind abgeschlossen und bleiben unverändert.
-- D4 wurde über PR #194 am exakten Head
-  `c968cdf34bdcf470d4b4f77c7b7b6c6a453e6fab` geprüft und als
-  `3880b161d452891e35c5ec7eb0b28d86351d92f8` gemergt.
-- D4 besitzt das Ergebnis `ReadyWithFindings` mit genau einem akzeptierten
-  Finding `DIA001` für D5 und keinen Findings für D6 oder D7.
+- D4 besitzt ein gemergtes `Ready`-Ergebnis ohne offene Critical-/High-Findings.
 - Die D4-Ziel- und Pfadmatrix ist verbindliche Migrationsgrundlage.
 - D5 verändert keine Runtime, öffentliche API, Abhängigkeit oder
   Wartungslogik.
 - Generierte Dokumente werden nur über ihre Quellen aktualisiert.
 - Historische oder archivierte Evidence wird nicht redaktionell umgeschrieben.
-
-### 2.1 Verbindlicher D4-Handoff / Binding D4 Handoff
-
-`DIA001` ist der einzige zulässige Remediation-Auftrag dieses Laufs: Die
-3.683-zeilige bilinguale Root-README vermischt Einstieg, täglichen Betrieb,
-Wartungsinternas, Audit-Hinweise und Referenzmaterial für vier Leserrollen.
-D5 schafft daraus einen knappen Root-Einstieg und topic-orientierte Leserpfade,
-ohne Inhalt still zu verlieren. Jede Änderung muss auf `DIA001`, die
-Audit-Matrix oder einen notwendigen Link-, Sprach-, A11Y- oder
-Dokumentationsvertrag-Nachweis zurückgeführt werden.
-
-*`DIA001` is D5's only remediation assignment. The 3,683-line bilingual root
-README mixes onboarding, daily operation, maintenance internals, audit guidance,
-and reference content for four reader roles. D5 creates a concise root portal
-and topic-oriented reader paths without silently losing content.*
 
 ## 3. Zielarchitektur / Target Architecture
 
@@ -198,9 +179,6 @@ und allen gepflegten Agentenoberflächen synchron verankert.
   Veröffentlichungsautorität.
 - **DAS-027:** Host-Sync, Source-Resolver und Container-Referenz werden ohne
   neue absolute Pfadkopplung oder funktionale Skriptänderung dokumentiert.
-- **DAS-028:** Jede Änderung besitzt eine eindeutige Rückverfolgung zu
-  `DIA001`; D6-/D7-Themen, zusätzliche Produktfindings und bloße
-  Geschmacksänderungen bleiben außerhalb dieses Laufs.
 
 ## 7. Nicht-Ziele / Non-Goals
 
@@ -239,10 +217,6 @@ und allen gepflegten Agentenoberflächen synchron verankert.
   Home Runtime oder die Runtime als zweite Level-0-Quelle.
 - **AC-DAS-015:** Die Source-/Runtime-Dokumentation stimmt mit Manifest,
   `sync-home.*`, Manpage, Resolver und Container-Grenze überein.
-- **AC-DAS-016:** Eine maschinenlesbare Migrationsmatrix ordnet jeden
-  verschobenen, beibehaltenen, zusammengefassten oder als überholt
-  dokumentierten Root-README-Abschnitt seinem Ziel, Sprachpartner,
-  Linknachweis und `DIA001` zu; D6-/D7-Finding-Zähler bleiben null.
 
 <!-- intake-authoring:prompts -->
 ## 9. Kopierbare Spec-Kit-Prompts / Copy-Ready Prompts
@@ -251,21 +225,21 @@ und allen gepflegten Agentenoberflächen synchron verankert.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` as documentation preflight D5. Bind Feature 020 PR #194, exact reviewed head `c968cdf34bdcf470d4b4f77c7b7b6c6a453e6fab`, merge `3880b161d452891e35c5ec7eb0b28d86351d92f8`, and exactly one accepted D5 finding `DIA001`. Verify compact German and English entry pages, documentation portals, four reader paths, progressive disclosure, criteria-based language splitting, exact Documentation Impact vocabulary, the source/home-runtime orientation and distribution classes, normative placement, generated and historical boundaries, link migration, semantic review, no-runtime scope, and measurable acceptance. Reject speculative D6/D7 work. Do not modify the intake or start D5.
+$speckit-intake-review Review `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` as documentation preflight D5. Verify its hard dependency on the merged D4 findings, compact German and English entry pages, documentation portals, four reader paths, progressive disclosure, criteria-based language splitting, exact Documentation Impact vocabulary, the source/home-runtime orientation and distribution classes, normative placement, generated and historical boundaries, link migration, semantic review, no-runtime scope, and measurable acceptance. Do not modify the intake or start D5.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` and Feature 020 finding `DIA001` as binding input for documentation preflight D5. Create the feature specification for the concise Level-0 root portal, synchronized German and English entry paths, four topic-oriented reader paths, the source/home-runtime orientation, and the durable documentation-architecture contract. Preserve DAS-001 through DAS-028, AC-DAS-001 through AC-DAS-016, the exact four Documentation Impact decisions, criteria-based splitting, distribution classes, generated and historical boundaries, link migration, semantic validation, and no-runtime/no-fleet scope. Do not infer D6/D7 work and do not start a successor.
+$speckit-specify Use `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` and the accepted merged D4 findings as binding input for documentation preflight D5. Create the feature specification for Level-0 documentation restructuring, synchronized German and English entry paths, four reader paths, the source/home-runtime orientation, and the durable documentation-architecture contract. Preserve DAS-001 through DAS-027, AC-DAS-001 through AC-DAS-015, the exact four Documentation Impact decisions, criteria-based splitting, distribution classes, generated and historical boundaries, link migration, semantic validation, and no-runtime/no-fleet scope. Do not start D6 or D7.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` with deliveryAuthority=MergeAndSync after Feature 020 PR #194. Implement only accepted finding `DIA001`: create a concise bilingual Level-0 root portal and topic-oriented reader paths, establish the source/home-runtime orientation and distribution-class contract only where required by that finding, preserve runtime and maintenance behavior, synchronize affected normative and agent surfaces, validate the complete section migration, both language paths and migrated links, converge required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D6 or D7 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md` with deliveryAuthority=MergeAndSync after D4 is merged and Ready. Implement only accepted Level-0 D4 findings, establish the bilingual source/home-runtime orientation and distribution-class contract, preserve runtime and maintenance behavior, synchronize all normative and agent surfaces, validate both language paths and migrated links, converge required and useful optional checks and reviews, merge one non-empty Level-0 PR, return to clean synchronized main, and do not start D6 or D7 automatically.
 ```
 
 <!-- intake-authoring:end -->

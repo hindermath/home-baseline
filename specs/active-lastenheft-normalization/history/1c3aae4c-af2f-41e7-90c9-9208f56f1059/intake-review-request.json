@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "dddd6822-7bd8-4f45-889c-18b2052c49ba",
+  "reviewId": "1c3aae4c-af2f-41e7-90c9-9208f56f1059",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
@@ -151,6 +155,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
       "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
@@ -189,11 +194,16 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
-      "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+        "to": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+        "kind": "DocumentationSurfaceBaseline"
+      },
       {
         "from": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
         "to": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",

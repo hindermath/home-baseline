@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
       "role": "Primary",
-      "normalizedSha256": "f2bfdcd46841551e33962536eaf397c6715403c6df9531acf08bdd4ad4e959ef",
+      "normalizedSha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "af27b6aae1f081c9115392949c19d56008fee99a459a6cdf0d190ea923f6e758",
+      "status": "Blocked"
     },
     {
       "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
@@ -224,11 +230,17 @@
     }
   ],
   "roots": [
-    "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+    "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
+    {
+      "from": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
+      "to": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
     {
       "from": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md",
       "to": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
@@ -495,18 +507,12 @@
     "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
     "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
     "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
-    "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
-    "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-    "specs/020-documentation-architecture-audit/documentation-architecture-audit.json",
     "specs/active-lastenheft-normalization/history/7fd2b056-6e21-4108-bf09-237f294a6024/intake-review-result.json",
     "specs/active-lastenheft-normalization/intake-review-request.json",
-    "specs/active-lastenheft-normalization/intake-review-result.json",
-    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/history/0fa86221-8fce-4fa0-b76e-7d7b0fec124c/intake-review-result.json",
     "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-result.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/history/0fa86221-8fce-4fa0-b76e-7d7b0fec124c/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d4/history/5955846b-83d4-48f9-a26a-3b1fa93c1e40/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d5/history/24b839ac-fd95-4914-981c-0f99a94413c9/intake-review-result.json",
-    "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d6/history/86f8ece6-d921-4430-9283-6f6417edd87d/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json",
     "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
@@ -533,6 +539,9 @@
     "specs/learning-series-governance-intakes/reviews/35-learning-preset/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
-    "specs/learning-series-governance-intakes/series/intake-review-result.json"
+    "specs/learning-series-governance-intakes/series/intake-review-result.json",
+    "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
+    "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
+    "specs/active-lastenheft-normalization/intake-review-result.json"
   ]
 }

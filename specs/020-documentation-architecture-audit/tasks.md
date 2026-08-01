@@ -159,30 +159,30 @@ successor; speculative or empty work is not created.
 - [X] T107 Render and verify the deterministic statistics block in `docs/project-statistics.md`
 - [X] T108 Commit the generated statistics block without other file changes
 - [X] T109 Validate and stage only the intended exact feature candidate
-- [ ] T110 Push `020-documentation-architecture-audit` and create one non-empty PR
-- [ ] T111 Converge all mandatory provider checks on the exact head
-- [ ] T112 Inspect Copilot, Claude, and GraphQL review state and resolve every actionable thread
-- [ ] T113 Re-run affected gates after every review correction
-- [ ] T114 Generate temporary exact-head gate evidence for every Applicable gate
-- [ ] T115 Validate temporary gate evidence in Bash and PowerShell
-- [ ] T116 Confirm all technical gates green and zero actionable review threads
-- [ ] T117 Use narrow Admin Bypass only if Human Approval is the sole remaining rule
-- [ ] T118 Merge with a merge commit and delete the remote feature branch
-- [ ] T119 Switch to `main`, fetch/prune, fast-forward pull, and prove clean `(0 0)`
-- [ ] T120 Confirm no D5, D6, or D7 run was started by Feature 020
+- [X] T110 Push `020-documentation-architecture-audit` and create one non-empty PR
+- [X] T111 Converge all mandatory provider checks on the exact head
+- [X] T112 Inspect Copilot, Claude, and GraphQL review state and resolve every actionable thread
+- [X] T113 Re-run affected gates after every review correction
+- [X] T114 Generate temporary exact-head gate evidence for every Applicable gate
+- [X] T115 Validate temporary gate evidence in Bash and PowerShell
+- [X] T116 Confirm all technical gates green and zero actionable review threads
+- [X] T117 Use narrow Admin Bypass only if Human Approval is the sole remaining rule
+- [X] T118 Merge with a merge commit and delete the remote feature branch
+- [X] T119 Switch to `main`, fetch/prune, fast-forward pull, and prove clean `(0 0)`
+- [X] T120 Confirm no D5, D6, or D7 run was started by Feature 020
 
 ## Phase 9: Causal Closeout and Retrospective
 
-- [ ] T121 Create a non-empty Feature-020 closeout branch only because merge facts cannot exist on the reviewed head
-- [ ] T122 Archive the D4 intake through the repository archive workflow
-- [ ] T123 Remove D4 from the active Series and preserve exact history and receipt lineage
-- [ ] T124 Bind actual PR, reviewed head, merge commit, and audit cardinalities into successor evidence
-- [ ] T125 Update D5 only when T083 proved a non-empty D5-owned finding set; otherwise record it as not eligible
-- [ ] T126 Re-review affected successor and Series evidence in Bash and PowerShell
-- [ ] T127 Complete `retrospective.md` with `NoPromotion` unless a provider-neutral preset defect is reproduced
-- [ ] T128 Finalize all 130 tasks and `autonomous-run-state.json` as `Retrospective` and `Completed`
-- [ ] T129 Deliver and merge the non-empty closeout PR under the same exact-head rules
-- [ ] T130 Prove final local `main == origin/main`, clean worktree, current Series, and exact next eligible candidate
+- [X] T121 Create a non-empty Feature-020 closeout branch only because merge facts cannot exist on the reviewed head
+- [X] T122 Archive the D4 intake through the repository archive workflow
+- [X] T123 Remove D4 from the active Series and preserve exact history and receipt lineage
+- [X] T124 Bind actual PR, reviewed head, merge commit, and audit cardinalities into successor evidence
+- [X] T125 Update D5 only when T083 proved a non-empty D5-owned finding set; otherwise record it as not eligible
+- [X] T126 Re-review affected successor and Series evidence in Bash and PowerShell
+- [X] T127 Complete `retrospective.md` with `NoPromotion` unless a provider-neutral preset defect is reproduced
+- [X] T128 Finalize all 130 tasks and `autonomous-run-state.json` as `Retrospective` and `Completed`
+- [X] T129 Deliver and merge the non-empty closeout PR under the same exact-head rules
+- [X] T130 Prove final local `main == origin/main`, clean worktree, current Series, and exact next eligible candidate
 
 ## Dependencies and Coverage
 
