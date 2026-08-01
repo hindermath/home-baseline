@@ -1508,7 +1508,8 @@ Terminal. Die sichere Vorauswahl ist **Vorschau (Dry-run)**. Ein
 argumentloser Aufruf mit umgeleiteter Ein- oder Ausgabe behält dagegen den
 bisherigen unbeaufsichtigten Wartungsvertrag. Jeder vorhandene
 Wartungsparameter bleibt ebenfalls headless, also ohne vorgeschaltete
-Interaktion.
+Interaktion. Eine ältere Home-Runtime delegiert auch ohne Argumente unter dem
+macOS-System-Bash 3.2 sicher an die versionierte Level-0-Quelle.
 
 Die TUI sammelt nur eine typisierte Auswahl, zeigt den entsprechenden Befehl
 und startet genau einmal den unveränderten Bash- oder PowerShell-Orchestrator.
@@ -1522,7 +1523,8 @@ argument-free invocation in a fully interactive terminal first opens a
 terminal user interface (TUI). Its safe default is **Dry-run**. An
 argument-free invocation with redirected input or output preserves the
 existing unattended maintenance contract. Every existing maintenance option
-also remains headless.*
+also remains headless. An older Home Runtime safely delegates an argument-free
+call to the versioned Level 0 source under macOS system Bash 3.2.*
 
 *The TUI collects one typed selection, displays the equivalent command, and
 starts the unchanged Bash or PowerShell orchestrator exactly once. A mutating
@@ -1584,7 +1586,11 @@ wechselt die Oberfläche **vor** dem Engine-Start sichtbar in einen linearen
 ASCII-Assistenten. Nach Engine-Start gibt es keinen zweiten Versuch und keinen
 UI-Fallback. Ein versionierter, append-only JSONL-Ereigniskanal liefert
 lediglich Live-Hinweise. Der atomar finalisierte Bericht und der
-Prozess-Exitcode bleiben maßgeblich. Cache und Ereignisse liegen privat unter
+Prozess-Exitcode bleiben maßgeblich. Die TUI bindet den erwarteten Berichtspfad
+vor dem Engine-Start an Home-Verzeichnis und Run-ID. Dadurch kann sie den
+Bericht auch ohne nutzbares `run-completed`-Ereignis sicher laden; ein
+vorhandenes Abschlussereignis muss mit diesem Bericht übereinstimmen. Cache und
+Ereignisse liegen privat unter
 `~/.home-baseline/` und werden nicht eingecheckt.
 
 Ein erstes `Ctrl+C` wird genau einmal an den laufenden Engine-Prozess
@@ -1602,7 +1608,10 @@ the interface. Missing terminal capability, .NET 10, locked restore, or a safe
 user cache causes a visible plain fallback before engine start. There is no
 second attempt or fallback after engine start. Versioned append-only JSONL
 events are advisory live information; the atomically finalized report and
-process exit remain canonical. Cache and events stay private below
+process exit remain canonical. Before engine start, the TUI binds the expected
+report path to the home directory and run ID. It can therefore load the report
+without a usable `run-completed` event; a present completion event must agree
+with that report. Cache and events stay private below
 `~/.home-baseline/` and are never committed.*
 
 *The first `Ctrl+C` is forwarded to the running engine exactly once and is

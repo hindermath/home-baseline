@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "G001-event-emission",
+      "applicability": "Applicable",
+      "requiredScope": "Bash emits valid object details, contiguous persisted sequence numbers and exactly one matching start and completion event.",
+      "requiredCommandTokens": ["test_maintenance_tui_wrappers"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G002-result-reconciliation",
+      "applicability": "Applicable",
+      "requiredScope": "Typed expected report path, finalization and run ownership, missing advisory completion event and genuine mismatch fixtures.",
+      "requiredCommandTokens": ["dotnet test"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G003-bash32-delegation",
+      "applicability": "Applicable",
+      "requiredScope": "Zero, one and multiple argument Home Runtime delegation under macOS system Bash 3.2 without shell re-evaluation.",
+      "requiredCommandTokens": ["test_maintenance_tui_wrappers"],
+      "requiredRunnerOrPlatformTokens": ["macos"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G004-maintenance-regression",
+      "applicability": "Applicable",
+      "requiredScope": "Feature 015-018 safety, preview, result, resume, freshness, lease, profile, TUI and target-authority contracts remain green.",
+      "requiredCommandTokens": ["unittest discover"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G005-documentation-and-governance",
+      "applicability": "Applicable",
+      "requiredScope": "Documentation Impact, bilingual CEFR-B2 text, WCAG-oriented output, homogeneity, PSScriptAnalyzer, secret scan and statistics.",
+      "requiredCommandTokens": ["check-homogeneity"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G006-exact-head",
+      "applicability": "Applicable",
+      "requiredScope": "All mandatory provider checks and platform tokens map to the exact reviewed PR head.",
+      "requiredCommandTokens": ["validate-autonomous-gate-evidence"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "G007-supply-cloud-ai-regulatory",
+      "applicability": "N/A",
+      "requiredScope": "Dependency/SBOM/VEX/SLSA/OpenSSF, cloud/Zero Trust/BSI C3A/C5, AI-SBOM and regulatory product evidence.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No package, dependency, web, cloud, AI model, regulated product or public release boundary changes.",
+      "reevaluationTrigger": "Reevaluate if the actual diff adds or changes any named boundary."
+    }
+  ]
+}

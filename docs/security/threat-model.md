@@ -1,6 +1,6 @@
 # Bedrohungsmodell / Threat Model: home-baseline
 
-**Stand / State**: 2026-07-29
+**Stand / State**: 2026-08-01
 **Umfang / Scope**: Agentic Workspace Maintenance und Wartungs-TUI
 
 ## Systemgrenze / System Boundary
@@ -24,7 +24,7 @@ Administratorautorisierung hinzufügen.
 
 | Kategorie | Bedrohung | Kontrolle |
 |---|---|---|
-| Spoofing | Fremdes Ereignis oder Bericht behauptet einen anderen Lauf | UUID-Bindung, Sequenz, finalisierter Bericht |
+| Spoofing | Fremdes Ereignis oder Bericht behauptet einen anderen Lauf | UUID-Bindung, Sequenz, vorgebundener Berichtspfad, finalisierter Bericht |
 | Tampering | Cache, JSONL oder Bericht wird verändert | SHA-256-/Plattformprüfung, striktes JSON, Ergebnisabgleich |
 | Repudiation | Unklar, welche Auswahl gestartet wurde | sichtbarer Befehl, Run-ID, Log, Bericht und Eventpfad |
 | Information Disclosure | Pfad oder Meldung enthält Secret/Markup | privates State-Verzeichnis, Secret-Scan, Markup-Escaping |
@@ -36,7 +36,8 @@ Administratorautorisierung hinzufügen.
 - **Confidentiality:** Ereignisse und Cache liegen unter dem privaten
   Home-State. Freie Konsolentexte werden nicht als Protokoll geparst.
 - **Integrity:** Prozessargumente sind typisiert; Event, Bericht und Exitcode
-  werden unabhängig geprüft.
+  werden unabhängig geprüft. Der Berichtspfad ist vor Prozessstart an Home und
+  Run-ID gebunden; eine Suche nach der neuesten Datei ist ausgeschlossen.
 - **Availability:** Der Plain-Assistent bleibt ohne Enhanced-TUI verfügbar.
 - **CAPEC-15 Command Delimiters:** Kein `eval`, `Invoke-Expression` oder
   ausführbarer zusammengesetzter Befehlsstring.
