@@ -133,9 +133,13 @@ are recorded separately.
   were normative but not yet enforced. Schema `1.1` now requires audience,
   reader-path, source, navigation, language, platform/example, distribution,
   Home-sync, risk, and re-evaluation evidence, while schema `1.0` remains
-  readable for historical records. Seven Bash and PowerShell fixtures cover a
-  current positive row, a legacy positive row, and five fail-closed cases; the
+  readable for historical records. Ten Bash and PowerShell fixtures cover a
+  current positive row, a legacy positive row, and eight fail-closed cases; the
   Feature-021 evidence passes the strict schema.
+- Copilot's next pass identified that one new negative fixture failed through
+  several independent fields. It is now atomic, and separate distribution,
+  Home-sync-type, and language-partner-type fixtures preserve regression
+  sensitivity. Both shell entry points now pass `10` focused cases.
 
 ## Governance
 

@@ -282,6 +282,18 @@
       "executable": false
     },
     {
+      "path": "scripts/tests/documentation-impact/fixtures/invalid-distribution-class.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/invalid-home-sync-type.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/invalid-language-partners-type.json",
+      "executable": false
+    },
+    {
       "path": "scripts/tests/documentation-impact/fixtures/missing-decision.json",
       "executable": false
     },

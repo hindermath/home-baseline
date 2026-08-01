@@ -38,7 +38,11 @@ function Test-RepoPath {
 
 function Get-PropertyValue {
     param([object]$Object, [string]$Name)
-    return $Object.PSObject.Properties[$Name]
+    $property = $Object.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return [PSCustomObject]@{ Value = $null }
+    }
+    return $property
 }
 
 function Test-NonEmptyStringArray {
@@ -68,6 +72,11 @@ try {
     $ids = @{}
     foreach ($entry in @($document.entries)) {
         $id = [string]$entry.changeId
+        $decision = (Get-PropertyValue $entry 'decision').Value
+        $criticality = (Get-PropertyValue $entry 'criticality').Value
+        $documents = (Get-PropertyValue $entry 'documents').Value
+        $riskValue = (Get-PropertyValue $entry 'risk').Value
+        $reevaluationValue = (Get-PropertyValue $entry 'reevaluationTrigger').Value
         if ($id -notmatch '^CHG[0-9]{3,}$') {
             $errors.Add("IDENTITY: invalid changeId '${id}'.")
         } elseif ($ids.ContainsKey($id)) {
@@ -82,14 +91,14 @@ try {
             -not (Test-RepoPath $entry.evidence)) {
             $errors.Add("REQUIRED: '${id}' lacks scope, rationale, owner, or repository-relative evidence.")
         }
-        if ($entry.decision -notin $decisions) {
+        if ($decision -notin $decisions) {
             $errors.Add("DECISION: '${id}' has an unknown or missing decision.")
             continue
         }
-        if ($entry.criticality -notin $criticalities) {
+        if ($criticality -notin $criticalities) {
             $errors.Add("CRITICALITY: '${id}' has an unknown or missing criticality.")
         }
-        foreach ($path in @($entry.documents)) {
+        foreach ($path in @($documents)) {
             if (-not (Test-RepoPath $path)) {
                 $errors.Add("PATH: '${id}' contains a non-repository-relative document path.")
             }
@@ -139,27 +148,33 @@ try {
             }
         }
 
-        if ($entry.decision -eq 'UpdateRequired' -and @($entry.documents).Count -eq 0) {
+        if ($decision -eq 'UpdateRequired' -and @($documents).Count -eq 0) {
             $errors.Add("DECISION: '${id}' UpdateRequired needs at least one document.")
         }
-        if ($entry.decision -eq 'GeneratedUpdate') {
-            if (@($entry.documents).Count -eq 0 -or
-                $null -eq $entry.generatedSource -or
-                -not (Test-RepoPath $entry.generatedSource.path) -or
-                -not (Test-TextValue $entry.generatedSource.renderer)) {
+        if ($decision -eq 'GeneratedUpdate') {
+            $generatedSource = (Get-PropertyValue $entry 'generatedSource').Value
+            $generatedPath = $(if ($null -eq $generatedSource) { $null } else { (Get-PropertyValue $generatedSource 'path').Value })
+            $generatedRenderer = $(if ($null -eq $generatedSource) { $null } else { (Get-PropertyValue $generatedSource 'renderer').Value })
+            if (@($documents).Count -eq 0 -or
+                $null -eq $generatedSource -or
+                -not (Test-RepoPath $generatedPath) -or
+                -not (Test-TextValue $generatedRenderer)) {
                 $errors.Add("GENERATED: '${id}' needs documents, source, and renderer.")
             }
         }
-        if ($entry.decision -eq 'FollowUp') {
+        if ($decision -eq 'FollowUp') {
             $validDate = [datetime]::MinValue
-            $dateOk = [datetime]::TryParse([string]$entry.dueDate, [ref]$validDate)
-            if (-not $dateOk -or -not (Test-TextValue $entry.reevaluationTrigger) -or
-                -not (Test-TextValue $entry.scopeReason) -or
-                -not (Test-TextValue $entry.risk) -or $entry.risk -eq 'N/A') {
+            $dueDate = (Get-PropertyValue $entry 'dueDate').Value
+            $scopeReason = (Get-PropertyValue $entry 'scopeReason').Value
+            $acceptedRiskEvidence = (Get-PropertyValue $entry 'acceptedRiskEvidence').Value
+            $dateOk = [datetime]::TryParse([string]$dueDate, [ref]$validDate)
+            if (-not $dateOk -or -not (Test-TextValue $reevaluationValue) -or
+                -not (Test-TextValue $scopeReason) -or
+                -not (Test-TextValue $riskValue) -or $riskValue -eq 'N/A') {
                 $errors.Add("FOLLOWUP: '${id}' lacks risk, due date, trigger, or scope reason.")
             }
-            if ($entry.criticality -in @('Security', 'Usage', 'BreakingChange') -and
-                -not (Test-RepoPath $entry.acceptedRiskEvidence)) {
+            if ($criticality -in @('Security', 'Usage', 'BreakingChange') -and
+                -not (Test-RepoPath $acceptedRiskEvidence)) {
                 $errors.Add("RISK: '${id}' cannot defer critical documentation without accepted-risk evidence.")
             }
         }
