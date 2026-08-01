@@ -68,8 +68,54 @@ are recorded separately.
   browser documentation test project exists. Markdown, learning-package,
   semantic WCAG, and provider link gates are applicable instead.
 - Homogeneity architecture checks: PASS after language-pair and portal-aware
-  validator alignment; the only remaining local finding is expected statistics
-  drift, which T099 resolves after the feature commit makes rendering safe.
+  validator alignment. Bash and PowerShell both report `30/30`, `100%` after
+  T099 rendered the statistics from clean checkpoint `08ead0b7ac9f`.
+- Local ignored Python and .NET build caches were removed before the PowerShell
+  Homogeneity proof; they were not tracked or used as delivery evidence.
+- Script-reference renderers: Bash write followed by Bash/PowerShell
+  `CURRENT` checks (`124` canonical, `159` embedded scripts).
+- Statistics renderers: Bash write followed by Bash/PowerShell `CURRENT`
+  checks (`588631` text lines, `80` active days at checkpoint).
+- Scope inventory: documentation, documentation governance, CI/test-only
+  validation, feature evidence, and statistics only. The Homogeneity helper
+  changes recognize reciprocal `.en.md` language partners and portal links;
+  maintenance runtime, APIs, dependencies, packages, fleet state, historical
+  evidence, D6, and D7 are unchanged.
+
+### Final Candidate Revalidation
+
+- Autonomous-run state validators: PASS in Bash and PowerShell (`98/110` at
+  the pre-delivery checkpoint).
+- Migration contract: PASS (`12` fixture groups); complete migration: PASS
+  (`16` sections, `4` reader paths, `17` linked files).
+- The first ad-hoc migration-validator invocation used obsolete positional
+  arguments and was rejected by `argparse`; the documented `--repo` and
+  `--migration` invocation then passed. No files changed during the rejected
+  call.
+- The first ad-hoc Lychee invocation omitted the repository's intentional
+  project-template exclusion and therefore reported seven fixture-relative
+  links. The exact workflow invocation then passed (`3508` links, `0` errors).
+- Documentation Impact fixtures and Feature-021 evidence: PASS in Bash and
+  PowerShell. One guessed `check-documentation-impact.sh` path was rejected as
+  absent; discovery identified and successfully ran the canonical
+  `validate-documentation-impact.*` pair. No files changed during discovery.
+- Learning-package self-tests and generated secure-development-document checks:
+  PASS in Bash and PowerShell.
+- PSScriptAnalyzer: PASS (`147` files, zero Error/Warning findings).
+- Secret scan: PASS (zero high findings; the machine-local `.claude` medium
+  observation is excluded from publication).
+- `specify check` and the exact eleven-preset profile check: PASS.
+- Homogeneity runtime-closure fixtures: PASS in Bash and PowerShell.
+- Repository-scoped Homogeneity has `29/30` before the evidence checkpoint;
+  only the deterministically generated statistics profile is stale. It will be
+  rendered from the committed evidence checkpoint and rechecked in both shells
+  before the delivery head is pushed.
+- Script reference: `CURRENT` in Bash and PowerShell (`124` canonical, `159`
+  embedded scripts).
+- A mistakenly unscoped PowerShell Homogeneity invocation inspected the wider
+  local fleet and reported pre-existing machine-wide drift. It did not mutate
+  files and is not Feature-021 acceptance evidence; the canonical
+  repository-scoped invocation is the applicable proof.
 
 ## Governance
 

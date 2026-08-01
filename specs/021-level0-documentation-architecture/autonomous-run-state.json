@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Implement",
   "status": "Active",
-  "checkpointCommit": "edf33bc88029edea261e9c461d45c347d449ad3f",
+  "checkpointCommit": "08ead0b7ac9f6ee961398b09bb7fbb7da20a95e8",
   "acceptedArtifacts": [
     {"path": ".specify/memory/constitution.md", "sha256": "629ee3de68cb3010c5d90a7332e7414e304b0892d13b2918a33eb4cb1c0369e0"},
     {"path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md", "sha256": "f2bfdcd46841551e33962536eaf397c6715403c6df9531acf08bdd4ad4e959ef"},
@@ -18,16 +18,16 @@
   ],
   "tasks": {
     "path": "specs/021-level0-documentation-architecture/tasks.md",
-    "sha256": "beff51249d3937e52c9deea24972e06126c060c8d4f8d485cc21f91f38102dd5",
-    "completed": 95,
+    "sha256": "6a56ce38e7bb68b9c69da7ffe6d3ee7ac9594434198254a754710573c452c0e1",
+    "completed": 99,
     "total": 110
   },
-  "lastPassingGate": "DIA001 migration, language pairs, links, Documentation Impact, learning package, generated documents, PowerShell, secrets, presets, and agent parity pass locally.",
-  "nextExactAction": "Validate and commit the exact implementation candidate, then render project statistics from the clean checkpoint.",
+  "lastPassingGate": "Final candidate revalidation passes except for the expected statistics drift caused by post-checkpoint evidence updates; the evidence checkpoint is ready to commit.",
+  "nextExactAction": "Commit the evidence checkpoint, render statistics from that clean checkpoint, and validate the exact delivery head.",
   "lastOperation": {
     "kind": "Implement",
     "state": "Completed",
-    "summary": "The D5 documentation architecture is implemented; only clean-checkpoint statistics, final validation, delivery, Series closeout, and retrospective remain."
+    "summary": "The D5 documentation architecture and final local evidence are complete; the deterministic statistics render and remote delivery remain."
   },
   "stop": {"reason": "N/A", "requestedAt": "N/A", "safeBoundary": "N/A"},
   "closeout": {
@@ -36,5 +36,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T17:13:06Z"
+  "updatedAt": "2026-08-01T17:56:40Z"
 }

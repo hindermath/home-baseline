@@ -116,18 +116,18 @@ templates, evidence, Series, and statistics are common write surfaces.
 - [X] T088 Run migration contract tests and validator
 - [X] T089 Run repository Markdown and internal-link validators discovered for changed paths
 - [X] T090 Run `git diff --check`
-- [ ] T091 Run Homogeneity validation
+- [X] T091 Run Homogeneity validation
 - [X] T092 Run PowerShell static analysis
 - [X] T093 Run secret scanning
 - [X] T094 Run `specify check` and Spec Kit preset resolution checks
 - [X] T095 Run agent-parity validation
 - [X] T096 Run DocFX and Playwright/Axe documentation checks
-- [ ] T097 Confirm runtime, API, dependency, package, fleet, historical, D6, and D7 scope exclusion
+- [X] T097 Confirm runtime, API, dependency, package, fleet, historical, D6, and D7 scope exclusion
 
 ## Phase 9: Evidence, Statistics, and Delivery
 
-- [ ] T098 Update `autonomous-run-evidence.md` with every command, result, skipped trigger, and proof boundary
-- [ ] T099 Update and render `docs/project-statistics.md`
+- [X] T098 Update `autonomous-run-evidence.md` with every command, result, skipped trigger, and proof boundary
+- [X] T099 Update and render `docs/project-statistics.md`
 - [ ] T100 Archive the completed D5 intake using the repository workflow
 - [ ] T101 Update Pflichtenheft and Series state without starting D6 or D7
 - [ ] T102 Validate the successor Series and identify the sole next preferred candidate
