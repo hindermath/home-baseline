@@ -20,7 +20,7 @@
 | Tasks | Pass | 130 serialized tasks with conditional D5 handling |
 | Analyze | Pass | 0 Critical, 0 High, 0 unresolved Medium after I1/G1/G2/G3 remediation |
 | Implement | Pass | 2,624-unit frozen-tree inventory, four reader paths, 23 contracts, three source/runtime classes, one D5 finding |
-| Validate | Pending | Local and provider exact-head gates |
+| Validate | Pass | Local audit, generated-reference, statistics, Homogeneity, link, analyzer, and secret gates |
 | Deliver | Pending | Non-empty PR, review convergence, merge, main sync |
 | Retrospective | Pending | Promotion decision after field evidence |
 
@@ -98,7 +98,7 @@ canonical catalog and renderer remain unchanged.
 | Autonomous state schema, Bash/PowerShell | Pass / Pass | Updated again after task/hash reconciliation |
 | `specify check` | Pass | Installed integrations ready |
 | `git diff --check` | Pass | No whitespace error |
-| Lychee offline with fragments | Pass | 3,568 links, zero errors before generated-reference refresh |
+| Lychee offline with fragments | Pass | 3,568 links, zero errors after generated-reference refresh |
 | Script-reference renderer/test | Pass | `124` canonical and `157` embedded scripts |
 | PSScriptAnalyzer 1.25.0 | Pass | 147 repository-owned files, zero warnings/errors |
 | Gitleaks/agent secret scan | Pass | Zero High findings; known local agent metadata only |
@@ -106,5 +106,12 @@ canonical catalog and renderer remain unchanged.
 | Product build/test | Not triggered | No product runtime or buildable project changed |
 
 The first Homogeneity preview reported only expected generated-reference drift.
-After rendering, the remaining Statistics Profile 2 drift is intentionally
-resolved in the serialized statistics phase before final Homogeneity proof.
+After the serialized script-reference and Statistics Profile 2 renders, the
+final Homogeneity preview passes `30/30` checks at `100%`.
+
+## Local Commit Checkpoints
+
+- Stable audit candidate: `2a44bab`
+- Statistics source inputs: `0fac634`
+- Task checkpoint before rendering: `328b03b`
+- Deterministic statistics output: `8132142`

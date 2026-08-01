@@ -5,9 +5,9 @@
   "branch": "020-documentation-architecture-audit",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Validate",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "4c19093692542ff5001819f9ba2d17a1a1a5d4d7",
+  "checkpointCommit": "81321427492b862a04f065111fb77128f15118be",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
@@ -99,7 +99,7 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-      "sha256": "5fe9919e1c304d257a0b0c7af5d6dc48326ae599683451201a117c81e91ed719"
+      "sha256": "5248c95bcd231cc44012b748117c0634e06ab6d1934478682d20433fa82e45cc"
     },
     {
       "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",
@@ -112,20 +112,28 @@
     {
       "path": "docs/scripts/embedded-scripts.md",
       "sha256": "a1169cf72a949cd456a165e8a3465e5d70009e69e6917ecc831e550f95ecca95"
+    },
+    {
+      "path": "docs/project-statistics.md",
+      "sha256": "7998074923f109f2b12444ea97bff832ba0c09ce75700ae5d0c133c1b0a11c4a"
+    },
+    {
+      "path": "docs/project-statistics.config.json",
+      "sha256": "582aa1af84a502bdce7e17668212715f33a5ca1820ac760ac29a56b374031bad"
     }
   ],
   "tasks": {
     "path": "specs/020-documentation-architecture-audit/tasks.md",
-    "sha256": "551a99d484fc1e87d0ba73b642246a795fee7bccc6978d864e998d8de0ee111f",
-    "completed": 101,
+    "sha256": "1d42fb65137b5e097b1ac5c2b447e423a4e760f5de85bec1b77c38f803815331",
+    "completed": 109,
     "total": 130
   },
-  "lastPassingGate": "The frozen-tree audit validates 2624 documentation units, four reader paths, 23 contracts, three source/runtime classes, and one D5 finding; test, link, analyzer, and secret gates pass.",
-  "nextExactAction": "Commit the stable Feature-020 candidate, then add and render the serialized project-statistics inputs.",
+  "lastPassingGate": "All local Feature-020 gates pass, including 30/30 Homogeneity checks after deterministic script-reference and statistics rendering.",
+  "nextExactAction": "Commit the reconciled exact candidate, push the feature branch, open the non-empty PR, and converge provider reviews and gates.",
   "lastOperation": {
     "kind": "Validate",
     "state": "Completed",
-    "summary": "Read-only audit implementation and local validation completed; statistics rendering remains serialized after the stable candidate commit."
+    "summary": "Read-only audit implementation, generated-reference integration, statistics rendering, and all local gates are complete."
   },
   "stop": {
     "reason": "N/A",
@@ -138,5 +146,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T15:47:11Z"
+  "updatedAt": "2026-08-01T16:01:00Z"
 }

@@ -144,7 +144,7 @@ successor; speculative or empty work is not created.
 - [X] T095 Validate the accepted aggregate with `tools/validate_documentation_architecture.py`
 - [X] T096 Run D4 Authoring, Review, Series, and autonomous-state validators in Bash and PowerShell
 - [X] T097 Run `git diff --check` and `specify check`
-- [ ] T098 Run Homogeneity and local Markdown link checks
+- [X] T098 Run Homogeneity and local Markdown link checks
 - [X] T099 Run PSScriptAnalyzer and secret scan
 - [X] T100 Confirm DocFX/browser A11Y remains untriggered or run it if scope changed
 - [X] T101 Confirm no active documentation, runtime, script, workflow, preset, dependency, package, or fleet path changed
@@ -156,9 +156,9 @@ successor; speculative or empty work is not created.
 - [X] T104 Add the Feature-020 source-ledger entry to `docs/project-statistics.md`
 - [X] T105 Add the Feature-020 phase input to `docs/project-statistics.config.json`
 - [X] T106 Commit the statistics source inputs
-- [ ] T107 Render and verify the deterministic statistics block in `docs/project-statistics.md`
-- [ ] T108 Commit the generated statistics block without other file changes
-- [ ] T109 Validate and stage only the intended exact feature candidate
+- [X] T107 Render and verify the deterministic statistics block in `docs/project-statistics.md`
+- [X] T108 Commit the generated statistics block without other file changes
+- [X] T109 Validate and stage only the intended exact feature candidate
 - [ ] T110 Push `020-documentation-architecture-audit` and create one non-empty PR
 - [ ] T111 Converge all mandatory provider checks on the exact head
 - [ ] T112 Inspect Copilot, Claude, and GraphQL review state and resolve every actionable thread
