@@ -163,7 +163,7 @@ Examples of foundational tasks (adjust based on your project):
   evidence
 - [ ] TXXX Verify audience/reader path, canonical source/owner, navigation,
   document class, language partner, platform/example proof, distribution class,
-  Home-sync need, and re-evaluation evidence
+  Home-sync need, and re-evaluation trigger
 - [ ] TXXX Validate Documentation Impact evidence with
   `validate-documentation-impact.*` when the repository provides that contract
 - [ ] TXXX Code cleanup and refactoring
