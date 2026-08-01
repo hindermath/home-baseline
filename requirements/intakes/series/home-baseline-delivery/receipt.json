@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "8a91d3a2-a6c3-4a1f-8793-17b503f86612",
+  "receiptId": "ce4c6ec6-ac1f-4f22-a818-3e9f362acc24",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-08-01T14:33:54Z",
+  "createdAt": "2026-08-01T16:49:00Z",
   "operation": {
-    "operationId": "ebcd32f9-f7d1-4d6e-be07-28e7a82177c9",
+    "operationId": "891f2bea-7f11-4692-84c1-82bfb5f1faf3",
     "type": "Update",
-    "authorityEvidence": "Explicit serial-run authority requires the causal Feature-019 archive, D4 evidence binding, and no automatic D4 start."
+    "authorityEvidence": "Explicit serial-run authority requires the causal Feature-020 archive, exact DIA001 handoff to D5, and no automatic D5 start."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "e35c39d63d25e1728db66e6c09bad6855e96386820e8c09a8633c19bd3a97680"
+    "normalizedSha256": "442d549f08dba795acc356bf0d4f13f14161b61ad377497c3dca5570d0f6983e"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9/receipt.json",
-    "receiptNormalizedSha256": "7ccf85250b15839caa480fb1f3109661cb17df7896d15292704246c9da4d998d",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ebcd32f9-f7d1-4d6e-be07-28e7a82177c9/manifest.json",
-    "manifestArchiveSha256": "707f7eec7546146965ca9c8c07c507635119bbaac551ef23289d8b78eb5dc64a"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/891f2bea-7f11-4692-84c1-82bfb5f1faf3/receipt.json",
+    "receiptNormalizedSha256": "13fae6a72068c1a06314771660021b3d351e647883244125695c71dc030eb9fd",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/891f2bea-7f11-4692-84c1-82bfb5f1faf3/manifest.json",
+    "manifestArchiveSha256": "e35c39d63d25e1728db66e6c09bad6855e96386820e8c09a8633c19bd3a97680"
   },
   "tombstone": {
     "path": "N/A",

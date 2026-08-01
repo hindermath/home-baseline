@@ -5,61 +5,41 @@
   "branch": "020-documentation-architecture-audit",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
-  "checkpointCommit": "3af7c1734ffac4b4250383c4b0743be5ebd91acf",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "3880b161d452891e35c5ec7eb0b28d86351d92f8",
   "acceptedArtifacts": [
-    {
-      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md",
-      "sha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b"
-    },
-    {
-      "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-request.json",
-      "sha256": "a3b30acdd1b728ef33250c978991cc303ca22bf244f2323db6ba398ddea725de"
-    },
-    {
-      "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
-      "sha256": "709a2ec11c81a0898db74a240836c9bbd4af4b1125d850d11197c7fb0886b7e6"
-    },
-    {
-      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "e35c39d63d25e1728db66e6c09bad6855e96386820e8c09a8633c19bd3a97680"
-    },
-    {
-      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
-      "sha256": "13fae6a72068c1a06314771660021b3d351e647883244125695c71dc030eb9fd"
-    },
     {
       "path": ".specify/memory/constitution.md",
       "sha256": "629ee3de68cb3010c5d90a7332e7414e304b0892d13b2918a33eb4cb1c0369e0"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/spec.md",
-      "sha256": "ecc1163db7a6e6efdbc9e4ba0976170ffe3ab6c122029f53087b50e59b9f9f20"
+      "path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.020-documentation-architecture-audit.md",
+      "sha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/plan.md",
-      "sha256": "4dab5eaa6e3674f50d45deecf33cd3b2df2ff8972930ef7323d10455ca4e3757"
+      "path": "docs/scripts/embedded-scripts.md",
+      "sha256": "a1169cf72a949cd456a165e8a3465e5d70009e69e6917ecc831e550f95ecca95"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/research.md",
-      "sha256": "7f0dfcf6750fc355370e56842e23bf3a0db5196325af2cca03510f40f4bc846f"
+      "path": "docs/scripts/reference.md",
+      "sha256": "8f5c79b84a519ca517ce44ac49fff304fafe1a5f1ba8b47f16f0e6a3955ab81f"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/data-model.md",
-      "sha256": "781f215045edd5d93924531fe250bd2b68c6f6a7c0d4ee7d93477823a8c6d8ad"
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "442d549f08dba795acc356bf0d4f13f14161b61ad377497c3dca5570d0f6983e"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/quickstart.md",
-      "sha256": "be5a41aaf97e0f73fa278b4c4d1874ec3790e748f6eabdf62306612a7c00e02f"
+      "path": "requirements/intakes/series/home-baseline-delivery/operations/891f2bea-7f11-4692-84c1-82bfb5f1faf3.json",
+      "sha256": "ad1b9f10229775aacf9e1dc47746abc2b09e6780bb3af616a9e425296f254755"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/contracts/documentation-architecture-audit.md",
-      "sha256": "d4acf0bd9832afd2b49ab54686440e9ad61dc0bfdf659b09468e390482878dc3"
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "028551481424cc57a2144c14bb77f86ddc27e9b674f11644b457e1930ec25862"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/autonomous-run-gate-requirements.json",
-      "sha256": "a3b0f39833be00ffeda7c0c02fa50a36892d5bd1c66d44ff68e8a9a92908090d"
+      "path": "scripts/tests/test_feature_020_documentation_architecture.py",
+      "sha256": "77af1f54a9b6ece7f89cf03758397a06be6fbd75b1f914f0d2b0aa34ba7bc691"
     },
     {
       "path": "specs/020-documentation-architecture-audit/analyze.md",
@@ -70,8 +50,28 @@
       "sha256": "276be36840a625417837cae9fbf0b469a3722fbfae72d5f28e665461b1b8d9b0"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/documentation-inventory.json",
-      "sha256": "1af3a9aa5dadcc83812bba98dce9f085a265712727b62f57578867bcedc352d8"
+      "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
+      "sha256": "465a725aed96485bc5f59a19efb029dad55dddcad43babc7c8f97672e80ce475"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/autonomous-run-gate-evidence.json",
+      "sha256": "52412950e7966c6074cefda2cf81a557717405989fd73ceef7b7b83c235b05db"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/autonomous-run-gate-requirements.json",
+      "sha256": "a3b0f39833be00ffeda7c0c02fa50a36892d5bd1c66d44ff68e8a9a92908090d"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",
+      "sha256": "a6e455ddf4d5fbd4744a587734d3303db7238dbe86561b9dba08bc25a9298d88"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/contracts/documentation-architecture-audit.md",
+      "sha256": "d4acf0bd9832afd2b49ab54686440e9ad61dc0bfdf659b09468e390482878dc3"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/data-model.md",
+      "sha256": "781f215045edd5d93924531fe250bd2b68c6f6a7c0d4ee7d93477823a8c6d8ad"
     },
     {
       "path": "specs/020-documentation-architecture-audit/documentation-architecture-audit.json",
@@ -82,6 +82,34 @@
       "sha256": "eac9bd6259de3e3ffd35cadf5b7c7494e39f61a42cac60c9069111d585018b46"
     },
     {
+      "path": "specs/020-documentation-architecture-audit/documentation-inventory.json",
+      "sha256": "1af3a9aa5dadcc83812bba98dce9f085a265712727b62f57578867bcedc352d8"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/plan.md",
+      "sha256": "4dab5eaa6e3674f50d45deecf33cd3b2df2ff8972930ef7323d10455ca4e3757"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/quickstart.md",
+      "sha256": "be5a41aaf97e0f73fa278b4c4d1874ec3790e748f6eabdf62306612a7c00e02f"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/research.md",
+      "sha256": "7f0dfcf6750fc355370e56842e23bf3a0db5196325af2cca03510f40f4bc846f"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/retrospective.md",
+      "sha256": "8d682e54e68fe751c78fa25e3ec8506b5e6de77f052e335a9824032ddf53bffb"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/spec.md",
+      "sha256": "ecc1163db7a6e6efdbc9e4ba0976170ffe3ab6c122029f53087b50e59b9f9f20"
+    },
+    {
+      "path": "specs/020-documentation-architecture-audit/tests/test_documentation_architecture.py",
+      "sha256": "ba066b666b6881fffb585b095a72d8b91cb918e57d4b71245c4cf50db8f62baa"
+    },
+    {
       "path": "specs/020-documentation-architecture-audit/tools/collect_documentation_architecture.py",
       "sha256": "590980044769f8530b2157a400ece8289482bd4524a72dd0d219c10b1bad4aa6"
     },
@@ -90,42 +118,38 @@
       "sha256": "44f07486234fb239ca4ca8b05a1b225d36956e6bf20a3b92a9901f23aedc1f42"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/tests/test_documentation_architecture.py",
-      "sha256": "ba066b666b6881fffb585b095a72d8b91cb918e57d4b71245c4cf50db8f62baa"
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "398172992994e5d33633d4af82a2b636beaf3fe27c72c3f6bd33f379802b61f6"
     },
     {
-      "path": "scripts/tests/test_feature_020_documentation_architecture.py",
-      "sha256": "77af1f54a9b6ece7f89cf03758397a06be6fbd75b1f914f0d2b0aa34ba7bc691"
+      "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-request.json",
+      "sha256": "a3b30acdd1b728ef33250c978991cc303ca22bf244f2323db6ba398ddea725de"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-      "sha256": "933da26a799abc01a7952259ef1b59c0ab7ea2d728c1bfe9ca39abfbca87e08e"
+      "path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
+      "sha256": "709a2ec11c81a0898db74a240836c9bbd4af4b1125d850d11197c7fb0886b7e6"
     },
     {
-      "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",
-      "sha256": "a6e455ddf4d5fbd4744a587734d3303db7238dbe86561b9dba08bc25a9298d88"
+      "path": "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
+      "sha256": "05ee0478a27d0425ad739eca909d88b138d95839178304429d8a88f419c70159"
     },
     {
-      "path": "docs/scripts/reference.md",
-      "sha256": "8f5c79b84a519ca517ce44ac49fff304fafe1a5f1ba8b47f16f0e6a3955ab81f"
-    },
-    {
-      "path": "docs/scripts/embedded-scripts.md",
-      "sha256": "a1169cf72a949cd456a165e8a3465e5d70009e69e6917ecc831e550f95ecca95"
+      "path": "specs/intake-authoring-receipts/level-0-dokumentationsarchitektur-und-sprachtrennung.json",
+      "sha256": "5a139a952fec27529ebe61ac5efd648179672328c9e4bdea62a356b36e6ac8b8"
     }
   ],
   "tasks": {
     "path": "specs/020-documentation-architecture-audit/tasks.md",
-    "sha256": "1d42fb65137b5e097b1ac5c2b447e423a4e760f5de85bec1b77c38f803815331",
-    "completed": 109,
+    "sha256": "3b143f74287a267f4ab10606182973dc45b718d75886a5310e6c213988d4eb8d",
+    "completed": 130,
     "total": 130
   },
-  "lastPassingGate": "All local Feature-020 gates pass, including the synthetic depth-1 provider bridge proof and 30/30 Homogeneity checks.",
-  "nextExactAction": "Commit the reconciled exact candidate, push the feature branch, open the non-empty PR, and converge provider reviews and gates.",
+  "lastPassingGate": "PR #194 merged exact head c968cdf after 26 green jobs, 9/9 exact-head gates, zero actionable threads, and Bash/PowerShell validation of the Ready 36/3/43 successor Series.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "Validate",
+    "kind": "MergeAndSync",
     "state": "Completed",
-    "summary": "Read-only audit implementation, generated-reference integration, statistics rendering, and all local gates are complete."
+    "summary": "PR #194 merged, D4 archived, DIA001 handed to D5, successor reviews are Ready, and the clean default branch was synchronized before causal closeout."
   },
   "stop": {
     "reason": "N/A",
@@ -133,10 +157,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-01T16:18:00Z"
+  "updatedAt": "2026-08-01T16:54:23Z"
 }
