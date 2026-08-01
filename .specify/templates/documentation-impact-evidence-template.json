@@ -1,17 +1,28 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "feature": "###-feature-name",
   "entries": [
     {
       "changeId": "CHG001",
       "scope": "repository-relative path or named change area",
-      "decision": "NoUpdateRequired",
+      "decision": "UpdateRequired",
       "rationale": "Explain why this decision is correct.",
-      "documents": [],
+      "documents": ["README.md", "README.en.md"],
       "owner": "Maintainer",
+      "audiences": ["Learners", "Maintainers"],
+      "readerPaths": ["Learner", "MaintainerAgent"],
+      "canonicalSource": "docs/documentation-governance.md",
+      "navigationImpact": "Describe entry-point and navigation effects.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "DE-first/EN-second or synchronized language partners",
+      "languagePartners": ["README.md", "README.en.md"],
+      "platformAndExampleProof": "Name applicable platforms and validated examples.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
       "evidence": "specs/###-feature/pr-evidence.md",
       "risk": "N/A",
-      "criticality": "Normal"
+      "criticality": "Normal",
+      "reevaluationTrigger": "Describe what makes this decision stale."
     }
   ]
 }

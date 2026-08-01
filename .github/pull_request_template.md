@@ -15,6 +15,12 @@ Wähle genau eine Entscheidung. / *Select exactly one decision.*
 **Begründung / Rationale:**
 **Dokumente / Documents:**
 **Quelle und Renderer / Source and renderer:**
+**Zielgruppen und Leserpfade / Audiences and reader paths:**
+**Navigation und Dokumentklasse / Navigation and document class:**
+**Sprachpartner / Language partners:**
+**Plattform- und Beispielnachweis / Platform and example proof:**
+**Distributionsklasse und Home-Sync / Distribution class and Home sync:**
+**Re-Evaluation-Trigger / Reevaluation trigger:**
 **Follow-up-Evidence:**
 
 ## Validierung / Validation

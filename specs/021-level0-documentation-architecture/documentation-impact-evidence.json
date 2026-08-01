@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "021-level0-documentation-architecture",
+  "entries": [
+    {
+      "changeId": "CHG021",
+      "scope": "DIA001 root portal, topic navigation, and durable documentation architecture",
+      "decision": "UpdateRequired",
+      "rationale": "The accepted D4 finding requires a concise language-split entry, four reader paths, and synchronized governance.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/README.md",
+        "docs/README.en.md",
+        "docs/getting-started.md",
+        "docs/getting-started.en.md",
+        "docs/maintenance/README.md",
+        "docs/maintenance/README.en.md",
+        "docs/architecture/source-and-home-runtime.md",
+        "docs/architecture/source-and-home-runtime.en.md",
+        "docs/troubleshooting/README.md",
+        "docs/troubleshooting/README.en.md",
+        "docs/documentation-governance.md"
+      ],
+      "owner": "DocumentationArchitecture",
+      "audiences": ["Learners", "DailyUsers", "MaintainersAndAgents", "Auditors"],
+      "readerPaths": ["Learner", "DailyUser", "MaintainerAgent", "AuditTroubleshooting"],
+      "canonicalSource": "docs/documentation-governance.md",
+      "navigationImpact": "The root becomes a concise portal and detailed content moves behind task-oriented reader paths.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German entry first with synchronized English .en.md partners",
+      "languagePartners": ["README.md", "README.en.md", "docs/README.md", "docs/README.en.md"],
+      "platformAndExampleProof": "Bash and PowerShell preview commands plus repository-wide local Markdown link validation",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": true,
+      "evidence": "specs/021-level0-documentation-architecture/autonomous-run-evidence.md",
+      "risk": "N/A",
+      "criticality": "Usage",
+      "reevaluationTrigger": "A reader path, language partner, distribution class, command contract, or canonical owner changes."
+    }
+  ]
+}

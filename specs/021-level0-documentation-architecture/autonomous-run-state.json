@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "cf8e7a2f-baac-44cc-b5a5-b660906adf8d",
+  "featurePath": "specs/021-level0-documentation-architecture",
+  "branch": "021-level0-documentation-architecture",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "08ead0b7ac9f6ee961398b09bb7fbb7da20a95e8",
+  "acceptedArtifacts": [
+    {"path": ".specify/memory/constitution.md", "sha256": "629ee3de68cb3010c5d90a7332e7414e304b0892d13b2918a33eb4cb1c0369e0"},
+    {"path": "Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.md", "sha256": "f2bfdcd46841551e33962536eaf397c6715403c6df9531acf08bdd4ad4e959ef"},
+    {"path": "requirements/intakes/series/home-baseline-delivery/manifest.json", "sha256": "442d549f08dba795acc356bf0d4f13f14161b61ad377497c3dca5570d0f6983e"},
+    {"path": "requirements/intakes/series/home-baseline-delivery/receipt.json", "sha256": "028551481424cc57a2144c14bb77f86ddc27e9b674f11644b457e1930ec25862"},
+    {"path": "specs/documentation-architecture-intakes/reviews/d5/intake-review-request.json", "sha256": "15183c7a4a87962d19e18c6f07f2f7bdb3301562ebff3cef2d1fa0619391a3dc"},
+    {"path": "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json", "sha256": "05ee0478a27d0425ad739eca909d88b138d95839178304429d8a88f419c70159"}
+  ],
+  "tasks": {
+    "path": "specs/021-level0-documentation-architecture/tasks.md",
+    "sha256": "6a56ce38e7bb68b9c69da7ffe6d3ee7ac9594434198254a754710573c452c0e1",
+    "completed": 99,
+    "total": 110
+  },
+  "lastPassingGate": "Final candidate revalidation passes except for the expected statistics drift caused by post-checkpoint evidence updates; the evidence checkpoint is ready to commit.",
+  "nextExactAction": "Commit the evidence checkpoint, render statistics from that clean checkpoint, and validate the exact delivery head.",
+  "lastOperation": {
+    "kind": "Implement",
+    "state": "Completed",
+    "summary": "The D5 documentation architecture and final local evidence are complete; the deterministic statistics render and remote delivery remain."
+  },
+  "stop": {"reason": "N/A", "requestedAt": "N/A", "safeBoundary": "N/A"},
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-01T17:56:40Z"
+}

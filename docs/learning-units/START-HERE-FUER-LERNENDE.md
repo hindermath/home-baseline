@@ -75,7 +75,7 @@ PowerShell 7 und `.ps1`-Skripte. Unter macOS/Linux verwendest du Bash und
 ## 2. Minimale Host-Werkzeuge installieren / Install Minimum Host Tools
 
 Du brauchst zuerst Git und ripgrep. Die ausfuehrlichen Installationswege stehen
-in der [Root-README](../../README.md#voraussetzungen--prerequisites). Die
+in den [Voraussetzungen](../getting-started.md#voraussetzungen-installieren). Die
 GitHub CLI `gh` beziehungsweise die GitLab CLI `glab` darf bereits installiert
 sein, wird aber nur im passenden Hosting-Profil angemeldet.
 
@@ -496,7 +496,7 @@ Reset verwendet `-v` und loescht die gespeicherten Agentenanmeldungen.
 
 ## Hilfe bei Fehlern / Troubleshooting
 
-- Host-Wartung: [Root-README](../../README.md#wiederkehrende-agentische-toolchain-wartung--recurring-agentic-toolchain-maintenance)
+- Host-Wartung: [Betrieb und Wartung](../maintenance/README.md#sicherer-standardablauf)
 - Git-Grundlagen im entpackten Lernpaket: [GIT-START-FUER-LERNENDE.md](GIT-START-FUER-LERNENDE.md)
 - Institutionelles Git-Hosting: [INSTITUTIONELLES-GIT-HOSTING.md](INSTITUTIONELLES-GIT-HOSTING.md)
 - Sandbox-Dokumentation: `docs/fuer-lernende/` im geklonten Sandbox-Repository

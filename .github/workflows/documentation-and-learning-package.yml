@@ -40,6 +40,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
 
       - name: Run Bash package self-test
         if: runner.os != 'Windows'
@@ -58,6 +60,15 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: pwsh -NoProfile -File scripts/build-secure-development-docs.ps1 -Check
+
+      - name: Test Feature 021 documentation migration contract
+        run: python specs/021-level0-documentation-architecture/tests/test_documentation_migration.py
+
+      - name: Validate Feature 021 documentation migration
+        run: >-
+          python specs/021-level0-documentation-architecture/tools/validate_documentation_migration.py
+          --repo .
+          --migration specs/021-level0-documentation-architecture/documentation-migration.json
 
       - name: Test Documentation Impact contract with Bash
         if: runner.os != 'Windows'

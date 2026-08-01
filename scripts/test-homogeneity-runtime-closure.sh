@@ -40,4 +40,17 @@ if grep -Eq 'command not found|incomplete helper package' "$complete_output"; th
   exit 1
 fi
 
+pair_root="${TEMP_ROOT}/language pair"
+mkdir -p "$pair_root"
+printf '# Einstieg\n\n[English](Guide.en.md)\n' >"${pair_root}/Guide.md"
+printf '# Entry\n\n[Deutsch](Guide.md)\n' >"${pair_root}/Guide.en.md"
+. "${SCRIPT_DIR}/lib/hg-bilingual.sh"
+for pair_file in "${pair_root}/Guide.md" "${pair_root}/Guide.en.md"; do
+  pair_output="$(hg_check_bilingual "$pair_file")"
+  if [[ "$pair_output" != PASS*'|bilingual-language-pair' ]]; then
+    printf 'FAIL: Sprachpartner wurde nicht bidirektional erkannt: %s\n' "$pair_output" >&2
+    exit 1
+  fi
+done
+
 echo 'PASS: Homogeneity-Runtime-Abschluss (Bash) ist fail-closed und vollstaendig.'
