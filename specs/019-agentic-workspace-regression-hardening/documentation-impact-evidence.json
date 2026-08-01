@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "019-agentic-workspace-regression-hardening",
+  "entries": [
+    {
+      "changeId": "CHG019001",
+      "scope": "Bash 3.2 Home Runtime delegation and deterministic TUI report reconciliation",
+      "decision": "UpdateRequired",
+      "criticality": "Security",
+      "rationale": "Learners and maintainers need the argumentless compatibility guarantee and the distinction between advisory completion events and canonical run-bound reports.",
+      "documents": [
+        "README.md",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/architecture/maintenance-tui.md",
+        "docs/security/arc42-security.md",
+        "docs/security/threat-model.md",
+        "docs/security/security-quality-scenarios.md"
+      ],
+      "owner": "Feature 019",
+      "evidence": "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
+      "risk": "N/A"
+    },
+    {
+      "changeId": "CHG019002",
+      "scope": "Script catalog reference and accessibility guide",
+      "decision": "NoUpdateRequired",
+      "criticality": "Normal",
+      "rationale": "The public options, script role, terminal fallback, status fields and accessibility behavior remain unchanged.",
+      "documents": [
+        "docs/scripts/reference.md",
+        "docs/accessibility/maintenance-tui.md"
+      ],
+      "owner": "Documentation maintainers",
+      "evidence": "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
+      "risk": "N/A"
+    },
+    {
+      "changeId": "CHG019003",
+      "scope": "Shared agent guidance and DocFX/web output",
+      "decision": "NoUpdateRequired",
+      "criticality": "Normal",
+      "rationale": "No durable agent rule, API XML comment, generated navigation or web-guide structure changes.",
+      "documents": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md"
+      ],
+      "owner": "Agent parity and documentation governance",
+      "evidence": "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
+      "risk": "N/A"
+    }
+  ]
+}

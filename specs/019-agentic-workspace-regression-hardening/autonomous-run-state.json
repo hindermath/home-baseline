@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "392d1393-b069-4ec4-8c57-3c555695e354",
+  "featurePath": "specs/019-agentic-workspace-regression-hardening",
+  "branch": "019-agentic-workspace-regression-hardening",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "2b1e51fb1a80f1d43a7be8b2d1ed52926df3bed8",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Agentic-Workspace-Wartungs-TUI-und-Wrapper-Regressionshaertung.md",
+      "sha256": "b78cc1951eb34a9a52e3e6479a4b9f264c38d4eed393155f78ccb7031fadde2b"
+    },
+    {
+      "path": "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-request.json",
+      "sha256": "f9b5f647240d416e94644d003064c9450e13593485e7481f78a48bb5fa6586c3"
+    },
+    {
+      "path": "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-result.json",
+      "sha256": "179d23f2b89298ddc7079e4f2c4cfd0d6aef98e9813c2d9970a85b27547c0dcc"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "707f7eec7546146965ca9c8c07c507635119bbaac551ef23289d8b78eb5dc64a"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "7ccf85250b15839caa480fb1f3109661cb17df7896d15292704246c9da4d998d"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "629ee3de68cb3010c5d90a7332e7414e304b0892d13b2918a33eb4cb1c0369e0"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/spec.md",
+      "sha256": "edb212c85b329ae4e0b242913c4b24aab4db50f2468d8b1cfb3eae6fbeebbcc6"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/plan.md",
+      "sha256": "bdb73d25c9dfdbc8ec6760e838c0d47b081a728ba158848eb9281ebe62cb00b4"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/research.md",
+      "sha256": "f1023c00a866ff3de5ec354971bdf6f137d106df9158c11037b7535410b3f8d3"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/data-model.md",
+      "sha256": "9ba1102454d0e7e33dbe7188b6fbf894f705252c735be831780e8b0288e97840"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/quickstart.md",
+      "sha256": "a192a06ab4b46306726bb749d1f08452320088364643c1588ce5a937352168b3"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/contracts/event-and-result-reconciliation.md",
+      "sha256": "aa4f3cadf96cb4cd3007198afaad976ff360107572b9a8ae755d5721f9c60be5"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/contracts/home-runtime-delegation.md",
+      "sha256": "afaa295a1a84522b719e5fac3bf9f2900413e8c98b374fa91f911c3ef6134c3f"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/autonomous-run-gate-requirements.json",
+      "sha256": "1f2f4388e6ba230bd501de4c05387ef478ec3bdcda874851c876bb314f23bdcd"
+    },
+    {
+      "path": "specs/019-agentic-workspace-regression-hardening/checklists/plan-review.md",
+      "sha256": "e3358acb73adb183797ce499f3a0f489e99237c06dde89c8eff5bdabf79415de"
+    }
+  ],
+  "tasks": {
+    "path": "specs/019-agentic-workspace-regression-hardening/tasks.md",
+    "sha256": "c3474f1e8d5d502506367b0450708eb94e159055d308d7769802d6725d423d93",
+    "completed": 94,
+    "total": 122
+  },
+  "lastPassingGate": "All three regression slices and the full 89-test local maintenance suite pass; static, secret, format and dependency checks are green",
+  "nextExactAction": "Create the validated implementation checkpoint required by the clean-tree statistics renderer.",
+  "lastOperation": {
+    "kind": "Implement",
+    "state": "Completed",
+    "summary": "Event emission, deterministic report discovery and Bash-3.2 delegation are repaired with focused and full regression proof."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-01T14:09:28Z"
+}
