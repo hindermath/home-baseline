@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "1436162a-18c5-4e46-9f54-3ceeb2bf1660",
+  "featurePath": "specs/022-agentic-workspace-efficiency-guide",
+  "branch": "022-agentic-workspace-efficiency-guide",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "7c438bf332626c48eb87b9139f863dc2e8e861c7",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+      "sha256": "0c0c75222f9305fddaba8dd7d3f693c906f363c12c8c7c426ea094ff605ff5c1"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/agentic-workspace-und-ein-kommando-wartung-effizienzleitfaden.json",
+      "sha256": "271eb5b4dc0ff7b233f5bc15f2e450bef6a4879fb8bd4250f65b672215f3919a"
+    },
+    {
+      "path": "specs/documentation-architecture-intakes/reviews/d6/intake-review-request.json",
+      "sha256": "1b1858bdf4e2eae45781744ea2a1ee2d2601d8984c266fdc6cd4bf7897b9faad"
+    },
+    {
+      "path": "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
+      "sha256": "e78dcb1107b56f1fdec0d1bebe2b3123ce0b97f25c2f2f88746c354876bf26c1"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "32b77c76b3b0285524be40ad153971bd6e710071d9b86784fe80dba953291f7b"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "9bfdfd767a8a1ac2e0d5323c6e19775e0f59f76c8bc0a6f9295fce6d9b58039f"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "b8d881866635b94cb48322a774996d403e63bc699c54d7f117deb26d15f2d321"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "8eff22ad17ef8e9aba78732198d82399a7cdd50f4d67796c1b06c7ddad72855e"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/spec.md",
+      "sha256": "3a58704b81c1f18dbda4c45e8b0cbec248043835156e69c1072a78f169b76637"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/plan.md",
+      "sha256": "0c2a61704024715477a9625fe0820428196c949c16ca487004973ba1b7a643f2"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/research.md",
+      "sha256": "fee14948b23ef35c49d4fe3b28ab8e00c6730ed3a2fd671d46a2976685ab67d8"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/data-model.md",
+      "sha256": "943215d0cd1765a6b23b12f86872e73d5bb58499b34b8d642f37db5b6a8b5855"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/quickstart.md",
+      "sha256": "62b1ee8b63ef2bd6bf6e5127d674102d5a7dcfe7504195d50503f36143dac1fa"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/contracts/documentation-guide-acceptance.md",
+      "sha256": "efa3f27c6ea631c9465737ae69bb04fb3974b410baf559a5c31934451c511caf"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/checklists/requirements.md",
+      "sha256": "b4c517ece0263def0a5ef99a3e29409f4dc52cb12be5024e61bb7d4843d7ed2f"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/checklists/documentation-contract.md",
+      "sha256": "36f5d16aee6d6ba978608ab04d244db488f6fcaf90c34de597047d800dcee3dc"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/checklists/plan-review.md",
+      "sha256": "2db9dfa77816ab3669c2c3d951d383597792fb70ebc2be71156b1d6acf0723a0"
+    },
+    {
+      "path": "specs/022-agentic-workspace-efficiency-guide/autonomous-run-gate-requirements.json",
+      "sha256": "e112e5f87683cd7a9bf7b0ca04b89b1d2d78c6af8b94219b23587c820198b187"
+    }
+  ],
+  "tasks": {
+    "path": "specs/022-agentic-workspace-efficiency-guide/tasks.md",
+    "sha256": "41213ed014b8edd4c3a358e533433abb8b795e371c3dc03f7f2cb383950d281c",
+    "completed": 74,
+    "total": 84
+  },
+  "lastPassingGate": "Paired guide, 17-claim source matrix, six negative fixtures, 3,558-link Lychee run, learning package, generated-document check, Documentation Impact fixtures, PSScriptAnalyzer, secret scan, Spec Kit and scope proof passed; statistics rendering remains.",
+  "nextExactAction": "Commit the locally validated implementation checkpoint, render statistics on the resulting clean tree, then complete Homogeneity and exact-candidate validation.",
+  "lastOperation": {
+    "kind": "Validate",
+    "state": "NeedsRevalidation",
+    "summary": "All non-statistics local gates passed. The statistics renderer correctly requires a clean committed tree before writing the generated profile."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-01T20:01:38Z"
+}

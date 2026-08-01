@@ -433,6 +433,14 @@
       "labelEn": "Documentation information architecture audit",
       "netLines": 134145,
       "activeDays": 1
+    },
+    {
+      "slot": 53,
+      "id": "agentic-workspace-efficiency-guide",
+      "labelDe": "Agentic-Workspace-Effizienzleitfaden",
+      "labelEn": "Agentic workspace efficiency guide",
+      "netLines": 3013,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

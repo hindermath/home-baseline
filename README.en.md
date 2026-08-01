@@ -39,6 +39,11 @@ real run.
 | work as a maintainer or AI agent | [Source and Home Runtime](docs/architecture/source-and-home-runtime.en.md) | identify the canonical edit location and sync need |
 | audit or troubleshoot | [Audit and troubleshooting](docs/troubleshooting/README.en.md) | identify the head, evidence, and proof boundary |
 
+The detailed
+[efficiency guide](docs/maintenance/agentic-workspace-efficiency-guide.en.md)
+connects these four reader paths with safe commands, evidence, and clear stop
+boundaries.
+
 The complete [documentation portal](docs/README.en.md) organizes every topic
 and canonical source. The [script reference](docs/scripts/reference.md) lists
 available commands, platforms, and safe inspection modes.

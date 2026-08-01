@@ -38,6 +38,11 @@ Kanonische Quelle, Dokumentklasse, Generator und exakten Implementierungs-Head
 bestimmen. Der technische Validator beweist Struktur; ein semantischer Review
 prüft Aussage und Verständlichkeit.
 
+Der
+[Auditpfad des Effizienzleitfadens](../maintenance/agentic-workspace-efficiency-guide.md#fehleranalyse-und-audit--troubleshooting-and-audit)
+ordnet Lock, Run-ID, Report, Exitcode, JSONL und Wiederanlauf in eine feste
+Diagnosereihenfolge ein.
+
 ## Evidence-Pfade
 
 - aktuelle Projektentwicklung: [Projektstatistik](../project-statistics.md)

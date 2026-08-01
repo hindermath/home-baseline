@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "source-matrix-local-exact-head",
+      "applicability": "Applicable",
+      "requiredScope": "Reader paths, operational claims, normalized source hashes, language partners and proof boundaries on the exact pushed head",
+      "requiredCommandTokens": [
+        "test_efficiency_guide.py",
+        "validate_efficiency_guide.py"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Feature-local test-only validation is required without changing repository workflows.",
+      "reevaluationTrigger": "The source-matrix schema, guide structure or workflow-scope boundary changes."
+    },
+    {
+      "gateId": "documentation-links",
+      "applicability": "Applicable",
+      "requiredScope": "Local Markdown paths, fragments, reciprocal language partners and reader-path navigation",
+      "requiredCommandTokens": [
+        "--include-fragments"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "ubuntu"
+      ],
+      "rationale": "The feature adds and changes Markdown navigation.",
+      "reevaluationTrigger": "Markdown paths, anchors or provider workflow commands change."
+    },
+    {
+      "gateId": "learning-accessibility",
+      "applicability": "Applicable",
+      "requiredScope": "Learning package, generated secure-development documents and text-first learner accessibility",
+      "requiredCommandTokens": [
+        "check-learning-package",
+        "build-secure-development-docs"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "The guide targets first-year learners and all supported operating systems.",
+      "reevaluationTrigger": "Learner, language, generated-document or platform scope changes."
+    },
+    {
+      "gateId": "repository-quality",
+      "applicability": "Applicable",
+      "requiredScope": "Homogeneity, PowerShell analysis, whitespace, secrets, statistics and Spec Kit integrity",
+      "requiredCommandTokens": [
+        "check-homogeneity",
+        "invoke-psscriptanalyzer",
+        "git diff --check",
+        "scan-agent-secrets",
+        "render-project-statistics",
+        "specify check"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Repository policy requires these gates for changed documentation and feature evidence.",
+      "reevaluationTrigger": "Changed-path inventory or repository gate policy changes."
+    },
+    {
+      "gateId": "maintenance-runtime-regression",
+      "applicability": "Applicable",
+      "requiredScope": "Existing Maintenance TUI build and tests prove documentation delivery did not disturb the operational project",
+      "requiredCommandTokens": [
+        "dotnet restore",
+        "dotnet build",
+        "dotnet test"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "Existing provider regression gates remain required even though no runtime source may change.",
+      "reevaluationTrigger": "Maintenance runtime project or provider workflow scope changes."
+    },
+    {
+      "gateId": "docfx-web-a11y",
+      "applicability": "N/A",
+      "requiredScope": "DocFX generation and browser Playwright/Axe validation",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "The repository has no DocFX configuration or browser documentation test project; Markdown, learner-package, semantic WCAG and link gates cover the affected surfaces.",
+      "reevaluationTrigger": "DocFX, generated HTML or browser documentation tests enter the repository."
+    },
+    {
+      "gateId": "supply-chain-runtime",
+      "applicability": "N/A",
+      "requiredScope": "SBOM, VEX, SLSA, OpenSSF Scorecard, AI-SBOM and dependency evidence",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No dependency, package, release artifact or AI runtime changes are permitted.",
+      "reevaluationTrigger": "Dependency, package, build, release or AI-runtime scope changes."
+    }
+  ]
+}

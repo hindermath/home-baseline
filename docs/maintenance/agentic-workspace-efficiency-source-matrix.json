@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "022-agentic-workspace-efficiency-guide",
+  "generatedFromHead": "7c438bf332626c48eb87b9139f863dc2e8e861c7",
+  "requiredClaimCategories": [
+    "Option",
+    "Status",
+    "ExitCode",
+    "Evidence",
+    "SafetyBoundary",
+    "Distribution",
+    "Recovery",
+    "Platform",
+    "NextAction"
+  ],
+  "readerPaths": [
+    {
+      "id": "FirstSafeRun",
+      "germanEntry": "docs/getting-started.md",
+      "englishEntry": "docs/getting-started.en.md",
+      "guideAnchor": "erster-sicherer-lauf--first-safe-run",
+      "safeNextAction": "Run the platform-native check-only command and evaluate report plus exit code."
+    },
+    {
+      "id": "RegularOperation",
+      "germanEntry": "docs/maintenance/README.md",
+      "englishEntry": "docs/maintenance/README.en.md",
+      "guideAnchor": "regelmaessiger-betrieb--regular-operation",
+      "safeNextAction": "Review the complete fleet preflight before authorizing a mutation."
+    },
+    {
+      "id": "MaintainerAgent",
+      "germanEntry": "docs/architecture/source-and-home-runtime.md",
+      "englishEntry": "docs/architecture/source-and-home-runtime.en.md",
+      "guideAnchor": "maintainer-und-ki-agenten--maintainers-and-ai-agents",
+      "safeNextAction": "Determine source ownership, distribution class and current delivery authority."
+    },
+    {
+      "id": "AuditTroubleshooting",
+      "germanEntry": "docs/troubleshooting/README.md",
+      "englishEntry": "docs/troubleshooting/README.en.md",
+      "guideAnchor": "fehleranalyse-und-audit--troubleshooting-and-audit",
+      "safeNextAction": "Inspect lock, report, log, process result and evidence consistency before recovery."
+    }
+  ],
+  "claims": [
+    {
+      "id": "AEC001",
+      "category": "Option",
+      "readerPaths": [
+        "FirstSafeRun",
+        "RegularOperation"
+      ],
+      "languages": [
+        "de",
+        "en"
+      ],
+      "statement": "Check-only inspects and fetches without pulls or package updates.",
+      "sourcePath": "scripts/maintain-agentic-workspace.sh",
+      "sourceNormalizedSha256": "9310dfe38a14bb9cf4b198c8cd91dc20cafdc139160d197fb388b8e203671234",
+      "sourceLocator": "--check-only",
+      "sourceState": "Current",
+      "proofBoundary": "The option proves inspection behavior only; a drift exit remains possible.",
+      "reevaluationTrigger": "The public wrapper option or its side effects change."
+    },
+    {
+      "id": "AEC002",
+      "category": "Option",
+      "readerPaths": ["FirstSafeRun", "RegularOperation"],
+      "languages": ["de", "en"],
+      "statement": "The public option table defines TUI, plain, headless, preview, scripts-only, repair, optional-package, administrator, manifest and home-directory controls.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "| `--tui` | `-Tui` |",
+      "sourceState": "Current",
+      "proofBoundary": "The table proves public spelling and summarized effects; detailed preconditions remain in the surrounding contract.",
+      "reevaluationTrigger": "A public Bash option, PowerShell parameter or interaction rule changes."
+    },
+    {
+      "id": "AEC003",
+      "category": "ExitCode",
+      "readerPaths": ["FirstSafeRun", "RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "Exit codes 0, 1, 2, 3 and 130 distinguish success, drift, operational failure, repaired drift and cancellation; Linux TERM uses 143.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "| `0` | Aktuell oder erfolgreich abgeschlossen",
+      "sourceState": "Current",
+      "proofBoundary": "An exit code must be reconciled with the finalized report and cannot prove completion alone.",
+      "reevaluationTrigger": "An orchestrator, signal or repaired-drift exit mapping changes."
+    },
+    {
+      "id": "AEC004",
+      "category": "Status",
+      "readerPaths": ["RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "Only a clean canonical default branch with an unambiguous upstream, zero ahead commits and a purely behind state may be fast-forwarded automatically.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "Nur ein sauberer kanonischer Default-Branch",
+      "sourceState": "Current",
+      "proofBoundary": "Dirty, Ahead, Diverged, Detached, Non-Default and ambiguous states remain blocking even after a successful fetch.",
+      "reevaluationTrigger": "Repository classification or safe-pull policy changes."
+    },
+    {
+      "id": "AEC005",
+      "category": "SafetyBoundary",
+      "readerPaths": ["RegularOperation", "MaintainerAgent", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "Temporary worktree cleanup is lease-bound and never uses a global clean, prune, reset or stash.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "Es gibt kein globales `git clean`",
+      "sourceState": "Current",
+      "proofBoundary": "Only unambiguously owned, still-clean and Git-registered temporary worktrees are eligible for cleanup.",
+      "reevaluationTrigger": "Lease schema, cleanup ownership or worktree lifecycle changes."
+    },
+    {
+      "id": "AEC006",
+      "category": "Evidence",
+      "readerPaths": ["RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "Lock, log and finalized JSON report share one Run ID and are atomically reconciled with terminal status and process exit.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "Beide verwenden dieselbe Run-ID",
+      "sourceState": "Current",
+      "proofBoundary": "Machine-local logs support reconstruction but are not publishable evidence by themselves.",
+      "reevaluationTrigger": "Run identity, report finalization or evidence location changes."
+    },
+    {
+      "id": "AEC007",
+      "category": "Evidence",
+      "readerPaths": ["RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "JSONL events support live display only; EVENT_STREAM_DEGRADED permanently selects linear presentation while report and process exit remain authoritative.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "zeigt die Anzeige dauerhaft `EVENT_STREAM_DEGRADED`",
+      "sourceState": "Current",
+      "proofBoundary": "An event stream cannot independently promote a run to success.",
+      "reevaluationTrigger": "Event schema, degradation behavior or completion authority changes."
+    },
+    {
+      "id": "AEC008",
+      "category": "Recovery",
+      "readerPaths": ["AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "The first Ctrl+C is forwarded exactly once; later signals start no second engine and trigger no broad cleanup.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "Ein erstes `Ctrl+C` wird genau einmal",
+      "sourceState": "Current",
+      "proofBoundary": "Controlled cancellation still requires the finalized report and process exit to establish the outcome.",
+      "reevaluationTrigger": "Signal forwarding, cancellation or cleanup semantics change."
+    },
+    {
+      "id": "AEC009",
+      "category": "Status",
+      "readerPaths": ["RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "A required administrator operation without current authority is DEFERRED_ADMIN_REQUIRED and blocks completion with exit 1.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "`DEFERRED_ADMIN_REQUIRED` klassifiziert",
+      "sourceState": "Current",
+      "proofBoundary": "The status records the unperformed remainder and does not grant or emulate administrator rights.",
+      "reevaluationTrigger": "Administrator authority or deferred-result mapping changes."
+    },
+    {
+      "id": "AEC010",
+      "category": "Distribution",
+      "readerPaths": ["MaintainerAgent"],
+      "languages": ["de", "en"],
+      "statement": "The Home synchronization manifest separates homeRuntime, sourceOnly and machineLocal content.",
+      "sourcePath": "scripts/config/home-sync-manifest.json",
+      "sourceNormalizedSha256": "1b373763c15a6d2567e1621abf1394793fa7feda939e00d8b794efd3bfd643a1",
+      "sourceLocator": "\"machineLocal\"",
+      "sourceState": "Current",
+      "proofBoundary": "The manifest defines membership; it does not itself authorize writing or publication.",
+      "reevaluationTrigger": "Distribution classes, manifest schema or path membership changes."
+    },
+    {
+      "id": "AEC011",
+      "category": "Distribution",
+      "readerPaths": ["RegularOperation", "MaintainerAgent"],
+      "languages": ["de", "en"],
+      "statement": "The fleet manifest distinguishes canonical Git targets, preset repositories and collection-only targets.",
+      "sourcePath": "scripts/config/agentic-workspace-fleet.json",
+      "sourceNormalizedSha256": "31c9dec982e6fb49dc44a5b1c3a98adb78f34b6e34eda221f5591a8c7e850cf9",
+      "sourceLocator": "\"kind\":\"collection\"",
+      "sourceState": "Current",
+      "proofBoundary": "The declared target set is current inventory authority; filesystem discovery cannot add undeclared targets.",
+      "reevaluationTrigger": "Fleet schema, target membership or maintenance class changes."
+    },
+    {
+      "id": "AEC012",
+      "category": "Platform",
+      "readerPaths": ["FirstSafeRun", "RegularOperation"],
+      "languages": ["de", "en"],
+      "statement": "PowerShell exposes bounded Git and WinGet timeout controls that have no forced textual Bash equivalent.",
+      "sourcePath": "scripts/maintain-agentic-workspace.ps1",
+      "sourceNormalizedSha256": "46e08341089b8c75a564450467368c9d165f95a0ec2e6ccc79077d71f40e2be3",
+      "sourceLocator": "Hard timeout for one fetch or pull attempt.",
+      "sourceState": "Current",
+      "proofBoundary": "Platform-specific controls preserve shared safety semantics without requiring identical parameter lists.",
+      "reevaluationTrigger": "Windows timeout parameters or Bash parity policy changes."
+    },
+    {
+      "id": "AEC013",
+      "category": "Platform",
+      "readerPaths": ["FirstSafeRun", "RegularOperation"],
+      "languages": ["de", "en"],
+      "statement": "Enhanced, plain and headless selectors are mutually exclusive and fallback may occur only before engine start.",
+      "sourcePath": "docs/man/maintain-agentic-workspace.1.md",
+      "sourceNormalizedSha256": "a567cffb94eabed9674539f2fd4772170ba7a458dab8cca1bdb655e18cde4ebd",
+      "sourceLocator": "Die drei UI-Schalter sind gegenseitig ausgeschlossen",
+      "sourceState": "Current",
+      "proofBoundary": "Fallback may reduce presentation capability but cannot change authority, blockers or engine count.",
+      "reevaluationTrigger": "UI selection, fallback or process-start behavior changes."
+    },
+    {
+      "id": "AEC014",
+      "category": "SafetyBoundary",
+      "readerPaths": ["MaintainerAgent"],
+      "languages": ["de", "en"],
+      "statement": "LocalImplementation, PublishPR and MergeAndSync grant progressively bounded delivery authority without implied secrets, provider administration or general bypass.",
+      "sourcePath": ".agents/skills/speckit-autonomous/SKILL.md",
+      "sourceNormalizedSha256": "36fa4a6bc35ede6405521e8a4a710340d729057daa5013e99e67e84c50bb9949",
+      "sourceLocator": "`MergeAndSync`: additionally converge remote checks/reviews",
+      "sourceState": "Current",
+      "proofBoundary": "Authority is current and operation-specific; maintenance scripts still cannot publish target-repository changes.",
+      "reevaluationTrigger": "Autonomous delivery modes or authority boundaries change."
+    },
+    {
+      "id": "AEC015",
+      "category": "Recovery",
+      "readerPaths": ["MaintainerAgent", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "After interruption, task checkboxes, evidence and Git history outrank stale autonomous state, and an uncertain operation requires revalidation.",
+      "sourcePath": ".agents/skills/speckit-autonomous-resume/SKILL.md",
+      "sourceNormalizedSha256": "4ba5513d264d82240fa8d84c2b512dca3cff4ce560e17aa8c2591e6dd181441f",
+      "sourceLocator": "take precedence over a stale state",
+      "sourceState": "Current",
+      "proofBoundary": "Resume reconciles completed work before retry and does not infer current remote authority.",
+      "reevaluationTrigger": "Autonomous resume, state precedence or revalidation policy changes."
+    },
+    {
+      "id": "AEC016",
+      "category": "NextAction",
+      "readerPaths": ["RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "A mismatched report, event or process exit yields a text next action to review all three evidence classes.",
+      "sourcePath": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/RunResultReconciler.cs",
+      "sourceNormalizedSha256": "7ca5553250a9ffb7d3ad9fdae8f38037c9328ffe13a4b1409b3a20d6620a728e",
+      "sourceLocator": "Bericht, Ereignisse und Exitcode prüfen",
+      "sourceState": "Current",
+      "proofBoundary": "The reconciler identifies inconsistency but does not repair or reinterpret the underlying run.",
+      "reevaluationTrigger": "Result reconciliation or next-action wording changes."
+    },
+    {
+      "id": "AEC017",
+      "category": "NextAction",
+      "readerPaths": ["FirstSafeRun", "RegularOperation", "AuditTroubleshooting"],
+      "languages": ["de", "en"],
+      "statement": "The text-first final view exposes report, log and next action as copyable text.",
+      "sourcePath": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Presentation/MaintenanceStatusView.cs",
+      "sourceNormalizedSha256": "cfefe2c5cfcab139c8d691beafe5b7aa33b342ad380b73482a6441ea32f1a045",
+      "sourceLocator": "Nächste Aktion / next action",
+      "sourceState": "Current",
+      "proofBoundary": "Visible text supports accessible handoff; the underlying finalized report remains canonical.",
+      "reevaluationTrigger": "Final view fields, text accessibility or result authority changes."
+    }
+  ],
+  "documentationImpact": {
+    "decision": "UpdateRequired",
+    "owner": "Level-0 Documentation Maintainer",
+    "audiences": [
+      "Learners",
+      "DailyUsers",
+      "MaintainersAndAgents",
+      "ReviewersAndAuditors"
+    ],
+    "readerPaths": [
+      "FirstSafeRun",
+      "RegularOperation",
+      "MaintainerAgent",
+      "AuditTroubleshooting"
+    ],
+    "canonicalSources": [
+      "docs/maintenance/agentic-workspace-efficiency-guide.md",
+      "docs/maintenance/agentic-workspace-efficiency-guide.en.md",
+      "docs/maintenance/agentic-workspace-efficiency-source-matrix.json"
+    ],
+    "navigationImpact": "Four existing reader paths gain exact links to one paired canonical guide.",
+    "documentClass": "OperationalGuide",
+    "languageStrategy": "GermanFirstEnglishPartner",
+    "languagePartners": [
+      "docs/maintenance/agentic-workspace-efficiency-guide.md",
+      "docs/maintenance/agentic-workspace-efficiency-guide.en.md"
+    ],
+    "platformAndExampleProof": "macOS/Linux Bash and Windows PowerShell examples are source-bound.",
+    "distributionClass": "sourceOnly",
+    "homeSyncRequired": false,
+    "evidence": "specs/022-agentic-workspace-efficiency-guide/pr-evidence.md",
+    "reevaluationTrigger": "Maintenance commands, evidence schema, reader paths or distribution classes change."
+  }
+}

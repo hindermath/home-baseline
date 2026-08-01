@@ -40,6 +40,11 @@ Aktion, bevor du einen echten Lauf autorisierst.
 | als Maintainer oder KI-Agent arbeiten | [Source und Home Runtime](docs/architecture/source-and-home-runtime.md) | kanonischen Änderungsort und Sync-Bedarf bestimmen |
 | prüfen oder Fehler analysieren | [Prüfung und Fehleranalyse](docs/troubleshooting/README.md) | Head, Evidence und Proof-Grenze feststellen |
 
+Der ausführliche
+[Effizienzleitfaden](docs/maintenance/agentic-workspace-efficiency-guide.md)
+verbindet diese vier Leserpfade mit sicheren Befehlen, Evidence und klaren
+Stop-Grenzen.
+
 Das vollständige [Dokumentationsportal](docs/README.md) ordnet alle Themen und
 kanonischen Quellen ein. Die [Skriptreferenz](docs/scripts/reference.md) listet
 die verfügbaren Befehle, Plattformen und sicheren Prüfmodi.

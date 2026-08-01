@@ -38,6 +38,11 @@ Identify the canonical source, document class, generator, and exact
 implementation head. A technical validator proves structure; semantic review
 checks meaning and comprehensibility.
 
+The
+[efficiency guide audit path](../maintenance/agentic-workspace-efficiency-guide.en.md#fehleranalyse-und-audit--troubleshooting-and-audit)
+places lock, Run ID, report, exit code, JSONL, and recovery in a fixed diagnostic
+order.
+
 ## Evidence paths
 
 - current project development: [project statistics](../project-statistics.md)
