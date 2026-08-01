@@ -63,7 +63,7 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/analyze.md",
-      "sha256": "7efd6d54e7fc8cb834e582dae2a3144d9c5b62a0408603cfe6ecf68fe9b06650"
+      "sha256": "bc0ccdfcdd226e3c19d228c785f1ed01d6d05067796e54662df801b6999b4fd0"
     },
     {
       "path": "specs/020-documentation-architecture-audit/audit-decisions.json",
@@ -95,11 +95,11 @@
     },
     {
       "path": "scripts/tests/test_feature_020_documentation_architecture.py",
-      "sha256": "98a9e5b8aa7f68347ea2b7e89c90438c87ffd7552cbafbd4da449e10817550c1"
+      "sha256": "77af1f54a9b6ece7f89cf03758397a06be6fbd75b1f914f0d2b0aa34ba7bc691"
     },
     {
       "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-      "sha256": "029c59f929972a979ad761b0a29dd2ce8aa6e950f2ff0931e4c80ff864d0e2c5"
+      "sha256": "bf8084d77df898449781ffdba1eb024b71a875354c18141362072f65e335fae0"
     },
     {
       "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",
@@ -120,7 +120,7 @@
     "completed": 109,
     "total": 130
   },
-  "lastPassingGate": "All local Feature-020 gates pass, including 30/30 Homogeneity checks after deterministic script-reference and statistics rendering.",
+  "lastPassingGate": "All local Feature-020 gates pass, including the synthetic depth-1 provider bridge proof and 30/30 Homogeneity checks.",
   "nextExactAction": "Commit the reconciled exact candidate, push the feature branch, open the non-empty PR, and converge provider reviews and gates.",
   "lastOperation": {
     "kind": "Validate",

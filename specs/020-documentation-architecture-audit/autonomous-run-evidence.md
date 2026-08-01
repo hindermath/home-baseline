@@ -123,3 +123,15 @@ serializer now emits the JSON-equivalent escape `sk\u002d`, and secret-test
 prefixes are assembled at runtime. The validator remains fail-closed, all 17
 fixtures and the provider bridge pass again, and the fallback scan reports no
 matching Feature-020 file.
+
+The first provider head then exposed a shallow-checkout boundary: macOS
+Maintenance TUI reached the provider-discovered Feature-020 validator, but its
+depth-1 clone did not contain the accepted pre-feature commit. G4 was resolved
+in the test-only bridge with a single exact-commit fetch only when `git
+cat-file` proves the commit absent. Collector and validator remain network-free;
+failure to fetch blocks the provider test instead of weakening audit proof.
+
+A synthetic `--depth=1` clone proved the boundary and fix together: the
+accepted commit was absent before test discovery, both provider tests passed,
+and the exact commit existed afterward. The bridge did not repeat collection
+or alter the committed audit result.

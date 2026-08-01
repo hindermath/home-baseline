@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 import subprocess
 import sys
 import unittest
@@ -11,6 +12,30 @@ import unittest
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 FEATURE_ROOT = REPOSITORY_ROOT / "specs" / "020-documentation-architecture-audit"
+
+
+def ensure_accepted_commit() -> None:
+    audit = json.loads(
+        (FEATURE_ROOT / "documentation-architecture-audit.json").read_text(encoding="utf-8")
+    )
+    commit = audit["repositoryCommit"]
+    present = subprocess.run(
+        ["git", "cat-file", "-e", f"{commit}^{{commit}}"],
+        cwd=REPOSITORY_ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if present.returncode == 0:
+        return
+    fetch = subprocess.run(
+        ["git", "fetch", "--no-tags", "--depth=1", "origin", commit],
+        cwd=REPOSITORY_ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if fetch.returncode != 0:
+        raise AssertionError(fetch.stdout + fetch.stderr)
 
 
 class Feature020ProviderDiscoveryTests(unittest.TestCase):
@@ -34,6 +59,7 @@ class Feature020ProviderDiscoveryTests(unittest.TestCase):
         self.assertEqual(0, process.returncode, process.stdout + process.stderr)
 
     def test_committed_audit_aggregate(self) -> None:
+        ensure_accepted_commit()
         process = subprocess.run(
             [
                 sys.executable,
