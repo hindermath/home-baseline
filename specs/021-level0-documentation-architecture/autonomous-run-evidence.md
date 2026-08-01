@@ -116,6 +116,13 @@ are recorded separately.
   local fleet and reported pre-existing machine-wide drift. It did not mutate
   files and is not Feature-021 acceptance evidence; the canonical
   repository-scoped invocation is the applicable proof.
+- The first provider run exposed two cross-platform proof defects: shallow
+  checkout could not resolve the frozen source commit on Ubuntu/macOS, and
+  JSON escaping hid a Windows private path from the negative fixture. The
+  learning-package job now fetches full history, and the validator inspects
+  original recursive string values. The expanded four-path fixture and the
+  complete migration validator pass locally; exact-head provider confirmation
+  remains required before merge.
 
 ## Governance
 

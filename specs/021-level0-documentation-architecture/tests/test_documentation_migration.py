@@ -154,7 +154,18 @@ class MigrationValidatorTests(unittest.TestCase):
         self.assert_failure(lambda p: p["readerPaths"][0].update(safeNextAction=""), "READER_PATH")
 
     def test_private_absolute_path(self) -> None:
-        self.assert_failure(lambda p: p["sections"][0].update(rationale=f"See {Path.home()}/private"), "PRIVATE_PATH")
+        private_paths = (
+            f"{Path.home()}/private",
+            "/Users/example/private",
+            "/home/example/private",
+            r"C:\Users\Example\private",
+        )
+        for private_path in private_paths:
+            with self.subTest(private_path=private_path):
+                self.assert_failure(
+                    lambda p, value=private_path: p["sections"][0].update(rationale=f"See {value}"),
+                    "PRIVATE_PATH",
+                )
 
     def test_d6_or_d7_regression(self) -> None:
         self.assert_failure(lambda p: p.update(d6FindingCount=1), "SUCCESSOR_SCOPE")

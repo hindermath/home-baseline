@@ -41,6 +41,18 @@ def load_json(path: Path) -> dict[str, object]:
         raise ContractError("JSON", f"cannot read {path}: {exc}") from exc
 
 
+def string_values(value: object):
+    """Yield original string values without JSON escape transformations."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from string_values(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from string_values(item)
+
+
 def repo_path(repo: Path, value: object, error_class: str) -> Path:
     if not isinstance(value, str) or not value:
         raise ContractError(error_class, "path must be a non-empty string")
@@ -182,10 +194,10 @@ def validate(repo: Path, migration: Path) -> dict[str, int]:
     payload = load_json(migration)
     if payload.get("schemaVersion") != "1.0" or payload.get("findingId") != "DIA001":
         raise ContractError("SCHEMA", "schemaVersion 1.0 and findingId DIA001 are required")
-    serialized = json.dumps(payload, ensure_ascii=False)
-    if PRIVATE_PATH_PATTERN.search(serialized):
+    values = list(string_values(payload))
+    if any(PRIVATE_PATH_PATTERN.search(value) for value in values):
         raise ContractError("PRIVATE_PATH", "publishable evidence contains a private absolute path")
-    if SECRET_PATTERN.search(serialized):
+    if any(SECRET_PATTERN.search(value) for value in values):
         raise ContractError("SECRET", "publishable evidence contains a secret-like token")
     if payload.get("d6FindingCount") != 0 or payload.get("d7FindingCount") != 0:
         raise ContractError("SUCCESSOR_SCOPE", "D6 and D7 finding counts must remain zero")
