@@ -59,6 +59,10 @@ Before a change:
 Commit, push, merge, force, or administrative authority is never inferred from
 a local path, runtime copy, or general autonomy.
 
+The
+[maintainer and agent path](../maintenance/agentic-workspace-efficiency-guide.en.md#maintainer-und-ki-agenten-maintainers-and-ai-agents)
+adds authority modes, serialization boundaries, and a reusable agent prompt.
+
 ## Benefits and non-goals
 
 The separation provides a clean publication history, stable operational entry

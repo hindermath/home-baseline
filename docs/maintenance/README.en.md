@@ -56,6 +56,7 @@ must not be inferred from the stream alone.
 
 ## Further reading
 
+- [Detailed efficiency guide](agentic-workspace-efficiency-guide.en.md#regelmäßiger-betrieb-regular-operation)
 - [One-command maintenance manpage](../man/maintain-agentic-workspace.1.md)
 - [Maintenance TUI architecture](../architecture/maintenance-tui.md)
 - [Maintenance TUI accessibility](../accessibility/maintenance-tui.md)

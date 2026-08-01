@@ -56,12 +56,16 @@ Documentation-Impact-Entscheidung dokumentieren.
 **Nächste Aktion:** Veraltete Evidence vor einer Entscheidung am aktuellen Head
 neu validieren.
 
+Der [Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md)
+führt alle vier Pfade in einem ausführlichen, quellengebundenen Betriebsmodell
+zusammen.
+
 ## Themenbereiche
 
 | Bereich | Kanonischer Einstieg |
 |---|---|
 | Einstieg und Lernen | [Erste Schritte](getting-started.md), [Lernreihen](learning-units/README.md) |
-| Betrieb und Wartung | [Wartung](maintenance/README.md), [Manpages](man/) |
+| Betrieb und Wartung | [Wartung](maintenance/README.md), [Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md), [Manpages](man/) |
 | Architektur | [Source und Home Runtime](architecture/source-and-home-runtime.md), [Wartungs-TUI](architecture/maintenance-tui.md) |
 | Governance und sichere Entwicklung | [Dokumentations-Governance](documentation-governance.md), [Security](security/README.md), [Secure Development](secure-development/) |
 | Technische Referenz | [Skripte](scripts/README.md), [vollständige Skriptreferenz](scripts/reference.md) |

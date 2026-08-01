@@ -54,12 +54,15 @@ Documentation Impact decision.
 
 **Next action:** Revalidate stale evidence at the current head before relying on it.
 
+The [efficiency guide](maintenance/agentic-workspace-efficiency-guide.en.md)
+combines all four paths in one detailed, source-bound operating model.
+
 ## Topic areas
 
 | Area | Canonical entry |
 |---|---|
 | Getting started and learning | [Getting started](getting-started.en.md), [learning series](learning-units/README.md) |
-| Operation and maintenance | [Maintenance](maintenance/README.en.md), [manpages](man/) |
+| Operation and maintenance | [Maintenance](maintenance/README.en.md), [efficiency guide](maintenance/agentic-workspace-efficiency-guide.en.md), [manpages](man/) |
 | Architecture | [Source and Home Runtime](architecture/source-and-home-runtime.en.md), [maintenance TUI](architecture/maintenance-tui.md) |
 | Governance and secure development | [Documentation governance](documentation-governance.md), [security](security/README.md), [secure development](secure-development/) |
 | Technical reference | [Scripts](scripts/README.md), [complete script reference](scripts/reference.md) |
