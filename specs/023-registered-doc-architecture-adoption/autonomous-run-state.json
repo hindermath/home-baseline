@@ -5,12 +5,12 @@
   "branch": "023-registered-doc-architecture-adoption",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
-  "checkpointCommit": "a7dc876a284a49e6d9cfe271d76642a6a9b027e7",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.023-registered-doc-architecture-adoption.md",
       "sha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22"
     },
     {
@@ -27,19 +27,47 @@
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "1f660d0c1abf7330d067093f0662320ac4688f90d0a9061b8b2e54cedd38d209"
+      "sha256": "d181e6260239c33ef46203da4485ea65c259f08b2dc73e2ce1357665077c1050"
     },
     {
       "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
-      "sha256": "4ded78735d0311e1bb614e4e205ac01b94c17583400e8febae813c850e841503"
+      "sha256": "5500628f24732fe35413803371fda872937330932eae91a537d2bc28711ba2fe"
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-      "sha256": "c0e327db3f366a374053ae0c806a00360c6602b5b42651c59da71eee390af9b7"
+      "sha256": "8b8477bfb48de3977210f0be0622d93b99de2b57f22593ee7e74ad90203aad4e"
     },
     {
       "path": "specs/active-lastenheft-normalization/intake-review-result.json",
-      "sha256": "527e9ebe253736fbe36bfc297f15450e9e366f0626627f483a06cbf6dd8d2e68"
+      "sha256": "76deb95f6740817b0430ab2057c2bb928574a5d60e54c14a5a3371f7b9b4bbef"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/operations/9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd.json",
+      "sha256": "f8b93064a81e9a2571949371a31922dacef9032b9582760d58619c0b2bdc7759"
+    },
+    {
+      "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+      "sha256": "abfa791998cbf25da930d3a099c2705819da7b0d5f4e16e3753bad9e9791060e"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-report.md",
+      "sha256": "452fb96b8ce988adfbd63d683f6a115eeb218505a68955958ddd71bd5d27c4c0"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/validation.md",
+      "sha256": "fe6e6fb9e1ef5bc5bdbd1495e5bc3d5ca33a910de8305d50c66cf1fd7d91cea5"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/autonomous-run-gate-evidence.json",
+      "sha256": "45a6ce752c18a95c9e9466f3df8e67cb34e9eafbc78ccc1c7a80db8e3d9c2775"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/pr-evidence.md",
+      "sha256": "dfd472ba86a0c1e8db64f23afe5731d0c03efa95c3b3e8bce3b9443c8c00548f"
+    },
+    {
+      "path": "specs/023-registered-doc-architecture-adoption/retrospective.md",
+      "sha256": "2d7d607958d5c808a6be9e100630b68a32af42cbac948d0a7e02836f46c7d175"
     },
     {
       "path": "scripts/config/agentic-workspace-fleet.json",
@@ -92,16 +120,16 @@
   ],
   "tasks": {
     "path": "specs/023-registered-doc-architecture-adoption/tasks.md",
-    "sha256": "8139fe2a6f23c44a340382d63428a8ed80bc56aa417d69c40a78080d37d873ac",
-    "completed": 104,
+    "sha256": "e035d91a8d6f5109ae75094c9f49003564cbdcb07ade991423b9e05d597cf4bb",
+    "completed": 112,
     "total": 112
   },
-  "lastPassingGate": "All Level-0 local acceptance gates pass: links, learning package, secure-development generation, migration, Documentation Impact, script reference, PowerShell analysis, secrets, Homogeneity, statistics, Spec Kit integrity, matrix and whitespace.",
-  "nextExactAction": "Commit the final local evidence and generated statistics, then push branch 023 and create the non-empty Feature-023 PR.",
+  "lastPassingGate": "Closeout PR #202 head cd5672f5cf0bd2ec029834d8f88feeadbe2b9272 passed 26 jobs, exact-head Copilot review with no new comments and zero actionable threads; the successor Series is Ready with 33 targets, three roots and 39 dependencies.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "LocalFeatureCommit",
+    "kind": "Retrospective",
     "state": "Completed",
-    "summary": "The validated semantic Feature-023 candidate is committed at the recorded checkpoint; generated statistics and final local evidence are being stabilized."
+    "summary": "Feature 023 and its causal closeout are validated, all 112 tasks are complete, the decision is NoPromotion, and no successor intake starts."
   },
   "stop": {
     "reason": "N/A",
@@ -109,10 +137,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-01T22:57:37Z"
+  "updatedAt": "2026-08-01T23:40:33Z"
 }

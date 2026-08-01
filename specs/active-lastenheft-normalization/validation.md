@@ -2,65 +2,61 @@
 
 ## Aktueller Umfang / Current Scope
 
-- Aktive Ziele / Active targets: 34
+- Aktive Ziele / Active targets: 33
 - Roots: 3
-- Eindeutige Abhängigkeiten / Unique dependencies: 40
-- Bevorzugte `Eligible`-Kandidaten: genau D7
-- Review-ID: `e0cb3910-a6f0-4737-8cb5-9965e2ca9615`
-- Supersedes: `8ea4fe3c-73c2-43d1-89a7-4823d4dc048e`
+- Eindeutige Abhängigkeiten / Unique dependencies: 39
+- Bevorzugter `Eligible`-Kandidat: genau Position 5
+- Review-ID: `48e34132-a308-43f6-8280-2d74defb0ed7`
+- Supersedes: `e0cb3910-a6f0-4737-8cb5-9965e2ca9615`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils 0
 
 Die Werte beschreiben die vollständige aktive Serie nach dem kausalen
-Closeout von Feature 022. Historische Reviews und Series-Stände bleiben
+Closeout von Feature 023. Historische Reviews und Series-Stände bleiben
 bytegleich in ihren Archiven erhalten.
 
-*These values describe the complete active series after the causal Feature 022
-closeout. Historical reviews and series states remain byte-identical in their
+*These values describe the complete active series after the causal Feature 023
+closeout. Historical reviews and Series states remain byte-identical in their
 archives.*
 
 ## Feature-Abschluss / Feature Closeout
 
-- PR #199 mergte den exakten Feature-Head
-  `746a1afe18ee1ee9716907c94222915ed9003865` als
-  `b018ef78233260659c596b29d4ffb8f018afd61c`.
-- Das D6-Lastenheft ist als
-  `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.022-agentic-workspace-efficiency-guide.md`
+- PR #201 mergte den exakten Feature-Head
+  `20c44d9b5343ed3132e7c01ada50e65e138756ad` als
+  `b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c`.
+- Das D7-Lastenheft ist als
+  `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.023-registered-doc-architecture-adoption.md`
   archiviert.
 - Alle 26 technischen Jobs bestanden auf macOS, Ubuntu und Windows.
 - Sieben Gate-Anforderungen bestanden beide Exact-Head-Validatoren.
-- Der letzte Copilot-Review prüfte 34 von 34 Dateien ohne neue Kommentare;
-  null Review-Threads bleiben offen.
-- D6 und seine zwei ausgehenden Kanten wurden aus der aktiven Serie entfernt.
-- D7 ist jetzt `Primary`, Root und der einzige bevorzugte `Eligible`-Kandidat.
+- Copilot prüfte den exakten Head ohne neue Kommentare; null Review-Threads
+  blieben offen.
+- 32 finale Ziel-Adoptionen wurden über 33 nicht leere PRs geliefert.
+- D7 und seine ausgehende Kante wurden aus der aktiven Serie entfernt.
+- Position 5 ist jetzt `Primary`, Root und der einzige bevorzugte
+  `Eligible`-Kandidat.
 
-*PR #199 merged the exact reviewed Feature 022 head. The intake is archived,
-D6 and its two outgoing edges were removed, and D7 is now Primary, a root, and
-the sole preferred Eligible candidate.*
+*PR #201 merged the exact reviewed Feature 023 head. D7 is archived, its
+outgoing edge is removed, and Position 5 is now Primary, a root, and the sole
+preferred Eligible candidate.*
 
 ## Series- und Review-Bindung
 
 - Die Series-ID bleibt unverändert.
-- Der vorherige 35-Ziel-Stand und sein Receipt sind unter
-  `history/ae6a259d-990f-4bf4-9cb5-8b123d835a74/` bytegleich archiviert.
-- Das aktuelle Manifest umfasst 34 Ziele, drei Roots und 40 Kanten.
-- D7 bindet Feature 022, den bilingualen Leitfaden, vier Leserpfade, 17
-  Source-Claims und den Documentation-Impact-Vertrag.
-- Der D7-Einzelreview `2df4f9ec-169b-4089-ba33-9a4a79aaf15b` und der
-  Series-Review sind jeweils `Ready`.
-- Bash- und PowerShell-Validatoren müssen Authoring-Receipt,
-  Series-Manifest, Series-Receipt und beide Review-Ergebnisse akzeptieren.
+- Der vorherige 34-Ziel-Stand und sein Receipt sind unter
+  `history/9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd/` bytegleich archiviert.
+- Das aktuelle Manifest umfasst 33 Ziele, drei Roots und 39 Kanten.
+- Der neue Schema-1.1-Series-Review ist `Ready` und bindet seinen Request-Hash.
+- Bash- und PowerShell-Validatoren akzeptieren Manifest, Receipt und Review.
 
-*The series ID is unchanged. The prior 35-target state and receipt are archived
-byte-for-byte. The current manifest contains 34 targets, three roots, and 40
-edges. D7 binds the actual Feature 022 delivery evidence; both reviews are
-Ready.*
+*The Series ID is unchanged. The prior 34-target state and receipt are archived
+byte-for-byte. The current manifest contains 33 targets, three roots, and 39
+edges; both validator implementations accept the Ready review.*
 
 ## Liefergrenze / Delivery Boundary
 
 `Eligible` beschreibt die fachliche Reihenfolge und erteilt keine Feature-,
-Remote-, Merge- oder Administratorautorität. Dieser Closeout startet D7 oder
-einen anderen Spec-Kit-Lauf nicht automatisch.
+Remote-, Merge- oder Administratorautorität. Dieser Closeout startet Position
+5 oder einen anderen Spec-Kit-Lauf nicht automatisch.
 
 *Eligible describes sequencing readiness and grants no feature, remote, merge,
-or administrator authority. This closeout does not start D7 or another Spec Kit
-run automatically.*
+or administrator authority. This closeout starts no successor run.*

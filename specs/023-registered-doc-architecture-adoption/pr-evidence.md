@@ -141,6 +141,11 @@ run-state validator call used obsolete names and an unsupported repository
 parameter. Their corrected commands passed; neither failed invocation changed
 repository files or acceptance evidence.
 
+During causal closeout, the first fleet-matrix recheck also supplied an
+unsupported `--expected-state` option. The documented command without that
+option passed with 32 adopted, one blocked and twelve not-applicable targets;
+the rejected invocation did not change repository files or evidence.
+
 ## Follow-up Boundaries
 
 | Follow-up | Owner | Risk | Due or re-evaluation trigger | Evidence and scope reason |
@@ -150,5 +155,26 @@ repository files or acceptance evidence.
 ## Delivery And Closeout
 
 Target implementation, exact-head validation, reviews, merges and local target
-synchronization are complete. The Level-0 feature PR, Series closeout and
-retrospective remain pending.
+synchronization are complete. Feature PR #201 merged reviewed head
+`20c44d9b5343ed3132e7c01ada50e65e138756ad` as
+`b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c` after 26 green jobs, a
+no-comment exact-head Copilot review, zero actionable threads and successful
+Bash/PowerShell validation of all seven gate requirements.
+
+The causal closeout archives D7, preserves the prior Series and review
+byte-for-byte, and publishes a `Ready` successor Series with 33 targets, three
+roots and 39 dependencies. Position 5 is the sole preferred `Eligible`
+candidate. `Eligible` grants no delivery authority, and no successor feature
+starts inside this closeout.
+
+The required non-empty causal evidence closeout is published as PR #202 from
+branch `codex/023-registered-doc-architecture-adoption-closeout`. Its reviewed
+head `cd5672f5cf0bd2ec029834d8f88feeadbe2b9272` passed all 26 jobs. Two
+initial Copilot findings produced one bilingual-heading correction and one
+documented preservation of immutable historical Evidence; both threads are
+resolved. Copilot then reviewed the exact head with no new comments.
+
+Two Windows Homogeneity runs initially found a transient runner without
+`rg`; their failed jobs were repeated once and all Ubuntu, macOS and Windows
+jobs passed without repository changes. This provider retry is not product or
+governance remediation. The terminal closeout starts no successor intake.

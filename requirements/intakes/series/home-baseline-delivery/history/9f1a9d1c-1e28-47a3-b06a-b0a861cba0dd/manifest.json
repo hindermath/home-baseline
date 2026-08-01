@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "role": "Primary",
-      "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+      "normalizedSha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -206,11 +212,17 @@
     }
   ],
   "roots": [
-    "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+    "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
+    {
+      "from": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
     {
       "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "to": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -498,11 +510,5 @@
     "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
     "specs/learning-series-governance-intakes/series/intake-review-result.json"
-  ],
-  "evidenceSources": [
-    "specs/023-registered-doc-architecture-adoption/autonomous-run-gate-evidence.json",
-    "specs/023-registered-doc-architecture-adoption/fleet-adoption-matrix.json",
-    "specs/023-registered-doc-architecture-adoption/pr-evidence.md",
-    "specs/023-registered-doc-architecture-adoption/retrospective.md"
   ]
 }

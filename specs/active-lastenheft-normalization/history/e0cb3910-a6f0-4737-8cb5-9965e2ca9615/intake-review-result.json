@@ -1,22 +1,28 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "48e34132-a308-43f6-8280-2d74defb0ed7",
+  "reviewId": "e0cb3910-a6f0-4737-8cb5-9965e2ca9615",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-01T23:14:30Z",
+  "reviewedAt": "2026-08-01T20:30:00Z",
   "repository": {
     "root": ".",
-    "head": "b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c"
+    "head": "b018ef78233260659c596b29d4ffb8f018afd61c"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "8b8477bfb48de3977210f0be0622d93b99de2b57f22593ee7e74ad90203aad4e"
+    "normalizedSha256": "c0e327db3f366a374053ae0c806a00360c6602b5b42651c59da71eee390af9b7"
   },
   "targets": [
     {
-      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "role": "Primary",
+      "normalizedSha256": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "OrderedMember",
       "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
       "gitBlob": "N/A"
     },
@@ -219,6 +225,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -254,13 +261,13 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 33 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 34 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The three declared roots equal the zero-indegree target set",
-      "Thirty-nine unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Features 015 through 023 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
-      "Position 5 is the single declared Eligible candidate and no successor run was started",
-      "Feature 023 delivered 32 final target adoptions through 33 non-empty pull requests without runtime or propagation-target changes",
-      "Six final target heads had green provider reviews and 26 had documented provider-zero-step boundaries with exact local validation",
+      "Forty unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Features 015 through 022 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
+      "D7 is the single declared Eligible candidate and no successor run was started",
+      "Feature 022 provides the paired efficiency guide, four reader paths and 17 hash-bound source claims without runtime changes",
+      "D7 binds portable adoption to repository-specific applicability and Documentation Impact evidence",
       "CI/CD and PowerShell remain zero-indegree roots but are intentionally not selected under serial execution"
     ],
     "workers": []
@@ -271,5 +278,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "e0cb3910-a6f0-4737-8cb5-9965e2ca9615"
+  "supersedes": "8ea4fe3c-73c2-43d1-89a7-4823d4dc048e"
 }

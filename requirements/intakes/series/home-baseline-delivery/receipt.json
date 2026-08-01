@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "8929196d-f137-4266-8853-c6a42559e224",
+  "receiptId": "1fcb2be6-8d93-492f-a034-54d7bdc90e9a",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-08-01T20:31:00Z",
+  "createdAt": "2026-08-01T23:13:54Z",
   "operation": {
-    "operationId": "ae6a259d-990f-4bf4-9cb5-8b123d835a74",
+    "operationId": "9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd",
     "type": "Update",
-    "authorityEvidence": "Explicit serial-run authority requires the causal Feature-022 archive, evidence-bound D7 handoff, and no automatic Feature-023 start inside the closeout."
+    "authorityEvidence": "Explicit MergeAndSync authority requires the causal Feature-023 archive, evidence-bound Position-5 handoff, and no automatic successor start inside the closeout."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "1f660d0c1abf7330d067093f0662320ac4688f90d0a9061b8b2e54cedd38d209"
+    "normalizedSha256": "d181e6260239c33ef46203da4485ea65c259f08b2dc73e2ce1357665077c1050"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ae6a259d-990f-4bf4-9cb5-8b123d835a74/receipt.json",
-    "receiptNormalizedSha256": "9bfdfd767a8a1ac2e0d5323c6e19775e0f59f76c8bc0a6f9295fce6d9b58039f",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ae6a259d-990f-4bf4-9cb5-8b123d835a74/manifest.json",
-    "manifestArchiveSha256": "32b77c76b3b0285524be40ad153971bd6e710071d9b86784fe80dba953291f7b"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd/receipt.json",
+    "receiptNormalizedSha256": "4ded78735d0311e1bb614e4e205ac01b94c17583400e8febae813c850e841503",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/9f1a9d1c-1e28-47a3-b06a-b0a861cba0dd/manifest.json",
+    "manifestArchiveSha256": "1f660d0c1abf7330d067093f0662320ac4688f90d0a9061b8b2e54cedd38d209"
   },
   "tombstone": {
     "path": "N/A",
