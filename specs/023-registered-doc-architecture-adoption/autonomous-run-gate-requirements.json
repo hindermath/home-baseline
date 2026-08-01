@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "fleet-adoption-local-exact-head",
+      "applicability": "Applicable",
+      "requiredScope": "Manifest cardinality, one decision per target, 17-claim assessments, Documentation Impact completeness, delivery boundaries and unchanged propagation target set",
+      "requiredCommandTokens": [
+        "test_fleet_adoption.py",
+        "validate_fleet_adoption.py"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Feature-local deterministic validation is required without changing shared workflows.",
+      "reevaluationTrigger": "The fleet-adoption schema, target set or acceptance contract changes."
+    },
+    {
+      "gateId": "documentation-links-and-learning",
+      "applicability": "Applicable",
+      "requiredScope": "Local Markdown links, language partners, learner package and text-first accessibility",
+      "requiredCommandTokens": [
+        "--include-fragments",
+        "check-learning-package",
+        "build-secure-development-docs"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "Feature evidence and any adopted target guidance serve learners and maintainers.",
+      "reevaluationTrigger": "Changed paths, language partners or provider documentation workflows change."
+    },
+    {
+      "gateId": "repository-quality",
+      "applicability": "Applicable",
+      "requiredScope": "Homogeneity, Documentation Impact, PowerShell analysis, whitespace, secrets, statistics and Spec Kit integrity",
+      "requiredCommandTokens": [
+        "check-homogeneity",
+        "validate-documentation-impact",
+        "invoke-psscriptanalyzer",
+        "git diff --check",
+        "scan-agent-secrets",
+        "render-project-statistics",
+        "specify check"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Repository policy requires these gates for feature evidence and documentation changes.",
+      "reevaluationTrigger": "The changed-path inventory or repository quality policy changes."
+    },
+    {
+      "gateId": "maintenance-runtime-regression",
+      "applicability": "Applicable",
+      "requiredScope": "Existing Maintenance TUI restore, build and tests prove the documentation-only feature did not disturb the operational project",
+      "requiredCommandTokens": [
+        "dotnet restore",
+        "dotnet build",
+        "dotnet test"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ],
+      "rationale": "Existing provider regression gates remain mandatory even when executable files are unchanged.",
+      "reevaluationTrigger": "The Maintenance TUI project or provider workflow scope changes."
+    },
+    {
+      "gateId": "target-delivery-exact-head",
+      "applicability": "Applicable",
+      "requiredScope": "Every adopted target runs its repository-native documentation, A11Y, security, agent-parity and exact-head review gates",
+      "requiredCommandTokens": [
+        "git diff --check"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "A changed target must prove its own repository contract; unchanged targets have no delivery row.",
+      "reevaluationTrigger": "No target is adopted or a target's native gate contract changes."
+    },
+    {
+      "gateId": "docfx-web-a11y",
+      "applicability": "N/A",
+      "requiredScope": "DocFX generation and browser Playwright/Axe validation",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Level 0 has no DocFX or browser documentation test project; target-native web checks apply only if an adopted target changes such content.",
+      "reevaluationTrigger": "Level-0 DocFX/generated HTML enters scope or an adopted target changes browser documentation."
+    },
+    {
+      "gateId": "supply-chain-runtime",
+      "applicability": "N/A",
+      "requiredScope": "SBOM, VEX, SLSA, OpenSSF Scorecard, AI-SBOM and dependency evidence",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "No dependency, package, release artifact or AI runtime change is permitted.",
+      "reevaluationTrigger": "Dependency, package, build, release or AI-runtime scope changes."
+    }
+  ]
+}
