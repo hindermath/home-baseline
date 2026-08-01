@@ -19,8 +19,10 @@ run_case() {
 }
 
 run_case valid.json 0
+run_case legacy-valid.json 0
+run_case missing-architecture-fields.json 1
 run_case missing-decision.json 1
 run_case duplicate-id.json 1
 run_case invalid-followup.json 1
 run_case unsafe-defer.json 1
-printf '%s\n' 'PASS: Documentation Impact Bash fixtures (5 cases).'
+printf '%s\n' 'PASS: Documentation Impact Bash fixtures (7 cases).'

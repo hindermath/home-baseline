@@ -36,6 +36,17 @@ function Test-RepoPath {
         $text -notmatch '(^|[\\/])\.\.([\\/]|$)'
 }
 
+function Get-PropertyValue {
+    param([object]$Object, [string]$Name)
+    return $Object.PSObject.Properties[$Name]
+}
+
+function Test-NonEmptyStringArray {
+    param([object]$Value)
+    if ($Value -isnot [System.Array] -or @($Value).Count -eq 0) { return $false }
+    return @($Value | Where-Object { -not (Test-TextValue $_) }).Count -eq 0
+}
+
 try {
     $resolved = (Resolve-Path -LiteralPath $Evidence -ErrorAction Stop).Path
     $document = Get-Content -LiteralPath $resolved -Raw -Encoding utf8 |
@@ -44,8 +55,8 @@ try {
     $decisions = @('UpdateRequired', 'NoUpdateRequired', 'GeneratedUpdate', 'FollowUp')
     $criticalities = @('Normal', 'Security', 'Usage', 'BreakingChange')
 
-    if ($document.schemaVersion -ne '1.0') {
-        $errors.Add('SCHEMA: schemaVersion must equal 1.0.')
+    if ($document.schemaVersion -notin @('1.0', '1.1')) {
+        $errors.Add('SCHEMA: schemaVersion must equal 1.0 or 1.1.')
     }
     if (-not (Test-TextValue $document.feature)) {
         $errors.Add('IDENTITY: feature is required.')
@@ -81,6 +92,50 @@ try {
         foreach ($path in @($entry.documents)) {
             if (-not (Test-RepoPath $path)) {
                 $errors.Add("PATH: '${id}' contains a non-repository-relative document path.")
+            }
+        }
+
+        if ($document.schemaVersion -eq '1.1') {
+            $audiences = (Get-PropertyValue $entry 'audiences').Value
+            $readerPaths = (Get-PropertyValue $entry 'readerPaths').Value
+            $canonicalSource = (Get-PropertyValue $entry 'canonicalSource').Value
+            $navigationImpact = (Get-PropertyValue $entry 'navigationImpact').Value
+            $documentClass = (Get-PropertyValue $entry 'documentClass').Value
+            $languageStrategy = (Get-PropertyValue $entry 'languageStrategy').Value
+            $languagePartners = (Get-PropertyValue $entry 'languagePartners').Value
+            $platformProof = (Get-PropertyValue $entry 'platformAndExampleProof').Value
+            $distributionClass = (Get-PropertyValue $entry 'distributionClass').Value
+            $homeSyncRequired = (Get-PropertyValue $entry 'homeSyncRequired').Value
+            $reevaluationTrigger = (Get-PropertyValue $entry 'reevaluationTrigger').Value
+            $risk = (Get-PropertyValue $entry 'risk').Value
+
+            if (-not (Test-NonEmptyStringArray $audiences) -or
+                -not (Test-NonEmptyStringArray $readerPaths)) {
+                $errors.Add("ARCHITECTURE: '${id}' needs non-empty audiences and readerPaths arrays.")
+            }
+            if (-not (Test-RepoPath $canonicalSource) -or
+                -not (Test-TextValue $navigationImpact) -or
+                -not (Test-TextValue $documentClass) -or
+                -not (Test-TextValue $languageStrategy) -or
+                -not (Test-TextValue $platformProof) -or
+                -not (Test-TextValue $reevaluationTrigger) -or
+                -not (Test-TextValue $risk)) {
+                $errors.Add("ARCHITECTURE: '${id}' lacks source, navigation, class, language, proof, risk, or re-evaluation evidence.")
+            }
+            if ($distributionClass -notin @('homeRuntime', 'sourceOnly', 'machineLocal')) {
+                $errors.Add("DISTRIBUTION: '${id}' has an invalid distributionClass.")
+            }
+            if ($homeSyncRequired -isnot [bool]) {
+                $errors.Add("DISTRIBUTION: '${id}' homeSyncRequired must be boolean.")
+            }
+            if ($languagePartners -isnot [System.Array]) {
+                $errors.Add("LANGUAGE: '${id}' languagePartners must be an array.")
+            } else {
+                foreach ($partnerPath in @($languagePartners)) {
+                    if (-not (Test-RepoPath $partnerPath)) {
+                        $errors.Add("LANGUAGE: '${id}' contains a non-repository-relative language partner.")
+                    }
+                }
             }
         }
 

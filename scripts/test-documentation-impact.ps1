@@ -17,6 +17,8 @@ $fixtures = Join-Path $repo 'scripts/tests/documentation-impact/fixtures'
 
 $cases = @(
     @{ Name = 'valid.json'; Expected = 0 },
+    @{ Name = 'legacy-valid.json'; Expected = 0 },
+    @{ Name = 'missing-architecture-fields.json'; Expected = 1 },
     @{ Name = 'missing-decision.json'; Expected = 1 },
     @{ Name = 'duplicate-id.json'; Expected = 1 },
     @{ Name = 'invalid-followup.json'; Expected = 1 },

@@ -274,6 +274,14 @@
       "executable": false
     },
     {
+      "path": "scripts/tests/documentation-impact/fixtures/legacy-valid.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/documentation-impact/fixtures/missing-architecture-fields.json",
+      "executable": false
+    },
+    {
       "path": "scripts/tests/documentation-impact/fixtures/missing-decision.json",
       "executable": false
     },

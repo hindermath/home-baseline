@@ -129,6 +129,13 @@ are recorded separately.
   symmetric partner derivation and shell-native basename extraction. The
   correction changes validation only and preserves the documented migration
   scope.
+- A later Copilot review found that the expanded Documentation Impact fields
+  were normative but not yet enforced. Schema `1.1` now requires audience,
+  reader-path, source, navigation, language, platform/example, distribution,
+  Home-sync, risk, and re-evaluation evidence, while schema `1.0` remains
+  readable for historical records. Seven Bash and PowerShell fixtures cover a
+  current positive row, a legacy positive row, and five fail-closed cases; the
+  Feature-021 evidence passes the strict schema.
 
 ## Governance
 

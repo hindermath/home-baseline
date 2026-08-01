@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "fixture",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "README",
+      "decision": "NoUpdateRequired",
+      "rationale": "Required documentation architecture fields must not be empty.",
+      "documents": [],
+      "owner": "Maintainer",
+      "audiences": [],
+      "readerPaths": [],
+      "canonicalSource": "",
+      "navigationImpact": "",
+      "documentClass": "",
+      "languageStrategy": "",
+      "languagePartners": "README.en.md",
+      "platformAndExampleProof": "",
+      "distributionClass": "unknown",
+      "homeSyncRequired": "false",
+      "evidence": "specs/fixture/evidence.md",
+      "risk": "",
+      "criticality": "Normal",
+      "reevaluationTrigger": ""
+    }
+  ]
+}
