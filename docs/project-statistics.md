@@ -1010,14 +1010,14 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 | Textdateien / Text files | 2927 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-08-01 |
 | Aktivtage / Active days | 80 |
-| Relevante Commits / Relevant commits | 658 |
+| Relevante Commits / Relevant commits | 659 |
 | Zeilen je Aktivtag / Lines per active day | 7362.6 |
-| Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 152977 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 276136 |
+| Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 152981 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 276140 |
 | Laengste Serie / Longest streak | 37 days |
 | Speedup vs. 80 lines/day | 92.0x |
 | Speedup vs. 100 lines/day | 73.6x |
-| Methodik / Methodology | v2; source `1912a9d75a3d` |
+| Methodik / Methodology | v2; source `2d7e34b50afb` |
 
 ### Artefaktmix / Artifact Mix
 
@@ -1244,9 +1244,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 152977. Peak-Woche: 2026-07-26 / 276136. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 152981. Peak-Woche: 2026-07-26 / 276140. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-08-01 / 152977. Peak week: 2026-07-26 / 276136. Longest streak: 37 days (2026-06-26..2026-08-01).*
+*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-08-01 / 152981. Peak week: 2026-07-26 / 276140. Longest streak: 37 days (2026-06-26..2026-08-01).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1261,6 +1261,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 152977 |
+| 2026-08 | 152981 |
 
 <!-- project-statistics-v2:end -->
