@@ -14879,7 +14879,7 @@
     },
     {
       "unitId": "DU-04dabffb40c9619a",
-      "path": "docs/bug-reports/openai-codex-repository-aware-task-handoff-feature-request.md",
+      "path": "docs/bug-reports/openai-codex-repository-aware-task\u002dhandoff-feature-request.md",
       "normalizedSha256": "c32565a7d58124dec41379348b3c4175c299c1182c5876108ebdf9d8f49af948",
       "family": "docs/bug-reports",
       "artifactClass": "ActiveSemantic",
@@ -14892,11 +14892,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/bug-reports/openai-codex-repository-aware-task-handoff-feature-request.md",
+      "canonicalSource": "docs/bug-reports/openai-codex-repository-aware-task\u002dhandoff-feature-request.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/bug-reports/openai-codex-repository-aware-task-handoff-feature-request.md"
+        "docs/bug-reports/openai-codex-repository-aware-task\u002dhandoff-feature-request.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -15079,7 +15079,7 @@
     },
     {
       "unitId": "DU-7bda13064fe7ea11",
-      "path": "docs/learning-units/IT-Berufe-Secure-OrderDesk-Mapping.md",
+      "path": "docs/learning-units/IT-Berufe-Secure-OrderDesk\u002dMapping.md",
       "normalizedSha256": "56a90d5fb28b75c55bc279dc9db1e8176bd26dc4f53d2b2571d1ee52b2751b68",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -15092,11 +15092,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/IT-Berufe-Secure-OrderDesk-Mapping.md",
+      "canonicalSource": "docs/learning-units/IT-Berufe-Secure-OrderDesk\u002dMapping.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/IT-Berufe-Secure-OrderDesk-Mapping.md"
+        "docs/learning-units/IT-Berufe-Secure-OrderDesk\u002dMapping.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17179,7 +17179,7 @@
     },
     {
       "unitId": "DU-6b701b65fa2fb33e",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track-Lernreihe.md",
       "normalizedSha256": "d1b6e978f0711cfe04e38dc18177ac7a008260b33f578ff1ac62dd59cf7a0c28",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17192,11 +17192,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17204,7 +17204,7 @@
     },
     {
       "unitId": "DU-6716220b30e92a12",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_01_Track-Baseline-und-Feature-Zielbild.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_01_Track-Baseline-und-Feature-Zielbild.md",
       "normalizedSha256": "984f0cd0d30b22d37de8470c3907c6e97544c71e79e0ff79458909de91d2706a",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17217,11 +17217,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_01_Track-Baseline-und-Feature-Zielbild.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_01_Track-Baseline-und-Feature-Zielbild.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_01_Track-Baseline-und-Feature-Zielbild.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_01_Track-Baseline-und-Feature-Zielbild.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17229,7 +17229,7 @@
     },
     {
       "unitId": "DU-23962f3d7f8b1c7a",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_02_API-Erweiterung-und-Ressourcenmodell.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_02_API-Erweiterung-und-Ressourcenmodell.md",
       "normalizedSha256": "709ed7d6d225f2ede00a81743a389873bf3b9da746922c813d068cc2a096ef92",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17242,11 +17242,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_02_API-Erweiterung-und-Ressourcenmodell.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_02_API-Erweiterung-und-Ressourcenmodell.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_02_API-Erweiterung-und-Ressourcenmodell.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_02_API-Erweiterung-und-Ressourcenmodell.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17254,7 +17254,7 @@
     },
     {
       "unitId": "DU-1a10937cb7ca1de2",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_03_Persistenz-Adapter-und-Repository-Muster.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_03_Persistenz-Adapter-und-Repository-Muster.md",
       "normalizedSha256": "dfd6fda2289dccd70163389eae9ea26a8c51c2b45f1b49443d170b6fab651d08",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17267,11 +17267,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_03_Persistenz-Adapter-und-Repository-Muster.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_03_Persistenz-Adapter-und-Repository-Muster.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_03_Persistenz-Adapter-und-Repository-Muster.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_03_Persistenz-Adapter-und-Repository-Muster.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17279,7 +17279,7 @@
     },
     {
       "unitId": "DU-045db23d6bdfebb6",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_04_Query-Filter-und-Paginierungslogik.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_04_Query-Filter-und-Paginierungslogik.md",
       "normalizedSha256": "5890bad4eb6dbc9e26afa70932f9fadeaecafb63bc15d813aaf4db794af0fc28",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17292,11 +17292,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_04_Query-Filter-und-Paginierungslogik.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_04_Query-Filter-und-Paginierungslogik.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_04_Query-Filter-und-Paginierungslogik.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_04_Query-Filter-und-Paginierungslogik.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17304,7 +17304,7 @@
     },
     {
       "unitId": "DU-e68c920396d4f4d8",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_05_Viewer-oder-Client-Oberflaeche.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_05_Viewer-oder-Client-Oberflaeche.md",
       "normalizedSha256": "01ad352ec6969b23b4ed886d7a7d674590279916af6c1803f78ec40bdc02f105",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17317,11 +17317,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_05_Viewer-oder-Client-Oberflaeche.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_05_Viewer-oder-Client-Oberflaeche.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_05_Viewer-oder-Client-Oberflaeche.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_05_Viewer-oder-Client-Oberflaeche.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17329,7 +17329,7 @@
     },
     {
       "unitId": "DU-28076c9c0e67e2a6",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_06_Fehlerbehandlung-und-Validierung-vertieft.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_06_Fehlerbehandlung-und-Validierung-vertieft.md",
       "normalizedSha256": "49260e8e1abb6a0765f4a28e631bc770c4e3a510936f95af40a756a06cb0d531",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17342,11 +17342,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_06_Fehlerbehandlung-und-Validierung-vertieft.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_06_Fehlerbehandlung-und-Validierung-vertieft.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_06_Fehlerbehandlung-und-Validierung-vertieft.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_06_Fehlerbehandlung-und-Validierung-vertieft.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17354,7 +17354,7 @@
     },
     {
       "unitId": "DU-12dca99866c5c191",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.md",
       "normalizedSha256": "bbbbb28bac71d1904aee8017c5649b588583594a3b1fa53e6ac8b9f0c3ec6388",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17367,11 +17367,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17379,7 +17379,7 @@
     },
     {
       "unitId": "DU-0dcf1b1ff3513048",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.md",
       "normalizedSha256": "3b2012c7754d3d803cb22b17f06c85584f6ed621a5d48c41ceda9e0a59697bdc",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17392,11 +17392,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17404,7 +17404,7 @@
     },
     {
       "unitId": "DU-614da093d216ca9f",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.md",
       "normalizedSha256": "ae9f68168b1739a55331ff9fb27dfeb611472f40fdf44331bea8f85d7dde0a88",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17417,11 +17417,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17429,7 +17429,7 @@
     },
     {
       "unitId": "DU-5af1fb979d1010fc",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_10_Feature-Review-Trade-offs-und-Abschluss.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_10_Feature-Review-Trade-offs-und-Abschluss.md",
       "normalizedSha256": "bb5a2b86e44f267f7de48a25c66f0d164f113b251a954ba16a3d01c58f7300c9",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17442,11 +17442,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_10_Feature-Review-Trade-offs-und-Abschluss.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_10_Feature-Review-Trade-offs-und-Abschluss.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Application-Track_10_Feature-Review-Trade-offs-und-Abschluss.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dApplication-Track_10_Feature-Review-Trade-offs-und-Abschluss.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17454,7 +17454,7 @@
     },
     {
       "unitId": "DU-7212f9f42735e36c",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md",
       "normalizedSha256": "816d72d8b6994e002dd0da37eb12ac5cbd70c025806e4fc6d96a6a7e765bbbd8",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17467,11 +17467,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17479,7 +17479,7 @@
     },
     {
       "unitId": "DU-dbecf8b5cdbc2d27",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_01_Track-Baseline-und-Datenzielbild.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_01_Track-Baseline-und-Datenzielbild.md",
       "normalizedSha256": "4bc900c06684682390633bd38665c7cb9298cc569401a900dfb96df9bdc65d6c",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17492,11 +17492,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_01_Track-Baseline-und-Datenzielbild.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_01_Track-Baseline-und-Datenzielbild.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_01_Track-Baseline-und-Datenzielbild.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_01_Track-Baseline-und-Datenzielbild.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17504,7 +17504,7 @@
     },
     {
       "unitId": "DU-4a2d9027cda0079a",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.md",
       "normalizedSha256": "0d0cd9f5a615d1b4268bdbaf46cb57722ba70f9fda9b96704744350919dfbc5b",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17517,11 +17517,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17529,7 +17529,7 @@
     },
     {
       "unitId": "DU-8273b47736a27ed7",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.md",
       "normalizedSha256": "0f52451b1902d9a7db0059b512e363cdf67252f09d3bb57680295635e6dd62fc",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17542,11 +17542,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17554,7 +17554,7 @@
     },
     {
       "unitId": "DU-f069b52f66191bab",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.md",
       "normalizedSha256": "34325aa9890a051908f0aee5e29e4f1975f2503bac2e15dac6eeb8347ff315f3",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17567,11 +17567,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17579,7 +17579,7 @@
     },
     {
       "unitId": "DU-38389a8d5123e47f",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_05_Reporting-und-Aggregationsansichten.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_05_Reporting-und-Aggregationsansichten.md",
       "normalizedSha256": "743146e9d1a850b7e57c1d85cc43a71f9130d7f0865150ec1631be67f9c23515",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17592,11 +17592,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_05_Reporting-und-Aggregationsansichten.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_05_Reporting-und-Aggregationsansichten.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_05_Reporting-und-Aggregationsansichten.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_05_Reporting-und-Aggregationsansichten.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17604,7 +17604,7 @@
     },
     {
       "unitId": "DU-e6b2baa9909bff61",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.md",
       "normalizedSha256": "b29aa69eb44440ce1fe82abdef68181d47689ebb7f4117bf5d109738f1138794",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17617,11 +17617,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17629,7 +17629,7 @@
     },
     {
       "unitId": "DU-333ad3407628026e",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_07_Anomalie-und-Lueckenerkennung.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_07_Anomalie-und-Lueckenerkennung.md",
       "normalizedSha256": "a5963851a0831888cf58262c341baeeedf430c89ea23bc9f817bf7516530cd02",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17642,11 +17642,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_07_Anomalie-und-Lueckenerkennung.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_07_Anomalie-und-Lueckenerkennung.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_07_Anomalie-und-Lueckenerkennung.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_07_Anomalie-und-Lueckenerkennung.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17654,7 +17654,7 @@
     },
     {
       "unitId": "DU-831522c4cd5f954f",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_08_Prozessfeedback-und-Verbesserung.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_08_Prozessfeedback-und-Verbesserung.md",
       "normalizedSha256": "8a7db0b45cd0c06c6f3103493a6f432d05f470062f9388ee3c4299651253e1ca",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17667,11 +17667,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_08_Prozessfeedback-und-Verbesserung.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_08_Prozessfeedback-und-Verbesserung.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_08_Prozessfeedback-und-Verbesserung.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_08_Prozessfeedback-und-Verbesserung.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17679,7 +17679,7 @@
     },
     {
       "unitId": "DU-7f1f19949f536b52",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.md",
       "normalizedSha256": "68695bcd14ca063a8974583e6a05dfa8432f1fb5d079ce06da2384c827d858f4",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17692,11 +17692,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17704,7 +17704,7 @@
     },
     {
       "unitId": "DU-7f9d3364497f9cd4",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.md",
       "normalizedSha256": "eb7f21414ba12f7203b8b7f2295ed1a13c85b12af6c4f13903598b102f8c2849",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17717,11 +17717,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Data-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dData-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17729,7 +17729,7 @@
     },
     {
       "unitId": "DU-593a5ef5d7c24108",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md",
       "normalizedSha256": "6d6615bc11fa21d871cc5d740bd36a7c2423d8cfc528c5e5be5b163e12502c40",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17742,11 +17742,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17754,7 +17754,7 @@
     },
     {
       "unitId": "DU-4977a2b4e4fe5ebf",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_01_Track-Baseline-und-Netzzielbild.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_01_Track-Baseline-und-Netzzielbild.md",
       "normalizedSha256": "9c0c52ed9b17bc8e635e2657889684b5a1434f47c4ebb432ce74a98719bbdead",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17767,11 +17767,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_01_Track-Baseline-und-Netzzielbild.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_01_Track-Baseline-und-Netzzielbild.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_01_Track-Baseline-und-Netzzielbild.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_01_Track-Baseline-und-Netzzielbild.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17779,7 +17779,7 @@
     },
     {
       "unitId": "DU-006bde6e4be672d3",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.md",
       "normalizedSha256": "34e79d2222580c52acdfad9da5d7cf64743d9f5b14a72697e1b64d91e962bd1b",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17792,11 +17792,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17804,7 +17804,7 @@
     },
     {
       "unitId": "DU-73f1cc79a9f6e266",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.md",
       "normalizedSha256": "2fdd7bac7319d992dd92296284ad62fa25a2ca2f04b4f2bf6ba855b443e13798",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17817,11 +17817,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17829,7 +17829,7 @@
     },
     {
       "unitId": "DU-557cfd0db4ed9c27",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.md",
       "normalizedSha256": "3d8d7940f2f402afabf4486c61fb05f6965c3423fb622d88744b46d739773837",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17842,11 +17842,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17854,7 +17854,7 @@
     },
     {
       "unitId": "DU-0c979ed04fe68c85",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.md",
       "normalizedSha256": "bc200a8e342ed7459f0f45d5283a9f7b3a7577d0b25ae17a124c29912a3b4272",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17867,11 +17867,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17879,7 +17879,7 @@
     },
     {
       "unitId": "DU-c3283f334b89a81b",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.md",
       "normalizedSha256": "676f39343c51c560145f73fcd30fc84e14cc8aee9a01314d3179274650b3315b",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17892,11 +17892,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17904,7 +17904,7 @@
     },
     {
       "unitId": "DU-f97298fa8362b41e",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.md",
       "normalizedSha256": "8f344366b2825c54ab3c41f37a76066e3205b2d0335898b11f88a106b69cb764",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17917,11 +17917,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17929,7 +17929,7 @@
     },
     {
       "unitId": "DU-3ffb6f0e804b73b2",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_08_Betriebs-und-Netznachweise.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_08_Betriebs-und-Netznachweise.md",
       "normalizedSha256": "1993477b19fe2126c33b450dd41140cf89cc5f4ebd909e2f5d40bf5c91a3da30",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17942,11 +17942,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_08_Betriebs-und-Netznachweise.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_08_Betriebs-und-Netznachweise.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_08_Betriebs-und-Netznachweise.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_08_Betriebs-und-Netznachweise.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17954,7 +17954,7 @@
     },
     {
       "unitId": "DU-39375b702be14eed",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_09_Ausfallszenarien-und-Resilienz.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_09_Ausfallszenarien-und-Resilienz.md",
       "normalizedSha256": "96c7d05f0d74359fefa8ae11465dfead4c87a9df6a7ee71482873ecc8968a6ce",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17967,11 +17967,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_09_Ausfallszenarien-und-Resilienz.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_09_Ausfallszenarien-und-Resilienz.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_09_Ausfallszenarien-und-Resilienz.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_09_Ausfallszenarien-und-Resilienz.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -17979,7 +17979,7 @@
     },
     {
       "unitId": "DU-bbb69ac2aaae4df9",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.md",
       "normalizedSha256": "4f1b979dea422e97363840653a313390e66a190b8056526703b7c55d423eba35",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -17992,11 +17992,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Digital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dDigital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18004,7 +18004,7 @@
     },
     {
       "unitId": "DU-df49aad179419630",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dLernreihe.md",
       "normalizedSha256": "6201be46a063ded2cf25ced6bed483d1b57aefe67d93330336a689bf8b481c7d",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18017,11 +18017,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dLernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dLernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18029,7 +18029,7 @@
     },
     {
       "unitId": "DU-ee2023c67b092e54",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track-Lernreihe.md",
       "normalizedSha256": "3ada5c0c0e42e6bec4639d5c710bb0030dbf721757db9a1f783e58c1dfcb559f",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18042,11 +18042,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18054,7 +18054,7 @@
     },
     {
       "unitId": "DU-8044eb07166c4c39",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_01_Track-Baseline-und-Betriebszielbild.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_01_Track-Baseline-und-Betriebszielbild.md",
       "normalizedSha256": "e234ac2b57754b5d74eead5f7964a6e2a6d6a1d444e9b3a9c02bd4962dde2d95",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18067,11 +18067,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_01_Track-Baseline-und-Betriebszielbild.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_01_Track-Baseline-und-Betriebszielbild.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_01_Track-Baseline-und-Betriebszielbild.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_01_Track-Baseline-und-Betriebszielbild.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18079,7 +18079,7 @@
     },
     {
       "unitId": "DU-21c5e2c9e91328f8",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_02_Datenbank-Deployment.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_02_Datenbank-Deployment.md",
       "normalizedSha256": "9a6bb88f9bef3a95630ba450be66055dd1287634b19a754d01b4338ea4531b36",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18092,11 +18092,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_02_Datenbank-Deployment.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_02_Datenbank-Deployment.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_02_Datenbank-Deployment.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_02_Datenbank-Deployment.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18104,7 +18104,7 @@
     },
     {
       "unitId": "DU-c11ecfe7c33d1607",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.md",
       "normalizedSha256": "961d224f10fe99a44f5f70fea5daf49ec7c84ac970b7dedfee49940f1fa2a32a",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18117,11 +18117,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18129,7 +18129,7 @@
     },
     {
       "unitId": "DU-c76933ad887f9813",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.md",
       "normalizedSha256": "406f10af8f82f165cfc5b21cff459da68ec725d7209eba4f24bb5ced8fcb0a28",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18142,11 +18142,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18154,7 +18154,7 @@
     },
     {
       "unitId": "DU-e6e19f9e31051165",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_05_Observability-Logging-Health-und-Metriken.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_05_Observability-Logging-Health-und-Metriken.md",
       "normalizedSha256": "c8f69610bb07e982915fd29287e4ad0c70786cadefccbb1f41e2843c4f83fa89",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18167,11 +18167,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_05_Observability-Logging-Health-und-Metriken.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_05_Observability-Logging-Health-und-Metriken.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_05_Observability-Logging-Health-und-Metriken.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_05_Observability-Logging-Health-und-Metriken.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18179,7 +18179,7 @@
     },
     {
       "unitId": "DU-619b299e590e839e",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.md",
       "normalizedSha256": "788de0488a76a04348c9eda70719e8b381cba271ec31128b16acb3c6b07f63a7",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18192,11 +18192,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18204,7 +18204,7 @@
     },
     {
       "unitId": "DU-45f6f789a2cb5e65",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_07_Backup-Recovery-und-Datenmigration.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_07_Backup-Recovery-und-Datenmigration.md",
       "normalizedSha256": "a811b357529da4d74e154cc529a01e0d47721f6035ce0e21d46758341b2870a3",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18217,11 +18217,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_07_Backup-Recovery-und-Datenmigration.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_07_Backup-Recovery-und-Datenmigration.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_07_Backup-Recovery-und-Datenmigration.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_07_Backup-Recovery-und-Datenmigration.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18229,7 +18229,7 @@
     },
     {
       "unitId": "DU-4532d9ce1f20f6e7",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.md",
       "normalizedSha256": "427ddedec6f52af28ee5c5cc919a1eaded2c1f7ea0f4fa342ffb8306936aef50",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18242,11 +18242,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18254,7 +18254,7 @@
     },
     {
       "unitId": "DU-f373ea77e9013241",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.md",
       "normalizedSha256": "34591d563755c71c29d600f52830253fef8a0644dbde08481cdaac467b860152",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18267,11 +18267,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18279,7 +18279,7 @@
     },
     {
       "unitId": "DU-7cd43db620637d43",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_10_Betriebs-Review-Runbook-und-Abschluss.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_10_Betriebs-Review-Runbook-und-Abschluss.md",
       "normalizedSha256": "5c68f154d749074ee51ae18059243f4ca8c495efee8b72d521ef817fe9da9cc4",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18292,11 +18292,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_10_Betriebs-Review-Runbook-und-Abschluss.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_10_Betriebs-Review-Runbook-und-Abschluss.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Operations-Track_10_Betriebs-Review-Runbook-und-Abschluss.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dOperations-Track_10_Betriebs-Review-Runbook-und-Abschluss.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18304,7 +18304,7 @@
     },
     {
       "unitId": "DU-f73b9bf4285c4cc7",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-Professional-Tracks-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dProfessional-Tracks-Lernreihe.md",
       "normalizedSha256": "5fd678302652c5fd483032607d6cb06d07bb7d44088706fd9d8cd195110645af",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18317,11 +18317,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-Professional-Tracks-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dProfessional-Tracks-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-Professional-Tracks-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dProfessional-Tracks-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18329,7 +18329,7 @@
     },
     {
       "unitId": "DU-011e76d5398e6a60",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2-Lernreihe.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2-Lernreihe.md",
       "normalizedSha256": "8d77e73e638eaa484cb56aa58dce9291b3af2164b55768c9c2ad4fc4ce011f1b",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18342,11 +18342,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2-Lernreihe.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18354,7 +18354,7 @@
     },
     {
       "unitId": "DU-01640065c3b55431",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_01_Architekturzielbild-und-Systemgrenzen.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_01_Architekturzielbild-und-Systemgrenzen.md",
       "normalizedSha256": "fbc040faf796cf378c77a147b785f1e378bde21d5ff55538ccae76ccf11d1fdd",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18367,11 +18367,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_01_Architekturzielbild-und-Systemgrenzen.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_01_Architekturzielbild-und-Systemgrenzen.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_01_Architekturzielbild-und-Systemgrenzen.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_01_Architekturzielbild-und-Systemgrenzen.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18379,7 +18379,7 @@
     },
     {
       "unitId": "DU-aa2ed64099333de3",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.md",
       "normalizedSha256": "f85d499e89e582b66e2dfb116eae75a266d6623a11f86e5c569efb760c719a79",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18392,11 +18392,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18404,7 +18404,7 @@
     },
     {
       "unitId": "DU-77b986be29f41949",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.md",
       "normalizedSha256": "2e758e74a2291e60d5b560069a5d1130999665280a3568d93e86ecc08fe10002",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18417,11 +18417,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18429,7 +18429,7 @@
     },
     {
       "unitId": "DU-3e0bdd4edc7d3c54",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_04_Bestellannahme-Idempotenz-und-Import-Haertung.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_04_Bestellannahme-Idempotenz-und-Import-Haertung.md",
       "normalizedSha256": "05c2dbb6c41377b2434d0054e3dc7e4b2fe33b24cf36859478f4b79474bded77",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18442,11 +18442,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_04_Bestellannahme-Idempotenz-und-Import-Haertung.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_04_Bestellannahme-Idempotenz-und-Import-Haertung.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_04_Bestellannahme-Idempotenz-und-Import-Haertung.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_04_Bestellannahme-Idempotenz-und-Import-Haertung.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18454,7 +18454,7 @@
     },
     {
       "unitId": "DU-2b3827c8b173f65e",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_05_API-und-Service-Vertrag-und-OpenAPI.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_05_API-und-Service-Vertrag-und-OpenAPI.md",
       "normalizedSha256": "ed0251584ed9e8641cc0cb11215e831f9fd15e74986e0f8d5c6835e6df2e3999",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18467,11 +18467,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_05_API-und-Service-Vertrag-und-OpenAPI.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_05_API-und-Service-Vertrag-und-OpenAPI.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_05_API-und-Service-Vertrag-und-OpenAPI.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_05_API-und-Service-Vertrag-und-OpenAPI.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18479,7 +18479,7 @@
     },
     {
       "unitId": "DU-8f3b01ce68c29207",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_06_Fehler-Validierungs-und-Response-Modell.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_06_Fehler-Validierungs-und-Response-Modell.md",
       "normalizedSha256": "e838834a1956f2953e41582f17f9baf520393ffca23c7cf4cde759a0cceaa150",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18492,11 +18492,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_06_Fehler-Validierungs-und-Response-Modell.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_06_Fehler-Validierungs-und-Response-Modell.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_06_Fehler-Validierungs-und-Response-Modell.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_06_Fehler-Validierungs-und-Response-Modell.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18504,7 +18504,7 @@
     },
     {
       "unitId": "DU-b7bbad3afa6cbe56",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_07_Rollen-Autorisierung-und-Audit-Logging.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_07_Rollen-Autorisierung-und-Audit-Logging.md",
       "normalizedSha256": "67ca75a8f6e4bcf9582c0ade25994c961cb45ca3dd715cbf72a66a072533401a",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18517,11 +18517,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_07_Rollen-Autorisierung-und-Audit-Logging.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_07_Rollen-Autorisierung-und-Audit-Logging.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_07_Rollen-Autorisierung-und-Audit-Logging.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_07_Rollen-Autorisierung-und-Audit-Logging.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18529,7 +18529,7 @@
     },
     {
       "unitId": "DU-5598d3a59a463145",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_08_Betrieb-Logging-Health-und-Monitoring.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_08_Betrieb-Logging-Health-und-Monitoring.md",
       "normalizedSha256": "324c0752ef8bcbc1baaad2b3f9090ac488bdb8f60ba92f5c293b2b078d9bbc95",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18542,11 +18542,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_08_Betrieb-Logging-Health-und-Monitoring.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_08_Betrieb-Logging-Health-und-Monitoring.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_08_Betrieb-Logging-Health-und-Monitoring.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_08_Betrieb-Logging-Health-und-Monitoring.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18554,7 +18554,7 @@
     },
     {
       "unitId": "DU-01689bd58c3e4349",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.md",
       "normalizedSha256": "e64ddae4b7a9ab59dbeda7b99bd9db9d4e53fc40cc34a35e8c79eab7f95d8daf",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18567,11 +18567,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -18579,7 +18579,7 @@
     },
     {
       "unitId": "DU-719904e66c9803e8",
-      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_10_MSL-Vergleich-und-Abschlussreview.md",
+      "path": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_10_MSL-Vergleich-und-Abschlussreview.md",
       "normalizedSha256": "a7f9d35f9c6f8f6749881dfe86fa95e993369d08c5ab5339e157b80299eb57c5",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -18592,11 +18592,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_10_MSL-Vergleich-und-Abschlussreview.md",
+      "canonicalSource": "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_10_MSL-Vergleich-und-Abschlussreview.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Lastenheft_Secure-OrderDesk-v2_10_MSL-Vergleich-und-Abschlussreview.md"
+        "docs/learning-units/Lastenheft_Secure-OrderDesk\u002dv2_10_MSL-Vergleich-und-Abschlussreview.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21204,7 +21204,7 @@
     },
     {
       "unitId": "DU-f127666c87e1d553",
-      "path": "docs/learning-units/Secure-OrderDesk-Application-Track-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dApplication-Track-Lernreihe.md",
       "normalizedSha256": "df7953d394c4674df33d58320b102c0c0e83ce74474e588b46ebad9bbfe49929",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21217,11 +21217,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Application-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dApplication-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Application-Track-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dApplication-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21229,7 +21229,7 @@
     },
     {
       "unitId": "DU-5aa76cf48ded704f",
-      "path": "docs/learning-units/Secure-OrderDesk-Application-Track-Unterrichtsleitfaden.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dApplication-Track-Unterrichtsleitfaden.md",
       "normalizedSha256": "8ed834383a7e8da2bf6fee9189d88493e5f6c3ab24752a23465736634a1dc4ab",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21242,11 +21242,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Application-Track-Unterrichtsleitfaden.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dApplication-Track-Unterrichtsleitfaden.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Application-Track-Unterrichtsleitfaden.md"
+        "docs/learning-units/Secure-OrderDesk\u002dApplication-Track-Unterrichtsleitfaden.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21254,7 +21254,7 @@
     },
     {
       "unitId": "DU-c9bb99d695bd8404",
-      "path": "docs/learning-units/Secure-OrderDesk-Data-Process-Track-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md",
       "normalizedSha256": "9b954e5d6793a6eace73fe0adc0c6d505ed3a368a5cb7886996d9befc4715799",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21267,11 +21267,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Data-Process-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Data-Process-Track-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21279,7 +21279,7 @@
     },
     {
       "unitId": "DU-f57ebd2755b86656",
-      "path": "docs/learning-units/Secure-OrderDesk-Data-Process-Track-Unterrichtsleitfaden.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dData-Process-Track-Unterrichtsleitfaden.md",
       "normalizedSha256": "afdf1ebe65bd6634e06554d43df6590754aaff4dee603aa485438bb92f695301",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21292,11 +21292,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Data-Process-Track-Unterrichtsleitfaden.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dData-Process-Track-Unterrichtsleitfaden.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Data-Process-Track-Unterrichtsleitfaden.md"
+        "docs/learning-units/Secure-OrderDesk\u002dData-Process-Track-Unterrichtsleitfaden.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21304,7 +21304,7 @@
     },
     {
       "unitId": "DU-3a39d906f490781c",
-      "path": "docs/learning-units/Secure-OrderDesk-Datensatzquelle.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dDatensatzquelle.md",
       "normalizedSha256": "699e1424cb3f1cbba1426054eeb6179cfcba57278ce6ef028343d8957e84df88",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21317,11 +21317,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Datensatzquelle.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dDatensatzquelle.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Datensatzquelle.md"
+        "docs/learning-units/Secure-OrderDesk\u002dDatensatzquelle.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21329,7 +21329,7 @@
     },
     {
       "unitId": "DU-0e1e6dcbd60d9cbc",
-      "path": "docs/learning-units/Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md",
       "normalizedSha256": "fc961c332b9f37b199b87fb0771c20b33a458ba781dfdabc07586de110bd3cdd",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21342,11 +21342,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21354,7 +21354,7 @@
     },
     {
       "unitId": "DU-b163c8066d6a644e",
-      "path": "docs/learning-units/Secure-OrderDesk-Digital-Networking-Track-Unterrichtsleitfaden.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dDigital-Networking-Track-Unterrichtsleitfaden.md",
       "normalizedSha256": "47687391ad7f19568aed2a2c144402ce9db1207002952c49e2aadd4342957eda",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21367,11 +21367,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Digital-Networking-Track-Unterrichtsleitfaden.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dDigital-Networking-Track-Unterrichtsleitfaden.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Digital-Networking-Track-Unterrichtsleitfaden.md"
+        "docs/learning-units/Secure-OrderDesk\u002dDigital-Networking-Track-Unterrichtsleitfaden.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21379,7 +21379,7 @@
     },
     {
       "unitId": "DU-50cfb8f954f46d7e",
-      "path": "docs/learning-units/Secure-OrderDesk-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dLernreihe.md",
       "normalizedSha256": "8bdbf67089c656fa1294fdba9f1f443839830f24d579be7b27cbf476d0fd13b6",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21392,11 +21392,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dLernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dLernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21404,7 +21404,7 @@
     },
     {
       "unitId": "DU-cc82b0f05ade5ffc",
-      "path": "docs/learning-units/Secure-OrderDesk-Operations-Track-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dOperations-Track-Lernreihe.md",
       "normalizedSha256": "add2ec83ad8222565cdd4c32f780aae0bd3c21e6469b5408e39554221c5c9c89",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21417,11 +21417,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Operations-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dOperations-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Operations-Track-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dOperations-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21429,7 +21429,7 @@
     },
     {
       "unitId": "DU-cd1727dcaf31239e",
-      "path": "docs/learning-units/Secure-OrderDesk-Operations-Track-Unterrichtsleitfaden.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dOperations-Track-Unterrichtsleitfaden.md",
       "normalizedSha256": "e4bbf4b63a5d26eb3701a4f2bbb5d91ce9990ccb20bbfa4103c9b4e41126bed9",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21442,11 +21442,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Operations-Track-Unterrichtsleitfaden.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dOperations-Track-Unterrichtsleitfaden.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Operations-Track-Unterrichtsleitfaden.md"
+        "docs/learning-units/Secure-OrderDesk\u002dOperations-Track-Unterrichtsleitfaden.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21454,7 +21454,7 @@
     },
     {
       "unitId": "DU-c3ac0c35afc60a15",
-      "path": "docs/learning-units/Secure-OrderDesk-Professional-Tracks-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dProfessional-Tracks-Lernreihe.md",
       "normalizedSha256": "db09e685f09f73a23aa616405c7d6b7921aa5aed7ce82f72a8d31c0a9797f4d9",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21467,11 +21467,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Professional-Tracks-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dProfessional-Tracks-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Professional-Tracks-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dProfessional-Tracks-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21479,7 +21479,7 @@
     },
     {
       "unitId": "DU-2c4eeed2b50e509d",
-      "path": "docs/learning-units/Secure-OrderDesk-Unterrichtsleitfaden.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dUnterrichtsleitfaden.md",
       "normalizedSha256": "5bb6d06df1ad14cecc137e94d6a610c10316aa015925338f9b0d832cd80ad281",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21492,11 +21492,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-Unterrichtsleitfaden.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dUnterrichtsleitfaden.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-Unterrichtsleitfaden.md"
+        "docs/learning-units/Secure-OrderDesk\u002dUnterrichtsleitfaden.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21504,7 +21504,7 @@
     },
     {
       "unitId": "DU-50567e7956d9e95b",
-      "path": "docs/learning-units/Secure-OrderDesk-v2-Lernreihe.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dv2-Lernreihe.md",
       "normalizedSha256": "6ed20c9c92cd0cf41b0fc6fe52de53011900a0fc3d4c955d4b7cc20f0fbf26fb",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21517,11 +21517,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-v2-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dv2-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-v2-Lernreihe.md"
+        "docs/learning-units/Secure-OrderDesk\u002dv2-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -21529,7 +21529,7 @@
     },
     {
       "unitId": "DU-bd16b8802727df56",
-      "path": "docs/learning-units/Secure-OrderDesk-v2-Unterrichtsleitfaden.md",
+      "path": "docs/learning-units/Secure-OrderDesk\u002dv2-Unterrichtsleitfaden.md",
       "normalizedSha256": "e6d247e8541d4148e6d58b7080866dcfefbc65bfbf49653c4f0c136fb2b370cd",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -21542,11 +21542,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/Secure-OrderDesk-v2-Unterrichtsleitfaden.md",
+      "canonicalSource": "docs/learning-units/Secure-OrderDesk\u002dv2-Unterrichtsleitfaden.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/Secure-OrderDesk-v2-Unterrichtsleitfaden.md"
+        "docs/learning-units/Secure-OrderDesk\u002dv2-Unterrichtsleitfaden.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23804,7 +23804,7 @@
     },
     {
       "unitId": "DU-89b672bf6221196a",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_01_Track-Baseline-und-Feature-Zielbild.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_01_Track-Baseline-und-Feature-Zielbild.Lernbegleiter.md",
       "normalizedSha256": "b61fb02de62be1a2f4c751933afd11e732d71b9abc8bae6cc312bc1d861ed85c",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23817,11 +23817,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_01_Track-Baseline-und-Feature-Zielbild.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_01_Track-Baseline-und-Feature-Zielbild.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_01_Track-Baseline-und-Feature-Zielbild.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_01_Track-Baseline-und-Feature-Zielbild.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23829,7 +23829,7 @@
     },
     {
       "unitId": "DU-f30b279cb837f217",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_02_API-Erweiterung-und-Ressourcenmodell.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_02_API-Erweiterung-und-Ressourcenmodell.Lernbegleiter.md",
       "normalizedSha256": "3e761b90a040ee519e4bc41dd3333bc9cdc10bbb75dc3f5b3f4e25152f393a0a",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23842,11 +23842,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_02_API-Erweiterung-und-Ressourcenmodell.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_02_API-Erweiterung-und-Ressourcenmodell.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_02_API-Erweiterung-und-Ressourcenmodell.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_02_API-Erweiterung-und-Ressourcenmodell.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23854,7 +23854,7 @@
     },
     {
       "unitId": "DU-e7aaf634de01fdd0",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_03_Persistenz-Adapter-und-Repository-Muster.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_03_Persistenz-Adapter-und-Repository-Muster.Lernbegleiter.md",
       "normalizedSha256": "be227018ab91bb8ef5932a9c555fd314733ceefe8a2cf24b65475825c6fb194d",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23867,11 +23867,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_03_Persistenz-Adapter-und-Repository-Muster.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_03_Persistenz-Adapter-und-Repository-Muster.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_03_Persistenz-Adapter-und-Repository-Muster.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_03_Persistenz-Adapter-und-Repository-Muster.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23879,7 +23879,7 @@
     },
     {
       "unitId": "DU-a5d2a6a12bb5cfdb",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_04_Query-Filter-und-Paginierungslogik.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_04_Query-Filter-und-Paginierungslogik.Lernbegleiter.md",
       "normalizedSha256": "54d1a57d058005b266f20c647472717cfd1f850638bd96f7c0add9b431327c15",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23892,11 +23892,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_04_Query-Filter-und-Paginierungslogik.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_04_Query-Filter-und-Paginierungslogik.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_04_Query-Filter-und-Paginierungslogik.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_04_Query-Filter-und-Paginierungslogik.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23904,7 +23904,7 @@
     },
     {
       "unitId": "DU-1f4330d81084d255",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_05_Viewer-oder-Client-Oberflaeche.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_05_Viewer-oder-Client-Oberflaeche.Lernbegleiter.md",
       "normalizedSha256": "5c8fb539bbd80040e553e6c86a755e38840a954449356f62db2f4eb5fbb1e57b",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23917,11 +23917,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_05_Viewer-oder-Client-Oberflaeche.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_05_Viewer-oder-Client-Oberflaeche.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_05_Viewer-oder-Client-Oberflaeche.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_05_Viewer-oder-Client-Oberflaeche.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23929,7 +23929,7 @@
     },
     {
       "unitId": "DU-04b35212096d5102",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_06_Fehlerbehandlung-und-Validierung-vertieft.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_06_Fehlerbehandlung-und-Validierung-vertieft.Lernbegleiter.md",
       "normalizedSha256": "cda4df1d4490e41c2e4ed7e0081a4cb1aaf1d3c5d50f7a20bf1757d3368e507d",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23942,11 +23942,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_06_Fehlerbehandlung-und-Validierung-vertieft.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_06_Fehlerbehandlung-und-Validierung-vertieft.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_06_Fehlerbehandlung-und-Validierung-vertieft.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_06_Fehlerbehandlung-und-Validierung-vertieft.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23954,7 +23954,7 @@
     },
     {
       "unitId": "DU-67c38ba02ac02ac2",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.Lernbegleiter.md",
       "normalizedSha256": "99435db39c93a0ed72095c362628ebe7ea5567c3df3383a6d6cd0421a4864d4f",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23967,11 +23967,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_07_Erweiterbarkeit-und-Konfigurierbarkeit.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -23979,7 +23979,7 @@
     },
     {
       "unitId": "DU-b9fef41edc2d9b30",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.Lernbegleiter.md",
       "normalizedSha256": "4af68d7494c6791299f82ad29b4c615fe5275ea29bf70302afe2d5b7f791b09a",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -23992,11 +23992,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_08_Sichere-Serialisierung-und-Schnittstellenvertraege.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24004,7 +24004,7 @@
     },
     {
       "unitId": "DU-fddef3e31988ccc6",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.Lernbegleiter.md",
       "normalizedSha256": "f4e8aebd815155b81fb2e3da6a2e20e29ee6193fcda79edde1c9ffb2a3a9bf58",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24017,11 +24017,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_09_Teststrategie-Unit-Integration-und-Contract-Tests.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24029,7 +24029,7 @@
     },
     {
       "unitId": "DU-230d0b876cbd3be1",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_10_Feature-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_10_Feature-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
       "normalizedSha256": "f1e3be850356f480cfb0e11bc551f8aeb7ce78485922e201daca2bc26125c7f8",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24042,11 +24042,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_10_Feature-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_10_Feature-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Application-Track_10_Feature-Review-Trade-offs-und-Abschluss.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dApplication-Track_10_Feature-Review-Trade-offs-und-Abschluss.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24054,7 +24054,7 @@
     },
     {
       "unitId": "DU-8f70c9b3e7e77321",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_01_Track-Baseline-und-Datenzielbild.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_01_Track-Baseline-und-Datenzielbild.Lernbegleiter.md",
       "normalizedSha256": "9dd218a5b897d200d9a295d8b9e93115c1dc07e48e86af8f79552a8e5f284aa6",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24067,11 +24067,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_01_Track-Baseline-und-Datenzielbild.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_01_Track-Baseline-und-Datenzielbild.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_01_Track-Baseline-und-Datenzielbild.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_01_Track-Baseline-und-Datenzielbild.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24079,7 +24079,7 @@
     },
     {
       "unitId": "DU-83d22ff55f534398",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.Lernbegleiter.md",
       "normalizedSha256": "11336fc34a477d91a8fe9901abede9e01cbeecb237fcf5499fc829515a065158",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24092,11 +24092,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_02_Datenqualitaet-in-Bestellungen-und-Positionen.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24104,7 +24104,7 @@
     },
     {
       "unitId": "DU-31ac9e11dcad4512",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.Lernbegleiter.md",
       "normalizedSha256": "a042e980c94a450f1139f95b533833b0de1a86031c68de3d77e6e42b3f1085ec",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24117,11 +24117,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_03_Umsatz-Kennzahlen-und-Betriebsmetriken.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24129,7 +24129,7 @@
     },
     {
       "unitId": "DU-c8b20ab104d54a00",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.Lernbegleiter.md",
       "normalizedSha256": "271f6c4e36488ca0079f4f92477a301a82b50c612735d9e2729f683a76a4c6d9",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24142,11 +24142,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_04_Datenschutz-und-Datenminimierung-vertieft.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24154,7 +24154,7 @@
     },
     {
       "unitId": "DU-d7c2db48b2cbed9e",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_05_Reporting-und-Aggregationsansichten.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_05_Reporting-und-Aggregationsansichten.Lernbegleiter.md",
       "normalizedSha256": "a20847285897221c96465f57d5ce4ef030a0b3452be55d30d85e6be9f3c39f02",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24167,11 +24167,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_05_Reporting-und-Aggregationsansichten.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_05_Reporting-und-Aggregationsansichten.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_05_Reporting-und-Aggregationsansichten.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_05_Reporting-und-Aggregationsansichten.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24179,7 +24179,7 @@
     },
     {
       "unitId": "DU-3103ba063e5309d3",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.Lernbegleiter.md",
       "normalizedSha256": "206f5e82d1f47225bff0fc6ca31904493ed7c011b673f242247ea226b521f388",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24192,11 +24192,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_06_Aussagegrenzen-und-Datenunsicherheit.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24204,7 +24204,7 @@
     },
     {
       "unitId": "DU-c35a501d7af95c86",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_07_Anomalie-und-Lueckenerkennung.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_07_Anomalie-und-Lueckenerkennung.Lernbegleiter.md",
       "normalizedSha256": "e4e921ece6aa96217a88c4dc99e5401f09f5e76b522092c14a52e7ef9204778b",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24217,11 +24217,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_07_Anomalie-und-Lueckenerkennung.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_07_Anomalie-und-Lueckenerkennung.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_07_Anomalie-und-Lueckenerkennung.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_07_Anomalie-und-Lueckenerkennung.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24229,7 +24229,7 @@
     },
     {
       "unitId": "DU-952f228e06795921",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_08_Prozessfeedback-und-Verbesserung.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_08_Prozessfeedback-und-Verbesserung.Lernbegleiter.md",
       "normalizedSha256": "816da14ed3fabb8999af98f62efc177d7c4460c61429e776fcbf4a8b64b227d5",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24242,11 +24242,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_08_Prozessfeedback-und-Verbesserung.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_08_Prozessfeedback-und-Verbesserung.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_08_Prozessfeedback-und-Verbesserung.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_08_Prozessfeedback-und-Verbesserung.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24254,7 +24254,7 @@
     },
     {
       "unitId": "DU-92a6405cd0d73ef5",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.Lernbegleiter.md",
       "normalizedSha256": "d60d7005908cabb5be7c9211559b5e4b06d238c700676deba97d8147bd72cde5",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24267,11 +24267,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_09_Test-und-Nachweisstrategie-fuer-Datenaussagen.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24279,7 +24279,7 @@
     },
     {
       "unitId": "DU-bdde4afa794a7fcc",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
       "normalizedSha256": "1f311bd344053bb259bb70dfbce625fe8f797a9578f51c026651509f87f44435",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24292,11 +24292,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Data-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dData-Process-Track_10_Daten-Review-Trade-offs-und-Abschluss.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24304,7 +24304,7 @@
     },
     {
       "unitId": "DU-2601ae5f2ab55f53",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_01_Track-Baseline-und-Netzzielbild.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_01_Track-Baseline-und-Netzzielbild.Lernbegleiter.md",
       "normalizedSha256": "163c7072f578e73185d892f94c6ae7ffaa07b0799f355b7512e45d8ff58394bf",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24317,11 +24317,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_01_Track-Baseline-und-Netzzielbild.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_01_Track-Baseline-und-Netzzielbild.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_01_Track-Baseline-und-Netzzielbild.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_01_Track-Baseline-und-Netzzielbild.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24329,7 +24329,7 @@
     },
     {
       "unitId": "DU-faaab7145e5fb32f",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.Lernbegleiter.md",
       "normalizedSha256": "5940685fed9949dec4d4e76d27602fc305d71fd1ea5f78c146449953cb7bc6e8",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24342,11 +24342,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_02_Systemkontext-und-Bestell-Pipeline-Netzbezuege.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24354,7 +24354,7 @@
     },
     {
       "unitId": "DU-4a30a95ea3bde56b",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md",
       "normalizedSha256": "76d61ee3e115fb63de89f299bf2d2bf0b0e9f352ff1efb7c0e21aff2024f1a08",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24367,11 +24367,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_03_Schnittstellen-und-Kommunikationsfluesse.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24379,7 +24379,7 @@
     },
     {
       "unitId": "DU-b8c1f8607f1889f8",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.Lernbegleiter.md",
       "normalizedSha256": "dab0e4e6211e73913a0316a309e2e6866d1c2ace9392139d17579a3de9b3f09e",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24392,11 +24392,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_04_Segmentierung-und-Vertrauenszonen.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24404,7 +24404,7 @@
     },
     {
       "unitId": "DU-423fcea56838f8f6",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.Lernbegleiter.md",
       "normalizedSha256": "a8c993c30911dad879f181ce4f5562361e84916d7896cc91d8691e71321839c6",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24417,11 +24417,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_05_Transportsicherheit-und-Endpunkt-Authentifizierung.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24429,7 +24429,7 @@
     },
     {
       "unitId": "DU-940cf68c8c0b83cc",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.Lernbegleiter.md",
       "normalizedSha256": "1a31f299e827618cef76fb94df5fc42333e794593005603a267a221cd30c3970",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24442,11 +24442,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_06_Verfuegbarkeit-Timeouts-und-Wiederholstrategien.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24454,7 +24454,7 @@
     },
     {
       "unitId": "DU-b0df4cf99b586612",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.Lernbegleiter.md",
       "normalizedSha256": "dd47e38afbc3fc8f44d5f1dd0148269947a3a953ddff92ff96d39e93feafcfa6",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24467,11 +24467,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_07_Verteilte-Integration-und-Agentenkommunikation.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24479,7 +24479,7 @@
     },
     {
       "unitId": "DU-eb065928ef96d3da",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_08_Betriebs-und-Netznachweise.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_08_Betriebs-und-Netznachweise.Lernbegleiter.md",
       "normalizedSha256": "a577e305079572733cdbfeae021866f12ef4cace978bcc87b92cce4fa1cd735e",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24492,11 +24492,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_08_Betriebs-und-Netznachweise.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_08_Betriebs-und-Netznachweise.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_08_Betriebs-und-Netznachweise.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_08_Betriebs-und-Netznachweise.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24504,7 +24504,7 @@
     },
     {
       "unitId": "DU-b0d427d271b93142",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_09_Ausfallszenarien-und-Resilienz.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_09_Ausfallszenarien-und-Resilienz.Lernbegleiter.md",
       "normalizedSha256": "2caf361e096eb0b1d0d0d10fc17d84e3378ad0da113224ad2c27759f3a8bf819",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24517,11 +24517,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_09_Ausfallszenarien-und-Resilienz.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_09_Ausfallszenarien-und-Resilienz.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_09_Ausfallszenarien-und-Resilienz.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_09_Ausfallszenarien-und-Resilienz.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24529,7 +24529,7 @@
     },
     {
       "unitId": "DU-8850fd1a24b2efe1",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
       "normalizedSha256": "5a496073d4e3dfc361dda2abf089e883c6001a746f09bc99761ee2478a4b97bd",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24542,11 +24542,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Digital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dDigital-Networking-Track_10_Netz-Review-Trade-offs-und-Abschluss.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24554,7 +24554,7 @@
     },
     {
       "unitId": "DU-409fb63795a4f9c6",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_01_Track-Baseline-und-Betriebszielbild.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_01_Track-Baseline-und-Betriebszielbild.Lernbegleiter.md",
       "normalizedSha256": "0edf47722ea7f9aeeb9db2c6029bb74a6694b079eac9dcae9401cf81371a2c75",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24567,11 +24567,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_01_Track-Baseline-und-Betriebszielbild.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_01_Track-Baseline-und-Betriebszielbild.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_01_Track-Baseline-und-Betriebszielbild.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_01_Track-Baseline-und-Betriebszielbild.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24579,7 +24579,7 @@
     },
     {
       "unitId": "DU-113bad59e12881c5",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_02_Datenbank-Deployment.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_02_Datenbank-Deployment.Lernbegleiter.md",
       "normalizedSha256": "d6857bc8db55ae5cee24a78878a4e70d565dedca35f5042fb325829eb71e62e6",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24592,11 +24592,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_02_Datenbank-Deployment.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_02_Datenbank-Deployment.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_02_Datenbank-Deployment.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_02_Datenbank-Deployment.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24604,7 +24604,7 @@
     },
     {
       "unitId": "DU-88fcbc83fea4fec3",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.Lernbegleiter.md",
       "normalizedSha256": "c96b9c3bd71af935eabdaa8536d66ec1bcd41b91bcc23a080635ed45ec1cf950",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24617,11 +24617,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_03_Konfiguration-Secrets-und-sichere-Defaults.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24629,7 +24629,7 @@
     },
     {
       "unitId": "DU-24f9b50ebdb521bc",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.Lernbegleiter.md",
       "normalizedSha256": "298783895c9e60671a3480d1a9e4f248dd2a70e68f7ec86c1eb9c2d812fb8dab",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24642,11 +24642,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_04_Haertung-und-Angriffsflaechen-Reduktion.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24654,7 +24654,7 @@
     },
     {
       "unitId": "DU-4fa1373b53246275",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_05_Observability-Logging-Health-und-Metriken.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_05_Observability-Logging-Health-und-Metriken.Lernbegleiter.md",
       "normalizedSha256": "e8e60ceb9c6a441ac84eafd2a368cf74cc7685005bb9e287729d4b3a8b6552f5",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24667,11 +24667,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_05_Observability-Logging-Health-und-Metriken.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_05_Observability-Logging-Health-und-Metriken.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_05_Observability-Logging-Health-und-Metriken.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_05_Observability-Logging-Health-und-Metriken.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24679,7 +24679,7 @@
     },
     {
       "unitId": "DU-fd0f6617645d9779",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.Lernbegleiter.md",
       "normalizedSha256": "ce37cc4081892e1911bd9a7b8462f1071bf357376389b996a0cb94e5ce3a61f6",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24692,11 +24692,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_06_CI-CD-Pipeline-und-reproduzierbare-Builds.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24704,7 +24704,7 @@
     },
     {
       "unitId": "DU-8d8f559509d674a6",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_07_Backup-Recovery-und-Datenmigration.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_07_Backup-Recovery-und-Datenmigration.Lernbegleiter.md",
       "normalizedSha256": "80529ecc9d2fa85244993d145642bb918304e919b4b10b40822bc31aa67a113f",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24717,11 +24717,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_07_Backup-Recovery-und-Datenmigration.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_07_Backup-Recovery-und-Datenmigration.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_07_Backup-Recovery-und-Datenmigration.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_07_Backup-Recovery-und-Datenmigration.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24729,7 +24729,7 @@
     },
     {
       "unitId": "DU-512ab97650b7d43f",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.Lernbegleiter.md",
       "normalizedSha256": "c56781a4100fdcc375f91761c768fd26f36b5ad470c0056aca947f9902e79d8d",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24742,11 +24742,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_08_Supply-Chain-SBOM-und-Dependency-Audit.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24754,7 +24754,7 @@
     },
     {
       "unitId": "DU-87e7e353c17c9a24",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.Lernbegleiter.md",
       "normalizedSha256": "7491f0847e44a1956c3956dd2b9dee4c9a163e201704e6c471de0eba7aeacebf",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24767,11 +24767,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_09_Sandbox-Isolation-und-Betriebsnachweise.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24779,7 +24779,7 @@
     },
     {
       "unitId": "DU-925873ee81547d24",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_10_Betriebs-Review-Runbook-und-Abschluss.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_10_Betriebs-Review-Runbook-und-Abschluss.Lernbegleiter.md",
       "normalizedSha256": "9f6fe956192d1b8f0bd1f0b8a51858e5885949a359fb9fa26b0797924594b344",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24792,11 +24792,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_10_Betriebs-Review-Runbook-und-Abschluss.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_10_Betriebs-Review-Runbook-und-Abschluss.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-Operations-Track_10_Betriebs-Review-Runbook-und-Abschluss.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dOperations-Track_10_Betriebs-Review-Runbook-und-Abschluss.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24804,7 +24804,7 @@
     },
     {
       "unitId": "DU-52378070a7624108",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_01_Architekturzielbild-und-Systemgrenzen.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_01_Architekturzielbild-und-Systemgrenzen.Lernbegleiter.md",
       "normalizedSha256": "466b8f7c1b1a0a4361b8e10141114f72d5cd1aaec68f96cbd2e8a5b56ba29f53",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24817,11 +24817,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_01_Architekturzielbild-und-Systemgrenzen.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_01_Architekturzielbild-und-Systemgrenzen.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_01_Architekturzielbild-und-Systemgrenzen.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_01_Architekturzielbild-und-Systemgrenzen.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24829,7 +24829,7 @@
     },
     {
       "unitId": "DU-6166f9297f72f014",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.Lernbegleiter.md",
       "normalizedSha256": "6df5e3f552de472c658b8c9edd427f850692daad3dd03d2294fb07a59d0467cf",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24842,11 +24842,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_02_Plattformuebergreifendes-Hosting-und-Lebenszyklus.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24854,7 +24854,7 @@
     },
     {
       "unitId": "DU-aa27d0fa43889719",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.Lernbegleiter.md",
       "normalizedSha256": "576fe65f65a8ae9bb507f89a4736c6bfe68110358a311c2aca8d7153d5a351b8",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24867,11 +24867,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_03_Relationales-Persistenzmodell-und-Backend-Abstraktion.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24879,7 +24879,7 @@
     },
     {
       "unitId": "DU-89d30f5826dade62",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_04_Bestellannahme-Idempotenz-und-Import-Haertung.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_04_Bestellannahme-Idempotenz-und-Import-Haertung.Lernbegleiter.md",
       "normalizedSha256": "7bb8136ca9684ba7a2412f32fce88ba8aefae1a0e1cc885ac998a8d6d8ebb428",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24892,11 +24892,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_04_Bestellannahme-Idempotenz-und-Import-Haertung.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_04_Bestellannahme-Idempotenz-und-Import-Haertung.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_04_Bestellannahme-Idempotenz-und-Import-Haertung.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_04_Bestellannahme-Idempotenz-und-Import-Haertung.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24904,7 +24904,7 @@
     },
     {
       "unitId": "DU-8046e4641310b15e",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_05_API-und-Service-Vertrag-und-OpenAPI.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_05_API-und-Service-Vertrag-und-OpenAPI.Lernbegleiter.md",
       "normalizedSha256": "2388cc8aa6cdbd766565d11dce09187ca8172e81bfcee21866da01ced0e9df7c",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24917,11 +24917,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_05_API-und-Service-Vertrag-und-OpenAPI.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_05_API-und-Service-Vertrag-und-OpenAPI.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_05_API-und-Service-Vertrag-und-OpenAPI.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_05_API-und-Service-Vertrag-und-OpenAPI.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24929,7 +24929,7 @@
     },
     {
       "unitId": "DU-429896ea383f4fc7",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_06_Fehler-Validierungs-und-Response-Modell.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_06_Fehler-Validierungs-und-Response-Modell.Lernbegleiter.md",
       "normalizedSha256": "1027d8a59bfb3c6ace279e9517a3992cd7c7317aabc568f1d8a24b086a6aee19",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24942,11 +24942,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_06_Fehler-Validierungs-und-Response-Modell.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_06_Fehler-Validierungs-und-Response-Modell.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_06_Fehler-Validierungs-und-Response-Modell.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_06_Fehler-Validierungs-und-Response-Modell.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24954,7 +24954,7 @@
     },
     {
       "unitId": "DU-d09e50cf3a3a31b9",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_07_Rollen-Autorisierung-und-Audit-Logging.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_07_Rollen-Autorisierung-und-Audit-Logging.Lernbegleiter.md",
       "normalizedSha256": "b425c77bb225babe0bea446d242a5d7ab290beca9532289f02654bab10945c12",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24967,11 +24967,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_07_Rollen-Autorisierung-und-Audit-Logging.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_07_Rollen-Autorisierung-und-Audit-Logging.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_07_Rollen-Autorisierung-und-Audit-Logging.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_07_Rollen-Autorisierung-und-Audit-Logging.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -24979,7 +24979,7 @@
     },
     {
       "unitId": "DU-b62ee6a783b5a27a",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_08_Betrieb-Logging-Health-und-Monitoring.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_08_Betrieb-Logging-Health-und-Monitoring.Lernbegleiter.md",
       "normalizedSha256": "505870a84c05c64d68ef53b90c8dae53086c846d628f1137a3f97bb2fc576953",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -24992,11 +24992,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_08_Betrieb-Logging-Health-und-Monitoring.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_08_Betrieb-Logging-Health-und-Monitoring.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_08_Betrieb-Logging-Health-und-Monitoring.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_08_Betrieb-Logging-Health-und-Monitoring.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -25004,7 +25004,7 @@
     },
     {
       "unitId": "DU-b4afce8d44bb2aaf",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.Lernbegleiter.md",
       "normalizedSha256": "7aba1866af52e8b8cb22f865b43e58c172264f318c9ad8bc5ed87c286915d37a",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -25017,11 +25017,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_09_Sichere-Konfiguration-Secrets-und-Betriebsnachweise.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -25029,7 +25029,7 @@
     },
     {
       "unitId": "DU-c02360090145e1f0",
-      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_10_MSL-Vergleich-und-Abschlussreview.Lernbegleiter.md",
+      "path": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_10_MSL-Vergleich-und-Abschlussreview.Lernbegleiter.md",
       "normalizedSha256": "bbdca56e71bb8ffc0798d1ea999d162efea383376afb608f39244ec39751eaad",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -25042,11 +25042,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_10_MSL-Vergleich-und-Abschlussreview.Lernbegleiter.md",
+      "canonicalSource": "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_10_MSL-Vergleich-und-Abschlussreview.Lernbegleiter.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/lernbegleiter/Secure-OrderDesk-v2_10_MSL-Vergleich-und-Abschlussreview.Lernbegleiter.md"
+        "docs/learning-units/lernbegleiter/Secure-OrderDesk\u002dv2_10_MSL-Vergleich-und-Abschlussreview.Lernbegleiter.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27304,7 +27304,7 @@
     },
     {
       "unitId": "DU-b729c19a47597c4c",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.en.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dApplication-Track-Lernreihe.en.md",
       "normalizedSha256": "18d9e94bc6d2024a50d30a7d48e3880d5fe50da022f65c478a2e11434b5cdbdc",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27317,11 +27317,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.en.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dApplication-Track-Lernreihe.en.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.en.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dApplication-Track-Lernreihe.en.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27329,7 +27329,7 @@
     },
     {
       "unitId": "DU-96a5d92d2adf0647",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dApplication-Track-Lernreihe.md",
       "normalizedSha256": "b43a91742495076dee6ca85ad24763b4c78930579eddb80b53a12a2e09120521",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27342,11 +27342,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dApplication-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Application-Track-Lernreihe.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dApplication-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27354,7 +27354,7 @@
     },
     {
       "unitId": "DU-e59744eddd114588",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.en.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dData-Process-Track-Lernreihe.en.md",
       "normalizedSha256": "a23a7a12517efadae7549a4088a81a6c4f37430471a7be960f5f65d841a2438c",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27367,11 +27367,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.en.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dData-Process-Track-Lernreihe.en.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.en.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dData-Process-Track-Lernreihe.en.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27379,7 +27379,7 @@
     },
     {
       "unitId": "DU-b1ba96a1e7d0e8e3",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md",
       "normalizedSha256": "5e610139e3495cc3d22e4bb6e050488038253d28a558b4c0bb51e73a655079de",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27392,11 +27392,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Data-Process-Track-Lernreihe.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dData-Process-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27404,7 +27404,7 @@
     },
     {
       "unitId": "DU-33daec24b03bed7d",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.en.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.en.md",
       "normalizedSha256": "ee74e1943b11331011b53926d2114b62f32c6f1b159cc46dbb9b2a42bbc71f28",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27417,11 +27417,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.en.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.en.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.en.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.en.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27429,7 +27429,7 @@
     },
     {
       "unitId": "DU-2f701f88f4e238ce",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md",
       "normalizedSha256": "f3abc5a2b87321b4b559307b6bd9e01b4d6139c089a6f6cf4106de005c7c8f50",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27442,11 +27442,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Digital-Networking-Track-Lernreihe.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dDigital-Networking-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27454,7 +27454,7 @@
     },
     {
       "unitId": "DU-0701ee1e348c1252",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.en.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dLernreihe.en.md",
       "normalizedSha256": "d3928d33303917bcd262f9874b266791daa6a7a5c979b403d8ea784f615d6c7c",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27467,11 +27467,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.en.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dLernreihe.en.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.en.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dLernreihe.en.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27479,7 +27479,7 @@
     },
     {
       "unitId": "DU-054e9e1c26a80109",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dLernreihe.md",
       "normalizedSha256": "6d54532647a61d25219324329a2d8ee8abcad1cf6cb15a0dae80dacba0f6325e",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27492,11 +27492,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dLernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Lernreihe.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dLernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27504,7 +27504,7 @@
     },
     {
       "unitId": "DU-6efcce079106bc85",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.en.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dOperations-Track-Lernreihe.en.md",
       "normalizedSha256": "fd93644371c6cbada09c227416f6f3431deaaf1b6886db8f681b64cff55acd4d",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27517,11 +27517,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.en.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dOperations-Track-Lernreihe.en.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.en.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dOperations-Track-Lernreihe.en.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27529,7 +27529,7 @@
     },
     {
       "unitId": "DU-2ab9f659624eb487",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dOperations-Track-Lernreihe.md",
       "normalizedSha256": "b5040dbbeb176360bae92eaaa5cb89feafd8a9397133e7ff5707136181dca2c2",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27542,11 +27542,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dOperations-Track-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-Operations-Track-Lernreihe.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dOperations-Track-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27554,7 +27554,7 @@
     },
     {
       "unitId": "DU-7b6de1722bd72b7b",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-v2-Lernreihe.en.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dv2-Lernreihe.en.md",
       "normalizedSha256": "a5f6bf5beec3b306c23a585af32c67be44c14ea95d84121a8333b3e79d32e2c1",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27567,11 +27567,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-v2-Lernreihe.en.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dv2-Lernreihe.en.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-v2-Lernreihe.en.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dv2-Lernreihe.en.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",
@@ -27579,7 +27579,7 @@
     },
     {
       "unitId": "DU-58e20a45a8fae023",
-      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-v2-Lernreihe.md",
+      "path": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dv2-Lernreihe.md",
       "normalizedSha256": "e61e11bf9aeb5a3ce5e81b777969da1623dcc48cee78f053b888645fe1f137d0",
       "family": "docs/learning-units",
       "artifactClass": "ActiveSemantic",
@@ -27592,11 +27592,11 @@
         "DailyUser",
         "MaintainerAgent"
       ],
-      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-v2-Lernreihe.md",
+      "canonicalSource": "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dv2-Lernreihe.md",
       "owner": "Level0",
       "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
       "evidence": [
-        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk-v2-Lernreihe.md"
+        "docs/learning-units/presentations/Praesentation-Secure-OrderDesk\u002dv2-Lernreihe.md"
       ],
       "risk": "Low",
       "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes.",

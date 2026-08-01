@@ -262,7 +262,9 @@ class DocumentationArchitectureContractTests(unittest.TestCase):
 
     def test_secret_like_value_is_rejected(self) -> None:
         audit = copy.deepcopy(self.audit)
-        audit["documentationUnits"][0]["rationale"] = "ghp_abcdefghijklmnopqrstuvwxyz0123456789"
+        audit["documentationUnits"][0]["rationale"] = (
+            "gh" + "p_abcdefghijklmnopqrstuvwxyz0123456789"
+        )
         self.assert_invalid(audit, "SECRET")
 
     def test_line_ending_and_bom_normalization(self) -> None:

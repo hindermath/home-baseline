@@ -71,11 +71,11 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/documentation-inventory.json",
-      "sha256": "fb914032dbabcef75d1efc4867f8862a34f23b744accbd5a62b15bf548931cfb"
+      "sha256": "1af3a9aa5dadcc83812bba98dce9f085a265712727b62f57578867bcedc352d8"
     },
     {
       "path": "specs/020-documentation-architecture-audit/documentation-architecture-audit.json",
-      "sha256": "5521c3e3439ee36b3cfe3a2e3641e2c25ef675cedbfdaa48d6d2b66bbafb40fa"
+      "sha256": "9f6f6bf3829d3f17ef5bd26072ec794521592b1fce38d0af01b2a4b488b4d6a4"
     },
     {
       "path": "specs/020-documentation-architecture-audit/documentation-audit-report.md",
@@ -83,15 +83,15 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/tools/collect_documentation_architecture.py",
-      "sha256": "227b9bb8c38395a11a9b6d254fcaeac17a6b8ae3606e91eb5d7c7bd0623e101d"
+      "sha256": "590980044769f8530b2157a400ece8289482bd4524a72dd0d219c10b1bad4aa6"
     },
     {
       "path": "specs/020-documentation-architecture-audit/tools/validate_documentation_architecture.py",
-      "sha256": "f4f64a6694cccb1049d8d76b1748e20a5ef561677f9a7f8f328c37eb5e250706"
+      "sha256": "89ff865686ecafc57b3b422f6ae80bde4753045a6c92731f2087886cd25096c7"
     },
     {
       "path": "specs/020-documentation-architecture-audit/tests/test_documentation_architecture.py",
-      "sha256": "f3a8ac3a3f4d7fb8f34d076fc63e17ce2c05f247740b891372dd153225978bd9"
+      "sha256": "7443b36569ca394ac455b3f90ea921ad51a4cec361f196dec7248d8d80c9c5cc"
     },
     {
       "path": "scripts/tests/test_feature_020_documentation_architecture.py",
@@ -99,7 +99,7 @@
     },
     {
       "path": "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
-      "sha256": "5248c95bcd231cc44012b748117c0634e06ab6d1934478682d20433fa82e45cc"
+      "sha256": "a4485927788c5e7c7e7a02d89f1dd49c3d745cd5a745d8654c23160687818b11"
     },
     {
       "path": "specs/020-documentation-architecture-audit/checklists/audit-governance.md",
@@ -115,11 +115,11 @@
     },
     {
       "path": "docs/project-statistics.md",
-      "sha256": "7998074923f109f2b12444ea97bff832ba0c09ce75700ae5d0c133c1b0a11c4a"
+      "sha256": "eac197390449ad6e923158ca6c4e90d6afdae5db10789eddbf3907a583a2ee17"
     },
     {
       "path": "docs/project-statistics.config.json",
-      "sha256": "582aa1af84a502bdce7e17668212715f33a5ca1820ac760ac29a56b374031bad"
+      "sha256": "652c28182e19c0632dc0a3e535982f8c0f598ab23dd4c672141a2f1b117a75a7"
     }
   ],
   "tasks": {

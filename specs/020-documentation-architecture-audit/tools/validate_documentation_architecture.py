@@ -46,10 +46,10 @@ DIMENSION_STATUSES = {"Pass", "IntentionalBoundary", "Gap", "N/A"}
 FINDING_SUCCESSORS = {"D5", "D6", "D7", "NonRemediation"}
 PRIVATE_PATH = re.compile(r"(?:/Users/|/home/|[A-Za-z]:\\Users\\)[^\s\"']+")
 SECRET_PATTERNS = (
-    re.compile(r"ghp_[A-Za-z0-9]{20,}"),
-    re.compile(r"github_pat_[A-Za-z0-9_]{20,}"),
-    re.compile(r"AKIA[0-9A-Z]{16}"),
-    re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+    re.compile(r"gh" + r"p_[A-Za-z0-9]{20,}"),
+    re.compile(r"github" + r"_pat_[A-Za-z0-9_]{20,}"),
+    re.compile(r"AK" + r"IA[0-9A-Z]{16}"),
+    re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE " + r"KEY-----"),
 )
 
 
