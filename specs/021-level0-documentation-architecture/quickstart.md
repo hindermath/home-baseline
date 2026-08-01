@@ -19,9 +19,9 @@ python3 specs/021-level0-documentation-architecture/tools/validate_documentation
 
 ```bash
 bash .specify/presets/autonomous-run-governance/scripts/validate-autonomous-run-state.sh \
-  specs/021-level0-documentation-architecture/autonomous-run-state.json
+  --state specs/021-level0-documentation-architecture/autonomous-run-state.json
 pwsh -NoProfile -File .specify/presets/autonomous-run-governance/scripts/validate-autonomous-run-state.ps1 \
-  -StatePath specs/021-level0-documentation-architecture/autonomous-run-state.json
+  -State specs/021-level0-documentation-architecture/autonomous-run-state.json
 ```
 
 ## 3. Run repository gates

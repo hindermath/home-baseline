@@ -3,8 +3,8 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-08-01
-**Reihenfolge:** Dokumentationsvorlauf D6, nach abgeschlossenem Feature 021 (D5)
+**Stand:** 2026-07-30
+**Reihenfolge:** Dokumentationsvorlauf D6, nach abgeschlossenem D5
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Lernende und Nutzende ohne Spec-Kit-Vorkenntnisse, Lehrende,
 Maintainer, KI-Agenten, Systemintegrator*innen und Reviewer
@@ -28,8 +28,7 @@ automation becomes a separate follow-up.*
 
 ## 2. Voraussetzungen und Scope / Preconditions and Scope
 
-- Aktive Positionen 1 bis 4 sowie D4 und D5 sind abgeschlossen und durch ihre
-  gemergten Feature- und Closeout-Nachweise gebunden.
+- Aktive Positionen 1 bis 4 sowie D4 und D5 sind abgeschlossen.
 - Die tatsächlich gemergten Befehle, Optionen, Exitcodes und Reports sind
   verbindliche Wahrheit.
 - D6 verändert keine Wartungsskripte, Registry, Toolchain oder Runtime.
@@ -37,29 +36,6 @@ automation becomes a separate follow-up.*
   Betriebsverhalten ändern.
 - Nicht dokumentierbare Automatisierungslücken werden als eigene Follow-ups
   erfasst.
-
-### 2.1 Verbindliche gemergte Baseline / Binding Merged Baseline
-
-D6 arbeitet gegen den nach Feature 021 tatsächlich ausgelieferten Stand:
-
-- Feature 018 und PR #160 liefern die Maintenance-TUI und ihre Betriebsmodi.
-- Feature 019 und PR #192 liefern Wrapper- und Regressionshärtung.
-- Feature 020 und PR #194 liefern das read-only Dokumentationsaudit mit
-  `DIA001` als einzigem Remediation-Finding.
-- Feature 021 und PR #197 schließen `DIA001` durch das deutsche Root-Portal,
-  `README.en.md`, vier getrennte Leserpfade, Sprachpartner und den erweiterten
-  Documentation-Impact-Vertrag. Der geprüfte Head ist
-  `663807ef0cd19c245fb171bc017dda5d5f84209a`, der Merge-Commit ist
-  `468924a261996dd245f8f21e4e6693fd2cbe513c`.
-
-Die Leitfäden prüfen Aussagen gegen diese gemergten Oberflächen, die
-kanonischen Skripte, Manpages und Reports. Frühere README-Inhalte dienen nur
-als historische Migrations-Evidence und dürfen die aktuelle Navigation nicht
-erneut zur zweiten Wahrheit machen.
-
-*D6 documents the merged operating surface after Features 018 through 021.
-The new reader portals and the canonical scripts, manpages, and reports are the
-current truth; the former monolithic README remains migration evidence only.*
 
 ## 3. Verbindliche Leserpfade / Binding Reader Paths
 
@@ -222,14 +198,6 @@ in einer zweiten statischen Liste gepflegt.
 - **AEG-028:** Der `MergeAndSync`-Closeout unterscheidet Source-only-Änderungen
   ohne Home-Sync von Änderungen an `homeRuntime`, deren gemergter Stand
   anschließend geprüft synchronisiert wird.
-- **AEG-029:** Jede Betriebsbehauptung wird auf Feature 018 bis 021, die
-  kanonische Skriptreferenz, Manpages oder reproduzierbare Reports
-  zurückgeführt; veraltete README-Texte gelten nicht als aktuelle Wahrheit.
-- **AEG-030:** Der Leitfaden integriert sich in die vier mit Feature 021
-  eingeführten Leserpfade und hält deutsche und englische Navigation synchron.
-- **AEG-031:** Reine `sourceOnly`-Dokumentation löst keinen Home-Sync aus;
-  ändert D6 wider Erwarten `homeRuntime`, muss der MergeAndSync-Closeout den
-  gemergten Stand zuerst prüfen und anschließend kontrolliert synchronisieren.
 
 ## 9. Akzeptanzkriterien / Acceptance Criteria
 
@@ -262,13 +230,6 @@ in einer zweiten statischen Liste gepflegt.
   den korrekten Arbeitsort, Sync-Schritt und Stop-Zustand ableiten.
 - **AC-AEG-015:** Manifest, Manpage, Resolver, Host-/Container-Grenze und beide
   Sprachfassungen widersprechen dem Betriebsmodell nicht.
-- **AC-AEG-016:** Eine maschinenlesbare Quellenmatrix ordnet jede dokumentierte
-  Option, Statusklasse, Evidence-Datei und nächste Aktion genau einer aktuellen
-  Quelle oder einer ausdrücklich historischen Grenze zu.
-- **AC-AEG-017:** Root-Portale, vier Leserpfade, Leitfäden, Manpages und
-  Skriptreferenz widersprechen sich weder auf Deutsch noch auf Englisch.
-- **AC-AEG-018:** D6 erzeugt keine Änderung an ausführbarem
-  Wartungsverhalten und startet D7 nicht automatisch.
 
 ## 10. Nicht-Ziele / Non-Goals
 
@@ -287,21 +248,21 @@ in einer zweiten statischen Liste gepflegt.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as documentation preflight D6. Bind the review to Features 018 through 021, PR #197, reviewed head `663807ef0cd19c245fb171bc017dda5d5f84209a`, and merge commit `468924a261996dd245f8f21e4e6693fd2cbe513c`. Verify AEG-001 through AEG-031, AC-AEG-001 through AC-AEG-018, four reader paths, evidenced safe operating flow, the source/home-runtime operating model with `homeRuntime`, `sourceOnly`, and `machineLocal`, exact maintenance options and exit-code boundaries, AI-agent authority and prompt guidance, interruption and recovery, platform parity, source traceability, criteria for efficiency claims, separate automation follow-ups, learner accessibility, and strict no-runtime-change scope. Do not modify the intake or start D6.
+$speckit-intake-review Review `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as documentation preflight D6. Verify its dependencies on active positions 1 through 4 and D5, four reader paths, evidenced safe operating flow, the source/home-runtime operating model with `homeRuntime`, `sourceOnly`, and `machineLocal`, exact maintenance options and exit-code boundaries, AI-agent authority and prompt guidance, interruption and recovery, platform parity, criteria for efficiency claims, separate automation follow-ups, learner accessibility, and strict no-runtime-change scope. Do not modify the intake or start D6.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as the binding intake for documentation preflight D6 after Features 018 through 021 are complete. Create the feature specification for synchronized German and English learner, operator, maintainer/AI-agent, and audit guidance for the agentic workspace and one-command maintenance. Preserve AEG-001 through AEG-031, AC-AEG-001 through AC-AEG-018, the four Feature-021 reader paths, the source/home-runtime operating model and distribution-class decisions, current-source traceability, evidenced efficiency claims, safe command validation, authority and interruption boundaries, separate automation follow-ups, and no executable behavior changes. Do not start D7.
+$speckit-specify Use `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` as the binding intake for documentation preflight D6 after active positions 1 through 4 and D5 are complete. Create the feature specification for synchronized German and English learner, operator, maintainer/AI-agent, and audit guidance for the agentic workspace and one-command maintenance. Preserve AEG-001 through AEG-028, AC-AEG-001 through AC-AEG-015, the source/home-runtime operating model and distribution-class decisions, evidenced efficiency claims, safe command validation, authority and interruption boundaries, separate automation follow-ups, and no executable behavior changes. Do not start D7.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` with deliveryAuthority=MergeAndSync after Features 018 through 021 and the Feature-021 causal closeout are merged. Use the current root portals, four reader paths, scripts, manpages, reports, and Documentation Impact contract as binding evidence. Document only the actual supported workspace and maintenance behavior, including the manifest-derived source/home-runtime model, distribution classes, benefits, sync triggers, source traceability, and authority boundaries; validate safe examples and both language paths; create separate follow-up intakes for evidenced automation gaps; preserve all executable behavior; converge required and useful optional checks and reviews; merge one non-empty Level-0 PR; return to clean synchronized main; and do not start D7 automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md` with deliveryAuthority=MergeAndSync after active positions 1 through 4 and D5 are merged. Document only the actual supported workspace and maintenance behavior, including the manifest-derived source/home-runtime model, distribution classes, benefits, sync triggers, and authority boundaries; validate safe examples and both language paths; create separate follow-up intakes for evidenced automation gaps; preserve all executable behavior; converge required and useful optional checks and reviews; merge one non-empty Level-0 PR; return to clean synchronized main; and do not start D7 automatically.
 ```
 
 <!-- intake-authoring:end -->
