@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "requirementsSha256": "e112e5f87683cd7a9bf7b0ca04b89b1d2d78c6af8b94219b23587c820198b187",
+  "reviewedHead": "746a1afe18ee1ee9716907c94222915ed9003865",
+  "entries": [
+    {
+      "gateId": "source-matrix-local-exact-head", "evidenceRole": "Primary", "applicability": "Applicable",
+      "requiredScope": "Reader paths, operational claims, normalized source hashes, language partners and proof boundaries on the exact pushed head",
+      "headSha": "746a1afe18ee1ee9716907c94222915ed9003865", "provider": "Local exact-head validation",
+      "runId": "local-746a1afe18ee1ee9716907c94222915ed9003865-20260801", "workflow": "Feature 022 source-matrix validation",
+      "job": "Positive and isolated negative fixtures; production matrix validation", "runnerOrPlatform": "macos-15 local checkout at exact Git head",
+      "executedCommand": "python3 specs/022-agentic-workspace-efficiency-guide/tests/test_efficiency_guide.py; python3 specs/022-agentic-workspace-efficiency-guide/tools/validate_efficiency_guide.py --repo . --matrix docs/maintenance/agentic-workspace-efficiency-source-matrix.json",
+      "result": "Pass", "evidenceReference": "git:746a1afe18ee1ee9716907c94222915ed9003865#feature-022-local-source-matrix-validation", "rationale": "", "reevaluationTrigger": "", "supplementalFor": ""
+    },
+    {
+      "gateId": "documentation-links", "evidenceRole": "Primary", "applicability": "Applicable",
+      "requiredScope": "Local Markdown paths, fragments, reciprocal language partners and reader-path navigation",
+      "headSha": "746a1afe18ee1ee9716907c94222915ed9003865", "provider": "GitHub Actions", "runId": "30716425154",
+      "workflow": "Documentation and Learning Package", "job": "Local Markdown Links and Anchors (91412630773)", "runnerOrPlatform": "ubuntu-24.04",
+      "executedCommand": "lychee --offline --include-fragments --exclude-path docs/learning-units/dist --exclude-path scripts/templates/project-readme-template.md --exclude-path scripts/templates/secure-development-compendium-header.md './**/*.md'",
+      "result": "Pass", "evidenceReference": "https://github.com/hindermath/home-baseline/actions/runs/30716425154/job/91412630773", "rationale": "", "reevaluationTrigger": "", "supplementalFor": ""
+    },
+    {
+      "gateId": "learning-accessibility", "evidenceRole": "Primary", "applicability": "Applicable",
+      "requiredScope": "Learning package, generated secure-development documents and text-first learner accessibility",
+      "headSha": "746a1afe18ee1ee9716907c94222915ed9003865", "provider": "GitHub Actions", "runId": "30716425154",
+      "workflow": "Documentation and Learning Package", "job": "Learning Package jobs 91412630801, 91412630800 and 91412630794", "runnerOrPlatform": "macos-14, ubuntu-22.04, windows-2022",
+      "executedCommand": "bash scripts/check-learning-package.sh --self-test; pwsh -NoProfile -File scripts/check-learning-package.ps1 -SelfTest; bash scripts/build-secure-development-docs.sh --check; pwsh -NoProfile -File scripts/build-secure-development-docs.ps1 -Check",
+      "result": "Pass", "evidenceReference": "https://github.com/hindermath/home-baseline/actions/runs/30716425154", "rationale": "", "reevaluationTrigger": "", "supplementalFor": ""
+    },
+    {
+      "gateId": "repository-quality", "evidenceRole": "Primary", "applicability": "Applicable",
+      "requiredScope": "Homogeneity, PowerShell analysis, whitespace, secrets, statistics and Spec Kit integrity",
+      "headSha": "746a1afe18ee1ee9716907c94222915ed9003865", "provider": "GitHub Actions and local exact-head validation",
+      "runId": "30716425161,30716425157,local-746a1afe18ee1ee9716907c94222915ed9003865", "workflow": "Homogeneity Check; PowerShell Static Analysis; repository-local policy gates",
+      "job": "Cross-platform Homogeneity/PSScriptAnalyzer and local policy checks", "runnerOrPlatform": "macos-14, ubuntu-22.04, windows-2022 and macos-15 local exact-head checkout",
+      "executedCommand": "bash scripts/check-homogeneity.sh .; pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1; git diff --check; bash scripts/scan-agent-secrets.sh --fail-on-high .; bash scripts/render-project-statistics.sh --check-only --repo .; specify check",
+      "result": "Pass", "evidenceReference": "https://github.com/hindermath/home-baseline/actions/runs/30716425161; https://github.com/hindermath/home-baseline/actions/runs/30716425157; git:746a1afe18ee1ee9716907c94222915ed9003865#feature-022-local-quality-validation", "rationale": "", "reevaluationTrigger": "", "supplementalFor": ""
+    },
+    {
+      "gateId": "maintenance-runtime-regression", "evidenceRole": "Primary", "applicability": "Applicable",
+      "requiredScope": "Existing Maintenance TUI build and tests prove documentation delivery did not disturb the operational project",
+      "headSha": "746a1afe18ee1ee9716907c94222915ed9003865", "provider": "GitHub Actions", "runId": "30716425163", "workflow": "Maintenance TUI",
+      "job": "Maintenance TUI jobs 91412630854, 91412630832 and 91412630821", "runnerOrPlatform": "macos-14, ubuntu-22.04, windows-2022",
+      "executedCommand": "dotnet restore scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/HomeBaseline.MaintenanceTui.csproj --locked-mode; dotnet restore scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj --locked-mode; dotnet build scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/HomeBaseline.MaintenanceTui.csproj --configuration Release --no-restore; dotnet test scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj --configuration Release --no-restore",
+      "result": "Pass", "evidenceReference": "https://github.com/hindermath/home-baseline/actions/runs/30716425163", "rationale": "", "reevaluationTrigger": "", "supplementalFor": ""
+    },
+    {
+      "gateId": "docfx-web-a11y", "evidenceRole": "Primary", "applicability": "N/A",
+      "requiredScope": "DocFX generation and browser Playwright/Axe validation", "headSha": "746a1afe18ee1ee9716907c94222915ed9003865",
+      "result": "N/A", "evidenceReference": "specs/022-agentic-workspace-efficiency-guide/autonomous-run-gate-requirements.json#docfx-web-a11y",
+      "rationale": "The repository has no DocFX configuration or browser documentation test project; Markdown, learner-package, semantic WCAG and link gates cover the affected surfaces.",
+      "reevaluationTrigger": "DocFX, generated HTML or browser documentation tests enter the repository.", "supplementalFor": ""
+    },
+    {
+      "gateId": "supply-chain-runtime", "evidenceRole": "Primary", "applicability": "N/A",
+      "requiredScope": "SBOM, VEX, SLSA, OpenSSF Scorecard, AI-SBOM and dependency evidence", "headSha": "746a1afe18ee1ee9716907c94222915ed9003865",
+      "result": "N/A", "evidenceReference": "specs/022-agentic-workspace-efficiency-guide/autonomous-run-gate-requirements.json#supply-chain-runtime",
+      "rationale": "No dependency, package, release artifact or AI runtime changes are permitted.",
+      "reevaluationTrigger": "Dependency, package, build, release or AI-runtime scope changes.", "supplementalFor": ""
+    }
+  ]
+}

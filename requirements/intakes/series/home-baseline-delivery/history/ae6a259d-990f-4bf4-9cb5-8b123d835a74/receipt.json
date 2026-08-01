@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "7cddc420-ce3f-4b23-ad21-012184f0ee4b",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-08-01T18:52:00Z",
+  "operation": {
+    "operationId": "d14a8efb-4cfd-473a-b409-9d5c3f71434d",
+    "type": "Update",
+    "authorityEvidence": "Explicit serial-run authority requires the causal Feature-021 archive, evidence-bound D6 handoff, and no automatic D6 start inside the closeout."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "32b77c76b3b0285524be40ad153971bd6e710071d9b86784fe80dba953291f7b"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/d14a8efb-4cfd-473a-b409-9d5c3f71434d/receipt.json",
+    "receiptNormalizedSha256": "028551481424cc57a2144c14bb77f86ddc27e9b674f11644b457e1930ec25862",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/d14a8efb-4cfd-473a-b409-9d5c3f71434d/manifest.json",
+    "manifestArchiveSha256": "442d549f08dba795acc356bf0d4f13f14161b61ad377497c3dca5570d0f6983e"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

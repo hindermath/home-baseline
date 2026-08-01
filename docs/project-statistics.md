@@ -149,7 +149,7 @@
 | 2026-08-01 | Feature 019 Wartungs-TUI- und Wrapper-Regressionshärtung | — | — | — | Der Bash-Wrapper veröffentlicht persistierte JSONL-Ereignisse lückenlos, bindet den kanonischen Berichtspfad vor dem TUI-Prozessstart und stimmt Abschlussstatus, Bericht und Exitcode wahrheitsgemäß ab. Fehlende oder ungültige frühe Berichte führen zu einem sicheren Fallback; die argumentlose Home-Runtime-Delegation bleibt mit Bash 3.2 kompatibel. 19 Wrapper-, 90 Python- und 68 .NET-Tests sowie die vollständige macOS-/Ubuntu-/Windows-Matrix waren grün. PR #192 wurde am exakten geprüften Head gemergt. Der kausale Closeout archiviert R-TUI, dokumentiert `NoPromotion`, veröffentlicht 37 Ziele, drei Roots und 44 Abhängigkeiten und gibt D4 als einzigen `Eligible`-Kandidaten frei. Das Implementierungsdelta vor Statistikpflege umfasst 1 828 Nettozeilen. |
 | 2026-08-01 | Feature 020 Dokumentations-Informationsarchitektur-Audit | — | — | — | Documentation Impact `GeneratedUpdate`: Der read-only Audit bindet 2 624 Dokumentationseinheiten, vier Leserpfade, 23 Wartungsverträge und drei vollständig abgedeckte Source-/Runtime-Klassen an den eingefrorenen Git-Baum. Eine bekannte UTF-16-Testausgabe ist über ihren Rohhash begrenzt ausgeschlossen. Das einzige deduplizierte Finding `DIA001` weist die 3 683-zeilige bilinguale Root-README als topic-orientierten D5-Remediation-Bedarf aus; D6 und D7 bleiben leer. 19 Vertragsfixtures, ein providerseitig entdeckbarer Bridge-Test, Hash-, Link-, Secret- und PSScriptAnalyzer-Nachweise sind lokal grün. Der neue Test-Bridge-Eintrag aktualisiert ausschließlich die deterministisch erzeugte Skriptreferenz. PR #194 mergte den exakten geprüften Head; der kausale Closeout archiviert D4, veröffentlicht die `Ready`-Serie mit 36 Zielen, drei Roots und 43 Abhängigkeiten und gibt D5 als einzigen bevorzugten `Eligible`-Kandidaten frei. Das Implementierungsdelta vor Statistikpflege umfasst 134 145 Nettozeilen, überwiegend vollständige strukturierte Audit-Evidence. |
 | 2026-08-01 | Feature 021 Level-0-Dokumentationsarchitektur | — | — | — | Documentation Impact `UpdateRequired`: `DIA001` wurde durch getrennte kompakte deutsche und englische Root-Einstiege, zwei Dokumentationsportale und vier textorientierte Leserpfade behoben. Eine hash- und commitgebundene Matrix ordnet alle 16 früheren Root-Bereiche genau einer Entscheidung und einem validierten Ziel zu; D6/D7 bleiben bei null Findings. Der Source-/Home-Runtime-Vertrag, Progressive Disclosure, Sprachpartner und zusätzliche Documentation-Impact-Felder sind in Constitution, Templates, PR-Fläche und fünf Agentenoberflächen synchron verankert. 12 Vertragsgruppen, 3 508 Lychee-Prüfungen, Lernpaket-, Generator-, Homogeneity-, PSScriptAnalyzer-, Secret- und Elf-Preset-Gates bilden den lokalen Nachweis. Der Implementierungs-Checkpoint umfasst 2 778 hinzugefügte und 3 691 entfernte Zeilen; die negative Nettomenge ist die beabsichtigte Ablösung der 3 683-zeiligen Root-Sammelseite durch progressive Navigation. |
-| 2026-08-01 | Feature 022 Agentic-Workspace-Effizienzleitfaden | — | — | — | Documentation Impact `UpdateRequired`: Ein ausführliches deutsches und englisches Betriebsmodell verbindet vier Leserpfade für Erstlauf, Routine, Maintainer/KI-Agenten sowie Audit. 17 hashgebundene Claims belegen Optionen, Status, Exitcodes, Evidence, Sicherheits-, Distributions-, Recovery-, Plattform- und Next-Action-Verträge gegen aktuelle Quellen. Root- und Dokumentationsportale verweisen mit stabilen Ankern auf den Leitfaden; zwei Feature-lokale Python-Prüfer validieren Matrix, Quellen, Sprachpartner und negative Driftfälle. 3 558 Lychee-Ziele, Lernpaket, Secure-Development-Generator, Documentation Impact, PSScriptAnalyzer, Secret-Scan und Spec-Kit-Integrität sind lokal grün. Das Implementierungsdelta vor Statistikpflege umfasst 3 013 Nettozeilen. Wartungsruntime, Presets, Registry, Workflows und Flottenzustand bleiben unverändert. |
+| 2026-08-01 | Feature 022 Agentic-Workspace-Effizienzleitfaden | — | — | — | Documentation Impact `UpdateRequired`: Ein ausführliches deutsches und englisches Betriebsmodell verbindet vier Leserpfade für Erstlauf, Routine, Maintainer/KI-Agenten sowie Audit. 17 hashgebundene Claims belegen Optionen, Status, Exitcodes, Evidence, Sicherheits-, Distributions-, Recovery-, Plattform- und Next-Action-Verträge gegen aktuelle Quellen. Root- und Dokumentationsportale verweisen mit stabilen Ankern auf den Leitfaden; zwei Feature-lokale Python-Prüfer validieren Matrix, Quellen, Sprachpartner und negative Driftfälle. 3 558 Lychee-Ziele, Lernpaket, Secure-Development-Generator, Documentation Impact, PSScriptAnalyzer, Secret-Scan und Spec-Kit-Integrität sind lokal grün. Das Implementierungsdelta vor Statistikpflege umfasst 3 013 Nettozeilen. PR #199 mergte den exakten Head nach 26 grünen Jobs und einem kommentarlosen Copilot-Exact-Head-Review. Der kausale Closeout archiviert D6, veröffentlicht die `Ready`-Serie mit 34 Zielen, drei Roots und 40 Abhängigkeiten und gibt D7 als einzigen bevorzugten `Eligible`-Kandidaten frei. Wartungsruntime, Presets, Registry, Workflows und Flottenzustand bleiben unverändert. |
 
 ---
 
@@ -1007,27 +1007,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 594302 lines |
-| Textdateien / Text files | 2958 |
+| Textbasis / Text base | 596361 lines |
+| Textdateien / Text files | 2971 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-08-01 |
 | Aktivtage / Active days | 80 |
-| Relevante Commits / Relevant commits | 664 |
-| Zeilen je Aktivtag / Lines per active day | 7428.8 |
-| Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 158804 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 281963 |
+| Relevante Commits / Relevant commits | 665 |
+| Zeilen je Aktivtag / Lines per active day | 7454.5 |
+| Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 37 days |
-| Speedup vs. 80 lines/day | 92.9x |
-| Speedup vs. 100 lines/day | 74.3x |
-| Methodik / Methodology | v2; source `2a5264a3a4a2` |
+| Speedup vs. 80 lines/day | 93.2x |
+| Speedup vs. 100 lines/day | 74.5x |
+| Methodik / Methodology | v2; source `fbc3b745e546` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 1879
 Tests                           [#...................]   3.5% | 20582
-Dokumentation / Documentation   [##########..........]  51.1% | 303782
-Skripte / Scripts               [##..................]   9.4% | 55596
-Konfiguration / Configuration   [#######.............]  35.6% | 211692
+Dokumentation / Documentation   [##########..........]  51.0% | 304150
+Skripte / Scripts               [##..................]   9.3% | 55596
+Konfiguration / Configuration   [#######.............]  35.8% | 213383
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 771
 ```
@@ -1223,8 +1223,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 92.9x
-100 lines/day      [###############.....] 74.3x
+80 lines/day       [###################.] 93.2x
+100 lines/day      [###############.....] 74.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1237,7 +1237,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7428.8
+Visible repository [###############.....] 7454.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1246,9 +1246,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 158804. Peak-Woche: 2026-07-26 / 281963. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-08-01 / 158804. Peak week: 2026-07-26 / 281963. Longest streak: 37 days (2026-06-26..2026-08-01).*
+*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 37 days (2026-06-26..2026-08-01).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1263,6 +1263,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 158804 |
+| 2026-08 | 161357 |
 
 <!-- project-statistics-v2:end -->

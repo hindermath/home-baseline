@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "ae6a259d-990f-4bf4-9cb5-8b123d835a74",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit serial-run authority requires the causal Feature-022 archive, evidence-bound D7 handoff, and no automatic Feature-023 start inside the closeout.",
+  "proposalNormalizedSha256": "558c299ce7f7f10f1ce50a3bedc87e0a43457368a96e30b75df6e18bb76b2f1f",
+  "differences": {
+    "targetCount": {"before": 35, "after": 34},
+    "rootCount": {"before": 3, "after": 3},
+    "dependencyCount": {"before": 42, "after": 40},
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+        "role": "Primary",
+        "normalizedSha256": "0c0c75222f9305fddaba8dd7d3f693c906f363c12c8c7c426ea094ff605ff5c1",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+        "orderBefore": 2, "orderAfter": 1,
+        "roleBefore": "OrderedMember", "roleAfter": "Primary",
+        "statusBefore": "Blocked", "statusAfter": "Eligible",
+        "rootBefore": false, "rootAfter": true,
+        "normalizedSha256Before": "3c40e3ff236d7187e71b53616c220de6c8a7b0578a00ecde780da2fc582013bf",
+        "normalizedSha256After": "2c911510e3feca3c04d0fb297ebbd03f00208fef9dbbe60084a39aa1cdb0bf22"
+      }
+    ],
+    "addedRoots": ["Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md"],
+    "removedRoots": ["Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md"],
+    "addedDependencies": [],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+        "to": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+        "kind": "DocumentationSurfaceBaseline", "binding": true
+      },
+      {
+        "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+        "to": "Lastenheft_Script_Dokumentation.md",
+        "kind": "DocumentationSurfaceBaseline", "binding": true
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed Feature 022, removes its two outgoing edges, and exposes D7 as the sole preferred Eligible candidate without starting Feature 023."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/ae6a259d-990f-4bf4-9cb5-8b123d835a74/manifest.json",
+    "manifestNormalizedSha256": "32b77c76b3b0285524be40ad153971bd6e710071d9b86784fe80dba953291f7b",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ae6a259d-990f-4bf4-9cb5-8b123d835a74/receipt.json",
+    "receiptNormalizedSha256": "9bfdfd767a8a1ac2e0d5323c6e19775e0f59f76c8bc0a6f9295fce6d9b58039f"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.022-agentic-workspace-efficiency-guide.md",
+    "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json"
+  ],
+  "validation": {"bash": "Passed", "powerShell": "Passed", "requirementsGovernance": "Aligned"},
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

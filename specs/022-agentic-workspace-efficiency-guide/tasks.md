@@ -125,12 +125,12 @@ without assuming successful completion.
 
 ## Phase 8: Delivery And Causal Closeout
 
-- [ ] T079 Validate staged exact candidate, commit and push Feature 022 branch
-- [ ] T080 Create one non-empty Feature 022 PR and converge required checks and actionable reviews
-- [ ] T081 Re-run source-matrix tests locally on the exact pushed head, generate temporary provider evidence for existing workflows, and validate both evidence classes with Bash and PowerShell
-- [ ] T082 Merge Feature 022 under approved rules and synchronize clean `main` with `(0 0)`
-- [ ] T083 Create Feature 022 retrospective and terminal run-state evidence through one causal closeout PR if required
-- [ ] T084 Archive D6, update and independently review D7, and update the active Series without starting Feature 023 inside Feature 022
+- [X] T079 Validate staged exact candidate, commit and push Feature 022 branch
+- [X] T080 Create one non-empty Feature 022 PR and converge required checks and actionable reviews
+- [X] T081 Re-run source-matrix tests locally on the exact pushed head, generate temporary provider evidence for existing workflows, and validate both evidence classes with Bash and PowerShell
+- [X] T082 Merge Feature 022 under approved rules and synchronize clean `main` with `(0 0)`
+- [X] T083 Create Feature 022 retrospective and terminal run-state evidence through one causal closeout PR if required
+- [X] T084 Archive D6, update and independently review D7, and update the active Series without starting Feature 023 inside Feature 022
 
 ## Dependencies And Execution Order
 

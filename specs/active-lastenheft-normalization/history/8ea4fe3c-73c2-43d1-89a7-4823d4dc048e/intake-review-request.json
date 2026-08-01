@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "e0cb3910-a6f0-4737-8cb5-9965e2ca9615",
+  "reviewId": "8ea4fe3c-73c2-43d1-89a7-4823d4dc048e",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "path": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
@@ -143,6 +147,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
       "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -179,250 +184,220 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
-      "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+      "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
       {
+        "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+        "to": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
+        "kind": "DocumentationSurfaceBaseline"
+      },
+      {
         "from": "Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.md",
         "to": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-        "kind": "DocumentationSurfaceBaseline",
-        "binding": true
+        "kind": "DocumentationSurfaceBaseline"
+      },
+      {
+        "from": "Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.md",
+        "to": "Lastenheft_Script_Dokumentation.md",
+        "kind": "DocumentationSurfaceBaseline"
       },
       {
         "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
         "to": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
         "to": "Lastenheft_Secure-Development-Container-Hardening.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Secure-Development-Container-Hardening.md",
         "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
-        "kind": "SandboxBaseline",
-        "binding": true
+        "kind": "SandboxBaseline"
       },
       {
         "from": "Lastenheft_PowerShell_Cmdlets.md",
         "to": "Lastenheft_Script_Dokumentation.md",
-        "kind": "DocumentationSurfaceBaseline",
-        "binding": true
+        "kind": "DocumentationSurfaceBaseline"
       },
       {
         "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
         "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-        "kind": "CommentSurfaceBaseline",
-        "binding": true
+        "kind": "CommentSurfaceBaseline"
       },
       {
         "from": "Lastenheft_PowerShell_Cmdlets.md",
         "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-        "kind": "CommentSurfaceBaseline",
-        "binding": true
+        "kind": "CommentSurfaceBaseline"
       },
       {
         "from": "Lastenheft_Script_Dokumentation.md",
         "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
-        "kind": "CommentSurfaceBaseline",
-        "binding": true
+        "kind": "CommentSurfaceBaseline"
       },
       {
         "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_PowerShell_Cmdlets.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_Script_Dokumentation.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
         "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
         "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
         "to": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
         "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
         "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
         "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
         "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
         "to": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
-        "kind": "SecureDevelopmentBaseline",
-        "binding": true
+        "kind": "SecureDevelopmentBaseline"
       },
       {
         "from": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
         "to": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
         "to": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
+        "kind": "RequirementsGovernanceGate"
       },
       {
         "from": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
         "to": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
+        "kind": "RequirementsGovernanceGate"
       },
       {
         "from": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
         "to": "Lastenheft_KITSM-Professional-Jahr3.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
+        "kind": "RequirementsGovernanceGate"
       },
       {
         "from": "Lastenheft_KITSM-Professional-Jahr3.md",
         "to": "Lastenheft_KDM-Professional-Jahr3.md",
-        "kind": "HardCompletionGate",
-        "binding": true
+        "kind": "HardCompletionGate"
       },
       {
         "from": "Lastenheft_KDM-Professional-Jahr3.md",
         "to": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
-        "kind": "DocumentationSurfaceBaseline",
-        "binding": true
+        "kind": "DocumentationSurfaceBaseline"
       },
       {
         "from": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
         "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
         "to": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
         "to": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
         "to": "Lastenheft_ITSE-Jahr1-Retrofit.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
+        "kind": "RequirementsGovernanceGate"
       },
       {
         "from": "Lastenheft_ITSE-Jahr1-Retrofit.md",
         "to": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
-        "kind": "HardCompletionGate",
-        "binding": true
+        "kind": "HardCompletionGate"
       },
       {
         "from": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
         "to": "Lastenheft_ITSE-Professional-Jahr3.md",
-        "kind": "HardCompletionGate",
-        "binding": true
+        "kind": "HardCompletionGate"
       },
       {
         "from": "Lastenheft_ITSE-Professional-Jahr3.md",
         "to": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
-        "kind": "DocumentationSurfaceBaseline",
-        "binding": true
+        "kind": "DocumentationSurfaceBaseline"
       },
       {
         "from": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
         "to": "Lastenheft_ITSE-Lernreihen-Closure.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
         "to": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       },
       {
         "from": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
         "to": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
-        "kind": "AssessmentBaseline",
-        "binding": true
+        "kind": "AssessmentBaseline"
       },
       {
         "from": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
         "to": "Lastenheft_Preset-Learning-Series-Governance.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
+        "kind": "RequirementsGovernanceGate"
       },
       {
         "from": "Lastenheft_Preset-Learning-Series-Governance.md",
         "to": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-        "kind": "PublishedPresetBaseline",
-        "binding": true
+        "kind": "PublishedPresetBaseline"
       },
       {
         "from": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
         "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
-        "kind": "FinalAuditInput",
-        "binding": true
+        "kind": "FinalAuditInput"
       }
     ]
   },
