@@ -67,7 +67,7 @@
     },
     {
       "path": "specs/023-registered-doc-architecture-adoption/retrospective.md",
-      "sha256": "fc5393371bafa803b42c6a9a365f803fe76cf3121088c3fe0431e524a07bb3c5"
+      "sha256": "2d7d607958d5c808a6be9e100630b68a32af42cbac948d0a7e02836f46c7d175"
     },
     {
       "path": "scripts/config/agentic-workspace-fleet.json",
@@ -142,5 +142,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-01T23:26:33Z"
+  "updatedAt": "2026-08-01T23:32:20Z"
 }

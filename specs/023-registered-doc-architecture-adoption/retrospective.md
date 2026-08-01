@@ -1,6 +1,6 @@
-# Autonomous Retrospective: Feature 023
+# Autonome Retrospektive / Autonomous Retrospective: Feature 023
 
-## Run Summary
+## Laufzusammenfassung / Run Summary
 
 | Field | Value |
 |---|---|
