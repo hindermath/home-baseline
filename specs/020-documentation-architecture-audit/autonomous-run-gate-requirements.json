@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "documentation-audit-contract",
+      "applicability": "Applicable",
+      "requiredScope": "Run positive and negative Feature-020 data-contract tests.",
+      "requiredCommandTokens": ["unittest discover"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "documentation-audit-ledger",
+      "applicability": "Applicable",
+      "requiredScope": "Validate exact inventory, decisions, reader paths, maintenance contracts, source/runtime classes, findings, and privacy boundaries.",
+      "requiredCommandTokens": ["unittest discover"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "homogeneity",
+      "applicability": "Applicable",
+      "requiredScope": "Validate documentation, generated statistics, and shared governance consistency.",
+      "requiredCommandTokens": ["check-homogeneity.sh"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "powershell-static-analysis",
+      "applicability": "Applicable",
+      "requiredScope": "Prove tracked PowerShell surfaces remain compliant although D4 does not edit them.",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer.ps1"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "secret-scan",
+      "applicability": "Applicable",
+      "requiredScope": "Reject secrets, credentials, personal data, and private absolute paths from publishable evidence.",
+      "requiredCommandTokens": ["scan-agent-secrets.sh", "--fail-on-high"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "documentation-links",
+      "applicability": "Applicable",
+      "requiredScope": "Validate changed feature Markdown links and anchors on the reviewed head.",
+      "requiredCommandTokens": ["--include-fragments"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "provider-matrix",
+      "applicability": "Applicable",
+      "requiredScope": "Confirm exact-head repository gates on macOS, Ubuntu, and Windows.",
+      "requiredCommandTokens": ["dotnet test"],
+      "requiredRunnerOrPlatformTokens": ["macos", "ubuntu", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "docfx-web-a11y",
+      "applicability": "N/A",
+      "requiredScope": "Generate DocFX and run browser accessibility checks.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Feature 020 changes audit evidence only and does not modify active documentation, DocFX navigation, guides, HTML, or browser UI.",
+      "reevaluationTrigger": "Re-evaluate if active docs, navigation, generated HTML, or browser UI enters the diff."
+    },
+    {
+      "gateId": "supply-chain-artifacts",
+      "applicability": "N/A",
+      "requiredScope": "Generate SBOM, VEX, SLSA, OpenSSF Scorecard, and AI-SBOM evidence.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "The audit adds no dependency, package, binary, release, AI runtime, or distributable artifact.",
+      "reevaluationTrigger": "Re-evaluate if dependency or release scope changes."
+    }
+  ]
+}

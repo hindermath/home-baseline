@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0",
+  "auditId": "bc4d0ed5-5701-4c2e-9fe2-0393cac9af49",
+  "repositoryCommit": "4c19093692542ff5001819f9ba2d17a1a1a5d4d7",
+  "documentationSuffixes": [".md", ".json", ".txt", ".1", ".rst", ".adoc"],
+  "includeScriptHelp": true,
+  "exclusions": {
+    "windows-test-output.txt": {
+      "reason": "NonUtf8GeneratedTestEvidence",
+      "rationale": "The tracked Windows test transcript is generated UTF-16 evidence, not an active UTF-8 documentation source.",
+      "owner": "PlatformValidation",
+      "reevaluationTrigger": "The test-evidence format or active-documentation role changes."
+    }
+  },
+  "capturedAt": "2026-08-01T17:28:10+02:00",
+  "acceptedEvidence": [
+    {"path": "Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md", "normalizedSha256": "52710abbc9c6878bcf5c1d840ff67987fd4ad996e2e1a19b80241a1d54fb040b"},
+    {"path": "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json", "normalizedSha256": "709a2ec11c81a0898db74a240836c9bbd4af4b1125d850d11197c7fb0886b7e6"},
+    {"path": "requirements/intakes/series/home-baseline-delivery/manifest.json", "normalizedSha256": "e35c39d63d25e1728db66e6c09bad6855e96386820e8c09a8633c19bd3a97680"},
+    {"path": ".specify/memory/constitution.md", "normalizedSha256": "629ee3de68cb3010c5d90a7332e7414e304b0892d13b2918a33eb4cb1c0369e0"},
+    {"path": "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md", "normalizedSha256": "b22b58bbfbaf4e48922e1d9f93414b8ea6b94d2fe0bbd4c45c309ede51bc7595"},
+    {"path": "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md", "normalizedSha256": "94e1248d36108f32fda592134f80f769106e4656cfe3e02ab7b712b16e36020a"},
+    {"path": "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md", "normalizedSha256": "4650c8d6aba154afe0e530cfb455425fdfef4b72f8014b1290316abba0133786"},
+    {"path": "specs/018-agentic-workspace-tui/autonomous-run-evidence.md", "normalizedSha256": "08ba5f017fb8af894f126f856891e8e4616e47bef6ace375b5907cd2f6851bde"},
+    {"path": "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md", "normalizedSha256": "b099ba9fdcf8f85919cdf8cfbb4b893ac075489398f98587889808e69e86810f"}
+  ],
+  "defaultDecision": {
+    "artifactClass": "ActiveSemantic",
+    "decision": "KeepAsIs",
+    "audiences": ["DailyUser", "MaintainerAgent"],
+    "readerPaths": ["DailyUser", "MaintainerAgent"],
+    "canonicalSource": "self",
+    "owner": "Level0",
+    "rationale": "Current tracked documentation with no separately evidenced restructuring need.",
+    "evidence": ["self"],
+    "risk": "Low",
+    "reevaluationTrigger": "The file content, ownership, generation contract, or reader path changes."
+  },
+  "rules": [
+    {
+      "pathRegex": "^(Lastenheft_|Pflichtenheft|requirements/|specs/)",
+      "set": {
+        "artifactClass": "IntakeEvidence",
+        "decision": "KeepAsIs",
+        "audiences": ["MaintainerAgent", "AuditTroubleshooting"],
+        "readerPaths": ["MaintainerAgent", "AuditTroubleshooting"],
+        "owner": "RequirementsGovernance",
+        "rationale": "Requirements and feature evidence remain traceable inputs rather than daily-use guidance."
+      }
+    },
+    {
+      "pathRegex": "^(AGENTS.md|CLAUDE.md|GEMINI.md|\\.agents/|\\.claude/|\\.github/agents/|\\.github/copilot-instructions.md|\\.opencode/|\\.specify/(commands|templates|presets)/|specs/spec-kit-preset)",
+      "set": {
+        "artifactClass": "AgentSurface",
+        "decision": "KeepAsIs",
+        "audiences": ["MaintainerAgent"],
+        "readerPaths": ["MaintainerAgent"],
+        "owner": "AgentGovernance",
+        "rationale": "Agent-facing guidance and generated integration surfaces are maintained through their owning source contracts."
+      }
+    },
+    {
+      "pathRegex": "(^|/)(history|archive|archived)(/|$)",
+      "set": {
+        "artifactClass": "Archived",
+        "decision": "ArchiveOnly",
+        "audiences": ["AuditTroubleshooting"],
+        "readerPaths": ["AuditTroubleshooting"],
+        "owner": "EvidenceArchive",
+        "rationale": "Historical evidence is retained byte-for-byte and is not an active reader entry point."
+      }
+    },
+    {
+      "pathRegex": "(docs/project-statistics.md|docs/scripts/(reference|embedded-scripts).md|\\.skill-lock.json|package-lock.json|coverage-summary.json)$",
+      "set": {
+        "artifactClass": "Generated",
+        "decision": "GeneratedFromSource",
+        "audiences": ["DailyUser", "MaintainerAgent", "AuditTroubleshooting"],
+        "readerPaths": ["DailyUser", "MaintainerAgent", "AuditTroubleshooting"],
+        "owner": "DeterministicRenderer",
+        "rationale": "Generated output must be changed through its canonical source and renderer."
+      }
+    }
+  ],
+  "overrides": {
+    "README.md": {
+      "artifactClass": "ActiveSemantic",
+      "decision": "SplitByTopic",
+      "audiences": ["Learner", "DailyUser", "MaintainerAgent", "AuditTroubleshooting"],
+      "readerPaths": ["Learner", "DailyUser", "MaintainerAgent", "AuditTroubleshooting"],
+      "canonicalSource": "README.md",
+      "owner": "DocumentationArchitecture",
+      "rationale": "The 3,683-line bilingual root page mixes onboarding, daily operation, maintenance internals, audit guidance, and reference material; D5 must retain a concise portal and move detail by topic and reader path.",
+      "evidence": ["README.md"],
+      "risk": "Medium",
+      "reevaluationTrigger": "D5 implements and validates the reader-path split."
+    }
+  },
+  "readerPaths": [
+    {
+      "readerPathId": "Learner",
+      "entryPoints": ["README.md", "docs/learning-units/START-HERE.md"],
+      "prerequisites": ["A text-capable browser or editor", "No prior Spec Kit experience"],
+      "steps": ["Read the root orientation", "Enter through START-HERE", "Select occupation and learning year", "Use the sandbox preflight before agent work"],
+      "deepReferences": ["docs/learning-units/README.md", "docs/learning-units/Secure-Trader-Sandbox-Preflight.md"],
+      "safeNextAction": "Follow the selected learning-unit sequence and its explicit review gate.",
+      "status": "Pass",
+      "evidence": ["README.md", "docs/learning-units/START-HERE.md", "docs/learning-units/README.md"]
+    },
+    {
+      "readerPathId": "DailyUser",
+      "entryPoints": ["README.md"],
+      "prerequisites": ["A supported shell", "A cloned Level-0 workspace"],
+      "steps": ["Locate the maintenance section in the root README", "Select preview mode", "Review the text-first result", "Follow the exact next action"],
+      "deepReferences": ["docs/man/maintain-agentic-workspace.1.md", "docs/scripts/reference.md"],
+      "safeNextAction": "Use preview or check-only mode before an authorized maintenance run.",
+      "status": "Gap",
+      "findingId": "DIA001",
+      "evidence": ["README.md", "docs/man/maintain-agentic-workspace.1.md"]
+    },
+    {
+      "readerPathId": "MaintainerAgent",
+      "entryPoints": ["AGENTS.md", "README.md"],
+      "prerequisites": ["Repository guidance read", "Level-0 source and Home Runtime distinction understood"],
+      "steps": ["Read agent guidance", "Resolve the canonical script reference", "Inspect architecture and security boundaries", "Run repository validation"],
+      "deepReferences": ["docs/architecture/maintenance-tui.md", "docs/security/arc42-security.md", "docs/scripts/reference.md"],
+      "safeNextAction": "Edit the canonical Level-0 source and record one Documentation Impact decision.",
+      "status": "Gap",
+      "findingId": "DIA001",
+      "evidence": ["AGENTS.md", "README.md", "docs/architecture/maintenance-tui.md"]
+    },
+    {
+      "readerPathId": "AuditTroubleshooting",
+      "entryPoints": ["docs/project-statistics.md", "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md"],
+      "prerequisites": ["Accepted commit identity", "Read-only evidence access"],
+      "steps": ["Identify the relevant feature or run", "Verify accepted hashes", "Compare report and event evidence", "Apply the documented proof boundary"],
+      "deepReferences": ["specs/015-windows-maintenance-hardening/", "specs/016-linux-maintenance-hardening/", "specs/017-preset-profile-worktree-hardening/", "specs/018-agentic-workspace-tui/", "specs/019-agentic-workspace-regression-hardening/"],
+      "safeNextAction": "Revalidate the exact accepted head before relying on stale evidence.",
+      "status": "Pass",
+      "evidence": ["docs/project-statistics.md", "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md"]
+    }
+  ],
+  "maintenanceSurfaceEvidence": {
+    "README": ["README.md"],
+    "Manpage": ["docs/man/maintain-agentic-workspace.1.md"],
+    "Architecture": ["docs/architecture/maintenance-tui.md", "docs/security/adr/ADR-001-maintenance-tui-boundary.md"],
+    "A11Y": ["docs/accessibility/maintenance-tui.md"],
+    "Security": ["docs/security/arc42-security.md", "docs/security/threat-model.md"],
+    "ScriptReference": ["docs/scripts/reference.md"]
+  },
+  "maintenanceContracts": [
+    {"contractId":"015-windows-preview","sourceFeature":"015","topic":"Windows preview behavior","expectedBehavior":"WhatIf and preview paths show intended actions without mutating the workspace.","proofBoundary":"Documentation and accepted Feature-015 evidence agree; this audit does not rerun Windows mutation.","featureEvidence":["specs/015-windows-maintenance-hardening/contracts/maintenance-mode.md","specs/015-windows-maintenance-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"015-result-resume","sourceFeature":"015","topic":"Windows result and resume","expectedBehavior":"One canonical result controls completion and safe resume classification.","proofBoundary":"The accepted contract proves the interface; provider behavior remains outside this semantic audit.","featureEvidence":["specs/015-windows-maintenance-hardening/contracts/process-result.md","specs/015-windows-maintenance-hardening/contracts/resume-evidence.md"]},
+    {"contractId":"016-linux-input","sourceFeature":"016","topic":"Linux input isolation","expectedBehavior":"Maintenance input is isolated from child processes and noninteractive execution.","proofBoundary":"The audit compares documented claims with accepted Feature-016 proof only.","featureEvidence":["specs/016-linux-maintenance-hardening/contracts/cli-probe-result.md","specs/016-linux-maintenance-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"016-result-aggregation","sourceFeature":"016","topic":"Linux result aggregation","expectedBehavior":"Required failures are aggregated into one authoritative final result.","proofBoundary":"No new Linux execution semantics are introduced by this audit.","featureEvidence":["specs/016-linux-maintenance-hardening/contracts/run-finalization.md","specs/016-linux-maintenance-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"016-platform-exact-head","sourceFeature":"016","topic":"Platform and exact-head evidence","expectedBehavior":"Platform proof is tied to the exact reviewed commit and invalidated by drift.","proofBoundary":"Remote gate availability is reported, never inferred.","featureEvidence":["specs/016-linux-maintenance-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"017-remote-freshness","sourceFeature":"017","topic":"Remote freshness barrier","expectedBehavior":"All registered Git repositories receive a fetch attempt before downstream mutation.","proofBoundary":"The audit checks documentation consistency, not current fleet freshness.","featureEvidence":["specs/017-preset-profile-worktree-hardening/contracts/fleet-freshness-barrier.md","specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"017-safe-pull","sourceFeature":"017","topic":"Safe pull classification","expectedBehavior":"Fast-forward pull is limited to clean canonical default branches with zero ahead commits.","proofBoundary":"Repository mutation remains outside Feature 020.","featureEvidence":["specs/017-preset-profile-worktree-hardening/contracts/default-branch-and-pull.md"]},
+    {"contractId":"017-network-evidence","sourceFeature":"017","topic":"Bounded network evidence","expectedBehavior":"Network attempts record bounded outcome, retry state, and next action without silent success.","proofBoundary":"The audit validates the published contract, not network reachability.","featureEvidence":["specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"017-worktree-leases","sourceFeature":"017","topic":"Worktree lease ownership","expectedBehavior":"Only manifest- or lease-owned stale worktrees may be removed.","proofBoundary":"No worktree is created or removed during this audit.","featureEvidence":["specs/017-preset-profile-worktree-hardening/contracts/worktree-lease.md"]},
+    {"contractId":"017-cleanup-boundary","sourceFeature":"017","topic":"Exact cleanup authority","expectedBehavior":"Broad clean, reset, stash, and recursive deletion are prohibited in user checkouts.","proofBoundary":"The audit is read-only and records contradictions only.","featureEvidence":["specs/017-preset-profile-worktree-hardening/contracts/worktree-lease.md","specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"017-dynamic-profiles","sourceFeature":"017","topic":"Dynamic preset profiles","expectedBehavior":"Preset counts are resolved from the selected profile instead of hard-coded limits.","proofBoundary":"Current counts are time-bound evidence, not permanent constants.","featureEvidence":["specs/017-preset-profile-worktree-hardening/contracts/profile-registry-evidence.md"]},
+    {"contractId":"018-mode-selection","sourceFeature":"018","topic":"Enhanced, Plain, and Headless selection","expectedBehavior":"The wrapper selects an honest interaction mode from current terminal capabilities.","proofBoundary":"The audit checks documented selection semantics only.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/cli-selection.md","specs/018-agentic-workspace-tui/autonomous-run-evidence.md"]},
+    {"contractId":"018-safe-preview","sourceFeature":"018","topic":"Safe preview","expectedBehavior":"Preview is the safe first path and remains free of maintenance mutations.","proofBoundary":"Feature 020 does not execute a mutating maintenance run.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/cli-selection.md"]},
+    {"contractId":"018-confirmation","sourceFeature":"018","topic":"Default-no confirmation","expectedBehavior":"Risk-bearing execution requires explicit confirmation and defaults to No.","proofBoundary":"The accepted CLI contract is authoritative.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/cli-selection.md"]},
+    {"contractId":"018-live-jsonl","sourceFeature":"018","topic":"Additive JSONL live evidence","expectedBehavior":"Live events are additive and never replace the canonical report and process result.","proofBoundary":"JSONL content is not reinterpreted as the final authority.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/run-result.md"]},
+    {"contractId":"018-interruption","sourceFeature":"018","topic":"Single interruption handling","expectedBehavior":"Ctrl+C requests one bounded interruption and preserves recoverable evidence.","proofBoundary":"No interrupt is injected by this audit.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/run-result.md"]},
+    {"contractId":"018-fallback","sourceFeature":"018","topic":"Terminal fallback boundary","expectedBehavior":"Fallback remains explicit when enhanced event rendering is unavailable.","proofBoundary":"Terminal capabilities are not simulated in Feature 020.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/cache-fallback.md"]},
+    {"contractId":"018-canonical-result","sourceFeature":"018","topic":"Canonical completion result","expectedBehavior":"The final report and exit code own success or failure.","proofBoundary":"Live display state alone is never accepted as completion proof.","featureEvidence":["specs/018-agentic-workspace-tui/contracts/run-result.md"]},
+    {"contractId":"019-jsonl-continuity","sourceFeature":"019","topic":"JSONL continuity","expectedBehavior":"UTF-8 JSONL remains continuous across supported wrapper paths.","proofBoundary":"Accepted regression evidence is reused without product modification.","featureEvidence":["specs/019-agentic-workspace-regression-hardening/contracts/event-and-result-reconciliation.md","specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md"]},
+    {"contractId":"019-report-ownership","sourceFeature":"019","topic":"Report ownership","expectedBehavior":"The canonical report owns final status while live events remain advisory.","proofBoundary":"The audit does not alter report generation.","featureEvidence":["specs/019-agentic-workspace-regression-hardening/contracts/event-and-result-reconciliation.md"]},
+    {"contractId":"019-early-finalization","sourceFeature":"019","topic":"Early finalization","expectedBehavior":"Wrappers reconcile early child termination without inventing completion.","proofBoundary":"Only the merged regression proof is accepted.","featureEvidence":["specs/019-agentic-workspace-regression-hardening/contracts/event-and-result-reconciliation.md"]},
+    {"contractId":"019-result-reconciliation","sourceFeature":"019","topic":"Event and result reconciliation","expectedBehavior":"Degraded event streams are reconciled against report ownership and exit state.","proofBoundary":"EVENT_STREAM_DEGRADED is a bounded signal, not an implicit failure or pass.","featureEvidence":["specs/019-agentic-workspace-regression-hardening/contracts/event-and-result-reconciliation.md"]},
+    {"contractId":"019-bash32-delegation","sourceFeature":"019","topic":"Bash 3.2 Home Runtime delegation","expectedBehavior":"The Home Runtime wrapper delegates to the canonical Level-0 implementation without recursion.","proofBoundary":"The accepted delegation contract controls; Home Runtime is not edited here.","featureEvidence":["specs/019-agentic-workspace-regression-hardening/contracts/home-runtime-delegation.md"]}
+  ],
+  "sourceRuntimeRecords": [
+    {"recordId":"SRC-home-runtime","artifactClass":"homeRuntime","resolvedPaths":"$inventory","owner":"HomeRuntimeManifest","canonicalEditLocation":"Level-0 source repository","syncRequired":true,"commitAuthority":"Commit only in the Level-0 source repository","remoteAuthority":"MergeAndSync applies only to the Feature-020 delivery branch","benefit":"Provides a controlled local runtime copy for scripts and selected agent surfaces.","proofBoundary":"The manifest classifies tracked documentation surfaces; it does not make the Home copy canonical.","safeNextAction":"Edit Level 0, validate, then run host-only sync after merge.","status":"Pass"},
+    {"recordId":"SRC-source-only","artifactClass":"sourceOnly","resolvedPaths":"$inventory","owner":"Level0Repository","canonicalEditLocation":"Versioned Level-0 source repository","syncRequired":false,"commitAuthority":"Normal reviewed repository PR","remoteAuthority":"Only the authorized feature PR may be pushed or merged","benefit":"Keeps documentation, specs, preset sources, and evidence versioned without duplicating them under Home Runtime.","proofBoundary":"Source-only content is read directly from the clone.","safeNextAction":"Change the canonical source through a reviewed feature or documentation PR.","status":"Pass"},
+    {"recordId":"SRC-machine-local","artifactClass":"machineLocal","resolvedPaths":"$inventory","owner":"LocalMachineOperator","canonicalEditLocation":"Machine-local state or explicitly tracked seed metadata","syncRequired":false,"commitAuthority":"No remote commit for private state; tracked seeds follow normal PR review","remoteAuthority":"Private runtime state is never pushed","benefit":"Preserves machine identity, caches, ledgers, and local integration state outside shared semantic documentation.","proofBoundary":"Logical repository-relative identities are recorded; no private absolute path is published.","safeNextAction":"Use the owning local tool or regenerate from the documented seed; never copy private state into publishable evidence.","status":"Pass"}
+  ],
+  "findings": [
+    {
+      "findingId": "DIA001",
+      "severity": "Medium",
+      "summary": "The bilingual 3,683-line root README combines four reader roles, operational instructions, architecture, audit material, and generated-reference links in one primary entry page.",
+      "evidence": ["README.md", "docs/learning-units/START-HERE.md", "docs/man/maintain-agentic-workspace.1.md", "docs/architecture/maintenance-tui.md"],
+      "owner": "DocumentationArchitecture",
+      "residualRisk": "Readers can miss the safe first action or canonical edit boundary, and maintainers must reconcile duplicated navigation manually.",
+      "successor": "D5",
+      "targetBoundary": "Create a concise root portal and topic-oriented DE-first/EN-second reader paths while preserving normative sources, anchors, and accessibility.",
+      "reevaluationTrigger": "D5 produces a complete link map, redirect boundary, semantic review, and reader-path proof.",
+      "status": "Open"
+    }
+  ],
+  "governance": [
+    {"preset":"security-governance v0.6.1","checkpoint":"NIST SSDF and CWE Top 25 evidence hygiene","applicability":"Applicable","result":"Pass","rationale":"The audit validates hashes, rejects private absolute paths and secret-like values, and fails closed on malformed evidence.","evidence":["specs/020-documentation-architecture-audit/tools/validate_documentation_architecture.py","specs/020-documentation-architecture-audit/tests/test_documentation_architecture.py"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"Semantic review remains human- and agent-assisted.","followUp":"None","reevaluationTrigger":"Audit scope, parser behavior, or evidence schema changes."},
+    {"preset":"security-governance v0.6.1","checkpoint":"ASVS, SBOM, VEX, SLSA, OpenSSF Scorecard, AI-SBOM, NIS2, CRA, EU AI Act, and DORA","applicability":"N/A","result":"Pass","rationale":"Feature 020 adds deterministic test-only audit tooling and evidence without runtime, dependency, package, release, service, AI-system, or regulated processing changes.","evidence":["specs/020-documentation-architecture-audit/spec.md","specs/020-documentation-architecture-audit/plan.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None within the accepted read-only scope.","followUp":"Reassess instead of inheriting this N/A if scope changes.","reevaluationTrigger":"A dependency, package, runtime service, release artifact, AI system, or regulated processing boundary changes."},
+    {"preset":"architecture-governance v0.5.1","checkpoint":"Source, runtime, and local-state boundary","applicability":"Applicable","result":"Pass","rationale":"All three distribution classes have canonical ownership, synchronization, and authority boundaries.","evidence":["documentation-architecture-audit.json"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None within read-only scope.","followUp":"D5 addresses only DIA001.","reevaluationTrigger":"Home Runtime topology changes."},
+    {"preset":"architecture-governance v0.5.1","checkpoint":"STRIDE, CIA, CAPEC, S-ADR, Zero Trust, SAMM, BSI C3A, and BSI C5","applicability":"N/A","result":"Pass","rationale":"The audit does not change a trust boundary, cloud provider, deployment topology, distributed flow, security architecture, or product runtime.","evidence":["specs/020-documentation-architecture-audit/spec.md","specs/020-documentation-architecture-audit/research.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"Existing architecture evidence remains authoritative.","followUp":"Reassess instead of inheriting this N/A if architecture scope changes.","reevaluationTrigger":"A runtime boundary, cloud service, provider dependency, deployment topology, or distributed flow changes."},
+    {"preset":"isaqb-architecture-governance v0.2.1","checkpoint":"Reader-path and boundary communication","applicability":"Applicable","result":"Pass","rationale":"The audit records stakeholder paths, interfaces, decisions, and proof limits in text-first form.","evidence":["documentation-audit-report.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"DIA001 remains for D5.","followUp":"D5","reevaluationTrigger":"Reader roles or information architecture change."},
+    {"preset":"a11y-governance v0.4.2","checkpoint":"Text-first accessible evidence","applicability":"Applicable","result":"Pass","rationale":"Matrices and status evidence do not rely on color, position, or graphics and use German first with English support.","evidence":["documentation-audit-report.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"Reader-path navigation remains the documented D5 issue.","followUp":"D5","reevaluationTrigger":"Published report format changes."},
+    {"preset":"cross-platform-governance v0.2.1","checkpoint":"Test-only Python audit portability","applicability":"Applicable","result":"Pass","rationale":"The test-only tools use the Python standard library, repository-relative paths, and LF/CRLF/BOM normalization.","evidence":["specs/020-documentation-architecture-audit/tests/test_documentation_architecture.py"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"Provider jobs remain required before merge.","followUp":"Run Ubuntu, macOS, and Windows gates.","reevaluationTrigger":"Tool dependencies or path semantics change."},
+    {"preset":"cross-platform-governance v0.2.1","checkpoint":"Product script governance","applicability":"N/A","result":"Pass","rationale":"Feature 020 adds no product, maintenance, bootstrap, or deployment script and changes no executable product behavior.","evidence":["specs/020-documentation-architecture-audit/spec.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None within test-only scope.","followUp":"Reassess for any product-script change.","reevaluationTrigger":"A product-facing shell, PowerShell, or other operational script is added or changed."},
+    {"preset":"agent-parity-governance v0.4.1","checkpoint":"Maintained agent surfaces","applicability":"Applicable","result":"Pass","rationale":"All maintained agent surfaces are inventoried; Feature 020 changes none of their guidance.","evidence":["documentation-inventory.json"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None; no shared guidance changed.","followUp":"NoUpdateRequired","reevaluationTrigger":"A shared guidance rule changes."},
+    {"preset":"intake-authoring-governance v0.3.0","checkpoint":"Accepted D4 intake identity","applicability":"Applicable","result":"Pass","rationale":"The accepted in-place D4 intake and authoring provenance are frozen as audit input.","evidence":["Lastenheft_Dokumentations-Informationsarchitektur-und-Lernpfad-Audit.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None.","followUp":"None","reevaluationTrigger":"The accepted intake hash changes."},
+    {"preset":"intake-review-governance v0.2.0","checkpoint":"D4 readiness","applicability":"Applicable","result":"Pass","rationale":"The current D4 review is Ready with no unresolved decision.","evidence":["specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None.","followUp":"None","reevaluationTrigger":"D4 or its review request changes."},
+    {"preset":"intake-sequencing-governance v0.2.2","checkpoint":"Serial eligibility","applicability":"Applicable","result":"Pass","rationale":"The accepted Series made D4 the sole preferred Eligible candidate after Feature 019 closeout.","evidence":["requirements/intakes/series/home-baseline-delivery/manifest.json"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"Series must be revalidated after merge.","followUp":"Archive D4 and release D5 only from actual findings.","reevaluationTrigger":"Feature 020 merge or Series mutation."},
+    {"preset":"autonomous-run-governance v0.3.3","checkpoint":"MergeAndSync state and exact-head gates","applicability":"Applicable","result":"Pass","rationale":"Feature 020 uses explicit MergeAndSync authority, synchronized state, and exact-head evidence.","evidence":["specs/020-documentation-architecture-audit/autonomous-run-state.json"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"Remote checks are pending until PR delivery.","followUp":"Complete provider gates before merge.","reevaluationTrigger":"Run state or reviewed head changes."},
+    {"preset":"parallel-autonomous-run-governance v0.2.4","checkpoint":"Parallel campaign applicability","applicability":"N/A","result":"Pass","rationale":"The authorized delivery is a strictly serial feature series with shared Series and documentation evidence.","evidence":["Lastenheft_Abarbeitungsreihenfolge.md"],"owner":"Feature020","reviewer":"Codex","reviewDate":"2026-08-01","residualRisk":"None.","followUp":"No parallel campaign is created.","reevaluationTrigger":"The user explicitly authorizes a dependency-safe parallel campaign."}
+  ],
+  "status": "ReadyWithFindings"
+}

@@ -425,6 +425,14 @@
       "labelEn": "Maintenance TUI and wrapper regression hardening",
       "netLines": 1828,
       "activeDays": 1
+    },
+    {
+      "slot": 52,
+      "id": "documentation-information-architecture-audit",
+      "labelDe": "Dokumentations-Informationsarchitektur-Audit",
+      "labelEn": "Documentation information architecture audit",
+      "netLines": 134145,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

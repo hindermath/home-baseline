@@ -147,6 +147,7 @@
 | 2026-07-31 | AOC-Level-0-/Level-1-Handoff abgeschlossen | — | — | — | Documentation Impact `GeneratedUpdate`: Das öffentliche `AgentOperationsCockpit` ist als aktives kanonisches Fleet-Ziel und als .NET-10-/C#-14-Ziel im gespiegelten Level-2-Umgebungsregister verankert. Die Engineering Session dokumentiert den realen Phase-2-Merge, 14 Authoring Receipts, den azyklischen Series-Nachweis sowie 13 nach Level 2 übergebene Decision Intakes. Level 1 ist durch Rider-PR #26 abgeschlossen; die breiteren Level-0-Initiativen bleiben Provenienz. Das fachliche Delta vor Statistikpflege umfasst 5 Nettozeilen. |
 | 2026-08-01 | R-TUI-zu-D4-Series-Governance gehärtet | — | — | — | Documentation Impact `UpdateRequired`: R-TUI ist nun der bindende Vorgänger des Dokumentationsaudits D4. Die neue `DocumentationSurfaceBaseline`-Kante verhindert einen parallelen oder vorgezogenen D4-Start; D4 bleibt bis zum nachgewiesenen R-TUI-Abschluss `Blocked`. Der aktive Vertrag umfasst 38 Ziele, drei Roots und 45 eindeutige Abhängigkeiten. Beide Intakes, ihre Authoring-Receipts, das Series-Manifest und der neue R-TUI-Einzelreview sind hashgebunden; alte Stände bleiben bytegleich archiviert. Authoring-, Review-, Konfigurations- und Series-Validatoren bestehen in Bash und PowerShell. Kein Specify-, Autonomous- oder D4-Lauf wurde gestartet. |
 | 2026-08-01 | Feature 019 Wartungs-TUI- und Wrapper-Regressionshärtung | — | — | — | Der Bash-Wrapper veröffentlicht persistierte JSONL-Ereignisse lückenlos, bindet den kanonischen Berichtspfad vor dem TUI-Prozessstart und stimmt Abschlussstatus, Bericht und Exitcode wahrheitsgemäß ab. Fehlende oder ungültige frühe Berichte führen zu einem sicheren Fallback; die argumentlose Home-Runtime-Delegation bleibt mit Bash 3.2 kompatibel. 19 Wrapper-, 90 Python- und 68 .NET-Tests sowie die vollständige macOS-/Ubuntu-/Windows-Matrix waren grün. PR #192 wurde am exakten geprüften Head gemergt. Der kausale Closeout archiviert R-TUI, dokumentiert `NoPromotion`, veröffentlicht 37 Ziele, drei Roots und 44 Abhängigkeiten und gibt D4 als einzigen `Eligible`-Kandidaten frei. Das Implementierungsdelta vor Statistikpflege umfasst 1 828 Nettozeilen. |
+| 2026-08-01 | Feature 020 Dokumentations-Informationsarchitektur-Audit | — | — | — | Documentation Impact `GeneratedUpdate`: Der read-only Audit bindet 2 624 Dokumentationseinheiten, vier Leserpfade, 23 Wartungsverträge und drei vollständig abgedeckte Source-/Runtime-Klassen an den eingefrorenen Git-Baum. Eine bekannte UTF-16-Testausgabe ist über ihren Rohhash begrenzt ausgeschlossen. Das einzige deduplizierte Finding `DIA001` weist die 3 683-zeilige bilinguale Root-README als topic-orientierten D5-Remediation-Bedarf aus; D6 und D7 bleiben leer. 19 Vertragsfixtures, ein providerseitig entdeckbarer Bridge-Test, Hash-, Link-, Secret- und PSScriptAnalyzer-Nachweise sind lokal grün. Der neue Test-Bridge-Eintrag aktualisiert ausschließlich die deterministisch erzeugte Skriptreferenz. Das Implementierungsdelta vor Statistikpflege umfasst 134 145 Nettozeilen, überwiegend vollständige strukturierte Audit-Evidence. |
 
 ---
 
@@ -1004,29 +1005,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 453186 lines |
-| Textdateien / Text files | 2857 |
+| Textbasis / Text base | 587337 lines |
+| Textdateien / Text files | 2879 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-03..2026-08-01 |
 | Aktivtage / Active days | 80 |
-| Relevante Commits / Relevant commits | 639 |
-| Zeilen je Aktivtag / Lines per active day | 5664.8 |
-| Peak-Tag im Fenster / Peak day in window | 2026-07-28 / 41663 |
-| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 130175 |
+| Relevante Commits / Relevant commits | 650 |
+| Zeilen je Aktivtag / Lines per active day | 7341.7 |
+| Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 143195 |
+| Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 266354 |
 | Laengste Serie / Longest streak | 37 days |
-| Speedup vs. 80 lines/day | 70.8x |
-| Speedup vs. 100 lines/day | 56.6x |
-| Methodik / Methodology | v2; source `4674aa658576` |
+| Speedup vs. 80 lines/day | 91.8x |
+| Speedup vs. 100 lines/day | 73.4x |
+| Methodik / Methodology | v2; source `9496dc69b5ea` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
-Produktiv / Production          [#...................]   0.1% | 630
-Tests                           [#...................]   4.2% | 18852
-Dokumentation / Documentation   [#############.......]  66.6% | 301620
-Skripte / Scripts               [##..................]  12.2% | 55404
-Konfiguration / Configuration   [###.................]  16.8% | 75910
+Produktiv / Production          [#...................]   0.2% | 1386
+Tests                           [#...................]   3.3% | 19571
+Dokumentation / Documentation   [##########..........]  51.5% | 302713
+Skripte / Scripts               [##..................]   9.4% | 55404
+Konfiguration / Configuration   [#######.............]  35.3% | 207493
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.2% | 770
+Sonstiger Text / Other text     [#...................]   0.1% | 770
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1070,12 +1071,12 @@ Keine Aktivitaet / No activity
 
 ```text
 Wochen / Weeks 27..52 | 2026-02-01..2026-08-01
-  cap 200000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      166667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      133333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      100000 | . . . . . . . . . . . . . . . . . . . . . . # . # #
-       66667 | . . . . . . . . . . . . . . . . . . . . . . # . # #
-       33333 | . . . . . . . . # . . . . . . . . . . # . . # . # #
+  cap 500000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      416667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      250000 | . . . . . . . . . . . . . . . . . . . . . . . . . #
+      166667 | . . . . . . . . . . . . . . . . . . . . . . . . . #
+       83333 | . . . . . . . . . . . . . . . . . . . . . . # . # #
            0 +-----------------------------------------------------
 ```
 
@@ -1144,15 +1145,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..51
-   cap 10000 | . . . .
-        8333 | . . . .
-        6667 | # . . .
-        5000 | # . . .
-        3333 | # . . .
-        1667 | # . . #
-           0 +---------
-             48 49 50 51
+Slots 48..52
+  cap 200000 | . . . . .
+      166667 | . . . . .
+      133333 | . . . . #
+      100000 | . . . . #
+       66667 | . . . . #
+       33333 | . . . . #
+           0 +-----------
+             48 49 50 51 52
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1209,6 +1210,7 @@ Slots 48..51
 | 49 | Level-0-Phase-2-Readiness-Korrekturen / Level 0 phase 2 readiness corrections | 511 |
 | 50 | AOC-Level-0-/Level-1-Handoff-Abschluss / AOC Level 0/Level 1 handoff closeout | 5 |
 | 51 | Wartungs-TUI- und Wrapper-Regressionshärtung / Maintenance TUI and wrapper regression hardening | 1828 |
+| 52 | Dokumentations-Informationsarchitektur-Audit / Documentation information architecture audit | 134145 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1218,8 +1220,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.8x
-100 lines/day      [###########.........] 56.6x
+80 lines/day       [##################..] 91.8x
+100 lines/day      [###############.....] 73.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1232,7 +1234,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5664.8
+Visible repository [###############.....] 7341.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1241,9 +1243,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-07-28 / 41663. Peak-Woche: 2026-07-26 / 130175. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
+DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 aktive und 284 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 143195. Peak-Woche: 2026-07-26 / 266354. Laengste Serie: 37 Tage (2026-06-26..2026-08-01).
 
-*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-07-28 / 41663. Peak week: 2026-07-26 / 130175. Longest streak: 37 days (2026-06-26..2026-08-01).*
+*EN: The window starts on 2025-08-03 and ends on 2026-08-01. It contains 80 active and 284 inactive elapsed days. Peak day: 2026-08-01 / 143195. Peak week: 2026-07-26 / 266354. Longest streak: 37 days (2026-06-26..2026-08-01).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1258,6 +1260,6 @@ DE: Das Fenster beginnt am 2025-08-03 und endet am 2026-08-01. Es enthaelt 80 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 7016 |
+| 2026-08 | 143195 |
 
 <!-- project-statistics-v2:end -->
