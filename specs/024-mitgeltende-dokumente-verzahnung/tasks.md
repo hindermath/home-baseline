@@ -46,10 +46,10 @@
 - [X] T037 Run Specify integrity check
 - [X] T038 Confirm no runtime, API, dependency or toolchain change
 - [X] T039 Complete Documentation Impact evidence
-- [ ] T040 Update and render project statistics
+- [X] T040 Update and render project statistics
 
 ## Delivery and Closeout
-- [ ] T041 Commit exact feature candidate
+- [X] T041 Commit exact feature candidate
 - [ ] T042 Push and create non-empty PR
 - [ ] T043 Converge provider checks and review threads
 - [ ] T044 Validate exact-head gate evidence
