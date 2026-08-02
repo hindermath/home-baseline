@@ -20,25 +20,25 @@ def build(repo):
 
 def validate(repo, data):
     errors=[]
-    if data.get("checklistCount") != 12: errors.append("MDV001 checklist cardinality")
-    if data.get("checklistItemCount") != 157: errors.append("MDV002 checklist item cardinality")
+    if data.get("checklistCount") != 12: errors.append("MDV-001 checklist cardinality")
+    if data.get("checklistItemCount") != 157: errors.append("MDV-002 checklist item cardinality")
     profiles=data.get("profiles",{})
-    if profiles.get("publicStandard") != STANDARD: errors.append("MDV003 public profile")
-    if profiles.get("managedOptional") != OPTIONAL: errors.append("MDV004 optional profile")
+    if profiles.get("publicStandard") != STANDARD: errors.append("MDV-003 public profile")
+    if profiles.get("managedOptional") != OPTIONAL: errors.append("MDV-004 optional profile")
     manifest=json.loads((repo/"docs/secure-development/baseline-manifest.json").read_text())
     rows=data.get("rows",[])
     expected={item["path"] for item in manifest["relatedDocuments"]}
     actual={row.get("path") for row in rows}
-    if actual != expected or len(rows) != len(expected): errors.append("MDV005 related-document coverage")
+    if actual != expected or len(rows) != len(expected): errors.append("MDV-005 related-document coverage")
     for row in rows:
-        if any(not str(row.get(key,"")).strip() for key in REQUIRED): errors.append(f"MDV006 incomplete row {row.get('path')}")
-        if row.get("applicability") not in {"Applicable","N/A","Open"}: errors.append("MDV007 applicability")
-        if row.get("implementation") not in {"Fulfilled","Partly Fulfilled","Not Fulfilled","Not Assessed"}: errors.append("MDV008 implementation")
+        if any(not str(row.get(key,"")).strip() for key in REQUIRED): errors.append(f"MDV-006 incomplete row {row.get('path')}")
+        if row.get("applicability") not in {"Applicable","N/A","Open"}: errors.append("MDV-007 applicability")
+        if row.get("implementation") not in {"Fulfilled","Partly Fulfilled","Not Fulfilled","Not Assessed"}: errors.append("MDV-008 implementation")
     mapping=repo/data.get("mapping",{}).get("path","")
-    if not mapping.is_file() or digest(mapping) != data.get("mapping",{}).get("sha256"): errors.append("MDV009 mapping hash")
+    if not mapping.is_file() or digest(mapping) != data.get("mapping",{}).get("sha256"): errors.append("MDV-009 mapping hash")
     text=mapping.read_text() if mapping.is_file() else ""
     for preset in STANDARD+OPTIONAL:
-        if f"`{preset}`" not in text: errors.append(f"MDV010 missing preset {preset}")
+        if f"`{preset}`" not in text: errors.append(f"MDV-010 missing preset {preset}")
     return errors
 
 def main():
