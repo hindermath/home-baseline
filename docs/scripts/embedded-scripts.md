@@ -87,6 +87,8 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/022-agentic-workspace-efficiency-guide/tools/validate_efficiency_guide.py` | `specs` |
 | `specs/023-registered-doc-architecture-adoption/tests/test_fleet_adoption.py` | `specs` |
 | `specs/023-registered-doc-architecture-adoption/tools/validate_fleet_adoption.py` | `specs` |
+| `specs/024-mitgeltende-dokumente-verzahnung/tests/test_mapping.py` | `specs` |
+| `specs/024-mitgeltende-dokumente-verzahnung/tools/validate_mapping.py` | `specs` |
 | `specs/autonomous-run-governance/field-inputs/023/scripts/check-homogeneity.ps1` | `specs` |
 | `specs/autonomous-run-governance/field-inputs/023/scripts/check-homogeneity.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/validate-autonomous-gate-evidence.ps1` | `specs` |
