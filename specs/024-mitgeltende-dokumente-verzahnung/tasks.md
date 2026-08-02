@@ -58,4 +58,4 @@
 - [X] T047 Archive Position 5 through causal closeout when required
 - [X] T048 Revalidate successor Series and single eligible target
 - [X] T049 Complete retrospective with promotion decision
-- [ ] T050 Complete state with all closeout fields terminal
+- [X] T050 Complete state with all closeout fields terminal

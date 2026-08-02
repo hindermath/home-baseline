@@ -6,7 +6,7 @@
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
   "stage": "Retrospective",
-  "status": "Active",
+  "status": "Completed",
   "checkpointCommit": "f1ac9a7f05f7b8056b6ff360bcde33c444a60872",
   "acceptedArtifacts": [
     {
@@ -52,16 +52,16 @@
   ],
   "tasks": {
     "path": "specs/024-mitgeltende-dokumente-verzahnung/tasks.md",
-    "sha256": "e02c40148f3a416525cb0a2f7d36cc5ed290788e85978da3234041e78b9068f8",
-    "completed": 49,
+    "sha256": "774ed77790445703cc910833632b4659f70ea59fe3890d6d4b664df8ab410c1a",
+    "completed": 50,
     "total": 50
   },
-  "lastPassingGate": "Feature PR #208 merged reviewed head f5f62e7 as f1ac9a7 after successful exact-head technical gates, five validated gate entries, and zero actionable review threads; successor Series validators pass at 32/4/35.",
-  "nextExactAction": "Commit and publish the non-empty causal closeout PR, converge its exact-head gates, then complete terminal state.",
+  "lastPassingGate": "Closeout PR #209 head c0de478 passed all 26 provider jobs; its sole review finding was the intentional 49/50 terminal boundary, corrected by this final state transition.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "PostMergeActions",
+    "kind": "Retrospective",
     "state": "Completed",
-    "summary": "Position 5 is archived and the Ready successor Series selects Position 6 without starting it."
+    "summary": "Feature 024 and its causal closeout are validated, all 50 tasks are complete, the decision is NoPromotion, and no successor intake starts."
   },
   "stop": {
     "reason": "N/A",
@@ -72,7 +72,7 @@
     "mergeOrPublication": "Completed",
     "defaultBranchSync": "Completed",
     "postMergeActions": "Completed",
-    "finalValidation": "Pending"
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-02T15:53:06Z"
+  "updatedAt": "2026-08-02T16:02:40Z"
 }
