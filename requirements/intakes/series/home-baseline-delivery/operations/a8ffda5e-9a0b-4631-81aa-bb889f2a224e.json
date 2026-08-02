@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "a8ffda5e-9a0b-4631-81aa-bb889f2a224e",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit MergeAndSync authority requires the causal Feature-024 archive, evidence-bound Position-6 handoff, and no automatic successor start inside the closeout.",
+  "proposalNormalizedSha256": "3806c73f090d0826f957188354d4a1655aae9b971216c980c9b2490da31fc035",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 32
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 4
+    },
+    "dependencyCount": {
+      "before": 39,
+      "after": 35
+    },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "role": "Primary",
+        "normalizedSha256": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "orderBefore": 2,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Blocked",
+        "statusAfter": "Eligible",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
+        "normalizedSha256After": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463"
+      },
+      {
+        "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "orderBefore": 3,
+        "orderAfter": 2,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "OrderedMember",
+        "statusBefore": "Blocked",
+        "statusAfter": "Pending",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+        "normalizedSha256After": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "Lastenheft_Secure-Development-Container-Hardening.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed Feature 024, removes its outgoing edges, and exposes Position 6 as the sole preferred Eligible candidate without starting a successor."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/a8ffda5e-9a0b-4631-81aa-bb889f2a224e/manifest.json",
+    "manifestNormalizedSha256": "5dae4f5b2da76ca3d5759b1ed6c2ae4a3809f20e7063e9c2fdc36cc1147ffac4",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/a8ffda5e-9a0b-4631-81aa-bb889f2a224e/receipt.json",
+    "receiptNormalizedSha256": "43cb935e677904673b16e874bd8ae6cf2ac9ed206796e351d0cf547fd4ce9cd6"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/024-mitgeltende-dokumente-verzahnung/pr-evidence.md",
+    "specs/024-mitgeltende-dokumente-verzahnung/retrospective.md",
+    "specs/active-lastenheft-normalization/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
