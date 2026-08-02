@@ -441,6 +441,14 @@
       "labelEn": "Agentic workspace efficiency guide",
       "netLines": 3013,
       "activeDays": 1
+    },
+    {
+      "slot": 54,
+      "id": "aeps-engineering-controls-framework-registration",
+      "labelDe": "AEPS-Engineering-Controls-Registrierung",
+      "labelEn": "AEPS Engineering Controls registration",
+      "netLines": 307,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

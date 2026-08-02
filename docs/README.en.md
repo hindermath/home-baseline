@@ -65,6 +65,7 @@ combines all four paths in one detailed, source-bound operating model.
 | Operation and maintenance | [Maintenance](maintenance/README.en.md), [efficiency guide](maintenance/agentic-workspace-efficiency-guide.en.md), [manpages](man/) |
 | Architecture | [Source and Home Runtime](architecture/source-and-home-runtime.en.md), [maintenance TUI](architecture/maintenance-tui.md) |
 | Governance and secure development | [Documentation governance](documentation-governance.md), [security](security/README.md), [secure development](secure-development/) |
+| AEPS programmes | [Engineering Controls Framework](aeps/engineering-controls/README.md) |
 | Technical reference | [Scripts](scripts/README.md), [complete script reference](scripts/reference.md) |
 | Audit and troubleshooting | [Troubleshooting](troubleshooting/README.en.md), [project statistics](project-statistics.md) |
 

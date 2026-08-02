@@ -997,6 +997,29 @@ complete series review were superseded with traceable evidence. Series
 cardinality remains 37 targets, three roots, and 44 dependencies; D4 remains
 the sole Eligible candidate and was not started.*
 
+### 2026-08-02 - AEPS Engineering Controls Framework registriert / registered
+
+- Der ruhende Level-0-Arbeitsstrang ist mit Aktivierungsvertrag, aktueller
+  Navigation und nachvollziehbarer Documentation-Impact-Evidence registriert.
+- Der Aktivierungsaudit endet fail-closed in `BlockedPreconditions`: Sieben
+  RAW-Intakes besitzen noch kein aktuelles Ready-Review, alle neun
+  Completion Receipts und der Series Receipt fehlen, und die kanonische
+  Preset-Engineering-Analyse ist noch nicht abgeschlossen.
+- Der Auftrag veroeffentlicht nur diese ruhende Registrierung. Er startet
+  weder Engineering-Control-Analyse oder -Authoring noch Preset-,
+  Produkt- oder Spec-Kit-Arbeit.
+- Das Delta vor Statistikpflege umfasst 307 Nettozeilen. Die
+  Distributionsklasse ist `sourceOnly`; ein Home-Sync ist nicht erforderlich.
+
+*The dormant Level-0 workstream is registered with an activation contract,
+current navigation, and traceable Documentation Impact evidence. Its audit
+fails closed in `BlockedPreconditions`: seven RAW intakes still lack a current
+Ready review, all nine Completion Receipts and the Series Receipt are missing,
+and the canonical Preset Engineering analysis is incomplete. This delivery
+publishes only the dormant registration and starts no control analysis or
+authoring, preset or product mutation, or Spec Kit run. The pre-statistics
+delta is 307 net lines; the source-only change requires no Home sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1007,25 +1030,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 609340 lines |
-| Textdateien / Text files | 2995 |
+| Textbasis / Text base | 609655 lines |
+| Textdateien / Text files | 2999 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-02 |
 | Aktivtage / Active days | 81 |
-| Relevante Commits / Relevant commits | 671 |
-| Zeilen je Aktivtag / Lines per active day | 7522.7 |
+| Relevante Commits / Relevant commits | 672 |
+| Zeilen je Aktivtag / Lines per active day | 7526.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 94.0x |
-| Speedup vs. 100 lines/day | 75.2x |
-| Methodik / Methodology | v2; source `28f7634fea14` |
+| Speedup vs. 80 lines/day | 94.1x |
+| Speedup vs. 100 lines/day | 75.3x |
+| Methodik / Methodology | v2; source `226b811aa878` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2172
 Tests                           [#...................]   3.5% | 21154
-Dokumentation / Documentation   [##########..........]  50.1% | 305208
+Dokumentation / Documentation   [##########..........]  50.1% | 305523
 Skripte / Scripts               [##..................]   9.1% | 55596
 Konfiguration / Configuration   [#######.............]  36.8% | 224439
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1147,15 +1170,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..53
-  cap 200000 | . . . . . .
-      166667 | . . . . . .
-      133333 | . . . . # .
-      100000 | . . . . # .
-       66667 | . . . . # .
-       33333 | . . . . # .
-           0 +-------------
-             48 49 50 51 52 53
+Slots 48..54
+  cap 200000 | . . . . . . .
+      166667 | . . . . . . .
+      133333 | . . . . # . .
+      100000 | . . . . # . .
+       66667 | . . . . # . .
+       33333 | . . . . # . .
+           0 +---------------
+             48 49 50 51 52 53 54
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1214,6 +1237,7 @@ Slots 48..53
 | 51 | Wartungs-TUI- und Wrapper-Regressionshärtung / Maintenance TUI and wrapper regression hardening | 1828 |
 | 52 | Dokumentations-Informationsarchitektur-Audit / Documentation information architecture audit | 134145 |
 | 53 | Agentic-Workspace-Effizienzleitfaden / Agentic workspace efficiency guide | 3013 |
+| 54 | AEPS-Engineering-Controls-Registrierung / AEPS Engineering Controls registration | 307 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1223,8 +1247,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 94.0x
-100 lines/day      [###############.....] 75.2x
+80 lines/day       [###################.] 94.1x
+100 lines/day      [###############.....] 75.3x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1237,7 +1261,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7522.7
+Visible repository [###############.....] 7526.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1263,6 +1287,6 @@ DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-02. Es enthaelt 81 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 174798 |
+| 2026-08 | 175113 |
 
 <!-- project-statistics-v2:end -->
