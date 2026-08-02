@@ -8,6 +8,113 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.16.0](https://github.com/hindermath/home-baseline/compare/v0.15.0...v0.16.0) (2026-08-02)
+
+
+### Features / Neue Funktionen
+
+* add agentic workspace efficiency guide ([c9cf11e](https://github.com/hindermath/home-baseline/commit/c9cf11efaa2f1481937194165fc8e065526823d9))
+* adopt registered documentation architecture ([a7dc876](https://github.com/hindermath/home-baseline/commit/a7dc876a284a49e6d9cfe271d76642a6a9b027e7))
+* audit documentation information architecture ([3880b16](https://github.com/hindermath/home-baseline/commit/3880b161d452891e35c5ec7eb0b28d86351d92f8))
+* audit documentation information architecture ([2a44bab](https://github.com/hindermath/home-baseline/commit/2a44bab1bd328da191d7d921956fc107e7cc9e15))
+* restructure Level 0 documentation ([468924a](https://github.com/hindermath/home-baseline/commit/468924a261996dd245f8f21e4e6693fd2cbe513c))
+* restructure Level 0 documentation ([08ead0b](https://github.com/hindermath/home-baseline/commit/08ead0b7ac9ff1a1542ece48333ebcd985626eb1))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* avoid static secret scan false positives ([82abd70](https://github.com/hindermath/home-baseline/commit/82abd70f7473ba2ed588e622950cf46d9b6597bf))
+* enforce documentation architecture evidence ([231e234](https://github.com/hindermath/home-baseline/commit/231e234a87148facc9a7d3e989acd7b51b80f9bf))
+* harden documentation migration provider proof ([3f663a5](https://github.com/hindermath/home-baseline/commit/3f663a56c5074c0c533431b5c80f6f2cc4544e57))
+* harden maintenance TUI regression paths ([901266f](https://github.com/hindermath/home-baseline/commit/901266ff8bd76edc0b40ebb98409d24a4c99e19e))
+* harden maintenance TUI regression paths ([2c48146](https://github.com/hindermath/home-baseline/commit/2c481460914ee14bdfb1e2b4cf38aaa95c01e2f7))
+* harden phase 2 bootstrap readiness ([14661c2](https://github.com/hindermath/home-baseline/commit/14661c2e84729605282f8f99de47f5d8fab19b86))
+* harden phase 2 bootstrap readiness ([e379295](https://github.com/hindermath/home-baseline/commit/e3792956f8de2cc1391d91aef85566f9deb74e7d))
+* preserve early maintenance finalization ([26c936f](https://github.com/hindermath/home-baseline/commit/26c936fb1a5742f3051b84522f2a191b90af15f9))
+* preserve guide anchor compatibility ([2a5264a](https://github.com/hindermath/home-baseline/commit/2a5264a3a4a2a15777622074b0017967835342e4))
+* reject forward-slash Windows private paths ([3af7c17](https://github.com/hindermath/home-baseline/commit/3af7c1734ffac4b4250383c4b0743be5ebd91acf))
+* support feature 020 shallow provider checkouts ([7b54900](https://github.com/hindermath/home-baseline/commit/7b549003bfe496a67cd7de53f00656796f9911dd))
+* validate reciprocal documentation partners ([dde6e65](https://github.com/hindermath/home-baseline/commit/dde6e650548828746ceee9a99443f76b0c51e66e))
+
+
+### Documentation / Dokumentation
+
+* add agentic workspace efficiency guide ([b018ef7](https://github.com/hindermath/home-baseline/commit/b018ef78233260659c596b29d4ffb8f018afd61c))
+* address Feature 021 closeout review ([43fce73](https://github.com/hindermath/home-baseline/commit/43fce73ed4e3137f9982c10b8e542c117a79bfda))
+* align documentation impact terminology ([2d7e34b](https://github.com/hindermath/home-baseline/commit/2d7e34b50afb9aa8f76740f9c93f1cbc21ecbce4))
+* bind feature 020 provider remediation ([0da1c60](https://github.com/hindermath/home-baseline/commit/0da1c60b37adf80021fa1e096ff7806b33b6a496))
+* bind R-TUI before D4 audit ([d2c5b0b](https://github.com/hindermath/home-baseline/commit/d2c5b0b392641065184f73da2bdcc7a64f25ec2c))
+* clarify secret-scan false positive ([04ed34c](https://github.com/hindermath/home-baseline/commit/04ed34c607ea05b65238680b52dac3d0eae20694))
+* close Feature 019 and release D4 ([4c19093](https://github.com/hindermath/home-baseline/commit/4c19093692542ff5001819f9ba2d17a1a1a5d4d7))
+* close Feature 019 and release D4 ([dbc6dbd](https://github.com/hindermath/home-baseline/commit/dbc6dbdbc4a72c07867a5b9ffc32dbb7a151a680))
+* close Feature 020 and release D5 ([edf33bc](https://github.com/hindermath/home-baseline/commit/edf33bc88029edea261e9c461d45c347d449ad3f))
+* close Feature 020 and release D5 ([4239462](https://github.com/hindermath/home-baseline/commit/423946259656c40c746c68b00e62f094c72f9341))
+* close Feature 021 and release D6 ([7c438bf](https://github.com/hindermath/home-baseline/commit/7c438bf332626c48eb87b9139f863dc2e8e861c7))
+* close Feature 021 and release D6 ([d978806](https://github.com/hindermath/home-baseline/commit/d97880669e405e9dfa9a30eed90527fa4d3be634))
+* close feature 022 and release D7 ([fbc3b74](https://github.com/hindermath/home-baseline/commit/fbc3b745e546aacf5053041d61035a75591fa265))
+* close Feature 022 and release D7 ([ee46c47](https://github.com/hindermath/home-baseline/commit/ee46c47728dc5263a37b0889b8bb41e723b274bf))
+* close feature 023 adoption series ([b46fea6](https://github.com/hindermath/home-baseline/commit/b46fea6adc957e2ec329ac8243a49214d798d7f5))
+* close Feature 023 adoption series ([8b42615](https://github.com/hindermath/home-baseline/commit/8b42615754e5bfe53a86375c563eafa767b35a87))
+* complete Feature 023 autonomous closeout ([28f7634](https://github.com/hindermath/home-baseline/commit/28f7634fea14f682e6b58615bd11235dc8dea335))
+* distinguish D5 audit and review findings ([351f528](https://github.com/hindermath/home-baseline/commit/351f528ccec0aa1bbcb42228bfdccbbfc95115cd))
+* finalize feature 019 validation evidence ([0c94529](https://github.com/hindermath/home-baseline/commit/0c945291ce9a01df89d9ee2a5247a5012119d112))
+* finalize Feature 023 closeout statistics ([9d08ed5](https://github.com/hindermath/home-baseline/commit/9d08ed503dc65828b77f17fe9e5276ae7a4243ef))
+* finalize Feature 023 local evidence ([3fc3ca3](https://github.com/hindermath/home-baseline/commit/3fc3ca38ff5783d5b044acd0e5fb1808d2d4f1ff))
+* make Feature 023 retrospective headings bilingual ([96e292a](https://github.com/hindermath/home-baseline/commit/96e292ae32304c7117948aa07d21b2d03baac1fa))
+* record Feature 019 delivery statistics ([4674aa6](https://github.com/hindermath/home-baseline/commit/4674aa6585763f7ae13df3210833f2b8c8105e16))
+* record feature 019 publication state ([33fe624](https://github.com/hindermath/home-baseline/commit/33fe624a4c34c4629e2e402c3fd67f32f2f6feeb))
+* record feature 020 audit statistics ([0fac634](https://github.com/hindermath/home-baseline/commit/0fac63474c3047398e8cf32baa6d69057070dbc3))
+* record Feature 021 validation evidence ([ad66ab5](https://github.com/hindermath/home-baseline/commit/ad66ab5ef7d33d45d3dbdc146c0bb09faf9e5cd5))
+* record Feature 023 closeout PR ([feda03d](https://github.com/hindermath/home-baseline/commit/feda03dd9cab50cf2c43cf4c748838f5e6358233))
+* refresh closeout statistics ([9a280f9](https://github.com/hindermath/home-baseline/commit/9a280f9c1c9e57a69938bd77151541dccee5333d))
+* refresh corrected feature 020 statistics ([72e871a](https://github.com/hindermath/home-baseline/commit/72e871a3be0e17efaab708d5e55cebafa5da1704))
+* refresh feature 019 statistics ([97e0f95](https://github.com/hindermath/home-baseline/commit/97e0f9560a87b79b57d76f28f69bbfe7b31d2ca6))
+* refresh feature 022 review statistics ([746a1af](https://github.com/hindermath/home-baseline/commit/746a1afe18ee1ee9716907c94222915ed9003865))
+* refresh feature 022 statistics ([d1597b1](https://github.com/hindermath/home-baseline/commit/d1597b18913f4f8120e0e30bfb41efd2c24712ff))
+* refresh Feature 023 statistics ([20c44d9](https://github.com/hindermath/home-baseline/commit/20c44d9b5343ed3132e7c01ada50e65e138756ad))
+* refresh generated script reference ([2dbd9cf](https://github.com/hindermath/home-baseline/commit/2dbd9cf31694f2a68599f8aa5fdac2bb16c1fcc2))
+* refresh post-merge statistics ([#205](https://github.com/hindermath/home-baseline/issues/205)) ([cbef15d](https://github.com/hindermath/home-baseline/commit/cbef15d149539afa3b44a5988b9d559c11581460))
+* refresh project statistics ([bf543ee](https://github.com/hindermath/home-baseline/commit/bf543ee5aef9771b88656cadd5e9b0b37a43378c))
+* refresh project statistics for feature 023 closeout ([4c245dd](https://github.com/hindermath/home-baseline/commit/4c245dd645e13fea7ab73dfa75f5d729c9703bdd))
+* refresh readiness statistics source ([df8d6f1](https://github.com/hindermath/home-baseline/commit/df8d6f18b50768b701ca4fa5302a6f46507956af))
+* refresh review correction statistics ([4d002f7](https://github.com/hindermath/home-baseline/commit/4d002f7cd5c58dc1d2bc3367e7a7ddb51653298d))
+* refresh statistics after Feature 023 review ([cd5672f](https://github.com/hindermath/home-baseline/commit/cd5672f5cf0bd2ec029834d8f88feeadbe2b9272))
+* refresh statistics for Feature 023 closeout PR ([e562d77](https://github.com/hindermath/home-baseline/commit/e562d77de350ab1d1f796910cb48e6c926c90438))
+* register dormant AEPS engineering controls framework ([f9fb276](https://github.com/hindermath/home-baseline/commit/f9fb27677b2ad2307e07ffba133c7e9244707df1))
+* register dormant AEPS engineering controls framework ([226b811](https://github.com/hindermath/home-baseline/commit/226b811aa8785a7a91c8f5c0afb2ba71f8df0051))
+* render AEPS registration statistics ([df93f9b](https://github.com/hindermath/home-baseline/commit/df93f9b2cb0ca318e99704e3c2753bbe6f23be53))
+* render AOC handoff statistics ([c7396c2](https://github.com/hindermath/home-baseline/commit/c7396c256f359f9350029ad6f8b1fa303e144970))
+* render Feature 019 statistics ([a944cdf](https://github.com/hindermath/home-baseline/commit/a944cdf80714787bedf4ebb60ad1d4dc571079f0))
+* render Feature 020 closeout statistics ([045f858](https://github.com/hindermath/home-baseline/commit/045f85876d92a59da1d3d3354e161987927c7445))
+* render feature 020 privacy remediation statistics ([c968cdf](https://github.com/hindermath/home-baseline/commit/c968cdf34bdcf470d4b4f77c7b7b6c6a453e6fab))
+* render feature 020 provider remediation statistics ([44b69d9](https://github.com/hindermath/home-baseline/commit/44b69d9962c4998bb6bac90beb9333eb52a05151))
+* render feature 020 statistics ([8132142](https://github.com/hindermath/home-baseline/commit/81321427492b862a04f065111fb77128f15118be))
+* render Feature 021 closeout statistics ([2093ba0](https://github.com/hindermath/home-baseline/commit/2093ba0ae9c3261e3b6e2e86dd558ba46c271f11))
+* render Feature 021 evidence statistics ([1e1f055](https://github.com/hindermath/home-baseline/commit/1e1f055d2dbed9d87838014b32ef917fa423e02f))
+* render feature 022 closeout statistics ([31d4cba](https://github.com/hindermath/home-baseline/commit/31d4cbae11b8bcc8d91155330544f055eeed9ac0))
+* render final feature 020 source head ([8f1ba76](https://github.com/hindermath/home-baseline/commit/8f1ba76fba0328a70ed48ae07a19630d74287d3a))
+* render final feature 020 statistics ([67d2f3b](https://github.com/hindermath/home-baseline/commit/67d2f3bcdb8987eb7b955efd0ffd92cf62e0ef06))
+* render fixture remediation statistics ([574eb6a](https://github.com/hindermath/home-baseline/commit/574eb6a8827ef552f7b37aaf700f7a2942e13b23))
+* render governance remediation statistics ([f0e709c](https://github.com/hindermath/home-baseline/commit/f0e709cb4f2336a512c49eae8c1615a3b7b7e16e))
+* render phase 2 readiness statistics ([704101a](https://github.com/hindermath/home-baseline/commit/704101ab85c6745c5c5b6961dec1164ae9f0f796))
+* render provider remediation statistics ([47fc45b](https://github.com/hindermath/home-baseline/commit/47fc45b01b50e66ff971325eb12b3dec809cc906))
+* render review correction statistics ([f934326](https://github.com/hindermath/home-baseline/commit/f934326fa28f10fc505b9fb4c50a8e8b8bd4cd1d))
+* render review remediation statistics ([4593e44](https://github.com/hindermath/home-baseline/commit/4593e4433cf9940f24f339b44758d8e2f395b84d))
+* render terminology remediation statistics ([663807e](https://github.com/hindermath/home-baseline/commit/663807ef0cd19c245fb171bc017dda5d5f84209a))
+* update Feature 021 statistics ([544fdaa](https://github.com/hindermath/home-baseline/commit/544fdaac791c429b11b56d05d5eebeab1251e020))
+
+
+### Maintenance / Wartung
+
+* bind feature 020 privacy remediation ([9496dc6](https://github.com/hindermath/home-baseline/commit/9496dc69b5ea22505c9fa68f89a444e257668033))
+* checkpoint feature 020 statistics inputs ([328b03b](https://github.com/hindermath/home-baseline/commit/328b03ba3dfcd653c9b39b684162c150739f4a4e))
+* close AOC Level 0 handoff ([07e26ff](https://github.com/hindermath/home-baseline/commit/07e26ff1f43aceebce7898d36293751bcce1a10d))
+* close AOC Level 0 handoff ([703664f](https://github.com/hindermath/home-baseline/commit/703664f9e17a80eb84da4e4f4bf759eceb5da51d))
+* finalize feature 022 local evidence ([e49245f](https://github.com/hindermath/home-baseline/commit/e49245f58c84a699e119d79afae0d7dfcce524aa))
+* prepare feature 020 delivery ([f891b69](https://github.com/hindermath/home-baseline/commit/f891b692e946bb21420af3d8e7ab4ffa82ea116b))
+* reconcile feature 020 publish state ([4c63afc](https://github.com/hindermath/home-baseline/commit/4c63afca02df2f20e1b6b5ace6ee1f4fb333218a))
+* rename Lastenheft to Lastenheft_Level-0-Dokumentationsarchitektur-und-Sprachtrennung.021-level0-documentation-architecture.md ([85683f3](https://github.com/hindermath/home-baseline/commit/85683f38c9dae3eb2cc0fc342616008c4ef62e96))
+
 ## [0.15.0](https://github.com/hindermath/home-baseline/compare/v0.14.0...v0.15.0) (2026-07-31)
 
 
