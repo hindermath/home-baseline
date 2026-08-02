@@ -1,22 +1,22 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "19ed51d8-c48a-49bf-9e75-b57a3c6cfccc",
+  "receiptId": "7f42f5c9-a9b1-4d87-853b-f624369c2180",
   "intakeId": "7653c34f-9105-4128-97d7-814723b30b59",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
-  "createdAt": "2026-07-25T12:58:33Z",
+  "createdAt": "2026-08-02T12:49:36Z",
   "operation": {
-    "operationId": "5529506d-690c-49a7-a1f1-eb9a2fecb0a6",
+    "operationId": "4cb2ab93-ebf6-4311-ac8b-ca4c7519ea0f",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+    "authorityEvidence": "The current user instruction explicitly authorizes an in-place update when the requested Intake Review identifies current-state drift."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
-    "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b"
+    "normalizedSha256": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50"
   },
   "sources": [
     {
@@ -25,7 +25,7 @@
       "kind": "File",
       "label": "Archived prior accepted intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/5529506d-690c-49a7-a1f1-eb9a2fecb0a6/target.md",
+      "path": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/4cb2ab93-ebf6-4311-ac8b-ca4c7519ea0f/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,17 +36,17 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "18bb7f7399246b79ee27851787762d1a4db3dfd85b6430c5d161bdfd5b858bdd",
-      "gitBlob": "f702cb3e4fcbbe3e6d61cdd28cc43b1987e3b863",
+      "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+      "gitBlob": "21895b71dbdd24992c95cace523af2414c3e38b5",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
       "sourceId": "SRC002",
       "order": 2,
-      "kind": "Pasted",
-      "label": "Approved active intake series normalization request",
-      "location": "SnapshotOnly",
-      "path": "N/A",
+      "kind": "File",
+      "label": "Archived prior authoring receipt",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/4cb2ab93-ebf6-4311-ac8b-ca4c7519ea0f/receipt.json",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -57,9 +57,93 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "normalizedSha256": "1f791c04eabd38faf059524142ce300e273caffdf3c03d3e3cffde7fd7a77374",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+      "proofBoundary": "ArchivedSupersededReceipt"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Current Intake Review remediation evidence",
+      "location": "Repository",
+      "path": "specs/mitgeltende-dokumente-spec-kit-verzahnung-intake-review/history/1af9eceb-b29f-43ef-ab7c-ab825457ea57/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "f07c7f016078f2f9ddfba7f665b5be0f6b9cd3724c2b8e03bd2a097e4e16bd32",
+      "gitBlob": "N/A",
+      "proofBoundary": "ValidatedNeedsRemediationReview"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "File",
+      "label": "Current Level-0 constitution",
+      "location": "Repository",
+      "path": "constitution.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "54390e0b7d04488bcab713eadf27f1337a460c90d9463ad4475bc4553237ade2",
+      "gitBlob": "cd588009dce06c3f6a86fe2556d3054194781c6a",
+      "proofBoundary": "CurrentPresetSecurityLearnerAndAuthorityGovernance"
+    },
+    {
+      "sourceId": "SRC005",
+      "order": 5,
+      "kind": "File",
+      "label": "Current documentation governance",
+      "location": "Repository",
+      "path": "docs/documentation-governance.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "6f30d9f4195bec3dcb0c4895a2f793a5c3119f46c68929a00502d27d3d79718c",
+      "gitBlob": "b8e1803b1b4c3eed25ca9bd1522c7edab1eb7801",
+      "proofBoundary": "CurrentDocumentationImpactAndReaderPathContract"
+    },
+    {
+      "sourceId": "SRC006",
+      "order": 6,
+      "kind": "File",
+      "label": "Current secure-development baseline manifest",
+      "location": "Repository",
+      "path": "docs/secure-development/baseline-manifest.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "0cecef2ba48ca09f5491101e5cd7b722df28ffcfb83d9519f13b28ef00e5688e",
+      "gitBlob": "2a3df79483efec10343d36f45a39289fcdd62a5a",
+      "proofBoundary": "CurrentBaselineVersionInventoryAndGeneratedSourceContract"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -68,23 +152,44 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
-      "answer": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
-      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
+      "question": "Bleiben Intake-Identitaet, Zielpfad und Reihenfolge erhalten?",
+      "answer": "Ja. Intake-ID 7653c34f-9105-4128-97d7-814723b30b59, Zielpfad und sichtbare Position 5 bleiben unveraendert.",
+      "evidence": "Die Benutzeranweisung verlangt bei notwendiger Aktualisierung denselben Intake; der Series-Vertrag waehlt Position 5 weiterhin bevorzugt aus."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
-      "answer": "Root position 5; assessment baseline for positions 6, 7, and 13.",
-      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
+      "question": "Welches Preset-Modell gilt?",
+      "answer": "Oeffentliches Acht-Preset-Standardprofil plus drei optionale Intake-Presets im verwalteten Elf-Preset-Flottenprofil.",
+      "evidence": "Constitution 1.20.1 und `specify preset list` am 2026-08-02."
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
-      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
-      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
+      "question": "Wird eine neue Mapping-Datei erstellt?",
+      "answer": "Nein. Die vorhandene Mapping-Datei 1.2.0 der Baseline 3.2.0 wird geprueft und nur finding-basiert gehaertet.",
+      "evidence": "Der Review IR002 belegt die bereits vorhandene kanonische Zuordnungsdatei."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Zielgruppen- und Dokumentationsbasis ist verbindlich?",
+      "answer": "Vier IT-Ausbildungsberufe ab Jahr 1, Deutsch zuerst/Englisch danach, CEFR B2, Begriffserklaerung, text-first, Programmierung #include<everyone>, WCAG 2.2 AA und der Documentation-Impact-Vertrag.",
+      "evidence": "AGENTS.md und docs/documentation-governance.md am aktuellen Head."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche spaetere Arbeit bleibt ausserhalb von Position 5?",
+      "answer": "Assurance Gap Audit, neues Assurance-Preset, Baseline 3.3.0 und ABSDD-Adoption auf den Positionen 14 bis 17.",
+      "evidence": "Aktuelles Series-Manifest und Lastenheft_Abarbeitungsreihenfolge.md."
+    },
+    {
+      "id": "IAD006",
+      "status": "Answered",
+      "question": "Welche Delivery Authority traegt der kopierbare autonome Prompt?",
+      "answer": "MergeAndSync fuer genau dieses Feature; kein impliziter Admin-Bypass, keine Secret- oder Provider-Administration und kein Folgelauf.",
+      "evidence": "Stehende Benutzeranweisung fuer weitere Auftraege und die im Intake ausdruecklich begrenzte Authority."
     }
   ],
   "openDecisionIds": [],
@@ -95,15 +200,15 @@
     "autonomousCanonicalId": "speckit.autonomous",
     "autonomousInvocation": "$speckit-autonomous"
   },
-  "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "The standing user instruction establishes MergeAndSync for subsequent feature delivery. This intake update performs no remote action and grants no admin bypass.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/5529506d-690c-49a7-a1f1-eb9a2fecb0a6/receipt.json",
-    "targetNormalizedSha256": "18bb7f7399246b79ee27851787762d1a4db3dfd85b6430c5d161bdfd5b858bdd",
-    "archiveTargetPath": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/5529506d-690c-49a7-a1f1-eb9a2fecb0a6/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/5529506d-690c-49a7-a1f1-eb9a2fecb0a6/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/4cb2ab93-ebf6-4311-ac8b-ca4c7519ea0f/receipt.json",
+    "targetNormalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+    "archiveTargetPath": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/4cb2ab93-ebf6-4311-ac8b-ca4c7519ea0f/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/7653c34f-9105-4128-97d7-814723b30b59/4cb2ab93-ebf6-4311-ac8b-ca4c7519ea0f/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -111,12 +216,12 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "updateAuthorityEvidence": "Current user instruction: review the intake and update it in place when necessary using the latest evidence.",
   "series": {
-    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
-    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "order": 5,
-    "role": "Root",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "Primary",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md"

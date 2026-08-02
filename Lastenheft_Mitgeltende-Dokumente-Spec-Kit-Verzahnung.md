@@ -2,112 +2,309 @@
 # Lastenheft: Mitgeltende Dokumente und Spec-Kit-Verzahnung
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
-**Status:** vorbereitet für separaten Spec-Kit-Lauf
-**Stand:** 2026-07-19
-**Zielgruppe:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten
+**Status:** vorbereitet fuer Intake Review
+**Stand:** 2026-08-02
+**Position:** 5, bevorzugter `Eligible`-Kandidat
+**Delivery Mode:** `MergeAndSync`
+**Zielgruppe:** Fachinformatiker*innen, IT-System-Elektroniker*innen,
+Kaufleute fuer IT-System-Management und Kaufleute fuer
+Digitalisierungsmanagement ab dem ersten Ausbildungsjahr sowie
+Entwickler*innen, Reviewer, Ausbildungsverantwortliche und KI-Agenten
 
-## 1. Zweck
+## 1. Zweck / Purpose
 
-Dieses Lastenheft beschreibt einen späteren Spec-Kit-Lauf zur besseren Verzahnung der Richtlinie Sichere Entwicklung, der zwölf Checklisten, der mitgeltenden Dokumente und der aktiven Zehn-Preset-Matrix.
+Dieses Lastenheft beschreibt einen Spec-Kit-Lauf zur nachweisbaren
+Verzahnung der Richtlinie Sichere Entwicklung, der zwoelf Checklisten, des
+erzeugten Checklistensammelbands, der mitgeltenden Dokumente und der aktuell
+verwalteten Spec-Kit-Preset-Profile.
 
-Der Lauf soll die vorhandene sichere-Entwicklung-Basis so verbessern, dass auch Auszubildende ab dem ersten Lehrjahr und Entwickler*innen ohne Sicherheits-Spezialwissen die Anforderungen verstehen, anwenden und auditfähig dokumentieren können.
+Die Zuordnungsdatei existiert bereits. Der Lauf erstellt deshalb keine zweite
+Mapping-Struktur, sondern prueft und haertet die vorhandene Version. Das
+Ergebnis soll fuer Lernende ab dem ersten Ausbildungsjahr und fuer
+Maintainer ohne Sicherheitsspezialisierung verstaendlich, anwendbar und
+auditfaehig sein.
 
-### Reihenfolge und Abhängigkeiten / Order and Dependencies
+*This intake governs a verifiable alignment of the secure-development
+guideline, twelve checklists, generated compendium, related documents, and
+managed Spec Kit profiles. The mapping already exists and must be reviewed and
+hardened rather than duplicated.*
 
-Dieser Intake ist eine Root auf Position 5. Er liefert die verbindliche
-Assessment Baseline für die RL-SE-Selbstprüfung auf Position 6, die
-Container-Härtung auf Position 7 und das abschließende GSDB-Audit auf Position
-13. Diese Folgeintakes dürfen die Bewertungsgrundlage nicht stillschweigend
-ersetzen.
+## 2. Reihenfolge und Abhaengigkeiten / Order and Dependencies
 
-*This intake is a root at position 5. It provides the binding assessment
-baseline for positions 6, 7, and 13.*
+Dieser Intake bleibt die Root auf Position 5. Er liefert die bindende
+Assessment Baseline fuer:
 
-## 2. Ausgangslage
+- Position 6, RL-SE-Checklist-Selbstpruefung;
+- Position 7, Secure-Development-Container-Hardening;
+- Position 13, Script-and-Config-GSDB-Pruefung.
 
-Die sichere-Entwicklung-Basis liegt in `docs/secure-development/`. Sie enthält:
+Die Positionen 6, 7 und 13 duerfen die Bewertungslogik nicht stillschweigend
+ersetzen. Position 5 uebernimmt umgekehrt keine Aufgaben der spaeteren
+Assurance-Kette auf den Positionen 14 bis 17. Der Status `Eligible` ist nur
+Reihenfolge-Evidence und erteilt keine Implementierungs-, Remote-, Merge- oder
+Bypass-Autoritaet.
 
-- die Richtlinie `Richtlinie_Sichere-Entwicklung.md`,
-- zwölf Einzelchecklisten in `checklisten/`,
-- den Sammelband `Checklistensammelband_Sichere-Entwicklung.md`,
-- mitgeltende Dokumente in `mitgeltende-dokumente/`,
-- Bezüge zur aktiven Zehn-Preset-Matrix: `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance`, `agent-parity-governance`, `intake-authoring-governance`, `intake-review-governance`, `autonomous-run-governance` und `parallel-autonomous-run-governance`.
+## 3. Verbindliche Ausgangslage / Binding Current State
 
-Die CISA-Unterlage `THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR` beschreibt Swift ausdrücklich als Memory-Safe Language (MSL). Swift ist in der zentralen Constitution und in den Preset-Flächen bereits als MSL enthalten. Der spätere Lauf soll diese Einordnung in den mitgeltenden Dokumenten didaktisch sichtbarer machen.
+### 3.1 Secure-Development-Basis
 
-## 3. Zielbild
+Die kanonische Basis liegt unter `docs/secure-development/`:
 
-Nach dem späteren Spec-Kit-Lauf soll eindeutig erkennbar sein:
+- Baseline `3.2.0` mit `157` stabilen Checklistenpunkten;
+- Richtlinie Sichere Entwicklung `3.2.0`;
+- zwoelf Einzelchecklisten als kanonische Quellen;
+- deterministisch erzeugter Checklistensammelband `2.2.0`;
+- mitgeltende Dokumente und Lernpfad;
+- vorhandene Zuordnungsdatei
+  `mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md`
+  in Version `1.2.0`;
+- `baseline-manifest.json` als kontrolliertes Versions- und Dateiinventar.
 
-- welches mitgeltende Dokument welche Richtlinienabschnitte konkretisiert,
-- welche Checklisten-Prüfpunkte dadurch unterstützt werden,
-- welches Spec-Kit-Preset die gleiche Prüf- oder Evidenzfläche erzeugt,
-- welche Nachweise in einem Level-2-Projekt erwartet werden,
-- wann ein Punkt `Applicable`, `N/A` oder `Open` ist,
-- warum Swift eine MSL ist und trotzdem sprachspezifische Secure-Coding-Prüfung braucht.
+Der Sammelband wird nicht direkt gepflegt. Aenderungen erfolgen in den
+kanonischen Checklisten und werden mit den vorhandenen Bash- und
+PowerShell-Renderern erzeugt und geprueft.
 
-## 4. Scope
+### 3.2 Preset-Profile
 
-Der spätere Lauf soll mindestens diese Artefakte prüfen und bei Bedarf aktualisieren:
+Das oeffentliche Standardprofil besteht weiterhin aus acht Presets:
 
-- `docs/secure-development/README.md`
-- `docs/secure-development/Richtlinie_Sichere-Entwicklung.md`
-- `docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md`
-- `docs/secure-development/checklisten/`
-- `docs/secure-development/mitgeltende-dokumente/`
-- Agenten- und Template-Flächen, sofern sie auf die sichere-Entwicklung-Basis verweisen
-- `scripts/templates/secure-development-hardening-lastenheft.md`
+| Preset | Version | Prioritaet |
+|---|---:|---:|
+| `security-governance` | `v0.6.1` | `10` |
+| `architecture-governance` | `v0.5.1` | `20` |
+| `isaqb-architecture-governance` | `v0.2.1` | `30` |
+| `a11y-governance` | `v0.4.2` | `40` |
+| `cross-platform-governance` | `v0.2.1` | `50` |
+| `agent-parity-governance` | `v0.4.1` | `60` |
+| `autonomous-run-governance` | `v0.3.3` | `70` |
+| `parallel-autonomous-run-governance` | `v0.2.4` | `80` |
 
-## 5. Nicht-Ziele
+Die verwaltete Thorsten-Flotte ergaenzt drei optionale Intake-Presets:
 
-Dieses Lastenheft startet keinen Härtungslauf in Level-2-Repositories. Es erzeugt keine projektspezifischen Nachweise in `docs/security/`, keine Feature-Branch-Spezifikation und keine Implementierungsänderung an Produktcode.
+| Preset | Version | Prioritaet |
+|---|---:|---:|
+| `intake-authoring-governance` | `v0.3.0` | `64` |
+| `intake-review-governance` | `v0.2.0` | `65` |
+| `intake-sequencing-governance` | `v0.2.2` | `66` |
 
-Ein neuer Preset-Release ist nur erforderlich, wenn der Abgleich eine echte Änderung an Preset-Regeln, Templates oder Evidence-Pflichtfeldern ergibt. Reine Dokumentations- und Mapping-Klarstellungen bleiben in der Secure-Development-Basis.
+Damit umfasst das verwaltete Profil elf Presets. Das Elf-Preset-Profil ist
+eine Flottenentscheidung und veraendert das oeffentliche Acht-Preset-Profil
+nicht. Preset-Prioritaeten regeln die deterministische Komposition; sie
+erteilen keine Ausfuehrungs- oder Remote-Rechte.
 
-## 6. Mindestanforderungen an den späteren Lauf
+### 3.3 Seit der ersten Intake-Fassung gelieferte Governance
 
-1. Eine zentrale Mapping-Datei für Richtlinie, Checklisten, mitgeltende Dokumente und Spec-Kit-Presets ist vorhanden.
-2. Jedes mitgeltende Dokument hat eine verständliche Lern- und Prüfsektion mit Zweck, Anwendbarkeit, typischen Nachweisen und `N/A`-Regel.
-3. Swift ist als MSL sichtbar erklärt und mit der CISA-Unterlage sowie der bestehenden Constitution/Preset-Logik abgeglichen.
-4. Die Dokumente bleiben DE/EN, CEFR B2 und WCAG-2.2-AA-freundlich: klare Überschriften, beschreibende Links, keine rein visuelle Bedeutung.
-5. Spec-Kit-Läufe können die Mapping-Datei als Intake nutzen, ohne eigene Zuordnungen erfinden zu müssen.
-6. Level-2-Propagation kopiert nur die generische sichere-Entwicklung-Basis und die Intake-Artefakte; konkrete Projektnachweise bleiben Aufgabe der später separat gestarteten Härtungsläufe.
+Der Lauf muss insbesondere folgende inzwischen verbindliche Regeln verwenden:
 
-## 7. Erwartete Ergebnisartefakte
+- Requirements-Intake-Konfiguration Schema 2.0 und hashgebundene Receipts;
+- Intake Review vor Specify beziehungsweise Autonomous, wenn die Projektpolicy
+  den Review verlangt;
+- dokumentierte Intake-Reihenfolge mit typisierten Abhaengigkeiten;
+- Documentation-Impact-Entscheidungen `UpdateRequired`,
+  `NoUpdateRequired`, `GeneratedUpdate` oder `FollowUp`;
+- kanonische Quelle, Owner, Leserpfad, Navigation, Sprachpartner,
+  Distributionsklasse und Neubewertung fuer geaenderte Dokumentation;
+- Remote-Freshness, exakte Head-Bindung, keine Leer-PRs und kein Eingriff in
+  fremde oder schmutzige Arbeitsbaeume bei einer spaeteren Verteilung;
+- ausdrueckliche Authority-Revalidierung fuer autonome Resume- und
+  Remote-Phasen;
+- gemeinsame Pflege aller verwalteten Agentenoberflaechen, wenn gemeinsame
+  Guidance betroffen ist.
+
+## 4. Zielbild / Target State
+
+Nach Abschluss ist eindeutig und maschinenpruefbar erkennbar:
+
+- welches mitgeltende Dokument welche Richtlinienabschnitte konkretisiert;
+- welche stabilen Checklisten-IDs dadurch unterstuetzt werden;
+- welche der acht Standard-Presets und drei optionalen Intake-Presets passende
+  Pruef- oder Evidence-Artefakte liefern;
+- welches Preset-Profil fuer eine Aussage gilt;
+- wann `Applicable`, `N/A` oder `Open` gilt und wie davon getrennt der
+  Umsetzungsstatus bewertet wird;
+- welche Evidenz, welcher Owner, welches Restrisiko, welcher Follow-up und
+  welcher Neubewertungs-Trigger erforderlich sind;
+- welche Dokumente kanonische Quellen und welche erzeugte Ableitungen sind;
+- welche Regeln generisch verteilt werden duerfen und welche Evidence im
+  jeweiligen Projekt verbleiben muss;
+- warum Swift eine Memory-Safe Language (MSL) ist und trotzdem eine
+  sprachspezifische Secure-Coding-Pruefung benoetigt.
+
+## 5. Scope
+
+Der Lauf prueft mindestens:
+
+- `docs/secure-development/README.md`;
+- `docs/secure-development/Richtlinie_Sichere-Entwicklung.md`;
+- `docs/secure-development/baseline-manifest.json`;
+- die zwoelf Dateien unter `docs/secure-development/checklisten/`;
+- den erzeugten `Checklistensammelband_Sichere-Entwicklung.md`;
+- alle Dateien unter `docs/secure-development/mitgeltende-dokumente/`;
+- `docs/secure-development/Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md`;
+- `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md`;
+- `docs/documentation-governance.md` und die aktuelle Constitution als
+  uebergeordnete Dokumentations- und Governance-Quelle;
+- `scripts/templates/secure-development-hardening-lastenheft.md`;
+- Agenten-, Spec-Kit-Template- und Preset-Flaechen nur dann, wenn der Abgleich
+  dort eine konkrete Inkonsistenz nachweist;
+- die Anwendbarkeit einer kontrollierten Verteilung an registrierte
+  Level-0-, Level-1-, Level-2- und Lernreihen-Repositories.
+
+## 6. Nicht-Ziele und Follow-up-Grenzen / Non-Goals and Follow-up Boundaries
+
+- Keine Produktcode-, Runtime-, API-, Dependency- oder Toolchain-Aenderung.
+- Kein Level-2-Produkthaertungslauf und keine automatische Folgeserie.
+- Keine projektspezifische Befuellung von `docs/security/`.
+- Keine pauschale Flottenmutation und kein Leer-PR.
+- Keine direkte Aenderung erzeugter Dokumente ohne kanonische Quelle und
+  Renderer.
+- Keine ISO-Zertifizierungsbehauptung und kein Ersatz fuer eine
+  organisationsweite Statement of Applicability.
+- Keine vorgezogene Umsetzung der Positionen 14 bis 17: Gap Audit,
+  `secure-development-assurance-governance`, Baseline `3.3.0` und
+  ABSDD-Adoption bleiben separate Intakes.
+- Kein Preset-Release allein wegen redaktioneller Mapping-Klarstellungen.
+
+Entdeckte Assurance-, Produkt-, Flotten- oder Projektluecken werden mit
+Evidence, Owner, Risiko und Follow-up-Grenze dokumentiert. Sie werden nicht
+unter Position 5 verdeckt umgesetzt.
+
+## 7. Anforderungen / Requirements
+
+- **MDV-001:** Der Lauf inventarisiert alle kontrollierten Dokumente aus
+  `baseline-manifest.json` und meldet fehlende, unbekannte oder versionell
+  abweichende Dateien.
+- **MDV-002:** Die vorhandene Zuordnungsdatei wird als kanonische Mapping-
+  Oberflaeche geprueft und nur bei nachgewiesenem Bedarf aktualisiert.
+- **MDV-003:** Jede Mapping-Zeile verbindet Richtlinienbezug, stabile
+  Checklisten-IDs, mitgeltendes Dokument, Preset-Profil und typische Evidence.
+- **MDV-004:** Standard-Acht und optionale Intake-Drei werden getrennt und mit
+  aktuellen Versionen und Prioritaeten dargestellt.
+- **MDV-005:** Anwendbarkeit und Umsetzung bleiben zwei getrennte Statusachsen.
+  Jeder positive Status braucht Evidence; `N/A` braucht eine Begruendung und
+  einen Neubewertungs-Trigger; `Open` braucht Owner und Follow-up.
+- **MDV-006:** NIST SSDF und CWE Top 25 werden fuer Level-2-Arbeit nicht als
+  `N/A` behandelt. ASVS, SAMM, STRIDE/CAPEC, Zero Trust, BSI C3A/C5,
+  SBOM/VEX/SLSA/AI-SBOM sowie NIS2, CRA, EU AI Act und DORA erhalten eine
+  triggerbasierte Anwendbarkeitsentscheidung.
+- **MDV-007:** Die Zuordnung erklaert, dass MSL-Status sichere APIs,
+  Eingabepruefung, Fehlerbehandlung, I/O-, Dependency- und Security-Review
+  nicht ersetzt.
+- **MDV-008:** Fuer jede technische oder fachliche Aenderung wird genau eine
+  Documentation-Impact-Entscheidung mit Quelle, Owner und Evidence erfasst.
+- **MDV-009:** Erzeugte Dokumente werden nur ueber ihre kanonische Quelle und
+  den dokumentierten Renderer geaendert.
+- **MDV-010:** Gemeinsame Guidance wird auf allen verwalteten
+  Agentenoberflaechen gemeinsam geprueft; intentionale Abweichungen werden
+  dokumentiert.
+- **MDV-011:** Inhalte stehen Deutsch zuerst und Englisch danach, verwenden
+  ungefaehr CEFR B2 und erklaeren Sicherheits-, Spec-Kit- und
+  Ausbildungsbegriffe beim ersten Auftreten.
+- **MDV-012:** Abhaengigkeiten, Status, Entscheidungen, Evidenz und naechste
+  Aktionen bleiben textorientiert nutzbar. WCAG 2.2 AA und `Programmierung
+  #include<everyone>` bilden die anwendbare Review-Basis.
+- **MDV-013:** Die vier IT-Ausbildungsberufe und das erste Ausbildungsjahr
+  werden in Zielgruppe, Beispielen und Lernpfaden fachlich angemessen
+  beruecksichtigt, ohne identische Berufsprofile zu behaupten.
+- **MDV-014:** Eine Verteilungsentscheidung inventarisiert aktuelle Ziele,
+  trennt `Applicable`, `N/A` und `Open` und veraendert keine fremden oder
+  schmutzigen Arbeitsbaeume.
+- **MDV-015:** Commit, Push und PR verwenden Exact-Head-Evidence. Ein enger
+  Admin-Bypass ist nur mit ausdruecklicher aktueller Autoritaet, gruenen
+  technischen Gates, null umsetzbaren Review-Threads und Human Approval als
+  einzigem offenen Gate zulaessig.
+- **MDV-016:** Der Lauf erzeugt keine zweite Mapping-Datei und dupliziert keine
+  bereits von einem Preset oder einer nachgelagerten Intake-Serie verantwortete
+  Governance.
+
+## 8. Erwartete Ergebnisartefakte / Expected Deliverables
 
 | Artefakt | Erwartung |
 |---|---|
-| Mapping-Datei | Richtlinie, CLs, mitgeltende Dokumente und Presets sind nachvollziehbar verbunden |
-| Mitgeltende Dokumente | Lern-, Prüf- und Evidenzhinweise sind für Auszubildende verständlich |
-| Richtlinie | Verweist auf Mapping, Swift/MSL-Einordnung und Spec-Kit-Nachweisführung |
-| Sammelband | Weist auf Mapping als Hilfsmittel für CL-/Preset-Abdeckung hin |
-| Agenten-/Template-Flächen | Verweisen auf Mapping, wenn sie Secure-Development-Basis propagieren |
-| Level-2-Repos | Erhalten den aktualisierten Stand ohne projektspezifische `docs/security/`-Nachweise |
+| Current-State-Inventar | Baseline, Checklisten, mitgeltende Dokumente, Profile und Versionen sind belegt |
+| Mapping-Datei | Bestehende Zuordnung ist bestaetigt oder finding-basiert gehaertet |
+| Dokumentationsauswirkungs-Matrix | Jede gepruefte Flaeche hat genau eine Impact-Entscheidung |
+| Preset-Anwendbarkeits-Matrix | Acht Standard- und drei optionale Presets sind getrennt bewertet |
+| Evidence | Status, Owner, Reviewer, Pfad, Restrisiko, Follow-up und Neubewertung sind nachvollziehbar |
+| Verteilungsentscheidung | Aktuelle Zielmenge, No-empty-PR und Worktree-Grenzen sind dokumentiert |
+| Folgegrenzen | Positionen 14 bis 17 und projektspezifische Haertung bleiben getrennt |
 
-## 8. Akzeptanzkriterien
+## 9. Validierung / Validation
 
-- Es gibt keine stille Auslassung relevanter Prüfbereiche.
-- Jede Nichtanwendbarkeit bleibt als `N/A` mit kurzer Begründung dokumentierbar.
-- Swift ist konsistent als MSL eingeordnet.
-- Die aktive Zehn-Preset-Matrix bleibt fachlich widerspruchsfrei zur Richtlinie und den mitgeltenden Dokumenten.
-- `git diff --check`, Secret-Scan und Propagations-Dry-run laufen ohne blockierende Befunde.
+Der Lauf fuehrt mindestens aus:
 
-## 9. Spec-Kit-Intake-Reife
+- Bash- und PowerShell-Pruefung von Baseline-Manifest, Checklisten-IDs und
+  erzeugtem Sammelband;
+- Preset `list`, `info` und `resolve` fuer das verwaltete Elf-Preset-Profil;
+- Intake-Authoring-, Intake-Review- und Intake-Series-Validatoren;
+- Dokumentations-Impact-, Sprachpartner-, Link-, Navigation-, UTF-8- und
+  textorientierte A11Y-Pruefung;
+- Agenten- und Command-Paritaet ohne doppelte Skills;
+- `git diff --check` und Secret-Scan;
+- Propagationsvorschau, falls portable Quellen geaendert wurden;
+- Exact-Head-Pruefung vor Merge und erneute Pruefung nach einer Head-Aenderung.
 
-Dieses Lastenheft ist als direkte Eingabedatei fuer einen spaeteren
-`/speckit-specify`-Lauf geeignet. Der Lauf soll zuerst die bestehende
-Verzahnung pruefen und dann nur dort Aenderungen planen, wo Richtlinie,
-Checklisten, mitgeltende Dokumente, Agenten-Guidance oder Preset-Evidenz
-auseinanderlaufen.
+DocFX, Playwright/Axe oder weitere projektspezifische Gates laufen nur, wenn
+ihre dokumentierten Trigger durch die tatsaechlich geaenderten Flaechen
+ausgeloest werden. Ein nicht ausgeloester Gate wird mit Begruendung
+dokumentiert, nicht stillschweigend ausgelassen.
 
-Der spaetere Lauf muss ausdruecklich dokumentieren:
+## 10. Akzeptanzkriterien / Acceptance Criteria
 
-- welche Artefakte nur gelesen wurden,
-- welche Artefakte geaendert werden sollen,
-- ob eine reine Dokumentationskorrektur reicht,
-- ob ein Preset-Release notwendig wird,
-- welche Level-2-Propagation danach erforderlich ist,
-- welche Punkte als `N/A` gelten und warum.
+- **AC-001:** Genau eine kontrollierte Mapping-Oberflaeche ist vorhanden; es
+  gibt keine konkurrierende Zuordnungsdatei.
+- **AC-002:** Alle `157` stabilen Checklistenpunkte bleiben vorhanden und der
+  erzeugte Sammelband stimmt mit den zwoelf kanonischen Quellen ueberein.
+- **AC-003:** Alle kontrollierten mitgeltenden Dokumente sind genau einmal im
+  Manifest und in der Anwendbarkeitspruefung vertreten.
+- **AC-004:** Das Acht-Preset-Standardprofil und das verwaltete Elf-Preset-
+  Profil werden korrekt unterschieden.
+- **AC-005:** Alle elf aktuell installierten Presets werden mit Version,
+  Prioritaet, Scope und anwendbarer Evidence-Grenze erfasst.
+- **AC-006:** Es gibt keine positive Anwendbarkeits- oder Umsetzungsbehauptung
+  ohne aktuellen Evidence-Pfad.
+- **AC-007:** Jede `N/A`-Entscheidung besitzt Begruendung und
+  Neubewertungs-Trigger; jedes `Open` besitzt Owner und Follow-up.
+- **AC-008:** Swift und alle weiteren MSL-Einordnungen bleiben konsistent zur
+  Constitution und zur sprachspezifischen Secure-Coding-Pruefung.
+- **AC-009:** Deutsch/Englisch, CEFR B2, Begriffserklaerungen, textorientierte
+  Statusdarstellung und WCAG 2.2 AA sind nachvollziehbar geprueft.
+- **AC-010:** Die vier IT-Ausbildungsberufe sind als Zielgruppen beruecksichtigt
+  und ihre unterschiedlichen Kompetenzperspektiven werden nicht eingeebnet.
+- **AC-011:** Jede gepruefte Dokumentflaeche hat genau eine Documentation-
+  Impact-Entscheidung.
+- **AC-012:** Erzeugte Dateien stimmen nach dem Renderer-Lauf mit ihren
+  kanonischen Quellen ueberein.
+- **AC-013:** Gemeinsame Agenten-Guidance und generierte Commands sind auf den
+  verwalteten Oberflaechen parity-gruen.
+- **AC-014:** Eine erforderliche Verteilung verwendet nur aktuelle registrierte
+  Ziele, erzeugt keine Leer-PRs und respektiert schmutzige Arbeitsbaeume.
+- **AC-015:** Keine Aenderung gehoert fachlich zu Position 14, 15, 16 oder 17;
+  solche Befunde sind als Follow-up belegt.
+- **AC-016:** Alle ausgelösten lokalen und Remote-Gates bestehen am exakten
+  Head; Provider-Ausfall, fehlender Review und technischer Pass bleiben
+  getrennte Ergebnisse.
+- **AC-017:** Der Lauf endet auf sauberem, synchronisiertem `main`, archiviert
+  den abgeschlossenen Intake und startet keinen Folgeintake automatisch.
+
+## 11. Risiken und Annahmen / Risks and Assumptions
+
+- Preset-Versionen koennen sich vor dem Feature-Start erneut aendern. Deshalb
+  ist die installierte Matrix im Preflight erneut zu pruefen.
+- Die Baseline `3.2.0` ist der Ist-Stand, nicht das vorweggenommene Ziel
+  `3.3.0` der spaeteren Assurance-Serie.
+- Eine vorhandene Mapping-Zeile kann fachlich korrekt und deshalb
+  `NoUpdateRequired` sein. Ein Review muss nicht kuenstlich Aenderungen
+  erzeugen.
+- Externe Standards werden mit Version und Quelle eingeordnet; das Repository
+  verteilt keine urheberrechtlich geschuetzten Volltexte ohne Erlaubnis.
+
+## 12. Spec-Kit-Intake-Reife / Spec Kit Intake Readiness
+
+Vor Specify oder Autonomous muss ein aktueller Intake Review `Ready` melden.
+Specify erhaelt keine Implementierungs- oder Remote-Autoritaet. Der spaetere
+autonome Lauf verwendet `MergeAndSync`; dieses Lastenheft allein erteilt aber
+keinen Admin-Bypass und keine Secret- oder Provider-Administration.
 
 <!-- intake-authoring:prompts -->
 ## Copy-Ready Spec Kit Prompts
@@ -116,30 +313,24 @@ Der spaetere Lauf muss ausdruecklich dokumentieren:
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen Spec-Kit-Lauf zur besseren Verzahnung von Richtlinie Sichere Entwicklung, den zwoelf Checklisten, dem Sammelband, den mitgeltenden Dokumenten und der aktiven Zehn-Preset-Matrix. Bewahre die Root-Position 5 und die bindenden Assessment-Baselines fuer die Positionen 6, 7 und 13.
+$speckit-specify Nutze `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer die finding-basierte Pruefung und Haertung der vorhandenen Verzahnung von Richtlinie Sichere Entwicklung, zwoelf Checklisten, erzeugtem Sammelband, mitgeltenden Dokumenten sowie dem Acht-Preset-Standardprofil und den drei optionalen Intake-Presets. Bewahre Identitaet, Root-Position 5 und die bindenden Assessment-Baselines fuer die Positionen 6, 7 und 13.
 
-Ziel: Die sichere-Entwicklung-Basis soll fuer Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten so klar werden, dass spaetere Level-2-Spec-Kit-Laeufe dieselbe Bewertungslogik fuer `Applicable`, `N/A`, `Open`, Evidenzpfad, Restrisiko und Follow-up verwenden.
+Nutze Baseline 3.2.0, 157 stabile Checklistenpunkte, Mapping-Version 1.2.0, Requirements-Governance Schema 2.0 und die im Preflight tatsaechlich installierten Preset-Versionen als Ist-Stand. Die Mapping-Datei existiert bereits und darf nicht dupliziert werden. Dokumentiere fuer jede gepruefte Flaeche Documentation Impact, beide Statusachsen, Evidence, Owner, Reviewer, Restrisiko, Follow-up und Neubewertungs-Trigger.
 
-Pflichtkontext:
-- Pruefe `docs/secure-development/README.md`, `Richtlinie_Sichere-Entwicklung.md`, `Checklistensammelband_Sichere-Entwicklung.md`, `checklisten/`, `mitgeltende-dokumente/` und `scripts/templates/secure-development-hardening-lastenheft.md`.
-- Pruefe die Konsistenz zu `security-governance`, `architecture-governance`, `isaqb-architecture-governance`, `a11y-governance`, `cross-platform-governance`, `agent-parity-governance`, `autonomous-run-governance` und `parallel-autonomous-run-governance`.
-- Die Installation der Autonomous-Presets startet keinen Lauf und erteilt keine Remote-, Merge-, Bypass-, Secret- oder Provider-Rechte.
-- Swift bleibt als Memory-Safe Language sichtbar, ersetzt aber keine sprachspezifische Secure-Coding-Pruefung.
-- Inhalte bleiben DE/EN, CEFR B2 und WCAG-2.2-AA-freundlich.
+Beachte Deutsch zuerst/Englisch danach, CEFR B2, Begriffserklaerungen beim ersten Auftreten, textorientierte Status- und Abhaengigkeitsdarstellung, die vier IT-Ausbildungsberufe ab dem ersten Ausbildungsjahr, `Programmierung #include<everyone>` und WCAG 2.2 AA. Bewahre kanonische Quellen und erzeugte Ableitungen, Agenten-Paritaet, No-empty-PR-, Worktree- und Exact-Head-Grenzen.
 
-Nicht-Ziele:
-- Keinen Level-2-Haertungslauf starten.
-- Keine projektspezifischen `docs/security/`-Nachweise befuellen.
-- Kein Preset-Release planen, wenn nur Klarstellungen in der Secure-Development-Basis erforderlich sind.
-
-Erzeuge eine Spezifikation mit Scope, Nicht-Zielen, betroffenen Artefakten, Anforderungen, Akzeptanzkriterien, Pruefstrategie und klarer Entscheidung, ob Presets, Agenten-Guidance, Templates oder nur Dokumentation betroffen sind.
+Nicht-Ziele: keine Produktcode-, Runtime-, API-, Dependency- oder Toolchain-Aenderung; kein Level-2-Produkthaertungslauf; keine projektspezifischen `docs/security/`-Nachweise; keine automatische Folgeausfuehrung; keine vorgezogene Umsetzung der Assurance-Positionen 14 bis 17. Specify erteilt keine Implementierungs-, Commit-, Push-, PR-, Merge-, Bypass-, Secret- oder Provider-Autoritaet.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md Fuehre den vollstaendigen Spec-Kit-Lauf mit deliveryAuthority=LocalImplementation aus. Nutze dieses Lastenheft als verbindlichen Intake und bewahre die Root-Position 5, die Assessment-Baselines fuer die Positionen 6, 7 und 13 sowie alle Anforderungen, Nicht-Ziele, Sicherheits-, A11Y-, Plattform-, Evidence- und Abnahmegrenzen. Implementiere und validiere nur lokal. Erstelle keine Commits, Pushes, Pull Requests oder Merges, veraendere keine Remote-Zustaende und starte nach Abschluss kein Folgefeature.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md` in delivery mode `MergeAndSync`. Use the current Intake Review as the gate and preserve identity, Root position 5, the binding baselines for positions 6, 7, and 13, and every scope, non-goal, learner, security, accessibility, documentation, evidence, generated-source, fleet, worktree, and exact-head boundary in the intake.
+
+Review and harden the existing mapping; do not create a duplicate. Revalidate the installed eleven-preset managed profile in preflight while keeping the public eight-preset default distinct. Record `Applicable`, `N/A`, or `Open` separately from implementation status, with rationale, evidence, owner, reviewer, residual risk, follow-up, and re-evaluation trigger. Route findings owned by positions 14 through 17 to explicit follow-up instead of implementing them here.
+
+Converge Specify, Clarify, Checklists, Plan, Tasks, Analyze, Implement, validation, PR review, merge, local main synchronization, and retrospective. Do not create an empty PR and do not start a successor intake. This prompt grants no admin bypass, secret access, provider administration, or authority beyond this feature's `MergeAndSync` delivery.
 ```
 
 <!-- intake-authoring:end -->

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "1af9eceb-b29f-43ef-ab7c-ab825457ea57",
+  "mode": "Single",
+  "status": "NeedsRemediation",
+  "policy": "home-baseline-active-intake-v2",
+  "reviewedAt": "2026-08-02T12:49:36Z",
+  "repository": {
+    "root": ".",
+    "head": "e90252e32238fed44016981d0dc3d109b5997c23"
+  },
+  "requestEvidence": {
+    "path": "specs/mitgeltende-dokumente-spec-kit-verzahnung-intake-review/history/1af9eceb-b29f-43ef-ab7c-ab825457ea57/intake-review-request.json",
+    "normalizedSha256": "577f014ec74e5a7ceb94e2e05e6583d5e90a24e85ec3669b0b5b12de89902ca1"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "Primary",
+      "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+      "gitBlob": "21895b71dbdd24992c95cace523af2414c3e38b5"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR001",
+      "severity": "High",
+      "category": "PresetProfileDrift",
+      "target": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "disposition": "UpdateInPlaceAuthorized",
+      "owner": "home-baseline maintainer",
+      "evidence": "The intake and receipt declare ten presets. The current managed profile contains the standard eight plus Intake Authoring, Intake Review, and Intake Sequencing, with eleven installed presets and newer exact versions.",
+      "reevaluationTrigger": "Re-run the review after the intake distinguishes the public eight-preset default from the managed eleven-preset profile and records current versions and priorities."
+    },
+    {
+      "id": "IR002",
+      "severity": "High",
+      "category": "CurrentStateAndScope",
+      "target": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "disposition": "UpdateInPlaceAuthorized",
+      "owner": "home-baseline maintainer",
+      "evidence": "The requested central mapping already exists as version 1.2.0 in secure-development baseline 3.2.0. The intake still describes it as a new deliverable and does not bind generated compendium ownership or Documentation Impact decisions.",
+      "reevaluationTrigger": "Re-run the review after the intake changes the goal from creation to verified hardening and records canonical-source and generated-output boundaries."
+    },
+    {
+      "id": "IR003",
+      "severity": "High",
+      "category": "LearnerAndAccessibilityContract",
+      "target": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "disposition": "UpdateInPlaceAuthorized",
+      "owner": "home-baseline maintainer",
+      "evidence": "Current Level-0 governance covers four IT training occupations from year one, explains terms and Spec Kit transitions at first use, requires text-first decisions, German-first/English-second CEFR B2, Programmierung #include<everyone>, and WCAG 2.2 AA. The intake names only IT specialist apprentices and a reduced readability rule.",
+      "reevaluationTrigger": "Re-run the review after the complete learner and accessibility baseline is explicit and measurable."
+    },
+    {
+      "id": "IR004",
+      "severity": "High",
+      "category": "DownstreamBoundary",
+      "target": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "disposition": "UpdateInPlaceAuthorized",
+      "owner": "home-baseline maintainer",
+      "evidence": "Positions 14 through 17 separately own the secure-development gap audit, Assurance preset, baseline 3.3 synchronization, and ABSDD adoption. The intake does not clearly prevent Position 5 from pre-implementing those outcomes.",
+      "reevaluationTrigger": "Re-run the review after Position 5 is limited to the current baseline and records findings for the later Assurance chain instead of implementing it."
+    }
+  ],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 4,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

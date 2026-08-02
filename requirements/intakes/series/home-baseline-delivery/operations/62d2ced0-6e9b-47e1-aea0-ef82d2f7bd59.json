@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "62d2ced0-6e9b-47e1-aea0-ef82d2f7bd59",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "The current user instruction authorizes the necessary in-place intake update and its hash-bound series alignment without changing order or starting a feature.",
+  "proposalNormalizedSha256": "f07c7f016078f2f9ddfba7f665b5be0f6b9cd3724c2b8e03bd2a097e4e16bd32",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 39,
+      "after": 39
+    },
+    "addedTargets": [],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "orderBefore": 1,
+        "orderAfter": 1,
+        "roleBefore": "Primary",
+        "roleAfter": "Primary",
+        "statusBefore": "Eligible",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
+        "normalizedSha256After": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": false,
+    "reason": "The intake identity, visible position 5, preferred Eligible status, roots, and all typed dependencies remain unchanged."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/62d2ced0-6e9b-47e1-aea0-ef82d2f7bd59/manifest.json",
+    "manifestNormalizedSha256": "d181e6260239c33ef46203da4485ea65c259f08b2dc73e2ce1357665077c1050",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/62d2ced0-6e9b-47e1-aea0-ef82d2f7bd59/receipt.json",
+    "receiptNormalizedSha256": "5500628f24732fe35413803371fda872937330932eae91a537d2bc28711ba2fe"
+  },
+  "preparedPaths": [
+    "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+    "specs/intake-authoring-receipts/mitgeltende-dokumente-spec-kit-verzahnung.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/active-lastenheft-normalization/intake-review-request.json",
+    "specs/active-lastenheft-normalization/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

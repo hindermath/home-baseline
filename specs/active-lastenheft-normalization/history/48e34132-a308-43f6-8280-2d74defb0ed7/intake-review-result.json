@@ -1,23 +1,23 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "b513cd85-2b45-48db-b104-b1ff682e4964",
+  "reviewId": "48e34132-a308-43f6-8280-2d74defb0ed7",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-02T13:20:52Z",
+  "reviewedAt": "2026-08-01T23:14:30Z",
   "repository": {
     "root": ".",
-    "head": "e90252e32238fed44016981d0dc3d109b5997c23"
+    "head": "b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "b4e37b597072228c8c457e29bf2e5913ef7ef45339e5f52200fc1c2ec488bd4c"
+    "normalizedSha256": "8b8477bfb48de3977210f0be0622d93b99de2b57f22593ee7e74ad90203aad4e"
   },
   "targets": [
     {
       "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "role": "Primary",
-      "normalizedSha256": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50",
+      "normalizedSha256": "dc6245e3e9413cf35124244352ddbb9c96d9b1480af7eb8777b80faeee42fb1b",
       "gitBlob": "N/A"
     },
     {
@@ -271,5 +271,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "48e34132-a308-43f6-8280-2d74defb0ed7"
+  "supersedes": "e0cb3910-a6f0-4737-8cb5-9965e2ca9615"
 }
