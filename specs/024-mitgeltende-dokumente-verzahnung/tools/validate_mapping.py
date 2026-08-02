@@ -7,11 +7,16 @@ STANDARD = ["security-governance", "architecture-governance", "isaqb-architectur
 OPTIONAL = ["intake-authoring-governance", "intake-review-governance", "intake-sequencing-governance"]
 REQUIRED = ["applicability", "implementation", "rationale", "evidence", "owner", "reviewer", "residualRisk", "followUp", "reevaluationTrigger"]
 
-def digest(path): return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")).hexdigest()
+def digest(path):
+    raw = path.read_bytes()
+    if raw.startswith(b"\xef\xbb\xbf"):
+        raw = raw[3:]
+    normalized = raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(normalized).hexdigest()
 
 def build(repo):
     base = repo / "docs/secure-development"
-    manifest = json.loads((base / "baseline-manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads((base / "baseline-manifest.json").read_text(encoding="utf-8-sig"))
     mapping = base / "mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
     rows = []
     for item in manifest["relatedDocuments"]:
@@ -25,7 +30,7 @@ def validate(repo, data):
     profiles=data.get("profiles",{})
     if profiles.get("publicStandard") != STANDARD: errors.append("MDV-003 public profile")
     if profiles.get("managedOptional") != OPTIONAL: errors.append("MDV-004 optional profile")
-    manifest=json.loads((repo/"docs/secure-development/baseline-manifest.json").read_text(encoding="utf-8"))
+    manifest=json.loads((repo/"docs/secure-development/baseline-manifest.json").read_text(encoding="utf-8-sig"))
     rows=data.get("rows",[])
     expected={item["path"] for item in manifest["relatedDocuments"]}
     actual={row.get("path") for row in rows}
@@ -44,7 +49,7 @@ def validate(repo, data):
 def main():
     p=argparse.ArgumentParser(); p.add_argument("--repo",default="."); p.add_argument("--write",action="store_true"); p.add_argument("--input")
     a=p.parse_args(); repo=Path(a.repo).resolve(); out=repo/"specs/024-mitgeltende-dokumente-verzahnung/mapping-review.json"
-    data=json.loads(Path(a.input).read_text(encoding="utf-8")) if a.input else build(repo)
+    data=json.loads(Path(a.input).read_text(encoding="utf-8-sig")) if a.input else build(repo)
     if a.write: out.write_text(json.dumps(data,indent=2,ensure_ascii=True)+"\n", encoding="utf-8")
     errors=validate(repo,data)
     if errors: print("FAIL: "+"; ".join(errors)); return 1
