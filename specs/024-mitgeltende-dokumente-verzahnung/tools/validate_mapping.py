@@ -20,8 +20,8 @@ def build(repo):
     mapping = base / "mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
     rows = []
     for item in manifest["relatedDocuments"]:
-        rows.append({"path": item["path"], "kind": "RelatedDocument", "applicability": "Applicable", "implementation": "Fulfilled", "rationale": "The managed document has a mapping entry or an explicit family mapping.", "evidence": str(mapping.relative_to(repo)), "owner": "Secure-Development Governance", "reviewer": "Feature 024 review", "residualRisk": "Low; revalidate after document or preset changes.", "followUp": "N/A", "reevaluationTrigger": "Document, checklist, baseline, or preset profile changes."})
-    return {"schemaVersion":"1.0", "baselineVersion":manifest["baselineVersion"], "checklistCount":len(manifest["checklists"]), "checklistItemCount":manifest["checklistItemCount"], "profiles":{"publicStandard":STANDARD,"managedOptional":OPTIONAL}, "mapping":{"path":str(mapping.relative_to(repo)),"sha256":digest(mapping)}, "rows":rows, "findings":[]}
+        rows.append({"path": item["path"], "kind": "RelatedDocument", "applicability": "Applicable", "implementation": "Fulfilled", "rationale": "The managed document has a mapping entry or an explicit family mapping.", "evidence": mapping.relative_to(repo).as_posix(), "owner": "Secure-Development Governance", "reviewer": "Feature 024 review", "residualRisk": "Low; revalidate after document or preset changes.", "followUp": "N/A", "reevaluationTrigger": "Document, checklist, baseline, or preset profile changes."})
+    return {"schemaVersion":"1.0", "baselineVersion":manifest["baselineVersion"], "checklistCount":len(manifest["checklists"]), "checklistItemCount":manifest["checklistItemCount"], "profiles":{"publicStandard":STANDARD,"managedOptional":OPTIONAL}, "mapping":{"path":mapping.relative_to(repo).as_posix(),"sha256":digest(mapping)}, "rows":rows, "findings":[]}
 
 def validate(repo, data):
     errors=[]
