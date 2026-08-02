@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "9d4da41f-9af0-4573-a317-c1cec866d2a7",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-intake-v2",
+  "reviewedAt": "2026-08-02T12:49:36Z",
+  "repository": {
+    "root": ".",
+    "head": "e90252e32238fed44016981d0dc3d109b5997c23"
+  },
+  "requestEvidence": {
+    "path": "specs/mitgeltende-dokumente-spec-kit-verzahnung-intake-review/intake-review-request.json",
+    "normalizedSha256": "5e8ea65587800513f93718e6204c9b0a8ca24e94f60b9906e18a9bda4842a13c"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "Primary",
+      "normalizedSha256": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "1af9eceb-b29f-43ef-ab7c-ab825457ea57"
+}

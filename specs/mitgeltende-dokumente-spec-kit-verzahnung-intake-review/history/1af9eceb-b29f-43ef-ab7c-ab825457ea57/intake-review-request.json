@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "1af9eceb-b29f-43ef-ab7c-ab825457ea57",
+  "mode": "Single",
+  "policy": "home-baseline-active-intake-v2",
+  "targets": [
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}
