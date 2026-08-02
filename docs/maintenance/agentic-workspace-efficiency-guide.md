@@ -406,6 +406,23 @@ Quelle oder eine ausdrücklich nicht normative historische Grenze.
 - Geschwindigkeit nie gegen Tests, Reviews, A11Y oder langfristige Wartbarkeit
   ausspielen.
 
+### GitHub-Actions-Runnerprofil
+
+Die kontinuierlichen, kopierten Workflows `Maintenance TUI` und
+`PowerShell Static Analysis` verwenden außerhalb der drei öffentlichen
+Referenz-Repositories nur `ubuntu-22.04`. Die vollständige
+Linux-/macOS-/Windows-Matrix bleibt auf `hindermath/home-baseline`,
+`hindermath/agent-operations-cockpit` und `hindermath/TuiVision` als
+plattformübergreifender Canary erhalten. Dadurch prüfen private
+Fleet-Repositories weiterhin jeden Push und Pull Request, vervielfachen aber
+nicht zwei generische Wartungsgates auf kostenpflichtigen Windows- und
+macOS-Runnern.
+
+Produktspezifische Workflows bleiben davon unabhängig. Ein Swift-, Windows-,
+.NET-Framework- oder anderer plattformgebundener Build behält den Runner, den
+sein tatsächlicher Produktvertrag benötigt. Die Runnerreduktion ist deshalb
+keine pauschale Abschaltung plattformspezifischer Produktprüfungen.
+
 ## Weiterführende Quellen
 
 - [Betrieb und Wartung](README.md)

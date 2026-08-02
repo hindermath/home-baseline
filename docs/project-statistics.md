@@ -150,6 +150,7 @@
 | 2026-08-01 | Feature 020 Dokumentations-Informationsarchitektur-Audit | — | — | — | Documentation Impact `GeneratedUpdate`: Der read-only Audit bindet 2 624 Dokumentationseinheiten, vier Leserpfade, 23 Wartungsverträge und drei vollständig abgedeckte Source-/Runtime-Klassen an den eingefrorenen Git-Baum. Eine bekannte UTF-16-Testausgabe ist über ihren Rohhash begrenzt ausgeschlossen. Das einzige deduplizierte Finding `DIA001` weist die 3 683-zeilige bilinguale Root-README als topic-orientierten D5-Remediation-Bedarf aus; D6 und D7 bleiben leer. 19 Vertragsfixtures, ein providerseitig entdeckbarer Bridge-Test, Hash-, Link-, Secret- und PSScriptAnalyzer-Nachweise sind lokal grün. Der neue Test-Bridge-Eintrag aktualisiert ausschließlich die deterministisch erzeugte Skriptreferenz. PR #194 mergte den exakten geprüften Head; der kausale Closeout archiviert D4, veröffentlicht die `Ready`-Serie mit 36 Zielen, drei Roots und 43 Abhängigkeiten und gibt D5 als einzigen bevorzugten `Eligible`-Kandidaten frei. Das Implementierungsdelta vor Statistikpflege umfasst 134 145 Nettozeilen, überwiegend vollständige strukturierte Audit-Evidence. |
 | 2026-08-01 | Feature 021 Level-0-Dokumentationsarchitektur | — | — | — | Documentation Impact `UpdateRequired`: `DIA001` wurde durch getrennte kompakte deutsche und englische Root-Einstiege, zwei Dokumentationsportale und vier textorientierte Leserpfade behoben. Eine hash- und commitgebundene Matrix ordnet alle 16 früheren Root-Bereiche genau einer Entscheidung und einem validierten Ziel zu; D6/D7 bleiben bei null Findings. Der Source-/Home-Runtime-Vertrag, Progressive Disclosure, Sprachpartner und zusätzliche Documentation-Impact-Felder sind in Constitution, Templates, PR-Fläche und fünf Agentenoberflächen synchron verankert. 12 Vertragsgruppen, 3 508 Lychee-Prüfungen, Lernpaket-, Generator-, Homogeneity-, PSScriptAnalyzer-, Secret- und Elf-Preset-Gates bilden den lokalen Nachweis. Der Implementierungs-Checkpoint umfasst 2 778 hinzugefügte und 3 691 entfernte Zeilen; die negative Nettomenge ist die beabsichtigte Ablösung der 3 683-zeiligen Root-Sammelseite durch progressive Navigation. |
 | 2026-08-01 | Feature 022 Agentic-Workspace-Effizienzleitfaden | — | — | — | Documentation Impact `UpdateRequired`: Ein ausführliches deutsches und englisches Betriebsmodell verbindet vier Leserpfade für Erstlauf, Routine, Maintainer/KI-Agenten sowie Audit. 17 hashgebundene Claims belegen Optionen, Status, Exitcodes, Evidence, Sicherheits-, Distributions-, Recovery-, Plattform- und Next-Action-Verträge gegen aktuelle Quellen. Root- und Dokumentationsportale verweisen mit stabilen Ankern auf den Leitfaden; zwei Feature-lokale Python-Prüfer validieren Matrix, Quellen, Sprachpartner und negative Driftfälle. 3 558 Lychee-Ziele, Lernpaket, Secure-Development-Generator, Documentation Impact, PSScriptAnalyzer, Secret-Scan und Spec-Kit-Integrität sind lokal grün. Das Implementierungsdelta vor Statistikpflege umfasst 3 013 Nettozeilen. PR #199 mergte den exakten Head nach 26 grünen Jobs und einem kommentarlosen Copilot-Exact-Head-Review. Der kausale Closeout archiviert D6, veröffentlicht die `Ready`-Serie mit 34 Zielen, drei Roots und 40 Abhängigkeiten und gibt D7 als einzigen bevorzugten `Eligible`-Kandidaten frei. Wartungsruntime, Presets, Registry, Workflows und Flottenzustand bleiben unverändert. |
+| 2026-08-02 | GitHub-Actions-Runnerprofil und Windows-ripgrep gehärtet | — | — | — | Documentation Impact `UpdateRequired`: Die beiden generisch verteilten Workflows `Maintenance TUI` und `PowerShell Static Analysis` behalten ihre Linux-/macOS-/Windows-Matrix nur auf den drei öffentlichen Referenz-Repositories `home-baseline`, `agent-operations-cockpit` und `TuiVision`; private Fleet-Kopien prüfen kontinuierlich unter Linux. Produktspezifische Plattformprüfungen bleiben unverändert. Der Windows-Homogeneity-Check bezieht ripgrep 15.2.0 direkt aus dem offiziellen Release, verifiziert SHA-256 und prüft `rg --version`, sodass ein temporärer Chocolatey-Gatewayfehler nicht mehr unbemerkt bis zum Folgeschritt reicht. Der bilinguale Effizienzleitfaden dokumentiert Scope, Kostenwirkung und Ausnahmevertrag. Home Runtime benötigt für diese Source- und Workflow-Änderung keinen Sync. |
 
 ---
 
@@ -1030,27 +1031,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 609655 lines |
+| Textbasis / Text base | 609720 lines |
 | Textdateien / Text files | 2999 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-02 |
 | Aktivtage / Active days | 81 |
-| Relevante Commits / Relevant commits | 672 |
-| Zeilen je Aktivtag / Lines per active day | 7526.6 |
+| Relevante Commits / Relevant commits | 674 |
+| Zeilen je Aktivtag / Lines per active day | 7527.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 94.1x |
 | Speedup vs. 100 lines/day | 75.3x |
-| Methodik / Methodology | v2; source `226b811aa878` |
+| Methodik / Methodology | v2; source `2e9980d1df5c` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2172
 Tests                           [#...................]   3.5% | 21154
-Dokumentation / Documentation   [##########..........]  50.1% | 305523
+Dokumentation / Documentation   [##########..........]  50.1% | 305556
 Skripte / Scripts               [##..................]   9.1% | 55596
-Konfiguration / Configuration   [#######.............]  36.8% | 224439
+Konfiguration / Configuration   [#######.............]  36.8% | 224471
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 771
 ```
@@ -1261,7 +1262,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7526.6
+Visible repository [###############.....] 7527.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1287,6 +1288,6 @@ DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-02. Es enthaelt 81 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 175113 |
+| 2026-08 | 175188 |
 
 <!-- project-statistics-v2:end -->

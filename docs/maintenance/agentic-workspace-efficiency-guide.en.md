@@ -393,6 +393,22 @@ an explicit non-normative historical boundary.
 - Create neither empty PRs nor speculative follow-up intakes.
 - Never trade tests, reviews, accessibility, or maintainability for speed.
 
+### GitHub Actions runner profile
+
+Outside the three public reference repositories, the continuously distributed
+`Maintenance TUI` and `PowerShell Static Analysis` workflows use only
+`ubuntu-22.04`. The full Linux/macOS/Windows matrix remains as a cross-platform
+canary on `hindermath/home-baseline`,
+`hindermath/agent-operations-cockpit`, and `hindermath/TuiVision`. Private fleet
+repositories therefore still validate every push and pull request without
+multiplying two generic maintenance gates across billed Windows and macOS
+runners.
+
+Product-specific workflows remain independent. A Swift, Windows, .NET
+Framework, or other platform-bound build keeps the runner required by its real
+product contract. The runner reduction is not a blanket removal of
+platform-specific product validation.
+
 ## Further sources
 
 - [Operation and maintenance](README.en.md)
