@@ -1,4 +1,4 @@
-# Intake Review: Aktive Lastenheft-Serie
+# Intake Review: Aktive Lastenheft-Serie / Active Intake Series
 
 ## Ergebnis / Outcome
 

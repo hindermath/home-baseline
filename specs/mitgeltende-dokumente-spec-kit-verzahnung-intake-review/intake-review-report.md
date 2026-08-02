@@ -1,4 +1,4 @@
-# Intake Review: Mitgeltende Dokumente und Spec-Kit-Verzahnung
+# Intake Review: Mitgeltende Dokumente und Spec-Kit-Verzahnung / Referenced Documents and Spec Kit Integration
 
 ## Ergebnis / Outcome
 
@@ -33,9 +33,17 @@ items 6, 7, and 13.*
 
 ## Governance- und Liefergrenze / Governance and Delivery Boundary
 
-Der Review startet keinen Folgebefehl. `Eligible` erteilt keine Delivery
-Authority. Der kopierbare autonome Prompt verwendet `MergeAndSync`, gewaehrt
-aber keinen Admin-Bypass, keine Secrets und keine Provider-Administration.
+`Ready` bestaetigt nur die fachliche Pruefbarkeit dieses einzelnen Intakes. Der
+Review startet keinen Folgebefehl. Das getrennte Series-Ergebnis `Eligible`
+bestaetigt nur die Reihenfolge und erteilt ebenfalls keine Delivery Authority.
+Der kopierbare autonome Prompt verwendet `MergeAndSync`, gewaehrt aber keinen
+Admin-Bypass, keine Secrets und keine Provider-Administration.
+
+*`Ready` confirms only that this single intake can be reviewed and processed.
+The review starts no follow-up command. The separate series outcome `Eligible`
+confirms only sequencing and likewise grants no delivery authority. The
+copyable autonomous prompt uses `MergeAndSync` but grants no admin bypass,
+secrets, or provider administration.*
 
 ## Naechste exakte Aktion / Exact Next Action
 
