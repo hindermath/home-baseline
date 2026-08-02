@@ -8,6 +8,7 @@ from pathlib import Path
 STANDARD = ["security-governance", "architecture-governance", "isaqb-architecture-governance", "a11y-governance", "cross-platform-governance", "agent-parity-governance", "autonomous-run-governance", "parallel-autonomous-run-governance"]
 OPTIONAL = ["intake-authoring-governance", "intake-review-governance", "intake-sequencing-governance"]
 REQUIRED = ["kind", "applicability", "implementation", "rationale", "evidence", "owner", "reviewer", "residualRisk", "followUp", "reevaluationTrigger"]
+MAPPING_PATH = "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
 
 def digest(path):
     raw = path.read_bytes()
@@ -19,7 +20,7 @@ def digest(path):
 def build(repo):
     base = repo / "docs/secure-development"
     manifest = json.loads((base / "baseline-manifest.json").read_text(encoding="utf-8-sig"))
-    mapping = base / "mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
+    mapping = repo / MAPPING_PATH
     rows = []
     for item in manifest["relatedDocuments"]:
         rows.append({"path": item["path"], "kind": "RelatedDocument", "applicability": "Applicable", "implementation": "Fulfilled", "rationale": "The managed document has a mapping entry or an explicit family mapping.", "evidence": mapping.relative_to(repo).as_posix(), "owner": "Secure-Development Governance", "reviewer": "Feature 024 review", "residualRisk": "Low; revalidate after document or preset changes.", "followUp": "N/A", "reevaluationTrigger": "Document, checklist, baseline, or preset profile changes."})
@@ -41,9 +42,13 @@ def validate(repo, data):
         if any(not str(row.get(key,"")).strip() for key in REQUIRED): errors.append(f"MDV-006 incomplete row {row.get('path')}")
         if row.get("applicability") not in {"Applicable","N/A","Open"}: errors.append("MDV-007 applicability")
         if row.get("implementation") not in {"Fulfilled","Partly Fulfilled","Not Fulfilled","Not Assessed"}: errors.append("MDV-008 implementation")
-    mapping=repo/data.get("mapping",{}).get("path","")
-    if not mapping.is_file() or digest(mapping) != data.get("mapping",{}).get("sha256"): errors.append("MDV-009 mapping hash")
-    text=mapping.read_text(encoding="utf-8") if mapping.is_file() else ""
+    mapping_evidence = data.get("mapping", {})
+    mapping = repo / MAPPING_PATH
+    if mapping_evidence.get("path") != MAPPING_PATH:
+        errors.append("MDV-009 canonical mapping path")
+    if not mapping.is_file() or digest(mapping) != mapping_evidence.get("sha256"):
+        errors.append("MDV-009 mapping hash")
+    text=mapping.read_text(encoding="utf-8-sig") if mapping.is_file() else ""
     for preset in STANDARD+OPTIONAL:
         if f"`{preset}`" not in text: errors.append(f"MDV-010 missing preset {preset}")
     return errors

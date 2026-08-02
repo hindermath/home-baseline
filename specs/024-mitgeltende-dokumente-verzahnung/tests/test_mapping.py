@@ -53,6 +53,14 @@ class MappingTests(unittest.TestCase):
         bad["rows"][0]["applicability"] = "Ready"
         self.assertTrue(any(e.startswith("MDV-007") for e in V.validate(ROOT, bad)))
 
+    def test_noncanonical_mapping_path(self):
+        for path in ("../outside.md", "/tmp/outside.md"):
+            with self.subTest(path=path):
+                bad = copy.deepcopy(self.good)
+                bad["mapping"]["path"] = path
+                errors = V.validate(ROOT, bad)
+                self.assertIn("MDV-009 canonical mapping path", errors)
+
 
 if __name__ == "__main__":
     unittest.main()
