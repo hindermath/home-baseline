@@ -38,6 +38,11 @@ class MappingTests(unittest.TestCase):
         bad["rows"][0]["owner"] = ""
         self.assertTrue(any(e.startswith("MDV-006") for e in V.validate(ROOT, bad)))
 
+    def test_missing_kind(self):
+        bad = copy.deepcopy(self.good)
+        del bad["rows"][0]["kind"]
+        self.assertTrue(any(e.startswith("MDV-006") for e in V.validate(ROOT, bad)))
+
     def test_profile_drift(self):
         bad = copy.deepcopy(self.good)
         bad["profiles"]["managedOptional"].pop()

@@ -5,7 +5,7 @@ from pathlib import Path
 
 STANDARD = ["security-governance", "architecture-governance", "isaqb-architecture-governance", "a11y-governance", "cross-platform-governance", "agent-parity-governance", "autonomous-run-governance", "parallel-autonomous-run-governance"]
 OPTIONAL = ["intake-authoring-governance", "intake-review-governance", "intake-sequencing-governance"]
-REQUIRED = ["applicability", "implementation", "rationale", "evidence", "owner", "reviewer", "residualRisk", "followUp", "reevaluationTrigger"]
+REQUIRED = ["kind", "applicability", "implementation", "rationale", "evidence", "owner", "reviewer", "residualRisk", "followUp", "reevaluationTrigger"]
 
 def digest(path):
     raw = path.read_bytes()
