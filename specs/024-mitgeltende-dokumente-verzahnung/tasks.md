@@ -39,7 +39,7 @@
 - [X] T030 Run feature unit tests
 - [X] T031 Run deterministic mapping validator
 - [X] T032 Run Secure-Development deterministic build check
-- [ ] T033 Run Bash and PowerShell Homogeneity
+- [X] T033 Run Bash and PowerShell Homogeneity
 - [X] T034 Run PSScriptAnalyzer
 - [X] T035 Run Markdown links and learning-package checks
 - [X] T036 Run git diff check and secret scan

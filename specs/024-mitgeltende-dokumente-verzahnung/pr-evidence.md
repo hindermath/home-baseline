@@ -19,9 +19,14 @@ runtime, API, dependencies, toolchain and Assurance positions 14-17 are excluded
 | PSScriptAnalyzer | Pass | 147 files, zero Error/Warning findings |
 | Diff and secrets | Pass | Clean whitespace; gitleaks high=0 |
 | Specify | Pass | CLI integrity check successful |
+| Homogeneity | Pass | Bash and PowerShell 30/30 in clean exact-head worktree `4206c0e` |
 
 Generated script-reference and statistics drift is expected until the stable
 feature commit exists. It is resolved from the canonical sources before push.
+
+The primary checkout contains an ignored local `Spectre.Console.Ansi.dll` build
+artifact. PowerShell correctly reports it there; the clean exact-head worktree
+proves the tracked candidate without deleting machine-local build output.
 
 ## Governance
 
