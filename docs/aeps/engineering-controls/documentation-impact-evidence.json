@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "aeps-engineering-controls-framework-dormant-registration",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Register the dormant AEPS Engineering Controls Framework and its failed activation audit in the canonical Level-0 documentation.",
+      "decision": "UpdateRequired",
+      "rationale": "The approved plan introduces a durable activation sequence, evidence threshold, proposed intake map, and fail-closed stop boundary without authoring controls or active intakes.",
+      "documents": [
+        "docs/README.md",
+        "docs/README.en.md",
+        "docs/aeps/engineering-controls/README.md",
+        "docs/aeps/engineering-controls/activation-contract.json",
+        "docs/aeps/engineering-controls/activation-audits/2026-08-02.json"
+      ],
+      "owner": "Level-0 AEPS Maintainer",
+      "audiences": ["Level-0 Maintainers", "Independent Reviewers", "AI Agents"],
+      "readerPaths": ["DocumentationPortal", "AepsEngineeringControlsActivation"],
+      "canonicalSource": "docs/aeps/engineering-controls/activation-contract.json",
+      "navigationImpact": "Adds the dormant Engineering Controls Framework to both documentation portals.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second at CEFR B2; the portal entry has synchronized German and English partners.",
+      "languagePartners": ["docs/README.md", "docs/README.en.md"],
+      "platformAndExampleProof": "The workstream is documentation-only and platform-neutral; Bash and PowerShell evidence validators were used against the AOC inputs.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/aeps/engineering-controls/activation-audits/2026-08-02.json",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "RAW-01 through RAW-09 and the canonical AEPS Preset Engineering analysis satisfy every activation gate."
+    }
+  ]
+}

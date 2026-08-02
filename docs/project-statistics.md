@@ -997,6 +997,29 @@ complete series review were superseded with traceable evidence. Series
 cardinality remains 37 targets, three roots, and 44 dependencies; D4 remains
 the sole Eligible candidate and was not started.*
 
+### 2026-08-02 - AEPS Engineering Controls Framework registriert / registered
+
+- Der ruhende Level-0-Arbeitsstrang ist mit Aktivierungsvertrag, aktueller
+  Navigation und nachvollziehbarer Documentation-Impact-Evidence registriert.
+- Der Aktivierungsaudit endet fail-closed in `BlockedPreconditions`: Sieben
+  RAW-Intakes besitzen noch kein aktuelles Ready-Review, alle neun
+  Completion Receipts und der Series Receipt fehlen, und die kanonische
+  Preset-Engineering-Analyse ist noch nicht abgeschlossen.
+- Der Auftrag veroeffentlicht nur diese ruhende Registrierung. Er startet
+  weder Engineering-Control-Analyse oder -Authoring noch Preset-,
+  Produkt- oder Spec-Kit-Arbeit.
+- Das Delta vor Statistikpflege umfasst 307 Nettozeilen. Die
+  Distributionsklasse ist `sourceOnly`; ein Home-Sync ist nicht erforderlich.
+
+*The dormant Level-0 workstream is registered with an activation contract,
+current navigation, and traceable Documentation Impact evidence. Its audit
+fails closed in `BlockedPreconditions`: seven RAW intakes still lack a current
+Ready review, all nine Completion Receipts and the Series Receipt are missing,
+and the canonical Preset Engineering analysis is incomplete. This delivery
+publishes only the dormant registration and starts no control analysis or
+authoring, preset or product mutation, or Spec Kit run. The pre-statistics
+delta is 307 net lines; the source-only change requires no Home sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

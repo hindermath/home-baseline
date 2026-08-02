@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "AepsEngineeringControlsActivationContract",
+  "programId": "aeps-engineering-controls-framework",
+  "title": "AEPS Engineering Controls Framework",
+  "systemOfRecord": "hindermath/home-baseline",
+  "strategicAnchor": "https://github.com/hindermath/home-baseline/issues/196",
+  "initialState": "Dormant",
+  "states": ["Dormant", "BlockedPreconditions", "ActiveEvidenceAnalysis", "AwaitingEngineeringControlsAuthoringApproval", "Completed"],
+  "activation": {
+    "mode": "ExplicitHumanInvocation",
+    "automaticActivationAllowed": false,
+    "requiredSequence": ["CompleteAocRawSeries", "CompleteAepsPresetEngineeringAnalysis", "AnalyseEngineeringControlsFramework", "PermitAepsPresetEngineeringSeriesDraft"],
+    "primaryEvidenceRepository": "hindermath/agent-operations-cockpit",
+    "requiredRawIntakes": ["RAW-01", "RAW-02", "RAW-03", "RAW-04", "RAW-05", "RAW-06", "RAW-07", "RAW-08", "RAW-09"],
+    "perRawGates": [
+      "CurrentAuthoringReceiptValidOnBashAndPowerShell",
+      "CurrentSingleReviewReadyAndHashBound",
+      "CurrentSingleReviewValidOnBashAndPowerShell",
+      "SeriesLifecycleCompleted",
+      "CurrentCompletionReceiptValid",
+      "AllReviewFindingsDocumented",
+      "EveryFindingHasCoverageStatus",
+      "NoBlockingFindingOpen"
+    ],
+    "seriesGates": ["CurrentRawSeriesCompletionReceiptValid", "SeriesReceiptBindsManifestOrderReviewsFindingsCoverageAndReceipts"],
+    "presetEngineeringGates": ["CanonicalLevel0ProgramContractPublished", "PresetInventoryComplete", "ExistingPresetMapComplete", "FindingToPresetMatrixComplete", "PresetGapAnalysisComplete", "AnalysisCompletionReceiptCurrent"],
+    "failureState": "BlockedPreconditions",
+    "failureAction": "WriteActivationAuditStopAndRequestTargetedHumanDecision",
+    "successState": "ActiveEvidenceAnalysis"
+  },
+  "evidenceBasis": {
+    "primary": "hindermath/agent-operations-cockpit",
+    "comparisonRepositories": ["hindermath/TuiVision", "hindermath/TinyCalc", "hindermath/TinyPl0"],
+    "minimumIndependentProjectsForControlCandidate": 2,
+    "minimumIndependentEvidenceEvents": 2,
+    "reviewOrCompletionBindingRequiredPerProject": true,
+    "positiveEvidenceRequired": true,
+    "negativeEvidenceOrCounterexampleRequired": true,
+    "openBlockingFindingAllowed": false,
+    "singleProjectControlCandidateAllowed": false
+  },
+  "propertyCluster": {
+    "idPattern": "EC-PROP-NNN",
+    "states": ["Observed", "Repeated", "CrossProjectSupported", "InsufficientEvidence", "Conflicted", "ExcludedProductSpecific"],
+    "controlCandidateQualificationState": "CrossProjectSupported",
+    "unqualifiedPropertiesRemainNonNormative": true
+  },
+  "deliverables": ["Engineering Control Landscape", "Engineering Control Taxonomy", "Control-to-Preset Matrix", "Control-to-Finding Matrix", "AEPS Engineering Controls Intake Landscape", "AEPS Engineering Controls Series Map", "AEPS Engineering Controls Roadmap", "Completion Receipt"],
+  "matrixClassifications": {
+    "controlToPreset": ["ExistingCoverage", "PartialCoverage", "Overlap", "Gap", "NoPresetRelevance"],
+    "controlToFinding": ["Supports", "Contradicts", "Limits", "Duplicates", "Unrelated"]
+  },
+  "proposedIntakeSeries": {
+    "createsActiveIntakes": false,
+    "root": "AEPS-EC-01",
+    "targets": [
+      {"id": "AEPS-EC-01", "title": "Engineering Control Model", "owner": "Level-0 AEPS Maintainer", "dependsOn": []},
+      {"id": "AEPS-EC-02", "title": "Engineering Control Taxonomy", "owner": "Level-0 AEPS Maintainer", "dependsOn": ["AEPS-EC-01"]},
+      {"id": "AEPS-EC-03", "title": "Control Classification", "owner": "AEPS Evidence Steward", "dependsOn": ["AEPS-EC-01", "AEPS-EC-02"]},
+      {"id": "AEPS-EC-04", "title": "Control Lifecycle", "owner": "Level-0 AEPS Maintainer", "dependsOn": ["AEPS-EC-01", "AEPS-EC-03"]},
+      {"id": "AEPS-EC-05", "title": "Control Evidence", "owner": "AEPS Evidence Steward", "dependsOn": ["AEPS-EC-01", "AEPS-EC-03"]},
+      {"id": "AEPS-EC-06", "title": "Control Traceability", "owner": "AEPS Evidence Steward", "dependsOn": ["AEPS-EC-02", "AEPS-EC-05"]},
+      {"id": "AEPS-EC-07", "title": "Control Validation", "owner": "AEPS Assurance Reviewer", "dependsOn": ["AEPS-EC-03", "AEPS-EC-05", "AEPS-EC-06"]},
+      {"id": "AEPS-EC-08", "title": "Control Coverage", "owner": "AEPS Evidence Steward", "dependsOn": ["AEPS-EC-02", "AEPS-EC-06", "AEPS-EC-07"]},
+      {"id": "AEPS-EC-09", "title": "Control Metrics", "owner": "AEPS Assurance Reviewer", "dependsOn": ["AEPS-EC-05", "AEPS-EC-07", "AEPS-EC-08"]},
+      {"id": "AEPS-EC-10", "title": "Cross-Project Control Validation", "owner": "AEPS Cross-Project Reviewer", "dependsOn": ["AEPS-EC-05", "AEPS-EC-07", "AEPS-EC-09"]},
+      {"id": "AEPS-EC-11", "title": "Control Promotion", "owner": "Level-0 AEPS Maintainer", "dependsOn": ["AEPS-EC-04", "AEPS-EC-08", "AEPS-EC-09", "AEPS-EC-10"]},
+      {"id": "AEPS-EC-12", "title": "Control Deprecation", "owner": "Level-0 AEPS Maintainer", "dependsOn": ["AEPS-EC-04", "AEPS-EC-06", "AEPS-EC-11"]}
+    ]
+  },
+  "completionState": "AwaitingEngineeringControlsAuthoringApproval",
+  "prohibitedActions": ["DefineIndividualEngineeringControl", "CreateActiveIntake", "CreatePreset", "ModifyPreset", "PromotePreset", "StartProductImplementation", "StartSpecifyPlanTasksOrImplement", "ModifyEvidenceSourceRepository", "WriteGitHubIssue", "Push", "Merge", "Bypass"]
+}

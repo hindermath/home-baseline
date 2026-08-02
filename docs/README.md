@@ -68,6 +68,7 @@ zusammen.
 | Betrieb und Wartung | [Wartung](maintenance/README.md), [Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md), [Manpages](man/) |
 | Architektur | [Source und Home Runtime](architecture/source-and-home-runtime.md), [Wartungs-TUI](architecture/maintenance-tui.md) |
 | Governance und sichere Entwicklung | [Dokumentations-Governance](documentation-governance.md), [Security](security/README.md), [Secure Development](secure-development/) |
+| AEPS-Programme | [Engineering Controls Framework](aeps/engineering-controls/README.md) |
 | Technische Referenz | [Skripte](scripts/README.md), [vollständige Skriptreferenz](scripts/reference.md) |
 | Prüfung und Fehleranalyse | [Troubleshooting](troubleshooting/README.md), [Projektstatistik](project-statistics.md) |
 

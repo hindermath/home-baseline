@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "AepsEngineeringControlsActivationAudit",
+  "auditId": "9a385ac5-3ee4-4dae-8b17-aa0553741554",
+  "programId": "aeps-engineering-controls-framework",
+  "observedAt": "2026-08-01T23:19:35Z",
+  "activationAttempt": true,
+  "outcome": "BlockedPreconditions",
+  "programState": "BlockedPreconditions",
+  "level0": {
+    "repository": "hindermath/home-baseline",
+    "remote": "https://github.com/hindermath/home-baseline.git",
+    "baseCommit": "b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c",
+    "cleanBeforeAudit": true
+  },
+  "strategicAnchor": {
+    "url": "https://github.com/hindermath/home-baseline/issues/196",
+    "state": "OPEN",
+    "lastUpdatedAt": "2026-08-01T17:59:28Z"
+  },
+  "aocEvidence": {
+    "repository": "hindermath/agent-operations-cockpit",
+    "baseCommit": "ddba7482163c7e61161ad0b90f4e019844335898",
+    "workingTree": "DirtyPendingPublication",
+    "workingTreeStatusSha256": "021ec576350701e3888b85219acdc029cf2e011fd02a2aedc807f87d7522a268",
+    "seriesManifest": "specs/intake-series/aoc-phase-2/manifest.json",
+    "seriesManifestSha256": "d408a26f5141bf4011ffdd2e02f32f122286217293d285530c38e742c04b120f",
+    "seriesReceipt": "specs/intake-series-receipts/aoc-phase-2.json",
+    "seriesReceiptSha256": "dfff1c8b2b3c3f3eef3e508f2bb70214e2dc625e8db227bb578d6f6fe41c6aad",
+    "seriesStatus": "NeedsClarification",
+    "declaredEligible": "RAW-01",
+    "reviewFindingsLedgerSha256": "647f09a43176b6940c475fbaadc7d2a6908f3a9dcf605bdfe77726f7f33545ec",
+    "coverageMatrixSha256": "4e2dd1382ec702bc1b5422b3c8df88adb33171de95f0c21b1b843b57ccb7f664"
+  },
+  "summary": {
+    "rawIntakeCount": 9,
+    "authoringReceiptPresenceCount": 9,
+    "authoringReceiptBashPassedCount": 9,
+    "authoringReceiptPowerShellPassedCount": 9,
+    "currentReadyReviewCount": 2,
+    "missingCurrentReviewCount": 7,
+    "seriesCompletedCount": 0,
+    "perRawCompletionReceiptCount": 0,
+    "rawSeriesCompletionReceiptPresent": false,
+    "presetEngineeringAnalysisCompletionReceiptPresentInCanonicalLevel0": false,
+    "findingCoverage": "IncompleteEvidenceSet",
+    "blockingFindings": "NotAssessedBecauseRequiredReviewsAndReceiptsAreMissing",
+    "crossProjectEvidence": "NotAssessedBecauseEarlierActivationGatesFailed"
+  },
+  "rawIntakes": [
+    {"id": "RAW-01", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Ready", "reviewValidation": "PassedBashAndPowerShell", "seriesLifecycle": "Eligible", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-02", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Ready", "reviewValidation": "PassedBashAndPowerShell", "seriesLifecycle": "Blocked", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-03", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Pending", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-04", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Pending", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-05", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Pending", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-06", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Blocked", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-07", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Blocked", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-08", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Pending", "completionReceipt": "Missing", "activationEligible": false},
+    {"id": "RAW-09", "authoringReceiptValidation": "PassedBashAndPowerShell", "currentReview": "Missing", "reviewValidation": "NotApplicable", "seriesLifecycle": "Blocked", "completionReceipt": "Missing", "activationEligible": false}
+  ],
+  "presetEngineering": {
+    "canonicalLevel0Contract": "Missing",
+    "analysisCompletionReceipt": "Missing",
+    "requiredDeliverables": {
+      "presetInventory": "Missing",
+      "existingPresetMap": "Missing",
+      "findingToPresetMatrix": "Missing",
+      "presetGapAnalysis": "Missing"
+    },
+    "nonCanonicalDraft": {
+      "repository": "hindermath/agent-operations-cockpit",
+      "commit": "4b77c45cd52b75cbd0082e7a68e6a516b0e9b9eb",
+      "classification": "DraftInputOnlyNotCanonicalLevel0Evidence"
+    }
+  },
+  "failedGates": [
+    "SevenRawIntakesMissingCurrentReadyReview",
+    "AllNineRawIntakesNotSeriesCompleted",
+    "AllNinePerRawCompletionReceiptsMissing",
+    "RawSeriesCompletionReceiptMissing",
+    "CompleteFindingCoverageCannotBeProvenForMissingReviews",
+    "NoOpenBlockingFindingCannotBeProven",
+    "CanonicalPresetEngineeringContractMissing",
+    "PresetEngineeringAnalysisDeliverablesAndCompletionReceiptMissing"
+  ],
+  "artifactsNotCreated": [
+    "Source Manifest",
+    "Engineering Control Landscape",
+    "Engineering Control Taxonomy",
+    "Control-to-Preset Matrix",
+    "Control-to-Finding Matrix",
+    "Active AEPS Engineering Controls Intakes",
+    "Engineering Controls Completion Receipt"
+  ],
+  "requiredHumanDecision": {
+    "neededNow": true,
+    "decision": "Authorise continuation of the AOC RAW series beginning with the next bounded lifecycle step for current Ready and Eligible RAW-01, while requiring a valid per-RAW Completion Receipt before final activation evidence is claimed.",
+    "rerunCondition": "Repeat this audit only after RAW-01 through RAW-09 are Ready and Completed with individual and series Completion Receipts, complete finding coverage, no blocking findings, and a completed canonical Preset Engineering analysis."
+  },
+  "nextAction": "StopAndRequestTargetedHumanDecision"
+}
