@@ -11,7 +11,7 @@ def digest(path): return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n"
 
 def build(repo):
     base = repo / "docs/secure-development"
-    manifest = json.loads((base / "baseline-manifest.json").read_text())
+    manifest = json.loads((base / "baseline-manifest.json").read_text(encoding="utf-8"))
     mapping = base / "mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
     rows = []
     for item in manifest["relatedDocuments"]:
@@ -25,7 +25,7 @@ def validate(repo, data):
     profiles=data.get("profiles",{})
     if profiles.get("publicStandard") != STANDARD: errors.append("MDV-003 public profile")
     if profiles.get("managedOptional") != OPTIONAL: errors.append("MDV-004 optional profile")
-    manifest=json.loads((repo/"docs/secure-development/baseline-manifest.json").read_text())
+    manifest=json.loads((repo/"docs/secure-development/baseline-manifest.json").read_text(encoding="utf-8"))
     rows=data.get("rows",[])
     expected={item["path"] for item in manifest["relatedDocuments"]}
     actual={row.get("path") for row in rows}
@@ -36,7 +36,7 @@ def validate(repo, data):
         if row.get("implementation") not in {"Fulfilled","Partly Fulfilled","Not Fulfilled","Not Assessed"}: errors.append("MDV-008 implementation")
     mapping=repo/data.get("mapping",{}).get("path","")
     if not mapping.is_file() or digest(mapping) != data.get("mapping",{}).get("sha256"): errors.append("MDV-009 mapping hash")
-    text=mapping.read_text() if mapping.is_file() else ""
+    text=mapping.read_text(encoding="utf-8") if mapping.is_file() else ""
     for preset in STANDARD+OPTIONAL:
         if f"`{preset}`" not in text: errors.append(f"MDV-010 missing preset {preset}")
     return errors
@@ -44,8 +44,8 @@ def validate(repo, data):
 def main():
     p=argparse.ArgumentParser(); p.add_argument("--repo",default="."); p.add_argument("--write",action="store_true"); p.add_argument("--input")
     a=p.parse_args(); repo=Path(a.repo).resolve(); out=repo/"specs/024-mitgeltende-dokumente-verzahnung/mapping-review.json"
-    data=json.loads(Path(a.input).read_text()) if a.input else build(repo)
-    if a.write: out.write_text(json.dumps(data,indent=2,ensure_ascii=True)+"\n")
+    data=json.loads(Path(a.input).read_text(encoding="utf-8")) if a.input else build(repo)
+    if a.write: out.write_text(json.dumps(data,indent=2,ensure_ascii=True)+"\n", encoding="utf-8")
     errors=validate(repo,data)
     if errors: print("FAIL: "+"; ".join(errors)); return 1
     print(f"PASS: 12 checklists, 157 items, {len(data['rows'])} documents, 8+3 presets")
