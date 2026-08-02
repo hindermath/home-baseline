@@ -4,10 +4,10 @@
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-02T12:49:36Z",
+  "reviewedAt": "2026-08-02T13:20:52Z",
   "repository": {
     "root": ".",
-    "head": "b08a8bbc2f831f11677e8a7ca1cfa4fea83b433c"
+    "head": "e90252e32238fed44016981d0dc3d109b5997c23"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",

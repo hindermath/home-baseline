@@ -8,6 +8,7 @@
 - Roots: `3`
 - Abhaengigkeiten: `39`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils `0`
+- Gepruefte Repository-Basis: `e90252e32238fed44016981d0dc3d109b5997c23`
 
 Die In-place-Aktualisierung veraendert ausschliesslich den hashgebundenen
 Inhalt von Position 5. Zielidentitaet, sichtbare Reihenfolge, drei Roots,
@@ -18,6 +19,19 @@ Position 5 ist weiterhin `Primary`, Root und der einzige bevorzugte
 *The in-place update changes only the hash-bound content of item 5. Target
 identity, visible order, three roots, 39 typed dependencies, and all lifecycle
 values remain unchanged. Item 5 remains the sole preferred eligible target.*
+
+Die Repository-Basis bezeichnet den gemeinsamen Ausgangs-Commit des PRs vor
+den erzeugten Review- und Statistik-Commits. Die aktuelle Zielmenge ist
+zusaetzlich ueber normalisierte SHA-256-Werte gebunden. Dadurch bleibt der
+Nachweis eindeutig, ohne einen unmoeglichen selbstreferenziellen Commit-Hash im
+Review-Ergebnis zu verlangen. Die CI-Gates pruefen davon getrennt den jeweils
+aktuellen PR-Head.
+
+*The repository base identifies the PR's common starting commit before the
+generated review and statistics commits. Normalized SHA-256 values additionally
+bind the current target set. This keeps the evidence unambiguous without
+requiring an impossible self-referential commit hash in the review result. CI
+gates validate the current PR head separately.*
 
 ## Aktualisierte Uebergabe / Updated Handoff
 
