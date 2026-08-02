@@ -1,0 +1,10 @@
+{
+  "schemaVersion":"1.0",
+  "gates":[
+    {"gateId":"mapping-proof","applicability":"Applicable","requiredScope":"Cardinality, profiles, rows and evidence","requiredCommandTokens":["test_mapping.py","validate_mapping.py"],"requiredRunnerOrPlatformTokens":[],"rationale":"Feature contract needs deterministic proof.","reevaluationTrigger":"Mapping schema or baseline changes."},
+    {"gateId":"documentation-quality","applicability":"Applicable","requiredScope":"Secure-development build, links, learning and WCAG text-first evidence","requiredCommandTokens":["build-secure-development-docs","check-learning-package"],"requiredRunnerOrPlatformTokens":["macos","ubuntu","windows"],"rationale":"Changed content is learner-facing governance.","reevaluationTrigger":"Changed paths or documentation workflows change."},
+    {"gateId":"repository-quality","applicability":"Applicable","requiredScope":"Homogeneity, PowerShell, whitespace, secrets, statistics and Spec Kit","requiredCommandTokens":["check-homogeneity","invoke-psscriptanalyzer","git diff --check","scan-agent-secrets","render-project-statistics","specify check"],"requiredRunnerOrPlatformTokens":[],"rationale":"Repository acceptance policy.","reevaluationTrigger":"Repository quality policy changes."},
+    {"gateId":"runtime-regression","applicability":"Applicable","requiredScope":"Existing Maintenance TUI provider regression","requiredCommandTokens":["dotnet restore","dotnet build","dotnet test"],"requiredRunnerOrPlatformTokens":["macos","ubuntu","windows"],"rationale":"Mandatory provider workflow remains in force.","reevaluationTrigger":"Provider workflow changes."},
+    {"gateId":"supply-chain-runtime","applicability":"N/A","requiredScope":"SBOM, VEX, SLSA and AI-SBOM","requiredCommandTokens":[],"requiredRunnerOrPlatformTokens":[],"rationale":"No runtime, dependency or release artifact changes.","reevaluationTrigger":"Runtime, dependency or release scope changes."}
+  ]
+}

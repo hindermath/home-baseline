@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "96691d23-09bc-4131-a508-6e1e9915c17c",
+  "featurePath": "specs/024-mitgeltende-dokumente-verzahnung",
+  "branch": "024-mitgeltende-dokumente-verzahnung",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Implement",
+  "status": "Active",
+  "checkpointCommit": "f56be948e23d77ec45dd895f1125eb152cd7901b",
+  "acceptedArtifacts": [
+    {"path":"Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md","sha256":"76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50"},
+    {"path":"specs/mitgeltende-dokumente-spec-kit-verzahnung-intake-review/intake-review-result.json","sha256":"004006c928a09f45a2a593f65ef48190f0495e754bb8376d45a0084635d14974"},
+    {"path":"requirements/intakes/series/home-baseline-delivery/manifest.json","sha256":"5dae4f5b2da76ca3d5759b1ed6c2ae4a3809f20e7063e9c2fdc36cc1147ffac4"},
+    {"path":"specs/024-mitgeltende-dokumente-verzahnung/spec.md","sha256":"792f19c3145e5e007ff1fea0e9932508dd197da1e72e1765b88102e63c77ebfa"},
+    {"path":"specs/024-mitgeltende-dokumente-verzahnung/plan.md","sha256":"7c3895582c4dfb4bc5b493588d2b35928098b04d86c7e3a6a9c9bdddcc621560"}
+  ],
+  "tasks":{"path":"specs/024-mitgeltende-dokumente-verzahnung/tasks.md","sha256":"3989e31eca5a68259622692dc519ed2cbde094347212ef2210da4ecf3ff7c912","completed":41,"total":50},
+  "lastPassingGate":"All local gates passed; Bash and PowerShell Homogeneity are 30/30 in a clean exact-head worktree.",
+  "nextExactAction":"Commit final local evidence, render statistics, then push and create the feature PR.",
+  "lastOperation":{"kind":"Implement","state":"Completed","summary":"The existing mapping now distinguishes the public eight-preset profile from the three optional intake presets and deterministic proof is green."},
+  "stop":{"reason":"N/A","requestedAt":"N/A","safeBoundary":"N/A"},
+  "closeout":{"mergeOrPublication":"Pending","defaultBranchSync":"Pending","postMergeActions":"Pending","finalValidation":"Pending"},
+  "updatedAt":"2026-08-02T14:50:02Z"
+}
