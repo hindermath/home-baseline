@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
-import copy, importlib.util, json, tempfile, unittest
+import copy, importlib.util, unittest
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[3]
-SPEC=importlib.util.spec_from_file_location("validator", ROOT/"specs/024-mitgeltende-dokumente-verzahnung/tools/validate_mapping.py")
-V=importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(V)
+def load_validator():
+    spec = importlib.util.spec_from_file_location(
+        "feature_024_mapping_validator",
+        ROOT / "specs/024-mitgeltende-dokumente-verzahnung/tools/validate_mapping.py",
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError("Feature-024 validator module could not be loaded.")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+V = load_validator()
 
 class MappingTests(unittest.TestCase):
     def setUp(self): self.good=V.build(ROOT)
