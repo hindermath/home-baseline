@@ -1,22 +1,28 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "7d902e0b-a33d-4453-8969-a2e2f4dea346",
+  "reviewId": "b513cd85-2b45-48db-b104-b1ff682e4964",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-02T15:49:06Z",
+  "reviewedAt": "2026-08-02T13:20:52Z",
   "repository": {
     "root": ".",
-    "head": "f1ac9a7f05f7b8056b6ff360bcde33c444a60872"
+    "head": "e90252e32238fed44016981d0dc3d109b5997c23"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "b4898fc12e59d0619fcdf55da00d4bae2b3324320a067701a954ad233bab0fd9"
+    "normalizedSha256": "b4e37b597072228c8c457e29bf2e5913ef7ef45339e5f52200fc1c2ec488bd4c"
   },
   "targets": [
     {
-      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "role": "Primary",
+      "normalizedSha256": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "role": "OrderedMember",
       "normalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
       "gitBlob": "N/A"
     },
@@ -213,6 +219,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -247,13 +254,14 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 32 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
-      "The four declared roots equal the zero-indegree target set",
-      "Thirty-six unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Features 015 through 024 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
-      "Position 6 is the single declared Eligible candidate and no successor run was started",
-      "Feature 024 hardened the existing 12/157/15 mapping and preserved the public 8 plus managed 3 preset distinction",
-      "CI/CD, PowerShell, and Container Hardening remain zero-indegree roots but are intentionally not selected under serial execution"
+      "All 33 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "The three declared roots equal the zero-indegree target set",
+      "Thirty-nine unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Features 015 through 023 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
+      "Position 5 is the single declared Eligible candidate and no successor run was started",
+      "Feature 023 delivered 32 final target adoptions through 33 non-empty pull requests without runtime or propagation-target changes",
+      "Six final target heads had green provider reviews and 26 had documented provider-zero-step boundaries with exact local validation",
+      "CI/CD and PowerShell remain zero-indegree roots but are intentionally not selected under serial execution"
     ],
     "workers": []
   },
@@ -263,5 +271,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "b513cd85-2b45-48db-b104-b1ff682e4964"
+  "supersedes": "48e34132-a308-43f6-8280-2d74defb0ed7"
 }

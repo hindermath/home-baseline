@@ -5,21 +5,74 @@
   "branch": "024-mitgeltende-dokumente-verzahnung",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Retrospective",
   "status": "Active",
-  "checkpointCommit": "f56be948e23d77ec45dd895f1125eb152cd7901b",
+  "checkpointCommit": "f1ac9a7f05f7b8056b6ff360bcde33c444a60872",
   "acceptedArtifacts": [
-    {"path":"Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md","sha256":"76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50"},
-    {"path":"specs/mitgeltende-dokumente-spec-kit-verzahnung-intake-review/intake-review-result.json","sha256":"004006c928a09f45a2a593f65ef48190f0495e754bb8376d45a0084635d14974"},
-    {"path":"requirements/intakes/series/home-baseline-delivery/manifest.json","sha256":"5dae4f5b2da76ca3d5759b1ed6c2ae4a3809f20e7063e9c2fdc36cc1147ffac4"},
-    {"path":"specs/024-mitgeltende-dokumente-verzahnung/spec.md","sha256":"792f19c3145e5e007ff1fea0e9932508dd197da1e72e1765b88102e63c77ebfa"},
-    {"path":"specs/024-mitgeltende-dokumente-verzahnung/plan.md","sha256":"7c3895582c4dfb4bc5b493588d2b35928098b04d86c7e3a6a9c9bdddcc621560"}
+    {
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md",
+      "sha256": "76da7d51940505f3176dca401e287ddfcb72f1f01fd63228aaa4a8b435f39e50"
+    },
+    {
+      "path": "specs/mitgeltende-dokumente-spec-kit-verzahnung-intake-review/intake-review-result.json",
+      "sha256": "004006c928a09f45a2a593f65ef48190f0495e754bb8376d45a0084635d14974"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "3806c73f090d0826f957188354d4a1655aae9b971216c980c9b2490da31fc035"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "8e15be0501bbac58d2a104e3c5197f9f712ba9664f973aa7eccb737e6ff50b7f"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "b4898fc12e59d0619fcdf55da00d4bae2b3324320a067701a954ad233bab0fd9"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "e3aea570a1af2ada2264d0c1705132ffdffc2ec0016da621527647cf4aef2890"
+    },
+    {
+      "path": "specs/024-mitgeltende-dokumente-verzahnung/spec.md",
+      "sha256": "792f19c3145e5e007ff1fea0e9932508dd197da1e72e1765b88102e63c77ebfa"
+    },
+    {
+      "path": "specs/024-mitgeltende-dokumente-verzahnung/plan.md",
+      "sha256": "7c3895582c4dfb4bc5b493588d2b35928098b04d86c7e3a6a9c9bdddcc621560"
+    },
+    {
+      "path": "specs/024-mitgeltende-dokumente-verzahnung/autonomous-run-gate-evidence.json",
+      "sha256": "f97ffebc9b0965d8c37b62c47bf06d7fbafc608c85bbc3f87eb1f8d1a9f82f6a"
+    },
+    {
+      "path": "specs/024-mitgeltende-dokumente-verzahnung/retrospective.md",
+      "sha256": "7c1ec4f2a8ab2bbd9b62e11d2982115ce130c0cb3a8b9c8ff5c69e1dd7779c2a"
+    }
   ],
-  "tasks":{"path":"specs/024-mitgeltende-dokumente-verzahnung/tasks.md","sha256":"3989e31eca5a68259622692dc519ed2cbde094347212ef2210da4ecf3ff7c912","completed":41,"total":50},
-  "lastPassingGate":"All local gates passed; Bash and PowerShell Homogeneity are 30/30 in a clean exact-head worktree.",
-  "nextExactAction":"Commit final local evidence, render statistics, then push and create the feature PR.",
-  "lastOperation":{"kind":"Implement","state":"Completed","summary":"The existing mapping now distinguishes the public eight-preset profile from the three optional intake presets and deterministic proof is green."},
-  "stop":{"reason":"N/A","requestedAt":"N/A","safeBoundary":"N/A"},
-  "closeout":{"mergeOrPublication":"Pending","defaultBranchSync":"Pending","postMergeActions":"Pending","finalValidation":"Pending"},
-  "updatedAt":"2026-08-02T14:50:02Z"
+  "tasks": {
+    "path": "specs/024-mitgeltende-dokumente-verzahnung/tasks.md",
+    "sha256": "e02c40148f3a416525cb0a2f7d36cc5ed290788e85978da3234041e78b9068f8",
+    "completed": 49,
+    "total": 50
+  },
+  "lastPassingGate": "Feature PR #208 merged reviewed head f5f62e7 as f1ac9a7 after successful exact-head technical gates, five validated gate entries, and zero actionable review threads; successor Series validators pass at 32/4/35.",
+  "nextExactAction": "Commit and publish the non-empty causal closeout PR, converge its exact-head gates, then complete terminal state.",
+  "lastOperation": {
+    "kind": "PostMergeActions",
+    "state": "Completed",
+    "summary": "Position 5 is archived and the Ready successor Series selects Position 6 without starting it."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-02T15:53:06Z"
 }

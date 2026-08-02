@@ -50,12 +50,12 @@
 
 ## Delivery and Closeout
 - [X] T041 Commit exact feature candidate
-- [ ] T042 Push and create non-empty PR
-- [ ] T043 Converge provider checks and review threads
-- [ ] T044 Validate exact-head gate evidence
-- [ ] T045 Merge under repository policy and delete feature branch
-- [ ] T046 Synchronize clean local main with origin/main
-- [ ] T047 Archive Position 5 through causal closeout when required
-- [ ] T048 Revalidate successor Series and single eligible target
-- [ ] T049 Complete retrospective with promotion decision
+- [X] T042 Push and create non-empty PR
+- [X] T043 Converge provider checks and review threads
+- [X] T044 Validate exact-head gate evidence
+- [X] T045 Merge under repository policy and delete feature branch
+- [X] T046 Synchronize clean local main with origin/main
+- [X] T047 Archive Position 5 through causal closeout when required
+- [X] T048 Revalidate successor Series and single eligible target
+- [X] T049 Complete retrospective with promotion decision
 - [ ] T050 Complete state with all closeout fields terminal

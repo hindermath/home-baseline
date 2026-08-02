@@ -33,3 +33,28 @@ proves the tracked candidate without deleting machine-local build output.
 Security, A11Y and Documentation Impact are Applicable. Runtime architecture,
 supply chain, AI product, cloud and agent-guidance changes are `N/A` with the
 triggers recorded in spec and gate requirements.
+
+## Delivery And Closeout
+
+Feature PR #208 merged reviewed head
+`f5f62e751617fcc5f7987f90fdbf9ae8ea4401cb` as
+`f1ac9a7f05f7b8056b6ff360bcde33c444a60872`. The successful exact-head runs
+covered Homogeneity, PowerShell analysis, the learning package, links, and the
+Maintenance TUI on macOS, Ubuntu, and Windows. Both autonomous gate validators
+accepted five primary entries for the exact reviewed head.
+
+One duplicate Homogeneity run failed before the first repository check because
+the Windows runner lost its network connection while downloading pinned
+`ripgrep`. The parallel exact-head run passed Homogeneity on all three
+platforms. This provider preflight failure remained separate from technical
+acceptance and was covered by the explicitly authorized narrow admin bypass.
+
+Copilot found two actionable issues across the review cycles: inconsistent
+validator IDs and an untrusted evidence path. Both were corrected with tests;
+all threads are resolved. The final validator pins the canonical mapping path
+and rejects absolute and parent-traversal evidence paths.
+
+The causal closeout archives Position 5 and the previous Series and review
+evidence byte-for-byte. The successor Series is `Ready` with 32 targets, four
+roots, 35 dependencies, and Position 6 as its sole preferred `Eligible`
+candidate. No successor run starts inside this closeout.

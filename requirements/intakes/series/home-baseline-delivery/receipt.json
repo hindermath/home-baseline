@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "285e15e0-f0be-4a68-bad9-7ceb567db0f2",
+  "receiptId": "50a0e599-7493-4d17-b886-ba7054751b72",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-08-02T12:49:36Z",
+  "createdAt": "2026-08-02T15:49:06Z",
   "operation": {
-    "operationId": "62d2ced0-6e9b-47e1-aea0-ef82d2f7bd59",
+    "operationId": "a8ffda5e-9a0b-4631-81aa-bb889f2a224e",
     "type": "Update",
-    "authorityEvidence": "The current user instruction authorizes the in-place intake update and the required hash-bound series alignment without changing order, roots, dependencies, or starting a feature."
+    "authorityEvidence": "Explicit MergeAndSync authority requires the causal Feature-024 archive, evidence-bound Position-6 handoff, and no automatic successor start inside the closeout."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "5dae4f5b2da76ca3d5759b1ed6c2ae4a3809f20e7063e9c2fdc36cc1147ffac4"
+    "normalizedSha256": "3806c73f090d0826f957188354d4a1655aae9b971216c980c9b2490da31fc035"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/62d2ced0-6e9b-47e1-aea0-ef82d2f7bd59/receipt.json",
-    "receiptNormalizedSha256": "5500628f24732fe35413803371fda872937330932eae91a537d2bc28711ba2fe",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/62d2ced0-6e9b-47e1-aea0-ef82d2f7bd59/manifest.json",
-    "manifestArchiveSha256": "d181e6260239c33ef46203da4485ea65c259f08b2dc73e2ce1357665077c1050"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/a8ffda5e-9a0b-4631-81aa-bb889f2a224e/receipt.json",
+    "receiptNormalizedSha256": "43cb935e677904673b16e874bd8ae6cf2ac9ed206796e351d0cf547fd4ce9cd6",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/a8ffda5e-9a0b-4631-81aa-bb889f2a224e/manifest.json",
+    "manifestArchiveSha256": "5dae4f5b2da76ca3d5759b1ed6c2ae4a3809f20e7063e9c2fdc36cc1147ffac4"
   },
   "tombstone": {
     "path": "N/A",

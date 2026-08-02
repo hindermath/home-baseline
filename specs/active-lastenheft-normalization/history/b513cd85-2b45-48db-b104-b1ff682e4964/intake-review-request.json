@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "7d902e0b-a33d-4453-8969-a2e2f4dea346",
+  "reviewId": "b513cd85-2b45-48db-b104-b1ff682e4964",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "path": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -135,6 +139,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -169,12 +174,29 @@
       "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
-      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
-      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
       {
         "from": "Lastenheft_Secure-Development-Container-Hardening.md",
         "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -227,6 +249,12 @@
         "from": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
         "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
         "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md",
+        "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+        "kind": "AssessmentBaseline",
         "binding": true
       },
       {
