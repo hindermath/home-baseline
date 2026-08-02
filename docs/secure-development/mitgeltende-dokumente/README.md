@@ -37,9 +37,9 @@
 
 ## Abgleich mit Spec-Kit-Presets / Alignment With Spec Kit Presets
 
-**DE:** Die Dokumente duerfen dem oeffentlichen Acht-Preset-Standardprofil oder den drei optionalen Intake-Presets des verwalteten Elf-Preset-Profils nicht widersprechen. Die Intake-Presets unterstuetzen Erzeugung, Review und Reihenfolge, starten aber keinen Feature-Lauf. Jeder Pruefpunkt erhaelt getrennt Anwendbarkeit und Umsetzungsstatus.
+**DE:** Die Dokumente duerfen dem oeffentlichen Acht-Preset-Standardprofil oder den drei optionalen Intake-Presets des verwalteten Elf-Preset-Profils nicht widersprechen. Die Intake-Presets unterstuetzen Erzeugung, Review und Reihenfolge, starten aber keinen Feature-Lauf. Jeder Pruefpunkt erhaelt getrennt die Anwendbarkeit `Applicable`, `N/A` oder `Open` und den Umsetzungsstatus `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled` oder `Not Assessed`. `N/A` benoetigt eine nachvollziehbare Begruendung und einen Ausloeser fuer die erneute Pruefung.
 
-**EN:** The documents must not conflict with the public eight-preset default or the three optional intake presets in the managed eleven-preset profile. Intake presets support authoring, review, and sequencing but start no feature run. Each item receives separate applicability and implementation status.
+**EN:** The documents must not conflict with the public eight-preset default or the three optional intake presets in the managed eleven-preset profile. Intake presets support authoring, review, and sequencing but start no feature run. Each item receives the separate applicability value `Applicable`, `N/A`, or `Open` and the implementation status `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`, or `Not Assessed`. `N/A` requires a traceable rationale and a trigger for reassessment.
 
 **DE:** Die Datei [Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md](Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md) ist die zentrale Lesefuehrung. Sie zeigt fuer jedes mitgeltende Dokument den Richtlinienbezug, die passenden Checklisten, die betroffenen Presets und typische Evidenzpfade. Nutze sie zuerst, wenn ein Spec-Kit-Lauf oder Review vorbereitet wird.
 

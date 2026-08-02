@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Validate and optionally render Feature-024 mapping evidence."""
-import argparse, hashlib, json
+import argparse
+import hashlib
+import json
 from pathlib import Path
 
 STANDARD = ["security-governance", "architecture-governance", "isaqb-architecture-governance", "a11y-governance", "cross-platform-governance", "agent-parity-governance", "autonomous-run-governance", "parallel-autonomous-run-governance"]
