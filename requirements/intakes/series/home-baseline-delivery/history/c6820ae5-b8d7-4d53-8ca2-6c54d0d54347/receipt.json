@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "1567a2ea-4c5d-471c-b696-0cd7d88d4395",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-08-05T05:54:21Z",
+  "operation": {
+    "operationId": "6e099330-0fcf-4c2d-b7e4-075d05cc10be",
+    "type": "Update",
+    "authorityEvidence": "Current explicit user request to implement the approved local intake creation and append it as advisory Pending position 38 without downstream execution or remote delivery."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "d298859783b201f6ec7949702b913f908e3223eef875249055a20439cfc1445d"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/6e099330-0fcf-4c2d-b7e4-075d05cc10be/receipt.json",
+    "receiptNormalizedSha256": "8e15be0501bbac58d2a104e3c5197f9f712ba9664f973aa7eccb737e6ff50b7f",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/6e099330-0fcf-4c2d-b7e4-075d05cc10be/manifest.json",
+    "manifestArchiveSha256": "3806c73f090d0826f957188354d4a1655aae9b971216c980c9b2490da31fc035"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

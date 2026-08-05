@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "563acca4-e386-4e35-85bd-8523da2352b7",
+  "intakeId": "99eefed4-f7ab-4228-9393-42d3f6b88019",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.0"
+  },
+  "createdAt": "2026-08-05T05:54:21Z",
+  "operation": {
+    "operationId": "07760263-d0a0-4c43-afae-7f9ec7845fc9",
+    "type": "Create",
+    "authorityEvidence": "Current explicit user request to implement the approved intake-creation and series-append plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+    "normalizedSha256": "e917f76d67eae7db79d2917f05b692055450b143c6a23b5698956083f18a2215"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Explicitly named current getting-started guide",
+      "location": "Repository",
+      "path": "docs/getting-started.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "915dad4e431ee4f94a1c9528d5e4e99221ee8115152702fb504fb27590228221",
+      "gitBlob": "3c23394a1504402500ff0f56e9e1cd246f2a218d",
+      "proofBoundary": "Current Git-tracked German getting-started guide at planning and authoring time."
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved conversation decisions and implementation plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "dbf75b7b5596d029a6961dea93171653d9279e9f2c62fb6adf2d8b510c82c082",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved current conversation snapshot covering separate checkout and template paths, advisory Pending position 38, and later Intake Update."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche beiden Einstiegsvorgänge werden getrennt dokumentiert?",
+      "answer": "Der Checkout der bestehenden kanonischen Level-0-Quelle und die Erstellung eines eigenständigen Repositorys aus dem GitHub Public Template.",
+      "evidence": "Explicit user acceptance of the proposed separation after reviewing docs/getting-started.md."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wie wirkt die Einordnung am Ende der Intake-Reihe?",
+      "answer": "Sichtbare Position 38 und aktiver Manifestplatz 33 bleiben Pending und erhalten eine nicht bindende PreferredSerialOrder-Kante von Position 37.",
+      "evidence": "User selected Pending, beratend instead of a hard completion gate or an additional root."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Wie werden zusätzliche Dokumentationsbefunde vor dem späteren Lauf aufgenommen?",
+      "answer": "Mit einer späteren ausdrücklich autorisierten speckit-intake-update-Fortschreibung und anschließendem begrenztem Series-Hash-Update.",
+      "evidence": "Explicit user intent to extend or improve the intake if further documentation findings appear."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Welche Delivery Authority besitzt der spätere Autonomous-Prompt?",
+      "answer": "LocalImplementation; Remote-Veröffentlichung benötigt eine neue ausdrückliche Autorisierung.",
+      "evidence": "No current PublishPR or MergeAndSync authority was granted for this intake."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 1,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Current authority covers local intake creation and series placement only; no remote delivery authority was granted.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 33,
+    "role": "OrderedMember",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
+}

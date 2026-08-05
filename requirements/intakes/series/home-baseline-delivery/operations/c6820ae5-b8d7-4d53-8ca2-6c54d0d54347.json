@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "c6820ae5-b8d7-4d53-8ca2-6c54d0d54347",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit $speckit-intake-repair invocation plus separate user approval of the IR002 learner/A11Y/language contract and the IR003 status-dependent matrix-field contract.",
+  "proposalNormalizedSha256": "13688a31be34f2577880c93abc3c4a45b3daabc9d31d98dbc2294ec1baf3e952",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 4,
+      "after": 4
+    },
+    "dependencyCount": {
+      "before": 36,
+      "after": 36
+    },
+    "addedTargets": [],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "orderBefore": 1,
+        "orderAfter": 1,
+        "visibleOrderBefore": 6,
+        "visibleOrderAfter": 6,
+        "roleBefore": "Primary",
+        "roleAfter": "Primary",
+        "statusBefore": "Eligible",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
+        "normalizedSha256After": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": false,
+    "reason": "Visible position 6, Primary role, root state, sole preferred Eligible status, target count, roots, and dependency graph remain unchanged; only the bound target hash changed."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347/manifest.json",
+    "manifestNormalizedSha256": "d298859783b201f6ec7949702b913f908e3223eef875249055a20439cfc1445d",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347/receipt.json",
+    "receiptNormalizedSha256": "8b2be5e8e086b99c793a28cd6660c57786dbe4f26cc2e6ec09d891b20ad4cc44"
+  },
+  "preparedPaths": [
+    "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+    "specs/intake-authoring-receipts/rl-se-checklist-selbstpruefung.json",
+    "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/c9a5addb-05f3-44d0-8192-478187af0a5c/target.md",
+    "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/c9a5addb-05f3-44d0-8192-478187af0a5c/receipt.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-request.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-result.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-report.md",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/history/4305e0f8-fb23-467e-b73f-bed65f096d16/intake-review-request.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/history/4305e0f8-fb23-467e-b73f-bed65f096d16/intake-review-result.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/history/4305e0f8-fb23-467e-b73f-bed65f096d16/intake-review-report.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347.json",
+    "docs/project-statistics.config.json",
+    "docs/project-statistics.md"
+  ],
+  "validation": {
+    "requirementsGovernanceBash": "Passed",
+    "requirementsGovernancePowerShell": "Passed",
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "reviewBash": "Passed",
+    "reviewPowerShell": "Passed",
+    "seriesBash": "Passed",
+    "seriesPowerShell": "Passed",
+    "statistics": "FollowUp",
+    "statisticsFollowUp": {
+      "owner": "home-baseline maintainer",
+      "risk": "The generated Profile-2 block does not yet include phase 56; the canonical phase source and update-log evidence are already current.",
+      "deadline": "Before the next remote delivery that includes this intake repair.",
+      "revisitTrigger": "A clean worktree after an explicitly authorized source commit, followed by the normal statistics-only render and verification cycle.",
+      "evidence": "bash scripts/render-project-statistics.sh --check-only --json returned DRIFT with totalTextLines 614569; the write mode correctly refused the dirty worktree. The 146-assertion renderer test suite passed.",
+      "scopeReason": "The repair command does not authorize committing or stashing the pre-existing intake and Series worktree changes solely to satisfy the renderer's clean-tree barrier."
+    },
+    "diffCheck": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

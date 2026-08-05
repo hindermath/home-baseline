@@ -139,12 +139,12 @@ declared `Eligible` candidate. This closeout starts no successor run.*
 
 ## Aktive Reihenfolge / Active Order
 
-Der aktuelle maschinenpruefbare Vertrag umfasst 32 Ziele, vier Roots und
-35 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
+Der aktuelle maschinenpruefbare Vertrag umfasst 33 Ziele, vier Roots und
+36 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
 Manifest als bevorzugtes `Eligible` deklariert.
 
-*The current machine-verifiable contract contains 32 targets, four roots, and
-35 binding or advisory dependencies. Exactly one target is
+*The current machine-verifiable contract contains 33 targets, four roots, and
+36 binding or advisory dependencies. Exactly one target is
 declared as the preferred `Eligible` candidate in the manifest.*
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
@@ -185,24 +185,28 @@ declared as the preferred `Eligible` candidate in the manifest.*
 | 35 | `Lastenheft_Preset-Learning-Series-Governance.md` | Produktisiert nur bestätigte Audit-Findings als optionales `learning-series-governance`-Preset für Lernreihen, Ausbildungsprofile, Lernbegleiter und KI-Handlungskompetenz. / Productizes only confirmed audit findings as an optional `learning-series-governance` preset for learning series, training profiles, learner guidance, and applied AI competence. |
 | 36 | `Lastenheft_Learning-Series-Governance-IHK-Pilot.md` | Validiert das neue Preset an sieben bestehenden IT-Ausbildungsprofilen und zwei begrenzten synthetischen Nicht-IT-Profilen, ohne Lernmaterial automatisch zu verändern. / Validates the new preset against seven existing IT training profiles and two bounded synthetic non-IT profiles without automatically changing learning content. |
 | 37 | `Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md` | Prüft abschließend jede Reihe in sich, gegen ihre normativen Quellen und alle Reihen gemeinsam auf konsistente Lernziele, Evidence, KI-Kompetenz und Sicherheitsgrenzen. / Finally checks every series internally, against its normative sources, and across all series for consistent learning goals, evidence, AI competence, and safety boundaries. |
+| 38 (`Pending`, beratend / advisory) | `Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md` | Bereitet die getrennte, bilinguale Dokumentation des bestehenden Level-0-Checkouts und der Erstellung eines eigenen Repositorys aus dem GitHub Public Template vor. Die Position bleibt nicht dringend und erhält keine Startautorität. / Prepares separate bilingual guidance for checking out the existing Level 0 source and creating a separate repository from the GitHub public template. The item remains non-urgent and grants no start authority. |
 
 Der deklarierte Status `Eligible` markiert genau einen bevorzugten Kandidaten;
-der Validator weist daneben alle fachlich unblocked Roots rechnerisch aus. Die
+der Validator weist daneben alle Ziele ohne unvollständige bindende Vorgänger
+rechnerisch aus. Die
 Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
-den früheren Series-Review hashbedingt archiviert. Nach dem Feature-024-
-Closeout bestaetigt der aktuelle Schema-1.1-Series-Review 32 Ziele, vier Roots,
-35 Abhaengigkeiten und Position 6 als einzigen bevorzugten `Eligible`-
-Kandidaten. Vor einem später ausdrücklich autorisierten Lauf werden zuerst
-`$speckit-intake-series-status` und der zu Position 6 gehoerende
-`$speckit-intake-review` ausgeführt.
+den früheren Series-Review hashbedingt archiviert. Der letzte
+Schema-1.1-Series-Review belegt den vorherigen Stand mit 32 Zielen, vier Roots
+und 35 Abhängigkeiten; er deckt Position 38 nicht ab. Das aktuelle Manifest
+enthält 33 Ziele, vier Roots, 36 Abhängigkeiten und Position 6 als einzigen
+bevorzugten `Eligible`-Kandidaten. Vor einem später ausdrücklich autorisierten
+Lauf werden zuerst `$speckit-intake-series-status` und der zum ausgewählten
+Ziel gehörende `$speckit-intake-review` ausgeführt.
 
 *The declared `Eligible` lifecycle marks exactly one preferred candidate; the
-validator separately reports every domain-unblocked root as computationally
-eligible. The source/Home Runtime refinement archived the former D4-D7 reviews.
-After Feature 024 closes, the current schema-1.1 Series review confirms 32
-targets, four roots, 35 dependencies, and item 6 as the sole preferred
-Eligible candidate. Before any later explicitly authorized run, execute
-`$speckit-intake-series-status` and the Intake Review for item 6.*
+validator separately reports every target without incomplete binding
+predecessors as computationally eligible. The last schema-1.1 Series review
+covers the previous 32-target, four-root, 35-dependency state and does not cover
+item 38. The current manifest contains 33 targets, four roots, 36 dependencies,
+and item 6 as the sole preferred Eligible candidate. Before any later
+explicitly authorized run, execute `$speckit-intake-series-status` and the
+Intake Review for the selected target.*
 
 ## Verbindliche Abhaengigkeiten / Binding Dependencies
 
@@ -309,6 +313,30 @@ D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
 37 Lernreihen-Gesamtkonsistenz-Closure
 
 ```
+
+### Beratende Reihenfolge / Advisory Order
+
+Die folgende Kante bewahrt die sichtbare Reihenfolge, ist aber keine fachliche
+oder technische Startbedingung:
+
+*The following edge preserves visible order but is not a functional or
+technical start prerequisite:*
+
+```text
+37 Lernreihen-Gesamtkonsistenz-Closure
+  - - [PreferredSerialOrder, nicht bindend / advisory] - ->
+38 Level-0-Checkout und Public-Template-Erstellung [Pending]
+```
+
+Position 38 besitzt deshalb keinen unvollständigen bindenden Vorgänger und kann
+vom Validator rechnerisch als unblocked erscheinen. Nur Position 6 bleibt
+ausdrücklich als bevorzugtes `Eligible` deklariert. `Pending` und die sichtbare
+Position erteilen Position 38 keine Start- oder Delivery-Autorität.
+
+*Item 38 has no incomplete binding predecessor and may therefore appear as
+computationally unblocked. Only item 6 remains the declared preferred Eligible
+candidate. Pending status and visible order grant no start or delivery
+authority.*
 
 Nach dem Abschluss von Feature 024 sind die aktiven Roots `6`, `7`, `9` und
 `10`. Position 5 ist archiviert; ihre gemeinsame Bewertungsgrundlage bleibt als
@@ -455,6 +483,18 @@ source-supported goals, project supplements, and explicit future-skill
 assumptions remain distinguishable. Intentional occupation-specific
 differences are documented rather than removed, and no run starts its
 successor automatically.*
+
+Position 38 bildet anschließend einen eigenständigen, nicht dringlichen
+Dokumentations-Follow-up. Die beratende Kante von Position 37 bewahrt seine
+sichtbare Einordnung am Ende, behauptet aber keine fachliche Abhängigkeit von
+der Lernreihen-Closure. Weitere Befunde dürfen vor dem Intake Review nur über
+einen ausdrücklich autorisierten `$speckit-intake-update` ergänzt werden; der
+dadurch geänderte Zielhash wird anschließend begrenzt in der Series nachgeführt.
+
+*Item 38 is a separate, non-urgent documentation follow-up. Its advisory edge
+from item 37 preserves the visible final position without claiming a functional
+dependency on the learning-series closure. Later findings use an explicitly
+authorized Intake Update followed by a bounded series hash refresh.*
 
 Der Vorlauf D1 bis D3 bildet den Dokumentations-Wirklichkeitsabgleich. D1 prüft
 Level 0 und jedes aktuell registrierte Level-1-/Level-2-Repository zunächst

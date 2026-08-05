@@ -449,6 +449,22 @@
       "labelEn": "AEPS Engineering Controls registration",
       "netLines": 307,
       "activeDays": 1
+    },
+    {
+      "slot": 55,
+      "id": "level0-checkout-public-template-intake",
+      "labelDe": "Level-0-Checkout- und Public-Template-Intake",
+      "labelEn": "Level 0 checkout and public template intake",
+      "netLines": 1036,
+      "activeDays": 1
+    },
+    {
+      "slot": 56,
+      "id": "rl-se-checklist-self-assessment-intake-repair",
+      "labelDe": "RL-SE-/Checklist-Selbstpruefungsintake-Reparatur",
+      "labelEn": "RL-SE checklist self-assessment intake repair",
+      "netLines": 1549,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
