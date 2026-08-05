@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "6e099330-0fcf-4c2d-b7e4-075d05cc10be",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user request to implement the approved local intake creation and append it as advisory Pending position 38 without downstream execution or remote delivery.",
+  "proposalNormalizedSha256": "d298859783b201f6ec7949702b913f908e3223eef875249055a20439cfc1445d",
+  "differences": {
+    "targetCount": {
+      "before": 32,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 4,
+      "after": 4
+    },
+    "dependencyCount": {
+      "before": 35,
+      "after": 36
+    },
+    "addedTargets": [
+      {
+        "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+        "role": "OrderedMember",
+        "normalizedSha256": "e917f76d67eae7db79d2917f05b692055450b143c6a23b5698956083f18a2215",
+        "status": "Pending",
+        "activeManifestOrder": 33,
+        "visibleOrder": 38
+      }
+    ],
+    "removedTargets": [],
+    "changedTargets": [],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [
+      {
+        "from": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+        "to": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      }
+    ],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Appends visible position 38 as a Pending ordered member with advisory PreferredSerialOrder after position 37 while preserving the sole declared Eligible target."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/6e099330-0fcf-4c2d-b7e4-075d05cc10be/manifest.json",
+    "manifestNormalizedSha256": "3806c73f090d0826f957188354d4a1655aae9b971216c980c9b2490da31fc035",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/6e099330-0fcf-4c2d-b7e4-075d05cc10be/receipt.json",
+    "receiptNormalizedSha256": "8e15be0501bbac58d2a104e3c5197f9f712ba9664f973aa7eccb737e6ff50b7f"
+  },
+  "preparedPaths": [
+    "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+    "specs/intake-authoring-receipts/level-0-checkout-und-public-template-erstellung.json",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "docs/project-statistics.config.json",
+    "docs/project-statistics.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json"
+  ],
+  "validation": {
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "seriesBash": "Passed",
+    "seriesPowerShell": "Passed",
+    "statistics": "Passed",
+    "diffCheck": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

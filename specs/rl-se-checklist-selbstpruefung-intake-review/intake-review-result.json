@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "9cdf1bfd-7482-4ead-9888-29c0340bee77",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-08-05T10:27:31Z",
+  "repository": {
+    "root": ".",
+    "head": "25aa0c397d870a6437791efbad68daccfc77ac0d"
+  },
+  "requestEvidence": {
+    "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-request.json",
+    "normalizedSha256": "e4ee27a26fe9b1c862b8afd5168200d66c1d568ad113cab9b1cd904a248a42d4"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "role": "Primary",
+      "normalizedSha256": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [
+    {
+      "id": "IRA001",
+      "status": "Answered",
+      "owner": "home-baseline intake owner",
+      "question": "May the deterministic IR001 dependency-reference repair be applied?",
+      "answer": "Yes. The explicit $speckit-intake-repair invocation authorizes the mechanical replacement with the current Feature 024 source and immutable completion evidence.",
+      "evidence": "Current repair invocation, repository path resolution, and archived review finding IR001."
+    },
+    {
+      "id": "IRA002",
+      "status": "Answered",
+      "owner": "User",
+      "question": "Which learner, prior-knowledge, terminology, accessibility, and language contract applies?",
+      "answer": "Maintainers and training leads are primary, apprentices are secondary; basic Git, Markdown, and repository knowledge is assumed, but Spec Kit and security abbreviations are not. Terms are explained on first use. User-facing results are text-first, WCAG-2.2-AA-capable, CEFR-B2, and complete in German first and English second.",
+      "evidence": "Explicit current user answer approving the complete IR002 contract."
+    },
+    {
+      "id": "IRA003",
+      "status": "Answered",
+      "owner": "User",
+      "question": "Which status-dependent evidence-matrix field contract applies?",
+      "answer": "Every row has ID, normative source, status, and rationale; Applicable, AlreadySatisfied, N/A, Open, and FollowUp use the separately stated required fields consistently across requirements, expected artifacts, acceptance, and prompts.",
+      "evidence": "Explicit current user answer ja bitte after the complete IR003 contract was presented."
+    }
+  ],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "4305e0f8-fb23-467e-b73f-bed65f096d16"
+}

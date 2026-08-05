@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "4305e0f8-fb23-467e-b73f-bed65f096d16",
+  "mode": "Single",
+  "status": "NeedsRemediation",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-08-05T06:32:22Z",
+  "repository": {
+    "root": ".",
+    "head": "25aa0c397d870a6437791efbad68daccfc77ac0d"
+  },
+  "requestEvidence": {
+    "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-request.json",
+    "normalizedSha256": "4f6be11554a697907e59a4a5af22f126f8a1bf2c4f9fecefbf9702fb890c78e2"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "role": "Primary",
+      "normalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
+      "gitBlob": "68aed4838c3ffe42ef6774eb5d88af48d0688885"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR001",
+      "severity": "High",
+      "category": "DependenciesAndReferences",
+      "target": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "disposition": "Open; remediation is required before Specify or Autonomous may consume this intake.",
+      "owner": "home-baseline intake owner",
+      "evidence": "Lines 23-25 name Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.md as the binding position-5 baseline, but that path does not exist. The completed source is Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md and completion evidence lives under specs/024-mitgeltende-dokumente-verzahnung/. Lines 131 and 143 require the downstream commands to prove this baseline without binding either current path or completion evidence.",
+      "reevaluationTrigger": "Run a full Single Intake Review after the intake names the current completed position-5 artifact and immutable completion evidence consistently in normative text and both prompts."
+    },
+    {
+      "id": "IR002",
+      "severity": "Medium",
+      "category": "LearnerAccessibilityAndLanguage",
+      "target": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "disposition": "Open; add an explicit audience, assumed-prior-knowledge contract, first-use explanations, and a consistent German-first/English-second presentation boundary.",
+      "owner": "home-baseline intake owner",
+      "evidence": "Lines 78-80 and 102 make the output learner-facing and require A11Y, WCAG 2.2 AA, DE-first/EN-second, and CEFR B2. The intake does not declare assumed prior knowledge, leaves SBOM, AI-SBOM, VEX, SLSA, C3A/C5, NIS2, CRA, DORA, A11Y, WCAG, CEFR, and QISMS unexplained on first use, and provides English only for the dependency paragraph while the authoring receipt declares GermanFirstEnglishSecond.",
+      "reevaluationTrigger": "Run a full Single Intake Review after the learner/readability contract and language treatment are explicit and synchronized throughout the intake and prompts."
+    },
+    {
+      "id": "IR003",
+      "severity": "Medium",
+      "category": "RequirementsAndPromptAlignment",
+      "target": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "disposition": "Open; define one status-dependent matrix-field contract and use it verbatim in requirements, acceptance criteria, and the Specify prompt.",
+      "owner": "home-baseline intake owner",
+      "evidence": "Lines 67-68 require owner, follow-up, and re-evaluation trigger for every check point; lines 97-99 require those fields only for Open; line 135 again requires every status to carry every field and additionally residual risk. These contracts can produce incompatible matrices and are not resolved by the acceptance criteria in lines 117-121.",
+      "reevaluationTrigger": "Run a full Single Intake Review after the per-status mandatory fields and acceptance evidence are internally consistent and prompt-aligned."
+    }
+  ],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

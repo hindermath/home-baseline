@@ -9,7 +9,7 @@
     {
       "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "role": "Primary",
-      "normalizedSha256": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755",
+      "normalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
       "status": "Eligible"
     },
     {
@@ -197,12 +197,6 @@
       "role": "OrderedMember",
       "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
       "status": "Blocked"
-    },
-    {
-      "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e917f76d67eae7db79d2917f05b692055450b143c6a23b5698956083f18a2215",
-      "status": "Pending"
     }
   ],
   "roots": [
@@ -421,12 +415,6 @@
       "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
       "kind": "FinalAuditInput",
       "binding": true
-    },
-    {
-      "from": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
-      "to": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
-      "kind": "PreferredSerialOrder",
-      "binding": false
     }
   ],
   "evidencePaths": [
@@ -458,7 +446,6 @@
     "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
     "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
     "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
-    "specs/intake-authoring-receipts/level-0-checkout-und-public-template-erstellung.json",
     "specs/intake-authoring-series/itse-learning-series/series.json",
     "specs/intake-authoring-series/learning-series-governance/series.json",
     "specs/itse-learning-intakes/reviews/26-gap-audit/intake-review-result.json",
