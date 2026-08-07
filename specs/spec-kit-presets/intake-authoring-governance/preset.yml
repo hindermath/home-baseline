@@ -15,6 +15,11 @@ requires:
 provides:
   templates:
     - type: "template"
+      name: "intake-authoring-governance-model-routing"
+      file: "model-routing.json"
+      description: "Agent-neutral command-to-role routing contract"
+
+    - type: "template"
       name: "intake-governance-config-template"
       file: "templates/intake-governance-config-template.json"
       description: "Schema-2.0 language, naming, role, collection, and legacy-alias contract"

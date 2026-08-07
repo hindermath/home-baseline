@@ -22,6 +22,7 @@ Vorbereitung bis zum belegbaren Abschluss. Es verbindet:
 
 - ausdrueckliche Berechtigungen statt stiller Annahmen,
 - reproduzierbare Specify-, Clarify-, Plan-, Tasks- und Analyze-Phasen,
+- ausgewogenes, providerneutrales Modell-Routing an sicheren Phasengrenzen,
 - einen maschinenlesbaren Run-State,
 - kooperatives Stoppen und idempotentes Fortsetzen,
 - pruefbare Acceptance-Gates fuer den exakten aktuellen Head,
@@ -37,7 +38,8 @@ Bypass-, Secret- oder Provider-Administrationsrechte.
 flowchart LR
     A["Expliziter Auftrag"] --> B["Preflight und Berechtigung"]
     B --> C["Spec Kit: Specify bis Analyze"]
-    C --> D["Implementieren und validieren"]
+    C --> R["SHA-256-gebundene Phasenuebergabe"]
+    R --> D["Implementieren und validieren"]
     D --> E{"Delivery-Modus"}
     E -->|LocalImplementation| F["Lokaler Abschluss"]
     E -->|PublishPR| G["Commit, Push und PR"]
@@ -52,6 +54,12 @@ Preflight und Berechtigungspruefung. Danach folgen die Spec-Kit-Phasen,
 Implementierung und Validierung. Der aktuelle Auftrag bestimmt genau einen
 Delivery-Modus. Erst wenn dessen Abschlussbedingungen und die finale
 Validierung erfuellt sind, ist der Lauf `Completed`.
+
+Eine einzelne autonome Ausfuehrung darf unterschiedliche Modellprofile nutzen.
+Der Wechsel erfolgt ausschliesslich zwischen abgeschlossenen Phasen durch einen
+neuen Prozess. Rolle, Profil, Modell, Reasoning-Aufwand, Preflight und
+Ergebnis-Hash werden im Run-State belegt. Fehlt ein erforderliches lokales
+Profil, wird der Lauf `Blocked`; es gibt keinen stillen Fallback.
 
 **Text alternative EN:** An explicit instruction first passes repository and
 authority preflight. The Spec Kit phases, implementation, and validation
@@ -74,6 +82,7 @@ have succeeded.
    ```bash
    specify preset info autonomous-run-governance
    specify preset resolve autonomous-run-readiness-checklist-template
+   bash .specify/scripts/bash/invoke-autonomous-model-phase.sh --help
    ```
 
 3. Einen eindeutig begrenzten lokalen Lauf delegieren:
@@ -123,6 +132,7 @@ verifiable closeout. It combines:
 
 - explicit authority instead of silent assumptions,
 - reproducible Specify, Clarify, Plan, Tasks, and Analyze phases,
+- balanced provider-neutral model routing at safe phase boundaries,
 - machine-readable run state,
 - cooperative stop and idempotent resume,
 - acceptance gates bound to the exact current head,
@@ -166,6 +176,11 @@ bypass, secret, or provider-administration authority.
 Use `/speckit.autonomous-stop` for a deliberate pause. Resume a deliberately
 paused run only through `/speckit.autonomous-resume`.
 
+One autonomous run may use different local model profiles. A switch is allowed
+only between completed phases by starting a new process. The run state records
+the role, profile, model, reasoning effort, preflight, and result hash. A
+missing required profile blocks the run; no silent fallback is permitted.
+
 ### Preset 7 or Preset 8?
 
 Preset 7 governs one autonomous feature run. Multiple isolated workers,
@@ -193,6 +208,8 @@ Preset 8 builds on this preset and does not replace worker governance.
 - Stop is cooperative and never an implicit process kill.
 - A stored delivery mode records history; it is not current permission.
 - Missing, stale, or contradictory evidence blocks remote closeout.
+- Missing model profiles, failed preflights, or unbound phase handoffs block the
+  next routed phase.
 - `Completed` requires every applicable closeout field and final validation.
 
 ## License
