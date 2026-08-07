@@ -1034,27 +1034,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 616877 lines |
-| Textdateien / Text files | 3052 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-05 |
-| Aktivtage / Active days | 82 |
-| Relevante Commits / Relevant commits | 693 |
-| Zeilen je Aktivtag / Lines per active day | 7522.9 |
+| Textbasis / Text base | 621695 lines |
+| Textdateien / Text files | 3107 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-07 |
+| Aktivtage / Active days | 83 |
+| Relevante Commits / Relevant commits | 694 |
+| Zeilen je Aktivtag / Lines per active day | 7490.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 94.0x |
-| Speedup vs. 100 lines/day | 75.2x |
-| Methodik / Methodology | v2; source `ab6e971048d4` |
+| Speedup vs. 80 lines/day | 93.6x |
+| Speedup vs. 100 lines/day | 74.9x |
+| Methodik / Methodology | v2; source `56534f4d2484` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.5% | 21314
-Dokumentation / Documentation   [##########..........]  49.8% | 307291
-Skripte / Scripts               [##..................]   9.0% | 55596
-Konfiguration / Configuration   [#######.............]  37.2% | 229668
+Tests                           [#...................]   3.5% | 21824
+Dokumentation / Documentation   [##########..........]  49.8% | 309461
+Skripte / Scripts               [##..................]   9.2% | 57250
+Konfiguration / Configuration   [#######.............]  37.0% | 230152
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 771
 ```
@@ -1082,8 +1082,8 @@ So/Su  0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0
 Di/Tu  0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0
 Mi/We  0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4
-Do/Th  0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 -
-Fr/Fr  0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 -
+Do/Th  0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0
+Fr/Fr  0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4
 Sa/Sa  0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 -
 ```
 
@@ -1174,15 +1174,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..56
-  cap 200000 | . . . . . . . . .
-      166667 | . . . . . . . . .
-      133333 | . . . . # . . . .
-      100000 | . . . . # . . . .
-       66667 | . . . . # . . . .
-       33333 | . . . . # . . . .
-           0 +-------------------
-             48 49 50 51 52 53 54 55 56
+Slots 48..57
+  cap 200000 | . . . . . . . . . .
+      166667 | . . . . . . . . . .
+      133333 | . . . . # . . . . .
+      100000 | . . . . # . . . . .
+       66667 | . . . . # . . . . .
+       33333 | . . . . # . . . . .
+           0 +---------------------
+             48 49 50 51 52 53 54 55 56 57
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1244,6 +1244,7 @@ Slots 48..56
 | 54 | AEPS-Engineering-Controls-Registrierung / AEPS Engineering Controls registration | 307 |
 | 55 | Level-0-Checkout- und Public-Template-Intake / Level 0 checkout and public template intake | 1036 |
 | 56 | RL-SE-/Checklist-Selbstpruefungsintake-Reparatur / RL-SE checklist self-assessment intake repair | 1549 |
+| 57 | Ausgewogenes Spec-Kit-Modell-Routing / Balanced Spec Kit model routing | 4810 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1253,8 +1254,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 94.0x
-100 lines/day      [###############.....] 75.2x
+80 lines/day       [###################.] 93.6x
+100 lines/day      [###############.....] 74.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1267,7 +1268,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7522.9
+Visible repository [###############.....] 7490.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1276,9 +1277,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-05. Es enthaelt 82 aktive und 279 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-07. Es enthaelt 83 aktive und 280 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-10 and ends on 2026-08-05. It contains 82 active and 279 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-10 and ends on 2026-08-07. It contains 83 active and 280 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1293,6 +1294,6 @@ DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-05. Es enthaelt 82 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 183563 |
+| 2026-08 | 188939 |
 
 <!-- project-statistics-v2:end -->
