@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "f6eaf048-c26b-408b-aa10-38efeb127593",
+  "reviewId": "00fd052d-4a67-415a-b800-2b2b47f88000",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "OrderedMember"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -135,6 +139,7 @@
   ],
   "series": {
     "orderedTargetPaths": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
@@ -169,6 +174,7 @@
       "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
     ],
     "roots": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
       "Lastenheft_PowerShell_Cmdlets.md"

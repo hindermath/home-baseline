@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "fb1cecb8-7b5c-4d80-94fe-deafcb3ba2c8",
+  "receiptId": "5425d791-85d2-4835-90b2-ee3ed0d86459",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.2"
   },
-  "createdAt": "2026-08-08T16:46:05Z",
+  "createdAt": "2026-08-08T17:38:32Z",
   "operation": {
-    "operationId": "37d8c637-9c64-462a-9fbe-5ee9a4a50f6c",
+    "operationId": "dac14e1f-c88f-483d-bb73-6f93aac8fe27",
     "type": "Update",
-    "authorityEvidence": "Current explicit user authority to update Position 6 for MergeAndSync and preserve its Series identity, position, roots, edges, and eligibility while refreshing the bound target hash."
+    "authorityEvidence": "Explicit current MergeAndSync authority requires the causal Feature-025 archive, evidence-bound Position-7 handoff, and no automatic remediation or successor start inside the closeout."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16"
+    "normalizedSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/receipt.json",
-    "receiptNormalizedSha256": "428118490322bba575ce4455a0698b1d9381d0a58ad2b4d6140796434409591a",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/manifest.json",
-    "manifestArchiveSha256": "13688a31be34f2577880c93abc3c4a45b3daabc9d31d98dbc2294ec1baf3e952"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/dac14e1f-c88f-483d-bb73-6f93aac8fe27/receipt.json",
+    "receiptNormalizedSha256": "ea889b6b08ea75d309c20ba0a175f8ce862ffa24923ec516c142b7f6af69dbfd",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/dac14e1f-c88f-483d-bb73-6f93aac8fe27/manifest.json",
+    "manifestArchiveSha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16"
   },
   "tombstone": {
     "path": "N/A",

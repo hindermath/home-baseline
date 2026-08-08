@@ -7,10 +7,16 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "role": "Primary",
-      "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+      "normalizedSha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173",
       "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+      "status": "Pending"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -200,6 +206,7 @@
     }
   ],
   "roots": [
+    "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
     "Lastenheft_Secure-Development-Container-Hardening.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
@@ -436,8 +443,6 @@
     "specs/021-level0-documentation-architecture/retrospective.md",
     "specs/022-agentic-workspace-efficiency-guide/pr-evidence.md",
     "specs/022-agentic-workspace-efficiency-guide/retrospective.md",
-    "specs/025-rl-se-self-assessment/autonomous-run-evidence.md",
-    "specs/025-rl-se-self-assessment/documentation-impact-evidence.json",
     "specs/active-lastenheft-normalization/history/7fd2b056-6e21-4108-bf09-237f294a6024/intake-review-result.json",
     "specs/active-lastenheft-normalization/intake-review-request.json",
     "specs/active-lastenheft-normalization/intake-review-result.json",
@@ -479,9 +484,9 @@
     "specs/learning-series-governance-intakes/series/intake-review-result.json"
   ],
   "evidenceSources": [
-    "specs/025-rl-se-self-assessment/autonomous-run-gate-evidence.json",
-    "specs/025-rl-se-self-assessment/pr-evidence.md",
-    "specs/025-rl-se-self-assessment/retrospective.md",
-    "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md"
+    "specs/023-registered-doc-architecture-adoption/autonomous-run-gate-evidence.json",
+    "specs/023-registered-doc-architecture-adoption/fleet-adoption-matrix.json",
+    "specs/023-registered-doc-architecture-adoption/pr-evidence.md",
+    "specs/023-registered-doc-architecture-adoption/retrospective.md"
   ]
 }

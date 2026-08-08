@@ -115,11 +115,14 @@ Position 5 wurde als Feature 024 ueber PR #208 abgeschlossen und als
 `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md`
 archiviert. Der Lauf haertete die vorhandene Abbildung von zwoelf Checklisten,
 157 Pruefpunkten, 15 mitgeltenden Dokumenten und dem Acht-plus-drei-Presetprofil.
-Position 6 ist jetzt der einzige deklarierte `Eligible`-Kandidat. Dieser
-Closeout startet keinen Folgelauf. Der aktualisierte Position-6-Intake bindet
-die Feature-024-Evidence, erteilt dem spaeter ausdruecklich gestarteten Lauf
-`MergeAndSync` und trennt moegliche Remediation-Intakes von ihrer spaeteren
-Ausfuehrungsautoritaet.
+Position 6 wurde als Feature 025 ueber PR #214 abgeschlossen und als
+`Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md`
+archiviert. Der Lauf lieferte je Sprachhaelfte 159 eindeutige Entscheidungen
+und 21 Evidence-Eintraege. Die 149 konkreten Remediation-Kandidaten wurden
+nicht umgesetzt; sie benoetigen gepruefte, nicht leere Folge-Intakes und neue
+Ausfuehrungsautoritaet. Position 7 ist jetzt der einzige deklarierte
+`Eligible`-Kandidat. Dieser Closeout startet weder Position 7 noch eine
+Remediation.
 
 *The gate did not reorder the existing domain work. G1 is archived and removed
 from the active series. It released the six previous roots; the later D4-D7
@@ -137,16 +140,20 @@ PR #201 and is archived. It delivered 32 final repository adoptions through 33
 non-empty pull requests while leaving one user-owned dirty worktree unchanged.
 Item 5 completed as Feature 024 through PR #208 and is archived. It hardened
 the existing mapping of twelve checklists, 157 review points, 15 related
-documents, and the eight-plus-three preset profile. Item 6 is now the sole
-declared `Eligible` candidate. This closeout starts no successor run.*
+   documents, and the eight-plus-three preset profile. Item 6 completed as
+   Feature 025 through PR #214 and is archived. It delivered 159 unique
+   decisions and 21 evidence records per language half. Its 149 concrete
+   remediation candidates require reviewed, non-empty follow-up intakes and
+   new execution authority. Item 7 is now the sole declared `Eligible`
+   candidate. This closeout starts neither item 7 nor remediation.*
 
 ## Aktive Reihenfolge / Active Order
 
-Der aktuelle maschinenpruefbare Vertrag umfasst 33 Ziele, vier Roots und
+Der aktuelle maschinenpruefbare Vertrag umfasst 32 Ziele, drei Roots und
 36 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
 Manifest als bevorzugtes `Eligible` deklariert.
 
-*The current machine-verifiable contract contains 33 targets, four roots, and
+*The current machine-verifiable contract contains 32 targets, three roots, and
 36 binding or advisory dependencies. Exactly one target is
 declared as the preferred `Eligible` candidate in the manifest.*
 
@@ -156,8 +163,8 @@ declared as the preferred `Eligible` candidate in the manifest.*
 | D6 (abgeschlossen / completed) | `Lastenheft_Agentic-Workspace-und-Ein-Kommando-Wartung-Effizienzleitfaden.022-agentic-workspace-efficiency-guide.md` | Feature 022 und PR #199 lieferten den bilingualen Betriebsleitfaden, vier Leserpfade und 17 hashgebundene Claims ohne Runtime-, Preset-, Registry- oder Flottenänderung. / Feature 022 and PR #199 delivered the bilingual operating guide, four reader paths, and 17 hash-bound claims without runtime, preset, registry, or fleet changes. |
 | D7 (abgeschlossen / completed) | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.023-registered-doc-architecture-adoption.md` | Feature 023 und PR #201 übernahmen portable Dokumentationsregeln in 32 finale Ziel-Repositories. Die 45-Ziel-Matrix hielt einen nutzereigenen schmutzigen Worktree und zwölf nicht anwendbare Ziele getrennt; unveränderte Ziele erhielten keinen Leer-PR. / Feature 023 and PR #201 adopted portable documentation rules into 32 final target repositories. The 45-target matrix kept one user-owned dirty worktree and twelve inapplicable targets separate; unchanged targets received no empty pull request. |
 | 5 (abgeschlossen / completed) | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md` | Feature 024 und PR #208 haerteten die bestehende Mapping-Oberflaeche mit deterministischem Proof fuer zwoelf Checklisten, 157 Punkte, 15 Dokumente und das Acht-plus-drei-Profil. / Feature 024 and PR #208 hardened the existing mapping surface with deterministic proof for twelve checklists, 157 points, 15 documents, and the eight-plus-three profile. |
-| 6 (`Eligible`, Root) | `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` | Verankert eine generische Selbstpruefung gegen Richtlinie Sichere Entwicklung, CL_01 bis CL_12, Sammelband, mitgeltende Dokumente und Presets vor spaeteren Haertungen. Position 6 ist der einzige bevorzugte Kandidat; der Status erteilt keine Start- oder Delivery-Autoritaet. / Anchors a generic self-assessment against secure-development guideline, CL_01 through CL_12, compendium, related documents, and presets before later hardening. Item 6 is the sole preferred candidate; the status grants no start or delivery authority. |
-| 7 (Root) | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. Die Root-Eigenschaft erlaubt keinen Parallel- oder Autostart. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. Root status grants no parallel or automatic start. |
+| 6 (abgeschlossen / completed) | `Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md` | Feature 025 und PR #214 lieferten je Sprachhaelfte 159 eindeutige Entscheidungen und 21 Evidence-Eintraege. Die 149 Remediation-Kandidaten bleiben getrennte Folgearbeit. / Feature 025 and PR #214 delivered 159 unique decisions and 21 evidence records per language half. The 149 remediation candidates remain separate follow-up work. |
+| 7 (`Eligible`, Root) | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. Position 7 ist der einzige bevorzugte Kandidat; der Status erteilt keine Start-, Parallel- oder Delivery-Autoritaet. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. Item 7 is the sole preferred candidate; the status grants no start, parallel, or delivery authority. |
 | 8 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
 | 9 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
 | 10 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität und liefert damit eine Oberfläche für die nachfolgende Dokumentation. / Reviews PowerShell cmdlet conventions and Windows parity and provides a surface for the following documentation work. |
@@ -194,20 +201,19 @@ Der deklarierte Status `Eligible` markiert genau einen bevorzugten Kandidaten;
 der Validator weist daneben alle Ziele ohne unvollständige bindende Vorgänger
 rechnerisch aus. Die
 Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
-den früheren Series-Review hashbedingt archiviert. Der letzte
-Schema-1.1-Series-Review belegt den vorherigen Stand mit 32 Zielen, vier Roots
-und 35 Abhängigkeiten; er deckt Position 38 nicht ab. Das aktuelle Manifest
-enthält 33 Ziele, vier Roots, 36 Abhängigkeiten und Position 6 als einzigen
+frühere Series-Reviews hashbedingt archiviert. Der aktuelle
+Schema-1.1-Series-Review belegt 32 Ziele, drei Roots und 36 Abhängigkeiten.
+Das aktuelle Manifest enthält dieselben 32 Ziele und Position 7 als einzigen
 bevorzugten `Eligible`-Kandidaten. Vor einem später ausdrücklich autorisierten
 Lauf werden zuerst `$speckit-intake-series-status` und der zum ausgewählten
 Ziel gehörende `$speckit-intake-review` ausgeführt.
 
 *The declared `Eligible` lifecycle marks exactly one preferred candidate; the
 validator separately reports every target without incomplete binding
-predecessors as computationally eligible. The last schema-1.1 Series review
-covers the previous 32-target, four-root, 35-dependency state and does not cover
-item 38. The current manifest contains 33 targets, four roots, 36 dependencies,
-and item 6 as the sole preferred Eligible candidate. Before any later
+predecessors as computationally eligible. The current schema-1.1 Series review
+covers 32 targets, three roots, and 36 dependencies. The current manifest
+contains the same 32 targets and item 7 as the sole preferred Eligible
+candidate. Before any later
 explicitly authorized run, execute `$speckit-intake-series-status` and the
 Intake Review for the selected target.*
 
@@ -234,8 +240,8 @@ D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
                              v
               5 Mitgeltende Dokumente [abgeschlossen / completed]
 
-6 RL-SE-Selbstpruefung [Eligible, Root]
-7 Container-Haertung [Root] --> 8 Level-2-Sandbox
+6 RL-SE-Selbstpruefung [abgeschlossen / completed]
+7 Container-Haertung [Eligible, Root] --> 8 Level-2-Sandbox
 
 10 PowerShell-Cmdlets --> 11 Skript-Dokumentation
 9 CI/CD -----------\
@@ -332,22 +338,22 @@ technical start prerequisite:*
 ```
 
 Position 38 besitzt deshalb keinen unvollständigen bindenden Vorgänger und kann
-vom Validator rechnerisch als unblocked erscheinen. Nur Position 6 bleibt
+vom Validator rechnerisch als unblocked erscheinen. Nur Position 7 bleibt
 ausdrücklich als bevorzugtes `Eligible` deklariert. `Pending` und die sichtbare
 Position erteilen Position 38 keine Start- oder Delivery-Autorität.
 
 *Item 38 has no incomplete binding predecessor and may therefore appear as
-computationally unblocked. Only item 6 remains the declared preferred Eligible
+computationally unblocked. Only item 7 remains the declared preferred Eligible
 candidate. Pending status and visible order grant no start or delivery
 authority.*
 
-Nach dem Abschluss von Feature 024 sind die aktiven Roots `6`, `7`, `9` und
-`10`. Position 5 ist archiviert; ihre gemeinsame Bewertungsgrundlage bleibt als
+Nach dem Abschluss von Feature 025 sind die aktiven Roots `7`, `9` und `10`.
+Die Positionen 5 und 6 sind archiviert; ihre Bewertungsgrundlagen bleiben als
 historische Evidence erhalten. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. Position 6 ist als naechster serieller
+Schema-1.1-Review-Evidence nachweisbar. Position 7 ist als naechster serieller
 Kandidat ausgewaehlt; die anderen Roots starten nicht automatisch. Die abgeschlossenen
-Features 009 sowie 015 bis 024 sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte
+Features 009 sowie 015 bis 025 sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte
 und Abschluesse bleiben historische Evidence fuer die weitere Reihenfolge.
 
 Eintrag 4 besaß ein hartes Abschluss-Gate und ist als Feature 018
@@ -357,9 +363,11 @@ Feature-020-Closeout entfernte D4 und gab D5 mit genau `DIA001` frei. D5 wurde
 als Feature 021 abgeschlossen. D6 wurde als Feature 022 abgeschlossen. Der
 Feature-022-Closeout entfernte D6 samt seinen zwei ausgehenden Kanten und gab
 D7 frei. Der Feature-023-Closeout entfernte D7 samt seiner ausgehenden Kante
-und gab Position 5 frei. Der aktuelle Feature-024-Closeout archiviert Position
-5, entfernt ihre vier ausgehenden Kanten und gibt Position 6 als einzigen
-bevorzugten Kandidaten frei.
+und gab Position 5 frei. Der Feature-024-Closeout archivierte Position 5,
+entfernte ihre vier ausgehenden Kanten und gab Position 6 frei. Der aktuelle
+Feature-025-Closeout archiviert Position 6; da sie keine ausgehende Series-Kante
+besass, bleiben alle 36 Abhaengigkeiten erhalten. Position 7 wird als einziger
+bevorzugter Kandidat markiert.
 Diese Einordnung
 erteilt keine Start- oder Delivery-Autoritaet fuer einen Folgelauf.
 
@@ -375,7 +383,8 @@ Level-0-Finding `DIA001` um. D6 dokumentiert das nun stabile Betriebsverhalten u
 lieferte zusätzlich eine bindende Oberfläche für Position 11. D7 übernahm nur
 portable Regeln in die registrierte Flotte und gab danach Position 5 frei.
 Feature 024 haertete die gemeinsame Bewertungsgrundlage und gab danach Position
-6 frei.
+6 frei. Feature 025 bewertete die gesamte RL-SE-/Checklist-Oberflaeche und gibt
+nach ihrem Abschluss Position 7 frei.
 Keiner dieser Läufe startet seinen Nachfolger automatisch.
 
 Die Kette behandelt die Workspace-Grenze ausdrücklich kausal: D4 inventarisierte
@@ -390,8 +399,9 @@ weder Level-0-Pfade noch die technische Propagationszielmenge stillschweigend.
 4. D4 audited without remediation, D5 implemented the accepted Level 0 finding, D6
 documents the stable operating surface and also feeds item 11, and D7 adopted
 portable rules across the registered fleet before releasing item 5. Feature
-024 hardened that shared assessment baseline and then released item 6. No run
-starts its successor automatically.*
+024 hardened that shared assessment baseline and then released item 6. Feature
+025 assessed the complete RL-SE/checklist surface and releases item 7 only
+through this closeout. No run starts its successor automatically.*
 
 *The chain treats the workspace boundary causally: D4 inventoried and evaluated
 the existing separation between `~/home-baseline-source`, the manifest-managed
@@ -406,9 +416,9 @@ now completed as Feature 018. R-TUI completed as Feature 019 and provided
 D4's binding documentation-surface baseline. D4 completed as Feature 020 and
 handed exactly `DIA001` to D5. D5 completed as Feature 021 and closed `DIA001`.
 D6 completed as Feature 022 and is archived. D7 completed as Feature 023 and
-is archived. Item 5 completed as Feature 024 and is archived. Item 6 is the
-single preferred `Eligible` candidate; this closeout grants no authority to
-start it. Items 7 and 10 provide binding
+is archived. Item 5 completed as Feature 024 and is archived. Item 6 completed
+as Feature 025 and is archived. Item 7 is the single preferred `Eligible`
+candidate; this closeout grants no authority to start it. Items 7 and 10 provide binding
 baselines for their successors. Items 9 through 12 feed the final GSDB audit,
 so item 13 must run last.*
 

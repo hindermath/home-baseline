@@ -645,16 +645,13 @@ professional decisions in either language. Product/runtime code, scripts,
 presets, templates, shared agent guidance, and the Constitution remain
 unchanged.
 
-Statistics Profile 2 truthfully reports expected `DRIFT` until the source
-commit because of the uncommitted Git-derived change. Current `MergeAndSync`
-authority permits the update only after that commit and with a clean working
-tree; both Bash and PowerShell render checks must then report `CURRENT`.
+Statistics Profile 2 was updated through the repository's strict two-commit
+protocol. Bash and PowerShell reported `CURRENT` on the exact feature head;
+the closeout adds its own canonical phase before delivery.
 
-The previous local checkpoint correctly kept Series closeout
-`BlockedByAuthority`. The current user instruction and superseding Ready intake
-now authorize `MergeAndSync`. Position 6 and the Series are nevertheless
-advanced only after the merged feature pull request in a non-empty causal
-closeout. No remediation intake or successor run starts automatically.
+Feature PR #214 merged the exact reviewed head. The non-empty causal closeout
+archives Position 6 and advances the active Series to Position 7. No remediation
+intake or successor run starts automatically.
 
 ### Local assessment checkpoint and delivery revalidation
 
@@ -672,21 +669,19 @@ non-pass, not a technical error.
 | Mapping test and validator | Pass: 7/7 tests; 12 checklists, 157 items, 15 documents, and 8+3 presets. |
 | `specify preset list` and exact eleven checks in both shells | Pass: 11/11 presets match ID, version, priority, and enabled state. |
 | Documentation Impact fixtures and validators in both shells | Pass: 10/10 fixtures each; exactly one current `UpdateRequired`, `sourceOnly`, no Home sync. |
-| Intake, review, and Series validators in both shells | Pass: `Ready`; 33 targets, 4 roots, and 36 dependencies. Time-bound read evidence, no mutation authority. |
-| Autonomous state validators in both shells | Pass after reopening and again at final `Retrospective / Completed`, 57/57. |
-| Feature-scoped offline link check | Pass: 22/22 links, zero errors. |
+| Intake, review, and Series validators in both shells | Pass: `Ready`; feature delivery used 33 targets, 4 roots, and 36 dependencies; causal closeout uses 32 targets, 3 roots, and 36 dependencies. |
+| Autonomous state validators in both shells | Pass at final `Retrospective / Completed`, 65/65. |
+| Feature-scoped offline link check | Pass: 26/26 links, zero errors. |
 | PSScriptAnalyzer 1.25.0 | Pass: 156 files, four documented exclusions, zero Error/Warning. |
 | Secret scans in Bash and PowerShell; `specify check` | Pass: zero High/Medium, five known Low agent directories; Spec Kit CLI ready. |
-| Statistics fixtures and read-only renderers in Bash and PowerShell | Fixtures pass: 146 assertions. Both renderers: expected `DRIFT`, exit 1, methodology 2; no mutation. |
-| Homogeneity dry run in Bash and PowerShell | Both expected exit 1: 29/30 checks, only finding Statistics Profile 2 `DRIFT`; no mutation. |
-| Branch, upstream, worktree, allowlist, staging, private scope, and `git diff --check` | Pass: branch and upstream at checkpoint, isolated worktree, exactly eight allowed paths, zero staged/forbidden/private-path/secret matches, diff whitespace clean. |
+| Statistics fixtures and read-only renderers in Bash and PowerShell | Fixtures pass: 146 assertions. Both renderers reported `CURRENT` on the exact feature head; closeout statistics follow the same protocol. |
+| Homogeneity dry run in Bash and PowerShell | Pass: 30/30 checks on the exact feature head. |
+| Branch, upstream, worktree, allowlist, staging, private scope, and `git diff --check` | Pass: isolated worktrees, exact reviewed heads, zero forbidden/private-path/secret matches, and whitespace-clean diffs. |
 
 ### Next safe step
 
-The historical local checkpoint was `Retrospective / Completed`, 57/57. The
-run is reopened for the authorized delivery phase. Revalidation, the source
-commit, and the canonical statistics update are complete. Next steps are the
-feature pull request and then the causal Series closeout. The 149 candidates
-remain separate, unstarted
-remediation work and require their own intakes, reviews, and new execution
-authority.
+Feature 025 and its causal closeout are complete at `Retrospective / Completed`,
+65/65. Position 7 is the sole declared `Eligible` candidate, but no successor
+starts automatically. The 149 candidates remain separate, unstarted remediation
+work and require their own intakes, reviews, Series admission where applicable,
+and new execution authority.

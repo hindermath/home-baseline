@@ -9,10 +9,10 @@
 | Authority source | Current user instruction plus the superseding Ready Position-6 intake merged through PR #213 |
 | Evidence owner | Level 0 Maintainer |
 | Run-state path | `specs/025-rl-se-self-assessment/autonomous-run-state.json` |
-| Current state | `Implement / Active`; historical local checkpoint was `Retrospective / Completed`, 57/57 |
+| Current state | `Retrospective / Completed`, 65/65 |
 | Run ID | `8f9939c4-11cf-4918-a9fc-474ab60d12ee` |
-| Current checkpoint | `9fb325a` after merging current `main` through PR #213 |
-| Remote activity | Authorized only through exact-head feature delivery and a separate causal closeout |
+| Current checkpoint | Feature merge `268a9b885c61cf2212d15b55c4a80b762c1f60fc`; causal closeout validated separately |
+| Remote activity | Feature PR #214 merged; separate causal closeout authorized and no successor start authorized |
 
 The historical local implementation checkpoint changed no accepted planning or
 remote surface. The current delivery phase synchronizes planning, gate, task,
@@ -89,7 +89,7 @@ required implementation revalidation and corrected result evidence.
 
 | Gate | Final state | Evidence or disposition |
 |---|---|---|
-| Accepted inputs | Pass | All 19 accepted artifact hashes match the state ledger. |
+| Accepted inputs | Pass | All 25 accepted artifact hashes match the final state ledger. |
 | Reopened task state | Pass | Exactly the 14 required tasks reopened; active state was schema-valid at 43/57 before remediation. |
 | Historical local tasks | Pass | Exactly 57 task IDs existed and 57/57 were checked only after their corrected acceptance conditions passed. The current delivery phase extends the list to 65 tasks and records its current hash in the run state. |
 | Matrix scope | Pass | Complete current Level 0 repository, not only the documentation delta. |
@@ -174,10 +174,17 @@ canonical phase-59 configuration and a generated-ledger-only commit. The
 accepted proof requires Bash and PowerShell `CURRENT` plus 30/30 Homogeneity
 from the final clean source head.
 
-Series closeout remains pending until the feature PR is merged. It will be
-delivered through a separate, non-empty causal closeout with archived prior
-state, supersession evidence, a refreshed full review, and exact-head checks.
-No remediation candidate is converted into an intake or started.
+Feature PR #214 merged exact head
+`117e99202f23d819d01d44335811bd5f4e5f1ac7` as
+`268a9b885c61cf2212d15b55c4a80b762c1f60fc` after 26 successful checks,
+Copilot review without comments, and zero review threads. Human Approval was
+the sole open rule when the authorized narrow admin bypass was used.
+
+The separate, non-empty causal closeout archives Position 6, the prior Series
+manifest and receipt, and the complete prior Series review. The refreshed
+schema-1.1 review is `Ready` with 32 targets, 3 roots, and 36 dependencies.
+Position 7 is the sole declared `Eligible` candidate. No remediation candidate
+is converted into an intake or started.
 
 ## Delivery Candidate Integrity
 
@@ -192,22 +199,20 @@ must be refreshed after every candidate-head change.
 | Assessment result paths | Exactly eight: Security README, matrix, summary, tasks, Documentation Impact evidence, run evidence, gate requirements, and run state. Authority synchronization additionally changes accepted feature-planning artefacts without changing assessment decisions. |
 | Forbidden surfaces | Zero changes to product/runtime code, scripts, presets, templates, Constitution, statistics, shared agent guidance, provider configuration, or the primary checkout. |
 | Persistent index | Zero staged paths; no temporary or persistent candidate was published. |
-| Remote delivery | Applicable under current `MergeAndSync`; exact-head evidence is required for the feature PR and causal closeout PR. |
+| Remote delivery | Feature PR #214 merged after 26/26 successful exact-head checks and review convergence; the causal closeout receives its own exact-head evidence. |
 | Secrets and private paths | No secret accessed; final changed-file and repository scanners passed. |
 
 ## Closeout and Resume State
 
-- Historical stage/status: `Retrospective / Completed`, 57/57.
-- Current stage/status: `Implement / Active` during authority synchronization.
-- Current task set: 65 tasks; T058 through T060 completed before full delivery
-  validation.
-- Last passing gate: current authority, Ready Position-6 intake/review, complete
-  33/4/36 Series review, and current-main integration verified.
-- Next exact action: synchronize hashes and complete T060, then run T061.
+- Final stage/status: `Retrospective / Completed`, 65/65.
+- Feature PR #214: exact head `117e992`, 26/26 checks, no actionable review
+  thread, merge commit `268a9b8`.
+- Causal Series state: `Ready`, 32 targets, 3 roots, 36 dependencies, Position 7
+  as the sole declared `Eligible` candidate.
+- Next exact action: `N/A`.
 - Stop reason and safe boundary: `N/A`.
-- Authority revalidation required: false for the current authorized delivery;
-  mutable provider and exact-head tokens still require per-operation refresh.
+- Authority revalidation required: false; delivery and closeout authority were
+  revalidated at their operation boundaries.
 - Residual limitation: 149 remediation candidates remain unresolved and require
-  separate intakes, reviews, and current authority. Statistics remain expected
-  `DRIFT` until the source commit; Series closeout remains causally deferred
-  until after the feature merge.
+  separate intakes, reviews, Series admission where applicable, and new current
+  authority. No successor or remediation run starts in this closeout.
