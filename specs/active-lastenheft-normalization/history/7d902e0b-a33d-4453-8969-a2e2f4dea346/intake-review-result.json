@@ -1,23 +1,23 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "00fd052d-4a67-415a-b800-2b2b47f88000",
+  "reviewId": "7d902e0b-a33d-4453-8969-a2e2f4dea346",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-08T16:46:05Z",
+  "reviewedAt": "2026-08-02T15:49:06Z",
   "repository": {
     "root": ".",
-    "head": "81cb3ba71569ec7579258b7b8b47cb21b32f33d4"
+    "head": "f1ac9a7f05f7b8056b6ff360bcde33c444a60872"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "a8444d7a6c56328772ca5c77846fb1b5c6d9cf099fe62b4c57333c45effca4a7"
+    "normalizedSha256": "b4898fc12e59d0619fcdf55da00d4bae2b3324320a067701a954ad233bab0fd9"
   },
   "targets": [
     {
       "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "role": "Primary",
-      "normalizedSha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173",
+      "normalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
       "gitBlob": "N/A"
     },
     {
@@ -205,12 +205,6 @@
       "role": "OrderedMember",
       "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
       "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "e917f76d67eae7db79d2917f05b692055450b143c6a23b5698956083f18a2215",
-      "gitBlob": "N/A"
     }
   ],
   "findings": [],
@@ -250,16 +244,16 @@
       "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
       "Lastenheft_Preset-Learning-Series-Governance.md",
       "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
-      "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "series": [
-      "All 33 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "All 32 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
       "The four declared roots equal the zero-indegree target set",
       "Thirty-six unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Position 6 remains the single declared Eligible candidate with explicit MergeAndSync delivery authority",
-      "Feature 024 evidence remains the binding 12/157/15 and eight-plus-three assessment baseline",
-      "Remediation intake creation, review, series admission, and autonomous execution remain separate explicit governance steps"
+      "Features 015 through 024 remain archived with completed feature, exact-head, platform, merge, and closeout evidence",
+      "Position 6 is the single declared Eligible candidate and no successor run was started",
+      "Feature 024 hardened the existing 12/157/15 mapping and preserved the public 8 plus managed 3 preset distinction",
+      "CI/CD, PowerShell, and Container Hardening remain zero-indegree roots but are intentionally not selected under serial execution"
     ],
     "workers": []
   },
@@ -269,5 +263,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "7d902e0b-a33d-4453-8969-a2e2f4dea346"
+  "supersedes": "b513cd85-2b45-48db-b104-b1ff682e4964"
 }

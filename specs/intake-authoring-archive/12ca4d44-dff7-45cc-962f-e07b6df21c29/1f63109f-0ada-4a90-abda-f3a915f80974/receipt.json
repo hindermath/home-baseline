@@ -1,22 +1,22 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "a8357c1d-2ee2-4a33-9ffb-8d39371a1714",
+  "receiptId": "e2e57fa1-9c92-4d9a-8e1f-5a54d5847939",
   "intakeId": "12ca4d44-dff7-45cc-962f-e07b6df21c29",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.0"
   },
-  "createdAt": "2026-08-08T16:46:05Z",
+  "createdAt": "2026-08-05T10:27:31Z",
   "operation": {
-    "operationId": "1f63109f-0ada-4a90-abda-f3a915f80974",
+    "operationId": "c9a5addb-05f3-44d0-8192-478187af0a5c",
     "type": "Update",
-    "authorityEvidence": "Explicit current user instruction to update and deliver Position 6 with MergeAndSync, preserve the accepted assessment scope, and document the governed remediation handoff."
+    "authorityEvidence": "Explicit current user invocation of $speckit-intake-repair plus separate approval of the IR002 learner/A11Y/language contract and the IR003 status-dependent matrix-field contract."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
-    "normalizedSha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173"
+    "normalizedSha256": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755"
   },
   "sources": [
     {
@@ -25,7 +25,7 @@
       "kind": "File",
       "label": "Archived prior accepted RL-SE self-assessment intake",
       "location": "Repository",
-      "path": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/1f63109f-0ada-4a90-abda-f3a915f80974/target.md",
+      "path": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/c9a5addb-05f3-44d0-8192-478187af0a5c/target.md",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -36,8 +36,8 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755",
-      "gitBlob": "a37489b6c693830170783c106bf5117b637b0d82",
+      "normalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
+      "gitBlob": "68aed4838c3ffe42ef6774eb5d88af48d0688885",
       "proofBoundary": "ArchivedSupersededTarget"
     },
     {
@@ -144,27 +144,6 @@
       "normalizedSha256": "6adcb275e16fda942b1375567d4194d11cbd2ff0b53dbf2c3736d124268a4ed1",
       "gitBlob": "N/A",
       "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
-    },
-    {
-      "sourceId": "SRC007",
-      "order": 7,
-      "kind": "Pasted",
-      "label": "Explicit MergeAndSync and narrow admin-bypass authority",
-      "location": "SnapshotOnly",
-      "path": "N/A",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "85bc86ff65ed307206f17dda5ec0b1c49c5cd86ba71d249c2d80a377438fbd51",
-      "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: explicit current user authority"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -202,8 +181,8 @@
       "id": "IAD005",
       "status": "Answered",
       "question": "Welche Scope- und Delivery-Grenzen bleiben erhalten?",
-      "answer": "Zweck, Scope und Nicht-Ziele bleiben erhalten. Der spaetere Position-6-Lauf wird mit MergeAndSync geliefert; der enge Admin-Bypass bleibt an gruene technische Gates, null umsetzbare Threads und Human Approval als einziges offenes Gate gebunden.",
-      "evidence": "Explizite aktuelle Benutzerentscheidung fuer MergeAndSync und den begrenzten Admin-Bypass."
+      "answer": "Zweck, Scope, Nicht-Ziele und LocalImplementation bleiben unveraendert; die Reparatur startet keine Implementierung und erteilt keine Remote-Autoritaet.",
+      "evidence": "Repair-Skill-Grenze und bestehender Intake-Vertrag."
     },
     {
       "id": "IAD006",
@@ -211,13 +190,6 @@
       "question": "Welche aktive Series-Bindung gilt?",
       "answer": "Home Baseline Delivery Intake Series, sichtbare Position 6, Rolle Primary, Status Eligible und Root.",
       "evidence": "Aktuelles Series-Manifest 97735937-6a49-4507-9698-acad4498f8d4."
-    },
-    {
-      "id": "IAD007",
-      "status": "Answered",
-      "question": "Wie werden bestaetigte Remediation-Bedarfe weitergegeben?",
-      "answer": "Nur reproduzierbare, nicht leere Findings erhalten stabile IDs und abgegrenzte Intake-Vorschlaege. Create, Review, Series Update und Autonomous Start bleiben getrennte Governance-Schritte.",
-      "evidence": "Abschnitt 9.1 des aktualisierten Intakes und aktuelle Benutzerentscheidung."
     }
   ],
   "openDecisionIds": [],
@@ -228,15 +200,15 @@
     "autonomousCanonicalId": "speckit.autonomous",
     "autonomousInvocation": "$speckit-autonomous"
   },
-  "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "The current user instruction explicitly authorizes MergeAndSync and the narrow admin bypass for Position 6 under the documented gate boundary.",
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "The current repair invocation authorizes the mechanical IR001 fix; the user separately approved the exact IR002 and IR003 contracts. No remote delivery authority was granted.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/1f63109f-0ada-4a90-abda-f3a915f80974/receipt.json",
-    "targetNormalizedSha256": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755",
-    "archiveTargetPath": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/1f63109f-0ada-4a90-abda-f3a915f80974/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/1f63109f-0ada-4a90-abda-f3a915f80974/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/c9a5addb-05f3-44d0-8192-478187af0a5c/receipt.json",
+    "targetNormalizedSha256": "1262012be63c2cf97da3acfa687fa0694698e8c91bd9c5001221e585543a7463",
+    "archiveTargetPath": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/c9a5addb-05f3-44d0-8192-478187af0a5c/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/c9a5addb-05f3-44d0-8192-478187af0a5c/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -244,7 +216,7 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current explicit user instruction to deliver and merge Position 6 with MergeAndSync and a governed remediation handoff.",
+  "updateAuthorityEvidence": "Current explicit $speckit-intake-repair invocation and the two subsequent material user decisions for IR002 and IR003.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
