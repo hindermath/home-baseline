@@ -1,7 +1,8 @@
 # Aufgaben: RL-SE-Checklisten-Selbstprüfung / Tasks: RL-SE Checklist Self-Assessment
 
-**Eingabe / Input**: Verbindliche Artefakte unter `specs/025-rl-se-self-assessment/`  
-**Voraussetzungen / Prerequisites**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `quickstart.md`, `contracts/assessment-artifact-contract.md`, `checklists/requirements.md`, `.specify/memory/constitution.md`  
+**Eingabe / Input**: Verbindliche Artefakte unter `specs/025-rl-se-self-assessment/`
+
+**Voraussetzungen / Prerequisites**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `quickstart.md`, `contracts/assessment-artifact-contract.md`, `checklists/requirements.md`, `.specify/memory/constitution.md`
 **Delivery Authority**: `MergeAndSync`
 
 **Autoritätsgrenze / Authority boundary**: T001 bis T057 dokumentieren den abgeschlossenen lokalen Implementierungscheckpoint unter `LocalImplementation`. Die aktuelle Benutzeranweisung autorisiert T058 bis T065 mit `MergeAndSync`. Der Admin-Bypass bleibt auf gruene technische Gates, null umsetzbare Review-Threads und Human Approval als einziges offenes Gate begrenzt. Provider-, Secret-, Produkt- und Remediation-Aenderungen bleiben ausgeschlossen. / T001 through T057 document the completed local implementation checkpoint under `LocalImplementation`. The current user instruction authorizes T058 through T065 with `MergeAndSync`. The admin bypass remains limited to green technical gates, zero actionable review threads, and Human Approval as the sole open gate. Provider, secret, product, and remediation changes remain excluded.

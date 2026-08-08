@@ -88,7 +88,7 @@
   ],
   "tasks": {
     "path": "specs/025-rl-se-self-assessment/tasks.md",
-    "sha256": "6190ed065c82b500c4b76991bab4924955ffcf752729553618ea8f335cad7250",
+    "sha256": "fb50ab40d3d5aad991a7149f86c14bc62d39a3b01a0de83471899036b3b16ce3",
     "completed": 62,
     "total": 65,
     "taskIds": [
@@ -208,12 +208,12 @@
       }
     ]
   },
-  "lastPassingGate": "Source candidate committed at 961d2e6; canonical statistics phase 59 and final task/state metadata prepared for strict clean-head rendering",
-  "nextExactAction": "Render Statistics Profile 2 from the amended clean source head, prove Bash/PowerShell CURRENT and 30/30 Homogeneity, then commit only the generated ledger",
+  "lastPassingGate": "Exact branch-diff whitespace remediation completed; T062 remains validated and Statistics Profile 2 will be regenerated from the corrected source head",
+  "nextExactAction": "Commit the exact-diff whitespace correction, regenerate Statistics Profile 2, then push and create the feature PR",
   "lastOperation": {
-    "kind": "StatisticsSourcePrepared",
+    "kind": "ExactDiffWhitespaceRemediated",
     "state": "Completed",
-    "summary": "Prepared phase-59 statistics source and final T062 task/state metadata for deterministic clean-head rendering."
+    "summary": "Replaced two Markdown hard-break trailing spaces with an explicit paragraph break and refreshed the task hash without changing task semantics."
   },
   "stop": {
     "reason": "N/A",
@@ -226,5 +226,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-08T17:24:54Z"
+  "updatedAt": "2026-08-08T17:26:38Z"
 }
