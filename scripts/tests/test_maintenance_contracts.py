@@ -201,6 +201,7 @@ class MaintenanceContractTests(unittest.TestCase):
             "intake-review-nine-governance-presets": 9,
             "intake-authoring-ten-governance-presets": 10,
             "intake-sequencing-eleven-governance-presets": 11,
+            "model-routing-twelve-governance-presets": 12,
         }
         self.assertEqual(catalog["defaultProfile"], "standard-eight-governance-presets")
         self.assertIsNone(catalog["profiles"]["none"]["presetConfig"])

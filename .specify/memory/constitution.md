@@ -994,19 +994,23 @@ workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.6.1` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
-| `architecture-governance` | `v0.5.1` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
-| `isaqb-architecture-governance` | `v0.2.1` | `30` | general iSAQB/arc42 architecture governance |
-| `a11y-governance` | `v0.4.2` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
-| `cross-platform-governance` | `v0.2.1` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
-| `agent-parity-governance` | `v0.4.1` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.3.3` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
-| `parallel-autonomous-run-governance` | `v0.2.4` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
+| `security-governance` | `v0.6.2` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
+| `architecture-governance` | `v0.5.2` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
+| `isaqb-architecture-governance` | `v0.2.2` | `30` | general iSAQB/arc42 architecture governance |
+| `a11y-governance` | `v0.4.3` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
+| `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
+| `agent-parity-governance` | `v0.4.2` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
+| `autonomous-run-governance` | `v0.3.4` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
+| `parallel-autonomous-run-governance` | `v0.2.5` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`intake-authoring-governance` v0.3.0 at priority `64`,
-`intake-review-governance` v0.2.0 at priority `65`, and
-`intake-sequencing-governance` v0.2.2 at priority `66` are optional presets,
-not part of the standard eight. Authoring creates exactly one Markdown intake and
+`model-routing-governance` v0.1.2 at priority `61`,
+`intake-authoring-governance` v0.3.1 at priority `64`,
+`intake-review-governance` v0.2.1 at priority `65`, and
+`intake-sequencing-governance` v0.2.3 at priority `66` are optional presets,
+not part of the standard eight. Model Routing discovers harness capabilities
+locally and binds stable roles to an explicitly selected model without
+committing machine-specific model names. Unknown or ambiguous mappings fail
+closed. Authoring creates exactly one Markdown intake and
 one normalized-hash-bound receipt from explicitly named ordered UTF-8 sources.
 It asks at most five material questions per pass, protects existing targets,
 uses `LocalImplementation` when remote authority is absent, and starts no
@@ -1024,11 +1028,12 @@ roles, order, roots, edge references, predecessor coverage, and acyclicity are
 validated together. Ambiguous predecessor relations produce
 `NeedsClarification` and MUST NOT be guessed.
 
-The managed Thorsten fleet selects all three optional presets through registry
-profile `intake-sequencing-eleven-governance-presets`. The compatible
+The managed Thorsten fleet selects all four optional presets through registry
+profile `model-routing-twelve-governance-presets`. The compatible
 `intake-review-nine-governance-presets` and
-`intake-authoring-ten-governance-presets` profiles remain available but MUST
-NOT replace the eleven-preset fleet profile. These fleet-local choices do not
+`intake-authoring-ten-governance-presets`, and
+`intake-sequencing-eleven-governance-presets` profiles remain available but
+MUST NOT replace the twelve-preset fleet profile. These fleet-local choices do not
 change the public eight-preset default. A registry `defaultPresetProfile` is
 inherited by newly registered fleet repositories.
 Learning-series repositories may author and review intakes, but no learner
@@ -1086,11 +1091,11 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-The current standalone releases are `autonomous-run-governance` v0.3.3,
-`parallel-autonomous-run-governance` v0.2.4, optional
-`intake-authoring-governance` v0.3.0, optional
-`intake-review-governance` v0.2.0, and optional
-`intake-sequencing-governance` v0.2.2. Registered Level-0, Level-1, and Level-2
+The current standalone releases are `autonomous-run-governance` v0.3.4,
+`parallel-autonomous-run-governance` v0.2.5, optional
+`intake-authoring-governance` v0.3.1, optional
+`intake-review-governance` v0.2.1, and optional
+`intake-sequencing-governance` v0.2.3. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote
@@ -1104,6 +1109,10 @@ matrix with Authoring at `64` and Review at `65`. Repositories assigned
 eleven-preset matrix with Sequencing at `66`. Unknown profile names fail
 closed; selecting any profile installs governance but grants no authoring,
 review, execution, repair, remote, merge, or learner-run authority.
+Repositories assigned `model-routing-twelve-governance-presets` additionally
+install Model Routing at `61`. That preset may update only the machine-local,
+ignored routing profile after explicit authority; it never commits concrete
+provider model names or grants provider, execution, or delivery authority.
 
 Use `install-spec-kit-governance-presets.*` for normal installation so versions
 and priorities stay centralized in the matrix. Community catalog and direct

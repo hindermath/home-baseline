@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "73cf0c8f-638e-4780-b4c5-c944706ead11",
+  "intakeId": "5de122d2-6bda-4206-81a1-57b16d0a9982",
+  "generator": {"preset": "intake-authoring-governance", "version": "0.3.1"},
+  "createdAt": "2026-08-08T22:33:32Z",
+  "operation": {"operationId": "f51b2668-edcd-4332-962e-12943486cc83", "type": "Create", "authorityEvidence": "Approved model-routing implementation plan."},
+  "status": "ReadyForReview",
+  "target": {"path": "Lastenheft_Modell-Routing-Gap-Audit.md", "normalizedSha256": "3a8cbefea078ee2a6fa7bf2c9f4657a7e0b868cd6df9e02e6845afe0425aa01b"},
+  "sources": [{"sourceId": "SRC001", "order": 1, "kind": "File", "label": "Balanced Spec Kit model routing workitem", "location": "Repository", "path": "docs/work-items/2026-08-07-balanced-spec-kit-model-routing.md", "requestedUrl": "N/A", "finalUrl": "N/A", "retrievedAt": "N/A", "httpStatus": "N/A", "contentType": "N/A", "contentLength": "N/A", "etag": "N/A", "lastModified": "N/A", "redirectChain": [], "rawSha256": "N/A", "normalizedSha256": "a306b678f00bebb02ec2ab420a4fd34252205f2af57f6f2daec3867375794ada", "gitBlob": "8880c8e7043a534afc1b6f927e36d470def4ece7", "proofBoundary": "Merged Level-0 decision record plus current approved implementation plan."}],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [{"id": "IAD001", "status": "Answered", "question": "Welche Delivery Authority gilt?", "answer": "MergeAndSync with the established narrow bypass boundary.", "evidence": "Current explicit user instruction."}],
+  "openDecisionIds": [], "questionCount": 0,
+  "agentSurface": {"specifyCanonicalId": "speckit.specify", "specifyInvocation": "$speckit-specify", "autonomousCanonicalId": "speckit.autonomous", "autonomousInvocation": "$speckit-autonomous"},
+  "deliveryAuthority": "MergeAndSync", "authorityEvidence": "Current approved plan.", "promptState": "Enabled", "provenanceMode": "New",
+  "supersedes": {"receiptPath": "N/A", "targetNormalizedSha256": "N/A", "archiveTargetPath": "N/A", "archiveReceiptPath": "N/A"},
+  "legacyAdoption": {"evidenceType": "N/A", "priorTargetNormalizedSha256": "N/A", "priorGitBlob": "N/A"},
+  "updateAuthorized": false, "updateAuthorityEvidence": "N/A",
+  "series": {"seriesId": "fc8fb1b2-f073-431d-bb28-68f46b712edd", "manifestPath": "specs/intake-authoring-series/model-routing-governance/series.json", "order": 1, "role": "GapAudit", "supersedesIntakeIds": []},
+  "nextAction": "$speckit-intake-review Lastenheft_Modell-Routing-Gap-Audit.md"
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "2.0", "documentType": "IntakeReceipt",
+  "receiptId": "8c989f86-cdf2-4ea0-93ec-39505dd1900c", "intakeId": "8e03fbe9-3920-441e-ac3d-a69aeab816e5",
+  "generator": {"preset": "intake-authoring-governance", "version": "0.3.1"}, "createdAt": "2026-08-08T22:33:32Z",
+  "operation": {"operationId": "98906cec-d577-4e4b-9fde-50753dd11751", "type": "Create", "authorityEvidence": "Approved model-routing implementation plan."},
+  "status": "ReadyForReview", "target": {"path": "Lastenheft_Preset-Modell-Routing-Governance.md", "normalizedSha256": "eebf12727dee3e2d1af60d1a94c256e8f52850c1c216f2f4e23dba780f7b35e7"},
+  "sources": [{"sourceId": "SRC001", "order": 1, "kind": "File", "label": "Balanced Spec Kit model routing workitem", "location": "Repository", "path": "docs/work-items/2026-08-07-balanced-spec-kit-model-routing.md", "requestedUrl": "N/A", "finalUrl": "N/A", "retrievedAt": "N/A", "httpStatus": "N/A", "contentType": "N/A", "contentLength": "N/A", "etag": "N/A", "lastModified": "N/A", "redirectChain": [], "rawSha256": "N/A", "normalizedSha256": "a306b678f00bebb02ec2ab420a4fd34252205f2af57f6f2daec3867375794ada", "gitBlob": "8880c8e7043a534afc1b6f927e36d470def4ece7", "proofBoundary": "Merged Level-0 decision record plus current approved implementation plan."}],
+  "profile": "home-baseline-lastenheft", "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [{"id": "IAD001", "status": "Answered", "question": "Wird ein neues Preset erstellt?", "answer": "Yes, one optional preset at priority 61.", "evidence": "Approved plan."}],
+  "openDecisionIds": [], "questionCount": 0,
+  "agentSurface": {"specifyCanonicalId": "speckit.specify", "specifyInvocation": "$speckit-specify", "autonomousCanonicalId": "speckit.autonomous", "autonomousInvocation": "$speckit-autonomous"},
+  "deliveryAuthority": "MergeAndSync", "authorityEvidence": "Current approved plan.", "promptState": "Enabled", "provenanceMode": "New",
+  "supersedes": {"receiptPath": "N/A", "targetNormalizedSha256": "N/A", "archiveTargetPath": "N/A", "archiveReceiptPath": "N/A"},
+  "legacyAdoption": {"evidenceType": "N/A", "priorTargetNormalizedSha256": "N/A", "priorGitBlob": "N/A"},
+  "updateAuthorized": false, "updateAuthorityEvidence": "N/A",
+  "series": {"seriesId": "fc8fb1b2-f073-431d-bb28-68f46b712edd", "manifestPath": "specs/intake-authoring-series/model-routing-governance/series.json", "order": 2, "role": "PresetProductization", "supersedesIntakeIds": []},
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Modell-Routing-Governance.md"
+}

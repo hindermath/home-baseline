@@ -4,14 +4,14 @@
 
 Dokumentationsauswirkung: `UpdateRequired`.
 
-Die elf Presets des verwalteten Flottenprofils erhalten einen
+Die zwölf Presets des verwalteten Flottenprofils erhalten einen
 providerneutralen Kommando-zu-Rolle-Vertrag. Konkrete Agenten- und Modellnamen
 bleiben in lokalen Runner-Profilen. Ein sequenzieller autonomer Lauf darf das
 Modell nur zwischen abgeschlossenen Prozessen wechseln; Zustand, Preflight und
 Ergebnis werden dabei SHA-256-gebunden. Fehlende Bindungen blockieren ohne
 stillen Fallback.
 
-*Documentation impact: `UpdateRequired`. The managed eleven-preset profile gains
+*Documentation impact: `UpdateRequired`. The managed twelve-preset profile gains
 a provider-neutral command-to-role contract. Concrete agent and model names
 remain in local runner profiles. A sequential autonomous run may change models
 only between completed processes with SHA-256-bound state, preflight, and
@@ -65,10 +65,23 @@ feature requirements.*
 
 ## Evidence
 
-- elf kanonische `model-routing.json` und zwei bytegleiche Preset-Spiegel;
+- zwölf kanonische `model-routing.json` und zwei bytegleiche Preset-Spiegel;
 - Bash- und PowerShell-State-Validatoren;
 - synthetischer Routing-, Prozessgrenz- und Fail-Closed-Test;
 - bestehende Parallel-Koordinator-, Konsolidierungs- und
   Preset-Abhaengigkeitstests;
-- PSScriptAnalyzer, Script-Reference-Renderer, Elf-Preset-Matrixcheck und
+- PSScriptAnalyzer, Script-Reference-Renderer, Zwölf-Preset-Matrixcheck und
   read-only Modell-Preflights fuer die lokalen Rollenbindungen.
+
+## Produktisierung 2026-08-09 / Productization 2026-08-09
+
+Das optionale Preset `model-routing-governance` v0.1.0 konkretisiert den
+Vertrag mit den read-only Status- und ausdrücklich autorisierten
+Refresh-Kommandos. Codex wird über `model/list`, Antigravity über das lokale
+`agy models`-Inventar geprüft. Claude und Copilot bleiben auf die Validierung
+ausdrücklich konfigurierter Kandidaten begrenzt; OpenCode bleibt
+`ConfiguredOnly`. Unbekannte oder mehrdeutige Zuordnungen blockieren.
+
+*The optional v0.1.0 preset provides read-only status and explicitly authorized
+refresh commands. Codex uses `model/list`; Antigravity uses its local model
+inventory. Other harnesses retain documented fail-closed proof boundaries.*

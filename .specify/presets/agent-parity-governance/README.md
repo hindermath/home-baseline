@@ -1,18 +1,18 @@
 # Agent Parity Governance Preset
 
-Version: `0.4.1`
+Version: `0.4.2`
 Status: published, standard governance preset
 Priority: `60`
 Requires: Spec-Kit `>=0.8.0` (uses the `wrap` and `append` composition
 strategies introduced in `0.8.x`).
 
-Version `0.4.1` behandelt einen projektspezifischen Lernenden- und
+Version `0.4.2` behandelt einen projektspezifischen Lernenden- und
 Barrierefreiheitsvertrag als gemeinsame Regel. Zielgruppe, Vorwissen,
 Sprachreihenfolge, Lesbarkeit, Begriffserklärungen und textorientierte
 Informationswege müssen auf allen gepflegten Agenten- und Template-Flächen
 semantisch gleich bleiben.
 
-*Version `0.4.1` treats a project-specific learner and accessibility contract
+*Version `0.4.2` treats a project-specific learner and accessibility contract
 as shared guidance. Audience, prior knowledge, language order, readability,
 term explanations, and text-first information paths must remain semantically
 equivalent across maintained agent and template surfaces.*
@@ -102,7 +102,7 @@ shared and which are intentionally agent-specific.*
 
 ```bash
 specify preset add \
-  --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.4.1.zip \
+  --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.4.2.zip \
   --priority 60
 specify preset info agent-parity-governance
 ```
@@ -251,6 +251,16 @@ Abweichungen ausdrücklich in derselben Änderung.
   `tasks.md`, or feature specifications.
 - Installation does not grant repository, remote, merge, bypass, deployment,
   cancellation, secret, or provider-administration authority.
+
+## Version 0.4.2 / Version 0.4.2
+
+`v0.4.2` veröffentlicht den agentenneutralen `model-routing.json`-Vertrag für
+die Komposition mit Model Routing Governance. Konkrete Modellnamen bleiben
+maschinenlokal und werden nicht zwischen Agentenflächen kopiert.
+
+*`v0.4.2` publishes the agent-neutral `model-routing.json` contract for
+composition with Model Routing Governance. Concrete model names remain local
+to each machine and are not copied across agent surfaces.*
 
 ## Version 0.4.1 / Version 0.4.1
 

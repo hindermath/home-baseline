@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "8284bb15-3903-4ea4-aa72-0e5bd545e271",
+  "mode": "Series",
+  "policy": "home-baseline-model-routing-governance-v1",
+  "targets": [
+    {"path": "Lastenheft_Modell-Routing-Gap-Audit.md", "role": "GapAudit"},
+    {"path": "Lastenheft_Preset-Modell-Routing-Governance.md", "role": "PresetProductization"},
+    {"path": "Lastenheft_Modell-Routing-Flottenadoption.md", "role": "FleetAdoption"}
+  ],
+  "series": {
+    "orderedTargetPaths": ["Lastenheft_Modell-Routing-Gap-Audit.md", "Lastenheft_Preset-Modell-Routing-Governance.md", "Lastenheft_Modell-Routing-Flottenadoption.md"],
+    "roots": ["Lastenheft_Modell-Routing-Gap-Audit.md"],
+    "dependencies": [
+      {"from": "Lastenheft_Modell-Routing-Gap-Audit.md", "to": "Lastenheft_Preset-Modell-Routing-Governance.md", "kind": "AssessmentBaseline"},
+      {"from": "Lastenheft_Preset-Modell-Routing-Governance.md", "to": "Lastenheft_Modell-Routing-Flottenadoption.md", "kind": "PublishedPackageGate"}
+    ]
+  },
+  "campaign": {"manifestPath": "N/A", "workers": [], "operatorExceptions": []}
+}

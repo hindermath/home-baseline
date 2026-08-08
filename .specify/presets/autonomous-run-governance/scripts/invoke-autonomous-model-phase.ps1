@@ -238,7 +238,7 @@ function Get-AMRRunnerProfile {
         [Parameter(Mandatory)][hashtable] $Phase
     )
 
-    Assert-AMRCondition ([string] $RunnerData.schemaVersion -in @('1.0', '1.1')) 'RunnerConfig schemaVersion muss 1.0 oder 1.1 sein.'
+    Assert-AMRCondition ([string] $RunnerData.schemaVersion -in @('1.0', '1.1', '2.0')) 'RunnerConfig schemaVersion muss 1.0, 1.1 oder 2.0 sein.'
     Assert-AMRCondition ($RunnerData.profiles -is [hashtable]) 'RunnerConfig.profiles muss ein Objekt sein.'
     $phaseProfile = if ($Phase.ContainsKey('runnerProfile')) { [string] $Phase.runnerProfile } else { 'N/A' }
     if (-not [string]::IsNullOrWhiteSpace($phaseProfile) -and $phaseProfile -ne 'N/A') {

@@ -45,6 +45,37 @@ Der ausführliche
 verbindet diese vier Leserpfade mit sicheren Befehlen, Evidence und klaren
 Stop-Grenzen.
 
+## Lokales Modell-Routing für KI-Agenten
+
+**Modell-Routing** bedeutet: Eine stabile Arbeitsrolle wie
+`frontier-reasoning` oder `fast-mechanical` wird auf ein Modell abgebildet, das
+das lokal installierte Agentenprogramm tatsächlich anbietet. Fachliche
+Spec-Kit-Artefakte nennen deshalb Rollen, keine vergänglichen Modellnamen.
+
+Das optionale Preset `model-routing-governance` auf Priorität `61` erkennt
+lokale Harness-Fähigkeiten, zum Beispiel über Codex oder Antigravity. Es
+veröffentlicht keine Modellliste und übernimmt keine Zugangsdaten. Die konkrete
+Auswahl bleibt als `machineLocal`-Konfiguration auf dem jeweiligen Rechner.
+Unbekannte oder mehrdeutige Zuordnungen werden blockiert und niemals geraten.
+
+```bash
+# Nur lesen: installierte Harness-Fähigkeiten und lokale Bindung prüfen
+bash scripts/resolve-model-routing.sh -Action Status -Harness Codex \
+  -RoutingRoot .specify/presets
+```
+
+```powershell
+# Ausdrücklich lokal aktualisieren; keine Repository-Datei wird geändert
+pwsh -NoProfile -File scripts/resolve-model-routing.ps1 `
+  -Action Refresh -Harness Codex -RoutingRoot .specify/presets
+```
+
+Der Ein-Kommando-Wartungslauf führt nach der Toolchain-Prüfung nur den
+read-only Status aus. Ein Refresh braucht eine aktuelle lokale Autorisierung.
+Autonome Presets dürfen Modelle ausschließlich an validierten Phasengrenzen in
+einem neuen Prozess wechseln. Delivery- und Provider-Rechte entstehen dadurch
+nicht.
+
 Das vollständige [Dokumentationsportal](docs/README.md) ordnet alle Themen und
 kanonischen Quellen ein. Die [Skriptreferenz](docs/scripts/reference.md) listet
 die verfügbaren Befehle, Plattformen und sicheren Prüfmodi.

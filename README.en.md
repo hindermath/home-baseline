@@ -44,6 +44,35 @@ The detailed
 connects these four reader paths with safe commands, evidence, and clear stop
 boundaries.
 
+## Local model routing for AI agents
+
+**Model routing** maps a stable work role such as `frontier-reasoning` or
+`fast-mechanical` to a model that the locally installed agent harness actually
+provides. Spec Kit artefacts therefore name roles, not short-lived model IDs.
+
+The optional `model-routing-governance` preset at priority `61` discovers local
+harness capabilities, for example through Codex or Antigravity. It publishes no
+model inventory and handles no credentials. The concrete choice remains in a
+`machineLocal` configuration on each computer. Unknown or ambiguous mappings
+are blocked and never guessed.
+
+```bash
+# Read only: inspect harness capabilities and the local binding
+bash scripts/resolve-model-routing.sh -Action Status -Harness Codex \
+  -RoutingRoot .specify/presets
+```
+
+```powershell
+# Explicit local refresh; no repository file is changed
+pwsh -NoProfile -File scripts/resolve-model-routing.ps1 `
+  -Action Refresh -Harness Codex -RoutingRoot .specify/presets
+```
+
+The one-command maintenance run performs only the read-only status check after
+toolchain maintenance. Refresh requires current local authority. Autonomous
+presets may change models only at validated phase boundaries in a new process.
+This grants neither delivery nor provider authority.
+
 The complete [documentation portal](docs/README.en.md) organizes every topic
 and canonical source. The [script reference](docs/scripts/reference.md) lists
 available commands, platforms, and safe inspection modes.
