@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0", "documentType": "IntakeSeries", "seriesId": "fc8fb1b2-f073-431d-bb28-68f46b712edd", "version": 1,
+  "status": "ReadyForReview", "operationId": "8a2507ec-5c6b-4834-82a3-f4201e62e9b2",
+  "proposalNormalizedSha256": "d9a887d8bcf62d84a554f91797fbe2739a246222712507fcffef8bd9f68ec683",
+  "approval": {"approved": true, "approvedBy": "Thorsten Hindermann", "approvedAt": "2026-08-08T22:33:32Z", "evidence": "Implement the proposed plan."},
+  "orderedIntakeIds": ["5de122d2-6bda-4206-81a1-57b16d0a9982", "8e03fbe9-3920-441e-ac3d-a69aeab816e5", "c59fd8c4-ce98-45f8-a239-e14586a55e10"],
+  "roots": ["5de122d2-6bda-4206-81a1-57b16d0a9982"],
+  "members": [
+    {"intakeId": "5de122d2-6bda-4206-81a1-57b16d0a9982", "path": "Lastenheft_Modell-Routing-Gap-Audit.md", "receiptPath": "specs/intake-authoring-receipts/modell-routing-gap-audit.json", "title": "Modell-Routing-Gap-Audit", "role": "GapAudit", "order": 1, "normalizedSha256": "3a8cbefea078ee2a6fa7bf2c9f4657a7e0b868cd6df9e02e6845afe0425aa01b", "supersedesIntakeIds": []},
+    {"intakeId": "8e03fbe9-3920-441e-ac3d-a69aeab816e5", "path": "Lastenheft_Preset-Modell-Routing-Governance.md", "receiptPath": "specs/intake-authoring-receipts/preset-modell-routing-governance.json", "title": "Preset Modell-Routing-Governance", "role": "PresetProductization", "order": 2, "normalizedSha256": "eebf12727dee3e2d1af60d1a94c256e8f52850c1c216f2f4e23dba780f7b35e7", "supersedesIntakeIds": []},
+    {"intakeId": "c59fd8c4-ce98-45f8-a239-e14586a55e10", "path": "Lastenheft_Modell-Routing-Flottenadoption.md", "receiptPath": "specs/intake-authoring-receipts/modell-routing-flottenadoption.json", "title": "Modell-Routing-Flottenadoption", "role": "FleetAdoption", "order": 3, "normalizedSha256": "da09bd8734328333ee1857f7405e1dcd7207272d4728aeef8a500f31383c7f9d", "supersedesIntakeIds": []}
+  ],
+  "edges": [
+    {"from": "5de122d2-6bda-4206-81a1-57b16d0a9982", "to": "8e03fbe9-3920-441e-ac3d-a69aeab816e5", "kind": "AssessmentBaseline"},
+    {"from": "8e03fbe9-3920-441e-ac3d-a69aeab816e5", "to": "c59fd8c4-ce98-45f8-a239-e14586a55e10", "kind": "PublishedPackageGate"}
+  ],
+  "reviewHandoff": {"mode": "Series", "nextAction": "$speckit-intake-review specs/model-routing-governance-intakes/reviews/series/intake-review-request.json"}
+}

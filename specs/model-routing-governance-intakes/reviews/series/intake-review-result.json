@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "8284bb15-3903-4ea4-aa72-0e5bd545e271",
+  "mode": "Series",
+  "status": "Ready",
+  "policy": "home-baseline-model-routing-governance-v1",
+  "reviewedAt": "2026-08-08T22:33:32Z",
+  "repository": {"root": ".", "head": "483646d72a592bbb5aa25d91171527eb408b85ac"},
+  "requestEvidence": {"path": "specs/model-routing-governance-intakes/reviews/series/intake-review-request.json", "normalizedSha256": "2ec9631b779c5397891a1eadf039b9a4ef9c32e29c21c26a2e9e1e5eba34fa22"},
+  "targets": [
+    {"path": "Lastenheft_Modell-Routing-Gap-Audit.md", "role": "GapAudit", "normalizedSha256": "3a8cbefea078ee2a6fa7bf2c9f4657a7e0b868cd6df9e02e6845afe0425aa01b", "gitBlob": "N/A"},
+    {"path": "Lastenheft_Preset-Modell-Routing-Governance.md", "role": "PresetProductization", "normalizedSha256": "eebf12727dee3e2d1af60d1a94c256e8f52850c1c216f2f4e23dba780f7b35e7", "gitBlob": "N/A"},
+    {"path": "Lastenheft_Modell-Routing-Flottenadoption.md", "role": "FleetAdoption", "normalizedSha256": "da09bd8734328333ee1857f7405e1dcd7207272d4728aeef8a500f31383c7f9d", "gitBlob": "N/A"}
+  ],
+  "findings": [], "questions": [], "acceptedRisks": [], "operatorExceptions": [],
+  "coverage": {
+    "individual": ["Lastenheft_Modell-Routing-Gap-Audit.md", "Lastenheft_Preset-Modell-Routing-Governance.md", "Lastenheft_Modell-Routing-Flottenadoption.md"],
+    "series": ["Lastenheft_Modell-Routing-Gap-Audit.md", "Lastenheft_Preset-Modell-Routing-Governance.md", "Lastenheft_Modell-Routing-Flottenadoption.md"],
+    "workers": []
+  },
+  "summary": {"critical": 0, "high": 0, "medium": 0, "low": 0},
+  "supersedes": "N/A"
+}

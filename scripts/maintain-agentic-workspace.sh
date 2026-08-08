@@ -34,6 +34,7 @@ LOCK_DIR=""
 LOG_FILE=""
 REPORT_FILE=""
 TOOLCHAIN_RESULT_FILE=""
+MODEL_ROUTING_RESULT_FILE=""
 RUN_ID=""
 CURRENT_STAGE="startup"
 FINALIZED=0
@@ -1166,6 +1167,33 @@ if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$C
   fi
 else
   record_stage "toolchain" "Skipped" 0 "Toolchain durch Modus oder Vorbedingung uebersprungen / skipped by mode or prerequisite"
+fi
+
+if { { [ "$fleet_ready" -eq 1 ] && [ "$LEASE_RECOVERY_READY" -eq 1 ]; } || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && { [ "$FINDINGS" -eq 0 ] || [ "$CHECK_ONLY" -eq 1 ]; } \
+    && [ "$SCRIPTS_ONLY" -eq 0 ]; then
+  CURRENT_STAGE="model-routing"
+  start_event_phase "model-routing" "Lokale Modell-Routing-Prüfung gestartet." "Local model-routing check started."
+  MODEL_ROUTING_RESULT_FILE="${HOME_DIR}/.home-baseline/model-routing-status-${RUN_ID}.json"
+  mkdir -p -- "$(dirname -- "$MODEL_ROUTING_RESULT_FILE")"
+  routing_status=0
+  pwsh -NoLogo -NoProfile -File "${SOURCE_ROOT}/scripts/resolve-model-routing.ps1" \
+    -Action Status -Harness Auto -RoutingRoot "${SOURCE_ROOT}/.specify/presets" \
+    -OutputFormat Json >"$MODEL_ROUTING_RESULT_FILE" || routing_status=$?
+  if [ "$routing_status" -eq 0 ]; then
+    record_stage "model-routing" "Passed" 0 \
+      "Lokale Modellbindungen aktuell / local model bindings current" "N/A" \
+      "$MODEL_ROUTING_RESULT_FILE"
+  else
+    FINDINGS=$((FINDINGS + 1))
+    record_stage "model-routing" "Blocked" 1 \
+      "Lokales Modell-Routing benötigt eine ausdrückliche Aktualisierung / local model routing requires explicit refresh" \
+      "speckit.model-routing-refresh mit lokaler Autorität ausführen / run with local authority" \
+      "$MODEL_ROUTING_RESULT_FILE"
+  fi
+else
+  record_stage "model-routing" "Skipped" 0 \
+    "Modell-Routing durch Modus oder Vorbedingung übersprungen / skipped by mode or prerequisite"
 fi
 
 if [ "$FINDINGS" -eq 0 ]; then

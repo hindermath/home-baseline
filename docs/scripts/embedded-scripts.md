@@ -64,6 +64,10 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/intake-sequencing-governance/tests/test-home-baseline-field.ps1` | `.specify` |
 | `.specify/presets/intake-sequencing-governance/tests/test-intake-governance-config.ps1` | `.specify` |
 | `.specify/presets/intake-sequencing-governance/tests/test-intake-sequencing-validator.ps1` | `.specify` |
+| `.specify/presets/model-routing-governance/scripts/resolve-model-routing.ps1` | `.specify` |
+| `.specify/presets/model-routing-governance/scripts/resolve-model-routing.sh` | `.specify` |
+| `.specify/presets/model-routing-governance/tests/test-model-routing-discovery.ps1` | `.specify` |
+| `.specify/presets/model-routing-governance/tests/test-model-routing-discovery.sh` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `.specify` |
@@ -134,6 +138,10 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-preset-repos/spec-kit-preset-intake-sequencing-governance/tests/test-home-baseline-field.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-intake-sequencing-governance/tests/test-intake-governance-config.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-intake-sequencing-governance/tests/test-intake-sequencing-validator.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-model-routing-governance/scripts/resolve-model-routing.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-model-routing-governance/scripts/resolve-model-routing.sh` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-model-routing-governance/tests/test-model-routing-discovery.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-model-routing-governance/tests/test-model-routing-discovery.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `specs` |
@@ -182,6 +190,10 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-presets/intake-sequencing-governance/tests/test-home-baseline-field.ps1` | `specs` |
 | `specs/spec-kit-presets/intake-sequencing-governance/tests/test-intake-governance-config.ps1` | `specs` |
 | `specs/spec-kit-presets/intake-sequencing-governance/tests/test-intake-sequencing-validator.ps1` | `specs` |
+| `specs/spec-kit-presets/model-routing-governance/scripts/resolve-model-routing.ps1` | `specs` |
+| `specs/spec-kit-presets/model-routing-governance/scripts/resolve-model-routing.sh` | `specs` |
+| `specs/spec-kit-presets/model-routing-governance/tests/test-model-routing-discovery.ps1` | `specs` |
+| `specs/spec-kit-presets/model-routing-governance/tests/test-model-routing-discovery.sh` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/scripts/orchestrate-parallel-autonomous-runs.sh` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/fixture-post-merge.ps1` | `specs` |
