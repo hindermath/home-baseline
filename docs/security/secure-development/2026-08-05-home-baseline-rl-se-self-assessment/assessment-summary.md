@@ -340,9 +340,10 @@ Nicht-Pass des Renderers, nicht ein technischer Fehler.
 ### Nächster sicherer Schritt
 
 Der historische lokale Checkpoint war `Retrospective / Completed`, 57/57. Der
-Run ist für die autorisierte Lieferphase wieder geöffnet. Nächste Schritte sind
-vollständige Revalidierung, Source- und Statistik-Commit, Feature-PR und danach
-der kausale Series-Closeout. Die 149 Kandidaten bleiben getrennte, nicht
+Run ist für die autorisierte Lieferphase wieder geöffnet. Revalidierung,
+Source-Commit und kanonische Statistikaktualisierung sind abgeschlossen.
+Nächste Schritte sind Feature-PR und danach der kausale Series-Closeout. Die
+149 Kandidaten bleiben getrennte, nicht
 gestartete Remediation-Arbeit und benötigen eigene Intakes, Reviews sowie neue
 Ausführungsautorität.
 
@@ -683,8 +684,9 @@ non-pass, not a technical error.
 ### Next safe step
 
 The historical local checkpoint was `Retrospective / Completed`, 57/57. The
-run is reopened for the authorized delivery phase. Next steps are complete
-revalidation, source and statistics commits, the feature pull request, and then
-the causal Series closeout. The 149 candidates remain separate, unstarted
+run is reopened for the authorized delivery phase. Revalidation, the source
+commit, and the canonical statistics update are complete. Next steps are the
+feature pull request and then the causal Series closeout. The 149 candidates
+remain separate, unstarted
 remediation work and require their own intakes, reviews, and new execution
 authority.

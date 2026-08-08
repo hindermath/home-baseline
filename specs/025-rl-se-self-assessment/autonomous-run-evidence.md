@@ -157,16 +157,22 @@ renderers correctly reported `DRIFT` with exit 1. Both Homogeneity paths
 reported the same sole failure and 29/30 passing checks. This is the required
 clean-head boundary for T062, not a hidden pass.
 
+T062 uses the repository's strict two-commit protocol: the canonical phase-59
+configuration is bound together with final task and state metadata, and only
+then is the ledger rendered from that clean source head. Bash and PowerShell
+must both report `CURRENT`; both Homogeneity paths must report 30/30 before the
+generated-ledger-only commit is accepted.
+
 ## Documentation Impact, Statistics, and Series
 
 Documentation Impact is `UpdateRequired`; distribution is `sourceOnly`;
 `homeSyncRequired=false`. The evidence decision was updated to describe the
 complete Level 0 assessment and its reader paths.
 
-Statistics remain transparent `DRIFT` until the source commit. Current
-`MergeAndSync` authority permits the canonical configuration and ledger update
-only from the resulting clean head; both renderer paths must then report
-`CURRENT`.
+Statistics are updated under current `MergeAndSync` authority through the
+canonical phase-59 configuration and a generated-ledger-only commit. The
+accepted proof requires Bash and PowerShell `CURRENT` plus 30/30 Homogeneity
+from the final clean source head.
 
 Series closeout remains pending until the feature PR is merged. It will be
 delivered through a separate, non-empty causal closeout with archived prior
