@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "96fd609d-82b6-4a9c-a373-ae6879fb01e7",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.2"
+  },
+  "createdAt": "2026-08-05T10:27:31Z",
+  "operation": {
+    "operationId": "c6820ae5-b8d7-4d53-8ca2-6c54d0d54347",
+    "type": "Update",
+    "authorityEvidence": "Current explicit $speckit-intake-repair authority for the position-6 target plus separate user approval of the IR002 and IR003 content decisions; this Series update changes only the bound target hash."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "13688a31be34f2577880c93abc3c4a45b3daabc9d31d98dbc2294ec1baf3e952"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347/receipt.json",
+    "receiptNormalizedSha256": "8b2be5e8e086b99c793a28cd6660c57786dbe4f26cc2e6ec09d891b20ad4cc44",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/c6820ae5-b8d7-4d53-8ca2-6c54d0d54347/manifest.json",
+    "manifestArchiveSha256": "d298859783b201f6ec7949702b913f908e3223eef875249055a20439cfc1445d"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_RL-SE-Checklist-Selbstpruefung.md"
+}

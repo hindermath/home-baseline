@@ -116,7 +116,10 @@ Position 5 wurde als Feature 024 ueber PR #208 abgeschlossen und als
 archiviert. Der Lauf haertete die vorhandene Abbildung von zwoelf Checklisten,
 157 Pruefpunkten, 15 mitgeltenden Dokumenten und dem Acht-plus-drei-Presetprofil.
 Position 6 ist jetzt der einzige deklarierte `Eligible`-Kandidat. Dieser
-Closeout startet keinen Folgelauf.
+Closeout startet keinen Folgelauf. Der aktualisierte Position-6-Intake bindet
+die Feature-024-Evidence, erteilt dem spaeter ausdruecklich gestarteten Lauf
+`MergeAndSync` und trennt moegliche Remediation-Intakes von ihrer spaeteren
+Ausfuehrungsautoritaet.
 
 *The gate did not reorder the existing domain work. G1 is archived and removed
 from the active series. It released the six previous roots; the later D4-D7

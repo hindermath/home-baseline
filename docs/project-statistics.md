@@ -154,7 +154,6 @@
 | 2026-08-05 | Level-0-Checkout- und Public-Template-Intake vorbereitet | — | — | — | Documentation Impact `UpdateRequired`: Ein neuer Schema-2.0-Intake trennt die spätere Dokumentation des bestehenden Level-0-Checkouts von der Erstellung eines eigenständigen Repositorys aus dem GitHub Public Template. `git clone`, `gh repo clone`, `gh repo create --template ... --clone` und das nicht verwandte `git clone --template` erhalten klare Ergebnis-, Remote-, Historien- und Providergrenzen. Die aktive Series umfasst 33 Ziele, vier Roots und 36 Abhängigkeiten; Position 38 ist über `PreferredSerialOrder` beratend angehängt, bleibt `Pending` und verändert Position 6 als einzigen deklarierten `Eligible`-Kandidaten nicht. Intake-Receipt, bytegleiche Series-Archive, Nachfolge-Receipt und Operationsjournal sind hashgebunden. `getting-started.md` wurde bewusst noch nicht geändert; Intake Review, Specify, Autonomous, Remote-Lieferung und Home-Sync wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 1 036 Nettozeilen. |
 | 2026-08-05 | RL-SE-/Checklist-Selbstpruefungsintake repariert und neu geprueft | — | — | — | Documentation Impact `UpdateRequired`: Der mechanisch veraltete Position-5-Pfad bindet jetzt die abgeschlossene Feature-024-Quelle und ihren unveraenderlichen PR-Nachweis. Der ausdruecklich bestaetigte Lernenden-, Vorwissens-, Begriffs-, A11Y-, CEFR-B2- und DE/EN-Vertrag sowie der statusabhaengige Feldvertrag fuer `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp` sind in Anforderungen, Artefakten, Abnahme und Prompts synchronisiert. Die Findings `IR001` bis `IR003` sind geschlossen; der vollstaendige Single-Review ist `Ready` mit null verbleibenden Findings, Risiken oder offenen Fragen. Authoring-Receipt, Review und Series-Hashbindung besitzen bytegleiche Archive und vollstaendige Supersession. Die Series bleibt bei 33 Zielen, vier Roots und 36 Abhaengigkeiten; Position 6 bleibt alleiniger bevorzugter `Eligible`-Kandidat. Specify, Autonomous und Remote-Lieferung wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 1 549 Nettozeilen. |
 | 2026-08-07 | Ausgewogenes Spec-Kit-Modell-Routing | — | — | — | Documentation Impact `UpdateRequired`: Alle elf Governance-Presets deklarieren einen providerneutralen Kommando-zu-Rolle-Vertrag. Sequenzielle autonome Laeufe duerfen das konkrete Modell nur an abgeschlossenen Prozessgrenzen wechseln; lokale Runner-Profile, SHA-256-Bindung, Preflight und Fail-Closed-Verhalten verhindern stillen Fallback. Status-, Stop- und rein deterministische Pfade bleiben leichtgewichtig oder skriptbasiert, waehrend semantische Planung, Implementierung und Review staerkere Rollen verwenden. Preset-Quellen, beide Spiegel, Agentenoberflaechen und plattformuebergreifende Validatoren sind synchron. Feature 025 und seine Planungsartefakte bleiben davon getrennt. Das Implementierungsdelta vor Statistikpflege umfasst 4 810 Nettozeilen. |
-| 2026-08-08 | Feature 025 RL-SE-Selbstpruefung: Planungscheckpoint | — | — | — | Documentation Impact `UpdateRequired`: Die freigegebene Spezifikation und ihre Klarstellungen sind durch Research, Datenmodell, Artefaktvertrag, Quickstart und einen zweisprachigen Implementierungsplan ergaenzt. Der Checkpoint bindet zwölf Checklisten, 157 stabile IDs, 15 mitgeltende Dokumente und das Elf-Preset-Profil, ohne Tasks, Selbstpruefungsmatrix, Umsetzung, Series-Closeout oder Feature-Abschluss vorwegzunehmen. `origin/main` mit dem ausgewogenen Modell-Routing ist konfliktfrei integriert; der Remote-Feature-Branch dient ausschließlich als fortsetzbarer Mac-mini-Handoff. Das Planungsdelta vor Statistikpflege umfasst 2 613 Nettozeilen. |
 
 ---
 
@@ -1035,27 +1034,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 624316 lines |
-| Textdateien / Text files | 3114 |
+| Textbasis / Text base | 623870 lines |
+| Textdateien / Text files | 3119 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-08 |
 | Aktivtage / Active days | 84 |
-| Relevante Commits / Relevant commits | 697 |
-| Zeilen je Aktivtag / Lines per active day | 7432.3 |
+| Relevante Commits / Relevant commits | 695 |
+| Zeilen je Aktivtag / Lines per active day | 7427.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 92.9x |
+| Speedup vs. 80 lines/day | 92.8x |
 | Speedup vs. 100 lines/day | 74.3x |
-| Methodik / Methodology | v2; source `0f8229a99b6e` |
+| Methodik / Methodology | v2; source `94bb87015b09` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.7% | 22945
-Dokumentation / Documentation   [##########..........]  49.8% | 310961
+Tests                           [#...................]   3.5% | 21824
+Dokumentation / Documentation   [##########..........]  49.7% | 309994
 Skripte / Scripts               [##..................]   9.2% | 57250
-Konfiguration / Configuration   [#######.............]  36.9% | 230152
+Konfiguration / Configuration   [#######.............]  37.2% | 231794
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 771
 ```
@@ -1085,7 +1084,7 @@ Di/Tu  0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0
 Mi/We  0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4
 Do/Th  0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0
 Fr/Fr  0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4
-Sa/Sa  0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 3
+Sa/Sa  0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1175,15 +1174,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..58
-  cap 200000 | . . . . . . . . . . .
-      166667 | . . . . . . . . . . .
-      133333 | . . . . # . . . . . .
-      100000 | . . . . # . . . . . .
-       66667 | . . . . # . . . . . .
-       33333 | . . . . # . . . . . .
-           0 +-----------------------
-             48 49 50 51 52 53 54 55 56 57 58
+Slots 48..57
+  cap 200000 | . . . . . . . . . .
+      166667 | . . . . . . . . . .
+      133333 | . . . . # . . . . .
+      100000 | . . . . # . . . . .
+       66667 | . . . . # . . . . .
+       33333 | . . . . # . . . . .
+           0 +---------------------
+             48 49 50 51 52 53 54 55 56 57
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1246,7 +1245,6 @@ Slots 48..58
 | 55 | Level-0-Checkout- und Public-Template-Intake / Level 0 checkout and public template intake | 1036 |
 | 56 | RL-SE-/Checklist-Selbstpruefungsintake-Reparatur / RL-SE checklist self-assessment intake repair | 1549 |
 | 57 | Ausgewogenes Spec-Kit-Modell-Routing / Balanced Spec Kit model routing | 4810 |
-| 58 | RL-SE-Selbstpruefung: Planungscheckpoint / RL-SE self-assessment planning checkpoint | 2613 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1256,7 +1254,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 92.9x
+80 lines/day       [###################.] 92.8x
 100 lines/day      [###############.....] 74.3x
 ```
 
@@ -1270,7 +1268,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7432.3
+Visible repository [###############.....] 7427.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1296,6 +1294,6 @@ DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-08. Es enthaelt 84 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 191562 |
+| 2026-08 | 191274 |
 
 <!-- project-statistics-v2:end -->

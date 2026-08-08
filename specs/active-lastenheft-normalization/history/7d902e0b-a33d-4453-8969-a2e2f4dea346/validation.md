@@ -2,18 +2,17 @@
 
 ## Aktueller Umfang / Current Scope
 
-- Aktive Ziele / Active targets: 33
+- Aktive Ziele / Active targets: 32
 - Roots: 4
-- Eindeutige Abhaengigkeiten / Unique dependencies: 36
+- Eindeutige Abhaengigkeiten / Unique dependencies: 35
 - Bevorzugter `Eligible`-Kandidat: genau Position 6
-- Review-ID: `00fd052d-4a67-415a-b800-2b2b47f88000`
-- Supersedes: `7d902e0b-a33d-4453-8969-a2e2f4dea346`
+- Review-ID: `7d902e0b-a33d-4453-8969-a2e2f4dea346`
+- Supersedes: `b513cd85-2b45-48db-b104-b1ff682e4964`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils 0
 
 Die Werte beschreiben die vollstaendige aktive Serie nach dem kausalen
-Closeout von Feature 024 und der spaeteren Aufnahme des Level-0-Checkout-
-Intakes. Historische Reviews und Series-Staende bleiben bytegleich in ihren
-Archiven erhalten.
+Closeout von Feature 024. Historische Reviews und Series-Staende bleiben
+bytegleich in ihren Archiven erhalten.
 
 *These values describe the complete active series after the causal Feature 024
 closeout. Historical reviews and Series states remain byte-identical in their
@@ -23,13 +22,13 @@ archives.*
 
 - Die Series-ID bleibt unveraendert.
 - Der vorherige 33-Ziel-Stand und sein Receipt sind unter
-  `history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/` bytegleich archiviert.
-- Das aktuelle Manifest umfasst 33 Ziele, vier Roots und 36 Kanten.
+  `history/a8ffda5e-9a0b-4631-81aa-bb889f2a224e/` bytegleich archiviert.
+- Das aktuelle Manifest umfasst 32 Ziele, vier Roots und 35 Kanten.
 - Der neue Schema-1.1-Series-Review ist `Ready` und bindet seinen Request-Hash.
 - Bash- und PowerShell-Validatoren akzeptieren Manifest, Receipt und Review.
 
 *The Series ID is unchanged. The prior 33-target state and receipt are archived
-byte-for-byte. The current manifest contains 33 targets, four roots, and 36
+byte-for-byte. The current manifest contains 32 targets, four roots, and 35
 edges; both validator implementations accept the Ready review.*
 
 ## Liefergrenze / Delivery Boundary
@@ -37,12 +36,5 @@ edges; both validator implementations accept the Ready review.*
 `Eligible` erteilt keine Feature-, Remote-, Merge- oder
 Administratorautoritaet. Dieser Closeout startet keinen Folgelauf.
 
-Die aktuelle Benutzeranweisung erteilt `MergeAndSync` fuer Feature 025 unter
-der engen Bypass-Grenze. Remediation-Intakes und Folgelaeufe benoetigen eigene
-aktuelle Autoritaet.
-
 *Eligible grants no feature, remote, merge, or administrator authority. This
 closeout starts no successor run.*
-
-*Current authority grants `MergeAndSync` for Feature 025 only. Remediation
-intakes and later runs require separate current authority.*

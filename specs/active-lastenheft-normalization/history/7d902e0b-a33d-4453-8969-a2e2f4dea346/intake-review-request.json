@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "00fd052d-4a67-415a-b800-2b2b47f88000",
+  "reviewId": "7d902e0b-a33d-4453-8969-a2e2f4dea346",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
@@ -131,10 +131,6 @@
     {
       "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
       "role": "OrderedMember"
-    },
-    {
-      "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
-      "role": "OrderedMember"
     }
   ],
   "series": {
@@ -170,8 +166,7 @@
       "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
       "Lastenheft_Preset-Learning-Series-Governance.md",
       "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
-      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
-      "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md"
     ],
     "roots": [
       "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
@@ -389,12 +384,6 @@
         "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
         "kind": "FinalAuditInput",
         "binding": true
-      },
-      {
-        "from": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
-        "to": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
-        "kind": "PreferredSerialOrder",
-        "binding": false
       }
     ]
   },
