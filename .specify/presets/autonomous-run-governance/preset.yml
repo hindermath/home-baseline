@@ -15,6 +15,11 @@ requires:
 provides:
   templates:
     - type: "template"
+      name: "autonomous-run-governance-model-routing"
+      file: "model-routing.json"
+      description: "Agent-neutral command-to-role routing contract"
+
+    - type: "template"
       name: "constitution-template"
       file: "templates/constitution-addendum.md"
       description: "Append autonomous delivery authority and safety governance"
@@ -57,6 +62,11 @@ provides:
       name: "autonomous-run-state-template"
       file: "templates/autonomous-run-state-template.json"
       description: "Machine-readable lifecycle checkpoint for stop and resume"
+
+    - type: "template"
+      name: "autonomous-runner-profiles-template"
+      file: "templates/autonomous-runner-profiles-template.json"
+      description: "Local fail-closed agent and model bindings for autonomous phases"
 
     - type: "template"
       name: "autonomous-run-gate-requirements-template"

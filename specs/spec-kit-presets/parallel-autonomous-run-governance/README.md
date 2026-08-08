@@ -19,7 +19,8 @@ prior-knowledge, or text-first requirements.
 
 Preset 8 koordiniert mehrere autonome Worker als eine nachvollziehbare
 Kampagne. Es stellt Isolation, begrenzte Parallelitaet, dauerhaften Zustand,
-Stop/Status/Resume, Handoffs und geordnete Konsolidierung bereit.
+Stop/Status/Resume, Handoffs, providerneutrales Rollen-Routing und geordnete
+Konsolidierung bereit.
 
 Es fuehrt nicht selbst den Spec-Kit-Einzellauf aus. Jeder reale Worker
 verwendet dafuer Preset 7. Installation startet keine Kampagne und erteilt
@@ -165,6 +166,8 @@ templates, and run coordinator action `Validate` before explicitly delegating
 - Maximum supported concurrency is three.
 - Every worker owns a separate branch and worktree.
 - Runner arguments execute as arrays without shell evaluation.
+- Fail-closed campaigns require each worker profile to bind its declared stable
+  routing role to an explicit local model, reasoning effort, and preflight.
 - Status exposes no secrets, environment values, or executable arguments.
 - Stop is cooperative and grants no process-kill authority.
 - Alternative solutions require named human selection.

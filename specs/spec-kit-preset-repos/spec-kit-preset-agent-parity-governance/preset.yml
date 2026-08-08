@@ -15,6 +15,11 @@ requires:
 provides:
   templates:
     - type: "template"
+      name: "agent-parity-governance-model-routing"
+      file: "model-routing.json"
+      description: "Agent-neutral command-to-role routing contract"
+
+    - type: "template"
       name: "constitution-template"
       file: "templates/constitution-addendum.md"
       description: "Append multi-agent guidance parity governance"
