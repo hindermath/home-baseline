@@ -151,7 +151,21 @@ bash scripts/render-project-statistics.sh --repo . --check-only --json
 pwsh -NoProfile -File scripts/render-project-statistics.ps1 -Repo . -CheckOnly -Json
 ```
 
-**Erwartung**: Der Renderer ändert nur den kanonisch gesteuerten Statistikbereich; beide Prüfpfade melden danach `CURRENT`. Wenn diese Voraussetzungen unter `LocalImplementation` fehlen, bleibt ein vollständiger Follow-up-Vertrag statt eines erzwungenen Renderings.
+**Erwartung**: Der Renderer ändert nur den kanonisch gesteuerten Statistikbereich; beide Prüfpfade melden danach `CURRENT`. Der aktuelle `MergeAndSync`-Lauf erfüllt die Schreibvoraussetzung erst nach dem Source-Commit und bei sauberem Arbeitsbaum.
+
+### Szenario 7: Exact-Head-Delivery und kausaler Closeout
+
+1. Vor Push und PR Intake, Review, Series, Run-State und alle ausgelösten
+   Repository-Gates erneut prüfen.
+2. Den Feature-PR nur bei gruenen technischen Gates und null umsetzbaren
+   Review-Threads mergen. Der enge Admin-Bypass gilt nur, wenn Human Approval
+   das einzige offene Gate ist.
+3. Danach auf aktuellem `main` Position 6 in einem getrennten Evidence-/Series-
+   Closeout archivieren, den neuen Graph in Bash und PowerShell validieren und
+   keinen Remediation- oder Nachfolgelauf starten.
+
+**Erwartung**: Feature- und Closeout-PR besitzen jeweils exakte Head-Evidence;
+der lokale Default-Branch endet sauber bei `HEAD == origin/main`.
 
 Der Series-Closeout ist ein eigener kausaler Nachweis:
 
@@ -318,7 +332,21 @@ bash scripts/render-project-statistics.sh --repo . --check-only --json
 pwsh -NoProfile -File scripts/render-project-statistics.ps1 -Repo . -CheckOnly -Json
 ```
 
-**Expected**: The renderer changes only the canonically controlled statistics area; both check paths then report `CURRENT`. If these prerequisites are absent under `LocalImplementation`, a complete follow-up contract remains instead of forced rendering.
+**Expected**: The renderer changes only the canonically controlled statistics area; both check paths then report `CURRENT`. The current `MergeAndSync` run satisfies the write prerequisite only after the source commit and with a clean worktree.
+
+### Scenario 7: Exact-Head Delivery and Causal Closeout
+
+1. Before push and PR, revalidate intake, review, Series, run state, and every
+   repository gate triggered by the diff.
+2. Merge the feature PR only with green technical gates and zero actionable
+   review threads. The narrow admin bypass applies only when Human Approval is
+   the sole open gate.
+3. On current `main`, archive item 6 in a separate evidence/Series closeout,
+   validate the successor graph in Bash and PowerShell, and start no
+   remediation or successor run.
+
+**Expected**: Feature and closeout PR each carry exact-head evidence; the local
+default branch ends clean with `HEAD == origin/main`.
 
 Series closeout is a separate causal proof:
 

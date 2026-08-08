@@ -7,7 +7,13 @@
 **Verbindliches Review / Binding Review**: `specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-result.json`
 **Vorgänger-Evidenz / Predecessor Evidence**: `specs/024-mitgeltende-dokumente-verzahnung/pr-evidence.md`
 **Position**: 6, Root und einziger bevorzugter `Eligible`-Kandidat
-**Delivery Authority**: `LocalImplementation`
+**Delivery Authority**: `MergeAndSync`
+
+**Authority transition (2026-08-08)**: The assessment implementation was first
+completed locally under `LocalImplementation`. The current user instruction and
+the superseding Ready intake/review grant `MergeAndSync` for Feature 025 under
+the narrow admin-bypass boundary. This changes delivery governance only; it
+does not expand assessment, runtime, preset, or remediation scope.
 
 ## Clarifications
 
@@ -418,22 +424,25 @@ enthält keine automatische Härtung oder repoübergreifende Mutation.
 
 ## Autonomous-Run-Anwendbarkeit / Autonomous-Run Applicability
 
-- **Beabsichtigter Delivery Mode**: `LocalImplementation`, verbindlich aus dem
-  Intake. Er umfasst keine Commit-, Push-, PR-, Merge-, Bypass-, Secret- oder
-  Provider-Administration.
+- **Beabsichtigter Delivery Mode**: `MergeAndSync`, verbindlich aus der
+  aktuellen Benutzeranweisung und dem supersedierenden `Ready`-Intake.
+  Commit, Push, PR und Merge sind fuer Feature 025 autorisiert. Der enge
+  Admin-Bypass gilt nur bei gruenen technischen Gates, null umsetzbaren
+  Review-Threads und Human Approval als einzigem offenen Gate. Secret- oder
+  Provider-Administration bleibt ausgeschlossen.
 - **Akzeptierte Eingaben**: verbindlicher Intake und `Ready`-Review,
   Feature-024-Quelle und PR-Evidenz, aktives Series-Manifest, Baseline-Manifest
   sowie die elf installierten Governance-Presets.
 - **Autonomiegrenze**: genau ein Repository; keine automatische Härtung, kein
   Sammellauf, keine Änderung fremder oder schmutziger Arbeitsbäume und kein
   Start eines Nachfolgeintakes.
-- **Causal Closeout**: bei nachweislich abgeschlossenem Feature erforderlich,
+- **Causal Closeout**: nach dem gemergten Feature-PR erforderlich,
   weil Position 6 archiviert und die Series kausal fortgeschrieben werden
-  muss. Remote-Veröffentlichung dafür braucht eine neue ausdrückliche
-  Autorisierung.
-- **Mutable Validation Tokens**: `N/A`; es gibt im autorisierten lokalen Scope
-  keine Provider-Run-ID oder Remote-Head-Bindung. Re-Evaluation erfolgt bei
-  späterer Remote-Autorität.
+  muss. Der Closeout darf nur Evidence, Intake-Archiv, Series, Reihenfolge,
+  Run-State, Retrospektive und Statistik kausal fortschreiben.
+- **Mutable Validation Tokens**: `Applicable`; Feature-Head, Checks,
+  Review-Threads, Mergebarkeit und Default-Branch-Synchronisierung werden vor
+  jeder Remote-Aktion frisch gebunden.
 - **Run-State-Pfad**: Ein später ausdrücklich gestarteter Autonomous-Lauf
   verwendet `specs/025-rl-se-self-assessment/autonomous-run-state.json`.
 - **Stop/Resume**: Ein bewusster Stop endet an einer sicheren Artefaktgrenze;
@@ -447,7 +456,7 @@ enthält keine automatische Härtung oder repoübergreifende Mutation.
 | `RLSEG-EVIDENCE` | `Applicable` | Positive Claims, Pfade, Human-only-Grenzen | `evidence-integrity` | Muss nach jeder Evidenzänderung erneut laufen |
 | `RLSEG-A11Y` | `Applicable` | DE/EN-Parität, CEFR B2, text-first, WCAG 2.2 AA | `a11y-bilingual-review` | Muss nach jeder Nutzertextänderung erneut laufen |
 | `RLSEG-REGRESSION` | `Applicable` | Alle durch den tatsächlichen Diff ausgelösten Repo-Gates | `repository-regression` | Umfang wird im Plan aus dem Diff abgeleitet |
-| `RLSEG-REMOTE` | `N/A` | Provider-, PR- und Merge-Gates | `N/A` | Keine Remote-Autorität; Trigger ist ausdrückliche neue Authority |
+| `RLSEG-REMOTE` | `Applicable` | Provider-, PR-, Review-, Exact-Head-, Merge- und Default-Branch-Gates | `feature-025-exact-head` | Vor Push, PR, Merge und nach jedem Head-Wechsel erneut prüfen |
 | `RLSEG-PARALLEL` | `N/A` | Parallelkampagne | `N/A` | Ein Repository und ein Writer; Trigger ist expliziter Kampagnenauftrag |
 
 ## Agenten-Parität / Agent Parity Applicability
@@ -610,7 +619,7 @@ language tracks.
 **Binding Review**: `specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-result.json`
 **Predecessor Evidence**: `specs/024-mitgeltende-dokumente-verzahnung/pr-evidence.md`
 **Position**: 6, root and sole preferred `Eligible` candidate
-**Delivery Authority**: `LocalImplementation`
+**Delivery Authority**: `MergeAndSync`
 
 ## User Scenarios and Testing
 
@@ -956,18 +965,22 @@ hardening or cross-repository mutation.
 
 ## Autonomous-Run Applicability
 
-- **Intended Delivery Mode**: `LocalImplementation`, binding from the intake.
-  It grants no commit, push, PR, merge, bypass, secret, or provider authority.
+- **Intended Delivery Mode**: `MergeAndSync`, binding from the current user
+  instruction and superseding Ready intake. Commit, push, PR, and merge are
+  authorized for Feature 025. The narrow admin bypass is allowed only with
+  green technical gates, zero actionable review threads, and Human Approval as
+  the sole open gate. Secret or provider administration remains excluded.
 - **Accepted Inputs**: binding intake and `Ready` review, Feature 024 source and
   PR evidence, active Series manifest, baseline manifest, and eleven installed
   governance presets.
 - **Autonomy Boundary**: one repository; no automatic hardening, campaign,
   mutation of foreign/dirty worktrees, or successor-intake start.
-- **Causal Closeout**: required after proven completion because item 6 must be
-  archived and the Series causally advanced. Remote publication requires new
-  explicit authority.
-- **Mutable Validation Tokens**: `N/A`; the authorized local scope contains no
-  provider run or remote head binding. Re-evaluate for later remote authority.
+- **Causal Closeout**: required after the feature PR is merged because item 6
+  must be archived and the Series causally advanced. Only evidence, intake
+  archive, Series, order, run state, retrospective, and statistics may change.
+- **Mutable Validation Tokens**: `Applicable`; bind feature head, checks,
+  review threads, mergeability, and default-branch synchronization freshly
+  before every remote action.
 - **Run-State Path**: A later explicitly started Autonomous run uses
   `specs/025-rl-se-self-assessment/autonomous-run-state.json`.
 - **Stop/Resume**: A deliberate stop ends at a safe artefact boundary. An
@@ -981,7 +994,7 @@ hardening or cross-repository mutation.
 | `RLSEG-EVIDENCE` | `Applicable` | Positive claims, paths, human-only boundaries | `evidence-integrity` | Re-run after every evidence change |
 | `RLSEG-A11Y` | `Applicable` | DE/EN parity, CEFR B2, text-first, WCAG 2.2 AA | `a11y-bilingual-review` | Re-run after every user-facing text change |
 | `RLSEG-REGRESSION` | `Applicable` | Repository gates triggered by the actual diff | `repository-regression` | Plan derives scope from the diff |
-| `RLSEG-REMOTE` | `N/A` | Provider, PR, and merge gates | `N/A` | No remote authority; trigger is explicit new authority |
+| `RLSEG-REMOTE` | `Applicable` | Provider, PR, review, exact-head, merge, and default-branch gates | `feature-025-exact-head` | Re-run before push, PR, merge, and after every head change |
 | `RLSEG-PARALLEL` | `N/A` | Parallel campaign | `N/A` | One repository and one writer; trigger is an explicit campaign request |
 
 ## Agent Parity Applicability

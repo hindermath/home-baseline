@@ -203,3 +203,28 @@ This phase resolves every design decision for the documentation- and evidence-or
 **Rationale**: The current renderer tests pass 146 assertions while `--check-only --json` reports expected `DRIFT`. The clean-tree barrier must not be bypassed. Commit, push, pull request, merge, and remote publication are outside `LocalImplementation`. Even currently expected graph values of 33→32 targets, 4→3 roots, and 36 edges must be recalculated at closeout.
 
 **Alternatives considered**: Force rendering on a dirty tree; claim uncommitted figures are `CURRENT`; close the series before results are complete; imply remote delivery. These violate reproducibility, authority boundaries, or causal ordering.
+
+## Entscheidung 13 / Decision 13: Authority-Revalidierung und Lieferung / Authority Revalidation and Delivery
+
+**Entscheidung**: Die lokale Assessment-Implementierung bleibt fachlich
+unverändert. Die aktuelle Benutzeranweisung und der supersedierende
+Position-6-Intake erteilen `MergeAndSync`. Nach dem Source-Commit wird die
+Statistik aus sauberem Head gerendert; der Feature-PR wird gegen seinen exakten
+Head validiert. Position 6 wird erst nach dem Merge in einem kausalen
+Evidence-/Series-Closeout archiviert. Remediation-Intakes starten nie
+automatisch.
+
+**Begründung**: So bleiben historischer `LocalImplementation`-Checkpoint,
+aktuelle Remote-Autorität und fachlicher Scope unterscheidbar. Veränderliche
+Provider- und Review-Tokens werden nicht aus alter Evidence übernommen.
+
+**Decision**: The local assessment implementation remains professionally
+unchanged. The current user instruction and superseding item-6 intake grant
+`MergeAndSync`. Statistics are rendered from a clean head after the source
+commit; the feature PR is validated against its exact head. Item 6 is archived
+only after merge in a causal evidence/Series closeout. Remediation intakes never
+start automatically.
+
+**Rationale**: This separates the historical `LocalImplementation` checkpoint,
+current remote authority, and professional scope. Mutable provider and review
+tokens are never inherited from stale evidence.

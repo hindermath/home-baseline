@@ -3,11 +3,15 @@
 **Branch**: `025-rl-se-self-assessment` | **Datum**: 2026-08-05 | **Spezifikation**: [spec.md](./spec.md)
 **Eingabe**: Freigegebene Feature-Spezifikation unter `specs/025-rl-se-self-assessment/spec.md`
 
+**Aktuelle Delivery Authority**: `MergeAndSync`. Der lokale
+Implementierungscheckpoint entstand zuvor unter `LocalImplementation`; die
+aktuelle Autoritaet aendert nur den Liefer- und Closeout-Pfad.
+
 ## Zusammenfassung
 
 Das Feature erstellt eine commit-gebundene, barrierearme Selbstprüfung des Level-0-Repositories gegen die Richtlinie Sichere Entwicklung, alle zwölf kanonischen Checklisten, die 15 mitgeltenden Dokumente und das installierte Elf-Preset-Profil. Die Ergebnismatrix enthält jede der 157 stabilen `CL-NN-NN`-IDs genau einmal. Nur tatsächlich noch nicht durch eine stabile Checklisten-ID abgedeckte Prüfpunkte erhalten einen Eintrag in einem expliziten Zusatz-ID-Register. Jeder Prüfpunkt erhält einen eindeutigen Workflowstatus, eine begründete Anwendbarkeit, einen Implementierungsstatus, überprüfbare Evidenz, Owner, Risiko, Restrisiko und einen Re-Evaluation-Trigger.
 
-Die Umsetzung ändert ausschließlich Dokumentation und Evidence. Sie führt keine automatische Härtung, keine Laufzeitänderung und keine Remote-Aktion aus. Fehlende, widersprüchliche oder nicht hinreichend aktuelle Evidenz wird als `Open` oder `FollowUp` sichtbar gemacht. Die Matrix und ihre Zusammenfassung entstehen vollständig Deutsch zuerst und Englisch danach; `docs/security/README.md` erhält einen Leserpfad. Nach semantischer Prüfung und deterministischen Konsistenznachweisen wird der generierte Statistikblock aus seiner kanonischen Konfiguration aktualisiert.
+Die Umsetzung ändert ausschließlich Dokumentation und Evidence. Sie führt keine automatische Härtung oder Laufzeitänderung aus. Die Lieferung erfolgt getrennt über einen Feature-PR mit `MergeAndSync`; danach folgt nur bei kausalem Bedarf ein Evidence-/Series-Closeout. Fehlende, widersprüchliche oder nicht hinreichend aktuelle Evidenz wird als `Open` oder `FollowUp` sichtbar gemacht. Die Matrix und ihre Zusammenfassung entstehen vollständig Deutsch zuerst und Englisch danach; `docs/security/README.md` erhält einen Leserpfad. Nach semantischer Prüfung und deterministischen Konsistenznachweisen wird der generierte Statistikblock aus seiner kanonischen Konfiguration aktualisiert.
 
 ## Technischer Kontext
 
@@ -25,7 +29,7 @@ Die Umsetzung ändert ausschließlich Dokumentation und Evidence. Sie führt kei
 
 **Leistungsziele**: Nicht laufzeitbezogen; die Prüfung muss bei gleichem Commit und gleichen Quellen deterministisch dieselben Mengen und Entscheidungen ergeben.
 
-**Randbedingungen**: `sourceOnly`; kein Home-Sync; keine Code-, Skript-, Abhängigkeits-, Runtime-, Preset-, Agent-Guidance- oder Provideränderung; keine Remote-Aktion; textorientiert; WCAG 2.2 AA; CEFR B2; Deutsch vollständig vor Englisch.
+**Randbedingungen**: `sourceOnly`; kein Home-Sync; keine Code-, Skript-, Abhängigkeits-, Runtime-, Preset-, Agent-Guidance- oder Provideränderung; Remote-Aktionen nur fuer den autorisierten Feature-PR und kausalen Closeout; textorientiert; WCAG 2.2 AA; CEFR B2; Deutsch vollständig vor Englisch.
 **Umfang**: 12 Checklisten, exakt 157 stabile IDs, 15 mitgeltende Dokumente, 11 installierte Presets sowie ein begrenztes, explizit deklariertes Zusatz-ID-Register.
 
 Es bestehen keine `NEEDS CLARIFICATION`-Marker.
@@ -55,7 +59,7 @@ Es bestehen keine `NEEDS CLARIFICATION`-Marker.
 | Inklusion/A11Y | Applicable | Matrix, Summary und Navigation bleiben text-first, linear lesbar, ohne farb- oder layoutabhängige Bedeutung, WCAG 2.2 AA. | Bei jeder Änderung nutzerseitiger Darstellung. |
 | Bilinguale Lieferung | Applicable | Jedes neue oder geänderte nutzerseitige Artefakt enthält zuerst den vollständigen deutschen, danach den vollständigen englischen Inhalt. | Bei semantischer Endprüfung. |
 | Lernenden-Baseline | Applicable | CEFR B2; Fachbegriffe werden bei erster Verwendung erklärt; keine Spec-Kit-Vorkenntnisse werden vorausgesetzt. Primär Maintainer/Ausbildungsverantwortliche, sekundär Auszubildende. | Bei Inhalts- und A11Y-Review. |
-| Statistik | Applicable bei Feature-Abschluss | Kanonische Quelle ist `docs/project-statistics.config.json`; `docs/project-statistics.md` wird nur über den Renderer fortgeschrieben. Wegen Clean-Tree-Barriere und `LocalImplementation` wird verbleibender Git-`DRIFT` bis zu einer autorisierten Commit-Bindung als begrenzter Follow-up dokumentiert. Referenzen: 80 und 100 Zeilen/Arbeitstag, 7,8 Stunden und 21,5 Arbeitstage/Monat. | Nach Abschluss der Feature-Artefakte und erneut nach einem später autorisierten Commit. |
+| Statistik | Applicable bei Feature-Abschluss | Kanonische Quelle ist `docs/project-statistics.config.json`; `docs/project-statistics.md` wird erst nach dem Source-Commit und bei sauberem Arbeitsbaum über den Renderer fortgeschrieben. Referenzen: 80 und 100 Zeilen/Arbeitstag, 7,8 Stunden und 21,5 Arbeitstage/Monat. | Nach Abschluss der Feature-Artefakte und erneut im kausalen Closeout. |
 | Agent-Guidance-Parität | N/A | Keine der gemeinsamen Guidance-Flächen wird geändert. | Falls ein Finding eine Guidance-Änderung verlangt. |
 | Dokumentationsauswirkung | UpdateRequired | Owner: Level-0-Maintainer. Kanonische Quellen: Baseline, Checklisten, mitgeltende Dokumente, Preset-Registry und Feature-Spezifikation. Betroffen: Matrix, Summary, Security-Index, Documentation-Impact-Evidence sowie Abschluss-/Statistik-Evidence. Dokumentklasse: Security-Governance/Evidence. Distribution: `sourceOnly`; Home-Sync: nein. | Baseline-, Preset-, Zielgruppen-, A11Y-, Architektur-, Runtime-, Distributions- oder Delivery-Authority-Änderung. |
 
@@ -143,8 +147,8 @@ specs/025-rl-se-self-assessment/
 
 - Mengenidentität 157/157, Zusatz-ID-Register, Statusdomänen, Pflichtfelder, Priorität, Pfade, 15/15-Dokument- und 11/11-Preset-Abdeckung sowie DE/EN-Parität deterministisch prüfen.
 - Baseline-Builder, Mapping-Tests/-Validator, Statistik-Renderer/-Verifier, Geheimnisscan und `git diff --check` ausführen.
-- Nach autorisierter Commit-Bindung und sauberem Arbeitsbaum die Statistik-Konfiguration ergänzen, das generierte Ledger rendern und erneut prüfen; fehlen diese Voraussetzungen unter `LocalImplementation`, einen vollständigen Statistik-Follow-up statt einer erzwungenen Änderung dokumentieren.
-- Feature-Abschluss nur mit frischer, kausal gebundener Evidence erklären. Commit, Push, PR, Merge oder nachfolgender Spec-Kit-Lauf benötigen jeweils eigene Autorität.
+- Nach dem autorisierten Source-Commit und bei sauberem Arbeitsbaum die Statistik-Konfiguration ergänzen, das generierte Ledger rendern und erneut prüfen.
+- Feature-Abschluss nur mit frischer, kausal gebundener Evidence erklären. Push, PR und Merge verwenden die aktuelle `MergeAndSync`-Autorität; jeder Nachfolgelauf benötigt weiterhin eigene Autorität.
 
 ## Verfassungsprüfung nach dem Design
 
@@ -169,7 +173,7 @@ specs/025-rl-se-self-assessment/
 
 The feature creates a commit-bound, accessible self-assessment of the Level 0 repository against the Secure Development Policy, all twelve canonical checklists, the 15 related documents, and the installed eleven-preset profile. The assessment matrix contains each of the 157 stable `CL-NN-NN` identifiers exactly once. Only checkpoints that are genuinely not covered by a stable checklist identifier receive an entry in an explicit additional-ID register. Every checkpoint receives one workflow status, justified applicability, implementation status, verifiable evidence, owner, risk, residual risk, and a re-evaluation trigger.
 
-The implementation changes documentation and evidence only. It performs no automatic hardening, runtime change, or remote action. Missing, contradictory, or insufficiently current evidence is exposed as `Open` or `FollowUp`. The matrix and summary are delivered in full German followed by full English, and `docs/security/README.md` receives a reader path. After semantic review and deterministic consistency proofs, the generated statistics block is updated through its canonical configuration.
+The implementation changes documentation and evidence only. It performs no automatic hardening or runtime change. Delivery is separate through a `MergeAndSync` feature PR, followed only when causally required by an evidence/Series closeout. Missing, contradictory, or insufficiently current evidence is exposed as `Open` or `FollowUp`. The matrix and summary are delivered in full German followed by full English, and `docs/security/README.md` receives a reader path. After semantic review and deterministic consistency proofs, the generated statistics block is updated through its canonical configuration.
 
 ## Technical Context
 
@@ -217,7 +221,7 @@ There are no `NEEDS CLARIFICATION` markers.
 | Inclusion/accessibility | Applicable | Matrix, summary, and navigation remain text-first and linearly readable without color- or layout-only meaning, following WCAG 2.2 AA. | Every user-facing presentation change. |
 | Bilingual delivery | Applicable | Each new or changed user-facing artifact contains the complete German content before the complete English content. | Semantic final review. |
 | Learner baseline | Applicable | CEFR B2; terms are explained on first use; no Spec Kit experience is assumed. Primary audience: maintainers/training leads; secondary audience: apprentices. | Content and accessibility review. |
-| Statistics | Applicable at feature completion | Canonical source: `docs/project-statistics.config.json`; `docs/project-statistics.md` is changed only through the renderer. Because of the clean-tree barrier and `LocalImplementation`, remaining Git-derived `DRIFT` is recorded as a bounded follow-up until an authorized commit binding exists. References: 80 and 100 lines/workday, 7.8 hours, and 21.5 workdays/month. | After feature artifacts are complete and again after a later authorized commit. |
+| Statistics | Applicable at feature completion | Canonical source: `docs/project-statistics.config.json`; the ledger is rendered only after the source commit and with a clean worktree. References: 80 and 100 lines/workday, 7.8 hours, and 21.5 workdays/month. | After feature artifacts are complete and again during causal closeout. |
 | Agent-guidance parity | N/A | No shared guidance surface changes. | A finding requires a guidance change. |
 | Documentation Impact | UpdateRequired | Owner: Level 0 maintainer. Canonical sources: baseline, checklists, related documents, preset registry, and feature specification. Affected: matrix, summary, security index, Documentation Impact evidence, and completion/statistics evidence. Class: security governance/evidence. Distribution: `sourceOnly`; Home sync: no. | Baseline, preset, audience, accessibility, architecture, runtime, distribution, or delivery-authority change. |
 
@@ -305,8 +309,8 @@ specs/025-rl-se-self-assessment/
 
 - Deterministically verify 157/157 set identity, the additional-ID register, status domains, required fields, priority, paths, 15/15 document coverage, 11/11 preset coverage, and German/English parity.
 - Run baseline builders, mapping tests/validator, statistics renderer/verifier, secret scan, and `git diff --check`.
-- After an authorized commit binding and a clean worktree, extend the statistics configuration, render the generated ledger, and verify it again; if those prerequisites are absent under `LocalImplementation`, record a complete statistics follow-up rather than forcing the change.
-- Declare feature completion only with fresh, causally bound evidence. Commit, push, pull request, merge, or a subsequent Spec Kit run each require separate authority.
+- After the authorized source commit and with a clean worktree, extend the statistics configuration, render the generated ledger, and verify it again.
+- Declare feature completion only with fresh, causally bound evidence. Push, PR, and merge use current `MergeAndSync` authority; every subsequent Spec Kit run still requires separate authority.
 
 ## Post-Design Constitution Check
 

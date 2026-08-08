@@ -126,10 +126,10 @@ Die Summary darf keine Matrixentscheidung überschreiben. Bei Abweichung ist die
 
 - Statistikquelle ist `docs/project-statistics.config.json`; das Ledger wird nicht manuell im generierten Block editiert.
 - Der Renderer-Schreibmodus wird nicht an seiner Clean-Tree-Barriere vorbeigeführt.
-- Verhindert `LocalImplementation` die notwendige Commit-Bindung, dokumentiert die Summary einen begrenzten Follow-up mit Owner, Risiko, Frist/Trigger und DRIFT-Evidence.
+- Die aktuelle `MergeAndSync`-Autorität erlaubt die Commit-Bindung. Statistik wird erst nach dem Source-Commit und bei sauberem Arbeitsbaum gerendert.
 - Der Series-Closeout beginnt erst nach vollständiger, validierter Ergebnislieferung und wird aus dem dann aktuellen Manifest neu berechnet.
 - Archive, Nachfolger-Manifest/-Receipt, Operationsjournal, Supersession-Hashes und Order-Dokument sind erst in einem autorisierten Closeout zu ändern.
-- Kein Nachfolger wird durch dieses Feature gestartet. Commit, Push, PR, Merge und Remote-Aktion benötigen eigene Autorität.
+- Kein Nachfolger wird durch dieses Feature gestartet. Commit, Push, PR und Merge verwenden die aktuelle `MergeAndSync`-Autorität; Remediation-Intakes und Folgeläufe benötigen eigene aktuelle Autorität.
 
 ## 7. Vertragsabnahme
 
@@ -272,10 +272,10 @@ The summary must not override a matrix decision. If they differ, the matrix gove
 
 - The statistics source is `docs/project-statistics.config.json`; the generated ledger block is not edited manually.
 - Renderer write mode is not forced past its clean-tree barrier.
-- If `LocalImplementation` prevents the required commit binding, the summary records a bounded follow-up with owner, risk, due date/trigger, and DRIFT evidence.
+- Current `MergeAndSync` authority permits commit binding. Statistics are rendered only after the source commit and with a clean worktree.
 - Series closeout begins only after complete, validated result delivery and is recalculated from the then-current manifest.
 - Archives, successor manifest/receipt, operations journal, supersession hashes, and order document are changed only in an authorized closeout.
-- This feature starts no successor. Commit, push, pull request, merge, and remote action require separate authority.
+- This feature starts no successor. Commit, push, pull request, and merge use current `MergeAndSync` authority; remediation intakes and later runs require separate current authority.
 
 ## 7. Contract Acceptance
 
