@@ -33,7 +33,7 @@ Workspace-Familie ist:
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.3.5` | `70` |
 | `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.5` | `80` |
 
-Optional koennen `model-routing-governance` v0.1.1 mit Prioritaet `61`,
+Optional koennen `model-routing-governance` v0.1.2 mit Prioritaet `61`,
 `intake-authoring-governance` v0.3.1 mit Prioritaet `64`,
 `intake-review-governance` v0.2.1 mit Prioritaet `65` und
 `intake-sequencing-governance` v0.2.3 mit Prioritaet `66` zwischen Agent Parity
@@ -174,7 +174,7 @@ workspace family is:
 | `autonomous-run-governance` | Autonomous Run Governance | `v0.3.5` | `70` |
 | `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.5` | `80` |
 
-Optionally install `model-routing-governance` v0.1.1 at priority `61`,
+Optionally install `model-routing-governance` v0.1.2 at priority `61`,
 `intake-authoring-governance` v0.3.1 at priority `64`,
 `intake-review-governance` v0.2.1 at priority `65`, and
 `intake-sequencing-governance` v0.2.3 at priority `66` between Agent Parity and
