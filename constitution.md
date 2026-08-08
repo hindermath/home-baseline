@@ -1003,7 +1003,7 @@ workspace family consists of:
 | `autonomous-run-governance` | `v0.3.4` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
 | `parallel-autonomous-run-governance` | `v0.2.5` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`model-routing-governance` v0.1.0 at priority `61`,
+`model-routing-governance` v0.1.1 at priority `61`,
 `intake-authoring-governance` v0.3.1 at priority `64`,
 `intake-review-governance` v0.2.1 at priority `65`, and
 `intake-sequencing-governance` v0.2.3 at priority `66` are optional presets,
