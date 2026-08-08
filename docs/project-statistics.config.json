@@ -473,6 +473,14 @@
       "labelEn": "Balanced Spec Kit model routing",
       "netLines": 4810,
       "activeDays": 1
+    },
+    {
+      "slot": 58,
+      "id": "rl-se-self-assessment-planning-checkpoint",
+      "labelDe": "RL-SE-Selbstpruefung: Planungscheckpoint",
+      "labelEn": "RL-SE self-assessment planning checkpoint",
+      "netLines": 2613,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
