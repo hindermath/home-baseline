@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "37d8c637-9c64-462a-9fbe-5ee9a4a50f6c",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user authority to update Position 6 for MergeAndSync and preserve the accepted Series topology.",
+  "proposalNormalizedSha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 4,
+      "after": 4
+    },
+    "dependencyCount": {
+      "before": 36,
+      "after": 36
+    },
+    "addedTargets": [],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "orderBefore": 1,
+        "orderAfter": 1,
+        "visibleOrderBefore": 6,
+        "visibleOrderAfter": 6,
+        "roleBefore": "Primary",
+        "roleAfter": "Primary",
+        "statusBefore": "Eligible",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "fef3b46c1eedfe118b25ef381e0695526621cd47ab29638d74d30f711ad25755",
+        "normalizedSha256After": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "The visible topology remains unchanged; the order document now explains the explicit MergeAndSync authority and the separate remediation-governance handoff."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/manifest.json",
+    "manifestNormalizedSha256": "13688a31be34f2577880c93abc3c4a45b3daabc9d31d98dbc2294ec1baf3e952",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/receipt.json",
+    "receiptNormalizedSha256": "428118490322bba575ce4455a0698b1d9381d0a58ad2b4d6140796434409591a"
+  },
+  "preparedPaths": [
+    "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+    "specs/intake-authoring-receipts/rl-se-checklist-selbstpruefung.json",
+    "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/1f63109f-0ada-4a90-abda-f3a915f80974/target.md",
+    "specs/intake-authoring-archive/12ca4d44-dff7-45cc-962f-e07b6df21c29/1f63109f-0ada-4a90-abda-f3a915f80974/receipt.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-request.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-result.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-report.md",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/history/9cdf1bfd-7482-4ead-9888-29c0340bee77/intake-review-request.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/history/9cdf1bfd-7482-4ead-9888-29c0340bee77/intake-review-result.json",
+    "specs/rl-se-checklist-selbstpruefung-intake-review/history/9cdf1bfd-7482-4ead-9888-29c0340bee77/intake-review-report.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c.json"
+  ],
+  "validation": {
+    "requirementsGovernanceBash": "Passed",
+    "requirementsGovernancePowerShell": "Passed",
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "reviewBash": "Passed",
+    "reviewPowerShell": "Passed",
+    "seriesBash": "Passed",
+    "seriesPowerShell": "Passed",
+    "statistics": "NotTriggered: intake metadata is updated; the completed feature delivery owns the next statistics entry",
+    "diffCheck": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
