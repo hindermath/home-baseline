@@ -1,22 +1,28 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "f6eaf048-c26b-408b-aa10-38efeb127593",
+  "reviewId": "00fd052d-4a67-415a-b800-2b2b47f88000",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-08T17:38:32Z",
+  "reviewedAt": "2026-08-08T16:46:05Z",
   "repository": {
     "root": ".",
-    "head": "268a9b885c61cf2212d15b55c4a80b762c1f60fc"
+    "head": "81cb3ba71569ec7579258b7b8b47cb21b32f33d4"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "271c22ee4e2de186d42cd94a264d8b01c02f4750a14a2f86fbac56692b8f7adc"
+    "normalizedSha256": "a8444d7a6c56328772ca5c77846fb1b5c6d9cf099fe62b4c57333c45effca4a7"
   },
   "targets": [
     {
-      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "role": "Primary",
+      "normalizedSha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173",
+      "gitBlob": "N/A"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "OrderedMember",
       "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
       "gitBlob": "N/A"
     },
@@ -213,6 +219,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
@@ -247,11 +254,11 @@
       "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
     ],
     "series": [
-      "All 32 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
-      "The three declared roots equal the zero-indegree target set",
+      "All 33 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "The four declared roots equal the zero-indegree target set",
       "Thirty-six unique dependencies are reference-valid, order-consistent, and acyclic",
-      "Position 7 is the single declared Eligible candidate and this closeout grants no delivery authority",
-      "Feature 025 evidence records 159 decisions and 21 evidence entries per language with 149 bounded remediation candidates",
+      "Position 6 remains the single declared Eligible candidate with explicit MergeAndSync delivery authority",
+      "Feature 024 evidence remains the binding 12/157/15 and eight-plus-three assessment baseline",
       "Remediation intake creation, review, series admission, and autonomous execution remain separate explicit governance steps"
     ],
     "workers": []
@@ -262,5 +269,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "00fd052d-4a67-415a-b800-2b2b47f88000"
+  "supersedes": "7d902e0b-a33d-4453-8969-a2e2f4dea346"
 }

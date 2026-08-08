@@ -5,9 +5,9 @@
   "branch": "025-rl-se-self-assessment",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
-  "checkpointCommit": "961d2e6142163a0c407c39d2272549c6461574e7",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "268a9b885c61cf2212d15b55c4a80b762c1f60fc",
   "acceptedArtifacts": [
     {
       "path": ".specify/feature.json",
@@ -22,16 +22,84 @@
       "sha256": "648cf9345dce576982a1cb58c17a4472aa3ac91bdb880c6198e37052cb88a0df"
     },
     {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md",
+      "sha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "22cd83e375fe9fa6ea382a8e203a506139718234e652cb745a89694986827f5d"
+    },
+    {
       "path": "scripts/config/spec-kit-intake-sequencing-governance-presets.json",
       "sha256": "5126ec6a23547dc146bde599820992a69f8e80b16258192311d7babf22b83271"
     },
     {
-      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
-      "sha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173"
+      "path": "specs/024-mitgeltende-dokumente-verzahnung/pr-evidence.md",
+      "sha256": "030da217abba497a490bbf40b92c7af6dcb824af7eec86d32e11f3cdf8c05ad7"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/autonomous-run-gate-evidence.json",
+      "sha256": "2394bad82a449a953b2c6862c573e262233ac9f333d59e492ab85efb3f7c342c"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/checklists/requirements.md",
+      "sha256": "ff6193682bae9bedc509f9be4c16a0bab22e66b201f30502c0ec90a9d7f4bb7c"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/contracts/assessment-artifact-contract.md",
+      "sha256": "d486ecd151c52b40ed4167c59c225f5293cefd9d0416372829258f02e9299f3d"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/data-model.md",
+      "sha256": "1620619e9a8726e547b4bab09d2182df6f839e5170d116f559cd16d834ca5b42"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/plan.md",
+      "sha256": "75f36fa6cc9617892c190e7bc1e90069e96f66e40f18a2d61af75423df56e46a"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/pr-evidence.md",
+      "sha256": "c571a626b5e3803042739c8e904a038ff206975754b0a00d6410d310477e6578"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/quickstart.md",
+      "sha256": "906dbdc07000357c7e416566e49e7cec6ae15b38cedc0d9622368d4c0ea63b81"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/research.md",
+      "sha256": "59da7c56161b5447096095f89f9785c3701208377e287f0bddf217816ea6d29d"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/retrospective.md",
+      "sha256": "6314f7a71714ee7645d89fabaf96ac3ac99366b8f8776138bf5b1dc079f33f5f"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/spec.md",
+      "sha256": "57cc0e2d0f493cbcfe8ba11a3bd21621efe7539c4b46f203416fed7238e93f7a"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-report.md",
+      "sha256": "fad807fa53179a3ee4fe1662f6f4fb47ab6c4f7c18971f6d58e5e47b0ccfb14c"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-request.json",
+      "sha256": "271c22ee4e2de186d42cd94a264d8b01c02f4750a14a2f86fbac56692b8f7adc"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "caf693dc3761644a63ffbae6b9c84d5b81ace773b5d6da6d3520fe9bac6d4f7b"
     },
     {
       "path": "specs/intake-authoring-receipts/rl-se-checklist-selbstpruefung.json",
       "sha256": "51240726cb7009f99609fbb682eba5e75482dcb1d03709eacfe431b32d04570a"
+    },
+    {
+      "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-report.md",
+      "sha256": "04ed88281b8ee7d8e3e2d135577ddeafec619957a8dde656d8c4ebf598e6d4dc"
     },
     {
       "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-request.json",
@@ -40,56 +108,12 @@
     {
       "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-result.json",
       "sha256": "6352507f5c8e11605199c149676d6ff07201e94882338e212a74f391e0effc1b"
-    },
-    {
-      "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-report.md",
-      "sha256": "04ed88281b8ee7d8e3e2d135577ddeafec619957a8dde656d8c4ebf598e6d4dc"
-    },
-    {
-      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "sha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16"
-    },
-    {
-      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
-      "sha256": "ea889b6b08ea75d309c20ba0a175f8ce862ffa24923ec516c142b7f6af69dbfd"
-    },
-    {
-      "path": "specs/024-mitgeltende-dokumente-verzahnung/pr-evidence.md",
-      "sha256": "030da217abba497a490bbf40b92c7af6dcb824af7eec86d32e11f3cdf8c05ad7"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/spec.md",
-      "sha256": "57cc0e2d0f493cbcfe8ba11a3bd21621efe7539c4b46f203416fed7238e93f7a"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/plan.md",
-      "sha256": "75f36fa6cc9617892c190e7bc1e90069e96f66e40f18a2d61af75423df56e46a"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/research.md",
-      "sha256": "59da7c56161b5447096095f89f9785c3701208377e287f0bddf217816ea6d29d"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/data-model.md",
-      "sha256": "1620619e9a8726e547b4bab09d2182df6f839e5170d116f559cd16d834ca5b42"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/quickstart.md",
-      "sha256": "906dbdc07000357c7e416566e49e7cec6ae15b38cedc0d9622368d4c0ea63b81"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/contracts/assessment-artifact-contract.md",
-      "sha256": "d486ecd151c52b40ed4167c59c225f5293cefd9d0416372829258f02e9299f3d"
-    },
-    {
-      "path": "specs/025-rl-se-self-assessment/checklists/requirements.md",
-      "sha256": "ff6193682bae9bedc509f9be4c16a0bab22e66b201f30502c0ec90a9d7f4bb7c"
     }
   ],
   "tasks": {
     "path": "specs/025-rl-se-self-assessment/tasks.md",
-    "sha256": "fb50ab40d3d5aad991a7149f86c14bc62d39a3b01a0de83471899036b3b16ce3",
-    "completed": 62,
+    "sha256": "dd744073d98d045f7634e4118099e39b73fc337db3b5bb82f66a2095f8e87b75",
+    "completed": 65,
     "total": 65,
     "taskIds": [
       "T001",
@@ -208,12 +232,12 @@
       }
     ]
   },
-  "lastPassingGate": "Exact branch-diff whitespace remediation completed; T062 remains validated and Statistics Profile 2 will be regenerated from the corrected source head",
-  "nextExactAction": "Commit the exact-diff whitespace correction, regenerate Statistics Profile 2, then push and create the feature PR",
+  "lastPassingGate": "Feature PR #214 exact head 117e992 passed all 26 provider checks with Copilot review and zero review threads; the causal 32/3/36 Series closeout passes local Bash and PowerShell governance validation.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "ExactDiffWhitespaceRemediated",
+    "kind": "Retrospective",
     "state": "Completed",
-    "summary": "Replaced two Markdown hard-break trailing spaces with an explicit paragraph break and refreshed the task hash without changing task semantics."
+    "summary": "Feature 025 and its causal closeout are validated, all 65 tasks are complete, the decision is NoPromotion, and no remediation or successor intake starts."
   },
   "stop": {
     "reason": "N/A",
@@ -221,10 +245,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-08T17:26:38Z"
+  "updatedAt": "2026-08-08T17:38:32Z"
 }

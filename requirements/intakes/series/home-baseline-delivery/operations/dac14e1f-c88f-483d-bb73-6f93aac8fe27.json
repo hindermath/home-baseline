@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "dac14e1f-c88f-483d-bb73-6f93aac8fe27",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Explicit current MergeAndSync authority requires the causal Feature-025 archive, evidence-bound Position-7 handoff, and no automatic remediation or successor start inside the closeout.",
+  "proposalNormalizedSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 32
+    },
+    "rootCount": {
+      "before": 4,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 36,
+      "after": 36
+    },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+        "role": "Primary",
+        "normalizedSha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "orderBefore": 2,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Pending",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+        "normalizedSha256After": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [
+      "Lastenheft_RL-SE-Checklist-Selbstpruefung.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed Feature 025 and exposes Position 7 as the sole preferred Eligible candidate without starting remediation or a successor."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/dac14e1f-c88f-483d-bb73-6f93aac8fe27/manifest.json",
+    "manifestNormalizedSha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/dac14e1f-c88f-483d-bb73-6f93aac8fe27/receipt.json",
+    "receiptNormalizedSha256": "ea889b6b08ea75d309c20ba0a175f8ce862ffa24923ec516c142b7f6af69dbfd"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/025-rl-se-self-assessment/autonomous-run-evidence.md",
+    "specs/025-rl-se-self-assessment/autonomous-run-gate-evidence.json",
+    "specs/025-rl-se-self-assessment/pr-evidence.md",
+    "specs/025-rl-se-self-assessment/retrospective.md",
+    "specs/active-lastenheft-normalization/intake-review-result.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

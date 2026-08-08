@@ -489,6 +489,14 @@
       "labelEn": "RL-SE checklist self-assessment",
       "netLines": 2932,
       "activeDays": 1
+    },
+    {
+      "slot": 60,
+      "id": "rl-se-self-assessment-closeout",
+      "labelDe": "RL-SE-Selbstpruefung: kausaler Abschluss",
+      "labelEn": "RL-SE self-assessment causal closeout",
+      "netLines": 1586,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
