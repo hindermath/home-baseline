@@ -15,6 +15,11 @@ requires:
 provides:
   templates:
     - type: "template"
+      name: "intake-review-governance-model-routing"
+      file: "model-routing.json"
+      description: "Agent-neutral command-to-role routing contract"
+
+    - type: "template"
       name: "intake-review-policy-template"
       file: "templates/intake-review-policy-template.json"
       description: "Project policy for optional or mandatory intake review"

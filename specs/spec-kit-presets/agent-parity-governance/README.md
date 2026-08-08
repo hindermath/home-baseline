@@ -159,20 +159,23 @@ instruction files. The preset does not require a specific vendor or agent mix.*
 
 ## Modell-Routing / Model Routing
 
-- Starke Reasoning-/Coding-Modelle für `speckit.specify`,
-  `speckit.clarify`, `speckit.plan`, `speckit.tasks` und `speckit.analyze`.
-- Long-running-Agent-Modell für vollständige lange
-  `speckit.implement`-Läufe.
-- Coding-optimierte Modelle für fokussierte Reviews oder CI-Fixes.
-- Kleine schnelle Coding-Modelle für triviale mechanische Änderungen.
-- Der jeweils verwendete Agent ordnet diese Kategorien seinen aktuell besten
-  verfügbaren Modellen selbst zu.
+- `frontier-reasoning` für semantische Intake-Entscheidungen sowie Specify,
+  Clarify, Plan, Tasks und Analyze.
+- `long-running-implementation` für vollständige Implementierungsläufe.
+- `coding-review` für Sicherheits-, Architektur-, A11Y- und Abschlussreviews.
+- `fast-mechanical` für Read, Status, Next und risikoarme mechanische Arbeit.
+- `script-only` für Stop und deterministische Validatoren ohne Modell.
+- Jedes Preset deklariert seine Kommandos in `model-routing.json`. Bei mehreren
+  Wrappern gewinnt die stärkste Rolle. Konkrete Modelle bleiben lokal.
+- Nicht-parallele autonome Läufe wechseln Modelle nur zwischen Prozessen an
+  validierten Phasengrenzen. Lokale Profile arbeiten `fail-closed`.
 
-*Use strong reasoning/coding models for specification, clarification,
-planning, tasks, and analysis; long-running agent models for complete
-implementation runs; coding-optimized models for reviews or CI fixes; and
-small fast coding models for trivial mechanical edits. The active agent maps
-these categories to its currently best available models.*
+*Stable roles are `frontier-reasoning`, `long-running-implementation`,
+`coding-review`, `fast-mechanical`, and `script-only`. Every preset declares
+its command roles in `model-routing.json`; the strongest applicable wrapper
+role wins while concrete models stay local. Non-parallel autonomous runs
+change models only between processes at validated phase boundaries. Local
+profiles fail closed.*
 
 ## Preset-Strategie / Preset Strategy
 

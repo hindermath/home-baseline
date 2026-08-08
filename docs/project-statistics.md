@@ -153,6 +153,7 @@
 | 2026-08-02 | GitHub-Actions-Runnerprofil und Windows-ripgrep gehärtet | — | — | — | Documentation Impact `UpdateRequired`: Die beiden generisch verteilten Workflows `Maintenance TUI` und `PowerShell Static Analysis` behalten ihre Linux-/macOS-/Windows-Matrix nur auf den drei öffentlichen Referenz-Repositories `home-baseline`, `agent-operations-cockpit` und `TuiVision`; private Fleet-Kopien prüfen kontinuierlich unter Linux. Produktspezifische Plattformprüfungen bleiben unverändert. Der Windows-Homogeneity-Check bezieht ripgrep 15.2.0 direkt aus dem offiziellen Release, verifiziert SHA-256 und prüft `rg --version`, sodass ein temporärer Chocolatey-Gatewayfehler nicht mehr unbemerkt bis zum Folgeschritt reicht. Der bilinguale Effizienzleitfaden dokumentiert Scope, Kostenwirkung und Ausnahmevertrag. Home Runtime benötigt für diese Source- und Workflow-Änderung keinen Sync. |
 | 2026-08-05 | Level-0-Checkout- und Public-Template-Intake vorbereitet | — | — | — | Documentation Impact `UpdateRequired`: Ein neuer Schema-2.0-Intake trennt die spätere Dokumentation des bestehenden Level-0-Checkouts von der Erstellung eines eigenständigen Repositorys aus dem GitHub Public Template. `git clone`, `gh repo clone`, `gh repo create --template ... --clone` und das nicht verwandte `git clone --template` erhalten klare Ergebnis-, Remote-, Historien- und Providergrenzen. Die aktive Series umfasst 33 Ziele, vier Roots und 36 Abhängigkeiten; Position 38 ist über `PreferredSerialOrder` beratend angehängt, bleibt `Pending` und verändert Position 6 als einzigen deklarierten `Eligible`-Kandidaten nicht. Intake-Receipt, bytegleiche Series-Archive, Nachfolge-Receipt und Operationsjournal sind hashgebunden. `getting-started.md` wurde bewusst noch nicht geändert; Intake Review, Specify, Autonomous, Remote-Lieferung und Home-Sync wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 1 036 Nettozeilen. |
 | 2026-08-05 | RL-SE-/Checklist-Selbstpruefungsintake repariert und neu geprueft | — | — | — | Documentation Impact `UpdateRequired`: Der mechanisch veraltete Position-5-Pfad bindet jetzt die abgeschlossene Feature-024-Quelle und ihren unveraenderlichen PR-Nachweis. Der ausdruecklich bestaetigte Lernenden-, Vorwissens-, Begriffs-, A11Y-, CEFR-B2- und DE/EN-Vertrag sowie der statusabhaengige Feldvertrag fuer `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp` sind in Anforderungen, Artefakten, Abnahme und Prompts synchronisiert. Die Findings `IR001` bis `IR003` sind geschlossen; der vollstaendige Single-Review ist `Ready` mit null verbleibenden Findings, Risiken oder offenen Fragen. Authoring-Receipt, Review und Series-Hashbindung besitzen bytegleiche Archive und vollstaendige Supersession. Die Series bleibt bei 33 Zielen, vier Roots und 36 Abhaengigkeiten; Position 6 bleibt alleiniger bevorzugter `Eligible`-Kandidat. Specify, Autonomous und Remote-Lieferung wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 1 549 Nettozeilen. |
+| 2026-08-07 | Ausgewogenes Spec-Kit-Modell-Routing | — | — | — | Documentation Impact `UpdateRequired`: Alle elf Governance-Presets deklarieren einen providerneutralen Kommando-zu-Rolle-Vertrag. Sequenzielle autonome Laeufe duerfen das konkrete Modell nur an abgeschlossenen Prozessgrenzen wechseln; lokale Runner-Profile, SHA-256-Bindung, Preflight und Fail-Closed-Verhalten verhindern stillen Fallback. Status-, Stop- und rein deterministische Pfade bleiben leichtgewichtig oder skriptbasiert, waehrend semantische Planung, Implementierung und Review staerkere Rollen verwenden. Preset-Quellen, beide Spiegel, Agentenoberflaechen und plattformuebergreifende Validatoren sind synchron. Feature 025 und seine Planungsartefakte bleiben davon getrennt. Das Implementierungsdelta vor Statistikpflege umfasst 4 810 Nettozeilen. |
 
 ---
 
@@ -1033,27 +1034,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 616877 lines |
-| Textdateien / Text files | 3052 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-05 |
-| Aktivtage / Active days | 82 |
-| Relevante Commits / Relevant commits | 693 |
-| Zeilen je Aktivtag / Lines per active day | 7522.9 |
+| Textbasis / Text base | 621695 lines |
+| Textdateien / Text files | 3107 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-08 |
+| Aktivtage / Active days | 83 |
+| Relevante Commits / Relevant commits | 694 |
+| Zeilen je Aktivtag / Lines per active day | 7490.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 94.0x |
-| Speedup vs. 100 lines/day | 75.2x |
-| Methodik / Methodology | v2; source `ab6e971048d4` |
+| Speedup vs. 80 lines/day | 93.6x |
+| Speedup vs. 100 lines/day | 74.9x |
+| Methodik / Methodology | v2; source `56534f4d2484` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.5% | 21314
-Dokumentation / Documentation   [##########..........]  49.8% | 307291
-Skripte / Scripts               [##..................]   9.0% | 55596
-Konfiguration / Configuration   [#######.............]  37.2% | 229668
+Tests                           [#...................]   3.5% | 21824
+Dokumentation / Documentation   [##########..........]  49.8% | 309461
+Skripte / Scripts               [##..................]   9.2% | 57250
+Konfiguration / Configuration   [#######.............]  37.0% | 230152
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 771
 ```
@@ -1081,9 +1082,9 @@ So/Su  0 0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0
 Di/Tu  0 0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0
 Mi/We  0 0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4
-Do/Th  0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 -
-Fr/Fr  0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 -
-Sa/Sa  0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 -
+Do/Th  0 0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0
+Fr/Fr  0 0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4
+Sa/Sa  0 0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 0
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1173,15 +1174,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..56
-  cap 200000 | . . . . . . . . .
-      166667 | . . . . . . . . .
-      133333 | . . . . # . . . .
-      100000 | . . . . # . . . .
-       66667 | . . . . # . . . .
-       33333 | . . . . # . . . .
-           0 +-------------------
-             48 49 50 51 52 53 54 55 56
+Slots 48..57
+  cap 200000 | . . . . . . . . . .
+      166667 | . . . . . . . . . .
+      133333 | . . . . # . . . . .
+      100000 | . . . . # . . . . .
+       66667 | . . . . # . . . . .
+       33333 | . . . . # . . . . .
+           0 +---------------------
+             48 49 50 51 52 53 54 55 56 57
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1243,6 +1244,7 @@ Slots 48..56
 | 54 | AEPS-Engineering-Controls-Registrierung / AEPS Engineering Controls registration | 307 |
 | 55 | Level-0-Checkout- und Public-Template-Intake / Level 0 checkout and public template intake | 1036 |
 | 56 | RL-SE-/Checklist-Selbstpruefungsintake-Reparatur / RL-SE checklist self-assessment intake repair | 1549 |
+| 57 | Ausgewogenes Spec-Kit-Modell-Routing / Balanced Spec Kit model routing | 4810 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1252,8 +1254,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 94.0x
-100 lines/day      [###############.....] 75.2x
+80 lines/day       [###################.] 93.6x
+100 lines/day      [###############.....] 74.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1266,7 +1268,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7522.9
+Visible repository [###############.....] 7490.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1275,9 +1277,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-05. Es enthaelt 82 aktive und 279 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-08. Es enthaelt 83 aktive und 281 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-10 and ends on 2026-08-05. It contains 82 active and 279 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-10 and ends on 2026-08-08. It contains 83 active and 281 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1292,6 +1294,6 @@ DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-05. Es enthaelt 82 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 183563 |
+| 2026-08 | 188939 |
 
 <!-- project-statistics-v2:end -->

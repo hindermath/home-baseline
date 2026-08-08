@@ -15,6 +15,11 @@ requires:
 provides:
   templates:
     - type: "template"
+      name: "parallel-autonomous-run-governance-model-routing"
+      file: "model-routing.json"
+      description: "Agent-neutral command-to-role routing contract"
+
+    - type: "template"
       name: "parallel-campaign-template"
       file: "templates/parallel-campaign-template.json"
       description: "Portable parallel autonomous campaign manifest"

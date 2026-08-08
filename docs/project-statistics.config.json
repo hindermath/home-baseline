@@ -465,6 +465,14 @@
       "labelEn": "RL-SE checklist self-assessment intake repair",
       "netLines": 1549,
       "activeDays": 1
+    },
+    {
+      "slot": 57,
+      "id": "balanced-spec-kit-model-routing",
+      "labelDe": "Ausgewogenes Spec-Kit-Modell-Routing",
+      "labelEn": "Balanced Spec Kit model routing",
+      "netLines": 4810,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
