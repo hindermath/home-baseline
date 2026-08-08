@@ -1034,27 +1034,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 623870 lines |
-| Textdateien / Text files | 3119 |
+| Textbasis / Text base | 629315 lines |
+| Textdateien / Text files | 3133 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-10..2026-08-08 |
 | Aktivtage / Active days | 84 |
-| Relevante Commits / Relevant commits | 695 |
-| Zeilen je Aktivtag / Lines per active day | 7427.0 |
+| Relevante Commits / Relevant commits | 700 |
+| Zeilen je Aktivtag / Lines per active day | 7491.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 92.8x |
-| Speedup vs. 100 lines/day | 74.3x |
-| Methodik / Methodology | v2; source `94bb87015b09` |
+| Speedup vs. 80 lines/day | 93.6x |
+| Speedup vs. 100 lines/day | 74.9x |
+| Methodik / Methodology | v2; source `343d53d5bfbe` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.5% | 21824
-Dokumentation / Documentation   [##########..........]  49.7% | 309994
-Skripte / Scripts               [##..................]   9.2% | 57250
-Konfiguration / Configuration   [#######.............]  37.2% | 231794
+Tests                           [#...................]   3.6% | 22958
+Dokumentation / Documentation   [##########..........]  49.9% | 313912
+Skripte / Scripts               [##..................]   9.1% | 57250
+Konfiguration / Configuration   [#######.............]  36.9% | 232187
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 771
 ```
@@ -1174,15 +1174,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..57
-  cap 200000 | . . . . . . . . . .
-      166667 | . . . . . . . . . .
-      133333 | . . . . # . . . . .
-      100000 | . . . . # . . . . .
-       66667 | . . . . # . . . . .
-       33333 | . . . . # . . . . .
-           0 +---------------------
-             48 49 50 51 52 53 54 55 56 57
+Slots 48..59
+  cap 200000 | . . . . . . . . . . . .
+      166667 | . . . . . . . . . . . .
+      133333 | . . . . # . . . . . . .
+      100000 | . . . . # . . . . . . .
+       66667 | . . . . # . . . . . . .
+       33333 | . . . . # . . . . . . .
+           0 +-------------------------
+             48 49 50 51 52 53 54 55 56 57 58 59
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1245,6 +1245,8 @@ Slots 48..57
 | 55 | Level-0-Checkout- und Public-Template-Intake / Level 0 checkout and public template intake | 1036 |
 | 56 | RL-SE-/Checklist-Selbstpruefungsintake-Reparatur / RL-SE checklist self-assessment intake repair | 1549 |
 | 57 | Ausgewogenes Spec-Kit-Modell-Routing / Balanced Spec Kit model routing | 4810 |
+| 58 | RL-SE-Selbstpruefung: Planungscheckpoint / RL-SE self-assessment planning checkpoint | 2613 |
+| 59 | RL-SE-/Checklist-Selbstpruefung / RL-SE checklist self-assessment | 2932 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1254,8 +1256,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 92.8x
-100 lines/day      [###############.....] 74.3x
+80 lines/day       [###################.] 93.6x
+100 lines/day      [###############.....] 74.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1268,7 +1270,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7427.0
+Visible repository [###############.....] 7491.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1294,6 +1296,6 @@ DE: Das Fenster beginnt am 2025-08-10 und endet am 2026-08-08. Es enthaelt 84 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 191274 |
+| 2026-08 | 196885 |
 
 <!-- project-statistics-v2:end -->
