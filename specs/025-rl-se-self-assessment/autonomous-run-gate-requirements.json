@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "RLSEG-BASELINE",
+      "applicability": "Applicable",
+      "requiredScope": "Validate baseline 3.2.0, all twelve canonical checklists, all 157 stable IDs, all fifteen related documents, mapping 1.3.0, and the exact installed eleven-preset profile.",
+      "requiredCommandTokens": [
+        "scripts/build-secure-development-docs.sh --check",
+        "scripts/build-secure-development-docs.ps1 -Check",
+        "specs/024-mitgeltende-dokumente-verzahnung/tests/test_mapping.py",
+        "specs/024-mitgeltende-dokumente-verzahnung/tools/validate_mapping.py --repo .",
+        "scripts/config/spec-kit-intake-sequencing-governance-presets.json --check-only"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "Bash",
+        "PowerShell 7",
+        "Python 3"
+      ],
+      "rationale": "The result set is valid only against the accepted baseline, mapping, and managed eleven-preset profile.",
+      "reevaluationTrigger": "Any baseline, checklist, related-document, mapping, registry, preset-version, priority, or enabled-state change."
+    },
+    {
+      "gateId": "RLSEG-MATRIX",
+      "applicability": "Applicable",
+      "requiredScope": "Prove 157/157 stable IDs per language half, the declared HB-RLSE register, no duplicates or unknown IDs, one workflow status per row, precedence, separate axes, required fields, safe paths, and 15/15 plus 11/11 coverage.",
+      "requiredCommandTokens": [
+        "assessment-matrix-contract",
+        "comm -3",
+        "rg -n"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "Bash"
+      ],
+      "rationale": "The Markdown matrix is the canonical feature decision ledger and needs deterministic identity and field proofs.",
+      "reevaluationTrigger": "Any matrix, canonical checklist, related-document, or preset-coverage change."
+    },
+    {
+      "gateId": "RLSEG-EVIDENCE",
+      "applicability": "Applicable",
+      "requiredScope": "Validate positive-claim freshness, commit or documented-worktree binding, command/time/result fields, human-only boundaries, risk domains, and complete Open/FollowUp contracts.",
+      "requiredCommandTokens": [
+        "evidence-integrity",
+        "git rev-parse HEAD",
+        "git status --short",
+        "scripts/scan-agent-secrets.sh --fail-on-high .",
+        "scripts/scan-agent-secrets.ps1 -WorkspaceRoot . -FailOnHigh"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "Bash",
+        "PowerShell 7"
+      ],
+      "rationale": "A positive status is permitted only when current evidence proves the same claim and publishable artifacts remain free of private state.",
+      "reevaluationTrigger": "Any evidence, status, risk, owner, reviewer, worktree, or checkpoint-commit change."
+    },
+    {
+      "gateId": "RLSEG-A11Y",
+      "applicability": "Applicable",
+      "requiredScope": "Perform semantic German/English parity, CEFR B2, first-use terminology, linear text-first, link/navigation, and applicable WCAG 2.2 AA review for matrix, summary, and Security index.",
+      "requiredCommandTokens": [
+        "a11y-bilingual-review",
+        "WCAG 2.2 AA",
+        "CEFR B2",
+        "lychee --offline --include-fragments"
+      ],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "The result artifacts serve maintainers, training leads, reviewers, and apprentices and must remain semantically equal and accessible without visual-only meaning.",
+      "reevaluationTrigger": "Any user-facing wording, heading, table, link, status, risk, evidence, or next-action change."
+    },
+    {
+      "gateId": "RLSEG-REGRESSION",
+      "applicability": "Applicable",
+      "requiredScope": "Run all local repository gates triggered by the exact candidate while preserving scripts, runtime, presets, Constitution, shared guidance, provider configuration, and the persistent index.",
+      "requiredCommandTokens": [
+        "git diff --check",
+        "scripts/check-homogeneity.sh --dry-run --no-patch .",
+        "scripts/check-homogeneity.ps1 -TargetDir . -DryRun -NoPatch",
+        "scripts/invoke-psscriptanalyzer.ps1",
+        "specify check",
+        "temporary-index"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "Bash",
+        "PowerShell 7"
+      ],
+      "rationale": "The documentation-only change must not regress repository behavior or escape the accepted path allowlist.",
+      "reevaluationTrigger": "Any changed-path, validation-result, tool-availability, or candidate-index change."
+    },
+    {
+      "gateId": "RLSEG-REMOTE",
+      "applicability": "Applicable",
+      "requiredScope": "Provider, push, pull request, review, merge, default-branch synchronization, and remote gate evidence.",
+      "requiredCommandTokens": [
+        "gh pr checks",
+        "gh pr view",
+        "git rev-parse HEAD",
+        "git rev-parse origin/main",
+        "git rev-list --left-right --count main...origin/main"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "GitHub",
+        "Exact Head"
+      ],
+      "rationale": "Current MergeAndSync authority permits feature delivery and a separate causal closeout. The narrow admin bypass applies only when technical gates are green, zero actionable review threads remain, and Human Approval is the sole open gate.",
+      "reevaluationTrigger": "Every candidate-head change, push, review update, merge decision, closeout-head change, or default-branch synchronization."
+    },
+    {
+      "gateId": "RLSEG-PARALLEL",
+      "applicability": "N/A",
+      "requiredScope": "Parallel autonomous campaign, worker scheduling, multi-worktree consolidation, and campaign closeout.",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "This feature assesses one repository with one serialized writer and contains no delegated campaign.",
+      "reevaluationTrigger": "A later explicit parallel-campaign request with separate campaign and worker authority."
+    }
+  ]
+}

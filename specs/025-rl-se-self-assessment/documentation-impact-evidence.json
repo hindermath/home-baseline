@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "025-rl-se-self-assessment",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Repository-wide RL-SE self-assessment evidence and Level 0 security-navigation entry",
+      "decision": "UpdateRequired",
+      "rationale": "The feature publishes a corrected bilingual assessment of the complete current Level 0 repository, not only its documentation delta. The security index therefore requires a direct reader path and governed evidence whose status counts, risks, and remediation candidates match the repository-wide matrix.",
+      "documents": [
+        "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-matrix.md",
+        "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md",
+        "docs/security/README.md"
+      ],
+      "owner": "Level 0 Maintainer",
+      "audiences": [
+        "Learners",
+        "Training owners",
+        "Maintainers",
+        "Security reviewers",
+        "AI agents"
+      ],
+      "readerPaths": [
+        "SecurityIndexToSummary",
+        "SummaryFindingToMatrixDecision",
+        "MaintainerAgentEvidenceReview"
+      ],
+      "canonicalSource": "specs/025-rl-se-self-assessment/contracts/assessment-artifact-contract.md",
+      "navigationImpact": "docs/security/README.md adds a clearly labelled Level 0 path to the summary first and the full matrix second; historical Feature 024 evidence is unchanged.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Complete German first, followed by complete English in each changed Markdown document",
+      "languagePartners": [
+        "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-matrix.md",
+        "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md",
+        "docs/security/README.md"
+      ],
+      "platformAndExampleProof": "Content is platform-neutral Markdown. The repository inventory covers Bash, PowerShell, Python, C#, workflows, security documents, architecture, cryptography, dependencies, AI-development tools, privacy, and sandbox surfaces. Source, mapping, preset, intake, Documentation Impact, and state validation use the macOS Bash path first and PowerShell 7 parity where specified. Semantic DE/EN and feature-scoped link checks provide text-first reader-path evidence; they are not human accessibility tests.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Any change to the twelve canonical checklists, complete Level 0 repository scope, code or I/O surfaces, baseline or mapping versions, installed preset matrix, external or repository evidence freshness, result paths, language structure, or Documentation Impact governance."
+    }
+  ]
+}

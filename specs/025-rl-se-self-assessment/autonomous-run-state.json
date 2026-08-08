@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "8f9939c4-11cf-4918-a9fc-474ab60d12ee",
+  "featurePath": "specs/025-rl-se-self-assessment",
+  "branch": "025-rl-se-self-assessment",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "961d2e6142163a0c407c39d2272549c6461574e7",
+  "acceptedArtifacts": [
+    {
+      "path": ".specify/feature.json",
+      "sha256": "8dcf42afa8a18e9e5fcb05dc934385741278426c61c6fe73d3aaaeb640e0b978"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "54390e0b7d04488bcab713eadf27f1337a460c90d9463ad4475bc4553237ade2"
+    },
+    {
+      "path": ".specify/presets/.registry",
+      "sha256": "648cf9345dce576982a1cb58c17a4472aa3ac91bdb880c6198e37052cb88a0df"
+    },
+    {
+      "path": "scripts/config/spec-kit-intake-sequencing-governance-presets.json",
+      "sha256": "5126ec6a23547dc146bde599820992a69f8e80b16258192311d7babf22b83271"
+    },
+    {
+      "path": "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+      "sha256": "b31a5850f3673981de98275a0dbecf027da113de5e517e8e6ffd6cbfd5488173"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/rl-se-checklist-selbstpruefung.json",
+      "sha256": "51240726cb7009f99609fbb682eba5e75482dcb1d03709eacfe431b32d04570a"
+    },
+    {
+      "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-request.json",
+      "sha256": "ef07564325e7fe706aa7c78b3ccdd4341dbd406e297fe0fa4351a85e219cd0f3"
+    },
+    {
+      "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-result.json",
+      "sha256": "6352507f5c8e11605199c149676d6ff07201e94882338e212a74f391e0effc1b"
+    },
+    {
+      "path": "specs/rl-se-checklist-selbstpruefung-intake-review/intake-review-report.md",
+      "sha256": "04ed88281b8ee7d8e3e2d135577ddeafec619957a8dde656d8c4ebf598e6d4dc"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "ea889b6b08ea75d309c20ba0a175f8ce862ffa24923ec516c142b7f6af69dbfd"
+    },
+    {
+      "path": "specs/024-mitgeltende-dokumente-verzahnung/pr-evidence.md",
+      "sha256": "030da217abba497a490bbf40b92c7af6dcb824af7eec86d32e11f3cdf8c05ad7"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/spec.md",
+      "sha256": "57cc0e2d0f493cbcfe8ba11a3bd21621efe7539c4b46f203416fed7238e93f7a"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/plan.md",
+      "sha256": "75f36fa6cc9617892c190e7bc1e90069e96f66e40f18a2d61af75423df56e46a"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/research.md",
+      "sha256": "59da7c56161b5447096095f89f9785c3701208377e287f0bddf217816ea6d29d"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/data-model.md",
+      "sha256": "1620619e9a8726e547b4bab09d2182df6f839e5170d116f559cd16d834ca5b42"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/quickstart.md",
+      "sha256": "906dbdc07000357c7e416566e49e7cec6ae15b38cedc0d9622368d4c0ea63b81"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/contracts/assessment-artifact-contract.md",
+      "sha256": "d486ecd151c52b40ed4167c59c225f5293cefd9d0416372829258f02e9299f3d"
+    },
+    {
+      "path": "specs/025-rl-se-self-assessment/checklists/requirements.md",
+      "sha256": "ff6193682bae9bedc509f9be4c16a0bab22e66b201f30502c0ec90a9d7f4bb7c"
+    }
+  ],
+  "tasks": {
+    "path": "specs/025-rl-se-self-assessment/tasks.md",
+    "sha256": "fb50ab40d3d5aad991a7149f86c14bc62d39a3b01a0de83471899036b3b16ce3",
+    "completed": 62,
+    "total": 65,
+    "taskIds": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005",
+      "T006",
+      "T007",
+      "T008",
+      "T009",
+      "T010",
+      "T011",
+      "T012",
+      "T013",
+      "T014",
+      "T015",
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021",
+      "T022",
+      "T023",
+      "T024",
+      "T025",
+      "T026",
+      "T027",
+      "T028",
+      "T029",
+      "T030",
+      "T031",
+      "T032",
+      "T033",
+      "T034",
+      "T035",
+      "T036",
+      "T037",
+      "T038",
+      "T039",
+      "T040",
+      "T041",
+      "T042",
+      "T043",
+      "T044",
+      "T045",
+      "T046",
+      "T047",
+      "T048",
+      "T049",
+      "T050",
+      "T051",
+      "T052",
+      "T053",
+      "T054",
+      "T055",
+      "T056",
+      "T057",
+      "T058",
+      "T059",
+      "T060",
+      "T061",
+      "T062",
+      "T063",
+      "T064",
+      "T065"
+    ]
+  },
+  "routing": {
+    "policy": "balanced-v1",
+    "fallbackPolicy": "fail-closed",
+    "phases": [
+      {
+        "phaseId": "tasks",
+        "command": "speckit.tasks",
+        "routingRole": "frontier-reasoning",
+        "status": "Completed",
+        "runnerProfile": "codex-frontier-sol",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "dependsOn": [],
+        "resultSha256": "39fc84466c3f495c0b6b6be4f97c65fe377a27d58ed25b2af4133fd3938c5914",
+        "resultPath": "specs/025-rl-se-self-assessment/autonomous-run-evidence.md"
+      },
+      {
+        "phaseId": "analyze",
+        "command": "speckit.analyze",
+        "routingRole": "frontier-reasoning",
+        "status": "Completed",
+        "runnerProfile": "codex-frontier-sol",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "dependsOn": [
+          "tasks"
+        ],
+        "resultSha256": "bc74efb8a2507bdca9eb929fc794159906263a5bc655840d00fc9a60dccda727",
+        "resultPath": "specs/025-rl-se-self-assessment/autonomous-run-evidence.md"
+      },
+      {
+        "phaseId": "implement",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "status": "Completed",
+        "runnerProfile": "codex-implementation-sol",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "dependsOn": [
+          "analyze"
+        ],
+        "resultSha256": "9be71c60c2b7384440011b3876443b5c21d912834c424f4761032d0467ddd31e",
+        "resultPath": "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md"
+      }
+    ]
+  },
+  "lastPassingGate": "Exact branch-diff whitespace remediation completed; T062 remains validated and Statistics Profile 2 will be regenerated from the corrected source head",
+  "nextExactAction": "Commit the exact-diff whitespace correction, regenerate Statistics Profile 2, then push and create the feature PR",
+  "lastOperation": {
+    "kind": "ExactDiffWhitespaceRemediated",
+    "state": "Completed",
+    "summary": "Replaced two Markdown hard-break trailing spaces with an explicit paragraph break and refreshed the task hash without changing task semantics."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-08T17:26:38Z"
+}
