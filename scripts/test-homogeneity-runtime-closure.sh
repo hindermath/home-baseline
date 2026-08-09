@@ -53,4 +53,14 @@ for pair_file in "${pair_root}/Guide.md" "${pair_root}/Guide.en.md"; do
   fi
 done
 
+printf '# Einstieg\n\n[English](Guide.EN.MD)\n' >"${pair_root}/Guide.MD"
+printf '# Entry\n\n[Deutsch](Guide.MD)\n' >"${pair_root}/Guide.EN.MD"
+for pair_file in "${pair_root}/Guide.MD" "${pair_root}/Guide.EN.MD"; do
+  pair_output="$(hg_check_bilingual "$pair_file")"
+  if [[ "$pair_output" != PASS*'|bilingual-language-pair' ]]; then
+    printf 'FAIL: Grossgeschriebener Sprachpartner wurde nicht erkannt: %s\n' "$pair_output" >&2
+    exit 1
+  fi
+done
+
 echo 'PASS: Homogeneity-Runtime-Abschluss (Bash) ist fail-closed und vollstaendig.'
