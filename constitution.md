@@ -1,10 +1,10 @@
 <!--
 Sync Impact Report
-Version change: 1.20.0 -> 1.20.1
+Version change: 1.20.1 -> 1.20.2
 Modified principles:
-- None
+- XI. Memory-Safe Languages: justified C++ exception for the tvision fork
 Added sections:
-- Level-2 Project Environment Registry: Agent Operations Cockpit operational row
+- Level-2 Project Environment Registry: CLionProjects/tvision operational row
 Removed sections:
 - None
 Templates requiring updates:
@@ -18,7 +18,7 @@ Follow-up TODOs:
 - None.
 -->
 
-# Constitution v1.20.1
+# Constitution v1.20.2
 
 # home-baseline Constitution
 
@@ -359,6 +359,12 @@ the `cc65` C89 toolchain, Zig (pre-1.0, only partial runtime checks), Nim
   with no MSL toolchain available, and the repository's purpose is parity
   with the historical cc65 reference. Justification to be documented inline
   in its Level-2 `constitution.md`.
+- `CLionProjects/tvision` (C++14 Turbo Vision framework) — **not MSL**;
+  justification: the fork preserves source and ABI compatibility with the
+  historical Borland Turbo Vision codebase and its DOS, Windows, and Unix
+  targets. Rewriting the primary runtime in an MSL would break that explicit
+  compatibility purpose. This justification is part of its propagated
+  Level-2 `constitution.md`.
 
 **Rationale**: Since 2022/2023 NSA and CISA have identified the transition to
 memory-safe languages as the single highest-leverage mitigation against the
@@ -897,6 +903,7 @@ project context.
 | Level-2 Project | Runtime / Language | Build & Test Baseline | Docs / A11Y Baseline | Statistics Baseline | Agent Surfaces |
 |---|---|---|---|---|---|
 | `C64Projects/cc65` | C/C89-oriented host tools, 6502 assembler/runtime libraries, C64 and 8-bit target support | GNU `make`; `make`, `make test`, `make check`, `make checkstyle`, `make -C targettest SYS=c64` | `doc/`, `samples/`, generated `html/`; DE-first/EN-second additions where local scope allows; no color-only meaning | Manual conservative `80` lines/workday; no C# default unless a justified Thorsten-Solo baseline is documented | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit command/prompt surfaces |
+| `CLionProjects/tvision` | C++14 Turbo Vision framework and library preserving Borland-compatible APIs across Unix, Windows, and DOS targets | `cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DTV_BUILD_TESTS=ON`; `cmake --build build` builds the library, examples, and GoogleTest run target | Preserve the upstream English README and examples; local governance additions are DE-first/EN-second where scope permits; terminal interactions remain keyboard- and text-usable with no color-only meaning | Manual conservative `80`; a project-specific C++ Thorsten-Solo baseline MUST be documented before acceleration claims | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit command/prompt surfaces |
 | `container-images/absdd-image-sandbox` | Python helper scripts plus Bash/PowerShell automation for a Docker/Podman Compose agent-sandbox image | `podman compose config --no-interpolate`; `podman compose build --pull`; `podman compose up -d`; `uvx pre-commit run --all-files`; SBOM scripts under `scripts/` | README, compliance plan, `docs/security/`, audit-log guidance, SBOM notes, and CLI output remain text-first and WCAG 2.2 AA-oriented where applicable | Manual conservative `80`; no C#/.NET default | `AGENTS.md`, `COMPLIANCE-PLAN_RL-SE-001.md`, `.gitlab/` review surfaces, container/security docs, and local hook surfaces |
 | `RiderProjects/AgentOperationsCockpit` | .NET 10 / C# 14 target for the public Agent Operations Cockpit; currently a requirements and governance scaffold without an approved product solution | Until the product scaffold exists: intake, series, review, receipt, public-readiness, and homogeneity validation; then `dotnet restore/build/test` on the single approved solution | Requirements, Spec-Kit artefacts, and user/developer documentation remain DE-first/EN-second at CEFR B2 and follow WCAG 2.2 AA where applicable | Manual conservative `80`; C#/.NET Thorsten-Solo `125` lines/workday unless the repo documents a justified deviation | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.agents/`, `.claude/`, `.opencode/`, and Spec-Kit surfaces |
 | `RiderProjects/InventarWorkerService` | .NET 10 / C# 14 multi-project inventory solution: worker/API, harvester, Terminal UI, shared libraries, SQLite/MongoDB/PostgreSQL | `dotnet restore/build/test` on `InventarWorkerService.sln`; MSTest unit/integration tests; Playwright setup when required | DocFX output and learner-facing docs require text-oriented A11Y review; generated `api/` and `_site/` remain build artefacts | Manual conservative `80`; repo-specific Thorsten-Solo `100` lines/workday unless all agent files change it | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, Spec-Kit surfaces |
@@ -1137,7 +1144,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.20.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-07-31
+**Version**: 1.20.2 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-08-09
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

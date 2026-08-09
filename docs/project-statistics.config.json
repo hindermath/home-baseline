@@ -513,6 +513,14 @@
       "labelEn": "Maintenance toolchain JSON result hardening",
       "netLines": 452,
       "activeDays": 1
+    },
+    {
+      "slot": 63,
+      "id": "clion-tvision-fleet-onboarding",
+      "labelDe": "CLion-/tvision-Flottenaufnahme",
+      "labelEn": "CLion and tvision fleet onboarding",
+      "netLines": 50,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
