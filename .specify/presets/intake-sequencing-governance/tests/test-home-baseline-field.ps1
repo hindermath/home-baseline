@@ -27,11 +27,11 @@ $RequestRoots = @($Request.series.roots)
 $LiveRoots = @($LiveManifest.roots)
 $RequestEdges = @(
     $Request.series.dependencies |
-        ForEach-Object { '{0}|{1}|{2}' -f $_.from, $_.to, $_.kind }
+        ForEach-Object { '{0}|{1}|{2}|{3}' -f $_.from, $_.to, $_.kind, $_.binding }
 )
 $LiveEdges = @(
     $LiveManifest.dependencies |
-        ForEach-Object { '{0}|{1}|{2}' -f $_.from, $_.to, $_.kind }
+        ForEach-Object { '{0}|{1}|{2}|{3}' -f $_.from, $_.to, $_.kind, $_.binding }
 )
 if (($RequestPaths -join "`n") -ne ($LivePaths -join "`n") -or
     ($RequestRoots -join "`n") -ne ($LiveRoots -join "`n") -or
@@ -55,7 +55,7 @@ $Dependencies = foreach ($Dependency in $Request.series.dependencies) {
         from = $Dependency.from
         to = $Dependency.to
         kind = $Dependency.kind
-        binding = $true
+        binding = [bool]$Dependency.binding
     }
 }
 $Manifest = [ordered]@{
