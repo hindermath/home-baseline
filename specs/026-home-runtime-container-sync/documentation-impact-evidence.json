@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "026-home-runtime-container-sync",
+  "entries": [
+    {
+      "changeId": "CHG026001",
+      "scope": "Explicit, side-effect-bounded Home Runtime synchronization inside the ABS-DD sandbox",
+      "decision": "UpdateRequired",
+      "rationale": "Learners and maintainers need the new runtime-only command contract, its container exception, conflict behavior, and Git side-effect boundary at every public reader path.",
+      "documents": [
+        "README.md",
+        "docs/architecture/source-and-home-runtime.md",
+        "docs/architecture/source-and-home-runtime.en.md",
+        "docs/man/sync-home.1.md"
+      ],
+      "owner": "Level 0 Maintainer",
+      "audiences": [
+        "Learners",
+        "Maintainers",
+        "AI agents"
+      ],
+      "readerPaths": [
+        "ReadmeToSourceRuntimeArchitecture",
+        "ArchitectureToRuntimeOnlyCommand",
+        "ManpageToSafeContainerInvocation"
+      ],
+      "canonicalSource": "scripts/sync-home.sh and scripts/sync-home.ps1",
+      "navigationImpact": "Existing README and architecture links remain stable; the command contract is added to those established reader paths.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with complete English companion text in the paired architecture document and bilingual command documentation",
+      "languagePartners": [
+        "docs/architecture/source-and-home-runtime.md",
+        "docs/architecture/source-and-home-runtime.en.md"
+      ],
+      "platformAndExampleProof": "Bash and PowerShell CLI tests use isolated temporary Home directories and verify runtime selection, read-only preview modes, conflict handling, idempotency, and absence of Git side effects.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "specs/026-home-runtime-container-sync/implementation-evidence.md",
+      "risk": "N/A",
+      "criticality": "Security",
+      "reevaluationTrigger": "Any change to the Home Sync manifest, ABS-DD container guard, RuntimeOnly options, conflict policy, or persistent agent-volume layout."
+    }
+  ]
+}

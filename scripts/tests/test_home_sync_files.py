@@ -146,6 +146,24 @@ class HomeSyncFilesTests(unittest.TestCase):
         self.assertIn("[CONFLICT] runtime.txt", completed.stdout)
         self.assertEqual((self.home / "runtime.txt").read_text(encoding="utf-8"), "local override\n")
 
+    def test_target_parent_cannot_escape_home_through_symlink(self) -> None:
+        outside = self.root / "outside"
+        outside.mkdir()
+        (self.repository / "managed").mkdir()
+        (self.repository / "managed" / "runtime.txt").write_text("runtime\n", encoding="utf-8")
+        subprocess.run(["git", "add", "."], cwd=self.repository, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", "nested runtime"], cwd=self.repository, check=True)
+        self.write_manifest()
+        manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
+        manifest["homeRuntime"]["trackedPrefixes"] = ["managed/"]
+        self.manifest.write_text(json.dumps(manifest), encoding="utf-8")
+        (self.home / "managed").symlink_to(outside, target_is_directory=True)
+
+        completed = self.run_sync()
+        self.assertEqual(completed.returncode, 2)
+        self.assertIn("escapes HOME through a symlink", completed.stderr)
+        self.assertEqual(list(outside.iterdir()), [])
+
     def test_explicit_cleanup_rejects_modified_retired_path(self) -> None:
         retired = self.home / "retired.txt"
         retired.write_text("old managed value\n", encoding="utf-8")

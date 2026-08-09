@@ -41,10 +41,15 @@ nicht zuerst unter `~/` repariert, weil die nächste Synchronisierung sie
 
 ## Host und Container
 
-Der schreibende Home-Sync läuft nur auf dem Host. Eine ABS-DD-Sandbox liest die
-eingebundene Level-0-Referenz und schreibt nicht in die Host-Runtime. Agentische
-Arbeit an Secure-Trader-Systemen läuft in der freigegebenen Sandbox; allgemeine
-read-only Analyse kann außerhalb stattfinden.
+Der normale schreibende Home-Sync läuft nur auf dem Host. Eine ABS-DD-Sandbox
+liest die eingebundene Level-0-Referenz und schreibt nicht in die Host-Runtime.
+Für eine ausdrücklich angeforderte Betriebskopie im Container darf sie
+`sync-home.* --runtime-only` beziehungsweise `-RuntimeOnly` verwenden. Dieser
+Modus verteilt nur `homeRuntime`, führt keinen Pull oder Commit aus und ändert
+weder Git-Konfiguration noch Git-Identität. Lokale Konflikte stoppen den Lauf
+vor dem ersten Schreibzugriff. Agentische Arbeit an Secure-Trader-Systemen läuft
+in der freigegebenen Sandbox; allgemeine read-only Analyse kann außerhalb
+stattfinden.
 
 ## Maintainer und KI-Agenten
 
