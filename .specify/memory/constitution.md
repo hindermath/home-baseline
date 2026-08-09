@@ -1001,9 +1001,9 @@ workspace family consists of:
 | `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.4.2` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
 | `autonomous-run-governance` | `v0.3.4` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
-| `parallel-autonomous-run-governance` | `v0.2.5` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
+| `parallel-autonomous-run-governance` | `v0.2.6` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`model-routing-governance` v0.1.2 at priority `61`,
+`model-routing-governance` v0.1.4 at priority `61`,
 `intake-authoring-governance` v0.3.1 at priority `64`,
 `intake-review-governance` v0.2.1 at priority `65`, and
 `intake-sequencing-governance` v0.2.3 at priority `66` are optional presets,
@@ -1092,7 +1092,7 @@ All eight presets are published as standalone repositories under
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
 The current standalone releases are `autonomous-run-governance` v0.3.4,
-`parallel-autonomous-run-governance` v0.2.5, optional
+`parallel-autonomous-run-governance` v0.2.6, optional
 `intake-authoring-governance` v0.3.1, optional
 `intake-review-governance` v0.2.1, and optional
 `intake-sequencing-governance` v0.2.3. Registered Level-0, Level-1, and Level-2

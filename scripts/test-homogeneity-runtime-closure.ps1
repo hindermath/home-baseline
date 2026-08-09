@@ -67,6 +67,17 @@ try {
         }
     }
 
+    $upperDePath = Join-Path $pairRoot 'Guide.MD'
+    $upperEnPath = Join-Path $pairRoot 'Guide.EN.MD'
+    Set-Content -LiteralPath $upperDePath -Value "# Einstieg`n`n[English](Guide.EN.MD)" -Encoding utf8NoBOM
+    Set-Content -LiteralPath $upperEnPath -Value "# Entry`n`n[Deutsch](Guide.MD)" -Encoding utf8NoBOM
+    foreach ($pairPath in @($upperDePath, $upperEnPath)) {
+        $pairResult = Invoke-HgCheckBilingual -FilePath $pairPath
+        if ($pairResult.Status -ne 'PASS' -or $pairResult.Message -ne 'bilingual-language-pair') {
+            throw "Uppercase language partner was not detected bidirectionally: $($pairResult | ConvertTo-Json -Compress)"
+        }
+    }
+
     Write-Host 'PASS: Homogeneity-Runtime-Abschluss (PowerShell) ist fail-closed und vollstaendig.'
 }
 finally {
