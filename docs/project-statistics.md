@@ -1040,25 +1040,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 636412 lines |
-| Textdateien / Text files | 3225 |
+| Textbasis / Text base | 636561 lines |
+| Textdateien / Text files | 3226 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-09 |
 | Aktivtage / Active days | 85 |
-| Relevante Commits / Relevant commits | 724 |
-| Zeilen je Aktivtag / Lines per active day | 7487.2 |
+| Relevante Commits / Relevant commits | 725 |
+| Zeilen je Aktivtag / Lines per active day | 7489.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 93.6x |
 | Speedup vs. 100 lines/day | 74.9x |
-| Methodik / Methodology | v2; source `e5e4f7bb79a3` |
+| Methodik / Methodology | v2; source `3b13c7893f59` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
 Tests                           [#...................]   3.7% | 23532
-Dokumentation / Documentation   [##########..........]  49.8% | 316914
+Dokumentation / Documentation   [##########..........]  49.8% | 317063
 Skripte / Scripts               [##..................]   9.3% | 58919
 Konfiguration / Configuration   [#######.............]  36.8% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1280,7 +1280,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7487.2
+Visible repository [###############.....] 7489.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1306,6 +1306,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-09. Es enthaelt 85 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 206814 |
+| 2026-08 | 206963 |
 
 <!-- project-statistics-v2:end -->
