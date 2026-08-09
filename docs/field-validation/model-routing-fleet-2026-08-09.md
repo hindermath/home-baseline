@@ -154,6 +154,49 @@ stage passed its own status file to the toolchain-only consumer. The corrected
 stage boundary and a regression test now prevent that misclassification; the
 model-routing contract itself remains unchanged.*
 
+## Kausaler Flottenabschluss / Causal Fleet Closeout
+
+Die beiden Level-0-Korrekturen wurden mit PR `#226` und PR `#228` gemergt. Eine
+erste Propagationswelle lieferte das vollständige Wartungspaket an 31 sichere
+Ziel-Repositories. Nach der zweiten Phasengrenzen-Korrektur wurden dieselben 31
+Ziele erneut über getrennte, nicht leere PRs aktualisiert. Der zunächst
+zurückgestellte saubere Level-1-Checkout `RiderProjects` wurde nach erneuter
+Inventur mit PR `#31` nachgezogen.
+
+*The two Level 0 corrections were merged through PR `#226` and PR `#228`. A
+first propagation wave delivered the complete maintenance package to 31 safe
+target repositories. After the second stage-boundary correction, the same 31
+targets were updated through separate non-empty pull requests. The initially
+deferred clean `RiderProjects` Level 1 checkout was included after a fresh
+inventory through PR `#31`.*
+
+| Abschlussnachweis / Closeout evidence | Ergebnis / Result |
+|---|---|
+| Zweite Propagationswelle | 31 PRs gemergt und 31 lokale Default-Branches synchronisiert |
+| Provider-Nachweis | 192 Jobs ohne ersten Workflow-Schritt; kein technischer Fehlerlauf |
+| Claude-Reviews | Drei Reviews zweimal ohne Inhalt beendet; als nicht verfügbar, nicht als Pass gewertet |
+| `cc65` | PR `#28`; Linux- und Windows-Build grün; `master` lokal und remote `(0 0)` |
+| Preset-Profile | Alle zwölf Presets in allen geprüften Profilen exakt aufgelöst |
+| Home Runtime | Manifestkonform; lokaler Source-Sync abgeschlossen |
+| Toolchain | `SUCCESS_WITH_WARNINGS`, Pflichtdrift `0`, optionale Drift `3` |
+| Modellrouting | Codex erkannt, sieben Modelle inventarisiert, vier Rollen gebunden, Status `Aligned` |
+
+Der reale Abschlusslauf `91a519a0-e768-4504-9c19-d8242dbf61d9` bestätigte,
+dass `toolchain` und `model-routing` jeweils `Passed` melden. Insbesondere tritt
+kein `ResultSchemaMismatch` mehr auf. Der Gesamtstatus bleibt absichtlich
+`Blocked`, solange Agent Operations Cockpit und TuiVision auf aktiven
+Feature-Branches stehen. Beide Arbeitsbäume enthalten laufbezogene Dateien und
+werden deshalb weder bereinigt noch automatisch umgeschaltet. Nach Abschluss
+dieser Features müssen sie neu inventarisiert und das Wartungspaket über je
+einen eigenen PR aktualisiert werden.
+
+*The real closeout run `91a519a0-e768-4504-9c19-d8242dbf61d9` confirmed that
+both `toolchain` and `model-routing` report `Passed`; `ResultSchemaMismatch` no
+longer occurs. The overall status intentionally remains `Blocked` while Agent
+Operations Cockpit and TuiVision are on active feature branches. Their run-owned
+files are preserved. After those features finish, both repositories require a
+fresh inventory and a separate maintenance-package pull request.*
+
 ## OpenCode-Paritätsbefund / OpenCode Parity Finding
 
 Ein nachgelagerter, pfadbewusster Vergleich von Level 0 und allen 33
