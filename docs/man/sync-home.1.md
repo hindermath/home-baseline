@@ -36,8 +36,15 @@ optional. A real no-op creates no commit and succeeds under macOS Bash 3.2.*
 Der Klon bleibt dauerhaft die versionierte Level-0-Quelle. SHA-256, Dateimodus
 und Quell-Commit werden unter `~/.home-baseline/home-sync-state.json`
 protokolliert. Lokale Konflikte stoppen den Lauf vor dem ersten Schreibzugriff.
-In der ABS-DD-Sandbox sind schreibende Sync-Laeufe nach `/home/adedev`
-gesperrt; dort wird die eingebundene Referenz direkt verwendet.
+In der ABS-DD-Sandbox bleiben normale schreibende Sync-Laeufe nach
+`/home/adedev` gesperrt. Der ausdrueckliche Runtime-only-Modus ist zugelassen:
+Er verteilt nur `homeRuntime`, deaktiviert Pull und Commit und ueberspringt
+Git-Konfiguration, Git-Identitaet und die Initialisierung eines Home-Repositories.
+
+*Normal writing sync runs targeting `/home/adedev` remain blocked in the
+ABS-DD sandbox. The explicit runtime-only mode is allowed: it distributes only
+`homeRuntime`, disables pull and commit, and skips Git configuration, Git
+identity, and Home repository initialization.*
 
 Beim Wechsel von State v1 auf v2 werden Pfade ausserhalb von `homeRuntime` aus
 der Verwaltung entlassen, aber nicht geloescht. Nur explizite
@@ -60,6 +67,7 @@ Released paths remain in local state as provenance.*
 | `--no-commit` | `-NoCommit` | Kein automatischer Commit in `~/` |
 | `--dry-run` | `-WhatIf` | Nur anzeigen, was gemacht wuerde |
 | `--check-only` | `-CheckOnly` | Ohne Pull und Schreibzugriff auf Drift pruefen |
+| `--runtime-only` | `-RuntimeOnly` | Nur `homeRuntime` ohne Git-Nebenwirkungen anwenden |
 | `--force` | `-Force` | Gepruefte Konflikte verwalteter Dateien ueberschreiben |
 
 ## EXAMPLES
@@ -72,8 +80,16 @@ bash ~/scripts/sync-home.sh --no-pull
 bash ~/scripts/sync-home.sh --check-only
 ```
 
+```bash
+bash ~/home-baseline-source/scripts/sync-home.sh --runtime-only
+```
+
 ```powershell
 pwsh -NoProfile -File scripts/sync-home.ps1 -NoCommit
+```
+
+```powershell
+pwsh -NoProfile -File scripts/sync-home.ps1 -RuntimeOnly
 ```
 
 ## EXIT STATUS

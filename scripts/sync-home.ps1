@@ -1,12 +1,13 @@
 #Requires -Version 7
 # sync-home.ps1 — Synchronisiert die dauerhafte Level-0-Quelle nach ~/
-# Verwendung: pwsh ~/scripts/sync-home.ps1 [-NoPull] [-NoCommit] [-CheckOnly] [-Force] [-WhatIf]
+# Verwendung: pwsh ~/scripts/sync-home.ps1 [-NoPull] [-NoCommit] [-CheckOnly] [-RuntimeOnly] [-Force] [-WhatIf]
 
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [switch]$NoPull,
     [switch]$NoCommit,
     [switch]$CheckOnly,
+    [switch]$RuntimeOnly,
     [switch]$Force
 )
 
@@ -14,6 +15,10 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 if ($CheckOnly -and $WhatIfPreference) {
     [Console]::Error.WriteLine('CheckOnly und WhatIf sind nicht kombinierbar / cannot be combined.')
+    exit 2
+}
+if ($RuntimeOnly -and $Force) {
+    [Console]::Error.WriteLine('RuntimeOnly und Force sind nicht kombinierbar / cannot be combined.')
     exit 2
 }
 
@@ -35,6 +40,7 @@ if ((Test-Path $homeScriptsDir) -and (Test-Path $repoScript) -and
     if ($NoPull) { $forwardArgs += '-NoPull' }
     if ($NoCommit) { $forwardArgs += '-NoCommit' }
     if ($CheckOnly) { $forwardArgs += '-CheckOnly' }
+    if ($RuntimeOnly) { $forwardArgs += '-RuntimeOnly' }
     if ($Force) { $forwardArgs += '-Force' }
     if ($WhatIfPreference) { $forwardArgs += '-WhatIf' }
     & $repoScript @forwardArgs
@@ -45,6 +51,7 @@ $DoPull   = -not $NoPull
 $DoCommit = -not $NoCommit
 if ($WhatIfPreference) { $DoPull = $false; $DoCommit = $false }
 if ($CheckOnly) { $DoPull = $false; $DoCommit = $false }
+if ($RuntimeOnly) { $DoPull = $false; $DoCommit = $false }
 
 Write-Host "╔══════════════════════════════════════════════════╗"
 Write-Host "║  sync-home — Home-Baseline Sync                  ║"
@@ -57,11 +64,12 @@ Write-Host "  Commit : $DoCommit"
 if ($WhatIfPreference) { Write-Host "  WhatIf : true (kein Schreiben)" }
 Write-Host "  Check  : $CheckOnly"
 Write-Host "  Force  : $Force"
+Write-Host "  Runtime: $RuntimeOnly"
 Write-Host ""
 
 $isAbsddContainer = $HomeDir -eq '/home/adedev' -and
     ((Test-Path -LiteralPath '/.dockerenv') -or (Test-Path -LiteralPath '/run/.containerenv'))
-if ($isAbsddContainer -and -not $WhatIfPreference -and -not $CheckOnly) {
+if ($isAbsddContainer -and -not $WhatIfPreference -and -not $CheckOnly -and -not $RuntimeOnly) {
     [Console]::Error.WriteLine(@'
 Schreibende sync-home-Laeufe sind in der ABS-DD-Sandbox gesperrt.
 Writing sync-home runs are blocked inside the ABS-DD sandbox.
@@ -178,6 +186,11 @@ $pythonArguments = @($pythonLauncher.PrefixArguments) + @($syncArguments)
 $syncStatus = $LASTEXITCODE
 if ($CheckOnly) { exit $syncStatus }
 if ($syncStatus -ne 0) { exit $syncStatus }
+if ($RuntimeOnly) {
+    Write-Host ""
+    Write-Host "✓ Home Runtime synchronisiert / Home Runtime synchronized."
+    exit 0
+}
 
 Write-Host ""
 

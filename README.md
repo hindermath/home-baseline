@@ -127,6 +127,18 @@ Konkrete Runtime-Mitglieder werden aus
 [`scripts/config/home-sync-manifest.json`](scripts/config/home-sync-manifest.json)
 abgeleitet.
 
+In der ABS-DD-Sandbox bleibt der allgemeine schreibende Home-Sync gesperrt. Der
+explizite Runtime-only-Modus verteilt nur `homeRuntime` nach `/home/adedev` und
+überspringt Pull, Commit, Git-Konfiguration und Git-Identität:
+
+```bash
+bash ~/home-baseline-source/scripts/sync-home.sh --runtime-only
+```
+
+*Inside the ABS-DD sandbox, general writing Home sync remains blocked. The
+explicit runtime-only mode distributes only `homeRuntime` into `/home/adedev`
+and skips pull, commit, Git configuration, and Git identity.*
+
 ## Änderungen beitragen
 
 1. `AGENTS.md` und die Constitution lesen.
