@@ -1,6 +1,6 @@
 # Workitem: Wartungs-Toolchain-JSON-Ergebnishärtung / Maintenance Toolchain JSON Result Hardening
 
-- Status: offen / open
+- Status: umgesetzt / implemented
 - Owner: Level-0-Wartungsskript-Maintainer
 - Datum / Date: 2026-08-09
 - Ursprung / Origin: Modell-Routing-Flottenabschluss
@@ -50,10 +50,22 @@ PowerShell remain equivalent.*
   regressieren nicht.
 - Windows-, macOS- und Linux-Nachweise verwenden dieselben Statusklassen.
 
-## Nächste Aktion / Next Action
+## Abschlussnachweis / Closeout Evidence
 
-Dieses Workitem wird bei Priorisierung mit `$speckit-intake-create` in einen
-eigenen Intake überführt. Es startet keinen Spec-Kit-Lauf automatisch.
+Der begrenzte Wartungs-Follow-up wurde nach reproduzierter Leerausgabe direkt
+umgesetzt. Producer schreiben auch auf fruehen Fehlerpfaden atomare
+Fehlerergebnisse; Consumer verwenden stabile Fehlerklassen. Positive und
+negative Fixtures decken gueltige, fehlende, leere, abgeschnittene,
+syntaktisch fehlerhafte, nicht als UTF-8 lesbare und schemafremde Ergebnisse
+ab. Die bestehende Windows-Orchestrierung erzeugt keinen separaten
+Toolchain-Dateivertrag und bleibt daher funktional unveraendert; ihre
+Abschlussklassen `Passed`, `Blocked` und `Failed` entsprechen weiterhin dem
+gemeinsamen Orchestratorvertrag.
 
-*When prioritized, use `$speckit-intake-create` to create a separate intake.
-This work item does not start a Spec Kit run automatically.*
+*The narrowly reproduced maintenance follow-up was implemented directly.
+Producers publish atomic failure results on early exits, and consumers use
+stable failure classes. Positive and negative fixtures cover valid, missing,
+empty, truncated, malformed, non-UTF-8, and schema-mismatched results. The
+Windows orchestrator has no separate toolchain-file contract and therefore
+remains functionally unchanged; its completion classes still match the shared
+orchestrator contract.*

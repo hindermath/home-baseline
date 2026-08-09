@@ -157,6 +157,7 @@
 | 2026-08-09 | Feature 026 Home-Runtime-Container-Sync | — | — | — | Documentation Impact `UpdateRequired`: `sync-home.sh --runtime-only` und `sync-home.ps1 -RuntimeOnly` verteilen ausschließlich die manifestgebundene Home Runtime, erzwingen einen Lauf ohne Pull, Commit, Git-Konfiguration, Git-Identität oder Home-Repository-Initialisierung und lassen normale schreibende ABS-DD-Containerläufe weiterhin gesperrt. Konflikte und aus `HOME` herausführende Ziel-Symlinks stoppen vor dem ersten Schreibzugriff. Zehn fokussierte und 97 vollständige Python-Tests, Bash-/PowerShell-Syntax und -Runtime-Closure, PSScriptAnalyzer, Documentation Impact sowie Secret Scan sind grün; zwölf plattformspezifische Tests blieben erwartungsgemäß übersprungen. Das Implementierungsdelta vor Statistikpflege umfasst 238 Nettozeilen. |
 | 2026-08-09 | Providerneutrales Modell-Routing flottenweit abgeschlossen | — | — | — | Documentation Impact `GeneratedUpdate`: Model Routing Governance `0.1.4`, Autonomous Run Governance `0.3.6` und Parallel Autonomous Run Governance `0.2.6` wurden als versionierte GitHub-ZIPs geprüft und in 33 registrierten Ziel-Repositories installiert. Alle Ziele bestanden die exakte Zwölf-Preset-Matrix, die Bash-/PowerShell-Modellerkennung, Diff- und Secret-Prüfungen; null umsetzbare Review-Threads blieben offen. 193 Remote-Jobs wurden nachweislich vor dem ersten Schritt vom Provider abgewiesen und vier externe Reviews blieben ohne verwertbares Ergebnis; sie werden ausdrücklich nicht als bestanden gewertet. Alle 33 PRs wurden gemergt und die lokalen Default-Branches synchronisiert. Der getrennte JSON-Eingabefehler des vollständigen Ein-Kommando-Checks bleibt als Wartungsskript-Follow-up offen. |
 | 2026-08-09 | Modell-Routing-Post-Merge- und OpenCode-Paritätsabschluss | — | — | — | Documentation Impact `UpdateRequired`: 151 Default-Branch-Workflows wurden getrennt von den PR-Head-Gates geprüft. 47 waren erfolgreich oder neutral; 104 Providerfehler enthielten null Workflow-Schritte und entsprachen exakt den 104 noch ungelesenen GitHub-CI-Mails. Es gab keinen ausgeführten technischen Fehler. Eine pfadbewusste Intake-Sequencing-Prüfung bestätigte alle 33 Ziel-Repositories als vollständig: 30 verwenden `.opencode/command/`, drei `.opencode/commands/`. Nur im ebenfalls singularen Level-0-Pfad fehlten sechs Series-Kommandos; sie wurden reproduzierbar aus Preset v0.2.3 erzeugt. Der Wartungs-JSON-Parserbefund ist als eigenes Workitem abgegrenzt. |
+| 2026-08-09 | Wartungs-Toolchain-JSON-Ergebnishaertung | — | — | — | Documentation Impact `UpdateRequired`: Der reproduzierte Leerausgabe- und Parserfehler im macOS-/Linux-Toolchain-Abschluss ist behoben. Producer schreiben auch auf fruehen Fehlerpfaden atomare Schema-1.0-Evidence; Consumer unterscheiden fehlende, leere, abgeschnittene, syntaktisch fehlerhafte, nicht als UTF-8 lesbare und schemafremde Ergebnisse mit stabilen Klassen und ohne Stacktrace oder private Pfade. 17 Linux-Hardening- und 24 Workspace-Wartungstests sowie ein realer macOS-`--compare-only`-Lauf sind gruen; letzterer endete mit `SUCCESS_WITH_WARNINGS`, Exitcode 0, null Pflichtdrift und drei optionalen Paketen. Das Implementierungsdelta vor Statistikpflege umfasst 452 geaenderte Textzeilen. |
 
 ---
 
@@ -1037,26 +1038,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 635933 lines |
+| Textbasis / Text base | 636291 lines |
 | Textdateien / Text files | 3225 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-09 |
 | Aktivtage / Active days | 85 |
-| Relevante Commits / Relevant commits | 720 |
-| Zeilen je Aktivtag / Lines per active day | 7481.6 |
+| Relevante Commits / Relevant commits | 721 |
+| Zeilen je Aktivtag / Lines per active day | 7485.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 93.5x |
-| Speedup vs. 100 lines/day | 74.8x |
-| Methodik / Methodology | v2; source `af0e7646855d` |
+| Speedup vs. 80 lines/day | 93.6x |
+| Speedup vs. 100 lines/day | 74.9x |
+| Methodik / Methodology | v2; source `8e3c51d447f9` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.7% | 23383
-Dokumentation / Documentation   [##########..........]  49.8% | 316815
-Skripte / Scripts               [##..................]   9.2% | 58688
+Tests                           [#...................]   3.7% | 23481
+Dokumentation / Documentation   [##########..........]  49.8% | 316844
+Skripte / Scripts               [##..................]   9.3% | 58919
 Konfiguration / Configuration   [#######.............]  36.8% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
@@ -1177,15 +1178,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..61
-  cap 200000 | . . . . . . . . . . . . . .
-      166667 | . . . . . . . . . . . . . .
-      133333 | . . . . # . . . . . . . . .
-      100000 | . . . . # . . . . . . . . .
-       66667 | . . . . # . . . . . . . . .
-       33333 | . . . . # . . . . . . . . .
-           0 +-----------------------------
-             48 49 50 51 52 53 54 55 56 57 58 59 60 61
+Slots 48..62
+  cap 200000 | . . . . . . . . . . . . . . .
+      166667 | . . . . . . . . . . . . . . .
+      133333 | . . . . # . . . . . . . . . .
+      100000 | . . . . # . . . . . . . . . .
+       66667 | . . . . # . . . . . . . . . .
+       33333 | . . . . # . . . . . . . . . .
+           0 +-------------------------------
+             48 49 50 51 52 53 54 55 56 57 58 59 60 61 62
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1252,6 +1253,7 @@ Slots 48..61
 | 59 | RL-SE-/Checklist-Selbstpruefung / RL-SE checklist self-assessment | 2932 |
 | 60 | RL-SE-Selbstpruefung: kausaler Abschluss / RL-SE self-assessment causal closeout | 1586 |
 | 61 | Home-Runtime-Container-Sync / Home Runtime container sync | 238 |
+| 62 | Wartungs-Toolchain-JSON-Ergebnishaertung / Maintenance toolchain JSON result hardening | 452 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1261,8 +1263,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 93.5x
-100 lines/day      [###############.....] 74.8x
+80 lines/day       [###################.] 93.6x
+100 lines/day      [###############.....] 74.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1275,7 +1277,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7481.6
+Visible repository [###############.....] 7485.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1301,6 +1303,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-09. Es enthaelt 85 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 206173 |
+| 2026-08 | 206633 |
 
 <!-- project-statistics-v2:end -->
