@@ -42,6 +42,10 @@
       "executable": true
     },
     {
+      "path": "scripts/lib/resolve-home-baseline-source.ps1",
+      "executable": false
+    },
+    {
       "path": "scripts/tests/test_maintenance_tui_wrappers.py",
       "executable": false
     },
