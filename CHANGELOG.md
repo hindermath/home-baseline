@@ -8,6 +8,92 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.17.0](https://github.com/hindermath/home-baseline/compare/v0.16.0...v0.17.0) (2026-08-09)
+
+
+### Features / Neue Funktionen
+
+* add balanced Spec Kit model routing ([81cb3ba](https://github.com/hindermath/home-baseline/commit/81cb3ba71569ec7579258b7b8b47cb21b32f33d4))
+* add balanced Spec Kit model routing ([56534f4](https://github.com/hindermath/home-baseline/commit/56534f4d248469c83381f9649514a49fdae2e72d))
+* add container Home Runtime sync ([4b2afd6](https://github.com/hindermath/home-baseline/commit/4b2afd66c8dbc371d518a5cf5af8c216e5b8f8b7))
+* add container Home Runtime sync ([90ec139](https://github.com/hindermath/home-baseline/commit/90ec139f4cfb948c103ef48f9c7a16a74c82e384))
+* add provider-neutral model routing governance ([e1fce7a](https://github.com/hindermath/home-baseline/commit/e1fce7aac67454fe22dcc4dde9831d340c7285a7))
+* add provider-neutral model routing governance ([8da7489](https://github.com/hindermath/home-baseline/commit/8da7489d15cd90abaabc1383c6bcb0576de5fd52))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* align mapping validator requirement IDs ([f4f23c0](https://github.com/hindermath/home-baseline/commit/f4f23c0d328e0524412f089b6e27b778e7410c1e))
+* enforce mapping row kind ([7c49cd0](https://github.com/hindermath/home-baseline/commit/7c49cd0f2b5eb534b52ad7caae6c49706292da78))
+* harden mapping proof portability ([97fcf7b](https://github.com/hindermath/home-baseline/commit/97fcf7b3f0d49487eacf575262354cd8ad5a1a0f))
+* harden model routing test boundary ([e89cdd4](https://github.com/hindermath/home-baseline/commit/e89cdd416dc178b94fb26fd0efba1ef8382f1b3a))
+* normalize mapping evidence paths ([0e497d4](https://github.com/hindermath/home-baseline/commit/0e497d438304b7183bbe579bd6f5f5aec9a4ce0d))
+* normalize mapping proof text inputs ([be3114d](https://github.com/hindermath/home-baseline/commit/be3114d4b988a4485c8e9d3a60eac0fa8bddc971))
+* pin canonical mapping evidence path ([dbfe490](https://github.com/hindermath/home-baseline/commit/dbfe490339da584dfc7cf1b070a735521677891a))
+* preserve PowerShell resolver parity ([d578d56](https://github.com/hindermath/home-baseline/commit/d578d56ea5d8ef9a640d2c83216e1762eb3426fc))
+* propagate home source resolver dependency ([32aaa3a](https://github.com/hindermath/home-baseline/commit/32aaa3a56d146d19231630282de18959c90aad4b))
+* validate PowerShell 7 for model routing ([95f3a9f](https://github.com/hindermath/home-baseline/commit/95f3a9f843995594d154885d91d93d0ce643a217))
+
+
+### Documentation / Dokumentation
+
+* add checkout intake and repair RL-SE review ([ed7c01f](https://github.com/hindermath/home-baseline/commit/ed7c01f4c94094b9a79db0e0291850584ee53957))
+* add checkout intake and repair RL-SE review ([ab6e971](https://github.com/hindermath/home-baseline/commit/ab6e971048d4496ac6c42ede18ef998d1cb2d3b1))
+* align mapping review data contract ([d85ab76](https://github.com/hindermath/home-baseline/commit/d85ab76a81e8608087f04773c79158b099352bf4))
+* authorize position 6 merge delivery ([94bb870](https://github.com/hindermath/home-baseline/commit/94bb87015b0909909e97b263581306b84588ee7a))
+* authorize Position 6 MergeAndSync delivery ([dd50671](https://github.com/hindermath/home-baseline/commit/dd50671dc10a980327086e905dec611c7f9c7a5b))
+* bind Position-5 review to PR base ([5f03f8f](https://github.com/hindermath/home-baseline/commit/5f03f8f5595f3fbe09920a4b6c2549cb7a7d5d0c))
+* clarify intake review accessibility boundaries ([62f35ad](https://github.com/hindermath/home-baseline/commit/62f35ad2361d7480a6c07312774c4085cdeec0eb))
+* clarify secure-development review axes ([6ba2d4e](https://github.com/hindermath/home-baseline/commit/6ba2d4e3db0755594dce8bcc81ee35886b8790b3))
+* close Feature 024 mapping series ([25aa0c3](https://github.com/hindermath/home-baseline/commit/25aa0c397d870a6437791efbad68daccfc77ac0d))
+* close Feature 024 mapping series ([2d97921](https://github.com/hindermath/home-baseline/commit/2d979215b53bebada653851d6456e550179b1f03))
+* close Feature 025 assessment series ([483646d](https://github.com/hindermath/home-baseline/commit/483646d72a592bbb5aa25d91171527eb408b85ac))
+* close Feature 025 assessment series ([ec790ac](https://github.com/hindermath/home-baseline/commit/ec790acebcc7dc2c1b5d9d9c45d2f0d94fe4b04a))
+* complete Feature 024 autonomous closeout ([285ca43](https://github.com/hindermath/home-baseline/commit/285ca4334713f719a0bd92a844a713561fc5c5a0))
+* complete Feature 024 local validation ([8cb2520](https://github.com/hindermath/home-baseline/commit/8cb2520bcb20ce2982618931a48bbf1ddf10525a))
+* correct Feature 024 validation guidance ([db9c04c](https://github.com/hindermath/home-baseline/commit/db9c04c1db93646d140111ac7fe9d415253de052))
+* deliver RL-SE checklist self-assessment ([268a9b8](https://github.com/hindermath/home-baseline/commit/268a9b885c61cf2212d15b55c4a80b762c1f60fc))
+* deliver RL-SE self-assessment ([961d2e6](https://github.com/hindermath/home-baseline/commit/961d2e6fe14002c576d41cc848f00fcf3225800c))
+* finalize Feature 024 closeout statistics ([bac055d](https://github.com/hindermath/home-baseline/commit/bac055d8407e1506bf67f456a2a3c3b6647a35c3))
+* harden secure-development preset mapping ([f1ac9a7](https://github.com/hindermath/home-baseline/commit/f1ac9a7f05f7b8056b6ff360bcde33c444a60872))
+* harden secure-development preset mapping ([8bcfa0e](https://github.com/hindermath/home-baseline/commit/8bcfa0ef8f9be24d901ddfadd2b5e135d4cb0f27))
+* normalize RL-SE task formatting ([dc6bc66](https://github.com/hindermath/home-baseline/commit/dc6bc661ebc85543e0985c998c08aad6287bc84b))
+* record Feature 024 validation progress ([45cbd1c](https://github.com/hindermath/home-baseline/commit/45cbd1cc6118bc4ad0d4424b92d5bc2d1a83a517))
+* refresh current routing statistics ([e3d5e0d](https://github.com/hindermath/home-baseline/commit/e3d5e0d2b9265e652371f8109bab54ee6399007d))
+* refresh data contract statistics ([93b9f68](https://github.com/hindermath/home-baseline/commit/93b9f68fe0d722acde908c4f8c906b5dcfaab90f))
+* refresh Feature 024 closeout statistics ([c0de478](https://github.com/hindermath/home-baseline/commit/c0de47814327d72efd38eef6c8ec460b756fdc24))
+* refresh Feature 024 delivery statistics ([57db8a6](https://github.com/hindermath/home-baseline/commit/57db8a698e72b1b0df4e4eda73be519744efc146))
+* refresh Feature 024 statistics ([4206c0e](https://github.com/hindermath/home-baseline/commit/4206c0e76fff46347242bab56b792b480e2d81ef))
+* refresh final review statistics ([4c85983](https://github.com/hindermath/home-baseline/commit/4c8598321ef93b9ee2048424aa216c4211394b1f))
+* refresh generated script reference ([faab72c](https://github.com/hindermath/home-baseline/commit/faab72c6fd2c668a2206272b287379fc75e46951))
+* refresh intake delivery statistics ([f0997a0](https://github.com/hindermath/home-baseline/commit/f0997a05bfb744db79288482c25e689f324ce006))
+* refresh intake delivery statistics ([d3ce9fd](https://github.com/hindermath/home-baseline/commit/d3ce9fd3148c42c0b0b70a5dd4227516cc7f18a3))
+* refresh intake review statistics ([909914a](https://github.com/hindermath/home-baseline/commit/909914a6e55260b2d067d54f5aeed7ea884c0aae))
+* refresh mapping contract statistics ([23b5ab4](https://github.com/hindermath/home-baseline/commit/23b5ab41975925e336a779dddb7e0dee95c16db6))
+* refresh model routing statistics ([0f9c9c5](https://github.com/hindermath/home-baseline/commit/0f9c9c527d4688dfe6b6bedf9e2bc1c5c7dccdea))
+* refresh normalized proof statistics ([7104138](https://github.com/hindermath/home-baseline/commit/7104138cdfad69ce60ddcce7a27b341cd7bff545))
+* refresh path normalization statistics ([9dcf7aa](https://github.com/hindermath/home-baseline/commit/9dcf7aa098db5928e37fa76e7f03307a835be588))
+* refresh portable proof statistics ([105c5ea](https://github.com/hindermath/home-baseline/commit/105c5eae8c5d8f6fc78629cf3ccbd745a49e4878))
+* refresh Position-5 intake governance ([f56be94](https://github.com/hindermath/home-baseline/commit/f56be948e23d77ec45dd895f1125eb152cd7901b))
+* refresh Position-5 intake statistics ([e168a3e](https://github.com/hindermath/home-baseline/commit/e168a3e5f4539a8a0d1deee23e4233e94f32fc49))
+* refresh post-format statistics ([117e992](https://github.com/hindermath/home-baseline/commit/117e99202f23d819d01d44335811bd5f4e5f1ac7))
+* refresh project statistics ([c314e2c](https://github.com/hindermath/home-baseline/commit/c314e2c214461bd8da96bf28733774b587535a61))
+* refresh project statistics ([00be6f7](https://github.com/hindermath/home-baseline/commit/00be6f7799f69de75b51d6af2ba4b093abc781f1))
+* refresh project statistics ([7587d33](https://github.com/hindermath/home-baseline/commit/7587d33a69a6da5f5a0cad1ea137fce3549ebcdc))
+* refresh project statistics ([bf370c7](https://github.com/hindermath/home-baseline/commit/bf370c770be67a84db4aadc544113c7a4dea2f84))
+* refresh project statistics ([f5f62e7](https://github.com/hindermath/home-baseline/commit/f5f62e751617fcc5f7987f90fdbf9ae8ea4401cb))
+* refresh project statistics ([450ac28](https://github.com/hindermath/home-baseline/commit/450ac28c2ae282950da527399824c276f0647b62))
+* refresh project statistics after routing patch ([86f12a9](https://github.com/hindermath/home-baseline/commit/86f12a9bd0661fc8f303c14d98cf7f59e329b1b0))
+* refresh project statistics after routing validation ([f9a327a](https://github.com/hindermath/home-baseline/commit/f9a327ae58cc3a04e16659664b57e3a0ed582b30))
+* refresh review remediation statistics ([e6c0b36](https://github.com/hindermath/home-baseline/commit/e6c0b36315113ed71c816ddbd3d23e55a551a468))
+* refresh review remediation statistics ([a4fa7cb](https://github.com/hindermath/home-baseline/commit/a4fa7cbd96f435f2924b3f718fe7780dcc5c3ff9))
+* refresh RL-SE assessment statistics ([faaf33a](https://github.com/hindermath/home-baseline/commit/faaf33af7b805aabc43d2ad2d8cc1b5d0114f9fc))
+* refresh RL-SE planning statistics ([b3278fd](https://github.com/hindermath/home-baseline/commit/b3278fda32fd25237d7c873b7fc7190ab8c4809d))
+* register RL-SE assessment statistics ([343d53d](https://github.com/hindermath/home-baseline/commit/343d53d5bfbec4338a5b89b09b9f88d1f45b06c7))
+* register RL-SE planning checkpoint ([0f8229a](https://github.com/hindermath/home-baseline/commit/0f8229a99b6e43634fe4a1d76ef004efbbc8eee6))
+* render Feature 025 closeout statistics ([f5fff66](https://github.com/hindermath/home-baseline/commit/f5fff666b4f9266f8b636e1b02181d2826a2f24e))
+* update Position-5 intake review evidence ([b494c2e](https://github.com/hindermath/home-baseline/commit/b494c2ea690870f0ffcd879fcee625be31eb996f))
+
 ## [0.16.0](https://github.com/hindermath/home-baseline/compare/v0.15.0...v0.16.0) (2026-08-02)
 
 
