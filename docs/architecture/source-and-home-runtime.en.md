@@ -41,10 +41,14 @@ divergence.
 
 ## Host and container
 
-Writing Home sync runs only on the host. An ABS-DD sandbox reads the mounted
-Level 0 reference and does not write the host runtime. Agentic work on Secure
-Trader systems runs in the approved sandbox; general read-only analysis may run
-outside it.
+Normal writing Home sync runs only on the host. An ABS-DD sandbox reads the
+mounted Level 0 reference and does not write the host runtime. For an explicitly
+requested runtime copy inside the container, it may use
+`sync-home.* --runtime-only` or `-RuntimeOnly`. This mode distributes only
+`homeRuntime`, performs no pull or commit, and changes neither Git configuration
+nor Git identity. Local conflicts stop the run before the first write. Agentic
+work on Secure Trader systems runs in the approved sandbox; general read-only
+analysis may run outside it.
 
 ## Maintainers and AI agents
 

@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # sync-home.sh — Synchronisiert die dauerhafte Level-0-Quelle nach ~/
-# Verwendung: bash ~/scripts/sync-home.sh [--pull] [--commit] [--check-only] [--dry-run] [--force]
+# Verwendung: bash ~/scripts/sync-home.sh [--pull] [--commit] [--check-only] [--dry-run] [--runtime-only] [--force]
 #
 # --pull     : git pull in der Level-0-Quelle vor dem Sync (Standard: ja)
 # --commit   : git commit in ~/ nach dem Sync (Standard: ja)
 # --dry-run  : Nur anzeigen, was gemacht würde
 # --check-only: Pull-frei und schreibfrei auf Drift pruefen
+# --runtime-only: Nur homeRuntime ohne Pull, Commit oder Git-Konfiguration anwenden
 # --force    : Nach manueller Pruefung verwaltete Konflikte ueberschreiben
 # --no-pull  : Kein git pull (nur kopieren)
 # --no-commit: Kein automatischer Commit in ~/
@@ -33,6 +34,7 @@ OPT_COMMIT=true
 OPT_DRY_RUN=false
 OPT_CHECK_ONLY=false
 OPT_FORCE=false
+OPT_RUNTIME_ONLY=false
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -42,11 +44,22 @@ while [ $# -gt 0 ]; do
     --no-commit) OPT_COMMIT=false ;;
     --dry-run)   OPT_DRY_RUN=true; OPT_PULL=false; OPT_COMMIT=false ;;
     --check-only) OPT_CHECK_ONLY=true; OPT_PULL=false; OPT_COMMIT=false ;;
+    --runtime-only) OPT_RUNTIME_ONLY=true ;;
     --force)      OPT_FORCE=true ;;
     *) echo "Unbekannte Option: $1" >&2; exit 2 ;;
   esac
   shift
 done
+
+if $OPT_RUNTIME_ONLY; then
+  OPT_PULL=false
+  OPT_COMMIT=false
+  if $OPT_FORCE; then
+    echo "Fehler: --runtime-only und --force sind nicht kombinierbar." >&2
+    echo "Error: --runtime-only and --force cannot be combined." >&2
+    exit 2
+  fi
+fi
 
 echo "╔══════════════════════════════════════════════════╗"
 echo "║  sync-home — Home-Baseline Sync                  ║"
@@ -59,10 +72,11 @@ echo "  Commit : ${OPT_COMMIT}"
 echo "  Dry-run: ${OPT_DRY_RUN}"
 echo "  Check  : ${OPT_CHECK_ONLY}"
 echo "  Force  : ${OPT_FORCE}"
+echo "  Runtime: ${OPT_RUNTIME_ONLY}"
 echo ""
 
 if [ "$HOME_DIR" = "/home/adedev" ] && { [ -f /.dockerenv ] || [ -f /run/.containerenv ]; } && \
-   ! $OPT_DRY_RUN && ! $OPT_CHECK_ONLY; then
+   ! $OPT_DRY_RUN && ! $OPT_CHECK_ONLY && ! $OPT_RUNTIME_ONLY; then
   echo "Fehler: Schreibender sync-home-Lauf in der ABS-DD-Sandbox ist gesperrt." >&2
   echo "Error: Writing sync-home runs are blocked inside the ABS-DD sandbox." >&2
   echo "Die Level-0-Referenz direkt unter ~/home-baseline-source verwenden und den Home-Sync auf dem Host ausfuehren." >&2
@@ -153,6 +167,12 @@ if $OPT_CHECK_ONLY; then
 fi
 if [ "$sync_status" -ne 0 ]; then
   exit "$sync_status"
+fi
+
+if $OPT_RUNTIME_ONLY; then
+  echo ""
+  echo "✓ Home Runtime synchronisiert / Home Runtime synchronized."
+  exit 0
 fi
 
 echo ""
