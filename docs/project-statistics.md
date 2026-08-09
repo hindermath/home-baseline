@@ -155,6 +155,7 @@
 | 2026-08-05 | RL-SE-/Checklist-Selbstpruefungsintake repariert und neu geprueft | — | — | — | Documentation Impact `UpdateRequired`: Der mechanisch veraltete Position-5-Pfad bindet jetzt die abgeschlossene Feature-024-Quelle und ihren unveraenderlichen PR-Nachweis. Der ausdruecklich bestaetigte Lernenden-, Vorwissens-, Begriffs-, A11Y-, CEFR-B2- und DE/EN-Vertrag sowie der statusabhaengige Feldvertrag fuer `Applicable`, `AlreadySatisfied`, `N/A`, `Open` und `FollowUp` sind in Anforderungen, Artefakten, Abnahme und Prompts synchronisiert. Die Findings `IR001` bis `IR003` sind geschlossen; der vollstaendige Single-Review ist `Ready` mit null verbleibenden Findings, Risiken oder offenen Fragen. Authoring-Receipt, Review und Series-Hashbindung besitzen bytegleiche Archive und vollstaendige Supersession. Die Series bleibt bei 33 Zielen, vier Roots und 36 Abhaengigkeiten; Position 6 bleibt alleiniger bevorzugter `Eligible`-Kandidat. Specify, Autonomous und Remote-Lieferung wurden nicht gestartet. Das Delta vor Statistikpflege umfasst 1 549 Nettozeilen. |
 | 2026-08-07 | Ausgewogenes Spec-Kit-Modell-Routing | — | — | — | Documentation Impact `UpdateRequired`: Alle elf Governance-Presets deklarieren einen providerneutralen Kommando-zu-Rolle-Vertrag. Sequenzielle autonome Laeufe duerfen das konkrete Modell nur an abgeschlossenen Prozessgrenzen wechseln; lokale Runner-Profile, SHA-256-Bindung, Preflight und Fail-Closed-Verhalten verhindern stillen Fallback. Status-, Stop- und rein deterministische Pfade bleiben leichtgewichtig oder skriptbasiert, waehrend semantische Planung, Implementierung und Review staerkere Rollen verwenden. Preset-Quellen, beide Spiegel, Agentenoberflaechen und plattformuebergreifende Validatoren sind synchron. Feature 025 und seine Planungsartefakte bleiben davon getrennt. Das Implementierungsdelta vor Statistikpflege umfasst 4 810 Nettozeilen. |
 | 2026-08-09 | Feature 026 Home-Runtime-Container-Sync | — | — | — | Documentation Impact `UpdateRequired`: `sync-home.sh --runtime-only` und `sync-home.ps1 -RuntimeOnly` verteilen ausschließlich die manifestgebundene Home Runtime, erzwingen einen Lauf ohne Pull, Commit, Git-Konfiguration, Git-Identität oder Home-Repository-Initialisierung und lassen normale schreibende ABS-DD-Containerläufe weiterhin gesperrt. Konflikte und aus `HOME` herausführende Ziel-Symlinks stoppen vor dem ersten Schreibzugriff. Zehn fokussierte und 97 vollständige Python-Tests, Bash-/PowerShell-Syntax und -Runtime-Closure, PSScriptAnalyzer, Documentation Impact sowie Secret Scan sind grün; zwölf plattformspezifische Tests blieben erwartungsgemäß übersprungen. Das Implementierungsdelta vor Statistikpflege umfasst 238 Nettozeilen. |
+| 2026-08-09 | Providerneutrales Modell-Routing flottenweit abgeschlossen | — | — | — | Documentation Impact `GeneratedUpdate`: Model Routing Governance `0.1.4`, Autonomous Run Governance `0.3.6` und Parallel Autonomous Run Governance `0.2.6` wurden als versionierte GitHub-ZIPs geprüft und in 33 registrierten Ziel-Repositories installiert. Alle Ziele bestanden die exakte Zwölf-Preset-Matrix, die Bash-/PowerShell-Modellerkennung, Diff- und Secret-Prüfungen; null umsetzbare Review-Threads blieben offen. 193 Remote-Jobs wurden nachweislich vor dem ersten Schritt vom Provider abgewiesen und vier externe Reviews blieben ohne verwertbares Ergebnis; sie werden ausdrücklich nicht als bestanden gewertet. Alle 33 PRs wurden gemergt und die lokalen Default-Branches synchronisiert. Der getrennte JSON-Eingabefehler des vollständigen Ein-Kommando-Checks bleibt als Wartungsskript-Follow-up offen. |
 
 ---
 
@@ -1035,25 +1036,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 635381 lines |
-| Textdateien / Text files | 3216 |
+| Textbasis / Text base | 635497 lines |
+| Textdateien / Text files | 3217 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-09 |
 | Aktivtage / Active days | 85 |
-| Relevante Commits / Relevant commits | 714 |
-| Zeilen je Aktivtag / Lines per active day | 7475.1 |
+| Relevante Commits / Relevant commits | 715 |
+| Zeilen je Aktivtag / Lines per active day | 7476.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 93.4x |
+| Speedup vs. 80 lines/day | 93.5x |
 | Speedup vs. 100 lines/day | 74.8x |
-| Methodik / Methodology | v2; source `c792694dc206` |
+| Methodik / Methodology | v2; source `fa372be6ea24` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
 Tests                           [#...................]   3.7% | 23262
-Dokumentation / Documentation   [##########..........]  49.8% | 316389
+Dokumentation / Documentation   [##########..........]  49.8% | 316505
 Skripte / Scripts               [##..................]   9.2% | 58683
 Konfiguration / Configuration   [#######.............]  36.8% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1259,7 +1260,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 93.4x
+80 lines/day       [###################.] 93.5x
 100 lines/day      [###############.....] 74.8x
 ```
 
@@ -1273,7 +1274,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7475.1
+Visible repository [###############.....] 7476.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1299,6 +1300,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-09. Es enthaelt 85 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 205545 |
+| 2026-08 | 205661 |
 
 <!-- project-statistics-v2:end -->
