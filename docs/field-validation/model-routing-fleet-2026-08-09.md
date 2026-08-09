@@ -64,6 +64,40 @@ was used only after local technical gates passed, zero-step rejection was
 proven, no actionable thread remained, and the remaining protection boundary
 matched the granted authority.*
 
+### Post-Merge- und Mail-Abgleich / Post-Merge and Mail Reconciliation
+
+Die Default-Branch-Läufe wurden getrennt von den PR-Head-Prüfungen erneut über
+die GitHub-API ausgewertet. Auf den 33 dokumentierten Merge-Commits liefen 151
+Workflows: 47 endeten erfolgreich oder neutral, 104 fehlgeschlagene Workflows
+enthielten null Workflow-Schritte und null ausgeführte Schritte. Es gab keinen
+tatsächlich ausgeführten fehlgeschlagenen Workflow.
+
+Die Gmail-Abfrage nach ungelesenen GitHub-Fehlermeldungen ergab exakt dieselben
+104 Merge-Commit-Fehler aus 26 Repositories. Die übrigen sieben Repositories
+hatten keine passende ungelesene Nachricht; daraus wird weder Erfolg noch
+Fehlschlag abgeleitet. GitHub-Run- und Jobdaten bleiben die kanonische Evidence.
+Die Mails wurden bei diesem read-only Abgleich weder gelabelt noch als gelesen
+markiert.
+
+| Workflow | Zero-Step-Mails |
+|---|---:|
+| Maintenance TUI | 26 |
+| PowerShell Static Analysis | 25 |
+| Release Please | 20 |
+| Homogeneity Check | 26 |
+| .NET Quality | 1 |
+| Go Quality | 1 |
+| Java CI | 1 |
+| Python Scaffold Quality | 1 |
+| Swift Scaffold | 1 |
+| Gitleaks | 1 |
+| Agent Secret Scan | 1 |
+
+*The default-branch runs were reconciled separately from the PR-head checks.
+Across 151 workflows, 47 succeeded or were neutral and 104 provider-rejected
+workflows contained zero workflow steps. The 104 matching unread Gmail
+notifications are an operational view, not the source of technical truth.*
+
 ## Merge-Evidence
 
 | Repository | PR | Merge-Commit |
@@ -114,3 +148,21 @@ erfolgreich klassifiziert.
 *The script-only routing path is green. A separate full-maintenance JSON-input
 defect remains a dedicated maintenance-script follow-up and does not change the
 model-routing contract.*
+
+## OpenCode-Paritätsbefund / OpenCode Parity Finding
+
+Ein nachgelagerter, pfadbewusster Vergleich von Level 0 und allen 33
+Ziel-Repositories zeigte genau eine Intake-Sequencing-Paritätslücke. Die Registry
+deklariert überall sechs OpenCode-Series-Kommandos. Alle 33 Ziel-Repositories
+tracken sie im aktuellen Pfad `.opencode/commands/`. Level 0 verwendet noch den
+älteren, weiterhin unterstützten Pfad `.opencode/command/`; dort fehlten genau
+diese sechs Dateien. Sie wurden durch eine Neuinstallation von Intake Sequencing
+Governance v0.2.3 reproduzierbar erzeugt. Der alte Hardening-Worktree wird nicht
+zusammengeführt, weil seine übrigen Änderungen durch aktuelle Releases und
+Merge-Commits abgelöst sind.
+
+*A later path-aware comparison found exactly one Intake Sequencing parity gap.
+All 33 target repositories track the six commands under the current
+`.opencode/commands/` path. Level 0 still uses the supported legacy
+`.opencode/command/` path, where those six files were missing. Reinstalling
+v0.2.3 reproduced them; the remaining stale worktree changes are superseded.*
