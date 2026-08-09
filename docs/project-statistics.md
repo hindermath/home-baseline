@@ -1038,26 +1038,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 635933 lines |
+| Textbasis / Text base | 636291 lines |
 | Textdateien / Text files | 3225 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-09 |
 | Aktivtage / Active days | 85 |
-| Relevante Commits / Relevant commits | 720 |
-| Zeilen je Aktivtag / Lines per active day | 7481.6 |
+| Relevante Commits / Relevant commits | 721 |
+| Zeilen je Aktivtag / Lines per active day | 7485.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 93.5x |
-| Speedup vs. 100 lines/day | 74.8x |
-| Methodik / Methodology | v2; source `af0e7646855d` |
+| Speedup vs. 80 lines/day | 93.6x |
+| Speedup vs. 100 lines/day | 74.9x |
+| Methodik / Methodology | v2; source `8e3c51d447f9` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.7% | 23383
-Dokumentation / Documentation   [##########..........]  49.8% | 316815
-Skripte / Scripts               [##..................]   9.2% | 58688
+Tests                           [#...................]   3.7% | 23481
+Dokumentation / Documentation   [##########..........]  49.8% | 316844
+Skripte / Scripts               [##..................]   9.3% | 58919
 Konfiguration / Configuration   [#######.............]  36.8% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
@@ -1178,15 +1178,15 @@ Slots 32..47
 ```
 
 ```text
-Slots 48..61
-  cap 200000 | . . . . . . . . . . . . . .
-      166667 | . . . . . . . . . . . . . .
-      133333 | . . . . # . . . . . . . . .
-      100000 | . . . . # . . . . . . . . .
-       66667 | . . . . # . . . . . . . . .
-       33333 | . . . . # . . . . . . . . .
-           0 +-----------------------------
-             48 49 50 51 52 53 54 55 56 57 58 59 60 61
+Slots 48..62
+  cap 200000 | . . . . . . . . . . . . . . .
+      166667 | . . . . . . . . . . . . . . .
+      133333 | . . . . # . . . . . . . . . .
+      100000 | . . . . # . . . . . . . . . .
+       66667 | . . . . # . . . . . . . . . .
+       33333 | . . . . # . . . . . . . . . .
+           0 +-------------------------------
+             48 49 50 51 52 53 54 55 56 57 58 59 60 61 62
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1253,6 +1253,7 @@ Slots 48..61
 | 59 | RL-SE-/Checklist-Selbstpruefung / RL-SE checklist self-assessment | 2932 |
 | 60 | RL-SE-Selbstpruefung: kausaler Abschluss / RL-SE self-assessment causal closeout | 1586 |
 | 61 | Home-Runtime-Container-Sync / Home Runtime container sync | 238 |
+| 62 | Wartungs-Toolchain-JSON-Ergebnishaertung / Maintenance toolchain JSON result hardening | 452 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1262,8 +1263,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 93.5x
-100 lines/day      [###############.....] 74.8x
+80 lines/day       [###################.] 93.6x
+100 lines/day      [###############.....] 74.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1276,7 +1277,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7481.6
+Visible repository [###############.....] 7485.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1302,6 +1303,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-09. Es enthaelt 85 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 206173 |
+| 2026-08 | 206633 |
 
 <!-- project-statistics-v2:end -->
