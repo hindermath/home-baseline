@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -735,6 +736,22 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
         ):
             self.assertIn(token, bash)
             self.assertIn(token, powershell)
+
+    def test_model_routing_result_is_not_parsed_as_toolchain_evidence(self) -> None:
+        bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")
+        model_routing_stage = bash[bash.index('CURRENT_STAGE="model-routing"'):bash.index(
+            'CURRENT_STAGE="verification"'
+        )]
+
+        self.assertIn('MODEL_ROUTING_RESULT_FILE=', model_routing_stage)
+        self.assertIsNone(
+            re.search(
+                r'^\s*"\$MODEL_ROUTING_RESULT_FILE"\s*$',
+                model_routing_stage,
+                flags=re.MULTILINE,
+            )
+        )
+        self.assertEqual(bash.count('"$TOOLCHAIN_RESULT_FILE"'), 6)
 
     def test_canonical_repository_listing_ignores_unmanifested_preset_and_inactive_paths(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

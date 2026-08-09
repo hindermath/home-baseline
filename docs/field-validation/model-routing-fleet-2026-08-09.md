@@ -136,18 +136,23 @@ notifications are an operational view, not the source of technical truth.*
 | `container-images` | `#26` | `3ce1f882a4cde6c7502fd7411ef60590959f6899` |
 | `absdd-image-sandbox` | `#35` | `7eb76f83e82c104d57e33bd898bb35d4fcd1e606` |
 
-## Follow-up-Grenze / Follow-up Boundary
+## Follow-up-Abschluss / Follow-up Closure
 
-Der skriptbezogene Routing- und `--scripts-only`-Pfad ist grün. Der vollständige
-Ein-Kommando-Check besitzt getrennt davon einen reproduzierbaren JSON-Eingabe-
-Fehler, wenn erwartete Toolchain-Reportdateien fehlen oder leer sind. Dieser
-Befund verändert den Modell-Routing-Vertrag nicht und wird als eigenes
-Wartungsskript-Follow-up behandelt; er wird hier weder verschwiegen noch als
-erfolgreich klassifiziert.
+Der skriptbezogene Routing- und `--scripts-only`-Pfad war bereits grün. Der
+getrennte JSON-Eingabefehler des vollständigen Ein-Kommando-Checks ist inzwischen
+geschlossen: Toolchain-Ergebnisse werden atomar erzeugt und mit stabilen
+Fehlerklassen gelesen. Ein abschließender Realtest zeigte zusätzlich, dass die
+Modell-Routing-Phase ihre eigene Statusdatei irrtümlich an den ausschließlich für
+Toolchain-JSON reservierten Consumer übergab. Die Phasengrenze und ein
+Regressionstest verhindern diese Fehlklassifikation jetzt. Der
+Modell-Routing-Vertrag selbst blieb unverändert.
 
-*The script-only routing path is green. A separate full-maintenance JSON-input
-defect remains a dedicated maintenance-script follow-up and does not change the
-model-routing contract.*
+*The script-only routing path was already green. The separate full-maintenance
+JSON input defect is now closed through atomic toolchain results and stable
+consumer failure classes. A final real run also exposed that the model-routing
+stage passed its own status file to the toolchain-only consumer. The corrected
+stage boundary and a regression test now prevent that misclassification; the
+model-routing contract itself remains unchanged.*
 
 ## OpenCode-Paritätsbefund / OpenCode Parity Finding
 

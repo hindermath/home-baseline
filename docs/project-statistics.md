@@ -158,6 +158,7 @@
 | 2026-08-09 | Providerneutrales Modell-Routing flottenweit abgeschlossen | — | — | — | Documentation Impact `GeneratedUpdate`: Model Routing Governance `0.1.4`, Autonomous Run Governance `0.3.6` und Parallel Autonomous Run Governance `0.2.6` wurden als versionierte GitHub-ZIPs geprüft und in 33 registrierten Ziel-Repositories installiert. Alle Ziele bestanden die exakte Zwölf-Preset-Matrix, die Bash-/PowerShell-Modellerkennung, Diff- und Secret-Prüfungen; null umsetzbare Review-Threads blieben offen. 193 Remote-Jobs wurden nachweislich vor dem ersten Schritt vom Provider abgewiesen und vier externe Reviews blieben ohne verwertbares Ergebnis; sie werden ausdrücklich nicht als bestanden gewertet. Alle 33 PRs wurden gemergt und die lokalen Default-Branches synchronisiert. Der getrennte JSON-Eingabefehler des vollständigen Ein-Kommando-Checks bleibt als Wartungsskript-Follow-up offen. |
 | 2026-08-09 | Modell-Routing-Post-Merge- und OpenCode-Paritätsabschluss | — | — | — | Documentation Impact `UpdateRequired`: 151 Default-Branch-Workflows wurden getrennt von den PR-Head-Gates geprüft. 47 waren erfolgreich oder neutral; 104 Providerfehler enthielten null Workflow-Schritte und entsprachen exakt den 104 noch ungelesenen GitHub-CI-Mails. Es gab keinen ausgeführten technischen Fehler. Eine pfadbewusste Intake-Sequencing-Prüfung bestätigte alle 33 Ziel-Repositories als vollständig: 30 verwenden `.opencode/command/`, drei `.opencode/commands/`. Nur im ebenfalls singularen Level-0-Pfad fehlten sechs Series-Kommandos; sie wurden reproduzierbar aus Preset v0.2.3 erzeugt. Der Wartungs-JSON-Parserbefund ist als eigenes Workitem abgegrenzt. |
 | 2026-08-09 | Wartungs-Toolchain-JSON-Ergebnishaertung | — | — | — | Documentation Impact `UpdateRequired`: Der reproduzierte Leerausgabe- und Parserfehler im macOS-/Linux-Toolchain-Abschluss ist behoben. Producer schreiben auch auf fruehen Fehlerpfaden atomare Schema-1.0-Evidence; Consumer unterscheiden fehlende, leere, abgeschnittene, syntaktisch fehlerhafte, nicht als UTF-8 lesbare und schemafremde Ergebnisse mit stabilen Klassen und ohne Stacktrace oder private Pfade. 17 Linux-Hardening- und 24 Workspace-Wartungstests sowie ein realer macOS-`--compare-only`-Lauf sind gruen; letzterer endete mit `SUCCESS_WITH_WARNINGS`, Exitcode 0, null Pflichtdrift und drei optionalen Paketen. Das Implementierungsdelta vor Statistikpflege umfasst 452 geaenderte Textzeilen. |
+| 2026-08-09 | Modell-Routing-Phasenevidence korrigiert | — | — | — | Documentation Impact `UpdateRequired`: Ein vollstaendiger Ein-Kommando-Realtest belegte, dass das gueltige Toolchain-Ergebnis korrekt als `SUCCESS_WITH_WARNINGS` erzeugt wurde, die nachfolgende Modell-Routing-Phase ihre eigene JSON-Datei jedoch ueber den ausschliesslich fuer Toolchain-Evidence reservierten Parameter validieren liess. Die Phasengrenze ist korrigiert; ein Regressionstest verhindert die erneute Fehlklassifikation. Der providerneutrale Modell-Routing-Vertrag und die lokale Ergebnisdatei bleiben unveraendert. |
 
 ---
 
@@ -1038,26 +1039,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 636291 lines |
+| Textbasis / Text base | 636311 lines |
 | Textdateien / Text files | 3225 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-09 |
 | Aktivtage / Active days | 85 |
-| Relevante Commits / Relevant commits | 721 |
-| Zeilen je Aktivtag / Lines per active day | 7485.8 |
+| Relevante Commits / Relevant commits | 722 |
+| Zeilen je Aktivtag / Lines per active day | 7486.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 93.6x |
 | Speedup vs. 100 lines/day | 74.9x |
-| Methodik / Methodology | v2; source `8e3c51d447f9` |
+| Methodik / Methodology | v2; source `c06b2653705f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.7% | 23481
-Dokumentation / Documentation   [##########..........]  49.8% | 316844
-Skripte / Scripts               [##..................]   9.3% | 58919
+Tests                           [#...................]   3.7% | 23498
+Dokumentation / Documentation   [##########..........]  49.8% | 316849
+Skripte / Scripts               [##..................]   9.3% | 58917
 Konfiguration / Configuration   [#######.............]  36.8% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
@@ -1277,7 +1278,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7485.8
+Visible repository [###############.....] 7486.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1303,6 +1304,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-09. Es enthaelt 85 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 206633 |
+| 2026-08 | 206685 |
 
 <!-- project-statistics-v2:end -->
