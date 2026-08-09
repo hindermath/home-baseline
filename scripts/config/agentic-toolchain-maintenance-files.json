@@ -38,6 +38,10 @@
       "executable": false
     },
     {
+      "path": "scripts/lib/resolve-home-baseline-source.sh",
+      "executable": true
+    },
+    {
       "path": "scripts/tests/test_maintenance_tui_wrappers.py",
       "executable": false
     },
