@@ -153,16 +153,17 @@ model-routing contract.*
 
 Ein nachgelagerter, pfadbewusster Vergleich von Level 0 und allen 33
 Ziel-Repositories zeigte genau eine Intake-Sequencing-Paritätslücke. Die Registry
-deklariert überall sechs OpenCode-Series-Kommandos. Alle 33 Ziel-Repositories
-tracken sie im aktuellen Pfad `.opencode/commands/`. Level 0 verwendet noch den
-älteren, weiterhin unterstützten Pfad `.opencode/command/`; dort fehlten genau
-diese sechs Dateien. Sie wurden durch eine Neuinstallation von Intake Sequencing
-Governance v0.2.3 reproduzierbar erzeugt. Der alte Hardening-Worktree wird nicht
-zusammengeführt, weil seine übrigen Änderungen durch aktuelle Releases und
-Merge-Commits abgelöst sind.
+deklariert überall sechs OpenCode-Series-Kommandos. 30 Ziel-Repositories tracken
+sie im weiterhin unterstützten Pfad `.opencode/command/`; `cc65`, Agent
+Operations Cockpit und die Secure-OrderDesk-Baseline verwenden den aktuellen
+Pfad `.opencode/commands/`. Level 0 verwendet ebenfalls den Singularpfad; nur
+dort fehlten genau diese sechs Dateien. Sie wurden durch eine Neuinstallation
+von Intake Sequencing Governance v0.2.3 reproduzierbar erzeugt. Der alte
+Hardening-Worktree wird nicht zusammengeführt, weil seine übrigen Änderungen
+durch aktuelle Releases und Merge-Commits abgelöst sind.
 
 *A later path-aware comparison found exactly one Intake Sequencing parity gap.
-All 33 target repositories track the six commands under the current
-`.opencode/commands/` path. Level 0 still uses the supported legacy
-`.opencode/command/` path, where those six files were missing. Reinstalling
-v0.2.3 reproduced them; the remaining stale worktree changes are superseded.*
+Thirty target repositories track the commands under the supported singular
+path; three use the current plural path. Level 0 also uses the singular path,
+where those six files were missing. Reinstalling v0.2.3 reproduced them; the
+remaining stale worktree changes are superseded.*

@@ -156,7 +156,7 @@
 | 2026-08-07 | Ausgewogenes Spec-Kit-Modell-Routing | — | — | — | Documentation Impact `UpdateRequired`: Alle elf Governance-Presets deklarieren einen providerneutralen Kommando-zu-Rolle-Vertrag. Sequenzielle autonome Laeufe duerfen das konkrete Modell nur an abgeschlossenen Prozessgrenzen wechseln; lokale Runner-Profile, SHA-256-Bindung, Preflight und Fail-Closed-Verhalten verhindern stillen Fallback. Status-, Stop- und rein deterministische Pfade bleiben leichtgewichtig oder skriptbasiert, waehrend semantische Planung, Implementierung und Review staerkere Rollen verwenden. Preset-Quellen, beide Spiegel, Agentenoberflaechen und plattformuebergreifende Validatoren sind synchron. Feature 025 und seine Planungsartefakte bleiben davon getrennt. Das Implementierungsdelta vor Statistikpflege umfasst 4 810 Nettozeilen. |
 | 2026-08-09 | Feature 026 Home-Runtime-Container-Sync | — | — | — | Documentation Impact `UpdateRequired`: `sync-home.sh --runtime-only` und `sync-home.ps1 -RuntimeOnly` verteilen ausschließlich die manifestgebundene Home Runtime, erzwingen einen Lauf ohne Pull, Commit, Git-Konfiguration, Git-Identität oder Home-Repository-Initialisierung und lassen normale schreibende ABS-DD-Containerläufe weiterhin gesperrt. Konflikte und aus `HOME` herausführende Ziel-Symlinks stoppen vor dem ersten Schreibzugriff. Zehn fokussierte und 97 vollständige Python-Tests, Bash-/PowerShell-Syntax und -Runtime-Closure, PSScriptAnalyzer, Documentation Impact sowie Secret Scan sind grün; zwölf plattformspezifische Tests blieben erwartungsgemäß übersprungen. Das Implementierungsdelta vor Statistikpflege umfasst 238 Nettozeilen. |
 | 2026-08-09 | Providerneutrales Modell-Routing flottenweit abgeschlossen | — | — | — | Documentation Impact `GeneratedUpdate`: Model Routing Governance `0.1.4`, Autonomous Run Governance `0.3.6` und Parallel Autonomous Run Governance `0.2.6` wurden als versionierte GitHub-ZIPs geprüft und in 33 registrierten Ziel-Repositories installiert. Alle Ziele bestanden die exakte Zwölf-Preset-Matrix, die Bash-/PowerShell-Modellerkennung, Diff- und Secret-Prüfungen; null umsetzbare Review-Threads blieben offen. 193 Remote-Jobs wurden nachweislich vor dem ersten Schritt vom Provider abgewiesen und vier externe Reviews blieben ohne verwertbares Ergebnis; sie werden ausdrücklich nicht als bestanden gewertet. Alle 33 PRs wurden gemergt und die lokalen Default-Branches synchronisiert. Der getrennte JSON-Eingabefehler des vollständigen Ein-Kommando-Checks bleibt als Wartungsskript-Follow-up offen. |
-| 2026-08-09 | Modell-Routing-Post-Merge- und OpenCode-Paritätsabschluss | — | — | — | Documentation Impact `UpdateRequired`: 151 Default-Branch-Workflows wurden getrennt von den PR-Head-Gates geprüft. 47 waren erfolgreich oder neutral; 104 Providerfehler enthielten null Workflow-Schritte und entsprachen exakt den 104 noch ungelesenen GitHub-CI-Mails. Es gab keinen ausgeführten technischen Fehler. Eine pfadbewusste Intake-Sequencing-Prüfung bestätigte alle 33 Ziel-Repositories unter `.opencode/commands/` als vollständig. Nur im von Level 0 verwendeten unterstützten Altpfad `.opencode/command/` fehlten sechs Series-Kommandos; sie wurden reproduzierbar aus Preset v0.2.3 erzeugt. Der Wartungs-JSON-Parserbefund ist als eigenes Workitem abgegrenzt. |
+| 2026-08-09 | Modell-Routing-Post-Merge- und OpenCode-Paritätsabschluss | — | — | — | Documentation Impact `UpdateRequired`: 151 Default-Branch-Workflows wurden getrennt von den PR-Head-Gates geprüft. 47 waren erfolgreich oder neutral; 104 Providerfehler enthielten null Workflow-Schritte und entsprachen exakt den 104 noch ungelesenen GitHub-CI-Mails. Es gab keinen ausgeführten technischen Fehler. Eine pfadbewusste Intake-Sequencing-Prüfung bestätigte alle 33 Ziel-Repositories als vollständig: 30 verwenden `.opencode/command/`, drei `.opencode/commands/`. Nur im ebenfalls singularen Level-0-Pfad fehlten sechs Series-Kommandos; sie wurden reproduzierbar aus Preset v0.2.3 erzeugt. Der Wartungs-JSON-Parserbefund ist als eigenes Workitem abgegrenzt. |
 
 ---
 
@@ -1037,25 +1037,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 635775 lines |
+| Textbasis / Text base | 635776 lines |
 | Textdateien / Text files | 3224 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-09 |
 | Aktivtage / Active days | 85 |
-| Relevante Commits / Relevant commits | 716 |
+| Relevante Commits / Relevant commits | 717 |
 | Zeilen je Aktivtag / Lines per active day | 7479.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 93.5x |
 | Speedup vs. 100 lines/day | 74.8x |
-| Methodik / Methodology | v2; source `bd086dc57142` |
+| Methodik / Methodology | v2; source `59fc10327139` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.4% | 2237
 Tests                           [#...................]   3.7% | 23262
-Dokumentation / Documentation   [##########..........]  49.8% | 316783
+Dokumentation / Documentation   [##########..........]  49.8% | 316784
 Skripte / Scripts               [##..................]   9.2% | 58683
 Konfiguration / Configuration   [#######.............]  36.8% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1301,6 +1301,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-09. Es enthaelt 85 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 205939 |
+| 2026-08 | 205962 |
 
 <!-- project-statistics-v2:end -->
