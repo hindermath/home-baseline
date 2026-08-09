@@ -8,6 +8,26 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.17.1](https://github.com/hindermath/home-baseline/compare/v0.17.0...v0.17.1) (2026-08-09)
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* remove stale routing release diagnostic ([b859ca4](https://github.com/hindermath/home-baseline/commit/b859ca46a153496a04e807571582d238599bad2d))
+
+
+### Documentation / Dokumentation
+
+* align model routing manual languages ([2a87191](https://github.com/hindermath/home-baseline/commit/2a871915055ecd55808451d00f8978a45f880be9))
+* close model-routing fleet rollout ([7ae3927](https://github.com/hindermath/home-baseline/commit/7ae392781b24bde5002db1aa2c64780457fed981))
+* close model-routing fleet rollout ([fa372be](https://github.com/hindermath/home-baseline/commit/fa372be6ea2478080c8d60906be2d0c682c7ab19))
+* normalize model routing manual name ([c792694](https://github.com/hindermath/home-baseline/commit/c792694dc206af1aa34edf2dd3ea645ca5edf95f))
+* refresh merged project statistics ([f9d0bad](https://github.com/hindermath/home-baseline/commit/f9d0bad1fc7430e74f2b7450c9cdabb732c46dd5))
+* refresh project statistics ([2efdcde](https://github.com/hindermath/home-baseline/commit/2efdcde9bee3402d8133a7dda8836035cb1896fc))
+* refresh project statistics ([eae4d2e](https://github.com/hindermath/home-baseline/commit/eae4d2e8ab074b475819251cbbb48c7ad9d0ef94))
+* refresh routing fix statistics ([1719b33](https://github.com/hindermath/home-baseline/commit/1719b338e6b5258601da301dbdf5c5ab7af4c547))
+* render project statistics after fleet closeout ([74eb6b2](https://github.com/hindermath/home-baseline/commit/74eb6b2abb86853f3b0cf4125cbd7922d042635c))
+
 ## [0.17.0](https://github.com/hindermath/home-baseline/compare/v0.16.0...v0.17.0) (2026-08-09)
 
 
