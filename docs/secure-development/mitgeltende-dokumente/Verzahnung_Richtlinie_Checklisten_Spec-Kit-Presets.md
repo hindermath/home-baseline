@@ -1,7 +1,7 @@
 # Verzahnung Richtlinie, Checklisten und Spec-Kit-Presets
 
-**Stand / Date:** 2026-08-02
-**Version / Version:** 1.3.0
+**Stand / Date:** 2026-08-10
+**Version / Version:** 1.4.0
 **Baseline-Version / Baseline version:** 3.2.0
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
@@ -9,18 +9,19 @@
 
 ## Zweck / Purpose
 
-**DE:** Diese Datei zeigt die Verbindung zur Richtlinie Sichere Entwicklung, zu den zwoelf Checklisten und zu den Spec-Kit-Preset-Profilen. Das oeffentliche Standardprofil umfasst acht Presets. Das verwaltete Profil ergaenzt drei optionale Intake-Presets. Die Datei ist eine Lese- und Pruefbruecke und ersetzt keine projektspezifischen Nachweise.
+**DE:** Diese Datei zeigt die Verbindung zur Richtlinie Sichere Entwicklung, zu den zwoelf Checklisten und zu den Spec-Kit-Preset-Profilen. Das oeffentliche Standardprofil umfasst acht Presets. Thorstens verwaltetes Zwölf-Preset-Profil ergaenzt Model Routing und drei optionale Intake-Presets. Die Datei ist eine Lese- und Pruefbruecke und ersetzt keine projektspezifischen Nachweise.
 
-**EN:** This file connects the related documents to the Secure Development Guideline, the twelve checklists, and the Spec Kit preset profiles. The public default contains eight presets. The managed profile adds three optional intake presets. The file is a reading and review bridge and does not replace project-specific evidence.
+**EN:** This file connects the related documents to the Secure Development Guideline, the twelve checklists, and the Spec Kit preset profiles. The public default contains eight presets. Thorsten's managed twelve-preset profile adds Model Routing and three optional Intake presets. The file is a reading and review bridge and does not replace project-specific evidence.
 
 ## Preset-Profile und Prioritaet / Preset Profiles and Priority
 
-**DE:** Eine Preset-Prioritaet bestimmt die Aufloesungsreihenfolge beim Stapeln. Sie ist weder Wichtigkeitsstufe noch Ausfuehrungsbefehl. Das verwaltete Elf-Preset-Profil fuegt Intake Authoring auf Prioritaet 64, Intake Review auf 65 und Intake Sequencing auf 66 ein. Installation startet keinen Befehl und erteilt keine Delivery Authority.
+**DE:** Eine Preset-Prioritaet bestimmt die Aufloesungsreihenfolge beim Stapeln. Sie ist weder Wichtigkeitsstufe noch Ausfuehrungsbefehl. Das verwaltete Profil `model-routing-twelve-governance-presets` fuegt Model Routing auf Prioritaet 61, Intake Authoring auf 64, Intake Review auf 65 und Intake Sequencing auf 66 ein. Installation startet keinen Befehl und erteilt keine Delivery Authority.
 
-**EN:** A preset priority defines resolution order when presets are stacked. It is neither an importance level nor an execution command. The managed eleven-preset profile adds Intake Authoring at priority 64, Intake Review at 65, and Intake Sequencing at 66. Installation starts no command and grants no delivery authority.
+**EN:** A preset priority defines resolution order when presets are stacked. It is neither an importance level nor an execution command. The managed profile `model-routing-twelve-governance-presets` adds Model Routing at priority 61, Intake Authoring at 64, Intake Review at 65, and Intake Sequencing at 66. Installation starts no command and grants no delivery authority.
 
-| Optionales Intake-Preset / Optional intake preset | Zweck / Purpose | Grenze / Boundary |
+| Optionales Preset / Optional preset | Zweck / Purpose | Grenze / Boundary |
 |---|---|---|
+| `model-routing-governance` | Lokal erkannte Modelle providerneutralen Rollen zuordnen / Map locally discovered models to provider-neutral roles | Konkrete Modelle bleiben lokal; kein stiller Fallback / Concrete models remain local; no silent fallback |
 | `intake-authoring-governance` | Intake erzeugen, lesen, aktualisieren oder logisch loeschen / Create, read, update, or logically delete an intake | Startet kein Review oder Feature / Starts no review or feature |
 | `intake-review-governance` | Einzelne Intakes, Serien oder Kampagnen pruefen / Review single intakes, series, or campaigns | `Ready` erteilt keine Delivery Authority / `Ready` grants no delivery authority |
 | `intake-sequencing-governance` | Reihenfolge, Abhaengigkeiten und `Eligible` bestimmen / Determine order, dependencies, and `Eligible` | `Eligible` startet keinen Lauf / `Eligible` starts no run |
@@ -107,3 +108,4 @@ Eine Statusangabe ohne Begründung und Evidenzpfad ist kein Auditnachweis. / A s
 | 1.1.0 | 2026-07-17 | Preset-Verzahnung auf das verbindliche Siebenerprofil einschließlich `autonomous-run-governance` erweitert. / Extended preset alignment to the binding seven-preset profile including `autonomous-run-governance`. |
 | 1.2.0 | 2026-07-19 | Preset-Verzahnung auf das verbindliche Achterprofil einschließlich `parallel-autonomous-run-governance` erweitert. / Extended preset alignment to the binding eight-preset profile including `parallel-autonomous-run-governance`. |
 | 1.3.0 | 2026-08-02 | Oeffentliches Achterprofil und verwaltetes Elf-Preset-Profil getrennt; optionale Intake-Presets und vier Ausbildungsberufe ergaenzt. / Separated public eight-preset and managed eleven-preset profiles; added optional intake presets and four training occupations. |
+| 1.4.0 | 2026-08-10 | Thorstens verwaltetes Flottenprofil auf zwoelf Presets angehoben; Model Routing auf Prioritaet 61 und seine lokale Modellgrenze ergaenzt. / Raised Thorsten's managed fleet profile to twelve presets; added Model Routing at priority 61 and its local-model boundary. |
