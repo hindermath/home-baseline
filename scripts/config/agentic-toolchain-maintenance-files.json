@@ -58,6 +58,10 @@
       "executable": false
     },
     {
+      "path": "scripts/tests/test_linux_maintenance_hardening.py",
+      "executable": false
+    },
+    {
       "path": "scripts/lib/maintenance-tui/NuGet.config",
       "executable": false
     },
