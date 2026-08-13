@@ -204,6 +204,8 @@ Sperre oder Berechtigung umgehen.
 | `--repair-drift` | `-RepairDrift` | Wartungspaket lokal reparieren; nie committen oder pushen |
 | `--include-optional` | `-IncludeOptional` | optionale Maschinenpakete in aktuelle Autorisierung aufnehmen |
 | `--allow-admin-prompts` | `-AllowAdminPrompts` | Adminabfragen nur für diesen Prozess erlauben |
+| `--cleanup-profile safe\|deep\|none` | `-CleanupProfile Safe\|Deep\|None` | verifizierte Storage-Bereinigung; Standard Safe |
+| `--confirm-deep-cleanup` | `-ConfirmDeepCleanup` | echten Deep-Lauf separat bestätigen |
 | `--manifest PATH` | `-ManifestPath PATH` | alternatives Flottenmanifest für einen kontrollierten Lauf |
 | `--home-dir PATH` | `-HomeDir PATH` | alternatives Home für Tests oder ein zweites Profil |
 
@@ -212,6 +214,14 @@ eine bewusste Plattformgrenze, keine Funktionsparitätslücke. Adminfreigabe
 speichert keine Zugangsdaten, umgeht weder UAC noch Timeouts und ist kein
 GitHub-Admin-Bypass.
 
+`Safe` bewahrt Buildausgaben normalerweise sieben Tage und wechselt unter 15
+Prozent freiem Speicher in Pressure Mode. Jeder Repo-Kandidat muss enthalten,
+ignoriert, nicht getrackt und symlinkfrei sein. `scripts-only` erzwingt `None`.
+`Deep` ergänzt wiederherstellbare Dependency-Caches. Die kuratierten Non-MSL-
+Adapter für `cc65` und `tvision` übernehmen deren dokumentierte Begründung und
+schützen Sample-, Targettest- und CMake-Provenienz-Evidence. Containerpflege
+ist auf dangling Images ohne Volumes begrenzt.
+
 ### Report, Log und Live-Ereignisse
 
 Pro Lauf entstehen unter `~/.home-baseline/`:
@@ -219,6 +229,7 @@ Pro Lauf entstehen unter `~/.home-baseline/`:
 - ein Lock gegen parallele Wartung;
 - ein vollständiges Log;
 - ein atomar finalisierter JSON-Report;
+- ein eingebetteter privater Storage-Detailbericht, sofern die Stufe aktiv ist;
 - bei TUI-Nutzung ein interner JSONL-Eventstream.
 
 Alle Artefakte verwenden dieselbe Run-ID. Der Eventstream dient nur der

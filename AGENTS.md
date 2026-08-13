@@ -30,6 +30,7 @@ This repository is the top-level `home-baseline` workspace bootstrap. Keep chang
 - `scripts/render-project-statistics.*`: renders and verifies the reproducible ASCII Statistics Profile 2 block from the repository JSON configuration.
 - `scripts/test-render-project-statistics.ps1`: runs deterministic fixture tests for schema, Git-history filtering, accessibility, phase splitting, idempotency, and Bash/PowerShell parity.
 - `scripts/maintain-agentic-workspace.*`: orchestrates complete Level-0/1/2 fast-forward maintenance, home sync, registry/propagation checks, and the matching platform toolchain without committing or pushing target repositories.
+- `scripts/maintain-workspace-storage.*`: inventories and safely reclaims verified Level-2 build outputs, selected caches, and dangling container images; the shared policy includes curated non-MSL adapters for `cc65` and `tvision`.
 - `scripts/propagate-agentic-toolchain-maintenance.*`: checks and synchronizes the canonical maintenance scripts, registries, and manpages across existing Level-1/Level-2 repositories without committing or pushing.
 - `scripts/hooks/pre-push`: shared hook copied into target repositories; uses `gitleaks` for pushed commit ranges when available and keeps the regex fallback.
 
@@ -49,6 +50,7 @@ bash scripts/audit-agent-changes.sh report
 bash scripts/update-spec-kit.sh --dry-run
 bash scripts/maintain-agentic-workspace.sh --check-only
 bash scripts/maintain-agentic-workspace.sh --dry-run
+bash scripts/maintain-workspace-storage.sh --check-only
 bash scripts/maintain-agentic-brew-apps.sh --dry-run
 pwsh -NoProfile -File scripts/test-render-project-statistics.ps1
 pwsh scripts/bootstrap-workspace.ps1 -WorkspaceName FlutterProjects -WhatIf
@@ -61,6 +63,7 @@ pwsh -NoProfile scripts/audit-agent-changes.ps1 -Action report
 pwsh -NoProfile scripts/update-spec-kit.ps1 -WhatIf
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CheckOnly
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
+pwsh -NoProfile -File scripts/maintain-workspace-storage.ps1 -CheckOnly
 pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf
 ```
 
@@ -482,6 +485,9 @@ Do not commit tokens, `.env` files, or local agent state. If you touch secret-sc
 - PSScriptAnalyzer `1.25.0` ist ein Required-PowerShell-Modul aus `scripts/config/powershell-modules-registry.json`; alle getrackten repo-eigenen `.ps1`, `.psm1` und `.psd1` muessen den gemeinsamen Analyselauf bestehen. Nur die dort begruendet dokumentierten, von GitHub Spec Kit erzeugten Upstream-Pfade sind ausgenommen. / PSScriptAnalyzer `1.25.0` is a required module; every tracked, repository-owned PowerShell file must pass the shared analysis run. Only generated GitHub Spec Kit upstream paths documented there with a rationale are excluded.
 - Level-0 unter `~/home-baseline-source` ist die kanonische Quelle fuer diese Wartungsdateien. Bestehende Level-1-/Level-2-Kopien mit `propagate-agentic-toolchain-maintenance.*` zuerst als Vorschau, danach schreibend und abschliessend mit `--check-only` / `-CheckOnly` synchronisieren; das Werkzeug commitet oder pusht nicht.
 - Fuer komplette Wartungslaeufe `maintain-agentic-workspace.sh` auf macOS/Linux beziehungsweise `maintain-agentic-workspace.ps1` auf Windows verwenden. Ohne Optionen aktualisieren sie Level-0/1/2 und die Required-Toolchain; `--check-only` / `-CheckOnly` prueft, Vorschau zeigt Schreibschritte, und Drift-Reparatur bleibt mit `--repair-drift` / `-RepairDrift` ausdruecklich zustimmungspflichtig. Die Orchestratoren wechseln keine Branches und committen oder pushen keine Ziel-Repositories.
+- Vollwartung verwendet Storage-Profil `Safe`: sieben Tage Aufbewahrung, Pressure Mode unter 15 Prozent freiem Speicher und ausschließlich Git-ignorierte, nicht getrackte, repo-interne Buildausgaben. `Deep` benötigt im echten Lauf eine eigene Bestätigung; `scripts-only` erzwingt `None`. Container-Volumes, `--all` und `system prune` sind ausgeschlossen. Non-MSL-Repositories wie `cc65` und `tvision` dürfen nur über kuratierte Adapter mit dokumentierter Begründung und geschützter Build-Evidence bereinigt werden.
+
+*Full maintenance uses the `Safe` storage profile: seven-day retention, pressure mode below 15 percent free space, and only Git-ignored, untracked, repository-contained build outputs. An update `Deep` run requires separate confirmation; `scripts-only` enforces `None`. Container volumes, `--all`, and `system prune` are excluded. Non-MSL repositories such as `cc65` and `tvision` may be cleaned only by curated adapters that preserve their documented justification and build evidence.*
 - VS Code ist der grafische Required-Editor fuer Auszubildende; Helix (`hx`) ist der Required-A11Y-/CLI-Editor. Fuer die sechs MSL-Pfade C#, Go, Java, Python, Rust und Swift sind die offiziellen minimalen VS-Code-Extensions required; Microsoft Container Tools ist zusaetzlich required fuer Podman-Workflows.
 - Podman CLI und Compose-Unterstuetzung sowie die sechs MSL-CLI-Toolchains `.NET`, Go, Java/Javac, Python, Rust/Cargo und Swift sind Required; `syft` fuer SBOM-Nachweise und GitHub Spec Kit (`specify`) fuer SDD sind ebenfalls Required. `specify` wird bei Bedarf ueber `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git` installiert.
 - Die Agenten-CLI-Oberflaechen `codex`, `claude` und `copilot` sind plattformuebergreifend Required und nutzen bei Bedarf die npm-Registry als Fallback. Google Antigravity ersetzt Gemini CLI; `agy` ist plattformuebergreifend Required: macOS nutzt Homebrew, Windows `Google.AntigravityCLI` per WinGet und Linux den pruefsummengeprueften offiziellen Installer.

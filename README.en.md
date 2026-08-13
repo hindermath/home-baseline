@@ -73,6 +73,14 @@ toolchain maintenance. Refresh requires current local authority. Autonomous
 presets may change models only at validated phase boundaries in a new process.
 This grants neither delivery nor provider authority.
 
+The new storage stage follows: `Safe` inventories and reclaims verified
+Level-2 build outputs and selected caches; pressure mode applies below 15
+percent free space. `Deep` requires a separate confirmation for an update run,
+while `scripts-only` selects `None`. Curated non-MSL adapters preserve the
+justifications and build evidence of `cc65` and `tvision`; container volumes
+always remain untouched. See the
+[maintenance portal](docs/maintenance/README.en.md#storage-cleanup).
+
 The complete [documentation portal](docs/README.en.md) organizes every topic
 and canonical source. The [script reference](docs/scripts/reference.md) lists
 available commands, platforms, and safe inspection modes.

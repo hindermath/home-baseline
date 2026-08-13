@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-08-10",
+  "updated": "2026-08-13",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
@@ -23,6 +23,26 @@
     },
     {
       "path": "scripts/maintain-agentic-workspace.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/maintain-workspace-storage.sh",
+      "executable": true
+    },
+    {
+      "path": "scripts/maintain-workspace-storage.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/workspace_storage_maintenance.py",
+      "executable": true
+    },
+    {
+      "path": "scripts/config/workspace-storage-maintenance.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/test_workspace_storage_maintenance.py",
       "executable": false
     },
     {
@@ -247,6 +267,10 @@
     },
     {
       "path": "docs/man/maintain-agentic-workspace.1.md",
+      "executable": false
+    },
+    {
+      "path": "docs/man/maintain-workspace-storage.1.md",
       "executable": false
     },
     {

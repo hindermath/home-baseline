@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "workspace-storage-maintenance",
+  "entries": [
+    {
+      "changeId": "CHG064",
+      "scope": "One-command storage cleanup, public wrappers, non-MSL adapters, TUI, and evidence contract",
+      "decision": "UpdateRequired",
+      "rationale": "The public maintenance command gains a default safe cleanup stage, new profiles, a deep confirmation boundary, and repository-specific safety behavior that operators and agents must understand.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/maintenance/README.md",
+        "docs/maintenance/README.en.md",
+        "docs/maintenance/agentic-workspace-efficiency-guide.md",
+        "docs/maintenance/agentic-workspace-efficiency-guide.en.md",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/man/maintain-workspace-storage.1.md",
+        "docs/architecture/maintenance-tui.md",
+        "docs/accessibility/maintenance-tui.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers",
+        "AI agents"
+      ],
+      "readerPaths": [
+        "Daily maintenance",
+        "Script reference",
+        "Maintainer agent guidance"
+      ],
+      "canonicalSource": "scripts/config/workspace-storage-maintenance.json",
+      "navigationImpact": "The maintenance portals and both root entry pages link the new storage behavior and manpage.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with synchronized English partner content; public PowerShell help and CLI output are bilingual.",
+      "languagePartners": [
+        "README.en.md",
+        "docs/maintenance/README.en.md",
+        "docs/maintenance/agentic-workspace-efficiency-guide.en.md"
+      ],
+      "platformAndExampleProof": "Bash check-only ran on macOS against the live Level-2 registry; PowerShell parser validation, shared Python tests, and 69 cross-platform TUI contract tests cover the equivalent Windows argument path.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "scripts/tests/test_workspace_storage_maintenance.py",
+      "risk": "Unsafe cleanup documentation could cause loss of build evidence; the documented path, Git, profile, process, container, and non-MSL gates match executable policy.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "A retention threshold, provider command, supported adapter, protected artifact class, profile default, or deletion proof changes."
+    },
+    {
+      "changeId": "CHG065",
+      "scope": "Generated script inventory",
+      "decision": "GeneratedUpdate",
+      "rationale": "The new public Bash and PowerShell entrypoints must appear in the deterministic script reference.",
+      "documents": [
+        "docs/scripts/reference.md"
+      ],
+      "owner": "Documentation Maintainer",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "Script reference"
+      ],
+      "canonicalSource": "scripts/config/script-catalog.json",
+      "navigationImpact": "The existing script-reference link now resolves the storage maintainer in the maintenance category.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "The renderer derives bilingual descriptions from public script help.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The renderer validates both .sh and .ps1 entrypoints before replacing the generated block.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-script-reference.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "A public script entrypoint or catalog mapping changes.",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "bash scripts/render-script-reference.sh"
+      }
+    },
+    {
+      "changeId": "CHG066",
+      "scope": "Living project statistics ledger",
+      "decision": "GeneratedUpdate",
+      "rationale": "The completed feature adds a required phase slot and update-log entry to the repository statistics contract.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Statistics Maintainer",
+      "audiences": [
+        "Maintainers",
+        "Project reviewers"
+      ],
+      "readerPaths": [
+        "Project statistics"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "No new navigation path; the existing statistics ledger gains phase slot 64.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "The update log and generated text alternatives remain German first and English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The canonical PowerShell renderer was invoked through the macOS Bash entrypoint and check-only reported CURRENT.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-project-statistics.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Another completed feature or implementation phase changes the ledger.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    }
+  ]
+}
