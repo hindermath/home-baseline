@@ -439,7 +439,7 @@
       "id": "agentic-workspace-efficiency-guide",
       "labelDe": "Agentic-Workspace-Effizienzleitfaden",
       "labelEn": "Agentic workspace efficiency guide",
-      "netLines": 3013,
+      "netLines": 3067,
       "activeDays": 1
     },
     {
@@ -520,6 +520,14 @@
       "labelDe": "CLion-/tvision-Flottenaufnahme",
       "labelEn": "CLion and tvision fleet onboarding",
       "netLines": 50,
+      "activeDays": 1
+    },
+    {
+      "slot": 64,
+      "id": "workspace-storage-maintenance",
+      "labelDe": "Workspace-Storage-Wartung",
+      "labelEn": "Workspace storage maintenance",
+      "netLines": 3013,
       "activeDays": 1
     }
   ],

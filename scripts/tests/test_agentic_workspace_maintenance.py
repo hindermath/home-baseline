@@ -714,6 +714,23 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             _, report = fixture.run("dry-run")
             report_path = fixture.root / "report-dry-run.json"
             target_hash = json.dumps(report["targets"], sort_keys=True)
+            toolchain_path = fixture.root / "toolchain.json"
+            toolchain_path.write_text(
+                json.dumps(
+                    {
+                        "schemaVersion": "1.0",
+                        "platform": "Linux",
+                        "mode": "compare-only",
+                        "overallStatus": "SUCCESS",
+                        "exitCode": 0,
+                        "items": [],
+                        "remainingRequired": [],
+                        "optionalDrift": [],
+                        "nextAction": "N/A",
+                    }
+                ),
+                encoding="utf-8",
+            )
             completed = subprocess.run(
                 [
                     "python3",
@@ -731,6 +748,8 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                     "fixture",
                     "--next-action",
                     "retry",
+                    "--toolchain-results",
+                    str(toolchain_path),
                 ],
                 text=True,
                 stdout=subprocess.PIPE,
@@ -740,6 +759,7 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertEqual(completed.returncode, 0, completed.stdout)
             updated = json.loads(report_path.read_text(encoding="utf-8"))
             self.assertEqual(json.dumps(updated["targets"], sort_keys=True), target_hash)
+            self.assertEqual(updated["toolchainResult"]["overallStatus"], "SUCCESS")
             self.assertEqual(updated["overallStatus"], "PARTIAL")
             self.assertEqual(updated["exitCode"], 1)
 
@@ -770,6 +790,21 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
         ):
             self.assertIn(token, bash)
             self.assertIn(token, powershell)
+
+    def test_storage_stage_uses_registry_barrier_not_unrelated_findings(self) -> None:
+        bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")
+        powershell = (REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1").read_text(encoding="utf-8")
+        bash_storage = bash[bash.index('Storage maintenance has its own') : bash.index(
+            'CURRENT_STAGE="storage-cleanup"'
+        )]
+        powershell_storage = powershell[powershell.index(
+            'Storage cleanup owns independent'
+        ) : powershell.index("Start-HBMaintenanceEventPhase -PhaseId 'storage-cleanup'")]
+
+        self.assertIn('"$registry_safe" -eq 1', bash_storage)
+        self.assertNotIn('"$FINDINGS" -eq 0', bash_storage)
+        self.assertIn('$registrySafe', powershell_storage)
+        self.assertNotIn('$script:Findings -eq 0', powershell_storage)
 
     def test_model_routing_result_is_not_parsed_as_toolchain_evidence(self) -> None:
         bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")

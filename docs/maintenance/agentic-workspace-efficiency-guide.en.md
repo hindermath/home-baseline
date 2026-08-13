@@ -199,6 +199,8 @@ reduce presentation but never bypass confirmation, blockers, or authority.
 | `--repair-drift` | `-RepairDrift` | repair maintenance package locally; never commit or push |
 | `--include-optional` | `-IncludeOptional` | include optional machine packages in current authorization |
 | `--allow-admin-prompts` | `-AllowAdminPrompts` | permit admin prompts for this process only |
+| `--cleanup-profile safe\|deep\|none` | `-CleanupProfile Safe\|Deep\|None` | verified storage cleanup; default Safe |
+| `--confirm-deep-cleanup` | `-ConfirmDeepCleanup` | separately confirm an update Deep run |
 | `--manifest PATH` | `-ManifestPath PATH` | use an alternate fleet manifest for a controlled run |
 | `--home-dir PATH` | `-HomeDir PATH` | use an alternate home for tests or a second profile |
 
@@ -207,6 +209,14 @@ is an intentional platform boundary, not a semantic parity gap. Admin authority
 stores no credentials, bypasses neither UAC nor timeouts, and is not a GitHub
 admin bypass.
 
+`Safe` normally retains build outputs for seven days and enters pressure mode
+below 15 percent free space. Every repository candidate must be contained,
+ignored, untracked, and free of symlink traversal. `scripts-only` enforces
+`None`; `Deep` adds recoverable dependency caches. Curated non-MSL adapters for
+`cc65` and `tvision` carry their documented justification and protect sample,
+target-test, and CMake-provenance evidence. Container maintenance is limited to
+dangling images without volumes.
+
 ### Report, log, and live events
 
 Each run creates below `~/.home-baseline/`:
@@ -214,6 +224,7 @@ Each run creates below `~/.home-baseline/`:
 - a lock against parallel maintenance;
 - a complete log;
 - an atomically finalized JSON report;
+- an embedded private storage detail report when that stage is active;
 - for TUI use, an internal JSONL event stream.
 
 All artifacts share one Run ID. Events serve live presentation only. The

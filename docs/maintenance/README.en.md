@@ -47,6 +47,36 @@ All modes use the same maintenance engine and safety boundaries. A fallback may
 reduce capability, but it cannot bypass confirmation or blockers. `Ctrl+C`
 produces exactly one traceable interruption path.
 
+## Storage cleanup
+
+Full maintenance selects `Safe` by default. This stage inventories registered
+Level-2 repositories, removes only repository-contained, ignored, untracked
+build outputs during an update run, and maintains selected caches through
+their native providers. It runs after model-routing status and before final
+verification. Once the Level-2 registry is valid, unrelated fleet or
+toolchain findings do not suppress it; its own safety barriers decide each
+repository and provider action.
+
+- Normal retention is seven days; below 15 percent free space the report
+  activates pressure mode.
+- `Deep` includes additional recoverable dependency caches and requires a
+  separate confirmation for an update run.
+- `None` disables the stage; `scripts-only` selects it automatically.
+- Container cleanup removes dangling images only, never volumes and never with
+  `--all` or `system prune`.
+- Curated adapters handle the constitutionally justified non-MSL `cc65` and
+  `tvision` repositories. Unknown non-MSL profiles are never processed by
+  generic deletion rules.
+
+```bash
+bash scripts/maintain-workspace-storage.sh --check-only
+bash scripts/maintain-agentic-workspace.sh --dry-run --cleanup-profile safe
+```
+
+The private storage report records profile, pressure mode, candidates,
+protected evidence, bytes, and provider warnings. Provider warnings do not
+block unrelated maintenance stages; policy, path, and operational failures do.
+
 ## Evidence and exit codes
 
 The live JSONL stream reports events. The canonical final report and process
@@ -58,6 +88,7 @@ must not be inferred from the stream alone.
 
 - [Detailed efficiency guide](agentic-workspace-efficiency-guide.en.md#regelmäßiger-betrieb-regular-operation)
 - [One-command maintenance manpage](../man/maintain-agentic-workspace.1.md)
+- [Storage cleanup manpage](../man/maintain-workspace-storage.1.md)
 - [Maintenance TUI architecture](../architecture/maintenance-tui.md)
 - [Maintenance TUI accessibility](../accessibility/maintenance-tui.md)
 - [Script reference](../scripts/reference.md)

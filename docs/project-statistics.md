@@ -1031,6 +1031,34 @@ publishes only the dormant registration and starts no control analysis or
 authoring, preset or product mutation, or Spec Kit run. The pre-statistics
 delta is 307 net lines; the source-only change requires no Home sync.*
 
+### 2026-08-13 - Workspace-Storage-Wartung / Workspace storage maintenance
+
+- Der Ein-Kommando-Lauf besitzt jetzt nach Modell-Routing und vor Abschluss
+  die Profile `Safe`, `Deep` und `None`; ein echter Deep-Lauf hat eine eigene
+  Bestätigung und `scripts-only` erzwingt `None`.
+- Der gemeinsame Python-Vertrag prüft enthaltene, symlinkfreie, ignorierte und
+  nicht getrackte Buildausgaben, sieben Tage Aufbewahrung, Pressure Mode unter
+  15 Prozent freiem Speicher, native Cache-Provider und ausschließlich
+  dangling Container-Images ohne Volumes.
+- Kuratierte Non-MSL-Adapter übernehmen die dokumentierten C89-/6502- und
+  C++14-Begründungen von `cc65` und `tvision`. Eine schreibfreie Live-Inventur
+  erkannte 3 165 238 953 Bytes sichere Kandidaten und schützte die cc65-
+  Sample-, Image-, Map-, Label- und Debug-Evidence; keine Datei wurde gelöscht.
+- 13 Storage-Tests, 69 TUI-Tests, 27 Fleet-Vertragstests und 19 Wrapper-Tests
+  bestanden. PSScriptAnalyzer 1.25.0 meldete für 163 Dateien keine Error- oder
+  Warning-Befunde. Documentation Impact ist `UpdateRequired` plus
+  `GeneratedUpdate`; die Home Runtime benötigt Synchronisation.
+- Das Delta vor Statistikpflege umfasst 3 067 Nettozeilen.
+
+*One-command maintenance now runs the `Safe`, `Deep`, or `None` storage profile
+after model-routing and before final verification. Update Deep has a separate
+confirmation and scripts-only enforces None. The shared contract proves path,
+Git, symlink, retention, pressure, provider, and dangling-image boundaries.
+Curated non-MSL adapters preserve the documented cc65 C89/6502 and tvision
+C++14 justifications. A read-only live inventory found 3,165,238,953 safe
+candidate bytes while preserving cc65 build evidence; no file was deleted.
+The pre-statistics delta is 3,067 net lines and the Home Runtime requires sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1041,27 +1069,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 636618 lines |
-| Textdateien / Text files | 3226 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-10 |
-| Aktivtage / Active days | 86 |
-| Relevante Commits / Relevant commits | 729 |
-| Zeilen je Aktivtag / Lines per active day | 7402.5 |
+| Textbasis / Text base | 639728 lines |
+| Textdateien / Text files | 3233 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-13 |
+| Aktivtage / Active days | 87 |
+| Relevante Commits / Relevant commits | 731 |
+| Zeilen je Aktivtag / Lines per active day | 7353.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 92.5x |
-| Speedup vs. 100 lines/day | 74.0x |
-| Methodik / Methodology | v2; source `baad8f718db6` |
+| Speedup vs. 80 lines/day | 91.9x |
+| Speedup vs. 100 lines/day | 73.5x |
+| Methodik / Methodology | v2; source `641f789a28f9` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
-Produktiv / Production          [#...................]   0.4% | 2237
-Tests                           [#...................]   3.7% | 23575
-Dokumentation / Documentation   [##########..........]  49.8% | 317065
-Skripte / Scripts               [##..................]   9.3% | 58931
-Konfiguration / Configuration   [#######.............]  36.8% | 233997
+Produktiv / Production          [#...................]   0.3% | 2237
+Tests                           [#...................]   3.8% | 24045
+Dokumentation / Documentation   [##########..........]  49.6% | 317501
+Skripte / Scripts               [##..................]   9.6% | 61135
+Konfiguration / Configuration   [#######.............]  36.6% | 233997
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
 ```
@@ -1087,9 +1115,9 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Wochen / Weeks 27..52 | 2026-02-15..2026-08-15
 So/Su  0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2
-Di/Tu  0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 -
-Mi/We  0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 -
-Do/Th  0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 -
+Di/Tu  0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0
+Mi/We  0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0
+Do/Th  0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4
 Fr/Fr  0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 -
 Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 -
 ```
@@ -1192,6 +1220,18 @@ Slots 48..63
              48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63
 ```
 
+```text
+Slots 64..64
+    cap 5000 | .
+        4167 | .
+        3333 | .
+        2500 | #
+        1667 | #
+         833 | #
+           0 +---
+             64
+```
+
 | Slot | Phase | Nettozeilen / Net lines |
 |---:|---|---:|
 | 0 | Initialisierung / Initialization | 954 |
@@ -1247,7 +1287,7 @@ Slots 48..63
 | 50 | AOC-Level-0-/Level-1-Handoff-Abschluss / AOC Level 0/Level 1 handoff closeout | 5 |
 | 51 | Wartungs-TUI- und Wrapper-Regressionshärtung / Maintenance TUI and wrapper regression hardening | 1828 |
 | 52 | Dokumentations-Informationsarchitektur-Audit / Documentation information architecture audit | 134145 |
-| 53 | Agentic-Workspace-Effizienzleitfaden / Agentic workspace efficiency guide | 3013 |
+| 53 | Agentic-Workspace-Effizienzleitfaden / Agentic workspace efficiency guide | 3067 |
 | 54 | AEPS-Engineering-Controls-Registrierung / AEPS Engineering Controls registration | 307 |
 | 55 | Level-0-Checkout- und Public-Template-Intake / Level 0 checkout and public template intake | 1036 |
 | 56 | RL-SE-/Checklist-Selbstpruefungsintake-Reparatur / RL-SE checklist self-assessment intake repair | 1549 |
@@ -1258,6 +1298,7 @@ Slots 48..63
 | 61 | Home-Runtime-Container-Sync / Home Runtime container sync | 238 |
 | 62 | Wartungs-Toolchain-JSON-Ergebnishaertung / Maintenance toolchain JSON result hardening | 452 |
 | 63 | CLion-/tvision-Flottenaufnahme / CLion and tvision fleet onboarding | 50 |
+| 64 | Workspace-Storage-Wartung / Workspace storage maintenance | 3013 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1267,8 +1308,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###################.] 92.5x
-100 lines/day      [###############.....] 74.0x
+80 lines/day       [##################..] 91.9x
+100 lines/day      [###############.....] 73.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1281,7 +1322,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7402.5
+Visible repository [###############.....] 7353.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1290,9 +1331,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-10. Es enthaelt 86 aktive und 273 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-13. Es enthaelt 87 aktive und 275 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-17 and ends on 2026-08-10. It contains 86 active and 273 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-17 and ends on 2026-08-13. It contains 87 active and 275 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1307,6 +1348,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-10. Es enthaelt 86 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 207058 |
+| 2026-08 | 210282 |
 
 <!-- project-statistics-v2:end -->

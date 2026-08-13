@@ -76,6 +76,14 @@ Autonome Presets dürfen Modelle ausschließlich an validierten Phasengrenzen in
 einem neuen Prozess wechseln. Delivery- und Provider-Rechte entstehen dadurch
 nicht.
 
+Danach folgt die neue Storage-Stufe: `Safe` inventarisiert und bereinigt
+verifizierte Level-2-Buildausgaben und ausgewählte Caches; bei weniger als 15
+Prozent freiem Speicher greift Pressure Mode. `Deep` benötigt für einen echten
+Lauf eine eigene Bestätigung, `scripts-only` verwendet `None`. Kuratierte
+Non-MSL-Adapter schützen die Begründungen und Build-Evidence von `cc65` und
+`tvision`; Container-Volumes bleiben immer unberührt. Details stehen im
+[Wartungsportal](docs/maintenance/README.md#storage-bereinigung).
+
 Das vollständige [Dokumentationsportal](docs/README.md) ordnet alle Themen und
 kanonischen Quellen ein. Die [Skriptreferenz](docs/scripts/reference.md) listet
 die verfügbaren Befehle, Plattformen und sicheren Prüfmodi.
