@@ -38,6 +38,41 @@ def initialize_repository(path: pathlib.Path) -> None:
     run("git", "config", "user.email", "storage@example.invalid", cwd=path)
 
 
+def storage_wrapper_command(
+    *,
+    home: pathlib.Path,
+    registry: pathlib.Path,
+    report: pathlib.Path,
+    profile: str,
+    check_only: bool = False,
+) -> list[str]:
+    """Select the public wrapper that matches the runner operating system."""
+    if os.name == "nt":
+        command = [
+            "pwsh", "-NoProfile", "-File",
+            str(ROOT / "scripts/maintain-workspace-storage.ps1"),
+            "-HomeDir", str(home),
+            "-RegistryPath", str(registry),
+            "-PolicyPath", str(POLICY_PATH),
+            "-ResultFile", str(report),
+            "-CleanupProfile", profile.capitalize(),
+        ]
+        if check_only:
+            command.append("-CheckOnly")
+        return command
+    command = [
+        "bash", str(WRAPPER),
+        "--home-dir", str(home),
+        "--registry", str(registry),
+        "--policy", str(POLICY_PATH),
+        "--result-file", str(report),
+        "--profile", profile,
+    ]
+    if check_only:
+        command.append("--check-only")
+    return command
+
+
 class WorkspaceStorageMaintenanceTests(unittest.TestCase):
     def test_policy_classifies_curated_non_msl_adapters(self) -> None:
         policy = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
@@ -226,14 +261,12 @@ class WorkspaceStorageMaintenanceTests(unittest.TestCase):
             registry.write_text('{"repositories": []}\n', encoding="utf-8")
             report = state / "reports/result.json"
             result = subprocess.run(
-                [
-                    "bash", str(WRAPPER),
-                    "--home-dir", str(home),
-                    "--registry", str(registry),
-                    "--policy", str(POLICY_PATH),
-                    "--result-file", str(report),
-                    "--profile", "deep",
-                ],
+                storage_wrapper_command(
+                    home=home,
+                    registry=registry,
+                    report=report,
+                    profile="deep",
+                ),
                 text=True,
                 capture_output=True,
                 check=False,
@@ -241,7 +274,10 @@ class WorkspaceStorageMaintenanceTests(unittest.TestCase):
             self.assertEqual(2, result.returncode)
             payload = json.loads(report.read_text(encoding="utf-8"))
             self.assertEqual("FAILED", payload["overallStatus"])
-            self.assertEqual(0o600, stat.S_IMODE(report.stat().st_mode))
+            # POSIX mode bits do not model the Windows ACL that the matching
+            # PowerShell wrapper already enforces before returning.
+            if os.name != "nt":
+                self.assertEqual(0o600, stat.S_IMODE(report.stat().st_mode))
 
     def test_none_profile_is_an_atomic_no_op(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -252,15 +288,13 @@ class WorkspaceStorageMaintenanceTests(unittest.TestCase):
             registry.write_text('{"repositories": []}\n', encoding="utf-8")
             report = state / "reports/result.json"
             result = subprocess.run(
-                [
-                    "bash", str(WRAPPER),
-                    "--check-only",
-                    "--home-dir", str(home),
-                    "--registry", str(registry),
-                    "--policy", str(POLICY_PATH),
-                    "--result-file", str(report),
-                    "--profile", "none",
-                ],
+                storage_wrapper_command(
+                    home=home,
+                    registry=registry,
+                    report=report,
+                    profile="none",
+                    check_only=True,
+                ),
                 text=True,
                 capture_output=True,
                 check=False,
@@ -269,7 +303,8 @@ class WorkspaceStorageMaintenanceTests(unittest.TestCase):
             payload = json.loads(report.read_text(encoding="utf-8"))
             self.assertEqual("none", payload["profile"])
             self.assertEqual(0, payload["freedBytes"])
-            self.assertEqual(0o600, stat.S_IMODE(report.stat().st_mode))
+            if os.name != "nt":
+                self.assertEqual(0o600, stat.S_IMODE(report.stat().st_mode))
 
     @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
     def test_powershell_wrapper_keeps_single_python_launcher_as_array(self) -> None:
