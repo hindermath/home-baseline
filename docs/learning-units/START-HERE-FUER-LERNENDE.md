@@ -17,13 +17,15 @@
 
 **DE:** Für diese Anleitung gilt die
 [Lernenden- und A11Y-Basis](LERNENDEN-UND-A11Y-BASIS.md). Sie richtet sich ab
-dem 1. Lehrjahr an Fachinformatiker*innen, Kaufleute für
-IT-System-Management und Kaufleute für Digitalisierungsmanagement.
+dem 1. Lehrjahr an Fachinformatiker*innen, IT-System-Elektroniker*innen,
+Kaufleute für IT-System-Management und Kaufleute für
+Digitalisierungsmanagement.
 
 **EN:** This guide follows the
 [Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md). It addresses IT
-specialist apprentices, IT system management trainees, and digitalisation
-management trainees from training year 1.
+specialist apprentices, IT systems electronics technician apprentices, IT
+system management trainees, and digitalisation management trainees from
+training year 1.
 
 **DE:** Diese Anleitung fuehrt dich vom ersten Terminalfenster bis zu einem
 kontrollierten KI-Agentenlauf in der Podman-Sandbox. Du brauchst keine
@@ -252,9 +254,10 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1
 ```
 
 Der Lauf installiert beziehungsweise prueft Podman, Syft, GitHub Spec Kit, die
-sechs Lernsprachen und die vier Agenten-CLIs. Die Agenten auf dem Host sind fuer
-Wartung und andere freigegebene Repositories vorhanden. Fuer Secure-Trader-Arbeit
-startest du sie trotzdem nur in der Sandbox.
+sechs Lernsprachen und die vier Required-Agenten-CLIs `codex`, `claude`, `agy`
+und `copilot`. Die Agenten auf dem Host sind fuer Wartung und andere
+freigegebene Repositories vorhanden. Fuer Secure-Trader-Arbeit startest du sie
+trotzdem nur in der Sandbox.
 
 ## 9. Required-Werkzeuge pruefen / Check Required Tools
 
@@ -314,13 +317,23 @@ bash "$HOME/home-baseline-source/scripts/sync-home.sh" --check-only
 pwsh -NoProfile -File "$HOME/home-baseline-source/scripts/sync-home.ps1" -CheckOnly
 ```
 
-Im ABS-DD-Container nutzt du `~/home-baseline-source` direkt. Starte dort keinen
-schreibenden Home-Sync; dieser gehoert auf den Host.
+Im ABS-DD-Container nutzt du `~/home-baseline-source` direkt. Der allgemeine
+schreibende Home-Sync bleibt dort gesperrt. Nur fuer eine ausdruecklich
+angeforderte Betriebskopie darfst du den Image-Wrapper
+`sync-home-baseline-runtime --apply` verwenden. Er verteilt ausschliesslich die
+manifestgebundene `homeRuntime`, fuehrt weder Pull noch Commit aus und aendert
+weder Git-Konfiguration noch Git-Identitaet. `--dry-run` und `--check-only`
+bleiben schreibfrei. Die genaue Grenze erklaert
+[Level-0-Quelle und Home Runtime](../architecture/source-and-home-runtime.md);
+die konkrete Wrapper- und Mount-Bedienung gehoert zur
+[Sandbox-Dokumentation](https://github.com/hindermath/absdd-image-sandbox/blob/main/docs/betrieb/image-aufbau.md#eingebettete-home-baseline--embedded-home-baseline).
 
 *Do not delete the clone after the first sync. It is the only place where you
 can trace updates from `upstream`, push your changes to `origin`, and verify
-later Home sync runs safely. Inside the ABS-DD container, use
-`~/home-baseline-source` directly and run writing Home sync operations on the host.*
+later Home sync runs safely. Inside the ABS-DD container, general writing Home
+sync remains blocked. Only an explicitly requested runtime copy may use
+`sync-home-baseline-runtime --apply`; it distributes manifest-bound
+`homeRuntime` without pull, commit, Git configuration, or identity changes.*
 
 ## 11. Referenz-Sandbox klonen / Clone the Reference Sandbox
 
@@ -407,8 +420,10 @@ bash /ade-dev-sandbox/scripts/smoke-test-toolchains.sh
 ```
 
 **Erfolg / Success:** Die sechs Sprach-Toolchains, Syft, Spec Kit, OpenCode sowie
-Codex, Claude, Gemini und Copilot melden ihre Version und die Beispieltests enden
-mit `Toolchain smoke tests passed.`
+die vier Required-Agenten-CLIs Codex, Claude, Antigravity (`agy`) und Copilot
+melden ihre Version. Die Beispieltests enden mit
+`Toolchain smoke tests passed.` Gemini CLI ist eine zusaetzliche installierte
+Oberflaeche, aber kein Bestandteil dieses Required-Smoke-Gates.
 
 ## 16. Level-2-Repository und Unit 00 oeffnen / Open Level 2 and Unit 00
 
@@ -434,9 +449,11 @@ Ein vorbereiteter Intake startet noch keinen Spec-Kit-Lauf.
 ### 17.1 Anmeldung nur in der Sandbox / Sign In Only Inside the Sandbox
 
 **Sandbox:** Starte genau einen institutionell freigegebenen und fuer dich
-zugelassenen Agenten mit `codex`, `claude`, `gemini` oder `copilot` und folge
-dessen Login-Anleitung. Die vier CLIs sind technisch installiert; du benoetigst
-nicht vier Anbieterkonten. Fuer `copilot` ist ein GitHub-Konto mit
+zugelassenen Required-Agenten mit `codex`, `claude`, `agy` oder `copilot` und
+folge dessen Login-Anleitung. OpenCode und Gemini CLI sind zusaetzliche
+installierte Oberflaechen und duerfen nur verwendet werden, wenn sie fuer deinen
+Lernweg freigegeben sind. Du benoetigst nicht fuer jede installierte CLI ein
+Anbieterkonto. Fuer `copilot` ist ein GitHub-Konto mit
 Copilot-Berechtigung erforderlich, auch wenn dein Repository auf GitLab,
 Codeberg oder Forgejo liegt. Speichere Tokens nur im dafuer vorgesehenen Named
 Volume. Zeige Tokens weder im Terminalprotokoll noch in Git-Dateien.

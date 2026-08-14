@@ -89,11 +89,14 @@ Hard Reset sind kein Einsteigerweg.
 | Institutionelles Repository | Konto im institutionellen Git-System |
 | Direkte GitHub-Nutzung | GitHub-Konto |
 | GitHub Copilot CLI | GitHub-Konto mit Copilot-Berechtigung |
-| Codex, Claude oder Gemini | Nur Konto/Berechtigung des ausgewaehlten, freigegebenen Anbieters |
+| Codex, Claude oder Antigravity (`agy`) | Nur Konto/Berechtigung des ausgewaehlten, freigegebenen Anbieters |
+| OpenCode oder Gemini CLI | Nur bei zusaetzlicher Freigabe; Konto/Berechtigung des ausgewaehlten Anbieters |
 
-Alle vier Agenten-CLIs duerfen technisch installiert und versionsgeprueft sein.
-Fuer einen Lernendenlauf reicht ein freigegebener, authentifizierter Agent. Die
-Sandbox-Regel gilt unabhaengig vom Git-Hosting-Anbieter.
+Die vier Required-Agenten-CLIs `codex`, `claude`, `agy` und `copilot` sowie die
+zusaetzlichen Oberflaechen OpenCode und Gemini CLI duerfen technisch installiert
+und versionsgeprueft sein. Fuer einen Lernendenlauf reicht ein freigegebener,
+authentifizierter Agent. Die Sandbox-Regel gilt unabhaengig vom
+Git-Hosting-Anbieter.
 
 ## 7. CI und vollstaendige Entkopplung / CI and Full Decoupling
 

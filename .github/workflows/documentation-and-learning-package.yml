@@ -78,3 +78,6 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: pwsh -NoProfile -File scripts/test-documentation-impact.ps1
+
+      - name: Test focused learner-guide propagation
+        run: python scripts/tests/test_shared_learner_guide_propagation.py

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "home-baseline-sandbox-documentation-alignment",
+  "entries": [
+    {
+      "changeId": "CHG067",
+      "scope": "Canonical learner path and source/runtime ownership across Home Baseline and the sandbox image",
+      "decision": "UpdateRequired",
+      "rationale": "The learner entry path, required agent surfaces, target occupations, and the bounded container runtime-sync exception must match the implemented image contract.",
+      "documents": [
+        "docs/learning-units/START-HERE-FUER-LERNENDE.md",
+        "docs/learning-units/INSTITUTIONELLES-GIT-HOSTING.md",
+        "docs/architecture/source-and-home-runtime.md",
+        "docs/architecture/source-and-home-runtime.en.md",
+        "docs/maintenance/agentic-workspace-efficiency-guide.md",
+        "docs/maintenance/agentic-workspace-efficiency-guide.en.md"
+      ],
+      "owner": "Home Baseline Maintainer",
+      "audiences": [
+        "Learners",
+        "Instructors",
+        "Workspace operators"
+      ],
+      "readerPaths": [
+        "Learner start to sandbox smoke test",
+        "Institutional hosting setup",
+        "Source and runtime architecture"
+      ],
+      "canonicalSource": "docs/architecture/source-and-home-runtime.md",
+      "navigationImpact": "The architecture now links to the concrete image documentation, while the learner guide links to both ownership layers.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German-first learner content with English text alternatives and a synchronized English architecture partner.",
+      "languagePartners": [
+        "docs/architecture/source-and-home-runtime.en.md",
+        "docs/maintenance/agentic-workspace-efficiency-guide.en.md"
+      ],
+      "platformAndExampleProof": "The documented smoke-test surface was compared with scripts/smoke-test-toolchains.sh in absdd-image-sandbox; source/runtime behavior is covered by the Home sync CLI tests.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/tests/test_shared_learner_guide_propagation.py",
+      "risk": "Contradictory learner instructions could either block the approved runtime-only path or imply broader container writes.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "The image changes its required agent set, learner occupations, embedded Home Baseline path, or runtime-sync wrapper contract."
+    },
+    {
+      "changeId": "CHG068",
+      "scope": "Shared agent guidance, templates, and focused learner-guide propagation interface",
+      "decision": "UpdateRequired",
+      "rationale": "Runtime-distributed guidance and propagation tooling must express the same bounded exception and provide a safe guide-only rollout path.",
+      "documents": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "scripts/templates/AGENTS.md.tmpl",
+        "scripts/templates/CLAUDE.md.tmpl",
+        "scripts/templates/GEMINI.md.tmpl",
+        "scripts/templates/copilot-instructions.tmpl",
+        "scripts/propagate-learning-series.sh",
+        "scripts/propagate-learning-series.ps1",
+        "docs/man/propagate-learning-series.1.md"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": [
+        "Maintainers",
+        "AI agents",
+        "Learning-series operators"
+      ],
+      "readerPaths": [
+        "Agent working-directory boundary",
+        "Learning-series propagation manpage"
+      ],
+      "canonicalSource": "scripts/propagate-learning-series.sh",
+      "navigationImpact": "The existing propagation manpage gains the focused shared-guide mode; no new top-level navigation is required.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Bilingual CLI help, manpage, and shared guidance with German first.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash syntax, PowerShell parser validation, deterministic guide-only fixture tests, and live dry-runs across the registered learning series cover the interface.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "scripts/tests/test_shared_learner_guide_propagation.py",
+      "risk": "A broad propagation run could overwrite newer series-specific learning material; the focused mode stages only six exact guide paths per target.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "The shared guide set, target layout, registry schema, or propagation safety gates change."
+    },
+    {
+      "changeId": "CHG069",
+      "scope": "Generated script reference for the focused propagation interface",
+      "decision": "GeneratedUpdate",
+      "rationale": "The public Bash and PowerShell interface changes must be reflected in the deterministic script inventory.",
+      "documents": [
+        "docs/scripts/reference.md"
+      ],
+      "owner": "Documentation Maintainer",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "Script reference"
+      ],
+      "canonicalSource": "scripts/config/script-catalog.json",
+      "navigationImpact": "The existing script-reference entry is regenerated from the updated public help.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "The renderer derives bilingual descriptions from public script help.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The canonical renderer validates both entrypoints before replacing the generated reference.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-script-reference.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "The public propagation interface or script catalog mapping changes.",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "bash scripts/render-script-reference.sh"
+      }
+    }
+  ]
+}

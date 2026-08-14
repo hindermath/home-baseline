@@ -36,7 +36,10 @@ direkt im Klon gelesen; `STATS.md` und private Agentenzustaende bleiben lokal.
 Nach reinen Source-only-Aenderungen ist kein Home-Sync erforderlich. Vor echten
 Laeufen `--check-only` / `-CheckOnly` verwenden; `--force` / `-Force` nur nach
 Pruefung der Konflikte. In der ABS-DD-Sandbox die eingebundene Referenz direkt
-verwenden; schreibender Home-Sync laeuft nur auf dem Host.
+verwenden; der allgemeine schreibende Home-Sync bleibt gesperrt. Nur ein
+ausdruecklich angeforderter `--runtime-only`-/`-RuntimeOnly`-Lauf darf
+manifestgebundene `homeRuntime` in die Container-Betriebskopie verteilen, ohne
+Pull, Commit, Git-Konfigurations- oder Identitaetsaenderung.
 
 *Keep the personal fork at `~/home-baseline-source` permanently as the versioned
 Level 0 source. `sync-home.*` distributes only `homeRuntime`: scripts, shared
@@ -44,7 +47,9 @@ agent guidance, and selected Spec Kit surfaces. Read documentation, specs,
 preset sources, and evidence directly from the clone; `STATS.md` and private
 agent state remain local. Source-only changes do not require Home sync. Use
 `--check-only` / `-CheckOnly` before a real run and review conflicts before
-using force. Writing Home sync runs remain host-only.*
+using force. General writing Home sync remains host-only; only an explicitly
+requested runtime-only run may distribute manifest-bound `homeRuntime` inside
+the container without pull, commit, Git configuration, or identity changes.*
 
 ## GitHub/GitLab CLI First / GitHub/GitLab CLI zuerst
 

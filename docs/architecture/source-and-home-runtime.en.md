@@ -50,6 +50,18 @@ nor Git identity. Local conflicts stop the run before the first write. Agentic
 work on Secure Trader systems runs in the approved sandbox; general read-only
 analysis may run outside it.
 
+## Responsibility between baseline and image
+
+| Content | Canonical source | Linked detail |
+|---|---|---|
+| Learner path, Git hosting, Level 0 governance, and source/runtime contract | `home-baseline` | this architecture and `docs/learning-units/` |
+| Image build, installed versions, mounts, container commands, and runtime wrapper | `absdd-image-sandbox` | [sandbox documentation](https://github.com/hindermath/absdd-image-sandbox/tree/main/docs) |
+
+Home Baseline therefore explains **why** and **when** a runtime copy is
+permitted. The image explains **how** its concrete wrapper, mounts, and pinned
+Home Baseline reference work. Both sides link to each other instead of
+duplicating a second operations handbook.
+
 ## Maintainers and AI agents
 
 Before a change:
