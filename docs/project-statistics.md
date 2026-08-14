@@ -161,6 +161,7 @@
 | 2026-08-09 | Modell-Routing-Phasenevidence korrigiert | — | — | — | Documentation Impact `UpdateRequired`: Ein vollstaendiger Ein-Kommando-Realtest belegte, dass das gueltige Toolchain-Ergebnis korrekt als `SUCCESS_WITH_WARNINGS` erzeugt wurde, die nachfolgende Modell-Routing-Phase ihre eigene JSON-Datei jedoch ueber den ausschliesslich fuer Toolchain-Evidence reservierten Parameter validieren liess. Die Phasengrenze ist korrigiert; ein Regressionstest verhindert die erneute Fehlklassifikation. Der providerneutrale Modell-Routing-Vertrag und die lokale Ergebnisdatei bleiben unveraendert. |
 | 2026-08-09 | CLion-/tvision-Flottenaufnahme | — | — | — | Documentation Impact `UpdateRequired`: `CLionProjects` und der Fork `CLionProjects/tvision` sind als aktive kanonische Level-1-/Level-2-Ziele im Desired-State-Manifest verankert. Die Constitution `1.20.2` und ihr bytegleicher Spec-Kit-Spiegel dokumentieren C++14/CMake/GoogleTest, die text- und tastaturorientierte A11Y-Basis sowie die begruendete Nicht-MSL-Ausnahme fuer historische Borland-API-/ABI- und DOS-/Windows-/Unix-Kompatibilitaet. Zielgruppen sind taegliche Nutzende sowie Maintainer/KI-Agenten; der Leserpfad fuehrt von der Ein-Kommando-Manpage ueber Manifest und Registry-Zeile zur sicheren Dry-run-/Repair-Aktion. Navigation und separate Sprachpartner bleiben unveraendert; die vorhandenen Agent-Guidance-Dateien wurden gemeinsam geprueft und benoetigen keine Regelanpassung. Kanonische Quelle und Owner bleiben das Level-0-Manifest beziehungsweise der Repository Maintainer; `homeRuntime`-Sync ist vor dem operativen Lauf erforderlich. macOS, GitHub-Remotes und die Branches `main`/`master` bilden den Plattformnachweis; Remote-, Branch-, Runtime- oder Build-Vertragsaenderungen loesen die Wiedervorlage aus. 45 fokussierte Wartungsvertragstests sind gruen. Das Delta vor Statistikpflege umfasst 50 Nettozeilen. |
 | 2026-08-10 | Zwölf-Preset-Flottenprofil konsolidiert | — | — | — | Documentation Impact `UpdateRequired`: Die lokale, nicht versionierte Level-2-Registry bindet den Standard und alle 35 eindeutigen Ziel-Repositories jetzt an `model-routing-twelve-governance-presets`; eine hashgebundene Sicherung bewahrt den vorherigen Elf-Preset-Stand. Vier aktuelle Lernreihen- und Secure-Development-Leserpfade trennen weiterhin das öffentliche Acht-Preset-Profil von Thorstens verwalteter Zwölf-Preset-Flotte und erklären Model Routing auf Priorität 61 sowie die Intake-Grenzen 64/65/66 Deutsch zuerst und Englisch danach. Beide Copilot-Guidance-Spiegel sind mit AGENTS, CLAUDE, GEMINI und den Templates auf Model Routing Governance v0.1.4 synchron; konkrete Modellbindungen bleiben lokal und Modus 600. Kanonische Source und Owner bleiben die Profilkataloge und der Repository Maintainer; die geänderte `homeRuntime`-Guidance benötigt nach dem Merge einen Home-Sync. Navigation und Sprachpartner bleiben unverändert. Ein vollständiger macOS-Check-only-Lauf bestätigt 35/35 homogene Registry-Ziele, die exakte Zwölf-Preset-Matrix, `model-routing=Passed` und Exitcode 0. Änderungen am öffentlichen Standardprofil, an Prioritäten, Registry-Schema, Distribution oder Model-Routing-Version lösen die Wiedervorlage aus. Kein Spec-Kit-, Intake-, Lernenden- oder Autonomous-Lauf wurde gestartet. |
+| 2026-08-14 | Home-Baseline- und Sandbox-Dokumentation verzahnt | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Home Baseline ist als kanonische Quelle fuer Lernendenweg, providerneutrales Git-Hosting, Level-0-Governance und Source-/Runtime-Vertrag abgegrenzt; die Sandbox-Dokumentation besitzt Image-Build, gepinnte Versionen, Mounts, Container-Kommandos und den konkreten Runtime-Wrapper. Zielgruppen, Required-Agenten (`codex`, `claude`, `agy`, `copilot`) und der begrenzte Runtime-only-Pfad sind synchron. Der neue `--shared-guides-only`-/`-SharedGuidesOnly`-Modus plant und staged ausschliesslich die drei gemeinsamen Guides in Root und `docs/learning-units/`; Fixture-Tests und Live-Dry-Runs bestaetigten 21/21 erreichbare Ziele, null Skips, null neuere Konflikte und 84 geplante Dateiaenderungen ohne README-, Intake-, Lernbegleiter-, Vorlagen- oder Datensatz-Drift. Die geaenderte `homeRuntime`-Guidance benoetigt nach Merge und Release einen Home-Sync. |
 
 ---
 
@@ -1069,27 +1070,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 639728 lines |
-| Textdateien / Text files | 3233 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-13 |
-| Aktivtage / Active days | 87 |
-| Relevante Commits / Relevant commits | 731 |
-| Zeilen je Aktivtag / Lines per active day | 7353.2 |
+| Textbasis / Text base | 640184 lines |
+| Textdateien / Text files | 3235 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-14 |
+| Aktivtage / Active days | 88 |
+| Relevante Commits / Relevant commits | 732 |
+| Zeilen je Aktivtag / Lines per active day | 7274.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 91.9x |
-| Speedup vs. 100 lines/day | 73.5x |
-| Methodik / Methodology | v2; source `641f789a28f9` |
+| Speedup vs. 80 lines/day | 90.9x |
+| Speedup vs. 100 lines/day | 72.7x |
+| Methodik / Methodology | v2; source `3f4cc0724596` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 24045
-Dokumentation / Documentation   [##########..........]  49.6% | 317501
-Skripte / Scripts               [##..................]   9.6% | 61135
-Konfiguration / Configuration   [#######.............]  36.6% | 233997
+Tests                           [#...................]   3.8% | 24207
+Dokumentation / Documentation   [##########..........]  49.6% | 317724
+Skripte / Scripts               [##..................]   9.6% | 61203
+Konfiguration / Configuration   [#######.............]  36.6% | 234000
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
 ```
@@ -1118,7 +1119,7 @@ Mo/Mo  0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2
 Di/Tu  0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0
 Mi/We  0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0
 Do/Th  0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4
-Fr/Fr  0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 -
+Fr/Fr  0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3
 Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 -
 ```
 
@@ -1308,8 +1309,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 91.9x
-100 lines/day      [###############.....] 73.5x
+80 lines/day       [##################..] 90.9x
+100 lines/day      [###############.....] 72.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1322,7 +1323,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7353.2
+Visible repository [###############.....] 7274.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1331,9 +1332,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-13. Es enthaelt 87 aktive und 275 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-14. Es enthaelt 88 aktive und 275 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-17 and ends on 2026-08-13. It contains 87 active and 275 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-17 and ends on 2026-08-14. It contains 88 active and 275 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1348,6 +1349,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-13. Es enthaelt 87 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 210282 |
+| 2026-08 | 210882 |
 
 <!-- project-statistics-v2:end -->
