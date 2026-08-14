@@ -51,6 +51,18 @@ vor dem ersten Schreibzugriff. Agentische Arbeit an Secure-Trader-Systemen läuf
 in der freigegebenen Sandbox; allgemeine read-only Analyse kann außerhalb
 stattfinden.
 
+## Verantwortung zwischen Basis und Image
+
+| Inhalt | Kanonische Quelle | Verlinkte Vertiefung |
+|---|---|---|
+| Lernendenweg, Git-Hosting, Level-0-Governance und Source-/Runtime-Vertrag | `home-baseline` | diese Architektur und `docs/learning-units/` |
+| Image-Build, installierte Versionen, Mounts, Container-Kommandos und Runtime-Wrapper | `absdd-image-sandbox` | [Sandbox-Dokumentation](https://github.com/hindermath/absdd-image-sandbox/tree/main/docs) |
+
+Die Home Baseline beschreibt also, **warum** und **wann** eine Betriebskopie
+zulaessig ist. Das Image beschreibt, **wie** sein konkreter Wrapper, seine
+Mounts und seine gepinnte Home-Baseline-Referenz funktionieren. Beide Seiten
+verlinken einander; sie duplizieren kein zweites Betriebshandbuch.
+
 ## Maintainer und KI-Agenten
 
 Vor einer Änderung:

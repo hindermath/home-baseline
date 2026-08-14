@@ -17,6 +17,16 @@
 .PARAMETER NoPush
     Committen ohne Push / Commit without pushing.
 
+.PARAMETER SharedGuidesOnly
+    Synchronisiert nur START-HERE-FUER-LERNENDE.md,
+    GIT-START-FUER-LERNENDE.md und INSTITUTIONELLES-GIT-HOSTING.md in die
+    Repo-Wurzel und docs/learning-units/. Intakes, Lernbegleiter, Vorlagen,
+    Datensaetze und README bleiben unberuehrt.
+
+    Synchronizes only the three shared learner guides into the repository root
+    and docs/learning-units/. Intakes, companions, templates, datasets, and
+    README remain untouched.
+
 .PARAMETER Series
     Serien-/Registry-Praefix (Standard: SecureCaseTracker).
     Series/registry prefix (default: SecureCaseTracker).
@@ -40,6 +50,7 @@
 param(
     [switch]$DryRun,
     [switch]$NoPush,
+    [switch]$SharedGuidesOnly,
     [ValidateNotNullOrEmpty()]
     [string]$Series = 'SecureCaseTracker',
     [string]$FilePrefix = '',
@@ -75,6 +86,7 @@ Die Bash-Version ist kanonisch / The Bash version is canonical.
 $argsToPass = @()
 if ($DryRun) { $argsToPass += '--dry-run' }
 if ($NoPush) { $argsToPass += '--no-push' }
+if ($SharedGuidesOnly) { $argsToPass += '--shared-guides-only' }
 if ($Series)     { $argsToPass += @('--series', $Series) }
 if ($FilePrefix) { $argsToPass += @('--file-prefix', $FilePrefix) }
 if ($HomeDir)    { $argsToPass += @('--home-dir', $HomeDir) }

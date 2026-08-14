@@ -270,9 +270,12 @@ Flottenklassen stehen im
 Dokumentation pflegt keine zweite vollständige Dateiliste.
 
 Direkte Reparaturen unter `~/` sind nicht kanonisch. Ein lokaler Home-Commit
-dokumentiert Runtime-Sync, ersetzt aber keinen Source-Commit oder PR. Schreibender
-Home-Sync läuft nur auf dem Host. Eine Sandbox liest die eingebundene
-Level-0-Referenz und schreibt nicht in die Host-Runtime.
+dokumentiert Runtime-Sync, ersetzt aber keinen Source-Commit oder PR. Der
+allgemeine schreibende Home-Sync läuft nur auf dem Host. Eine Sandbox liest die
+eingebundene Level-0-Referenz und schreibt nicht in die Host-Runtime. Nur ein
+ausdrücklich angeforderter `--runtime-only`-/`-RuntimeOnly`-Lauf darf
+manifestgebundene `homeRuntime` in die Container-Betriebskopie verteilen; Pull,
+Commit und Git-Identitätsänderungen bleiben dabei ausgeschlossen.
 
 ### Delivery Authority
 

@@ -263,9 +263,11 @@ Fleet classes are in
 Documentation does not maintain a second complete list.
 
 Direct repair below `~/` is not canonical. A local Home commit records runtime
-sync but replaces neither source commit nor PR. Writing Home sync runs only on
-the host. A sandbox reads the mounted Level 0 reference and does not write the
-host runtime.
+sync but replaces neither source commit nor PR. General writing Home sync runs
+only on the host. A sandbox reads the mounted Level 0 reference and does not
+write the host runtime. Only an explicitly requested `--runtime-only` or
+`-RuntimeOnly` run may distribute manifest-bound `homeRuntime` into the
+container runtime copy; pull, commit, and Git identity changes remain excluded.
 
 ### Delivery Authority
 

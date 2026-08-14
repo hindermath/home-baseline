@@ -20,6 +20,7 @@
 #   bash ~/scripts/propagate-learning-series.sh --dry-run
 #   bash ~/scripts/propagate-learning-series.sh
 #   bash ~/scripts/propagate-learning-series.sh --no-push
+#   bash ~/scripts/propagate-learning-series.sh --shared-guides-only --dry-run
 #   bash ~/scripts/propagate-learning-series.sh --series SecureCaseTracker --home-dir ~
 #
 # Sichere-Entwicklung-Kurzregeln (Bash): Variablen gequotet, `--` End-of-Options,
@@ -41,6 +42,7 @@ REGISTRY="${HOME_DIR}/.home-baseline/level2-repository-registry.json"
 DRY_RUN=0
 NO_PUSH=0
 VERBOSE=0
+SHARED_GUIDES_ONLY=0
 REPOS_CHANGED=0
 REPOS_TOTAL=0
 FILES_CHANGED=0
@@ -54,6 +56,7 @@ while [ $# -gt 0 ]; do
   case "${1:-}" in
     --dry-run)   DRY_RUN=1 ;;
     --no-push)   NO_PUSH=1 ;;
+    --shared-guides-only) SHARED_GUIDES_ONLY=1 ;;
     --verbose|-v) VERBOSE=1 ;;
     --series)    SERIES="${2:?--series benoetigt einen Wert}"; shift ;;
     --file-prefix) FILE_SERIES="${2:?--file-prefix benoetigt einen Wert}"; shift ;;
@@ -65,6 +68,13 @@ Verwendung / Usage: $(basename -- "$0") [OPTIONEN]
 
   --dry-run        Vorschau ohne Schreiben / Preview without writing
   --no-push        Committen ohne Push / Commit without pushing
+  --shared-guides-only
+                   Nur die drei gemeinsamen Lernenden-Guides in Root und
+                   docs/learning-units synchronisieren; keine Intakes,
+                   Begleiter, Vorlagen, Datensaetze oder README-Aenderungen
+                   / synchronize only the three shared learner guides in the
+                   root and docs/learning-units; no intakes, companions,
+                   templates, datasets, or README changes
   --series NAME    Serien-Praefix (Standard: SecureCaseTracker)
   --home-dir DIR   Basisverzeichnis fuer Repos (Standard: ~)
   --registry PFAD  Registry-Datei (Standard: ~/.home-baseline/level2-repository-registry.json)
@@ -144,6 +154,14 @@ series_unit_files() {
 
 shared_root_guides() {
   printf '%s\n' START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md INSTITUTIONELLES-GIT-HOSTING.md
+}
+
+propagation_unit_files() {
+  if [ "$SHARED_GUIDES_ONLY" -eq 1 ]; then
+    shared_root_guides
+  else
+    series_unit_files
+  fi
 }
 
 # Nur die Root-Intakes (fuer Level-2 zusaetzlich in die Repo-Wurzel gespiegelt)
@@ -234,8 +252,8 @@ preflight_newer_targets() {
       warn "Uebersprungen (Zieldatei neuer) / skipped (target newer): $(basename -- "$repo")/docs/learning-units/${rel}"
       newer=$((newer + 1))
     fi
-  done < <(series_unit_files)
-  if [ "$level" = "2" ]; then
+  done < <(propagation_unit_files)
+  if [ "$SHARED_GUIDES_ONLY" -eq 0 ] && [ "$level" = "2" ]; then
     while IFS= read -r rel; do
       if target_is_newer "$rel" "$repo" "$rel" "${repo}/${rel}"; then
         warn "Uebersprungen (Zieldatei neuer) / skipped (target newer): $(basename -- "$repo")/${rel}"
@@ -430,10 +448,10 @@ process_repo() {
       changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
       [ "$VERBOSE" -eq 1 ] && plan "docs/learning-units/${rel}"
     fi
-  done < <(series_unit_files)
+  done < <(propagation_unit_files)
 
   # 2) Root-Intakes (nur Level-2)
-  if [ "$level" = "2" ]; then
+  if [ "$SHARED_GUIDES_ONLY" -eq 0 ] && [ "$level" = "2" ]; then
     while IFS= read -r rel; do
       if copy_one "$rel" "$repo" "$repo" "$rel"; then
         changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
@@ -450,14 +468,17 @@ process_repo() {
     fi
   done < <(shared_root_guides)
 
-  # 4) Root-README macht Leitsatz und Lernenden-Einstieg sichtbar, ohne Text zu ersetzen.
-  if ensure_readme_guiding_principle "$repo"; then
-    changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
-    [ "$VERBOSE" -eq 1 ] && plan "README.md (Leitsatz)"
-  fi
-  if ensure_readme_start_link "$repo"; then
-    changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
-    [ "$VERBOSE" -eq 1 ] && plan "README.md (Lernenden-Einstieg)"
+  # 4) Der fokussierte Guide-Modus darf README und sonstige Serienartefakte
+  # bewusst nicht beruehren. Der normale Modus behaelt das bisherige Verhalten.
+  if [ "$SHARED_GUIDES_ONLY" -eq 0 ]; then
+    if ensure_readme_guiding_principle "$repo"; then
+      changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
+      [ "$VERBOSE" -eq 1 ] && plan "README.md (Leitsatz)"
+    fi
+    if ensure_readme_start_link "$repo"; then
+      changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
+      [ "$VERBOSE" -eq 1 ] && plan "README.md (Lernenden-Einstieg)"
+    fi
   fi
 
   if [ "$changed" -eq 0 ]; then
@@ -472,9 +493,16 @@ process_repo() {
   fi
 
   # Commit + Push
-  git -C "$repo" add -A -- docs/learning-units >/dev/null 2>&1 || true
-  [ "$level" = "2" ] && git -C "$repo" add -A -- 'Lastenheft_'"${FILE_SERIES}"'*.md' >/dev/null 2>&1 || true
-  git -C "$repo" add -- README.md
+  if [ "$SHARED_GUIDES_ONLY" -eq 1 ]; then
+    git -C "$repo" add -- \
+      docs/learning-units/START-HERE-FUER-LERNENDE.md \
+      docs/learning-units/GIT-START-FUER-LERNENDE.md \
+      docs/learning-units/INSTITUTIONELLES-GIT-HOSTING.md
+  else
+    git -C "$repo" add -A -- docs/learning-units >/dev/null 2>&1 || true
+    [ "$level" = "2" ] && git -C "$repo" add -A -- 'Lastenheft_'"${FILE_SERIES}"'*.md' >/dev/null 2>&1 || true
+    git -C "$repo" add -- README.md
+  fi
   # Level-2 whitelist-style .gitignore files may ignore root Markdown by default.
   # Force only the canonical learner and hosting guides, never arbitrary ignored files.
   git -C "$repo" add -f -- START-HERE-FUER-LERNENDE.md GIT-START-FUER-LERNENDE.md INSTITUTIONELLES-GIT-HOSTING.md
@@ -485,10 +513,17 @@ process_repo() {
   fi
 
   git -C "$repo" diff --cached --check
-  git -C "$repo" commit -q -m "docs(learning-units): ${SERIES} Lernenden-Einstieg synchronisieren
+  if [ "$SHARED_GUIDES_ONLY" -eq 1 ]; then
+    git -C "$repo" commit -q -m "docs(learning-units): gemeinsame Lernenden-Guides synchronisieren
+
+Uebernimmt ausschliesslich die drei kanonischen Einstiegs- und Hosting-Guides
+aus Level-0 (home-baseline) in die Repo-Wurzel und docs/learning-units/."
+  else
+    git -C "$repo" commit -q -m "docs(learning-units): ${SERIES} Lernenden-Einstieg synchronisieren
 
 Uebernimmt das kanonische ${SERIES}-Lernmaterial aus Level-0 (home-baseline),
 einschliesslich Startanleitungen, Unit-00-Verweisen und Container-First-Gate."
+  fi
   REPOS_CHANGED=$((REPOS_CHANGED + 1))
   ok "${name}: committet / committed"
 
@@ -511,10 +546,11 @@ echo "Serie / Series:   ${SERIES}"
 echo "Quelle / Source:  ${SRC_UNITS}"
 echo "Registry:         ${REGISTRY}"
 [ "$DRY_RUN" -eq 1 ] && echo "Modus / Mode:     DRY-RUN (keine Aenderungen / no changes)"
+[ "$SHARED_GUIDES_ONLY" -eq 1 ] && echo "Umfang / Scope:   SHARED-GUIDES-ONLY"
 echo
 
-file_count="$(series_unit_files | wc -l | tr -d ' ')"
-lb_count="$(series_unit_files | grep -c '^lernbegleiter/' || true)"
+file_count="$(propagation_unit_files | wc -l | tr -d ' ')"
+lb_count="$(propagation_unit_files | grep -c '^lernbegleiter/' || true)"
 info "Quell-Dateien der Serie / series source files: ${file_count} (davon Lernbegleiter / of which companions: ${lb_count})"
 echo
 
