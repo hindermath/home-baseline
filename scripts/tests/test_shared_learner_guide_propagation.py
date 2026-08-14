@@ -28,15 +28,22 @@ def run_git(repo: Path, *args: str) -> None:
 
 class SharedGuidePropagationTests(unittest.TestCase):
     def test_public_surfaces_expose_focused_mode(self) -> None:
-        help_result = subprocess.run(
-            ["bash", str(SCRIPT), "--help"],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-        self.assertIn("--shared-guides-only", help_result.stdout)
+        bash_source = SCRIPT.read_text(encoding="utf-8")
+        self.assertIn("--shared-guides-only", bash_source)
         self.assertIn("SharedGuidesOnly", POWERSHELL_WRAPPER.read_text(encoding="utf-8"))
+        if os.name != "nt":
+            help_result = subprocess.run(
+                ["bash", str(SCRIPT), "--help"],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            self.assertIn("--shared-guides-only", help_result.stdout)
 
+    @unittest.skipIf(
+        os.name == "nt",
+        "The canonical Bash implementation requires POSIX paths; Windows uses the WSL2 wrapper.",
+    )
     def test_dry_run_lists_only_six_guide_targets_per_repository(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
