@@ -8,6 +8,46 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.18.0](https://github.com/hindermath/home-baseline/compare/v0.17.1...v0.18.0) (2026-08-14)
+
+
+### Features / Neue Funktionen
+
+* align sandbox learner documentation ([#235](https://github.com/hindermath/home-baseline/issues/235)) ([fb02f97](https://github.com/hindermath/home-baseline/commit/fb02f97fbb28ec40f1a88ad283b6de7e92257a25))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* harden maintenance toolchain JSON results ([b8ec869](https://github.com/hindermath/home-baseline/commit/b8ec869c7fcd6b4dd09a391e7040eeb9c55500cb))
+* harden maintenance toolchain result handling ([8e3c51d](https://github.com/hindermath/home-baseline/commit/8e3c51d447f9614d4a68b5ff6defe729d7ab206d))
+* separate model routing stage evidence ([c06b265](https://github.com/hindermath/home-baseline/commit/c06b2653705f4815d2ea43d432abd996828949c7))
+
+
+### Documentation / Dokumentation
+
+* align controlled document manifest ([6815193](https://github.com/hindermath/home-baseline/commit/681519371e2cc760174563767f1ba9d3433dbb18))
+* align managed fleet with routing profile ([23371a3](https://github.com/hindermath/home-baseline/commit/23371a3c30f7c7d1aa60cc5685add7d03fa9a0d6))
+* align managed fleet with routing profile ([1d43192](https://github.com/hindermath/home-baseline/commit/1d43192ef3d14bc5957e5299460729117e70433e))
+* hand off Feature 038 autonomous preset follow-ups ([6ec4ccf](https://github.com/hindermath/home-baseline/commit/6ec4ccf7593339f368f9bb3a1de799fcebd44869))
+* hand off Feature 038 preset follow-ups ([3b13c78](https://github.com/hindermath/home-baseline/commit/3b13c7893f593e668f3e0fce6a90b2db64ef5194))
+* record model routing fleet closeout ([7cd6d99](https://github.com/hindermath/home-baseline/commit/7cd6d991162586e73683d3d718801744f2ae1208))
+* record model routing fleet closeout ([24b9269](https://github.com/hindermath/home-baseline/commit/24b9269d179e26e85db6b21d097f54cf31055959))
+* refresh post-merge statistics ([#236](https://github.com/hindermath/home-baseline/issues/236)) ([d7452e2](https://github.com/hindermath/home-baseline/commit/d7452e2fde2d3e6835d81b18b4c952dd9877c788))
+* refresh project statistics ([370571b](https://github.com/hindermath/home-baseline/commit/370571b1fb855568900bd5146f56dcdb72927ee8))
+* refresh project statistics ([ebc5702](https://github.com/hindermath/home-baseline/commit/ebc5702f5d6063c061511815549b6260e344077a))
+* refresh project statistics ([e4d6094](https://github.com/hindermath/home-baseline/commit/e4d60942ef39474b04d82984a5c8f48e17aefdfb))
+* refresh project statistics ([e0801e1](https://github.com/hindermath/home-baseline/commit/e0801e109c436ba804682df2f4c2b14ecbed78e6))
+* refresh project statistics ([de133cc](https://github.com/hindermath/home-baseline/commit/de133ccc3b6a8abd65c87027ec4f1996d3fdae42))
+* refresh statistics after Feature 038 handoff ([edee38d](https://github.com/hindermath/home-baseline/commit/edee38dba176703280bd0614f3eaf47602eca26b))
+* render CLion tvision fleet statistics ([4a858e5](https://github.com/hindermath/home-baseline/commit/4a858e54a53e5c732419962c7c9b663f382a98ba))
+* render project statistics ([8c55cfe](https://github.com/hindermath/home-baseline/commit/8c55cfe625e68e337eca1403f790f7d76a5afa26))
+* render project statistics ([3820556](https://github.com/hindermath/home-baseline/commit/382055665e4069524f2fc00920346e02f30b0e66))
+
+
+### Maintenance / Wartung
+
+* add CLion tvision fleet targets ([e5e4f7b](https://github.com/hindermath/home-baseline/commit/e5e4f7bb79a39d2daf98219d57f750dec7d87432))
+
 ## [0.17.1](https://github.com/hindermath/home-baseline/compare/v0.17.0...v0.17.1) (2026-08-09)
 
 
