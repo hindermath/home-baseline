@@ -529,6 +529,14 @@
       "labelEn": "Workspace storage maintenance",
       "netLines": 3013,
       "activeDays": 1
+    },
+    {
+      "slot": 65,
+      "id": "required-powershell-vscode-extension",
+      "labelDe": "Required-PowerShell-Erweiterung fuer VS Code",
+      "labelEn": "Required PowerShell extension for VS Code",
+      "netLines": 122,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

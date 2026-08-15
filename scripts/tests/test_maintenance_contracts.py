@@ -399,6 +399,44 @@ class MaintenanceContractTests(unittest.TestCase):
         self.assertEqual(formulae["powershell"]["linkCommands"], ["pwsh"])
         self.assertNotIn("powershell", {item["name"] for item in registry["casks"]})
 
+    def test_vscode_registry_requires_exact_editor_extension_contract(self) -> None:
+        registry = read_json(CONFIG / "vscode-extensions-registry.json")
+        extensions = registry["extensions"]
+        ids = [item["id"] for item in extensions]
+        expected = {
+            "ms-dotnettools.csdevkit",
+            "golang.Go",
+            "vscjava.vscode-java-pack",
+            "ms-python.python",
+            "rust-lang.rust-analyzer",
+            "swiftlang.swift-vscode",
+            "ms-vscode.powershell",
+            "ms-azuretools.vscode-containers",
+        }
+
+        self.assertEqual(len(ids), 8)
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(set(ids), expected)
+        self.assertTrue(all(item["scope"] == "required" for item in extensions))
+
+        required_surfaces = (
+            "AGENTS.md",
+            "CLAUDE.md",
+            "GEMINI.md",
+            ".github/copilot-instructions.md",
+            ".github/agents/copilot-instructions.md",
+            "scripts/templates/AGENTS.md.tmpl",
+            "scripts/templates/CLAUDE.md.tmpl",
+            "scripts/templates/GEMINI.md.tmpl",
+            "scripts/templates/copilot-instructions.tmpl",
+            "docs/man/maintain-agentic-brew-apps.1.md",
+            "docs/man/maintain-agentic-winget-apps.1.md",
+        )
+        for relative in required_surfaces:
+            with self.subTest(surface=relative):
+                content = (REPOSITORY / relative).read_text(encoding="utf-8")
+                self.assertIn("ms-vscode.powershell", content)
+
     def test_required_cli_registry_and_swift_platform_contract_are_closed(self) -> None:
         registry = read_json(CONFIG / "required-cli-tools-registry.json")
         tools = registry["tools"]

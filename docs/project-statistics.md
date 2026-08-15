@@ -162,6 +162,7 @@
 | 2026-08-09 | CLion-/tvision-Flottenaufnahme | — | — | — | Documentation Impact `UpdateRequired`: `CLionProjects` und der Fork `CLionProjects/tvision` sind als aktive kanonische Level-1-/Level-2-Ziele im Desired-State-Manifest verankert. Die Constitution `1.20.2` und ihr bytegleicher Spec-Kit-Spiegel dokumentieren C++14/CMake/GoogleTest, die text- und tastaturorientierte A11Y-Basis sowie die begruendete Nicht-MSL-Ausnahme fuer historische Borland-API-/ABI- und DOS-/Windows-/Unix-Kompatibilitaet. Zielgruppen sind taegliche Nutzende sowie Maintainer/KI-Agenten; der Leserpfad fuehrt von der Ein-Kommando-Manpage ueber Manifest und Registry-Zeile zur sicheren Dry-run-/Repair-Aktion. Navigation und separate Sprachpartner bleiben unveraendert; die vorhandenen Agent-Guidance-Dateien wurden gemeinsam geprueft und benoetigen keine Regelanpassung. Kanonische Quelle und Owner bleiben das Level-0-Manifest beziehungsweise der Repository Maintainer; `homeRuntime`-Sync ist vor dem operativen Lauf erforderlich. macOS, GitHub-Remotes und die Branches `main`/`master` bilden den Plattformnachweis; Remote-, Branch-, Runtime- oder Build-Vertragsaenderungen loesen die Wiedervorlage aus. 45 fokussierte Wartungsvertragstests sind gruen. Das Delta vor Statistikpflege umfasst 50 Nettozeilen. |
 | 2026-08-10 | Zwölf-Preset-Flottenprofil konsolidiert | — | — | — | Documentation Impact `UpdateRequired`: Die lokale, nicht versionierte Level-2-Registry bindet den Standard und alle 35 eindeutigen Ziel-Repositories jetzt an `model-routing-twelve-governance-presets`; eine hashgebundene Sicherung bewahrt den vorherigen Elf-Preset-Stand. Vier aktuelle Lernreihen- und Secure-Development-Leserpfade trennen weiterhin das öffentliche Acht-Preset-Profil von Thorstens verwalteter Zwölf-Preset-Flotte und erklären Model Routing auf Priorität 61 sowie die Intake-Grenzen 64/65/66 Deutsch zuerst und Englisch danach. Beide Copilot-Guidance-Spiegel sind mit AGENTS, CLAUDE, GEMINI und den Templates auf Model Routing Governance v0.1.4 synchron; konkrete Modellbindungen bleiben lokal und Modus 600. Kanonische Source und Owner bleiben die Profilkataloge und der Repository Maintainer; die geänderte `homeRuntime`-Guidance benötigt nach dem Merge einen Home-Sync. Navigation und Sprachpartner bleiben unverändert. Ein vollständiger macOS-Check-only-Lauf bestätigt 35/35 homogene Registry-Ziele, die exakte Zwölf-Preset-Matrix, `model-routing=Passed` und Exitcode 0. Änderungen am öffentlichen Standardprofil, an Prioritäten, Registry-Schema, Distribution oder Model-Routing-Version lösen die Wiedervorlage aus. Kein Spec-Kit-, Intake-, Lernenden- oder Autonomous-Lauf wurde gestartet. |
 | 2026-08-14 | Home-Baseline- und Sandbox-Dokumentation verzahnt | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Home Baseline ist als kanonische Quelle fuer Lernendenweg, providerneutrales Git-Hosting, Level-0-Governance und Source-/Runtime-Vertrag abgegrenzt; die Sandbox-Dokumentation besitzt Image-Build, gepinnte Versionen, Mounts, Container-Kommandos und den konkreten Runtime-Wrapper. Zielgruppen, Required-Agenten (`codex`, `claude`, `agy`, `copilot`) und der begrenzte Runtime-only-Pfad sind synchron. Der neue `--shared-guides-only`-/`-SharedGuidesOnly`-Modus plant und staged ausschliesslich die drei gemeinsamen Guides in Root und `docs/learning-units/`; Fixture-Tests und Live-Dry-Runs bestaetigten 21/21 erreichbare Ziele, null Skips, null neuere Konflikte und 84 geplante Dateiaenderungen ohne README-, Intake-, Lernbegleiter-, Vorlagen- oder Datensatz-Drift. Die geaenderte `homeRuntime`-Guidance benoetigt nach Merge und Release einen Home-Sync. |
+| 2026-08-15 | Achte Pflicht-Erweiterung fuer VS Code | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: `ms-vscode.powershell` ist als achte eindeutige Required-Erweiterung fuer das Schreiben und Debuggen von PowerShell-Skripten und Cmdlets in der gemeinsamen Registry verankert. Beide Wartungs-Manpages, die fuenf Shared-Guidance-Dateien und vier Vorlagen sind Deutsch zuerst und Englisch danach synchronisiert. Ein fail-closed Regressionstest bindet die exakte Acht-Erweiterungs-Menge und alle elf Dokumentationsflaechen. 124 Python-Wartungstests, beide Documentation-Impact-Suiten und PSScriptAnalyzer fuer 164 Dateien sind lokal gruen; der reale macOS-Compare-only-Lauf meldet null fehlende Required-Erweiterungen und Exitcode 0. Das fachliche Delta vor Statistikpflege umfasst 122 Nettozeilen. Home Runtime wird nach dem Merge synchronisiert; Level-1-/Level-2-Rollout und Fleet-Pushes bleiben ausserhalb dieses Auftrags. |
 
 ---
 
@@ -1070,26 +1071,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 640271 lines |
-| Textdateien / Text files | 3235 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-14 |
-| Aktivtage / Active days | 88 |
-| Relevante Commits / Relevant commits | 734 |
-| Zeilen je Aktivtag / Lines per active day | 7275.8 |
+| Textbasis / Text base | 640401 lines |
+| Textdateien / Text files | 3236 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-15 |
+| Aktivtage / Active days | 89 |
+| Relevante Commits / Relevant commits | 736 |
+| Zeilen je Aktivtag / Lines per active day | 7195.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 90.9x |
-| Speedup vs. 100 lines/day | 72.8x |
-| Methodik / Methodology | v2; source `17eef967568a` |
+| Speedup vs. 80 lines/day | 89.9x |
+| Speedup vs. 100 lines/day | 72.0x |
+| Methodik / Methodology | v2; source `a13f102e1d61` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 24244
-Dokumentation / Documentation   [##########..........]  49.6% | 317773
-Skripte / Scripts               [##..................]   9.6% | 61204
+Tests                           [#...................]   3.8% | 24282
+Dokumentation / Documentation   [##########..........]  49.6% | 317852
+Skripte / Scripts               [##..................]   9.6% | 61217
 Konfiguration / Configuration   [#######.............]  36.5% | 234000
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
@@ -1120,7 +1121,7 @@ Di/Tu  0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0
 Mi/We  0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0
 Do/Th  0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4
 Fr/Fr  0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3
-Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 -
+Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 2
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1222,15 +1223,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..64
-    cap 5000 | .
-        4167 | .
-        3333 | .
-        2500 | #
-        1667 | #
-         833 | #
-           0 +---
-             64
+Slots 64..65
+    cap 5000 | . .
+        4167 | . .
+        3333 | . .
+        2500 | # .
+        1667 | # .
+         833 | # .
+           0 +-----
+             64 65
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1300,6 +1301,7 @@ Slots 64..64
 | 62 | Wartungs-Toolchain-JSON-Ergebnishaertung / Maintenance toolchain JSON result hardening | 452 |
 | 63 | CLion-/tvision-Flottenaufnahme / CLion and tvision fleet onboarding | 50 |
 | 64 | Workspace-Storage-Wartung / Workspace storage maintenance | 3013 |
+| 65 | Required-PowerShell-Erweiterung fuer VS Code / Required PowerShell extension for VS Code | 122 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1309,8 +1311,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 90.9x
-100 lines/day      [###############.....] 72.8x
+80 lines/day       [##################..] 89.9x
+100 lines/day      [##############......] 72.0x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1323,7 +1325,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###############.....] 7275.8
+Visible repository [##############......] 7195.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1332,9 +1334,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-14. Es enthaelt 88 aktive und 275 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-15. Es enthaelt 89 aktive und 275 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-17 and ends on 2026-08-14. It contains 88 active and 275 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-17 and ends on 2026-08-15. It contains 89 active and 275 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1349,6 +1351,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-14. Es enthaelt 88 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 210983 |
+| 2026-08 | 211135 |
 
 <!-- project-statistics-v2:end -->
