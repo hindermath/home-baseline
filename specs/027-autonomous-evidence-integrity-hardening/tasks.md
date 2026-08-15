@@ -80,11 +80,11 @@
 - [x] T058 Create `retrospective.md` with promotion decision deferred to G2B.
 - [x] T059 Validate the exact staged delivery set and commit Feature 027.
 - [x] T060 Push and create a non-empty feature PR.
-- [ ] T061 Generate and validate temporary schema-2.0 PreMerge exact-head evidence.
-- [ ] T062 Converge technical checks and actionable review threads.
-- [ ] T063 Merge under current bounded authority and delete the feature branch.
-- [ ] T064 Synchronize local `main` and prove clean `(0 0)`.
-- [ ] T065 Record G2A closeout without starting G2B or releasing the candidate.
+- [x] T061 Generate and validate temporary schema-2.0 PreMerge exact-head evidence.
+- [x] T062 Converge technical checks and actionable review threads.
+- [x] T063 Merge under current bounded authority and delete the feature branch.
+- [x] T064 Synchronize local `main` and prove clean `(0 0)`.
+- [x] T065 Record G2A closeout without starting G2B or releasing the candidate.
 
 ## Dependencies
 

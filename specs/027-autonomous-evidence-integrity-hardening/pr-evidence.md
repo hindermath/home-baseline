@@ -50,6 +50,31 @@ G2B rollout, not this source-only feature.
   `check-homogeneity` token; the local evidence-integrity fixture is not
   attributed to a remote workflow that does not execute it.
 
+## Remote Delivery and Causal Closeout
+
+| Evidence | Value | Result |
+|---|---|---|
+| Feature PR | `hindermath/home-baseline#241` | Merged |
+| Reviewed exact head | `c8bc09c0c509044c59e7e330a593e60f1a14f00e` | Bound |
+| PreMerge evidence | `9b3619e959216668bcb9c9754f05d8d0c67235276d65c9a11a59bdad56829922` | Bash and PowerShell pass; merge not yet authorized |
+| Homogeneity workflow | Run `31911056881` | Ubuntu, macOS, and Windows pass |
+| PSScriptAnalyzer workflow | Run `31911056880` | Ubuntu, macOS, and Windows pass |
+| Documentation and learning workflow | Run `31911056874` | Pass |
+| Maintenance TUI workflow | Run `31911056885` | Ubuntu, macOS, and Windows pass |
+| Actionable review threads | `0` | Pass |
+| Merge commit | `b129426f3ec1058980e8d3597643415e50a33fbd` | Merged 2026-08-15T22:07:13Z |
+| PostMerge evidence | `982bc688fded6a1ca753b6e87b1f02f25c0a659d2d714ef30104d956877abfca` | Bash and PowerShell pass; lifecycle chain complete |
+
+The narrow admin bypass was used only after every technical gate passed, no
+actionable review thread remained, and Human Approval was the sole open rule.
+The feature branch was deleted and local `main` was synchronized to the merge
+commit with a clean `(0 0)` state before this causal evidence-only closeout.
+
+The closeout advances the intake Series from completed G2A to eligible G2B.
+It does not start G2B and grants no release, tag, ZIP, catalog, consumer, fleet,
+or preset-publication authority. The v0.4.0 candidate therefore remains
+unreleased until an independently authorized G2B field-validation run passes.
+
 ## Documentation Impact
 
 `UpdateRequired`; see `spec.md`. Distribution remains `sourceOnly` and no Home

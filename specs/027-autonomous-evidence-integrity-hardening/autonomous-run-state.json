@@ -5,9 +5,9 @@
   "branch": "027-autonomous-evidence-integrity-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
-  "checkpointCommit": "12a0f62f2e20816647e3eecdf372567bba49523e",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "b129426f3ec1058980e8d3597643415e50a33fbd",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
@@ -32,8 +32,8 @@
   ],
   "tasks": {
     "path": "specs/027-autonomous-evidence-integrity-hardening/tasks.md",
-    "sha256": "8f0425b1a10fdfbd79da69d74722a6010900aa506f4ea0113a676dc12dfa36cd",
-    "completed": 60,
+    "sha256": "0b422cdd2c58e3bbc04edacf9ff11b5aded961ddf242a47dc6572f943908a635",
+    "completed": 65,
     "total": 65
   },
   "routing": {
@@ -41,12 +41,12 @@
     "fallbackPolicy": "fail-closed",
     "phases": []
   },
-  "lastPassingGate": "LocalDeliveryCandidate",
-  "nextExactAction": "Commit the PR identity, push the final reviewed head, then generate temporary schema-2.0 PreMerge evidence.",
+  "lastPassingGate": "PostMerge",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "PublishPR",
+    "kind": "PostMerge",
     "state": "Completed",
-    "summary": "Feature branch pushed and non-empty pull request 241 created."
+    "summary": "PR 241 merged at exact reviewed head; schema-2.0 PostMerge evidence passed in Bash and PowerShell, main synchronized cleanly, and G2B was not started."
   },
   "stop": {
     "reason": "N/A",
@@ -54,10 +54,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "N/A",
-    "defaultBranchSync": "N/A",
-    "postMergeActions": "N/A",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-15T21:58:41Z"
+  "updatedAt": "2026-08-15T22:12:08Z"
 }

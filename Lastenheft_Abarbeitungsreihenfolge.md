@@ -159,16 +159,18 @@ nur nach vollstaendig gruener Evidence ausloesen.
 
 | Gate | Lastenheft | Zustand und Wirkung / State and Effect |
 |---:|---|---|
-| G2A (`Eligible`, Root) | `Lastenheft_Autonomous-Evidence-Integrity-Hardening.md` | Haertet Liefermenge, semantische Phasenvervollstaendigung und Pre-/Post-Merge-Evidence als unveroeffentlichten v0.4.0-Kandidaten. / Hardens delivery sets, semantic phase completion, and pre/post-merge evidence as an unreleased v0.4.0 candidate. |
-| G2B (`Blocked`) | `Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md` | Fuehrt den unabhaengigen Feldnachweis und erst danach Release, dynamischen Rollout und Series-Closeout aus. / Performs the independent field proof and only then release, dynamic rollout, and series closeout. |
+| G2A (`Completed`, Root) | `Lastenheft_Autonomous-Evidence-Integrity-Hardening.md` | Feature 027 und PR #241 haerteten Liefermenge, semantische Phasenvervollstaendigung und Pre-/Post-Merge-Evidence als unveroeffentlichten v0.4.0-Kandidaten. / Feature 027 and PR #241 hardened delivery sets, semantic phase completion, and pre/post-merge evidence as an unreleased v0.4.0 candidate. |
+| G2B (`Eligible`) | `Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md` | Ist nach dem nachgewiesenen G2A-Abschluss der einzige bevorzugte Folgekandidat; der Status erteilt keine Start-, Release- oder Delivery-Autoritaet. / Is the sole preferred follow-up candidate after the evidenced G2A closeout; status grants no start, release, or delivery authority. |
 
-G2A ist die einzige aktive Root. G2B benoetigt G2A. Die bisherigen Roots 7, 9
-und 10 benoetigen G2B und starten nicht automatisch. Nach dem G2B-Closeout
+G2A bleibt als abgeschlossene strukturelle Root bis zum gemeinsamen Gate-Closeout
+im Manifest. G2B ist der einzige bevorzugte `Eligible`-Kandidat. Die bisherigen
+Roots 7, 9 und 10 benoetigen G2B und starten nicht automatisch. Nach dem G2B-Closeout
 werden beide Gate-Knoten archiviert und der vorherige Vertrag mit Position 7
 als einzigem bevorzugtem Kandidaten wiederhergestellt.
 
-*G2A is the only active root. G2B depends on G2A. Previous roots 7, 9, and 10
-depend on G2B and do not start automatically. The G2B closeout archives both
+*G2A remains in the manifest as the completed structural root until the joint
+gate closeout. G2B is the sole preferred `Eligible` candidate. Previous roots
+7, 9, and 10 depend on G2B and do not start automatically. The G2B closeout archives both
 gate nodes and restores the previous contract with item 7 as the sole
 preferred candidate.*
 
@@ -189,8 +191,8 @@ declared as the preferred `Eligible` candidate in the manifest.*
 | D7 (abgeschlossen / completed) | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.023-registered-doc-architecture-adoption.md` | Feature 023 und PR #201 übernahmen portable Dokumentationsregeln in 32 finale Ziel-Repositories. Die 45-Ziel-Matrix hielt einen nutzereigenen schmutzigen Worktree und zwölf nicht anwendbare Ziele getrennt; unveränderte Ziele erhielten keinen Leer-PR. / Feature 023 and PR #201 adopted portable documentation rules into 32 final target repositories. The 45-target matrix kept one user-owned dirty worktree and twelve inapplicable targets separate; unchanged targets received no empty pull request. |
 | 5 (abgeschlossen / completed) | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md` | Feature 024 und PR #208 haerteten die bestehende Mapping-Oberflaeche mit deterministischem Proof fuer zwoelf Checklisten, 157 Punkte, 15 Dokumente und das Acht-plus-drei-Profil. / Feature 024 and PR #208 hardened the existing mapping surface with deterministic proof for twelve checklists, 157 points, 15 documents, and the eight-plus-three profile. |
 | 6 (abgeschlossen / completed) | `Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md` | Feature 025 und PR #214 lieferten je Sprachhaelfte 159 eindeutige Entscheidungen und 21 Evidence-Eintraege. Die 149 Remediation-Kandidaten bleiben getrennte Folgearbeit. / Feature 025 and PR #214 delivered 159 unique decisions and 21 evidence records per language half. The 149 remediation candidates remain separate follow-up work. |
-| G2A (`Eligible`, Root) | `Lastenheft_Autonomous-Evidence-Integrity-Hardening.md` | Erstellt den synthetisch gehaerteten, unveroeffentlichten v0.4.0-Kandidaten. / Creates the synthetically hardened, unreleased v0.4.0 candidate. |
-| G2B (`Blocked`) | `Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md` | Validiert den Kandidaten unabhaengig und steuert danach Release, Rollout und Gate-Closeout. / Independently validates the candidate and then governs release, rollout, and gate closeout. |
+| G2A (`Completed`, Root) | `Lastenheft_Autonomous-Evidence-Integrity-Hardening.md` | Feature 027 und PR #241 lieferten den synthetisch gehaerteten, unveroeffentlichten v0.4.0-Kandidaten. / Feature 027 and PR #241 delivered the synthetically hardened, unreleased v0.4.0 candidate. |
+| G2B (`Eligible`) | `Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md` | Validiert den Kandidaten unabhaengig und steuert erst nach eigener Autorisierung Release, Rollout und Gate-Closeout. / Independently validates the candidate and governs release, rollout, and gate closeout only after separate authority. |
 | 7 (`Blocked`) | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer aus Richtlinie, Checklisten, mitgeltenden Dokumenten und Presets ab. Position 7 bleibt bis G2B blockiert; der Status erteilt keine Start-, Parallel- oder Delivery-Autoritaet. / Derives requirements for a secure development container from the guideline, checklists, related documents, and presets. Item 7 remains blocked until G2B; status grants no start, parallel, or delivery authority. |
 | 8 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
 | 9 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
@@ -230,7 +232,7 @@ rechnerisch aus. Die
 Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
 frühere Series-Reviews hashbedingt archiviert. Der aktuelle
 Schema-1.1-Series-Review belegt 34 Ziele, eine Root und 40 Abhängigkeiten.
-Das aktuelle Manifest enthält dieselben 34 Ziele und G2A als einzigen
+Das aktuelle Manifest enthält dieselben 34 Ziele und G2B als einzigen
 bevorzugten `Eligible`-Kandidaten. Vor einem später ausdrücklich autorisierten
 Lauf werden zuerst `$speckit-intake-series-status` und der zum ausgewählten
 Ziel gehörende `$speckit-intake-review` ausgeführt.
@@ -239,7 +241,7 @@ Ziel gehörende `$speckit-intake-review` ausgeführt.
 validator separately reports every target without incomplete binding
 predecessors as computationally eligible. The current schema-1.1 Series review
 covers 34 targets, one root, and 40 dependencies. The current manifest
-contains the same 34 targets and G2A as the sole preferred Eligible
+contains the same 34 targets and G2B as the sole preferred Eligible
 candidate. Before any later
 explicitly authorized run, execute `$speckit-intake-series-status` and the
 Intake Review for the selected target.*
@@ -268,10 +270,10 @@ D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
               5 Mitgeltende Dokumente [abgeschlossen / completed]
 
 6 RL-SE-Selbstpruefung [abgeschlossen / completed]
-G2A Evidence-Integrity-Kandidat [Eligible, Root]
+G2A Evidence-Integrity-Kandidat [Completed, Root]
   |
   v
-G2B Feldvalidierung und Rollout [Blocked]
+G2B Feldvalidierung und Rollout [Eligible]
   |------------------------------> 7 Container-Haertung [Blocked] --> 8 Level-2-Sandbox
   |------------------------------> 9 CI/CD [Blocked]
   `------------------------------> 10 PowerShell-Cmdlets [Blocked]
@@ -371,23 +373,24 @@ technical start prerequisite:*
 ```
 
 Position 38 besitzt deshalb keinen unvollständigen bindenden Vorgänger und kann
-vom Validator rechnerisch als unblocked erscheinen. Nur G2A ist derzeit
+vom Validator rechnerisch als unblocked erscheinen. Nur G2B ist derzeit
 ausdrücklich als bevorzugtes `Eligible` deklariert. `Pending` und die sichtbare
 Position erteilen Position 38 keine Start- oder Delivery-Autorität.
 
 *Item 38 has no incomplete binding predecessor and may therefore appear as
-computationally unblocked. Only G2A is currently the declared preferred Eligible
+computationally unblocked. Only G2B is currently the declared preferred Eligible
 candidate. Pending status and visible order grant no start or delivery
 authority.*
 
 Nach dem Abschluss von Feature 025 waren die aktiven Roots `7`, `9` und `10`.
-Das aktive G2-Gate macht G2A voruebergehend zur einzigen Root; G2B blockiert
+Das aktive G2-Gate behaelt G2A als abgeschlossene strukturelle Root; G2B blockiert
 die drei frueheren Roots bis zum nachgewiesenen Release- und Rollout-Closeout.
 Die Positionen 5 und 6 sind archiviert; ihre Bewertungsgrundlagen bleiben als
 historische Evidence erhalten. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. G2A ist als naechster serieller
-Kandidat ausgewaehlt; die blockierten frueheren Roots starten nicht automatisch. Die abgeschlossenen
+Schema-1.1-Review-Evidence nachweisbar. G2B ist als naechster serieller
+Kandidat ausgewaehlt; dieser Status startet den Lauf nicht und erteilt keine
+Release- oder Delivery-Autoritaet. Die blockierten frueheren Roots starten nicht automatisch. Die abgeschlossenen
 Features 009 sowie 015 bis 025 sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte
 und Abschluesse bleiben historische Evidence fuer die weitere Reihenfolge.
 
@@ -402,8 +405,9 @@ und gab Position 5 frei. Der Feature-024-Closeout archivierte Position 5,
 entfernte ihre vier ausgehenden Kanten und gab Position 6 frei. Der aktuelle
 Feature-025-Closeout archiviert Position 6; da sie keine ausgehende Series-Kante
 besass, blieben damals alle 36 Abhaengigkeiten erhalten. Das spaetere G2-Update
-ergaenzt vier bindende Kanten und markiert G2A als einzigen bevorzugten
-Kandidaten.
+ergaenzte vier bindende Kanten und markierte zunaechst G2A als einzigen
+bevorzugten Kandidaten. Feature 027 und PR #241 schlossen G2A ab; der kausale
+Closeout markiert nun G2B als einzigen bevorzugten `Eligible`-Kandidaten.
 Diese Einordnung
 erteilt keine Start- oder Delivery-Autoritaet fuer einen Folgelauf.
 
@@ -453,9 +457,10 @@ D4's binding documentation-surface baseline. D4 completed as Feature 020 and
 handed exactly `DIA001` to D5. D5 completed as Feature 021 and closed `DIA001`.
 D6 completed as Feature 022 and is archived. D7 completed as Feature 023 and
 is archived. Item 5 completed as Feature 024 and is archived. Item 6 completed
-as Feature 025 and is archived. The active G2 gate temporarily makes G2A the
-single preferred `Eligible` candidate and blocks former roots 7, 9, and 10;
-this grants no authority to start any target. Items 7 and 10 provide binding
+as Feature 025 and is archived. The active G2 gate retains G2A as its completed
+structural root and makes G2B the sole preferred `Eligible` candidate while
+blocking former roots 7, 9, and 10. This status grants no authority to start,
+release, or deliver any target. Items 7 and 10 provide binding
 baselines for their successors. Items 9 through 12 feed the final GSDB audit,
 so item 13 must run last.*
 

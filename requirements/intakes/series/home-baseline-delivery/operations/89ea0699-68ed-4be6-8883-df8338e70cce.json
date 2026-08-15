@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "89ea0699-68ed-4be6-8883-df8338e70cce",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Authorized MergeAndSync causal closeout for completed Feature 027; no G2B execution or preset publication authority is inferred.",
+  "proposalNormalizedSha256": "212f3e8163019d0726a901750cb413d26d8e2354161d822034a1e0d3b30857ac",
+  "preparedPaths": [
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "specs/027-autonomous-evidence-integrity-hardening/tasks.md",
+    "specs/027-autonomous-evidence-integrity-hardening/autonomous-run-state.json",
+    "specs/027-autonomous-evidence-integrity-hardening/pr-evidence.md"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
