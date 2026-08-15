@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "required-powershell-vscode-extension",
+  "entries": [
+    {
+      "changeId": "CHG067",
+      "scope": "Required VS Code extension registry and operator guidance",
+      "decision": "UpdateRequired",
+      "rationale": "Adding ms-vscode.powershell changes the cross-platform required editor-extension contract and must be visible in the maintenance references and shared agent guidance.",
+      "documents": [
+        "docs/man/maintain-agentic-brew-apps.1.md",
+        "docs/man/maintain-agentic-winget-apps.1.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "scripts/templates/AGENTS.md.tmpl",
+        "scripts/templates/CLAUDE.md.tmpl",
+        "scripts/templates/GEMINI.md.tmpl",
+        "scripts/templates/copilot-instructions.tmpl"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": [
+        "Apprentices",
+        "Maintainers",
+        "AI agents"
+      ],
+      "readerPaths": [
+        "Toolchain maintenance",
+        "Script reference",
+        "Maintainer agent guidance"
+      ],
+      "canonicalSource": "scripts/config/vscode-extensions-registry.json",
+      "navigationImpact": "Existing maintenance and agent-guidance paths remain unchanged and now describe the eighth required extension.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with English content immediately following in every changed user-facing surface.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The shared registry is consumed by the macOS/Linux Bash and Windows PowerShell maintainers; contract tests verify the exact eight-extension set and every binding documentation surface.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "scripts/tests/test_maintenance_contracts.py",
+      "risk": "A missing or inconsistently documented required extension would leave PowerShell authoring and debugging outside the maintained editor baseline.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "The required editor, PowerShell authoring policy, extension publisher, registry schema, or maintenance distribution contract changes."
+    }
+  ]
+}
