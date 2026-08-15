@@ -31,7 +31,7 @@
     {
       "gateId": "GATE-028-RELEASE",
       "applicability": "Applicable",
-      "requiredScope": "v0.4.0 tag, release ZIP, checksum, fresh installation, and preset composition",
+      "requiredScope": "v0.4.1 tag, release ZIP, checksum, fresh installation, and preset composition",
       "requiredCommandTokens": ["specify preset"],
       "requiredRunnerOrPlatformTokens": [],
       "rationale": "",
