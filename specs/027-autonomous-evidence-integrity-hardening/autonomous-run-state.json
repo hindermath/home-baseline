@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "4e966f73-a453-4f49-a0a9-44dbb05bb61a",
+  "featurePath": "specs/027-autonomous-evidence-integrity-hardening",
+  "branch": "027-autonomous-evidence-integrity-hardening",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "12a0f62f2e20816647e3eecdf372567bba49523e",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+      "sha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e"
+    },
+    {
+      "path": "specs/autonomous-evidence-integrity-intakes/reviews/g2a/intake-review-result.json",
+      "sha256": "f06fa8c303c5b8e65647df7edbf4c6068a3c85268204f3fced8220dae3dba49f"
+    },
+    {
+      "path": "docs/work-items/2026-08-09-feature-038-autonomous-preset-followup.md",
+      "sha256": "18cc6a131269f590b2a5bb0f8ccc78e25bfbc7283781cb812d70af6cf3a8d996"
+    },
+    {
+      "path": "specs/027-autonomous-evidence-integrity-hardening/spec.md",
+      "sha256": "4efbdbff4bbf9129b32d6c6277144b536ace481366d2cfb531ae72f71f670147"
+    },
+    {
+      "path": "specs/027-autonomous-evidence-integrity-hardening/plan.md",
+      "sha256": "2f012fb2917725dd0cdf76f9a4bbf69820f38ff9eafe36ca48ff6bfd2a657f0b"
+    }
+  ],
+  "tasks": {
+    "path": "specs/027-autonomous-evidence-integrity-hardening/tasks.md",
+    "sha256": "8f0425b1a10fdfbd79da69d74722a6010900aa506f4ea0113a676dc12dfa36cd",
+    "completed": 60,
+    "total": 65
+  },
+  "routing": {
+    "policy": "balanced-v1",
+    "fallbackPolicy": "fail-closed",
+    "phases": []
+  },
+  "lastPassingGate": "LocalDeliveryCandidate",
+  "nextExactAction": "Commit the PR identity, push the final reviewed head, then generate temporary schema-2.0 PreMerge evidence.",
+  "lastOperation": {
+    "kind": "PublishPR",
+    "state": "Completed",
+    "summary": "Feature branch pushed and non-empty pull request 241 created."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "N/A",
+    "defaultBranchSync": "N/A",
+    "postMergeActions": "N/A",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-08-15T21:58:41Z"
+}

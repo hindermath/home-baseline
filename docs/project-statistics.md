@@ -163,6 +163,7 @@
 | 2026-08-10 | Zwölf-Preset-Flottenprofil konsolidiert | — | — | — | Documentation Impact `UpdateRequired`: Die lokale, nicht versionierte Level-2-Registry bindet den Standard und alle 35 eindeutigen Ziel-Repositories jetzt an `model-routing-twelve-governance-presets`; eine hashgebundene Sicherung bewahrt den vorherigen Elf-Preset-Stand. Vier aktuelle Lernreihen- und Secure-Development-Leserpfade trennen weiterhin das öffentliche Acht-Preset-Profil von Thorstens verwalteter Zwölf-Preset-Flotte und erklären Model Routing auf Priorität 61 sowie die Intake-Grenzen 64/65/66 Deutsch zuerst und Englisch danach. Beide Copilot-Guidance-Spiegel sind mit AGENTS, CLAUDE, GEMINI und den Templates auf Model Routing Governance v0.1.4 synchron; konkrete Modellbindungen bleiben lokal und Modus 600. Kanonische Source und Owner bleiben die Profilkataloge und der Repository Maintainer; die geänderte `homeRuntime`-Guidance benötigt nach dem Merge einen Home-Sync. Navigation und Sprachpartner bleiben unverändert. Ein vollständiger macOS-Check-only-Lauf bestätigt 35/35 homogene Registry-Ziele, die exakte Zwölf-Preset-Matrix, `model-routing=Passed` und Exitcode 0. Änderungen am öffentlichen Standardprofil, an Prioritäten, Registry-Schema, Distribution oder Model-Routing-Version lösen die Wiedervorlage aus. Kein Spec-Kit-, Intake-, Lernenden- oder Autonomous-Lauf wurde gestartet. |
 | 2026-08-14 | Home-Baseline- und Sandbox-Dokumentation verzahnt | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Home Baseline ist als kanonische Quelle fuer Lernendenweg, providerneutrales Git-Hosting, Level-0-Governance und Source-/Runtime-Vertrag abgegrenzt; die Sandbox-Dokumentation besitzt Image-Build, gepinnte Versionen, Mounts, Container-Kommandos und den konkreten Runtime-Wrapper. Zielgruppen, Required-Agenten (`codex`, `claude`, `agy`, `copilot`) und der begrenzte Runtime-only-Pfad sind synchron. Der neue `--shared-guides-only`-/`-SharedGuidesOnly`-Modus plant und staged ausschliesslich die drei gemeinsamen Guides in Root und `docs/learning-units/`; Fixture-Tests und Live-Dry-Runs bestaetigten 21/21 erreichbare Ziele, null Skips, null neuere Konflikte und 84 geplante Dateiaenderungen ohne README-, Intake-, Lernbegleiter-, Vorlagen- oder Datensatz-Drift. Die geaenderte `homeRuntime`-Guidance benoetigt nach Merge und Release einen Home-Sync. |
 | 2026-08-15 | Achte Pflicht-Erweiterung fuer VS Code | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: `ms-vscode.powershell` ist als achte eindeutige Required-Erweiterung fuer das Schreiben und Debuggen von PowerShell-Skripten und Cmdlets in der gemeinsamen Registry verankert. Beide Wartungs-Manpages, die fuenf Shared-Guidance-Dateien und vier Vorlagen sind Deutsch zuerst und Englisch danach synchronisiert. Ein fail-closed Regressionstest bindet die exakte Acht-Erweiterungs-Menge und alle elf Dokumentationsflaechen. 124 Python-Wartungstests, beide Documentation-Impact-Suiten und PSScriptAnalyzer fuer 164 Dateien sind lokal gruen; der reale macOS-Compare-only-Lauf meldet null fehlende Required-Erweiterungen und Exitcode 0. Das fachliche Delta vor Statistikpflege umfasst 122 Nettozeilen. Home Runtime wird nach dem Merge synchronisiert; Level-1-/Level-2-Rollout und Fleet-Pushes bleiben ausserhalb dieses Auftrags. |
+| 2026-08-15 | Feature 027 Autonomous Evidence Integrity Hardening | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Der unveroeffentlichte Autonomous-Run-Governance-Kandidat 0.4.0 validiert eine ausdrueckliche Liefermenge einschliesslich benannter unversionierter Dateien, verlangt ein strukturiertes semantisches Phasenergebnis und trennt Schema-2.0-`PreMerge`- von kausaler `PostMerge`-Evidence. Historisches Schema 1.0 bleibt ausschliesslich im Auditmodus lesbar. Positive und negative Cross-Shell-Fixtures, bestehendes Modell-Routing, drei State-Validatoren, PSScriptAnalyzer fuer 164 Dateien, Script-Referenz und eine Zwölf-Preset-Komposition sind gruen. Kanonischer Scaffold und Publikationskopie sind bytegleich; Release, Tag, ZIP, Katalog, Consumer und Flotten-Rollout bleiben bis zum unabhaengigen G2B-Feldnachweis gesperrt. |
 
 ---
 
@@ -1084,6 +1085,26 @@ prior state byte-for-byte. Both single reviews and the bound schema-1.1 series
 review are Ready in Bash and PowerShell. No feature run has started; the
 source-only documentation change requires no Home sync.*
 
+### 2026-08-15 - Autonomous-Evidence-Integrity-Haertung / Autonomous evidence integrity hardening
+
+- Der Kandidat prueft geaenderte getrackte Dateien und ausdruecklich benannte
+  unversionierte Lieferdateien read-only. Ignorierte, fehlende, doppelte,
+  ausbrechende oder whitespace-fehlerhafte Pfade werden fehlgeschlossen.
+- Exitcode null beendet eine geroutete Phase nur zusammen mit einem gueltigen
+  strukturierten Ergebnis, vollstaendigen Aufgaben, bestandenen Gates und
+  gebundenem Payload-Hash.
+- Schema 2.0 trennt `PreMerge` und `PostMerge`. Historisches Schema 1.0 kann
+  keinen neuen Merge autorisieren.
+- Der Quellkandidat bleibt unveroeffentlicht. G2B muss Feldtest, Release,
+  versionierten ZIP-Smoke, Adoption und Flottenabschluss unabhaengig pruefen.
+
+*The candidate validates changed tracked files and explicitly named untracked
+delivery files without changing Git state. A zero exit code completes a routed
+phase only with a valid structured result, complete tasks, satisfied gates, and
+a bound payload hash. Schema 2.0 separates PreMerge from PostMerge, while
+historical schema 1.0 cannot authorize a new merge. The source candidate remains
+unreleased until independent G2B field validation.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1094,27 +1115,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 642678 lines |
-| Textdateien / Text files | 3252 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-15 |
+| Textbasis / Text base | 644334 lines |
+| Textdateien / Text files | 3286 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-24..2026-08-16 |
 | Aktivtage / Active days | 89 |
-| Relevante Commits / Relevant commits | 737 |
-| Zeilen je Aktivtag / Lines per active day | 7221.1 |
+| Relevante Commits / Relevant commits | 741 |
+| Zeilen je Aktivtag / Lines per active day | 7239.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 90.3x |
-| Speedup vs. 100 lines/day | 72.2x |
-| Methodik / Methodology | v2; source `473538ef1c88` |
+| Speedup vs. 80 lines/day | 90.5x |
+| Speedup vs. 100 lines/day | 72.4x |
+| Methodik / Methodology | v2; source `352a9391e2ea` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 24282
-Dokumentation / Documentation   [##########..........]  49.5% | 318431
-Skripte / Scripts               [##..................]   9.5% | 61217
-Konfiguration / Configuration   [#######.............]  36.7% | 235698
+Tests                           [#...................]   3.9% | 24858
+Dokumentation / Documentation   [##########..........]  49.6% | 319387
+Skripte / Scripts               [##..................]   9.5% | 61189
+Konfiguration / Configuration   [#######.............]  36.6% | 235850
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
 ```
@@ -1126,7 +1147,7 @@ Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozen
 ### Tagesaktivitaet / Daily Activity
 
 ```text
-Wochen / Weeks 01..26 | 2025-08-17..2026-02-14
+Wochen / Weeks 01..26 | 2025-08-24..2026-02-21
 So/Su  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Mo/Mo  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Di/Tu  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -1137,14 +1158,14 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
 ```text
-Wochen / Weeks 27..52 | 2026-02-15..2026-08-15
-So/Su  0 0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4
-Mo/Mo  0 0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2
-Di/Tu  0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0
-Mi/We  0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0
-Do/Th  0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4
-Fr/Fr  0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3
-Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4
+Wochen / Weeks 27..52 | 2026-02-22..2026-08-22
+So/Su  0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 0
+Mo/Mo  0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 -
+Di/Tu  0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 -
+Mi/We  0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 -
+Do/Th  0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 -
+Fr/Fr  0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 -
+Sa/Sa  0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 -
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1154,18 +1175,18 @@ DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaend
 ### Wochenvolumen / Weekly Volume
 
 ```text
-Wochen / Weeks 01..26 | 2025-08-17..2026-02-14
+Wochen / Weeks 01..26 | 2025-08-24..2026-02-21
 Keine Aktivitaet / No activity
 ```
 
 ```text
-Wochen / Weeks 27..52 | 2026-02-15..2026-08-15
+Wochen / Weeks 27..52 | 2026-02-22..2026-08-22
   cap 500000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       416667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      250000 | . . . . . . . . . . . . . . . . . . . . . . . # . .
-      166667 | . . . . . . . . . . . . . . . . . . . . . . . # . .
-       83333 | . . . . . . . . . . . . . . . . . . . . # . # # . .
+      250000 | . . . . . . . . . . . . . . . . . . . . . . # . . .
+      166667 | . . . . . . . . . . . . . . . . . . . . . . # . . .
+       83333 | . . . . . . . . . . . . . . . . . . . # . # # . . .
            0 +-----------------------------------------------------
 ```
 
@@ -1176,18 +1197,18 @@ Das Wochenvolumen zeigt Additionen plus Loeschungen. Es ist Aenderungsaktivitaet
 ### Kumulative Entwicklung / Cumulative Development
 
 ```text
-Wochen / Weeks 01..26 | 2025-08-17..2026-02-14
+Wochen / Weeks 01..26 | 2025-08-24..2026-02-21
 Keine Aktivitaet / No activity
 ```
 
 ```text
-Wochen / Weeks 27..52 | 2026-02-15..2026-08-15
+Wochen / Weeks 27..52 | 2026-02-22..2026-08-22
  cap 1000000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       833333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      666667 | . . . . . . . . . . . . . . . . . . . . . . . # # #
-      500000 | . . . . . . . . . . . . . . . . . . . . . . . # # #
-      333333 | . . . . . . . . . . . . . . . . . . . . . . # # # #
-      166667 | . . . . . . . . . . . . . . . . . . . . # # # # # #
+      666667 | . . . . . . . . . . . . . . . . . . . . . . # # # #
+      500000 | . . . . . . . . . . . . . . . . . . . . . . # # # #
+      333333 | . . . . . . . . . . . . . . . . . . . . . # # # # #
+      166667 | . . . . . . . . . . . . . . . . . . . # # # # # # #
            0 +-----------------------------------------------------
 ```
 
@@ -1334,8 +1355,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 90.3x
-100 lines/day      [##############......] 72.2x
+80 lines/day       [##################..] 90.5x
+100 lines/day      [##############......] 72.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1348,7 +1369,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7221.1
+Visible repository [##############......] 7239.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1357,9 +1378,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-15. Es enthaelt 89 aktive und 275 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-24 und endet am 2026-08-16. Es enthaelt 89 aktive und 269 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-17 and ends on 2026-08-15. It contains 89 active and 275 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-24 and ends on 2026-08-16. It contains 89 active and 269 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1374,6 +1395,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-15. Es enthaelt 89 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 213640 |
+| 2026-08 | 217746 |
 
 <!-- project-statistics-v2:end -->
