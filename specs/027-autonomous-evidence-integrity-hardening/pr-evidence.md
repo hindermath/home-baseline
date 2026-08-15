@@ -38,6 +38,14 @@ surfaces need no update because the shared rule is carried by the portable
 agent addendum and commands; changing installed consumer guidance belongs to
 G2B rollout, not this source-only feature.
 
+## Candidate Closeout
+
+- Local tasks complete before remote delivery: `59/65`.
+- Source commit: `01524f93a1cc`; executable-mode correction: `7a38fbb33a53`.
+- Retrospective decision: `PresetFollowUp`; promotion remains deferred to G2B.
+- No tag, release, ZIP, catalog update, consumer installation, fleet rollout,
+  or G2B execution occurred.
+
 ## Documentation Impact
 
 `UpdateRequired`; see `spec.md`. Distribution remains `sourceOnly` and no Home

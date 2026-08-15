@@ -5,9 +5,9 @@
   "branch": "027-autonomous-evidence-integrity-hardening",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "d73de1783f89e83d2b46b8c3195a51a6883779f4",
+  "checkpointCommit": "7a38fbb33a53bc8e25ed7756f3c73f0ddc4ae84b",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
@@ -32,8 +32,8 @@
   ],
   "tasks": {
     "path": "specs/027-autonomous-evidence-integrity-hardening/tasks.md",
-    "sha256": "24ab14661d443c50e1a60707fce48166b4ae60ef0590e8918516ea50e771b3f6",
-    "completed": 55,
+    "sha256": "8a776d38a2de065aaec678c5c57c778ac70b52a1bf55237893317e65e8fa7733",
+    "completed": 59,
     "total": 65
   },
   "routing": {
@@ -41,12 +41,12 @@
     "fallbackPolicy": "fail-closed",
     "phases": []
   },
-  "lastPassingGate": "CandidateValidation",
-  "nextExactAction": "Commit the validated candidate source, then render project statistics and complete delivery evidence.",
+  "lastPassingGate": "LocalDeliveryCandidate",
+  "nextExactAction": "Commit closeout evidence, push the feature branch, and create a non-empty pull request.",
   "lastOperation": {
-    "kind": "CandidateValidation",
+    "kind": "Commit",
     "state": "Completed",
-    "summary": "Candidate tests, cross-shell parity, static analysis, preset composition, script reference, and explicit delivery-set validation passed."
+    "summary": "Validated source candidate committed in 01524f9 with executable-mode correction in 7a38fbb; statistics and retrospective prepared."
   },
   "stop": {
     "reason": "N/A",
@@ -59,5 +59,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-15T21:55:40Z"
+  "updatedAt": "2026-08-15T21:57:10Z"
 }

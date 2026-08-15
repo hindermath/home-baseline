@@ -75,10 +75,10 @@
 
 ## Phase 7 - Delivery and Retrospective
 
-- [ ] T056 Update `docs/project-statistics.md` and render the canonical statistics block.
-- [ ] T057 Complete `pr-evidence.md`, task counts, and candidate boundary.
-- [ ] T058 Create `retrospective.md` with promotion decision deferred to G2B.
-- [ ] T059 Validate the exact staged delivery set and commit Feature 027.
+- [x] T056 Update `docs/project-statistics.md` and render the canonical statistics block.
+- [x] T057 Complete `pr-evidence.md`, task counts, and candidate boundary.
+- [x] T058 Create `retrospective.md` with promotion decision deferred to G2B.
+- [x] T059 Validate the exact staged delivery set and commit Feature 027.
 - [ ] T060 Push and create a non-empty feature PR.
 - [ ] T061 Generate and validate temporary schema-2.0 PreMerge exact-head evidence.
 - [ ] T062 Converge technical checks and actionable review threads.

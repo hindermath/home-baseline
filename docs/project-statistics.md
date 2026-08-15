@@ -163,6 +163,7 @@
 | 2026-08-10 | Zwölf-Preset-Flottenprofil konsolidiert | — | — | — | Documentation Impact `UpdateRequired`: Die lokale, nicht versionierte Level-2-Registry bindet den Standard und alle 35 eindeutigen Ziel-Repositories jetzt an `model-routing-twelve-governance-presets`; eine hashgebundene Sicherung bewahrt den vorherigen Elf-Preset-Stand. Vier aktuelle Lernreihen- und Secure-Development-Leserpfade trennen weiterhin das öffentliche Acht-Preset-Profil von Thorstens verwalteter Zwölf-Preset-Flotte und erklären Model Routing auf Priorität 61 sowie die Intake-Grenzen 64/65/66 Deutsch zuerst und Englisch danach. Beide Copilot-Guidance-Spiegel sind mit AGENTS, CLAUDE, GEMINI und den Templates auf Model Routing Governance v0.1.4 synchron; konkrete Modellbindungen bleiben lokal und Modus 600. Kanonische Source und Owner bleiben die Profilkataloge und der Repository Maintainer; die geänderte `homeRuntime`-Guidance benötigt nach dem Merge einen Home-Sync. Navigation und Sprachpartner bleiben unverändert. Ein vollständiger macOS-Check-only-Lauf bestätigt 35/35 homogene Registry-Ziele, die exakte Zwölf-Preset-Matrix, `model-routing=Passed` und Exitcode 0. Änderungen am öffentlichen Standardprofil, an Prioritäten, Registry-Schema, Distribution oder Model-Routing-Version lösen die Wiedervorlage aus. Kein Spec-Kit-, Intake-, Lernenden- oder Autonomous-Lauf wurde gestartet. |
 | 2026-08-14 | Home-Baseline- und Sandbox-Dokumentation verzahnt | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Home Baseline ist als kanonische Quelle fuer Lernendenweg, providerneutrales Git-Hosting, Level-0-Governance und Source-/Runtime-Vertrag abgegrenzt; die Sandbox-Dokumentation besitzt Image-Build, gepinnte Versionen, Mounts, Container-Kommandos und den konkreten Runtime-Wrapper. Zielgruppen, Required-Agenten (`codex`, `claude`, `agy`, `copilot`) und der begrenzte Runtime-only-Pfad sind synchron. Der neue `--shared-guides-only`-/`-SharedGuidesOnly`-Modus plant und staged ausschliesslich die drei gemeinsamen Guides in Root und `docs/learning-units/`; Fixture-Tests und Live-Dry-Runs bestaetigten 21/21 erreichbare Ziele, null Skips, null neuere Konflikte und 84 geplante Dateiaenderungen ohne README-, Intake-, Lernbegleiter-, Vorlagen- oder Datensatz-Drift. Die geaenderte `homeRuntime`-Guidance benoetigt nach Merge und Release einen Home-Sync. |
 | 2026-08-15 | Achte Pflicht-Erweiterung fuer VS Code | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: `ms-vscode.powershell` ist als achte eindeutige Required-Erweiterung fuer das Schreiben und Debuggen von PowerShell-Skripten und Cmdlets in der gemeinsamen Registry verankert. Beide Wartungs-Manpages, die fuenf Shared-Guidance-Dateien und vier Vorlagen sind Deutsch zuerst und Englisch danach synchronisiert. Ein fail-closed Regressionstest bindet die exakte Acht-Erweiterungs-Menge und alle elf Dokumentationsflaechen. 124 Python-Wartungstests, beide Documentation-Impact-Suiten und PSScriptAnalyzer fuer 164 Dateien sind lokal gruen; der reale macOS-Compare-only-Lauf meldet null fehlende Required-Erweiterungen und Exitcode 0. Das fachliche Delta vor Statistikpflege umfasst 122 Nettozeilen. Home Runtime wird nach dem Merge synchronisiert; Level-1-/Level-2-Rollout und Fleet-Pushes bleiben ausserhalb dieses Auftrags. |
+| 2026-08-15 | Feature 027 Autonomous Evidence Integrity Hardening | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Der unveroeffentlichte Autonomous-Run-Governance-Kandidat 0.4.0 validiert eine ausdrueckliche Liefermenge einschliesslich benannter unversionierter Dateien, verlangt ein strukturiertes semantisches Phasenergebnis und trennt Schema-2.0-`PreMerge`- von kausaler `PostMerge`-Evidence. Historisches Schema 1.0 bleibt ausschliesslich im Auditmodus lesbar. Positive und negative Cross-Shell-Fixtures, bestehendes Modell-Routing, drei State-Validatoren, PSScriptAnalyzer fuer 164 Dateien, Script-Referenz und eine Zwölf-Preset-Komposition sind gruen. Kanonischer Scaffold und Publikationskopie sind bytegleich; Release, Tag, ZIP, Katalog, Consumer und Flotten-Rollout bleiben bis zum unabhaengigen G2B-Feldnachweis gesperrt. |
 
 ---
 
@@ -1084,6 +1085,26 @@ prior state byte-for-byte. Both single reviews and the bound schema-1.1 series
 review are Ready in Bash and PowerShell. No feature run has started; the
 source-only documentation change requires no Home sync.*
 
+### 2026-08-15 - Autonomous-Evidence-Integrity-Haertung / Autonomous evidence integrity hardening
+
+- Der Kandidat prueft geaenderte getrackte Dateien und ausdruecklich benannte
+  unversionierte Lieferdateien read-only. Ignorierte, fehlende, doppelte,
+  ausbrechende oder whitespace-fehlerhafte Pfade werden fehlgeschlossen.
+- Exitcode null beendet eine geroutete Phase nur zusammen mit einem gueltigen
+  strukturierten Ergebnis, vollstaendigen Aufgaben, bestandenen Gates und
+  gebundenem Payload-Hash.
+- Schema 2.0 trennt `PreMerge` und `PostMerge`. Historisches Schema 1.0 kann
+  keinen neuen Merge autorisieren.
+- Der Quellkandidat bleibt unveroeffentlicht. G2B muss Feldtest, Release,
+  versionierten ZIP-Smoke, Adoption und Flottenabschluss unabhaengig pruefen.
+
+*The candidate validates changed tracked files and explicitly named untracked
+delivery files without changing Git state. A zero exit code completes a routed
+phase only with a valid structured result, complete tasks, satisfied gates, and
+a bound payload hash. Schema 2.0 separates PreMerge from PostMerge, while
+historical schema 1.0 cannot authorize a new merge. The source candidate remains
+unreleased until independent G2B field validation.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1094,27 +1115,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 642678 lines |
-| Textdateien / Text files | 3252 |
+| Textbasis / Text base | 644286 lines |
+| Textdateien / Text files | 3285 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-15 |
 | Aktivtage / Active days | 89 |
-| Relevante Commits / Relevant commits | 737 |
-| Zeilen je Aktivtag / Lines per active day | 7221.1 |
+| Relevante Commits / Relevant commits | 738 |
+| Zeilen je Aktivtag / Lines per active day | 7239.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 90.3x |
-| Speedup vs. 100 lines/day | 72.2x |
-| Methodik / Methodology | v2; source `473538ef1c88` |
+| Speedup vs. 80 lines/day | 90.5x |
+| Speedup vs. 100 lines/day | 72.4x |
+| Methodik / Methodology | v2; source `01524f93a1cc` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 24282
-Dokumentation / Documentation   [##########..........]  49.5% | 318431
-Skripte / Scripts               [##..................]   9.5% | 61217
-Konfiguration / Configuration   [#######.............]  36.7% | 235698
+Tests                           [#...................]   3.9% | 24858
+Dokumentation / Documentation   [##########..........]  49.6% | 319339
+Skripte / Scripts               [##..................]   9.5% | 61189
+Konfiguration / Configuration   [#######.............]  36.6% | 235850
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
 ```
@@ -1334,8 +1355,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 90.3x
-100 lines/day      [##############......] 72.2x
+80 lines/day       [##################..] 90.5x
+100 lines/day      [##############......] 72.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1348,7 +1369,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7221.1
+Visible repository [##############......] 7239.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1374,6 +1395,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-15. Es enthaelt 89 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 213640 |
+| 2026-08 | 217654 |
 
 <!-- project-statistics-v2:end -->
