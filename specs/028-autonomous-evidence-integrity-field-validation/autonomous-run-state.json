@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "18eddfcd846ab5cc27c0529e6e6a99badb5315df",
+  "checkpointCommit": "70fcd7f36045fbefd27d8d1bb0743301d291f37f",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
@@ -36,8 +36,8 @@
   ],
   "tasks": {
     "path": "specs/028-autonomous-evidence-integrity-field-validation/tasks.md",
-    "sha256": "8880b63b4905bd8c41216a6e38209389843810c8d2714f7c435c4caeea144fa9",
-    "completed": 70,
+    "sha256": "91f705980f91f2a02ec6dac961b5825059951d96ac88b1c2482e2c40a998e8a4",
+    "completed": 72,
     "total": 85
   },
   "routing": {
@@ -45,12 +45,12 @@
     "fallbackPolicy": "fail-closed",
     "phases": []
   },
-  "lastPassingGate": "FleetRollout",
-  "nextExactAction": "Commit the validated Feature 028 delivery set, render generated documentation, and create the Home Baseline feature PR.",
+  "lastPassingGate": "LocalDeliverySet",
+  "nextExactAction": "Commit the generated documentation and run-state checkpoint, then push and create the non-empty Home Baseline feature PR.",
   "lastOperation": {
-    "kind": "FleetRollout",
+    "kind": "LocalDeliverySet",
     "state": "Completed",
-    "summary": "Release v0.4.1, its versioned ZIP, 35 non-empty consumer PRs, dynamic inventory, community issue 4153, workitem closeout, and fleet evidence are complete."
+    "summary": "The complete intended Home Baseline delivery set passed both read-only validators and was committed; generated script and statistics documentation was rendered from committed sources."
   },
   "stop": {
     "reason": "N/A",
@@ -63,5 +63,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-15T23:49:56Z"
+  "updatedAt": "2026-08-15T23:54:48Z"
 }
