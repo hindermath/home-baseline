@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "GATE-028-FIELD",
+      "applicability": "Applicable",
+      "requiredScope": "Independent AR-038-01 through AR-038-03 field validation",
+      "requiredCommandTokens": ["test-autonomous-evidence-integrity"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-028-HOMOGENEITY",
+      "applicability": "Applicable",
+      "requiredScope": "Preset parity, repository homogeneity, and maintenance regressions",
+      "requiredCommandTokens": ["check-homogeneity"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-028-POWERSHELL",
+      "applicability": "Applicable",
+      "requiredScope": "PowerShell static analysis on all supported runners",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer"],
+      "requiredRunnerOrPlatformTokens": ["ubuntu", "macos", "windows"],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-028-RELEASE",
+      "applicability": "Applicable",
+      "requiredScope": "v0.4.0 tag, release ZIP, checksum, fresh installation, and preset composition",
+      "requiredCommandTokens": ["specify preset"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-028-ASVS",
+      "applicability": "N/A",
+      "requiredScope": "Web and authentication verification",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "The release contains script and documentation tooling without a web or authentication service.",
+      "reevaluationTrigger": "The preset ships a web, API, or authentication-bearing runtime."
+    },
+    {
+      "gateId": "GATE-028-AI-SBOM",
+      "applicability": "N/A",
+      "requiredScope": "Runtime AI inventory",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "AI is a development tool; the released preset contains no model or AI runtime component.",
+      "reevaluationTrigger": "A model, dataset, inference service, or AI runtime becomes part of the release."
+    }
+  ]
+}
