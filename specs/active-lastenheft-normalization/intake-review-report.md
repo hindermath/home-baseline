@@ -2,44 +2,47 @@
 
 ## Ergebnis / Outcome
 
-- Review-ID: `f6eaf048-c26b-408b-aa10-38efeb127593`
+- Review-ID: `bdd15623-d2b5-47eb-8600-73c546e5fdf9`
 - Ergebnis: `Ready`
-- Ziele: `32`
-- Roots: `3`
-- Abhaengigkeiten: `36`
+- Ziele: `34`
+- Roots: `1`
+- Abhaengigkeiten: `40`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils `0`
-- Gepruefte Repository-Basis: `268a9b885c61cf2212d15b55c4a80b762c1f60fc`
+- Gepruefte Repository-Basis: `99b4cbb82cddc5c21a45cb8d35434846016b2a32`
 
-Der kausale Closeout entfernt die abgeschlossene Position 6 aus der aktiven
-Serie. Da Position 6 keine ausgehende Series-Kante besass, bleiben alle 36
-Abhaengigkeiten erhalten. Position 7 ist jetzt `Primary`, Root und der einzige
-bevorzugte `Eligible`-Kandidat. Die Positionen 9 und 10 bleiben unselektierte
-Roots und starten nicht automatisch.
+Das zeitlich begrenzte Evidence-Integrity-Gate fuegt G2A und G2B vor den
+bisherigen Roots ein. G2A ist die einzige Root und der einzige bevorzugte
+`Eligible`-Kandidat. G2B bleibt bis zum G2A-Abschluss blockiert. Die bisherigen
+Roots an Position 7, 9 und 10 bleiben bis zum unabhaengigen G2B-Feldnachweis
+blockiert und starten nicht automatisch.
 
-*The causal closeout removes completed item 6 from the active series. Because
-item 6 had no outgoing Series edge, all 36 dependencies remain. Item 7 is now
-Primary, a root, and the sole preferred Eligible candidate. Items 9 and 10
-remain unselected roots and do not start automatically.*
+*The temporary evidence-integrity gate inserts G2A and G2B before the previous
+roots. G2A is the only root and the sole preferred `Eligible` candidate. G2B
+remains blocked until G2A closes. Previous roots at positions 7, 9, and 10
+remain blocked until the independent G2B field proof and do not start
+automatically.*
 
-## Feature-Abschluss / Feature Closeout
+## Review-Grenze / Review Boundary
 
-Feature PR #214 mergte den exakten Head
-`117e99202f23d819d01d44335811bd5f4e5f1ac7` als
-`268a9b885c61cf2212d15b55c4a80b762c1f60fc`. Der Feature-Nachweis umfasst je
-Sprachhaelfte 159 eindeutige Entscheidungen und 21 Evidence-Eintraege. Die 149
-konkreten Remediation-Kandidaten bleiben ausserhalb von Feature 025 und
-benoetigen jeweils einen nicht leeren, geprueften Intake mit neuer Autoritaet.
+Der Review bestaetigt Identitaet, Scope, Testvertraege, Reihenfolge, Hashes,
+Root-Abdeckung und die vier neuen bindenden Kanten. G2A darf nur einen
+unveroeffentlichten v0.4.0-Kandidaten erzeugen. Release, Flotten-Rollout,
+Katalogaktualisierung und Series-Closeout gehoeren ausschliesslich zu G2B nach
+bestandenem unabhaengigem Feldnachweis.
 
-*Feature PR #214 merged the exact reviewed head. The feature evidence contains
-159 unique decisions and 21 evidence records in each language half. The 149
-concrete remediation candidates remain outside Feature 025 and require a
-non-empty reviewed intake with new authority.*
+*The review confirms identity, scope, test contracts, order, hashes, root
+coverage, and the four new binding edges. G2A may only create an unreleased
+v0.4.0 candidate. Release, fleet rollout, catalog update, and series closeout
+belong exclusively to G2B after its independent field proof passes.*
 
 ## Liefergrenze / Delivery Boundary
 
 `Eligible` beschreibt Reihenfolge, nicht Delivery Authority. Dieser Review
-startet Position 7, einen Remediation-Intake oder einen anderen Spec-Kit-Lauf
-nicht automatisch.
+startet G2A, G2B oder einen anderen Spec-Kit-Lauf nicht automatisch. Der
+genehmigte Plan erlaubt die Intake-Vorbereitung; die autonome Umsetzung beginnt
+erst nach gemergtem Intake-PR auf sauberem `main`.
 
 *Eligible describes sequence, not delivery authority. This review does not
-automatically start item 7, a remediation intake, or another Spec Kit run.*
+automatically start G2A, G2B, or another Spec Kit run. The approved plan permits
+intake preparation; autonomous implementation starts only after the intake PR
+is merged on a clean `main`.*

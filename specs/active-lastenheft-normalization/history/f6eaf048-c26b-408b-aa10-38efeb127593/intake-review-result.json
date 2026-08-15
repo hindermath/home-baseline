@@ -1,34 +1,22 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "bdd15623-d2b5-47eb-8600-73c546e5fdf9",
+  "reviewId": "f6eaf048-c26b-408b-aa10-38efeb127593",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "status": "Ready",
-  "reviewedAt": "2026-08-15T20:55:00Z",
+  "reviewedAt": "2026-08-08T17:38:32Z",
   "repository": {
     "root": ".",
-    "head": "99b4cbb82cddc5c21a45cb8d35434846016b2a32"
+    "head": "268a9b885c61cf2212d15b55c4a80b762c1f60fc"
   },
   "requestEvidence": {
     "path": "specs/active-lastenheft-normalization/intake-review-request.json",
-    "normalizedSha256": "2551bb62f9489bc742ec0c34739aede83dca691352e7ff069b5ceefa982f835c"
+    "normalizedSha256": "271c22ee4e2de186d42cd94a264d8b01c02f4750a14a2f86fbac56692b8f7adc"
   },
   "targets": [
     {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-      "role": "Primary",
-      "normalizedSha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e",
-      "gitBlob": "N/A"
-    },
-    {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "df5169721e184597001ae3e1f2860e87ca462d1ccfd8c9b75ffa46e52c45aff4",
-      "gitBlob": "N/A"
-    },
-    {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
       "gitBlob": "N/A"
     },
@@ -225,8 +213,6 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
-      "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-      "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
@@ -261,12 +247,12 @@
       "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
     ],
     "series": [
-      "All 34 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
-      "The sole declared root equals the zero-indegree target set",
-      "Forty unique dependencies are reference-valid, order-consistent, and acyclic",
-      "G2A is the single declared Eligible candidate; eligibility grants no delivery authority",
-      "G2B remains blocked until the unreleased v0.4.0 candidate is complete",
-      "The previous roots at positions 7, 9, and 10 remain blocked until the independent field-validation closeout"
+      "All 32 active paths, roles, hashes, and exact order match the bound schema-1.1 request",
+      "The three declared roots equal the zero-indegree target set",
+      "Thirty-six unique dependencies are reference-valid, order-consistent, and acyclic",
+      "Position 7 is the single declared Eligible candidate and this closeout grants no delivery authority",
+      "Feature 025 evidence records 159 decisions and 21 evidence entries per language with 149 bounded remediation candidates",
+      "Remediation intake creation, review, series admission, and autonomous execution remain separate explicit governance steps"
     ],
     "workers": []
   },
@@ -276,5 +262,5 @@
     "medium": 0,
     "low": 0
   },
-  "supersedes": "f6eaf048-c26b-408b-aa10-38efeb127593"
+  "supersedes": "00fd052d-4a67-415a-b800-2b2b47f88000"
 }

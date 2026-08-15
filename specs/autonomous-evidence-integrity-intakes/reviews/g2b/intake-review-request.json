@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "4db2b5b0-cf88-4b0a-9ee6-e0d57c547357",
+  "mode": "Single",
+  "policy": "home-baseline-autonomous-evidence-integrity-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

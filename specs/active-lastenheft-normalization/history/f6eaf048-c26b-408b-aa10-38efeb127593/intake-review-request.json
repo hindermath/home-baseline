@@ -1,20 +1,12 @@
 {
   "schemaVersion": "1.1",
-  "reviewId": "bdd15623-d2b5-47eb-8600-73c546e5fdf9",
+  "reviewId": "f6eaf048-c26b-408b-aa10-38efeb127593",
   "mode": "Series",
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-      "role": "Primary"
-    },
-    {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "role": "OrderedMember"
-    },
-    {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
-      "role": "OrderedMember"
+      "role": "Primary"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -143,8 +135,6 @@
   ],
   "series": {
     "orderedTargetPaths": [
-      "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-      "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
       "Lastenheft_Secure-Development-Container-Hardening.md",
       "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "Lastenheft_CICD_Pipeline_Konfiguration.md",
@@ -179,33 +169,11 @@
       "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
     ],
     "roots": [
-      "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md"
+      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_PowerShell_Cmdlets.md"
     ],
     "dependencies": [
-      {
-        "from": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-        "to": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-        "kind": "PublishedPresetBaseline",
-        "binding": true
-      },
-      {
-        "from": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
-      },
-      {
-        "from": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-        "to": "Lastenheft_CICD_Pipeline_Konfiguration.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
-      },
-      {
-        "from": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-        "to": "Lastenheft_PowerShell_Cmdlets.md",
-        "kind": "RequirementsGovernanceGate",
-        "binding": true
-      },
       {
         "from": "Lastenheft_Secure-Development-Container-Hardening.md",
         "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",

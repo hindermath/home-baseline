@@ -1061,6 +1061,29 @@ C++14 justifications. A read-only live inventory found 3,165,238,953 safe
 candidate bytes while preserving cc65 build evidence; no file was deleted.
 The pre-statistics delta is 3,067 net lines and the Home Runtime requires sync.*
 
+### 2026-08-15 - Autonomous-Evidence-Integrity-Gate-Intakes / Autonomous evidence integrity gate intakes
+
+- Zwei getrennte, reviewbereite Intakes fuer Preset-Kandidatenhaertung und
+  unabhaengigen Feldnachweis angelegt. Der erste Lauf darf nur einen
+  unveroeffentlichten v0.4.0-Kandidaten erzeugen; Release, Flotten-Rollout und
+  Series-Closeout bleiben dem zweiten Lauf vorbehalten.
+- Die aktive Series wurde nachvollziehbar von 32 Zielen, drei Roots und 36
+  Kanten auf 34 Ziele, eine Root und 40 Kanten erweitert. Der vorherige Stand
+  und sein Review bleiben bytegleich archiviert.
+- Beide Einzelreviews sowie der neue Schema-1.1-Series-Review sind `Ready`.
+  Bash und PowerShell bestaetigen Intake-Hashes, Request-Bindung, Root-Abdeckung
+  und den azyklischen Graphen. Es wurde noch kein Feature-Lauf gestartet.
+- Documentation Impact ist `UpdateRequired`; die Abarbeitungsreihenfolge und
+  Validierungs-Evidence wurden synchron aktualisiert. Die Aenderung ist
+  `sourceOnly`, deshalb ist kein Home-Sync erforderlich.
+
+*Two separate reviewed intakes now govern candidate hardening and independent
+field validation. The active series moved traceably from 32 targets, three
+roots, and 36 edges to 34 targets, one root, and 40 edges while preserving the
+prior state byte-for-byte. Both single reviews and the bound schema-1.1 series
+review are Ready in Bash and PowerShell. No feature run has started; the
+source-only documentation change requires no Home sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

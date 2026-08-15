@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "61ff8ddf-f90d-4ad0-96cd-f1870832f6cd",
+  "mode": "Single",
+  "policy": "home-baseline-autonomous-evidence-integrity-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

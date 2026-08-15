@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "5425d791-85d2-4835-90b2-ee3ed0d86459",
+  "receiptId": "f7059d35-2853-4d9d-9643-fb0a51d3f7d0",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
-    "version": "0.2.2"
+    "version": "0.2.3"
   },
-  "createdAt": "2026-08-08T17:38:32Z",
+  "createdAt": "2026-08-15T20:14:21Z",
   "operation": {
-    "operationId": "dac14e1f-c88f-483d-bb73-6f93aac8fe27",
+    "operationId": "b6e3a616-53c7-4731-9e4e-69daad598f9e",
     "type": "Update",
-    "authorityEvidence": "Explicit current MergeAndSync authority requires the causal Feature-025 archive, evidence-bound Position-7 handoff, and no automatic remediation or successor start inside the closeout."
+    "authorityEvidence": "Current user approved and requested implementation of the two-intake global G2 evidence-integrity gate."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
+    "normalizedSha256": "defd798d5870bcae353fe3edf35d7bba249f29c41417adc828ae5287cf20f6c1"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/dac14e1f-c88f-483d-bb73-6f93aac8fe27/receipt.json",
-    "receiptNormalizedSha256": "ea889b6b08ea75d309c20ba0a175f8ce862ffa24923ec516c142b7f6af69dbfd",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/dac14e1f-c88f-483d-bb73-6f93aac8fe27/manifest.json",
-    "manifestArchiveSha256": "8d633a6f524abfb0e04688a5a4d59629165c4822e02813a50a5eb4e4b0be8a16"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/b6e3a616-53c7-4731-9e4e-69daad598f9e/receipt.json",
+    "receiptNormalizedSha256": "22cd83e375fe9fa6ea382a8e203a506139718234e652cb745a89694986827f5d",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/b6e3a616-53c7-4731-9e4e-69daad598f9e/manifest.json",
+    "manifestArchiveSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
   },
   "tombstone": {
     "path": "N/A",

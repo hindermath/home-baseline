@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "1d22ac61-513c-4c2e-8674-6899d1e8d160",
+  "intakeId": "018b2708-ef01-4d77-b495-f620d859c353",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.1"
+  },
+  "createdAt": "2026-08-15T20:11:35Z",
+  "operation": {
+    "operationId": "501681d0-fe42-4622-bc90-efd7a590ee8a",
+    "type": "Create",
+    "authorityEvidence": "User approved the two-intake G2 implementation plan and explicitly requested implementation."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+    "normalizedSha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Feature 038 autonomous preset follow-up workitem",
+      "location": "Repository",
+      "path": "docs/work-items/2026-08-09-feature-038-autonomous-preset-followup.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "18cc6a131269f590b2a5bb0f8ccc78e25bfbc7283781cb812d70af6cf3a8d996",
+      "gitBlob": "5061e15b9052d86a4739b411b1bf04b79f89fc7a",
+      "proofBoundary": "Merged provider-neutral handoff only; no implementation authority."
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Current autonomous preset metadata",
+      "location": "Repository",
+      "path": "specs/spec-kit-presets/autonomous-run-governance/preset.yml",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "659cb5f9bff8263cb943c0174eaf899e9b962c4a1d91dfee6e04373d37f7af5c",
+      "gitBlob": "4829c1a6c81e5dfd3699858c633f55517777b547",
+      "proofBoundary": "Current v0.3.6 candidate baseline."
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Current model phase wrapper",
+      "location": "Repository",
+      "path": "specs/spec-kit-presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.ps1",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "5d08fcbb2c640d79fe1b63e7e500903ab760bf931f6bc55863a82f6230f1c3bc",
+      "gitBlob": "cf0bda3a11782be1c77a8046aff6bc51a46e8c94",
+      "proofBoundary": "Reproduces the exit-zero completion gap."
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "File",
+      "label": "Current gate evidence template",
+      "location": "Repository",
+      "path": "specs/spec-kit-presets/autonomous-run-governance/templates/autonomous-run-gate-evidence-template.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "7f38faa28d9d82e059a5d20c02a04232dde2240ce1ee85818ea0eb51a7a25dad",
+      "gitBlob": "2da59ab6801fbca66ace07049b391049f018e315",
+      "proofBoundary": "Current single-snapshot Schema 1.0 baseline."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Should candidate implementation and field release be split?",
+      "answer": "Yes. G2A builds an unreleased candidate and G2B independently validates and releases it.",
+      "evidence": "Approved plan and explicit user selection."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Where should the work enter the active series?",
+      "answer": "As a global G2 gate before the three current roots.",
+      "evidence": "Approved plan and explicit user selection."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 2,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current user request to implement the approved plan; bypass authority is not inferred.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "GlobalGovernanceCandidateGate",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Autonomous-Evidence-Integrity-Hardening.md"
+}
