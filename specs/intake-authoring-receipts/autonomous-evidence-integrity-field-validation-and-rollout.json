@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "71d9f68b-8f6b-4b17-9125-7272d88393f8",
+  "intakeId": "d6894d69-9173-4bbd-bb1d-4e07a160d86e",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.1"
+  },
+  "createdAt": "2026-08-15T20:11:35Z",
+  "operation": {
+    "operationId": "97ab7737-feb6-484b-8717-3f3b3cbe674e",
+    "type": "Create",
+    "authorityEvidence": "User approved the two-intake G2 implementation plan and selected a Home Baseline field feature."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
+    "normalizedSha256": "df5169721e184597001ae3e1f2860e87ca462d1ccfd8c9b75ffa46e52c45aff4"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "G2A hardening intake",
+      "location": "Repository",
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e",
+      "gitBlob": "N/A",
+      "proofBoundary": "Accepted predecessor intent; implementation evidence is required before G2B starts."
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Feature 038 autonomous preset follow-up workitem",
+      "location": "Repository",
+      "path": "docs/work-items/2026-08-09-feature-038-autonomous-preset-followup.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "18cc6a131269f590b2a5bb0f8ccc78e25bfbc7283781cb812d70af6cf3a8d996",
+      "gitBlob": "5061e15b9052d86a4739b411b1bf04b79f89fc7a",
+      "proofBoundary": "Immutable field provenance and permission boundary."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Which real field target should validate the candidate?",
+      "answer": "A separate evidence-only Home Baseline MergeAndSync feature.",
+      "evidence": "Approved plan and explicit user selection."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "When may release and fleet rollout occur?",
+      "answer": "Only after synthetic G2A gates and the independent G2B field run pass.",
+      "evidence": "Approved plan."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 2,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Current user request to implement the approved plan; bypass authority is not inferred.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 2,
+    "role": "IndependentFieldReleaseGate",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md"
+}

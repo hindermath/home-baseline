@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "61ff8ddf-f90d-4ad0-96cd-f1870832f6cd",
+  "mode": "Single",
+  "policy": "home-baseline-autonomous-evidence-integrity-v1",
+  "status": "Ready",
+  "reviewedAt": "2026-08-15T20:45:00Z",
+  "repository": {
+    "root": ".",
+    "head": "99b4cbb82cddc5c21a45cb8d35434846016b2a32"
+  },
+  "requestEvidence": {
+    "path": "specs/autonomous-evidence-integrity-intakes/reviews/g2a/intake-review-request.json",
+    "normalizedSha256": "9dc094c7aec6e15c3acad10ccd56f9445eaca0669229163edd7dd6b2d87859ed"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+      "role": "Primary",
+      "normalizedSha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

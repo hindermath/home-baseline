@@ -2,47 +2,51 @@
 
 ## Aktueller Umfang / Current Scope
 
-- Aktive Ziele / Active targets: 33
-- Roots: 4
-- Eindeutige Abhaengigkeiten / Unique dependencies: 36
-- Bevorzugter `Eligible`-Kandidat: genau Position 6
-- Review-ID: `00fd052d-4a67-415a-b800-2b2b47f88000`
-- Supersedes: `7d902e0b-a33d-4453-8969-a2e2f4dea346`
+- Aktive Ziele / Active targets: 34
+- Roots: 1
+- Eindeutige Abhaengigkeiten / Unique dependencies: 40
+- Bevorzugter `Eligible`-Kandidat: genau G2A
+- Review-ID: `bdd15623-d2b5-47eb-8600-73c546e5fdf9`
+- Supersedes: `f6eaf048-c26b-408b-aa10-38efeb127593`
 - Findings, offene Fragen und akzeptierte Risiken: jeweils 0
 
-Die Werte beschreiben die vollstaendige aktive Serie nach dem kausalen
-Closeout von Feature 024 und der spaeteren Aufnahme des Level-0-Checkout-
-Intakes. Historische Reviews und Series-Staende bleiben bytegleich in ihren
-Archiven erhalten.
+Die Werte beschreiben das zeitlich begrenzte Evidence-Integrity-Gate vor den
+bisherigen Roots 7, 9 und 10. Historische Reviews und Series-Staende bleiben
+bytegleich in ihren Archiven erhalten.
 
-*These values describe the complete active series after the causal Feature 024
-closeout. Historical reviews and Series states remain byte-identical in their
-archives.*
+*These values describe the temporary evidence-integrity gate before previous
+roots 7, 9, and 10. Historical reviews and series states remain byte-identical
+in their archives.*
 
 ## Series- und Review-Bindung
 
 - Die Series-ID bleibt unveraendert.
-- Der vorherige 33-Ziel-Stand und sein Receipt sind unter
-  `history/37d8c637-9c64-462a-9fbe-5ee9a4a50f6c/` bytegleich archiviert.
-- Das aktuelle Manifest umfasst 33 Ziele, vier Roots und 36 Kanten.
+- Der vorherige 32-Ziel-Stand und sein Receipt sind unter
+  `requirements/intakes/series/home-baseline-delivery/history/b6e3a616-53c7-4731-9e4e-69daad598f9e/`
+  bytegleich archiviert.
+- Der vorherige Review ist unter
+  `specs/active-lastenheft-normalization/history/f6eaf048-c26b-408b-aa10-38efeb127593/`
+  bytegleich archiviert.
+- Das aktuelle Manifest umfasst 34 Ziele, eine Root und 40 Kanten.
 - Der neue Schema-1.1-Series-Review ist `Ready` und bindet seinen Request-Hash.
-- Bash- und PowerShell-Validatoren akzeptieren Manifest, Receipt und Review.
+- G2A und G2B besitzen zusaetzlich jeweils einen aktuellen `Ready`-Einzelreview.
+- Bash- und PowerShell-Validatoren akzeptieren Manifest, Receipt und alle drei
+  Review-Ergebnisse.
 
-*The Series ID is unchanged. The prior 33-target state and receipt are archived
-byte-for-byte. The current manifest contains 33 targets, four roots, and 36
-edges; both validator implementations accept the Ready review.*
+*The series ID is unchanged. The prior 32-target state, receipt, and review are
+archived byte-for-byte. The current manifest contains 34 targets, one root, and
+40 edges. Both validator implementations accept the bound series review and
+the two single-target reviews.*
 
 ## Liefergrenze / Delivery Boundary
 
 `Eligible` erteilt keine Feature-, Remote-, Merge- oder
-Administratorautoritaet. Dieser Closeout startet keinen Folgelauf.
+Administratorautoritaet. Die aktuelle Benutzeranweisung erlaubt die Umsetzung
+des genehmigten Plans im Delivery Mode `MergeAndSync`; ein Admin-Bypass wurde
+fuer diesen Auftrag nicht abgeleitet. G2B, Release und Rollout bleiben bis zum
+nachweisbaren G2A-Closeout blockiert.
 
-Die aktuelle Benutzeranweisung erteilt `MergeAndSync` fuer Feature 025 unter
-der engen Bypass-Grenze. Remediation-Intakes und Folgelaeufe benoetigen eigene
-aktuelle Autoritaet.
-
-*Eligible grants no feature, remote, merge, or administrator authority. This
-closeout starts no successor run.*
-
-*Current authority grants `MergeAndSync` for Feature 025 only. Remediation
-intakes and later runs require separate current authority.*
+*Eligible grants no feature, remote, merge, or administrator authority. The
+current instruction permits the approved plan in `MergeAndSync` mode; no admin
+bypass was inferred for this request. G2B, release, and rollout remain blocked
+until G2A is demonstrably complete.*

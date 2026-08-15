@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "4db2b5b0-cf88-4b0a-9ee6-e0d57c547357",
+  "mode": "Single",
+  "policy": "home-baseline-autonomous-evidence-integrity-v1",
+  "status": "Ready",
+  "reviewedAt": "2026-08-15T20:45:00Z",
+  "repository": {
+    "root": ".",
+    "head": "99b4cbb82cddc5c21a45cb8d35434846016b2a32"
+  },
+  "requestEvidence": {
+    "path": "specs/autonomous-evidence-integrity-intakes/reviews/g2b/intake-review-request.json",
+    "normalizedSha256": "9bfa71cfb23d56861920ab0d93b985696b8ef1b07cbcaa999a22535f9d2ab672"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
+      "role": "Primary",
+      "normalizedSha256": "df5169721e184597001ae3e1f2860e87ca462d1ccfd8c9b75ffa46e52c45aff4",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

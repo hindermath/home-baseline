@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "b6e3a616-53c7-4731-9e4e-69daad598f9e",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current user approved and requested implementation of the two-intake global G2 evidence-integrity gate.",
+  "proposalNormalizedSha256": "defd798d5870bcae353fe3edf35d7bba249f29c41417adc828ae5287cf20f6c1",
+  "preparedPaths": [
+    "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+    "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "Lastenheft_Abarbeitungsreihenfolge.md"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

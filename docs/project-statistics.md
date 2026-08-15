@@ -1061,6 +1061,29 @@ C++14 justifications. A read-only live inventory found 3,165,238,953 safe
 candidate bytes while preserving cc65 build evidence; no file was deleted.
 The pre-statistics delta is 3,067 net lines and the Home Runtime requires sync.*
 
+### 2026-08-15 - Autonomous-Evidence-Integrity-Gate-Intakes / Autonomous evidence integrity gate intakes
+
+- Zwei getrennte, reviewbereite Intakes fuer Preset-Kandidatenhaertung und
+  unabhaengigen Feldnachweis angelegt. Der erste Lauf darf nur einen
+  unveroeffentlichten v0.4.0-Kandidaten erzeugen; Release, Flotten-Rollout und
+  Series-Closeout bleiben dem zweiten Lauf vorbehalten.
+- Die aktive Series wurde nachvollziehbar von 32 Zielen, drei Roots und 36
+  Kanten auf 34 Ziele, eine Root und 40 Kanten erweitert. Der vorherige Stand
+  und sein Review bleiben bytegleich archiviert.
+- Beide Einzelreviews sowie der neue Schema-1.1-Series-Review sind `Ready`.
+  Bash und PowerShell bestaetigen Intake-Hashes, Request-Bindung, Root-Abdeckung
+  und den azyklischen Graphen. Es wurde noch kein Feature-Lauf gestartet.
+- Documentation Impact ist `UpdateRequired`; die Abarbeitungsreihenfolge und
+  Validierungs-Evidence wurden synchron aktualisiert. Die Aenderung ist
+  `sourceOnly`, deshalb ist kein Home-Sync erforderlich.
+
+*Two separate reviewed intakes now govern candidate hardening and independent
+field validation. The active series moved traceably from 32 targets, three
+roots, and 36 edges to 34 targets, one root, and 40 edges while preserving the
+prior state byte-for-byte. Both single reviews and the bound schema-1.1 series
+review are Ready in Bash and PowerShell. No feature run has started; the
+source-only documentation change requires no Home sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1071,27 +1094,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 640401 lines |
-| Textdateien / Text files | 3236 |
+| Textbasis / Text base | 642678 lines |
+| Textdateien / Text files | 3252 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-17..2026-08-15 |
 | Aktivtage / Active days | 89 |
-| Relevante Commits / Relevant commits | 736 |
-| Zeilen je Aktivtag / Lines per active day | 7195.5 |
+| Relevante Commits / Relevant commits | 737 |
+| Zeilen je Aktivtag / Lines per active day | 7221.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 89.9x |
-| Speedup vs. 100 lines/day | 72.0x |
-| Methodik / Methodology | v2; source `a13f102e1d61` |
+| Speedup vs. 80 lines/day | 90.3x |
+| Speedup vs. 100 lines/day | 72.2x |
+| Methodik / Methodology | v2; source `473538ef1c88` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.8% | 24282
-Dokumentation / Documentation   [##########..........]  49.6% | 317852
-Skripte / Scripts               [##..................]   9.6% | 61217
-Konfiguration / Configuration   [#######.............]  36.5% | 234000
+Dokumentation / Documentation   [##########..........]  49.5% | 318431
+Skripte / Scripts               [##..................]   9.5% | 61217
+Konfiguration / Configuration   [#######.............]  36.7% | 235698
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 813
 ```
@@ -1121,7 +1144,7 @@ Di/Tu  0 0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0
 Mi/We  0 0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0
 Do/Th  0 0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4
 Fr/Fr  0 0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3
-Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 2
+Sa/Sa  0 0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1311,8 +1334,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 89.9x
-100 lines/day      [##############......] 72.0x
+80 lines/day       [##################..] 90.3x
+100 lines/day      [##############......] 72.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1325,7 +1348,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7195.5
+Visible repository [##############......] 7221.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1351,6 +1374,6 @@ DE: Das Fenster beginnt am 2025-08-17 und endet am 2026-08-15. Es enthaelt 89 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 211135 |
+| 2026-08 | 213640 |
 
 <!-- project-statistics-v2:end -->

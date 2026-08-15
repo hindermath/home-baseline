@@ -7,22 +7,10 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-      "role": "Primary",
-      "normalizedSha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e",
-      "status": "Eligible"
-    },
-    {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "df5169721e184597001ae3e1f2860e87ca462d1ccfd8c9b75ffa46e52c45aff4",
-      "status": "Blocked"
-    },
-    {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
-      "status": "Blocked"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -212,33 +200,11 @@
     }
   ],
   "roots": [
-    "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md"
+    "Lastenheft_Secure-Development-Container-Hardening.md",
+    "Lastenheft_CICD_Pipeline_Konfiguration.md",
+    "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
-    {
-      "from": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
-      "to": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "kind": "PublishedPresetBaseline",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "to": "Lastenheft_Secure-Development-Container-Hardening.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "to": "Lastenheft_CICD_Pipeline_Konfiguration.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
-      "to": "Lastenheft_PowerShell_Cmdlets.md",
-      "kind": "RequirementsGovernanceGate",
-      "binding": true
-    },
     {
       "from": "Lastenheft_Secure-Development-Container-Hardening.md",
       "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -458,7 +424,6 @@
   ],
   "evidencePaths": [
     "Lastenheft_Abarbeitungsreihenfolge.md",
-    "docs/work-items/2026-08-09-feature-038-autonomous-preset-followup.md",
     "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
     "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
     "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
@@ -487,8 +452,6 @@
     "specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json",
     "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
     "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
-    "specs/intake-authoring-receipts/autonomous-evidence-integrity-field-validation-and-rollout.json",
-    "specs/intake-authoring-receipts/autonomous-evidence-integrity-hardening.json",
     "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
     "specs/intake-authoring-receipts/level-0-checkout-und-public-template-erstellung.json",
     "specs/intake-authoring-series/itse-learning-series/series.json",
