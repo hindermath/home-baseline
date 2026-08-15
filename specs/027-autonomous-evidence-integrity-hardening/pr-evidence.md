@@ -45,6 +45,7 @@ G2B rollout, not this source-only feature.
 - Retrospective decision: `PresetFollowUp`; promotion remains deferred to G2B.
 - No tag, release, ZIP, catalog update, consumer installation, fleet rollout,
   or G2B execution occurred.
+- Feature PR: `hindermath/home-baseline#241`.
 
 ## Documentation Impact
 

@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "7a38fbb33a53bc8e25ed7756f3c73f0ddc4ae84b",
+  "checkpointCommit": "12a0f62f2e20816647e3eecdf372567bba49523e",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
@@ -32,8 +32,8 @@
   ],
   "tasks": {
     "path": "specs/027-autonomous-evidence-integrity-hardening/tasks.md",
-    "sha256": "8a776d38a2de065aaec678c5c57c778ac70b52a1bf55237893317e65e8fa7733",
-    "completed": 59,
+    "sha256": "8f0425b1a10fdfbd79da69d74722a6010900aa506f4ea0113a676dc12dfa36cd",
+    "completed": 60,
     "total": 65
   },
   "routing": {
@@ -42,11 +42,11 @@
     "phases": []
   },
   "lastPassingGate": "LocalDeliveryCandidate",
-  "nextExactAction": "Commit closeout evidence, push the feature branch, and create a non-empty pull request.",
+  "nextExactAction": "Commit the PR identity, push the final reviewed head, then generate temporary schema-2.0 PreMerge evidence.",
   "lastOperation": {
-    "kind": "Commit",
+    "kind": "PublishPR",
     "state": "Completed",
-    "summary": "Validated source candidate committed in 01524f9 with executable-mode correction in 7a38fbb; statistics and retrospective prepared."
+    "summary": "Feature branch pushed and non-empty pull request 241 created."
   },
   "stop": {
     "reason": "N/A",
@@ -59,5 +59,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-15T21:57:10Z"
+  "updatedAt": "2026-08-15T21:58:41Z"
 }
