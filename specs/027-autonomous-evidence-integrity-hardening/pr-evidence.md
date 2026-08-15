@@ -46,6 +46,9 @@ G2B rollout, not this source-only feature.
 - No tag, release, ZIP, catalog update, consumer installation, fleet rollout,
   or G2B execution occurred.
 - Feature PR: `hindermath/home-baseline#241`.
+- Exact-head mapping correction: Homogeneity requires the actually executed
+  `check-homogeneity` token; the local evidence-integrity fixture is not
+  attributed to a remote workflow that does not execute it.
 
 ## Documentation Impact
 

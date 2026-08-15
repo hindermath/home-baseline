@@ -14,7 +14,7 @@
       "gateId": "GATE-027-HOMOGENEITY",
       "applicability": "Applicable",
       "requiredScope": "Canonical/publication parity and repository homogeneity",
-      "requiredCommandTokens": ["test-homogeneity"],
+      "requiredCommandTokens": ["check-homogeneity"],
       "requiredRunnerOrPlatformTokens": [],
       "rationale": "",
       "reevaluationTrigger": ""
