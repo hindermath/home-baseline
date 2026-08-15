@@ -10,13 +10,13 @@
       "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
       "role": "Primary",
       "normalizedSha256": "5034a1a9b64bf3a8c68c096132becca6fb1e408c3ff4b7f41cdda18409c1a51e",
-      "status": "Completed"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
       "role": "OrderedMember",
       "normalizedSha256": "df5169721e184597001ae3e1f2860e87ca462d1ccfd8c9b75ffa46e52c45aff4",
-      "status": "Eligible"
+      "status": "Blocked"
     },
     {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -473,8 +473,6 @@
     "specs/022-agentic-workspace-efficiency-guide/retrospective.md",
     "specs/025-rl-se-self-assessment/autonomous-run-evidence.md",
     "specs/025-rl-se-self-assessment/documentation-impact-evidence.json",
-    "specs/027-autonomous-evidence-integrity-hardening/pr-evidence.md",
-    "specs/027-autonomous-evidence-integrity-hardening/retrospective.md",
     "specs/active-lastenheft-normalization/history/7fd2b056-6e21-4108-bf09-237f294a6024/intake-review-result.json",
     "specs/active-lastenheft-normalization/intake-review-request.json",
     "specs/active-lastenheft-normalization/intake-review-result.json",
