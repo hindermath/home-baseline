@@ -12,7 +12,7 @@ not applicable consumers and were not mutated.
 
 | Consumer | Pull request | Result | Local synchronization |
 |---|---:|---|---|
-| `home-baseline` | Feature 028 PR, delivered in Phase 11 | Pending at this checkpoint | Feature branch intentionally active |
+| `home-baseline` | [#243](https://github.com/hindermath/home-baseline/pull/243) | Open for exact-head review at this checkpoint | Feature branch intentionally active |
 | `c64-baseline` | [#34](https://github.com/hindermath/c64-baseline/pull/34) | Merged | `(0 0)` |
 | `cc65` | [#32](https://github.com/hindermath/cc65/pull/32) | Merged | `(0 0)` on `master` |
 | `clion-baseline` | [#4](https://github.com/hindermath/clion-baseline/pull/4) | Merged | `(0 0)` |

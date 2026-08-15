@@ -104,7 +104,7 @@
 - [x] T070 Complete PR evidence, consumer outcomes, release hashes, and residual risks.
 - [x] T071 Complete retrospective and promotion decision without an empty follow-up PR.
 - [x] T072 Validate the explicit Home Baseline delivery set and commit Feature 028.
-- [ ] T073 Push and create a non-empty Feature 028 PR.
+- [x] T073 Push and create a non-empty Feature 028 PR.
 - [ ] T074 Generate and validate temporary schema-2.0 PreMerge exact-head evidence.
 - [ ] T075 Converge all technical checks and actionable review threads.
 - [ ] T076 Merge under bounded authority, delete branch, and synchronize clean main.

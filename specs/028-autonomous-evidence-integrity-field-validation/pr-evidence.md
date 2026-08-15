@@ -110,6 +110,12 @@ templates, five commands and 11 scripts, and records all three field findings,
 the v0.4.1 tag, ZIP checksum and compatibility boundary. External catalog
 processing remains non-blocking for local Feature 028 completion.
 
+Home Baseline Feature PR
+[#243](https://github.com/hindermath/home-baseline/pull/243) contains the
+validated non-empty package, adoption, feature evidence, workitem closeout and
+generated documentation. Its final reviewed head is established only after
+this checkpoint is committed and the generated statistics block is refreshed.
+
 ## Documentation Impact
 
 `UpdateRequired` plus `GeneratedUpdate`; see `spec.md`.
