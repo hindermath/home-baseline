@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "GATE-027-DELIVERY",
+      "applicability": "Applicable",
+      "requiredScope": "New delivery-set, phase-result, and lifecycle-evidence tests",
+      "requiredCommandTokens": ["test-autonomous-evidence-integrity"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-027-HOMOGENEITY",
+      "applicability": "Applicable",
+      "requiredScope": "Canonical/publication parity and repository homogeneity",
+      "requiredCommandTokens": ["test-homogeneity"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-027-POWERSHELL",
+      "applicability": "Applicable",
+      "requiredScope": "PowerShell static analysis",
+      "requiredCommandTokens": ["invoke-psscriptanalyzer"],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "",
+      "reevaluationTrigger": ""
+    },
+    {
+      "gateId": "GATE-027-RELEASE",
+      "applicability": "N/A",
+      "requiredScope": "Public release and fleet rollout",
+      "requiredCommandTokens": [],
+      "requiredRunnerOrPlatformTokens": [],
+      "rationale": "Feature 027 produces an unreleased candidate only.",
+      "reevaluationTrigger": "G2B starts independent field validation."
+    }
+  ]
+}
