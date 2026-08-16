@@ -262,6 +262,7 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "'lease-release'",
             "$fleetReport.mutationBarrier.fleetReady",
             "'--level0-dir', $sourceRoot",
+            "Set-Variable -Name LASTEXITCODE -Value $pythonExitCode -Scope 1",
         ):
             self.assertIn(token, workspace)
         self.assertNotIn(

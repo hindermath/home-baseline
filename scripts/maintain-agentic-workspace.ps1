@@ -694,6 +694,8 @@ function Invoke-HBPythonCommand {
     param([Parameter(Mandatory)][string[]]$Arguments)
     $commandArguments = @($script:HBPythonLauncher.PrefixArguments) + @($Arguments)
     & $script:HBPythonLauncher.FilePath @commandArguments
+    $pythonExitCode = $LASTEXITCODE
+    Set-Variable -Name LASTEXITCODE -Value $pythonExitCode -Scope 1
 }
 
 function ConvertTo-HBEventStatus {
