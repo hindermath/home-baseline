@@ -44,7 +44,7 @@
         "speckit-plan",
         "speckit-tasks"
       ],
-      "installed_at": "2026-08-08T22:17:38.459173+00:00"
+      "installed_at": "2026-08-15T23:06:32.298896+00:00"
     },
     "architecture-governance": {
       "version": "0.5.2",
@@ -89,7 +89,7 @@
         "speckit-plan",
         "speckit-tasks"
       ],
-      "installed_at": "2026-08-08T22:17:39.667486+00:00"
+      "installed_at": "2026-08-15T23:06:34.243906+00:00"
     },
     "isaqb-architecture-governance": {
       "version": "0.2.2",
@@ -134,7 +134,7 @@
         "speckit-plan",
         "speckit-tasks"
       ],
-      "installed_at": "2026-08-08T22:17:40.854535+00:00"
+      "installed_at": "2026-08-15T23:06:36.299674+00:00"
     },
     "a11y-governance": {
       "version": "0.4.3",
@@ -179,7 +179,7 @@
         "speckit-plan",
         "speckit-tasks"
       ],
-      "installed_at": "2026-08-08T22:17:42.055308+00:00"
+      "installed_at": "2026-08-15T23:06:38.221788+00:00"
     },
     "cross-platform-governance": {
       "version": "0.2.2",
@@ -224,7 +224,7 @@
         "speckit-plan",
         "speckit-tasks"
       ],
-      "installed_at": "2026-08-08T22:17:43.256633+00:00"
+      "installed_at": "2026-08-15T23:06:40.080887+00:00"
     },
     "agent-parity-governance": {
       "version": "0.4.2",
@@ -269,7 +269,45 @@
         "speckit-plan",
         "speckit-tasks"
       ],
-      "installed_at": "2026-08-08T22:17:44.479213+00:00"
+      "installed_at": "2026-08-15T23:06:42.304894+00:00"
+    },
+    "model-routing-governance": {
+      "version": "0.1.4",
+      "source": "local",
+      "manifest_hash": "sha256:a06eee81c3988b9ef617e131370c2522f4d4f8847c6dcfed833f465ed479fd0e",
+      "enabled": true,
+      "priority": 61,
+      "registered_commands": {
+        "agy": [
+          "speckit.model-routing-status",
+          "speckit.model-routing-refresh"
+        ],
+        "claude": [
+          "speckit.model-routing-status",
+          "speckit.model-routing-refresh"
+        ],
+        "codex": [
+          "speckit.model-routing-status",
+          "speckit.model-routing-refresh"
+        ],
+        "copilot": [
+          "speckit.model-routing-status",
+          "speckit.model-routing-refresh"
+        ],
+        "opencode": [
+          "speckit.model-routing-status",
+          "speckit.model-routing-refresh"
+        ],
+        "zed": [
+          "speckit.model-routing-status",
+          "speckit.model-routing-refresh"
+        ]
+      },
+      "registered_skills": [
+        "speckit-model-routing-status",
+        "speckit-model-routing-refresh"
+      ],
+      "installed_at": "2026-08-15T23:06:44.217276+00:00"
     },
     "intake-authoring-governance": {
       "version": "0.3.1",
@@ -328,7 +366,7 @@
         "speckit-intake-delete",
         "speckit-intake-create-status"
       ],
-      "installed_at": "2026-08-08T22:17:46.406231+00:00"
+      "installed_at": "2026-08-15T23:06:46.364730+00:00"
     },
     "intake-review-governance": {
       "version": "0.2.1",
@@ -373,7 +411,7 @@
         "speckit-intake-repair",
         "speckit-intake-review-status"
       ],
-      "installed_at": "2026-08-08T22:17:47.560001+00:00"
+      "installed_at": "2026-08-15T23:06:48.190298+00:00"
     },
     "intake-sequencing-governance": {
       "version": "0.2.3",
@@ -439,12 +477,12 @@
         "speckit-intake-series-status",
         "speckit-intake-series-next"
       ],
-      "installed_at": "2026-08-08T22:17:48.755771+00:00"
+      "installed_at": "2026-08-15T23:06:50.132180+00:00"
     },
     "autonomous-run-governance": {
-      "version": "0.3.6",
+      "version": "0.4.1",
       "source": "local",
-      "manifest_hash": "sha256:659cb5f9bff8263cb943c0174eaf899e9b962c4a1d91dfee6e04373d37f7af5c",
+      "manifest_hash": "sha256:9bdee271462fcecf84cdcf6b25cf70b615d9285c9107e4a30f7d4c00011f4759",
       "enabled": true,
       "priority": 70,
       "registered_commands": {
@@ -498,7 +536,7 @@
         "speckit-autonomous-stop",
         "speckit-autonomous-resume"
       ],
-      "installed_at": "2026-08-09T01:47:21.470133+00:00"
+      "installed_at": "2026-08-15T23:06:51.973101+00:00"
     },
     "parallel-autonomous-run-governance": {
       "version": "0.2.6",
@@ -557,45 +595,7 @@
         "speckit-parallel-autonomous-resume",
         "speckit-parallel-autonomous-consolidate"
       ],
-      "installed_at": "2026-08-09T01:47:22.770857+00:00"
-    },
-    "model-routing-governance": {
-      "version": "0.1.4",
-      "source": "local",
-      "manifest_hash": "sha256:a06eee81c3988b9ef617e131370c2522f4d4f8847c6dcfed833f465ed479fd0e",
-      "enabled": true,
-      "priority": 61,
-      "registered_commands": {
-        "agy": [
-          "speckit.model-routing-status",
-          "speckit.model-routing-refresh"
-        ],
-        "claude": [
-          "speckit.model-routing-status",
-          "speckit.model-routing-refresh"
-        ],
-        "codex": [
-          "speckit.model-routing-status",
-          "speckit.model-routing-refresh"
-        ],
-        "copilot": [
-          "speckit.model-routing-status",
-          "speckit.model-routing-refresh"
-        ],
-        "opencode": [
-          "speckit.model-routing-status",
-          "speckit.model-routing-refresh"
-        ],
-        "zed": [
-          "speckit.model-routing-status",
-          "speckit.model-routing-refresh"
-        ]
-      },
-      "registered_skills": [
-        "speckit-model-routing-status",
-        "speckit-model-routing-refresh"
-      ],
-      "installed_at": "2026-08-09T01:52:22.892922+00:00"
+      "installed_at": "2026-08-15T23:06:53.901823+00:00"
     }
   }
 }

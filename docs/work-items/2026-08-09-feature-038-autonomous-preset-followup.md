@@ -1,11 +1,37 @@
 # Workitem: Feature-038-Folgearbeit für autonome Evidence-Integrität / Feature 038 Autonomous Evidence Integrity Follow-up
 
-- Status: übergeben, nicht umgesetzt / handed off, not implemented
+- Status: umgesetzt in `autonomous-run-governance` v0.4.1 / implemented in `autonomous-run-governance` v0.4.1
 - Owner: Maintainer von `autonomous-run-governance`
 - Datum / Date: 2026-08-09
 - Ursprung / Origin: TuiVision Feature 038, Portfolio-Conformance-Audit
 - Entscheidung / Decision: `Promote`
 - Dokumentationsauswirkung / Documentation impact: `FollowUp`
+
+## Umsetzungsabschluss / Implementation Closeout
+
+Feature 028 hat alle drei providerneutralen Befunde unabhängig reproduziert,
+in Bash und PowerShell validiert und in Version 0.4.1 produktisiert. Die
+öffentlichen Preset-PRs
+[#16](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/16)
+und
+[#17](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/17)
+sind gemergt. Das Release `v0.4.1` ist über die versionierte GitHub-ZIP
+installierbar; deren geprüfte SHA-256 lautet
+`3b12b0415ff5da5187620f4f420689c7cb2d6421527dc0d56fcae6a600519f6e`.
+
+Die unabhängigen Feldnachweise stehen unter
+`specs/028-autonomous-evidence-integrity-field-validation/`. Die dynamische
+Flottenauslieferung erreichte Home Baseline und 35 anwendbare Level-1/2-
+Verbraucher ohne Produktcodeänderung. Der Community-Katalog-Folgeprozess wurde
+seriell über [github/spec-kit#4153](https://github.com/github/spec-kit/issues/4153)
+angestoßen; dessen externer Abschluss ist keine lokale Abschlussbedingung.
+
+*Feature 028 independently reproduced all three provider-neutral findings,
+validated them in Bash and PowerShell, and productized them in version 0.4.1.
+Public preset PRs #16 and #17 are merged. The versioned GitHub ZIP is
+installable and has the verified SHA-256 shown above. Field evidence lives
+under the Feature 028 directory, and the serial community-catalog follow-up is
+tracked in github/spec-kit#4153 without blocking local completion.*
 
 ## Zweck und Berechtigungsgrenze / Purpose and Authority Boundary
 
@@ -139,11 +165,13 @@ runner results, delivery modes, gate lifecycle, or promotion scope changes.*
 - Projektspezifische Werte sind ausdrücklich ausgeschlossen.
 - Für jede Regel sind Fehlergrenze, Permission-Risiko und reproduzierbare
   positive und negative Tests dokumentiert.
-- Die Entscheidung lautet dreimal `Promote`; die Umsetzung bleibt offen.
-- Dieses Workitem verändert keine Preset-, Script-, Template-, Command-,
-  Skill-, Agent- oder Consumer-Oberfläche.
+- Die ursprüngliche Entscheidung lautete dreimal `Promote`; Feature 028 hat
+  diese drei Entscheidungen vollständig umgesetzt.
+- Dieses Workitem bleibt als unveränderliche Herkunfts- und
+  Abschlussreferenz erhalten; die eigentlichen Oberflächenänderungen sind an
+  Feature 028, die öffentlichen Preset-PRs und das Release gebunden.
 
-*All three rules are bound to immutable evidence, exclude project-specific
-values, and include reproducible acceptance boundaries. The decision is
-`Promote`, while implementation remains explicitly open and no preset or
-consumer surface changes in this handoff.*
+*All three rules remain bound to immutable evidence and exclude
+project-specific values. Feature 028 completed their implementation; this
+work item remains the provenance and closeout reference rather than the source
+of the delivered surface changes.*

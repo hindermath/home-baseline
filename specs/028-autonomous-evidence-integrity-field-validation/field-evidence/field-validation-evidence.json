@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0",
+  "feature": "028-autonomous-evidence-integrity-field-validation",
+  "generatedAt": "2026-08-15T22:34:27.2934090Z",
+  "deliverySet": {
+    "ordinaryGitDiffExit": 0,
+    "invalidBashExit": 2,
+    "invalidPowerShellExit": 2,
+    "invalidClass": "AEI007",
+    "correctedBashExit": 0,
+    "correctedPowerShellExit": 0,
+    "invalidValidationReadOnly": true,
+    "correctedValidationReadOnly": true,
+    "unrelatedPathReported": true,
+    "ignoredPathExcluded": true,
+    "correctedInputSha256": "0b1ef2a7d196f10920981329147ae2bcfad91d4a0adaff02b43f1643eb5bd2a9",
+    "result": "Pass"
+  },
+  "semanticResume": {
+    "processExit": 0,
+    "blockedBashExit": 3,
+    "blockedPowerShellExit": 3,
+    "blockedPersistedAsCompleted": false,
+    "needsRevalidationSha256": "17b4f4dd4c2c7bf841c4477c9e6dc0d4dd65fe5e14304a8d05fbc6b394e8c1b7",
+    "completedBashExit": 0,
+    "completedPowerShellExit": 0,
+    "resume": {
+      "explicitResumeAttempts": 1,
+      "authorityRevalidated": true,
+      "phaseRevalidated": true,
+      "tasksRevalidated": true,
+      "hashesRevalidated": true,
+      "gitRevalidated": true,
+      "manualStateRepair": false,
+      "duplicateCompletedExecution": false,
+      "acceptedResultSha256": "4f568dd16e7c4efc4a04014ed2312cba8578f508a14217b78508bae34a12d6ac",
+      "finalStatus": "Completed"
+    },
+    "result": "Pass"
+  },
+  "lifecycle": {
+    "reviewedHead": "396036e57bf0fbac09df3288b2b051b630ac7bdd",
+    "mergeCommit": "1c8ec9fd66cdbe87ccbc9ede6014490bc601a8ce",
+    "requirementsSha256": "c30ecadaa64dd436fccf56f286020af1153021ad3108412f33bed37aa55b1286",
+    "preMergeSha256": "d55a5678336de3162dd05fa4ba6809ab0b68837246ba52dc068752a97bc23798",
+    "postMergeSha256": "f016a011156f51543e342fc92cd030f3ffeaaef427f51fccfb4918f52f028a92",
+    "preMergeBashExit": 0,
+    "preMergePowerShellExit": 0,
+    "prematureMergeExit": 2,
+    "postMergeBashExit": 0,
+    "postMergePowerShellExit": 0,
+    "changedPaths": [],
+    "recursiveCloseout": false,
+    "result": "Pass"
+  },
+  "overall": "Pass"
+}
