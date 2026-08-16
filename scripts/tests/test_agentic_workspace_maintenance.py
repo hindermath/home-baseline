@@ -804,6 +804,24 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertIn(token, bash)
             self.assertIn(token, powershell)
 
+    def test_powershell_preset_installer_uses_an_exit_code_boundary(self) -> None:
+        powershell = (REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1").read_text(
+            encoding="utf-8"
+        )
+        helper = powershell[
+            powershell.index("function Invoke-HBPresetInstallerProcess") :
+            powershell.index("function Invoke-HBPresetProfiles")
+        ]
+        profiles = powershell[
+            powershell.index("function Invoke-HBPresetProfiles") :
+            powershell.index("New-Item -ItemType Directory", powershell.index("function Invoke-HBPresetProfiles"))
+        ]
+
+        self.assertIn("& pwsh -NoProfile -NonInteractive -File $Installer @Arguments", helper)
+        self.assertIn("$status = if ($null -eq $LASTEXITCODE)", helper)
+        self.assertIn("Invoke-HBPresetInstallerProcess", profiles)
+        self.assertNotIn("& $installer", profiles)
+
     def test_storage_stage_uses_registry_barrier_not_unrelated_findings(self) -> None:
         bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")
         powershell = (REPOSITORY / "scripts" / "maintain-agentic-workspace.ps1").read_text(encoding="utf-8")

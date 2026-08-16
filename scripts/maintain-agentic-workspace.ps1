@@ -1367,6 +1367,21 @@ function Remove-HBPresetValidationTarget {
     }
 }
 
+function Invoke-HBPresetInstallerProcess {
+    param(
+        [Parameter(Mandatory)][string] $Installer,
+        [Parameter(Mandatory)][object[]] $Arguments
+    )
+
+    # The installer deliberately throws when CheckOnly detects drift. A child
+    # process converts that terminating error into the exit-code contract the
+    # orchestrator needs before deciding whether repair is permitted.
+    $output = @(& pwsh -NoProfile -NonInteractive -File $Installer @Arguments 2>&1)
+    $status = if ($null -eq $LASTEXITCODE) { 0 } else { [int]$LASTEXITCODE }
+    $output | ForEach-Object { Write-Host "$_" }
+    return $status
+}
+
 function Invoke-HBPresetProfiles {
     $installer = Join-Path $sourceRoot 'scripts/install-spec-kit-governance-presets.ps1'
     if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) {
@@ -1381,11 +1396,16 @@ function Invoke-HBPresetProfiles {
         try {
             $validationTarget = New-HBPresetValidationTarget -Repository $target.Path
             if ($WhatIfPreference) {
-                & $installer -Repo @($validationTarget.Path) -PresetConfig $config -WhatIf
+                $previewStatus = Invoke-HBPresetInstallerProcess -Installer $installer -Arguments @(
+                    '-Repo', $validationTarget.Path, '-PresetConfig', $config, '-WhatIf'
+                )
+                if ($previewStatus -ne 0) { throw "Preset-Vorschau fehlgeschlagen / preview failed: $($target.Path)" }
                 continue
             }
-            & $installer -Repo @($validationTarget.Path) -PresetConfig $config -CheckOnly
-            if ($LASTEXITCODE -eq 0) { continue }
+            $checkStatus = Invoke-HBPresetInstallerProcess -Installer $installer -Arguments @(
+                '-Repo', $validationTarget.Path, '-PresetConfig', $config, '-CheckOnly'
+            )
+            if ($checkStatus -eq 0) { continue }
             if ($validationTarget.Isolated) {
                 Write-HBWarning "Preset-Profil-Drift auf dem kanonischen Default-Branch erfordert einen eigenen Branch/PR / requires a dedicated branch/PR: $($target.Path)"
                 $script:Findings++
@@ -1396,8 +1416,10 @@ function Invoke-HBPresetProfiles {
                 $script:Findings++
                 continue
             }
-            & $installer -Repo @($target.Path) -PresetConfig $config -Force
-            if ($LASTEXITCODE -ne 0) { throw "Preset-Reparatur fehlgeschlagen / repair failed: $($target.Path)" }
+            $repairStatus = Invoke-HBPresetInstallerProcess -Installer $installer -Arguments @(
+                '-Repo', $target.Path, '-PresetConfig', $config, '-Force'
+            )
+            if ($repairStatus -ne 0) { throw "Preset-Reparatur fehlgeschlagen / repair failed: $($target.Path)" }
             $script:RepairApplied = $true
         } catch {
             Write-HBWarning $_.Exception.Message
