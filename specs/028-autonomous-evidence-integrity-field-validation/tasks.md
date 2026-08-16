@@ -116,7 +116,7 @@
 - [x] T079 Restore the 32-target, 3-root, 36-dependency Series topology.
 - [x] T080 Mark Position 7 as sole preferred `Eligible` without starting it.
 - [x] T081 Validate restored manifest/receipt in Bash and PowerShell.
-- [ ] T082 Deliver a single non-empty evidence-only closeout PR if post-merge facts require it.
+- [x] T082 Deliver a single non-empty evidence-only closeout PR if post-merge facts require it.
 - [ ] T083 Converge and merge the closeout under the same bounded rules.
 - [ ] T084 Prove Home Baseline and every changed repository clean and synchronized.
 - [ ] T085 Set run state to `Retrospective`, `Completed`, `85/85`, `nextExactAction: N/A`.

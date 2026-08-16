@@ -132,6 +132,10 @@ rule, so the authorized narrow bypass merged it as
   `Eligible` candidate and was not started.
 - The restored manifest, receipt and renewed schema-1.1 Series review passed
   in Bash and PowerShell with zero findings.
+- Non-empty causal closeout PR
+  [#244](https://github.com/hindermath/home-baseline/pull/244) carries only
+  post-merge evidence, Series restoration, archived intake names and generated
+  statistics. It grants no successor authority.
 
 ## Documentation Impact
 

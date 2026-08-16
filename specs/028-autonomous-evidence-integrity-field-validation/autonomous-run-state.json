@@ -44,8 +44,8 @@
   ],
   "tasks": {
     "path": "specs/028-autonomous-evidence-integrity-field-validation/tasks.md",
-    "sha256": "2c119502da116a54fc08895c9ef0181f0d60ea6e084213100b20f9bdc59be286",
-    "completed": 81,
+    "sha256": "0686d1c88962d3d7ca3279f01bcfff6847ce157b5b3e4dd78092c4ea63c63386",
+    "completed": 82,
     "total": 85
   },
   "routing": {
@@ -54,11 +54,11 @@
     "phases": []
   },
   "lastPassingGate": "SeriesRestoration",
-  "nextExactAction": "Validate and deliver the single non-empty causal evidence closeout PR.",
+  "nextExactAction": "Converge and merge causal closeout PR #244, then prove clean synchronized main.",
   "lastOperation": {
-    "kind": "SeriesRestoration",
+    "kind": "CausalCloseoutPR",
     "state": "Completed",
-    "summary": "PR #243 merged the exact reviewed head; causal gate evidence passed and the 32-target, 3-root, 36-dependency Series was restored with item 7 solely Eligible."
+    "summary": "Non-empty PR #244 contains the validated causal gate evidence and restored 32-target, 3-root, 36-dependency Series with item 7 solely Eligible."
   },
   "stop": {
     "reason": "N/A",
@@ -71,5 +71,5 @@
     "postMergeActions": "Completed",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-16T00:14:23Z"
+  "updatedAt": "2026-08-16T00:17:48Z"
 }
