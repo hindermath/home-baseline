@@ -263,8 +263,13 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "$fleetReport.mutationBarrier.fleetReady",
             "'--level0-dir', $sourceRoot",
             "Set-Variable -Name LASTEXITCODE -Value $pythonExitCode -Scope 1",
+            "$propagationManifestPath = Join-Path $sourceRoot",
         ):
             self.assertIn(token, workspace)
+        self.assertNotIn(
+            "$manifestPath = Join-Path $sourceRoot 'scripts/config/agentic-toolchain-maintenance-files.json'",
+            workspace,
+        )
         self.assertNotIn(
             "if ($LASTEXITCODE -notin @(0, $null)) { throw 'sync-home",
             workspace,

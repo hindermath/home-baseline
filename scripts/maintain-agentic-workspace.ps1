@@ -1072,8 +1072,8 @@ function Initialize-HBResumeState {
 }
 
 function Get-HBPropagationPlan {
-    $manifestPath = Join-Path $sourceRoot 'scripts/config/agentic-toolchain-maintenance-files.json'
-    $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $propagationManifestPath = Join-Path $sourceRoot 'scripts/config/agentic-toolchain-maintenance-files.json'
+    $manifest = Get-Content -LiteralPath $propagationManifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
     $changes = [Collections.Generic.List[object]]::new()
     foreach ($repository in Get-HBManagedRepositories) {
         foreach ($file in @($manifest.files)) {
