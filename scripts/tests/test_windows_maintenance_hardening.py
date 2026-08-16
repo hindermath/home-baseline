@@ -106,6 +106,15 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
         )
         self.assertTrue(transient["Succeeded"])
         self.assertEqual(transient["Attempts"], 3)
+        connection_reset = run_json(
+            "$script:n=0; "
+            "Invoke-HBWithRetry -MaximumAttempts 3 -BaseDelayMilliseconds 1 "
+            "-Operation { $script:n++; "
+            "if($script:n -lt 2){[pscustomobject]@{Succeeded=$false;Summary='fatal: Recv failure: Connection was reset'}}"
+            "else{[pscustomobject]@{Succeeded=$true;Summary='ok'}} }"
+        )
+        self.assertTrue(connection_reset["Succeeded"])
+        self.assertEqual(connection_reset["Attempts"], 2)
         terminal = run_json(
             "$script:n=0; "
             "Invoke-HBWithRetry -MaximumAttempts 3 -BaseDelayMilliseconds 1 "
