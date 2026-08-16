@@ -74,7 +74,7 @@ def is_transient_git_failure(detail: str) -> bool:
         return False
     return bool(
         re.search(
-            r"timed?\s*out|timeout|connection\s+(?:reset|closed|aborted)|temporary failure|"
+            r"timed?\s*out|timeout|connection\s+(?:was\s+)?(?:reset|closed|aborted)|temporary failure|"
             r"could not resolve host|name resolution|http\s+50[234]",
             detail,
             re.IGNORECASE,

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -141,6 +142,15 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
             check=False,
         )
+
+    def test_connection_was_reset_is_transient_but_auth_failure_is_terminal(self) -> None:
+        spec = importlib.util.spec_from_file_location("agentic_workspace_fleet_test", ENGINE)
+        assert spec is not None and spec.loader is not None
+        engine = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(engine)
+        self.assertTrue(engine.is_transient_git_failure("Recv failure: Connection was reset"))
+        self.assertTrue(engine.is_transient_git_failure("connection reset"))
+        self.assertFalse(engine.is_transient_git_failure("authentication failed"))
 
     def create_lease(
         self,
