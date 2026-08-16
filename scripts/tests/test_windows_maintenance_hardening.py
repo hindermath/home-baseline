@@ -264,6 +264,10 @@ class WindowsMaintenanceHardeningTests(unittest.TestCase):
             "'--level0-dir', $sourceRoot",
             "Set-Variable -Name LASTEXITCODE -Value $pythonExitCode -Scope 1",
             "$propagationManifestPath = Join-Path $sourceRoot",
+            "$script:ResumeEvidenceFiles",
+            "$propagationExceptions.Contains",
+            "-Files $evidenceChanges -Status Prepared",
+            "-Files $evidenceChanges -Status Applied",
         ):
             self.assertIn(token, workspace)
         self.assertNotIn(
