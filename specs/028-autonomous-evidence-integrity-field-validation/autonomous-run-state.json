@@ -2,42 +2,50 @@
   "schemaVersion": "1.1",
   "runId": "ce29a2a3-5c21-42a4-908b-a70062a17fa0",
   "featurePath": "specs/028-autonomous-evidence-integrity-field-validation",
-  "branch": "028-autonomous-evidence-integrity-field-validation",
+  "branch": "codex/feature-028-causal-closeout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
-  "checkpointCommit": "3f1b37f329ef276937e6f264f0c0baf5eb494550",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "4c8185aae6988957c94ddc4de104ea1eb4472ca1",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
+      "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.028-autonomous-evidence-integrity-field-validation.md",
       "sha256": "df5169721e184597001ae3e1f2860e87ca462d1ccfd8c9b75ffa46e52c45aff4"
     },
     {
-      "path": "specs/autonomous-evidence-integrity-intakes/reviews/g2b/intake-review-result.json",
-      "sha256": "2a2d3f98799082be48af74632bf37273506b05b98b3b1e32d1f54b1c47e91f37"
-    },
-    {
-      "path": "docs/work-items/2026-08-09-feature-038-autonomous-preset-followup.md",
-      "sha256": "18cc6a131269f590b2a5bb0f8ccc78e25bfbc7283781cb812d70af6cf3a8d996"
-    },
-    {
-      "path": "specs/027-autonomous-evidence-integrity-hardening/autonomous-run-state.json",
-      "sha256": "ea5fa44c4b66df49f107b3bfce5e1cd219408542e5385667d840eac8564c28c4"
-    },
-    {
       "path": "specs/028-autonomous-evidence-integrity-field-validation/spec.md",
-      "sha256": "6538a62624f56ca634596e2f4bad56eff8aad25a33fe5e7d638192df8f6e004b"
+      "sha256": "56aa874a3942e4cf4cf69a4ab4694d1f651653a9a7db6b428f4988d68011a81c"
     },
     {
       "path": "specs/028-autonomous-evidence-integrity-field-validation/plan.md",
-      "sha256": "08f11f7b72e8e528738fad04b24390f302823c52727a6949bd190869d83f1d0e"
+      "sha256": "48cfea9b3d97b9a3bb27b7a4633a936275c6e05ffd5fa47e99cbdb40c5fabc26"
+    },
+    {
+      "path": "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-gate-evidence-premerge.json",
+      "sha256": "f21976dc041ce878657fc7045c225cad011f1504725fd34bf926effc0d5b6825"
+    },
+    {
+      "path": "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-gate-evidence-postmerge.json",
+      "sha256": "29bfce2d19965c78e2e161b4203d73ad2427f6541e1ed032f07979c01f0d44d0"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "ff1fd5e4ae112a894612384e1c4844e27e2695e438708a8d338824102ee92a68"
+    },
+    {
+      "path": "specs/active-lastenheft-normalization/intake-review-result.json",
+      "sha256": "f2368a81ca86a454829f329f4224bf9919df1dbc463f2d5047c7dace51e9f044"
     }
   ],
   "tasks": {
     "path": "specs/028-autonomous-evidence-integrity-field-validation/tasks.md",
-    "sha256": "42b90a6a516e2f59ef2b9e97249cb4354aefe0d6bb82990b2673ddc177c6c0bf",
-    "completed": 73,
+    "sha256": "0a5ae481be633eeeb9fd5b681a3c84c65140c7b88f31816588edb91ecbaf85e6",
+    "completed": 85,
     "total": 85
   },
   "routing": {
@@ -45,12 +53,12 @@
     "fallbackPolicy": "fail-closed",
     "phases": []
   },
-  "lastPassingGate": "LocalDeliverySet",
-  "nextExactAction": "Commit the PR checkpoint, refresh project statistics, push the exact head, and generate temporary schema-2.0 PreMerge evidence.",
+  "lastPassingGate": "CausalCloseoutExactHead",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "LocalDeliverySet",
+    "kind": "CausalCloseout",
     "state": "Completed",
-    "summary": "The complete intended Home Baseline delivery set was committed, generated documentation was rendered, and non-empty PR 243 was created."
+    "summary": "PR #244 carries the terminal reviewed closeout head; its merge and subsequent clean main synchronization satisfy the causal completion predicate without a recursive PR."
   },
   "stop": {
     "reason": "N/A",
@@ -58,10 +66,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "N/A",
-    "defaultBranchSync": "N/A",
-    "postMergeActions": "N/A",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-15T23:56:51Z"
+  "updatedAt": "2026-08-16T00:23:56Z"
 }

@@ -113,8 +113,33 @@ processing remains non-blocking for local Feature 028 completion.
 Home Baseline Feature PR
 [#243](https://github.com/hindermath/home-baseline/pull/243) contains the
 validated non-empty package, adoption, feature evidence, workitem closeout and
-generated documentation. Its final reviewed head is established only after
-this checkpoint is committed and the generated statistics block is refreshed.
+generated documentation. Exact reviewed head
+`525fbf90a0810a1cd46abc9c4e48fb757c68318c` passed all technical checks and
+had zero actionable review threads. Human Approval was the sole remaining
+rule, so the authorized narrow bypass merged it as
+`4c8185aae6988957c94ddc4de104ea1eb4472ca1`.
+
+## Causal Closeout
+
+- Schema-2.0 PreMerge evidence passed in Bash and PowerShell with normalized
+  SHA-256 `f21976dc041ce878657fc7045c225cad011f1504725fd34bf926effc0d5b6825`.
+- Causal PostMerge evidence binds that snapshot to merge commit
+  `4c8185aae6988957c94ddc4de104ea1eb4472ca1`, reports zero changed paths and
+  passed both validators with normalized SHA-256
+  `29bfce2d19965c78e2e161b4203d73ad2427f6541e1ed032f07979c01f0d44d0`.
+- The G2A and G2B lifecycle state was archived. The active Series is restored
+  to 32 targets, three roots and 36 dependencies; item 7 is the sole declared
+  `Eligible` candidate and was not started.
+- The restored manifest, receipt and renewed schema-1.1 Series review passed
+  in Bash and PowerShell with zero findings.
+- Non-empty causal closeout PR
+  [#244](https://github.com/hindermath/home-baseline/pull/244) carries only
+  post-merge evidence, Series restoration, archived intake names and generated
+  statistics. It grants no successor authority.
+- Its exact causal head passed every Ubuntu, macOS and Windows technical gate
+  with zero actionable review threads. The terminal state becomes true when
+  that same reviewed head is merged and the primary checkout is synchronized;
+  no recursive closeout PR is created.
 
 ## Documentation Impact
 

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "37f48e72-08b5-44cf-8e5d-634ce34f0131",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Authorized MergeAndSync causal closeout for completed Feature 028; no Position-7 execution authority is inferred.",
+  "proposalNormalizedSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888",
+  "differences": {
+    "targetCount": { "before": 34, "after": 32 },
+    "rootCount": { "before": 1, "after": 3 },
+    "dependencyCount": { "before": 40, "after": 36 },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md",
+        "status": "Completed"
+      },
+      {
+        "path": "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.md",
+        "status": "Eligible"
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "statusBefore": "Blocked",
+        "statusAfter": "Eligible",
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_PowerShell_Cmdlets.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Autonomous-Evidence-Integrity-Hardening.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": [
+      "G2A -> G2B",
+      "G2B -> Position 7",
+      "G2B -> Position 9",
+      "G2B -> Position 10"
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Archives completed G2A and G2B, restores the evidenced 32-target topology, and exposes Position 7 as the sole preferred Eligible candidate without starting it."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/37f48e72-08b5-44cf-8e5d-634ce34f0131/manifest.json",
+    "manifestNormalizedSha256": "212f3e8163019d0726a901750cb413d26d8e2354161d822034a1e0d3b30857ac",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/37f48e72-08b5-44cf-8e5d-634ce34f0131/receipt.json",
+    "receiptNormalizedSha256": "4cf64645dd2f82080c7b6ebaa91f9e6a061458406648d3540389603d20bdbb63"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Autonomous-Evidence-Integrity-Hardening.027-autonomous-evidence-integrity-hardening.md",
+    "Lastenheft_Autonomous-Evidence-Integrity-Field-Validation-and-Rollout.028-autonomous-evidence-integrity-field-validation.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-gate-evidence-premerge.json",
+    "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-gate-evidence-postmerge.json"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

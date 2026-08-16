@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "f1819783-92fc-472d-8002-d84045465838",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-08-15T22:07:13Z",
+  "operation": {
+    "operationId": "89ea0699-68ed-4be6-8883-df8338e70cce",
+    "type": "Update",
+    "authorityEvidence": "Authorized MergeAndSync causal closeout for completed Feature 027; no G2B execution or preset publication authority is inferred."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "212f3e8163019d0726a901750cb413d26d8e2354161d822034a1e0d3b30857ac"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/89ea0699-68ed-4be6-8883-df8338e70cce/receipt.json",
+    "receiptNormalizedSha256": "a2a7eb59390ff8bbd83a00832c72aaf7d74ec569c0189b3213c8589b7590e7a1",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/89ea0699-68ed-4be6-8883-df8338e70cce/manifest.json",
+    "manifestArchiveSha256": "defd798d5870bcae353fe3edf35d7bba249f29c41417adc828ae5287cf20f6c1"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

@@ -12,7 +12,7 @@ not applicable consumers and were not mutated.
 
 | Consumer | Pull request | Result | Local synchronization |
 |---|---:|---|---|
-| `home-baseline` | [#243](https://github.com/hindermath/home-baseline/pull/243) | Open for exact-head review at this checkpoint | Feature branch intentionally active |
+| `home-baseline` | [#243](https://github.com/hindermath/home-baseline/pull/243) | Merged as `4c8185aae6988957c94ddc4de104ea1eb4472ca1` | Feature head `525fbf90a0810a1cd46abc9c4e48fb757c68318c`; causal closeout follows separately |
 | `c64-baseline` | [#34](https://github.com/hindermath/c64-baseline/pull/34) | Merged | `(0 0)` |
 | `cc65` | [#32](https://github.com/hindermath/cc65/pull/32) | Merged | `(0 0)` on `master` |
 | `clion-baseline` | [#4](https://github.com/hindermath/clion-baseline/pull/4) | Merged | `(0 0)` |

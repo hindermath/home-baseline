@@ -105,21 +105,21 @@
 - [x] T071 Complete retrospective and promotion decision without an empty follow-up PR.
 - [x] T072 Validate the explicit Home Baseline delivery set and commit Feature 028.
 - [x] T073 Push and create a non-empty Feature 028 PR.
-- [ ] T074 Generate and validate temporary schema-2.0 PreMerge exact-head evidence.
-- [ ] T075 Converge all technical checks and actionable review threads.
-- [ ] T076 Merge under bounded authority, delete branch, and synchronize clean main.
-- [ ] T077 Generate and validate causal schema-2.0 PostMerge evidence.
+- [x] T074 Generate and validate temporary schema-2.0 PreMerge exact-head evidence.
+- [x] T075 Converge all technical checks and actionable review threads.
+- [x] T076 Merge under bounded authority, delete branch, and synchronize clean main.
+- [x] T077 Generate and validate causal schema-2.0 PostMerge evidence.
 
 ## Phase 12 - Series Causal Closeout
 
-- [ ] T078 Archive G2A and G2B manifests, receipts, and lifecycle evidence.
-- [ ] T079 Restore the 32-target, 3-root, 36-dependency Series topology.
-- [ ] T080 Mark Position 7 as sole preferred `Eligible` without starting it.
-- [ ] T081 Validate restored manifest/receipt in Bash and PowerShell.
-- [ ] T082 Deliver a single non-empty evidence-only closeout PR if post-merge facts require it.
-- [ ] T083 Converge and merge the closeout under the same bounded rules.
-- [ ] T084 Prove Home Baseline and every changed repository clean and synchronized.
-- [ ] T085 Set run state to `Retrospective`, `Completed`, `85/85`, `nextExactAction: N/A`.
+- [x] T078 Archive G2A and G2B manifests, receipts, and lifecycle evidence.
+- [x] T079 Restore the 32-target, 3-root, 36-dependency Series topology.
+- [x] T080 Mark Position 7 as sole preferred `Eligible` without starting it.
+- [x] T081 Validate restored manifest/receipt in Bash and PowerShell.
+- [x] T082 Deliver a single non-empty evidence-only closeout PR if post-merge facts require it.
+- [x] T083 Converge and merge the closeout under the same bounded rules.
+- [x] T084 Prove Home Baseline and every changed repository clean and synchronized.
+- [x] T085 Set run state to `Retrospective`, `Completed`, `85/85`, `nextExactAction: N/A`.
 
 ## Dependencies
 
