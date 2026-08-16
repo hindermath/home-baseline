@@ -787,6 +787,9 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             target = next(item for item in report["targets"] if item["targetId"] == "example")
             self.assertEqual(target["status"], "CURRENT")
             self.assertTrue(target["resumeAccepted"])
+            self.assertTrue(target["mutationAllowed"])
+            self.assertTrue(report["mutationBarrier"]["fleetReady"])
+            self.assertTrue(report["mutationBarrier"]["domainMutationAllowed"])
 
     def test_public_surfaces_share_admin_deferral_and_report_contract(self) -> None:
         bash = (REPOSITORY / "scripts" / "maintain-agentic-workspace.sh").read_text(encoding="utf-8")

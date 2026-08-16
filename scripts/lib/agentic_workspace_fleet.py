@@ -532,13 +532,13 @@ def classify_repository(
             upstream=upstream_name, retryAttempts=pull_attempts,
             resumeAccepted=resume_accepted, freshnessAttempt=freshness,
             defaultBranchEvidence=default_evidence, pullAttempt=pull_evidence,
-            mutationAllowed=not dirty
+            mutationAllowed=not dirty or resume_accepted
         )
     return target_result(
         target, branch=branch_name, upstream=upstream_name,
         retryAttempts=fetch_attempts, resumeAccepted=resume_accepted,
         freshnessAttempt=freshness, defaultBranchEvidence=default_evidence,
-        mutationAllowed=not dirty
+        mutationAllowed=not dirty or resume_accepted
     )
 
 
