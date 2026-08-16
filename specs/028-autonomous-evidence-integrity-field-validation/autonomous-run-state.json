@@ -5,8 +5,8 @@
   "branch": "codex/feature-028-causal-closeout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "MergeAndSync",
-  "status": "Active",
+  "stage": "Retrospective",
+  "status": "Completed",
   "checkpointCommit": "4c8185aae6988957c94ddc4de104ea1eb4472ca1",
   "acceptedArtifacts": [
     {
@@ -44,8 +44,8 @@
   ],
   "tasks": {
     "path": "specs/028-autonomous-evidence-integrity-field-validation/tasks.md",
-    "sha256": "0686d1c88962d3d7ca3279f01bcfff6847ce157b5b3e4dd78092c4ea63c63386",
-    "completed": 82,
+    "sha256": "0a5ae481be633eeeb9fd5b681a3c84c65140c7b88f31816588edb91ecbaf85e6",
+    "completed": 85,
     "total": 85
   },
   "routing": {
@@ -53,12 +53,12 @@
     "fallbackPolicy": "fail-closed",
     "phases": []
   },
-  "lastPassingGate": "SeriesRestoration",
-  "nextExactAction": "Converge and merge causal closeout PR #244, then prove clean synchronized main.",
+  "lastPassingGate": "CausalCloseoutExactHead",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "CausalCloseoutPR",
+    "kind": "CausalCloseout",
     "state": "Completed",
-    "summary": "Non-empty PR #244 contains the validated causal gate evidence and restored 32-target, 3-root, 36-dependency Series with item 7 solely Eligible."
+    "summary": "PR #244 carries the terminal reviewed closeout head; its merge and subsequent clean main synchronization satisfy the causal completion predicate without a recursive PR."
   },
   "stop": {
     "reason": "N/A",
@@ -67,9 +67,9 @@
   },
   "closeout": {
     "mergeOrPublication": "Completed",
-    "defaultBranchSync": "Pending",
+    "defaultBranchSync": "Completed",
     "postMergeActions": "Completed",
-    "finalValidation": "Pending"
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-08-16T00:17:48Z"
+  "updatedAt": "2026-08-16T00:23:56Z"
 }

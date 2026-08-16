@@ -136,6 +136,10 @@ rule, so the authorized narrow bypass merged it as
   [#244](https://github.com/hindermath/home-baseline/pull/244) carries only
   post-merge evidence, Series restoration, archived intake names and generated
   statistics. It grants no successor authority.
+- Its exact causal head passed every Ubuntu, macOS and Windows technical gate
+  with zero actionable review threads. The terminal state becomes true when
+  that same reviewed head is merged and the primary checkout is synchronized;
+  no recursive closeout PR is created.
 
 ## Documentation Impact
 

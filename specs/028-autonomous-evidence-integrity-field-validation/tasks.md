@@ -117,9 +117,9 @@
 - [x] T080 Mark Position 7 as sole preferred `Eligible` without starting it.
 - [x] T081 Validate restored manifest/receipt in Bash and PowerShell.
 - [x] T082 Deliver a single non-empty evidence-only closeout PR if post-merge facts require it.
-- [ ] T083 Converge and merge the closeout under the same bounded rules.
-- [ ] T084 Prove Home Baseline and every changed repository clean and synchronized.
-- [ ] T085 Set run state to `Retrospective`, `Completed`, `85/85`, `nextExactAction: N/A`.
+- [x] T083 Converge and merge the closeout under the same bounded rules.
+- [x] T084 Prove Home Baseline and every changed repository clean and synchronized.
+- [x] T085 Set run state to `Retrospective`, `Completed`, `85/85`, `nextExactAction: N/A`.
 
 ## Dependencies
 
