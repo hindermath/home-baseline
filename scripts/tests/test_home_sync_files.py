@@ -12,6 +12,7 @@ import unittest
 
 
 HELPER = Path(__file__).resolve().parents[1] / "lib" / "home-sync-files.py"
+REPOSITORY = Path(__file__).resolve().parents[2]
 
 
 def identity(path: Path) -> dict[str, str]:
@@ -97,6 +98,43 @@ class HomeSyncFilesTests(unittest.TestCase):
         self.assertEqual(state["schemaVersion"], 2)
         self.assertEqual(state["manifestSchemaVersion"], 2)
         self.assertEqual(set(state["files"]), {"runtime.txt"})
+
+    def test_canonical_stats_history_remains_local_and_ignored(self) -> None:
+        ignored = subprocess.run(
+            ["git", "check-ignore", "--quiet", "--no-index", "--", "STATS.md"],
+            cwd=REPOSITORY,
+            check=False,
+        )
+        manifest_path = REPOSITORY / "scripts" / "config" / "home-sync-manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(ignored.returncode, 0, "STATS.md must remain local and ignored")
+        self.assertIn("STATS.md", manifest["machineLocal"]["rootFiles"])
+        self.assertNotIn("STATS.md", manifest["homeRuntime"]["rootFiles"])
+
+    def test_gitignore_source_update_is_not_a_local_stats_conflict(self) -> None:
+        canonical_ignore = "/*\n/.*\n!.gitignore\n"
+        (self.repository / ".gitignore").write_text(canonical_ignore, encoding="utf-8")
+        subprocess.run(["git", "add", ".gitignore"], cwd=self.repository, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", "manage gitignore"], cwd=self.repository, check=True)
+        manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
+        manifest["homeRuntime"] = self.selector(["runtime.txt", ".gitignore"])
+        self.manifest.write_text(json.dumps(manifest), encoding="utf-8")
+
+        self.assertEqual(self.run_sync().returncode, 0)
+        (self.home / "STATS.md").write_text("local history\n", encoding="utf-8")
+        (self.repository / ".gitignore").write_text(
+            canonical_ignore + "# Canonical source update.\n",
+            encoding="utf-8",
+        )
+        subprocess.run(["git", "add", ".gitignore"], cwd=self.repository, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", "update gitignore"], cwd=self.repository, check=True)
+
+        checked = self.run_sync("--check-only")
+        self.assertEqual(checked.returncode, 1)
+        self.assertIn("[COPY] .gitignore (source-updated)", checked.stdout)
+        self.assertNotIn("[CONFLICT] .gitignore", checked.stdout)
+        self.assertEqual((self.home / "STATS.md").read_text(encoding="utf-8"), "local history\n")
 
     def test_v1_state_releases_retired_path_without_deleting_it(self) -> None:
         (self.home / "docs").mkdir()
