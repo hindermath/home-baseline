@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "1.0",
+  "gates": [
+    {
+      "gateId": "AC-CBG-001",
+      "applicability": "Applicable",
+      "requiredScope": "Prove exact one-to-one, visibility-compatible classification of the authoritative union of the Level-0 home-baseline self record resolved from the executing repository and configured origin plus every active kind=git-repository fleet-manifest target; prove the current 1 + 47 = 48 result, exclusion of spec-kit-preset-projects and all collection nodes, the three required Public Canaries, live cardinality recomputation, and fail-closed missing, unknown, duplicate, and incompatible fixtures.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-001",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-001 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "AC-CBG-001 is a binding Stage A acceptance criterion and requires executable positive and negative classification evidence.",
+      "reevaluationTrigger": "Profile names, visibility rules, fleet manifest schema, stable repository IDs, or live inventory adapter change."
+    },
+    {
+      "gateId": "AC-CBG-002",
+      "applicability": "Applicable",
+      "requiredScope": "Prove that Private Governance/Scaffold plans zero full private PR/main builds, no more than one lean path-aware PR gate, and retains separate local-evidence and server-side PR/status boundaries.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-002",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-002 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "The local hook is not a complete security boundary; the canonical server-gate simulation is mandatory.",
+      "reevaluationTrigger": "Private governance triggers, minimal-gate definition, branch protection model, or hook/server trust boundary changes."
+    },
+    {
+      "gateId": "AC-CBG-003",
+      "applicability": "Applicable",
+      "requiredScope": "Prove that a simulated change across all six SecureCaseTracker language repositories produces no more than six distinct path-appropriate product PR jobs.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-003",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-003 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "The six-product cap is a measurable acceptance boundary for path-contract deduplication.",
+      "reevaluationTrigger": "CaseTracker language repository count, product path contracts, or job deduplication semantics change."
+    },
+    {
+      "gateId": "AC-CBG-004",
+      "applicability": "Applicable",
+      "requiredScope": "Prove the Decimal-based Stage A cost projection reports approximately 22 recurring private jobs per week, separates demand minimal gates, and explains every deviation.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-004",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-004 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "Recurring load and demand-driven gates must remain independently auditable.",
+      "reevaluationTrigger": "Schedules, live cardinalities, duration inputs, weeks-per-month factor, or budget categories change."
+    },
+    {
+      "gateId": "AC-CBG-005",
+      "applicability": "Applicable",
+      "requiredScope": "Prove planned private Actions usage is below 500 of 3000 minutes per month and excludes Copilot AI credits and Copilot review runner time from that value.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-005",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-005 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "The monthly target is binding and must not be made green by category mixing or missing-data-as-zero behavior.",
+      "reevaluationTrigger": "Private Actions budget, target threshold, billing assumptions, or Copilot consumption model changes."
+    },
+    {
+      "gateId": "AC-CBG-006",
+      "applicability": "Applicable",
+      "requiredScope": "Prove repeated zero-, single-, and multi-repository fixtures have identical normalized ordered decisions, hashes, and exit codes; timestamp variation must not affect decision or gate-set binding.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-006",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-006 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "The macOS Primary aggregator validates deterministic fixtures for semantic macOS, Linux, and Windows normalization; its hash-bound internal input files are not autonomous gate-evidence rows.",
+      "reevaluationTrigger": "Canonical JSON, ordering, hash inputs, clock handling, platform normalization, or exit-code contract changes."
+    },
+    {
+      "gateId": "AC-CBG-007",
+      "applicability": "Applicable",
+      "requiredScope": "Prove all missing, stale, failed, mismatched-HEAD, mismatched-gate-set, and stale-hook evidence fixtures block; matching evidence passes locally; workflow/ruleset fixtures block unchecked default-branch writes when the hook is absent or bypassed.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-007",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-007 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "Defense in depth requires both local evidence validation and an independent server-contract proof.",
+      "reevaluationTrigger": "Evidence schema/path, hook versioning, default-branch protection, required status, or bypass model changes."
+    },
+    {
+      "gateId": "AC-CBG-008",
+      "applicability": "Applicable",
+      "requiredScope": "The Primary aggregator must orchestrate Bash syntax, PowerShell and PSScriptAnalyzer, parity fixtures, existing maintenance regression safety, secret scanning, A11Y, documentation, workflow/path-contract, and statistics checks. It must validate one manual target-OS run per Bash and PowerShell variant; macOS supplies both current manual records, while fixtures prove semantic macOS, Linux, and Windows normalization without claiming unexecuted runners.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-008",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-008 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "The feature changes a critical paired script surface and user-facing text, so full platform, accessibility, security, and regression evidence is mandatory.",
+      "reevaluationTrigger": "Supported platform, wrapper surface, validator inventory, user-facing output, documentation, or statistics contract changes."
+    },
+    {
+      "gateId": "AC-CBG-009",
+      "applicability": "Applicable",
+      "requiredScope": "The Primary aggregator must run the mutation spy and validate the exact Stage A Git-diff allowlist, proving zero Copilot reviewer, G4, GitHub account, active ruleset, target-repository, commit, push, merge, or Home-sync mutations and that G4 never starts.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-009",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-009 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "The LocalImplementation authority boundary is a delivery gate and cannot be inferred from intent alone.",
+      "reevaluationTrigger": "Delivery authority, Stage A allowlist, GitHub adapter methods, Home Runtime scope, or G4 boundary changes."
+    },
+    {
+      "gateId": "AC-CBG-010",
+      "applicability": "Applicable",
+      "requiredScope": "The Primary aggregator must validate fixture completeness plus the separately controlled read-only live inventory result. Prove every repository in the authoritative home-baseline plus active fleet-manifest Git-target union has one deterministic local rollout entry with profile, planned diff, gate decision, blockers, and remoteConverged=false; the collection is excluded, Stage A changes only Level-0 artifacts, and convergence is claimed for zero targets.",
+      "requiredCommandTokens": [
+        "python3",
+        "scripts/tests/run_ci_budget_acceptance.py",
+        "--gate",
+        "AC-CBG-010",
+        "--repository-root",
+        ".",
+        "--evidence-root",
+        ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence",
+        "python3 scripts/tests/run_ci_budget_acceptance.py --gate AC-CBG-010 --repository-root . --evidence-root .specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
+      ],
+      "requiredRunnerOrPlatformTokens": [
+        "macOS"
+      ],
+      "rationale": "Complete read-only fleet planning is the Stage A handoff deliverable and must not be confused with Stage B convergence.",
+      "reevaluationTrigger": "Fleet membership, inventory source, rollout-entry schema, Level-0 ownership, or Stage B authority changes."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "9ab74f34-7b6c-4f7c-9a54-558e10328c2d",
+  "mode": "Single",
+  "status": "NeedsRemediation",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-08-19T16:57:54Z",
+  "repository": {
+    "root": ".",
+    "head": "4cb82b1267924ba78a2119cea03e75f38fb403ac"
+  },
+  "requestEvidence": {
+    "path": "specs/flottenweite-ci-budget-governance-und-actions-rationalisierung-intake-review/intake-review-request.json",
+    "normalizedSha256": "623ec8d2bb5ff27a60e44e5b2fad0e6bea867748593de8c678c4c61470c40cc8"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "role": "Primary",
+      "normalizedSha256": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb",
+      "gitBlob": "e66bad97a4fd4d49ab7ac4ae2fb1046dc4e6e7b1"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR001",
+      "severity": "High",
+      "category": "SecurityEnforcement",
+      "target": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "disposition": "Open; repair required before Specify",
+      "owner": "home-baseline intake owner",
+      "evidence": "CBG-003 removes automatic private governance PR/main builds, while CBG-014 relies on a local pre-push hook and CBG-018 forbids weakening or bypassing gates. Local hooks and local JSON evidence do not cover uninstalled hooks, --no-verify, alternate clones, GitHub web/API writes, or stale hook distribution, so AC-CBG-002 and AC-CBG-007 cannot prove a fail-closed fleet boundary.",
+      "reevaluationTrigger": "Re-review after the intake defines and tests an enforceable trust boundary, including hook installation/freshness and server-side or explicitly bounded equivalent protection for every push path."
+    },
+    {
+      "id": "IR002",
+      "severity": "High",
+      "category": "DeliveryAuthorityAndScope",
+      "target": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "disposition": "Open; repair required before Specify",
+      "owner": "home-baseline intake owner",
+      "evidence": "The target state and result artifacts require workflow-trigger, schedule, hook, and profile convergence across 48 repositories. The declared delivery authority is LocalImplementation, the Autonomous prompt permits only repository-owned changes, and the hard stops prohibit remote delivery. No separately governed rollout or acceptance handoff explains how fleet-wide AC-CBG-001 through AC-CBG-009 become true under that authority.",
+      "reevaluationTrigger": "Re-review after the intake splits Level-0 canonical implementation from a separately authorized fleet rollout, or otherwise aligns delivery authority, repositories in scope, handoff evidence, and stage-specific acceptance."
+    },
+    {
+      "id": "IR003",
+      "severity": "Medium",
+      "category": "ProfileClassificationAndDrift",
+      "target": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "disposition": "Open; repair required before Specify",
+      "owner": "home-baseline intake owner",
+      "evidence": "CBG-001 says repository visibility and membership must be live-revalidated and are not timeless, while CBG-002 fixes the five profile cardinalities at 3/6/6/21/12 for exactly 48 repositories. The live snapshot currently matches 27 private and 21 public repositories, but the intake does not define deterministic classification rules or the required stop/update behavior when membership, visibility, or cardinality changes.",
+      "reevaluationTrigger": "Re-review after the intake defines repository-to-profile decision rules, canonical mapping evidence, and fail-closed behavior for fleet or visibility drift."
+    }
+  ],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 2,
+    "medium": 1,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

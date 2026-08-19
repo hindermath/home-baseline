@@ -1,29 +1,71 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "e4c19633-6b94-4042-a8a4-8571989fde83",
+  "receiptId": "6667f6f9-ec24-4897-8fbc-80ef668ad45a",
   "intakeId": "8e33f932-ba35-417e-b240-ee389fbd078e",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.1"
   },
-  "createdAt": "2026-08-19T06:49:48Z",
+  "createdAt": "2026-08-19T17:14:54Z",
   "operation": {
-    "operationId": "c7a804fb-56d1-4448-b64d-4802036006df",
-    "type": "Create",
-    "authorityEvidence": "User approved proposal hash 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 and requested implementation of the authoring plan."
+    "operationId": "ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda",
+    "type": "Update",
+    "authorityEvidence": "Explicit current $speckit-intake-repair instruction plus separate user approval of the IR001 security boundary, IR002 Stage A delivery boundary, and IR003 profile-drift contract."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
-    "normalizedSha256": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb"
+    "normalizedSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Archived prior CI budget governance intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/8e33f932-ba35-417e-b240-ee389fbd078e/ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb",
+      "gitBlob": "e66bad97a4fd4d49ab7ac4ae2fb1046dc4e6e7b1",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Archived NeedsRemediation Intake Review result",
+      "location": "Repository",
+      "path": "specs/flottenweite-ci-budget-governance-und-actions-rationalisierung-intake-review/history/9ab74f34-7b6c-4f7c-9a54-558e10328c2d/intake-review-result.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "0aee827a7134cfc3a5dcb80be6d6aec4d0b9bb04d845d5f915ef5d7b2d950523",
+      "gitBlob": "N/A",
+      "proofBoundary": "ArchivedSupersededReview"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
       "kind": "Pasted",
-      "label": "Approved Actions-minute governance plan",
+      "label": "Explicit IR001 server-side security-boundary authorization",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -36,17 +78,17 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "d1597d984ff3ac73d89ef22b3a78e012f88868f5de50811430b12cfc83c01e29",
+      "normalizedSha256": "2b196d589c33c2fbc4dcb96cd39261ad4a2587374b051991673b75b1c4cc115c",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved CI profiles, gates, evidence, targets, order, and exclusions."
+      "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
     },
     {
-      "sourceId": "SRC002",
-      "order": 2,
-      "kind": "File",
-      "label": "Approved two-intake proposal",
-      "location": "Repository",
-      "path": "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
+      "sourceId": "SRC004",
+      "order": 4,
+      "kind": "Pasted",
+      "label": "Explicit IR002 staged-delivery authorization",
+      "location": "SnapshotOnly",
+      "path": "N/A",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -57,17 +99,17 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8",
+      "normalizedSha256": "82c494546d9a3d78696ecbf27726f91ed6f28d1f05ae5c9cefa31a9298002eb9",
       "gitBlob": "N/A",
-      "proofBoundary": "Approved target, role, edge, root, and cardinality contract."
+      "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
     },
     {
-      "sourceId": "SRC003",
-      "order": 3,
-      "kind": "File",
-      "label": "Current agentic workspace fleet registry",
-      "location": "Repository",
-      "path": "scripts/config/agentic-workspace-fleet.json",
+      "sourceId": "SRC005",
+      "order": 5,
+      "kind": "Pasted",
+      "label": "Explicit IR003 profile-classification and drift authorization",
+      "location": "SnapshotOnly",
+      "path": "N/A",
       "requestedUrl": "N/A",
       "finalUrl": "N/A",
       "retrievedAt": "N/A",
@@ -78,9 +120,9 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "a2f6a9c164df2de28859be820e40603cee9c2364e94eec7f2eecf79c7d63dd4a",
-      "gitBlob": "6dbb64a9356b8a24f2c47665a27ef0d6c0f635ca",
-      "proofBoundary": "Current 47 Git repository targets plus one logical collection; Level 0 is added separately."
+      "normalizedSha256": "7370d298fb335216bc58e234bddb1f6fd0a20ffd60713a789e5d4be9d97ebdd8",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: explicitly approved in the current Codex task"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -91,18 +133,39 @@
       "status": "Answered",
       "question": "Should the Actions-minute intake be a binding gate before Position 7?",
       "answer": "Yes. It is the sole declared Eligible target and gates the successor chain.",
-      "evidence": "User selected the recommended binding-gate option."
+      "evidence": "User selected the recommended binding-gate option during initial authoring."
     },
     {
       "id": "IAD002",
       "status": "Answered",
       "question": "How should the Actions and Copilot intakes be ordered?",
       "answer": "Serialize G3 Actions before G4 Copilot before Position 7.",
-      "evidence": "User selected two sequential intakes and approved the proposal hash."
+      "evidence": "User selected two sequential intakes and approved the initial proposal hash."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Wie wird IR001 zur nicht lokal umgehbaren Sicherheitsgrenze repariert?",
+      "answer": "Private Governance-/Scaffold-Repositories behalten genau einen schlanken, pfadabhaengigen und ruleset-verpflichtenden serverseitigen PR-Gate. Vollstaendige und doppelte Builds entfallen; direkte, Web- und API-Umgehungspfade bleiben gesperrt.",
+      "evidence": "Explizite aktuelle Benutzerantwort Ja auf den vollstaendig vorgelegten IR001-Vertrag."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wie wird IR002 mit LocalImplementation vereinbar gemacht?",
+      "answer": "G3 Stufe A implementiert nur Level-0-Artefakte und Dry-Run-, Mapping- sowie Rollout-Evidence. Die Aenderung und Konvergenz der 47 Ziel-Repositories ist eine separat zu autorisierende Stufe B.",
+      "evidence": "Explizite aktuelle Benutzerantwort ja auf den vollstaendig vorgelegten IR002-Vertrag."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welcher deterministische Klassifikations- und Driftvertrag repariert IR003?",
+      "answer": "Jede stabile Registry-ID erhaelt eine versionierte ciProfile-Zuordnung. Sichtbarkeit und Mitgliedschaft werden live ermittelt; Profilzahlen sind nur ein datierter Snapshot. Unbekannte, fehlende, doppelte oder unvereinbare Zuordnungen stoppen fail-closed und verlangen ein geprueftes Mapping-Update.",
+      "evidence": "Explizite aktuelle Benutzerantwort Ja auf den vollstaendig vorgelegten IR003-Vertrag."
     }
   ],
   "openDecisionIds": [],
-  "questionCount": 2,
+  "questionCount": 3,
   "agentSurface": {
     "specifyCanonicalId": "speckit.specify",
     "specifyInvocation": "$speckit-specify",
@@ -110,22 +173,22 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Default LocalImplementation; the current request authorizes intake authoring and series update but no remote delivery.",
+  "authorityEvidence": "The current repair authority preserves LocalImplementation and explicitly limits Stage A to Level-0-owned artifacts; target-repository convergence remains a separate Stage B authorization.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A",
-    "archiveTargetPath": "N/A",
-    "archiveReceiptPath": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/8e33f932-ba35-417e-b240-ee389fbd078e/ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda/receipt.json",
+    "targetNormalizedSha256": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb",
+    "archiveTargetPath": "specs/intake-authoring-archive/8e33f932-ba35-417e-b240-ee389fbd078e/ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/8e33f932-ba35-417e-b240-ee389fbd078e/ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current explicit $speckit-intake-repair instruction plus three separate affirmative user answers authorizing IR001, IR002, and IR003 semantic repairs.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",

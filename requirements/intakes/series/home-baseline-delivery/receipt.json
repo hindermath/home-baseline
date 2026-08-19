@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "a734ce72-8c4f-4521-9c7e-ef340e14e53c",
+  "receiptId": "09da9600-1379-4f51-91f6-1389cc7e5015",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.3"
   },
-  "createdAt": "2026-08-19T06:49:48Z",
+  "createdAt": "2026-08-19T17:14:54Z",
   "operation": {
-    "operationId": "2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6",
+    "operationId": "618a6e43-f3fe-4bc9-b098-550c3fe97121",
     "type": "Update",
-    "authorityEvidence": "User approved proposal SHA-256 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 and requested implementation; this updates order only and grants no downstream execution authority."
+    "authorityEvidence": "Current explicit $speckit-intake-repair authority plus separate user approval of IR001, IR002, and IR003; this Series update changes only the repaired target hash and grants no downstream execution or fleet-rollout authority."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "f6dca7228b4eeae3941ae272e77621f648a267de4884a57da1474be9a554fbda"
+    "normalizedSha256": "d184531a26cb7ae291df3335f874e5c0173e9c2b3c44b9ae7ad342230a8a29dd"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6/receipt.json",
-    "receiptNormalizedSha256": "ff1fd5e4ae112a894612384e1c4844e27e2695e438708a8d338824102ee92a68",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6/manifest.json",
-    "manifestArchiveSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/receipt.json",
+    "receiptNormalizedSha256": "65cd178f5f0962363229717227200534cdba8e4dd2bea3a3b1eb323cfd23ce40",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/manifest.json",
+    "manifestArchiveSha256": "f6dca7228b4eeae3941ae272e77621f648a267de4884a57da1474be9a554fbda"
   },
   "tombstone": {
     "path": "N/A",

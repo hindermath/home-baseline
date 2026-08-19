@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "a734ce72-8c4f-4521-9c7e-ef340e14e53c",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-08-19T06:49:48Z",
+  "operation": {
+    "operationId": "2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6",
+    "type": "Update",
+    "authorityEvidence": "User approved proposal SHA-256 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 and requested implementation; this updates order only and grants no downstream execution authority."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "f6dca7228b4eeae3941ae272e77621f648a267de4884a57da1474be9a554fbda"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6/receipt.json",
+    "receiptNormalizedSha256": "ff1fd5e4ae112a894612384e1c4844e27e2695e438708a8d338824102ee92a68",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6/manifest.json",
+    "manifestArchiveSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

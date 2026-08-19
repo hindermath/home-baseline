@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/ci-inventory-rollout-plan.schema.json",
+  "title": "Home Baseline Stage A CI Inventory and Rollout Plan",
+  "$comment": "Cross-array semantic validation requires repository.profileId and rollout.profileId to equal the successfully validated CIProfileAssignment.profileId for the same repositoryId before planning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "stage",
+    "deliveryMode",
+    "generatedAt",
+    "source",
+    "sourceRevision",
+    "authoritativeRepositorySet",
+    "inventorySnapshotHash",
+    "profileRegistryHash",
+    "pathContractHash",
+    "mutationsPerformed",
+    "profileCardinalities",
+    "repositories",
+    "rollout",
+    "costProjection"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "stage": { "const": "A" },
+    "deliveryMode": { "const": "LocalImplementation" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "description": "Single adapter source for every repository in this atomic inventory snapshot; mixed-source snapshots are forbidden.",
+      "enum": ["GitHubReadOnly", "Fixture"]
+    },
+    "sourceRevision": {
+      "description": "Single freshness token that atomically binds the complete inventory snapshot; partial-refresh snapshots are forbidden.",
+      "type": "string",
+      "minLength": 1
+    },
+    "authoritativeRepositorySet": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Level-0 home-baseline self record plus every active fleet-manifest git-repository target; collection nodes are excluded.",
+      "required": [
+        "level0SelfRepositoryId",
+        "level0RemoteResolution",
+        "fleetManifestPath",
+        "includedRepositoryCount",
+        "excludedCollectionIds"
+      ],
+      "properties": {
+        "level0SelfRepositoryId": { "const": "home-baseline" },
+        "level0RemoteResolution": {
+          "const": "executing-level0-configured-origin"
+        },
+        "fleetManifestPath": {
+          "const": "scripts/config/agentic-workspace-fleet.json"
+        },
+        "includedRepositoryCount": { "type": "integer", "minimum": 1 },
+        "excludedCollectionIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/stableId" }
+        }
+      }
+    },
+    "inventorySnapshotHash": { "$ref": "#/$defs/sha256" },
+    "profileRegistryHash": {
+      "description": "SHA-256 of the separately loaded and schema-validated profile registry; it is never merged with the path-contract hash.",
+      "$ref": "#/$defs/sha256"
+    },
+    "pathContractHash": {
+      "description": "SHA-256 of the sole separately loaded and schema-validated path-contract registry.",
+      "$ref": "#/$defs/sha256"
+    },
+    "mutationsPerformed": { "const": false },
+    "profileCardinalities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Public Canary",
+        "Public Product",
+        "Private Product",
+        "Private Governance/Scaffold",
+        "Public Preset"
+      ],
+      "properties": {
+        "Public Canary": { "type": "integer", "minimum": 0 },
+        "Public Product": { "type": "integer", "minimum": 0 },
+        "Private Product": { "type": "integer", "minimum": 0 },
+        "Private Governance/Scaffold": { "type": "integer", "minimum": 0 },
+        "Public Preset": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/repository" }
+    },
+    "rollout": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rolloutEntry" }
+    },
+    "costProjection": { "$ref": "#/$defs/costProjection" }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "decimalString": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"
+    },
+    "profileId": {
+      "enum": [
+        "public-canary",
+        "public-product",
+        "private-product",
+        "private-governance-scaffold",
+        "public-preset"
+      ]
+    },
+    "workflowJobInventoryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflowId",
+        "jobId",
+        "triggers",
+        "runners",
+        "averageDurationSeconds",
+        "plannedRuns"
+      ],
+      "properties": {
+        "workflowId": { "$ref": "#/$defs/stableId" },
+        "jobId": { "$ref": "#/$defs/stableId" },
+        "triggers": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["pull_request", "push", "schedule", "workflow_dispatch"] }
+        },
+        "runners": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "averageDurationSeconds": {
+          "oneOf": [{ "$ref": "#/$defs/decimalString" }, { "type": "null" }]
+        },
+        "plannedRuns": {
+          "oneOf": [{ "$ref": "#/$defs/decimalString" }, { "type": "null" }]
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repositoryId",
+        "remoteIdentity",
+        "visibility",
+        "defaultBranch",
+        "profileId",
+        "observedAt",
+        "workflows"
+      ],
+      "properties": {
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "remoteIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "not": { "pattern": "(?:@|[?&](?:token|key|secret)=|\\u0000)" }
+        },
+        "visibility": { "enum": ["public", "private"] },
+        "defaultBranch": { "type": "string", "minLength": 1 },
+        "profileId": {
+          "description": "Deliberately denormalized only after assignment validation; it must equal the CIProfileAssignment.profileId for repositoryId.",
+          "$ref": "#/$defs/profileId"
+        },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "workflows": {
+          "type": "array",
+          "description": "WorkflowJobInventoryEntry values ordered by workflowId, then jobId.",
+          "items": { "$ref": "#/$defs/workflowJobInventoryEntry" }
+        }
+      }
+    },
+    "plannedDiff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "action", "stage"],
+      "properties": {
+        "artifactId": { "$ref": "#/$defs/stableId" },
+        "action": { "enum": ["Add", "Update", "Preserve", "RemoveDuplicate", "NoChange"] },
+        "stage": { "enum": ["A-Level0Template", "B-TargetRepository"] }
+      }
+    },
+    "rolloutEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repositoryId",
+        "profileId",
+        "plannedDiff",
+        "gateDecision",
+        "blockers",
+        "nextAction",
+        "remoteConverged"
+      ],
+      "properties": {
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "profileId": {
+          "description": "Must equal both the validated assignment profileId and the matching repository inventory entry profileId.",
+          "$ref": "#/$defs/profileId"
+        },
+        "plannedDiff": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/plannedDiff" }
+        },
+        "gateDecision": {
+          "enum": ["LocalGate", "ProductPRGate", "PublicCI", "FleetPipeline", "Blocked"]
+        },
+        "blockers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/stableId" }
+        },
+        "nextAction": { "type": "string", "minLength": 1 },
+        "remoteConverged": { "const": false }
+      }
+    },
+    "costProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weeksPerMonthNumerator",
+        "weeksPerMonthDenominator",
+        "recurringPrivateJobsPerWeek",
+        "demandMinimalGateRuns",
+        "privateActionsMinutesPerMonth",
+        "privateMonthlyBudgetMinutes",
+        "copilotReviewRunnerMinutes",
+        "assumptions"
+      ],
+      "properties": {
+        "weeksPerMonthNumerator": { "const": 52 },
+        "weeksPerMonthDenominator": { "const": 12 },
+        "recurringPrivateJobsPerWeek": { "$ref": "#/$defs/decimalString" },
+        "demandMinimalGateRuns": {
+          "oneOf": [{ "$ref": "#/$defs/decimalString" }, { "type": "null" }]
+        },
+        "privateActionsMinutesPerMonth": { "$ref": "#/$defs/decimalString" },
+        "privateMonthlyBudgetMinutes": { "const": 3000 },
+        "copilotReviewRunnerMinutes": {
+          "oneOf": [{ "$ref": "#/$defs/decimalString" }, { "type": "null" }]
+        },
+        "assumptions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
