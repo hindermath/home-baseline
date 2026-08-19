@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "e4c19633-6b94-4042-a8a4-8571989fde83",
+  "intakeId": "8e33f932-ba35-417e-b240-ee389fbd078e",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.1"
+  },
+  "createdAt": "2026-08-19T06:49:48Z",
+  "operation": {
+    "operationId": "c7a804fb-56d1-4448-b64d-4802036006df",
+    "type": "Create",
+    "authorityEvidence": "User approved proposal hash 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 and requested implementation of the authoring plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "normalizedSha256": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved Actions-minute governance plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "d1597d984ff3ac73d89ef22b3a78e012f88868f5de50811430b12cfc83c01e29",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved CI profiles, gates, evidence, targets, order, and exclusions."
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Approved two-intake proposal",
+      "location": "Repository",
+      "path": "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved target, role, edge, root, and cardinality contract."
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Current agentic workspace fleet registry",
+      "location": "Repository",
+      "path": "scripts/config/agentic-workspace-fleet.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "a2f6a9c164df2de28859be820e40603cee9c2364e94eec7f2eecf79c7d63dd4a",
+      "gitBlob": "6dbb64a9356b8a24f2c47665a27ef0d6c0f635ca",
+      "proofBoundary": "Current 47 Git repository targets plus one logical collection; Level 0 is added separately."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Should the Actions-minute intake be a binding gate before Position 7?",
+      "answer": "Yes. It is the sole declared Eligible target and gates the successor chain.",
+      "evidence": "User selected the recommended binding-gate option."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "How should the Actions and Copilot intakes be ordered?",
+      "answer": "Serialize G3 Actions before G4 Copilot before Position 7.",
+      "evidence": "User selected two sequential intakes and approved the proposal hash."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 2,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default LocalImplementation; the current request authorizes intake authoring and series update but no remote delivery.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "ActionsBudgetGate",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md"
+}

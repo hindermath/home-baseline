@@ -164,6 +164,7 @@
 | 2026-08-14 | Home-Baseline- und Sandbox-Dokumentation verzahnt | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Home Baseline ist als kanonische Quelle fuer Lernendenweg, providerneutrales Git-Hosting, Level-0-Governance und Source-/Runtime-Vertrag abgegrenzt; die Sandbox-Dokumentation besitzt Image-Build, gepinnte Versionen, Mounts, Container-Kommandos und den konkreten Runtime-Wrapper. Zielgruppen, Required-Agenten (`codex`, `claude`, `agy`, `copilot`) und der begrenzte Runtime-only-Pfad sind synchron. Der neue `--shared-guides-only`-/`-SharedGuidesOnly`-Modus plant und staged ausschliesslich die drei gemeinsamen Guides in Root und `docs/learning-units/`; Fixture-Tests und Live-Dry-Runs bestaetigten 21/21 erreichbare Ziele, null Skips, null neuere Konflikte und 84 geplante Dateiaenderungen ohne README-, Intake-, Lernbegleiter-, Vorlagen- oder Datensatz-Drift. Die geaenderte `homeRuntime`-Guidance benoetigt nach Merge und Release einen Home-Sync. |
 | 2026-08-15 | Achte Pflicht-Erweiterung fuer VS Code | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: `ms-vscode.powershell` ist als achte eindeutige Required-Erweiterung fuer das Schreiben und Debuggen von PowerShell-Skripten und Cmdlets in der gemeinsamen Registry verankert. Beide Wartungs-Manpages, die fuenf Shared-Guidance-Dateien und vier Vorlagen sind Deutsch zuerst und Englisch danach synchronisiert. Ein fail-closed Regressionstest bindet die exakte Acht-Erweiterungs-Menge und alle elf Dokumentationsflaechen. 124 Python-Wartungstests, beide Documentation-Impact-Suiten und PSScriptAnalyzer fuer 164 Dateien sind lokal gruen; der reale macOS-Compare-only-Lauf meldet null fehlende Required-Erweiterungen und Exitcode 0. Das fachliche Delta vor Statistikpflege umfasst 122 Nettozeilen. Home Runtime wird nach dem Merge synchronisiert; Level-1-/Level-2-Rollout und Fleet-Pushes bleiben ausserhalb dieses Auftrags. |
 | 2026-08-15 | Feature 027 Autonomous Evidence Integrity Hardening | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Der unveroeffentlichte Autonomous-Run-Governance-Kandidat 0.4.0 validiert eine ausdrueckliche Liefermenge einschliesslich benannter unversionierter Dateien, verlangt ein strukturiertes semantisches Phasenergebnis und trennt Schema-2.0-`PreMerge`- von kausaler `PostMerge`-Evidence. Historisches Schema 1.0 bleibt ausschliesslich im Auditmodus lesbar. Positive und negative Cross-Shell-Fixtures, bestehendes Modell-Routing, drei State-Validatoren, PSScriptAnalyzer fuer 164 Dateien, Script-Referenz und eine Zwölf-Preset-Komposition sind gruen. Kanonischer Scaffold und Publikationskopie sind bytegleich; Release, Tag, ZIP, Katalog, Consumer und Flotten-Rollout bleiben bis zum unabhaengigen G2B-Feldnachweis gesperrt. |
+| 2026-08-19 | CI-Budget- und Copilot-Review-Governance-Intakes | — | — | — | Documentation Impact `UpdateRequired`: Zwei getrennte Schema-2.0-Intakes bereiten die flottenweite Rationalisierung von GitHub-Actions-Minuten und die begrenzte GitHub-Copilot-Review-Governance vor. G3 erhebt zuerst das reale CI-Portfolio, schützt technische, Sicherheits- und A11Y-Gates und definiert ein kostenbewusstes Zielprofil; G4 folgt erst danach und begrenzt automatische Copilot-Reviews auf genau acht benannte öffentliche beziehungsweise zentrale Repositories. Beide Receipts und die gemeinsame Authoring-Operation binden den genehmigten Vorschlag mit SHA-256 `1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8`. Die aktive Serie wächst von 32 auf 34 Ziele und von 36 auf 38 Abhängigkeiten bei unverändert drei Roots: G3 ist der einzige deklarierte `Eligible`-Kandidat, G4 und die bisherige Position 7 sind `Blocked`, Positionen 9 und 10 bleiben `Pending`. Die Vorgängerserie ist bytegleich archiviert. Intake Review, Specify, Autonomous, GitHub-Konfigurationsänderungen, Lieferung und Home-Sync wurden nicht gestartet. |
 
 ---
 
@@ -1115,27 +1116,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 648157 lines |
-| Textdateien / Text files | 3323 |
-| Beobachtbarer Zeitraum / Observable period | 2025-08-24..2026-08-17 |
-| Aktivtage / Active days | 91 |
-| Relevante Commits / Relevant commits | 759 |
-| Zeilen je Aktivtag / Lines per active day | 7122.6 |
+| Textbasis / Text base | 649616 lines |
+| Textdateien / Text files | 3332 |
+| Beobachtbarer Zeitraum / Observable period | 2025-08-24..2026-08-19 |
+| Aktivtage / Active days | 92 |
+| Relevante Commits / Relevant commits | 760 |
+| Zeilen je Aktivtag / Lines per active day | 7061.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 89.0x |
-| Speedup vs. 100 lines/day | 71.2x |
-| Methodik / Methodology | v2; source `14d429fc9d8f` |
+| Speedup vs. 80 lines/day | 88.3x |
+| Speedup vs. 100 lines/day | 70.6x |
+| Methodik / Methodology | v2; source `0377da58e32d` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.9% | 25129
-Dokumentation / Documentation   [##########..........]  49.5% | 320597
+Dokumentation / Documentation   [##########..........]  49.4% | 321118
 Skripte / Scripts               [##..................]   9.4% | 61242
-Konfiguration / Configuration   [#######.............]  36.7% | 238140
+Konfiguration / Configuration   [#######.............]  36.8% | 239078
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 812
 ```
@@ -1161,8 +1162,8 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Wochen / Weeks 27..52 | 2026-02-22..2026-08-22
 So/Su  0 0 0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4
 Mo/Mo  0 0 0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1
-Di/Tu  0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 -
-Mi/We  0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 -
+Di/Tu  0 0 0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0
+Mi/We  0 0 0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 3
 Do/Th  0 0 0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 -
 Fr/Fr  0 0 0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 -
 Sa/Sa  0 0 0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 -
@@ -1355,8 +1356,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 89.0x
-100 lines/day      [##############......] 71.2x
+80 lines/day       [##################..] 88.3x
+100 lines/day      [##############......] 70.6x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1369,7 +1370,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7122.6
+Visible repository [##############......] 7061.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1378,9 +1379,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-08-24 und endet am 2026-08-17. Es enthaelt 91 aktive und 268 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-08-24 und endet am 2026-08-19. Es enthaelt 92 aktive und 269 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-08-24 and ends on 2026-08-17. It contains 91 active and 268 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-08-24 and ends on 2026-08-19. It contains 92 active and 269 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1395,6 +1396,6 @@ DE: Das Fenster beginnt am 2025-08-24 und endet am 2026-08-17. Es enthaelt 91 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 223969 |
+| 2026-08 | 225522 |
 
 <!-- project-statistics-v2:end -->

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "User approved proposal SHA-256 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 and requested implementation; this updates intake artifacts and order only and grants no review, Specify, Autonomous, GitHub-setting, delivery, or Home-sync authority.",
+  "proposalNormalizedSha256": "1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8",
+  "differences": {
+    "targetCount": { "before": 32, "after": 34 },
+    "rootCount": { "before": 3, "after": 3 },
+    "dependencyCount": { "before": 36, "after": 38 },
+    "addedTargets": [
+      {
+        "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+        "status": "Eligible",
+        "role": "Primary"
+      },
+      {
+        "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+        "status": "Blocked",
+        "role": "OrderedMember"
+      }
+    ],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "statusBefore": "Eligible",
+        "statusAfter": "Blocked",
+        "roleBefore": "Primary",
+        "roleAfter": "OrderedMember"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Secure-Development-Container-Hardening.md"
+    ],
+    "addedDependencies": [
+      {
+        "from": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+        "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+        "kind": "HardCompletionGate",
+        "conceptualName": "ActionsBudgetBaseline"
+      },
+      {
+        "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "kind": "HardCompletionGate",
+        "conceptualName": "CopilotReviewGovernanceBaseline"
+      }
+    ],
+    "removedDependencies": [],
+    "dependencyKindMapping": "The approved conceptual names describe the two baselines. The installed schema 1.0 validator has a closed dependency-kind enumeration, so both binding serial edges are represented by the existing HardCompletionGate value instead of extending the registry contract in this intake-only update."
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Places the approved G3 Actions-budget intake first, blocks G4 behind G3, and blocks the former Position 7 behind G4 while preserving Positions 9 and 10 as Pending roots."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6/manifest.json",
+    "manifestNormalizedSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/2eae1405-72ed-4a1e-9aaf-cb86b9dff8c6/receipt.json",
+    "receiptNormalizedSha256": "ff1fd5e4ae112a894612384e1c4844e27e2695e438708a8d338824102ee92a68"
+  },
+  "preparedPaths": [
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
+    "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/operation.json",
+    "specs/intake-authoring-receipts/flottenweite-ci-budget-governance-und-actions-rationalisierung.json",
+    "specs/intake-authoring-receipts/flottenweite-github-copilot-review-governance-und-kostenbegrenzung.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "docs/project-statistics.md"
+  ],
+  "validation": {
+    "bash": "Passed",
+    "powerShell": "Passed",
+    "requirementsGovernance": "Aligned"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

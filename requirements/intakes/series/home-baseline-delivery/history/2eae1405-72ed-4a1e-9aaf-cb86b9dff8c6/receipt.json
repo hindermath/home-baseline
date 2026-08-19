@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "d7312d6e-f11f-4daf-a2b5-7adc306ba1ff",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-08-16T00:09:12Z",
+  "operation": {
+    "operationId": "37f48e72-08b5-44cf-8e5d-634ce34f0131",
+    "type": "Update",
+    "authorityEvidence": "Authorized MergeAndSync causal closeout for completed Feature 028; Position 7 is exposed without execution authority."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "2772673c5655153d104b628a793c15dad9291b7edb6e0dd30662400ba5bca888"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/37f48e72-08b5-44cf-8e5d-634ce34f0131/receipt.json",
+    "receiptNormalizedSha256": "4cf64645dd2f82080c7b6ebaa91f9e6a061458406648d3540389603d20bdbb63",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/37f48e72-08b5-44cf-8e5d-634ce34f0131/manifest.json",
+    "manifestArchiveSha256": "212f3e8163019d0726a901750cb413d26d8e2354161d822034a1e0d3b30857ac"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}
