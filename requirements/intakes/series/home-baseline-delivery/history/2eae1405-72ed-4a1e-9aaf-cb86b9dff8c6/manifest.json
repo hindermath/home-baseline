@@ -7,22 +7,10 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
-      "role": "Primary",
-      "normalizedSha256": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb",
-      "status": "Eligible"
-    },
-    {
-      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
-      "role": "OrderedMember",
-      "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
-      "status": "Blocked"
-    },
-    {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
-      "status": "Blocked"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -212,23 +200,11 @@
     }
   ],
   "roots": [
-    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_Secure-Development-Container-Hardening.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
-    {
-      "from": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
-      "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
-      "kind": "HardCompletionGate",
-      "binding": true
-    },
-    {
-      "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
-      "to": "Lastenheft_Secure-Development-Container-Hardening.md",
-      "kind": "HardCompletionGate",
-      "binding": true
-    },
     {
       "from": "Lastenheft_Secure-Development-Container-Hardening.md",
       "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
@@ -500,11 +476,7 @@
     "specs/learning-series-governance-intakes/reviews/35-learning-preset/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
     "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
-    "specs/learning-series-governance-intakes/series/intake-review-result.json",
-    "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
-    "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/operation.json",
-    "specs/intake-authoring-receipts/flottenweite-ci-budget-governance-und-actions-rationalisierung.json",
-    "specs/intake-authoring-receipts/flottenweite-github-copilot-review-governance-und-kostenbegrenzung.json"
+    "specs/learning-series-governance-intakes/series/intake-review-result.json"
   ],
   "evidenceSources": [
     "specs/025-rl-se-self-assessment/autonomous-run-gate-evidence.json",

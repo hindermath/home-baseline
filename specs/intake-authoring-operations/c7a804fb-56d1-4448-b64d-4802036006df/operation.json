@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "c7a804fb-56d1-4448-b64d-4802036006df",
+  "type": "CreateSeries",
+  "status": "Completed",
+  "createdAt": "2026-08-19T06:49:48Z",
+  "authorityEvidence": "Thorsten approved the two-intake proposal SHA-256 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 by instructing implementation of the approved plan.",
+  "proposalPath": "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
+  "proposalNormalizedSha256": "1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-08-19T06:49:48Z",
+    "evidence": "Current conversation: Implement the plan."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/staging",
+  "intendedTargets": [
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless both Lastenhefte, both receipts, the approved proposal, and the updated active delivery series validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

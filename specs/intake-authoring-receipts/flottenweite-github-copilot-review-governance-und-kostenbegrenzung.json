@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "17bdbf9d-0727-4ec5-a761-2af20719d669",
+  "intakeId": "b4bab12d-b5ab-44e9-a3ef-40e3e13e069f",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.1"
+  },
+  "createdAt": "2026-08-19T06:49:48Z",
+  "operation": {
+    "operationId": "c7a804fb-56d1-4448-b64d-4802036006df",
+    "type": "Create",
+    "authorityEvidence": "User approved proposal hash 1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8 and requested implementation of the authoring plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+    "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved Copilot review governance plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "339ece41607216b863cf5d0cfde15bba5e8423c747995c2873695467aa730fc0",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: exact eight repositories, Lite trigger, reversible disables, order, and authority boundary."
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Approved two-intake proposal",
+      "location": "Repository",
+      "path": "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved target, role, edge, root, and cardinality contract."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Which repositories should retain automatic Copilot review?",
+      "answer": "Exactly the eight approved Canary and public product repositories; all other repositories remain manual-only.",
+      "evidence": "User selected the recommended exact-eight option."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "How often and at which effort should automatic review run?",
+      "answer": "One Lite review on open or first Draft-to-Ready; no draft or push-triggered rereviews.",
+      "evidence": "User selected the recommended one-Lite-review option."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "How should the Actions and Copilot intakes be ordered?",
+      "answer": "Serialize G3 Actions before G4 Copilot before Position 7.",
+      "evidence": "User selected two sequential intakes and approved the proposal hash."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 3,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Default LocalImplementation; the current request authorizes intake authoring and series update but no GitHub setting mutation or remote delivery.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 2,
+    "role": "CopilotReviewGovernanceGate",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+}
