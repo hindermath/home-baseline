@@ -152,6 +152,10 @@ class VerticalSliceTests(unittest.TestCase):
             self.assertFalse(any(evidence.rglob("*.json")))
             return completed, starts
 
+    @unittest.skipIf(
+        os.name == "nt",
+        "Dual wrapper parity runs on macOS/Linux; Windows uses native PowerShell.",
+    )
     def test_bash_and_powershell_preview_share_contract_and_one_process(self):
         bash_result, bash_starts = self._run_wrapper(
             ["bash", "scripts/maintain-agentic-workspace.sh", "--ci-gate", "--dry-run"]
@@ -219,7 +223,8 @@ class VerticalSliceTests(unittest.TestCase):
                 ["schemaVersion", "repositoryId", "headCommit", "ciProfile", "gateSetHash", "platform", "generatedAt", "hookVersion", "status", "results"],
             )
             self.assertEqual([item["order"] for item in payload["results"]], [1, 2])
-            self.assertEqual(evidence_path.stat().st_mode & 0o777, 0o600)
+            if os.name != "nt":
+                self.assertEqual(evidence_path.stat().st_mode & 0o777, 0o600)
             self.assertFalse(any(evidence_path.parent.glob(f".{evidence_path.name}.*")))
 
     def test_sparse_selected_gate_subset_is_reindexed_in_executed_evidence(self):
@@ -736,6 +741,10 @@ class RolloutDeterminismMutationTests(_FleetFixtureMixin, unittest.TestCase):
 class PlatformParityAccessibilityTests(_FleetFixtureMixin, unittest.TestCase):
     """Both wrappers expose one text-first business contract without color."""
 
+    @unittest.skipIf(
+        os.name == "nt",
+        "Dual wrapper parity runs on macOS/Linux; Windows uses native PowerShell.",
+    )
     def test_bash_and_powershell_preview_are_fieldwise_equivalent(self):
         env = os.environ.copy()
         env.update({

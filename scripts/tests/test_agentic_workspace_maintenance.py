@@ -1208,9 +1208,15 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                 "HB_CI_REPOSITORY_ID": "private-governance-fixture",
                 "HB_CI_FIXTURE_HEAD": "a" * 40,
             })
+            # The repository OS contract uses only native PowerShell on Windows;
+            # invoking bash.exe there may incorrectly enter an unconfigured WSL.
             commands = (
-                ["bash", "scripts/maintain-agentic-workspace.sh", "--ci-gate", "--dry-run"],
-                ["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-CiGate", "-WhatIf"],
+                (["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-CiGate", "-WhatIf"],)
+                if os.name == "nt"
+                else (
+                    ["bash", "scripts/maintain-agentic-workspace.sh", "--ci-gate", "--dry-run"],
+                    ["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-CiGate", "-WhatIf"],
+                )
             )
             for index, command in enumerate(commands):
                 counter = temporary / f"counter-{index}.txt"
