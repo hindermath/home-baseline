@@ -4,10 +4,10 @@
 
 | Field | Value |
 |---|---|
-| Feature and source revision | Feature `029-ci-budget-governance`; checkpoint and reviewed HEAD `039784a55ae3c06e206035c9b850de3c8490311f`; run `eca02c0f-5399-49c0-8de4-b21233834254` |
-| Delivery evidence | `.specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence/final-gate-evidence.json`, normalized SHA-256 `c20d76ada7b10d36859f0574e059f4af9d788f77d198d27da15b763fb6d29295` |
-| Delivery mode | `LocalImplementation` (Stage A) |
-| Remote result | `N/A`; no authorized publication, pull request, merge, push, Home sync, target-repository mutation, Stage B rollout, or G4 start; final gate evidence is `PreMerge` and does not authorize merge |
+| Feature and source revision | Feature `029-ci-budget-governance`; accepted feature HEAD `e1ff2a0b5146604b2a71a20576dbd4341d618121`; merge commit `b6a0d81760e9ef68a058e5d9578073b5e78b61b8`; run `eca02c0f-5399-49c0-8de4-b21233834254` |
+| Delivery evidence | `specs/029-ci-budget-governance/autonomous-run-gate-evidence-premerge.json`, normalized SHA-256 `10af4b8e40a88452c3309ccb9a873d375672bb10eac7739ba4f8a96c03f34ba4`; and `specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json`, normalized SHA-256 `e795e07fa0ff8c55d9e63d1826230d2e7171bdc9af036e903c8f04d1cc766637` |
+| Delivery mode | `MergeAndSync` for the completed Stage A implementation and one causal closeout |
+| Remote result | PR `#247` merged as `b6a0d81760e9ef68a058e5d9578073b5e78b61b8` after `26/26` successful jobs; the explicitly authorized admin bypass replaced only the missing review approval. `main` then synchronized to `0 0`, and Home sync completed as local Home-repository commit `b5e5f70`. No target-repository mutation, Stage B rollout, or G4 start occurred. |
 | Interruptions and resumes | `PausedByUser` / `Blocked` resumed at `2026-08-20T16:53:49Z`; Tasks and Analyze were revalidated; T025 used the scoped `implementationRecovery`; completion used `implementationCompletionRecovery` after the unexpected rename commit |
 
 ## Evidence Basis
@@ -22,13 +22,20 @@
   The implementation phase result reports `expectedTasks=93`,
   `completedTasks=93`, `gatesSatisfied=true`, and has normalized SHA-256
   `c0ae8be8fb540c412b48937c28c0772da10f6b885e4ca091af0811e1de0b9125`.
-- The final gate snapshot contains exactly one passing `Primary` entry for
-  each of `AC-CBG-001` through `AC-CBG-010`, no `Supplemental` entry, the
-  reviewed checkpoint HEAD, and no merge facts. Fresh validation returned
-  `Pass` with `mergeAuthorized=false`.
-- The repository-local autonomous state records `closeout.finalValidation` as
-  `Completed`, while merge/publication, default-branch sync, and post-merge
-  actions remain `N/A`.
+- The accepted schema-2.0 `PreMerge` snapshot contains exactly one passing
+  `Primary` entry for each of `AC-CBG-001` through `AC-CBG-010`, no
+  `Supplemental` entry, and exact reviewed HEAD `e1ff2a0b5146604b2a71a20576dbd4341d618121`.
+  Fresh Bash and PowerShell validation returned `Pass` with
+  `mergeAuthorized=false`.
+- The separate schema-2.0 `PostMerge` snapshot binds normalized PreMerge hash
+  `10af4b8e40a88452c3309ccb9a873d375672bb10eac7739ba4f8a96c03f34ba4`
+  to actual merge commit `b6a0d81760e9ef68a058e5d9578073b5e78b61b8`, adds no
+  product delta, and passed both validators with `mergeAuthorized=true`.
+- The repository-local autonomous state records merge/publication,
+  default-branch synchronization, post-merge actions, and final validation as
+  `Completed`. The causal closeout carries only terminal evidence and state;
+  its own provider merge and final synchronization are verified externally to
+  avoid a recursive closeout PR.
 
 ## Observations
 
@@ -347,15 +354,17 @@ another repository, branch, pull request, remote, or user environment.
 
 ## Changed Surfaces
 
-- Repository artifact created by this phase:
-  `specs/029-ci-budget-governance/retrospective.md`.
-- Workflow, feature behavior, accepted feature artifacts, scripts, tests,
-  operational documentation, statistics, shared guidance, autonomous state,
-  Git history, index, Home Runtime, remotes, and other repositories: unchanged
-  by this retrospective.
-- Documentation impact decision: `NoUpdateRequired` beyond this explicitly
-  requested portable retrospective; no runtime, user procedure, navigation, or
-  accepted feature contract changed in this phase.
+- The causal closeout adds the tracked schema-2.0 PreMerge and PostMerge
+  evidence, updates this retrospective and the autonomous run state, and
+  refreshes the generated project-statistics ledger.
+- Feature behavior, accepted implementation artifacts, scripts, tests, shared
+  guidance, and target repositories are unchanged by the evidence-only
+  closeout. Home Runtime changed only through the separately completed,
+  manifest-bound Home sync of the merged Feature 029 implementation.
+- Documentation impact decision: `GeneratedUpdate`; the canonical Git history
+  changed through Feature 029 delivery and the repository statistics renderer
+  refreshes `docs/project-statistics.md`. No additional user procedure,
+  navigation, or accepted feature contract changes.
 
 ## Validation
 
@@ -364,10 +373,14 @@ another repository, branch, pull request, remote, or user environment.
   `Retrospective`, status is `Active`, and tasks are `93/93`.
 - Implementation phase result: strict schema `1.0`, `Completed`, `93/93`,
   gates satisfied, task payload hash matched.
-- Final gate evidence validator: schema `2.0`, `PreMerge`, `Pass`, normalized
-  SHA-256
-  `c20d76ada7b10d36859f0574e059f4af9d788f77d198d27da15b763fb6d29295`,
-  `mergeAuthorized=false`.
+- Gate evidence validators: schema `2.0` PreMerge and PostMerge each returned
+  `Pass` in Bash and PowerShell. The normalized hashes are
+  `10af4b8e40a88452c3309ccb9a873d375672bb10eac7739ba4f8a96c03f34ba4`
+  and `e795e07fa0ff8c55d9e63d1826230d2e7171bdc9af036e903c8f04d1cc766637`;
+  the PostMerge snapshot authorizes the recorded merge fact.
+- Remote validation: all `26/26` observed PR/push jobs passed before PR `#247`
+  merged. The feature branch was deleted, synchronized `main` was clean and
+  `0 0`, and the follow-up Home-sync check reported all managed files current.
 - Retrospective checks: strict UTF-8 text, no trailing whitespace, all required
   observation fields and exactly one allowed decision per observation, and
   autonomous phase-result validation against the final normalized payload
@@ -385,6 +398,8 @@ another repository, branch, pull request, remote, or user environment.
   AR-005 when a separately authorized workflow change is proposed, and require
   a second independent field occurrence before deciding AR-006. No next
   feature, branch, or pull request is started here.
+- Delivery boundary: Stage B fleet rollout and G4 were not started; any such
+  execution requires a separate explicit instruction.
 - Resume-state quality: `NeedsImprovement`; the state captured the pause,
   authority revalidation, Tasks retry, implementation recovery, and completion
   recovery well enough to resume safely, but AR-002 proves that narrative and

@@ -2,12 +2,12 @@
   "schemaVersion": "1.1",
   "runId": "eca02c0f-5399-49c0-8de4-b21233834254",
   "featurePath": "specs/029-ci-budget-governance",
-  "branch": "029-ci-budget-governance",
+  "branch": "codex/feature-029-causal-closeout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Publish",
-  "status": "Active",
-  "checkpointCommit": "039784a55ae3c06e206035c9b850de3c8490311f",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "b6a0d81760e9ef68a058e5d9578073b5e78b61b8",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md",
@@ -94,8 +94,16 @@
       "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684"
     },
     {
+      "path": "specs/029-ci-budget-governance/autonomous-run-gate-evidence-premerge.json",
+      "sha256": "10af4b8e40a88452c3309ccb9a873d375672bb10eac7739ba4f8a96c03f34ba4"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json",
+      "sha256": "e795e07fa0ff8c55d9e63d1826230d2e7171bdc9af036e903c8f04d1cc766637"
+    },
+    {
       "path": "specs/029-ci-budget-governance/retrospective.md",
-      "sha256": "f82fd5e45c2158f6b576348baf4b6bc0699703ef5806470cfbdac78108756852"
+      "sha256": "562d2472a2c6a44defcbe88512632a9f920220091f95d13e65091de4e0d6841c"
     }
   ],
   "tasks": {
@@ -324,12 +332,12 @@
       }
     ]
   },
-  "lastPassingGate": "Retrospective",
-  "nextExactAction": "Validate and commit the exact feature candidate, then push and create or update one pull request.",
+  "lastPassingGate": "CausalCloseoutExactHead",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "AuthorityUpgrade",
+    "kind": "CausalCloseout",
     "state": "Completed",
-    "summary": "Current user authority upgraded the completed local run to MergeAndSync, including commit, push, PR, admin-bypass merge, default-branch synchronization, and Home sync."
+    "summary": "Feature PR #247 merged as b6a0d817 after 26/26 successful jobs; schema-2.0 PostMerge evidence binds the accepted exact-head PreMerge snapshot; Home sync and clean main 0/0 passed. This evidence-only closeout's own merge and final main synchronization are externally verified without a recursive PR."
   },
   "stop": {
     "reason": "N/A",
@@ -337,10 +345,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
   "resumeAudit": {
     "auditedAt": "2026-08-20T16:53:49Z",
@@ -483,5 +491,5 @@
     "homeSyncAuthorized": true,
     "scope": "Feature 029 delivery and its single causal closeout only; no Stage-B fleet rollout or G4 start."
   },
-  "updatedAt": "2026-08-20T19:10:00Z"
+  "updatedAt": "2026-08-20T19:58:47Z"
 }
