@@ -736,7 +736,10 @@ class PlatformParityAccessibilityTests(_FleetFixtureMixin, unittest.TestCase):
         self.assertEqual(outputs[0], outputs[1])
 
     def test_platform_text_and_unsafe_boundaries_normalize_identically(self):
-        self.assertEqual(self.engine._ci_platform(), "macos")
+        platform_fixture = json.loads(
+            (FIXTURES / "platform-parity/cases.json").read_text(encoding="utf-8")
+        )
+        self.assertIn(self.engine._ci_platform(), platform_fixture["platforms"])
         for value in (" leading", "-option", "a;meta", "unicode-ä"):
             if value.startswith("-"):
                 with self.assertRaises(self.engine.ContractError):
