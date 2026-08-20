@@ -537,6 +537,14 @@
       "labelEn": "Required PowerShell extension for VS Code",
       "netLines": 122,
       "activeDays": 1
+    },
+    {
+      "slot": 66,
+      "id": "ci-budget-governance",
+      "labelDe": "Flottenweite CI-Budget-Governance",
+      "labelEn": "Fleet-wide CI budget governance",
+      "netLines": 5388,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

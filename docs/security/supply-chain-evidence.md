@@ -42,3 +42,20 @@ Signaturkette, SLSA-Provenienz und Scorecard bleiben außerhalb des Features.
 <!-- EN: docs/security/supply-chain-evidence.md
 [DE-Zusammenfassung: Herkunft, Cache-Integrität und Fallback der TUI-Abhängigkeiten.]
 -->
+
+## Feature 029: Source- und Evidence-Provenienz
+
+Profil- und Pfadregistry werden getrennt kanonisch mit SHA-256 gebunden.
+Gate-Evidence bindet HEAD und Gate-Set-Hash, Acceptance-Primaries binden ihre
+internen normalisierten Input-Hashes. Der installierte Hook wurde byteweise und
+per SHA-256 gegen die getrackte Quelle geprüft. Nur atomare `Passed`-Evidence
+mit restriktiven Rechten wird publiziert.
+
+Keine neue Abhängigkeit, kein neues Binärpaket und kein Remote-Release wurden
+erzeugt. SBOM/VEX/SLSA/OpenSSF bleiben für die bestehende Quelllieferkette
+anwendbare Reviewflächen; eine höhere Provenienzstufe wird nicht behauptet.
+AI-SBOM ist `N/A`, weil KI kein ausgelieferter Bestandteil ist.
+
+Restrisiko: lokale Werkzeug- oder Account-Kompromittierung. Follow-up:
+Dependency-/Secret-Scan und Exact-Candidate-Gate vor Lieferung. Re-Evaluation
+bei Paket-, Provider-, Signatur-, Release- oder KI-Runtime-Änderung.

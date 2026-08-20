@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/ci-gate-evidence.schema.json",
+  "title": "Home Baseline CI Gate Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "repositoryId",
+    "headCommit",
+    "ciProfile",
+    "gateSetHash",
+    "platform",
+    "generatedAt",
+    "hookVersion",
+    "status",
+    "results"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "repositoryId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "headCommit": {
+      "type": "string",
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "ciProfile": {
+      "enum": [
+        "Public Canary",
+        "Public Product",
+        "Private Product",
+        "Private Governance/Scaffold",
+        "Public Preset"
+      ]
+    },
+    "gateSetHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "platform": { "enum": ["macos", "linux", "windows"] },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "hookVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": { "const": "Passed" },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "order",
+          "gateId",
+          "commandDigest",
+          "status",
+          "exitCode",
+          "durationMs"
+        ],
+        "properties": {
+          "order": { "type": "integer", "minimum": 1 },
+          "gateId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "commandDigest": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "status": { "const": "Passed" },
+          "exitCode": { "const": 0 },
+          "durationMs": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

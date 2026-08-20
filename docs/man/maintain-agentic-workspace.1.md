@@ -119,6 +119,25 @@ Konfliktabweichungen nicht unbemerkt bleiben.
 After a real sync, final verification repeats this check so SHA-256, file-mode,
 or conflict drift cannot remain unnoticed.*
 
+### Lokaler CI-Gate / Local CI gate
+
+`--ci-gate` beziehungsweise `-CiGate` startet genau einen gemeinsamen
+Python-Engine-Prozess. Die Vorschau `--dry-run` / `-WhatIf` zeigt Profil,
+Entscheidung, Status, Blocker, nächste Aktion, Gate-Set-Hash, geordnete Gates
+und Evidence-Ziel in stabiler linearer Reihenfolge. Sie schreibt weder Evidence
+noch Repository- oder Home-Dateien. Ein echter Gate-Lauf publiziert nur nach
+stabilem HEAD und vollständigem Erfolg atomare maschinenlokale Evidence.
+
+*The CI-gate surface starts exactly one shared engine process. Preview is
+read-only and text-first. A real run publishes machine-local evidence only
+after all gates, HEAD, and the gate-set hash pass.*
+
+Stufe A führt keinen Commit, Push, Merge, Home-Sync, Zielrepository-Write oder
+GitHub-Schreibzugriff aus und behauptet nie Remote-Konvergenz. Exitcodes:
+`0` Erfolg/Vorschau, `1` fachlicher Blocker, `2` Vertrag/Betrieb/Sicherheit,
+`130` kontrollierter Abbruch. Code `3` bleibt dem bestehenden
+Maintenance-Reparaturvertrag vorbehalten und wird vom CI-Gate nicht erzeugt.
+
 *Preset validation resolves the canonical default branch through
 validated `refs/remotes/origin/HEAD` evidence or
 `git ls-remote --symref origin HEAD`; branch names are never guessed. If the
@@ -189,6 +208,7 @@ after-hashes; unknown or partial changes block.*
 | `--no-tui` | `-NoTui` | Headless Engine und interner Rekursionsschutz / Headless engine and internal recursion guard |
 | `--check-only` | `-CheckOnly` | Nur fetchen und pruefen; keine Pulls, Datei- oder Paketupdates / Fetch and check only |
 | `--dry-run` | `-WhatIf` | Schreibende Schritte als Vorschau / Preview mutating steps |
+| `--ci-gate` | `-CiGate` | Lokalen profilgebundenen Gate ausführen; mit Vorschau keine Evidence / Run the profile-bound local gate; preview writes no evidence |
 | `--scripts-only` | `-ScriptsOnly` | Maschinenpakete ueberspringen / Skip machine packages |
 | `--repair-drift` | `-RepairDrift` | Wartungspaket lokal reparieren; nie committen/pushen / Repair package locally; never commit/push |
 | `--include-optional` | `-IncludeOptional` | Auch optionale Maschinenpakete installieren / Install optional machine packages too |

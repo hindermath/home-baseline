@@ -8,6 +8,11 @@ set -euo pipefail
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 zero_sha="0000000000000000000000000000000000000000"
 regex_files=()
+push_updates=()
+
+while IFS= read -r push_update; do
+  [ -n "$push_update" ] && push_updates+=("$push_update")
+done
 
 secret_content_regex='(id_token|access_token|refresh_token|api[_-]?key|client[_-]?secret|password[[:space:]]*=|authorization:[[:space:]]*bearer|bearer[[:space:]]+[A-Za-z0-9._~+/=-]*|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----)'
 secret_name_regex='(auth\.json|(^|\/)\.env(\.[^.]+)?$|[^/]*(secret|credential|creds)[^/]*\.(json|yaml|yml|xml|ini|cfg|conf|toml)|[^/]*id_rsa[^/]*|[^/]*\.(pem|key|p12|pfx))$'
@@ -79,7 +84,9 @@ run_gitleaks_range_scan() {
   local status=0
   local log_opts=""
 
-  while read -r local_ref local_sha remote_ref remote_sha; do
+  local push_update
+  for push_update in "${push_updates[@]+"${push_updates[@]}"}"; do
+    read -r local_ref local_sha remote_ref remote_sha <<< "$push_update"
     [ -n "${local_sha:-}" ] || continue
 
     if [ "$local_sha" = "$zero_sha" ]; then
@@ -124,6 +131,146 @@ run_gitleaks_range_scan() {
     echo "pre-push: gitleaks-Scan ohne Befund."
   fi
 }
+
+verify_ci_gate_evidence() {
+  local profiles="${HB_CI_PROFILES:-${REPO_ROOT}/scripts/config/ci-budget-profiles.json}"
+  local path_contracts="${HB_CI_PATH_CONTRACTS:-${REPO_ROOT}/scripts/config/ci-budget-path-contracts.json}"
+  local workflow_template="${HB_CI_WORKFLOW_TEMPLATE:-${REPO_ROOT}/scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml}"
+  local evidence_root="${HB_CI_EVIDENCE_ROOT:-${HOME}/.home-baseline/evidence/ci-gates}"
+  local engine="${REPO_ROOT}/scripts/lib/agentic_workspace_fleet.py"
+  local repository_id="${HB_CI_REPOSITORY_ID:-}"
+  local profile_record visibility profile_name push_update
+  local local_ref local_sha remote_ref remote_sha expected_hash preview_output evidence_file
+
+  [ -f "$profiles" ] || { echo "pre-push: CI-Profilregistry fehlt / profile registry missing." >&2; return 2; }
+  [ -f "$path_contracts" ] || { echo "pre-push: CI-Pfadregistry fehlt / path registry missing." >&2; return 2; }
+  [ -f "$workflow_template" ] || { echo "pre-push: CI-Workflowvertrag fehlt / workflow contract missing." >&2; return 2; }
+  [ -f "$engine" ] || { echo "pre-push: CI-Engine fehlt / engine missing." >&2; return 2; }
+
+  if [ -z "$repository_id" ]; then
+    repository_id="$(python3 - "$REPO_ROOT" "$profiles" <<'PY'
+import json
+import pathlib
+import subprocess
+import sys
+from urllib.parse import urlsplit
+
+
+def normalized(value):
+    value = value.strip().replace('\\', '/')
+    parsed = urlsplit(value)
+    if parsed.scheme in {'http', 'https'}:
+        value = f"{parsed.scheme.lower()}://{parsed.netloc.lower()}{parsed.path}"
+    return value.rstrip('/').removesuffix('.git').lower()
+
+
+root = pathlib.Path(sys.argv[1])
+registry = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding='utf-8-sig'))
+origin = subprocess.run(
+    ['git', '-C', str(root), 'remote', 'get-url', 'origin'],
+    text=True, capture_output=True, check=False,
+)
+if origin.returncode != 0:
+    raise SystemExit(2)
+remote = normalized(origin.stdout)
+if remote.endswith('/home-baseline'):
+    print('home-baseline')
+    raise SystemExit(0)
+manifest = json.loads((root / registry['fleetManifestPath']).read_text(encoding='utf-8-sig'))
+matches = [
+    item['id'] for item in manifest['targets']
+    if item.get('active') and item.get('kind') == 'git-repository'
+    and normalized(item.get('remote', '')) == remote
+]
+if len(matches) != 1:
+    raise SystemExit(2)
+print(matches[0])
+PY
+)" || { echo "pre-push: Repository-ID kann nicht eindeutig aufgeloest werden / cannot be resolved uniquely." >&2; return 2; }
+  fi
+
+  profile_record="$(python3 - "$profiles" "$repository_id" <<'PY'
+import json
+import pathlib
+import sys
+
+registry = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding='utf-8-sig'))
+repository_id = sys.argv[2]
+assignments = [item for item in registry.get('assignments', []) if item.get('repositoryId') == repository_id]
+if len(assignments) != 1:
+    raise SystemExit(2)
+profiles = [item for item in registry.get('profiles', []) if item.get('profileId') == assignments[0].get('profileId')]
+if len(profiles) != 1:
+    raise SystemExit(2)
+print(f"{profiles[0]['requiredVisibility']}\t{profiles[0]['displayName']}")
+PY
+)" || { echo "pre-push: Profilzuordnung fehlt oder ist mehrdeutig / profile assignment missing or ambiguous." >&2; return 2; }
+  IFS=$'\t' read -r visibility profile_name <<< "$profile_record"
+  [ "$visibility" = "private" ] || return 0
+
+  for push_update in "${push_updates[@]+"${push_updates[@]}"}"; do
+    read -r local_ref local_sha remote_ref remote_sha <<< "$push_update"
+    [ -n "${local_sha:-}" ] || continue
+    [ "$local_sha" != "$zero_sha" ] || continue
+    preview_output="$(python3 "$engine" ci-gate \
+      --repository-root "$REPO_ROOT" \
+      --profiles "$profiles" \
+      --path-contracts "$path_contracts" \
+      --workflow-template "$workflow_template" \
+      --repository-id "$repository_id" \
+      --fixture-head "$local_sha" \
+      --evidence-root "$evidence_root" \
+      --dry-run)" || return $?
+    expected_hash="$(printf '%s\n' "$preview_output" | sed -n 's/^Gate-Set-Hash: //p')"
+    [ -n "$expected_hash" ] || { echo "pre-push: Gate-Set-Hash fehlt / is missing." >&2; return 2; }
+    evidence_file="${evidence_root}/${repository_id}/${local_sha}.json"
+    python3 - "$evidence_file" "$repository_id" "$local_sha" "$profile_name" "$expected_hash" <<'PY' || return $?
+import json
+import pathlib
+import re
+import sys
+
+path = pathlib.Path(sys.argv[1])
+if not path.is_file() or path.is_symlink():
+    print('pre-push: passende CI-Gate-Evidence fehlt / matching evidence is missing.', file=sys.stderr)
+    raise SystemExit(1)
+try:
+    value = json.loads(path.read_text(encoding='utf-8'))
+except (OSError, UnicodeError, json.JSONDecodeError):
+    print('pre-push: CI-Gate-Evidence ist ungueltig / invalid.', file=sys.stderr)
+    raise SystemExit(1)
+expected = {
+    'schemaVersion', 'repositoryId', 'headCommit', 'ciProfile', 'gateSetHash',
+    'platform', 'generatedAt', 'hookVersion', 'status', 'results',
+}
+valid = (
+    set(value) == expected
+    and value.get('schemaVersion') == '1.0'
+    and value.get('repositoryId') == sys.argv[2]
+    and value.get('headCommit') == sys.argv[3]
+    and value.get('ciProfile') == sys.argv[4]
+    and value.get('gateSetHash') == sys.argv[5]
+    and value.get('hookVersion') == '1.0.0'
+    and value.get('status') == 'Passed'
+    and isinstance(value.get('results'), list)
+    and bool(value['results'])
+    and all(
+        item.get('status') == 'Passed' and item.get('exitCode') == 0
+        for item in value['results'] if isinstance(item, dict)
+    )
+    and all(isinstance(item, dict) for item in value['results'])
+)
+if not valid:
+    print('pre-push: CI-Gate-Evidence ist alt oder inkonsistent / stale or inconsistent.', file=sys.stderr)
+    raise SystemExit(1)
+PY
+  done
+}
+
+if ! verify_ci_gate_evidence; then
+  echo "pre-push: Push wegen fehlender oder inkonsistenter privater CI-Evidence blockiert." >&2
+  exit 1
+fi
 
 if ! run_gitleaks_range_scan; then
   echo "" >&2

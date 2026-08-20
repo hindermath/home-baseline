@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "eca02c0f-5399-49c0-8de4-b21233834254",
+  "featurePath": "specs/029-ci-budget-governance",
+  "branch": "029-ci-budget-governance",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "039784a55ae3c06e206035c9b850de3c8490311f",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md",
+      "sha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610"
+    },
+    {
+      "path": "specs/flottenweite-ci-budget-governance-und-actions-rationalisierung-intake-review/intake-review-result.json",
+      "sha256": "21cbde9393b83b187e718a8b0d3593cf4873478a68c849bbd42a577de7b4d04e"
+    },
+    {
+      "path": "specs/flottenweite-ci-budget-governance-und-actions-rationalisierung-intake-review/intake-review-report.md",
+      "sha256": "d350cd3a2324371c8181abdef74cd833cfcbfdfa8ed609aac0867052357d0dd6"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "d184531a26cb7ae291df3335f874e5c0173e9c2b3c44b9ae7ad342230a8a29dd"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "9869e7a63d6542a2a30d0f607270374034e6005686c4bf553d086658fd2dea38"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/spec.md",
+      "sha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/checklists/requirements.md",
+      "sha256": "9cca64a53d140dd825a62a50b6b0417bdf2db286e6ca8ad08b180fdf1e28dfe9"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/checklists/clarifications.md",
+      "sha256": "713ab5c430eb8b596f14e2384494851513f59b6aa81fe48f207397fb43bf92ce"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/checklists/governance.md",
+      "sha256": "b8faf1358d64e028eacbd251d460de464783c91d8dd6803ab17eb5d78e47639f"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/plan.md",
+      "sha256": "157947d544ed82c2767b90e7928f99d115eb0496ebdfac89d9d3ac9af095cb7b"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/research.md",
+      "sha256": "beb4173b9484c6a50fdc304ca4da241fc487e8d2f28d9e7cba6d2b6dc1baadff"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/data-model.md",
+      "sha256": "dcb8455b43cb16fc70a680483118fcb8b529954c52efc536e12659688e063bf2"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/quickstart.md",
+      "sha256": "186576b5e52c434c4bc83f05d80d7a20a9ec4b48e4964f17b1d15c1d76784c40"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/contracts/ci-budget-profile-registry.schema.json",
+      "sha256": "58b5298a5310d4752de6fc7ea72c2e80621a4e90fc92bd35b9d9d5552654e27f"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/contracts/ci-budget-path-contracts.schema.json",
+      "sha256": "08860f95e37f0772284b4d2939e9c3ee1e0e29ba1640f2e367f6215cf29673e9"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/contracts/ci-gate-evidence.schema.json",
+      "sha256": "aae750841d33d5c5a027b822b7a8f60dd3f53021ac8f2ddaf24149949b0dc352"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/contracts/ci-inventory-rollout-plan.schema.json",
+      "sha256": "ce88b4e782f867455b3d78d0edbfa0f319e7d457ec2a84b80646093c2695675a"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/contracts/workflow-ruleset-contract.md",
+      "sha256": "606af81f877fe1dd710ff65c2535034a2181e09d3346b5de539e7e070a69359b"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/autonomous-run-gate-requirements.json",
+      "sha256": "33dced30875702502a4468659e975bd4cff4d06420ca3b2068fd5394a1012bb4"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/checklists/plan-review.md",
+      "sha256": "058637e313dc6f2c1898604f2b77560fbfa252b162d210ab9a596df5df96d0fd"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/tasks.md",
+      "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/retrospective.md",
+      "sha256": "f82fd5e45c2158f6b576348baf4b6bc0699703ef5806470cfbdac78108756852"
+    }
+  ],
+  "tasks": {
+    "path": "specs/029-ci-budget-governance/tasks.md",
+    "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684",
+    "completed": 93,
+    "total": 93
+  },
+  "routing": {
+    "policy": "balanced-v1",
+    "fallbackPolicy": "fail-closed",
+    "phases": [
+      {
+        "phaseId": "specify",
+        "command": "speckit.specify",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T17:45:00.128605Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/specify.result.json",
+        "resultSha256": "0a9c41a4d68178380fc8bdb7c82b4e890f6dc39df9482b89f04f03cc766de0d3"
+      },
+      {
+        "phaseId": "clarify",
+        "command": "speckit.clarify",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "specify"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T17:49:22.188277Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/clarify.result.json",
+        "resultSha256": "adf30610f2b6595f3ac799d02907423e19dc4e29db40e10cca9246b0811d6e7d"
+      },
+      {
+        "phaseId": "checklist",
+        "command": "speckit.checklist",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "clarify"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T17:54:44.526976Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/checklist.result.json",
+        "resultSha256": "6f283b46faeda2cbf9531bb24f200bbe6fcaecfdd737a04d5fabd6a91c5a1d64"
+      },
+      {
+        "phaseId": "plan",
+        "command": "speckit.plan",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "checklist"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T18:13:47.494761Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/plan.result.json",
+        "resultSha256": "ef3cdcc4f1da0f25e6c2d22e735daf4b356a25e0f182edb60e7bd544418284fd"
+      },
+      {
+        "phaseId": "plan-remediation-1",
+        "command": "speckit.plan",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T18:34:57.634467Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/plan-remediation-1.result.json",
+        "resultSha256": "8722b4ef14e08f57d4f64f3f87ae34cdf8b085f7c73a53cbfbb9e85995a2d655"
+      },
+      {
+        "phaseId": "plan-remediation-2",
+        "command": "speckit.plan",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan-remediation-1"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T18:55:28.438582Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/plan-remediation-2.result.json",
+        "resultSha256": "1d9fb1d3d037b56f80a934651f81f1da41e59edd451ac090670554c2308c4d32"
+      },
+      {
+        "phaseId": "plan-remediation-3",
+        "command": "speckit.plan",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan-remediation-2"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T19:13:52.248624Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/plan-remediation-3.result.json",
+        "resultSha256": "a2408687ce869ea4a38477397ad350eb5546f420fdc0de2765e770202b1d8976"
+      },
+      {
+        "phaseId": "plan-review",
+        "command": "speckit.analyze",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan-remediation-3"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-19T19:21:23.400332Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/plan-review.result.json",
+        "resultSha256": "77d3b290ee3461a3557e10ab157218ae3998a22cd30059ad07319d0c55138e4d"
+      },
+      {
+        "phaseId": "tasks",
+        "command": "speckit.tasks",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan-review"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T17:11:08.235275Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/tasks.result.json",
+        "resultSha256": "bcfa79842ed4a4b0005d3f895fd2b4c3a822120a012528f026b905d2d16b7381"
+      },
+      {
+        "phaseId": "analyze",
+        "command": "speckit.analyze",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "tasks"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T17:19:34.221653Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/analyze.result.json",
+        "resultSha256": "4a9ab0c8d0e2a873e0ec7f63227b27e3176b56d2036126fcd7fa10ef1b2c70ee"
+      },
+      {
+        "phaseId": "implement",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "runnerProfile": "codex-implementation-auto",
+        "dependsOn": [
+          "analyze"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T18:43:33.533673Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/implement.result.json",
+        "resultSha256": "c0ae8be8fb540c412b48937c28c0772da10f6b885e4ca091af0811e1de0b9125"
+      },
+      {
+        "phaseId": "retrospective",
+        "command": "speckit.autonomous-retrospective",
+        "routingRole": "coding-review",
+        "runnerProfile": "codex-review-auto",
+        "dependsOn": [
+          "implement"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T19:01:45.9425020Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/retrospective.result.json",
+        "resultSha256": "fe3e749001976d62e77cfbca9ee2d822a69175252415a5b64e612e3100dce8b5"
+      }
+    ]
+  },
+  "lastPassingGate": "Retrospective",
+  "nextExactAction": "Validate and commit the exact feature candidate, then push and create or update one pull request.",
+  "lastOperation": {
+    "kind": "AuthorityUpgrade",
+    "state": "Completed",
+    "summary": "Current user authority upgraded the completed local run to MergeAndSync, including commit, push, PR, admin-bypass merge, default-branch synchronization, and Home sync."
+  },
+  "stop": {
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
+  },
+  "closeout": {
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
+    "finalValidation": "Pending"
+  },
+  "resumeAudit": {
+    "auditedAt": "2026-08-20T16:53:49Z",
+    "sourceStatus": "PausedByUser",
+    "resumedFromStatus": "Blocked",
+    "resumedAt": "2026-08-20T16:53:49Z",
+    "git": {
+      "branch": "029-ci-budget-governance",
+      "head": "039784a55ae3c06e206035c9b850de3c8490311f",
+      "upstream": "origin/029-ci-budget-governance",
+      "ahead": 0,
+      "behind": 0,
+      "ownedUntrackedPath": ".specify/runtime/"
+    },
+    "authority": {
+      "currentMode": "LocalImplementation",
+      "remoteWritesAuthorized": false,
+      "disposition": "The current resume command authorizes local continuation only. Earlier checkpoint push authority is not reused for PR, merge, or additional remote writes."
+    },
+    "intakeReview": {
+      "reviewId": "694b6579-3443-4c9e-8017-8c7b285dae0f",
+      "mode": "Single",
+      "status": "Ready",
+      "policy": "home-baseline-active-lastenhefte-v1",
+      "reviewedAt": "2026-08-19T17:21:12Z",
+      "targetCount": 1,
+      "normalizedTargetSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610",
+      "findings": 0,
+      "openQuestions": 0,
+      "acceptedRisks": 0,
+      "validatorResult": "Passed"
+    },
+    "acceptedArtifactAudit": {
+      "total": 20,
+      "matching": 20,
+      "resolvedNonSemanticDrift": [
+        {
+          "path": "specs/029-ci-budget-governance/spec.md",
+          "acceptedSha256": "1cbd5ce0a71902caf23e3670fae52bd8914971a5fe16f234c25e2ca8052e33f2",
+          "currentSha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
+        },
+        {
+          "path": "specs/029-ci-budget-governance/checklists/requirements.md",
+          "acceptedSha256": "0ea6462b0b28ead0e0e64a74b5b75cea1b5e263eb1d8b9b51532519ab58df460",
+          "currentSha256": "9cca64a53d140dd825a62a50b6b0417bdf2db286e6ca8ad08b180fdf1e28dfe9"
+        }
+      ],
+      "classification": "Known controlled commit-time trailing-whitespace normalization; semantic scope and the accepted PlanReview payload did not change.",
+      "disposition": "The mandatory-rule delta audit and affected Analyze readiness gate passed. Current normalized hashes are accepted without changing semantic scope."
+    },
+    "presetAudit": {
+      "versions": {
+        "security-governance": "0.6.2",
+        "architecture-governance": "0.5.2",
+        "isaqb-architecture-governance": "0.2.2",
+        "a11y-governance": "0.4.3",
+        "cross-platform-governance": "0.2.2",
+        "agent-parity-governance": "0.4.2",
+        "model-routing-governance": "0.1.4",
+        "intake-authoring-governance": "0.3.1",
+        "intake-review-governance": "0.2.1",
+        "intake-sequencing-governance": "0.2.3",
+        "autonomous-run-governance": "0.4.1",
+        "parallel-autonomous-run-governance": "0.2.6"
+      },
+      "mandatoryRuleDelta": "None: constitution, shared agent guidance, extension configuration, and installed preset trees are unchanged from the feature base reviewed by PlanReview."
+    },
+    "routingAudit": {
+      "priorStatus": "RefreshRequired",
+      "status": "Aligned",
+      "harness": "Codex",
+      "harnessVersion": "codex-cli 0.147.0",
+      "localProfileGeneratedBy": "model-routing-governance/0.1.2",
+      "localProfileGeneratedAt": "2026-08-20T16:51:05.561227Z",
+      "localProfileCatalogSha256": "7db176ac6bc263526ad6cd67cce9715123393cff0f8774977691b3aa6c04bbfc",
+      "currentCatalogSha256": "7db176ac6bc263526ad6cd67cce9715123393cff0f8774977691b3aa6c04bbfc",
+      "routingContractValidation": "Passed",
+      "frontierModelPreflight": "Completed: MODEL_READY",
+      "lastCompletedPhase": "plan-review",
+      "lastResultSha256": "77d3b290ee3461a3557e10ab157218ae3998a22cd30059ad07319d0c55138e4d",
+      "lastPayloadSha256": "058637e313dc6f2c1898604f2b77560fbfa252b162d210ab9a596df5df96d0fd",
+      "lastResultValidation": "Passed"
+    },
+    "rerunGates": {
+      "tasksResult": {
+        "initialDisposition": "The payload completed, but the CLI final narrative replaced the transient structured result and triggered AEI002 fail-closed.",
+        "revalidationAttemptId": "0d0772ba-3faf-4b2a-a5bc-45d8be2b3e03",
+        "payloadSha256": "25ebff5553dfa84bd77050eb7d76ad976fc9d780c7a6d60abc58efd957fd2f59",
+        "resultSha256": "bcfa79842ed4a4b0005d3f895fd2b4c3a822120a012528f026b905d2d16b7381",
+        "taskCount": 93,
+        "checkedTaskCount": 0,
+        "validation": "Passed"
+      },
+      "analyze": {
+        "attemptId": "98670f9b-ec82-4298-b975-e0609c8814a0",
+        "payloadSha256": "25ebff5553dfa84bd77050eb7d76ad976fc9d780c7a6d60abc58efd957fd2f59",
+        "resultSha256": "4a9ab0c8d0e2a873e0ec7f63227b27e3176b56d2036126fcd7fa10ef1b2c70ee",
+        "criticalFindings": 0,
+        "highFindings": 0,
+        "unresolvedMediumFindings": 0,
+        "validation": "Passed"
+      }
+    },
+    "disposition": "Resume accepted under LocalImplementation; tasks and the mandatory Analyze rerun passed, so implementation may start."
+  },
+  "implementationRecovery": {
+    "attemptId": "0776e3fa-ecbd-4575-9ec8-06eb0e8d9d05",
+    "completedTasks": 24,
+    "blockedTask": "T025",
+    "blocker": "Nested workspace sandbox denied writing .git/hooks/pre-push.",
+    "resolution": "Root process syntax-checked scripts/install-hooks.sh and executed the installer under current LocalImplementation authority.",
+    "sourceHookSha256": "0982e1c3b51f1adc080e27662c1648554a4563f6e80fdeaa824b09ec0f5358ee",
+    "installedHookSha256": "0982e1c3b51f1adc080e27662c1648554a4563f6e80fdeaa824b09ec0f5358ee",
+    "byteParity": "Passed",
+    "resolvedAt": "2026-08-20T17:41:07Z"
+  },
+  "implementationCompletionRecovery": {
+    "blockedAttemptId": "83ca5874-e0b7-4fde-9b43-10cf5b626aaf",
+    "completedAttemptId": "3d7edc9c-489c-47f4-bcc1-20e7e577f078",
+    "unexpectedRenameCommit": "e3b5cd097c62c877b4b0e6f59bc139089375f9fa",
+    "resetTarget": "039784a55ae3c06e206035c9b850de3c8490311f",
+    "workingTreeRenamePreserved": true,
+    "ahead": 0,
+    "behind": 0,
+    "implementationResultSha256": "c0ae8be8fb540c412b48937c28c0772da10f6b885e4ca091af0811e1de0b9125",
+    "finalGateEvidenceSha256": "09a0cc03779d6eb653fa1dcc523222a2b8b9da44218014ffb8ac9cde05d04462",
+    "recoveryEvidence": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence/internal/rename-commit-recovery.json",
+    "validation": "Passed",
+    "resolvedAt": "2026-08-20T18:53:29Z"
+  },
+  "deliveryAuthorization": {
+    "authorizedAt": "2026-08-20T19:10:00Z",
+    "mode": "MergeAndSync",
+    "commitAuthorized": true,
+    "pushAuthorized": true,
+    "pullRequestAuthorized": true,
+    "mergeAuthorized": true,
+    "adminBypassAuthorized": true,
+    "defaultBranchSyncAuthorized": true,
+    "homeSyncAuthorized": true,
+    "scope": "Feature 029 delivery and its single causal closeout only; no Stage-B fleet rollout or G4 start."
+  },
+  "updatedAt": "2026-08-20T19:10:00Z"
+}

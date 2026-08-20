@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -16,6 +17,26 @@ import unittest
 
 REPOSITORY = Path(__file__).resolve().parents[2]
 ENGINE = REPOSITORY / "scripts" / "lib" / "agentic_workspace_fleet.py"
+
+
+def can_query_process_identity() -> bool:
+    """Return whether the host permits the process-start query used by leases."""
+    if os.name == "nt" or Path(f"/proc/{os.getpid()}/stat").is_file():
+        return True
+    try:
+        completed = subprocess.run(
+            ["ps", "-o", "lstart=", "-p", str(os.getpid())],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+    except OSError:
+        return False
+    return completed.returncode == 0 and bool(completed.stdout.strip())
+
+
+PROCESS_IDENTITY_AVAILABLE = can_query_process_identity()
 
 
 def bash_path(path: Path) -> str:
@@ -183,8 +204,13 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             "--worktree",
             str(worktree),
         ]
+        # Preserve the engine-derived identity when the host supports it so an
+        # active lease exercises the real PID/start-time match. Sandboxes that
+        # block the query still receive a deterministic creation-only fixture.
         if owner_identity is not None:
             arguments.extend(["--owner-process-identity", owner_identity])
+        elif not PROCESS_IDENTITY_AVAILABLE:
+            arguments.extend(["--owner-process-identity", "fixture-owner-process"])
         return self.run_engine(*arguments)
 
     def test_dirty_repository_fetches_before_it_is_blocked(self) -> None:
@@ -316,6 +342,10 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertFalse(lease.exists())
             self.assertFalse(worktree.exists())
 
+    @unittest.skipUnless(
+        PROCESS_IDENTITY_AVAILABLE,
+        "The host sandbox blocks the process-start query required by lease recovery.",
+    )
     def test_orphaned_lease_recovers_once_but_active_and_pid_reuse_remain(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = FleetFixture(Path(directory))
@@ -404,6 +434,10 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertTrue(reused.exists())
             self.assertTrue(reused_worktree.exists())
 
+    @unittest.skipUnless(
+        PROCESS_IDENTITY_AVAILABLE,
+        "The host sandbox blocks the process-start query required by lease recovery.",
+    )
     def test_lease_rejects_path_escape_foreign_repository_and_new_untracked_data(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = FleetFixture(Path(directory))
@@ -418,7 +452,8 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
 
             lease = state_root / "leases" / "changed.json"
             worktree = state_root / "worktrees" / "changed" / "worktree"
-            self.assertEqual(self.create_lease(fixture, state_root, lease, worktree).returncode, 0)
+            created = self.create_lease(fixture, state_root, lease, worktree)
+            self.assertEqual(created.returncode, 0, created.stdout)
             payload = json.loads(lease.read_text(encoding="utf-8"))
             subprocess.run(
                 ["git", "-C", str(checkout), "worktree", "add", "--detach",
@@ -1159,6 +1194,41 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             invalid = subprocess.run(command, text=True, capture_output=True, check=False)
             self.assertEqual(invalid.returncode, 2, invalid.stdout)
             self.assertIn("non-canonical propagation target", invalid.stdout)
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is required.")
+    def test_ci_preview_starts_one_engine_and_never_claims_remote_convergence(self) -> None:
+        fixtures = REPOSITORY / "scripts/tests/ci-budget-governance/fixtures/vertical-slice"
+        with tempfile.TemporaryDirectory() as directory:
+            temporary = Path(directory)
+            environment = os.environ.copy()
+            environment.update({
+                "HOME": str(temporary / "home"),
+                "HB_CI_PROFILES": str(fixtures / "profiles.json"),
+                "HB_CI_PATH_CONTRACTS": str(fixtures / "path-contracts.json"),
+                "HB_CI_REPOSITORY_ID": "private-governance-fixture",
+                "HB_CI_FIXTURE_HEAD": "a" * 40,
+            })
+            # The repository OS contract uses only native PowerShell on Windows;
+            # invoking bash.exe there may incorrectly enter an unconfigured WSL.
+            commands = (
+                (["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-CiGate", "-WhatIf"],)
+                if os.name == "nt"
+                else (
+                    ["bash", "scripts/maintain-agentic-workspace.sh", "--ci-gate", "--dry-run"],
+                    ["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-CiGate", "-WhatIf"],
+                )
+            )
+            for index, command in enumerate(commands):
+                counter = temporary / f"counter-{index}.txt"
+                environment["HB_CI_ENGINE_COUNTER_FILE"] = str(counter)
+                completed = subprocess.run(
+                    command, cwd=REPOSITORY, env=environment, text=True,
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+                )
+                self.assertEqual(completed.returncode, 0, completed.stdout)
+                self.assertEqual(len(counter.read_text(encoding="utf-8").splitlines()), 1)
+                self.assertNotIn("RemoteConverged", completed.stdout)
+                self.assertNotIn("remoteConverged=true", completed.stdout)
 
 
 if __name__ == "__main__":

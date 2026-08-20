@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "registryVersion": "1.0.0",
+  "level0Self": {
+    "repositoryId": "home-baseline",
+    "remoteResolution": "executing-level0-configured-origin"
+  },
+  "fleetManifestPath": "scripts/config/agentic-workspace-fleet.json",
+  "profiles": [
+    {"profileId":"public-canary","displayName":"Public Canary","requiredVisibility":"public","gateSetId":"level0-standard-gates","workflowPolicyId":"public-canary-policy","budgetClass":"public"},
+    {"profileId":"public-product","displayName":"Public Product","requiredVisibility":"public","gateSetId":"level0-standard-gates","workflowPolicyId":"public-product-policy","budgetClass":"public"},
+    {"profileId":"private-product","displayName":"Private Product","requiredVisibility":"private","gateSetId":"level0-standard-gates","workflowPolicyId":"private-product-policy","budgetClass":"private-demand"},
+    {"profileId":"private-governance-scaffold","displayName":"Private Governance/Scaffold","requiredVisibility":"private","gateSetId":"level0-standard-gates","workflowPolicyId":"private-governance-policy","budgetClass":"private-recurring"},
+    {"profileId":"public-preset","displayName":"Public Preset","requiredVisibility":"public","gateSetId":"level0-standard-gates","workflowPolicyId":"public-preset-policy","budgetClass":"no-repository-workflow"}
+  ],
+  "assignments": [
+    {"repositoryId":"home-baseline","profileId":"public-canary","rationale":"Level-0 public governance canary."},
+    {"repositoryId":"agent-operations-cockpit","profileId":"public-canary","rationale":"Required public product canary."},
+    {"repositoryId":"tui-vision","profileId":"public-canary","rationale":"Required public product canary."},
+    {"repositoryId":"cc65","profileId":"public-product","rationale":"Public maintained product repository."},
+    {"repositoryId":"tvision","profileId":"public-product","rationale":"Public maintained product repository."},
+    {"repositoryId":"inventar-db","profileId":"private-product","rationale":"Live GET review on 2026-08-20 confirmed a private maintained product repository."},
+    {"repositoryId":"inventar-worker-service","profileId":"public-product","rationale":"Public maintained product repository."},
+    {"repositoryId":"tiny-calc","profileId":"public-product","rationale":"Public maintained product repository."},
+    {"repositoryId":"tiny-pl0","profileId":"public-product","rationale":"Public maintained product repository."},
+    {"repositoryId":"secure-casetracker-csharp","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
+    {"repositoryId":"secure-casetracker-go","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
+    {"repositoryId":"secure-casetracker-java","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
+    {"repositoryId":"secure-casetracker-python","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
+    {"repositoryId":"secure-casetracker-rust","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
+    {"repositoryId":"secure-casetracker-swift","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
+    {"repositoryId":"absdd-image-sandbox","profileId":"public-product","rationale":"Live GET review on 2026-08-20 confirmed the public sandbox reference repository."},
+    {"repositoryId":"c64-projects","profileId":"private-governance-scaffold","rationale":"Private workspace scaffold."},
+    {"repositoryId":"clion-projects","profileId":"private-governance-scaffold","rationale":"Private workspace scaffold."},
+    {"repositoryId":"datagrip-projects","profileId":"private-governance-scaffold","rationale":"Private workspace scaffold."},
+    {"repositoryId":"rider-projects","profileId":"private-governance-scaffold","rationale":"Private workspace scaffold."},
+    {"repositoryId":"secure-orderdesk-projects","profileId":"private-governance-scaffold","rationale":"Private secure workspace baseline."},
+    {"repositoryId":"secure-orderdesk-csharp","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-orderdesk-go","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-orderdesk-java","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-orderdesk-python","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-orderdesk-rust","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-orderdesk-swift","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-service-harvester-projects","profileId":"private-governance-scaffold","rationale":"Private secure workspace baseline."},
+    {"repositoryId":"secure-service-harvester-csharp","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-service-harvester-go","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-service-harvester-java","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-service-harvester-python","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-service-harvester-rust","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"secure-service-harvester-swift","profileId":"private-governance-scaffold","rationale":"Private governance-managed repository."},
+    {"repositoryId":"container-images","profileId":"private-governance-scaffold","rationale":"Private container governance scaffold."},
+    {"repositoryId":"secure-casetracker-baseline","profileId":"private-governance-scaffold","rationale":"Private SecureCaseTracker workspace baseline."},
+    {"repositoryId":"preset-security","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-architecture","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-isaqb","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-a11y","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-cross-platform","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-agent-parity","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-model-routing","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-intake-authoring","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-intake-review","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-intake-sequencing","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-autonomous","profileId":"public-preset","rationale":"Public governance preset."},
+    {"repositoryId":"preset-parallel-autonomous","profileId":"public-preset","rationale":"Public governance preset."}
+  ],
+  "gateSets": [
+    {
+      "gateSetId": "level0-standard-gates",
+      "version": "1.0.0",
+      "gates": [
+        {"order":1,"gateId":"build-contract","executable":"python3","arguments":["-m","compileall","-q","scripts/lib"],"workingDirectory":".","timeoutSeconds":120},
+        {"order":2,"gateId":"security-contract","executable":"bash","arguments":["scripts/scan-agent-secrets.sh","--fail-on-high","."],"workingDirectory":".","timeoutSeconds":300},
+        {"order":3,"gateId":"governance-contract","executable":"python3","arguments":["scripts/tests/test_spec_kit_agent_surface_parity.py"],"workingDirectory":".","timeoutSeconds":300},
+        {"order":4,"gateId":"dependency-contract","executable":"python3","arguments":["-m","json.tool","scripts/config/agentic-workspace-fleet.json"],"workingDirectory":".","timeoutSeconds":120},
+        {"order":5,"gateId":"product-contract","executable":"python3","arguments":["scripts/tests/test_agentic_workspace_maintenance.py"],"workingDirectory":".","timeoutSeconds":900},
+        {"order":6,"gateId":"documentation-contract","executable":"bash","arguments":["scripts/validate-documentation-impact.sh","--evidence","specs/029-ci-budget-governance/documentation-impact-evidence.json"],"workingDirectory":".","timeoutSeconds":300}
+      ]
+    }
+  ],
+  "budgetAssumptions": {
+    "weeksPerMonthNumerator": 52,
+    "weeksPerMonthDenominator": 12,
+    "privateMonthlyBudgetMinutes": 3000,
+    "privateMonthlyTargetExclusiveMinutes": 500,
+    "recurringPrivateJobsPerWeekReference": 22
+  }
+}

@@ -1,0 +1,23 @@
+schemaVersion: "1.0"
+active: false
+workflowId: private-governance-minimal-gate
+triggers:
+  - pull_request
+requiredStatusCheck: home-baseline/ci-minimal-gate
+runsOn: ubuntu-latest
+fullBuild: false
+pathDependent: true
+gateIds:
+  - build-contract
+  - security-contract
+  - governance-contract
+  - dependency-contract
+  - product-contract
+  - documentation-contract
+productJobs:
+  - jobId: casetracker-csharp
+  - jobId: casetracker-go
+  - jobId: casetracker-java
+  - jobId: casetracker-python
+  - jobId: casetracker-rust
+  - jobId: casetracker-swift

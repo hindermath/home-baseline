@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "active": false,
+  "applied": false,
+  "target": "default_branch",
+  "enforcement": "active",
+  "pullRequestRequired": true,
+  "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
+  "requireStatusChecksToPass": true,
+  "blockedWritePaths": ["api", "direct", "web"],
+  "adminBypassNormalPath": false,
+  "remoteConverged": false
+}

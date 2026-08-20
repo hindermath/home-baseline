@@ -49,3 +49,17 @@ contradictory event remains an integrity failure.*
 <!-- EN: docs/security/arc42-security.md
 [DE-Zusammenfassung: Sichere Querschnittsprinzipien und Bausteine der Wartungs-TUI.]
 -->
+
+## Feature 029: Sichere CI-Bausteine / Secure CI Building Blocks
+
+Die Bash-/PowerShell-Adapter validieren nur Optionen und starten einen
+Python-Kern. Der Kern trennt Registry-Validierung, GET-only-Inventory,
+Pfad-/Kostenplanung, Kindprozess-Gates und atomare Evidence-Publikation. Der
+Hook konsumiert Evidence; er erzeugt keine Remote-Autorität. Inaktive
+Workflow-/Ruleset-Templates sind eine getrennte Server-Policy-Simulation.
+
+Sicherheitsgrenzen: sichere Argument-Arrays, Arbeitsverzeichnis-Containment,
+Timeouts, sanitierte Diagnose, doppelte HEAD-/Hash-Prüfung, `os.replace`,
+restriktive Dateirechte, exakte Assignment-/Sichtbarkeitsmenge und konstantes
+`remoteConverged=false`. Deployment bleibt Stufe A lokal; Stufe B und G4 sind
+nicht ausgeführt.

@@ -67,6 +67,10 @@ scripts/config/*repository-registry.local.json
 .specify/integrations/.cache/
 .specify/integrations/.cache/**
 
+# Maschinenlokale autonome Lauf- und Acceptance-Evidence
+# Machine-local autonomous run and acceptance evidence
+.specify/runtime/
+
 # Antigravity-/Codex-Agenten-Skills (keine Credentials)
 !.agents/
 .agents/*

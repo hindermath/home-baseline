@@ -22,6 +22,22 @@ Pfade erhalten zusätzlich macOS-, Ubuntu- und Windows-Evidence.
 *Every scenario has at least one local test. Platform-dependent paths also
 receive macOS, Ubuntu, and Windows evidence.*
 
+## Feature 029: CI-Budget-Governance
+
+| ID | Auslöser | Erwartete Reaktion und Nachweis |
+|---|---|---|
+| SQ-029-01 | Assignment fehlt/doppelt oder Sichtbarkeit weicht ab | Block vor Inventory, Kosten und Rollout; `FleetClassificationTests` |
+| SQ-029-02 | Pfad trifft Dokumentation und Security | Vereinigungssemantik behält Security-Gate; `WorkflowPathBudgetTests` |
+| SQ-029-03 | HEAD oder Gate-Set ändert sich während Lauf | keine Erfolgsevidence; `VerticalSliceTests` |
+| SQ-029-04 | Hook fehlt oder wird umgangen | unabhängige PR-Pflicht und exakt ein Serverstatus bleiben; `HookEvidenceRulesetTests` |
+| SQ-029-05 | POST/PUT/PATCH/DELETE, Commit, Push, Merge, Home-Sync oder G4 | sofortiger Stage-A-Hard-Stop; `RolloutDeterminismMutationTests` |
+| SQ-029-06 | Dauer/Run/Copilot-Wert fehlt | nicht als Null rechnen, Budgetentscheidung blockiert |
+| SQ-029-07 | Bash/PowerShell Preview | gleiche lineare Felder/Hash/Exitcode, keine Evidence; macOS-Manualrecords |
+
+Reviewer: Security Architecture Reviewer. Restrisiko: native Linux-/Windows-
+Ausführung folgt erst bei entsprechender Plattformautorität. Re-Evaluation bei
+Gate-, Plattform-, Provider-, Budget- oder Authority-Änderung.
+
 <!-- EN: docs/security/security-quality-scenarios.md
 [DE-Zusammenfassung: Prüfszenarien für Auswahl, Injection, Events, Cache und A11Y.]
 -->

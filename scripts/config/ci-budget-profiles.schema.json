@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/ci-budget-profile-registry.schema.json",
+  "title": "Home Baseline CI Budget Profile Registry",
+  "$comment": "Assignments must equal the authoritative union of level0Self and every active kind=git-repository target from fleetManifestPath; collection nodes are excluded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "registryVersion",
+    "level0Self",
+    "fleetManifestPath",
+    "profiles",
+    "assignments",
+    "gateSets",
+    "budgetAssumptions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "registryVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "level0Self": { "$ref": "#/$defs/level0Self" },
+    "fleetManifestPath": {
+      "const": "scripts/config/agentic-workspace-fleet.json"
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/profile" }
+    },
+    "assignments": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Exactly one assignment for home-baseline plus exactly one for each active manifest git-repository target.",
+      "items": { "$ref": "#/$defs/assignment" }
+    },
+    "gateSets": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/gateSet" }
+    },
+    "budgetAssumptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weeksPerMonthNumerator",
+        "weeksPerMonthDenominator",
+        "privateMonthlyBudgetMinutes",
+        "privateMonthlyTargetExclusiveMinutes",
+        "recurringPrivateJobsPerWeekReference"
+      ],
+      "properties": {
+        "weeksPerMonthNumerator": { "const": 52 },
+        "weeksPerMonthDenominator": { "const": 12 },
+        "privateMonthlyBudgetMinutes": { "const": 3000 },
+        "privateMonthlyTargetExclusiveMinutes": { "const": 500 },
+        "recurringPrivateJobsPerWeekReference": { "const": 22 }
+      }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "(^/|^[A-Za-z]:|(^|/)\\.\\.(/|$)|\\u0000)" }
+    },
+    "level0Self": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryId", "remoteResolution"],
+      "properties": {
+        "repositoryId": { "const": "home-baseline" },
+        "remoteResolution": { "const": "executing-level0-configured-origin" }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "displayName",
+        "requiredVisibility",
+        "gateSetId",
+        "workflowPolicyId",
+        "budgetClass"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": [
+            "public-canary",
+            "public-product",
+            "private-product",
+            "private-governance-scaffold",
+            "public-preset"
+          ]
+        },
+        "displayName": {
+          "enum": [
+            "Public Canary",
+            "Public Product",
+            "Private Product",
+            "Private Governance/Scaffold",
+            "Public Preset"
+          ]
+        },
+        "requiredVisibility": { "enum": ["public", "private"] },
+        "gateSetId": { "$ref": "#/$defs/stableId" },
+        "workflowPolicyId": { "$ref": "#/$defs/stableId" },
+        "budgetClass": {
+          "enum": [
+            "public",
+            "private-recurring",
+            "private-demand",
+            "no-repository-workflow"
+          ]
+        }
+      }
+    },
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryId", "profileId", "rationale"],
+      "properties": {
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "profileId": {
+          "enum": [
+            "public-canary",
+            "public-product",
+            "private-product",
+            "private-governance-scaffold",
+            "public-preset"
+          ]
+        },
+        "rationale": { "type": "string", "minLength": 1 }
+      }
+    },
+    "gateSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gateSetId", "version", "gates"],
+      "properties": {
+        "gateSetId": { "$ref": "#/$defs/stableId" },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "gates": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/gate" }
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "order",
+        "gateId",
+        "executable",
+        "arguments",
+        "workingDirectory",
+        "timeoutSeconds"
+      ],
+      "properties": {
+        "order": { "type": "integer", "minimum": 1 },
+        "gateId": { "$ref": "#/$defs/stableId" },
+        "executable": {
+          "type": "string",
+          "minLength": 1,
+          "not": { "pattern": "[\\r\\n\\u0000]" }
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "not": { "pattern": "[\\r\\n\\u0000]" }
+          }
+        },
+        "workingDirectory": { "$ref": "#/$defs/relativePath" },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        }
+      }
+    }
+  }
+}

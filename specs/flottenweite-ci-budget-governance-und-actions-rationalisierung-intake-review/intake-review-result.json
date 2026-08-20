@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "694b6579-3443-4c9e-8017-8c7b285dae0f",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-08-19T17:21:12Z",
+  "repository": {
+    "root": ".",
+    "head": "4cb82b1267924ba78a2119cea03e75f38fb403ac"
+  },
+  "requestEvidence": {
+    "path": "specs/flottenweite-ci-budget-governance-und-actions-rationalisierung-intake-review/intake-review-request.json",
+    "normalizedSha256": "41e99b9d9a1b688b855f4aa216eb605b453c33d2138755bae04a32d95f1ab4af"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "role": "Primary",
+      "normalizedSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [
+    {
+      "id": "IRA001",
+      "status": "Answered",
+      "owner": "User",
+      "question": "Which non-local security boundary repairs the private-governance hook bypass finding?",
+      "answer": "Retain exactly one lean, path-aware, ruleset-required server-side PR gate. Full and duplicate builds are removed, while direct, web, and API bypass paths remain protected.",
+      "evidence": "Explicit current user answer Ja; repaired CBG-003, CBG-014, CBG-018, AC-CBG-002, and AC-CBG-007."
+    },
+    {
+      "id": "IRA002",
+      "status": "Answered",
+      "owner": "User",
+      "question": "How is fleet scope aligned with LocalImplementation?",
+      "answer": "Stage A changes only Level-0-owned artifacts and produces mapping, simulation, cost-model, and rollout evidence. Mutating and converging the 47 target repositories is a separately authorized Stage B.",
+      "evidence": "Explicit current user answer ja; repaired CBG-021, result artifacts, hard stops, AC-CBG-002 through AC-CBG-005, AC-CBG-007, AC-CBG-010, and both copy-ready prompts."
+    },
+    {
+      "id": "IRA003",
+      "status": "Answered",
+      "owner": "User",
+      "question": "Which deterministic profile-classification and drift contract applies?",
+      "answer": "Bind each stable registry ID to exactly one versioned ciProfile; recompute membership, visibility, and counts live. Unknown, missing, duplicate, or visibility-incompatible assignments stop fail-closed and require a reviewed mapping update.",
+      "evidence": "Explicit current user answer Ja; repaired planning-snapshot text, CBG-002, drift risks, AC-CBG-001, and the Specify prompt."
+    }
+  ],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "9ab74f34-7b6c-4f7c-9a54-558e10328c2d"
+}

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "618a6e43-f3fe-4bc9-b098-550c3fe97121",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit $speckit-intake-repair authority plus separate affirmative user decisions for IR001, IR002, and IR003. The update is limited to the repaired target hash.",
+  "proposalNormalizedSha256": "a6e6e15044264d975c2e1bbbadff385f7793ab67e15371ffe4f5e5039e1af6d4",
+  "differences": {
+    "targetCount": {
+      "before": 34,
+      "after": 34
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 38,
+      "after": 38
+    },
+    "addedTargets": [],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+        "orderBefore": 1,
+        "orderAfter": 1,
+        "roleBefore": "Primary",
+        "roleAfter": "Primary",
+        "statusBefore": "Eligible",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "cea10330e6e61ffd2ba38d00bb9abcfa2c1a131da2387d4e3ab165c2f534a1cb",
+        "normalizedSha256After": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": false,
+    "reason": "The target identity, first position, Primary and Eligible lifecycle, root membership, and binding G4 dependency remain unchanged."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/manifest.json",
+    "manifestNormalizedSha256": "f6dca7228b4eeae3941ae272e77621f648a267de4884a57da1474be9a554fbda",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/receipt.json",
+    "receiptNormalizedSha256": "65cd178f5f0962363229717227200534cdba8e4dd2bea3a3b1eb323cfd23ce40"
+  },
+  "preparedPaths": [
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "specs/intake-authoring-receipts/flottenweite-ci-budget-governance-und-actions-rationalisierung.json",
+    "specs/intake-authoring-archive/8e33f932-ba35-417e-b240-ee389fbd078e/ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda/target.md",
+    "specs/intake-authoring-archive/8e33f932-ba35-417e-b240-ee389fbd078e/ce8735f8-2f6e-4f85-8a40-c3e9f16e8eda/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/618a6e43-f3fe-4bc9-b098-550c3fe97121.json"
+  ],
+  "validation": {
+    "requirementsGovernanceBash": "Passed",
+    "requirementsGovernancePowerShell": "Passed",
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "reviewBash": "Passed",
+    "reviewPowerShell": "Passed",
+    "seriesBash": "Passed",
+    "seriesPowerShell": "Passed",
+    "secretScan": "Passed: gitleaks found no secrets in the current Git diff",
+    "statistics": "NotTriggered: intake governance metadata changed; no feature implementation completed",
+    "diffCheck": "Passed: target hash only; topology and order document are unchanged"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

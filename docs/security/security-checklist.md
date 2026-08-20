@@ -37,3 +37,29 @@ den Feature-Scope aufgenommen wird.
 <!-- EN: docs/security/security-checklist.md
 [DE-Zusammenfassung: Sicherheits- und N/A-Entscheidungen für Feature 018.]
 -->
+
+## Feature 029: CI-Budget-Governance
+
+- [x] NIST SSDF/CWE Top 25: Eingaben, Pfade, Referenzen, Subprozesse und
+  Fehlerkanäle besitzen positive und negative Tests.
+- [x] Bash: `set -euo pipefail`, gequotete Arrays, kein `eval`.
+- [x] PowerShell: Strict Mode, validierte Parameter, unmittelbare
+  `$LASTEXITCODE`-Weitergabe, kein `Invoke-Expression`.
+- [x] Python: `subprocess` nur mit Argument-Arrays und `shell=False`, begrenzte
+  Arbeitsverzeichnisse/Timeouts, keine dynamische Ausführung.
+- [x] Datei-/Netz-I/O: Traversal, Symlink, NUL, Zeilenumbruch und führende
+  Bindestriche blockieren; GitHub-Transport ist GET-only.
+- [x] Secrets/Logging: Secret-Scan bleibt im Hook; Rohantworten, Tokens,
+  Actors, Home-Pfade und Billingdetails werden nicht publiziert.
+- [x] Kryptografie: SHA-256 bindet Registries, Gate-Set, Inputs und Evidence;
+  keine neue Verschlüsselungs- oder Signaturfunktion.
+- [x] Mutationsbarriere: kein Commit, Push, Merge, Home-Sync, G4 oder aktiver
+  Workflow-/Ruleset-/Account-/Reviewer-Pfad.
+- [x] Bash bleibt als bestehende native Unix-Oberfläche begründet; der
+  gemeinsame Python-Kern und PowerShell/.NET sind MSL. Keine neue Runtime.
+- [x] Defense in Depth: lokaler Hook plus unabhängiger simulierter Server-Gate.
+
+Owner: Feature Owner; Reviewer: Security Reviewer. Restrisiko: ein lokaler
+Hook ist umgehbar. Follow-up: Serververtrag nur unter neuer Stufe-B-Autorität
+anwenden. Re-Evaluation bei Input-, Dependency-, Auth-, Crypto-, Datei-, Netz-
+oder Authority-Änderung.
