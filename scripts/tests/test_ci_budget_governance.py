@@ -224,12 +224,34 @@ class VerticalSliceTests(unittest.TestCase):
 
     def test_sparse_selected_gate_subset_is_reindexed_in_executed_evidence(self):
         with tempfile.TemporaryDirectory() as temporary_dir:
-            evidence_root = pathlib.Path(temporary_dir) / "evidence"
+            temporary = pathlib.Path(temporary_dir)
+            evidence_root = temporary / "evidence"
+
+            def make_commands_environment_independent(source):
+                # This test proves selection and reindexing; dedicated gate tests
+                # cover the real commands and their external-tool requirements.
+                for gate_set in source["gateSets"]:
+                    for gate in gate_set["gates"]:
+                        if gate["gateId"] in {
+                            "security-contract",
+                            "documentation-contract",
+                        }:
+                            gate["executable"] = "python3"
+                            gate["arguments"] = ["-c", "raise SystemExit(0)"]
+
+            profile_source = json.loads(
+                (ROOT / "scripts/config/ci-budget-profiles.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            make_commands_environment_independent(profile_source)
+            profiles = temporary / "profiles.json"
+            profiles.write_text(json.dumps(profile_source), encoding="utf-8")
             completed = subprocess.run(
                 [
                     "python3", "scripts/lib/agentic_workspace_fleet.py", "ci-gate",
                     "--repository-root", ".",
-                    "--profiles", "scripts/config/ci-budget-profiles.json",
+                    "--profiles", str(profiles),
                     "--path-contracts", "scripts/config/ci-budget-path-contracts.json",
                     "--workflow-template", "scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml",
                     "--repository-id", "home-baseline",
