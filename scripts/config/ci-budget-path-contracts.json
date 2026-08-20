@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "registryVersion": "1.0.0",
+  "pathContracts": [
+    {"pathContractId":"build-paths","category":"build","includePatterns":["**/*.csproj","**/*.fsproj","**/*.sln","**/Makefile","scripts/**"],"excludePatterns":["scripts/tests/**"],"gateIds":["build-contract"]},
+    {"pathContractId":"security-paths","category":"security","includePatterns":["scripts/hooks/**","scripts/scan-agent-secrets.*","docs/security/**"],"excludePatterns":[],"gateIds":["security-contract"]},
+    {"pathContractId":"governance-paths","category":"governance","includePatterns":["constitution.md",".specify/**","AGENTS.md","CLAUDE.md","GEMINI.md",".github/copilot-instructions.md",".github/agents/copilot-instructions.md"],"excludePatterns":[".specify/runtime/**"],"gateIds":["governance-contract"]},
+    {"pathContractId":"dependency-paths","category":"dependency","includePatterns":["**/package-lock.json","**/packages.lock.json","**/requirements.txt","scripts/config/*registry.json"],"excludePatterns":[],"gateIds":["dependency-contract"]},
+    {"pathContractId":"product-casetracker-csharp","category":"product","includePatterns":["SecureCaseTrackerProjects/SecureCaseTracker-CSharp/**"],"excludePatterns":[],"gateIds":["product-contract"],"productJobId":"casetracker-csharp"},
+    {"pathContractId":"product-casetracker-go","category":"product","includePatterns":["SecureCaseTrackerProjects/SecureCaseTracker-Go/**"],"excludePatterns":[],"gateIds":["product-contract"],"productJobId":"casetracker-go"},
+    {"pathContractId":"product-casetracker-java","category":"product","includePatterns":["SecureCaseTrackerProjects/SecureCaseTracker-Java/**"],"excludePatterns":[],"gateIds":["product-contract"],"productJobId":"casetracker-java"},
+    {"pathContractId":"product-casetracker-python","category":"product","includePatterns":["SecureCaseTrackerProjects/SecureCaseTracker-Python/**"],"excludePatterns":[],"gateIds":["product-contract"],"productJobId":"casetracker-python"},
+    {"pathContractId":"product-casetracker-rust","category":"product","includePatterns":["SecureCaseTrackerProjects/SecureCaseTracker-Rust/**"],"excludePatterns":[],"gateIds":["product-contract"],"productJobId":"casetracker-rust"},
+    {"pathContractId":"product-casetracker-swift","category":"product","includePatterns":["SecureCaseTrackerProjects/SecureCaseTracker-Swift/**"],"excludePatterns":[],"gateIds":["product-contract"],"productJobId":"casetracker-swift"},
+    {"pathContractId":"documentation-paths","category":"documentation","includePatterns":["README*.md","docs/**","specs/**"],"excludePatterns":[],"gateIds":["documentation-contract"]}
+  ]
+}

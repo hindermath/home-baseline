@@ -35,6 +35,23 @@
     Fetch and report only. Do not pull repositories, synchronize files, update
     the registry, propagate files, or update packages.
 
+.PARAMETER CiGate
+    Führt den lokalen profilgebundenen CI-Gate aus. Mit -WhatIf wird derselbe
+    Engine-Einstieg ohne Evidence-Schreibzugriff vorangezeigt.
+
+    Runs the local profile-bound CI gate. With -WhatIf, the same engine entry
+    is previewed without writing evidence.
+
+    Ausgabe / Output: Profil, Entscheidung, Status, Blocker, naechste Aktion,
+    Gate-Set-Hash, geordnete Gates und Evidence-Ziel erscheinen linear und
+    ohne Farbabhaengigkeit. Stufe A schreibt weder remote noch in Home oder
+    Zielrepositorys und behauptet keine Remote-Konvergenz.
+
+    Profile, decision, status, blocker, next action, gate-set hash, ordered
+    gates, and evidence target are printed in one color-independent sequence.
+    Stage A performs no remote, Home, or target-repository write and never
+    claims remote convergence.
+
 .PARAMETER ScriptsOnly
     Maintain repositories, home sync, registry, and propagation only. Skip
     WinGet, other machine-toolchain changes, and storage cleanup.
@@ -113,6 +130,11 @@
     Previews all mutating steps.
 
 .EXAMPLE
+    pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CiGate -WhatIf
+
+    Previews the local CI gate without writing evidence.
+
+.EXAMPLE
     pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -ScriptsOnly -RepairDrift
 
     Updates repositories and repairs maintenance files locally without commits.
@@ -123,6 +145,13 @@
     Exitcode, sichtbarer Abschluss und JSON-Bericht werden aus derselben Run-ID
     abgeleitet. Eigene reparierte Dirty-Zwischenstaende werden nur mit exakt
     passender atomarer Resume-Evidence akzeptiert.
+
+    Fuer -CiGate gelten: 0 = Erfolg oder sichere Vorschau, 1 = fachlicher
+    Blocker, 2 = Vertrags-/Betriebs-/Sicherheitsfehler und 130 = kontrollierter
+    Abbruch. Code 3 wird von -CiGate nicht erzeugt.
+
+    For -CiGate: 0 means success or safe preview, 1 a business blocker, 2 a
+    contract/operational/security failure, and 130 controlled interruption.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
@@ -130,6 +159,7 @@ param(
     [switch] $PlainUi,
     [switch] $NoTui,
     [switch] $CheckOnly,
+    [switch] $CiGate,
     [switch] $ScriptsOnly,
     [switch] $RepairDrift,
     [switch] $IncludeOptional,
@@ -170,6 +200,7 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         [switch] $PlainUi,
         [switch] $NoTui,
         [switch] $CheckOnly,
+        [switch] $CiGate,
         [switch] $ScriptsOnly,
         [switch] $RepairDrift,
         [switch] $IncludeOptional,
@@ -189,6 +220,7 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         PlainUi = $PlainUi
         NoTui = $NoTui
         CheckOnly = $CheckOnly
+        CiGate = $CiGate
         ScriptsOnly = $ScriptsOnly
         RepairDrift = $RepairDrift
         IncludeOptional = $IncludeOptional
@@ -209,6 +241,57 @@ function Invoke-HBAgenticWorkspaceMaintenance {
 
 if ($MyInvocation.InvocationName -eq '.') {
     return
+}
+
+if ($CiGate) {
+    $allowedCiParameters = @('CiGate', 'WhatIf')
+    $unexpectedCiParameters = @(
+        $entryBoundParameters.Keys | Where-Object { $_ -notin $allowedCiParameters }
+    )
+    if ($unexpectedCiParameters.Count -gt 0) {
+        Write-Error '-CiGate ist nur mit -WhatIf kombinierbar / may only be combined with -WhatIf.'
+        exit 2
+    }
+    $ciSourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
+    $ciFleetEngine = Join-Path $ciSourceRoot 'scripts/lib/agentic_workspace_fleet.py'
+    $ciProfiles = if ($env:HB_CI_PROFILES) {
+        $env:HB_CI_PROFILES
+    } else {
+        Join-Path $ciSourceRoot 'scripts/config/ci-budget-profiles.json'
+    }
+    $ciPathContracts = if ($env:HB_CI_PATH_CONTRACTS) {
+        $env:HB_CI_PATH_CONTRACTS
+    } else {
+        Join-Path $ciSourceRoot 'scripts/config/ci-budget-path-contracts.json'
+    }
+    $ciWorkflowTemplate = if ($env:HB_CI_WORKFLOW_TEMPLATE) {
+        $env:HB_CI_WORKFLOW_TEMPLATE
+    } else {
+        Join-Path $ciSourceRoot 'scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml'
+    }
+    $ciArguments = [Collections.Generic.List[string]]::new()
+    @(
+        'ci-gate', '--repository-root', $ciSourceRoot,
+        '--profiles', $ciProfiles,
+        '--path-contracts', $ciPathContracts,
+        '--workflow-template', $ciWorkflowTemplate
+    ) | ForEach-Object { $ciArguments.Add($_) }
+    if ($env:HB_CI_REPOSITORY_ID) {
+        $ciArguments.Add('--repository-id')
+        $ciArguments.Add($env:HB_CI_REPOSITORY_ID)
+    }
+    if ($env:HB_CI_FIXTURE_HEAD) {
+        $ciArguments.Add('--fixture-head')
+        $ciArguments.Add($env:HB_CI_FIXTURE_HEAD)
+    }
+    if ($env:HB_CI_EVIDENCE_ROOT) {
+        $ciArguments.Add('--evidence-root')
+        $ciArguments.Add($env:HB_CI_EVIDENCE_ROOT)
+    }
+    if ($WhatIfPreference) { $ciArguments.Add('--dry-run') }
+    & python3 $ciFleetEngine @ciArguments
+    $ciExitCode = $LASTEXITCODE
+    exit $ciExitCode
 }
 
 $uiSelectors = @($Tui, $PlainUi, $NoTui).Where({ [bool]$_ }).Count

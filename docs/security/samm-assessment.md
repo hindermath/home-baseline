@@ -24,3 +24,19 @@ finding invalidates the Pass result.*
 <!-- EN: docs/security/samm-assessment.md
 [DE-Zusammenfassung: SAMM-Evidence für die Wartungs-TUI.]
 -->
+
+## Feature 029: CI-Budget-Governance
+
+| SAMM-Praxis | Evidence | Bewertung |
+|---|---|---|
+| Strategy and Metrics | getrennte Actions-/Copilot-Kosten, `<500/3000` | Pass |
+| Threat Assessment | STRIDE+CIA/CAPEC und Trust Boundaries | Pass |
+| Security Requirements | CBG-001–021, zehn ACs, fail-closed Tests | Pass |
+| Secure Architecture | ADR-002, lokaler Hook plus Serververtrag | Pass |
+| Secure Build | sichere Argument-Arrays, PSScriptAnalyzer, Secret-Scan | Pass |
+| Security Testing | Contract-, Hook-, Workflow-, Mutation- und Paritätsfixtures | Pass |
+| Defect Management | Blocker, nächste Aktion, Evidence und Re-Evaluation | Pass |
+
+Dies ist eine Feature-Bewertung, keine Aussage zur Organisationsreife. Owner:
+Security Owner; Reviewer: SAMM Reviewer. Jeder offene High/Critical-Befund,
+neue Dependency oder Authority-Änderung löst eine Neubewertung aus.

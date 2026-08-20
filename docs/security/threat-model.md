@@ -55,3 +55,29 @@ automatischer Elevation oder zusätzlicher Providerautorität.
 <!-- EN: docs/security/threat-model.md
 [DE-Zusammenfassung: STRIDE-, CIA- und CAPEC-Modell für Wartungs-TUI und Engine.]
 -->
+
+## Feature 029: CI-Budget-Governance
+
+Trust Boundaries: versionierte Registries/Templates, ausführendes Git-Repository,
+GET-only-GitHub-Beobachtung, Gate-Kindprozesse, maschinenlokale Evidence und
+Pre-push-Hook. Datenklassen: öffentliche IDs/Verträge; private Sichtbarkeit und
+Minuten als minimierte lokale Metadaten; Credentials, Actor-Namen, Logs und
+Billing-Rohdaten sind verboten.
+
+- STRIDE: manipulierte Zuordnung/Pfadregistry (Tampering), fremde Evidence
+  (Spoofing), unklare Befehle (Repudiation), Rohantworten (Disclosure), Retry-
+  Schleifen (DoS), Ruleset-/Adminpfade (Elevation).
+- CIA: getrennte Hashes und atomare HEAD-Bindung schützen Integrität;
+  Datenminimierung schützt Vertraulichkeit; begrenzte Retries/Timeouts und
+  Offline-Fixtures schützen Verfügbarkeit.
+- CAPEC-15/126/23: Argument-Arrays mit `shell=False`, keine Traversal-/Symlink-
+  Escapes und strikte JSON-Felder. CAPEC-115 Authentication Bypass wird durch
+  die unabhängige PR-/Statuspflicht adressiert.
+- Least Privilege, Fail-Safe Defaults, Attack Surface Reduction und Separation
+  of Concerns: Remote nur GET; Wrapper, Vertragskern, Runner, Publisher und Hook
+  besitzen getrennte Rollen. Jede unbekannte Eigenschaft blockiert.
+
+Restrisiko: Ein kompromittiertes Benutzerkonto kann lokale Hooks ändern. Der
+separate Serververtrag bleibt daher Pflicht. Re-Evaluation bei Remote-
+Mutation, neuer Dependency, Auth-, Crypto-, Provider- oder Trust-Boundary-
+Änderung.

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "029-ci-budget-governance",
+  "entries": [
+    {
+      "changeId": "CHG029001",
+      "scope": "Fleet-wide CI profile, local gate, inventory, rollout, cost, security, accessibility and Stage-A operating documentation",
+      "decision": "UpdateRequired",
+      "rationale": "The feature adds user-visible CLI options, machine-readable contracts, a local evidence workflow, security boundaries, cost categories and a non-executed Stage-B handoff. One feature-wide decision keeps navigation, language, platform, distribution and governance evidence reviewable together.",
+      "documents": [
+        "README.md",
+        "docs/scripts/reference.md",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/man/install-hooks.1.md",
+        "docs/architecture/ci-budget-governance.md",
+        "docs/accessibility/ci-budget-governance.md",
+        "docs/security/adr/ADR-002-ci-gate-defense-in-depth.md",
+        "docs/security/threat-model.md",
+        "docs/security/arc42-security.md",
+        "docs/security/security-quality-scenarios.md",
+        "docs/security/security-checklist.md",
+        "docs/security/dependency-audit.md",
+        "docs/security/supply-chain-evidence.md",
+        "docs/security/zero-trust-applicability.md",
+        "docs/security/samm-assessment.md",
+        "docs/security/asvs-verification.md",
+        "docs/security/regulatory-applicability.md",
+        "docs/security/cloud-autonomy-applicability.md",
+        "docs/security/cloud-compliance-assurance.md",
+        "specs/029-ci-budget-governance/checklists/cross-platform.md",
+        "specs/029-ci-budget-governance/checklists/implementation-governance.md"
+      ],
+      "owner": "home-baseline Feature Owner",
+      "audiences": ["Maintainers", "Security reviewers", "Automation operators", "AI agents"],
+      "readerPaths": ["README to safe preview", "Script reference to gate and evidence", "Architecture and security review", "Autonomous acceptance closeout"],
+      "canonicalSource": "specs/029-ci-budget-governance/spec.md",
+      "navigationImpact": "README links the safe preview to the script reference; manpages, architecture, accessibility and security documents provide progressively deeper operational and assurance detail.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Integrated German-first, English-second content at approximately CEFR B2; command names and stable machine fields remain unchanged.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Real Bash and PowerShell 7 previews plus PSScriptAnalyzer ran on macOS; common fixtures prove semantic macOS/Linux/Windows normalization without claiming native Linux or Windows execution.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": false,
+      "evidence": "specs/029-ci-budget-governance/checklists/implementation-governance.md",
+      "risk": "Native Linux and Windows manual output remains a later platform re-evaluation; Stage B and Home sync were not authorized in this run.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Profile, fleet, security, authority, schema, platform, distribution, user-facing output, shared guidance or audience changes."
+    }
+  ],
+  "distributionReview": {
+    "sourceOnly": ["specs/029-ci-budget-governance/", "docs/"],
+    "homeRuntime": ["scripts/maintain-agentic-workspace.sh", "scripts/maintain-agentic-workspace.ps1", "scripts/hooks/pre-push", "scripts/lib/agentic_workspace_fleet.py", "scripts/config/ci-budget-profiles.json", "scripts/config/ci-budget-path-contracts.json"],
+    "machineLocal": [".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence/"],
+    "homeSyncRequired": false,
+    "rationale": "The current LocalImplementation authority forbids Home sync; runtime distribution is reviewed but remains unapplied."
+  },
+  "sharedGuidanceReview": {
+    "decision": "NoUpdateRequired",
+    "surfaces": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", "constitution.md", ".specify/memory/constitution.md", ".specify/templates/"],
+    "rationale": "Feature 029 implements an existing governance contract and changes no shared agent rule, Constitution principle, Spec-Kit template semantics or model-routing role.",
+    "owner": "Governance Owner",
+    "reviewer": "Agent-Parity Reviewer",
+    "evidence": "python3 scripts/tests/test_spec_kit_agent_surface_parity.py; 3 tests passed; constitution.md and .specify/memory/constitution.md are byte-identical; no listed surface is changed.",
+    "residualRisk": "A later shared-guidance edit could require an atomic five-surface and Constitution/template update.",
+    "reevaluationTrigger": "Any change to a listed guidance, Constitution, template or routing surface."
+  },
+  "agentParityValidation": {
+    "command": "python3 scripts/tests/test_spec_kit_agent_surface_parity.py",
+    "exitCode": 0,
+    "testsRun": 3,
+    "result": "Passed",
+    "reviewer": "Agent-Parity Reviewer",
+    "residualRisk": "Future guidance changes may create semantic drift.",
+    "reevaluationTrigger": "Any shared agent-surface, Constitution or Spec-Kit template change."
+  }
+}

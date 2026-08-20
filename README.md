@@ -88,6 +88,28 @@ Das vollständige [Dokumentationsportal](docs/README.md) ordnet alle Themen und
 kanonischen Quellen ein. Die [Skriptreferenz](docs/scripts/reference.md) listet
 die verfügbaren Befehle, Plattformen und sicheren Prüfmodi.
 
+### CI-Budget-Governance sicher voranzeigen
+
+Der lokale CI-Gate (eine profilgebundene Prüfentscheidung) zeigt Profil,
+ausgewählte Prüfungen, Blocker, Gate-Set-Hash und das spätere Evidence-Ziel an,
+ohne eine Evidence-Datei oder ein Repository zu ändern:
+
+```bash
+bash scripts/maintain-agentic-workspace.sh --ci-gate --dry-run
+```
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -CiGate -WhatIf
+```
+
+Fehler enden fail-closed mit einer nächsten Aktion. Aktionen-Minuten und
+Copilot-Review-Verbrauch bleiben getrennte Kostenkategorien. Die vollständige
+Bedienung, Evidence-Prüfung, Exitcodes und Stufe-A-Grenze stehen in der
+[Skriptreferenz](docs/scripts/reference.md).
+
+*Preview is read-only. A real local gate may write only machine-local success
+evidence after stable HEAD and hash checks; it never means remote convergence.*
+
 ## Voraussetzungen
 
 - Git und ein persönliches oder institutionelles Git-Repository;

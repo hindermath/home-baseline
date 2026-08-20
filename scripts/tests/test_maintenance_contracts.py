@@ -44,6 +44,19 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    def test_ci_gate_wrapper_contract_is_cross_platform_and_fail_closed(self) -> None:
+        bash_source = (REPOSITORY / "scripts/maintain-agentic-workspace.sh").read_text(encoding="utf-8")
+        powershell_source = (REPOSITORY / "scripts/maintain-agentic-workspace.ps1").read_text(encoding="utf-8")
+        self.assertIn("--ci-gate", bash_source)
+        self.assertIn("--dry-run", bash_source)
+        self.assertIn("-CiGate", powershell_source)
+        self.assertIn("-WhatIf", powershell_source)
+        self.assertIn("function Invoke-HBAgenticWorkspaceMaintenance", powershell_source)
+        self.assertIn("$ciExitCode = $LASTEXITCODE", powershell_source)
+        self.assertIn("exit $ciExitCode", powershell_source)
+        self.assertNotIn("Invoke-Expression", powershell_source)
+        self.assertNotIn("eval ", bash_source)
+
     def test_network_attempt_contract_distinguishes_success_failure_and_timeout(self) -> None:
         specification = importlib.util.spec_from_file_location(
             "fleet_engine_attempts", FLEET_ENGINE
@@ -595,6 +608,12 @@ class MaintenanceContractTests(unittest.TestCase):
                 cwd=repository,
                 text=True,
             )
+            preset_helpers = preset_helper_source().replace(
+                '--owner-pid "$$" \\\n',
+                '--owner-pid "$$" \\\n'
+                '      --owner-process-identity fixture-owner-process \\\n',
+                1,
+            )
             harness = f"""set -euo pipefail
 SOURCE_ROOT=/not-the-fixture
 HOME_DIR={shlex.quote(str(home))}
@@ -611,7 +630,7 @@ PRESET_VALIDATION_TARGET=''
 PRESET_VALIDATION_ISOLATED=0
 warn() {{ :; }}
 info() {{ :; }}
-{preset_helper_source()}
+{preset_helpers}
 prepare_preset_validation_target {shlex.quote(str(repository))}
 [ "$PRESET_VALIDATION_ISOLATED" -eq 1 ]
 [ -f "$PRESET_VALIDATION_TARGET/.specify/presets/.registry" ]

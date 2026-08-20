@@ -10,3 +10,15 @@ Credential-Stores. Die vollstaendige Bewertung erfolgt in der Template-Struktur.
 
 *home-baseline is local-first, but it uses remote git hosting and credential
 stores. The full evaluation should be captured using the template structure.*
+
+## Feature 029: CI-Budget-Governance
+
+Status: `Applicable` für Least Privilege, explizite Trust Boundaries und
+fortlaufende Verifikation. GitHub-Zugriff ist auf REST-GET begrenzt; Registry,
+Assignment, Sichtbarkeit, HEAD und Hash werden bei jedem Lauf neu geprüft.
+Lokaler Hook und unabhängiger Serververtrag werden nicht gegenseitig als
+Vertrauensersatz verwendet. Kein Admin-Bypass ist Normalpfad.
+
+Owner: Security Architecture Owner; Reviewer: Zero-Trust Reviewer.
+Restrisiko: kompromittierter lokaler Account. Re-Evaluation bei neuer Identität,
+Remote-Mutation, Cloud-Runtime oder Netzvertrauensgrenze.

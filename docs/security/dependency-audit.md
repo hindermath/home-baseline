@@ -55,3 +55,20 @@ Binärartefakt oder Paket veröffentlicht wird.
 <!-- EN: docs/security/dependency-audit.md
 [DE-Zusammenfassung: Paket-, Lockfile-, SBOM- und VEX-Nachweis der Wartungs-TUI.]
 -->
+
+## Feature 029: CI-Budget-Governance
+
+Es wurde keine neue Laufzeit- oder Paketabhängigkeit hinzugefügt. Bash,
+PowerShell 7, Python-Standardbibliothek, Git und die bereits authentifizierte
+`gh`-CLI bleiben vorhandene Werkzeuge. Die neuen Registries, Schemas, Templates,
+Tests und der Hook sind im repositoryweiten Softwareinventar zu führen.
+
+SBOM: `Applicable` auf Quellen-/Skriptinventar; VEX: `NotAffected`, solange
+Dependency- und Secret-Scan ohne Befund bleiben. SLSA/Provenance und OpenSSF
+Scorecard: `Applicable` als Review der versionierten Quelle und späteren
+Lieferkette, ohne in Stufe A eine neue Release-Provenienz zu behaupten.
+AI-SBOM: `N/A`, weil KI ausschließlich Entwicklungswerkzeug ist und weder
+Modell, Dataset, Inferenzdienst noch AI-Runtime ausgeliefert wird.
+
+Owner: Supply Chain Owner; Reviewer: Security Reviewer. Re-Evaluation bei
+Dependency-, Paket-, Release-, Distributions- oder KI-Runtime-Änderung.

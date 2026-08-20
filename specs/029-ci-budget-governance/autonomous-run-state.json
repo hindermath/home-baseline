@@ -3,14 +3,14 @@
   "runId": "eca02c0f-5399-49c0-8de4-b21233834254",
   "featurePath": "specs/029-ci-budget-governance",
   "branch": "029-ci-budget-governance",
-  "deliveryMode": "LocalImplementation",
-  "authorityRevalidationRequired": true,
-  "stage": "PlanReview",
-  "status": "PausedByUser",
-  "checkpointCommit": "N/A",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": false,
+  "stage": "Publish",
+  "status": "Active",
+  "checkpointCommit": "039784a55ae3c06e206035c9b850de3c8490311f",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md",
       "sha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610"
     },
     {
@@ -31,11 +31,11 @@
     },
     {
       "path": "specs/029-ci-budget-governance/spec.md",
-      "sha256": "1cbd5ce0a71902caf23e3670fae52bd8914971a5fe16f234c25e2ca8052e33f2"
+      "sha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
     },
     {
       "path": "specs/029-ci-budget-governance/checklists/requirements.md",
-      "sha256": "0ea6462b0b28ead0e0e64a74b5b75cea1b5e263eb1d8b9b51532519ab58df460"
+      "sha256": "9cca64a53d140dd825a62a50b6b0417bdf2db286e6ca8ad08b180fdf1e28dfe9"
     },
     {
       "path": "specs/029-ci-budget-governance/checklists/clarifications.md",
@@ -88,13 +88,21 @@
     {
       "path": "specs/029-ci-budget-governance/checklists/plan-review.md",
       "sha256": "058637e313dc6f2c1898604f2b77560fbfa252b162d210ab9a596df5df96d0fd"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/tasks.md",
+      "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684"
+    },
+    {
+      "path": "specs/029-ci-budget-governance/retrospective.md",
+      "sha256": "f82fd5e45c2158f6b576348baf4b6bc0699703ef5806470cfbdac78108756852"
     }
   ],
   "tasks": {
-    "path": "N/A",
-    "sha256": "N/A",
-    "completed": 0,
-    "total": 0
+    "path": "specs/029-ci-budget-governance/tasks.md",
+    "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684",
+    "completed": 93,
+    "total": 93
   },
   "routing": {
     "policy": "balanced-v1",
@@ -238,7 +246,7 @@
         "reasoningEffort": "high",
         "preflight": "Completed",
         "exitCode": 0,
-        "updatedAt": "2026-08-19T19:21:23.4003320Z",
+        "updatedAt": "2026-08-19T19:21:23.400332Z",
         "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/plan-review.result.json",
         "resultSha256": "77d3b290ee3461a3557e10ab157218ae3998a22cd30059ad07319d0c55138e4d"
       },
@@ -246,61 +254,234 @@
         "phaseId": "tasks",
         "command": "speckit.tasks",
         "routingRole": "frontier-reasoning",
-        "runnerProfile": "N/A",
+        "runnerProfile": "codex-frontier-auto",
         "dependsOn": [
           "plan-review"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T17:11:08.235275Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/tasks.result.json",
+        "resultSha256": "bcfa79842ed4a4b0005d3f895fd2b4c3a822120a012528f026b905d2d16b7381"
       },
       {
         "phaseId": "analyze",
         "command": "speckit.analyze",
         "routingRole": "frontier-reasoning",
-        "runnerProfile": "N/A",
+        "runnerProfile": "codex-frontier-auto",
         "dependsOn": [
           "tasks"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T17:19:34.221653Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/analyze.result.json",
+        "resultSha256": "4a9ab0c8d0e2a873e0ec7f63227b27e3176b56d2036126fcd7fa10ef1b2c70ee"
       },
       {
         "phaseId": "implement",
         "command": "speckit.implement",
         "routingRole": "long-running-implementation",
-        "runnerProfile": "N/A",
+        "runnerProfile": "codex-implementation-auto",
         "dependsOn": [
           "analyze"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T18:43:33.533673Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/implement.result.json",
+        "resultSha256": "c0ae8be8fb540c412b48937c28c0772da10f6b885e4ca091af0811e1de0b9125"
       },
       {
         "phaseId": "retrospective",
         "command": "speckit.autonomous-retrospective",
         "routingRole": "coding-review",
-        "runnerProfile": "N/A",
+        "runnerProfile": "codex-review-auto",
         "dependsOn": [
           "implement"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-20T19:01:45.9425020Z",
+        "resultPath": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/retrospective.result.json",
+        "resultSha256": "fe3e749001976d62e77cfbca9ee2d822a69175252415a5b64e612e3100dce8b5"
       }
     ]
   },
-  "lastPassingGate": "PlanReview",
-  "nextExactAction": "Run $speckit-autonomous-resume for specs/029-ci-budget-governance, revalidate authority and accepted-artifact hashes, then continue with routing phase 'tasks'.",
+  "lastPassingGate": "Retrospective",
+  "nextExactAction": "Validate and commit the exact feature candidate, then push and create or update one pull request.",
   "lastOperation": {
-    "kind": "ModelRoutingPhase:plan-review",
+    "kind": "AuthorityUpgrade",
     "state": "Completed",
-    "summary": "Phase completed with profile 'codex-frontier-auto' and result SHA-256 77d3b290ee3461a3557e10ab157218ae3998a22cd30059ad07319d0c55138e4d."
+    "summary": "Current user authority upgraded the completed local run to MergeAndSync, including commit, push, PR, admin-bypass merge, default-branch synchronization, and Home sync."
   },
   "stop": {
-    "reason": "User requested a controlled stop before implementation.",
-    "requestedAt": "2026-08-19T19:21:24Z",
-    "safeBoundary": "After phase 'plan-review' completion and before phase 'tasks'."
+    "reason": "N/A",
+    "requestedAt": "N/A",
+    "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "N/A",
-    "defaultBranchSync": "N/A",
-    "postMergeActions": "N/A",
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-19T19:21:24Z"
+  "resumeAudit": {
+    "auditedAt": "2026-08-20T16:53:49Z",
+    "sourceStatus": "PausedByUser",
+    "resumedFromStatus": "Blocked",
+    "resumedAt": "2026-08-20T16:53:49Z",
+    "git": {
+      "branch": "029-ci-budget-governance",
+      "head": "039784a55ae3c06e206035c9b850de3c8490311f",
+      "upstream": "origin/029-ci-budget-governance",
+      "ahead": 0,
+      "behind": 0,
+      "ownedUntrackedPath": ".specify/runtime/"
+    },
+    "authority": {
+      "currentMode": "LocalImplementation",
+      "remoteWritesAuthorized": false,
+      "disposition": "The current resume command authorizes local continuation only. Earlier checkpoint push authority is not reused for PR, merge, or additional remote writes."
+    },
+    "intakeReview": {
+      "reviewId": "694b6579-3443-4c9e-8017-8c7b285dae0f",
+      "mode": "Single",
+      "status": "Ready",
+      "policy": "home-baseline-active-lastenhefte-v1",
+      "reviewedAt": "2026-08-19T17:21:12Z",
+      "targetCount": 1,
+      "normalizedTargetSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610",
+      "findings": 0,
+      "openQuestions": 0,
+      "acceptedRisks": 0,
+      "validatorResult": "Passed"
+    },
+    "acceptedArtifactAudit": {
+      "total": 20,
+      "matching": 20,
+      "resolvedNonSemanticDrift": [
+        {
+          "path": "specs/029-ci-budget-governance/spec.md",
+          "acceptedSha256": "1cbd5ce0a71902caf23e3670fae52bd8914971a5fe16f234c25e2ca8052e33f2",
+          "currentSha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
+        },
+        {
+          "path": "specs/029-ci-budget-governance/checklists/requirements.md",
+          "acceptedSha256": "0ea6462b0b28ead0e0e64a74b5b75cea1b5e263eb1d8b9b51532519ab58df460",
+          "currentSha256": "9cca64a53d140dd825a62a50b6b0417bdf2db286e6ca8ad08b180fdf1e28dfe9"
+        }
+      ],
+      "classification": "Known controlled commit-time trailing-whitespace normalization; semantic scope and the accepted PlanReview payload did not change.",
+      "disposition": "The mandatory-rule delta audit and affected Analyze readiness gate passed. Current normalized hashes are accepted without changing semantic scope."
+    },
+    "presetAudit": {
+      "versions": {
+        "security-governance": "0.6.2",
+        "architecture-governance": "0.5.2",
+        "isaqb-architecture-governance": "0.2.2",
+        "a11y-governance": "0.4.3",
+        "cross-platform-governance": "0.2.2",
+        "agent-parity-governance": "0.4.2",
+        "model-routing-governance": "0.1.4",
+        "intake-authoring-governance": "0.3.1",
+        "intake-review-governance": "0.2.1",
+        "intake-sequencing-governance": "0.2.3",
+        "autonomous-run-governance": "0.4.1",
+        "parallel-autonomous-run-governance": "0.2.6"
+      },
+      "mandatoryRuleDelta": "None: constitution, shared agent guidance, extension configuration, and installed preset trees are unchanged from the feature base reviewed by PlanReview."
+    },
+    "routingAudit": {
+      "priorStatus": "RefreshRequired",
+      "status": "Aligned",
+      "harness": "Codex",
+      "harnessVersion": "codex-cli 0.147.0",
+      "localProfileGeneratedBy": "model-routing-governance/0.1.2",
+      "localProfileGeneratedAt": "2026-08-20T16:51:05.561227Z",
+      "localProfileCatalogSha256": "7db176ac6bc263526ad6cd67cce9715123393cff0f8774977691b3aa6c04bbfc",
+      "currentCatalogSha256": "7db176ac6bc263526ad6cd67cce9715123393cff0f8774977691b3aa6c04bbfc",
+      "routingContractValidation": "Passed",
+      "frontierModelPreflight": "Completed: MODEL_READY",
+      "lastCompletedPhase": "plan-review",
+      "lastResultSha256": "77d3b290ee3461a3557e10ab157218ae3998a22cd30059ad07319d0c55138e4d",
+      "lastPayloadSha256": "058637e313dc6f2c1898604f2b77560fbfa252b162d210ab9a596df5df96d0fd",
+      "lastResultValidation": "Passed"
+    },
+    "rerunGates": {
+      "tasksResult": {
+        "initialDisposition": "The payload completed, but the CLI final narrative replaced the transient structured result and triggered AEI002 fail-closed.",
+        "revalidationAttemptId": "0d0772ba-3faf-4b2a-a5bc-45d8be2b3e03",
+        "payloadSha256": "25ebff5553dfa84bd77050eb7d76ad976fc9d780c7a6d60abc58efd957fd2f59",
+        "resultSha256": "bcfa79842ed4a4b0005d3f895fd2b4c3a822120a012528f026b905d2d16b7381",
+        "taskCount": 93,
+        "checkedTaskCount": 0,
+        "validation": "Passed"
+      },
+      "analyze": {
+        "attemptId": "98670f9b-ec82-4298-b975-e0609c8814a0",
+        "payloadSha256": "25ebff5553dfa84bd77050eb7d76ad976fc9d780c7a6d60abc58efd957fd2f59",
+        "resultSha256": "4a9ab0c8d0e2a873e0ec7f63227b27e3176b56d2036126fcd7fa10ef1b2c70ee",
+        "criticalFindings": 0,
+        "highFindings": 0,
+        "unresolvedMediumFindings": 0,
+        "validation": "Passed"
+      }
+    },
+    "disposition": "Resume accepted under LocalImplementation; tasks and the mandatory Analyze rerun passed, so implementation may start."
+  },
+  "implementationRecovery": {
+    "attemptId": "0776e3fa-ecbd-4575-9ec8-06eb0e8d9d05",
+    "completedTasks": 24,
+    "blockedTask": "T025",
+    "blocker": "Nested workspace sandbox denied writing .git/hooks/pre-push.",
+    "resolution": "Root process syntax-checked scripts/install-hooks.sh and executed the installer under current LocalImplementation authority.",
+    "sourceHookSha256": "0982e1c3b51f1adc080e27662c1648554a4563f6e80fdeaa824b09ec0f5358ee",
+    "installedHookSha256": "0982e1c3b51f1adc080e27662c1648554a4563f6e80fdeaa824b09ec0f5358ee",
+    "byteParity": "Passed",
+    "resolvedAt": "2026-08-20T17:41:07Z"
+  },
+  "implementationCompletionRecovery": {
+    "blockedAttemptId": "83ca5874-e0b7-4fde-9b43-10cf5b626aaf",
+    "completedAttemptId": "3d7edc9c-489c-47f4-bcc1-20e7e577f078",
+    "unexpectedRenameCommit": "e3b5cd097c62c877b4b0e6f59bc139089375f9fa",
+    "resetTarget": "039784a55ae3c06e206035c9b850de3c8490311f",
+    "workingTreeRenamePreserved": true,
+    "ahead": 0,
+    "behind": 0,
+    "implementationResultSha256": "c0ae8be8fb540c412b48937c28c0772da10f6b885e4ca091af0811e1de0b9125",
+    "finalGateEvidenceSha256": "09a0cc03779d6eb653fa1dcc523222a2b8b9da44218014ffb8ac9cde05d04462",
+    "recoveryEvidence": ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence/internal/rename-commit-recovery.json",
+    "validation": "Passed",
+    "resolvedAt": "2026-08-20T18:53:29Z"
+  },
+  "deliveryAuthorization": {
+    "authorizedAt": "2026-08-20T19:10:00Z",
+    "mode": "MergeAndSync",
+    "commitAuthorized": true,
+    "pushAuthorized": true,
+    "pullRequestAuthorized": true,
+    "mergeAuthorized": true,
+    "adminBypassAuthorized": true,
+    "defaultBranchSyncAuthorized": true,
+    "homeSyncAuthorized": true,
+    "scope": "Feature 029 delivery and its single causal closeout only; no Stage-B fleet rollout or G4 start."
+  },
+  "updatedAt": "2026-08-20T19:10:00Z"
 }

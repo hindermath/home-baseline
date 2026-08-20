@@ -16,6 +16,7 @@ STORAGE_POLICY="${SOURCE_ROOT}/scripts/config/workspace-storage-maintenance.json
 
 CHECK_ONLY=0
 DRY_RUN=0
+CI_GATE=0
 SCRIPTS_ONLY=0
 REPAIR_DRIFT=0
 INCLUDE_OPTIONAL=0
@@ -76,6 +77,8 @@ Freshness Barrier completes every fetch attempt before any mutation.
                      Check and fetch only; no pulls or package updates
   --dry-run          Schreibende Schritte als Vorschau ausgeben
                      Preview mutating steps
+  --ci-gate          Lokalen, profilgebundenen CI-Gate ausführen
+                     Run the local profile-bound CI gate
   --scripts-only     Nur Repositories, Home-Sync, Registry und Propagation
                      Repositories, home sync, registry, and propagation only
   --repair-drift     Wartungspaket-Drift lokal reparieren; nie committen/pushen
@@ -543,6 +546,7 @@ while [ $# -gt 0 ]; do
     --no-tui) UI_MODE="headless"; UI_SELECTOR_COUNT=$((UI_SELECTOR_COUNT + 1)) ;;
     --check-only) CHECK_ONLY=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --dry-run) DRY_RUN=1; MAINTENANCE_OPTION_SEEN=1 ;;
+    --ci-gate) CI_GATE=1 ;;
     --scripts-only) SCRIPTS_ONLY=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --repair-drift) REPAIR_DRIFT=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --include-optional) INCLUDE_OPTIONAL=1; MAINTENANCE_OPTION_SEEN=1 ;;
@@ -586,6 +590,27 @@ while [ $# -gt 0 ]; do
   esac
   shift
 done
+
+if [ "$CI_GATE" -eq 1 ]; then
+  if [ "$CHECK_ONLY" -eq 1 ] || [ "$SCRIPTS_ONLY" -eq 1 ] || [ "$REPAIR_DRIFT" -eq 1 ] \
+      || [ "$INCLUDE_OPTIONAL" -eq 1 ] || [ "$ALLOW_ADMIN_PROMPTS" -eq 1 ] \
+      || [ "$CLEANUP_PROFILE_EXPLICIT" -eq 1 ] || [ "$CONFIRM_DEEP_CLEANUP" -eq 1 ] \
+      || [ "$UI_SELECTOR_COUNT" -gt 0 ] || [ -n "$EVENT_STREAM" ] || [ -n "$REQUESTED_RUN_ID" ]; then
+    die "--ci-gate ist nur mit --dry-run kombinierbar / may only be combined with --dry-run"
+  fi
+  ci_arguments=(
+    ci-gate
+    --repository-root "$SOURCE_ROOT"
+    --profiles "${HB_CI_PROFILES:-${SOURCE_ROOT}/scripts/config/ci-budget-profiles.json}"
+    --path-contracts "${HB_CI_PATH_CONTRACTS:-${SOURCE_ROOT}/scripts/config/ci-budget-path-contracts.json}"
+    --workflow-template "${HB_CI_WORKFLOW_TEMPLATE:-${SOURCE_ROOT}/scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml}"
+  )
+  [ -n "${HB_CI_REPOSITORY_ID:-}" ] && ci_arguments+=(--repository-id "$HB_CI_REPOSITORY_ID")
+  [ -n "${HB_CI_FIXTURE_HEAD:-}" ] && ci_arguments+=(--fixture-head "$HB_CI_FIXTURE_HEAD")
+  [ -n "${HB_CI_EVIDENCE_ROOT:-}" ] && ci_arguments+=(--evidence-root "$HB_CI_EVIDENCE_ROOT")
+  [ "$DRY_RUN" -eq 1 ] && ci_arguments+=(--dry-run)
+  exec python3 "$FLEET_ENGINE" "${ci_arguments[@]}"
+fi
 
 if [ "$UI_SELECTOR_COUNT" -gt 1 ]; then
   die "--tui, --plain-ui und --no-tui sind gegenseitig ausgeschlossen / are mutually exclusive"
