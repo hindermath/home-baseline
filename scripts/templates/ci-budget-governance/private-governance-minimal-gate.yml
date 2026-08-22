@@ -5,6 +5,7 @@ triggers:
   - pull_request
 requiredStatusCheck: home-baseline/ci-minimal-gate
 runsOn: ubuntu-latest
+jobCount: 1
 fullBuild: false
 pathDependent: true
 gateIds:

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "030-stage-b-rollout",
+  "entries": [
+    {
+      "changeId": "CHG030001",
+      "scope": "Fleet-wide Stage-B control plane, serial repository rollout, provider governance, acceptance evidence, accessibility, security, architecture and operating documentation",
+      "decision": "UpdateRequired",
+      "rationale": "Stage B adds user-visible preview, delivery, resume and verification contracts plus security-sensitive remote and ruleset boundaries. One feature-wide decision keeps reader paths, language, platform, distribution and closeout evidence causally reviewable.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/scripts/reference.md",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/architecture/ci-budget-governance.md",
+        "docs/accessibility/ci-budget-governance.md",
+        "docs/security/",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "constitution.md",
+        ".specify/memory/constitution.md",
+        ".specify/templates/",
+        "scripts/templates/AGENTS.md.tmpl",
+        "scripts/templates/CLAUDE.md.tmpl",
+        "scripts/templates/GEMINI.md.tmpl",
+        "scripts/templates/copilot-instructions.tmpl",
+        "scripts/templates/speckit-workflow-section.md",
+        "specs/030-stage-b-rollout/quickstart.md",
+        "specs/030-stage-b-rollout/checklists/implementation-governance.md",
+        "specs/030-stage-b-rollout/checklists/cross-platform.md"
+      ],
+      "owner": "Fleet Delivery Owner",
+      "audiences": ["Fleet delivery operators", "Maintainers", "Repository owners", "Security and architecture reviewers", "AI agents"],
+      "readerPaths": ["Daily user: README or README.en.md to the mutation-free Stage-B preview, then quickstart/manpage", "Maintainer or AI agent: script reference to contracts, authority, evidence and stop/resume", "Security/architecture reviewer: assurance documents to implementation-governance evidence", "Audit/troubleshooting: platform records and task/gate state to the exact safe next action"],
+      "canonicalSource": "specs/030-stage-b-rollout/spec.md",
+      "navigationImpact": "README.md and README.en.md now use the validated manpage fragment and lead from the mutation-free preview to quickstart, bilingual manpage/help, assurance documents, evidence and the separately authorized G4 sequencing follow-up.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with English companion content at approximately CEFR B2; stable command names and machine fields remain unchanged.",
+      "languagePartners": ["README.md", "README.en.md"],
+      "platformAndExampleProof": "T107 examples are bound to T110-T112: local macOS Bash and PowerShell previews, isolated native Linux container preview, and native Windows PowerShell 7 workflow run 32567141555/job 97017306468 all exited 0 for payload 1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3 and decision 70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897 with zero Git/provider writes. T124 additionally passed all 225 tests at exact head 8ae4ef289d8dd42080a0b69ea374bde2881f6fb2 on windows-2022 in workflow run 32587448948/job 97065888986, with the same-head macOS and Ubuntu jobs plus documentation, PowerShell analysis and homogeneity workflows green. T125 passed AC-SBR-009 and bound the exact same head with runner/platform tokens macOS, Linux and Windows in primary/AC-SBR-009.json.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": true,
+      "evidence": "specs/030-stage-b-rollout/checklists/implementation-governance.md",
+      "risk": "Live provider delivery and post-merge Home sync remain pending; the successful T124 regression and T125 platform acceptance cannot be promoted to those later gates.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Fleet, profile, authority, bypass, provider, ruleset, platform, evidence schema, distribution, audience, shared guidance or G4 boundary changes."
+    }
+  ],
+  "distributionReview": {
+    "sourceOnly": ["specs/030-stage-b-rollout/", "docs/", ".specify/templates/"],
+    "homeRuntime": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", "constitution.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", ".specify/memory/constitution.md", "scripts/maintain-agentic-workspace.sh", "scripts/maintain-agentic-workspace.ps1", "scripts/lib/agentic_workspace_fleet.py", "scripts/config/", "scripts/templates/"],
+    "machineLocal": [".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/"],
+    "homeSyncRequired": true,
+    "rationale": "Runtime paths are manifest-bound homeRuntime, but synchronization remains blocked until preview, conflict checks, Level-0 merge and fresh authority pass."
+  },
+  "sharedGuidanceReview": {
+    "decision": "UpdateRequired",
+    "surfaces": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", "constitution.md", ".specify/memory/constitution.md", ".specify/templates/", "scripts/templates/"],
+    "rationale": "The successful macOS-first Linux-container and native-Windows-CI strategy is a durable agent-neutral governance rule. Constitution 1.21.0, both mirrors, all five maintained agent surfaces and relevant source/runtime templates were updated atomically. No provider or model was made a feature requirement.",
+    "owner": "Governance Owner",
+    "reviewer": "Agent-Parity Reviewer",
+    "evidence": "T121: byte-identical constitution mirror and successful scripts/tests/test_spec_kit_agent_surface_parity.py plus Bash/PowerShell homogeneity validation.",
+    "residualRisk": "A scoped native platform proof can become stale after commit, command, runner, payload, decision or permission drift and never establishes a full regression pass.",
+    "reevaluationTrigger": "Any shared guidance, Constitution, template, statistics-methodology or routing-role change."
+  }
+}

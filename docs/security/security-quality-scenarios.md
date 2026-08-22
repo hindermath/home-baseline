@@ -41,3 +41,24 @@ Gate-, Plattform-, Provider-, Budget- oder Authority-Änderung.
 <!-- EN: docs/security/security-quality-scenarios.md
 [DE-Zusammenfassung: Prüfszenarien für Auswahl, Injection, Events, Cache und A11Y.]
 -->
+
+## Feature 030: Stage-B-Qualitätsszenarien / Stage B Quality Scenarios
+
+| ID | Auslöser | Erwartete Reaktion und Nachweis |
+|---|---|---|
+| SQ-030-01 | Provider-ID, Slug, Remote-Head oder Default Branch driftet vor Write | ExternalWriteGate schließt; Exit `1/2`; keine Git-/Providermutation |
+| SQ-030-02 | Kandidatenpfad, Modus oder Blob weicht vom fixierten Plan ab | Stop vor Staging/Commit; exakter Diff-Nachweis nennt Blocker und nächste sichere Aktion |
+| SQ-030-03 | Push/PR/Ruleset-Write endet unklar oder mit Timeout | read-only Reconciliation über Idempotency Key; kein blinder zweiter Write |
+| SQ-030-04 | Pflichtcheck oder Review gehört zu anderem PR-Head | Merge und Bypass blockieren; Runner/Befehl/Head müssen exakt gebunden sein |
+| SQ-030-05 | Regulärer Merge scheitert nur an Schutzregel | Bypass nur mit frischer enger Authority und vollständigen unabhängigen Gates; sonst Stop |
+| SQ-030-06 | Ruleset-Verifikation scheitert nach Write | höchstens exakt vorgeplanter Restore; danach Lauf immer stoppen |
+| SQ-030-07 | Nicht behebbarer Fehler nach konvergiertem Ziel | atomarer State; kein Folgeziel; Resume erhält Erfolg und beginnt am ersten offenen Ziel |
+| SQ-030-08 | Evidence enthält Token, privaten Pfad, Actor oder Rohantwort | Publikation blockiert; keine Teil- oder Restricted-Datei |
+| SQ-030-09 | macOS-Preflight ist grün, Linux/Windows oder Vollsuite fehlen | nur der genaue Teilnachweis gilt; kein Plattform- oder Vollregressions-Pass wird abgeleitet |
+| SQ-030-10 | Windows kann POSIX-`0600` nicht owner-only abbilden oder DACL-Setzung scheitert | temporäre Evidence erhält vor Replace eine geschützte Current-SID-DACL; Fehler bewahrt die letzte gültige Evidence |
+
+Owner: Security Quality Owner. Reviewer: Security Architecture Reviewer.
+Restrisiko: Live-Providerzustand kann nach der letzten Leseprüfung wechseln;
+die unmittelbare Revalidierung minimiert, beseitigt aber kein externes
+TOCTOU-Risiko. Re-Evaluation bei Gate-, Review-, Ruleset-, Bypass-, Provider-,
+Plattform- oder Evidence-Vertragsänderung.

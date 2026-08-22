@@ -14,6 +14,7 @@ canonical tools from embedded copies.*
 - [Eingebettete Skripte / Embedded scripts](embedded-scripts.md)
 - [Manpages](../man/)
 - Maschinenlesbarer Katalog: `scripts/config/script-catalog.json`
+- [Stage-B-Betrieb / Stage B operation](../../specs/030-stage-b-rollout/quickstart.md)
 
 ## Sichere Reihenfolge / Safe sequence
 
@@ -25,6 +26,15 @@ canonical tools from embedded copies.*
 
 *Read help first, use a check or preview mode when available, review output and
 target paths, and only then run a writing operation.*
+
+Für Stage B zuerst `maintain-agentic-workspace.*` mit `Preflight` und Preview
+aufrufen. Reale Flottenwrites benötigen aktuelle `MergeAndSync`-Autorität;
+Details zu Stop/Resume, Evidence und Sicherheitsgrenzen stehen in der
+[Manpage](../man/maintain-agentic-workspace.1.md#stage-b-flottenrollout--stage-b-fleet-rollout).
+
+*For Stage B, start with a Preflight preview. Real fleet writes need current
+MergeAndSync authority; the manpage explains stop/resume, evidence, and safety
+boundaries.*
 
 ## Referenz pruefen / Check the reference
 

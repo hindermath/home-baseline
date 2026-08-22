@@ -1,0 +1,43 @@
+{
+  "expectedVersions": {
+    "fleet-terminal-evidence": "1.1",
+    "repository-rollout-result": "1.1",
+    "stage-b-rollout-plan": "1.1",
+    "stage-b-ruleset-plan": "1.0",
+    "stage-b-run-state": "1.1"
+  },
+  "mixedVersions": {
+    "fleet-terminal-evidence": "1.1",
+    "repository-rollout-result": "1.0",
+    "stage-b-rollout-plan": "1.1",
+    "stage-b-ruleset-plan": "1.0",
+    "stage-b-run-state": "1.1"
+  },
+  "unknownFieldDocument": {
+    "schemaVersion": "1.1",
+    "planSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "unexpected": true
+  },
+  "expectedPlanSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "wrongPlanBinding": {
+    "planSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "runId": "954ff259-ffed-44a8-883f-28742b031a9b",
+  "wrongRunPath": {
+    "runId": "00000000-0000-4000-8000-000000000001",
+    "path": ".specify/runtime/autonomous-routing/other-run/stage-b/result.json"
+  },
+  "planWithMutableAuthority": {
+    "schemaVersion": "1.1",
+    "authorityBinding": {
+      "externalWriteGate": "Open"
+    }
+  },
+  "stageAContractHashes": {
+    "specs/029-ci-budget-governance/contracts/ci-budget-path-contracts.schema.json": "08860f95e37f0772284b4d2939e9c3ee1e0e29ba1640f2e367f6215cf29673e9",
+    "specs/029-ci-budget-governance/contracts/ci-budget-profile-registry.schema.json": "58b5298a5310d4752de6fc7ea72c2e80621a4e90fc92bd35b9d9d5552654e27f",
+    "specs/029-ci-budget-governance/contracts/ci-gate-evidence.schema.json": "aae750841d33d5c5a027b822b7a8f60dd3f53021ac8f2ddaf24149949b0dc352",
+    "specs/029-ci-budget-governance/contracts/ci-inventory-rollout-plan.schema.json": "ce88b4e782f867455b3d78d0edbfa0f319e7d457ec2a84b80646093c2695675a",
+    "specs/029-ci-budget-governance/contracts/workflow-ruleset-contract.md": "606af81f877fe1dd710ff65c2535034a2181e09d3346b5de539e7e070a69359b"
+  }
+}

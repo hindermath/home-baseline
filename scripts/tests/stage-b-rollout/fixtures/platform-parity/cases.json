@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0",
+  "expectedFieldOrder": ["Run-ID", "Authority", "Wave", "Repository-ID", "Profile", "Decision", "Status", "Blocker", "Next action"],
+  "cases": [
+    {"caseId": "macos-preview", "platform": "macOS", "action": "Preflight", "expectedExitCode": 0},
+    {"caseId": "linux-preview", "platform": "Linux", "action": "Preflight", "expectedExitCode": 0},
+    {"caseId": "windows-preview", "platform": "Windows", "action": "Preflight", "expectedExitCode": 0},
+    {"caseId": "unicode", "repositoryId": "fixture-ä", "expectedExitCode": 2},
+    {"caseId": "whitespace", "repositoryId": " fixture ", "expectedExitCode": 2},
+    {"caseId": "metacharacter", "repositoryId": "fixture;owned", "expectedExitCode": 2},
+    {"caseId": "empty-home", "home": "", "expectedDecision": "NoHomeDependency"}
+  ],
+  "meaningNeverDependsOn": ["color", "cursor-position", "symbol-only"]
+}

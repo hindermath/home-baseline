@@ -81,3 +81,45 @@ Restrisiko: Ein kompromittiertes Benutzerkonto kann lokale Hooks ändern. Der
 separate Serververtrag bleibt daher Pflicht. Re-Evaluation bei Remote-
 Mutation, neuer Dependency, Auth-, Crypto-, Provider- oder Trust-Boundary-
 Änderung.
+
+## Feature 030: Stage-B-Remote-Transaktion / Stage B Remote Transaction
+
+**Status / Disposition**: `Applicable`; lokaler Entwurf und deterministische
+Provider-Fixtures sind geprüft. Live-Providerfakten bleiben bis T127 ff. ein
+blockierendes Gate. / The local design and deterministic provider fixtures are
+reviewed; live provider facts remain a blocking gate until T127 ff.
+
+Vertrauensgrenzen sind getrennt zwischen Level-0-Arbeitsbaum und Git-Index,
+isoliertem Ziel-Worktree, Git-Objekten und Remote-Head, authentifizierter
+GitHub-API, PR/Checks/Review, Ruleset, aktueller Authority, unveränderlichem
+Plan, veränderlichem Run-State sowie redigierter operativer Evidence. Keine
+Grenze übernimmt Vertrauen von einer anderen; Identität, Head, Hash und
+Authority werden unmittelbar vor der abhängigen Aktion erneut vermittelt.
+
+| Kategorie | Stage-B-Bedrohung | Kontrolle und Nachweis |
+|---|---|---|
+| Spoofing | Repositoryname, PR oder Check gehört nicht zur gebundenen numerischen Provider-ID | feste Host-Allowlist, numerische ID, kanonischer Slug, PR-/Head-/Runnerbindung |
+| Tampering | Plan, Kandidat, Ruleset oder Evidence driftet zwischen Prüfung und Write | direkter SHA-256, exakter Blob-/Mode-Diff, immutable Plan, atomare Publikation, erneutes ExternalWriteGate |
+| Repudiation | Push, Merge, Bypass oder Restore ist später nicht kausal zuordenbar | Run-/Repository-/Action-Idempotency-Key, Provideraktions-ID, PreMerge-/PostMerge-Kette |
+| Information Disclosure | Token, private Pfade, Actor oder Providerrohantwort gelangen in Evidence | minimierte Allowlist-Felder, Redaktionsprüfung, Output-Limit, restriktive maschinenlokale Rechte |
+| Denial of Service | Retry-Schleife, Budgetdrift oder halb ausgeführte Welle | begrenzte Read-Retries, kein blinder Write-Retry, serieller Writer, atomarer Stop vor Folgeziel |
+| Elevation of Privilege | Admin-Bypass oder Ruleset-Write wird Normalpfad | regulärer Review/Merge zuerst, protection-only Refusal, frische enge Ausnahme-Evidence, keine Bypass-Akteure im Ruleset |
+
+- **CIA**: Vertraulichkeit entsteht durch Datenminimierung und Redaction;
+  Integrität durch Plan-/Run-/Head-/Evidence-Hashketten; Verfügbarkeit durch
+  Stop/Resume, Reconciliation und begrenzte Leseversuche ohne Sicherheits-
+  oder Budgetgrenzen zu umgehen.
+- **CAPEC-115 Authentication Bypass**: Review-, Gate- und Ruleset-Pflichten
+  bleiben auch bei eng autorisiertem Admin-Bypass unabhängig vollständig.
+- **CAPEC-15 Command Delimiters**: Git, `gh` und Validatoren erhalten nur
+  validierte Argumentarrays; kein Shell-String, `eval` oder
+  `Invoke-Expression`.
+- **CAPEC-126 Path Traversal**: repository-relative Allowlist-Pfade,
+  Root-Containment, Symlink-Escape-Prüfung und `--` vor Pfadargumenten.
+- **CAPEC-23 File Content Injection**: kanonisches UTF-8/LF-JSON, geschlossene
+  Schemas, NUL-/CR/LF-/Metazeichen-Negativtests und Redaktion vor Publikation.
+
+Owner: Security Architecture Owner. Reviewer: Security Reviewer. Restrisiko:
+Provider-, Schutzregel- oder Authority-Zustand kann nach lokaler Prüfung
+driften. Re-Evaluation bei Plan-, Head-, Provider-, Ruleset-, Bypass-,
+Resume-, Schema- oder Trust-Boundary-Änderung.

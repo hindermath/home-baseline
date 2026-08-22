@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0",
+  "waveOrder": ["public-canaries", "public-products", "private-products", "private-governance-scaffold", "public-presets"],
+  "publicCanaries": ["agent-operations-cockpit", "home-baseline", "tui-vision"],
+  "withinWaveOrder": "lexicographic-stable-repository-id",
+  "failures": [
+    {"caseId": "first-target", "failedIndex": 0, "laterStarts": 0},
+    {"caseId": "middle-target", "failedIndex": 1, "laterStarts": 0},
+    {"caseId": "last-target", "failedIndex": 2, "laterStarts": 0}
+  ]
+}

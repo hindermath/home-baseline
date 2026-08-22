@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "cases": [
+    {"caseId": "redaction-token", "value": "token=fixture-secret", "blockerCode": "SBR-SEC-REDACTION"},
+    {"caseId": "shell-metacharacters", "value": "repo;touch-owned", "blockerCode": "SBR-SEC-COMPONENT"},
+    {"caseId": "leading-dash", "value": "--admin", "blockerCode": "SBR-SEC-COMPONENT"},
+    {"caseId": "nul", "valueEscaped": "repo\\u0000id", "blockerCode": "SBR-SEC-CONTROL"},
+    {"caseId": "crlf", "valueEscaped": "repo\\r\\nid", "blockerCode": "SBR-SEC-CONTROL"},
+    {"caseId": "traversal", "value": "../outside", "blockerCode": "SBR-SEC-PATH"},
+    {"caseId": "symlink-escape", "value": "link/outside", "blockerCode": "SBR-SEC-PATH"},
+    {"caseId": "ssrf-host", "value": "https://127.0.0.1/private", "blockerCode": "SBR-SEC-HOST"},
+    {"caseId": "output-limit", "length": 4097, "blockerCode": "SBR-SEC-OUTPUT-LIMIT"}
+  ],
+  "allowedProviderHosts": ["api.github.com", "github.com"],
+  "maximumDiagnosticCharacters": 4096
+}

@@ -40,3 +40,22 @@ finding invalidates the Pass result.*
 Dies ist eine Feature-Bewertung, keine Aussage zur Organisationsreife. Owner:
 Security Owner; Reviewer: SAMM Reviewer. Jeder offene High/Critical-Befund,
 neue Dependency oder Authority-Änderung löst eine Neubewertung aus.
+
+## Feature 030: Stage-B-SAMM-Assessment
+
+| SAMM-Praxis | Evidence | Bewertung |
+|---|---|---|
+| Strategy and Metrics | fünf serielle Wellen, Budgetprojektion nach jeder Welle, getrennte Actions-/Copilot-Kategorien | Pass locally |
+| Policy and Compliance | Zwölf-Preset-Matrix, C3A/C5-/Regulatory-Disposition, Documentation Impact | Pass for local artifacts |
+| Threat Assessment | Feature-030 STRIDE+CIA, CAPEC-115/-15/-126/-23, Trust Boundaries | Pass |
+| Security Requirements | SBR/AC-SBR/CR-Traceability, ExternalWriteGate, G4-Isolation | Pass locally; live gates pending |
+| Secure Architecture | arc42 Abschnitt 8, ADR-002, immutable plan/mutable state, serial transaction | Pass |
+| Secure Build | Standardbibliothek, SHA-gepinnte Action, exakter Kandidat, Secret-/Dependency-Gates | Pass locally |
+| Security Testing | Contract-/Provider-/Security-/Ruleset-/Bypass-/Resume-/Redaktionsfixtures | Pass locally; T124 full regression pending |
+| Operational Management | atomarer Stop, read-only Reconciliation, Resume-Revalidierung, Incident-/Evidence-Handoff | Pass by design |
+
+Die Bewertung gilt nur für dieses Feature und ist weder SAMM-Reifegrad noch
+Zertifizierung. Fehlende Live-Gates, offene T124-Regressionen oder ein
+Critical-/High-Befund verhindern einen terminalen Pass. Owner: Security
+Program Owner. Reviewer: SAMM Reviewer. Re-Evaluation bei Scope-, Provider-,
+Authority-, Dependency-, Incident-, Gate- oder Evidence-Drift.

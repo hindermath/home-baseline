@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0",
+  "sourceRevision": "fixture-stage-b-budget-blocked-v1",
+  "privateMonthlyBudgetMinutes": "3000",
+  "privateMonthlyTargetExclusiveMinutes": "500",
+  "projectedPrivateMinutes": "500.000000",
+  "budgetResult": "Blocked",
+  "nextWaveStarted": false,
+  "g4Actions": []
+}

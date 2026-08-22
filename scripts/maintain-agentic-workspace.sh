@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Orchestrate repository and agentic toolchain maintenance on macOS/Linux.
+# Wartet Workspace/Toolchain und führt Stage B sicher aus. / Maintains the workspace/toolchain and safely runs Stage B.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
@@ -17,6 +17,7 @@ STORAGE_POLICY="${SOURCE_ROOT}/scripts/config/workspace-storage-maintenance.json
 CHECK_ONLY=0
 DRY_RUN=0
 CI_GATE=0
+STAGE_B_ACTION=""
 SCRIPTS_ONLY=0
 REPAIR_DRIFT=0
 INCLUDE_OPTIONAL=0
@@ -79,6 +80,9 @@ Freshness Barrier completes every fetch attempt before any mutation.
                      Preview mutating steps
   --ci-gate          Lokalen, profilgebundenen CI-Gate ausführen
                      Run the local profile-bound CI gate
+  --stage-b-action ACTION
+                     Stage-B Preflight, Validate, Deliver, Resume oder Verify
+                     Stage-B preflight, validation, delivery, resume, or verify
   --scripts-only     Nur Repositories, Home-Sync, Registry und Propagation
                      Repositories, home sync, registry, and propagation only
   --repair-drift     Wartungspaket-Drift lokal reparieren; nie committen/pushen
@@ -114,6 +118,26 @@ die() {
 info() { printf '\n==> %s\n' "$*"; }
 ok() { printf 'OK: %s\n' "$*"; }
 warn() { printf 'WARN: %s\n' "$*" >&2; }
+
+resolve_stage_b_python() {
+  local kernel="" candidate=""
+  local -a candidates=()
+  kernel="$(uname -s 2>/dev/null || printf 'unknown')"
+  case "$kernel" in
+    MINGW*|MSYS*|CYGWIN*) candidates=(python python3) ;;
+    *) candidates=(python3 python) ;;
+  esac
+  for candidate in "${candidates[@]}"; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+      # Keep the command name so Git Bash applies its native-executable path
+      # conversion to Stage-B arguments on Windows. Returning command -v's
+      # /c/... path causes the hosted Windows Python launch to fail silently.
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
 
 ask_yes_no() {
   local prompt="$1" answer=""
@@ -547,6 +571,14 @@ while [ $# -gt 0 ]; do
     --check-only) CHECK_ONLY=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --dry-run) DRY_RUN=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --ci-gate) CI_GATE=1 ;;
+    --stage-b-action)
+      [ $# -ge 2 ] || die "--stage-b-action benoetigt einen Wert / requires a value"
+      case "$2" in
+        preflight|validate|deliver|resume|verify) STAGE_B_ACTION="$2" ;;
+        *) die "Ungueltige Stage-B-Aktion / invalid Stage-B action: $2" ;;
+      esac
+      shift
+      ;;
     --scripts-only) SCRIPTS_ONLY=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --repair-drift) REPAIR_DRIFT=1; MAINTENANCE_OPTION_SEEN=1 ;;
     --include-optional) INCLUDE_OPTIONAL=1; MAINTENANCE_OPTION_SEEN=1 ;;
@@ -590,6 +622,32 @@ while [ $# -gt 0 ]; do
   esac
   shift
 done
+
+if [ -n "$STAGE_B_ACTION" ]; then
+  # Keep this adapter below the trust boundary: use one argument-array process;
+  # never reconstruct a shell command, and preview cannot open the write gate.
+  if [ "$CHECK_ONLY" -eq 1 ] || [ "$CI_GATE" -eq 1 ] || [ "$SCRIPTS_ONLY" -eq 1 ] \
+      || [ "$REPAIR_DRIFT" -eq 1 ] || [ "$INCLUDE_OPTIONAL" -eq 1 ] \
+      || [ "$ALLOW_ADMIN_PROMPTS" -eq 1 ] || [ "$CLEANUP_PROFILE_EXPLICIT" -eq 1 ] \
+      || [ "$CONFIRM_DEEP_CLEANUP" -eq 1 ] || [ "$UI_SELECTOR_COUNT" -gt 0 ] \
+      || [ -n "$EVENT_STREAM" ]; then
+    die "--stage-b-action darf nicht mit Wartungsoptionen kombiniert werden / cannot be combined with maintenance options"
+  fi
+  stage_b_arguments=(
+    stage-b
+    --action "$STAGE_B_ACTION"
+    --repository-root "$SOURCE_ROOT"
+    --run-id "${HB_STAGE_B_RUN_ID:-${REQUESTED_RUN_ID:-N/A}}"
+    --delivery-mode "${HB_STAGE_B_DELIVERY_MODE:-MergeAndSync}"
+    --wave-id "${HB_STAGE_B_WAVE_ID:-N/A}"
+    --repository-id "${HB_STAGE_B_REPOSITORY_ID:-N/A}"
+    --profile-id "${HB_STAGE_B_PROFILE_ID:-N/A}"
+  )
+  [ "$DRY_RUN" -eq 1 ] && stage_b_arguments+=(--dry-run)
+  STAGE_B_PYTHON="$(resolve_stage_b_python)" \
+    || die "Python 3 fuer Stage B nicht gefunden / Python 3 for Stage B not found"
+  exec "$STAGE_B_PYTHON" "$FLEET_ENGINE" "${stage_b_arguments[@]}"
+fi
 
 if [ "$CI_GATE" -eq 1 ]; then
   if [ "$CHECK_ONLY" -eq 1 ] || [ "$SCRIPTS_ONLY" -eq 1 ] || [ "$REPAIR_DRIFT" -eq 1 ] \

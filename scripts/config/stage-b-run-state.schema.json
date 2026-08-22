@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/stage-b-run-state.schema.json",
+  "title": "Stage B Run State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "runId", "featurePath", "status", "deliveryMode",
+    "rolloutPlanBinding", "authorityBinding", "stageAReference",
+    "fleetSnapshotHash", "evidenceLayout", "currentWaveId",
+    "currentRepositoryId", "currentAction", "lastSafeBoundary", "nextAction",
+    "waveResults", "targetResults", "budgetProjections", "terminalEvidence",
+    "closeout", "stop", "resumeCount", "lastRevalidatedAt", "stateHash"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.1" },
+    "runId": { "$ref": "#/$defs/uuid" },
+    "featurePath": { "const": "specs/030-stage-b-rollout" },
+    "status": {
+      "enum": ["Prepared", "Preflighted", "SliceValidated", "Delivering", "Stopped", "Completed", "Blocked"]
+    },
+    "deliveryMode": { "const": "MergeAndSync" },
+    "rolloutPlanBinding": { "$ref": "#/$defs/rolloutPlanBinding" },
+    "authorityBinding": { "$ref": "#/$defs/authorityBinding" },
+    "stageAReference": { "$ref": "#/$defs/stageAReference" },
+    "fleetSnapshotHash": { "$ref": "#/$defs/sha256OrNA" },
+    "evidenceLayout": { "$ref": "#/$defs/evidenceLayout" },
+    "currentWaveId": { "$ref": "#/$defs/waveIdOrNA" },
+    "currentRepositoryId": { "$ref": "#/$defs/stableIdOrNA" },
+    "currentAction": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "lastSafeBoundary": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "nextAction": { "type": "string", "minLength": 1, "maxLength": 1024 },
+    "waveResults": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/waveResultEntry" }
+    },
+    "targetResults": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/targetResultEntry" }
+    },
+    "budgetProjections": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/budgetHashEntry" }
+    },
+    "terminalEvidence": { "$ref": "#/$defs/terminalEvidenceBinding" },
+    "closeout": { "$ref": "#/$defs/closeoutBinding" },
+    "stop": { "$ref": "#/$defs/stop" },
+    "resumeCount": { "type": "integer", "minimum": 0 },
+    "lastRevalidatedAt": { "$ref": "#/$defs/dateTimeOrNA" },
+    "stateHash": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid", "not": { "const": "00000000-0000-0000-0000-000000000000" } },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "sha256OrNA": { "oneOf": [{ "$ref": "#/$defs/sha256" }, { "const": "N/A" }] },
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "stableIdOrNA": { "oneOf": [{ "$ref": "#/$defs/stableId" }, { "const": "N/A" }] },
+    "waveId": {
+      "enum": ["public-canaries", "public-products", "private-products", "private-governance-scaffold", "public-presets"]
+    },
+    "waveIdOrNA": { "oneOf": [{ "$ref": "#/$defs/waveId" }, { "const": "N/A" }] },
+    "dateTimeOrNA": { "oneOf": [{ "type": "string", "format": "date-time" }, { "const": "N/A" }] },
+    "repositoryRelativeJsonPathOrNA": {
+      "oneOf": [
+        { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\u0000\\r\\n]).+\\.json$" },
+        { "const": "N/A" }
+      ]
+    },
+    "rolloutPlanBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planId", "planPath", "planSha256"],
+      "properties": {
+        "planId": { "$ref": "#/$defs/uuid" },
+        "planPath": { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/rollout-plan\\.json$" },
+        "planSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "evidenceLayout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "stageBEvidenceRoot", "operationalNamespace", "primarySnapshotNamespace", "internalRoutingRoot", "committedFeatureEvidenceRoot"],
+      "properties": {
+        "schemaVersion": { "const": "v1" },
+        "stageBEvidenceRoot": { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/evidence/v1$" },
+        "operationalNamespace": { "const": "operational" },
+        "primarySnapshotNamespace": { "const": "primary" },
+        "internalRoutingRoot": { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+$" },
+        "committedFeatureEvidenceRoot": { "const": "specs/030-stage-b-rollout/evidence/v1" }
+      }
+    },
+    "stageAReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["featurePath", "reviewedHead", "mergeCommit", "postMergeEvidencePath", "postMergeEvidenceSha256"],
+      "properties": {
+        "featurePath": { "const": "specs/029-ci-budget-governance" },
+        "reviewedHead": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "mergeCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "postMergeEvidencePath": { "const": "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json" },
+        "postMergeEvidenceSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "authorityBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deliveryMode", "source", "authorizedAt", "validatedAt", "runId", "planSha256", "scopeHash", "repositoryIdsHash", "externalWriteGate", "adminBypass", "authorityHash"],
+      "properties": {
+        "deliveryMode": { "const": "MergeAndSync" },
+        "source": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "authorizedAt": { "type": "string", "format": "date-time" },
+        "validatedAt": { "type": "string", "format": "date-time" },
+        "runId": { "$ref": "#/$defs/uuid" },
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "scopeHash": { "$ref": "#/$defs/sha256" },
+        "repositoryIdsHash": { "$ref": "#/$defs/sha256" },
+        "externalWriteGate": { "enum": ["Open", "Closed"] },
+        "adminBypass": { "enum": ["AuthorizedException", "NotAuthorized"] },
+        "authorityHash": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "waveResultEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["waveId", "planSha256", "status", "resultPath", "resultSha256", "predecessorResultSha256"],
+      "properties": {
+        "waveId": { "$ref": "#/$defs/waveId" },
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "status": { "enum": ["Pending", "Running", "Stopped", "Converged", "Blocked"] },
+        "resultPath": {
+          "oneOf": [
+            { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/evidence/v1/operational/waves/.+\\.json$" },
+            { "const": "N/A" }
+          ]
+        },
+        "resultSha256": { "$ref": "#/$defs/sha256OrNA" },
+        "predecessorResultSha256": { "$ref": "#/$defs/sha256OrNA" }
+      }
+    },
+    "targetResultEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryId", "planSha256", "resultPath", "resultSha256", "outcome"],
+      "properties": {
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "resultPath": { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/evidence/v1/operational/repositories/.+\\.json$" },
+        "resultSha256": { "$ref": "#/$defs/sha256" },
+        "outcome": { "enum": ["Converged", "NoOpConverged", "Stopped", "Blocked"] }
+      }
+    },
+    "budgetHashEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["waveId", "planSha256", "projectionPath", "projectionSha256", "result"],
+      "properties": {
+        "waveId": { "$ref": "#/$defs/waveId" },
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "projectionPath": { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/evidence/v1/operational/budgets/.+\\.json$" },
+        "projectionSha256": { "$ref": "#/$defs/sha256" },
+        "result": { "enum": ["Pass", "Blocked"] }
+      }
+    },
+    "terminalEvidenceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planSha256", "status", "path", "sha256"],
+      "properties": {
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "status": { "enum": ["Pending", "Available", "Validated", "Blocked"] },
+        "path": {
+          "oneOf": [
+            { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/evidence/v1/operational/terminal/fleet-terminal-evidence\\.json$" },
+            { "const": "N/A" }
+          ]
+        },
+        "sha256": { "$ref": "#/$defs/sha256OrNA" }
+      }
+    },
+    "closeoutBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planSha256", "status", "path", "sha256"],
+      "properties": {
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "status": { "enum": ["Pending", "Available", "Validated", "Blocked"] },
+        "path": {
+          "oneOf": [
+            { "type": "string", "pattern": "^\\.specify/runtime/autonomous-routing/[^/]+/stage-b/evidence/v1/operational/closeout/stage-b-closeout\\.json$" },
+            { "const": "N/A" }
+          ]
+        },
+        "sha256": { "$ref": "#/$defs/sha256OrNA" }
+      }
+    },
+    "stop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "category", "stoppedAt", "inFlightOperation", "requiresExplicitResume"],
+      "properties": {
+        "reason": { "type": "string", "minLength": 1, "maxLength": 1024 },
+        "category": { "enum": ["N/A", "Drift", "Gate", "Review", "Push", "Ruleset", "Merge", "Budget", "Provider", "Security", "UserStop"] },
+        "stoppedAt": { "$ref": "#/$defs/dateTimeOrNA" },
+        "inFlightOperation": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "requiresExplicitResume": { "type": "boolean" }
+      }
+    }
+  }
+}

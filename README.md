@@ -110,6 +110,29 @@ Bedienung, Evidence-Prüfung, Exitcodes und Stufe-A-Grenze stehen in der
 *Preview is read-only. A real local gate may write only machine-local success
 evidence after stable HEAD and hash checks; it never means remote convergence.*
 
+### Stage-B-Flottenrollout sicher voranzeigen
+
+Stage B verteilt die akzeptierte CI-Budget-Governance seriell über die
+autorisierte Flotte. Die erste Aktion bleibt schreibfrei:
+
+```bash
+bash scripts/maintain-agentic-workspace.sh --stage-b-action preflight --dry-run
+```
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf
+```
+
+Ein realer `Deliver`- oder `Resume`-Lauf benötigt aktuelle `MergeAndSync`-
+Autorität und stoppt vor dem nächsten Repository, sobald ein nicht behebbarer
+Fehler auftritt. [Quickstart](specs/030-stage-b-rollout/quickstart.md) und
+[Manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout-stage-b-fleet-rollout)
+erklären Evidence, Exitcodes, Review/Bypass-Grenze und die getrennte G4-Folge.
+
+*Stage B rolls out the accepted governance serially. Preview is read-only; real
+delivery or resume requires current MergeAndSync authority and stops before the
+next repository on a non-recoverable failure.*
+
 ## Voraussetzungen
 
 - Git und ein persönliches oder institutionelles Git-Repository;

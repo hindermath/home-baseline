@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "assumptions": {
+    "weeksPerMonthNumerator": "52",
+    "weeksPerMonthDenominator": "12",
+    "privateMonthlyBudgetMinutes": "3000",
+    "privateMonthlyTargetExclusiveMinutes": "500"
+  },
+  "cases": [
+    {"caseId": "pass-five-waves", "minutesPerWeek": "100.00", "expectedMonthly": "433.333333", "expected": "Pass"},
+    {"caseId": "boundary-blocked", "minutesPerWeek": "115.3846153846153846153846154", "expectedMonthly": "500.000000", "expected": "Blocked"},
+    {"caseId": "missing-data", "minutesPerWeek": "Missing", "expected": "Blocked"},
+    {"caseId": "stale-provider", "minutesPerWeek": "100.00", "providerFresh": false, "expected": "Blocked"},
+    {"caseId": "early-rounding", "minutesPerWeek": "115.3846149", "roundOnlyAtOutput": true, "expected": "Pass"},
+    {"caseId": "wrong-predecessor", "minutesPerWeek": "100.00", "predecessorMatches": false, "expected": "Blocked"}
+  ],
+  "copilotCategories": ["review-runner-time", "premium-requests", "seat-consumption"]
+}

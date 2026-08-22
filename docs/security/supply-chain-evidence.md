@@ -59,3 +59,38 @@ AI-SBOM ist `N/A`, weil KI kein ausgelieferter Bestandteil ist.
 Restrisiko: lokale Werkzeug- oder Account-Kompromittierung. Follow-up:
 Dependency-/Secret-Scan und Exact-Candidate-Gate vor Lieferung. Re-Evaluation
 bei Paket-, Provider-, Signatur-, Release- oder KI-Runtime-Änderung.
+
+## Feature 030: Stage-B-Provenienz / Stage B Provenance
+
+Stage B verteilt keine neue Drittbibliothek. Provenienz gilt dennoch für jede
+auslieferbare Quellfläche: gemeinsamer Python-Kern, Bash-/PowerShell-Adapter,
+JSON-Schemas, Workflow-/Ruleset-Templates, der SHA-gepinnte native
+Windows-Proof, Dokumentation und spätere redigierte Evidence. Der unveränderliche
+Plan bindet Baseline, Zielpfade, Modi und Blobhashes; Exact-Candidate-Evidence
+bindet Tree und Diff; PreMerge/PostMerge bindet Kandidaten-Head, Prüfungen,
+Review, Mergecommit und Default-Head.
+
+- **SBOM**: `Applicable` als deterministisches Quell-/Skript-/Template-/
+  Workflow-Inventar mit Version, Pfad und SHA-256. Die Python-Standardbibliothek
+  wird als Laufzeitplattform, nicht als vendorte Paketmenge, dokumentiert.
+- **VEX**: `NotAffected` ist nur für das Fehlen einer neu eingeführten
+  Paketkomponente zulässig. Ein CVE in Python, PowerShell, Git, `gh` oder einer
+  gepinnten Action verlangt werkzeugbezogene Neubewertung statt stiller
+  Übernahme.
+- **SLSA/Provenance**: `Applicable` als prüfbare Herkunftskette von gebundener
+  Quelle über exakten Kandidaten, konkreten Runner/Befehl/Exitcode bis zum
+  Merge- und Default-Head. Es wird keine SLSA-Stufe oder Attestation behauptet,
+  die nicht tatsächlich erzeugt wurde.
+- **OpenSSF**: `Applicable` als Source-Repository-Review für gepinnte Actions,
+  Branchschutz, Reviews, Secret Scan, Dependencyhygiene und minimale
+  Permissions; kein Organisations- oder Scorecard-Zertifikat wird behauptet.
+- **AI-SBOM**: `N/A`; KI unterstützt die Entwicklung, ist aber kein
+  ausgeliefertes Modell, Dataset, Agentendienst oder Inferenzbestandteil.
+
+Der Proof-Workflow verwendet `contents: read`, einen festen Branch-/Pfadfilter,
+Jobmarker, `windows-2022`, Timeout und `actions/checkout` per vollständigem
+Commit-SHA. Das beweist nur den gebundenen PowerShell-Preflight und keine volle
+Regression. Owner: Supply Chain Owner. Reviewer: Provenance Reviewer.
+Restrisiko: Provider- und Runner-Images sind externe, zeitabhängige
+Lieferketten. Re-Evaluation bei Action-, Runner-, Toolchain-, Paket-, Release-,
+Signatur-, Provider-, Template- oder Evidence-Schemaänderung.

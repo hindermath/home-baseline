@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0",
+  "manifestPath": "scripts/config/agentic-workspace-fleet.json",
+  "profileRegistryPath": "scripts/config/ci-budget-profiles.json",
+  "level0Self": "home-baseline",
+  "collectionNodesExcluded": true,
+  "repositoryIdsHash": "53b09dd5fabc6a0bbdad7b34cde0420c951aed7ef5f3033f953e969c8744e998",
+  "setRelation": "ManifestUnion=Assignments=Inventory=Plan",
+  "sort": "lexicographic-stable-repository-id"
+}

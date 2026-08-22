@@ -16,7 +16,7 @@
       "documentClass": "ActiveSemantic",
       "languageStrategy": "DE-first/EN-second or synchronized language partners",
       "languagePartners": ["README.md", "README.en.md"],
-      "platformAndExampleProof": "Name applicable platforms and validated examples.",
+      "platformAndExampleProof": "Follow the macOS-first contract: name local macOS safe mode and any isolated native Linux container/CI or narrowly scoped native Windows CI. Bind exact commit, command, runner/platform, exit code, payload SHA-256, decision SHA-256, and zero-write values; partial proof is not a full regression pass.",
       "distributionClass": "sourceOnly",
       "homeSyncRequired": false,
       "evidence": "specs/###-feature/pr-evidence.md",

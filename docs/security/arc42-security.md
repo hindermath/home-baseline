@@ -63,3 +63,32 @@ Timeouts, sanitierte Diagnose, doppelte HEAD-/Hash-Prüfung, `os.replace`,
 restriktive Dateirechte, exakte Assignment-/Sichtbarkeitsmenge und konstantes
 `remoteConverged=false`. Deployment bleibt Stufe A lokal; Stufe B und G4 sind
 nicht ausgeführt.
+
+## Feature 030: arc42 Abschnitt 8 – Querschnitt / Cross-Cutting Concepts
+
+Stage B erweitert die lokale Stufe A um eine ausdrücklich autorisierte, aber
+streng seriell vermittelte Remote-Transaktion. Der unveränderliche
+`StageBRolloutPlan` beschreibt nur Zielzustand und erste Mutation; der
+veränderliche `StageBRunState` enthält Authority, Fortschritt, Blocker und
+hashgebundene Evidence-Indizes. Diese Trennung verhindert, dass Fortschritt
+den eigenen Planhash invalidiert.
+
+| Querschnitt | Entscheidung / Decision |
+|---|---|
+| Trust Boundaries | Local clone, isolated worktree, Git object database, GitHub API, PR/check/review, ruleset, authority, run state, evidence and Home Runtime are mediated separately. |
+| Remote transaction | Genau ein Zielwriter; exakter Diff; lokales Gate vor Commit; Providerzustand vor jedem Write erneut lesen; keine Shellauswertung. |
+| Ruleset | Workflow per regulärem PR; Ruleset erst danach; numerische ID, vorheriger Zustand und höchstens ein exakt geplanter Restore sind hashgebunden. |
+| Bypass | Kein Normalpfad. Nur nach protection-only Refusal, grünen unabhängigen Gates/Review und frischer scope-/head-/zeitgebundener Ausnahme-Evidence. |
+| Stop/Resume | Erster nicht behebbarer Fehler wird atomar persistiert; Resume revalidiert Fleet, Plan, Authority, Provider, Evidence und Budget und wiederholt keinen unklaren Write blind. |
+| Evidence | Operational truth and temporary acceptance snapshots remain separate; publish only schema-valid, redacted, run-/plan-bound records. |
+
+Defense in Depth, Least Privilege, Complete Mediation, Fail-Safe Defaults,
+Attack Surface Reduction und Separation of Concerns bleiben bindend. Ein
+lokaler oder eng begrenzter Plattformnachweis beweist nur seinen gebundenen
+Befehl und darf nicht als vollständiger Regressionspass ausgewiesen werden.
+G4, Intake-Serie, Copilot, Account und Subscription bleiben außerhalb der
+Stage-B-Transaktion.
+
+Owner: Architecture Owner. Reviewer: Security/iSAQB Reviewer. Restrisiko:
+Live-Provider- und Schutzregelzustände sind zeitabhängig. Re-Evaluation bei
+Provider-, Deployment-, Ruleset-, Authority-, Evidence- oder Resume-Drift.

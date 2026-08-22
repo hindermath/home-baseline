@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/repository-rollout-result.schema.json",
+  "title": "Stage B Repository Rollout Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "resultId", "runId", "planId", "planSha256", "transactionId", "repositoryId", "waveId", "sequence", "fleetSnapshotHash", "targetPlanHash", "baselineHead", "candidateHead", "plannedDiffHash", "outcome", "lifecycle", "ruleset", "adminBypass", "noOp", "preMergeEvidenceSha256", "postMergeEvidenceSha256", "redaction", "resultHash"],
+  "properties": {
+    "schemaVersion": { "const": "1.1" },
+    "resultId": { "$ref": "#/$defs/uuid" },
+    "runId": { "$ref": "#/$defs/uuid" },
+    "planId": { "$ref": "#/$defs/uuid" },
+    "planSha256": { "$ref": "#/$defs/sha256" },
+    "transactionId": { "$ref": "#/$defs/uuid" },
+    "repositoryId": { "$ref": "#/$defs/stableId" },
+    "waveId": { "$ref": "#/$defs/waveId" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "fleetSnapshotHash": { "$ref": "#/$defs/sha256" },
+    "targetPlanHash": { "$ref": "#/$defs/sha256" },
+    "baselineHead": { "$ref": "#/$defs/gitSha" },
+    "candidateHead": { "$ref": "#/$defs/gitShaOrNA" },
+    "plannedDiffHash": { "$ref": "#/$defs/sha256" },
+    "outcome": { "enum": ["Converged", "NoOpConverged", "Stopped", "Blocked"] },
+    "lifecycle": { "$ref": "#/$defs/lifecycle" },
+    "ruleset": { "$ref": "#/$defs/rulesetResult" },
+    "adminBypass": { "$ref": "#/$defs/adminBypass" },
+    "noOp": { "$ref": "#/$defs/noOp" },
+    "preMergeEvidenceSha256": { "$ref": "#/$defs/sha256OrNA" },
+    "postMergeEvidenceSha256": { "$ref": "#/$defs/sha256OrNA" },
+    "redaction": { "$ref": "#/$defs/redaction" },
+    "resultHash": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid", "not": { "const": "00000000-0000-0000-0000-000000000000" } },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "sha256OrNA": { "oneOf": [{ "$ref": "#/$defs/sha256" }, { "const": "N/A" }] },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "gitShaOrNA": { "oneOf": [{ "$ref": "#/$defs/gitSha" }, { "const": "N/A" }] },
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "stableIdOrNA": { "oneOf": [{ "$ref": "#/$defs/stableId" }, { "const": "N/A" }] },
+    "waveId": { "enum": ["public-canaries", "public-products", "private-products", "private-governance-scaffold", "public-presets"] },
+    "dateTimeOrNA": { "oneOf": [{ "type": "string", "format": "date-time" }, { "const": "N/A" }] },
+    "integerOrNA": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "const": "N/A" }] },
+    "textOrNA": { "type": "string", "minLength": 1, "maxLength": 1024 },
+    "gateEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gateId", "provider", "workflow", "job", "runnerOrPlatform", "executedCommand", "headSha", "runId", "result", "classification", "evidenceReference", "observedAt"],
+      "properties": {
+        "gateId": { "type": "string", "minLength": 1 },
+        "provider": { "type": "string", "minLength": 1 },
+        "workflow": { "type": "string", "minLength": 1 },
+        "job": { "type": "string", "minLength": 1 },
+        "runnerOrPlatform": { "type": "string", "minLength": 1 },
+        "executedCommand": { "type": "string", "minLength": 1 },
+        "headSha": { "$ref": "#/$defs/gitSha" },
+        "runId": { "type": "string", "minLength": 1 },
+        "result": { "enum": ["Pass", "Fail", "Blocked"] },
+        "classification": { "enum": ["Passed", "TechnicalFailure", "ProviderRefusal", "BillingOrQuotaRefusal"] },
+        "evidenceReference": { "type": "string", "minLength": 1 },
+        "observedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "providerAttempt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["attemptedAt", "actionId", "result", "classification"],
+      "properties": {
+        "attemptedAt": { "$ref": "#/$defs/dateTimeOrNA" },
+        "actionId": { "$ref": "#/$defs/textOrNA" },
+        "result": { "enum": ["N/A", "Pass", "Fail", "Blocked"] },
+        "classification": { "enum": ["N/A", "Passed", "ProtectionRefusal", "ProviderRefusal", "TransportUnknown"] }
+      }
+    },
+    "lifecycle": {
+      "type": "object", "additionalProperties": false,
+      "required": ["branchName", "commitSha", "commitTree", "pushRemoteHead", "pullRequestNumber", "pullRequestNodeId", "pullRequestHead", "localGateEvidence", "remoteGateEvidence", "reviewDecision", "reviewedHead", "reviewEvidenceHash", "regularMergeAttempt", "mergeMethod", "mergeCommit", "defaultBranchRemoteHead", "defaultBranchLocalHead", "synchronized", "finalProviderObservedAt", "finalProviderHash"],
+      "properties": {
+        "branchName": { "$ref": "#/$defs/textOrNA" },
+        "commitSha": { "$ref": "#/$defs/gitShaOrNA" },
+        "commitTree": { "$ref": "#/$defs/gitShaOrNA" },
+        "pushRemoteHead": { "$ref": "#/$defs/gitShaOrNA" },
+        "pullRequestNumber": { "$ref": "#/$defs/integerOrNA" },
+        "pullRequestNodeId": { "$ref": "#/$defs/textOrNA" },
+        "pullRequestHead": { "$ref": "#/$defs/gitShaOrNA" },
+        "localGateEvidence": { "type": "array", "items": { "$ref": "#/$defs/gateEvidence" } },
+        "remoteGateEvidence": { "type": "array", "items": { "$ref": "#/$defs/gateEvidence" } },
+        "reviewDecision": { "enum": ["Approved", "N/A", "Blocked"] },
+        "reviewedHead": { "$ref": "#/$defs/gitShaOrNA" },
+        "reviewEvidenceHash": { "$ref": "#/$defs/sha256OrNA" },
+        "regularMergeAttempt": { "$ref": "#/$defs/providerAttempt" },
+        "mergeMethod": { "enum": ["merge", "squash", "rebase", "N/A"] },
+        "mergeCommit": { "$ref": "#/$defs/gitShaOrNA" },
+        "defaultBranchRemoteHead": { "$ref": "#/$defs/gitShaOrNA" },
+        "defaultBranchLocalHead": { "$ref": "#/$defs/gitShaOrNA" },
+        "synchronized": { "type": "boolean" },
+        "finalProviderObservedAt": { "$ref": "#/$defs/dateTimeOrNA" },
+        "finalProviderHash": { "$ref": "#/$defs/sha256OrNA" }
+      }
+    },
+    "rulesetResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["planHash", "action", "previousRulesetId", "previousRulesetHash", "resultingRulesetId", "resultingRulesetHash", "providerActionId", "restoreStatus", "postWriteVerificationHash"],
+      "properties": {
+        "planHash": { "$ref": "#/$defs/sha256OrNA" },
+        "action": { "enum": ["N/A", "Create", "Update", "NoChange"] },
+        "previousRulesetId": { "$ref": "#/$defs/textOrNA" },
+        "previousRulesetHash": { "$ref": "#/$defs/sha256OrNA" },
+        "resultingRulesetId": { "$ref": "#/$defs/textOrNA" },
+        "resultingRulesetHash": { "$ref": "#/$defs/sha256OrNA" },
+        "providerActionId": { "$ref": "#/$defs/textOrNA" },
+        "restoreStatus": { "enum": ["N/A", "NotNeeded", "Restored", "RestoreFailed"] },
+        "postWriteVerificationHash": { "$ref": "#/$defs/sha256OrNA" }
+      }
+    },
+    "adminBypass": {
+      "type": "object", "additionalProperties": false,
+      "required": ["used", "authorityHash", "repositoryId", "pullRequestHead", "boundAt", "expiresAt", "reason", "scope", "regularAttemptActionId", "regularAttemptResult", "acceptanceEvidenceHash", "securityEvidenceHash", "reviewEvidenceHash", "gateEvidenceHash", "providerActionId", "result", "postWriteVerificationHash"],
+      "properties": {
+        "used": { "type": "boolean" },
+        "authorityHash": { "$ref": "#/$defs/sha256OrNA" },
+        "repositoryId": { "$ref": "#/$defs/stableIdOrNA" },
+        "pullRequestHead": { "$ref": "#/$defs/gitShaOrNA" },
+        "boundAt": { "$ref": "#/$defs/dateTimeOrNA" },
+        "expiresAt": { "$ref": "#/$defs/dateTimeOrNA" },
+        "reason": { "$ref": "#/$defs/textOrNA" },
+        "scope": { "$ref": "#/$defs/textOrNA" },
+        "regularAttemptActionId": { "$ref": "#/$defs/textOrNA" },
+        "regularAttemptResult": { "$ref": "#/$defs/textOrNA" },
+        "acceptanceEvidenceHash": { "$ref": "#/$defs/sha256OrNA" },
+        "securityEvidenceHash": { "$ref": "#/$defs/sha256OrNA" },
+        "reviewEvidenceHash": { "$ref": "#/$defs/sha256OrNA" },
+        "gateEvidenceHash": { "$ref": "#/$defs/sha256OrNA" },
+        "providerActionId": { "$ref": "#/$defs/textOrNA" },
+        "result": { "enum": ["N/A", "Pass", "Fail"] },
+        "postWriteVerificationHash": { "$ref": "#/$defs/sha256OrNA" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "used": { "const": true } }, "required": ["used"] },
+          "then": {
+            "properties": {
+              "authorityHash": { "$ref": "#/$defs/sha256" },
+              "repositoryId": { "$ref": "#/$defs/stableId" },
+              "pullRequestHead": { "$ref": "#/$defs/gitSha" },
+              "boundAt": { "type": "string", "format": "date-time" },
+              "expiresAt": { "type": "string", "format": "date-time" },
+              "reason": { "type": "string", "minLength": 1, "maxLength": 1024, "not": { "const": "N/A" } },
+              "scope": { "type": "string", "minLength": 1, "maxLength": 1024, "not": { "const": "N/A" } },
+              "regularAttemptActionId": { "type": "string", "minLength": 1, "maxLength": 1024, "not": { "const": "N/A" } },
+              "regularAttemptResult": { "const": "ProtectionRefusal" },
+              "acceptanceEvidenceHash": { "$ref": "#/$defs/sha256" },
+              "securityEvidenceHash": { "$ref": "#/$defs/sha256" },
+              "reviewEvidenceHash": { "$ref": "#/$defs/sha256" },
+              "gateEvidenceHash": { "$ref": "#/$defs/sha256" },
+              "providerActionId": { "type": "string", "minLength": 1, "maxLength": 1024, "not": { "const": "N/A" } },
+              "result": { "enum": ["Pass", "Fail"] },
+              "postWriteVerificationHash": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          "else": {
+            "properties": {
+              "authorityHash": { "const": "N/A" },
+              "repositoryId": { "const": "N/A" },
+              "pullRequestHead": { "const": "N/A" },
+              "boundAt": { "const": "N/A" },
+              "expiresAt": { "const": "N/A" },
+              "reason": { "const": "N/A" },
+              "scope": { "const": "N/A" },
+              "regularAttemptActionId": { "const": "N/A" },
+              "regularAttemptResult": { "const": "N/A" },
+              "acceptanceEvidenceHash": { "const": "N/A" },
+              "securityEvidenceHash": { "const": "N/A" },
+              "reviewEvidenceHash": { "const": "N/A" },
+              "gateEvidenceHash": { "const": "N/A" },
+              "providerActionId": { "const": "N/A" },
+              "result": { "const": "N/A" },
+              "postWriteVerificationHash": { "const": "N/A" }
+            }
+          }
+        }
+      ]
+    },
+    "noOp": {
+      "type": "object", "additionalProperties": false,
+      "required": ["applicable", "validatedAt", "baselineTree", "candidateTree", "gitTreeEqual", "semanticContractHash", "providerStateHash", "providerConvergent", "evidenceHash"],
+      "properties": {
+        "applicable": { "type": "boolean" },
+        "validatedAt": { "$ref": "#/$defs/dateTimeOrNA" },
+        "baselineTree": { "$ref": "#/$defs/gitShaOrNA" },
+        "candidateTree": { "$ref": "#/$defs/gitShaOrNA" },
+        "gitTreeEqual": { "type": "boolean" },
+        "semanticContractHash": { "$ref": "#/$defs/sha256OrNA" },
+        "providerStateHash": { "$ref": "#/$defs/sha256OrNA" },
+        "providerConvergent": { "type": "boolean" },
+        "evidenceHash": { "$ref": "#/$defs/sha256OrNA" }
+      }
+    },
+    "redaction": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "secretMatches", "tokenMatches", "privatePathMatches", "unsanitizedProviderResponseMatches", "personalDataMatches"],
+      "properties": {
+        "status": { "const": "Pass" },
+        "secretMatches": { "const": 0 },
+        "tokenMatches": { "const": 0 },
+        "privatePathMatches": { "const": 0 },
+        "unsanitizedProviderResponseMatches": { "const": 0 },
+        "personalDataMatches": { "const": 0 }
+      }
+    }
+  }
+}

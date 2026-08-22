@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "cases": [
+    {"caseId": "wrong-provider-id", "blocker": "ProviderIdentityMismatch", "followUpWrites": 0},
+    {"caseId": "wrong-ruleset-id", "blocker": "RulesetIdentityMismatch", "followUpWrites": 0},
+    {"caseId": "head-drift", "blocker": "CandidateHeadDrift", "followUpWrites": 0},
+    {"caseId": "default-branch-drift", "blocker": "DefaultBranchMismatch", "followUpWrites": 0},
+    {"caseId": "missing-review", "blocker": "RegularReviewMissing", "followUpWrites": 0},
+    {"caseId": "additional-status", "blocker": "RequiredStatusSetMismatch", "followUpWrites": 0},
+    {"caseId": "missing-status", "blocker": "RequiredStatusSetMismatch", "followUpWrites": 0},
+    {"caseId": "provider-rejection", "blocker": "ProviderRefusal", "followUpWrites": 0},
+    {"caseId": "stale-bypass", "blocker": "BypassAuthorityStale", "followUpWrites": 0},
+    {"caseId": "secret-leak", "blocker": "RestrictedEvidence", "followUpWrites": 0},
+    {"caseId": "path-leak", "blocker": "RestrictedEvidence", "followUpWrites": 0},
+    {"caseId": "restore-failure", "blocker": "RestoreFailedStop", "followUpWrites": 0}
+  ]
+}
