@@ -101,7 +101,7 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Prefl
 A real `Deliver` or `Resume` run needs current `MergeAndSync` authority and
 stops before the next repository on the first non-recoverable error. The
 [quickstart](specs/030-stage-b-rollout/quickstart.md) and
-[manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout--stage-b-fleet-rollout)
+[manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout-stage-b-fleet-rollout)
 explain evidence, exit codes, the review/bypass boundary, and the separate G4
 follow-up.
 

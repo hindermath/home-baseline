@@ -132,6 +132,8 @@ stabilem HEAD und vollständigem Erfolg atomare maschinenlokale Evidence.
 read-only and text-first. A real run publishes machine-local evidence only
 after all gates, HEAD, and the gate-set hash pass.*
 
+<a id="stage-b-flottenrollout-stage-b-fleet-rollout"></a>
+
 ### Stage-B-Flottenrollout / Stage B fleet rollout
 
 Die sichere erste Aktion ist eine schreibfreie Vorschau:

@@ -98,8 +98,10 @@ oder Authority-Änderung.
   Autorisierung. `MergeAndSync`, Run-/Scope-/Plan-/Repository-ID-Hash und
   aktueller ExternalWriteGate werden vor jeder Write-Klasse neu geprüft.
 - [x] Datei-I/O bleibt repository-relativ, Root-/Symlink-geprüft, atomar
-  (`temp` + Flush/`fsync` + Replace) und mit restriktiven Rechten. Teil- oder
-  schemaungültige Evidence wird nicht publiziert.
+  (`temp` + Flush/`fsync` + Replace) und mit restriktiven Rechten. POSIX nutzt
+  `0600`; Windows entfernt vor dem Replace die DACL-Vererbung und erlaubt nur
+  der aktuellen SID Modify. Teil-, ACL-fehlerhafte oder schemaungültige
+  Evidence wird nicht publiziert und ersetzt keine letzte gültige Evidence.
 - [x] Netzwerk-I/O trennt bounded Reads von einmaligen Writes. Ein Timeout nach
   Write löst read-only Reconciliation über den Idempotency Key aus, nie einen
   blinden Retry.

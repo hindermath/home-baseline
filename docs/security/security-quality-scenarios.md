@@ -55,6 +55,7 @@ Gate-, Plattform-, Provider-, Budget- oder Authority-Änderung.
 | SQ-030-07 | Nicht behebbarer Fehler nach konvergiertem Ziel | atomarer State; kein Folgeziel; Resume erhält Erfolg und beginnt am ersten offenen Ziel |
 | SQ-030-08 | Evidence enthält Token, privaten Pfad, Actor oder Rohantwort | Publikation blockiert; keine Teil- oder Restricted-Datei |
 | SQ-030-09 | macOS-Preflight ist grün, Linux/Windows oder Vollsuite fehlen | nur der genaue Teilnachweis gilt; kein Plattform- oder Vollregressions-Pass wird abgeleitet |
+| SQ-030-10 | Windows kann POSIX-`0600` nicht owner-only abbilden oder DACL-Setzung scheitert | temporäre Evidence erhält vor Replace eine geschützte Current-SID-DACL; Fehler bewahrt die letzte gültige Evidence |
 
 Owner: Security Quality Owner. Reviewer: Security Architecture Reviewer.
 Restrisiko: Live-Providerzustand kann nach der letzten Leseprüfung wechseln;

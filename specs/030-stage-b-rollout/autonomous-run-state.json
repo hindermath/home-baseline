@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "6157f31cf7495714c37d9519a574198bf371ce17",
+  "checkpointCommit": "db3af89b29972142fa5fef5470c45038113ebeb3",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -354,12 +354,12 @@
       }
     ]
   },
-  "lastPassingGate": "The four bounded Windows failures from Maintenance TUI run 32576605400 are repaired locally; 54 Stage-B, 39 CI-budget, 30 workspace-maintenance, and 22 maintenance-contract tests plus Bash syntax, PowerShell parser/PSScriptAnalyzer, Secret Scan, Documentation Impact, and Statistics Profile 2 pass. Native Windows revalidation remains required.",
-  "nextExactAction": "Validate, commit, and push the second exact T124 candidate without force, then inspect the commit-bound windows-2022 Maintenance TUI regression before marking T124.",
+  "lastPassingGate": "The remaining Windows-only gaps from run 32577264130 are repaired locally: temporary evidence receives a protected current-SID DACL before atomic replace, native parity resolves Git-for-Windows Bash explicitly, 56+39+30+22 regressions pass, and Statistics Profile 2 is current at checkpoint db3af89. Native Windows revalidation remains required.",
+  "nextExactAction": "Validate, commit, and push the third exact T124 candidate without force, then inspect the commit-bound windows-2022 Maintenance TUI regression before marking T124.",
   "lastOperation": {
-    "kind": "AuthorityRevalidation:T124WindowsCheckpoint2",
+    "kind": "AuthorityRevalidation:T124WindowsCheckpoint3",
     "state": "Completed",
-    "summary": "User authorized a second non-force checkpoint commit and push to origin/030-stage-b-rollout for native T124 Windows revalidation; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
+    "summary": "User authorized a third non-force checkpoint commit and push to origin/030-stage-b-rollout for native T124 Windows revalidation; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
   },
   "stop": {
     "reason": "N/A",
@@ -372,5 +372,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-22T13:56:13Z"
+  "updatedAt": "2026-08-22T14:13:03Z"
 }

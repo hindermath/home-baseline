@@ -7,6 +7,7 @@ import importlib.util
 import json
 import os
 import pathlib
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -160,7 +161,74 @@ class EvidenceLedgerTests(unittest.TestCase):
             )
             self.assertRegex(digest, r"^[0-9a-f]{64}$")
             self.assertEqual(json.loads(target.read_text(encoding="utf-8"))["status"], "Passed")
-            self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+            if os.name == "nt":
+                current_sid = engine._restrict_stage_b_evidence_permissions(
+                    target, platform_name="nt"
+                )
+                acl_script = (
+                    "$acl=Get-Acl -LiteralPath $args[0];"
+                    "$rules=@($acl.Access|ForEach-Object{[pscustomobject]@{"
+                    "Sid=$_.IdentityReference.Translate([Security.Principal.SecurityIdentifier]).Value;"
+                    "Type=[string]$_.AccessControlType}});"
+                    "[pscustomobject]@{Protected=$acl.AreAccessRulesProtected;Rules=$rules}|"
+                    "ConvertTo-Json -Compress -Depth 4"
+                )
+                acl_result = subprocess.run(
+                    ["pwsh", "-NoProfile", "-Command", acl_script, str(target)],
+                    text=True, capture_output=True, check=False,
+                )
+                self.assertEqual(acl_result.returncode, 0, acl_result.stderr)
+                acl = json.loads(acl_result.stdout)
+                self.assertTrue(acl["Protected"])
+                rules = acl["Rules"] if isinstance(acl["Rules"], list) else [acl["Rules"]]
+                self.assertTrue(rules)
+                self.assertEqual({rule["Sid"] for rule in rules}, {current_sid})
+                self.assertEqual({rule["Type"] for rule in rules}, {"Allow"})
+            else:
+                self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+            self.assertFalse(list(target.parent.glob(f".{target.name}.*")))
+
+    def test_windows_dacl_is_protected_before_atomic_replace(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            target = pathlib.Path(directory) / "result.json"
+            target.write_text("{}\n", encoding="utf-8")
+            runner = mock.Mock(side_effect=[
+                subprocess.CompletedProcess([], 0, stdout='"runner","S-1-5-21-42"\n', stderr=""),
+                subprocess.CompletedProcess([], 0, stdout="processed 1 file", stderr=""),
+            ])
+            sid = engine._restrict_stage_b_evidence_permissions(
+                target, platform_name="nt", runner=runner
+            )
+            self.assertEqual(sid, "S-1-5-21-42")
+            self.assertEqual(
+                runner.call_args_list[1].args[0],
+                [
+                    "icacls.exe", str(target), "/inheritancelevel:r", "/grant:r",
+                    "*S-1-5-21-42:M",
+                ],
+            )
+
+    def test_dacl_failure_preserves_previous_evidence(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            schema = self._write_schema(root)
+            target = root / "operational/result.json"
+            engine.publish_stage_b_evidence(
+                target, {"schemaVersion": "1.0", "status": "Blocked"}, schema
+            )
+            original = target.read_bytes()
+            with mock.patch.object(
+                engine,
+                "_restrict_stage_b_evidence_permissions",
+                side_effect=engine.ContractError("fixture DACL failure"),
+            ):
+                with self.assertRaisesRegex(engine.ContractError, "DACL failure"):
+                    engine.publish_stage_b_evidence(
+                        target, {"schemaVersion": "1.0", "status": "Passed"}, schema
+                    )
+            self.assertEqual(target.read_bytes(), original)
             self.assertFalse(list(target.parent.glob(f".{target.name}.*")))
 
     def test_windows_durability_path_never_opens_a_directory_descriptor(self):
@@ -926,9 +994,25 @@ class PlatformParityTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
         )
 
+    def bash_executable(self):
+        if os.name != "nt":
+            return "bash"
+        candidates = []
+        git_executable = shutil.which("git")
+        if git_executable:
+            candidates.append(pathlib.Path(git_executable).parent.parent / "bin/bash.exe")
+        for environment_name in ("ProgramFiles", "ProgramFiles(x86)"):
+            program_files = os.environ.get(environment_name)
+            if program_files:
+                candidates.append(pathlib.Path(program_files) / "Git/bin/bash.exe")
+        for candidate in candidates:
+            if candidate.is_file():
+                return str(candidate)
+        self.fail("Git-for-Windows Bash is required for native adapter parity")
+
     def test_bash_and_powershell_preview_have_identical_linear_semantics(self):
         commands = [
-            ["bash", "scripts/maintain-agentic-workspace.sh", "--stage-b-action", "preflight", "--dry-run"],
+            [self.bash_executable(), "scripts/maintain-agentic-workspace.sh", "--stage-b-action", "preflight", "--dry-run"],
             ["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-StageBAction", "Preflight", "-WhatIf"],
         ]
         results = [self.run_wrapper(command) for command in commands]
@@ -943,7 +1027,7 @@ class PlatformParityTests(unittest.TestCase):
 
     def test_empty_home_is_not_a_stage_b_dependency(self):
         result = self.run_wrapper([
-            "bash", "scripts/maintain-agentic-workspace.sh",
+            self.bash_executable(), "scripts/maintain-agentic-workspace.sh",
             "--stage-b-action", "preflight", "--dry-run",
         ])
         self.assertEqual(

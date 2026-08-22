@@ -48,9 +48,9 @@ state. Every applicable row must be `Passed` before T126.
 
 ## Implementierungsstatus / Implementation Status
 
-- **Current checkpoint / Aktueller Checkpoint**: T113–T123 sind lokal abgeschlossen. T124 wurde weder gestartet noch teilweise implementiert; alle Regression-, Acceptance-, Delivery- und Closeout-Gates ab T124 bleiben sichtbar ausstehend. Der ExternalWriteGate bleibt geschlossen.
+- **Current checkpoint / Aktueller Checkpoint**: T113–T123 sind abgeschlossen. T124 ist lokal vollständig grün, bleibt aber nach den diagnostischen Checkpoints `6157f31`/Run `32576605400` und `db3af89`/Run `32577264130` bis zu einem aktuellen grünen nativen Windows-Vollregressionslauf offen. T125 und alle Delivery-/Closeout-Gates bleiben sichtbar ausstehend; der ExternalWriteGate ist geschlossen.
 - **Runtime implementation / Runtime-Implementierung**: `In progress`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind lokal implementiert.
-- **Remote delivery / Remote-Lieferung**: `Pending`; nur der ausdrücklich autorisierte, nicht mergefähige T112-Validierungs-Checkpoint wurde auf den Feature-Branch gepusht. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
+- **Remote delivery / Remote-Lieferung**: `Pending`; der T112-Nachweis sowie zwei ausdrücklich autorisierte, nicht mergefähige T124-Diagnosecheckpoints wurden auf den Feature-Branch gepusht. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
 - **Home sync / Home-Sync**: `Pending`; nur nach tatsächlicher `homeRuntime`-Änderung, Preview, Merge und Authority-Revalidierung.
 - **Terminal closeout / Terminaler Abschluss**: `Pending`; `Completed` erst nach 194/194 und allen zwölf Primary-Gates.
 
@@ -292,3 +292,26 @@ state. Every applicable row must be `Passed` before T126.
 - **Proof boundary / Nachweisgrenze**: Diese Evidence schließt nur T113–T123.
   Sie behauptet weder die T124-Vollregression noch AC-SBR-009, Live-Delivery,
   Home-Sync oder terminalen Closeout.
+
+## T124 Windows-Regressionskonvergenz / Windows Regression Convergence
+
+- **Native diagnostic evidence / Nativer Diagnosenachweis**: Commit `6157f31`,
+  Run `32576605400`, Job `97039763606` belegte zwei Windows-`fsync`-Fehler und
+  zwei Adapterfehler. Commit `db3af89`, Run `32577264130`, Job `97041302454`
+  bestätigte den reparierten Flush und präzisierte die Restgrenzen auf fehlende
+  owner-only-Semantik von Windows-`chmod 0600` sowie den WSL- statt
+  Git-for-Windows-Bash-Resolver. Beide Runs bestanden macOS 14 und Ubuntu 22.04;
+  ihre Windows-Wrapperstufen waren grün.
+- **Fail-closed repair / Geschlossene Reparatur**: Die vollständige temporäre
+  Evidence erhält vor `os.replace` eine vererbungsfreie DACL mit Modify nur für
+  die validierte aktuelle Windows-SID. Identitäts- oder ACL-Fehler brechen vor
+  Veröffentlichung ab und erhalten die letzte gültige Evidence. Native
+  Adaptertests lösen Git-for-Windows-Bash über den Git-Installationspfad auf
+  und können nicht mehr versehentlich den WSL-Launcher akzeptieren.
+- **Local evidence / Lokaler Nachweis**: 56 Stage-B-, 39 CI-Budget-, 30
+  Workspace-Maintenance- und 22 Maintenance-Contract-Tests sowie Bash-Syntax,
+  PowerShell-Parser/PSScriptAnalyzer und Secret Scan bestehen. Negativtests
+  belegen DACL-Befehlsbindung und Erhalt der vorherigen Evidence bei ACL-Fehler.
+- **Open gate / Offenes Gate**: T124 bleibt ungeprüft, bis ein neuer exakt an
+  den Kandidaten gebundener `windows-2022`-Vollregressionslauf Exitcode `0`
+  liefert. Dieser lokale Stand verleiht keine weitere Commit-/Push-Autorität.

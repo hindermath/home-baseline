@@ -150,6 +150,9 @@ bleiben eigene, nicht implizit betretene Grenzen.
    Writer und verlangen nach jeder Welle eine frische Decimal-Projektion.
 9. `StageBEvidenceLedger` und `StageBTerminalVerifier` publizieren atomar,
    redigiert und kausal und verifizieren jede autoritative ID genau einmal.
+   POSIX-Evidence erhält `0600`; Windows-Evidence erhält bereits auf der
+   vollständigen temporären Datei eine vererbungsfreie DACL nur für die
+   aktuelle SID, bevor `os.replace` sie sichtbar macht.
 
 ### Laufzeitsicht / Runtime View
 

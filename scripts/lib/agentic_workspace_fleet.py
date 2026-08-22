@@ -430,6 +430,46 @@ def _redact_stage_b_text(text: str, limit: int = 4096) -> str:
     return sanitized[:limit]
 
 
+def _restrict_stage_b_evidence_permissions(
+    path: pathlib.Path,
+    *,
+    platform_name: str | None = None,
+    runner=subprocess.run,
+) -> str:
+    """Apply an owner-only evidence boundary before the atomic replace."""
+    selected_platform = os.name if platform_name is None else platform_name
+    if selected_platform != "nt":
+        os.chmod(path, 0o600)
+        return "POSIX-0600"
+
+    identity = runner(
+        ["whoami.exe", "/user", "/fo", "csv", "/nh"],
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=10,
+    )
+    sid_match = re.search(r"\bS-\d(?:-\d+){1,}\b", identity.stdout or "")
+    if identity.returncode != 0 or sid_match is None:
+        detail = _redact_stage_b_text(identity.stderr or identity.stdout or "identity unavailable")
+        raise ContractError(f"Windows evidence identity resolution failed: {detail}")
+    sid = sid_match.group(0)
+    # chmod(0600) maps back to 0666 on Windows and therefore cannot prove an
+    # owner-only boundary. Protect the DACL and grant only the current SID
+    # Modify rights, which retain atomic replacement while removing inheritance.
+    acl = runner(
+        ["icacls.exe", str(path), "/inheritancelevel:r", "/grant:r", f"*{sid}:M"],
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=10,
+    )
+    if acl.returncode != 0:
+        detail = _redact_stage_b_text(acl.stderr or acl.stdout or "ACL update failed")
+        raise ContractError(f"Windows evidence DACL restriction failed: {detail}")
+    return sid
+
+
 def _sync_stage_b_evidence_metadata(
     path: pathlib.Path, *, platform_name: str | None = None
 ) -> None:
@@ -478,8 +518,10 @@ def publish_stage_b_evidence(
             stream.write(encoded)
             stream.flush()
             os.fsync(stream.fileno())
+        # Restrict the complete temporary file before it becomes visible at
+        # the final path. A DACL failure therefore leaves prior evidence intact.
+        _restrict_stage_b_evidence_permissions(temporary)
         os.replace(temporary, path)
-        os.chmod(path, 0o600)
         _sync_stage_b_evidence_metadata(path)
     finally:
         if temporary.exists():
