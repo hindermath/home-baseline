@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "db3af89b29972142fa5fef5470c45038113ebeb3",
+  "checkpointCommit": "cd67b58f87ac21bd0b1529a40a47555d55a16f46",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -354,12 +354,12 @@
       }
     ]
   },
-  "lastPassingGate": "The remaining Windows-only gaps from run 32577264130 are repaired locally: temporary evidence receives a protected current-SID DACL before atomic replace, native parity resolves Git-for-Windows Bash explicitly, 56+39+30+22 regressions pass, and Statistics Profile 2 is current at checkpoint db3af89. Native Windows revalidation remains required.",
-  "nextExactAction": "Validate, commit, and push the third exact T124 candidate without force, then inspect the commit-bound windows-2022 Maintenance TUI regression before marking T124.",
+  "lastPassingGate": "Checkpoint cd67b58 passed Documentation and Learning Package, PowerShell Static Analysis, Homogeneity Check, and the full Ubuntu 22.04 and macOS 14 Maintenance TUI jobs. Windows run 32578308644/job 97043808631 passed build, TUI, and wrapper stages but its 225-test full regression exposed one test-harness path-transfer failure; the environment-bound repair now passes 56 Stage-B and all 225 local macOS regressions. T124 remains open pending a green current Windows run.",
+  "nextExactAction": "Validate, commit, and push the fourth exact T124 candidate without force, then inspect the commit-bound windows-2022 full regression before marking T124 or starting T125.",
   "lastOperation": {
-    "kind": "AuthorityRevalidation:T124WindowsCheckpoint3",
+    "kind": "AuthorityRevalidation:T124WindowsCheckpoint4",
     "state": "Completed",
-    "summary": "User authorized a third non-force checkpoint commit and push to origin/030-stage-b-rollout for native T124 Windows revalidation; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
+    "summary": "User authorized a fourth non-force checkpoint commit and push to origin/030-stage-b-rollout for the environment-bound native Windows ACL assertion repair; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
   },
   "stop": {
     "reason": "N/A",
@@ -372,5 +372,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-22T14:13:03Z"
+  "updatedAt": "2026-08-22T15:34:53Z"
 }

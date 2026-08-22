@@ -166,16 +166,19 @@ class EvidenceLedgerTests(unittest.TestCase):
                     target, platform_name="nt"
                 )
                 acl_script = (
-                    "$acl=Get-Acl -LiteralPath $args[0];"
+                    "$path=[Environment]::GetEnvironmentVariable('STAGE_B_EVIDENCE_PATH');"
+                    "$acl=Get-Acl -LiteralPath $path;"
                     "$rules=@($acl.Access|ForEach-Object{[pscustomobject]@{"
                     "Sid=$_.IdentityReference.Translate([Security.Principal.SecurityIdentifier]).Value;"
                     "Type=[string]$_.AccessControlType}});"
                     "[pscustomobject]@{Protected=$acl.AreAccessRulesProtected;Rules=$rules}|"
                     "ConvertTo-Json -Compress -Depth 4"
                 )
+                acl_environment = os.environ.copy()
+                acl_environment["STAGE_B_EVIDENCE_PATH"] = str(target)
                 acl_result = subprocess.run(
-                    ["pwsh", "-NoProfile", "-Command", acl_script, str(target)],
-                    text=True, capture_output=True, check=False,
+                    ["pwsh", "-NoProfile", "-Command", acl_script],
+                    text=True, capture_output=True, check=False, env=acl_environment,
                 )
                 self.assertEqual(acl_result.returncode, 0, acl_result.stderr)
                 acl = json.loads(acl_result.stdout)
