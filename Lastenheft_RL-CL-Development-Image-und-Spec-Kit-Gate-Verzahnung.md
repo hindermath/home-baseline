@@ -83,15 +83,21 @@ Integration erfuellt; `CL_12-13` bleibt bis zum ersten echten Delta-Lauf
 
 Fuer den gesamten HOSK-Proof-of-Concept sind Produktstufen 0 bis 5 und ein
 Gesamtsystemtest vor dem voraussichtlich im November 2026 stattfindenden
-Audit als Pilotumfang bestaetigt. Eine nicht vertrauliche QMS-/DMS-Referenz,
-Auflagen und Re-Review-Trigger muessen in der Consumer-Evidence stehen. Diese
-umfangsbegrenzte Nutzung ist keine allgemeine Sandbox-, Produktiv- oder
-Flottenfreigabe.
+Audit als Pilotumfang bestaetigt. `@thinder` hat die umfangsbegrenzte Nutzung
+als Auftraggeber / Project Owner im [HOSK Work Item #1](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/work_items/1)
+und im getrennten [Freigabekommentar](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/work_items/1#note_966122)
+menschlich bestaetigt. Sie gilt ohne zusaetzliche Auflagen bis zum PoC-Ende,
+spaetestens bis 31.12.2026, und besitzt dokumentierte Re-Review-Trigger.
+
+Diese kontrollierte Projekt-Referenz belegt nur die HOSK-PoC-Nutzung. Eine
+formelle allgemeine Sandbox-Freigabe benoetigt weiterhin den dafuer
+festgelegten QMS-/DMS-Nachweis; `CL_12-01` bleibt deshalb `open` und
+`not fulfilled`. Die PoC-Nutzung ist keine Produktiv- oder Flottenfreigabe.
 
 Produktstufe 1 ist vorbereitet, aber noch nicht ausgefuehrt. Erwartet werden
 `docs/security/rl-cl/deltas/yaml-export-format.json` und
 `docs/runbooks/rl-cl/delta-yaml-export-format.md`. Ein lokales
-Ausfuehrungsrunbook bleibt eine ungetrackte Arbeitshilfe und ist keine
+Ausfuehrungsrunbook bleibt eine ungetrackte Arbeitshilfe und ist kein
 Auditnachweis.
 
 ## 3. Zielbild
@@ -171,7 +177,8 @@ Mindestens vier Entscheidungen werden getrennt dokumentiert:
 
 1. technische Image-Validierung mit Digest und technischen Nachweisen;
 2. umfangsbegrenzte Nutzungsfreigabe fuer einen Consumer oder Pilot mit
-   QMS-/DMS-Referenz, Auflagen und Re-Review-Trigger;
+   kontrollierter Projekt- oder QMS-/DMS-Referenz, Auflagen und
+   Re-Review-Trigger;
 3. projektbezogene Gate-, Review- und Abnahmeentscheidungen;
 4. allgemeine Sandbox-, Produktiv- oder Flottenfreigabe.
 
@@ -451,10 +458,16 @@ checkpoints. `CL_01-13` and `CL_10-18` are fulfilled for this integration;
 `CL_12-13` remains `not fulfilled` until the first actual delta run.
 
 The confirmed pilot scope covers HOSK product stages 0 through 5 and a whole-
-system test before the audit expected in November 2026. A non-confidential
-QMS/DMS reference, conditions, and reevaluation triggers must be recorded in
-consumer evidence. This scoped use approval is not general sandbox,
-production, or fleet approval.
+system test before the audit expected in November 2026. `@thinder` confirmed
+the scoped use as Auftraggeber / Project Owner in [HOSK Work Item #1](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/work_items/1)
+and the separate [approval comment](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/work_items/1#note_966122).
+It has no additional conditions, remains valid until PoC completion or
+2026-12-31 at the latest, and has documented reevaluation triggers.
+
+This controlled project reference proves only HOSK PoC use. Formal general
+sandbox approval still requires its designated QMS/DMS evidence; `CL_12-01`
+therefore remains `open` and `not fulfilled`. PoC use is not production or
+fleet approval.
 
 Product stage 1 is prepared but has not started. Expected artifacts are
 `docs/security/rl-cl/deltas/yaml-export-format.json` and
@@ -536,8 +549,8 @@ automatically granted.
 At least four decisions are recorded separately:
 
 1. technical image validation with digest and technical evidence;
-2. scope-limited use approval for a consumer or pilot, including QMS/DMS
-   reference, conditions, and reevaluation trigger;
+2. scope-limited use approval for a consumer or pilot, including a controlled
+   project or QMS/DMS reference, conditions, and reevaluation trigger;
 3. project-specific gate, review, and acceptance decisions;
 4. general sandbox, production, or fleet approval.
 
