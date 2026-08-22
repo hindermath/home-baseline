@@ -1,7 +1,7 @@
 # Stage-B-Mutations-Allowlist / Stage B Mutation Allowlist
 
 **Applicability / Anwendbarkeit**: `Applicable`
-**Implementation status / Umsetzungsstatus**: `Pending`
+**Implementation status / Umsetzungsstatus**: `Checkpoint history recorded; final T171 allowlist pending`
 **Owner / Owner**: Fleet Delivery Owner
 **Reviewer / Reviewer**: Security and Delivery-Set Reviewer
 
@@ -65,6 +65,15 @@ deterministische Rename erlaubt.
   `[stage-b-windows-proof]` beschraenkten Push-Workflow am exakten Commit
   starten lassen. Das oeffnet weder PR noch Merge-/Ruleset-/Fleet- oder
   Home-Write und darf keinen anderen Workflowpfad aendern.
+- **Full-regression checkpoint writers / Vollregressions-Checkpoints**: Für
+  T124 wurden nach nativen Windows-Fehlern fünf jeweils einzeln ausdrücklich
+  genehmigte, nicht erzwungene Pushes desselben Feature-Branches ausgeführt.
+  Die exakten Checkpoint-Heads `6157f31`, `db3af89`, `cd67b58`, `cf6daa2` und
+  `8ae4ef289d8dd42080a0b69ea374bde2881f6fb2` durften ausschließlich die
+  vorhandenen Branch-Workflows auslösen. Der letzte Head bestand die
+  vollständige Windows-, macOS- und Ubuntu-Regression; kein Checkpoint
+  erstellte einen PR, Merge, Ruleset-/Fleetwrite oder Home-Sync. Alle fünf
+  Autorisierungen sind verbraucht und begründen keine künftige Remoteaktion.
 - **Provider writers / Provider-Writer**: `gh pr create`, regular
   `gh pr merge`, narrowly evidenced `gh pr merge --admin` only after a
   protection-only refusal, and numeric-ID-bound ruleset create/update/restore

@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "cf6daa2dd2d8ff3c8248e4f43ae9be417b9a7820",
+  "checkpointCommit": "8ae4ef289d8dd42080a0b69ea374bde2881f6fb2",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -32,8 +32,8 @@
   ],
   "tasks": {
     "path": "specs/030-stage-b-rollout/tasks.md",
-    "sha256": "a99cf8df1a9870b5a0dad62d5a6c18d47a4a651640a53ee580896335518739de",
-    "completed": 123,
+    "sha256": "4b7dedb2e5e511e84d9abdb66bdd127ff4fe67a29499f2fb0a0fb45aef5cdce2",
+    "completed": 128,
     "total": 194
   },
   "routing": {
@@ -327,12 +327,30 @@
         "resultSha256": "066c9d56cffb25402316a7a174e2b10449c4f45ae0432f3beed4df188ff19e9d"
       },
       {
-        "phaseId": "implement",
+        "phaseId": "implement-t126-traceability",
         "command": "speckit.implement",
         "routingRole": "long-running-implementation",
         "runnerProfile": "codex-implementation-auto",
         "dependsOn": [
           "implement-t124-local-prep"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-22T17:37:15Z",
+        "resultPath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/implement-t126-traceability.result.json",
+        "resultSha256": "44d59a3e1de6fd850db939c731e98ee96727d6551b4599682b137aebe4ee0ae2"
+      },
+      {
+        "phaseId": "implement",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "runnerProfile": "codex-implementation-auto",
+        "dependsOn": [
+          "implement-t126-traceability"
         ],
         "status": "NeedsRevalidation",
         "agentFamily": "Codex",
@@ -354,12 +372,12 @@
       }
     ]
   },
-  "lastPassingGate": "Checkpoint cf6daa2 passed Documentation and Learning Package, PowerShell Static Analysis, Homogeneity Check, and the full Ubuntu 22.04 and macOS 14 Maintenance TUI jobs. Windows run 32582382241/job 97053599384 passed build, TUI, and wrapper stages and all but one of 225 tests; the remaining assertion proved that disabling inheritance retained explicit OWNER RIGHTS, Administrators, and SYSTEM access rules. The local fail-closed candidate rebuilds the DACL with exactly one current-SID Modify/Allow rule before atomic replace and passes 56 Stage-B plus all 225 local macOS regressions. T124 remains open pending current native Windows revalidation.",
-  "nextExactAction": "Validate, commit, and push the fifth exact T124 candidate without force, then inspect the commit-bound windows-2022 full regression before marking T124 or starting T125.",
+  "lastPassingGate": "T128 passed with exact command and Exitcode 0 in operational/control-plane/delivery-set.json (SHA-256 8d8f8ed0558cd6cc5b337e096dfdf5cd97ee762a84aad07f0a20b195a9af3b12): six intended tracked feature-governance paths, zero untracked or unrelated paths, clean original index and complete mutation-allowlist reconciliation.",
+  "nextExactAction": "Execute T129 with a temporary Git index containing only the six T128 tracked paths, run git diff --cached --check and exact path reconciliation, record candidate tree and diff hashes in operational/control-plane/exact-candidate.json, and restore the original index unchanged.",
   "lastOperation": {
-    "kind": "AuthorityRevalidation:T124WindowsCheckpoint5",
+    "kind": "DeliverySetValidation:T128",
     "state": "Completed",
-    "summary": "User authorized a fifth non-force checkpoint commit and push to origin/030-stage-b-rollout for the locally green exact-DACL rebuild; the statistics companion is included, while PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
+    "summary": "The exact Level-0 delivery-set validator passed and its output was reconciled against the Stage-B mutation allowlist. No Git, provider, fleet or Home-sync write occurred; the ExternalWriteGate remains closed pending the T129 candidate and T130 pre-merge evidence."
   },
   "stop": {
     "reason": "N/A",
@@ -372,5 +390,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-22T17:19:11Z"
+  "updatedAt": "2026-08-22T19:37:43Z"
 }

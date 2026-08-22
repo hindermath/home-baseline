@@ -22,18 +22,22 @@
 Die Anwendbarkeit ist fuer alle zwoelf Presets abgeschlossen und bleibt von der
 Umsetzungsachse getrennt. `Pending` benennt ein spaeteres, weiterhin
 blockierendes Gate; `Open` wird nicht als stille Zwischenablage verwendet.
-Jeder anwendbare Eintrag muss vor T126 auf `Passed` stehen. / Applicability is
-closed for all twelve presets and remains separate from implementation status.
-`Pending` names a later blocking gate; `Open` is not used as a silent holding
-state. Every applicable row must be `Passed` before T126.
+Jedes anwendbare lokale Pre-Delivery-Subgate muss vor T126 auf `Passed` stehen;
+ausdrücklich späteren Live-/Delivery-/Closeout-Aufgaben zugeordnete Subgates
+bleiben wahrheitsgemäß `Pending`. / Applicability is closed for all twelve
+presets and remains separate from implementation status. `Pending` names a
+later blocking gate; `Open` is not used as a silent holding state. Every
+applicable local pre-delivery subgate must be `Passed` before T126, while
+explicitly later live, delivery, and closeout subgates remain truthfully
+`Pending`.
 
 | Checkpoint | Applicability | Implementation status | Owner / Reviewer | Evidence | Residual risk / Follow-up / Re-evaluation |
 |---|---|---|---|---|---|
-| Security Governance | Applicable | T114–T118 assurance Passed; T124 full regression pending | Security Owner / Security Reviewer | T114–T118, T124 | Provider-, Ruleset-, Bypass-, Secret- oder Trust-Boundary-Drift; bei jeder solchen Änderung neu prüfen. |
+| Security Governance | Applicable | T114–T118 assurance and T124 full regression Passed | Security Owner / Security Reviewer | T114–T118, T124; Run `32587448948` | Provider-, Ruleset-, Bypass-, Secret- oder Trust-Boundary-Drift; bei jeder solchen Änderung neu prüfen. |
 | Architecture Governance | Applicable | T114/T119 local architecture review Passed; live delivery pending | Architecture Owner / Architecture Reviewer | T114, T119 | Remote-Transaktion oder Deployment kann driften; ADR/arc42 erneut prüfen. |
 | iSAQB Architecture Governance | Applicable | T119 final local review Passed | Architecture Owner / iSAQB-oriented Peer | T119 | Baustein- und Laufzeitsicht bei struktureller Änderung neu bewerten. |
-| A11Y Governance | Applicable | Local user surfaces passed T100–T110; T125 aggregation pending | Documentation Owner / A11Y Reviewer | T100–T110, T108, T125 | Nutzertexte können driften; WCAG-2.2-AA-orientierte Textnutzung erneut prüfen. |
-| Cross-Platform Governance | Applicable | Native platform checkpoint Passed; T125 pending | Script Owner / Cross-Platform Reviewer | `checklists/cross-platform.md`, T102–T112, T125; Windows Run `32567141555`, Job `97017306468` | Native Tokens sind hashgebunden vorhanden; vollständige AC-SBR-009-Acceptance und spätere Payloaddrift bleiben Re-Evaluation-Trigger. |
+| A11Y Governance | Applicable | Local user surfaces and T125 aggregation Passed | Documentation Owner / A11Y Reviewer | T100–T110, T108, T125; `primary/AC-SBR-009.json` | Nutzertexte können driften; WCAG-2.2-AA-orientierte Textnutzung erneut prüfen. |
+| Cross-Platform Governance | Applicable | Native platform checkpoint, full T124 regression and T125 acceptance Passed | Script Owner / Cross-Platform Reviewer | `checklists/cross-platform.md`, T102–T125; Windows Run `32587448948`, Job `97065888986`; `primary/AC-SBR-009.json` | Native Tokens, Vollregression und AC-SBR-009 sind hashgebunden; spätere Payloaddrift bleibt Re-Evaluation-Trigger. |
 | Agent Parity Governance | Applicable | T121 Passed | Governance Owner / Agent-Parity Reviewer | Constitution v1.21.0 mirror; five agent surfaces; source/runtime templates; `test_spec_kit_agent_surface_parity.py` | Shared-Guidance-Trigger verlangt atomare Fünf-Flächen-/Template-/Constitution-Pflege. |
 | Model Routing Governance | N/A for feature change | Closed input gate | Run Owner / Routing Validator | gebundener Runner `codex-implementation-auto` | Bei Profil-, Modell-, Rollen- oder Preflight-Drift stoppen. |
 | Intake Authoring Governance | N/A | Closed input gate | Intake Owner / Intake Governance Reviewer | fünf akzeptierte Artefakthashes | Bei Intake-/Receipt-Drift stoppen. |
@@ -43,14 +47,14 @@ state. Every applicable row must be `Passed` before T126.
 | Parallel Autonomous Governance | N/A | Closed | Run Owner / Governance Reviewer | serielle Writerregel in `tasks.md` | Nur bei ausdrücklicher Kampagnenautorität neu bewerten. |
 | Documentation Impact | Applicable | T120–T123 local documentation/statistics gates Passed; closeout updates pending | Documentation Owner / Documentation Reviewer | `documentation-impact-evidence.json`, T120–T123, T168–T182 | Leserpfad, Distribution oder Home-Sync-Trigger kann driften. |
 | Statistics | Applicable | T122/T123 Passed; later live/closeout refresh T169/T170 pending | Statistics Owner / Documentation Reviewer | canonical slot 67; renderer CURRENT; 146 assertions; Bash/PowerShell 30/30 | Nur kanonische Konfiguration und Renderer dürfen den Profilblock ändern. |
-| Acceptance AC-SBR-001–012 | Applicable | Pending | Fleet Delivery Owner / Acceptance Reviewer | `autonomous-run-gate-requirements.json`, T125, T142–T167 | Jeder Primary-Nachweis muss am tatsächlichen Head und Runner gebunden sein. |
-| G4/Copilot/Account/Subscription isolation | Applicable | Pending | Fleet Delivery Owner / Governance Reviewer | T091, T099, T164–T166, T194 | Jede Mutation ist verboten; fehlende Daten sind kein Pass. |
+| Acceptance AC-SBR-001–012 | Applicable | AC-SBR-009 Passed locally; remaining Primary gates pending | Fleet Delivery Owner / Acceptance Reviewer | `autonomous-run-gate-requirements.json`, T125, T142–T167; `primary/AC-SBR-009.json` | Jeder Primary-Nachweis muss am tatsächlichen Head und Runner gebunden sein. |
+| G4/Copilot/Account/Subscription isolation | Applicable | Local isolation Passed; live T164–T166 and terminal T194 pending | Fleet Delivery Owner / Governance Reviewer | T091, T099, T164–T166, T194 | Jede Mutation ist verboten; fehlende Live-Daten sind kein terminaler Pass. |
 
 ## Implementierungsstatus / Implementation Status
 
-- **Current checkpoint / Aktueller Checkpoint**: T113–T123 sind abgeschlossen. T124 bleibt nach den diagnostischen Checkpoints `6157f31`/Run `32576605400`, `db3af89`/Run `32577264130`, `cd67b58`/Run `32578308644` und `cf6daa2`/Run `32582382241` bis zu einem aktuellen grünen nativen Windows-Vollregressionslauf offen. T125 und alle Delivery-/Closeout-Gates bleiben sichtbar ausstehend; der ExternalWriteGate ist geschlossen.
+- **Current checkpoint / Aktueller Checkpoint**: T113–T125 sind abgeschlossen. Der fünfte Kandidat `8ae4ef2` bestand im Run `32587448948` die vollständige native Windows-, macOS- und Ubuntu-Regression sowie alle begleitenden Qualitätsworkflows. AC-SBR-009 bestand mit den Tokens `macOS,Linux,Windows`; alle Delivery-/Closeout-Gates bleiben sichtbar ausstehend und der ExternalWriteGate ist geschlossen.
 - **Runtime implementation / Runtime-Implementierung**: `In progress`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind lokal implementiert.
-- **Remote delivery / Remote-Lieferung**: `Pending`; der T112-Nachweis sowie vier ausdrücklich autorisierte, nicht mergefähige T124-Diagnosecheckpoints wurden auf den Feature-Branch gepusht. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
+- **Remote delivery / Remote-Lieferung**: `Pending`; der T112-Nachweis sowie fünf ausdrücklich autorisierte T124-Checkpoints wurden auf den Feature-Branch gepusht. Der fünfte Checkpoint ist der grüne Regressionsnachweis, aber noch kein Delivery-Commit. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
 - **Home sync / Home-Sync**: `Pending`; nur nach tatsächlicher `homeRuntime`-Änderung, Preview, Merge und Authority-Revalidierung.
 - **Terminal closeout / Terminaler Abschluss**: `Pending`; `Completed` erst nach 194/194 und allen zwölf Primary-Gates.
 
@@ -335,7 +339,45 @@ state. Every applicable row must be `Passed` before T126.
   mit geschützter Vererbung, vollständiger Entfernung vorhandener Access Rules
   und genau einer aktuellen SID-Regel dieselben 56 Stage-B- und 225 lokalen
   Regressionen.
-- **Open gate / Offenes Gate**: T124 bleibt ungeprüft, bis ein neuer exakt an
-  den Kandidaten gebundener `windows-2022`-Vollregressionslauf Exitcode `0`
-  liefert. Die vierte Push-Autorität ist verbraucht; dieser lokale Stand
-  verleiht keine weitere Commit-/Push-Autorität und T125 darf nicht starten.
+- **Fifth native proof / Fünfter nativer Nachweis**: Der exakte Head
+  `8ae4ef289d8dd42080a0b69ea374bde2881f6fb2` bestand im Workflow
+  `Maintenance TUI`, Run `32587448948`, Windows-Job `97065888986` auf
+  `windows-2022` mit PowerShell `7.6.5` den Befehl `python -m unittest
+  discover -s scripts/tests -p 'test_*.py'`: 225 Tests, Exitcode `0`, 44
+  Skips und keine Restricted-Ausgabe. Die macOS- und Ubuntu-Jobs desselben
+  Heads bestanden ebenfalls. Dokumentationsprüfung, PowerShell-Analyse und
+  Homogenitätsprüfung waren am selben Head grün; das Workflow-Token besaß nur
+  `contents: read` und `metadata: read`.
+- **Closed gate / Geschlossenes Gate**: T124 ist bestanden. Die fünfte
+  Commit-/Push-Autorität ist verbraucht und verleiht keine weitere
+  Remote-Autorität. T125 darf lokal mit dem exakt vorgegebenen Befehl starten;
+  PR, Merge, Home-Sync, Fleetwrite und Admin-Bypass bleiben ausgeschlossen.
+
+## T125 AC-SBR-009-Plattformakzeptanz / Platform Acceptance
+
+- **Command / Befehl**: `python3 scripts/tests/run_stage_b_rollout_acceptance.py
+  --gate AC-SBR-009 --repository-root . --evidence-root
+  .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1`.
+- **Result / Ergebnis**: Exitcode `0`; vier `PlatformParityTests` bestanden.
+  Der Primary-Snapshot `primary/AC-SBR-009.json` bindet den vollständigen Head
+  `8ae4ef289d8dd42080a0b69ea374bde2881f6fb2`, Requirements-Hash
+  `79b516fa726f3289cf2a29b77c81f75b95ae34277bce17fc760fb25926a24626`
+  und exakt `macOS,Linux,Windows`.
+- **Boundary / Grenze**: Der Snapshot schließt AC-SBR-009 lokal. Er erzeugt
+  keine Remote-, Provider-, Fleet-, Merge-, Home-Sync- oder Bypass-Autorität;
+  die übrigen elf Primary-Gates bleiben ihren späteren Aufgaben zugeordnet.
+
+## T126 Bidirektionale Traceability / Bidirectional Traceability
+
+- **Implementation status / Umsetzungsstatus**: `Passed`.
+- **Scope / Umfang**: Ein frischer getrennter Read-only-Review bestätigte
+  194/194 Aufgaben, 24/24 SBR, 13/13 CR, 12/12 AC und alle 43
+  SBR-zu-AC-Beziehungen. Alle zwölf exakten Acceptance-Befehle stimmen mit
+  `autonomous-run-gate-requirements.json` überein.
+- **Checklist evidence / Checklistenbeleg**: Governance 40/40, Plan Review
+  8/8 und Requirements 30/30; semantische Checklisten ohne Checkboxformat
+  besitzen keine `Open`-Ablage. Run-State- und Documentation-Impact-Validator
+  sowie `git diff --check` bestanden.
+- **Delivery boundary / Liefergrenze**: T127–T194 bleiben offen,
+  `authorityRevalidationRequired=true` und der ExternalWriteGate bleibt
+  geschlossen. Der Review führte keinen Providerzugriff, Commit oder Push aus.

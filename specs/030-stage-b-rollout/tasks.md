@@ -213,9 +213,9 @@
 - [x] T121 Prüfe `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.github/agents/copilot-instructions.md`, `constitution.md`, `.specify/memory/constitution.md`, `.specify/templates/` und `scripts/templates/` auf Shared-Guidance-Drift und übernimm bei Trigger den agentenneutralen macOS-first-Vertrag: lokale macOS-Safe-Mode-Prüfung zuerst, Linux bei fehlendem Zielhost über isolierten nativen Container oder eng begrenzten Linux-CI-Job, Windows über eng begrenzten nativen Windows-CI-Job, jeweils commit-/befehls-/runner-/exitcode-/payload-/entscheidungshashgebunden und mit Nullschreibnachweis; ein grüner Teilnachweis darf keinen Vollregressions-Pass behaupten. Aktualisiere alle Flächen atomar, sonst dokumentiere begründet `NoUpdateRequired` in `specs/030-stage-b-rollout/documentation-impact-evidence.json` (Voraussetzungen: T120; Abschluss: `python3 scripts/tests/test_spec_kit_agent_surface_parity.py` Exitcode 0 und keine provider-/modellspezifische Featureguidance).
 - [x] T122 Aktualisiere nach abgeschlossener lokaler Implementierung ausschließlich die kanonischen Feature-/Ledgerwerte in `docs/project-statistics.config.json` (Voraussetzungen: T121; Abschluss: Methodik v2, Phasen/Monate, 80/100-Referenzen und exakte Zahlen konsistent; kein manueller Generated-Block-Edit).
 - [x] T123 Repariere den durch Run `32567141579` belegten ASCII-Statistik-Profil-2-Drift ausschließlich aus der kanonischen Quelle `docs/project-statistics.config.json`; rendere serialisiert mit `bash scripts/render-project-statistics.sh --repo .`, prüfe mit `bash scripts/render-project-statistics.sh --repo . --check-only` und `pwsh -NoProfile -File scripts/test-render-project-statistics.ps1` den Profil-2-Block in `docs/project-statistics.md` und führe die aktuellen Bash-/PowerShell-Homogenitätsvalidatoren mit Exitcode 0 aus (Voraussetzungen: T122; Abschluss: alle Exitcodes 0, ASCII/A11Y/DE-EN-Vertrag erfüllt und kein manueller Generated-Block-Edit).
-- [ ] T124 Führe alle betroffenen lokalen Regressionen aus: `python3 scripts/tests/test_stage_b_rollout.py`, `python3 scripts/tests/test_ci_budget_governance.py`, `python3 scripts/tests/test_agentic_workspace_maintenance.py`, `python3 scripts/tests/test_maintenance_contracts.py`, Bash-Syntax, PowerShell-Parser/PSScriptAnalyzer, Secret Scan und Quickstart-Validierung; repariere dabei die durch Run `32567141523` nativ auf Windows belegten Fehler im restriktiven atomaren Evidence-Publisher sowie in `test_bash_and_powershell_preview_have_identical_linear_semantics` und `test_empty_home_is_not_a_stage_b_dependency`, ohne plattformspezifische Sicherheitsgrenzen abzuschwächen, und erfasse Exitcodes unter `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/quality/local-regression-macos.json` (Voraussetzungen: T100–T123; Abschluss: alle lokalen Exitcodes 0, die drei nativen Windows-Regressionen in einem aktuellen Windows-Job grün und null Restricted-Ausgabe).
-- [ ] T125 Führe nach T113–T124 exakt `python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-009 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1` mit Runner-/Plattformtokens `macOS`, `Linux`, `Windows` aus (Voraussetzungen: T100–T124; Abschluss: Exitcode 0, Primary-Snapshot `primary/AC-SBR-009.json`, identische Entscheidungen/Exitcodes/Felder und vollständige Security-/Architektur-/iSAQB-/Dokumentationsimpact-/Statistik-/Regression-/Cross-Platform-/A11Y-Evidence).
-- [ ] T126 Prüfe jede Aufgabe gegen SBR-001–SBR-024, AC-SBR-001–AC-SBR-012, CR-001–CR-013 und alle akzeptierten Checklisten in `specs/030-stage-b-rollout/checklists/implementation-governance.md` (Voraussetzungen: T125; Abschluss: vollständige bidirektionale Traceability, lokale Implementierung grün, Live-Delivery-Aufgaben weiterhin offen).
+- [x] T124 Führe alle betroffenen lokalen Regressionen aus: `python3 scripts/tests/test_stage_b_rollout.py`, `python3 scripts/tests/test_ci_budget_governance.py`, `python3 scripts/tests/test_agentic_workspace_maintenance.py`, `python3 scripts/tests/test_maintenance_contracts.py`, Bash-Syntax, PowerShell-Parser/PSScriptAnalyzer, Secret Scan und Quickstart-Validierung; repariere dabei die durch Run `32567141523` nativ auf Windows belegten Fehler im restriktiven atomaren Evidence-Publisher sowie in `test_bash_and_powershell_preview_have_identical_linear_semantics` und `test_empty_home_is_not_a_stage_b_dependency`, ohne plattformspezifische Sicherheitsgrenzen abzuschwächen, und erfasse Exitcodes unter `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/quality/local-regression-macos.json` (Voraussetzungen: T100–T123; Abschluss: alle lokalen Exitcodes 0, die drei nativen Windows-Regressionen in einem aktuellen Windows-Job grün und null Restricted-Ausgabe).
+- [x] T125 Führe nach T113–T124 exakt `python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-009 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1` mit Runner-/Plattformtokens `macOS`, `Linux`, `Windows` aus (Voraussetzungen: T100–T124; Abschluss: Exitcode 0, Primary-Snapshot `primary/AC-SBR-009.json`, identische Entscheidungen/Exitcodes/Felder und vollständige Security-/Architektur-/iSAQB-/Dokumentationsimpact-/Statistik-/Regression-/Cross-Platform-/A11Y-Evidence).
+- [x] T126 Prüfe jede Aufgabe gegen SBR-001–SBR-024, AC-SBR-001–AC-SBR-012, CR-001–CR-013 und alle akzeptierten Checklisten in `specs/030-stage-b-rollout/checklists/implementation-governance.md` (Voraussetzungen: T125; Abschluss: vollständige bidirektionale Traceability, lokale Implementierung grün, Live-Delivery-Aufgaben weiterhin offen).
 
 ---
 
@@ -223,8 +223,8 @@
 
 **Purpose / Zweck**: Die Implementierung zuerst über einen exakt belegten Level-0-PR regulär mergen und synchronisieren; erst danach darf die Flotte mutiert werden.
 
-- [ ] T127 Revalidiere unmittelbar vor dem ersten Level-0-Commit die aktuelle `MergeAndSync`-Authority, Run-ID, Plan-/Scope-/Delivery-Set-Hashes und das geschlossene/zu öffnende ExternalWriteGate in `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/control-plane/authority.json` (Voraussetzungen: T126; Abschluss: aktuelle ausdrückliche Authority, keine Scope-Drift; sonst Stop).
-- [ ] T128 Validiere den exakten Level-0-Delivery-Set mit `bash .specify/presets/autonomous-run-governance/scripts/validate-autonomous-delivery-set.sh --repo .` plus genau einer wiederholten Option `--intended <repository-relative-existing-untracked-file>` je ungetracktem Allowlist-Pfad und gleiche die JSON-Ausgabe mit `specs/030-stage-b-rollout/checklists/stage-b-mutation-allowlist.md` ab (Voraussetzungen: T127; Abschluss: vollständiger ausgeführter Befehl und Exitcode 0 in `operational/control-plane/delivery-set.json`, nur beabsichtigte Implementierungs-/Docs-/Evidencepfade, keine Nicht-Ziele).
+- [x] T127 Revalidiere unmittelbar vor dem ersten Level-0-Commit die aktuelle `MergeAndSync`-Authority, Run-ID, Plan-/Scope-/Delivery-Set-Hashes und das geschlossene/zu öffnende ExternalWriteGate in `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/control-plane/authority.json` (Voraussetzungen: T126; Abschluss: aktuelle ausdrückliche Authority, keine Scope-Drift; sonst Stop).
+- [x] T128 Validiere den exakten Level-0-Delivery-Set mit `bash .specify/presets/autonomous-run-governance/scripts/validate-autonomous-delivery-set.sh --repo .` plus genau einer wiederholten Option `--intended <repository-relative-existing-untracked-file>` je ungetracktem Allowlist-Pfad und gleiche die JSON-Ausgabe mit `specs/030-stage-b-rollout/checklists/stage-b-mutation-allowlist.md` ab (Voraussetzungen: T127; Abschluss: vollständiger ausgeführter Befehl und Exitcode 0 in `operational/control-plane/delivery-set.json`, nur beabsichtigte Implementierungs-/Docs-/Evidencepfade, keine Nicht-Ziele).
 - [ ] T129 Erzeuge mit temporärem Index den exakten Kandidaten, stage nur T128-Pfade, führe `git diff --cached --check` und Statusabgleich aus, bewahre fremde Änderungen und schreibe `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/control-plane/exact-candidate.json` (Voraussetzungen: T128; Abschluss: Kandidaten-Tree/Diffhash exakt, ursprünglicher Index wiederhergestellt bis zum autorisierten Commit).
 - [ ] T130 Erzeuge schema-/redaktionsgültige Control-Plane-PreMerge-Evidence am exakten Kandidaten unter `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/control-plane/premerge.json` (Voraussetzungen: T124–T125, T129; Abschluss: lokale Gates, Security, Architektur, A11Y, Docs, Statistik, Reviewanforderung und Authority hashgebunden).
 - [ ] T131 Erstelle den Level-0-Implementierungscommit mit Conventional-Commit-Text und vorgeschriebenem Co-author ausschließlich aus dem exakten T129-Kandidaten (Voraussetzungen: T127–T130; Abschluss: Commit-Tree entspricht Evidence, keine fremden Pfade; Commit-SHA im Control-Plane-Lifecycle).
@@ -393,17 +393,17 @@ Textalternative: Zuerst werden Analyze, Evidence und Verträge abgeschlossen. Da
 
 | Requirement | Primary tasks |
 |---|---|
-| SBR-001–SBR-004 | T006, T016, T029–T041, T141–T143 |
-| SBR-005–SBR-006 | T035–T036, T064–T073, T127, T144, T172–T175, T183–T188 |
+| SBR-001–SBR-004 | T006, T011–T016, T027–T041, T141–T143 |
+| SBR-005–SBR-006 | T001–T002, T004, T010, T022, T035–T036, T064–T073, T127, T144, T172–T175, T183–T188 |
 | SBR-007–SBR-008 | T074–T086, T145–T158 |
-| SBR-009–SBR-013 | T042–T060, T127–T138, T145–T161, T172–T192 |
+| SBR-009–SBR-013 | T025, T042–T060, T127–T138, T145–T161, T172–T192 |
 | SBR-014–SBR-015 | T061–T073, T149–T156, T160, T162 |
-| SBR-016 | T017–T021, T046–T057, T093, T114–T118, T159–T167 |
+| SBR-016 | T004, T017–T021, T026, T046–T057, T093, T114–T118, T159–T167 |
 | SBR-017–SBR-018 | T023–T024, T100–T112, T125 |
-| SBR-019 | T087–T089, T148/T150/T152/T154/T156, T163 |
+| SBR-019 | T027, T087–T089, T148/T150/T152/T154/T156, T163 |
 | SBR-020 | T120, T139–T140, T171, T180, T182–T190 |
-| SBR-021 | T046–T053, T090–T095, T145–T167 |
-| SBR-022, SBR-023, SBR-024 | T005, T091, T096–T099, T164–T194 |
+| SBR-021 | T026, T028, T046–T053, T090–T095, T145–T167 |
+| SBR-022, SBR-023, SBR-024 | T005, T027, T091, T096–T099, T164–T194 |
 
 | Constitution requirement | Task evidence |
 |---|---|
@@ -418,8 +418,8 @@ Textalternative: Zuerst werden Analyze, Evidence und Verträge abgeschlossen. Da
 | CR-009 | T116, T118 |
 | CR-010 | T021, T046–T053, T114, T117 |
 | CR-011 | T113–T118, T124–T125 |
-| CR-012 | T007, T119, T126 |
-| CR-013 | T120–T123, T168–T171, T180, T182 |
+| CR-012 | T001–T003, T007, T119, T126 |
+| CR-013 | T003, T008, T120–T123, T168–T171, T180, T182 |
 
 | Acceptance criterion | Exact execution task |
 |---|---|

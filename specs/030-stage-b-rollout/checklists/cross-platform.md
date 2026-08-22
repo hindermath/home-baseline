@@ -1,7 +1,7 @@
 # Plattformnachweis / Cross-Platform Evidence
 
 **Applicability / Anwendbarkeit**: `Applicable`
-**Implementation status / Umsetzungsstatus**: `Native platform checkpoint Passed; T125 full acceptance pending`
+**Implementation status / Umsetzungsstatus**: `Native platform checkpoint, full T124 regression and T125 acceptance Passed`
 **Owner / Owner**: Script Owner
 **Reviewer / Reviewer**: Cross-Platform Reviewer
 
@@ -9,15 +9,16 @@
 
 | Surface | Status | Evidence / Nachweis | Residual risk / Restrisiko | Follow-up and re-evaluation / Folgemaßnahme und Neubewertung |
 |---|---|---|---|---|
-| macOS Bash 3.2+ | Passed | T023, T038, T102, T110; `operational/platform/macos.json` | Nativer Preview-Exitcode 0 und hashgebundene lineare Ausgabe; T124 wiederholt den Regressionsumfang. | Bei Wrapper-, Shell-, Exitcode- oder Outputdrift erneut ausführen. |
-| macOS PowerShell 7 | Passed | T024, T038, T103, T105, T110; `operational/platform/macos.json` | Nativer WhatIf-Exitcode 0 und semantisch identische Ausgabe; T124 wiederholt Analyzer/Regression. | Bei Cmdlet-, Parser-, Analyzer-, Help- oder Outputdrift erneut ausführen. |
-| Linux Bash | Passed | T070 portable semantics, T111; `operational/platform/linux.json` | Nativer Linux-Lauf im netzlosen, schreibgeschützten Container stimmt payload- und entscheidungshashgenau mit macOS überein. | Bei Payload-, Container-, Wrapper- oder Plattformdrift erneut ausführen. |
-| Windows PowerShell 7 | Passed | T070 portable semantics; T112; `operational/platform/windows.json`; Workflow `Stage B Windows Proof`, Run `32567141555`, Job `97017306468` | Der native `windows-2022`-Job am exakten Checkpoint `0d5144c9aa12fc069dd2dfbff6e6d247da0d30fc` führte PowerShell `7.6.5` mit `-WhatIf` aus: Exitcode `0`, Payload `1b7a4602...`, Entscheidung `70d4e65f...`, null Git-/Providerwrites. Kein PR, Merge, Home-Sync oder Fleetwrite erfolgte. | Bei Payload-, Workflow-, Runner-, PowerShell-, Befehls-, Hash- oder Branch-Head-Drift erneut ausführen; T125 führt die vollständige AC-SBR-009-Acceptance später aus. |
+| macOS Bash 3.2+ | Passed | T023, T038, T102, T110, T124; `operational/platform/macos.json`; Run `32587448948` | Nativer Preview-Exitcode 0 und Vollregression am Head `8ae4ef2`. | Bei Wrapper-, Shell-, Exitcode-, Head- oder Outputdrift erneut ausführen. |
+| macOS PowerShell 7 | Passed | T024, T038, T103, T105, T110, T124; `operational/platform/macos.json`; Run `32587448948` | Nativer WhatIf-Exitcode 0, semantisch identische Ausgabe und grüne Analyzer-/Vollregression. | Bei Cmdlet-, Parser-, Analyzer-, Help-, Head- oder Outputdrift erneut ausführen. |
+| Linux Bash | Passed | T070 portable semantics, T111, T124; `operational/platform/linux.json`; Run `32587448948` | Der isolierte Preview stimmt payload- und entscheidungshashgenau mit macOS überein; der Ubuntu-22.04-Vollregressionsjob ist am Head `8ae4ef2` grün. | Bei Payload-, Container-, Wrapper-, Head- oder Plattformdrift erneut ausführen. |
+| Windows PowerShell 7 | Passed | T070 portable semantics; T112; T124–T125; `operational/platform/windows.json`; Workflow `Maintenance TUI`, Run `32587448948`, Job `97065888986`; `primary/AC-SBR-009.json` | Der native `windows-2022`-Job am exakten Head `8ae4ef289d8dd42080a0b69ea374bde2881f6fb2` führte PowerShell `7.6.5` und exakt `python -m unittest discover -s scripts/tests -p 'test_*.py'` aus: 225 Tests, Exitcode `0`, 44 Skips und keine Restricted-Ausgabe. Das Token war auf `contents: read` und `metadata: read` begrenzt; AC-SBR-009 bindet `macOS,Linux,Windows`. Kein PR, Merge, Home-Sync oder Fleetwrite erfolgte. | Bei Workflow-, Runner-, PowerShell-, Befehls-, Head-, ACL-, Permission- oder Payloaddrift erneut ausführen. |
 | Semantic parity | Passed for portable fixtures | gemeinsame Fixtures, T038, T070, T101, T110 | Bash und PowerShell liefern identische normalisierte Preview-Felder/Exitcodes; portable Fixtures ersetzen keinen nativen Token. | Bei Entscheidungs-, Exitcode- oder Felddrift erneut prüfen. |
-| A11Y and bilingual output | Pending | T100, T104–T109 | Nutzertext kann driften. | Bei Outputänderung WCAG 2.2 AA, Texttools und DE/EN neu prüfen. |
+| A11Y and bilingual output | Passed locally and aggregated | T100, T104–T109, T124–T125; `primary/AC-SBR-009.json` | Nutzertext kann nach dem geprüften Head driften. | Bei Outputänderung WCAG 2.2 AA, Texttools und DE/EN neu prüfen. |
 
-Alle drei nativen Plattformtokens sind hashgebunden vorhanden. Der T112-
-Checkpoint schließt ausschließlich den Windows-Nachweis; A11Y, vollständige
-Regression und AC-SBR-009 bleiben bis T113–T125 offen. / All three native
-platform tokens are hash-bound. The T112 checkpoint closes only Windows
-evidence; A11Y, full regression, and AC-SBR-009 remain pending through T113–T125.
+Alle drei nativen Plattformtokens sind hashgebunden vorhanden. Die vollständige
+T124-Regression ist am gemeinsamen Head `8ae4ef2` auf macOS, Ubuntu und Windows
+grün; T125 bindet die drei Tokens im bestandenen AC-SBR-009-Primary-Snapshot. /
+All three native platform tokens are hash-bound. The full T124 regression is
+green on macOS, Ubuntu, and Windows at the shared head `8ae4ef2`; T125 binds all
+three tokens in the passing AC-SBR-009 Primary snapshot.

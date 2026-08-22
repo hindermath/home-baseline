@@ -40,11 +40,11 @@
       "documentClass": "ActiveSemantic",
       "languageStrategy": "German first with English companion content at approximately CEFR B2; stable command names and machine fields remain unchanged.",
       "languagePartners": ["README.md", "README.en.md"],
-      "platformAndExampleProof": "T107 examples are bound to T110-T112: local macOS Bash and PowerShell previews, isolated native Linux container preview, and native Windows PowerShell 7 workflow run 32567141555/job 97017306468 all exited 0 for payload 1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3 and decision 70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897 with zero Git/provider writes. These scoped proofs do not claim the pending T124 full regression or T125 acceptance aggregation.",
+      "platformAndExampleProof": "T107 examples are bound to T110-T112: local macOS Bash and PowerShell previews, isolated native Linux container preview, and native Windows PowerShell 7 workflow run 32567141555/job 97017306468 all exited 0 for payload 1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3 and decision 70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897 with zero Git/provider writes. T124 additionally passed all 225 tests at exact head 8ae4ef289d8dd42080a0b69ea374bde2881f6fb2 on windows-2022 in workflow run 32587448948/job 97065888986, with the same-head macOS and Ubuntu jobs plus documentation, PowerShell analysis and homogeneity workflows green. T125 passed AC-SBR-009 and bound the exact same head with runner/platform tokens macOS, Linux and Windows in primary/AC-SBR-009.json.",
       "distributionClass": "sourceOnly",
       "homeSyncRequired": true,
       "evidence": "specs/030-stage-b-rollout/checklists/implementation-governance.md",
-      "risk": "Live provider delivery, the T124 full regression, T125 aggregation and post-merge Home sync remain pending; scoped platform proof cannot be promoted to those later gates.",
+      "risk": "Live provider delivery and post-merge Home sync remain pending; the successful T124 regression and T125 platform acceptance cannot be promoted to those later gates.",
       "criticality": "Security",
       "reevaluationTrigger": "Fleet, profile, authority, bypass, provider, ruleset, platform, evidence schema, distribution, audience, shared guidance or G4 boundary changes."
     }
