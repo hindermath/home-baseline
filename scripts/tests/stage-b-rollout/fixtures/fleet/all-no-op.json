@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "1.0",
+  "sourceRevision": "fixture-stage-b-all-no-op-v1",
+  "firstMutation": "N/A",
+  "externalWriteGate": "Closed",
+  "pullRequestsCreated": 0,
+  "expectedOutcome": "NoOpConverged"
+}

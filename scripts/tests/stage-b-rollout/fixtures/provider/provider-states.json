@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "clock": "2026-08-21T20:00:00Z",
+  "repository": {
+    "stableId": "agent-operations-cockpit",
+    "providerRepositoryId": "1001",
+    "slug": "hindermath/agent-operations-cockpit",
+    "defaultBranch": "main",
+    "baselineHead": "1111111111111111111111111111111111111111",
+    "candidateHead": "2222222222222222222222222222222222222222"
+  },
+  "reads": [
+    {"caseId": "read-pass", "exitCode": 0, "classification": "Passed"},
+    {"caseId": "read-timeout", "exitCode": 124, "classification": "TransientRead"},
+    {"caseId": "read-quota", "exitCode": 1, "classification": "BillingOrQuotaRefusal"},
+    {"caseId": "read-forbidden", "exitCode": 1, "httpStatus": 403, "classification": "ProviderRefusal"},
+    {"caseId": "read-not-found", "exitCode": 1, "httpStatus": 404, "classification": "ProviderRefusal"}
+  ],
+  "writes": [
+    {"caseId": "branch-create", "actionId": "write-001", "reconcile": "BranchExistsAtCandidateHead"},
+    {"caseId": "pull-request-create", "actionId": "write-002", "reconcile": "SingleMatchingPullRequest"},
+    {"caseId": "ruleset-update", "actionId": "write-003", "rulesetId": "2001", "reconcile": "DesiredRulesetHash"},
+    {"caseId": "review", "actionId": "write-004", "reconcile": "ApprovedAtCandidateHead"},
+    {"caseId": "gate", "actionId": "write-005", "reconcile": "PassedAtCandidateHead"},
+    {"caseId": "rename-archive", "actionId": "write-006", "reconcile": "RenamedBlobAndModeMatch"}
+  ]
+}

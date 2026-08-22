@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "030-stage-b-rollout",
+  "entries": [
+    {
+      "changeId": "CHG030001",
+      "scope": "Fleet-wide Stage-B control plane, serial repository rollout, provider governance, acceptance evidence, accessibility, security, architecture and operating documentation",
+      "decision": "UpdateRequired",
+      "rationale": "Stage B adds user-visible preview, delivery, resume and verification contracts plus security-sensitive remote and ruleset boundaries. One feature-wide decision keeps reader paths, language, platform, distribution and closeout evidence causally reviewable.",
+      "documents": [
+        "README.md",
+        "docs/scripts/reference.md",
+        "docs/man/maintain-agentic-workspace.1.md",
+        "docs/architecture/ci-budget-governance.md",
+        "docs/accessibility/ci-budget-governance.md",
+        "docs/security/",
+        "specs/030-stage-b-rollout/quickstart.md",
+        "specs/030-stage-b-rollout/checklists/implementation-governance.md",
+        "specs/030-stage-b-rollout/checklists/cross-platform.md"
+      ],
+      "owner": "Fleet Delivery Owner",
+      "audiences": ["Fleet delivery operators", "Maintainers", "Repository owners", "Security and architecture reviewers", "AI agents"],
+      "readerPaths": ["README to safe preview", "Script reference to Stage-B operations", "Quickstart to platform commands", "Architecture and security assurance", "Acceptance evidence to terminal handoff"],
+      "canonicalSource": "specs/030-stage-b-rollout/spec.md",
+      "navigationImpact": "README and script reference lead from the mutations-free preview to quickstart, manpage/help, assurance documents, evidence and the separately authorized G4 sequencing follow-up.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with English companion content at approximately CEFR B2; stable command names and machine fields remain unchanged.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Pending T107 and T110-T125: native or hash-bound macOS, Linux and Windows evidence must prove the paired Bash and PowerShell examples without inventing platform tokens.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "specs/030-stage-b-rollout/checklists/implementation-governance.md",
+      "risk": "Remote, platform, provider and Home-sync evidence is pending; missing evidence blocks delivery and completion.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Fleet, profile, authority, bypass, provider, ruleset, platform, evidence schema, distribution, audience, shared guidance or G4 boundary changes."
+    }
+  ],
+  "distributionReview": {
+    "sourceOnly": ["specs/030-stage-b-rollout/", "docs/"],
+    "homeRuntime": ["scripts/maintain-agentic-workspace.sh", "scripts/maintain-agentic-workspace.ps1", "scripts/lib/agentic_workspace_fleet.py", "scripts/config/", "scripts/templates/ci-budget-governance/"],
+    "machineLocal": [".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/"],
+    "homeSyncRequired": true,
+    "rationale": "Runtime paths are manifest-bound homeRuntime, but synchronization remains blocked until preview, conflict checks, Level-0 merge and fresh authority pass."
+  },
+  "sharedGuidanceReview": {
+    "decision": "NoUpdateRequired",
+    "surfaces": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", "constitution.md", ".specify/memory/constitution.md", ".specify/templates/", "scripts/templates/"],
+    "rationale": "Initial disposition only: Stage B implements accepted feature semantics and does not yet change shared guidance. T121 must revalidate this decision after implementation.",
+    "owner": "Governance Owner",
+    "reviewer": "Agent-Parity Reviewer",
+    "evidence": "Pending T121 parity validation.",
+    "residualRisk": "A later shared-guidance trigger would require an atomic update across all maintained surfaces.",
+    "reevaluationTrigger": "Any shared guidance, Constitution, template, statistics-methodology or routing-role change."
+  }
+}

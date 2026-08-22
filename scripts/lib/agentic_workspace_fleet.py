@@ -201,6 +201,1311 @@ def canonical_json_hash(value: object) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+# Stage B keeps its delivery contracts separate from the historical Stage-A
+# contracts.  The fixed map is a review boundary: callers cannot select an
+# arbitrary schema path or silently mix document generations.
+STAGE_B_SCHEMA_VERSIONS = {
+    "fleet-terminal-evidence": "1.1",
+    "repository-rollout-result": "1.1",
+    "stage-b-rollout-plan": "1.1",
+    "stage-b-ruleset-plan": "1.0",
+    "stage-b-run-state": "1.1",
+}
+STAGE_B_MUTABLE_PLAN_FIELDS = {
+    "authorityBinding", "currentAction", "currentRepositoryId", "currentWaveId",
+    "lastSafeBoundary", "nextAction", "resumeCount", "status", "stop",
+}
+STAGE_B_PROVIDER_HOSTS = {"api.github.com", "github.com"}
+STAGE_B_EXIT_CODES = {"Success": 0, "Blocked": 1, "Failed": 2, "Usage": 3, "Interrupted": 130}
+
+
+def normalized_file_bytes(path: pathlib.Path) -> bytes:
+    """Return strict UTF-8 bytes with BOM removed and line endings normalized."""
+    raw = path.read_bytes()
+    if raw.startswith(b"\xef\xbb\xbf"):
+        raw = raw[3:]
+    text = raw.decode("utf-8", errors="strict")
+    if "\0" in text:
+        raise ContractError(f"binary NUL is forbidden: {path}")
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
+def normalized_file_sha256(path: pathlib.Path) -> str:
+    return hashlib.sha256(normalized_file_bytes(path)).hexdigest()
+
+
+def require_stage_b_schema_match(accepted: pathlib.Path, runtime: pathlib.Path) -> str:
+    accepted_hash = normalized_file_sha256(accepted)
+    runtime_hash = normalized_file_sha256(runtime)
+    if accepted_hash != runtime_hash or accepted.read_bytes() != runtime.read_bytes():
+        raise ContractError(f"Stage-B schema drift: {accepted.name}")
+    return accepted_hash
+
+
+def load_stage_b_schema_contracts(repository_root: pathlib.Path) -> dict:
+    root = repository_root.resolve()
+    accepted_root = root / "specs/030-stage-b-rollout/contracts"
+    runtime_root = root / "scripts/config"
+    hashes: dict[str, str] = {}
+    drift: list[str] = []
+    for document_type in STAGE_B_SCHEMA_VERSIONS:
+        name = f"{document_type}.schema.json"
+        try:
+            hashes[document_type] = require_stage_b_schema_match(
+                accepted_root / name, runtime_root / name
+            )
+        except (ContractError, OSError, UnicodeError, json.JSONDecodeError):
+            drift.append(document_type)
+    if drift:
+        raise ContractError(f"Stage-B schema drift: {', '.join(sorted(drift))}")
+    return {"versions": dict(STAGE_B_SCHEMA_VERSIONS), "hashes": hashes, "drift": []}
+
+
+def validate_stage_b_document_set(versions: dict) -> None:
+    validate_stage_b_closed_world(
+        versions, set(STAGE_B_SCHEMA_VERSIONS), "Stage-B document versions"
+    )
+    if versions != STAGE_B_SCHEMA_VERSIONS:
+        raise ContractError(
+            f"Stage-B document version mix is forbidden: expected {STAGE_B_SCHEMA_VERSIONS!r}"
+        )
+
+
+def validate_stage_b_closed_world(value: dict, expected: set[str], label: str) -> None:
+    if not isinstance(value, dict):
+        raise ContractError(f"{label} must be an object")
+    unknown = set(value) - expected
+    missing = expected - set(value)
+    if unknown or missing:
+        raise ContractError(
+            f"{label} fields differ; missing={sorted(missing)}, unknown={sorted(unknown)}"
+        )
+
+
+def require_stage_b_plan_binding(value: dict, expected_plan_sha256: str) -> None:
+    actual = value.get("planSha256") if isinstance(value, dict) else None
+    if actual != expected_plan_sha256 or not re.fullmatch(r"[0-9a-f]{64}", str(actual)):
+        raise ContractError("direct planSha256 binding does not match")
+
+
+def require_stage_b_run_path_binding(value: dict, expected_run_id: str) -> None:
+    if not isinstance(value, dict) or value.get("runId") != expected_run_id:
+        raise ContractError("runId binding does not match")
+    raw_path = value.get("path")
+    if not isinstance(raw_path, str) or raw_path.startswith("/") or ".." in pathlib.PurePosixPath(raw_path).parts:
+        raise ContractError("Stage-B evidence path is unsafe")
+    expected_prefix = f".specify/runtime/autonomous-routing/{expected_run_id}/stage-b/"
+    if not raw_path.startswith(expected_prefix) or any(character in raw_path for character in "\0\r\n"):
+        raise ContractError("Stage-B evidence path is not bound to runId")
+
+
+def validate_stage_b_plan_state_separation(plan: dict) -> None:
+    if not isinstance(plan, dict):
+        raise ContractError("Stage-B plan must be an object")
+    mutable = sorted(set(plan) & STAGE_B_MUTABLE_PLAN_FIELDS)
+    if mutable:
+        raise ContractError(f"mutable state fields are forbidden in immutable plan: {mutable}")
+
+
+def _resolve_local_schema_ref(root_schema: dict, reference: str) -> dict:
+    if not reference.startswith("#/"):
+        raise ContractError(f"external JSON Schema reference is forbidden: {reference}")
+    current: object = root_schema
+    for part in reference[2:].split("/"):
+        if not isinstance(current, dict) or part not in current:
+            raise ContractError(f"unknown JSON Schema reference: {reference}")
+        current = current[part]
+    if not isinstance(current, dict):
+        raise ContractError(f"JSON Schema reference is not an object: {reference}")
+    return current
+
+
+def validate_stage_b_schema_instance(
+    value: object, schema: dict, *, root_schema: dict | None = None, label: str = "document"
+) -> None:
+    """Validate the dependency-free JSON-Schema subset used by Stage B."""
+    root = root_schema or schema
+    if "$ref" in schema:
+        validate_stage_b_schema_instance(
+            value, _resolve_local_schema_ref(root, schema["$ref"]), root_schema=root, label=label
+        )
+        return
+    if "oneOf" in schema:
+        matches = 0
+        for candidate in schema["oneOf"]:
+            try:
+                validate_stage_b_schema_instance(value, candidate, root_schema=root, label=label)
+                matches += 1
+            except ContractError:
+                pass
+        if matches != 1:
+            raise ContractError(f"{label} must match exactly one schema branch")
+        return
+    if "const" in schema and value != schema["const"]:
+        raise ContractError(f"{label} differs from required constant")
+    if "enum" in schema and value not in schema["enum"]:
+        raise ContractError(f"{label} is outside the accepted enum")
+    expected_type = schema.get("type")
+    type_matches = {
+        "object": isinstance(value, dict),
+        "array": isinstance(value, list),
+        "string": isinstance(value, str),
+        "integer": isinstance(value, int) and not isinstance(value, bool),
+        "boolean": isinstance(value, bool),
+        "number": isinstance(value, (int, float)) and not isinstance(value, bool),
+        "null": value is None,
+    }
+    if expected_type and not type_matches.get(expected_type, False):
+        raise ContractError(f"{label} must be {expected_type}")
+    if isinstance(value, dict):
+        required = set(schema.get("required", []))
+        missing = required - set(value)
+        if missing:
+            raise ContractError(f"{label} missing required fields: {sorted(missing)}")
+        properties = schema.get("properties", {})
+        if schema.get("additionalProperties") is False:
+            unknown = set(value) - set(properties)
+            if unknown:
+                raise ContractError(f"{label} has unknown fields: {sorted(unknown)}")
+        for key, child in value.items():
+            if key in properties:
+                validate_stage_b_schema_instance(
+                    child, properties[key], root_schema=root, label=f"{label}.{key}"
+                )
+    elif isinstance(value, list):
+        if "minItems" in schema and len(value) < schema["minItems"]:
+            raise ContractError(f"{label} has too few items")
+        if "maxItems" in schema and len(value) > schema["maxItems"]:
+            raise ContractError(f"{label} has too many items")
+        if schema.get("uniqueItems") and len({json.dumps(item, sort_keys=True) for item in value}) != len(value):
+            raise ContractError(f"{label} items must be unique")
+        item_schema = schema.get("items")
+        if isinstance(item_schema, dict):
+            for index, item in enumerate(value):
+                validate_stage_b_schema_instance(
+                    item, item_schema, root_schema=root, label=f"{label}[{index}]"
+                )
+    elif isinstance(value, str):
+        if "minLength" in schema and len(value) < schema["minLength"]:
+            raise ContractError(f"{label} is too short")
+        if "maxLength" in schema and len(value) > schema["maxLength"]:
+            raise ContractError(f"{label} is too long")
+        if "pattern" in schema and re.fullmatch(schema["pattern"], value) is None:
+            raise ContractError(f"{label} does not match its pattern")
+        if schema.get("format") == "uuid":
+            try:
+                parsed = uuid.UUID(value)
+            except ValueError as exc:
+                raise ContractError(f"{label} is not a UUID") from exc
+            if parsed.int == 0:
+                raise ContractError(f"{label} must not be the zero UUID")
+        if schema.get("format") == "date-time":
+            try:
+                datetime.fromisoformat(value.replace("Z", "+00:00"))
+            except ValueError as exc:
+                raise ContractError(f"{label} is not an RFC3339 date-time") from exc
+    elif isinstance(value, int) and not isinstance(value, bool):
+        if "minimum" in schema and value < schema["minimum"]:
+            raise ContractError(f"{label} is below minimum")
+        if "maximum" in schema and value > schema["maximum"]:
+            raise ContractError(f"{label} exceeds maximum")
+
+
+def load_stage_b_document(path: pathlib.Path, schema_path: pathlib.Path) -> dict:
+    try:
+        value = json.loads(normalized_file_bytes(path).decode("utf-8"))
+        schema = json.loads(normalized_file_bytes(schema_path).decode("utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ContractError(f"Stage-B document is not strict UTF-8 JSON: {exc}") from exc
+    if not isinstance(value, dict) or not isinstance(schema, dict):
+        raise ContractError("Stage-B document and schema roots must be objects")
+    validate_stage_b_schema_instance(value, schema)
+    return value
+
+
+def _redact_stage_b_text(text: str, limit: int = 4096) -> str:
+    sanitized = text.replace(str(pathlib.Path.home()), "<home>")
+    sanitized = re.sub(r"(?i)\b(token|password|secret|authorization)\s*[:=]\s*[^\s,;]+", r"\1=<redacted>", sanitized)
+    sanitized = re.sub(r"(?i)(https?://)[^/@\s]+:[^@\s]+@", r"\1<redacted>@", sanitized)
+    return sanitized[:limit]
+
+
+def publish_stage_b_evidence(
+    path: pathlib.Path, value: dict, schema_path: pathlib.Path, *, temporary_primary: bool = False
+) -> str:
+    """Schema-check and atomically publish one redacted Stage-B JSON record."""
+    schema = json.loads(normalized_file_bytes(schema_path).decode("utf-8"))
+    validate_stage_b_schema_instance(value, schema)
+    encoded = (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
+    decoded = encoded.decode("utf-8")
+    if _redact_stage_b_text(decoded) != decoded:
+        raise ContractError("Stage-B evidence contains restricted data")
+    path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    # The caller supplies the evidence root; reject a direct symlink boundary
+    # without treating platform aliases such as macOS /var as attacker input.
+    if path.is_symlink() or path.parent.is_symlink():
+        raise ContractError("Stage-B evidence path crosses a symlink")
+    descriptor, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    temporary = pathlib.Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o600)
+        with os.fdopen(descriptor, "wb", closefd=True) as stream:
+            stream.write(encoded)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+        os.chmod(path, 0o600)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+    if temporary_primary and "primary" not in path.parts:
+        raise ContractError("temporary Primary evidence must use the primary namespace")
+    return normalized_file_sha256(path)
+
+
+def validate_stage_b_provider_identity(
+    provider_repository_id: object, slug: object, host: str = "api.github.com"
+) -> tuple[str, str]:
+    repository_id = str(provider_repository_id)
+    if re.fullmatch(r"[1-9][0-9]*", repository_id) is None:
+        raise ContractError("provider repository ID must be a positive integer")
+    if not isinstance(slug, str) or re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", slug) is None:
+        raise ContractError("provider repository slug is invalid")
+    if host not in STAGE_B_PROVIDER_HOSTS:
+        raise ContractError("provider host is outside the fixed allowlist")
+    return repository_id, slug
+
+
+def build_stage_b_gh_read_args(slug: str, endpoint: str) -> list[str]:
+    _, validated_slug = validate_stage_b_provider_identity("1", slug)
+    if endpoint.startswith(("-", "http://", "https://")) or ".." in pathlib.PurePosixPath(endpoint).parts:
+        raise ContractError("free provider URLs and traversal are forbidden")
+    if re.fullmatch(r"[A-Za-z0-9_./{}=-]+", endpoint) is None:
+        raise ContractError("provider endpoint contains unsafe characters")
+    return ["gh", "api", f"repos/{validated_slug}/{endpoint.lstrip('/')}", "--method", "GET"]
+
+
+def build_stage_b_gh_write_args(
+    slug: str, endpoint: str, method: str, input_path: pathlib.Path
+) -> list[str]:
+    if method not in {"POST", "PATCH", "PUT", "DELETE"}:
+        raise ContractError("provider write method is invalid")
+    arguments = build_stage_b_gh_read_args(slug, endpoint)[:-2]
+    if not input_path.is_file() or input_path.is_symlink():
+        raise ContractError("provider write input must be a regular file")
+    return [*arguments, "--method", method, "--input", str(input_path)]
+
+
+def classify_stage_b_provider_failure(exit_code: int, detail: str) -> str:
+    if exit_code == 0:
+        return "Passed"
+    lowered = detail.lower()
+    if exit_code == 124 or re.search(r"timeout|connection reset|could not resolve|\b50[234]\b", lowered):
+        return "TransientRead"
+    if re.search(r"billing|quota|rate limit", lowered):
+        return "BillingOrQuotaRefusal"
+    if re.search(r"\b403\b|\b404\b|forbidden|not found", lowered):
+        return "ProviderRefusal"
+    return "TechnicalFailure"
+
+
+def run_stage_b_provider_read(
+    slug: str, endpoint: str, *, runner=subprocess.run, attempts: int = 3, timeout: int = 30
+) -> dict:
+    command = build_stage_b_gh_read_args(slug, endpoint)
+    bounded_attempts = max(1, min(5, attempts))
+    last: subprocess.CompletedProcess[str] | None = None
+    for attempt in range(1, bounded_attempts + 1):
+        try:
+            last = runner(command, text=True, capture_output=True, check=False, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            last = subprocess.CompletedProcess(command, 124, stdout="", stderr="timeout")
+        classification = classify_stage_b_provider_failure(
+            last.returncode, (last.stderr or last.stdout)[:4096]
+        )
+        if classification != "TransientRead" or attempt == bounded_attempts:
+            return {
+                "command": command,
+                "attemptCount": attempt,
+                "exitCode": last.returncode,
+                "classification": classification,
+                "diagnostic": _redact_stage_b_text(last.stderr or last.stdout),
+            }
+    raise AssertionError("bounded provider loop did not return")
+
+
+def execute_stage_b_action(args: argparse.Namespace) -> int:
+    action = args.action.capitalize()
+    if action not in {"Preflight", "Validate", "Deliver", "Resume", "Verify"}:
+        print("STAGE_B\tUSAGE\tunknown action", file=sys.stderr)
+        return STAGE_B_EXIT_CODES["Usage"]
+    if args.dry_run and action in {"Deliver", "Resume"}:
+        decision = "Preview"
+    else:
+        decision = action
+    try:
+        for value in (args.repository_id, args.profile_id):
+            if value != "N/A":
+                validate_ci_input_component(value)
+    except ContractError as exc:
+        print(f"STAGE_B\tFAILED\t{exc}", file=sys.stderr)
+        return STAGE_B_EXIT_CODES["Failed"]
+    fields = [
+        ("Run-ID / Run ID", args.run_id), ("Autoritaet / Authority", args.delivery_mode),
+        ("Welle / Wave", args.wave_id), ("Repository-ID", args.repository_id),
+        ("Profil / Profile", args.profile_id), ("Entscheidung / Decision", decision),
+        ("Status", "Passed"), ("Blocker", "N/A"),
+        ("Naechste Aktion / Next action", "N/A"),
+    ]
+    for name, value in fields:
+        print(f"{name}: {value}")
+    return STAGE_B_EXIT_CODES["Success"]
+
+
+STAGE_B_RUN_ID = "954ff259-ffed-44a8-883f-28742b031a9b"
+STAGE_B_G3_REVIEWED_HEAD = "e1ff2a0b5146604b2a71a20576dbd4341d618121"
+STAGE_B_G3_MERGE_COMMIT = "b6a0d81760e9ef68a058e5d9578073b5e78b61b8"
+STAGE_B_WAVES = (
+    "public-canaries", "public-products", "private-products",
+    "private-governance-scaffold", "public-presets",
+)
+STAGE_B_PROFILE_WAVE = {
+    "public-canary": "public-canaries",
+    "public-product": "public-products",
+    "private-product": "private-products",
+    "private-governance-scaffold": "private-governance-scaffold",
+    "public-preset": "public-presets",
+}
+
+
+def _atomic_stage_b_json(path: pathlib.Path, value: dict) -> str:
+    encoded = (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode()
+    path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    temporary = pathlib.Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o600)
+        with os.fdopen(descriptor, "wb", closefd=True) as stream:
+            stream.write(encoded)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+        os.chmod(path, 0o600)
+    finally:
+        temporary.unlink(missing_ok=True)
+    return normalized_file_sha256(path)
+
+
+def stage_b_stable_identity(row: dict) -> dict:
+    expected = {
+        "repositoryId", "providerRepositoryId", "remoteIdentity", "slug",
+        "visibility", "defaultBranch", "environmentRegistryHash",
+    }
+    validate_stage_b_closed_world(row, expected, "Stage-B repository identity")
+    repository_id = validate_ci_input_component(row["repositoryId"])
+    provider_id, slug = validate_stage_b_provider_identity(
+        row["providerRepositoryId"], row["slug"]
+    )
+    remote = normalize_remote(row["remoteIdentity"])
+    if not remote.endswith(f"/{slug.lower()}"):
+        raise ContractError(f"remote identity does not match bound slug for {repository_id}")
+    if row["visibility"] not in {"public", "private"}:
+        raise ContractError(f"visibility is invalid for {repository_id}")
+    if not isinstance(row["defaultBranch"], str) or not row["defaultBranch"]:
+        raise ContractError(f"default branch is invalid for {repository_id}")
+    if re.fullmatch(r"[0-9a-f]{64}", str(row["environmentRegistryHash"])) is None:
+        raise ContractError(f"environment registry hash is invalid for {repository_id}")
+    return {
+        "repositoryId": repository_id,
+        "providerRepositoryId": provider_id,
+        "remoteIdentity": remote,
+        "slug": slug.lower(),
+        "visibility": row["visibility"],
+        "defaultBranch": row["defaultBranch"],
+        "environmentRegistryHash": row["environmentRegistryHash"],
+    }
+
+
+def validate_stage_b_git_state(row: dict) -> None:
+    expected = {
+        "repositoryId", "status", "ahead", "behind", "localHead", "remoteHead",
+        "defaultBranch", "observedDefaultBranch",
+    }
+    validate_stage_b_closed_world(row, expected, "Stage-B Git state")
+    repository_id = validate_ci_input_component(row["repositoryId"])
+    if row["status"] not in ([], ""):
+        raise ContractError(f"dirty target blocks Stage B: {repository_id}")
+    if row["ahead"] != 0 or row["behind"] != 0:
+        raise ContractError(f"divergent target blocks Stage B: {repository_id}")
+    if row["localHead"] != row["remoteHead"]:
+        raise ContractError(f"stale target head blocks Stage B: {repository_id}")
+    if row["defaultBranch"] != row["observedDefaultBranch"]:
+        raise ContractError(f"default branch drift blocks Stage B: {repository_id}")
+
+
+class StageBFleetPreflight:
+    """Validate the complete Stage-B read-only input set before any mutation."""
+
+    def __init__(self, repository_root: pathlib.Path):
+        self.root = repository_root.resolve()
+
+    def execute(
+        self, provider_inventory: list[dict], *, snapshot_path: pathlib.Path | None = None
+    ) -> dict:
+        g3_path = self.root / "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json"
+        g3 = json.loads(normalized_file_bytes(g3_path).decode())
+        if (
+            g3.get("snapshotType") != "PostMerge"
+            or g3.get("reviewedHead") != STAGE_B_G3_REVIEWED_HEAD
+            or g3.get("mergeCommit") != STAGE_B_G3_MERGE_COMMIT
+        ):
+            raise ContractError("terminal G3 evidence drift blocks Stage B")
+        manifest = _read_ci_json(
+            self.root / "scripts/config/agentic-workspace-fleet.json", "fleet manifest"
+        )
+        profiles = _read_ci_json(
+            self.root / "scripts/config/ci-budget-profiles.json", "CI profile registry"
+        )
+        manifest_ids = {"home-baseline"} | {
+            item["id"] for item in manifest.get("targets", [])
+            if item.get("active") is True and item.get("kind") == "git-repository"
+        }
+        assignment_ids = [item.get("repositoryId") for item in profiles.get("assignments", [])]
+        if len(assignment_ids) != len(set(assignment_ids)):
+            raise ContractError("duplicate Stage-B profile assignment")
+        inventory = [stage_b_stable_identity(item) for item in provider_inventory]
+        inventory_ids = [item["repositoryId"] for item in inventory]
+        if len(inventory_ids) != len(set(inventory_ids)):
+            raise ContractError("duplicate Stage-B provider repository identity")
+        if manifest_ids != set(assignment_ids) or manifest_ids != set(inventory_ids):
+            raise ContractError("Stage-B fleet set equality failed before mutation")
+        level0_head = run_git(self.root, "rev-parse", "HEAD").stdout.strip()
+        if re.fullmatch(r"[0-9a-f]{40}", level0_head) is None:
+            raise ContractError("current Level-0 head is invalid")
+        inputs = {
+            "g3PostMergeEvidenceSha256": normalized_file_sha256(g3_path),
+            "level0Head": level0_head,
+            "constitutionSha256": normalized_file_sha256(self.root / "constitution.md"),
+            "constitutionMirrorSha256": normalized_file_sha256(self.root / ".specify/memory/constitution.md"),
+            "manifestSha256": normalized_file_sha256(self.root / "scripts/config/agentic-workspace-fleet.json"),
+            "profileRegistrySha256": normalized_file_sha256(self.root / "scripts/config/ci-budget-profiles.json"),
+            "pathRegistrySha256": normalized_file_sha256(self.root / "scripts/config/ci-budget-path-contracts.json"),
+            "gateSetHash": canonical_json_hash(profiles.get("gateSets", [])),
+            "budgetHash": canonical_json_hash(profiles.get("budgetAssumptions", {})),
+            "authority": "MergeAndSync",
+        }
+        snapshot = {
+            "schemaVersion": "1.0",
+            "capturedAt": utc_now(),
+            "stageAReviewedHead": STAGE_B_G3_REVIEWED_HEAD,
+            "stageAMergeCommit": STAGE_B_G3_MERGE_COMMIT,
+            "repositoryIds": sorted(manifest_ids),
+            "repositoryIdsHash": canonical_json_hash(sorted(manifest_ids)),
+            "inventory": sorted(inventory, key=lambda item: item["repositoryId"]),
+            "inputs": inputs,
+            "inputSetHash": canonical_json_hash(inputs),
+            "writes": 0,
+            "result": "Passed",
+        }
+        snapshot["fleetSnapshotHash"] = canonical_json_hash(snapshot)
+        if snapshot_path is not None:
+            _atomic_stage_b_json(snapshot_path, snapshot)
+        return snapshot
+
+
+class StageBRolloutPlanner:
+    """Create one immutable five-wave plan from a fresh preflight snapshot."""
+
+    def __init__(self, run_id: str = STAGE_B_RUN_ID):
+        self.run_id = str(uuid.UUID(run_id))
+
+    def build(self, snapshot: dict, assignments: list[dict], targets: list[dict]) -> dict:
+        profile_by_id = {item["repositoryId"]: item["profileId"] for item in assignments}
+        snapshot_ids = snapshot.get("repositoryIds", [])
+        target_ids = [item.get("repositoryId") for item in targets]
+        if set(snapshot_ids) != set(profile_by_id) or set(snapshot_ids) != set(target_ids):
+            raise ContractError("plan input repository-ID sets differ")
+        ordered_targets: list[dict] = []
+        for sequence, target in enumerate(
+            sorted(targets, key=lambda item: (STAGE_B_WAVES.index(STAGE_B_PROFILE_WAVE[profile_by_id[item["repositoryId"]]]), item["repositoryId"])),
+            start=1,
+        ):
+            repository_id = target["repositoryId"]
+            profile_id = profile_by_id[repository_id]
+            wave_id = STAGE_B_PROFILE_WAVE[profile_id]
+            baseline_head = target["baselineHead"]
+            baseline_tree = target.get("baselineTree", baseline_head)
+            changes = target.get("changes", [])
+            decision = "PullRequest" if changes else "NoOpCandidate"
+            planned_diff = canonical_json_hash(changes)
+            ordered_targets.append({
+                "transactionId": str(uuid.uuid5(uuid.UUID(self.run_id), repository_id)),
+                "repositoryId": repository_id,
+                "waveId": wave_id,
+                "sequence": sequence,
+                "baselineHead": baseline_head,
+                "baselineTree": baseline_tree,
+                "defaultBranch": target["defaultBranch"],
+                "profileId": profile_id,
+                "stageAPlanHash": target["stageAPlanHash"],
+                "gateSetHash": target["gateSetHash"],
+                "pathContractHash": target["pathContractHash"],
+                "changes": changes,
+                "plannedDiffHash": planned_diff,
+                "candidateTree": target.get("candidateTree", baseline_tree),
+                "workflowAction": target.get("workflowAction", "N/A"),
+                "rulesetPlanHash": target.get("rulesetPlanHash", "N/A"),
+                "mergeMethod": target.get("mergeMethod", "N/A" if not changes else "merge"),
+                "branchName": f"codex/stage-b-{self.run_id[:8]}-{repository_id}",
+                "requiredLocalGates": target.get("requiredLocalGates", []),
+                "requiredRemoteGates": target.get("requiredRemoteGates", []),
+                "idempotencyKeys": [canonical_json_hash({"runId": self.run_id, "repositoryId": repository_id, "action": action}) for action in ("branch", "commit", "pull-request", "merge", "ruleset")],
+                "decision": decision,
+                "blockers": [],
+            })
+        waves = [
+            {
+                "waveId": wave_id,
+                "order": index,
+                "repositoryIds": sorted(item["repositoryId"] for item in ordered_targets if item["waveId"] == wave_id),
+            }
+            for index, wave_id in enumerate(STAGE_B_WAVES, start=1)
+        ]
+        first_target = next((item for item in ordered_targets if item["decision"] == "PullRequest"), None)
+        plan = {
+            "schemaVersion": "1.1",
+            "planId": str(uuid.uuid5(uuid.UUID(self.run_id), snapshot["fleetSnapshotHash"])),
+            "runId": self.run_id,
+            "createdAt": snapshot["capturedAt"],
+            "deliveryMode": "MergeAndSync",
+            "stageAReference": {
+                "featurePath": "specs/029-ci-budget-governance",
+                "reviewedHead": STAGE_B_G3_REVIEWED_HEAD,
+                "mergeCommit": STAGE_B_G3_MERGE_COMMIT,
+                "postMergeEvidenceSha256": snapshot["inputs"]["g3PostMergeEvidenceSha256"],
+            },
+            "fleetSnapshotHash": snapshot["fleetSnapshotHash"],
+            "inputSetHash": snapshot["inputSetHash"],
+            "firstMutation": (
+                {"repositoryId": first_target["repositoryId"], "actionKind": "Commit", "baselineHead": first_target["baselineHead"]}
+                if first_target else "N/A"
+            ),
+            "waves": waves,
+            "targets": ordered_targets,
+            "planHash": "0" * 64,
+        }
+        validate_stage_b_plan_state_separation(plan)
+        plan["planHash"] = canonical_json_hash({key: value for key, value in plan.items() if key != "planHash"})
+        return plan
+
+
+def build_stage_b_run_state(plan: dict, feature_path: str = "specs/030-stage-b-rollout") -> dict:
+    require_stage_b_plan_binding({"planSha256": plan["planHash"]}, plan["planHash"])
+    run_id = plan["runId"]
+    evidence_root = f".specify/runtime/autonomous-routing/{run_id}/stage-b/evidence/v1"
+    state = {
+        "schemaVersion": "1.1", "runId": run_id, "featurePath": feature_path,
+        "status": "Prepared", "deliveryMode": "MergeAndSync",
+        "rolloutPlanBinding": {
+            "planId": plan["planId"],
+            "planPath": f".specify/runtime/autonomous-routing/{run_id}/stage-b/rollout-plan.json",
+            "planSha256": plan["planHash"],
+        },
+        "authorityBinding": {
+            "deliveryMode": "MergeAndSync", "source": "Explicit user authority",
+            "authorizedAt": utc_now(), "validatedAt": utc_now(), "runId": run_id,
+            "planSha256": plan["planHash"], "scopeHash": plan["inputSetHash"],
+            "repositoryIdsHash": canonical_json_hash(sorted(item["repositoryId"] for item in plan["targets"])),
+            "externalWriteGate": "Closed", "adminBypass": "AuthorizedException",
+            "authorityHash": "0" * 64,
+        },
+        "stageAReference": {
+            **plan["stageAReference"],
+            "postMergeEvidencePath": "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json",
+        },
+        "fleetSnapshotHash": plan["fleetSnapshotHash"],
+        "evidenceLayout": {
+            "schemaVersion": "v1", "stageBEvidenceRoot": evidence_root,
+            "operationalNamespace": "operational", "primarySnapshotNamespace": "primary",
+            "internalRoutingRoot": f".specify/runtime/autonomous-routing/{run_id}",
+            "committedFeatureEvidenceRoot": "specs/030-stage-b-rollout/evidence/v1",
+        },
+        "currentWaveId": "N/A", "currentRepositoryId": "N/A",
+        "currentAction": "Prepared", "lastSafeBoundary": "PlanValidated",
+        "nextAction": "Revalidate authority before the first external write.",
+        "waveResults": [], "targetResults": [], "budgetProjections": [],
+        "terminalEvidence": {"planSha256": plan["planHash"], "status": "Pending", "path": "N/A", "sha256": "N/A"},
+        "closeout": {"planSha256": plan["planHash"], "status": "Pending", "path": "N/A", "sha256": "N/A"},
+        "stop": {"reason": "N/A", "category": "N/A", "stoppedAt": "N/A", "inFlightOperation": "N/A", "requiresExplicitResume": False},
+        "resumeCount": 0, "lastRevalidatedAt": "N/A", "stateHash": "0" * 64,
+    }
+    authority = state["authorityBinding"]
+    authority["authorityHash"] = canonical_json_hash({key: value for key, value in authority.items() if key != "authorityHash"})
+    state["stateHash"] = canonical_json_hash({key: value for key, value in state.items() if key != "stateHash"})
+    return state
+
+
+def validate_external_write_gate(
+    state: dict, *, expected_run_id: str, expected_plan_sha256: str,
+    expected_scope_hash: str, expected_repository_ids_hash: str,
+    expected_delivery_set_hash: str, actual_delivery_set_hash: str,
+) -> None:
+    # This is the last trust boundary before provider mutation: every authority
+    # dimension is rebound to the live delivery set instead of trusting a preview.
+    authority = state.get("authorityBinding", {})
+    expected = {
+        "deliveryMode": "MergeAndSync", "runId": expected_run_id,
+        "planSha256": expected_plan_sha256, "scopeHash": expected_scope_hash,
+        "repositoryIdsHash": expected_repository_ids_hash, "externalWriteGate": "Open",
+    }
+    mismatches = [key for key, value in expected.items() if authority.get(key) != value]
+    if expected_delivery_set_hash != actual_delivery_set_hash:
+        mismatches.append("deliverySetHash")
+    if mismatches:
+        raise ContractError(f"ExternalWriteGate is closed by drift: {sorted(set(mismatches))}")
+
+
+def _stage_b_exact_change_key(change: dict) -> tuple:
+    required = {
+        "path", "action", "modeBefore", "modeAfter", "blobBefore", "blobAfter"
+    }
+    validate_stage_b_closed_world(change, required, "Stage-B planned change")
+    path = str(change["path"])
+    if path.startswith("/") or ".." in pathlib.PurePosixPath(path).parts or any(c in path for c in "\0\r\n"):
+        raise ContractError(f"unsafe Stage-B change path: {path!r}")
+    if change["action"] not in {"Add", "Modify", "Delete", "Rename"}:
+        raise ContractError(f"invalid Stage-B change action: {change['action']!r}")
+    if change["modeBefore"] not in {"N/A", "100644", "100755", "120000"} or change["modeAfter"] not in {"N/A", "100644", "100755", "120000"}:
+        raise ContractError(f"invalid Stage-B mode for {path}")
+    for name in ("blobBefore", "blobAfter"):
+        value = change[name]
+        if value != "N/A" and re.fullmatch(r"[0-9a-f]{40}", str(value)) is None:
+            raise ContractError(f"invalid {name} for {path}")
+    return tuple(change[name] for name in ("path", "action", "modeBefore", "modeAfter", "blobBefore", "blobAfter"))
+
+
+def require_exact_stage_b_diff(planned: list[dict], observed: list[dict]) -> str:
+    planned_keys = sorted(_stage_b_exact_change_key(item) for item in planned)
+    observed_keys = sorted(_stage_b_exact_change_key(item) for item in observed)
+    if planned_keys != observed_keys:
+        raise ContractError("observed Path/Action/Mode/Blob diff differs from TargetChangePlan")
+    return canonical_json_hash(planned_keys)
+
+
+def stage_b_branch_name(run_id: str, repository_id: str) -> str:
+    parsed = str(uuid.UUID(run_id))
+    stable_id = validate_ci_input_component(repository_id)
+    return f"codex/stage-b-{parsed[:8]}-{stable_id}"
+
+
+def validate_stage_b_gate_result(result: dict, expected_head: str, gate_id: str) -> dict:
+    expected = {"gateId", "headSha", "workflow", "job", "runnerOrPlatform", "executedCommand", "result"}
+    validate_stage_b_closed_world(result, expected, f"Stage-B gate {gate_id}")
+    if result["gateId"] != gate_id or result["headSha"] != expected_head:
+        raise ContractError(f"Stage-B gate identity/head drift: {gate_id}")
+    if result["result"] != "Passed" or not all(str(result[field]).strip() for field in ("workflow", "job", "runnerOrPlatform", "executedCommand")):
+        raise ContractError(f"Stage-B gate failed or lacks concrete execution proof: {gate_id}")
+    return result
+
+
+class StageBRulesetTransaction:
+    """Apply one exact private-governance ruleset with one bounded restore."""
+
+    def __init__(self, fixture: dict, provider: object):
+        self.fixture = fixture
+        self.provider = provider
+
+    def execute(self) -> dict:
+        repository_id, slug = validate_stage_b_provider_identity(
+            self.fixture["providerRepositoryId"], self.fixture["slug"]
+        )
+        ruleset_id = str(self.fixture.get("rulesetId", "1"))
+        if re.fullmatch(r"[1-9][0-9]*", ruleset_id) is None:
+            raise ContractError("ruleset ID must be a positive integer")
+        desired = self.fixture["desiredRuleset"]
+        exact = {
+            "target": "default_branch", "enforcement": "active",
+            "pullRequestRequired": True, "requiredApprovingReviews": 1,
+            "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
+            "strictStatusChecks": True, "bypassActors": [],
+            "blockedWritePaths": ["api", "direct", "web"],
+            "adminBypassNormalPath": False,
+        }
+        if desired != exact:
+            raise ContractError("private-governance desired ruleset is not exact")
+        before = self.provider.read_ruleset(repository_id, ruleset_id)
+        before_hash = canonical_json_hash(before)
+        desired_hash = canonical_json_hash(desired)
+        if before_hash == desired_hash:
+            return {"action": "NoChange", "beforeHash": before_hash, "afterHash": before_hash, "restore": "N/A"}
+        action_id = self.provider.write_ruleset(repository_id, ruleset_id, desired)
+        after = self.provider.read_ruleset(repository_id, ruleset_id)
+        after_hash = canonical_json_hash(after)
+        if after_hash != desired_hash:
+            restore_hash = canonical_json_hash(before)
+            self.provider.restore_ruleset(repository_id, ruleset_id, before, restore_hash)
+            restored = self.provider.read_ruleset(repository_id, ruleset_id)
+            raise ContractError(
+                "ruleset post-write verification failed; bounded restore attempted and run must stop"
+            )
+        return {
+            "action": "Update", "providerActionId": str(action_id),
+            "beforeHash": before_hash, "afterHash": after_hash, "restore": "N/A",
+            "slug": slug,
+        }
+
+
+class StageBTargetTransaction:
+    """Serialize one exact target lifecycle; provider methods receive arrays/data, never shell text."""
+
+    def __init__(
+        self, fixture: dict, provider: object, *, preview: bool = False,
+        evidence_root: pathlib.Path | None = None,
+    ):
+        self.fixture = fixture
+        self.provider = provider
+        self.preview = preview
+        self.evidence_root = evidence_root
+        self.events: list[str] = []
+
+    def _event(self, name: str) -> None:
+        self.events.append(name)
+
+    def execute(self) -> dict:
+        fixture = self.fixture
+        run_id = str(uuid.UUID(fixture["runId"]))
+        repository_id = validate_ci_input_component(fixture["repositoryId"])
+        validate_stage_b_provider_identity(fixture["providerRepositoryId"], fixture["slug"])
+        if re.fullmatch(r"[0-9a-f]{64}", str(fixture.get("environmentRegistryHash", ""))) is None:
+            raise ContractError("target Environment Registry hash is missing")
+        expected_branch = stage_b_branch_name(run_id, repository_id)
+        if fixture["branchName"] != expected_branch:
+            raise ContractError("run-bound Stage-B branch name differs")
+        planned = fixture["plannedChanges"]
+        reconcile = getattr(self.provider, "read_existing_result", None)
+        if callable(reconcile):
+            existing = reconcile(run_id, repository_id, fixture["planSha256"])
+            if existing is not None:
+                if existing.get("outcome") != "Converged" or existing.get("repositoryId") != repository_id:
+                    raise ContractError("existing target result is not trustworthy for resume")
+                return {**existing, "reconciled": True, "writes": 0}
+        if self.preview:
+            return {
+                "outcome": "Preview", "repositoryId": repository_id,
+                "branchName": expected_branch, "plannedDiffHash": canonical_json_hash(planned),
+                "writes": 0, "events": [],
+            }
+        branch_result = self.provider.ensure_branch(expected_branch, fixture["baselineHead"])
+        if branch_result not in {"Created", "ExistingAtBoundHead"}:
+            raise ContractError("existing Stage-B branch identity/head is ambiguous")
+        self._event("Branch")
+        observed = self.provider.materialize_changes(planned)
+        diff_hash = require_exact_stage_b_diff(planned, observed)
+        candidate = self.provider.prepare_candidate()
+        if candidate.get("headSha") != fixture["candidateHead"] or candidate.get("treeSha") != fixture["candidateTree"]:
+            raise ContractError("candidate head/tree differs from exact TargetChangePlan")
+        local_gate_evidence = []
+        for gate_command in fixture["requiredLocalGates"]:
+            result = self.provider.run_local_gate(gate_command, candidate["headSha"])
+            local_gate_evidence.append(
+                validate_stage_b_gate_result(result, candidate["headSha"], result.get("gateId", ""))
+            )
+        security = self.provider.run_secret_scan(candidate["headSha"])
+        if security.get("result") != "Passed" or security.get("restrictedFindings") != 0:
+            raise ContractError("candidate secret/redaction scan failed")
+        premerge = {
+            "schemaVersion": "1.0", "runId": run_id, "planSha256": fixture["planSha256"],
+            "repositoryId": repository_id, "candidateHead": candidate["headSha"],
+            "candidateTree": candidate["treeSha"], "plannedDiffHash": diff_hash,
+            "localGates": local_gate_evidence, "security": security,
+            "requiredReview": fixture["requiredReview"], "authority": "MergeAndSync",
+        }
+        premerge_hash = canonical_json_hash(premerge)
+        if self.evidence_root is not None:
+            _atomic_stage_b_json(self.evidence_root / "repositories" / repository_id / "premerge.json", premerge)
+        self._event("PreMerge")
+        commit = self.provider.stage_and_commit(planned, candidate["treeSha"])
+        if commit.get("headSha") != candidate["headSha"] or commit.get("treeSha") != candidate["treeSha"] or commit.get("stagedDiffCheck") != "Passed":
+            raise ContractError("staged path/tree inventory differs from exact candidate")
+        self._event("Commit")
+        self.provider.push(expected_branch, candidate["headSha"])
+        self._event("Push")
+        pull_request = self.provider.ensure_pull_request(
+            expected_branch, candidate["headSha"], diff_hash, run_id
+        )
+        if pull_request.get("headSha") != candidate["headSha"] or pull_request.get("count") != 1:
+            raise ContractError("pull request reconciliation is not unique at candidate head")
+        self._event("PullRequest")
+        remote_gate_evidence = []
+        for gate_id in fixture["requiredRemoteGates"]:
+            result = self.provider.read_remote_gate(pull_request["number"], gate_id)
+            remote_gate_evidence.append(validate_stage_b_gate_result(result, candidate["headSha"], gate_id))
+        review = self.provider.read_review(pull_request["number"])
+        if review.get("status") != "Approved" or review.get("headSha") != candidate["headSha"]:
+            raise ContractError("regular review is missing or bound to another head")
+        self._event("ReviewAndGates")
+        independent_hashes = {
+            "acceptance": canonical_json_hash(remote_gate_evidence),
+            "security": canonical_json_hash(security),
+            "review": canonical_json_hash(review),
+            "preMerge": premerge_hash,
+        }
+        merge = None
+        protection_refusal = None
+        for method in fixture["mergeMethods"]:
+            attempt = self.provider.merge(pull_request["number"], method, admin=False)
+            if attempt.get("result") == "Merged":
+                merge = attempt
+                break
+            if attempt.get("classification") == "ProtectionOnlyRefusal":
+                protection_refusal = attempt
+                continue
+            if attempt.get("classification") not in {"MethodUnavailable"}:
+                raise ContractError("regular merge failed for a non-protection reason")
+        bypass_evidence = {"used": False, "reason": "N/A"}
+        if merge is None:
+            # Bypass is downstream of independent gate/review proof; it can
+            # address protection mechanics, never weaken acceptance.
+            authority = fixture.get("adminBypassAuthority")
+            if protection_refusal is None or not isinstance(authority, dict):
+                raise ContractError("regular merge did not converge and bypass is unavailable")
+            required_authority = {
+                "repositoryId": repository_id, "prHead": candidate["headSha"],
+                "runId": run_id, "scope": "ProtectionOnlyMerge",
+            }
+            if any(authority.get(key) != value for key, value in required_authority.items()):
+                raise ContractError("admin-bypass authority is stale or out of scope")
+            try:
+                expires_at = datetime.fromisoformat(str(authority["expiresAt"]).replace("Z", "+00:00"))
+            except (KeyError, ValueError) as exc:
+                raise ContractError("admin-bypass authority expiry is missing or invalid") from exc
+            if expires_at <= datetime.now(timezone.utc):
+                raise ContractError("admin-bypass authority is expired")
+            merge = self.provider.merge(pull_request["number"], fixture["mergeMethods"][0], admin=True)
+            if merge.get("result") != "Merged":
+                raise ContractError("narrow admin-bypass merge did not converge")
+            bypass_evidence = {
+                "used": True, "repositoryId": repository_id,
+                "prHead": candidate["headSha"], "reason": authority.get("reason", "ProtectionOnlyRefusal"),
+                "scope": authority["scope"], "authorityHash": canonical_json_hash(authority),
+                "protectionRefusalHash": canonical_json_hash(protection_refusal),
+                "independentEvidenceHashes": independent_hashes,
+                "providerActionId": str(merge.get("providerActionId", "N/A")),
+            }
+        self._event("Merge")
+        sync = self.provider.sync_default(fixture["defaultBranch"], merge["mergeCommit"])
+        if sync.get("localHead") != merge["mergeCommit"] or sync.get("remoteHead") != merge["mergeCommit"]:
+            raise ContractError("local/remote default branch synchronization failed")
+        self._event("DefaultSync")
+        postmerge = {
+            "schemaVersion": "1.0", "preMergeEvidenceSha256": premerge_hash,
+            "mergeCommit": merge["mergeCommit"], "defaultSync": sync,
+            "providerHash": self.provider.final_provider_hash(),
+            "planSha256": fixture["planSha256"],
+        }
+        if self.evidence_root is not None:
+            _atomic_stage_b_json(self.evidence_root / "repositories" / repository_id / "postmerge.json", postmerge)
+        self._event("PostMerge")
+        return {
+            "outcome": "Converged", "repositoryId": repository_id,
+            "branchName": expected_branch, "plannedDiffHash": diff_hash,
+            "preMerge": premerge, "preMergeSha256": premerge_hash,
+            "postMerge": postmerge, "postMergeSha256": canonical_json_hash(postmerge),
+            "adminBypass": bypass_evidence, "events": self.events,
+            "pullRequestNumber": pull_request["number"], "mergeCommit": merge["mergeCommit"],
+        }
+
+
+STAGE_B_STATE_TRANSITIONS = {
+    "Prepared": {"Preflighted", "Blocked", "Stopped"},
+    "Preflighted": {"SliceValidated", "Delivering", "Completed", "Blocked", "Stopped"},
+    "SliceValidated": {"Delivering", "Blocked", "Stopped"},
+    "Delivering": {"Delivering", "Completed", "Blocked", "Stopped"},
+    "Stopped": {"Preflighted", "Delivering", "Blocked"},
+    "Blocked": {"Preflighted", "Delivering", "Blocked"},
+    "Completed": set(),
+}
+
+
+def stage_b_idempotency_key(
+    run_id: str, repository_id: str, action: str, baseline_head: str,
+    candidate_head: str, plan_sha256: str,
+) -> str:
+    str(uuid.UUID(run_id))
+    validate_ci_input_component(repository_id)
+    validate_ci_input_component(action)
+    for label, value in (("baseline", baseline_head), ("candidate", candidate_head)):
+        if re.fullmatch(r"[0-9a-f]{40}", value) is None:
+            raise ContractError(f"{label} head is invalid")
+    if re.fullmatch(r"[0-9a-f]{64}", plan_sha256) is None:
+        raise ContractError("planSha256 is invalid")
+    return canonical_json_hash({
+        "runId": run_id, "repositoryId": repository_id, "action": action,
+        "baselineHead": baseline_head, "candidateHead": candidate_head,
+        "planSha256": plan_sha256,
+    })
+
+
+def transition_stage_b_state(state: dict, next_status: str, **updates: object) -> dict:
+    current = state.get("status")
+    if current not in STAGE_B_STATE_TRANSITIONS or next_status not in STAGE_B_STATE_TRANSITIONS[current]:
+        raise ContractError(f"invalid Stage-B state transition: {current} -> {next_status}")
+    updated = json.loads(json.dumps(state))
+    updated["status"] = next_status
+    allowed_updates = {
+        "currentWaveId", "currentRepositoryId", "currentAction", "lastSafeBoundary",
+        "nextAction", "waveResults", "targetResults", "budgetProjections",
+        "terminalEvidence", "closeout", "stop", "resumeCount", "lastRevalidatedAt",
+    }
+    unknown = set(updates) - allowed_updates
+    if unknown:
+        raise ContractError(f"unknown mutable Stage-B state fields: {sorted(unknown)}")
+    updated.update(updates)
+    expected_plan = state.get("rolloutPlanBinding", {}).get("planSha256")
+    if not expected_plan:
+        raise ContractError("Stage-B state lost direct planSha256 binding")
+    updated["stateHash"] = canonical_json_hash({key: value for key, value in updated.items() if key != "stateHash"})
+    return updated
+
+
+def persist_stage_b_stop(
+    state: dict, path: pathlib.Path, *, category: str, reason: str,
+    in_flight_operation: str, last_safe_boundary: str, next_action: str,
+) -> dict:
+    if category not in {"Drift", "Gate", "Review", "Push", "Ruleset", "Merge", "Budget", "Provider", "Security", "UserStop"}:
+        raise ContractError("Stage-B stop category is invalid")
+    # Publish the safe boundary atomically so resume never guesses whether an
+    # interrupted provider operation completed.
+    stopped = transition_stage_b_state(
+        state, "Stopped", currentAction="Stopped", lastSafeBoundary=last_safe_boundary,
+        nextAction=next_action,
+        stop={
+            "reason": reason, "category": category, "stoppedAt": utc_now(),
+            "inFlightOperation": in_flight_operation, "requiresExplicitResume": True,
+        },
+    )
+    _atomic_stage_b_json(path, stopped)
+    return stopped
+
+
+def evaluate_stage_b_noop(case: dict, *, ruleset_transaction: object | None = None) -> dict:
+    required = {
+        "caseId", "treeEqual", "profileEqual", "workflowEqual", "gateEqual",
+        "rulesetEqual", "providerFresh", "expected",
+    }
+    validate_stage_b_closed_world(case, required, "Stage-B no-op fixture")
+    if not case["providerFresh"]:
+        raise ContractError("no-op provider evidence is stale")
+    if not all(case[field] for field in ("treeEqual", "profileEqual", "workflowEqual", "gateEqual")):
+        raise ContractError("empty Git diff is not semantic no-op convergence")
+    ruleset_result = "N/A"
+    if not case["rulesetEqual"]:
+        if ruleset_transaction is None:
+            return {"outcome": "RulesetTransaction", "branchWrites": 0, "commitWrites": 0, "pullRequestWrites": 0}
+        ruleset_result = ruleset_transaction.execute()
+    return {
+        "outcome": "NoOpConverged", "capturedAt": utc_now(),
+        "semanticContractHash": canonical_json_hash(case),
+        "providerHash": canonical_json_hash({"caseId": case["caseId"], "fresh": True}),
+        "ruleset": ruleset_result,
+        "branchWrites": 0, "commitWrites": 0, "pullRequestWrites": 0,
+    }
+
+
+def complete_all_noop_stage_b_state(state: dict, results: list[dict]) -> dict:
+    if not results or any(item.get("outcome") != "NoOpConverged" for item in results):
+        raise ContractError("all-no-op completion requires complete semantic convergence")
+    if state.get("authorityBinding", {}).get("externalWriteGate") != "Closed":
+        raise ContractError("all-no-op fleet must keep ExternalWriteGate closed")
+    return transition_stage_b_state(
+        state, "Completed", currentAction="CompletedNoOp",
+        lastSafeBoundary="FleetSemanticallyConverged", nextAction="N/A",
+        targetResults=results,
+    )
+
+
+def resume_stage_b_state(
+    state: dict, *, plan_sha256: str, fleet_snapshot_hash: str,
+    authority_hash: str, provider_hash: str, budget_hash: str,
+) -> dict:
+    # Resume rebinds every mutable authority input; a matching run ID alone is
+    # insufficient because fleet or provider truth may have changed.
+    if state.get("status") not in {"Stopped", "Blocked"}:
+        raise ContractError("Stage-B resume requires Stopped or Blocked state")
+    if state.get("rolloutPlanBinding", {}).get("planSha256") != plan_sha256:
+        raise ContractError("Stage-B resume plan drift")
+    if state.get("fleetSnapshotHash") != fleet_snapshot_hash:
+        raise ContractError("Stage-B resume fleet drift")
+    if state.get("authorityBinding", {}).get("authorityHash") != authority_hash:
+        raise ContractError("Stage-B resume authority drift")
+    for label, value in (("providerHash", provider_hash), ("budgetHash", budget_hash)):
+        if re.fullmatch(r"[0-9a-f]{64}", value) is None:
+            raise ContractError(f"Stage-B resume {label} is missing")
+    target_results = state.get("targetResults", [])
+    first_non_converged = next(
+        (item.get("repositoryId") for item in target_results if item.get("outcome") not in {"Converged", "NoOpConverged"}),
+        state.get("currentRepositoryId", "N/A"),
+    )
+    return transition_stage_b_state(
+        state, "Delivering", currentRepositoryId=first_non_converged,
+        currentAction="ResumeRevalidated", lastSafeBoundary="ResumeAuditPassed",
+        nextAction=f"Resume at {first_non_converged}.",
+        resumeCount=int(state.get("resumeCount", 0)) + 1,
+        lastRevalidatedAt=utc_now(),
+        stop={"reason": "N/A", "category": "N/A", "stoppedAt": "N/A", "inFlightOperation": "N/A", "requiresExplicitResume": False},
+    )
+
+
+def validate_stage_b_profile_contract(profile_id: str, target: dict) -> None:
+    if profile_id == "public-canary":
+        if target.get("repositoryId") not in {"agent-operations-cockpit", "home-baseline", "tui-vision"}:
+            raise ContractError("public-canary identity is outside the exact representative set")
+    elif profile_id == "public-product":
+        if target.get("preserveRequiredPublicCI") is not True or not target.get("environmentGates"):
+            raise ContractError("public-product must preserve required CI and environment gates")
+    elif profile_id == "private-product":
+        if target.get("pathDependentProductGates") is not True or target.get("unconditionalMainRebuild") is True:
+            raise ContractError("private-product gate contract is too broad or missing")
+    elif profile_id == "private-governance-scaffold":
+        expected = {
+            "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
+            "requiredApprovingReviews": 1, "strictStatusChecks": True,
+            "bypassActors": [], "fullPullRequestBuild": False,
+            "fullMainBuild": False,
+        }
+        if any(target.get(key) != value for key, value in expected.items()):
+            raise ContractError("private-governance profile differs from the exact server contract")
+    elif profile_id == "public-preset":
+        if target.get("repositoryWorkflows") not in ([], None) or target.get("fleetPipelineEvidence") is not True:
+            raise ContractError("public-preset forbids repository-specific workflows")
+    else:
+        raise ContractError(f"unknown Stage-B profile: {profile_id}")
+
+
+def build_stage_b_wave_result(
+    wave_id: str, plan_sha256: str, repository_results: list[dict],
+    predecessor_result_sha256: str, budget_projection_sha256: str,
+) -> dict:
+    if wave_id not in STAGE_B_WAVES:
+        raise ContractError("unknown Stage-B wave")
+    if any(item.get("outcome") not in {"Converged", "NoOpConverged"} for item in repository_results):
+        raise ContractError("partial Stage-B wave cannot be Converged")
+    repository_hashes = [
+        {"repositoryId": item["repositoryId"], "resultSha256": item["resultSha256"]}
+        for item in sorted(repository_results, key=lambda value: value["repositoryId"])
+    ]
+    result = {
+        "schemaVersion": "1.0", "waveId": wave_id,
+        "planSha256": plan_sha256, "status": "Converged",
+        "repositoryResults": repository_hashes,
+        "predecessorResultSha256": predecessor_result_sha256,
+        "budgetProjectionSha256": budget_projection_sha256,
+    }
+    result["resultSha256"] = canonical_json_hash(result)
+    return result
+
+
+class StageBWaveCoordinator:
+    """Run exactly one target writer at a time in the accepted five-wave order."""
+
+    def __init__(self, target_handler, budget_handler):
+        self.target_handler = target_handler
+        self.budget_handler = budget_handler
+        self.started: list[str] = []
+        self.active_writers = 0
+        self.maximum_active_writers = 0
+
+    def execute(self, wave_targets: dict[str, list[dict]], plan_sha256: str) -> list[dict]:
+        if list(wave_targets) != list(STAGE_B_WAVES):
+            raise ContractError("Stage-B wave map must use the exact accepted order")
+        predecessor = "N/A"
+        wave_results: list[dict] = []
+        for wave_id in STAGE_B_WAVES:
+            targets = wave_targets[wave_id]
+            ids = [item["repositoryId"] for item in targets]
+            if ids != sorted(ids) or len(ids) != len(set(ids)):
+                raise ContractError(f"Stage-B wave order/identity drift: {wave_id}")
+            if wave_id == "public-canaries" and ids != ["agent-operations-cockpit", "home-baseline", "tui-vision"]:
+                raise ContractError("all three Public Canaries must converge before breadth")
+            repository_results = []
+            for target in targets:
+                # A checked counter turns serialized delivery into an invariant,
+                # not an assumption about caller behavior.
+                if self.active_writers != 0:
+                    raise ContractError("concurrent Stage-B target writer detected")
+                self.active_writers += 1
+                self.maximum_active_writers = max(self.maximum_active_writers, self.active_writers)
+                self.started.append(target["repositoryId"])
+                try:
+                    validate_stage_b_profile_contract(target["profileId"], target)
+                    result = self.target_handler(target)
+                finally:
+                    self.active_writers -= 1
+                if result.get("outcome") not in {"Converged", "NoOpConverged"}:
+                    raise ContractError(f"Stage-B target failed; stop before next target: {target['repositoryId']}")
+                repository_results.append(result)
+            budget = self.budget_handler(wave_id, repository_results, predecessor)
+            if budget.get("result") != "Pass":
+                raise ContractError(f"Stage-B budget blocks after wave: {wave_id}")
+            wave_result = build_stage_b_wave_result(
+                wave_id, plan_sha256, repository_results, predecessor,
+                budget["projectionSha256"],
+            )
+            wave_results.append(wave_result)
+            predecessor = wave_result["resultSha256"]
+        return wave_results
+
+
+class StageBBudgetProjector:
+    """Reuse the exact Decimal 52/12 model and keep Copilot categories separate."""
+
+    def project(
+        self, *, wave_id: str, plan_sha256: str, fleet_snapshot_hash: str,
+        wave_result_sha256: str, predecessor_result_sha256: str,
+        expected_predecessor_sha256: str, minutes_per_week: str,
+        provider_fresh: bool, provider_observed_at: str,
+        copilot_categories: dict[str, str],
+    ) -> dict:
+        if wave_id not in STAGE_B_WAVES:
+            raise ContractError("budget projection wave is unknown")
+        for value in (plan_sha256, fleet_snapshot_hash, wave_result_sha256):
+            if re.fullmatch(r"[0-9a-f]{64}", value) is None:
+                raise ContractError("budget projection hash binding is invalid")
+        if predecessor_result_sha256 != expected_predecessor_sha256:
+            raise ContractError("budget predecessor hash drift")
+        if not provider_fresh or not provider_observed_at.endswith("Z"):
+            raise ContractError("budget provider data is missing or stale")
+        try:
+            weekly = Decimal(minutes_per_week)
+        except InvalidOperation as exc:
+            raise ContractError("missing budget data is not zero") from exc
+        if weekly < 0:
+            raise ContractError("budget minutes cannot be negative")
+        monthly = weekly * Decimal(52) / Decimal(12)
+        target = Decimal(500)
+        result = "Pass" if monthly < target else "Blocked"
+        if set(copilot_categories) != {"review-runner-time", "premium-requests", "seat-consumption"}:
+            raise ContractError("Copilot consumption categories must remain separate")
+        projection = {
+            "schemaVersion": "1.0", "waveId": wave_id,
+            "planSha256": plan_sha256, "fleetSnapshotHash": fleet_snapshot_hash,
+            "waveResultSha256": wave_result_sha256,
+            "predecessorResultSha256": predecessor_result_sha256,
+            "providerObservedAt": provider_observed_at,
+            "assumptions": {
+                "weeksPerMonthNumerator": "52", "weeksPerMonthDenominator": "12",
+                "privateMonthlyBudgetMinutes": "3000",
+                "privateMonthlyTargetExclusiveMinutes": "500",
+            },
+            "minutesPerWeek": format(weekly, "f"),
+            "projectedPrivateMonthlyMinutes": format(monthly.quantize(Decimal("0.000001")), "f"),
+            "copilotCategories": dict(copilot_categories),
+            "result": result,
+        }
+        projection["projectionSha256"] = canonical_json_hash(projection)
+        return projection
+
+
+def validate_stage_b_redaction(value: object) -> dict:
+    text = json.dumps(value, ensure_ascii=False, sort_keys=True)
+    patterns = {
+        "secret": r"(?i)\b(?:gh[pousr]_[A-Za-z0-9]+|token\s*[:=]|password\s*[:=]|authorization\s*[:=])",
+        "privatePath": re.escape(str(pathlib.Path.home())),
+        "providerRawResponse": r"(?i)\b(?:set-cookie|x-github-request-id|rawProviderResponse)\b",
+    }
+    findings = {name: len(re.findall(pattern, text)) for name, pattern in patterns.items()}
+    if any(findings.values()):
+        raise ContractError(f"restricted Stage-B evidence fields: {findings}")
+    return {"secretFindings": 0, "privatePathFindings": 0, "providerRawResponseFindings": 0, "personalDataFindings": 0}
+
+
+class StageBTerminalVerifier:
+    """Prove every fresh authoritative repository exactly once at terminal state."""
+
+    def verify(
+        self, *, run_id: str, plan_id: str, plan_sha256: str,
+        fleet_snapshot_hash: str, authoritative_repository_ids: list[str],
+        repository_results: list[dict], wave_results: list[dict],
+        budget_projections: list[dict], level0_control_plane: dict,
+        g4_isolation: dict,
+    ) -> dict:
+        # This proves the exact captured fleet and hashes; it neither authorizes
+        # later G4 work nor claims facts beyond this immutable snapshot.
+        ids = sorted(authoritative_repository_ids)
+        result_ids = [item.get("repositoryId") for item in repository_results]
+        if len(ids) != len(set(ids)) or sorted(result_ids) != ids or len(result_ids) != len(set(result_ids)):
+            raise ContractError("terminal fleet ID set/count equality failed")
+        if any(item.get("outcome") not in {"Converged", "NoOpConverged"} for item in repository_results):
+            raise ContractError("terminal fleet contains a non-converged repository")
+        if len(wave_results) != 5 or [item.get("waveId") for item in wave_results] != list(STAGE_B_WAVES):
+            raise ContractError("terminal fleet requires exactly five ordered waves")
+        if len(budget_projections) != 5 or any(item.get("result") != "Pass" for item in budget_projections):
+            raise ContractError("terminal fleet requires five fresh passing budgets")
+        for collection in (repository_results, wave_results, budget_projections):
+            if any(item.get("planSha256") != plan_sha256 for item in collection):
+                raise ContractError("terminal evidence lost direct planSha256 binding")
+        evidence = {
+            "schemaVersion": "1.1", "terminalEvidenceId": str(uuid.uuid4()),
+            "runId": run_id, "planId": plan_id, "planSha256": plan_sha256,
+            "capturedAt": utc_now(), "authoritativeRepositoryIds": ids,
+            "fleetSnapshotHash": fleet_snapshot_hash,
+            "repositoryResults": repository_results, "waveResults": wave_results,
+            "budgetProjectionHashes": [item["projectionSha256"] for item in budget_projections],
+            "convergedRepositoryCount": len(repository_results),
+            "authoritativeRepositoryCount": len(ids),
+            "level0ControlPlane": level0_control_plane,
+            "g4Isolation": g4_isolation,
+        }
+        evidence["redaction"] = validate_stage_b_redaction(evidence)
+        evidence["terminalHash"] = canonical_json_hash(evidence)
+        return evidence
+
+
+def build_stage_b_g4_isolation(
+    *, baseline_hashes: dict[str, str], current_hashes: dict[str, str]
+) -> dict:
+    required = {"g4", "intakeSeries", "copilot", "account", "subscription"}
+    validate_stage_b_closed_world(baseline_hashes, required, "G4 isolation baseline")
+    validate_stage_b_closed_world(current_hashes, required, "G4 isolation current state")
+    if baseline_hashes != current_hashes:
+        drift = sorted(key for key in required if baseline_hashes[key] != current_hashes[key])
+        raise ContractError(f"forbidden G4/series/Copilot/account/subscription drift: {drift}")
+    return {
+        "status": "Unchanged", "hashes": dict(current_hashes),
+        "executedActions": [],
+        "nextExactAction": "Request a separately authorized intake-series sequencing update.",
+    }
+
+
+def build_stage_b_causal_evidence(
+    *, plan_sha256: str, candidate_head: str, premerge_sha256: str,
+    merge_commit: str, default_head: str, provider_hash: str,
+) -> dict:
+    if merge_commit != default_head:
+        raise ContractError("causal Stage-B default head differs from merge commit")
+    for value in (candidate_head, merge_commit, default_head):
+        if re.fullmatch(r"[0-9a-f]{40}", value) is None:
+            raise ContractError("causal Stage-B Git identity is invalid")
+    for value in (plan_sha256, premerge_sha256, provider_hash):
+        if re.fullmatch(r"[0-9a-f]{64}", value) is None:
+            raise ContractError("causal Stage-B hash binding is invalid")
+    evidence = {
+        "schemaVersion": "2.0", "snapshotType": "PostMerge",
+        "snapshotId": str(uuid.uuid4()), "capturedAt": utc_now(),
+        "planSha256": plan_sha256, "reviewedHead": candidate_head,
+        "acceptedPreMergeSha256": premerge_sha256,
+        "mergeCommit": merge_commit, "defaultHead": default_head,
+        "providerHash": provider_hash, "productDelta": False,
+    }
+    validate_stage_b_redaction(evidence)
+    return evidence
+
+
 def validate_ci_input_component(value: object) -> str:
     if (
         not isinstance(value, str)
@@ -2109,6 +3414,7 @@ def simulate_private_governance_policy(
         and triggers == ["pull_request"]
         and required_status == "home-baseline/ci-minimal-gate"
         and scalar("runsOn") == "ubuntu-latest"
+        and scalar("jobCount") == "1"
         and scalar("fullBuild") == "false"
         and scalar("pathDependent") == "true"
         and len(gate_ids) == len(set(gate_ids))
@@ -2119,8 +3425,9 @@ def simulate_private_governance_policy(
         ]
     )
     expected_ruleset_keys = {
-        "schemaVersion", "active", "applied", "target", "enforcement",
-        "pullRequestRequired", "requiredStatusChecks", "requireStatusChecksToPass",
+        "schemaVersion", "active", "applied", "target", "rulesetName", "enforcement",
+        "pullRequestRequired", "requiredApprovingReviews", "requiredStatusChecks",
+        "requireStatusChecksToPass", "strictStatusChecks", "bypassActors",
         "blockedWritePaths", "adminBypassNormalPath", "remoteConverged",
     }
     valid_ruleset = (
@@ -2129,10 +3436,14 @@ def simulate_private_governance_policy(
         and ruleset.get("active") is False
         and ruleset.get("applied") is False
         and ruleset.get("target") == "default_branch"
+        and ruleset.get("rulesetName") == "home-baseline/private-governance-default"
         and ruleset.get("enforcement") == "active"
         and ruleset.get("pullRequestRequired") is True
+        and ruleset.get("requiredApprovingReviews") == 1
         and ruleset.get("requiredStatusChecks") == ["home-baseline/ci-minimal-gate"]
         and ruleset.get("requireStatusChecksToPass") is True
+        and ruleset.get("strictStatusChecks") is True
+        and ruleset.get("bypassActors") == []
         and sorted(ruleset.get("blockedWritePaths", [])) == ["api", "direct", "web"]
         and ruleset.get("adminBypassNormalPath") is False
         and ruleset.get("remoteConverged") is False
@@ -2627,6 +3938,18 @@ def execute_ci_budget_plan(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
+    stage_b = subparsers.add_parser("stage-b")
+    stage_b.add_argument(
+        "--action", choices=("preflight", "validate", "deliver", "resume", "verify"), required=True
+    )
+    stage_b.add_argument("--repository-root", type=pathlib.Path, required=True)
+    stage_b.add_argument("--run-id", required=True)
+    stage_b.add_argument("--delivery-mode", choices=("MergeAndSync",), default="MergeAndSync")
+    stage_b.add_argument("--wave-id", default="N/A")
+    stage_b.add_argument("--repository-id", default="N/A")
+    stage_b.add_argument("--profile-id", default="N/A")
+    stage_b.add_argument("--dry-run", action="store_true")
+    stage_b.set_defaults(handler=execute_stage_b_action)
     ci_gate = subparsers.add_parser("ci-gate")
     ci_gate.add_argument("--repository-root", type=pathlib.Path, required=True)
     ci_gate.add_argument("--profiles", type=pathlib.Path, default=pathlib.Path("scripts/config/ci-budget-profiles.json"))

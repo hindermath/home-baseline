@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "1.0",
+  "sourceRevision": "fixture-stage-b-whole-fleet-v1",
+  "waves": ["public-canaries", "public-products", "private-products", "private-governance-scaffold", "public-presets"],
+  "repositoryIdsSource": "manifest-union-assignments-inventory",
+  "hardCodedSuccessCount": false,
+  "expectedOutcome": "Converged"
+}

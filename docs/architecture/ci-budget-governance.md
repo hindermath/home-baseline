@@ -87,3 +87,23 @@ Diese Abschnitte sind Handoff-Evidence, keine Aktionsanweisung.
 *Stage B needs fresh remote-mutation authority and complete revalidation. G4
 was not started and requires separately proven Stage-B convergence plus a new
 sequencing gate. This is handoff evidence, not an executed action.*
+
+## Stage-B-Isolation und späterer G4-Handoff / Stage B Isolation and Later G4 Handoff
+
+Stage B liefert ausschließlich die akzeptierte CI-/Budget-Control-Plane und
+die seriell gebundene Flottenkonvergenz. Die aktive Intake-Serie, G4,
+Copilot-Konfiguration, Account- und Subscription-Einstellungen bleiben
+unverändert. Owner ist der Intake Series Owner; blockierend sind fehlende
+terminale Fleet-Evidence oder fehlende separate Sequencing-Autorität. Die
+nächste zulässige Aktion ist ausschließlich die Anforderung eines getrennt
+autorisierten Intake-Series-Sequencing-Updates. Dieser Handoff wird bei
+Änderungen an Fleet-Menge, G4-Scope, Series-Manifest oder Authority neu
+bewertet.
+
+*Stage B delivers only the accepted CI/budget control plane and serialized
+fleet convergence. The active intake series, G4, Copilot configuration,
+account, and subscription settings remain unchanged. The Intake Series Owner
+owns the later handoff. Missing terminal fleet evidence or separate sequencing
+authority blocks it. The only next action is to request a separately authorized
+intake-series sequencing update. Re-evaluate when fleet identity, G4 scope,
+the series manifest, or authority changes.*

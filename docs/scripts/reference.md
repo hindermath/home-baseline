@@ -4,8 +4,8 @@
 >
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
-Stand / Updated: 2026-07-28
-Kanonische Skriptdateien / Canonical script files: 134
+Stand / Updated: 2026-08-21
+Kanonische Skriptdateien / Canonical script files: 136
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -178,7 +178,7 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 -WhatIf  # falls 
 ### `scripts/maintain-agentic-workspace.ps1`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** Orchestrates repository and agentic toolchain maintenance on Windows.
+- **Kurzbeschreibung / Summary:** Wartet Workspace/Toolchain und führt Stage B sicher aus. / Maintains the workspace/toolchain and safely runs Stage B.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
@@ -190,7 +190,7 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf  # falls Su
 ### `scripts/maintain-agentic-workspace.sh`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** Orchestrate repository and agentic toolchain maintenance on macOS/Linux.
+- **Kurzbeschreibung / Summary:** Wartet Workspace/Toolchain und führt Stage B sicher aus. / Maintains the workspace/toolchain and safely runs Stage B.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
@@ -684,6 +684,17 @@ bash scripts/test-homogeneity-runtime-closure.sh --dry-run  # falls angeboten / 
 python3 scripts/tests/run_ci_budget_acceptance.py --help
 ```
 
+### `scripts/tests/run_stage_b_rollout_acceptance.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/run_stage_b_rollout_acceptance.py --help
+```
+
 ### `scripts/tests/test_agentic_workspace_maintenance.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -781,6 +792,17 @@ python3 scripts/tests/test_shared_learner_guide_propagation.py --help
 
 ```text
 python3 scripts/tests/test_spec_kit_agent_surface_parity.py --help
+```
+
+### `scripts/tests/test_stage_b_rollout.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_stage_b_rollout.py --help
 ```
 
 ### `scripts/tests/test_sync_home_cli.py`

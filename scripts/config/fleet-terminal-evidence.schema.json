@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/fleet-terminal-evidence.schema.json",
+  "title": "Stage B Fleet Terminal Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "terminalEvidenceId", "runId", "planId", "planSha256", "capturedAt", "authoritativeRepositoryIds", "fleetSnapshotHash", "repositoryResults", "waveResults", "budgetProjectionHashes", "convergedRepositoryCount", "authoritativeRepositoryCount", "level0ControlPlane", "g4Isolation", "redaction", "terminalHash"],
+  "properties": {
+    "schemaVersion": { "const": "1.1" },
+    "terminalEvidenceId": { "$ref": "#/$defs/uuid" },
+    "runId": { "$ref": "#/$defs/uuid" },
+    "planId": { "$ref": "#/$defs/uuid" },
+    "planSha256": { "$ref": "#/$defs/sha256" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "authoritativeRepositoryIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/stableId" } },
+    "fleetSnapshotHash": { "$ref": "#/$defs/sha256" },
+    "repositoryResults": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/repositoryResult" } },
+    "waveResults": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "$ref": "#/$defs/waveResult" } },
+    "budgetProjectionHashes": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "$ref": "#/$defs/budgetResult" } },
+    "convergedRepositoryCount": { "type": "integer", "minimum": 1 },
+    "authoritativeRepositoryCount": { "type": "integer", "minimum": 1 },
+    "level0ControlPlane": { "$ref": "#/$defs/controlPlane" },
+    "g4Isolation": { "$ref": "#/$defs/g4Isolation" },
+    "redaction": { "$ref": "#/$defs/redaction" },
+    "terminalHash": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid", "not": { "const": "00000000-0000-0000-0000-000000000000" } },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "waveId": { "enum": ["public-canaries", "public-products", "private-products", "private-governance-scaffold", "public-presets"] },
+    "repositoryResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["planSha256", "repositoryId", "resultPath", "resultSha256", "outcome", "verifiedTargetHead", "pullRequestOrNoOpIdentity", "gateResult", "reviewStatus", "mergeCommit", "mergeCommitRationale", "defaultBranchSynchronized", "finalProviderHash"],
+      "properties": {
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "resultPath": { "type": "string", "minLength": 1 },
+        "resultSha256": { "$ref": "#/$defs/sha256" },
+        "outcome": { "enum": ["Converged", "NoOpConverged"] },
+        "verifiedTargetHead": { "$ref": "#/$defs/gitSha" },
+        "pullRequestOrNoOpIdentity": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "gateResult": { "const": "Pass" },
+        "reviewStatus": { "enum": ["Approved", "N/A-NoGitDiff"] },
+        "mergeCommit": { "oneOf": [{ "$ref": "#/$defs/gitSha" }, { "const": "N/A" }] },
+        "mergeCommitRationale": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "defaultBranchSynchronized": { "const": true },
+        "finalProviderHash": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "waveResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["planSha256", "waveId", "order", "repositoryIdsHash", "repositoryResultHashes", "budgetProjectionHash", "status", "closedAt", "waveHash"],
+      "properties": {
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "waveId": { "$ref": "#/$defs/waveId" },
+        "order": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "repositoryIdsHash": { "$ref": "#/$defs/sha256" },
+        "repositoryResultHashes": { "type": "array", "items": { "$ref": "#/$defs/sha256" } },
+        "budgetProjectionHash": { "$ref": "#/$defs/sha256" },
+        "status": { "const": "Converged" },
+        "closedAt": { "type": "string", "format": "date-time" },
+        "waveHash": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "budgetResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["planSha256", "waveId", "projectionPath", "projectionSha256", "privateActionsMinutesPerMonth", "privateMonthlyBudgetMinutes", "stageBMaximumMinutes", "copilotSeparated", "result"],
+      "properties": {
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "waveId": { "$ref": "#/$defs/waveId" },
+        "projectionPath": { "type": "string", "minLength": 1 },
+        "projectionSha256": { "$ref": "#/$defs/sha256" },
+        "privateActionsMinutesPerMonth": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$" },
+        "privateMonthlyBudgetMinutes": { "const": 3000 },
+        "stageBMaximumMinutes": { "const": 500 },
+        "copilotSeparated": { "const": true },
+        "result": { "const": "Pass" }
+      }
+    },
+    "controlPlane": {
+      "type": "object", "additionalProperties": false,
+      "required": ["planSha256", "preMergeEvidenceSha256", "mergeCommit", "postMergeEvidenceSha256", "defaultBranchSynchronized"],
+      "properties": {
+        "planSha256": { "$ref": "#/$defs/sha256" },
+        "preMergeEvidenceSha256": { "$ref": "#/$defs/sha256" },
+        "mergeCommit": { "$ref": "#/$defs/gitSha" },
+        "postMergeEvidenceSha256": { "$ref": "#/$defs/sha256" },
+        "defaultBranchSynchronized": { "const": true }
+      }
+    },
+    "g4Isolation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["g4", "intakeSeries", "copilotConfiguration", "account", "subscription", "nextAction"],
+      "properties": {
+        "g4": { "const": "Unchanged" },
+        "intakeSeries": { "const": "Unchanged" },
+        "copilotConfiguration": { "const": "Unchanged" },
+        "account": { "const": "Unchanged" },
+        "subscription": { "const": "Unchanged" },
+        "nextAction": { "const": "Request separately authorized intake-series sequencing update; do not start G4." }
+      }
+    },
+    "redaction": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "secretMatches", "tokenMatches", "privatePathMatches", "unsanitizedProviderResponseMatches", "personalDataMatches"],
+      "properties": {
+        "status": { "const": "Pass" },
+        "secretMatches": { "const": 0 },
+        "tokenMatches": { "const": 0 },
+        "privatePathMatches": { "const": 0 },
+        "unsanitizedProviderResponseMatches": { "const": 0 },
+        "personalDataMatches": { "const": 0 }
+      }
+    }
+  }
+}

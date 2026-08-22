@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "954ff259-ffed-44a8-883f-28742b031a9b",
+  "planSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "repositoryId": "agent-operations-cockpit",
+  "profileId": "public-canary",
+  "waveId": "public-canaries",
+  "providerRepositoryId": "1001",
+  "slug": "hindermath/agent-operations-cockpit",
+  "defaultBranch": "main",
+  "environmentRegistryHash": "9999999999999999999999999999999999999999999999999999999999999999",
+  "baselineHead": "1111111111111111111111111111111111111111",
+  "baselineTree": "2222222222222222222222222222222222222222",
+  "candidateHead": "3333333333333333333333333333333333333333",
+  "candidateTree": "4444444444444444444444444444444444444444",
+  "branchName": "codex/stage-b-954ff259-agent-operations-cockpit",
+  "plannedChanges": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "action": "Modify",
+      "modeBefore": "100644",
+      "modeAfter": "100644",
+      "blobBefore": "5555555555555555555555555555555555555555",
+      "blobAfter": "6666666666666666666666666666666666666666"
+    }
+  ],
+  "requiredLocalGates": ["python3 -m unittest"],
+  "requiredRemoteGates": ["ci"],
+  "requiredReview": "Approved",
+  "mergeMethods": ["merge", "squash", "rebase"],
+  "expectedWritesBeforeImplementation": 0
+}

@@ -1,0 +1,129 @@
+name: Stage B Windows Proof
+
+on:
+  push:
+    branches:
+      - 030-stage-b-rollout
+    paths:
+      - .github/workflows/stage-b-windows-proof.yml
+      - scripts/lib/agentic_workspace_fleet.py
+      - scripts/maintain-agentic-workspace.sh
+      - scripts/maintain-agentic-workspace.ps1
+      - scripts/tests/stage-b-rollout/fixtures/platform-parity/cases.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage-b-windows-proof-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native-windows-proof:
+    name: Native Windows PowerShell 7 proof
+    if: contains(github.event.head_commit.message, '[stage-b-windows-proof]')
+    runs-on: windows-2022
+    timeout-minutes: 10
+
+    steps:
+      - name: Configure byte-stable checkout
+        shell: pwsh
+        run: git config --global core.autocrlf false
+
+      - name: Check out the exact checkpoint
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Run hash-bound Stage B preflight
+        shell: pwsh
+        env:
+          HB_STAGE_B_RUN_ID: 954ff259-ffed-44a8-883f-28742b031a9b
+          HB_STAGE_B_WAVE_ID: public-canaries
+          HB_STAGE_B_REPOSITORY_ID: agent-operations-cockpit
+          HB_STAGE_B_PROFILE_ID: public-canary
+          EXPECTED_PAYLOAD_SHA256: 1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3
+          EXPECTED_DECISION_SHA256: 70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+
+          if (-not $IsWindows) {
+              throw 'This proof requires a native Windows runner.'
+          }
+          if ($PSVersionTable.PSVersion.Major -lt 7) {
+              throw "PowerShell 7 or newer is required; observed $($PSVersionTable.PSVersion)."
+          }
+
+          function Get-TextSha256 {
+              param([Parameter(Mandatory)][string] $Text)
+
+              $bytes = [Text.Encoding]::UTF8.GetBytes($Text)
+              $hash = [Security.Cryptography.SHA256]::HashData($bytes)
+              return [Convert]::ToHexString($hash).ToLowerInvariant()
+          }
+
+          $boundFiles = @(
+              'scripts/lib/agentic_workspace_fleet.py'
+              'scripts/maintain-agentic-workspace.sh'
+              'scripts/maintain-agentic-workspace.ps1'
+              'scripts/tests/stage-b-rollout/fixtures/platform-parity/cases.json'
+          )
+          $payloadLines = foreach ($path in $boundFiles) {
+              if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+                  throw "Bound payload file is missing: ${path}"
+              }
+              $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+              "${hash}  ${path}"
+          }
+          $payloadSha256 = Get-TextSha256 -Text (($payloadLines -join "`n") + "`n")
+          if ($payloadSha256 -ne $env:EXPECTED_PAYLOAD_SHA256) {
+              throw "Payload hash mismatch: expected $($env:EXPECTED_PAYLOAD_SHA256), observed ${payloadSha256}."
+          }
+
+          $preflightOutput = @(& pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf 2>&1)
+          $preflightExitCode = $LASTEXITCODE
+          $preflightOutput | ForEach-Object { Write-Output "$_" }
+          if ($preflightExitCode -ne 0) {
+              throw "Stage B preflight failed with exit code ${preflightExitCode}."
+          }
+
+          $normalizedDecision = ($preflightOutput | ForEach-Object { "$_" }) -join "`n"
+          $decisionSha256 = Get-TextSha256 -Text $normalizedDecision
+          if ($decisionSha256 -ne $env:EXPECTED_DECISION_SHA256) {
+              throw "Decision hash mismatch: expected $($env:EXPECTED_DECISION_SHA256), observed ${decisionSha256}."
+          }
+
+          $proof = [ordered]@{
+              schemaVersion = '1.0'
+              result = 'Passed'
+              runnerOrPlatform = 'Windows'
+              capturedAt = [DateTimeOffset]::UtcNow.ToString('o')
+              runId = $env:HB_STAGE_B_RUN_ID
+              checkpointCommit = $env:GITHUB_SHA
+              workflowName = $env:GITHUB_WORKFLOW
+              workflowRunId = $env:GITHUB_RUN_ID
+              workflowRunAttempt = $env:GITHUB_RUN_ATTEMPT
+              workflowJob = $env:GITHUB_JOB
+              runnerName = $env:RUNNER_NAME
+              runnerOs = $env:RUNNER_OS
+              runnerArch = $env:RUNNER_ARCH
+              powerShellVersion = $PSVersionTable.PSVersion.ToString()
+              payloadSha256 = $payloadSha256
+              normalizedDecisionSha256 = $decisionSha256
+              command = 'pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf'
+              exitCode = $preflightExitCode
+              gitWrites = 0
+              providerWrites = 0
+          }
+          $proofJson = $proof | ConvertTo-Json -Compress
+          Write-Output "STAGE_B_WINDOWS_PROOF=${proofJson}"
+
+          @(
+              '## Stage B Windows Proof'
+              ''
+              "- Result: Passed"
+              "- Commit: $($env:GITHUB_SHA)"
+              "- Runner: $($env:RUNNER_OS) / $($env:RUNNER_ARCH)"
+              "- Payload SHA-256: ${payloadSha256}"
+              "- Decision SHA-256: ${decisionSha256}"
+              "- Exit code: ${preflightExitCode}"
+          ) | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Encoding utf8

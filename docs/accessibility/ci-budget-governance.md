@@ -20,9 +20,11 @@ a graphical surface is introduced.*
 
 ## Text- und Bedienvertrag / Text and Interaction Contract
 
-- Die Reihenfolge ist immer: `Profil / Profile`, `Entscheidung / Decision`,
-  `Status`, `Blocker`, `Naechste Aktion / Next action`, Gate-Set-Hash,
-  Einzelschritte und Evidence-Ziel.
+- Für Stage B ist die Reihenfolge immer: `Run-ID / Run ID`,
+  `Autoritaet / Authority`, `Welle / Wave`, `Repository-ID`,
+  `Profil / Profile`, `Entscheidung / Decision`, `Status`, `Blocker` und
+  `Naechste Aktion / Next action`. Der lokale CI-Gate ergänzt danach
+  Gate-Set-Hash, Einzelschritte und Evidence-Ziel.
 - Bedeutung hängt nicht von Farbe, Cursorposition oder räumlicher Anordnung ab.
 - Alle Aufrufe sind vollständig per Tastatur ausführbar; Ausgaben können
   kopiert, in Screenreadern linear gelesen, auf Braille-Zeilen dargestellt und
@@ -35,6 +37,19 @@ a graphical surface is introduced.*
 - Codeblöcke verwenden Sprachkennzeichnungen. Diagramme benötigen eine
   unmittelbar folgende Textalternative; diese Seite verwendet keine
   informationsabhängigen Grafiken.
+
+Damit sind insbesondere WCAG 2.2 AA 1.3.1 (lineare Beziehungen), 1.4.1
+(keine reine Farbbedeutung), 2.1.1 (Tastatur), 2.4.6 (Überschriften und Labels),
+3.1.2 (Sprachwechsel im bilingualen Textkontext), 3.2.4 (konsistente
+Bezeichnung) und 4.1.2 (für die textorientierte Schnittstelle durch stabile
+Labels und Exitcodes) berücksichtigt. Zeiger-, Drag-and-drop-, Zeit-, Audio-
+und Videokriterien sind `N/A`, weil die CLI diese Interaktionen nicht anbietet.
+Eine spätere GUI oder neue Interaktionsform löst eine erneute Prüfung aus.
+
+*The linear labels, keyboard-only operation, color-independent meaning, stable
+naming, and exit codes cover the applicable WCAG 2.2 AA criteria. Pointer,
+drag-and-drop, timing, audio, and video criteria are N/A for this CLI and must
+be reassessed if a graphical or timed interaction is added.*
 
 ## Didaktischer Kommentarcheck / Didactic Comment Review
 

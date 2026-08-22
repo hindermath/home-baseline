@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "cases": [
+    {"caseId": "missing-assignment", "blocker": "AssignmentMissing", "nextAction": "Repair the canonical profile registry.", "writes": 0},
+    {"caseId": "unknown-assignment", "blocker": "AssignmentUnknown", "nextAction": "Remove the non-authoritative assignment.", "writes": 0},
+    {"caseId": "duplicate-assignment", "blocker": "AssignmentDuplicate", "nextAction": "Keep exactly one stable repository ID.", "writes": 0},
+    {"caseId": "visibility-mismatch", "blocker": "VisibilityMismatch", "nextAction": "Reconcile profile and provider visibility.", "writes": 0},
+    {"caseId": "conflicting-remote", "blocker": "RemoteIdentityConflict", "nextAction": "Reconcile the bound remote identity.", "writes": 0},
+    {"caseId": "renamed-repository", "blocker": "RepositoryRename", "nextAction": "Update the canonical ID mapping under separate governance.", "writes": 0},
+    {"caseId": "archived-repository", "blocker": "RepositoryArchived", "nextAction": "Disposition the archived target before resume.", "writes": 0},
+    {"caseId": "fork-drift", "blocker": "ForkIdentityMismatch", "nextAction": "Restore the expected provider repository identity.", "writes": 0},
+    {"caseId": "default-branch-drift", "blocker": "DefaultBranchMismatch", "nextAction": "Reconcile the default branch contract.", "writes": 0},
+    {"caseId": "stale-head", "blocker": "HeadStale", "nextAction": "Refresh the provider and local heads.", "writes": 0},
+    {"caseId": "incomplete-provider-record", "blocker": "ProviderRecordIncomplete", "nextAction": "Repeat the read-only inventory.", "writes": 0}
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hindermath/home-baseline/schemas/stage-b-rollout-plan.schema.json",
+  "title": "Stage B Rollout Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "planId", "runId", "createdAt", "deliveryMode", "stageAReference", "fleetSnapshotHash", "inputSetHash", "firstMutation", "waves", "targets", "planHash"],
+  "properties": {
+    "schemaVersion": { "const": "1.1" },
+    "planId": { "$ref": "#/$defs/uuid" },
+    "runId": { "$ref": "#/$defs/uuid" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "deliveryMode": { "const": "MergeAndSync" },
+    "stageAReference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["featurePath", "reviewedHead", "mergeCommit", "postMergeEvidenceSha256"],
+      "properties": {
+        "featurePath": { "const": "specs/029-ci-budget-governance" },
+        "reviewedHead": { "$ref": "#/$defs/gitSha" },
+        "mergeCommit": { "$ref": "#/$defs/gitSha" },
+        "postMergeEvidenceSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "fleetSnapshotHash": { "$ref": "#/$defs/sha256" },
+    "inputSetHash": { "$ref": "#/$defs/sha256" },
+    "firstMutation": {
+      "oneOf": [
+        { "$ref": "#/$defs/firstMutation" },
+        { "const": "N/A" }
+      ]
+    },
+    "waves": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "$ref": "#/$defs/wave" } },
+    "targets": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/target" } },
+    "planHash": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid", "not": { "const": "00000000-0000-0000-0000-000000000000" } },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "gitShaOrNA": { "oneOf": [{ "$ref": "#/$defs/gitSha" }, { "const": "N/A" }] },
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "profileId": { "enum": ["public-canary", "public-product", "private-product", "private-governance-scaffold", "public-preset"] },
+    "waveId": { "enum": ["public-canaries", "public-products", "private-products", "private-governance-scaffold", "public-presets"] },
+    "wave": {
+      "type": "object", "additionalProperties": false,
+      "required": ["waveId", "order", "repositoryIds"],
+      "properties": {
+        "waveId": { "$ref": "#/$defs/waveId" },
+        "order": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "repositoryIds": { "type": "array", "items": { "$ref": "#/$defs/stableId" } }
+      }
+    },
+    "firstMutation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repositoryId", "actionKind", "baselineHead"],
+      "properties": {
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "actionKind": { "enum": ["Commit", "Push", "PullRequest", "Ruleset"] },
+        "baselineHead": { "$ref": "#/$defs/gitSha" }
+      }
+    },
+    "change": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "action", "modeBefore", "modeAfter", "blobBefore", "blobAfter", "sourceTemplateHash", "semanticContractIds"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\u0000\\r\\n]).+$" },
+        "action": { "enum": ["Add", "Modify", "Delete", "Rename"] },
+        "modeBefore": { "type": "string", "pattern": "^(?:N/A|100644|100755|120000)$" },
+        "modeAfter": { "type": "string", "pattern": "^(?:N/A|100644|100755|120000)$" },
+        "blobBefore": { "$ref": "#/$defs/gitShaOrNA" },
+        "blobAfter": { "$ref": "#/$defs/gitShaOrNA" },
+        "sourceTemplateHash": { "oneOf": [{ "$ref": "#/$defs/sha256" }, { "const": "N/A" }] },
+        "semanticContractIds": { "type": "array", "items": { "$ref": "#/$defs/stableId" } }
+      }
+    },
+    "gateRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gateId", "commandToken", "runnerOrPlatformToken"],
+      "properties": {
+        "gateId": { "$ref": "#/$defs/stableId" },
+        "commandToken": { "type": "string", "minLength": 1 },
+        "runnerOrPlatformToken": { "type": "string", "minLength": 1 }
+      }
+    },
+    "target": {
+      "type": "object", "additionalProperties": false,
+      "required": ["transactionId", "repositoryId", "waveId", "sequence", "baselineHead", "baselineTree", "defaultBranch", "profileId", "stageAPlanHash", "gateSetHash", "pathContractHash", "changes", "plannedDiffHash", "candidateTree", "workflowAction", "rulesetPlanHash", "mergeMethod", "branchName", "requiredLocalGates", "requiredRemoteGates", "idempotencyKeys", "decision", "blockers"],
+      "properties": {
+        "transactionId": { "$ref": "#/$defs/uuid" },
+        "repositoryId": { "$ref": "#/$defs/stableId" },
+        "waveId": { "$ref": "#/$defs/waveId" },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "baselineHead": { "$ref": "#/$defs/gitSha" },
+        "baselineTree": { "$ref": "#/$defs/gitSha" },
+        "defaultBranch": { "type": "string", "minLength": 1, "maxLength": 255 },
+        "profileId": { "$ref": "#/$defs/profileId" },
+        "stageAPlanHash": { "$ref": "#/$defs/sha256" },
+        "gateSetHash": { "$ref": "#/$defs/sha256" },
+        "pathContractHash": { "$ref": "#/$defs/sha256" },
+        "changes": { "type": "array", "items": { "$ref": "#/$defs/change" } },
+        "plannedDiffHash": { "$ref": "#/$defs/sha256" },
+        "candidateTree": { "$ref": "#/$defs/gitSha" },
+        "workflowAction": { "enum": ["Preserve", "Add", "Update", "RemoveDuplicate", "N/A"] },
+        "rulesetPlanHash": { "oneOf": [{ "$ref": "#/$defs/sha256" }, { "const": "N/A" }] },
+        "mergeMethod": { "enum": ["merge", "squash", "rebase", "N/A"] },
+        "branchName": { "type": "string", "minLength": 1, "maxLength": 255 },
+        "requiredLocalGates": { "type": "array", "items": { "$ref": "#/$defs/gateRef" } },
+        "requiredRemoteGates": { "type": "array", "items": { "$ref": "#/$defs/gateRef" } },
+        "idempotencyKeys": { "type": "array", "items": { "$ref": "#/$defs/sha256" } },
+        "decision": { "enum": ["PullRequest", "NoOpCandidate", "Blocked"] },
+        "blockers": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 256 } }
+      }
+    }
+  }
+}

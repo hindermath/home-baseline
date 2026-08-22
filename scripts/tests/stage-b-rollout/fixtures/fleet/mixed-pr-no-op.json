@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0",
+  "sourceRevision": "fixture-stage-b-mixed-v1",
+  "targets": [
+    {"repositoryId": "agent-operations-cockpit", "decision": "PullRequest"},
+    {"repositoryId": "home-baseline", "decision": "NoOpCandidate"},
+    {"repositoryId": "tui-vision", "decision": "PullRequest"}
+  ],
+  "budgetResult": "Pass",
+  "g4Actions": [],
+  "expectedOutcome": "Converged"
+}

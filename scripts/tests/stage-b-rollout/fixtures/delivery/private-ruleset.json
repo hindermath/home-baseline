@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "providerRepositoryId": "1001",
+  "rulesetId": "2001",
+  "slug": "hindermath/private-fixture",
+  "desiredRuleset": {
+    "target": "default_branch",
+    "enforcement": "active",
+    "pullRequestRequired": true,
+    "requiredApprovingReviews": 1,
+    "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
+    "strictStatusChecks": true,
+    "bypassActors": [],
+    "blockedWritePaths": ["api", "direct", "web"],
+    "adminBypassNormalPath": false
+  }
+}

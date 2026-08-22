@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceLayout": {
+    "schemaVersion": "v1",
+    "stageBEvidenceRoot": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1",
+    "operationalNamespace": "operational",
+    "primarySnapshotNamespace": "primary",
+    "internalRoutingRoot": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b",
+    "committedFeatureEvidenceRoot": "specs/030-stage-b-rollout/evidence/v1"
+  },
+  "gates": [
+    {
+      "gateId": "AC-SBR-001",
+      "applicability": "Applicable",
+      "requiredScope": "Prove that the fresh Stage B preflight validates terminal G3 reviewed head, merge commit and PostMerge evidence; resolves the Level-0 home-baseline self record plus every active kind=git-repository manifest target; excludes collection nodes; and produces exact repository-ID set equality across manifest union, assignments, live inventory and the fixed rollout plan without hard-coding the current 1 + 47 = 48 snapshot.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-001", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-001 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly"],
+      "rationale": "The dynamic authoritative fleet and completed G3 boundary are the fail-closed basis before any Stage B mutation.",
+      "reevaluationTrigger": "G3 evidence, fleet manifest, profile assignment, repository identity, collection classification, default branch, provider inventory, or current Level-0 head changes."
+    },
+    {
+      "gateId": "AC-SBR-002",
+      "applicability": "Applicable",
+      "requiredScope": "Execute deterministic positive and negative preflight fixtures proving that missing, unknown, duplicate or visibility-incompatible assignments, unresolved or conflicting remotes, archived or renamed repositories, unexpected default branches, dirty worktrees, divergent branches, stale heads and incomplete provider records block before the first affected mutation with the exact blocker and next safe action.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-002", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-002 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS"],
+      "rationale": "Every accepted negative case must prove zero unauthorized writes, not merely report a validation warning.",
+      "reevaluationTrigger": "Preflight inputs, drift taxonomy, clean-worktree policy, remote normalization, provider freshness rules, or mutation boundary changes."
+    },
+    {
+      "gateId": "AC-SBR-003",
+      "applicability": "Applicable",
+      "requiredScope": "Prove the representative agent-operations-cockpit Public Canary failing and green vertical-slice contract, then prove agent-operations-cockpit, home-baseline and tui-vision are each merged and default-branch synchronized or validly no-op convergent before the Public Products wave can start.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-003", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-003 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHub"],
+      "rationale": "A proven Public Canary vertical slice bounds the blast radius before broad fleet delivery.",
+      "reevaluationTrigger": "Canary identities, Public Canary profile, target lifecycle, required gates, review policy, or provider changes."
+    },
+    {
+      "gateId": "AC-SBR-004",
+      "applicability": "Applicable",
+      "requiredScope": "Prove the four profile waves execute only after the converged Canary wave and strictly in the order Public Products, Private Products, Private Governance/Scaffold and Public Presets; prove every within-wave observed target order exactly equals the lexicographically sorted stable repository-ID list and that the first target failure prevents every later target and wave from starting.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-004", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-004 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHub"],
+      "rationale": "Serialized deterministic waves prevent partial convergence from being reported as success.",
+      "reevaluationTrigger": "Profile set, wave order, repository-ID ordering, serialization policy, or wave-gate semantics change."
+    },
+    {
+      "gateId": "AC-SBR-005",
+      "applicability": "Applicable",
+      "requiredScope": "For every non-empty target diff, prove an isolated deterministic branch, exact blob/mode diff, commit and tree, push, pull request, required local and remote gate identities and commands, regular review bound to the candidate head, selected regular merge method, merge commit, local and remote default-branch synchronization, final read-only provider verification, and causal PreMerge/PostMerge hashes; prove no unrelated path entered or was discarded and any admin bypass left every evidence duty unchanged.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-005", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-005 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHub"],
+      "rationale": "The regular exact-candidate PR lifecycle is the normal auditable delivery path for every non-empty change.",
+      "reevaluationTrigger": "Branch naming, blob-diff contract, gate set, review policy, merge-method capability, sync contract, bypass boundary, or causal-evidence schema changes."
+    },
+    {
+      "gateId": "AC-SBR-006",
+      "applicability": "Applicable",
+      "requiredScope": "For every empty target diff, prove equal planned and current Git trees plus semantic profile, workflow, gate and ruleset convergence; where a ruleset-only action is required prove its audited provider convergence before no-op publication; prove hash- and time-bound no-op evidence, zero empty pull requests, and zero branch or commit creation for empty diffs.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-006", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-006 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHub"],
+      "rationale": "No-op is a positive convergence proof and must never be inferred from an empty byte diff alone.",
+      "reevaluationTrigger": "No-op semantics, workflow or ruleset contract, canonical tree comparison, provider reconciliation, or evidence hash inputs change."
+    },
+    {
+      "gateId": "AC-SBR-007",
+      "applicability": "Applicable",
+      "requiredScope": "For every Private Governance/Scaffold target, prove the workflow is delivered by a non-empty regular PR when required and the default-branch ruleset requires a pull request, one regular approval and exactly home-baseline/ci-minimal-gate with strict checks, no bypass actors and blocked direct, web and API normal writes; prove provider repository/ruleset ID binding, post-write verification, narrow restore behavior and hook-independent server enforcement.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-007", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-007 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHub"],
+      "rationale": "The local hook is not the independent default-branch security boundary; exact live ruleset semantics must be verified.",
+      "reevaluationTrigger": "Minimal-gate path, required status, approval count, GitHub ruleset API, bypass actors, restore policy, or branch-protection model changes."
+    },
+    {
+      "gateId": "AC-SBR-008",
+      "applicability": "Applicable",
+      "requiredScope": "Inject a non-recoverable failure after at least one converged repository and prove the run persists wave, target, last safe boundary, blocker and next action before the next target; prove explicit resume with the same run ID revalidates the full fleet, authority, provider and budget, preserves every merged result, starts at the first non-converged target, reconciles uncertain provider actions and creates zero duplicate pull requests, branches, commits or rulesets.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-008", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-008 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "Linux", "Windows"],
+      "rationale": "Partial fleet convergence is expected operational state and must be safely resumable without duplicate mutations on every supported surface.",
+      "reevaluationTrigger": "Run-state schema, idempotency key, retry/reconciliation taxonomy, explicit-resume policy, or supported platform changes."
+    },
+    {
+      "gateId": "AC-SBR-009",
+      "applicability": "Applicable",
+      "requiredScope": "Run Bash syntax, PowerShell parser and PSScriptAnalyzer, shared contract and platform-parity fixtures, native or hash-bound macOS/Linux/Windows records, approved Invoke-HBAgenticWorkspaceMaintenance Verb-Noun surface, dry-run/WhatIf non-mutation, Unix man page, bilingual PowerShell help, secret scan, command-injection/SSRF/path/redaction security cases, dependency and supply-chain review, A11Y and CEFR-B2 checks, documentation impact validation, project-statistics renderer and all affected maintenance and CI-budget regressions; prove identical normalized decisions, exit codes and evidence fields.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-009", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-009 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "Linux", "Windows"],
+      "rationale": "Stage B changes a critical paired user-facing script and evidence surface; platform, security, accessibility, documentation and regression proof are one completion gate.",
+      "reevaluationTrigger": "Wrapper option, Cmdlet, supported platform, validator inventory, user-facing output, documentation, statistics methodology, dependency, or trust boundary changes."
+    },
+    {
+      "gateId": "AC-SBR-010",
+      "applicability": "Applicable",
+      "requiredScope": "For each of the five converged waves, execute the Decimal-based cost projection against fresh provider data and the exact wave-result hash; prove private Actions minutes remain below 500 of the 3000 monthly budget, missing data never becomes zero, all assumptions are explicit, and Copilot review runner time and every Copilot consumption category remain separate.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-010", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-010 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly"],
+      "rationale": "Fresh per-wave budget projection is a binding gate before any later wave, not an informational final report.",
+      "reevaluationTrigger": "Wave count, workflow triggers, duration source, billing freshness, monthly budget, 500-minute threshold, weeks-per-month factor, or Copilot category model changes."
+    },
+    {
+      "gateId": "AC-SBR-011",
+      "applicability": "Applicable",
+      "requiredScope": "Validate terminal Stage B evidence against a fresh authoritative fleet snapshot, proving every stable repository ID appears exactly once with verified target head, pull-request or no-op identity, gate result, review status, merge commit or justified N/A, synchronized local and remote default branch, final read-only provider hash, repository-result hash, wave hash and budget hash; prove zero secrets, tokens, private local paths, unsanitized provider responses and unnecessary personal data.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-011", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-011 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly"],
+      "rationale": "Only complete, redacted and freshly reconciled fleet evidence can establish terminal Stage B convergence.",
+      "reevaluationTrigger": "Authoritative set, terminal schema, evidence fields, redaction policy, provider state, default-sync contract, or repository result changes."
+    },
+    {
+      "gateId": "AC-SBR-012",
+      "applicability": "Applicable",
+      "requiredScope": "Compare repository and provider mutation allowlists with the accepted pre-run baseline and prove G4, the active intake-series manifest, Copilot configuration, account settings and subscription state have zero changes; prove the terminal handoff contains only Stage B evidence and the exact next action to request a separately authorized intake-series sequencing update, and that no G4 command, series update or Copilot/account/subscription mutation executed.",
+      "requiredCommandTokens": ["python3", "scripts/tests/run_stage_b_rollout_acceptance.py", "--gate", "AC-SBR-012", "--repository-root", ".", "--evidence-root", ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1", "python3 scripts/tests/run_stage_b_rollout_acceptance.py --gate AC-SBR-012 --repository-root . --evidence-root .specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly"],
+      "rationale": "Stage B may prepare a G4 evidence handoff but has no authority to mutate sequencing, start G4, or alter Copilot, account or subscription state.",
+      "reevaluationTrigger": "G4 boundary, intake-series authority, Copilot/account/subscription scope, mutation allowlist, or separately granted sequencing authority changes."
+    }
+  ]
+}

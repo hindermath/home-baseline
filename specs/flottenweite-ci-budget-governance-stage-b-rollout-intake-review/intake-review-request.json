@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "14f4162c-0eae-40ac-9762-9992ea05c641",
+  "mode": "Single",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

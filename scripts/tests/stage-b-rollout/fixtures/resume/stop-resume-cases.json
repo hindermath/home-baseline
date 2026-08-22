@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "convergedRepositoryIds": ["agent-operations-cockpit"],
+  "firstNonConvergedRepositoryId": "home-baseline",
+  "injectedFailures": [
+    {"caseId": "fleet-drift", "category": "Drift", "nextTargetStarts": 0},
+    {"caseId": "authority-drift", "category": "Gate", "nextTargetStarts": 0},
+    {"caseId": "provider-rejection", "category": "Provider", "nextTargetStarts": 0},
+    {"caseId": "budget-blocked", "category": "Budget", "nextTargetStarts": 0},
+    {"caseId": "merge-commit-drift", "category": "Merge", "nextTargetStarts": 0}
+  ],
+  "expectedDuplicateWritesAfterResume": 0
+}

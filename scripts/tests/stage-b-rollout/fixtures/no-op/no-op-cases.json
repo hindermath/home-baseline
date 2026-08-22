@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0",
+  "cases": [
+    {"caseId": "fully-converged", "treeEqual": true, "profileEqual": true, "workflowEqual": true, "gateEqual": true, "rulesetEqual": true, "providerFresh": true, "expected": "NoOpConverged"},
+    {"caseId": "semantic-drift", "treeEqual": true, "profileEqual": false, "workflowEqual": true, "gateEqual": true, "rulesetEqual": true, "providerFresh": true, "expected": "Blocked"},
+    {"caseId": "workflow-drift", "treeEqual": true, "profileEqual": true, "workflowEqual": false, "gateEqual": true, "rulesetEqual": true, "providerFresh": true, "expected": "Blocked"},
+    {"caseId": "ruleset-only", "treeEqual": true, "profileEqual": true, "workflowEqual": true, "gateEqual": true, "rulesetEqual": false, "providerFresh": true, "expected": "RulesetTransaction"},
+    {"caseId": "stale-provider", "treeEqual": true, "profileEqual": true, "workflowEqual": true, "gateEqual": true, "rulesetEqual": true, "providerFresh": false, "expected": "Blocked"}
+  ]
+}
