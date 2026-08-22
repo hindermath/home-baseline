@@ -173,6 +173,7 @@ class EvidenceLedgerTests(unittest.TestCase):
             def deny_directory_descriptor(subject, flags):
                 if pathlib.Path(subject) == target.parent:
                     raise PermissionError("Windows directory descriptors are unavailable")
+                self.assertTrue(flags & engine.os.O_RDWR)
                 return real_open(subject, flags)
 
             with mock.patch.object(engine.os, "open", side_effect=deny_directory_descriptor):
@@ -932,7 +933,10 @@ class PlatformParityTests(unittest.TestCase):
         ]
         results = [self.run_wrapper(command) for command in commands]
         for result in results:
-            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(
+                result.returncode, 0,
+                f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}",
+            )
             labels = [line.split(":", 1)[0] for line in result.stdout.splitlines()]
             self.assertEqual(labels, self.expected_labels)
         self.assertEqual(results[0].stdout, results[1].stdout)
@@ -942,7 +946,10 @@ class PlatformParityTests(unittest.TestCase):
             "bash", "scripts/maintain-agentic-workspace.sh",
             "--stage-b-action", "preflight", "--dry-run",
         ])
-        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(
+            result.returncode, 0,
+            f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}",
+        )
 
     def test_whitespace_unicode_and_metacharacter_ids_fail_closed(self):
         engine = load_engine()
@@ -962,6 +969,7 @@ class PlatformParityTests(unittest.TestCase):
         self.assertNotIn("Invoke-Expression", powershell)
         self.assertIn("& $stageBPythonCommand $stageBFleetEngine @stageBArguments", powershell)
         self.assertIn("MINGW*|MSYS*|CYGWIN*) candidates=(python python3)", bash)
+        self.assertIn("printf '%s\\n' \"$candidate\"", bash)
         self.assertIn("if ($IsWindows) { @('python', 'python3') }", powershell)
 
 

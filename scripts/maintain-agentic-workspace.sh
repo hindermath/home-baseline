@@ -129,7 +129,10 @@ resolve_stage_b_python() {
   esac
   for candidate in "${candidates[@]}"; do
     if command -v "$candidate" >/dev/null 2>&1; then
-      command -v "$candidate"
+      # Keep the command name so Git Bash applies its native-executable path
+      # conversion to Stage-B arguments on Windows. Returning command -v's
+      # /c/... path causes the hosted Windows Python launch to fail silently.
+      printf '%s\n' "$candidate"
       return 0
     fi
   done

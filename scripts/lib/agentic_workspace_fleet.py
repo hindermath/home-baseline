@@ -439,8 +439,10 @@ def _sync_stage_b_evidence_metadata(
         # Windows rejects POSIX-style directory descriptors. Reopen and flush
         # the published file after os.replace so the atomic replacement and
         # restrictive final mode remain intact without relying on that handle.
+        # os.fsync() on Windows rejects a read-only descriptor with EBADF, so
+        # request write access without writing any additional bytes.
         sync_path = path
-        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
+        flags = os.O_RDWR | getattr(os, "O_BINARY", 0)
     else:
         # POSIX filesystems need the parent directory flush to make the rename
         # durable independently from the already flushed temporary file.

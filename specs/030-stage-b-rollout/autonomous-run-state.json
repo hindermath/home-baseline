@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "0d5144c9aa12fc069dd2dfbff6e6d247da0d30fc",
+  "checkpointCommit": "6157f31cf7495714c37d9519a574198bf371ce17",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -354,12 +354,12 @@
       }
     ]
   },
-  "lastPassingGate": "T124 local preparation completed: focused EvidenceLedger/PlatformParity tests, PowerShell parser/PSScriptAnalyzer, Secret Scan, agent/documentation validators, and regenerated Statistics Profile 2 pass; T124 remains open for native Windows regression proof.",
-  "nextExactAction": "Validate, commit, and push the exact T124 candidate to origin/030-stage-b-rollout, then inspect the native Windows Maintenance TUI regression proof before marking T124.",
+  "lastPassingGate": "The four bounded Windows failures from Maintenance TUI run 32576605400 are repaired locally; 54 Stage-B, 39 CI-budget, 30 workspace-maintenance, and 22 maintenance-contract tests plus Bash syntax, PowerShell parser/PSScriptAnalyzer, Secret Scan, Documentation Impact, and Statistics Profile 2 pass. Native Windows revalidation remains required.",
+  "nextExactAction": "Validate, commit, and push the second exact T124 candidate without force, then inspect the commit-bound windows-2022 Maintenance TUI regression before marking T124.",
   "lastOperation": {
-    "kind": "AuthorityRevalidation:T124WindowsCheckpoint",
+    "kind": "AuthorityRevalidation:T124WindowsCheckpoint2",
     "state": "Completed",
-    "summary": "User authorized one non-force checkpoint commit and push to origin/030-stage-b-rollout for the native Windows T124 regression proof; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
+    "summary": "User authorized a second non-force checkpoint commit and push to origin/030-stage-b-rollout for native T124 Windows revalidation; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
   },
   "stop": {
     "reason": "N/A",
@@ -372,5 +372,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-22T13:42:13Z"
+  "updatedAt": "2026-08-22T13:56:13Z"
 }
