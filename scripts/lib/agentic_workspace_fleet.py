@@ -455,14 +455,33 @@ def _restrict_stage_b_evidence_permissions(
         raise ContractError(f"Windows evidence identity resolution failed: {detail}")
     sid = sid_match.group(0)
     # chmod(0600) maps back to 0666 on Windows and therefore cannot prove an
-    # owner-only boundary. Protect the DACL and grant only the current SID
-    # Modify rights, which retain atomic replacement while removing inheritance.
+    # owner-only boundary. Rebuild the access-rule set because disabling
+    # inheritance alone can retain explicit SYSTEM, Administrators, or
+    # OWNER-RIGHTS entries inherited when the temporary file was created.
+    acl_script = (
+        "$ErrorActionPreference='Stop';Set-StrictMode -Version Latest;"
+        "$evidencePath=[Environment]::GetEnvironmentVariable('STAGE_B_EVIDENCE_PATH');"
+        "$sidValue=[Environment]::GetEnvironmentVariable('STAGE_B_EVIDENCE_SID');"
+        "$principal=[Security.Principal.SecurityIdentifier]::new($sidValue);"
+        "$acl=Get-Acl -LiteralPath $evidencePath;"
+        "$acl.SetAccessRuleProtection($true,$false);"
+        "foreach($rule in @($acl.Access)){[void]$acl.RemoveAccessRuleSpecific($rule)};"
+        "$ownerRule=[Security.AccessControl.FileSystemAccessRule]::new("
+        "$principal,[Security.AccessControl.FileSystemRights]::Modify,"
+        "[Security.AccessControl.AccessControlType]::Allow);"
+        "[void]$acl.AddAccessRule($ownerRule);"
+        "Set-Acl -LiteralPath $evidencePath -AclObject $acl"
+    )
+    acl_environment = os.environ.copy()
+    acl_environment["STAGE_B_EVIDENCE_PATH"] = str(path)
+    acl_environment["STAGE_B_EVIDENCE_SID"] = sid
     acl = runner(
-        ["icacls.exe", str(path), "/inheritancelevel:r", "/grant:r", f"*{sid}:M"],
+        ["pwsh.exe", "-NoProfile", "-NonInteractive", "-Command", acl_script],
         text=True,
         capture_output=True,
         check=False,
         timeout=10,
+        env=acl_environment,
     )
     if acl.returncode != 0:
         detail = _redact_stage_b_text(acl.stderr or acl.stdout or "ACL update failed")

@@ -48,9 +48,9 @@ state. Every applicable row must be `Passed` before T126.
 
 ## Implementierungsstatus / Implementation Status
 
-- **Current checkpoint / Aktueller Checkpoint**: T113–T123 sind abgeschlossen. T124 ist lokal vollständig grün, bleibt aber nach den diagnostischen Checkpoints `6157f31`/Run `32576605400`, `db3af89`/Run `32577264130` und `cd67b58`/Run `32578308644` bis zu einem aktuellen grünen nativen Windows-Vollregressionslauf offen. T125 und alle Delivery-/Closeout-Gates bleiben sichtbar ausstehend; der ExternalWriteGate ist geschlossen.
+- **Current checkpoint / Aktueller Checkpoint**: T113–T123 sind abgeschlossen. T124 bleibt nach den diagnostischen Checkpoints `6157f31`/Run `32576605400`, `db3af89`/Run `32577264130`, `cd67b58`/Run `32578308644` und `cf6daa2`/Run `32582382241` bis zu einem aktuellen grünen nativen Windows-Vollregressionslauf offen. T125 und alle Delivery-/Closeout-Gates bleiben sichtbar ausstehend; der ExternalWriteGate ist geschlossen.
 - **Runtime implementation / Runtime-Implementierung**: `In progress`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind lokal implementiert.
-- **Remote delivery / Remote-Lieferung**: `Pending`; der T112-Nachweis sowie drei ausdrücklich autorisierte, nicht mergefähige T124-Diagnosecheckpoints wurden auf den Feature-Branch gepusht. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
+- **Remote delivery / Remote-Lieferung**: `Pending`; der T112-Nachweis sowie vier ausdrücklich autorisierte, nicht mergefähige T124-Diagnosecheckpoints wurden auf den Feature-Branch gepusht. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
 - **Home sync / Home-Sync**: `Pending`; nur nach tatsächlicher `homeRuntime`-Änderung, Preview, Merge und Authority-Revalidierung.
 - **Terminal closeout / Terminaler Abschluss**: `Pending`; `Completed` erst nach 194/194 und allen zwölf Primary-Gates.
 
@@ -309,10 +309,20 @@ state. Every applicable row must be `Passed` before T126.
   PowerShell `$args[0]`, obwohl `pwsh -Command` ihn in dieser Aufrufform nicht
   bereitstellte. Dokumentation, PowerShell-Analyse, Homogenität sowie die
   vollständigen macOS-14- und Ubuntu-22.04-Jobs desselben Commits waren grün.
+- **Fourth native diagnostic / Vierter nativer Diagnosenachweis**: Commit
+  `cf6daa2`, Run `32582382241`, Job `97053599384` bestand erneut Build, TUI,
+  Windows-Wrapper und 224 von 225 Tests. Die nun ausführbare ACL-Assertion
+  belegte, dass `/inheritancelevel:r` zwar Vererbung entfernt, aber explizite
+  Regeln für `OWNER RIGHTS` (`S-1-3-4`), `Administrators` (`S-1-5-32-544`) und
+  `SYSTEM` (`S-1-5-18`) beibehielt. Dokumentation, PowerShell-Analyse,
+  Homogenität, macOS 14 und Ubuntu 22.04 waren am selben Head vollständig grün.
 - **Fail-closed repair / Geschlossene Reparatur**: Die vollständige temporäre
-  Evidence erhält vor `os.replace` eine vererbungsfreie DACL mit Modify nur für
-  die validierte aktuelle Windows-SID. Identitäts- oder ACL-Fehler brechen vor
-  Veröffentlichung ab und erhalten die letzte gültige Evidence. Native
+  Evidence erhält vor `os.replace` eine neu aufgebaute vererbungsfreie DACL:
+  alle vorhandenen Access Rules werden aus dem ACL-Objekt entfernt und genau
+  eine `Modify`-/`Allow`-Regel für die validierte aktuelle Windows-SID ergänzt.
+  Pfad und SID werden ausschließlich über Prozess-Umgebungsvariablen an
+  PowerShell übergeben. Identitäts- oder ACL-Fehler brechen vor Veröffentlichung
+  ab und erhalten die letzte gültige Evidence. Native
   Adaptertests lösen Git-for-Windows-Bash über den Git-Installationspfad auf
   und können nicht mehr versehentlich den WSL-Launcher akzeptieren.
 - **Local evidence / Lokaler Nachweis**: 56 Stage-B-, 39 CI-Budget-, 30
@@ -321,8 +331,11 @@ state. Every applicable row must be `Passed` before T126.
   belegen DACL-Befehlsbindung und Erhalt der vorherigen Evidence bei ACL-Fehler.
   Nach Run `32578308644` übergibt der native ACL-Test den Pfad explizit über
   `STAGE_B_EVIDENCE_PATH`; 56 Stage-B- und alle 225 lokalen Regressionen
-  bestehen erneut.
+  bestehen erneut. Nach Run `32582382241` besteht auch der exakte DACL-Neuaufbau
+  mit geschützter Vererbung, vollständiger Entfernung vorhandener Access Rules
+  und genau einer aktuellen SID-Regel dieselben 56 Stage-B- und 225 lokalen
+  Regressionen.
 - **Open gate / Offenes Gate**: T124 bleibt ungeprüft, bis ein neuer exakt an
   den Kandidaten gebundener `windows-2022`-Vollregressionslauf Exitcode `0`
-  liefert. Die dritte Push-Autorität ist verbraucht; dieser lokale Stand
+  liefert. Die vierte Push-Autorität ist verbraucht; dieser lokale Stand
   verleiht keine weitere Commit-/Push-Autorität und T125 darf nicht starten.

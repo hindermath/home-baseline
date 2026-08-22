@@ -204,12 +204,17 @@ class EvidenceLedgerTests(unittest.TestCase):
                 target, platform_name="nt", runner=runner
             )
             self.assertEqual(sid, "S-1-5-21-42")
+            acl_call = runner.call_args_list[1]
             self.assertEqual(
-                runner.call_args_list[1].args[0],
-                [
-                    "icacls.exe", str(target), "/inheritancelevel:r", "/grant:r",
-                    "*S-1-5-21-42:M",
-                ],
+                acl_call.args[0][:4],
+                ["pwsh.exe", "-NoProfile", "-NonInteractive", "-Command"],
+            )
+            self.assertIn("SetAccessRuleProtection($true,$false)", acl_call.args[0][4])
+            self.assertIn("RemoveAccessRuleSpecific", acl_call.args[0][4])
+            self.assertIn("AddAccessRule", acl_call.args[0][4])
+            self.assertEqual(acl_call.kwargs["env"]["STAGE_B_EVIDENCE_PATH"], str(target))
+            self.assertEqual(
+                acl_call.kwargs["env"]["STAGE_B_EVIDENCE_SID"], "S-1-5-21-42"
             )
 
     def test_dacl_failure_preserves_previous_evidence(self):

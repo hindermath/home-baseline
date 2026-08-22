@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "cd67b58f87ac21bd0b1529a40a47555d55a16f46",
+  "checkpointCommit": "cf6daa2dd2d8ff3c8248e4f43ae9be417b9a7820",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -354,12 +354,12 @@
       }
     ]
   },
-  "lastPassingGate": "Checkpoint cd67b58 passed Documentation and Learning Package, PowerShell Static Analysis, Homogeneity Check, and the full Ubuntu 22.04 and macOS 14 Maintenance TUI jobs. Windows run 32578308644/job 97043808631 passed build, TUI, and wrapper stages but its 225-test full regression exposed one test-harness path-transfer failure; the environment-bound repair now passes 56 Stage-B and all 225 local macOS regressions. T124 remains open pending a green current Windows run.",
-  "nextExactAction": "Validate, commit, and push the fourth exact T124 candidate without force, then inspect the commit-bound windows-2022 full regression before marking T124 or starting T125.",
+  "lastPassingGate": "Checkpoint cf6daa2 passed Documentation and Learning Package, PowerShell Static Analysis, Homogeneity Check, and the full Ubuntu 22.04 and macOS 14 Maintenance TUI jobs. Windows run 32582382241/job 97053599384 passed build, TUI, and wrapper stages and all but one of 225 tests; the remaining assertion proved that disabling inheritance retained explicit OWNER RIGHTS, Administrators, and SYSTEM access rules. The local fail-closed candidate rebuilds the DACL with exactly one current-SID Modify/Allow rule before atomic replace and passes 56 Stage-B plus all 225 local macOS regressions. T124 remains open pending current native Windows revalidation.",
+  "nextExactAction": "Validate, commit, and push the fifth exact T124 candidate without force, then inspect the commit-bound windows-2022 full regression before marking T124 or starting T125.",
   "lastOperation": {
-    "kind": "AuthorityRevalidation:T124WindowsCheckpoint4",
+    "kind": "AuthorityRevalidation:T124WindowsCheckpoint5",
     "state": "Completed",
-    "summary": "User authorized a fourth non-force checkpoint commit and push to origin/030-stage-b-rollout for the environment-bound native Windows ACL assertion repair; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
+    "summary": "User authorized a fifth non-force checkpoint commit and push to origin/030-stage-b-rollout for the locally green exact-DACL rebuild; the statistics companion is included, while PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
   },
   "stop": {
     "reason": "N/A",
@@ -372,5 +372,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-22T15:34:53Z"
+  "updatedAt": "2026-08-22T17:19:11Z"
 }
