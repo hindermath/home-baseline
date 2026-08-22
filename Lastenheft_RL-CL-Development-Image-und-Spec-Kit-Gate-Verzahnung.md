@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Handoff / Workitem
 **Status:** Discussion / Ready for Intake Review
-**Stand:** 2026-08-22
+**Stand:** 2026-08-23
 **Issue:** [#249](https://github.com/hindermath/home-baseline/issues/249)
 **Position:** keine zugewiesen; kein automatischer Serieneintrag
 **Naechster erlaubter Schritt:** Intake Review
@@ -22,9 +22,15 @@ durchgaengig bewertet, technisch gespiegelt und zusammen mit den
 Spec-Kit-Laeufen eines Projekts dokumentiert wird. Der vorgesehene Vertrag
 ersetzt die bisherige Konzentration auf eine spaete Abschlusspruefung durch:
 
-1. eine Baseline vor beziehungsweise in Stufe 0;
-2. risikobasierte Deltas in den Stufen 1 bis 4;
-3. eine vollstaendige Abschlusspruefung in Stufe 5.
+1. ein Baseline-Gate vor der ersten geregelten Arbeit und nach relevanter
+   RL-/CL- oder Image-Aenderung;
+2. ein Delta-Gate bei materiellen Aenderungen oder festgelegten
+   Qualitaets-/Lebenszyklus-Checkpoints;
+3. ein Abschluss-Gate vor Merge, Release oder Uebergabe;
+4. ein Image-Impact-Gate bei relevanter Baseline-Aenderung.
+
+Produktstufen duerfen diese Gates lokal abbilden. Die Stufennummern werden
+nicht Bestandteil des generischen Vertrags.
 
 Das Workitem startet keine Umsetzung und trifft noch keine
 Flottenentscheidung.
@@ -45,7 +51,48 @@ Folgende vorhandene Intakes und Evidence bleiben eigenstaendige Quellen:
 
 Die abgeschlossenen Ergebnisse aus Position 5 und 6 werden nicht umgedeutet.
 Dieses Workitem soll nur klaeren, wie ihre Mapping- und
-Selbstpruefungsgrundlagen in den kuenftigen Stufenvertrag eingehen.
+Selbstpruefungsgrundlagen in den kuenftigen Gate-Vertrag eingehen.
+
+### 2.1 Belegter HOSK-Feldpilot
+
+Der HOSK-Feldpilot ist Consumer-Evidence und keine normative Level-0-Quelle.
+Seit Erstellung des ersten Drafts wurden folgende Staende menschlich reviewt,
+gemergt und synchronisiert:
+
+- RL-SE-001 v2.13.0 und Sammelband v1.15.0: [MR !6](https://gitlab-ce.gwdg.de/ausbildung/thorsten/RL_Sichere-Entwicklung/-/merge_requests/6),
+  Merge-Commit `ee33f27c1175a3c86502421b1456bee7f666dd01`;
+- RL-/CL-Governance-Overlay v0.2.0: [MR !1](https://gitlab-ce.gwdg.de/ausbildung/thorsten/spec-kit-preset-gwdg-rl-cl-governance/-/merge_requests/1),
+  Merge-Commit `5c169249bc96ef3919675ad6a13ae48664cfa9c2`;
+- Development-Image-Integration [MR !57](https://gitlab-ce.gwdg.de/agentic-coding/ade-dev-sandbox/-/merge_requests/57)
+  und nachgelagerte Merge-Evidence [MR !58](https://gitlab-ce.gwdg.de/agentic-coding/ade-dev-sandbox/-/merge_requests/58):
+  `efe962366151c8e95d48c93c6f64877c90f9330e` und
+  `96bca383cf9f93eb35d1bffe51e91208d7f7af5d`;
+- HOSK-Integration [MR !3](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/merge_requests/3)
+  und nachgelagerte Merge-Evidence [MR !4](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/merge_requests/4):
+  `0a0a9de8d0a2f07d15c399d2e529aff17e6dd5ad` und
+  `8350dba400c94f93a6fe19ea885c106a972083aa`.
+
+Das technisch validierte Image
+`localhost/ade-dev-sandbox-ade:rl-cl-2.13.0` ist auf Digest
+`sha256:676ef75a1122b639d8e38d755ab96ed5ec92b2e0004b4e836f71a49bbca61580`
+gepinnt. Der Nachweis umfasst 13 Presets, fuenf RL-/CL-Kommandos, elf
+Runbook-Validator-Tests, SBOM und Laufzeithaertung. Die HOSK-Matrix enthaelt
+163 eindeutige Pruefpunkte. `CL_01-13` und `CL_10-18` sind fuer diese
+Integration erfuellt; `CL_12-13` bleibt bis zum ersten echten Delta-Lauf
+`not fulfilled`.
+
+Fuer den gesamten HOSK-Proof-of-Concept sind Produktstufen 0 bis 5 und ein
+Gesamtsystemtest vor dem voraussichtlich im November 2026 stattfindenden
+Audit als Pilotumfang bestaetigt. Eine nicht vertrauliche QMS-/DMS-Referenz,
+Auflagen und Re-Review-Trigger muessen in der Consumer-Evidence stehen. Diese
+umfangsbegrenzte Nutzung ist keine allgemeine Sandbox-, Produktiv- oder
+Flottenfreigabe.
+
+Produktstufe 1 ist vorbereitet, aber noch nicht ausgefuehrt. Erwartet werden
+`docs/security/rl-cl/deltas/yaml-export-format.json` und
+`docs/runbooks/rl-cl/delta-yaml-export-format.md`. Ein lokales
+Ausfuehrungsrunbook bleibt eine ungetrackte Arbeitshilfe und ist keine
+Auditnachweis.
 
 ## 3. Zielbild
 
@@ -64,17 +111,23 @@ anwendbare RL-/CL-Anforderung eindeutig erkennbar sein:
 Eine zentrale Evidenzmatrix soll diese Informationen verbinden. Sie ist ein
 Nachweisindex und keine zweite normative Quelle.
 
-## 4. Vorgeschlagener Stufenvertrag
+## 4. Vorgeschlagener ereignisbezogener Gate-Vertrag
 
-| Zeitpunkt | Mindestpruefung | Erwartete Evidence | Gate-Wirkung |
+| Ereignis | Mindestpruefung | Erwartete Evidence | Gate-Wirkung |
 |---|---|---|---|
-| Vor beziehungsweise in Stufe 0 | Baseline-Versionen, Anwendbarkeit, Ausgangsrisiko, Preset-Profil und Development-Image-Bezug | Baseline-Manifest, erste Matrix, begruendete `N/A`-/`Open`-Entscheidungen, Image-Referenz | Facharbeit startet nur mit nachvollziehbarer Ausgangslage |
-| Stufen 1 bis 4 | Delta gegen Baseline und letzte akzeptierte Entscheidung | geaenderte Matrixzeilen, Spec-Kit-Artefakte, Tests, Reviews, Ausnahmen und Image-Auswirkungsdelta | Nur betroffene Pruefpunkte werden erneut bewertet; Trigger und Begruendung bleiben sichtbar |
-| Stufe 5 | vollstaendige Abschluss- und Konsistenzpruefung | geschlossene Matrix, Review-Evidence, Restrisiken, Ausnahmen, Image- und Liefernachweise | Kein positiver Abschluss bei fehlender Pflicht-Evidence |
+| Vor erster geregelter Arbeit oder nach relevanter RL-/CL-Aenderung | Baseline-Versionen, Anwendbarkeit, Ausgangsrisiko, Preset-Profil und Development-Image-Bezug | Baseline-Manifest, erste Matrix, begruendete `N/A`-/`Open`-Entscheidungen, Image-Referenz | Facharbeit startet nur mit nachvollziehbarer Ausgangslage |
+| Materielle Aenderung oder definierter Checkpoint | Delta gegen Baseline und letzte akzeptierte Entscheidung | geaenderte Matrixzeilen, Spec-Kit-Artefakte, Tests, Reviews, Ausnahmen und gegebenenfalls Image-Auswirkungsdelta | Nur betroffene Pruefpunkte werden erneut bewertet; Trigger und Begruendung bleiben sichtbar |
+| Vor Merge, Release oder Uebergabe | vollstaendige Abschluss- und Konsistenzpruefung | gueltige Baseline und Deltas, Matrix, Review-Evidence, Restrisiken, Ausnahmen, Image- und Liefernachweise | Kein positiver Abschluss bei fehlender Pflicht-Evidence |
+| Relevante Baseline- oder Image-Aenderung | technische Auswirkung auf Image, Presets, Werkzeuge und Betriebsgrenzen | Impact-Entscheidung, Build-/Testnachweis, Digest, SBOM und Laufzeithaertung | Betroffene Consumer starten erst mit kontrolliertem Image-Bezug |
 
 Ein Delta darf nicht allein aus einem geaenderten Dateinamen abgeleitet
 werden. Es braucht einen fachlichen Trigger, betroffene Pruefpunkt-IDs und
 einen nachvollziehbaren Bezug zur letzten akzeptierten Entscheidung.
+
+HOSK bildet Stufe 0 lokal auf die Baseline, Stufen 1 bis 4 auf definierte
+Delta-Checkpoints und Stufe 5 auf den Abschluss der Schulungsserie ab. Ein
+frueherer Merge-, Release- oder Uebergabeanlass kann das Abschluss-Gate bereits
+vor Stufe 5 ausloesen.
 
 ## 5. Verantwortungsgrenzen
 
@@ -82,15 +135,15 @@ einen nachvollziehbaren Bezug zur letzten akzeptierten Entscheidung.
 
 Das Level-0-Repository verwaltet die versionierte Secure-Development-Basis,
 stabile Pruefpunkt-IDs, Regeln fuer Anwendbarkeit und Evidence sowie den
-generischen Stufenvertrag. Es verwaltet keine projektspezifischen
+generischen Gate-Vertrag. Es verwaltet keine projektspezifischen
 Erfuellungsbehauptungen als normative Wahrheit.
 
 ### 5.2 Agentic Workspace governance overlay
 
-Der Agentic Workspace governance overlay stellt Vorlagen und Pruefkommandos
-fuer Baseline, Delta, Abschluss und Image-Auswirkung bereit. Installation oder
-Aufloesung eines Presets beweist noch keine Anwendbarkeit, Erfuellung,
-Freigabe oder Ausnahmegenehmigung.
+Der Agentic Workspace governance overlay stellt Vorlagen, Validatoren und
+Pruefkommandos fuer Baseline, Delta, Abschluss, Image-Auswirkung und
+Gate-Runbooks bereit. Installation oder Aufloesung eines Presets beweist noch
+keine Anwendbarkeit, Erfuellung, Freigabe oder Ausnahmegenehmigung.
 
 ### 5.3 Development Image
 
@@ -112,6 +165,20 @@ Vier-Augen-Review, Freigabe, Risikoakzeptanz und Ausnahmegenehmigung bleiben
 menschengebundene Entscheidungen. Spec-Kit- oder Agentenartefakte duerfen sie
 nicht als automatisch erteilt darstellen.
 
+### 5.6 Getrennte Autorisierungsebenen
+
+Mindestens vier Entscheidungen werden getrennt dokumentiert:
+
+1. technische Image-Validierung mit Digest und technischen Nachweisen;
+2. umfangsbegrenzte Nutzungsfreigabe fuer einen Consumer oder Pilot mit
+   QMS-/DMS-Referenz, Auflagen und Re-Review-Trigger;
+3. projektbezogene Gate-, Review- und Abnahmeentscheidungen;
+4. allgemeine Sandbox-, Produktiv- oder Flottenfreigabe.
+
+Eine niedrigere Ebene erteilt keine hoehere Autorisierung. Insbesondere ist
+ein technisch validiertes Image noch nicht allgemein freigegeben, und eine
+Pilotfreigabe autorisiert keinen Flotten-Roll-out.
+
 ## 6. Development-Image-Auswirkungspruefung
 
 Das Intake Review soll entscheiden, ob jede inhaltliche RL-/CL-
@@ -132,6 +199,14 @@ freigaberelevanten Trigger.
 
 ## 7. Spec-Kit- und Evidenzvertrag
 
+Auditnachweise liegen standardmaessig unter `docs/security/rl-cl/`:
+
+- `baseline.json`;
+- `evidence-matrix.md`;
+- `deltas/<change-id>.json`;
+- `closure.json`;
+- `development-image-impact.json`.
+
 Die vorgeschlagene zentrale Matrix enthaelt mindestens:
 
 - stabile RL-/CL-Pruefpunkt-ID und Baseline-Version;
@@ -148,6 +223,25 @@ Spec-Kit-Artefakte koennen eine getrennte manuelle Checklistenpflege nur dann
 ersetzen, wenn jede anwendbare Matrixzeile eindeutig und belastbar abgedeckt
 ist. Nicht abgedeckte, nicht anwendbare und bewusst abweichende Punkte bleiben
 ausdruecklich dokumentiert.
+
+Ist eine gemergte Baseline unveraendert und stimmen Quellstand, Presets und
+Image-Digest exakt, wird sie vor einem Feature fail-closed und read-only
+geprueft. Sie wird nicht fuer jedes Feature neu erzeugt. Drift oder eine
+relevante Aenderung startet einen getrennten, reviewten Baseline- und
+gegebenenfalls Image-Impact-Lauf.
+
+Gate-Runbooks sind getrennte, bilinguale Arbeitshilfen unter
+`docs/runbooks/rl-cl/<gate>-<context-id>.md`. Ein festes `runbook.md` ist nicht
+zulaessig. Fuer Ausbildungsprofile und gemischte Teams sind Runbooks
+verpflichtend; reine Entwicklungsteams duerfen sie bei begruendeter
+Projektregel optional verwenden. Jedes Runbook nennt Rollen, Status,
+Stopbedingungen und genau eine naechste Aktion.
+
+Ein faelliges Runbook wird explizit vor dem Gate erzeugt oder aktualisiert und
+auf Status `Current` validiert. Das Delta oder der Abschluss verweist danach
+auf das Runbook, zaehlt es aber nicht als Auditnachweis. Lokale
+Ausfuehrungsrunbooks koennen ungetrackt bleiben; kontrollierte Gate-Runbooks
+und Auditnachweise werden bewusst getrennt gestaged.
 
 ## 8. Ausloeser fuer Neusynchronisierung
 
@@ -198,6 +292,13 @@ Ein flottenweiter Roll-out ist ausdruecklich nur Gegenstand der Diskussion:
 - Wie wird verhindert, dass unveraenderte Ziele Leer-PRs erhalten?
 - Welche Pilot-Evidence und welche Entscheidung sind vor einem spaeteren
   Roll-out zwingend?
+- Reicht ein HOSK-Pilot, oder welche weiteren Plattform-, Risiko- und
+  Projektprofile muessen vor einer Flottenentscheidung vertreten sein?
+- Muessen die HOSK-Deltas aus Stufe 1 bis 4, der Abschluss aus Stufe 5 und der
+  Gesamt-Systemtest vor dem voraussichtlichen Audit im November 2026
+  vollstaendig reviewt sein, bevor eine Roll-out-Entscheidung vorbereitet wird?
+- Wie werden technische Validierung, umfangsbegrenzte Pilotfreigabe und
+  allgemeine Flottenfreigabe in einer Flottenmatrix getrennt?
 
 Diese Fragen begruenden keine Zielmenge und keine Ausfuehrungsautoritaet.
 
@@ -220,27 +321,37 @@ Dieses Workitem autorisiert nicht:
 
 Das Intake Review dokumentiert mindestens:
 
-1. Owner und kanonische Quelle des Stufenvertrags;
-2. verbindliche oder beratende Wirkung je Stufe;
+1. Owner und kanonische Quelle des Gate-Vertrags;
+2. verbindliche oder beratende Wirkung je Gate und lokaler Stufenabbildung;
 3. Trigger und Mindestnachweise der Image-Auswirkungspruefung;
 4. Speicherort, Schema und Lebenszyklus der zentralen Matrix;
 5. Verhaeltnis zu Position 7, Position 8 und der geplanten
    Baseline-Synchronisierung;
 6. Grenzen der Erleichterung durch Spec-Kit-Evidence;
 7. Umgang mit Versionsdrift und Uebergangsfristen;
-8. Entscheidung, ob und wie eine spaetere Pilotdiskussion fortgesetzt wird.
+8. Entscheidung, ob und wie eine spaetere Pilotdiskussion fortgesetzt wird;
+9. Trennung technischer Validierung, umfangsbegrenzter Nutzung und allgemeiner
+   Freigabe;
+10. Mindestnachweise des HOSK-Gesamtlaufs vor Audit- und Roll-out-Diskussion.
 
 ## 13. Akzeptanzkriterien fuer diesen Handoff
 
 - Das Issue nennt `@hindermath` und fordert die offenen Entscheidungen an.
-- Baseline in Stufe 0, Deltas in Stufen 1 bis 4 und Abschluss in Stufe 5 sind
-  eindeutig getrennt.
+- Baseline, Delta, Abschluss und Image-Impact sind ereignisbezogen getrennt;
+  die HOSK-Stufen 0 bis 5 sind nur eine lokale Abbildung.
 - Level 0, Agentic Workspace governance overlay, Development Image und
   Level-2-Consumer-Repositories besitzen klare Verantwortungsgrenzen.
 - Der Development-Image-Impact besitzt pruefbare Mindestfelder und
   fail-closed Statusregeln.
 - Eine zentrale Matrix verbindet RL-/CL-Pruefpunkte mit Spec-Kit-, Review-,
   Test-, Ausnahme- und Image-Evidence, ohne eine zweite Normquelle zu werden.
+- Auditnachweise und dynamisch benannte Gate-Runbooks sind getrennt; Runbooks
+  werden explizit erzeugt, auf `Current` geprueft und nicht als Evidence
+  gezaehlt.
+- Technische Image-Validierung, umfangsbegrenzte Pilotnutzung,
+  projektbezogene Gates und allgemeine Freigabe werden nicht gleichgesetzt.
+- Der HOSK-Pilot nennt Stufen 0 bis 5, Gesamtsystemtest, den erwarteten
+  Auditzeitraum und die noch offenen Delta-/Abschlussnachweise.
 - Position 7 und 8 sowie die abgeschlossenen und geplanten Vorganger sind
   referenziert, ohne ihre Evidence umzudeuten.
 - Der flottenweite Roll-out bleibt eine Liste von Diskussionsfragen.
@@ -264,7 +375,7 @@ Das Intake Review dokumentiert mindestens:
 
 **Document type:** Handoff / work item
 **Status:** Discussion / Ready for Intake Review
-**As of:** 2026-08-22
+**As of:** 2026-08-23
 **Issue:** [#249](https://github.com/hindermath/home-baseline/issues/249)
 **Position:** none assigned; no automatic series entry
 **Next permitted step:** Intake Review
@@ -282,9 +393,15 @@ It is intended to clarify how a material RL/CL version change is assessed,
 reflected technically, and documented with a project's Spec Kit runs. The
 proposed contract replaces a closure-only check with:
 
-1. a baseline before or in stage 0;
-2. risk-based deltas in stages 1 through 4;
-3. a complete closure review in stage 5.
+1. a baseline gate before the first governed work and after a relevant RL/CL
+   or image change;
+2. a delta gate at a material change or defined quality or lifecycle
+   checkpoint;
+3. a closure gate before merge, release, or handover;
+4. an image-impact gate after a relevant baseline change.
+
+Product stages may map to these gates locally. Stage numbers do not become
+part of the generic contract.
 
 This work item starts no implementation and makes no fleet decision.
 
@@ -304,7 +421,45 @@ The following existing intakes and evidence remain independent sources:
 
 Completed position-5 and position-6 results are not reinterpreted. This work
 item only clarifies how their mapping and self-assessment foundations should
-feed the future stage contract.
+feed the future gate contract.
+
+### 16.1 Evidenced HOSK field pilot
+
+The HOSK field pilot is consumer evidence, not a normative Level-0 source.
+Since the first draft was created, the following revisions have been reviewed
+by a human, merged, and synchronized:
+
+- RL-SE-001 v2.13.0 and checklist compendium v1.15.0: [MR !6](https://gitlab-ce.gwdg.de/ausbildung/thorsten/RL_Sichere-Entwicklung/-/merge_requests/6),
+  merge commit `ee33f27c1175a3c86502421b1456bee7f666dd01`;
+- RL/CL governance overlay v0.2.0: [MR !1](https://gitlab-ce.gwdg.de/ausbildung/thorsten/spec-kit-preset-gwdg-rl-cl-governance/-/merge_requests/1),
+  merge commit `5c169249bc96ef3919675ad6a13ae48664cfa9c2`;
+- Development Image integration [MR !57](https://gitlab-ce.gwdg.de/agentic-coding/ade-dev-sandbox/-/merge_requests/57)
+  and downstream merge evidence [MR !58](https://gitlab-ce.gwdg.de/agentic-coding/ade-dev-sandbox/-/merge_requests/58):
+  `efe962366151c8e95d48c93c6f64877c90f9330e` and
+  `96bca383cf9f93eb35d1bffe51e91208d7f7af5d`;
+- HOSK integration [MR !3](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/merge_requests/3)
+  and downstream merge evidence [MR !4](https://gitlab-ce.gwdg.de/thinder/SysInfoToolHOSK/-/merge_requests/4):
+  `0a0a9de8d0a2f07d15c399d2e529aff17e6dd5ad` and
+  `8350dba400c94f93a6fe19ea885c106a972083aa`.
+
+The technically validated image
+`localhost/ade-dev-sandbox-ade:rl-cl-2.13.0` is pinned to digest
+`sha256:676ef75a1122b639d8e38d755ab96ed5ec92b2e0004b4e836f71a49bbca61580`.
+Evidence covers 13 presets, five RL/CL commands, eleven runbook-validator
+tests, an SBOM, and runtime hardening. The HOSK matrix contains 163 unique
+checkpoints. `CL_01-13` and `CL_10-18` are fulfilled for this integration;
+`CL_12-13` remains `not fulfilled` until the first actual delta run.
+
+The confirmed pilot scope covers HOSK product stages 0 through 5 and a whole-
+system test before the audit expected in November 2026. A non-confidential
+QMS/DMS reference, conditions, and reevaluation triggers must be recorded in
+consumer evidence. This scoped use approval is not general sandbox,
+production, or fleet approval.
+
+Product stage 1 is prepared but has not started. Expected artifacts are
+`docs/security/rl-cl/deltas/yaml-export-format.json` and
+`docs/runbooks/rl-cl/delta-yaml-export-format.md`. A local execution runbook
+remains an untracked working aid and is not audit evidence.
 
 ## 17. Target state
 
@@ -323,33 +478,38 @@ RL/CL requirement should show:
 A central evidence matrix should connect this information. It is an evidence
 index and not a second normative source.
 
-## 18. Proposed stage contract
+## 18. Proposed event-driven gate contract
 
-| Point in time | Minimum assessment | Expected evidence | Gate effect |
+| Event | Minimum assessment | Expected evidence | Gate effect |
 |---|---|---|---|
-| Before or in stage 0 | Baseline versions, applicability, current risk, preset profile, and Development Image relationship | Baseline manifest, initial matrix, justified `N/A` and `Open` decisions, image reference | Domain work starts only from a traceable current state |
-| Stages 1 through 4 | Delta against the baseline and the last accepted decision | Changed matrix rows, Spec Kit artifacts, tests, reviews, exceptions, and image-impact delta | Only affected checkpoints are reassessed, with visible triggers and rationale |
-| Stage 5 | Complete closure and consistency assessment | Closed matrix, review evidence, residual risks, exceptions, image evidence, and delivery evidence | No positive closure when mandatory evidence is missing |
+| Before first governed work or after a relevant RL/CL change | Baseline versions, applicability, current risk, preset profile, and Development Image relationship | Baseline manifest, initial matrix, justified `N/A` and `Open` decisions, image reference | Domain work starts only from a traceable current state |
+| Material change or defined checkpoint | Delta against the baseline and the last accepted decision | Changed matrix rows, Spec Kit artifacts, tests, reviews, exceptions, and image-impact delta where needed | Only affected checkpoints are reassessed, with visible triggers and rationale |
+| Before merge, release, or handover | Complete closure and consistency assessment | Valid baseline and deltas, matrix, review evidence, residual risks, exceptions, image evidence, and delivery evidence | No positive closure when mandatory evidence is missing |
+| Relevant baseline or image change | Technical impact on image, presets, tools, and operational boundaries | Impact decision, build and test evidence, digest, SBOM, and runtime hardening | Affected consumers start only with a controlled image reference |
 
 A delta must not be inferred only from a changed filename. It needs a material
 trigger, affected checkpoint IDs, and a traceable link to the last accepted
 decision.
+
+HOSK maps stage 0 locally to the baseline, stages 1 through 4 to defined delta
+checkpoints, and stage 5 to training-series closure. An earlier merge, release,
+or handover event may trigger closure before stage 5.
 
 ## 19. Responsibility boundaries
 
 ### 19.1 Level 0
 
 The Level-0 repository owns the versioned secure-development baseline, stable
-checkpoint IDs, applicability and evidence rules, and the generic stage
+checkpoint IDs, applicability and evidence rules, and the generic gate
 contract. It does not treat project-specific fulfilment claims as normative
 truth.
 
 ### 19.2 Agentic Workspace governance overlay
 
-The Agentic Workspace governance overlay supplies templates and validation
-commands for baseline, delta, closure, and image impact. Installing or
-resolving a preset does not prove applicability, fulfilment, approval, or an
-accepted exception.
+The Agentic Workspace governance overlay supplies templates, validators, and
+validation commands for baseline, delta, closure, image impact, and gate
+runbooks. Installing or resolving a preset does not prove applicability,
+fulfilment, approval, or an accepted exception.
 
 ### 19.3 Development Image
 
@@ -371,6 +531,19 @@ Four-eyes review, approval, risk acceptance, and exception approval remain
 human-owned decisions. Spec Kit or agent artifacts must not present them as
 automatically granted.
 
+### 19.6 Separate authorization layers
+
+At least four decisions are recorded separately:
+
+1. technical image validation with digest and technical evidence;
+2. scope-limited use approval for a consumer or pilot, including QMS/DMS
+   reference, conditions, and reevaluation trigger;
+3. project-specific gate, review, and acceptance decisions;
+4. general sandbox, production, or fleet approval.
+
+A lower layer grants no higher authorization. A technically validated image is
+not generally approved, and pilot approval does not authorize fleet rollout.
+
 ## 20. Development Image impact assessment
 
 The Intake Review should decide whether every material RL/CL version change
@@ -390,6 +563,14 @@ requires an owner, risk, due date, and a blocking or release-relevant trigger.
 
 ## 21. Spec Kit and evidence contract
 
+Audit evidence lives under `docs/security/rl-cl/` by default:
+
+- `baseline.json`;
+- `evidence-matrix.md`;
+- `deltas/<change-id>.json`;
+- `closure.json`;
+- `development-image-impact.json`.
+
 The proposed central matrix contains at least:
 
 - stable RL/CL checkpoint ID and baseline version;
@@ -405,6 +586,23 @@ Spec Kit evidence may replace separate manual checklist duplication only when
 every applicable matrix row has unambiguous and sufficient evidence. Missing,
 not applicable, deliberately divergent, and excepted checkpoints remain
 explicit.
+
+When a merged baseline is unchanged and source revision, presets, and image
+digest match exactly, it is checked fail-closed and read-only before a feature.
+It is not regenerated for every feature. Drift or a relevant change starts a
+separate, reviewed baseline and, where needed, image-impact run.
+
+Gate runbooks are separate bilingual working aids under
+`docs/runbooks/rl-cl/<gate>-<context-id>.md`. A fixed `runbook.md` is not
+allowed. Runbooks are mandatory for training profiles and mixed teams; pure
+development teams may make them optional under a justified project rule. Each
+runbook states roles, status, stop conditions, and exactly one next action.
+
+A due runbook is explicitly created or updated before its gate and validated
+as `Current`. The delta or closure then references the runbook but does not
+count it as audit evidence. Local execution runbooks may remain untracked;
+controlled gate runbooks and audit evidence are staged deliberately and
+separately.
 
 ## 22. Resynchronization triggers
 
@@ -450,6 +648,13 @@ A fleet rollout is explicitly a discussion topic only:
 - How are missing permissions, cost, review capacity, and rollback handled?
 - How are empty pull requests prevented for unchanged targets?
 - Which pilot evidence and decision are mandatory before a later rollout?
+- Is one HOSK pilot sufficient, or which additional platform, risk, and project
+  profiles must be represented before a fleet decision?
+- Must HOSK deltas from stages 1 through 4, stage-5 closure, and the whole-
+  system test be fully reviewed before the audit expected in November 2026 and
+  before a rollout decision is prepared?
+- How does a fleet matrix keep technical validation, scoped pilot approval,
+  and general fleet approval separate?
 
 These questions define neither a target set nor execution authority.
 
@@ -471,27 +676,35 @@ This work item does not authorize:
 
 The Intake Review records at least:
 
-1. owner and canonical source of the stage contract;
-2. mandatory or advisory effect at each stage;
+1. owner and canonical source of the gate contract;
+2. mandatory or advisory effect of each gate and local stage mapping;
 3. triggers and minimum evidence for image-impact assessment;
 4. location, schema, and lifecycle of the central matrix;
 5. relationship to position 7, position 8, and the planned baseline
    synchronization;
 6. limits of any simplification through Spec Kit evidence;
 7. handling of version drift and grace periods;
-8. whether and how a later pilot discussion should continue.
+8. whether and how a later pilot discussion should continue;
+9. separation of technical validation, scoped use, and general approval;
+10. minimum HOSK whole-run evidence before audit and rollout discussion.
 
 ## 27. Acceptance criteria for this handoff
 
 - The issue mentions `@hindermath` and requests the open decisions.
-- Baseline in stage 0, deltas in stages 1 through 4, and closure in stage 5 are
-  clearly separated.
+- Baseline, delta, closure, and image impact are separated by event; HOSK
+  stages 0 through 5 are only a local mapping.
 - Level 0, the Agentic Workspace governance overlay, the Development Image,
   and Level-2 consumer repositories have clear responsibility boundaries.
 - Development Image impact has auditable minimum fields and fail-closed
   status rules.
 - A central matrix links RL/CL checkpoints to Spec Kit, review, test,
   exception, and image evidence without becoming a second normative source.
+- Audit evidence and dynamically named gate runbooks are separated; runbooks
+  are created explicitly, validated as `Current`, and not counted as evidence.
+- Technical image validation, scoped pilot use, project gates, and general
+  approval are not treated as equivalent.
+- The HOSK pilot records stages 0 through 5, the whole-system test, expected
+  audit period, and still-open delta and closure evidence.
 - Positions 7 and 8 and completed and planned predecessors are referenced
   without reinterpreting their evidence.
 - Fleet rollout remains a list of discussion questions.
