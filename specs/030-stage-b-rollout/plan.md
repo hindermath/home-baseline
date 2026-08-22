@@ -373,6 +373,25 @@ gebunden. Fehlende oder abweichende Werte lassen T112 offen. Dieser eng
 begrenzte Checkpoint aendert nicht die spaeteren Level-0-Review-, Acceptance-,
 PreMerge-, Merge-, Default-Sync- oder Home-Sync-Gates.
 
+### Wiederverwendbarer macOS-first-Plattformnachweis / Reusable macOS-First Platform Evidence
+
+Fuer kuenftige macOS-first-Entwicklung wird der erfolgreiche T111-/T112-Pfad
+als wiederverwendbarer Governance-Vertrag festgehalten. Die lokal verfuegbare
+macOS-Variante wird zuerst im Safe Mode geprueft. Fehlt ein eigener Zielhost,
+darf Linux anschließend in einem isolierten nativen Linux-Container oder einem
+eng begrenzten Linux-CI-Job und Windows in einem eng begrenzten nativen
+Windows-CI-Job nachgewiesen werden. Ein CI-Workflow ist dabei Nachweisadapter,
+nicht Ersatz fuer Zielplattformsemantik.
+
+Jeder solche Fremdplattformnachweis bindet den exakten Commit, den
+ausgefuehrten Befehl, Runner beziehungsweise Plattform, Exitcode, Payload- und
+Entscheidungshash sowie Git-/Provider-Schreibzaehler. Trigger, Branch, Pfade und
+Permissions bleiben minimal; ein vorgezogener Commit oder Push benoetigt
+ausdrueckliche aktuelle Autoritaet. Nur der tatsaechlich ausgefuehrte Umfang
+gilt als bestanden. Ein erfolgreicher Preflight behauptet daher keinen gruenen
+Vollregressionslauf. T121 uebernimmt diesen agentenneutralen Vertrag atomar in
+die gemeinsamen Guidance- und Template-Flaechen.
+
 ## Projektstruktur / Project Structure
 
 ### Designartefakte dieses Features / Feature Design Artefacts

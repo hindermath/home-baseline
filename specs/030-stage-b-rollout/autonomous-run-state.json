@@ -5,9 +5,9 @@
   "branch": "030-stage-b-rollout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
+  "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "N/A",
+  "checkpointCommit": "0d5144c9aa12fc069dd2dfbff6e6d247da0d30fc",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -32,8 +32,8 @@
   ],
   "tasks": {
     "path": "specs/030-stage-b-rollout/tasks.md",
-    "sha256": "58cb1da8c3f06a6ae6891ff25cea16075768a43193cd3e007c7e03579850a2d5",
-    "completed": 111,
+    "sha256": "a99cf8df1a9870b5a0dad62d5a6c18d47a4a651640a53ee580896335518739de",
+    "completed": 123,
     "total": 194
   },
   "routing": {
@@ -262,13 +262,69 @@
         "dependsOn": [
           "analyze-resume-t112"
         ],
-        "status": "Running",
+        "status": "Completed",
         "agentFamily": "Codex",
         "model": "gpt-5.6-sol",
         "reasoningEffort": "high",
         "preflight": "Completed",
-        "exitCode": null,
-        "updatedAt": "2026-08-22T10:10:38.3639510Z"
+        "exitCode": 0,
+        "updatedAt": "2026-08-22T10:22:56.397761Z",
+        "resultPath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/implement-t112-windows-proof.result.json",
+        "resultSha256": "9efcd1adcc2a9f6c23214af6afd2411be34a9812db4e3a6b67b8b10f89fb7bde"
+      },
+      {
+        "phaseId": "analyze-resume-t113",
+        "command": "speckit.analyze",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "implement-t112-windows-proof"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-22T11:11:31.348117Z",
+        "resultPath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/analyze-resume-t113.result.json",
+        "resultSha256": "108fd9d666a5845b982e2e61ed5b702fe0e805902e8a59cd0e8be7eaf235d09d"
+      },
+      {
+        "phaseId": "implement-resume-local-t113-t123",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "runnerProfile": "codex-implementation-auto",
+        "dependsOn": [
+          "analyze-resume-t113"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-22T11:39:25.540474Z",
+        "resultPath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/implement-resume-local-t113-t123.result.json",
+        "resultSha256": "f63e3538d41416dfa81d6f863f2a650cd64d23363b91a49711fc24ecb22eaf85"
+      },
+      {
+        "phaseId": "implement-t124-local-prep",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "runnerProfile": "codex-implementation-auto",
+        "dependsOn": [
+          "implement-resume-local-t113-t123"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-22T11:49:58.1518280Z",
+        "resultPath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/implement-t124-local-prep.result.json",
+        "resultSha256": "066c9d56cffb25402316a7a174e2b10449c4f45ae0432f3beed4df188ff19e9d"
       },
       {
         "phaseId": "implement",
@@ -276,7 +332,7 @@
         "routingRole": "long-running-implementation",
         "runnerProfile": "codex-implementation-auto",
         "dependsOn": [
-          "implement-t112-windows-proof"
+          "implement-t124-local-prep"
         ],
         "status": "NeedsRevalidation",
         "agentFamily": "Codex",
@@ -298,12 +354,12 @@
       }
     ]
   },
-  "lastPassingGate": "Current intake review Ready; model routing Aligned; MergeAndSync with admin bypass and the validation-only Windows checkpoint path explicitly authorized on 2026-08-22.",
-  "nextExactAction": "Rerun only phase 'implement-t112-windows-proof' from the unchanged clean-index boundary.",
+  "lastPassingGate": "T124 local preparation completed: focused EvidenceLedger/PlatformParity tests, PowerShell parser/PSScriptAnalyzer, Secret Scan, agent/documentation validators, and regenerated Statistics Profile 2 pass; T124 remains open for native Windows regression proof.",
+  "nextExactAction": "Validate, commit, and push the exact T124 candidate to origin/030-stage-b-rollout, then inspect the native Windows Maintenance TUI regression proof before marking T124.",
   "lastOperation": {
-    "kind": "ModelRoutingPhase:implement-t112-windows-proof",
-    "state": "NeedsRevalidation",
-    "summary": "Phase process started with profile 'codex-implementation-auto'."
+    "kind": "AuthorityRevalidation:T124WindowsCheckpoint",
+    "state": "Completed",
+    "summary": "User authorized one non-force checkpoint commit and push to origin/030-stage-b-rollout for the native Windows T124 regression proof; PR, merge, Home sync, fleet writes, and admin bypass remain excluded."
   },
   "stop": {
     "reason": "N/A",
@@ -316,5 +372,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-22T10:10:38.3639510Z"
+  "updatedAt": "2026-08-22T13:42:13Z"
 }

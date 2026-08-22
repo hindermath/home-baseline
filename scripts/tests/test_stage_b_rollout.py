@@ -152,12 +152,31 @@ class EvidenceLedgerTests(unittest.TestCase):
             root = pathlib.Path(directory)
             schema = self._write_schema(root)
             target = root / "operational/result.json"
+            engine.publish_stage_b_evidence(
+                target, {"schemaVersion": "1.0", "status": "Blocked"}, schema
+            )
             digest = engine.publish_stage_b_evidence(
                 target, {"schemaVersion": "1.0", "status": "Passed"}, schema
             )
             self.assertRegex(digest, r"^[0-9a-f]{64}$")
+            self.assertEqual(json.loads(target.read_text(encoding="utf-8"))["status"], "Passed")
             self.assertEqual(target.stat().st_mode & 0o777, 0o600)
             self.assertFalse(list(target.parent.glob(f".{target.name}.*")))
+
+    def test_windows_durability_path_never_opens_a_directory_descriptor(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            target = pathlib.Path(directory) / "result.json"
+            target.write_text("{}\n", encoding="utf-8")
+            real_open = engine.os.open
+
+            def deny_directory_descriptor(subject, flags):
+                if pathlib.Path(subject) == target.parent:
+                    raise PermissionError("Windows directory descriptors are unavailable")
+                return real_open(subject, flags)
+
+            with mock.patch.object(engine.os, "open", side_effect=deny_directory_descriptor):
+                engine._sync_stage_b_evidence_metadata(target, platform_name="nt")
 
     def test_invalid_or_restricted_evidence_is_never_published(self):
         engine = load_engine()
@@ -941,7 +960,9 @@ class PlatformParityTests(unittest.TestCase):
         self.assertNotIn("eval ", bash)
         self.assertIn("Set-StrictMode -Version Latest", powershell)
         self.assertNotIn("Invoke-Expression", powershell)
-        self.assertIn("& python3 $stageBFleetEngine @stageBArguments", powershell)
+        self.assertIn("& $stageBPythonCommand $stageBFleetEngine @stageBArguments", powershell)
+        self.assertIn("MINGW*|MSYS*|CYGWIN*) candidates=(python python3)", bash)
+        self.assertIn("if ($IsWindows) { @('python', 'python3') }", powershell)
 
 
 if __name__ == "__main__":

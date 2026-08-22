@@ -545,6 +545,14 @@
       "labelEn": "Fleet-wide CI budget governance",
       "netLines": 5388,
       "activeDays": 1
+    },
+    {
+      "slot": 67,
+      "id": "stage-b-rollout-local-implementation",
+      "labelDe": "Stage-B-Flottenrollout: lokale Implementierung",
+      "labelEn": "Stage B fleet rollout: local implementation",
+      "netLines": 9851,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

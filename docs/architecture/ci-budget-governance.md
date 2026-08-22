@@ -3,8 +3,8 @@
 **Status / Disposition**: Applicable
 **Owner**: home-baseline Feature Owner
 **Reviewer**: iSAQB/arc42 Architecture Reviewer
-**Restrisiko / Residual risk**: Stufe B und G4 bleiben außerhalb der aktuellen Authority.
-**Follow-up**: Stufe B und G4 nur nach neuem, ausdrücklich autorisiertem Lauf beginnen.
+**Restrisiko / Residual risk**: Stage-B-Live-Lieferung und G4 bleiben außerhalb der aktuellen `LocalImplementation`-Authority.
+**Follow-up**: Stage-B-Remote-Lieferung erst ab T127 unter frisch revalidierter Authority; G4 nur nach terminaler Flottenevidence und separater Sequencing-Autorität.
 **Re-Evaluation**: Bei Runtime-, Fleet-, Authority-, Workflow- oder Ruleset-Änderungen.
 
 ## Architekturstatus / Architecture Status
@@ -107,3 +107,115 @@ owns the later handoff. Missing terminal fleet evidence or separate sequencing
 authority blocks it. The only next action is to request a separately authorized
 intake-series sequencing update. Re-evaluate when fleet identity, G4 scope,
 the series manifest, or authority changes.*
+
+## Feature 030: Stage-B-Architektur / Stage B Architecture
+
+### Kontext und Schnittstellen / Context and Interfaces
+
+Der Level-0-Klon ist kanonische Control-Plane-Quelle. Eingehende Schnittstellen
+sind die terminale Stage-A-Evidence, beide Constitutions, Fleet-Manifest,
+Environment-/Profil-/Pfadregistries, fünf Stage-B-Schemas, Gate Requirements,
+aktuelle Authority und read-only Providerinventar. Ausgehende Schnittstellen
+sind exakt geplante Git-Objekte, Branch/PR/Review/Merge, der getrennte
+Rulesetvertrag sowie schema-validierte operative und spätere redigierte
+Evidence. Home Runtime, G4, Intake-Serie, Copilot, Account und Subscription
+bleiben eigene, nicht implizit betretene Grenzen.
+
+| Schnittstelle | Vertrag / Contract | Fehlergrenze |
+|---|---|---|
+| Bash/PowerShell → Python | typisierte Stage-B-Aktion, Safe Mode, unveränderter Exitcode | ungültige Option oder Plattforminput endet vor Engine-Write |
+| Planner → Transaction | `StageBRolloutPlan` v1.1, exakte Pfad/Mode/Blob-Liste, `firstMutation` | jede Plan-/Kandidatendrift blockiert vor Staging |
+| Transaction → GitHub | feste Host-/ID-/Slug-/Endpoint-Bindung, getrennte Read-/Write-Argumentarrays | Timeout nach Write wird nur read-only reconciled |
+| Workflow/PR → Ruleset | `StageBRulesetPlan` v1.0; Workflowmerge vor Ruleset; vorheriger Zustand/Restore gebunden | fehlende Post-Write-Konvergenz stoppt nach höchstens einem geplanten Restore |
+| Components → Evidence | direkte Run-ID/`planSha256`, kanonisches JSON, geschlossene Schemas | Redaction-/Schemafehler publiziert keine Teildatei |
+
+### Bausteinsicht / Building-Block View
+
+1. `StageBFleetPreflight` bildet die dynamische, stabile Repository-ID-Menge
+   und bindet Stage A, Registry, Head, Provider, Budget und Authority.
+2. `StageBRolloutPlanner` erzeugt fünf feste Wellen und den unveränderlichen
+   Plan ohne Fortschritts- oder Authority-Felder.
+3. `StageBRunState` ist allein veränderlich und indexiert Authority, Wellen,
+   Zielresultate, Budgets, Blocker und Evidence mit direkter Planbindung.
+4. `ExternalWriteGate` vermittelt Scope, Run, Plan, Delivery Set, Repository-
+   IDs und aktuelle Authority unmittelbar vor jeder Write-Klasse.
+5. `StageBTargetTransaction` materialisiert in einem isolierten Worktree genau
+   einen exakten Zielkandidaten und führt lokalen Gate-, PR-, Review-, Merge-
+   und Sync-Lifecycle seriell aus.
+6. `GitHubProviderAdapter` trennt Reads/Writes, validiert Host/IDs und
+   reconciliert unklare Aktionen über stabile Idempotency Keys.
+7. `StageBRulesetTransaction` installiert den Minimal-Gate erst nach seinem
+   Workflowmerge und kennt höchstens einen exakt vorgeplanten Restore.
+8. `StageBWaveCoordinator` und `StageBBudgetProjector` erlauben genau einen
+   Writer und verlangen nach jeder Welle eine frische Decimal-Projektion.
+9. `StageBEvidenceLedger` und `StageBTerminalVerifier` publizieren atomar,
+   redigiert und kausal und verifizieren jede autoritative ID genau einmal.
+
+### Laufzeitsicht / Runtime View
+
+```text
+Safe preview -> Fleet/authority/provider preflight -> immutable plan
+             -> ExternalWriteGate closed -> no writes
+
+Deliver/Resume -> full revalidation -> open gate for one bound action
+               -> isolated exact candidate -> local gates -> PreMerge
+               -> commit -> push -> one PR -> checks/review -> regular merge
+               -> optional ruleset transaction -> default-head sync -> PostMerge
+               -> target result -> wave result -> fresh budget -> next target/wave
+               -> terminal read-only verification -> G4 handoff only
+```
+
+Bei einem nicht behebbaren Fehler persistiert der State Welle, Repository-ID,
+In-flight-Aktion, letzte sichere Grenze, Blocker und nächste Aktion, bevor ein
+Folgeziel startet. Resume übernimmt keine frühere Providerentscheidung:
+Stage A, Fleet, Registries, Plan, Authority, Provider, Evidence und Budget
+werden vollständig neu vermittelt. Bereits konvergierte Ziele werden nur
+read-only bestätigt; unklare Writes werden nicht blind wiederholt.
+
+### Deployment-Sicht / Deployment View
+
+- **Level 0**: kanonische Source, Plan/State-Verträge, Templates und
+  Orchestrator; erst regulärer Control-Plane-PR/Merge/Default-Sync.
+- **Target worktree**: laufgebunden, isoliert, genau ein Repository und ein
+  Kandidaten-Head; keine fremden Working-Tree-/Indexänderungen.
+- **GitHub**: externe Hosting-/Actions-/PR-/Review-/Ruleset-Grenze mit
+  providerabhängigen Adaptern und minimalen Permissions.
+- **Machine local**: operative Truth und temporäre Primary-Snapshots unter dem
+  Run-Root, niemals gestaged. Nur ausgewählte redigierte Abschlussnachweise
+  werden später `sourceOnly` versioniert.
+- **Home Runtime**: erst nach Level-0-Merge, Dry-Run, Konflikt- und Authority-
+  Prüfung; im aktuellen T113–T123-Scope verboten.
+
+### Qualitätsziele, Trade-offs, Risiken und technische Schuld
+
+1. **Sicherheit vor Durchsatz**: ein serieller Writer ist langsamer als
+   Parallelisierung, reduziert aber Race-, Budget-, Evidence- und
+   Provider-Reconciliation-Risiken.
+2. **Reproduzierbarkeit vor Komfort**: Blob-/Mode-Hashes und geschlossene
+   Schemas sind aufwendiger als Patchtexte, bleiben jedoch plattformneutral
+   und exakt überprüfbar.
+3. **Verfügbarkeit ohne Fail-open**: Stop/Resume und bounded Reads erhalten
+   Fortschritt; fehlende Daten, Quota/Billing und unklare Writes bleiben
+   Blocker statt angenommener Erfolge.
+4. **Providerportabilität**: Git-/JSON-Verträge sind exportierbar, PR-/Ruleset-
+   Semantik bleibt bewusst im GitHub-Adapter. Ein Providerwechsel ist
+   Architekturarbeit, keine Stringersetzung.
+5. **Technische Schuld**: Der gemeinsame Python-Kern ist groß. Owner:
+   Architecture Owner; Follow-up: Modulgrenzen erst nach terminalem Stage-B-
+   Abschluss anhand stabiler Abhängigkeiten schneiden; bis dahin verhindern
+   gemeinsame Invarianten eine verfrühte Aufspaltung.
+6. **Externe TOCTOU-Grenze**: Providerzustand kann zwischen Read und Write
+   wechseln. Unmittelbare Revalidierung und Post-Write-Reconciliation
+   minimieren, beseitigen diese externe Grenze aber nicht.
+
+### Finaler iSAQB-/arc42-Review / Final iSAQB/arc42 Review
+
+`Pass for local implementation artifacts` am 2026-08-22. Kontext,
+Schnittstellen, Bausteine, Laufzeit, Deployment, Qualitätsziele, Risiken,
+Trade-offs und technische Schuld stimmen mit Spec, Plan, T001–T123-Aufteilung
+und den fünf Stage-B-JSON-Schemas plus Workflow-/Ruleset-Vertrag überein.
+Der Review behauptet keine Live-Providerkonvergenz, keinen T124-Vollregressions-
+Pass und keinen Abschluss der Delivery-/Closeout-Tasks. Owner: Architecture
+Owner. Reviewer: iSAQB/arc42 Architecture Reviewer. Re-Evaluation bei
+Baustein-, Contract-, Provider-, Ruleset-, Authority-, Plattform-, Evidence-,
+Deployment- oder G4-Grenzänderung.

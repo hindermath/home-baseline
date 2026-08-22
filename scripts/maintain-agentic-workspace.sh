@@ -119,6 +119,23 @@ info() { printf '\n==> %s\n' "$*"; }
 ok() { printf 'OK: %s\n' "$*"; }
 warn() { printf 'WARN: %s\n' "$*" >&2; }
 
+resolve_stage_b_python() {
+  local kernel="" candidate=""
+  local -a candidates=()
+  kernel="$(uname -s 2>/dev/null || printf 'unknown')"
+  case "$kernel" in
+    MINGW*|MSYS*|CYGWIN*) candidates=(python python3) ;;
+    *) candidates=(python3 python) ;;
+  esac
+  for candidate in "${candidates[@]}"; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+      command -v "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
 ask_yes_no() {
   local prompt="$1" answer=""
   printf '%s' "$prompt"
@@ -624,7 +641,9 @@ if [ -n "$STAGE_B_ACTION" ]; then
     --profile-id "${HB_STAGE_B_PROFILE_ID:-N/A}"
   )
   [ "$DRY_RUN" -eq 1 ] && stage_b_arguments+=(--dry-run)
-  exec python3 "$FLEET_ENGINE" "${stage_b_arguments[@]}"
+  STAGE_B_PYTHON="$(resolve_stage_b_python)" \
+    || die "Python 3 fuer Stage B nicht gefunden / Python 3 for Stage B not found"
+  exec "$STAGE_B_PYTHON" "$FLEET_ENGINE" "${stage_b_arguments[@]}"
 fi
 
 if [ "$CI_GATE" -eq 1 ]; then

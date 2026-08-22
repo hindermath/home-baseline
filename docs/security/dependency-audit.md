@@ -72,3 +72,30 @@ Modell, Dataset, Inferenzdienst noch AI-Runtime ausgeliefert wird.
 
 Owner: Supply Chain Owner; Reviewer: Security Reviewer. Re-Evaluation bei
 Dependency-, Paket-, Release-, Distributions- oder KI-Runtime-Änderung.
+
+## Feature 030: Stage-B-Abhängigkeits- und Lizenznachweis
+
+**Ergebnis / Result**: `Passed for local implementation`; keine neue Runtime-,
+Paket- oder Buildabhängigkeit. Der Stage-B-Kern importiert ausschließlich die
+Python-Standardbibliothek. Bash 3.2+, PowerShell 7, Git und die authentifizierte
+`gh`-CLI bleiben bereits akzeptierte externe Werkzeuge. Die einzige Action im
+eng begrenzten Windows-Proof ist `actions/checkout` mit vollständigem
+Commit-SHA `9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0` (v7.0.0), nicht mit beweglichem
+Tag.
+
+| Prüffläche | Stage-B-Evidence | Entscheidung |
+|---|---|---|
+| Dependency registry | Python standard library, system Bash/PowerShell/Git/gh; keine neue Registry oder Paketquelle | Passed |
+| CVE | Kein neues Paket und kein neuer auflösbarer Dependencygraph; bestehende repositoryweite Scanner bleiben T124-Gate | Passed locally; re-evaluate on tool/package drift |
+| Lizenz | Neue Python-/Shell-Dateien enthalten keine vendorte Bibliothek; Templates und Workflow sind Repositoryquellen | Passed |
+| SBOM | Quell-/Skript-/Template-/Workflow-Inventar ist anwendbar; Pfade und Hashes gehören in Exact-Candidate-/Delivery-Evidence | Applicable |
+| VEX | `NotAffected` für neue Paket-CVEs, weil keine neue Paketkomponente eingeführt wurde; jeder spätere Befund hebt die Aussage auf | Conditional |
+| AI-SBOM | Kein Modell, Dataset, Inferenzdienst oder AI-Runtime wird ausgeliefert; KI ist ausschließlich Entwicklungswerkzeug | N/A |
+
+Die distributablen Flächen umfassen `scripts/lib/agentic_workspace_fleet.py`,
+beide Maintenance-Adapter, fünf Stage-B-Schemas, CI-Budget-Templates, Manpage/
+Help sowie den eng begrenzten Proof-Workflow. Owner: Supply Chain Owner.
+Reviewer: Dependency and License Reviewer. Restrisiko: Systemwerkzeuge und
+GitHub Actions können nach dem gebundenen Stand neue Schwachstellen erhalten.
+Re-Evaluation bei Import-, Paket-, Action-SHA-, Registry-, Lizenz-, Toolchain-,
+Distributions- oder AI-Runtime-Änderung.

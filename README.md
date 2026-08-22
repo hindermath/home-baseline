@@ -126,7 +126,7 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Prefl
 Ein realer `Deliver`- oder `Resume`-Lauf benötigt aktuelle `MergeAndSync`-
 Autorität und stoppt vor dem nächsten Repository, sobald ein nicht behebbarer
 Fehler auftritt. [Quickstart](specs/030-stage-b-rollout/quickstart.md) und
-[Manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout--stage-b-fleet-rollout)
+[Manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout-stage-b-fleet-rollout)
 erklären Evidence, Exitcodes, Review/Bypass-Grenze und die getrennte G4-Folge.
 
 *Stage B rolls out the accepted governance serially. Preview is read-only; real

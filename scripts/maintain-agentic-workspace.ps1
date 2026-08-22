@@ -231,6 +231,18 @@ if (-not (Test-Path -LiteralPath $hardeningModule -PathType Leaf)) {
 }
 Import-Module $hardeningModule -Force
 
+function Get-HBStageBPythonCommand {
+    $candidateNames = if ($IsWindows) { @('python', 'python3') } else { @('python3', 'python') }
+    foreach ($candidateName in $candidateNames) {
+        $application = Get-Command -Name $candidateName -CommandType Application -ErrorAction SilentlyContinue |
+            Select-Object -First 1
+        if ($null -ne $application) {
+            return $application.Source
+        }
+    }
+    throw 'Python 3 fuer Stage B nicht gefunden / Python 3 for Stage B not found.'
+}
+
 function Invoke-HBAgenticWorkspaceMaintenance {
     <#
     .SYNOPSIS
@@ -343,7 +355,8 @@ if ($StageBAction) {
         '--profile-id', $(if ($env:HB_STAGE_B_PROFILE_ID) { $env:HB_STAGE_B_PROFILE_ID } else { 'N/A' })
     ) | ForEach-Object { $stageBArguments.Add([string]$_) }
     if ($WhatIfPreference) { $stageBArguments.Add('--dry-run') }
-    & python3 $stageBFleetEngine @stageBArguments
+    $stageBPythonCommand = Get-HBStageBPythonCommand
+    & $stageBPythonCommand $stageBFleetEngine @stageBArguments
     $stageBExitCode = $LASTEXITCODE
     exit $stageBExitCode
 }

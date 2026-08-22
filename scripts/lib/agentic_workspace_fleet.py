@@ -430,6 +430,29 @@ def _redact_stage_b_text(text: str, limit: int = 4096) -> str:
     return sanitized[:limit]
 
 
+def _sync_stage_b_evidence_metadata(
+    path: pathlib.Path, *, platform_name: str | None = None
+) -> None:
+    """Flush the strongest supported post-replace metadata boundary."""
+    selected_platform = os.name if platform_name is None else platform_name
+    if selected_platform == "nt":
+        # Windows rejects POSIX-style directory descriptors. Reopen and flush
+        # the published file after os.replace so the atomic replacement and
+        # restrictive final mode remain intact without relying on that handle.
+        sync_path = path
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
+    else:
+        # POSIX filesystems need the parent directory flush to make the rename
+        # durable independently from the already flushed temporary file.
+        sync_path = path.parent
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+    descriptor = os.open(sync_path, flags)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
 def publish_stage_b_evidence(
     path: pathlib.Path, value: dict, schema_path: pathlib.Path, *, temporary_primary: bool = False
 ) -> str:
@@ -455,11 +478,7 @@ def publish_stage_b_evidence(
             os.fsync(stream.fileno())
         os.replace(temporary, path)
         os.chmod(path, 0o600)
-        directory_descriptor = os.open(path.parent, os.O_RDONLY)
-        try:
-            os.fsync(directory_descriptor)
-        finally:
-            os.close(directory_descriptor)
+        _sync_stage_b_evidence_metadata(path)
     finally:
         if temporary.exists():
             temporary.unlink()

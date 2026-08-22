@@ -1,24 +1,25 @@
 <!--
 Sync Impact Report
-Version change: 1.20.1 -> 1.20.2
+Version change: 1.20.2 -> 1.21.0
 Modified principles:
-- XI. Memory-Safe Languages: justified C++ exception for the tvision fork
+- II. Cross-Platform Parity & Documentation: agent-neutral macOS-first native platform evidence contract
 Added sections:
-- Level-2 Project Environment Registry: CLionProjects/tvision operational row
+- None
 Removed sections:
 - None
 Templates requiring updates:
-- None (operational registry fact only)
+- ✅ .specify/templates/constitution-template.md, agent-file-template.md, spec-template.md, plan-template.md, tasks-template.md, documentation-impact-evidence-template.json
+- ✅ scripts/templates/AGENTS.md.tmpl, CLAUDE.md.tmpl, GEMINI.md.tmpl, copilot-instructions.tmpl
 Runtime guidance requiring updates:
 - ✅ .specify/memory/constitution.md (mirror)
-- ✅ AGENTS.md / CLAUDE.md / GEMINI.md / .github/copilot-instructions.md reviewed; no rule change required
+- ✅ AGENTS.md / CLAUDE.md / GEMINI.md / .github/copilot-instructions.md / .github/agents/copilot-instructions.md updated atomically
 New scripts:
 - None
 Follow-up TODOs:
 - None.
 -->
 
-# Constitution v1.20.2
+# Constitution v1.21.0
 
 # home-baseline Constitution
 
@@ -84,6 +85,30 @@ A new script is not considered complete until:
 3. Complete bilingual comment-based help is provided for the PowerShell variant.
 4. PowerShell scripts MUST also be available as Cmdlets (Advanced Functions) using the `Verb-Noun` naming convention (e.g., `New-HBWorkspace`).
 5. Help switches (`-h`, `--help`) point to the man-page or internal help.
+
+Für plattformabhängige Nachweise gilt agentenneutral macOS-first: Auf einem
+macOS-Entwicklungsrechner MUSS zuerst die passende lokale Safe-Mode-Prüfung
+(`--check-only`, `--dry-run`, `-CheckOnly` oder `-WhatIf`) laufen. Fehlt ein
+nativer Linux-Host, MUSS Linux in einem isolierten nativen Container mit
+schreibgeschütztem Repository und ohne unnötiges Netzwerk oder in einem eng
+begrenzten nativen Linux-CI-Job geprüft werden. Fehlt ein nativer Windows-Host,
+MUSS ein eng begrenzter nativer Windows-CI-Job verwendet werden. Jeder
+übertragbare Nachweis MUSS exakten Commit, Befehl, nativen Runner/die Plattform,
+Exitcode, Payload-SHA-256, Entscheidungs-SHA-256 und Nullschreibwerte binden.
+Ein Teilnachweis beweist ausschließlich den gebundenen Befehl und DARF NICHT
+als vollständiger Regressions-, Security-, A11Y-, Review- oder Delivery-Pass
+ausgegeben werden.
+
+*Platform-dependent evidence follows an agent-neutral macOS-first contract. On
+a macOS development host, run the matching local safe mode first. If no native
+Linux host is available, use an isolated native container with a read-only
+repository and no unnecessary network, or a narrowly scoped native Linux CI
+job. If no native Windows host is available, use a narrowly scoped native
+Windows CI job. Portable evidence binds the exact commit, command, native
+runner/platform, exit code, payload SHA-256, decision SHA-256, and zero-write
+values. A partial proof establishes only its bound command and MUST NOT be
+reported as a full regression, security, accessibility, review, or delivery
+pass.*
 
 All files MUST be committed together in the same commit.
 
@@ -1144,7 +1169,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.20.2 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-08-09
+**Version**: 1.21.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-08-22
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

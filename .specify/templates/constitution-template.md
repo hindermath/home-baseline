@@ -52,6 +52,26 @@ at first use, assume no prior Spec Kit experience, provide text-first
 dependency/state/decision information, and apply WCAG 2.2 Level AA wherever
 the criteria are applicable.
 
+## macOS-first-Plattformnachweis / macOS-First Platform Evidence
+
+Plattformabhängige Nachweise MUST zuerst lokal im passenden macOS-Safe-Mode
+laufen. Fehlt ein nativer Linux-Host, MUST ein isolierter nativer Container mit
+schreibgeschütztem Repository und ohne unnötiges Netzwerk oder ein eng
+begrenzter nativer Linux-CI-Job verwendet werden. Fehlt ein nativer
+Windows-Host, MUST ein eng begrenzter nativer Windows-CI-Job verwendet werden.
+Evidence MUST exakten Commit, Befehl, Runner/Plattform, Exitcode,
+Payload-SHA-256, Entscheidungs-SHA-256 und Nullschreibwerte binden. Ein
+Teilnachweis MUST NOT als vollständiger Regressions-, Security-, A11Y-,
+Review- oder Delivery-Pass berichtet werden.
+
+*Run platform-dependent evidence in the matching local macOS safe mode first.
+Without a native Linux host, use an isolated native container with a read-only
+repository and no unnecessary network, or narrowly scoped native Linux CI.
+Without a native Windows host, use narrowly scoped native Windows CI. Bind the
+exact commit, command, runner/platform, exit code, payload SHA-256, decision
+SHA-256, and zero-write values. Never report a partial proof as a full
+regression, security, accessibility, review, or delivery pass.*
+
 ## Governance
 <!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 

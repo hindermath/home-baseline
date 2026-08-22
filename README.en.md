@@ -85,6 +85,26 @@ The complete [documentation portal](docs/README.en.md) organizes every topic
 and canonical source. The [script reference](docs/scripts/reference.md) lists
 available commands, platforms, and safe inspection modes.
 
+### Preview the Stage B fleet rollout safely
+
+Stage B rolls the accepted CI budget governance out serially across the
+authorized fleet. The first action remains read-only:
+
+```bash
+bash scripts/maintain-agentic-workspace.sh --stage-b-action preflight --dry-run
+```
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf
+```
+
+A real `Deliver` or `Resume` run needs current `MergeAndSync` authority and
+stops before the next repository on the first non-recoverable error. The
+[quickstart](specs/030-stage-b-rollout/quickstart.md) and
+[manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout-stage-b-fleet-rollout)
+explain evidence, exit codes, the review/bypass boundary, and the separate G4
+follow-up.
+
 ## Prerequisites
 
 - Git and a personal or institutional Git repository;
@@ -107,6 +127,8 @@ not a universal learner prerequisite.
 - Agentic work on Secure Trader systems runs container-first in an approved
   sandbox.
 - Maintenance scripts do not commit, push, or merge in target repositories.
+- Stage B may write only under an explicit current delivery authority and its
+  hash-bound ExternalWriteGate; preview remains read-only.
 - Remote or administrative authority requires an explicit current grant.
 
 See the [security documentation](docs/security/README.md),

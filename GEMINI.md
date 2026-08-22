@@ -650,6 +650,31 @@ visual-only dependency, state, or decision information. `Programmierung
 applicable.*
 <!-- learner-a11y-baseline:end -->
 
+## macOS-first-Plattformnachweis / macOS-First Platform Evidence
+
+- Auf einem macOS-Entwicklungsrechner zuerst die passende lokale Safe-Mode-
+  Prüfung (`--check-only`, `--dry-run`, `-CheckOnly` oder `-WhatIf`) ausführen.
+- Fehlt ein nativer Linux-Host, Linux in einem isolierten nativen Container mit
+  schreibgeschütztem Repository und ohne unnötiges Netzwerk oder in einem eng
+  begrenzten nativen Linux-CI-Job prüfen.
+- Fehlt ein nativer Windows-Host, einen eng begrenzten nativen Windows-CI-Job
+  verwenden.
+- Übertragbare Evidence bindet exakten Commit, Befehl, nativen Runner/die
+  Plattform, Exitcode, Payload-SHA-256, Entscheidungs-SHA-256 und
+  Nullschreibwerte. Fehlt eine Bindung, bleibt das Gate offen.
+- Ein grüner Teilnachweis beweist nur den gebundenen Befehl. Er ist kein
+  vollständiger Regressions-, Security-, A11Y-, Review- oder Delivery-Pass.
+
+*On a macOS development host, run the matching local safe mode first. If no
+native Linux host is available, use an isolated native container with a
+read-only repository and no unnecessary network, or a narrowly scoped native
+Linux CI job. If no native Windows host is available, use a narrowly scoped
+native Windows CI job. Portable evidence binds the exact commit, command,
+native runner/platform, exit code, payload SHA-256, decision SHA-256, and
+zero-write values; otherwise the gate remains open. A green partial proof
+establishes only its bound command and is not a full regression, security,
+accessibility, review, or delivery pass.*
+
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan

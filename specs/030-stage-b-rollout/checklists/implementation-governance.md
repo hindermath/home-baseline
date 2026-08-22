@@ -19,36 +19,38 @@
 
 ## Governance-Checkpoint-Matrix / Governance Checkpoint Matrix
 
-`Pending` ist ein blockierender Implementierungsstatus; `Open` wird nicht als
-stille Zwischenablage verwendet. Jeder anwendbare Eintrag muss vor T126 auf
-`Passed` stehen. / `Pending` is a blocking implementation status; `Open` is
-not used as a silent holding state. Every applicable row must be `Passed`
-before T126.
+Die Anwendbarkeit ist fuer alle zwoelf Presets abgeschlossen und bleibt von der
+Umsetzungsachse getrennt. `Pending` benennt ein spaeteres, weiterhin
+blockierendes Gate; `Open` wird nicht als stille Zwischenablage verwendet.
+Jeder anwendbare Eintrag muss vor T126 auf `Passed` stehen. / Applicability is
+closed for all twelve presets and remains separate from implementation status.
+`Pending` names a later blocking gate; `Open` is not used as a silent holding
+state. Every applicable row must be `Passed` before T126.
 
 | Checkpoint | Applicability | Implementation status | Owner / Reviewer | Evidence | Residual risk / Follow-up / Re-evaluation |
 |---|---|---|---|---|---|
-| Security Governance | Applicable | Pending | Security Owner / Security Reviewer | T114–T118, T124 | Provider-, Ruleset-, Bypass-, Secret- oder Trust-Boundary-Drift; bei jeder solchen Änderung neu prüfen. |
-| Architecture Governance | Applicable | Pending | Architecture Owner / Architecture Reviewer | T114, T119 | Remote-Transaktion oder Deployment kann driften; ADR/arc42 erneut prüfen. |
-| iSAQB Architecture Governance | Applicable | Pending | Architecture Owner / iSAQB-oriented Peer | T119 | Baustein- und Laufzeitsicht bei struktureller Änderung neu bewerten. |
-| A11Y Governance | Applicable | Pending | Documentation Owner / A11Y Reviewer | T100–T110, T108 | Nutzertexte können driften; WCAG-2.2-AA-orientierte Textnutzung erneut prüfen. |
-| Cross-Platform Governance | Applicable | Pending | Script Owner / Cross-Platform Reviewer | `checklists/cross-platform.md`, T102–T112, T125 | Native Linux-/Windows-Tokens dürfen nur aus echten Läufen stammen. |
-| Agent Parity Governance | Applicable | Pending | Governance Owner / Agent-Parity Reviewer | T121 | Shared-Guidance-Trigger verlangt atomare Fünf-Flächen-/Template-/Constitution-Pflege. |
+| Security Governance | Applicable | T114–T118 assurance Passed; T124 full regression pending | Security Owner / Security Reviewer | T114–T118, T124 | Provider-, Ruleset-, Bypass-, Secret- oder Trust-Boundary-Drift; bei jeder solchen Änderung neu prüfen. |
+| Architecture Governance | Applicable | T114/T119 local architecture review Passed; live delivery pending | Architecture Owner / Architecture Reviewer | T114, T119 | Remote-Transaktion oder Deployment kann driften; ADR/arc42 erneut prüfen. |
+| iSAQB Architecture Governance | Applicable | T119 final local review Passed | Architecture Owner / iSAQB-oriented Peer | T119 | Baustein- und Laufzeitsicht bei struktureller Änderung neu bewerten. |
+| A11Y Governance | Applicable | Local user surfaces passed T100–T110; T125 aggregation pending | Documentation Owner / A11Y Reviewer | T100–T110, T108, T125 | Nutzertexte können driften; WCAG-2.2-AA-orientierte Textnutzung erneut prüfen. |
+| Cross-Platform Governance | Applicable | Native platform checkpoint Passed; T125 pending | Script Owner / Cross-Platform Reviewer | `checklists/cross-platform.md`, T102–T112, T125; Windows Run `32567141555`, Job `97017306468` | Native Tokens sind hashgebunden vorhanden; vollständige AC-SBR-009-Acceptance und spätere Payloaddrift bleiben Re-Evaluation-Trigger. |
+| Agent Parity Governance | Applicable | T121 Passed | Governance Owner / Agent-Parity Reviewer | Constitution v1.21.0 mirror; five agent surfaces; source/runtime templates; `test_spec_kit_agent_surface_parity.py` | Shared-Guidance-Trigger verlangt atomare Fünf-Flächen-/Template-/Constitution-Pflege. |
 | Model Routing Governance | N/A for feature change | Closed input gate | Run Owner / Routing Validator | gebundener Runner `codex-implementation-auto` | Bei Profil-, Modell-, Rollen- oder Preflight-Drift stoppen. |
 | Intake Authoring Governance | N/A | Closed input gate | Intake Owner / Intake Governance Reviewer | fünf akzeptierte Artefakthashes | Bei Intake-/Receipt-Drift stoppen. |
 | Intake Review Governance | Applicable as input gate; N/A for new review work | Passed input gate | Intake Owner / Review Owner | Ready-Result `132ba8e631ca930778b36d3d96b91fe974a3c126a4f9e9dbaf5b1b21b8c5ec69` | Bei Quell- oder Review-Hashdrift neues Review verlangen. |
-| Intake Sequencing Governance | N/A | Pending isolation proof | Series Owner / Sequencing Validator | T091, T099, T166, T194 | Nur separat autorisierte Sequencing-Arbeit darf die Serie ändern. |
-| Autonomous Run Governance | Applicable | Pending | Run Owner / Autonomous Reviewer | T001–T010, T127–T194 | Head-, Authority-, Delivery-Set-, Gate- oder Evidence-Drift stoppt fail-closed. |
+| Intake Sequencing Governance | N/A for new feature work; read-only isolation input | Local isolation passed; live T166 and terminal T194 pending | Series Owner / Sequencing Validator | T091, T099, T166, T194 | Nur separat autorisierte Sequencing-Arbeit darf die Serie ändern. |
+| Autonomous Run Governance | Applicable | Local phase active; delivery and closeout T127–T194 pending | Run Owner / Autonomous Reviewer | T001–T010, T127–T194 | Head-, Authority-, Delivery-Set-, Gate- oder Evidence-Drift stoppt fail-closed. |
 | Parallel Autonomous Governance | N/A | Closed | Run Owner / Governance Reviewer | serielle Writerregel in `tasks.md` | Nur bei ausdrücklicher Kampagnenautorität neu bewerten. |
-| Documentation Impact | Applicable | Pending | Documentation Owner / Documentation Reviewer | `documentation-impact-evidence.json`, T120–T123, T168–T182 | Leserpfad, Distribution oder Home-Sync-Trigger kann driften. |
-| Statistics | Applicable | Pending | Statistics Owner / Documentation Reviewer | T122–T123, T169–T170 | Nur kanonische Konfiguration und Renderer dürfen den Profilblock ändern. |
+| Documentation Impact | Applicable | T120–T123 local documentation/statistics gates Passed; closeout updates pending | Documentation Owner / Documentation Reviewer | `documentation-impact-evidence.json`, T120–T123, T168–T182 | Leserpfad, Distribution oder Home-Sync-Trigger kann driften. |
+| Statistics | Applicable | T122/T123 Passed; later live/closeout refresh T169/T170 pending | Statistics Owner / Documentation Reviewer | canonical slot 67; renderer CURRENT; 146 assertions; Bash/PowerShell 30/30 | Nur kanonische Konfiguration und Renderer dürfen den Profilblock ändern. |
 | Acceptance AC-SBR-001–012 | Applicable | Pending | Fleet Delivery Owner / Acceptance Reviewer | `autonomous-run-gate-requirements.json`, T125, T142–T167 | Jeder Primary-Nachweis muss am tatsächlichen Head und Runner gebunden sein. |
 | G4/Copilot/Account/Subscription isolation | Applicable | Pending | Fleet Delivery Owner / Governance Reviewer | T091, T099, T164–T166, T194 | Jede Mutation ist verboten; fehlende Daten sind kein Pass. |
 
 ## Implementierungsstatus / Implementation Status
 
-- **Current checkpoint / Aktueller Checkpoint**: US1-Preflight T029–T040 lokal abgeschlossen; ExternalWriteGate bleibt geschlossen.
+- **Current checkpoint / Aktueller Checkpoint**: T113–T123 sind lokal abgeschlossen. T124 wurde weder gestartet noch teilweise implementiert; alle Regression-, Acceptance-, Delivery- und Closeout-Gates ab T124 bleiben sichtbar ausstehend. Der ExternalWriteGate bleibt geschlossen.
 - **Runtime implementation / Runtime-Implementierung**: `In progress`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind lokal implementiert.
-- **Remote delivery / Remote-Lieferung**: `Pending`; ExternalWriteGate geschlossen, keine Remoteaktion.
+- **Remote delivery / Remote-Lieferung**: `Pending`; nur der ausdrücklich autorisierte, nicht mergefähige T112-Validierungs-Checkpoint wurde auf den Feature-Branch gepusht. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
 - **Home sync / Home-Sync**: `Pending`; nur nach tatsächlicher `homeRuntime`-Änderung, Preview, Merge und Authority-Revalidierung.
 - **Terminal closeout / Terminaler Abschluss**: `Pending`; `Completed` erst nach 194/194 und allen zwölf Primary-Gates.
 
@@ -211,8 +213,8 @@ before T126.
 - **Implementation status / Umsetzungsstatus**: `Passed for deterministic local fixtures; live resume remains a revalidation gate`.
 - **Owner / Reviewer**: Run Owner / Autonomous and Provider Reviewer.
 - **Evidence / Nachweis**: `NoOpTests` beweist semantische Tree-/Profil-/Workflow-/Gate-/Ruleset-/Providerkonvergenz und null leere Branches, Commits oder PRs. `StopResumeIdempotencyTests` persistiert den ersten Providerblocker atomar, erhält bereits konvergierte Resultate, setzt beim ersten nicht konvergierten Ziel fort und verwendet stabile aktionsspezifische Idempotency Keys. Portable Bash-/PowerShell-Entscheidungen und Exitcodes stimmen überein.
-- **Residual risk / Restrisiko**: Ein Live-Providerergebnis kann nach unklarem Timeout Drift enthalten; es muss read-only reconciled werden. Linux-/Windows-Nativtokens stehen noch aus.
-- **Follow-up / Folgemaßnahme**: T144 ff. revalidieren Plan, Fleet, Authority, Provider und Budget vor jedem Resume-/Write-Grenzpunkt; T111/T112 liefern native Plattformnachweise.
+- **Residual risk / Restrisiko**: Ein Live-Providerergebnis kann nach unklarem Timeout Drift enthalten; es muss read-only reconciled werden. Die nativen Plattformtokens sind vorhanden, werden aber bei Payload- oder Plattformdrift ungültig.
+- **Follow-up / Folgemaßnahme**: T125 aggregiert später die vollständige Plattform-/Security-/A11Y-Acceptance; T144 ff. revalidieren Plan, Fleet, Authority, Provider und Budget vor jedem Resume-/Write-Grenzpunkt.
 - **Re-evaluation / Neubewertung**: Bei No-op-Semantik, State-Transition, Idempotency-Key, Providerklassifikation, Budget, Plattform oder Resume-Policy.
 
 ## US2 Serielle Profilwellen / Serialized Profile Waves
@@ -238,12 +240,14 @@ before T126.
 
 ## T112 Resume-Checkpoint / Resume Checkpoint
 
-- **Status**: `Blocked before T112 completion`; T001–T111 bleiben abgeschlossen.
-- **Last passing evidence / Letzter grüner Nachweis**: Native macOS- und Linux-Previewläufe sind an Payload `1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3` und Entscheidungs-Hash `70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897` gebunden; beide liefern Exitcode 0 und null Git-/Providerwrites.
-- **Blocker**: Es existiert kein nativer Windows-Ausführungspfad und kein aktueller hashgebundener Windows-Nachweis. `windows-test-output.txt` vom 6. April 2026 liegt vor dem Stage-B-Payload und ist nicht akzeptabel. Portable Fixtures oder PowerShell auf macOS ersetzen den nativen Token nicht.
+- **Status**: `Completed`; T001–T112 sind abgeschlossen, T113 wurde nicht gestartet.
+- **Checklist counts / Checklist-Zählung**: `clarifications.md` 0/0, `cross-platform.md` 0/0, `governance.md` 40/40, `implementation-governance.md` 0/0, `plan-review.md` 8/8, `requirements.md` 30/30 und `stage-b-mutation-allowlist.md` 0/0 abgeschlossen/offen. Thorstens ausdrückliche Proceed-Antwort galt ausschließlich für den begrenzten T112-Pfad; spätere semantische Implementierungscheckpoints bleiben offen.
+- **Analyze and local gates / Analyze und lokale Gates**: `analyze-resume-t112` ist am vorherigen Tasks-Hash `58cb1da8...` `Completed`. Secret Scan meldete `high=0`; exaktes Delivery Set, sauberer Index, `git diff --check`, Workflowvertrag, PowerShell-Payloadhash, vier `PlatformParityTests` und PowerShell-Parser bestanden.
+- **Checkpoint / Checkpoint**: Genau ein Commit `0d5144c9aa12fc069dd2dfbff6e6d247da0d30fc` mit Marker `[stage-b-windows-proof]` wurde non-forced auf `origin/030-stage-b-rollout` gepusht. Der Remote-Feature-Head entspricht diesem Commit; `origin/main` blieb `9b3a10a4d0c745c9a538cac6eff44532984f144a`.
+- **Native Windows evidence / Nativer Windows-Nachweis**: Workflow `Stage B Windows Proof` (Workflow-ID `339958112`, Run `32567141555`, Run-URL `https://github.com/hindermath/home-baseline/actions/runs/32567141555`) führte Job `Native Windows PowerShell 7 proof` (Job-ID `97017306468`, Job-URL `https://github.com/hindermath/home-baseline/actions/runs/32567141555/job/97017306468`) auf `windows-2022` / Microsoft Windows Server 2022 aus. PowerShell `7.6.5` führte `pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf` mit Exitcode `0` aus; Payload `1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3` und Entscheidung `70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897` stimmen exakt.
+- **Zero-write boundary / Nullschreibgrenze**: Der Proof meldet `gitWrites=0` und `providerWrites=0`; es gab keinen PR, Merge, Home-Sync, Ruleset- oder Fleetwrite und keinen Admin-Bypass.
 - **Owner / Reviewer**: Windows Platform Owner / Cross-Platform Reviewer.
-- **Next exact action / Exakte nächste Aktion**: Auf nativem Windows mit PowerShell 7 und exakt dem aktuellen Payload `pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf` ausführen, `$LASTEXITCODE` unmittelbar prüfen, Payload-/Entscheidungs-Hash bestätigen, `operational/platform/windows.json` wahrheitsgemäß auf `Passed` setzen und den Lauf bei T112 fortsetzen.
-- **Safe boundary / Sichere Grenze**: Bis zu einem frischen Analyze-Pass kein T112-Abschluss, kein T113-Start, kein Staging, Commit, Remote-Write oder Providerwrite; danach ist ausschließlich der in T112 und der Mutations-Allowlist benannte Validierungs-Checkpoint zulässig. `.specify/runtime/` bleibt immer ungestaged.
+- **Safe boundary / Sichere Grenze**: Das lokale Windows-Record und die T112-Buchungen bleiben ungestaged. Es gibt keinen zweiten Commit oder Push; T113 darf erst in einer späteren ausdrücklich gerouteten Fortsetzung starten. `.specify/runtime/` bleibt immer ungestaged.
 
 ## T112 GitHub-Actions-Ausweg / GitHub Actions Route
 
@@ -252,3 +256,39 @@ before T126.
 - **Amendment / Anpassung**: `plan.md`, T112 und `checklists/cross-platform.md` erlauben genau einen nicht mergefaehigen Validierungs-Checkpoint mit einem auf `030-stage-b-rollout`, fuenf gebundene Pfade und den Commitmarker `[stage-b-windows-proof]` beschraenkten Push-Workflow, `contents: read`, `windows-2022`, `-WhatIf`, exakter Payload-/Entscheidungshashpruefung und unveraenderlicher Run-/Job-Bindung. Der Push-Trigger vermeidet die Default-Branch-Voraussetzung eines erstmalig angelegten `workflow_dispatch`-Workflows.
 - **Required rerun / Erforderliche Wiederholung**: Vor Workflowimplementierung und Remoteaktion muss ein frischer `$speckit-analyze specs/030-stage-b-rollout` ohne Critical-/High-/ungeloeste Medium-Findings abgeschlossen und hashgebunden werden. Danach gelten Delivery-Set-, Secret-, Index- und Branch-Head-Pruefung erneut.
 - **Proof boundary / Nachweisgrenze**: Nur ein erfolgreicher nativer Windows-Job am exakten Checkpoint-Commit schließt T112. Genehmigung, Workflowname oder ein macOS-PowerShell-Lauf allein bleiben unzureichend.
+- **Executed proof / Ausgeführter Nachweis**: Diese Grenze wurde durch Run `32567141555` und Job `97017306468` am Commit `0d5144c9aa12fc069dd2dfbff6e6d247da0d30fc` erfüllt. Die maschinenlokale Evidence bindet Workflow-/Run-/Job-Metadaten, URLs, Runner, Befehl, PowerShell-Version, Exitcode, beide Hashes und die Nullschreibwerte.
+
+## Wiederverwendbares macOS-first-Lernen / Reusable macOS-First Learning
+
+- **User decision / Nutzerentscheidung**: Thorsten hat am 22. August 2026 ausdrücklich verlangt, den erfolgreichen Windows-Nachweis sowie den Linux-Nachweispfad für weitere plattformübergreifende Prüfungen dauerhaft zu übernehmen, weil die Entwicklung primär auf macOS erfolgt.
+- **Binding pattern / Bindendes Muster**: macOS wird lokal zuerst im Safe Mode geprüft. Fehlt ein eigener Zielhost, liefert Linux den nativen Token über einen isolierten Container oder einen minimal berechtigten Linux-CI-Job; Windows liefert ihn über einen minimal berechtigten nativen Windows-CI-Job. Evidence bindet Commit, Befehl, Runner/Plattform, Exitcode, Payload- und Entscheidungshash sowie Nullschreibwerte.
+- **Proof limit / Nachweisgrenze**: Ein eng begrenzter Preflight beweist nur diesen Befehl und ersetzt weder vollständige Regressionen noch Security-, A11Y-, Review- oder Merge-Gates. Der fehlgeschlagene allgemeine Windows-Regressionslauf `32567141523` bleibt deshalb trotz erfolgreichem T112-Proof als T124-Eingabe offen.
+- **Propagation / Verteilung**: T121 überführt das agentenneutrale Muster atomar in alle gemeinsamen Agent-Guidance- und betroffenen Template-Flächen. Änderungen an Trigger, Pfaden, Permissions, Payload, Runner oder Zielplattform erzwingen Re-Evaluation.
+
+## T120–T123 lokale Abschlussnachweise / Local Completion Evidence
+
+- **T120 Documentation Impact**: Genau ein Feature-Eintrag bleibt
+  `UpdateRequired`. `validate-documentation-impact.sh` meldet einen aktuellen
+  Eintrag; der Feature-021-Migrationsvalidator meldet 16 Sektionen, vier
+  Leserpfade und 17 verlinkte Dateien. Beide Exitcodes sind `0`. Der README-
+  Link nutzt den tatsächlich berechneten Manpage-Anchor; `README.en.md` führt
+  denselben sicheren Leserpfad.
+- **T121 Shared Guidance**: Constitution `1.21.0` und
+  `.specify/memory/constitution.md` sind bytegleich. Alle fünf Agentflächen,
+  kanonischen `.specify/templates/`-Flächen und Runtime-Agenttemplates tragen
+  macOS-first, isoliertes natives Linux, eng begrenztes natives Windows-CI,
+  exakte Commit-/Command-/Runner-/Exitcode-/Payload-/Decision-/Zero-Write-
+  Bindung und die Teilnachweisgrenze. Agent-Surface-Parität: Exitcode `0`.
+- **T122 canonical statistics**: Nur
+  `docs/project-statistics.config.json` erhielt Slot `67`, Methodik `2`,
+  `9851` Nettozeilen vor Statistikpflege, einen sichtbaren Git-Aktivtag und
+  unveränderte Referenzen `80/100`.
+- **T123 generated statistics**: Der unveränderte Renderer verweigerte den
+  schreibenden Dirty-Tree-Modus sicher. Sein `--dry-run`-Output wurde deshalb
+  ausschließlich zwischen den Generated-Markern mechanisch übernommen;
+  `--check-only` meldet `CURRENT` bei Exitcode `0`. Die PowerShell-
+  Statistikfixtures bestehen mit 146 Assertions. Bash und PowerShell melden
+  im Safe Mode jeweils 30/30 Homogenitätschecks und Exitcode `0`.
+- **Proof boundary / Nachweisgrenze**: Diese Evidence schließt nur T113–T123.
+  Sie behauptet weder die T124-Vollregression noch AC-SBR-009, Live-Delivery,
+  Home-Sync oder terminalen Closeout.
