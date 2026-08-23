@@ -408,11 +408,19 @@ class FleetPreflightTests(unittest.TestCase):
 
     def test_workflow_adapter_separates_provider_managed_system_workflows(self):
         inventory = {
-            "total_count": 3,
+            "total_count": 5,
             "workflows": [
                 {"path": ".github/workflows/ci.yml", "state": "active"},
                 {
                     "path": "dynamic/agents/copilot-pull-request-reviewer",
+                    "state": "active",
+                },
+                {
+                    "path": "dynamic/copilot-pull-request-reviewer/copilot-pull-request-reviewer",
+                    "state": "active",
+                },
+                {
+                    "path": "dynamic/copilot-swe-agent/copilot",
                     "state": "active",
                 },
                 {
@@ -427,15 +435,25 @@ class FleetPreflightTests(unittest.TestCase):
             )
         self.assertEqual([item["gateId"] for item in refs], ["ci"])
 
-        unsafe = {
-            "total_count": 1,
-            "workflows": [{"path": "dynamic/untrusted/workflow", "state": "active"}],
-        }
-        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=unsafe):
-            with self.assertRaisesRegex(self.engine.ContractError, "workflow path is unsafe"):
-                self.engine._stage_b_workflow_gate_refs(
-                    "hindermath/example", "public-product", "example"
-                )
+        for unsafe_path in (
+            "dynamic/untrusted/workflow",
+            "dynamic/copilot-pull-request-reviewer/untrusted",
+            "dynamic/copilot-swe-agent/untrusted",
+        ):
+            unsafe = {
+                "total_count": 1,
+                "workflows": [{"path": unsafe_path, "state": "active"}],
+            }
+            with self.subTest(unsafe_path=unsafe_path):
+                with mock.patch.object(
+                    self.engine, "_stage_b_github_get_json", return_value=unsafe
+                ):
+                    with self.assertRaisesRegex(
+                        self.engine.ContractError, "workflow path is unsafe"
+                    ):
+                        self.engine._stage_b_workflow_gate_refs(
+                            "hindermath/example", "public-product", "example"
+                        )
 
     def test_ruleset_adapter_plans_create_from_live_absence(self):
         identity = dict(self.inventory[0], profileId="private-governance-scaffold")
