@@ -92,7 +92,8 @@ Budgetstatus, Blocker und nächste Aktion. Die aktuelle Anzahl darf `48` sein,
 wird aber live ermittelt. Vor jeder tatsächlichen Mutation muss der fixierte
 Plan stattdessen eine konkrete erste Mutation enthalten. Vorschau schreibt
 keine Evidence und erzeugt keinen Branch, Commit, PR, Merge, Ruleset oder
-Home-Sync.
+Home-Sync. Sie schreibt außerdem weder Rolloutplan noch Run-State; die letzte
+lineare Ausgabezeile enthält den vollständigen normalisierten Plan als JSON.
 
 ### 5. PowerShell-Vorschau unter Windows
 
@@ -106,6 +107,29 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 Erwartung: dieselbe fachliche Entscheidung, derselbe Exitcode und dieselben
 normalisierten JSON-Felder wie bei Bash. Farbe oder Cursorposition ist für
 keine Aussage erforderlich.
+
+### 5a. Lokale Planpublikation nach Level-0-Lieferung
+
+Dieser Schritt ist vom Remediation- und Lieferteil getrennt. Er darf erst vom
+sauberen, synchronisierten Default-Head ausgeführt werden, nachdem die
+Preflight-Implementierung regulär nach Level 0 geliefert wurde:
+
+```bash
+bash scripts/maintain-agentic-workspace.sh --stage-b-action preflight
+```
+
+```powershell
+pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+```
+
+Der Aufruf liest Flotte und Provider live, hält den Snapshot nur im Speicher
+und publiziert lokal zuerst den atomar ersetzten Rolloutplan und danach den
+hashbindenden State als Commit-Marker. Er schreibt weder Git, Provider, Home
+noch Zielrepositories. Der vorbereitete State trägt `authorityBinding.status`
+`Pending`, `externalWriteGate=Closed`, `adminBypass=NotAuthorized` und
+`N/A` statt behaupteter Autoritätsquelle oder -zeit. Ein Plan ohne State ist
+nicht autoritativ; ein State ohne vorhandenen hashgleichen Plan ist ungültig.
 
 ### 6. Lokale vollständige Validierung
 
@@ -180,7 +204,9 @@ sind. Er stoppt beim ersten nicht behebbaren Fehler vor dem nächsten Ziel.
 
 Es gibt absichtlich keinen Parameter wie `--force` oder `-AdminBypass`. Wenn
 der normale Merge ausschließlich an einer Schutzregel scheitert, prüft die
-Engine die bereits im Run gebundene Ausnahmeauthority. Vor `gh pr merge
+Engine ausschließlich eine für T144 und den exakten aktuellen Mergefall frisch
+erteilte, plan- und headgebundene Ausnahmeauthority. Der vorbereitete
+Preflight-State enthält ausdrücklich keine solche Freigabe. Vor `gh pr merge
 --admin` müssen folgende Felder vollständig sein:
 
 - aktueller Authority-/Scope-Hash;
@@ -302,7 +328,8 @@ python3 scripts/tests/run_stage_b_rollout_acceptance.py \
 
 Expected: exit `0`, a dynamically discovered fleet, five ordered waves, a
 green `agent-operations-cockpit` fake-provider slice, cross-platform evidence,
-and no external write.
+and no write of any kind. The final linear preview line contains the complete
+normalized rollout plan as JSON; preview creates neither plan nor state.
 
 PowerShell preview:
 
@@ -310,6 +337,23 @@ PowerShell preview:
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 ```
+
+After the preflight remediation has been delivered separately and the local
+default branch is clean and synchronized, publish the local plan and prepared
+state:
+
+```bash
+bash scripts/maintain-agentic-workspace.sh --stage-b-action preflight
+```
+
+The live fleet snapshot remains in memory. The engine atomically replaces the
+validated plan first and the validated state second; the state is the commit
+marker and binds the exact plan hash. This call performs no Git, provider,
+Home, or target-repository write. Prepared authority is `Pending`, the external
+write gate is closed, admin bypass is not authorized, and source/timestamps are
+`N/A`. A plan without state is non-authoritative; state without the matching
+plan is invalid. Any bypass authority must be granted freshly at T144 for the
+exact current merge case.
 
 ### 3. Authorized delivery and resume
 

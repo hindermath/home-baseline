@@ -83,6 +83,10 @@ Freshness Barrier completes every fetch attempt before any mutation.
   --stage-b-action ACTION
                      Stage-B Preflight, Validate, Deliver, Resume oder Verify
                      Stage-B preflight, validation, delivery, resume, or verify
+                     Vorschau zeigt den vollstaendigen Live-Plan ohne Writes;
+                     preview prints the complete live plan with zero writes
+                     Preflight ohne Vorschau publiziert nur lokalen Plan/State;
+                     without preview publishes local plan/state only (Pending)
   --scripts-only     Nur Repositories, Home-Sync, Registry und Propagation
                      Repositories, home sync, registry, and propagation only
   --repair-drift     Wartungspaket-Drift lokal reparieren; nie committen/pushen

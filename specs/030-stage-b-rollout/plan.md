@@ -167,6 +167,23 @@ Geplante Evidence-Flächen:
    Manifest, Profil-/Pfadregistries, Environment Registry, Authority und
    Providerinventar genau einmal pro Snapshot. Er bildet die dynamische Union,
    prüft Mengengleichheit und fixiert `inputSetHash`.
+   Der produktive `Preflight`-CLI-Pfad MUSS diese Komponente und anschließend
+   den `StageBRolloutPlanner` tatsächlich aufrufen; eine feste Statusausgabe
+   ohne Live-Inventar oder Plan ist kein bestandener Preflight. `--dry-run`
+   berechnet und zeigt denselben vollständigen Plan, schreibt aber keine
+   Evidence. Erst der nach separater Level-0-Lieferung vom sauberen,
+   synchronisierten Default-Head mit identischen Eingaben ausgeführte lokale
+   `Preflight` ohne `--dry-run` darf Rolloutplan und vorbereiteten Stage-B-State
+   publizieren. Der Flottensnapshot bleibt dabei im Speicher; es entsteht kein
+   dritter persistierter Vertrag. Die Engine validiert Plan und State vorab,
+   ersetzt zuerst den Plan atomar und danach den State atomar. Erst der State
+   ist der Commit-Marker einer gültigen Publikation und bindet den exakten
+   Planhash. Ein Absturz zwischen beiden Ersetzungen hinterlässt höchstens einen
+   nicht autoritativen verwaisten Plan, den der nächste Preflight ignoriert und
+   ersetzt; ein State ohne vorhandenen, hashgleichen Plan ist immer ungültig.
+   Der vorbereitete State hält den ExternalWriteGate geschlossen, trägt
+   Authority-Status `Pending` und darf weder frühere Authority noch eine frühere
+   Admin-Bypass-Ausnahme als aktuell übernehmen.
 2. **StageBRolloutPlanner** führt die Stage-A-Entscheidung gegen jeden aktuellen
    Ziel-HEAD erneut aus. Er erzeugt geordnete Blob-/Mode-Änderungen statt
    plattformabhängiger Patchtexte und bindet `baselineHead`, `baselineTree`,
@@ -219,8 +236,14 @@ Wellenstatus, Repositoryresultate, Budgetprojektionen, Blocker, nächste Aktion,
 terminale Evidence und Closeout gehören ausdrücklich nicht zum Planpayload.
 Delivery-Fortschritt kann den fixierten Plan deshalb nicht selbst invalidieren.
 
-`StageBRunState` Schema v1.1 ist der einzige veränderliche Stage-B-Zustand. Er
-bindet `rolloutPlanBinding.planId`, repository-relativen Planpfad und den
+`StageBRunState` Schema v1.1 ist der einzige veränderliche Stage-B-Zustand und
+der Commit-Marker der Preflight-Publikation. Er darf erst nach erfolgreicher
+atomarer Planpublikation ersetzt werden und ist nur gültig, wenn der gebundene
+Plan am repository-relativen Pfad vorhanden ist und sein normalisierter Hash
+exakt `rolloutPlanBinding.planSha256` entspricht. Ein planloser oder
+hashabweichender State ist fail-closed; ein Plan ohne State ist nicht
+autoritativ und wird beim nächsten Preflight ersetzt. Der State bindet
+`rolloutPlanBinding.planId`, repository-relativen Planpfad und den
 unveränderlichen `planSha256` an die jeweils aktuelle `authorityBinding`, den
 Flottensnapshot, aktuelle Wellen-/Repositoryresultatpfade und -hashes, fünf
 Budgetprojektionen sowie explizite Terminal- und Closeout-Evidence-Bindungen.
@@ -232,7 +255,11 @@ hashgebundene Index und keine äußere Hülle, aus der ein Dokument seine
 Planbindung erben dürfte. Seine Result-/Evidence-Einträge wiederholen
 `planSha256`; der Semantikvalidator verlangt Gleichheit mit
 `rolloutPlanBinding.planSha256` sowie dieselbe Run-ID in Plan, State und allen
-Dokumenten und Pfadeinträgen. Authority- oder Gate-Drift schließt den
+Dokumenten und Pfadeinträgen. Eine vorbereitete `authorityBinding` hat Status
+`Pending`, Quelle und Zeitfelder `N/A`, `externalWriteGate=Closed` und
+`adminBypass=NotAuthorized`. Erst eine nach T141 frisch erteilte und
+revalidierte Autorität darf den Status `Authorized` mit echten Zeit- und
+Quellenfeldern setzen. Authority- oder Gate-Drift schließt den
 Schreibzugang und wird im State revalidiert, ändert aber den Planhash nicht.
 Nur Drift einer unveränderlichen Planeingabe erzeugt eine neue Planrevision.
 
@@ -256,8 +283,13 @@ Pfade sind stets repository-relativ und müssen `<run-id>` an `runId` binden.
   Aggregators. Sie referenzieren operative Hashes, sind aber nicht selbst der
   fortschreibbare Run-State.
 - `.specify/runtime/autonomous-routing/<run-id>/*.result.json` bleibt der
-  getrennte interne Routing-Namespace für Spec-Kit-Phasenergebnisse und liegt
-  außerhalb des Stage-B-Evidence-Roots.
+   getrennte interne Routing-Namespace für Spec-Kit-Phasenergebnisse und liegt
+   außerhalb des Stage-B-Evidence-Roots.
+
+Der AC-SBR-001-Primary-Nachweis MUSS den tatsächlich unter
+`stage-b/rollout-plan.json` publizierten Plan, dessen normalisierten SHA-256,
+die Live-Fleet-Mengengleichheit und die G3-Basis binden. Fixture-only-Tests oder
+ein grüner Aggregator ohne diese Live-Planbindung erfüllen T142 nicht.
 - `specs/030-stage-b-rollout/evidence/v1/` ist der spätere `sourceOnly`-Zielpfad
   für ausgewählte redigierte Abschlussnachweise. Kopien behalten Quellpfad und
   Quellhash; sie ersetzen niemals die operative Evidence.

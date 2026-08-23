@@ -55,7 +55,12 @@
     Führt genau eine Stage-B-Aktion Preflight, Validate, Deliver, Resume oder
     Verify über den gemeinsamen Python-Kern aus. -WhatIf öffnet niemals das
     ExternalWriteGate. / Runs exactly one Stage-B action through the shared
-    Python core. -WhatIf never opens the ExternalWriteGate.
+    Python core. -WhatIf prints the complete live plan and performs zero
+    evidence, Git, provider, Home, target, plan, or state writes. Preflight ohne
+    -WhatIf publiziert nur lokalen Plan und Pending-State; Git, Provider, Home
+    und Zielrepositories bleiben unverändert. / Without -WhatIf, Preflight
+    publishes only the local plan and Pending state; Git, provider, Home, and
+    target repositories remain unchanged.
 
 .PARAMETER ScriptsOnly
     Maintain repositories, home sync, registry, and propagation only. Skip
@@ -143,7 +148,15 @@
     pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf
 
     Zeigt Stage B ohne ExternalWriteGate oder Mutation an.
-    Previews Stage B without opening the ExternalWriteGate or mutating state.
+    Previews the complete Stage-B plan without opening the ExternalWriteGate
+    or writing evidence, Git, provider, Home, targets, plan, or state.
+
+.EXAMPLE
+    pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight
+
+    Publiziert nach separater Level-0-Lieferung nur lokalen Plan und
+    vorbereiteten Pending-State. / After separate Level-0 delivery, publishes
+    only the local plan and prepared Pending state.
 
 .EXAMPLE
     pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Resume -WhatIf
@@ -257,10 +270,12 @@ function Invoke-HBAgenticWorkspaceMaintenance {
         binding. Use CheckOnly or WhatIf before an update run. StageBAction
         starts exactly one shared engine process.
     .PARAMETER StageBAction
-        Wählt Preflight, Validate, Deliver, Resume oder Verify. Deliver und
-        Resume benötigen ohne WhatIf aktuelle MergeAndSync-Autorität.
-        Selects Preflight, Validate, Deliver, Resume, or Verify. Deliver and
-        Resume require current MergeAndSync authority without WhatIf.
+        Wählt Preflight, Validate, Deliver, Resume oder Verify. Preflight ohne
+        WhatIf publiziert nur lokalen Plan/Pending-State. Deliver und Resume
+        benötigen aktuelle MergeAndSync-Autorität. / Selects Preflight,
+        Validate, Deliver, Resume, or Verify. Preflight without WhatIf publishes
+        only local plan/Pending state. Deliver and Resume require current
+        MergeAndSync authority.
     .PARAMETER RunId
         Optionale Korrelations-ID; die autoritative Stage-B-ID kann aus der
         laufgebundenen Umgebung kommen. / Optional correlation ID; the

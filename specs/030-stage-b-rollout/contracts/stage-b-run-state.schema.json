@@ -106,12 +106,23 @@
     "authorityBinding": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["deliveryMode", "source", "authorizedAt", "validatedAt", "runId", "planSha256", "scopeHash", "repositoryIdsHash", "externalWriteGate", "adminBypass", "authorityHash"],
+      "required": ["status", "deliveryMode", "source", "authorizedAt", "validatedAt", "runId", "planSha256", "scopeHash", "repositoryIdsHash", "externalWriteGate", "adminBypass", "authorityHash"],
       "properties": {
+        "status": { "enum": ["Pending", "Authorized"] },
         "deliveryMode": { "const": "MergeAndSync" },
         "source": { "type": "string", "minLength": 1, "maxLength": 256 },
-        "authorizedAt": { "type": "string", "format": "date-time" },
-        "validatedAt": { "type": "string", "format": "date-time" },
+        "authorizedAt": {
+          "oneOf": [
+            { "type": "string", "format": "date-time" },
+            { "const": "N/A" }
+          ]
+        },
+        "validatedAt": {
+          "oneOf": [
+            { "type": "string", "format": "date-time" },
+            { "const": "N/A" }
+          ]
+        },
         "runId": { "$ref": "#/$defs/uuid" },
         "planSha256": { "$ref": "#/$defs/sha256" },
         "scopeHash": { "$ref": "#/$defs/sha256" },
@@ -119,7 +130,27 @@
         "externalWriteGate": { "enum": ["Open", "Closed"] },
         "adminBypass": { "enum": ["AuthorizedException", "NotAuthorized"] },
         "authorityHash": { "$ref": "#/$defs/sha256" }
-      }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "status": { "const": "Pending" },
+            "source": { "const": "N/A" },
+            "authorizedAt": { "const": "N/A" },
+            "validatedAt": { "const": "N/A" },
+            "externalWriteGate": { "const": "Closed" },
+            "adminBypass": { "const": "NotAuthorized" }
+          }
+        },
+        {
+          "properties": {
+            "status": { "const": "Authorized" },
+            "source": { "not": { "const": "N/A" } },
+            "authorizedAt": { "type": "string", "format": "date-time" },
+            "validatedAt": { "type": "string", "format": "date-time" }
+          }
+        }
+      ]
     },
     "waveResultEntry": {
       "type": "object",
