@@ -668,6 +668,14 @@ STAGE_B_PROFILE_WAVE = {
     "private-governance-scaffold": "private-governance-scaffold",
     "public-preset": "public-presets",
 }
+STAGE_B_PROVIDER_MANAGED_WORKFLOW_PATHS = frozenset({
+    "dynamic/agents/copilot-pull-request-reviewer",
+    "dynamic/dependabot/dependabot-updates",
+})
+STAGE_B_ALLOWED_FORKS = {
+    "cc65": ("hindermath/cc65", "cc65/cc65"),
+    "tvision": ("hindermath/tvision", "magiblot/tvision"),
+}
 
 
 def _atomic_stage_b_json(path: pathlib.Path, value: dict) -> str:
@@ -809,6 +817,28 @@ def _stage_b_github_get_json(slug: str, endpoint: str = "") -> object:
             raise ContractError(f"GitHub read-only inventory failed for {target}: {detail}")
         time.sleep(0.25 * (2 ** (attempt - 1)))
     raise AssertionError("bounded Stage-B GitHub retry loop exhausted")
+
+
+def validate_stage_b_provider_lifecycle(
+    metadata: dict, repository_id: str, slug: str
+) -> None:
+    archived = metadata.get("archived")
+    fork = metadata.get("fork")
+    if not isinstance(archived, bool) or not isinstance(fork, bool):
+        raise ContractError(f"provider lifecycle metadata is invalid: {repository_id}")
+    if archived:
+        raise ContractError(f"archived target blocks Stage B: {repository_id}")
+    if not fork:
+        return
+    allowed = STAGE_B_ALLOWED_FORKS.get(repository_id)
+    parent = metadata.get("parent")
+    parent_name = str(parent.get("full_name", "")) if isinstance(parent, dict) else ""
+    if (
+        allowed is None
+        or slug.lower() != allowed[0]
+        or parent_name.lower() != allowed[1]
+    ):
+        raise ContractError(f"unbound fork target blocks Stage B: {repository_id}")
 
 
 def stage_b_stable_identity(row: dict) -> dict:
@@ -1034,6 +1064,12 @@ def _stage_b_workflow_gate_refs(slug: str, profile_id: str, repository_id: str) 
         state = workflow.get("state")
         if state != "active":
             continue
+        # GitHub exposes provider-managed Copilot and Dependabot entries in the
+        # workflow inventory even though they are not repository-owned files.
+        # They remain outside CI-budget gate evidence; every other non-file path
+        # still fails closed instead of being trusted by name or display label.
+        if path in STAGE_B_PROVIDER_MANAGED_WORKFLOW_PATHS:
+            continue
         if not path.startswith(".github/workflows/") or any(character in path for character in "\0\r\n"):
             raise ContractError(f"workflow path is unsafe: {repository_id}")
         stem = pathlib.PurePosixPath(path).stem.lower()
@@ -1081,8 +1117,7 @@ def load_stage_b_live_inputs(repository_root: pathlib.Path) -> dict:
         provider_id = str(metadata.get("id", ""))
         full_name = str(metadata.get("full_name", ""))
         default_branch = str(metadata.get("default_branch", ""))
-        if metadata.get("archived") is True or metadata.get("fork") is True:
-            raise ContractError(f"archived or forked target blocks Stage B: {repository_id}")
+        validate_stage_b_provider_lifecycle(metadata, repository_id, slug)
         if full_name.lower() != slug.lower() or default_branch != expected["defaultBranch"]:
             raise ContractError(f"provider identity/default-branch drift: {repository_id}")
         branch = _stage_b_github_get_json(slug, f"branches/{default_branch}")
@@ -4674,7 +4709,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--action", choices=("preflight", "validate", "deliver", "resume", "verify"), required=True
     )
     stage_b.add_argument("--repository-root", type=pathlib.Path, required=True)
-    stage_b.add_argument("--run-id", required=True)
+    stage_b.add_argument("--run-id", default=STAGE_B_RUN_ID)
     stage_b.add_argument("--delivery-mode", choices=("MergeAndSync",), default="MergeAndSync")
     stage_b.add_argument("--wave-id", default="N/A")
     stage_b.add_argument("--repository-id", default="N/A")

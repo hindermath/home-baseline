@@ -641,7 +641,10 @@ if [ -n "$STAGE_B_ACTION" ]; then
     stage-b
     --action "$STAGE_B_ACTION"
     --repository-root "$SOURCE_ROOT"
-    --run-id "${HB_STAGE_B_RUN_ID:-${REQUESTED_RUN_ID:-N/A}}"
+  )
+  stage_b_run_id="${HB_STAGE_B_RUN_ID:-${REQUESTED_RUN_ID:-}}"
+  [ -z "$stage_b_run_id" ] || stage_b_arguments+=(--run-id "$stage_b_run_id")
+  stage_b_arguments+=(
     --delivery-mode "${HB_STAGE_B_DELIVERY_MODE:-MergeAndSync}"
     --wave-id "${HB_STAGE_B_WAVE_ID:-N/A}"
     --repository-id "${HB_STAGE_B_REPOSITORY_ID:-N/A}"
