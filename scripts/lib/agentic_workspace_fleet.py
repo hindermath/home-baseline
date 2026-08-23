@@ -670,6 +670,8 @@ STAGE_B_PROFILE_WAVE = {
 }
 STAGE_B_PROVIDER_MANAGED_WORKFLOW_PATHS = frozenset({
     "dynamic/agents/copilot-pull-request-reviewer",
+    "dynamic/copilot-pull-request-reviewer/copilot-pull-request-reviewer",
+    "dynamic/copilot-swe-agent/copilot",
     "dynamic/dependabot/dependabot-updates",
 })
 STAGE_B_ALLOWED_FORKS = {
