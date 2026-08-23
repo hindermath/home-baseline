@@ -352,6 +352,31 @@ class FleetPreflightTests(unittest.TestCase):
         with self.assertRaises(self.engine.ContractError):
             self.engine.stage_b_stable_identity(drift)
 
+    def test_provider_lifecycle_allows_only_bound_personal_forks(self):
+        allowed = (
+            ("cc65", "hindermath/cc65", "cc65/cc65"),
+            ("tvision", "hindermath/tvision", "magiblot/tvision"),
+        )
+        for repository_id, slug, parent in allowed:
+            with self.subTest(repository_id=repository_id):
+                self.engine.validate_stage_b_provider_lifecycle(
+                    {"archived": False, "fork": True, "parent": {"full_name": parent}},
+                    repository_id,
+                    slug,
+                )
+
+        blocked = (
+            ({"archived": False, "fork": True, "parent": {"full_name": "other/upstream"}}, "cc65", "hindermath/cc65"),
+            ({"archived": False, "fork": True, "parent": {"full_name": "cc65/cc65"}}, "other", "hindermath/other"),
+            ({"archived": True, "fork": False}, "cc65", "hindermath/cc65"),
+        )
+        for metadata, repository_id, slug in blocked:
+            with self.subTest(repository_id=repository_id, metadata=metadata):
+                with self.assertRaises(self.engine.ContractError):
+                    self.engine.validate_stage_b_provider_lifecycle(
+                        metadata, repository_id, slug
+                    )
+
     def test_read_only_git_tree_calculation_matches_current_tree_without_write(self):
         head = subprocess.run(
             ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
@@ -377,6 +402,37 @@ class FleetPreflightTests(unittest.TestCase):
         incomplete = {"total_count": 2, "workflows": complete["workflows"]}
         with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=incomplete):
             with self.assertRaisesRegex(self.engine.ContractError, "pagination"):
+                self.engine._stage_b_workflow_gate_refs(
+                    "hindermath/example", "public-product", "example"
+                )
+
+    def test_workflow_adapter_separates_provider_managed_system_workflows(self):
+        inventory = {
+            "total_count": 3,
+            "workflows": [
+                {"path": ".github/workflows/ci.yml", "state": "active"},
+                {
+                    "path": "dynamic/agents/copilot-pull-request-reviewer",
+                    "state": "active",
+                },
+                {
+                    "path": "dynamic/dependabot/dependabot-updates",
+                    "state": "active",
+                },
+            ],
+        }
+        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=inventory):
+            refs = self.engine._stage_b_workflow_gate_refs(
+                "hindermath/example", "public-product", "example"
+            )
+        self.assertEqual([item["gateId"] for item in refs], ["ci"])
+
+        unsafe = {
+            "total_count": 1,
+            "workflows": [{"path": "dynamic/untrusted/workflow", "state": "active"}],
+        }
+        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=unsafe):
+            with self.assertRaisesRegex(self.engine.ContractError, "workflow path is unsafe"):
                 self.engine._stage_b_workflow_gate_refs(
                     "hindermath/example", "public-product", "example"
                 )
@@ -1314,20 +1370,23 @@ class PlatformParityTests(unittest.TestCase):
             "providerInventory": inventory, "assignments": profiles["assignments"], "targets": targets,
         }
 
-    def run_wrapper(self, command, *, home=""):
+    def run_wrapper(self, command, *, home="", bind_run_id=True):
         environment = os.environ.copy()
         with tempfile.TemporaryDirectory() as directory:
             fixture_path = pathlib.Path(directory) / "stage-b-input.json"
             fixture_path.write_text(json.dumps(self.fixture_input), encoding="utf-8")
             environment.update({
                 "HOME": home,
-                "HB_STAGE_B_RUN_ID": "954ff259-ffed-44a8-883f-28742b031a9b",
                 "HB_STAGE_B_WAVE_ID": "public-canaries",
                 "HB_STAGE_B_REPOSITORY_ID": "agent-operations-cockpit",
                 "HB_STAGE_B_PROFILE_ID": "public-canary",
                 "HB_STAGE_B_TEST_MODE": "1",
                 "HB_STAGE_B_TEST_FIXTURE": str(fixture_path),
             })
+            if bind_run_id:
+                environment["HB_STAGE_B_RUN_ID"] = "954ff259-ffed-44a8-883f-28742b031a9b"
+            else:
+                environment.pop("HB_STAGE_B_RUN_ID", None)
             return subprocess.run(
                 command, cwd=ROOT, env=environment, text=True,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
@@ -1373,6 +1432,23 @@ class PlatformParityTests(unittest.TestCase):
             result.returncode, 0,
             f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}",
         )
+
+    def test_documented_preview_resolves_run_id_without_hidden_environment(self):
+        commands = [
+            [self.bash_executable(), "scripts/maintain-agentic-workspace.sh", "--stage-b-action", "preflight", "--dry-run"],
+            ["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-StageBAction", "Preflight", "-WhatIf"],
+        ]
+        for command in commands:
+            with self.subTest(command=command):
+                result = self.run_wrapper(command, bind_run_id=False)
+                self.assertEqual(
+                    result.returncode, 0,
+                    f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}",
+                )
+                self.assertIn(
+                    "Run-ID / Run ID: 954ff259-ffed-44a8-883f-28742b031a9b",
+                    result.stdout,
+                )
 
     def test_fixture_adapter_cannot_publish_plan_or_state(self):
         result = self.run_wrapper([

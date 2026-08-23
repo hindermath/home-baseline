@@ -358,12 +358,16 @@ if ($StageBAction) {
     }
     $stageBSourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
     $stageBFleetEngine = Join-Path $stageBSourceRoot 'scripts/lib/agentic_workspace_fleet.py'
-    $stageBRunId = if ($env:HB_STAGE_B_RUN_ID) { $env:HB_STAGE_B_RUN_ID } elseif ($RunId) { $RunId } else { 'N/A' }
+    $stageBRunId = if ($env:HB_STAGE_B_RUN_ID) { $env:HB_STAGE_B_RUN_ID } elseif ($RunId) { $RunId } else { '' }
     $stageBArguments = [Collections.Generic.List[string]]::new()
     @(
         'stage-b', '--action', $StageBAction.ToLowerInvariant(),
-        '--repository-root', $stageBSourceRoot,
-        '--run-id', $stageBRunId,
+        '--repository-root', $stageBSourceRoot
+    ) | ForEach-Object { $stageBArguments.Add([string]$_) }
+    if ($stageBRunId) {
+        @('--run-id', $stageBRunId) | ForEach-Object { $stageBArguments.Add([string]$_) }
+    }
+    @(
         '--delivery-mode', $(if ($env:HB_STAGE_B_DELIVERY_MODE) { $env:HB_STAGE_B_DELIVERY_MODE } else { 'MergeAndSync' }),
         '--wave-id', $(if ($env:HB_STAGE_B_WAVE_ID) { $env:HB_STAGE_B_WAVE_ID } else { 'N/A' }),
         '--repository-id', $(if ($env:HB_STAGE_B_REPOSITORY_ID) { $env:HB_STAGE_B_REPOSITORY_ID } else { 'N/A' }),
