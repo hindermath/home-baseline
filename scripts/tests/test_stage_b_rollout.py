@@ -389,6 +389,50 @@ class FleetPreflightTests(unittest.TestCase):
         entries = self.engine._stage_b_git_tree_entries(ROOT, head)
         self.assertEqual(self.engine._stage_b_tree_sha(entries), expected_tree)
 
+    def test_environment_context_uses_exact_public_preset_fallback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repository = pathlib.Path(directory)
+            (repository / "preset.yml").write_text(
+                'schema_version: "1.0"\npreset:\n  id: "fixture"\n', encoding="utf-8"
+            )
+            readme = repository / "README.md"
+            readme.write_text("# Fixture preset\n", encoding="utf-8")
+
+            first = self.engine._stage_b_environment_hash(
+                repository, "preset-fixture", "public-preset"
+            )
+            self.assertRegex(first, r"^[0-9a-f]{64}$")
+
+            readme.write_text("# Changed fixture preset\n", encoding="utf-8")
+            second = self.engine._stage_b_environment_hash(
+                repository, "preset-fixture", "public-preset"
+            )
+            self.assertNotEqual(first, second)
+
+    def test_environment_context_fallback_remains_fail_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repository = pathlib.Path(directory)
+            (repository / "preset.yml").write_text(
+                'schema_version: "1.0"\npreset:\n  id: "fixture"\n', encoding="utf-8"
+            )
+            readme = repository / "README.md"
+            readme.write_text("# Fixture preset\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(
+                self.engine.ContractError, "environment registry context is missing"
+            ):
+                self.engine._stage_b_environment_hash(
+                    repository, "not-a-preset", "public-product"
+                )
+
+            readme.unlink()
+            with self.assertRaisesRegex(
+                self.engine.ContractError, "environment registry context is missing"
+            ):
+                self.engine._stage_b_environment_hash(
+                    repository, "preset-fixture", "public-preset"
+                )
+
     def test_workflow_adapter_requires_complete_public_inventory(self):
         complete = {
             "total_count": 1,

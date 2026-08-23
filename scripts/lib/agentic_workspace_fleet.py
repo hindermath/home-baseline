@@ -749,7 +749,9 @@ def _stage_b_git_tree_entries(repository: pathlib.Path, head: str) -> dict[str, 
     return entries
 
 
-def _stage_b_environment_hash(repository: pathlib.Path, repository_id: str) -> str:
+def _stage_b_environment_hash(
+    repository: pathlib.Path, repository_id: str, profile_id: str
+) -> str:
     for relative in (".specify/memory/constitution.md", "constitution.md"):
         candidate = repository / relative
         if candidate.is_file() and not candidate.is_symlink():
@@ -757,6 +759,24 @@ def _stage_b_environment_hash(repository: pathlib.Path, repository_id: str) -> s
                 "repositoryId": repository_id,
                 "contextPath": relative,
                 "contextSha256": normalized_file_sha256(candidate),
+            })
+    if profile_id == "public-preset":
+        # Content-only preset repositories intentionally have no project
+        # constitution. Bind both exact package surfaces so that this narrow
+        # equivalent-context fallback cannot weaken other repository profiles.
+        context_paths = ("preset.yml", "README.md")
+        candidates = [repository / relative for relative in context_paths]
+        if all(candidate.is_file() and not candidate.is_symlink() for candidate in candidates):
+            return canonical_json_hash({
+                "repositoryId": repository_id,
+                "contextType": "PublicPresetEquivalent",
+                "contexts": [
+                    {
+                        "contextPath": relative,
+                        "contextSha256": normalized_file_sha256(candidate),
+                    }
+                    for relative, candidate in zip(context_paths, candidates, strict=True)
+                ],
             })
     raise ContractError(f"environment registry context is missing: {repository_id}")
 
@@ -1145,7 +1165,9 @@ def load_stage_b_live_inputs(repository_root: pathlib.Path) -> dict:
                 "repositoryId": repository_id,
                 "manifestPath": manifest_by_id.get(repository_id, {}).get("path", "executing-level0"),
             }),
-            "environmentRegistryHash": _stage_b_environment_hash(local_repository, repository_id),
+            "environmentRegistryHash": _stage_b_environment_hash(
+                local_repository, repository_id, expected["assignmentProfileId"]
+            ),
             "observedAt": observed_at,
         }
         stable = stage_b_stable_identity(identity)
