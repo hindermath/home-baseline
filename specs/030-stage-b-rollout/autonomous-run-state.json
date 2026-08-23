@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "0203102102b709ab37f5599b852c7978d595e368",
+  "checkpointCommit": "b664b604bed9a648f5f47c788ceace2dc07b4723",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -393,11 +393,11 @@
     ]
   },
   "lastPassingGate": "T141-D resume audit passed under fresh explicit MergeAndSync authority. The accepted Stage-B intake target and Ready review remain hash-bound, autonomous state and routed implement result validate, model routing is Aligned, main equals origin/main at 0203102102b709ab37f5599b852c7978d595e368, and the delivery set is exactly the 14 validated T141-R paths with no staged or untracked files. Historical authoring-source drift from later Feature 030 architecture changes and unrelated RIG014 Feature 029 archive-name drift do not change the selected Stage-B intake target and require no scope-expanding repair. No real Preflight, provider/fleet write, Home sync or bypass is authorized.",
-  "nextExactAction": "On codex/stage-b-954ff259-t141-r, stage and commit exactly the validated 14-path T141-R delivery set, push it, then use a regular PR with gates and review before merge and default-branch sync; do not run T141-L, Home sync, fleet/provider writes or admin bypass.",
+  "nextExactAction": "Record and commit the mandatory generated statistics refresh caused by T141-R commit b664b604bed9a648f5f47c788ceace2dc07b4723, push the resulting PR #252 head, then wait for all regular gates and the automatic Copilot review before merge and default-branch sync; do not run T141-L, Home sync, fleet/provider writes or admin bypass.",
   "lastOperation": {
-    "kind": "DeliveryBranch:T141-D",
+    "kind": "PullRequest:T141-D",
     "state": "Completed",
-    "summary": "Created codex/stage-b-954ff259-t141-r directly from synchronized main at 0203102102b709ab37f5599b852c7978d595e368 after the T141-D resume audit. No remote branch, PR, live Preflight, provider/fleet write, Home sync or bypass was performed."
+    "summary": "Committed the exact validated 14-path T141-R payload as b664b604bed9a648f5f47c788ceace2dc07b4723, passed the pre-push secret gate, pushed codex/stage-b-954ff259-t141-r and opened regular PR #252. The first native Windows homogeneity job correctly exposed the mandatory GeneratedUpdate for docs/project-statistics.md; no functional Preflight regression, live Preflight, provider/fleet write, Home sync or bypass occurred."
   },
   "stop": {
     "reason": "N/A",
@@ -410,5 +410,5 @@
     "postMergeActions": "NeedsRevalidation",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-23T11:37:43Z"
+  "updatedAt": "2026-08-23T11:39:54Z"
 }

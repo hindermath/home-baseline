@@ -527,3 +527,16 @@ explicitly later live, delivery, and closeout subgates remain truthfully
   `codex/stage-b-954ff259-t141-r` wurde direkt aus dem synchronisierten
   `main`-Head erstellt. Der Branch war zuvor weder lokal noch remote vorhanden;
   zu diesem Zeitpunkt existierte weiterhin kein PR.
+- **Commit, push and PR / Commit, Push und PR**: Der validierte 14-Pfad-Payload
+  wurde als `b664b604bed9a648f5f47c788ceace2dc07b4723` committed. Der Pre-Push-Hook
+  bestätigte null Secrets; der Branch wurde zu `origin` gepusht und der
+  reguläre PR `#252` gegen `main` eröffnet. GitHub verlangt eine Approval und
+  hat gemäß aktivem Ruleset die automatische Copilot-Code-Review gestartet.
+- **Generated statistics update / Generiertes Statistikupdate**: Der erste
+  native Windows-Homogenitätsjob `97188340137` im Run `32637074208` erreichte
+  die Plattformprüfung, scheiterte aber erwartungsgemäß an Profil-2-Drift, weil
+  der neue T141-R-Commit die sichtbare Git-Historie erweitert. Das ist kein
+  funktionaler Preflight-Fehler, sondern ein verpflichtendes `GeneratedUpdate`
+  aus der unveränderten kanonischen Statistikquelle. Der deterministisch
+  gerenderte Pfad `docs/project-statistics.md` ist daher der einzige zulässige
+  zusätzliche Lieferpfad; Slot 67 bleibt bis T169 fachlich unverändert.
