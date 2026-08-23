@@ -17,6 +17,7 @@ from unittest import mock
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 ENGINE_PATH = ROOT / "scripts/lib/agentic_workspace_fleet.py"
+ACCEPTANCE_PATH = ROOT / "scripts/tests/run_stage_b_rollout_acceptance.py"
 FIXTURES = pathlib.Path(__file__).resolve().parent / "stage-b-rollout/fixtures"
 CONTRACTS = ROOT / "specs/030-stage-b-rollout/contracts"
 RUNTIME_SCHEMAS = ROOT / "scripts/config"
@@ -24,6 +25,14 @@ RUNTIME_SCHEMAS = ROOT / "scripts/config"
 
 def load_engine():
     spec = importlib.util.spec_from_file_location("agentic_workspace_fleet_stage_b", ENGINE_PATH)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_acceptance():
+    spec = importlib.util.spec_from_file_location("stage_b_rollout_acceptance", ACCEPTANCE_PATH)
     module = importlib.util.module_from_spec(spec)
     assert spec.loader is not None
     spec.loader.exec_module(module)
@@ -309,9 +318,17 @@ class FleetPreflightTests(unittest.TestCase):
                 "providerRepositoryId": str(index),
                 "remoteIdentity": item["remote"],
                 "slug": pathlib.PurePosixPath(item["remote"].removesuffix(".git")).parts[-2] + "/" + pathlib.PurePosixPath(item["remote"].removesuffix(".git")).name,
+                "profileId": cls.profile_by_id[item["id"]],
                 "visibility": visibility_by_profile[cls.profile_by_id[item["id"]]],
                 "defaultBranch": item["defaultBranch"],
+                "defaultHead": subprocess.run(
+                    ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+                    text=True, capture_output=True, check=True,
+                ).stdout.strip() if item["id"] == "home-baseline" else "a" * 40,
+                "defaultTree": "b" * 40,
+                "localRepositoryRootHash": "c" * 64,
                 "environmentRegistryHash": "a" * 64,
+                "observedAt": "2026-08-23T00:00:00Z",
             }
             for index, item in enumerate(targets, start=1)
         ]
@@ -322,8 +339,8 @@ class FleetPreflightTests(unittest.TestCase):
             (FIXTURES / "preflight/valid/fleet-set.json").read_text(encoding="utf-8")
         )
         self.assertEqual(snapshot["repositoryIdsHash"], fixture["repositoryIdsHash"])
-        self.assertEqual(snapshot["stageAReviewedHead"], self.engine.STAGE_B_G3_REVIEWED_HEAD)
-        self.assertEqual(snapshot["stageAMergeCommit"], self.engine.STAGE_B_G3_MERGE_COMMIT)
+        self.assertEqual(snapshot["g3ReviewedHead"], self.engine.STAGE_B_G3_REVIEWED_HEAD)
+        self.assertEqual(snapshot["g3MergeCommit"], self.engine.STAGE_B_G3_MERGE_COMMIT)
         self.assertEqual(snapshot["writes"], 0)
 
     def test_assignment_or_provider_set_drift_blocks_before_write(self):
@@ -334,9 +351,57 @@ class FleetPreflightTests(unittest.TestCase):
         drift = dict(self.inventory[0], providerRepositoryId="0")
         with self.assertRaises(self.engine.ContractError):
             self.engine.stage_b_stable_identity(drift)
+
+    def test_read_only_git_tree_calculation_matches_current_tree_without_write(self):
+        head = subprocess.run(
+            ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+            text=True, capture_output=True, check=True,
+        ).stdout.strip()
+        expected_tree = subprocess.run(
+            ["git", "-C", str(ROOT), "rev-parse", f"{head}^{{tree}}"],
+            text=True, capture_output=True, check=True,
+        ).stdout.strip()
+        entries = self.engine._stage_b_git_tree_entries(ROOT, head)
+        self.assertEqual(self.engine._stage_b_tree_sha(entries), expected_tree)
+
+    def test_workflow_adapter_requires_complete_public_inventory(self):
+        complete = {
+            "total_count": 1,
+            "workflows": [{"path": ".github/workflows/ci.yml", "state": "active"}],
+        }
+        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=complete):
+            refs = self.engine._stage_b_workflow_gate_refs(
+                "hindermath/example", "public-product", "example"
+            )
+        self.assertEqual(refs[0]["gateId"], "ci")
+        incomplete = {"total_count": 2, "workflows": complete["workflows"]}
+        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=incomplete):
+            with self.assertRaisesRegex(self.engine.ContractError, "pagination"):
+                self.engine._stage_b_workflow_gate_refs(
+                    "hindermath/example", "public-product", "example"
+                )
+
+    def test_ruleset_adapter_plans_create_from_live_absence(self):
+        identity = dict(self.inventory[0], profileId="private-governance-scaffold")
+        template = ROOT / "scripts/templates/ci-budget-governance/private-governance-ruleset.json"
+        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=[]):
+            plan_hash = self.engine._stage_b_ruleset_plan_hash(
+                "hindermath/example", identity, template
+            )
+        self.assertRegex(plan_hash, r"^[0-9a-f]{64}$")
         drift = dict(self.inventory[0], remoteIdentity="https://github.com/hindermath/other.git")
         with self.assertRaises(self.engine.ContractError):
             self.engine.stage_b_stable_identity(drift)
+
+    def test_ruleset_adapter_blocks_possibly_paginated_inventory(self):
+        identity = dict(self.inventory[0], profileId="private-governance-scaffold")
+        template = ROOT / "scripts/templates/ci-budget-governance/private-governance-ruleset.json"
+        summaries = [{"id": index, "name": f"other-{index}"} for index in range(1, 101)]
+        with mock.patch.object(self.engine, "_stage_b_github_get_json", return_value=summaries):
+            with self.assertRaisesRegex(self.engine.ContractError, "pagination"):
+                self.engine._stage_b_ruleset_plan_hash(
+                    "hindermath/example", identity, template,
+                )
 
     def test_dirty_divergent_and_stale_git_states_block(self):
         base = {
@@ -357,10 +422,12 @@ class FleetPreflightTests(unittest.TestCase):
         assignments = self.profiles["assignments"]
         targets = [
             {
-                "repositoryId": item["repositoryId"], "baselineHead": "a" * 40,
-                "baselineTree": "b" * 40, "defaultBranch": item["defaultBranch"],
+                "repositoryId": item["repositoryId"], "baselineHead": item["defaultHead"],
+                "baselineTree": item["defaultTree"], "defaultBranch": item["defaultBranch"],
                 "stageAPlanHash": "c" * 64, "gateSetHash": "d" * 64,
-                "pathContractHash": "e" * 64, "changes": [],
+                "pathContractHash": "e" * 64, "changes": [], "candidateTree": item["defaultTree"],
+                "workflowAction": "N/A", "rulesetPlanHash": "N/A", "mergeMethod": "N/A",
+                "requiredLocalGates": [], "requiredRemoteGates": [],
             }
             for item in self.inventory
         ]
@@ -372,6 +439,218 @@ class FleetPreflightTests(unittest.TestCase):
         self.assertEqual(plan["firstMutation"], "N/A")
         self.assertFalse(self.engine.STAGE_B_MUTABLE_PLAN_FIELDS & set(plan))
 
+    def _all_noop_plan_and_state(self):
+        snapshot = self.engine.StageBFleetPreflight(ROOT).execute(self.inventory)
+        targets = [
+            {
+                "repositoryId": item["repositoryId"], "baselineHead": item["defaultHead"],
+                "baselineTree": item["defaultTree"], "defaultBranch": item["defaultBranch"],
+                "stageAPlanHash": "c" * 64, "gateSetHash": "d" * 64,
+                "pathContractHash": "e" * 64, "changes": [], "candidateTree": item["defaultTree"],
+                "workflowAction": "N/A", "rulesetPlanHash": "N/A", "mergeMethod": "N/A",
+                "requiredLocalGates": [], "requiredRemoteGates": [],
+            }
+            for item in self.inventory
+        ]
+        plan = self.engine.StageBRolloutPlanner().build(snapshot, self.profiles["assignments"], targets)
+        return plan, self.engine.build_stage_b_run_state(plan)
+
+    def test_prepared_state_is_pending_closed_and_has_no_bypass(self):
+        _, state = self._all_noop_plan_and_state()
+        authority = state["authorityBinding"]
+        self.assertEqual(
+            {key: authority[key] for key in (
+                "status", "source", "authorizedAt", "validatedAt",
+                "externalWriteGate", "adminBypass",
+            )},
+            {
+                "status": "Pending", "source": "N/A", "authorizedAt": "N/A",
+                "validatedAt": "N/A", "externalWriteGate": "Closed",
+                "adminBypass": "NotAuthorized",
+            },
+        )
+
+    def test_capture_timestamps_do_not_change_semantic_snapshot_or_plan_hashes(self):
+        first_inventory = json.loads(json.dumps(self.inventory))
+        second_inventory = json.loads(json.dumps(self.inventory))
+        for item in second_inventory:
+            item["observedAt"] = "2026-08-24T00:00:00Z"
+        source_revision = "f" * 64
+        first_snapshot = self.engine.StageBFleetPreflight(ROOT).execute(
+            first_inventory, source="Fixture", source_revision=source_revision,
+        )
+        second_snapshot = self.engine.StageBFleetPreflight(ROOT).execute(
+            second_inventory, source="Fixture", source_revision=source_revision,
+        )
+        self.assertNotEqual(first_snapshot["capturedAt"], second_snapshot["capturedAt"])
+        self.assertEqual(first_snapshot["inputSetHash"], second_snapshot["inputSetHash"])
+        self.assertEqual(first_snapshot["fleetSnapshotHash"], second_snapshot["fleetSnapshotHash"])
+
+        targets = [
+            {
+                "repositoryId": item["repositoryId"], "baselineHead": item["defaultHead"],
+                "baselineTree": item["defaultTree"], "defaultBranch": item["defaultBranch"],
+                "stageAPlanHash": "c" * 64, "gateSetHash": "d" * 64,
+                "pathContractHash": "e" * 64, "changes": [],
+                "candidateTree": item["defaultTree"], "workflowAction": "N/A",
+                "rulesetPlanHash": "N/A", "mergeMethod": "N/A",
+                "requiredLocalGates": [], "requiredRemoteGates": [],
+            }
+            for item in first_inventory
+        ]
+        planner = self.engine.StageBRolloutPlanner()
+        first_plan = planner.build(first_snapshot, self.profiles["assignments"], targets)
+        second_plan = planner.build(second_snapshot, self.profiles["assignments"], targets)
+        self.assertNotEqual(first_plan["createdAt"], second_plan["createdAt"])
+        self.assertEqual(first_plan["planHash"], second_plan["planHash"])
+
+    def test_publication_failure_before_plan_leaves_no_authoritative_artifact(self):
+        plan, state = self._all_noop_plan_and_state()
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            plan_path, state_path = root / "rollout-plan.json", root / "stage-b-run-state.json"
+            with self.assertRaisesRegex(RuntimeError, "before-plan"):
+                self.engine.publish_stage_b_preflight(
+                    plan_path, state_path, plan, state,
+                    RUNTIME_SCHEMAS / "stage-b-rollout-plan.schema.json",
+                    RUNTIME_SCHEMAS / "stage-b-run-state.schema.json",
+                    failure_injector=lambda boundary: (_ for _ in ()).throw(RuntimeError(boundary)),
+                )
+            self.assertFalse(plan_path.exists())
+            self.assertFalse(state_path.exists())
+
+    def test_publication_failure_before_state_leaves_replaceable_orphan_plan(self):
+        plan, state = self._all_noop_plan_and_state()
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            plan_path, state_path = root / "rollout-plan.json", root / "stage-b-run-state.json"
+
+            def fail_before_state(boundary):
+                if boundary == "before-state-publish":
+                    raise RuntimeError(boundary)
+
+            with self.assertRaisesRegex(RuntimeError, "before-state"):
+                self.engine.publish_stage_b_preflight(
+                    plan_path, state_path, plan, state,
+                    RUNTIME_SCHEMAS / "stage-b-rollout-plan.schema.json",
+                    RUNTIME_SCHEMAS / "stage-b-run-state.schema.json",
+                    failure_injector=fail_before_state,
+                )
+            self.assertTrue(plan_path.is_file())
+            self.assertFalse(state_path.exists())
+            self.engine.publish_stage_b_preflight(
+                plan_path, state_path, plan, state,
+                RUNTIME_SCHEMAS / "stage-b-rollout-plan.schema.json",
+                RUNTIME_SCHEMAS / "stage-b-run-state.schema.json",
+            )
+            self.assertTrue(state_path.is_file())
+
+    def test_state_without_matching_plan_is_invalid(self):
+        _, state = self._all_noop_plan_and_state()
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            state_path = root / "stage-b-run-state.json"
+            self.engine._atomic_stage_b_json(state_path, state)
+            with self.assertRaisesRegex(self.engine.ContractError, "without its bound plan"):
+                self.engine.validate_stage_b_published_state(
+                    root, state_path,
+                    RUNTIME_SCHEMAS / "stage-b-rollout-plan.schema.json",
+                    RUNTIME_SCHEMAS / "stage-b-run-state.schema.json",
+                )
+
+    def test_ac_sbr_001_rejects_fixture_only_plan_evidence(self):
+        acceptance = load_acceptance()
+        plan = {
+            "targets": [{"repositoryId": "home-baseline"}],
+            "waves": [{"repositoryIds": ["home-baseline"]}],
+            "stageAReference": {
+                "reviewedHead": self.engine.STAGE_B_G3_REVIEWED_HEAD,
+                "mergeCommit": self.engine.STAGE_B_G3_MERGE_COMMIT,
+                "postMergeEvidenceSha256": "a" * 64,
+            },
+            "planHash": "b" * 64,
+            "fleetSnapshotHash": "c" * 64,
+        }
+
+        class FakeEngine:
+            @staticmethod
+            def load_stage_b_document(path, schema):
+                return plan
+
+            @staticmethod
+            def validate_stage_b_plan_semantics(value):
+                return None
+
+            @staticmethod
+            def load_stage_b_live_inputs(root):
+                return {"source": "Fixture"}
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            plan_path = root / acceptance.STAGE_B_PLAN_PATH
+            plan_path.parent.mkdir(parents=True)
+            plan_path.write_text("{}\n", encoding="utf-8")
+            with mock.patch.object(acceptance, "load_engine", return_value=FakeEngine):
+                with self.assertRaisesRegex(ValueError, "fixture-only"):
+                    acceptance.build_ac_sbr_001_live_binding(root)
+
+    def test_ac_sbr_001_binds_published_path_normalized_hash_fleet_and_g3(self):
+        acceptance = load_acceptance()
+        reviewed = self.engine.STAGE_B_G3_REVIEWED_HEAD
+        merge = self.engine.STAGE_B_G3_MERGE_COMMIT
+        evidence_hash = "a" * 64
+        plan = {
+            "targets": [{"repositoryId": "home-baseline"}],
+            "waves": [{"repositoryIds": ["home-baseline"]}],
+            "stageAReference": {
+                "reviewedHead": reviewed, "mergeCommit": merge,
+                "postMergeEvidenceSha256": evidence_hash,
+            },
+            "planHash": "b" * 64, "fleetSnapshotHash": "c" * 64,
+        }
+        snapshot = {
+            "repositoryIds": ["home-baseline"], "repositoryIdsHash": "d" * 64,
+            "g3ReviewedHead": reviewed, "g3MergeCommit": merge,
+            "g3PostMergeEvidenceSha256": evidence_hash,
+        }
+
+        class FakePreflight:
+            def __init__(self, root):
+                pass
+
+            def execute(self, inventory, **kwargs):
+                return snapshot
+
+        class FakeEngine:
+            StageBFleetPreflight = FakePreflight
+
+            @staticmethod
+            def load_stage_b_document(path, schema):
+                return plan
+
+            @staticmethod
+            def validate_stage_b_plan_semantics(value):
+                return None
+
+            @staticmethod
+            def load_stage_b_live_inputs(root):
+                return {
+                    "source": "GitHubReadOnly", "sourceRevision": "e" * 64,
+                    "providerInventory": [],
+                }
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            plan_path = root / acceptance.STAGE_B_PLAN_PATH
+            plan_path.parent.mkdir(parents=True)
+            plan_path.write_text("{}\r\n", encoding="utf-8")
+            with mock.patch.object(acceptance, "load_engine", return_value=FakeEngine):
+                binding = acceptance.build_ac_sbr_001_live_binding(root)
+            self.assertEqual(binding["rolloutPlanPath"], acceptance.STAGE_B_PLAN_PATH.as_posix())
+            self.assertEqual(binding["rolloutPlanSha256"], acceptance.normalized_sha256(plan_path))
+            self.assertTrue(binding["dynamicFleetEquality"])
+            self.assertEqual(binding["g3Basis"]["reviewedHead"], reviewed)
+
 
 class ExternalWriteGateTests(unittest.TestCase):
     """Only an exact current authority binding can open one write boundary."""
@@ -381,7 +660,7 @@ class ExternalWriteGateTests(unittest.TestCase):
         plan_hash, scope_hash, ids_hash, delivery_hash = (character * 64 for character in "abcd")
         state = {
             "authorityBinding": {
-                "deliveryMode": "MergeAndSync", "runId": engine.STAGE_B_RUN_ID,
+                "status": "Authorized", "deliveryMode": "MergeAndSync", "runId": engine.STAGE_B_RUN_ID,
                 "planSha256": plan_hash, "scopeHash": scope_hash,
                 "repositoryIdsHash": ids_hash, "externalWriteGate": "Open",
             }
@@ -395,7 +674,7 @@ class ExternalWriteGateTests(unittest.TestCase):
             "actual_delivery_set_hash": delivery_hash,
         }
         engine.validate_external_write_gate(state, **arguments)
-        for key, value in (("externalWriteGate", "Closed"), ("planSha256", "f" * 64)):
+        for key, value in (("status", "Pending"), ("externalWriteGate", "Closed"), ("planSha256", "f" * 64)):
             drifted = json.loads(json.dumps(state))
             drifted["authorityBinding"][key] = value
             with self.subTest(key=key), self.assertRaises(engine.ContractError):
@@ -574,7 +853,7 @@ class AdminBypassEvidenceTests(unittest.TestCase):
         fixture["adminBypassAuthority"] = {
             "runId": fixture["runId"], "repositoryId": fixture["repositoryId"],
             "prHead": fixture["candidateHead"], "scope": "ProtectionOnlyMerge",
-            "authorizedAt": "2026-08-21T20:00:00Z", "expiresAt": "2026-08-22T20:00:00Z",
+            "authorizedAt": "2026-08-21T20:00:00Z", "expiresAt": "2099-08-22T20:00:00Z",
             "reason": "Required protection-only exception after full evidence",
         }
         provider = PublicCanaryVerticalSliceTests.FakeProvider(fixture)
@@ -979,28 +1258,80 @@ class PlatformParityTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        engine = load_engine()
         cls.cases = json.loads(
             (FIXTURES / "platform-parity/cases.json").read_text(encoding="utf-8")
         )
         cls.expected_labels = [
-            "Run-ID / Run ID", "Autoritaet / Authority", "Welle / Wave",
-            "Repository-ID", "Profil / Profile", "Entscheidung / Decision",
-            "Status", "Blocker", "Naechste Aktion / Next action",
+            "Run-ID / Run ID", "Autoritaetsstatus / Authority status",
+            "Dynamische Zielanzahl / Dynamic target count", "Wellen / Waves",
+            "Erste Mutation / First mutation", "Budgetstatus / Budget status",
+            "Entscheidung / Decision", "Status", "Blocker",
+            "Naechste Aktion / Next action", "Planziel / Plan target",
+            "State-Ziel / State target", "Vollstaendiger Plan / Complete plan",
         ]
+        manifest = json.loads(
+            (ROOT / "scripts/config/agentic-workspace-fleet.json").read_text(encoding="utf-8")
+        )
+        profiles = json.loads(
+            (ROOT / "scripts/config/ci-budget-profiles.json").read_text(encoding="utf-8")
+        )
+        profile_by_id = {item["repositoryId"]: item["profileId"] for item in profiles["assignments"]}
+        visibility = {item["profileId"]: item["requiredVisibility"] for item in profiles["profiles"]}
+        head = subprocess.run(
+            ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+            text=True, capture_output=True, check=True,
+        ).stdout.strip()
+        source_targets = [
+            {"id": "home-baseline", "remote": "https://github.com/hindermath/home-baseline.git", "defaultBranch": "main"},
+            *[item for item in manifest["targets"] if item.get("active") and item.get("kind") == "git-repository"],
+        ]
+        inventory = []
+        targets = []
+        for index, item in enumerate(source_targets, start=1):
+            repository_id = item["id"]
+            profile_id = profile_by_id[repository_id]
+            remote = pathlib.PurePosixPath(item["remote"].removesuffix(".git"))
+            baseline_head = head if repository_id == "home-baseline" else "a" * 40
+            inventory.append({
+                "repositoryId": repository_id, "providerRepositoryId": str(index),
+                "remoteIdentity": item["remote"], "slug": f"{remote.parts[-2]}/{remote.name}",
+                "profileId": profile_id, "visibility": visibility[profile_id],
+                "defaultBranch": item["defaultBranch"], "defaultHead": baseline_head,
+                "defaultTree": "b" * 40, "localRepositoryRootHash": "c" * 64,
+                "environmentRegistryHash": "d" * 64, "observedAt": "2026-08-23T00:00:00Z",
+            })
+            targets.append({
+                "repositoryId": repository_id, "baselineHead": baseline_head,
+                "baselineTree": "b" * 40, "defaultBranch": item["defaultBranch"],
+                "stageAPlanHash": "c" * 64, "gateSetHash": "d" * 64,
+                "pathContractHash": "e" * 64, "changes": [], "candidateTree": "b" * 40,
+                "workflowAction": "N/A", "rulesetPlanHash": "N/A", "mergeMethod": "N/A",
+                "requiredLocalGates": [], "requiredRemoteGates": [],
+            })
+        cls.fixture_input = {
+            "source": "Fixture", "sourceRevision": engine.canonical_json_hash(inventory),
+            "providerInventory": inventory, "assignments": profiles["assignments"], "targets": targets,
+        }
 
     def run_wrapper(self, command, *, home=""):
         environment = os.environ.copy()
-        environment.update({
-            "HOME": home,
-            "HB_STAGE_B_RUN_ID": "954ff259-ffed-44a8-883f-28742b031a9b",
-            "HB_STAGE_B_WAVE_ID": "public-canaries",
-            "HB_STAGE_B_REPOSITORY_ID": "agent-operations-cockpit",
-            "HB_STAGE_B_PROFILE_ID": "public-canary",
-        })
-        return subprocess.run(
-            command, cwd=ROOT, env=environment, text=True,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
-        )
+        with tempfile.TemporaryDirectory() as directory:
+            fixture_path = pathlib.Path(directory) / "stage-b-input.json"
+            fixture_path.write_text(json.dumps(self.fixture_input), encoding="utf-8")
+            environment.update({
+                "HOME": home,
+                "HB_STAGE_B_RUN_ID": "954ff259-ffed-44a8-883f-28742b031a9b",
+                "HB_STAGE_B_WAVE_ID": "public-canaries",
+                "HB_STAGE_B_REPOSITORY_ID": "agent-operations-cockpit",
+                "HB_STAGE_B_PROFILE_ID": "public-canary",
+                "HB_STAGE_B_TEST_MODE": "1",
+                "HB_STAGE_B_TEST_FIXTURE": str(fixture_path),
+            })
+            return subprocess.run(
+                command, cwd=ROOT, env=environment, text=True,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
+            )
 
     def bash_executable(self):
         if os.name != "nt":
@@ -1042,6 +1373,14 @@ class PlatformParityTests(unittest.TestCase):
             result.returncode, 0,
             f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}",
         )
+
+    def test_fixture_adapter_cannot_publish_plan_or_state(self):
+        result = self.run_wrapper([
+            self.bash_executable(), "scripts/maintain-agentic-workspace.sh",
+            "--stage-b-action", "preflight",
+        ])
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("fixture input is forbidden", result.stderr)
 
     def test_whitespace_unicode_and_metacharacter_ids_fail_closed(self):
         engine = load_engine()

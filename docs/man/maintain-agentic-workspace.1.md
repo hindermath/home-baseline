@@ -148,13 +148,27 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Prefl
 
 `preflight`, `validate`, `deliver`, `resume` und `verify` starten genau einen
 gemeinsamen Engine-Prozess. Vorschauen öffnen das `ExternalWriteGate` nicht.
+Die Preflight-Vorschau berechnet und zeigt den vollständigen Live-Plan, schreibt
+aber weder Evidence, Git, Provider, Home, Zielrepositories, Plan noch State.
+Ein echter `preflight` darf erst nach separater Lieferung der
+Preflight-Implementierung vom sauberen, synchronisierten Level-0-Default-Head
+laufen. Er liest Flotte und Provider live und publiziert ausschließlich lokal
+zuerst den atomaren Rolloutplan und danach den hashbindenden vorbereiteten State
+als Commit-Marker. Der Snapshot bleibt im Speicher; Git, Provider, Home und
+Zielrepositories bleiben unverändert. Vorbereitete Authority ist `Pending`, das
+Gate ist `Closed` und Admin-Bypass `NotAuthorized`.
 Ein echter `deliver`- oder `resume`-Lauf benötigt eine aktuelle, hashgebundene
 `MergeAndSync`-Autorität und arbeitet Welle für Welle mit höchstens einem
 Writer. Beim ersten nicht behebbaren Fehler stoppt er vor dem nächsten Ziel;
 `resume` prüft Plan, Flotte, Providerzustand, Budget und Autorität erneut.
 
 *The five Stage-B actions start exactly one shared engine process. Preview
-never opens the ExternalWriteGate. A real delivery or resume needs a current,
+never opens the ExternalWriteGate. Preflight preview calculates and prints the
+complete live plan with zero evidence, Git, provider, Home, target, plan, or
+state writes. After the implementation has been delivered
+separately, a real preflight may publish only the local atomic plan followed by
+its hash-bound prepared state commit marker; authority remains Pending and no
+Git, provider, Home, or target write occurs. A real delivery or resume needs a current,
 hash-bound MergeAndSync authority and uses at most one writer. It stops before
 the next target on the first non-recoverable failure; resume revalidates the
 plan, fleet, provider state, budget, and authority.*

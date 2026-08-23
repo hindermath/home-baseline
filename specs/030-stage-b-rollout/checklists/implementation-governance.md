@@ -52,11 +52,52 @@ explicitly later live, delivery, and closeout subgates remain truthfully
 
 ## Implementierungsstatus / Implementation Status
 
-- **Current checkpoint / Aktueller Checkpoint**: T113–T125 sind abgeschlossen. Der fünfte Kandidat `8ae4ef2` bestand im Run `32587448948` die vollständige native Windows-, macOS- und Ubuntu-Regression sowie alle begleitenden Qualitätsworkflows. AC-SBR-009 bestand mit den Tokens `macOS,Linux,Windows`; alle Delivery-/Closeout-Gates bleiben sichtbar ausstehend und der ExternalWriteGate ist geschlossen.
+- **Current checkpoint / Aktueller Checkpoint**: T127–T140 sind abgeschlossen. PR `#251` wurde nach 26/26 grünen Checks, ausdrücklicher Owner-Self-Review-Ausnahme, regulärem Protection-Refusal und eng gebundenem Admin-Bypass als Mergecommit `0203102` integriert. Level-0-Default-Sync, Branchbereinigung und Home-Sync sind belegt; T141 und spätere Fleet-Schritte erfordern eine neue Authority-Revalidierung.
 - **Runtime implementation / Runtime-Implementierung**: `In progress`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind lokal implementiert.
-- **Remote delivery / Remote-Lieferung**: `Pending`; der T112-Nachweis sowie fünf ausdrücklich autorisierte T124-Checkpoints wurden auf den Feature-Branch gepusht. Der fünfte Checkpoint ist der grüne Regressionsnachweis, aber noch kein Delivery-Commit. Kein PR, Merge, Ruleset- oder Fleetwrite erfolgte.
-- **Home sync / Home-Sync**: `Pending`; nur nach tatsächlicher `homeRuntime`-Änderung, Preview, Merge und Authority-Revalidierung.
+- **Remote delivery / Remote-Lieferung**: `Level-0 completed`; PR `#251` ist `MERGED`, lokaler und entfernter `main` stehen auf `0203102`, und der gebundene Feature-Branch ist lokal sowie remote entfernt. Fleet-, Ruleset- und G4-Writes wurden nicht begonnen.
+- **Home sync / Home-Sync**: `Completed`; der konfliktfreie Dry-Run umfasste 45 manifestgebundene Pfade. Der echte Lauf und der anschließende Check-only-Lauf hatten Exitcode `0`; Home-Commit `f61738e` bindet Quellcommit `0203102`.
 - **Terminal closeout / Terminaler Abschluss**: `Pending`; `Completed` erst nach 194/194 und allen zwölf Primary-Gates.
+- **T141 resume gap / T141-Resume-Lücke**: `NeedsRevalidation`. Der produktive
+  CLI-Handler gab nur feste Statusfelder aus und rief die bereits getesteten
+  Klassen `StageBFleetPreflight` und `StageBRolloutPlanner` nicht auf. Deshalb
+  gelten weder ein Exitcode `0` dieses Stubs noch fixture-only AC-SBR-001/002
+  als Live-Preflight. Die minimale Remediation verdrahtet den read-only
+  Live-Pfad, trennt Preview von lokaler atomarer Planpublikation und hält den
+  ExternalWriteGate bis zu neuer T144-Authority geschlossen.
+
+### T127–T140 Level-0-Control-Plane / Level 0 Control Plane
+
+- **Completed / Abgeschlossen**: T127–T140. Die frische Authority band
+  `MergeAndSync` ausschließlich an T127–T140. Kandidatencommit `4618428`
+  entspricht exakt Tree `b38d7942…`; der deterministische Statistik-Companion
+  `c7e64f6` repariert ausschließlich den durch den neuen Git-Head ausgelösten
+  Profil-2-Drift. Beide nicht erzwungenen Pushes wurden reconciled.
+- **Pull request / Pull Request**: PR `#251`, Head
+  `c7e64f6e498ea0f56d4b055c003eeb046ce734e9`, Base `main`, wurde als
+  Mergecommit `0203102102b709ab37f5599b852c7978d595e368` integriert.
+- **Gates / Gates**: Alle 26 Push-/PR-Checks am aktuellen Head sind grün. Die
+  vier maßgeblichen PR-Workflows sind Runs `32594635038`, `32594635062`,
+  `32594635018` und `32594635065`; Workflow, Job, Runner und tatsächliche
+  Befehle sind in `operational/control-plane/t134-gate-map.json` gebunden.
+- **Owner self-review exception / Owner-Self-Review-Ausnahme**: GitHub meldet
+  am unveränderten Head weiterhin `REVIEW_REQUIRED`, obwohl alle 26 Checks
+  grün sind, keine Review-Threads bestehen und kein Reviewer mehr angefordert
+  ist. Repository-Owner `hindermath` hat die Fremdreview-Anforderung
+  ausdrücklich zurückgenommen, den exakten Head selbst geprüft und das
+  Restrisiko einer fehlenden Provider-Approval akzeptiert. Dies wird nicht als
+  GitHub-Approval dargestellt. Der Admin-Bypass bleibt ausschließlich nach
+  einem belegten regulären Protection-Refusal zulässig und ersetzt keine
+  Gate-, Security- oder Acceptance-Evidence.
+- **Merge and synchronization / Merge und Synchronisierung**: Der reguläre
+  Mergeversuch wurde ausschließlich von der Base-Branch-Policy abgelehnt.
+  Danach wurde der genehmigte Admin-Bypass am unveränderten Head eingesetzt.
+  Lokaler und entfernter `main` sind per Fast-forward auf `0203102`
+  konvergiert; ausschließlich `030-stage-b-rollout` wurde lokal und remote
+  entfernt.
+- **Home sync / Home-Sync**: Preview und echter `--no-pull`-Lauf hatten
+  Exitcode `0`; der Check-only-Nachlauf meldet alle verwalteten Home-Dateien
+  aktuell. Vorhandene nicht manifestgebundene lokale Agent-Skill-/Statistik-
+  Änderungen wurden weder verworfen noch erzwungen überschrieben.
 
 ## T006 Vertrags- und Historiennachweis / Contract and History Evidence
 
@@ -381,3 +422,108 @@ explicitly later live, delivery, and closeout subgates remain truthfully
 - **Delivery boundary / Liefergrenze**: T127–T194 bleiben offen,
   `authorityRevalidationRequired=true` und der ExternalWriteGate bleibt
   geschlossen. Der Review führte keinen Providerzugriff, Commit oder Push aus.
+
+## T141 Resume-Analyse und Vertragsremediation / Resume Analysis and Contract Remediation
+
+- **Analyze result / Analyseergebnis**: `Completed`. Der erste geroutete
+  Analyze-Lauf fand vor Implementierung eine Critical- und vier High-Lücken:
+  fehlende Bedienungsgrenze, vermischte Remediation/Lieferung/Live-Ausführung,
+  keine Pending-Authority, unklare Mehrdateipublikation und fehlende
+  AC-SBR-001-Live-Plan-Bindung. Nach der Vertragskorrektur bestand der zweite
+  strikt read-only Analyze-Lauf mit Result-Hash
+  `134da6569fcea065c07e0d37b21551058ddf984e63563ca831169f4e74e3fcef`.
+- **Contract repair / Vertragskorrektur**: Plan und Tasks trennen T141-R,
+  T141-D und T141-L strikt. Der Snapshot bleibt im Speicher; Plan wird zuerst
+  atomar publiziert, State danach als hashbindender Commit-Marker. Schema und
+  Datenmodell unterscheiden `Pending` von `Authorized`; Pending hält Gate
+  geschlossen, Bypass nicht autorisiert und Autoritätsquelle/-zeiten auf
+  `N/A`. Quickstart, Manpage und beide Wrapper-Hilfen dokumentieren Preview,
+  lokale Publikation sowie frische T144-Authority.
+- **Current boundary / Aktuelle Grenze**: Nur T141-R ist unter der aktuellen
+  `LocalImplementation`-Authority ausführbar. T141-D benötigt eine neue
+  ausdrückliche `MergeAndSync`-Freigabe; T141-L folgt erst vom sauberen,
+  synchronisierten Default-Head. T141-R ist lokal bestanden; die fehlende
+  T141-D-Authority blockiert jetzt jede Git-/Provider-/Home-Lieferaktion.
+- **Independent correction / Unabhängige Korrektur**: Der erste T141-R-Diff
+  ließ `observedAt` über `sourceRevision` und `fleetSnapshotHash` in den
+  semantischen Planhash einfließen. Die unabhängige Prüfung entfernte
+  Beobachtungszeiten aus diesen drei Hashpayloads und ergänzte einen Test, der
+  bei abweichenden Erfassungszeiten identische `inputSetHash`-, Snapshot- und
+  Planhashes verlangt.
+- **Provider completeness / Providervollständigkeit**: Workflow- und
+  Ruleset-Reads fordern die maximale 100er-Seite explizit an. Workflow-
+  `total_count` muss der gelesenen Menge entsprechen; 100 Ruleset-Summaries
+  blockieren als potenziell unvollständige Paginierung. Damit entsteht aus
+  einer still abgeschnittenen Providerantwort kein doppelter Create-Plan.
+
+## T141-R lokale Remediation / Local Remediation
+
+- **Implementation status / Umsetzungsstatus**: `Passed` ausschließlich für
+  T141-R. Der produktive `Preflight`-CLI-Pfad lädt das vollständige
+  read-only Fleet-/Providerinventar, ruft `StageBFleetPreflight` und danach
+  `StageBRolloutPlanner` auf und zeigt in der Vorschau den vollständigen Plan.
+  Der Testadapter ist ausschließlich in explizitem Testmodus und nur für
+  Preview zulässig; er kann weder Plan noch State publizieren.
+- **Publication boundary / Publikationsgrenze**: Plan und vorbereiteter State
+  werden vorab gegen Runtime-Schema und Semantik validiert. Der Plan wird
+  zuerst atomar ersetzt, der hashbindende State danach als Commit-Marker. Die
+  Failure-Injection-Nachweise belegen null Artefakte vor der Plangrenze, einen
+  nicht autoritativen und sicher ersetzbaren Orphan-Plan vor der State-Grenze
+  sowie fail-closed State ohne vorhandenen passenden Plan.
+- **Authority and acceptance / Authority und Abnahme**: Vorbereitete Authority
+  ist exakt `Pending`, Quelle/Autorisierungs-/Validierungszeit sind `N/A`, das
+  ExternalWriteGate ist `Closed` und Admin-Bypass `NotAuthorized`. Jede externe
+  Schreibgrenze verlangt zusätzlich `status=Authorized`. AC-SBR-001 lädt den
+  tatsächlich publizierten Plan, prüft Schema und kanonischen Planhash, bindet
+  Pfad plus normalisierten Dateihash und revalidiert dynamische Fleet-Gleichheit
+  sowie G3 live; Fixture-only-Evidence wird abgewiesen.
+- **Local evidence / Lokaler Nachweis**: 68 Stage-B-Tests und die vollständige
+  lokale Suite mit 237 Tests und 12 erwarteten Skips bestanden; darin bleiben
+  die getrennten CI-Budget- und Maintenance-Contract-Scopes grün. Bash-Syntax, PowerShell-Parser,
+  PSScriptAnalyzer `1.25.0` über 173 Dateien, `git diff --check` und Secret Scan
+  bestanden; Gitleaks meldete null Secrets im aktuellen Diff und null High-
+  Findings. Dokumentationsimpact bleibt genau `UpdateRequired`: Bash-/
+  PowerShell-Hilfe, Manpage und Quickstart beschreiben vollständigen Preview,
+  Nullschreibgrenze, lokale Publikation und Pending-Authority. Owner ist der
+  Fleet Delivery Owner; Leserpfade sind CLI-Hilfe → Manpage → Quickstart;
+  `scripts/` bleibt `homeRuntime`, Design/Governance `sourceOnly`, Run-State
+  `machineLocal`. Home-Sync wird erst nach separater Lieferung und erneuter
+  Authority bewertet.
+- **Hard boundary / Harte Grenze**: Kein echter Stage-B-Preflight, kein
+  AC-SBR-001-Live-Gate, Commit, Push, PR, Merge, Home-Sync, Fleet-/Providerwrite
+  und kein Bypass wurden ausgeführt. T141 bleibt offen; T141-D, T141-L und T142
+  bleiben streng nachgelagert. Re-Evaluation ist bei CLI-, Provider-, Schema-,
+  Hash-, Plan-/State-, Authority- oder Publikationsgrenzendrift Pflicht.
+
+## T141-D Resume-Audit und Lieferfreigabe / Resume Audit and Delivery Authority
+
+- **Fresh authority / Frische Autorität**: Thorsten genehmigte T141-D
+  ausdrücklich im `MergeAndSync`-Modus für Branch, Commit, Push, regulären PR,
+  Gates, Review, Merge und Default-Branch-Sync. Die Freigabe umfasst weder
+  T141-L noch Home-Sync, Fleet-/Providerwrites oder Admin-Bypass.
+- **Revalidation / Revalidierung**: `main` und `origin/main` zeigen beide auf
+  `0203102102b709ab37f5599b852c7978d595e368`. Der autonome Run-State, das
+  ausgewählte Stage-B-Intake-Review (`Ready`), die fünf akzeptierten
+  Artefakthashes, der geroutete Implementierungsresult-Hash, das Aufgaben-Payload
+  und das `Aligned`-Modellrouting wurden erneut geprüft. Weder lokaler noch
+  entfernter Lieferbranch oder PR existierten beim Audit.
+- **Exact delivery set / Exakter Lieferumfang**: Die Lieferung enthält genau
+  die bereits validierten 14 T141-R-Pfade: beide Workspace-Wrapper, Fleet-
+  Bibliothek, beide Stage-B-Schemas, beide Stage-B-Testdateien, Manpage,
+  Run-State, Governance-Checkliste, Datenmodell, Plan, Quickstart und Tasks.
+  Beim Audit waren keine Dateien gestaged oder untracked.
+- **Drift disposition / Driftbewertung**: Der Intake-Authoring-Receipt erkennt
+  erwartete historische Source-Drift, weil Feature 030 die referenzierte
+  Architekturdatei nach der Intake-Erstellung weiterentwickelt hat; Ziel und
+  akzeptierter Target-Hash sind unverändert. Der globale Requirements-Validator
+  meldet separat den bereits archivierten Feature-029-Originalnamen in RIG014.
+  Beide Befunde verändern das ausgewählte Stage-B-Intake nicht und werden ohne
+  sachfremde Intake-Reparatur als nicht scope-verändernd behandelt.
+- **Fail-closed boundary / Fail-Closed-Grenze**: Nur der reguläre Lieferpfad
+  darf jetzt fortgesetzt werden. Ein Schutzregel- oder Review-Blocker wird nicht
+  mit Bypass umgangen; T141-L beginnt erst nach abgeschlossener Lieferung von
+  einem sauberen, synchronisierten Default-Branch.
+- **Delivery branch / Lieferbranch**: Der lokale Branch
+  `codex/stage-b-954ff259-t141-r` wurde direkt aus dem synchronisierten
+  `main`-Head erstellt. Der Branch war zuvor weder lokal noch remote vorhanden;
+  zu diesem Zeitpunkt existierte weiterhin kein PR.

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import pathlib
@@ -29,6 +30,21 @@ GATE_TESTS = {
     "AC-SBR-011": "TerminalFleetEvidenceTests",
     "AC-SBR-012": "G4IsolationTests",
 }
+
+STAGE_B_RUN_ID = "954ff259-ffed-44a8-883f-28742b031a9b"
+STAGE_B_PLAN_PATH = pathlib.PurePosixPath(
+    f".specify/runtime/autonomous-routing/{STAGE_B_RUN_ID}/stage-b/rollout-plan.json"
+)
+
+
+def load_engine(root: pathlib.Path):
+    path = root / "scripts/lib/agentic_workspace_fleet.py"
+    spec = importlib.util.spec_from_file_location("stage_b_acceptance_engine", path)
+    module = importlib.util.module_from_spec(spec)
+    if spec.loader is None:
+        raise ValueError("Stage-B engine loader is unavailable")
+    spec.loader.exec_module(module)
+    return module
 
 
 def normalized_sha256(path: pathlib.Path) -> str:
@@ -58,10 +74,58 @@ def atomic_write_json(path: pathlib.Path, value: dict) -> None:
 
 
 def contained_path(root: pathlib.Path, candidate: pathlib.Path, label: str) -> pathlib.Path:
-    resolved = candidate.resolve() if candidate.is_absolute() else (root / candidate).resolve()
-    if resolved != root and root not in resolved.parents:
+    resolved_root = root.resolve()
+    resolved = candidate.resolve() if candidate.is_absolute() else (resolved_root / candidate).resolve()
+    if resolved != resolved_root and resolved_root not in resolved.parents:
         raise ValueError(f"{label} escapes repository root")
     return resolved
+
+
+def build_ac_sbr_001_live_binding(root: pathlib.Path) -> dict:
+    """Bind AC-SBR-001 to the published plan and a fresh read-only fleet snapshot."""
+    engine = load_engine(root)
+    plan_path = contained_path(root, pathlib.Path(STAGE_B_PLAN_PATH), "rollout plan")
+    if not plan_path.is_file():
+        raise ValueError("AC-SBR-001 requires the actually published rollout plan")
+    schema_path = root / "scripts/config/stage-b-rollout-plan.schema.json"
+    plan = engine.load_stage_b_document(plan_path, schema_path)
+    engine.validate_stage_b_plan_semantics(plan)
+    inputs = engine.load_stage_b_live_inputs(root)
+    if inputs.get("source") != "GitHubReadOnly":
+        raise ValueError("fixture-only fleet evidence cannot satisfy AC-SBR-001")
+    snapshot = engine.StageBFleetPreflight(root).execute(
+        inputs["providerInventory"],
+        source=inputs["source"],
+        source_revision=inputs["sourceRevision"],
+    )
+    plan_ids = sorted(item["repositoryId"] for item in plan["targets"])
+    wave_ids = sorted(
+        repository_id for wave in plan["waves"] for repository_id in wave["repositoryIds"]
+    )
+    if plan_ids != snapshot["repositoryIds"] or wave_ids != snapshot["repositoryIds"]:
+        raise ValueError("published plan differs from the dynamically discovered fleet")
+    stage_a = plan["stageAReference"]
+    if (
+        stage_a["reviewedHead"] != snapshot["g3ReviewedHead"]
+        or stage_a["mergeCommit"] != snapshot["g3MergeCommit"]
+        or stage_a["postMergeEvidenceSha256"] != snapshot["g3PostMergeEvidenceSha256"]
+    ):
+        raise ValueError("published plan differs from the accepted G3 basis")
+    return {
+        "rolloutPlanPath": STAGE_B_PLAN_PATH.as_posix(),
+        "rolloutPlanSha256": normalized_sha256(plan_path),
+        "planHash": plan["planHash"],
+        "fleetSnapshotHash": plan["fleetSnapshotHash"],
+        "repositoryIdsHash": snapshot["repositoryIdsHash"],
+        "authoritativeRepositoryCount": len(plan_ids),
+        "dynamicFleetEquality": True,
+        "providerSource": "GitHubReadOnly",
+        "g3Basis": {
+            "reviewedHead": snapshot["g3ReviewedHead"],
+            "mergeCommit": snapshot["g3MergeCommit"],
+            "postMergeEvidenceSha256": snapshot["g3PostMergeEvidenceSha256"],
+        },
+    }
 
 
 def load_requirement(root: pathlib.Path, gate: str) -> tuple[pathlib.Path, dict]:
@@ -148,8 +212,11 @@ def main() -> int:
             "applicability": requirement["applicability"],
             "requiredScope": requirement["requiredScope"],
             "headSha": head_sha,
-            "provider": "GitHub" if "GitHub" in observed_tokens else "LocalImplementation",
-            "runId": "954ff259-ffed-44a8-883f-28742b031a9b",
+            "provider": (
+                "GitHubReadOnly" if "GitHubReadOnly" in observed_tokens
+                else "GitHub" if "GitHub" in observed_tokens else "LocalImplementation"
+            ),
+            "runId": STAGE_B_RUN_ID,
             "snapshotId": str(uuid.uuid4()),
             "capturedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
             "workflow": "speckit.implement",
@@ -162,6 +229,8 @@ def main() -> int:
             "reevaluationTrigger": requirement["reevaluationTrigger"],
             "supplementalFor": "",
         }
+        if args.gate == "AC-SBR-001":
+            entry["livePlanBinding"] = build_ac_sbr_001_live_binding(root)
         atomic_write_json(evidence_root / "primary" / f"{args.gate}.json", entry)
         return 0
     except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:

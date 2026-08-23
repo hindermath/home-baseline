@@ -626,27 +626,32 @@ def execute_stage_b_action(args: argparse.Namespace) -> int:
     if action not in {"Preflight", "Validate", "Deliver", "Resume", "Verify"}:
         print("STAGE_B\tUSAGE\tunknown action", file=sys.stderr)
         return STAGE_B_EXIT_CODES["Usage"]
-    if args.dry_run and action in {"Deliver", "Resume"}:
-        decision = "Preview"
-    else:
-        decision = action
     try:
         for value in (args.repository_id, args.profile_id):
             if value != "N/A":
                 validate_ci_input_component(value)
-    except ContractError as exc:
+        if action == "Preflight":
+            return execute_stage_b_preflight(args)
+        decision = "Preview" if args.dry_run and action in {"Deliver", "Resume"} else action
+        fields = [
+            ("Run-ID / Run ID", args.run_id), ("Autoritaet / Authority", args.delivery_mode),
+            ("Welle / Wave", args.wave_id), ("Repository-ID", args.repository_id),
+            ("Profil / Profile", args.profile_id), ("Entscheidung / Decision", decision),
+            ("Status", "Passed"), ("Blocker", "N/A"),
+            ("Naechste Aktion / Next action", "N/A"),
+        ]
+        for name, value in fields:
+            print(f"{name}: {value}")
+        return STAGE_B_EXIT_CODES["Success"]
+    except KeyboardInterrupt:
+        print("STAGE_B\tINTERRUPTED\tcontrolled stop", file=sys.stderr)
+        return STAGE_B_EXIT_CODES["Interrupted"]
+    except CIGateBlocked as exc:
+        print(f"STAGE_B\tBLOCKED\t{exc}", file=sys.stderr)
+        return STAGE_B_EXIT_CODES["Blocked"]
+    except (ContractError, OSError, RuntimeError, json.JSONDecodeError) as exc:
         print(f"STAGE_B\tFAILED\t{exc}", file=sys.stderr)
         return STAGE_B_EXIT_CODES["Failed"]
-    fields = [
-        ("Run-ID / Run ID", args.run_id), ("Autoritaet / Authority", args.delivery_mode),
-        ("Welle / Wave", args.wave_id), ("Repository-ID", args.repository_id),
-        ("Profil / Profile", args.profile_id), ("Entscheidung / Decision", decision),
-        ("Status", "Passed"), ("Blocker", "N/A"),
-        ("Naechste Aktion / Next action", "N/A"),
-    ]
-    for name, value in fields:
-        print(f"{name}: {value}")
-    return STAGE_B_EXIT_CODES["Success"]
 
 
 STAGE_B_RUN_ID = "954ff259-ffed-44a8-883f-28742b031a9b"
@@ -683,10 +688,134 @@ def _atomic_stage_b_json(path: pathlib.Path, value: dict) -> str:
     return normalized_file_sha256(path)
 
 
+def _stage_b_git_object_sha(object_type: str, content: bytes) -> str:
+    header = f"{object_type} {len(content)}\0".encode("ascii")
+    return hashlib.sha1(header + content).hexdigest()
+
+
+def _stage_b_tree_sha(entries: dict[str, tuple[str, str]]) -> str:
+    """Calculate a Git tree without writing an object into a target repository."""
+    tree: dict[str, object] = {}
+    for path, (mode, object_sha) in entries.items():
+        parts = pathlib.PurePosixPath(path).parts
+        if not parts or any(part in {"", ".", ".."} for part in parts):
+            raise ContractError(f"unsafe Stage-B tree path: {path!r}")
+        node = tree
+        for part in parts[:-1]:
+            child = node.setdefault(part, {})
+            if not isinstance(child, dict):
+                raise ContractError(f"Stage-B tree collision: {path}")
+            node = child
+        node[parts[-1]] = (mode, object_sha)
+
+    def encode(node: dict[str, object]) -> str:
+        encoded_entries: list[tuple[bytes, bytes]] = []
+        for name, value in node.items():
+            if isinstance(value, dict):
+                mode, object_sha, sort_name = "40000", encode(value), f"{name}/"
+            else:
+                mode, object_sha = value
+                sort_name = name
+            record = mode.encode("ascii") + b" " + name.encode("utf-8") + b"\0"
+            record += bytes.fromhex(object_sha)
+            encoded_entries.append((sort_name.encode("utf-8"), record))
+        content = b"".join(record for _, record in sorted(encoded_entries))
+        return _stage_b_git_object_sha("tree", content)
+
+    return encode(tree)
+
+
+def _stage_b_git_tree_entries(repository: pathlib.Path, head: str) -> dict[str, tuple[str, str]]:
+    result = run_git(repository, "ls-tree", "-rz", "--full-tree", "-r", head)
+    entries: dict[str, tuple[str, str]] = {}
+    for raw in result.stdout.split("\0"):
+        if not raw:
+            continue
+        metadata, path = raw.split("\t", 1)
+        mode, object_type, object_sha = metadata.split(" ", 2)
+        if object_type not in {"blob", "commit"} or not re.fullmatch(r"[0-9a-f]{40}", object_sha):
+            raise ContractError(f"unsupported Stage-B Git tree entry: {path}")
+        entries[path] = (mode, object_sha)
+    return entries
+
+
+def _stage_b_environment_hash(repository: pathlib.Path, repository_id: str) -> str:
+    for relative in (".specify/memory/constitution.md", "constitution.md"):
+        candidate = repository / relative
+        if candidate.is_file() and not candidate.is_symlink():
+            return canonical_json_hash({
+                "repositoryId": repository_id,
+                "contextPath": relative,
+                "contextSha256": normalized_file_sha256(candidate),
+            })
+    raise ContractError(f"environment registry context is missing: {repository_id}")
+
+
+def _stage_b_local_repository_root(
+    repository_root: pathlib.Path, manifest_target: dict | None
+) -> pathlib.Path:
+    if manifest_target is None:
+        return repository_root
+    fleet_root = pathlib.Path(os.environ.get("HB_STAGE_B_FLEET_ROOT", str(pathlib.Path.home())))
+    return (fleet_root / validate_relative_path(manifest_target["path"])).resolve()
+
+
+def _stage_b_validate_local_repository(
+    repository: pathlib.Path, identity: dict, expected_remote: str
+) -> None:
+    if not repository.is_dir() or not (repository / ".git").exists():
+        raise ContractError(f"local target repository is unavailable: {identity['repositoryId']}")
+    if run_git(repository, "status", "--porcelain=v1", "--untracked-files=all").stdout:
+        raise ContractError(f"dirty target blocks Stage B: {identity['repositoryId']}")
+    branch = run_git(repository, "branch", "--show-current").stdout.strip()
+    head = run_git(repository, "rev-parse", "HEAD").stdout.strip()
+    remote = run_git(repository, "remote", "get-url", "origin").stdout.strip()
+    if branch != identity["defaultBranch"]:
+        raise ContractError(f"default branch drift blocks Stage B: {identity['repositoryId']}")
+    if head != identity["defaultHead"]:
+        raise ContractError(f"stale target head blocks Stage B: {identity['repositoryId']}")
+    if normalize_remote(remote) != normalize_remote(expected_remote):
+        raise ContractError(f"remote identity drift blocks Stage B: {identity['repositoryId']}")
+
+
+def _stage_b_github_get_json(slug: str, endpoint: str = "") -> object:
+    validate_stage_b_provider_identity("1", slug)
+    suffix = endpoint.lstrip("/")
+    if suffix and (
+        suffix.startswith(("-", "http://", "https://"))
+        or ".." in pathlib.PurePosixPath(suffix).parts
+        or re.fullmatch(r"[A-Za-z0-9_./{}=?&%-]+", suffix) is None
+    ):
+        raise ContractError("Stage-B provider endpoint is unsafe")
+    target = f"repos/{slug}" + (f"/{suffix}" if suffix else "")
+    command = ["gh", "api", target, "--method", "GET"]
+    for attempt in range(1, 4):
+        try:
+            completed = subprocess.run(
+                command, text=True, capture_output=True, check=False, timeout=30, shell=False
+            )
+        except subprocess.TimeoutExpired:
+            completed = subprocess.CompletedProcess(command, 124, "", "timeout")
+        if completed.returncode == 0:
+            try:
+                return json.loads(completed.stdout)
+            except json.JSONDecodeError as exc:
+                raise ContractError(f"GitHub GET returned invalid JSON for {target}") from exc
+        classification = classify_stage_b_provider_failure(
+            completed.returncode, completed.stderr or completed.stdout
+        )
+        if classification != "TransientRead" or attempt == 3:
+            detail = _redact_stage_b_text(completed.stderr or completed.stdout, 512)
+            raise ContractError(f"GitHub read-only inventory failed for {target}: {detail}")
+        time.sleep(0.25 * (2 ** (attempt - 1)))
+    raise AssertionError("bounded Stage-B GitHub retry loop exhausted")
+
+
 def stage_b_stable_identity(row: dict) -> dict:
     expected = {
         "repositoryId", "providerRepositoryId", "remoteIdentity", "slug",
-        "visibility", "defaultBranch", "environmentRegistryHash",
+        "profileId", "visibility", "defaultBranch", "defaultHead", "defaultTree",
+        "localRepositoryRootHash", "environmentRegistryHash", "observedAt",
     }
     validate_stage_b_closed_world(row, expected, "Stage-B repository identity")
     repository_id = validate_ci_input_component(row["repositoryId"])
@@ -700,16 +829,31 @@ def stage_b_stable_identity(row: dict) -> dict:
         raise ContractError(f"visibility is invalid for {repository_id}")
     if not isinstance(row["defaultBranch"], str) or not row["defaultBranch"]:
         raise ContractError(f"default branch is invalid for {repository_id}")
-    if re.fullmatch(r"[0-9a-f]{64}", str(row["environmentRegistryHash"])) is None:
-        raise ContractError(f"environment registry hash is invalid for {repository_id}")
+    if row["profileId"] not in STAGE_B_PROFILE_WAVE:
+        raise ContractError(f"profile is invalid for {repository_id}")
+    for field, length in (("defaultHead", 40), ("defaultTree", 40)):
+        if re.fullmatch(rf"[0-9a-f]{{{length}}}", str(row[field])) is None:
+            raise ContractError(f"{field} is invalid for {repository_id}")
+    for field in ("localRepositoryRootHash", "environmentRegistryHash"):
+        if re.fullmatch(r"[0-9a-f]{64}", str(row[field])) is None:
+            raise ContractError(f"{field} is invalid for {repository_id}")
+    try:
+        datetime.fromisoformat(str(row["observedAt"]).replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ContractError(f"observedAt is invalid for {repository_id}") from exc
     return {
         "repositoryId": repository_id,
         "providerRepositoryId": provider_id,
         "remoteIdentity": remote,
         "slug": slug.lower(),
+        "profileId": row["profileId"],
         "visibility": row["visibility"],
         "defaultBranch": row["defaultBranch"],
+        "defaultHead": row["defaultHead"],
+        "defaultTree": row["defaultTree"],
+        "localRepositoryRootHash": row["localRepositoryRootHash"],
         "environmentRegistryHash": row["environmentRegistryHash"],
+        "observedAt": row["observedAt"],
     }
 
 
@@ -730,6 +874,286 @@ def validate_stage_b_git_state(row: dict) -> None:
         raise ContractError(f"default branch drift blocks Stage B: {repository_id}")
 
 
+def _stage_b_gate_refs(gate_set: dict) -> list[dict]:
+    return [
+        {
+            "gateId": gate["gateId"],
+            "commandToken": " ".join([gate["executable"], *gate["arguments"]]),
+            "runnerOrPlatformToken": "LocalTarget",
+        }
+        for gate in sorted(gate_set["gates"], key=lambda item: (item["order"], item["gateId"]))
+    ]
+
+
+def _stage_b_target_change_input(
+    repository: pathlib.Path,
+    identity: dict,
+    profile: dict,
+    contracts: dict,
+    workflow_template: pathlib.Path,
+    ruleset_plan_hash: str,
+    remote_gate_refs: list[dict],
+) -> dict:
+    repository_id = identity["repositoryId"]
+    profile_id = profile["profileId"]
+    baseline_head = identity["defaultHead"]
+    baseline_tree = identity["defaultTree"]
+    entries = _stage_b_git_tree_entries(repository, baseline_head)
+    changes: list[dict] = []
+    workflow_action = "Preserve" if profile_id in {"public-canary", "public-product"} else "N/A"
+    if profile_id == "private-governance-scaffold":
+        desired_path = ".github/workflows/home-baseline-ci-minimal-gate.yml"
+        desired_content = normalized_file_bytes(workflow_template)
+        desired_blob = _stage_b_git_object_sha("blob", desired_content)
+        previous = entries.get(desired_path)
+        if previous is None:
+            workflow_action = "Add"
+            changes.append({
+                "path": desired_path, "action": "Add", "modeBefore": "N/A",
+                "modeAfter": "100644", "blobBefore": "N/A", "blobAfter": desired_blob,
+                "sourceTemplateHash": normalized_file_sha256(workflow_template),
+                "semanticContractIds": ["private-governance-minimal-gate"],
+            })
+        elif previous != ("100644", desired_blob):
+            workflow_action = "Update"
+            changes.append({
+                "path": desired_path, "action": "Modify", "modeBefore": previous[0],
+                "modeAfter": "100644", "blobBefore": previous[1], "blobAfter": desired_blob,
+                "sourceTemplateHash": normalized_file_sha256(workflow_template),
+                "semanticContractIds": ["private-governance-minimal-gate"],
+            })
+        else:
+            workflow_action = "Preserve"
+    candidate_entries = dict(entries)
+    for change in changes:
+        candidate_entries[change["path"]] = (change["modeAfter"], change["blobAfter"])
+    candidate_tree = _stage_b_tree_sha(candidate_entries) if changes else baseline_tree
+    gate_set = next(
+        item for item in contracts["profiles"]["gateSets"]
+        if item["gateSetId"] == profile["gateSetId"]
+    )
+    stage_a_decision, stage_a_diff, _ = _ci_rollout_decision(profile_id)
+    return {
+        "repositoryId": repository_id,
+        "baselineHead": baseline_head,
+        "baselineTree": baseline_tree,
+        "defaultBranch": identity["defaultBranch"],
+        "stageAPlanHash": canonical_json_hash({
+            "repositoryId": repository_id,
+            "profileId": profile_id,
+            "decision": stage_a_decision,
+            "plannedDiff": stage_a_diff,
+            "remoteGateRefs": remote_gate_refs,
+        }),
+        "gateSetHash": canonical_json_hash(gate_set),
+        "pathContractHash": contracts["pathContractHash"],
+        "changes": sorted(changes, key=lambda item: (item["path"], item["action"])),
+        "candidateTree": candidate_tree,
+        "workflowAction": workflow_action,
+        "rulesetPlanHash": ruleset_plan_hash,
+        "mergeMethod": "merge" if changes else "N/A",
+        "requiredLocalGates": _stage_b_gate_refs(gate_set),
+        "requiredRemoteGates": remote_gate_refs,
+    }
+
+
+def _stage_b_ruleset_plan_hash(
+    slug: str, identity: dict, ruleset_template: pathlib.Path
+) -> str:
+    if identity["profileId"] != "private-governance-scaffold":
+        return "N/A"
+    desired = _read_ci_json(ruleset_template, "private governance ruleset")
+    summaries = _stage_b_github_get_json(slug, "rulesets?per_page=100")
+    if not isinstance(summaries, list):
+        raise ContractError(f"ruleset inventory is invalid: {identity['repositoryId']}")
+    if len(summaries) >= 100:
+        raise ContractError(f"ruleset inventory pagination is incomplete: {identity['repositoryId']}")
+    matching = [item for item in summaries if isinstance(item, dict) and item.get("name") == desired["rulesetName"]]
+    if len(matching) > 1:
+        raise ContractError(f"duplicate Stage-B ruleset identity: {identity['repositoryId']}")
+    if not matching:
+        return canonical_json_hash({
+            "action": "Create", "repositoryId": identity["repositoryId"],
+            "providerRepositoryId": identity["providerRepositoryId"],
+            "defaultBranch": identity["defaultBranch"], "desired": desired,
+        })
+    ruleset_id = str(matching[0].get("id", ""))
+    if re.fullmatch(r"[1-9][0-9]*", ruleset_id) is None:
+        raise ContractError(f"ruleset provider ID is invalid: {identity['repositoryId']}")
+    detail = _stage_b_github_get_json(slug, f"rulesets/{ruleset_id}")
+    if not isinstance(detail, dict) or not isinstance(detail.get("rules"), list):
+        raise ContractError(f"ruleset detail is incomplete: {identity['repositoryId']}")
+    rules = {item.get("type"): item.get("parameters", {}) for item in detail["rules"] if isinstance(item, dict)}
+    pull_request = rules.get("pull_request", {})
+    checks = rules.get("required_status_checks", {})
+    contexts = checks.get("required_status_checks", []) if isinstance(checks, dict) else []
+    context_names = sorted(
+        item.get("context") for item in contexts
+        if isinstance(item, dict) and isinstance(item.get("context"), str)
+    )
+    observed = {
+        "target": detail.get("target"), "rulesetName": detail.get("name"),
+        "enforcement": detail.get("enforcement"),
+        "pullRequestRequired": "pull_request" in rules,
+        "requiredApprovingReviews": pull_request.get("required_approving_review_count"),
+        "requiredStatusChecks": context_names,
+        "strictStatusChecks": checks.get("strict_required_status_checks_policy") if isinstance(checks, dict) else None,
+        "bypassActors": detail.get("bypass_actors"),
+    }
+    expected = {
+        "target": desired["target"], "rulesetName": desired["rulesetName"],
+        "enforcement": desired["enforcement"],
+        "pullRequestRequired": desired["pullRequestRequired"],
+        "requiredApprovingReviews": desired["requiredApprovingReviews"],
+        "requiredStatusChecks": desired["requiredStatusChecks"],
+        "strictStatusChecks": desired["strictStatusChecks"],
+        "bypassActors": desired["bypassActors"],
+    }
+    if observed == expected and set(rules) == {"pull_request", "required_status_checks"}:
+        return "N/A"
+    return canonical_json_hash({
+        "action": "Update", "repositoryId": identity["repositoryId"],
+        "providerRepositoryId": identity["providerRepositoryId"],
+        "defaultBranch": identity["defaultBranch"],
+        "previousRulesetId": ruleset_id, "previous": observed, "desired": desired,
+    })
+
+
+def _stage_b_workflow_gate_refs(slug: str, profile_id: str, repository_id: str) -> list[dict]:
+    response = _stage_b_github_get_json(slug, "actions/workflows?per_page=100")
+    if not isinstance(response, dict) or not isinstance(response.get("workflows"), list):
+        raise ContractError(f"workflow inventory is incomplete: {repository_id}")
+    workflows = response["workflows"]
+    if response.get("total_count") != len(workflows):
+        raise ContractError(f"workflow inventory pagination is incomplete: {repository_id}")
+    active = []
+    for workflow in workflows:
+        if not isinstance(workflow, dict):
+            raise ContractError(f"workflow inventory row is invalid: {repository_id}")
+        path = str(workflow.get("path", ""))
+        state = workflow.get("state")
+        if state != "active":
+            continue
+        if not path.startswith(".github/workflows/") or any(character in path for character in "\0\r\n"):
+            raise ContractError(f"workflow path is unsafe: {repository_id}")
+        stem = pathlib.PurePosixPath(path).stem.lower()
+        gate_id = re.sub(r"[^a-z0-9-]+", "-", stem).strip("-")
+        validate_ci_input_component(gate_id)
+        active.append({
+            "gateId": gate_id,
+            "commandToken": f"GitHubActionsWorkflow:{path}",
+            "runnerOrPlatformToken": "GitHub",
+        })
+    refs = sorted(active, key=lambda item: (item["gateId"], item["commandToken"]))
+    if len({item["gateId"] for item in refs}) != len(refs):
+        raise ContractError(f"workflow gate identity is ambiguous: {repository_id}")
+    if profile_id in {"public-canary", "public-product"} and not refs:
+        raise ContractError(f"required public CI workflow is missing: {repository_id}")
+    return refs
+
+
+def load_stage_b_live_inputs(repository_root: pathlib.Path) -> dict:
+    """Read the complete current fleet/provider input set without writing anywhere."""
+    root = repository_root.resolve()
+    manifest_path = root / "scripts/config/agentic-workspace-fleet.json"
+    profiles_path = root / "scripts/config/ci-budget-profiles.json"
+    paths_path = root / "scripts/config/ci-budget-path-contracts.json"
+    workflow_template = root / "scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml"
+    ruleset_template = root / "scripts/templates/ci-budget-governance/private-governance-ruleset.json"
+    manifest = load_manifest(manifest_path)
+    contracts = load_ci_budget_contracts(profiles_path, paths_path, workflow_template)
+    simulate_private_governance_policy(workflow_template, ruleset_template)
+    authoritative = authoritative_ci_repositories(root, manifest, contracts["profiles"])
+    manifest_by_id = {
+        item["id"]: item for item in manifest["targets"]
+        if item.get("active") is True and item.get("kind") == "git-repository"
+    }
+    profiles = {item["profileId"]: item for item in contracts["profiles"]["profiles"]}
+    observed_at = utc_now()
+    inventory: list[dict] = []
+    targets: list[dict] = []
+    for expected in authoritative:
+        repository_id = expected["repositoryId"]
+        slug = _github_repository_slug(expected["remoteIdentity"])
+        metadata = _stage_b_github_get_json(slug)
+        if not isinstance(metadata, dict):
+            raise ContractError(f"GitHub repository metadata is invalid: {repository_id}")
+        provider_id = str(metadata.get("id", ""))
+        full_name = str(metadata.get("full_name", ""))
+        default_branch = str(metadata.get("default_branch", ""))
+        if metadata.get("archived") is True or metadata.get("fork") is True:
+            raise ContractError(f"archived or forked target blocks Stage B: {repository_id}")
+        if full_name.lower() != slug.lower() or default_branch != expected["defaultBranch"]:
+            raise ContractError(f"provider identity/default-branch drift: {repository_id}")
+        branch = _stage_b_github_get_json(slug, f"branches/{default_branch}")
+        if not isinstance(branch, dict) or not isinstance(branch.get("commit"), dict):
+            raise ContractError(f"provider branch metadata is incomplete: {repository_id}")
+        default_head = str(branch["commit"].get("sha", ""))
+        commit = _stage_b_github_get_json(slug, f"git/commits/{default_head}")
+        if not isinstance(commit, dict) or not isinstance(commit.get("tree"), dict):
+            raise ContractError(f"provider commit metadata is incomplete: {repository_id}")
+        default_tree = str(commit["tree"].get("sha", ""))
+        local_repository = _stage_b_local_repository_root(root, manifest_by_id.get(repository_id))
+        identity = {
+            "repositoryId": repository_id,
+            "providerRepositoryId": provider_id,
+            "remoteIdentity": expected["remoteIdentity"],
+            "slug": slug,
+            "profileId": expected["assignmentProfileId"],
+            "visibility": "private" if metadata.get("private") is True else "public",
+            "defaultBranch": default_branch,
+            "defaultHead": default_head,
+            "defaultTree": default_tree,
+            "localRepositoryRootHash": canonical_json_hash({
+                "repositoryId": repository_id,
+                "manifestPath": manifest_by_id.get(repository_id, {}).get("path", "executing-level0"),
+            }),
+            "environmentRegistryHash": _stage_b_environment_hash(local_repository, repository_id),
+            "observedAt": observed_at,
+        }
+        stable = stage_b_stable_identity(identity)
+        if stable["visibility"] != profiles[stable["profileId"]]["requiredVisibility"]:
+            raise ContractError(f"provider visibility conflicts with profile: {repository_id}")
+        _stage_b_validate_local_repository(local_repository, stable, expected["remoteIdentity"])
+        inventory.append(stable)
+        ruleset_plan_hash = _stage_b_ruleset_plan_hash(slug, stable, ruleset_template)
+        remote_gate_refs = _stage_b_workflow_gate_refs(slug, stable["profileId"], repository_id)
+        targets.append(_stage_b_target_change_input(
+            local_repository, stable, profiles[stable["profileId"]], contracts,
+            workflow_template, ruleset_plan_hash, remote_gate_refs,
+        ))
+    source_revision = canonical_json_hash({
+        # Capture time is observation metadata, not a semantic provider input.
+        # Keeping it out makes preview and publication bind the same live facts.
+        "repositories": [
+            {key: value for key, value in item.items() if key != "observedAt"}
+            for item in inventory
+        ],
+        "targets": targets,
+    })
+    return {
+        "source": "GitHubReadOnly",
+        "sourceRevision": source_revision,
+        "providerInventory": inventory,
+        "assignments": contracts["profiles"]["assignments"],
+        "targets": targets,
+    }
+
+
+def _load_stage_b_cli_inputs(repository_root: pathlib.Path, *, dry_run: bool) -> dict:
+    fixture_path = os.environ.get("HB_STAGE_B_TEST_FIXTURE")
+    if fixture_path:
+        if os.environ.get("HB_STAGE_B_TEST_MODE") != "1":
+            raise ContractError("Stage-B fixture input requires explicit test mode")
+        if not dry_run:
+            raise ContractError("Stage-B fixture input is forbidden for plan/state publication")
+        fixture = _read_ci_json(pathlib.Path(fixture_path), "Stage-B test input")
+        if fixture.get("source") != "Fixture":
+            raise ContractError("Stage-B test input must identify Fixture source")
+        return fixture
+    return load_stage_b_live_inputs(repository_root)
+
+
 class StageBFleetPreflight:
     """Validate the complete Stage-B read-only input set before any mutation."""
 
@@ -737,7 +1161,12 @@ class StageBFleetPreflight:
         self.root = repository_root.resolve()
 
     def execute(
-        self, provider_inventory: list[dict], *, snapshot_path: pathlib.Path | None = None
+        self,
+        provider_inventory: list[dict],
+        *,
+        source: str = "Fixture",
+        source_revision: str | None = None,
+        snapshot_path: pathlib.Path | None = None,
     ) -> dict:
         g3_path = self.root / "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json"
         g3 = json.loads(normalized_file_bytes(g3_path).decode())
@@ -747,6 +1176,15 @@ class StageBFleetPreflight:
             or g3.get("mergeCommit") != STAGE_B_G3_MERGE_COMMIT
         ):
             raise ContractError("terminal G3 evidence drift blocks Stage B")
+        g3_state_path = self.root / "specs/029-ci-budget-governance/autonomous-run-state.json"
+        g3_state = json.loads(normalized_file_bytes(g3_state_path).decode())
+        if (
+            g3_state.get("featurePath") != "specs/029-ci-budget-governance"
+            or g3_state.get("status") != "Completed"
+            or g3_state.get("checkpointCommit") != STAGE_B_G3_MERGE_COMMIT
+            or any(value != "Completed" for value in g3_state.get("closeout", {}).values())
+        ):
+            raise ContractError("terminal G3 run-state drift blocks Stage B")
         manifest = _read_ci_json(
             self.root / "scripts/config/agentic-workspace-fleet.json", "fleet manifest"
         )
@@ -766,10 +1204,42 @@ class StageBFleetPreflight:
             raise ContractError("duplicate Stage-B provider repository identity")
         if manifest_ids != set(assignment_ids) or manifest_ids != set(inventory_ids):
             raise ContractError("Stage-B fleet set equality failed before mutation")
+        assignments = {item["repositoryId"]: item["profileId"] for item in profiles["assignments"]}
+        profile_visibility = {
+            item["profileId"]: item["requiredVisibility"] for item in profiles["profiles"]
+        }
+        for item in inventory:
+            if item["profileId"] != assignments[item["repositoryId"]]:
+                raise ContractError(f"Stage-B profile assignment drift: {item['repositoryId']}")
+            if item["visibility"] != profile_visibility[item["profileId"]]:
+                raise ContractError(f"Stage-B visibility drift: {item['repositoryId']}")
+        observed_values = {item["observedAt"] for item in inventory}
+        if len(observed_values) != 1:
+            raise ContractError("Stage-B provider snapshot is not atomic")
+        if source not in {"Fixture", "GitHubReadOnly"}:
+            raise ContractError("Stage-B provider source is invalid")
+        revision = source_revision or canonical_json_hash([
+            {key: value for key, value in item.items() if key != "observedAt"}
+            for item in inventory
+        ])
+        if re.fullmatch(r"[0-9a-f]{64}", revision) is None:
+            raise ContractError("Stage-B provider source revision is invalid")
         level0_head = run_git(self.root, "rev-parse", "HEAD").stdout.strip()
         if re.fullmatch(r"[0-9a-f]{40}", level0_head) is None:
             raise ContractError("current Level-0 head is invalid")
+        level0 = next(item for item in inventory if item["repositoryId"] == "home-baseline")
+        if level0["defaultHead"] != level0_head:
+            raise ContractError("current Level-0 head differs from live provider default head")
+        environment_hash = canonical_json_hash({
+            item["repositoryId"]: item["environmentRegistryHash"] for item in inventory
+        })
+        authority = {
+            "status": "Pending", "deliveryMode": "MergeAndSync", "source": "N/A",
+            "authorizedAt": "N/A", "validatedAt": "N/A",
+            "externalWriteGate": "Closed", "adminBypass": "NotAuthorized",
+        }
         inputs = {
+            "g3RunStateSha256": normalized_file_sha256(g3_state_path),
             "g3PostMergeEvidenceSha256": normalized_file_sha256(g3_path),
             "level0Head": level0_head,
             "constitutionSha256": normalized_file_sha256(self.root / "constitution.md"),
@@ -777,24 +1247,46 @@ class StageBFleetPreflight:
             "manifestSha256": normalized_file_sha256(self.root / "scripts/config/agentic-workspace-fleet.json"),
             "profileRegistrySha256": normalized_file_sha256(self.root / "scripts/config/ci-budget-profiles.json"),
             "pathRegistrySha256": normalized_file_sha256(self.root / "scripts/config/ci-budget-path-contracts.json"),
+            "environmentRegistryHash": environment_hash,
             "gateSetHash": canonical_json_hash(profiles.get("gateSets", [])),
             "budgetHash": canonical_json_hash(profiles.get("budgetAssumptions", {})),
-            "authority": "MergeAndSync",
+            "authorityHash": canonical_json_hash(authority),
+            "providerSource": source,
+            "providerSourceRevision": revision,
         }
+        captured_at = next(iter(observed_values)) if source == "Fixture" else utc_now()
         snapshot = {
             "schemaVersion": "1.0",
-            "capturedAt": utc_now(),
-            "stageAReviewedHead": STAGE_B_G3_REVIEWED_HEAD,
-            "stageAMergeCommit": STAGE_B_G3_MERGE_COMMIT,
+            "snapshotId": str(uuid.uuid5(uuid.UUID(STAGE_B_RUN_ID), revision)),
+            "capturedAt": captured_at,
+            "level0Head": level0_head,
+            "g3ReviewedHead": STAGE_B_G3_REVIEWED_HEAD,
+            "g3MergeCommit": STAGE_B_G3_MERGE_COMMIT,
+            "g3PostMergeEvidenceSha256": inputs["g3PostMergeEvidenceSha256"],
+            "fleetManifestHash": inputs["manifestSha256"],
+            "profileRegistryHash": inputs["profileRegistrySha256"],
+            "pathContractHash": inputs["pathRegistrySha256"],
+            "environmentRegistryHash": environment_hash,
+            "gateSetHash": inputs["gateSetHash"],
+            "authorityHash": inputs["authorityHash"],
+            "source": source,
+            "sourceRevision": revision,
             "repositoryIds": sorted(manifest_ids),
             "repositoryIdsHash": canonical_json_hash(sorted(manifest_ids)),
-            "inventory": sorted(inventory, key=lambda item: item["repositoryId"]),
+            "repositories": sorted(inventory, key=lambda item: item["repositoryId"]),
             "inputs": inputs,
             "inputSetHash": canonical_json_hash(inputs),
             "writes": 0,
             "result": "Passed",
         }
-        snapshot["fleetSnapshotHash"] = canonical_json_hash(snapshot)
+        snapshot_hash_payload = {
+            key: value for key, value in snapshot.items() if key != "capturedAt"
+        }
+        snapshot_hash_payload["repositories"] = [
+            {key: value for key, value in item.items() if key != "observedAt"}
+            for item in snapshot["repositories"]
+        ]
+        snapshot["fleetSnapshotHash"] = canonical_json_hash(snapshot_hash_payload)
         if snapshot_path is not None:
             _atomic_stage_b_json(snapshot_path, snapshot)
         return snapshot
@@ -858,7 +1350,13 @@ class StageBRolloutPlanner:
             }
             for index, wave_id in enumerate(STAGE_B_WAVES, start=1)
         ]
-        first_target = next((item for item in ordered_targets if item["decision"] == "PullRequest"), None)
+        first_target = next(
+            (
+                item for item in ordered_targets
+                if item["decision"] == "PullRequest" or item["rulesetPlanHash"] != "N/A"
+            ),
+            None,
+        )
         plan = {
             "schemaVersion": "1.1",
             "planId": str(uuid.uuid5(uuid.UUID(self.run_id), snapshot["fleetSnapshotHash"])),
@@ -869,12 +1367,16 @@ class StageBRolloutPlanner:
                 "featurePath": "specs/029-ci-budget-governance",
                 "reviewedHead": STAGE_B_G3_REVIEWED_HEAD,
                 "mergeCommit": STAGE_B_G3_MERGE_COMMIT,
-                "postMergeEvidenceSha256": snapshot["inputs"]["g3PostMergeEvidenceSha256"],
+                "postMergeEvidenceSha256": snapshot["g3PostMergeEvidenceSha256"],
             },
             "fleetSnapshotHash": snapshot["fleetSnapshotHash"],
             "inputSetHash": snapshot["inputSetHash"],
             "firstMutation": (
-                {"repositoryId": first_target["repositoryId"], "actionKind": "Commit", "baselineHead": first_target["baselineHead"]}
+                {
+                    "repositoryId": first_target["repositoryId"],
+                    "actionKind": "Commit" if first_target["changes"] else "Ruleset",
+                    "baselineHead": first_target["baselineHead"],
+                }
                 if first_target else "N/A"
             ),
             "waves": waves,
@@ -882,7 +1384,9 @@ class StageBRolloutPlanner:
             "planHash": "0" * 64,
         }
         validate_stage_b_plan_state_separation(plan)
-        plan["planHash"] = canonical_json_hash({key: value for key, value in plan.items() if key != "planHash"})
+        plan["planHash"] = canonical_json_hash({
+            key: value for key, value in plan.items() if key not in {"createdAt", "planHash"}
+        })
         return plan
 
 
@@ -899,11 +1403,11 @@ def build_stage_b_run_state(plan: dict, feature_path: str = "specs/030-stage-b-r
             "planSha256": plan["planHash"],
         },
         "authorityBinding": {
-            "deliveryMode": "MergeAndSync", "source": "Explicit user authority",
-            "authorizedAt": utc_now(), "validatedAt": utc_now(), "runId": run_id,
+            "status": "Pending", "deliveryMode": "MergeAndSync", "source": "N/A",
+            "authorizedAt": "N/A", "validatedAt": "N/A", "runId": run_id,
             "planSha256": plan["planHash"], "scopeHash": plan["inputSetHash"],
             "repositoryIdsHash": canonical_json_hash(sorted(item["repositoryId"] for item in plan["targets"])),
-            "externalWriteGate": "Closed", "adminBypass": "AuthorizedException",
+            "externalWriteGate": "Closed", "adminBypass": "NotAuthorized",
             "authorityHash": "0" * 64,
         },
         "stageAReference": {
@@ -932,6 +1436,151 @@ def build_stage_b_run_state(plan: dict, feature_path: str = "specs/030-stage-b-r
     return state
 
 
+def validate_stage_b_plan_semantics(plan: dict) -> None:
+    validate_stage_b_plan_state_separation(plan)
+    expected_hash = canonical_json_hash({
+        key: value for key, value in plan.items() if key not in {"createdAt", "planHash"}
+    })
+    if plan.get("planHash") != expected_hash:
+        raise ContractError("Stage-B planHash differs from its immutable canonical payload")
+    target_ids = [item.get("repositoryId") for item in plan.get("targets", [])]
+    wave_ids = [repository_id for wave in plan.get("waves", []) for repository_id in wave.get("repositoryIds", [])]
+    if len(target_ids) != len(set(target_ids)) or sorted(target_ids) != sorted(wave_ids):
+        raise ContractError("Stage-B plan fleet/wave/target equality failed")
+    decisions = [item.get("decision") for item in plan["targets"]]
+    has_ruleset_mutation = any(item.get("rulesetPlanHash") != "N/A" for item in plan["targets"])
+    if plan.get("firstMutation") == "N/A" and (
+        any(decision != "NoOpCandidate" for decision in decisions) or has_ruleset_mutation
+    ):
+        raise ContractError("firstMutation N/A requires an all-no-op plan")
+
+
+def validate_stage_b_prepared_state(state: dict, plan: dict) -> None:
+    validate_stage_b_plan_semantics(plan)
+    if state.get("runId") != plan.get("runId"):
+        raise ContractError("Stage-B state runId differs from plan")
+    binding = state.get("rolloutPlanBinding", {})
+    if binding.get("planId") != plan.get("planId") or binding.get("planSha256") != plan.get("planHash"):
+        raise ContractError("Stage-B state does not bind the exact plan")
+    authority = state.get("authorityBinding", {})
+    expected_pending = {
+        "status": "Pending", "source": "N/A", "authorizedAt": "N/A",
+        "validatedAt": "N/A", "externalWriteGate": "Closed",
+        "adminBypass": "NotAuthorized",
+    }
+    drift = [key for key, value in expected_pending.items() if authority.get(key) != value]
+    if drift:
+        raise ContractError(f"prepared Stage-B authority is not truthful: {drift}")
+    expected_authority_hash = canonical_json_hash({
+        key: value for key, value in authority.items() if key != "authorityHash"
+    })
+    if authority.get("authorityHash") != expected_authority_hash:
+        raise ContractError("prepared Stage-B authorityHash differs")
+    expected_state_hash = canonical_json_hash({
+        key: value for key, value in state.items() if key != "stateHash"
+    })
+    if state.get("stateHash") != expected_state_hash:
+        raise ContractError("prepared Stage-B stateHash differs")
+
+
+def validate_stage_b_published_state(
+    repository_root: pathlib.Path, state_path: pathlib.Path, plan_schema_path: pathlib.Path,
+    state_schema_path: pathlib.Path,
+) -> tuple[dict, dict]:
+    state = load_stage_b_document(state_path, state_schema_path)
+    plan_relative = state.get("rolloutPlanBinding", {}).get("planPath")
+    if not isinstance(plan_relative, str):
+        raise ContractError("Stage-B state has no bound plan path")
+    plan_path = (repository_root.resolve() / plan_relative).resolve()
+    if repository_root.resolve() not in plan_path.parents:
+        raise ContractError("Stage-B plan path escapes repository root")
+    if not plan_path.is_file():
+        raise ContractError("Stage-B state exists without its bound plan")
+    plan = load_stage_b_document(plan_path, plan_schema_path)
+    validate_stage_b_prepared_state(state, plan)
+    return plan, state
+
+
+def publish_stage_b_preflight(
+    plan_path: pathlib.Path,
+    state_path: pathlib.Path,
+    plan: dict,
+    state: dict,
+    plan_schema_path: pathlib.Path,
+    state_schema_path: pathlib.Path,
+    *,
+    failure_injector=None,
+) -> None:
+    """Validate both documents, then publish plan first and state as commit marker."""
+    plan_schema = json.loads(normalized_file_bytes(plan_schema_path).decode("utf-8"))
+    state_schema = json.loads(normalized_file_bytes(state_schema_path).decode("utf-8"))
+    validate_stage_b_schema_instance(plan, plan_schema, label="Stage-B rollout plan")
+    validate_stage_b_schema_instance(state, state_schema, label="Stage-B run state")
+    validate_stage_b_prepared_state(state, plan)
+    if state_path.exists():
+        raise ContractError("existing Stage-B state must be validated and handled before preflight publication")
+    if failure_injector is not None:
+        failure_injector("before-plan-publish")
+    _atomic_stage_b_json(plan_path, plan)
+    published_plan = load_stage_b_document(plan_path, plan_schema_path)
+    validate_stage_b_plan_semantics(published_plan)
+    if failure_injector is not None:
+        failure_injector("before-state-publish")
+    _atomic_stage_b_json(state_path, state)
+    published_state = load_stage_b_document(state_path, state_schema_path)
+    validate_stage_b_prepared_state(published_state, published_plan)
+
+
+def _print_stage_b_preflight(plan: dict, *, dry_run: bool, plan_path: str, state_path: str) -> None:
+    first_mutation = plan["firstMutation"]
+    first_value = "N/A" if first_mutation == "N/A" else json.dumps(first_mutation, sort_keys=True)
+    fields = [
+        ("Run-ID / Run ID", plan["runId"]),
+        ("Autoritaetsstatus / Authority status", "Pending"),
+        ("Dynamische Zielanzahl / Dynamic target count", str(len(plan["targets"]))),
+        ("Wellen / Waves", ",".join(wave["waveId"] for wave in plan["waves"])),
+        ("Erste Mutation / First mutation", first_value),
+        ("Budgetstatus / Budget status", "Passed"),
+        ("Entscheidung / Decision", "Preview" if dry_run else "PublishedLocalPlanAndState"),
+        ("Status", "Passed"),
+        ("Blocker", "N/A"),
+        ("Naechste Aktion / Next action", "Deliver T141-R before live preflight." if dry_run else "Revalidate authority before any external write."),
+        ("Planziel / Plan target", plan_path),
+        ("State-Ziel / State target", state_path),
+        ("Vollstaendiger Plan / Complete plan", json.dumps(plan, ensure_ascii=False, sort_keys=True, separators=(",", ":"))),
+    ]
+    for name, value in fields:
+        print(f"{name}: {value}")
+
+
+def execute_stage_b_preflight(args: argparse.Namespace) -> int:
+    root = args.repository_root.resolve()
+    run_id = str(uuid.UUID(args.run_id))
+    inputs = _load_stage_b_cli_inputs(root, dry_run=args.dry_run)
+    snapshot = StageBFleetPreflight(root).execute(
+        inputs["providerInventory"],
+        source=inputs["source"],
+        source_revision=inputs["sourceRevision"],
+    )
+    plan = StageBRolloutPlanner(run_id).build(snapshot, inputs["assignments"], inputs["targets"])
+    state = build_stage_b_run_state(plan)
+    stage_b_root = root / ".specify/runtime/autonomous-routing" / run_id / "stage-b"
+    plan_path = stage_b_root / "rollout-plan.json"
+    state_path = stage_b_root / "stage-b-run-state.json"
+    plan_relative = plan_path.relative_to(root).as_posix()
+    state_relative = state_path.relative_to(root).as_posix()
+    if not args.dry_run:
+        publish_stage_b_preflight(
+            plan_path, state_path, plan, state,
+            root / "scripts/config/stage-b-rollout-plan.schema.json",
+            root / "scripts/config/stage-b-run-state.schema.json",
+        )
+    _print_stage_b_preflight(
+        plan, dry_run=args.dry_run, plan_path=plan_relative, state_path=state_relative
+    )
+    return STAGE_B_EXIT_CODES["Success"]
+
+
 def validate_external_write_gate(
     state: dict, *, expected_run_id: str, expected_plan_sha256: str,
     expected_scope_hash: str, expected_repository_ids_hash: str,
@@ -941,7 +1590,7 @@ def validate_external_write_gate(
     # dimension is rebound to the live delivery set instead of trusting a preview.
     authority = state.get("authorityBinding", {})
     expected = {
-        "deliveryMode": "MergeAndSync", "runId": expected_run_id,
+        "status": "Authorized", "deliveryMode": "MergeAndSync", "runId": expected_run_id,
         "planSha256": expected_plan_sha256, "scopeHash": expected_scope_hash,
         "repositoryIdsHash": expected_repository_ids_hash, "externalWriteGate": "Open",
     }

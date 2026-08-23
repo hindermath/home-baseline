@@ -43,7 +43,9 @@ Bindung nur wiederholen, niemals ersetzen.
 `home-baseline` und aktiven `kind=git-repository`-Zielen. Collection-Knoten,
 Duplikate und unbekannte Assignments sind verboten. Manifest, Assignments,
 Inventory und Rolloutplan besitzen dieselbe Menge. Zeitstempel gehört nicht
-zum `inputSetHash`.
+zum `inputSetHash`, zur `sourceRevision` oder zum `fleetSnapshotHash`; Preview
+und Publikation mit denselben fachlichen Providerfakten erzeugen deshalb
+denselben semantischen Planhash, auch wenn ihre Beobachtungszeiten abweichen.
 
 ## 2. FleetRepositoryIdentity / Flotten-Repository-Identität
 
@@ -178,22 +180,33 @@ Run-ID tragen; Authority und jedes Result-/Evidence-Dokument binden den
 unveränderlichen `planSha256`. `Completed` verlangt fünf konvergierte Wellen,
 fünf bestandene Budgetprojektionen, validierte Terminal-Evidence und
 validierten Closeout mit aktuellen Hashes. Ein bewusster Stop setzt
-`requiresExplicitResume=true`. State wird atomar im gleichen
-Parent-Verzeichnis geschrieben und vor/nach jedem Übergang validiert.
+`requiresExplicitResume=true`. Der Flottensnapshot bleibt beim Preflight im
+Speicher. Der vorab schema- und semantikvalidierte Plan wird zuerst atomar
+ersetzt, danach der vorab validierte State als Commit-Marker. State wird im
+gleichen Parent-Verzeichnis atomar geschrieben und vor/nach jedem Übergang
+validiert. Ein State ist nur mit vorhandenem hashgleichem Plan gültig; ein
+verwaister Plan ohne State ist nicht autoritativ und wird beim nächsten
+Preflight ignoriert und ersetzt.
 
 ## 8. AuthorityBinding / Autoritätsbindung
 
 **Felder / Fields**:
 
-- `deliveryMode`: `MergeAndSync`;
-- `source`: aktuelle Benutzer-/Run-Autoritätsquelle ohne Prompt-Rohtext;
-- `authorizedAt`, `validatedAt`;
+- `status`: `Pending` oder `Authorized`;
+- `deliveryMode`: geplanter Liefermodus `MergeAndSync`;
+- `source`: bei `Pending` exakt `N/A`, bei `Authorized` die aktuelle
+  Benutzer-/Run-Autoritätsquelle ohne Prompt-Rohtext;
+- `authorizedAt`, `validatedAt`: bei `Pending` exakt `N/A`, bei `Authorized`
+  echte UTC-Zeitstempel;
 - `runId`, unveränderlicher `planSha256`, `scopeHash`, `repositoryIdsHash`;
 - `externalWriteGate`: `Open` oder `Closed`;
 - `adminBypass`: `AuthorizedException` oder `NotAuthorized`;
 - `authorityHash`.
 
-**Validierung / Validation**: Scope-, Run- oder Planbindungsdrift schließt das
+**Validierung / Validation**: Ein vorbereiteter Preflight-State ist zwingend
+`Pending`, `externalWriteGate=Closed` und `adminBypass=NotAuthorized`. Nur eine
+frisch erteilte und revalidierte Authority darf `Authorized` mit echter Quelle
+und echten Zeitstempeln setzen. Scope-, Run- oder Planbindungsdrift schließt das
 Gate, ändert aber den unveränderlichen Plan nicht.
 `AuthorizedException` erlaubt keine Aktion ohne konkrete
 `AdminBypassEvidence`.
