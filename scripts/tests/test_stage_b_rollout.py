@@ -810,6 +810,83 @@ class ExternalWriteGateTests(unittest.TestCase):
             )
 
 
+class FailClosedPreflightTests(unittest.TestCase):
+    """Every declared AC-SBR-002 preflight case blocks with zero writes."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.acceptance = load_acceptance()
+        cls.evidence = cls.acceptance.build_ac_sbr_002_case_evidence(ROOT)
+        cls.cases = {
+            item["caseId"]: item
+            for item in [
+                cls.evidence["positiveCase"],
+                *cls.evidence["negativeCases"],
+            ]
+        }
+
+    def assert_case(self, case_id, expected_result):
+        observed = self.cases[case_id]
+        self.assertEqual(observed["result"], expected_result)
+        self.assertEqual(observed["writesObserved"]["total"], 0)
+        self.assertTrue(observed["repositoryFingerprintUnchanged"])
+        if expected_result == "Blocked":
+            self.assertTrue(observed["blockedBeforeFirstMutation"])
+            self.assertNotEqual(observed["exactBlocker"], "N/A")
+            self.assertNotEqual(observed["nextSafeAction"], "N/A")
+
+    def test_acceptance_runner_uses_the_fail_closed_preflight_scope(self):
+        self.assertEqual(
+            self.acceptance.GATE_TESTS["AC-SBR-002"],
+            "FailClosedPreflightTests",
+        )
+        self.assertTrue(self.evidence["caseCoverageComplete"])
+        self.assertEqual(self.evidence["negativeCaseCount"], 13)
+        self.assertTrue(self.evidence["zeroUnauthorizedWrites"])
+
+    def test_positive_complete_preflight(self):
+        self.assert_case("positive-complete-preflight", "Passed")
+
+    def test_missing_assignment_blocks(self):
+        self.assert_case("missing-assignment", "Blocked")
+
+    def test_unknown_assignment_blocks(self):
+        self.assert_case("unknown-assignment", "Blocked")
+
+    def test_duplicate_assignment_blocks(self):
+        self.assert_case("duplicate-assignment", "Blocked")
+
+    def test_visibility_incompatible_assignment_blocks(self):
+        self.assert_case("visibility-incompatible-assignment", "Blocked")
+
+    def test_unresolved_remote_blocks(self):
+        self.assert_case("unresolved-remote", "Blocked")
+
+    def test_conflicting_remote_blocks(self):
+        self.assert_case("conflicting-remote", "Blocked")
+
+    def test_archived_repository_blocks(self):
+        self.assert_case("archived-repository", "Blocked")
+
+    def test_renamed_repository_blocks(self):
+        self.assert_case("renamed-repository", "Blocked")
+
+    def test_unexpected_default_branch_blocks(self):
+        self.assert_case("unexpected-default-branch", "Blocked")
+
+    def test_dirty_worktree_blocks(self):
+        self.assert_case("dirty-worktree", "Blocked")
+
+    def test_divergent_branch_blocks(self):
+        self.assert_case("divergent-branch", "Blocked")
+
+    def test_stale_head_blocks(self):
+        self.assert_case("stale-head", "Blocked")
+
+    def test_incomplete_provider_record_blocks(self):
+        self.assert_case("incomplete-provider-record", "Blocked")
+
+
 class PublicCanaryVerticalSliceTests(unittest.TestCase):
     """Representative canary proves a complete lifecycle before fleet breadth."""
 
