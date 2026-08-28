@@ -17,6 +17,9 @@ Das Level-0-Template
 `scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml`
 wird im Ziel ausschließlich als
 `.github/workflows/home-baseline-ci-minimal-gate.yml` materialisiert.
+Das Template ist selbst ein syntaktisch ausführbarer GitHub-Actions-Workflow;
+maschinenlesbare Home-Baseline-Metadaten stehen ausschließlich in Kommentaren
+und erzeugen keine unbekannten Workflow-Schlüssel.
 
 Verbindliche Semantik:
 
@@ -32,6 +35,11 @@ Verbindliche Semantik:
    Downloads sind verboten.
 7. Workflowdatei und jede notwendige Änderung werden über einen nichtleeren,
    regulär geprüften PR geliefert.
+
+Der Job validiert die native Pull-Request-Identität aus dem von GitHub
+bereitgestellten Eventdokument. Er lädt keinen fremden Code nach, verwendet
+keine Action und besitzt ausschließlich `contents: read`. Sein Zwei-Minuten-
+Timeout begrenzt Hänger und Kosten.
 
 Unbekannte Trigger, Expressions außerhalb der Stage-A-Teilmenge, zusätzliche
 required Statusnamen oder ein ungefilterter Build blockieren vor Providerwrite.
@@ -108,6 +116,29 @@ zulässig, wenn:
 
 Der Bypass darf niemals Review, Check, Security-Prüfung, Ruleset-Validierung,
 Budget oder Default-Sync ersetzen.
+
+## Zeitbegrenzter Billing-/Quota-Ersatznachweis / Time-Bounded Billing/Quota Substitute Proof
+
+Wenn eine aktuelle ausdrückliche Control-Plane-Evidence eine Billing-/Quota-
+Constraint zeitlich begrenzt akzeptiert, darf die technische Ausführbarkeit
+des Minimal-Workflows über einen nativen öffentlichen GitHub-Actions-Lauf
+belegt werden. Dafür müssen normalisierter Blobhash, öffentlicher Commit,
+Workflow-/Run-/Job-ID, Runner, ausgeführter Befehl und Exitcode direkt gebunden
+sein. Im privaten Ziel bleiben Workflowzustand, PR-Head und Providerrefusal
+separat gebunden; die Zielzeile lautet weiterhin `BillingOrQuotaRefusal` und
+`payloadExecuted=false`. Ohne byteidentischen grünen öffentlichen Lauf stoppt
+die Lieferung. Diese Ausnahme ersetzt weder Security noch Review und erlaubt
+keine Account-, Billing- oder Subscription-Schreibaktion.
+
+*When current explicit control-plane evidence accepts a time-bounded
+billing/quota constraint, a native public GitHub Actions run may prove the
+minimal workflow's technical executability. The normalized blob hash, public
+commit, workflow/run/job ID, runner, executed command, and exit code must be
+bound directly. In the private target, workflow state, PR head, and provider
+refusal remain separate; the target row continues to say
+`BillingOrQuotaRefusal` and `payloadExecuted=false`. Delivery stops without a
+byte-identical successful public run. This exception replaces neither security
+nor review and authorizes no account, billing, or subscription write.*
 
 ## Provider- und Sicherheitsgrenzen / Provider and Security Boundaries
 
