@@ -331,7 +331,12 @@ Providersemantik zum No-op.
    erstellen oder einen exakt passenden vorhandenen PR fortsetzen.
 8. Pflichtchecks über konkrete Workflow-/Job-/Runner-/Befehlsidentität und
    reguläre Review am aktuellen PR-Head prüfen. Billing/Quota, technisches
-   Versagen und Pass bleiben getrennte Zustände.
+   Versagen und Pass bleiben getrennte Zustände. Nur bei aktuell akzeptierter,
+   zeitbegrenzter Billing-/Quota-Constraint darf der byteidentische
+   Minimal-Workflow zusätzlich in einem öffentlichen nativen GitHub-Lauf
+   ausgeführt werden; Ziel-Providerrefusal und öffentlicher Pass werden als
+   zwei getrennte Evidence-Zeilen gebunden und nie zu einem grünen Ziellauf
+   umetikettiert.
 9. Normalen Merge mit dem im Plan fixierten, aktuell erlaubten Verfahren
    (`merge`, sonst `squash`, sonst `rebase`) versuchen. `gh pr merge --admin`
    ist nur zulässig, wenn der normale Versuch ausschließlich an der

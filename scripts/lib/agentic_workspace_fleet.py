@@ -589,7 +589,7 @@ def classify_stage_b_provider_failure(exit_code: int, detail: str) -> str:
     lowered = detail.lower()
     if exit_code == 124 or re.search(r"timeout|connection reset|could not resolve|\b50[234]\b", lowered):
         return "TransientRead"
-    if re.search(r"billing|quota|rate limit", lowered):
+    if re.search(r"billing|quota|rate limit|recent account payments|spending limit", lowered):
         return "BillingOrQuotaRefusal"
     if re.search(r"\b403\b|\b404\b|forbidden|not found", lowered):
         return "ProviderRefusal"
@@ -1120,6 +1120,7 @@ def load_stage_b_live_inputs(repository_root: pathlib.Path) -> dict:
     ruleset_template = root / "scripts/templates/ci-budget-governance/private-governance-ruleset.json"
     manifest = load_manifest(manifest_path)
     contracts = load_ci_budget_contracts(profiles_path, paths_path, workflow_template)
+    validate_private_governance_workflow_paths(workflow_template, contracts["paths"])
     simulate_private_governance_policy(workflow_template, ruleset_template)
     authoritative = authoritative_ci_repositories(root, manifest, contracts["profiles"])
     manifest_by_id = {
@@ -2529,7 +2530,11 @@ def load_ci_budget_contracts(
         workflow_text = workflow_template_path.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as exc:
         raise ContractError(f"workflow template cannot be read: {exc}") from exc
-    product_job_ids = set(re.findall(r"^\s*-\s+jobId:\s+([a-z0-9][a-z0-9-]*)\s*$", workflow_text, re.MULTILINE))
+    product_job_ids = set(re.findall(
+        r"^# home-baseline-product-job:\s*([a-z0-9][a-z0-9-]*)\s*$",
+        workflow_text,
+        re.MULTILINE,
+    ))
     if not product_job_ids:
         raise ContractError("workflow template declares no stable product job IDs")
     _validate_ci_paths(paths, gate_ids, product_job_ids)
@@ -2540,6 +2545,33 @@ def load_ci_budget_contracts(
         "pathContractHash": canonical_json_hash(paths),
         "loadCounts": {"profiles": 1, "paths": 1},
     }
+
+
+def validate_private_governance_workflow_paths(
+    workflow_template_path: pathlib.Path,
+    path_registry: dict,
+) -> None:
+    """Bind the live target workflow to the canonical path registry exactly."""
+    workflow_text = workflow_template_path.read_text(encoding="utf-8")
+    paths_block = re.search(
+        r"^    paths:\s*$\n(?P<body>(?:^      - .+$\n?)+)",
+        workflow_text,
+        re.MULTILINE,
+    )
+    if paths_block is None:
+        raise ContractError("private governance workflow path filter is missing")
+    workflow_paths: list[str] = []
+    for line in paths_block.group("body").splitlines():
+        value = line.removeprefix("      - ").strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+            value = value[1:-1]
+        workflow_paths.append(value)
+    expected_workflow_paths: list[str] = []
+    for contract in path_registry["pathContracts"]:
+        expected_workflow_paths.extend(contract["includePatterns"])
+        expected_workflow_paths.extend(f"!{pattern}" for pattern in contract["excludePatterns"])
+    if workflow_paths != expected_workflow_paths:
+        raise ContractError("private governance workflow paths differ from the canonical path registry")
 
 
 def load_manifest(path: pathlib.Path) -> dict:
@@ -4175,38 +4207,48 @@ def simulate_private_governance_policy(
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise ContractError(f"workflow/ruleset template cannot be read: {exc}") from exc
 
-    def scalar(name: str) -> str:
-        match = re.search(rf"^{re.escape(name)}:\s*([^\n]+)\s*$", workflow_text, re.MULTILINE)
+    def metadata(name: str) -> str:
+        match = re.search(
+            rf"^# home-baseline-{re.escape(name)}:\s*([^\n]+)\s*$",
+            workflow_text,
+            re.MULTILINE,
+        )
         if match is None:
-            raise ContractError(f"workflow field is missing: {name}")
+            raise ContractError(f"workflow metadata is missing: {name}")
         return match.group(1).strip().strip('"\'')
 
-    trigger_block = re.search(
-        r"^triggers:\s*$\n(?P<body>(?:\s+-\s+[a-z_]+\s*$\n?)+)",
+    on_block = re.search(r"^on:\s*$\n(?P<body>(?:^\s+.*$\n?)+)", workflow_text, re.MULTILINE)
+    triggers = re.findall(
+        r"^  ([a-z_]+):\s*$", on_block.group("body"), re.MULTILINE
+    ) if on_block else []
+    gate_ids = re.findall(
+        r"^# home-baseline-gate-id:\s*([a-z0-9-]+)\s*$",
         workflow_text,
         re.MULTILINE,
     )
-    triggers = re.findall(r"^\s+-\s+([a-z_]+)\s*$", trigger_block.group("body"), re.MULTILINE) if trigger_block else []
-    gate_block = re.search(
-        r"^gateIds:\s*$\n(?P<body>(?:\s+-\s+[a-z0-9-]+\s*$\n?)+)",
-        workflow_text,
-        re.MULTILINE,
-    )
-    gate_ids = re.findall(r"^\s+-\s+([a-z0-9-]+)\s*$", gate_block.group("body"), re.MULTILINE) if gate_block else []
     product_jobs = re.findall(
-        r"^\s+-\s+jobId:\s+([a-z0-9][a-z0-9-]*)\s*$", workflow_text, re.MULTILINE
+        r"^# home-baseline-product-job:\s*([a-z0-9][a-z0-9-]*)\s*$",
+        workflow_text,
+        re.MULTILINE,
     )
-    required_status = scalar("requiredStatusCheck")
+    jobs_body = workflow_text.split("\njobs:\n", 1)[-1]
+    job_ids = re.findall(r"^  ([a-z0-9][a-z0-9-]*):\s*$", jobs_body, re.MULTILINE)
+    required_status = "home-baseline/ci-minimal-gate"
     valid_workflow = (
-        scalar("schemaVersion") == "1.0"
-        and scalar("active") == "false"
-        and scalar("workflowId") == "private-governance-minimal-gate"
+        metadata("schema-version") == "1.0"
+        and metadata("workflow-id") == "private-governance-minimal-gate"
         and triggers == ["pull_request"]
-        and required_status == "home-baseline/ci-minimal-gate"
-        and scalar("runsOn") == "ubuntu-latest"
-        and scalar("jobCount") == "1"
-        and scalar("fullBuild") == "false"
-        and scalar("pathDependent") == "true"
+        and metadata("full-build") == "false"
+        and metadata("path-dependent") == "true"
+        and job_ids == ["ci-minimal-gate"]
+        and re.search(r"^name:\s*home-baseline/ci-minimal-gate\s*$", workflow_text, re.MULTILINE) is not None
+        and re.search(r"^    name:\s*home-baseline/ci-minimal-gate\s*$", workflow_text, re.MULTILINE) is not None
+        and re.search(r"^    runs-on:\s*ubuntu-latest\s*$", workflow_text, re.MULTILINE) is not None
+        and re.search(r"^    timeout-minutes:\s*2\s*$", workflow_text, re.MULTILINE) is not None
+        and re.search(r"^permissions:\s*$\n  contents:\s*read\s*$", workflow_text, re.MULTILINE) is not None
+        and "uses:" not in workflow_text
+        and "set -euo pipefail" in workflow_text
+        and ".github/workflows/home-baseline-ci-minimal-gate.yml" in workflow_text
         and len(gate_ids) == len(set(gate_ids))
         and bool(gate_ids)
         and sorted(product_jobs) == [

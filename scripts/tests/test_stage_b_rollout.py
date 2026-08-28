@@ -1146,6 +1146,7 @@ class SecurityBoundaryTests(unittest.TestCase):
         cases = [
             (0, "", "Passed"), (124, "timeout", "TransientRead"),
             (1, "billing quota", "BillingOrQuotaRefusal"),
+            (1, "recent account payments failed; spending limit must be increased", "BillingOrQuotaRefusal"),
             (1, "HTTP 403 forbidden", "ProviderRefusal"),
             (1, "compiler failed", "TechnicalFailure"),
         ]

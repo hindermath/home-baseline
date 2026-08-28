@@ -460,13 +460,36 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
         self.assertFalse(policy["remoteConverged"])
         self.assertFalse(policy["hookRequiredForServerEnforcement"])
 
+    def test_private_governance_template_is_deployable_and_path_bound(self):
+        source = self.workflow_path.read_text(encoding="utf-8")
+        self.assertIn("\non:\n  pull_request:\n", source)
+        self.assertIn("\njobs:\n  ci-minimal-gate:\n", source)
+        self.assertNotIn("uses:", source)
+        contracts = self.engine.load_ci_budget_contracts(
+            self.profiles_path, self.paths_path, self.workflow_path
+        )
+        self.engine.validate_private_governance_workflow_paths(
+            self.workflow_path, contracts["paths"]
+        )
+
+        with tempfile.TemporaryDirectory() as temporary_dir:
+            drifted = pathlib.Path(temporary_dir) / "workflow.yml"
+            drifted.write_text(
+                source.replace("      - 'docs/**'\n", ""), encoding="utf-8"
+            )
+            with self.assertRaises(self.engine.ContractError):
+                self.engine.validate_private_governance_workflow_paths(
+                    drifted, contracts["paths"]
+                )
+
     def test_ruleset_negative_matrix_blocks_bypass_and_broad_workflows(self):
         workflow_source = self.workflow_path.read_text(encoding="utf-8")
         ruleset_source = json.loads(self.ruleset_path.read_text(encoding="utf-8"))
         mutations = [
-            ("workflow", workflow_source.replace("  - pull_request", "  - push")),
-            ("workflow", workflow_source.replace("fullBuild: false", "fullBuild: true")),
-            ("workflow", workflow_source.replace("pathDependent: true", "pathDependent: false")),
+            ("workflow", workflow_source.replace("  pull_request:", "  push:")),
+            ("workflow", workflow_source.replace("home-baseline-full-build: false", "home-baseline-full-build: true")),
+            ("workflow", workflow_source.replace("home-baseline-path-dependent: true", "home-baseline-path-dependent: false")),
+            ("workflow", workflow_source.replace("        shell: bash", "        uses: unbound/action@main")),
             ("ruleset", {**ruleset_source, "requiredStatusChecks": []}),
             ("ruleset", {**ruleset_source, "requiredStatusChecks": ["a", "b"]}),
             ("ruleset", {**ruleset_source, "blockedWritePaths": ["direct", "web"]}),
