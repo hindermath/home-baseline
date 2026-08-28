@@ -1,7 +1,7 @@
 # Stage-B-Mutations-Allowlist / Stage B Mutation Allowlist
 
 **Applicability / Anwendbarkeit**: `Applicable`
-**Implementation status / Umsetzungsstatus**: `Checkpoint history recorded; final T171 allowlist pending`
+**Implementation status / Umsetzungsstatus**: `T171 final allowlist frozen; regular and causal sets separated`
 **Owner / Owner**: Fleet Delivery Owner
 **Reviewer / Reviewer**: Security and Delivery-Set Reviewer
 
@@ -22,9 +22,22 @@
 - Providerwriter sind auf gebundene Branch-/PR-/Merge-/Ruleset-Aktionen mit
   sicheren Argumentarrays beschränkt. / Provider writers are limited to bound
   branch, PR, merge, and ruleset actions using safe argument arrays.
-- Der exakte reguläre und kausale Closeout-Satz wird in T171 finalisiert; bis
-  dahin bleibt sein Status `Pending`. / T171 finalizes the exact regular and
-  causal closeout set; until then its status remains `Pending`.
+- Der reguläre Closeout enthält alle bis T171 belegten Feature-, Fleet-,
+  Security-, Architektur-/iSAQB-, A11Y-, Cross-Platform-, Agent-Parity-,
+  Dokumentations-, Statistik-, Checklisten- und redigierten Evidence-Pfade
+  einschließlich der wahrheitsgemäßen State-/Dokumentationsimpact-
+  Zwischenstände. / The regular closeout contains every feature, fleet,
+  security, architecture/iSAQB, A11Y, cross-platform, agent-parity,
+  documentation, statistics, checklist, and redacted evidence path proven by
+  T171, including truthful state and documentation-impact intermediate states.
+- Nach dem regulären Merge darf genau ein kausaler Delta entstehen: die vier
+  vorbenannten Governance-/Evidence-Pfade plus der inhaltsgleiche
+  Lastenheft-Rename. Produkt-, Runtime-, Workflow-, Ruleset-, Budgetmodell-
+  und Zielrepositoryänderungen sind dafür ausgeschlossen. / After the regular
+  merge, exactly one causal delta may exist: the four predeclared governance
+  and evidence paths plus the content-identical intake rename. Product,
+  runtime, workflow, ruleset, budget-model, and target-repository changes are
+  excluded from it.
 
 ## Exakte Level-0-Allowlist / Exact Level-0 Allowlist
 
@@ -115,7 +128,8 @@ Persistierung roher Providerantworten oder Zugangsdaten.
 **Residual risk / Restrisiko**: Dynamische Flotten- und Providerzustände
 können die exakte Pfadmenge ändern. / Dynamic fleet and provider state can
 change the exact path set.
-**Follow-up / Folgemaßnahme**: T128, T172 und T183 validieren die jeweiligen
-Delivery Sets; T171 friert die tatsächlichen regulären und kausalen Pfade ein.
+**Follow-up / Folgemaßnahme**: T172 und T183 validieren die jetzt eingefrorenen
+regulären beziehungsweise kausalen Delivery Sets; nach T190 sind alle Writer
+verboten.
 **Re-evaluation / Neubewertung**: Bei Scope-, Registry-, Profil-, Aufgaben-,
 Authority-, Provider-, Distribution- oder Closeoutdrift.

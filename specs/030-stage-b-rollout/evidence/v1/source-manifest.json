@@ -1,0 +1,46 @@
+{
+  "bindings": [
+    {
+      "redactionStatus": "Pass",
+      "schemaValidated": true,
+      "sourcePath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/terminal/fleet-terminal-evidence.json",
+      "sourceSha256": "8caa037c2925e053ca9661f42f11eb527f3f02f281b0c2ca9f47da190195e22b",
+      "targetPath": "specs/030-stage-b-rollout/evidence/v1/fleet-terminal-evidence.json",
+      "targetSha256": "8caa037c2925e053ca9661f42f11eb527f3f02f281b0c2ca9f47da190195e22b"
+    },
+    {
+      "redactionStatus": "Pass",
+      "schemaValidated": true,
+      "sourcePath": ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1/operational/terminal/acceptance-aggregation.json",
+      "sourceSha256": "f397fba8d4b340f5ff0bdb4a0bd03bf15c50989292224d4deefd59281753a081",
+      "targetPath": "specs/030-stage-b-rollout/evidence/v1/acceptance-operational.json",
+      "targetSha256": "f397fba8d4b340f5ff0bdb4a0bd03bf15c50989292224d4deefd59281753a081"
+    }
+  ],
+  "capturedAt": "2026-08-28T18:21:01Z",
+  "causalBoundary": {
+    "archiveRenameIncluded": false,
+    "nextTask": "T169",
+    "postMergeFactsIncluded": false,
+    "retrospectiveIncluded": false
+  },
+  "excludedClasses": [
+    "rawLogs",
+    "tokens",
+    "privateAbsolutePaths",
+    "rawProviderResponses",
+    "unknownPostMergeFacts",
+    "machineLocalState"
+  ],
+  "feature": "030-stage-b-rollout",
+  "redaction": {
+    "privatePathMatches": 0,
+    "secretMatches": 0,
+    "status": "Pass",
+    "tokenMatches": 0,
+    "unsanitizedProviderResponseMatches": 0
+  },
+  "runId": "954ff259-ffed-44a8-883f-28742b031a9b",
+  "schemaVersion": "1.0",
+  "selectionClass": "sourceOnly"
+}

@@ -1116,12 +1116,12 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 674025 lines |
+| Textbasis / Text base | 674033 lines |
 | Textdateien / Text files | 3448 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-31..2026-08-28 |
 | Aktivtage / Active days | 97 |
 | Relevante Commits / Relevant commits | 781 |
-| Zeilen je Aktivtag / Lines per active day | 6948.7 |
+| Zeilen je Aktivtag / Lines per active day | 6948.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
@@ -1134,7 +1134,7 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   4.6% | 30691
-Dokumentation / Documentation   [##########..........]  48.9% | 329811
+Dokumentation / Documentation   [##########..........]  48.9% | 329819
 Skripte / Scripts               [##..................]   9.9% | 66689
 Konfiguration / Configuration   [#######.............]  36.2% | 243781
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1268,15 +1268,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..67
-   cap 10000 | . . . .
-        8333 | . . . #
-        6667 | . . . #
-        5000 | . . # #
-        3333 | . . # #
-        1667 | # . # #
-           0 +---------
-             64 65 66 67
+Slots 64..68
+   cap 10000 | . . . . .
+        8333 | . . . # .
+        6667 | . . . # .
+        5000 | . . # # .
+        3333 | . . # # .
+        1667 | # . # # .
+           0 +-----------
+             64 65 66 67 68
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1349,6 +1349,7 @@ Slots 64..67
 | 65 | Required-PowerShell-Erweiterung fuer VS Code / Required PowerShell extension for VS Code | 122 |
 | 66 | Flottenweite CI-Budget-Governance / Fleet-wide CI budget governance | 5388 |
 | 67 | Stage-B-Flottenrollout: lokale Implementierung / Stage B fleet rollout: local implementation | 9851 |
+| 68 | Stage-B-Flottenrollout: 48-Repo-Lieferung / Stage B fleet rollout: 48-repository delivery | 1315 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1372,7 +1373,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 6948.7
+Visible repository [##############......] 6948.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
