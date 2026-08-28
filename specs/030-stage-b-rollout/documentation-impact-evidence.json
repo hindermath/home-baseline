@@ -44,7 +44,7 @@
       "distributionClass": "sourceOnly",
       "homeSyncRequired": true,
       "evidence": "specs/030-stage-b-rollout/checklists/implementation-governance.md",
-      "risk": "Live provider delivery and post-merge Home sync remain pending; the successful T124 regression and T125 platform acceptance cannot be promoted to those later gates.",
+      "risk": "The 48-repository live delivery and all twelve acceptance gates are complete. The regular Level-0 closeout, its causal PostMerge follow-up, and the post-merge Home-sync trigger decision remain pending and cannot be claimed before T179-T182.",
       "criticality": "Security",
       "reevaluationTrigger": "Fleet, profile, authority, bypass, provider, ruleset, platform, evidence schema, distribution, audience, shared guidance or G4 boundary changes."
     }
@@ -54,7 +54,7 @@
     "homeRuntime": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", "constitution.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", ".specify/memory/constitution.md", "scripts/maintain-agentic-workspace.sh", "scripts/maintain-agentic-workspace.ps1", "scripts/lib/agentic_workspace_fleet.py", "scripts/config/", "scripts/templates/"],
     "machineLocal": [".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/"],
     "homeSyncRequired": true,
-    "rationale": "Runtime paths are manifest-bound homeRuntime, but synchronization remains blocked until preview, conflict checks, Level-0 merge and fresh authority pass."
+    "rationale": "This is the truthful T171 intermediate state. Earlier merged runtime paths are manifest-bound homeRuntime; T180 must compare the synchronized T179 default head with the current Home manifest, run preview/conflict checks, and either perform the authorized sync or record a causal N/A disposition."
   },
   "sharedGuidanceReview": {
     "decision": "UpdateRequired",

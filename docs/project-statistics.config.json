@@ -553,6 +553,14 @@
       "labelEn": "Stage B fleet rollout: local implementation",
       "netLines": 9851,
       "activeDays": 1
+    },
+    {
+      "slot": 68,
+      "id": "stage-b-rollout-fleet-delivery",
+      "labelDe": "Stage-B-Flottenrollout: 48-Repo-Lieferung",
+      "labelEn": "Stage B fleet rollout: 48-repository delivery",
+      "netLines": 1315,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

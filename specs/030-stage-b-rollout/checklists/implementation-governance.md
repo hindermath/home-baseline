@@ -34,7 +34,7 @@ explicitly later live, delivery, and closeout subgates remain truthfully
 | Checkpoint | Applicability | Implementation status | Owner / Reviewer | Evidence | Residual risk / Follow-up / Re-evaluation |
 |---|---|---|---|---|---|
 | Security Governance | Applicable | T114–T118 assurance and T124 full regression Passed | Security Owner / Security Reviewer | T114–T118, T124; Run `32587448948` | Provider-, Ruleset-, Bypass-, Secret- oder Trust-Boundary-Drift; bei jeder solchen Änderung neu prüfen. |
-| Architecture Governance | Applicable | T114/T119 local architecture review Passed; live delivery pending | Architecture Owner / Architecture Reviewer | T114, T119 | Remote-Transaktion oder Deployment kann driften; ADR/arc42 erneut prüfen. |
+| Architecture Governance | Applicable | T114/T119 review Passed; 48/48 live delivery converged | Architecture Owner / Architecture Reviewer | T114, T119, T164 | Remote- oder Vertragsdrift erfordert erneute ADR-/arc42-Prüfung. |
 | iSAQB Architecture Governance | Applicable | T119 final local review Passed | Architecture Owner / iSAQB-oriented Peer | T119 | Baustein- und Laufzeitsicht bei struktureller Änderung neu bewerten. |
 | A11Y Governance | Applicable | Local user surfaces and T125 aggregation Passed | Documentation Owner / A11Y Reviewer | T100–T110, T108, T125; `primary/AC-SBR-009.json` | Nutzertexte können driften; WCAG-2.2-AA-orientierte Textnutzung erneut prüfen. |
 | Cross-Platform Governance | Applicable | Native platform checkpoint, full T124 regression and T125 acceptance Passed | Script Owner / Cross-Platform Reviewer | `checklists/cross-platform.md`, T102–T125; Windows Run `32587448948`, Job `97065888986`; `primary/AC-SBR-009.json` | Native Tokens, Vollregression und AC-SBR-009 sind hashgebunden; spätere Payloaddrift bleibt Re-Evaluation-Trigger. |
@@ -42,21 +42,21 @@ explicitly later live, delivery, and closeout subgates remain truthfully
 | Model Routing Governance | N/A for feature change | Closed input gate | Run Owner / Routing Validator | gebundener Runner `codex-implementation-auto` | Bei Profil-, Modell-, Rollen- oder Preflight-Drift stoppen. |
 | Intake Authoring Governance | N/A | Closed input gate | Intake Owner / Intake Governance Reviewer | fünf akzeptierte Artefakthashes | Bei Intake-/Receipt-Drift stoppen. |
 | Intake Review Governance | Applicable as input gate; N/A for new review work | Passed input gate | Intake Owner / Review Owner | Ready-Result `132ba8e631ca930778b36d3d96b91fe974a3c126a4f9e9dbaf5b1b21b8c5ec69` | Bei Quell- oder Review-Hashdrift neues Review verlangen. |
-| Intake Sequencing Governance | N/A for new feature work; read-only isolation input | Local isolation passed; live T166 and terminal T194 pending | Series Owner / Sequencing Validator | T091, T099, T166, T194 | Nur separat autorisierte Sequencing-Arbeit darf die Serie ändern. |
-| Autonomous Run Governance | Applicable | Local phase active; delivery and closeout T127–T194 pending | Run Owner / Autonomous Reviewer | T001–T010, T127–T194 | Head-, Authority-, Delivery-Set-, Gate- oder Evidence-Drift stoppt fail-closed. |
+| Intake Sequencing Governance | N/A for new feature work; read-only isolation input | T166 Passed; terminal read-only T194 remains after closeout | Series Owner / Sequencing Validator | T091, T099, T166, T194 | Nur separat autorisierte Sequencing-Arbeit darf die Serie ändern. |
+| Autonomous Run Governance | Applicable | T001–T170 Passed; regular and causal closeout T171–T194 active | Run Owner / Autonomous Reviewer | T001–T194 | Head-, Authority-, Delivery-Set-, Gate- oder Evidence-Drift stoppt fail-closed. |
 | Parallel Autonomous Governance | N/A | Closed | Run Owner / Governance Reviewer | serielle Writerregel in `tasks.md` | Nur bei ausdrücklicher Kampagnenautorität neu bewerten. |
-| Documentation Impact | Applicable | T120–T123 local documentation/statistics gates Passed; closeout updates pending | Documentation Owner / Documentation Reviewer | `documentation-impact-evidence.json`, T120–T123, T168–T182 | Leserpfad, Distribution oder Home-Sync-Trigger kann driften. |
-| Statistics | Applicable | T122/T123 Passed; later live/closeout refresh T169/T170 pending | Statistics Owner / Documentation Reviewer | canonical slot 67; renderer CURRENT; 146 assertions; Bash/PowerShell 30/30 | Nur kanonische Konfiguration und Renderer dürfen den Profilblock ändern. |
-| Acceptance AC-SBR-001–012 | Applicable | AC-SBR-009 Passed locally; remaining Primary gates pending | Fleet Delivery Owner / Acceptance Reviewer | `autonomous-run-gate-requirements.json`, T125, T142–T167; `primary/AC-SBR-009.json` | Jeder Primary-Nachweis muss am tatsächlichen Head und Runner gebunden sein. |
-| G4/Copilot/Account/Subscription isolation | Applicable | Local isolation Passed; live T164–T166 and terminal T194 pending | Fleet Delivery Owner / Governance Reviewer | T091, T099, T164–T166, T194 | Jede Mutation ist verboten; fehlende Live-Daten sind kein terminaler Pass. |
+| Documentation Impact | Applicable | T120–T123 and T168–T171 Passed; truthful pre-merge intermediate state recorded | Documentation Owner / Documentation Reviewer | `documentation-impact-evidence.json`, T120–T123, T168–T182 | Die finale Home-Sync-Disposition wird erst kausal nach T179 belegt. |
+| Statistics | Applicable | T169/T170 Passed; canonical slot 68, renderer CURRENT, 146 assertions | Statistics Owner / Documentation Reviewer | canonical slots 67–68; T169–T170 | Nur kanonische Konfiguration und Renderer dürfen den Profilblock ändern. |
+| Acceptance AC-SBR-001–012 | Applicable | 12/12 fresh Primary rows Passed at Level-0 head `b200862`; aggregation validated | Fleet Delivery Owner / Acceptance Reviewer | `autonomous-run-gate-requirements.json`, T125, T142–T167; `evidence/v1/acceptance-operational.json` | Jeder spätere Kandidaten-Head benötigt einen neuen T178-/T189-Snapshot. |
+| G4/Copilot/Account/Subscription isolation | Applicable | T164–T166 Passed; terminal T194 remains read-only | Fleet Delivery Owner / Governance Reviewer | T091, T099, T164–T166, T194 | Jede Mutation ist verboten; T194 bestätigt den terminalen Nullzustand. |
 
 ## Implementierungsstatus / Implementation Status
 
-- **Current checkpoint / Aktueller Checkpoint**: T127–T140 sind abgeschlossen. PR `#251` wurde nach 26/26 grünen Checks, ausdrücklicher Owner-Self-Review-Ausnahme, regulärem Protection-Refusal und eng gebundenem Admin-Bypass als Mergecommit `0203102` integriert. Level-0-Default-Sync, Branchbereinigung und Home-Sync sind belegt; T141 und spätere Fleet-Schritte erfordern eine neue Authority-Revalidierung.
-- **Runtime implementation / Runtime-Implementierung**: `In progress`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind lokal implementiert.
-- **Remote delivery / Remote-Lieferung**: `Level-0 completed`; PR `#251` ist `MERGED`, lokaler und entfernter `main` stehen auf `0203102`, und der gebundene Feature-Branch ist lokal sowie remote entfernt. Fleet-, Ruleset- und G4-Writes wurden nicht begonnen.
+- **Current checkpoint / Aktueller Checkpoint**: T001–T170 sind abgeschlossen. Der frische Plan `adbcb810…` umfasst 48 autoritative Repositories, fünf geschlossene Wellen, 28 belegte No-ops und 20 regulär gemergte Private-Governance-Lieferungen.
+- **Runtime implementation / Runtime-Implementierung**: `Completed`; Stage-B-Verträge, atomare Evidence, sichere Provider-Reads, immutable Planung und ExternalWriteGate sind implementiert und durch zwölf Acceptance-Gates belegt.
+- **Remote delivery / Remote-Lieferung**: `Fleet completed`; 48/48 Ziele sind synchronisiert. Alle 20 nichtleeren Zieltransaktionen wurden regulär gemergt, ihre Minimal-Workflows und Rulesets sind exakt verifiziert; Quota-Refusals bleiben wahrheitsgemäß nicht ausgeführte Provider-Payloads.
 - **Home sync / Home-Sync**: `Completed`; der konfliktfreie Dry-Run umfasste 45 manifestgebundene Pfade. Der echte Lauf und der anschließende Check-only-Lauf hatten Exitcode `0`; Home-Commit `f61738e` bindet Quellcommit `0203102`.
-- **Terminal closeout / Terminaler Abschluss**: `Pending`; `Completed` erst nach 194/194 und allen zwölf Primary-Gates.
+- **Terminal closeout / Terminaler Abschluss**: `In progress`; zwölf Primary-Gates und FleetTerminalEvidence sind bestanden, `Completed` folgt erst nach T194.
 - **T141 resume gap / T141-Resume-Lücke**: `NeedsRevalidation`. Der produktive
   CLI-Handler gab nur feste Statusfelder aus und rief die bereits getesteten
   Klassen `StageBFleetPreflight` und `StageBRolloutPlanner` nicht auf. Deshalb
@@ -540,3 +540,40 @@ explicitly later live, delivery, and closeout subgates remain truthfully
   aus der unveränderten kanonischen Statistikquelle. Der deterministisch
   gerenderte Pfad `docs/project-statistics.md` ist daher der einzige zulässige
   zusätzliche Lieferpfad; Slot 67 bleibt bis T169 fachlich unverändert.
+
+## T141–T171 Live-Flottenabschluss / Live Fleet Completion
+
+- **Plan and authority / Plan und Autorität**: Der nach T153-R6 frisch
+  erzeugte Plan `a1ff9f53-bd45-5d5c-babc-eb602d21d1c2` ist an Planhash
+  `adbcb81091443fe10f283211b1d13e0572feb57cfd1e42816ba7e1e894343ce5`
+  und Fleet-Snapshot
+  `ad8993784edeb6115b1840bda520140e102dbc651a9d850d98ab07dbad0a8a89`
+  gebunden. Die verbrauchte Live-Authority umfasste exakt seine 48 Ziele;
+  G4 blieb ausgeschlossen.
+- **Serialized outcome / Serialisiertes Ergebnis**: Fünf Wellen wurden in
+  stabiler Reihenfolge geschlossen. 28 Ziele waren semantisch
+  `NoOpConverged`; 20 Private-Governance-Ziele erhielten exakt den
+  Minimal-Workflow über reguläre PRs und danach ein aktives Default-Branch-
+  Ruleset mit einem Status, einer Approval, strict checks und null
+  Bypass-Akteuren. Jeder lokale/entfernte Default-Head ist synchron.
+- **Provider truth / Provider-Wahrheit**: Die privaten GitHub-Actions-Läufe
+  wurden vor Payloadausführung durch das bekannte Billing-/Quota-Limit
+  abgelehnt und deshalb als `BillingOrQuotaRefusal`, niemals als technischer
+  Pass, erfasst. Der bytegleiche Workflow besitzt zusätzlich nativen
+  öffentlichen Linux-Nachweis. Ein Aufstocken des Kontingents gehört nicht
+  zum Featureumfang.
+- **Terminal evidence / Terminale Evidence**: FleetTerminalEvidence v1.1
+  bindet 48/48 konvergierte Repositoryresultate, fünf Wellen, fünf
+  Budgetprojektionen, null Restricted-Treffer und den synchronisierten
+  Level-0-Merge `b20086224227b069c7763e52b0f8f966fcfa24e5`. AC-SBR-001 bis
+  AC-SBR-012 wurden frisch am selben operativen Head ausgeführt und als genau
+  zwölf Primary-Zeilen validiert.
+- **Versioned boundary / Versionierte Grenze**: T168 wählte nur redigierte,
+  schema-validierte source-only Evidence. T169/T170 ergänzten den realen
+  Statistikslot 68 mit 1.315 Nettozeilen; Renderer und 146 Assertions sind
+  grün. Die T171-Allowlist trennt den jetzt folgenden regulären Closeout
+  vollständig vom späteren kausalen Governance-/Evidence-Commit.
+- **Residual risk and reevaluation / Restrisiko und Neubewertung**: Bis T190
+  können PR-Head, Checks, Review, Schutzregeln und Home-Sync-Trigger driften;
+  jede Grenze wird frisch revalidiert. Nach T190 sind alle Writer verboten,
+  und T191–T194 dürfen nur maschinenlokale Runtime-Evidence schreiben.

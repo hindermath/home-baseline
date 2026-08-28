@@ -4,10 +4,10 @@
   "featurePath": "specs/030-stage-b-rollout",
   "branch": "030-stage-b-rollout",
   "deliveryMode": "MergeAndSync",
-  "authorityRevalidationRequired": false,
+  "authorityRevalidationRequired": true,
   "stage": "Publish",
   "status": "Active",
-  "checkpointCommit": "b664b604bed9a648f5f47c788ceace2dc07b4723",
+  "checkpointCommit": "46ce6fc80020a89c088c721dce72cef4013c8e95",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.md",
@@ -32,8 +32,8 @@
   ],
   "tasks": {
     "path": "specs/030-stage-b-rollout/tasks.md",
-    "sha256": "71bf3e664d68405e0f8b20850e9a9ea874023fbadae7b8e5e8e9a0addc683719",
-    "completed": 140,
+    "sha256": "0c6cc01552b08869dde4e611dde9d5c3264535de34be96868abe779d889bc455",
+    "completed": 171,
     "total": 194
   },
   "routing": {
@@ -392,12 +392,12 @@
       }
     ]
   },
-  "lastPassingGate": "T141-D resume audit passed under fresh explicit MergeAndSync authority. The accepted Stage-B intake target and Ready review remain hash-bound, autonomous state and routed implement result validate, model routing is Aligned, main equals origin/main at 0203102102b709ab37f5599b852c7978d595e368, and the delivery set is exactly the 14 validated T141-R paths with no staged or untracked files. Historical authoring-source drift from later Feature 030 architecture changes and unrelated RIG014 Feature 029 archive-name drift do not change the selected Stage-B intake target and require no scope-expanding repair. No real Preflight, provider/fleet write, Home sync or bypass is authorized.",
-  "nextExactAction": "Record and commit the mandatory generated statistics refresh caused by T141-R commit b664b604bed9a648f5f47c788ceace2dc07b4723, push the resulting PR #252 head, then wait for all regular gates and the automatic Copilot review before merge and default-branch sync; do not run T141-L, Home sync, fleet/provider writes or admin bypass.",
+  "lastPassingGate": "T171 passed: the fresh 48-repository plan is fully converged across five closed waves; all twelve Primary acceptance gates pass at Level-0 head b20086224227b069c7763e52b0f8f966fcfa24e5; redacted source-only evidence, statistics slot 68, renderer, governance artifacts, and the exact regular-versus-causal mutation boundary are complete.",
+  "nextExactAction": "Execute T172 delivery-set validation for the exact regular closeout payload; do not create PostMerge facts, the retrospective, the causal branch, or the intake rename before the regular merge.",
   "lastOperation": {
-    "kind": "PullRequest:T141-D",
+    "kind": "StageBCloseout:T171",
     "state": "Completed",
-    "summary": "Committed the exact validated 14-path T141-R payload as b664b604bed9a648f5f47c788ceace2dc07b4723, passed the pre-push secret gate, pushed codex/stage-b-954ff259-t141-r and opened regular PR #252. The first native Windows homogeneity job correctly exposed the mandatory GeneratedUpdate for docs/project-statistics.md; no functional Preflight regression, live Preflight, provider/fleet write, Home sync or bypass occurred."
+    "summary": "The regular closeout payload is frozen at its truthful pre-merge boundary. FleetTerminalEvidence reports 48/48 convergence, and the later causal delta is restricted to four governance/evidence paths plus the content-identical intake rename."
   },
   "stop": {
     "reason": "N/A",
@@ -405,10 +405,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "NeedsRevalidation",
-    "defaultBranchSync": "NeedsRevalidation",
-    "postMergeActions": "NeedsRevalidation",
+    "mergeOrPublication": "Pending",
+    "defaultBranchSync": "Pending",
+    "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-23T11:39:54Z"
+  "updatedAt": "2026-08-28T18:30:00Z"
 }
