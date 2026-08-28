@@ -1,12 +1,57 @@
 {
-  "schemaVersion": "1.1",
-  "feature": "030-stage-b-rollout",
+  "closeout": {
+    "decision": "UpdateRequired",
+    "defaultBranchSynchronized": true,
+    "homeCommit": "9f395d0dbe6ca749a3276275d80ab3169aa1ca4e",
+    "homeSyncDisposition": "Completed",
+    "mergeCommit": "27b02c34dcd2a73d2c811ddfe28f9d4e71e917bd",
+    "postMergeEvidence": "specs/030-stage-b-rollout/evidence/v1/stage-b-causal-postmerge.json",
+    "postMergeEvidenceSha256": "1f1e1a8d43da453149807a6d8ee22b02c49f1f76c762057d06b458f149696261",
+    "regularPullRequest": 258,
+    "remainingWriter": "Exactly one causal governance/evidence PR containing these four paths plus the content-identical intake rename",
+    "reviewedHead": "3eb943f0e16d8da1b016d298e294002f0a9c4fa8"
+  },
+  "distributionReview": {
+    "homeRuntime": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "GEMINI.md",
+      "constitution.md",
+      ".github/copilot-instructions.md",
+      ".github/agents/copilot-instructions.md",
+      ".specify/memory/constitution.md",
+      "scripts/maintain-agentic-workspace.sh",
+      "scripts/maintain-agentic-workspace.ps1",
+      "scripts/lib/agentic_workspace_fleet.py",
+      "scripts/config/",
+      "scripts/templates/"
+    ],
+    "homeSyncRequired": true,
+    "machineLocal": [
+      ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/"
+    ],
+    "rationale": "Completed at T180: nine manifest-bound homeRuntime paths were previewed, synchronized without conflicts, and verified current. Home commit 9f395d0dbe6ca749a3276275d80ab3169aa1ca4e binds source merge 27b02c34dcd2a73d2c811ddfe28f9d4e71e917bd. No further Home writer is allowed.",
+    "sourceOnly": [
+      "specs/030-stage-b-rollout/",
+      "docs/",
+      ".specify/templates/"
+    ]
+  },
   "entries": [
     {
+      "audiences": [
+        "Fleet delivery operators",
+        "Maintainers",
+        "Repository owners",
+        "Security and architecture reviewers",
+        "AI agents"
+      ],
+      "canonicalSource": "specs/030-stage-b-rollout/spec.md",
       "changeId": "CHG030001",
-      "scope": "Fleet-wide Stage-B control plane, serial repository rollout, provider governance, acceptance evidence, accessibility, security, architecture and operating documentation",
+      "criticality": "Security",
       "decision": "UpdateRequired",
-      "rationale": "Stage B adds user-visible preview, delivery, resume and verification contracts plus security-sensitive remote and ruleset boundaries. One feature-wide decision keeps reader paths, language, platform, distribution and closeout evidence causally reviewable.",
+      "distributionClass": "sourceOnly",
+      "documentClass": "ActiveSemantic",
       "documents": [
         "README.md",
         "README.en.md",
@@ -32,38 +77,48 @@
         "specs/030-stage-b-rollout/checklists/implementation-governance.md",
         "specs/030-stage-b-rollout/checklists/cross-platform.md"
       ],
-      "owner": "Fleet Delivery Owner",
-      "audiences": ["Fleet delivery operators", "Maintainers", "Repository owners", "Security and architecture reviewers", "AI agents"],
-      "readerPaths": ["Daily user: README or README.en.md to the mutation-free Stage-B preview, then quickstart/manpage", "Maintainer or AI agent: script reference to contracts, authority, evidence and stop/resume", "Security/architecture reviewer: assurance documents to implementation-governance evidence", "Audit/troubleshooting: platform records and task/gate state to the exact safe next action"],
-      "canonicalSource": "specs/030-stage-b-rollout/spec.md",
-      "navigationImpact": "README.md and README.en.md now use the validated manpage fragment and lead from the mutation-free preview to quickstart, bilingual manpage/help, assurance documents, evidence and the separately authorized G4 sequencing follow-up.",
-      "documentClass": "ActiveSemantic",
-      "languageStrategy": "German first with English companion content at approximately CEFR B2; stable command names and machine fields remain unchanged.",
-      "languagePartners": ["README.md", "README.en.md"],
-      "platformAndExampleProof": "T107 examples are bound to T110-T112: local macOS Bash and PowerShell previews, isolated native Linux container preview, and native Windows PowerShell 7 workflow run 32567141555/job 97017306468 all exited 0 for payload 1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3 and decision 70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897 with zero Git/provider writes. T124 additionally passed all 225 tests at exact head 8ae4ef289d8dd42080a0b69ea374bde2881f6fb2 on windows-2022 in workflow run 32587448948/job 97065888986, with the same-head macOS and Ubuntu jobs plus documentation, PowerShell analysis and homogeneity workflows green. T125 passed AC-SBR-009 and bound the exact same head with runner/platform tokens macOS, Linux and Windows in primary/AC-SBR-009.json.",
-      "distributionClass": "sourceOnly",
-      "homeSyncRequired": true,
       "evidence": "specs/030-stage-b-rollout/checklists/implementation-governance.md",
-      "risk": "The 48-repository live delivery and all twelve acceptance gates are complete. The regular Level-0 closeout, its causal PostMerge follow-up, and the post-merge Home-sync trigger decision remain pending and cannot be claimed before T179-T182.",
-      "criticality": "Security",
-      "reevaluationTrigger": "Fleet, profile, authority, bypass, provider, ruleset, platform, evidence schema, distribution, audience, shared guidance or G4 boundary changes."
+      "homeSyncRequired": true,
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "languageStrategy": "German first with English companion content at approximately CEFR B2; stable command names and machine fields remain unchanged.",
+      "navigationImpact": "README.md and README.en.md now use the validated manpage fragment and lead from the mutation-free preview to quickstart, bilingual manpage/help, assurance documents, evidence and the separately authorized G4 sequencing follow-up.",
+      "owner": "Fleet Delivery Owner",
+      "platformAndExampleProof": "T107 examples are bound to T110-T112: local macOS Bash and PowerShell previews, isolated native Linux container preview, and native Windows PowerShell 7 workflow run 32567141555/job 97017306468 all exited 0 for payload 1b7a4602d2d4c7d20cc85573a1ac33ddec5ac65e31f744a508ec8a61598741c3 and decision 70d4e65f1b8e5ab3d167c57f48346a01a41b24e5e1b826910cc0e991ce484897 with zero Git/provider writes. T124 additionally passed all 225 tests at exact head 8ae4ef289d8dd42080a0b69ea374bde2881f6fb2 on windows-2022 in workflow run 32587448948/job 97065888986, with the same-head macOS and Ubuntu jobs plus documentation, PowerShell analysis and homogeneity workflows green. T125 passed AC-SBR-009 and bound the exact same head with runner/platform tokens macOS, Linux and Windows in primary/AC-SBR-009.json. T164-T167 additionally bind the fresh 48/48 terminal fleet snapshot and all twelve Primary gates. PR #258 passed 26 current-head checks across Ubuntu, macOS and Windows before merge; Home sync preview, write and check-only all exited 0 at source commit 27b02c34dcd2a73d2c811ddfe28f9d4e71e917bd.",
+      "rationale": "Stage B adds user-visible preview, delivery, resume and verification contracts plus security-sensitive remote and ruleset boundaries. One feature-wide decision keeps reader paths, language, platform, distribution and closeout evidence causally reviewable.",
+      "readerPaths": [
+        "Daily user: README or README.en.md to the mutation-free Stage-B preview, then quickstart/manpage",
+        "Maintainer or AI agent: script reference to contracts, authority, evidence and stop/resume",
+        "Security/architecture reviewer: assurance documents to implementation-governance evidence",
+        "Audit/troubleshooting: platform records and task/gate state to the exact safe next action"
+      ],
+      "reevaluationTrigger": "Fleet, profile, authority, bypass, provider, ruleset, platform, evidence schema, distribution, audience, shared guidance or G4 boundary changes.",
+      "risk": "The 48-repository delivery, regular Level-0 closeout, default-branch synchronization, and required nine-path Home Runtime sync are complete. Only the single causal governance/evidence PR and terminal read-only T191-T194 verification remain; no product, runtime, workflow, ruleset, budget-model, target-repository, G4, Copilot, account, or subscription mutation is permitted.",
+      "scope": "Fleet-wide Stage-B control plane, serial repository rollout, provider governance, acceptance evidence, accessibility, security, architecture and operating documentation"
     }
   ],
-  "distributionReview": {
-    "sourceOnly": ["specs/030-stage-b-rollout/", "docs/", ".specify/templates/"],
-    "homeRuntime": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", "constitution.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", ".specify/memory/constitution.md", "scripts/maintain-agentic-workspace.sh", "scripts/maintain-agentic-workspace.ps1", "scripts/lib/agentic_workspace_fleet.py", "scripts/config/", "scripts/templates/"],
-    "machineLocal": [".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/"],
-    "homeSyncRequired": true,
-    "rationale": "This is the truthful T171 intermediate state. Earlier merged runtime paths are manifest-bound homeRuntime; T180 must compare the synchronized T179 default head with the current Home manifest, run preview/conflict checks, and either perform the authorized sync or record a causal N/A disposition."
-  },
+  "feature": "030-stage-b-rollout",
+  "schemaVersion": "1.1",
   "sharedGuidanceReview": {
     "decision": "UpdateRequired",
-    "surfaces": ["AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", "constitution.md", ".specify/memory/constitution.md", ".specify/templates/", "scripts/templates/"],
-    "rationale": "The successful macOS-first Linux-container and native-Windows-CI strategy is a durable agent-neutral governance rule. Constitution 1.21.0, both mirrors, all five maintained agent surfaces and relevant source/runtime templates were updated atomically. No provider or model was made a feature requirement.",
-    "owner": "Governance Owner",
-    "reviewer": "Agent-Parity Reviewer",
     "evidence": "T121: byte-identical constitution mirror and successful scripts/tests/test_spec_kit_agent_surface_parity.py plus Bash/PowerShell homogeneity validation.",
+    "owner": "Governance Owner",
+    "rationale": "The successful macOS-first Linux-container and native-Windows-CI strategy is a durable agent-neutral governance rule. Constitution 1.21.0, both mirrors, all five maintained agent surfaces and relevant source/runtime templates were updated atomically. No provider or model was made a feature requirement.",
+    "reevaluationTrigger": "Any shared guidance, Constitution, template, statistics-methodology or routing-role change.",
     "residualRisk": "A scoped native platform proof can become stale after commit, command, runner, payload, decision or permission drift and never establishes a full regression pass.",
-    "reevaluationTrigger": "Any shared guidance, Constitution, template, statistics-methodology or routing-role change."
+    "reviewer": "Agent-Parity Reviewer",
+    "surfaces": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "GEMINI.md",
+      ".github/copilot-instructions.md",
+      ".github/agents/copilot-instructions.md",
+      "constitution.md",
+      ".specify/memory/constitution.md",
+      ".specify/templates/",
+      "scripts/templates/"
+    ]
   }
 }
