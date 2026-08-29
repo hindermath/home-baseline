@@ -16,7 +16,7 @@
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "002c6f4b2a6b57be1e354b498a02edf1b38e60419b4eb2d95f6ad51e6ea34428"
+    "normalizedSha256": "9f7f4fc3d4446e8e417fdb97909c4b572739c43fe0858a848c98a0f67e141731"
   },
   "supersedes": {
     "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/receipt.json",

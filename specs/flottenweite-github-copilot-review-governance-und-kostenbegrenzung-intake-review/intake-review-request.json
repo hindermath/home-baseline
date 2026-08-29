@@ -5,7 +5,7 @@
   "policy": "home-baseline-active-lastenhefte-v1",
   "targets": [
     {
-      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
       "role": "Primary"
     }
   ],
