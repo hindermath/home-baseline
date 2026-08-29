@@ -48,7 +48,7 @@ rollback and permission scope.
 | Plan re-review | Completed | Passed mit `18/18` Requirements, `10/10` Gates, `9/9` Vertraegen und `0` Findings; Receipt `checklists/plan-review.md`, Payload `2784763c3650d141a2b1ccee153784c90415dc738f4724b008de246f3b0ac91a`. |
 | Tasks | Completed | Eine abhaengigkeitsgeordnete, ausfuehrbare Aufgabenliste mit `168` lueckenlosen Tasks wurde erzeugt und selbstvalidiert; Payload `ad5dbe67cffcb158117e269cdaeef88f0577b702eb31e3adec65b5e3f240e381`. |
 | Analyze preparation | Completed | Der vorbereitende `analyze-4`-Lauf ist abgeschlossen; die lokale Analyse bleibt ein eigenes Gate. |
-| Implement | NeedsRevalidation | Kanonischer State `Implement/Active`, exakt `167/168`; T001–T167 sind abgeschlossen, nur T168 bleibt offen. |
+| Implement | Terminal projection | Bedingte Projektion `Implement/Completed 168/168`; sie wird erst durch den exakten letzten Default-Ref-Uebergang kanonisch. |
 | Local analyze 1 | Blocked / historical | `implementation-analysis-local.md`; sechs Findings erforderten Remediation 1. |
 | Local remediation 1 | Completed / superseded | Historische Sanierung; ihre Closure-Claims wurden durch `analyze-local-2` widerrufen. |
 | Local analyze 2 | Blocked / historical | `implementation-analysis-local-2.md`; sechs Findings blieben offen. |
@@ -136,3 +136,15 @@ Stage-B-Handoff, Position 7 und alle zehn Primary-Gates wurden danach erneut
 read-only bestaetigt. Der hier projizierte Zustand bleibt bis zur gesonderten
 T168-Ref-Transaktion `Active/NeedsRevalidation/167/168` und behauptet weder
 seinen eigenen Fortschrittscommit/Push noch terminalen Erfolg.
+
+## Terminalprojektion T168
+
+Alle falliblen Closeoutoperationen sind vor dieser Projektion abgeschlossen.
+Die Terminalmenge ist auf State, diesen Reader, T168 und das erforderliche
+Finalization-Receipt begrenzt. Sie behauptet weder ihren eigenen Commit-SHA
+noch Pushresultat, PR-Mergehash oder einen nachgelagerten Fakt. Der lokale
+Terminal-Commit wird gegen den kanonischen alten Default-Head
+`24e6715328205192a7564fffe558ecf40a89bce5` gebaut und reviewed. Erst der
+exakte nicht erzwungene Fast-forward desselben Commits auf `origin/main`
+macht `Completed/168/168` kanonisch; danach sind nur read-only Ref- und
+State-Pruefungen zulaessig.
