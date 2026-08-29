@@ -5,11 +5,12 @@
   "gate": "closure",
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
+  "updatedAt": "2026-08-29T19:21:15+02:00",
   "humanDecisions": {
     "technicalValidation": {
-      "status": "Open",
-      "authority": "Repository maintainers",
-      "evidence": "Draft PR checks and review"
+      "status": "Fulfilled",
+      "authority": "Thorsten Hindermann, repository owner",
+      "evidence": "PR #264 local and GitHub CI validation; Copilot review explicitly waived by the repository owner on 2026-08-29"
     },
     "pilotAuthorization": {
       "status": "Open",
@@ -31,8 +32,8 @@
     {
       "id": "CLOSE-001",
       "applicability": "Applicable",
-      "implementation": "Partly Fulfilled",
-      "evidence": "Draft PR pending"
+      "implementation": "Fulfilled",
+      "evidence": "PR #264 final-head validation is required before the authorized merge"
     },
     {
       "id": "CLOSE-002",
@@ -53,7 +54,18 @@
       "evidence": "General release explicitly outside this delivery"
     }
   ],
+  "acceptedRisks": [
+    {
+      "id": "AR-CLOSE-001",
+      "scope": "Copilot review omission for PR #264 only",
+      "authority": "Thorsten Hindermann, repository owner",
+      "acceptedAt": "2026-08-29T19:21:15+02:00",
+      "rationale": "The repository owner explicitly instructed Codex to skip the Copilot review after the single REST review request produced no review.",
+      "residualRisk": "No independent Copilot review exists for the final PR head; dual-shell validators, secret scanning and the complete GitHub CI matrix remain mandatory mitigations.",
+      "reevaluationTrigger": "Any material security-relevant change after the final validated PR head."
+    }
+  ],
   "outcome": "NeedsRemediation",
-  "nextAction": "Complete Draft PR review; do not infer pilot, project, or general release.",
+  "nextAction": "Merge PR #264 only after final-head checks; do not infer pilot, project, or general release.",
   "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
 }
