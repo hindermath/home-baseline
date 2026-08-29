@@ -5,6 +5,20 @@ description: Inspect secure-development evidence without changing files
 <!-- Source: secure-development-assurance-governance -->
 # Secure Development Status
 
-Run the read-only status workflow for all four gates. Keep technical
-validation, pilot authorization, project acceptance, and general release
-separate. HOSK/GWDG is external comparison only.
+Syntax: $speckit-secure-development-status [<evidence-dir>]
+
+Prüfe das ausdrücklich angegebene Evidence-Verzeichnis. Fehlt der Parameter,
+verwende das lexikografisch neueste Verzeichnis unter
+docs/security/secure-development/. Führe auf Windows das PowerShell-Skript und
+auf macOS/Linux das Bash-Skript dieses Presets mit status aus.
+
+Der Befehl ist strikt read-only. Er darf keine Evidence, Richtlinie,
+Checkliste, Freigabe, Git- oder Remote-Zustände verändern. Berichte den
+Kontext, die vier Gates, das Gesamtergebnis, die vier getrennten
+Entscheidungsstände und die exakte nächste Aktion textorientiert.
+
+## English
+
+Inspect the selected evidence directory without changing it. Report all four
+gates and all four human decision boundaries separately. Never infer an
+approval from successful technical validation.
