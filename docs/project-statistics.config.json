@@ -561,6 +561,14 @@
       "labelEn": "Stage B fleet rollout: 48-repository delivery",
       "netLines": 1315,
       "activeDays": 1
+    },
+    {
+      "slot": 69,
+      "id": "github-copilot-review-governance",
+      "labelDe": "GitHub-Copilot-Review-Governance",
+      "labelEn": "GitHub Copilot review governance",
+      "netLines": 15206,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

@@ -4,7 +4,7 @@
   "featurePath": "specs/031-github-copilot-review-governance",
   "branch": "031-github-copilot-review-governance",
   "deliveryMode": "MergeAndSync",
-  "authorityRevalidationRequired": true,
+  "authorityRevalidationRequired": false,
   "stage": "Implement",
   "status": "Active",
   "checkpointCommit": "d160b4815eade6cdbf6788a63233158582611d70",
@@ -52,8 +52,8 @@
   ],
   "tasks": {
     "path": "specs/031-github-copilot-review-governance/tasks.md",
-    "sha256": "ade55439fad65d1f2a71f99d0f802723c635c215a06d5ab5c4a9359c69465695",
-    "completed": 126,
+    "sha256": "0158f022ba655c1198986498c172064f576b9325b796ce91239a3a46685dbc48",
+    "completed": 157,
     "total": 168
   },
   "routing": {
@@ -670,7 +670,7 @@
         "reasoningEffort": "high",
         "preflight": "Completed",
         "exitCode": 0,
-        "updatedAt": "2026-08-29T08:29:15.1542090Z",
+        "updatedAt": "2026-08-29T08:29:15.154209Z",
         "resultPath": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/implement-provider.result.json",
         "resultSha256": "ba346f246cb7844fff9600136fe4e3e32d094e6e948ce1b573db43f428e7b2f6"
       },
@@ -682,7 +682,33 @@
         "dependsOn": [
           "analyze-local-6"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-29T11:08:39Z",
+        "resultPath": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/implement-provider-resume-1.result.json",
+        "resultSha256": "9685c0f118ef77f8abd0b9bd89adab3faf5065330f653a051f62831de564a98e"
+      },
+      {
+        "phaseId": "implement-provider-settings",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "runnerProfile": "codex-implementation-auto",
+        "dependsOn": [
+          "implement-provider-resume-1"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-29T13:35:43.212Z",
+        "resultPath": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/implement-provider-settings.result.json",
+        "resultSha256": "9590d69a0867182ecc29e026a2b7bea6f24b6541503e09113cd5ec534764d406"
       },
       {
         "phaseId": "analyze-final",
@@ -690,9 +716,17 @@
         "routingRole": "frontier-reasoning",
         "runnerProfile": "codex-frontier-auto",
         "dependsOn": [
-          "implement-provider-resume-1"
+          "implement-provider-settings"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-29T13:37:24.023Z",
+        "resultPath": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/analyze-final.result.json",
+        "resultSha256": "9fe0053074dd620af1a92959c052e829b694de4068f1ea8c2c926fea2a6d6639"
       },
       {
         "phaseId": "retrospective",
@@ -702,7 +736,15 @@
         "dependsOn": [
           "analyze-final"
         ],
-        "status": "Pending"
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-08-29T13:39:49.513Z",
+        "resultPath": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/retrospective.result.json",
+        "resultSha256": "3c9fc4729962ec2e22597329621b63625e3f9d73ac0b8dc5077810d7af561e00"
       },
       {
         "phaseId": "implement-closeout",
@@ -712,16 +754,21 @@
         "dependsOn": [
           "retrospective"
         ],
-        "status": "Pending"
+        "status": "Running",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "updatedAt": "2026-08-29T13:51:36Z"
       }
     ]
   },
-  "lastPassingGate": "A2CheckpointCandidateReconciledForDurableT126Commit",
-  "nextExactAction": "Push the durable T126 checkpoint and run routing phase 'implement-provider-resume-1'.",
+  "lastPassingGate": "T157PrimaryPreCommitPassed",
+  "nextExactAction": "Execute T158: commit and push the exact primary candidate to the existing feature branch and PR, then trigger native CI.",
   "lastOperation": {
-    "kind": "CheckpointCommitReconciliation:T126",
+    "kind": "ImplementationCloseout:T157",
     "state": "Completed",
-    "summary": "T124-T126 reconciled at A2 after rejecting the non-durable temporary-object candidate; T127-T168 remain open and provider writes remain closed."
+    "summary": "The primary candidate is staged only from the reviewed delivery set; cached diff and secret gates pass with zero high findings."
   },
   "stop": {
     "reason": "N/A",
@@ -734,5 +781,5 @@
     "postMergeActions": "Pending",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-08-29T08:30:54Z"
+  "updatedAt": "2026-08-29T13:39:49.513Z"
 }

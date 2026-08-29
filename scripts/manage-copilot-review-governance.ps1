@@ -9,17 +9,26 @@
     DE: Validiert Sollzustand, Inventur, Preview, operationsspezifische
     External-Write-Gates, Nachzustand und Rollback. Providerdaten gelten als
     nicht vertrauenswuerdige Eingabe. Ohne frisches Gate, exakte IDs und
-    Hashbindung bleibt jede Mutation blockiert. In der lokalen
-    Implementierungsphase arbeiten Apply und Rollback nur mit einem expliziten
-    FakeProviderPath und deterministischem ResultPath; ein Live-Fallback
-    existiert nicht. Ausgabe ist linear, textorientiert und farbunabhaengig.
+    Hashbindung bleibt jede Mutation blockiert. Inventory kann ohne
+    FakeProviderPath eine vollstaendige GitHub-Live-Inventur ausschliesslich
+    per GET, fester API-Version und begrenztem Transport-Retry erzeugen. Apply
+    kann ohne FakeProviderPath ausschliesslich die drei GitHub-Rulesetklassen
+    mit aktuellem operationsspezifischem Gate, exakten IDs, POST/PUT und ohne
+    Blind-Retry live ausfuehren. Account-/Effortwrites bleiben manuelle
+    Browsertransaktionen; Rollback bleibt explizit getrennt und FakeProvider-
+    gebunden.
+    Ausgabe ist linear, textorientiert und farbunabhaengig.
 
     EN: Validates desired state, inventory, preview, operation-specific
     external-write gates, after-state, and rollback. Provider data is untrusted
     input. Every mutation remains blocked without a fresh gate, exact IDs, and
-    hash binding. During local implementation Apply and Rollback work only with
-    an explicit FakeProviderPath and deterministic ResultPath; no live fallback
-    exists. Output is linear, text-first, and independent of colour.
+    hash binding. Without FakeProviderPath, Inventory can create a complete
+    live GitHub inventory through GET-only requests, a fixed API version, and
+    bounded transport retries. Without FakeProviderPath, Apply supports only
+    the three GitHub ruleset classes under a fresh operation-specific gate,
+    exact IDs, POST/PUT, and no blind retry. Account and effort writes remain
+    manual browser transactions; rollback stays separate and fake-provider
+    bound. Output is linear, text-first, and independent of colour.
 
 .PARAMETER Action
     ValidateDesiredState, Validate, Preview, Inventory, ValidateInventory,
@@ -40,11 +49,14 @@
     und erteilt keine Autoritaet.
 
 .PARAMETER ResultPath
-    Exakter Pfad fuer das deterministische Apply-/Rollback-Ergebnis.
+    Exakter Pfad fuer das deterministische Apply-/Rollback-Ergebnis. Live-
+    Ruleset-Apply leitet ohne Angabe den operationsspezifischen Evidencepfad ab.
 
 .PARAMETER FakeProviderPath
-    Explizite lokale Fake-Provider-Transaktionsdatei. Es gibt keinen stillen
-    Fallback auf einen Live-Provider.
+    Explizite lokale Fake-Provider-Datei fuer Fixtures sowie Apply/Rollback.
+    Ohne diesen Parameter darf Inventory GET-only lesen und Apply nur die
+    explizit gegateten RulesetCreate/RulesetUpdate/RulesetDisable-Operationen
+    live ausfuehren. Rollback besitzt keinen Live-Fallback.
 
 .PARAMETER EvidenceRoot
     Restriktiver maschinenlokaler Evidence-Root mit aktueller Authority,

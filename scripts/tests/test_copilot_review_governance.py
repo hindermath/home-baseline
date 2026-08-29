@@ -7,6 +7,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -186,6 +187,43 @@ def materialize_gate_context(root: Path, plan: dict, inventory: dict, operation:
         "operatorIdentity": authority["operatorIdentity"], "reviewerIdentity": authority["reviewerIdentity"],
         "reviewedAt": now.isoformat().replace("+00:00", "Z"),
         "expiresAt": (now + timedelta(minutes=10)).isoformat().replace("+00:00", "Z"),
+        "actionSummary": {
+            "accountSettingActions": sum(item["operationClass"] == "AccountSetting" for item in plan["actions"]),
+            "effortLevelActions": sum(item["operationClass"] == "EffortLevel" for item in plan["actions"]),
+            "rulesetCreateActions": sum(item["operationClass"] == "RulesetCreate" for item in plan["actions"]),
+            "rulesetUpdateActions": sum(item["operationClass"] == "RulesetUpdate" for item in plan["actions"]),
+            "rulesetDisableActions": sum(item["operationClass"] == "RulesetDisable" for item in plan["actions"]),
+            "totalActions": len(plan["actions"]),
+            "totalWrites": sum(bool(item["writeIntent"]) for item in plan["actions"]),
+        },
+        "browserBoundary": {"evidenceMode": "BrowserManual", "records": len(inventory["browserEvidence"]), "writes": 0},
+        "apiBoundary": {
+            "host": "github.com", "apiVersion": plan["apiVersion"], "method": "GET",
+            "repositories": len(inventory["repositories"]), "rulesets": len(inventory["rulesets"]), "writes": 0,
+        },
+        "historicalDeviationReview": {
+            "status": "Accepted",
+            "activeCopilotRulesets": sum(item["containsCopilotCodeReview"] and item["enforcement"] == "active" for item in inventory["rulesets"]),
+            "targetExistingRulesets": sum(
+                item["containsCopilotCodeReview"] and item["enforcement"] == "active"
+                and item["repositoryId"] in {action["repositoryId"] for action in plan["actions"] if action["operationClass"] == "EffortLevel"}
+                for item in inventory["rulesets"]
+            ),
+            "targetMissingRulesets": sum(item["operationClass"] == "RulesetCreate" and item["writeIntent"] for item in plan["actions"]),
+            "dedicatedNonTargetActiveRulesets": sum(item["operationClass"] == "RulesetDisable" and item["writeIntent"] for item in plan["actions"]),
+            "mixedOrInheritedRulesets": sum(
+                item["containsCopilotCodeReview"] and item["enforcement"] == "active"
+                and (item["mixedPurpose"] or item["sourceType"] != "Repository")
+                for item in inventory["rulesets"]
+            ),
+        },
+        "rollbackReview": {
+            "status": "Accepted", "boundRollbackHashes": sum(bool(item["writeIntent"]) for item in plan["actions"]),
+            "deleteActions": sum(item["action"] == "Delete" for item in plan["actions"]),
+            "createRollbackDisposition": "DisableNotDelete",
+        },
+        "externalWriteGateStatus": "NotAuthorized",
+        "writes": 0,
         "evidence": evidence_refs,
     }
     write_json(root / "operational/live-read/change-set-review.json", change_review)
@@ -769,6 +807,115 @@ def executable_provider_read_surface() -> None:
     run(["pwsh", "-NoProfile", "-Command", script])
 
 
+def executable_live_get_retry_surface() -> None:
+    """Prove that transient failures are retried only by the GET-only reader."""
+    with tempfile.TemporaryDirectory(prefix="crg-live-get-retry-") as raw:
+        tmp = Path(raw)
+        counter = tmp / "attempts.txt"
+        helper = tmp / "gh_stub.py"
+        helper.write_text(
+            "from pathlib import Path\n"
+            "import json, sys\n"
+            "counter = Path(sys.argv[1])\n"
+            "attempt = int(counter.read_text() if counter.exists() else '0') + 1\n"
+            "counter.write_text(str(attempt))\n"
+            "if attempt < 3:\n"
+            "    print('transient read failure', file=sys.stderr)\n"
+            "    raise SystemExit(1)\n"
+            "print(json.dumps({'login': 'hindermath'}))\n",
+            encoding="utf-8",
+        )
+        if sys.platform == "win32":
+            launcher = tmp / "gh.cmd"
+            launcher.write_text(
+                f'@"{sys.executable}" "{helper}" "{counter}" %*\n',
+                encoding="utf-8",
+            )
+        else:
+            launcher = tmp / "gh"
+            launcher.write_text(
+                "#!/bin/sh\nexec "
+                f"{shlex.quote(sys.executable)} {shlex.quote(str(helper))} "
+                f"{shlex.quote(str(counter))} \"$@\"\n",
+                encoding="utf-8",
+            )
+            launcher.chmod(0o755)
+        safe_module = str(MODULE).replace("'", "''")
+        safe_launcher = str(launcher).replace("'", "''")
+        script = (
+            f"Import-Module '{safe_module}' -Force; "
+            "$arguments=@('api','--method','GET','-H','X-GitHub-Api-Version: 2026-03-10','/user/repos?per_page=1'); "
+            "$result=& (Get-Module CopilotReviewGovernance) { param($arguments,$executable) "
+            "Invoke-HBGitHubJsonRead -Arguments $arguments -Executable $executable } "
+            f"$arguments '{safe_launcher}'; "
+            "if($result.data.login -cne 'hindermath'){exit 1}"
+        )
+        run(["pwsh", "-NoProfile", "-Command", script])
+        require(counter.read_text(encoding="utf-8") == "3", "GET retry count was not exactly three")
+
+
+def executable_live_write_boundary_surface() -> None:
+    """Prove fixed-host POST/PUT writes have no blind retry path."""
+    with tempfile.TemporaryDirectory(prefix="crg-live-write-boundary-") as raw:
+        tmp = Path(raw)
+        counter = tmp / "attempts.txt"
+        payload = tmp / "payload.json"
+        payload.write_text('{"name":"Automatic Copilot code review"}\n', encoding="utf-8")
+        helper = tmp / "gh_stub.py"
+        helper.write_text(
+            "from pathlib import Path\n"
+            "import json, sys\n"
+            "counter = Path(sys.argv[1])\n"
+            "attempt = int(counter.read_text() if counter.exists() else '0') + 1\n"
+            "counter.write_text(str(attempt))\n"
+            "print(json.dumps({'id': 42}))\n",
+            encoding="utf-8",
+        )
+        if sys.platform == "win32":
+            launcher = tmp / "gh.cmd"
+            launcher.write_text(
+                f'@"{sys.executable}" "{helper}" "{counter}" %*\n',
+                encoding="utf-8",
+            )
+        else:
+            launcher = tmp / "gh"
+            launcher.write_text(
+                "#!/bin/sh\nexec "
+                f"{shlex.quote(sys.executable)} {shlex.quote(str(helper))} "
+                f"{shlex.quote(str(counter))} \"$@\"\n",
+                encoding="utf-8",
+            )
+            launcher.chmod(0o755)
+        safe_module = str(MODULE).replace("'", "''")
+        safe_launcher = str(launcher).replace("'", "''")
+        safe_payload = str(payload).replace("'", "''")
+        script = (
+            f"Import-Module '{safe_module}' -Force; "
+            f"$payload='{safe_payload}'; "
+            "$arguments=@('api','--hostname','github.com','--method','POST','-H','X-GitHub-Api-Version: 2026-03-10','repos/hindermath/example/rulesets','--input',$payload); "
+            "$result=& (Get-Module CopilotReviewGovernance) { param($arguments,$payload,$executable) "
+            "Invoke-HBGitHubJsonWrite -Arguments $arguments -InputPath $payload -Executable $executable } "
+            f"$arguments $payload '{safe_launcher}'; "
+            "if(-not$result.succeeded-or$result.attempts-ne 1-or$result.data.id-ne 42){exit 1}; "
+            "$bad=@('api','--hostname','github.com','--method','GET','-H','X-GitHub-Api-Version: 2026-03-10','repos/hindermath/example/rulesets','--input',$payload); "
+            "$blocked=$false; try { & (Get-Module CopilotReviewGovernance) { param($arguments,$payload,$executable) "
+            "Invoke-HBGitHubJsonWrite -Arguments $arguments -InputPath $payload -Executable $executable } "
+            f"$bad $payload '{safe_launcher}' | Out-Null }} catch {{ $blocked=$true }}; if(-not$blocked){{exit 2}}; "
+            "$detail=@{name='Automatic Copilot code review';target='branch';enforcement='active';bypass_actors=@();"
+            "conditions=@{ref_name=@{include=@('refs/heads/main');exclude=@()}};rules=@(@{type='copilot_code_review';"
+            "parameters=@{review_on_push=$true;review_draft_pull_requests=$true}})}; "
+            "$payloads=& (Get-Module CopilotReviewGovernance) { param($detail) "
+            "$u=New-HBLiveRulesetPayload RulesetUpdate -CurrentDetail $detail; "
+            "$d=New-HBLiveRulesetPayload RulesetDisable -CurrentDetail $detail; "
+            "$c=New-HBLiveRulesetPayload RulesetCreate -DefaultBranch main; @($u,$d,$c) } $detail; "
+            "if($payloads.Count-ne 3-or$payloads[0].rules.Count-ne 1-or$payloads[0].rules[0].parameters.review_on_push"
+            "-or$payloads[0].rules[0].parameters.review_draft_pull_requests-or$payloads[1].enforcement-ne'disabled'"
+            "-or$payloads[2].conditions.ref_name.include[0]-cne'refs/heads/main'){exit 3}"
+        )
+        run(["pwsh", "-NoProfile", "-Command", script])
+        require(counter.read_text(encoding="utf-8") == "1", "live write boundary attempted more than once")
+
+
 def executable_accessibility_surface() -> None:
     result = product(["-Action", "ValidateDesiredState", "-DesiredStatePath", str(DESIRED), "-OutputFormat", "Text"])
     labels = ["Aktion / Action", "Ergebnis / Result", "Providerwrites / Provider writes", "Naechste sichere Aktion / Next safe action"]
@@ -923,7 +1070,10 @@ def action_for(name: str) -> Callable[[], None]:
     if name in {"PrLifecycleFixtureTests", "ManualReviewFixtureTests", "PrLifecycleDecisionTests", "ManualReviewBoundaryTests", "AdvisoryGateMapTests"}:
         return executable_review_surface
     if name in {"BrowserApiBoundaryTests"}:
-        return lambda: (executable_browser_surface(), executable_provider_read_surface())
+        return lambda: (
+            executable_browser_surface(), executable_provider_read_surface(),
+            executable_live_get_retry_surface(), executable_live_write_boundary_surface(),
+        )
     if name == "RedactionNegativeTests":
         return executable_redaction_negative
     return lambda: executable_product_surface(name)
@@ -1047,9 +1197,11 @@ def semantic_contract_for(name: str) -> tuple[dict[str, object], str, tuple[str,
                  "human-ci-security-gates-preserved"))
     if name == "BrowserApiBoundaryTests":
         return ({"fixture": "valid-before+home-baseline-read-definition"},
-                "ValidateBrowserEvidence+Get-HBGitHubReadRequestDefinitions",
+                "ValidateBrowserEvidence+Get-HBGitHubReadRequestDefinitions+Invoke-HBGitHubJsonRead+Invoke-HBGitHubJsonWrite",
                 ("one-browser-record", "browser-writes-zero", "api-version-2026-03-10",
-                 "no-delete-method"))
+                 "no-delete-method", "transient-get-retried-exactly-three-times",
+                 "fixed-host-post-put-only", "single-live-write-attempt", "no-blind-write-retry",
+                 "ruleset-payload-arrays-and-semantics"))
     if name == "RedactionNegativeTests":
         return ({"fixture": "github-token+email-pii"}, "Protect-HBRedactedValue",
                 ("sensitive-input-rejected", "secret-not-echoed", "pii-not-echoed"))

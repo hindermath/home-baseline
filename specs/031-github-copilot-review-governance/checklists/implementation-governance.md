@@ -1,6 +1,6 @@
 # Implementierungs-Governance / Implementation Governance
 
-**Stable boundary / Stabile Grenze**: `Implement/Active`, 123/168. Aktuelle
+**Stable boundary / Stabile Grenze**: `Implement/Active`, 155/168. Aktuelle
 Routingphase und naechste Aktion werden nicht hier gecacht, sondern bei jeder
 Beobachtung aus `autonomous-run-state.json` gelesen.
 
@@ -84,6 +84,176 @@ Status: `Reached` fuer die begrenzte Checkpoint-Lieferung an native CI.
 
 *A2 permits only the bounded checkpoint commit, push, regular PR, and exact-head
 native CI proof. Provider writes and final delivery remain closed.*
+
+## Primaerer Delivery Set T156 / Primary Delivery Set T156
+
+**Review status**: `Reviewed / Bound for PreMerge`
+
+**Owner / Reviewer**: Delivery Owner / Authority Reviewer
+
+Die primaere Liefermenge umfasst exakt die folgenden `141` versionierten
+Pfade. Sie ist relativ zum Merge-Base von `origin/main`, dem aktuellen Branch
+und dem T155-Worktree gebildet, mit `LC_ALL=C` sortiert und besitzt den
+Mengen-SHA-256
+`b3c33d3328b9212e2c652965c5443d3a12a21c7b25c639f09c2561ff19dd7c79`.
+Private Runtime, lokale Konfiguration, Caches und fremde Pfade sind
+ausgeschlossen.
+
+- `.github/workflows/copilot-review-governance-native-proof.yml`
+- `.specify/feature.json`
+- `.specify/presets/autonomous-run-governance/docs/man/invoke-autonomous-model-phase.1`
+- `.specify/presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.ps1`
+- `.specify/presets/autonomous-run-governance/tests/fixture-model-runner.ps1`
+- `.specify/presets/autonomous-run-governance/tests/test-model-routing.ps1`
+- `.specify/presets/autonomous-run-governance/tests/test-model-routing.sh`
+- `CHANGELOG.md`
+- `Lastenheft_Abarbeitungsreihenfolge.md`
+- `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md`
+- `README.md`
+- `docs/README.md`
+- `docs/accessibility/copilot-review-governance.md`
+- `docs/architecture/copilot-review-governance.md`
+- `docs/man/manage-copilot-review-governance.1.md`
+- `docs/operations/copilot-review-governance.md`
+- `docs/project-statistics.config.json`
+- `docs/project-statistics.md`
+- `docs/scripts/README.md`
+- `docs/scripts/reference.md`
+- `docs/security/adr/ADR-003-copilot-review-governance-boundaries.md`
+- `docs/security/arc42-security.md`
+- `docs/security/asvs-verification.md`
+- `docs/security/cloud-autonomy-applicability.md`
+- `docs/security/cloud-compliance-assurance.md`
+- `docs/security/dependency-audit.md`
+- `docs/security/regulatory-applicability.md`
+- `docs/security/samm-assessment.md`
+- `docs/security/security-checklist.md`
+- `docs/security/security-quality-scenarios.md`
+- `docs/security/supply-chain-evidence.md`
+- `docs/security/threat-model.md`
+- `docs/security/zero-trust-applicability.md`
+- `requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/manifest.json`
+- `requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/receipt.json`
+- `requirements/intakes/series/home-baseline-delivery/manifest.json`
+- `requirements/intakes/series/home-baseline-delivery/operations/ee66e610-c764-43bc-90e1-f9b1256156b0.json`
+- `requirements/intakes/series/home-baseline-delivery/receipt.json`
+- `scripts/config/copilot-review-governance-desired-state.json`
+- `scripts/config/script-catalog.json`
+- `scripts/manage-copilot-review-governance.ps1`
+- `scripts/manage-copilot-review-governance.sh`
+- `scripts/modules/CopilotReviewGovernance.psm1`
+- `scripts/test-script-reference.ps1`
+- `scripts/tests/copilot-review-governance/fixtures/a11y/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/browser/valid-before.json`
+- `scripts/tests/copilot-review-governance/fixtures/contracts/negative/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/contracts/positive/account-setting-record-set.json`
+- `scripts/tests/copilot-review-governance/fixtures/inventory/negative/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/inventory/positive/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/manual-review/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/planner/negative/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/planner/positive/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/platform-parity/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/pr-lifecycle/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/provider/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/redaction/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/usage/cases.json`
+- `scripts/tests/copilot-review-governance/fixtures/vertical-slice/home-baseline-green.json`
+- `scripts/tests/run_copilot_review_governance_acceptance.py`
+- `scripts/tests/test_copilot_review_governance.py`
+- `specs/031-github-copilot-review-governance/autonomous-run-evidence.md`
+- `specs/031-github-copilot-review-governance/autonomous-run-gate-requirements.json`
+- `specs/031-github-copilot-review-governance/autonomous-run-state.json`
+- `specs/031-github-copilot-review-governance/checklists/a11y.md`
+- `specs/031-github-copilot-review-governance/checklists/agent-parity.md`
+- `specs/031-github-copilot-review-governance/checklists/architecture.md`
+- `specs/031-github-copilot-review-governance/checklists/autonomous-readiness.md`
+- `specs/031-github-copilot-review-governance/checklists/clarifications.md`
+- `specs/031-github-copilot-review-governance/checklists/governance.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-2.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-3.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-4.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-5.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-6.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-analysis-local.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-governance.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-provider.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-remediation-1.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-remediation-2.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-remediation-3.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-remediation-4.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-remediation-5.md`
+- `specs/031-github-copilot-review-governance/checklists/implementation-remediation-supersession-bindings.json`
+- `specs/031-github-copilot-review-governance/checklists/plan-review-2.md`
+- `specs/031-github-copilot-review-governance/checklists/plan-review-3.md`
+- `specs/031-github-copilot-review-governance/checklists/plan-review.md`
+- `specs/031-github-copilot-review-governance/checklists/pre-implementation-acceptance.md`
+- `specs/031-github-copilot-review-governance/checklists/requirements.md`
+- `specs/031-github-copilot-review-governance/checklists/script-parity.md`
+- `specs/031-github-copilot-review-governance/checklists/security.md`
+- `specs/031-github-copilot-review-governance/checklists/tasks-analysis.md`
+- `specs/031-github-copilot-review-governance/contracts/desired-state.schema.json`
+- `specs/031-github-copilot-review-governance/contracts/external-write-gate.schema.json`
+- `specs/031-github-copilot-review-governance/contracts/inventory.schema.json`
+- `specs/031-github-copilot-review-governance/contracts/mutation-plan.schema.json`
+- `specs/031-github-copilot-review-governance/contracts/mutation-result.schema.json`
+- `specs/031-github-copilot-review-governance/contracts/provider-workflow-contract.md`
+- `specs/031-github-copilot-review-governance/contracts/rollback.schema.json`
+- `specs/031-github-copilot-review-governance/contracts/terminal-evidence.schema.json`
+- `specs/031-github-copilot-review-governance/data-model.md`
+- `specs/031-github-copilot-review-governance/documentation-impact-evidence.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-001-inventory.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-002-exact-target-set.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-003-disable-retain-rollback.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-004-review-parameters.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-005-pr-lifecycle.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-006-manual-review-preserved.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-007-gate-map.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-008-usage-redaction.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-009-idempotency-platform.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/ac-crg-010-position-7-isolation.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-001-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-002-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-003-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-004-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-005-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-006-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-007-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-008-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-009-fixtures.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/supplemental/AC-CRG-010-fixtures.json`
+- `specs/031-github-copilot-review-governance/plan.md`
+- `specs/031-github-copilot-review-governance/quickstart.md`
+- `specs/031-github-copilot-review-governance/research.md`
+- `specs/031-github-copilot-review-governance/retrospective.md`
+- `specs/031-github-copilot-review-governance/spec.md`
+- `specs/031-github-copilot-review-governance/tasks.md`
+- `specs/flottenweite-github-copilot-review-governance-und-kostenbegrenzung-intake-review/intake-review-report.md`
+- `specs/flottenweite-github-copilot-review-governance-und-kostenbegrenzung-intake-review/intake-review-request.json`
+- `specs/flottenweite-github-copilot-review-governance-und-kostenbegrenzung-intake-review/intake-review-result.json`
+- `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/docs/man/invoke-autonomous-model-phase.1`
+- `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/scripts/invoke-autonomous-model-phase.ps1`
+- `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/tests/fixture-model-runner.ps1`
+- `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/tests/test-model-routing.ps1`
+- `specs/spec-kit-preset-repos/spec-kit-preset-autonomous-run-governance/tests/test-model-routing.sh`
+- `specs/spec-kit-presets/autonomous-run-governance/docs/man/invoke-autonomous-model-phase.1`
+- `specs/spec-kit-presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.ps1`
+- `specs/spec-kit-presets/autonomous-run-governance/tests/fixture-model-runner.ps1`
+- `specs/spec-kit-presets/autonomous-run-governance/tests/test-model-routing.ps1`
+- `specs/spec-kit-presets/autonomous-run-governance/tests/test-model-routing.sh`
+
+Die spaetere T166-Allowlist ist absichtlich enger und gehoert nicht zum
+primaeren T158-Set. Nach T158 duerfen ausschliesslich diese Pfade fortgeschrieben
+oder, fuer die beiden Receipts, neu erzeugt werden:
+
+- `specs/031-github-copilot-review-governance/autonomous-run-state.json`
+- `specs/031-github-copilot-review-governance/autonomous-run-evidence.md`
+- `specs/031-github-copilot-review-governance/tasks.md`
+- `specs/031-github-copilot-review-governance/evidence/v1/finalization/primary-delivery.json`
+- `specs/031-github-copilot-review-governance/evidence/v1/finalization/completion-delivery.json`
+
+PostMerge-, Default-Sync-, Home-Sync-, finale Serien- und `Completed`-Fakten
+sind `Open`. Jede Abweichung von der 141-Pfad-Menge vor T158 oder von der
+fuenfpfadigen Finalization-Allowlist danach erzwingt Re-Evaluation.
 
 ## Bidirektionale Traceability / Bidirectional traceability
 

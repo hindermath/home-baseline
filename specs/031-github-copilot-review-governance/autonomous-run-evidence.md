@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Feature | `specs/031-github-copilot-review-governance` |
-| Binding intake | `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md` |
+| Binding intake | `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md` |
 | Intake review | `Ready`, review `d76c8231-c875-41ee-9dfc-65afe756f626` |
 | Delivery mode | `MergeAndSync` |
 | Admin bypass | Explicitly authorized for this G4 run; only after regular protection-only refusal |
@@ -48,7 +48,7 @@ rollback and permission scope.
 | Plan re-review | Completed | Passed mit `18/18` Requirements, `10/10` Gates, `9/9` Vertraegen und `0` Findings; Receipt `checklists/plan-review.md`, Payload `2784763c3650d141a2b1ccee153784c90415dc738f4724b008de246f3b0ac91a`. |
 | Tasks | Completed | Eine abhaengigkeitsgeordnete, ausfuehrbare Aufgabenliste mit `168` lueckenlosen Tasks wurde erzeugt und selbstvalidiert; Payload `ad5dbe67cffcb158117e269cdaeef88f0577b702eb31e3adec65b5e3f240e381`. |
 | Analyze preparation | Completed | Der vorbereitende `analyze-4`-Lauf ist abgeschlossen; die lokale Analyse bleibt ein eigenes Gate. |
-| Implement | In progress | Kanonischer State `Implement/Active`, exakt `122/168`; T001–T122 sind abgeschlossen, T123–T168 bleiben offen. |
+| Implement | PreMerge closeout | Kanonischer State `Implement/Active`, exakt `155/168`; T001–T155 sind abgeschlossen, T156–T168 bleiben offen. |
 | Local analyze 1 | Blocked / historical | `implementation-analysis-local.md`; sechs Findings erforderten Remediation 1. |
 | Local remediation 1 | Completed / superseded | Historische Sanierung; ihre Closure-Claims wurden durch `analyze-local-2` widerrufen. |
 | Local analyze 2 | Blocked / historical | `implementation-analysis-local-2.md`; sechs Findings blieben offen. |
@@ -61,36 +61,45 @@ rollback and permission scope.
 
 Der maschinenlesbare
 `specs/031-github-copilot-review-governance/autonomous-run-state.json` bleibt
-die kanonische Fortschrittsquelle. Die Tabelle oben speichert nur terminale
-historische Phasen und die stabile Grenze `Implement/Active`, exakt `122/168`.
-Sie speichert absichtlich weder den Status aktueller oder zukuenftiger
-Routingphasen noch deren naechste Aktion, weil diese Werte bei jedem
-Runneruebergang veralten koennen.
+die kanonische Fortschrittsquelle. Dieser PreMerge-Reader bindet als
+reviewten Snapshot den nach T155 validierten Stand `Implement/Active 155/168`.
+Routingstatus und naechste Aktion werden weiterhin direkt aus dem JSON-State
+gelesen und nicht aus diesem Markdown abgeleitet.
 
-Operator*innen und Automation lesen deshalb bei jeder Beobachtung den
-aktuellen Phasenstatus aus `routing.phases`, die letzte Operation aus
-`lastOperation` und die exakt naechste Aktion aus `nextExactAction` im
-feature-lokalen kanonischen JSON-State. Diese drei Felder werden gemeinsam und
-erst zum Beobachtungszeitpunkt ausgewertet. Ein spaeterer Status `Pending`,
-`Running`, `Completed` oder `Blocked` erzeugt dadurch keinen Widerspruch zu
-diesem Markdown-Reader. Nach Annahme der fuenften Sanierung ist der beabsichtigte
-naechste frische Review `analyze-local-6`; verbindlich wird diese Aktion erst
-durch `nextExactAction` des Runners.
+T126 bis T153 belegen den nativen Linux-/Windows-Nachweis, die einmalige
+frische Providerinventur, die fail-closed Providerkonvergenz, die wahrheits-
+gemaesse Copilot-Quota-Verweigerung ohne Kauf oder Schreibzugriff, die
+vollstaendige lokale Schlussmatrix, eine Analyse ohne Findings und die
+Retrospektive. T154 rendert die Statistik deterministisch; T155 benennt das
+Lastenheft ohne Inhaltsverlust um. Provider-, Netzwerk-, Subscription-,
+Budgetkauf-, Cancellation- und Position-7-Schreibzaehler bleiben `0`.
 
 Die unveraenderliche Bindung zwischen den urspruenglichen gerouteten
 Ergebnis-Envelopes der Sanierungen 1 und 2 und ihren spaeter ergaenzten
 historischen Receipts steht in
 `checklists/implementation-remediation-supersession-bindings.json`. Sie besitzt
-keine Gate-Autoritaet. Dieser Reader behauptet weder Abschluss der fuenften
-Sanierung oder von `analyze-local-6` noch T123, native, Live-/Provider-,
-Primary-, Delivery-, Home-, Serien- oder Position-7-Completion. Der Runner
-bleibt alleiniger Owner von State, Routingstatus und Fortschaltung.
+keine Gate-Autoritaet. Dieser Reader behauptet trotz abgeschlossener lokaler,
+nativer und provider-read-only Vorarbeiten weder die neun noch ausstehenden
+Primary-Gates noch Merge, Default-Sync, Home-Sync, Serienabschluss,
+Position-7-Completion oder terminalen Erfolg. Der Runner bleibt alleiniger
+Owner von State, Routingstatus und Fortschaltung.
 
-## Closeout
+## PreMerge Closeout Boundary T156
 
-Closeout-Zustaende werden ebenfalls nicht in diesem Reader gecacht. Ihr
-aktueller Wert wird bei jeder Beobachtung aus `closeout` im kanonischen
-`autonomous-run-state.json` gelesen. Bis der Runner diese Werte aendert, gelten
-alle Merge-/Publikations-, Default-Branch-, Post-Merge- und finalen
-Validierungsgrenzen weiterhin als Open; dieser Markdown-Text erteilt keine
-Closeout- oder Delivery-Autoritaet.
+| Fakt | Zustand |
+|---|---|
+| Primary Delivery Set | `141` versionierte Pfade, reviewt in `checklists/implementation-governance.md`, Mengen-SHA-256 `b3c33d3328b9212e2c652965c5443d3a12a21c7b25c639f09c2561ff19dd7c79` |
+| PreMerge | `Ready for T157 candidate construction`; noch kein finaler Implementierungscommit oder Push |
+| Primary AC-CRG-001..009 | `Open` bis T159/T160 |
+| AC-CRG-010 | `Open` bis nach primaerem Merge, Default-Sync, bedingtem Home-Sync und finalem Series-Read |
+| Primary merge/publication | `Open` |
+| Default-branch sync/cleanup | `Open` |
+| Home Sync | `Open`, nach primaerem Merge bedingt zu klassifizieren |
+| Final series/Position 7 | `Open` |
+| Run completion | `Open`; `Completed` wird nicht vorweggenommen |
+
+Nach T158 sind Produkt-, Test-, allgemeine Dokumentations-, Statistik-,
+Provider- und Serienedits gesperrt. Die eng begrenzte T166-Allowlist steht im
+reviewten Delivery-Set-Vertrag. Closeout-Zustaende werden weiterhin aus
+`closeout` im kanonischen JSON-State gelesen; dieser Reader erteilt keine
+zusaetzliche Provider- oder Delivery-Autoritaet.

@@ -1,9 +1,14 @@
 # Schnellstart / Quickstart: GitHub-Copilot-Review-Governance
 
-> Die lokale Implementierungsoberflaeche ist ausfuehrbar. Inventory, Apply und
-> Rollback verwenden in dieser Anleitung ausschliesslich den expliziten
-> Fake-Provider; ein Live-Fallback existiert nicht. Starte immer mit Preview
-> und Validation. Kein Beispiel erteilt Live-Provider-Write-Autoritaet.
+> Die lokale Implementierungsoberflaeche ist ausfuehrbar. Inventory darf mit
+> `--read-only` eine vollstaendige GitHub-Live-Inventur ausschliesslich per GET
+> erfassen. Apply darf ohne Fake-Provider ausschliesslich die drei GitHub-
+> Rulesetklassen unter einem frischen, exakt gebundenen External-Write-Gate
+> serialisiert per POST/PUT ausfuehren; Write-Retries sind verboten und
+> unklare Ergebnisse werden GET-only reconciled. Account-/Effortwrites bleiben
+> BrowserManual und Rollback bleibt Fake-Provider-gebunden. Starte immer mit
+> Preview und Validation. Kein Beispiel erteilt
+> Live-Provider-Write-Autoritaet.
 
 ## Deutsch
 
@@ -40,7 +45,7 @@ bash scripts/manage-copilot-review-governance.sh \
 bash scripts/manage-copilot-review-governance.sh \
   --action inventory \
   --read-only \
-  --fake-provider .specify/runtime/copilot-review-governance/fake-provider.json \
+  --browser-evidence .specify/runtime/copilot-review-governance/browser-evidence.json \
   --output .specify/runtime/copilot-review-governance/inventory.json
 
 bash scripts/manage-copilot-review-governance.sh \
@@ -68,7 +73,7 @@ pwsh -NoProfile -File scripts/manage-copilot-review-governance.ps1 `
 pwsh -NoProfile -File scripts/manage-copilot-review-governance.ps1 `
     -Action Inventory `
     -ReadOnly `
-    -FakeProviderPath .specify/runtime/copilot-review-governance/fake-provider.json `
+    -BrowserEvidencePath .specify/runtime/copilot-review-governance/browser-evidence.json `
     -OutputPath .specify/runtime/copilot-review-governance/inventory.json
 
 pwsh -NoProfile -File scripts/manage-copilot-review-governance.ps1 `
@@ -161,7 +166,7 @@ Er liest exakt `operational/live-read/authority.json`, `inventory.json`,
 `mutation-plan.json` und `change-set-review.json` sowie
 `operational/gate-evidence/acceptance.json`, `security.json`, `review.json` und
 `technical.json`. Jede Datei wird vollständig semantisch geprüft und erneut
-gehasht; der komplette Satz wird unmittelbar vor jedem FakeProvider-Write neu
+gehasht; der komplette Satz wird unmittelbar vor jedem FakeProvider- oder Live-Ruleset-Write neu
 gelesen. Für AccountSetting bleiben `PlanPath`, `ResultPath` und
 `RollbackPlanPath` drei getrennte Records. Das exakte T134-Kommando aus
 `tasks.md` liefert nur bei Authority/Plan/Gate/NotInvoked-Result/Rollback-
@@ -187,13 +192,22 @@ pwsh -NoProfile -File scripts/manage-copilot-review-governance.ps1 `
     -EvidenceRoot .specify/runtime/copilot-review-governance/evidence
 ```
 
+Ohne `-FakeProviderPath` fuehrt derselbe Apply-Befehl nur
+`RulesetCreate`, `RulesetUpdate` oder `RulesetDisable` aus. Dazu werden
+`-PlanPath`, `-AuthorizationPath` und `-EvidenceRoot` angegeben; der
+operationsspezifische Resultpfad wird bei Bedarf abgeleitet. Jede Aktion
+verwendet feste `gh api`-Argumentarrays, `github.com`, API-Version `2026-03-10`
+und genau einen POST-/PUT-Versuch. Vor und nach dem Write wird die exakte
+Provideridentitaet GET-only gelesen.
+
 Account-, Effort-, `RulesetCreate`-, `RulesetUpdate`-, `RulesetDisable`-,
 PR-Lifecycle- und manuelle Reviewoperationen brauchen getrennte Gates.
 `MergeAndSync` und ein Delivery-Bypass autorisieren keine Provider-Setting-
 Aenderung. Apply schreibt serialisiert, prueft vor jeder Aktion den Before-
-Hash und wiederholt einen unklaren Write nie blind. Diese lokale Anleitung
-zeichnet Fake-Provider-Reads, Writes, Retries, Idempotenz, Reconciliation und
-TOCTOU-Blocker auf; sie ruft keinen GitHub-Endpunkt auf.
+Hash und wiederholt einen unklaren Write nie blind. Fixturelaeufe zeichnen
+Fake-Provider-Reads, Writes, Retries, Idempotenz, Reconciliation und TOCTOU-
+Blocker auf; Live-Ruleset-Apply publiziert redigierte per-Action-Evidence und
+eine vollstaendige frische Nachinventur.
 
 ### Nachzustand und Idempotenz
 
@@ -268,8 +282,12 @@ Use this order: read help, validate desired state, capture fresh read-only API
 and browser inventory, preview, review hashes, finish no-write validation, and
 only then apply with a new operation-specific External Write Gate. Validate
 the after-state and a zero-write second pass. Rollback needs its own fresh gate.
-The repository-local examples require an explicit fake-provider file and never
-fall back to a live provider. Read definitions bind API version `2026-03-10`.
+Live Inventory uses only GET requests, binds API version `2026-03-10`, and
+retries transient transport failures at most three times. Without a fake-
+provider file, Apply supports only RulesetCreate, RulesetUpdate, and
+RulesetDisable with a fresh exact gate, fixed-host POST/PUT, one write attempt,
+and GET-only reconciliation. Account/effort writes remain BrowserManual;
+Rollback still requires an explicit fake-provider file and a fresh gate.
 
 ### Bash on macOS/Linux: preview first
 

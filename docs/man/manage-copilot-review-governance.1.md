@@ -32,10 +32,16 @@ provider writes.
 Ein External-Write-Gate gilt nur für eine Operationsklasse, exakte IDs bzw.
 `accountOwner=hindermath`, ein Zeitfenster, Hashes und Mindestberechtigungen.
 Credentials, ein Merge-Gate oder Admin-Bypass erteilen keine Setting-Autorität.
-In der lokalen Phase sind Apply und Rollback ausschließlich ausführbare,
-serialisierte Fake-Provider-Transaktionen. `--fake-provider` ist zwingend; es
-gibt keinen Live-Fallback und keinen Provider-Netzwerkaufruf. Read-Definitionen
-verwenden die akzeptierte GitHub-API-Version `2026-03-10`.
+Inventory darf mit `--read-only` und redigierter Browser-Evidence eine
+vollstaendige GitHub-Live-Inventur ausschliesslich per GET erzeugen. Die
+Read-Definitionen verwenden die akzeptierte GitHub-API-Version `2026-03-10`;
+transiente Transportfehler werden hoechstens dreimal versucht. Apply darf ohne
+`--fake-provider` ausschliesslich `RulesetCreate`, `RulesetUpdate` und
+`RulesetDisable` mit aktuellem operationsspezifischem Gate, exakten IDs,
+festem Host/API-Header und genau einem POST-/PUT-Versuch pro Aktion live
+ausfuehren. Ein unklares Ergebnis wird GET-only reconciled und nie blind
+wiederholt. Account-/Effortwrites bleiben BrowserManual; Rollback bleibt eine
+separat autorisierte Fake-Provider-Transaktion.
 
 ## OPTIONEN / OPTIONS
 
@@ -44,8 +50,8 @@ verwenden die akzeptierte GitHub-API-Version `2026-03-10`.
 - `--authorization`: operationsspezifisches Gate.
 - `--plan`: aktueller Mutation Plan; wird niemals durch `--rollback-plan` ersetzt.
 - `--rollback-plan`: separater gebundener Rollbackrecord; keine Autorität.
-- `--result`: deterministische Mutation-/Rollback-Ergebnisdatei.
-- `--fake-provider`: explizite lokale Transaktionsdatei; kein Live-Fallback.
+- `--result`: deterministische Mutation-/Rollback-Ergebnisdatei; fuer Live-Ruleset-Apply optional mit operationsspezifischem Standardpfad.
+- `--fake-provider`: explizite lokale Fixture-/Transaktionsdatei; fuer Rollback weiterhin zwingend.
 - `--evidence-root`: restriktiver, symlinkfreier Evidence-Root.
 
 Der öffentliche Gate-Validator liest unter diesem Root zwingend

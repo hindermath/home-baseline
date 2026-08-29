@@ -8,7 +8,9 @@ show_help() {
   printf '%s\n' 'GitHub Copilot Review Governance / GitHub-Copilot-Review-Governance'
   printf '%s\n' 'Usage: manage-copilot-review-governance.sh --action ACTION [OPTIONS]'
   printf '%s\n' 'Safe start: --action preview --dry-run --desired-state FILE --inventory FILE --output FILE'
-  printf '%s\n' 'Local transaction: --fake-provider FILE --result FILE (no live fallback).'
+  printf '%s\n' 'Live inventory: --action inventory --read-only --browser-evidence FILE --output FILE (GET only).'
+  printf '%s\n' 'Live ruleset mutation: --action apply --plan FILE --authorization FILE --evidence-root DIR (fresh exact gate required).'
+  printf '%s\n' 'Fake-provider and rollback: --fake-provider FILE --result FILE.'
   printf '%s\n' 'Sicherer Einstieg: Preview und Validierung schreiben nie zum Provider.'
   printf '%s\n' 'See: docs/man/manage-copilot-review-governance.1.md'
 }

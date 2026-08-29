@@ -3,7 +3,7 @@
 **Feature Branch / Feature-Branch**: `031-github-copilot-review-governance`
 **Created / Erstellt**: 2026-08-28
 **Status**: Spezifiziert / Specified
-**Binding Input / Bindende Eingabe**: `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md`, Review `d76c8231-c875-41ee-9dfc-65afe756f626` (`Ready`)
+**Binding Input / Bindende Eingabe**: `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md`, Review `d76c8231-c875-41ee-9dfc-65afe756f626` (`Ready`)
 **Audience / Zielgruppe**: Maintainer, Flotten-Operator*innen und Reviewer / maintainers, fleet operators, and reviewers
 
 ## Nutzungsszenarien und Tests / User Scenarios & Testing *(mandatory)*
