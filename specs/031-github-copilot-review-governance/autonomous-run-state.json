@@ -52,8 +52,8 @@
   ],
   "tasks": {
     "path": "specs/031-github-copilot-review-governance/tasks.md",
-    "sha256": "0158f022ba655c1198986498c172064f576b9325b796ce91239a3a46685dbc48",
-    "completed": 157,
+    "sha256": "600c4d97c629a81ac614022c8c105a26b9b24c8bc5da54ecc3c0fc0a6cac9d09",
+    "completed": 165,
     "total": 168
   },
   "routing": {
@@ -759,16 +759,16 @@
         "model": "gpt-5.6-sol",
         "reasoningEffort": "high",
         "preflight": "Completed",
-        "updatedAt": "2026-08-29T13:51:36Z"
+        "updatedAt": "2026-08-29T14:15:42Z"
       }
     ]
   },
-  "lastPassingGate": "T157PrimaryPreCommitPassed",
-  "nextExactAction": "Execute T158: commit and push the exact primary candidate to the existing feature branch and PR, then trigger native CI.",
+  "lastPassingGate": "T165CompletionReadyTenOfTenPrimaryPassed",
+  "nextExactAction": "Execute T166: create the separate completion branch and causal Active/165/168 completion candidate from synchronized main.",
   "lastOperation": {
-    "kind": "ImplementationCloseout:T157",
+    "kind": "CompletionReady:T165",
     "state": "Completed",
-    "summary": "The primary candidate is staged only from the reviewed delivery set; cached diff and secret gates pass with zero high findings."
+    "summary": "CompletionReady boundary reached: intake, active series and Stage B handoff revalidate read-only; Position 7 is unchanged and unstarted; all ten Primary gates pass with forbidden mutation counters zero."
   },
   "stop": {
     "reason": "N/A",
@@ -776,9 +776,9 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "Pending",
-    "defaultBranchSync": "Pending",
-    "postMergeActions": "Pending",
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
     "finalValidation": "Pending"
   },
   "updatedAt": "2026-08-29T13:39:49.513Z"

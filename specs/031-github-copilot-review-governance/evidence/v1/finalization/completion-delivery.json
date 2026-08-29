@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceType": "CompletionDeliveryCandidateReceipt",
+  "runId": "1b7788fb-81f3-4d76-8006-885d834dd454",
+  "state": "PreparedPreCommit",
+  "baseDefaultSha": "3e2c3e0b0f2980689ba3d9939d52ebcbe2427fb3",
+  "allowedPaths": [
+    "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+    "specs/031-github-copilot-review-governance/autonomous-run-evidence.md",
+    "specs/031-github-copilot-review-governance/tasks.md",
+    "specs/031-github-copilot-review-governance/evidence/v1/finalization/primary-delivery.json",
+    "specs/031-github-copilot-review-governance/evidence/v1/finalization/completion-delivery.json"
+  ],
+  "canonicalProjection": {
+    "status": "Active",
+    "completedTasks": 165,
+    "totalTasks": 168,
+    "nextTask": "T166"
+  },
+  "selfCommitClaimed": false,
+  "pushClaimed": false,
+  "pullRequestClaimed": false,
+  "completionMergeClaimed": false,
+  "laterCloseoutClaimed": false,
+  "copilotQuotaAvailable": false,
+  "copilotQuotaExpectedReset": "2026-09-01"
+}
