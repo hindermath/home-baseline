@@ -48,7 +48,7 @@ rollback and permission scope.
 | Plan re-review | Completed | Passed mit `18/18` Requirements, `10/10` Gates, `9/9` Vertraegen und `0` Findings; Receipt `checklists/plan-review.md`, Payload `2784763c3650d141a2b1ccee153784c90415dc738f4724b008de246f3b0ac91a`. |
 | Tasks | Completed | Eine abhaengigkeitsgeordnete, ausfuehrbare Aufgabenliste mit `168` lueckenlosen Tasks wurde erzeugt und selbstvalidiert; Payload `ad5dbe67cffcb158117e269cdaeef88f0577b702eb31e3adec65b5e3f240e381`. |
 | Analyze preparation | Completed | Der vorbereitende `analyze-4`-Lauf ist abgeschlossen; die lokale Analyse bleibt ein eigenes Gate. |
-| Implement | PreMerge closeout | Kanonischer State `Implement/Active`, exakt `155/168`; T001–T155 sind abgeschlossen, T156–T168 bleiben offen. |
+| Implement | CompletionReady | Kanonischer State `Implement/Active`, exakt `165/168`; T001–T165 sind abgeschlossen, T166–T168 bleiben offen. |
 | Local analyze 1 | Blocked / historical | `implementation-analysis-local.md`; sechs Findings erforderten Remediation 1. |
 | Local remediation 1 | Completed / superseded | Historische Sanierung; ihre Closure-Claims wurden durch `analyze-local-2` widerrufen. |
 | Local analyze 2 | Blocked / historical | `implementation-analysis-local-2.md`; sechs Findings blieben offen. |
@@ -103,3 +103,26 @@ Provider- und Serienedits gesperrt. Die eng begrenzte T166-Allowlist steht im
 reviewten Delivery-Set-Vertrag. Closeout-Zustaende werden weiterhin aus
 `closeout` im kanonischen JSON-State gelesen; dieser Reader erteilt keine
 zusaetzliche Provider- oder Delivery-Autoritaet.
+
+## Kausaler Completion-Kandidat T166
+
+Der primaere PR `#260` wurde nach regulaerem Protection-Refusal mit dem
+ausdruecklich autorisierten begrenzten Admin-Bypass als
+`54cf8a7059a3990a128afda210f844a03d759454` gemergt. Lokal und remote wurden
+danach fast-forward synchronisiert und der primaere Featurebranch beidseitig
+entfernt. Der erforderliche Home Sync bestand als lokaler Commit
+`27ea3f50110ce4eb8b5462e2f71f330d4c461f50`.
+
+Die T165-Revalidierung deckte eine ausschliesslich durch T155 verursachte
+aktive Rename-Referenzluecke auf. Der schmale Korrektur-PR `#261` aktualisierte
+nur Intake-Review- und Intake-Series-Leser samt Hashbindungen und wurde als
+`3e2c3e0b0f2980689ba3d9939d52ebcbe2427fb3` gemergt. Danach bestanden
+Intake-Review, Series Manifest/Receipt, Stage-B-Handoff und Position-7-
+Isolation read-only. Alle zehn Primary-Gates sind `Passed`; Provider-,
+Subscription-, Budgetkauf-, Cancellation-, Position-7- und Optional-Hook-
+Out-of-scope-Zaehler sind `0`.
+
+Dieser Kandidat bleibt absichtlich `Active/165/168` und behauptet weder seinen
+eigenen Commit oder Push noch PR-Erfolg, Completion-Mergehash oder spaetere
+Closeoutfakten. Copilot-Quota bleibt bis 2026-09-01 nicht verfuegbar und gilt
+weder als Approval noch als Pass.
