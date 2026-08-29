@@ -7,7 +7,7 @@
 - Policy: `home-baseline-active-lastenhefte-v1`
 - Ergebnis / Outcome: `Ready`
 - Ziel / Target:
-  `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md`
+  `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md`
 - Normalized SHA-256:
   `303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5`
 - Git-Blob: `a132e04115f06ec7e3591c5dee179e437ab3415d`
@@ -111,7 +111,7 @@ erfüllen:
 ## Nächste Aktion / Next Action
 
 ```text
-$speckit-autonomous Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md deliveryMode=MergeAndSync adminBypass=Authorized
+$speckit-autonomous Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md deliveryMode=MergeAndSync adminBypass=Authorized
 ```
 
 Diese Aktion ist durch den aktuellen Benutzerauftrag ausdrücklich freigegeben.

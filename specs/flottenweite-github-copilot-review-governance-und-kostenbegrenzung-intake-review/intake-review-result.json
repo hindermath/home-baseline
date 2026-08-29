@@ -11,11 +11,11 @@
   },
   "requestEvidence": {
     "path": "specs/flottenweite-github-copilot-review-governance-und-kostenbegrenzung-intake-review/intake-review-request.json",
-    "normalizedSha256": "ff79b28df2e6df59fef76620788df71e0af4fb03da5b6a1ccb4bb18a894b6932"
+    "normalizedSha256": "ec1fee5c615b9bb01c7a60b6a519a236c332e63dd9b82a9691efdb8369610b22"
   },
   "targets": [
     {
-      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
       "role": "Primary",
       "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
       "gitBlob": "a132e04115f06ec7e3591c5dee179e437ab3415d"
@@ -27,7 +27,7 @@
   "operatorExceptions": [],
   "coverage": {
     "individual": [
-      "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+      "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md"
     ],
     "series": [],
     "workers": []

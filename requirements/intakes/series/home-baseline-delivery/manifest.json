@@ -7,7 +7,7 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
       "role": "Primary",
       "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
       "status": "Eligible"
@@ -206,13 +206,13 @@
     }
   ],
   "roots": [
-    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
     {
-      "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
       "to": "Lastenheft_Secure-Development-Container-Hardening.md",
       "kind": "HardCompletionGate",
       "binding": true
