@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-25
+**Stand:** 2026-08-29
 **Reihenfolge:** Position 15
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Fachinformatiker*innen, IT-Kaufleute, Lehrende, Maintainer,
@@ -26,6 +26,15 @@ stackable `secure-development-assurance-governance` v0.1.0 preset. The preset
 assesses policy-to-evidence consistency and complements, rather than
 duplicates, technical security governance.*
 
+## Verbindliche Handoff-Ergänzung 2026-08-29
+
+Das Preset ergänzt das bestehende Zwölfer-Profil als optionales
+Dreizehner-Assurance-Profil. Acht-Preset-Standardprofil sowie Profile 9 bis 12
+bleiben unverändert. Es verwendet Evidence unter
+docs/security/secure-development/<datum>-<kontext>/ und Runbooks unter
+docs/runbooks/secure-development/. HOSK/GWDG ist ausschließlich externer
+Vergleich.
+
 ## 2. Reihenfolge und Voraussetzungen / Order and Prerequisites
 
 Der Intake steht auf Position 15 und benötigt den abgeschlossenen Gap-Audit auf
@@ -47,10 +56,8 @@ Installationsnachweis für Position 16.
 
 Das Preset stellt genau zwei Commands bereit:
 
-- `$speckit-secure-development-status`: strikt read-only; prüft Manifest,
-  Versionen, Hashes, Sammelband, Komposition und Review-Aktualität.
-- `$speckit-secure-development-review`: erzeugt oder aktualisiert einen
-  nachvollziehbaren Assurance-Review, startet aber keinen Folgelauf.
+- `$speckit-secure-development-status [<evidence-dir>]`
+- `$speckit-secure-development-review <baseline|delta|closure|image-impact> <context-id> <training|mixed|development>`
 
 ## 4. Portabler Vertrag / Portable Contract
 
@@ -61,7 +68,8 @@ ausdrücklich überschreiben.
 Jeder Review-Punkt besitzt zwei getrennte Achsen:
 
 - Anwendbarkeit: `Applicable`, `N/A`, `Open`;
-- Erfüllung: `Pass`, `Fail`, `NotAssessed`.
+- Umsetzung: `Fulfilled`, `Partly Fulfilled`, `Not Fulfilled`,
+  `Not Assessed`.
 
 Zulässige Review-Ergebnisse:
 
@@ -73,6 +81,9 @@ Zulässige Review-Ergebnisse:
 Review-Evidence enthält mindestens Owner, Reviewer, Reviewdatum, Evidence-Pfad,
 Restrisiko, Wiedervorlage, Baseline-Version und normalisierte
 SHA-256-Bindung. Das Preset synchronisiert Richtlinien niemals automatisch.
+Die Gates heißen `baseline`, `delta`, `closure` und `image-impact`.
+Technische Validierung, Pilotfreigabe, Projektabnahme und allgemeine Freigabe
+bleiben vier getrennte Entscheidungen.
 
 ## 5. Scope
 
@@ -110,8 +121,9 @@ SHA-256-Bindung. Das Preset synchronisiert Richtlinien niemals automatisch.
 - **SDA-004:** Der Validator prüft Manifestpfad, Dokumentversionen,
   normalisierte Hashes, zwölf eindeutige Checklisten-IDs, Sammelband und
   mitgeltende Dokumente.
-- **SDA-005:** `Ready` ist bei `Open`, `Fail`, `NotAssessed` für anwendbare
-  Pflichtpunkte, fehlender Evidence oder abgelaufenem Review unzulässig.
+- **SDA-005:** `Ready` ist bei `Open`, `Partly Fulfilled`,
+  `Not Fulfilled` oder `Not Assessed` für anwendbare Pflichtpunkte,
+  fehlender Evidence oder abgelaufenem Review unzulässig.
 - **SDA-006:** `N/A` benötigt Begründung und Re-Evaluation-Trigger.
 - **SDA-007:** Akzeptierte Risiken benötigen Owner, Reviewer, Reviewdatum,
   Restrisiko und Wiedervorlage.
@@ -121,8 +133,8 @@ SHA-256-Bindung. Das Preset synchronisiert Richtlinien niemals automatisch.
   Kompositionsvoraussetzung geprüft.
 - **SDA-010:** Architecture, iSAQB, A11Y, Cross-Platform und Agent Parity
   dürfen nur mit begründetem `N/A` fehlen.
-- **SDA-011:** Bestehende Acht- und Elf-Preset-Profile bleiben unverändert
-  installierbar.
+- **SDA-011:** Bestehende Profile 8 bis 12 bleiben unverändert installierbar;
+  das Assurance-Profil enthält genau 13 Presets.
 - **SDA-012:** Alle Dokumente erfüllen Deutsch-zuerst/Englisch-danach,
   CEFR B2, Begriffserklärung und anwendbare WCAG-2.2-AA-Kriterien.
 - **SDA-013:** Community-Kommunikation spricht `@mnriem` höchstens einmal
@@ -151,11 +163,11 @@ Positive und negative Fixtures prüfen:
 - **AC-SDA-001:** Kanonischer Scaffold und Publikationskopie sind bytegleich.
 - **AC-SDA-002:** Beide Validatoren liefern für alle Fixtures dieselben
   Statusklassen und Exitcodes.
-- **AC-SDA-003:** Alle zwölf Presets eines temporären Zielprofils lassen sich
+- **AC-SDA-003:** Alle dreizehn Presets eines temporären Zielprofils lassen sich
   installieren, auflösen, deaktivieren, reaktivieren und entfernen.
 - **AC-SDA-004:** Jede Agentenoberfläche zeigt beide neuen Commands genau
   einmal.
-- **AC-SDA-005:** Acht- und Elf-Preset-Profile bleiben unverändert funktionsfähig.
+- **AC-SDA-005:** Profile 8 bis 12 bleiben unverändert funktionsfähig.
 - **AC-SDA-006:** `v0.1.0` ist über die versionierte GitHub-ZIP-Datei
   installierbar und durch SHA-256 belegt.
 - **AC-SDA-007:** Das öffentliche Repository besitzt MIT-Lizenz und die
@@ -184,7 +196,7 @@ $speckit-intake-review Review `Lastenheft_Preset-Secure-Development-Assurance-Go
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_Preset-Secure-Development-Assurance-Governance.md` as the binding intake for Position 15. Create the feature specification for optional preset `secure-development-assurance-governance` v0.1.0 at priority 15 with exactly `$speckit-secure-development-status` and `$speckit-secure-development-review`. Preserve SDA-001 through SDA-014, AC-SDA-001 through AC-SDA-008, `security-governance >=0.6.1`, all status vocabularies, Bash/PowerShell parity, non-duplication, no-certification, accessibility, publication, and remote-authority boundaries. Do not install the preset fleet-wide or start Position 16.
+$speckit-specify Use `Lastenheft_Preset-Secure-Development-Assurance-Governance.md` as the binding intake for Position 15. Create the feature specification for optional preset `secure-development-assurance-governance` v0.1.0 at priority 15 with exactly `$speckit-secure-development-status [<evidence-dir>]` and `$speckit-secure-development-review <baseline|delta|closure|image-impact> <context-id> <training|mixed|development>`. Preserve SDA-001 through SDA-014, AC-SDA-001 through AC-SDA-008, `security-governance >=0.6.1`, all status vocabularies, Bash/PowerShell parity, non-duplication, no-certification, accessibility, publication, and remote-authority boundaries. Do not install the preset fleet-wide or start Position 16.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "f018d819-033a-4d18-bef6-a17345b87e44",
+  "type": "Update",
+  "status": "Completed",
+  "createdAt": "2026-08-29T12:19:16Z",
+  "authorityEvidence": "Thorsten approved the Secure-Development gate handoff and instructed implementation after G4 completion; Issue #263 bounds delivery to a Draft PR.",
+  "proposalPath": "specs/intake-authoring-operations/f018d819-033a-4d18-bef6-a17345b87e44/proposal.json",
+  "proposalNormalizedSha256": "57bdeee816570f7ba2692fa8ce2629b0f8422fa3f244b68722f8e14c32727836",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-08-29T12:19:16Z",
+    "evidence": "Approved plan; execute after G4 completion."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/f018d819-033a-4d18-bef6-a17345b87e44/staging",
+  "intendedTargets": [
+    "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless target, receipt, predecessor archive, review invalidation, and series successor validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md"
+}

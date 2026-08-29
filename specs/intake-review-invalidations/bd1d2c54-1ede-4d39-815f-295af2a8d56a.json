@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeReviewInvalidation",
+  "invalidationId": "bd1d2c54-1ede-4d39-815f-295af2a8d56a",
+  "reviewId": "d1a90dcb-dc43-4938-b837-1e98744184ab",
+  "invalidatedAt": "2026-08-29T12:19:16Z",
+  "reason": "Six reviewed targets were explicitly superseded by the approved Home Baseline–ABSDD Secure-Development gate handoff; their normalized hashes changed.",
+  "archivedReviewRequest": {
+    "path": "specs/active-lastenheft-normalization/history/bd1d2c54-1ede-4d39-815f-295af2a8d56a/intake-review-request.json",
+    "normalizedSha256": "17a39c6065b17fe6bc9cec90dd5822dabef590abbb96bed60712986cc8e2ef09"
+  },
+  "archivedReviewResult": {
+    "path": "specs/active-lastenheft-normalization/history/bd1d2c54-1ede-4d39-815f-295af2a8d56a/intake-review-result.json",
+    "normalizedSha256": "f2368a81ca86a454829f329f4224bf9919df1dbc463f2d5047c7dace51e9f044"
+  },
+  "changedTargets": [
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "before": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+      "after": "d73f7c495ae5f0ead4aade553c499ded06ff5540783653b88841a0e1bf0ba21c"
+    },
+    {
+      "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "before": "9a253fc5cf0f6f7979866c14fc71ddfd317c13e195d363967c3c2de641dfb666",
+      "after": "9da71e3248c7ee036c0f5455a7aef5cb344a8f4623316dff599029a2a04afc8a"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "before": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf",
+      "after": "317c86ae9c3a510598afd136a51f5b2f647ec4d614225df195b29d21e074c3e6"
+    },
+    {
+      "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "before": "57ed0c7b90513465c5f1a7221ffefe2ce81abe8aa129953b9424daeb61a49c7e",
+      "after": "a69ccbc6082382cfbb63ab4173e50187b435a95a88fc3e772138ba81b9700dbf"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "before": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f",
+      "after": "da89c399692895cadc3d1872dd7d136e5c7799903d25989745485beb88b38eef"
+    },
+    {
+      "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "before": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
+      "after": "78ff15217ccdf3d9d520386fc2134bedf186390bf01761767c61b59c7ebaea24"
+    }
+  ],
+  "status": "Invalidated",
+  "nextAction": "$speckit-intake-review the six superseded targets before any downstream run"
+}

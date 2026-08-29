@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "8b8bb303-7804-4491-9f17-31dabb69e19e",
+  "type": "Update",
+  "status": "Completed",
+  "createdAt": "2026-08-29T12:19:16Z",
+  "authorityEvidence": "Thorsten approved the Secure-Development gate handoff and instructed implementation after G4 completion; Issue #263 bounds delivery to a Draft PR.",
+  "proposalPath": "specs/intake-authoring-operations/8b8bb303-7804-4491-9f17-31dabb69e19e/proposal.json",
+  "proposalNormalizedSha256": "43d36bf712ec6aa3974a4b313bb21c194cadff02c36859230d3c5a96537b789e",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-08-29T12:19:16Z",
+    "evidence": "Approved plan; execute after G4 completion."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/8b8bb303-7804-4491-9f17-31dabb69e19e/staging",
+  "intendedTargets": [
+    "Lastenheft_Preset-Secure-Development-Assurance-Governance.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_Preset-Secure-Development-Assurance-Governance.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_Preset-Secure-Development-Assurance-Governance.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless target, receipt, predecessor archive, review invalidation, and series successor validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Preset-Secure-Development-Assurance-Governance.md"
+}

@@ -569,6 +569,14 @@
       "labelEn": "GitHub Copilot review governance",
       "netLines": 15206,
       "activeDays": 1
+    },
+    {
+      "slot": 70,
+      "id": "absdd-secure-development-gate-handoff",
+      "labelDe": "ABSDD-Secure-Development-Gate-Verzahnung",
+      "labelEn": "ABSDD secure-development gate integration",
+      "netLines": 6939,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

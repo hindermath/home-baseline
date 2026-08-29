@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "9e9812aa-9a76-4956-8451-df0550f7b674",
+  "type": "Create",
+  "status": "Completed",
+  "createdAt": "2026-08-29T12:19:16Z",
+  "authorityEvidence": "Thorsten approved the Secure-Development gate handoff and instructed implementation after G4 completion; Issue #263 bounds delivery to a Draft PR.",
+  "proposalPath": "specs/intake-authoring-operations/9e9812aa-9a76-4956-8451-df0550f7b674/proposal.json",
+  "proposalNormalizedSha256": "9e133e57b80b67eebe503be2cd4b8edf0d3fb0f20c4b0cfb0e5feb078e7c91b3",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-08-29T12:19:16Z",
+    "evidence": "Approved plan; execute after G4 completion."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/9e9812aa-9a76-4956-8451-df0550f7b674/staging",
+  "intendedTargets": [
+    "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless target, receipt, predecessor archive, review invalidation, and series successor validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md"
+}

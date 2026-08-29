@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-25
+**Stand:** 2026-08-29
 **Reihenfolge:** Position 16
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Auszubildende in IT-Berufen, Lehrende, Entwickler*innen,
@@ -21,6 +21,16 @@ Quelldateien reproduzierbar.
 with confirmed audit and preset results. Only materially affected documents
 change, and the compendium remains reproducible from its twelve source
 checklists.*
+
+## Verbindliche Handoff-Ergänzung 2026-08-29
+
+Baseline 3.3.0 erhält einen S-ADR unter docs/security/adr/ und ein aktualisiertes
+Threat Model. Die fachliche Wirkung wird mit baseline, delta, closure und
+image-impact belegt. Anwendbarkeit und Umsetzung verwenden ausschließlich die
+vereinbarten zweiachsigen Werte. Technische Validierung, Pilotfreigabe,
+Projektabnahme und allgemeine Freigabe bleiben getrennt. Die
+Dokumentationswirkung ist GeneratedUpdate; Statistik wird aus der kanonischen
+Quelle gerendert, ohne Home-Sync.
 
 ## 2. Reihenfolge und Voraussetzungen / Order and Prerequisites
 
@@ -46,16 +56,17 @@ Dokumente behalten ihre Version, wenn ihr Inhalt unverändert bleibt.
 
 ## 4. Preset-Profile / Preset Profiles
 
-Die Dokumentation unterscheidet drei Profile:
+Die Dokumentation unterscheidet weiterhin die bestehenden Profile und ein
+neues optionales Assurance-Profil:
 
 1. acht Standard-Presets;
-2. elf Presets mit optionaler Intake-Governance;
-3. zwölf Presets mit zusätzlicher
+2. optionale Profile 9 bis 12, zuletzt das Model-Routing-Zwölferprofil;
+3. dreizehn Presets mit zusätzlicher
    `secure-development-assurance-governance` auf Priorität `15`.
 
-Das allgemeine Acht-Preset-Profil und das bestehende Elf-Preset-Profil bleiben
+Das allgemeine Acht-Preset-Profil und die bestehenden Profile 9 bis 12 bleiben
 unverändert. Home Baseline erhält das neue Preset ausschließlich im
-Zwölferprofil.
+Dreizehnerprofil.
 
 ## 5. Scope
 
@@ -89,11 +100,11 @@ Zwölferprofil.
   vollständige mitgeltende Dokumente, Versionen und normalisierte Hashes.
 - **SDB-004:** Der Sammelband wird ausschließlich aus den zwölf Quelldateien
   erzeugt und in Bash sowie PowerShell identisch geprüft.
-- **SDB-005:** Die drei Preset-Profile werden für Lernende textorientiert
+- **SDB-005:** Die Profile 8 bis 13 werden für Lernende textorientiert
   erklärt; Priorität 15 und Komposition sind eindeutig.
-- **SDB-006:** Das Zwölferprofil installiert
+- **SDB-006:** Das Dreizehnerprofil installiert
   `secure-development-assurance-governance` v0.1.0 auf Priorität 15.
-- **SDB-007:** Bestehende Acht- und Elf-Preset-Profile bleiben unverändert
+- **SDB-007:** Bestehende Profile 8 bis 12 bleiben unverändert
   auflösbar.
 - **SDB-008:** Richtlinie, Checklisten, Sammelband, Manifest und mitgeltende
   Dokumente verwenden konsistente Begriffe und Statusmodelle.
@@ -112,7 +123,7 @@ Zwölferprofil.
 - Begründung für unveränderte Dokumente;
 - Sammelband-Build in Bash und PowerShell;
 - positive und negative Manifest-/Hash-/Drift-Fixtures;
-- Installation und Resolve aller drei Profile;
+- Installation und Resolve der Profile 8 bis 13;
 - genau eine Command-/Skill-Anzeige je Agentenoberfläche;
 - `git diff --check`, Secret-Scan, Agent-Parität und Lernpaketprüfung;
 - nachvollziehbarer PR-, Review- und Merge-Nachweis.
@@ -124,9 +135,9 @@ Zwölferprofil.
   hashkonsistent; unveränderte Quellen behalten ihre Version.
 - **AC-SDB-003:** Bash und PowerShell erzeugen beziehungsweise prüfen denselben
   Sammelband.
-- **AC-SDB-004:** Acht-, Elf- und Zwölferprofil lassen sich unabhängig
+- **AC-SDB-004:** Profile 8 bis 13 lassen sich unabhängig
   installieren und auflösen.
-- **AC-SDB-005:** Das neue Preset ist nur im Zwölferprofil verpflichtend.
+- **AC-SDB-005:** Das neue Preset ist nur im Dreizehnerprofil verpflichtend.
 - **AC-SDB-006:** Alle Agentenoberflächen und die Projektstatistik sind
   konsistent.
 - **AC-SDB-007:** Es verbleibt keine Critical-/High-Drift zwischen Richtlinie,

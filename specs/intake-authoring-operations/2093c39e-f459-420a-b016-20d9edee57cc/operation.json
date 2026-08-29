@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "2093c39e-f459-420a-b016-20d9edee57cc",
+  "type": "Update",
+  "status": "Completed",
+  "createdAt": "2026-08-29T12:19:16Z",
+  "authorityEvidence": "Thorsten approved the Secure-Development gate handoff and instructed implementation after G4 completion; Issue #263 bounds delivery to a Draft PR.",
+  "proposalPath": "specs/intake-authoring-operations/2093c39e-f459-420a-b016-20d9edee57cc/proposal.json",
+  "proposalNormalizedSha256": "870f259b8079d4e37f205e1a1b58c53651c4aaa5aac2a02221a03997011d8bdb",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-08-29T12:19:16Z",
+    "evidence": "Approved plan; execute after G4 completion."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/2093c39e-f459-420a-b016-20d9edee57cc/staging",
+  "intendedTargets": [
+    "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless target, receipt, predecessor archive, review invalidation, and series successor validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md"
+}

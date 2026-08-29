@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-25
+**Stand:** 2026-08-29
 **Reihenfolge:** Position 14
 **Delivery Mode:** `MergeAndSync`
 **Zielgruppe:** Fachinformatiker*innen, Kaufleute für IT-System-Management,
@@ -29,6 +29,20 @@ governance preset composition, and the `absdd-image-sandbox` pilot state. It
 creates evidence for later productization without changing policy, presets, or
 product code.*
 
+## Verbindliche Handoff-Ergänzung 2026-08-29
+
+Der Audit bleibt read-only und bewertet den neuen Vertrag mit den vier Gates
+baseline, delta, closure und image-impact. Jeder Prüfpunkt führt Anwendbarkeit
+(Applicable, N/A, Open) und Umsetzung (Fulfilled, Partly Fulfilled,
+Not Fulfilled, Not Assessed) getrennt. Zulässige Gesamtergebnisse sind Ready,
+ReadyWithAcceptedRisks, NeedsRemediation und Blocked.
+
+Der Audit bindet Home Baseline, die sechs betroffenen Intakes und den
+ABSDD-Ausgangsstand an exakte Commits und Hashes. HOSK/GWDG darf ausschließlich
+als ExternalComparison erscheinen. Technische Validierung, Pilotfreigabe,
+Projektabnahme und allgemeine Sandbox-/Flottenfreigabe werden nicht
+zusammengezogen.
+
 ## 2. Reihenfolge und Voraussetzungen / Order and Prerequisites
 
 Der Intake steht auf Position 14. Er beginnt erst, wenn Position 5 die aktuelle
@@ -49,7 +63,8 @@ Dokumentfamilie:
 - generierter Checklisten-Sammelband;
 - `baseline-manifest.json`;
 - mitgeltende Dokumente und Standardsverweise;
-- Profile für acht Standard-Presets und drei optionale Intake-Presets.
+- das Acht-Preset-Standardprofil und die optionalen Profile bis zum bestehenden
+  Zwölfer-Profil.
 
 Technische Sicherheitsanforderungen werden bereits insbesondere durch
 `security-governance` und `architecture-governance` abgedeckt. Noch fehlt ein
@@ -87,7 +102,7 @@ Der Audit prüft mindestens:
 - `docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md`;
 - `docs/secure-development/baseline-manifest.json`;
 - alle Dateien unter `docs/secure-development/mitgeltende-dokumente/`;
-- die acht Standard-Presets und die drei optionalen Intake-Presets;
+- die acht Standard-Presets und die optionalen Profile 9 bis 12;
 - `security-governance` als technische Security-Basis;
 - `architecture-governance`, `isaqb-architecture-governance`,
   `a11y-governance`, `cross-platform-governance` und
@@ -118,7 +133,7 @@ Der Audit prüft mindestens:
   vorhandenen Build-Varianten geprüft.
 - **SDG-004:** Jedes mitgeltende Dokument erhält genau eine Mapping-Entscheidung
   pro betroffener Richtlinien-, Checklisten- und Preset-Fläche.
-- **SDG-005:** Alle acht Standard-Presets und drei optionalen Intake-Presets
+- **SDG-005:** Alle acht Standard-Presets und die optionalen Profile 9 bis 12
   werden auf Abdeckung und `DuplicateRisk` geprüft.
 - **SDG-006:** Standardsverweise werden auf tatsächliche Anwendbarkeit,
   Evidence-Grenze und unzulässige Zertifizierungsbehauptungen geprüft.

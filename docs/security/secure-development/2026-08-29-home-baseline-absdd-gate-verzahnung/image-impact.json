@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "home-baseline-absdd-gate-verzahnung",
+  "gate": "image-impact",
+  "mode": "mixed",
+  "createdAt": "2026-08-29T14:19:16+02:00",
+  "sourceRepository": "https://github.com/hindermath/absdd-image-sandbox",
+  "sourceCommit": "7adaeac18ca259726468a2fe1d1fd028b895e09c",
+  "imageChecks": {
+    "build": "Not Assessed",
+    "compose": "Not Assessed",
+    "toolchain": "Not Assessed",
+    "ociDigest": "Not Assessed",
+    "sbom": "Not Assessed",
+    "secrets": "Not Assessed",
+    "mounts": "Not Assessed",
+    "network": "Not Assessed",
+    "ci": "Not Assessed"
+  },
+  "assessments": [
+    {
+      "id": "IMAGE-001",
+      "applicability": "Applicable",
+      "implementation": "Not Assessed",
+      "evidence": "ABSDD adoption remains Position 17 and was not started."
+    },
+    {
+      "id": "IMAGE-002",
+      "applicability": "Open",
+      "implementation": "Not Assessed",
+      "evidence": "OCI digest and SBOM require a later authorized ABSDD build."
+    }
+  ],
+  "outcome": "NeedsRemediation",
+  "nextAction": "Run Position 17 only after Positions 14 through 16 and explicit ABSDD authority.",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
+}

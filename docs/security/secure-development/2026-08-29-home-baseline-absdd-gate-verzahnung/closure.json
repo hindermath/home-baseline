@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "home-baseline-absdd-gate-verzahnung",
+  "gate": "closure",
+  "mode": "mixed",
+  "createdAt": "2026-08-29T14:19:16+02:00",
+  "humanDecisions": {
+    "technicalValidation": {
+      "status": "Open",
+      "authority": "Repository maintainers",
+      "evidence": "Draft PR checks and review"
+    },
+    "pilotAuthorization": {
+      "status": "Open",
+      "authority": "Named pilot owner",
+      "evidence": "N/A"
+    },
+    "projectAcceptance": {
+      "status": "Open",
+      "authority": "ABSDD project owner",
+      "evidence": "N/A"
+    },
+    "generalRelease": {
+      "status": "Open",
+      "authority": "Authorized sandbox/product/fleet governance",
+      "evidence": "N/A"
+    }
+  },
+  "assessments": [
+    {
+      "id": "CLOSE-001",
+      "applicability": "Applicable",
+      "implementation": "Partly Fulfilled",
+      "evidence": "Draft PR pending"
+    },
+    {
+      "id": "CLOSE-002",
+      "applicability": "Open",
+      "implementation": "Not Assessed",
+      "evidence": "Human pilot authorization pending"
+    },
+    {
+      "id": "CLOSE-003",
+      "applicability": "Open",
+      "implementation": "Not Assessed",
+      "evidence": "ABSDD project acceptance pending"
+    },
+    {
+      "id": "CLOSE-004",
+      "applicability": "Open",
+      "implementation": "Not Assessed",
+      "evidence": "General release explicitly outside this delivery"
+    }
+  ],
+  "outcome": "NeedsRemediation",
+  "nextAction": "Complete Draft PR review; do not infer pilot, project, or general release.",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
+}

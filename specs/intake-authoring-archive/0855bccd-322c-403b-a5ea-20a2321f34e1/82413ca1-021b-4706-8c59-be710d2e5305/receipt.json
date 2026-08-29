@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "99bc2bb0-a44d-4b07-9cdb-5b9535dfee29",
+  "intakeId": "0855bccd-322c-403b-a5ea-20a2321f34e1",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "9be95e6b-6734-4a52-a754-2cdc74184825",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the Secure Development Assurance preset and RL/CL alignment intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+    "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved Secure Development Assurance preset and RL/CL alignment plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "fbf58af7996d73340b4375178e834ab0c9e71e09c7d7e62aa163c71463b08058",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welches Repository bildet den ersten Feldnachweis?",
+      "answer": "absdd-image-sandbox nach abgeschlossener Home-Baseline-3.3-Synchronisierung.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Nachweisgrenze gilt?",
+      "answer": "Projekt-Evidence bleibt erhalten; der Review behauptet keine ISO-Zertifizierung und ersetzt keine SoA.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
+      "answer": "MergeAndSync für autorisierte Home-Baseline- und ABSDD-PRs; keine automatische Flottenadoption.",
+      "evidence": "Explicit current and standing user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+}

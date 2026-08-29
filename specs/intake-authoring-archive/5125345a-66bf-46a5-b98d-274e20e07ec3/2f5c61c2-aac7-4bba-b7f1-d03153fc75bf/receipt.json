@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "72c1ce60-fbe7-4b19-9523-95eb82c4c538",
+  "intakeId": "5125345a-66bf-46a5-b98d-274e20e07ec3",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.0"
+  },
+  "createdAt": "2026-07-25T12:58:33Z",
+  "operation": {
+    "operationId": "0266359d-fd21-407f-b4cf-2bca519087ed",
+    "type": "Update",
+    "authorityEvidence": "Explicit current user instruction to implement the approved active-series normalization in place."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+    "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Archived prior accepted intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/5125345a-66bf-46a5-b98d-274e20e07ec3/0266359d-fd21-407f-b4cf-2bca519087ed/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "45e3193c3f37808bc27500b3b00f9739f65e63f6f7e1d757aa58d2533b10af0c",
+      "gitBlob": "30dc3adde0733fb03eae8aa83fcc79ed55e96a0c",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved active intake series normalization request",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "15cb72a613f34913b00babe508682d9aae2794d494e965b3610874a5200d86c4",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welcher aktive Zielpfad und welche Intake-Identitaet bleiben erhalten?",
+      "answer": "Lastenheft_Secure-Development-Container-Hardening.md; die bisherige Receipt-Identitaet wird als stabile intakeId fortgefuehrt.",
+      "evidence": "Der genehmigte Plan verlangt ein In-place-Update ohne neuen Intake."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Rolle und Abhaengigkeitsgrenze gilt in der aktiven Reihe?",
+      "answer": "Position 7; depends on position 5 and provides the sandbox baseline for position 8.",
+      "evidence": "Die aktualisierte Abarbeitungsreihenfolge und der erneuerte Schema-1.1-Series-Request definieren dieselbe Rolle und dieselben Kanten."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Preset- und Delivery-Basis ist verbindlich?",
+      "answer": "Aktive Zehn-Preset-Matrix; LocalImplementation fuer die kopierbaren Feature-Prompts.",
+      "evidence": "Die Aktualisierung normalisiert veraltete Acht-Preset-Verweise und erteilt keine spaetere Remote-Autoritaet."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "The intake update is authorized; later feature delivery remains LocalImplementation unless separately authorized.",
+  "promptState": "Enabled",
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/5125345a-66bf-46a5-b98d-274e20e07ec3/0266359d-fd21-407f-b4cf-2bca519087ed/receipt.json",
+    "targetNormalizedSha256": "45e3193c3f37808bc27500b3b00f9739f65e63f6f7e1d757aa58d2533b10af0c",
+    "archiveTargetPath": "specs/intake-authoring-archive/5125345a-66bf-46a5-b98d-274e20e07ec3/0266359d-fd21-407f-b4cf-2bca519087ed/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/5125345a-66bf-46a5-b98d-274e20e07ec3/0266359d-fd21-407f-b4cf-2bca519087ed/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user instruction: implement the approved active intake series normalization plan.",
+  "series": {
+    "seriesId": "c30d5615-ea7f-4e38-8cf1-4aeb1323f76a",
+    "manifestPath": "specs/active-lastenheft-normalization/intake-review-request.json",
+    "order": 7,
+    "role": "OrderedMember",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-Container-Hardening.md"
+}

@@ -596,6 +596,44 @@
         "speckit-parallel-autonomous-consolidate"
       ],
       "installed_at": "2026-08-15T23:06:53.901823+00:00"
+    },
+    "secure-development-assurance-governance": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:94d620d5d43c3b0f33f6ec2235495fa3073e3b3631b021576a8ffd2036a4b0e3",
+      "enabled": true,
+      "priority": 15,
+      "registered_commands": {
+        "agy": [
+          "speckit.secure-development-status",
+          "speckit.secure-development-review"
+        ],
+        "claude": [
+          "speckit.secure-development-status",
+          "speckit.secure-development-review"
+        ],
+        "codex": [
+          "speckit.secure-development-status",
+          "speckit.secure-development-review"
+        ],
+        "copilot": [
+          "speckit.secure-development-status",
+          "speckit.secure-development-review"
+        ],
+        "opencode": [
+          "speckit.secure-development-status",
+          "speckit.secure-development-review"
+        ],
+        "zed": [
+          "speckit.secure-development-status",
+          "speckit.secure-development-review"
+        ]
+      },
+      "registered_skills": [
+        "speckit-secure-development-status",
+        "speckit-secure-development-review"
+      ],
+      "installed_at": "2026-08-29T12:19:16Z"
     }
   }
 }

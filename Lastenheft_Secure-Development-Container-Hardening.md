@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** vorbereitet fuer separaten Spec-Kit-Lauf
-**Stand:** 2026-06-20
+**Stand:** 2026-08-29
 **Zielgruppe:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten
 
 ## 1. Zweck
@@ -24,6 +24,22 @@ from the secure-development baseline, checklists, related documents, and
 governance presets. It does not build a container or start implementation; it
 first creates a reliable specification for a later container or sandbox
 hardening run.*
+
+## Verbindliche Handoff-Ergänzung 2026-08-29
+
+Position 7 verwendet absdd-image-sandbox am gebundenen Commit
+7adaeac18ca259726468a2fe1d1fd028b895e09c als technische Referenz-Baseline.
+Der spätere Lauf bewertet Build/Compose, Toolchain, OCI-Digest, SBOM, Secrets,
+Mounts, Netzwerk und CI über das image-impact-Gate. Die Evidence liegt unter
+docs/security/secure-development/<datum>-<kontext>/; Runbooks liegen unter
+docs/runbooks/secure-development/.
+
+Die vier Gates baseline, delta, closure und image-impact verwenden die
+Anwendbarkeit Applicable/N/A/Open, die Umsetzung Fulfilled/Partly Fulfilled/
+Not Fulfilled/Not Assessed und die Ergebnisse Ready,
+ReadyWithAcceptedRisks, NeedsRemediation oder Blocked. Technische Validierung,
+Pilotfreigabe, Projektabnahme und allgemeine Sandbox-/Flottenfreigabe sind
+getrennte Entscheidungen. HOSK/GWDG ist nur externer Vergleich.
 
 ### Reihenfolge und Abhaengigkeiten / Order and Dependencies
 
@@ -50,7 +66,7 @@ Relevante Bezugspunkte sind insbesondere:
 - `docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md`
 - `docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md`
 - `constitution.md`, Prinzipien XII bis XIX
-- die aktive Zehn-Preset-Matrix
+- das bestehende Zwölfer-Preset-Profil als technische Ausgangsbasis
 
 ## 3. Zielbild
 
@@ -149,7 +165,11 @@ stillschweigend ausgelassen werden.
 ```text
 $speckit-specify Nutze Lastenheft_Secure-Development-Container-Hardening.md als verbindliche Eingabedatei. Erstelle die Feature-Spezifikation fuer einen sicheren Softwareentwicklungscontainer bzw. eine Entwicklungs-Sandbox. Pruefe zuerst die Assessment Baseline von Position 5 und bewahre die Position 7 sowie die Sandbox Baseline fuer Position 8.
 
-Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden Dokumenten und der aktiven Zehn-Preset-Matrix soll ein belastbares Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer entstehen. Bewahre die Abhaengigkeit von Position 5 und die Sandbox-Baseline fuer Position 8.
+Ziel: Aus der Secure-Development-Basis, den Checklisten, den mitgeltenden
+Dokumenten und dem bestehenden Zwölfer-Preset-Profil soll ein belastbares
+Zielbild fuer einen reproduzierbaren, auditierbaren Entwicklungscontainer
+entstehen. Bewahre die Abhaengigkeit von Position 5 und die Sandbox-Baseline
+fuer Position 8.
 
 Pflichtpunkte:
 - Container-/Sandbox-Typ, Schutzgrenzen und Nicht-Ziele klaeren.

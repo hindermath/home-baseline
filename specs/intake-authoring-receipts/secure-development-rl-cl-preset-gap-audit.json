@@ -1,29 +1,92 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "b56bb6a3-0be9-4c78-a416-57f846b4f288",
+  "receiptId": "6bf4d433-7464-47eb-868e-2c24b857ae73",
   "intakeId": "d3d33cb2-117a-4742-bd64-45098760069c",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.2.1"
+    "version": "0.3.1"
   },
-  "createdAt": "2026-07-25T00:00:00Z",
+  "createdAt": "2026-08-29T12:19:16Z",
   "operation": {
-    "operationId": "54498cc0-daa2-4416-99ba-7a24c516f364",
-    "type": "Create",
-    "authorityEvidence": "Explicit current user approval to implement the Secure Development Assurance preset and RL/CL alignment intake plan."
+    "operationId": "e713b7da-df58-4316-88c2-07878be3c10b",
+    "type": "Update",
+    "authorityEvidence": "Thorsten approved the mapped Secure-Development gate handoff and instructed implementation after completed G4; GitHub Issue #263 records the bounded delivery."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
-    "normalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf"
+    "normalizedSha256": "317c86ae9c3a510598afd136a51f5b2f647ec4d614225df195b29d21e074c3e6"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Byte-identical archived predecessor intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/d3d33cb2-117a-4742-bd64-45098760069c/e713b7da-df58-4316-88c2-07878be3c10b/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf",
+      "gitBlob": "a266bcc249dc5528603330d51d205aa92f0c0e5b",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Approved Home Baseline–ABSDD gate handoff",
+      "location": "Repository",
+      "path": "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "df5cc1b610edb5661eba6f148c6de88001eabd20b88f23cb3fbaba9deed490c8",
+      "gitBlob": "N/A",
+      "proofBoundary": "Issue263AuthorizedHandoff"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Secure-Development evidence contract",
+      "location": "Repository",
+      "path": "docs/security/secure-development/README.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "ba38b2197f21a610a692cfd7bc0597cb189a627c6a9eb05e1ca1d2944eb94f05",
+      "gitBlob": "N/A",
+      "proofBoundary": "LocalCanonicalContract"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
       "kind": "Pasted",
-      "label": "Approved Secure Development Assurance preset and RL/CL alignment plan",
+      "label": "Reference and ABSDD exact-head bindings",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -36,9 +99,30 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "fbf58af7996d73340b4375178e834ab0c9e71e09c7d7e62aa163c71463b08058",
+      "normalizedSha256": "ffc1f976ac3c0bf9a11b887ff8ff42785519f841f10fa1d6863f301af0840308",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+      "proofBoundary": "Issue #249; PR #250 head a8a0fb4a2597f2497972417aa940df3ad357056c; ABSDD 7adaeac18ca259726468a2fe1d1fd028b895e09c"
+    },
+    {
+      "sourceId": "SRC005",
+      "order": 5,
+      "kind": "File",
+      "label": "Explicit invalidation of stale active review",
+      "location": "Repository",
+      "path": "specs/intake-review-invalidations/bd1d2c54-1ede-4d39-815f-295af2a8d56a.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "06c08438c71427b9684201c16719c1c5c4b0a50b481dba4aeba34670aae4d10f",
+      "gitBlob": "N/A",
+      "proofBoundary": "ReviewInvalidation"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -47,23 +131,23 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welche Änderungsgrenze besitzt der erste Lauf?",
-      "answer": "Read-only Gap-Audit ohne Änderung an Richtlinie, Presets, ABSDD oder Produktcode.",
-      "evidence": "Approved four-stage intake plan"
+      "question": "Welche lokale Authority und welche Referenzen gelten?",
+      "answer": "Issue #263 and the approved plan authorize this supersession; Issue #249 and PR #250 remain immutable references.",
+      "evidence": "Current user instruction and exact-head revalidation."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche Mapping-Werte sind verbindlich?",
-      "answer": "Covered, Partial, ProjectOnly, DuplicateRisk und N/A.",
-      "evidence": "Approved four-stage intake plan"
+      "question": "Welcher Secure-Development-Vertrag ist verbindlich?",
+      "answer": "Four gates; two-axis applicability and implementation; four outcomes; four independent decision boundaries.",
+      "evidence": "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md"
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
-      "answer": "MergeAndSync; der Intake startet den Lauf nicht automatisch.",
-      "evidence": "Explicit current and standing user instruction"
+      "question": "Welche Reihen- und Delivery-Grenzen bleiben erhalten?",
+      "answer": "The intakeId, active target order, role, dependency graph, lifecycle status, and existing deliveryAuthority remain unchanged.",
+      "evidence": "Approved plan and active series manifest."
     }
   ],
   "openDecisionIds": [],
@@ -75,27 +159,28 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "authorityEvidence": "This intake supersession is authorized by the approved plan and Issue #263; later feature execution still requires its existing separate delivery authority.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A",
-    "archiveTargetPath": "N/A",
-    "archiveReceiptPath": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/d3d33cb2-117a-4742-bd64-45098760069c/e713b7da-df58-4316-88c2-07878be3c10b/receipt.json",
+    "receiptNormalizedSha256": "406ef78dcefee04306174ecc4e538620140780df1f9ce11f728031c0dc6e0fe0",
+    "targetNormalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf",
+    "archiveTargetPath": "specs/intake-authoring-archive/d3d33cb2-117a-4742-bd64-45098760069c/e713b7da-df58-4316-88c2-07878be3c10b/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/d3d33cb2-117a-4742-bd64-45098760069c/e713b7da-df58-4316-88c2-07878be3c10b/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Thorsten: approved plan; implement after G4 completion. G4 completion and exact heads were revalidated before mutation.",
   "series": {
-    "seriesId": "N/A",
-    "manifestPath": "N/A",
-    "order": "N/A",
-    "role": "N/A",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 9,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md"
