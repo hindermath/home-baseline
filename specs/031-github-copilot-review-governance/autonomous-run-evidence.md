@@ -48,7 +48,7 @@ rollback and permission scope.
 | Plan re-review | Completed | Passed mit `18/18` Requirements, `10/10` Gates, `9/9` Vertraegen und `0` Findings; Receipt `checklists/plan-review.md`, Payload `2784763c3650d141a2b1ccee153784c90415dc738f4724b008de246f3b0ac91a`. |
 | Tasks | Completed | Eine abhaengigkeitsgeordnete, ausfuehrbare Aufgabenliste mit `168` lueckenlosen Tasks wurde erzeugt und selbstvalidiert; Payload `ad5dbe67cffcb158117e269cdaeef88f0577b702eb31e3adec65b5e3f240e381`. |
 | Analyze preparation | Completed | Der vorbereitende `analyze-4`-Lauf ist abgeschlossen; die lokale Analyse bleibt ein eigenes Gate. |
-| Implement | CompletionReady | Kanonischer State `Implement/Active`, exakt `165/168`; T001–T165 sind abgeschlossen, T166–T168 bleiben offen. |
+| Implement | NeedsRevalidation | Kanonischer State `Implement/Active`, exakt `167/168`; T001–T167 sind abgeschlossen, nur T168 bleibt offen. |
 | Local analyze 1 | Blocked / historical | `implementation-analysis-local.md`; sechs Findings erforderten Remediation 1. |
 | Local remediation 1 | Completed / superseded | Historische Sanierung; ihre Closure-Claims wurden durch `analyze-local-2` widerrufen. |
 | Local analyze 2 | Blocked / historical | `implementation-analysis-local-2.md`; sechs Findings blieben offen. |
@@ -126,3 +126,13 @@ Dieser Kandidat bleibt absichtlich `Active/165/168` und behauptet weder seinen
 eigenen Commit oder Push noch PR-Erfolg, Completion-Mergehash oder spaetere
 Closeoutfakten. Copilot-Quota bleibt bis 2026-09-01 nicht verfuegbar und gilt
 weder als Approval noch als Pass.
+
+PR `#262` wurde am separat reviewten Fuenfpfad-Head gemergt. Der lokale und
+entfernte Default Branch wurden auf den bestaetigten Completion-Mergecommit
+`bf0b89d88363411ae07641cb78fc4d50bb22d7a8` fast-forward synchronisiert;
+der Completion-Branch ist lokal und remote entfernt. Fuer dieses ausschliesslich
+feature-lokale Finalization-Set ist weiterer Home Sync `N/A`. Intake, Serie,
+Stage-B-Handoff, Position 7 und alle zehn Primary-Gates wurden danach erneut
+read-only bestaetigt. Der hier projizierte Zustand bleibt bis zur gesonderten
+T168-Ref-Transaktion `Active/NeedsRevalidation/167/168` und behauptet weder
+seinen eigenen Fortschrittscommit/Push noch terminalen Erfolg.

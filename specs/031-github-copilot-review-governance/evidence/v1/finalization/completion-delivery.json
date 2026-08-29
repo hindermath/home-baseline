@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "evidenceType": "CompletionDeliveryCandidateReceipt",
   "runId": "1b7788fb-81f3-4d76-8006-885d834dd454",
-  "state": "PreparedPreCommit",
+  "state": "NeedsRevalidationPrePublication",
   "baseDefaultSha": "3e2c3e0b0f2980689ba3d9939d52ebcbe2427fb3",
   "allowedPaths": [
     "specs/031-github-copilot-review-governance/autonomous-run-state.json",
@@ -13,10 +13,19 @@
   ],
   "canonicalProjection": {
     "status": "Active",
-    "completedTasks": 165,
+    "completedTasks": 167,
     "totalTasks": 168,
-    "nextTask": "T166"
+    "nextTask": "T168"
   },
+  "completionPullRequest": 262,
+  "completionReviewedHeadSha": "0cf5f2ff5c8e94e424b2dc1644056f7148751840",
+  "completionMergeCommitSha": "bf0b89d88363411ae07641cb78fc4d50bb22d7a8",
+  "defaultSyncSha": "bf0b89d88363411ae07641cb78fc4d50bb22d7a8",
+  "completionBranchPresent": false,
+  "completionHomeSync": "N/A/FeatureLocalFinalizationOnly",
+  "finalReadOnlyValidatorsPassed": true,
+  "primaryGatesPassed": 10,
+  "primaryGatesTotal": 10,
   "selfCommitClaimed": false,
   "pushClaimed": false,
   "pullRequestClaimed": false,

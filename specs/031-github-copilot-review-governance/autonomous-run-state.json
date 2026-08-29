@@ -52,8 +52,8 @@
   ],
   "tasks": {
     "path": "specs/031-github-copilot-review-governance/tasks.md",
-    "sha256": "600c4d97c629a81ac614022c8c105a26b9b24c8bc5da54ecc3c0fc0a6cac9d09",
-    "completed": 165,
+    "sha256": "2579a22624926ab1dd1e5f30aa844da619c9eb1a76bd55ee40f7276b45c63d1d",
+    "completed": 167,
     "total": 168
   },
   "routing": {
@@ -759,16 +759,16 @@
         "model": "gpt-5.6-sol",
         "reasoningEffort": "high",
         "preflight": "Completed",
-        "updatedAt": "2026-08-29T14:15:42Z"
+        "updatedAt": "2026-08-29T14:21:38Z"
       }
     ]
   },
-  "lastPassingGate": "T165CompletionReadyTenOfTenPrimaryPassed",
-  "nextExactAction": "Execute T166: create the separate completion branch and causal Active/165/168 completion candidate from synchronized main.",
+  "lastPassingGate": "T167FallibleCloseoutCompleted",
+  "nextExactAction": "Execute T168 exact terminal default-ref transaction from the canonical Active/NeedsRevalidation/167/168 default head.",
   "lastOperation": {
-    "kind": "CompletionReady:T165",
-    "state": "Completed",
-    "summary": "CompletionReady boundary reached: intake, active series and Stage B handoff revalidate read-only; Position 7 is unchanged and unstarted; all ten Primary gates pass with forbidden mutation counters zero."
+    "kind": "CompletionCandidate:T167",
+    "state": "NeedsRevalidation",
+    "summary": "All fallible closeout operations and final read-only validators passed; the exact Active/NeedsRevalidation/167/168 progress commit must be published and revalidated before the terminal T168 transaction."
   },
   "stop": {
     "reason": "N/A",
@@ -779,7 +779,7 @@
     "mergeOrPublication": "Completed",
     "defaultBranchSync": "Completed",
     "postMergeActions": "Completed",
-    "finalValidation": "Pending"
+    "finalValidation": "Completed"
   },
   "updatedAt": "2026-08-29T13:39:49.513Z"
 }
