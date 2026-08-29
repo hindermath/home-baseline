@@ -13,4 +13,4 @@ if ! pwsh -NoLogo -NoProfile -Command 'if ($PSVersionTable.PSVersion.Major -lt 7
   exit 3
 fi
 
-exec pwsh -NoLogo -NoProfile -File "$script_dir/test-model-routing.ps1" "$@"
+exec pwsh -NoLogo -NoProfile -File "$script_dir/test-model-routing.ps1" -InvocationSurface BashWrapper "$@"

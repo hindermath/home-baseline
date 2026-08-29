@@ -24,7 +24,7 @@
       "id": "governance",
       "titleDe": "Governance und Spec Kit",
       "titleEn": "Governance and Spec Kit",
-      "patterns": ["install-spec-kit-*", "resolve-model-routing.*", "update-spec-kit.*", "sync-constitution.*", "register-level2-*", "check-gsdb-*"],
+      "patterns": ["install-spec-kit-*", "resolve-model-routing.*", "update-spec-kit.*", "sync-constitution.*", "register-level2-*", "check-gsdb-*", "manage-copilot-review-governance.*"],
       "purposeDe": "Installiert und prueft Spec-Kit-, Constitution- und Repository-Governance.",
       "purposeEn": "Installs and checks Spec Kit, constitution, and repository governance."
     },
@@ -88,7 +88,7 @@
       "id": "internal",
       "titleDe": "Interne Bibliotheken",
       "titleEn": "Internal libraries",
-      "patterns": ["lib/*"],
+      "patterns": ["lib/*", "modules/*"],
       "purposeDe": "Stellt wiederverwendbare interne Funktionen fuer die oeffentlichen Skripte bereit.",
       "purposeEn": "Provides reusable internal functions for public scripts."
     },

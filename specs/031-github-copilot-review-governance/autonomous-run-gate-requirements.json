@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "featureId": "031-github-copilot-review-governance",
+  "runId": "1b7788fb-81f3-4d76-8006-885d834dd454",
+  "createdBeforeImplementation": true,
+  "evidenceLayout": {
+    "schemaVersion": "v1",
+    "runtimeEvidenceRoot": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1",
+    "operationalNamespace": "operational",
+    "primarySnapshotNamespace": "primary",
+    "browserNamespace": "browser-manual",
+    "internalRoutingRoot": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454",
+    "committedFeatureEvidenceRoot": "specs/031-github-copilot-review-governance/evidence/v1"
+  },
+  "gates": [
+    {
+      "gateId": "AC-CRG-001",
+      "applicability": "Applicable",
+      "requiredScope": "Prove a fresh complete read-only inventory of billing model and usage displays, personal account automation, every currently owned repository with provider ID, visibility and default branch, and every active copilot_code_review ruleset through complete list pagination plus exact detail reads; prove browser-only account evidence remains distinct, historical counts are comparison-only, all sources are fresh, and provider writes equal zero.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-001 --check-only --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly", "BrowserManual"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-001-inventory.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Privacy and Security Reviewer",
+      "rationale": "Only fresh complete API and separate browser facts can establish the safe planning baseline without inferring provider-write authority.",
+      "reevaluationTrigger": "Source endpoint or UI, billing owner, repository identity, visibility, default branch, ruleset API version, pagination, freshness, or accepted inventory hash changes."
+    },
+    {
+      "gateId": "AC-CRG-002",
+      "applicability": "Applicable",
+      "requiredScope": "Prove exact set equality after explicitly authorized convergence for the eight named repository/default-branch pairs, exactly one active dedicated copilot_code_review ruleset per target, personal automation disabled and no target inferred from historical update/create counts; prove each update or create classification comes only from the reviewed fresh inventory.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-002 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-002-exact-target-set.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Acceptance Reviewer",
+      "rationale": "Exact provider-ID and branch equality prevents partial, duplicate, renamed, or stale target convergence from being reported as success.",
+      "reevaluationTrigger": "Desired target set, repository ID, owner, visibility, default branch, account automation, ruleset semantics, or reviewed plan hash changes."
+    },
+    {
+      "gateId": "AC-CRG-003",
+      "applicability": "Applicable",
+      "requiredScope": "For every dedicated active non-target or surplus target ruleset in the freshly reviewed inventory, prove exact-ID disable without delete, continued provider existence, preserved before state and a safe exact-ID rollback plan; prove mixed-purpose, inherited, ambiguous or count-drift cases block before mutation instead of silently adapting the historical count.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-003 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-003-disable-retain-rollback.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Security Reviewer",
+      "rationale": "Disable-retain preserves audit and rollback identity while fail-closed handling prevents unrelated protections from being weakened.",
+      "reevaluationTrigger": "Non-target set, ruleset identity or ownership, mixed-purpose detection, enforcement vocabulary, provider disable behavior, or rollback contract changes."
+    },
+    {
+      "gateId": "AC-CRG-004",
+      "applicability": "Applicable",
+      "requiredScope": "Prove all eight exact target rulesets have review_draft_pull_requests=false and review_on_push=false through supported REST detail reads, and prove all eight exact repositories have review effort Lite through separate fresh redacted browser records; an API or browser omission blocks the gate.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-004 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly", "BrowserManual"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-004-review-parameters.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Provider Surface Reviewer",
+      "rationale": "Ruleset parameters and effort level live on distinct supported surfaces and both are required for the complete desired state.",
+      "reevaluationTrigger": "Ruleset parameter schema, effort vocabulary, repository UI path, supported effort API, or any target identity changes."
+    },
+    {
+      "gateId": "AC-CRG-005",
+      "applicability": "Applicable",
+      "requiredScope": "Using fixtures and a separately authorized controlled provider lifecycle, prove a pull request opened Ready or the first Draft-to-Ready transition receives at most one automatic Lite review, a draft receives none, a later push receives no automatic rereview, provider refusal is reported distinctly, and no uncontrolled pull request is created.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-005 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["GitHub", "PRLifecycle"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-005-pr-lifecycle.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "PR Lifecycle Reviewer",
+      "rationale": "Static settings are insufficient to prove actual one-time trigger behavior and absence of draft or push rereviews.",
+      "reevaluationTrigger": "Automatic review trigger semantics, draft or push behavior, PR lifecycle API, effort reporting, provider refusal taxonomy, or test repository changes."
+    },
+    {
+      "gateId": "AC-CRG-006",
+      "applicability": "Applicable",
+      "requiredScope": "Prove no automatic Copilot review occurs outside the exact target set, manual Copilot reviewer availability remains present in target and non-target samples, any actual manual trigger is separately authorized and classified, and disabling automatic rules never disables or substitutes human review.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-006 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["GitHub", "ManualReview", "BrowserManual"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-006-manual-review-preserved.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Human Review Owner",
+      "rationale": "Automatic and manual review are independent capabilities; preserving manual access and human authority is an explicit acceptance duty.",
+      "reevaluationTrigger": "Target set, account automation scope, manual reviewer UI or API, Copilot reviewer identity, human review policy, or provider behavior changes."
+    },
+    {
+      "gateId": "AC-CRG-007",
+      "applicability": "Applicable",
+      "requiredScope": "Compare before and after human reviewer, approval, status-check, merge, security and branch/ruleset gate maps for every affected repository; prove equality outside the explicit Copilot review fields, prove Copilot is advisory and never the sole required reviewer or gate, and prove mixed-purpose rulesets were not weakened.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-007 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["GitHub", "Review"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-007-gate-map.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Security and Delivery Reviewer",
+      "rationale": "Copilot advice must not replace or weaken human approval, CI, security, branch protection, or acceptance evidence.",
+      "reevaluationTrigger": "Human review rules, required checks, merge policy, security gates, branch protection, ruleset composition, or Copilot required-status behavior changes."
+    },
+    {
+      "gateId": "AC-CRG-008",
+      "applicability": "Applicable",
+      "requiredScope": "Prove redacted source-bound reporting keeps AI credits, Copilot Actions minutes and automatic, manual and unknown triggers separate with account owner type, period, unit, freshness and known or unknown status; prove missing data never becomes zero, fixed-price or undisclosed-model claims are absent, and secret and unnecessary personal-data findings equal zero.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-008 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["GitHubReadOnly", "BillingReadOnly"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-008-usage-redaction.json",
+      "owner": "Fleet Governance Owner",
+      "reviewer": "Privacy and Billing Reviewer",
+      "rationale": "The three evidence axes have different units and attribution semantics; combining or guessing them would create unsafe cost claims.",
+      "reevaluationTrigger": "Billing owner, endpoint, permission, period, unit, Actions workflow path, AI-credit model, privacy policy, redaction rule, or trigger attribution changes."
+    },
+    {
+      "gateId": "AC-CRG-009",
+      "applicability": "Applicable",
+      "requiredScope": "Run the macOS-first red and green vertical slice, complete deterministic fixture matrix and native macOS, Linux and Windows proof; prove direct argument arrays, schema and path validation, External-Write-Gate refusal and acceptance, exact-ID preflight, TOCTOU blocking, no blind write retries, reconciliation, redacted atomic evidence, safe rollback, equal Bash and PowerShell decisions and exit codes, and a second convergent pass with zero drift and zero writes.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-009 --dry-run -WhatIf --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["macOS", "Linux", "Windows"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-009-idempotency-platform.json",
+      "owner": "Script and Fleet Governance Owner",
+      "reviewer": "Cross-Platform Security Reviewer",
+      "rationale": "Exact mutation safety is only complete when negative paths, rollback, idempotency and paired native platform behavior are all proven.",
+      "reevaluationTrigger": "API mutation semantics, ID model, External-Write-Gate, hash canonicalization, wrapper option or Cmdlet, supported platform, rollback, redaction, dependency, A11Y, documentation, statistics, or regression scope changes."
+    },
+    {
+      "gateId": "AC-CRG-010",
+      "applicability": "Applicable",
+      "requiredScope": "Compare repository, provider, intake-series, account and billing mutation allowlists with the accepted pre-run hashes and prove Position 7 was not started, its artifact set is unchanged, subscription and budget purchase are unchanged, cancellation was not invoked, optional commit hooks did not execute, and the G4 closeout contains no operation outside current feature and explicitly authorized scopes.",
+      "requiredCommandTokens": [
+        "python3 scripts/tests/run_copilot_review_governance_acceptance.py --gate AC-CRG-010 --repository-root . --evidence-root .specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1"
+      ],
+      "requiredRunnerOrPlatformTokens": ["macOS", "GitHubReadOnly", "MergeAndSync"],
+      "evidencePath": "specs/031-github-copilot-review-governance/evidence/v1/ac-crg-010-position-7-isolation.json",
+      "owner": "Autonomous Run Owner",
+      "reviewer": "Intake and Authority Reviewer",
+      "rationale": "G4 completion must preserve the hard sequencing boundary and cannot infer subscription, budget, cancellation, provider-admin, or later-position authority.",
+      "reevaluationTrigger": "Active series state, Position 7 eligibility, accepted artifact hash, feature authority, subscription state, budget scope, cancellation scope, or autonomous run policy changes."
+    }
+  ]
+}

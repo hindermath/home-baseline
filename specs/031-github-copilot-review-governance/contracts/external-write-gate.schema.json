@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hindermath.example/schemas/copilot-review-governance/external-write-gate.schema.json",
+  "title": "Operation-Specific External Write Gate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "gateId",
+    "runId",
+    "operationClass",
+    "authorityRecordId",
+    "authoritySha256",
+    "repositoryIds",
+    "rulesetIds",
+    "pullRequestIds",
+    "allowedActionIds",
+    "allowedMethods",
+    "minimumPermissionScopes",
+    "snapshotSha256",
+    "planSha256",
+    "beforeStateHashes",
+    "desiredStateHashes",
+    "rollbackHashes",
+    "notBefore",
+    "expiresAt",
+    "maximumSnapshotAgeSeconds",
+    "acceptanceEvidenceSha256",
+    "securityEvidenceSha256",
+    "reviewEvidenceSha256",
+    "technicalGateEvidenceSha256",
+    "rollbackCommandId",
+    "secretHandling",
+    "approverRole",
+    "reviewerRole",
+    "singleUse",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "gateId": { "type": "string", "format": "uuid" },
+    "runId": { "type": "string", "format": "uuid" },
+    "operationClass": {
+      "enum": ["AccountSetting", "EffortLevel", "RulesetCreate", "RulesetUpdate", "RulesetDisable", "PRLifecycleAcceptance", "ManualReviewAcceptance", "Delivery", "Rollback"]
+    },
+    "rollbackSourceOperationClass": {
+      "enum": ["AccountSetting", "EffortLevel", "RulesetCreate", "RulesetUpdate", "RulesetDisable", "PRLifecycleAcceptance", "ManualReviewAcceptance", "Delivery"]
+    },
+    "accountOwner": {
+      "$comment": "Exact personal account identity. For AccountSetting and its rollback this must match the account in the current explicit authority record and every downstream plan, result, and rollback record.",
+      "const": "hindermath"
+    },
+    "authorityRecordId": {
+      "$comment": "Must resolve to the current explicit authority record for this exact account or provider target; credentials, delivery mode, and merge bypass are not authority records.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "authoritySha256": {
+      "$comment": "Binds the exact current authority record identified by authorityRecordId.",
+      "$ref": "#/$defs/sha256"
+    },
+    "repositoryIds": { "type": "array", "uniqueItems": true, "items": { "type": "integer", "minimum": 1 } },
+    "rulesetIds": { "type": "array", "uniqueItems": true, "items": { "type": "integer", "minimum": 1 } },
+    "pullRequestIds": { "type": "array", "uniqueItems": true, "items": { "type": "integer", "minimum": 1 } },
+    "allowedActionIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "format": "uuid" } },
+    "allowedMethods": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["POST", "PUT", "BrowserManual", "GitPush", "GitHubMerge"] } },
+    "minimumPermissionScopes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 120 } },
+    "snapshotSha256": { "$ref": "#/$defs/sha256" },
+    "planSha256": { "$ref": "#/$defs/sha256" },
+    "beforeStateHashes": { "$ref": "#/$defs/hashMap" },
+    "desiredStateHashes": { "$ref": "#/$defs/hashMap" },
+    "rollbackHashes": { "$ref": "#/$defs/hashMap" },
+    "notBefore": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "maximumSnapshotAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 3600 },
+    "acceptanceEvidenceSha256": { "$ref": "#/$defs/sha256" },
+    "securityEvidenceSha256": { "$ref": "#/$defs/sha256" },
+    "reviewEvidenceSha256": { "$ref": "#/$defs/sha256" },
+    "technicalGateEvidenceSha256": { "$ref": "#/$defs/sha256" },
+    "rollbackCommandId": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "secretHandling": { "const": "NoSecretsInArgumentsLogsOrEvidence" },
+    "approverRole": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "reviewerRole": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "singleUse": { "const": true },
+    "status": { "enum": ["Authorized", "Consumed", "Expired", "Revoked"] }
+  },
+  "allOf": [
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": { "operationClass": { "const": "AccountSetting" } },
+            "required": ["operationClass"]
+          },
+          {
+            "properties": {
+              "operationClass": { "const": "Rollback" },
+              "rollbackSourceOperationClass": { "const": "AccountSetting" }
+            },
+            "required": ["operationClass", "rollbackSourceOperationClass"]
+          }
+        ]
+      },
+      "then": { "required": ["accountOwner"] },
+      "else": { "not": { "required": ["accountOwner"] } }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "AccountSetting" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "maxItems": 0 },
+          "rulesetIds": { "maxItems": 0 },
+          "pullRequestIds": { "maxItems": 0 },
+          "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "BrowserManual" } },
+          "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "PersonalCopilotSettings:write" } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "EffortLevel" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "maxItems": 0 },
+          "pullRequestIds": { "maxItems": 0 },
+          "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "BrowserManual" } },
+          "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "RepositoryCopilotSettings:write" } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "RulesetCreate" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "maxItems": 0 },
+          "pullRequestIds": { "maxItems": 0 },
+          "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "POST" } },
+          "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "Administration:write" } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "RulesetUpdate" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "minItems": 1 },
+          "pullRequestIds": { "maxItems": 0 },
+          "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "PUT" } },
+          "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "Administration:write" } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "RulesetDisable" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "minItems": 1 },
+          "pullRequestIds": { "maxItems": 0 },
+          "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "PUT" } },
+          "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "Administration:write" } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "PRLifecycleAcceptance" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "maxItems": 0 },
+          "pullRequestIds": { "minItems": 1 },
+          "allowedMethods": {
+            "minItems": 3,
+            "maxItems": 3,
+            "prefixItems": [{ "const": "POST" }, { "const": "PUT" }, { "const": "GitPush" }],
+            "items": false
+          },
+          "minimumPermissionScopes": {
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [{ "const": "PullRequests:write" }, { "const": "Contents:write" }],
+            "items": false
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "ManualReviewAcceptance" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "maxItems": 0 },
+          "pullRequestIds": { "minItems": 1 },
+          "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "POST" } },
+          "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "PullRequests:write" } }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "Delivery" } } },
+      "then": {
+        "properties": {
+          "repositoryIds": { "minItems": 1 },
+          "rulesetIds": { "maxItems": 0 },
+          "pullRequestIds": { "minItems": 1 },
+          "allowedMethods": {
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [{ "const": "GitPush" }, { "const": "GitHubMerge" }],
+            "items": false
+          },
+          "minimumPermissionScopes": {
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [{ "const": "Contents:write" }, { "const": "PullRequests:write" }],
+            "items": false
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operationClass": { "const": "Rollback" } } },
+      "then": {
+        "required": ["rollbackSourceOperationClass"],
+        "oneOf": [
+          {
+            "properties": {
+              "rollbackSourceOperationClass": { "const": "AccountSetting" },
+              "repositoryIds": { "maxItems": 0 },
+              "rulesetIds": { "maxItems": 0 },
+              "pullRequestIds": { "maxItems": 0 },
+              "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "BrowserManual" } },
+              "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "PersonalCopilotSettings:write" } }
+            }
+          },
+          {
+            "properties": {
+              "rollbackSourceOperationClass": { "const": "EffortLevel" },
+              "repositoryIds": { "minItems": 1 },
+              "rulesetIds": { "maxItems": 0 },
+              "pullRequestIds": { "maxItems": 0 },
+              "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "BrowserManual" } },
+              "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "RepositoryCopilotSettings:write" } }
+            }
+          },
+          {
+            "properties": {
+              "rollbackSourceOperationClass": { "enum": ["RulesetCreate", "RulesetUpdate", "RulesetDisable"] },
+              "repositoryIds": { "minItems": 1 },
+              "rulesetIds": { "minItems": 1 },
+              "pullRequestIds": { "maxItems": 0 },
+              "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "PUT" } },
+              "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "Administration:write" } }
+            }
+          },
+          {
+            "properties": {
+              "rollbackSourceOperationClass": { "const": "PRLifecycleAcceptance" },
+              "repositoryIds": { "minItems": 1 },
+              "rulesetIds": { "maxItems": 0 },
+              "pullRequestIds": { "minItems": 1 },
+              "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "GitPush" } },
+              "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "Contents:write" } }
+            }
+          },
+          {
+            "properties": {
+              "rollbackSourceOperationClass": { "const": "ManualReviewAcceptance" },
+              "repositoryIds": { "minItems": 1 },
+              "rulesetIds": { "maxItems": 0 },
+              "pullRequestIds": { "minItems": 1 },
+              "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "BrowserManual" } },
+              "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "PullRequests:write" } }
+            }
+          },
+          {
+            "properties": {
+              "rollbackSourceOperationClass": { "const": "Delivery" },
+              "repositoryIds": { "minItems": 1 },
+              "rulesetIds": { "maxItems": 0 },
+              "pullRequestIds": { "minItems": 1 },
+              "allowedMethods": { "minItems": 1, "maxItems": 1, "items": { "const": "GitPush" } },
+              "minimumPermissionScopes": { "minItems": 1, "maxItems": 1, "items": { "const": "Contents:write" } }
+            }
+          }
+        ]
+      },
+      "else": {
+        "not": { "required": ["rollbackSourceOperationClass"] }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "hashMap": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[A-Za-z0-9_.:-]+$" },
+      "additionalProperties": { "$ref": "#/$defs/sha256" }
+    }
+  }
+}

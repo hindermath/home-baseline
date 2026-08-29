@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "09da9600-1379-4f51-91f6-1389cc7e5015",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-08-19T17:14:54Z",
+  "operation": {
+    "operationId": "618a6e43-f3fe-4bc9-b098-550c3fe97121",
+    "type": "Update",
+    "authorityEvidence": "Current explicit $speckit-intake-repair authority plus separate user approval of IR001, IR002, and IR003; this Series update changes only the repaired target hash and grants no downstream execution or fleet-rollout authority."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "d184531a26cb7ae291df3335f874e5c0173e9c2b3c44b9ae7ad342230a8a29dd"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/receipt.json",
+    "receiptNormalizedSha256": "65cd178f5f0962363229717227200534cdba8e4dd2bea3a3b1eb323cfd23ce40",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/618a6e43-f3fe-4bc9-b098-550c3fe97121/manifest.json",
+    "manifestArchiveSha256": "f6dca7228b4eeae3941ae272e77621f648a267de4884a57da1474be9a554fbda"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

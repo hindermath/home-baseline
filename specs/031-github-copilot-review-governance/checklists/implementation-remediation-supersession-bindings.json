@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "bindingSetId": "1544f51a-dd7b-455b-ac07-da29fa2867c9",
+  "recordRole": "HistoricalSupersessionBinding",
+  "recordStatus": "Final",
+  "immutable": true,
+  "runId": "1b7788fb-81f3-4d76-8006-885d834dd454",
+  "featurePath": "specs/031-github-copilot-review-governance",
+  "tasksBoundary": {
+    "tasksSha256": "48020705c184dca7c56b1d5c2be84cd666718e53f17fcf4f9b98952d1d465bb1",
+    "completed": 122,
+    "total": 168,
+    "checkedRange": "T001-T122",
+    "openRange": "T123-T168",
+    "t123Marked": false
+  },
+  "auditSemantics": {
+    "applicability": "HistoricalOnly",
+    "gateAuthority": "None",
+    "gateAuthorityGranted": false,
+    "maySatisfyTaskOrGate": false,
+    "mayOverrideCanonicalState": false,
+    "originalPayloadBytesAvailableHere": false,
+    "originalPayloadIntegrityRepresentation": "HashOnlyFromImmutableRoutedResultEnvelope",
+    "currentReceiptRole": "AmendedHistoricalReader",
+    "currentTechnicalGateSource": "Remediation4AndCurrentT121Only"
+  },
+  "bindings": [
+    {
+      "phaseId": "implement-local-remediation-1",
+      "historicalRole": "SupersededOnly",
+      "originalRoutedResult": {
+        "path": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/implement-local-remediation-1.result.json",
+        "normalizedSha256": "593b26cc83025ac0e0d175979ab86c49f0357adba185025cfd250a0b5772aed1",
+        "originalPayloadPathAtRouting": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-1.md",
+        "originalPayloadSha256": "ef2a32d3ea93158ee6c476ffd36f167a69534a137147870cf80d25543db75b10"
+      },
+      "currentAmendedReceipt": {
+        "path": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-1.md",
+        "normalizedSha256": "3b7a3b80006e5cd42278aaf634b18fedb6cd18a631d4b88c9269e520be4b2175",
+        "role": "SupersededHistoricalReader",
+        "gateAuthority": "None"
+      },
+      "bytesDifferReason": "The receipt was amended after routing to withdraw closure claims reproduced by analyze-local-2; the routed result envelope and its original payload hash remain unchanged.",
+      "supersession": {
+        "amendingAnalysisPath": "specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-2.md",
+        "currentLineagePath": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-4.md",
+        "currentLineageSha256": "ecfd9ee25512c814857cc3d411eae1dd64953f2f30792711a3fa15001ce56956",
+        "currentT121Path": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1/operational/quality/final-local-macos.json",
+        "currentT121Sha256": "97cd48694b1250a94bc197b528ef877bd565cdde4b9bd039a7478d403def85f4"
+      }
+    },
+    {
+      "phaseId": "implement-local-remediation-2",
+      "historicalRole": "SupersededOnly",
+      "originalRoutedResult": {
+        "path": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/implement-local-remediation-2.result.json",
+        "normalizedSha256": "aa893178328ca45cb807ea4b95345c70d4eb291cbce8928e0e57498ed82c7056",
+        "originalPayloadPathAtRouting": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-2.md",
+        "originalPayloadSha256": "c2afada925aa973dfae88f2e7b263eec97d44fc4d12fee03e626b2b77212ab58"
+      },
+      "currentAmendedReceipt": {
+        "path": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-2.md",
+        "normalizedSha256": "b7c061a7cd97c2916a1f02fd71c16423b4dcb8f71f8ff994703585ae57096900",
+        "role": "SupersededHistoricalReader",
+        "gateAuthority": "None"
+      },
+      "bytesDifferReason": "The receipt was amended after routing to withdraw closure claims contradicted by analyze-local-3; the routed result envelope and its original payload hash remain unchanged.",
+      "supersession": {
+        "amendingAnalysisPath": "specs/031-github-copilot-review-governance/checklists/implementation-analysis-local-3.md",
+        "currentLineagePath": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-4.md",
+        "currentLineageSha256": "ecfd9ee25512c814857cc3d411eae1dd64953f2f30792711a3fa15001ce56956",
+        "currentT121Path": ".specify/runtime/autonomous-routing/1b7788fb-81f3-4d76-8006-885d834dd454/copilot-review-governance/evidence/v1/operational/quality/final-local-macos.json",
+        "currentT121Sha256": "97cd48694b1250a94bc197b528ef877bd565cdde4b9bd039a7478d403def85f4"
+      }
+    }
+  ]
+}

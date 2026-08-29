@@ -8,6 +8,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [Unreleased]
+
+### Features / Neue Funktionen
+
+* add fail-closed local GitHub Copilot review-governance planning, gated transaction semantics and rollback
+
+### Documentation / Dokumentation
+
+* add safe-preview, operations, architecture, accessibility and security reader paths for Copilot review governance
+
 ## [0.18.0](https://github.com/hindermath/home-baseline/compare/v0.17.1...v0.18.0) (2026-08-14)
 
 

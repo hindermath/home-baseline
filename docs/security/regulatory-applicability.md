@@ -35,3 +35,14 @@ Thorstens Organisation außerhalb des Repositoryscopes. Restrisiko: Nutzung
 oder Distribution kann sich unabhängig vom Code ändern. Reviewer:
 Security and Compliance Reviewer. Re-Evaluation zusätzlich bei Provider-,
 Hosting-, Kunden-, Personen-, Markt- oder Sektoränderung.
+
+## Feature 031
+
+NIS2, CRA, EU AI Act und DORA sind für diese repositorylokale Governance-
+Automation begründet `N/A`: Sie ist weder regulierter Betreiber noch
+marktfähiges Produkt, KI-System oder Finanz-IKT-Dienst und verarbeitet keine
+produktiven Kundendaten. GitHub/Copilot-Nutzung und sichere Entwicklung bleiben
+dennoch `Applicable` für interne Security-Kontrollen. Keine Rechts- oder
+Zertifizierungsaussage. Owner: Compliance Owner; Reviewer: Compliance Reviewer;
+Restrisiko: spätere Nutzung kann den Scope ändern; Follow-up/Trigger: Produkt-,
+Kunden-, Sektor-, KI-Runtime-, Provider- oder Datenrollenänderung.

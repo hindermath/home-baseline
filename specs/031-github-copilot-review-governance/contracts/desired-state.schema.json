@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hindermath.example/schemas/copilot-review-governance/desired-state.schema.json",
+  "title": "Copilot Review Governance Desired State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "contractId",
+    "owner",
+    "generatedFromSpec",
+    "desiredSettings",
+    "targets",
+    "contractSha256"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "contractId": { "type": "string", "format": "uuid" },
+    "owner": { "const": "hindermath" },
+    "generatedFromSpec": { "const": "specs/031-github-copilot-review-governance/spec.md" },
+    "desiredSettings": { "$ref": "#/$defs/desiredSettings" },
+    "targets": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 1 }, "slug": { "const": "hindermath/home-baseline" }, "defaultBranch": { "const": "main" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 2 }, "slug": { "const": "hindermath/agent-operations-cockpit" }, "defaultBranch": { "const": "main" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 3 }, "slug": { "const": "hindermath/TuiVision" }, "defaultBranch": { "const": "main" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 4 }, "slug": { "const": "hindermath/TinyPl0" }, "defaultBranch": { "const": "main" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 5 }, "slug": { "const": "hindermath/TinyCalc" }, "defaultBranch": { "const": "main" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 6 }, "slug": { "const": "hindermath/InventarWorkerService" }, "defaultBranch": { "const": "main" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 7 }, "slug": { "const": "hindermath/cc65" }, "defaultBranch": { "const": "master" } } }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/targetSelector" },
+            { "properties": { "position": { "const": 8 }, "slug": { "const": "hindermath/tvision" }, "defaultBranch": { "const": "master" } } }
+          ]
+        }
+      ],
+      "items": { "$ref": "#/$defs/targetSelector" }
+    },
+    "contractSha256": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "targetSelector": {
+      "$comment": "Immutable desired-state selector only. Fresh repository/provider ID and visibility belong to the live inventory and must be compared before every write.",
+      "title": "Desired State Target Selector",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position",
+        "slug",
+        "defaultBranch"
+      ],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "slug": {
+          "enum": [
+            "hindermath/home-baseline",
+            "hindermath/agent-operations-cockpit",
+            "hindermath/TuiVision",
+            "hindermath/TinyPl0",
+            "hindermath/TinyCalc",
+            "hindermath/InventarWorkerService",
+            "hindermath/cc65",
+            "hindermath/tvision"
+          ]
+        },
+        "defaultBranch": { "enum": ["main", "master"] }
+      }
+    },
+    "desiredSettings": {
+      "$comment": "Common review parameters are separate from the immutable three-field target selectors and apply to every target unless a future reviewed schema version introduces a closed-world per-target override object.",
+      "title": "Desired Review Settings",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "personalAccountAutomation",
+        "rulesetEnforcement",
+        "rulesetTarget",
+        "reviewEffort",
+        "automaticReview"
+      ],
+      "properties": {
+        "personalAccountAutomation": { "const": "Disabled" },
+        "rulesetEnforcement": { "const": "active" },
+        "rulesetTarget": { "const": "branch" },
+        "reviewEffort": { "const": "Lite" },
+        "automaticReview": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reviewDraftPullRequests",
+            "reviewOnPush",
+            "readyOpenOrFirstDraftToReadyOnly"
+          ],
+          "properties": {
+            "reviewDraftPullRequests": { "const": false },
+            "reviewOnPush": { "const": false },
+            "readyOpenOrFirstDraftToReadyOnly": { "const": true }
+          }
+        }
+      }
+    }
+  }
+}

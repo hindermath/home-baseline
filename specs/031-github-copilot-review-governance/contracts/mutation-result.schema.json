@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hindermath.example/schemas/copilot-review-governance/mutation-result.schema.json",
+  "title": "Copilot Review Governance Mutation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "resultId", "runId", "planSha256", "gateSha256", "startedAt", "finishedAt", "results", "totalWrites", "idempotentSecondPass", "resultSha256"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "resultId": { "type": "string", "format": "uuid" },
+    "runId": { "type": "string", "format": "uuid" },
+    "planSha256": { "$ref": "#/$defs/sha256" },
+    "gateSha256": { "$ref": "#/$defs/sha256" },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "finishedAt": { "type": "string", "format": "date-time" },
+    "results": { "type": "array", "items": { "$ref": "#/$defs/actionResult" } },
+    "totalWrites": { "type": "integer", "minimum": 0 },
+    "idempotentSecondPass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validatedAt", "writes", "driftCount", "inventorySha256"],
+      "properties": {
+        "validatedAt": { "type": "string", "format": "date-time" },
+        "writes": { "const": 0 },
+        "driftCount": { "const": 0 },
+        "inventorySha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "resultSha256": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "actionResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actionId", "operationClass", "argumentForm", "startedAt", "finishedAt", "providerStatusClass", "preflightSha256", "afterStateSha256", "writes", "outcome", "evidencePath", "evidenceSha256"],
+      "properties": {
+        "actionId": { "type": "string", "format": "uuid" },
+        "operationClass": { "enum": ["AccountSetting", "EffortLevel", "RulesetCreate", "RulesetUpdate", "RulesetDisable", "PRLifecycleAcceptance", "ManualReviewAcceptance", "Rollback"] },
+        "accountOwner": {
+          "$comment": "Exact AccountSetting identity; it must equal the plan, current explicit authority record, gate, and account rollback.",
+          "const": "hindermath"
+        },
+        "repositoryId": { "type": "integer", "minimum": 1 },
+        "rulesetId": { "type": "integer", "minimum": 1 },
+        "rulesetIdSource": { "const": "ProviderResponseAndPostInventoryExactMatch" },
+        "postInventorySha256": { "$ref": "#/$defs/sha256" },
+        "argumentForm": { "enum": ["DirectArgumentArray", "BrowserManualChecklist"] },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "finishedAt": { "type": "string", "format": "date-time" },
+        "providerStatusClass": { "enum": ["Success", "Refused", "Transient", "Ambiguous", "Invalid", "NotInvoked"] },
+        "preflightSha256": { "$ref": "#/$defs/sha256" },
+        "afterStateSha256": { "$ref": "#/$defs/sha256" },
+        "writes": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "outcome": { "enum": ["NoOp", "Applied", "Verified", "Blocked", "Failed", "Reconciled", "RolledBack"] },
+        "evidencePath": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$" },
+        "evidenceSha256": { "$ref": "#/$defs/sha256" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "anyOf": [
+              { "properties": { "operationClass": { "const": "AccountSetting" } }, "required": ["operationClass"] },
+              { "properties": { "operationClass": { "const": "Rollback" } }, "required": ["operationClass", "accountOwner"] }
+            ]
+          },
+          "then": {
+            "required": ["accountOwner"],
+            "not": {
+              "anyOf": [
+                { "required": ["repositoryId"] },
+                { "required": ["rulesetId"] }
+              ]
+            }
+          },
+          "else": {
+            "required": ["repositoryId"],
+            "not": { "required": ["accountOwner"] }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operationClass": { "enum": ["RulesetUpdate", "RulesetDisable"] }
+            }
+          },
+          "then": {
+            "required": ["repositoryId", "rulesetId", "postInventorySha256"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operationClass": { "const": "RulesetCreate" }
+            },
+            "anyOf": [
+              { "properties": { "writes": { "const": 1 } } },
+              { "properties": { "outcome": { "enum": ["Applied", "Verified", "Reconciled", "RolledBack"] } } }
+            ]
+          },
+          "then": {
+            "required": ["repositoryId", "rulesetId", "rulesetIdSource", "postInventorySha256"]
+          }
+        }
+      ]
+    }
+  }
+}

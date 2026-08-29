@@ -94,3 +94,14 @@ Regression. Owner: Supply Chain Owner. Reviewer: Provenance Reviewer.
 Restrisiko: Provider- und Runner-Images sind externe, zeitabhängige
 Lieferketten. Re-Evaluation bei Action-, Runner-, Toolchain-, Paket-, Release-,
 Signatur-, Provider-, Template- oder Evidence-Schemaänderung.
+
+## Feature 031
+
+SBOM/VEX/SLSA/OpenSSF sind bewertet: kein neues Paket bedeutet keine neue
+Komponenten-SBOM oder VEX-Aussage; Quellpfade, Git-Historie, Contract-Hashes und
+der native Proof-Workflow bilden die lokale Provenance. `contents: read`, keine
+Secrets und keine Providerwrites reduzieren Workflowrechte. Ein nicht gepinnter
+Marketplace-Action-Tag bleibt Restrisiko und darf vor Delivery auf einen
+Commit-SHA gehärtet werden. Das ist kein SLSA-Level- oder OpenSSF-Zertifikat.
+Owner: Supply Chain Owner; Reviewer: Provenance Reviewer; Trigger: Action-,
+Runner-, Dependency-, Build-, Release- oder Provenanceänderung.

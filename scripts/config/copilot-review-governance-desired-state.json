@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "contractId": "7f48f7e1-8d83-4df5-b707-7d014b118ac3",
+  "owner": "hindermath",
+  "generatedFromSpec": "specs/031-github-copilot-review-governance/spec.md",
+  "desiredSettings": {
+    "personalAccountAutomation": "Disabled",
+    "rulesetEnforcement": "active",
+    "rulesetTarget": "branch",
+    "reviewEffort": "Lite",
+    "automaticReview": {
+      "reviewDraftPullRequests": false,
+      "reviewOnPush": false,
+      "readyOpenOrFirstDraftToReadyOnly": true
+    }
+  },
+  "targets": [
+    {"position": 1, "slug": "hindermath/home-baseline", "defaultBranch": "main"},
+    {"position": 2, "slug": "hindermath/agent-operations-cockpit", "defaultBranch": "main"},
+    {"position": 3, "slug": "hindermath/TuiVision", "defaultBranch": "main"},
+    {"position": 4, "slug": "hindermath/TinyPl0", "defaultBranch": "main"},
+    {"position": 5, "slug": "hindermath/TinyCalc", "defaultBranch": "main"},
+    {"position": 6, "slug": "hindermath/InventarWorkerService", "defaultBranch": "main"},
+    {"position": 7, "slug": "hindermath/cc65", "defaultBranch": "master"},
+    {"position": 8, "slug": "hindermath/tvision", "defaultBranch": "master"}
+  ],
+  "contractSha256": "9398ca50a0ac31b062546198afb3509c7e8002e4eb7d2ff291ddf085fc62042d"
+}

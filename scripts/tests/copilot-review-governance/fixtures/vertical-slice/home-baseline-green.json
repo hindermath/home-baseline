@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "snapshotId": "72f65366-ff89-4d2b-81a1-98d5027e488a",
+  "runId": "1b7788fb-81f3-4d76-8006-885d834dd454",
+  "observedAt": "2026-08-29T02:55:00Z",
+  "expiresAt": "2026-09-01T00:00:00Z",
+  "apiVersion": "2026-03-10",
+  "complete": true,
+  "sourceFresh": true,
+  "pagination": {"repositoriesPages": 1, "rulesetListPages": 8, "rulesetDetailsRead": 8, "truncated": false},
+  "billingUsage": {
+    "billingOwnerType": "Personal",
+    "aiCredits": {"status": "Known", "value": 12, "unit": "credits", "periodStart": "2026-08-01T00:00:00Z", "periodEnd": "2026-09-01T00:00:00Z", "source": "GitHub billing usage", "observedAt": "2026-08-29T02:55:00Z"},
+    "actionsMinutes": {"status": "Known", "value": 34, "unit": "minutes", "periodStart": "2026-08-01T00:00:00Z", "periodEnd": "2026-09-01T00:00:00Z", "source": "dynamic/agents/copilot-pull-request-reviewer", "observedAt": "2026-08-29T02:55:00Z"}
+  },
+  "personalAccountAutomation": {"state": "Disabled", "evidenceMode": "BrowserManual", "observedAt": "2026-08-29T02:55:00Z", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+  "repositories": [
+    {"repositoryId": 101, "slug": "hindermath/home-baseline", "visibility": "private", "defaultBranch": "main", "ownedByAccount": true},
+    {"repositoryId": 102, "slug": "hindermath/agent-operations-cockpit", "visibility": "private", "defaultBranch": "main", "ownedByAccount": true},
+    {"repositoryId": 103, "slug": "hindermath/TuiVision", "visibility": "public", "defaultBranch": "main", "ownedByAccount": true},
+    {"repositoryId": 104, "slug": "hindermath/TinyPl0", "visibility": "public", "defaultBranch": "main", "ownedByAccount": true},
+    {"repositoryId": 105, "slug": "hindermath/TinyCalc", "visibility": "public", "defaultBranch": "main", "ownedByAccount": true},
+    {"repositoryId": 106, "slug": "hindermath/InventarWorkerService", "visibility": "private", "defaultBranch": "main", "ownedByAccount": true},
+    {"repositoryId": 107, "slug": "hindermath/cc65", "visibility": "public", "defaultBranch": "master", "ownedByAccount": true},
+    {"repositoryId": 108, "slug": "hindermath/tvision", "visibility": "public", "defaultBranch": "master", "ownedByAccount": true}
+  ],
+  "rulesets": [
+    {"repositoryId": 101, "rulesetId": 201, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 102, "rulesetId": 202, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 103, "rulesetId": 203, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 104, "rulesetId": 204, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 105, "rulesetId": 205, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 106, "rulesetId": 206, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 107, "rulesetId": 207, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"repositoryId": 108, "rulesetId": 208, "name": "Copilot Lite", "sourceType": "Repository", "target": "branch", "enforcement": "active", "conditionsSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "rulesSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "containsCopilotCodeReview": true, "mixedPurpose": false, "reviewDraftPullRequests": false, "reviewOnPush": false, "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+  ],
+  "browserEvidence": [
+    {"surface": "PersonalAccountAutomation", "observedState": "Disabled", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Profile/Copilot/AutomaticReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 101, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 102, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 103, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 104, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 105, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 106, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 107, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"surface": "RepositoryEffort", "repositoryId": 108, "observedState": "Lite", "observedAt": "2026-08-29T02:55:00Z", "reviewedAt": "2026-08-29T02:56:00Z", "operatorRole": "Browser Evidence Owner", "reviewerRole": "Privacy Reviewer", "uiPathClass": "Repository/Copilot/CodeReview", "evidenceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+  ],
+  "reviewTriggers": {"automatic": 1, "manual": 1, "unknown": 0, "observedAt": "2026-08-29T02:55:00Z"},
+  "redactionFindings": 0,
+  "snapshotSha256": "3b8a7ee13529c67ba21ab7e7ce997659e94b127b98dee5b506d0a9feb1da3070"
+}

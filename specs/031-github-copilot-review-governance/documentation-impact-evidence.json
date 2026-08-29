@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "031-github-copilot-review-governance",
+  "entries": [
+    {
+      "changeId": "CHG031001",
+      "scope": "Repository-local GitHub Copilot review-governance validation, planning, gated transaction semantics, rollback, executable harness help and current autonomous evidence",
+      "decision": "UpdateRequired",
+      "rationale": "Operators and reviewers require one safe-preview reader path, executable deterministic-harness help, current lifecycle evidence, and explicit account, provider, evidence and rollback boundaries.",
+      "documents": ["README.md", "docs/README.md", "docs/scripts/README.md", "docs/scripts/reference.md", "docs/man/manage-copilot-review-governance.1.md", "docs/operations/copilot-review-governance.md", "docs/architecture/copilot-review-governance.md", "docs/accessibility/copilot-review-governance.md", "docs/security/"],
+      "owner": "Documentation Owner",
+      "audiences": ["Daily users", "Maintainers and AI agents", "Security and architecture reviewers", "Auditors"],
+      "readerPaths": ["README to safe preview and quickstart", "Script reference to manpage", "Architecture and security review to feature checklists", "Incident review to redacted runtime evidence"],
+      "canonicalSource": "specs/031-github-copilot-review-governance/spec.md, scripts/config/copilot-review-governance-desired-state.json, scripts/tests/test_copilot_review_governance.py and the canonical autonomous JSON State",
+      "navigationImpact": "README and documentation portal link to the safe preview, operations guide, manpage and assurance documents.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English companion paragraphs at CEFR B2; stable commands and machine fields remain unchanged.",
+      "languagePartners": ["Bilingual README section", "Bilingual manpage", "Bilingual PowerShell help"],
+      "platformAndExampleProof": "Local macOS Bash and PowerShell fixture previews produce the same decision hash and zero writes; -h/--help execute with exit 0 without evidence mutation and unknown filters exit 2; native Linux and Windows remain explicitly Open for the later routed phase.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": true,
+      "evidence": "specs/031-github-copilot-review-governance/checklists/implementation-remediation-4.md and checklists/implementation-governance.md",
+      "risk": "No Home sync is authorized in implement-local; native, live, provider and delivery evidence remains Open with owners and triggers.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Audience, reader path, desired target, command, schema, provider, platform, distribution, Home manifest, evidence or shared-guidance changes."
+    }
+  ]
+}

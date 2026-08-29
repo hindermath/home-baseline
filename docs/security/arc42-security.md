@@ -92,3 +92,15 @@ Stage-B-Transaktion.
 Owner: Architecture Owner. Reviewer: Security/iSAQB Reviewer. Restrisiko:
 Live-Provider- und Schutzregelzustände sind zeitabhängig. Re-Evaluation bei
 Provider-, Deployment-, Ruleset-, Authority-, Evidence- oder Resume-Drift.
+
+## Feature 031: Sicherheitsquerschnitt
+
+Der closed-world Desired State reduziert die Angriffsfläche. Feste
+Prozessargumentarrays, keine dynamische Ausführung, direkte Endpoints,
+Pfadcontainment ohne Reparse Points, Fail-Safe Defaults und getrennte
+Read/Plan/Gate/Write/After/Rollback-Bausteine setzen Least Privilege, Defense in
+Depth und Separation of Concerns um. Fehlerausgaben enthalten keine Secrets
+oder Rohproviderantworten; Logging wird vor Publikation redigiert. Account- und
+Repository-Trust-Boundaries dürfen keine IDs vermischen. Owner: Security
+Architecture Owner; Reviewer: iSAQB Reviewer; Restrisiko: externer Providerdrift;
+Trigger: neue Operation, Permission, Endpoint, Dateipfad oder Evidenceklasse.
