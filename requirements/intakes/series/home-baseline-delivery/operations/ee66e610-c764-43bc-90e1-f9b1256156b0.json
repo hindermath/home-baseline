@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "ee66e610-c764-43bc-90e1-f9b1256156b0",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user authorization to execute the separately required Intake-Series-Sequencing update after terminal completion of Feature 029 and Feature 030. No Intake Review, G4 execution, Git delivery, provider write, or bypass authority is inferred.",
+  "proposalNormalizedSha256": "002c6f4b2a6b57be1e354b498a02edf1b38e60419b4eb2d95f6ad51e6ea34428",
+  "differences": {
+    "targetCount": {
+      "before": 34,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 38,
+      "after": 37
+    },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+        "role": "Primary",
+        "normalizedSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610",
+        "status": "Eligible",
+        "completionEvidence": [
+          "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md",
+          "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json",
+          "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.030-stage-b-rollout.md",
+          "specs/030-stage-b-rollout/evidence/v1/stage-b-causal-postmerge.json"
+        ]
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+        "orderBefore": 2,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Blocked",
+        "statusAfter": "Eligible",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
+        "normalizedSha256After": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5"
+      }
+    ],
+    "addedRoots": [
+      "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md"
+    ],
+    "addedDependencies": [],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+        "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+        "kind": "HardCompletionGate",
+        "binding": true
+      }
+    ],
+    "addedEvidencePaths": [
+      "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md",
+      "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.030-stage-b-rollout.md",
+      "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json",
+      "specs/029-ci-budget-governance/retrospective.md",
+      "specs/030-stage-b-rollout/evidence/v1/fleet-terminal-evidence.json",
+      "specs/030-stage-b-rollout/evidence/v1/stage-b-causal-postmerge.json",
+      "specs/030-stage-b-rollout/retrospective.md"
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "normalizedSha256": "754629eff835c8d313021ff102d2057528b05140a6c7c5cc7f6054614dbc27a9",
+    "reason": "Archives completed G3 and its Stage B rollout, removes the completed G3-to-G4 edge, and exposes G4 as the sole preferred Eligible candidate without starting it."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/manifest.json",
+    "manifestNormalizedSha256": "d184531a26cb7ae291df3335f874e5c0173e9c2b3c44b9ae7ad342230a8a29dd",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/receipt.json",
+    "receiptNormalizedSha256": "9869e7a63d6542a2a30d0f607270374034e6005686c4bf553d086658fd2dea38"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/ee66e610-c764-43bc-90e1-f9b1256156b0.json"
+  ],
+  "validation": {
+    "manifestBash": "Passed: 33 targets, 3 roots, 37 dependencies, G4 declared Eligible",
+    "manifestPowerShell": "Passed: 33 targets, 3 roots, 37 dependencies, G4 declared Eligible",
+    "receiptBash": "Passed: successor and byte-identical predecessor archives validated",
+    "receiptPowerShell": "Passed: successor and byte-identical predecessor archives validated",
+    "requirementsGovernanceBash": "Passed: configuration Aligned and migration journal Completed",
+    "requirementsGovernancePowerShell": "Passed: configuration Aligned and migration journal Completed",
+    "diffCheck": "Passed",
+    "secretScan": "Passed: gitleaks found no secrets in the current Git diff"
+  },
+  "documentationImpact": "UpdateRequired: the active order document and machine-readable series state were synchronized.",
+  "statisticsImpact": "NotTriggered: intake sequencing metadata only; no feature implementation was performed.",
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "Lastenheft_Abarbeitungsreihenfolge.md",
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/receipt.json",
+      "requirements/intakes/series/home-baseline-delivery/operations/ee66e610-c764-43bc-90e1-f9b1256156b0.json"
+    ]
+  }
+}

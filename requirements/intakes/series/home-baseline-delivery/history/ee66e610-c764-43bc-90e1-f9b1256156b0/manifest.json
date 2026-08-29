@@ -1,0 +1,515 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesManifest",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "title": "Home Baseline Delivery Intake Series",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "status": "Active",
+  "orderedTargets": [
+    {
+      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "role": "Primary",
+      "normalizedSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610",
+      "status": "Eligible"
+    },
+    {
+      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "9a253fc5cf0f6f7979866c14fc71ddfd317c13e195d363967c3c2de641dfb666",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "79e6bf0f11144239d620753ca481fad5e092c3b53f73f3bfffd115145b67f8ae",
+      "status": "Pending"
+    },
+    {
+      "path": "Lastenheft_PowerShell_Cmdlets.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "389ec1655b7f67fd6ef59ec55b06a7050d93326eca362f68c239f1f0d8f9d541",
+      "status": "Pending"
+    },
+    {
+      "path": "Lastenheft_Script_Dokumentation.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "81dd3f3384778ff08724956887fa126affa3e072555fb14a1bb3845937771ee4",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "2821a734685453bc93df26eb092c6c08da8bc19bad397258ca2e2bf9faa9c3da",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "d7ac2e47e5077b41c9887f57fd39b1bf227457571f8c3145bac3de5cf0132ec4",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "57ed0c7b90513465c5f1a7221ffefe2ce81abe8aa129953b9424daeb61a49c7e",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "17fdf30279d42f7335088a625d581d24b5773ae8df9091685120f01b7c01d858",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4445e570bfa91e60aeea84a69230bf5d485590ac5082011641979e1925a44d8a",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "ed74b408fd7b454323b3b65412dd97a585693e845f9b84a9e0ed7fb5869d896b",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "5a38b85feb0dca3aa512ece2f6e372210ad8db3a7e195f87351f0bc1a894347f",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KITSM-Professional-Jahr3.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "5029bcf406b343dc24b919f240fd7b5c4e5f583ff17dd29bb53c16869770151e",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-Professional-Jahr3.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "a6467f26a72dacd3cdd53c0a17e51ba39c1a66922b6bad29925c9a14bd80d742",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "3a734bef6d8161609b8530150c5329bb1c6819245c241cc8a73539f5feece530",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "13cd99d4940482fd4992ea70896d74b50ea0c100c46ee4cb09675201be55d59c",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "b9cf4b049cfb0d553d333021c088528339549efe35c7d1a4e5f48dfaf3548d9f",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "0e57ff6dfbdd5cff5e8d1fe3d8c0705462da5980b052bf3163d3cc6de7345024",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c879f2a04218098458306397b3034ae5c7f5f8767271496f2273c82964969a67",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "095348df1019acdf5608fe0f178cedbbda850c525fd2e0b9f767a8f9b5c52014",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "c5d59e5df2c14b03e751097ba43bbf3061decb6f2810e6c3f87b077218686b17",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "9822aad90c08f0e0ea75b4bbec4faff224508cb69010dbcfb7ec3b17aa6f0a84",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "135a80646e5b91715da0704edab9450866e4d7205ec5ef648a78c2be6915ff08",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "184a435639c688d76954c2fa0d4bf62db66633ec7238dc07609a3596d6ce207e",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "4cd24a16b876a79554d7408dc0fd4f78dcb6ecfb55b1206041ad2e4628f8a533",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "7eaf4188ab2b7f0448d5d9563f310e4d9837fc206add4fb0960d3e289c6d0e9b",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "20c9039b5aa9efd538a4bfd14409ccda0ce7f1c7903a4d0d3d0cc11c03ed66a9",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "20490cbcb5b63ef2ac670a9705706564151a9bd1b5865e1fc6279c7ef1ba3d62",
+      "status": "Blocked"
+    },
+    {
+      "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+      "role": "OrderedMember",
+      "normalizedSha256": "e917f76d67eae7db79d2917f05b692055450b143c6a23b5698956083f18a2215",
+      "status": "Pending"
+    }
+  ],
+  "roots": [
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_CICD_Pipeline_Konfiguration.md",
+    "Lastenheft_PowerShell_Cmdlets.md"
+  ],
+  "dependencies": [
+    {
+      "from": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+      "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "kind": "SandboxBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_PowerShell_Cmdlets.md",
+      "to": "Lastenheft_Script_Dokumentation.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "kind": "CommentSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_PowerShell_Cmdlets.md",
+      "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "kind": "CommentSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Script_Dokumentation.md",
+      "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "kind": "CommentSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_PowerShell_Cmdlets.md",
+      "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Script_Dokumentation.md",
+      "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "to": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "to": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+      "kind": "SecureDevelopmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+      "to": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+      "to": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+      "kind": "RequirementsGovernanceGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+      "to": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+      "kind": "RequirementsGovernanceGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+      "to": "Lastenheft_KITSM-Professional-Jahr3.md",
+      "kind": "RequirementsGovernanceGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KITSM-Professional-Jahr3.md",
+      "to": "Lastenheft_KDM-Professional-Jahr3.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-Professional-Jahr3.md",
+      "to": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "to": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "to": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "to": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "kind": "RequirementsGovernanceGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "to": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "to": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "kind": "HardCompletionGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "to": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "kind": "DocumentationSurfaceBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "to": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "to": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "to": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "kind": "AssessmentBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "to": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "kind": "RequirementsGovernanceGate",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "to": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "kind": "PublishedPresetBaseline",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "kind": "FinalAuditInput",
+      "binding": true
+    },
+    {
+      "from": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "to": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+      "kind": "PreferredSerialOrder",
+      "binding": false
+    }
+  ],
+  "evidencePaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
+    "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
+    "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
+    "specs/017-preset-profile-worktree-hardening/autonomous-run-evidence.md",
+    "specs/018-agentic-workspace-tui/autonomous-run-evidence.md",
+    "specs/019-agentic-workspace-regression-hardening/autonomous-run-evidence.md",
+    "specs/020-documentation-architecture-audit/autonomous-run-evidence.md",
+    "specs/020-documentation-architecture-audit/documentation-architecture-audit.json",
+    "specs/021-level0-documentation-architecture/autonomous-run-evidence.md",
+    "specs/021-level0-documentation-architecture/retrospective.md",
+    "specs/022-agentic-workspace-efficiency-guide/pr-evidence.md",
+    "specs/022-agentic-workspace-efficiency-guide/retrospective.md",
+    "specs/025-rl-se-self-assessment/autonomous-run-evidence.md",
+    "specs/025-rl-se-self-assessment/documentation-impact-evidence.json",
+    "specs/active-lastenheft-normalization/history/7fd2b056-6e21-4108-bf09-237f294a6024/intake-review-result.json",
+    "specs/active-lastenheft-normalization/intake-review-request.json",
+    "specs/active-lastenheft-normalization/intake-review-result.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/history/0fa86221-8fce-4fa0-b76e-7d7b0fec124c/intake-review-result.json",
+    "specs/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung-intake-review/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d4/history/5955846b-83d4-48f9-a26a-3b1fa93c1e40/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d4/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d5/history/24b839ac-fd95-4914-981c-0f99a94413c9/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d5/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d6/history/86f8ece6-d921-4430-9283-6f6417edd87d/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d6/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d7/history/44d2b7cb-2051-4dba-8d3f-3eb17c71f72c/intake-review-result.json",
+    "specs/documentation-architecture-intakes/reviews/d7/intake-review-result.json",
+    "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
+    "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
+    "specs/intake-authoring-receipts/level-0-checkout-und-public-template-erstellung.json",
+    "specs/intake-authoring-series/itse-learning-series/series.json",
+    "specs/intake-authoring-series/learning-series-governance/series.json",
+    "specs/itse-learning-intakes/reviews/26-gap-audit/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/27-architecture/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/28-year1/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/29-year2/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/30-year3/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/31-rollout/intake-review-result.json",
+    "specs/itse-learning-intakes/reviews/32-closure/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/18-gap-audit/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/19-architecture/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/20-year1/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/21-year2/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/22-kitsm/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/23-kdm/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/24-rollout/intake-review-result.json",
+    "specs/kdm-kitsm-learning-intakes/reviews/25-closure/intake-review-result.json",
+    "specs/learning-series-governance-intakes/reviews/33-gap-audit/intake-review-result.json",
+    "specs/learning-series-governance-intakes/reviews/34-review-preset/intake-review-result.json",
+    "specs/learning-series-governance-intakes/reviews/35-learning-preset/intake-review-result.json",
+    "specs/learning-series-governance-intakes/reviews/36-ihk-pilot/intake-review-result.json",
+    "specs/learning-series-governance-intakes/reviews/37-global-closure/intake-review-result.json",
+    "specs/learning-series-governance-intakes/series/intake-review-result.json",
+    "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
+    "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/operation.json",
+    "specs/intake-authoring-receipts/flottenweite-ci-budget-governance-und-actions-rationalisierung.json",
+    "specs/intake-authoring-receipts/flottenweite-github-copilot-review-governance-und-kostenbegrenzung.json"
+  ],
+  "evidenceSources": [
+    "specs/025-rl-se-self-assessment/autonomous-run-gate-evidence.json",
+    "specs/025-rl-se-self-assessment/pr-evidence.md",
+    "specs/025-rl-se-self-assessment/retrospective.md",
+    "docs/security/secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md"
+  ]
+}

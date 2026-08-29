@@ -65,8 +65,8 @@ zusammen.
 | Bereich | Kanonischer Einstieg |
 |---|---|
 | Einstieg und Lernen | [Erste Schritte](getting-started.md), [Lernreihen](learning-units/README.md) |
-| Betrieb und Wartung | [Wartung](maintenance/README.md), [Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md), [Manpages](man/) |
-| Architektur | [Source und Home Runtime](architecture/source-and-home-runtime.md), [Wartungs-TUI](architecture/maintenance-tui.md) |
+| Betrieb und Wartung | [Wartung](maintenance/README.md), [Copilot-Review-Governance](operations/copilot-review-governance.md), [Effizienzleitfaden](maintenance/agentic-workspace-efficiency-guide.md), [Manpages](man/) |
+| Architektur | [Source und Home Runtime](architecture/source-and-home-runtime.md), [Copilot-Review-Governance](architecture/copilot-review-governance.md), [Wartungs-TUI](architecture/maintenance-tui.md) |
 | Governance und sichere Entwicklung | [Dokumentations-Governance](documentation-governance.md), [Security](security/README.md), [Secure Development](secure-development/) |
 | AEPS-Programme | [Engineering Controls Framework](aeps/engineering-controls/README.md) |
 | Technische Referenz | [Skripte](scripts/README.md), [vollständige Skriptreferenz](scripts/reference.md) |

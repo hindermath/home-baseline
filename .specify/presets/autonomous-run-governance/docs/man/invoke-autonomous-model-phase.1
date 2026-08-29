@@ -13,6 +13,42 @@ starts, the operation is persisted as NeedsRevalidation. Exit code zero alone
 never completes the phase: a schema-1.0 structured result must pass semantic
 validation before the operation becomes Completed.
 .PP
+DE: TerminalAwareRunnerAdoption gilt nur fuer die exakte Phase
+implement-closeout. Ein vom Child bereits publizierter Completed/168/168-State
+wird nach semantischer Resultatpruefung neu geladen und nur bei vollstaendiger
+Identitaets-, Hash-, Tasks-, Git- und Closeout-Bindung adoptiert. Danach sind
+Parent- und Catch-Writes auf Featurepfade null. Log und Ergebnis bleiben
+runnerLocal-Evidence im gebundenen Ausgabeverzeichnis. Ein absichtlich als
+Verzeichnis blockierter Logpfad bleibt nicht blockierend; ein vorhandener Log
+mit falschem Pfad, Bytes oder Hash blockiert die Adoption. Andere Drift bleibt
+bytegleich und verlangt read-only Reconciliation.
+.PP
+EN: TerminalAwareRunnerAdoption is limited to exact implement-closeout. A
+child-published Completed/168/168 state is reloaded after semantic result
+validation and adopted only with complete identity, hash, tasks, Git, and
+closeout binding. Parent and catch feature writes are then zero. Log and result
+remain runnerLocal evidence in the bound output directory. A deliberately
+directory-blocked log path stays non-blocking; an existing log with the wrong
+path, bytes, or hash blocks adoption. Any other drift is preserved byte-for-
+byte and requires read-only reconciliation.
+.PP
+DE: Die Terminaladoption bindet State und Tasks an die exakten feature-lokalen
+Pfade, fuehrt den installierten State-Validator aus, verlangt Completed-
+Preflight und die aufgeloeste Katalog-/Profilidentitaet und verwirft Symlinks
+oder Reparse Points in Leaves und Vorfahren. State und Tasks muessen exakte
+HEAD-Blobs sein; Index und getrackter Worktree muessen sauber sein. Lokale und
+remote Default-Refs muessen mit Fast-forward-Nachweis auf HEAD zeigen. Der
+zweite TOCTOU-Tupel bindet State-, Tasks-, Result-, Payload- und Logbytes sowie
+Index und getrackten Worktree.
+.PP
+EN: Terminal adoption binds State and Tasks to their exact feature-local
+paths, runs the installed state validator, requires Completed preflight and
+resolved catalog/profile identity, and rejects symlinks or reparse points in
+leaves and ancestors. State and Tasks must be exact HEAD blobs; the index and
+tracked worktree must be clean. Local and remote default refs must point to
+HEAD with fast-forward proof. The second TOCTOU tuple binds State, Tasks,
+result, payload, and log bytes plus the index and tracked worktree.
+.PP
 DE: Modellwechsel erfolgen nur zwischen Phasenprozessen. Konkrete Modellnamen
 bleiben in der lokalen Runner-Konfiguration und ausserhalb reproduzierbarer
 Feature-Anforderungen.
@@ -47,6 +83,10 @@ or the phase process.
 Missing routing, profile, executable, model, effort, successful preflight, or a
 valid structured result blocks execution. Script-only commands are never
 started through a model profile. Success grants no commit, push, merge, bypass,
-secret, deployment, or provider-administration authority.
+secret, deployment, Home sync, subscription, budget, cancellation, Position 7,
+or provider-administration authority. Normal success without drift keeps the
+parent-owned Completed write; definite child failure without drift keeps the
+atomic Blocked write; uncertainty exits nonzero with
+TERMINAL_STATE_DRIFT_REQUIRES_READ_ONLY_RECONCILIATION and no stale write.
 .SH SEE ALSO
 validate-autonomous-phase-result(1), validate-autonomous-run-state(1), orchestrate-parallel-autonomous-runs(1)

@@ -31,6 +31,22 @@ Die Vorschau kann sichere Remote-Abfragen ausführen, verändert aber keine
 Arbeitsdateien. Prüfe das textorientierte Ergebnis und die genannte nächste
 Aktion, bevor du einen echten Lauf autorisierst.
 
+### Copilot-Review-Governance sicher voranzeigen
+
+Der geschlossene Acht-Ziel-Vertrag kann lokal mit Fixture-Evidence geprüft
+werden. Dieser Einstieg schreibt weder zum Provider noch zu Git oder Home:
+
+```bash
+bash scripts/manage-copilot-review-governance.sh --action preview --dry-run \
+  --desired-state scripts/config/copilot-review-governance-desired-state.json \
+  --inventory scripts/tests/copilot-review-governance/fixtures/vertical-slice/home-baseline-green.json \
+  --output .specify/runtime/copilot-review-governance-preview.json
+```
+
+Details: [Quickstart](specs/031-github-copilot-review-governance/quickstart.md),
+[Manpage](docs/man/manage-copilot-review-governance.1.md) und
+[Betriebsführung](docs/operations/copilot-review-governance.md).
+
 ## Wähle deinen Leserpfad
 
 | Du möchtest ... | Einstieg | Nächste Aktion |

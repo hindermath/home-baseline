@@ -1,0 +1,1 @@
+{"cases":["UnknownField","MissingRepositoryId","DuplicatePlatform","DuplicateGate","Delete","WrongMethod","WrongScope","DeliveryProviderWrite","Traversal","Symlink","StaleHash","BrowserApiMix","MissingAccountOwner","AccountOwnerMismatch","ForeignRepositoryIdInAccountGate","ForeignRulesetIdInAccountGate","ForeignPullRequestIdInAccountGate"]}

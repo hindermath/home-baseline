@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "d76c8231-c875-41ee-9dfc-65afe756f626",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-08-28T20:39:44Z",
+  "repository": {
+    "root": ".",
+    "head": "d160b4815eade6cdbf6788a63233158582611d70"
+  },
+  "requestEvidence": {
+    "path": "specs/flottenweite-github-copilot-review-governance-und-kostenbegrenzung-intake-review/intake-review-request.json",
+    "normalizedSha256": "ff79b28df2e6df59fef76620788df71e0af4fb03da5b6a1ccb4bb18a894b6932"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
+      "role": "Primary",
+      "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
+      "gitBlob": "a132e04115f06ec7e3591c5dee179e437ab3415d"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "N/A"
+}

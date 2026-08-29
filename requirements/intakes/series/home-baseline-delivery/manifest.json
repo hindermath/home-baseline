@@ -7,16 +7,10 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
-      "role": "Primary",
-      "normalizedSha256": "48a0560280842535d1b847ebca7387768d52d10ecae31e12ed177566375c2610",
-      "status": "Eligible"
-    },
-    {
       "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
-      "status": "Blocked"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -212,17 +206,11 @@
     }
   ],
   "roots": [
-    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
-    {
-      "from": "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md",
-      "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
-      "kind": "HardCompletionGate",
-      "binding": true
-    },
     {
       "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md",
       "to": "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -448,6 +436,8 @@
   ],
   "evidencePaths": [
     "Lastenheft_Abarbeitungsreihenfolge.md",
+    "Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md",
+    "Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.030-stage-b-rollout.md",
     "specs/014-requirements-intake-consolidation-governance/pr-evidence.md",
     "specs/015-windows-maintenance-hardening/autonomous-run-evidence.md",
     "specs/016-linux-maintenance-hardening/autonomous-run-evidence.md",
@@ -462,6 +452,11 @@
     "specs/022-agentic-workspace-efficiency-guide/retrospective.md",
     "specs/025-rl-se-self-assessment/autonomous-run-evidence.md",
     "specs/025-rl-se-self-assessment/documentation-impact-evidence.json",
+    "specs/029-ci-budget-governance/autonomous-run-gate-evidence-postmerge.json",
+    "specs/029-ci-budget-governance/retrospective.md",
+    "specs/030-stage-b-rollout/evidence/v1/fleet-terminal-evidence.json",
+    "specs/030-stage-b-rollout/evidence/v1/stage-b-causal-postmerge.json",
+    "specs/030-stage-b-rollout/retrospective.md",
     "specs/active-lastenheft-normalization/history/7fd2b056-6e21-4108-bf09-237f294a6024/intake-review-result.json",
     "specs/active-lastenheft-normalization/intake-review-request.json",
     "specs/active-lastenheft-normalization/intake-review-result.json",

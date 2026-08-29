@@ -42,3 +42,15 @@ Owner: Security Architecture Owner. Reviewer: Zero-Trust Reviewer.
 Restrisiko: kompromittierte Identität oder Providerzustandswechsel zwischen
 letztem Read und Write. Re-Evaluation bei Identitäts-, Berechtigungs-,
 Provider-, Ruleset-, Bypass-, Runner- oder Trust-Boundary-Änderung.
+
+## Feature 031
+
+`Applicable`: GitHub-Account, Repositories, Rulesets, Copilot-Einstellungen,
+Actions und Evidence liegen über getrennten Trust Boundaries. Lokal ist
+beobachtet, dass der öffentliche Validator Authority, Inventory, Plan,
+Change-Set-Review und vier Evidenceklassen frisch und hashgebunden prüft und
+der FakeProvider die vollständige Tuple unmittelbar vor jedem Write erneut
+liest. Das ist kein Live-Provider-Beleg; Provider-, native und Primary-Gates
+bleiben offen. Owner: Security Architecture Owner; Reviewer: Zero-Trust
+Reviewer; Restrisiko: externer TOCTOU-Drift; Trigger: Identitäts-, Provider-,
+Permission-, Gate- oder UI-Änderung.

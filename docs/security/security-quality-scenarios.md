@@ -62,3 +62,18 @@ Restrisiko: Live-Providerzustand kann nach der letzten Leseprüfung wechseln;
 die unmittelbare Revalidierung minimiert, beseitigt aber kein externes
 TOCTOU-Risiko. Re-Evaluation bei Gate-, Review-, Ruleset-, Bypass-, Provider-,
 Plattform- oder Evidence-Vertragsänderung.
+
+## Feature 031: Qualitätsszenarien
+
+| ID | Auslöser | Erwartete Reaktion |
+|---|---|---|
+| SQ-031-01 | Accountowner oder Fremd-ID weicht ab | vor Write `Blocked,writes=0` |
+| SQ-031-02 | Pagination, Detailread oder Browserrecord fehlt | Inventur unvollständig; keine Planung als Primary |
+| SQ-031-03 | State ändert sich nach Plan oder vor Write | TOCTOU-Hard-Stop und neue Inventur |
+| SQ-031-04 | Write-Ausgang ist unbekannt | nur exakter GET-Abgleich, kein blinder Retry |
+| SQ-031-05 | Evidence enthält Secret, HTML oder privaten Pfad | Publikation vor Hash/Replace blockiert |
+| SQ-031-06 | Create muss zurückgenommen werden | mit eigenem Gate deaktivieren, nie löschen |
+
+Owner: Security Quality Owner; Reviewer: Security Reviewer. Restrisiko:
+Providerzustand bleibt zeitabhängig. Trigger: Schema-, API-, UI-, Retry-,
+Redaction-, Rollback- oder Plattformänderung.

@@ -99,3 +99,14 @@ Reviewer: Dependency and License Reviewer. Restrisiko: Systemwerkzeuge und
 GitHub Actions können nach dem gebundenen Stand neue Schwachstellen erhalten.
 Re-Evaluation bei Import-, Paket-, Action-SHA-, Registry-, Lizenz-, Toolchain-,
 Distributions- oder AI-Runtime-Änderung.
+
+## Feature 031
+
+Keine neue Package-, Registry- oder Laufzeitabhängigkeit wurde eingeführt.
+Produktkern: vorhandenes PowerShell 7/.NET; Adapter: Bash 3.2; Tests: vorhandenes
+Python 3 Standard Library. Damit gibt es keine neue Paketlizenz und keine
+bekannte kritische CVE im hinzugefügten Dependency-Umfang. Systemtools und
+GitHub Actions bleiben extern zu beobachten. AI-SBOM ist `N/A`, weil kein Modell,
+Dataset, Promptdienst oder KI-Runtime ausgeliefert wird. Owner: Supply Chain
+Owner; Reviewer: Dependency Reviewer; Trigger: Import-, Paket-, Action-,
+Registry-, Lizenz- oder Runtimeänderung.

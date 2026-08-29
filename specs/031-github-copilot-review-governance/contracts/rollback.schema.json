@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hindermath.example/schemas/copilot-review-governance/rollback.schema.json",
+  "title": "Copilot Review Governance Rollback",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "rollbackId", "runId", "sourceActionId", "sourceOperationClass", "sourceMutationResultSha256", "afterInventorySha256", "targetKind", "beforeSha256", "failedAfterSha256", "rollbackDesiredSha256", "payloadPath", "requiresExternalWriteGate", "maximumAgeSeconds", "status", "rollbackSha256"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "rollbackId": { "type": "string", "format": "uuid" },
+    "runId": { "type": "string", "format": "uuid" },
+    "sourceActionId": { "type": "string", "format": "uuid" },
+    "sourceOperationClass": { "enum": ["AccountSetting", "EffortLevel", "RulesetCreate", "RulesetUpdate", "RulesetDisable", "PRLifecycleAcceptance", "ManualReviewAcceptance", "Delivery"] },
+    "sourceMutationResultSha256": { "$ref": "#/$defs/sha256" },
+    "afterInventorySha256": { "$ref": "#/$defs/sha256" },
+    "targetKind": { "enum": ["Account", "Repository", "Ruleset", "PullRequest"] },
+    "accountOwner": {
+      "$comment": "Exact account rollback identity; it must equal the AccountSetting plan, current explicit rollback authority record, gate, and mutation result.",
+      "const": "hindermath"
+    },
+    "repositoryId": { "type": "integer", "minimum": 1 },
+    "rulesetId": { "type": "integer", "minimum": 1 },
+    "rulesetIdSource": { "const": "ProviderResponseAndPostInventoryExactMatch" },
+    "beforeSha256": { "$ref": "#/$defs/sha256" },
+    "failedAfterSha256": { "$ref": "#/$defs/sha256" },
+    "rollbackDesiredSha256": { "$ref": "#/$defs/sha256" },
+    "payloadPath": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$" },
+    "requiresExternalWriteGate": { "const": true },
+    "externalWriteGateSha256": { "$ref": "#/$defs/sha256" },
+    "maximumAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 3600 },
+    "status": { "enum": ["Prepared", "Authorized", "Applied", "Verified", "Blocked", "Expired"] },
+    "appliedAt": { "type": "string", "format": "date-time" },
+    "verifiedAfterSha256": { "$ref": "#/$defs/sha256" },
+    "evidencePath": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$" },
+    "rollbackSha256": { "$ref": "#/$defs/sha256" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "targetKind": { "const": "Account" } } },
+      "then": {
+        "required": ["accountOwner"],
+        "properties": { "sourceOperationClass": { "const": "AccountSetting" } },
+        "not": {
+          "anyOf": [
+            { "required": ["repositoryId"] },
+            { "required": ["rulesetId"] }
+          ]
+        }
+      },
+      "else": {
+        "required": ["repositoryId"],
+        "not": { "required": ["accountOwner"] }
+      }
+    },
+    {
+      "if": { "properties": { "targetKind": { "const": "Ruleset" } } },
+      "then": { "required": ["rulesetId"] }
+    },
+    {
+      "if": {
+        "properties": {
+          "sourceOperationClass": { "enum": ["RulesetCreate", "RulesetUpdate", "RulesetDisable"] }
+        }
+      },
+      "then": {
+        "required": ["repositoryId", "rulesetId"],
+        "properties": { "targetKind": { "const": "Ruleset" } }
+      }
+    },
+    {
+      "if": { "properties": { "sourceOperationClass": { "const": "RulesetCreate" } } },
+      "then": { "required": ["rulesetIdSource"] }
+    }
+  ],
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

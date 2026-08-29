@@ -37,3 +37,14 @@ Providerkontrollen und Runner-Images liegen außerhalb des Repositories;
 fehlende aktuelle Assurance ist kein Pass. Re-Evaluation bei Provider-,
 Assurance-, Permission-, Logging-, Incident-, Datenklassen- oder
 Shared-Responsibility-Änderung.
+
+## Feature 031
+
+`Applicable`, ohne C5/C3A-Zertifizierungsbehauptung: GitHub stellt Cloud- und
+Providerkontrollen, der Repository-Owner verantwortet Rollen, Datenminimierung,
+Gate-Evidence, Logging, Incident, Exit und regelmäßige Re-Evaluation. Evidence
+enthält keine Tokens, Cookies, HTML oder unnötige Personendaten. Portabilität
+beruht auf offenen JSON-/Markdown-Verträgen und einer austauschbaren
+Providergrenze. Owner: Cloud Compliance Owner; Reviewer: Compliance Reviewer;
+Restrisiko: externe Assurance bleibt zeitabhängig; Trigger: Provider-, Daten-,
+Region-, Incident-, Logging- oder Assuranceänderung.

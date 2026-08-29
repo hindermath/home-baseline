@@ -14,6 +14,46 @@
     shell evaluation. Model changes occur only between processes. Missing or
     unavailable profiles fail closed.
 
+    DE: TerminalAwareRunnerAdoption gilt ausschliesslich fuer die exakte Phase
+    implement-closeout. Nach semantischer Resultatpruefung wird ein bereits
+    vom Child publizierter Completed/168/168-State neu geladen und nur bei
+    vollstaendiger Identitaets-, Hash-, Tasks-, Git- und Closeout-Bindung
+    adoptiert. Danach schreibt der Parent weder im Haupt- noch im Catch-Pfad
+    Featuredateien. Ergebnis und Log bleiben runnerLocal-Evidence im gebundenen
+    OutputDirectory. Ein absichtlich als Verzeichnis blockierter Logpfad bleibt
+    nicht blockierend; ein vorhandener Logpfad mit falschem Pfad, Bytes oder
+    Hash blockiert die Terminaladoption. Jede andere Drift verlangt
+    read-only Reconciliation. Normale Success- und definitive Failure-Pfade
+    ohne Drift behalten ihre bisherigen atomaren Parent-Writes.
+
+    EN: TerminalAwareRunnerAdoption applies only to exact implement-closeout.
+    After semantic result validation, a child-published Completed/168/168 state
+    is reloaded and adopted only when identity, hashes, tasks, Git relation,
+    and closeout fields match exactly. The parent then performs no feature-file
+    write in main or catch. Result and log remain runnerLocal evidence inside
+    the bound OutputDirectory. A deliberately directory-blocked log path stays
+    non-blocking; an existing log with the wrong path, bytes, or hash blocks
+    terminal adoption. Every other drift requires read-only
+    reconciliation. Normal success and definite failure without drift keep
+    their existing atomic parent writes.
+
+    DE: Die Adoption bindet die exakten feature-lokalen State-/Tasks-Pfade,
+    den installierten State-Validator, Completed-Preflight, Katalog und Profil,
+    symlinkfreie Pfade, committed Blobs, sauberen Index/Worktree sowie lokale
+    und remote Default-Refs auf HEAD. Der zweite TOCTOU-Tupel bindet zusaetzlich
+    State-, Tasks-, Result-, Payload- und Logbytes sowie Index und Worktree.
+
+    EN: Adoption binds the exact feature-local State/Tasks paths, installed
+    state validator, Completed preflight, catalog and profile, symlink-free
+    paths, committed blobs, clean index/worktree, and local and remote default
+    refs at HEAD. The second TOCTOU tuple additionally binds State, Tasks,
+    result, payload, and log bytes plus index and worktree.
+
+    Der Runner erteilt keine Provider-, Delivery-, Bypass-, Home-, Secret-,
+    Subscription-, Budget-, Cancellation- oder Position-7-Autoritaet.
+    The runner grants no provider, delivery, bypass, Home, secret,
+    subscription, budget, cancellation, or Position-7 authority.
+
 .PARAMETER Action
     Validate, Run oder Status.
 
@@ -337,6 +377,215 @@ function Set-AMRBlockedState {
     $StateData.updatedAt = $timestamp
 }
 
+function Get-AMRFileSnapshot {
+    param([Parameter(Mandatory)][string] $Path)
+
+    $bytes = [IO.File]::ReadAllBytes($Path)
+    return [ordered]@{
+        bytes = $bytes
+        sha256 = [Convert]::ToHexString(
+            [Security.Cryptography.SHA256]::HashData($bytes)
+        ).ToLowerInvariant()
+    }
+}
+
+function Test-AMRFileSnapshot {
+    param(
+        [Parameter(Mandatory)][string] $Path,
+        [Parameter(Mandatory)][hashtable] $Snapshot
+    )
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) { return $false }
+    $current = Get-AMRFileSnapshot $Path
+    return [string] $current.sha256 -eq [string] $Snapshot.sha256 -and
+        [Linq.Enumerable]::SequenceEqual[byte]([byte[]] $current.bytes, [byte[]] $Snapshot.bytes)
+}
+
+function Resolve-AMRContainedFile {
+    param(
+        [Parameter(Mandatory)][string] $Root,
+        [Parameter(Mandatory)][string] $Path,
+        [Parameter(Mandatory)][string] $Label
+    )
+
+    Assert-AMRCondition (-not [IO.Path]::IsPathRooted($Path)) "$Label muss relativ sein."
+    Assert-AMRCondition (-not (@($Path -split '[\\/]' | Where-Object { $_ -eq '..' }).Count -gt 0)) "$Label enthaelt '..'."
+    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+    $full = [IO.Path]::GetFullPath((Join-Path $Root $Path))
+    Assert-AMRCondition $full.StartsWith($rootFull, [StringComparison]::Ordinal) "$Label verlaesst den gebundenen Root."
+    Assert-AMRCondition (Test-Path -LiteralPath $full -PathType Leaf) "$Label fehlt: $Path"
+    $cursor = Get-Item -LiteralPath $full -Force
+    while ($null -ne $cursor -and $cursor.FullName.StartsWith($rootFull, [StringComparison]::Ordinal)) {
+        Assert-AMRCondition (-not ($cursor.Attributes -band [IO.FileAttributes]::ReparsePoint)) "$Label oder ein Vorfahr darf kein Symlink oder Reparse Point sein."
+        $cursor = if ($cursor -is [IO.FileInfo]) { $cursor.Directory } else { $cursor.Parent }
+    }
+    return $full
+}
+
+function Assert-AMRExactPath {
+    param(
+        [Parameter(Mandatory)][string] $Actual,
+        [Parameter(Mandatory)][string] $Expected,
+        [Parameter(Mandatory)][string] $Label
+    )
+
+    Assert-AMRCondition ([IO.Path]::GetFullPath($Actual) -ceq [IO.Path]::GetFullPath($Expected)) "$Label ist nicht der exakt gebundene Pfad."
+}
+
+function Invoke-AMRGitRead {
+    param(
+        [Parameter(Mandatory)][string] $Repository,
+        [Parameter(Mandatory)][string[]] $Arguments
+    )
+
+    $output = @(& git -C $Repository @Arguments 2>$null)
+    $code = if ($null -eq $LASTEXITCODE) { 0 } else { [int] $LASTEXITCODE }
+    return [ordered]@{ exitCode = $code; output = @($output | ForEach-Object { [string] $_ }) }
+}
+
+function Assert-AMRTerminalAwareRunnerAdoption {
+    param(
+        [Parameter(Mandatory)][hashtable] $ParentState,
+        [Parameter(Mandatory)][hashtable] $ReloadedState,
+        [Parameter(Mandatory)][string] $Repository,
+        [Parameter(Mandatory)][string] $StatePath,
+        [Parameter(Mandatory)][string] $PhaseId,
+        [Parameter(Mandatory)][string] $ResultPath,
+        [Parameter(Mandatory)][string] $ResultSha256,
+        [Parameter(Mandatory)][string] $LogPath,
+        [Parameter(Mandatory)][string] $LogMaterializationDisposition,
+        [Parameter(Mandatory)][string] $OutputRoot,
+        [Parameter(Mandatory)][hashtable] $Catalog,
+        [Parameter(Mandatory)][string] $ResolvedProfileName,
+        [Parameter(Mandatory)][hashtable] $ResolvedProfile
+    )
+
+    Assert-AMRCondition ($PhaseId -eq 'implement-closeout') 'Terminal adoption is limited to implement-closeout.'
+    $featureDirectory = Join-Path $Repository ([string] $ParentState.featurePath)
+    Assert-AMRExactPath $StatePath (Join-Path $featureDirectory 'autonomous-run-state.json') 'StatePath'
+    Assert-AMRExactPath $ResultPath (Join-Path $OutputRoot "$PhaseId.result.json") 'ResultPath'
+    Assert-AMRExactPath $LogPath (Join-Path $OutputRoot "$PhaseId.log.txt") 'LogPath'
+    [void](Resolve-AMRContainedFile $Repository ([IO.Path]::GetRelativePath($Repository, $StatePath)) 'StatePath')
+    [void](Resolve-AMRContainedFile $Repository ([IO.Path]::GetRelativePath($Repository, $ResultPath)) 'ResultPath')
+    [void](Resolve-AMRContainedFile $OutputRoot ([IO.Path]::GetRelativePath($OutputRoot, $ResultPath)) 'ResultPath')
+    $logSnapshot = $null
+    if (Test-Path -LiteralPath $LogPath -PathType Leaf) {
+        [void](Resolve-AMRContainedFile $OutputRoot ([IO.Path]::GetRelativePath($OutputRoot, $LogPath)) 'LogPath')
+        Assert-AMRCondition ($LogMaterializationDisposition -eq 'Written') 'Terminal runner log bytes were not materialized exactly.'
+        $logSnapshot = Get-AMRFileSnapshot $LogPath
+    } else {
+        Assert-AMRCondition (Test-Path -LiteralPath $LogPath -PathType Container) 'Terminal runner log is neither a file nor the allowed runner-local failure directory.'
+        Assert-AMRCondition ($LogMaterializationDisposition -eq 'FailedDirectory') 'Terminal runner-local materialization failure disposition mismatch.'
+    }
+    foreach ($field in @('schemaVersion', 'runId', 'featurePath', 'branch', 'deliveryMode')) {
+        Assert-AMRCondition ([string] $ReloadedState[$field] -eq [string] $ParentState[$field]) "Terminal identity drift: $field"
+    }
+    Assert-AMRCondition ([string] $ReloadedState.schemaVersion -eq '1.1') 'Terminal state schemaVersion must be 1.1.'
+    Assert-AMRCondition ([string] $ReloadedState.deliveryMode -eq 'MergeAndSync') 'Terminal adoption requires MergeAndSync.'
+    Assert-AMRCondition ([string] $ReloadedState.status -eq 'Completed') 'Reloaded terminal state is not Completed.'
+    Assert-AMRCondition ([string] $ReloadedState.nextExactAction -eq 'N/A') 'Terminal nextExactAction must be N/A.'
+    Assert-AMRCondition ([int] $ReloadedState.tasks.completed -eq 168 -and [int] $ReloadedState.tasks.total -eq 168) 'Terminal tasks must be 168/168.'
+    foreach ($field in @('mergeOrPublication', 'defaultBranchSync', 'postMergeActions', 'finalValidation')) {
+        Assert-AMRCondition ([string] $ReloadedState.closeout[$field] -eq 'Completed') "Terminal closeout field is not Completed: $field"
+    }
+    Assert-AMRCondition ([string] $ReloadedState.lastOperation.kind -eq 'ModelRoutingPhase:implement-closeout') 'Terminal lastOperation.kind mismatch.'
+    Assert-AMRCondition ([string] $ReloadedState.lastOperation.state -eq 'Completed') 'Terminal lastOperation.state mismatch.'
+
+    $tasksPath = Resolve-AMRContainedFile $Repository ([string] $ReloadedState.tasks.path) 'tasks.path'
+    Assert-AMRExactPath $tasksPath (Join-Path $featureDirectory 'tasks.md') 'tasks.path'
+    $tasksSnapshot = Get-AMRFileSnapshot $tasksPath
+    Assert-AMRCondition ([string] $tasksSnapshot.sha256 -eq [string] $ReloadedState.tasks.sha256) 'Terminal tasks hash mismatch.'
+    $taskMatches = [regex]::Matches([Text.Encoding]::UTF8.GetString($tasksSnapshot.bytes), '(?m)^- \[[xX]\] T(\d{3})\b')
+    Assert-AMRCondition ($taskMatches.Count -eq 168) 'Terminal tasks file must contain 168 checked task lines.'
+    for ($index = 0; $index -lt 168; $index++) {
+        Assert-AMRCondition ([int] $taskMatches[$index].Groups[1].Value -eq ($index + 1)) "Terminal task sequence mismatch at index $index."
+    }
+
+    $relativeResult = [IO.Path]::GetRelativePath($Repository, $ResultPath).Replace('\\', '/')
+    $reloadedPhase = Get-AMRPhase $ReloadedState $PhaseId
+    $parentPhase = Get-AMRPhase $ParentState $PhaseId
+    Assert-AMRCondition ([string] $reloadedPhase.command -eq 'speckit.implement') 'Terminal command mismatch.'
+    Assert-AMRCondition ([string] $reloadedPhase.status -eq 'Completed' -and [int] $reloadedPhase.exitCode -eq 0) 'Terminal routing phase is not Completed/0.'
+    Assert-AMRCondition ([string] $reloadedPhase.resultPath -eq $relativeResult) 'Terminal resultPath mismatch.'
+    Assert-AMRCondition ([string] $reloadedPhase.resultSha256 -eq $ResultSha256) 'Terminal resultSha256 mismatch.'
+    foreach ($field in @('phaseId', 'command', 'routingRole', 'runnerProfile', 'agentFamily', 'model', 'reasoningEffort')) {
+        Assert-AMRCondition ([string] $reloadedPhase[$field] -eq [string] $parentPhase[$field]) "Terminal routing identity drift: $field"
+    }
+    Assert-AMRCondition $Catalog.commands.ContainsKey([string] $reloadedPhase.command) 'Terminal command fehlt im aufgeloesten Routing-Katalog.'
+    Assert-AMRCondition ([string] $Catalog.commands[[string] $reloadedPhase.command] -eq [string] $reloadedPhase.routingRole) 'Terminal routingRole stimmt nicht mit dem Katalog ueberein.'
+    Assert-AMRCondition ([string] $reloadedPhase.runnerProfile -eq $ResolvedProfileName) 'Terminal runnerProfile stimmt nicht mit dem aufgeloesten Profil ueberein.'
+    foreach ($field in @('agentFamily', 'model', 'reasoningEffort')) {
+        Assert-AMRCondition ([string] $reloadedPhase[$field] -eq [string] $ResolvedProfile[$field]) "Terminal $field stimmt nicht mit dem aufgeloesten Profil ueberein."
+    }
+    Assert-AMRCondition ([string] $reloadedPhase.preflight -eq 'Completed') 'Terminal phase preflight must be Completed.'
+
+    $result = Read-AMRJson $ResultPath
+    $resultSnapshot = Get-AMRFileSnapshot $ResultPath
+    Assert-AMRCondition ([string] $result.phaseId -eq $PhaseId -and [string] $result.outcome -eq 'Completed') 'Terminal phase result identity mismatch.'
+    Assert-AMRCondition ([int] $result.expectedTasks -eq 168 -and [int] $result.completedTasks -eq 168 -and [bool] $result.gatesSatisfied) 'Terminal phase result is incomplete.'
+    Assert-AMRCondition ([string] $result.payloadPath -eq [string] $ReloadedState.tasks.path) 'Terminal result payloadPath must equal tasks.path.'
+    Assert-AMRCondition ([string] $result.payloadSha256 -eq [string] $ReloadedState.tasks.sha256) 'Terminal result payload hash mismatch.'
+    [void](Resolve-AMRContainedFile $Repository ([string] $result.payloadPath) 'payloadPath')
+    $payloadSnapshot = Get-AMRFileSnapshot $tasksPath
+
+    $stateValidator = Join-Path $PSScriptRoot 'validate-autonomous-run-state.ps1'
+    Assert-AMRCondition (Test-Path -LiteralPath $stateValidator -PathType Leaf) 'Installierter State-Validator fehlt.'
+    $stateValidation = @(& pwsh -NoProfile -File $stateValidator -State $StatePath 2>&1)
+    Assert-AMRCondition ($LASTEXITCODE -eq 0) "Terminal state validator failed: $($stateValidation -join ' ')"
+
+    $stateRelative = [IO.Path]::GetRelativePath($Repository, $StatePath).Replace('\\', '/')
+    $head = Invoke-AMRGitRead $Repository @('rev-parse', 'HEAD')
+    $parents = Invoke-AMRGitRead $Repository @('rev-list', '--parents', '-n', '1', 'HEAD')
+    Assert-AMRCondition ($head.exitCode -eq 0 -and $parents.exitCode -eq 0) 'Terminal Git head cannot be read.'
+    Assert-AMRCondition (([string] $parents.output[0] -split ' ').Count -eq 2) 'Terminal commit must have exactly one parent.'
+    $headState = Invoke-AMRGitRead $Repository @('show', "HEAD:$stateRelative")
+    $tasksRelative = [IO.Path]::GetRelativePath($Repository, $tasksPath).Replace('\\', '/')
+    $headTasks = Invoke-AMRGitRead $Repository @('show', "HEAD:$tasksRelative")
+    $parentStateResult = Invoke-AMRGitRead $Repository @('show', "HEAD^:$stateRelative")
+    Assert-AMRCondition ($headState.exitCode -eq 0 -and $headTasks.exitCode -eq 0 -and $parentStateResult.exitCode -eq 0) 'Terminal State/Tasks Git blobs are missing.'
+    $headStateText = (@($headState.output) -join "`n") + "`n"
+    $diskStateText = [IO.File]::ReadAllText($StatePath, [Text.Encoding]::UTF8)
+    Assert-AMRCondition ($headStateText -eq $diskStateText) 'Terminal state is not the exact HEAD blob.'
+    $headTasksText = (@($headTasks.output) -join "`n") + "`n"
+    Assert-AMRCondition ($headTasksText -eq [IO.File]::ReadAllText($tasksPath, [Text.Encoding]::UTF8)) 'Terminal tasks are not the exact HEAD blob.'
+    $parentDiskState = (@($parentStateResult.output) -join "`n") | ConvertFrom-Json -AsHashtable
+    Assert-AMRCondition ([string] $parentDiskState.status -eq 'Active' -and [int] $parentDiskState.tasks.completed -eq 167 -and [int] $parentDiskState.tasks.total -eq 168) 'Terminal parent is not Active/167/168.'
+    Assert-AMRCondition ([string] $parentDiskState.lastOperation.state -eq 'NeedsRevalidation') 'Terminal parent is not NeedsRevalidation.'
+
+    $index = Invoke-AMRGitRead $Repository @('diff', '--cached', '--quiet')
+    $trackedWorktree = Invoke-AMRGitRead $Repository @('status', '--porcelain=v1', '--untracked-files=no')
+    Assert-AMRCondition ($index.exitCode -eq 0) 'Terminal index is not clean.'
+    Assert-AMRCondition ($trackedWorktree.exitCode -eq 0 -and @($trackedWorktree.output).Count -eq 0) 'Terminal tracked worktree is not clean.'
+    $branch = Invoke-AMRGitRead $Repository @('symbolic-ref', '--quiet', '--short', 'HEAD')
+    Assert-AMRCondition ($branch.exitCode -eq 0) 'Terminal local default branch cannot be resolved.'
+    $localDefault = Invoke-AMRGitRead $Repository @('rev-parse', "refs/heads/$([string] $branch.output[0])")
+    $remoteHead = Invoke-AMRGitRead $Repository @('symbolic-ref', '--quiet', 'refs/remotes/origin/HEAD')
+    Assert-AMRCondition ($remoteHead.exitCode -eq 0) 'Terminal remote default ref cannot be resolved locally.'
+    $remoteDefault = Invoke-AMRGitRead $Repository @('rev-parse', [string] $remoteHead.output[0])
+    Assert-AMRCondition ($localDefault.exitCode -eq 0 -and $remoteDefault.exitCode -eq 0) 'Terminal default refs cannot be read.'
+    Assert-AMRCondition ([string] $localDefault.output[0] -eq [string] $head.output[0] -and [string] $remoteDefault.output[0] -eq [string] $head.output[0]) 'Local and remote default refs must equal HEAD.'
+    $parentAncestry = Invoke-AMRGitRead $Repository @('merge-base', '--is-ancestor', 'HEAD^', 'HEAD')
+    $remoteAncestry = Invoke-AMRGitRead $Repository @('merge-base', '--is-ancestor', 'HEAD', [string] $remoteHead.output[0])
+    Assert-AMRCondition ($parentAncestry.exitCode -eq 0 -and $remoteAncestry.exitCode -eq 0) 'Terminal default refs do not prove fast-forward ancestry.'
+
+    return [ordered]@{
+        phase = $reloadedPhase
+        tasksSha256 = [string] $tasksSnapshot.sha256
+        stateSha256 = [string] (Get-AMRFileSnapshot $StatePath).sha256
+        head = [string] $head.output[0]
+        localDefault = [string] $localDefault.output[0]
+        remoteDefault = [string] $remoteDefault.output[0]
+        resultSha256 = $ResultSha256
+        payloadSha256 = [string] $result.payloadSha256
+        resultBytesSha256 = [string] $resultSnapshot.sha256
+        payloadBytesSha256 = [string] $payloadSnapshot.sha256
+        logKind = if ($null -eq $logSnapshot) { 'Directory' } else { 'File' }
+        logBytesSha256 = if ($null -eq $logSnapshot) { 'N/A' } else { [string] $logSnapshot.sha256 }
+        indexExitCode = [int] $index.exitCode
+        trackedWorktreeCount = @($trackedWorktree.output).Count
+    }
+}
+
 function Write-AMRStatus {
     param(
         [Parameter(Mandatory)][hashtable] $StateData,
@@ -456,6 +705,10 @@ if (-not $PSCmdlet.ShouldProcess("phase '$PhaseId'", "Run fail-closed model pref
 }
 
 try {
+    $runningStateSnapshot = $null
+    $preserveChildState = $false
+    $terminalAdopted = $false
+    $logMaterializationDisposition = 'NotAttempted'
     $preflight = Invoke-AMRCommand $runnerProfileData.preflight $values $Worktree
     if ([int] $preflight.exitCode -ne 0) {
         $reason = "Model preflight failed for profile '$profileName' with exit code $($preflight.exitCode)."
@@ -488,9 +741,14 @@ try {
     }
     $stateData.updatedAt = $timestamp
     Write-AMRJsonAtomic $statePath $stateData
+    $runningStateSnapshot = Get-AMRFileSnapshot $statePath
 
     $execution = Invoke-AMRCommand $runnerProfileData $values $Worktree
     if ([int] $execution.exitCode -ne 0) {
+        if (-not (Test-AMRFileSnapshot $statePath $runningStateSnapshot)) {
+            $preserveChildState = $true
+            throw 'TERMINAL_STATE_DRIFT_REQUIRES_READ_ONLY_RECONCILIATION'
+        }
         $reason = "Phase '$PhaseId' failed with exit code $($execution.exitCode)."
         Set-AMRBlockedState $stateData $phase $reason "ModelRoutingPhase:$PhaseId"
         $phase.exitCode = [int] $execution.exitCode
@@ -499,13 +757,26 @@ try {
     }
 
     if (@($execution.output).Count -gt 0) {
-        @($execution.output) | Set-Content -LiteralPath $logFile -Encoding utf8NoBOM
+        try {
+            @($execution.output) | Set-Content -LiteralPath $logFile -Encoding utf8NoBOM
+            $logMaterializationDisposition = 'Written'
+        } catch {
+            # runnerLocal evidence is best effort and never changes delivery truth.
+            $logMaterializationDisposition = if (Test-Path -LiteralPath $logFile -PathType Container) { 'FailedDirectory' } else { 'FailedFile' }
+            Write-Verbose "runnerLocal log materialization failed without changing phase completion: $($_.Exception.Message)"
+        }
+    } else {
+        $logMaterializationDisposition = 'NoOutput'
     }
     Assert-AMRCondition (Test-Path -LiteralPath $outputFile -PathType Leaf) "Phase '$PhaseId' produced no structured result."
     $validationOutput = @(& (Join-Path $PSScriptRoot 'validate-autonomous-phase-result.ps1') `
         -Repo $repositoryRoot -Result $outputFile -PhaseId $PhaseId -ExitCode ([int] $execution.exitCode) 2>&1)
     $validationExitCode = if ($null -eq $LASTEXITCODE) { 0 } else { $LASTEXITCODE }
     if ($validationExitCode -ne 0) {
+        if (-not (Test-AMRFileSnapshot $statePath $runningStateSnapshot)) {
+            $preserveChildState = $true
+            throw 'TERMINAL_STATE_DRIFT_REQUIRES_READ_ONLY_RECONCILIATION'
+        }
         $reason = "Phase '$PhaseId' semantic result validation failed: $($validationOutput -join ' ')"
         Set-AMRBlockedState $stateData $phase $reason "ModelRoutingPhase:$PhaseId"
         $phase.exitCode = 0
@@ -514,6 +785,73 @@ try {
     }
     $validation = ($validationOutput -join "`n") | ConvertFrom-Json
     $resultHash = [string] $validation.normalizedSha256
+
+    if (-not (Test-AMRFileSnapshot $statePath $runningStateSnapshot)) {
+        $reloadedState = Read-AMRJson $statePath
+        try {
+            $adoption = Assert-AMRTerminalAwareRunnerAdoption `
+                -ParentState $stateData `
+                -ReloadedState $reloadedState `
+                -Repository $repositoryRoot `
+                -StatePath $statePath `
+                -PhaseId $PhaseId `
+                -ResultPath $outputFile `
+                -ResultSha256 $resultHash `
+                -LogPath $logFile `
+                -LogMaterializationDisposition $logMaterializationDisposition `
+                -OutputRoot $OutputDirectory `
+                -Catalog $catalog `
+                -ResolvedProfileName $profileName `
+                -ResolvedProfile $runnerProfileData
+            $stateAfterValidation = Get-AMRFileSnapshot $statePath
+            $adoptionAfterValidation = Assert-AMRTerminalAwareRunnerAdoption `
+                -ParentState $stateData `
+                -ReloadedState (Read-AMRJson $statePath) `
+                -Repository $repositoryRoot `
+                -StatePath $statePath `
+                -PhaseId $PhaseId `
+                -ResultPath $outputFile `
+                -ResultSha256 $resultHash `
+                -LogPath $logFile `
+                -LogMaterializationDisposition $logMaterializationDisposition `
+                -OutputRoot $OutputDirectory `
+                -Catalog $catalog `
+                -ResolvedProfileName $profileName `
+                -ResolvedProfile $runnerProfileData
+            Assert-AMRCondition (Test-AMRFileSnapshot $statePath $stateAfterValidation) 'Terminal state changed during the TOCTOU recheck.'
+            Assert-AMRCondition ([string] $adoption.head -eq [string] $adoptionAfterValidation.head) 'Terminal Git ref changed during the TOCTOU recheck.'
+            Assert-AMRCondition ([string] $adoption.localDefault -eq [string] $adoptionAfterValidation.localDefault) 'Terminal local default ref changed during the TOCTOU recheck.'
+            Assert-AMRCondition ([string] $adoption.remoteDefault -eq [string] $adoptionAfterValidation.remoteDefault) 'Terminal remote default ref changed during the TOCTOU recheck.'
+            Assert-AMRCondition ([string] $adoption.resultSha256 -eq [string] $adoptionAfterValidation.resultSha256 -and [string] $adoption.payloadSha256 -eq [string] $adoptionAfterValidation.payloadSha256) 'Terminal evidence tuple changed during the TOCTOU recheck.'
+            foreach ($field in @('tasksSha256', 'stateSha256', 'resultBytesSha256', 'payloadBytesSha256',
+                    'logKind', 'logBytesSha256', 'indexExitCode', 'trackedWorktreeCount')) {
+                Assert-AMRCondition ([string] $adoption[$field] -eq [string] $adoptionAfterValidation[$field]) "Terminal second TOCTOU tuple changed: $field"
+            }
+            $terminalAdopted = $true
+            $reloadedPhase = $adoptionAfterValidation.phase
+            [ordered]@{
+                status = 'COMPLETED'
+                phaseId = $PhaseId
+                command = [string] $reloadedPhase.command
+                routingRole = [string] $reloadedPhase.routingRole
+                runnerProfile = [string] $reloadedPhase.runnerProfile
+                agentFamily = [string] $reloadedPhase.agentFamily
+                model = [string] $reloadedPhase.model
+                reasoningEffort = [string] $reloadedPhase.reasoningEffort
+                resultPath = [string] $reloadedPhase.resultPath
+                resultSha256 = [string] $reloadedPhase.resultSha256
+                adoption = 'TerminalAwareRunnerAdoption'
+                parentFeatureWrites = 0
+                catchFeatureWrites = 0
+            } | ConvertTo-Json
+            exit 0
+        } catch {
+            $preserveChildState = $true
+            if ($_.Exception.Message -eq 'TERMINAL_STATE_DRIFT_REQUIRES_READ_ONLY_RECONCILIATION') { throw }
+            throw "TERMINAL_STATE_DRIFT_REQUIRES_READ_ONLY_RECONCILIATION: $($_.Exception.Message)"
+        }
+    }
+
     $timestamp = [DateTime]::UtcNow.ToString('o')
     $phase.status = 'Completed'
     $phase.exitCode = 0
@@ -543,6 +881,10 @@ try {
         resultSha256 = $resultHash
     } | ConvertTo-Json
 } catch {
+    if ($terminalAdopted -or $preserveChildState -or
+        ($null -ne $runningStateSnapshot -and -not (Test-AMRFileSnapshot $statePath $runningStateSnapshot))) {
+        throw
+    }
     if ([string] $phase.status -ne 'Blocked') {
         Set-AMRBlockedState $stateData $phase $_.Exception.Message "ModelRoutingPhase:$PhaseId"
         Write-AMRJsonAtomic $statePath $stateData

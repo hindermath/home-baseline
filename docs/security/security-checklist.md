@@ -118,3 +118,24 @@ Secure-Coding Reviewer. Restrisiko: Ein kompromittierter lokaler Account oder
 zeitgleicher Providerdrift bleibt außerhalb vollständiger lokaler Kontrolle.
 Re-Evaluation bei Dependency-, Auth-, Authority-, Crypto-, Datei-, Netzwerk-,
 Logging-, Provider-, Ruleset- oder Plattformänderung.
+
+## Feature 031: Secure-Coding-Review
+
+- [x] Parameter und geschlossene JSON-Feldmengen werden validiert.
+- [x] PowerShell nutzt Strict Mode, direkte Argumentarrays und kein `Invoke-Expression`.
+- [x] Bash nutzt `set -euo pipefail`, Quotes, `--`, kein `eval` und einen Prozess.
+- [x] Host/Endpoint ist fest; GET-Retries sind begrenzt, Write-Retries sind null.
+- [x] Pfade bleiben im Root und Reparse Points/Symlinks werden abgelehnt.
+- [x] Account-, Repository-, Ruleset- und PR-Identitäten werden nicht vermischt.
+- [x] Fehler, Logs und Evidence werden vor dem Hashen redigiert und atomar publiziert.
+- [x] Lokal prüft die Acht-Komponenten-Matrix Authority, Inventory, Plan,
+  Change-Set-Review und alle vier Evidenceklassen zwischen Gate und Write;
+  jeder Driftfall endet mit null FakeProvider-Writes.
+- [x] Apply erzeugt die T150-Nachinventur, der zweite Preview/Apply ist
+  beobachtet null-schreibend, und Rollback stellt den gebundenen Vorzustand her.
+- [x] Echte Test-Secrets und E-Mail-PII werden abgewiesen; der Secret Scan
+  meldet null High-Befunde.
+
+Applicable und lokal erfüllt. Owner: Product Core Owner / Privacy Owner;
+Reviewer: Security Reviewer. Restrisiko: Live-Provider- und native Plattformproofs
+bleiben offen. Follow-up: Phasen 9–11; Trigger: Produkt-, Schema- oder Providerdrift.

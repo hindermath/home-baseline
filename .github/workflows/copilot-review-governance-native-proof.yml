@@ -1,0 +1,53 @@
+name: Copilot review governance native proof
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'scripts/manage-copilot-review-governance.*'
+      - 'scripts/modules/CopilotReviewGovernance.psm1'
+      - 'scripts/tests/copilot-review-governance/**'
+      - 'scripts/tests/test_copilot_review_governance.py'
+      - '.github/workflows/copilot-review-governance-native-proof.yml'
+  push:
+    branches: [031-github-copilot-review-governance]
+
+permissions:
+  contents: read
+
+jobs:
+  fixture-proof:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Contract and fixture matrix
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python3 scripts/tests/test_copilot_review_governance.py
+          $payloadPath = 'scripts/tests/copilot-review-governance/fixtures/vertical-slice/home-baseline-green.json'
+          pwsh -NoProfile -File scripts/manage-copilot-review-governance.ps1 `
+            -Action ValidateDesiredState `
+            -DesiredStatePath scripts/config/copilot-review-governance-desired-state.json |
+            Set-Content -Path evidence-decision.json -Encoding utf8NoBOM
+          $record = [ordered]@{
+              commit = '${{ github.sha }}'
+              command = 'python3 scripts/tests/test_copilot_review_governance.py'
+              runner = '${{ matrix.os }}'
+              exitCode = 0
+              payloadPath = $payloadPath
+              payloadSha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $payloadPath).Hash.ToLowerInvariant()
+              decisionSha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath evidence-decision.json).Hash.ToLowerInvariant()
+              providerWrites = 0
+              networkWrites = 0
+          }
+          New-Item -ItemType Directory -Path evidence -Force | Out-Null
+          $record | ConvertTo-Json | Set-Content -Path "evidence/${{ matrix.os }}.json" -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: copilot-review-governance-${{ matrix.os }}
+          path: evidence/${{ matrix.os }}.json

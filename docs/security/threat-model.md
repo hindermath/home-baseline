@@ -123,3 +123,18 @@ Owner: Security Architecture Owner. Reviewer: Security Reviewer. Restrisiko:
 Provider-, Schutzregel- oder Authority-Zustand kann nach lokaler Prüfung
 driften. Re-Evaluation bei Plan-, Head-, Provider-, Ruleset-, Bypass-,
 Resume-, Schema- oder Trust-Boundary-Änderung.
+
+## Feature 031: Copilot-Review-Governance
+
+Assets sind der Acht-Ziel-Vertrag, Account-/Repository-/Ruleset-Identitäten,
+Authority- und Rollbackrecords sowie redigierte Evidence (Vertraulichkeit,
+Integrität, Verfügbarkeit). STRIDE/CAPEC: ID- oder State-Spoofing wird durch
+exakte IDs und Freshness blockiert; Evidence-Tampering durch kanonische Hashes,
+atomaren Replace und restriktive Rechte; Repudiation durch Operationsklasse,
+Owner/Reviewer und Result-Envelope; Disclosure durch Redaction und verbotene
+Cookies/Tokens/HTML/private Pfade; Provider-DoS durch höchstens drei GET-Retries
+ohne Write-Retry; Privilege Escalation durch getrennte Least-Privilege-Gates.
+Relevant sind CAPEC-115 Authentication Bypass, CAPEC-122 Privilege Abuse,
+CAPEC-165 File Manipulation und CAPEC-212 Functionality Misuse. Jede Boundary
+hat Hard Stop als Mitigation. Restrisiko: externer TOCTOU-Drift. Owner: Security
+Owner; Reviewer: Security Reviewer; Trigger: API/UI/Identity/Gate/Hash-Drift.

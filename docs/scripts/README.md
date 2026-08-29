@@ -15,6 +15,7 @@ canonical tools from embedded copies.*
 - [Manpages](../man/)
 - Maschinenlesbarer Katalog: `scripts/config/script-catalog.json`
 - [Stage-B-Betrieb / Stage B operation](../../specs/030-stage-b-rollout/quickstart.md)
+- [Copilot-Review-Governance: sichere Vorschau / safe preview](../../specs/031-github-copilot-review-governance/quickstart.md)
 
 ## Sichere Reihenfolge / Safe sequence
 

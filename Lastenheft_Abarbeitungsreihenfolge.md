@@ -176,38 +176,40 @@ the superseded predecessor and is now extended by G3 and G4.*
 
 ## Aktive Kosten-Gates / Active Cost Gates
 
-G3 reduziert private GitHub-Actions-Minuten durch registrybasierte CI-Profile,
-lokale Pflicht-Gates und HEAD-gebundene Evidence. G4 reduziert danach
-automatische GitHub-Copilot-Reviews auf acht benannte Public-Repositories und
-genau ein Lite-Review pro qualifizierendem Pull Request. G3 konfiguriert keine
-Copilot-Reviews; G4 darf erst nach der Actions-Budget-Baseline starten.
+G3 reduzierte private GitHub-Actions-Minuten durch registrybasierte CI-Profile,
+lokale Pflicht-Gates und HEAD-gebundene Evidence. Feature 029, PR #247 und der
+anschliessende Stage-B-Flottenrollout mit den PRs #258 und #259 sind
+abgeschlossen. G4 ist dadurch als einziger bevorzugter Kandidat freigegeben
+und reduziert automatische GitHub-Copilot-Reviews auf acht benannte
+Public-Repositories und genau ein Lite-Review pro qualifizierendem Pull Request.
 
-*G3 reduces private GitHub Actions minutes through registry-based CI profiles,
-mandatory local gates, and HEAD-bound evidence. G4 then limits automatic GitHub
+*G3 reduced private GitHub Actions minutes through registry-based CI profiles,
+mandatory local gates, and HEAD-bound evidence. Feature 029, PR #247, and the
+subsequent Stage B fleet rollout through PRs #258 and #259 are complete. G4 is
+therefore released as the sole preferred candidate and limits automatic GitHub
 Copilot review to eight named public repositories and one Lite review per
-qualifying pull request. G3 does not configure Copilot review; G4 may start only
-after the Actions budget baseline is complete.*
+qualifying pull request.*
 
 ```text
-G3 Actions-Budget [Eligible]
-  -> G4 Copilot-Review-Governance [Blocked]
-    -> 7 Container-Haertung [Blocked]
+G3 Actions-Budget und Stage B [abgeschlossen / completed]
+G4 Copilot-Review-Governance [Eligible]
+  -> 7 Container-Haertung [Blocked]
 ```
 
-Die beiden Gate-Statuswerte erteilen keine Start-, GitHub-Schreib-, Commit-,
-Push-, Merge- oder Bypass-Autoritaet.
+Der G4-Statuswert erteilt keine Start-, GitHub-Schreib-, Commit-, Push-, Merge-
+oder Bypass-Autoritaet.
 
-*Neither gate lifecycle grants start, GitHub-write, commit, push, merge, or
+*The G4 lifecycle state grants no start, GitHub-write, commit, push, merge, or
 bypass authority.*
 
 ## Aktive Reihenfolge / Active Order
 
-Der aktuelle maschinenpruefbare Vertrag umfasst 34 Ziele, drei Roots und
-38 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
+Der aktuelle maschinenpruefbare Vertrag umfasst 33 Ziele, drei Roots und
+37 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
 Manifest als bevorzugtes `Eligible` deklariert.
 
-*The current machine-verifiable contract contains 34 targets, three roots, and
-38 binding or advisory dependencies. Exactly one target is
+*The current machine-verifiable contract contains 33 targets, three roots, and
+37 binding or advisory dependencies. Exactly one target is
 declared as the preferred `Eligible` candidate in the manifest.*
 
 | Reihenfolge / Order | Lastenheft | Zweck / Purpose |
@@ -217,8 +219,8 @@ declared as the preferred `Eligible` candidate in the manifest.*
 | D7 (abgeschlossen / completed) | `Lastenheft_Registrierte-Level-1-2-Dokumentationsarchitektur-Adoption.023-registered-doc-architecture-adoption.md` | Feature 023 und PR #201 übernahmen portable Dokumentationsregeln in 32 finale Ziel-Repositories. Die 45-Ziel-Matrix hielt einen nutzereigenen schmutzigen Worktree und zwölf nicht anwendbare Ziele getrennt; unveränderte Ziele erhielten keinen Leer-PR. / Feature 023 and PR #201 adopted portable documentation rules into 32 final target repositories. The 45-target matrix kept one user-owned dirty worktree and twelve inapplicable targets separate; unchanged targets received no empty pull request. |
 | 5 (abgeschlossen / completed) | `Lastenheft_Mitgeltende-Dokumente-Spec-Kit-Verzahnung.024-mitgeltende-dokumente-verzahnung.md` | Feature 024 und PR #208 haerteten die bestehende Mapping-Oberflaeche mit deterministischem Proof fuer zwoelf Checklisten, 157 Punkte, 15 Dokumente und das Acht-plus-drei-Profil. / Feature 024 and PR #208 hardened the existing mapping surface with deterministic proof for twelve checklists, 157 points, 15 documents, and the eight-plus-three profile. |
 | 6 (abgeschlossen / completed) | `Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md` | Feature 025 und PR #214 lieferten je Sprachhaelfte 159 eindeutige Entscheidungen und 21 Evidence-Eintraege. Die 149 Remediation-Kandidaten bleiben getrennte Folgearbeit. / Feature 025 and PR #214 delivered 159 unique decisions and 21 evidence records per language half. The 149 remediation candidates remain separate follow-up work. |
-| G3 (`Eligible`) | `Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.md` | Definiert CI-Kostenprofile, lokale Gates, Evidence und private Actions-Zielwerte. Der Status ist nur Reihenfolge-Evidence. / Defines CI cost profiles, local gates, evidence, and private Actions targets. The status is ordering evidence only. |
-| G4 (`Blocked`) | `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.md` | Reduziert nach G3 automatische Copilot-Reviews auf acht Repositories und ein Lite-Review ohne Draft-/Push-Wiederholung. / After G3, limits automatic Copilot review to eight repositories and one Lite review without draft/push repetition. |
+| G3 (abgeschlossen / completed) | `Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md` und `Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.030-stage-b-rollout.md` | Feature 029, PR #247 sowie der Stage-B-Flottenrollout über PRs #258 und #259 lieferten die Actions-Budget-Baseline und konvergierten 48 von 48 Repositories. / Feature 029, PR #247, and the Stage B fleet rollout through PRs #258 and #259 delivered the Actions budget baseline and converged all 48 repositories. |
+| G4 (`Eligible`) | `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md` | Reduziert nach abgeschlossenem G3 und Stage B automatische Copilot-Reviews auf acht Repositories und ein Lite-Review ohne Draft-/Push-Wiederholung. / After completed G3 and Stage B, limits automatic Copilot review to eight repositories and one Lite review without draft/push repetition. |
 | 7 (`Blocked`) | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer ab und wartet bindend auf G4. / Derives requirements for a secure development container and is binding-blocked by G4. |
 | 8 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
 | 9 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
@@ -258,8 +260,9 @@ rechnerisch aus. Die
 Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
 frühere Series-Reviews hashbedingt archiviert. Der aktuelle
 Schema-1.1-Series-Review belegt den archivierten Vorstand mit 32 Zielen, drei
-Roots und 36 Abhängigkeiten. Das aktuelle Manifest erweitert ihn auf 34 Ziele,
-drei Roots und 38 Abhängigkeiten und deklariert G3 als einzigen bevorzugten
+Roots und 36 Abhängigkeiten. Das aktuelle Manifest umfasst nach dem
+G3-/Stage-B-Abschluss 33 Ziele, drei Roots und 37 Abhängigkeiten und deklariert
+G4 als einzigen bevorzugten
 `Eligible`-Kandidaten. Vor einem später ausdrücklich autorisierten
 Lauf werden zuerst `$speckit-intake-series-status` und der zum ausgewählten
 Ziel gehörende `$speckit-intake-review` ausgeführt.
@@ -268,8 +271,9 @@ Ziel gehörende `$speckit-intake-review` ausgeführt.
 validator separately reports every target without incomplete binding
 predecessors as computationally eligible. The schema-1.1 Series review covers
 the archived predecessor with 32 targets, three roots, and 36 dependencies.
-The current manifest extends it to 34 targets, three roots, and 38 dependencies
-and declares G3 as the sole preferred Eligible candidate. Before any later
+The current manifest contains 33 targets, three roots, and 37 dependencies
+after G3 and Stage B completion and declares G4 as the sole preferred Eligible
+candidate. Before any later
 explicitly authorized run, execute `$speckit-intake-series-status` and the
 Intake Review for the selected target.*
 
@@ -297,9 +301,10 @@ D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
               5 Mitgeltende Dokumente [abgeschlossen / completed]
 
 6 RL-SE-Selbstpruefung [abgeschlossen / completed]
-G3 Actions-Budget [Eligible] --> G4 Copilot-Review [Blocked]
-                                   |
-                                   v
+G3 Actions-Budget und Stage B [abgeschlossen / completed]
+G4 Copilot-Review [Eligible]
+  |
+  v
 7 Container-Haertung [Blocked] --> 8 Level-2-Sandbox
 9 CI/CD [Root]
 10 PowerShell-Cmdlets [Root]
@@ -399,24 +404,24 @@ technical start prerequisite:*
 ```
 
 Position 38 besitzt deshalb keinen unvollständigen bindenden Vorgänger und kann
-vom Validator rechnerisch als unblocked erscheinen. Nur G3 ist derzeit
+vom Validator rechnerisch als unblocked erscheinen. Nur G4 ist derzeit
 ausdrücklich als bevorzugtes `Eligible` deklariert. `Pending` und die sichtbare
 Position erteilen Position 38 keine Start- oder Delivery-Autorität.
 
 *Item 38 has no incomplete binding predecessor and may therefore appear as
-computationally unblocked. Only G3 is currently the declared preferred Eligible
+computationally unblocked. Only G4 is currently the declared preferred Eligible
 candidate. Pending status and visible order grant no start or delivery
 authority.*
 
 Nach dem Abschluss von Feature 025 waren die aktiven Roots `7`, `9` und `10`.
 Feature 028 und PR #243 schlossen das spaeter eingefuegte G2-Gate mit
 nachgewiesenem Release und Rollout ab und stellten diese drei Roots wieder her.
-Das aktuelle Kosten-Gate ersetzt Root 7 durch G3; die Roots 9 und 10 bleiben
-`Pending`. G4 und Position 7 sind bindend blockiert.
+Der abgeschlossene G3-/Stage-B-Strang gibt G4 als neuen Root frei; die Roots 9
+und 10 bleiben `Pending`. Position 7 ist weiterhin bindend durch G4 blockiert.
 Die Positionen 5 und 6 sind archiviert; ihre Bewertungsgrundlagen bleiben als
 historische Evidence erhalten. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
-Schema-1.1-Review-Evidence nachweisbar. G3 ist als naechster serieller Kandidat
+Schema-1.1-Review-Evidence nachweisbar. G4 ist als naechster serieller Kandidat
 ausgewaehlt; dieser Status startet den Lauf nicht und erteilt keine
 Release- oder Delivery-Autoritaet. Die weiteren Roots starten nicht automatisch. Die abgeschlossenen
 Features 009 sowie 015 bis 025 sind keine aktiven Serienknoten mehr. Ihre archivierten Lastenhefte
@@ -436,13 +441,15 @@ besass, blieben damals alle 36 Abhaengigkeiten erhalten. Das spaetere G2-Update
 ergaenzte vier bindende Kanten und markierte zunaechst G2A als einzigen
 bevorzugten Kandidaten. Feature 027 und PR #241 schlossen G2A ab. Feature 028
 und PR #243 archivierten beide G2-Knoten und stellten Position 7 als einzigen
-bevorzugten `Eligible`-Kandidaten wieder her. Das aktuelle G3/G4-Update
-archiviert diesen Vorstand, setzt G3 vor G4 und G4 vor Position 7 und macht G3
-zum einzigen bevorzugten `Eligible`-Kandidaten. Diese Einordnung
+bevorzugten `Eligible`-Kandidaten wieder her. Das G3/G4-Update archivierte
+diesen Vorstand und setzte G3 vor G4 sowie G4 vor Position 7. Der aktuelle
+Closeout archiviert G3 samt Stage-B-Nachweis, entfernt die abgeschlossene
+G3-zu-G4-Kante und macht G4 zum einzigen bevorzugten `Eligible`-Kandidaten. Diese Einordnung
 erteilt keine Start- oder Delivery-Autoritaet fuer einen Folgelauf.
 
 Die abgeschlossene Position 5 bleibt historische Bewertungsgrundlage fuer 6,
-7, 13 und 14. G3 liefert die Actions-Budget-Grundlage fuer G4; G4 liefert die
+7, 13 und 14. G3 und Stage B lieferten die abgeschlossene
+Actions-Budget-Grundlage fuer G4; G4 liefert die
 Copilot-Review-Grundlage fuer Position 7. Position 7 liefert danach die
 Sandbox-Grundlage fuer 8. Position 10 wird vor 11
 ausgefuehrt, damit neue oder geaenderte Cmdlet-Oberflaechen unmittelbar
@@ -491,9 +498,10 @@ D6 completed as Feature 022 and is archived. D7 completed as Feature 023 and
 is archived. Item 5 completed as Feature 024 and is archived. Item 6 completed
    as Feature 025 and is archived. Feature 028 and PR #243 completed and
    archived the later G2 gate and temporarily restored roots 7, 9, and 10. The
-   current update replaces root 7 with G3, blocks G4 and item 7, and declares
-   G3 as the sole preferred `Eligible` candidate. This status grants no
-   authority to start, release, or deliver any target. G3, G4, item 7, and item
+   G3/G4 update replaced root 7 with G3 and blocked G4 and item 7. The current
+   closeout archives completed G3 and Stage B, removes their active edge, and
+   declares G4 as the sole preferred `Eligible` candidate. This status grants no
+   authority to start, release, or deliver any target. G4, item 7, and item
    10 provide binding baselines for their successors. Items 9 through 12 feed the final GSDB audit,
 so item 13 must run last.*
 

@@ -59,3 +59,17 @@ Zertifizierung. Fehlende Live-Gates, offene T124-Regressionen oder ein
 Critical-/High-Befund verhindern einen terminalen Pass. Owner: Security
 Program Owner. Reviewer: SAMM Reviewer. Re-Evaluation bei Scope-, Provider-,
 Authority-, Dependency-, Incident-, Gate- oder Evidence-Drift.
+
+## Feature 031
+
+| SAMM-Funktion | Status | Evidence |
+|---|---|---|
+| Governance/Strategy | Applicable, lokal erfüllt | Desired State und Traceability |
+| Design/Threat Assessment | Applicable, lokal erfüllt | ADR-003 und Threat Model |
+| Implementation/Secure Build | Applicable, lokal erfüllt | PSScriptAnalyzer, Bash-/Securitytests |
+| Verification/Security Testing | Applicable, lokal erfüllt | positive/negative Matrix |
+| Operations/Incident Management | Applicable, lokal erfüllt | Betriebs-, Rollback- und Incidentpfad |
+
+Keine Reifegrad- oder Zertifizierungsbehauptung. Owner: Security Program Owner;
+Reviewer: SAMM Reviewer. Restrisiko: Live-/Native-Evidence offen; Follow-up:
+Phasen 9–11; Trigger: Scope-, Provider-, Authority- oder Incidentänderung.

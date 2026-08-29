@@ -43,3 +43,13 @@ Owner: Cloud Architecture Owner. Reviewer: C3A-oriented Reviewer.
 Restrisiko: Provider-Lock-in bei PR-/Ruleset-Semantik und gehosteten Runnern.
 Re-Evaluation bei Providerwechsel, neuer Cloud-Runtime, Permission-, Runner-,
 Region-, Exit-, Logging- oder Incident-Prozessänderung.
+
+## Feature 031
+
+`Applicable` für GitHub/Copilot/Actions/Settings als externe Cloudflächen.
+Shared Responsibility: GitHub betreibt API/UI/Runner; Repository-Owner verwalten
+Sollvertrag, Least Privilege, Evidence, Review und Incidentreaktion. Lock-in
+betrifft Ruleset-/Copilot-Semantik; JSON-Verträge, lineare Logs und Adaptergrenze
+unterstützen Exit und Portabilität. Keine autonome Cloudmutation ohne Gate.
+Owner: Cloud Architecture Owner; Reviewer: C3A-oriented Reviewer. Restrisiko:
+Provider-Lock-in; Trigger: Provider-, API-, Hosting-, Exit- oder Loggingänderung.

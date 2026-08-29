@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-08-21
-Kanonische Skriptdateien / Canonical script files: 136
+Kanonische Skriptdateien / Canonical script files: 140
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -311,6 +311,30 @@ pwsh -NoProfile -File scripts/install-spec-kit-governance-presets.ps1 -WhatIf  #
 ```text
 bash scripts/install-spec-kit-governance-presets.sh --help
 bash scripts/install-spec-kit-governance-presets.sh --dry-run  # falls angeboten / when supported
+```
+
+### `scripts/manage-copilot-review-governance.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Verwaltet GitHub-Copilot-Review-Governance sicher und reproduzierbar.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/manage-copilot-review-governance.ps1 -Full
+pwsh -NoProfile -File scripts/manage-copilot-review-governance.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/manage-copilot-review-governance.sh`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+bash scripts/manage-copilot-review-governance.sh --help
+bash scripts/manage-copilot-review-governance.sh --dry-run  # falls angeboten / when supported
 ```
 
 ### `scripts/register-level2-repository.ps1`
@@ -684,6 +708,17 @@ bash scripts/test-homogeneity-runtime-closure.sh --dry-run  # falls angeboten / 
 python3 scripts/tests/run_ci_budget_acceptance.py --help
 ```
 
+### `scripts/tests/run_copilot_review_governance_acceptance.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/run_copilot_review_governance_acceptance.py --help
+```
+
 ### `scripts/tests/run_stage_b_rollout_acceptance.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -715,6 +750,17 @@ python3 scripts/tests/test_agentic_workspace_maintenance.py --help
 
 ```text
 python3 scripts/tests/test_ci_budget_governance.py --help
+```
+
+### `scripts/tests/test_copilot_review_governance.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_copilot_review_governance.py --help
 ```
 
 ### `scripts/tests/test_feature_020_documentation_architecture.py`

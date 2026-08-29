@@ -33,3 +33,13 @@ Owner: Security Owner. Reviewer: ASVS Reviewer. Restrisiko: Ein späteres
 Webdashboard oder eine eigene API würde die heutige Abgrenzung ungültig
 machen. Re-Evaluation bei Web-, API-, HTTP-, Auth-, Session-, Browser- oder
 serverseitiger Runtime-Änderung.
+
+## Feature 031
+
+ASVS bleibt begründet `N/A`: Das Feature liefert keine Webanwendung, HTTP-API,
+Session, Authentifizierungsoberfläche oder serverseitige Autorisierungslogik.
+BrowserManual-Evidence steuert eine fremde GitHub-Oberfläche und ist kein neues
+Web-Frontend. Anwendbare Identitäts-, Eingabe-, Dateipfad- und Autoritätsrisiken
+werden durch Zero Trust, Secure Coding und Gate-Tests abgedeckt, nicht als ASVS-
+Pass umetikettiert. Owner: Compliance Owner; Reviewer: ASVS Reviewer; Follow-up:
+bei Web/API/Session-Erweiterung; Trigger: neue HTTP- oder Browserruntime.
