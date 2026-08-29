@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "f36b9b50-4774-406b-b0c6-fc0d734abf87",
+  "intakeId": "ce07211d-79bd-45de-aa72-1efe432c5541",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.2.1"
+  },
+  "createdAt": "2026-07-25T00:00:00Z",
+  "operation": {
+    "operationId": "e01f0867-a6eb-4df1-aaed-4645d374ef81",
+    "type": "Create",
+    "authorityEvidence": "Explicit current user approval to implement the Secure Development Assurance preset and RL/CL alignment intake plan."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+    "normalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved Secure Development Assurance preset and RL/CL alignment plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "fbf58af7996d73340b4375178e834ab0c9e71e09c7d7e62aa163c71463b08058",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Welche Baseline-Zielversion ist vorgesehen?",
+      "answer": "Baseline und Richtlinie 3.3.0; weitere Dokumentversionen steigen nur bei belegter Inhaltsänderung.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Welche Preset-Profile bleiben erhalten?",
+      "answer": "Acht Standard-Presets, elf Presets mit Intake-Governance und zwölf mit zusätzlicher Assurance.",
+      "evidence": "Approved four-stage intake plan"
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
+      "answer": "MergeAndSync ausschließlich für Home Baseline; ABSDD bleibt bis Position 17 unverändert.",
+      "evidence": "Explicit current and standing user instruction"
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "MergeAndSync",
+  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "N/A",
+    "manifestPath": "N/A",
+    "order": "N/A",
+    "role": "N/A",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md"
+}

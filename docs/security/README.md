@@ -14,6 +14,7 @@ Repository in zwei Ergebnisdateien geprüft:
 1. [Abschlusszusammenfassung der RL-SE-Selbstprüfung](secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md)
    erklärt Status, wichtigste Risiken, Aussagegrenzen und nächste Aktionen.
 2. [Vollständige RL-SE-Assessment-Matrix](secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-matrix.md)
+3. [Home-Baseline–ABSDD-Gate-Evidence](secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md)
    enthält jede einzelne Entscheidung, Evidence, Rolle und Re-Evaluation.
 
 Beginne ohne Spec-Kit-Vorkenntnisse mit der Zusammenfassung. Wähle dort eine
@@ -69,6 +70,7 @@ repository in two result files:
 1. [RL-SE self-assessment summary](secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-summary.md)
    explains status, highest risks, claim boundaries, and next actions.
 2. [Complete RL-SE assessment matrix](secure-development/2026-08-05-home-baseline-rl-se-self-assessment/assessment-matrix.md)
+3. [Home Baseline–ABSDD gate evidence](secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md)
    contains every individual decision, evidence item, role, and re-evaluation.
 
 If you have no Spec Kit experience, start with the summary. Select an ID there

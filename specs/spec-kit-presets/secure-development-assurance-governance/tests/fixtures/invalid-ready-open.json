@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "invalid-ready-open",
+  "gate": "baseline",
+  "mode": "training",
+  "outcome": "Ready",
+  "assessments": [
+    {
+      "id": "NEG-001",
+      "applicability": "Open",
+      "implementation": "Not Assessed",
+      "evidence": "N/A"
+    }
+  ],
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
+}

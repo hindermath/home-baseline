@@ -1,0 +1,12 @@
+{
+  "proposalVersion": "1.0",
+  "target": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+  "authority": "Thorsten approved the Secure-Development gate handoff and instructed implementation after G4 completion; Issue #263 bounds delivery to a Draft PR.",
+  "source": "Issue #263, approved plan, Issue #249 and PR #250 exact-head references",
+  "constraints": [
+    "Preserve intake identity when updating",
+    "No downstream Spec Kit run",
+    "No merge or Home sync",
+    "HOSK/GWDG is ExternalComparison only"
+  ]
+}

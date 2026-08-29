@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeOperation",
+  "operationId": "82413ca1-021b-4706-8c59-be710d2e5305",
+  "type": "Update",
+  "status": "Completed",
+  "createdAt": "2026-08-29T12:19:16Z",
+  "authorityEvidence": "Thorsten approved the Secure-Development gate handoff and instructed implementation after G4 completion; Issue #263 bounds delivery to a Draft PR.",
+  "proposalPath": "specs/intake-authoring-operations/82413ca1-021b-4706-8c59-be710d2e5305/proposal.json",
+  "proposalNormalizedSha256": "1aecc68a0c1910da5b56c238bef8020b27ae7e81a874e2693dacf5efba14d4f1",
+  "approval": {
+    "approved": true,
+    "approvedBy": "Thorsten Hindermann",
+    "approvedAt": "2026-08-29T12:19:16Z",
+    "evidence": "Approved plan; execute after G4 completion."
+  },
+  "stagingDirectory": "specs/intake-authoring-operations/82413ca1-021b-4706-8c59-be710d2e5305/staging",
+  "intendedTargets": [
+    "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+  ],
+  "validatedTargets": [
+    "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+  ],
+  "publishedTargets": [
+    "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+  ],
+  "rollbackBoundary": "No active target remains published unless target, receipt, predecessor archive, review invalidation, and series successor validate together.",
+  "failure": {
+    "class": "N/A",
+    "message": "N/A"
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md"
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "home-baseline-absdd-gate-verzahnung",
+  "gate": "baseline",
+  "mode": "mixed",
+  "createdAt": "2026-08-29T14:19:16+02:00",
+  "sourceBindings": {
+    "homeBaselineCommit": "3f17f8789cc1ff058079046c64af2a73154f6e10",
+    "homeBaselineVersion": "3.2.0",
+    "absddCommit": "7adaeac18ca259726468a2fe1d1fd028b895e09c",
+    "absddBaselineVersion": "3.1.0",
+    "absddHomeBaselineLockCommit": "a0fc446cd04db2e52102a3b2be31c24e8ee6a022",
+    "referenceIssue": "https://github.com/hindermath/home-baseline/issues/249",
+    "referencePullRequestHead": "a8a0fb4a2597f2497972417aa940df3ad357056c",
+    "deliveryIssue": "https://github.com/hindermath/home-baseline/issues/263"
+  },
+  "assessments": [
+    {
+      "id": "BASE-001",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/secure-development/baseline-manifest.json"
+    },
+    {
+      "id": "BASE-002",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/secure-development/Richtlinie_Sichere-Entwicklung.md"
+    },
+    {
+      "id": "BASE-003",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md"
+    },
+    {
+      "id": "BASE-004",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "scripts/config/spec-kit-model-routing-governance-presets.json"
+    },
+    {
+      "id": "BASE-005",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "absdd-image-sandbox@7adaeac18ca259726468a2fe1d1fd028b895e09c:home-baseline.lock.json"
+    },
+    {
+      "id": "BASE-006",
+      "applicability": "N/A",
+      "implementation": "Not Assessed",
+      "reason": "HOSK/GWDG is not a local authority or evidence source.",
+      "reevaluationTrigger": "Only when an explicit external-comparison review is commissioned.",
+      "evidence": "ExternalComparison"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
+}

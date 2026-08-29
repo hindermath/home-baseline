@@ -3,7 +3,7 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review
-**Stand:** 2026-07-25
+**Stand:** 2026-08-29
 **Reihenfolge:** Position 17
 **Delivery Mode:** `MergeAndSync`
 **Pilot-Repository:** `absdd-image-sandbox`
@@ -25,6 +25,20 @@ Home-Baseline-Dateien.
 assurance preset into `absdd-image-sandbox` while preserving project-specific
 sandbox evidence. The result is a field validation, not a certification claim.*
 
+## Verbindliche Handoff-Ergänzung 2026-08-29
+
+Die Adoption beginnt am gebundenen Ausgangscommit
+7adaeac18ca259726468a2fe1d1fd028b895e09c mit ABSDD-Baseline 3.1.0 und dem
+bestehenden Zwölfer-Profil. Ziel ist Baseline 3.3.0 plus das optionale
+Dreizehner-Assurance-Profil. Die Adoption prüft Build/Compose, Toolchain,
+OCI-Digest, SBOM, Secrets, Mounts, Netzwerk und CI und bewahrt
+projektspezifische Evidence.
+
+Technische Validierung, Pilotfreigabe, Projektabnahme und allgemeine
+Sandbox-/Flottenfreigabe sind getrennte menschliche Entscheidungen. Bis zur
+jeweiligen Authority bleiben sie Open/Not Assessed. HOSK/GWDG ist nur externer
+Vergleich und niemals ABSDD-Evidence.
+
 ## 2. Reihenfolge und Voraussetzungen / Order and Prerequisites
 
 Der Intake steht auf Position 17 und benötigt:
@@ -39,7 +53,7 @@ Flottenverteilung.
 
 ## 3. Ausgangslage / Current State
 
-`absdd-image-sandbox` besitzt bereits die elf aktuellen Presets sowie eine
+`absdd-image-sandbox` besitzt bereits das Zwölfer-Profil sowie eine
 eigene Secure-Development-Dokumentfamilie und projektspezifische Evidence.
 Zwischen Home Baseline und ABSDD können Metadaten-, Versions-, Mapping- oder
 Verzahnungsunterschiede bestehen. Diese Unterschiede werden einzeln
@@ -52,7 +66,7 @@ klassifiziert und nicht durch pauschales Kopieren überschrieben.
   veröffentlichten Versionen bestätigt.
 - Das neue `secure-development-assurance-governance` v0.1.0 ist auf Priorität
   `15` installiert.
-- Das vollständige Zwölferprofil ist installierbar und auflösbar.
+- Das vollständige Dreizehnerprofil ist installierbar und auflösbar.
 - Sandbox-Isolation, Secret-Trennung, Mount- und Netzwerkgrenzen,
   reproduzierbare Toolstände und Lernendenzugänglichkeit sind mit
   projektspezifischer Evidence belegt.
@@ -61,7 +75,7 @@ klassifiziert und nicht durch pauschales Kopieren überschrieben.
 
 - kontrollierter Abgleich der generischen Baseline-Dateien;
 - Erhalt und Aktualitätsprüfung sandbox-spezifischer Dokumentation;
-- Installation und Resolve des Zwölferprofils;
+- Installation und Resolve des Dreizehnerprofils;
 - Assurance-Status und Assurance-Review als Feldnachweis;
 - Prüfung der ISO/IEC-27001/27002-Bezüge:
   - A.5.23 Cloud-Dienste;
@@ -92,11 +106,12 @@ klassifiziert und nicht durch pauschales Kopieren überschrieben.
   Priorität, Resolve-Ergebnis und Evidence bestätigt.
 - **ABA-004:** Das Assurance-Preset wird auf Priorität 15 installiert und
   erscheint je Agentenoberfläche genau einmal.
-- **ABA-005:** Alle zwölf Presets lassen sich gemeinsam installieren, auflösen,
+- **ABA-005:** Alle dreizehn Presets lassen sich gemeinsam installieren, auflösen,
   deaktivieren, reaktivieren und entfernen.
 - **ABA-006:** Jeder der sechs genannten ISO-Kontrollbezüge erhält
-  `Applicable`, `N/A` oder `Open` sowie `Pass`, `Fail` oder `NotAssessed`.
-- **ABA-007:** `N/A`, `Open`, `Fail` und akzeptierte Risiken besitzen die
+  `Applicable`, `N/A` oder `Open` sowie `Fulfilled`,
+  `Partly Fulfilled`, `Not Fulfilled` oder `Not Assessed`.
+- **ABA-007:** `N/A`, `Open`, `Not Fulfilled` und akzeptierte Risiken besitzen die
   erforderlichen Begründungen, Owner, Reviewer, Evidence und Wiedervorlagen.
 - **ABA-008:** Sandbox-Isolation, Secret-Trennung, Mount- und Netzwerkgrenzen
   werden durch reproduzierbare positive und negative Nachweise geprüft.
@@ -116,7 +131,7 @@ klassifiziert und nicht durch pauschales Kopieren überschrieben.
 - Status- und Review-Evidence des neuen Presets;
 - positive und negative Isolation-, Secret-, Mount- und Netzwerk-Fixtures;
 - Toolchain- und Image-Provenienz;
-- zwölf-Preset Add/List/Info/Resolve/Disable/Enable/Remove/Reinstall;
+- dreizehn-Preset Add/List/Info/Resolve/Disable/Enable/Remove/Reinstall;
 - Agent-Parität, Secret-Scan, Dokumentations-, Lern- und A11Y-Prüfung;
 - CI-Nachweis des exakten PR-Heads;
 - PR-, Review-, Merge- und lokaler Synchronisationsnachweis.
@@ -125,7 +140,7 @@ klassifiziert und nicht durch pauschales Kopieren überschrieben.
 
 - **AC-ABA-001:** ABSDD verwendet nachweislich Baseline `3.3.0`, ohne
   projektspezifische Evidence zu verlieren.
-- **AC-ABA-002:** Alle zwölf Presets lösen gemeinsam auf; alle Commands und
+- **AC-ABA-002:** Alle dreizehn Presets lösen gemeinsam auf; alle Commands und
   Skills erscheinen genau einmal.
 - **AC-ABA-003:** Die sechs ISO-Kontrollbezüge sind vollständig und gültig
   bewertet.
@@ -157,21 +172,21 @@ Nutzung erneut geprüft.
 ### Intake Review
 
 ```text
-$speckit-intake-review Review `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` as Position 17 of the active ordered series. Verify dependencies on Positions 14 through 16, preservation of project-specific ABSDD evidence, exact twelve-preset adoption, ISO control applicability without certification claims, reproducible sandbox and accessibility evidence, MergeAndSync boundaries, and measurable acceptance criteria. Do not change the intake or start downstream work.
+$speckit-intake-review Review `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` as Position 17 of the active ordered series. Verify dependencies on Positions 14 through 16, preservation of project-specific ABSDD evidence, exact thirteen-preset adoption, ISO control applicability without certification claims, reproducible sandbox and accessibility evidence, MergeAndSync boundaries, and measurable acceptance criteria. Do not change the intake or start downstream work.
 ```
 
 <!-- spec-kit-command-id: speckit.specify -->
 ### Specify
 
 ```text
-$speckit-specify Use `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` as the binding intake for Position 17. Create the feature specification for controlled adoption of Secure Development Baseline 3.3.0 and `secure-development-assurance-governance` v0.1.0 in `absdd-image-sandbox`. Preserve ABA-001 through ABA-012, AC-ABA-001 through AC-ABA-009, project-evidence precedence, the six ISO control references, twelve-preset validation, sandbox proof, learner accessibility, no-certification, no-fleet-rollout, and all remote-authority boundaries.
+$speckit-specify Use `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` as the binding intake for Position 17. Create the feature specification for controlled adoption of Secure Development Baseline 3.3.0 and `secure-development-assurance-governance` v0.1.0 in `absdd-image-sandbox`. Preserve ABA-001 through ABA-012, AC-ABA-001 through AC-ABA-009, project-evidence precedence, the six ISO control references, thirteen-preset validation, sandbox proof, learner accessibility, no-certification, no-fleet-rollout, and all remote-authority boundaries.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->
 ### Autonomous
 
 ```text
-$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` with deliveryAuthority=MergeAndSync after Positions 14, 15, and 16 are complete. Preserve project-specific ABSDD evidence, apply only reviewed generic baseline changes, install and validate the twelve-preset profile, converge all required and optional checks and reviews, create and merge non-empty authorized PRs, return Home Baseline and ABSDD to clean synchronized default branches, and do not start any fleet adoption or follow-up feature automatically.
+$speckit-autonomous Execute the complete Spec Kit run for `Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md` with deliveryAuthority=MergeAndSync after Positions 14, 15, and 16 are complete. Preserve project-specific ABSDD evidence, apply only reviewed generic baseline changes, install and validate the thirteen-preset profile, converge all required and optional checks and reviews, create and merge non-empty authorized PRs, return Home Baseline and ABSDD to clean synchronized default branches, and do not start any fleet adoption or follow-up feature automatically.
 ```
 
 <!-- intake-authoring:end -->

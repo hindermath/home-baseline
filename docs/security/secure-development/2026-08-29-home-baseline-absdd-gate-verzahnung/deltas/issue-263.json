@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "home-baseline-absdd-gate-verzahnung",
+  "gate": "delta",
+  "changeId": "issue-263",
+  "mode": "mixed",
+  "createdAt": "2026-08-29T14:19:16+02:00",
+  "documentationImpact": "GeneratedUpdate",
+  "homeSync": "NotRequired",
+  "assessments": [
+    {
+      "id": "DELTA-001",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": ".specify/presets/secure-development-assurance-governance/"
+    },
+    {
+      "id": "DELTA-002",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/runbooks/secure-development/"
+    },
+    {
+      "id": "DELTA-003",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "specs/intake-authoring-receipts/"
+    },
+    {
+      "id": "DELTA-004",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "requirements/intakes/series/home-baseline-delivery/manifest.json"
+    },
+    {
+      "id": "DELTA-005",
+      "applicability": "N/A",
+      "implementation": "Not Assessed",
+      "reason": "This handoff does not modify or distribute the Home runtime.",
+      "reevaluationTrigger": "A later explicitly authorized runtime distribution.",
+      "evidence": "NoHomeSync"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
+}

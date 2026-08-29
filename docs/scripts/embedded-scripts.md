@@ -85,6 +85,8 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-consolidation-v2.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `.specify` |
+| `.specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1` | `.specify` |
+| `.specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh` | `.specify` |
 | `.specify/scripts/bash/check-prerequisites.sh` | `.specify` |
 | `.specify/scripts/bash/common.sh` | `.specify` |
 | `.specify/scripts/bash/create-new-feature.sh` | `.specify` |
@@ -166,6 +168,8 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-consolidation-v2.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `specs` |
 | `specs/spec-kit-preset-repos/spec-kit-preset-parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1` | `specs` |
+| `specs/spec-kit-preset-repos/spec-kit-preset-secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/autonomous-evidence-core.py` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.ps1` | `specs` |
 | `specs/spec-kit-presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.sh` | `specs` |
@@ -225,3 +229,5 @@ Change their respective canonical source first, then propagate the result.*
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-consolidation-v2.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `specs` |
 | `specs/spec-kit-presets/parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `specs` |
+| `specs/spec-kit-presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1` | `specs` |
+| `specs/spec-kit-presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh` | `specs` |

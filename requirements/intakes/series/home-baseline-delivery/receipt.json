@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "33e30adf-0b76-4601-afa9-a57bcd988976",
+  "receiptId": "0ebc1594-bd8a-4bf9-9982-573204683de3",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.3"
   },
-  "createdAt": "2026-08-28T20:27:41Z",
+  "createdAt": "2026-08-29T12:19:16Z",
   "operation": {
-    "operationId": "ee66e610-c764-43bc-90e1-f9b1256156b0",
+    "operationId": "dc7d3db6-6d36-46fa-9735-04627eace646",
     "type": "Update",
-    "authorityEvidence": "Current explicit user authorization to execute the separately required Intake-Series-Sequencing update after terminal completion of Feature 029 and Feature 030. Scope is limited to removing completed G3 from the active series, releasing G4 as the sole preferred candidate, preserving lineage, and updating the order evidence; it grants no Intake Review, G4 execution, Git delivery, provider write, or bypass authority."
+    "authorityEvidence": "Thorsten approved the plan to refresh only sources, hashes, and receipts after G4 completion while preserving target count, roots, edges, order, roles, and lifecycle status."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "9f7f4fc3d4446e8e417fdb97909c4b572739c43fe0858a848c98a0f67e141731"
+    "normalizedSha256": "93594d6b46e1858771bb0261af6c61d36f39025e7a1288dda53ccb6d20aed1f8"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/receipt.json",
-    "receiptNormalizedSha256": "9869e7a63d6542a2a30d0f607270374034e6005686c4bf553d086658fd2dea38",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ee66e610-c764-43bc-90e1-f9b1256156b0/manifest.json",
-    "manifestArchiveSha256": "d184531a26cb7ae291df3335f874e5c0173e9c2b3c44b9ae7ad342230a8a29dd"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/dc7d3db6-6d36-46fa-9735-04627eace646/receipt.json",
+    "receiptNormalizedSha256": "633a54474b1fc6ab8315ae192fce2e22b6e254a0ee0a48e80c294492e0dbe8a2",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/dc7d3db6-6d36-46fa-9735-04627eace646/manifest.json",
+    "manifestArchiveSha256": "9f7f4fc3d4446e8e417fdb97909c4b572739c43fe0858a848c98a0f67e141731"
   },
   "tombstone": {
     "path": "N/A",

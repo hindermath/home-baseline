@@ -530,6 +530,10 @@
       "executable": false
     },
     {
+      "path": "scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+      "executable": false
+    },
+    {
       "path": "scripts/config/spec-kit-preset-profiles.json",
       "executable": false
     },

@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "d1a90dcb-dc43-4938-b837-1e98744184ab",
+  "mode": "Series",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+      "role": "Primary"
+    },
+    {
+      "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_PowerShell_Cmdlets.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Script_Dokumentation.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KITSM-Professional-Jahr3.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-Professional-Jahr3.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Professional-Jahr3.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Preset-Learning-Series-Governance.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "role": "OrderedMember"
+    },
+    {
+      "path": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+      "role": "OrderedMember"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [
+      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_PowerShell_Cmdlets.md",
+      "Lastenheft_Script_Dokumentation.md",
+      "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+      "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+      "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+      "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+      "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+      "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+      "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+      "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+      "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+      "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+      "Lastenheft_KITSM-Professional-Jahr3.md",
+      "Lastenheft_KDM-Professional-Jahr3.md",
+      "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+      "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+      "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+      "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+      "Lastenheft_ITSE-Jahr1-Retrofit.md",
+      "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+      "Lastenheft_ITSE-Professional-Jahr3.md",
+      "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+      "Lastenheft_ITSE-Lernreihen-Closure.md",
+      "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+      "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+      "Lastenheft_Preset-Learning-Series-Governance.md",
+      "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+      "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+      "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md"
+    ],
+    "roots": [
+      "Lastenheft_Secure-Development-Container-Hardening.md",
+      "Lastenheft_CICD_Pipeline_Konfiguration.md",
+      "Lastenheft_PowerShell_Cmdlets.md"
+    ],
+    "dependencies": [
+      {
+        "from": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "to": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
+        "kind": "SandboxBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_PowerShell_Cmdlets.md",
+        "to": "Lastenheft_Script_Dokumentation.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+        "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "kind": "CommentSurfaceBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_PowerShell_Cmdlets.md",
+        "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "kind": "CommentSurfaceBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Script_Dokumentation.md",
+        "to": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "kind": "CommentSurfaceBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_CICD_Pipeline_Konfiguration.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_PowerShell_Cmdlets.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Script_Dokumentation.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Didactic-Script-and-Config-Comment-Hardening.md",
+        "to": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Script-and-Config-GSDB-Pruefung.md",
+        "to": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+        "to": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
+        "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "to": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
+        "to": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
+        "to": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+        "kind": "SecureDevelopmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-Lernreihen-Gap-Audit.md",
+        "to": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-Lernarchitektur-und-Kompetenzmodell.md",
+        "to": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+        "kind": "RequirementsGovernanceGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-Jahr1-Retrofit.md",
+        "to": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+        "kind": "RequirementsGovernanceGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-Kaufmaennischer-Kern-Jahr2.md",
+        "to": "Lastenheft_KITSM-Professional-Jahr3.md",
+        "kind": "RequirementsGovernanceGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KITSM-Professional-Jahr3.md",
+        "to": "Lastenheft_KDM-Professional-Jahr3.md",
+        "kind": "HardCompletionGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-Professional-Jahr3.md",
+        "to": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-CSharp-Lernreihen-Rollout.md",
+        "to": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_KDM-KITSM-Lernreihen-Closure.md",
+        "to": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-Lernreihen-Gap-Audit.md",
+        "to": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-Lernarchitektur-und-Kompetenzmodell.md",
+        "to": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+        "kind": "RequirementsGovernanceGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-Jahr1-Retrofit.md",
+        "to": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+        "kind": "HardCompletionGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-Technischer-Kern-Jahr2.md",
+        "to": "Lastenheft_ITSE-Professional-Jahr3.md",
+        "kind": "HardCompletionGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-Professional-Jahr3.md",
+        "to": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+        "kind": "DocumentationSurfaceBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-CSharp-Lernreihen-Rollout.md",
+        "to": "Lastenheft_ITSE-Lernreihen-Closure.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_ITSE-Lernreihen-Closure.md",
+        "to": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Lernreihen-Konsistenz-und-KI-Kompetenz-Gap-Audit.md",
+        "to": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+        "kind": "AssessmentBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Preset-Intake-Review-Drei-Ebenen-Konsistenz.md",
+        "to": "Lastenheft_Preset-Learning-Series-Governance.md",
+        "kind": "RequirementsGovernanceGate",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Preset-Learning-Series-Governance.md",
+        "to": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+        "kind": "PublishedPresetBaseline",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Learning-Series-Governance-IHK-Pilot.md",
+        "to": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+        "kind": "FinalAuditInput",
+        "binding": true
+      },
+      {
+        "from": "Lastenheft_Lernreihen-Gesamtkonsistenz-Closure.md",
+        "to": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      }
+    ]
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  },
+  "createdAt": "2026-08-16T00:09:12Z"
+}

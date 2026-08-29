@@ -15,13 +15,13 @@
     {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
       "role": "OrderedMember",
-      "normalizedSha256": "1fcbcbae14cf1677a4eeb6d4ca7b99877bbd4365be63a5f60f04caa2b17840fd",
+      "normalizedSha256": "d73f7c495ae5f0ead4aade553c499ded06ff5540783653b88841a0e1bf0ba21c",
       "status": "Blocked"
     },
     {
       "path": "Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "9a253fc5cf0f6f7979866c14fc71ddfd317c13e195d363967c3c2de641dfb666",
+      "normalizedSha256": "9da71e3248c7ee036c0f5455a7aef5cb344a8f4623316dff599029a2a04afc8a",
       "status": "Blocked"
     },
     {
@@ -57,25 +57,25 @@
     {
       "path": "Lastenheft_Secure-Development-RL-CL-Preset-Gap-Audit.md",
       "role": "OrderedMember",
-      "normalizedSha256": "4e14a2569211a6bef20087b6dcd7263ab1ae26fac11be28a1a63ca9fe6ddd6bf",
+      "normalizedSha256": "317c86ae9c3a510598afd136a51f5b2f647ec4d614225df195b29d21e074c3e6",
       "status": "Blocked"
     },
     {
       "path": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
       "role": "OrderedMember",
-      "normalizedSha256": "57ed0c7b90513465c5f1a7221ffefe2ce81abe8aa129953b9424daeb61a49c7e",
+      "normalizedSha256": "a69ccbc6082382cfbb63ab4173e50187b435a95a88fc3e772138ba81b9700dbf",
       "status": "Blocked"
     },
     {
       "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
       "role": "OrderedMember",
-      "normalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f",
+      "normalizedSha256": "da89c399692895cadc3d1872dd7d136e5c7799903d25989745485beb88b38eef",
       "status": "Blocked"
     },
     {
       "path": "Lastenheft_ABSDD-Secure-Development-Assurance-Adoption.md",
       "role": "OrderedMember",
-      "normalizedSha256": "75637d6381cc97a154d57c5ea4cb4f3a68dbfbb2d5a44bc85787df7e21f53d19",
+      "normalizedSha256": "78ff15217ccdf3d9d520386fc2134bedf186390bf01761767c61b59c7ebaea24",
       "status": "Blocked"
     },
     {
@@ -499,7 +499,18 @@
     "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/proposal.json",
     "specs/intake-authoring-operations/c7a804fb-56d1-4448-b64d-4802036006df/operation.json",
     "specs/intake-authoring-receipts/flottenweite-ci-budget-governance-und-actions-rationalisierung.json",
-    "specs/intake-authoring-receipts/flottenweite-github-copilot-review-governance-und-kostenbegrenzung.json"
+    "specs/intake-authoring-receipts/flottenweite-github-copilot-review-governance-und-kostenbegrenzung.json",
+    "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md",
+    "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md",
+    "scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+    "specs/intake-review-invalidations/bd1d2c54-1ede-4d39-815f-295af2a8d56a.json",
+    "specs/intake-authoring-receipts/home-baseline-absdd-secure-development-gate-verzahnung.json",
+    "specs/intake-authoring-receipts/secure-development-container-hardening.json",
+    "specs/intake-authoring-receipts/level-2-sandbox-anbindung-und-haertungsvorbereitung.json",
+    "specs/intake-authoring-receipts/secure-development-rl-cl-preset-gap-audit.json",
+    "specs/intake-authoring-receipts/preset-secure-development-assurance-governance.json",
+    "specs/intake-authoring-receipts/secure-development-baseline-3.3-synchronisierung.json",
+    "specs/intake-authoring-receipts/absdd-secure-development-assurance-adoption.json"
   ],
   "evidenceSources": [
     "specs/025-rl-se-self-assessment/autonomous-run-gate-evidence.json",

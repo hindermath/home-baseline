@@ -166,6 +166,7 @@
 | 2026-08-15 | Feature 027 Autonomous Evidence Integrity Hardening | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Der unveroeffentlichte Autonomous-Run-Governance-Kandidat 0.4.0 validiert eine ausdrueckliche Liefermenge einschliesslich benannter unversionierter Dateien, verlangt ein strukturiertes semantisches Phasenergebnis und trennt Schema-2.0-`PreMerge`- von kausaler `PostMerge`-Evidence. Historisches Schema 1.0 bleibt ausschliesslich im Auditmodus lesbar. Positive und negative Cross-Shell-Fixtures, bestehendes Modell-Routing, drei State-Validatoren, PSScriptAnalyzer fuer 164 Dateien, Script-Referenz und eine Zwölf-Preset-Komposition sind gruen. Kanonischer Scaffold und Publikationskopie sind bytegleich; Release, Tag, ZIP, Katalog, Consumer und Flotten-Rollout bleiben bis zum unabhaengigen G2B-Feldnachweis gesperrt. |
 | 2026-08-19 | CI-Budget- und Copilot-Review-Governance-Intakes | — | — | — | Documentation Impact `UpdateRequired`: Zwei getrennte Schema-2.0-Intakes bereiten die flottenweite Rationalisierung von GitHub-Actions-Minuten und die begrenzte GitHub-Copilot-Review-Governance vor. G3 erhebt zuerst das reale CI-Portfolio, schützt technische, Sicherheits- und A11Y-Gates und definiert ein kostenbewusstes Zielprofil; G4 folgt erst danach und begrenzt automatische Copilot-Reviews auf genau acht benannte öffentliche beziehungsweise zentrale Repositories. Beide Receipts und die gemeinsame Authoring-Operation binden den genehmigten Vorschlag mit SHA-256 `1af660a029b71511d4e7345061d1058902289ce42f041552bc8bf819a71517b8`. Die aktive Serie wächst von 32 auf 34 Ziele und von 36 auf 38 Abhängigkeiten bei unverändert drei Roots: G3 ist der einzige deklarierte `Eligible`-Kandidat, G4 und die bisherige Position 7 sind `Blocked`, Positionen 9 und 10 bleiben `Pending`. Die Vorgängerserie ist bytegleich archiviert. Intake Review, Specify, Autonomous, GitHub-Konfigurationsänderungen, Lieferung und Home-Sync wurden nicht gestartet. |
 | 2026-08-29 | Feature 031 GitHub-Copilot-Review-Governance | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Die persönliche Accountautomation ist deaktiviert; genau acht benannte Repository-/Default-Branch-Ziele besitzen aktive dedizierte Copilot-Review-Rulesets mit Draft- und Push-Re-Review aus sowie Effort `Lite`. 16 dedizierte Nichtzielrulesets bleiben rollbackfähig vorhanden und sind deaktiviert; null Regeln wurden gelöscht. Exact-ID-Gates begrenzten 25 Providerwrites, danach meldeten frische Vollinventur und zweiter Plan `drift=0`, `writes=0`. Native Ubuntu-/Windows-Proofs und die einmalige post-provider Matrix mit 71/71 Verträgen sind grün. Das bis 2026-09-01 ausgeschöpfte Copilot-Kontingent bleibt ein eigener `Supplemental/Open`-Refusal: kein künstlicher PR, wirkungsloser Reviewer-Request oder Kauf wurde erzeugt. Das Delta vor Statistikpflege umfasst 15 206 Nettozeilen. Primäre Delivery, Merge, Home-Sync und kausaler Series-Closeout folgen in den verbleibenden Tasks. |
+| 2026-08-29 | Home-Baseline–ABSDD-Secure-Development-Gate-Verzahnung | — | — | — | Documentation Impact `GeneratedUpdate`: Ein neuer Schema-2.0-Intake bindet Issue #263, die unveränderten Referenzen Issue #249 und Draft-PR #250 am exakten Head, Home Baseline und den ABSDD-Ausgangscommit. Die sechs Intakes der Positionen 7, 8 und 14 bis 17 behalten ihre Intake-IDs; Vorgängerziele und Receipts sind bytegleich archiviert, der alte Sammelreview ist hashgebunden invalidiert. Die aktive Serie bleibt unverändert bei 33 Zielen, 3 Roots und 37 Kanten; nur sechs Zielhashes sowie Quellen- und Receipt-Evidence wurden erneuert. Der neue Vertrag trennt vier Gates, zwei Bewertungsachsen, vier Ergebnisse und vier Freigabeentscheidungen. Das optionale Dreizehner-Profil ergänzt das Zwölfer-Profil auf Priorität 15 und stellt genau zwei Befehle bereit. HOSK/GWDG bleibt ExternalComparison-only. ABSDD-Imageprüfungen und menschliche Freigaben bleiben `Open/Not Assessed`; kein Home-Sync, Merge, Image-Build oder nachgelagerter Spec-Kit-Lauf wurde ausgeführt. Das Delta vor Statistikpflege umfasst 7 054 geänderte Textzeilen. |
 
 ---
 
@@ -1117,29 +1118,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 691211 lines |
-| Textdateien / Text files | 3553 |
+| Textbasis / Text base | 697904 lines |
+| Textdateien / Text files | 3643 |
 | Beobachtbarer Zeitraum / Observable period | 2025-08-31..2026-08-29 |
 | Aktivtage / Active days | 98 |
-| Relevante Commits / Relevant commits | 785 |
-| Zeilen je Aktivtag / Lines per active day | 7053.2 |
+| Relevante Commits / Relevant commits | 793 |
+| Zeilen je Aktivtag / Lines per active day | 7121.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 88.2x |
-| Speedup vs. 100 lines/day | 70.5x |
-| Methodik / Methodology | v2; source `197a12edbbfa` |
+| Speedup vs. 80 lines/day | 89.0x |
+| Speedup vs. 100 lines/day | 71.2x |
+| Methodik / Methodology | v2; source `9c853a338536` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.8% | 33350
-Dokumentation / Documentation   [##########..........]  48.7% | 336925
-Skripte / Scripts               [##..................]  10.1% | 69530
-Konfiguration / Configuration   [#######.............]  35.9% | 248353
+Tests                           [#...................]   4.8% | 33385
+Dokumentation / Documentation   [##########..........]  48.7% | 339662
+Skripte / Scripts               [##..................]  10.0% | 70106
+Konfiguration / Configuration   [#######.............]  36.1% | 251656
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.1% | 816
+Sonstiger Text / Other text     [#...................]   0.1% | 858
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1269,15 +1270,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..69
-   cap 20000 | . . . . . .
-       16667 | . . . . . .
-       13333 | . . . . . #
-       10000 | . . . . . #
-        6667 | . . . # . #
-        3333 | . . # # . #
-           0 +-------------
-             64 65 66 67 68 69
+Slots 64..70
+   cap 20000 | . . . . . . .
+       16667 | . . . . . . .
+       13333 | . . . . . # .
+       10000 | . . . . . # .
+        6667 | . . . # . # #
+        3333 | . . # # . # #
+           0 +---------------
+             64 65 66 67 68 69 70
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1352,6 +1353,7 @@ Slots 64..69
 | 67 | Stage-B-Flottenrollout: lokale Implementierung / Stage B fleet rollout: local implementation | 9851 |
 | 68 | Stage-B-Flottenrollout: 48-Repo-Lieferung / Stage B fleet rollout: 48-repository delivery | 1315 |
 | 69 | GitHub-Copilot-Review-Governance / GitHub Copilot review governance | 15206 |
+| 70 | ABSDD-Secure-Development-Gate-Verzahnung / ABSDD secure-development gate integration | 7054 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1361,8 +1363,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 88.2x
-100 lines/day      [##############......] 70.5x
+80 lines/day       [##################..] 89.0x
+100 lines/day      [##############......] 71.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1375,7 +1377,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7053.2
+Visible repository [##############......] 7121.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1401,6 +1403,6 @@ DE: Das Fenster beginnt am 2025-08-31 und endet am 2026-08-29. Es enthaelt 98 ak
 | 2026-05 | 2454 |
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
-| 2026-08 | 270837 |
+| 2026-08 | 278228 |
 
 <!-- project-statistics-v2:end -->

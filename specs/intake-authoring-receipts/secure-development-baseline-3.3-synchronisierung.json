@@ -1,29 +1,92 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "f36b9b50-4774-406b-b0c6-fc0d734abf87",
+  "receiptId": "e00b9014-5788-4ef4-9bd9-80056c2960b7",
   "intakeId": "ce07211d-79bd-45de-aa72-1efe432c5541",
   "generator": {
     "preset": "intake-authoring-governance",
-    "version": "0.2.1"
+    "version": "0.3.1"
   },
-  "createdAt": "2026-07-25T00:00:00Z",
+  "createdAt": "2026-08-29T12:19:16Z",
   "operation": {
-    "operationId": "e01f0867-a6eb-4df1-aaed-4645d374ef81",
-    "type": "Create",
-    "authorityEvidence": "Explicit current user approval to implement the Secure Development Assurance preset and RL/CL alignment intake plan."
+    "operationId": "2093c39e-f459-420a-b016-20d9edee57cc",
+    "type": "Update",
+    "authorityEvidence": "Thorsten approved the mapped Secure-Development gate handoff and instructed implementation after completed G4; GitHub Issue #263 records the bounded delivery."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md",
-    "normalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f"
+    "normalizedSha256": "da89c399692895cadc3d1872dd7d136e5c7799903d25989745485beb88b38eef"
   },
   "sources": [
     {
       "sourceId": "SRC001",
       "order": 1,
+      "kind": "File",
+      "label": "Byte-identical archived predecessor intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/ce07211d-79bd-45de-aa72-1efe432c5541/2093c39e-f459-420a-b016-20d9edee57cc/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f",
+      "gitBlob": "e09d2122f85528d819f41095ff3c33d3b6cf1279",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "File",
+      "label": "Approved Home Baseline–ABSDD gate handoff",
+      "location": "Repository",
+      "path": "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "df5cc1b610edb5661eba6f148c6de88001eabd20b88f23cb3fbaba9deed490c8",
+      "gitBlob": "N/A",
+      "proofBoundary": "Issue263AuthorizedHandoff"
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Secure-Development evidence contract",
+      "location": "Repository",
+      "path": "docs/security/secure-development/README.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "ba38b2197f21a610a692cfd7bc0597cb189a627c6a9eb05e1ca1d2944eb94f05",
+      "gitBlob": "N/A",
+      "proofBoundary": "LocalCanonicalContract"
+    },
+    {
+      "sourceId": "SRC004",
+      "order": 4,
       "kind": "Pasted",
-      "label": "Approved Secure Development Assurance preset and RL/CL alignment plan",
+      "label": "Reference and ABSDD exact-head bindings",
       "location": "SnapshotOnly",
       "path": "N/A",
       "requestedUrl": "N/A",
@@ -36,9 +99,30 @@
       "lastModified": "N/A",
       "redirectChain": [],
       "rawSha256": "N/A",
-      "normalizedSha256": "fbf58af7996d73340b4375178e834ab0c9e71e09c7d7e62aa163c71463b08058",
+      "normalizedSha256": "ffc1f976ac3c0bf9a11b887ff8ff42785519f841f10fa1d6863f301af0840308",
       "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: approved in the current Codex task"
+      "proofBoundary": "Issue #249; PR #250 head a8a0fb4a2597f2497972417aa940df3ad357056c; ABSDD 7adaeac18ca259726468a2fe1d1fd028b895e09c"
+    },
+    {
+      "sourceId": "SRC005",
+      "order": 5,
+      "kind": "File",
+      "label": "Explicit invalidation of stale active review",
+      "location": "Repository",
+      "path": "specs/intake-review-invalidations/bd1d2c54-1ede-4d39-815f-295af2a8d56a.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "06c08438c71427b9684201c16719c1c5c4b0a50b481dba4aeba34670aae4d10f",
+      "gitBlob": "N/A",
+      "proofBoundary": "ReviewInvalidation"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -47,23 +131,23 @@
     {
       "id": "IAD001",
       "status": "Answered",
-      "question": "Welche Baseline-Zielversion ist vorgesehen?",
-      "answer": "Baseline und Richtlinie 3.3.0; weitere Dokumentversionen steigen nur bei belegter Inhaltsänderung.",
-      "evidence": "Approved four-stage intake plan"
+      "question": "Welche lokale Authority und welche Referenzen gelten?",
+      "answer": "Issue #263 and the approved plan authorize this supersession; Issue #249 and PR #250 remain immutable references.",
+      "evidence": "Current user instruction and exact-head revalidation."
     },
     {
       "id": "IAD002",
       "status": "Answered",
-      "question": "Welche Preset-Profile bleiben erhalten?",
-      "answer": "Acht Standard-Presets, elf Presets mit Intake-Governance und zwölf mit zusätzlicher Assurance.",
-      "evidence": "Approved four-stage intake plan"
+      "question": "Welcher Secure-Development-Vertrag ist verbindlich?",
+      "answer": "Four gates; two-axis applicability and implementation; four outcomes; four independent decision boundaries.",
+      "evidence": "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md"
     },
     {
       "id": "IAD003",
       "status": "Answered",
-      "question": "Welche Delivery Authority gilt für den späteren Lauf?",
-      "answer": "MergeAndSync ausschließlich für Home Baseline; ABSDD bleibt bis Position 17 unverändert.",
-      "evidence": "Explicit current and standing user instruction"
+      "question": "Welche Reihen- und Delivery-Grenzen bleiben erhalten?",
+      "answer": "The intakeId, active target order, role, dependency graph, lifecycle status, and existing deliveryAuthority remain unchanged.",
+      "evidence": "Approved plan and active series manifest."
     }
   ],
   "openDecisionIds": [],
@@ -75,27 +159,28 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "MergeAndSync",
-  "authorityEvidence": "Explicit current user approval and standing MergeAndSync instruction.",
+  "authorityEvidence": "This intake supersession is authorized by the approved plan and Issue #263; later feature execution still requires its existing separate delivery authority.",
   "promptState": "Enabled",
-  "provenanceMode": "New",
+  "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "N/A",
-    "targetNormalizedSha256": "N/A",
-    "archiveTargetPath": "N/A",
-    "archiveReceiptPath": "N/A"
+    "receiptPath": "specs/intake-authoring-archive/ce07211d-79bd-45de-aa72-1efe432c5541/2093c39e-f459-420a-b016-20d9edee57cc/receipt.json",
+    "receiptNormalizedSha256": "9e29e3fd9426b7168f0666753f61f1ba7cd23266a70233df80b3ad5823ea1b08",
+    "targetNormalizedSha256": "e8e8efcb1f25b91cc1e24fdb1df743d9697a72b2814d7d9d4abaac0d1931911f",
+    "archiveTargetPath": "specs/intake-authoring-archive/ce07211d-79bd-45de-aa72-1efe432c5541/2093c39e-f459-420a-b016-20d9edee57cc/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/ce07211d-79bd-45de-aa72-1efe432c5541/2093c39e-f459-420a-b016-20d9edee57cc/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
     "priorTargetNormalizedSha256": "N/A",
     "priorGitBlob": "N/A"
   },
-  "updateAuthorized": false,
-  "updateAuthorityEvidence": "N/A",
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Thorsten: approved plan; implement after G4 completion. G4 completion and exact heads were revalidated before mutation.",
   "series": {
-    "seriesId": "N/A",
-    "manifestPath": "N/A",
-    "order": "N/A",
-    "role": "N/A",
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 11,
+    "role": "OrderedMember",
     "supersedesIntakeIds": []
   },
   "nextAction": "$speckit-intake-review Lastenheft_Secure-Development-Baseline-3.3-Synchronisierung.md"

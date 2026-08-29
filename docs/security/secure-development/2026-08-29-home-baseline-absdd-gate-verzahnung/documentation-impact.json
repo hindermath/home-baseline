@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "home-baseline-absdd-secure-development-gate-verzahnung",
+  "entries": [
+    {
+      "changeId": "CHG263001",
+      "scope": "Secure-Development evidence contract, four gates, runbooks, optional thirteen-preset profile, two commands, intake lineage, and active-series hash bindings",
+      "decision": "GeneratedUpdate",
+      "rationale": "The canonical preset/profile and intake sources changed; the statistics profile is rendered reproducibly from its canonical JSON source.",
+      "documents": [
+        "docs/security/README.md",
+        "docs/security/secure-development/README.md",
+        "docs/runbooks/secure-development/",
+        "docs/security/adr/S-ADR-004-secure-development-gate-verzahnung.md",
+        "docs/security/threat-models/home-baseline-absdd-gate-verzahnung.md",
+        "docs/project-statistics.md"
+      ],
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh --repo ."
+      },
+      "owner": "Home Baseline maintainers",
+      "audiences": [
+        "Learners",
+        "Maintainers",
+        "Security reviewers",
+        "ABSDD project owners"
+      ],
+      "readerPaths": [
+        "docs/README.md to Security to gate evidence",
+        "Intake to evidence context and gate runbook",
+        "Preset profile to the two command surfaces"
+      ],
+      "canonicalSource": "Lastenheft_Home-Baseline-ABSDD-Secure-Development-Gate-Verzahnung.md, scripts/config/spec-kit-secure-development-assurance-governance-presets.json and docs/project-statistics.config.json",
+      "navigationImpact": "The security portal links the new gate evidence matrix; no main README expansion is required.",
+      "documentClass": "GeneratedAndActiveSemantic",
+      "languageStrategy": "German first, English second; exact command and enum tokens remain language-neutral.",
+      "languagePartners": [
+        "Bilingual sections in contract, runbooks, S-ADR, threat model, and preset README"
+      ],
+      "platformAndExampleProof": "Bash and PowerShell validate the same evidence context and all four gates; negative fixtures fail closed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md",
+      "risk": "ABSDD image checks and all human approvals remain Open/Not Assessed until their later authorized phases.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Baseline 3.3 adoption, preset release, ABSDD image change, changed decision authority, or fleet rollout."
+    }
+  ]
+}

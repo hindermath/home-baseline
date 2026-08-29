@@ -5,6 +5,7 @@
 **Status:** Vorbereitung fuer spaetere Spec-Kit-Laeufe, kein gestarteter Lauf  
 **Zielgruppe:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten  
 **Scope:** MSL-basierte Level-2-Repositories mit Secure-Development-Basis
+**Stand:** 2026-08-29
 
 ## Ziel / Goal
 
@@ -19,9 +20,23 @@ Position 7. Ohne diesen Nachweis bleibt Position 8 gesperrt.
 *This intake is position 8 and requires the completed sandbox baseline from
 position 7. Position 8 remains blocked until that evidence exists.*
 
+## Verbindliche Handoff-Ergänzung 2026-08-29
+
+Die Übertragung auf Level 2 übernimmt den technischen Vertrag aus Position 7,
+nicht dessen Freigaben. Jedes Zielrepository führt baseline, delta, closure
+und bei Container- oder Toolchainwirkung image-impact im eigenen Kontext.
+Training und mixed benötigen ein Runbook; development benötigt ein Runbook
+oder eine begründete N/A-Entscheidung. Container-first gilt vor dem ersten
+Agentenaufruf. Technische Validierung ersetzt weder Pilotfreigabe,
+Projektabnahme noch allgemeine Sandbox-/Flottenfreigabe.
+
 ## Kontext / Context
 
-Die zentrale Secure-Development-Basis besteht aus Richtlinie, Checklisten, Sammelband, mitgeltenden Dokumenten und der aktiven Zehn-Preset-Matrix. `absdd-image-sandbox` ist das vorgesehene Referenzprofil fuer eine oeffentlichkeitsfaehige Ausbildungs-Sandbox. Level-2-Repositories bleiben die konkreten Entwicklungs- und Haertungsziele.
+Die zentrale Secure-Development-Basis besteht aus Richtlinie, Checklisten,
+Sammelband, mitgeltenden Dokumenten und dem bestehenden Zwölfer-Preset-Profil.
+`absdd-image-sandbox` ist das vorgesehene Referenzprofil fuer eine
+oeffentlichkeitsfaehige Ausbildungs-Sandbox. Level-2-Repositories bleiben die
+konkreten Entwicklungs- und Haertungsziele.
 
 ## Geltungsbereich / Scope
 
@@ -44,7 +59,9 @@ Dieses Lastenheft gilt fuer Level-2-Repositories, die:
 
 1. Fuer jedes betroffene Level-2-Repository wird eine konkrete Intake-Datei fuer einen spaeteren Sandbox-gestuetzten Secure-Development-Haertungslauf bereitgestellt.
 2. Die Intake-Datei nennt Projektkontext, Runtime, Build/Test-Baseline, Dokumentations-/A11Y-Basis und Agentenflaechen aus dem zentralen Level-2-Register.
-3. Die Intake-Datei verweist auf Richtlinie, `CL_12`, `Leitlinie_Sichere-Entwicklungs-Sandbox.md`, vorhandene Secure-Development-Lastenhefte und die aktive Zehn-Preset-Matrix.
+3. Die Intake-Datei verweist auf Richtlinie, CL_12, die Leitlinie Sichere
+   Entwicklungs-Sandbox, vorhandene Secure-Development-Lastenhefte und das
+   bestehende Zwölfer-Preset-Profil.
 4. Die Intake-Datei prueft, wie das Projekt sicher in oder mit der Sandbox bearbeitet werden kann: Mounts, Schreibgrenzen, Secrets, Build/Test, SBOM, Scans, KI-Agenten, Statistik und Review.
 5. Jede Intake-Datei endet mit einem kopierbaren `/speckit-specify` Prompt.
 6. `Lastenheft_Abarbeitungsreihenfolge.md` wird geschuetzt ergaenzt. Branch-spezifische Lastenhefte mit Feature-Branch-Kennung werden nicht erneut eingeplant.
@@ -90,7 +107,8 @@ Ziel: Level-2-Repositories sollen sicher, nachvollziehbar und ausbildungsgeeigne
 Beruecksichtige:
 - Richtlinie Sichere Entwicklung und CL_12 Agentische KI in Sandbox-Umgebungen.
 - Leitlinie_Sichere-Entwicklungs-Sandbox.md.
-- Die aktive Zehn-Preset-Matrix mit auditfaehigen Applicable/N/A/Open-Entscheidungen.
+- Das bestehende Zwölfer-Preset-Profil mit auditfaehigen
+  Applicable/N/A/Open-Entscheidungen.
 - MSL-Scope: Rust, Swift, C#, F#, Java, Kotlin, Scala, Go, Dart, Python, Ruby, JavaScript, TypeScript, Haskell, OCaml, Erlang, Elixir, Ada und SPARK.
 - Die vier C#/.NET-Referenzrepos TuiVision, TinyCalc, TinyPl0 und InventarWorkerService als erste Zielmenge.
 - Keine Spec-Kit-Implementierung und keine Projekt-Haertung in diesem Lauf.
