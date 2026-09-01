@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "cfb4c17b-621c-4fbd-96e1-e07201017449",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-08-31T21:58:50Z",
+  "operation": {
+    "operationId": "b4ff7029-1ac7-4512-b3ad-d856f18e6921",
+    "type": "Update",
+    "authorityEvidence": "Current explicit user request to implement the approved intake-creation plan and append the new seven-repository documentation intake as advisory Pending position 39 without downstream implementation or remote delivery."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "ad5affbbce5ef973f0b38b3bba09adaaeb8dc22b3fe6e65d5de2fe7df133f804"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/b4ff7029-1ac7-4512-b3ad-d856f18e6921/receipt.json",
+    "receiptNormalizedSha256": "a04b5850fefd0890dc7e289636ed4d8c59ea1b0465910eed2400f01832d600e5",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/b4ff7029-1ac7-4512-b3ad-d856f18e6921/manifest.json",
+    "manifestArchiveSha256": "93594d6b46e1858771bb0261af6c61d36f39025e7a1288dda53ccb6d20aed1f8"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

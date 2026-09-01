@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "5640647b-1eab-453d-8f82-6622458c8f74",
+  "intakeId": "c4fbd340-6f96-489d-9c8b-d9a479641921",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.1"
+  },
+  "createdAt": "2026-08-31T21:47:32Z",
+  "operation": {
+    "operationId": "f115f868-771d-4ddc-86ac-743cf5ef2b70",
+    "type": "Create",
+    "authorityEvidence": "Current explicit user request to implement the approved local intake-creation plan for seven linked requirements order views and to place the new intake at advisory Pending position 39."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+    "normalizedSha256": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "Pasted",
+      "label": "Approved conversation plan for seven linked requirements order views",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "890ee14f4490a0d139b7ad72be37299b50941f44c879ed701732ab113491359b",
+      "gitBlob": "N/A",
+      "proofBoundary": "Approved current conversation snapshot covering one central Level-0 intake, seven repositories, advisory Pending position 39, renderer-backed links, dependency metadata, feature evidence, and the complete TuiVision special case."
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wird der gemeinsame Vertrag als ein zentrales Intake oder als mehrere Repository-Intakes festgehalten?",
+      "answer": "Ein zentrales Level-0-Lastenheft bündelt den gemeinsamen Vertrag für genau sieben Repositories.",
+      "evidence": "The user explicitly approved one named central intake file and later expanded its scope to include TuiVision."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wo wird der neue Intake in der aktiven Home-Baseline-Reihe eingeordnet?",
+      "answer": "Sichtbare Position 39 und aktiver Manifestplatz 34, Pending, mit einer nicht bindenden PreferredSerialOrder-Kante von Position 38.",
+      "evidence": "The approved implementation plan names exact visible and active order, lifecycle, edge kind, and binding state."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche TuiVision-Sonderregeln sind verbindlich?",
+      "answer": "Ten Completed manifest members map to feature directories 037 through 046, all six dependencies remain visible, feature 046 remains the most recent completion, and the DeferredOptional NuGet intake stays outside the active series.",
+      "evidence": "The user explicitly requested TuiVision to be added and approved these exact preservation and rendering boundaries."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wie werden abgeschlossene Einträge ohne belegtes Feature-Verzeichnis dargestellt?",
+      "answer": "Completed entries link an existing specs feature directory; otherwise they use the exact text — (kein Spec-Kit-Feature / no Spec Kit feature).",
+      "evidence": "The approved plan fixes the link and fallback contract and forbids invented feature paths."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für einen späteren Autonomous-Lauf?",
+      "answer": "LocalImplementation; commits, pushes, pull requests, merges, bypasses, and other remote mutations require new explicit authority.",
+      "evidence": "The user authorized local intake authoring and review but did not grant remote delivery authority."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Current authority covers local intake creation, advisory series placement, and the separately invoked read-only Single review. No implementation or remote delivery authority was granted.",
+  "promptState": "Enabled",
+  "provenanceMode": "New",
+  "supersedes": {
+    "receiptPath": "N/A",
+    "targetNormalizedSha256": "N/A",
+    "archiveTargetPath": "N/A",
+    "archiveReceiptPath": "N/A"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": false,
+  "updateAuthorityEvidence": "N/A",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 34,
+    "role": "OrderedMember",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md"
+}

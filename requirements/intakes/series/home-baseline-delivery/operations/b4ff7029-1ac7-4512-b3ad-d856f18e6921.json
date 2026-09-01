@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "b4ff7029-1ac7-4512-b3ad-d856f18e6921",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user request to implement the approved local intake creation, append it as advisory Pending position 39, and then perform the explicitly invoked read-only Single review without downstream implementation or remote delivery.",
+  "proposalNormalizedSha256": "b72bbe3d29776cdb0ff6d3b6b92e09a24358b344ad26a7294341c32c4642b990",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 34
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 37,
+      "after": 38
+    },
+    "addedTargets": [
+      {
+        "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "role": "OrderedMember",
+        "normalizedSha256": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014",
+        "status": "Pending",
+        "activeManifestOrder": 34,
+        "visibleOrder": 39
+      }
+    ],
+    "removedTargets": [],
+    "changedTargets": [],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [
+      {
+        "from": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+        "to": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      }
+    ],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Appends visible position 39 as a Pending ordered member with an advisory PreferredSerialOrder edge from position 38 while preserving all roots and the sole declared Eligible target."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/b4ff7029-1ac7-4512-b3ad-d856f18e6921/manifest.json",
+    "manifestNormalizedSha256": "93594d6b46e1858771bb0261af6c61d36f39025e7a1288dda53ccb6d20aed1f8",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/b4ff7029-1ac7-4512-b3ad-d856f18e6921/receipt.json",
+    "receiptNormalizedSha256": "a04b5850fefd0890dc7e289636ed4d8c59ea1b0465910eed2400f01832d600e5"
+  },
+  "preparedPaths": [
+    "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+    "specs/intake-authoring-receipts/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise.json",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "docs/project-statistics.config.json",
+    "docs/project-statistics.md",
+    "requirements/intakes/series/home-baseline-delivery/history/b4ff7029-1ac7-4512-b3ad-d856f18e6921/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/b4ff7029-1ac7-4512-b3ad-d856f18e6921/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/b4ff7029-1ac7-4512-b3ad-d856f18e6921.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-result.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-report.md"
+  ],
+  "validation": {
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "seriesBash": "Passed",
+    "seriesPowerShell": "Passed",
+    "reviewBash": "Passed",
+    "reviewPowerShell": "Passed",
+    "statistics": "Passed",
+    "diffCheck": "Passed"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}
