@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "2.0",
+  "documentType": "IntakeReceipt",
+  "receiptId": "9a61eed6-a419-49ad-8871-8689ecd9dbe0",
+  "intakeId": "c4fbd340-6f96-489d-9c8b-d9a479641921",
+  "generator": {
+    "preset": "intake-authoring-governance",
+    "version": "0.3.1"
+  },
+  "createdAt": "2026-09-01T06:19:47Z",
+  "operation": {
+    "operationId": "d8a35618-98bb-4ef9-816f-4edb76ea067c",
+    "type": "Update",
+    "authorityEvidence": "Current explicit user approval to implement the complete rebooking plan, promote visible item 39 as the sole preferred Eligible target, and renew its Single review without Specify or delivery."
+  },
+  "status": "ReadyForReview",
+  "target": {
+    "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+    "normalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a"
+  },
+  "sources": [
+    {
+      "sourceId": "SRC001",
+      "order": 1,
+      "kind": "File",
+      "label": "Byte-identical archived predecessor intake",
+      "location": "Repository",
+      "path": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/target.md",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014",
+      "gitBlob": "N/A",
+      "proofBoundary": "ArchivedSupersededTarget"
+    },
+    {
+      "sourceId": "SRC002",
+      "order": 2,
+      "kind": "Pasted",
+      "label": "Approved current rebooking plan",
+      "location": "SnapshotOnly",
+      "path": "N/A",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "5529d4e6902bd7071b466e97ca990eefbcce91a14c4629c428abc5f029dcac65",
+      "gitBlob": "N/A",
+      "proofBoundary": "ConversationSnapshot: promote item 39 to active manifest position 1 as Primary and sole Eligible, demote G4 to Pending position 2, replace the advisory edge, renew the Single review, and perform no Specify or delivery."
+    },
+    {
+      "sourceId": "SRC003",
+      "order": 3,
+      "kind": "File",
+      "label": "Explicit invalidation of superseded Single review",
+      "location": "Repository",
+      "path": "specs/intake-review-invalidations/f1ed093f-ed6a-4ee6-a45d-cee676d1fbe1.json",
+      "requestedUrl": "N/A",
+      "finalUrl": "N/A",
+      "retrievedAt": "N/A",
+      "httpStatus": "N/A",
+      "contentType": "N/A",
+      "contentLength": "N/A",
+      "etag": "N/A",
+      "lastModified": "N/A",
+      "redirectChain": [],
+      "rawSha256": "N/A",
+      "normalizedSha256": "145b7afddd772d06960403666f866316c7788dd406ca3944112590c79593a035",
+      "gitBlob": "N/A",
+      "proofBoundary": "ReviewInvalidation"
+    }
+  ],
+  "profile": "home-baseline-lastenheft",
+  "languagePolicy": "GermanFirstEnglishSecond",
+  "decisions": [
+    {
+      "id": "IAD001",
+      "status": "Answered",
+      "question": "Wird der gemeinsame Vertrag als ein zentrales Intake oder als mehrere Repository-Intakes festgehalten?",
+      "answer": "Ein zentrales Level-0-Lastenheft bündelt den gemeinsamen Vertrag für genau sieben Repositories.",
+      "evidence": "The user explicitly approved one named central intake file and later expanded its scope to include TuiVision."
+    },
+    {
+      "id": "IAD002",
+      "status": "Answered",
+      "question": "Wo wird der neue Intake in der aktiven Home-Baseline-Reihe eingeordnet?",
+      "answer": "Die stabile sichtbare Kennung Position 39 bleibt erhalten; der Intake wird als vorgezogenes Ziel auf aktiven Manifestplatz 1 sowie Primary und Eligible umgebucht und erhält eine nicht bindende PreferredSerialOrder-Kante zu G4.",
+      "evidence": "The currently approved rebooking plan fixes the visible identifier, active order, role, lifecycle, successor, edge kind, and binding state."
+    },
+    {
+      "id": "IAD003",
+      "status": "Answered",
+      "question": "Welche TuiVision-Sonderregeln sind verbindlich?",
+      "answer": "Ten Completed manifest members map to feature directories 037 through 046, all six dependencies remain visible, feature 046 remains the most recent completion, and the DeferredOptional NuGet intake stays outside the active series.",
+      "evidence": "The user explicitly requested TuiVision to be added and approved these exact preservation and rendering boundaries."
+    },
+    {
+      "id": "IAD004",
+      "status": "Answered",
+      "question": "Wie werden abgeschlossene Einträge ohne belegtes Feature-Verzeichnis dargestellt?",
+      "answer": "Completed entries link an existing specs feature directory; otherwise they use the exact text — (kein Spec-Kit-Feature / no Spec Kit feature).",
+      "evidence": "The approved plan fixes the link and fallback contract and forbids invented feature paths."
+    },
+    {
+      "id": "IAD005",
+      "status": "Answered",
+      "question": "Welche Delivery Authority gilt für einen späteren Autonomous-Lauf?",
+      "answer": "LocalImplementation; commits, pushes, pull requests, merges, bypasses, and other remote mutations require new explicit authority.",
+      "evidence": "The user authorized local intake authoring and review but did not grant remote delivery authority."
+    }
+  ],
+  "openDecisionIds": [],
+  "questionCount": 0,
+  "agentSurface": {
+    "specifyCanonicalId": "speckit.specify",
+    "specifyInvocation": "$speckit-specify",
+    "autonomousCanonicalId": "speckit.autonomous",
+    "autonomousInvocation": "$speckit-autonomous"
+  },
+  "deliveryAuthority": "LocalImplementation",
+  "authorityEvidence": "Current authority covers the local intake and series rebooking plus the separately approved renewed Single review. No Specify, implementation, or remote delivery authority was granted.",
+  "promptState": "Enabled",
+  "provenanceMode": "Supersession",
+  "supersedes": {
+    "receiptPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/receipt.json",
+    "receiptNormalizedSha256": "45252fc0e1e319842eac97b98c80982b13d3692921356828bf5d1306669f3a5b",
+    "targetNormalizedSha256": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014",
+    "archiveTargetPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/receipt.json"
+  },
+  "legacyAdoption": {
+    "evidenceType": "N/A",
+    "priorTargetNormalizedSha256": "N/A",
+    "priorGitBlob": "N/A"
+  },
+  "updateAuthorized": true,
+  "updateAuthorityEvidence": "Current user instruction: implement the approved rebooking and renewed-review plan.",
+  "series": {
+    "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "order": 1,
+    "role": "Primary",
+    "supersedesIntakeIds": []
+  },
+  "nextAction": "$speckit-intake-review Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md"
+}

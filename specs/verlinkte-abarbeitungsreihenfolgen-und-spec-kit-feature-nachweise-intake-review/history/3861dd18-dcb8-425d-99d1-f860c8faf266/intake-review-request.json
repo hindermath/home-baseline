@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "3861dd18-dcb8-425d-99d1-f860c8faf266",
+  "mode": "Single",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "targets": [
+    {
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "role": "Primary"
+    }
+  ],
+  "series": {
+    "orderedTargetPaths": [],
+    "roots": [],
+    "dependencies": []
+  },
+  "campaign": {
+    "manifestPath": "N/A",
+    "workers": [],
+    "operatorExceptions": []
+  }
+}

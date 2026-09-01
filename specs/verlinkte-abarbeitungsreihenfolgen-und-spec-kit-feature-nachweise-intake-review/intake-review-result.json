@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "a4299732-0732-46d0-8f46-8569727215f8",
+  "mode": "Single",
+  "status": "Ready",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-09-01T06:27:42Z",
+  "repository": {
+    "root": ".",
+    "head": "bc3517dea014d17c091ad0b67932ef9833d17378"
+  },
+  "requestEvidence": {
+    "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+    "normalizedSha256": "ddbaa00692a413b8c354aefbe9f995fb1f6cc737c02719356b1507893bf45ccb"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "role": "Primary",
+      "normalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a",
+      "gitBlob": "N/A"
+    }
+  ],
+  "findings": [],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "3861dd18-dcb8-425d-99d1-f860c8faf266"
+}

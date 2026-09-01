@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user approval to implement the complete rebooking plan, promote visible item 39 to active manifest position 1 as the sole preferred Eligible target, demote G4 to Pending position 2, renew the Single review, and perform no Specify or delivery.",
+  "proposalNormalizedSha256": "5529d4e6902bd7071b466e97ca990eefbcce91a14c4629c428abc5f029dcac65",
+  "differences": {
+    "targetCount": {
+      "before": 34,
+      "after": 34
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 38,
+      "after": 38
+    },
+    "addedTargets": [],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "orderBefore": 34,
+        "orderAfter": 1,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "Primary",
+        "statusBefore": "Pending",
+        "statusAfter": "Eligible",
+        "rootBefore": false,
+        "rootAfter": true,
+        "normalizedSha256Before": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014",
+        "normalizedSha256After": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a"
+      },
+      {
+        "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
+        "orderBefore": 1,
+        "orderAfter": 2,
+        "roleBefore": "Primary",
+        "roleAfter": "OrderedMember",
+        "statusBefore": "Eligible",
+        "statusAfter": "Pending",
+        "rootBefore": true,
+        "rootAfter": false,
+        "normalizedSha256Before": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
+        "normalizedSha256After": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5"
+      }
+    ],
+    "unchangedTargetOrderShift": {
+      "count": 32,
+      "beforeRange": "2-33",
+      "afterRange": "3-34",
+      "delta": 1,
+      "rolesLifecycleHashesChanged": false
+    },
+    "addedRoots": [
+      "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md"
+    ],
+    "removedRoots": [
+      "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md"
+    ],
+    "addedDependencies": [
+      {
+        "from": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      }
+    ],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Level-0-Checkout-und-Public-Template-Erstellung.md",
+        "to": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      }
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "reason": "Keeps visible identifier 39 stable, marks it promoted, places it before G4 as the sole preferred Eligible target, and retains every other visible identifier."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/manifest.json",
+    "manifestNormalizedSha256": "ad5affbbce5ef973f0b38b3bba09adaaeb8dc22b3fe6e65d5de2fe7df133f804",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/receipt.json",
+    "receiptNormalizedSha256": "9214be4c3d037666b1c08444100e7deaaac1e7092a2c4ea3b453e686331152fa"
+  },
+  "preparedPaths": [
+    "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+    "specs/intake-authoring-receipts/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise.json",
+    "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/target.md",
+    "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/receipt.json",
+    "specs/intake-review-invalidations/f1ed093f-ed6a-4ee6-a45d-cee676d1fbe1.json",
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "docs/project-statistics.config.json",
+    "docs/project-statistics.md",
+    "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/3861dd18-dcb8-425d-99d1-f860c8faf266/intake-review-request.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/3861dd18-dcb8-425d-99d1-f860c8faf266/intake-review-result.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/3861dd18-dcb8-425d-99d1-f860c8faf266/intake-review-report.md",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-result.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-report.md"
+  ],
+  "validation": {
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "seriesBash": "Passed",
+    "seriesPowerShell": "Passed",
+    "reviewBash": "Passed",
+    "reviewPowerShell": "Passed",
+    "statistics": "Passed: renderer CURRENT; 146 assertions",
+    "diffCheck": "Passed: UTF-8, JSON, archive parity, git diff --check, secret scan high=0"
+  },
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

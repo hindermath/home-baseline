@@ -577,6 +577,14 @@
       "labelEn": "ABSDD secure-development gate integration",
       "netLines": 7054,
       "activeDays": 1
+    },
+    {
+      "slot": 71,
+      "id": "linked-intake-order-feature-evidence-intake",
+      "labelDe": "Verlinkte Intake-Reihenfolgen und Feature-Nachweise",
+      "labelEn": "Linked intake order and feature evidence",
+      "netLines": 2920,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

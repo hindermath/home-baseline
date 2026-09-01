@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeReviewInvalidation",
+  "invalidationId": "f1ed093f-ed6a-4ee6-a45d-cee676d1fbe1",
+  "reviewId": "3861dd18-dcb8-425d-99d1-f860c8faf266",
+  "invalidatedAt": "2026-09-01T06:19:47Z",
+  "reason": "The approved rebooking changes the reviewed intake hash, active manifest order, role, lifecycle status, root membership, and advisory series edge.",
+  "archivedReviewRequest": {
+    "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/3861dd18-dcb8-425d-99d1-f860c8faf266/intake-review-request.json",
+    "normalizedSha256": "50985bf98d71d20183850ca130780e57906c67c7397e4ec97b7e1bbfdaf093f3"
+  },
+  "archivedReviewResult": {
+    "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/3861dd18-dcb8-425d-99d1-f860c8faf266/intake-review-result.json",
+    "normalizedSha256": "da21ab184eb6e22bb03266dbc625f9728bde7dbe3bc5e6c39e9c7a8461c2b1da"
+  },
+  "changedTargets": [
+    {
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "before": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014",
+      "after": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a"
+    }
+  ],
+  "status": "Invalidated",
+  "nextAction": "$speckit-intake-review Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md"
+}

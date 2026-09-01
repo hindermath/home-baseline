@@ -7,16 +7,10 @@
   "status": "Active",
   "orderedTargets": [
     {
-      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
-      "role": "Primary",
-      "normalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a",
-      "status": "Eligible"
-    },
-    {
       "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
-      "role": "OrderedMember",
+      "role": "Primary",
       "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
-      "status": "Pending"
+      "status": "Eligible"
     },
     {
       "path": "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -212,17 +206,11 @@
     }
   ],
   "roots": [
-    "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+    "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
     "Lastenheft_CICD_Pipeline_Konfiguration.md",
     "Lastenheft_PowerShell_Cmdlets.md"
   ],
   "dependencies": [
-    {
-      "from": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
-      "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
-      "kind": "PreferredSerialOrder",
-      "binding": false
-    },
     {
       "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
       "to": "Lastenheft_Secure-Development-Container-Hardening.md",
@@ -485,8 +473,6 @@
     "specs/intake-authoring-receipts/agentic-workspace-wartungs-tui-und-wrapper-regressionshaertung.json",
     "specs/intake-authoring-receipts/dokumentations-informationsarchitektur-und-lernpfad-audit.json",
     "specs/intake-authoring-receipts/level-0-checkout-und-public-template-erstellung.json",
-    "specs/intake-authoring-receipts/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise.json",
-    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-result.json",
     "specs/intake-authoring-series/itse-learning-series/series.json",
     "specs/intake-authoring-series/learning-series-governance/series.json",
     "specs/itse-learning-intakes/reviews/26-gap-audit/intake-review-result.json",
