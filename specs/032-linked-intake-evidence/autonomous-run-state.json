@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": true,
   "stage": "Implement",
   "status": "Blocked",
-  "checkpointCommit": "N/A",
+  "checkpointCommit": "a930564448d6cc07d88f66540ea0af919ca549bc",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
@@ -233,5 +233,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-09-01T19:49:00Z"
+  "updatedAt": "2026-09-01T20:19:43Z"
 }
