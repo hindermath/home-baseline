@@ -1,22 +1,22 @@
 {
   "schemaVersion": "2.0",
   "documentType": "IntakeReceipt",
-  "receiptId": "9492bd2f-267c-43e7-a0cd-6cdcf74860fe",
+  "receiptId": "9a61eed6-a419-49ad-8871-8689ecd9dbe0",
   "intakeId": "c4fbd340-6f96-489d-9c8b-d9a479641921",
   "generator": {
     "preset": "intake-authoring-governance",
     "version": "0.3.1"
   },
-  "createdAt": "2026-09-01T17:32:50Z",
+  "createdAt": "2026-09-01T06:19:47Z",
   "operation": {
-    "operationId": "5aae6a81-9015-4f20-91dd-d1c71e4ea4ac",
+    "operationId": "d8a35618-98bb-4ef9-816f-4edb76ea067c",
     "type": "Update",
-    "authorityEvidence": "Current explicit $speckit-intake-repair instruction authorizing the mechanical repair of IR001 and its complete Single re-review; no Specify, implementation, or remote delivery was authorized."
+    "authorityEvidence": "Current explicit user approval to implement the complete rebooking plan, promote visible item 39 as the sole preferred Eligible target, and renew its Single review without Specify or delivery."
   },
   "status": "ReadyForReview",
   "target": {
     "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
-    "normalizedSha256": "d9e066a4f2ae58a3706495c0c60919c47fd802b353ecd6939c8b65ad1cbd7983"
+    "normalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a"
   },
   "sources": [
     {
@@ -81,69 +81,6 @@
       "normalizedSha256": "145b7afddd772d06960403666f866316c7788dd406ca3944112590c79593a035",
       "gitBlob": "N/A",
       "proofBoundary": "ReviewInvalidation"
-    },
-    {
-      "sourceId": "SRC004",
-      "order": 4,
-      "kind": "File",
-      "label": "Byte-identical archived pre-repair intake",
-      "location": "Repository",
-      "path": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/target.md",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a",
-      "gitBlob": "32e36c8ef4bffd72881cd3b4c9a13234f78901d6",
-      "proofBoundary": "ArchivedSupersededTarget"
-    },
-    {
-      "sourceId": "SRC005",
-      "order": 5,
-      "kind": "File",
-      "label": "Archived NeedsRemediation Intake Review result",
-      "location": "Repository",
-      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/df6116cf-34f5-4f50-af04-d95d06d1a23c/intake-review-result.json",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "b7a47be8c5396acbcf93d4ccf1c988aeda2d8a85b5acac78d5b4d269210b5760",
-      "gitBlob": "N/A",
-      "proofBoundary": "ArchivedSupersededReview"
-    },
-    {
-      "sourceId": "SRC006",
-      "order": 6,
-      "kind": "Pasted",
-      "label": "Explicit IR001 repair authority",
-      "location": "SnapshotOnly",
-      "path": "N/A",
-      "requestedUrl": "N/A",
-      "finalUrl": "N/A",
-      "retrievedAt": "N/A",
-      "httpStatus": "N/A",
-      "contentType": "N/A",
-      "contentLength": "N/A",
-      "etag": "N/A",
-      "lastModified": "N/A",
-      "redirectChain": [],
-      "rawSha256": "N/A",
-      "normalizedSha256": "7f67da1e72664a392180ec49a8fbd1784f9af7e532926c9a0088fcad39e3af6d",
-      "gitBlob": "N/A",
-      "proofBoundary": "ConversationSnapshot: explicit current $speckit-intake-repair invocation for the named target"
     }
   ],
   "profile": "home-baseline-lastenheft",
@@ -160,8 +97,8 @@
       "id": "IAD002",
       "status": "Answered",
       "question": "Wo wird der neue Intake in der aktiven Home-Baseline-Reihe eingeordnet?",
-      "answer": "Die stabile sichtbare Kennung Position 39 bleibt erhalten; der Intake steht als vorgezogenes Ziel auf aktivem Manifestplatz 1 sowie Primary und Eligible und erhält eine nicht bindende PreferredSerialOrder-Kante zu Position 7 (Lastenheft_Secure-Development-Container-Hardening.md). G4 ist abgeschlossen und aus der aktiven Serie entfernt.",
-      "evidence": "The current manifest and the explicitly authorized IR001 repair fix the visible identifier, active order, role, lifecycle, Position 7 successor, edge kind, and binding state."
+      "answer": "Die stabile sichtbare Kennung Position 39 bleibt erhalten; der Intake wird als vorgezogenes Ziel auf aktiven Manifestplatz 1 sowie Primary und Eligible umgebucht und erhält eine nicht bindende PreferredSerialOrder-Kante zu G4.",
+      "evidence": "The currently approved rebooking plan fixes the visible identifier, active order, role, lifecycle, successor, edge kind, and binding state."
     },
     {
       "id": "IAD003",
@@ -194,15 +131,15 @@
     "autonomousInvocation": "$speckit-autonomous"
   },
   "deliveryAuthority": "LocalImplementation",
-  "authorityEvidence": "Current authority covers only the named local intake repair, deterministic provenance and series-hash propagation, and its complete Single re-review. No Specify, implementation, or remote delivery authority was granted.",
+  "authorityEvidence": "Current authority covers the local intake and series rebooking plus the separately approved renewed Single review. No Specify, implementation, or remote delivery authority was granted.",
   "promptState": "Enabled",
   "provenanceMode": "Supersession",
   "supersedes": {
-    "receiptPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/receipt.json",
-    "receiptNormalizedSha256": "97e9d568dafb75ec9692a4f0941ab72464dae9f387198a36f36a21f2277de92b",
-    "targetNormalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a",
-    "archiveTargetPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/target.md",
-    "archiveReceiptPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/receipt.json"
+    "receiptPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/receipt.json",
+    "receiptNormalizedSha256": "45252fc0e1e319842eac97b98c80982b13d3692921356828bf5d1306669f3a5b",
+    "targetNormalizedSha256": "4ebfda73332156c7ed1317f7a9f85ca97d22e1c8f5b6e907f6d2f223055b3014",
+    "archiveTargetPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/target.md",
+    "archiveReceiptPath": "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/d8a35618-98bb-4ef9-816f-4edb76ea067c/receipt.json"
   },
   "legacyAdoption": {
     "evidenceType": "N/A",
@@ -210,7 +147,7 @@
     "priorGitBlob": "N/A"
   },
   "updateAuthorized": true,
-  "updateAuthorityEvidence": "Current explicit $speckit-intake-repair instruction for Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md.",
+  "updateAuthorityEvidence": "Current user instruction: implement the approved rebooking and renewed-review plan.",
   "series": {
     "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
     "manifestPath": "requirements/intakes/series/home-baseline-delivery/manifest.json",

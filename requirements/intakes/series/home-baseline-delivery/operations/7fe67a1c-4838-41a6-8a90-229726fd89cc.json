@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "7fe67a1c-4838-41a6-8a90-229726fd89cc",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit $speckit-intake-repair authority; the series mutation is limited to the repaired Position 39 target hash.",
+  "proposalNormalizedSha256": "c723d06eb5e3b51eec0c300878fae93f2e29993eca5cc8cd73260feec4a8960c",
+  "differences": {
+    "targetCount": {
+      "before": 33,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 37,
+      "after": 37
+    },
+    "addedTargets": [],
+    "removedTargets": [],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "orderBefore": 1,
+        "orderAfter": 1,
+        "roleBefore": "Primary",
+        "roleAfter": "Primary",
+        "statusBefore": "Eligible",
+        "statusAfter": "Eligible",
+        "rootBefore": true,
+        "rootAfter": true,
+        "normalizedSha256Before": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a",
+        "normalizedSha256After": "d9e066a4f2ae58a3706495c0c60919c47fd802b353ecd6939c8b65ad1cbd7983"
+      }
+    ],
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [],
+    "removedDependencies": []
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": false,
+    "reason": "The repair preserves active position 1, visible position 39, Primary and Eligible state, all roots, and the advisory Position 39 to Position 7 edge."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/7fe67a1c-4838-41a6-8a90-229726fd89cc/manifest.json",
+    "manifestNormalizedSha256": "49ba2884b11a98f9e426afc1674455fadcca7c8f5e4e949e49a5c56aa791801e",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/7fe67a1c-4838-41a6-8a90-229726fd89cc/receipt.json",
+    "receiptNormalizedSha256": "5ba70d43d114c6cef64737efffb3a54227f0aba6ee4ae8172de1cea0acb03f0b"
+  },
+  "preparedPaths": [
+    "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+    "specs/intake-authoring-receipts/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise.json",
+    "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/target.md",
+    "specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/7fe67a1c-4838-41a6-8a90-229726fd89cc/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/7fe67a1c-4838-41a6-8a90-229726fd89cc/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/7fe67a1c-4838-41a6-8a90-229726fd89cc.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-result.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-report.md",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/df6116cf-34f5-4f50-af04-d95d06d1a23c/intake-review-request.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/df6116cf-34f5-4f50-af04-d95d06d1a23c/intake-review-result.json",
+    "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/history/df6116cf-34f5-4f50-af04-d95d06d1a23c/intake-review-report.md"
+  ],
+  "validation": {
+    "requirementsGovernanceBash": "Passed: schema 2.0 configuration Aligned",
+    "requirementsGovernancePowerShell": "Passed: schema 2.0 configuration Aligned",
+    "intakeBash": "Passed",
+    "intakePowerShell": "Passed",
+    "reviewBash": "Passed",
+    "reviewPowerShell": "Passed",
+    "seriesBash": "Passed: 33 targets, 3 roots, 37 dependencies, item 39 Eligible",
+    "seriesPowerShell": "Passed: 33 targets, 3 roots, 37 dependencies, item 39 Eligible",
+    "secretScan": "Passed: no high-confidence secrets in the current Git diff",
+    "statistics": "NotTriggered: intake-governance repair only; no feature implementation phase completed",
+    "diffCheck": "Passed: target content and hash evidence only; series topology and order remain unchanged"
+  },
+  "documentationImpact": "UpdateRequired: the named intake, provenance receipt, current review evidence, and hash-bound active series are synchronized; source-only and no Home sync required.",
+  "statisticsImpact": "NotTriggered: no feature implementation phase was completed.",
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json"
+    ]
+  }
+}

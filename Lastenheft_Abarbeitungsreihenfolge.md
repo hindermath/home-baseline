@@ -148,7 +148,7 @@ the existing mapping of twelve checklists, 157 review points, 15 related
    new execution authority. Item 7 became the sole declared `Eligible`
    candidate after that closeout. Feature 028 and PR #243 completed and
    archived the later G2 gate, so this selection applied again until the
-   current G3/G4 cost-governance insertion. The closeout started neither item
+   subsequent G3/G4 cost-governance insertion. The closeout started neither item
    7 nor remediation.*
 
 ## Abgeschlossenes Evidence-Integrity-Gate / Completed Evidence Integrity Gate
@@ -167,39 +167,40 @@ nur nach vollstaendig gruener Evidence ausloesen.
 Beide Gate-Knoten sind aus der aktiven Serie entfernt. Damit war der zuvor
 belegte Vertrag mit 32 Zielen, drei Roots und 36 Abhaengigkeiten wiederhergestellt;
 Position 7 war der einzige bevorzugte `Eligible`-Kandidat. Dieser Zustand ist
-als Supersession-Vorstand archiviert und wird nun durch G3 und G4 erweitert.
+als Supersession-Vorstand archiviert und wurde danach durch G3 und G4 erweitert.
 
 *Both gate nodes have been removed from the active series. This restored the
 previously evidenced contract with 32 targets, three roots, and 36 dependencies;
 item 7 was the sole preferred `Eligible` candidate. That state is archived as
-the superseded predecessor and is now extended by G3 and G4.*
+the superseded predecessor and was then extended by G3 and G4.*
 
-## Aktive Kosten-Gates / Active Cost Gates
+## Abgeschlossene Kosten-Gates / Completed Cost Gates
 
 G3 reduzierte private GitHub-Actions-Minuten durch registrybasierte CI-Profile,
 lokale Pflicht-Gates und HEAD-gebundene Evidence. Feature 029, PR #247 und der
 anschliessende Stage-B-Flottenrollout mit den PRs #258 und #259 sind
-abgeschlossen. G4 ist fachlich freigegeben, wird durch die ausdrueckliche
-Umbuchung von Position 39 jedoch als `Pending` hinter den neuen bevorzugten
-Kandidaten gestellt. G4 reduziert spaeter automatische GitHub-Copilot-Reviews
-auf acht benannte Public-Repositories und genau ein Lite-Review pro
-qualifizierendem Pull Request.
+abgeschlossen. G4 wurde als Feature 031 ueber die PRs #260, #261 und #262 sowie
+den terminalen Abschluss-Commit `3f17f878` abgeschlossen. Es begrenzt
+automatische GitHub-Copilot-Reviews auf acht benannte Public-Repositories und
+genau ein Lite-Review pro qualifizierendem Pull Request. Der G4-Knoten und
+seine bindende Kante zu Position 7 sind deshalb aus der aktiven Serie entfernt;
+Position 39 bleibt der einzige bevorzugte `Eligible`-Kandidat.
 
 *G3 reduced private GitHub Actions minutes through registry-based CI profiles,
 mandatory local gates, and HEAD-bound evidence. Feature 029, PR #247, and the
-subsequent Stage B fleet rollout through PRs #258 and #259 are complete. G4 is
-functionally unblocked, but the explicit promotion of item 39 places it back
-into `Pending` behind the new preferred candidate. G4 later limits automatic
-GitHub Copilot review to eight named public repositories and one Lite review
-per qualifying pull request.*
+subsequent Stage B fleet rollout through PRs #258 and #259 are complete. G4
+completed as Feature 031 through PRs #260, #261, and #262 plus terminal
+completion commit `3f17f878`. It limits automatic Copilot review to eight named
+public repositories and one Lite review per qualifying pull request. The G4
+node and its binding edge to item 7 have therefore been removed from the active
+series; item 39 remains the sole preferred `Eligible` candidate.*
 
 ```text
 G3 Actions-Budget und Stage B [abgeschlossen / completed]
+G4 Copilot-Review-Governance [abgeschlossen / completed, archiviert / archived]
 39 Verlinkte Abarbeitungsreihenfolgen [Eligible, vorgezogen / promoted]
   - - [PreferredSerialOrder, nicht bindend / advisory] - ->
-G4 Copilot-Review-Governance [Pending]
-  -- [CopilotReviewGovernanceBaseline, bindend / binding] -->
-7 Container-Haertung [Blocked]
+7 Container-Haertung [Pending]
 ```
 
 Der `Eligible`-Status von Position 39 erteilt keine Start-, GitHub-Schreib-,
@@ -210,12 +211,12 @@ push, merge, or bypass authority.*
 
 ## Aktive Reihenfolge / Active Order
 
-Der aktuelle maschinenpruefbare Vertrag umfasst 34 Ziele, drei Roots und
-38 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
+Der aktuelle maschinenpruefbare Vertrag umfasst 33 Ziele, drei Roots und
+37 bindende oder beratende Abhaengigkeiten. Genau ein Ziel ist im
 Manifest als bevorzugtes `Eligible` deklariert.
 
-*The current machine-verifiable contract contains 34 targets, three roots, and
-38 binding or advisory dependencies. Exactly one target is
+*The current machine-verifiable contract contains 33 targets, three roots, and
+37 binding or advisory dependencies. Exactly one target is
 declared as the preferred `Eligible` candidate in the manifest.*
 
 Die stabilen sichtbaren Kennungen bleiben erhalten. Position 39 wird als
@@ -235,8 +236,8 @@ identifiers are not renamed.*
 | 6 (abgeschlossen / completed) | `Lastenheft_RL-SE-Checklist-Selbstpruefung.025-rl-se-self-assessment.md` | Feature 025 und PR #214 lieferten je Sprachhaelfte 159 eindeutige Entscheidungen und 21 Evidence-Eintraege. Die 149 Remediation-Kandidaten bleiben getrennte Folgearbeit. / Feature 025 and PR #214 delivered 159 unique decisions and 21 evidence records per language half. The 149 remediation candidates remain separate follow-up work. |
 | G3 (abgeschlossen / completed) | `Lastenheft_Flottenweite-CI-Budget-Governance-und-Actions-Rationalisierung.029-ci-budget-governance.md` und `Lastenheft_Flottenweite-CI-Budget-Governance-Stage-B-Rollout.030-stage-b-rollout.md` | Feature 029, PR #247 sowie der Stage-B-Flottenrollout über PRs #258 und #259 lieferten die Actions-Budget-Baseline und konvergierten 48 von 48 Repositories. / Feature 029, PR #247, and the Stage B fleet rollout through PRs #258 and #259 delivered the Actions budget baseline and converged all 48 repositories. |
 | 39 (`Eligible`, vorgezogen / promoted) | `Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md` | Harmonisiert als naechster bevorzugter Intake verlinkte Intake-Dateien, typisierte Abhaengigkeiten und abgeschlossene Spec-Kit-Feature-Nachweise in sieben Herzensprojekt-Repositories. Der Status erteilt keine Implementierungs- oder Delivery-Autoritaet. / As the next preferred intake, harmonizes linked intake files, typed dependencies, and completed Spec Kit feature evidence across seven passion-project repositories. The status grants no implementation or delivery authority. |
-| G4 (`Pending`, beratend nach Position 39 / advisory after item 39) | `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md` | Reduziert nach abgeschlossenem G3 und Stage B automatische Copilot-Reviews auf acht Repositories und ein Lite-Review ohne Draft-/Push-Wiederholung. / After completed G3 and Stage B, limits automatic Copilot review to eight repositories and one Lite review without draft/push repetition. |
-| 7 (`Blocked`) | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer ab und wartet bindend auf G4. / Derives requirements for a secure development container and is binding-blocked by G4. |
+| G4 (abgeschlossen / completed, archiviert / archived) | `Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md` | Feature 031, PRs #260 bis #262 und Abschluss-Commit `3f17f878` begrenzen automatische Copilot-Reviews auf acht Repositories und ein Lite-Review ohne Draft-/Push-Wiederholung. / Feature 031, PRs #260 through #262, and completion commit `3f17f878` limit automatic Copilot reviews to eight repositories and one Lite review without draft/push repetition. |
+| 7 (`Pending`, beratend nach Position 39 / advisory after item 39) | `Lastenheft_Secure-Development-Container-Hardening.md` | Leitet Anforderungen fuer einen sicheren Entwicklungscontainer ab. Das bindende G4-Gate ist abgeschlossen; nur die sichtbare serielle Einordnung hinter Position 39 bleibt. / Derives requirements for a secure development container. Its binding G4 gate is complete; only its visible serial position after item 39 remains. |
 | 8 | `Lastenheft_Level-2-Sandbox-Anbindung-und-Haertungsvorbereitung.md` | Bereitet MSL-basierte Level-2-Repositories auf spaetere Sandbox-gestuetzte Secure-Development-Haertung vor, ohne diese Haertung zu starten. / Prepares MSL-based level-2 repositories for later sandbox-supported secure-development hardening without starting that hardening. |
 | 9 | `Lastenheft_CICD_Pipeline_Konfiguration.md` | Prüft und härtet die CI/CD-Basis nach der dokumentierten Governance-Logik. / Reviews and hardens the CI/CD baseline according to the documented governance logic. |
 | 10 | `Lastenheft_PowerShell_Cmdlets.md` | Prüft PowerShell-Cmdlet-Konventionen und Windows-Parität und liefert damit eine Oberfläche für die nachfolgende Dokumentation. / Reviews PowerShell cmdlet conventions and Windows parity and provides a surface for the following documentation work. |
@@ -276,7 +277,7 @@ Source-/Home-Runtime-Verfeinerung hat die früheren Einzelreviews D4 bis D7 und
 frühere Series-Reviews hashbedingt archiviert. Der aktuelle
 Schema-1.1-Series-Review belegt den archivierten Vorstand mit 32 Zielen, drei
 Roots und 36 Abhängigkeiten. Das aktuelle Manifest umfasst nach dem
-G3-/Stage-B-Abschluss 34 Ziele, drei Roots und 38 Abhängigkeiten und deklariert
+G3-/Stage-B- und G4-Abschluss 33 Ziele, drei Roots und 37 Abhängigkeiten und deklariert
 Position 39 als einzigen bevorzugten `Eligible`-Kandidaten. Vor einem später ausdrücklich autorisierten
 Lauf werden zuerst `$speckit-intake-series-status` und der zum ausgewählten
 Ziel gehörende `$speckit-intake-review` ausgeführt.
@@ -285,8 +286,8 @@ Ziel gehörende `$speckit-intake-review` ausgeführt.
 validator separately reports every target without incomplete binding
 predecessors as computationally eligible. The schema-1.1 Series review covers
 the archived predecessor with 32 targets, three roots, and 36 dependencies.
-The current manifest contains 34 targets, three roots, and 38 dependencies
-after G3 and Stage B completion and declares item 39 as the sole preferred Eligible
+The current manifest contains 33 targets, three roots, and 37 dependencies
+after G3, Stage B, and G4 completion and declares item 39 as the sole preferred Eligible
 candidate. Before any later
 explicitly authorized run, execute `$speckit-intake-series-status` and the
 Intake Review for the selected target.*
@@ -316,10 +317,10 @@ D5 Level-0-Architektur und Sprache [abgeschlossen / completed]
 
 6 RL-SE-Selbstpruefung [abgeschlossen / completed]
 G3 Actions-Budget und Stage B [abgeschlossen / completed]
-G4 Copilot-Review [Eligible]
-  |
-  v
-7 Container-Haertung [Blocked] --> 8 Level-2-Sandbox
+G4 Copilot-Review [abgeschlossen / completed, archiviert / archived]
+39 Verlinkte Abarbeitungsreihenfolgen [Eligible]
+  - - [PreferredSerialOrder, nicht bindend / advisory] - ->
+7 Container-Haertung [Pending] --> 8 Level-2-Sandbox
 9 CI/CD [Root]
 10 PowerShell-Cmdlets [Root]
 
@@ -419,27 +420,28 @@ technical start prerequisites:*
 39 Verlinkte Abarbeitungsreihenfolgen und Feature-Nachweise
    [Eligible, vorgezogen / promoted]
   - - [PreferredSerialOrder, nicht bindend / advisory] - ->
-G4 Copilot-Review-Governance [Pending]
+7 Container-Haertung [Pending]
 ```
 
-Die Positionen 38 und 39 besitzen deshalb keinen unvollständigen bindenden
+Die Positionen 7, 38 und 39 besitzen keinen unvollständigen bindenden
 Vorgänger und können vom Validator rechnerisch als unblocked erscheinen.
 Position 39 ist ausdrücklich als einziger bevorzugter `Eligible`-Kandidat
 deklariert. Dieser Status und die sichtbare Position erteilen keine Start- oder
-Delivery-Autorität; Position 38 und G4 bleiben `Pending`.
+Delivery-Autorität; die Positionen 7 und 38 bleiben `Pending`.
 
-*Items 38 and 39 have no incomplete binding predecessor and may therefore
+*Items 7, 38, and 39 have no incomplete binding predecessor and may therefore
 appear as computationally unblocked. Item 39 is the sole declared preferred
 Eligible candidate. This status and visible order grant no start or delivery
-authority; item 38 and G4 remain Pending.*
+authority; items 7 and 38 remain Pending.*
 
 Nach dem Abschluss von Feature 025 waren die aktiven Roots `7`, `9` und `10`.
 Feature 028 und PR #243 schlossen das spaeter eingefuegte G2-Gate mit
 nachgewiesenem Release und Rollout ab und stellten diese drei Roots wieder her.
-Der abgeschlossene G3-/Stage-B-Strang gab G4 zunaechst als Root frei. Durch die
-Umbuchung ersetzt Position 39 G4 als `Primary`-Root; die Roots 9 und 10 bleiben
-`Pending`. G4 ist beratend nach Position 39 eingeordnet, und Position 7 ist
-weiterhin bindend durch G4 blockiert.
+Der abgeschlossene G3-/Stage-B-Strang gab G4 zunaechst als Root frei. Die
+Umbuchung ersetzte G4 durch Position 39 als `Primary`-Root. Nach dem belegten
+G4-Abschluss bleiben Position 39 sowie die Positionen 9 und 10 die drei
+Manifest-Roots. Position 7 ist fachlich nicht mehr blockiert, bleibt aber durch
+die beratende Kante hinter Position 39 als `Pending` eingeordnet.
 Die Positionen 5 und 6 sind archiviert; ihre Bewertungsgrundlagen bleiben als
 historische Evidence erhalten. G1 und seine sechs
 `RequirementsGovernanceGate`-Kanten bleiben in der archivierten
@@ -464,18 +466,20 @@ ergaenzte vier bindende Kanten und markierte zunaechst G2A als einzigen
 bevorzugten Kandidaten. Feature 027 und PR #241 schlossen G2A ab. Feature 028
 und PR #243 archivierten beide G2-Knoten und stellten Position 7 als einzigen
 bevorzugten `Eligible`-Kandidaten wieder her. Das G3/G4-Update archivierte
-diesen Vorstand und setzte G3 vor G4 sowie G4 vor Position 7. Der aktuelle
-Closeout archiviert G3 samt Stage-B-Nachweis, entfernt die abgeschlossene
+diesen Vorstand und setzte G3 vor G4 sowie G4 vor Position 7. Der G3-Closeout
+archivierte G3 samt Stage-B-Nachweis, entfernte die abgeschlossene
 G3-zu-G4-Kante und machte G4 zunaechst zum einzigen bevorzugten
-`Eligible`-Kandidaten. Die aktuelle Umbuchung verschiebt Position 39 an den
-Anfang der aktiven Serie, ersetzt die beratende Kante von Position 38 durch
-eine beratende Kante zu G4 und macht Position 39 zum einzigen bevorzugten
-`Eligible`-Kandidaten. Diese Einordnung erteilt keine Start- oder
+`Eligible`-Kandidaten. Die anschliessende Umbuchung verschob Position 39 an den
+Anfang der aktiven Serie und machte sie zum einzigen bevorzugten
+`Eligible`-Kandidaten. Feature 031 und die PRs #260 bis #262 schlossen G4
+danach nachweislich ab. Der aktuelle Seriennachfolger archiviert G4, entfernt
+seine bindende Kante zu Position 7 und fuehrt die beratende Kante von Position
+39 direkt zu Position 7. Diese Einordnung erteilt keine Start- oder
 Delivery-Autoritaet fuer einen Folgelauf.
 
 Die abgeschlossene Position 5 bleibt historische Bewertungsgrundlage fuer 6,
 7, 13 und 14. G3 und Stage B lieferten die abgeschlossene
-Actions-Budget-Grundlage fuer G4; G4 liefert die
+Actions-Budget-Grundlage fuer G4; das abgeschlossene G4 lieferte die
 Copilot-Review-Grundlage fuer Position 7. Position 7 liefert danach die
 Sandbox-Grundlage fuer 8. Position 10 wird vor 11
 ausgefuehrt, damit neue oder geaenderte Cmdlet-Oberflaechen unmittelbar
@@ -524,11 +528,13 @@ D6 completed as Feature 022 and is archived. D7 completed as Feature 023 and
 is archived. Item 5 completed as Feature 024 and is archived. Item 6 completed
    as Feature 025 and is archived. Feature 028 and PR #243 completed and
    archived the later G2 gate and temporarily restored roots 7, 9, and 10. The
-   G3/G4 update replaced root 7 with G3 and blocked G4 and item 7. The current
-   closeout archives completed G3 and Stage B and removes their active edge.
-   The current rebooking promotes item 39 as the sole preferred `Eligible`
-   candidate and places G4 behind it through an advisory edge. This status
-   grants no authority to start, release, or deliver any target. G4, item 7, and item
+   G3/G4 update replaced root 7 with G3 and blocked G4 and item 7. The G3
+   closeout archived completed G3 and Stage B and removed their active edge.
+   The subsequent rebooking promoted item 39 as the sole preferred `Eligible`
+   candidate. Feature 031 and PRs #260 through #262 then completed G4. The
+   current series successor archives G4, removes its binding edge to item 7,
+   and carries the advisory edge from item 39 directly to item 7. This status
+   grants no authority to start, release, or deliver any target. Item 7 and item
    10 provide binding baselines for their successors. Items 9 through 12 feed the final GSDB audit,
 so item 13 must run last.*
 
@@ -622,15 +628,15 @@ authorized Intake Update followed by a bounded series hash refresh.*
 Position 39 hält die repositoryübergreifende Idee für verlinkte
 Abarbeitungsreihenfolgen in sieben Herzensprojekten fest. Seine stabile
 sichtbare Kennung bleibt erhalten; als `vorgezogen / promoted` steht es jedoch
-auf aktivem Manifestplatz 1. Die frühere beratende Kante von Position 38 ist
-durch eine beratende Kante zu G4 ersetzt. TuiVision gehört zum Scope; seine
+auf aktivem Manifestplatz 1. Nach dem G4-Abschluss führt seine beratende Kante
+direkt zu Position 7. TuiVision gehört zum Scope; seine
 zehn abgeschlossenen Intakes, sechs vorhandenen Abhängigkeiten und der
 getrennte `DeferredOptional`-Backlog bleiben fachlich unverändert.
 
 *Item 39 records the cross-repository linked-order-view idea for seven passion
 projects. Its stable visible identifier remains unchanged, but promotion moves
-it to active manifest position 1. The former advisory edge from item 38 is
-replaced by an advisory edge to G4. TuiVision is in scope while its ten
+it to active manifest position 1. After G4 completion, its advisory edge leads
+directly to item 7. TuiVision is in scope while its ten
 completed intakes, six existing dependencies, and separate DeferredOptional
 backlog retain their meaning.*
 

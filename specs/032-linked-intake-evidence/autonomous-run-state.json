@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "1.1",
+  "runId": "c53e4b5b-74fa-4ff9-ac5e-ce51850a5321",
+  "featurePath": "specs/032-linked-intake-evidence",
+  "branch": "032-linked-intake-evidence",
+  "deliveryMode": "MergeAndSync",
+  "authorityRevalidationRequired": true,
+  "stage": "Implement",
+  "status": "Blocked",
+  "checkpointCommit": "N/A",
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "sha256": "d9e066a4f2ae58a3706495c0c60919c47fd802b353ecd6939c8b65ad1cbd7983"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise.json",
+      "sha256": "9f2040364c76722a2116f85209aedf8c4c67c72554069679901beec67a8dda57"
+    },
+    {
+      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+      "sha256": "955a66c2273e7977e6004d89f189eccb0087543af469aef3e237339f7f439ab2"
+    },
+    {
+      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-result.json",
+      "sha256": "5f9d07587bbc4d079ad564b7b6b5a128a690a860ebfa6e50a7934845274b9426"
+    },
+    {
+      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-report.md",
+      "sha256": "6c60d1e2e9b31273f150136f1f85af50e00d513ee65526d0f837759f465708bc"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "sha256": "6d179988520f93e086b4a22d522e3ad26ecee5a94091dd72c016b0066835c907"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "sha256": "b14e2b1bdc26f674e5d798b93ffd860f12e4c74b66014e0874fb8145e88604cf"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/operations/7fe67a1c-4838-41a6-8a90-229726fd89cc.json",
+      "sha256": "5a53c43c03d1bfa485470ab29d02129960d969091b429a5dab47be92ca519b1f"
+    }
+  ],
+  "tasks": {
+    "path": "specs/032-linked-intake-evidence/tasks.md",
+    "sha256": "95cfca00a6b4db21b88392d6158d2a682fb41dcea5d42a57f7b56491101bdf09",
+    "completed": 3,
+    "total": 169
+  },
+  "routing": {
+    "policy": "balanced-v1",
+    "fallbackPolicy": "fail-closed",
+    "localProfileSha256": "f850e9ea07093e4837c35c9222f4ff0bf369a5bca91ef40ea033a35f80ee9628",
+    "phases": [
+      {
+        "phaseId": "specify",
+        "command": "speckit.specify",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T18:09:05.480179Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/specify.result.json",
+        "resultSha256": "69223c0a9a1a83be2f4178abae109e02d65085a67e10ace5010fd76fa0d12312"
+      },
+      {
+        "phaseId": "clarify",
+        "command": "speckit.clarify",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "specify"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T18:12:00.1863Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/clarify.result.json",
+        "resultSha256": "778b2be639d968257040620d4bdc00f745d9a1089aa5abde61ff0495ef90a0d1"
+      },
+      {
+        "phaseId": "checklist",
+        "command": "speckit.checklist",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "clarify"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T18:17:25.053665Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/checklist.result.json",
+        "resultSha256": "5a4d67f62dc4dcf469870eeaad219f6243da84e58c0044130955e4505f0b1c1c"
+      },
+      {
+        "phaseId": "plan",
+        "command": "speckit.plan",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "checklist"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T18:38:16.986741Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/plan.result.json",
+        "resultSha256": "cf813d7d9818f14af366fa4af114f27f392d252345b1e43c913b7994d1cbbffb"
+      },
+      {
+        "phaseId": "plan-review",
+        "command": "speckit.analyze",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T18:49:42.416816Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/plan-review.result.json",
+        "resultSha256": "749203195530d177c7eaa4309791b23681160484e1ba10802bd6299e459c0f51"
+      },
+      {
+        "phaseId": "tasks",
+        "command": "speckit.tasks",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "plan-review"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T19:19:44.701562Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/tasks.result.json",
+        "resultSha256": "59e382a15ed1ff85fdeb1dec033cac70b1a842296a9e8f287eead0a76a5f9de0"
+      },
+      {
+        "phaseId": "analyze",
+        "command": "speckit.analyze",
+        "routingRole": "frontier-reasoning",
+        "runnerProfile": "codex-frontier-auto",
+        "dependsOn": [
+          "tasks"
+        ],
+        "status": "Completed",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T19:27:13.730726Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/analyze.result.json",
+        "resultSha256": "d912027ae00b3b4bb39452a9a70198085466b87b9472061ea91e01a87ff36f7e"
+      },
+      {
+        "phaseId": "implement",
+        "command": "speckit.implement",
+        "routingRole": "long-running-implementation",
+        "runnerProfile": "codex-implementation-auto",
+        "dependsOn": [
+          "analyze"
+        ],
+        "status": "Blocked",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": 0,
+        "updatedAt": "2026-09-01T19:45:51.8964160Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/implement.result.json",
+        "resultSha256": "N/A"
+      },
+      {
+        "phaseId": "retrospective",
+        "command": "speckit.autonomous-retrospective",
+        "routingRole": "coding-review",
+        "runnerProfile": "codex-review-auto",
+        "dependsOn": [
+          "implement"
+        ],
+        "status": "Pending",
+        "agentFamily": "Codex",
+        "model": "gpt-5.6-sol",
+        "reasoningEffort": "high",
+        "preflight": "Completed",
+        "exitCode": "N/A",
+        "updatedAt": "2026-09-01T17:43:51Z",
+        "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/retrospective.result.json",
+        "resultSha256": "N/A"
+      }
+    ]
+  },
+  "lastPassingGate": "T003 passed at 2026-09-01T19:43:33Z with fresh fetches for exactly seven repositories, valid gh authentication, expected remotes/default branches, synchronized clean downstream defaults, accepted Home feature worktree, and preserved clean absdd Feature-003 head d1c713246c4e5306d41d39bec82a13ef9cfbcaa8.",
+  "nextExactAction": "Complete the real external prerequisites tracked by absdd-image-sandbox issue #52, resume and finish run 8330f54b-97d1-424c-ad1a-842a3fad7be3 through merge/default sync, then explicitly resume this run at T006 without starting a new feature.",
+  "lastOperation": {
+    "kind": "ExternalPrerequisite:absdd-feature-003",
+    "state": "Failed",
+    "summary": "Feature 003 remains Blocked at 65/85. Real Windows/WSL2, independent Linux rootless-Podman, observed VS Code Dev Containers, and human Learning/A11Y first-use evidence are mandatory and cannot be fabricated or bypassed."
+  },
+  "stop": {
+    "reason": "T006 hard stop: prerequisite absdd Feature 003 is 65/85 and lacks the mandatory external platform, VS Code attachment, and human learner evidence tracked in GitHub issue #52.",
+    "requestedAt": "2026-09-01T19:45:51.8964160Z",
+    "safeBoundary": "After T003 and before T004-T167; no target implementation mutation started"
+  },
+  "closeout": {
+    "mergeOrPublication": "N/A",
+    "defaultBranchSync": "N/A",
+    "postMergeActions": "N/A",
+    "finalValidation": "Pending"
+  },
+  "updatedAt": "2026-09-01T19:49:00Z"
+}

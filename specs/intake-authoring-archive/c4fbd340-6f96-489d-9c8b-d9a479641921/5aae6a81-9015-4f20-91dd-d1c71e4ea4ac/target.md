@@ -3,14 +3,12 @@
 
 **Dokumenttyp:** Spec-Kit Intake / Lastenheft
 **Status:** bereit für Intake Review / `ReadyForReview`
-**Version:** 1.2
+**Version:** 1.1
 **Stand:** 2026-09-01
 **Reihenfolge:** sichtbare Position 39 (`vorgezogen / promoted`), aktiver Manifestplatz 1, `Primary`, `Eligible`
 **Bindende Vorgänger:** keine
 **Beratender Vorgänger:** keiner
-**Beratender Nachfolger:** Position 7,
-`Lastenheft_Secure-Development-Container-Hardening.md`, über
-`PreferredSerialOrder`, `binding: false`
+**Beratender Nachfolger:** G4 über `PreferredSerialOrder`, `binding: false`
 **Delivery Mode:** `LocalImplementation`
 **Zielgruppe:** Maintainer, Repository-Verantwortliche, Reviewer und Personen, die einen späteren Spec-Kit-Lauf vorbereiten
 
@@ -339,9 +337,7 @@ statistics impact separately in every target repository.*
   für alle sieben Repositories.
 - `IAD002`: Das Lastenheft behält die sichtbare Kennung Position 39, wird als
   vorgezogenes Ziel auf aktiven Manifestplatz 1 sowie `Primary` und `Eligible`
-  umgebucht und erhält eine beratende Kante zu Position 7
-  (`Lastenheft_Secure-Development-Container-Hardening.md`). G4 ist abgeschlossen
-  und aus der aktiven Serie entfernt.
+  umgebucht und erhält eine beratende Kante zu G4.
 - `IAD003`: TuiVision gehört zum verbindlichen Scope; die zehn abgeschlossenen
   Einträge, sechs Kanten und der getrennte optionale Backlog bleiben erhalten.
 - `IAD004`: Feature-Links werden nur bei belegtem Verzeichnis erzeugt; sonst
@@ -356,11 +352,9 @@ statistics impact separately in every target repository.*
 Dieser Intake behält die stabile sichtbare Kennung Position 39, wird jedoch als
 `vorgezogen / promoted` an aktiven Manifestplatz 1 gestellt. Er ist der einzige
 deklarierte bevorzugte `Primary`- und `Eligible`-Kandidat. Die bisherige
-beratende Kante von Position 38 entfällt. G4 ist abgeschlossen und aus der
-aktiven Serie entfernt. Stattdessen ordnet eine `PreferredSerialOrder`-Kante
-mit `binding: false` Position 7
-(`Lastenheft_Secure-Development-Container-Hardening.md`) beratend nach diesem
-Intake ein. Diese Einordnung erteilt keine Start- oder Delivery-Autorität.
+beratende Kante von Position 38 entfällt; stattdessen ordnet eine
+`PreferredSerialOrder`-Kante mit `binding: false` G4 beratend nach diesem Intake
+ein. Diese Einordnung erteilt keine Start- oder Delivery-Autorität.
 
 Spätere Änderungen dieses Lastenhefts erfolgen ausschließlich über:
 
@@ -379,7 +373,7 @@ gegebenenfalls vorhandenen Review.
 ### Specify
 
 ```text
-$speckit-specify Nutze Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md als alleinige verbindliche Intake-Datei. Erstelle ausschließlich die Feature-Spezifikation für die verlinkten Lastenheft-Abarbeitungsreihenfolgen, typisierten Abhängigkeiten und Spec-Kit-Feature-Nachweise in home-baseline, agent-operations-cockpit, TinyPl0, TinyCalc, TuiVision, InventarWorkerService und absdd-image-sandbox. Bewahre die stabile sichtbare Kennung Position 39, die vorgezogene Einordnung als aktiver Manifestplatz 1 mit Primary und Eligible, die nicht bindende PreferredSerialOrder-Kante zu Position 7 (`Lastenheft_Secure-Development-Container-Hardening.md`), alle repositoryspezifischen Lifecycle- und DAG-Daten, den TuiVision-Vertrag mit zehn Completed-Einträgen, Features 037 bis 046, sechs Abhängigkeiten und getrenntem DeferredOptional-Backlog sowie WCAG 2.2 AA, DE/EN-Verträge, Documentation Impact und alle Hard Stops. Ändere keine Dateien, Checkouts oder Remotes und führe keine Implementierung, Commits, Pushes, Pull Requests oder Merges aus.
+$speckit-specify Nutze Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md als alleinige verbindliche Intake-Datei. Erstelle ausschließlich die Feature-Spezifikation für die verlinkten Lastenheft-Abarbeitungsreihenfolgen, typisierten Abhängigkeiten und Spec-Kit-Feature-Nachweise in home-baseline, agent-operations-cockpit, TinyPl0, TinyCalc, TuiVision, InventarWorkerService und absdd-image-sandbox. Bewahre die stabile sichtbare Kennung Position 39, die vorgezogene Einordnung als aktiver Manifestplatz 1 mit Primary und Eligible, die nicht bindende PreferredSerialOrder-Kante zu G4, alle repositoryspezifischen Lifecycle- und DAG-Daten, den TuiVision-Vertrag mit zehn Completed-Einträgen, Features 037 bis 046, sechs Abhängigkeiten und getrenntem DeferredOptional-Backlog sowie WCAG 2.2 AA, DE/EN-Verträge, Documentation Impact und alle Hard Stops. Ändere keine Dateien, Checkouts oder Remotes und führe keine Implementierung, Commits, Pushes, Pull Requests oder Merges aus.
 ```
 
 <!-- spec-kit-command-id: speckit.autonomous -->

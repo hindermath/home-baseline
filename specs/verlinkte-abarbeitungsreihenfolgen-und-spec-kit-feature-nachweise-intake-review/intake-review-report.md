@@ -2,38 +2,51 @@
 
 ## Identität / Identity
 
-- Review-ID: `a4299732-0732-46d0-8f46-8569727215f8`
+- Review-ID: `9bcbbeb6-957c-4ef4-ba3e-53eb719c8811`
 - Modus / Mode: `Single`
 - Policy: `home-baseline-active-lastenhefte-v1`
 - Ergebnis / Outcome: `Ready`
 - Ziel / Target:
   `Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md`
 - Normalized SHA-256:
-  `576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a`
-- Git-Blob: `N/A` (neuer Working-Tree-Inhalt)
+  `d9e066a4f2ae58a3706495c0c60919c47fd802b353ecd6939c8b65ad1cbd7983`
+- Git-Blob: `N/A` (reparierter, noch nicht committeter Working-Tree-Inhalt)
+- Repository-HEAD: `e38d31a5d6c528458493a07e74ee1694db7c3aab`
 - Ziele / Targets: `1`
 - Worker: `0`
-- Supersedes: `3861dd18-dcb8-425d-99d1-f860c8faf266`
+- Supersedes: `df6116cf-34f5-4f50-af04-d95d06d1a23c`
 
 ## Ergebnis / Outcome
 
-Das neue Lastenheft ist für Specify bereit. Der vollständige Single-Review hat
-keine Critical-, High-, Medium- oder Low-Findings, keine offenen Fragen, keine
-akzeptierten Risiken und keine Operator-Ausnahmen ergeben.
+Das reparierte Lastenheft ist für Specify bereit. Der vollständige
+Single-Re-Review hat keine offenen Findings, Fragen, akzeptierten Risiken oder
+Operator-Ausnahmen ergeben. Position 39 bleibt sichtbare Position 39 sowie
+aktiver Manifestplatz 1, `Primary`, Root und einziger deklarierter
+`Eligible`-Kandidat. Das abgeschlossene G4 ist nicht mehr aktives
+Serienmitglied; der beratende Nachfolger ist nun durchgängig Position 7,
+`Lastenheft_Secure-Development-Container-Hardening.md`.
 
-Zweck, Zielgruppe, Vorwissen, Scope, Nicht-Ziele, atomare Anforderungen,
-Abnahme, Risiken, Plattform-, Sicherheits-, Datenschutz-, A11Y-,
-Documentation-Impact-, Statistik- und Delivery-Grenzen sind ausdrücklich
-festgelegt. Die sieben Repositories und die TuiVision-Sonderbehandlung sind
-eindeutig abgegrenzt. Die Umbuchung auf aktiven Manifestplatz 1 als
-`Primary`-Root und einziger deklarierter `Eligible`-Kandidat ist konsistent mit
-der stabilen sichtbaren Kennung Position 39. Beide Copy-Ready-Prompts stimmen
-mit dem normativen Text überein und starten keinen Folgelauf automatisch.
+*The repaired intake is ready for Specify. The complete Single re-review found
+no open findings, questions, accepted risks, or operator exceptions. Item 39
+remains visible item 39 and active manifest item 1, Primary, root, and the sole
+declared Eligible candidate. Completed G4 is no longer active; the advisory
+successor is consistently item 7, the secure-development container-hardening
+intake.*
 
-*The new intake is ready for Specify. The complete Single review found no
-findings, open questions, accepted risks, or operator exceptions. Scope,
-requirements, acceptance, quality boundaries, delivery authority, and both
-copy-ready prompts are aligned.*
+## Behobenes Finding / Resolved Finding
+
+| ID | Vorher / Before | Reparatur und Autorität / Repair and authority | Ergebnis / Result |
+|---|---|---|---|
+| `IR001` | `High`: Kopf, `IAD002`, Abschnitt 16 und Specify-Prompt nannten weiterhin G4 als beratenden Nachfolger. | Der aktuelle `$speckit-intake-repair`-Aufruf autorisierte die mechanische Angleichung an die bereits manifestierte Kante Position 39 → Position 7. Version 1.2, alle vier normativen Stellen, Authoring-Provenienz und der Series-Hash wurden synchronisiert. | `Resolved` |
+
+Der Autonomous-Prompt nennt keinen abweichenden Nachfolger und bleibt mit dem
+reparierten normativen Vertrag vereinbar. Zweck, Scope, Nicht-Ziele,
+Anforderungen, Abnahmeschwellen, Sicherheits-, A11Y- und Delivery-Grenzen
+wurden nicht erweitert.
+
+*The Autonomous prompt names no conflicting successor and remains aligned.
+Purpose, scope, non-goals, requirements, acceptance thresholds, security,
+accessibility, and delivery boundaries were not broadened.*
 
 ## Vollständige Checklistenabdeckung / Complete Checklist Coverage
 
@@ -42,40 +55,36 @@ copy-ready prompts are aligned.*
 - Genau sieben betroffene Repositories: `PASS`
 - Atomare Anforderungen `LAF-001` bis `LAF-035`: `PASS`
 - Messbare Abnahmekriterien `AC-LAF-001` bis `AC-LAF-014`: `PASS`
-- Dateilink-, Abhängigkeits- und Feature-Nachweisvertrag: `PASS`
-- Fehlendes-Feature-Fallback ohne erfundene Zuordnung: `PASS`
-- Renderer-Quelle, Idempotenz und Bash-/PowerShell-Parität: `PASS`
-- TuiVision: zehn `Completed`-Einträge und Features `037` bis `046`: `PASS`
-- TuiVision: sechs Kanten und getrennter `DeferredOptional`-Backlog: `PASS`
+- Dateilink-, Feature-Nachweis- und Renderer-Vertrag: `PASS`
+- TuiVision: zehn `Completed`-Einträge, Features `037` bis `046`, sechs
+  Kanten und getrennter `DeferredOptional`-Backlog: `PASS`
 - Plattform-, UTF-8-, Pfad-, Secrets- und Supply-Chain-Grenzen: `PASS`
 - WCAG 2.2 AA, textorientierte Darstellung und CEFR B2: `PASS`
 - Documentation Impact, Statistik und `source-only`-Vertrag: `PASS`
-- Umbuchung: Position 39 auf Manifestplatz 1, `Primary`, Root und `Eligible`: `PASS`
-- G4 auf Manifestplatz 2, `OrderedMember` und `Pending`: `PASS`
-- Beratende Kante Position 39 zu G4 und unveränderte Kardinalität 34/3/38: `PASS`
 - Delivery Authority `LocalImplementation` und Remote-Hard-Stops: `PASS`
-- Specify-/Autonomous-Prompt-Ausrichtung: `PASS`
+- Aktuelle Abhängigkeits- und Reihenfolgenausrichtung: `PASS`
+- Specify-Prompt-Ausrichtung: `PASS`
+- Autonomous-Prompt-Ausrichtung: `PASS`
 - Striktes UTF-8, kein NUL und kein Binärinhalt: `PASS`
 
 ## Governance- und Seriengrenze / Governance and Series Boundary
 
-Dieser Review bewertet genau eine Intake-Datei. Er ist kein Series-Review und
-behauptet keine vollständige semantische Neubewertung aller 34 aktiven
-Series-Ziele. Das aktuelle Manifest und sein Receipt sind separat mit 34
-Zielen, drei Roots und 38 Abhängigkeiten validiert. Position 39 behält ihre
-sichtbare Kennung, steht als `Primary`-Root und einziger deklarierter
-`Eligible`-Kandidat jedoch auf aktivem Manifestplatz 1. Eine nicht bindende
-`PreferredSerialOrder`-Kante ordnet G4 als `Pending` nach.
+Dieser Review bewertet genau eine Intake-Datei und nicht die vollständige
+Series semantisch neu. Der mechanische Series-Hash-Refresh änderte weder
+Reihenfolge, Rolle, Lifecycle, Roots noch Kanten. Schema-2.0-Governance,
+Manifest und Receipt validieren weiterhin mit 33 Zielen, drei Roots und 37
+Abhängigkeiten. Position 39 ist `Primary`, Root und einziger deklarierter
+`Eligible`-Kandidat. Eine nicht bindende `PreferredSerialOrder`-Kante führt von
+Position 39 zu Position 7.
 
-`Ready`, `Eligible`, `Pending` und rechnerische Unblocked-Eigenschaften erteilen keine
-Implementierungs-, Commit-, Push-, Pull-Request-, Merge-, Bypass- oder
-Flottenautorität.
+`Ready` und `Eligible` erteilen keine Implementierungs-, Commit-, Push-,
+Pull-Request-, Merge-, Bypass- oder Flottenautorität.
 
-*This review covers one intake only, not the complete Series DAG. The active
-manifest and receipt are separately valid with 34 targets, three roots, and 38
-dependencies. Item 39 is the Primary root, active manifest position 1, and the
-sole declared Eligible candidate; an advisory edge places Pending G4 after it.
-Ready, Eligible, and Pending grant no implementation or delivery authority.*
+*This is a Single review, not a complete semantic Series review. The mechanical
+Series hash refresh changed no order, role, lifecycle, root, or edge. Schema
+2.0 governance, manifest, and receipt remain valid with 33 targets, three
+roots, and 37 dependencies. Ready and Eligible grant no implementation or
+remote-delivery authority.*
 
 ## Risiken und Fragen / Risks and Questions
 
@@ -87,21 +96,24 @@ Ready, Eligible, and Pending grant no implementation or delivery authority.*
 - Offene Fragen / Open questions: `0`
 - Operator-Ausnahmen / Operator exceptions: `0`
 
+## Evidence und Supersession
+
+Der vorherige `NeedsRemediation`-Review
+`df6116cf-34f5-4f50-af04-d95d06d1a23c` wurde byteidentisch unter
+`history/df6116cf-34f5-4f50-af04-d95d06d1a23c/` archiviert. Das
+vorherige Lastenheft und seine Authoring-Receipt liegen unter
+`specs/intake-authoring-archive/c4fbd340-6f96-489d-9c8b-d9a479641921/5aae6a81-9015-4f20-91dd-d1c71e4ea4ac/`.
+
+*The previous NeedsRemediation review, intake, and authoring receipt are
+preserved byte-for-byte and explicitly superseded by the repaired evidence.*
+
 ## Dokumentationsauswirkung / Documentation Impact
 
-`UpdateRequired`, in diesem Intake- und Review-Schritt erfüllt:
-
-- Kanonische Quelle und Owner: das neue Level-0-Lastenheft und der
-  Home-Baseline-Intake-Owner.
-- Leserpfade: Maintainer, Repository-Verantwortliche und Reviewer über
-  Abarbeitungsreihenfolge, Lastenheft und Copy-Ready-Prompts.
-- Dokumentklasse: versioniertes bilinguales Intake mit Authoring-, Series- und
-  Review-Evidence.
-- Navigation: stabile sichtbare Position 39, als `vorgezogen / promoted` auf
-  aktivem Manifestplatz 1 in der zentralen Abarbeitungsreihenfolge.
-- Distributionsklasse: `source-only`; kein Home-Sync erforderlich.
-- Re-Evaluation: Änderung von Scope, Tabellenvertrag, TuiVision-Zuordnung,
-  Lifecycle, DAG, Delivery Authority oder Zielhash.
+`UpdateRequired`, in dieser Reparatur erfüllt: Lastenheft, Authoring-Provenienz,
+Review-Evidence und der hashgebundene Series-Nachweis sind synchron. Die
+Änderung bleibt `source-only`; ein Home-Sync ist nicht erforderlich. Kein
+Feature und keine Implementierungsphase wurde abgeschlossen, daher wurde das
+Statistik-Ledger nicht fortgeschrieben.
 
 ## Nächste Aktion / Next Action
 
