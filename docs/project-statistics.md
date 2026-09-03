@@ -168,7 +168,7 @@
 | 2026-08-29 | Feature 031 GitHub-Copilot-Review-Governance | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Die persönliche Accountautomation ist deaktiviert; genau acht benannte Repository-/Default-Branch-Ziele besitzen aktive dedizierte Copilot-Review-Rulesets mit Draft- und Push-Re-Review aus sowie Effort `Lite`. 16 dedizierte Nichtzielrulesets bleiben rollbackfähig vorhanden und sind deaktiviert; null Regeln wurden gelöscht. Exact-ID-Gates begrenzten 25 Providerwrites, danach meldeten frische Vollinventur und zweiter Plan `drift=0`, `writes=0`. Native Ubuntu-/Windows-Proofs und die einmalige post-provider Matrix mit 71/71 Verträgen sind grün. Das bis 2026-09-01 ausgeschöpfte Copilot-Kontingent bleibt ein eigener `Supplemental/Open`-Refusal: kein künstlicher PR, wirkungsloser Reviewer-Request oder Kauf wurde erzeugt. Das Delta vor Statistikpflege umfasst 15 206 Nettozeilen. Primäre Delivery, Merge, Home-Sync und kausaler Series-Closeout folgen in den verbleibenden Tasks. |
 | 2026-08-29 | Home-Baseline–ABSDD-Secure-Development-Gate-Verzahnung | — | — | — | Documentation Impact `GeneratedUpdate`: Ein neuer Schema-2.0-Intake bindet Issue #263, die unveränderten Referenzen Issue #249 und Draft-PR #250 am exakten Head, Home Baseline und den ABSDD-Ausgangscommit. Die sechs Intakes der Positionen 7, 8 und 14 bis 17 behalten ihre Intake-IDs; Vorgängerziele und Receipts sind bytegleich archiviert, der alte Sammelreview ist hashgebunden invalidiert. Die aktive Serie bleibt unverändert bei 33 Zielen, 3 Roots und 37 Kanten; nur sechs Zielhashes sowie Quellen- und Receipt-Evidence wurden erneuert. Der neue Vertrag trennt vier Gates, zwei Bewertungsachsen, vier Ergebnisse und vier Freigabeentscheidungen. Das optionale Dreizehner-Profil ergänzt das Zwölfer-Profil auf Priorität 15 und stellt genau zwei Befehle bereit. HOSK/GWDG bleibt ExternalComparison-only. ABSDD-Imageprüfungen und menschliche Freigaben bleiben `Open/Not Assessed`; kein Home-Sync, Merge, Image-Build oder nachgelagerter Spec-Kit-Lauf wurde ausgeführt. Das Delta vor Statistikpflege umfasst 7 054 geänderte Textzeilen. |
 | 2026-09-01 | Intake für verlinkte Abarbeitungsreihenfolgen und Feature-Nachweise | — | — | — | Documentation Impact `UpdateRequired`: Ein neues zentrales Level-0-Lastenheft hält die Harmonisierung von Intake-Dateilinks, typisierten Abhängigkeiten und abgeschlossenen Spec-Kit-Feature-Nachweisen in `home-baseline`, `agent-operations-cockpit`, TinyPl0, TinyCalc, TuiVision, InventarWorkerService und `absdd-image-sandbox` fest. TuiVision bewahrt zehn `Completed`-Intakes, die Feature-Zuordnung `037` bis `046`, sechs Kanten und den getrennten `DeferredOptional`-NuGet-Backlog. Die stabile sichtbare Kennung Position 39 ist als `vorgezogen / promoted` auf aktiven Manifestplatz 1 sowie `Primary`, Root und einziges deklariertes `Eligible` umgebucht; G4 steht ohne Abschlussbehauptung als `OrderedMember` und `Pending` auf Platz 2. Die frühere beratende Kante von Position 38 wurde durch `Position 39 -> G4` mit `PreferredSerialOrder`, `binding: false` ersetzt. Die aktive Serie bleibt bei 34 Zielen, drei Roots und 38 Abhängigkeiten. Vorgänger-Intake, Receipts, Manifest und Review sind bytegleich archiviert beziehungsweise ausdrücklich invalidiert; neue Authoring-/Series-Receipts, Operationsjournal und Single-Review sind hashgebunden. Der neue Review ist `Ready` mit null Findings, Risiken oder offenen Fragen. Specify und die spätere Sieben-Repository-Implementierung wurden nicht gestartet; der getrennte aktuelle `MergeAndSync`-Auftrag veröffentlicht ausschließlich den Level-0-Governance-Kandidaten. Die Änderung bleibt `source-only`, daher ist kein Home-Sync erforderlich. Das Delta vor Statistikpflege umfasst 2 920 geänderte Textzeilen. |
-| 2026-09-03 | Secure Development Assurance Governance v0.1.0 | — | — | — | Documentation Impact `UpdateRequired`: Der unveröffentlichte Kandidat ist als ausführlich dokumentiertes, Deutsch-zuerst/Englisch-danach aufgebautes Dreizehn-Preset-Modul für vier Secure-Development-Assurance-Gates gehärtet. Bash und PowerShell validieren Baseline-, Versions- und normalisierte Hashbindungen, zwölf eindeutige Checklisten, Statuskombinationen, Review- und Risikodaten, vier voneinander unabhängige menschliche Entscheidungen, Image-Impact und die Abhängigkeit `security-governance >=0.6.1` mit gleichen Statusklassen und Exitcodes. Positive und negative Fixtures, BOM/CRLF-Normalisierung, PSScriptAnalyzer, Dokumentgeneratoren, Bytegleichheit und die vollständige Installations-, Auflösungs-, Deaktivierungs-, Reaktivierungs- und Entfernungskette sind lokal grün. `CL-02-13` und weitere Maßnahmen liefern C5-relevante Entwicklungsevidence; das Preset bewertet ausdrücklich weder den vollständigen C5-Kriterienkatalog noch Konformität, Testatreife oder Zertifizierung. Die vorhandene Evidence ist ohne automatische Änderung von Richtlinien, Checklisten oder menschlichen Freigaben migriert. Source-only-Änderungen benötigen keinen Home-Sync. Das Delta vor Statistikpflege umfasst 7 162 Nettozeilen. Öffentliche Repository-, Tag- und Release-Evidence folgen im autorisierten `MergeAndSync`; eine Community-Einreichung, ein Katalog-PR und eine Ansprache von `@mnriem` bleiben bis zu einem späteren ausdrücklichen Auftrag ausgeschlossen. |
+| 2026-09-03 | Secure Development Assurance Governance v0.1.0 | — | — | — | Documentation Impact `UpdateRequired`: Das zuvor unveröffentlichte Preset ist als ausführlich dokumentiertes, Deutsch-zuerst/Englisch-danach aufgebautes Dreizehn-Preset-Modul für vier Secure-Development-Assurance-Gates gehärtet und öffentlich als `v0.1.0` veröffentlicht. Bash und PowerShell validieren Baseline-, Versions- und normalisierte Hashbindungen, zwölf eindeutige Checklisten, Statuskombinationen, Review- und Risikodaten, vier voneinander unabhängige menschliche Entscheidungen, Image-Impact und die Abhängigkeit `security-governance >=0.6.1` mit gleichen Statusklassen und Exitcodes. Positive und negative Fixtures, BOM/CRLF-Normalisierung, PSScriptAnalyzer, Dokumentgeneratoren und Bytegleichheit sind grün. Das unveränderliche GitHub-Tag-ZIP mit SHA-256 `d9effc395e590d1ffe832d059f8681501da1d1b6e7d44d79a3e61929bc5229c1` bestand in einem frischen Projekt die vollständige 13-Preset-Installation, Status- und Vier-Gate-Cross-Shell-Prüfung sowie Deaktivierung, Reaktivierung, Entfernung und Neuinstallation. `CL-02-13` und weitere Maßnahmen liefern C5-relevante Entwicklungsevidence; das Preset bewertet ausdrücklich weder den vollständigen C5-Kriterienkatalog noch Konformität, Testatreife oder Zertifizierung. Die vorhandene Evidence ist ohne automatische Änderung von Richtlinien, Checklisten oder menschlichen Freigaben migriert. Source-only-Änderungen benötigen keinen Home-Sync. Das vollständige Delta vor Statistikpflege umfasst 7 295 Nettozeilen. Die praktische Feldtestphase bleibt offen; eine Community-Einreichung, ein Katalog-PR und eine Ansprache von `@mnriem` bleiben bis zu einem späteren ausdrücklichen Auftrag ausgeschlossen. |
 
 ---
 
@@ -1120,25 +1120,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 707895 lines |
-| Textdateien / Text files | 3666 |
+| Textbasis / Text base | 708028 lines |
+| Textdateien / Text files | 3667 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-03 |
 | Aktivtage / Active days | 100 |
-| Relevante Commits / Relevant commits | 799 |
-| Zeilen je Aktivtag / Lines per active day | 7079.0 |
+| Relevante Commits / Relevant commits | 803 |
+| Zeilen je Aktivtag / Lines per active day | 7080.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 88.5x |
 | Speedup vs. 100 lines/day | 70.8x |
-| Methodik / Methodology | v2; source `492c371b8bcb` |
+| Methodik / Methodology | v2; source `a2dcd457399e` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   4.8% | 34297
-Dokumentation / Documentation   [##########..........]  48.8% | 345419
+Dokumentation / Documentation   [##########..........]  48.8% | 345552
 Skripte / Scripts               [##..................]  10.1% | 71638
 Konfiguration / Configuration   [#######.............]  35.8% | 253446
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1357,7 +1357,7 @@ Slots 64..72
 | 69 | GitHub-Copilot-Review-Governance / GitHub Copilot review governance | 15206 |
 | 70 | ABSDD-Secure-Development-Gate-Verzahnung / ABSDD secure-development gate integration | 7054 |
 | 71 | Verlinkte Intake-Reihenfolgen und Feature-Nachweise / Linked intake order and feature evidence | 2920 |
-| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7162 |
+| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7295 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1381,7 +1381,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7079.0
+Visible repository [##############......] 7080.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1407,6 +1407,6 @@ DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-03. Es enthaelt 100 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 11489 |
+| 2026-09 | 11676 |
 
 <!-- project-statistics-v2:end -->

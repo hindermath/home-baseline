@@ -87,6 +87,6 @@
     }
   ],
   "outcome": "NeedsRemediation",
-  "nextAction": "Complete the public v0.1.0 release and tag-ZIP verification, then conduct the separate field test; do not infer pilot, project, or general release.",
+  "nextAction": "Conduct the separate field test from the published v0.1.0 runbook; do not infer pilot, project, general release, C5 readiness, or Community submission.",
   "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
 }
