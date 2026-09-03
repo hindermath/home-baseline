@@ -45,6 +45,48 @@
       "risk": "ABSDD image checks and all human approvals remain Open/Not Assessed until their later authorized phases.",
       "criticality": "Security",
       "reevaluationTrigger": "Baseline 3.3 adoption, preset release, ABSDD image change, changed decision authority, or fleet rollout."
+    },
+    {
+      "changeId": "CHG263002",
+      "scope": "Secure Development Assurance Governance v0.1.0 public-release hardening, detailed user guidance, evidence migration, validator parity, C5 boundary, and deferred Community submission",
+      "decision": "UpdateRequired",
+      "rationale": "The public evidence contract, command behavior, error handling, field-test path, and certification boundary changed materially and must be documented with the implementation.",
+      "documents": [
+        ".specify/presets/secure-development-assurance-governance/README.md",
+        ".specify/presets/secure-development-assurance-governance/templates/secure-development-evidence-contract.md",
+        ".specify/presets/secure-development-assurance-governance/commands/",
+        ".specify/presets/secure-development-assurance-governance/docs/",
+        "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/"
+      ],
+      "owner": "Home Baseline and preset maintainers",
+      "audiences": [
+        "Developers",
+        "Learners",
+        "Maintainers",
+        "Security reviewers",
+        "Project and release owners"
+      ],
+      "readerPaths": [
+        "Preset README to installation to status command",
+        "Preset README to evidence contract to gate review",
+        "Preset README to BSI C5 boundary to project-owned CL-02-13 evidence",
+        "Release archive to field-test runbook to later submission decision"
+      ],
+      "canonicalSource": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md and .specify/presets/secure-development-assurance-governance/",
+      "navigationImpact": "The public preset README becomes the primary product entry and links the dedicated field-test runbook.",
+      "documentClass": "PublicProductAndSecurityEvidence",
+      "languageStrategy": "German first, English second; commands, paths, enum values, hashes, and IDs remain language-neutral.",
+      "languagePartners": [
+        "Bilingual sections in README, contract, command surfaces, manpage, and field-test runbook"
+      ],
+      "platformAndExampleProof": "A generated isolated fixture validates Bash and PowerShell parity, positive and negative contracts, read-only status, LF, CRLF, and UTF-8 BOM.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": ".specify/presets/secure-development-assurance-governance/tests/test-secure-development-assurance.ps1",
+      "risk": "The release validates evidence consistency but does not establish C5 readiness, certification, pilot authorization, project acceptance, or general release.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Field-test finding, baseline change, validator-contract change, patch release, or separately authorized Community submission."
     }
   ]
 }

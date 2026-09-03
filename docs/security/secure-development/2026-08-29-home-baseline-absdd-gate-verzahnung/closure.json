@@ -6,6 +6,14 @@
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
   "updatedAt": "2026-08-29T19:21:15+02:00",
+  "review": {
+    "owner": "Thorsten Hindermann, repository owner",
+    "reviewer": "Codex, technical validator",
+    "reviewedAt": "2026-09-03T12:00:00+02:00",
+    "reviewDue": "2027-09-03",
+    "residualRisk": "Pilot, project, and general release remain separate open human decisions.",
+    "reevaluationTrigger": "Any new delivery head, pilot decision, project acceptance, or release authorization."
+  },
   "humanDecisions": {
     "technicalValidation": {
       "status": "Fulfilled",
@@ -39,19 +47,28 @@
       "id": "CLOSE-002",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "Human pilot authorization pending"
+      "evidence": "Human pilot authorization pending",
+      "nextAction": "Obtain an explicit decision from the named pilot owner.",
+      "owner": "Named pilot owner",
+      "dueAt": "2026-12-31"
     },
     {
       "id": "CLOSE-003",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "ABSDD project acceptance pending"
+      "evidence": "ABSDD project acceptance pending",
+      "nextAction": "Obtain an explicit project-acceptance decision.",
+      "owner": "ABSDD project owner",
+      "dueAt": "2026-12-31"
     },
     {
       "id": "CLOSE-004",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "General release explicitly outside this delivery"
+      "evidence": "General release explicitly outside this delivery",
+      "nextAction": "Keep general release blocked until separately authorized.",
+      "owner": "Authorized sandbox/product/fleet governance",
+      "dueAt": "2026-12-31"
     }
   ],
   "acceptedRisks": [
@@ -60,12 +77,16 @@
       "scope": "Copilot review omission for PR #264 only",
       "authority": "Thorsten Hindermann, repository owner",
       "acceptedAt": "2026-08-29T19:21:15+02:00",
+      "owner": "Thorsten Hindermann, repository owner",
+      "reviewer": "Codex, technical validator",
+      "reviewedAt": "2026-09-03T12:00:00+02:00",
+      "reviewDue": "2027-09-03",
       "rationale": "The repository owner explicitly instructed Codex to skip the Copilot review after the single REST review request produced no review.",
       "residualRisk": "No independent Copilot review exists for the final PR head; dual-shell validators, secret scanning and the complete GitHub CI matrix remain mandatory mitigations.",
       "reevaluationTrigger": "Any material security-relevant change after the final validated PR head."
     }
   ],
   "outcome": "NeedsRemediation",
-  "nextAction": "Merge PR #264 only after final-head checks; do not infer pilot, project, or general release.",
+  "nextAction": "Complete the public v0.1.0 release and tag-ZIP verification, then conduct the separate field test; do not infer pilot, project, or general release.",
   "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
 }

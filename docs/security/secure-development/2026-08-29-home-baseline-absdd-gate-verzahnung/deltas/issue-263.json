@@ -6,6 +6,14 @@
   "changeId": "issue-263",
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
+  "review": {
+    "owner": "Thorsten Hindermann, repository owner",
+    "reviewer": "Codex, technical validator",
+    "reviewedAt": "2026-09-03T12:00:00+02:00",
+    "reviewDue": "2027-09-03",
+    "residualRisk": "The delta proves the prepared contract and lineage but does not grant downstream adoption authority.",
+    "reevaluationTrigger": "Any preset, runbook, intake-lineage, or delivery-scope change."
+  },
   "documentationImpact": "GeneratedUpdate",
   "homeSync": "NotRequired",
   "assessments": [
