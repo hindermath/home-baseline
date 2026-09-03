@@ -4,20 +4,42 @@ description: Inspect secure-development evidence without changing files
 
 # Secure Development Status
 
-Syntax: $speckit-secure-development-status [<evidence-dir>]
+Syntax:
+
+~~~text
+$speckit-secure-development-status [<evidence-dir>]
+~~~
 
 Prüfe das ausdrücklich angegebene Evidence-Verzeichnis. Fehlt der Parameter,
 verwende das lexikografisch neueste Verzeichnis unter
-docs/security/secure-development/. Führe auf Windows das PowerShell-Skript und
-auf macOS/Linux das Bash-Skript dieses Presets mit status aus.
+`docs/security/secure-development/`.
+
+Führe auf Windows
+`scripts/validate-secure-development-assurance.ps1` mit `-Action Status` aus.
+Führe auf macOS/Linux
+`scripts/validate-secure-development-assurance.sh status` aus.
 
 Der Befehl ist strikt read-only. Er darf keine Evidence, Richtlinie,
-Checkliste, Freigabe, Git- oder Remote-Zustände verändern. Berichte den
-Kontext, die vier Gates, das Gesamtergebnis, die vier getrennten
-Entscheidungsstände und die exakte nächste Aktion textorientiert.
+Checkliste, Baseline, Freigabe, Git- oder Remote-Zustände verändern.
+
+Berichte textorientiert und in stabiler Reihenfolge:
+
+1. den ausgewählten Kontext;
+2. Baseline-, Delta-, Closure- und Image-Impact-Ergebnis;
+3. das strengste Gesamtergebnis;
+4. `technicalValidation`, `pilotAuthorization`, `projectAcceptance` und
+   `generalRelease` getrennt;
+5. die exakt dokumentierte nächste Aktion.
+
+Blockiere bei fehlenden Quellen, Drift, ungültigen Statuskombinationen,
+abgelaufenen Reviews, unvollständigen Risiken, fehlender
+`security-governance`-Voraussetzung oder unzulässigen
+Zertifizierungsbehauptungen. Erfolgreiche technische Validierung darf niemals
+als menschliche Freigabe ausgegeben werden.
 
 ## English
 
-Inspect the selected evidence directory without changing it. Report all four
-gates and all four human decision boundaries separately. Never infer an
-approval from successful technical validation.
+Inspect the selected evidence directory without changing it. Validate the
+complete baseline binding and all four gates. Report every gate, the worst
+overall outcome, all four human decision boundaries, and the exact recorded
+next action. Never infer an approval or certification from technical success.

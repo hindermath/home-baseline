@@ -1,11 +1,13 @@
 # Spec Kit Preset Repository Scaffolds
 
-This directory contains repo-shaped release candidates for the eight standard
-and optional home-baseline-derived Spec Kit governance presets.
+This directory contains repo-shaped release candidates for the thirteen-preset
+standard, workflow, routing, and optional assurance profiles derived from Home
+Baseline governance.
 
 Each subdirectory is intended to become a standalone GitHub repository:
 
 - `spec-kit-preset-security-governance`
+- `spec-kit-preset-secure-development-assurance-governance`
 - `spec-kit-preset-isaqb-architecture-governance`
 - `spec-kit-preset-architecture-governance`
 - `spec-kit-preset-a11y-governance`
@@ -13,6 +15,8 @@ Each subdirectory is intended to become a standalone GitHub repository:
 - `spec-kit-preset-cross-platform-governance`
 - `spec-kit-preset-intake-authoring-governance`
 - `spec-kit-preset-intake-review-governance`
+- `spec-kit-preset-intake-sequencing-governance`
+- `spec-kit-preset-model-routing-governance`
 - `spec-kit-preset-autonomous-run-governance`
 - `spec-kit-preset-parallel-autonomous-run-governance`
 
@@ -34,18 +38,21 @@ specify preset resolve plan-template
 specify preset resolve tasks-template
 ```
 
-For the full stacked smoke test, install all eight presets in their
+For the full stacked smoke test, install all thirteen presets in their
 recommended priority order:
 
 ```bash
 specify preset add --dev /path/to/spec-kit-preset-security-governance --priority 10
+specify preset add --dev /path/to/spec-kit-preset-secure-development-assurance-governance --priority 15
 specify preset add --dev /path/to/spec-kit-preset-architecture-governance --priority 20
 specify preset add --dev /path/to/spec-kit-preset-isaqb-architecture-governance --priority 30
 specify preset add --dev /path/to/spec-kit-preset-a11y-governance --priority 40
 specify preset add --dev /path/to/spec-kit-preset-cross-platform-governance --priority 50
 specify preset add --dev /path/to/spec-kit-preset-agent-parity-governance --priority 60
+specify preset add --dev /path/to/spec-kit-preset-model-routing-governance --priority 61
 specify preset add --dev /path/to/spec-kit-preset-intake-authoring-governance --priority 64
 specify preset add --dev /path/to/spec-kit-preset-intake-review-governance --priority 65
+specify preset add --dev /path/to/spec-kit-preset-intake-sequencing-governance --priority 66
 specify preset add --dev /path/to/spec-kit-preset-autonomous-run-governance --priority 70
 specify preset add --dev /path/to/spec-kit-preset-parallel-autonomous-run-governance --priority 80
 specify preset list
@@ -76,19 +83,21 @@ specify preset resolve autonomous-run-agent-guidance-addendum-template
 specify preset resolve parallel-autonomous-agent-guidance-addendum-template
 ```
 
-Each preset also registers three wrap commands (`speckit.specify`,
-`speckit.plan`, `speckit.tasks`). `specify preset resolve` operates on
-templates only; verify the wrap commands per preset with `preset info`:
+`specify preset resolve` operates on templates only. Presets expose their own
+command sets; verify commands and templates per preset with `preset info`:
 
 ```bash
 specify preset info security-governance
+specify preset info secure-development-assurance-governance
 specify preset info isaqb-architecture-governance
 specify preset info architecture-governance
 specify preset info cross-platform-governance
 specify preset info a11y-governance
 specify preset info agent-parity-governance
+specify preset info model-routing-governance
 specify preset info intake-authoring-governance
 specify preset info intake-review-governance
+specify preset info intake-sequencing-governance
 specify preset info autonomous-run-governance
 specify preset info parallel-autonomous-run-governance
 ```

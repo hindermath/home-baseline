@@ -35,6 +35,21 @@ docs/security/secure-development/<datum>-<kontext>/ und Runbooks unter
 docs/runbooks/secure-development/. HOSK/GWDG ist ausschließlich externer
 Vergleich.
 
+## Verbindliche Liefergrenze 2026-09-03 / Binding Delivery Boundary 2026-09-03
+
+Die erste Lieferung endet nach technischer Härtung, öffentlichem Repository,
+Tag und Release `v0.1.0` sowie erfolgreichem Test des unveränderlichen
+GitHub-Tag-ZIPs. Die Community-Einreichung wird ausdrücklich zurückgestellt,
+bis das veröffentlichte Paket anhand des mitgelieferten Feldtest-Runbooks
+praktisch erprobt und anschließend separat freigegeben wurde. Ohne diesen
+Folgeauftrag werden kein Community-Issue eröffnet, kein Katalog-PR ausgelöst
+und `@mnriem` nicht angesprochen.
+
+*The first delivery ends after technical hardening, public repository, tag and
+release `v0.1.0`, and successful verification of the immutable GitHub tag
+archive. Community submission is explicitly deferred until field evaluation
+has completed and a separate instruction authorizes submission.*
+
 ## 2. Reihenfolge und Voraussetzungen / Order and Prerequisites
 
 Der Intake steht auf Position 15 und benötigt den abgeschlossenen Gap-Audit auf

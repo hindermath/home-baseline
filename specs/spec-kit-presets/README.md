@@ -1,25 +1,25 @@
 # Spec Kit Preset Scaffolds
 
-This directory contains local scaffolds for the eight standard
-Spec Kit governance presets derived from the `home-baseline` governance work.
-The optional `intake-authoring-governance`, `intake-review-governance`, and
-`intake-sequencing-governance`
-scaffolds are deliberately excluded from that standard profile until a project
-selects them.
+This directory contains local scaffolds for the thirteen-preset standard,
+workflow, routing, and optional assurance profiles derived from the
+`home-baseline` governance work. Projects opt into the assurance and intake
+profiles explicitly.
 
 Target split:
 
-- `security-governance` — version `0.6.1`
-- `architecture-governance` — version `0.5.1`
-- `isaqb-architecture-governance` — version `0.2.1`
-- `a11y-governance` — version `0.4.2`
-- `cross-platform-governance` — version `0.2.1`
-- `agent-parity-governance` — version `0.4.1`
-- `intake-authoring-governance` — version `0.3.0`, optional priority `64`
-- `intake-review-governance` — version `0.2.0`, optional priority `65`
-- `intake-sequencing-governance` — version `0.2.0`, optional priority `66`
-- `autonomous-run-governance` — version `0.3.3`
-- `parallel-autonomous-run-governance` — version `0.2.4`
+- `security-governance` — version `0.6.2`
+- `secure-development-assurance-governance` — version `0.1.0`, optional priority `15`
+- `architecture-governance` — version `0.5.2`
+- `isaqb-architecture-governance` — version `0.2.2`
+- `a11y-governance` — version `0.4.3`
+- `cross-platform-governance` — version `0.2.2`
+- `agent-parity-governance` — version `0.4.2`
+- `model-routing-governance` — version `0.1.4`, priority `61`
+- `intake-authoring-governance` — version `0.3.1`, optional priority `64`
+- `intake-review-governance` — version `0.2.1`, optional priority `65`
+- `intake-sequencing-governance` — version `0.2.3`, optional priority `66`
+- `autonomous-run-governance` — version `0.4.1`
+- `parallel-autonomous-run-governance` — version `0.2.6`
 
 The standard eight-preset profile requires `spec-kit >= 0.8.3`.
 The original six presets depend on the `wrap` and `append` composition
@@ -35,6 +35,7 @@ repositories for the Spec Kit community catalog.
 Recommended future repository names:
 
 - `hindermath/spec-kit-preset-security-governance`
+- `hindermath/spec-kit-preset-secure-development-assurance-governance`
 - `hindermath/spec-kit-preset-isaqb-architecture-governance`
 - `hindermath/spec-kit-preset-architecture-governance`
 - `hindermath/spec-kit-preset-a11y-governance`
@@ -42,6 +43,7 @@ Recommended future repository names:
 - `hindermath/spec-kit-preset-intake-authoring-governance`
 - `hindermath/spec-kit-preset-intake-review-governance`
 - `hindermath/spec-kit-preset-intake-sequencing-governance`
+- `hindermath/spec-kit-preset-model-routing-governance`
 - `hindermath/spec-kit-preset-cross-platform-governance`
 - `hindermath/spec-kit-preset-autonomous-run-governance`
 - `hindermath/spec-kit-preset-parallel-autonomous-run-governance`
@@ -148,11 +150,13 @@ Recommended install order for stacked use:
 
 ```bash
 specify preset add security-governance --priority 10
+specify preset add --dev /path/to/secure-development-assurance-governance --priority 15
 specify preset add architecture-governance --priority 20
 specify preset add isaqb-architecture-governance --priority 30
 specify preset add a11y-governance --priority 40
 specify preset add cross-platform-governance --priority 50
 specify preset add agent-parity-governance --priority 60
+specify preset add --from https://github.com/hindermath/spec-kit-preset-model-routing-governance/archive/refs/tags/v0.1.4.zip --priority 61
 # Optional; omit to retain the standard eight-preset profile.
 specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.0.zip --priority 64
 specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.0.zip --priority 65
@@ -167,7 +171,7 @@ A preset priority is a positive integer used to order enabled presets during
 template and command resolution. Lower numbers have higher precedence:
 
 ```text
-10 → 20 → 30 → 40 → 50 → 60 → 64 → 65 → 70 → 80
+10 → 15 → 20 → 30 → 40 → 50 → 60 → 61 → 64 → 65 → 66 → 70 → 80
 ```
 
 Priority is relevant only where names overlap. It works together with the

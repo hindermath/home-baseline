@@ -585,6 +585,14 @@
       "labelEn": "Linked intake order and feature evidence",
       "netLines": 2920,
       "activeDays": 1
+    },
+    {
+      "slot": 72,
+      "id": "secure-development-assurance-v010-publication",
+      "labelDe": "Secure-Development-Assurance-v0.1.0-Veröffentlichung",
+      "labelEn": "Secure Development Assurance v0.1.0 publication",
+      "netLines": 7162,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
