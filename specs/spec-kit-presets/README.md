@@ -135,16 +135,18 @@ Current status:
 Recommended publication order:
 
 1. `security-governance`
-2. `isaqb-architecture-governance`
+2. optional `secure-development-assurance-governance`
 3. `architecture-governance`
-4. `a11y-governance`
-5. `cross-platform-governance`
-6. `agent-parity-governance`
-7. optional `intake-authoring-governance`
-8. optional `intake-review-governance`
-9. optional `intake-sequencing-governance`
-9. `autonomous-run-governance`
-10. `parallel-autonomous-run-governance`
+4. `isaqb-architecture-governance`
+5. `a11y-governance`
+6. `cross-platform-governance`
+7. `agent-parity-governance`
+8. optional `model-routing-governance`
+9. optional `intake-authoring-governance`
+10. optional `intake-review-governance`
+11. optional `intake-sequencing-governance`
+12. `autonomous-run-governance`
+13. `parallel-autonomous-run-governance`
 
 Recommended install order for stacked use:
 
