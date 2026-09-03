@@ -35,7 +35,7 @@ docs/security/secure-development/<datum>-<kontext>/ und Runbooks unter
 docs/runbooks/secure-development/. HOSK/GWDG ist ausschließlich externer
 Vergleich.
 
-## Verbindliche Liefergrenze 2026-09-03
+## Verbindliche Liefergrenze 2026-09-03 / Binding Delivery Boundary 2026-09-03
 
 Die erste Lieferung endet nach technischer Härtung, öffentlichem Repository,
 Tag und Release `v0.1.0` sowie erfolgreichem Test des unveränderlichen
