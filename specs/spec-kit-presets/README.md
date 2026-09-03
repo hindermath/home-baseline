@@ -149,20 +149,20 @@ Recommended publication order:
 Recommended install order for stacked use:
 
 ```bash
-specify preset add security-governance --priority 10
-specify preset add --dev /path/to/secure-development-assurance-governance --priority 15
-specify preset add architecture-governance --priority 20
-specify preset add isaqb-architecture-governance --priority 30
-specify preset add a11y-governance --priority 40
-specify preset add cross-platform-governance --priority 50
-specify preset add agent-parity-governance --priority 60
+specify preset add --from https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.6.2.zip --priority 10
+specify preset add --from https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.0.zip --priority 15
+specify preset add --from https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.5.2.zip --priority 20
+specify preset add --from https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.2.2.zip --priority 30
+specify preset add --from https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.4.3.zip --priority 40
+specify preset add --from https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.2.2.zip --priority 50
+specify preset add --from https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.4.2.zip --priority 60
 specify preset add --from https://github.com/hindermath/spec-kit-preset-model-routing-governance/archive/refs/tags/v0.1.4.zip --priority 61
 # Optional; omit to retain the standard eight-preset profile.
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.0.zip --priority 64
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.0.zip --priority 65
-specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.0.zip --priority 66
-specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.3.3.zip --priority 70
-specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.4.zip --priority 80
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.1.zip --priority 64
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.1.zip --priority 65
+specify preset add --from https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.3.zip --priority 66
+specify preset add --from https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.4.1.zip --priority 70
+specify preset add --from https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.6.zip --priority 80
 ```
 
 ### How priority resolution works

@@ -87,6 +87,45 @@
       "risk": "The release validates evidence consistency but does not establish C5 readiness, certification, pilot authorization, project acceptance, or general release.",
       "criticality": "Security",
       "reevaluationTrigger": "Field-test finding, baseline change, validator-contract change, patch release, or separately authorized Community submission."
+    },
+    {
+      "changeId": "CHG263003",
+      "scope": "Public v0.1.0 repository, protected tag and release, immutable archive hash, published-package verification, and field-test handoff",
+      "decision": "UpdateRequired",
+      "rationale": "The public delivery and its reproducible verification are now material operator and audit facts; aggregate installation guidance must use the released immutable versions.",
+      "documents": [
+        "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "specs/spec-kit-presets/README.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/preset-release-v0.1.0.json",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Home Baseline and preset maintainers",
+      "audiences": [
+        "Developers",
+        "Maintainers",
+        "Security reviewers",
+        "Field-test owners"
+      ],
+      "readerPaths": [
+        "Preset matrix to pinned public tag archives",
+        "Lastenheft delivery boundary to release evidence",
+        "Evidence matrix to field-test next action"
+      ],
+      "canonicalSource": "Public GitHub tag v0.1.0, GitHub Release v0.1.0, and preset-release-v0.1.0.json",
+      "navigationImpact": "Existing preset and evidence reader paths receive the release proof; no new top-level navigation is required.",
+      "documentClass": "PublicReleaseAndSecurityEvidence",
+      "languageStrategy": "German first, English second; repository URLs, commit IDs, tag, and hashes remain language-neutral.",
+      "languagePartners": [
+        "Bilingual Lastenheft publication result and evidence-matrix release section"
+      ],
+      "platformAndExampleProof": "The immutable tag ZIP passed Bash and PowerShell status and all four reviews in a fresh thirteen-preset Spec Kit project; disable, enable, remove, and reinstall also passed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/preset-release-v0.1.0.json",
+      "risk": "Practical multi-project field evaluation remains pending; this publication does not establish C5 readiness, certification, human approval, or Community acceptance.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Field-test result, archive mismatch, tag or release metadata change, patch release, or separately authorized Community submission."
     }
   ]
 }

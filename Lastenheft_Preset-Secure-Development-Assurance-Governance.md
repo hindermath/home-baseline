@@ -50,6 +50,22 @@ release `v0.1.0`, and successful verification of the immutable GitHub tag
 archive. Community submission is explicitly deferred until field evaluation
 has completed and a separate instruction authorizes submission.*
 
+### Veröffentlichungsergebnis 2026-09-03 / Publication Result 2026-09-03
+
+Repository, Tag und GitHub-Release `v0.1.0` sind öffentlich verfügbar. Der
+Release-PR #1 wurde als Merge-Commit
+`e51e40e8ff46d8b4c00aa99b654b0d82264885ab` abgeschlossen. Das veröffentlichte
+Tag-ZIP ist durch SHA-256
+`d9effc395e590d1ffe832d059f8681501da1d1b6e7d44d79a3e61929bc5229c1`
+gebunden und bestand die vollständige 13-Preset- sowie Cross-Shell-Prüfung.
+Damit beginnt ausschließlich die getrennte Feldtestphase; die
+Community-Einreichung bleibt gesperrt.
+
+*The public repository, tag, and GitHub release v0.1.0 are available. The tag
+archive is SHA-256-bound and passed the complete thirteen-preset and
+cross-shell verification. Only the separate field-test phase begins; Community
+submission remains blocked pending a future explicit instruction.*
+
 ## 2. Reihenfolge und Voraussetzungen / Order and Prerequisites
 
 Der Intake steht auf Position 15 und benötigt den abgeschlossenen Gap-Audit auf
