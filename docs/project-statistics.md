@@ -1120,25 +1120,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 707981 lines |
-| Textdateien / Text files | 3668 |
+| Textbasis / Text base | 707895 lines |
+| Textdateien / Text files | 3666 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-03 |
 | Aktivtage / Active days | 100 |
-| Relevante Commits / Relevant commits | 798 |
-| Zeilen je Aktivtag / Lines per active day | 7079.8 |
+| Relevante Commits / Relevant commits | 799 |
+| Zeilen je Aktivtag / Lines per active day | 7079.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 88.5x |
 | Speedup vs. 100 lines/day | 70.8x |
-| Methodik / Methodology | v2; source `d5c455ab7f5a` |
+| Methodik / Methodology | v2; source `492c371b8bcb` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   4.8% | 34297
-Dokumentation / Documentation   [##########..........]  48.8% | 345505
+Dokumentation / Documentation   [##########..........]  48.8% | 345419
 Skripte / Scripts               [##..................]  10.1% | 71638
 Konfiguration / Configuration   [#######.............]  35.8% | 253446
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1357,7 +1357,7 @@ Slots 64..72
 | 69 | GitHub-Copilot-Review-Governance / GitHub Copilot review governance | 15206 |
 | 70 | ABSDD-Secure-Development-Gate-Verzahnung / ABSDD secure-development gate integration | 7054 |
 | 71 | Verlinkte Intake-Reihenfolgen und Feature-Nachweise / Linked intake order and feature evidence | 2920 |
-| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7248 |
+| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7162 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1381,7 +1381,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7079.8
+Visible repository [##############......] 7079.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1407,6 +1407,6 @@ DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-03. Es enthaelt 100 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 11401 |
+| 2026-09 | 11489 |
 
 <!-- project-statistics-v2:end -->
