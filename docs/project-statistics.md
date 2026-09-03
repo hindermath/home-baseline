@@ -1124,14 +1124,14 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 | Textdateien / Text files | 3667 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-03 |
 | Aktivtage / Active days | 100 |
-| Relevante Commits / Relevant commits | 800 |
+| Relevante Commits / Relevant commits | 801 |
 | Zeilen je Aktivtag / Lines per active day | 7080.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 88.5x |
 | Speedup vs. 100 lines/day | 70.8x |
-| Methodik / Methodology | v2; source `972dc1b73297` |
+| Methodik / Methodology | v2; source `9008f6724b11` |
 
 ### Artefaktmix / Artifact Mix
 
@@ -1357,7 +1357,7 @@ Slots 64..72
 | 69 | GitHub-Copilot-Review-Governance / GitHub Copilot review governance | 15206 |
 | 70 | ABSDD-Secure-Development-Gate-Verzahnung / ABSDD secure-development gate integration | 7054 |
 | 71 | Verlinkte Intake-Reihenfolgen und Feature-Nachweise / Linked intake order and feature evidence | 2920 |
-| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7238 |
+| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7292 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1407,6 +1407,6 @@ DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-03. Es enthaelt 100 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 11647 |
+| 2026-09 | 11649 |
 
 <!-- project-statistics-v2:end -->
