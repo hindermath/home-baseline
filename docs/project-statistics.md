@@ -1120,25 +1120,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 708025 lines |
+| Textbasis / Text base | 708026 lines |
 | Textdateien / Text files | 3667 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-03 |
 | Aktivtage / Active days | 100 |
-| Relevante Commits / Relevant commits | 801 |
+| Relevante Commits / Relevant commits | 802 |
 | Zeilen je Aktivtag / Lines per active day | 7080.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 88.5x |
 | Speedup vs. 100 lines/day | 70.8x |
-| Methodik / Methodology | v2; source `9008f6724b11` |
+| Methodik / Methodology | v2; source `22d1c1f5bc59` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   4.8% | 34297
-Dokumentation / Documentation   [##########..........]  48.8% | 345549
+Dokumentation / Documentation   [##########..........]  48.8% | 345550
 Skripte / Scripts               [##..................]  10.1% | 71638
 Konfiguration / Configuration   [#######.............]  35.8% | 253446
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1357,7 +1357,7 @@ Slots 64..72
 | 69 | GitHub-Copilot-Review-Governance / GitHub Copilot review governance | 15206 |
 | 70 | ABSDD-Secure-Development-Gate-Verzahnung / ABSDD secure-development gate integration | 7054 |
 | 71 | Verlinkte Intake-Reihenfolgen und Feature-Nachweise / Linked intake order and feature evidence | 2920 |
-| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7292 |
+| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7293 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1407,6 +1407,6 @@ DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-03. Es enthaelt 100 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 11649 |
+| 2026-09 | 11654 |
 
 <!-- project-statistics-v2:end -->
