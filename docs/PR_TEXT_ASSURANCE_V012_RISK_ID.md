@@ -6,10 +6,15 @@ In v0.1.1 akzeptiert Bash Risiko-Evidence ohne `acceptedRisks.id`, die
 PowerShell ablehnt. Die gemeinsame Risiko-Pruefung wird deshalb in beiden
 Shells auf einen kanonischen, skalaren und nicht leeren Text abgesichert.
 PowerShell darf dabei kein einteiliges Array stillschweigend entpacken.
+Der unabhaengige Review deckte zudem auf, dass Bash mehrere JSON-Wurzeln als
+Datenstrom akzeptiert. Die gemeinsame Gate-Grenze verlangt deshalb genau ein
+vollstaendiges JSON-Dokument.
 Gueltige IDs erhalten keine neue Format-, Trim- oder Normalisierungsvorgabe.
 
 *Correct the shared accepted-risk ID boundary used by status and all reviews.
 Require canonical nonblank scalar text and prevent singleton-array coercion.
+Require exactly one JSON root so a trailing partial document cannot mask an
+invalid first root.
 Preserve legitimate IDs without imposing new formatting rules.*
 
 ## Umfang und Authority / Scope and authority
@@ -31,13 +36,16 @@ before the two serial field-test features.*
 Beobachtetes Rot vor der Korrektur, Gruen danach. Beide Shells pruefen Status
 und alle vier Gate-Reviews; neun ungueltige ID-Repraesentationen werden ohne
 Erfolgsausgabe und mit Exit 2 abgelehnt. Gueltige Unicode-Texte und rohe
-Read-only-Snapshots bleiben erhalten. Bestehende Vertragsanwendung, jq-Paritaet,
-Runbooks und menschliche Entscheidungen bleiben unveraendert. Keine neue
+Read-only-Snapshots bleiben erhalten. Ein zusaetzlicher Rot-/Gruen-Nachweis
+deckt zwei verkettete JSON-Wurzeln in Status und Delta-Review ab. Bestehende
+Vertragsanwendung, jq-Paritaet, Runbooks und menschliche Entscheidungen bleiben
+unveraendert. Keine neue
 Abhaengigkeit. `UpdateRequired`, source-only, kein Home-Sync; NIST SSDF,
 CWE Top 25, Supply-Chain-Provenienz und textorientierte A11Y gelten.
 
-*Observed red/green regression covers invalid representations and preserves
-valid controls, raw-byte evidence and human boundaries. No dependency is added.
+*Observed red/green regressions cover invalid ID representations and multiple
+JSON roots while preserving valid controls, raw-byte evidence and human
+boundaries. No dependency is added.
 Documentation is updated in source only. Apply SSDF, CWE, provenance and text
 accessibility; native platform checks and independent review remain mandatory.*
 

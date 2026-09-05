@@ -175,7 +175,9 @@ validate_gate_file() {
   local file="$1"
   local expected_gate="$2"
   [[ -f "$file" ]] || die "Evidence fehlt: $file"
-  "${SDA_JQ[@]}" -e . "$file" >/dev/null || die "Ungültiges JSON: $file"
+  # Ein Evidence-Artefakt ist genau ein JSON-Dokument, kein auswertbarer JSON-Datenstrom.
+  # An evidence artefact is exactly one JSON document, not an evaluable JSON stream.
+  "${SDA_JQ[@]}" -se 'length == 1' "$file" >/dev/null || die "Ungültiges JSON: $file"
   "${SDA_JQ[@]}" -e '.schemaVersion == "1.0" and .documentType == "SecureDevelopmentGateEvidence"' "$file" >/dev/null ||
     die "Evidence-Schema ist ungültig: $file"
   local gate outcome context_id mode

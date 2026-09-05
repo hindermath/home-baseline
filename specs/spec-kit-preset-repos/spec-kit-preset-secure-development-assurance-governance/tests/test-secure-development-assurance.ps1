@@ -415,7 +415,38 @@ function Test-SDAAcceptedRiskIds {
             Write-SDATestText $path $validText
         }
     }
-    'PASS: scalar nonblank accepted-risk IDs, status/all gate reviews and unchanged evidence'
+
+    # jq verarbeitet sonst mehrere JSON-Wurzeln als Datenstrom und verwendet fuer -e das letzte Ergebnis.
+    # jq otherwise parses multiple JSON roots as a stream and uses the last result for -e.
+    $deltaPath = Join-Path $temporaryRoot "$contextRelative/deltas/change.json"
+    $validDeltaText = [IO.File]::ReadAllText($deltaPath)
+    $delta = $validDeltaText | ConvertFrom-Json -Depth 100 -DateKind String
+    $delta.acceptedRisks[0].PSObject.Properties.Remove('id')
+    $tail = [ordered]@{
+        schemaVersion = '1.0'
+        documentType = 'SecureDevelopmentGateEvidence'
+        assessments = @([ordered]@{
+            id = 'TAIL-001'; applicability = 'Applicable'; implementation = 'Fulfilled'; evidence = 'Tail fixture'
+        })
+        acceptedRisks = @([ordered]@{
+            id = 'RISK-TAIL'; owner = 'Fixture owner'; reviewer = 'Fixture reviewer'
+            reviewedAt = '2099-01-01T00:00:00Z'; reviewDue = '2099-12-31'
+            residualRisk = 'Fixture risk'; reevaluationTrigger = 'Any fixture change.'
+        })
+        externalComparisonBoundary = 'HOSK/GWDG: ExternalComparison only; never local evidence'
+    }
+    $streamText = ($delta | ConvertTo-Json -Depth 100) + [Environment]::NewLine + ($tail | ConvertTo-Json -Depth 100)
+    Write-SDATestText $deltaPath $streamText
+    $streamBefore = Get-SDATestSnapshot $temporaryRoot
+    foreach ($pair in @((Invoke-SDATestPair), (Invoke-SDAReviewPair delta))) {
+        foreach ($result in @($pair.Bash, $pair.PowerShell)) {
+            Assert-SDATest ($result.ExitCode -eq 2 -and $result.StdOut -eq '' -and -not [string]::IsNullOrWhiteSpace($result.StdErr)) "Multiple JSON roots were not rejected: $($result | ConvertTo-Json -Compress)"
+        }
+    }
+    Assert-SDATest ($streamBefore -ceq (Get-SDATestSnapshot $temporaryRoot)) 'Multiple-root calls changed evidence.'
+    Write-SDATestText $deltaPath $validDeltaText
+
+    'PASS: scalar nonblank accepted-risk IDs, single JSON roots, status/all gate reviews and unchanged evidence'
 }
 
 function Test-SDATestSnapshot {

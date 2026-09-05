@@ -277,12 +277,27 @@ Bestehende Vertrags-, jq-, Runbook- und Human-Decision-Tests bestehen.
 Bash-Syntax und PSScriptAnalyzer 1.25.0 mit dem tatsaechlichen Repo-Profil
 `scripts/config/PSScriptAnalyzerSettings.psd1` bestehen ebenfalls. Ein erster
 Analyzer-Aufruf mit falschem Profilpfad wurde nicht als Nachweis gewertet.
-Native CI, unabhaengiger Patch-Review und Release stehen noch aus.
+Auch ein spaeterer Aufruf mit einer vom Cmdlet nicht unterstuetzten Pfadliste
+wurde verworfen; die korrekte Einzeldatei-Schleife besteht ohne Findings.
+Der unabhaengige Patch-Review fand zusaetzlich eine JSON-Stream-Umgehung:
+Bash akzeptierte zwei verkettete JSON-Wurzeln, wenn das zweite Teildokument
+das fehlende ID-Pruefergebnis ueberschrieb; PowerShell blockierte dieselbe
+Datei bereits. Der neue Rot-Nachweis ergab Bash Exit 0 fuer Status und
+Delta-Review. Die zentrale Bash-Gate-Grenze verlangt nun mit einer
+Slurp-Laengenpruefung genau eine JSON-Wurzel. Danach bestehen beide Shells
+Status und Review nur mit Exit 2, leerer Erfolgsausgabe und unveraenderten
+Evidence-Bytes; alle gueltigen Einzeldokumente und die vollstaendige Suite
+bleiben gruen. Native CI und Release stehen noch aus.
 
 *The new regression failed before the fix and passes afterward. Both entry
 points reject the missing and alternate invalid IDs without success output
 or evidence writes, while valid Unicode text remains accepted. Shared helpers
 and date compatibility are unchanged. Existing contracts and the correctly
 configured syntax/analyzer checks pass. A mistyped analyzer-profile invocation
-was discarded, not counted as evidence. Native CI, review and release remain
+and a later unsupported path-array invocation were discarded, not counted as
+evidence; the correct per-file loop passes. Independent review then found that
+Bash accepted a two-root JSON stream whose trailing partial document masked
+the first root's missing ID. A new red/green regression now enforces exactly
+one JSON root for every Bash gate while preserving valid single documents,
+read-only bytes and full cross-shell parity. Native CI and release remain
 pending.*
