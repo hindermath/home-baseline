@@ -59,8 +59,11 @@ validators; reassess when that scope changes.*
 
 - P01: Quellen und Autoritaet geprueft; Issues/PR aktualisiert.
 - P02: Beide gezielten Rot-Nachweise erbracht; kanonische Korrektur und
-  Cross-Shell-Regression lokal bestanden. Native Plattform-CI und Review offen.
-- P03: Quell-PR wird vorbereitet. Die Installationsmatrix bleibt bis zum
+  Cross-Shell-Regression lokal bestanden. Native Linux-/macOS-CI bestanden;
+  Windows-Fixture-Korrektur wartet auf den neuen nativen Nachweis.
+- P03: [Quell-PR #269](https://github.com/hindermath/home-baseline/pull/269)
+  und [Paket-PR #2](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/2)
+  sind offen. Die Installationsmatrix bleibt bis zum
   realen Patch-Release auf dem vorhandenen v0.1.0-Archiv; sie wird danach
   gemeinsam mit der installierten Kopie auf v0.1.1 gebracht.
 - P04-P06: Noch nicht begonnen; kein Feldtest gestartet.
@@ -94,3 +97,33 @@ not claim native Windows/Linux execution; those runners remain CI gates.*
 *All four mixed-mode gates pass in both shells. Missing runbooks fail with
 the expected cause. Raw-byte snapshots remain unchanged after each call;
 neither remediation closure nor human decisions are promoted by validation.*
+
+## Ergaenzende CI- und Kompositionsbefunde / Additional CI and composition findings
+
+- Erster nativer Paketlauf
+  [33968047207](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/33968047207):
+  Linux und macOS bestanden. Windows fand eine unzulaessige
+  `WriteAllText`-Mutation einer Hidden-Testdatei. Die Korrektur trennt echte
+  Hidden-Enumeration von Byte-Mutationen an einer normalen Testdatei;
+  lokale Suite und ScriptAnalyzer bestanden erneut.
+- Die neue Skriptdatei erforderte die deterministische Ergaenzung von
+  `docs/scripts/embedded-scripts.md`; keine Katalogaenderung notwendig.
+- Vollstaendiger lokaler Lifecycle: 13 aktiv, Aufloesung und `specify check`,
+  Disable/Enable, Remove, danach exakte Profile 12, 11, 10, 9 und 8 bestanden.
+  Der neue exakte 13er-Versionscheck und Archiv-Reinstall folgen dem Release.
+- Spec Kit 0.12.11 entfernt beim Multi-Agent-Uninstall nur Skills der aktiven
+  Integration. Zwei Claude-Skills bleiben verwaist; ihre fehlenden Validatoren
+  fuehren nicht zu einem fachlichen Erfolg. Der Runbook-Hinweis dokumentiert
+  diese CLI-Grenze und die enge manuelle Bereinigung. Kein CLI-Patch,
+  keine Community-Einreichung und kein pauschaler Remove-Erfolgsnachweis.
+- Der Review entdeckte ausserdem eine Body-Paritaetsluecke: auch ein nackter
+  Top-Level-Pfad in erklaerender Prosa wird vom Generator umgeschrieben.
+  Die kanonische Korrektur und die neue Body-Regression sind vor Release
+  zwingend; der technische TinyCalc-Paritaetstest bleibt unveraendert.
+
+*The first native CI exposed a Windows-only fixture issue, now corrected
+without weakening raw-byte or hidden-file checks. Script inventory is
+regenerated. Existing profiles 8 through 12 compose correctly. CLI removal
+leaves two unusable Claude skills in this multi-agent setup; the runbook
+records that limitation, not a complete uninstall pass. Exact generated-body
+parity is an additional mandatory regression before publication.*
