@@ -87,6 +87,7 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `.specify` |
 | `.specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1` | `.specify` |
 | `.specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh` | `.specify` |
+| `.specify/presets/secure-development-assurance-governance/tests/test-installed-surfaces.ps1` | `.specify` |
 | `.specify/presets/secure-development-assurance-governance/tests/test-secure-development-assurance.ps1` | `.specify` |
 | `.specify/scripts/bash/check-prerequisites.sh` | `.specify` |
 | `.specify/scripts/bash/common.sh` | `.specify` |

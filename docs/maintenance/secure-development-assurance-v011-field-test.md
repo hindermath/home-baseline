@@ -59,19 +59,20 @@ validators; reassess when that scope changes.*
 
 - P01: Quellen und Autoritaet geprueft; Issues/PR aktualisiert.
 - P02: Beide gezielten Rot-Nachweise erbracht; kanonische Korrektur und
-  Cross-Shell-Regression lokal bestanden. Am aktuellen Paketstand bestehen
-  native Linux- und Windows-CI; die neue Legacy-jq-Fixture auf macOS blockiert
-  noch die Freigabe. Fruehere macOS-Erfolge ersetzen diesen Nachweis nicht.
+  Cross-Shell-Regression lokal bestanden. Alle drei nativen Plattform-Gates
+  bestanden am finalen Paket-Head `41318dbebdbffbd00754dafc8b9064b5ba0eb677`.
 - P03: [Quell-PR #269](https://github.com/hindermath/home-baseline/pull/269)
-  und [Paket-PR #2](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/2)
-  sind offen. Die Installationsmatrix bleibt bis zum
-  realen Patch-Release auf dem vorhandenen v0.1.0-Archiv; sie wird danach
-  gemeinsam mit der installierten Kopie auf v0.1.1 gebracht.
+  ist offen. [Paket-PR #2](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/2)
+  ist gemergt und lokal Fast-Forward-synchronisiert. v0.1.1 ist als
+  unveraenderlicher Feldtest-Prerelease veroeffentlicht. Die zentrale optionale
+  13er-Matrix und die Quellrepo-Installation verwenden nun dieses echte Archiv;
+  weder Home noch andere Flotten-Repositories wurden aktualisiert.
 - P04-P06: Noch nicht begonnen; kein Feldtest gestartet.
 
-*Local red/green regressions pass. Native CI, review, publication, integration,
-both field tests, and the final report remain open. Deployment pins change
-only once the replacement archive actually exists.*
+*The final package passed all three native platforms, was reviewed and merged,
+and is published as an immutable field-test prerelease. The source repository
+now installs that actual archive. TinyCalc integration, both field tests and
+the final report remain open; no Home sync or fleet rollout took place.*
 
 ## Gezielte Evidenz / Focused evidence
 
@@ -187,3 +188,38 @@ The new legacy-LF fixture still fails on native macOS and cannot be reproduced
 locally with either tested jq version. Isolate capability probes and retain
 bounded synthetic-fixture diagnostics. This does not claim a proven root-cause
 fix or replace the required native macOS pass.*
+
+### Patch-Veroeffentlichung / Patch publication
+
+- Finaler nativer Paketlauf
+  [33971814720](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/33971814720):
+  Linux, macOS und Windows bestanden, einschliesslich beider Tests und aller
+  acht Oberflaechen. Der macOS-Folgenachweis besteht nach Probe-Isolation;
+  eine weitergehende, lokal reproduzierte Ursachenbehauptung wird nicht erhoben.
+- Provider-Merge-Commit: `00e72dc1c0eedec3ea420072e79f3709573c6cf7`;
+  Eltern sind v0.1.0 und der exakt gepruefte PR-Head. Provider-Nachweis und
+  lokales `main == origin/main` wurden unmittelbar read-only kontrolliert.
+- [v0.1.1 Release](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.1),
+  [Tag-ZIP](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.1.zip).
+- ZIP-SHA-256: `516eaba9b6ce258c27777e88decb7e45a1e1810cab5d3cb866738bc2326453a4`.
+- Installationstest mit `-ArchiveUrl` gegen dieses Tag-ZIP: acht Oberflaechen
+  bestanden, Exit 0. v0.1.0 zeigt weiterhin auf `e51e40e8ff46d8b4c00aa99b654b0d82264885ab`.
+- Unabhaengige Reviews ohne materielle Findings. Der Copilot-Hinweis zur
+  angeblichen Kulturabhaengigkeit von `String.Contains(String)` wurde anhand
+  der [Microsoft-Dokumentation](https://learn.microsoft.com/en-us/dotnet/api/system.string.contains?view=net-10.0#system-string-contains(system-string))
+  als False Positive begruendet beantwortet und aufgeloest.
+- Admin-Bypass nur fuer die formale Approval-Regel; alle technischen und
+  fachlichen Gates bestanden vor Merge. Der gemergte Arbeitsbranch wurde
+  lokal und remote bereinigt; seine Historie bleibt ueber PR und Merge erhalten.
+- Die lokale CLI erzeugt OpenCode-Dateien im vorhandenen ignorierten
+  `.opencode/commands/`. Die beiden betroffenen erzeugten Dateien wurden
+  unveraendert in den versionierten Repo-Pfad `.opencode/command/` uebernommen;
+  andere lokale Agenten-/Cache-Dateien bleiben unberuehrt.
+
+*All native package gates pass at the final reviewed head. The actual provider
+merge and fast-forward synchronization are verified. The immutable tag archive
+has a recorded SHA-256 and passes all eight installation tests. v0.1.0 is
+unchanged. The review false positive is dispositioned with primary-source
+evidence; formal approval bypass does not replace substantive review or CI.
+Only the two generated OpenCode files are mirrored into the tracked legacy
+directory; unrelated local agent data is preserved.*

@@ -15,10 +15,21 @@ Ein neuer Installationstest prueft acht erzeugte Agentenoberflaechen und
 unterscheidet echte Missing-Evidence-Diagnosen von Syntax-/Pfadfehlern.
 Native Linux-/macOS-/Windows-CI prueft beide Regressionen.
 
+Paket-PR #2 ist nach allen drei nativen Gates gemergt. Das unveraenderliche
+v0.1.1-Tag-ZIP ist als Feldtest-Prerelease veroeffentlicht und installiert.
+Die optionale 13er-Matrix, installierte Kopie und erzeugten Oberflaechen dieses
+Quellrepos wurden gemeinsam aktualisiert. Die TinyCalc-Integration und beide
+fachlichen Feldtestlaeufe sind weiterhin getrennte offene Folgephasen.
+
 *The compatible patch fixes both defects at their source. Installation tests
 execute generated paths; contract tests compare canonical raw-byte snapshots.
 Evidence schema, command arguments, exit codes and approval boundaries stay
 unchanged.*
+
+*Package PR #2 passed all three native gates and is merged. The immutable
+v0.1.1 field-test prerelease archive is installed and pinned in the optional
+thirteen-preset matrix. TinyCalc integration and substantive field tests remain
+separate follow-up phases; this source PR does not claim their completion.*
 
 ## Risiko und Authority / Risk and authority
 
