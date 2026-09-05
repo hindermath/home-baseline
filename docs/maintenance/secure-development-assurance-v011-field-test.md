@@ -59,8 +59,9 @@ validators; reassess when that scope changes.*
 
 - P01: Quellen und Autoritaet geprueft; Issues/PR aktualisiert.
 - P02: Beide gezielten Rot-Nachweise erbracht; kanonische Korrektur und
-  Cross-Shell-Regression lokal bestanden. Native Linux-/macOS-CI bestanden;
-  Windows-Fixture-Korrektur wartet auf den neuen nativen Nachweis.
+  Cross-Shell-Regression lokal bestanden. Am aktuellen Paketstand bestehen
+  native Linux- und Windows-CI; die neue Legacy-jq-Fixture auf macOS blockiert
+  noch die Freigabe. Fruehere macOS-Erfolge ersetzen diesen Nachweis nicht.
 - P03: [Quell-PR #269](https://github.com/hindermath/home-baseline/pull/269)
   und [Paket-PR #2](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/2)
   sind offen. Die Installationsmatrix bleibt bis zum
@@ -166,3 +167,23 @@ POSIX LF behavior. Unsupported native CRLF output or a faulty probe fails
 closed. Do not strip semantic CR from JSON values. Test modern, legacy LF,
 legacy CRLF and faulty tools separately. CI avoids duplicate push/PR runs
 while retaining the same platform gates.*
+
+### Aktueller macOS-Nachweis / Current macOS evidence
+
+Paketlauf
+[33969865821](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/33969865821)
+am Head `3af44960f75babfd0b706c8bfb871c20ef59b419` besteht unter Linux und
+Windows einschliesslich aller acht generierten Oberflaechen. macOS meldet bei
+der neuen `legacy-lf`-Fixture Exit 2 ohne den erwarteten Diagnosegrund.
+Lokal ist das mit Bash 3.2 sowie Apple-jq 1.7.1 und offiziellem jq 1.8.2 nicht
+reproduzierbar. Die Capability-Proben werden nun in Subshells isoliert; eine
+unerwartete Fixture-Antwort zeigt Exitcode, beide Ausgabekanaele und einmalig
+einen auf 8 KiB begrenzten Trace der rein synthetischen Fehlfixture. Das ist
+keine bestaetigte Ursachenbehebung und kein Gate-Ersatz. Der neue native
+macOS-Nachweis bleibt vor Merge und Release zwingend.
+
+*Linux and Windows pass the current package, including generated commands.
+The new legacy-LF fixture still fails on native macOS and cannot be reproduced
+locally with either tested jq version. Isolate capability probes and retain
+bounded synthetic-fixture diagnostics. This does not claim a proven root-cause
+fix or replace the required native macOS pass.*
