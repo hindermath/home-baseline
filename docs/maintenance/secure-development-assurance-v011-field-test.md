@@ -147,3 +147,22 @@ passed. The jq manual documents native newline conversion. Remove the
 reintroduced CR bytes only after semantic line normalization and before
 hashing; do not alter raw read-only hashes, schemas or human decisions.
 A native passing run is still required before publication.*
+
+Der Folgelauf
+[33968996666](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/33968996666)
+am Head `1995d6d6b4866e73c4fb6492e7ed59a873e11ed8` bestaetigt den
+Hash-Fix und legt dieselbe native Zeilenenden-Konvertierung bei Listen offen.
+Die Abhilfe wird daher zentral auf alle jq-Aufrufe einschliesslich `xargs`
+angewendet: `--binary`, wenn unterstuetzt; andernfalls exakte LF-Probe fuer
+aelteres POSIX-jq. Nicht unterstuetzte native CRLF-Ausgabe oder ein fehlerhafter
+Probeprozess blockieren mit Exit 2. Keine nachtraegliche pauschale Entfernung
+fachlicher CR aus JSON-Werten. Neue Fixtures pruefen moderne, alte LF-,
+alte CRLF- und fehlerhafte Varianten getrennt. Der neue Workflow laeuft je
+PR-Stand einmal und zusaetzlich auf `main`; die Plattform-Gates bleiben gleich.
+
+*The following native run passed hashing and exposed the same conversion in
+lists. Apply binary output centrally to all jq calls, retaining tested legacy
+POSIX LF behavior. Unsupported native CRLF output or a faulty probe fails
+closed. Do not strip semantic CR from JSON values. Test modern, legacy LF,
+legacy CRLF and faulty tools separately. CI avoids duplicate push/PR runs
+while retaining the same platform gates.*
