@@ -127,3 +127,23 @@ regenerated. Existing profiles 8 through 12 compose correctly. CLI removal
 leaves two unusable Claude skills in this multi-agent setup; the runbook
 records that limitation, not a complete uninstall pass. Exact generated-body
 parity is an additional mandatory regression before publication.*
+
+### Windows-Hashparitaet / Windows hash parity
+
+Der Paketlauf
+[33968631847](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/33968631847)
+am Head `8c889b969b46b293d11793cf6a3041e5d82ee64f` besteht die neue
+Snapshot-Regression, zeigt danach aber einen echten Bash-Validatorfehler:
+Exit 2, `Manifest-Hashdrift`, trotz unveraenderter positiver Fixture.
+Windows-`jq.exe` kann normalisierte LF beim Ausgeben wieder in CRLF umwandeln;
+dieses Verhalten ist im [jq-Handbuch](https://jqlang.org/manual/#invoking-jq)
+beschrieben. Die enge Korrektur entfernt solche CR erst hinter der bestehenden
+semantischen Normalisierung, vor SHA-256. Rohe Read-only-Hashes, Schemas,
+API und menschliche Freigaben bleiben unveraendert. Die native Windows-
+Bestaetigung bleibt zwingend vor Release.
+
+*Native Windows exposed a normalized-hash mismatch after the snapshot checks
+passed. The jq manual documents native newline conversion. Remove the
+reintroduced CR bytes only after semantic line normalization and before
+hashing; do not alter raw read-only hashes, schemas or human decisions.
+A native passing run is still required before publication.*
