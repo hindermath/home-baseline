@@ -746,14 +746,18 @@ ein einzelner Text mit mindestens einem Nicht-Leerzeichen sein. Fehlende,
 leere, nur aus Unicode-Leerzeichen bestehende und nicht skalare IDs blockieren
 mit Exit 2; auch PowerShell darf eine einteilige Liste nicht in eine Text-ID
 umdeuten. Der kanonische Feldname ist `id`. Gueltige Texte bleiben ohne
-Kuerzung, Normalisierung oder neue Formatvorgabe erhalten. Die bestehenden
-Releases `v0.1.0` und `v0.1.1` werden nicht ueberschrieben.
+Kuerzung, Normalisierung oder neue Formatvorgabe erhalten. Die gemeinsame
+Bash-Gate-Grenze akzeptiert genau eine JSON-Wurzel; verkettete JSON-Dokumente
+blockieren ebenfalls mit Exit 2. Die bestehenden Releases `v0.1.0` und
+`v0.1.1` werden nicht ueberschrieben.
 
 *Version 0.1.2 fixes the shared accepted-risk ID boundary used by status and
 all four reviews. Both shells require canonical `id` to be scalar, nonblank
 text. Invalid IDs fail with exit 2; PowerShell must not unwrap a singleton
 list into a valid ID. Valid strings remain unchanged without a new format
-restriction. Preserve both earlier releases and all human decision boundaries.*
+restriction. The shared Bash gate boundary accepts exactly one JSON root, so
+concatenated documents also fail with exit 2. Preserve both earlier releases
+and all human decision boundaries.*
 
 `v0.1.1` korrigiert die installierten Validatorpfade der generierten
 Agentenbefehle und macht den Read-only-Test deterministisch. Der Snapshot
