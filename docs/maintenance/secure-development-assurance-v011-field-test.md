@@ -81,9 +81,10 @@ validators; reassess when that scope changes.*
 - P04-P06: Noch nicht begonnen; kein Feldtest gestartet.
 
 - SDA-FT-003: v0.1.1 ist seit dem bestaetigten Folgefund `PatchRequired`.
-  Die Korrektur v0.1.2 ist genehmigt und wird auf dem neuen Branch
-  `codex/assurance-v012-risk-id` vorbereitet; kein alter Tag wird umgeschrieben.
-  TinyCalc-PR #67 bleibt trotz bestehender gruener CI materiell blockiert.
+  Die Korrektur v0.1.2 ist als unveraenderlicher Prerelease veroeffentlicht;
+  kein alter Tag wurde umgeschrieben. Die zentrale Matrix und installierte
+  Quellkopie verwenden das echte Archiv. Quell-PR #270 steht noch vor Merge;
+  TinyCalc-PR #67 bleibt bis zur dortigen v0.1.2-Aktualisierung offen.
 
 *The final package passed all three native platforms, was reviewed and merged,
 and is published as an immutable field-test prerelease. The source repository
@@ -287,7 +288,8 @@ Delta-Review. Die zentrale Bash-Gate-Grenze verlangt nun mit einer
 Slurp-Laengenpruefung genau eine JSON-Wurzel. Danach bestehen beide Shells
 Status und Review nur mit Exit 2, leerer Erfolgsausgabe und unveraenderten
 Evidence-Bytes; alle gueltigen Einzeldokumente und die vollstaendige Suite
-bleiben gruen. Native CI und Release stehen noch aus.
+bleiben gruen. Der native Paketlauf `33976340466` besteht unter Linux, macOS
+und Windows am exakten Head `cf7e18fe7dc45dca93801a8c58d19c7dfc2f4fc1`.
 
 *The new regression failed before the fix and passes afterward. Both entry
 points reject the missing and alternate invalid IDs without success output
@@ -299,5 +301,29 @@ evidence; the correct per-file loop passes. Independent review then found that
 Bash accepted a two-root JSON stream whose trailing partial document masked
 the first root's missing ID. A new red/green regression now enforces exactly
 one JSON root for every Bash gate while preserving valid single documents,
-read-only bytes and full cross-shell parity. Native CI and release remain
-pending.*
+read-only bytes and full cross-shell parity. Native package run `33976340466`
+passes on Linux, macOS and Windows at the exact reviewed head; the release
+evidence is complete.*
+
+### v0.1.2-Veroeffentlichung / v0.1.2 publication
+
+- [Paket-PR #3](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/3)
+  wurde nach den materiellen Gates mit dem nur formal verwendeten Admin-Bypass
+  gemergt. Provider-Merge-Commit: `02423602592ad0183454e259df628ab940436ba6`;
+  Eltern: vorheriges `main` und exakt gepruefter PR-Head.
+- [v0.1.2 Prerelease](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.2)
+  und [Tag-ZIP](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.2.zip).
+- ZIP-SHA-256: `4eb30804bb3c329681e0b7d44187c8daeb3e9e4f250bb6003d5b746c0ad0b656`.
+- Der Archiv-Installationstest besteht fuer alle acht Agentenoberflaechen.
+  Die zentrale optionale Matrix und installierte Quellkopie melden exakt 13
+  aktive Presets mit Assurance v0.1.2; die fuenf veraenderten Paketdateien sind
+  in kanonischer Quelle, Publikationsspiegel, Installation und Paket bytegleich.
+- v0.1.0 und v0.1.1 bleiben unveraendert. TinyCalc-Abnahme, RL-SE, GSDB und
+  allgemeine Feldtestbewertung bleiben ausdruecklich offen.
+
+*Package PR #3 was merged only after all material gates passed. The actual
+provider merge has the expected previous-main and reviewed-head parents. The
+immutable v0.1.2 tag archive has the recorded SHA-256 and passes all eight
+installed-surface checks. Canonical, publication, installed, and standalone
+package copies match. Earlier releases remain unchanged; TinyCalc acceptance
+and both field-test features remain open.*

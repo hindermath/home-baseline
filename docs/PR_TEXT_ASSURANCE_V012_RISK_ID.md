@@ -49,6 +49,22 @@ boundaries. No dependency is added.
 Documentation is updated in source only. Apply SSDF, CWE, provenance and text
 accessibility; native platform checks and independent review remain mandatory.*
 
+## Release-Evidence / Release evidence
+
+Der native Paketlauf `33976340466` besteht unter Linux, macOS und Windows am
+Head `cf7e18fe7dc45dca93801a8c58d19c7dfc2f4fc1`. Paket-PR #3 ist als
+`02423602592ad0183454e259df628ab940436ba6` gemergt. Das unveraenderliche
+v0.1.2-Tag-ZIP hat SHA-256
+`4eb30804bb3c329681e0b7d44187c8daeb3e9e4f250bb6003d5b746c0ad0b656`;
+alle acht daraus erzeugten Agentenoberflaechen bestehen. Die Quellinstallation
+entspricht exakt der 13er-Matrix. TinyCalc-Abnahme und Feldtests bleiben offen.
+
+*Native Linux, macOS, and Windows passed at the exact reviewed package head.
+The verified provider merge backs immutable v0.1.2; its tag archive has the
+recorded SHA-256 and passes all eight installed surfaces. The source install
+matches the exact 13-preset matrix. TinyCalc acceptance and field tests remain
+pending.*
+
 Pruefbefehle / Validation commands:
 
 ~~~powershell
