@@ -352,6 +352,72 @@ function Invoke-SDANegativeCase {
     Assert-SDATest (-not [string]::IsNullOrWhiteSpace($pair.PowerShell.StdErr)) "PowerShell cause missing: $ExpectedText"
 }
 
+function Test-SDAAcceptedRiskIds {
+    New-SDATestFixture
+    $gatePaths = [ordered]@{
+        baseline = 'baseline.json'; delta = 'deltas/change.json'
+        closure = 'closure.json'; 'image-impact' = 'image-impact.json'
+    }
+    foreach ($gate in $gatePaths.Keys) {
+        $path = Join-Path $temporaryRoot "$contextRelative/$($gatePaths[$gate])"
+        $document = Read-SDATestJson $path
+        $document | Add-Member acceptedRisks @([ordered]@{
+            id = " RISK-$gate-ä "
+            owner = 'Fixture owner'; reviewer = 'Fixture reviewer'
+            reviewedAt = '2099-01-01T00:00:00Z'; reviewDue = '2099-12-31'
+            residualRisk = 'Fixture risk'; reevaluationTrigger = 'Any fixture change.'
+        })
+        if ($gate -eq 'delta') { $document.outcome = 'ReadyWithAcceptedRisks' }
+        Write-SDATestJson $path $document
+    }
+    $before = Get-SDATestSnapshot $temporaryRoot
+    $controls = @(Invoke-SDATestPair)
+    foreach ($gate in $gatePaths.Keys) { $controls += Invoke-SDAReviewPair $gate }
+    foreach ($pair in $controls) {
+        foreach ($result in @($pair.Bash, $pair.PowerShell)) {
+            Assert-SDATest ($result.ExitCode -eq 0 -and $result.StdErr -eq '') "Valid risk ID failed: $($result | ConvertTo-Json -Compress)"
+        }
+        Assert-SDATest ($pair.Bash.StdOut -ceq $pair.PowerShell.StdOut) 'Valid risk ID output differs.'
+    }
+    Assert-SDATest ($before -ceq (Get-SDATestSnapshot $temporaryRoot)) 'Valid risk ID calls changed evidence.'
+
+    # Jede Mutation betrifft nur die ID; beide Eintrittspunkte muessen ohne Erfolgsausgabe blockieren.
+    # Mutate the ID only; both entry points must block without printing success output.
+    $whitespace = -join (@(9..13) + @(32, 133, 160, 5760) + @(8192..8202) + @(8232, 8233, 8239, 8287, 12288) | ForEach-Object { [char]$_ })
+    $cases = @(
+        @{ name = 'missing'; key = ''; value = $null }
+        @{ name = 'null'; key = 'id'; value = $null }
+        @{ name = 'empty'; key = 'id'; value = '' }
+        @{ name = 'whitespace'; key = 'id'; value = $whitespace }
+        @{ name = 'number'; key = 'id'; value = 123 }
+        @{ name = 'boolean'; key = 'id'; value = $true }
+        @{ name = 'object'; key = 'id'; value = @{ text = 'RISK-001' } }
+        @{ name = 'singleton-array'; key = 'id'; value = @('RISK-001') }
+        @{ name = 'case-alias'; key = 'ID'; value = 'RISK-001' }
+    )
+    foreach ($gate in $gatePaths.Keys) {
+        $path = Join-Path $temporaryRoot "$contextRelative/$($gatePaths[$gate])"
+        $validText = [IO.File]::ReadAllText($path)
+        $gateCases = if ($gate -eq 'delta') { $cases } else { @($cases[0]) }
+        foreach ($case in $gateCases) {
+            $document = $validText | ConvertFrom-Json -Depth 100 -DateKind String
+            $document.acceptedRisks[0].PSObject.Properties.Remove('id')
+            if ($case.key) { $document.acceptedRisks[0] | Add-Member -NotePropertyName $case.key -NotePropertyValue $case.value }
+            Write-SDATestJson $path $document
+            $before = Get-SDATestSnapshot $temporaryRoot
+            $pairs = @((Invoke-SDATestPair), (Invoke-SDAReviewPair $gate))
+            foreach ($pair in $pairs) {
+                foreach ($result in @($pair.Bash, $pair.PowerShell)) {
+                    Assert-SDATest ($result.ExitCode -eq 2 -and $result.StdOut -eq '' -and $result.StdErr.Contains('acceptedRisks.id', [StringComparison]::Ordinal)) "Risk ID $($case.name) ($gate) was not rejected: $($result | ConvertTo-Json -Compress)"
+                }
+            }
+            Assert-SDATest ($before -ceq (Get-SDATestSnapshot $temporaryRoot)) "Risk ID $($case.name) calls changed evidence."
+            Write-SDATestText $path $validText
+        }
+    }
+    'PASS: scalar nonblank accepted-risk IDs, status/all gate reviews and unchanged evidence'
+}
+
 function Test-SDATestSnapshot {
     $snapshotRoot = Join-Path $temporaryRoot 'snapshot-regression'
     foreach ($relative in @('Z.txt', 'a.txt', '.hidden', '.metadata/inside.txt')) {
@@ -516,6 +582,7 @@ try {
         }
     }
 
+    Test-SDAAcceptedRiskIds
     New-SDATestFixture
     Test-SDATestSnapshot
     $before = Get-SDATestSnapshot $temporaryRoot
