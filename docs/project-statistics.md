@@ -170,6 +170,9 @@
 | 2026-09-01 | Intake für verlinkte Abarbeitungsreihenfolgen und Feature-Nachweise | — | — | — | Documentation Impact `UpdateRequired`: Ein neues zentrales Level-0-Lastenheft hält die Harmonisierung von Intake-Dateilinks, typisierten Abhängigkeiten und abgeschlossenen Spec-Kit-Feature-Nachweisen in `home-baseline`, `agent-operations-cockpit`, TinyPl0, TinyCalc, TuiVision, InventarWorkerService und `absdd-image-sandbox` fest. TuiVision bewahrt zehn `Completed`-Intakes, die Feature-Zuordnung `037` bis `046`, sechs Kanten und den getrennten `DeferredOptional`-NuGet-Backlog. Die stabile sichtbare Kennung Position 39 ist als `vorgezogen / promoted` auf aktiven Manifestplatz 1 sowie `Primary`, Root und einziges deklariertes `Eligible` umgebucht; G4 steht ohne Abschlussbehauptung als `OrderedMember` und `Pending` auf Platz 2. Die frühere beratende Kante von Position 38 wurde durch `Position 39 -> G4` mit `PreferredSerialOrder`, `binding: false` ersetzt. Die aktive Serie bleibt bei 34 Zielen, drei Roots und 38 Abhängigkeiten. Vorgänger-Intake, Receipts, Manifest und Review sind bytegleich archiviert beziehungsweise ausdrücklich invalidiert; neue Authoring-/Series-Receipts, Operationsjournal und Single-Review sind hashgebunden. Der neue Review ist `Ready` mit null Findings, Risiken oder offenen Fragen. Specify und die spätere Sieben-Repository-Implementierung wurden nicht gestartet; der getrennte aktuelle `MergeAndSync`-Auftrag veröffentlicht ausschließlich den Level-0-Governance-Kandidaten. Die Änderung bleibt `source-only`, daher ist kein Home-Sync erforderlich. Das Delta vor Statistikpflege umfasst 2 920 geänderte Textzeilen. |
 | 2026-09-03 | Secure Development Assurance Governance v0.1.0 | — | — | — | Documentation Impact `UpdateRequired`: Das zuvor unveröffentlichte Preset ist als ausführlich dokumentiertes, Deutsch-zuerst/Englisch-danach aufgebautes Dreizehn-Preset-Modul für vier Secure-Development-Assurance-Gates gehärtet und öffentlich als `v0.1.0` veröffentlicht. Bash und PowerShell validieren Baseline-, Versions- und normalisierte Hashbindungen, zwölf eindeutige Checklisten, Statuskombinationen, Review- und Risikodaten, vier voneinander unabhängige menschliche Entscheidungen, Image-Impact und die Abhängigkeit `security-governance >=0.6.1` mit gleichen Statusklassen und Exitcodes. Positive und negative Fixtures, BOM/CRLF-Normalisierung, PSScriptAnalyzer, Dokumentgeneratoren und Bytegleichheit sind grün. Das unveränderliche GitHub-Tag-ZIP mit SHA-256 `d9effc395e590d1ffe832d059f8681501da1d1b6e7d44d79a3e61929bc5229c1` bestand in einem frischen Projekt die vollständige 13-Preset-Installation, Status- und Vier-Gate-Cross-Shell-Prüfung sowie Deaktivierung, Reaktivierung, Entfernung und Neuinstallation. `CL-02-13` und weitere Maßnahmen liefern C5-relevante Entwicklungsevidence; das Preset bewertet ausdrücklich weder den vollständigen C5-Kriterienkatalog noch Konformität, Testatreife oder Zertifizierung. Die vorhandene Evidence ist ohne automatische Änderung von Richtlinien, Checklisten oder menschlichen Freigaben migriert. Source-only-Änderungen benötigen keinen Home-Sync. Das vollständige Delta vor Statistikpflege umfasst 7 295 Nettozeilen. Die praktische Feldtestphase bleibt offen; eine Community-Einreichung, ein Katalog-PR und eine Ansprache von `@mnriem` bleiben bis zu einem späteren ausdrücklichen Auftrag ausgeschlossen. |
 
+| 2026-09-05 | Assurance v0.1.1: Pfad- und Read-only-Regression | — | — | — | Branch `codex/assurance-v011-fieldtest`; sichtbares Arbeitsfenster 2026-09-05. Kanonischer Scaffold und Publikationskopie korrigieren SDA-FT-001/002. Beobachtete Rot/Gruen-Tests, acht generierte Status-/Review-Oberflaechen, ordinale rohe SHA-256-Snapshots und native CI ergaenzt. Documentation Impact `UpdateRequired`, source-only, kein Home-Sync. Zahlenbasis und Produktions-/Test-/Dokumentationsmix stehen im generierten Profil 2; manuelle Referenzen 80 beziehungsweise 100 Zeilen/Arbeitstag. Release, TinyCalc-Integration und beide Feldtests bleiben getrennte Folgephasen. / Canonical patch and regressions; publication and field-test acceptance are not implied by local success. |
+| 2026-09-05 | Assurance v0.1.1: Release und Quellrepo-Installation | — | — | — | Branch `codex/assurance-v011-fieldtest`; sichtbares Fenster 2026-09-05. Native Linux-/macOS-/Windows-Gates, unabhaengiger Review, Paket-PR #2 MergeAndSync und unveraenderliches Tag-ZIP mit SHA-256 belegt. Optionale 13er-Matrix, installierte Kopie und acht erzeugte Oberflaechen aktualisiert; Body-Paritaet und Archivinstallation bestanden. Mix/Zeilenzahlen: generiertes Profil 2; manuelle Baselines 80/100 Zeilen pro Arbeitstag. Source-only, kein Home-Sync; TinyCalc und zwei fachliche Feldtests bleiben offen. / Verified package release and source installation; substantive field-test completion remains separate. |
+
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
@@ -1120,27 +1123,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 708028 lines |
-| Textdateien / Text files | 3667 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-03 |
-| Aktivtage / Active days | 100 |
-| Relevante Commits / Relevant commits | 803 |
-| Zeilen je Aktivtag / Lines per active day | 7080.3 |
+| Textbasis / Text base | 709903 lines |
+| Textdateien / Text files | 3675 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-05 |
+| Aktivtage / Active days | 101 |
+| Relevante Commits / Relevant commits | 810 |
+| Zeilen je Aktivtag / Lines per active day | 7028.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 88.5x |
-| Speedup vs. 100 lines/day | 70.8x |
-| Methodik / Methodology | v2; source `a2dcd457399e` |
+| Speedup vs. 80 lines/day | 87.9x |
+| Speedup vs. 100 lines/day | 70.3x |
+| Methodik / Methodology | v2; source `b8900f961f36` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.8% | 34297
-Dokumentation / Documentation   [##########..........]  48.8% | 345552
-Skripte / Scripts               [##..................]  10.1% | 71638
-Konfiguration / Configuration   [#######.............]  35.8% | 253446
+Tests                           [#...................]   5.0% | 35265
+Dokumentation / Documentation   [##########..........]  48.8% | 346383
+Skripte / Scripts               [##..................]  10.1% | 71672
+Konfiguration / Configuration   [#######.............]  35.7% | 253488
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 858
 ```
@@ -1169,8 +1172,8 @@ Mo/Mo  0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0
 Di/Tu  0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4
 Mi/We  0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0
 Do/Th  0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4
-Fr/Fr  0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 -
-Sa/Sa  0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 -
+Fr/Fr  0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0
+Sa/Sa  0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1367,8 +1370,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 88.5x
-100 lines/day      [##############......] 70.8x
+80 lines/day       [##################..] 87.9x
+100 lines/day      [##############......] 70.3x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1381,7 +1384,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7080.3
+Visible repository [##############......] 7028.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1390,9 +1393,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-03. Es enthaelt 100 aktive und 262 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-05. Es enthaelt 101 aktive und 263 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-07 and ends on 2026-09-03. It contains 100 active and 262 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-07 and ends on 2026-09-05. It contains 101 active and 263 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1407,6 +1410,6 @@ DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-03. Es enthaelt 100 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 11676 |
+| 2026-09 | 14137 |
 
 <!-- project-statistics-v2:end -->
