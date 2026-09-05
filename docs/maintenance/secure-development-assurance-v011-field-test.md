@@ -1,4 +1,4 @@
-# Assurance v0.1.1: Korrektur und Feldtest / Correction and field test
+# Assurance-Preset: Korrekturen und Feldtest / Corrections and field test
 
 ## Auftrag und Grenzen / Authority and boundaries
 
@@ -14,6 +14,16 @@ Sandbox-Lauf, keine Produkthaertung und keine Schutzregelaenderung.
 serial field tests, and final report. Formal-rule-only admin bypass replaces
 the previous prohibition, never a material gate. Community submission,
 sandbox work, product hardening, and ruleset changes remain excluded.*
+
+Am 2026-09-05 hat der Owner die enge Folgekorrektur SDA-FT-003 als neue
+Version v0.1.2 ausdruecklich genehmigt. v0.1.0 und v0.1.1 bleiben unveraendert.
+Reihenfolge: Paketkorrektur und Release, bestehender TinyCalc-PR #67 bis
+MergeAndSync, RL-SE-Feature, GSDB-Feature, Abschlussbericht und Issue-Closeout.
+PR #67 wird vor den beiden Feature-Laeufen geschlossen, nicht danach.
+
+*The owner explicitly approved the narrow SDA-FT-003 correction as v0.1.2.
+Preserve both existing releases. Deliver the package and installation PR #67
+before starting RL-SE and then GSDB. Finish with the report and issue closeout.*
 
 ## Ausgangspunkt / Starting point
 
@@ -62,12 +72,19 @@ validators; reassess when that scope changes.*
   Cross-Shell-Regression lokal bestanden. Alle drei nativen Plattform-Gates
   bestanden am finalen Paket-Head `41318dbebdbffbd00754dafc8b9064b5ba0eb677`.
 - P03: [Quell-PR #269](https://github.com/hindermath/home-baseline/pull/269)
-  ist offen. [Paket-PR #2](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/2)
+  ist mit `91ef83d97a094d0c9ac603f2c84622674a8d084f` gemergt und lokal
+  Fast-Forward-synchronisiert. [Paket-PR #2](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/2)
   ist gemergt und lokal Fast-Forward-synchronisiert. v0.1.1 ist als
   unveraenderlicher Feldtest-Prerelease veroeffentlicht. Die zentrale optionale
   13er-Matrix und die Quellrepo-Installation verwenden nun dieses echte Archiv;
   weder Home noch andere Flotten-Repositories wurden aktualisiert.
 - P04-P06: Noch nicht begonnen; kein Feldtest gestartet.
+
+- SDA-FT-003: v0.1.1 ist seit dem bestaetigten Folgefund `PatchRequired`.
+  Die Korrektur v0.1.2 ist als unveraenderlicher Prerelease veroeffentlicht;
+  kein alter Tag wurde umgeschrieben. Die zentrale Matrix und installierte
+  Quellkopie verwenden das echte Archiv. Quell-PR #270 steht noch vor Merge;
+  TinyCalc-PR #67 bleibt bis zur dortigen v0.1.2-Aktualisierung offen.
 
 *The final package passed all three native platforms, was reviewed and merged,
 and is published as an immutable field-test prerelease. The source repository
@@ -223,3 +240,90 @@ unchanged. The review false positive is dispositioned with primary-source
 evidence; formal approval bypass does not replace substantive review or CI.
 Only the two generated OpenCode files are mirrored into the tracked legacy
 directory; unrelated local agent data is preserved.*
+
+### SDA-FT-003: Risiko-ID-Paritaet / Accepted-risk ID parity
+
+Ein gezielter Kontroll-/Negativnachweis bestaetigt den
+[Review-Fund](https://github.com/hindermath/TinyCalc/pull/67#discussion_r3940986668):
+Die gueltige Risiko-Fixture besteht Status und Delta-Review in beiden Shells
+mit Exit 0. Wird ausschliesslich `acceptedRisks[0].id` entfernt, bestehen beide
+Bash-Aufrufe weiterhin; PowerShell blockiert beide mit Exit 2 und
+`Blocked: acceptedRisks.id fehlt.` Die Fixture bleibt bytegleich read-only,
+menschliche Entscheidungen bleiben `Open`. Vorherige gruene Suites deckten
+diesen Negativfall nicht ab; er ist nicht durch Admin-Bypass uebergehbar.
+
+Die gemeinsame Pruefgrenze ist die Risiko-Prueffunktion, die Status und alle
+vier Gate-Reviews verwenden. Die Korrektur muss eine echte, nicht leere
+Text-ID verlangen und darf gueltige IDs, Exitcodes, Schemas, Gate-Ergebnisse
+oder menschliche Freigabegrenzen nicht veraendern. NIST SSDF, CWE Top 25,
+Release-Provenienz und textorientierte A11Y bleiben anwendbar; kein neuer
+Dienst, keine neue Abhaengigkeit und keine Produkt-KI.
+
+*The valid control passes both entry points in both shells. Removing only the
+accepted-risk ID leaves Bash successful while PowerShell rejects it. Existing
+green CI did not cover that negative case. Fix the shared risk-validation
+boundary without changing legitimate IDs, schemas, output semantics or human
+authority. Technical failure is never a formal-rule bypass condition.*
+
+Lokaler v0.1.2-Nachweis: Der neue Test scheiterte vor der Korrektur mit
+`Risk ID missing (baseline) was not rejected`, Bash Exit 0. Danach besteht
+dieselbe Regression fuer Status und alle vier Reviews. Delta-Negativfaelle:
+fehlend, null, leer, Unicode-Leerzeichen, Zahl, Boolean, Objekt, einteiliges
+Array und falscher Feldname `ID`. Jeder Fall verlangt Exit 2, keine
+Erfolgsausgabe, passende ID-Diagnose und unveraenderte rohe Snapshots.
+Gueltige Unicode-IDs mit umgebenden Leerzeichen bleiben erhalten. Die
+PowerShell-Korrektur prueft den Rohwert vor dem Pipeline-Entpacken; globale
+Text-/Property-Helfer und der Datums-Kompatibilitaetspfad bleiben unveraendert.
+Bestehende Vertrags-, jq-, Runbook- und Human-Decision-Tests bestehen.
+Bash-Syntax und PSScriptAnalyzer 1.25.0 mit dem tatsaechlichen Repo-Profil
+`scripts/config/PSScriptAnalyzerSettings.psd1` bestehen ebenfalls. Ein erster
+Analyzer-Aufruf mit falschem Profilpfad wurde nicht als Nachweis gewertet.
+Auch ein spaeterer Aufruf mit einer vom Cmdlet nicht unterstuetzten Pfadliste
+wurde verworfen; die korrekte Einzeldatei-Schleife besteht ohne Findings.
+Der unabhaengige Patch-Review fand zusaetzlich eine JSON-Stream-Umgehung:
+Bash akzeptierte zwei verkettete JSON-Wurzeln, wenn das zweite Teildokument
+das fehlende ID-Pruefergebnis ueberschrieb; PowerShell blockierte dieselbe
+Datei bereits. Der neue Rot-Nachweis ergab Bash Exit 0 fuer Status und
+Delta-Review. Die zentrale Bash-Gate-Grenze verlangt nun mit einer
+Slurp-Laengenpruefung genau eine JSON-Wurzel. Danach bestehen beide Shells
+Status und Review nur mit Exit 2, leerer Erfolgsausgabe und unveraenderten
+Evidence-Bytes; alle gueltigen Einzeldokumente und die vollstaendige Suite
+bleiben gruen. Der native Paketlauf `33976340466` besteht unter Linux, macOS
+und Windows am exakten Head `cf7e18fe7dc45dca93801a8c58d19c7dfc2f4fc1`.
+
+*The new regression failed before the fix and passes afterward. Both entry
+points reject the missing and alternate invalid IDs without success output
+or evidence writes, while valid Unicode text remains accepted. Shared helpers
+and date compatibility are unchanged. Existing contracts and the correctly
+configured syntax/analyzer checks pass. A mistyped analyzer-profile invocation
+and a later unsupported path-array invocation were discarded, not counted as
+evidence; the correct per-file loop passes. Independent review then found that
+Bash accepted a two-root JSON stream whose trailing partial document masked
+the first root's missing ID. A new red/green regression now enforces exactly
+one JSON root for every Bash gate while preserving valid single documents,
+read-only bytes and full cross-shell parity. Native package run `33976340466`
+passes on Linux, macOS and Windows at the exact reviewed head; the release
+evidence is complete.*
+
+### v0.1.2-Veroeffentlichung / v0.1.2 publication
+
+- [Paket-PR #3](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/3)
+  wurde nach den materiellen Gates mit dem nur formal verwendeten Admin-Bypass
+  gemergt. Provider-Merge-Commit: `02423602592ad0183454e259df628ab940436ba6`;
+  Eltern: vorheriges `main` und exakt gepruefter PR-Head.
+- [v0.1.2 Prerelease](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.2)
+  und [Tag-ZIP](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.2.zip).
+- ZIP-SHA-256: `4eb30804bb3c329681e0b7d44187c8daeb3e9e4f250bb6003d5b746c0ad0b656`.
+- Der Archiv-Installationstest besteht fuer alle acht Agentenoberflaechen.
+  Die zentrale optionale Matrix und installierte Quellkopie melden exakt 13
+  aktive Presets mit Assurance v0.1.2; die fuenf veraenderten Paketdateien sind
+  in kanonischer Quelle, Publikationsspiegel, Installation und Paket bytegleich.
+- v0.1.0 und v0.1.1 bleiben unveraendert. TinyCalc-Abnahme, RL-SE, GSDB und
+  allgemeine Feldtestbewertung bleiben ausdruecklich offen.
+
+*Package PR #3 was merged only after all material gates passed. The actual
+provider merge has the expected previous-main and reviewed-head parents. The
+immutable v0.1.2 tag archive has the recorded SHA-256 and passes all eight
+installed-surface checks. Canonical, publication, installed, and standalone
+package copies match. Earlier releases remain unchanged; TinyCalc acceptance
+and both field-test features remain open.*
