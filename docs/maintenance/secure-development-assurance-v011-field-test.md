@@ -1,5 +1,16 @@
 # Assurance-Preset: Korrekturen und Feldtest / Corrections and field test
 
+Aktueller Pflegehinweis (2026-09-06): Der folgende Bericht bewahrt den
+abgeschlossenen Feldtest und seine damaligen Quellen. Fuer neue Produktarbeit
+gilt die [GitHub-Quellenregel](preset-source-cleanup.md); die ehemaligen
+Scaffolds werden nicht mehr gepflegt. Bestehende Installationen bleiben
+unveraendert. Ueber weitere Verteilung des 13. Presets entscheidet Thorsten.
+
+Current maintenance note (2026-09-06): This report preserves the completed
+field test and its historical sources. New product work follows the GitHub
+source rule linked above. Retired scaffolds are no longer maintained;
+existing installations stay unchanged. Thorsten decides further distribution.
+
 ## Auftrag und Grenzen / Authority and boundaries
 
 Der Owner hat die Preset-Korrektur, v0.1.1-Veroeffentlichung, TinyCalc-PR #67,

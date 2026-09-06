@@ -175,6 +175,7 @@
 | 2026-09-05 | Assurance v0.1.2: skalare Risiko-ID / Scalar accepted-risk ID | 15 | 67 | Profil 2 | Branch `codex/assurance-v012-risk-id`, sichtbare Sitzung 2026-09-05. Enge Korrektur SDA-FT-003 in beiden kanonischen Validatoren mit identischem Export; 15 neue Validator- und 67 neue Testzeilen, Dokumentations-/Kopienmix im generierten Profil 2. Beobachtetes Rot/Gruen fuer Status und alle vier Reviews, neun ungueltige ID-Repraesentationen, gueltige Unicode-IDs und rohe Read-only-Snapshots. Manuelle Baselines 80/100 Zeilen pro Arbeitstag, keine Stoppuhrmessung. `UpdateRequired`, source-only, kein Home-Sync. Native CI, neuer unveraenderlicher Release und TinyCalc-Delivery folgen separat; keine Feldtest-Abnahme. / Narrow shared-boundary fix and regression; publication and substantive field tests remain separate gates. |
 | 2026-09-06 | Secure Development Assurance: Feldtestabschluss | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Das unveränderliche Preset v0.1.2 ist nach nativen Paket- und Installationsprüfungen sowie den seriellen TinyCalc-RL-SE- und GSDB-Läufen einschließlich ihrer Closeouts mit genau `ReleaseAccepted` bewertet. Der Bericht bindet TinyCalc PR #67 bis #71 und den GSDB-Closeout-Merge `94624918c455da86ec59af8e4153e764113725ad`; bekannte Spec-Kit-Remove-Grenze, 13 TinyCalc-Folgefindings und 42 Human-only-Zeilen bleiben sichtbar. Genau eine Community-Einreichung ist separat autorisiert und inzwischen als `github/spec-kit#4455` erfolgt. Menschliche Freigaben, Image-Impact, Zertifizierungsbehauptungen sowie Auswahl und Rollout von Level-2-Repositories bleiben außerhalb des Auftrags. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 246 Nettozeilen. / Preset v0.1.2 is `ReleaseAccepted`; Community submission is separate, and no human approval or Level-2 rollout is inferred. |
 | 2026-09-06 | Secure Development Assurance: Community-Einreichungs-Handoff | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Die einzelne autorisierte v0.1.2-Einreichung ist als `github/spec-kit#4455` im offiziellen Community-Katalogprozess angelegt. Lokaler Feldbericht, Submission-Vorlage, Closure-Evidence und Evidence-Matrix binden den tatsächlichen Upstream-Zustand. Der erforderliche Draft-Katalog-PR entsteht laut aktuellem Upstream-Vertrag erst nach Maintainer-Triage automatisch; deshalb wurde kein manueller Parallel-PR erzeugt. Pilot-, Projekt-, Produkt-, Sandbox-, Flotten- und Zertifizierungsentscheidungen sowie die Auswahl von Level-2-Repositories bleiben getrennt. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 22 Nettozeilen. / The authorised submission is filed as `github/spec-kit#4455`; maintainer triage and the automated draft catalog PR remain upstream-owned. |
+| 2026-09-06 | Preset-Produktquellen: Doppelpflege entfernt | — | — | Profil 2 | Documentation Impact `UpdateRequired`: 26 redundante Scaffold-Verzeichnisse mit 658 getrackten Dateien entfernt; 13 GitHub-Pakete mit Tag, Commit und Archiv-SHA-256 gebunden. Lokale Sonderaenderungen sind als Diffs gesichert. 635 geschuetzte Installations-, Profil- und Befehlsdateien bleiben bytegleich. Produktentwicklung erfolgt in eigenstaendigen GitHub-Repositories; bestehende zwoelf Presets und Assurance-Installationen bleiben unveraendert. Paket- und Profiltests laufen ausschliesslich temporaer. Kein Home-Sync, Flotten-Rollout oder weiterer Auftrag fuer Preset 13. / Retired 26 duplicate source trees; preserved existing installations and recorded published source provenance and local differences. |
 
 ---
 
@@ -1126,29 +1127,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 710823 lines |
-| Textdateien / Text files | 3678 |
+| Textbasis / Text base | 646272 lines |
+| Textdateien / Text files | 3024 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-06 |
 | Aktivtage / Active days | 102 |
-| Relevante Commits / Relevant commits | 817 |
-| Zeilen je Aktivtag / Lines per active day | 6968.9 |
+| Relevante Commits / Relevant commits | 818 |
+| Zeilen je Aktivtag / Lines per active day | 6336.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 87.1x |
-| Speedup vs. 100 lines/day | 69.7x |
-| Methodik / Methodology | v2; source `6b14f7048037` |
+| Speedup vs. 80 lines/day | 79.2x |
+| Speedup vs. 100 lines/day | 63.4x |
+| Methodik / Methodology | v2; source `264a4f4917a1` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   5.0% | 35652
-Dokumentation / Documentation   [##########..........]  48.8% | 346882
-Skripte / Scripts               [##..................]  10.1% | 71706
-Konfiguration / Configuration   [#######.............]  35.7% | 253488
+Tests                           [#...................]   3.8% | 24781
+Dokumentation / Documentation   [##########..........]  49.3% | 318516
+Skripte / Scripts               [##..................]   8.0% | 51464
+Konfiguration / Configuration   [########............]  38.5% | 248962
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.1% | 858
+Sonstiger Text / Other text     [#...................]   0.0% | 312
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1170,7 +1171,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 ```text
 Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
-So/Su  0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 2
+So/Su  0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4
 Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 -
 Di/Tu  0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 -
 Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 -
@@ -1215,7 +1216,7 @@ Keine Aktivitaet / No activity
 ```text
 Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
  cap 1000000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      833333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+      833333 | . . . . . . . . . . . . . . . . . . . . . . . . . #
       666667 | . . . . . . . . . . . . . . . . . . . # # # # # # #
       500000 | . . . . . . . . . . . . . . . . . . . # # # # # # #
       333333 | . . . . . . . . . . . . . . . . . . # # # # # # # #
@@ -1375,8 +1376,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [#################...] 87.1x
-100 lines/day      [##############......] 69.7x
+80 lines/day       [################....] 79.2x
+100 lines/day      [#############.......] 63.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1389,7 +1390,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 6968.9
+Visible repository [#############.......] 6336.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1415,6 +1416,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-06. Es enthaelt 102 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 15231 |
+| 2026-09 | 81754 |
 
 <!-- project-statistics-v2:end -->
