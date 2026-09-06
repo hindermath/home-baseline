@@ -1,5 +1,14 @@
 # Community-Einreichung v0.1.2 / Community Submission v0.1.2
 
+Status: als [github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455)
+eingereicht; Upstream-Maintainer-Triage und automatisch erzeugter Draft-PR
+stehen aus. Kein manueller Parallel-PR wurde erstellt.
+
+*Status: submitted as
+[github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455); upstream
+maintainer triage and the automatically generated draft PR remain pending. No
+manual parallel PR was created.*
+
 Die folgenden Feldüberschriften bleiben absichtlich im englischen Original,
 weil die aktuelle Upstream-Automation sie als exakte GitHub-Issue-Form-Labels
 parst. Inhalt und Scope-Grenze bleiben bilingual beziehungsweise sprachneutral.

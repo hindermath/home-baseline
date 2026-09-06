@@ -601,6 +601,14 @@
       "labelEn": "Secure Development Assurance field-test closeout",
       "netLines": 246,
       "activeDays": 1
+    },
+    {
+      "slot": 74,
+      "id": "secure-development-assurance-community-submission-handoff",
+      "labelDe": "Secure-Development-Assurance-Community-Einreichung",
+      "labelEn": "Secure Development Assurance Community submission",
+      "netLines": 22,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
