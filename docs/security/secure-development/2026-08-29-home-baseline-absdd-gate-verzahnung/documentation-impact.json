@@ -126,6 +126,46 @@
       "risk": "Practical multi-project field evaluation remains pending; this publication does not establish C5 readiness, certification, human approval, or Community acceptance.",
       "criticality": "Security",
       "reevaluationTrigger": "Field-test result, archive mismatch, tag or release metadata change, patch release, or separately authorized Community submission."
+    },
+    {
+      "changeId": "CHG263004",
+      "scope": "Secure Development Assurance Governance v0.1.2 practical TinyCalc field-test closeout and separately authorised Community handoff",
+      "decision": "UpdateRequired",
+      "rationale": "The completed RL-SE and GSDB runs support one bounded ReleaseAccepted decision for the preset; the release evidence and the strict separation from product, human-approval, image-impact, certification, and Level-2 rollout decisions must remain auditable.",
+      "documents": [
+        "docs/maintenance/secure-development-assurance-v011-field-test.md",
+        "docs/maintenance/secure-development-assurance-v012-community-submission.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/closure.json",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Home Baseline and preset maintainers",
+      "audiences": [
+        "Developers",
+        "Maintainers",
+        "Security reviewers",
+        "Community catalog maintainers",
+        "Future Level-2 rollout owners"
+      ],
+      "readerPaths": [
+        "Field-test report to immutable v0.1.2 release evidence",
+        "Secure-development closure to field-test outcome and remaining human decisions",
+        "Prepared Community submission to upstream catalog workflow"
+      ],
+      "canonicalSource": "The v0.1.2 public tag and release, TinyCalc PR #67 through #71, and docs/maintenance/secure-development-assurance-v011-field-test.md",
+      "navigationImpact": "Existing maintenance and secure-development evidence paths receive the closeout and submission handoff; no top-level navigation expansion is required.",
+      "documentClass": "PublicReleaseAndSecurityEvidence",
+      "languageStrategy": "German first, English second; upstream form fields and immutable identifiers remain language-neutral.",
+      "languagePartners": [
+        "Bilingual field-test closeout and evidence-matrix closeout section"
+      ],
+      "platformAndExampleProof": "The immutable v0.1.2 package passed native Linux, macOS, and Windows gates; TinyCalc completed the serial RL-SE and GSDB feature and closeout PRs on the exact recorded commits.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/secure-development-assurance-v011-field-test.md",
+      "risk": "TinyCalc follow-up findings, all human approvals, image impact, certification claims, and selection of Level-2 rollout targets remain outside ReleaseAccepted and outside the Community submission authority.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Community review finding, preset patch release, evidence-contract change, image-impact work, human approval, or separately authorised Level-2 rollout."
     }
   ]
 }

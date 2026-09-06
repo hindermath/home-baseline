@@ -7,13 +7,20 @@ genau zwei serielle RL-SE-/GSDB-Laeufe und den Abschlussbericht genehmigt.
 MergeAndSync gilt mit Admin-Bypass ausschliesslich fuer formale Merge-Regeln.
 Diese neue Freigabe ersetzt das fruehere Bypass-Verbot in TinyCalc #66 und
 home-baseline #268. Materielle technische, Security-, A11Y-, fachliche Review-
-und Evidence-Gates bleiben zwingend. Keine Community-Einreichung, kein
-Sandbox-Lauf, keine Produkthaertung und keine Schutzregelaenderung.
+und Evidence-Gates bleiben zwingend. Der damalige Auftrag schloss eine
+Community-Einreichung, Sandbox-Laeufe, Produkthaertung und
+Schutzregelaenderungen aus. Am 2026-09-06 hat der Owner nach dem vollstaendigen
+GSDB-Closeout die einzelne Community-Einreichung von v0.1.2 ausdruecklich als
+separate Folgeaktion genehmigt. Eine Auswahl oder Aktualisierung weiterer
+Level-2-Repositories bleibt davon ausgeschlossen und wird spaeter entschieden.
 
 *The owner approved the patch release, existing installation PR, exactly two
 serial field tests, and final report. Formal-rule-only admin bypass replaces
 the previous prohibition, never a material gate. Community submission,
-sandbox work, product hardening, and ruleset changes remain excluded.*
+sandbox work, product hardening, and ruleset changes remained excluded. On
+2026-09-06 the owner separately authorised the single v0.1.2 Community
+submission after the complete GSDB closeout. Selecting or updating further
+Level-2 repositories remains outside this authority and will be decided later.*
 
 Am 2026-09-05 hat der Owner die enge Folgekorrektur SDA-FT-003 als neue
 Version v0.1.2 ausdruecklich genehmigt. v0.1.0 und v0.1.1 bleiben unveraendert.
@@ -78,18 +85,28 @@ validators; reassess when that scope changes.*
   unveraenderlicher Feldtest-Prerelease veroeffentlicht. Die zentrale optionale
   13er-Matrix und die Quellrepo-Installation verwenden nun dieses echte Archiv;
   weder Home noch andere Flotten-Repositories wurden aktualisiert.
-- P04-P06: Noch nicht begonnen; kein Feldtest gestartet.
+- P04: [TinyCalc-PR #67](https://github.com/hindermath/TinyCalc/pull/67)
+  installierte v0.1.2 als dreizehntes Preset und wurde als Merge-Commit
+  `ed5afad1bbea12f93bbae29332e35f3a54c1abc7` abgeschlossen.
+- P05: Der RL-SE-Lauf und sein kausaler Closeout wurden ueber
+  [PR #68](https://github.com/hindermath/TinyCalc/pull/68) und
+  [PR #69](https://github.com/hindermath/TinyCalc/pull/69) gemergt.
+- P06: Der GSDB-Lauf und sein kausaler Closeout wurden ueber
+  [PR #70](https://github.com/hindermath/TinyCalc/pull/70) und
+  [PR #71](https://github.com/hindermath/TinyCalc/pull/71) gemergt. TinyCalc
+  `main` steht auf `94624918c455da86ec59af8e4153e764113725ad`.
 
 - SDA-FT-003: v0.1.1 ist seit dem bestaetigten Folgefund `PatchRequired`.
   Die Korrektur v0.1.2 ist als unveraenderlicher Prerelease veroeffentlicht;
-  kein alter Tag wurde umgeschrieben. Die zentrale Matrix und installierte
-  Quellkopie verwenden das echte Archiv. Quell-PR #270 steht noch vor Merge;
-  TinyCalc-PR #67 bleibt bis zur dortigen v0.1.2-Aktualisierung offen.
+  kein alter Tag wurde umgeschrieben. Die zentrale Matrix, die installierte
+  Quellkopie und TinyCalc verwenden das echte Archiv. Quell-PR #270 und
+  TinyCalc-PR #67 sind gemergt. Beide seriellen Feldtestlaeufe und ihre
+  Closeouts sind abgeschlossen.
 
 *The final package passed all three native platforms, was reviewed and merged,
 and is published as an immutable field-test prerelease. The source repository
-now installs that actual archive. TinyCalc integration, both field tests and
-the final report remain open; no Home sync or fleet rollout took place.*
+and TinyCalc install that archive. Both serial field-test runs and their
+closeouts are complete. No Home sync or fleet rollout took place.*
 
 ## Gezielte Evidenz / Focused evidence
 
@@ -318,12 +335,75 @@ evidence is complete.*
   Die zentrale optionale Matrix und installierte Quellkopie melden exakt 13
   aktive Presets mit Assurance v0.1.2; die fuenf veraenderten Paketdateien sind
   in kanonischer Quelle, Publikationsspiegel, Installation und Paket bytegleich.
-- v0.1.0 und v0.1.1 bleiben unveraendert. TinyCalc-Abnahme, RL-SE, GSDB und
-  allgemeine Feldtestbewertung bleiben ausdruecklich offen.
+- v0.1.0 und v0.1.1 bleiben unveraendert. TinyCalc-Installation, RL-SE, GSDB
+  und ihre kausalen Closeouts sind abgeschlossen.
 
 *Package PR #3 was merged only after all material gates passed. The actual
 provider merge has the expected previous-main and reviewed-head parents. The
 immutable v0.1.2 tag archive has the recorded SHA-256 and passes all eight
 installed-surface checks. Canonical, publication, installed, and standalone
-package copies match. Earlier releases remain unchanged; TinyCalc acceptance
-and both field-test features remain open.*
+package copies match. Earlier releases remain unchanged; TinyCalc installation
+and both field-test features are complete.*
+
+## Feldtestabschluss / Field-test closeout
+
+**Empfehlung / Recommendation: `ReleaseAccepted` fuer / for v0.1.2.**
+
+Der Feldtest bewertet das Preset und seinen Evidence-Vertrag, nicht die
+allgemeine Sicherheit oder Freigabe von TinyCalc. Die drei waehrend der
+Erprobung reproduzierten Preset-Fehler SDA-FT-001 bis SDA-FT-003 wurden in den
+unveraenderten Patch-Releases v0.1.1 und v0.1.2 korrigiert. Die abschliessenden
+Paket-, Installations- und Realprojekt-Nachweise zeigen keinen offenen
+materiellen Preset-Defekt.
+
+*The field test evaluates the preset and its evidence contract, not the
+general security or release status of TinyCalc. All three reproduced preset
+defects were fixed through immutable patch releases. Final package,
+installation, and real-project evidence contains no open material preset
+defect.*
+
+### Release- und Testbindung / Release and test binding
+
+- Preset: `secure-development-assurance-governance` v0.1.2, Prioritaet 15.
+- Release: https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.2
+- Tag-ZIP: https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.2.zip
+- ZIP-SHA-256: `4eb30804bb3c329681e0b7d44187c8daeb3e9e4f250bb6003d5b746c0ad0b656`.
+- Testprojekt: `hindermath/TinyCalc`, lokales C#/.NET-TUI-Projekt ohne
+  produktionsnahe Daten oder Dienste.
+- Tooling: Spec Kit 0.12.11, `security-governance` v0.6.2, Bash und
+  PowerShell 7; native CI unter Linux, macOS und Windows.
+
+### Ergebnisse / Results
+
+| Pruefung / Test | Ergebnis / Result | Exitcode beziehungsweise Evidence |
+|---|---|---|
+| Unveraendertes Tag-ZIP und acht erzeugte Agentenoberflaechen | Pass | Exit 0; Paketlauf `33976340466` |
+| Positiver Statuskontext und vier Gate-Reviews | Pass | Bash/PowerShell Exit 0, gleiche Statusklassen |
+| Bewusst blockierte Kontexte einschliesslich Risiko-ID und mehrfacher JSON-Wurzel | Pass | erwarteter Exit 2, keine Erfolgsausgabe, Evidence bytegleich |
+| LF-, CRLF-, BOM- und rohe Read-only-Hashparitaet | Pass | Bash/PowerShell und drei native Plattformen |
+| Vollstaendige Komposition | Pass | exakt 13 aktive Presets; Acht-Preset-Standardprofil unveraendert |
+| TinyCalc RL-SE-Lauf | Pass | PR #68/#69 gemergt; finale materielle Checks erfolgreich |
+| TinyCalc GSDB-Lauf | Pass | PR #70/#71 gemergt; finale materielle Checks erfolgreich |
+| Aktuelle Review-Threads PR #67 bis #71 | Pass | null ungeloeste, nicht veraltete Threads |
+
+### Offene Punkte und Grenzen / Open items and boundaries
+
+- Die bekannte Spec-Kit-0.12.11-Remove-Grenze kann bei aktiver
+  Multi-Agent-Integration zwei nicht ausfuehrbare Claude-Skills hinterlassen.
+  Sie bleibt dokumentiert und wird nicht als vollstaendiger Uninstall-Erfolg
+  umgedeutet.
+- Der GSDB-Lauf weist 13 TinyCalc-Folgefindings und 42 Human-only-Zeilen aus.
+  Sie sind als `DoesNotBlockCompletedAssessment` klassifiziert, bleiben offen
+  und sind keine verdeckten Preset-Passes.
+- Technische Validierung erteilt weder Pilot-, Projekt-, Sandbox-, Produkt-
+  noch Flottenfreigabe und begruendet keine C5-, ISO-, Konformitaets-,
+  Testat- oder Zertifizierungsbehauptung.
+- Die Empfehlung autorisiert nur die getrennt beauftragte serielle
+  Community-Einreichung von v0.1.2. Sie waehlt keine Level-2-Repositories aus
+  und startet keinen Rollout.
+
+*The known Spec Kit removal limitation and all TinyCalc follow-up and
+human-only findings remain visible. `ReleaseAccepted` authorises only the
+separately requested serial v0.1.2 Community submission. It grants no project,
+sandbox, product, fleet, compliance, attestation, certification, or Level-2
+rollout decision.*

@@ -3,8 +3,8 @@
 | Gate | Lokale Evidence | Ergebnis | Nächste Entscheidung |
 |---|---|---|---|
 | baseline | Home Baseline 3.2.0, Zwölfer-Profil, ABSDD 3.1.0 | Ready | Delta prüfen |
-| delta | Vertrag, Befehle, Runbooks, Intake- und Serienlineage | Ready | Draft-PR prüfen |
-| closure | PR #264 technisch validiert; Copilot-Review durch Repository-Owner ausdrücklich abbedungen | NeedsRemediation | Positionen 14–17 und menschliche Freigaben separat autorisieren |
+| delta | Vertrag, Befehle, Runbooks, Intake- und Serienlineage | Ready | Autorisierte Community-Einreichung von v0.1.2 ausführen |
+| closure | PR #264 technisch validiert; v0.1.2-Feldtest `ReleaseAccepted`; Copilot-Review durch Repository-Owner ausdrücklich abbedungen | NeedsRemediation | Community-Einreichung sowie Positionen 14–17 und menschliche Freigaben getrennt behandeln |
 | image-impact | ABSDD Commit 7adaeac; keine Änderung ausgeführt | NeedsRemediation | Position 17 separat autorisieren |
 
 Technische Validierung, Pilotfreigabe, Projektabnahme und allgemeine Freigabe
@@ -27,6 +27,25 @@ aus dem veröffentlichten ZIP. Der praktische Feldtest bleibt eine getrennte
 nächste Phase; Community-Einreichung und menschliche Freigaben wurden nicht
 ausgelöst.
 
+## Feldtestabschluss v0.1.2 / Field-test Closeout v0.1.2
+
+Der praktische TinyCalc-Feldtest ist mit genau der Bewertung
+`ReleaseAccepted` abgeschlossen. Das unveränderliche v0.1.2-Tag-ZIP mit
+SHA-256
+`4eb30804bb3c329681e0b7d44187c8daeb3e9e4f250bb6003d5b746c0ad0b656`
+bestand die Paket- und Installationsprüfungen sowie die seriellen RL-SE- und
+GSDB-Läufe einschließlich ihrer kausalen Closeouts in TinyCalc PR #67 bis #71.
+Der GSDB-Closeout-Merge `94624918c455da86ec59af8e4153e764113725ad`
+entspricht dem geprüften TinyCalc-`main`.
+
+Die Bewertung gilt ausschließlich für Preset v0.1.2 und seinen
+Evidence-Vertrag. Dreizehn TinyCalc-Folgefindings, 42 Human-only-Zeilen,
+Pilotfreigabe, Projektabnahme, Sandbox-/Produkt-/Flottenfreigabe sowie C5-,
+ISO-, Konformitäts-, Testat- oder Zertifizierungsbehauptungen bleiben davon
+unberührt. Am 2026-09-06 wurde genau eine Community-Einreichung von v0.1.2
+separat autorisiert. Welche Level-2-Repositories das Preset später erhalten,
+ist ausdrücklich keine Entscheidung dieses Abschlusses.
+
 ## English
 
 The baseline and handoff delta are inspectable. PR #264 is technically
@@ -34,8 +53,9 @@ validated, with the missing Copilot review explicitly accepted as a bounded
 risk by the repository owner. Closure and image impact remain open because the
 later ABSDD adoption and human authorizations have not been executed.
 
-The public v0.1.0 repository, tag, and release are available. The immutable tag
-archive was verified in a fresh thirteen-preset Spec Kit project with matching
-Bash and PowerShell results and a read-only status proof. Practical field
-evaluation remains the next separate phase; no Community submission or human
-approval was inferred.
+The public releases are available. The immutable v0.1.2 archive passed package,
+installation, and two serial TinyCalc field-test runs with their causal
+closeouts. The preset field test is therefore concluded as `ReleaseAccepted`.
+Exactly one Community submission was authorised separately on 2026-09-06;
+human approvals, product findings, image impact, and every Level-2 rollout
+decision remain independent and open where previously recorded.
