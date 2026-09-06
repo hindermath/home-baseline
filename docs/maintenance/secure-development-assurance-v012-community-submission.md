@@ -1,3 +1,13 @@
+# Community-Einreichung v0.1.2 / Community Submission v0.1.2
+
+Die folgenden Feldüberschriften bleiben absichtlich im englischen Original,
+weil die aktuelle Upstream-Automation sie als exakte GitHub-Issue-Form-Labels
+parst. Inhalt und Scope-Grenze bleiben bilingual beziehungsweise sprachneutral.
+
+*The field headings below intentionally retain the exact English upstream
+issue-form labels required by the catalog automation. Content and the scope
+boundary remain bilingual or language-neutral.*
+
 ### Preset ID
 
 secure-development-assurance-governance
