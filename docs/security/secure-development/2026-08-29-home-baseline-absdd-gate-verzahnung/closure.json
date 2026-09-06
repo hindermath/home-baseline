@@ -5,7 +5,7 @@
   "gate": "closure",
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
-  "updatedAt": "2026-08-29T19:21:15+02:00",
+  "updatedAt": "2026-09-06T17:59:56+02:00",
   "review": {
     "owner": "Thorsten Hindermann, repository owner",
     "reviewer": "Codex, technical validator",
@@ -18,7 +18,7 @@
     "technicalValidation": {
       "status": "Fulfilled",
       "authority": "Thorsten Hindermann, repository owner",
-      "evidence": "PR #264 local and GitHub CI validation; Copilot review explicitly waived by the repository owner on 2026-08-29"
+      "evidence": "PR #264 merge bc3517dea014d17c091ad0b67932ef9833d17378; Preset v0.1.2 field-test result ReleaseAccepted with TinyCalc PRs #67 through #71 merged"
     },
     "pilotAuthorization": {
       "status": "Open",
@@ -41,7 +41,7 @@
       "id": "CLOSE-001",
       "applicability": "Applicable",
       "implementation": "Fulfilled",
-      "evidence": "PR #264 final-head validation is required before the authorized merge"
+      "evidence": "PR #264 merged as bc3517dea014d17c091ad0b67932ef9833d17378 after final-head validation"
     },
     {
       "id": "CLOSE-002",
@@ -69,6 +69,15 @@
       "nextAction": "Keep general release blocked until separately authorized.",
       "owner": "Authorized sandbox/product/fleet governance",
       "dueAt": "2026-12-31"
+    },
+    {
+      "id": "CLOSE-005",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/secure-development-assurance-v011-field-test.md; ReleaseAccepted for v0.1.2 after TinyCalc PRs #67 through #71",
+      "nextAction": "Submit v0.1.2 once to the GitHub Spec Kit Community Catalog under the separate owner authority from 2026-09-06.",
+      "owner": "Thorsten Hindermann, preset maintainer",
+      "dueAt": "2026-09-30"
     }
   ],
   "acceptedRisks": [
@@ -87,6 +96,6 @@
     }
   ],
   "outcome": "NeedsRemediation",
-  "nextAction": "Conduct the separate field test from the published v0.1.0 runbook; do not infer pilot, project, general release, C5 readiness, or Community submission.",
+  "nextAction": "Submit secure-development-assurance-governance v0.1.2 once to the GitHub Spec Kit Community Catalog under the separate 2026-09-06 owner authority; do not infer Level-2 rollout, pilot, project, general release, C5 readiness, or certification.",
   "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
 }

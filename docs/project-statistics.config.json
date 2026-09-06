@@ -593,6 +593,14 @@
       "labelEn": "Secure Development Assurance v0.1.0 publication",
       "netLines": 7295,
       "activeDays": 1
+    },
+    {
+      "slot": 73,
+      "id": "secure-development-assurance-fieldtest-closeout",
+      "labelDe": "Secure-Development-Assurance-Feldtestabschluss",
+      "labelEn": "Secure Development Assurance field-test closeout",
+      "netLines": 246,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
