@@ -29,14 +29,12 @@ jobs:
           python -m pip install 'git+https://github.com/github/spec-kit.git@e802a7dd52a6eceba9403cbbf40e60dced043238'
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           specify version
-      - name: Validate contracts and generated commands
+      - name: Verify published packages, profiles, contracts and generated commands
         shell: pwsh
         run: |
           foreach ($command in @('git', 'bash', 'pwsh', 'jq', 'specify')) {
             Get-Command $command -ErrorAction Stop | Select-Object Name, Source
           }
-          pwsh -NoProfile -File specs/spec-kit-presets/secure-development-assurance-governance/tests/test-secure-development-assurance.ps1
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          pwsh -NoProfile -File specs/spec-kit-presets/secure-development-assurance-governance/tests/test-installed-surfaces.ps1
+          pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git diff --exit-code

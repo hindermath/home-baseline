@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-08-21
-Kanonische Skriptdateien / Canonical script files: 140
+Kanonische Skriptdateien / Canonical script files: 141
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -882,6 +882,18 @@ python3 scripts/tests/test_windows_maintenance_hardening.py --help
 
 ```text
 python3 scripts/tests/test_workspace_storage_maintenance.py --help
+```
+
+### `scripts/tests/test-preset-sources.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Prueft veroeffentlichte Preset-Pakete in temporaeren Projekten.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/tests/test-preset-sources.ps1 -Full
+pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
 ```
 
 ## Statistik / Statistics
