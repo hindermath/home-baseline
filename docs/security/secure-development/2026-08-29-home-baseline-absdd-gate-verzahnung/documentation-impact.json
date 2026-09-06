@@ -152,7 +152,7 @@
         "Secure-development closure to field-test outcome and remaining human decisions",
         "Prepared Community submission to upstream catalog workflow"
       ],
-      "canonicalSource": "The v0.1.2 public tag and release, TinyCalc PR #67 through #71, and docs/maintenance/secure-development-assurance-v011-field-test.md",
+      "canonicalSource": "The v0.1.2 public tag and release, TinyCalc PR #67 through #71, docs/maintenance/secure-development-assurance-v011-field-test.md, and upstream submission github/spec-kit#4455",
       "navigationImpact": "Existing maintenance and secure-development evidence paths receive the closeout and submission handoff; no top-level navigation expansion is required.",
       "documentClass": "PublicReleaseAndSecurityEvidence",
       "languageStrategy": "German first, English second; upstream form fields and immutable identifiers remain language-neutral.",

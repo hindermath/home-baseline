@@ -173,7 +173,8 @@
 | 2026-09-05 | Assurance v0.1.1: Pfad- und Read-only-Regression | — | — | — | Branch `codex/assurance-v011-fieldtest`; sichtbares Arbeitsfenster 2026-09-05. Kanonischer Scaffold und Publikationskopie korrigieren SDA-FT-001/002. Beobachtete Rot/Gruen-Tests, acht generierte Status-/Review-Oberflaechen, ordinale rohe SHA-256-Snapshots und native CI ergaenzt. Documentation Impact `UpdateRequired`, source-only, kein Home-Sync. Zahlenbasis und Produktions-/Test-/Dokumentationsmix stehen im generierten Profil 2; manuelle Referenzen 80 beziehungsweise 100 Zeilen/Arbeitstag. Release, TinyCalc-Integration und beide Feldtests bleiben getrennte Folgephasen. / Canonical patch and regressions; publication and field-test acceptance are not implied by local success. |
 | 2026-09-05 | Assurance v0.1.1: Release und Quellrepo-Installation | — | — | — | Branch `codex/assurance-v011-fieldtest`; sichtbares Fenster 2026-09-05. Native Linux-/macOS-/Windows-Gates, unabhaengiger Review, Paket-PR #2 MergeAndSync und unveraenderliches Tag-ZIP mit SHA-256 belegt. Optionale 13er-Matrix, installierte Kopie und acht erzeugte Oberflaechen aktualisiert; Body-Paritaet und Archivinstallation bestanden. Mix/Zeilenzahlen: generiertes Profil 2; manuelle Baselines 80/100 Zeilen pro Arbeitstag. Source-only, kein Home-Sync; TinyCalc und zwei fachliche Feldtests bleiben offen. / Verified package release and source installation; substantive field-test completion remains separate. |
 | 2026-09-05 | Assurance v0.1.2: skalare Risiko-ID / Scalar accepted-risk ID | 15 | 67 | Profil 2 | Branch `codex/assurance-v012-risk-id`, sichtbare Sitzung 2026-09-05. Enge Korrektur SDA-FT-003 in beiden kanonischen Validatoren mit identischem Export; 15 neue Validator- und 67 neue Testzeilen, Dokumentations-/Kopienmix im generierten Profil 2. Beobachtetes Rot/Gruen fuer Status und alle vier Reviews, neun ungueltige ID-Repraesentationen, gueltige Unicode-IDs und rohe Read-only-Snapshots. Manuelle Baselines 80/100 Zeilen pro Arbeitstag, keine Stoppuhrmessung. `UpdateRequired`, source-only, kein Home-Sync. Native CI, neuer unveraenderlicher Release und TinyCalc-Delivery folgen separat; keine Feldtest-Abnahme. / Narrow shared-boundary fix and regression; publication and substantive field tests remain separate gates. |
-| 2026-09-06 | Secure Development Assurance: Feldtestabschluss | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Das unveränderliche Preset v0.1.2 ist nach nativen Paket- und Installationsprüfungen sowie den seriellen TinyCalc-RL-SE- und GSDB-Läufen einschließlich ihrer Closeouts mit genau `ReleaseAccepted` bewertet. Der Bericht bindet TinyCalc PR #67 bis #71 und den GSDB-Closeout-Merge `94624918c455da86ec59af8e4153e764113725ad`; bekannte Spec-Kit-Remove-Grenze, 13 TinyCalc-Folgefindings und 42 Human-only-Zeilen bleiben sichtbar. Genau eine Community-Einreichung ist separat autorisiert und vorbereitet. Menschliche Freigaben, Image-Impact, Zertifizierungsbehauptungen sowie Auswahl und Rollout von Level-2-Repositories bleiben außerhalb des Auftrags. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 246 Nettozeilen. / Preset v0.1.2 is `ReleaseAccepted`; Community submission is separate, and no human approval or Level-2 rollout is inferred. |
+| 2026-09-06 | Secure Development Assurance: Feldtestabschluss | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Das unveränderliche Preset v0.1.2 ist nach nativen Paket- und Installationsprüfungen sowie den seriellen TinyCalc-RL-SE- und GSDB-Läufen einschließlich ihrer Closeouts mit genau `ReleaseAccepted` bewertet. Der Bericht bindet TinyCalc PR #67 bis #71 und den GSDB-Closeout-Merge `94624918c455da86ec59af8e4153e764113725ad`; bekannte Spec-Kit-Remove-Grenze, 13 TinyCalc-Folgefindings und 42 Human-only-Zeilen bleiben sichtbar. Genau eine Community-Einreichung ist separat autorisiert und inzwischen als `github/spec-kit#4455` erfolgt. Menschliche Freigaben, Image-Impact, Zertifizierungsbehauptungen sowie Auswahl und Rollout von Level-2-Repositories bleiben außerhalb des Auftrags. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 246 Nettozeilen. / Preset v0.1.2 is `ReleaseAccepted`; Community submission is separate, and no human approval or Level-2 rollout is inferred. |
+| 2026-09-06 | Secure Development Assurance: Community-Einreichungs-Handoff | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Die einzelne autorisierte v0.1.2-Einreichung ist als `github/spec-kit#4455` im offiziellen Community-Katalogprozess angelegt. Lokaler Feldbericht, Submission-Vorlage, Closure-Evidence und Evidence-Matrix binden den tatsächlichen Upstream-Zustand. Der erforderliche Draft-Katalog-PR entsteht laut aktuellem Upstream-Vertrag erst nach Maintainer-Triage automatisch; deshalb wurde kein manueller Parallel-PR erzeugt. Pilot-, Projekt-, Produkt-, Sandbox-, Flotten- und Zertifizierungsentscheidungen sowie die Auswahl von Level-2-Repositories bleiben getrennt. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 22 Nettozeilen. / The authorised submission is filed as `github/spec-kit#4455`; maintainer triage and the automated draft catalog PR remain upstream-owned. |
 
 ---
 
@@ -1125,25 +1126,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 710793 lines |
+| Textbasis / Text base | 710823 lines |
 | Textdateien / Text files | 3678 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-06 |
 | Aktivtage / Active days | 102 |
-| Relevante Commits / Relevant commits | 816 |
-| Zeilen je Aktivtag / Lines per active day | 6968.6 |
+| Relevante Commits / Relevant commits | 817 |
+| Zeilen je Aktivtag / Lines per active day | 6968.9 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 87.1x |
 | Speedup vs. 100 lines/day | 69.7x |
-| Methodik / Methodology | v2; source `e2d7a07d565c` |
+| Methodik / Methodology | v2; source `6b14f7048037` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   5.0% | 35645
-Dokumentation / Documentation   [##########..........]  48.8% | 346859
+Tests                           [#...................]   5.0% | 35652
+Dokumentation / Documentation   [##########..........]  48.8% | 346882
 Skripte / Scripts               [##..................]  10.1% | 71706
 Konfiguration / Configuration   [#######.............]  35.7% | 253488
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1277,15 +1278,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..73
-   cap 20000 | . . . . . . . . . .
-       16667 | . . . . . . . . . .
-       13333 | . . . . . # . . . .
-       10000 | . . . . . # . . . .
-        6667 | . . . # . # # . # .
-        3333 | . . # # . # # . # .
-           0 +---------------------
-             64 65 66 67 68 69 70 71 72 73
+Slots 64..74
+   cap 20000 | . . . . . . . . . . .
+       16667 | . . . . . . . . . . .
+       13333 | . . . . . # . . . . .
+       10000 | . . . . . # . . . . .
+        6667 | . . . # . # # . # . .
+        3333 | . . # # . # # . # . .
+           0 +-----------------------
+             64 65 66 67 68 69 70 71 72 73 74
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1364,6 +1365,7 @@ Slots 64..73
 | 71 | Verlinkte Intake-Reihenfolgen und Feature-Nachweise / Linked intake order and feature evidence | 2920 |
 | 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7295 |
 | 73 | Secure-Development-Assurance-Feldtestabschluss / Secure Development Assurance field-test closeout | 246 |
+| 74 | Secure-Development-Assurance-Community-Einreichung / Secure Development Assurance Community submission | 22 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1387,7 +1389,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 6968.6
+Visible repository [##############......] 6968.9
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1413,6 +1415,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-06. Es enthaelt 102 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 15155 |
+| 2026-09 | 15231 |
 
 <!-- project-statistics-v2:end -->

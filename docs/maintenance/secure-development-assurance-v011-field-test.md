@@ -95,6 +95,10 @@ validators; reassess when that scope changes.*
   [PR #70](https://github.com/hindermath/TinyCalc/pull/70) und
   [PR #71](https://github.com/hindermath/TinyCalc/pull/71) gemergt. TinyCalc
   `main` steht auf `94624918c455da86ec59af8e4153e764113725ad`.
+- P07: Die einzelne autorisierte Community-Einreichung wurde als
+  [github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455)
+  angelegt. Der Upstream-Draft-PR wird nach Maintainer-Triage durch die
+  offizielle Automation erzeugt; kein manueller Parallel-PR wurde erstellt.
 
 - SDA-FT-003: v0.1.1 ist seit dem bestaetigten Folgefund `PatchRequired`.
   Die Korrektur v0.1.2 ist als unveraenderlicher Prerelease veroeffentlicht;
@@ -399,11 +403,14 @@ defect.*
   noch Flottenfreigabe und begruendet keine C5-, ISO-, Konformitaets-,
   Testat- oder Zertifizierungsbehauptung.
 - Die Empfehlung autorisiert nur die getrennt beauftragte serielle
-  Community-Einreichung von v0.1.2. Sie waehlt keine Level-2-Repositories aus
-  und startet keinen Rollout.
+  Community-Einreichung von v0.1.2. Diese ist als
+  [github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455)
+  erfolgt und wartet auf die Upstream-Maintainer-Triage. Sie waehlt keine
+  Level-2-Repositories aus und startet keinen Rollout.
 
 *The known Spec Kit removal limitation and all TinyCalc follow-up and
-human-only findings remain visible. `ReleaseAccepted` authorises only the
-separately requested serial v0.1.2 Community submission. It grants no project,
-sandbox, product, fleet, compliance, attestation, certification, or Level-2
-rollout decision.*
+human-only findings remain visible. The separately requested serial v0.1.2
+Community submission is filed as `github/spec-kit#4455` and awaits upstream
+maintainer triage and its automated draft PR. It grants no project, sandbox,
+product, fleet, compliance, attestation, certification, or Level-2 rollout
+decision.*

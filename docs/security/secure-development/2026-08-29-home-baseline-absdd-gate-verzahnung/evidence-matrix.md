@@ -3,8 +3,8 @@
 | Gate | Lokale Evidence | Ergebnis | Nächste Entscheidung |
 |---|---|---|---|
 | baseline | Home Baseline 3.2.0, Zwölfer-Profil, ABSDD 3.1.0 | Ready | Delta prüfen |
-| delta | Vertrag, Befehle, Runbooks, Intake- und Serienlineage | Ready | Autorisierte Community-Einreichung von v0.1.2 ausführen |
-| closure | PR #264 technisch validiert; v0.1.2-Feldtest `ReleaseAccepted`; Copilot-Review durch Repository-Owner ausdrücklich abbedungen | NeedsRemediation | Community-Einreichung sowie Positionen 14–17 und menschliche Freigaben getrennt behandeln |
+| delta | Vertrag, Befehle, Runbooks, Intake- und Serienlineage | Ready | Upstream-Triage von `github/spec-kit#4455` abwarten |
+| closure | PR #264 technisch validiert; v0.1.2-Feldtest `ReleaseAccepted`; Community-Einreichung `github/spec-kit#4455`; Copilot-Review durch Repository-Owner ausdrücklich abbedungen | NeedsRemediation | Automatisierten Katalog-PR sowie Positionen 14–17 und menschliche Freigaben getrennt behandeln |
 | image-impact | ABSDD Commit 7adaeac; keine Änderung ausgeführt | NeedsRemediation | Position 17 separat autorisieren |
 
 Technische Validierung, Pilotfreigabe, Projektabnahme und allgemeine Freigabe
@@ -23,9 +23,9 @@ unveränderliche Tag-ZIP besitzt SHA-256
 Ein frisches temporäres Spec-Kit-Projekt bestätigte die vollständige
 13-Preset-Komposition, Bash-/PowerShell-Parität, den read-only Statuslauf, alle
 vier Reviews sowie Deaktivieren, Reaktivieren, Entfernen und Neuinstallation
-aus dem veröffentlichten ZIP. Der praktische Feldtest bleibt eine getrennte
-nächste Phase; Community-Einreichung und menschliche Freigaben wurden nicht
-ausgelöst.
+aus dem veröffentlichten ZIP. Zu diesem damaligen v0.1.0-Publikationsstand
+blieben praktischer Feldtest, Community-Einreichung und menschliche Freigaben
+getrennte, noch nicht ausgelöste Phasen.
 
 ## Feldtestabschluss v0.1.2 / Field-test Closeout v0.1.2
 
@@ -43,8 +43,12 @@ Evidence-Vertrag. Dreizehn TinyCalc-Folgefindings, 42 Human-only-Zeilen,
 Pilotfreigabe, Projektabnahme, Sandbox-/Produkt-/Flottenfreigabe sowie C5-,
 ISO-, Konformitäts-, Testat- oder Zertifizierungsbehauptungen bleiben davon
 unberührt. Am 2026-09-06 wurde genau eine Community-Einreichung von v0.1.2
-separat autorisiert. Welche Level-2-Repositories das Preset später erhalten,
-ist ausdrücklich keine Entscheidung dieses Abschlusses.
+separat autorisiert und als
+[github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455)
+angelegt. Der offizielle Draft-Katalog-PR entsteht erst nach
+Upstream-Maintainer-Triage automatisch; ein manueller Parallel-PR wurde nicht
+erstellt. Welche Level-2-Repositories das Preset später erhalten, ist
+ausdrücklich keine Entscheidung dieses Abschlusses.
 
 ## English
 
@@ -56,6 +60,8 @@ later ABSDD adoption and human authorizations have not been executed.
 The public releases are available. The immutable v0.1.2 archive passed package,
 installation, and two serial TinyCalc field-test runs with their causal
 closeouts. The preset field test is therefore concluded as `ReleaseAccepted`.
-Exactly one Community submission was authorised separately on 2026-09-06;
-human approvals, product findings, image impact, and every Level-2 rollout
-decision remain independent and open where previously recorded.
+Exactly one Community submission was authorised separately and filed as
+`github/spec-kit#4455` on 2026-09-06. Upstream maintainer triage and the
+automation-generated draft catalog PR remain pending. Human approvals, product
+findings, image impact, and every Level-2 rollout decision remain independent
+and open where previously recorded.

@@ -5,14 +5,14 @@
   "gate": "closure",
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
-  "updatedAt": "2026-09-06T17:59:56+02:00",
+  "updatedAt": "2026-09-06T18:30:44+02:00",
   "review": {
     "owner": "Thorsten Hindermann, repository owner",
     "reviewer": "Codex, technical validator",
     "reviewedAt": "2026-09-03T12:00:00+02:00",
     "reviewDue": "2027-09-03",
     "residualRisk": "Pilot, project, and general release remain separate open human decisions.",
-    "reevaluationTrigger": "Any new delivery head, pilot decision, project acceptance, or release authorization."
+    "reevaluationTrigger": "Any Community review finding, new delivery head, pilot decision, project acceptance, or release authorization."
   },
   "humanDecisions": {
     "technicalValidation": {
@@ -74,9 +74,9 @@
       "id": "CLOSE-005",
       "applicability": "Applicable",
       "implementation": "Fulfilled",
-      "evidence": "docs/maintenance/secure-development-assurance-v011-field-test.md; ReleaseAccepted for v0.1.2 after TinyCalc PRs #67 through #71",
-      "nextAction": "Submit v0.1.2 once to the GitHub Spec Kit Community Catalog under the separate owner authority from 2026-09-06.",
-      "owner": "Thorsten Hindermann, preset maintainer",
+      "evidence": "docs/maintenance/secure-development-assurance-v011-field-test.md; ReleaseAccepted for v0.1.2 after TinyCalc PRs #67 through #71; Community submission github/spec-kit#4455 opened under the separate 2026-09-06 owner authority",
+      "nextAction": "Await upstream maintainer triage of github/spec-kit#4455 and the official automation-generated draft catalog PR; do not create a parallel manual PR.",
+      "owner": "github/spec-kit maintainers for triage; Thorsten Hindermann for responses to findings",
       "dueAt": "2026-09-30"
     }
   ],
@@ -96,6 +96,6 @@
     }
   ],
   "outcome": "NeedsRemediation",
-  "nextAction": "Submit secure-development-assurance-governance v0.1.2 once to the GitHub Spec Kit Community Catalog under the separate 2026-09-06 owner authority; do not infer Level-2 rollout, pilot, project, general release, C5 readiness, or certification.",
+  "nextAction": "Await upstream maintainer triage of github/spec-kit#4455 and its official automation-generated draft catalog PR; do not create a parallel PR or infer Level-2 rollout, pilot, project, general release, C5 readiness, or certification.",
   "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
 }
