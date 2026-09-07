@@ -176,6 +176,7 @@
 | 2026-09-06 | Secure Development Assurance: Feldtestabschluss | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Das unveränderliche Preset v0.1.2 ist nach nativen Paket- und Installationsprüfungen sowie den seriellen TinyCalc-RL-SE- und GSDB-Läufen einschließlich ihrer Closeouts mit genau `ReleaseAccepted` bewertet. Der Bericht bindet TinyCalc PR #67 bis #71 und den GSDB-Closeout-Merge `94624918c455da86ec59af8e4153e764113725ad`; bekannte Spec-Kit-Remove-Grenze, 13 TinyCalc-Folgefindings und 42 Human-only-Zeilen bleiben sichtbar. Genau eine Community-Einreichung ist separat autorisiert und inzwischen als `github/spec-kit#4455` erfolgt. Menschliche Freigaben, Image-Impact, Zertifizierungsbehauptungen sowie Auswahl und Rollout von Level-2-Repositories bleiben außerhalb des Auftrags. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 246 Nettozeilen. / Preset v0.1.2 is `ReleaseAccepted`; Community submission is separate, and no human approval or Level-2 rollout is inferred. |
 | 2026-09-06 | Secure Development Assurance: Community-Einreichungs-Handoff | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Die einzelne autorisierte v0.1.2-Einreichung ist als `github/spec-kit#4455` im offiziellen Community-Katalogprozess angelegt. Lokaler Feldbericht, Submission-Vorlage, Closure-Evidence und Evidence-Matrix binden den tatsächlichen Upstream-Zustand. Der erforderliche Draft-Katalog-PR entsteht laut aktuellem Upstream-Vertrag erst nach Maintainer-Triage automatisch; deshalb wurde kein manueller Parallel-PR erzeugt. Pilot-, Projekt-, Produkt-, Sandbox-, Flotten- und Zertifizierungsentscheidungen sowie die Auswahl von Level-2-Repositories bleiben getrennt. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 22 Nettozeilen. / The authorised submission is filed as `github/spec-kit#4455`; maintainer triage and the automated draft catalog PR remain upstream-owned. |
 | 2026-09-06 | Preset-Produktquellen: Doppelpflege entfernt | — | — | Profil 2 | Documentation Impact `UpdateRequired`: 26 redundante Scaffold-Verzeichnisse mit 658 getrackten Dateien entfernt; 13 GitHub-Pakete mit Tag, Commit und Archiv-SHA-256 gebunden. Lokale Sonderaenderungen sind als Diffs gesichert. 635 geschuetzte Installations-, Profil- und Befehlsdateien bleiben bytegleich. Produktentwicklung erfolgt in eigenstaendigen GitHub-Repositories; bestehende zwoelf Presets und Assurance-Installationen bleiben unveraendert. Paket- und Profiltests laufen ausschliesslich temporaer. Kein Home-Sync, Flotten-Rollout oder weiterer Auftrag fuer Preset 13. / Retired 26 duplicate source trees; preserved existing installations and recorded published source provenance and local differences. |
+| 2026-09-07 | Assurance-v0.1.3-Rollout und Evidence-Indizes / Assurance rollout and evidence indexes | Zentraler Abschlussnachweis fuer fuenf autorisierte Level-2-Ziele und drei neue Matrizen mit je 157 bestehenden Kontrollbewertungen. Quellen-Lock, Profil-Pin und Quellenuebersicht auf dasselbe unveraenderliche v0.1.3-Archiv gebunden. 623 zentrale Installations-/Agentendateien unveraendert; kein Home-Sync. Der Konfigurationspfad ist homeRuntime, die bewusste Nichtverteilung ist dokumentiert. Technik: 13 hashgepruefte Pakete, Profile 8–13, Vertrags-/Negativ-/Paritaetstests und acht Befehlsoberflaechen bestanden; native PR-CI bleibt Merge-Gate. Genau drei gesondert genehmigte Hashkorrekturen in TuiVision, keine fachliche Neubewertung oder Freigabe. Root-Diff besteht aus Versionsbezuegen und Dokumentation, nicht neuer Produktlogik. Referenzen 80/100 Zeilen je Arbeitstag laut Konfiguration; Speedup ist Git-Lieferdichte, keine Stoppuhrmessung. / Central source references and delivery evidence for five targets and three 157-control indexes. No central installation, assessment, product logic, or human approval changes. Preserve 623 files; no Home sync. Verified release packages, profiles, parity and surfaces pass; exact-head native CI is required. Manual references are 80/100 lines per workday; speedup measures visible Git delivery density. |
 
 ---
 
@@ -1127,25 +1128,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 646272 lines |
-| Textdateien / Text files | 3024 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-06 |
-| Aktivtage / Active days | 102 |
-| Relevante Commits / Relevant commits | 818 |
-| Zeilen je Aktivtag / Lines per active day | 6336.0 |
+| Textbasis / Text base | 646667 lines |
+| Textdateien / Text files | 3025 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-07 |
+| Aktivtage / Active days | 103 |
+| Relevante Commits / Relevant commits | 819 |
+| Zeilen je Aktivtag / Lines per active day | 6278.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 79.2x |
-| Speedup vs. 100 lines/day | 63.4x |
-| Methodik / Methodology | v2; source `264a4f4917a1` |
+| Speedup vs. 80 lines/day | 78.5x |
+| Speedup vs. 100 lines/day | 62.8x |
+| Methodik / Methodology | v2; source `58cf2c283555` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.8% | 24781
-Dokumentation / Documentation   [##########..........]  49.3% | 318516
+Dokumentation / Documentation   [##########..........]  49.3% | 318911
 Skripte / Scripts               [##..................]   8.0% | 51464
 Konfiguration / Configuration   [########............]  38.5% | 248962
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1172,7 +1173,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```text
 Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
 So/Su  0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4
-Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 -
+Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3
 Di/Tu  0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 -
 Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 -
 Do/Th  0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 -
@@ -1376,8 +1377,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 79.2x
-100 lines/day      [#############.......] 63.4x
+80 lines/day       [################....] 78.5x
+100 lines/day      [#############.......] 62.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1390,7 +1391,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#############.......] 6336.0
+Visible repository [#############.......] 6278.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1399,9 +1400,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-06. Es enthaelt 102 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-07. Es enthaelt 103 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-14 and ends on 2026-09-06. It contains 102 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-14 and ends on 2026-09-07. It contains 103 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1416,6 +1417,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-06. Es enthaelt 102 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 81754 |
+| 2026-09 | 82163 |
 
 <!-- project-statistics-v2:end -->
