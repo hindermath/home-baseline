@@ -5,18 +5,22 @@ Entwicklung erfolgt direkt in ihren eigenstaendigen Git-Klonen. Die doppelten
 Home-Baseline-Scaffolds wurden am 2026-09-06 entfernt. Bestehende Installationen,
 Prioritaeten, Aktivierungszustaende und Profilzuordnungen bleiben unveraendert.
 Ueber jede weitere Verteilung des 13. Presets entscheidet Thorsten separat.
+Der danach ausdruecklich genehmigte [Fuenf-Repository-Rollout](../../docs/maintenance/assurance-level2-rollout-2026-09-06.md)
+verwendet Assurance v0.1.3; er erweitert den Verteilungsumfang nicht automatisch.
 
 The 13 public GitHub repositories are the sole product sources. Develop in
 their own Git clones. Duplicate Home Baseline scaffolds were retired on
 2026-09-06. Existing installations, priorities, enabled states, and profile
 assignments remain unchanged. Thorsten decides further distribution of preset 13.
+The separately authorized five-repository rollout linked above uses Assurance
+v0.1.3; it grants no automatic expansion to additional repositories.
 
 ## Verifizierte Quellen / Verified Sources
 
 | Preset | Tag | Produktquelle / Product source |
 |---|---|---|
 | security-governance | v0.6.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-security-governance/tree/v0.6.2) |
-| secure-development-assurance-governance | v0.1.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/tree/v0.1.2) |
+| secure-development-assurance-governance | v0.1.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/tree/v0.1.3) |
 | architecture-governance | v0.5.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-architecture-governance/tree/v0.5.2) |
 | isaqb-architecture-governance | v0.2.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/tree/v0.2.2) |
 | a11y-governance | v0.4.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-a11y-governance/tree/v0.4.3) |
@@ -29,7 +33,18 @@ assignments remain unchanged. Thorsten decides further distribution of preset 13
 | autonomous-run-governance | v0.4.1 | [GitHub](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/tree/v0.4.1) |
 | parallel-autonomous-run-governance | v0.2.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.6) |
 
-Assurance v0.1.2 wurde als [#4455](https://github.com/github/spec-kit/issues/4455)
+Die aktuelle Quellenbindung ist v0.1.3: das gesondert genehmigte unveraenderliche
+Patch-Prerelease korrigiert Kontextbindung und Risikotyp-Paritaet. Produkt-PR
+[#4](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/4)
+und der Rollout-Nachweis dokumentieren die Korrektur. Daraus entsteht keine
+neue Community-Einreichung und keine Aktualisierung weiterer Installationen.
+
+The current source pin is v0.1.3, the separately approved immutable patch
+prerelease correcting context binding and risk-type parity. Product PR #4 and
+the rollout record document the correction; no new community submission or
+update of additional installations is implied.
+
+Historie: Assurance v0.1.2 wurde als [#4455](https://github.com/github/spec-kit/issues/4455)
 eingereicht. Die Feldtests sind mit `ReleaseAccepted` abgeschlossen; GitHub
 kennzeichnet v0.1.2 weiterhin als Prerelease. Der konkrete Tag bleibt massgeblich,
 auch wenn `Latest` v0.1.0 anzeigt. Einreichung bedeutet noch keine Katalogaufnahme.
