@@ -1154,12 +1154,19 @@ project policy. Do not commit `.specify/presets/.cache/`. Preset updates MUST be
 verified with `specify preset list`, at least one `specify preset info`, and
 where relevant `specify preset resolve`.
 
-Local working clones of the published preset repositories live under
-`~/SpecKitPresetProjects/`. Canonical scaffolds in this repository live under
-`specs/spec-kit-presets/` and `specs/spec-kit-preset-repos/`. Preset
-improvements SHOULD be made in the home-baseline scaffold first, propagated to
-the affected standalone preset repositories, committed, pushed, and smoke-tested
-via the GitHub ZIP URL before use in dependent projects. Preset-rule changes
+Die 13 veroeffentlichten `hindermath/spec-kit-preset-*`-Repositories sind die
+alleinigen Produktquellen. Entwicklung erfolgt in ihren eigenen Git-Klonen
+unter `~/SpecKitPresetProjects/`; Home Baseline verwaltet Profile,
+Release-Bezuege und Projektintegrationen. Quellenbereinigung aendert keine
+bestehende Preset-Installation. Ueber weitere Verteilung des 13. Presets
+entscheidet Thorsten separat; auch Katalogaufnahme erteilt keine Rollout-Rechte.
+
+The 13 published preset repositories are the sole product sources. Develop,
+test, and release changes in their own Git working clones under
+`~/SpecKitPresetProjects/`. Home Baseline maintains profiles, pinned release
+references, and project integrations. Source cleanup preserves all existing
+installations. Thorsten decides further distribution of the thirteenth preset
+separately; catalog acceptance does not authorise rollout. Preset-rule changes
 MUST review whether `constitution.md`, `.specify/memory/constitution.md`,
 `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, and
 the relevant templates under `scripts/templates/` need matching updates.

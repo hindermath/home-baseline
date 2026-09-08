@@ -1,28 +1,61 @@
 ---
 name: speckit-secure-development-status
-description: Inspect one secure-development evidence context without changing files
-compatibility: Requires a Spec Kit project and the secure-development assurance preset
+description: Secure-Development-Evidence vollständig und strikt read-only prüfen
+compatibility: Requires spec-kit project structure with .specify/ directory
 metadata:
   author: github-spec-kit
   source: preset:secure-development-assurance-governance
 ---
 
+# Speckit Secure Development Status Skill
+
 # Secure Development Status
 
-Syntax: $speckit-secure-development-status [<evidence-dir>]
+Syntax:
+
+~~~text
+$speckit-secure-development-status [<evidence-dir>]
+~~~
 
 Prüfe das ausdrücklich angegebene Evidence-Verzeichnis. Fehlt der Parameter,
 verwende das lexikografisch neueste Verzeichnis unter
-docs/security/secure-development/. Führe auf Windows das PowerShell-Skript und
-auf macOS/Linux das Bash-Skript dieses Presets mit status aus.
+`docs/security/secure-development/`.
+
+Führe vom Projektwurzelverzeichnis auf Windows
+`pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1`
+mit `-Action Status` und gegebenenfalls `-EvidenceDirectory <evidence-dir>` aus.
+Führe auf macOS/Linux
+`bash .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh status`
+mit dem optionalen Evidence-Verzeichnis als letztem Argument aus.
+
+Die vollständigen installierten Pfade sind verbindlich. Das Top-Level-
+Skriptverzeichnis wird bei der Agentengenerierung umgeschrieben und ist kein
+Preset-Pfad.
 
 Der Befehl ist strikt read-only. Er darf keine Evidence, Richtlinie,
-Checkliste, Freigabe, Git- oder Remote-Zustände verändern. Berichte den
-Kontext, die vier Gates, das Gesamtergebnis, die vier getrennten
-Entscheidungsstände und die exakte nächste Aktion textorientiert.
+Checkliste, Baseline, Freigabe, Git- oder Remote-Zustände verändern.
+
+Berichte textorientiert und in stabiler Reihenfolge:
+
+1. den ausgewählten Kontext;
+2. Baseline-, Delta-, Closure- und Image-Impact-Ergebnis;
+3. das strengste Gesamtergebnis;
+4. `technicalValidation`, `pilotAuthorization`, `projectAcceptance` und
+   `generalRelease` getrennt;
+5. die exakt dokumentierte nächste Aktion.
+
+Blockiere bei fehlenden Quellen, Drift, ungültigen Statuskombinationen,
+abgelaufenen Reviews, unvollständigen Risiken, fehlender
+`security-governance`-Voraussetzung oder unzulässigen
+Zertifizierungsbehauptungen. Erfolgreiche technische Validierung darf niemals
+als menschliche Freigabe ausgegeben werden.
 
 ## English
 
-Inspect the selected evidence directory without changing it. Report all four
-gates and all four human decision boundaries separately. Never infer an
-approval from successful technical validation.
+Run the explicit installed validator path from the project root using Bash
+or PowerShell. Do not shorten it to a top-level scripts directory: command
+generation rewrites that directory to a different location.
+Inspect the selected evidence directory without changing it. Validate the
+complete baseline binding and all four gates. Report every gate, the worst
+overall outcome, all four human decision boundaries, and the exact recorded
+next action. Never infer an approval or certification from technical success.

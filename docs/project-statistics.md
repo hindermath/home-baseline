@@ -168,6 +168,16 @@
 | 2026-08-29 | Feature 031 GitHub-Copilot-Review-Governance | — | — | — | Documentation Impact `UpdateRequired` plus `GeneratedUpdate`: Die persönliche Accountautomation ist deaktiviert; genau acht benannte Repository-/Default-Branch-Ziele besitzen aktive dedizierte Copilot-Review-Rulesets mit Draft- und Push-Re-Review aus sowie Effort `Lite`. 16 dedizierte Nichtzielrulesets bleiben rollbackfähig vorhanden und sind deaktiviert; null Regeln wurden gelöscht. Exact-ID-Gates begrenzten 25 Providerwrites, danach meldeten frische Vollinventur und zweiter Plan `drift=0`, `writes=0`. Native Ubuntu-/Windows-Proofs und die einmalige post-provider Matrix mit 71/71 Verträgen sind grün. Das bis 2026-09-01 ausgeschöpfte Copilot-Kontingent bleibt ein eigener `Supplemental/Open`-Refusal: kein künstlicher PR, wirkungsloser Reviewer-Request oder Kauf wurde erzeugt. Das Delta vor Statistikpflege umfasst 15 206 Nettozeilen. Primäre Delivery, Merge, Home-Sync und kausaler Series-Closeout folgen in den verbleibenden Tasks. |
 | 2026-08-29 | Home-Baseline–ABSDD-Secure-Development-Gate-Verzahnung | — | — | — | Documentation Impact `GeneratedUpdate`: Ein neuer Schema-2.0-Intake bindet Issue #263, die unveränderten Referenzen Issue #249 und Draft-PR #250 am exakten Head, Home Baseline und den ABSDD-Ausgangscommit. Die sechs Intakes der Positionen 7, 8 und 14 bis 17 behalten ihre Intake-IDs; Vorgängerziele und Receipts sind bytegleich archiviert, der alte Sammelreview ist hashgebunden invalidiert. Die aktive Serie bleibt unverändert bei 33 Zielen, 3 Roots und 37 Kanten; nur sechs Zielhashes sowie Quellen- und Receipt-Evidence wurden erneuert. Der neue Vertrag trennt vier Gates, zwei Bewertungsachsen, vier Ergebnisse und vier Freigabeentscheidungen. Das optionale Dreizehner-Profil ergänzt das Zwölfer-Profil auf Priorität 15 und stellt genau zwei Befehle bereit. HOSK/GWDG bleibt ExternalComparison-only. ABSDD-Imageprüfungen und menschliche Freigaben bleiben `Open/Not Assessed`; kein Home-Sync, Merge, Image-Build oder nachgelagerter Spec-Kit-Lauf wurde ausgeführt. Das Delta vor Statistikpflege umfasst 7 054 geänderte Textzeilen. |
 | 2026-09-01 | Intake für verlinkte Abarbeitungsreihenfolgen und Feature-Nachweise | — | — | — | Documentation Impact `UpdateRequired`: Ein neues zentrales Level-0-Lastenheft hält die Harmonisierung von Intake-Dateilinks, typisierten Abhängigkeiten und abgeschlossenen Spec-Kit-Feature-Nachweisen in `home-baseline`, `agent-operations-cockpit`, TinyPl0, TinyCalc, TuiVision, InventarWorkerService und `absdd-image-sandbox` fest. TuiVision bewahrt zehn `Completed`-Intakes, die Feature-Zuordnung `037` bis `046`, sechs Kanten und den getrennten `DeferredOptional`-NuGet-Backlog. Die stabile sichtbare Kennung Position 39 ist als `vorgezogen / promoted` auf aktiven Manifestplatz 1 sowie `Primary`, Root und einziges deklariertes `Eligible` umgebucht; G4 steht ohne Abschlussbehauptung als `OrderedMember` und `Pending` auf Platz 2. Die frühere beratende Kante von Position 38 wurde durch `Position 39 -> G4` mit `PreferredSerialOrder`, `binding: false` ersetzt. Die aktive Serie bleibt bei 34 Zielen, drei Roots und 38 Abhängigkeiten. Vorgänger-Intake, Receipts, Manifest und Review sind bytegleich archiviert beziehungsweise ausdrücklich invalidiert; neue Authoring-/Series-Receipts, Operationsjournal und Single-Review sind hashgebunden. Der neue Review ist `Ready` mit null Findings, Risiken oder offenen Fragen. Specify und die spätere Sieben-Repository-Implementierung wurden nicht gestartet; der getrennte aktuelle `MergeAndSync`-Auftrag veröffentlicht ausschließlich den Level-0-Governance-Kandidaten. Die Änderung bleibt `source-only`, daher ist kein Home-Sync erforderlich. Das Delta vor Statistikpflege umfasst 2 920 geänderte Textzeilen. |
+| 2026-09-03 | Secure Development Assurance Governance v0.1.0 | — | — | — | Documentation Impact `UpdateRequired`: Das zuvor unveröffentlichte Preset ist als ausführlich dokumentiertes, Deutsch-zuerst/Englisch-danach aufgebautes Dreizehn-Preset-Modul für vier Secure-Development-Assurance-Gates gehärtet und öffentlich als `v0.1.0` veröffentlicht. Bash und PowerShell validieren Baseline-, Versions- und normalisierte Hashbindungen, zwölf eindeutige Checklisten, Statuskombinationen, Review- und Risikodaten, vier voneinander unabhängige menschliche Entscheidungen, Image-Impact und die Abhängigkeit `security-governance >=0.6.1` mit gleichen Statusklassen und Exitcodes. Positive und negative Fixtures, BOM/CRLF-Normalisierung, PSScriptAnalyzer, Dokumentgeneratoren und Bytegleichheit sind grün. Das unveränderliche GitHub-Tag-ZIP mit SHA-256 `d9effc395e590d1ffe832d059f8681501da1d1b6e7d44d79a3e61929bc5229c1` bestand in einem frischen Projekt die vollständige 13-Preset-Installation, Status- und Vier-Gate-Cross-Shell-Prüfung sowie Deaktivierung, Reaktivierung, Entfernung und Neuinstallation. `CL-02-13` und weitere Maßnahmen liefern C5-relevante Entwicklungsevidence; das Preset bewertet ausdrücklich weder den vollständigen C5-Kriterienkatalog noch Konformität, Testatreife oder Zertifizierung. Die vorhandene Evidence ist ohne automatische Änderung von Richtlinien, Checklisten oder menschlichen Freigaben migriert. Source-only-Änderungen benötigen keinen Home-Sync. Das vollständige Delta vor Statistikpflege umfasst 7 295 Nettozeilen. Die praktische Feldtestphase bleibt offen; eine Community-Einreichung, ein Katalog-PR und eine Ansprache von `@mnriem` bleiben bis zu einem späteren ausdrücklichen Auftrag ausgeschlossen. |
+
+| 2026-09-05 | Assurance v0.1.1: Pfad- und Read-only-Regression | — | — | — | Branch `codex/assurance-v011-fieldtest`; sichtbares Arbeitsfenster 2026-09-05. Kanonischer Scaffold und Publikationskopie korrigieren SDA-FT-001/002. Beobachtete Rot/Gruen-Tests, acht generierte Status-/Review-Oberflaechen, ordinale rohe SHA-256-Snapshots und native CI ergaenzt. Documentation Impact `UpdateRequired`, source-only, kein Home-Sync. Zahlenbasis und Produktions-/Test-/Dokumentationsmix stehen im generierten Profil 2; manuelle Referenzen 80 beziehungsweise 100 Zeilen/Arbeitstag. Release, TinyCalc-Integration und beide Feldtests bleiben getrennte Folgephasen. / Canonical patch and regressions; publication and field-test acceptance are not implied by local success. |
+| 2026-09-05 | Assurance v0.1.1: Release und Quellrepo-Installation | — | — | — | Branch `codex/assurance-v011-fieldtest`; sichtbares Fenster 2026-09-05. Native Linux-/macOS-/Windows-Gates, unabhaengiger Review, Paket-PR #2 MergeAndSync und unveraenderliches Tag-ZIP mit SHA-256 belegt. Optionale 13er-Matrix, installierte Kopie und acht erzeugte Oberflaechen aktualisiert; Body-Paritaet und Archivinstallation bestanden. Mix/Zeilenzahlen: generiertes Profil 2; manuelle Baselines 80/100 Zeilen pro Arbeitstag. Source-only, kein Home-Sync; TinyCalc und zwei fachliche Feldtests bleiben offen. / Verified package release and source installation; substantive field-test completion remains separate. |
+| 2026-09-05 | Assurance v0.1.2: skalare Risiko-ID / Scalar accepted-risk ID | 15 | 67 | Profil 2 | Branch `codex/assurance-v012-risk-id`, sichtbare Sitzung 2026-09-05. Enge Korrektur SDA-FT-003 in beiden kanonischen Validatoren mit identischem Export; 15 neue Validator- und 67 neue Testzeilen, Dokumentations-/Kopienmix im generierten Profil 2. Beobachtetes Rot/Gruen fuer Status und alle vier Reviews, neun ungueltige ID-Repraesentationen, gueltige Unicode-IDs und rohe Read-only-Snapshots. Manuelle Baselines 80/100 Zeilen pro Arbeitstag, keine Stoppuhrmessung. `UpdateRequired`, source-only, kein Home-Sync. Native CI, neuer unveraenderlicher Release und TinyCalc-Delivery folgen separat; keine Feldtest-Abnahme. / Narrow shared-boundary fix and regression; publication and substantive field tests remain separate gates. |
+| 2026-09-06 | Secure Development Assurance: Feldtestabschluss | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Das unveränderliche Preset v0.1.2 ist nach nativen Paket- und Installationsprüfungen sowie den seriellen TinyCalc-RL-SE- und GSDB-Läufen einschließlich ihrer Closeouts mit genau `ReleaseAccepted` bewertet. Der Bericht bindet TinyCalc PR #67 bis #71 und den GSDB-Closeout-Merge `94624918c455da86ec59af8e4153e764113725ad`; bekannte Spec-Kit-Remove-Grenze, 13 TinyCalc-Folgefindings und 42 Human-only-Zeilen bleiben sichtbar. Genau eine Community-Einreichung ist separat autorisiert und inzwischen als `github/spec-kit#4455` erfolgt. Menschliche Freigaben, Image-Impact, Zertifizierungsbehauptungen sowie Auswahl und Rollout von Level-2-Repositories bleiben außerhalb des Auftrags. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 246 Nettozeilen. / Preset v0.1.2 is `ReleaseAccepted`; Community submission is separate, and no human approval or Level-2 rollout is inferred. |
+| 2026-09-06 | Secure Development Assurance: Community-Einreichungs-Handoff | — | — | Profil 2 | Documentation Impact `UpdateRequired`: Die einzelne autorisierte v0.1.2-Einreichung ist als `github/spec-kit#4455` im offiziellen Community-Katalogprozess angelegt. Lokaler Feldbericht, Submission-Vorlage, Closure-Evidence und Evidence-Matrix binden den tatsächlichen Upstream-Zustand. Der erforderliche Draft-Katalog-PR entsteht laut aktuellem Upstream-Vertrag erst nach Maintainer-Triage automatisch; deshalb wurde kein manueller Parallel-PR erzeugt. Pilot-, Projekt-, Produkt-, Sandbox-, Flotten- und Zertifizierungsentscheidungen sowie die Auswahl von Level-2-Repositories bleiben getrennt. Source-only, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 22 Nettozeilen. / The authorised submission is filed as `github/spec-kit#4455`; maintainer triage and the automated draft catalog PR remain upstream-owned. |
+| 2026-09-06 | Preset-Produktquellen: Doppelpflege entfernt | — | — | Profil 2 | Documentation Impact `UpdateRequired`: 26 redundante Scaffold-Verzeichnisse mit 658 getrackten Dateien entfernt; 13 GitHub-Pakete mit Tag, Commit und Archiv-SHA-256 gebunden. Lokale Sonderaenderungen sind als Diffs gesichert. 635 geschuetzte Installations-, Profil- und Befehlsdateien bleiben bytegleich. Produktentwicklung erfolgt in eigenstaendigen GitHub-Repositories; bestehende zwoelf Presets und Assurance-Installationen bleiben unveraendert. Paket- und Profiltests laufen ausschliesslich temporaer. Kein Home-Sync, Flotten-Rollout oder weiterer Auftrag fuer Preset 13. / Retired 26 duplicate source trees; preserved existing installations and recorded published source provenance and local differences. |
+| 2026-09-07 | Assurance-v0.1.3-Rollout und Evidence-Indizes / Assurance rollout and evidence indexes | Zentraler Abschlussnachweis fuer fuenf autorisierte Level-2-Ziele und drei neue Matrizen mit je 157 bestehenden Kontrollbewertungen. Quellen-Lock, Profil-Pin und Quellenuebersicht auf dasselbe unveraenderliche v0.1.3-Archiv gebunden. 623 zentrale Installations-/Agentendateien unveraendert; kein Home-Sync. Der Konfigurationspfad ist homeRuntime, die bewusste Nichtverteilung ist dokumentiert. Technik: 13 hashgepruefte Pakete, Profile 8–13, Vertrags-/Negativ-/Paritaetstests und acht Befehlsoberflaechen bestanden; native PR-CI bleibt Merge-Gate. Genau drei gesondert genehmigte Hashkorrekturen in TuiVision, keine fachliche Neubewertung oder Freigabe. Root-Diff besteht aus Versionsbezuegen und Dokumentation, nicht neuer Produktlogik. Referenzen 80/100 Zeilen je Arbeitstag laut Konfiguration; Speedup ist Git-Lieferdichte, keine Stoppuhrmessung. / Central source references and delivery evidence for five targets and three 157-control indexes. No central installation, assessment, product logic, or human approval changes. Preserve 623 files; no Home sync. Verified release packages, profiles, parity and surfaces pass; exact-head native CI is required. Manual references are 80/100 lines per workday; speedup measures visible Git delivery density. |
+| 2026-09-08 | Assurance-v0.1.3-Feldtestkonsolidierung / Assurance v0.1.3 field-test consolidation | Fuenf projektbezogene Feldberichte und ihre gemergten Exact-Head-Lieferungen sind zentral als `5/5 ReleaseAccepted` fuer die technische Funktionsfaehigkeit des unveraenderten Presets gebunden. Einheitliche technische Wiedervorlage ist 2027-09-08; C5, CRA und formale Produktkonformitaet sind im nichtkommerziellen Ausbildungs-/Beispielscope `N/A`, regulatorische Scope-Wiedervorlage ist 2026-12-31. Human-only-Entscheidungen bleiben `Open`. Die zentrale Preset-Empfehlung bleibt bis zum Upstream-Ergebnis von `github/spec-kit#4455` ausdruecklich unerzeugt; Pre-Release und Community-Issue wurden nicht veraendert. Documentation Impact `UpdateRequired`, `sourceOnly`, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 284 Nettozeilen. / Five project reports are centrally bound as `5/5 ReleaseAccepted` for unchanged preset behavior; central acceptance remains pending the upstream issue, with no wider approval or runtime distribution. |
 
 ---
 
@@ -1119,29 +1129,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 700725 lines |
-| Textdateien / Text files | 3660 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-07..2026-09-01 |
-| Aktivtage / Active days | 99 |
-| Relevante Commits / Relevant commits | 794 |
-| Zeilen je Aktivtag / Lines per active day | 7078.0 |
+| Textbasis / Text base | 646959 lines |
+| Textdateien / Text files | 3027 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-08 |
+| Aktivtage / Active days | 104 |
+| Relevante Commits / Relevant commits | 822 |
+| Zeilen je Aktivtag / Lines per active day | 6220.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 88.5x |
-| Speedup vs. 100 lines/day | 70.8x |
-| Methodik / Methodology | v2; source `2fe3079419ee` |
+| Speedup vs. 80 lines/day | 77.8x |
+| Speedup vs. 100 lines/day | 62.2x |
+| Methodik / Methodology | v2; source `3b93896fe3bd` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.8% | 33385
-Dokumentation / Documentation   [##########..........]  48.6% | 340699
-Skripte / Scripts               [##..................]  10.0% | 70106
-Konfiguration / Configuration   [#######.............]  36.2% | 253440
+Tests                           [#...................]   3.8% | 24781
+Dokumentation / Documentation   [##########..........]  49.3% | 319203
+Skripte / Scripts               [##..................]   8.0% | 51464
+Konfiguration / Configuration   [########............]  38.5% | 248962
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.1% | 858
+Sonstiger Text / Other text     [#...................]   0.0% | 312
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1151,7 +1161,7 @@ Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozen
 ### Tagesaktivitaet / Daily Activity
 
 ```text
-Wochen / Weeks 01..26 | 2025-09-07..2026-03-07
+Wochen / Weeks 01..26 | 2025-09-14..2026-03-14
 So/Su  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Mo/Mo  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Di/Tu  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -1162,14 +1172,14 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```
 
 ```text
-Wochen / Weeks 27..52 | 2026-03-08..2026-09-05
-So/Su  0 0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0
-Mo/Mo  0 0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0
-Di/Tu  0 0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4
-Mi/We  0 0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 -
-Do/Th  0 0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 -
-Fr/Fr  0 0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 -
-Sa/Sa  0 0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 -
+Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
+So/Su  0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4
+Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3
+Di/Tu  0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2
+Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 -
+Do/Th  0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 -
+Fr/Fr  0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 -
+Sa/Sa  0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 -
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1179,18 +1189,18 @@ DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaend
 ### Wochenvolumen / Weekly Volume
 
 ```text
-Wochen / Weeks 01..26 | 2025-09-07..2026-03-07
+Wochen / Weeks 01..26 | 2025-09-14..2026-03-14
 Keine Aktivitaet / No activity
 ```
 
 ```text
-Wochen / Weeks 27..52 | 2026-03-08..2026-09-05
+Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
   cap 500000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       416667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      250000 | . . . . . . . . . . . . . . . . . . . . # . . . . .
-      166667 | . . . . . . . . . . . . . . . . . . . . # . . . . .
-       83333 | . . . . . . . . . . . . . . . . . # . # # . . . . .
+      250000 | . . . . . . . . . . . . . . . . . . . # . . . . . .
+      166667 | . . . . . . . . . . . . . . . . . . . # . . . . . .
+       83333 | . . . . . . . . . . . . . . . . # . # # . . . . . .
            0 +-----------------------------------------------------
 ```
 
@@ -1201,18 +1211,18 @@ Das Wochenvolumen zeigt Additionen plus Loeschungen. Es ist Aenderungsaktivitaet
 ### Kumulative Entwicklung / Cumulative Development
 
 ```text
-Wochen / Weeks 01..26 | 2025-09-07..2026-03-07
+Wochen / Weeks 01..26 | 2025-09-14..2026-03-14
 Keine Aktivitaet / No activity
 ```
 
 ```text
-Wochen / Weeks 27..52 | 2026-03-08..2026-09-05
+Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
  cap 1000000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      833333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      666667 | . . . . . . . . . . . . . . . . . . . . # # # # # #
-      500000 | . . . . . . . . . . . . . . . . . . . . # # # # # #
-      333333 | . . . . . . . . . . . . . . . . . . . # # # # # # #
-      166667 | . . . . . . . . . . . . . . . . . # # # # # # # # #
+      833333 | . . . . . . . . . . . . . . . . . . . . . . . . . #
+      666667 | . . . . . . . . . . . . . . . . . . . # # # # # # #
+      500000 | . . . . . . . . . . . . . . . . . . . # # # # # # #
+      333333 | . . . . . . . . . . . . . . . . . . # # # # # # # #
+      166667 | . . . . . . . . . . . . . . . . # # # # # # # # # #
            0 +-----------------------------------------------------
 ```
 
@@ -1271,15 +1281,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..71
-   cap 20000 | . . . . . . . .
-       16667 | . . . . . . . .
-       13333 | . . . . . # . .
-       10000 | . . . . . # . .
-        6667 | . . . # . # # .
-        3333 | . . # # . # # .
-           0 +-----------------
-             64 65 66 67 68 69 70 71
+Slots 64..75
+   cap 20000 | . . . . . . . . . . . .
+       16667 | . . . . . . . . . . . .
+       13333 | . . . . . # . . . . . .
+       10000 | . . . . . # . . . . . .
+        6667 | . . . # . # # . # . . .
+        3333 | . . # # . # # . # . . .
+           0 +-------------------------
+             64 65 66 67 68 69 70 71 72 73 74 75
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1356,6 +1366,10 @@ Slots 64..71
 | 69 | GitHub-Copilot-Review-Governance / GitHub Copilot review governance | 15206 |
 | 70 | ABSDD-Secure-Development-Gate-Verzahnung / ABSDD secure-development gate integration | 7054 |
 | 71 | Verlinkte Intake-Reihenfolgen und Feature-Nachweise / Linked intake order and feature evidence | 2920 |
+| 72 | Secure-Development-Assurance-v0.1.0-Veröffentlichung / Secure Development Assurance v0.1.0 publication | 7295 |
+| 73 | Secure-Development-Assurance-Feldtestabschluss / Secure Development Assurance field-test closeout | 246 |
+| 74 | Secure-Development-Assurance-Community-Einreichung / Secure Development Assurance Community submission | 22 |
+| 75 | Secure-Development-Assurance-v0.1.3-Feldtestkonsolidierung / Secure Development Assurance v0.1.3 field-test consolidation | 284 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1365,8 +1379,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##################..] 88.5x
-100 lines/day      [##############......] 70.8x
+80 lines/day       [################....] 77.8x
+100 lines/day      [############........] 62.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1379,7 +1393,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [##############......] 7078.0
+Visible repository [############........] 6220.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1388,9 +1402,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-01. Es enthaelt 99 aktive und 261 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-08. Es enthaelt 104 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-07 and ends on 2026-09-01. It contains 99 active and 261 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-14 and ends on 2026-09-08. It contains 104 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1405,6 +1419,6 @@ DE: Das Fenster beginnt am 2025-09-07 und endet am 2026-09-01. Es enthaelt 99 ak
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 2931 |
+| 2026-09 | 82469 |
 
 <!-- project-statistics-v2:end -->

@@ -5,12 +5,20 @@
   "gate": "closure",
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
-  "updatedAt": "2026-08-29T19:21:15+02:00",
+  "updatedAt": "2026-09-06T18:30:44+02:00",
+  "review": {
+    "owner": "Thorsten Hindermann, repository owner",
+    "reviewer": "Codex, technical validator",
+    "reviewedAt": "2026-09-03T12:00:00+02:00",
+    "reviewDue": "2027-09-03",
+    "residualRisk": "Pilot, project, and general release remain separate open human decisions.",
+    "reevaluationTrigger": "Any Community review finding, new delivery head, pilot decision, project acceptance, or release authorization."
+  },
   "humanDecisions": {
     "technicalValidation": {
       "status": "Fulfilled",
       "authority": "Thorsten Hindermann, repository owner",
-      "evidence": "PR #264 local and GitHub CI validation; Copilot review explicitly waived by the repository owner on 2026-08-29"
+      "evidence": "PR #264 merge bc3517dea014d17c091ad0b67932ef9833d17378; Preset v0.1.2 field-test result ReleaseAccepted with TinyCalc PRs #67 through #71 merged"
     },
     "pilotAuthorization": {
       "status": "Open",
@@ -33,25 +41,43 @@
       "id": "CLOSE-001",
       "applicability": "Applicable",
       "implementation": "Fulfilled",
-      "evidence": "PR #264 final-head validation is required before the authorized merge"
+      "evidence": "PR #264 merged as bc3517dea014d17c091ad0b67932ef9833d17378 after final-head validation"
     },
     {
       "id": "CLOSE-002",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "Human pilot authorization pending"
+      "evidence": "Human pilot authorization pending",
+      "nextAction": "Obtain an explicit decision from the named pilot owner.",
+      "owner": "Named pilot owner",
+      "dueAt": "2026-12-31"
     },
     {
       "id": "CLOSE-003",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "ABSDD project acceptance pending"
+      "evidence": "ABSDD project acceptance pending",
+      "nextAction": "Obtain an explicit project-acceptance decision.",
+      "owner": "ABSDD project owner",
+      "dueAt": "2026-12-31"
     },
     {
       "id": "CLOSE-004",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "General release explicitly outside this delivery"
+      "evidence": "General release explicitly outside this delivery",
+      "nextAction": "Keep general release blocked until separately authorized.",
+      "owner": "Authorized sandbox/product/fleet governance",
+      "dueAt": "2026-12-31"
+    },
+    {
+      "id": "CLOSE-005",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/secure-development-assurance-v011-field-test.md; ReleaseAccepted for v0.1.2 after TinyCalc PRs #67 through #71; Community submission github/spec-kit#4455 opened under the separate 2026-09-06 owner authority",
+      "nextAction": "Await upstream maintainer triage of github/spec-kit#4455 and the official automation-generated draft catalog PR; do not create a parallel manual PR.",
+      "owner": "github/spec-kit maintainers for triage; Thorsten Hindermann for responses to findings",
+      "dueAt": "2026-09-30"
     }
   ],
   "acceptedRisks": [
@@ -60,12 +86,16 @@
       "scope": "Copilot review omission for PR #264 only",
       "authority": "Thorsten Hindermann, repository owner",
       "acceptedAt": "2026-08-29T19:21:15+02:00",
+      "owner": "Thorsten Hindermann, repository owner",
+      "reviewer": "Codex, technical validator",
+      "reviewedAt": "2026-09-03T12:00:00+02:00",
+      "reviewDue": "2027-09-03",
       "rationale": "The repository owner explicitly instructed Codex to skip the Copilot review after the single REST review request produced no review.",
       "residualRisk": "No independent Copilot review exists for the final PR head; dual-shell validators, secret scanning and the complete GitHub CI matrix remain mandatory mitigations.",
       "reevaluationTrigger": "Any material security-relevant change after the final validated PR head."
     }
   ],
   "outcome": "NeedsRemediation",
-  "nextAction": "Merge PR #264 only after final-head checks; do not infer pilot, project, or general release.",
+  "nextAction": "Await upstream maintainer triage of github/spec-kit#4455 and its official automation-generated draft catalog PR; do not create a parallel PR or infer Level-2 rollout, pilot, project, general release, C5 readiness, or certification.",
   "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
 }

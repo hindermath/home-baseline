@@ -45,6 +45,127 @@
       "risk": "ABSDD image checks and all human approvals remain Open/Not Assessed until their later authorized phases.",
       "criticality": "Security",
       "reevaluationTrigger": "Baseline 3.3 adoption, preset release, ABSDD image change, changed decision authority, or fleet rollout."
+    },
+    {
+      "changeId": "CHG263002",
+      "scope": "Secure Development Assurance Governance v0.1.0 public-release hardening, detailed user guidance, evidence migration, validator parity, C5 boundary, and deferred Community submission",
+      "decision": "UpdateRequired",
+      "rationale": "The public evidence contract, command behavior, error handling, field-test path, and certification boundary changed materially and must be documented with the implementation.",
+      "documents": [
+        ".specify/presets/secure-development-assurance-governance/README.md",
+        ".specify/presets/secure-development-assurance-governance/templates/secure-development-evidence-contract.md",
+        ".specify/presets/secure-development-assurance-governance/commands/",
+        ".specify/presets/secure-development-assurance-governance/docs/",
+        "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/"
+      ],
+      "owner": "Home Baseline and preset maintainers",
+      "audiences": [
+        "Developers",
+        "Learners",
+        "Maintainers",
+        "Security reviewers",
+        "Project and release owners"
+      ],
+      "readerPaths": [
+        "Preset README to installation to status command",
+        "Preset README to evidence contract to gate review",
+        "Preset README to BSI C5 boundary to project-owned CL-02-13 evidence",
+        "Release archive to field-test runbook to later submission decision"
+      ],
+      "canonicalSource": "Lastenheft_Preset-Secure-Development-Assurance-Governance.md and .specify/presets/secure-development-assurance-governance/",
+      "navigationImpact": "The public preset README becomes the primary product entry and links the dedicated field-test runbook.",
+      "documentClass": "PublicProductAndSecurityEvidence",
+      "languageStrategy": "German first, English second; commands, paths, enum values, hashes, and IDs remain language-neutral.",
+      "languagePartners": [
+        "Bilingual sections in README, contract, command surfaces, manpage, and field-test runbook"
+      ],
+      "platformAndExampleProof": "A generated isolated fixture validates Bash and PowerShell parity, positive and negative contracts, read-only status, LF, CRLF, and UTF-8 BOM.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": ".specify/presets/secure-development-assurance-governance/tests/test-secure-development-assurance.ps1",
+      "risk": "The release validates evidence consistency but does not establish C5 readiness, certification, pilot authorization, project acceptance, or general release.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Field-test finding, baseline change, validator-contract change, patch release, or separately authorized Community submission."
+    },
+    {
+      "changeId": "CHG263003",
+      "scope": "Public v0.1.0 repository, protected tag and release, immutable archive hash, published-package verification, and field-test handoff",
+      "decision": "UpdateRequired",
+      "rationale": "The public delivery and its reproducible verification are now material operator and audit facts; aggregate installation guidance must use the released immutable versions.",
+      "documents": [
+        "Lastenheft_Preset-Secure-Development-Assurance-Governance.md",
+        "specs/spec-kit-presets/README.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/preset-release-v0.1.0.json",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Home Baseline and preset maintainers",
+      "audiences": [
+        "Developers",
+        "Maintainers",
+        "Security reviewers",
+        "Field-test owners"
+      ],
+      "readerPaths": [
+        "Preset matrix to pinned public tag archives",
+        "Lastenheft delivery boundary to release evidence",
+        "Evidence matrix to field-test next action"
+      ],
+      "canonicalSource": "Public GitHub tag v0.1.0, GitHub Release v0.1.0, and preset-release-v0.1.0.json",
+      "navigationImpact": "Existing preset and evidence reader paths receive the release proof; no new top-level navigation is required.",
+      "documentClass": "PublicReleaseAndSecurityEvidence",
+      "languageStrategy": "German first, English second; repository URLs, commit IDs, tag, and hashes remain language-neutral.",
+      "languagePartners": [
+        "Bilingual Lastenheft publication result and evidence-matrix release section"
+      ],
+      "platformAndExampleProof": "The immutable tag ZIP passed Bash and PowerShell status and all four reviews in a fresh thirteen-preset Spec Kit project; disable, enable, remove, and reinstall also passed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/preset-release-v0.1.0.json",
+      "risk": "Practical multi-project field evaluation remains pending; this publication does not establish C5 readiness, certification, human approval, or Community acceptance.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Field-test result, archive mismatch, tag or release metadata change, patch release, or separately authorized Community submission."
+    },
+    {
+      "changeId": "CHG263004",
+      "scope": "Secure Development Assurance Governance v0.1.2 practical TinyCalc field-test closeout and separately authorised Community handoff",
+      "decision": "UpdateRequired",
+      "rationale": "The completed RL-SE and GSDB runs support one bounded ReleaseAccepted decision for the preset; the release evidence and the strict separation from product, human-approval, image-impact, certification, and Level-2 rollout decisions must remain auditable.",
+      "documents": [
+        "docs/maintenance/secure-development-assurance-v011-field-test.md",
+        "docs/maintenance/secure-development-assurance-v012-community-submission.md",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/closure.json",
+        "docs/security/secure-development/2026-08-29-home-baseline-absdd-gate-verzahnung/evidence-matrix.md",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Home Baseline and preset maintainers",
+      "audiences": [
+        "Developers",
+        "Maintainers",
+        "Security reviewers",
+        "Community catalog maintainers",
+        "Future Level-2 rollout owners"
+      ],
+      "readerPaths": [
+        "Field-test report to immutable v0.1.2 release evidence",
+        "Secure-development closure to field-test outcome and remaining human decisions",
+        "Prepared Community submission to upstream catalog workflow"
+      ],
+      "canonicalSource": "The v0.1.2 public tag and release, TinyCalc PR #67 through #71, docs/maintenance/secure-development-assurance-v011-field-test.md, and upstream submission github/spec-kit#4455",
+      "navigationImpact": "Existing maintenance and secure-development evidence paths receive the closeout and submission handoff; no top-level navigation expansion is required.",
+      "documentClass": "PublicReleaseAndSecurityEvidence",
+      "languageStrategy": "German first, English second; upstream form fields and immutable identifiers remain language-neutral.",
+      "languagePartners": [
+        "Bilingual field-test closeout and evidence-matrix closeout section"
+      ],
+      "platformAndExampleProof": "The immutable v0.1.2 package passed native Linux, macOS, and Windows gates; TinyCalc completed the serial RL-SE and GSDB feature and closeout PRs on the exact recorded commits.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/secure-development-assurance-v011-field-test.md",
+      "risk": "TinyCalc follow-up findings, all human approvals, image impact, certification claims, and selection of Level-2 rollout targets remain outside ReleaseAccepted and outside the Community submission authority.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Community review finding, preset patch release, evidence-contract change, image-impact work, human approval, or separately authorised Level-2 rollout."
     }
   ]
 }

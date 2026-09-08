@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0",
+  "presetId": "secure-development-assurance-governance",
+  "version": "0.1.0",
+  "sourceDelivery": {
+    "repository": "https://github.com/hindermath/home-baseline",
+    "pullRequest": "https://github.com/hindermath/home-baseline/pull/266",
+    "mergeCommit": "10472700ec928d26a1c0e5da960d825166fe42d8"
+  },
+  "publicRelease": {
+    "repository": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance",
+    "pullRequest": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/1",
+    "mergeCommit": "e51e40e8ff46d8b4c00aa99b654b0d82264885ab",
+    "tag": "v0.1.0",
+    "releaseUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.0",
+    "archiveUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.0.zip",
+    "archiveSha256": "d9effc395e590d1ffe832d059f8681501da1d1b6e7d44d79a3e61929bc5229c1",
+    "archiveBytes": 42352,
+    "publishedAt": "2026-09-03T21:18:53Z"
+  },
+  "verification": {
+    "ephemeralProject": true,
+    "presetCount": 13,
+    "priority": 15,
+    "resolvedTemplate": "secure-development-evidence-contract",
+    "statusReadOnly": true,
+    "statusEvidenceDigestBeforeAndAfter": "07657a82c66404533a0f9aa481aad72ab02afe4e68143b203a40972c09bc50cf",
+    "bashPowerShellStatusOutputIdentical": true,
+    "reviewedGates": [
+      "baseline",
+      "delta",
+      "closure",
+      "image-impact"
+    ],
+    "reviewModes": [
+      "mixed"
+    ],
+    "bashPowerShellReviewParity": true,
+    "positiveAndNegativeFixturesPassed": true,
+    "disableEnableRemoveReinstallPassed": true,
+    "installedFromPublishedTagArchive": true
+  },
+  "boundaries": {
+    "fieldTestStatus": "Pending",
+    "communitySubmissionAuthorized": false,
+    "communityIssueCreated": false,
+    "communityCatalogPullRequestCreated": false,
+    "mnriemContacted": false,
+    "c5ReadinessClaimed": false,
+    "certificationClaimed": false,
+    "humanApprovalChanged": false
+  },
+  "nextAction": "Execute the published field-test runbook in separately authorized projects before considering any patch release or Community submission."
+}

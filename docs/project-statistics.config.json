@@ -585,6 +585,38 @@
       "labelEn": "Linked intake order and feature evidence",
       "netLines": 2920,
       "activeDays": 1
+    },
+    {
+      "slot": 72,
+      "id": "secure-development-assurance-v010-publication",
+      "labelDe": "Secure-Development-Assurance-v0.1.0-Veröffentlichung",
+      "labelEn": "Secure Development Assurance v0.1.0 publication",
+      "netLines": 7295,
+      "activeDays": 1
+    },
+    {
+      "slot": 73,
+      "id": "secure-development-assurance-fieldtest-closeout",
+      "labelDe": "Secure-Development-Assurance-Feldtestabschluss",
+      "labelEn": "Secure Development Assurance field-test closeout",
+      "netLines": 246,
+      "activeDays": 1
+    },
+    {
+      "slot": 74,
+      "id": "secure-development-assurance-community-submission-handoff",
+      "labelDe": "Secure-Development-Assurance-Community-Einreichung",
+      "labelEn": "Secure Development Assurance Community submission",
+      "netLines": 22,
+      "activeDays": 1
+    },
+    {
+      "slot": 75,
+      "id": "secure-development-assurance-v013-fieldtest-consolidation",
+      "labelDe": "Secure-Development-Assurance-v0.1.3-Feldtestkonsolidierung",
+      "labelEn": "Secure Development Assurance v0.1.3 field-test consolidation",
+      "netLines": 284,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

@@ -5,6 +5,14 @@
   "gate": "image-impact",
   "mode": "mixed",
   "createdAt": "2026-08-29T14:19:16+02:00",
+  "review": {
+    "owner": "Thorsten Hindermann, repository owner",
+    "reviewer": "Codex, technical validator",
+    "reviewedAt": "2026-09-03T12:00:00+02:00",
+    "reviewDue": "2027-09-03",
+    "residualRisk": "No OCI, SBOM, secret, mount, network, or CI conclusion exists before the separately authorized adoption build.",
+    "reevaluationTrigger": "Any sandbox image, compose, toolchain, mount, network, secret, SBOM, or CI change."
+  },
   "sourceRepository": "https://github.com/hindermath/absdd-image-sandbox",
   "sourceCommit": "7adaeac18ca259726468a2fe1d1fd028b895e09c",
   "imageChecks": {
@@ -23,13 +31,19 @@
       "id": "IMAGE-001",
       "applicability": "Applicable",
       "implementation": "Not Assessed",
-      "evidence": "ABSDD adoption remains Position 17 and was not started."
+      "evidence": "ABSDD adoption remains Position 17 and was not started.",
+      "nextAction": "Run the separately authorized ABSDD adoption and image validation.",
+      "owner": "ABSDD project owner",
+      "dueAt": "2026-12-31"
     },
     {
       "id": "IMAGE-002",
       "applicability": "Open",
       "implementation": "Not Assessed",
-      "evidence": "OCI digest and SBOM require a later authorized ABSDD build."
+      "evidence": "OCI digest and SBOM require a later authorized ABSDD build.",
+      "nextAction": "Capture OCI digest and SBOM after the authorized build.",
+      "owner": "ABSDD build owner",
+      "dueAt": "2026-12-31"
     }
   ],
   "outcome": "NeedsRemediation",
