@@ -23,7 +23,7 @@
         "Community submission follow-up"
       ],
       "canonicalSource": "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md",
-      "navigationImpact": "The current-state section of the existing rollout tracker links the new canonical 5/5 roll-up; historical rollout evidence remains in place below it.",
+      "navigationImpact": "The current-state section of the existing rollout tracker links the new canonical 5/5 roll-up; historical rollout evidence remains in place below it, and github/spec-kit#4455 is referenced unambiguously.",
       "documentClass": "ActiveSemantic",
       "languageStrategy": "German first with English partner paragraphs in the same documents.",
       "languagePartners": [],
