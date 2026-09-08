@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "secure-development-assurance-v013-field-test-closeout",
+  "entries": [
+    {
+      "changeId": "CHG075",
+      "scope": "Five-repository Secure Development Assurance Governance v0.1.3 field-test consolidation",
+      "decision": "UpdateRequired",
+      "rationale": "The central documentation must replace the previous partial field-test state with the verified five-project outcome while preserving the separate pending central preset decision.",
+      "documents": [
+        "docs/maintenance/assurance-level2-rollout-2026-09-06.md",
+        "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": [
+        "Maintainers",
+        "Technical reviewers",
+        "Learners"
+      ],
+      "readerPaths": [
+        "Assurance Level-2 rollout",
+        "Preset field-test evidence",
+        "Community submission follow-up"
+      ],
+      "canonicalSource": "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md",
+      "navigationImpact": "The current-state section of the existing rollout tracker links the new canonical 5/5 roll-up; historical rollout evidence remains in place below it.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with English partner paragraphs in the same documents.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The report binds five merged project reports, their exact delivery pull requests, synchronized main commits, Bash and PowerShell parity, and project-native CI evidence.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md",
+      "risk": "Conflating five project-level preset recommendations with central preset acceptance could overstate approval; the report keeps the central decision pending until issue #4455 has an upstream outcome.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Preset, archive, project evidence, scope, decision state, review date, or github/spec-kit issue #4455 changes."
+    },
+    {
+      "changeId": "CHG076",
+      "scope": "Living project statistics ledger",
+      "decision": "GeneratedUpdate",
+      "rationale": "The completed five-repository field-test consolidation adds a required phase slot and update-log entry to the repository statistics contract.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Statistics Maintainer",
+      "audiences": [
+        "Maintainers",
+        "Project reviewers"
+      ],
+      "readerPaths": [
+        "Project statistics"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "No new navigation path; the existing statistics ledger gains the v0.1.3 field-test consolidation phase.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "The update log and generated text alternatives remain German first and English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The canonical PowerShell renderer is invoked through the macOS Bash entrypoint and verified in check-only mode.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-project-statistics.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Another completed feature or implementation phase changes the ledger.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    }
+  ]
+}

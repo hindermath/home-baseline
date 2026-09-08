@@ -1,20 +1,79 @@
 # Assurance-Level-2-Rollout / Assurance Level-2 Rollout
 
-## Aktueller Stand 2026-09-07 / Current State
+## Aktueller Feldteststand 2026-09-08 / Current Field-Test State
+
+Der v0.1.3-Feldtest ist in allen fünf vorgesehenen Level-2-Repositories
+abgeschlossen. Jeder projektbezogene Feldbericht empfiehlt `ReleaseAccepted`
+ausschließlich für die Funktionsfähigkeit des unveränderten Presets in seinem
+jeweiligen Ausbildungs- und Beispielscope. Der kanonische
+[5/5-Konsolidierungsbericht](secure-development-assurance-v013-field-test-rollup.md)
+bindet die Einzelberichte, geprüften PRs und Merge-Commits.
+
+*The v0.1.3 field test is complete in all five intended Level-2 repositories.
+Each project report recommends `ReleaseAccepted` solely for the unchanged
+preset's behavior in its educational/example scope. The canonical
+[5/5 roll-up](secure-development-assurance-v013-field-test-rollup.md) binds the
+individual reports, verified pull requests, and merge commits.*
+
+| Reihenfolge / Order | Ziel / Target | Feldtest-PR / Field-test PR | Merge | Projekturteil / Project verdict |
+|---|---|---|---|---|
+| 1 | TinyCalc | [#74](https://github.com/hindermath/TinyCalc/pull/74) | `1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7` | `ReleaseAccepted` |
+| 2 | TinyPl0 | [#92](https://github.com/hindermath/TinyPl0/pull/92) | `a988d6418aeddf3e8979edb3f1e25275661bdf2a` | `ReleaseAccepted` |
+| 3 | InventarWorkerService | [#67](https://github.com/hindermath/InventarWorkerService/pull/67) | `73ceab5a9057afded9abc3b47f1b5ea2b1ddef96` | `ReleaseAccepted` |
+| 4 | absdd-image-sandbox | [#60](https://github.com/hindermath/absdd-image-sandbox/pull/60) | `d3731df24649cf189e3d97412c9285d3170c082a` | `ReleaseAccepted` |
+| 5 | TuiVision | [#171](https://github.com/hindermath/TuiVision/pull/171) | `a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b` | `ReleaseAccepted` |
+
+Alle aktiven Gate-Kontexte melden Baseline, Delta, Closure und Image Impact
+`Ready`; `technicalValidation` ist jeweils `Fulfilled`. Die technische
+Evidence-Wiedervorlage ist einheitlich auf `2027-09-08` gesetzt. C5, CRA und
+formale Produktkonformität sind für den gegenwärtigen nichtkommerziellen
+Ausbildungs- und Beispielscope `N/A`; die regulatorische Scope-Wiedervorlage
+ist `2026-12-31`. Die synthetischen C5-/Zertifizierungs-Negativfälle prüfen nur
+das sichere Blockieren unzulässiger Behauptungen und sind keine C5-Prüfung.
+`pilotAuthorization`, `projectAcceptance` und `generalRelease` bleiben überall
+`Open`.
+
+*All active gate contexts report baseline, delta, closure, and image impact as
+`Ready`; `technicalValidation` is `Fulfilled`. Technical evidence is due for
+review on `2027-09-08`. C5, CRA, and formal product conformity are `N/A` for
+the current non-commercial educational/example scope; regulatory scope review
+is due on `2026-12-31`. Synthetic C5/certification negative cases test safe
+blocking only and are not C5 assessments. `pilotAuthorization`,
+`projectAcceptance`, and `generalRelease` remain `Open` everywhere.*
+
+Die zentrale v0.1.3-Preset-Abnahme ist **noch nicht entschieden**. Die
+Community-Einreichung [github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455)
+war bei der Live-Prüfung am 2026-09-08 weiterhin `OPEN` und ohne
+Maintainer-Kommentar. Erst nach dem Upstream-Ergebnis folgt eine gesonderte
+zentrale Preset-Prüfung mit genau einer Empfehlung. Pre-Release-Status,
+Community-Issue und Maintainer-Kommunikation wurden in diesem Abschluss nicht
+verändert.
+
+*The central v0.1.3 preset acceptance is **not decided yet**. At the live check
+on 2026-09-08, community submission
+[github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455) remained
+`OPEN` without a maintainer comment. A separate central preset review with
+exactly one recommendation follows only after the upstream outcome. This
+closeout does not change the pre-release state, community issue, or maintainer
+communication.*
+
+## Historischer Rolloutstand 2026-09-07 / Historical Rollout State
 
 Das genehmigte Assurance-Preset **v0.1.3** ist in allen fünf Ziel-Repositories
 gemergt, lokal synchronisiert und im lokalen Register mit Profil 13 erfasst.
 Die zwölf bisherigen Presets, ihre Versionen, Prioritäten und Aktivierungswerte
 bleiben je Ziel unverändert. Keine weitere Installation, kein Home-Sync.
-Die Abschnitte ab „Auftrag und Grenzen“ sind die historische v0.1.2-Lieferung
-mit damaligen Unterbrechungen; ihre Pending-Aussagen sind keine aktuellen
-Arbeitsaufträge. Maßgeblich ist dieser Abschnitt.
+Dieser Abschnitt und die Abschnitte ab „Auftrag und Grenzen“ bewahren die
+historischen v0.1.2-/v0.1.3-Rolloutschritte mit ihren damaligen
+Unterbrechungen. Ihre Pending-Aussagen sind keine aktuellen Arbeitsaufträge;
+maßgeblich ist der aktuelle Feldteststand oben.
 
 *Approved Assurance v0.1.3 is merged, locally synchronized and registered at
 profile 13 in all five targets. Preserve the twelve previous presets and their
 versions/priorities/enabled states in every target. No additional deployment
-or Home sync. Sections below retain historical v0.1.2 delivery and stops;
-their old pending statements are not current work instructions.*
+or Home sync. This section and the sections below retain historical v0.1.2 and
+v0.1.3 rollout steps and stops. Their old pending statements are not current
+work instructions; the current field-test state above is authoritative.*
 
 | Ziel / Target | v0.1.3-PR | Merge |
 |---|---|---|
