@@ -2,10 +2,14 @@
 
 Stand / Date: 2026-09-09. Empfehlung / Recommendation: `ReleaseAccepted`
 für die technisch geprüfte Preset-Funktion im unten begrenzten Scope.
-Lieferstatus: PR-Prüfung und Merge stehen noch aus.
+Lieferstatus: [PR #277](https://github.com/hindermath/home-baseline/pull/277)
+ist am 2026-09-09 nach 29 erfolgreichen Exact-Head-Checks gemergt:
+`e0168c7dbd9510650cc4e4304f8efc46898cb425`. main wurde auf 0/0 synchronisiert;
+der manifestgebundene Home-Sync ist abgeschlossen und sein Check ist aktuell.
 
 *Recommendation applies only to tested preset behavior in the scope below.
-Delivery is pending PR checks and merge.*
+PR #277 merged after 29 successful exact-head checks; main is synchronized
+and manifest Home synchronization completed successfully.*
 
 ## Umfang und Verantwortung / Scope and responsibility
 

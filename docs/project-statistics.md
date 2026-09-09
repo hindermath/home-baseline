@@ -181,6 +181,8 @@
 
 | 2026-09-09 | Assurance v0.1.3 Level-0-Feldtest / Level-0 field test | Installiertes Preset 0.1.2 auf unveraendertes 0.1.3 aktualisiert; eigener training-Kontext mit vier Gates und technischen Rohhash-/Paritaetsnachweisen. Negativsuite, acht Befehlsoberflaechen, Komposition und 13-Preset-Matrix bestanden. Claude-Remove-Restdateien dokumentiert. 1363 fachliche Nettozeilen vor Statistikpflege. Human-only-Freigaben bleiben Open; keine Produktlaeufe oder zentrale Preset-Abnahme. / Upgraded immutable preset, added scoped technical evidence, preserved human decisions and historical assessments; no product runs or central acceptance. |
 
+| 2026-09-09 | Assurance v0.1.3 Siebener-Konsolidierung / Seven-repository consolidation | Fuenf unveraenderte historische Feldberichte und zwei neue gemergte Feldtests ergeben sieben begrenzte projektbezogene ReleaseAccepted-Empfehlungen. Level 0: PR277, 29 Checks, Home-Sync aktuell. AOC: PR44, 18 Checks, 14-Intake-Grenze unveraendert. Beide main-Branches nach Merge 0/0. Ausbildung ab Lehrjahr 1 fuer vier IT-Berufe; keine zentrale Preset-Abnahme oder menschliche Freigabe. 205 fachliche Nettozeilen vor Statistikpflege. / Seven scoped field recommendations with verified delivery, preserved historical evidence and no central acceptance; source-only consolidation. |
+
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot

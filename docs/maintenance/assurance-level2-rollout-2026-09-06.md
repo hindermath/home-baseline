@@ -1,6 +1,28 @@
 # Assurance-Level-2-Rollout / Assurance Level-2 Rollout
 
-## Aktueller Feldteststand 2026-09-08 / Current Field-Test State
+## Aktueller Feldteststand 2026-09-09 / Current field-test state
+
+Die Gruppe umfasst jetzt sieben Ausbildungs-/Referenz-Repositories:
+TinyCalc, TinyPl0, InventarWorkerService, absdd-image-sandbox, TuiVision,
+home-baseline (Level 0) und AOC. Alle sieben Einzelberichte empfehlen
+`ReleaseAccepted` ausschließlich im jeweiligen technischen Feldtest-Scope.
+Level-0-PR #277 und AOC-PR #44 sind gemergt und beide main-Branches wurden
+auf 0/0 synchronisiert. Die bisherigen fünf Abnahmen bleiben historisch erhalten.
+
+*The group now includes seven educational/reference repositories. All seven
+scoped technical field reports recommend ReleaseAccepted. The two new
+installation PRs are merged and synchronized; historical evidence is retained.*
+
+Der [kanonische Siebener-Bericht](secure-development-assurance-v013-field-test-rollup.md)
+enthält Merge-Commits, Prüfgrenzen, Findings und Termine. Er ersetzt keine
+Produktfreigabe und ist keine zentrale Preset-Abnahme. Diese bleibt bis zum
+Upstream-Ergebnis von github/spec-kit#4455 separat ausstehend.
+
+*The canonical seven-repository report binds evidence, limits and dates.
+Central preset acceptance remains a separate future review after the upstream
+outcome; no product approval is inferred.*
+
+## Historischer Feldteststand 2026-09-08 / Historical field-test state
 
 Der v0.1.3-Feldtest ist in allen fünf vorgesehenen Level-2-Repositories
 abgeschlossen. Jeder projektbezogene Feldbericht empfiehlt `ReleaseAccepted`

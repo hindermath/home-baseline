@@ -1,0 +1,52 @@
+{
+  "checkedOn": "2026-09-09",
+  "purpose": "Read-only comparison of the five historical field reports with GitHub main; no project reacceptance or repository mutation.",
+  "reports": [
+    {
+      "repo": "TinyCalc",
+      "remoteReportBlob": "e56247431093df7f12a50d609539715a58a24d1e",
+      "localReportBlob": "e56247431093df7f12a50d609539715a58a24d1e",
+      "match": true
+    },
+    {
+      "repo": "TinyPl0",
+      "remoteReportBlob": "9deeb51c93077f9437ee6f06b450df9bad3b1b0d",
+      "localReportBlob": "9deeb51c93077f9437ee6f06b450df9bad3b1b0d",
+      "match": true
+    },
+    {
+      "repo": "InventarWorkerService",
+      "remoteReportBlob": "0b03a20bbd1b336823bc365520966eb96d67df03",
+      "localReportBlob": "0b03a20bbd1b336823bc365520966eb96d67df03",
+      "match": true
+    },
+    {
+      "repo": "absdd-image-sandbox",
+      "remoteReportBlob": "7e99c83ec1a253fa63aef5343e04df8864c44e54",
+      "localReportBlob": "7e99c83ec1a253fa63aef5343e04df8864c44e54",
+      "match": true
+    },
+    {
+      "repo": "TuiVision",
+      "remoteReportBlob": "aa233ccde0cd120d881817a4661dd58a9c3b0967",
+      "localReportBlob": "aa233ccde0cd120d881817a4661dd58a9c3b0967",
+      "match": true
+    }
+  ],
+  "newDeliveries": [
+    {
+      "repository": "hindermath/home-baseline",
+      "pr": 277,
+      "head": "535b005d19336d3c46f6c1145cd5d6a23bbbf634",
+      "successfulChecks": 29,
+      "merge": "e0168c7dbd9510650cc4e4304f8efc46898cb425"
+    },
+    {
+      "repository": "hindermath/agent-operations-cockpit",
+      "pr": 44,
+      "head": "6a4fb6a68573a8434b875c81e5709c123475779a",
+      "successfulChecks": 18,
+      "merge": "49bfa60c4c74cc3225b49c308e80ef777827bdf6"
+    }
+  ]
+}
