@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "home-baseline-assurance-v013",
+  "gate": "closure",
+  "mode": "training",
+  "createdAt": "2026-09-09T09:44:16+02:00",
+  "review": {
+    "owner": "@hindermath (test owner)",
+    "reviewer": "Codex technical execution; @hindermath designated human technical reviewer",
+    "reviewedAt": "2026-09-09T09:44:16+02:00",
+    "reviewDue": "2027-09-09",
+    "residualRisk": "Structural preset validation is not comprehensive implementation assurance or independent product acceptance. Level 0 is both preset source and test consumer.",
+    "reevaluationTrigger": "Package, baseline document, evidence, scope or authority changes."
+  },
+  "assessments": [
+    {
+      "id": "CLOSE-BOUNDARY",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/evidence-matrix.md"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "humanDecisions": {
+    "technicalValidation": {
+      "status": "Fulfilled",
+      "authority": "@hindermath",
+      "evidence": "docs/maintenance/secure-development-assurance-v013-level0-field-test.md; executed package suite, context parity and raw-byte snapshots. Human review remains separately required."
+    },
+    "pilotAuthorization": {
+      "status": "Open",
+      "authority": "@hindermath",
+      "evidence": "Separate explicit human decision required; not granted by this field test."
+    },
+    "projectAcceptance": {
+      "status": "Open",
+      "authority": "@hindermath",
+      "evidence": "Separate explicit human decision required; not granted by this field test."
+    },
+    "generalRelease": {
+      "status": "Open",
+      "authority": "@hindermath",
+      "evidence": "Separate explicit human decision required; not granted by this field test."
+    }
+  },
+  "nextAction": "Complete immutable-package field tests, review exact PR head and publish the scoped report; do not infer central preset acceptance."
+}

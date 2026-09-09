@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-09T09:47:02.1316110+02:00",
+  "repo": "home-baseline-source",
+  "context": "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013",
+  "parity": true,
+  "readOnly": true,
+  "before": {
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/baseline.json": "63b5ed9bfb06730d856701e2547d97fe7d0476b511368987e13a3a887be64311",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/closure.json": "5277509d7a119be6aae98fdf1ff9b527dc3f611bf224ffb6edd9047e32cd731f",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/deltas/preset-v013.json": "94415d2846e1c5686e17a95e197489ad8409fff216feab32b17f3234b037743a",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/evidence-matrix.md": "d372fc2b94234e10df8551591e977bc37e612741b56bdaf5f4e60c5b7491d7f5",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/image-impact.json": "132b9ad12579c2f2bd9ece1f226f3a00f595ffa0d08f9d2370cbd913fa223223"
+  },
+  "after": {
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/baseline.json": "63b5ed9bfb06730d856701e2547d97fe7d0476b511368987e13a3a887be64311",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/closure.json": "5277509d7a119be6aae98fdf1ff9b527dc3f611bf224ffb6edd9047e32cd731f",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/deltas/preset-v013.json": "94415d2846e1c5686e17a95e197489ad8409fff216feab32b17f3234b037743a",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/evidence-matrix.md": "d372fc2b94234e10df8551591e977bc37e612741b56bdaf5f4e60c5b7491d7f5",
+    "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/image-impact.json": "132b9ad12579c2f2bd9ece1f226f3a00f595ffa0d08f9d2370cbd913fa223223"
+  },
+  "checks": [
+    {
+      "command": "bash .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh status docs/security/secure-development/2026-09-09-home-baseline-assurance-v013",
+      "exitCode": 0,
+      "output": "Context: docs/security/secure-development/2026-09-09-home-baseline-assurance-v013\nGate baseline: Ready\nGate delta: Ready\nGate closure: Ready\nGate image-impact: Ready\nOverall: Ready\nDecision technicalValidation: Fulfilled\nDecision pilotAuthorization: Open\nDecision projectAcceptance: Open\nDecision generalRelease: Open\nNext action: Complete immutable-package field tests, review exact PR head and publish the scoped report; do not infer central preset acceptance."
+    },
+    {
+      "command": "pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1 -Action Status -EvidenceDirectory docs/security/secure-development/2026-09-09-home-baseline-assurance-v013",
+      "exitCode": 0,
+      "output": "Context: docs/security/secure-development/2026-09-09-home-baseline-assurance-v013\nGate baseline: Ready\nGate delta: Ready\nGate closure: Ready\nGate image-impact: Ready\nOverall: Ready\nDecision technicalValidation: Fulfilled\nDecision pilotAuthorization: Open\nDecision projectAcceptance: Open\nDecision generalRelease: Open\nNext action: Complete immutable-package field tests, review exact PR head and publish the scoped report; do not infer central preset acceptance."
+    },
+    {
+      "command": "bash .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh review baseline home-baseline-assurance-v013 training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=baseline context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1 -Action Review -Gate baseline -ContextId home-baseline-assurance-v013 -Mode training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=baseline context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "bash .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh review delta home-baseline-assurance-v013 training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=delta context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1 -Action Review -Gate delta -ContextId home-baseline-assurance-v013 -Mode training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=delta context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "bash .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh review closure home-baseline-assurance-v013 training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=closure context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1 -Action Review -Gate closure -ContextId home-baseline-assurance-v013 -Mode training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=closure context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "bash .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh review image-impact home-baseline-assurance-v013 training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=image-impact context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    },
+    {
+      "command": "pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1 -Action Review -Gate image-impact -ContextId home-baseline-assurance-v013 -Mode training",
+      "exitCode": 0,
+      "output": "Reviewed: gate=image-impact context=home-baseline-assurance-v013 mode=training outcome=Ready"
+    }
+  ]
+}

@@ -179,6 +179,8 @@
 | 2026-09-07 | Assurance-v0.1.3-Rollout und Evidence-Indizes / Assurance rollout and evidence indexes | Zentraler Abschlussnachweis fuer fuenf autorisierte Level-2-Ziele und drei neue Matrizen mit je 157 bestehenden Kontrollbewertungen. Quellen-Lock, Profil-Pin und Quellenuebersicht auf dasselbe unveraenderliche v0.1.3-Archiv gebunden. 623 zentrale Installations-/Agentendateien unveraendert; kein Home-Sync. Der Konfigurationspfad ist homeRuntime, die bewusste Nichtverteilung ist dokumentiert. Technik: 13 hashgepruefte Pakete, Profile 8–13, Vertrags-/Negativ-/Paritaetstests und acht Befehlsoberflaechen bestanden; native PR-CI bleibt Merge-Gate. Genau drei gesondert genehmigte Hashkorrekturen in TuiVision, keine fachliche Neubewertung oder Freigabe. Root-Diff besteht aus Versionsbezuegen und Dokumentation, nicht neuer Produktlogik. Referenzen 80/100 Zeilen je Arbeitstag laut Konfiguration; Speedup ist Git-Lieferdichte, keine Stoppuhrmessung. / Central source references and delivery evidence for five targets and three 157-control indexes. No central installation, assessment, product logic, or human approval changes. Preserve 623 files; no Home sync. Verified release packages, profiles, parity and surfaces pass; exact-head native CI is required. Manual references are 80/100 lines per workday; speedup measures visible Git delivery density. |
 | 2026-09-08 | Assurance-v0.1.3-Feldtestkonsolidierung / Assurance v0.1.3 field-test consolidation | Fuenf projektbezogene Feldberichte und ihre gemergten Exact-Head-Lieferungen sind zentral als `5/5 ReleaseAccepted` fuer die technische Funktionsfaehigkeit des unveraenderten Presets gebunden. Einheitliche technische Wiedervorlage ist 2027-09-08; C5, CRA und formale Produktkonformitaet sind im nichtkommerziellen Ausbildungs-/Beispielscope `N/A`, regulatorische Scope-Wiedervorlage ist 2026-12-31. Human-only-Entscheidungen bleiben `Open`. Die zentrale Preset-Empfehlung bleibt bis zum Upstream-Ergebnis von `github/spec-kit#4455` ausdruecklich unerzeugt; Pre-Release und Community-Issue wurden nicht veraendert. Documentation Impact `UpdateRequired`, `sourceOnly`, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 284 Nettozeilen. / Five project reports are centrally bound as `5/5 ReleaseAccepted` for unchanged preset behavior; central acceptance remains pending the upstream issue, with no wider approval or runtime distribution. |
 
+| 2026-09-09 | Assurance v0.1.3 Level-0-Feldtest / Level-0 field test | Installiertes Preset 0.1.2 auf unveraendertes 0.1.3 aktualisiert; eigener training-Kontext mit vier Gates und technischen Rohhash-/Paritaetsnachweisen. Negativsuite, acht Befehlsoberflaechen, Komposition und 13-Preset-Matrix bestanden. Claude-Remove-Restdateien dokumentiert. 1363 fachliche Nettozeilen vor Statistikpflege. Human-only-Freigaben bleiben Open; keine Produktlaeufe oder zentrale Preset-Abnahme. / Upgraded immutable preset, added scoped technical evidence, preserved human decisions and historical assessments; no product runs or central acceptance. |
+
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
@@ -1129,27 +1131,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 646959 lines |
-| Textdateien / Text files | 3027 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-08 |
-| Aktivtage / Active days | 104 |
-| Relevante Commits / Relevant commits | 822 |
-| Zeilen je Aktivtag / Lines per active day | 6220.8 |
+| Textbasis / Text base | 648346 lines |
+| Textdateien / Text files | 3041 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-09 |
+| Aktivtage / Active days | 105 |
+| Relevante Commits / Relevant commits | 824 |
+| Zeilen je Aktivtag / Lines per active day | 6174.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 77.8x |
-| Speedup vs. 100 lines/day | 62.2x |
-| Methodik / Methodology | v2; source `3b93896fe3bd` |
+| Speedup vs. 80 lines/day | 77.2x |
+| Speedup vs. 100 lines/day | 61.7x |
+| Methodik / Methodology | v2; source `d6e92ef6d770` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 24781
-Dokumentation / Documentation   [##########..........]  49.3% | 319203
-Skripte / Scripts               [##..................]   8.0% | 51464
-Konfiguration / Configuration   [########............]  38.5% | 248962
+Tests                           [#...................]   3.8% | 24921
+Dokumentation / Documentation   [##########..........]  49.4% | 320450
+Skripte / Scripts               [##..................]   7.9% | 51464
+Konfiguration / Configuration   [########............]  38.4% | 248962
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 312
 ```
@@ -1176,7 +1178,7 @@ Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
 So/Su  0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4
 Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3
 Di/Tu  0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2
-Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 -
+Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 3
 Do/Th  0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 -
 Fr/Fr  0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 -
 Sa/Sa  0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 -
@@ -1281,15 +1283,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..75
-   cap 20000 | . . . . . . . . . . . .
-       16667 | . . . . . . . . . . . .
-       13333 | . . . . . # . . . . . .
-       10000 | . . . . . # . . . . . .
-        6667 | . . . # . # # . # . . .
-        3333 | . . # # . # # . # . . .
-           0 +-------------------------
-             64 65 66 67 68 69 70 71 72 73 74 75
+Slots 64..76
+   cap 20000 | . . . . . . . . . . . . .
+       16667 | . . . . . . . . . . . . .
+       13333 | . . . . . # . . . . . . .
+       10000 | . . . . . # . . . . . . .
+        6667 | . . . # . # # . # . . . .
+        3333 | . . # # . # # . # . . . .
+           0 +---------------------------
+             64 65 66 67 68 69 70 71 72 73 74 75 76
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1370,6 +1372,7 @@ Slots 64..75
 | 73 | Secure-Development-Assurance-Feldtestabschluss / Secure Development Assurance field-test closeout | 246 |
 | 74 | Secure-Development-Assurance-Community-Einreichung / Secure Development Assurance Community submission | 22 |
 | 75 | Secure-Development-Assurance-v0.1.3-Feldtestkonsolidierung / Secure Development Assurance v0.1.3 field-test consolidation | 284 |
+| 76 | Assurance v0.1.3 Level-0-Feldtest / Assurance v0.1.3 Level-0 field test | 1363 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1379,8 +1382,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 77.8x
-100 lines/day      [############........] 62.2x
+80 lines/day       [###############.....] 77.2x
+100 lines/day      [############........] 61.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1393,7 +1396,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6220.8
+Visible repository [############........] 6174.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1402,9 +1405,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-08. Es enthaelt 104 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-09. Es enthaelt 105 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-14 and ends on 2026-09-08. It contains 104 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-14 and ends on 2026-09-09. It contains 105 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1419,6 +1422,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-08. Es enthaelt 104 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 82469 |
+| 2026-09 | 83898 |
 
 <!-- project-statistics-v2:end -->
