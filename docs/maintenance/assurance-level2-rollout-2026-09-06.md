@@ -10,7 +10,7 @@ Level-0-PR #277 und AOC-PR #44 sind gemergt und beide main-Branches wurden
 auf 0/0 synchronisiert. Die bisherigen fünf Abnahmen bleiben historisch erhalten.
 
 *The group now includes seven educational/reference repositories. All seven
-scoped technical field reports recommend ReleaseAccepted. The two new
+scoped technical field reports recommend `ReleaseAccepted`. The two new
 installation PRs are merged and synchronized; historical evidence is retained.*
 
 Der [kanonische Siebener-Bericht](secure-development-assurance-v013-field-test-rollup.md)

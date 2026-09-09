@@ -13,7 +13,7 @@ Produktfreigabe.
 
 *The group now comprises seven repositories: the five original Level-2
 projects, the Level-0 source and AOC. All seven scoped project reports recommend
-ReleaseAccepted for unchanged preset behavior, not central preset acceptance
+`ReleaseAccepted` for unchanged preset behavior, not central preset acceptance
 or product release.*
 
 Die ersten fünf Ergebnisse bleiben historische, projektbezogene Nachweise.
