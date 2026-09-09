@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "home-baseline-assurance-v013",
+  "gate": "delta",
+  "mode": "training",
+  "createdAt": "2026-09-09T09:44:16+02:00",
+  "review": {
+    "owner": "@hindermath (test owner)",
+    "reviewer": "Codex technical execution; @hindermath designated human technical reviewer",
+    "reviewedAt": "2026-09-09T09:44:16+02:00",
+    "reviewDue": "2027-09-09",
+    "residualRisk": "Structural preset validation is not comprehensive implementation assurance or independent product acceptance. Level 0 is both preset source and test consumer.",
+    "reevaluationTrigger": "Package, baseline document, evidence, scope or authority changes."
+  },
+  "assessments": [
+    {
+      "id": "DELTA-001",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": ".specify/presets/.registry"
+    },
+    {
+      "id": "DELTA-002",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "scripts/config/spec-kit-secure-development-assurance-governance-presets.json"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence"
+}
