@@ -24,3 +24,7 @@ Bash zuerst auf macOS, danach PowerShell mit Action Review, Gate closure,
 ContextId home-baseline-assurance-v013, Mode training. Erwarteter Exitcode: 0; Negativfälle nur
 in temporären Fixtures: 2. / *Bash first on macOS, then equivalent PowerShell.
 Expected exit: 0; negative cases in temporary fixtures only: 2.*
+
+```powershell
+pwsh -NoProfile -File .specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.ps1 -Action Review -Gate closure -ContextId home-baseline-assurance-v013 -Mode training
+```
