@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "assurance-v013-seven-repository-consolidation",
+  "entries": [
+    {
+      "changeId": "CHG078",
+      "scope": "Seven-repository scoped field-test consolidation",
+      "decision": "UpdateRequired",
+      "rationale": "Add verified Level-0/AOC deliveries while preserving historical five-project evidence and central decision boundaries.",
+      "documents": [
+        "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md",
+        "docs/maintenance/secure-development-assurance-v013-level0-field-test.md",
+        "docs/maintenance/assurance-level2-rollout-2026-09-06.md",
+        "docs/maintenance/assurance-v013-seven-repository-verification.json"
+      ],
+      "owner": "@hindermath",
+      "audiences": [
+        "Learners",
+        "Maintainers",
+        "Technical reviewers"
+      ],
+      "readerPaths": [
+        "Rollout tracker -> seven-project report -> project evidence -> checks"
+      ],
+      "canonicalSource": "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md",
+      "navigationImpact": "Current summary links seven scoped reports; immutable historical five-project report remains linked.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English partner paragraphs in the same files",
+      "languagePartners": [],
+      "platformAndExampleProof": "29 Level-0 and 18 AOC successful exact-head checks, scoped local evidence and read-only GitHub comparisons of five historical reports.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/assurance-v013-seven-repository-verification.json",
+      "risk": "Seven scoped technical recommendations must not be confused with central preset, product, legal or human approval.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Package, evidence, purpose, scope, authority, dates or upstream outcome change."
+    },
+    {
+      "changeId": "CHG079",
+      "scope": "Statistics ledger for seven-repository consolidation",
+      "decision": "GeneratedUpdate",
+      "rationale": "Record completion of the new consolidation in the living ledger and deterministic renderer.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "@hindermath",
+      "audiences": [
+        "Learners",
+        "Maintainers",
+        "Technical reviewers"
+      ],
+      "readerPaths": [
+        "Rollout tracker -> seven-project report -> project evidence -> checks"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Append a phase and chronological log entry; retain the existing statistics reader path.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English partner paragraphs in the same files",
+      "languagePartners": [],
+      "platformAndExampleProof": "29 Level-0 and 18 AOC successful exact-head checks, scoped local evidence and read-only GitHub comparisons of five historical reports.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-project-statistics.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Package, evidence, purpose, scope, authority, dates or upstream outcome change.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    }
+  ]
+}

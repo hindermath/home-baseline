@@ -181,6 +181,8 @@
 
 | 2026-09-09 | Assurance v0.1.3 Level-0-Feldtest / Level-0 field test | Installiertes Preset 0.1.2 auf unveraendertes 0.1.3 aktualisiert; eigener training-Kontext mit vier Gates und technischen Rohhash-/Paritaetsnachweisen. Negativsuite, acht Befehlsoberflaechen, Komposition und 13-Preset-Matrix bestanden. Claude-Remove-Restdateien dokumentiert. 1363 fachliche Nettozeilen vor Statistikpflege. Human-only-Freigaben bleiben Open; keine Produktlaeufe oder zentrale Preset-Abnahme. / Upgraded immutable preset, added scoped technical evidence, preserved human decisions and historical assessments; no product runs or central acceptance. |
 
+| 2026-09-09 | Assurance v0.1.3 Siebener-Konsolidierung / Seven-repository consolidation | Fuenf unveraenderte historische Feldberichte und zwei neue gemergte Feldtests ergeben sieben begrenzte projektbezogene `ReleaseAccepted`-Empfehlungen. Level 0: [PR #277](https://github.com/hindermath/home-baseline/pull/277), 29 Checks, Home-Sync aktuell. AOC: [PR #44](https://github.com/hindermath/agent-operations-cockpit/pull/44), 18 Checks, 14-Intake-Grenze unveraendert. Beide main-Branches nach Merge 0/0. Ausbildung ab Lehrjahr 1 fuer vier IT-Berufe; keine zentrale Preset-Abnahme oder menschliche Freigabe. 205 fachliche Nettozeilen vor Statistikpflege. / Seven scoped field recommendations with verified delivery, preserved historical evidence and no central acceptance; source-only consolidation. |
+
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot
@@ -1131,25 +1133,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 648346 lines |
-| Textdateien / Text files | 3041 |
+| Textbasis / Text base | 648559 lines |
+| Textdateien / Text files | 3043 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-09 |
 | Aktivtage / Active days | 105 |
-| Relevante Commits / Relevant commits | 824 |
-| Zeilen je Aktivtag / Lines per active day | 6174.7 |
+| Relevante Commits / Relevant commits | 826 |
+| Zeilen je Aktivtag / Lines per active day | 6176.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 77.2x |
-| Speedup vs. 100 lines/day | 61.7x |
-| Methodik / Methodology | v2; source `d6e92ef6d770` |
+| Speedup vs. 100 lines/day | 61.8x |
+| Methodik / Methodology | v2; source `080a03aa52cc` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 24921
-Dokumentation / Documentation   [##########..........]  49.4% | 320450
+Tests                           [#...................]   3.8% | 24925
+Dokumentation / Documentation   [##########..........]  49.4% | 320659
 Skripte / Scripts               [##..................]   7.9% | 51464
 Konfiguration / Configuration   [########............]  38.4% | 248962
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1178,7 +1180,7 @@ Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
 So/Su  0 0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4
 Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3
 Di/Tu  0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2
-Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 3
+Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4
 Do/Th  0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 -
 Fr/Fr  0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 -
 Sa/Sa  0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 -
@@ -1283,15 +1285,15 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..76
-   cap 20000 | . . . . . . . . . . . . .
-       16667 | . . . . . . . . . . . . .
-       13333 | . . . . . # . . . . . . .
-       10000 | . . . . . # . . . . . . .
-        6667 | . . . # . # # . # . . . .
-        3333 | . . # # . # # . # . . . .
-           0 +---------------------------
-             64 65 66 67 68 69 70 71 72 73 74 75 76
+Slots 64..77
+   cap 20000 | . . . . . . . . . . . . . .
+       16667 | . . . . . . . . . . . . . .
+       13333 | . . . . . # . . . . . . . .
+       10000 | . . . . . # . . . . . . . .
+        6667 | . . . # . # # . # . . . . .
+        3333 | . . # # . # # . # . . . . .
+           0 +-----------------------------
+             64 65 66 67 68 69 70 71 72 73 74 75 76 77
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1373,6 +1375,7 @@ Slots 64..76
 | 74 | Secure-Development-Assurance-Community-Einreichung / Secure Development Assurance Community submission | 22 |
 | 75 | Secure-Development-Assurance-v0.1.3-Feldtestkonsolidierung / Secure Development Assurance v0.1.3 field-test consolidation | 284 |
 | 76 | Assurance v0.1.3 Level-0-Feldtest / Assurance v0.1.3 Level-0 field test | 1363 |
+| 77 | Assurance v0.1.3 Siebener-Konsolidierung / Assurance v0.1.3 seven-repository consolidation | 205 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1383,7 +1386,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [###############.....] 77.2x
-100 lines/day      [############........] 61.7x
+100 lines/day      [############........] 61.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1396,7 +1399,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6174.7
+Visible repository [############........] 6176.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1422,6 +1425,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-09. Es enthaelt 105 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 83898 |
+| 2026-09 | 84395 |
 
 <!-- project-statistics-v2:end -->

@@ -625,6 +625,14 @@
       "labelEn": "Assurance v0.1.3 Level-0 field test",
       "netLines": 1363,
       "activeDays": 1
+    },
+    {
+      "slot": 77,
+      "id": "assurance-v013-seven-repo-rollup",
+      "labelDe": "Assurance v0.1.3 Siebener-Konsolidierung",
+      "labelEn": "Assurance v0.1.3 seven-repository consolidation",
+      "netLines": 205,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],
