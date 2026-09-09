@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "assurance-v013-level0-field-test",
+  "entries": [
+    {
+      "changeId": "CHG077",
+      "scope": "Level-0 v0.1.3 installation, scoped field test and seven-repository educational purpose",
+      "decision": "UpdateRequired",
+      "rationale": "Upgrade installed Assurance and document independent decision boundaries and reproducible evidence.",
+      "documents": [
+        "docs/maintenance/secure-development-assurance-v013-level0-field-test.md",
+        "docs/security/secure-development/2026-09-09-home-baseline-assurance-v013/evidence-matrix.md"
+      ],
+      "owner": "@hindermath",
+      "audiences": [
+        "Learners",
+        "Maintainers",
+        "Technical reviewers"
+      ],
+      "readerPaths": [
+        "Tracker -> report -> matrix -> runbooks -> verification"
+      ],
+      "canonicalSource": "docs/maintenance/secure-development-assurance-v013-level0-field-test.md",
+      "navigationImpact": "Add field report and scoped evidence; historical five-project decisions remain unchanged.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English paragraphs in the same files",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash/PowerShell checks; native CI remains exact-head delivery gate",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/secure-development-assurance-v013-level0-field-test.md",
+      "risk": "Avoid equating structural field proof or formal merge bypass with human acceptance.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Package, document, scope, authority or review deadline changes."
+    }
+  ]
+}

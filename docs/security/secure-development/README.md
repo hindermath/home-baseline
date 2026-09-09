@@ -22,3 +22,12 @@ Each context records baseline, delta, closure, and image-impact gates.
 Applicability and implementation are separate axes. Technical validation does
 not grant a pilot, project, product, sandbox, or fleet authorization.
 HOSK/GWDG remains external comparison material only.
+
+## Aktueller Preset-Feldtest / Current preset field test
+
+Der [Level-0-Feldtest v0.1.3](../../maintenance/secure-development-assurance-v013-level0-field-test.md)
+prüft die Installation und Gate-Verträge im Ausbildungs-Scope getrennt von
+historischen Selbstprüfungen und menschlichen Freigaben.
+
+*The linked field test checks installation and gate contracts in the educational
+scope, separately from historical assessments and human approvals.*
