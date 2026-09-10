@@ -415,16 +415,22 @@ sdh_assert_safe_repository_path() {
   local repo="$1"
   local relative="$2"
   local expected_type="$3"
-  local target resolved_repo resolved_target
+  local target resolved_repo resolved_target unsafe_class=""
 
   case "$relative" in
-    ""|/*|\\*|[A-Za-z]:*|..|../*|*/../*|*/..|-*|*/-*|*'\'*|*$'\n'*|*$'\r'*|*$'\t'*)
+    "") unsafe_class='empty' ;;
+    /*|\\*|[A-Za-z]:*) unsafe_class='absolute' ;;
+    ..|../*|*/../*|*/..) unsafe_class='traversal' ;;
+    -*|*/-*) unsafe_class='option-component' ;;
+    *'\'*) unsafe_class='backslash' ;;
+    *$'\n'*|*$'\r'*|*$'\t'*) unsafe_class='control-byte' ;;
+  esac
+  if [ -n "$unsafe_class" ]; then
       # Rejected path bytes may themselves be credentials or control text, so
       # the public diagnostic preserves the code and remediation, not the data.
-      sdh_log 'LIE003: unsicherer Repositorypfad / unsafe repository path: [redacted]' >&2
-      return 1
-      ;;
-  esac
+    sdh_log "LIE003: unsicherer Repositorypfad / unsafe repository path: [redacted] (class: $unsafe_class)" >&2
+    return 1
+  fi
 
   target="$repo/$relative"
   case "$expected_type" in
@@ -490,6 +496,9 @@ sdh_repository_relative_from_absolute_path() {
       return 1
       ;;
   esac
+  # A native Windows realpath may retain backslashes after the common physical
+  # prefix has been removed. Repository-relative contracts always use '/'.
+  relative="${relative//\\//}"
   printf '%s\n' "$relative"
 }
 
