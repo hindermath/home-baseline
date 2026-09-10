@@ -52,7 +52,33 @@ sdh_log() {
 sdh_jq() {
   # Native jq on Windows otherwise translates output to CRLF. Binary mode
   # keeps structured values byte-stable without masking embedded CR input.
-  command jq -b "$@"
+  case "$(uname -s)" in
+    MINGW*|MSYS*|CYGWIN*) command jq -b "$@" ;;
+    *) command jq "$@" ;;
+  esac
+}
+
+sdh_sha256_file() {
+  local file="$1"
+  if command -v sha256sum >/dev/null 2>&1; then
+    command sha256sum -- "$file" | awk '{print $1}'
+  elif command -v shasum >/dev/null 2>&1; then
+    command shasum -a 256 -- "$file" | awk '{print $1}'
+  else
+    sdh_log 'LIE002: SHA-256-Werkzeug fehlt / SHA-256 tool is missing' >&2
+    return 1
+  fi
+}
+
+sdh_sha256_stream() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    command sha256sum | awk '{print $1}'
+  elif command -v shasum >/dev/null 2>&1; then
+    command shasum -a 256 | awk '{print $1}'
+  else
+    sdh_log 'LIE002: SHA-256-Werkzeug fehlt / SHA-256 tool is missing' >&2
+    return 1
+  fi
 }
 
 sdh_normalize_language() {
@@ -538,7 +564,7 @@ sdh_linked_intake_input_fingerprint() {
 
   while IFS= read -r relative; do
     if [ -f "$repo/$relative" ]; then
-      raw_hash="$(shasum -a 256 "$repo/$relative" | awk '{print $1}')"
+      raw_hash="$(sdh_sha256_file "$repo/$relative")"
       printf '%s\0file\0%s\n' "$relative" "$raw_hash"
     elif [ -d "$repo/$relative" ]; then
       printf '%s\0directory\n' "$relative"
@@ -546,7 +572,7 @@ sdh_linked_intake_input_fingerprint() {
       printf '%s\0missing\n' "$relative"
     fi
   done < <(sdh_linked_intake_input_paths "$repo" "$manifest_relative" | LC_ALL=C sort -u) \
-    | shasum -a 256 | awk '{print $1}'
+    | sdh_sha256_stream
 }
 
 sdh_assert_fixture_fault_scope() {

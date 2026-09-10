@@ -271,8 +271,8 @@ else
   create_transaction_fixture transaction
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write '' '' "$CASE_ROOT_OUTPUT" "$CASE_SERIES_OUTPUT"
   assert_projection 'write-update' '' zero 2
-  root_hash_before="$(shasum -a 256 "$CASE_REPO/$CASE_ROOT_OUTPUT" | awk '{print $1}')"
-  series_hash_before="$(shasum -a 256 "$CASE_REPO/$CASE_SERIES_OUTPUT" | awk '{print $1}')"
+  root_hash_before="$(sdh_sha256_file "$CASE_REPO/$CASE_ROOT_OUTPUT")"
+  series_hash_before="$(sdh_sha256_file "$CASE_REPO/$CASE_SERIES_OUTPUT")"
   cp "$CASE_REPO/$CASE_ROOT_OUTPUT" "$fixture_repo/bash-root-before-second-write.md"
   cp "$CASE_REPO/$CASE_SERIES_OUTPUT" "$fixture_repo/bash-series-before-second-write.md"
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write '' '' "$CASE_ROOT_OUTPUT" "$CASE_SERIES_OUTPUT"
@@ -303,10 +303,10 @@ else
   assert_projection 'complete-input-hash-recheck' 'LIE010' nonzero 0
 
   create_transaction_fixture input-overlap
-  manifest_hash_before="$(shasum -a 256 "$CASE_MANIFEST" | awk '{print $1}')"
+  manifest_hash_before="$(sdh_sha256_file "$CASE_MANIFEST")"
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write '' '' "$CASE_MANIFEST_REL"
   assert_projection 'canonical-input-output-overlap' 'LIE006' nonzero 0
-  manifest_hash_after="$(shasum -a 256 "$CASE_MANIFEST" | awk '{print $1}')"
+  manifest_hash_after="$(sdh_sha256_file "$CASE_MANIFEST")"
   if [ "$manifest_hash_before" != "$manifest_hash_after" ]; then
     printf '%s\n' 'FEHLER / FAIL: Overlap-Ablehnung veraenderte kanonische Eingabe / overlap rejection changed canonical input' >&2
     failures=$((failures + 1))
@@ -325,14 +325,14 @@ else
   create_transaction_fixture rollback
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write '' '' "$CASE_ROOT_OUTPUT" "$CASE_SERIES_OUTPUT"
   assert_projection 'rollback-baseline-write' '' zero 2
-  root_hash_before="$(shasum -a 256 "$CASE_REPO/$CASE_ROOT_OUTPUT" | awk '{print $1}')"
-  series_hash_before="$(shasum -a 256 "$CASE_REPO/$CASE_SERIES_OUTPUT" | awk '{print $1}')"
+  root_hash_before="$(sdh_sha256_file "$CASE_REPO/$CASE_ROOT_OUTPUT")"
+  series_hash_before="$(sdh_sha256_file "$CASE_REPO/$CASE_SERIES_OUTPUT")"
   sdh_jq '.orderedTargets[0].status = "Eligible"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
   mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write after-first-replace '' "$CASE_ROOT_OUTPUT" "$CASE_SERIES_OUTPUT"
   assert_projection 'simulated-publish-failure' 'LIE010' nonzero 0
-  root_hash_after="$(shasum -a 256 "$CASE_REPO/$CASE_ROOT_OUTPUT" | awk '{print $1}')"
-  series_hash_after="$(shasum -a 256 "$CASE_REPO/$CASE_SERIES_OUTPUT" | awk '{print $1}')"
+  root_hash_after="$(sdh_sha256_file "$CASE_REPO/$CASE_ROOT_OUTPUT")"
+  series_hash_after="$(sdh_sha256_file "$CASE_REPO/$CASE_SERIES_OUTPUT")"
   if [ "$root_hash_before" != "$root_hash_after" ] || [ "$series_hash_before" != "$series_hash_after" ]; then
     printf '%s\n' 'FEHLER / FAIL: atomarer Rollback stellte den vollstaendigen Altzustand nicht her / atomic rollback did not restore the complete prior state' >&2
     failures=$((failures + 1))

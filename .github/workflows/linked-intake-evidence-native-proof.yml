@@ -93,8 +93,9 @@ jobs:
           bash scripts/test-requirements-intake-governance.sh 2>&1 | tee "$log"
           code=${PIPESTATUS[0]}
           test "$code" -eq 0
-          source_hash=$(shasum -a 256 scripts/test-requirements-intake-governance.sh | awk '{print $1}')
-          log_hash=$(shasum -a 256 "$log" | awk '{print $1}')
+          . scripts/lib/secure-development-hardening.sh
+          source_hash=$(sdh_sha256_file scripts/test-requirements-intake-governance.sh)
+          log_hash=$(sdh_sha256_file "$log")
           printf 'LINKED_INTAKE_BASH_PROOF head=%s runner=%s sourceSha256=%s logSha256=%s exitCode=%s writes=0\n' \
             '${{ github.sha }}' '${{ matrix.os }}' "$source_hash" "$log_hash" "$code"
 
