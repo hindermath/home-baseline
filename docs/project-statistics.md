@@ -1139,29 +1139,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 658930 lines |
-| Textdateien / Text files | 3059 |
+| Textbasis / Text base | 672353 lines |
+| Textdateien / Text files | 3147 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-10 |
 | Aktivtage / Active days | 106 |
-| Relevante Commits / Relevant commits | 830 |
-| Zeilen je Aktivtag / Lines per active day | 6216.3 |
+| Relevante Commits / Relevant commits | 834 |
+| Zeilen je Aktivtag / Lines per active day | 6343.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 77.7x |
-| Speedup vs. 100 lines/day | 62.2x |
-| Methodik / Methodology | v2; source `96be86bf8c98` |
+| Speedup vs. 80 lines/day | 79.3x |
+| Speedup vs. 100 lines/day | 63.4x |
+| Methodik / Methodology | v2; source `8fb62991c9ae` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 25064
-Dokumentation / Documentation   [##########..........]  50.1% | 330217
-Skripte / Scripts               [##..................]   7.9% | 52000
-Konfiguration / Configuration   [########............]  37.8% | 249095
+Tests                           [#...................]   3.8% | 25583
+Dokumentation / Documentation   [##########..........]  50.2% | 337344
+Skripte / Scripts               [##..................]   8.2% | 54889
+Konfiguration / Configuration   [#######.............]  37.5% | 251949
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.0% | 317
+Sonstiger Text / Other text     [#...................]   0.1% | 351
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1210,7 +1210,7 @@ Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
       333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       250000 | . . . . . . . . . . . . . . . . . . . # . . . . . .
       166667 | . . . . . . . . . . . . . . . . . . . # . . . . . .
-       83333 | . . . . . . . . . . . . . . . . # . # # . . . . . .
+       83333 | . . . . . . . . . . . . . . . . # . # # . . . . . #
            0 +-----------------------------------------------------
 ```
 
@@ -1291,15 +1291,27 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..77
-   cap 20000 | . . . . . . . . . . . . . .
-       16667 | . . . . . . . . . . . . . .
-       13333 | . . . . . # . . . . . . . .
-       10000 | . . . . . # . . . . . . . .
-        6667 | . . . # . # # . # . . . . .
-        3333 | . . # # . # # . # . . . . .
-           0 +-----------------------------
-             64 65 66 67 68 69 70 71 72 73 74 75 76 77
+Slots 64..79
+   cap 20000 | . . . . . . . . . . . . . . . .
+       16667 | . . . . . . . . . . . . . . . .
+       13333 | . . . . . # . . . . . . . . . .
+       10000 | . . . . . # . . . . . . . . . .
+        6667 | . . . # . # # . # . . . . . . .
+        3333 | . . # # . # # . # . . . . . . .
+           0 +---------------------------------
+             64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79
+```
+
+```text
+Slots 80..82
+    cap 2000 | . . .
+        1667 | # . .
+        1333 | # . .
+        1000 | # . .
+         667 | # # .
+         333 | # # .
+           0 +-------
+             80 81 82
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1382,6 +1394,11 @@ Slots 64..77
 | 75 | Secure-Development-Assurance-v0.1.3-Feldtestkonsolidierung / Secure Development Assurance v0.1.3 field-test consolidation | 284 |
 | 76 | Assurance v0.1.3 Level-0-Feldtest / Assurance v0.1.3 Level-0 field test | 1363 |
 | 77 | Assurance v0.1.3 Siebener-Konsolidierung / Assurance v0.1.3 seven-repository consolidation | 205 |
+| 78 | Feature 032 Foundation / Feature 032 foundation | 690 |
+| 79 | Feature 032 HOME-Vertikalscheibe / Feature 032 HOME vertical slice | 1117 |
+| 80 | Feature 032 Validierung und Transaktion / Feature 032 validation and transaction | 1750 |
+| 81 | Feature 032 Exaktvertrag und Assurance / Feature 032 exact contract and assurance | 676 |
+| 82 | Feature 032 Home-Lieferbasis / Feature 032 Home delivery foundation | 52 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1391,8 +1408,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 77.7x
-100 lines/day      [############........] 62.2x
+80 lines/day       [################....] 79.3x
+100 lines/day      [#############.......] 63.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1405,7 +1422,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6216.3
+Visible repository [#############.......] 6343.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1431,6 +1448,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-10. Es enthaelt 106 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 94778 |
+| 2026-09 | 109901 |
 
 <!-- project-statistics-v2:end -->
