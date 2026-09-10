@@ -49,6 +49,12 @@ sdh_log() {
   printf '%s\n' "$message"
 }
 
+sdh_jq() {
+  # Native jq on Windows otherwise translates output to CRLF. Binary mode
+  # keeps structured values byte-stable without masking embedded CR input.
+  command jq -b "$@"
+}
+
 sdh_normalize_language() {
   printf '%s' "${1:-}" \
     | tr '[:upper:]' '[:lower:]' \
@@ -214,7 +220,7 @@ sdh_find_source_dir() {
 
 sdh_manifest_paths() {
   local manifest="$1"
-  jq -r '
+  sdh_jq -r '
     ["baseline-manifest.json", .guideline.path, .compendium.path]
     + [.checklists[].path]
     + [.relatedDocuments[].path]
@@ -509,7 +515,7 @@ sdh_linked_intake_input_paths() {
   local spec_file state_path
 
   printf '%s\n' "$manifest_relative"
-  jq -r '.orderedTargets[].path' "$repo/$manifest_relative"
+  sdh_jq -r '.orderedTargets[].path' "$repo/$manifest_relative"
   for spec_file in "$repo"/specs/[0-9][0-9][0-9]-*/spec.md; do
     [ -f "$spec_file" ] || continue
     printf '%s\n' "${spec_file#"$repo/"}"
@@ -519,10 +525,10 @@ sdh_linked_intake_input_paths() {
     [ -n "$archive_stamp" ] || continue
     state_path="specs/$archive_stamp/autonomous-run-state.json"
     [ ! -f "$repo/$state_path" ] || printf '%s\n' "$state_path"
-  done < <(jq -r '.orderedTargets[].path' "$repo/$manifest_relative")
+  done < <(sdh_jq -r '.orderedTargets[].path' "$repo/$manifest_relative")
   while IFS= read -r proof_path; do
     [ -z "$proof_path" ] || printf '%s\n' "$proof_path"
-  done < <(jq -r '(.featureEvidence // [])[].featurePath' "$repo/$manifest_relative")
+  done < <(sdh_jq -r '(.featureEvidence // [])[].featurePath' "$repo/$manifest_relative")
 }
 
 sdh_linked_intake_input_fingerprint() {
@@ -584,7 +590,7 @@ sdh_validate_linked_intake_manifest() {
 
   sdh_assert_safe_repository_path "$repo" "$manifest_relative" file || return 1
   sdh_assert_strict_utf8_file "$manifest" "$manifest_relative" || return 1
-  jq -e '
+  sdh_jq -e '
     .schemaVersion == "1.0"
     and .documentType == "IntakeSeriesManifest"
     and (.seriesId | type == "string" and length > 0)
@@ -616,43 +622,43 @@ sdh_validate_linked_intake_manifest() {
     return 1
   }
 
-  duplicate_count="$(jq '[.orderedTargets[].path] | length - (unique | length)' "$manifest")"
+  duplicate_count="$(sdh_jq '[.orderedTargets[].path] | length - (unique | length)' "$manifest")"
   [ "$duplicate_count" = "0" ] || { sdh_log 'LIE006: doppelte Intake-Identitaet / duplicate intake identity' >&2; return 1; }
-  duplicate_count="$(jq '[.roots[]] | length - (unique | length)' "$manifest")"
+  duplicate_count="$(sdh_jq '[.roots[]] | length - (unique | length)' "$manifest")"
   [ "$duplicate_count" = "0" ] || { sdh_log 'LIE006: doppelte Root-Identitaet / duplicate root identity' >&2; return 1; }
-  duplicate_count="$(jq '[.dependencies[] | [.from,.to,.kind,.binding]] | length - (unique | length)' "$manifest")"
+  duplicate_count="$(sdh_jq '[.dependencies[] | [.from,.to,.kind,.binding]] | length - (unique | length)' "$manifest")"
   [ "$duplicate_count" = "0" ] || { sdh_log 'LIE007: doppeltes Dependency-Tupel / duplicate dependency tuple' >&2; return 1; }
 
   while IFS= read -r path; do
     sdh_assert_safe_repository_path "$repo" "$path" file || return 1
     sdh_assert_strict_utf8_file "$repo/$path" "$path" || return 1
-  done < <(jq -r '.orderedTargets[].path' "$manifest")
+  done < <(sdh_jq -r '.orderedTargets[].path' "$manifest")
 
   while IFS= read -r root; do
-    jq -e --arg endpoint "$root" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
+    sdh_jq -e --arg endpoint "$root" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
       || { sdh_log "LIE007: unbekannter Root-Endpoint / unknown root endpoint: $root" >&2; return 1; }
-  done < <(jq -r '.roots[]' "$manifest")
+  done < <(sdh_jq -r '.roots[]' "$manifest")
 
   while IFS=$'\t' read -r from to kind; do
-    jq -e --arg endpoint "$from" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
+    sdh_jq -e --arg endpoint "$from" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
       || { sdh_log "LIE007: unbekannter Dependency-Endpoint / unknown dependency endpoint: $from" >&2; return 1; }
-    jq -e --arg endpoint "$to" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
+    sdh_jq -e --arg endpoint "$to" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
       || { sdh_log "LIE007: unbekannter Dependency-Endpoint / unknown dependency endpoint: $to" >&2; return 1; }
     case "$kind" in *$'\n'*|*$'\r'*|*$'\t'*) sdh_log 'LIE007: ungueltiger Dependency-Kind / invalid dependency kind' >&2; return 1 ;; esac
-  done < <(jq -r '.dependencies[] | [.from,.to,.kind] | @tsv' "$manifest")
+  done < <(sdh_jq -r '.dependencies[] | [.from,.to,.kind] | @tsv' "$manifest")
 
   while IFS=$'\t' read -r path to; do
-    jq -e --arg endpoint "$path" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
+    sdh_jq -e --arg endpoint "$path" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
       || { sdh_log "LIE008: Legacy-Proof referenziert unbekannten Intake / legacy proof references unknown intake: $path" >&2; return 1; }
     case "$to" in specs/[0-9][0-9][0-9]-*) ;; *) sdh_log "LIE008: ungueltiger Feature-Nachweis / invalid feature evidence: $path" >&2; return 1 ;; esac
     sdh_assert_safe_repository_path "$repo" "$to" directory >/dev/null 2>&1 \
       || { sdh_log "LIE008: Feature-Ziel fehlt oder ist unsicher / feature target is missing or unsafe: $path" >&2; return 1; }
-  done < <(jq -r '(.featureEvidence // [])[] | [.intakePath,.featurePath] | @tsv' "$manifest")
+  done < <(sdh_jq -r '(.featureEvidence // [])[] | [.intakePath,.featurePath] | @tsv' "$manifest")
 
   positions_file="$(mktemp)"
-  target_count="$(jq '.orderedTargets | length' "$manifest")"
+  target_count="$(sdh_jq '.orderedTargets | length' "$manifest")"
   for ((index = 1; index <= target_count; index++)); do
-    path="$(jq -r --argjson index "$((index - 1))" '.orderedTargets[$index].path' "$manifest")"
+    path="$(sdh_jq -r --argjson index "$((index - 1))" '.orderedTargets[$index].path' "$manifest")"
     position="$(sdh_display_position "$repo/$path" "$index")"
     case "$position" in ''|*[!0-9]*|0) rm -f "$positions_file"; sdh_log "LIE006: ungueltige sichtbare Position / invalid display position: $path" >&2; return 1 ;; esac
     printf '%s\n' "$position" >> "$positions_file"
@@ -702,7 +708,7 @@ sdh_url_encode_repository_path() {
     if [ "$component" = ".." ] || [ "$component" = "." ]; then
       encoded="$component"
     else
-      encoded="$(jq -nr --arg value "$component" '$value | @uri')"
+      encoded="$(sdh_jq -nr --arg value "$component" '$value | @uri')"
     fi
     [ -z "$result" ] || result="$result/"
     result="$result$encoded"
@@ -773,7 +779,7 @@ sdh_feature_cell() {
       state_file="$repo/specs/$archive_stamp/autonomous-run-state.json"
       if [ -f "$state_file" ]; then
         sdh_assert_strict_utf8_file "$state_file" "specs/$archive_stamp/autonomous-run-state.json" || return 1
-        if jq -e --arg intake "$intake_path" 'any(.acceptedArtifacts[]?; .path == $intake)' "$state_file" >/dev/null 2>&1; then
+        if sdh_jq -e --arg intake "$intake_path" 'any(.acceptedArtifacts[]?; .path == $intake)' "$state_file" >/dev/null 2>&1; then
           candidates+=("specs/$archive_stamp")
         fi
       fi
@@ -783,7 +789,7 @@ sdh_feature_cell() {
       while IFS= read -r mapped_path; do
         [ -d "$repo/$mapped_path" ] || { sdh_log "LIE008: Feature-Ziel fehlt / feature target is missing: $intake_path" >&2; return 1; }
         candidates+=("$mapped_path")
-      done < <(jq -r --arg intake "$intake_path" '(.featureEvidence // [])[] | select(.intakePath == $intake) | .featurePath' "$manifest")
+      done < <(sdh_jq -r --arg intake "$intake_path" '(.featureEvidence // [])[] | select(.intakePath == $intake) | .featurePath' "$manifest")
     fi
   fi
 
@@ -812,7 +818,7 @@ sdh_build_linked_intake_order_section() {
   manifest_relative="$(sdh_repository_relative_from_absolute_path "$repo" "$manifest")" || return 1
   sdh_validate_linked_intake_manifest "$repo" "$manifest_relative" || return 1
 
-  target_count="$(jq '.orderedTargets | length' "$manifest")"
+  target_count="$(sdh_jq '.orderedTargets | length' "$manifest")"
   cat <<'EOF'
 <!-- secure-development-hardening-order:start -->
 ## Verlinkte Lastenheft-Reihenfolge / Linked Requirements Order
@@ -826,21 +832,21 @@ Diese Tabelle wird aus dem kanonischen Series-Manifest und ausdruecklicher Featu
 EOF
 
   for ((manifest_index = 1; manifest_index <= target_count; manifest_index++)); do
-    path="$(jq -r --argjson index "$((manifest_index - 1))" '.orderedTargets[$index].path' "$manifest")"
-    role="$(jq -r --argjson index "$((manifest_index - 1))" '.orderedTargets[$index].role' "$manifest")"
-    status="$(jq -r --argjson index "$((manifest_index - 1))" '.orderedTargets[$index].status' "$manifest")"
+    path="$(sdh_jq -r --argjson index "$((manifest_index - 1))" '.orderedTargets[$index].path' "$manifest")"
+    role="$(sdh_jq -r --argjson index "$((manifest_index - 1))" '.orderedTargets[$index].role' "$manifest")"
+    status="$(sdh_jq -r --argjson index "$((manifest_index - 1))" '.orderedTargets[$index].status' "$manifest")"
     [ -n "$role" ] || { sdh_log "LIE002: Rolle fehlt / role is missing: $path" >&2; return 1; }
     sdh_assert_safe_repository_path "$repo" "$path" file || return 1
     intake_link="$(sdh_markdown_link "$repo" "$view_path" "$path" file)" || return 1
     display_position="$(sdh_display_position "$repo/$path" "$manifest_index")"
 
-    dependency_count="$(jq --arg target "$path" '[.dependencies[] | select(.to == $target)] | length' "$manifest")"
+    dependency_count="$(sdh_jq --arg target "$path" '[.dependencies[] | select(.to == $target)] | length' "$manifest")"
     dependencies=""
     for ((dependency_index = 0; dependency_index < dependency_count; dependency_index++)); do
-      from="$(jq -r --arg target "$path" --argjson index "$dependency_index" '[.dependencies[] | select(.to == $target)][$index].from' "$manifest")"
-      kind="$(jq -r --arg target "$path" --argjson index "$dependency_index" '[.dependencies[] | select(.to == $target)][$index].kind' "$manifest")"
-      binding="$(jq -r --arg target "$path" --argjson index "$dependency_index" '[.dependencies[] | select(.to == $target)][$index].binding' "$manifest")"
-      jq -e --arg endpoint "$from" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
+      from="$(sdh_jq -r --arg target "$path" --argjson index "$dependency_index" '[.dependencies[] | select(.to == $target)][$index].from' "$manifest")"
+      kind="$(sdh_jq -r --arg target "$path" --argjson index "$dependency_index" '[.dependencies[] | select(.to == $target)][$index].kind' "$manifest")"
+      binding="$(sdh_jq -r --arg target "$path" --argjson index "$dependency_index" '[.dependencies[] | select(.to == $target)][$index].binding' "$manifest")"
+      sdh_jq -e --arg endpoint "$from" 'any(.orderedTargets[]; .path == $endpoint)' "$manifest" >/dev/null \
         || { sdh_log "LIE007: unbekannter Dependency-Endpoint / unknown dependency endpoint: $from" >&2; return 1; }
       dependency_link="$(sdh_markdown_link "$repo" "$view_path" "$from" file)" || return 1
       [ -z "$dependencies" ] || dependencies="${dependencies}<br>"
@@ -882,7 +888,7 @@ sdh_build_order_file_candidate() {
   sdh_build_linked_intake_order_section "$repo" "$manifest" "$output_relative" > "$section_file" || { rm -f "$section_file" "$current_file"; return 1; }
 
   if [ -f "$output" ]; then
-    jq -Rrsj 'gsub("\r\n|\r"; "\n")' "$output" > "$current_file"
+    sdh_jq -Rrsj 'gsub("\r\n|\r"; "\n")' "$output" > "$current_file"
     if grep -q '<!-- secure-development-hardening-order:start -->' "$current_file" \
       && grep -q '<!-- secure-development-hardening-order:end -->' "$current_file"; then
       awk -v section_file="$section_file" '

@@ -73,7 +73,7 @@ actual_series_section="$fixture_repo/actual-series-section.md"
 actual_series_table="$fixture_repo/actual-series-table.md"
 mkdir -p -- "$(dirname "$manifest_file")"
 
-jq '{
+sdh_jq '{
   schemaVersion,
   documentType: "IntakeSeriesManifest",
   seriesId: "linked-intake-test",
@@ -87,7 +87,7 @@ while IFS=$'\t' read -r intake_path display_position; do
   intake_file="$fixture_repo/$intake_path"
   mkdir -p -- "$(dirname "$intake_file")"
   printf '# Fixture\n\n**Reihenfolge:** sichtbare Position %s\n' "$display_position" > "$intake_file"
-done < <(jq -r '.entries[] | [.intakePath, (.displayPosition | tostring)] | @tsv' "$cases_file")
+done < <(sdh_jq -r '.entries[] | [.intakePath, (.displayPosition | tostring)] | @tsv' "$cases_file")
 
 feature_dir="$fixture_repo/specs/032-linked-intake-evidence"
 mkdir -p -- "$feature_dir"
@@ -155,7 +155,7 @@ if ! cmp -s -- "$expected_negative" "$NEGATIVE_FIXTURE"; then
 fi
 
 expected_codes='LIE001 LIE002 LIE003 LIE004 LIE005 LIE006 LIE007 LIE008 LIE009 LIE010 LIE011 LIE012'
-actual_codes="$(jq -r '.cases[].expectedDiagnostic' "$NEGATIVE_FIXTURE" | sort -u | tr '\n' ' ' | sed 's/ $//')"
+actual_codes="$(sdh_jq -r '.cases[].expectedDiagnostic' "$NEGATIVE_FIXTURE" | sort -u | tr '\n' ' ' | sed 's/ $//')"
 if [ "$actual_codes" != "$expected_codes" ]; then
   printf 'FEHLER / FAIL: Diagnostikfamilien unvollstaendig / diagnostic families incomplete\n  erwartet / expected: %s\n  tatsaechlich / actual: %s\n' "$expected_codes" "$actual_codes" >&2
   failures=$((failures + 1))
@@ -186,7 +186,7 @@ for a11y_file in "${a11y_files[@]+"${a11y_files[@]}"}"; do
   fi
 done
 
-if ! jq -e '
+if ! sdh_jq -e '
   .languageOrder == ["de","en"] and
   (.cases | length) == 12 and
   ([.cases[].code] | unique) == ["LIE001","LIE002","LIE003","LIE004","LIE005","LIE006","LIE007","LIE008","LIE009","LIE010","LIE011","LIE012"] and
@@ -210,7 +210,7 @@ create_transaction_fixture() {
   CASE_SERIES_OUTPUT='requirements/intakes/series/home-baseline-delivery/order.md'
   mkdir -p -- "$(dirname "$CASE_MANIFEST")" "$CASE_REPO/.git"
   : > "$CASE_REPO/.sdh-linked-intake-test-fixture"
-  jq '{
+  sdh_jq '{
     schemaVersion,
     documentType: "IntakeSeriesManifest",
     seriesId: "linked-intake-test",
@@ -223,7 +223,7 @@ create_transaction_fixture() {
     intake_file="$CASE_REPO/$intake_path"
     mkdir -p -- "$(dirname "$intake_file")"
     printf '# Fixture\n\n**Reihenfolge:** sichtbare Position %s\n' "$display_position" > "$intake_file"
-  done < <(jq -r '.entries[] | [.intakePath, (.displayPosition | tostring)] | @tsv' "$cases_file")
+  done < <(sdh_jq -r '.entries[] | [.intakePath, (.displayPosition | tostring)] | @tsv' "$cases_file")
   mkdir -p -- "$CASE_REPO/specs/032-linked-intake-evidence" "$(dirname "$CASE_REPO/$CASE_SERIES_OUTPUT")"
   printf '# Fixture Feature\n\n**Binding Input / Bindende Eingabe**: `%s`\n' \
     'Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md' \
@@ -327,7 +327,7 @@ else
   assert_projection 'rollback-baseline-write' '' zero 2
   root_hash_before="$(shasum -a 256 "$CASE_REPO/$CASE_ROOT_OUTPUT" | awk '{print $1}')"
   series_hash_before="$(shasum -a 256 "$CASE_REPO/$CASE_SERIES_OUTPUT" | awk '{print $1}')"
-  jq '.orderedTargets[0].status = "Eligible"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
+  sdh_jq '.orderedTargets[0].status = "Eligible"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
   mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write after-first-replace '' "$CASE_ROOT_OUTPUT" "$CASE_SERIES_OUTPUT"
   assert_projection 'simulated-publish-failure' 'LIE010' nonzero 0
@@ -351,7 +351,7 @@ else
   assert_projection 'root-series-drift' 'LIE011' nonzero 0
 
   create_transaction_fixture escaping
-  jq '.orderedTargets[0].status = "<status data-safe=\"yes\">Com|pleted & Ready</status> [x](y)\\z" | .dependencies[0].kind = "<kind>Hard|Gate & advisory</kind> [x](y)\\z"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
+  sdh_jq '.orderedTargets[0].status = "<status data-safe=\"yes\">Com|pleted & Ready</status> [x](y)\\z" | .dependencies[0].kind = "<kind>Hard|Gate & advisory</kind> [x](y)\\z"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
   mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
   run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write '' '' "$CASE_ROOT_OUTPUT" "$CASE_SERIES_OUTPUT"
   assert_projection 'markdown-escaping' '' zero 2
@@ -418,7 +418,7 @@ else
   assert_public_diagnostic public-lie004-credential LIE004 'token=[redacted]' 'fixture-secret-value'
 
   create_transaction_fixture public-lie007-safe
-  jq '.dependencies[0].from = "requirements/intakes/active/missing.md"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
+  sdh_jq '.dependencies[0].from = "requirements/intakes/active/missing.md"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
   mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
   run_public_cli_case public-lie007-safe \
     --repo "$CASE_REPO" --order-only --manifest "$CASE_MANIFEST_REL" \
@@ -426,7 +426,7 @@ else
   assert_public_diagnostic public-lie007-safe LIE007 'requirements/intakes/active/missing.md' ''
 
   create_transaction_fixture public-lie007-credential
-  jq '.dependencies[0].from = "token=fixture-secret-value.md"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
+  sdh_jq '.dependencies[0].from = "token=fixture-secret-value.md"' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp"
   mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
   run_public_cli_case public-lie007-credential \
     --repo "$CASE_REPO" --order-only --manifest "$CASE_MANIFEST_REL" \
@@ -473,26 +473,26 @@ else
         ;;
       missing-required-field)
         create_transaction_fixture "$case_id"
-        jq 'del(.schemaVersion)' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq 'del(.schemaVersion)' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       wrong-type)
         create_transaction_fixture "$case_id"
-        jq '.orderedTargets = {}' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq '.orderedTargets = {}' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       absolute-posix|absolute-drive|absolute-unc|parent-traversal|option-path|missing-target|wrong-filesystem-type|symlink-escape)
         create_transaction_fixture "$case_id"
-        bad_path="$(jq -r --arg id "$case_id" '.cases[] | select(.id == $id).path' "$NEGATIVE_FIXTURE")"
+        bad_path="$(sdh_jq -r --arg id "$case_id" '.cases[] | select(.id == $id).path' "$NEGATIVE_FIXTURE")"
         if [ "$case_id" = 'symlink-escape' ]; then
           outside_file="$fixture_repo/outside.md"
           printf '# outside\n' > "$outside_file"
           mkdir -p "$CASE_REPO/fixtures"
           ln -s "$outside_file" "$CASE_REPO/$bad_path"
         fi
-        jq --arg path "$bad_path" '.orderedTargets[0].path = $path' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq --arg path "$bad_path" '.orderedTargets[0].path = $path' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       duplicate-identity)
         create_transaction_fixture "$case_id"
-        jq '.orderedTargets += [.orderedTargets[0]]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq '.orderedTargets += [.orderedTargets[0]]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       duplicate-position)
         create_transaction_fixture "$case_id"
@@ -500,7 +500,7 @@ else
         ;;
       unknown-endpoint)
         create_transaction_fixture "$case_id"
-        jq '.dependencies += [{from:"requirements/intakes/active/missing.md",to:.orderedTargets[0].path,kind:"HardCompletionGate",binding:true}]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq '.dependencies += [{from:"requirements/intakes/active/missing.md",to:.orderedTargets[0].path,kind:"HardCompletionGate",binding:true}]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       multiple-feature-candidates)
         create_transaction_fixture "$case_id"
@@ -518,12 +518,12 @@ else
     esac
     run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" check '' '' "$CASE_ROOT_OUTPUT"
     assert_projection "$case_id" "$expected_code" nonzero 0
-  done < <(jq -r '.cases[] | [.id, .expectedDiagnostic] | @tsv' "$NEGATIVE_FIXTURE")
+  done < <(sdh_jq -r '.cases[] | [.id, .expectedDiagnostic] | @tsv' "$NEGATIVE_FIXTURE")
 
   feature_case_count=0
   while IFS= read -r feature_case; do
     feature_case_count=$((feature_case_count + 1))
-    feature_id="$(jq -r '.id' <<< "$feature_case")"
+    feature_id="$(sdh_jq -r '.id' <<< "$feature_case")"
     create_transaction_fixture "feature-$feature_id"
     intake='Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md'
     case "$feature_id" in
@@ -533,13 +533,13 @@ else
         archived='requirements/intakes/archive/Lastenheft_Archived.123-archived-proof.md'
         mkdir -p "$CASE_REPO/requirements/intakes/archive" "$CASE_REPO/specs/123-archived-proof"
         printf '# Archived\n\n**Reihenfolge:** sichtbare Position 39\n' > "$CASE_REPO/$archived"
-        jq --arg old "$intake" --arg new "$archived" '(.orderedTargets[] | select(.path == $old).path) = $new | (.dependencies[] | select(.to == $old).to) = $new' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq --arg old "$intake" --arg new "$archived" '(.orderedTargets[] | select(.path == $old).path) = $new | (.dependencies[] | select(.to == $old).to) = $new' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         printf '{"acceptedArtifacts":[{"path":"%s"}]}\n' "$archived" > "$CASE_REPO/specs/123-archived-proof/autonomous-run-state.json"
         ;;
       reviewed-legacy-mapping)
         rm -rf "$CASE_REPO/specs/032-linked-intake-evidence"
         mkdir -p "$CASE_REPO/specs/124-reviewed-legacy"
-        jq --arg intake "$intake" '.featureEvidence=[{intakePath:$intake,featurePath:"specs/124-reviewed-legacy",proofKind:"ReviewedLegacyMapping",reviewed:true}]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq --arg intake "$intake" '.featureEvidence=[{intakePath:$intake,featurePath:"specs/124-reviewed-legacy",proofKind:"ReviewedLegacyMapping",reviewed:true}]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       no-evidence)
         rm -rf "$CASE_REPO/specs"
@@ -550,7 +550,7 @@ else
         ;;
       invalid)
         rm -rf "$CASE_REPO/specs/032-linked-intake-evidence"
-        jq --arg intake "$intake" '.featureEvidence=[{intakePath:$intake,featurePath:"specs/125-missing",proofKind:"ReviewedLegacyMapping",reviewed:true}]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
+        sdh_jq --arg intake "$intake" '.featureEvidence=[{intakePath:$intake,featurePath:"specs/125-missing",proofKind:"ReviewedLegacyMapping",reviewed:true}]' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
       similarity-is-not-proof)
         rm -rf "$CASE_REPO/specs/032-linked-intake-evidence"
@@ -558,7 +558,7 @@ else
         ;;
     esac
     run_projection "$CASE_REPO" "$CASE_MANIFEST_REL" write '' '' "$CASE_ROOT_OUTPUT"
-    expected_state="$(jq -r '.expectedState' <<< "$feature_case")"
+    expected_state="$(sdh_jq -r '.expectedState' <<< "$feature_case")"
     if [ "$expected_state" = 'Ambiguous' ] || [ "$expected_state" = 'Invalid' ]; then
       assert_projection "feature-$feature_id" 'LIE008' nonzero 0
     else
@@ -574,7 +574,7 @@ else
         failures=$((failures + 1))
       fi
     fi
-  done < <(jq -c '.cases[]' "$FEATURE_MATRIX")
+  done < <(sdh_jq -c '.cases[]' "$FEATURE_MATRIX")
   [ "$feature_case_count" -eq 7 ] || { printf '%s\n' 'FEHLER / FAIL: Feature-Proof-Matrix ist unvollstaendig / feature proof matrix is incomplete' >&2; failures=$((failures + 1)); }
 fi
 
