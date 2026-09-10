@@ -81,6 +81,28 @@ sdh_sha256_stream() {
   fi
 }
 
+sdh_create_test_file_symlink() {
+  local target="$1"
+  local link="$2"
+  local windows_target windows_link
+
+  case "$(uname -s)" in
+    MINGW*|MSYS*|CYGWIN*)
+      command -v cygpath >/dev/null 2>&1 || return 1
+      command -v pwsh >/dev/null 2>&1 || return 1
+      windows_target="$(cygpath -w -- "$target")"
+      windows_link="$(cygpath -w -- "$link")"
+      pwsh -NoProfile -Command '
+        param([string]$Target, [string]$Link)
+        Set-StrictMode -Version Latest
+        $ErrorActionPreference = "Stop"
+        New-Item -ItemType SymbolicLink -Path $Link -Target $Target | Out-Null
+      ' "$windows_target" "$windows_link"
+      ;;
+    *) ln -s "$target" "$link" ;;
+  esac
+}
+
 sdh_normalize_language() {
   printf '%s' "${1:-}" \
     | tr '[:upper:]' '[:lower:]' \
@@ -1067,7 +1089,7 @@ sdh_render_linked_intake_views() {
         outside_target="$(dirname "$repo")/.sdh-outside-$$.md"
         printf '# outside\n' > "$outside_target"
         rm -f -- "$repo/$vanish_path"
-        ln -s "$outside_target" "$repo/$vanish_path"
+        sdh_create_test_file_symlink "$outside_target" "$repo/$vanish_path"
         ;;
       after-first-replace) ;;
       *) rm -rf -- "$work_dir"; sdh_log 'LIE010: unbekannte Testfehlerinjektion / unknown test fault injection' >&2; return 10 ;;

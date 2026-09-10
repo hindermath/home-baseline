@@ -486,7 +486,7 @@ else
           outside_file="$fixture_repo/outside.md"
           printf '# outside\n' > "$outside_file"
           mkdir -p "$CASE_REPO/fixtures"
-          ln -s "$outside_file" "$CASE_REPO/$bad_path"
+          sdh_create_test_file_symlink "$outside_file" "$CASE_REPO/$bad_path"
         fi
         sdh_jq --arg path "$bad_path" '.orderedTargets[0].path = $path' "$CASE_MANIFEST" > "$CASE_MANIFEST.tmp" && mv "$CASE_MANIFEST.tmp" "$CASE_MANIFEST"
         ;;
