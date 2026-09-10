@@ -101,6 +101,110 @@ pre-existing state, not authority to stack this feature. Feature work there is
 blocked until Feature 003 has a terminal delivery decision and a clean,
 freshly synchronized default-branch base is available.
 
+### Current Resume Overlay (2026-09-09)
+
+The dated baseline above remains historical planning evidence. Current Home
+HEAD is `f3f6954cdde5603bc550c5792483dd6b5033fcf3` after the parent-integrated
+Home main. Home now has Assurance v0.1.3 and its exact thirteen-preset
+CheckOnly passes. AOC local `main` remains clean at
+`17df5332f4d4b6923b1596e11ebfb56d2629a5cc`, five commits behind
+`origin/main` `49bfa60c4c74cc3225b49c308e80ef777827bdf6`; only `git show origin/main`
+supports the new AOC Assurance facts. Before any AOC feature write, T079 must
+fast-forward the local default branch, refresh the base inventory, and prove
+the exact thirteen-preset profile locally. The separately delivered preset
+rollouts are governance baseline changes, not a forbidden Feature 032 product
+or runtime delta.
+
+### Current Authority and Source Overlay (2026-09-10)
+
+The owner approved exactly two Feature-032 exceptions on 2026-09-10. First,
+TinyPl0, TinyCalc, InventarWorkerService, and TuiVision keep `Version`,
+`AssemblyVersion`, `FileVersion`, and their manual build counters unchanged for
+this feature, including when a locally required `dotnet` gate runs. Second,
+only the stale `autonomous-run-governance` version references in the AOC,
+InventarWorkerService, and `absdd-image-sandbox` Constitution mirrors may be
+corrected after a fresh local comparison with both the configured matrix and
+installed preset. Neither exception removes a repository rule, changes a
+product/runtime, installs a preset, or authorizes a broader guidance rewrite.
+
+The version/build exception is proved as zero diff against the freshly read
+repository-local baseline, not by the dated observation alone:
+
+| Repository | Product/build surface | Dated observed value; re-read before adoption |
+|---|---|---|
+| TinyPl0 | `src/Pl0.Ide/Pl0.Ide.csproj` (`Version`, `AssemblyVersion`, `FileVersion`) | `1.6.569.80` |
+| TinyCalc | `Directory.Build.props` (all three fields) | `1.5.7.26` |
+| InventarWorkerService | `Directory.Build.props` (all three fields) | `1.2.8.66` |
+| TuiVision | `Directory.Build.props` (all three fields) | `1.46.835.521` |
+
+For the three Constitution corrections, today's read-only observation found
+AOC mirrors at Constitution v1.21.0 with current autonomous preset references
+at v0.3.3, and InventarWorkerService/sandbox mirrors at Constitution v1.16.0
+with current autonomous preset references at v0.3.0. Their configured matrices
+and installed preset metadata report v0.4.1. The later repository slots must
+compare these exact sources again, update both mirrors together only when the
+mismatch still exists, apply the repository's local patch-version/date
+procedure, preserve genuine historical release statements, and review local
+agent/template parity atomically. An already matching dependent surface is a
+recorded justified `N/A`, not a fabricated edit or completed future proof.
+
+Home `origin/main` is now fetched at
+`91e9c7e5919063388dcc22da7616b3dd878acd19` (PR 279). The integrated base
+`2d1dc80065817426b97c13eeba8387f653b8cc41` is already an ancestor of current
+feature HEAD `f3f6954cdde5603bc550c5792483dd6b5033fcf3`. Therefore the incoming
+set is determined only by `git diff 2d1dc800... 91e9c7e...`, not by
+`HEAD..origin/main`. Before the existing Home final gates and source checkpoint,
+the Home slot first adds only the three literal historical-path whitespace
+attributes, verifies all three raw hashes, complete intended-untracked allowlist,
+mandatory delivery set, full staged diff, and secret gate, and only then
+preserves every dirty/untracked feature byte in a bounded commit. It integrates
+the exact incoming ancestry without reset/stash/force and
+reconciles overlaps source-first. It retains the incoming `.gitattributes`
+statistics rules and `scripts/config/home-sync-manifest.json` `sourceOnly`
+classification, reconciles `scripts/config/script-catalog.json` before
+regenerating `docs/scripts/reference.md`, and preserves both local and incoming
+statistics-ledger facts without claiming current generated statistics. Only
+the already planned clean-checkpoint renderer may make the final statistics
+claim. The three historical Analyze reports
+`resume-analysis-2026-09-08.md`, `resume-reanalysis-2026-09-08.md`, and
+`resume-analysis-2026-09-09.md` remain byte-identical; only their three literal
+paths receive `whitespace=-trailing-space` before that first commit and are then
+merged with the incoming LF attributes. Broad patterns and cached-check
+exclusions are forbidden.
+
+### Canonical delivery-validator reconciliation (2026-09-10)
+
+The separately authorized canonical repair was merged through PR #18 and
+published as `autonomous-run-governance` v0.4.2 at merge commit
+`0ffddde77aa2d4e90e56643731887b156815a171`. The actual GitHub tag archive
+SHA-256 is
+`1ca01e2f868b6591127a6cb0d07be6c9b326015961a726450bc2d72b6a25249c`.
+Home alone reconciles every active local preset matrix, the tracked registry,
+generated command surfaces and the installed preset to v0.4.2; no Level-1 or
+Level-2 preset installation or promotion is part of this step. Five pre-existing
+Home runner-adoption files remain byte-identical as an explicitly inventoried
+local overlay, while every other installed preset file matches the published
+v0.4.2 source.
+
+T067 must pass all three historical files both as separate `--intended` values
+and as separate exact allowances:
+
+- `--allow-historical-whitespace specs/032-linked-intake-evidence/checklists/resume-analysis-2026-09-08.md=3688723e515ece9740da349ca918d3160767e26816a04db5e7cdee4dcf254ff7`
+- `--allow-historical-whitespace specs/032-linked-intake-evidence/checklists/resume-reanalysis-2026-09-08.md=0d8861b6e6d945b2131a2746e82a21ab2c008339983d854f8e257fa213e2c80b`
+- `--allow-historical-whitespace specs/032-linked-intake-evidence/checklists/resume-analysis-2026-09-09.md=7be7d164a2985943b88b7fa2e1e45f3a6600b15746402a686408be51ef11733d`
+
+The allowance is not a broad whitespace bypass: path, raw SHA-256, intended
+status and actual trailing whitespace must all match, otherwise `AEI009`
+fails closed. The unchanged general rejection remains `AEI007`.
+
+AOC remote/local bases remain the dated values from the 2026-09-09 overlay.
+T079/T080 additionally preserve the US2 discovery that AOC manifests contain
+historical logical intake paths whose current targets are archived and
+feature-stamped, including the separately observed META-LH-03 lifecycle-hash
+change. The AOC slot must discover and bind the exact current repository-local
+mapping after fast-forward. It may not guess filenames or rewrite canonical
+lifecycle data.
+
 ## Constitution Check
 
 *GATE: Passed before Phase 0 research and re-checked after Phase 1 design.*
@@ -200,10 +304,41 @@ machine-local runtime evidence enter Git.
   Autonomous Run is `Applicable`; Parallel Autonomous Run is `N/A` because the
   accepted flow is serial. Model Routing, Intake Authoring, Intake Review, and
   Intake Sequencing evidence remains hash-bound and revalidated on drift.
+- Resume profile disposition (revalidated 2026-09-10): Home exactly matches the
+  current thirteen-preset matrix with Autonomous Run v0.4.2 and Assurance
+  v0.1.3. AOC `origin/main` contains the
+  same preset and formal `aoc-assurance-v013` evidence, while its local `main`
+  is not yet synchronized and therefore has no current local exact-check
+  claim. Assurance v0.1.3 makes exact, case-sensitive context selection and
+  exact `contextId`/`mode` binding mandatory; when `acceptedRisks` exists it
+  must be a JSON array whose entries keep scalar nonblank IDs and required
+  review metadata. The existing Home context is
+  `home-baseline-assurance-v013`/`training`; AOC's remote context is
+  `aoc-assurance-v013`/`training`. Feature 032 changes neither context, so its
+  control re-assessment and image impact remain bounded `N/A / Not Assessed`,
+  not a new approval. Existing technical `Ready` evidence does not close open
+  pilot, project-acceptance, general-release, certification, or rollout
+  decisions. See [resume-preflight-disposition.md](resume-preflight-disposition.md).
 - Each repository updates `docs/project-statistics.md` after its completed
-  implementation phase using its local renderer and baseline: Home/AOC `80`
-  and `125`; TinyPl0/TinyCalc/TuiVision `80` and `125`;
-  InventarWorkerService `80` and `100`; sandbox `80` with no C# default.
+  implementation phase using its actual local renderer and baseline: Home
+  `80/100`; AOC, TinyPl0, TinyCalc, and TuiVision `80/125`;
+  InventarWorkerService `80/100`; sandbox `80` with no C# default. Configurations
+  remain repository-owned and are not normalized to one fleet-wide value.
+- Home's current ledger and configuration preserve the published and local
+  sources, but the renderer refuses write mode on the dirty feature checkout.
+  Statistics are therefore not current in this resume delta. The later
+  delivery flow must first create its already-authorized bounded source
+  checkpoint, then run the renderer from the genuinely clean checkout and
+  commit only the generated follow-up; no stash, fake index/repository, or
+  guard override is permitted.
+- The six downstream repositories use the same executable transition without
+  depending on a premature statistics pass: prepare the source and record
+  Check-only drift, run every other available local gate, then commit the
+  complete allowlisted source candidate including intended tracked task/state
+  bookkeeping and intended untracked delivery files. Only an actually clean
+  checkout may run the normal `scripts/render-project-statistics.ps1` write.
+  Commit only the generated ledger afterward, rerun every affected local gate
+  at that final head, then push and obtain native exact-head proof.
 - Documentation Impact is exactly `GeneratedUpdate`. Canonical manifests or
   renderer declarations are changed first; generated root/series views,
   renderer help/manpages, evidence, and statistics follow deterministically.
@@ -212,6 +347,25 @@ machine-local runtime evidence enter Git.
   `sync-home.* --check-only`, and only under current sync authority. Feature
   artifacts and documentation remain `sourceOnly`. Other repositories do not
   inherit Home Baseline distribution classes.
+- The 2026-09-10 exceptions are repository-local execution dispositions. Four
+  product version/build surfaces remain read-only with before/after hashes and
+  exact values in their scoped adoption evidence. Three Constitution
+  corrections compare configured, installed, and mirrored versions first,
+  update both local mirrors together only if still stale, and retain principles
+  and historical release facts. No central/shared guidance or preset is
+  changed by those corrections.
+- Home PR279 is a required base integration, not Feature-032 renderer scope.
+  Its exact `2d1dc800...91e9c7e...` path set and ancestry are reconciled before
+  final Home gates. Incoming LF attributes and the Home-sync `sourceOnly` rule
+  remain intact; the catalog is canonical for regenerated script reference,
+  while statistics stay honestly `Open` until the clean source checkpoint.
+- Serial delivery uses two non-interchangeable requirement layers. Each
+  repository validates its exact-head `PreMerge` and causally bound `PostMerge`
+  snapshots against its own task-prepared local requirements file covering
+  complete local, native, review, product, and governance proof. The accepted
+  `autonomous-run-gate-requirements.json` remains the unchanged global
+  `AC-LAF-001`–`014` contract and is valid only for the terminal seven-row fleet
+  aggregation after all seven real delivery slots have completed.
 
 ### Post-Design Re-check
 
@@ -244,12 +398,12 @@ proof is a hard stop.
 | Repository | Canonical changes | Generated outputs | Repository-specific validation |
 |---|---|---|---|
 | Home Baseline | Extend `scripts/lib/secure-development-hardening.sh` and `.ps1` plus fixtures; read the existing Home series manifest and explicit feature evidence | Generated marker in `Lastenheft_Abarbeitungsreihenfolge.md`; paired help/manpage; feature evidence docs | Bash syntax and safe mode, PowerShell parse/help/WhatIf, parity fixtures, current secret scan, PSScriptAnalyzer where configured |
-| Agent Operations Cockpit | Adopt only the proven Level-0 row contract in its existing paired renderer; preserve AOC's own series and global-review controls | Root generated marker and local evidence | Fresh 14-target `global-ready`/local programme gates, paired no-write/parity checks, AEPS no-change-or-receipt decision |
-| TinyPl0 | Extend existing `.mjs` member/view projection and existing alignment tests | Root and `tinypl0-delivery/order.md` from the same projection | Node check/write/check, alignment tests, relevant repository checks; no compiler/runtime golden change |
-| TinyCalc | Extend existing `.mjs` row generation and alignment tests | Root and `tinycalc-delivery/order.md` from the same projection | Node tests, link/feature/path fixtures, non-interactive validation; product build only if local gate requires it |
-| InventarWorkerService | Keep its manifest authoritative; add repository-native dependency-free manifest-to-marker automation and tests without touching solution APIs | Existing manifest-bound root marker plus help/manpage/evidence if a new script surface is added | Renderer tests, manifest validator, relevant .NET solution gate only if executable project files change (expected `N/A`) |
-| TuiVision | Extend existing `.mjs` renderer declarations and tests; bind the exact ten intake/feature pairs and six edge tuples | Root and `tui-vision-delivery/order.md` identically generated; latest-completion note outside canonical row order | Exact cardinality/mapping/edge/backlog fixture, Node alignment tests, text-first review; no TuiVision product assembly changes |
-| `absdd-image-sandbox` | After its base gate, keep sandbox manifest authoritative; add repository-native dependency-free manifest-to-view automation and tests without image/Compose changes | Root view and local evidence/help where applicable | Manifest/renderer checks, `podman-compose config` only if Compose scope changes (expected `N/A`), pre-commit/secret scan; no image build required for docs-only diff |
+| Agent Operations Cockpit | Adopt only the proven Level-0 row contract in its existing paired renderer; resolve the freshly inventoried logical-to-archived/stamped intake paths locally without lifecycle mutation; correct only still-stale autonomous-preset Constitution mirror references | Root generated marker and local evidence | Fresh 14-target `global-ready`/local programme gates, paired no-write/parity checks, Constitution/config/install/parity comparison, AEPS no-change-or-receipt decision |
+| TinyPl0 | Extend existing `.mjs` member/view projection and existing alignment tests; keep `src/Pl0.Ide/Pl0.Ide.csproj` version fields/build counter unchanged under the Feature-032 exception | Root and `tinypl0-delivery/order.md` from the same projection | Node check/write/check, alignment tests, relevant repository checks, required `dotnet` gates without version increment, and exact version/build zero diff; no compiler/runtime golden change |
+| TinyCalc | Extend existing `.mjs` row generation and alignment tests; keep `Directory.Build.props` version fields/build counter unchanged under the Feature-032 exception | Root and `tinycalc-delivery/order.md` from the same projection | Node tests, link/feature/path fixtures, non-interactive validation, required `dotnet` gates without version increment, and exact version/build zero diff |
+| InventarWorkerService | Keep its manifest authoritative; add repository-native dependency-free manifest-to-marker automation and tests without touching solution APIs; correct only still-stale autonomous-preset Constitution mirror references; keep `Directory.Build.props` version fields/build counter unchanged | Existing manifest-bound root marker plus help/manpage/evidence if a new script surface is added | Renderer tests, manifest validator, Constitution/config/install/parity comparison, required .NET solution gates without version increment, and exact version/build zero diff |
+| TuiVision | Extend existing `.mjs` renderer declarations and tests; bind the exact ten intake/feature pairs and six edge tuples; keep `Directory.Build.props` version fields/build counter unchanged | Root and `tui-vision-delivery/order.md` identically generated; latest-completion note outside canonical row order | Exact cardinality/mapping/edge/backlog fixture, Node alignment tests, text-first review, required `dotnet` gates without version increment, and exact version/build zero diff; no TuiVision product assembly changes |
+| `absdd-image-sandbox` | After its base gate, keep sandbox manifest authoritative; add repository-native dependency-free manifest-to-view automation and tests without image/Compose changes; correct only still-stale autonomous-preset Constitution mirror references | Root view and local evidence/help where applicable | Manifest/renderer checks, Constitution/config/install/parity comparison, `podman-compose config` only if Compose scope changes (expected `N/A`), pre-commit/secret scan; no image build required for docs-only diff |
 
 ### Verified Repository Source and Test Paths
 
@@ -290,8 +444,11 @@ functions are `Invoke-RequirementsIntakeGovernanceRender` and
    and a clean default-branch base. Do not reset, rebase, force-switch, or stack
    this feature on its current two-commit lead. If this cannot be proven, stop
    the entire implementation before the first target write.
-4. Pre-name repository evidence paths, gate requirements, branch names,
-   expected candidate paths, rollback anchors, and safe stop boundaries.
+4. Pre-name repository evidence paths, the seven task-prepared local requirement
+   artifacts and their exact gate IDs/tokens from the fleet-evidence contract,
+   branch names, expected candidate paths, rollback anchors, and safe stop
+   boundaries. Each base task reviews its local projection against the unchanged
+   global contract before that repository's first mutation.
 
 ### Phase B - Representative Vertical Slice: Home Baseline
 
@@ -325,9 +482,9 @@ earlier repository cannot satisfy a later repository's gates.
 | Repository | Planned feature branch | Base rule |
 |---|---|---|
 | Home Baseline | existing `032-linked-intake-evidence` | Preserve accepted dirty feature worktree; no new branch during Plan |
-| Agent Operations Cockpit | `003-linked-intake-evidence` | Fresh clean `main` after AOC global-review and default-sync proof |
-| TinyPl0 | `006-linked-intake-evidence` | Fresh clean synchronized `main` |
-| TinyCalc | `004-linked-intake-evidence` | Fresh clean synchronized `main` |
+| Agent Operations Cockpit | `004-linked-intake-evidence` | Fresh clean `main` after AOC global-review and default-sync proof |
+| TinyPl0 | `007-linked-intake-evidence` | Fresh clean synchronized `main` |
+| TinyCalc | `006-linked-intake-evidence` | Fresh clean synchronized `main` |
 | InventarWorkerService | `003-linked-intake-evidence` | Fresh clean synchronized `main` |
 | TuiVision | `047-linked-intake-evidence` | Fresh clean synchronized `main` |
 | `absdd-image-sandbox` | `004-linked-intake-evidence` | Create only after Feature 003 terminal delivery and clean synchronized default branch; never from the currently observed two-commit-ahead branch by assumption |
@@ -338,22 +495,39 @@ writes; a collision is never overwritten.
 
 ### Phase D - Fleet Validation and Delivery
 
-1. Run the seven-row acceptance matrix and every `AC-LAF-001` through
-   `AC-LAF-014` gate against exact repository heads.
-2. Commit only the intended candidate in each repository, preserving unrelated
-   user changes. Validate staged diffs, task counts, gate evidence, and secret
-   scans before push.
-3. Push and open one focused PR per repository in the serial dependency order.
-   Use `gh` for live GitHub operations. Derive workflow/job/runner/command facts
-   from actual logs, not green aggregate names.
-4. Require all technical checks, independent review, and review follow-up on
-   the exact head. A regular merge is attempted first. Admin bypass is allowed
-   only after a documented protection-only refusal and never substitutes for
-   task, acceptance, security, CI, A11Y, review, or platform evidence.
-5. After every merge, fast-forward and prove the local default branch equals
+1. Before the first Home preservation commit, add only the three literal
+   `whitespace=-trailing-space` path attributes for the hash-bound historical
+   reports dated 2026-09-08/09, verify all three raw hashes, validate the complete
+   intended-untracked allowlist and mandatory delivery set, run the full staged
+   diff check and secret gate, and only then commit. Integrate exact fetched Home
+   main `91e9c7e...` from base `2d1dc800...`, merging those three literal entries
+   with the incoming README/statistics LF rules. Reconcile overlapping canonical
+   sources and prove the incoming path set/attributes/Home-sync classification
+   survived. Do not run the statistics renderer or claim statistics current
+   during reconciliation.
+2. Run available repository-local gates after preparing canonical sources;
+   Check-only may record statistics drift, but must not claim statistics current.
+3. Validate and commit the complete allowlisted source candidate, including
+   intended bookkeeping and untracked delivery files, so the checkout is truly
+   clean before the normal statistics renderer writes.
+4. Run and check the statistics renderer, commit only its generated ledger,
+   then rerun every affected local gate on the final candidate head.
+5. Push the final candidate and run native Linux/Windows proof at that exact
+   remote head before opening or advancing the focused PR. Use `gh` for live
+   GitHub operations and derive workflow/job/runner/command facts from logs.
+6. Before each repository merge, validate its schema-2.0 exact-head snapshot
+   against only that repository's pre-named local requirements file after all
+   local/native/review/product/governance proof is actually complete. After all
+   seven real slots and causal PostMerge/default-sync records exist, run the
+   seven-row acceptance matrix and every unchanged `AC-LAF-001` through
+   `AC-LAF-014` gate against the terminal fleet aggregation. A regular merge is
+   attempted first. Admin bypass is allowed only after a documented
+   protection-only refusal and never substitutes for task, acceptance,
+   security, CI, A11Y, review, platform, or later global fleet evidence.
+7. After every merge, fast-forward and prove the local default branch equals
    `origin/main`, then run post-merge validation. Do not proceed to the next
    dependent repository while the previous closeout is incomplete.
-6. After the Home Baseline merge and default sync, run Home Sync check-only,
+8. After the Home Baseline merge and default sync, run Home Sync check-only,
    then the authorized manifest-bound Home Runtime sync, and finally check-only
    again. No other target uses this Home Sync.
 
@@ -385,6 +559,15 @@ writes; a collision is never overwritten.
 - Manifest values are never interpolated into executable commands. No new
   dependency, package file, lockfile, runtime project, product API, or public
   data type appears in the candidate diff.
+- TinyPl0, TinyCalc, InventarWorkerService, and TuiVision capture the three
+  version-field values and manual build counter before adoption and after every
+  required build/test gate. Any byte/value/counter change fails the scoped
+  Feature-032 zero-diff proof; the branch number never substitutes for proof.
+- AOC, InventarWorkerService, and sandbox capture configured, installed, and
+  mirrored autonomous-preset versions before correction and compare both
+  Constitution mirrors plus affected local agent/template surfaces afterward.
+  Historical release statements stay unchanged, and already matching
+  dependent surfaces are explicitly `N/A` with rationale.
 
 ### Determinism and Platform Proof
 
@@ -399,6 +582,15 @@ writes; a collision is never overwritten.
   command-bound. Missing native evidence is `Open` with owner and trigger, and
   blocks repository completion; it is never relabeled `N/A` merely because the
   local host is macOS.
+- After source preparation and the currently executable local gates, validate
+  and commit the complete allowlisted source candidate. A clean tree is a hard
+  precondition for the normal statistics write enforced by
+  `scripts/render-project-statistics.ps1`; then commit only the generated
+  ledger. Rerun affected local gates at that final candidate head, push without
+  force, and let native jobs test that exact remote commit. Subsequent candidate
+  tasks are read-only verifications; no PR or merge is needed for the
+  checkpoint. Any candidate or head change repeats the affected local and
+  native gates. Follow the explicit Native-Proof-Checkpointvertrag in `tasks.md`.
 
 ### Accessibility and Documentation Proof
 

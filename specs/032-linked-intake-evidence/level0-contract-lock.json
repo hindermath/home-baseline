@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "Level0LinkedIntakeContractLock",
+  "featureId": "032-linked-intake-evidence",
+  "createdAt": "2026-09-10T18:53:04Z",
+  "contractSha256": "e0dc7b99201cb924c663fd8d4a58a529fd5c20fb81c1fc52adf9e83a86adc2d2",
+  "hashAlgorithm": "Strict UTF-8 decode; optional leading BOM removed; NUL rejected; CRLF and CR normalized to LF; no JSON key sorting or whitespace stripping.",
+  "sources": [
+    {
+      "path": "scripts/lib/secure-development-hardening.sh",
+      "normalizedSha256": "748f7655e354e32181d061ca11a40d320480e73a34c2740c14fdfc80d2b8892c"
+    },
+    {
+      "path": "scripts/lib/secure-development-hardening.ps1",
+      "normalizedSha256": "f6c9b975d7968ece207227aa85743e3329722c3980f9f44d898290317fe70591"
+    },
+    {
+      "path": "scripts/prepare-secure-development-hardening.sh",
+      "normalizedSha256": "9b42e082ddb702920b3028091dfd327a821297618600ee0e9793231106e66c26"
+    },
+    {
+      "path": "scripts/prepare-secure-development-hardening.ps1",
+      "normalizedSha256": "ad2dfd67efa486a9d6c611238e08d4c12150bb1a81388d0064e4b74fbc3d6eef"
+    },
+    {
+      "path": "scripts/test-requirements-intake-governance.sh",
+      "normalizedSha256": "098a8c99af0402ed01add26768e13d629379c411bf5894453a85dc2932cc9739"
+    },
+    {
+      "path": "scripts/test-requirements-intake-governance.ps1",
+      "normalizedSha256": "e0d0381d754a2b63019f745ac4765c0cc9aaa6afb71de6325d38864d54cf3bf6"
+    },
+    {
+      "path": "scripts/tests/linked-intake-evidence/positive/cases.json",
+      "normalizedSha256": "408eb82186c91e29c46104e58dc835fa5b112bf9b892093dca203edede3ecf81"
+    },
+    {
+      "path": "scripts/tests/linked-intake-evidence/positive/expected-root.md",
+      "normalizedSha256": "ad108d7df4edd67ecad107755abd853c7b28abeb1183f7f82257ffd6ac1679ac"
+    },
+    {
+      "path": "scripts/tests/linked-intake-evidence/positive/expected-series.md",
+      "normalizedSha256": "1b3036c70c79d872708091e65e7c6af49f948fed61df331000c91eebc437272d"
+    },
+    {
+      "path": "scripts/tests/linked-intake-evidence/dependency-cases.json",
+      "normalizedSha256": "0361c6267e2fac54032fb1198105bd5031963803885f6d512de0e909970bbaf3"
+    },
+    {
+      "path": "scripts/tests/linked-intake-evidence/feature-proof-matrix.json",
+      "normalizedSha256": "b2118c57a41bea08b68b4c78d5c7b56a02bff29151a88d9ab277ffa6e9c13f35"
+    },
+    {
+      "path": "scripts/tests/linked-intake-evidence/negative/cases.json",
+      "normalizedSha256": "f0f0da6a2aebce094896112f54baf94a6e68925d2f93bde40fff476a4cce74ed"
+    },
+    {
+      "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+      "normalizedSha256": "3e65272d5a2eb1e11efbf4364e41af8aa71871f9bb56f6669a885a613913eb35"
+    }
+  ],
+  "canonicalInput": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "6d179988520f93e086b4a22d522e3ad26ecee5a94091dd72c016b0066835c907"
+  },
+  "acceptedArtifacts": [
+    {
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "normalizedSha256": "d9e066a4f2ae58a3706495c0c60919c47fd802b353ecd6939c8b65ad1cbd7983"
+    },
+    {
+      "path": "specs/intake-authoring-receipts/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise.json",
+      "normalizedSha256": "9f2040364c76722a2116f85209aedf8c4c67c72554069679901beec67a8dda57"
+    },
+    {
+      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+      "normalizedSha256": "955a66c2273e7977e6004d89f189eccb0087543af469aef3e237339f7f439ab2"
+    },
+    {
+      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-result.json",
+      "normalizedSha256": "5f9d07587bbc4d079ad564b7b6b5a128a690a860ebfa6e50a7934845274b9426"
+    },
+    {
+      "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-report.md",
+      "normalizedSha256": "6c60d1e2e9b31273f150136f1f85af50e00d513ee65526d0f837759f465708bc"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "normalizedSha256": "6d179988520f93e086b4a22d522e3ad26ecee5a94091dd72c016b0066835c907"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "normalizedSha256": "b14e2b1bdc26f674e5d798b93ffd860f12e4c74b66014e0874fb8145e88604cf"
+    },
+    {
+      "path": "requirements/intakes/series/home-baseline-delivery/operations/7fe67a1c-4838-41a6-8a90-229726fd89cc.json",
+      "normalizedSha256": "5a53c43c03d1bfa485470ab29d02129960d969091b429a5dab47be92ca519b1f"
+    }
+  ],
+  "gateEvidence": [
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/tdd-red.json",
+      "normalizedSha256": "59c61d29a00291a8e337df2285e977e39cd1178aad516b581610c87959299441"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/tdd-red-us2.json",
+      "normalizedSha256": "79c0dc2053a76223347f6ebf16dc3c8c70e62956cc7ff9d96048a3e8df660d9f"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/us1-macos.json",
+      "normalizedSha256": "5e87c510b19239ec2448f71f0316294bd92c65f7f4575bb391f31746a143f585"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/business-semantics.json",
+      "normalizedSha256": "0c3c3ed1b69b0df0f6a7bb8561ab04ddc6105d3ee02e19d69628a2016d4bcece"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/links.json",
+      "normalizedSha256": "63ba75b6c412fb28b2730062fd4f27d94cec03debe0159540caf649448ec9e3d"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/idempotence.json",
+      "normalizedSha256": "f1360502d986331de36a91f8dad6b02678cbfcef5e0b87e8f79a1fdd0850a992"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/parity-macos.json",
+      "normalizedSha256": "54d3f56eea94726cbdef7ad2884127a2bcaa6307397107adbd68407f6f20d793"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/rollback/home-baseline-renderer.json",
+      "normalizedSha256": "c831ddd600089b0b9bc2e686403ef8d495c1faa6edce2502b607a8226e8d80b7"
+    },
+    {
+      "path": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/governance-macos.json",
+      "normalizedSha256": "b3200063e00bf4387bd5f39fc9ed7d8d933e4a1d29d1be8c9ba318c615152855"
+    },
+    {
+      "path": "specs/032-linked-intake-evidence/diagnostic-remediation-2026-09-10.md",
+      "normalizedSha256": "f5a0cf7d8f4cb2faa700452ac775ef7f341209fe99f0017637fb4060933cf5e2"
+    }
+  ],
+  "completedTasks": [
+    "T028",
+    "T029",
+    "T030",
+    "T031",
+    "T032",
+    "T033",
+    "T034",
+    "T035",
+    "T036",
+    "T037",
+    "T038",
+    "T039",
+    "T040",
+    "T041",
+    "T042",
+    "T043",
+    "T044",
+    "T045",
+    "T046",
+    "T047",
+    "T048",
+    "T049",
+    "T050",
+    "T051",
+    "T052",
+    "T053",
+    "T054",
+    "T055",
+    "T056",
+    "T057",
+    "T058",
+    "T059",
+    "T060",
+    "T061",
+    "T062",
+    "T063",
+    "T064",
+    "T065",
+    "T066"
+  ],
+  "lineage": {
+    "previousContractSha256": "5072efab2c7a4f56eaefb2cbde2586ae2354f82db223096fdee3d91a4c323aca",
+    "invalidationReason": "The superseding diagnostic correction changed both libraries, the PowerShell wrapper and paired tests after the parent proved credential reflection in a repository-relative LIE004 subject. The prior lock remains historical evidence and is not current for incomplete downstream adoption.",
+    "revalidation": "All thirteen current sources, ten gate-evidence files and eight accepted artifacts were rehashed after the paired Bash-first and PowerShell governance gates passed. The superseding report binds the previous result and payload hashes without changing their bytes."
+  },
+  "downstreamRule": "Every downstream adoption must reference this exact contractSha256. Any later source hash change invalidates every incomplete adoption.",
+  "nativePlatformLimit": "The PowerShell proof ran on macOS. Named assistive-device and independent human review were not performed. Native Linux, native Windows and exact-head platform evidence remain pending for T071 or their later human gate."
+}

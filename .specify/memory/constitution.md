@@ -1,25 +1,25 @@
 <!--
 Sync Impact Report
-Version change: 1.20.2 -> 1.21.0
+Version change: 1.21.0 -> 1.21.1
 Modified principles:
-- II. Cross-Platform Parity & Documentation: agent-neutral macOS-first native platform evidence contract
+- None; correct four stale autonomous-run-governance version references across both mirrors to the already canonical v0.4.1.
 Added sections:
 - None
 Removed sections:
 - None
 Templates requiring updates:
-- ✅ .specify/templates/constitution-template.md, agent-file-template.md, spec-template.md, plan-template.md, tasks-template.md, documentation-impact-evidence-template.json
-- ✅ scripts/templates/AGENTS.md.tmpl, CLAUDE.md.tmpl, GEMINI.md.tmpl, copilot-instructions.tmpl
+- Reviewed: constitution, agent, spec, plan, tasks and documentation-impact templates; no semantic change required.
+- Reviewed: scripts/templates agent guidance; already aligned with v0.4.1. Command-template directory absent.
 Runtime guidance requiring updates:
-- ✅ .specify/memory/constitution.md (mirror)
-- ✅ AGENTS.md / CLAUDE.md / GEMINI.md / .github/copilot-instructions.md / .github/agents/copilot-instructions.md updated atomically
+- constitution.md and .specify/memory/constitution.md updated together.
+- Reviewed: README.md and all five agent guidance surfaces; no stale version references or changed rules.
 New scripts:
 - None
 Follow-up TODOs:
-- None.
+- Verify Last Amended against the eventual merge date; no preset installation is part of this correction.
 -->
 
-# Constitution v1.21.0
+# Constitution v1.21.1
 
 # home-baseline Constitution
 
@@ -1032,7 +1032,7 @@ workspace family consists of:
 | `a11y-governance` | `v0.4.3` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.4.2` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.3.4` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
+| `autonomous-run-governance` | `v0.4.1` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
 | `parallel-autonomous-run-governance` | `v0.2.6` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
 `model-routing-governance` v0.1.4 at priority `61`,
@@ -1123,7 +1123,7 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-The current standalone releases are `autonomous-run-governance` v0.3.4,
+The current standalone releases are `autonomous-run-governance` v0.4.1,
 `parallel-autonomous-run-governance` v0.2.6, optional
 `intake-authoring-governance` v0.3.1, optional
 `intake-review-governance` v0.2.1, and optional
@@ -1176,7 +1176,7 @@ Community/catalog coordination is tracked in `github/spec-kit#2362`.
 `.github/copilot-instructions.md` for per-agent operational guidance. This
 constitution is the authoritative policy layer above all agent-specific files.
 
-**Version**: 1.21.0 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-08-22
+**Version**: 1.21.1 | **Ratified**: 2026-03-31 | **Last Amended**: 2026-09-08
 
 <!-- EN: constitution.md placeholder
 [DE-Zusammenfassung: constitution.md beschreibt die Prinzipien und Standards für alle home-baseline Workspaces.]

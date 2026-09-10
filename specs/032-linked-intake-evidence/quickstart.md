@@ -66,9 +66,10 @@ Within one repository only:
 4. run safe/check mode and confirm stale output with zero writes;
 5. run write mode once to regenerate only owned views;
 6. run write mode again and prove zero additional change;
-7. update evidence, documentation impact, and statistics from their canonical
-   sources; and
-8. review the complete diff before any commit.
+7. update evidence, documentation impact, and the statistics configuration
+   from their canonical sources, but run statistics only in Check-only mode;
+8. run all other currently executable local gates; and
+9. review the complete source diff before the source checkpoint.
 
 Do not edit a generated marker or statistics profile as its own source.
 
@@ -142,26 +143,36 @@ Compose files changed.
 
 ## 6. Platform Proof
 
-Run macOS safe mode first. Bind Linux and Windows proof to the exact same commit
-using native or approved isolated runners. Each evidence record includes the
-commit, command, runner/platform, exit code, payload SHA-256, decision SHA-256,
-and write count. Bash/PowerShell parity must use the same fixtures. A syntax
-check or non-native run remains partial evidence and does not close the native
-platform gate.
+Run macOS safe mode first. Before native proof, commit the complete source
+checkpoint, run the normal statistics renderer only from the clean checkout,
+commit only its generated ledger, and rerun affected local gates at the final
+candidate head. Push that final head, then bind Linux and Windows proof to its
+exact remote commit using native or approved isolated runners. Each evidence
+record includes the commit, command, runner/platform, exit code, payload
+SHA-256, decision SHA-256, and write count. Bash/PowerShell parity must use the
+same fixtures. A syntax check or non-native run remains partial evidence and
+does not close the native platform gate.
 
 ## 7. Review and Delivery
 
 For each repository:
 
-1. complete local and platform gates;
-2. commit and push only under the delivery phase's current authority;
-3. open one focused PR and resolve every review conversation;
-4. wait for required status checks on the current head;
-5. merge without bypass unless the narrow protection-only exception in
+1. complete the available local gates while statistics-current remains an
+   explicit pending gate;
+2. validate and commit all intended source, tracked task/run-state bookkeeping,
+   and intended untracked delivery files, leaving a truly clean checkout;
+3. run the normal statistics renderer, Check-only, and its local test, then
+   commit only the generated ledger;
+4. rerun every affected local gate at the final candidate head;
+5. push that candidate and complete native Linux/Windows gates at its exact
+   remote head;
+6. open one focused PR and resolve every review conversation;
+7. wait for required status checks on the current head;
+8. merge without bypass unless the narrow protection-only exception in
    [fleet-evidence-and-delivery.md](contracts/fleet-evidence-and-delivery.md)
    is fully satisfied;
-6. verify the merged default-branch SHA and renderer check mode; and
-7. close/archive the repository evidence before advancing.
+9. verify the merged default-branch SHA and renderer check mode; and
+10. close/archive the repository evidence before advancing.
 
 If any gate fails, stop the serial sequence and keep later repositories
 untouched.

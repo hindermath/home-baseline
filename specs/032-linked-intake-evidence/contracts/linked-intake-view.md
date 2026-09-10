@@ -21,8 +21,9 @@ by the model. No backlog item is inserted into this table.
 
 ## Intake Cell
 
-- The visible label is the repository-local intake name or its established
-  display label.
+- The visible label is exactly the full basename of `intakePath`, including the
+  `.md` extension; shortened titles and established display labels are not
+  valid substitutes.
 - The label is a Markdown link from the generated view to the existing intake
   file.
 - The target is repository-relative from the view location, uses `/`, and is

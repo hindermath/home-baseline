@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "TuiVisionExactDependencyTuples",
+  "canonicalManifest": "requirements/intakes/series/tui-vision-delivery/manifest.json",
+  "canonicalManifestSha256": "538d12fcc60cab96e5d70865a9ab9c31885634f3981e1c10dc2cd09d1ee2d2e7",
+  "expectedEdgeCount": 6,
+  "expectedBindingTrueCount": 4,
+  "expectedBindingFalseCount": 2,
+  "edges": [
+    {"from":"requirements/intakes/active/Lastenheft_22_Wave6-Combined-Delta-Closure.md","to":"requirements/intakes/active/Lastenheft_15_Post-Wave6-Example-Portfolio-Conformance-Audit.md","kind":"HardCompletionGate","binding":true},
+    {"from":"requirements/intakes/active/Lastenheft_15_Post-Wave6-Example-Portfolio-Conformance-Audit.md","to":"requirements/intakes/active/Lastenheft_Example-Portfolio-Closure.md","kind":"HardCompletionGate","binding":true},
+    {"from":"requirements/intakes/active/Lastenheft_Constitution_Change.md","to":"requirements/intakes/active/Lastenheft_Source-Reference-Policy.md","kind":"SharedWriterSerialization","binding":false},
+    {"from":"requirements/intakes/active/Lastenheft_Source-Reference-Policy.md","to":"requirements/intakes/active/Lastenheft_Transactional-Form-Model.md","kind":"HardCompletionGate","binding":true},
+    {"from":"requirements/intakes/active/Lastenheft_Example-Portfolio-Closure.md","to":"requirements/intakes/active/Lastenheft_Transactional-Form-Model.md","kind":"HardCompletionGate","binding":true},
+    {"from":"requirements/intakes/active/Lastenheft_Transactional-Form-Model.md","to":"requirements/intakes/active/Lastenheft_23_Documentation-Publishing-Closure.md","kind":"PreferredSerialOrder","binding":false}
+  ]
+}
