@@ -1,3 +1,7 @@
+# Generated public statistics must replay byte-identically on every platform.
+/README.md text eol=lf
+/README.en.md text eol=lf
+/docs/spec-kit-runs/** text eol=lf
 /specs/032-linked-intake-evidence/checklists/resume-analysis-2026-09-08.md whitespace=-trailing-space
 /specs/032-linked-intake-evidence/checklists/resume-reanalysis-2026-09-08.md whitespace=-trailing-space
 /specs/032-linked-intake-evidence/checklists/resume-analysis-2026-09-09.md whitespace=-trailing-space
