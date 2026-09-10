@@ -92,12 +92,13 @@ sdh_create_test_file_symlink() {
       command -v pwsh >/dev/null 2>&1 || return 1
       windows_target="$(cygpath -w -- "$target")"
       windows_link="$(cygpath -w -- "$link")"
-      pwsh -NoProfile -Command '
-        param([string]$Target, [string]$Link)
+      SDH_TEST_SYMLINK_TARGET="$windows_target" \
+        SDH_TEST_SYMLINK_LINK="$windows_link" \
+        pwsh -NoProfile -Command '
         Set-StrictMode -Version Latest
         $ErrorActionPreference = "Stop"
-        New-Item -ItemType SymbolicLink -Path $Link -Target $Target | Out-Null
-      ' "$windows_target" "$windows_link"
+        New-Item -ItemType SymbolicLink -Path $env:SDH_TEST_SYMLINK_LINK -Target $env:SDH_TEST_SYMLINK_TARGET | Out-Null
+      '
       ;;
     *) ln -s "$target" "$link" ;;
   esac
