@@ -1,0 +1,3074 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": 1,
+  "repositories": [
+    {
+      "name": "hindermath/home-baseline",
+      "level": 0,
+      "reviews": [
+        {
+          "feature": "specs/001-workspace-homogeneity-guardian",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 49 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/001-workspace-homogeneity-guardian/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "b19c8afec322813c8064521c1a5ddcdaed90a35a5b495ca63aa8f4578460e34d"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/001-workspace-homogeneity-guardian/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "e7875c15b973abcaa7d2678d1880f20e1673fd5180b54bb9dc44ea21fdf80e96"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-homogeneity-guardian-revision",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 27 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/002-homogeneity-guardian-revision/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "a4947f363d64fe31d60e95fe23694b0a1f23300e6843e56b4cbcf9f3316efab3"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/002-homogeneity-guardian-revision/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "4539ba7a81e0c5869e43f57c78893fd6e8c7c34bbff8c597b439df726a483d1e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/003-git-config-scope",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 20 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/003-git-config-scope/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "fd31242821cae63de7f12c8781a5be61cac8f97c569a8c3073387ba83dd7ca34"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/003-git-config-scope/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "45c65ccedd93f62b79e72dc1d01cfdbf5ea9b2dc161553c0dd719fcea23f7423"
+            }
+          ]
+        },
+        {
+          "feature": "specs/005-workspace-teardown",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 37 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/005-workspace-teardown/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "ba3fe50486dd8806bd90ef45ac879c8fbd47adc47c819f705a9fa3bfefb5b318"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/005-workspace-teardown/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "1e1c98f43d9a6661de0254b6d3217c366d5f49bb5ee11d4bb251916d5729e706"
+            }
+          ]
+        },
+        {
+          "feature": "specs/006-gitlab-support",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #14 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/006-gitlab-support/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "f9f31b4125d428afccb60b9db8fe720bb62c7e2ef69ec1ca003ff6c78927cb7d"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/006-gitlab-support/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "189b38e35e95a0deabd15c831c8cd0113149a31bf4fb9927ea14a60e64f125de"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 14,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "24d9de000e63f57bb95c354b4f1e111df4ddff33bd6ffe60c6e064d067860163"
+            }
+          ]
+        },
+        {
+          "feature": "specs/007-parallel-autonomous-run-governance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 12 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/007-parallel-autonomous-run-governance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "d86d72205b69a4e38acc40575e3d0212f80dd0ea11d53add9937372fc5b6b5f9"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/007-parallel-autonomous-run-governance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "7f79c577f51aeb23254c26fcbe42a6110eba8b227373c5a1ea7740aa2e09ff9c"
+            }
+          ]
+        },
+        {
+          "feature": "specs/009-platform-maintenance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 65 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/009-platform-maintenance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "b24eb649ed272db82c7f007d6c10634d662303e427f7abdf5bbffa937461b2b0"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/009-platform-maintenance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "b824ef4ef89ee66b94e70fe55cbf064a434131ab41d03b1ee4695fd8a3b53661"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/009-platform-maintenance/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "51126d94a4b334abc3d9b9fe498b261e1a11a48be755258f0495a1ec32d18580"
+            }
+          ]
+        },
+        {
+          "feature": "specs/010-intake-sequencing-governance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 60 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/010-intake-sequencing-governance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "bd0ee68d4d20fcd5bcf7582a2b3ae916a5ee955b8ec178b380ad6c3036df3a28"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/010-intake-sequencing-governance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "adbecb668d900401c806b36bf47048f7fb0ad29201887b268fe9e8078036f290"
+            }
+          ]
+        },
+        {
+          "feature": "specs/011-documentation-reality-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 55 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/011-documentation-reality-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "647e97b52101ed63f30139593105d9a83ce83b529e5ef92056c523e0e0c33836"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/011-documentation-reality-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "5bafef2b112e1c524f2810a9282ff8e447ab8e0a3a9a45f147febfd55c766d7e"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/011-documentation-reality-audit/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "69a1d5feb30626ed9fa64d0d4458271eb1602e77a1a29e8c1f305dc5b856610e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/012-documentation-impact-governance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 48 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/012-documentation-impact-governance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "5d8e1822814bb3a324a2dc98baf9e1dea32c7b69abc80af3f0671cdea3707a47"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/012-documentation-impact-governance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "d1e81759745c26e8068a7faa7cf34fc4b7f2fe6e34dbf1da1763c4dd249ec8cb"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/012-documentation-impact-governance/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "7ddaecabccf0fb228d8e548444cc31562d355690ee734bf177c471cc906e2936"
+            }
+          ]
+        },
+        {
+          "feature": "specs/013-documentation-reality-remediation-fleet",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 70 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/013-documentation-reality-remediation-fleet/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "08c80e06c66e282fe5d8e59409152a639f115a0a9099af59dd8dc1544ec0f909"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/013-documentation-reality-remediation-fleet/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "c60ff882447ffb300b88cd2f01268f5509cc0fa97e9a56645c59ac67075a0229"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/013-documentation-reality-remediation-fleet/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "eb2960fcef31f92edb034c41b0a8b2ab7e20161e7978ff8bfde7749167af516d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/014-requirements-intake-consolidation-governance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 75 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/014-requirements-intake-consolidation-governance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "88702e73378f8d24b09b09f8e797de5a48a5209e00d3c02b7751bb9658fd8ef4"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/014-requirements-intake-consolidation-governance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "c6b9ba8d12286411fb1c6cded0d89cf5137cfc0f7d542613264c59fc9aafc64f"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/014-requirements-intake-consolidation-governance/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "d285cefa1b02ff73433797e1cfd68c5ac7275e466f607e834ac5a37dc400f92f"
+            }
+          ]
+        },
+        {
+          "feature": "specs/015-windows-maintenance-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 44 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/015-windows-maintenance-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "86403586e23be88b0867377c6a3efc4c88c881f26e55a42602d9c0e3a25eb509"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/015-windows-maintenance-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "a8aaa08941fe1362b6cde324f8f745e67ed360475c93fd3adf2d67a7146e0087"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/015-windows-maintenance-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "fe4c3698edb023ffbecd8bc6a6ad541fe698e7b29d8fc23c0a159ddac0246c9d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/016-linux-maintenance-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 59 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/016-linux-maintenance-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "a6897075dcf583b6603b18acfd8b78730c8cebde73ef703ed43cae7222caf07b"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/016-linux-maintenance-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "2b5617a73cda457e921b90c150326ccb7b4cb4ebc052ee9e06b74eda94ab9d0d"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/016-linux-maintenance-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "a64b91e71da6af7ddab59a5996e2f1d14b286168b3c103e278107c287ed89d40"
+            }
+          ]
+        },
+        {
+          "feature": "specs/017-preset-profile-worktree-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 89 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/017-preset-profile-worktree-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "bc9039b8e7e723e7141faa4bf32a0e1704116429abe1eafedcb0ac5c1430d97f"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/017-preset-profile-worktree-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "16c6168a202b77abb5885ceaa502fcaf8d367fe3c7c32b39676e2ed03fc0b3a6"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/017-preset-profile-worktree-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "b3d06b4ebb0263d0ef3194d7b72cfa5066776d87376b9834f845fb90c68dcd1f"
+            }
+          ]
+        },
+        {
+          "feature": "specs/018-agentic-workspace-tui",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 133 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/018-agentic-workspace-tui/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "7882b71a8d549a8ea690c90eb4d5a43b00a0cf76f30d24ab7032a770333efaa8"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/018-agentic-workspace-tui/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "9d50423b6a9e40c6a4100369436c912c4d5b2390a7fada88934823fca8f46165"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/018-agentic-workspace-tui/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "6fd65cb866e60075090393f7c7747e29116f36fdea7063157797bde5872bc59b"
+            }
+          ]
+        },
+        {
+          "feature": "specs/019-agentic-workspace-regression-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 122 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/019-agentic-workspace-regression-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "edb212c85b329ae4e0b242913c4b24aab4db50f2468d8b1cfb3eae6fbeebbcc6"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/019-agentic-workspace-regression-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "2d87d0e08dc5cb8240d003ee71fc9c9ba6400b90fb11ca72a8029cd49eda060a"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/019-agentic-workspace-regression-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "e68a3cbba2a2073363724b7c6a93bdba9ed7307ee9f21688537fff1e8a27d482"
+            }
+          ]
+        },
+        {
+          "feature": "specs/020-documentation-architecture-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 130 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/020-documentation-architecture-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "ecc1163db7a6e6efdbc9e4ba0976170ffe3ab6c122029f53087b50e59b9f9f20"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/020-documentation-architecture-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "3b143f74287a267f4ab10606182973dc45b718d75886a5310e6c213988d4eb8d"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/020-documentation-architecture-audit/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "f14b4720a508ad5dd6b9c7dcc098b302746ad6f8bba1316642fe21ab690ad7ad"
+            }
+          ]
+        },
+        {
+          "feature": "specs/021-level0-documentation-architecture",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 110 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/021-level0-documentation-architecture/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "544ea827da30a0541133b00023a46ddfcdd751beaef7f8cdb9508475c2d4c3b5"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/021-level0-documentation-architecture/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "960f0204ff73edf6d2c87c06095f99af9debb70277aafc82c4551c07e038fc6e"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/021-level0-documentation-architecture/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "17b07551dfcc7c95da0026b3052a81ca800a21a54288f87520465ff035487ccc"
+            }
+          ]
+        },
+        {
+          "feature": "specs/022-agentic-workspace-efficiency-guide",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 84 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/022-agentic-workspace-efficiency-guide/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "3a58704b81c1f18dbda4c45e8b0cbec248043835156e69c1072a78f169b76637"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/022-agentic-workspace-efficiency-guide/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "9e282bf1a62f68dfa4bb2985e497864477708d9324c0c4d7072ce5919a615622"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/022-agentic-workspace-efficiency-guide/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "a2f4fa205d923b357b3d1502d6f262bb66fe85a0a9104a93b8a270f949a0f81b"
+            }
+          ]
+        },
+        {
+          "feature": "specs/023-registered-doc-architecture-adoption",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 112 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/023-registered-doc-architecture-adoption/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "50bc4c95d5385a5f748a5c099c30b8a2ddcf43677332e6cc7df435c0a1f84378"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/023-registered-doc-architecture-adoption/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "e035d91a8d6f5109ae75094c9f49003564cbdcb07ade991423b9e05d597cf4bb"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/023-registered-doc-architecture-adoption/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "588889da55a77131c8611e96c3302d9f0b674553408acfcc9b57a94864c5071e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/024-mitgeltende-dokumente-verzahnung",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 50 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/024-mitgeltende-dokumente-verzahnung/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "792f19c3145e5e007ff1fea0e9932508dd197da1e72e1765b88102e63c77ebfa"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/024-mitgeltende-dokumente-verzahnung/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "774ed77790445703cc910833632b4659f70ea59fe3890d6d4b664df8ab410c1a"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/024-mitgeltende-dokumente-verzahnung/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "ae145a2cfdfbb47b0d657018fdd66034e0ac7e8c24cc965bfce11180addb3fed"
+            }
+          ]
+        },
+        {
+          "feature": "specs/025-rl-se-self-assessment",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 65 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/025-rl-se-self-assessment/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "57cc0e2d0f493cbcfe8ba11a3bd21621efe7539c4b46f203416fed7238e93f7a"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/025-rl-se-self-assessment/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "dd744073d98d045f7634e4118099e39b73fc337db3b5bb82f66a2095f8e87b75"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/025-rl-se-self-assessment/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "def840875e365ba3152b43e913553b8489f9a4cea311f2b78c5871173d98459e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/027-autonomous-evidence-integrity-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 65 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/027-autonomous-evidence-integrity-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "4efbdbff4bbf9129b32d6c6277144b536ace481366d2cfb531ae72f71f670147"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/027-autonomous-evidence-integrity-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "0b422cdd2c58e3bbc04edacf9ff11b5aded961ddf242a47dc6572f943908a635"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/027-autonomous-evidence-integrity-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "ea5fa44c4b66df49f107b3bfce5e1cd219408542e5385667d840eac8564c28c4"
+            }
+          ]
+        },
+        {
+          "feature": "specs/028-autonomous-evidence-integrity-field-validation",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 85 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/028-autonomous-evidence-integrity-field-validation/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "56aa874a3942e4cf4cf69a4ab4694d1f651653a9a7db6b428f4988d68011a81c"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/028-autonomous-evidence-integrity-field-validation/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "0a5ae481be633eeeb9fd5b681a3c84c65140c7b88f31816588edb91ecbaf85e6"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "fc1a4b99e5dd4348b29c04405149e9010b10549917e498451ee46c91a52d300e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/029-ci-budget-governance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 93 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/029-ci-budget-governance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/029-ci-budget-governance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc"
+            }
+          ]
+        },
+        {
+          "feature": "specs/030-stage-b-rollout",
+          "executed": true,
+          "completed": false,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Feature 030 Stage B: implementation and delivery exist, but the tracked Active/Publish state retains pending final validation. Public PR #259 does not itself prove all terminal read-only tasks. Completion remains unproven.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/030-stage-b-rollout/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "be9ab2eed3d4210014b6982c4240ae5b36be004357d6d82085021086ac776955"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/030-stage-b-rollout/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "0c6cc01552b08869dde4e611dde9d5c3264535de34be96868abe779d889bc455"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb"
+            }
+          ]
+        },
+        {
+          "feature": "specs/031-github-copilot-review-governance",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 168 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/031-github-copilot-review-governance/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "5233e2c15472405e8d11fa7ac07b7da0c0a246dba0d60a2ac8a545f1421d1310"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/031-github-copilot-review-governance/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "11e08ddcf84ea1fb800f7f98c4c4d7c2a3419cd431d52424fe469eb88feb169a"
+            },
+            {
+              "kind": "file",
+              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hindermath/cc65",
+      "level": 2,
+      "reviews": []
+    },
+    {
+      "name": "hindermath/tvision",
+      "level": 2,
+      "reviews": []
+    },
+    {
+      "name": "hindermath/agent-operations-cockpit",
+      "level": 2,
+      "reviews": [
+        {
+          "feature": "specs/001-programmquellen-baseline",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 66 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/001-programmquellen-baseline/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "7f06c85f96203d2033624f5e36bb3584850f6fe55590f83e9bd6f97a9c350352"
+            },
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/001-programmquellen-baseline/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "b0e05871052dbb5929550d6dd766a72a83a10e19cacb39d290907e41198681e2"
+            },
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/001-programmquellen-baseline/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "9cea8e010f9b20f0135c4e63ae219da58b6023f5ed52bed648b24e8bd6dd9d02"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-portfolio-ownership",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 93 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/002-portfolio-ownership/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "23ee9f2159ef0902f4ab39cf1e3a8e6d10629a01f597a665b5e4376c58bdca8c"
+            },
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/002-portfolio-ownership/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "bd75e9b222640e0a8ddc319794d7ce2d801676c00601859e255048aeac322aa0"
+            },
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/002-portfolio-ownership/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "18069cb2627ac55f089117d255b1b19407d87e17b9c439fb4caccb6ae6f94893"
+            }
+          ]
+        },
+        {
+          "feature": "specs/003-authoring-contract",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 79 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/003-authoring-contract/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "607653676c04f1d232c3bad600a524ae37bf14bc075b9c52654e33739f411c59"
+            },
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/003-authoring-contract/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "ad5da75b41b169538a7e9be844a6cd3d64682e87a6b78563d1e522e6cea434f2"
+            },
+            {
+              "kind": "file",
+              "ref": "49bfa60c4c74cc3225b49c308e80ef777827bdf6",
+              "path": "specs/003-authoring-contract/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "56c7d4e9bc1f8717bc1a32d86ffbb9f3153045967b509e69447a4053a8a57efa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hindermath/InventarWorkerService",
+      "level": 2,
+      "reviews": [
+        {
+          "feature": "specs/001-pgsql-paritaet",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 54 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "73ceab5a9057afded9abc3b47f1b5ea2b1ddef96",
+              "path": "specs/001-pgsql-paritaet/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "c08745a44a563f676a2bc47245b778f9b4b19591ee730841229c34171f853721"
+            },
+            {
+              "kind": "file",
+              "ref": "73ceab5a9057afded9abc3b47f1b5ea2b1ddef96",
+              "path": "specs/001-pgsql-paritaet/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "7eb9b262a40d674cff3c232e07c462a549fadf26cf96eb1408234671ee7f16fd"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-secure-development-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 122 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "73ceab5a9057afded9abc3b47f1b5ea2b1ddef96",
+              "path": "specs/002-secure-development-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "968b03bfc05eacb18527dc4be074de4c3fd1a595ada9a36ed1ca3bba5486f519"
+            },
+            {
+              "kind": "file",
+              "ref": "73ceab5a9057afded9abc3b47f1b5ea2b1ddef96",
+              "path": "specs/002-secure-development-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "f511264d4e2ffa06c46dfe05226c285f87ac137e2fdc2a0fc54141057db152c6"
+            },
+            {
+              "kind": "file",
+              "ref": "73ceab5a9057afded9abc3b47f1b5ea2b1ddef96",
+              "path": "specs/002-secure-development-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "b2552d9364a124bf8cb0fc1c55731c8ff221f575bdce01a56e5343605bbaf69c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hindermath/TinyCalc",
+      "level": 2,
+      "reviews": [
+        {
+          "feature": "specs/001-project-context",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 26 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/001-project-context/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "793f8f911e022e57e00011586a472d894a2ed6e658f729e674ad836a7bfbcb5d"
+            },
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/001-project-context/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "8e785d8243b1fbea0d818394becc2e57e371460cebfdd8bc60bbf61071f59ec5"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-constitution-change",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 71 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/002-constitution-change/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "1f8196fab5ff0a2d0aba6fd59b58d6fbb24edca48dadc80f68437273f016ca65"
+            },
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/002-constitution-change/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "88cd31fd642e27fb998dfc2bf7ed4914b2886edd663ee496a47787d2c1c3d241"
+            },
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/002-constitution-change/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "7c0f9dfaee5b6f502cf655ca4cbc9147e038ea579dff6fd47d97b3393a1dc670"
+            }
+          ]
+        },
+        {
+          "feature": "specs/003-terminalgui-migration",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #61 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/003-terminalgui-migration/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "59053992832fd41dc86812695a070f53120c2d47ddac086e4e4a55cd0d334a2a"
+            },
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/003-terminalgui-migration/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "6eeea5b63f89b2cd50c825e4999ea631fbcde04e53614ec58e569caa120f89c8"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 61,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "0e004915fe7917143d46c04e17c272eed345332bba50635a1e2e914c712da984"
+            }
+          ]
+        },
+        {
+          "feature": "specs/004-rl-se-self-assessment",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #69 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/004-rl-se-self-assessment/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "609ea5f0216db92dc0ef2f9efb6093d11493cbf64b709e15417a697ee719ffb3"
+            },
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/004-rl-se-self-assessment/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "c071ccd7488e054999f5fca1833ec1119c99a9fc93b203b54cd4dbb0985a8c65"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 69,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "13530177bcdb5d5d5e9bfe9f038680c7ef174b63f0ac9dbea23122cf1286d9cf"
+            }
+          ]
+        },
+        {
+          "feature": "specs/005-gsdb-intensive-review",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #71 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/005-gsdb-intensive-review/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "99e9103ce1a21864a5aab6c09f176e8c74d7160002ba291d7b137686a7a05d27"
+            },
+            {
+              "kind": "file",
+              "ref": "1aa45a86d8fd310bb2a848d96c8ce10bf5a7d9f7",
+              "path": "specs/005-gsdb-intensive-review/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "7a98ab5b682e57e541e189aa3397aeefc9a01b59e18b3db8b33e36eb944af2c2"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 71,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "e39a7f118edddd26428cf6c718993533003d761c18bd69d92495d502e1d0009c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hindermath/TinyPl0",
+      "level": 2,
+      "reviews": [
+        {
+          "feature": "specs/001-l10n-backend",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 41 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/001-l10n-backend/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "d462dd8c6ea0038b828a865c0741fe56ec4160c258df2e3ec919c8dadf64228b"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/001-l10n-backend/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "3ced31d3b3bce1b6a5866e2202446399008c4de9a0d3497ba6f7565aa486673d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-vm-inc-compat",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 14 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/002-vm-inc-compat/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "634695819fdec802756efe7b505129c90babed8656b35e7a8c1861a8780ad81c"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/002-vm-inc-compat/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "4493e5221880ff868f6c8ea57f8d6787020523731c7fa1c26d9f10ca2dd01cb4"
+            }
+          ]
+        },
+        {
+          "feature": "specs/003-constitution-change",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 73 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/003-constitution-change/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "29f88570b4a56eb87a3064d46699e76ead39134065192bbfb8175bb2e6d7bafe"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/003-constitution-change/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "a5c9fef29795187d8f2d9bd19c33449fb6c831e7c7a75ae17edeac84fbc45da2"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/003-constitution-change/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "d2326e472edfd39b49b2a9eb6efbc3dd379b29c7b275d717c3e8b97949a715fb"
+            }
+          ]
+        },
+        {
+          "feature": "specs/004-secure-development-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 110 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/004-secure-development-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "e954207426cca04bce55d26f78fb59cf0a1f03d4afead8d1f8a2e0a00a1e2219"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/004-secure-development-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "a38afefd1e78ef15d57287f4307d66284bb63f382c429451b0dc0ba11f4b13de"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/004-secure-development-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "d4eb88c7055384139ef87eb4b7c89b8d9a66894c8c4a174030022540d0770428"
+            }
+          ]
+        },
+        {
+          "feature": "specs/005-sandbox-secure-development",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 69 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/005-sandbox-secure-development/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "738f6827ea7cb4442516f62f3bcd0becd19737f2e05fe351d1ae18ffb377416e"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/005-sandbox-secure-development/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "2fc4373d872582af130351a33f07f23c7b88f63f3efc4ae4e7a641ba3beb9fb0"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/005-sandbox-secure-development/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "a3e58f920b430c5d3bcb734d95052c1ad12bef5c525286afa025c438aeea2cf1"
+            }
+          ]
+        },
+        {
+          "feature": "specs/006-embeddable-vm-nuget",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 50 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/006-embeddable-vm-nuget/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "73cfa8be453c09a08e99ea947be9aa52dd74006980bd495af0f4ba39ccb49f62"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/006-embeddable-vm-nuget/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "d945877330f9a624711992fac57e602eb7fca7a9830c671a82945801dec27255"
+            },
+            {
+              "kind": "file",
+              "ref": "a988d6418aeddf3e8979edb3f1e25275661bdf2a",
+              "path": "specs/006-embeddable-vm-nuget/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "c016cebada9e83a7d5982b82e97229c629831728011fa8652ab172caa277a522"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hindermath/TuiVision",
+      "level": 2,
+      "reviews": [
+        {
+          "feature": "specs/001-view-system-tgroup",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 32 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/001-view-system-tgroup/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "ca33f05082a1f178daefdc5de7f8c52a43f78509a17adacb41958477601c27d3"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/001-view-system-tgroup/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "771f01fd6cadf4268a07b8af1507e4d3fe004addc9e789f1cef3bdf26fe22ddc"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-application-framework",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 32 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/002-application-framework/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "66ef890bc37618df483a6c3d6a4fa4fe392a094db38e70f059939ad0f9378423"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/002-application-framework/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "7bc1a09c3a999e0f953e52211821897953244672943dcc0bf75c1d1f6f7a88bf"
+            }
+          ]
+        },
+        {
+          "feature": "specs/003-dialog-control-layer",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 40 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/003-dialog-control-layer/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "a793a584354e908416873e78dafe9781fba9ea662aee4aa60f8d9732b92f22ba"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/003-dialog-control-layer/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "2c34ea6be8bb6ca0ee0038dd02678d1f574375c177eaa257b96eede17e8953cf"
+            }
+          ]
+        },
+        {
+          "feature": "specs/004-editor-file-help-streams",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 43 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/004-editor-file-help-streams/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "3267f086b51263d79ee0fce630d5daa17b922bc1d632b3618d99dcfe855c34b8"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/004-editor-file-help-streams/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "c09a1e8dd6b8ffa28c72549e1f3454659379b5c4562d6000782e507ce5da7b41"
+            }
+          ]
+        },
+        {
+          "feature": "specs/005-driver-consolidation-m07",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 29 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/005-driver-consolidation-m07/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "f1eaa59fc11402788d388044fceb074e3b9d37b80d105e3d5668cb70326b1467"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/005-driver-consolidation-m07/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "7c2efb00924a77d99d67a39de04312846342c7a4fa196e08c6133d83ecfb6d7c"
+            }
+          ]
+        },
+        {
+          "feature": "specs/006-close-phase8-gate",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 34 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/006-close-phase8-gate/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "ae777e023ccb6ad1dbd7445c17cd90e6906c2bb5199110421bc9bb94856822fb"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/006-close-phase8-gate/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "9684c37b5e1b25eea949fb3ccd2f996b5ad13204f98e4c18ac17db25513b0d8b"
+            }
+          ]
+        },
+        {
+          "feature": "specs/007-port-wave1-examples",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 40 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/007-port-wave1-examples/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "d87de1e41cb32376bcd5964e76081e56a68f014e2ea44b65b105b21d024183d5"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/007-port-wave1-examples/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "57c5ddea598211ae879934c6d140efe54dd132bd2dc8cf0d68dc20073ba3d8ab"
+            }
+          ]
+        },
+        {
+          "feature": "specs/008-controls-revision",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 33 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/008-controls-revision/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "b2c17ff296eaa6182660ae7316cfc155a72174429bd25051a25add10197e0470"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/008-controls-revision/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "82e324f8fa61da3ebac9cc9b53d52871262cb166281a7de91116a3749e600a49"
+            }
+          ]
+        },
+        {
+          "feature": "specs/009-controls-widgets-and-collections",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #16 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/009-controls-widgets-and-collections/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "1092688bfc0acf7de28c79817f43bd81a9c503b7bb278a3c0a0fd2887ec380de"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/009-controls-widgets-and-collections/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "65515831788faa9ed6dcc318aeaead85dbe939edec541e64ec89466ba7d9caf0"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 16,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "d9eeece1e94ddb0ed9bfb8d6a4c7c216421440d97bcd9916db7b41ccd971e359"
+            }
+          ]
+        },
+        {
+          "feature": "specs/010-standard-dialogs-designer",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 75 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/010-standard-dialogs-designer/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "3fabfc3f32863a5379c74f7ac87f305af895ef88955099eda8efc110c2ba3d13"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/010-standard-dialogs-designer/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "146b3add09a2fc25ac864d7d00c81a43534033abd65b5f12133c44cf70e11ba0"
+            }
+          ]
+        },
+        {
+          "feature": "specs/011-port-wave2-examples",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 110 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/011-port-wave2-examples/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "f9a478fe342b13066d268e538ee5462fe3795fd0f21ac675d6c8f0d8e5076e0d"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/011-port-wave2-examples/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "71af475bd23206ad1e20f8e14db31cee7a3f9e064c9c849107842d793bff1208"
+            }
+          ]
+        },
+        {
+          "feature": "specs/012-interactive-wave2-demos",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 89 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/012-interactive-wave2-demos/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "f0b30cad39ca705e1ef53afba8d2946c4d660f18ef641c56980799d04d6d65ba"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/012-interactive-wave2-demos/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "f92b84b9832c1baabe22a73d938207c87bcab10e3dc2cd34947469e6a8ab76ec"
+            }
+          ]
+        },
+        {
+          "feature": "specs/013-wave2-visual-component-remediation",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 94 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/013-wave2-visual-component-remediation/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "25340887d58b4f35a47efefa9e5bb26cebf2c68db568f0a79573f49d6afde425"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/013-wave2-visual-component-remediation/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "e4f46b9944a00881fb9df235f1d128ae47cdd06b6e6f878c69b761cccdeaf000"
+            }
+          ]
+        },
+        {
+          "feature": "specs/014-wave1-functional-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 79 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/014-wave1-functional-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "1fd2d38d3bf2ede7596f6724a062f9f8424f858f360759dfd4b6da9e810d44e1"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/014-wave1-functional-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "d197be540179bd1adef084b6e6bff6fb45fd1f6ca2f5eb9e4497999faf823b0d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/015-didactic-comment-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 102 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/015-didactic-comment-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "cbb4c447ed7de04face9452658de4221aa77108b53c7df08bfb2894d2d5960a7"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/015-didactic-comment-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "1930bc3cea349f228c034e06ce88c5daedb3a72cc7b5a7b37f4649145ae7cd3c"
+            }
+          ]
+        },
+        {
+          "feature": "specs/016-secure-development-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 148 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/016-secure-development-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "971c2af5706a8d765657ee4b5bf91abffe19229d38a68f4f0f38fc77d4cc3a51"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/016-secure-development-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "c5e72f0b0f412aff27889db1ab2de24764b561cf7dbef53137edb73b14e4af85"
+            }
+          ]
+        },
+        {
+          "feature": "specs/017-wave1-visual-component-remediation",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 144 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/017-wave1-visual-component-remediation/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "2bffeb3318145206f4fb653c72503d4808f87b3885c4bb20d843bba55fa7d2e2"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/017-wave1-visual-component-remediation/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "49c1aa7df0560710a544b012fd4f744c92560ff9db91c576099d9a09095a796b"
+            }
+          ]
+        },
+        {
+          "feature": "specs/018-editor-help-resources-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 99 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/018-editor-help-resources-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "1e5558a2760287e0b37749a5ebbcad577ee8460abd290f995e36a7d070f54277"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/018-editor-help-resources-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "19f0323df3f968e987328833e8baa3ee58a5ea073384c253d980520b3f2bdd09"
+            }
+          ]
+        },
+        {
+          "feature": "specs/019-wave3-visual-component-porting",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 109 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/019-wave3-visual-component-porting/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "adf9e1af85d9e94c628230ce177e92d6243a3526cae0ca16b4088f80c61a067c"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/019-wave3-visual-component-porting/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "ae4922691edc0219233c5474b8ba32a310620db8fdb5be6d8eb99597e79eec07"
+            }
+          ]
+        },
+        {
+          "feature": "specs/020-mouse-support-interaction",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 126 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/020-mouse-support-interaction/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "75414c54e4d8d35193ceafd97011634f8c1f95fe20f7f062028f6a44233137ff"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/020-mouse-support-interaction/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "15852af03901888d43621fc98744a4fe4289b86a837354a7d0779ae300b8a72e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/021-terminal-charset-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 166 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/021-terminal-charset-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "6aa18e8128f52fd182978bac6f24fae34ebaee8324d5939a6c06ef7b21961828"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/021-terminal-charset-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "ed0d2ca53d52e3139693713cca150b41659103105a1010fdcbd233e0d7f9b9b7"
+            }
+          ]
+        },
+        {
+          "feature": "specs/022-wave4-visual-component-porting",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #54 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/022-wave4-visual-component-porting/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "38d64c778eb20244304704eb8efc55d770db3a775fe855b34a2573edd674ce11"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/022-wave4-visual-component-porting/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "a62781424a312fc990abbf7fb3d3f2814bb174b0f16160f211a19745e5baeeea"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 54,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "f35a14ea4b08ec729490097fccbf36c276b926d05efeaf3ff7f3238294a267ca"
+            }
+          ]
+        },
+        {
+          "feature": "specs/023-a11y-framework",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #57 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/023-a11y-framework/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "e7b13ad86c79f25af95fd3a853db6c82b22bfc10de6e085747983e1bb2fd9a22"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/023-a11y-framework/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "fac8766e1ec62680a8b1a60811cf18d0be35c628b3c50a2032f6c4ccb058d607"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 57,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "4b65c93600c30b39993bf9d4fdd4087dbbe2491a6000cb5692598d61bec62b58"
+            }
+          ]
+        },
+        {
+          "feature": "specs/024-tv203-freevision-conformance-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 132 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/024-tv203-freevision-conformance-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "891420f4217977dd189f3cf565ff483cf58c5c6502e09841ba742a96d98487db"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/024-tv203-freevision-conformance-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "2b15d550847baabb1f7db7cdc5d264b4be215c995f980800f96e710ef80e3f53"
+            }
+          ]
+        },
+        {
+          "feature": "specs/025-core-runtime-conformance-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 154 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/025-core-runtime-conformance-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "0e141dd884fa5725108d440793501a0226504b3492869a7f8ea051b65dbe3aa0"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/025-core-runtime-conformance-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "e68c5930c3ce9d71aff6bb78f6007df7ad556c72f553e2e351d66c5c041f7262"
+            }
+          ]
+        },
+        {
+          "feature": "specs/026-component-data-conformance-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed historical exception: frozen tasks precede causal delivery; public PR #75 and the pinned feature evidence establish closure. A merge by itself is not the rule.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/026-component-data-conformance-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "30d67c7a3bfd2987f6d789613785824953d81ab00acfe30877d08d592caa4ca0"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/026-component-data-conformance-hardening/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "1b83b18bfcbe99a9dbbfbb91848727fbc2d8f3b4c6cf95b8e7631b3ccff7d942"
+            },
+            {
+              "kind": "pullRequest",
+              "number": 75,
+              "roles": [
+                "completed"
+              ],
+              "sha256": "806c24a50063fc935b1db2c48219937a17285203f9a74277d64cf30a41b62713"
+            }
+          ]
+        },
+        {
+          "feature": "specs/027-pre-wave5-conformance-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 90 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/027-pre-wave5-conformance-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "4521818cf5c4f66a86ec1c8e4b74a406d889099fa7ea130e7bd21a5369c87764"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/027-pre-wave5-conformance-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "829007b468d349fdf459b438e100d577544e2927614e7aee207515ff7457a661"
+            }
+          ]
+        },
+        {
+          "feature": "specs/028-pre-wave5-wave6-conformance-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 146 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/028-pre-wave5-wave6-conformance-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "76d4076cc744b7bdfe62b68865caa1822da00a5ad4fa58ed28e9ba755fef8ed4"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/028-pre-wave5-wave6-conformance-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "fc846de62a218cd299260c139535676c1f3481bbd8c60ef1f8cfa7b17b33eea2"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/028-pre-wave5-wave6-conformance-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "2eda7ee3a8508e8ec92d844cf26c163d07eb603c998bb83dc3848d18bb42fdf0"
+            }
+          ]
+        },
+        {
+          "feature": "specs/029-tv203-freevision-terminalgui-conformance-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 130 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/029-tv203-freevision-terminalgui-conformance-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "8a74bce41e8e46ebadbdbe6096bbcc6f4ec681d9b8aec350ebbaf04db83aaaa3"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/029-tv203-freevision-terminalgui-conformance-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "b30733025ca3e90cc224799e6e16d469ff9ce2434bdbbad0466dc2a8f5aea0b4"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/029-tv203-freevision-terminalgui-conformance-audit/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "a92388c744be57ea69731914e482e97310890adc6d340c13672c20f74d8d7722"
+            }
+          ]
+        },
+        {
+          "feature": "specs/030-tv203-magiblot-evolution-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 165 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/030-tv203-magiblot-evolution-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "1dea245fbbbc974c9f84aa2443b4447a41c68cf57fed501a787241ffceb7ea9d"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/030-tv203-magiblot-evolution-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "051182c36a383633e3098fea1fec899b1cbd15ed3e171abb9cf9861a877771c8"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/030-tv203-magiblot-evolution-audit/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "9e6fcfd9c38491c3f6348626f09756492bdb15626b45b8a11c0db82e48abaf1e"
+            }
+          ]
+        },
+        {
+          "feature": "specs/031-combined-conformance-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 172 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/031-combined-conformance-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "776758051f22ff09439695607fd996a1c145829674cfae8a46893032cf0c2cba"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/031-combined-conformance-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "cbe933580c1d671bc2927ad661bf5784c589d8124d4e791b8635864d01310043"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/031-combined-conformance-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "b54b1b41130506fff8d1d5c5bcf509ce1e0acb5e18c0d9758fc792775807f83d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/032-wave5-tp7-functional-porting",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 180 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/032-wave5-tp7-functional-porting/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "999ae46e2d116655c79d759a13988d1dfe55d4fca1bbb36e0d8c34fe9c4277e6"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/032-wave5-tp7-functional-porting/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "11fdfd9c12e89cabc3c88857e9f1f856ed193e56e9b1937253b9962287f02472"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/032-wave5-tp7-functional-porting/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "37c69c0869c648cf770dfeeacff5364f7b02f5714e152665885a5bc2a8a61cc9"
+            }
+          ]
+        },
+        {
+          "feature": "specs/033-wave5-tp7-showcase-remediation",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 196 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/033-wave5-tp7-showcase-remediation/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "14ba0b2bade11797cfea8b502c9ac3d43b4e7eda745d046989e6ffd9afa0e6fc"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/033-wave5-tp7-showcase-remediation/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "75b7e8e69854be59c198decd6ce22b1ec167377db656f47a2e97eed12f730df9"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/033-wave5-tp7-showcase-remediation/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "fd1b872fc9b1e74051d23f6d784a97d3739442fc218961af0dcc7cddb3833ba8"
+            }
+          ]
+        },
+        {
+          "feature": "specs/034-wave5-combined-delta-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 164 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/034-wave5-combined-delta-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "67832196a681213daf465dbdd5b85f9adf3b08f93562509cd4e88c02f30505e7"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/034-wave5-combined-delta-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "3fc22bdc8ba37adb31616b10418b49dbc084008372c029e867700a85896b2098"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/034-wave5-combined-delta-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "4ff41c48057f4ca080b956cea86a83a7d31c9ebec501ca3c33dcba2ce707f276"
+            }
+          ]
+        },
+        {
+          "feature": "specs/035-wave6-tvfm-functional-porting",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 163 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/035-wave6-tvfm-functional-porting/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "8fa69c770ba0d1aaeebc861871e3029f9913b4ebae4834828c63c4352f502eca"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/035-wave6-tvfm-functional-porting/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "061eae108352d36713bdad339559d097b3926983b8525d3e3562dedb3f92eab2"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/035-wave6-tvfm-functional-porting/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "d15600e39074df8e920ed0387680e7dbce6e7e4f2a46fc6ca4ad06172a6f8fae"
+            }
+          ]
+        },
+        {
+          "feature": "specs/036-wave6-tvfm-showcase-remediation",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 187 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/036-wave6-tvfm-showcase-remediation/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "ea7c6fab54cb2eda7a60262ac77cdb9025aabdaab6ceebf18f9fc49d9492da45"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/036-wave6-tvfm-showcase-remediation/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "4928cc01c96cfa8d84771e23f5e1e43a850438ea670b3ff0b439f8408bb4790f"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/036-wave6-tvfm-showcase-remediation/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "a1510c3cba6560c033f9a28db5b03ff5a3b9ecace41197d2765bb8b1ffb08679"
+            }
+          ]
+        },
+        {
+          "feature": "specs/037-wave6-combined-delta-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 169 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/037-wave6-combined-delta-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "29b2708910e720dc007c268c2668087b5b70a26c2d6eb09d9b5c6b41bd82f0c8"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/037-wave6-combined-delta-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "b93ed6717e4883c3bfaed73d41ddb497d35f86f6904f3e94cfc90b7c82ecc0d5"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/038-example-portfolio-conformance-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 225 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/038-example-portfolio-conformance-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "f9f7309d4903db88ef038b6b2f0c1b1296433d3a9f821693f72ace3d35873436"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/038-example-portfolio-conformance-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "b9db46eb8b28f76e6748a8ed62d459eb7a5c9640579f3abea096e7dbaa1e0c91"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad"
+            }
+          ]
+        },
+        {
+          "feature": "specs/039-example-portfolio-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 10 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/039-example-portfolio-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "de8caa3935a6535951703c8a32cd4d2234f4bd2a6ad218b7d436257c664686df"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/039-example-portfolio-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "2292f132a9a622031af5073142ac8ecc53ea92d0f1816e012b1cbb321203daae"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7"
+            }
+          ]
+        },
+        {
+          "feature": "specs/040-constitution-governance-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 7 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/040-constitution-governance-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "be87b7e1e590afb317569c3d0bd5a80c7e7f7c9ee35f3fda5d012c6644627428"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/040-constitution-governance-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "b9ce45e3b1933ddbc26ee049399e714b91c12819c6d27230727eb7063df1b6d3"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d"
+            }
+          ]
+        },
+        {
+          "feature": "specs/041-source-reference-policy",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 15 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/041-source-reference-policy/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "a56fb0230257ea09f6e7af9ae77788f8114b5d42ffd6cb5a8edca1b2c19d9e72"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/041-source-reference-policy/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "eb342bf115ba593336d206c6da74d01021a9ac7f1428331f31b25a48ad5b237f"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/041-source-reference-policy/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537"
+            }
+          ]
+        },
+        {
+          "feature": "specs/042-transactional-form-model",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 19 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/042-transactional-form-model/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "0079830ed1d262a50ab71371d43ef05796fb500258dccbb7e2b92e2ec58d79aa"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/042-transactional-form-model/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "775e4deaeef851357157c60477358e487d7f2ad305a6b9ec9ebe34fef8894cf6"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/042-transactional-form-model/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe"
+            }
+          ]
+        },
+        {
+          "feature": "specs/043-documentation-publishing-closure",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 40 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/043-documentation-publishing-closure/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "151b4a82105c2dbbd635719ed8a21e53a0fdc2d0358508cddf5880ebf5b0d32d"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/043-documentation-publishing-closure/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "e9a703bf9727d9324a087793377e9fe67cfbef358179b01c3a28cb59f4738c54"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a"
+            }
+          ]
+        },
+        {
+          "feature": "specs/044-sandbox-secure-development-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 75 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/044-sandbox-secure-development-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "d203b77ae04be1309ebd8905f8365cd7d0b0544f9acf4b21d4f05b9a9574d718"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/044-sandbox-secure-development-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "c0304636819a4151ee1a1a330d73df0cc26b1f49f018018d74676f2e1d83c766"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0"
+            }
+          ]
+        },
+        {
+          "feature": "specs/045-rl-se-checklist-self-review",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 132 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/045-rl-se-checklist-self-review/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "b7444df145163c75810d8719018ec0743535a0d7e4e8e8b2ac1217da77165553"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/045-rl-se-checklist-self-review/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "5c5136688287718a023e083d58c7d1318542638c3d5af6226a8e6face89c50e7"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/045-rl-se-checklist-self-review/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "a5b3bafe2895a473de754d3160b0eb0b70309e98277c5c664a6517357127a719"
+            }
+          ]
+        },
+        {
+          "feature": "specs/046-gsdb-spec-kit-intensive-review",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 112 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/046-gsdb-spec-kit-intensive-review/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "47c0140121cb5eac74ae5e7076a125b0516f078eb94aacc04ab2a4b343301c73"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/046-gsdb-spec-kit-intensive-review/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "9f1f6ec5c8efb7a5590f0beb9e6d78b55e42e0e4f1737d26939ae7a945ffc5f2"
+            },
+            {
+              "kind": "file",
+              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "path": "specs/046-gsdb-spec-kit-intensive-review/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "72c732f2d6e3570d25a1eff41132a4ce75db97fdbdd024bec648330a0a257c91"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hindermath/absdd-image-sandbox",
+      "level": 2,
+      "reviews": [
+        {
+          "feature": "specs/001-public-readiness",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 43 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/001-public-readiness/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "08e69f8f275a84a13c1a1aa6d303ccfd2d7e1bcc14cfda2c8d82d5877d6b0f37"
+            },
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/001-public-readiness/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "6ee631df3957054950891eb54d9dacba4a2f3b97501f6161923f69789bac6d3a"
+            }
+          ]
+        },
+        {
+          "feature": "specs/002-gsdb-baseline-assessment",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 68 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/002-gsdb-baseline-assessment/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "973e86a8d73046fdb070f376b0fda4cc8c406f07b9298c6cb7e4915341de4398"
+            },
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/002-gsdb-baseline-assessment/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "06767c53b23ff9bf63095585837e3bc7f7058603915d34af13ddaedd65e6b5a7"
+            },
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/002-gsdb-baseline-assessment/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "61bca30bbe7d0c452bd3a452a0e9894f5735ef836c3924ef43c451f927710613"
+            }
+          ]
+        },
+        {
+          "feature": "specs/003-secure-development-container-hardening",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Historical task acceptance: 85 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/003-secure-development-container-hardening/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "cda011ccc2f9e116e6f1849591e5c3458114930e6f966327a6f0c63767e76f0f"
+            },
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/003-secure-development-container-hardening/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "0abed143b1359305a393a56898d05313b47c0bec1319e454cbfd82c762045a7f"
+            },
+            {
+              "kind": "file",
+              "ref": "d3731df24649cf189e3d97412c9285d3170c082a",
+              "path": "specs/003-secure-development-container-hardening/autonomous-run-state.json",
+              "roles": [],
+              "sha256": "c3d52a5b4f5947aae60927519edd2e8c3ab7b23eef3da2b33e35344314dfbf03"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
