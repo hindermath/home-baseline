@@ -145,6 +145,15 @@ Integrität, nicht die fachliche Richtigkeit einer ungeprüften Einstufung.
 version reproduce the same bytes offline. Hashes establish integrity, not the
 semantic correctness of an unreviewed classification.*
 
+Die READMEs und Statistikdateien sind über `.gitattributes` auf LF gebunden;
+so verändert ein Windows-Checkout weder exportierte Tabellenbytes noch deren
+Prüfsummen. Ohne `--repo` verwendet das Werkzeug die gemeinsame Level-0-
+Quellauflösung, auch beim Aufruf einer verteilten Home-Runtime-Kopie.
+
+*README/statistics files use explicit LF attributes so Windows checkout conversion
+does not change exported bytes or checksums. Without --repo, the tool uses the
+shared Level-0 source resolver, including calls from a distributed Home Runtime copy.*
+
 ## Monatlicher Betrieb / Monthly operation
 
 Level 0 erhebt am Monatsersten um 08:17 UTC. Das Profil übernimmt am zweiten

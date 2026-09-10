@@ -9,7 +9,7 @@ Collect liest öffentliche GitHub-Belege; Validate/Render arbeiten offline. Kein
 .PARAMETER Action
 Collect, Validate or Render. / Erheben, prüfen oder erzeugen.
 .PARAMETER Repo
-Level-0 checkout; defaults to the script source root. / Level-0-Quellverzeichnis.
+Level-0 checkout; defaults to the shared source resolver. / Gemeinsame Level-0-Quellauflösung.
 .PARAMETER CheckOnly
 Read-only validation/drift check. / Schreibfreie Validierung/Driftprüfung.
 .PARAMETER WhatIf
@@ -22,13 +22,17 @@ pwsh -NoProfile -File scripts/update-public-speckit-statistics.ps1 -Action Rende
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [ValidateSet('Collect', 'Validate', 'Render')][string]$Action = 'Validate',
-    [string]$Repo = (Split-Path $PSScriptRoot -Parent),
+    [string]$Repo,
     [switch]$CheckOnly
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'lib/public-speckit-statistics.psm1') -Force
 try {
+    if (-not $PSBoundParameters.ContainsKey('Repo')) {
+        . (Join-Path $PSScriptRoot 'lib/resolve-home-baseline-source.ps1')
+        $Repo = Resolve-HBSourceRepository -StartPath $PSScriptRoot
+    }
     $root = [IO.Path]::GetFullPath($Repo)
     $data = Join-Path $root 'docs/spec-kit-runs'
     $registry = Read-HBJson (Join-Path $data 'registry.json')

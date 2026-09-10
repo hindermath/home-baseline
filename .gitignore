@@ -9,6 +9,7 @@
 
 # Diese Datei selbst
 !.gitignore
+!.gitattributes
 
 # Git-Globalkonfiguration (enthält keine Credentials)
 !.gitconfig

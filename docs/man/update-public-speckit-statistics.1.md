@@ -22,7 +22,7 @@ Render replaces marked README blocks and generated files. No Git writes.*
 ## OPTIONS
 
 - `--action`: Aktion; Standard `Validate`. / Action; default Validate.
-- `--repo`: Level-0-Quelle; Standard ist die Quelle des Skripts. / Source checkout; defaults to script source root.
+- `--repo`: Level-0-Quelle; sonst gemeinsame Quellauflösung. / Source checkout; otherwise uses the shared source resolver.
 - `--check-only`: keine Dateien schreiben, Drift melden. / No writes; report drift.
 - `--dry-run`: Schreibvorschau; bei Collect mit Remote-Lesezugriff. / Write preview; Collect still reads remote evidence.
 - `--help`: Hilfe. / Help.
