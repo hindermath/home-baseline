@@ -665,6 +665,14 @@
       "labelEn": "Feature 032 exact contract and assurance",
       "netLines": 676,
       "activeDays": 1
+    },
+    {
+      "slot": 82,
+      "id": "linked-intake-evidence-home-delivery-foundation",
+      "labelDe": "Feature 032 Home-Lieferbasis",
+      "labelEn": "Feature 032 Home delivery foundation",
+      "netLines": 52,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

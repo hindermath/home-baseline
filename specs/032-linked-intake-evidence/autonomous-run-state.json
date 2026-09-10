@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Implement",
   "status": "Active",
-  "checkpointCommit": "a930564448d6cc07d88f66540ea0af919ca549bc",
+  "checkpointCommit": "e78c8fc6ebcbefe70e7607fe99a436c1869177b9",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
@@ -44,8 +44,8 @@
   ],
   "tasks": {
     "path": "specs/032-linked-intake-evidence/tasks.md",
-    "sha256": "9686d0e7f2580c55792ebfa3967652f436f39f1143144cd828e59c15938883d2",
-    "completed": 66,
+    "sha256": "965e422755c7137ac7ba70f347bb7629dbd940859586a1902bb1162530f21ab0",
+    "completed": 70,
     "total": 169
   },
   "routing": {
@@ -431,12 +431,12 @@
       }
     ]
   },
-  "lastPassingGate": "Parent accepted analyze-preset-v042-20260910 after process exit0 and validated result f440992c1a73e02fdd43011d94ccc352b670b5425e92779c013b535c72ff7422 / payload fb3255f332c36cc92ec98c5b0d6145e7e12250d778b95f4e9af9a727c13171b7 at2026-09-10T19:49:30Z. Findings: Critical0, High0, Medium0, Low1 non-blocking timestamp-parity observation; installed Bash state validator actually passes the current parent state. Exact13-preset CheckOnly, Bash/PowerShell evidence-integrity,18/18 runner-adversarial matrix and complete Home delivery set with exactly three raw-hash historical allowances pass. All8 accepted artifacts and169 tasks/66 completed validate. T067 is executable; native/delivery/human/current-statistics gates remain open.",
-  "nextExactAction": "Execute T067 only: materialize/review Home local requirements and complete intended inventory, add exactly three literal .gitattributes entries, pass the v0.4.2 delivery set with the three exact PATH=RAW_SHA256 allowances plus staged diff and secret gates, create the bounded preservation commit with required Copilot co-author, then integrate fetched origin/main 91e9c7e5919063388dcc22da7616b3dd878acd19 without reset/stash/force. Existing seven-repository MergeAndSync/Admin-Bypass and two exception grants remain current. Honor today's21:30UTC stop with21:20UTC lead-in.",
+  "lastPassingGate": "T070 completed with all pre-checkpoint macOS Applicable gates passing and zero writes. Bash/PowerShell contract matrices, A11Y/link/UTF-8/NUL/idempotence coverage, PSScriptAnalyzer, secret scan, statistics tests, exact 13-preset profile, script reference, full diff checks, product/dependency boundary, origin/main ancestry, exact 23-path incoming set, six attributes, three historical raw hashes and sourceOnly classification passed. The expected statistics DRIFT and exact committed-head/native/review bindings remain Open for T071 and later tasks.",
+  "nextExactAction": "Execute T071 only: add the bounded native-proof workflow, validate and commit the complete source candidate with required co-author, obtain a truly clean checkout, render and commit the statistics follow-up, rerun affected exact-head local gates, push without force, and bind actual Linux and Windows logs plus hashes into the three native evidence files.",
   "lastOperation": {
-    "kind": "ModelRoutingPhase:analyze-preset-v042-20260910",
+    "kind": "Task:T070",
     "state": "Completed",
-    "summary": "Phase completed with profile 'codex-frontier-auto' and result SHA-256 f440992c1a73e02fdd43011d94ccc352b670b5425e92779c013b535c72ff7422."
+    "summary": "Complete pre-checkpoint macOS Home gate inventory passed with zero writes and exact integration/product boundaries."
   },
   "stop": {
     "reason": "N/A",
@@ -449,5 +449,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-09-10T19:49:30Z"
+  "updatedAt": "2026-09-10T20:16:17Z"
 }
