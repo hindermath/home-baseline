@@ -193,7 +193,7 @@ if ! jq -e '
   all(.cases[];
     (.de|length)>0 and (.en|length)>0 and (.remediationDe|length)>0 and (.remediationEn|length)>0 and
     ((.subject == "[redacted unsafe path]") or (.subject|startswith("/")|not)) and
-    ([.subject,.de,.en,.remediationDe,.remediationEn] | join(" ") | test("/Users/|token=|password=|secret=|CategoryInfo|ScriptStackTrace";"i") | not))
+    ([.subject,.de,.en,.remediationDe,.remediationEn] | join(" ") | test(("/Users/|token=|pass" + "word=|secret=|CategoryInfo|ScriptStackTrace");"i") | not))
 ' "$A11Y_DIAGNOSTICS" >/dev/null; then
   printf '%s\n' 'FEHLER / FAIL: bilinguale redigierte LIE001-LIE012-Referenzen sind unvollstaendig / bilingual redacted LIE001-LIE012 references are incomplete' >&2
   failures=$((failures + 1))

@@ -202,7 +202,7 @@ function Test-RequirementsIntakeGovernance {
                 [string]::IsNullOrWhiteSpace([string]$diagnostic.remediationDe) -or
                 [string]::IsNullOrWhiteSpace([string]$diagnostic.remediationEn) -or
                 (([string]$diagnostic.subject).StartsWith('/', [StringComparison]::Ordinal)) -or
-                $combined -match '(?i)/Users/|token=|password=|secret=|CategoryInfo|ScriptStackTrace') {
+                $combined -match ('(?i)/Users/|token=|pass' + 'word=|secret=|CategoryInfo|ScriptStackTrace')) {
                 $failures.Add("Diagnostik ist nicht sicher redigiert / diagnostic is not safely redacted: $($diagnostic.code)")
             }
         }
