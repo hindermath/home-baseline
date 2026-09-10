@@ -183,6 +183,8 @@
 
 | 2026-09-09 | Assurance v0.1.3 Siebener-Konsolidierung / Seven-repository consolidation | Fuenf unveraenderte historische Feldberichte und zwei neue gemergte Feldtests ergeben sieben begrenzte projektbezogene `ReleaseAccepted`-Empfehlungen. Level 0: [PR #277](https://github.com/hindermath/home-baseline/pull/277), 29 Checks, Home-Sync aktuell. AOC: [PR #44](https://github.com/hindermath/agent-operations-cockpit/pull/44), 18 Checks, 14-Intake-Grenze unveraendert. Beide main-Branches nach Merge 0/0. Ausbildung ab Lehrjahr 1 fuer vier IT-Berufe; keine zentrale Preset-Abnahme oder menschliche Freigabe. 205 fachliche Nettozeilen vor Statistikpflege. / Seven scoped field recommendations with verified delivery, preserved historical evidence and no central acceptance; source-only consolidation. |
 
+| 2026-09-10 | Monatliche öffentliche Spec-Kit-Laufstatistik / Monthly public Spec Kit statistics | — | — | Profil 2 | Documentation Impact GeneratedUpdate: öffentliches Belegregister und reproduzierbarer Snapshot bestätigen 93/93/92; PowerShell-Engine, Bash-Einstieg, monatliche CI-PRs, identische README-Tabellen und Profilimport mit Prüfsummen. Lokale Fixture-, Offline-, Live-No-op- und Schutzprüfungen; native CI und Lieferung bleiben am jeweiligen PR-Head nachzuweisen. Kein neuer Spec-Kit-Lauf und kein Level-2-Rollout. README/Skripte sind Home Runtime, Daten/Methodik source-only. / Public evidence, deterministic rendering and monthly review PRs; delivery and native CI are separate evidence. |
+
 ---
 
 ## Gesamtstand des Repositories / Repository Snapshot

@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-08-21
-Kanonische Skriptdateien / Canonical script files: 141
+Kanonische Skriptdateien / Canonical script files: 144
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -896,6 +896,18 @@ Get-Help ./scripts/tests/test-preset-sources.ps1 -Full
 pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
 ```
 
+### `scripts/tests/test-public-speckit-statistics.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Prüft öffentliche Laufstatistik mit isolierten Fixtures. / Tests public run statistics with isolated fixtures.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/tests/test-public-speckit-statistics.ps1 -Full
+pwsh -NoProfile -File scripts/tests/test-public-speckit-statistics.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
 ## Statistik / Statistics
 
 Initialisiert, rendert und testet das ASCII-Statistikprofil.
@@ -960,6 +972,30 @@ bash scripts/render-project-statistics.sh --dry-run  # falls angeboten / when su
 ```text
 Get-Help ./scripts/test-render-project-statistics.ps1 -Full
 pwsh -NoProfile -File scripts/test-render-project-statistics.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/update-public-speckit-statistics.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Erhebt und rendert öffentliche Spec-Kit-Laufzahlen. / Collects and renders public Spec Kit run counts.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/update-public-speckit-statistics.ps1 -Full
+pwsh -NoProfile -File scripts/update-public-speckit-statistics.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/update-public-speckit-statistics.sh`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Public Spec Kit statistics; canonical implementation uses PowerShell 7.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+bash scripts/update-public-speckit-statistics.sh --help
+bash scripts/update-public-speckit-statistics.sh --dry-run  # falls angeboten / when supported
 ```
 
 ## Lernreihen / Learning series
