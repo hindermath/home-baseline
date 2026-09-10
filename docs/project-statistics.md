@@ -1146,7 +1146,7 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 77.7x |
 | Speedup vs. 100 lines/day | 62.2x |
-| Methodik / Methodology | v2; source `69187c1a8147` |
+| Methodik / Methodology | v2; source `8b41f3c470dc` |
 
 ### Artefaktmix / Artifact Mix
 
@@ -1427,6 +1427,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-10. Es enthaelt 106 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 94750 |
+| 2026-09 | 94752 |
 
 <!-- project-statistics-v2:end -->
