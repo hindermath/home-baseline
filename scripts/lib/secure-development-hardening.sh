@@ -433,7 +433,10 @@ sdh_assert_safe_repository_path() {
     *) return 1 ;;
   esac
 
-  resolved_repo="$(cd "$repo" && pwd -P)"
+  # Git Bash exposes the same Windows path through both an MSYS namespace and
+  # a native drive namespace. Resolve both containment operands with the same
+  # tool so an in-repository file cannot become a false escape on Windows.
+  resolved_repo="$(realpath "$repo")"
   resolved_target="$(realpath "$target")"
   case "$resolved_target" in
     "$resolved_repo"|"$resolved_repo"/*) ;;
@@ -460,8 +463,10 @@ sdh_assert_safe_output_path() {
   [ -d "$parent" ] || { sdh_log "LIE004: Ausgabe-Elternverzeichnis fehlt / output parent is missing: $(dirname "$relative")" >&2; return 1; }
   [ ! -e "$target" ] || [ -f "$target" ] || { sdh_log "LIE004: Ausgabe hat den falschen Typ / output has the wrong type: $relative" >&2; return 1; }
   [ ! -L "$target" ] || { sdh_log "LIE005: Ausgabe darf kein symbolischer Link sein / output must not be a symbolic link: $relative" >&2; return 1; }
-  resolved_repo="$(cd "$repo" && pwd -P)"
-  resolved_parent="$(cd "$parent" && pwd -P)"
+  # Keep repository and parent in one canonical namespace on Git Bash while
+  # retaining realpath's physical symlink resolution on every platform.
+  resolved_repo="$(realpath "$repo")"
+  resolved_parent="$(realpath "$parent")"
   case "$resolved_parent" in
     "$resolved_repo"|"$resolved_repo"/*) ;;
     *) sdh_log "LIE005: Ausgabepfad verlaesst das Repository / output path escapes repository: $relative" >&2; return 1 ;;

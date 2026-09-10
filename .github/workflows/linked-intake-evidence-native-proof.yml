@@ -12,6 +12,10 @@ on:
       - 'scripts/test-requirements-intake-governance.ps1'
       - 'scripts/tests/linked-intake-evidence/**'
       - 'specs/032-linked-intake-evidence/fixtures/**'
+      - 'specs/032-linked-intake-evidence/tasks.md'
+      - 'specs/032-linked-intake-evidence/autonomous-run-state.json'
+      - 'docs/project-statistics.md'
+      - 'docs/project-statistics.config.json'
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
@@ -22,6 +26,10 @@ on:
       - 'scripts/test-requirements-intake-governance.ps1'
       - 'scripts/tests/linked-intake-evidence/**'
       - 'specs/032-linked-intake-evidence/fixtures/**'
+      - 'specs/032-linked-intake-evidence/tasks.md'
+      - 'specs/032-linked-intake-evidence/autonomous-run-state.json'
+      - 'docs/project-statistics.md'
+      - 'docs/project-statistics.config.json'
 
 permissions:
   contents: read
