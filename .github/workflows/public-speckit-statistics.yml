@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '17 8 1 * *'
   workflow_dispatch:
+    inputs:
+      registry_commit:
+        description: 'Optional: exact public commit containing reviewed registry changes (40-character SHA)'
+        type: string
+        required: false
   pull_request:
     paths:
       - 'scripts/*public-speckit-statistics*'
@@ -64,6 +69,31 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Preserve or import reviewed registry decisions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REGISTRY_COMMIT: ${{ inputs.registry_commit }}
+        shell: pwsh
+        run: |
+          Import-Module ./scripts/lib/public-speckit-statistics.psm1 -Force
+          $path = 'docs/spec-kit-runs/registry.json'
+          if ($env:REGISTRY_COMMIT) {
+            if ($env:REGISTRY_COMMIT -cnotmatch '^[a-f0-9]{40}$') { throw 'An exact reviewed commit SHA is required.' }
+            $proof = @{ kind = 'file'; ref = $env:REGISTRY_COMMIT; path = $path }
+            $source = Get-HBSource 'hindermath/home-baseline' $proof
+            $registry = ConvertFrom-HBJson $source.content
+            Assert-HBRegistry $registry
+            [IO.File]::WriteAllText($path, (ConvertTo-HBJson $registry))
+          } else {
+            $prs = & gh pr list --repo hindermath/home-baseline --state open --head codex/monthly-public-speckit-statistics --json headRefOid
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect existing statistics review PR.' }
+            foreach ($pr in (ConvertFrom-HBJson ($prs -join "`n"))) {
+              $source = Get-HBSource 'hindermath/home-baseline' @{kind='file';ref=$pr.headRefOid;path=$path}
+              if ($source.sha256 -cne (Get-HBTextHash ([IO.File]::ReadAllText($path)))) {
+                throw 'Pending register edits preserved. Dispatch with their reviewed registry_commit to refresh evidence.'
+              }
+            }
+          }
       - name: Read public evidence and render candidate
         env:
           GH_TOKEN: ${{ github.token }}
@@ -93,6 +123,7 @@ jobs:
             Approve any held workflow runs before reviewing; merge only through the normal repository policy.
           add-paths: |
             docs/spec-kit-runs/snapshot.json
+            docs/spec-kit-runs/registry.json
             docs/spec-kit-runs/table.md
             docs/spec-kit-runs/table.en.md
             docs/spec-kit-runs/publication.json

@@ -75,6 +75,19 @@ bind a public commit/PR and SHA-256 to each claim; update the register with the
 classification and rationale; rerun collection, rendering and tests. No model or
 text heuristic independently approves completion.*
 
+Die Entscheidung kann vollständig über GitHub erfolgen: das Register auf einem
+Review-Branch bearbeiten, dessen exakten Commit prüfen und den Level-0-Workflow
+auf `main` mit diesem SHA als `registry_commit` starten. CI übernimmt nur die
+Registerdatei, führt keinen Code aus dem Review-Branch aus und erzeugt den
+zugehörigen Snapshot sowie die Tabellen im Aktualisierungs-PR. Bereits offene
+manuelle Registeränderungen werden von einem normalen Monatslauf nicht überschrieben.
+
+*Review can happen entirely in GitHub: edit the register on a review branch,
+review its exact commit and dispatch the Level-0 workflow on main with that SHA
+as registry_commit. CI imports only the registry, executes no review-branch code
+and produces the snapshot/tables in the update PR. Ordinary monthly runs preserve
+pending manual registry edits instead of overwriting them.*
+
 Historische vollständig abgehakte Aufgabenlisten sind einzeln geprüfte Nachweise,
 keine pauschale Regel für zukünftige Läufe. Für TinyCalc 003–005 und TuiVision
 009/022/023/026 ergänzen spätere Delivery-/Closeout-PRs eingefrorene Aufgabenlisten.

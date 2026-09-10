@@ -9,7 +9,7 @@ function Get-HBTextHash {
 
 function ConvertTo-HBJson {
     param([object]$Value)
-    (ConvertTo-Json -InputObject $Value -Depth 100) + "`n"
+    (ConvertTo-Json -InputObject $Value -Depth 100).Replace("`r`n", "`n") + "`n"
 }
 
 function Read-HBJson {
