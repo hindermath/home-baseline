@@ -473,6 +473,26 @@ sdh_assert_safe_output_path() {
   esac
 }
 
+sdh_repository_relative_from_absolute_path() {
+  local repo="$1"
+  local absolute="$2"
+  local resolved_repo resolved_absolute relative
+
+  # Discovered paths may use a different Git-Bash namespace than their input.
+  # Canonicalize both before stripping the repository prefix; the returned
+  # value is safe to pass through the ordinary relative-path validator.
+  resolved_repo="$(realpath "$repo")" || return 1
+  resolved_absolute="$(realpath "$absolute")" || return 1
+  case "$resolved_absolute" in
+    "$resolved_repo"/*) relative="${resolved_absolute#"$resolved_repo"/}" ;;
+    *)
+      sdh_log 'LIE005: ermittelter Pfad verlaesst das Repository / discovered path escapes repository: [redacted]' >&2
+      return 1
+      ;;
+  esac
+  printf '%s\n' "$relative"
+}
+
 sdh_linked_intake_input_paths() {
   local repo="$1"
   local manifest_relative="$2"
@@ -734,7 +754,8 @@ sdh_feature_cell() {
         END { exit(found ? 0 : 1) }
       ' "$spec_file"; then
         feature_dir="${spec_file%/spec.md}"
-        candidates+=("${feature_dir#"$repo/"}")
+        mapped_path="$(sdh_repository_relative_from_absolute_path "$repo" "$feature_dir")" || return 1
+        candidates+=("$mapped_path")
       fi
     done < <(find "$repo/specs" -mindepth 2 -maxdepth 2 -type f -name spec.md -print | sort)
 
@@ -775,11 +796,12 @@ sdh_build_linked_intake_order_section() {
   local repo="$1"
   local manifest="$2"
   local view_path="${3:-Lastenheft_Abarbeitungsreihenfolge.md}"
-  local target_count manifest_index path role status intake_link display_position
+  local target_count manifest_index path role status intake_link display_position manifest_relative
   local dependency_count dependency_index from kind binding dependency_link dependencies feature_cell
 
   command -v jq >/dev/null 2>&1 || { sdh_log 'LIE002: jq fehlt / jq is missing' >&2; return 1; }
-  sdh_validate_linked_intake_manifest "$repo" "${manifest#"$repo/"}" || return 1
+  manifest_relative="$(sdh_repository_relative_from_absolute_path "$repo" "$manifest")" || return 1
+  sdh_validate_linked_intake_manifest "$repo" "$manifest_relative" || return 1
 
   target_count="$(jq '.orderedTargets | length' "$manifest")"
   cat <<'EOF'
