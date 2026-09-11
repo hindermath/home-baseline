@@ -18,13 +18,14 @@ test-requirements-intake-governance.sh — Intake-Reihenfolge pruefen
 
 Prueft die fuenf Felder, LIE001-LIE012, vollstaendige Intake-Dateinamen,
 direkte Kanten, alle Feature-Proof-Arten, Check/Write, Source-/Containment-
-Recheck, atomaren Multi-Output-Rollback, Idempotenz, Escaping und LF-Ausgabe
-in isolierten Fixture-Repositories. Das Zielrepository bleibt unveraendert.
+Recheck, atomaren Multi-Output-Rollback, Idempotenz, SHA-256-Escaping und
+LF-Ausgabe in isolierten Fixture-Repositories. Das Zielrepository bleibt
+unveraendert.
 
 Tests the five fields, LIE001-LIE012, complete intake filenames, direct edges,
 all feature-proof kinds, check/write, source and containment rechecks, atomic
-multi-output rollback, idempotence, escaping, and LF output in isolated fixture
-repositories. The target repository remains unchanged.
+multi-output rollback, idempotence, SHA-256 escaping, and LF output in isolated
+fixture repositories. The target repository remains unchanged.
 
 Usage:
   bash scripts/test-requirements-intake-governance.sh
@@ -111,6 +112,14 @@ awk '
 ' "$actual_series_section" > "$actual_series_table"
 
 failures=0
+
+escaped_digest='073383cddad492c767071dce2011cbc988ac02320368a4a2d5861b12a2b64b03'
+normalized_digest="$(printf '\\%s  D:\\a\\_temp\\linked-intake-bash.log\n' "$escaped_digest" | sdh_normalize_sha256_output)"
+if [ "$normalized_digest" != "$escaped_digest" ]; then
+  printf '%s\n' 'FEHLER / FAIL: SHA-256-Dateinamen-Escape-Marker wurde nicht entfernt / SHA-256 filename escape marker was not removed' >&2
+  failures=$((failures + 1))
+fi
+
 assert_contains() {
   local description="$1"
   local expected="$2"

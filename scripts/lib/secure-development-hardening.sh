@@ -61,20 +61,34 @@ sdh_jq() {
 sdh_sha256_file() {
   local file="$1"
   if command -v sha256sum >/dev/null 2>&1; then
-    command sha256sum -- "$file" | awk '{print $1}'
+    command sha256sum -- "$file" | sdh_normalize_sha256_output
   elif command -v shasum >/dev/null 2>&1; then
-    command shasum -a 256 -- "$file" | awk '{print $1}'
+    command shasum -a 256 -- "$file" | sdh_normalize_sha256_output
   else
     sdh_log 'LIE002: SHA-256-Werkzeug fehlt / SHA-256 tool is missing' >&2
     return 1
   fi
 }
 
+sdh_normalize_sha256_output() {
+  # GNU coreutils prefixes a checksum line with "\" when an input filename
+  # needs escaping, which is common for RUNNER_TEMP paths under Git Bash.
+  # The marker describes the filename field and is not part of the digest.
+  awk '{
+    digest = $1
+    sub(/^\\/, "", digest)
+    if (length(digest) != 64 || digest ~ /[^0-9A-Fa-f]/) {
+      exit 1
+    }
+    print tolower(digest)
+  }'
+}
+
 sdh_sha256_stream() {
   if command -v sha256sum >/dev/null 2>&1; then
-    command sha256sum | awk '{print $1}'
+    command sha256sum | sdh_normalize_sha256_output
   elif command -v shasum >/dev/null 2>&1; then
-    command shasum -a 256 | awk '{print $1}'
+    command shasum -a 256 | sdh_normalize_sha256_output
   else
     sdh_log 'LIE002: SHA-256-Werkzeug fehlt / SHA-256 tool is missing' >&2
     return 1
