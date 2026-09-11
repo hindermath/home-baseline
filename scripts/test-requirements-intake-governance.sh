@@ -119,6 +119,14 @@ if [ "$normalized_digest" != "$escaped_digest" ]; then
   printf '%s\n' 'FEHLER / FAIL: SHA-256-Dateinamen-Escape-Marker wurde nicht entfernt / SHA-256 filename escape marker was not removed' >&2
   failures=$((failures + 1))
 fi
+set +e
+printf '%s\n' 'not-a-sha256  unsafe.log' | sdh_normalize_sha256_output >/dev/null
+invalid_digest_exit=$?
+set -e
+if [ "$invalid_digest_exit" -eq 0 ]; then
+  printf '%s\n' 'FEHLER / FAIL: ungueltige SHA-256-Ausgabe wurde akzeptiert / invalid SHA-256 output was accepted' >&2
+  failures=$((failures + 1))
+fi
 
 assert_contains() {
   local description="$1"
