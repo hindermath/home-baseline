@@ -2,7 +2,7 @@
 Sync Impact Report
 Version change: 1.21.0 -> 1.21.1
 Modified principles:
-- None; correct four stale autonomous-run-governance version references across both mirrors to the already canonical v0.4.1.
+- None; correct four stale autonomous-run-governance version references across both mirrors to the already canonical v0.4.2.
 Added sections:
 - None
 Removed sections:
@@ -1032,7 +1032,7 @@ workspace family consists of:
 | `a11y-governance` | `v0.4.3` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
 | `agent-parity-governance` | `v0.4.2` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.4.1` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
+| `autonomous-run-governance` | `v0.4.2` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
 | `parallel-autonomous-run-governance` | `v0.2.6` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
 `model-routing-governance` v0.1.4 at priority `61`,
@@ -1123,7 +1123,7 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-The current standalone releases are `autonomous-run-governance` v0.4.1,
+The current standalone releases are `autonomous-run-governance` v0.4.2,
 `parallel-autonomous-run-governance` v0.2.6, optional
 `intake-authoring-governance` v0.3.1, optional
 `intake-review-governance` v0.2.1, and optional
