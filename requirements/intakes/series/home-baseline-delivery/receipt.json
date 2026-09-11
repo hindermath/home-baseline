@@ -1,28 +1,28 @@
 {
   "schemaVersion": "1.0",
   "documentType": "IntakeSeriesReceipt",
-  "receiptId": "b1adcfe5-702b-4844-94ff-61aa261badcf",
+  "receiptId": "2b27f9c0-0df9-410c-90c1-aadb6cef78a3",
   "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
   "generator": {
     "preset": "intake-sequencing-governance",
     "version": "0.2.3"
   },
-  "createdAt": "2026-09-01T06:19:47Z",
+  "createdAt": "2026-09-01T17:32:50Z",
   "operation": {
-    "operationId": "8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b",
+    "operationId": "7fe67a1c-4838-41a6-8a90-229726fd89cc",
     "type": "Update",
-    "authorityEvidence": "Current explicit user approval to implement the complete rebooking plan, promote visible item 39 to active manifest position 1 as the sole preferred Eligible target, demote G4 to Pending position 2, and perform no Specify or delivery."
+    "authorityEvidence": "Current explicit $speckit-intake-repair authority; this series update is limited to propagating the repaired Position 39 target hash without changing order, role, lifecycle, roots, or dependencies."
   },
   "status": "Ready",
   "manifest": {
     "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
-    "normalizedSha256": "616d4c4faf9d72bc148d7bbcb3446fba631eb1d02bc0bd660b972475ff192f5a"
+    "normalizedSha256": "6d179988520f93e086b4a22d522e3ad26ecee5a94091dd72c016b0066835c907"
   },
   "supersedes": {
-    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/receipt.json",
-    "receiptNormalizedSha256": "9214be4c3d037666b1c08444100e7deaaac1e7092a2c4ea3b453e686331152fa",
-    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/manifest.json",
-    "manifestArchiveSha256": "ad5affbbce5ef973f0b38b3bba09adaaeb8dc22b3fe6e65d5de2fe7df133f804"
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/7fe67a1c-4838-41a6-8a90-229726fd89cc/receipt.json",
+    "receiptNormalizedSha256": "5ba70d43d114c6cef64737efffb3a54227f0aba6ee4ae8172de1cea0acb03f0b",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/7fe67a1c-4838-41a6-8a90-229726fd89cc/manifest.json",
+    "manifestArchiveSha256": "49ba2884b11a98f9e426afc1674455fadcca7c8f5e4e949e49a5c56aa791801e"
   },
   "tombstone": {
     "path": "N/A",

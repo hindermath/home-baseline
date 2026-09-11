@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "2706d68b-778c-40c2-8fc5-d411d4f9c1d3",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-09-01T17:09:49Z",
+  "operation": {
+    "operationId": "ec234039-51c4-480c-91bf-3f0a5835bd8b",
+    "type": "Update",
+    "authorityEvidence": "Current explicit user approval to remove completed G4 from the active series, preserve its completion evidence, keep visible item 39 as the sole preferred Eligible target, correct every contradictory G4 lifecycle statement, and perform no Intake Review or implementation."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "49ba2884b11a98f9e426afc1674455fadcca7c8f5e4e949e49a5c56aa791801e"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/receipt.json",
+    "receiptNormalizedSha256": "deabd30a9822e858fbaf8995848cf6bc41472018baa84b9920c3812827005453",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/manifest.json",
+    "manifestArchiveSha256": "616d4c4faf9d72bc148d7bbcb3446fba631eb1d02bc0bd660b972475ff192f5a"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

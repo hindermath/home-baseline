@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "TuiVisionExactNegativeMutations",
+  "cases": [
+    {"id":"mapping-missing","mutation":"remove mapping at position 4","expectedBlocker":"TUI-MAPPING-COUNT"},
+    {"id":"mapping-additional","mutation":"append an eleventh mapping","expectedBlocker":"TUI-MAPPING-COUNT"},
+    {"id":"mapping-reordered","mutation":"swap positions 3 and 4","expectedBlocker":"TUI-MAPPING-ORDER"},
+    {"id":"mapping-feature-changed","mutation":"map position 5 to feature 046","expectedBlocker":"TUI-MAPPING-FEATURE"},
+    {"id":"edge-missing","mutation":"remove edge 2","expectedBlocker":"TUI-EDGE-COUNT"},
+    {"id":"edge-additional","mutation":"append a seventh edge","expectedBlocker":"TUI-EDGE-COUNT"},
+    {"id":"edge-reversed","mutation":"reverse edge 1","expectedBlocker":"TUI-EDGE-DIRECTION"},
+    {"id":"edge-retyped","mutation":"change edge 3 kind","expectedBlocker":"TUI-EDGE-KIND"},
+    {"id":"edge-rebound","mutation":"change edge 6 binding to true","expectedBlocker":"TUI-EDGE-BINDING"},
+    {"id":"latest-not-position-10","mutation":"move feature 046 latest marker to position 1","expectedBlocker":"TUI-RECENCY-POSITION"},
+    {"id":"active-count-eleven","mutation":"promote optional backlog intake into active mappings","expectedBlocker":"TUI-ACTIVE-COUNT"},
+    {"id":"backlog-status-changed","mutation":"change DeferredOptional to Eligible","expectedBlocker":"TUI-BACKLOG-STATUS"},
+    {"id":"backlog-active","mutation":"change active to true","expectedBlocker":"TUI-BACKLOG-SEPARATION"},
+    {"id":"backlog-dependency","mutation":"use backlog intake as a dependency endpoint","expectedBlocker":"TUI-BACKLOG-ENDPOINT"},
+    {"id":"backlog-feature","mutation":"assign a feature link to the backlog item","expectedBlocker":"TUI-BACKLOG-FEATURE"}
+  ]
+}

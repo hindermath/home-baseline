@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "decision": "GeneratedUpdate",
+  "source": [
+    "repository-local series manifests",
+    "repository-local renderer declarations and implementations"
+  ],
+  "owner": "Feature Orchestrator and each Repository Owner",
+  "audiences": ["maintainers", "reviewers", "IT apprentices", "training leads"],
+  "readerPaths": [
+    "root intake-order view -> complete intake link -> proven Spec Kit feature",
+    "series order view -> direct dependency -> canonical source",
+    "feature evidence index -> repository delivery evidence"
+  ],
+  "navigation": ["repository root order view", "series-local order view", "specs/032-linked-intake-evidence/evidence-index.md"],
+  "documentClass": "generated Markdown order views with feature-local governance evidence",
+  "languagePartner": "German first, English second at CEFR B2 inline; no separate sidecar required for this feature-local evidence",
+  "platformEvidence": "macOS safe-mode first; native Linux and Windows remain Open until later exact-head tasks",
+  "distribution": {
+    "homeRuntime": ["Home renderer scripts after later merged delivery"],
+    "sourceOnly": ["feature artifacts", "contracts", "fixtures", "governance evidence", "generated repository documentation"]
+  },
+  "homeSyncRequired": "Yes only after the later merged Home script delivery; no Home Sync in the bounded T028-T066 slices",
+  "evidence": [
+    "specs/032-linked-intake-evidence/evidence-command-inventory.md",
+    "specs/032-linked-intake-evidence/checklists/mutation-allowlist.md",
+    "specs/032-linked-intake-evidence/evidence-index.md",
+    "specs/032-linked-intake-evidence/level0-contract-lock.json",
+    "docs/man/prepare-secure-development-hardening.1.md",
+    "docs/man/test-requirements-intake-governance.1.md",
+    "docs/scripts/reference.md",
+    "specs/032-linked-intake-evidence/home-slice-progress-2026-09-09.md",
+    "specs/032-linked-intake-evidence/validation-progress-2026-09-09.md",
+    "docs/accessibility/linked-intake-evidence.md",
+    "docs/security/linked-intake-evidence.md",
+    "docs/architecture/linked-intake-evidence.md",
+    "specs/032-linked-intake-evidence/assurance-progress-2026-09-10.md",
+    "specs/032-linked-intake-evidence/diagnostic-remediation-2026-09-10.md"
+  ],
+  "currentPhase": {
+    "taskRange": "T058-T066 bounded diagnostic correction",
+    "decision": "GeneratedUpdate",
+    "canonicalSources": [
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "scripts/lib/secure-development-hardening.sh",
+      "scripts/lib/secure-development-hardening.ps1",
+      "scripts/prepare-secure-development-hardening.sh",
+      "scripts/prepare-secure-development-hardening.ps1",
+      "specs/032-linked-intake-evidence/contracts/tuivision-exact-contract.md"
+    ],
+    "generatedOutputs": [
+      "Lastenheft_Abarbeitungsreihenfolge.md",
+      "docs/accessibility/linked-intake-evidence.md",
+      "docs/security/linked-intake-evidence.md",
+      "docs/architecture/linked-intake-evidence.md",
+      "specs/032-linked-intake-evidence/diagnostic-remediation-2026-09-10.md",
+      "specs/032-linked-intake-evidence/fixtures/tuivision-exact/**",
+      "specs/032-linked-intake-evidence/fixtures/accessibility/**"
+    ],
+    "audiences": ["Maintainers", "Reviewers", "KI-Agenten / AI agents", "textorientierte Nutzende / text-oriented users"],
+    "readerPath": "Public help -> generated order view -> accessibility/security/architecture review -> superseding diagnostic remediation report -> later delivery task T067",
+    "navigation": "Existing public CLI and feature evidence navigation extended with source-only governance documents; no new root entry point.",
+    "languagePartner": "Short artifacts use German first and English second in the same file.",
+    "platformEvidence": "macOS Bash and PowerShell 7 governance, separate-stream diagnostic redaction and source-order proof complete; named assistive-device review and native Linux/Windows remain pending at T071 or a later human gate.",
+    "distribution": "scripts are homeRuntime; feature evidence and documentation are sourceOnly",
+    "syncPerformed": false
+  },
+  "reevaluationTrigger": "Canonical owner, output set, audience, navigation, language strategy, platform scope, distribution class, or Home Runtime scope changes."
+}

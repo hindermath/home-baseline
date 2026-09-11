@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.1",
+  "reviewId": "df6116cf-34f5-4f50-af04-d95d06d1a23c",
+  "mode": "Single",
+  "status": "NeedsRemediation",
+  "policy": "home-baseline-active-lastenhefte-v1",
+  "reviewedAt": "2026-09-01T17:25:26Z",
+  "repository": {
+    "root": ".",
+    "head": "e38d31a5d6c528458493a07e74ee1694db7c3aab"
+  },
+  "requestEvidence": {
+    "path": "specs/verlinkte-abarbeitungsreihenfolgen-und-spec-kit-feature-nachweise-intake-review/intake-review-request.json",
+    "normalizedSha256": "9e5b59f7a3488b762a9b813f73aea7ca5ac2869395d331951d559ac69cc25940"
+  },
+  "targets": [
+    {
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "role": "Primary",
+      "normalizedSha256": "576f7bef7d853298e3ba2f6f911d4e73085de6a1163bd4c1f49b7443ac8bde6a",
+      "gitBlob": "32e36c8ef4bffd72881cd3b4c9a13234f78901d6"
+    }
+  ],
+  "findings": [
+    {
+      "id": "IR001",
+      "severity": "High",
+      "category": "DependencyOrderAndPromptAlignment",
+      "target": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+      "disposition": "Open: repair the intake before Specify",
+      "owner": "Home-Baseline Intake Owner",
+      "evidence": "The intake still declares G4 as advisory successor at lines 11, 340, 356, and 376, while requirements/intakes/series/home-baseline-delivery/manifest.json removes completed G4 and declares a PreferredSerialOrder edge from item 39 to Lastenheft_Secure-Development-Container-Hardening.md.",
+      "reevaluationTrigger": "Re-run the complete Single review after an authorized intake repair updates the header, IAD002, section 16, and the embedded Specify prompt to the current G4-completed series contract and confirms the Autonomous prompt remains aligned."
+    }
+  ],
+  "questions": [],
+  "acceptedRisks": [],
+  "operatorExceptions": [],
+  "coverage": {
+    "individual": [
+      "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md"
+    ],
+    "series": [],
+    "workers": []
+  },
+  "summary": {
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  },
+  "supersedes": "a4299732-0732-46d0-8f46-8569727215f8"
+}

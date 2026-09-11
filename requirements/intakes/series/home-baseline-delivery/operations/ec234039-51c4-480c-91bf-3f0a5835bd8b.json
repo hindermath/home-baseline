@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesOperation",
+  "operationId": "ec234039-51c4-480c-91bf-3f0a5835bd8b",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "type": "Update",
+  "status": "Published",
+  "authorityEvidence": "Current explicit user approval to remove completed G4 from the active series, preserve its completion evidence, keep visible item 39 as the sole preferred Eligible target, correct every contradictory G4 lifecycle statement, and perform no Intake Review or implementation.",
+  "proposalNormalizedSha256": "48a6c26a6be36b2064cebde7595293c4a0d41320e3212b4395c08517544ddd97",
+  "differences": {
+    "targetCount": {
+      "before": 34,
+      "after": 33
+    },
+    "rootCount": {
+      "before": 3,
+      "after": 3
+    },
+    "dependencyCount": {
+      "before": 38,
+      "after": 37
+    },
+    "addedTargets": [],
+    "removedTargets": [
+      {
+        "path": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
+        "role": "OrderedMember",
+        "normalizedSha256": "303ef5b04b259389006d32f0c565cd335b2ff4d126aebc084d77ae124f96d6c5",
+        "status": "Pending",
+        "completionEvidence": [
+          "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+          "specs/031-github-copilot-review-governance/autonomous-run-evidence.md",
+          "specs/031-github-copilot-review-governance/retrospective.md",
+          "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md"
+        ]
+      }
+    ],
+    "changedTargets": [
+      {
+        "path": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "orderBefore": 3,
+        "orderAfter": 2,
+        "roleBefore": "OrderedMember",
+        "roleAfter": "OrderedMember",
+        "statusBefore": "Blocked",
+        "statusAfter": "Pending",
+        "rootBefore": false,
+        "rootAfter": false,
+        "normalizedSha256Before": "d73f7c495ae5f0ead4aade553c499ded06ff5540783653b88841a0e1bf0ba21c",
+        "normalizedSha256After": "d73f7c495ae5f0ead4aade553c499ded06ff5540783653b88841a0e1bf0ba21c"
+      }
+    ],
+    "unchangedTargetOrderShift": {
+      "count": 31,
+      "beforeRange": "4-34",
+      "afterRange": "3-33",
+      "delta": -1,
+      "rolesLifecycleHashesChanged": false
+    },
+    "addedRoots": [],
+    "removedRoots": [],
+    "addedDependencies": [
+      {
+        "from": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      }
+    ],
+    "removedDependencies": [
+      {
+        "from": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
+        "to": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
+        "kind": "PreferredSerialOrder",
+        "binding": false
+      },
+      {
+        "from": "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
+        "to": "Lastenheft_Secure-Development-Container-Hardening.md",
+        "kind": "HardCompletionGate",
+        "binding": true
+      }
+    ],
+    "addedEvidencePaths": [
+      "Lastenheft_Flottenweite-GitHub-Copilot-Review-Governance-und-Kostenbegrenzung.031-github-copilot-review-governance.md",
+      "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+      "specs/031-github-copilot-review-governance/autonomous-run-evidence.md",
+      "specs/031-github-copilot-review-governance/retrospective.md"
+    ]
+  },
+  "orderDocument": {
+    "path": "Lastenheft_Abarbeitungsreihenfolge.md",
+    "changed": true,
+    "normalizedSha256": "437a31bc00a90685fed98099785454f48ed1d4960207077aadc1b74bc0fbba7a",
+    "reason": "Records completed G4 as archived history, removes contradictory Pending and Eligible labels, releases item 7 to Pending, and preserves item 39 as the sole preferred Eligible target."
+  },
+  "archive": {
+    "manifestPath": "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/manifest.json",
+    "manifestNormalizedSha256": "616d4c4faf9d72bc148d7bbcb3446fba631eb1d02bc0bd660b972475ff192f5a",
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/receipt.json",
+    "receiptNormalizedSha256": "deabd30a9822e858fbaf8995848cf6bc41472018baa84b9920c3812827005453"
+  },
+  "preparedPaths": [
+    "Lastenheft_Abarbeitungsreihenfolge.md",
+    "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/manifest.json",
+    "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/receipt.json",
+    "requirements/intakes/series/home-baseline-delivery/operations/ec234039-51c4-480c-91bf-3f0a5835bd8b.json"
+  ],
+  "validation": {
+    "manifestBash": "Passed: 33 targets, 3 roots, 37 dependencies, item 39 declared Eligible",
+    "manifestPowerShell": "Passed: 33 targets, 3 roots, 37 dependencies, item 39 declared Eligible",
+    "receiptBash": "Passed: successor and byte-identical predecessor archives validated",
+    "receiptPowerShell": "Passed: successor and byte-identical predecessor archives validated",
+    "requirementsGovernanceBash": "Passed: configuration Aligned and migration journal Completed",
+    "requirementsGovernancePowerShell": "Passed: configuration Aligned and migration journal Completed",
+    "diffCheck": "Passed",
+    "secretScan": "Passed: gitleaks found no secrets in the current Git diff"
+  },
+  "documentationImpact": "UpdateRequired: the active order document and machine-readable series state are synchronized with completed G4 evidence.",
+  "statisticsImpact": "NotTriggered: intake sequencing metadata only; no feature implementation was performed.",
+  "publication": {
+    "status": "Published",
+    "publishedPaths": [
+      "Lastenheft_Abarbeitungsreihenfolge.md",
+      "requirements/intakes/series/home-baseline-delivery/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/receipt.json",
+      "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/manifest.json",
+      "requirements/intakes/series/home-baseline-delivery/history/ec234039-51c4-480c-91bf-3f0a5835bd8b/receipt.json",
+      "requirements/intakes/series/home-baseline-delivery/operations/ec234039-51c4-480c-91bf-3f0a5835bd8b.json"
+    ]
+  }
+}

@@ -10,11 +10,14 @@
 
 ```bash
 bash scripts/prepare-secure-development-hardening.sh [--repo PATH] [--dry-run] [--commit] [--push] [--allow-dirty]
+bash scripts/prepare-secure-development-hardening.sh --repo PATH --order-only --manifest PATH [--order-output PATH ...] [--dry-run]
 ```
 
 ```powershell
 pwsh scripts/prepare-secure-development-hardening.ps1 -WhatIf
+pwsh scripts/prepare-secure-development-hardening.ps1 -Help
 pwsh scripts/prepare-secure-development-hardening.ps1 -Repo PATH -WhatIf
+pwsh scripts/prepare-secure-development-hardening.ps1 -Repo PATH -OrderOnly -Manifest PATH [-OrderOutput PATH] -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -Commit -Push
 ```
 
@@ -34,11 +37,40 @@ Bei MSL-Repositories werden:
 
 - `docs/secure-development/` aus der zentralen Baseline synchronisiert,
 - `Lastenheft_Secure-Development-Hardening.md` erzeugt, wenn es fehlt,
-- `Lastenheft_Abarbeitungsreihenfolge.md` anhand von `Lastenheft*.md` gepflegt.
+- `Lastenheft_Abarbeitungsreihenfolge.md` anhand eines eindeutigen kanonischen
+  Series-Manifests oder, ohne ein solches Manifest, anhand von
+  `Lastenheft*.md` gepflegt.
 
 *For MSL repositories, the script synchronizes `docs/secure-development/`, creates
 `Lastenheft_Secure-Development-Hardening.md` when missing, and maintains
-`Lastenheft_Abarbeitungsreihenfolge.md` from `Lastenheft*.md`.*
+`Lastenheft_Abarbeitungsreihenfolge.md` from one unambiguous canonical series
+manifest or, when none exists, from `Lastenheft*.md`.*
+
+## Erzeugte Ansicht / Generated View
+
+Die manifestgestuetzte Tabelle besitzt genau diese Spaltenfolge:
+
+1. `Position` aus ausdruecklicher Intake-Metadatenposition, sonst Manifestplatz,
+2. `Status` unveraendert aus dem Manifest,
+3. `Lastenheft/Intake` mit vollstaendigem Dateinamen und sicherem relativem Link,
+4. `Abhängigkeiten / Dependencies` nur fuer direkte eingehende Manifestkanten,
+5. `Spec-Kit-Feature` nur bei genau einer ausdruecklichen gueltigen Bindung.
+
+*The manifest-backed table has exactly this column order: `Position` from
+explicit intake metadata or otherwise the manifest slot, unchanged `Status`,
+`Lastenheft/Intake` with the complete filename and a safe relative link,
+`Abhängigkeiten / Dependencies` for direct incoming manifest edges only, and
+`Spec-Kit-Feature` only for exactly one explicit valid binding.*
+
+Ohne eingehende Kante erscheint exakt
+`— (Root / keine direkte Abhängigkeit)`. Ohne eindeutigen gueltigen
+Feature-Nachweis erscheint exakt
+`— (kein Spec-Kit-Feature / no Spec Kit feature)`. Mehrdeutige oder unsichere
+Nachweise stoppen den Lauf, statt einen Link zu raten.
+
+*A row without an incoming edge uses exactly the root fallback above. A row
+without unique valid feature evidence uses exactly the no-feature fallback
+above. Ambiguous or unsafe evidence stops the run instead of guessing a link.*
 
 Das Skript startet keinen Spec-Kit-Lauf, erzeugt keinen Feature-Branch und
 befuellt keine projektspezifischen `docs/security/`-Nachweise. Diese Schritte
@@ -68,9 +100,54 @@ guidance files.*
 | `--home-dir PATH` | `-HomeDir PATH` | Alternatives Home-Verzeichnis |
 | `--repo PATH` | `-Repo PATH` | Explizites Level-2-Repo vorbereiten; wiederholbar |
 | `--primary-language LANG` | `-PrimaryLanguage LANG` | Primaersprache explizit setzen |
+| `--order-only` | `-OrderOnly` | Nur die Intake-Projektion; genau ein explizites Repo/Manifest |
+| `--manifest PATH` | `-Manifest PATH` | Kanonisches Manifest relativ zum expliziten Repo |
+| `--order-output PATH` | `-OrderOutput PATH` | Owned Ausgabe; wiederholbar/als Array fuer atomare Multi-Output-Publikation |
 | `--commit` | `-Commit` | Pro geaendertem Repo committen |
 | `--push` | `-Push` | Pro Repo pushen; aktiviert Commit |
 | `--allow-dirty` | `-AllowDirty` | Bestehende lokale Aenderungen erlauben |
+| `--help` | `-Help` | Vollstaendige zweisprachige Hilfe; keine Writes |
+
+`--dry-run` und `-WhatIf` fuehren Manifest-, Link-, Kanten-, Positions- und
+Feature-Pruefungen aus, veroeffentlichen aber keine Ausgabe. Relative Links
+werden vom erzeugten View aus berechnet und muessen innerhalb des Repositorys
+auf vorhandene Ziele zeigen.
+
+*`--dry-run` and `-WhatIf` run manifest, link, edge, position, and feature
+checks without publishing output. Relative links are calculated from the
+generated view and must resolve to existing targets inside the repository.*
+
+`--order-only` / `-OrderOnly` umgeht bewusst die Produktsprachenerkennung und
+die Secure-Development-Templatevorbereitung. Dieser Modus erfordert genau ein
+explizites Repository und ein repositoryrelatives Manifest. Commit und Push
+sind dort verboten. Mehrere Ausgaben werden candidate-first vorbereitet,
+gegen die vollstaendige verbrauchte Eingabemenge erneut validiert und atomar
+ersetzt oder vollstaendig zurueckgerollt. Ausgaben duerfen keine kanonische
+Eingabe ueberlappen.
+
+*`--order-only` / `-OrderOnly` deliberately bypasses product-language detection
+and secure-development template preparation. It requires exactly one explicit
+repository and a repository-relative manifest. Commit and push are forbidden.
+Multiple outputs are prepared candidate-first, revalidated against the complete
+consumed input set, and then atomically replaced or fully rolled back. Outputs
+must not overlap canonical inputs.*
+
+## Diagnostik und Wiederherstellung / Diagnostics and Recovery
+
+Fehler verwenden die stabile Familie `LIE001` bis `LIE012`. Fuer diesen
+positiven Slice sind insbesondere ungueltige Manifestdaten (`LIE002`),
+unsichere Pfade (`LIE003`), fehlende Ziele (`LIE004`), Repository-Escapes
+(`LIE005`), ungueltige Kanten (`LIE007`) und mehrdeutige Feature-Evidence
+(`LIE008`) relevant. Der Renderer schreibt erst nach erfolgreicher Pruefung.
+Bei einem Fehler bleibt der vorherige Marker erhalten; Eingabe korrigieren,
+Safe Mode erneut ausfuehren und erst danach den Write wiederholen.
+
+*Errors use the stable `LIE001` through `LIE012` family. For this positive
+slice, malformed manifests (`LIE002`), unsafe paths (`LIE003`), missing targets
+(`LIE004`), repository escapes (`LIE005`), invalid edges (`LIE007`), and
+ambiguous feature evidence (`LIE008`) are most relevant. The renderer writes
+only after successful validation. On error, keep the previous marker, correct
+the input, rerun safe mode, and only then retry the write.*
 
 ## Beispiele / Examples
 
@@ -80,6 +157,11 @@ bash scripts/prepare-secure-development-hardening.sh --dry-run
 
 # Sprache fuer neue/leere Repos explizit setzen
 bash scripts/prepare-secure-development-hardening.sh --dry-run --primary-language C#
+
+# Home-Projektion ohne falschen Produktsprachen-Override pruefen
+bash scripts/prepare-secure-development-hardening.sh --repo . --order-only \
+  --manifest requirements/intakes/series/home-baseline-delivery/manifest.json \
+  --dry-run
 
 # Vier bekannte C#-Level-2-Repos gezielt vorbereiten
 bash scripts/prepare-secure-development-hardening.sh --dry-run \
@@ -96,6 +178,7 @@ bash scripts/prepare-secure-development-hardening.sh --commit --push
 # Windows / PowerShell
 pwsh scripts/prepare-secure-development-hardening.ps1 -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -PrimaryLanguage C# -WhatIf
+pwsh scripts/prepare-secure-development-hardening.ps1 -Repo . -OrderOnly -Manifest requirements/intakes/series/home-baseline-delivery/manifest.json -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -Repo ~/RiderProjects/TuiVision -WhatIf
 pwsh scripts/prepare-secure-development-hardening.ps1 -Commit -Push
 ```

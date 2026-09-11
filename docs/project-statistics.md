@@ -179,9 +179,13 @@
 | 2026-09-07 | Assurance-v0.1.3-Rollout und Evidence-Indizes / Assurance rollout and evidence indexes | Zentraler Abschlussnachweis fuer fuenf autorisierte Level-2-Ziele und drei neue Matrizen mit je 157 bestehenden Kontrollbewertungen. Quellen-Lock, Profil-Pin und Quellenuebersicht auf dasselbe unveraenderliche v0.1.3-Archiv gebunden. 623 zentrale Installations-/Agentendateien unveraendert; kein Home-Sync. Der Konfigurationspfad ist homeRuntime, die bewusste Nichtverteilung ist dokumentiert. Technik: 13 hashgepruefte Pakete, Profile 8–13, Vertrags-/Negativ-/Paritaetstests und acht Befehlsoberflaechen bestanden; native PR-CI bleibt Merge-Gate. Genau drei gesondert genehmigte Hashkorrekturen in TuiVision, keine fachliche Neubewertung oder Freigabe. Root-Diff besteht aus Versionsbezuegen und Dokumentation, nicht neuer Produktlogik. Referenzen 80/100 Zeilen je Arbeitstag laut Konfiguration; Speedup ist Git-Lieferdichte, keine Stoppuhrmessung. / Central source references and delivery evidence for five targets and three 157-control indexes. No central installation, assessment, product logic, or human approval changes. Preserve 623 files; no Home sync. Verified release packages, profiles, parity and surfaces pass; exact-head native CI is required. Manual references are 80/100 lines per workday; speedup measures visible Git delivery density. |
 | 2026-09-08 | Assurance-v0.1.3-Feldtestkonsolidierung / Assurance v0.1.3 field-test consolidation | Fuenf projektbezogene Feldberichte und ihre gemergten Exact-Head-Lieferungen sind zentral als `5/5 ReleaseAccepted` fuer die technische Funktionsfaehigkeit des unveraenderten Presets gebunden. Einheitliche technische Wiedervorlage ist 2027-09-08; C5, CRA und formale Produktkonformitaet sind im nichtkommerziellen Ausbildungs-/Beispielscope `N/A`, regulatorische Scope-Wiedervorlage ist 2026-12-31. Human-only-Entscheidungen bleiben `Open`. Die zentrale Preset-Empfehlung bleibt bis zum Upstream-Ergebnis von `github/spec-kit#4455` ausdruecklich unerzeugt; Pre-Release und Community-Issue wurden nicht veraendert. Documentation Impact `UpdateRequired`, `sourceOnly`, kein Home-Sync. Das fachliche Delta vor Statistikpflege umfasst 284 Nettozeilen. / Five project reports are centrally bound as `5/5 ReleaseAccepted` for unchanged preset behavior; central acceptance remains pending the upstream issue, with no wider approval or runtime distribution. |
 
+| 2026-09-08 | Feature 032 Foundation / Feature 032 foundation | T004 bis T025 materialisieren die sieben Zielkontexte, Preset-/Assurance-Disposition, Hard Stops, Rollback- und Plattformplan, 14 Gate-Vertraege, zwei siebenzeilige Evidence-Matrizen, positive/negative Feature-Proof-Fixtures und die vollstaendige Identifier-Zuordnung. Alle Foundation-Validatoren sind gruen; sechs Downstreams blieben unveraendert. Native Linux-/Windows- und Story-Evidence bleibt Open, Feature 032 ist nicht abgeschlossen. Documentation Impact `GeneratedUpdate`, featurelokal `sourceOnly`, kein Home-Sync. Das objektiv aus den 19 neuen Foundation-Dateien gezaehlte Delta vor Statistikpflege umfasst 690 Nettozeilen. / T004 through T025 complete only the bounded foundation; later story, native-platform, and delivery work remains open. |
 | 2026-09-09 | Assurance v0.1.3 Level-0-Feldtest / Level-0 field test | Installiertes Preset 0.1.2 auf unveraendertes 0.1.3 aktualisiert; eigener training-Kontext mit vier Gates und technischen Rohhash-/Paritaetsnachweisen. Negativsuite, acht Befehlsoberflaechen, Komposition und 13-Preset-Matrix bestanden. Claude-Remove-Restdateien dokumentiert. 1363 fachliche Nettozeilen vor Statistikpflege. Human-only-Freigaben bleiben Open; keine Produktlaeufe oder zentrale Preset-Abnahme. / Upgraded immutable preset, added scoped technical evidence, preserved human decisions and historical assessments; no product runs or central acceptance. |
 
 | 2026-09-09 | Assurance v0.1.3 Siebener-Konsolidierung / Seven-repository consolidation | Fuenf unveraenderte historische Feldberichte und zwei neue gemergte Feldtests ergeben sieben begrenzte projektbezogene `ReleaseAccepted`-Empfehlungen. Level 0: [PR #277](https://github.com/hindermath/home-baseline/pull/277), 29 Checks, Home-Sync aktuell. AOC: [PR #44](https://github.com/hindermath/agent-operations-cockpit/pull/44), 18 Checks, 14-Intake-Grenze unveraendert. Beide main-Branches nach Merge 0/0. Ausbildung ab Lehrjahr 1 fuer vier IT-Berufe; keine zentrale Preset-Abnahme oder menschliche Freigabe. 205 fachliche Nettozeilen vor Statistikpflege. / Seven scoped field recommendations with verified delivery, preserved historical evidence and no central acceptance; source-only consolidation. |
+| 2026-09-09 | Feature 032 Validierung und Transaktion / Feature 032 validation and transaction | T039 bis T049 vervollstaendigen die gepaarten Bash-/PowerShell-Validatoren und die candidate-first Multi-Output-Transaktion. Die reale Negativmatrix `LIE001` bis `LIE012`, alle sieben Feature-Proof-Zustaende, vollstaendige Eingabe-Freshness, Input-/Output-Overlap, Containment, Null-Write-Idempotenz, LF-Paritaet, manuelle CR-/CRLF-Inhaltserhaltung und vollstaendiger `LIE010`-Rollback sind auf isolierten Fixtures gruen. Home-Safe-Mode ist in beiden Shells `Current, writes=0`; PSScriptAnalyzer 1.25.0 meldet fuer 107 Dateien null Befunde. Documentation Impact `GeneratedUpdate`; Skripte sind `homeRuntime`, Dokumentation/Evidence `sourceOnly`, kein Home-Sync. Das aus der akzeptierten T038-Baseline berechnete fachliche Delta vor Statistikpflege umfasst 1.750 Nettozeilen. Native Linux-/Windows- und Downstream-Gates bleiben offen. / T039 through T049 complete the paired validation and transaction slice with real fail-closed, parity, idempotence, and rollback proof. No downstream or Home-sync action occurred. |
+
+| 2026-09-10 | Feature 032 Exaktvertrag und Assurance / Exact contract and assurance | T050 bis T066 sind lokal abgeschlossen: zehn exakte TuiVision-Zuordnungen, sechs Kanten, getrennter Backlog, 15 einzelne Negativmutationen, gepaarte Accessibility-/Security-Tests und korrigierte oeffentliche LIE-Diagnosen. Nach der zusaetzlichen Diagnosekorrektur sind Bash, PowerShell, PSScriptAnalyzer 1.25.0 einschliesslich ungetracktem Testskript und Secret-Gate gruen. Stand 66/169; keine Lieferung oder Downstream-Mutation. Slot 81 dokumentiert die 676 Nettozeilen des urspruenglichen Assurance-Slices; das nachfolgende Korrekturdelta und der generierte aktuelle Gesamtblock bleiben zur kausalen Reconciliation in T069/T071 offen. Kein Dirty-Guard-Override, kein Home-Sync; Documentation Impact weiterhin `GeneratedUpdate`. / T050 through T066 passed locally, including the superseding diagnostic regression. The original slice metric is preserved; final correction-volume reconciliation and generated statistics remain open until the authorized clean-checkpoint sequence. |
 
 | 2026-09-10 | Monatliche öffentliche Spec-Kit-Laufstatistik / Monthly public Spec Kit statistics | — | — | Profil 2 | Documentation Impact GeneratedUpdate: öffentliches Belegregister und reproduzierbarer Snapshot bestätigen 93/93/92; PowerShell-Engine, Bash-Einstieg, monatliche CI-PRs, identische README-Tabellen und Profilimport mit Prüfsummen. Lokale Fixture-, Offline-, Live-No-op- und Schutzprüfungen; native CI und Lieferung bleiben am jeweiligen PR-Head nachzuweisen. Kein neuer Spec-Kit-Lauf und kein Level-2-Rollout. README/Skripte sind Home Runtime, Daten/Methodik source-only. / Public evidence, deterministic rendering and monthly review PRs; delivery and native CI are separate evidence. |
 
@@ -1135,29 +1139,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 658930 lines |
-| Textdateien / Text files | 3059 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-10 |
-| Aktivtage / Active days | 106 |
-| Relevante Commits / Relevant commits | 830 |
-| Zeilen je Aktivtag / Lines per active day | 6216.3 |
+| Textbasis / Text base | 672835 lines |
+| Textdateien / Text files | 3152 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-11 |
+| Aktivtage / Active days | 107 |
+| Relevante Commits / Relevant commits | 848 |
+| Zeilen je Aktivtag / Lines per active day | 6288.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 77.7x |
-| Speedup vs. 100 lines/day | 62.2x |
-| Methodik / Methodology | v2; source `96be86bf8c98` |
+| Speedup vs. 80 lines/day | 78.6x |
+| Speedup vs. 100 lines/day | 62.9x |
+| Methodik / Methodology | v2; source `0c882b767177` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 25064
-Dokumentation / Documentation   [##########..........]  50.1% | 330217
-Skripte / Scripts               [##..................]   7.9% | 52000
-Konfiguration / Configuration   [########............]  37.8% | 249095
+Tests                           [#...................]   3.8% | 25579
+Dokumentation / Documentation   [##########..........]  50.2% | 337697
+Skripte / Scripts               [##..................]   8.2% | 55011
+Konfiguration / Configuration   [#######.............]  37.4% | 251960
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.0% | 317
+Sonstiger Text / Other text     [#...................]   0.1% | 351
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1184,7 +1188,7 @@ Mo/Mo  0 0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3
 Di/Tu  0 0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2
 Mi/We  0 0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4
 Do/Th  0 0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4
-Fr/Fr  0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 -
+Fr/Fr  0 0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 3
 Sa/Sa  0 0 2 4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 -
 ```
 
@@ -1206,7 +1210,7 @@ Wochen / Weeks 27..52 | 2026-03-15..2026-09-12
       333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
       250000 | . . . . . . . . . . . . . . . . . . . # . . . . . .
       166667 | . . . . . . . . . . . . . . . . . . . # . . . . . .
-       83333 | . . . . . . . . . . . . . . . . # . # # . . . . . .
+       83333 | . . . . . . . . . . . . . . . . # . # # . . . . . #
            0 +-----------------------------------------------------
 ```
 
@@ -1287,15 +1291,27 @@ Slots 48..63
 ```
 
 ```text
-Slots 64..77
-   cap 20000 | . . . . . . . . . . . . . .
-       16667 | . . . . . . . . . . . . . .
-       13333 | . . . . . # . . . . . . . .
-       10000 | . . . . . # . . . . . . . .
-        6667 | . . . # . # # . # . . . . .
-        3333 | . . # # . # # . # . . . . .
-           0 +-----------------------------
-             64 65 66 67 68 69 70 71 72 73 74 75 76 77
+Slots 64..79
+   cap 20000 | . . . . . . . . . . . . . . . .
+       16667 | . . . . . . . . . . . . . . . .
+       13333 | . . . . . # . . . . . . . . . .
+       10000 | . . . . . # . . . . . . . . . .
+        6667 | . . . # . # # . # . . . . . . .
+        3333 | . . # # . # # . # . . . . . . .
+           0 +---------------------------------
+             64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79
+```
+
+```text
+Slots 80..82
+    cap 2000 | . . .
+        1667 | # . .
+        1333 | # . .
+        1000 | # . .
+         667 | # # .
+         333 | # # .
+           0 +-------
+             80 81 82
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1378,6 +1394,11 @@ Slots 64..77
 | 75 | Secure-Development-Assurance-v0.1.3-Feldtestkonsolidierung / Secure Development Assurance v0.1.3 field-test consolidation | 284 |
 | 76 | Assurance v0.1.3 Level-0-Feldtest / Assurance v0.1.3 Level-0 field test | 1363 |
 | 77 | Assurance v0.1.3 Siebener-Konsolidierung / Assurance v0.1.3 seven-repository consolidation | 205 |
+| 78 | Feature 032 Foundation / Feature 032 foundation | 690 |
+| 79 | Feature 032 HOME-Vertikalscheibe / Feature 032 HOME vertical slice | 1117 |
+| 80 | Feature 032 Validierung und Transaktion / Feature 032 validation and transaction | 1750 |
+| 81 | Feature 032 Exaktvertrag und Assurance / Feature 032 exact contract and assurance | 676 |
+| 82 | Feature 032 Home-Lieferbasis / Feature 032 Home delivery foundation | 52 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1387,8 +1408,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 77.7x
-100 lines/day      [############........] 62.2x
+80 lines/day       [################....] 78.6x
+100 lines/day      [#############.......] 62.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1401,7 +1422,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6216.3
+Visible repository [#############.......] 6288.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1410,9 +1431,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-10. Es enthaelt 106 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-11. Es enthaelt 107 aktive und 256 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-14 and ends on 2026-09-10. It contains 106 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-14 and ends on 2026-09-11. It contains 107 active and 256 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1427,6 +1448,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-10. Es enthaelt 106 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 94778 |
+| 2026-09 | 110683 |
 
 <!-- project-statistics-v2:end -->

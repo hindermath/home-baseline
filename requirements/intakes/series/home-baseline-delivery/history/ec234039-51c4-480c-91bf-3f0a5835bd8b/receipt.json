@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "IntakeSeriesReceipt",
+  "receiptId": "b1adcfe5-702b-4844-94ff-61aa261badcf",
+  "seriesId": "97735937-6a49-4507-9698-acad4498f8d4",
+  "generator": {
+    "preset": "intake-sequencing-governance",
+    "version": "0.2.3"
+  },
+  "createdAt": "2026-09-01T06:19:47Z",
+  "operation": {
+    "operationId": "8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b",
+    "type": "Update",
+    "authorityEvidence": "Current explicit user approval to implement the complete rebooking plan, promote visible item 39 to active manifest position 1 as the sole preferred Eligible target, demote G4 to Pending position 2, and perform no Specify or delivery."
+  },
+  "status": "Ready",
+  "manifest": {
+    "path": "requirements/intakes/series/home-baseline-delivery/manifest.json",
+    "normalizedSha256": "616d4c4faf9d72bc148d7bbcb3446fba631eb1d02bc0bd660b972475ff192f5a"
+  },
+  "supersedes": {
+    "receiptPath": "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/receipt.json",
+    "receiptNormalizedSha256": "9214be4c3d037666b1c08444100e7deaaac1e7092a2c4ea3b453e686331152fa",
+    "manifestArchivePath": "requirements/intakes/series/home-baseline-delivery/history/8f55bbbc-80eb-4357-b9b9-afcd4fdc2c2b/manifest.json",
+    "manifestArchiveSha256": "ad5affbbce5ef973f0b38b3bba09adaaeb8dc22b3fe6e65d5de2fe7df133f804"
+  },
+  "tombstone": {
+    "path": "N/A",
+    "normalizedSha256": "N/A"
+  },
+  "nextAction": "$speckit-intake-series-status"
+}

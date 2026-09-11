@@ -633,6 +633,46 @@
       "labelEn": "Assurance v0.1.3 seven-repository consolidation",
       "netLines": 205,
       "activeDays": 1
+    },
+    {
+      "slot": 78,
+      "id": "linked-intake-evidence-foundation",
+      "labelDe": "Feature 032 Foundation",
+      "labelEn": "Feature 032 foundation",
+      "netLines": 690,
+      "activeDays": 1
+    },
+    {
+      "slot": 79,
+      "id": "linked-intake-evidence-home-slice",
+      "labelDe": "Feature 032 HOME-Vertikalscheibe",
+      "labelEn": "Feature 032 HOME vertical slice",
+      "netLines": 1117,
+      "activeDays": 1
+    },
+    {
+      "slot": 80,
+      "id": "linked-intake-evidence-validation-transaction",
+      "labelDe": "Feature 032 Validierung und Transaktion",
+      "labelEn": "Feature 032 validation and transaction",
+      "netLines": 1750,
+      "activeDays": 1
+    },
+    {
+      "slot": 81,
+      "id": "linked-intake-evidence-exact-assurance",
+      "labelDe": "Feature 032 Exaktvertrag und Assurance",
+      "labelEn": "Feature 032 exact contract and assurance",
+      "netLines": 676,
+      "activeDays": 1
+    },
+    {
+      "slot": 82,
+      "id": "linked-intake-evidence-home-delivery-foundation",
+      "labelDe": "Feature 032 Home-Lieferbasis",
+      "labelEn": "Feature 032 Home delivery foundation",
+      "netLines": 52,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

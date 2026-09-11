@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "TuiVisionExactContractLock",
+  "featureId": "032-linked-intake-evidence",
+  "createdAt": "2026-09-10T18:16:43Z",
+  "contractSha256": "a292b6d07e6675affb1b5f98358cd3db2fde7b3668c6aca87499ae4cb9f2b457",
+  "contractHashAlgorithm": "SHA-256 over each listed path, NUL, normalizedSha256 and LF in listed order.",
+  "normalization": "Strict UTF-8 decode; optional leading BOM removed; NUL rejected; CRLF and CR normalized to LF; JSON whitespace and key order retained.",
+  "members": [
+    {"path":"specs/032-linked-intake-evidence/contracts/tuivision-exact-contract.md","normalizedSha256":"94653767ae9f65968c3fbbf0a550d6c1c90e25ccf74eafb4d08c929e4d09c758"},
+    {"path":"specs/032-linked-intake-evidence/fixtures/tuivision-exact/active-mapping.json","normalizedSha256":"d59319de948f9f2796872310c7ffc4a9a584b46d8dfe0e12edc68c47198edb88"},
+    {"path":"specs/032-linked-intake-evidence/fixtures/tuivision-exact/dependency-tuples.json","normalizedSha256":"28e50be34a957f244f84857216f431708cfda0e2df87f5fa35bd3a4f60688f62"},
+    {"path":"specs/032-linked-intake-evidence/fixtures/tuivision-exact/backlog.json","normalizedSha256":"49eb41fceb8a9f06fb7c1d93fa4c625dd8ce9a69434f64a75aac4fbb8d7850d1"},
+    {"path":"specs/032-linked-intake-evidence/fixtures/tuivision-exact/negative/cases.json","normalizedSha256":"f22aee7aa8be4a862eae493f7637a1fee24b4c7c89002638c79bd60a97fa91f9"},
+    {"path":"specs/032-linked-intake-evidence/acceptance-mapping.md","normalizedSha256":"b09ed6cdc94bc2883fe1dcff5da682dd21a2c85865e3eea74bc0b10d72afa312"}
+  ],
+  "canonicalSource": {
+    "repository": "TuiVision",
+    "commit": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+    "manifestPath": "requirements/intakes/series/tui-vision-delivery/manifest.json",
+    "manifestNormalizedSha256": "538d12fcc60cab96e5d70865a9ab9c31885634f3981e1c10dc2cd09d1ee2d2e7"
+  },
+  "validatedComponents": {
+    "mappings": "10/10",
+    "edges": "6/6 (binding true 4, false 2)",
+    "latestCompletion": "1/1 (046 at position 10)",
+    "backlog": "1/1 (DeferredOptional, active false)",
+    "negativeMutations": "15/15 expected failures observed"
+  },
+  "downstreamRule": "Any manifest, mapping, feature-proof, edge, latest-completion, backlog or listed member hash drift blocks TuiVision adoption until explicitly reviewed and revalidated.",
+  "readOnlyEvidence": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/preflight/tuivision-contract.json"
+}
