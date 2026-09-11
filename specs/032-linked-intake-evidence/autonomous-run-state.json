@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Implement",
   "status": "Active",
-  "checkpointCommit": "e78c8fc6ebcbefe70e7607fe99a436c1869177b9",
+  "checkpointCommit": "d3b3170849ed75c7087c98835a397b1fe3275686",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
@@ -431,12 +431,12 @@
       }
     ]
   },
-  "lastPassingGate": "T070 completed with all pre-checkpoint macOS Applicable gates passing and zero writes. Bash/PowerShell contract matrices, A11Y/link/UTF-8/NUL/idempotence coverage, PSScriptAnalyzer, secret scan, statistics tests, exact 13-preset profile, script reference, full diff checks, product/dependency boundary, origin/main ancestry, exact 23-path incoming set, six attributes, three historical raw hashes and sourceOnly classification passed. The expected statistics DRIFT and exact committed-head/native/review bindings remain Open for T071 and later tasks.",
-  "nextExactAction": "Execute T071 only: add the bounded native-proof workflow, validate and commit the complete source candidate with required co-author, obtain a truly clean checkout, render and commit the statistics follow-up, rerun affected exact-head local gates, push without force, and bind actual Linux and Windows logs plus hashes into the three native evidence files.",
+  "lastPassingGate": "Resume preflight is current: branch and origin/032-linked-intake-evidence are exact at d3b3170849ed75c7087c98835a397b1fe3275686, origin/main remains the already integrated 91e9c7e5919063388dcc22da7616b3dd878acd19, accepted artifact and routed-result hashes are unchanged, the primary intake receipt and review are current, the local routing profile remains exact, and MergeAndSync plus the bounded protection-only Admin-Bypass authority are revalidated. Native run 34530994608 completed both platforms functionally, but its Windows Bash token exposed a non-canonical leading backslash on the log SHA-256 and is not accepted as complete T071 evidence.",
+  "nextExactAction": "Continue T071 only: normalize the GNU sha256sum escaped-filename marker in sdh_sha256_file, add a regression test for a filename containing a backslash, rerun affected local gates, create and push a new exact candidate checkpoint, then require fresh successful ubuntu-22.04 and windows-2022 proof tokens whose sourceSha256 and logSha256 values are canonical 64-character lowercase hexadecimal hashes. Do not begin T072 before the three T071 platform evidence files validate.",
   "lastOperation": {
-    "kind": "Task:T070",
-    "state": "Completed",
-    "summary": "Complete pre-checkpoint macOS Home gate inventory passed with zero writes and exact integration/product boundaries."
+    "kind": "Task:T071:NativeProof",
+    "state": "NeedsRevalidation",
+    "summary": "Resume validation accepted the existing context and authority. Native run 34530994608 passed both jobs but its Windows Bash proof contains a leading sha256sum filename-escape marker, so T071 remains open for the exact bounded normalization and repeated native proof."
   },
   "stop": {
     "reason": "N/A",
@@ -449,5 +449,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-09-10T20:16:17Z"
+  "updatedAt": "2026-09-11T16:43:29Z"
 }
