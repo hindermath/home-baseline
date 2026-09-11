@@ -7,7 +7,7 @@
   "authorityRevalidationRequired": false,
   "stage": "Implement",
   "status": "Active",
-  "checkpointCommit": "d3b3170849ed75c7087c98835a397b1fe3275686",
+  "checkpointCommit": "dc3522a6756cf6d6810eb5d046425a27a10d82f5",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
@@ -44,8 +44,8 @@
   ],
   "tasks": {
     "path": "specs/032-linked-intake-evidence/tasks.md",
-    "sha256": "965e422755c7137ac7ba70f347bb7629dbd940859586a1902bb1162530f21ab0",
-    "completed": 70,
+    "sha256": "3c8053ceb9f1da90ab2554a4e54d54ba367001f63b7f548580594746191d9aaa",
+    "completed": 74,
     "total": 169
   },
   "routing": {
@@ -431,12 +431,12 @@
       }
     ]
   },
-  "lastPassingGate": "Resume preflight is current: branch and origin/032-linked-intake-evidence are exact at d3b3170849ed75c7087c98835a397b1fe3275686, origin/main remains the already integrated 91e9c7e5919063388dcc22da7616b3dd878acd19, accepted artifact and routed-result hashes are unchanged, the primary intake receipt and review are current, the local routing profile remains exact, and MergeAndSync plus the bounded protection-only Admin-Bypass authority are revalidated. Native run 34530994608 completed both platforms functionally, but its Windows Bash token exposed a non-canonical leading backslash on the log SHA-256 and is not accepted as complete T071 evidence.",
-  "nextExactAction": "Continue T071 only: normalize the GNU sha256sum escaped-filename marker in sdh_sha256_file, add a regression test for a filename containing a backslash, rerun affected local gates, create and push a new exact candidate checkpoint, then require fresh successful ubuntu-22.04 and windows-2022 proof tokens whose sourceSha256 and logSha256 values are canonical 64-character lowercase hexadecimal hashes. Do not begin T072 before the three T071 platform evidence files validate.",
+  "lastPassingGate": "T074 completed for PR #280 at head dc3522a6756cf6d6810eb5d046425a27a10d82f5. T075 check convergence found two bounded CI defects; no merge action has started.",
+  "nextExactAction": "Commit the bounded T075 remediation with the required co-author, refresh generated statistics from the resulting clean checkpoint, push without force, repeat T071-T074 evidence for the new exact head, then converge PR #280 checks and review.",
   "lastOperation": {
-    "kind": "Task:T071:NativeProof",
+    "kind": "Task:T075:CheckConvergence",
     "state": "NeedsRevalidation",
-    "summary": "Resume validation accepted the existing context and authority. Native run 34530994608 passed both jobs but its Windows Bash proof contains a leading sha256sum filename-escape marker, so T071 remains open for the exact bounded normalization and repeated native proof."
+    "summary": "PR #280 exposed two bounded CI defects: the five autonomous OpenCode commands were absent from the tracked singular command surface, and Lychee evaluated intentionally broken positive-fixture outputs. Both remediations are locally green and await a new committed head plus exact native and PR gates."
   },
   "stop": {
     "reason": "N/A",
@@ -449,5 +449,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-09-11T16:43:29Z"
+  "updatedAt": "2026-09-11T17:18:34Z"
 }

@@ -23,6 +23,8 @@ jobs:
             --offline
             --include-fragments
             --exclude-path docs/learning-units/dist
+            --exclude-path scripts/tests/linked-intake-evidence/positive
+            --exclude-path specs/032-linked-intake-evidence/fixtures/linked-intake-evidence/positive
             --exclude-path scripts/templates/project-readme-template.md
             --exclude-path scripts/templates/secure-development-compendium-header.md
             './**/*.md'
