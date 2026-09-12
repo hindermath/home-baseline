@@ -87,7 +87,7 @@ guidance and avoids ordering mistakes during review.*
    `SkillCorrection`, `TemplateCorrection`, `AgentPolicyCorrection`,
    `ValidationAutomation`, `PresetFollowUp` und `NoPromotion`.
 
-## Sandbox- und Control-Plane-Betrieb
+## Sandbox- und Control-Plane-Betrieb / Sandbox and Control Plane Operations
 
 1. Agentenarbeit und Provideradministration haben getrennte Vertrauensgrenzen.
    Builds, Tests und Repositoryaenderungen laufen in der freigegebenen
