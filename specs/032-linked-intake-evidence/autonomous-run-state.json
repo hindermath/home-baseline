@@ -2,7 +2,7 @@
   "schemaVersion": "1.1",
   "runId": "c53e4b5b-74fa-4ff9-ac5e-ce51850a5321",
   "featurePath": "specs/032-linked-intake-evidence",
-  "branch": "032-linked-intake-evidence-terminal-state",
+  "branch": "032-linked-intake-evidence-causal-closeout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
   "stage": "Retrospective",
@@ -10,7 +10,7 @@
   "checkpointCommit": "a3960b2c81e350652c550ec84ab1535210f2930e",
   "acceptedArtifacts": [
     {
-      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.032-linked-intake-evidence.md",
+      "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
       "sha256": "d9e066a4f2ae58a3706495c0c60919c47fd802b353ecd6939c8b65ad1cbd7983"
     },
     {
@@ -425,7 +425,7 @@
         "reasoningEffort": "high",
         "preflight": "Completed",
         "exitCode": 0,
-        "updatedAt": "2026-09-12T02:33:27Z",
+        "updatedAt": "2026-09-12T02:50:59Z",
         "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/retrospective.result.json",
         "resultSha256": "675ea33127f2107352ad99cf9071204a27bdcb50c7cf7729d0f4b2ef97f001de"
       }
@@ -449,5 +449,5 @@
     "postMergeActions": "Completed",
     "finalValidation": "Completed"
   },
-  "updatedAt": "2026-09-12T02:34:35Z"
+  "updatedAt": "2026-09-12T02:50:59Z"
 }
