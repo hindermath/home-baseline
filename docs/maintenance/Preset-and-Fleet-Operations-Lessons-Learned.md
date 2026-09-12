@@ -87,6 +87,56 @@ guidance and avoids ordering mistakes during review.*
    `SkillCorrection`, `TemplateCorrection`, `AgentPolicyCorrection`,
    `ValidationAutomation`, `PresetFollowUp` und `NoPromotion`.
 
+## Sandbox- und Control-Plane-Betrieb
+
+1. Agentenarbeit und Provideradministration haben getrennte Vertrauensgrenzen.
+   Builds, Tests und Repositoryaenderungen laufen in der freigegebenen
+   Sandbox; `gh`, Provider-Credentials, Rulesets und Merge-Operationen bleiben
+   auf einer separat auditierten Control Plane.
+2. Der Sandbox-Preflight meldet Plattform, Architektur, Werkzeugversionen und
+   die effektive `global.json`-SDK-Auswahl maschinenlesbar. Ein Major-Version-
+   Treffer ersetzt keinen kompatiblen .NET-Feature-Band-Nachweis.
+3. Git-Autorenidentitaet wird pro Transaktion gesetzt. Agenten duerfen keine
+   globale Identitaet und keinen beschreibbaren Credential-Store erzeugen.
+4. Transportfehler bei Git- oder Providerzugriff erhalten maximal drei
+   Versuche mit Backoff und Jitter. Vor der Wiederholung einer Schreibaktion
+   beweist ein Read-back, dass die beabsichtigte Mutation noch nicht vorhanden
+   ist; ein unklarer Zustand bleibt `TransportUnknown`.
+5. Eine Flottenwelle startet mit genau einem Canary. Danach gelten maximal drei
+   parallele Writer und vier parallele Read-only-Abfragen. Gemeinsame Writer
+   und die Lifecycle-Schritte eines einzelnen Repositories bleiben seriell.
+6. Strukturierte Formate werden mit JSON-/YAML-Parsern validiert. Ein
+   Textmuster darf keinen erfolgreichen Sync in einen Fehler umklassifizieren.
+7. Fachliche Aenderungen und die daraus berechnete Projektstatistik erhalten
+   getrennte Commits. Der Statistik-Renderer arbeitet erst auf dem stabilen
+   fachlichen HEAD.
+8. Architekturgebundene Erwartungen werden explizit an den Test uebergeben.
+   Native ARM64- und deklarierte x86_64-Runner-Evidence bleiben unterscheidbar.
+
+*Sandbox work and provider administration are separate trust boundaries.
+Toolchain preflight records platform, architecture, exact SDK selection, and
+tool versions. Transient writes are retried only after exact read-back, with at
+most three attempts. Fleet execution uses one canary, no more than three
+writers and four readers, parser-based verification, and separate content and
+statistics commits.*
+
+### Dokumentationsauswirkung / Documentation Impact
+
+`UpdateRequired`. Kanonische Quellen und Owner sind die Fleet-Engine und die
+Level-0-Maintainer. Betroffen sind Maintainer und Agenten; der Leserpfad fuehrt
+von dieser Betriebsdokumentation zum Secure-Trader-Sandbox-Preflight und zur
+maschinellen Testevidenz. Die Sprachpartner stehen inline, die Distribution ist
+`RepositoryDocumentation`, und fuer diese source-seitige Aenderung ist kein
+Home-Sync erforderlich. Neu bewertet wird bei Aenderungen an Retry-,
+Parallelitaets-, Provider- oder Sandboxgrenzen.
+
+*Decision: `UpdateRequired`. The fleet engine and Level-0 maintainers own the
+canonical source. Maintainers and agents follow this operations guide to the
+Secure Trader sandbox preflight and machine test evidence. Language partners
+are inline, distribution is `RepositoryDocumentation`, no Home sync is needed
+for this source-only change, and changes to retry, concurrency, provider, or
+sandbox boundaries trigger re-evaluation.*
+
 ## Standardisierung
 
 - Normative Regeln leben in Constitution, Preset-Templates, Commands,

@@ -463,6 +463,8 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
     def test_private_governance_template_is_deployable_and_path_bound(self):
         source = self.workflow_path.read_text(encoding="utf-8")
         self.assertIn("\non:\n  pull_request:\n", source)
+        self.assertIn("group: ${{ github.workflow }}-${{ github.event.pull_request.number }}", source)
+        self.assertIn("cancel-in-progress: true", source)
         self.assertIn("\njobs:\n  ci-minimal-gate:\n", source)
         self.assertNotIn("uses:", source)
         contracts = self.engine.load_ci_budget_contracts(
