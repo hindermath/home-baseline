@@ -120,7 +120,7 @@ class ProviderBoundaryTests(unittest.TestCase):
                         repository_id, "hindermath/repository", host
                     )
 
-    def test_transient_reads_are_bounded_and_writes_are_not_retried(self):
+    def test_transient_reads_are_bounded(self):
         engine = load_engine()
         responses = [
             engine.subprocess.CompletedProcess([], 124, stdout="", stderr="timeout"),
@@ -133,6 +133,127 @@ class ProviderBoundaryTests(unittest.TestCase):
         self.assertEqual(result["classification"], "Passed")
         self.assertEqual(result["attemptCount"], 2)
         self.assertEqual(runner.call_count, 2)
+
+    def test_transient_provider_write_reconciles_before_retry(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            body = pathlib.Path(directory) / "ruleset.json"
+            body.write_text('{"enforcement":"active"}\n', encoding="utf-8")
+            write_runner = mock.Mock(side_effect=[
+                engine.subprocess.CompletedProcess([], 1, stdout="", stderr="gnutls_handshake() failed"),
+            ])
+            reader = mock.Mock(return_value={
+                "classification": "Passed",
+                "diagnostic": "N/A",
+                "value": {"enforcement": "active"},
+            })
+            result = engine.run_stage_b_provider_write(
+                "hindermath/repository", "rulesets/1", "PUT", body, "rulesets/1",
+                runner=write_runner, reader=reader,
+            )
+            self.assertEqual(result["classification"], "Passed")
+            self.assertTrue(result["reconciled"])
+            self.assertEqual(write_runner.call_count, 1)
+            reader.assert_called_once()
+
+    def test_transient_provider_write_retries_only_after_absent_readback(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            body = pathlib.Path(directory) / "ruleset.json"
+            body.write_text('{"enforcement":"active"}\n', encoding="utf-8")
+            write_runner = mock.Mock(side_effect=[
+                engine.subprocess.CompletedProcess([], 1, stdout="", stderr="TLS connection was non-properly terminated"),
+                engine.subprocess.CompletedProcess([], 0, stdout="{}", stderr=""),
+            ])
+            reader = mock.Mock(return_value={
+                "classification": "ProviderRefusal", "diagnostic": "HTTP 404 not found"
+            })
+            result = engine.run_stage_b_provider_write(
+                "hindermath/repository", "rulesets/1", "PUT", body, "rulesets/1",
+                runner=write_runner, reader=reader,
+            )
+            self.assertEqual(result["attemptCount"], 2)
+            self.assertFalse(result["reconciled"])
+            self.assertEqual(write_runner.call_count, 2)
+
+    def test_transient_provider_write_does_not_retry_conflicting_readback(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            body = pathlib.Path(directory) / "ruleset.json"
+            body.write_text('{"enforcement":"active"}\n', encoding="utf-8")
+            write_runner = mock.Mock(return_value=engine.subprocess.CompletedProcess(
+                [], 1, stdout="", stderr="connection closed"
+            ))
+            reader = mock.Mock(return_value={
+                "classification": "Passed", "value": {"enforcement": "disabled"}
+            })
+            result = engine.run_stage_b_provider_write(
+                "hindermath/repository", "rulesets/1", "PUT", body, "rulesets/1",
+                runner=write_runner, reader=reader,
+            )
+            self.assertEqual(result["classification"], "TechnicalFailure")
+            self.assertEqual(write_runner.call_count, 1)
+
+    def test_transient_provider_write_does_not_retry_unknown_readback(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            body = pathlib.Path(directory) / "ruleset.json"
+            body.write_text('{"enforcement":"active"}\n', encoding="utf-8")
+            write_runner = mock.Mock(return_value=engine.subprocess.CompletedProcess(
+                [], 1, stdout="", stderr="connection aborted"
+            ))
+            reader = mock.Mock(return_value={
+                "classification": "TransientRead", "diagnostic": "timeout"
+            })
+            result = engine.run_stage_b_provider_write(
+                "hindermath/repository", "rulesets/1", "PUT", body, "rulesets/1",
+                runner=write_runner, reader=reader,
+            )
+            self.assertEqual(result["classification"], "TransportUnknown")
+            self.assertEqual(write_runner.call_count, 1)
+
+    def test_fleet_concurrency_limits_are_bounded(self):
+        engine = load_engine()
+        self.assertEqual(engine.stage_b_concurrency_limit("write"), 3)
+        self.assertEqual(engine.stage_b_concurrency_limit("read"), 4)
+        with self.assertRaises(engine.ContractError):
+            engine.stage_b_concurrency_limit("unknown")
+
+
+class GitTransactionTests(unittest.TestCase):
+    """Fleet commits bind identity to one process without changing repository config."""
+
+    def test_transaction_identity_does_not_persist_in_repository_config(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            repository = pathlib.Path(directory)
+            subprocess.run(["git", "init", "-q", str(repository)], check=True)
+            (repository / "evidence.txt").write_text("ok\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(repository), "add", "evidence.txt"], check=True)
+            engine.run_git_transaction(
+                repository, "commit", "-q", "-m", "test: scoped identity",
+                author_name="Fleet Transaction", author_email="fleet@example.invalid",
+            )
+            author = subprocess.run(
+                ["git", "-C", str(repository), "show", "-s", "--format=%an <%ae>"],
+                text=True, capture_output=True, check=True,
+            ).stdout.strip()
+            self.assertEqual(author, "Fleet Transaction <fleet@example.invalid>")
+            configured_name = subprocess.run(
+                ["git", "-C", str(repository), "config", "--local", "--get", "user.name"],
+                text=True, capture_output=True, check=False,
+            )
+            self.assertEqual(configured_name.returncode, 1)
+
+    def test_transaction_identity_rejects_control_characters(self):
+        engine = load_engine()
+        with tempfile.TemporaryDirectory() as directory:
+            repository = pathlib.Path(directory)
+            with self.assertRaises(engine.ContractError):
+                engine.run_git_transaction(
+                    repository, "status", author_name="Fleet\nOther",
+                    author_email="fleet@example.invalid",
+                )
 
 
 class EvidenceLedgerTests(unittest.TestCase):

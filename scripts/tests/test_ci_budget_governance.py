@@ -123,6 +123,29 @@ class ContractBoundaryTests(unittest.TestCase):
                 )
 
 
+class CanonicalWorkflowConcurrencyTests(unittest.TestCase):
+    """Canonical fleet workflows avoid duplicate branch-push and PR runs."""
+
+    WORKFLOWS = (
+        "documentation-and-learning-package.yml",
+        "homogeneity-check.yml",
+        "maintenance-tui.yml",
+        "powershell-analysis.yml",
+    )
+
+    def test_feature_branches_run_only_through_pull_request_trigger(self):
+        for name in self.WORKFLOWS:
+            with self.subTest(workflow=name):
+                text = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")
+                self.assertIn("  push:\n    branches:\n      - main\n", text)
+                self.assertIn("  pull_request:\n", text)
+                self.assertIn(
+                    "group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}",
+                    text,
+                )
+                self.assertIn("cancel-in-progress: true", text)
+
+
 class VerticalSliceTests(unittest.TestCase):
     """Bash and PowerShell must each start exactly one shared engine process."""
 
@@ -463,6 +486,8 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
     def test_private_governance_template_is_deployable_and_path_bound(self):
         source = self.workflow_path.read_text(encoding="utf-8")
         self.assertIn("\non:\n  pull_request:\n", source)
+        self.assertIn("group: ${{ github.workflow }}-${{ github.event.pull_request.number }}", source)
+        self.assertIn("cancel-in-progress: true", source)
         self.assertIn("\njobs:\n  ci-minimal-gate:\n", source)
         self.assertNotIn("uses:", source)
         contracts = self.engine.load_ci_budget_contracts(

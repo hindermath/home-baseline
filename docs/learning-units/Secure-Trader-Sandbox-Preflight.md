@@ -97,6 +97,17 @@ Jahr 3 / Year 3  (Tracks):       Sandbox-Isolation, Integration und Betriebsnach
 - [ ] Netzwerkzugriff ist eingeschraenkt oder als Risikoentscheidung dokumentiert.
 - [ ] Nur fiktive, datensparsame Testdaten (z. B. Northwind-Layout inkl. `ALFKI`); keine echten personenbezogenen Daten.
 - [ ] Es ist klar, welche Nachweise spaeter erwartet werden (Isolationsnachweis, Mount-Liste, Netzwerkentscheidung).
+- [ ] Der maschinenlesbare Toolchain-Preflight bestaetigt Plattform,
+      Architektur, benoetigte Werkzeuge und die zum Projekt passende
+      `global.json`-SDK-Auswahl.
+- [ ] GitHub-Schreibaktionen laufen ueber die getrennte Control Plane; weder
+      `gh`-Credential-Store noch Provider-Token sind in den Agentencontainer
+      eingebunden.
+
+**EN:** In addition, the machine-readable toolchain preflight confirms
+platform, architecture, required tools, and the effective project
+`global.json` SDK. GitHub writes use the separate control plane; no `gh`
+credential store or provider token is mounted into the agent container.
 
 ## Runbook (host-agnostisch) / Runbook (Host-Agnostic)
 

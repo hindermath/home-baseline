@@ -67,6 +67,31 @@ def run_git(repository: pathlib.Path | None, *arguments: str, check: bool = True
     return result
 
 
+def run_git_transaction(
+    repository: pathlib.Path,
+    *arguments: str,
+    author_name: str,
+    author_email: str,
+    check: bool = True,
+) -> subprocess.CompletedProcess[str]:
+    """Run one Git transaction with scoped identity and no config mutation."""
+    if not author_name.strip() or re.search(r"[\r\n\0]", author_name):
+        raise ContractError("transaction Git author name is invalid")
+    if re.fullmatch(r"[^\s@]+@[^\s@]+", author_email) is None:
+        raise ContractError("transaction Git author email is invalid")
+    command = [
+        "git", "-C", str(repository),
+        "-c", f"user.name={author_name}",
+        "-c", f"user.email={author_email}",
+        *arguments,
+    ]
+    result = subprocess.run(command, text=True, capture_output=True, check=False)
+    if check and result.returncode != 0:
+        detail = (result.stderr or result.stdout).strip().splitlines()
+        raise RuntimeError(detail[-1] if detail else f"git exited {result.returncode}")
+    return result
+
+
 def is_transient_git_failure(detail: str) -> bool:
     """Retry network failures, never auth or repository-state failures."""
     if re.search(
@@ -587,7 +612,11 @@ def classify_stage_b_provider_failure(exit_code: int, detail: str) -> str:
     if exit_code == 0:
         return "Passed"
     lowered = detail.lower()
-    if exit_code == 124 or re.search(r"timeout|connection reset|could not resolve|\b50[234]\b", lowered):
+    if exit_code == 124 or re.search(
+        r"timeout|connection (?:was )?(?:reset|closed|aborted)|could not resolve|"
+        r"gnutls_handshake|tls connection was non-properly terminated|\b50[234]\b",
+        lowered,
+    ):
         return "TransientRead"
     if re.search(r"billing|quota|rate limit|recent account payments|spending limit", lowered):
         return "BillingOrQuotaRefusal"
@@ -611,14 +640,120 @@ def run_stage_b_provider_read(
             last.returncode, (last.stderr or last.stdout)[:4096]
         )
         if classification != "TransientRead" or attempt == bounded_attempts:
-            return {
+            response = {
                 "command": command,
                 "attemptCount": attempt,
                 "exitCode": last.returncode,
                 "classification": classification,
                 "diagnostic": _redact_stage_b_text(last.stderr or last.stdout),
             }
+            if last.returncode == 0:
+                try:
+                    response["value"] = json.loads(last.stdout)
+                except json.JSONDecodeError:
+                    response["classification"] = "TechnicalFailure"
+            return response
     raise AssertionError("bounded provider loop did not return")
+
+
+STAGE_B_MAX_WRITERS = 3
+STAGE_B_MAX_READERS = 4
+
+
+def stage_b_concurrency_limit(operation: str) -> int:
+    """Return the audited ceiling for mutating and read-only fleet work."""
+    if operation == "write":
+        return STAGE_B_MAX_WRITERS
+    if operation == "read":
+        return STAGE_B_MAX_READERS
+    raise ContractError("Stage-B concurrency operation must be read or write")
+
+
+def run_stage_b_provider_write(
+    slug: str,
+    endpoint: str,
+    method: str,
+    input_path: pathlib.Path,
+    reconcile_endpoint: str,
+    *,
+    runner=subprocess.run,
+    reader=run_stage_b_provider_read,
+    attempts: int = 3,
+    timeout: int = 30,
+) -> dict:
+    """Retry a provider write only after exact read-back proves it absent.
+
+    A transient response can hide a successful remote mutation. The read-back
+    therefore runs before another write and accepts an already converged value.
+    """
+    command = build_stage_b_gh_write_args(slug, endpoint, method, input_path)
+    try:
+        desired = json.loads(input_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise ContractError("provider write input must contain valid JSON") from exc
+    desired_hash = canonical_json_hash(desired)
+    bounded_attempts = max(1, min(3, attempts))
+    for attempt in range(1, bounded_attempts + 1):
+        try:
+            completed = runner(command, text=True, capture_output=True, check=False, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            completed = subprocess.CompletedProcess(command, 124, stdout="", stderr="timeout")
+        classification = classify_stage_b_provider_failure(
+            completed.returncode, (completed.stderr or completed.stdout)[:4096]
+        )
+        if completed.returncode == 0:
+            return {
+                "command": command, "attemptCount": attempt, "exitCode": 0,
+                "classification": "Passed", "reconciled": False, "diagnostic": "N/A",
+            }
+        if classification != "TransientRead":
+            return {
+                "command": command, "attemptCount": attempt,
+                "exitCode": completed.returncode, "classification": classification,
+                "reconciled": False,
+                "diagnostic": _redact_stage_b_text(completed.stderr or completed.stdout),
+            }
+        read_back = reader(slug, reconcile_endpoint, attempts=3, timeout=timeout)
+        if read_back.get("classification") == "Passed":
+            observed = read_back.get("value")
+            if observed is None:
+                try:
+                    observed = json.loads(read_back.get("diagnostic", ""))
+                except (TypeError, json.JSONDecodeError):
+                    observed = None
+            if observed is not None and canonical_json_hash(observed) == desired_hash:
+                return {
+                    "command": command, "attemptCount": attempt,
+                    "exitCode": 0, "classification": "Passed",
+                    "reconciled": True, "diagnostic": "N/A",
+                }
+            return {
+                "command": command, "attemptCount": attempt,
+                "exitCode": completed.returncode, "classification": "TechnicalFailure",
+                "reconciled": False,
+                "diagnostic": "provider read-back differs from the requested state",
+            }
+        read_back_detail = str(read_back.get("diagnostic", ""))
+        if not (
+            read_back.get("classification") == "ProviderRefusal"
+            and re.search(r"\b404\b|not found", read_back_detail, re.IGNORECASE)
+        ):
+            return {
+                "command": command, "attemptCount": attempt,
+                "exitCode": completed.returncode, "classification": "TransportUnknown",
+                "reconciled": False,
+                "diagnostic": _redact_stage_b_text(completed.stderr or completed.stdout),
+            }
+        if attempt == bounded_attempts:
+            return {
+                "command": command, "attemptCount": attempt,
+                "exitCode": completed.returncode, "classification": "TransportUnknown",
+                "reconciled": False,
+                "diagnostic": _redact_stage_b_text(completed.stderr or completed.stdout),
+            }
+        delay = min(3.0, 0.25 * (2 ** (attempt - 1)))
+        time.sleep(delay + random.uniform(0, delay / 4))
+    raise AssertionError("bounded provider write loop did not return")
 
 
 def execute_stage_b_action(args: argparse.Namespace) -> int:
