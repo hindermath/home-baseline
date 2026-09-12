@@ -247,7 +247,7 @@ nicht selbst akzeptieren.
 
 ### 3. Autonomous Run nutzt das Review als optionales Start-Gate
 
-`autonomous-run-governance` v0.4.3 prüft vor Branch-, Feature- und
+`autonomous-run-governance` v0.4.4 prüft vor Branch-, Feature- und
 Specify-Erstellung, ob Intake Review installiert und laut Repository-Policy
 verpflichtend ist:
 
@@ -259,6 +259,10 @@ verpflichtend ist:
   passiert das Gate.
 - Fehlende Evidence, Hashdrift, offene Fragen oder blockierende Findings
   stoppen den Lauf, bevor Implementierungsarbeit beginnt.
+
+Der Staged-Validator bindet zusätzlich physische Rename-Pfade, reguläre
+Index-Dateimodi und Indexbytes; Symlinks, Gitlinks und Konflikteinträge bleiben
+blockierend.
 
 Das akzeptierte Review und die Zielhashes werden in den `acceptedArtifacts`
 des autonomen Run-States aufgenommen. Status und Resume können dadurch später
