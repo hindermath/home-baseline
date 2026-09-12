@@ -208,7 +208,7 @@ STAGE_B_SCHEMA_VERSIONS = {
     "fleet-terminal-evidence": "1.1",
     "repository-rollout-result": "1.1",
     "stage-b-rollout-plan": "1.1",
-    "stage-b-ruleset-plan": "1.0",
+    "stage-b-ruleset-plan": "1.1",
     "stage-b-run-state": "1.1",
 }
 STAGE_B_MUTABLE_PLAN_FIELDS = {
@@ -1723,7 +1723,12 @@ class StageBRulesetTransaction:
             "target": "default_branch", "enforcement": "active",
             "pullRequestRequired": True, "requiredApprovingReviews": 1,
             "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
-            "strictStatusChecks": True, "bypassActors": [],
+            "strictStatusChecks": True,
+            "bypassActors": [{
+                "actor_id": 5,
+                "actor_type": "RepositoryRole",
+                "bypass_mode": "pull_request",
+            }],
             "blockedWritePaths": ["api", "direct", "web"],
             "adminBypassNormalPath": False,
         }
@@ -2066,7 +2071,11 @@ def validate_stage_b_profile_contract(profile_id: str, target: dict) -> None:
         expected = {
             "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
             "requiredApprovingReviews": 1, "strictStatusChecks": True,
-            "bypassActors": [], "fullPullRequestBuild": False,
+            "bypassActors": [{
+                "actor_id": 5,
+                "actor_type": "RepositoryRole",
+                "bypass_mode": "pull_request",
+            }], "fullPullRequestBuild": False,
             "fullMainBuild": False,
         }
         if any(target.get(key) != value for key, value in expected.items()):
@@ -4275,7 +4284,11 @@ def simulate_private_governance_policy(
         and ruleset.get("requiredStatusChecks") == ["home-baseline/ci-minimal-gate"]
         and ruleset.get("requireStatusChecksToPass") is True
         and ruleset.get("strictStatusChecks") is True
-        and ruleset.get("bypassActors") == []
+        and ruleset.get("bypassActors") == [{
+            "actor_id": 5,
+            "actor_type": "RepositoryRole",
+            "bypass_mode": "pull_request",
+        }]
         and sorted(ruleset.get("blockedWritePaths", [])) == ["api", "direct", "web"]
         and ruleset.get("adminBypassNormalPath") is False
         and ruleset.get("remoteConverged") is False

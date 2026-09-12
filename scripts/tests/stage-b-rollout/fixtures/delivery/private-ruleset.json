@@ -10,7 +10,13 @@
     "requiredApprovingReviews": 1,
     "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
     "strictStatusChecks": true,
-    "bypassActors": [],
+    "bypassActors": [
+      {
+        "actor_id": 5,
+        "actor_type": "RepositoryRole",
+        "bypass_mode": "pull_request"
+      }
+    ],
     "blockedWritePaths": ["api", "direct", "web"],
     "adminBypassNormalPath": false
   }

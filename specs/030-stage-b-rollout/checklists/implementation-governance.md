@@ -115,9 +115,9 @@ explicitly later live, delivery, and closeout subgates remain truthfully
 | `fleet-terminal-evidence.schema.json` | 1.1 | `c1bae9090aaf043ba1faf38f942ffee6366b1dd31b3fe4446d805ec0eb3e6e89` |
 | `repository-rollout-result.schema.json` | 1.1 | `ccd3a8647373c9066d6d2d186c8d5e612b49f073b0c6d3879ab70c76256c2f76` |
 | `stage-b-rollout-plan.schema.json` | 1.1 | `87e30d43966dc94944eaf8ac94ffa10bf944fd27aca2ae316b89bf86379b8f44` |
-| `stage-b-ruleset-plan.schema.json` | 1.0 | `5d654e82070abd7782df04371bb5cd353b2980c89db0000886548762fecdb621` |
+| `stage-b-ruleset-plan.schema.json` | 1.1 | `c2486d7e4de482583bf7614e4c54854a42b20ee692a1aec9d0a17e51e6913212` |
 | `stage-b-run-state.schema.json` | 1.1 | `411a5caf9b2504d994a7b4ba712224480b3a92ce3134f1cd220503800751c23c` |
-| `workflow-ruleset-contract.md` | Markdown contract | `1c26366fb7cb1a74c3871e717b45725ddf43767df284bd0523dc2a0640269c5f` |
+| `workflow-ruleset-contract.md` | Markdown contract | `2dc3a5ec6b7a86dbc36078a345a35f8f4fb5a033689697a44c05df20ed02a817` |
 | `autonomous-run-gate-requirements.json` | 1.0 | `79b516fa726f3289cf2a29b77c81f75b95ae34277bce17fc760fb25926a24626` |
 
 | Unveränderter Stage-A-Vertrag / Unchanged contract | SHA-256 |

@@ -3,7 +3,7 @@
     "fleet-terminal-evidence": "1.1",
     "repository-rollout-result": "1.1",
     "stage-b-rollout-plan": "1.1",
-    "stage-b-ruleset-plan": "1.0",
+    "stage-b-ruleset-plan": "1.1",
     "stage-b-run-state": "1.1"
   },
   "mixedVersions": {

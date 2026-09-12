@@ -1129,6 +1129,24 @@ a bound payload hash. Schema 2.0 separates PreMerge from PostMerge, while
 historical schema 1.0 cannot authorize a new merge. The source candidate remains
 unreleased until independent G2B field validation.*
 
+### 2026-09-12 - Dauerhafter Admin-PR-Bypass / Persistent admin PR bypass
+
+- Das private Governance-Ruleset enthält die Repository-Admin-Rolle dauerhaft
+  mit `bypass_mode=pull_request`; direkte Pushes bleiben geschützt.
+- Schema v1.1, Stage-B-Validator, Transaktionsfixture, Threat Model und ADR-002
+  bilden denselben engen Vertrag ab. `adminBypassNormalPath` bleibt `false`.
+- 128 gezielte und 258 vollständige Python-Tests sind erfolgreich; zwölf
+  plattformabhängige Tests wurden erwartungsgemäß übersprungen.
+- Documentation Impact ist `UpdateRequired`. Die Änderung ist `sourceOnly` und
+  benötigt keinen Home-Sync.
+
+*The private-governance ruleset permanently includes the repository-admin role
+with `bypass_mode=pull_request`, while direct pushes remain protected. Schema
+v1.1, the Stage B validator, transaction fixture, threat model, and ADR-002
+carry the same narrow contract; `adminBypassNormalPath` remains `false`. All 128
+focused and 258 full Python tests passed, with twelve expected platform skips.
+This source-only `UpdateRequired` change needs no Home sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

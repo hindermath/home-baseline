@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["schemaVersion", "rulesetPlanId", "runId", "repositoryId", "profileId", "providerRepositoryId", "defaultBranch", "rulesetName", "previousRulesetId", "previousRulesetHash", "desiredRulesetHash", "action", "target", "enforcement", "pullRequestRequired", "requiredApprovingReviews", "requiredStatusChecks", "strictStatusChecks", "bypassActors", "blockedWritePaths", "adminBypassNormalPath", "restoreRequestHash", "planHash"],
   "properties": {
-    "schemaVersion": { "const": "1.0" },
+    "schemaVersion": { "const": "1.1" },
     "rulesetPlanId": { "type": "string", "format": "uuid", "not": { "const": "00000000-0000-0000-0000-000000000000" } },
     "runId": { "type": "string", "format": "uuid", "not": { "const": "00000000-0000-0000-0000-000000000000" } },
     "repositoryId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
@@ -24,7 +24,15 @@
     "requiredApprovingReviews": { "const": 1 },
     "requiredStatusChecks": { "const": ["home-baseline/ci-minimal-gate"] },
     "strictStatusChecks": { "const": true },
-    "bypassActors": { "const": [] },
+    "bypassActors": {
+      "const": [
+        {
+          "actor_id": 5,
+          "actor_type": "RepositoryRole",
+          "bypass_mode": "pull_request"
+        }
+      ]
+    },
     "blockedWritePaths": { "const": ["direct", "web", "api"] },
     "adminBypassNormalPath": { "const": false },
     "restoreRequestHash": { "$ref": "#/$defs/sha256" },

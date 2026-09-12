@@ -1276,7 +1276,11 @@ class _WaveFixtureMixin:
                 "repositoryId": "private-governance-a", "profileId": "private-governance-scaffold",
                 "requiredStatusChecks": ["home-baseline/ci-minimal-gate"],
                 "requiredApprovingReviews": 1, "strictStatusChecks": True,
-                "bypassActors": [], "fullPullRequestBuild": False, "fullMainBuild": False,
+                "bypassActors": [{
+                    "actor_id": 5,
+                    "actor_type": "RepositoryRole",
+                    "bypass_mode": "pull_request",
+                }], "fullPullRequestBuild": False, "fullMainBuild": False,
             }],
             "public-presets": [{
                 "repositoryId": "public-preset-a", "profileId": "public-preset",
