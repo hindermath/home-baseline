@@ -938,7 +938,11 @@ class PublicCanaryVerticalSliceTests(unittest.TestCase):
             }
 
         def read_review(self, number):
-            return {"status": "Approved", "headSha": self.fixture["candidateHead"]}
+            return {
+                "status": "Approved",
+                "headSha": self.fixture["candidateHead"],
+                "unresolvedThreads": 0,
+            }
 
         def merge(self, number, method, admin=False):
             self.writes.append("AdminMerge" if admin else "Merge")
@@ -1082,6 +1086,29 @@ class AdminBypassEvidenceTests(unittest.TestCase):
         )
         with self.assertRaises(engine.ContractError):
             engine.StageBTargetTransaction(fixture, provider).execute()
+
+    def test_unresolved_review_thread_blocks_before_regular_or_admin_merge(self):
+        engine = load_engine()
+        fixture = json.loads(
+            (FIXTURES / "vertical-slice/agent-operations-cockpit.json").read_text(encoding="utf-8")
+        )
+        fixture["adminBypassAuthority"] = {
+            "runId": fixture["runId"], "repositoryId": fixture["repositoryId"],
+            "prHead": fixture["candidateHead"], "scope": "ProtectionOnlyMerge",
+            "authorizedAt": "2026-09-12T10:00:00Z", "expiresAt": "2099-09-12T10:00:00Z",
+            "reason": "Required protection-only exception after full evidence",
+        }
+        provider = PublicCanaryVerticalSliceTests.FakeProvider(fixture)
+        provider.read_review = mock.Mock(return_value={
+            "status": "Approved",
+            "headSha": fixture["candidateHead"],
+            "unresolvedThreads": 1,
+        })
+        provider.merge = mock.Mock()
+
+        with self.assertRaisesRegex(engine.ContractError, "review threads"):
+            engine.StageBTargetTransaction(fixture, provider).execute()
+        provider.merge.assert_not_called()
 
 
 class PrivateRulesetTests(unittest.TestCase):

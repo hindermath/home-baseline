@@ -687,7 +687,7 @@
       "id": "permanent-admin-pull-request-bypass",
       "labelDe": "Dauerhafter Admin-PR-Bypass",
       "labelEn": "Persistent admin PR bypass",
-      "netLines": 97,
+      "netLines": 133,
       "activeDays": 1
     }
   ],

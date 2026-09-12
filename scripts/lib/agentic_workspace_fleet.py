@@ -1844,6 +1844,8 @@ class StageBTargetTransaction:
         review = self.provider.read_review(pull_request["number"])
         if review.get("status") != "Approved" or review.get("headSha") != candidate["headSha"]:
             raise ContractError("regular review is missing or bound to another head")
+        if review.get("unresolvedThreads") != 0:
+            raise ContractError("actionable review threads remain unresolved")
         self._event("ReviewAndGates")
         independent_hashes = {
             "acceptance": canonical_json_hash(remote_gate_evidence),

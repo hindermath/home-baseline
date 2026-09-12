@@ -28,6 +28,11 @@ Reviewer. Die Änderung ist `sourceOnly`; ein Home-Sync ist nicht erforderlich.
 Neu bewertet wird bei Änderungen an GitHub-Rollen-IDs, Bypass-Modi,
 Merge-Autorität oder materiellen Gate-Anforderungen.
 
+Die Stage-B-Transaktion verlangt außerdem ausdrücklich
+`unresolvedThreads=0`, bevor sie einen regulären oder administrativen Merge
+aufruft. Eine formale Approval kann daher keine offenen Review-Hinweise
+verdecken.
+
 ## English
 
 The private-governance ruleset permanently includes the GitHub repository
@@ -39,4 +44,6 @@ without enabling direct pushes.
 technical gates, and all review threads must converge before the bypass is
 used. The canonical template, schema v1.1, validator, transaction fixture,
 tests, threat model, and ADR-002 carry the same rule. This source-only change
-does not require a Home sync.
+does not require a Home sync. The Stage B transaction also requires
+`unresolvedThreads=0` before invoking either a regular or administrative
+merge.

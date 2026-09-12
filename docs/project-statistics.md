@@ -1135,17 +1135,18 @@ unreleased until independent G2B field validation.*
   mit `bypass_mode=pull_request`; direkte Pushes bleiben geschützt.
 - Schema v1.1, Stage-B-Validator, Transaktionsfixture, Threat Model und ADR-002
   bilden denselben engen Vertrag ab. `adminBypassNormalPath` bleibt `false`.
-- 128 gezielte und 258 vollständige Python-Tests sind erfolgreich; zwölf
-  plattformabhängige Tests wurden erwartungsgemäß übersprungen.
+- 129 gezielte Tests sind nach der Review-Härtung erfolgreich. Zuvor waren alle
+  258 vollständigen Python-Tests mit zwölf erwarteten Plattform-Skips grün.
 - Documentation Impact ist `UpdateRequired`. Die Änderung ist `sourceOnly` und
   benötigt keinen Home-Sync.
 
 *The private-governance ruleset permanently includes the repository-admin role
 with `bypass_mode=pull_request`, while direct pushes remain protected. Schema
 v1.1, the Stage B validator, transaction fixture, threat model, and ADR-002
-carry the same narrow contract; `adminBypassNormalPath` remains `false`. All 128
-focused and 258 full Python tests passed, with twelve expected platform skips.
-This source-only `UpdateRequired` change needs no Home sync.*
+carry the same narrow contract; `adminBypassNormalPath` remains `false`. All 129
+focused tests passed after the review hardening; the preceding full run passed
+all 258 tests with twelve expected platform skips. This source-only
+`UpdateRequired` change needs no Home sync.*
 
 ## Gesamtstatistik / Overall Statistics
 
