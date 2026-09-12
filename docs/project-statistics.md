@@ -1129,6 +1129,25 @@ a bound payload hash. Schema 2.0 separates PreMerge from PostMerge, while
 historical schema 1.0 cannot authorize a new merge. The source candidate remains
 unreleased until independent G2B field validation.*
 
+### 2026-09-12 - Dauerhafter Admin-PR-Bypass / Persistent admin PR bypass
+
+- Das private Governance-Ruleset enthält die Repository-Admin-Rolle dauerhaft
+  mit `bypass_mode=pull_request`; direkte Pushes bleiben geschützt.
+- Schema v1.1, Stage-B-Validator, Transaktionsfixture, Threat Model und ADR-002
+  bilden denselben engen Vertrag ab. `adminBypassNormalPath` bleibt `false`.
+- 129 gezielte Tests sind nach der Review-Härtung erfolgreich. Zuvor waren alle
+  258 vollständigen Python-Tests mit zwölf erwarteten Plattform-Skips grün.
+- Documentation Impact ist `UpdateRequired`. Die Änderung ist `sourceOnly` und
+  benötigt keinen Home-Sync.
+
+*The private-governance ruleset permanently includes the repository-admin role
+with `bypass_mode=pull_request`, while direct pushes remain protected. Schema
+v1.1, the Stage B validator, transaction fixture, threat model, and ADR-002
+carry the same narrow contract; `adminBypassNormalPath` remains `false`. All 129
+focused tests passed after the review hardening; the preceding full run passed
+all 258 tests with twelve expected platform skips. This source-only
+`UpdateRequired` change needs no Home sync.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1139,27 +1158,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 673179 lines |
-| Textdateien / Text files | 3160 |
+| Textbasis / Text base | 673320 lines |
+| Textdateien / Text files | 3161 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-12 |
 | Aktivtage / Active days | 108 |
-| Relevante Commits / Relevant commits | 836 |
-| Zeilen je Aktivtag / Lines per active day | 6233.1 |
+| Relevante Commits / Relevant commits | 838 |
+| Zeilen je Aktivtag / Lines per active day | 6234.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 77.9x |
 | Speedup vs. 100 lines/day | 62.3x |
-| Methodik / Methodology | v2; source `7c0741cb3b57` |
+| Methodik / Methodology | v2; source `3164f130134f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 25579
-Dokumentation / Documentation   [##########..........]  50.2% | 337634
-Skripte / Scripts               [##..................]   8.2% | 55011
-Konfiguration / Configuration   [#######.............]  37.5% | 252367
+Tests                           [#...................]   3.8% | 25617
+Dokumentation / Documentation   [##########..........]  50.2% | 337700
+Skripte / Scripts               [##..................]   8.2% | 55040
+Konfiguration / Configuration   [#######.............]  37.5% | 252375
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
 ```
@@ -1303,15 +1322,15 @@ Slots 64..79
 ```
 
 ```text
-Slots 80..83
-    cap 2000 | . . . .
-        1667 | # . . .
-        1333 | # . . .
-        1000 | # . . .
-         667 | # # . .
-         333 | # # . .
-           0 +---------
-             80 81 82 83
+Slots 80..84
+    cap 2000 | . . . . .
+        1667 | # . . . .
+        1333 | # . . . .
+        1000 | # . . . .
+         667 | # # . . .
+         333 | # # . . .
+           0 +-----------
+             80 81 82 83 84
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1400,6 +1419,7 @@ Slots 80..83
 | 81 | Feature 032 Exaktvertrag und Assurance / Feature 032 exact contract and assurance | 676 |
 | 82 | Feature 032 Home-Lieferbasis / Feature 032 Home delivery foundation | 52 |
 | 83 | Feature 032 Flottenabschluss / Feature 032 fleet closeout | 282 |
+| 84 | Dauerhafter Admin-PR-Bypass / Persistent admin PR bypass | 133 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1423,7 +1443,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6233.1
+Visible repository [############........] 6234.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1449,6 +1469,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-12. Es enthaelt 108 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 110651 |
+| 2026-09 | 110844 |
 
 <!-- project-statistics-v2:end -->

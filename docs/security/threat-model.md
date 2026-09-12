@@ -103,7 +103,7 @@ Authority werden unmittelbar vor der abhängigen Aktion erneut vermittelt.
 | Repudiation | Push, Merge, Bypass oder Restore ist später nicht kausal zuordenbar | Run-/Repository-/Action-Idempotency-Key, Provideraktions-ID, PreMerge-/PostMerge-Kette |
 | Information Disclosure | Token, private Pfade, Actor oder Providerrohantwort gelangen in Evidence | minimierte Allowlist-Felder, Redaktionsprüfung, Output-Limit, restriktive maschinenlokale Rechte |
 | Denial of Service | Retry-Schleife, Budgetdrift oder halb ausgeführte Welle | begrenzte Read-Retries, kein blinder Write-Retry, serieller Writer, atomarer Stop vor Folgeziel |
-| Elevation of Privilege | Admin-Bypass oder Ruleset-Write wird Normalpfad | regulärer Review/Merge zuerst, protection-only Refusal, frische enge Ausnahme-Evidence, keine Bypass-Akteure im Ruleset |
+| Elevation of Privilege | Admin-Bypass oder Ruleset-Write wird Normalpfad | regulärer Review/Merge zuerst, protection-only Refusal, frische enge Ausnahme-Evidence; nur Repository-Admins erhalten den dauerhaften `pull_request`-Bypass |
 
 - **CIA**: Vertraulichkeit entsteht durch Datenminimierung und Redaction;
   Integrität durch Plan-/Run-/Head-/Evidence-Hashketten; Verfügbarkeit durch

@@ -493,6 +493,7 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
             ("ruleset", {**ruleset_source, "requiredStatusChecks": []}),
             ("ruleset", {**ruleset_source, "requiredStatusChecks": ["a", "b"]}),
             ("ruleset", {**ruleset_source, "blockedWritePaths": ["direct", "web"]}),
+            ("ruleset", {**ruleset_source, "bypassActors": []}),
             ("ruleset", {**ruleset_source, "adminBypassNormalPath": True}),
             ("ruleset", {**ruleset_source, "remoteConverged": True}),
         ]

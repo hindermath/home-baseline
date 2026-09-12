@@ -57,15 +57,21 @@ Der GitHub-Ruleset besitzt exakt:
 | Required approvals | `1` reguläre Review / regular review |
 | Required status checks | exakt `home-baseline/ci-minimal-gate` |
 | Strict status checks | `true` |
-| Bypass actors | leere Liste / empty list |
+| Bypass actors | Repository-Rolle `Admin` (`actor_id=5`), nur `pull_request` |
 | Blocked normal write paths | `direct`, `web`, `api` |
 | Admin bypass normal path | `false` |
 
 „Blocked write paths“ ist die fachliche Normalform: Jeder Default-Branch-Write
-muss aus einem bestandenen und reviewten PR stammen. Die ausdrücklich erteilte
-Admin-Bypass-Authority ändert den Ruleset nicht und erzeugt keinen persistenten
-Bypass Actor. Sie darf nur für einen konkreten Merge nach vollständig
-bestandener unabhängiger Evidence verwendet werden.
+muss aus einem bestandenen und reviewten PR stammen. Der persistente
+Admin-Akteur stellt den eng begrenzten Pull-Request-Bypass bereit, macht ihn
+aber nicht zum Normalpfad. Er darf nur mit ausdrücklich erteilter
+Admin-Bypass-Authority für einen konkreten Merge nach vollständig bestandener
+unabhängiger Evidence verwendet werden.
+
+*The persistent repository-admin actor makes the narrowly scoped pull-request
+bypass available without enabling direct pushes. Its use remains bound to
+explicit authority, the current PR head, green material gates, and resolved
+review threads.*
 
 ## Liefersequenz / Delivery Sequence
 

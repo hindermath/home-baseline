@@ -50,8 +50,10 @@ schwächen. Der Workflow wird zuerst als exakter Kandidat über Branch, lokales
 Gate, PR, konkrete Remote-Checks und regulären Review geliefert. Erst nach
 dessen Merge darf die getrennte Ruleset-Transaktion den Status
 `home-baseline/ci-minimal-gate`, PR-Pflicht, eine Approval und `strict=true`
-installieren. Direkte, Web- und API-Schreibpfade bleiben gesperrt; es werden
-keine Bypass-Akteure konfiguriert.
+installieren. Direkte, Web- und API-Schreibpfade bleiben gesperrt. Die
+Repository-Admin-Rolle ist dauerhaft mit `bypass_mode=pull_request`
+konfiguriert, damit ein ausdrücklich autorisierter Admin-Bypass ohne Änderung
+der Schutzregeln möglich bleibt.
 
 Jede Remote-Aktion bindet Run-ID, numerische Repository-ID, Baseline-/
 Candidate-Head, Planhash und einen stabilen Idempotency Key. Unklare Writes
@@ -66,7 +68,8 @@ Zeit, Grund, Scope und aktuelle Authority gebunden sind. Bypass ersetzt keine
 dieser Kontrollen. / Regular merge remains the normal path. An admin bypass is
 limited to a protection-only refusal with exact current-head, gate, review,
 security, time, scope, reason, and authority evidence; it replaces none of
-those controls.
+those controls. The persistent actor entry grants availability, while
+`adminBypassNormalPath=false` keeps its use outside the normal path.
 
 Konsequenz: Der zusätzliche Providerwriter erhöht die Angriffsfläche, wird
 aber durch getrennte Read-/Write-Argumentarrays, festen Host, validierte IDs,
