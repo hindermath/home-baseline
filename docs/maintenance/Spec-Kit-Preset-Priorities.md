@@ -247,7 +247,7 @@ nicht selbst akzeptieren.
 
 ### 3. Autonomous Run nutzt das Review als optionales Start-Gate
 
-`autonomous-run-governance` v0.3.3 prüft vor Branch-, Feature- und
+`autonomous-run-governance` v0.4.3 prüft vor Branch-, Feature- und
 Specify-Erstellung, ob Intake Review installiert und laut Repository-Policy
 verpflichtend ist:
 
