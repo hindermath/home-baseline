@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-seven-repository-acceptance",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "owner": "Feature Orchestrator and each Repository Owner",
+  "reviewer": "Repository Delivery Reviewer",
+  "source": {
+    "runtimePath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/fleet/repository-acceptance.json",
+    "sha256": "a81a7a1c4282d125c9d8fedd77fa24157d5331319aab5ca0352c480e115d5202"
+  },
+  "repositoryCount": 7,
+  "requiredDimensions": [
+    "tests",
+    "links",
+    "UTF-8",
+    "accessibility",
+    "statistics",
+    "documentation",
+    "security",
+    "agent parity",
+    "native platform",
+    "delivery"
+  ],
+  "allDimensionsPassed": true,
+  "allDefaultBranchesAheadBehindZero": true,
+  "residualRisk": "Repository-local evidence remains exact-head evidence and must not be projected onto later changes.",
+  "reevaluationTrigger": "Any local gate, platform proof, reviewed tree or default branch changes.",
+  "decision": "Pass"
+}

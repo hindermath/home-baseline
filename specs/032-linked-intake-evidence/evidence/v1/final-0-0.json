@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-final-zero-zero",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "owner": "Feature Orchestrator",
+  "reviewer": "Fleet State Reviewer",
+  "source": {
+    "runtimePath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/fleet/final-0-0.json",
+    "sha256": "549d73120c261b208741cb9065cb862cb2c8910355ae45ec800d150124677d7e"
+  },
+  "repositoryCount": 7,
+  "allAhead": 0,
+  "allBehind": 0,
+  "allPullRequestsTerminal": true,
+  "allReviewedTreesMatchMergedDefaultTrees": true,
+  "sandboxFeature003HistoryPreserved": true,
+  "residualRisk": "This is a point-in-time provider and local checkout snapshot.",
+  "reevaluationTrigger": "Any fetch, local commit, remote commit, branch, PR or merge state changes.",
+  "decision": "Pass"
+}

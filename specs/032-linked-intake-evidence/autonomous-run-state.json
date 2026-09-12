@@ -2,12 +2,12 @@
   "schemaVersion": "1.1",
   "runId": "c53e4b5b-74fa-4ff9-ac5e-ce51850a5321",
   "featurePath": "specs/032-linked-intake-evidence",
-  "branch": "032-linked-intake-evidence",
+  "branch": "032-linked-intake-evidence-causal-closeout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
   "stage": "Implement",
   "status": "Active",
-  "checkpointCommit": "dc3522a6756cf6d6810eb5d046425a27a10d82f5",
+  "checkpointCommit": "d41c988cd6f4f8dd605bcf346ecc28f9b8ef7a4a",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
@@ -44,8 +44,8 @@
   ],
   "tasks": {
     "path": "specs/032-linked-intake-evidence/tasks.md",
-    "sha256": "3c8053ceb9f1da90ab2554a4e54d54ba367001f63b7f548580594746191d9aaa",
-    "completed": 74,
+    "sha256": "49bb3e5ba9299e69dbf393dc781033b375779fd57879183121bca058a08535c4",
+    "completed": 162,
     "total": 169
   },
   "routing": {
@@ -203,7 +203,7 @@
         "dependsOn": [
           "resume-governance-delta-20260909"
         ],
-        "status": "Blocked",
+        "status": "Active",
         "resultPath": ".specify/runtime/feature032-resume-20260909.fVCF5t/analyze/analyze-resume-20260909.result.json",
         "resultSha256": "d6b20e9e831e4ab0d71b325af60cdfc298639d6cc986e8f6a3f6c36acd407262",
         "agentFamily": "Codex",
@@ -401,7 +401,7 @@
         "dependsOn": [
           "implement-validation-20260909"
         ],
-        "status": "Blocked",
+        "status": "Active",
         "agentFamily": "Codex",
         "model": "gpt-5.6-sol",
         "reasoningEffort": "high",
@@ -431,12 +431,12 @@
       }
     ]
   },
-  "lastPassingGate": "T074 completed for PR #280 at head dc3522a6756cf6d6810eb5d046425a27a10d82f5. T075 check convergence found two bounded CI defects; no merge action has started.",
-  "nextExactAction": "Commit the bounded T075 remediation with the required co-author, refresh generated statistics from the resulting clean checkpoint, push without force, repeat T071-T074 evidence for the new exact head, then converge PR #280 checks and review.",
+  "lastPassingGate": "T163 completed at 9f6e3e36cdae6b6e6ba9e28c82cd5ff905071f80: the unchanged T162 head was pushed without force and exactly one non-empty causal closeout PR (#281) was created. The first T164 check exposed exactly two stale Markdown targets caused by the required rename.",
+  "nextExactAction": "Complete the bounded T164 link-target repair, push the new exact head without force, and run the required checks once for that changed head.",
   "lastOperation": {
-    "kind": "Task:T075:CheckConvergence",
-    "state": "NeedsRevalidation",
-    "summary": "PR #280 exposed two bounded CI defects: the five autonomous OpenCode commands were absent from the tracked singular command surface, and Lychee evaluated intentionally broken positive-fixture outputs. Both remediations are locally green and await a new committed head plus exact native and PR gates."
+    "kind": "Task:T164:GateRepair",
+    "state": "Active",
+    "summary": "The required rename left two generated Markdown links pointing at the removed pre-rename path. The repair changes only those two href targets and this operational state; it does not alter fleet facts, statistics, product surfaces, or the accepted intake semantics."
   },
   "stop": {
     "reason": "N/A",
@@ -449,5 +449,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-09-11T17:18:34Z"
+  "updatedAt": "2026-09-12T01:59:03Z"
 }

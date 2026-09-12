@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-portable-index",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "publicSafe": true,
+  "rawLogsIncluded": false,
+  "tokensIncluded": false,
+  "privateAbsolutePathsIncluded": false,
+  "localAgentStateIncluded": false,
+  "owner": "Feature Orchestrator",
+  "reviewer": "Documentation and Evidence Reviewer",
+  "artifacts": [
+    {
+      "path": "fleet-acceptance.json",
+      "purpose": "Fourteen global Primary acceptance gates and seven terminal repository rows"
+    },
+    {
+      "path": "repository-acceptance.json",
+      "purpose": "Independent required-dimension acceptance across exactly seven repositories"
+    },
+    {
+      "path": "platform-parity.json",
+      "purpose": "macOS, native Linux and native Windows parity"
+    },
+    {
+      "path": "product-boundary.json",
+      "purpose": "Zero product boundary, four version null-diffs and three bounded Constitution corrections"
+    },
+    {
+      "path": "delivery.json",
+      "purpose": "Causal MergeAndSync lifecycle"
+    },
+    {
+      "path": "final-0-0.json",
+      "purpose": "Final seven-of-seven default-branch 0/0 snapshot"
+    }
+  ],
+  "sourceHashPolicy": "Every portable artifact embeds the raw SHA-256 and runtime-relative path of its selected source.",
+  "residualRisk": "Redaction removes raw logs and local paths, so deep incident reconstruction still depends on the ignored runtime evidence retained on the originating workstation.",
+  "reevaluationTrigger": "Selected source hash, redaction policy, owner, reviewer, risk or evidence scope changes.",
+  "decision": "Pass"
+}

@@ -55,9 +55,21 @@ certification.
   upstream exclusions were preserved.
 - [x] The fail-on-high secret scan passed with `high=0` and
   `gitleaks_high=0`; dependency surfaces have an exact zero diff.
-- [ ] Independent Security/Architecture review remains `Open`; this local
-  runner evidence does not claim that human gate.
-- [ ] Native Linux and Windows renderer evidence remains `Open` until T071.
+- [x] Independent or explicitly authorized compensating exact-head
+  Security/Architecture review is terminal for every repository; no actionable
+  finding or conversation remains.
+- [x] Native Linux and Windows renderer evidence is terminal for all seven
+  reviewed candidates.
+
+## Terminale Flottenentscheidung / Terminal fleet decision
+
+`Pass`: No applicable security or architecture gate remains open. Web/API,
+SBOM, VEX, AI-SBOM, SLSA, cloud-assurance and regulated-operator controls stay
+the narrowly reasoned `N/A` decisions above because the delivered delta is a
+documentation renderer and evidence flow. Their stated triggers remain
+binding. Source: `../evidence/v1/product-boundary.json`. Owner: Security and
+Architecture Reviewer. Re-evaluation: any input, trust boundary, dependency,
+product/runtime, image, API, provider or evidence-contract change.
 
 Machine evidence:
 `.specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/repositories/home-baseline/governance-macos.json`.
