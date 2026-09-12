@@ -31,6 +31,16 @@ PowerShell: `-Action`, `-Repo`, `-CheckOnly`, `-WhatIf`.
 
 ## EXIT STATUS
 
+Regelversion 2 benötigt das freigegebene `private-aggregate.json` neben dem
+öffentlichen Snapshot. Jede öffentliche Repository-Zeile erhält eigene
+Ausführungsarten; private Einzelbelege werden von diesem Werkzeug nicht gelesen.
+Fehlende oder unzulässige Summen verhindern Validate und Render.
+
+*Rule version 2 requires the sanitized private-aggregate.json beside the public
+snapshot. Each public repository has individual execution-mode counts. This
+tool never reads private individual evidence. Missing or invalid totals fail
+Validate and Render.*
+
 `0`: Erfolg/aktuell; `1`: Drift; `2`: Aufruf-, Quellen- oder Validierungsfehler.
 
 *0: success/current; 1: drift; 2: invocation, source or validation error.*

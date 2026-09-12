@@ -6,6 +6,8 @@ Erhebt und rendert öffentliche Spec-Kit-Laufzahlen. / Collects and renders publ
 Collect reads public GitHub evidence using gh. Validate and Render replay the versioned
 snapshot without network access. Only marked README blocks and report files are generated.
 Collect liest öffentliche GitHub-Belege; Validate/Render arbeiten offline. Kein Commit, Push oder Merge.
+Rule version 2 also validates the sanitized private aggregate and partitions executed runs by mode.
+Regelversion 2 prüft zusätzlich freigegebene private Summen und die Ausführungsarten je Repository.
 .PARAMETER Action
 Collect, Validate or Render. / Erheben, prüfen oder erzeugen.
 .PARAMETER Repo
@@ -61,8 +63,10 @@ try {
     $snapshot = Read-HBJson $snapshotPath
     Test-HBStatisticsSnapshot $snapshot
     Assert-HBStatisticsRegistryBinding $snapshot $registry
-    if ($Action -eq 'Validate') { Write-Host 'PASS: public snapshot and register.'; exit 0 }
-    $de = Get-HBStatisticsTable $snapshot de; $en = Get-HBStatisticsTable $snapshot en
+    $aggregate = if ($snapshot.ruleVersion -eq 2) { Read-HBJson (Join-Path $data 'private-aggregate.json') } else { $null }
+    if ($snapshot.ruleVersion -eq 2) { Assert-HBPrivateAggregate $aggregate }
+    if ($Action -eq 'Validate') { Write-Host 'PASS: public snapshot, register and applicable private aggregate.'; exit 0 }
+    $de = Get-HBStatisticsTable $snapshot de $aggregate; $en = Get-HBStatisticsTable $snapshot en $aggregate
     $outputs = [ordered]@{}
     # Compute every result before writing any file, so malformed markers cannot cause a partial render.
     foreach ($pair in @(@('README.md', $de), @('README.en.md', $en))) {
@@ -73,7 +77,7 @@ try {
     $outputs[(Join-Path $data 'table.en.md')] = $en
     $outputs[(Join-Path $data 'review-queue.md')] = Get-HBStatisticsReviewReport $snapshot
     $outputs[(Join-Path $data 'publication.json')] = ConvertTo-HBJson ([ordered]@{
-        schemaVersion = 1; collectedAt = $snapshot.collectedAt
+        schemaVersion = $snapshot.schemaVersion; collectedAt = $snapshot.collectedAt
         snapshotSha256 = Get-HBTextHash (ConvertTo-HBJson $snapshot)
         tableSha256 = Get-HBTextHash $de; tableEnSha256 = Get-HBTextHash $en
     })

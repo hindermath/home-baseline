@@ -51,7 +51,16 @@ function ConvertFrom-HBJson {
 
 function Invoke-HBGitHub {
     param([string]$Endpoint)
-    if ($Endpoint -notmatch '^repos/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(/|$)') {
+    for ($attempt = 1; $attempt -le 3; $attempt++) {
+        try { return Invoke-HBGitHubRead $Endpoint }
+        catch { if ($attempt -eq 3) { throw }; Start-Sleep -Seconds $attempt }
+    }
+}
+
+function Invoke-HBGitHubRead {
+    param([string]$Endpoint)
+    if ($Endpoint -notmatch '^repos/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(/|$)' -and
+        $Endpoint -notmatch '^(user/repos|installation/repositories)\?[^\s]+$') {
         throw 'Invalid GitHub endpoint.'
     }
     $info = [Diagnostics.ProcessStartInfo]::new('gh')
@@ -81,7 +90,7 @@ function Invoke-HBGitHub {
 
 function Assert-HBRegistry {
     param([System.Collections.IDictionary]$Registry)
-    if ($Registry.schemaVersion -ne 1 -or $Registry.ruleVersion -ne 1) { throw 'Unsupported registry/rule version.' }
+    if ($Registry.schemaVersion -notin @(1, 2) -or $Registry.ruleVersion -ne $Registry.schemaVersion) { throw 'Unsupported registry/rule version.' }
     $names = @{}
     foreach ($repo in $Registry.repositories) {
         if ($repo.name -notmatch '^[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*$' -or $repo.level -notin @(0, 2)) {
@@ -100,6 +109,7 @@ function Assert-HBRegistry {
                 throw 'A reviewed decision and reason are required.'
             }
             $roles = @($review.proofs | ForEach-Object { $_.roles } | ForEach-Object { $_ })
+            if ($Registry.ruleVersion -eq 2) { Assert-HBExecutionMode $review }
             foreach ($required in @('started') + $(if ($review.executed) { 'executed' }) + $(if ($review.completed) { 'completed' })) {
                 if ($required -notin $roles) { throw "Missing ${required} evidence." }
             }
@@ -272,7 +282,7 @@ function Get-HBStatisticsSnapshot {
         })
     }
     [ordered]@{
-        schemaVersion = 1; ruleVersion = 1
+        schemaVersion = $Registry.schemaVersion; ruleVersion = $Registry.ruleVersion
         collectedAt = [DateTimeOffset]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
         registrySha256 = Get-HBTextHash (ConvertTo-HBJson $Registry)
         repositories = @($repos.ToArray())
@@ -281,14 +291,14 @@ function Get-HBStatisticsSnapshot {
 
 function Test-HBStatisticsSnapshot {
     param([System.Collections.IDictionary]$Snapshot)
-    if ($Snapshot.schemaVersion -ne 1 -or $Snapshot.ruleVersion -ne 1 -or
+    if ($Snapshot.schemaVersion -notin @(1, 2) -or $Snapshot.ruleVersion -ne $Snapshot.schemaVersion -or
         $Snapshot.registrySha256 -notmatch '^[a-f0-9]{64}$') { throw 'Unsupported snapshot.' }
     $null = [DateTimeOffset]::ParseExact($Snapshot.collectedAt, 'yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture)
     $names = @{}
     foreach ($repo in $Snapshot.repositories) {
         if ($names.ContainsKey($repo.name)) { throw 'Duplicate snapshot repository.' }
         $names[$repo.name] = $true
-        Assert-HBRegistry @{ schemaVersion = 1; ruleVersion = 1; repositories = @(
+        Assert-HBRegistry @{ schemaVersion = $Snapshot.schemaVersion; ruleVersion = $Snapshot.ruleVersion; repositories = @(
             @{ name = $repo.name; level = 0; reviews = @($repo.features | Where-Object { $_.decision -eq 'reviewed' } | ForEach-Object { $_.review }) }
         ) }
         if ($repo.level -notin @(0, 2) -or $repo.visibility -notin @('public', 'excluded')) { throw 'Invalid snapshot scope.' }
@@ -365,8 +375,9 @@ function Get-HBStatisticsFingerprint {
 }
 
 function Get-HBStatisticsTable {
-    param([System.Collections.IDictionary]$Snapshot, [ValidateSet('de', 'en')][string]$Language = 'de')
+    param([System.Collections.IDictionary]$Snapshot, [ValidateSet('de', 'en')][string]$Language = 'de', [System.Collections.IDictionary]$PrivateAggregate)
     Test-HBStatisticsSnapshot $Snapshot
+    if ($Snapshot.ruleVersion -eq 2) { return Get-HBExtendedStatisticsTable $Snapshot $Language $PrivateAggregate }
     $rows = [Collections.Generic.List[string]]::new()
     $method = 'https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md'
     if ($Language -eq 'de') {
@@ -419,6 +430,80 @@ function Get-HBStatisticsReviewReport {
         }
     }
     ($lines -join "`n") + "`n"
+}
+
+function Assert-HBExecutionMode {
+    param([System.Collections.IDictionary]$Review)
+    $modes = @('manual', 'serial', 'parallel', 'mixed', 'unknown')
+    if ($Review.executionMode -cnotin $modes -or [string]::IsNullOrWhiteSpace($Review.modeReason)) { throw 'Execution mode and reason required.' }
+    if (-not $Review.executed -and $Review.executionMode -ne 'unknown') { throw 'Unexecuted feature cannot have an execution mode.' }
+    # Absence of orchestration files is never affirmative evidence of manual execution.
+    if ($Review.executionMode -ne 'unknown' -and @($Review.proofs | Where-Object { 'mode' -in $_.roles }).Count -eq 0) {
+        throw 'Classified execution mode requires pinned affirmative evidence.'
+    }
+}
+
+function Assert-HBPrivateAggregate {
+    param([System.Collections.IDictionary]$Aggregate)
+    # This allowlist is the private/public boundary. Never forward source metadata or free text.
+    $keys = @('schemaVersion', 'ruleVersion', 'collectedAt', 'started', 'executed', 'completed', 'manual', 'serial', 'parallel', 'mixed', 'unknown', 'needsReview')
+    if ($null -eq $Aggregate -or $Aggregate.Count -ne $keys.Count) { throw 'A complete sanitized private aggregate is required.' }
+    foreach ($key in $Aggregate.Keys) { if ($key -cnotin $keys) { throw 'Private aggregate contains prohibited fields.' } }
+    if ($Aggregate.schemaVersion -ne 2 -or $Aggregate.ruleVersion -ne 2) { throw 'Unsupported private aggregate version.' }
+    $null = [DateTimeOffset]::ParseExact($Aggregate.collectedAt, 'yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture)
+    foreach ($key in $keys | Where-Object { $_ -notin @('schemaVersion', 'ruleVersion', 'collectedAt') }) {
+        if (($Aggregate[$key] -isnot [int] -and $Aggregate[$key] -isnot [long]) -or $Aggregate[$key] -lt 0 -or $Aggregate[$key] -gt 10000000) {
+            throw 'Aggregate values must be bounded nonnegative integers.'
+        }
+    }
+    if ($Aggregate.completed -gt $Aggregate.executed -or $Aggregate.executed -gt $Aggregate.started -or
+        ($Aggregate.manual + $Aggregate.serial + $Aggregate.parallel + $Aggregate.mixed + $Aggregate.unknown) -ne $Aggregate.executed) {
+        throw 'Private aggregate status/mode totals disagree.'
+    }
+}
+
+function Get-HBExecutionCounts {
+    param([object[]]$Reviews)
+    $counts = @(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L)
+    $modes = @('manual', 'serial', 'parallel', 'mixed', 'unknown')
+    foreach ($review in $Reviews) {
+        Assert-HBExecutionMode $review
+        $counts[0]++
+        if ($review.completed) { $counts[2]++ }
+        if ($review.executed) { $counts[1]++; $counts[3 + [array]::IndexOf($modes, $review.executionMode)]++ }
+    }
+    return ,$counts
+}
+
+function Get-HBExtendedStatisticsTable {
+    param([System.Collections.IDictionary]$Snapshot, [string]$Language, [System.Collections.IDictionary]$PrivateAggregate)
+    Assert-HBPrivateAggregate $PrivateAggregate
+    $rows = [Collections.Generic.List[string]]::new()
+    $method = 'https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md'
+    $de = $Language -eq 'de'
+    $rows.Add($(if ($de) { "Datenstand öffentlich: $($Snapshot.collectedAt); privat: $($PrivateAggregate.collectedAt) · [Methodik und Beleggrenzen]($method)" }
+        else { "Public data as of: $($Snapshot.collectedAt); private: $($PrivateAggregate.collectedAt) · [Method and evidence boundaries]($method)" }))
+    $rows.Add('')
+    $rows.Add($(if ($de) { '| Level | Öffentliches GitHub-Repository / Gruppe | Gestartet | Ausgeführt | Abschluss belegt | Manuell | Autonom seriell | Autonom parallel | Gemischt | Nicht eindeutig belegt |' }
+        else { '| Level | Public GitHub repository / group | Started | Executed | Completion evidenced | Manual | Autonomous serial | Autonomous parallel | Mixed | Not clearly evidenced |' }))
+    $rows.Add('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|')
+    $totals = @(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L); $level2 = $totals.Clone()
+    foreach ($repo in $Snapshot.repositories) {
+        if ($repo.visibility -ne 'public') { continue }
+        $counts = Get-HBExecutionCounts @($repo.features | Where-Object { $_.decision -eq 'reviewed' } | ForEach-Object { $_.review })
+        $rows.Add("| $($repo.level) | [$($repo.name.Split('/')[1])](https://github.com/$($repo.name)) | $($counts -join ' | ') |")
+        for ($i = 0; $i -lt 8; $i++) { $totals[$i] += $counts[$i]; if ($repo.level -eq 2) { $level2[$i] += $counts[$i] } }
+    }
+    $privateCounts = @('started', 'executed', 'completed', 'manual', 'serial', 'parallel', 'mixed', 'unknown') | ForEach-Object { $PrivateAggregate[$_] }
+    $all = $totals.Clone(); for ($i = 0; $i -lt 8; $i++) { $all[$i] += $privateCounts[$i] }
+    $labels = if ($de) { @('Öffentliche Level-2-Repositories gesamt', 'Öffentliche Level-0-/2-Repositories gesamt', 'Private GitHub-Repositories gesamt', 'Alle erfassten Repositories gesamt') }
+        else { @('Public level-2 repositories total', 'Public level-0/2 repositories total', 'Private GitHub repositories total', 'All included repositories total') }
+    $values = @($level2, $totals, $privateCounts, $all)
+    for ($i = 0; $i -lt 4; $i++) { $rows.Add("| | **$($labels[$i])** | $(($values[$i] | ForEach-Object { "**$_**" }) -join ' | ') |") }
+    $rows.Add('')
+    $rows.Add($(if ($de) { "Ausführungsarten teilen ausschließlich Ausgeführt auf. Private ungeprüfte Kandidaten: $($PrivateAggregate.needsReview); nicht mitgezählt." }
+        else { "Execution modes partition Executed only. Unreviewed private candidates: $($PrivateAggregate.needsReview); excluded from counts." }))
+    ($rows -join "`n") + "`n"
 }
 
 Export-ModuleMember -Function *-HB*
