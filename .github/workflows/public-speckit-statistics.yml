@@ -1,8 +1,6 @@
 name: Public Spec Kit statistics
 
 on:
-  schedule:
-    - cron: '17 8 1 * *'
   workflow_dispatch:
     inputs:
       registry_commit:

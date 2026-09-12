@@ -1167,6 +1167,12 @@ syntax, and secret-scan checks passed. Documentation impact is `UpdateRequired`,
 the statistics update is `GeneratedUpdate`, and this `homeRuntime` change
 requires Home sync.*
 
+### 2026-09-12 - Private Spec-Kit-Summen und Ausführungsarten / Private Spec Kit totals and execution modes
+
+- Regelversion 2 ergänzt individuelle öffentliche Ausführungsarten und eine strikt validierte private Sammelzeile; historische Regelversion 1 bleibt reproduzierbar.
+- Getrennte private CI-Erhebung und öffentliche Veröffentlichung; die Umsetzung wird vor der initialen gemeinsamen Live-Erhebung geprüft. Dieser Eintrag behauptet noch keine aktivierte Veröffentlichung.
+- *Rule version 2 adds per-public-repository execution modes and a strictly validated private aggregate. Version 1 replay remains supported. Separate private collection and public publication are validated before the initial joint live run; this entry does not preclaim activation.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1177,27 +1183,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 673938 lines |
-| Textdateien / Text files | 3162 |
+| Textbasis / Text base | 675569 lines |
+| Textdateien / Text files | 3163 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-14..2026-09-12 |
 | Aktivtage / Active days | 108 |
-| Relevante Commits / Relevant commits | 843 |
-| Zeilen je Aktivtag / Lines per active day | 6240.2 |
+| Relevante Commits / Relevant commits | 844 |
+| Zeilen je Aktivtag / Lines per active day | 6255.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 78.0x |
-| Speedup vs. 100 lines/day | 62.4x |
-| Methodik / Methodology | v2; source `574504bea48d` |
+| Speedup vs. 80 lines/day | 78.2x |
+| Speedup vs. 100 lines/day | 62.6x |
+| Methodik / Methodology | v2; source `e1e8a807291b` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 25744
-Dokumentation / Documentation   [##########..........]  50.2% | 338052
-Skripte / Scripts               [##..................]   8.2% | 55179
-Konfiguration / Configuration   [#######.............]  37.4% | 252375
+Tests                           [#...................]   3.8% | 25646
+Dokumentation / Documentation   [##########..........]  50.3% | 339833
+Skripte / Scripts               [##..................]   8.2% | 55129
+Konfiguration / Configuration   [#######.............]  37.4% | 252373
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
 ```
@@ -1448,8 +1454,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 78.0x
-100 lines/day      [############........] 62.4x
+80 lines/day       [################....] 78.2x
+100 lines/day      [#############.......] 62.6x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1462,7 +1468,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6240.2
+Visible repository [#############.......] 6255.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1488,6 +1494,6 @@ DE: Das Fenster beginnt am 2025-09-14 und endet am 2026-09-12. Es enthaelt 108 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 112008 |
+| 2026-09 | 114397 |
 
 <!-- project-statistics-v2:end -->
