@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 2,
+  "ruleVersion": 2,
+  "collectedAt": "2026-09-12T16:57:29Z",
+  "started": 24,
+  "executed": 24,
+  "completed": 0,
+  "manual": 0,
+  "serial": 0,
+  "parallel": 24,
+  "mixed": 0,
+  "unknown": 0,
+  "needsReview": 0
+}
