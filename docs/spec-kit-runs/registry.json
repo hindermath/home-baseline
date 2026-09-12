@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "ruleVersion": 1,
+  "schemaVersion": 2,
+  "ruleVersion": 2,
   "repositories": [
     {
       "name": "hindermath/home-baseline",
@@ -32,7 +32,9 @@
               ],
               "sha256": "e7875c15b973abcaa7d2678d1880f20e1673fd5180b54bb9dc44ea21fdf80e96"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/002-homogeneity-guardian-revision",
@@ -60,7 +62,9 @@
               ],
               "sha256": "4539ba7a81e0c5869e43f57c78893fd6e8c7c34bbff8c597b439df726a483d1e"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/003-git-config-scope",
@@ -88,7 +92,9 @@
               ],
               "sha256": "45c65ccedd93f62b79e72dc1d01cfdbf5ea9b2dc161553c0dd719fcea23f7423"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/005-workspace-teardown",
@@ -116,7 +122,9 @@
               ],
               "sha256": "1e1c98f43d9a6661de0254b6d3217c366d5f49bb5ee11d4bb251916d5729e706"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/006-gitlab-support",
@@ -151,7 +159,9 @@
               ],
               "sha256": "24d9de000e63f57bb95c354b4f1e111df4ddff33bd6ffe60c6e064d067860163"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/007-parallel-autonomous-run-governance",
@@ -179,7 +189,9 @@
               ],
               "sha256": "7f79c577f51aeb23254c26fcbe42a6110eba8b227373c5a1ea7740aa2e09ff9c"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/009-platform-maintenance",
@@ -213,8 +225,19 @@
               "path": "specs/009-platform-maintenance/autonomous-run-state.json",
               "roles": [],
               "sha256": "51126d94a4b334abc3d9b9fe498b261e1a11a48be755258f0495a1ec32d18580"
+            },
+            {
+              "path": "specs/009-platform-maintenance/autonomous-run-state.json",
+              "sha256": "51126d94a4b334abc3d9b9fe498b261e1a11a48be755258f0495a1ec32d18580",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/010-intake-sequencing-governance",
@@ -242,7 +265,9 @@
               ],
               "sha256": "adbecb668d900401c806b36bf47048f7fb0ad29201887b268fe9e8078036f290"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/011-documentation-reality-audit",
@@ -276,8 +301,19 @@
               "path": "specs/011-documentation-reality-audit/autonomous-run-state.json",
               "roles": [],
               "sha256": "69a1d5feb30626ed9fa64d0d4458271eb1602e77a1a29e8c1f305dc5b856610e"
+            },
+            {
+              "path": "specs/011-documentation-reality-audit/autonomous-run-state.json",
+              "sha256": "69a1d5feb30626ed9fa64d0d4458271eb1602e77a1a29e8c1f305dc5b856610e",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/012-documentation-impact-governance",
@@ -311,8 +347,19 @@
               "path": "specs/012-documentation-impact-governance/autonomous-run-state.json",
               "roles": [],
               "sha256": "7ddaecabccf0fb228d8e548444cc31562d355690ee734bf177c471cc906e2936"
+            },
+            {
+              "path": "specs/012-documentation-impact-governance/autonomous-run-state.json",
+              "sha256": "7ddaecabccf0fb228d8e548444cc31562d355690ee734bf177c471cc906e2936",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/013-documentation-reality-remediation-fleet",
@@ -346,8 +393,19 @@
               "path": "specs/013-documentation-reality-remediation-fleet/autonomous-run-state.json",
               "roles": [],
               "sha256": "eb2960fcef31f92edb034c41b0a8b2ab7e20161e7978ff8bfde7749167af516d"
+            },
+            {
+              "path": "specs/013-documentation-reality-remediation-fleet/autonomous-run-state.json",
+              "sha256": "eb2960fcef31f92edb034c41b0a8b2ab7e20161e7978ff8bfde7749167af516d",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/014-requirements-intake-consolidation-governance",
@@ -381,8 +439,19 @@
               "path": "specs/014-requirements-intake-consolidation-governance/autonomous-run-state.json",
               "roles": [],
               "sha256": "d285cefa1b02ff73433797e1cfd68c5ac7275e466f607e834ac5a37dc400f92f"
+            },
+            {
+              "path": "specs/014-requirements-intake-consolidation-governance/autonomous-run-state.json",
+              "sha256": "d285cefa1b02ff73433797e1cfd68c5ac7275e466f607e834ac5a37dc400f92f",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/015-windows-maintenance-hardening",
@@ -416,8 +485,19 @@
               "path": "specs/015-windows-maintenance-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "fe4c3698edb023ffbecd8bc6a6ad541fe698e7b29d8fc23c0a159ddac0246c9d"
+            },
+            {
+              "path": "specs/015-windows-maintenance-hardening/autonomous-run-state.json",
+              "sha256": "fe4c3698edb023ffbecd8bc6a6ad541fe698e7b29d8fc23c0a159ddac0246c9d",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/016-linux-maintenance-hardening",
@@ -451,8 +531,19 @@
               "path": "specs/016-linux-maintenance-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "a64b91e71da6af7ddab59a5996e2f1d14b286168b3c103e278107c287ed89d40"
+            },
+            {
+              "path": "specs/016-linux-maintenance-hardening/autonomous-run-state.json",
+              "sha256": "a64b91e71da6af7ddab59a5996e2f1d14b286168b3c103e278107c287ed89d40",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/017-preset-profile-worktree-hardening",
@@ -486,8 +577,19 @@
               "path": "specs/017-preset-profile-worktree-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "b3d06b4ebb0263d0ef3194d7b72cfa5066776d87376b9834f845fb90c68dcd1f"
+            },
+            {
+              "path": "specs/017-preset-profile-worktree-hardening/autonomous-run-state.json",
+              "sha256": "b3d06b4ebb0263d0ef3194d7b72cfa5066776d87376b9834f845fb90c68dcd1f",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/018-agentic-workspace-tui",
@@ -521,8 +623,19 @@
               "path": "specs/018-agentic-workspace-tui/autonomous-run-state.json",
               "roles": [],
               "sha256": "6fd65cb866e60075090393f7c7747e29116f36fdea7063157797bde5872bc59b"
+            },
+            {
+              "path": "specs/018-agentic-workspace-tui/autonomous-run-state.json",
+              "sha256": "6fd65cb866e60075090393f7c7747e29116f36fdea7063157797bde5872bc59b",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/019-agentic-workspace-regression-hardening",
@@ -556,8 +669,19 @@
               "path": "specs/019-agentic-workspace-regression-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "e68a3cbba2a2073363724b7c6a93bdba9ed7307ee9f21688537fff1e8a27d482"
+            },
+            {
+              "path": "specs/019-agentic-workspace-regression-hardening/autonomous-run-state.json",
+              "sha256": "e68a3cbba2a2073363724b7c6a93bdba9ed7307ee9f21688537fff1e8a27d482",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/020-documentation-architecture-audit",
@@ -591,8 +715,19 @@
               "path": "specs/020-documentation-architecture-audit/autonomous-run-state.json",
               "roles": [],
               "sha256": "f14b4720a508ad5dd6b9c7dcc098b302746ad6f8bba1316642fe21ab690ad7ad"
+            },
+            {
+              "path": "specs/020-documentation-architecture-audit/autonomous-run-state.json",
+              "sha256": "f14b4720a508ad5dd6b9c7dcc098b302746ad6f8bba1316642fe21ab690ad7ad",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/021-level0-documentation-architecture",
@@ -626,8 +761,19 @@
               "path": "specs/021-level0-documentation-architecture/autonomous-run-state.json",
               "roles": [],
               "sha256": "17b07551dfcc7c95da0026b3052a81ca800a21a54288f87520465ff035487ccc"
+            },
+            {
+              "path": "specs/021-level0-documentation-architecture/autonomous-run-state.json",
+              "sha256": "17b07551dfcc7c95da0026b3052a81ca800a21a54288f87520465ff035487ccc",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/022-agentic-workspace-efficiency-guide",
@@ -661,8 +807,19 @@
               "path": "specs/022-agentic-workspace-efficiency-guide/autonomous-run-state.json",
               "roles": [],
               "sha256": "a2f4fa205d923b357b3d1502d6f262bb66fe85a0a9104a93b8a270f949a0f81b"
+            },
+            {
+              "path": "specs/022-agentic-workspace-efficiency-guide/autonomous-run-state.json",
+              "sha256": "a2f4fa205d923b357b3d1502d6f262bb66fe85a0a9104a93b8a270f949a0f81b",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/023-registered-doc-architecture-adoption",
@@ -696,8 +853,19 @@
               "path": "specs/023-registered-doc-architecture-adoption/autonomous-run-state.json",
               "roles": [],
               "sha256": "588889da55a77131c8611e96c3302d9f0b674553408acfcc9b57a94864c5071e"
+            },
+            {
+              "path": "specs/023-registered-doc-architecture-adoption/autonomous-run-state.json",
+              "sha256": "588889da55a77131c8611e96c3302d9f0b674553408acfcc9b57a94864c5071e",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/024-mitgeltende-dokumente-verzahnung",
@@ -731,8 +899,19 @@
               "path": "specs/024-mitgeltende-dokumente-verzahnung/autonomous-run-state.json",
               "roles": [],
               "sha256": "ae145a2cfdfbb47b0d657018fdd66034e0ac7e8c24cc965bfce11180addb3fed"
+            },
+            {
+              "path": "specs/024-mitgeltende-dokumente-verzahnung/autonomous-run-state.json",
+              "sha256": "ae145a2cfdfbb47b0d657018fdd66034e0ac7e8c24cc965bfce11180addb3fed",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/025-rl-se-self-assessment",
@@ -766,8 +945,19 @@
               "path": "specs/025-rl-se-self-assessment/autonomous-run-state.json",
               "roles": [],
               "sha256": "def840875e365ba3152b43e913553b8489f9a4cea311f2b78c5871173d98459e"
+            },
+            {
+              "path": "specs/025-rl-se-self-assessment/autonomous-run-state.json",
+              "sha256": "def840875e365ba3152b43e913553b8489f9a4cea311f2b78c5871173d98459e",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/027-autonomous-evidence-integrity-hardening",
@@ -801,8 +991,19 @@
               "path": "specs/027-autonomous-evidence-integrity-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "ea5fa44c4b66df49f107b3bfce5e1cd219408542e5385667d840eac8564c28c4"
+            },
+            {
+              "path": "specs/027-autonomous-evidence-integrity-hardening/autonomous-run-state.json",
+              "sha256": "ea5fa44c4b66df49f107b3bfce5e1cd219408542e5385667d840eac8564c28c4",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/028-autonomous-evidence-integrity-field-validation",
@@ -836,8 +1037,19 @@
               "path": "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-state.json",
               "roles": [],
               "sha256": "fc1a4b99e5dd4348b29c04405149e9010b10549917e498451ee46c91a52d300e"
+            },
+            {
+              "path": "specs/028-autonomous-evidence-integrity-field-validation/autonomous-run-state.json",
+              "sha256": "fc1a4b99e5dd4348b29c04405149e9010b10549917e498451ee46c91a52d300e",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/029-ci-budget-governance",
@@ -871,8 +1083,19 @@
               "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
               "roles": [],
               "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc"
+            },
+            {
+              "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
+              "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/030-stage-b-rollout",
@@ -905,8 +1128,19 @@
               "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
               "roles": [],
               "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb"
+            },
+            {
+              "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
+              "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/031-github-copilot-review-governance",
@@ -940,8 +1174,58 @@
               "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
               "roles": [],
               "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4"
+            },
+            {
+              "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+              "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
+        },
+        {
+          "completed": true,
+          "modeReason": "Autonomous run c53e4b5b-74fa-4ff9-ac5e-ce51850a5321 completed feature execution; no parallel campaign-worker assignment in the reviewed repository evidence.",
+          "reason": "Feature 032: reviewed specification, 169/169 substantive tasks, terminal Completed/Retrospective state and merged linked-intake delivery evidence. This is feature completion, not general product acceptance.",
+          "executionMode": "serial",
+          "feature": "specs/032-linked-intake-evidence",
+          "proofs": [
+            {
+              "path": "specs/032-linked-intake-evidence/spec.md",
+              "sha256": "99aafe6c17a04b75ea3308b4357f356940412c4e9d34c31677d3031b791499d6",
+              "kind": "file",
+              "roles": [
+                "started"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+            },
+            {
+              "path": "specs/032-linked-intake-evidence/tasks.md",
+              "sha256": "0e69c4afc3f180e3ccdcc0d1d9bfdf35072d4d923d3bc0b913a1433d392a0669",
+              "kind": "file",
+              "roles": [
+                "executed"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+            },
+            {
+              "path": "specs/032-linked-intake-evidence/autonomous-run-state.json",
+              "sha256": "25d82d05bd3379c929942aebd8c071b255c265f7f8cb4d3fe46b5a607ba66b6e",
+              "kind": "file",
+              "roles": [
+                "completed",
+                "mode"
+              ],
+              "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+            }
+          ],
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "executed": true
         }
       ]
     },
@@ -991,8 +1275,19 @@
               "path": "specs/001-programmquellen-baseline/autonomous-run-state.json",
               "roles": [],
               "sha256": "9cea8e010f9b20f0135c4e63ae219da58b6023f5ed52bed648b24e8bd6dd9d02"
+            },
+            {
+              "path": "specs/001-programmquellen-baseline/autonomous-run-state.json",
+              "sha256": "9cea8e010f9b20f0135c4e63ae219da58b6023f5ed52bed648b24e8bd6dd9d02",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "1a643d2df245856357badd5b80e291aa695d1ef3"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/002-portfolio-ownership",
@@ -1026,8 +1321,19 @@
               "path": "specs/002-portfolio-ownership/autonomous-run-state.json",
               "roles": [],
               "sha256": "18069cb2627ac55f089117d255b1b19407d87e17b9c439fb4caccb6ae6f94893"
+            },
+            {
+              "path": "specs/002-portfolio-ownership/autonomous-run-state.json",
+              "sha256": "18069cb2627ac55f089117d255b1b19407d87e17b9c439fb4caccb6ae6f94893",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "1a643d2df245856357badd5b80e291aa695d1ef3"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/003-authoring-contract",
@@ -1061,8 +1367,19 @@
               "path": "specs/003-authoring-contract/autonomous-run-state.json",
               "roles": [],
               "sha256": "56c7d4e9bc1f8717bc1a32d86ffbb9f3153045967b509e69447a4053a8a57efa"
+            },
+            {
+              "path": "specs/003-authoring-contract/autonomous-run-state.json",
+              "sha256": "56c7d4e9bc1f8717bc1a32d86ffbb9f3153045967b509e69447a4053a8a57efa",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "1a643d2df245856357badd5b80e291aa695d1ef3"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         }
       ]
     },
@@ -1096,7 +1413,9 @@
               ],
               "sha256": "7eb9b262a40d674cff3c232e07c462a549fadf26cf96eb1408234671ee7f16fd"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/002-secure-development-hardening",
@@ -1130,8 +1449,19 @@
               "path": "specs/002-secure-development-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "b2552d9364a124bf8cb0fc1c55731c8ff221f575bdce01a56e5343605bbaf69c"
+            },
+            {
+              "path": "specs/002-secure-development-hardening/autonomous-run-state.json",
+              "sha256": "b2552d9364a124bf8cb0fc1c55731c8ff221f575bdce01a56e5343605bbaf69c",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "cacbd0957c8ca30e31366990d951b1dad220fbb4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         }
       ]
     },
@@ -1165,7 +1495,9 @@
               ],
               "sha256": "8e785d8243b1fbea0d818394becc2e57e371460cebfdd8bc60bbf61071f59ec5"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/002-constitution-change",
@@ -1199,8 +1531,19 @@
               "path": "specs/002-constitution-change/autonomous-run-state.json",
               "roles": [],
               "sha256": "7c0f9dfaee5b6f502cf655ca4cbc9147e038ea579dff6fd47d97b3393a1dc670"
+            },
+            {
+              "path": "specs/002-constitution-change/autonomous-run-state.json",
+              "sha256": "7c0f9dfaee5b6f502cf655ca4cbc9147e038ea579dff6fd47d97b3393a1dc670",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "114373e397d682ab22b80f536b797fa3ad742c88"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/003-terminalgui-migration",
@@ -1235,7 +1578,9 @@
               ],
               "sha256": "0e004915fe7917143d46c04e17c272eed345332bba50635a1e2e914c712da984"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/004-rl-se-self-assessment",
@@ -1270,7 +1615,9 @@
               ],
               "sha256": "13530177bcdb5d5d5e9bfe9f038680c7ef174b63f0ac9dbea23122cf1286d9cf"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/005-gsdb-intensive-review",
@@ -1305,7 +1652,9 @@
               ],
               "sha256": "e39a7f118edddd26428cf6c718993533003d761c18bd69d92495d502e1d0009c"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         }
       ]
     },
@@ -1339,7 +1688,9 @@
               ],
               "sha256": "3ced31d3b3bce1b6a5866e2202446399008c4de9a0d3497ba6f7565aa486673d"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/002-vm-inc-compat",
@@ -1367,7 +1718,9 @@
               ],
               "sha256": "4493e5221880ff868f6c8ea57f8d6787020523731c7fa1c26d9f10ca2dd01cb4"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/003-constitution-change",
@@ -1401,8 +1754,19 @@
               "path": "specs/003-constitution-change/autonomous-run-state.json",
               "roles": [],
               "sha256": "d2326e472edfd39b49b2a9eb6efbc3dd379b29c7b275d717c3e8b97949a715fb"
+            },
+            {
+              "path": "specs/003-constitution-change/autonomous-run-state.json",
+              "sha256": "d2326e472edfd39b49b2a9eb6efbc3dd379b29c7b275d717c3e8b97949a715fb",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "c4f720f2b5deea52d3f790ffe5b3fd17d20e8007"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/004-secure-development-hardening",
@@ -1436,8 +1800,19 @@
               "path": "specs/004-secure-development-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "d4eb88c7055384139ef87eb4b7c89b8d9a66894c8c4a174030022540d0770428"
+            },
+            {
+              "path": "specs/004-secure-development-hardening/autonomous-run-state.json",
+              "sha256": "d4eb88c7055384139ef87eb4b7c89b8d9a66894c8c4a174030022540d0770428",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "c4f720f2b5deea52d3f790ffe5b3fd17d20e8007"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/005-sandbox-secure-development",
@@ -1471,8 +1846,19 @@
               "path": "specs/005-sandbox-secure-development/autonomous-run-state.json",
               "roles": [],
               "sha256": "a3e58f920b430c5d3bcb734d95052c1ad12bef5c525286afa025c438aeea2cf1"
+            },
+            {
+              "path": "specs/005-sandbox-secure-development/autonomous-run-state.json",
+              "sha256": "a3e58f920b430c5d3bcb734d95052c1ad12bef5c525286afa025c438aeea2cf1",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "c4f720f2b5deea52d3f790ffe5b3fd17d20e8007"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/006-embeddable-vm-nuget",
@@ -1506,8 +1892,19 @@
               "path": "specs/006-embeddable-vm-nuget/autonomous-run-state.json",
               "roles": [],
               "sha256": "c016cebada9e83a7d5982b82e97229c629831728011fa8652ab172caa277a522"
+            },
+            {
+              "path": "specs/006-embeddable-vm-nuget/autonomous-run-state.json",
+              "sha256": "c016cebada9e83a7d5982b82e97229c629831728011fa8652ab172caa277a522",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "c4f720f2b5deea52d3f790ffe5b3fd17d20e8007"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         }
       ]
     },
@@ -1541,7 +1938,9 @@
               ],
               "sha256": "771f01fd6cadf4268a07b8af1507e4d3fe004addc9e789f1cef3bdf26fe22ddc"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/002-application-framework",
@@ -1569,7 +1968,9 @@
               ],
               "sha256": "7bc1a09c3a999e0f953e52211821897953244672943dcc0bf75c1d1f6f7a88bf"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/003-dialog-control-layer",
@@ -1597,7 +1998,9 @@
               ],
               "sha256": "2c34ea6be8bb6ca0ee0038dd02678d1f574375c177eaa257b96eede17e8953cf"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/004-editor-file-help-streams",
@@ -1625,7 +2028,9 @@
               ],
               "sha256": "c09a1e8dd6b8ffa28c72549e1f3454659379b5c4562d6000782e507ce5da7b41"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/005-driver-consolidation-m07",
@@ -1653,7 +2058,9 @@
               ],
               "sha256": "7c2efb00924a77d99d67a39de04312846342c7a4fa196e08c6133d83ecfb6d7c"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/006-close-phase8-gate",
@@ -1681,7 +2088,9 @@
               ],
               "sha256": "9684c37b5e1b25eea949fb3ccd2f996b5ad13204f98e4c18ac17db25513b0d8b"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/007-port-wave1-examples",
@@ -1709,7 +2118,9 @@
               ],
               "sha256": "57c5ddea598211ae879934c6d140efe54dd132bd2dc8cf0d68dc20073ba3d8ab"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/008-controls-revision",
@@ -1737,7 +2148,9 @@
               ],
               "sha256": "82e324f8fa61da3ebac9cc9b53d52871262cb166281a7de91116a3749e600a49"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/009-controls-widgets-and-collections",
@@ -1772,7 +2185,9 @@
               ],
               "sha256": "d9eeece1e94ddb0ed9bfb8d6a4c7c216421440d97bcd9916db7b41ccd971e359"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/010-standard-dialogs-designer",
@@ -1800,7 +2215,9 @@
               ],
               "sha256": "146b3add09a2fc25ac864d7d00c81a43534033abd65b5f12133c44cf70e11ba0"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/011-port-wave2-examples",
@@ -1828,7 +2245,9 @@
               ],
               "sha256": "71af475bd23206ad1e20f8e14db31cee7a3f9e064c9c849107842d793bff1208"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/012-interactive-wave2-demos",
@@ -1856,7 +2275,9 @@
               ],
               "sha256": "f92b84b9832c1baabe22a73d938207c87bcab10e3dc2cd34947469e6a8ab76ec"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/013-wave2-visual-component-remediation",
@@ -1884,7 +2305,9 @@
               ],
               "sha256": "e4f46b9944a00881fb9df235f1d128ae47cdd06b6e6f878c69b761cccdeaf000"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/014-wave1-functional-hardening",
@@ -1912,7 +2335,9 @@
               ],
               "sha256": "d197be540179bd1adef084b6e6bff6fb45fd1f6ca2f5eb9e4497999faf823b0d"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/015-didactic-comment-hardening",
@@ -1940,7 +2365,9 @@
               ],
               "sha256": "1930bc3cea349f228c034e06ce88c5daedb3a72cc7b5a7b37f4649145ae7cd3c"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/016-secure-development-hardening",
@@ -1968,7 +2395,9 @@
               ],
               "sha256": "c5e72f0b0f412aff27889db1ab2de24764b561cf7dbef53137edb73b14e4af85"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/017-wave1-visual-component-remediation",
@@ -1996,7 +2425,9 @@
               ],
               "sha256": "49c1aa7df0560710a544b012fd4f744c92560ff9db91c576099d9a09095a796b"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/018-editor-help-resources-hardening",
@@ -2024,7 +2455,9 @@
               ],
               "sha256": "19f0323df3f968e987328833e8baa3ee58a5ea073384c253d980520b3f2bdd09"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/019-wave3-visual-component-porting",
@@ -2052,7 +2485,9 @@
               ],
               "sha256": "ae4922691edc0219233c5474b8ba32a310620db8fdb5be6d8eb99597e79eec07"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/020-mouse-support-interaction",
@@ -2080,7 +2515,9 @@
               ],
               "sha256": "15852af03901888d43621fc98744a4fe4289b86a837354a7d0779ae300b8a72e"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/021-terminal-charset-hardening",
@@ -2108,7 +2545,9 @@
               ],
               "sha256": "ed0d2ca53d52e3139693713cca150b41659103105a1010fdcbd233e0d7f9b9b7"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/022-wave4-visual-component-porting",
@@ -2143,7 +2582,9 @@
               ],
               "sha256": "f35a14ea4b08ec729490097fccbf36c276b926d05efeaf3ff7f3238294a267ca"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/023-a11y-framework",
@@ -2178,7 +2619,9 @@
               ],
               "sha256": "4b65c93600c30b39993bf9d4fdd4087dbbe2491a6000cb5692598d61bec62b58"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/024-tv203-freevision-conformance-audit",
@@ -2206,7 +2649,9 @@
               ],
               "sha256": "2b15d550847baabb1f7db7cdc5d264b4be215c995f980800f96e710ef80e3f53"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/025-core-runtime-conformance-hardening",
@@ -2234,7 +2679,9 @@
               ],
               "sha256": "e68c5930c3ce9d71aff6bb78f6007df7ad556c72f553e2e351d66c5c041f7262"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/026-component-data-conformance-hardening",
@@ -2269,7 +2716,9 @@
               ],
               "sha256": "806c24a50063fc935b1db2c48219937a17285203f9a74277d64cf30a41b62713"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/027-pre-wave5-conformance-closure",
@@ -2297,7 +2746,9 @@
               ],
               "sha256": "829007b468d349fdf459b438e100d577544e2927614e7aee207515ff7457a661"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/028-pre-wave5-wave6-conformance-closure",
@@ -2331,8 +2782,19 @@
               "path": "specs/028-pre-wave5-wave6-conformance-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "2eda7ee3a8508e8ec92d844cf26c163d07eb603c998bb83dc3848d18bb42fdf0"
+            },
+            {
+              "path": "specs/028-pre-wave5-wave6-conformance-closure/autonomous-run-state.json",
+              "sha256": "2eda7ee3a8508e8ec92d844cf26c163d07eb603c998bb83dc3848d18bb42fdf0",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/029-tv203-freevision-terminalgui-conformance-audit",
@@ -2366,8 +2828,19 @@
               "path": "specs/029-tv203-freevision-terminalgui-conformance-audit/autonomous-run-state.json",
               "roles": [],
               "sha256": "a92388c744be57ea69731914e482e97310890adc6d340c13672c20f74d8d7722"
+            },
+            {
+              "path": "specs/029-tv203-freevision-terminalgui-conformance-audit/autonomous-run-state.json",
+              "sha256": "a92388c744be57ea69731914e482e97310890adc6d340c13672c20f74d8d7722",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/030-tv203-magiblot-evolution-audit",
@@ -2401,8 +2874,19 @@
               "path": "specs/030-tv203-magiblot-evolution-audit/autonomous-run-state.json",
               "roles": [],
               "sha256": "9e6fcfd9c38491c3f6348626f09756492bdb15626b45b8a11c0db82e48abaf1e"
+            },
+            {
+              "path": "specs/030-tv203-magiblot-evolution-audit/autonomous-run-state.json",
+              "sha256": "9e6fcfd9c38491c3f6348626f09756492bdb15626b45b8a11c0db82e48abaf1e",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/031-combined-conformance-closure",
@@ -2436,8 +2920,19 @@
               "path": "specs/031-combined-conformance-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "b54b1b41130506fff8d1d5c5bcf509ce1e0acb5e18c0d9758fc792775807f83d"
+            },
+            {
+              "path": "specs/031-combined-conformance-closure/autonomous-run-state.json",
+              "sha256": "b54b1b41130506fff8d1d5c5bcf509ce1e0acb5e18c0d9758fc792775807f83d",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/032-wave5-tp7-functional-porting",
@@ -2471,8 +2966,19 @@
               "path": "specs/032-wave5-tp7-functional-porting/autonomous-run-state.json",
               "roles": [],
               "sha256": "37c69c0869c648cf770dfeeacff5364f7b02f5714e152665885a5bc2a8a61cc9"
+            },
+            {
+              "path": "specs/032-wave5-tp7-functional-porting/autonomous-run-state.json",
+              "sha256": "37c69c0869c648cf770dfeeacff5364f7b02f5714e152665885a5bc2a8a61cc9",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/033-wave5-tp7-showcase-remediation",
@@ -2506,8 +3012,19 @@
               "path": "specs/033-wave5-tp7-showcase-remediation/autonomous-run-state.json",
               "roles": [],
               "sha256": "fd1b872fc9b1e74051d23f6d784a97d3739442fc218961af0dcc7cddb3833ba8"
+            },
+            {
+              "path": "specs/033-wave5-tp7-showcase-remediation/autonomous-run-state.json",
+              "sha256": "fd1b872fc9b1e74051d23f6d784a97d3739442fc218961af0dcc7cddb3833ba8",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/034-wave5-combined-delta-closure",
@@ -2541,8 +3058,19 @@
               "path": "specs/034-wave5-combined-delta-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "4ff41c48057f4ca080b956cea86a83a7d31c9ebec501ca3c33dcba2ce707f276"
+            },
+            {
+              "path": "specs/034-wave5-combined-delta-closure/autonomous-run-state.json",
+              "sha256": "4ff41c48057f4ca080b956cea86a83a7d31c9ebec501ca3c33dcba2ce707f276",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/035-wave6-tvfm-functional-porting",
@@ -2576,8 +3104,19 @@
               "path": "specs/035-wave6-tvfm-functional-porting/autonomous-run-state.json",
               "roles": [],
               "sha256": "d15600e39074df8e920ed0387680e7dbce6e7e4f2a46fc6ca4ad06172a6f8fae"
+            },
+            {
+              "path": "specs/035-wave6-tvfm-functional-porting/autonomous-run-state.json",
+              "sha256": "d15600e39074df8e920ed0387680e7dbce6e7e4f2a46fc6ca4ad06172a6f8fae",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/036-wave6-tvfm-showcase-remediation",
@@ -2611,8 +3150,19 @@
               "path": "specs/036-wave6-tvfm-showcase-remediation/autonomous-run-state.json",
               "roles": [],
               "sha256": "a1510c3cba6560c033f9a28db5b03ff5a3b9ecace41197d2765bb8b1ffb08679"
+            },
+            {
+              "path": "specs/036-wave6-tvfm-showcase-remediation/autonomous-run-state.json",
+              "sha256": "a1510c3cba6560c033f9a28db5b03ff5a3b9ecace41197d2765bb8b1ffb08679",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/037-wave6-combined-delta-closure",
@@ -2646,8 +3196,19 @@
               "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d"
+            },
+            {
+              "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
+              "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/038-example-portfolio-conformance-audit",
@@ -2681,8 +3242,19 @@
               "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
               "roles": [],
               "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad"
+            },
+            {
+              "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
+              "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/039-example-portfolio-closure",
@@ -2716,8 +3288,19 @@
               "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7"
+            },
+            {
+              "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
+              "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/040-constitution-governance-closure",
@@ -2751,8 +3334,19 @@
               "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d"
+            },
+            {
+              "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
+              "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/041-source-reference-policy",
@@ -2786,8 +3380,19 @@
               "path": "specs/041-source-reference-policy/autonomous-run-state.json",
               "roles": [],
               "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537"
+            },
+            {
+              "path": "specs/041-source-reference-policy/autonomous-run-state.json",
+              "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/042-transactional-form-model",
@@ -2821,8 +3426,19 @@
               "path": "specs/042-transactional-form-model/autonomous-run-state.json",
               "roles": [],
               "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe"
+            },
+            {
+              "path": "specs/042-transactional-form-model/autonomous-run-state.json",
+              "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/043-documentation-publishing-closure",
@@ -2856,8 +3472,19 @@
               "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
               "roles": [],
               "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a"
+            },
+            {
+              "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
+              "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/044-sandbox-secure-development-hardening",
@@ -2891,8 +3518,19 @@
               "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0"
+            },
+            {
+              "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
+              "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/045-rl-se-checklist-self-review",
@@ -2926,8 +3564,19 @@
               "path": "specs/045-rl-se-checklist-self-review/autonomous-run-state.json",
               "roles": [],
               "sha256": "a5b3bafe2895a473de754d3160b0eb0b70309e98277c5c664a6517357127a719"
+            },
+            {
+              "path": "specs/045-rl-se-checklist-self-review/autonomous-run-state.json",
+              "sha256": "a5b3bafe2895a473de754d3160b0eb0b70309e98277c5c664a6517357127a719",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/046-gsdb-spec-kit-intensive-review",
@@ -2961,8 +3610,19 @@
               "path": "specs/046-gsdb-spec-kit-intensive-review/autonomous-run-state.json",
               "roles": [],
               "sha256": "72c732f2d6e3570d25a1eff41132a4ce75db97fdbdd024bec648330a0a257c91"
+            },
+            {
+              "path": "specs/046-gsdb-spec-kit-intensive-review/autonomous-run-state.json",
+              "sha256": "72c732f2d6e3570d25a1eff41132a4ce75db97fdbdd024bec648330a0a257c91",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         }
       ]
     },
@@ -2996,7 +3656,9 @@
               ],
               "sha256": "6ee631df3957054950891eb54d9dacba4a2f3b97501f6161923f69789bac6d3a"
             }
-          ]
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
         },
         {
           "feature": "specs/002-gsdb-baseline-assessment",
@@ -3030,8 +3692,19 @@
               "path": "specs/002-gsdb-baseline-assessment/autonomous-run-state.json",
               "roles": [],
               "sha256": "61bca30bbe7d0c452bd3a452a0e9894f5735ef836c3924ef43c451f927710613"
+            },
+            {
+              "path": "specs/002-gsdb-baseline-assessment/autonomous-run-state.json",
+              "sha256": "61bca30bbe7d0c452bd3a452a0e9894f5735ef836c3924ef43c451f927710613",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "dbbcd7bf10ebe789c1451192aacab7432cc131c4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         },
         {
           "feature": "specs/003-secure-development-container-hardening",
@@ -3065,8 +3738,19 @@
               "path": "specs/003-secure-development-container-hardening/autonomous-run-state.json",
               "roles": [],
               "sha256": "c3d52a5b4f5947aae60927519edd2e8c3ab7b23eef3da2b33e35344314dfbf03"
+            },
+            {
+              "path": "specs/003-secure-development-container-hardening/autonomous-run-state.json",
+              "sha256": "c3d52a5b4f5947aae60927519edd2e8c3ab7b23eef3da2b33e35344314dfbf03",
+              "kind": "file",
+              "roles": [
+                "mode"
+              ],
+              "ref": "dbbcd7bf10ebe789c1451192aacab7432cc131c4"
             }
-          ]
+          ],
+          "executionMode": "serial",
+          "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
         }
       ]
     }
