@@ -1,21 +1,31 @@
 # Evidence Index
 
-This index is a planning/foundation registry. `Open` is truthful pending later
-implementation, native-platform, review, and delivery tasks; it is not a
-failure masked as `N/A`.
+Feature 032 besitzt einen redigierten, portablen Abschlussnachweis unter
+`evidence/v1/`. Rohlogs, Tokens, private absolute Pfade und lokaler Agent-State
+sind ausgeschlossen. Jeder Eintrag nennt seine runtime-relative Quelle und
+deren SHA-256.
 
-| Repository | Base / branch | Canonical inputs | Outputs | Tests / security / architecture / A11Y | Platform / parity | Dependency and product scope | Documentation / statistics | PR through default sync | Distribution / rollback |
-|---|---|---|---|---|---|---|---|---|---|
-| home-baseline | current base; existing `032-linked-intake-evidence` | manifest + explicit feature proof: validation Passed | root view Current; isolated two-output transaction Passed | renderer/negative tests Passed; security/architecture/A11Y Open | macOS Bash/PowerShell parity Passed; Linux/Windows Open | zero product/dependency delta Open | GeneratedUpdate; ledger source updated, render Open | Open | rollback Passed; scripts `homeRuntime`, feature docs `sourceOnly`; Home Sync Open |
-| agent-operations-cockpit | current main; `004-linked-intake-evidence` planned | AOC manifest/proofs: Applicable/Open | root + series views: Applicable/Open | all Applicable/Open; Assurance absent | native proof Open; paired parity Open | zero-delta proof Open | GeneratedUpdate; ledger Open | Open | local distribution; reviewed revert |
-| TinyPl0 | current main; `007-linked-intake-evidence` planned | series manifest/proofs: Applicable/Open | root + series views: Applicable/Open | all Applicable/Open | native Node proof Open; agent parity N/A unless guidance changes | zero-delta proof Open | GeneratedUpdate; ledger Open | Open | local distribution; reviewed revert |
-| TinyCalc | current main; `006-linked-intake-evidence` planned | series manifest/proofs: Applicable/Open | root + series views: Applicable/Open | all Applicable/Open | native Node proof Open; agent parity N/A unless guidance changes | zero-delta proof Open | GeneratedUpdate; ledger Open | Open | local distribution; reviewed revert |
-| InventarWorkerService | current main; `003-linked-intake-evidence` planned | series manifest/proofs: Applicable/Open | root view: Applicable/Open | all Applicable/Open | native Bash/PowerShell proof Open; parity Open | zero-delta proof Open | GeneratedUpdate; ledger Open | Open | local distribution; reviewed revert |
-| TuiVision | current main; `047-linked-intake-evidence` planned | exact ten mappings/six edges/backlog: Applicable/Open | root + series views: Applicable/Open | all Applicable/Open | native Node proof Open; agent parity N/A unless guidance changes | zero-delta proof Open | GeneratedUpdate; ledger Open | Open | local distribution; reviewed revert |
-| absdd-image-sandbox | current clean main after terminal Feature 003; `004-linked-intake-evidence` planned | sandbox manifest/proofs: Applicable/Open | root view: Applicable/Open | all Applicable/Open | native Bash/PowerShell proof Open; parity Open | zero product/image/Compose/dependency delta Open | GeneratedUpdate; ledger Open | Open | local distribution; reviewed revert preserving Feature 003 |
+*Feature 032 has a redacted portable closeout record under `evidence/v1/`.
+Raw logs, tokens, private absolute paths, and local agent state are excluded.
+Every entry binds its runtime-relative source and SHA-256.*
 
-Detailed lifecycle fields (Base, Branch, Canonical Inputs, Outputs, Tests,
-Security, Architecture/iSAQB, A11Y, Platform, Agent Parity, Dependencies,
-Product Scope, Documentation Impact, Statistics, PR, Review, PreMerge, Merge,
-PostMerge, Default-Sync, Distribution, Rollback) are the seven-row matrix in
-`checklists/repository-delivery.md`.
+| Evidence | Aussage / Claim | Ergebnis / Result |
+|---|---|---|
+| `evidence/v1/fleet-acceptance.json` | 14 globale Primary-Gates, exakt sieben Repositoryzeilen | Pass |
+| `evidence/v1/repository-acceptance.json` | Tests, Links, UTF-8, A11Y, Statistik, Doku, Security und Agent-Parität je Repository | Pass |
+| `evidence/v1/platform-parity.json` | macOS sowie native Linux-/Windows-Nachweise | Pass |
+| `evidence/v1/product-boundary.json` | Produktdelta null; vier Versions-Null-Diffs; drei begrenzte Constitution-Korrekturen | Pass |
+| `evidence/v1/delivery.json` | kausale Branch-/PR-/Review-/PreMerge-/Merge-/PostMerge-/Sync-Kette | Pass |
+| `evidence/v1/final-0-0.json` | sieben Default-Branches lokal/remote `0/0` | Pass |
+| `evidence/v1/index.json` | Redaktions-, Owner-, Reviewer-, Risiko- und Re-Evaluationsvertrag | Pass |
+
+Die detaillierte operative Evidence bleibt unter dem ignorierten Runtime-Pfad
+`.specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/` erhalten. Sie ist für lokale
+Nachvollziehbarkeit bestimmt und wird nicht als portable Projekt-Evidence
+veröffentlicht.
+
+Owner: Feature Orchestrator. Reviewer: Documentation and Evidence Reviewer.
+Restrisiko: Die portable Redaktion reicht nicht zur vollständigen
+Incident-Rekonstruktion ohne die lokale Runtime-Evidence. Re-Evaluation:
+Quellhash, Scope, Owner, Reviewer, Redaktionsregel oder Repositoryzustand
+ändert sich.

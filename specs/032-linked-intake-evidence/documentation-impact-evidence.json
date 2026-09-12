@@ -6,21 +6,38 @@
     "repository-local renderer declarations and implementations"
   ],
   "owner": "Feature Orchestrator and each Repository Owner",
-  "audiences": ["maintainers", "reviewers", "IT apprentices", "training leads"],
+  "audiences": [
+    "maintainers",
+    "reviewers",
+    "IT apprentices",
+    "training leads"
+  ],
   "readerPaths": [
     "root intake-order view -> complete intake link -> proven Spec Kit feature",
     "series order view -> direct dependency -> canonical source",
     "feature evidence index -> repository delivery evidence"
   ],
-  "navigation": ["repository root order view", "series-local order view", "specs/032-linked-intake-evidence/evidence-index.md"],
+  "navigation": [
+    "repository root order view",
+    "series-local order view",
+    "specs/032-linked-intake-evidence/evidence-index.md"
+  ],
   "documentClass": "generated Markdown order views with feature-local governance evidence",
   "languagePartner": "German first, English second at CEFR B2 inline; no separate sidecar required for this feature-local evidence",
-  "platformEvidence": "macOS safe-mode first; native Linux and Windows remain Open until later exact-head tasks",
+  "platformEvidence": "macOS local gates and native Linux/Windows exact-head evidence are complete for all seven repositories.",
   "distribution": {
-    "homeRuntime": ["Home renderer scripts after later merged delivery"],
-    "sourceOnly": ["feature artifacts", "contracts", "fixtures", "governance evidence", "generated repository documentation"]
+    "homeRuntime": [
+      "Home renderer scripts after later merged delivery"
+    ],
+    "sourceOnly": [
+      "feature artifacts",
+      "contracts",
+      "fixtures",
+      "governance evidence",
+      "generated repository documentation"
+    ]
   },
-  "homeSyncRequired": "Yes only after the later merged Home script delivery; no Home Sync in the bounded T028-T066 slices",
+  "homeSyncRequired": "Completed only for the merged Home homeRuntime delivery in T078; all other repository evidence is sourceOnly.",
   "evidence": [
     "specs/032-linked-intake-evidence/evidence-command-inventory.md",
     "specs/032-linked-intake-evidence/checklists/mutation-allowlist.md",
@@ -35,35 +52,57 @@
     "docs/security/linked-intake-evidence.md",
     "docs/architecture/linked-intake-evidence.md",
     "specs/032-linked-intake-evidence/assurance-progress-2026-09-10.md",
-    "specs/032-linked-intake-evidence/diagnostic-remediation-2026-09-10.md"
+    "specs/032-linked-intake-evidence/diagnostic-remediation-2026-09-10.md",
+    "specs/032-linked-intake-evidence/evidence/v1/index.json",
+    "specs/032-linked-intake-evidence/evidence/v1/fleet-acceptance.json",
+    "specs/032-linked-intake-evidence/evidence/v1/repository-acceptance.json",
+    "specs/032-linked-intake-evidence/evidence/v1/platform-parity.json",
+    "specs/032-linked-intake-evidence/evidence/v1/product-boundary.json",
+    "specs/032-linked-intake-evidence/evidence/v1/delivery.json",
+    "specs/032-linked-intake-evidence/evidence/v1/final-0-0.json"
   ],
   "currentPhase": {
-    "taskRange": "T058-T066 bounded diagnostic correction",
+    "taskRange": "T153-T157 terminal fleet evidence and documentation closeout",
     "decision": "GeneratedUpdate",
     "canonicalSources": [
-      "requirements/intakes/series/home-baseline-delivery/manifest.json",
-      "scripts/lib/secure-development-hardening.sh",
-      "scripts/lib/secure-development-hardening.ps1",
-      "scripts/prepare-secure-development-hardening.sh",
-      "scripts/prepare-secure-development-hardening.ps1",
-      "specs/032-linked-intake-evidence/contracts/tuivision-exact-contract.md"
+      "seven repository-local canonical series manifests",
+      "seven repository-local exact-head local/native/review/product/governance records",
+      "specs/032-linked-intake-evidence/autonomous-run-gate-requirements.json"
     ],
     "generatedOutputs": [
-      "Lastenheft_Abarbeitungsreihenfolge.md",
-      "docs/accessibility/linked-intake-evidence.md",
-      "docs/security/linked-intake-evidence.md",
-      "docs/architecture/linked-intake-evidence.md",
-      "specs/032-linked-intake-evidence/diagnostic-remediation-2026-09-10.md",
-      "specs/032-linked-intake-evidence/fixtures/tuivision-exact/**",
-      "specs/032-linked-intake-evidence/fixtures/accessibility/**"
+      "specs/032-linked-intake-evidence/evidence/v1/**",
+      "specs/032-linked-intake-evidence/evidence-index.md",
+      "specs/032-linked-intake-evidence/checklists/implementation-governance.md",
+      "specs/032-linked-intake-evidence/checklists/repository-delivery.md",
+      "specs/032-linked-intake-evidence/checklists/cross-platform.md",
+      "specs/032-linked-intake-evidence/checklists/security-architecture.md",
+      "specs/032-linked-intake-evidence/checklists/accessibility-language.md",
+      "specs/032-linked-intake-evidence/documentation-impact-evidence.json"
     ],
-    "audiences": ["Maintainers", "Reviewers", "KI-Agenten / AI agents", "textorientierte Nutzende / text-oriented users"],
-    "readerPath": "Public help -> generated order view -> accessibility/security/architecture review -> superseding diagnostic remediation report -> later delivery task T067",
-    "navigation": "Existing public CLI and feature evidence navigation extended with source-only governance documents; no new root entry point.",
-    "languagePartner": "Short artifacts use German first and English second in the same file.",
-    "platformEvidence": "macOS Bash and PowerShell 7 governance, separate-stream diagnostic redaction and source-order proof complete; named assistive-device review and native Linux/Windows remain pending at T071 or a later human gate.",
-    "distribution": "scripts are homeRuntime; feature evidence and documentation are sourceOnly",
-    "syncPerformed": false
+    "audiences": [
+      "Maintainers",
+      "Reviewers",
+      "IT apprentices",
+      "Training leads",
+      "AI agents",
+      "Text-oriented users"
+    ],
+    "readerPath": "Evidence index -> portable artifact -> hash-bound local runtime source -> repository-local causal delivery evidence",
+    "navigation": "Feature evidence index and portable evidence/v1 index; no new root product navigation.",
+    "languagePartner": "German first and English second at CEFR B2 in user-facing Markdown; machine evidence uses stable English field names.",
+    "platformEvidence": "All seven repository candidates have exact-head macOS/local and native Linux/Windows evidence as applicable.",
+    "distribution": "Home renderer scripts were synchronized as homeRuntime after merge; portable evidence and documentation are sourceOnly.",
+    "syncPerformed": true,
+    "owner": "Feature Orchestrator and each Repository Owner",
+    "reviewer": "Documentation and Evidence Reviewer",
+    "residualRisk": "Portable evidence deliberately omits raw logs and private paths; exact-head validity ends when a bound source changes.",
+    "reevaluationTrigger": "Canonical source, repository head, output set, audience, navigation, language, platform, distribution, owner, reviewer or source hash changes."
   },
-  "reevaluationTrigger": "Canonical owner, output set, audience, navigation, language strategy, platform scope, distribution class, or Home Runtime scope changes."
+  "reevaluationTrigger": "Canonical owner, source hash, output set, audience, navigation, language strategy, platform scope, distribution class, Home Runtime scope, repository head, or gate contract changes.",
+  "finalStatus": {
+    "applicableOpenMandatoryGates": 0,
+    "portableEvidencePublicSafe": true,
+    "generatedViewsCurrent": true,
+    "decision": "Pass"
+  }
 }

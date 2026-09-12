@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-fleet-acceptance",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "owner": "Feature Orchestrator",
+  "reviewer": "Fleet Acceptance Reviewer",
+  "source": {
+    "runtimePath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/fleet/acceptance-operational.json",
+    "sha256": "6c746ee9cc09d687fd600333debbf1b28adecd961f835c926b02db3780f9c497"
+  },
+  "gates": [
+    {
+      "gateId": "AC-LAF-001",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-002",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-003",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-004",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-005",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-006",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-007",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-008",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-009",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-010",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-011",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-012",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-013",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    },
+    {
+      "gateId": "AC-LAF-014",
+      "result": "Pass",
+      "evidenceRole": "Primary"
+    }
+  ],
+  "repositories": [
+    {
+      "repository": "home-baseline",
+      "pullRequest": 280,
+      "reviewedHead": "9d79ce7662ad7efd3dd2b3f2b32644d2681f58cd",
+      "mergeCommit": "a894fff3709ce02d05a499c54e43156e83746277",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    },
+    {
+      "repository": "agent-operations-cockpit",
+      "pullRequest": 46,
+      "reviewedHead": "bb757615cf060e17d65b3a0211c6c1e6ff11020e",
+      "mergeCommit": "1a643d2df245856357badd5b80e291aa695d1ef3",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    },
+    {
+      "repository": "TinyPl0",
+      "pullRequest": 93,
+      "reviewedHead": "14165e2f868015e04c933de2f06c95e1cc97286a",
+      "mergeCommit": "c4f720f2b5deea52d3f790ffe5b3fd17d20e8007",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    },
+    {
+      "repository": "TinyCalc",
+      "pullRequest": 75,
+      "reviewedHead": "a296552a999da79ef5219638d54641188daa0130",
+      "mergeCommit": "114373e397d682ab22b80f536b797fa3ad742c88",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    },
+    {
+      "repository": "InventarWorkerService",
+      "pullRequest": 68,
+      "reviewedHead": "740cf153d9600c8357b7437723ad5eae417ed54a",
+      "mergeCommit": "cacbd0957c8ca30e31366990d951b1dad220fbb4",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    },
+    {
+      "repository": "TuiVision",
+      "pullRequest": 172,
+      "reviewedHead": "932a09c8c3bf0460038cb469aef6fae94cae210f",
+      "mergeCommit": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    },
+    {
+      "repository": "absdd-image-sandbox",
+      "pullRequest": 61,
+      "reviewedHead": "210e48c0f3d2e8f4b7056aa708a42cd7a330cb97",
+      "mergeCommit": "c069cfccea1568e1a5d1178aa5b614f6d7f67118",
+      "ahead": 0,
+      "behind": 0,
+      "result": "Pass"
+    }
+  ],
+  "residualRisk": "Future default-branch or canonical-manifest changes invalidate this exact-head snapshot.",
+  "reevaluationTrigger": "Any repository head, manifest, renderer, view, feature proof, gate requirement, PR, merge or default-branch state changes.",
+  "decision": "Pass"
+}

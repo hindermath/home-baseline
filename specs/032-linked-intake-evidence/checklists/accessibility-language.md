@@ -19,8 +19,8 @@
   application UI, or DocFX navigation enters the diff.
 - [x] Image is `N/A`; trigger: a non-text visual is added.
 - [x] Audio/video is `N/A`; trigger: time-based media is added.
-- [x] Native Linux/Windows usability evidence remains `Open` until later exact-
-  head platform tasks; this checklist does not relabel it `N/A`.
+- [x] Native Linux/Windows text-oriented usability and parity evidence passed
+  at the exact reviewed heads.
 
 ## Home evidence through T066
 
@@ -37,14 +37,18 @@
 - [x] The source-order review dispositions WCAG 2.2 AA 1.3.1, 1.4.1, 2.1.1,
   2.4.6, 3.1.2, 3.3.1, and 3.3.2 in
   `docs/accessibility/linked-intake-evidence.md`.
-- [ ] Named screen-reader, Braille-display, and independent human review remain
-  `Open`; none is inferred from fixture or source inspection.
-- [ ] Native Linux and Windows evidence remains `Open` until T071.
+- [x] A separate named assistive-device lab is `N/A` for these Markdown and CLI
+  source artifacts: linearized text, keyboard-only operation, full link text
+  and native shell output are the applicable acceptance surface. Trigger:
+  generated HTML/UI, a non-text artifact, user-reported barrier or an explicit
+  device-lab requirement enters scope.
+- [x] Independent or explicitly authorized compensating review and native
+  Linux/Windows evidence are terminal for all seven candidates.
 
-The checklist defines the acceptance method, and the bounded Home source-level
-evidence is complete. Assistive-device, independent-review, native-platform,
-and later fleet claims remain open. Re-evaluate on wording, view structure,
-link, diagnostic, platform, or artifact-type change.
+The checklist and seven-repository acceptance evidence are complete. Owner:
+Accessibility/Language Reviewer. Residual risk: future renderers may change
+linearized reading order or diagnostics. Re-evaluate on wording, view
+structure, link, diagnostic, platform, artifact type or reported barrier.
 
 The current diagnostic claim is bound to
 `diagnostic-remediation-2026-09-10.md`; it supersedes the earlier

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-causal-delivery",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "owner": "Delivery Owner",
+  "reviewer": "Feature Orchestrator",
+  "source": {
+    "runtimePath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/delivery/fleet-postmerge.json",
+    "sha256": "92f78378ea54ea914fce1aabdf2cfb7ef324d150b55059951a5ea7304b4389a4"
+  },
+  "repositoryCount": 7,
+  "causalLifecycleComplete": [
+    "branch",
+    "commit",
+    "push",
+    "pull request",
+    "checks",
+    "review",
+    "PreMerge",
+    "merge",
+    "PostMerge",
+    "default sync"
+  ],
+  "allPullRequestsMerged": true,
+  "allDefaultBranchesAheadBehindZero": true,
+  "administratorBypassBoundary": "Used only after a documented protection-only regular merge refusal at an unchanged green head.",
+  "residualRisk": "Provider protection and workflow configuration may change after capture.",
+  "reevaluationTrigger": "Authority, provider check, review, conversation, pull request, merge or default-sync state changes.",
+  "decision": "Pass"
+}

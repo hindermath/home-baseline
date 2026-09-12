@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-platform-parity",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "owner": "Cross-Platform Reviewer",
+  "reviewer": "Feature Orchestrator",
+  "source": {
+    "runtimePath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/platform/home-parity.json",
+    "sha256": "6278e61b0db41aa547d8ddc7548d6c3586dda1972666ae508b368911d7e454ea"
+  },
+  "platforms": [
+    {
+      "platform": "macOS",
+      "result": "Pass"
+    },
+    {
+      "platform": "Linux",
+      "runner": "ubuntu-22.04",
+      "result": "Pass"
+    },
+    {
+      "platform": "Windows",
+      "runner": "windows-2022",
+      "result": "Pass"
+    }
+  ],
+  "bashPowerShellSemanticAndByteContractParity": true,
+  "nativeEvidenceAvailableForAllSevenRepositories": true,
+  "residualRisk": "Hosted runner images and shell versions can change after this captured proof.",
+  "reevaluationTrigger": "Workflow, runner image, shell, test fixture, renderer or output format changes.",
+  "decision": "Pass"
+}

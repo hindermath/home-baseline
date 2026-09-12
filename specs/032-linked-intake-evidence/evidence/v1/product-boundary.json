@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0",
+  "evidenceId": "feature-032-product-boundary",
+  "capturedAt": "2026-09-12T01:45:00Z",
+  "owner": "Product and Build Reviewers",
+  "reviewer": "Security and Architecture Reviewer",
+  "source": {
+    "runtimePath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/linked-intake-evidence/evidence/v1/fleet/product-boundary.json",
+    "sha256": "ebe376e56ea8649ed2cbbfc42f966af40413309be0e6177d6aafbf07eefb0ca6"
+  },
+  "unauthorizedProductRuntimeApiPublicTypeImageComposeDependencyPackageLockfileChanges": 0,
+  "versionAndBuildCounterNullDiff": [
+    {
+      "repository": "TinyPl0",
+      "version": "1.6.569.80",
+      "manualBuildCounter": 80,
+      "result": "Pass"
+    },
+    {
+      "repository": "TinyCalc",
+      "version": "1.5.7.26",
+      "manualBuildCounter": 26,
+      "result": "Pass"
+    },
+    {
+      "repository": "InventarWorkerService",
+      "version": "1.2.8.66",
+      "manualBuildCounter": 66,
+      "result": "Pass"
+    },
+    {
+      "repository": "TuiVision",
+      "version": "1.46.835.521",
+      "manualBuildCounter": 521,
+      "result": "Pass"
+    }
+  ],
+  "boundedConstitutionCorrections": [
+    {
+      "repository": "agent-operations-cockpit",
+      "configuredPreset": "0.4.1",
+      "installedPreset": "0.4.1",
+      "mirrorsMatch": true,
+      "result": "Pass"
+    },
+    {
+      "repository": "InventarWorkerService",
+      "configuredPreset": "0.4.1",
+      "installedPreset": "0.4.1",
+      "mirrorsMatch": true,
+      "result": "Pass"
+    },
+    {
+      "repository": "absdd-image-sandbox",
+      "configuredPreset": "0.4.1",
+      "installedPreset": "0.4.1",
+      "mirrorsMatch": true,
+      "result": "Pass"
+    }
+  ],
+  "residualRisk": "A later product, dependency, image or version-writer change is outside this documentation-renderer authorization.",
+  "reevaluationTrigger": "Any product, runtime, API, public type, image, Compose, dependency, package, lockfile, version or build-counter path changes.",
+  "decision": "Pass"
+}

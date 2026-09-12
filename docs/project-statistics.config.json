@@ -673,6 +673,14 @@
       "labelEn": "Feature 032 Home delivery foundation",
       "netLines": 52,
       "activeDays": 1
+    },
+    {
+      "slot": 83,
+      "id": "linked-intake-evidence-fleet-closeout",
+      "labelDe": "Feature 032 Flottenabschluss",
+      "labelEn": "Feature 032 fleet closeout",
+      "netLines": 282,
+      "activeDays": 1
     }
   ],
   "excludedPaths": [],

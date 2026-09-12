@@ -1,18 +1,20 @@
 # Plattformplan / Cross-Platform Plan
 
-Native Linux and Windows evidence is intentionally `Open`; no later task is
-claimed complete by this plan.
+Native Linux and Windows evidence is terminal for all seven repository
+candidates. One complete required run was retained per unchanged exact head;
+duplicates were cancelled and reruns occurred only after actual input or head
+changes.
 
 | Platform | Order and exact proof contract | State | Owner / next action |
 |---|---|---|---|
-| macOS | repository-local Bash/Node safe/check command first; capture exact head, command, runner, exit code, payload SHA-256, decision SHA-256, and write count | Applicable | Repository Owner runs local gate |
-| Linux | native or approved isolation-bound Bash/Node command at the exact candidate head with the same seven evidence fields | Open | Cross-Platform Reviewer schedules native run after checkpoint |
-| Windows | narrowly bounded native PowerShell 7/Node command at the exact candidate head with the same seven evidence fields | Open | Cross-Platform Reviewer schedules native run after checkpoint |
-| Parity | compare normalized row fields, links, diagnostics, exit class and write count; syntax/emulation is partial only | Open | rerun whenever inputs, renderer, platform, or head changes |
+| macOS | repository-local Bash/Node safe/check command first; exact head, command, runner, exit code, hashes and write count captured | Pass | Re-evaluate on local input or head change |
+| Linux | native Bash/Node and required PowerShell command at the exact candidate head | Pass | Re-evaluate on workflow, runner, input or head change |
+| Windows | native PowerShell 7/Node and required Git Bash command at the exact candidate head | Pass | Re-evaluate on workflow, runner, input or head change |
+| Parity | normalized row fields, links, diagnostics, exit class and write count compared | Pass | Rerun only when inputs, renderer, platform or head changes |
 
-Each record must contain `commitSha`, `command`, `runner`, `platform`,
-`exitCode`, `payloadSha256`, `decisionSha256`, and `writeCount`. A missing
-native result remains blocking `Open`, never convenient `N/A`.
+Each accepted record contains its exact head, command, runner, platform,
+exit code, source/log hashes and zero-write count. No missing native result was
+relabeled as `N/A`.
 
 Home T071 predeclares `.github/workflows/linked-intake-evidence-native-proof.yml`
 unless the same exact-head Feature-032 proof appears remotely first. It uses the
