@@ -431,12 +431,12 @@
       }
     ]
   },
-  "lastPassingGate": "T162 completed transactionally by the final local content commit: the T161 source checkpoint is immutable, the generated statistics ledger is current and validated with 146 assertions, and the Lastenheft rename is the sole remaining helper mutation.",
-  "nextExactAction": "Execute T163: push the unchanged T162 closeout commit without force and create exactly one non-empty causal closeout PR.",
+  "lastPassingGate": "T163 completed at 9f6e3e36cdae6b6e6ba9e28c82cd5ff905071f80: the unchanged T162 head was pushed without force and exactly one non-empty causal closeout PR (#281) was created. The first T164 check exposed exactly two stale Markdown targets caused by the required rename.",
+  "nextExactAction": "Complete the bounded T164 link-target repair, push the new exact head without force, and run the required checks once for that changed head.",
   "lastOperation": {
-    "kind": "Task:T162:LocalImplementation",
-    "state": "Completed",
-    "summary": "T161 and T162 are closed in one transactional final local content commit: the validated statistics ledger, terminal task bookkeeping, run-state binding, and constitutional Lastenheft rename are committed together with no later tracked writer."
+    "kind": "Task:T164:GateRepair",
+    "state": "Active",
+    "summary": "The required rename left two generated Markdown links pointing at the removed pre-rename path. The repair changes only those two href targets and this operational state; it does not alter fleet facts, statistics, product surfaces, or the accepted intake semantics."
   },
   "stop": {
     "reason": "N/A",
@@ -449,5 +449,5 @@
     "postMergeActions": "N/A",
     "finalValidation": "Pending"
   },
-  "updatedAt": "2026-09-12T01:55:57Z"
+  "updatedAt": "2026-09-12T01:59:03Z"
 }
