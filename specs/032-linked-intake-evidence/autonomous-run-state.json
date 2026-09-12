@@ -5,9 +5,9 @@
   "branch": "032-linked-intake-evidence-causal-closeout",
   "deliveryMode": "MergeAndSync",
   "authorityRevalidationRequired": false,
-  "stage": "Implement",
-  "status": "Active",
-  "checkpointCommit": "d41c988cd6f4f8dd605bcf346ecc28f9b8ef7a4a",
+  "stage": "Retrospective",
+  "status": "Completed",
+  "checkpointCommit": "a3960b2c81e350652c550ec84ab1535210f2930e",
   "acceptedArtifacts": [
     {
       "path": "Lastenheft_Verlinkte-Abarbeitungsreihenfolgen-und-Spec-Kit-Feature-Nachweise.md",
@@ -44,8 +44,8 @@
   ],
   "tasks": {
     "path": "specs/032-linked-intake-evidence/tasks.md",
-    "sha256": "49bb3e5ba9299e69dbf393dc781033b375779fd57879183121bca058a08535c4",
-    "completed": 162,
+    "sha256": "0e69c4afc3f180e3ccdcc0d1d9bfdf35072d4d923d3bc0b913a1433d392a0669",
+    "completed": 169,
     "total": 169
   },
   "routing": {
@@ -203,7 +203,7 @@
         "dependsOn": [
           "resume-governance-delta-20260909"
         ],
-        "status": "Active",
+        "status": "Blocked",
         "resultPath": ".specify/runtime/feature032-resume-20260909.fVCF5t/analyze/analyze-resume-20260909.result.json",
         "resultSha256": "d6b20e9e831e4ab0d71b325af60cdfc298639d6cc986e8f6a3f6c36acd407262",
         "agentFamily": "Codex",
@@ -401,15 +401,15 @@
         "dependsOn": [
           "implement-validation-20260909"
         ],
-        "status": "Active",
+        "status": "Completed",
         "agentFamily": "Codex",
         "model": "gpt-5.6-sol",
         "reasoningEffort": "high",
         "preflight": "Completed",
         "exitCode": 0,
-        "updatedAt": "2026-09-01T19:45:51.896416Z",
+        "updatedAt": "2026-09-12T02:34:35Z",
         "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/implement.result.json",
-        "resultSha256": "N/A"
+        "resultSha256": "9658c2fe370ee19c68613c1672b3daa07081e61db259e57a355653555d05a6e9"
       },
       {
         "phaseId": "retrospective",
@@ -419,24 +419,24 @@
         "dependsOn": [
           "implement"
         ],
-        "status": "Pending",
+        "status": "Completed",
         "agentFamily": "Codex",
         "model": "gpt-5.6-sol",
         "reasoningEffort": "high",
         "preflight": "Completed",
-        "exitCode": "N/A",
-        "updatedAt": "2026-09-01T17:43:51Z",
+        "exitCode": 0,
+        "updatedAt": "2026-09-12T02:50:59Z",
         "resultPath": ".specify/runtime/autonomous-routing/c53e4b5b-74fa-4ff9-ac5e-ce51850a5321/retrospective.result.json",
-        "resultSha256": "N/A"
+        "resultSha256": "675ea33127f2107352ad99cf9071204a27bdcb50c7cf7729d0f4b2ef97f001de"
       }
     ]
   },
-  "lastPassingGate": "T163 completed at 9f6e3e36cdae6b6e6ba9e28c82cd5ff905071f80: the unchanged T162 head was pushed without force and exactly one non-empty causal closeout PR (#281) was created. The first T164 check exposed exactly two stale Markdown targets caused by the required rename.",
-  "nextExactAction": "Complete the bounded T164 link-target repair, push the new exact head without force, and run the required checks once for that changed head.",
+  "lastPassingGate": "T169 completed after exact-head PR #281 gates, independent review, authorized protection-only admin merge a3960b2c81e350652c550ec84ab1535210f2930e, seven fresh 0/0 default-branch checks, schema-2.0 causal PostMerge validation, final consistency validation, and read-only retrospective phase validation.",
+  "nextExactAction": "N/A",
   "lastOperation": {
-    "kind": "Task:T164:GateRepair",
-    "state": "Active",
-    "summary": "The required rename left two generated Markdown links pointing at the removed pre-rename path. The repair changes only those two href targets and this operational state; it does not alter fleet facts, statistics, product surfaces, or the accepted intake semantics."
+    "kind": "StateReconciliation:terminal-closeout",
+    "state": "Completed",
+    "summary": "All 169 tasks and MergeAndSync closeout gates are complete. This bounded state-only reconciliation records facts established after the causal closeout merge and changes no product, script, renderer, intake semantics, or retrospective content."
   },
   "stop": {
     "reason": "N/A",
@@ -444,10 +444,10 @@
     "safeBoundary": "N/A"
   },
   "closeout": {
-    "mergeOrPublication": "N/A",
-    "defaultBranchSync": "N/A",
-    "postMergeActions": "N/A",
-    "finalValidation": "Pending"
+    "mergeOrPublication": "Completed",
+    "defaultBranchSync": "Completed",
+    "postMergeActions": "Completed",
+    "finalValidation": "Completed"
   },
-  "updatedAt": "2026-09-12T01:59:03Z"
+  "updatedAt": "2026-09-12T02:50:59Z"
 }
