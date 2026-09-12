@@ -3,26 +3,43 @@
   "feature": "monthly-public-speckit-statistics",
   "entries": [
     {
-      "changeId": "CHG078",
-      "scope": "Public evidence register, deterministic table generation, monthly CI and profile publication",
+      "changeId": "CHG079",
+      "scope": "Execution-mode partitions, sanitized private totals and joint monthly CI",
       "decision": "GeneratedUpdate",
-      "rationale": "One reviewed public register and snapshot generate synchronized README tables; methodology and command help define reproducible interpretation.",
-      "documents": ["README.md", "README.en.md", "docs/spec-kit-runs/README.md", "docs/spec-kit-runs/table.md", "docs/spec-kit-runs/table.en.md", "docs/scripts/reference.md", "docs/man/update-public-speckit-statistics.1.md"],
+      "rationale": "A reviewed v2 register and private aggregate generate matching extended tables; v1 replay remains unchanged.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/spec-kit-runs/README.md",
+        "docs/spec-kit-runs/table.md",
+        "docs/spec-kit-runs/table.en.md",
+        "docs/scripts/reference.md",
+        "docs/man/update-public-speckit-statistics.1.md"
+      ],
       "owner": "@hindermath",
-      "audiences": ["Public profile readers", "Maintainers", "Technical reviewers"],
-      "readerPaths": ["Profile or Level-0 README -> method -> register and snapshot -> reproduction commands"],
+      "audiences": [
+        "Public profile readers",
+        "Maintainers",
+        "Technical reviewers"
+      ],
+      "readerPaths": [
+        "Profile or Level-0 README -> method -> register and snapshot -> reproduction commands"
+      ],
       "canonicalSource": "docs/spec-kit-runs/registry.json",
       "navigationImpact": "Add a public run table and one methodology link; preserve existing profile MOTD and content order.",
       "documentClass": "ActiveSemantic",
       "languageStrategy": "German table on both public entrypoints; equivalent English README partner and bilingual methodology/help",
-      "languagePartners": ["README.en.md", "docs/spec-kit-runs/table.en.md"],
+      "languagePartners": [
+        "README.en.md",
+        "docs/spec-kit-runs/table.en.md"
+      ],
       "platformAndExampleProof": "macOS Bash entrypoint and PowerShell fixture tests; native Linux/macOS/Windows CI tests on the proposed PR head",
       "distributionClass": "homeRuntime",
       "homeSyncRequired": true,
       "evidence": "docs/spec-kit-runs/validation.md",
-      "risk": "False completion claims, private source inclusion, or divergent profile values; addressed through reviewed pinned evidence and deterministic generation.",
+      "risk": "Private information disclosure, ambiguous historical modes and partial source coverage; enforced through aggregate allowlists, reviewed proofs and failing incomplete collection.",
       "criticality": "Normal",
-      "reevaluationTrigger": "Counting rule, source visibility, evidence, registry scope, README markers or workflow permissions change.",
+      "reevaluationTrigger": "Mode rules, private scope, source access, visibility or publishing permissions change.",
       "generatedSource": {
         "path": "docs/spec-kit-runs/registry.json",
         "renderer": "bash scripts/update-public-speckit-statistics.sh --action Collect && bash scripts/update-public-speckit-statistics.sh --action Render"

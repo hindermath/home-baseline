@@ -1167,6 +1167,12 @@ syntax, and secret-scan checks passed. Documentation impact is `UpdateRequired`,
 the statistics update is `GeneratedUpdate`, and this `homeRuntime` change
 requires Home sync.*
 
+### 2026-09-12 - Private Spec-Kit-Summen und Ausführungsarten / Private Spec Kit totals and execution modes
+
+- Regelversion 2 ergänzt individuelle öffentliche Ausführungsarten und eine strikt validierte private Sammelzeile; historische Regelversion 1 bleibt reproduzierbar.
+- Getrennte private CI-Erhebung und öffentliche Veröffentlichung; die Umsetzung wird vor der initialen gemeinsamen Live-Erhebung geprüft. Dieser Eintrag behauptet noch keine aktivierte Veröffentlichung.
+- *Rule version 2 adds per-public-repository execution modes and a strictly validated private aggregate. Version 1 replay remains supported. Separate private collection and public publication are validated before the initial joint live run; this entry does not preclaim activation.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

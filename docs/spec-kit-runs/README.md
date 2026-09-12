@@ -1,4 +1,81 @@
-# Öffentliche Spec-Kit-Läufe / Public Spec Kit runs
+# Spec-Kit-Läufe und Ausführungsarten / Spec Kit runs and execution modes
+
+## Regelversion 2 / Rule version 2
+
+Version 2 ergänzt jede öffentliche Repository-Zeile um die Ausführungsarten
+Manuell, Autonom seriell, Autonom parallel, Gemischt und Nicht eindeutig belegt.
+Die fünf Werte teilen ausschließlich **Ausgeführt** auf; ihre Summe muss in
+jeder Zeile exakt dieser Spalte entsprechen. Die Statusspalten bleiben kumulativ.
+
+*Version 2 adds Manual, Autonomous serial, Autonomous parallel, Mixed and Not
+clearly evidenced to each public repository row. These five values partition
+Executed exactly. Status columns retain their cumulative meaning.*
+
+| Art / Mode | Nachweis / Evidence |
+|---|---|
+| Manuell / Manual | Belegte schrittweise Benutzersteuerung; KI-Unterstützung ist möglich. / Evidenced stepwise user control; AI assistance is allowed. |
+| Autonom seriell / Autonomous serial | Belegte autonome Feature-Bearbeitung mit geprüfter Einstufung außerhalb einer ausgeführten parallelen Kampagne. / Evidenced autonomous feature execution, reviewed as outside an executed parallel campaign. |
+| Autonom parallel / Autonomous parallel | Belegte Ausführung als Kampagnen-Worker; zeitliche Überlappung ist nicht erforderlich. Planung allein genügt nicht. / Evidenced campaign-worker execution; temporal overlap is not required. Planning alone does not qualify. |
+| Gemischt / Mixed | Mehrere Arten während substanzieller Ausführung; manuelle Vorplanung allein zählt nicht. / Multiple modes during substantive execution; manual preliminary planning alone does not qualify. |
+| Nicht eindeutig belegt / Not clearly evidenced | Ausführung belegt, Modus nicht ausreichend belegt. Fehlende Autonomie-Dateien beweisen keinen manuellen Lauf. / Execution evidenced, mode insufficiently evidenced. Missing autonomy files do not prove manual execution. |
+
+Ein Feature zählt weiterhin einmal. Kampagnenhüllen, Resume, Installationen,
+Smoke-Tests und Review-Aufgaben ergeben keine zusätzlichen Feature-Läufe.
+Begründungen und Modusbelege stehen im Register; zukünftige neue Belege erfordern
+Review und werden nicht durch eine Textheuristik automatisch freigegeben.
+
+*A feature still counts once. Campaign containers, resumes, installations,
+smoke tests and review tasks do not add feature runs. Mode reasons and proofs
+are registered; new evidence requires review rather than automatic text-heuristic approval.*
+
+Die privaten GitHub-Repositories des Kontos werden einschließlich Level 1 und
+archivierter Repos als **eine** Zeile ergänzt. Namen und Einzelbelege bleiben
+privat. Öffentliche Level-2-, öffentliche Level-0-/2- und gemeinsame Gesamtsummen
+bleiben ausdrücklich unterscheidbar; öffentlich bleibt das bestehende Register
+maßgeblich. GitLab und fremde Organisationsrepositories sind nicht eingeschlossen.
+
+*All private GitHub repositories owned by the account, including level 1 and
+archives, contribute to one aggregate row. Names and individual proofs stay
+private. Public level-2, public level-0/2 and combined totals remain distinct.
+The public scope continues to follow the existing register. GitLab and other
+organizations are excluded.*
+
+Die private CI koordiniert den gemeinsamen Monatslauf am Ersten um 08:17 UTC.
+Ein getrenntes Veröffentlichungs-Job erhält nur das strikt typisierte
+Summenobjekt: Regel-/Schemaversion, Datenstand, acht Zahlen und Anzahl ungeprüfter
+Kandidaten. Zusätzliche Felder, private Namen, Pfade oder Freitexte sind verboten.
+Ein reiner Lese-App-Zugriff erhebt die Quellen; eine getrennte Herausgeber-App
+darf ausschließlich den öffentlichen Level-0-Aktualisierungs-PR schreiben.
+Öffentliche PR-Prüfungen erhalten keine privaten Zugangsdaten.
+
+*Private CI coordinates the joint monthly run on day 1 at 08:17 UTC. A separate
+publisher job receives only the strictly typed aggregate: rule/schema version,
+data date, eight counts and unreviewed-candidate count. Extra fields and private
+identities, paths or free text are rejected. A read-only collector App accesses
+sources; a separate publisher App can write only the public Level-0 update PR.
+Public PR checks receive no private credentials.*
+
+Private Einzelbelege und Snapshots sind intern reproduzierbar, aber nicht
+öffentlich unabhängig prüfbar. Die veröffentlichte Datei
+`private-aggregate.json` enthält ausschließlich diese freigegebenen Summen.
+Beide Datenstände bleiben sichtbar; unveränderte genehmigte Werte behalten ihr
+Datum. API-Ausfälle oder fehlende Quellabdeckung verhindern eine neue Gesamtausgabe.
+Die Profileinbindung übernimmt unverändert den gemergten Tabellenexport.
+
+*Private individual evidence and snapshots are internally reproducible but not
+independently publicly auditable. The published private-aggregate.json contains
+only approved totals. Both observation dates remain visible; unchanged approved
+values retain their date. API failures or missing source coverage prevent a new
+combined publication. The profile imports the merged table unchanged.*
+
+Der Renderer unterstützt weiterhin Regelversion 1 mit unveränderten Tabellenbytes.
+Regelversion 2 benötigt zusätzlich das validierte private Summenobjekt; fehlende
+Daten ergeben einen Fehler und niemals erfundene Nullwerte. Historische
+Laufartefakte werden durch die Migration nicht verändert.
+
+*The renderer still supports rule version 1 with unchanged table bytes. Rule
+version 2 additionally requires the validated private aggregate; missing data
+fails rather than inventing zeros. Migration does not rewrite historical runs.*
 
 Diese Statistik zählt belegte Feature-Läufe in registrierten öffentlichen
 GitHub-Repositories der Level 0 und 2. Sie misst weder Produktqualität noch
@@ -156,14 +233,14 @@ shared Level-0 source resolver, including calls from a distributed Home Runtime 
 
 ## Monatlicher Betrieb / Monthly operation
 
-Level 0 erhebt am Monatsersten um 08:17 UTC. Das Profil übernimmt am zweiten
+Die gemeinsame private CI erhebt am Monatsersten um 08:17 UTC. Das Profil übernimmt am zweiten
 Kalendertag um 09:17 UTC ausschließlich den zuletzt gemergten Level-0-Stand.
 Beide Workflows erlauben `workflow_dispatch`. GitHub kann Termine verzögern.
 Offene Level-0-PRs werden nicht ins Profil übernommen; nach einem späteren Merge
 kann dessen Workflow manuell gestartet werden, sonst greift der nächste Monatslauf.
 Je Repository entsteht höchstens ein Aktualisierungs-PR. Kein Auto-Merge.
 
-*Level 0 collects on day 1 at 08:17 UTC; the profile imports the latest merged
+*Joint private CI collects on day 1 at 08:17 UTC; the profile imports the latest merged
 source on day 2 at 09:17 UTC. Both support manual workflow dispatch. GitHub may
 delay schedules. Pending source PRs are not imported. After a later merge, dispatch
 the profile workflow manually or wait for the next month. One update PR per repo;

@@ -91,6 +91,35 @@ Assert-Test ($updated -ceq (Set-HBStatisticsBlock $updated $table)) 'idempotent 
 Assert-Rejected { Set-HBStatisticsBlock "$begin$original" $table } 'duplicate markers'
 Assert-Rejected { Set-HBStatisticsBlock 'no markers' $table } 'missing markers'
 Assert-Rejected { Set-HBStatisticsBlock "$end$begin" $table } 'reversed markers'
+# Rule v2 preserves the v1 replay above and partitions every executed feature exactly once.
+$v2 = Copy-Fixture $snapshot; $v2.schemaVersion=2; $v2.ruleVersion=2
+$v2.repositories[0].features[0].review.executionMode='unknown'
+$v2.repositories[0].features[0].review.modeReason='No affirmative historical mode evidence.'
+$aggregate=@{schemaVersion=2;ruleVersion=2;collectedAt='2026-09-12T12:00:00Z';started=4;executed=3;completed=2;manual=1;serial=1;parallel=1;mixed=0;unknown=0;needsReview=0}
+$extended=Get-HBStatisticsTable $v2 de $aggregate
+Assert-Test ($extended.Contains('| 0 | [source](https://github.com/example/source) | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 1 |')) 'public repository has individual mode counts'
+Assert-Test ($extended.Contains('| 2 | [empty](https://github.com/example/empty) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |')) 'empty public repository retains all mode zeros'
+Assert-Test ($extended.Contains('**5** | **4** | **3** | **1** | **1** | **1** | **0** | **1**')) 'public plus private arithmetic'
+foreach($mode in @('manual','serial','parallel','mixed')) {
+    $modeFixture=Copy-Fixture $v2
+    $modeFixture.repositories[0].features[0].review.executionMode=$mode
+    Assert-Rejected {Test-HBStatisticsSnapshot $modeFixture} "${mode}: affirmative proof required"
+    $modeFixture.repositories[0].features[0].review.proofs[0].roles+=@('mode')
+    Test-HBStatisticsSnapshot $modeFixture
+    $c=Get-HBExecutionCounts @($modeFixture.repositories[0].features[0].review)
+    Assert-Test (($c[3..7]|Measure-Object -Sum).Sum -eq 1) "${mode}: feature counted once"
+}
+$badAggregate=Copy-Fixture $aggregate;$badAggregate['repository']='private/name'
+Assert-Rejected {Get-HBStatisticsTable $v2 de $badAggregate} 'private identifiers cannot cross publication boundary'
+$badAggregate=Copy-Fixture $aggregate;$badAggregate.manual=99
+Assert-Rejected {Assert-HBPrivateAggregate $badAggregate} 'mode aggregate inconsistency'
+$badAggregate=Copy-Fixture $aggregate;$badAggregate.started='4'
+Assert-Rejected {Assert-HBPrivateAggregate $badAggregate} 'aggregate disallows strings in numeric fields'
+$badMode=Copy-Fixture $v2;$badMode.repositories[0].features[0].review.executionMode='UNKNOWN'
+Assert-Rejected {Test-HBStatisticsSnapshot $badMode} 'mode vocabulary is case-sensitive for exact partition indexing'
+Assert-Rejected {Get-HBStatisticsTable $v2} 'missing private evidence cannot become zero'
+Assert-Test ($extended -ceq (Get-HBStatisticsTable (Copy-Fixture $v2) de (Copy-Fixture $aggregate))) 'v2 deterministic replay'
+Assert-Test ((Get-HBStatisticsTable $v2 en $aggregate).Contains('Autonomous parallel')) 'v2 English translation'
 # Provider boundary tests use the module's API seam, never live credentials or network.
 $module=Get-Module public-speckit-statistics
 & $module {
