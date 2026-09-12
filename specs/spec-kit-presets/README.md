@@ -30,7 +30,7 @@ v0.1.3; it grants no automatic expansion to additional repositories.
 | intake-authoring-governance | v0.3.1 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/tree/v0.3.1) |
 | intake-review-governance | v0.2.1 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-review-governance/tree/v0.2.1) |
 | intake-sequencing-governance | v0.2.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/tree/v0.2.3) |
-| autonomous-run-governance | v0.4.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/tree/v0.4.2) |
+| autonomous-run-governance | v0.4.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/tree/v0.4.3) |
 | parallel-autonomous-run-governance | v0.2.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.6) |
 
 Die aktuelle Quellenbindung ist v0.1.3: das gesondert genehmigte unveraenderliche
