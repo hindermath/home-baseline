@@ -1,0 +1,1032 @@
+{
+  "findingsPolicy": "Project lifecycle findings recorded separately; no unapproved intake migration",
+  "schemaVersion": 1,
+  "deliveryMode": "MergeAndSync",
+  "targets": [
+    {
+      "baseCommit": "3375a51c2658809bdd41134e515d2ba906523d5a",
+      "repository": "https://github.com/hindermath/c64-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "C64Projects"
+    },
+    {
+      "baseCommit": "8f827644d9bde3449e59a74eb4a2d4f31a79cb42",
+      "repository": "https://github.com/hindermath/cc65.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "C64Projects/cc65"
+    },
+    {
+      "baseCommit": "06dde0492fb123832102ee199a31ca33550799dd",
+      "repository": "https://github.com/hindermath/clion-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "CLionProjects"
+    },
+    {
+      "baseCommit": "5cdf29fc85d51ccbba25bde10573b12a2e4276e6",
+      "repository": "https://github.com/hindermath/tvision.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "CLionProjects/tvision"
+    },
+    {
+      "baseCommit": "7459b7a8efb777f616cd9cb5af79ff9e929d8a2e",
+      "repository": "https://github.com/hindermath/container-images.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "container-images"
+    },
+    {
+      "baseCommit": "9030ae1e26ad178bf6b619f6c490aab7eceba6e9",
+      "repository": "https://github.com/hindermath/absdd-image-sandbox.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "container-images/absdd-image-sandbox"
+    },
+    {
+      "baseCommit": "cb8e5aa065a58b063b52c018187f81c512bf207c",
+      "repository": "https://github.com/hindermath/datagrip-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "DataGripProjects"
+    },
+    {
+      "baseCommit": "734f0e1f424b330fca78f1bcbafe2352cd8b8bc6",
+      "repository": "https://github.com/hindermath/InventarDb.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "DataGripProjects/InventarDb"
+    },
+    {
+      "baseCommit": "f680a182065e997477e300fd17b985abda08d48e",
+      "repository": "https://github.com/hindermath/home-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "home-baseline-source"
+    },
+    {
+      "baseCommit": "9302fa836d3c74904747fea69e80ae79b0d600bd",
+      "repository": "https://github.com/hindermath/rider-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "RiderProjects"
+    },
+    {
+      "baseCommit": "e5083c82d80099901774518b3987f47a1a628572",
+      "repository": "https://github.com/hindermath/agent-operations-cockpit.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "RiderProjects/AgentOperationsCockpit"
+    },
+    {
+      "baseCommit": "b343271028bf95cf60c2f3472aefae9f1739729d",
+      "repository": "https://github.com/hindermath/InventarWorkerService.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "RiderProjects/InventarWorkerService"
+    },
+    {
+      "baseCommit": "0dcee4254a29ebe6330345e74b7f695594c77943",
+      "repository": "https://github.com/hindermath/TinyCalc.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "RiderProjects/TinyCalc"
+    },
+    {
+      "baseCommit": "431152247d0b67350340daa4df6d8881a592c0c9",
+      "repository": "https://github.com/hindermath/TinyPl0.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "RiderProjects/TinyPl0"
+    },
+    {
+      "baseCommit": "8efefd8d45434b7fbd1a5348a368849c164abb36",
+      "repository": "https://github.com/hindermath/secure-casetracker-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects"
+    },
+    {
+      "baseCommit": "7bf28cae1d2e2576588567d7ff0dac453625783a",
+      "repository": "https://github.com/hindermath/securecasetracker-csharp.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects/SecureCaseTracker-CSharp"
+    },
+    {
+      "baseCommit": "589a59578087cc6a99410303d555c7482a8cb3cd",
+      "repository": "https://github.com/hindermath/securecasetracker-go.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects/SecureCaseTracker-Go"
+    },
+    {
+      "baseCommit": "0e1199c37d65b8cd8e0057e7b4221f3dc0218fc3",
+      "repository": "https://github.com/hindermath/securecasetracker-java.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects/SecureCaseTracker-Java"
+    },
+    {
+      "baseCommit": "e1be643ea1731a40d322e5e99e59a8660fab8874",
+      "repository": "https://github.com/hindermath/securecasetracker-python.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects/SecureCaseTracker-Python"
+    },
+    {
+      "baseCommit": "ae5691e6adec48946157828bb994ae9c58302630",
+      "repository": "https://github.com/hindermath/securecasetracker-rust.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects/SecureCaseTracker-Rust"
+    },
+    {
+      "baseCommit": "a16f0c4b38568688752c11b41f6afbe6c2d08e69",
+      "repository": "https://github.com/hindermath/securecasetracker-swift.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureCaseTrackerProjects/SecureCaseTracker-Swift"
+    },
+    {
+      "baseCommit": "ac3e72de8f873061e243df5f03b9419b5e4cae80",
+      "repository": "https://github.com/hindermath/secure-orderdesk-baseline.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects"
+    },
+    {
+      "baseCommit": "876c764de6b2c244b13b31299506a5eb2169f0f2",
+      "repository": "https://github.com/hindermath/secureorderdesk-csharp.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects/SecureOrderDesk-CSharp"
+    },
+    {
+      "baseCommit": "138327f8d526b1bc0c3b7b283293d9965d233e56",
+      "repository": "https://github.com/hindermath/secureorderdesk-go.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects/SecureOrderDesk-Go"
+    },
+    {
+      "baseCommit": "9c37935a0e5425aaa7f43bd5471bb43852104c9d",
+      "repository": "https://github.com/hindermath/secureorderdesk-java.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects/SecureOrderDesk-Java"
+    },
+    {
+      "baseCommit": "885a8e26c36eff27ff97de15690f7f1ecfe5a932",
+      "repository": "https://github.com/hindermath/secureorderdesk-python.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects/SecureOrderDesk-Python"
+    },
+    {
+      "baseCommit": "885a634af2caa20413df8fd25f6f9c71cce9882c",
+      "repository": "https://github.com/hindermath/secureorderdesk-rust.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects/SecureOrderDesk-Rust"
+    },
+    {
+      "baseCommit": "8071da2c5a710e45ba7d5126e4ba15d89f7fd56b",
+      "repository": "https://github.com/hindermath/secureorderdesk-swift.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureOrderDeskProjects/SecureOrderDesk-Swift"
+    },
+    {
+      "baseCommit": "ba7c56d62b62ab453f30febba588076e8f64d58c",
+      "repository": "https://github.com/hindermath/secure-serviceharvester.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects"
+    },
+    {
+      "baseCommit": "646aee0b34ffdcabfbc291eca70de17d362ad7ec",
+      "repository": "https://github.com/hindermath/secureserviceharvester-csharp.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects/SecureServiceHarvester-CSharp"
+    },
+    {
+      "baseCommit": "849bf76a52e441a08e464e9937663ace10a7185e",
+      "repository": "https://github.com/hindermath/secureserviceharvester-go.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects/SecureServiceHarvester-Go"
+    },
+    {
+      "baseCommit": "da9746d2595d1330859357f309260ef1f9c438f1",
+      "repository": "https://github.com/hindermath/secureserviceharvester-java.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects/SecureServiceHarvester-Java"
+    },
+    {
+      "baseCommit": "1c544783742260be170031962e18ec6041d8d668",
+      "repository": "https://github.com/hindermath/secureserviceharvester-python.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects/SecureServiceHarvester-Python"
+    },
+    {
+      "baseCommit": "8168bf585138e6a07bb83244bb93903889843069",
+      "repository": "https://github.com/hindermath/secureserviceharvester-rust.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects/SecureServiceHarvester-Rust"
+    },
+    {
+      "baseCommit": "cead1e964422e93f86c6c41e0ea19a7300b1e5e1",
+      "repository": "https://github.com/hindermath/secureserviceharvester-swift.git",
+      "delivery": "Pending",
+      "presets": [
+        {
+          "id": "intake-authoring-governance",
+          "previous": "0.3.1",
+          "version": "0.3.2",
+          "enabled": true,
+          "priority": 64
+        },
+        {
+          "id": "intake-review-governance",
+          "previous": "0.2.1",
+          "version": "0.2.2",
+          "enabled": true,
+          "priority": 65
+        },
+        {
+          "id": "intake-sequencing-governance",
+          "previous": "0.2.3",
+          "version": "0.2.4",
+          "enabled": true,
+          "priority": 66
+        }
+      ],
+      "workspace": "SecureServiceHarvesterProjects/SecureServiceHarvester-Swift"
+    }
+  ],
+  "standardMatrix": "Unchanged",
+  "alreadyUpdatedReference": "hindermath/TuiVision",
+  "adminBypass": "ExplicitlyAuthorizedAfterTechnicalGates",
+  "date": "2026-09-13",
+  "status": "InProgress",
+  "excludedHistoricalFixtures": [
+    "intake-authoring-release-smoke-v010",
+    "intake-authoring-v010",
+    "intake-review-governance-v010"
+  ]
+}
