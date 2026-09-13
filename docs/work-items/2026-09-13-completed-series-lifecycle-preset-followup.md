@@ -32,9 +32,12 @@ member's lifecycle status against its configured collection.*
 | Repository | `hindermath/TuiVision` |
 | Ausgangs-Head / Baseline head | `5c2c3c301afa8c9cbdba24687294e7d53ed7e417` |
 | Korrekturbranch / Correction branch | `codex/completed-intake-archive-reconciliation` |
-| Pull Request | `hindermath/TuiVision#175` |
-| Geprüfter Head / Reviewed head | `d7cd2c63bc0d8925104a6a7bd0c6aadb27b1fc5f` |
-| Merge-Commit | `94d2d9f3ea5d079b8df1cc5bc112c2bfb807419b` |
+| Erster Pull Request / Initial pull request | `hindermath/TuiVision#175` |
+| Erster geprüfter Head / Initial reviewed head | `d7cd2c63bc0d8925104a6a7bd0c6aadb27b1fc5f` |
+| Erster Merge-Commit / Initial merge commit | `94d2d9f3ea5d079b8df1cc5bc112c2bfb807419b` |
+| Clean-Checkout-Folge-PR / Clean-checkout follow-up PR | `hindermath/TuiVision#176` |
+| Final geprüfter Head / Final reviewed head | `47283e9d2aa4dab50d50fba07fcc3bd8e18d734a` |
+| Finaler Merge-Commit / Final merge commit | `5074a2ccd50e8a427a3e683888945191d6dae12e` |
 | Serie / Series | `a73dda7c-163b-4530-97f2-fd9eea5e8986`, `tui-vision-delivery` |
 | Zielmenge / Target set | Features `037` bis `046`, zehnmal `Completed` |
 | Ausgangsbefund / Initial finding | acht `Completed`-Ziele unter `active`, zwei unter `archive` |
@@ -48,7 +51,7 @@ Der korrigierte Manifest-Kandidat hat den normalisierten SHA-256
 Der read-only Statuslauf ergab in allen drei Presets sowie für Manifest und
 Series-Receipt unter Bash und PowerShell bytegleiche JSON-Ausgaben. Der letzte
 zusammengefasste Evidence- und Git-Status-Hash blieb vor und nach der Prüfung
-`45e2fde80422c8bef5eabf1fb39e5c3d9727345bfd91f998d2153a7a310e7667`.
+`ac01d755b7628539d9dbfdb9e372709cf88d8a5e8b5ec1cd4873836edc17fead`.
 Die projektspezifische Suite bestand vier Positiv- und 18 Negativfälle; alle
 drei Preset-Suiten bestanden ihre positiven und negativen Fälle über beide
 öffentlichen Shell-Wrapper.
@@ -61,12 +64,26 @@ Der normale Merge scheiterte ausschließlich an der Human-Approval-Regel. Der
 zuvor ausdrücklich begrenzt autorisierte Admin-Bypass wurde erst nach grünen
 technischen Gates und der Prüfung auf umsetzbare Threads verwendet.
 
+Der erste Statuslauf auf dem nach PR #175 frisch ausgecheckten `main` deckte
+eine weitere portable Grenze auf: Git speichert das leere aktive Verzeichnis
+nicht. Die drei Konfigurationsvalidatoren meldeten deshalb noch
+`MigrationRequired`, obwohl Manifest, Receipt und Projektvalidator den
+abgeschlossenen Zustand korrekt akzeptierten. PR #176 behebt genau diese
+Abweichung. Im Modus `SeriesManifest` gilt eine fehlende aktive Collection als
+Bestand null; `DirectoryStrict` verlangt das Verzeichnis weiterhin. Alle drei
+Cross-Shell-Suiten enthalten nun den realen Clean-Checkout-Fall. Am finalen
+Head waren 33 technische Checks grün, ein nur für `main` vorgesehener Deploy
+war erwartungsgemäß übersprungen und es gab null Review-Threads. Copilot
+lieferte erneut einen Dienstfehler statt eines Reviews; der enge Admin-Bypass
+erfolgte erst, nachdem der normale Merge ausschließlich an Human Approval
+gescheitert war.
+
 *The corrected manifest candidate has normalized SHA-256
 `268a3d3e37e279127f0fcfc099e7761df0443dc4c9625392a70441c619bdf894`.
 All three preset validators plus the manifest and series-receipt validators
 produced byte-identical JSON through Bash and PowerShell. The combined evidence
 and Git-status hash remained unchanged at
-`45e2fde80422c8bef5eabf1fb39e5c3d9727345bfd91f998d2153a7a310e7667`
+`ac01d755b7628539d9dbfdb9e372709cf88d8a5e8b5ec1cd4873836edc17fead`
 before and after status inspection. The project suite passed four positive and
 18 negative cases, and all three preset
 suites exercised their positive and negative cases through both public shell
@@ -75,7 +92,14 @@ main-only DocFX deployment was skipped as expected, and no review thread
 existed. Copilot returned a service error on an older head and therefore
 remained recorded as a missing review. The narrowly authorized admin bypass was
 used only after the ordinary merge was blocked solely by the human-approval
-rule.*
+rule. The first clean-checkout status after PR #175 then exposed one remaining
+portable boundary: Git does not preserve the empty active directory. PR #176
+therefore permits an absent active collection to count as zero only in
+`SeriesManifest` mode, while `DirectoryStrict` remains unchanged. All three
+cross-shell suites now exercise the real clean-checkout case. The final head
+passed 33 technical checks with one expected main-only deployment skip and no
+review threads. Copilot again returned a service error; the narrow bypass was
+used only after the ordinary merge was blocked solely by human approval.*
 
 Die lokale Korrektur verschiebt die acht Dateien nach
 `requirements/intakes/archive/`, versieht sie mit den Feature-Suffixen
