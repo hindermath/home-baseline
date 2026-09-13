@@ -1,12 +1,12 @@
 # Workitem: Lifecycle-Regel für abgeschlossene Intake-Serien / Completed Intake-Series Lifecycle Rule
 
-- Status: offen / open
+- Status: Completed — Releases, TuiVision-Rollout und Clean-Checkout-Nachweis abgeschlossen / releases, TuiVision rollout and clean-checkout proof completed
 - Owner: Maintainer von `intake-authoring-governance`,
   `intake-review-governance` und `intake-sequencing-governance`
 - Datum / Date: 2026-09-13
 - Ursprung / Origin: TuiVision-Serie `tui-vision-delivery`
 - Entscheidung / Decision: `Promote`
-- Dokumentationsauswirkung / Documentation impact: `FollowUp`
+- Dokumentationsauswirkung / Documentation impact: `UpdateRequired`
 
 ## Anlass / Motivation
 
@@ -42,7 +42,7 @@ member's lifecycle status against its configured collection.*
 | Zielmenge / Target set | Features `037` bis `046`, zehnmal `Completed` |
 | Ausgangsbefund / Initial finding | acht `Completed`-Ziele unter `active`, zwei unter `archive` |
 | Zielzustand / Target state | zehn `Completed`-Ziele unter `archive`, null aktive oder `Eligible`-Serienziele |
-| Installierte Versionen / Installed versions | Authoring `0.3.1`, Review `0.2.1`, Sequencing `0.2.3` |
+| Historische Ausgangsversionen / Historical baseline versions | Authoring `0.3.1`, Review `0.2.1`, Sequencing `0.2.3` |
 | Projektnachweis / Project proof | `scripts/validate-requirements-intake-alignment.mjs` und `scripts/tests/requirements-intake-alignment-tests.mjs` |
 | Preset-Nachweis / Preset proof | die drei installierten `validate-intake-governance-config.py` plus Cross-Shell-Fixtures |
 
@@ -196,17 +196,22 @@ the shared Python engine is insufficient for cross-platform evidence.*
 
 ## Berechtigungs- und Sicherheitsgrenze / Permission and Safety Boundary
 
-Dieses Workitem autorisiert keine Preset-Implementierung, Versionsänderung,
-Veröffentlichung, Installation, Flottenverteilung oder Änderung eines
-Konsumenten-Repositories. Eine spätere Umsetzung erfolgt in den drei
-öffentlichen Preset-Quellrepositories mit eigenem Auftrag. Validatoren bleiben
-read-only und dürfen fehlplatzierte Dateien nicht automatisch verschieben.
+Bei der Anlage war dieses Workitem ausschließlich ein Folgeauftrag ohne
+Ausführungsautorität. Thorsten hat am 2026-09-13 die Umsetzung in den drei
+bestehenden öffentlichen Preset-Quellen einschließlich Tests, Dokumentation,
+Patch-Releases und anschließendem ersten Rollout ausschließlich auf TuiVision
+ausdrücklich autorisiert. Danach hat Thorsten mit dem Auftrag
+"DeliveryMode MergeAndSync mit Admin-Bypass." auch den Admin-Bypass fuer diese
+Lieferung freigegeben. Technische Gates bleiben verbindlich. Weitere Verbraucher
+gehoeren nicht zu diesem Auftrag. Validatoren bleiben read-only und dürfen
+fehlplatzierte Dateien nicht automatisch verschieben.
 
-*This work item authorizes no preset implementation, version change, release,
-installation, fleet rollout, or consumer-repository change. A later change
-must be implemented in the three public preset source repositories under
-separate authority. Validators remain read-only and must not move misplaced
-files automatically.*
+*Initially this work item only recorded follow-up work. On 2026-09-13 Thorsten
+explicitly authorized implementation in the three existing public preset
+sources, tests, documentation, patch releases, and an initial rollout to
+TuiVision only. The subsequent explicit instruction
+"DeliveryMode MergeAndSync mit Admin-Bypass." authorizes admin bypass for this
+delivery after technical gates. Other consumers remain outside this authority. Validators remain read-only and must not move files automatically.*
 
 ## Vorgesehene Umsetzung / Intended Implementation
 
@@ -218,8 +223,8 @@ files automatically.*
    bestehende Create-, Review- und Sequencing-Fixtures prüfen.
 4. Nur bei grüner Parität Patch-Versionen veröffentlichen und versionierte
    ZIP-Dateien validieren.
-5. TuiVision und ausgewählte Verbraucher erst mit gesonderter
-   Rollout-Autorität aktualisieren.
+5. Ausschliesslich TuiVision mit der erteilten Rollout-Autoritaet aktualisieren.
+   Weitere Verbraucher bleiben ausserhalb dieses Auftrags.
 
 ## Abschlusskriterien / Acceptance Criteria
 
@@ -238,3 +243,103 @@ der drei Intake-Governance-Presets.
 
 *This is source-only documentation and requires no Home sync. Re-evaluate it
 before the next change to any of the three intake-governance presets.*
+
+## Lieferung 2026-09-13 / Delivery 2026-09-13
+
+| Preset | Release | Gemergter Quell-PR / Merged source PR |
+|---|---|---|
+| Authoring | [0.3.2](https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/releases/tag/v0.3.2) | [Authoring #6](https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/pull/6) |
+| Review | [0.2.2](https://github.com/hindermath/spec-kit-preset-intake-review-governance/releases/tag/v0.2.2) | [Review #6](https://github.com/hindermath/spec-kit-preset-intake-review-governance/pull/6) |
+| Sequencing | [0.2.4](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/releases/tag/v0.2.4) | [Sequencing #7](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/pull/7) |
+
+Alle drei Releases enthalten die Status-/Collection-Pruefung, die Trennung
+von `activeIntakeCount`, `activeSeriesTargetCount` und `seriesTargetCount`, den
+Clean-Checkout-Fall sowie sprach- und shelluebergreifende Fixtures. Das
+Authoring-Preset loest fehlende historische Ziel- und Repository-Quellpfade nur
+ueber genau einen abgeschlossenen Archivnachfolger mit passendem Namen,
+Manifest und normalisiertem Hash auf. Fremde Serienbindungen bleiben ungueltig.
+
+Alle neun nativen Quell-Jobs bestanden an den finalen Commits auf macOS,
+Linux und Windows; beide oeffentlichen Shell-Wrapper, LF/CRLF, deutsche und
+englische Projekte und bestehende Domain-Regressionen wurden geprueft. Native
+CI deckte Windows-Fixturefehler und die versehentliche Weitergabe erwarteter
+Negativ-Exitcodes auf; diese wurden vor dem finalen gruenen Lauf korrigiert.
+
+Die normalen Merge-Versuche wurden zunaechst allein wegen `REVIEW_REQUIRED`
+abgewiesen. Erst nach Thorstens anschliessender ausdruecklicher Freigabe fuer
+`MergeAndSync` mit Admin-Bypass wurden die PRs gemergt. Die Merge-Trees sind
+identisch mit den technisch geprueften Quell-Trees. Dies behauptet keine
+unabhaengige menschliche Review. Die historische Bypass-Freigabe aus dem
+urspruenglichen Feldtest wurde nicht fuer diese Lieferung wiederverwendet.
+
+Die veroeffentlichten Tag-ZIPs wurden heruntergeladen und alle 38/29/39 Dateien
+gegen ihre Release-Commits geprueft. Die regulaere TuiVision-Arbeitskopie wurde
+anschliessend gezielt aus diesen URLs installiert; ihre Dateien stimmen mit den
+Paketen ueberein. Die vorherige isolierte Installationsprobe bleibt gesonderte
+Evidence. Prioritaeten 64/65/66, andere Presets, Projektvalidatoren, bestehende
+Intakes und Receipts bleiben erhalten. Die lokale Lifecycle-Korrektur wird
+jetzt aus den drei allgemeinen Produktquellen geliefert.
+
+[TuiVision PR #177](https://github.com/hindermath/TuiVision/pull/177) bindet die
+Installationen und erweitert den bestehenden Requirements-Workflow um native
+Lifecycle-/Manifest-/Receipt-Paritaet. Lokal bestanden vier positive und
+18 negative Projekt-Fixtures, alle zehn Authoring-Receipts in beiden Shells
+und 1028/1028 .NET-Tests. Die fuenf Pflichtassemblies erreichen 94.97, 86.96,
+90.47, 83.33 und 93.93 Prozent Line-Coverage. Sechs veraltete Sicherheits-Audit-
+Quellenbindungen wurden nach semantischer Revalidierung aktualisiert; die
+157 Kontrolldispositionen und menschlichen Abnahmegrenzen bleiben erhalten.
+
+TuiVision PR #177 ist gemergt und die regulaere Arbeitskopie auf main
+mit origin/main synchron (ahead/behind 0/0, sauber). Gepruefter Head:
+`fa8ee931747e357a52678a7793511d3fa05c221c`; Merge:
+`a2bc4f99a465ea7c0c7f6772db7da10ee59c30cc`. Beide besitzen den identischen Tree
+`164916b8a6cf7f8ff67f4d19cc4a55089ab92208`. Alle 39 Checks bestanden;
+der nur fuer main vorgesehene DocFX-Deploy wurde erwartet uebersprungen.
+Es gab null Review-Threads; Copilot lieferte einen Dienstfehler statt Review,
+der Claude-Workflow war erfolgreich. Der normale Merge scheiterte an der
+Branch-Policy; anschliessend wurde der aktuell autorisierte Admin-Bypass genutzt.
+
+Der abschliessende frische Checkout des Merge-Commits enthaelt kein aktives
+Verzeichnis. Trotzdem liefern alle drei Konfigurationsvalidatoren in Bash und
+PowerShell identisches Aligned-JSON: zehn archivierte Completed-Mitglieder,
+null aktive Intakes, null aktive Serienziele und null Eligible. Manifest,
+Serien-Receipt und alle zehn Authoring-Receipts sind gueltig. Projektvalidator,
+vier positive und 18 negative Fixtures bestehen. Der Checkout blieb sauber.
+Damit sind saemtliche Abschlusskriterien erfuellt; das Workitem ist geschlossen.
+
+Die [maschinenlesbare Delivery-Evidence](2026-09-13-completed-series-lifecycle-evidence.json)
+bindet Source-Commits, Befehle, native Jobs, Log-/Entscheidungs-SHA-256,
+veroeffentlichte ZIPs, Installationspruefung und Rollout-Evidence. Die zentrale
+Standard-Achtermatrix und weitere Verbraucher bleiben unveraendert.
+
+Dokumentationsentscheidung: `UpdateRequired`. Owner: Level-0- und
+Preset-Maintainer. Zielgruppen: Maintainer, Agenten und Reviewende; Leserpfad:
+Workitem → Quell-PR/Release → Lifecycle-Dokumentation → TuiVision-Rollout.
+Dokumentklasse: Auftrags- und Delivery-Evidence; kanonische Produktquellen sind
+die drei eigenstaendigen Preset-Repositories. Navigation: bestehender Workitem-
+Pfad plus direkte PR-/Release-Links. Sprachpartner: integriertes DE/EN.
+Plattformnachweis: macOS lokal, native Quell-CI auf drei Betriebssystemen;
+39 erfolgreiche Rollout-Checks und finaler Clean-Checkout-Nachweis sind gebunden. Distribution: `sourceOnly`; kein
+Home-Sync. Statistik wird aus ihrer kanonischen Konfiguration gerendert.
+Re-Evaluation bei Aenderungen an Preset, Registry oder Lifecycle-Vertrag.
+
+*The three existing presets are published at 0.3.2, 0.2.2 and 0.2.4 after all
+nine native source jobs passed. Both wrappers, LF/CRLF, German/English fixtures
+and existing domain regressions were exercised. Ordinary merges first failed
+for missing human approval. The subsequent explicit MergeAndSync/admin-bypass
+instruction authorized delivery after technical gates; the old field-test
+bypass was not reused and independent human review is not claimed. Merge trees
+match the tested trees. All 38/29/39 downloaded tag-ZIP files and installed
+TuiVision files were compared. Priorities and unrelated project extensions
+remain intact. PR #177 contains rollout evidence and native installed-preset
+checks. Local validation passed ten immutable receipts in both shells,
+4 positive/18 negative fixtures and 1028 .NET tests, with each required assembly
+above 70% coverage. Six audit bindings were revalidated without changing the
+157 control dispositions or human acceptance boundaries. TuiVision PR #177 passed 39 checks (one expected main-only deployment skip),
+was merged under current admin authority, and main is synchronized cleanly.
+The final fresh checkout, with no active directory, passed both shells for all
+three configurations, ten archived members, zero active/eligible targets and
+ten valid receipts; project fixtures passed and Git remained clean. All
+acceptance criteria are fulfilled and the workitem is closed.
+Other consumers and the central matrix remain unchanged. Documentation impact
+is UpdateRequired; this bilingual source-only evidence needs no Home sync.*
