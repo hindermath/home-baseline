@@ -66,6 +66,78 @@ Business intakes and historical receipts are not rewritten merely to obtain
 green rollout results. Delivery and outstanding inventory corrections have
 separate completion criteria.
 
+## Lieferstand und offene Arbeiten / Delivery status and remaining work
+
+29 von 36 Repositories sind gemergt und lokal synchronisiert. Die finalen
+Releases 0.3.4 / 0.2.3 / 0.2.6 sind veroeffentlicht; alle neun
+nativen Quellrepository-Jobs auf macOS, Linux und Windows waren erfolgreich.
+Versionierte ZIPs wurden gegen die Release-Baeume geprueft. Alle 36
+Verbraucher-Aenderungen sind vorbereitet und als PR veroeffentlicht. Der genaue
+Merge-/Sync-Stand mit unveraenderlichen Commit- und CI-Verweisen steht in
+`deliveryCounts` und `finalTargets` der verlinkten Evidence.
+
+29 of 36 repositories are merged and locally synchronized. The final releases
+are published, all nine native source CI jobs passed, and
+versioned ZIP contents match the release trees. All 36 consumer changes have
+published PRs. Evidence records the exact merge/sync count and immutable heads.
+
+TuiVision ist gemergt und synchronisiert. Im frischen Checkout bestehen alle
+zwoelf Manifest-/Receipt-Pruefungen in beiden Shells: zehn archivierte
+Serienmitglieder, null physische aktive Intakes und null ausfuehrbare
+Serienziele. Die Produktpruefung bestand mit 1028 erfolgreichen Tests.
+Die 17 betroffenen Home-Runtime-Dateien wurden nach Vorschau synchronisiert
+und per Hash geprueft; drei parallele Toolchain-Dateien und der bestehende
+Voll-Sync-Zustand wurden erhalten.
+
+TuiVision is merged and synced. Fresh-checkout proof passes all twelve
+manifest/receipt checks in both shells, with ten archived members and zero
+active or eligible targets. All 1028 product tests passed. The 17 affected
+home runtime files were previewed, synchronized and hash-verified while
+preserving unrelated toolchain work and the existing full-sync state.
+
+Folgende Arbeiten verhindern weiterhin den Abschluss:
+
+- GitHub startete 13 Jobs in sechs Repositories wegen Abrechnung bzw.
+  Ausgabenlimit nicht: secureorderdesk-java, secureorderdesk-swift,
+  secure-serviceharvester, secureserviceharvester-go,
+  secureserviceharvester-java und secureserviceharvester-python.
+  Nach Behebung durch den Kontoinhaber: betroffene Jobs erneut starten,
+  technische Gates pruefen, mergen und synchronisieren.
+- TinyCalc: Zwei bestehende Authoring-Receipts besitzen bereits vor diesem
+  Rollout veraltete README-Quellhashes. Die gezielte Erneuerung samt neuen
+  Operationen, Archiv-/Nachfolgernachweisen und Reviews ist vorbereitet,
+  wartet aber auf ausdrueckliche aktuelle Update-/Review-Autorisierung.
+  Intake-IDs, Inhalte, Namen, Reihenfolge und Abhaengigkeiten bleiben erhalten.
+  Betroffen sind `rename-microcalc-tinycalc.json` und
+  `tui-funktionsabnahme-und-regressionsvertrag.json`.
+
+Thirteen jobs in the six repositories above could not start due to GitHub
+billing/spending limits. After the account owner resolves this, rerun the jobs
+and complete technical gates, merge and sync. TinyCalc additionally needs
+explicit current authority for the prepared renewal of two stale receipts and
+their reviews; their README hash drift predates this rollout. No receipt
+renewal or business-intake relocation has been performed.
+
+Bei InventarWorkerService war nur der optionale Claude-Review nach zwei
+Versuchen technisch fehlgeschlagen (Tool-Berechtigungen). Alle technischen
+Gates bestanden; acht Review-Befunde wurden bearbeitet. Der aktuelle
+Admin-Bypass wurde fuer die formale Review-Freigabe verwendet. Dieser begrenzte
+Fall erlaubt keinen Bypass nicht gestarteter oder fehlgeschlagener Pflichtjobs.
+
+InventarWorkerService's optional Claude review failed twice due to tool
+permissions. Technical gates passed and eight findings were addressed; current
+admin authority covered formal review approval. This bounded exception does
+not waive unstarted or failed mandatory jobs.
+
+Owner der offenen Schritte: Thorsten Hindermann / Maintainer. Wiedervorlage:
+nach Billing-Korrektur bzw. ausdruecklicher Receipt-Autorisierung. Bis dahin
+bleibt dieses Workitem InProgress; fachliche Bestandsbefunde bleiben separat
+sichtbar und werden nicht als erfolgreiche Lifecycle-Pruefungen ausgegeben.
+
+The maintainer owns these remaining actions. Resume after billing resolution
+or explicit receipt authority. This workitem remains InProgress; existing
+business findings are reported separately, never as successful lifecycle checks.
+
 ## Abschlusskriterien / Completion criteria
 
 - Alle 36 ausgewaehlten Verbraucher inklusive TuiVision und deren bestehende Profilbindungen aktualisiert.
