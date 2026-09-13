@@ -44,6 +44,7 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    @unittest.skipIf(os.name == "nt", "Native Windows uses PowerShell 7")
     def test_required_bash_probe_rejects_old_shell(self) -> None:
         tool = next(t for t in read_json(CONFIG / "required-cli-tools-registry.json")["tools"] if t["id"] == "bash")
         self.assertEqual(tool["platforms"], ["Darwin", "Linux"])
