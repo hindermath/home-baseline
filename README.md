@@ -244,3 +244,11 @@ and skips pull, commit, Git configuration, and Git identity.*
 Weitere Einzelheiten stehen im
 [Maintainer- und Agentenpfad](docs/architecture/source-and-home-runtime.md#maintainer-und-ki-agenten)
 und in den [Repository Guidelines](AGENTS.md).
+
+<!-- BEGIN spec-kit-diagrams-completion -->
+## Diagramme und Ergebnisberichte / Diagrams and outcome reports
+
+[Mermaid- und Abschlussbericht-Regeln](docs/spec-kit-diagrams-and-completion-reports.md)
+führen vom neuen Lastenheft zum belegten Feature-Ergebnisbericht. / The linked
+rules explain accessible intake diagrams and evidence-based feature reports.
+<!-- END spec-kit-diagrams-completion -->

@@ -1,0 +1,87 @@
+{
+  "deliveryMode": "MergeAndSync",
+  "historicalFixturesExcluded": [
+    "intake-authoring-release-smoke-v010",
+    "intake-authoring-v010",
+    "intake-review-governance-v010"
+  ],
+  "adminBypass": "FormalApprovalOnlyAfterTechnicalGates",
+  "mermaidCliVersion": "11.17.0",
+  "targets": [
+    {
+      "repository": "hindermath/home-baseline",
+      "base": "3461e517bf399b126c10af5b555c02cb0d366639",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/cc65",
+      "base": "f8b7fa8ef5e44eb7e59afabdbe709c69447c231b",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/tvision",
+      "base": "244fcfce27afb682d8d18fbc9ce4c3ba725e5148",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/agent-operations-cockpit",
+      "base": "d41f8a4620f4620cc4efc557ab6f9f1cc6190d42",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/InventarWorkerService",
+      "base": "c45d5fd67dbad560e0e7b8a89c5bb8ebeccdb236",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/TinyCalc",
+      "base": "13fb141a0dc49d3f4e3683d00e7de87d2355c9ad",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/TinyPl0",
+      "base": "4def803e37fa7a8ffbad197c08b4df6279b4a6d2",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "base": "77a6aa3a405d1303d6dddeb6d51bc7d32900d12b",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    },
+    {
+      "repository": "hindermath/absdd-image-sandbox",
+      "base": "61603b22319beaa461a8f02d6434b21705461ece",
+      "branch": "codex/mermaid-completion-governance-20260913",
+      "delivery": "Prepared",
+      "public": true
+    }
+  ],
+  "validation": [
+    "All nine working copies: five-agent parity and preserved extensions; templates and constitutional amendments",
+    "Mermaid CLI local SVG rendering with Chrome",
+    "Report template semantic walkthrough: product and governance; unknown time; evidence-dominated volume; paused state and provider outage"
+  ],
+  "status": "InProgress",
+  "date": "2026-09-13",
+  "presetPackages": "Unchanged",
+  "level1": "Unchanged",
+  "privateExcludedCount": 19,
+  "source": "docs/spec-kit-diagrams-and-completion-reports.md",
+  "schemaVersion": 1
+}
