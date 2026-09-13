@@ -1176,6 +1176,23 @@ requires Home sync.*
 - Getrennte private CI-Erhebung und öffentliche Veröffentlichung; die Umsetzung wird vor der initialen gemeinsamen Live-Erhebung geprüft. Dieser Eintrag behauptet noch keine aktivierte Veröffentlichung.
 - *Rule version 2 adds per-public-repository execution modes and a strictly validated private aggregate. Version 1 replay remains supported. Separate private collection and public publication are validated before the initial joint live run; this entry does not preclaim activation.*
 
+### 2026-09-13 - Intake-Flottenabschluss / Intake fleet closeout
+
+36/36 bestehende Verbraucher auf Authoring 0.3.4, Review 0.2.3 und Sequencing
+0.2.6 gemergt und synchronisiert. 13 Billing-Jobs erneut angefordert, weiterhin
+nicht gestartet und durch aktuelle ausdrueckliche Nutzerfreigabe ausgenommen.
+TinyCalc: zwei autorisierte Receipt-Erneuerungen, 15 frische Artefaktpruefungen
+und gepaarte Receipt-/Operation-/Review-Pruefungen bestanden; fachliche
+NeedsRemediation-Befunde bleiben erhalten. Drei deklarierte TinyCalc-Overlays
+uebernehmen die kanonische Generator-Korrektur; neuer oeffentlicher Patch als
+eigene Folgearbeit offen. UpdateRequired, source-only; kein weiterer Home-Sync.
+
+All 36 consumers merged and synced. Thirteen retried jobs remain unexecuted
+under the explicit current billing exception. Authorized TinyCalc receipt
+renewals passed fresh checks; business findings remain visible. A canonical
+generator compatibility backport is declared locally; public release follow-up
+remains separate. Source-only evidence; no additional home sync.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
