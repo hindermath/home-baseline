@@ -1,0 +1,221 @@
+{
+  "deliveryMode": "MergeAndSync",
+  "historicalFixturesExcluded": [
+    "intake-authoring-release-smoke-v010",
+    "intake-authoring-v010",
+    "intake-review-governance-v010"
+  ],
+  "adminBypass": "FormalApprovalOnlyAfterTechnicalGates",
+  "mermaidCliVersion": "11.17.0",
+  "targets": [
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 12,
+          "added": 13
+        },
+        "Evidence": {
+          "deleted": 0,
+          "added": 87
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 849
+        }
+      },
+      "added": 949,
+      "pr": "https://github.com/hindermath/home-baseline/pull/296",
+      "nonMergeCommits": 2,
+      "deleted": 14,
+      "files": 24,
+      "base": "3461e517bf399b126c10af5b555c02cb0d366639",
+      "head": "c92df8c5c10a916dc58f13b47592eb031785ab09",
+      "repository": "hindermath/home-baseline"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 14,
+          "added": 15
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 695,
+      "pr": "https://github.com/hindermath/cc65/pull/39",
+      "nonMergeCommits": 2,
+      "deleted": 16,
+      "files": 18,
+      "base": "f8b7fa8ef5e44eb7e59afabdbe709c69447c231b",
+      "head": "ee6fe4ba7ba469364c1e5ef599d9158b221f2fb1",
+      "repository": "hindermath/cc65"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 14,
+          "added": 15
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 3,
+          "added": 681
+        }
+      },
+      "added": 696,
+      "pr": "https://github.com/hindermath/tvision/pull/21",
+      "nonMergeCommits": 2,
+      "deleted": 17,
+      "files": 18,
+      "base": "244fcfce27afb682d8d18fbc9ce4c3ba725e5148",
+      "head": "8eb848a123380098f47163f23224f1175c369c8b",
+      "repository": "hindermath/tvision"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 13,
+          "added": 14
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 694,
+      "pr": "https://github.com/hindermath/agent-operations-cockpit/pull/56",
+      "nonMergeCommits": 2,
+      "deleted": 15,
+      "files": 18,
+      "base": "d41f8a4620f4620cc4efc557ab6f9f1cc6190d42",
+      "head": "6dfbba538264b87a9454796f1bf9c52d63b63363",
+      "repository": "hindermath/agent-operations-cockpit"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 13,
+          "added": 14
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 694,
+      "pr": "https://github.com/hindermath/InventarWorkerService/pull/73",
+      "nonMergeCommits": 2,
+      "deleted": 15,
+      "files": 18,
+      "base": "c45d5fd67dbad560e0e7b8a89c5bb8ebeccdb236",
+      "head": "277541727c74532513efff652e23629c0c9b2c25",
+      "repository": "hindermath/InventarWorkerService"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 11,
+          "added": 12
+        },
+        "Evidence": {
+          "deleted": 6,
+          "added": 29
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 721,
+      "pr": "https://github.com/hindermath/TinyCalc/pull/83",
+      "nonMergeCommits": 2,
+      "deleted": 19,
+      "files": 21,
+      "base": "13fb141a0dc49d3f4e3683d00e7de87d2355c9ad",
+      "head": "3763340ec5a71b96eb2b55f6854eb275633e4668",
+      "repository": "hindermath/TinyCalc"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 14,
+          "added": 15
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 695,
+      "pr": "https://github.com/hindermath/TinyPl0/pull/97",
+      "nonMergeCommits": 2,
+      "deleted": 16,
+      "files": 18,
+      "base": "4def803e37fa7a8ffbad197c08b4df6279b4a6d2",
+      "head": "0c827329460b655f4e3fb8185d2bbfe79a7e715d",
+      "repository": "hindermath/TinyPl0"
+    },
+    {
+      "categories": {
+        "Statistics": {
+          "deleted": 11,
+          "added": 12
+        },
+        "Evidence": {
+          "deleted": 9,
+          "added": 32
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 724,
+      "pr": "https://github.com/hindermath/TuiVision/pull/184",
+      "nonMergeCommits": 2,
+      "deleted": 22,
+      "files": 20,
+      "base": "77a6aa3a405d1303d6dddeb6d51bc7d32900d12b",
+      "head": "ac7789db69ee9fbfd85a7768bd915e4c40529e2c",
+      "repository": "hindermath/TuiVision"
+    },
+    {
+      "categories": {
+        "Evidence": {
+          "deleted": 0,
+          "added": 16
+        },
+        "Statistics": {
+          "deleted": 13,
+          "added": 14
+        },
+        "GovernanceAndDocumentation": {
+          "deleted": 2,
+          "added": 680
+        }
+      },
+      "added": 710,
+      "pr": "https://github.com/hindermath/absdd-image-sandbox/pull/68",
+      "nonMergeCommits": 2,
+      "deleted": 15,
+      "files": 19,
+      "base": "61603b22319beaa461a8f02d6434b21705461ece",
+      "head": "c71f9598afa7ff04b31da5a2f8f7e42e16fbe4ac",
+      "repository": "hindermath/absdd-image-sandbox"
+    }
+  ],
+  "validation": [
+    "All nine working copies: five-agent parity and preserved extensions; templates and constitutional amendments",
+    "Mermaid CLI local SVG rendering with Chrome",
+    "Report template semantic walkthrough: product and governance; unknown time; evidence-dominated volume; paused state and provider outage"
+  ],
+  "status": "PublishedAwaitingTechnicalGatesAndMerge",
+  "date": "2026-09-13",
+  "presetPackages": "Unchanged",
+  "level1": "Unchanged",
+  "privateExcludedCount": 19,
+  "source": "docs/spec-kit-diagrams-and-completion-reports.md",
+  "schemaVersion": 1,
+  "metricsBoundary": "Initial policy delivery heads before this report and final statistics refresh; net Git diff per repository; excluded repositories unchanged."
+}
