@@ -188,7 +188,7 @@
 | 2026-09-10 | Feature 032 Exaktvertrag und Assurance / Exact contract and assurance | T050 bis T066 sind lokal abgeschlossen: zehn exakte TuiVision-Zuordnungen, sechs Kanten, getrennter Backlog, 15 einzelne Negativmutationen, gepaarte Accessibility-/Security-Tests und korrigierte oeffentliche LIE-Diagnosen. Nach der zusaetzlichen Diagnosekorrektur sind Bash, PowerShell, PSScriptAnalyzer 1.25.0 einschliesslich ungetracktem Testskript und Secret-Gate gruen. Stand 66/169; keine Lieferung oder Downstream-Mutation. Slot 81 dokumentiert die 676 Nettozeilen des urspruenglichen Assurance-Slices; das nachfolgende Korrekturdelta und der generierte aktuelle Gesamtblock bleiben zur kausalen Reconciliation in T069/T071 offen. Kein Dirty-Guard-Override, kein Home-Sync; Documentation Impact weiterhin `GeneratedUpdate`. / T050 through T066 passed locally, including the superseding diagnostic regression. The original slice metric is preserved; final correction-volume reconciliation and generated statistics remain open until the authorized clean-checkpoint sequence. |
 
 | 2026-09-10 | Monatliche öffentliche Spec-Kit-Laufstatistik / Monthly public Spec Kit statistics | — | — | Profil 2 | Documentation Impact GeneratedUpdate: öffentliches Belegregister und reproduzierbarer Snapshot bestätigen 93/93/92; PowerShell-Engine, Bash-Einstieg, monatliche CI-PRs, identische README-Tabellen und Profilimport mit Prüfsummen. Lokale Fixture-, Offline-, Live-No-op- und Schutzprüfungen; native CI und Lieferung bleiben am jeweiligen PR-Head nachzuweisen. Kein neuer Spec-Kit-Lauf und kein Level-2-Rollout. README/Skripte sind Home Runtime, Daten/Methodik source-only. / Public evidence, deterministic rendering and monthly review PRs; delivery and native CI are separate evidence. |
-| 2026-09-13 | Intake-Lifecycle-Preset-Kandidaten / Intake lifecycle preset candidates | — | — | — | Drei bestehende Presets mit Lifecycle-Prüfung, getrennten Bestandszahlen und Archiv-Receipt-Auflösung als PR-Kandidaten vorbereitet. Lokale Regressionen und TuiVision-Installationsprobe bestanden; Releases und regulärer Rollout bleiben bis zu technischen Gates und menschlicher PR-Freigabe offen. Documentation Impact UpdateRequired; source-only, kein Home-Sync. / Three existing preset candidates and a successful isolated TuiVision rehearsal; publication and regular rollout await gates and human review. |
+| 2026-09-13 | Intake-Lifecycle-Presets und TuiVision-Rollout abgeschlossen / Intake lifecycle presets and TuiVision rollout completed | — | — | — | Authoring 0.3.2, Review 0.2.2 und Sequencing 0.2.4 veroeffentlicht; neun native Quell-Jobs bestanden, ZIPs dateiweise verifiziert. TuiVision PR #177 nach 39 erfolgreichen Checks und aktueller MergeAndSync/Admin-Bypass-Autoritaet gemergt und synchronisiert. 1028 Tests, fuenf Coverage-Gates und frischer Checkout: zehn archivierte Mitglieder, null aktive/ausfuehrbare Ziele, zehn gueltige Receipts in beiden Shells. Workitem geschlossen; zentrale Matrix und andere Verbraucher unveraendert. UpdateRequired, sourceOnly, kein Home-Sync. / Releases and TuiVision delivery completed with technical evidence and fresh-checkout proof; other consumers and central matrix unchanged. |
 
 ---
 
@@ -1184,25 +1184,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 676183 lines |
-| Textdateien / Text files | 3164 |
+| Textbasis / Text base | 676785 lines |
+| Textdateien / Text files | 3165 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-21..2026-09-13 |
 | Aktivtage / Active days | 109 |
-| Relevante Commits / Relevant commits | 849 |
-| Zeilen je Aktivtag / Lines per active day | 6203.5 |
+| Relevante Commits / Relevant commits | 850 |
+| Zeilen je Aktivtag / Lines per active day | 6209.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 77.5x |
-| Speedup vs. 100 lines/day | 62.0x |
-| Methodik / Methodology | v2; source `c8fd667fe96b` |
+| Speedup vs. 80 lines/day | 77.6x |
+| Speedup vs. 100 lines/day | 62.1x |
+| Methodik / Methodology | v2; source `abd78f4ffc51` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.8% | 25796
-Dokumentation / Documentation   [##########..........]  50.3% | 340134
+Dokumentation / Documentation   [##########..........]  50.3% | 340736
 Skripte / Scripts               [##..................]   8.2% | 55268
 Konfiguration / Configuration   [#######.............]  37.3% | 252397
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1228,7 +1228,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 ```text
 Wochen / Weeks 27..52 | 2026-03-22..2026-09-19
-So/Su  0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 2
+So/Su  0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 3
 Mo/Mo  0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 -
 Di/Tu  0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 -
 Mi/We  0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 -
@@ -1455,8 +1455,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 77.5x
-100 lines/day      [############........] 62.0x
+80 lines/day       [################....] 77.6x
+100 lines/day      [############........] 62.1x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1469,7 +1469,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6203.5
+Visible repository [############........] 6209.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1495,6 +1495,6 @@ DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-13. Es enthaelt 109 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 115031 |
+| 2026-09 | 115657 |
 
 <!-- project-statistics-v2:end -->
