@@ -3,7 +3,7 @@
 - Status: Open
 - Datum / Date: 2026-09-13
 - Owner: Thorsten Hindermann / Preset Maintainer
-- Documentation Impact: UpdateRequired
+- Documentation Impact: FollowUp
 - Wiedervorlage / Re-evaluation: vor dem naechsten Authoring-Release, spaetestens 2026-09-20 / before the next authoring release, no later than 2026-09-20
 
 ## Befund und vorhandene Korrektur / Finding and existing correction
@@ -49,6 +49,10 @@ backport. Do not expand the standard matrix or enroll historical fixtures.
 Leser / audience: Maintainer und Integratoren / maintainers and integrators.
 Kanonische Quelle / canonical source: oeffentliches Authoring-Repository.
 Navigation: [Fleet rollout](2026-09-13-intake-lifecycle-fleet-rollout.md).
+Leserpfad / reader path: Flottenabschluss / fleet closeout → Folgearbeit /
+follow-up → naechster oeffentlicher Patch mit ZIP-Nachweis / next public patch
+with ZIP proof.
+Distributionsklasse / distribution class: `sourceOnly`.
 Dokumentklasse / class: source-only maintenance workitem. DE/EN in dieser Datei.
 Home-Sync: keiner / none. Risiko / risk: neue Receipts anderer Verbraucher
 koennen bis zur Aktualisierung abgewiesen werden / other consumers may reject

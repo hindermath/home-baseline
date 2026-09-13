@@ -1185,13 +1185,19 @@ TinyCalc: zwei autorisierte Receipt-Erneuerungen, 15 frische Artefaktpruefungen
 und gepaarte Receipt-/Operation-/Review-Pruefungen bestanden; fachliche
 NeedsRemediation-Befunde bleiben erhalten. Drei deklarierte TinyCalc-Overlays
 uebernehmen die kanonische Generator-Korrektur; neuer oeffentlicher Patch als
-eigene Folgearbeit offen. UpdateRequired, source-only; kein weiterer Home-Sync.
+eigene Folgearbeit offen. Documentation Impact: UpdateRequired fuer den
+Abschlussnachweis; GeneratedUpdate fuer den Statistikblock aus
+docs/project-statistics.config.json und Git-Historie, gerendert mit
+render-project-statistics.*. Source-only; kein weiterer Home-Sync.
 
 All 36 consumers merged and synced. Thirteen retried jobs remain unexecuted
 under the explicit current billing exception. Authorized TinyCalc receipt
 renewals passed fresh checks; business findings remain visible. A canonical
 generator compatibility backport is declared locally; public release follow-up
-remains separate. Source-only evidence; no additional home sync.
+remains separate. Documentation impact: UpdateRequired for closeout evidence;
+GeneratedUpdate for the statistics block rendered by render-project-statistics.*
+from docs/project-statistics.config.json and Git history. Source-only evidence;
+no additional home sync.
 
 ## Gesamtstatistik / Overall Statistics
 
