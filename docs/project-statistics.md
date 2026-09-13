@@ -1176,6 +1176,29 @@ requires Home sync.*
 - Getrennte private CI-Erhebung und öffentliche Veröffentlichung; die Umsetzung wird vor der initialen gemeinsamen Live-Erhebung geprüft. Dieser Eintrag behauptet noch keine aktivierte Veröffentlichung.
 - *Rule version 2 adds per-public-repository execution modes and a strictly validated private aggregate. Version 1 replay remains supported. Separate private collection and public publication are validated before the initial joint live run; this entry does not preclaim activation.*
 
+### 2026-09-13 - Intake-Flottenabschluss / Intake fleet closeout
+
+36/36 bestehende Verbraucher auf Authoring 0.3.4, Review 0.2.3 und Sequencing
+0.2.6 gemergt und synchronisiert. 13 Billing-Jobs erneut angefordert, weiterhin
+nicht gestartet und durch aktuelle ausdrueckliche Nutzerfreigabe ausgenommen.
+TinyCalc: zwei autorisierte Receipt-Erneuerungen, 15 frische Artefaktpruefungen
+und gepaarte Receipt-/Operation-/Review-Pruefungen bestanden; fachliche
+NeedsRemediation-Befunde bleiben erhalten. Drei deklarierte TinyCalc-Overlays
+uebernehmen die kanonische Generator-Korrektur; neuer oeffentlicher Patch als
+eigene Folgearbeit offen. Documentation Impact: UpdateRequired fuer den
+Abschlussnachweis; GeneratedUpdate fuer den Statistikblock aus
+docs/project-statistics.config.json und Git-Historie, gerendert mit
+render-project-statistics.*. Source-only; kein weiterer Home-Sync.
+
+All 36 consumers merged and synced. Thirteen retried jobs remain unexecuted
+under the explicit current billing exception. Authorized TinyCalc receipt
+renewals passed fresh checks; business findings remain visible. A canonical
+generator compatibility backport is declared locally; public release follow-up
+remains separate. Documentation impact: UpdateRequired for closeout evidence;
+GeneratedUpdate for the statistics block rendered by render-project-statistics.*
+from docs/project-statistics.config.json and Git history. Source-only evidence;
+no additional home sync.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1186,27 +1209,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 689866 lines |
-| Textdateien / Text files | 3182 |
+| Textbasis / Text base | 691618 lines |
+| Textdateien / Text files | 3183 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-21..2026-09-13 |
 | Aktivtage / Active days | 109 |
-| Relevante Commits / Relevant commits | 858 |
-| Zeilen je Aktivtag / Lines per active day | 6329.0 |
+| Relevante Commits / Relevant commits | 862 |
+| Zeilen je Aktivtag / Lines per active day | 6345.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 79.1x |
-| Speedup vs. 100 lines/day | 63.3x |
-| Methodik / Methodology | v2; source `f4fc71273867` |
+| Speedup vs. 80 lines/day | 79.3x |
+| Speedup vs. 100 lines/day | 63.5x |
+| Methodik / Methodology | v2; source `c3010c52db1d` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.7% | 25796
-Dokumentation / Documentation   [##########..........]  51.2% | 353487
-Skripte / Scripts               [##..................]   8.1% | 55598
-Konfiguration / Configuration   [#######.............]  36.6% | 252397
+Tests                           [#...................]   3.7% | 25811
+Dokumentation / Documentation   [##########..........]  51.4% | 355214
+Skripte / Scripts               [##..................]   8.0% | 55608
+Konfiguration / Configuration   [#######.............]  36.5% | 252397
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
 ```
@@ -1457,8 +1480,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 79.1x
-100 lines/day      [#############.......] 63.3x
+80 lines/day       [################....] 79.3x
+100 lines/day      [#############.......] 63.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1471,7 +1494,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#############.......] 6329.0
+Visible repository [#############.......] 6345.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1497,6 +1520,6 @@ DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-13. Es enthaelt 109 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 130846 |
+| 2026-09 | 134108 |
 
 <!-- project-statistics-v2:end -->

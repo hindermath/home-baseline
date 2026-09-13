@@ -1,9 +1,9 @@
 # Workitem: Intake-Lifecycle-Presets verteilen / Distribute intake lifecycle presets
 
-- Status: InProgress
+- Status: Completed
 - Datum / Date: 2026-09-13
 - Owner: Thorsten Hindermann, Repository Maintainer
-- DeliveryMode: MergeAndSync, aktueller Admin-Bypass nach technischen Gates autorisiert.
+- DeliveryMode: MergeAndSync, aktueller Admin-Bypass; 13 nicht gestartete Billing-Jobs ausdruecklich ausgenommen.
 - Documentation Impact: UpdateRequired
 
 ## Umfang / Scope
@@ -68,7 +68,7 @@ separate completion criteria.
 
 ## Lieferstand und offene Arbeiten / Delivery status and remaining work
 
-29 von 36 Repositories sind gemergt und lokal synchronisiert. Die finalen
+36 von 36 Repositories sind gemergt und lokal synchronisiert. Die finalen
 Releases 0.3.4 / 0.2.3 / 0.2.6 sind veroeffentlicht; alle neun
 nativen Quellrepository-Jobs auf macOS, Linux und Windows waren erfolgreich.
 Versionierte ZIPs wurden gegen die Release-Baeume geprueft. Alle 36
@@ -76,7 +76,7 @@ Verbraucher-Aenderungen sind vorbereitet und als PR veroeffentlicht. Der genaue
 Merge-/Sync-Stand mit unveraenderlichen Commit- und CI-Verweisen steht in
 `deliveryCounts` und `finalTargets` der verlinkten Evidence.
 
-29 of 36 repositories are merged and locally synchronized. The final releases
+36 of 36 repositories are merged and locally synchronized. The final releases
 are published, all nine native source CI jobs passed, and
 versioned ZIP contents match the release trees. All 36 consumer changes have
 published PRs. Evidence records the exact merge/sync count and immutable heads.
@@ -95,61 +95,76 @@ active or eligible targets. All 1028 product tests passed. The 17 affected
 home runtime files were previewed, synchronized and hash-verified while
 preserving unrelated toolchain work and the existing full-sync state.
 
-Folgende Arbeiten verhindern weiterhin den Abschluss:
+Die folgenden Abschlussaktionen sind durchgefuehrt:
 
-- GitHub startete 13 Jobs in sechs Repositories wegen Abrechnung bzw.
-  Ausgabenlimit nicht: secureorderdesk-java, secureorderdesk-swift,
-  secure-serviceharvester, secureserviceharvester-go,
-  secureserviceharvester-java und secureserviceharvester-python.
-  Nach Behebung durch den Kontoinhaber: betroffene Jobs erneut starten,
-  technische Gates pruefen, mergen und synchronisieren.
-- TinyCalc: Zwei bestehende Authoring-Receipts besitzen bereits vor diesem
-  Rollout veraltete README-Quellhashes. Die gezielte Erneuerung samt neuen
-  Operationen, Archiv-/Nachfolgernachweisen und Reviews ist vorbereitet,
-  wartet aber auf ausdrueckliche aktuelle Update-/Review-Autorisierung.
-  Intake-IDs, Inhalte, Namen, Reihenfolge und Abhaengigkeiten bleiben erhalten.
-  Betroffen sind `rename-microcalc-tinycalc.json` und
-  `tui-funktionsabnahme-und-regressionsvertrag.json`.
+- Alle 13 blockierten Jobs der sechs Repositories secureorderdesk-java,
+  secureorderdesk-swift, secure-serviceharvester, secureserviceharvester-go,
+  secureserviceharvester-java und secureserviceharvester-python wurden erneut
+  angefordert. GitHub nahm die Wiederholungen an, startete die Jobs wegen
+  Abrechnung/Ausgabenlimit aber erneut nicht. Die aktuelle ausdrueckliche
+  Nutzerfreigabe erlaubt genau hier MergeAndSync mit Admin-Bypass ohne diese
+  Jobs. Alle sechs PRs sind gemergt und synchronisiert; die 13 Jobs gelten
+  als nicht ausgefuehrt, nicht als bestanden. Diese native CI-Abdeckung fehlt.
+- TinyCalc PR #78 ist nach ausdruecklicher aktueller Autorisierung gemergt
+  und synchronisiert. Zwei neue Receipts und Operationen erhalten bytegleiche
+  Vorgaengerarchive und unveraenderte Intake-Inhalte, IDs und Reihenfolgen.
+  Im frischen Checkout bestehen 15 Artefaktpruefungen sowie beide Receipt-,
+  Operation- und Review-Pruefungen in Bash und PowerShell ohne Schreibzugriffe.
+  Alle technischen PR-Checks bestanden. Der optionale Claude-Review brach
+  zweimal ohne Codebefund ab; der aktuelle Admin-Bypass deckt die formale
+  Review-Freigabe, nicht einen behaupteten erfolgreichen Bot-Lauf.
+- Bei InventarWorkerService scheiterte ebenfalls nur der optionale
+  Claude-Review zweimal technisch. Technische Gates bestanden, acht Befunde
+  wurden bearbeitet; die formale Review-Freigabe erfolgte per Admin-Bypass.
 
-Thirteen jobs in the six repositories above could not start due to GitHub
-billing/spending limits. After the account owner resolves this, rerun the jobs
-and complete technical gates, merge and sync. TinyCalc additionally needs
-explicit current authority for the prepared renewal of two stale receipts and
-their reviews; their README hash drift predates this rollout. No receipt
-renewal or business-intake relocation has been performed.
+All 13 billing-blocked jobs were retried but again refused before execution.
+The user's current, explicit exception authorizes merge and sync without
+exactly these jobs; their missing native CI coverage is recorded, never counted
+as passed. All six repositories are delivered. TinyCalc's two authorized
+receipt successors, operations and scoped reviews pass fresh-checkout checks
+in both shells; targets and predecessor evidence are preserved. Technical CI
+passed. TinyCalc and InventarWorkerService each have a separately documented
+optional review-bot execution failure and formal admin approval exception.
 
-Bei InventarWorkerService war nur der optionale Claude-Review nach zwei
-Versuchen technisch fehlgeschlagen (Tool-Berechtigungen). Alle technischen
-Gates bestanden; acht Review-Befunde wurden bearbeitet. Der aktuelle
-Admin-Bypass wurde fuer die formale Review-Freigabe verwendet. Dieser begrenzte
-Fall erlaubt keinen Bypass nicht gestarteter oder fehlgeschlagener Pflichtjobs.
+TinyCalcs zwei neue Single-Reviews sind bewusst `NeedsRemediation`: je ein
+vorhandener IR001-Befund betrifft falsche Feature-Verweise. Die vollstaendige
+Serienreview bleibt ausstehend; der vorhandene RIG017-Platzierungsbefund
+bleibt ebenfalls eine fachliche Folgearbeit. Es erfolgte keine Freigabe
+spaeterer Produktimplementierung und keine fachliche Intake-Umschreibung.
 
-InventarWorkerService's optional Claude review failed twice due to tool
-permissions. Technical gates passed and eight findings were addressed; current
-admin authority covered formal review approval. This bounded exception does
-not waive unstarted or failed mandatory jobs.
+Bei der Receipt-Erneuerung wurde zusaetzlich die Generator-Versionsliste des
+Authoring-Validators korrigiert: kanonische Quell-PR #9, native CI auf macOS,
+Linux und Windows bestanden. Genau drei Dateien sind als deklarierte lokale
+Erweiterung nach TinyCalc uebernommen; die installierte Version bleibt 0.3.4.
+Ein neuer oeffentlicher Patch und seine weitere Verteilung bleiben im eigenen
+[Folge-Workitem](2026-09-13-authoring-generator-patch-followup.md) offen.
+Andere 35 Verbraucher und veroeffentlichte ZIPs wurden dafuer nicht veraendert.
 
-Owner der offenen Schritte: Thorsten Hindermann / Maintainer. Wiedervorlage:
-nach Billing-Korrektur bzw. ausdruecklicher Receipt-Autorisierung. Bis dahin
-bleibt dieses Workitem InProgress; fachliche Bestandsbefunde bleiben separat
-sichtbar und werden nicht als erfolgreiche Lifecycle-Pruefungen ausgegeben.
+The two TinyCalc Single reviews truthfully remain NeedsRemediation for existing
+IR001 feature-reference findings. Full-series review and the existing RIG017
+placement finding remain separate business work. The canonical authoring
+generator-version fix passed all three native platforms and was backported
+as three declared TinyCalc overlays. A public patch and wider adoption remain
+in the separate linked follow-up; immutable release ZIPs and the other 35
+consumers were not changed by this compatibility backport.
 
-The maintainer owns these remaining actions. Resume after billing resolution
-or explicit receipt authority. This workitem remains InProgress; existing
-business findings are reported separately, never as successful lifecycle checks.
+Der Flottenauftrag ist abgeschlossen. Verbleibende fachliche Befunde und die
+oeffentliche Patch-Folgearbeit sind keine erledigten Projektpruefungen.
+The fleet delivery is complete; the remaining business findings and public
+patch follow-up are explicitly outside this completed delivery.
 
 ## Abschlusskriterien / Completion criteria
 
 - Alle 36 ausgewaehlten Verbraucher inklusive TuiVision und deren bestehende Profilbindungen aktualisiert.
 - Lokale Erweiterungen geprueft; keine neuen Presets oder unbeabsichtigten Fremdaenderungen.
-- Paket-/Shell-Nachweise, verpflichtende technische PR-Gates und Review-Befunde erfasst.
+- Paket-/Shell-Nachweise, technische PR-Gates und Review-Befunde erfasst; genau 13 nicht gestartete Billing-Jobs durch aktuelle explizite Freigabe ausgenommen.
 - MergeAndSync je Repository nachgewiesen; Feature-Arbeit bleibt erhalten.
 - Frischer Checkout bestaetigt Paketinhalt und dokumentierte fachliche Ergebnisse.
 - Home-Runtime nach Vorschau synchronisiert; Preset-Quellen und -Verzeichnisse bleiben im Klon.
 - Historische Test-Repositories unveraendert; verbleibende Bestandsbefunde explizit benannt.
 
 All installations/profile references, preserved overlays, technical gates,
-review disposition, merge/sync, fresh-checkout checks, checked home runtime sync
+the exact current 13-job billing waiver, review disposition, merge/sync, fresh-checkout checks, checked home runtime sync
 and unchanged historical fixtures must be evidenced. Remaining project findings
 must be named explicitly.
 
