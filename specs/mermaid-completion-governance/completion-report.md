@@ -28,7 +28,7 @@ Private and historical repositories remain outside the rollout. Reports grant no
 
 Die [gemeinsame Regel](../../docs/spec-kit-diagrams-and-completion-reports.md) und
 [Berichtsvorlage](../../.specify/templates/completion-report-template.md) werden in
-Constitutions, fünf Agent-Oberflächen und vier Projektvorlagen gebunden. Installierte
+Constitutions, fünf Agent-Oberflächen, Spec-/Plan-/Tasks-Vorlagen und tatsächlich konfigurierte Authoring-Profile gebunden. Installierte
 Preset-Pakete und bestehende Intakes bleiben unverändert. In TinyCalc und TuiVision
 wurden ausschließlich kausal veränderte Source-Hashes bestehender Evidence erneuert;
 ihre Kontrollbewertungen und historischen Bewertungsgrenzen bleiben erhalten.
@@ -89,6 +89,8 @@ and later closeout changes. Replicated files count once per repository. The chan
 are governance, templates, navigation, statistics and evidence bindings, not product code.*
 
 ## Verlauf und Aufwand / Delivery history and effort
+
+Reviews korrigierten aktive Profilbindungen, lokale Bootstrap-Quellen, Constitution-Überschriften und die englische README-Navigation. / Reviews corrected profile resolution, bootstrap sources, constitution headings and English navigation.
 
 Die Arbeit umfasste Live-Sichtbarkeitsprüfung, Quellregel und Vorlagen, lokale
 Paritäts-/Renderprüfung, gezielte Verteilung und native Repository-Gates. Einzelne

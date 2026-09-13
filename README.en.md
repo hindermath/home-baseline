@@ -188,3 +188,11 @@ Concrete runtime membership is derived from
 More detail is available in the
 [maintainer and agent path](docs/architecture/source-and-home-runtime.en.md#maintainers-and-ai-agents)
 and the [repository guidelines](AGENTS.md).
+
+<!-- BEGIN spec-kit-diagrams-completion -->
+## Diagrams and outcome reports
+
+[Mermaid and completion-report rules](docs/spec-kit-diagrams-and-completion-reports.md)
+explain accessible diagrams for new requirements intakes and complete, evidence-based
+reports after Spec Kit feature runs. The shared rule and report template are bilingual.
+<!-- END spec-kit-diagrams-completion -->
