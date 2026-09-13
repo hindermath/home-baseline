@@ -8,18 +8,27 @@
 
 ## Umfang / Scope
 
-Die bestehenden Presets werden in 35 regulaeren Repositories mit direkten
-Vorgaengerversionen aktualisiert: Authoring 0.3.1 auf 0.3.2, Review 0.2.1 auf
-0.2.2 und Sequencing 0.2.3 auf 0.2.4. TuiVision traegt bereits diese Releases;
-dort werden nur noch veraltete optionale Profilbindungen nachgezogen.
+Die drei bestehenden Presets werden in allen 35 ausgewaehlten regulaeren
+Verbrauchern sowie erneut in TuiVision auf Authoring **0.3.4**, Review **0.2.3**
+und Sequencing **0.2.6** gebracht: insgesamt 36 Repositories. Die erste Welle
+0.3.2/0.2.2/0.2.4 bleibt als historische Delivery-Evidence erhalten.
+Flottenreviews fuehrten zur zentralen Korrektur physischer Pfadgrenzen und
+unbekannter Lifecycle-Zustaende. Ein anschliessend erkannter Fehler in zwei
+JSON-Vorlagen der Zwischenpatches 0.3.3/0.2.5 wurde vor Verbraucher-Merges
+behoben; native CI prueft jetzt auch alle ausgelieferten JSON-Vorlagen.
+
+The final rollout covers 35 selected consumers plus TuiVision (36 repositories)
+with Authoring 0.3.4, Review 0.2.3 and Sequencing 0.2.6. First-wave evidence is
+retained. Fleet review led to central physical-boundary/state hardening; an
+interim JSON-template substitution defect was corrected before consumer merges
+and is now covered by native template-integrity CI.
+
 Bestehende Prioritaeten, Aktivierungszustaende und andere Presets bleiben erhalten.
 Die zentrale Standard-Achtermatrix wird nicht erweitert. Bestehende optionale
-Profilkopien und Source-Locks erhalten die veroeffentlichten Versionsbindungen.
-
-The three existing presets are upgraded in 35 regular repositories with direct
-predecessors. TuiVision already has these releases and only needs profile
-reference maintenance. Existing priorities, enabled state and other presets
-remain intact. The standard eight-preset matrix is unchanged. No new enrollment.
+Profile, Source-Locks und Bootstrap-/Agent-Vorlagen binden die finalen Releases.
+Existing priorities, enabled state and other presets remain intact. The standard
+eight-preset matrix is unchanged; no new enrollment. Existing profile, source-lock
+and bootstrap/guidance mirrors bind the final releases.
 
 Die drei historischen 0.1.0-Test-Repositories unter SpecKitTestProjects bleiben
 entsprechend der ausdruecklichen Auswahl unveraendert:
@@ -59,7 +68,7 @@ separate completion criteria.
 
 ## Abschlusskriterien / Completion criteria
 
-- Alle 35 vorhandenen Installationen und bestehenden Profilbindungen aktualisiert.
+- Alle 36 ausgewaehlten Verbraucher inklusive TuiVision und deren bestehende Profilbindungen aktualisiert.
 - Lokale Erweiterungen geprueft; keine neuen Presets oder unbeabsichtigten Fremdaenderungen.
 - Paket-/Shell-Nachweise, verpflichtende technische PR-Gates und Review-Befunde erfasst.
 - MergeAndSync je Repository nachgewiesen; Feature-Arbeit bleibt erhalten.

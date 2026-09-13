@@ -68,27 +68,27 @@
     },
     {
       "id": "intake-authoring-governance",
-      "tag": "v0.3.2",
-      "commit": "c2427c3ecb5e2d1ae381167da14be2956c1c2c8a",
+      "tag": "v0.3.4",
+      "commit": "082a2ac3e4884d247466bb9f509a9bc05b9b93d6",
       "repository": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance",
-      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.2.zip",
-      "archiveSha256": "6d31a4ae74e5590d53407ef3ff0623433e4799a989050863af32bc442dcad889"
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.4.zip",
+      "archiveSha256": "b08c1128756f7fc56de8deb98f9e1cb859b5f76063b39843e395aaed2b440214"
     },
     {
       "id": "intake-review-governance",
-      "tag": "v0.2.2",
-      "commit": "59bb2e66e250723f1ef99a8eddc1c4725b3f1579",
+      "tag": "v0.2.3",
+      "commit": "91462b4f47e64b9585c0f7d440a80449d7eb64c0",
       "repository": "https://github.com/hindermath/spec-kit-preset-intake-review-governance",
-      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.2.zip",
-      "archiveSha256": "e2be3945de58503565e3743b9ad102104fbcb3bd658be7d0304294799eff8a97"
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.3.zip",
+      "archiveSha256": "a97d3b3039587d391cd214296d5cfd1cb7665aff76630c08a87879091ddcc1d1"
     },
     {
       "id": "intake-sequencing-governance",
-      "tag": "v0.2.4",
-      "commit": "0d334415c76a5fdce4fa003cd7a2d1b9c9c73ed6",
+      "tag": "v0.2.6",
+      "commit": "8aa137fcc95faf4e145ee408a1ee3790cac1873a",
       "repository": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance",
-      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.4.zip",
-      "archiveSha256": "81ede6e18a8273e68da8d7be2d8e69572d0c492aa67307ea6322c5884022d11e"
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.6.zip",
+      "archiveSha256": "d800feee907971beca4e151a75a4e4eeb9179c5772017e72cebb581022282ad6"
     },
     {
       "id": "autonomous-run-governance",

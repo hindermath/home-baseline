@@ -1028,5 +1028,149 @@
     "intake-authoring-release-smoke-v010",
     "intake-authoring-v010",
     "intake-review-governance-v010"
-  ]
+  ],
+  "finalReleases": [
+    {
+      "release": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/releases/tag/v0.2.3",
+      "sourceAssetSha256": "f31c08995761305bf68e2659218d0a6266a297775b871e34e201098f9d6b3550",
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.3.zip",
+      "mergeCommit": "91462b4f47e64b9585c0f7d440a80449d7eb64c0",
+      "name": "review",
+      "verifiedFileCount": 30,
+      "nativeCi": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T10:51:56Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34752922996/job/103712378111",
+          "name": "lifecycle (macos-latest)",
+          "startedAt": "2026-09-13T10:51:20Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T10:51:50Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34752922996/job/103712377963",
+          "name": "lifecycle (ubuntu-latest)",
+          "startedAt": "2026-09-13T10:51:15Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T10:52:08Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34752922996/job/103712378054",
+          "name": "lifecycle (windows-latest)",
+          "startedAt": "2026-09-13T10:51:15Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        }
+      ],
+      "version": "0.2.3",
+      "tagZipSha256": "a97d3b3039587d391cd214296d5cfd1cb7665aff76630c08a87879091ddcc1d1",
+      "tree": "5455156b7968408d0fd3484022f904049fd5c909",
+      "testedCommit": "5613550abe3758df8857221e3f0bca8a64124438",
+      "packagePath": "/tmp/intake-hardening-releases-20260913/review-tag/spec-kit-preset-intake-review-governance-0.2.3"
+    },
+    {
+      "version": "0.3.4",
+      "mergeCommit": "082a2ac3e4884d247466bb9f509a9bc05b9b93d6",
+      "tagZipSha256": "b08c1128756f7fc56de8deb98f9e1cb859b5f76063b39843e395aaed2b440214",
+      "release": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/releases/tag/v0.3.4",
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.4.zip",
+      "tree": "16be3ea6c6dfa66922365b6169c2aa04cb9a50bd",
+      "testedCommit": "2f184c337a8f8a9e23fe40890531c64cd196da5e",
+      "nativeCi": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T11:04:51Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34753461637/job/103713775422",
+          "name": "lifecycle (macos-latest)",
+          "startedAt": "2026-09-13T11:04:05Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T11:04:53Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34753461637/job/103713775453",
+          "name": "lifecycle (ubuntu-latest)",
+          "startedAt": "2026-09-13T11:04:02Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T11:05:21Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34753461637/job/103713775347",
+          "name": "lifecycle (windows-latest)",
+          "startedAt": "2026-09-13T11:04:01Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        }
+      ],
+      "sourceAssetSha256": "4d496c39be8d43483b19332c96598f91999751d3a4c7eb936a8a9bda01080034",
+      "name": "authoring",
+      "packagePath": "/tmp/intake-template-releases-20260913/authoring-tag/spec-kit-preset-intake-authoring-governance-0.3.4",
+      "verifiedFileCount": 41
+    },
+    {
+      "version": "0.2.6",
+      "mergeCommit": "8aa137fcc95faf4e145ee408a1ee3790cac1873a",
+      "tagZipSha256": "d800feee907971beca4e151a75a4e4eeb9179c5772017e72cebb581022282ad6",
+      "release": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/releases/tag/v0.2.6",
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.6.zip",
+      "tree": "673abb2773efda52e3b71660e7563b3551d40091",
+      "testedCommit": "10cd246e5f315dea73850e0628e2c0d01c1ebd95",
+      "nativeCi": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T11:04:51Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34753464203/job/103713782620",
+          "name": "lifecycle (macos-latest)",
+          "startedAt": "2026-09-13T11:04:10Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T11:04:49Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34753464203/job/103713782616",
+          "name": "lifecycle (ubuntu-latest)",
+          "startedAt": "2026-09-13T11:04:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-13T11:05:05Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34753464203/job/103713782540",
+          "name": "lifecycle (windows-latest)",
+          "startedAt": "2026-09-13T11:04:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        }
+      ],
+      "sourceAssetSha256": "e393c038cdb01d9d5257108a942000a616dd3ca30f4362119eb18dd96f08a676",
+      "name": "sequencing",
+      "packagePath": "/tmp/intake-template-releases-20260913/sequencing-tag/spec-kit-preset-intake-sequencing-governance-0.2.6",
+      "verifiedFileCount": 41
+    }
+  ],
+  "finalConsumerCount": 36,
+  "templateIntegrityCorrection": {
+    "interimAuthoring": "0.3.3",
+    "interimSequencing": "0.2.5",
+    "consumerMerges": 0,
+    "reason": "Faulty regex replacement damaged two JSON templates; reverted uncommitted installations, corrected source releases, added native JSON parse/generator-version gate"
+  }
 }
