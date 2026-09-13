@@ -44,6 +44,20 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    def test_required_bash_probe_rejects_old_shell(self) -> None:
+        tool = next(t for t in read_json(CONFIG / "required-cli-tools-registry.json")["tools"] if t["id"] == "bash")
+        self.assertEqual(tool["platforms"], ["Darwin", "Linux"])
+        current = shutil.which("bash")
+        if current is None:
+            self.skipTest("Bash unavailable on this platform")
+        for shell in dict.fromkeys([current, "/bin/bash"]):
+            if not Path(shell).exists():
+                continue
+            version = subprocess.check_output([shell, "--noprofile", "--norc", "-c", "printf '%s' \"$BASH_VERSION\""], text=True)
+            result = subprocess.run([shell, *tool["args"]], capture_output=True, text=True)
+            self.assertEqual(result.returncode == 0, int(version.split(".")[0]) >= 5)
+            self.assertEqual(result.stdout.strip(), version)
+
     def test_ci_gate_wrapper_contract_is_cross_platform_and_fail_closed(self) -> None:
         bash_source = (REPOSITORY / "scripts/maintain-agentic-workspace.sh").read_text(encoding="utf-8")
         powershell_source = (REPOSITORY / "scripts/maintain-agentic-workspace.ps1").read_text(encoding="utf-8")
