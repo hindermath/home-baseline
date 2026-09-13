@@ -1,0 +1,526 @@
+{
+  "schemaVersion": "1.0",
+  "recordedAt": "2026-09-13T07:53:37.8759040+00:00",
+  "documentType": "IntakeLifecycleDeliveryEvidence",
+  "state": "AwaitingHumanReview",
+  "proofBoundary": "Native commands at exact source commits; test fixtures assert unchanged contents and final CI asserts unchanged tracked/untracked checkout. No OS-wide write claim. Candidate ZIP hashes are local git-archive exports, not published tag ZIPs.",
+  "decisionHashFormat": "SHA-256 of UTF-8 PowerShell ConvertTo-Json -Compress for the ordered decision object, without terminal newline",
+  "presets": [
+    {
+      "repository": "hindermath/spec-kit-preset-intake-authoring-governance",
+      "candidateVersion": "0.3.2",
+      "sourceCommit": "3db1801f1722c674cbe19442efe9a56bed7167ce",
+      "pullRequest": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/pull/6",
+      "nativeRun": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34746175294",
+      "commands": [
+        "pwsh -NoProfile -File tests/test-intake-governance-config.ps1",
+        "pwsh -NoProfile -File tests/test-intake-authoring-validator.ps1",
+        "pwsh -NoProfile -File tests/test-intake-authoring-lifecycle.ps1"
+      ],
+      "jobs": [
+        {
+          "name": "lifecycle (macos-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34746175294/job/103694414732",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "lifecycle (windows-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34746175294/job/103694414944",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "lifecycle (ubuntu-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/34746175294/job/103694415106",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "logPayloadSha256": "252b20ba5fab45bdb14e8ea27bdd9b0f3ce5b4064402736f96db1eaf4aaf2afc",
+      "logPayloadCommand": "gh run view 34746175294 --repo hindermath/spec-kit-preset-intake-authoring-governance --log",
+      "decision": {
+        "commit": "3db1801f1722c674cbe19442efe9a56bed7167ce",
+        "runId": 34746175294,
+        "conclusion": "success",
+        "nativeJobsPassed": 3,
+        "repositoryWrites": 0
+      },
+      "decisionSha256": "8785a3ac25ee20aab99ee70095d8d31a48438f7675bd7d73132ebf1ee30c358b",
+      "candidateZipSha256": "b9a75df2b849d3d143415ab420442da9b67c7b1ea5795a16bd40b364978e10be",
+      "publication": "PendingRequiredHumanReview",
+      "normalMergeAttempt": "RejectedByBaseBranchPolicy",
+      "bypassUsed": false
+    },
+    {
+      "repository": "hindermath/spec-kit-preset-intake-review-governance",
+      "candidateVersion": "0.2.2",
+      "sourceCommit": "a38f61048edf3803d2b550489adda77133fef117",
+      "pullRequest": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/pull/6",
+      "nativeRun": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34746177145",
+      "commands": [
+        "pwsh -NoProfile -File tests/test-intake-governance-config.ps1",
+        "pwsh -NoProfile -File tests/test-intake-review-validator.ps1"
+      ],
+      "jobs": [
+        {
+          "name": "lifecycle (macos-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34746177145/job/103694419437",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "lifecycle (windows-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34746177145/job/103694419524",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "lifecycle (ubuntu-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/34746177145/job/103694419544",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "logPayloadSha256": "2eaf652fc82f03ff6b9dc7ab19eb2694cac463d59653bd3a0054733e6fef4934",
+      "logPayloadCommand": "gh run view 34746177145 --repo hindermath/spec-kit-preset-intake-review-governance --log",
+      "decision": {
+        "commit": "a38f61048edf3803d2b550489adda77133fef117",
+        "runId": 34746177145,
+        "conclusion": "success",
+        "nativeJobsPassed": 3,
+        "repositoryWrites": 0
+      },
+      "decisionSha256": "b5e40846049f04e3f0f2a06b2bc6ba3903e563b8c2781c4b236c1b02263e843b",
+      "candidateZipSha256": "3fb79bc38f782e3e101c3b544e21fb706b80c91a47a03ed4a22d5dbbcc36de2f",
+      "publication": "PendingRequiredHumanReview",
+      "normalMergeAttempt": "RejectedByBaseBranchPolicy",
+      "bypassUsed": false
+    },
+    {
+      "repository": "hindermath/spec-kit-preset-intake-sequencing-governance",
+      "candidateVersion": "0.2.4",
+      "sourceCommit": "45486b1d4d635dd93acd2ef6bb70fd355efc36b1",
+      "pullRequest": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/pull/7",
+      "nativeRun": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34746178290",
+      "commands": [
+        "pwsh -NoProfile -File tests/test-intake-governance-config.ps1",
+        "pwsh -NoProfile -File tests/test-intake-sequencing-validator.ps1"
+      ],
+      "jobs": [
+        {
+          "name": "lifecycle (macos-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34746178290/job/103694422417",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "lifecycle (ubuntu-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34746178290/job/103694422514",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "name": "lifecycle (windows-latest)",
+          "url": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/34746178290/job/103694422554",
+          "conclusion": "success",
+          "exitCode": 0,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configuration parity and zero writes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Domain regression",
+              "conclusion": "success"
+            },
+            {
+              "name": "Tracked checkout remains unchanged",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "logPayloadSha256": "22c2de5cd2e586ab97cc7c7706b404d9f167eb32fb0a5c1469f569ea0bce57b4",
+      "logPayloadCommand": "gh run view 34746178290 --repo hindermath/spec-kit-preset-intake-sequencing-governance --log",
+      "decision": {
+        "commit": "45486b1d4d635dd93acd2ef6bb70fd355efc36b1",
+        "runId": 34746178290,
+        "conclusion": "success",
+        "nativeJobsPassed": 3,
+        "repositoryWrites": 0
+      },
+      "decisionSha256": "ee1a270a28ed0b5eecf6d7f7c4741fd6681aca8a14a3277f5bb4f66be2d6cf8f",
+      "candidateZipSha256": "6ccb0c705f3b756544635611c2e1f806dabfc488caa81b5e0d22e1c2e52cefec",
+      "publication": "PendingRequiredHumanReview",
+      "normalMergeAttempt": "RejectedByBaseBranchPolicy",
+      "bypassUsed": false
+    }
+  ],
+  "tuiVisionRehearsal": {
+    "baseCommit": "5074a2ccd50e8a427a3e683888945191d6dae12e",
+    "candidateSourceCommits": [
+      {
+        "preset": "authoring",
+        "commit": "3db1801f1722c674cbe19442efe9a56bed7167ce"
+      },
+      {
+        "preset": "review",
+        "commit": "a38f61048edf3803d2b550489adda77133fef117"
+      },
+      {
+        "preset": "sequencing",
+        "commit": "45486b1d4d635dd93acd2ef6bb70fd355efc36b1"
+      }
+    ],
+    "result": "Passed",
+    "installedPriorities": [
+      64,
+      65,
+      66
+    ],
+    "seriesMembers": 10,
+    "completedArchivedMembers": 10,
+    "activeIntakes": 0,
+    "activeSeriesTargets": 0,
+    "eligibleTargets": 0,
+    "dependencies": 6,
+    "projectPositiveCases": 4,
+    "projectNegativeCases": 18,
+    "authoringReceiptsPassedInBothShells": 10,
+    "configJsonParityAcrossThreePresetsAndBothShells": true,
+    "manifestReceiptShellParity": true,
+    "validationGitStateChanges": 0,
+    "unrelatedPresetsPreserved": true,
+    "regularCheckoutUpdated": false,
+    "publishedPackagesInstalled": false
+  }
+}
