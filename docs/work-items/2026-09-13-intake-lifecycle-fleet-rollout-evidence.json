@@ -8224,7 +8224,209 @@
       "scripts/templates/copilot-instructions.tmpl",
       "scripts/templates/speckit-workflow-section.md"
     ],
-    "fileCount": 17
+    "fileCount": 17,
+    "verificationBinding": {
+      "syncedAt": "2026-09-13T11:50:25Z",
+      "destinationRoot": "Current user home directory",
+      "hashAlgorithm": "SHA-256 over raw file bytes",
+      "applyResultSha256": "4396d816a2ff2112a9ccc3fd1f0fac318002b49d7909391f34abcde93519d11f",
+      "sourceCommit": "08c32895725bc4cadedaadad8ffb8b7626981a85",
+      "scopeManifestSha256": "4e2a246ecd9e374e3df056631aaa2eafe07011df80ae09632af26e3785753241",
+      "provenanceStateSha256": "3d062a3db64424e14d3fb51358dbc7417a801ae1ff5d18ebb8354007ccb7cfdc",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "destinationSha256": "d11512b975eb897babc65295ef947ad14a44d0074f572df8034c476815d515cc",
+          "result": "Matched",
+          "provenanceSha256": "d11512b975eb897babc65295ef947ad14a44d0074f572df8034c476815d515cc",
+          "sourceSha256": "d11512b975eb897babc65295ef947ad14a44d0074f572df8034c476815d515cc"
+        },
+        {
+          "path": "CLAUDE.md",
+          "destinationSha256": "d7d007823d7adc76c906a286e13c9e877939e50d8e59a7553ff7cd7bfd11cdf7",
+          "result": "Matched",
+          "provenanceSha256": "d7d007823d7adc76c906a286e13c9e877939e50d8e59a7553ff7cd7bfd11cdf7",
+          "sourceSha256": "d7d007823d7adc76c906a286e13c9e877939e50d8e59a7553ff7cd7bfd11cdf7"
+        },
+        {
+          "path": "GEMINI.md",
+          "destinationSha256": "fff2f573d878d5a8974a94dbf7a308cef59185220c8fe5d32b015970c1e2890a",
+          "result": "Matched",
+          "provenanceSha256": "fff2f573d878d5a8974a94dbf7a308cef59185220c8fe5d32b015970c1e2890a",
+          "sourceSha256": "fff2f573d878d5a8974a94dbf7a308cef59185220c8fe5d32b015970c1e2890a"
+        },
+        {
+          "path": "constitution.md",
+          "destinationSha256": "94a3ab506c962e8db8dce3ee0373b0f9c6e3fc1bcdaf00fb4bf20e26846e8e7d",
+          "result": "Matched",
+          "provenanceSha256": "94a3ab506c962e8db8dce3ee0373b0f9c6e3fc1bcdaf00fb4bf20e26846e8e7d",
+          "sourceSha256": "94a3ab506c962e8db8dce3ee0373b0f9c6e3fc1bcdaf00fb4bf20e26846e8e7d"
+        },
+        {
+          "path": ".specify/memory/constitution.md",
+          "destinationSha256": "94a3ab506c962e8db8dce3ee0373b0f9c6e3fc1bcdaf00fb4bf20e26846e8e7d",
+          "result": "Matched",
+          "provenanceSha256": "94a3ab506c962e8db8dce3ee0373b0f9c6e3fc1bcdaf00fb4bf20e26846e8e7d",
+          "sourceSha256": "94a3ab506c962e8db8dce3ee0373b0f9c6e3fc1bcdaf00fb4bf20e26846e8e7d"
+        },
+        {
+          "path": ".github/copilot-instructions.md",
+          "destinationSha256": "3f305435ccd366cf1abae82d025d8d022fc27fc4eab8aa863c9744d6b99c5296",
+          "result": "Matched",
+          "provenanceSha256": "3f305435ccd366cf1abae82d025d8d022fc27fc4eab8aa863c9744d6b99c5296",
+          "sourceSha256": "3f305435ccd366cf1abae82d025d8d022fc27fc4eab8aa863c9744d6b99c5296"
+        },
+        {
+          "path": ".github/agents/copilot-instructions.md",
+          "destinationSha256": "3f305435ccd366cf1abae82d025d8d022fc27fc4eab8aa863c9744d6b99c5296",
+          "result": "Matched",
+          "provenanceSha256": "3f305435ccd366cf1abae82d025d8d022fc27fc4eab8aa863c9744d6b99c5296",
+          "sourceSha256": "3f305435ccd366cf1abae82d025d8d022fc27fc4eab8aa863c9744d6b99c5296"
+        },
+        {
+          "path": "scripts/config/spec-kit-intake-authoring-governance-presets.json",
+          "destinationSha256": "87de9e9c9984d91f127e27ed6b61d9e05aa2b9edc8e9205e3472716802672291",
+          "result": "Matched",
+          "provenanceSha256": "87de9e9c9984d91f127e27ed6b61d9e05aa2b9edc8e9205e3472716802672291",
+          "sourceSha256": "87de9e9c9984d91f127e27ed6b61d9e05aa2b9edc8e9205e3472716802672291"
+        },
+        {
+          "path": "scripts/config/spec-kit-intake-review-governance-presets.json",
+          "destinationSha256": "bccd0336a3bf65e8f37a066fbafda5cd055e243028a5e5dac19010b006e669cb",
+          "result": "Matched",
+          "provenanceSha256": "bccd0336a3bf65e8f37a066fbafda5cd055e243028a5e5dac19010b006e669cb",
+          "sourceSha256": "bccd0336a3bf65e8f37a066fbafda5cd055e243028a5e5dac19010b006e669cb"
+        },
+        {
+          "path": "scripts/config/spec-kit-intake-sequencing-governance-presets.json",
+          "destinationSha256": "8c9f08c86dc8d7f28bf39d1725b906b7ce11b80c1dfb90c2b0ff181a3b6af9f6",
+          "result": "Matched",
+          "provenanceSha256": "8c9f08c86dc8d7f28bf39d1725b906b7ce11b80c1dfb90c2b0ff181a3b6af9f6",
+          "sourceSha256": "8c9f08c86dc8d7f28bf39d1725b906b7ce11b80c1dfb90c2b0ff181a3b6af9f6"
+        },
+        {
+          "path": "scripts/config/spec-kit-model-routing-governance-presets.json",
+          "destinationSha256": "2a6ef26722c92c2a7919d3d7e028dac998e107f8789b83695cff7dfc111a1953",
+          "result": "Matched",
+          "provenanceSha256": "2a6ef26722c92c2a7919d3d7e028dac998e107f8789b83695cff7dfc111a1953",
+          "sourceSha256": "2a6ef26722c92c2a7919d3d7e028dac998e107f8789b83695cff7dfc111a1953"
+        },
+        {
+          "path": "scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+          "destinationSha256": "28b67bea282e4431bf0bdedd7edabc698aad19fcdddac2bd567ae494f839fa86",
+          "result": "Matched",
+          "provenanceSha256": "28b67bea282e4431bf0bdedd7edabc698aad19fcdddac2bd567ae494f839fa86",
+          "sourceSha256": "28b67bea282e4431bf0bdedd7edabc698aad19fcdddac2bd567ae494f839fa86"
+        },
+        {
+          "path": "scripts/templates/AGENTS.md.tmpl",
+          "destinationSha256": "0af0bf3ce9fd86a072a28de155adf72c57010089745b19f5a6962f3a1f6494e1",
+          "result": "Matched",
+          "provenanceSha256": "0af0bf3ce9fd86a072a28de155adf72c57010089745b19f5a6962f3a1f6494e1",
+          "sourceSha256": "0af0bf3ce9fd86a072a28de155adf72c57010089745b19f5a6962f3a1f6494e1"
+        },
+        {
+          "path": "scripts/templates/CLAUDE.md.tmpl",
+          "destinationSha256": "6394ae6cee20388665be365aa5d6407374eec435b3967620cd76044f92200381",
+          "result": "Matched",
+          "provenanceSha256": "6394ae6cee20388665be365aa5d6407374eec435b3967620cd76044f92200381",
+          "sourceSha256": "6394ae6cee20388665be365aa5d6407374eec435b3967620cd76044f92200381"
+        },
+        {
+          "path": "scripts/templates/GEMINI.md.tmpl",
+          "destinationSha256": "239da15a750b1ab0b04827e1aa35ed2739fb62e915572d399b6c51b1908046aa",
+          "result": "Matched",
+          "provenanceSha256": "239da15a750b1ab0b04827e1aa35ed2739fb62e915572d399b6c51b1908046aa",
+          "sourceSha256": "239da15a750b1ab0b04827e1aa35ed2739fb62e915572d399b6c51b1908046aa"
+        },
+        {
+          "path": "scripts/templates/copilot-instructions.tmpl",
+          "destinationSha256": "9392e3f2fe59cbe86e0469b3f6df316e6f615337904b384daedced7128b83e77",
+          "result": "Matched",
+          "provenanceSha256": "9392e3f2fe59cbe86e0469b3f6df316e6f615337904b384daedced7128b83e77",
+          "sourceSha256": "9392e3f2fe59cbe86e0469b3f6df316e6f615337904b384daedced7128b83e77"
+        },
+        {
+          "path": "scripts/templates/speckit-workflow-section.md",
+          "destinationSha256": "8df90aff3cd1c028c7244299f7e79c2378b8447910133ecdf50d923572e2010b",
+          "result": "Matched",
+          "provenanceSha256": "8df90aff3cd1c028c7244299f7e79c2378b8447910133ecdf50d923572e2010b",
+          "sourceSha256": "8df90aff3cd1c028c7244299f7e79c2378b8447910133ecdf50d923572e2010b"
+        }
+      ],
+      "result": "All 17 destination files match the immutable source and scoped sync provenance",
+      "verifiedAt": "2026-09-13T12:28:35.3219910Z",
+      "scopeManifest": {
+        "schemaVersion": 2,
+        "retiredPathPolicy": "preserve",
+        "homeRuntime": {
+          "rootFiles": [
+            "AGENTS.md",
+            "CLAUDE.md",
+            "GEMINI.md",
+            "constitution.md"
+          ],
+          "rootGlobs": [],
+          "trackedPrefixes": [],
+          "trackedGlobs": [
+            ".specify/memory/constitution.md",
+            ".github/copilot-instructions.md",
+            ".github/agents/copilot-instructions.md",
+            "scripts/config/spec-kit-intake-authoring-governance-presets.json",
+            "scripts/config/spec-kit-intake-review-governance-presets.json",
+            "scripts/config/spec-kit-intake-sequencing-governance-presets.json",
+            "scripts/config/spec-kit-model-routing-governance-presets.json",
+            "scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+            "scripts/templates/AGENTS.md.tmpl",
+            "scripts/templates/CLAUDE.md.tmpl",
+            "scripts/templates/GEMINI.md.tmpl",
+            "scripts/templates/copilot-instructions.tmpl",
+            "scripts/templates/speckit-workflow-section.md"
+          ],
+          "excludePaths": [],
+          "excludePrefixes": [],
+          "excludeGlobs": []
+        },
+        "sourceOnly": {
+          "rootFiles": [
+            ".gitattributes",
+            "CHANGELOG.md",
+            "LICENSE"
+          ],
+          "rootGlobs": [
+            "Lastenheft*.md"
+          ],
+          "trackedPrefixes": [
+            "docs/",
+            "specs/",
+            ".specify/",
+            ".github/"
+          ],
+          "trackedGlobs": [],
+          "excludePaths": [],
+          "excludePrefixes": [],
+          "excludeGlobs": []
+        },
+        "machineLocal": {
+          "rootFiles": [
+            "STATS.md"
+          ],
+          "rootGlobs": [],
+          "trackedPrefixes": [
+            ".specify/presets/",
+            ".specify/integrations/.cache/"
+          ],
+          "trackedGlobs": [
+            ".agents/.skill-lock.json",
+            ".claude/settings.local.json"
+          ],
+          "excludePaths": [],
+          "excludePrefixes": [],
+          "excludeGlobs": []
+        },
+        "legacyCleanupPaths": []
+      }
+    }
   },
   "tuiVisionFreshArtifacts": {
     "checkedAt": "2026-09-13T11:47:12.567556Z",

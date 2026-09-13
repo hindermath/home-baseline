@@ -161,5 +161,9 @@ Navigation: Workitem und verlinkte Repository-Evidence; Dokumentklasse:
 Wartungsnachweis; Sprachpartner: DE/EN in derselben Datei. Textorientierte
 Darstellung, Plattformnachweis macOS/Bash zuerst, PowerShell und Container/Linux.
 Distributionsklasse: source-only Evidence; geaenderte Profile/shared Guidance
-sind homeRuntime und benoetigen abschliessenden Sync. Re-Evaluation bei
+sind homeRuntime; ihr gepruefter Sync ist abgeschlossen. Dieser reine
+Source-only-Nachweis benoetigt keinen weiteren Home-Sync. Re-Evaluation bei
 Versionsdrift, neuen lokalen Erweiterungen oder offenen Lifecycle-Korrekturen.
+
+The changed runtime profiles and shared guidance have completed their verified
+home sync. This source-only evidence update requires no additional home sync.
