@@ -1159,14 +1159,14 @@ project policy. Do not commit `.specify/presets/.cache/`. Preset updates MUST be
 verified with `specify preset list`, at least one `specify preset info`, and
 where relevant `specify preset resolve`.
 
-Die 13 veroeffentlichten `hindermath/spec-kit-preset-*`-Repositories sind die
+Die veroeffentlichten `hindermath/spec-kit-preset-*`-Repositories sind die
 alleinigen Produktquellen. Entwicklung erfolgt in ihren eigenen Git-Klonen
 unter `~/SpecKitPresetProjects/`; Home Baseline verwaltet Profile,
 Release-Bezuege und Projektintegrationen. Quellenbereinigung aendert keine
 bestehende Preset-Installation. Ueber weitere Verteilung des 13. Presets
 entscheidet Thorsten separat; auch Katalogaufnahme erteilt keine Rollout-Rechte.
 
-The 13 published preset repositories are the sole product sources. Develop,
+The published preset repositories are the sole product sources. Develop,
 test, and release changes in their own Git working clones under
 `~/SpecKitPresetProjects/`. Home Baseline maintains profiles, pinned release
 references, and project integrations. Source cleanup preserves all existing

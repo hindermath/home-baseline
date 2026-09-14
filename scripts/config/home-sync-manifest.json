@@ -35,7 +35,11 @@
     "excludeGlobs": [
       "**/.DS_Store",
       "**/.git/**",
-      "**/__pycache__/**"
+      "**/__pycache__/**",
+      ".agents/skills/speckit-statistics-*/**",
+      ".claude/skills/speckit-statistics-*/**",
+      ".claude/commands/speckit.statistics-*.md",
+      ".opencode/command/speckit.statistics-*.md"
     ]
   },
   "sourceOnly": {
@@ -53,7 +57,12 @@
       ".specify/",
       ".github/"
     ],
-    "trackedGlobs": [],
+    "trackedGlobs": [
+      ".agents/skills/speckit-statistics-*/**",
+      ".claude/skills/speckit-statistics-*/**",
+      ".claude/commands/speckit.statistics-*.md",
+      ".opencode/command/speckit.statistics-*.md"
+    ],
     "excludePaths": [],
     "excludePrefixes": [],
     "excludeGlobs": []

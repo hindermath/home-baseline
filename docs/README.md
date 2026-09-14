@@ -72,6 +72,10 @@ zusammen.
 | Technische Referenz | [Skripte](scripts/README.md), [vollständige Skriptreferenz](scripts/reference.md) |
 | Prüfung und Fehleranalyse | [Troubleshooting](troubleshooting/README.md), [Projektstatistik](project-statistics.md) |
 
+Optionaler Pilot, getrennt von der bestehenden Statistik:
+[Project Statistics Governance](maintenance/project-statistics-pilot-v010.md).
+Optional pilot, separate from existing statistics: follow the linked integration record.
+
 ## Dokumentklassen
 
 - **Aktiv und semantisch:** Wird redaktionell in der kanonischen Quelle gepflegt.

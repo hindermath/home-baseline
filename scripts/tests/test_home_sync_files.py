@@ -99,6 +99,32 @@ class HomeSyncFilesTests(unittest.TestCase):
         self.assertEqual(state["manifestSchemaVersion"], 2)
         self.assertEqual(set(state["files"]), {"runtime.txt"})
 
+    def test_statistics_pilot_commands_stay_out_of_home_runtime(self) -> None:
+        # The optional pilot must not acquire a Home-wide command surface.
+        manifest_path = REPOSITORY / "scripts" / "config" / "home-sync-manifest.json"
+        self.manifest.write_text(manifest_path.read_text(encoding="utf-8"), encoding="utf-8")
+        pilot_paths = []
+        for action in ("init", "status", "update"):
+            pilot_paths.extend([
+                f".agents/skills/speckit-statistics-{action}/SKILL.md",
+                f".claude/skills/speckit-statistics-{action}/SKILL.md",
+                f".claude/commands/speckit.statistics-{action}.md",
+                f".opencode/command/speckit.statistics-{action}.md",
+            ])
+        retained = ".agents/skills/speckit-specify/SKILL.md"
+        for relative in [*pilot_paths, retained]:
+            path = self.repository / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("fixture command\n", encoding="utf-8")
+        subprocess.run(["git", "add", "."], cwd=self.repository, check=True)
+        completed = self.run_sync()
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertTrue((self.home / retained).is_file())
+        state = json.loads(self.state.read_text(encoding="utf-8"))
+        for relative in pilot_paths:
+            self.assertFalse((self.home / relative).exists(), relative)
+            self.assertNotIn(relative, state["files"])
+
     def test_canonical_stats_history_remains_local_and_ignored(self) -> None:
         ignored = subprocess.run(
             ["git", "check-ignore", "--quiet", "--no-index", "--", "STATS.md"],
