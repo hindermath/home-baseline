@@ -8,6 +8,8 @@ snapshot without network access. Only marked README blocks and report files are 
 Collect liest öffentliche GitHub-Belege; Validate/Render arbeiten offline. Kein Commit, Push oder Merge.
 Rule version 2 also validates the sanitized private aggregate and partitions executed runs by mode.
 Regelversion 2 prüft zusätzlich freigegebene private Summen und die Ausführungsarten je Repository.
+Version 3 adds source-bound repository acceleration estimates against 80 text lines/workday.
+Version 3 ergänzt quellgebundene Repo-Schätzungen gegenüber 80 Textzeilen/Arbeitstag.
 .PARAMETER Action
 Collect, Validate or Render. / Erheben, prüfen oder erzeugen.
 .PARAMETER Repo
@@ -63,8 +65,8 @@ try {
     $snapshot = Read-HBJson $snapshotPath
     Test-HBStatisticsSnapshot $snapshot
     Assert-HBStatisticsRegistryBinding $snapshot $registry
-    $aggregate = if ($snapshot.ruleVersion -eq 2) { Read-HBJson (Join-Path $data 'private-aggregate.json') } else { $null }
-    if ($snapshot.ruleVersion -eq 2) { Assert-HBPrivateAggregate $aggregate }
+    $aggregate = if ($snapshot.ruleVersion -ge 2) { Read-HBJson (Join-Path $data 'private-aggregate.json') } else { $null }
+    if ($snapshot.ruleVersion -ge 2) { Assert-HBPrivateAggregate $aggregate }
     if ($Action -eq 'Validate') { Write-Host 'PASS: public snapshot, register and applicable private aggregate.'; exit 0 }
     $de = Get-HBStatisticsTable $snapshot de $aggregate; $en = Get-HBStatisticsTable $snapshot en $aggregate
     $outputs = [ordered]@{}

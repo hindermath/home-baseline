@@ -1,5 +1,32 @@
 # Validierungsgrenze / Validation boundary
 
+## Erweiterung Version 3 / Version 3 extension
+
+Die zusätzliche Repo-Schätzung verwendet 80 Textzeilen/Arbeitstag für alle
+Repositories. Die Fixture-Suite prüft Übernahme und Quellenhashes, gewichtete
+Summen statt Faktorenmittelwert, Teilabdeckung, leere und inaktive Repositories,
+Zeitzonen, Text-/Binärgrenzen und die verschachtelte private Allowlist.
+Alte Tabellenverträge bleiben in denselben Tests enthalten. Die CI-Erstlieferung
+erhebt die aktuellen Quellen; die folgenden Ausgangswerte sind historische Belege.
+
+*The repository estimate uses 80 text lines/workday for every repository.
+Fixtures cover imports and hashes, weighted totals, partial coverage, empty and
+inactive repositories, timezones, text/binary boundaries and nested private
+allowlists. Legacy contracts remain tested. Initial CI publication observes
+current sources; the original figures below are historical evidence.*
+
+Security-Review: GitHub-Zugriffe sind lesend, Tokens werden nicht ausgegeben,
+untersuchte Inhalte nie ausgeführt. Nur strikt typisierte private Summen gelangen
+in den Publisher. A11Y: vollständige Texttabelle, benannte Spalte, erklärte
+Faktoren und textliche Fehlstellen; DE/EN werden gemeinsam erzeugt.
+
+*Security review: read-only GitHub source access, no token output and no execution
+of inspected content. Only strictly typed private totals reach the publisher.
+Accessibility: named column, text table, explained factors and explicit gaps;
+German and English are generated together.*
+
+## Historischer Ausgangspunkt / Historical starting point
+
 Die Ausgangserhebung vom 10. September 2026 liest öffentliche GitHub-Quellen
 direkt und bestätigt 93/93/92. Die neun Repository-Identitäten, gepinnten
 Quellen und acht historischen ergänzenden PRs stehen im Snapshot. Feature 030

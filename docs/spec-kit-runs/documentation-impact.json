@@ -4,9 +4,9 @@
   "entries": [
     {
       "changeId": "CHG079",
-      "scope": "Execution-mode partitions, sanitized private totals and joint monthly CI",
+      "scope": "Source-bound repository acceleration estimates, weighted totals and private CI publication",
       "decision": "GeneratedUpdate",
-      "rationale": "A reviewed v2 register and private aggregate generate matching extended tables; v1 replay remains unchanged.",
+      "rationale": "Version 3 adds estimates against 80 lines/workday from validated existing statistics or GitHub fallback; version 1 and 2 replay remains unchanged.",
       "documents": [
         "README.md",
         "README.en.md",
@@ -37,9 +37,9 @@
       "distributionClass": "homeRuntime",
       "homeSyncRequired": true,
       "evidence": "docs/spec-kit-runs/validation.md",
-      "risk": "Private information disclosure, ambiguous historical modes and partial source coverage; enforced through aggregate allowlists, reviewed proofs and failing incomplete collection.",
+      "risk": "Private disclosure or misleading acceleration claims; strict aggregate allowlists, weighted numeric bases, explicit coverage/source dates and a repository-estimate label enforce the boundary.",
       "criticality": "Normal",
-      "reevaluationTrigger": "Mode rules, private scope, source access, visibility or publishing permissions change.",
+      "reevaluationTrigger": "Project-statistics format, reference, window, source access, visibility or publishing permissions change.",
       "generatedSource": {
         "path": "docs/spec-kit-runs/registry.json",
         "renderer": "bash scripts/update-public-speckit-statistics.sh --action Collect && bash scripts/update-public-speckit-statistics.sh --action Render"

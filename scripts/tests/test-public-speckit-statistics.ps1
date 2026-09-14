@@ -120,6 +120,81 @@ Assert-Rejected {Test-HBStatisticsSnapshot $badMode} 'mode vocabulary is case-se
 Assert-Rejected {Get-HBStatisticsTable $v2} 'missing private evidence cannot become zero'
 Assert-Test ($extended -ceq (Get-HBStatisticsTable (Copy-Fixture $v2) de (Copy-Fixture $aggregate))) 'v2 deterministic replay'
 Assert-Test ((Get-HBStatisticsTable $v2 en $aggregate).Contains('Autonomous parallel')) 'v2 English translation'
+# Version 3 fixtures exercise independently known ratios and the private boundary.
+$doc = @'
+<!-- project-statistics-v2:begin -->
+| Textbasis / Text base | 800 lines |
+| Aktivtage / Active days | 2 |
+| Speedup vs. 80 lines/day | 5.0x |
+| Methodik / Methodology | v2; source `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa` |
+DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-13.
+<!-- project-statistics-v2:end -->
+'@
+$config = '{"methodologyVersion":2,"activityWindowWeeks":52,"timeZone":"Europe/Berlin","excludedPaths":[]}'
+$parsed = ConvertFrom-HBProjectStatistics $doc $config
+Assert-Test ($parsed.basis.textLines -eq 800 -and (Format-HBAcceleration $parsed.basis) -ceq '5,0×') 'import known factor with German decimal'
+Assert-Test ((Format-HBAcceleration $parsed.basis en) -ceq '5.0×') 'English decimal'
+Assert-Rejected { ConvertFrom-HBProjectStatistics ($doc.Replace('5.0x','6.0x')) $config } 'contradictory imported factor'
+Assert-Rejected { ConvertFrom-HBProjectStatistics ($doc.Replace('2025-09-21','2025-09-20')) $config } 'inconsistent source window'
+Assert-Rejected { ConvertFrom-HBProjectStatistics ($doc + $doc) $config } 'duplicate statistics blocks'
+Assert-Test ($null -eq (ConvertFrom-HBProjectStatistics '# unknown format' $config)) 'unknown format takes explicit fallback'
+$a = [ordered]@{kind='imported';head=('a'*40);basis=$parsed.basis;asOf=$parsed.asOf;windowStart=$parsed.windowStart;sourceRevision=$parsed.sourceRevision;sources=@(
+ @{key=('example/source/blob/'+('a'*40)+'/docs/project-statistics.md');content=$doc;sha256=(Get-HBTextHash $doc)},
+ @{key=('example/source/blob/'+('a'*40)+'/docs/project-statistics.config.json');content=$config;sha256=(Get-HBTextHash $config)}
+)}
+Test-HBRepositoryAcceleration $a 'example/source'
+$bad = Copy-Fixture $a; $bad.basis.textLines++
+Assert-Rejected { Test-HBRepositoryAcceleration $bad 'example/source' } 'imported basis cannot override evidence'
+$bad = Copy-Fixture $a; $bad.sources[0].content+='tampered'
+Assert-Rejected { Test-HBRepositoryAcceleration $bad 'example/source' } 'acceleration source hash binding'
+$v3 = Copy-Fixture $v2; $v3.schemaVersion=3; $v3.ruleVersion=3
+$v3.repositories[0]['acceleration']=$a
+$v3.repositories[1]['acceleration']=@{kind='empty';head=$null;asOf='2026-09-13';basis=(New-HBAccelerationBasis);sources=@()}
+$agg3=Copy-Fixture $aggregate;$agg3.schemaVersion=3;$agg3.ruleVersion=3
+$privateBasis=New-HBAccelerationBasis 3
+$privateBasis.covered=2;$privateBasis.textLines=8000;$privateBasis.activeDays=10;$privateBasis.oldest='2026-08-01';$privateBasis.newest='2026-09-13'
+$agg3['acceleration']=$privateBasis
+$out3=Get-HBStatisticsTable $v3 de $agg3
+Assert-Test ($out3.Contains('Beschleunigungsfaktor (Repo-Schätzung)') -and $out3.Contains('| 5,0× |')) 'eleventh column'
+Assert-Test ($out3.Contains('**9,2× (3/5 Repos)**')) 'weighted aggregate uses underlying totals with coverage'
+Assert-Test ($out3.Contains('| nicht berechenbar |')) 'empty repository retains row without invented factor'
+Assert-Test ($out3.Contains('2026-08-01 bis 2026-09-13')) 'older source dates preserved'
+Assert-Test ($out3 -ceq (Get-HBStatisticsTable (Copy-Fixture $v3) de (Copy-Fixture $agg3))) 'v3 offline deterministic replay'
+$bad=Copy-Fixture $agg3;$bad.acceleration['privateName']='example/private'
+Assert-Rejected {Assert-HBPrivateAggregate $bad} 'nested private metadata rejected'
+$bad=Copy-Fixture $agg3;$bad.acceleration.activeDays='10'
+Assert-Rejected {Assert-HBPrivateAggregate $bad} 'numeric strings rejected'
+$bad=Copy-Fixture $agg3;$bad.acceleration.reference=125
+Assert-Rejected {Assert-HBPrivateAggregate $bad} 'uniform 80 reference enforced'
+$bad=Copy-Fixture $agg3;$bad.acceleration.covered=4
+Assert-Rejected {Assert-HBPrivateAggregate $bad} 'coverage cannot exceed repository scope'
+Assert-Rejected {Get-HBStatisticsTable $v3 de $aggregate} 'mixed private/public schema versions rejected'
+$changed=Copy-Fixture $v3;$changed.repositories[0].visibility='excluded';$changed.repositories[0].features=@();$changed.repositories[0].sources=@()
+Assert-Rejected {Test-HBStatisticsSnapshot $changed} 'private acceleration cannot survive visibility exclusion'
+Assert-Test ((Get-HBBlobLineCount ([byte[]]@(97,13,98))) -eq 2) 'CR-only text parity'
+Assert-Test ((Get-HBBlobLineCount ([byte[]]@(97,10,98))) -eq 2) 'unterminated text line parity'
+Assert-Test ($null -eq (Get-HBBlobLineCount ([byte[]]@(97,0,98)))) 'binary text exclusion'
+$module=Get-Module public-speckit-statistics
+& $module {
+ function script:Invoke-HBGitHub {
+  param([string]$Endpoint)
+  switch -Wildcard ($Endpoint) {
+   '*/commits[?]*' { return ,@(@{sha=('b'*40);parents=@(@{});commit=@{committer=@{date='2026-09-12T23:30:00Z'}}},@{sha=('c'*40);parents=@(@{},@{});commit=@{committer=@{date='2026-09-12T12:00:00Z'}}}) }
+   '*/commits/*' { return @{stats=@{total=3};files=@(@{filename='file.txt';changes=1;additions=1;deletions=0},@{filename='STATS.md';changes=2;additions=2;deletions=0})} }
+   '*/git/blobs/*' { return @{encoding='base64';size=4;content='YQpiCg=='} }
+   default { throw 'Unexpected fallback API request.' }
+  }
+ }
+}
+$fallback=Get-HBFallbackAcceleration 'example/source' ('a'*40) @(@{type='blob';mode='100644';path='file.txt';sha=('d'*40)},@{type='blob';mode='100644';path='STATS.md';sha=('e'*40)}) @() '2026-09-13'
+Test-HBRepositoryAcceleration $fallback 'example/source'
+Assert-Test ($fallback.basis.textLines -eq 2 -and $fallback.basis.activeDays -eq 1 -and $fallback.commits[0].date -eq '2026-09-13' -and $fallback.blobs.Count -eq 1) 'fallback filters merges/ledger and respects timezone'
+$bad=Copy-Fixture $fallback;$bad.commits+=$bad.commits[0]
+Assert-Rejected {Test-HBRepositoryAcceleration $bad 'example/source'} 'duplicate activity evidence rejected'
+& $module { function script:Invoke-HBGitHub { param([string]$Endpoint); if($Endpoint -like '*/commits[?]*'){return ,@()}; throw 'Inactive repository must not fetch blobs.' } }
+$inactive=Get-HBFallbackAcceleration 'example/source' ('a'*40) @() @() '2026-09-13'
+Assert-Test ($inactive.basis.covered -eq 0) 'no activity is unavailable rather than 0x'
+Import-Module (Join-Path $PSScriptRoot '../lib/public-speckit-statistics.psm1') -Force
 # Provider boundary tests use the module's API seam, never live credentials or network.
 $module=Get-Module public-speckit-statistics
 & $module {

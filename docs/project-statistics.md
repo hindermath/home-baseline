@@ -195,6 +195,8 @@
 | 2026-09-13 | Intake-Lifecycle-Preset-Rollout / Intake lifecycle preset rollout | N/A | N/A | N/A | Vorhandene Authoring-/Review-/Sequencing-Presets auf 0.3.2/0.2.2/0.2.4 aktualisiert; optionale Profile und Dokumentation nachgefuehrt. Pruefnachweise in docs/maintenance/intake-lifecycle-fleet-rollout.json. / Update existing presets and profile references; preserve other presets and project extensions. |
 | 2026-09-13 | Mermaid und Abschlussberichte | N/A | N/A | N/A | Neue textbasierte Diagrammregel, Berichtsvorlage, Agent-Paritaet und versionierte Governance; kein Produktcode. / Text-first diagram and completion-report governance; no product code. |
 
+| 2026-09-14 | Repo-Beschleunigung in Spec-Kit-Tabellen / Repository acceleration in Spec Kit tables | N/A | N/A | N/A | GeneratedUpdate: Version 3 übernimmt geprüfte Profil-2-Faktoren gegenüber 80 Textzeilen/Tag oder berechnet GitHub-Ersatzwerte. Gewichtete Summen, private Aggregatgrenze, Quellstände, Teilabdeckung und v1/v2-Kompatibilität sind durch Fixtures geprüft. Native CI, frische Erhebung und Veröffentlichung folgen am exakten PR-Head. Kein zusätzlicher Spec-Kit-Lauf und keine Level-2-Verteilung. / Source-bound estimates, weighted totals and explicit evidence limits; CI and delivery require separate exact-head proof. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

@@ -1,5 +1,93 @@
 # Spec-Kit-Läufe und Ausführungsarten / Spec Kit runs and execution modes
 
+## Repo-Beschleunigungsfaktor, Version 3 / Repository acceleration factor, version 3
+
+Die zusätzliche Spalte **Beschleunigungsfaktor (Repo-Schätzung)** vergleicht
+den gesamten berücksichtigten Textbestand mit **80 Textzeilen pro Arbeitstag**.
+Sie beschreibt Lieferdichte, keine gemessene KI-Zeitersparnis, Produktqualität
+oder persönliche Arbeitszeit. Auch fremde/importierte Inhalte und Arbeit
+außerhalb von Spec Kit beeinflussen sie. Repositories ohne Spec-Kit-Läufe
+werden ausdrücklich einbezogen; die Laufzählregeln ändern sich nicht.
+
+*The additional Acceleration factor (repository estimate) column compares the
+entire included text stock against 80 text lines/workday. It describes delivery
+density, not measured AI time savings, product quality or personal working time.
+Imported content and work outside Spec Kit influence the result. Repositories
+without Spec Kit runs are included; run-counting rules remain unchanged.*
+
+`Faktor = Textbestand / (80 × Git-Aktivtage)`
+
+Vorhandene Profil-2-Statistiken in `docs/project-statistics.md` haben Vorrang.
+Der Sammler prüft Markierungen, Konfiguration, Quellrevision, Fenster und den
+bereits gerundeten 80-Zeilen-Faktor gegen Textbestand und Aktivtage. Ein
+Widerspruch stoppt die Erhebung. Die belegte Statistik behält ihr Datum;
+erneutes Abrufen behauptet keine Neuberechnung. Nicht unterstützte Formate
+oder fehlende Statistiken nutzen die ausdrücklich gekennzeichnete Ersatzberechnung.
+
+*Existing Profile 2 statistics take precedence. The collector validates the
+markers, configuration, source revision, window and rounded 80-line factor
+against text stock and active days. Contradictions stop collection. Existing
+statistics retain their source dates. Unsupported formats or missing statistics
+use an explicitly identified fallback calculation.*
+
+Die Ersatzberechnung liest ausschließlich GitHub-Daten am gepinnten
+Default-Branch-Commit. Sie zählt Git-getrackte Textdateien (NUL-Bytes kennzeichnen
+Binärdaten), ohne `STATS.md`, das Statistik-Ledger, symbolische Links und
+konfigurierte Ausschlüsse. Aktivtage stammen aus relevanten Textänderungen
+von Nicht-Merge-Commits im Profil-2-Fenster: aktuelle Woche plus 51 vorherige
+Wochen, bis zum Datenstand. Ohne Konfiguration gilt `Europe/Berlin`.
+Unvollständige Git-Bäume, Diffs oder Blob-Inhalte sind Fehler, keine Nullwerte.
+Code aus untersuchten Repositories wird nie ausgeführt.
+
+*Fallback reads GitHub data at the pinned default-branch commit. It counts
+tracked text files using the Profile 2 byte definition, excluding STATS.md,
+the statistics ledger, symbolic links and configured exclusions. Active days
+come from relevant non-merge text changes in the current and preceding 51 weeks,
+through the observation date. The default timezone is Europe/Berlin. Incomplete
+trees, diffs or blobs fail; inspected repository code is never executed.*
+
+Alle Summenzeilen verwenden `Σ Textbestand / (80 × Σ Repo-Aktivtage)`, niemals
+den einfachen Mittelwert gerundeter Faktoren oder eine Gewichtung nach Laufzahl.
+Gleiche Kalendertage verschiedener Repositories zählen je Repository.
+Leere Repositories, null Aktivtage oder null Textbestand sind **nicht berechenbar**.
+Sie bleiben in der Laufstatistik und im Abdeckungsnenner; Zähler und Nenner des
+Faktors enthalten ausschließlich vollständige Zahlenpaare. Bei Teilabdeckung
+zeigt die Zelle zusätzlich `N/M Repos`. `×` bedeutet Faktor.
+
+*Totals use summed text stock divided by 80 times summed repository active days,
+never the simple average of rounded factors or weighting by run count. The same
+calendar date counts separately in each repository. Empty repositories, zero
+active days or zero text stock are not calculable. Their run counts remain;
+only complete positive pairs enter the factor. N/M Repos indicates coverage.*
+
+Öffentliche Einzelgrundlagen, Quelltexte oder Blob-Prüfsummen stehen im
+versionierten Snapshot, Quellstände und Berechnungsart in der
+[Prüfwarteschlange](review-queue.md). Ersatzberechnungen speichern je Blob
+Identität, SHA-256 und Zeilenzahl sowie relevante Commit-Identitäten, Datumswerte
+und Änderungszahlen. Diese Eingaben erlauben identische Offline-Tabellen.
+Für private Repositories bleiben diese Details im privaten CI-Repository.
+Nur Referenz, Repository-/Abdeckungszahl, summierter Textbestand, summierte
+Aktivtage und frühestes/spätestes Quelldatum ergänzen das öffentliche Summenobjekt.
+Ein privater Gesamtfaktor ist intern reproduzierbar, öffentlich nur rechnerisch prüfbar.
+
+*Public inputs and checksums are frozen in the snapshot; the review queue lists
+source dates and calculation kind. Fallback freezes blob identities, SHA-256,
+line counts and relevant commit dates/change counts for deterministic offline
+rendering. Private details stay in private CI. Only the reference, coverage,
+summed text stock, summed active days and oldest/newest source dates cross the
+boundary. Private results are internally reproducible; public readers can verify
+aggregate arithmetic only.*
+
+Version 3 erweitert Register, Snapshot, Manifest und private Übergabe.
+Versionen 1 und 2 bleiben bytegleich reproduzierbar. Gleichbleibende Zahlen und
+Abdeckung erzeugen keine reinen Datums-Commits; der letzte veröffentlichte Stand
+bleibt bei Fehlern erhalten. Die monatlichen CI-Termine bleiben unverändert.
+
+*Version 3 extends the register, snapshot, manifest and private aggregate.
+Versions 1 and 2 retain byte-identical replay. Unchanged numbers and coverage
+do not create date-only commits. Failures retain the last publication. Monthly
+CI schedules remain unchanged.*
+
 ## Regelversion 2 / Rule version 2
 
 Version 2 ergänzt jede öffentliche Repository-Zeile um die Ausführungsarten
