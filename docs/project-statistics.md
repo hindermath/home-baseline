@@ -195,6 +195,8 @@
 | 2026-09-13 | Intake-Lifecycle-Preset-Rollout / Intake lifecycle preset rollout | N/A | N/A | N/A | Vorhandene Authoring-/Review-/Sequencing-Presets auf 0.3.2/0.2.2/0.2.4 aktualisiert; optionale Profile und Dokumentation nachgefuehrt. Pruefnachweise in docs/maintenance/intake-lifecycle-fleet-rollout.json. / Update existing presets and profile references; preserve other presets and project extensions. |
 | 2026-09-13 | Mermaid und Abschlussberichte | N/A | N/A | N/A | Neue textbasierte Diagrammregel, Berichtsvorlage, Agent-Paritaet und versionierte Governance; kein Produktcode. / Text-first diagram and completion-report governance; no product code. |
 
+| 2026-09-14 | Repo-Beschleunigung in Spec-Kit-Tabellen / Repository acceleration in Spec Kit tables | N/A | N/A | N/A | GeneratedUpdate: Version 3 übernimmt geprüfte Profil-2-Faktoren gegenüber 80 Textzeilen/Tag oder berechnet GitHub-Ersatzwerte. Gewichtete Summen, private Aggregatgrenze, Quellstände, Teilabdeckung und v1/v2-Kompatibilität sind durch Fixtures geprüft. Native CI, frische Erhebung und Veröffentlichung folgen am exakten PR-Head. Kein zusätzlicher Spec-Kit-Lauf und keine Level-2-Verteilung. / Source-bound estimates, weighted totals and explicit evidence limits; CI and delivery require separate exact-head proof. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1210,26 +1212,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 692855 lines |
+| Textbasis / Text base | 693350 lines |
 | Textdateien / Text files | 3189 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-21..2026-09-13 |
-| Aktivtage / Active days | 109 |
-| Relevante Commits / Relevant commits | 865 |
-| Zeilen je Aktivtag / Lines per active day | 6356.5 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-21..2026-09-14 |
+| Aktivtage / Active days | 110 |
+| Relevante Commits / Relevant commits | 866 |
+| Zeilen je Aktivtag / Lines per active day | 6303.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 79.5x |
-| Speedup vs. 100 lines/day | 63.6x |
-| Methodik / Methodology | v2; source `e16e6a0c06c1` |
+| Speedup vs. 80 lines/day | 78.8x |
+| Speedup vs. 100 lines/day | 63.0x |
+| Methodik / Methodology | v2; source `997f5ccf8a22` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.7% | 25811
-Dokumentation / Documentation   [##########..........]  51.4% | 356315
-Skripte / Scripts               [##..................]   8.0% | 55744
+Tests                           [#...................]   3.7% | 25886
+Dokumentation / Documentation   [##########..........]  51.4% | 356442
+Skripte / Scripts               [##..................]   8.1% | 56037
 Konfiguration / Configuration   [#######.............]  36.4% | 252397
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
@@ -1255,7 +1257,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ```text
 Wochen / Weeks 27..52 | 2026-03-22..2026-09-19
 So/Su  0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4
-Mo/Mo  0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 -
+Mo/Mo  0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3
 Di/Tu  0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 -
 Mi/We  0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 -
 Do/Th  0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 -
@@ -1481,8 +1483,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 79.5x
-100 lines/day      [#############.......] 63.6x
+80 lines/day       [################....] 78.8x
+100 lines/day      [#############.......] 63.0x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1495,7 +1497,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#############.......] 6356.5
+Visible repository [#############.......] 6303.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1504,9 +1506,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-13. Es enthaelt 109 aktive und 249 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-14. Es enthaelt 110 aktive und 249 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-21 and ends on 2026-09-13. It contains 109 active and 249 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-21 and ends on 2026-09-14. It contains 110 active and 249 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1521,6 +1523,6 @@ DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-13. Es enthaelt 109 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 135439 |
+| 2026-09 | 135968 |
 
 <!-- project-statistics-v2:end -->

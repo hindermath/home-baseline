@@ -934,9 +934,9 @@ pwsh -NoProfile -File scripts/tests/test-public-speckit-statistics.ps1 -WhatIf  
 
 ## Statistik / Statistics
 
-Initialisiert, rendert und testet das ASCII-Statistikprofil.
+Initialisiert, rendert und testet das ASCII-Statistikprofil sowie Spec-Kit-Laufzahlen und Repo-Beschleunigungsschätzungen.
 
-*Initializes, renders, and tests the ASCII statistics profile.*
+*Initializes, renders, and tests the ASCII statistics profile, Spec Kit run counts and repository acceleration estimates.*
 
 ### `scripts/init-stats.ps1`
 

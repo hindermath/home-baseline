@@ -21,6 +21,18 @@ Render replaces marked README blocks and generated files. No Git writes.*
 
 ## OPTIONS
 
+Version 3 ergänzt Repo-Schätzungen gegenüber 80 Textzeilen/Arbeitstag. Geprüfte
+Profil-2-Werte haben Vorrang; fehlende Werte werden aus GitHub-Daten berechnet.
+Summen nutzen Textbestand und Repo-Aktivtage, fehlende Grundlagen zeigen
+`nicht berechenbar`. Quellstände und Teilabdeckung bleiben sichtbar. Private
+Einzelbelege bleiben privat; nur validierte Summen werden übernommen.
+
+*Version 3 adds repository estimates against 80 text lines/workday. Validated
+Profile 2 values take precedence; missing values are calculated from GitHub.
+Totals use underlying text stock and repository active days. Missing bases are
+not calculable. Source dates and partial coverage remain visible. Private
+individual evidence stays private; only validated aggregates are imported.*
+
 - `--action`: Aktion; Standard `Validate`. / Action; default Validate.
 - `--repo`: Level-0-Quelle; sonst gemeinsame Quellauflösung. / Source checkout; otherwise uses the shared source resolver.
 - `--check-only`: keine Dateien schreiben, Drift melden. / No writes; report drift.

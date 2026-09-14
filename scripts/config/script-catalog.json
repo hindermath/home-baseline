@@ -49,8 +49,8 @@
       "titleDe": "Statistik",
       "titleEn": "Statistics",
       "patterns": ["init-stats.*", "render-project-statistics.*", "test-render-project-statistics.ps1", "update-public-speckit-statistics.*"],
-      "purposeDe": "Initialisiert, rendert und testet das ASCII-Statistikprofil.",
-      "purposeEn": "Initializes, renders, and tests the ASCII statistics profile."
+      "purposeDe": "Initialisiert, rendert und testet das ASCII-Statistikprofil sowie Spec-Kit-Laufzahlen und Repo-Beschleunigungsschätzungen.",
+      "purposeEn": "Initializes, renders, and tests the ASCII statistics profile, Spec Kit run counts and repository acceleration estimates."
     },
     {
       "id": "learning",
