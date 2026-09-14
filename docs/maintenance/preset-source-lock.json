@@ -105,6 +105,14 @@
       "repository": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance",
       "archiveUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.6.zip",
       "archiveSha256": "cb25cdedeca41e902ca9d88a921c1a989556d38ccf6a4f1c0c01abad90ca55e4"
+    },
+    {
+      "id": "project-statistics-governance",
+      "tag": "v0.1.0",
+      "commit": "7e824ca8de11212aefdc5b05d7d05637f5343dab",
+      "repository": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance",
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/archive/refs/tags/v0.1.0.zip",
+      "archiveSha256": "d8ad7d5eef920f50b629121b64ba8123c22ec4f6dadd14da5cd826d1c50f420a"
     }
   ]
 }

@@ -197,6 +197,8 @@
 
 | 2026-09-14 | Repo-Beschleunigung in Spec-Kit-Tabellen / Repository acceleration in Spec Kit tables | N/A | N/A | N/A | GeneratedUpdate: Version 3 übernimmt geprüfte Profil-2-Faktoren gegenüber 80 Textzeilen/Tag oder berechnet GitHub-Ersatzwerte. Gewichtete Summen, private Aggregatgrenze, Quellstände, Teilabdeckung und v1/v2-Kompatibilität sind durch Fixtures geprüft. Native CI, frische Erhebung und Veröffentlichung folgen am exakten PR-Head. Kein zusätzlicher Spec-Kit-Lauf und keine Level-2-Verteilung. / Source-bound estimates, weighted totals and explicit evidence limits; CI and delivery require separate exact-head proof. |
 
+| 2026-09-14 | Project Statistics Governance Pilot-Vorbereitung / Pilot preparation | N/A | N/A | N/A | UpdateRequired: veroeffentlichtes Statistik-Preset v0.1.0 und optionales 14-Preset-Profil mit Commit-/ZIP-SHA-256-Bindung; Quellen- und Profiltests lokal bestanden. Drei reale Pilotinstallationen, Messberichte und Remote-Lieferung bleiben offen. Bestehender Profil-2-Vertrag bleibt erhalten. Details: docs/maintenance/project-statistics-pilot-v010.md. Kein Spec-Kit-Featurestart, keine Community-Einreichung und kein Home-Sync. / Source-bound central preparation verified locally; project pilots and delivery pending, legacy statistics and defaults preserved. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
