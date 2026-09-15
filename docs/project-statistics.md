@@ -199,6 +199,8 @@
 
 | 2026-09-14 | Project Statistics Governance Pilot-Vorbereitung / Pilot preparation | N/A | N/A | N/A | UpdateRequired: veroeffentlichtes Statistik-Preset v0.1.0 und optionales 14-Preset-Profil mit Commit-/ZIP-SHA-256-Bindung; Quellen- und Profiltests lokal bestanden. Drei reale Pilotinstallationen, Messberichte und Remote-Lieferung bleiben offen. Bestehender Profil-2-Vertrag bleibt erhalten. Details: docs/maintenance/project-statistics-pilot-v010.md. Kein Spec-Kit-Featurestart, keine Community-Einreichung und kein Home-Sync. / Source-bound central preparation verified locally; project pilots and delivery pending, legacy statistics and defaults preserved. |
 
+| 2026-09-14 | Statistik-Pilotinstallation / Statistics pilot installation | N/A | N/A | N/A | UpdateRequired: v0.1.0 lokal im 14er-Profil installiert; 26 Paketdateien hashgleich, 13 bestehende Presets erhalten, beide CheckOnly-Einstiege und Lifecycle-Fixtures bestanden. Branch codex/project-statistics-installation, eine sichtbare Sitzung; importiertes Paket statt neuer Produktlogik. Messung, Feldtest-Abnahme und Remote-Lieferung offen; kein Home-Sync. Nachweis: docs/maintenance/project-statistics-installation-v010.md. Bestehendes Profil-2-Rendering folgt erst nach Inhaltscommit. / Verified local integration only; measurements, review, delivery and content-bound legacy rendering pending. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

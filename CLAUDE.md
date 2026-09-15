@@ -766,3 +766,29 @@ checks. Add final merge/sync proof in chat and existing closeout evidence, witho
 commits solely for self-referential counts or IDs. Preserve local rules/templates
 across Spec Kit updates.*
 <!-- END spec-kit-diagrams-completion -->
+
+<!-- project-statistics-pilot:begin -->
+## Optionaler Statistik-Pilot / Optional Statistics Pilot
+
+Dieses Projekt verwendet im genehmigten Pilotbranch das Profil
+`project-statistics-fourteen-governance-presets`: unveraenderte 13er-Basis plus
+`project-statistics-governance` v0.1.0, aktiviert mit Prioritaet 90.
+Das Preset dient reproduzierbarer Projekttransparenz, nicht der Bewertung von
+Lernenden, Qualitaet oder KI-Zeitersparnis. Die bestehende Statistik bleibt
+kanonisch. Der kuenftige getrennte Kontext ist `docs/project-statistics-pilot/`;
+Referenz-Modellrechnungen bleiben ausgeschaltet. Installation startet weder
+Messung noch Spec-Kit-Feature und erteilt keine Commit-/Push-/Mergefreigabe.
+Integrationsnachweis: `docs/maintenance/project-statistics-installation-v010.md`
+relativ zur Repository-Wurzel. Kein Home-Runtime-Sync und keine globale
+Default-Aenderung. Operative Profilzuordnung erst nach gepruefter Lieferung.
+
+This project's approved pilot branch opts into fourteen presets: the unchanged
+thirteen-preset base plus Project Statistics Governance v0.1.0 at priority 90.
+It provides reproducible project transparency, not learner ratings, quality
+scores or AI time-savings measurements. Existing statistics remain canonical;
+the future pilot context is separate and reference estimates remain off.
+Installation starts no measurement or Spec Kit feature and grants no delivery
+authority. See the integration record relative to the repository root.
+No Home Runtime sync or global default change; operational assignment follows
+reviewed delivery.
+<!-- project-statistics-pilot:end -->

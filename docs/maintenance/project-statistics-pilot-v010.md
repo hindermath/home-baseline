@@ -1,5 +1,10 @@
 # Statistik-Preset-Pilot / Statistics preset pilot
 
+Aktueller Schritt 3 / Current step 3: [lokaler Installationsnachweis](project-statistics-installation-v010.md).
+Schritt 2 wurde mit [PR #299](https://github.com/hindermath/home-baseline/pull/299)
+nach 18 gruenen Checks gemergt; der folgende lokale Vorbereitungsstand bleibt historisch erhalten.
+Step 2 is merged; the local preparation evidence below remains historical.
+
 ## Umfang / Scope
 
 Genehmigt: Project Statistics Governance v0.1.0 als Pre-Release und getrennte

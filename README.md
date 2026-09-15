@@ -252,3 +252,4 @@ und in den [Repository Guidelines](AGENTS.md).
 führen vom neuen Lastenheft zum belegten Feature-Ergebnisbericht. / The linked
 rules explain accessible intake diagrams and evidence-based feature reports.
 <!-- END spec-kit-diagrams-completion -->
+Statistik-Pilot / Statistics pilot: [Installationsstand und Grenzen](docs/maintenance/project-statistics-installation-v010.md).
