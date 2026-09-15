@@ -196,3 +196,4 @@ and the [repository guidelines](AGENTS.md).
 explain accessible diagrams for new requirements intakes and complete, evidence-based
 reports after Spec Kit feature runs. The shared rule and report template are bilingual.
 <!-- END spec-kit-diagrams-completion -->
+Statistics pilot: [installation status and boundaries](docs/maintenance/project-statistics-installation-v010.md).

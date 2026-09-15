@@ -199,6 +199,8 @@
 
 | 2026-09-14 | Project Statistics Governance Pilot-Vorbereitung / Pilot preparation | N/A | N/A | N/A | UpdateRequired: veroeffentlichtes Statistik-Preset v0.1.0 und optionales 14-Preset-Profil mit Commit-/ZIP-SHA-256-Bindung; Quellen- und Profiltests lokal bestanden. Drei reale Pilotinstallationen, Messberichte und Remote-Lieferung bleiben offen. Bestehender Profil-2-Vertrag bleibt erhalten. Details: docs/maintenance/project-statistics-pilot-v010.md. Kein Spec-Kit-Featurestart, keine Community-Einreichung und kein Home-Sync. / Source-bound central preparation verified locally; project pilots and delivery pending, legacy statistics and defaults preserved. |
 
+| 2026-09-14 | Statistik-Pilotinstallation / Statistics pilot installation | N/A | N/A | N/A | UpdateRequired: v0.1.0 lokal im 14er-Profil installiert; 26 Paketdateien hashgleich, 13 bestehende Presets erhalten, beide CheckOnly-Einstiege und Lifecycle-Fixtures bestanden. Branch codex/project-statistics-installation, eine sichtbare Sitzung; importiertes Paket statt neuer Produktlogik. Messung, Feldtest-Abnahme und Remote-Lieferung offen; kein Home-Sync. Nachweis: docs/maintenance/project-statistics-installation-v010.md. Bestehendes Profil-2-Rendering folgt erst nach Inhaltscommit. / Verified local integration only; measurements, review, delivery and content-bound legacy rendering pending. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1214,27 +1216,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 693725 lines |
-| Textdateien / Text files | 3191 |
-| Beobachtbarer Zeitraum / Observable period | 2025-09-21..2026-09-14 |
-| Aktivtage / Active days | 110 |
-| Relevante Commits / Relevant commits | 867 |
-| Zeilen je Aktivtag / Lines per active day | 6306.6 |
+| Textbasis / Text base | 696420 lines |
+| Textdateien / Text files | 3234 |
+| Beobachtbarer Zeitraum / Observable period | 2025-09-21..2026-09-15 |
+| Aktivtage / Active days | 111 |
+| Relevante Commits / Relevant commits | 869 |
+| Zeilen je Aktivtag / Lines per active day | 6274.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 78.8x |
-| Speedup vs. 100 lines/day | 63.1x |
-| Methodik / Methodology | v2; source `808bd6f14b71` |
+| Speedup vs. 80 lines/day | 78.4x |
+| Speedup vs. 100 lines/day | 62.7x |
+| Methodik / Methodology | v2; source `0d2971c089c4` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.7% | 25948
-Dokumentation / Documentation   [##########..........]  51.4% | 356639
+Dokumentation / Documentation   [##########..........]  51.6% | 359334
 Skripte / Scripts               [##..................]   8.1% | 56153
-Konfiguration / Configuration   [#######.............]  36.4% | 252397
+Konfiguration / Configuration   [#######.............]  36.2% | 252397
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
 ```
@@ -1260,7 +1262,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Wochen / Weeks 27..52 | 2026-03-22..2026-09-19
 So/Su  0 0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4
 Mo/Mo  0 0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3
-Di/Tu  0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 -
+Di/Tu  0 4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4
 Mi/We  0 4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 -
 Do/Th  0 4 0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 -
 Fr/Fr  0 4 4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 -
@@ -1485,8 +1487,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [################....] 78.8x
-100 lines/day      [#############.......] 63.1x
+80 lines/day       [################....] 78.4x
+100 lines/day      [#############.......] 62.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1499,7 +1501,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [#############.......] 6306.6
+Visible repository [#############.......] 6274.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1508,9 +1510,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-14. Es enthaelt 110 aktive und 249 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-15. Es enthaelt 111 aktive und 249 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-09-21 and ends on 2026-09-14. It contains 110 active and 249 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-09-21 and ends on 2026-09-15. It contains 111 active and 249 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1525,6 +1527,6 @@ DE: Das Fenster beginnt am 2025-09-21 und endet am 2026-09-14. Es enthaelt 110 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 136397 |
+| 2026-09 | 139092 |
 
 <!-- project-statistics-v2:end -->
