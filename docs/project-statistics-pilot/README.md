@@ -10,6 +10,9 @@ naechsten Schritt freigegeben. Diese Freigabe umfasst die lokale Sicherung
 der Messartefakte und die Wiederholungspruefung auf sauberem Git-Stand.
 Keine vollstaendige Feldtest- oder Release-Abnahme; kein Push oder Merge.
 Die Statistik-Skills liefern kein Git; lokale Commits erfolgen separat.
+Messartefakte sind lokal gesichert; die anschliessende Wiederholungspruefung
+bestand in beiden Shells ohne Aenderungen. Naechster technischer Schritt sind
+die noch offenen Drift-/Negativ- und Eingabeparitaetspruefungen.
 
 The configuration was locally committed under explicit separate authority.
 The first measurement and snapshot passed both Bash and PowerShell replay:
@@ -17,6 +20,9 @@ CURRENT, reproducible and current, exit 0. Thorsten Hindermann reviewed the repo
 and evidence and authorized local commits and clean-tree repeat checks.
 This is not full field or release acceptance and does not authorize push or merge.
 Statistics skills do not deliver Git changes.
+Measurement artifacts are locally committed. Clean-tree repeat checks passed
+in both shells without changes. Next are the remaining drift/negative cases
+and input encoding parity checks.
 
 - [Konfiguration / Configuration](config.json)
 - [Messbericht / Measurement report](report.md)
@@ -162,15 +168,60 @@ reference estimates remain disabled.
 
 Grenzen: Diese Messung beweist Reproduzierbarkeit auf macOS, keine unabhaengige
 mathematische Vollpruefung des Renderers. Native Linux-/Windows-Feldtests,
-LF/CRLF/BOM-Eingabeparitaet, erneutes schreibendes Update auf sauberem Stand,
-Drift-/Negativfall-Vollsuite und vollstaendige Feldtest-Abnahme bleiben hier offen.
+LF/CRLF/BOM-Eingabeparitaet, Drift-/Negativfall-Vollsuite und vollstaendige
+Feldtest-Abnahme bleiben hier offen. Der Wiederholungstest ist unten belegt.
 Bestehende Statistik blieb unveraendert; ihre regulaere Fortschreibung ist
 vor einer spaeteren Lieferung separat zu pruefen. Keine `ReleaseAccepted`-Aussage.
-Limits: native Linux/Windows field runs, input encoding parity, a repeated
-write on a clean tree, the full drift/negative suite and full field acceptance are
+Limits: native Linux/Windows field runs, input encoding parity,
+the full drift/negative suite and full field acceptance are
 not established here. Existing statistics remain unchanged; review their normal
 refresh before later delivery. No ReleaseAccepted claim or full independent
 mathematical validation of the renderer.
+
+## Wiederholungspruefung nach Sichtung / Repeat checks after review
+
+Thorsten Hindermann bestaetigte am 2026-09-16 die fachliche Sichtung und gab
+den naechsten Schritt frei. Messbericht, Snapshot und Nachweis wurden im
+lokalen Commit `a6817ad87e8620b8c6fbf5061ac47de34fa40f76` gesichert.
+Auf diesem sauberen Git-Stand liefen sequenziell sechs Pruefungen. Update
+verwendete bewusst `HEAD` und `2026-09-16` als Stichtag. Obwohl HEAD nun auch
+die Messartefakte enthaelt, bleibt die Quellbindung auf
+`e1d6d36e444cc252a0321572e70da8874de81fe3` erhalten: keine Selbstreferenz-Schleife.
+
+The owner reviewed the measurement and approved the next step on 2026-09-16.
+The local artifact commit above was the clean test head. Six sequential checks
+used HEAD and the original cutoff; the measurement retained its original source
+revision despite the new output-only commit. No self-referential update loop.
+
+Alle Befehle nutzen die oben genannten installierten Skripte und den expliziten
+Kontext `docs/project-statistics-pilot/config.json`, Repository `.`.
+Each command uses the installed entrypoints and explicit pilot configuration.
+
+| Pruefung / Check | Bash | PowerShell | Ergebnis / Result |
+| --- | ---: | ---: | --- |
+| Update-Vorschau / preview, HEAD, 2026-09-16 | 0 | 0 | DRY_RUN, changed=false |
+| Update ohne Vorschau / without preview, HEAD, 2026-09-16 | 0 | 0 | CURRENT, changed=false |
+| Status / replay | 0 | 0 | CURRENT, reproducible=true, current=true, changed=false |
+
+Nach jedem der sechs Befehle blieben Git-Status sauber und alle sechs geprueften
+SHA-256 unveraendert: Konfiguration, Bericht, Snapshot, dieser Nachweis,
+bestehender Ledger und dessen Konfiguration. Dies belegt inhaltliche
+Unveraendertheit der geprueften Dateien, keine vollstaendige I/O-Systemmessung.
+Der Bericht hatte dabei SHA-256
+`2d94357c130dce0fa3f08fbc5a2d3979a6570ece0922ff33c61b890ea5c6db45`;
+Snapshot und Konfiguration haben weiterhin die oben dokumentierten Hashes.
+Erst nach den Pruefungen wurde dieser Ergebnisnachtrag verfasst.
+
+Each of the six commands preserved a clean Git status and all six checked hashes.
+This establishes unchanged file contents, not a complete system I/O trace.
+The report hash is recorded above; snapshot and configuration hashes retain their
+earlier values. This evidence supplement was authored only after the checks.
+
+Zusaetzlich bestanden Konfigurationsschema, lokale Markdown-Links und erneute
+Pruefung aller 26 installierten Paketdatei-Hashes. Keine neuen Werkzeuge,
+kein Netzwerkzugriff fuer die Messung, kein Push/Merge oder Home-Sync.
+Configuration schema, local Markdown links and all 26 installed payload hashes
+also passed. No new tools, measurement network access, push/merge or Home sync.
 
 ## Dokumentationsauswirkung / Documentation impact
 
