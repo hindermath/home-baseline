@@ -1,6 +1,11 @@
 # Statistik-Preset-Pilot / Statistics preset pilot
 
-Aktueller Schritt 3 / Current step 3: [lokaler Installationsnachweis](project-statistics-installation-v010.md).
+Aktueller Schritt 4, Teil 1 / Current step 4, part 1:
+[Home-Baseline-Messkontext vorbereitet](../project-statistics-pilot/README.md).
+Die Installation aus Schritt 3 ist mit [PR #300](https://github.com/hindermath/home-baseline/pull/300)
+geliefert; der [lokale Installationsnachweis](project-statistics-installation-v010.md)
+bleibt als historischer Vorbereitungsstand erhalten. / Installation is delivered;
+the original local installation receipt remains historical.
 Schritt 2 wurde mit [PR #299](https://github.com/hindermath/home-baseline/pull/299)
 nach 18 gruenen Checks gemergt; der folgende lokale Vorbereitungsstand bleibt historisch erhalten.
 Step 2 is merged; the local preparation evidence below remains historical.
