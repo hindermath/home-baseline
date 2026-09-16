@@ -1,7 +1,12 @@
 # Statistik-Preset-Pilot / Statistics preset pilot
 
 Aktueller Schritt 4, Teil 1 / Current step 4, part 1:
-[Home-Baseline-Messkontext vorbereitet](../project-statistics-pilot/README.md).
+[Native Home-Baseline-Nachweise bestanden](project-statistics-home-native-proof-v010.md).
+Der [lokale Pilotnachweis](../project-statistics-pilot/README.md) dokumentiert
+die vorherige macOS-Pruefphase; deren native Fortsetzung steht im neuen Nachweis.
+Die PR-Vorbereitung mit regulaerer Statistik-Fortschreibung bleibt offen.
+Native evidence now supplements the earlier local macOS record; statistics
+refresh and governed PR delivery remain pending.
 Die Installation aus Schritt 3 ist mit [PR #300](https://github.com/hindermath/home-baseline/pull/300)
 geliefert; der [lokale Installationsnachweis](project-statistics-installation-v010.md)
 bleibt als historischer Vorbereitungsstand erhalten. / Installation is delivered;
