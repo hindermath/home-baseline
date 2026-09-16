@@ -11,8 +11,10 @@ der Messartefakte und die Wiederholungspruefung auf sauberem Git-Stand.
 Keine vollstaendige Feldtest- oder Release-Abnahme; kein Push oder Merge.
 Die Statistik-Skills liefern kein Git; lokale Commits erfolgen separat.
 Messartefakte sind lokal gesichert; die anschliessende Wiederholungspruefung
-bestand in beiden Shells ohne Aenderungen. Naechster technischer Schritt sind
-die noch offenen Drift-/Negativ- und Eingabeparitaetspruefungen.
+bestand in beiden Shells ohne Aenderungen. Nach erneuter fachlicher Sichtung
+und Fortsetzungsfreigabe bestanden auch die installierte Drift-/Negativsuite
+und die unten dokumentierten Eingabeparitaetspruefungen auf macOS.
+Offen bleiben native Linux-/Windows-Feldnachweise und die geregelte Lieferung.
 
 The configuration was locally committed under explicit separate authority.
 The first measurement and snapshot passed both Bash and PowerShell replay:
@@ -21,12 +23,14 @@ and evidence and authorized local commits and clean-tree repeat checks.
 This is not full field or release acceptance and does not authorize push or merge.
 Statistics skills do not deliver Git changes.
 Measurement artifacts are locally committed. Clean-tree repeat checks passed
-in both shells without changes. Next are the remaining drift/negative cases
-and input encoding parity checks.
+in both shells without changes. Following renewed owner review and continuation
+approval, the installed drift/negative suite and encoding checks also passed on
+macOS. Native Linux/Windows field evidence and governed delivery remain open.
 
 - [Konfiguration / Configuration](config.json)
 - [Messbericht / Measurement report](report.md)
 - [Gebundener Snapshot / Bound snapshot](snapshot.json)
+- [Negativ- und Kodierungsnachweis / Negative and encoding evidence](negative-and-encoding-evidence.json)
 - [Pilotuebersicht / Pilot overview](../maintenance/project-statistics-pilot-v010.md)
 - [Kanonische Bestandsstatistik / Authoritative existing statistics](../project-statistics.md)
 - [Projekttracking / Project tracking](https://github.com/hindermath/home-baseline/issues/298)
@@ -167,13 +171,12 @@ LF/UTF-8 without BOM checks passed. Heatmaps have exact daily text values;
 reference estimates remain disabled.
 
 Grenzen: Diese Messung beweist Reproduzierbarkeit auf macOS, keine unabhaengige
-mathematische Vollpruefung des Renderers. Native Linux-/Windows-Feldtests,
-LF/CRLF/BOM-Eingabeparitaet, Drift-/Negativfall-Vollsuite und vollstaendige
-Feldtest-Abnahme bleiben hier offen. Der Wiederholungstest ist unten belegt.
+mathematische Vollpruefung des Renderers. Native Linux-/Windows-Feldtests
+und vollstaendige Feldtest-Abnahme bleiben hier offen. Wiederholung,
+installierte Negativsuite und LF/CRLF/BOM-Paritaet sind nachfolgend belegt.
 Bestehende Statistik blieb unveraendert; ihre regulaere Fortschreibung ist
 vor einer spaeteren Lieferung separat zu pruefen. Keine `ReleaseAccepted`-Aussage.
-Limits: native Linux/Windows field runs, input encoding parity,
-the full drift/negative suite and full field acceptance are
+Limits: native Linux/Windows field runs and full field acceptance are
 not established here. Existing statistics remain unchanged; review their normal
 refresh before later delivery. No ReleaseAccepted claim or full independent
 mathematical validation of the renderer.
@@ -222,6 +225,83 @@ Pruefung aller 26 installierten Paketdatei-Hashes. Keine neuen Werkzeuge,
 kein Netzwerkzugriff fuer die Messung, kein Push/Merge oder Home-Sync.
 Configuration schema, local Markdown links and all 26 installed payload hashes
 also passed. No new tools, measurement network access, push/merge or Home sync.
+
+## Drift, Blockierung und Kodierung / Drift, blocking and encoding
+
+Am 2026-09-16 gegen den exakten lokalen Head
+`0164012de7f92103325abe83004d286992b1ebec` ausgefuehrt:
+die unveraenderte installierte Testsuite bestand mit **67 Assertions**, Exit 0.
+Sie erzeugt ausschliesslich isolierte temporaere Git-Fixtures; `-Keep` erhaelt
+diese zur Nachpruefung. Kein Produktcode und keine Preset-Installation geaendert.
+
+The unchanged installed suite passed 67 assertions at the exact local head
+above, exit 0. Only isolated temporary Git fixtures were mutated and retained
+for inspection. Product code and installed preset files were not changed.
+
+```powershell
+pwsh -NoProfile -File .specify/presets/project-statistics-governance/tests/test-project-statistics.ps1 -Keep
+```
+
+| Testfamilie / Test family | Erwartung / Expected | Ergebnis / Result |
+| --- | --- | --- |
+| Neuer Quellcommit oder nur geaenderte Abdeckung / source or coverage drift | Exit 1; reproducible=true, current=false | Bestanden / passed |
+| Manipulierter Berichtsblock oder Snapshot / report or snapshot tampering | Exit 1; reproducible=false | Bestanden / passed |
+| Snapshot fehlt / missing snapshot | Exit 1 | Bestanden / passed |
+| Init auf bestehenden Dateien; Update bei Dirty Tree / existing files, dirty tree | Exit 2 | Bestanden / passed |
+| Fehlende Revision, ungueltiges Datum/Schema/Pfad / invalid inputs | Exit 2 | Bestanden / passed |
+| Symlink-Ziel, Alias auf Bericht / symlink target, report alias | Exit 2 | Bestanden / passed |
+| Shallow-/Promisor-Klon / incomplete clone | Exit 2 | Bestanden / passed |
+| PowerShell fehlt oder Version 6 / missing or old PowerShell | Exit 2 vor Messung / before measurement | Bestanden / passed |
+
+Die Suite prueft ausserdem exakte Fixture-Summen, Umbenennung, Loeschung,
+Merge-Zaehllogik, Zeitzone, Vorschau/Status ohne Schreiben und Nenner null
+bei optionalen Modellrechnungen. Letztere sind ausschliesslich Testdaten;
+im echten Pilot bleiben Referenzmodellrechnungen ausgeschaltet.
+The suite also checks exact fixture metrics, renames, deletion, merges,
+time zones, read-only operations and zero denominators. Reference estimates
+are enabled only in isolated test data, never in the actual pilot.
+
+In einer separaten lokalen Shared-Clone-Fixture des echten Pilotstands wurden
+Konfiguration, Bericht und Snapshot gemeinsam auf vier Varianten umgestellt.
+Jede Variante bestand Bash- und PowerShell-Status, also **acht Pruefungen**:
+
+| Kodierung / Encoding | Bash Exit | PowerShell Exit | Status |
+| --- | ---: | ---: | --- |
+| LF ohne BOM / without BOM | 0 | 0 | CURRENT |
+| CRLF ohne BOM / without BOM | 0 | 0 | CURRENT |
+| LF mit BOM / with BOM | 0 | 0 | CURRENT |
+| CRLF mit BOM / with BOM | 0 | 0 | CURRENT |
+
+Alle acht Ergebnisse: `reproducible=true`, `current=true`, `changed=false`,
+gleiche Messrevision und unveraenderte sechs Datei-Hashes sowie Git-Status
+vor/nach jedem Statusaufruf. Der originale Arbeitsbaum blieb sauber.
+All eight checks preserved the measurement revision, six checked file hashes
+and fixture Git status, with reproducible/current true and changed false.
+The original worktree remained clean.
+
+Sechs weitere Rohblob-Faelle prueften den installierten Git-Zeilenzaehler:
+`one`, Zeilenende, `two`, Zeilenende ergibt in allen vier Varianten zwei
+Zeilen; leere Datei und reine BOM ergeben null. Ein erster Testaufbau hatte
+CRLF durch Git normalisiert und zaehlt deshalb nicht als Rohbyte-Nachweis.
+Der korrigierte Lauf verwendet `git hash-object -w --no-filters` nur in der
+Fixture und prueft vier unterschiedliche Blob-IDs. Alle sechs Faelle bestanden.
+Dies belegt Bestandszeilen, nicht identisches historisches Git-Diffvolumen.
+
+Six raw-blob cases verified the installed counter: all four encodings of the
+same two-line text yield two lines; empty and BOM-only blobs yield zero.
+The initial normalized attempt is excluded. The corrected run bypassed Git
+filters and verified four distinct blob IDs. All six cases passed. This proves
+inventory line counts, not identical historical diff volume.
+
+Die [maschinenlesbare Evidence](negative-and-encoding-evidence.json) bindet
+Suite-/Hilfsskript-Hashes, Blob-IDs, Ergebnisse und Grenzen. Lokale Diagnose:
+`/tmp/home-statistics-parity.9958NZ/` mit beiden Hilfsskripten und Fixtures;
+Suite-Fixture: `project-statistics-test-fb6cc4eb252a4a33b5e647b0342788d2`
+im macOS-Benutzer-Temp-Verzeichnis. Nicht in das Produkt uebernommen;
+Temp-Artefakte sind keine dauerhafte oder plattformuebergreifende Testsuite.
+Machine-readable evidence binds hashes, blob IDs, results and limits. The named
+local temporary diagnostics are retained, not adopted into the product and
+not a durable cross-platform test suite. Native Linux/Windows execution remains open.
 
 ## Dokumentationsauswirkung / Documentation impact
 
