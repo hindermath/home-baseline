@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-pilot-negative-and-encoding-evidence",
+  "observedOn": "2026-09-16",
+  "testedHead": "0164012de7f92103325abe83004d286992b1ebec",
+  "measurementRevision": "e1d6d36e444cc252a0321572e70da8874de81fe3",
+  "asOf": "2026-09-16",
+  "platform": "macOS/arm64",
+  "powerShell": "7.6.6",
+  "presetVersion": "0.1.0",
+  "installedSuite": {
+    "path": ".specify/presets/project-statistics-governance/tests/test-project-statistics.ps1",
+    "sha256": "6c3f215e53b7724f6c37d8422d10d51043c3cc2c4afb0d0af0cd73757b4e7d1a",
+    "command": "pwsh -NoProfile -File .specify/presets/project-statistics-governance/tests/test-project-statistics.ps1 -Keep",
+    "exitCode": 0,
+    "assertionsPassed": 67,
+    "fixtureRetained": true,
+    "expectedDriftExitCode": 1,
+    "expectedInvalidInputExitCode": 2
+  },
+  "pilotEncodingParity": {
+    "method": "Local shared clone at testedHead; rewrite only config.json, report.md and snapshot.json as each encoding; run installed Bash and PowerShell Status against explicit pilot context",
+    "context": "docs/project-statistics-pilot/config.json",
+    "variants": ["LF-no-BOM", "CRLF-no-BOM", "LF-BOM", "CRLF-BOM"],
+    "shells": ["Bash", "PowerShell"],
+    "checksPassed": 8,
+    "eachExitCode": 0,
+    "eachStatus": "CURRENT",
+    "eachReproducible": true,
+    "eachCurrent": true,
+    "eachChanged": false,
+    "preservedFileHashesPerCheck": 6,
+    "gitStatusPreservedPerCheck": true,
+    "temporaryHarnessSha256": "9e3b9e75bd4f6af954dee5d02115d08a791227362f1bb917eae91aa8ebf35aac"
+  },
+  "rawGitBlobParity": {
+    "method": "UTF-8 encode one newline two newline, with LF or CRLF and optional BOM; git hash-object -w --no-filters; installed GitBlobCounter.Count reads the distinct raw Git blobs",
+    "exitCode": 0,
+    "checksPassed": 6,
+    "initialNormalizedAttemptExcluded": true,
+    "distinctNonemptyEncodingBlobs": 4,
+    "cases": [
+      {"variant": "LF-no-BOM", "blob": "814f4a422927b82f5f8a43f8fab6d3839e3983f2", "expectedLines": 2, "actualLines": 2},
+      {"variant": "CRLF-no-BOM", "blob": "4e349b596c5c9d38a82829fafbaf52281c21e319", "expectedLines": 2, "actualLines": 2},
+      {"variant": "LF-BOM", "blob": "a3fca128bd6e04f0b32f250184b10ee0bff4022c", "expectedLines": 2, "actualLines": 2},
+      {"variant": "CRLF-BOM", "blob": "6f9d4cce88271de1d00ce479d1fe9a6d8afc744c", "expectedLines": 2, "actualLines": 2},
+      {"variant": "empty", "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391", "expectedLines": 0, "actualLines": 0},
+      {"variant": "BOM-only", "blob": "5f282702bb03ef11d7184d19c80927b47f919764", "expectedLines": 0, "actualLines": 0}
+    ],
+    "temporaryHarnessSha256": "b250d33416a79b8d3d4c0c776dfa10dc035ab96d4fee768211e54132233e4c85"
+  },
+  "originalCheckout": {
+    "cleanBeforeAndAfterTests": true,
+    "preservedFileHashesBeforeEvidenceDocumentation": 6,
+    "statusExitCode": 0,
+    "status": "CURRENT",
+    "reproducible": true,
+    "current": true,
+    "reportSha256": "2d94357c130dce0fa3f08fbc5a2d3979a6570ece0922ff33c61b890ea5c6db45",
+    "snapshotSha256": "1c0b65b54c7c42a2be9ecb99268532ccf647e583cbde4c631e5f359ceb992584"
+  },
+  "limits": [
+    "Native Linux and Windows field checks not executed",
+    "Fixture suite uses default statistics context; supplementary parity checks use actual pilot context",
+    "Raw blob tests prove inventory line-count parity, not identical Git history volume across encoding changes",
+    "Temporary supplementary harnesses are local diagnostic artifacts, not additions to the published product suite",
+    "No complete filesystem I/O trace or claim of exhaustive negative-case coverage",
+    "No stable release, community submission, full field acceptance, push or merge"
+  ]
+}
