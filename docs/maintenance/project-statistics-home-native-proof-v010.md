@@ -1,5 +1,9 @@
 # Native Home-Baseline-Pilotnachweise / Native Home Baseline pilot evidence
 
+Historischer Nachweis vom 2026-09-16. Die beauftragte Fortschreibung vom
+2026-09-18 steht im [Liefernachweis](../project-statistics-pilot/delivery-refresh.md).
+Historical evidence; see the linked delivery refresh for the later candidate.
+
 ## Ergebnis und naechster Schritt / Result and next step
 
 2026-09-16: Der gesichtete Home-Baseline-Statistikpilot ist auf macOS, Ubuntu

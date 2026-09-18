@@ -201,6 +201,8 @@
 
 | 2026-09-14 | Statistik-Pilotinstallation / Statistics pilot installation | N/A | N/A | N/A | UpdateRequired: v0.1.0 lokal im 14er-Profil installiert; 26 Paketdateien hashgleich, 13 bestehende Presets erhalten, beide CheckOnly-Einstiege und Lifecycle-Fixtures bestanden. Branch codex/project-statistics-installation, eine sichtbare Sitzung; importiertes Paket statt neuer Produktlogik. Messung, Feldtest-Abnahme und Remote-Lieferung offen; kein Home-Sync. Nachweis: docs/maintenance/project-statistics-installation-v010.md. Bestehendes Profil-2-Rendering folgt erst nach Inhaltscommit. / Verified local integration only; measurements, review, delivery and content-bound legacy rendering pending. |
 
+| 2026-09-18 | Home-Baseline-Statistikfeldtest und PR-Vorbereitung / Statistics field test and PR preparation | N/A | N/A | N/A | UpdateRequired: getrennter v0.1.0-Pilot, lokale Negativ-/Paritaetspruefungen und native Linux-/Windows-Nachweise dokumentiert. Pilot- und Profil-2-Fortschreibung fuer den erweiterten Lieferstand beauftragt; Konfigurationen und kanonischer Statistikvertrag bleiben erhalten. Neuer CI-Status-Gate prueft aktuellen Snapshot getrennt vom historischen Feldtest. Kein Merge, keine anderen Projektpiloten oder Releasefreigabe. / Documented local/native field evidence; authorized statistics refresh and PR preparation, no merge or release acceptance. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

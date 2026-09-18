@@ -1,5 +1,12 @@
 # Home-Baseline-Statistikpilot / Home Baseline statistics pilot
 
+Dieser Nachweis beschreibt die gesichteten Mess- und Pruefstaende vom 2026-09-16.
+Aktuelle PR-Vorbereitung ab 2026-09-18: [Liefernachweis](delivery-refresh.md).
+Der urspruengliche Bericht/Snapshot bleibt im Git-Commit `af78a4ac` erhalten;
+die Dateien im aktuellen Kontext werden bewusst fortgeschrieben.
+This records the reviewed 2026-09-16 evidence. See the delivery refresh for the
+current candidate; Git preserves the original dataset while current files advance.
+
 ## Stand und naechste Aktion / Status and next action
 
 2026-09-16: Konfiguration nach ausdruecklicher Freigabe lokal committed;

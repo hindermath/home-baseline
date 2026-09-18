@@ -1,16 +1,16 @@
 # Projektstatistik / Project statistics
 
-Separater Pilot fuer Project Statistics Governance v0.1.0. Erste Messung zum
-2026-09-16 erzeugt und technisch reproduziert; fachliche Abnahme bleibt offen.
+Separater Pilot fuer Project Statistics Governance v0.1.0. Fortschreibung fuer
+die PR-Vorbereitung zum 2026-09-18; Sichtung neuer Werte und Merge bleiben offen.
 Die [bestehende Projektstatistik](../project-statistics.md) bleibt kanonisch.
 Bestand und Git-Aktivitaet messen weder Qualitaet noch KI-Produktivitaet.
 
-Separate pilot for Project Statistics Governance v0.1.0. First measurement for
-2026-09-16 generated and technically replayed; human field acceptance remains open.
+Separate pilot for Project Statistics Governance v0.1.0. Delivery refresh for
+2026-09-18; review of the new values and merge remain pending.
 The existing project statistics remain authoritative. Inventory and Git
 activity measure neither quality nor AI productivity.
 
-Vorbereitung und Grenzen / Preparation and boundaries: [README](README.md).
+Vorbereitung und Grenzen / Preparation and boundaries: [Liefernachweis / delivery](delivery-refresh.md).
 
 <!-- project-transparency:begin -->
 ## Projekttransparenz / Project transparency

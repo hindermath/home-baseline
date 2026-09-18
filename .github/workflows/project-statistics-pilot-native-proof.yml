@@ -160,6 +160,39 @@ jobs:
           }
           $record | ConvertTo-Json -Depth 8 | Set-Content (Join-Path $evidence 'native-evidence.json') -Encoding utf8NoBOM
           Write-Output "NATIVE_PILOT_PASS runner=$($env:PROOF_RUNNER) pilot=${pilotHead} checks=$($decisions.Count)"
+      - name: Verify current delivery snapshot without writes
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          $paths = @('docs/project-statistics-pilot/config.json', 'docs/project-statistics-pilot/report.md',
+              'docs/project-statistics-pilot/snapshot.json', 'docs/project-statistics.md', 'docs/project-statistics.config.json')
+          $before = @{}
+          foreach ($path in $paths) { $before[$path] = (Get-FileHash $path).Hash }
+          $evidence = Join-Path $env:RUNNER_TEMP 'statistics-pilot-evidence'
+          $shells = if ($IsWindows) { @('PowerShell') } else { @('Bash', 'PowerShell') }
+          foreach ($shell in $shells) {
+              if ($shell -eq 'Bash') {
+                  $output = @(& bash .specify/presets/project-statistics-governance/scripts/project-statistics.sh status --repo . --config docs/project-statistics-pilot/config.json --json)
+              } else {
+                  $output = @(& pwsh -NoProfile -File .specify/presets/project-statistics-governance/scripts/project-statistics.ps1 -Action Status -Repo . -Config docs/project-statistics-pilot/config.json -Json)
+              }
+              $code = $LASTEXITCODE
+              $output | Write-Output
+              if ($code -ne 0) { throw 'Delivery snapshot status failed.' }
+              $decision = ($output -join "`n") | ConvertFrom-Json
+              if (-not $decision.reproducible -or -not $decision.current -or $decision.changed -or $decision.status -ne 'CURRENT') { throw 'Delivery snapshot is not current.' }
+              & git merge-base --is-ancestor $decision.sourceRevision HEAD
+              if ($LASTEXITCODE -ne 0) { throw 'Measurement source is not an ancestor of delivery head.' }
+              foreach ($path in $paths) { if ((Get-FileHash $path).Hash -cne $before[$path]) { throw 'Delivery status modified checked content.' } }
+              if (@(& git status --porcelain=v1 --untracked-files=all).Count) { throw 'Delivery status left repository changes.' }
+              $decisionPath = Join-Path $evidence "delivery-${shell}-decision.json"
+              $decision | ConvertTo-Json | Set-Content $decisionPath -Encoding utf8NoBOM
+              [ordered]@{head=(& git rev-parse HEAD).Trim();shell=$shell;exitCode=$code;
+                  decisionSha256=(Get-FileHash $decisionPath).Hash.ToLowerInvariant();
+                  snapshotSha256=(Get-FileHash $paths[2]).Hash.ToLowerInvariant();checkedContentChanges=0} |
+                  ConvertTo-Json | Set-Content (Join-Path $evidence "delivery-${shell}-evidence.json") -Encoding utf8NoBOM
+          }
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
         with:
