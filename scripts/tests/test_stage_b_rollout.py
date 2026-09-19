@@ -1662,8 +1662,10 @@ class PlatformParityTests(unittest.TestCase):
             "providerInventory": inventory, "assignments": profiles["assignments"], "targets": targets,
         }
 
-    def run_wrapper(self, command, *, home="", bind_run_id=True):
+    def run_wrapper(self, command, *, home="", bind_run_id=True, source=None):
         environment = os.environ.copy()
+        if source is not None:
+            environment["HOME_BASELINE_SOURCE"] = str(source)
         with tempfile.TemporaryDirectory() as directory:
             fixture_path = pathlib.Path(directory) / "stage-b-input.json"
             fixture_path.write_text(json.dumps(self.fixture_input), encoding="utf-8")
@@ -1724,6 +1726,60 @@ class PlatformParityTests(unittest.TestCase):
             result.returncode, 0,
             f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}",
         )
+
+    def test_project_wrappers_use_central_contracts_in_both_shells(self):
+        # DE: Die Projektkopie hat absichtlich weder Kern noch Level-0-Schemas.
+        # EN: The project copy deliberately has neither engine nor Level-0 schemas.
+        with tempfile.TemporaryDirectory(prefix="stage b project ") as directory:
+            project = pathlib.Path(directory)
+            (project / "scripts/lib").mkdir(parents=True)
+            module = pathlib.Path("scripts/lib/windows-maintenance-hardening.psm1")
+            shutil.copy2(ROOT / module, project / module)
+            for suffix, prefix, options in (
+                ("sh", [self.bash_executable()], ["--stage-b-action", "preflight", "--dry-run"]),
+                ("ps1", ["pwsh", "-NoProfile", "-File"], ["-StageBAction", "Preflight", "-WhatIf"]),
+            ):
+                with self.subTest(shell=suffix):
+                    wrapper = project / f"scripts/maintain-agentic-workspace.{suffix}"
+                    shutil.copy2(ROOT / wrapper.relative_to(project), wrapper)
+                    resolver = pathlib.Path(f"scripts/lib/resolve-home-baseline-source.{suffix}")
+                    shutil.copy2(ROOT / resolver, project / resolver)
+                    result = self.run_wrapper([*prefix, str(wrapper), *options], source=ROOT, home=directory)
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                    expected = self.run_wrapper([*prefix, str(ROOT / wrapper.relative_to(project)), *options])
+                    self.assertEqual(result.stdout, expected.stdout)
+                    missing = self.run_wrapper(
+                        [*prefix, str(wrapper), *options],
+                        source=project / "missing source", home=directory,
+                    )
+                    self.assertNotEqual(missing.returncode, 0)
+                    self.assertIn("Level-0 source checkout not found", missing.stderr)
+                    self.assertNotIn("Run-ID / Run ID:", missing.stdout)
+            self.assertFalse((project / "specs").exists())
+            self.assertFalse((project / "scripts/lib/agentic_workspace_fleet.py").exists())
+
+    def test_incomplete_central_source_does_not_fall_back_to_project_engine(self):
+        with tempfile.TemporaryDirectory(prefix="stage b source ") as directory:
+            source = pathlib.Path(directory)
+            (source / "scripts/lib").mkdir(parents=True)
+            module = pathlib.Path("scripts/lib/windows-maintenance-hardening.psm1")
+            shutil.copy2(ROOT / module, source / module)
+            subprocess.run(["git", "init", str(source)], check=True, capture_output=True)
+            subprocess.run(["git", "-C", str(source), "remote", "add", "origin", "https://example.invalid/source.git"], check=True)
+            for suffix, prefix, options in (
+                ("sh", [self.bash_executable()], ["--stage-b-action", "preflight", "--dry-run"]),
+                ("ps1", ["pwsh", "-NoProfile", "-File"], ["-StageBAction", "Preflight", "-WhatIf"]),
+            ):
+                with self.subTest(shell=suffix):
+                    (source / f"scripts/sync-home.{suffix}").touch()
+                    wrapper = pathlib.Path(f"scripts/maintain-agentic-workspace.{suffix}")
+                    resolver = pathlib.Path(f"scripts/lib/resolve-home-baseline-source.{suffix}")
+                    shutil.copy2(ROOT / wrapper, source / wrapper)
+                    shutil.copy2(ROOT / resolver, source / resolver)
+                    result = self.run_wrapper([*prefix, str(source / wrapper), *options])
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("Stage B engine missing in Level 0", result.stderr)
+                    self.assertNotIn("Run-ID / Run ID:", result.stdout)
 
     def test_documented_preview_resolves_run_id_without_hidden_environment(self):
         commands = [

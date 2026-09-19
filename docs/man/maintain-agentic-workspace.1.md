@@ -136,6 +136,25 @@ after all gates, HEAD, and the gate-set hash pass.*
 
 ### Stage-B-Flottenrollout / Stage B fleet rollout
 
+Stage B wird ausschließlich aus dem versionierten Level-0-Quellcheckout
+ausgeführt. Auch eine Projekt- oder Home-Kopie des Wrappers verwendet den
+gemeinsamen Quellresolver: ausführendes Quellrepository, `HOME_BASELINE_SOURCE`,
+lokaler Quellnachweis, dann `~/home-baseline-source`. Engine, Konfigurationen
+und angenommene Vertragsschemata werden gemeinsam dort gelesen. Fehlt die
+Quelle oder der zentrale Kern, bricht der Aufruf ab; es gibt keinen Rückfall
+auf Projektkopien. Die Level-0-Spezifikationen werden nicht in Projekte
+verteilt. Diese Auflösung erteilt keine zusätzliche Ausführungsautorität und
+ändert weder normale Wartung noch das projektbezogene `--ci-gate`.
+
+*Stage B runs exclusively from the versioned Level-0 source checkout. Project
+and Home wrapper copies use the shared source resolver: executing source
+repository, `HOME_BASELINE_SOURCE`, local source record, then
+`~/home-baseline-source`. Engine, configuration and accepted contract schemas
+are read together there. Missing source or central engine stops execution;
+there is no project-local fallback. Level-0 specifications are not distributed
+to projects. Resolution grants no additional execution authority and changes
+neither ordinary maintenance nor the project-local `--ci-gate`.*
+
 Die sichere erste Aktion ist eine schreibfreie Vorschau:
 
 ```bash

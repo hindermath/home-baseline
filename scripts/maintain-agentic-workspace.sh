@@ -637,10 +637,18 @@ if [ -n "$STAGE_B_ACTION" ]; then
       || [ -n "$EVENT_STREAM" ]; then
     die "--stage-b-action darf nicht mit Wartungsoptionen kombiniert werden / cannot be combined with maintenance options"
   fi
+  # DE: Stage B braucht die angenommenen Level-0-Vertraege, keine Projektkopien.
+  # EN: Stage B needs the accepted Level-0 contracts, not project-local copies.
+  source "$SCRIPT_DIR/lib/resolve-home-baseline-source.sh"
+  stage_b_source="$(resolve_hb_source_repository "${BASH_SOURCE[0]}")" \
+    || die "Stage B benoetigt die Level-0-Quelle / Stage B requires the Level-0 source"
+  stage_b_engine="$stage_b_source/scripts/lib/agentic_workspace_fleet.py"
+  [ -f "$stage_b_engine" ] \
+    || die "Stage-B-Kern fehlt in Level 0 / Stage B engine missing in Level 0"
   stage_b_arguments=(
     stage-b
     --action "$STAGE_B_ACTION"
-    --repository-root "$SOURCE_ROOT"
+    --repository-root "$stage_b_source"
   )
   stage_b_run_id="${HB_STAGE_B_RUN_ID:-${REQUESTED_RUN_ID:-}}"
   [ -z "$stage_b_run_id" ] || stage_b_arguments+=(--run-id "$stage_b_run_id")
@@ -653,7 +661,7 @@ if [ -n "$STAGE_B_ACTION" ]; then
   [ "$DRY_RUN" -eq 1 ] && stage_b_arguments+=(--dry-run)
   STAGE_B_PYTHON="$(resolve_stage_b_python)" \
     || die "Python 3 fuer Stage B nicht gefunden / Python 3 for Stage B not found"
-  exec "$STAGE_B_PYTHON" "$FLEET_ENGINE" "${stage_b_arguments[@]}"
+  exec "$STAGE_B_PYTHON" "$stage_b_engine" "${stage_b_arguments[@]}"
 fi
 
 if [ "$CI_GATE" -eq 1 ]; then

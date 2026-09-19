@@ -1225,6 +1225,26 @@ and synchronized. All tvision merge workflows succeeded. The historical
 cancelled extra Windows run remains visible. Central human acceptance and
 tracking closure remain separate. Statistics follow from unchanged configuration.
 
+### 2026-09-19 - Zentrale Stage-B-Ausführung / Central Stage-B execution
+
+- Stage-B-Wrapper nutzen die Level-0-Quelle statt verteilter Vertragsschemata.
+  Normale Wartung und projektbezogene CI-Gates bleiben unverändert.
+- Nachweis: 98 Stage-B-Tests erfolgreich auf macOS, einschließlich Bash und
+  PowerShell; zusätzlicher Negativtest für fehlende Quelle erfolgreich.
+  Syntaxprüfung und `git diff --check` bestanden. Keine Flottenverteilung,
+  kein realer Rollout, kein Home-Sync und keine Veröffentlichung ausgeführt.
+- Documentation Impact: `UpdateRequired`; Bedienungsvertrag im Wartungsmanual,
+  Detailnachweis in `docs/maintenance-package-repair-20260919.md`.
+  Der Git-basierte Statistikblock bleibt bis zur separaten Lieferung unverändert.
+
+*Stage-B wrappers use the Level-0 source instead of distributed contract schemas.
+Ordinary maintenance and project-local CI gates are unchanged. All 98 Stage-B
+tests passed on macOS, including Bash and PowerShell; the additional missing-source
+negative test, syntax and whitespace checks passed. No fleet distribution, real
+rollout, Home sync or publication occurred. Documentation Impact: UpdateRequired;
+see the maintenance manual and repair record. The Git-based statistics block
+remains unchanged until separate delivery.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

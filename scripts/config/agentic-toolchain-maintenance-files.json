@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-08-13",
+  "updated": "2026-09-19",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
@@ -531,6 +531,10 @@
     },
     {
       "path": "scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/spec-kit-project-statistics-governance-presets.json",
       "executable": false
     },
     {
