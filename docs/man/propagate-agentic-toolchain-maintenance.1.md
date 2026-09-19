@@ -25,6 +25,11 @@ Toolchain-Wartungsskripte, deren fuenf JSON-Registries und die beiden
 Wartungs-Manpages. Die verwaltete Dateiliste steht in
 `scripts/config/agentic-toolchain-maintenance-files.json`.
 
+Jede im verteilten Profilkatalog angebotene Preset-Matrix muss ebenfalls im
+Paket enthalten sein. Das umfasst die optionale 14er-Statistik-Matrix;
+deren Verteilung aktiviert weder das Profil noch installiert sie Presets.
+Die projektspezifische Profilwahl bleibt unveraendert.
+
 Das Werkzeug verarbeitet ausschliesslich vorhandene Repository-Ziele aus der
 zuvor gegen das Fleet-Manifest validierten lokalen Level-2-Registry. Eine
 zusaetzliche Verzeichnissuche findet nicht statt; nicht registrierte
@@ -46,6 +51,11 @@ ausgenommen.
 maintenance scripts, their five JSON registries, and both maintenance man
 pages. The managed file list lives in
 `scripts/config/agentic-toolchain-maintenance-files.json`.*
+
+*Every preset matrix advertised by the distributed profile catalog must also
+be included in the package, including the optional fourteen-preset statistics
+matrix. Distribution neither selects that profile nor installs presets.
+Project-specific profile selections remain unchanged.*
 
 *The tool processes only existing repository targets from the local Level-2
 registry after that registry has been validated against the fleet manifest. It

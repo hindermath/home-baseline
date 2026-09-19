@@ -950,6 +950,19 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertNotIn("Preset", completed.stdout)
             self.assertNotIn("Inactive", completed.stdout)
 
+    def test_propagation_includes_every_advertised_preset_matrix(self) -> None:
+        # DE: Ein verteilter Profilkatalog darf keine fehlenden Matrizen anbieten.
+        # EN: A distributed profile catalog must not advertise missing matrices.
+        manifest = json.loads((REPOSITORY / "scripts/config/agentic-toolchain-maintenance-files.json").read_text())
+        managed = {entry["path"] for entry in manifest["files"]}
+        catalog = json.loads((REPOSITORY / "scripts/config/spec-kit-preset-profiles.json").read_text())
+        for name, profile in catalog["profiles"].items():
+            matrix = profile["presetConfig"]
+            if matrix is not None:
+                with self.subTest(profile=name):
+                    self.assertIn(matrix, managed)
+                    self.assertTrue((REPOSITORY / matrix).is_file())
+
     def test_propagation_surfaces_ignore_unregistered_legacy_repository(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

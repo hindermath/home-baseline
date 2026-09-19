@@ -52,6 +52,10 @@
     claims remote convergence.
 
 .PARAMETER StageBAction
+    Verwendet ausschließlich die zentrale Level-0-Quelle über den gemeinsamen
+    Quellresolver, auch aus Projektkopien; keine lokale Ersatz-Engine. /
+    Uses only the central Level-0 source through the shared source resolver,
+    including from project copies; no project-local fallback engine.
     Führt genau eine Stage-B-Aktion Preflight, Validate, Deliver, Resume oder
     Verify über den gemeinsamen Python-Kern aus. -WhatIf öffnet niemals das
     ExternalWriteGate. / Runs exactly one Stage-B action through the shared
@@ -356,8 +360,21 @@ if ($StageBAction) {
         Write-Error '-StageBAction darf nicht mit Wartungsoptionen kombiniert werden / cannot be combined with maintenance options.'
         exit 2
     }
-    $stageBSourceRoot = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
+    # DE: Angenommene Level-0-Vertraege bleiben zentral; kein Projekt-Fallback.
+    # EN: Accepted Level-0 contracts stay central; no project-local fallback.
+    . (Join-Path $PSScriptRoot 'lib/resolve-home-baseline-source.ps1')
+    $stageBLocalRoot = Split-Path -Parent $PSScriptRoot
+    $stageBSourceRoot = if ([string]::IsNullOrEmpty($HOME) -and
+        (Test-HBSourceRepository -Path $stageBLocalRoot)) {
+        # A direct source invocation must also work without a Home directory.
+        (Resolve-Path -LiteralPath $stageBLocalRoot).Path
+    } else {
+        Resolve-HBSourceRepository -StartPath $PSCommandPath
+    }
     $stageBFleetEngine = Join-Path $stageBSourceRoot 'scripts/lib/agentic_workspace_fleet.py'
+    if (-not (Test-Path -LiteralPath $stageBFleetEngine -PathType Leaf)) {
+        throw 'Stage-B-Kern fehlt in Level 0 / Stage B engine missing in Level 0'
+    }
     $stageBRunId = if ($env:HB_STAGE_B_RUN_ID) { $env:HB_STAGE_B_RUN_ID } elseif ($RunId) { $RunId } else { '' }
     $stageBArguments = [Collections.Generic.List[string]]::new()
     @(
