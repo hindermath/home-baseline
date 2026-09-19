@@ -640,8 +640,14 @@ if [ -n "$STAGE_B_ACTION" ]; then
   # DE: Stage B braucht die angenommenen Level-0-Vertraege, keine Projektkopien.
   # EN: Stage B needs the accepted Level-0 contracts, not project-local copies.
   source "$SCRIPT_DIR/lib/resolve-home-baseline-source.sh"
-  stage_b_source="$(resolve_hb_source_repository "${BASH_SOURCE[0]}")" \
-    || die "Stage B benoetigt die Level-0-Quelle / Stage B requires the Level-0 source"
+  # DE: Bei leerem HOME darf das aktuelle Verzeichnis nicht als Home gelten.
+  # EN: An empty HOME must not make the current directory the Home exclusion.
+  if [ -z "${HOME:-}" ] && _is_hb_source_repository "$SOURCE_ROOT"; then
+    stage_b_source="$SOURCE_ROOT"
+  else
+    stage_b_source="$(resolve_hb_source_repository "${BASH_SOURCE[0]}")" \
+      || die "Stage B benoetigt die Level-0-Quelle / Stage B requires the Level-0 source"
+  fi
   stage_b_engine="$stage_b_source/scripts/lib/agentic_workspace_fleet.py"
   [ -f "$stage_b_engine" ] \
     || die "Stage-B-Kern fehlt in Level 0 / Stage B engine missing in Level 0"
