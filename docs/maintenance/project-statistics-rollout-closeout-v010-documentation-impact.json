@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "project-statistics-rollout-closeout-v010",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Six-repository rollout completion report, evidence, navigation and statistics",
+      "decision": "UpdateRequired",
+      "rationale": "Replace pending tvision merge-check status with verified completion and consolidate delivered repository evidence without granting central human acceptance.",
+      "documents": [
+        "docs/maintenance/project-statistics-rollout-closeout-v010.md",
+        "docs/maintenance/project-statistics-rollout-closeout-v010.json",
+        "README.md",
+        "README.en.md",
+        "docs/project-statistics.md",
+        "docs/project-statistics-pilot/report.md",
+        "docs/project-statistics-pilot/snapshot.json"
+      ],
+      "owner": "hindermath",
+      "audiences": [
+        "Maintainers",
+        "Reviewers",
+        "Teachers",
+        "Learners"
+      ],
+      "readerPaths": [
+        "README -> closeout -> project PR and source evidence -> acceptance"
+      ],
+      "canonicalSource": "docs/maintenance/project-statistics-rollout-closeout-v010.md",
+      "navigationImpact": "Add matching links in both README languages.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second in report; paired README translations.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Read-only macOS status exit 0 for all six repositories; exact-merge CI links retain platform and skip/cancellation boundaries.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/project-statistics-rollout-closeout-v010.json",
+      "risk": "Time-bound CI evidence and retained log availability; no product acceptance.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Changed rollout, package, matrix, methodology or evidence."
+    }
+  ]
+}

@@ -1,0 +1,1593 @@
+{
+  "schemaVersion": 1,
+  "observedDate": "2026-09-19",
+  "tracking": "https://github.com/hindermath/home-baseline/issues/302",
+  "status": "DeliveredRepositories_ReportAwaitingHumanAcceptance",
+  "statisticsVersion": "0.1.0",
+  "statisticsZipSha256": "d8ad7d5eef920f50b629121b64ba8123c22ec4f6dadd14da5cd826d1c50f420a",
+  "matrixSha256": "f71224fc7c6c5e68431a9dfe507e8210f834d70c91f5dc63b85ce9f608fa6617",
+  "assuranceVersion": "0.1.3",
+  "repositories": [
+    {
+      "repository": "hindermath/TinyPl0",
+      "branch": "main",
+      "pullRequest": "https://github.com/hindermath/TinyPl0/pull/98",
+      "head": "52781821e0f6b68fdbd7ffc350981b2c2fb68c29",
+      "merge": "fb308e2691b3a101242229604f973fa6f1e31f68",
+      "mergedAt": "2026-09-19T12:29:34Z",
+      "reviews": [
+        {
+          "author": "hindermath",
+          "state": "COMMENTED",
+          "submittedAt": "2026-09-19T12:21:50Z",
+          "commit": "52781821e0f6b68fdbd7ffc350981b2c2fb68c29"
+        }
+      ],
+      "preservedPresetCount": 13,
+      "presetProfile": "project-statistics-fourteen-governance-presets",
+      "measurement": {
+        "sourceRevision": "04af012a388cdf437cf52f23ed6e0b3b8751be21",
+        "asOf": "2026-09-19",
+        "totalTextFiles": 2103,
+        "totalTextLines": 288814,
+        "activeDays": 94,
+        "inputsSha256": "b4becbc614073ce787fafb7b7e149b913e7017f254337874566f3868f7f57ee2"
+      },
+      "snapshotSha256": "d528652c60e28ac4f86c0b4bded33fc370ed3db7689f43d733779081c2be691b",
+      "installationReceiptSha256": "8497861779ef33cef0d936a68d319af3e3dcffb4a98d071874c17dc8068f8e3a",
+      "revalidation": {
+        "newContext": "CURRENT",
+        "reproducible": true,
+        "legacy": "CURRENT",
+        "exitCode": 0,
+        "clean": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "checkCounts": {
+        "SKIPPED": 3,
+        "SUCCESS": 36
+      },
+      "prChecks": [
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442643485/job/105896035822",
+          "name": "claude",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442361942/job/105895270707",
+          "name": "claude-review",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157849/job/105895055695",
+          "name": "smoke-test-pages",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157849/job/105895055245",
+          "name": "deploy",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157858/job/105894725901",
+          "name": "Baseline parity (macos-14, bash)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157858/job/105894725910",
+          "name": "Baseline parity (macos-14, powershell)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156370/job/105894721360",
+          "name": "Baseline parity (macos-14, bash)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157855/job/105894725679",
+          "name": "Agent Secret Scan (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157875/job/105894725608",
+          "name": "build-test-package (macos-15)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156364/job/105894721266",
+          "name": "Agent Secret Scan (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156370/job/105894721704",
+          "name": "Baseline parity (macos-14, powershell)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156353/job/105894721189",
+          "name": "build-test-package (macos-15)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157901/job/105894725680",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157875/job/105894725743",
+          "name": "build-test-package (windows-2025)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157889/job/105894726051",
+          "name": "Statistics (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157875/job/105894725697",
+          "name": "build-test-package (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157858/job/105894725837",
+          "name": "Baseline parity (windows-2022, powershell)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157889/job/105894725940",
+          "name": "Statistics (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157849/job/105894725633",
+          "name": "build",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157855/job/105894725674",
+          "name": "Agent Secret Scan (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157877/job/105894725598",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157865/job/105894725970",
+          "name": "Native proof (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157858/job/105894725920",
+          "name": "Baseline parity (ubuntu-22.04, bash)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157858/job/105894725790",
+          "name": "Baseline parity (ubuntu-22.04, powershell)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157865/job/105894725698",
+          "name": "Native proof (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157863/job/105894725538",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157855/job/105894725583",
+          "name": "Agent Secret Scan (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442157858/job/105894725752",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156370/job/105894721403",
+          "name": "Baseline parity (ubuntu-22.04, powershell)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156370/job/105894721461",
+          "name": "Baseline parity (windows-2022, powershell)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156353/job/105894721087",
+          "name": "build-test-package (windows-2025)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156356/job/105894721206",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156359/job/105894721244",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156370/job/105894721322",
+          "name": "Baseline parity (ubuntu-22.04, bash)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156355/job/105894721218",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156353/job/105894721210",
+          "name": "build-test-package (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156364/job/105894721221",
+          "name": "Agent Secret Scan (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156364/job/105894721283",
+          "name": "Agent Secret Scan (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TinyPl0/actions/runs/35442156370/job/105894721243",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        }
+      ],
+      "mergeWorkflows": [
+        {
+          "conclusion": "skipped",
+          "databaseId": 35443106145,
+          "name": "Claude Code",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443106145"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009390,
+          "name": "Agent Secret Scan",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009390"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009389,
+          "name": "Gitleaks",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009389"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009382,
+          "name": "Release Please",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009382"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009378,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009378"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009381,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009381"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009396,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009396"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009393,
+          "name": "CI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009393"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009388,
+          "name": "Project statistics proof",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009388"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35443009395,
+          "name": "Docs Pages",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyPl0/actions/runs/35443009395"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/InventarWorkerService",
+      "branch": "main",
+      "pullRequest": "https://github.com/hindermath/InventarWorkerService/pull/74",
+      "head": "ddc63e985bceb41a32bbed7a223846e726927263",
+      "merge": "0adaae0fa93873a68f10a697d1e3e9c456ece396",
+      "mergedAt": "2026-09-19T12:58:45Z",
+      "reviews": [
+        {
+          "author": "hindermath",
+          "state": "COMMENTED",
+          "submittedAt": "2026-09-19T13:19:27Z",
+          "commit": "ddc63e985bceb41a32bbed7a223846e726927263"
+        }
+      ],
+      "preservedPresetCount": 13,
+      "presetProfile": "project-statistics-fourteen-governance-presets",
+      "measurement": {
+        "sourceRevision": "e1a433727d6ff2df4ded7960a08724f536b1c619",
+        "asOf": "2026-09-19",
+        "totalTextFiles": 1235,
+        "totalTextLines": 184856,
+        "activeDays": 125,
+        "inputsSha256": "cb02bbb498c0caa9f9cc4c6b5632fa7cdbd4208a084f665bb7f644c2bbc6246f"
+      },
+      "snapshotSha256": "fc648a0cc029c60b3a915d670bf1922f23c8146c260f20caf1cbd7cfee06287b",
+      "installationReceiptSha256": "73e4295193907a2a27cba3717b9b9c2a8cfee7d1ce19ef8d2589edadc7f3e024",
+      "revalidation": {
+        "newContext": "CURRENT",
+        "reproducible": true,
+        "legacy": "CURRENT",
+        "exitCode": 0,
+        "clean": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "checkCounts": {
+        "SKIPPED": 2,
+        "SUCCESS": 31,
+        "CANCELLED": 1
+      },
+      "prChecks": [
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35445415729/job/105903386829",
+          "name": "claude",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873435/job/105900889670",
+          "name": "Native proof (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873435/job/105900889854",
+          "name": "Native proof (windows-2022)",
+          "state": "CANCELLED"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444115145/job/105899989001",
+          "name": "claude-review",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873303/job/105899579960",
+          "name": "deploy-pages",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873352/job/105899356671",
+          "name": "Agent Secret Scan (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871736/job/105899352475",
+          "name": "Build and test (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873439/job/105899356875",
+          "name": "Build and test (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871698/job/105899352260",
+          "name": "Agent Secret Scan (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873451/job/105899356874",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873470/job/105899357230",
+          "name": "Statistics (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873470/job/105899357110",
+          "name": "Statistics (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873439/job/105899356911",
+          "name": "Build and test (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873352/job/105899356631",
+          "name": "Agent Secret Scan (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873340/job/105899356444",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873439/job/105899356864",
+          "name": "Provider security (PostgreSQL 17.6, MongoDB 8.0.13)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873352/job/105899356553",
+          "name": "Agent Secret Scan (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873439/job/105899356796",
+          "name": "Security integration (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873409/job/105899356782",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873303/job/105899356674",
+          "name": "build-docs",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873363/job/105899356641",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873439/job/105899356955",
+          "name": "Build and test (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443873439/job/105899356860",
+          "name": "Supply chain and coverage",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871736/job/105899352495",
+          "name": "Provider security (PostgreSQL 17.6, MongoDB 8.0.13)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871736/job/105899352483",
+          "name": "Build and test (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871736/job/105899352566",
+          "name": "Build and test (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871698/job/105899352276",
+          "name": "Agent Secret Scan (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871703/job/105899352244",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871729/job/105899352202",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871736/job/105899352529",
+          "name": "Security integration (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871700/job/105899352178",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871698/job/105899352181",
+          "name": "Agent Secret Scan (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871693/job/105899352106",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/InventarWorkerService/actions/runs/35443871736/job/105899352421",
+          "name": "Supply chain and coverage",
+          "state": "SUCCESS"
+        }
+      ],
+      "mergeWorkflows": [
+        {
+          "conclusion": "skipped",
+          "databaseId": 35444461753,
+          "name": "Claude Code",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444461753"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408392,
+          "name": "Agent Secret Scan",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408392"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408410,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408410"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408467,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408467"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408394,
+          "name": "Release Please",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408394"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408471,
+          "name": "Project statistics proof",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408471"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408522,
+          "name": "CI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408522"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408356,
+          "name": "Gitleaks",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408356"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408380,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408380"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35444408370,
+          "name": "Docs Pages",
+          "status": "completed",
+          "url": "https://github.com/hindermath/InventarWorkerService/actions/runs/35444408370"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "branch": "main",
+      "pullRequest": "https://github.com/hindermath/TuiVision/pull/186",
+      "head": "bbcfc5c88638853413a9953537a9ed81724a979e",
+      "merge": "b8800eb2f32c2a8be82615ad670c2c0a5500e221",
+      "mergedAt": "2026-09-19T13:32:28Z",
+      "reviews": [
+        {
+          "author": "hindermath",
+          "state": "COMMENTED",
+          "submittedAt": "2026-09-19T13:31:59Z",
+          "commit": "bbcfc5c88638853413a9953537a9ed81724a979e"
+        }
+      ],
+      "preservedPresetCount": 13,
+      "presetProfile": "project-statistics-fourteen-governance-presets",
+      "measurement": {
+        "sourceRevision": "56d2816d6b4d64332894f858eca5fa68706f28dc",
+        "asOf": "2026-09-19",
+        "totalTextFiles": 3483,
+        "totalTextLines": 746233,
+        "activeDays": 97,
+        "inputsSha256": "b23461339f9f776e8443774e8d9ddc2e08b0794750be93c670bfc4000a520bff"
+      },
+      "snapshotSha256": "3fc29ec720ae36db1a5b109e75cb8f3b1931a6cc08de64afccb2888563da1114",
+      "installationReceiptSha256": "1398566e75ef00536c6673c5531d3c6e1fbba6e17e1b2c95ea23eada5cd87ac8",
+      "revalidation": {
+        "newContext": "CURRENT",
+        "reproducible": true,
+        "legacy": "CURRENT",
+        "exitCode": 0,
+        "clean": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "checkCounts": {
+        "SUCCESS": 38,
+        "SKIPPED": 2
+      },
+      "prChecks": [
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35446058352/job/105905056751",
+          "name": "claude-review",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35446046618/job/105905027318",
+          "name": "claude",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705199/job/105904142812",
+          "name": "Maintenance TUI (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705197/job/105904142796",
+          "name": "validate (macos-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705292/job/105904306222",
+          "name": "Deploy DocFX site",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705209/job/105904142616",
+          "name": "Build and Test (macos-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705189/job/105904142876",
+          "name": "Repository Tooling (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702352/job/105904132195",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705202/job/105904142564",
+          "name": "PSScriptAnalyzer (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705292/job/105904142935",
+          "name": "Build DocFX site",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705197/job/105904142634",
+          "name": "validate (windows-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705197/job/105904142713",
+          "name": "validate (ubuntu-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705195/job/105904142708",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705196/job/105904142620",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705189/job/105904142700",
+          "name": "Repository Tooling (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702402/job/105904132381",
+          "name": "Repository Tooling (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705235/job/105904142795",
+          "name": "Native proof (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705189/job/105904142851",
+          "name": "Repository Tooling (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705254/job/105904142505",
+          "name": "Package and SBOM evidence",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705199/job/105904142939",
+          "name": "Maintenance TUI (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705225/job/105904142839",
+          "name": "Statistics (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702336/job/105904132304",
+          "name": "PSScriptAnalyzer (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705199/job/105904142874",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705235/job/105904142889",
+          "name": "Native proof (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705209/job/105904142660",
+          "name": "Build and Test (ubuntu-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702378/job/105904132594",
+          "name": "Maintenance TUI (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705225/job/105904142990",
+          "name": "Statistics (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705202/job/105904142489",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702417/job/105904132382",
+          "name": "Build and Test (macos-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705202/job/105904142538",
+          "name": "PSScriptAnalyzer (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445705209/job/105904142532",
+          "name": "Build and Test (windows-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702378/job/105904132520",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702402/job/105904132457",
+          "name": "Repository Tooling (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702417/job/105904132427",
+          "name": "Build and Test (windows-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702402/job/105904132579",
+          "name": "Repository Tooling (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702701/job/105904133073",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702417/job/105904132375",
+          "name": "Build and Test (ubuntu-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702336/job/105904132301",
+          "name": "PSScriptAnalyzer (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702336/job/105904132198",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/TuiVision/actions/runs/35445702378/job/105904132613",
+          "name": "Maintenance TUI (windows-2022)",
+          "state": "SUCCESS"
+        }
+      ],
+      "mergeWorkflows": [
+        {
+          "conclusion": "success",
+          "databaseId": 35446072007,
+          "name": "Agent Secret Scan",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072007"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072034,
+          "name": "Gitleaks",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072034"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072015,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072015"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072079,
+          "name": "Requirements Intake Governance",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072079"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072045,
+          "name": "Security Supply Chain",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072045"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072049,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072049"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072040,
+          "name": "DocFX Pages",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072040"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072080,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072080"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072047,
+          "name": "CI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072047"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072063,
+          "name": "Release Please",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072063"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35446072033,
+          "name": "Project statistics proof",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TuiVision/actions/runs/35446072033"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/agent-operations-cockpit",
+      "branch": "main",
+      "pullRequest": "https://github.com/hindermath/agent-operations-cockpit/pull/58",
+      "head": "99a3f2daac2d33b232bc4846e0597eaed4cad1e3",
+      "merge": "fb1b6e6db4de711361c3acc906a783a85d2fe62e",
+      "mergedAt": "2026-09-19T14:34:13Z",
+      "reviews": [
+        {
+          "author": "hindermath",
+          "state": "COMMENTED",
+          "submittedAt": "2026-09-19T14:33:27Z",
+          "commit": "99a3f2daac2d33b232bc4846e0597eaed4cad1e3"
+        }
+      ],
+      "preservedPresetCount": 13,
+      "presetProfile": "project-statistics-fourteen-governance-presets",
+      "measurement": {
+        "sourceRevision": "8193e1ba54d6529d13da68d8393296ee164735d9",
+        "asOf": "2026-09-19",
+        "totalTextFiles": 1872,
+        "totalTextLines": 355214,
+        "activeDays": 18,
+        "inputsSha256": "32012f553692c59be240098720098aa2c65019dfb60e82548fb338f1bb2f9410"
+      },
+      "snapshotSha256": "620f4c53afb1552061c8e56007b8647cefdc18dff5417bcbe7a9bcc332a212a6",
+      "installationReceiptSha256": "1dcac8b9fe7d1a04404c79bd04af3ce512ac81fd550a33ffe81c28641a0b6b83",
+      "revalidation": {
+        "newContext": "CURRENT",
+        "reproducible": true,
+        "legacy": "CURRENT",
+        "exitCode": 0,
+        "clean": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "checkCounts": {
+        "SUCCESS": 22
+      },
+      "prChecks": [
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996116/job/105912760966",
+          "name": "Maintenance TUI (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996117/job/105912760868",
+          "name": ".NET contract (macos-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996092/job/105912760971",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996092/job/105912760870",
+          "name": "PSScriptAnalyzer (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996117/job/105912760855",
+          "name": ".NET contract (windows-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996391/job/105912761772",
+          "name": "homogeneity",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996117/job/105912760859",
+          "name": ".NET contract (ubuntu-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996092/job/105912760980",
+          "name": "PSScriptAnalyzer (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996116/job/105912761064",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996177/job/105912761269",
+          "name": "Native proof (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996177/job/105912761227",
+          "name": "Native proof (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996116/job/105912761107",
+          "name": "Maintenance TUI (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996106/job/105912761054",
+          "name": "Statistics (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996117/job/105912760738",
+          "name": "Repository baseline",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448996106/job/105912760903",
+          "name": "Statistics (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980561/job/105912715913",
+          "name": "Maintenance TUI (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980556/job/105912716055",
+          "name": "PSScriptAnalyzer (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980561/job/105912716009",
+          "name": "Maintenance TUI (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980556/job/105912715967",
+          "name": "PSScriptAnalyzer (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980556/job/105912716016",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980561/job/105912716023",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35448980567/job/105912716081",
+          "name": "homogeneity",
+          "state": "SUCCESS"
+        }
+      ],
+      "mergeWorkflows": [
+        {
+          "conclusion": "success",
+          "databaseId": 35449141297,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35449141297"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35449141328,
+          "name": "Public Readiness",
+          "status": "completed",
+          "url": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35449141328"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35449141304,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35449141304"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35449141301,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35449141301"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35449141281,
+          "name": "Project statistics proof",
+          "status": "completed",
+          "url": "https://github.com/hindermath/agent-operations-cockpit/actions/runs/35449141281"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/cc65",
+      "branch": "master",
+      "pullRequest": "https://github.com/hindermath/cc65/pull/40",
+      "head": "68c38ada910f72e459aec956bfe1d301abf4a728",
+      "merge": "832d3553e5b33c76104a3ac5b84c952a032552c6",
+      "mergedAt": "2026-09-19T15:21:47Z",
+      "reviews": [
+        {
+          "author": "hindermath",
+          "state": "COMMENTED",
+          "submittedAt": "2026-09-19T15:21:07Z",
+          "commit": "68c38ada910f72e459aec956bfe1d301abf4a728"
+        }
+      ],
+      "preservedPresetCount": 12,
+      "presetProfile": "project-statistics-fourteen-governance-presets",
+      "measurement": {
+        "sourceRevision": "ffc9ea2ae2a6f029ee4cfdebd1e4bb933acf1ac2",
+        "asOf": "2026-09-19",
+        "totalTextFiles": 5093,
+        "totalTextLines": 722198,
+        "activeDays": 120,
+        "inputsSha256": "9d7a9ef1a8ed86316f9cc2ae613f06cf343a6aaa4767094527f442a251fda2a0"
+      },
+      "snapshotSha256": "2255f0709796971dd9769457eb5d599e7e3352d13a0166c362df576491766cfc",
+      "installationReceiptSha256": "2f13c8a5179b2098bb3842522cad2e94736612ef6cce3972488a6baee6c73dc5",
+      "revalidation": {
+        "newContext": "CURRENT",
+        "reproducible": true,
+        "legacy": "CURRENT",
+        "exitCode": 0,
+        "clean": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "checkCounts": {
+        "SUCCESS": 19,
+        "SKIPPED": 1
+      },
+      "prChecks": [
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35451569818/job/105919526599",
+          "name": "claude-review",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35451540632/job/105919467344",
+          "name": "claude",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193610/job/105915923637",
+          "name": "Build and Test (Windows)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193610/job/105915923804",
+          "name": "Build and Test (Linux)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193510/job/105915889093",
+          "name": "Agent Secret Scan (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191975/job/105915885306",
+          "name": "Agent Secret Scan (macos-14)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193662/job/105915889367",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193510/job/105915889020",
+          "name": "Agent Secret Scan (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193509/job/105915889098",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193503/job/105915889121",
+          "name": "Statistics (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193482/job/105915888886",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193510/job/105915889070",
+          "name": "Agent Secret Scan (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193489/job/105915888819",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450193503/job/105915889298",
+          "name": "Statistics (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191932/job/105915885039",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191975/job/105915885418",
+          "name": "Agent Secret Scan (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191980/job/105915885367",
+          "name": "gitleaks",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191942/job/105915885057",
+          "name": "scan-agent-secrets",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191991/job/105915885288",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/cc65/actions/runs/35450191975/job/105915885404",
+          "name": "Agent Secret Scan (ubuntu-22.04)",
+          "state": "SUCCESS"
+        }
+      ],
+      "mergeWorkflows": [
+        {
+          "conclusion": "skipped",
+          "databaseId": 35457618939,
+          "name": "Claude Code",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35457618939"
+        },
+        {
+          "conclusion": "skipped",
+          "databaseId": 35451691377,
+          "name": "Claude Code",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451691377"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578202,
+          "name": "Project statistics proof",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578202"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578402,
+          "name": "Gitleaks",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578402"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578216,
+          "name": "Agent Secret Scan",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578216"
+        },
+        {
+          "conclusion": "skipped",
+          "databaseId": 35451578182,
+          "name": "Snapshot Build",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578182"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578206,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578206"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578185,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578185"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578246,
+          "name": "Release Please",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578246"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35451578240,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/cc65/actions/runs/35451578240"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/tvision",
+      "branch": "master",
+      "pullRequest": "https://github.com/hindermath/tvision/pull/22",
+      "head": "f49cfaa1f985747960d4870fd3ff4a634c4c00d5",
+      "merge": "48524a80a8228002944509580e07146f8c513811",
+      "mergedAt": "2026-09-19T17:15:21Z",
+      "reviews": [
+        {
+          "author": "hindermath",
+          "state": "COMMENTED",
+          "submittedAt": "2026-09-19T17:14:40Z",
+          "commit": "f49cfaa1f985747960d4870fd3ff4a634c4c00d5"
+        }
+      ],
+      "preservedPresetCount": 12,
+      "presetProfile": "project-statistics-fourteen-governance-presets",
+      "measurement": {
+        "sourceRevision": "e68d8649ad985d202611e1e2b161eb6193821cb7",
+        "asOf": "2026-09-19",
+        "totalTextFiles": 1390,
+        "totalTextLines": 232494,
+        "activeDays": 28,
+        "inputsSha256": "67caec15e118ab640974b92a12d5618398658dce3def711c257eb0190190e670"
+      },
+      "snapshotSha256": "1fbead80e9102ddbe9e74418a146328e88ee460af95ef170f74ce31b52d6083b",
+      "installationReceiptSha256": "686ea0e8db53b077cee858be7676afe51a6c98c768297782f8abfa1db96aefab",
+      "revalidation": {
+        "newContext": "CURRENT",
+        "reproducible": true,
+        "legacy": "CURRENT",
+        "exitCode": 0,
+        "clean": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "checkCounts": {
+        "SUCCESS": 36
+      },
+      "prChecks": [
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119591",
+          "name": "Standalone Calculator (macos-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119557",
+          "name": "MacOS (Clang)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553467/job/105922119934",
+          "name": "Statistics (ubuntu-24.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553467/job/105922120003",
+          "name": "Statistics (windows-2022)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119593",
+          "name": "Windows (MSVC) (x64)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119637",
+          "name": "Standalone Calculator (ubuntu-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553413/job/105922119550",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119501",
+          "name": "Windows (MinGW)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553395/job/105922119623",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119573",
+          "name": "Standalone Calculator (Visual Studio 2022 (v143))",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119659",
+          "name": "Linux (GCC 5)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119668",
+          "name": "Standalone Calculator (windows-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553408/job/105922119514",
+          "name": "homogeneity",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119526",
+          "name": "Windows (BCC32) (DPMI32)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119634",
+          "name": "Linux (GCC) (Unity)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119513",
+          "name": "Windows (MSVC) (Win32)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119538",
+          "name": "Linux (GCC) (Big Endian)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119533",
+          "name": "Linux (Clang)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452553389/job/105922119604",
+          "name": "Standalone Calculator (Visual Studio 2026 (v145))",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044232",
+          "name": "MacOS (Clang)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044226",
+          "name": "Standalone Calculator (macos-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044140",
+          "name": "Windows (MSVC) (x64)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044178",
+          "name": "Linux (Clang)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044211",
+          "name": "Standalone Calculator (Visual Studio 2022 (v143))",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044230",
+          "name": "Standalone Calculator (windows-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044205",
+          "name": "Windows (MSVC) (Win32)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044234",
+          "name": "Linux (GCC) (Unity)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044158",
+          "name": "Linux (GCC) (Big Endian)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044203",
+          "name": "Windows (MinGW)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044220",
+          "name": "Standalone Calculator (ubuntu-latest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044221",
+          "name": "Linux (GCC 5)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525238/job/105922044003",
+          "name": "Maintenance TUI (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525248/job/105922043885",
+          "name": "homogeneity",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044215",
+          "name": "Windows (BCC32) (DPMI32)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525279/job/105922043989",
+          "name": "PSScriptAnalyzer (ubuntu-22.04)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/hindermath/tvision/actions/runs/35452525294/job/105922044040",
+          "name": "Standalone Calculator (Visual Studio 2026 (v145))",
+          "state": "SUCCESS"
+        }
+      ],
+      "mergeWorkflows": [
+        {
+          "conclusion": "success",
+          "databaseId": 35457515414,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/tvision/actions/runs/35457515414"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35457515378,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/tvision/actions/runs/35457515378"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35457515357,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/tvision/actions/runs/35457515357"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35457515306,
+          "name": "Project statistics proof",
+          "status": "completed",
+          "url": "https://github.com/hindermath/tvision/actions/runs/35457515306"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 35457515307,
+          "name": "Build",
+          "status": "completed",
+          "url": "https://github.com/hindermath/tvision/actions/runs/35457515307"
+        }
+      ]
+    }
+  ]
+}

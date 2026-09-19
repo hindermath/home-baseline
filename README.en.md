@@ -197,3 +197,4 @@ explain accessible diagrams for new requirements intakes and complete, evidence-
 reports after Spec Kit feature runs. The shared rule and report template are bilingual.
 <!-- END spec-kit-diagrams-completion -->
 Statistics pilot: [installation status and boundaries](docs/maintenance/project-statistics-installation-v010.md).
+Statistics rollout: [six-repository closeout and evidence](docs/maintenance/project-statistics-rollout-closeout-v010.md).

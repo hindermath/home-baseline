@@ -1208,6 +1208,23 @@ GeneratedUpdate for the statistics block rendered by render-project-statistics.*
 from docs/project-statistics.config.json and Git history. Source-only evidence;
 no additional home sync.
 
+### 2026-09-19: Zentraler Statistik-Rollout-Abschluss / Central statistics rollout closeout
+
+Sechs gelieferte Level-2-Rollouts im
+[Abschlussbericht](maintenance/project-statistics-rollout-closeout-v010.md)
+mit Hashes, Quellenrevisionen, CI-Status und Grenzen konsolidiert. Beide
+Statistiken je Repository erneut CURRENT, Default-Branches sauber 0/0.
+tvision: alle fuenf Merge-Workflows erfolgreich. Historischer abgebrochener
+Windows-Zusatzlauf bei InventarWorkerService bleibt sichtbar. Fachliche
+Abnahme dieses zentralen Berichts und Tracking-Abschluss separat offen.
+Documentation Impact: UpdateRequired; sourceOnly, kein Home-Sync.
+
+Consolidated six delivered rollouts, source bindings, CI evidence and limits.
+Both statistics are CURRENT in each repository; default branches are clean
+and synchronized. All tvision merge workflows succeeded. The historical
+cancelled extra Windows run remains visible. Central human acceptance and
+tracking closure remain separate. Statistics follow from unchanged configuration.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
