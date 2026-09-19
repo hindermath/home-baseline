@@ -253,3 +253,4 @@ führen vom neuen Lastenheft zum belegten Feature-Ergebnisbericht. / The linked
 rules explain accessible intake diagrams and evidence-based feature reports.
 <!-- END spec-kit-diagrams-completion -->
 Statistik-Pilot / Statistics pilot: [Installationsstand und Grenzen](docs/maintenance/project-statistics-installation-v010.md).
+Statistik-Rollout / Statistics rollout: [Abschluss der sechs Level-2-Repositories](docs/maintenance/project-statistics-rollout-closeout-v010.md).
