@@ -2,8 +2,8 @@
 
 ## Deutsch
 
-Status: Teilreparatur, Flottenverteilung noch nicht ausgeführt.
-Owner: Home-Baseline-Maintainer. Datum: 2026-09-19.
+Status: lokale Reparatur und Flottenverteilung abgeschlossen; Remote-Closeout offen.
+Owner: Home-Baseline-Maintainer. Fortschreibung: 2026-09-20.
 
 Documentation Impact: UpdateRequired. Quelle ist das Paketmanifest
 `scripts/config/agentic-toolchain-maintenance-files.json`; Bedienungsdokument
@@ -37,24 +37,32 @@ Validierung: Alle 98 Stage-B-Tests bestanden auf macOS mit Bash und PowerShell.
 Der ergänzte Negativfall für eine vollständig fehlende Quelle bestand danach
 ebenfalls in beiden Shells. `bash -n` und `git diff --check` bestanden.
 
-Sandbox: statische Compose-Prüfung bestanden. Die vorhandene Podman-Maschine
-wurde gestartet; beim zweiten Versuch bestanden auch `podman info` und
-`podman compose up -d --no-build`. Nach Rückkehr des Aufrufs war der Socket
-erneut nicht erreichbar. Laufende Mounts konnten somit nicht abschließend
-verifiziert werden. Die Sandbox-Freigabedokumentation steht weiterhin auf
-Entwurf; ihre menschliche Freigabe wurde nicht vom Agenten ersetzt.
-Keine Secure-Trader-Projektdateien verändert. Keine Mounts erweitert,
-Volumes gelöscht, Commits oder Pushes ausgeführt.
+Fortschreibung: 129 Stage-B-/Wartungstests auf macOS bestanden. Die Quelle
+wurde auf dem Reparaturbranch veröffentlicht und die Home-Runtime geprüft
+synchronisiert. 14 normale Ziele erhielten 267 Dateikopien, anschließend
+21 Secure-Trader-Ziele im Container weitere 404. Alle 35 Paketprüfungen
+bestanden; die zwei TuiVision-Ausnahmen blieben erhalten.
 
-Nächste Schritte: Podman-Lebenszyklus und
-Sandbox-Freigabe klären; danach geprüfte Propagation mit unveränderten
-Projektausnahmen und abschließender Verifikation durchführen. NIST SSDF und
+Die Podman-VM bleibt nach Start über eine unabhängige Terminal-Sitzung
+erreichbar. Ein beschädigter Container wurde nach Datensicherung ersetzt;
+Image, sechs Volumes und Mounts blieben erhalten. Die begrenzte menschliche
+Owner-Freigabe für Secure-Trader-Wartung gilt bis 31.12.2026. Die getrennte
+CISO-/ISB-/KIB-Rollenfreigabe wurde nicht als abgeschlossen dargestellt.
+63 Paritätstests in den Secure-Trader-Zielen und 36 zusätzliche Linux-/TUI-
+Wrapper-Tests bestanden. Vier normale Ziele erhielten eine OpenCode-
+Pfadmigration (159 Befehle, zwölf Paritätstests); im OrderDesk-Workspace
+wurden elf fehlende Befehle unter Erhalt bestehender Inhalte verschoben.
+Zieländerungen sind noch nicht remote geliefert. Dies ist kein vollständiger
+Produktbuild- oder Remote-CI-Nachweis.
+
+Nächste Schritte: Änderungen und Nachweise reviewen, zielgenau committen,
+pushen, PR-Gates prüfen und nach erfolgreichem Merge synchronisieren. NIST SSDF und
 CWE Top 25 gelten für Abhängigkeitsvollständigkeit und sichere Verteilung;
 dieser Teilnachweis ist keine Sicherheits- oder Sandbox-Abnahme.
 
 ## English
 
-Status: partial repair; fleet distribution has not run. Owner: Home Baseline
+Status: local repair and fleet distribution complete; remote closeout pending. Owner: Home Baseline
 maintainer. Documentation Impact: UpdateRequired, implemented in the manifest
 and propagation manual. This source-only, text-first maintainer record does
 not require Home sync.
@@ -80,12 +88,18 @@ Validation: all 98 Stage-B tests passed on macOS with Bash and PowerShell.
 The subsequently added completely missing-source negative case also passed
 in both shells. `bash -n` and `git diff --check` passed.
 
-Static Compose validation passed. Podman startup was attempted; the second
-attempt also passed `podman info` and `podman compose up -d --no-build`.
-The socket became unreachable again after the command returned, so live mounts
-could not be fully verified. Formal sandbox approval remains a draft and was
-not fabricated. No Secure Trader files changed; no new mounts, volume deletion,
-commits or pushes. Next: resolve Podman lifecycle and human
-sandbox approval, then perform verified propagation preserving exceptions.
+Update of 2026-09-20: 129 macOS maintenance/Stage-B tests passed. The source
+branch was pushed and Home runtime synchronized. Fourteen normal targets
+received 267 file copies; 21 Secure Trader targets received 404 inside the
+container. All 35 package checks passed, preserving both TuiVision exceptions.
+The VM persists after independent Terminal startup. The damaged container was
+replaced after backup, preserving image, six volumes and mounts. The owner's
+bounded maintenance approval expires on 2026-12-31; separate formal role
+approval remains open. All 63 Secure Trader parity tests and 36 additional
+Linux/TUI wrapper tests passed. Four normal targets migrated 159 OpenCode
+commands with twelve passing parity tests; OrderDesk moved eleven missing
+commands while preserving existing content. Target changes remain unpublished;
+full product builds and remote CI acceptance are not claimed. Next: review,
+commit, push, check PR gates, merge and synchronize eligible deliveries.
 NIST SSDF/CWE Top 25 inform dependency integrity and safe distribution; this
 record is not security or sandbox acceptance.
