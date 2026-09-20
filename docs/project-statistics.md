@@ -1287,6 +1287,32 @@ bilingual maintenance manual. Runtime distribution and an updated sandbox pin
 remain prerequisites for operational acceptance. Reevaluate on profile or phase
 changes. Local model bindings remain untracked; no Spec Kit feature starts.*
 
+### 2026-09-20 - Verteilte UI vor Engine-Preflight / Distributed UI before engine preflight
+
+Der erste Flotten-Canary deckte einen vorgezogenen Bash-Flottenzugriff auf:
+UI-Abbruch und Home-Delegation benoetigen noch keinen lokalen Flottenvertrag.
+Die Abfrage erfolgt jetzt erst im Engine-Pfad, wie bereits bei PowerShell.
+Ein isolierter Regressionstest ohne Level-0-Manifest beweist Exitcode 130
+und keinen Engine-Aufruf. Keine Sicherheitsbarriere wurde abgeschwaecht;
+echte Engine-Laeufe pruefen den unveraenderten Vertrag weiterhin.
+
+Documentation Impact: NoUpdateRequired. Bestehende Bedien- und
+Delegationsvertraege bleiben unveraendert; korrigiert wird ihre Umsetzung.
+Quelle: Bash-Wrapper und Wrapper-Regressionstests; Owner: Repository-Owner.
+Zielgruppe: Maintainer; bestehender Manpage-Einstieg, DE/EN und textorientierte
+Ausgabe bleiben erhalten. Distribution: homeRuntime und Wartungspaket;
+Home-Sync sowie erneuter Sandbox-Pin erforderlich. Re-Evaluation bei
+Aenderung des Preflight- oder Delegationsvertrags.
+
+The first fleet canary exposed a premature Bash fleet lookup. UI cancellation
+and Home delegation now precede engine preflight, matching PowerShell.
+An isolated test without Level-0 manifests proves cancellation without an
+engine call. Actual engine runs retain the complete contract and barriers.
+Documentation Impact is NoUpdateRequired because existing usage contracts
+are restored, not changed. The repository Owner owns wrapper/test evidence;
+existing bilingual text-first navigation remains. Home/runtime distribution
+and a refreshed sandbox pin are required; reevaluate on contract changes.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
