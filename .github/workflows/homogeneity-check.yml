@@ -89,7 +89,17 @@ jobs:
             --home-dir "$isolated_home" --dry-run --scripts-only
           status=$?
           set -e
-          test "$status" -eq 1
+          test "$status" -eq 2
+          python3 - "$isolated_home" <<'PY'
+          import json, pathlib, sys
+          reports = list((pathlib.Path(sys.argv[1]) / '.home-baseline/reports').glob('agentic-workspace-*.json'))
+          assert len(reports) == 1
+          report = json.loads(reports[0].read_text())
+          assert report['finalized'] is True
+          assert report['findings'][0]['code'] == 'SandboxPreflightBlocked'
+          assert report['mutationBarrier']['domainMutationAllowed'] is False
+          assert report['targets'] == []
+          PY
           test ! -e "$isolated_home/CSharpProjects"
 
       - name: Run Homogeneity Check (PowerShell on Windows)
@@ -117,8 +127,15 @@ jobs:
           $process = Start-Process -FilePath 'pwsh' -ArgumentList $arguments `
             -Wait -PassThru -NoNewWindow
           $status = $process.ExitCode
-          if ($status -ne 1) {
-              throw "Expected drift exit code 1, received $status."
+          if ($status -ne 2) {
+              throw "Expected sandbox preflight exit code 2, received $status."
+          }
+          $reports = @(Get-ChildItem -LiteralPath (Join-Path $isolatedHome '.home-baseline/reports') -Filter 'agentic-workspace-*.json')
+          if ($reports.Count -ne 1) { throw 'Expected exactly one finalized report.' }
+          $report = Get-Content -LiteralPath $reports[0].FullName -Raw | ConvertFrom-Json
+          if ($report.finalized -ne $true -or $report.findings[0].code -ne 'SandboxPreflightBlocked' -or
+              $report.mutationBarrier.domainMutationAllowed -ne $false -or @($report.targets).Count -ne 0) {
+              throw 'Sandbox preflight did not fail closed before target access.'
           }
           if (Test-Path -LiteralPath (Join-Path $isolatedHome 'CSharpProjects')) {
               throw 'Dry-run created a target checkout.'
