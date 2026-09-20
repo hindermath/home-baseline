@@ -57,6 +57,7 @@ class ExecutionContextTests(unittest.TestCase):
                 self.assertEqual(json.loads(result.stdout)["returncode"], 0, result.stdout)
                 self.assertFalse((home / ".gitconfig").exists())
 
+    @unittest.skipIf(os.name == "nt", "Linux container environment: Windows drops empty env values; Windows hosts delegate to Linux")
     def test_worker_trust_exact_inherited_and_restored_on_error(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
@@ -72,12 +73,7 @@ class ExecutionContextTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, "fixture"):
                     with worker.repository_trust(payload["entries"]):
                         for _ in range(2):
-                            # Windows runners can resolve bash to WSL, where a
-                            # native Windows temp path is not a valid fixture.
-                            child = ([sys.executable, "-c",
-                                      "import subprocess,sys; sys.exit(subprocess.call(['git','-C',sys.argv[1],'status','--porcelain=v1']))",
-                                      str(repo)] if os.name == "nt" else
-                                     ["bash", "-c", 'git -C "$1" status --porcelain=v1', "bash", str(repo)])
+                            child = ["bash", "-c", 'git -C "$1" status --porcelain=v1', "bash", str(repo)]
                             good = subprocess.run(child, capture_output=True)
                             bad = subprocess.run(["git", "-C", str(other), "status"], capture_output=True)
                             self.assertEqual(good.returncode, 0, good.stderr)
