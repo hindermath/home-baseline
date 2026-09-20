@@ -1264,6 +1264,29 @@ preset and project-storage checks. Documentation impact: UpdateRequired;
 see the delegation record. Code delivery does not replace image pinning or
 the final maintenance run.*
 
+### 2026-09-20 - Wartungsabschluss-Korrekturen / Maintenance closeout corrections
+
+- Ereignisschema 1 und Ereignis-CLI akzeptieren die bereits von der TUI
+  unterstuetzten Phasen `model-routing` und `storage-cleanup`.
+- Die optionale lokale Zuordnung `level0PresetProfile` trennt den
+  Level-0-Opt-in vom unveraenderten Flottenstandard. Bash und PowerShell
+  erhalten denselben Fallback; vorhandene Preset-Installationen bleiben erhalten.
+- Documentation Impact: `UpdateRequired`. Kanonische Quellen sind beide
+  Wartungswrapper, Ereignis-CLI und JSON-Schema; Owner ist der Workspace-
+  Maintainer. Leserpfad fuer Operatoren: Wartungs-Manpage. Deutsch/Englisch,
+  textorientiert; Runtime-Verteilung und aktualisierter Sandbox-Pin sind vor
+  Betriebsabnahme erforderlich. Re-Evaluation bei Profil- oder Phasenaenderung.
+  Lokale Modellbindungen bleiben unversioniert. Kein Spec-Kit-Feature gestartet.
+
+*Event schema 1 and the event CLI accept the routing and storage phases already
+supported by the TUI. The optional local Level-0 profile preserves the fleet
+default and installed presets, with matching Bash/PowerShell fallback behavior.
+Documentation Impact: UpdateRequired; canonical sources are the wrappers,
+event CLI and schema, owned by the workspace maintainer. Operators use the
+bilingual maintenance manual. Runtime distribution and an updated sandbox pin
+remain prerequisites for operational acceptance. Reevaluate on profile or phase
+changes. Local model bindings remain untracked; no Spec Kit feature starts.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

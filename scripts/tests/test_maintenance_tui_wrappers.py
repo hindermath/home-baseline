@@ -9,6 +9,7 @@ import os
 import shlex
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 import uuid
@@ -70,6 +71,80 @@ class MaintenanceTuiWrapperTests(unittest.TestCase):
             self.assertEqual(events[0]["details"], {"mode": "check-only"})
             self.assertEqual(events[-1]["eventType"], "run-completed")
             self.assertEqual(events[-1]["details"]["logPath"], "run.log")
+
+    def test_event_cli_accepts_every_runtime_phase(self) -> None:
+        phases = ["fleet", "level0", "home-sync", "registry", "propagation",
+                  "preset-profiles", "toolchain", "model-routing", "storage-cleanup", "final"]
+        with tempfile.TemporaryDirectory() as directory:
+            stream = Path(directory) / "events.jsonl"
+            run_id = str(uuid.uuid4())
+            for sequence, phase in enumerate(phases, 1):
+                result = subprocess.run([
+                    sys.executable, str(FLEET_ENGINE), "event", "--event-stream", str(stream),
+                    "--run-id", run_id, "--sequence", str(sequence), "--event-type", "phase-completed",
+                    "--status", "PASSED", "--phase-id", phase,
+                    "--message-de", "Geprueft.", "--message-en", "Checked.",
+                    "--details-json", '{"exitCode":0}',
+                ], text=True, capture_output=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+            events = [json.loads(line) for line in stream.read_text().splitlines()]
+            self.assertEqual([event["phaseId"] for event in events], phases)
+            self.assertEqual([event["sequence"] for event in events], list(range(1, len(phases) + 1)))
+
+    @unittest.skipUnless(
+        (REPOSITORY / "specs/018-agentic-workspace-tui/contracts/maintenance-event-v1.schema.json").is_file(),
+        "Schema/reader parity is a canonical Level-0 check, not a distributed package dependency.",
+    )
+    def test_canonical_schema_includes_storage_and_routing(self) -> None:
+        schema = json.loads((REPOSITORY / "specs/018-agentic-workspace-tui/contracts/maintenance-event-v1.schema.json").read_text())
+        reader = (REPOSITORY / "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Contracts/MaintenanceEvent.cs").read_text()
+        for phase in ("model-routing", "storage-cleanup"):
+            self.assertIn(phase, schema["properties"]["phaseId"]["enum"])
+            self.assertIn(f'"{phase}"', reader)
+
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
+    def test_level0_profile_does_not_change_project_default(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "project" / ".git").mkdir(parents=True)
+            registry = root / "registry.json"
+            for override in (None, "project-statistics-fourteen-governance-presets"):
+                data = {"defaultPresetProfile": "model-routing-twelve-governance-presets",
+                        "repositories": [{"path": "project", "level": 2}]}
+                if override:
+                    data["level0PresetProfile"] = override
+                registry.write_text(json.dumps(data))
+                script = "\n".join((
+                    "set -euo pipefail",
+                    f"HOME_DIR={shlex.quote(str(root))}",
+                    f"DOMAIN_REGISTRY={shlex.quote(str(registry))}",
+                    f"SOURCE_ROOT={shlex.quote(str(REPOSITORY))}",
+                    extract_bash_function("discover_preset_targets"),
+                    "discover_preset_targets",
+                ))
+                result = subprocess.run(["bash", "-c", script], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                rows = [line.split("\t") for line in result.stdout.splitlines()]
+                self.assertEqual(rows[0][2], override or data["defaultPresetProfile"])
+                self.assertEqual(rows[1][2], data["defaultPresetProfile"])
+                if shutil.which("pwsh"):
+                    # Parse the real function without executing the maintenance entrypoint.
+                    command = r'''
+param($Wrapper, $Registry, $HomeDir, $SourceRoot)
+$tokens = $null; $errors = $null
+$ast = [Management.Automation.Language.Parser]::ParseFile($Wrapper, [ref]$tokens, [ref]$errors)
+$function = $ast.Find({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Get-HBPresetTargets'}, $true)
+$domainRegistry = $Registry
+. ([scriptblock]::Create($function.Extent.Text))
+Get-HBPresetTargets | ConvertTo-Json -Depth 5 -Compress
+'''
+                    fixture = root / "profile-test.ps1"
+                    fixture.write_text(command)
+                    ps = subprocess.run(["pwsh", "-NoProfile", "-File", str(fixture),
+                                         str(POWERSHELL_WRAPPER), str(registry), str(root), str(REPOSITORY)],
+                                        capture_output=True, text=True)
+                    self.assertEqual(ps.returncode, 0, ps.stderr)
+                    self.assertEqual([row["Profile"] for row in json.loads(ps.stdout)], [row[2] for row in rows])
 
     @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_bash_failed_event_does_not_consume_sequence(self) -> None:

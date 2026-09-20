@@ -5164,6 +5164,8 @@ def build_parser() -> argparse.ArgumentParser:
             "propagation",
             "preset-profiles",
             "toolchain",
+            "model-routing",
+            "storage-cleanup",
             "final",
         ),
     )
