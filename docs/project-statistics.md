@@ -1338,6 +1338,21 @@ entry in the generated script reference; internal test classification,
 not changed operation. Repository Owner owns the existing maintenance path;
 refresh package/runtime and image bindings and reevaluate on scope changes.
 
+### 2026-09-20 - Prozessgebundenes Git-Vertrauen / Process-scoped Git trust
+
+Die Container-Wartung ersetzt dauerhafte Git-Vertrauenslisten durch exakte,
+prozessgebundene Freigaben nach den bestehenden Sandbox-Prüfungen. 25 gezielte
+Tests bestanden; keine globale Git-Konfiguration wird geschrieben.
+Documentation Impact: UpdateRequired; Betriebsvertrag und Aktivierungsgrenze
+stehen in `docs/maintenance/container-git-trust.md` und der Wartungs-Manpage.
+Lieferung und Image-Aktivierung sind getrennt vom lokalen Implementierungsnachweis.
+
+Container maintenance replaces persistent trust lists with exact process-scoped
+trust after existing sandbox checks. All 25 focused tests pass without global
+Git configuration writes. Documentation Impact: UpdateRequired; see the
+operating note and maintenance manpage. Delivery and image activation remain
+separate from local implementation evidence.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
