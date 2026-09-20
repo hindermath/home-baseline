@@ -740,7 +740,6 @@ HOME_DIR="$(cd -- "$HOME_DIR" && pwd -P)"
 REGISTRY="${HOME_DIR}/.home-baseline/level2-repository-registry.json"
 EXECUTION_CONTRACT="${SOURCE_ROOT}/scripts/config/maintenance-execution-contexts.json"
 CONTAINER_EXECUTION=0
-CONTAINER_EXECUTION="$(python3 "$FLEET_ENGINE" execution-required --manifest "$FLEET_MANIFEST" --contract "$EXECUTION_CONTRACT")"
 DOMAIN_REGISTRY="$REGISTRY"
 
 # A stale copy in ~/scripts must delegate before it updates that directory.
@@ -767,6 +766,12 @@ if [ "$UI_MODE" = "plain" ]; then
   run_plain_ui
   exit $?
 fi
+
+# Erst der Engine-Lauf braucht den Flottenvertrag; UI-Abbruch und Home-
+# Delegation muessen ohne lokale Level-0-Manifeste funktionieren.
+# Only engine execution needs the fleet contract; UI cancellation and Home
+# delegation must work without a local copy of Level-0 manifests.
+CONTAINER_EXECUTION="$(python3 "$FLEET_ENGINE" execution-required --manifest "$FLEET_MANIFEST" --contract "$EXECUTION_CONTRACT")"
 
 [ -f "$STORAGE_MAINTAINER" ] || die "Storage-Wartung fehlt / storage maintainer missing: $STORAGE_MAINTAINER"
 [ -f "$STORAGE_POLICY" ] || die "Storage-Policy fehlt / storage policy missing: $STORAGE_POLICY"

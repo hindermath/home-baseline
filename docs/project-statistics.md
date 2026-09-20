@@ -1287,6 +1287,32 @@ bilingual maintenance manual. Runtime distribution and an updated sandbox pin
 remain prerequisites for operational acceptance. Reevaluate on profile or phase
 changes. Local model bindings remain untracked; no Spec Kit feature starts.*
 
+### 2026-09-20 - Verteilte UI vor Engine-Preflight / Distributed UI before engine preflight
+
+Der erste Flotten-Canary deckte einen vorgezogenen Bash-Flottenzugriff auf:
+UI-Abbruch und Home-Delegation benoetigen noch keinen lokalen Flottenvertrag.
+Die Abfrage erfolgt jetzt erst im Engine-Pfad, wie bereits bei PowerShell.
+Ein isolierter Regressionstest ohne Level-0-Manifest beweist Exitcode 130
+und keinen Engine-Aufruf. Keine Sicherheitsbarriere wurde abgeschwaecht;
+echte Engine-Laeufe pruefen den unveraenderten Vertrag weiterhin.
+
+Documentation Impact: NoUpdateRequired. Bestehende Bedien- und
+Delegationsvertraege bleiben unveraendert; korrigiert wird ihre Umsetzung.
+Quelle: Bash-Wrapper und Wrapper-Regressionstests; Owner: Repository-Owner.
+Zielgruppe: Maintainer; bestehender Manpage-Einstieg, DE/EN und textorientierte
+Ausgabe bleiben erhalten. Distribution: homeRuntime und Wartungspaket;
+Home-Sync sowie erneuter Sandbox-Pin erforderlich. Re-Evaluation bei
+Aenderung des Preflight- oder Delegationsvertrags.
+
+The first fleet canary exposed a premature Bash fleet lookup. UI cancellation
+and Home delegation now precede engine preflight, matching PowerShell.
+An isolated test without Level-0 manifests proves cancellation without an
+engine call. Actual engine runs retain the complete contract and barriers.
+Documentation Impact is NoUpdateRequired because existing usage contracts
+are restored, not changed. The repository Owner owns wrapper/test evidence;
+existing bilingual text-first navigation remains. Home/runtime distribution
+and a refreshed sandbox pin are required; reevaluate on contract changes.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1297,26 +1323,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 700215 lines |
+| Textbasis / Text base | 700242 lines |
 | Textdateien / Text files | 3245 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-28..2026-09-20 |
 | Aktivtage / Active days | 115 |
-| Relevante Commits / Relevant commits | 880 |
-| Zeilen je Aktivtag / Lines per active day | 6088.8 |
+| Relevante Commits / Relevant commits | 881 |
+| Zeilen je Aktivtag / Lines per active day | 6089.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 76.1x |
 | Speedup vs. 100 lines/day | 60.9x |
-| Methodik / Methodology | v2; source `6ac1fe526ffd` |
+| Methodik / Methodology | v2; source `905cdb362f14` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 26441
+Tests                           [#...................]   3.8% | 26463
 Dokumentation / Documentation   [##########..........]  51.6% | 361647
-Skripte / Scripts               [##..................]   8.1% | 56922
+Skripte / Scripts               [##..................]   8.1% | 56927
 Konfiguration / Configuration   [#######.............]  36.1% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
@@ -1582,7 +1608,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6088.8
+Visible repository [############........] 6089.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1608,6 +1634,6 @@ DE: Das Fenster beginnt am 2025-09-28 und endet am 2026-09-20. Es enthaelt 115 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 143023 |
+| 2026-09 | 143052 |
 
 <!-- project-statistics-v2:end -->

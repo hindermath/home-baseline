@@ -373,6 +373,28 @@ PY
             self.assertIn("Cancelled before engine start", result.stdout)
 
     @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
+    def test_distributed_ui_cancels_without_level0_manifest_or_engine_call(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            scripts = root / "package" / "scripts"
+            (scripts / "lib").mkdir(parents=True)
+            wrapper = scripts / BASH_WRAPPER.name
+            shutil.copyfile(BASH_WRAPPER, wrapper)
+            marker = root / "engine-called"
+            (scripts / "lib" / FLEET_ENGINE.name).write_text(
+                "from pathlib import Path\n"
+                f"Path({str(marker)!r}).touch()\nraise SystemExit(77)\n"
+            )
+            result = subprocess.run(
+                ["bash", str(wrapper), "--tui", "--home-dir", str(root / "home")],
+                input="3\nn\nn\nn\nn\n", text=True, capture_output=True,
+                env={"HOME": str(root / "home"), "PATH": "/usr/bin:/bin", "TERM": "dumb"},
+                check=False,
+            )
+            self.assertEqual(result.returncode, 130, result.stdout + result.stderr)
+            self.assertFalse(marker.exists(), "UI cancellation must precede engine preflight")
+
+    @unittest.skipIf(os.name == "nt", "The Bash wrapper runs on Unix targets.")
     def test_bash_rejects_ui_with_preselected_maintenance_mode(self) -> None:
         cases = (
             ("--check-only",),
