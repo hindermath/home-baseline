@@ -72,7 +72,13 @@ class ExecutionContextTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, "fixture"):
                     with worker.repository_trust(payload["entries"]):
                         for _ in range(2):
-                            good = subprocess.run(["bash", "-c", 'git -C "$1" status --porcelain=v1', "bash", str(repo)], capture_output=True)
+                            # Windows runners can resolve bash to WSL, where a
+                            # native Windows temp path is not a valid fixture.
+                            child = ([sys.executable, "-c",
+                                      "import subprocess,sys; sys.exit(subprocess.call(['git','-C',sys.argv[1],'status','--porcelain=v1']))",
+                                      str(repo)] if os.name == "nt" else
+                                     ["bash", "-c", 'git -C "$1" status --porcelain=v1', "bash", str(repo)])
+                            good = subprocess.run(child, capture_output=True)
                             bad = subprocess.run(["git", "-C", str(other), "status"], capture_output=True)
                             self.assertEqual(good.returncode, 0, good.stderr)
                             self.assertNotEqual(bad.returncode, 0)
