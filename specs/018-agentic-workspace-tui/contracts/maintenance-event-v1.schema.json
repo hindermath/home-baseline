@@ -66,6 +66,8 @@
         "propagation",
         "preset-profiles",
         "toolchain",
+        "model-routing",
+        "storage-cleanup",
         "final",
         null
       ]

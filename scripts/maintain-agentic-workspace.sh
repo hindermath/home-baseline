@@ -1062,7 +1062,11 @@ registry_path = pathlib.Path(sys.argv[2])
 source = pathlib.Path(sys.argv[3]).resolve()
 data = json.loads(registry_path.read_text(encoding="utf-8"))
 default_profile = data.get("defaultPresetProfile", "standard-eight-governance-presets")
-print(f"0\t{source}\t{default_profile}")
+# A reviewed Level-0 opt-in must not silently raise the fleet-wide default.
+level0_profile = data.get("level0PresetProfile", default_profile)
+if not isinstance(level0_profile, str) or not level0_profile.strip():
+    raise SystemExit("Invalid Level-0 preset profile")
+print(f"0\t{source}\t{level0_profile}")
 for entry in data.get("repositories", []):
     raw = entry.get("path")
     profile = entry.get("presetProfile", default_profile)

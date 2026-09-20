@@ -1552,7 +1552,16 @@ function Get-HBPresetTargets {
     } else {
         'standard-eight-governance-presets'
     }
-    $targets = @([pscustomobject]@{ Level = 0; Path = $sourceRoot; Profile = $defaultProfile })
+    # Keep an explicit Level-0 opt-in separate from the fleet-wide default.
+    $level0Profile = if ($data.PSObject.Properties.Name -contains 'level0PresetProfile') {
+        [string]$data.level0PresetProfile
+    } else {
+        $defaultProfile
+    }
+    if ([string]::IsNullOrWhiteSpace($level0Profile)) {
+        throw 'Ungueltiges Level-0-Profil / invalid Level-0 preset profile.'
+    }
+    $targets = @([pscustomobject]@{ Level = 0; Path = $sourceRoot; Profile = $level0Profile })
     foreach ($entry in @($data.repositories)) {
         if (-not $entry.path -or $entry.level -notin @(1, 2)) { throw 'Ungueltiger Registry-Eintrag / invalid registry entry.' }
         $path = [IO.Path]::GetFullPath((Join-Path $HomeDir ([string]$entry.path)))

@@ -107,6 +107,19 @@ Die unterstuetzten Profilnamen und ihre Matrixdateien stehen zentral in
 `scripts/config/spec-kit-preset-profiles.json`. Lokale Registry-Eintraege mit
 unbekannten Profilen brechen weiterhin fail-closed ab.
 
+Die lokale Registry kann `level0PresetProfile` fuer die ausfuehrende
+Level-0-Quelle setzen. Fehlt dieses Feld, gilt wie bisher
+`defaultPresetProfile`. Projektbezogene 14er-Freigaben erhoehen dadurch
+nicht den Standard fuer andere oder neu registrierte Repositories.
+`model-routing` und `storage-cleanup` sind gueltige Live-Ereignisphasen
+im unveraenderten Ereignisschema 1.
+
+*The local registry may set `level0PresetProfile` for the executing Level-0
+source. When absent, `defaultPresetProfile` remains the fallback. A reviewed
+fourteen-preset opt-in does not raise the default for other or newly
+registered repositories. Model routing and storage cleanup are valid live
+event phases in the unchanged event schema version 1.*
+
 Die portable Sollquelle steht in
 `scripts/config/agentic-workspace-fleet.json`. Sie unterscheidet kanonische
 Flottenziele, Preset-Repositories und reine Collections. Der gemeinsame
