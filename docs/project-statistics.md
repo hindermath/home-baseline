@@ -1245,6 +1245,25 @@ rollout, Home sync or publication occurred. Documentation Impact: UpdateRequired
 see the maintenance manual and repair record. The Git-based statistics block
 remains unchanged until separate delivery.*
 
+### 2026-09-20 - Begrenzte Container-Wartung / Bounded container maintenance
+
+- Deklarative Host-/Container-Zuordnung für die drei Secure-Trader-Workspaces;
+  keine Provider-Zugangsdaten im Container und kein Host-Fallback.
+- Vorabprüfung bindet Freigabe, Ablaufdatum, Mounts, Container und Quellpaket.
+  Lokale Fast-forwards folgen erst nach allen Fetches. Leaf-Worker trennen
+  Registry, Paketprüfung, Presets und projektbezogene Storage-Prüfung.
+- Documentation Impact: `UpdateRequired`; Nachweis und Aktivierungsgrenze in
+  `docs/maintenance/container-delegation-2026-09-20.md`. Ein veröffentlichter
+  Codezustand ersetzt weder Image-Pinning noch den abschließenden Wartungslauf.
+
+*Declarative host/container mapping covers three Secure Trader workspaces,
+without provider credentials in the container or host fallback. Preflight binds
+approval, expiry, mounts, container identity and source package. Local
+fast-forwards follow all fetches. Leaf workers separate registry, package,
+preset and project-storage checks. Documentation impact: UpdateRequired;
+see the delegation record. Code delivery does not replace image pinning or
+the final maintenance run.*
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
@@ -17,6 +17,22 @@
     }
   ],
   "files": [
+    {
+      "path": "scripts/lib/maintenance_execution_context.py",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/maintenance_container_worker.py",
+      "executable": false
+    },
+    {
+      "path": "scripts/config/maintenance-execution-contexts.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/test_maintenance_execution_context.py",
+      "executable": false
+    },
     {
       "path": "scripts/maintain-agentic-workspace.sh",
       "executable": true
