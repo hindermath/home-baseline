@@ -1338,6 +1338,21 @@ entry in the generated script reference; internal test classification,
 not changed operation. Repository Owner owns the existing maintenance path;
 refresh package/runtime and image bindings and reevaluate on scope changes.
 
+### 2026-09-20 - Prozessgebundenes Git-Vertrauen / Process-scoped Git trust
+
+Die Container-Wartung ersetzt dauerhafte Git-Vertrauenslisten durch exakte,
+prozessgebundene Freigaben nach den bestehenden Sandbox-Prüfungen. 25 gezielte
+Tests bestanden; keine globale Git-Konfiguration wird geschrieben.
+Documentation Impact: UpdateRequired; Betriebsvertrag und Aktivierungsgrenze
+stehen in `docs/maintenance/container-git-trust.md` und der Wartungs-Manpage.
+Lieferung und Image-Aktivierung sind getrennt vom lokalen Implementierungsnachweis.
+
+Container maintenance replaces persistent trust lists with exact process-scoped
+trust after existing sandbox checks. All 25 focused tests pass without global
+Git configuration writes. Documentation Impact: UpdateRequired; see the
+operating note and maintenance manpage. Delivery and image activation remain
+separate from local implementation evidence.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1348,26 +1363,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 700254 lines |
-| Textdateien / Text files | 3245 |
+| Textbasis / Text base | 700463 lines |
+| Textdateien / Text files | 3246 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-28..2026-09-20 |
 | Aktivtage / Active days | 115 |
-| Relevante Commits / Relevant commits | 883 |
-| Zeilen je Aktivtag / Lines per active day | 6089.2 |
+| Relevante Commits / Relevant commits | 887 |
+| Zeilen je Aktivtag / Lines per active day | 6091.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 76.1x |
 | Speedup vs. 100 lines/day | 60.9x |
-| Methodik / Methodology | v2; source `206b3dcff184` |
+| Methodik / Methodology | v2; source `19dc97ceb0c4` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 26475
-Dokumentation / Documentation   [##########..........]  51.6% | 361647
-Skripte / Scripts               [##..................]   8.1% | 56927
+Tests                           [#...................]   3.8% | 26533
+Dokumentation / Documentation   [##########..........]  51.6% | 361749
+Skripte / Scripts               [##..................]   8.1% | 56976
 Konfiguration / Configuration   [#######.............]  36.1% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.1% | 351
@@ -1392,7 +1407,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 ```text
 Wochen / Weeks 27..52 | 2026-03-29..2026-09-26
-So/Su  0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 3
+So/Su  0 3 3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4
 Mo/Mo  0 3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 -
 Di/Tu  4 0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 -
 Mi/We  4 4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 -
@@ -1633,7 +1648,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6089.2
+Visible repository [############........] 6091.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1659,6 +1674,6 @@ DE: Das Fenster beginnt am 2025-09-28 und endet am 2026-09-20. Es enthaelt 115 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 143066 |
+| 2026-09 | 143297 |
 
 <!-- project-statistics-v2:end -->
