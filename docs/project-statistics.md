@@ -1322,9 +1322,10 @@ Vertragstests bleiben aktiv; im Level-0-Klon und im vollstaendigen Image
 bleiben alle 22 Faelle aktiv. Fehlende zentrale Installationsskripte oder
 Flotten-Manifeste werden nicht in Consumer kopiert.
 
-Documentation Impact: NoUpdateRequired. Keine neue Bediensemantik;
+Documentation Impact: GeneratedUpdate. Keine neue Bediensemantik;
 kanonische Quelle: Delegations-Tests, Owner: Repository-Owner, Leserpfad:
-bestehende Wartungs-Manpage. Interne Testklassifikation mit klaren Skip-
+bestehende Wartungs-Manpage und erzeugte Skriptreferenz. Die Referenz wurde
+aus dem Quellkommentar regeneriert und geprueft. Interne Testklassifikation mit klaren Skip-
 Gruenden; bestehende DE/EN-Bedienung bleibt gleich. Paket/homeRuntime und
 Image-Pin nachziehen; Re-Evaluation bei Paketumfangsaenderungen.
 
@@ -1332,7 +1333,8 @@ Consumer CI uses complete discovery. Seven central integration cases now
 declare their source-only boundary inside the suite. All fifteen independent
 contracts remain active; all twenty-two cases run in the canonical source
 and complete image. Do not distribute central installers or fleet manifests.
-Documentation Impact is NoUpdateRequired: internal test classification,
+Documentation Impact is GeneratedUpdate: refresh and verify the source-comment
+entry in the generated script reference; internal test classification,
 not changed operation. Repository Owner owns the existing maintenance path;
 refresh package/runtime and image bindings and reevaluate on scope changes.
 
