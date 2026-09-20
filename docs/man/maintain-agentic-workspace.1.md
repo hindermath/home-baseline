@@ -52,7 +52,7 @@ Git-Aufrufe außerhalb der Wartung erhalten dadurch keine Freigabe.
 Auf anderen Systemen müssen deren Mounts und Zielpfade im freigegebenen
 Ausführungs- und Flottenvertrag übereinstimmen; es gibt keine Pfadsuche oder
 Wildcard-Freigabe. Details und Aktivierungsstand:
-[Prozessgebundenes Git-Vertrauen](../maintenance/container-git-trust.md).
+[Prozessgebundenes Git-Vertrauen](https://github.com/hindermath/home-baseline/blob/4459e744d126d51b832986b09ac1a73cf88c1607/docs/maintenance/container-git-trust.md).
 
 *After successful preflight, Git trust applies only to the maintenance process
 and exact declared repository paths. An empty trust entry resets inherited
