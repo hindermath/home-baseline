@@ -1313,6 +1313,31 @@ are restored, not changed. The repository Owner owns wrapper/test evidence;
 existing bilingual text-first navigation remains. Home/runtime distribution
 and a refreshed sandbox pin are required; reevaluate on contract changes.
 
+### 2026-09-20 - Consumer-Testgrenze / Consumer test boundary
+
+Die Consumer-CI verwendet vollstaendige Test-Discovery. Sieben zentrale
+Delegations-Integrationsfaelle werden deshalb im Test selbst als source-only
+markiert, statt nur im lokalen Aufruf gefiltert. Alle 15 eigenstaendigen
+Vertragstests bleiben aktiv; im Level-0-Klon und im vollstaendigen Image
+bleiben alle 22 Faelle aktiv. Fehlende zentrale Installationsskripte oder
+Flotten-Manifeste werden nicht in Consumer kopiert.
+
+Documentation Impact: GeneratedUpdate. Keine neue Bediensemantik;
+kanonische Quelle: Delegations-Tests, Owner: Repository-Owner, Leserpfad:
+bestehende Wartungs-Manpage und erzeugte Skriptreferenz. Die Referenz wurde
+aus dem Quellkommentar regeneriert und geprueft. Interne Testklassifikation mit klaren Skip-
+Gruenden; bestehende DE/EN-Bedienung bleibt gleich. Paket/homeRuntime und
+Image-Pin nachziehen; Re-Evaluation bei Paketumfangsaenderungen.
+
+Consumer CI uses complete discovery. Seven central integration cases now
+declare their source-only boundary inside the suite. All fifteen independent
+contracts remain active; all twenty-two cases run in the canonical source
+and complete image. Do not distribute central installers or fleet manifests.
+Documentation Impact is GeneratedUpdate: refresh and verify the source-comment
+entry in the generated script reference; internal test classification,
+not changed operation. Repository Owner owns the existing maintenance path;
+refresh package/runtime and image bindings and reevaluate on scope changes.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1323,24 +1348,24 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 700242 lines |
+| Textbasis / Text base | 700254 lines |
 | Textdateien / Text files | 3245 |
 | Beobachtbarer Zeitraum / Observable period | 2025-09-28..2026-09-20 |
 | Aktivtage / Active days | 115 |
-| Relevante Commits / Relevant commits | 881 |
-| Zeilen je Aktivtag / Lines per active day | 6089.1 |
+| Relevante Commits / Relevant commits | 883 |
+| Zeilen je Aktivtag / Lines per active day | 6089.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 76.1x |
 | Speedup vs. 100 lines/day | 60.9x |
-| Methodik / Methodology | v2; source `905cdb362f14` |
+| Methodik / Methodology | v2; source `206b3dcff184` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 26463
+Tests                           [#...................]   3.8% | 26475
 Dokumentation / Documentation   [##########..........]  51.6% | 361647
 Skripte / Scripts               [##..................]   8.1% | 56927
 Konfiguration / Configuration   [#######.............]  36.1% | 252617
@@ -1608,7 +1633,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 6089.1
+Visible repository [############........] 6089.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1634,6 +1659,6 @@ DE: Das Fenster beginnt am 2025-09-28 und endet am 2026-09-20. Es enthaelt 115 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 143052 |
+| 2026-09 | 143066 |
 
 <!-- project-statistics-v2:end -->
