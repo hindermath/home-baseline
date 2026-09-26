@@ -38,6 +38,56 @@ def run_json(script: str) -> object:
 
 @unittest.skipUnless(os.name == "nt", "Windows-specific process contracts")
 class WindowsMaintenanceHardeningTests(unittest.TestCase):
+    def test_preset_cli_utf8_output_and_environment_restoration(self) -> None:
+        installer = REPOSITORY / "scripts" / "install-spec-kit-governance-presets.ps1"
+        # Load only function definitions: never run the fleet installer in tests.
+        setup = (
+            "$ErrorActionPreference='Stop'; "
+            f"$ast=[Management.Automation.Language.Parser]::ParseFile('{installer}',[ref]$null,[ref]$null); "
+            "$ast.FindAll({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] "
+            "-and $node.Name -in @('Invoke-SpecifyUtf8','Test-PresetInstalled')},$false) | "
+            "ForEach-Object { . ([scriptblock]::Create($_.Extent.Text)) }; "
+            "function specify { "
+            "& python -c 'import sys; print(chr(0x2713)); print(chr(0x2713), file=sys.stderr); sys.exit(int(sys.argv[1]))' $script:probeExit; "
+            "$global:LASTEXITCODE=$LASTEXITCODE }; "
+            "$script:probeExit=0; "
+            "[Console]::OutputEncoding=[Text.Encoding]::GetEncoding(1252); "
+        )
+        for initial in ("cp1252", None, ""):
+            with self.subTest(initial=initial):
+                value = "$null" if initial is None else f"'{initial}'"
+                completed = run_pwsh(
+                    setup
+                    + f"[Environment]::SetEnvironmentVariable('PYTHONIOENCODING',{value},'Process'); "
+                    + "$before=[Environment]::GetEnvironmentVariable('PYTHONIOENCODING','Process'); "
+                    + "$output=@(Invoke-SpecifyUtf8 -Arguments @('preset','list') 2>&1); "
+                    + "if(($output -join '') -notmatch ([char]0x2713)){throw 'Unicode lost'}; "
+                    + "if([Console]::OutputEncoding.CodePage -ne 1252){throw 'Console leaked'}; "
+                    + "if([Environment]::GetEnvironmentVariable('PYTHONIOENCODING','Process') -cne $before){throw 'Environment leaked'}; "
+                    + "'PASS'"
+                )
+                self.assertEqual(completed.returncode, 0, completed.stdout)
+                self.assertIn("PASS", completed.stdout)
+
+        failed = run_pwsh(
+            setup
+            + "$env:PYTHONIOENCODING='cp1252'; $script:probeExit=7; "
+            + "$caught=$false; $location=$PWD.Path; "
+            + "try { $null=Test-PresetInstalled -Repository $location -PresetId 'fixture' 2>&1 } "
+            + "catch { $caught=$_.Exception.Message -match 'exit 7' }; "
+            + "if(-not $caught){throw 'CLI failure was hidden'}; "
+            + "if($PWD.Path -ne $location){throw 'Location leaked'}; "
+            + "if($env:PYTHONIOENCODING -ne 'cp1252' -or [Console]::OutputEncoding.CodePage -ne 1252){throw 'Encoding leaked after failure'}; 'PASS'"
+        )
+        self.assertEqual(failed.returncode, 0, failed.stdout)
+
+        control = run_pwsh(
+            "$env:PYTHONIOENCODING='cp1252'; "
+            "python -c 'print(chr(0x2713))' 2>&1 | Out-String; exit $LASTEXITCODE"
+        )
+        self.assertNotEqual(control.returncode, 0)
+        self.assertIn("UnicodeEncodeError", control.stdout)
+
     def test_mode_projection_is_mutually_exclusive(self) -> None:
         result = run_json(
             "@("
