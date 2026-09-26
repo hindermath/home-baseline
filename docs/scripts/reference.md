@@ -900,7 +900,7 @@ python3 scripts/tests/test_sync_home_cli.py --help
 ### `scripts/tests/test_windows_maintenance_hardening.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Kurzbeschreibung / Summary:** Load only function definitions: never run the fleet installer in tests.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
