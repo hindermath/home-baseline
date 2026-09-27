@@ -23,6 +23,7 @@
     {"repositoryId":"inventar-worker-service","profileId":"public-product","rationale":"Public maintained product repository."},
     {"repositoryId":"tiny-calc","profileId":"public-product","rationale":"Public maintained product repository."},
     {"repositoryId":"tiny-pl0","profileId":"public-product","rationale":"Public maintained product repository."},
+    {"repositoryId":"show-commandtui400","profileId":"public-product","rationale":"Public concept-stage product repository; explicitly approved Level-2 onboarding on 2026-09-27."},
     {"repositoryId":"secure-casetracker-csharp","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
     {"repositoryId":"secure-casetracker-go","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},
     {"repositoryId":"secure-casetracker-java","profileId":"private-product","rationale":"Private SecureCaseTracker product runtime."},

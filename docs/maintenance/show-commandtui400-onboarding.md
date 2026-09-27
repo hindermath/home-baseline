@@ -21,6 +21,7 @@ MSL status remain open. No dependency on the reference products is created.*
 - Pfad / Path: `RiderProjects/Show-CommandTui400`.
 - Level: `2`; GSDB required: `true`; MSL: `unknown`.
 - Profil / Profile: `project-statistics-fourteen-governance-presets`.
+- Kanonische Wartungsflotte: `show-commandtui400`; CI-Profil: `public-product`.
 - Explizite Einzelprojekt-Freigabe; kein globaler Default-Wechsel oder Flottenrollout.
 - Statistik / Statistics: `80` konservativ; vorläufig `100` Konzept/Scripting,
   bei C#/.NET auf `125` reevaluieren.
@@ -38,7 +39,7 @@ Quellen: zentrale Constitution und das fachliche Level-2-Bedienkonzept.
 Dokumentklassen: normative Registerpflege und Einrichtungsnachweis. Owner:
 Thorsten Hindermann. Sprache: gemeinsame Guidance DE zuerst/EN danach;
 fachliche Level-2-Dokumentation ausdrücklich deutsch.
-Distributionsklasse: Constitution-Kopien `homeRuntime`, dieser Nachweis
+Distributionsklasse: Constitution-Kopien und Flotten-/CI-Register `homeRuntime`, dieser Nachweis
 `sourceOnly`, operative Registry `machineLocal`. Home-Sync nach Lieferung mit
 Syntaxprüfung und Vorschau; keine pauschale Constitution-Verteilung an andere
 Level-2-Repositories. Re-Evaluation bei Runtime-, Profil- oder Toolingänderung.
