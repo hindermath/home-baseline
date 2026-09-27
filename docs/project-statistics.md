@@ -203,6 +203,8 @@
 
 | 2026-09-18 | Home-Baseline-Statistikfeldtest und PR-Vorbereitung / Statistics field test and PR preparation | N/A | N/A | N/A | UpdateRequired: getrennter v0.1.0-Pilot, lokale Negativ-/Paritaetspruefungen und native Linux-/Windows-Nachweise dokumentiert. Pilot- und Profil-2-Fortschreibung fuer den erweiterten Lieferstand beauftragt; Konfigurationen und kanonischer Statistikvertrag bleiben erhalten. Neuer CI-Status-Gate prueft aktuellen Snapshot getrennt vom historischen Feldtest. Kein Merge, keine anderen Projektpiloten oder Releasefreigabe. / Documented local/native field evidence; authorized statistics refresh and PR preparation, no merge or release acceptance. |
 
+| 2026-09-27 | Show-CommandTui400 Level-2-Aufnahme / Level-2 onboarding | N/A | N/A | N/A | Projektregister und Navigation; Nachweis: docs/maintenance/show-commandtui400-onboarding.md. / Project registration and navigation; no product implementation. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
