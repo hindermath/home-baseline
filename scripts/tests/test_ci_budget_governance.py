@@ -544,10 +544,14 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
 
 
 class FleetClassificationTests(_FleetFixtureMixin, unittest.TestCase):
-    """The Level-0 self record and 47 active Git targets map one-to-one."""
+    """The Level-0 self record and active Git targets map one-to-one."""
 
-    def test_authoritative_union_has_48_rows_and_three_required_canaries(self):
-        self.assertEqual(len(self.authoritative), 48)
+    def test_authoritative_union_includes_onboarded_project_and_three_canaries(self):
+        active_git_targets = [
+            target for target in self.manifest["targets"]
+            if target.get("active") and target.get("kind") == "git-repository"
+        ]
+        self.assertEqual(len(self.authoritative), 1 + len(active_git_targets))
         ids = {item["repositoryId"] for item in self.authoritative}
         self.assertIn("home-baseline", ids)
         self.assertNotIn("spec-kit-preset-projects", ids)
@@ -555,6 +559,8 @@ class FleetClassificationTests(_FleetFixtureMixin, unittest.TestCase):
             item["repositoryId"]: item["profileId"]
             for item in self.contracts["profiles"]["assignments"]
         }
+        self.assertIn("show-commandtui400", ids)
+        self.assertEqual(assignments["show-commandtui400"], "public-product")
         self.assertEqual(
             {key for key, value in assignments.items() if value == "public-canary"},
             {"home-baseline", "agent-operations-cockpit", "tui-vision"},
@@ -621,7 +627,7 @@ class FleetClassificationTests(_FleetFixtureMixin, unittest.TestCase):
         )
         self.assertRegex(revision, r"^[0-9a-f]{64}$")
         self.assertEqual(observed, "2026-08-20T00:00:00Z")
-        self.assertEqual(len(calls), 48)
+        self.assertEqual(len(calls), len(self.authoritative))
         self.assertTrue(all(call.startswith("repos/") for call in calls))
         self.assertNotIn("token", json.dumps(rows))
         self.assertNotIn("must-not-propagate", json.dumps(rows))

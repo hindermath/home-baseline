@@ -158,12 +158,12 @@ class MaintenanceContractTests(unittest.TestCase):
         specification.loader.exec_module(module)
         manifest = module.load_manifest(CONFIG / "agentic-workspace-fleet.json")
         targets = manifest["targets"]
-        self.assertEqual(len(targets), 48)
-        self.assertEqual(sum(item["kind"] == "git-repository" for item in targets), 47)
+        self.assertEqual(len(targets), 49)
+        self.assertEqual(sum(item["kind"] == "git-repository" for item in targets), 48)
         self.assertEqual(sum(item["kind"] == "collection" for item in targets), 1)
         self.assertEqual(
             sum(item["maintenanceClass"] == "canonical-fleet" for item in targets),
-            35,
+            36,
         )
         self.assertEqual(
             sum(
@@ -175,7 +175,7 @@ class MaintenanceContractTests(unittest.TestCase):
         )
         self.assertEqual(
             1 + sum(item["kind"] == "git-repository" for item in targets),
-            48,
+            49,
             "Level 0 plus manifest Git targets define the freshness barrier.",
         )
 

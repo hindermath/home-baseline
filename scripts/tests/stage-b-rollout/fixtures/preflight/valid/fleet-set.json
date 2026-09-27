@@ -4,7 +4,7 @@
   "profileRegistryPath": "scripts/config/ci-budget-profiles.json",
   "level0Self": "home-baseline",
   "collectionNodesExcluded": true,
-  "repositoryIdsHash": "53b09dd5fabc6a0bbdad7b34cde0420c951aed7ef5f3033f953e969c8744e998",
+  "repositoryIdsHash": "af397584dfa7eb9667d69e4a298d9bb75c82a518b4ab82b917eb2b71f5b06f75",
   "setRelation": "ManifestUnion=Assignments=Inventory=Plan",
   "sort": "lexicographic-stable-repository-id"
 }
