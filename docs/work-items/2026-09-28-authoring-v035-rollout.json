@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-28",
+  "preset": "intake-authoring-governance",
+  "targetVersion": "0.3.5",
+  "deliveryMode": "MergeAndSync",
+  "adminBypass": "OnlyAfterSuccessfulTechnicalChecks",
+  "sourcePullRequest": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/pull/10",
+  "releaseCommit": "f90e707444237d768623f457f85d15a707c3476e",
+  "tagArchiveSha256": "972b6106e9c0ecd95a90dc6bdb175e97a5cc5ef16261b84e56beca2928fa7ba8",
+  "releaseAssetSha256": "ed81f62f53dba7f46204ddd822b24747b55f428b9bb427cb2ea715dd56013339",
+  "releaseStatus": "PublishedStable",
+  "pilotOrder": [
+    "RiderProjects/Show-CommandTui400",
+    "RiderProjects/TinyCalc"
+  ],
+  "rolloutStatus": "PilotsDeliveredRemainingRolloutPending",
+  "catalogStatus": "NotSubmittedPilotGateSatisfied",
+  "targetCount": 37,
+  "inventoryBoundary": "Registered operational level-0/1/2 targets; installed-state and delivery preflight required per target; registry membership is not an installation proof",
+  "excludedHistoricalFixtures": [
+    "SpecKitTestProjects/intake-authoring-release-smoke-v010",
+    "SpecKitTestProjects/intake-authoring-v010",
+    "SpecKitTestProjects/intake-review-governance-v010"
+  ],
+  "targets": [
+    {
+      "path": "home-baseline-source",
+      "repository": "hindermath/home-baseline",
+      "level": 0,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "InstalledPendingCentralDelivery"
+    },
+    {
+      "path": "C64Projects",
+      "repository": "hindermath/c64-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "C64Projects/cc65",
+      "repository": "hindermath/cc65",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "CLionProjects",
+      "repository": "hindermath/clion-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "CLionProjects/tvision",
+      "repository": "hindermath/tvision",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "DataGripProjects",
+      "repository": "hindermath/datagrip-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "DataGripProjects/InventarDb",
+      "repository": "hindermath/InventarDb",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "RiderProjects",
+      "repository": "hindermath/rider-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "RiderProjects/AgentOperationsCockpit",
+      "repository": "hindermath/agent-operations-cockpit",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "RiderProjects/InventarWorkerService",
+      "repository": "hindermath/InventarWorkerService",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "RiderProjects/Show-CommandTui400",
+      "repository": "hindermath/Show-CommandTui400",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "Delivered",
+      "pullRequest": "https://github.com/hindermath/Show-CommandTui400/pull/12",
+      "mergeCommit": "250fd24adfb3a34794a05308795543ea6f239657",
+      "technicalChecks": "AllPrAndMergeChecksSucceeded",
+      "closeoutEvidence": "https://github.com/hindermath/Show-CommandTui400/pull/12#issuecomment-5871513571",
+      "localSync": "Clean0Ahead0Behind"
+    },
+    {
+      "path": "RiderProjects/TinyCalc",
+      "repository": "hindermath/TinyCalc",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "Delivered",
+      "pullRequest": "https://github.com/hindermath/TinyCalc/pull/91",
+      "headCommit": "980c783935f74e25e07809637f2adc6a080c7ede",
+      "mergeCommit": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
+      "pullRequestChecks": "21Succeeded",
+      "mergeWorkflows": "7Succeeded",
+      "closeoutEvidence": "https://github.com/hindermath/TinyCalc/pull/91#issuecomment-5876666049",
+      "localSync": "Clean0Ahead0Behind",
+      "failedWorkflow": "https://github.com/hindermath/TinyCalc/actions/runs/36433404359",
+      "resolvedLocalBlocker": "Authorized GSDB follow-up updates exactly two source bindings and version expectation; all local validation passed; no product/risk/release approval implied.",
+      "gsdbFollowUpEvidence": "https://github.com/hindermath/TinyCalc/pull/91#issuecomment-5876516002",
+      "contentCommit": "817b34e54555c96a721dbd4ad4345623eff59f05",
+      "overlayResolution": "ExistingThreeFileBackportReplacedByExactReleasedPackage"
+    },
+    {
+      "path": "RiderProjects/TinyPl0",
+      "repository": "hindermath/TinyPl0",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "RiderProjects/TuiVision",
+      "repository": "hindermath/TuiVision",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects",
+      "repository": "hindermath/secure-casetracker-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-CSharp",
+      "repository": "hindermath/securecasetracker-csharp",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Go",
+      "repository": "hindermath/securecasetracker-go",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Java",
+      "repository": "hindermath/securecasetracker-java",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Python",
+      "repository": "hindermath/securecasetracker-python",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Rust",
+      "repository": "hindermath/securecasetracker-rust",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Swift",
+      "repository": "hindermath/securecasetracker-swift",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects",
+      "repository": "hindermath/secure-orderdesk-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-CSharp",
+      "repository": "hindermath/secureorderdesk-csharp",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Go",
+      "repository": "hindermath/secureorderdesk-go",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Java",
+      "repository": "hindermath/secureorderdesk-java",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Python",
+      "repository": "hindermath/secureorderdesk-python",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Rust",
+      "repository": "hindermath/secureorderdesk-rust",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Swift",
+      "repository": "hindermath/secureorderdesk-swift",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects",
+      "repository": "hindermath/secure-serviceharvester",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-CSharp",
+      "repository": "hindermath/secureserviceharvester-csharp",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Go",
+      "repository": "hindermath/secureserviceharvester-go",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Java",
+      "repository": "hindermath/secureserviceharvester-java",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Python",
+      "repository": "hindermath/secureserviceharvester-python",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Rust",
+      "repository": "hindermath/secureserviceharvester-rust",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Swift",
+      "repository": "hindermath/secureserviceharvester-swift",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "container-images",
+      "repository": "hindermath/container-images",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "PendingPreflight"
+    },
+    {
+      "path": "container-images/absdd-image-sandbox",
+      "repository": "hindermath/absdd-image-sandbox",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPreflight"
+    }
+  ]
+}
