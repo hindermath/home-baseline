@@ -1355,6 +1355,22 @@ Git configuration writes. Documentation Impact: UpdateRequired; see the
 operating note and maintenance manpage. Delivery and image activation remain
 separate from local implementation evidence.
 
+### 2026-09-28 - Authoring-Patch v0.3.5 / Authoring patch v0.3.5
+
+Die zentrale Installation, fünf optionale Profile, Source-Lock und gemeinsame
+Guidance folgen dem veröffentlichten Authoring-Patch. Die Standard-Achtermatrix
+und übrigen Presets bleiben erhalten; beide abgeschlossenen Piloten sind im
+[Nachweis](work-items/2026-09-13-authoring-generator-patch-followup.md) verlinkt.
+Übriger Flotten-Rollout und Community-Einreichung sind getrennte Liefergrenzen.
+Kein neuer Spec-Kit-Feature-Lauf und keine Produktfreigabe. Methodik und
+Referenzen 80/100 bleiben unverändert; Git-Aktivität ist keine Arbeitszeitmessung.
+
+The central installation, five optional profiles, source lock and shared guidance
+follow the released patch. Other presets and the standard eight remain unchanged.
+Both completed pilots are linked from the evidence. Fleet rollout and catalog
+submission stay separate; no feature execution or product approval is implied.
+Statistics retain methodology and 80/100 reference assumptions, not measured time.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
