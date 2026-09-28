@@ -1,15 +1,15 @@
 {
   "schemaVersion": 2,
   "ruleVersion": 2,
-  "collectedAt": "2026-09-12T17:13:51Z",
-  "registrySha256": "f6913df2de9652a48e7b065ad9d07ddea456fe92f436a2b21aa8a6ef3c1dbb4b",
+  "collectedAt": "2026-09-28T21:43:49Z",
+  "registrySha256": "3fd0976e9b723d6c9a8bec7df4cb8af92c4c67e2f618528985f0050234f84aa1",
   "repositories": [
     {
       "name": "hindermath/home-baseline",
       "level": 0,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+      "head": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
       "features": [
         {
           "feature": "specs/001-workspace-homogeneity-guardian",
@@ -2000,7 +2000,7 @@
             "spec.md": "1252b8940e61d1a5bf3590620088aa35f6be25b0",
             "tasks.md": "3fe5ddcb65c831c7999a62f745e71efa057bbc9d"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2010,7 +2010,7 @@
             "spec.md": "c1dbbd7cdb68a19f96d824ea951b8936e41ba2bc",
             "tasks.md": "54e9de30dc3d62987c458cf341bad7244b3076f7"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2020,7 +2020,7 @@
             "spec.md": "ffcc8563d7a8d525ae093097903b82fc474917c8",
             "tasks.md": "67f87db1143c87307f9583e7b91ee90f3bdf24d8"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2030,7 +2030,7 @@
             "spec.md": "7f8a51f3b1a830de138cdf2f67873e6ee4435cea",
             "tasks.md": "2e30fd67e4618f27d8f99612ad6aec5ce3426a77"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2040,7 +2040,7 @@
             "spec.md": "eb0e3bba388fa62304b86c002a481a1f61858911",
             "tasks.md": "180d6dc886c2a669b44e604b81436854b094cad4"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2050,7 +2050,7 @@
             "spec.md": "88b541f12e86aeb06a344767101dfae9be251190",
             "tasks.md": "05d73d2b61e3d5a1978e273b74871d75769d61e2"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2061,7 +2061,7 @@
             "tasks.md": "d6be59b421400f579d2e90596d529219b38f4715",
             "autonomous-run-state.json": "d93dc52b837bc59e3859fdec4b1c979e477e854f"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2071,7 +2071,7 @@
             "spec.md": "29d73b385343f9b3aaf43777f294e3126f436819",
             "tasks.md": "370af47d8a30087c6884e2265a999324b0b1df0d"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2082,7 +2082,7 @@
             "tasks.md": "6b7572015ac23326fd1eeacbfd4b93c6902526ae",
             "autonomous-run-state.json": "a94b2d3eedf3e327e830656ecca6afedb2d14c4e"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2093,7 +2093,7 @@
             "tasks.md": "c5ad764afd76dcd52da996c35c930411bdfa5a40",
             "autonomous-run-state.json": "559548cd3c9f99a42f1c8883f9c08944dfc45f52"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2104,7 +2104,7 @@
             "tasks.md": "dfe30bae288703649079d96af361f7ba61c07da2",
             "autonomous-run-state.json": "7185497c6ad829d43b54a5d8493ff72ac9ad8b79"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2115,7 +2115,7 @@
             "tasks.md": "1a46e6e903fa6daa7e6f52cde136550e9e37238e",
             "autonomous-run-state.json": "1c07735fb405b3355617d51bc6d9567b0f647e87"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2126,7 +2126,7 @@
             "tasks.md": "351f8883117553dda6633ae1b5dfb61b2286b062",
             "autonomous-run-state.json": "fd1bb71d618200c872b67ee6454f949b2a3d3e0d"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2137,7 +2137,7 @@
             "tasks.md": "3ddf7da5a4988f8cc9243baee87b37b0af4c52e9",
             "autonomous-run-state.json": "34a14f935d33e68580af5d6e52729cdd8d260108"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2148,7 +2148,7 @@
             "tasks.md": "b43038cb0cb07008e3f880dbdb68f9b5198bd431",
             "autonomous-run-state.json": "e9de74f7c15c1718ae6ca7d2330f7c95a5406161"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2159,7 +2159,7 @@
             "tasks.md": "4955794849cfda58a1b30b24688423c9aa2a02e7",
             "autonomous-run-state.json": "43d1c5763b47c4ec52e8d6b5850bb24c869d0867"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2170,7 +2170,7 @@
             "tasks.md": "0b469b55368f17e9237d921270f6f65463461d77",
             "autonomous-run-state.json": "96c73606f2f21cd4ca2df919e65a3eb5860ae511"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2181,7 +2181,7 @@
             "tasks.md": "dbc588a2c470f5e42f886d3bb5365f85a851a3ab",
             "autonomous-run-state.json": "1e0a370383221a40392a83425204c772ad725c23"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2192,7 +2192,7 @@
             "tasks.md": "7e2b5c71deb2289c26bcf9028c58484ef71b4139",
             "autonomous-run-state.json": "3ab061a3ee0a683fa01f159b598ccdcf9bf679b1"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2203,7 +2203,7 @@
             "tasks.md": "ef26f0339a438ec1297fd303de41606c6f7736c0",
             "autonomous-run-state.json": "aef0f2b4f3fdd6f8bc2043a9dc265ac06e7f2130"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2214,7 +2214,7 @@
             "tasks.md": "bed4314abc1a93ad7edb73c5306bfe826695777b",
             "autonomous-run-state.json": "f26da4e13d6e7643e55abf933538927c82fe1f70"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2225,7 +2225,7 @@
             "tasks.md": "f478acb6586cd8e609b881bb3471c84e2d865285",
             "autonomous-run-state.json": "991348146f9d61b04a5d84abc51da5edeff4f01a"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2236,7 +2236,7 @@
             "tasks.md": "3c6a8105c484084617eedae966e91300efeb0f87",
             "autonomous-run-state.json": "67dfbe6a72260bb6b6257e91b4d50a27b24724a2"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2247,7 +2247,7 @@
             "tasks.md": "13d0aebf57cf2a097ac58d1804e01dad4b6f310b",
             "autonomous-run-state.json": "b68b75c769c10e84899f97861bf88ca62a188ab5"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2258,7 +2258,7 @@
             "tasks.md": "97ab6bbb1d8cad444816b9e5568748ac57e80a25",
             "autonomous-run-state.json": "ea58be24ea0b33a3bc6bb0a1fc8bc9c941522741"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2269,7 +2269,7 @@
             "tasks.md": "17326216cbd5bef2d49d2851178088e66030984b",
             "autonomous-run-state.json": "649a67b8e8d42c6ea813480378f91faae5132601"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2280,7 +2280,7 @@
             "tasks.md": "cf56b87d831ff183c912d01f20767fdd419a1133",
             "autonomous-run-state.json": "9591ef05eef6b5965f2eed702670379fcde41353"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2291,7 +2291,7 @@
             "tasks.md": "93c7067557a51ab396b89cdfee39c2c603dfd612",
             "autonomous-run-state.json": "7ca14009f6dc12e919333102a211b711119b2c14"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         },
         {
@@ -2302,7 +2302,7 @@
             "tasks.md": "63f3bd2362e29e75af64ead5c52af5c98ceab70f",
             "autonomous-run-state.json": "ed8b94f4e7a42ed7a56280c95b9565f29546ba4f"
           },
-          "commit": "6bb6f7ca271352e18346f6a25a14cbf7bc9f7b43",
+          "commit": "f61c5b7a5923400c7bc5ea8b547a78a25e8c348f",
           "pullRequest": null
         }
       ]
@@ -2312,7 +2312,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "master",
-      "head": "8f827644d9bde3449e59a74eb4a2d4f31a79cb42",
+      "head": "587ecaa5000bba73192b96c6947c9ac3beaabdf5",
       "features": [],
       "sources": [],
       "discovery": []
@@ -2322,7 +2322,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "master",
-      "head": "5cdf29fc85d51ccbba25bde10573b12a2e4276e6",
+      "head": "a1ddf36cae31485511488f5bda83b4eb2e0b25fc",
       "features": [],
       "sources": [],
       "discovery": []
@@ -2332,7 +2332,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "793c85d8105bfd58f17db7aff23c0c4e7d0dbf77",
+      "head": "61667a9727c3c50ebee26c4b4d763648d6928bde",
       "features": [
         {
           "feature": "specs/001-programmquellen-baseline",
@@ -2486,6 +2486,11 @@
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
           "changedEvidence": []
+        },
+        {
+          "feature": "specs/004-series-eligibility",
+          "decision": "needsReview",
+          "source": "hindermath/agent-operations-cockpit/blob/61667a9727c3c50ebee26c4b4d763648d6928bde/specs/004-series-eligibility/spec.md"
         }
       ],
       "sources": [
@@ -2560,6 +2565,12 @@
           "kind": "file",
           "sha256": "ad5da75b41b169538a7e9be844a6cd3d64682e87a6b78563d1e522e6cea434f2",
           "content": "# Aufgaben: Nachweisbarer Intake-Authoring-Vertrag / Tasks: Verifiable Intake Authoring Contract\n\n**Eingabe / Input**: Akzeptierte Artefakte unter `specs/003-authoring-contract/` und das aktuelle bestandene Plan Review R9 in `specs/003-authoring-contract/phase-results/plan-review-r9.json` (SHA-256 `46462108c2b480567928f7671ae5e579de00f8f9a2a7ec3d31b9fd1e44dcc07c`), das die Analyze-R3-Befunde `I1`, `I2` und `C1` ohne Scope-Erweiterung aufloest. / Accepted artefacts under `specs/003-authoring-contract/` and the current passing Plan Review R9 at `specs/003-authoring-contract/phase-results/plan-review-r9.json` (SHA-256 `46462108c2b480567928f7671ae5e579de00f8f9a2a7ec3d31b9fd1e44dcc07c`), which resolves Analyze R3 findings `I1`, `I2`, and `C1` without scope expansion.\n\n**Tests-first**: Verbindlich. Jede geaenderte ausfuehrbare Vertragsoberflaeche erhaelt zuerst einen lokal verantworteten erwarteten Rotlauf. / Mandatory. Every changed executable contract surface receives a locally owned expected-red test first.\n\n**Scope**: Nur META-LH-03 im bestehenden Lauf `044b77ae-85fd-46ee-97f4-61ce7a2c9c66`; kein Produktcode, kein Level 0, keine Preset-Promotion, kein Admin-Bypass und kein Folgelauf. / META-LH-03 only in the existing run; no product code, Level 0, preset promotion, admin bypass, or follow-up run.\n\n## Format: `- [ ] TNNN [P?] [US?] Beschreibung mit exaktem Pfad / Description with exact path`\n\n## Phase 1: Einrichtung und Driftgrenze / Setup and drift boundary\n\n**Zweck / Purpose**: Akzeptierte Eingaben, Branch, Run-State, Plan-Review und Positivlisten vor jeder Feature-Aenderung erneut fail-closed binden. / Rebind accepted inputs, branch, run state, Plan Review, and allowlists fail closed before any feature change.\n\n- [X] T001 Revalidate branch `003-authoring-contract`, run `044b77ae-85fd-46ee-97f4-61ce7a2c9c66`, accepted artifact hashes, the passing Plan Review R9 result and payload bound by `specs/003-authoring-contract/phase-results/plan-review-r9.json`, resolution of Analyze R3 findings `I1`, `I2`, and `C1`, unique reserved IDs, clean staging area, and the disjoint feature/statistics/lifecycle/closeout allowlists from `specs/003-authoring-contract/autonomous-run-state.json`, then record actual commands, HEAD, exit codes, and any `N/A` or `Open` disposition in `specs/003-authoring-contract/tests-first-evidence.md` / Branch, Lauf, akzeptierte Hashes, das durch die angegebene R9-Ergebnisdatei gebundene bestandene Plan Review samt Payload, die Aufloesung der Analyze-R3-Befunde `I1`, `I2` und `C1`, eindeutige reservierte IDs, leere Stage und getrennte Positivlisten erneut pruefen und reale Evidence festhalten.\n\n---\n\n## Phase 2: Fundament / Foundational\n\n**Zweck / Purpose**: Den bereits vorhandenen Reparatur-Checkpoint kausal binden und danach die vollstaendige unveraenderte Baseline vor dem ersten erwarteten Rotlauf ausfuehren. / Causally bind the existing repair checkpoint, then run the complete unchanged baseline before the first expected-red test.\n\n- [X] T002 Create and validate `specs/003-authoring-contract/repair-checkpoint-manifest.json` with repair commit `ee530952acc8093c9afd8e01b97825a0a1c9ac72`, tree `ec9d73fd5c497daf76acf120d2c906a0b6fa993c`, count 48, the exact ordered path/raw-SHA-256 table below, and proof from `git merge-base --is-ancestor ee530952acc8093c9afd8e01b97825a0a1c9ac72 <feature-delivery-head>`; state explicitly that the manifest is created later and was not present in or expected inside the checkpoint commit / Manifest mit Commit, Tree, exakt 48 Pfad-Hashes und Ancestry erstellen und ohne Selbstreferenz validieren.\n- [X] T003 Run the repaired existing baseline exactly once before T004 using `python3 -B specs/003-authoring-contract/contracts/test_validate_current_evidence_binding.py`, `bash specs/003-authoring-contract/contracts/validate-current-evidence-binding.sh --repo . current-evidence`, `pwsh -NoProfile -File specs/003-authoring-contract/contracts/validate-current-evidence-binding.ps1 -Repo . -Mode current-evidence`, `python3 -B specs/001-programmquellen-baseline/contracts/test_validate_meta_lh01.py`, `python3 -B specs/001-programmquellen-baseline/contracts/validate_meta_lh01.py --repo . global-ready`, `pwsh -NoProfile -File .specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1`, `pwsh -NoProfile -File .specify/presets/intake-authoring-governance/tests/test-intake-authoring-lifecycle.ps1`, `pwsh -NoProfile -File .specify/presets/intake-authoring-governance/tests/test-intake-governance-config.ps1`, `pwsh -NoProfile -File scripts/invoke-psscriptanalyzer.ps1 -RepositoryRoot .`, `gitleaks dir . --config .gitleaks.toml --no-banner --no-color --redact=100`, and `bash scripts/check-homogeneity.sh --dry-run --no-patch .`; defer both direct governance-config entrypoints to T027 because T016-T025 deliberately make their current-evidence/profile resolution green, accept at this pre-implementation boundary only the single expected `docs/project-statistics.md` drift scheduled for T065, append checkpoint HEAD, every command and immediate exit, result, and proportional-reuse boundary to `specs/003-authoring-contract/tests-first-evidence.md`, and block T004 on any other tool, test, or gate failure / Reparierte bestehende Baseline genau einmal vor dem ersten Rotlauf ausfuehren; die beiden direkten Konfigurationseinstiege bis T027 verschieben und hier ausschliesslich den fuer T065 vorgesehenen Statistikdrift akzeptieren.\n\n### Verbindliche 48-Pfade-Checkpoint-Bindung / Binding 48-path checkpoint inventory\n\n| # | Roh-SHA-256 / Raw SHA-256 | Pfad / Path |\n|---:|---|---|\n| 1 | `ca159a03a91a19c3f2812a1a638604ca29dab816a20a9a67b7c5d06b3281f5eb` | `requirements/intakes/active/Lastenheft_META-LH-03-Authoring-Contract.md` |\n| 2 | `72053e00c79def3dd506e84ce1c0a1a6ba3f80cb914e7051c94224b8ca4b31a9` | `specs/intake-authoring-receipts/META-LH-02-Portfolio-Ownership.json` |\n| 3 | `85ffcea67b0723241606040c5d2b9eb586a51d8d13005b676ceb6eeab2caa745` | `specs/intake-authoring-receipts/META-LH-03-Authoring-Contract.json` |\n| 4 | `db8506157dd5b8116deaed5a4f8855aaeff29a2a47bddb14324c5250e24741ee` | `specs/intake-authoring-receipts/META-LH-05-Erste-Welle.json` |\n| 5 | `b20f963fc7b60f78a5f7f7e0accfc047d2310a0832e73b3f19935bc699803144` | `specs/intake-authoring-receipts/RAW-03-State-Truthfulness.json` |\n| 6 | `9fc31a833421915b68b85c7dd499dc5b97a81152a8cf668599bb243ef3e17503` | `specs/intake-authoring-archive/d0a6ef89-8a1f-4957-aa6f-be82d3cdbf3b/53564be1-65eb-47e8-9786-6c1fb19fd844/Lastenheft_META-LH-02-Portfolio-Ownership.md` |\n| 7 | `4c468df900e62c7d1c7927c86fda894afdbb4a8c97f092c215311b08dc209876` | `specs/intake-authoring-archive/d0a6ef89-8a1f-4957-aa6f-be82d3cdbf3b/53564be1-65eb-47e8-9786-6c1fb19fd844/META-LH-02-Portfolio-Ownership.json` |\n| 8 | `f6d57cacc954b4899fc5bd8ddcc235570ec20470094feec506e1b8e9ea07e3e9` | `specs/intake-authoring-archive/83b9481e-bc4c-4e3d-b67a-1c6c8d05a681/4a0e33c5-6348-4778-823a-e4a093b75456/Lastenheft_META-LH-03-Authoring-Contract.md` |\n| 9 | `6acc207f5533eb9fb92613f23537c669605eef475eb5bb3a911806f6c28e1aeb` | `specs/intake-authoring-archive/83b9481e-bc4c-4e3d-b67a-1c6c8d05a681/4a0e33c5-6348-4778-823a-e4a093b75456/META-LH-03-Authoring-Contract.json` |\n| 10 | `cb255e60b49237f8cc655486b6529536b831b5b942f89f838678386bc31f930f` | `specs/intake-authoring-archive/d672cfa4-13f0-43cb-84ba-27d191710342/238e0c7e-a300-4573-b91d-38385c155fed/Lastenheft_META-LH-05-Erste-Welle.md` |\n| 11 | `aec1c2b2878f6267814e8bc7b6b8f256a5ff093fe62d976de1aa0a76756adf06` | `specs/intake-authoring-archive/d672cfa4-13f0-43cb-84ba-27d191710342/238e0c7e-a300-4573-b91d-38385c155fed/META-LH-05-Erste-Welle.json` |\n| 12 | `31d31e82ab1857182d1201192438e5c91abfc3190ba47a2f68b9543034ab0cfd` | `specs/intake-authoring-archive/af8d8b59-d146-44b0-8bf5-a63966865d4a/89293949-6174-4549-a33d-6cd6eeb71df3/Lastenheft_RAW-03-State-Truthfulness.md` |\n| 13 | `ec7869bf6c702e18367b39dba6c1af08f27590722ca387b8f55bcb14eea4fe2b` | `specs/intake-authoring-archive/af8d8b59-d146-44b0-8bf5-a63966865d4a/89293949-6174-4549-a33d-6cd6eeb71df3/RAW-03-State-Truthfulness.json` |\n| 14 | `b2b89cc0f05e86d938aa387a8da4a3dc22b78de0af7f416037b08dd48f3c8e42` | `specs/intake-authoring-operations/959e832f-be87-4f77-a0a9-478220708a6d/operation.json` |\n| 15 | `72053e00c79def3dd506e84ce1c0a1a6ba3f80cb914e7051c94224b8ca4b31a9` | `specs/intake-authoring-operations/959e832f-be87-4f77-a0a9-478220708a6d/staging/META-LH-02-Portfolio-Ownership.json` |\n| 16 | `85ffcea67b0723241606040c5d2b9eb586a51d8d13005b676ceb6eeab2caa745` | `specs/intake-authoring-operations/959e832f-be87-4f77-a0a9-478220708a6d/staging/META-LH-03-Authoring-Contract.json` |\n| 17 | `db8506157dd5b8116deaed5a4f8855aaeff29a2a47bddb14324c5250e24741ee` | `specs/intake-authoring-operations/959e832f-be87-4f77-a0a9-478220708a6d/staging/META-LH-05-Erste-Welle.json` |\n| 18 | `b20f963fc7b60f78a5f7f7e0accfc047d2310a0832e73b3f19935bc699803144` | `specs/intake-authoring-operations/959e832f-be87-4f77-a0a9-478220708a6d/staging/RAW-03-State-Truthfulness.json` |\n| 19 | `4d3c16e0228984503b44486a93d8dbee03bbff5a5aaab32da4ef250f605bec44` | `specs/intake-review-requests/meta-lh-02-portfolio-ownership-2026-09-05-r1.json` |\n| 20 | `8659641f0675100aecad5ce8ea4c27bc9bd6810db8d34fa9fe6a546fdf188817` | `specs/intake-review-results/meta-lh-02-portfolio-ownership-2026-09-05-r1.json` |\n| 21 | `324dcc836127c0ea3a9e3d9ef8a51a4e6f7b32d4531536448fc7cd09ec6643b6` | `docs/reviews/meta-lh-02-portfolio-ownership-intake-review-2026-09-05-r1.md` |\n| 22 | `8675e679f55e089c8d4081fd7d7565e351c6fa4ab3408c27b9974f872a8ed7ea` | `specs/intake-review-requests/meta-lh-03-authoring-contract-2026-09-05-r1.json` |\n| 23 | `2fe319d7c88ce5790f6ff6ba9a7d693936a7b88c787ff7dbe7588b5df9a35679` | `specs/intake-review-results/meta-lh-03-authoring-contract-2026-09-05-r1.json` |\n| 24 | `0947e027578bb135ac7de39e3b0ff45d2f76242f6037616c40a9c866b96dd5a9` | `docs/reviews/meta-lh-03-authoring-contract-intake-review-2026-09-05-r1.md` |\n| 25 | `49ad74cfbe10223ceeab6dc6ffa3b533ad0f76485379e24f448bb6abfed3b36d` | `specs/intake-review-requests/meta-lh-05-erste-welle-2026-09-05-r1.json` |\n| 26 | `c6250b2a208713d2fd821806175b11d4fc8d0a719fe91c700d0235e8943f4c8d` | `specs/intake-review-results/meta-lh-05-erste-welle-2026-09-05-r1.json` |\n| 27 | `764ef4d316f98722109c3bb66836017f273637cbfca3af6cd5fad41286269b78` | `docs/reviews/meta-lh-05-erste-welle-intake-review-2026-09-05-r1.md` |\n| 28 | `9df4cf279aaa6cdaf47dc35956aaf77f95824582d3b29e93ea9ef69eb1cb8224` | `specs/intake-review-requests/raw-03-state-truthfulness-2026-09-05-r1.json` |\n| 29 | `fc799790cc3622f78b579f1a743805095a64c884d1125fc4c23dafb55e747f83` | `specs/intake-review-results/raw-03-state-truthfulness-2026-09-05-r1.json` |\n| 30 | `ae33c515d0a4fd4af214da60b126a6e5713d4946cb6b242b94ebdd0827088fb1` | `docs/reviews/raw-03-state-truthfulness-intake-review-2026-09-05-r1.md` |\n| 31 | `1f90ea30fc086fab0186aaf2c7f005c3ae94c11f8a290555bccdbff594a25b6b` | `docs/aeps/findings-ledger.md` |\n| 32 | `e78a181a9a0d0207ec6180a208ac2f3dae6d00976d9863ad8f45b4f878efd3ea` | `docs/aeps/receipts/2026-09-05-meta-lh03-binding-renewal.md` |\n| 33 | `7c9b58aec4953c7a741938957c8447337e3dbf6c87de44e78ec47d1c5ba96bac` | `docs/aeps/receipts/2026-09-05-meta-lh03-binding-bridge.md` |\n| 34 | `eb5007245c79ac873db97a95bdf07685054c757e3bb2088ff60d94386a58dc70` | `specs/001-programmquellen-baseline/contracts/validate_meta_lh01.py` |\n| 35 | `f80c57dcfe12a3f8bf37510a7d35d9b77229c9826ac7fc96071081ba2221650d` | `specs/001-programmquellen-baseline/contracts/test_validate_meta_lh01.py` |\n| 36 | `dbbc8a96cec3104e9e32cbaa9cd8d75c453b7fd6fb9b196d6ce1da8233c692e4` | `docs/man/validate-current-evidence-binding.1` |\n| 37 | `59179023d1b9d11f1ce18874ee8a2db8150127e305f718679fed9e564b16a463` | `specs/003-authoring-contract/binding-approval.md` |\n| 38 | `908f98c22e3e0c860b4e1c31f70811d81de2c043eaac9a698ae621dc98db1e64` | `specs/003-authoring-contract/blocking-scope-decision.md` |\n| 39 | `e94db752385e92a7cb0a0d0c4341638ce307858edbdf0e0c1346d7a31482bf94` | `specs/003-authoring-contract/binding-repair-validation.json` |\n| 40 | `41d271b770622305338f316e059e70ccf0a5f16f086a18295bb2c2a0af7a0b5c` | `specs/003-authoring-contract/current-evidence-binding.json` |\n| 41 | `1e1edfe03a0ca869d6b420b40956897ab7b3a670524398f8254f013a65a9eadf` | `specs/003-authoring-contract/contracts/validate_current_evidence_binding.py` |\n| 42 | `4c6c462189ff3870571e863867698b44dc4a234579ca475f97d2117b72123fcb` | `specs/003-authoring-contract/contracts/test_validate_current_evidence_binding.py` |\n| 43 | `1924301000cd18690fb63e2f273afb35f84e164adaf793062b8f0213f9f67010` | `specs/003-authoring-contract/contracts/validate-current-evidence-binding.sh` |\n| 44 | `c9780fb133d477769296ab8053da3245ee9ce575190e8bf289349e1b9720ad46` | `specs/003-authoring-contract/contracts/validate-current-evidence-binding.ps1` |\n| 45 | `2199231cfe05a6557bc38a9056539c6a594e268459bc6e3ac9e21dcb85cd6369` | `specs/003-authoring-contract/phase-results/specify-original.json` |\n| 46 | `80eb52ceb3bad0a289e7d7e893a39af40b3822af06d8ec8a95add153e4e4d97b` | `specs/003-authoring-contract/phase-results/specify-spec.md` |\n| 47 | `489982adb7546c51df03e30c7a89cfe71a052d6b182e6ce21fdb655492e2fe33` | `specs/003-authoring-contract/phase-results/pre-binding-run-state.json` |\n| 48 | `0ff489e3e8c32856fa68ef6565a8dcc65e3e5256c08afa56fdb8b0f654d8a594` | `specs/003-authoring-contract/phase-results/specify.json` |\n\n**Checkpoint / Gate**: T001 bis T003 sind seriell. T003 muss gruen sein, bevor T004 absichtlich rot werden darf. Der historische Checker und seine 23 Tests werden danach nicht gegen das geaenderte R2-Blatt wiederholt. / T001 through T003 are serial. T003 must pass before T004 may intentionally fail. The historical checker and its 23 tests are not rerun against the changed R2 leaf.\n\n---\n\n## Phase 3: User Story 1 – Vollstaendigen Authoring-Vertrag nutzen / Use a complete authoring contract (P1) 🎯 MVP\n\n**Ziel / Goal**: Die fuenf kanonischen Artefakte und alle zwingenden Konsumenten bilden einen vollstaendigen, maschinen- und menschenlesbaren Authoring-Vertrag. / The five canonical artefacts and all mandatory consumers form a complete machine- and human-readable authoring contract.\n\n**Unabhaengige Pruefung / Independent test**: Ein gueltiger Einzel-Intake besteht den additiven Validator und beide Plattformadapter; alle Pflichtfelder, geordneten Quellen, Normalhashes und genau eine naechste Aktion sind gebunden. / One valid single intake passes the additive validator and both platform adapters with all mandatory bindings.\n\n### Tests zuerst / Tests first\n\n- [X] T004 [US1] Add the smallest positive frozen-checkpoint/one-leaf-replacement fixture and the negative second-changed-leaf fixture to `specs/003-authoring-contract/contracts/test_validate_authoring_contract.py`, execute it before the implementation file exists or supports the cases, and record the locally owned expected-red result in `specs/003-authoring-contract/tests-first-evidence.md` / Kleinstes Positiv-/Negativpaar zuerst rot belegen.\n- [X] T005 [US1] Implement only the smallest green ancestry, checkpoint commit/tree/path-hash, one changed META-LH-03 leaf, 13 unchanged leaves, and unchanged Series-bridge slice in `specs/003-authoring-contract/contracts/validate_authoring_contract.py`, then make T004 green without broadening the contract / Kleinste Primary-Bridge gruen implementieren.\n- [X] T006 [US1] Extend adapter contract tests first in `specs/003-authoring-contract/contracts/test_validate_authoring_contract.py` for identical Bash/PowerShell success, validation-failure, usage-failure, UTF-8/BOM/LF/CRLF normalization, `--repo`/`-Repo`, and `--json`/`-Json` behavior, then capture expected red before adapter edits in `specs/003-authoring-contract/tests-first-evidence.md` / Adapterparitaet zuerst rot testen.\n- [X] T007 [US1] Implement the shell-safe Bash adapter with `set -euo pipefail`, no shell-evaluated source data, stable exit classes, and bilingual accessible output in `specs/003-authoring-contract/contracts/validate-authoring-contract.sh` / Bash-Adapter fail-closed implementieren.\n- [X] T008 [US1] Implement the `[CmdletBinding()]` PowerShell adapter with `Set-StrictMode -Version Latest`, stable exit classes, bilingual comment-based help, `-Repo`, and `-Json` parity in `specs/003-authoring-contract/contracts/validate-authoring-contract.ps1` / PowerShell-Adapter fail-closed und hilfefaehig implementieren.\n- [X] T009 [US1] Document the additive validator’s exact Bash and PowerShell interfaces, exit classes, JSON fields, examples, and no-authority boundary in the DE-first/EN-second Unix manual `docs/man/validate-authoring-contract.1` / Unix-Manpage fuer den additiven Validator erstellen.\n- [X] T010 [US1] Add expected-red tests before implementation in `specs/003-authoring-contract/contracts/test_validate_gate_evidence_invariants.py` for exactly the two positive fixtures `specs/003-authoring-contract/contracts/fixtures/gate-evidence/valid-supplemental-primary-reference.json` and `specs/003-authoring-contract/contracts/fixtures/gate-evidence/valid-postmerge-premerge-binding.json` plus the four isolated negative fixtures `specs/003-authoring-contract/contracts/fixtures/gate-evidence/missing-primary-reference.json`, `specs/003-authoring-contract/contracts/fixtures/gate-evidence/wrong-primary-reference.json`, `specs/003-authoring-contract/contracts/fixtures/gate-evidence/wrong-premerge-path.json`, and `specs/003-authoring-contract/contracts/fixtures/gate-evidence/wrong-premerge-hash.json` / Gate-Evidence-Invarianten mit exakt sechs Fixture-Pfaden zuerst rot testen.\n- [X] T011 [US1] Implement Supplemental-to-unique-Primary references and exact configured PostMerge `acceptedPreMergePath`/normalized-hash checks in `specs/003-authoring-contract/contracts/validate_gate_evidence_invariants.py`, keeping the installed Evidence Core unchanged, then make T010 green / Feature-lokalen Pre-Validator implementieren.\n- [X] T012 [US1] Extend completeness and ordering tests before domain edits in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1` for every FR-001/FR-002 field, one next action, immutable active-target protection, source-as-data handling, and schema 2.0, and record the expected red in `specs/003-authoring-contract/tests-first-evidence.md` / Vollstaendigkeitsvertrag zuerst rot testen.\n\n### Kanonische Artefakte und Konsumenten / Canonical artefacts and consumers\n\n- [X] T013 [US1] Update canonical artefact 1 with stable ID, DE/EN title, purpose, states, audience/prerequisites, traceability, scope/non-goals, boundaries, atomic FR/NFR, dependencies, decisions, risks, expected artefacts, measurable acceptance, positive/negative evidence, and non-authority in `.specify/presets/intake-authoring-governance/templates/intake-template.md` / Intake-Kern vollstaendig machen.\n- [X] T014 [US1] Update canonical artefact 2 to bind ordered sources, normalized source/target hashes, stable intake/operation IDs, profile, decisions, authority, prompt state, lineage, optional series membership, and exactly one next action in `.specify/presets/intake-authoring-governance/templates/intake-authoring-receipt-template.json` / Schema-2.0-Receipt vervollstaendigen.\n- [X] T015 [US1] Update canonical artefact 3 with portable roots, `de-DE`, audience, naming, inventory, archive, quality-gate, and AOC resolution rules without weakening the portable core in `.specify/presets/intake-authoring-governance/templates/project-profile-template.md` / Repositoryprofil vervollstaendigen.\n- [X] T016 [US1] Add expected-red profile/config tests first for missing, contradictory, wrong-root, wrong-ID, wrong-locale, and schema-version cases in `.specify/presets/intake-authoring-governance/tests/test-intake-governance-config.ps1`, recording the immediate result in `specs/003-authoring-contract/tests-first-evidence.md` / Governance-Konfigurationsvertrag zuerst rot testen.\n- [X] T017 [US1] Update canonical artefact 4 with schema version `2.0`, resolved profile path/ID, `de-DE`, exact allowed roots, inventory, and no implicit authority in `requirements/intake-governance.json` / AOC-Sammlungsvertrag aktualisieren.\n- [X] T018 [US1] Update canonical artefact 5 with actual field/package evidence only, forbidding prerecorded future success and requiring `N/A` rationale or `Open` owner/follow-up/re-evaluation trigger in `.specify/presets/intake-authoring-governance/templates/field-validation-summary.md` / Feldnachweis auditierbar machen.\n- [X] T019 [US1] Add expected-red receipt-interface and fail-closed aggregate cases first in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1` for Bash/PowerShell parity, normalization, secret/private-path rejection, and exactly one next action, then record them in `specs/003-authoring-contract/tests-first-evidence.md` / Receipt-Validatoraenderungen zuerst rot testen.\n- [X] T020 [US1] Update the Bash receipt validator without evaluating source content and with stable parity exit classes in `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.sh` / Bash-Receipt-Validator sicher erweitern.\n- [X] T021 [US1] Update the PowerShell receipt validator while preserving the approved `Test-IntakeAuthoringReceipt` cmdlet, `[CmdletBinding()]`, DE-first/EN-second comment help, `-NoProfile` usage, and Bash-equivalent exit classes in `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.ps1` / Genehmigten Cmdlet-/Hilfevertrag erhalten.\n- [X] T022 [US1] Update exact syntax, options, exit classes, bilingual examples, security boundary, and `Test-IntakeAuthoringReceipt` parity in `.specify/presets/intake-authoring-governance/docs/man/validate-intake-authoring-receipt.1` / Unix-Manpage des Receipt-Validators synchronisieren.\n- [X] T023 [US1] Implement the tested schema-2.0 profile/config rules in `.specify/presets/intake-authoring-governance/scripts/validate-intake-governance-config.py`, preserving strict UTF-8 normalization, path boundaries, and stable machine-readable errors / Python-Konfigurationskern implementieren.\n- [X] T024 [US1] Update the shell-safe Bash governance-config entrypoint and JSON parity in `.specify/presets/intake-authoring-governance/scripts/validate-intake-governance-config.sh` / Bash-Konfigurationseinstieg synchronisieren.\n- [X] T025 [US1] Update the strict PowerShell governance-config entrypoint, bilingual comment help, approved common-parameter behavior, `-Config`, `-Repo`, and `-Json` parity in `.specify/presets/intake-authoring-governance/scripts/validate-intake-governance-config.ps1` / PowerShell-Konfigurationseinstieg synchronisieren.\n- [X] T026 [US1] Update the DE-first/EN-second Unix interface, examples, exit classes, and fail-closed profile rules in `.specify/presets/intake-authoring-governance/docs/man/validate-intake-governance-config.1` / Governance-Konfigurations-Manpage synchronisieren.\n- [X] T027 [US1] Run the now-affected canonical Authoring validator, lifecycle, and governance-config suites once, both direct governance-config entrypoints, and the additive validator core/adapters; append exact commands, immediate exits, and the independent US1 outcome to `specs/003-authoring-contract/tests-first-evidence.md` without rerunning unchanged historical reviews / Betroffene US1-Vertraege gruen und unabhaengig nachweisen.\n\n**MVP-Gate**: T004 bis T027 muessen gruen sein. US1 ist danach eigenstaendig demonstrierbar; keine Update-Publikation oder Remote-Aktion ist Teil des MVP. / T004 through T027 must pass. US1 is independently demonstrable; update publication and remote delivery are outside the MVP.\n\n---\n\n## Phase 4: User Story 2 – Bei offenen Entscheidungen sicher stoppen / Stop safely on open decisions (P2)\n\n**Ziel / Goal**: Offene Materialentscheidungen ergeben stabile Decision-IDs, `NeedsClarification` und zwei nicht ausfuehrbare `BLOCKED - DO NOT RUN`-Bloecke. / Open material decisions yield stable decision IDs, `NeedsClarification`, and two non-executable blocked prompt blocks.\n\n**Unabhaengige Pruefung / Independent test**: Ein gebundener offener Fall erzeugt keine ausfuehrbare Specify-/Autonomous-Invocation und leitet aus historischer Delivery-Evidence keine aktuelle Authority ab. / A bound open case produces no executable invocation and no authority inference from historical delivery evidence.\n\n- [X] T028 [US2] Add expected-red fixtures first for stable decision IDs, `NeedsClarification`, both `BLOCKED - DO NOT RUN` markers, zero executable prompt invocations, and rejection of historic authority in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1`, then record the red result in `specs/003-authoring-contract/tests-first-evidence.md` / Stop-Vertrag zuerst rot testen.\n- [X] T029 [US2] Implement the tested open-decision and non-executable dual-prompt rules in `.specify/presets/intake-authoring-governance/templates/intake-template.md` and `.specify/presets/intake-authoring-governance/templates/intake-authoring-receipt-template.json` without adding an operation status outside the installed five-value vocabulary / Offene Entscheidungen sicher modellieren.\n- [X] T030 [US2] Enforce blocked-prompt, implicit-remote-authority, secret, private-URL, traversal, invalid-root, partial-publication, and source-instruction-as-data rejection in `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.sh` and `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-receipt.ps1` / Negativfaelle auf beiden Oberflaechen fail-closed machen.\n- [X] T031 [US2] Run the US2 positive/negative fixtures through both receipt entrypoints, prove identical exit classes and zero downstream starts, and append the independent result plus any `N/A` rationale or `Open` owner/follow-up/re-evaluation trigger to `specs/003-authoring-contract/tests-first-evidence.md` / US2 unabhaengig pruefen.\n\n---\n\n## Phase 5: User Story 3 – Ready-Prompts exakt und isoliert uebergeben / Hand off exact and isolated Ready prompts (P3)\n\n**Ziel / Goal**: ReadyForReview bindet zwei sichtbare, getrennte Prompts an dasselbe Ziel und dieselbe Authority-Grenze, ohne einen Befehl zu starten. / ReadyForReview binds two visible separate prompts to the same target and authority boundary without starting a command.\n\n**Unabhaengige Pruefung / Independent test**: Intake, Receipt und beide Prompt-Bloecke nennen exakt dasselbe repository-relative META-LH-03-Ziel; die eine genehmigte Update-Operation ist vollstaendig und nur `Completed` gilt als Erfolg. / Intake, receipt, and both prompt blocks name the exact same target; the one approved update operation is complete and only Completed succeeds.\n\n- [X] T032 [US3] Add expected-red ReadyForReview target/authority parity, no-auto-execution, and create-over-active-target cases first in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1`, then record the red result in `specs/003-authoring-contract/tests-first-evidence.md` / Ready-Handoff zuerst rot testen.\n- [X] T033 [US3] Implement exact Specify/Autonomous prompt target and authority parity with visible non-authority text in `.specify/presets/intake-authoring-governance/templates/intake-template.md` and `.specify/presets/intake-authoring-governance/templates/intake-authoring-receipt-template.json` / Ready-Prompts exakt binden.\n- [X] T034 [US3] Add expected-red Update lifecycle cases first for only `Proposed`, `Approved`, `Applying`, `Completed`, and `Failed`; `Completed` as sole success; `Failed` repair fields; equal four-path target sets; full target/receipt supersession; unique reserved IDs; and incomplete-operation rejection in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-lifecycle.ps1` / Vollstaendige Update-Operation zuerst rot testen.\n- [X] T035 [US3] Create the one authorized Update proposal with operation ID `986c1d6c-d485-460b-8d8d-7cf5816a2c36`, strict `proposalNormalizedSha256`, current person/UTC/authority approval, and the accepted source order in `specs/intake-authoring-operations/986c1d6c-d485-460b-8d8d-7cf5816a2c36/proposal.json` / Exakt einen genehmigten Update-Vorschlag erstellen.\n- [X] T036 [US3] Copy the R1 target and receipt byte-identically to `specs/intake-authoring-archive/83b9481e-bc4c-4e3d-b67a-1c6c8d05a681/7cc121ca-9c7a-4750-85e9-9cf2ebf2aa71/Lastenheft_META-LH-03-Authoring-Contract.md` and `specs/intake-authoring-archive/83b9481e-bc4c-4e3d-b67a-1c6c8d05a681/7cc121ca-9c7a-4750-85e9-9cf2ebf2aa71/META-LH-03-Authoring-Contract.json`, verifying predecessor raw hashes and target normalized hash before mutation / Beide Vorgaengerarchive byte-identisch anlegen.\n- [X] T037 [US3] Build the isolated R2 candidates with receipt ID `f41328cd-b301-4533-89dc-02aab758ab1f`, updated five-source hashes, lineage, prompt state, and exactly one next action in `specs/intake-authoring-operations/986c1d6c-d485-460b-8d8d-7cf5816a2c36/staging/Lastenheft_META-LH-03-Authoring-Contract.md` and `specs/intake-authoring-operations/986c1d6c-d485-460b-8d8d-7cf5816a2c36/staging/META-LH-03-Authoring-Contract.json` / R2-Ziel und Receipt isoliert erzeugen.\n- [X] T038 [US3] Create the journal from the unchanged installed template `.specify/presets/intake-authoring-governance/templates/intake-authoring-operation-template.json` with complete preflight, proposal/approval, source order, full `supersedes`, identical intended/validated/published four-path sets, and only the accepted five statuses in `specs/intake-authoring-operations/986c1d6c-d485-460b-8d8d-7cf5816a2c36/operation.json`; stop as `Failed` with all repair fields on any error / Operationsjournal fail-closed fuehren.\n- [X] T039 [US3] Validate the staged target, staged receipt, proposal, and nonterminal journal before publication with `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-artifact.sh` and `.specify/presets/intake-authoring-governance/scripts/validate-intake-authoring-artifact.ps1`, then append both exact commands and immediate exits to `specs/003-authoring-contract/tests-first-evidence.md` / Beide installierten Artefaktvalidatoren vor Publikation ausfuehren.\n- [X] T040 [US3] Atomically publish exactly the two archives, active target, and active receipt; set `Completed` only after intended, validated, and published sets are identical and both validators pass in `specs/intake-authoring-operations/986c1d6c-d485-460b-8d8d-7cf5816a2c36/operation.json` / Genau eine META-LH-03-Update-Publikation abschliessen.\n- [X] T041 [US3] Create the R2 request, result, and DE-first/EN-second report with reserved review ID `b8d49ed7-d05f-40b0-9e18-1aa1b689f1cf`, explicit hash-bound R1 request/result/report supersession, Completed-operation binding, and a fresh fully validated `Ready` decision in `specs/intake-review-requests/meta-lh-03-authoring-contract-2026-09-05-r2.json`, `specs/intake-review-results/meta-lh-03-authoring-contract-2026-09-05-r2.json`, and `docs/reviews/meta-lh-03-authoring-contract-intake-review-2026-09-05-r2.md` / R2-Single-Review vollstaendig erneuern.\n- [X] T042 [US3] Replace only the current META-LH-03 leaf with the validated R2 target/receipt/review binding, prove the other 13 leaves byte/hash-identical and preserve the completed Series bridge in `specs/003-authoring-contract/current-evidence-binding.json` / Genau ein aktuelles Leaf erneuern.\n- [X] T043 [US3] Extend tests first and then the already green Primary validator for exact R1-to-R2 target/receipt/review supersession, Completed operation, one changed leaf, 13 unchanged leaves, unchanged Series bridge, wrong IDs, proposal drift, target-set mismatch, archive drift, and incomplete/failed journal handling in `specs/003-authoring-contract/contracts/test_validate_authoring_contract.py` and `specs/003-authoring-contract/contracts/validate_authoring_contract.py` / Primary-Bridge fuer die vollstaendige R2-Transaktion verbreitern.\n- [X] T044 [US3] Run the complete R2 operation and Ready handoff independently through both installed artifact validators, both receipt adapters, and the additive validator, then append target/path/hash/status/exit evidence and proof of zero automatic downstream actions to `specs/003-authoring-contract/tests-first-evidence.md` / US3 unabhaengig pruefen.\n\n---\n\n## Phase 6: User Story 4 – Plattformgleiche und sichere Evidence pruefen / Verify platform-equivalent and safe evidence (P4)\n\n**Ziel / Goal**: Reale Bash-/PowerShell-Ausfuehrung, Global Ready, CI und Audit-Evidence liefern auf allen drei Runnern dieselbe fail-closed Aussage. / Real Bash/PowerShell execution, Global Ready, CI, and audit evidence provide the same fail-closed result on all three runners.\n\n**Unabhaengige Pruefung / Independent test**: Drei Fixture-Suiten, direkter META-LH-03-Fall, 14/14 Receipts, Global Ready und beide Negativ-Harness-Faelle bestehen mit exakten HEAD-/Befehls-/Exitcode-Nachweisen auf Ubuntu, macOS und Windows. / Three suites, direct META-LH-03, 14/14 receipts, Global Ready, and both negative harnesses pass with exact evidence on all platforms.\n\n### Global Ready und Workflow tests-first / Global Ready and workflow tests first\n\n- [X] T045 [US4] Add expected-red dispatcher selection cases first for frozen historical binding, validated META-LH-03 R2, missing/unknown/mixed/ambiguous metadata, wrong output, another changed leaf, Series drift, and exact final HEAD in `specs/001-programmquellen-baseline/contracts/test_validate_meta_lh01.py`, then record the red result in `specs/003-authoring-contract/tests-first-evidence.md` / Realen Global-Ready-Dispatcher zuerst rot testen.\n- [X] T046 [US4] Implement fail-closed historical-versus-current bridge selection and dispatch in `specs/001-programmquellen-baseline/contracts/validate_meta_lh01.py` without weakening existing Global Ready receipt/review hash gates / Global-Ready-Dispatcher sicher erweitern.\n- [X] T047 [US4] Add expected-red workflow contract assertions to `specs/001-programmquellen-baseline/contracts/test_validate_meta_lh01.py` for exact PR-head checkout, runner/HEAD/version logging, immediate exit capture, Windows `AOC_GIT_BASH_EXE` propagation, WSL rejection, and all focused commands before editing `.github/workflows/powershell-analysis.yml` / Workflow-Integration zuerst rot testen.\n- [X] T048 [US4] Integrate the additive validator, Gate Evidence pre-validator tests, real Global Ready dispatcher, direct META-LH-03, three suites, both aggregate negative harnesses, and exact commands into the existing `ubuntu-22.04`, `macos-14`, and `windows-2022` jobs in `.github/workflows/powershell-analysis.yml`, using Git-for-Windows Bash rather than WSL / Betroffenen Workflow auf allen drei Runnern integrieren.\n- [X] T049 [US4] Add and run the Bash 14-receipt aggregate negative harness in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1`, proving `jq` failures propagate, all 14 immediate exit codes are logged, the first failure survives later passes, target IDs are unique, and the final status is nonzero / Bash-14er-Schleife fail-closed pruefen.\n- [X] T050 [US4] Run all 14 unique current receipts through the PowerShell receipt entrypoint and record every immediate exit plus `14/14` result in `specs/003-authoring-contract/cross-platform-parity-evidence.md` / PowerShell-14er-Inventar vollstaendig pruefen.\n- [X] T051 [US4] Add and run the isolated tracked-PowerShell-finding negative harness through only `scripts/invoke-psscriptanalyzer.ps1`, verifying registry-pinned PSScriptAnalyzer `1.25.0` and nonzero aggregate status in `.specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1` / Statische Analyse fail-closed pruefen.\n\n### Zielgerichtete lokale und reale Validierung / Targeted local and real validation\n\n- [X] T052 [US4] Run Bash and PowerShell documentation-impact fixture suites plus the relevant Python maintenance regression, recording commands and immediate exits in `specs/003-authoring-contract/autonomous-run-evidence.md` from `scripts/test-documentation-impact.sh`, `scripts/test-documentation-impact.ps1`, and `scripts/tests/test_maintenance_contracts.py` / Dokumentations-Impact-Fixtures und relevante Python-Wartungsregression pruefen.\n- [X] T053 [US4] Run targeted Bash syntax, Python AST/compile checks, strict JSON duplicate-key/UTF-8 checks, canonical PSScriptAnalyzer, and man-page lint for every changed executable/help surface, recording exact results in `specs/003-authoring-contract/cross-platform-parity-evidence.md` / Syntax und statische Analyse zielgerichtet pruefen.\n- [X] T054 [US4] Run `bash scripts/check-homogeneity.sh --dry-run --no-patch .` read-only and record its exact command, immediate exit, warnings, and disposition without writing STATS in `specs/003-authoring-contract/autonomous-run-evidence.md` / Homogenitaet rein lesend pruefen.\n- [X] T055 [US4] Run `gitleaks dir . --config .gitleaks.toml --no-banner --no-color --redact=100`, verify zero active Authoring-test exclusions, and record the immediate exit and inspection semantics in `specs/003-authoring-contract/security-review-evidence.md` / Vollstaendigen Secret-Scan ohne Ausnahme pruefen.\n- [X] T056 [US4] Execute the focused matrix on exact checked-out heads for `ubuntu-22.04`, `macos-14`, and `windows-2022`, capturing runner, `git rev-parse HEAD`, interpreter versions, every exact command and immediate exit, Git-for-Windows Bash selection, and no silent skip in `specs/003-authoring-contract/cross-platform-parity-evidence.md` / Reale Drei-Plattform-Primarevidence erfassen.\n\n### Audit-ready Reviews / Audit-ready reviews\n\n- [X] T057 [P] [US4] Perform an independent security/source-authority review covering MSL applicability, path roots, ordered untrusted sources as data, prompt injection, secrets/privacy, NIST SSDF, CWE Top 25, ASVS, SBOM/AI-SBOM/VEX/SLSA, CRA/regulatory and dependency/supply-chain applicability, shell-free subprocess use, and zero implicit remote/downstream authority in `specs/003-authoring-contract/security-review-evidence.md`; record why separate `docs/security/` evidence is `N/A` for this allowlisted governance-only feature or open it with owner/follow-up/re-evaluation trigger, and classify every checkpoint as Pass, `N/A` with a short reason, or `Open` with owner, follow-up, and re-evaluation trigger / Unabhaengiges Security-Review schreiben.\n- [X] T058 [P] [US4] Perform an independent architecture and iSAQB review covering architecture goals, context/trust boundaries, layers, interfaces/views, CIA/STRIDE/CAPEC, quality scenarios, fail-safe defaults, historical-to-current bridge, risks/technical debt, ADR/S-ADR, arc42, Zero Trust, BSI C3A/C5, threat-model and cloud-autonomy applicability in `specs/003-authoring-contract/architecture-review-evidence.md`; record why separate `docs/architecture/` evidence is `N/A` for this allowlisted contract change or open it with owner/follow-up/re-evaluation trigger, and classify every checkpoint as Pass, `N/A` with a short reason, or `Open` with owner, follow-up, and re-evaluation trigger / Unabhaengiges Architektur-/iSAQB-Review schreiben.\n- [X] T059 [P] [US4] Perform an independent accessibility and language review for DE-first/EN-second CEFR B2, first-use terms, semantic headings, stable reading order, text-first alternatives, no colour/position-only meaning, applicable WCAG 2.2 AA, and the 100-percent target-audience comprehension check in `specs/003-authoring-contract/accessibility-review-evidence.md`; every checkpoint must be Pass, `N/A` with a short reason, or `Open` with owner, follow-up, and re-evaluation trigger / Unabhaengiges A11Y-/Sprachreview schreiben.\n- [X] T060 [P] [US4] Perform an independent Bash/PowerShell and three-runner parity review with exact HEAD, commands, exits, approved `Test-IntakeAuthoringReceipt`, help/man parity, Git-Bash selection, and negative harnesses in `specs/003-authoring-contract/cross-platform-parity-evidence.md`; every checkpoint must be Pass, `N/A` with a short reason, or `Open` with owner, follow-up, and re-evaluation trigger / Unabhaengiges Cross-Platform-Review schreiben.\n- [X] T061 [US4] Synchronize the uniquely marked shared engineering-retrospective contract byte-identically across `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.github/agents/copilot-instructions.md`, `.specify/templates/agent-file-template.md`, and the four `scripts/templates/*` agent templates; bind the contract in `constitution.md`, `.specify/memory/constitution.md`, and the Spec/Plan/Tasks project templates; retain the repository owner/source contract in `docs/governance/engineering-retrospective.md` / Gemeinsamen Repositoryvertrag auf allen Agentenflaechen und Projektvorlagen synchron halten.\n- [X] T062 [US4] Record agent-parity evidence for the exact five-surface and five-template byte comparisons plus the byte-identical Constitution mirror and the three workflow-template bindings in `specs/003-authoring-contract/autonomous-run-evidence.md`; no Level-0 or installed-preset-version change is allowed / Agentenparitaet und Template-/Constitution-Bindung auditierbar belegen.\n- [X] T063 [US4] Validate and retain exactly one Documentation Impact decision—`UpdateRequired` owned only by the named section—with source, owner, affected documents, generated-output status, evidence, and Home-sync `N/A` reason in `specs/003-authoring-contract/autonomous-run-evidence.md`; all other feature artefacts only reference it / Genau eine Dokumentationsauswirkungsentscheidung belegen.\n\n**US4-Gate**: T045 bis T063 muessen am selben finalen Kandidaten-HEAD ohne offene materielle Findings bestehen. T057 bis T060 sind parallel lesbar und schreiben getrennte Dateien; T061 bis T063 bleiben seriell, weil sie gemeinsame Reporting-Bindungen konsumieren. / T045 through T063 must pass on the same candidate head without open material findings. T057 through T060 may run independently; T061 through T063 remain serial.\n\n---\n\n## Phase 7: Lieferung, Statistik und kausaler Abschluss / Delivery, statistics, and causal closeout\n\n**Zweck / Purpose**: Die exakt erlaubte Liefermenge normal als MergeAndSync liefern, zeitlich korrekte PreMerge-/PostMerge-Evidence erzeugen, Lifecycle abschliessen und keinen Folgelauf starten. / Deliver the exact allowlist through normal MergeAndSync, produce temporally correct evidence, close lifecycle, and start no follow-up run.\n\n- [X] T064 Resolve `planned`, `changed`, `staged`, and `foreign` from `specs/003-authoring-contract/contracts/authoring-contract-design.json`, require empty `changed - planned` and `staged - intended`, document justified missing-path `N/A`, stage only literal repository-relative feature paths, run `git diff --cached --check`, preserve foreign changes unstaged, and create the normal non-statistics implementation checkpoint recorded in `specs/003-authoring-contract/autonomous-run-evidence.md` / Exakte Feature-Liefermenge pruefen und normal lokal committen.\n- [X] T065 Run the single statistics-render transaction using `bash scripts/render-project-statistics.sh --repo .` only on a clean real feature branch, verify both Bash and PowerShell check-only JSON surfaces, commit only `docs/project-statistics.md` when changed, create no empty commit or extra writer cycle, rerun both check-only surfaces on the clean final feature HEAD, and finish every repository write before continuing / Statistik genau einmal mit dem Repository-Renderer fortschreiben und alle Feature-Writer beenden.\n- [X] T066 Freeze the clean final feature HEAD after T065, prove `git status --porcelain` is empty, push that exact immutable HEAD normally, reject any later repository write before the feature merge, and retain the exact HEAD/push proof for `.specify/runtime/autonomous-routing/044b77ae-85fd-46ee-97f4-61ce7a2c9c66/premerge-gate-evidence.json` / Finalen Feature-HEAD einfrieren und exakt pushen.\n- [X] T067 Create or update the normal feature PR for the exact T066 HEAD, bind base/head/body to that immutable candidate, use authenticated GitHub CLI without Admin Bypass, and retain PR number/URL/head evidence for `.specify/runtime/autonomous-routing/044b77ae-85fd-46ee-97f4-61ce7a2c9c66/premerge-gate-evidence.json` without changing repository files / Feature-PR ohne Repository-Write bereitstellen.\n- [X] T068 Converge current required checks, exact PR-head equality, zero actionable threads and independent semantic reviews for the exact T066 HEAD; when independent approval alone is unavailable, accept only the current maintainer-authorized Admin Bypass for that human-approval or ruleset barrier and do not treat the bypass as technical evidence / PR-, Review- und technischen Gates am eingefrorenen HEAD konvergieren; Admin-Bypass nur fuer die verbleibende menschliche Approval-Sperre zulassen.\n- [X] T069 After T068, reconstruct the missing runner-external schema-2.0 PreMerge snapshot at `.specify/runtime/autonomous-routing/044b77ae-85fd-46ee-97f4-61ce7a2c9c66/premerge-gate-evidence.json` from immutable exact-head evidence, explicitly mark it as non-contemporaneous, bind the normalized requirements hash and exact T066 HEAD, require all 27 Applicable gates Pass and both N/A gates reasoned, run the feature-local pre-validator before the unchanged Evidence Core, and keep all merge fields empty / Fehlenden PreMerge-Beleg transparent aus unveraenderlicher Evidence rekonstruieren und validieren.\n- [X] T070 Merge the exact accepted feature PR with `gh pr merge --merge --admin` only after green technical gates and zero actionable threads, switch to `main`, fast-forward with `git pull --ff-only`, and retain actual PR URL/number, reviewed feature HEAD, narrow bypass scope, and feature merge commit for later closeout without prematurely writing PostMerge evidence / Feature mit eng begrenztem Approval-Bypass mergen und synchronisieren.\n- [X] T071 Prepare the post-feature lifecycle rename exactly once with the paired Bash/PowerShell contract, create `requirements/intakes/active/Lastenheft_META-LH-03-Authoring-Contract.003-authoring-contract.md`, and map the unchanged logical path to that physical path in `specs/003-authoring-contract/intake-lifecycle.json`, leaving the completed Series and META-LH-02 lifecycle unchanged / Lastenheft kausal umbenennen.\n- [X] T072 Deliver the exact lifecycle allowlist through its own technically green reviewed PR with paired preview/fixture evidence and zero actionable threads; use `--admin` only for the remaining human-approval barrier, then fast-forward `main` and retain the actual merge plus clean `0/0` proof / Lifecycle-PR mit eng begrenztem Approval-Bypass mergen und synchronisieren.\n- [X] T073 On `003-authoring-contract-closeout` persist the feature-run retrospective in `specs/003-authoring-contract/engineering-retrospective.md` with separate ordered bilingual sections `Output`, `Findings`, `bestaetigte Regeln / confirmed rules`, `Interventionen/Reparaturen / interventions/repairs`, `Effizienzbeobachtungen / efficiency observations`, `AEPS-Relevanz / AEPS relevance`, and `Completion/Retrospective Evidence`; add an evidence-based `META-LH-01 -> META-LH-02 -> META-LH-03` trend using one common metric plus source path/hash per value and explicitly mark unavailable historical data rather than inventing it / Vollstaendige Feature-Retrospektive und Trend persistieren.\n- [X] T074 Evaluate completion and retrospective evidence against `docs/aeps/README.md` and the current `docs/aeps/findings-ledger.md`, then record exactly one source-bound AEPS evidence disposition or justified no-new-evidence receipt as the Primary record in `specs/003-authoring-contract/autonomous-run-evidence.md`, referencing only an allowlisted Supplemental ledger/receipt when current authority permits and never claiming Level-0 or preset-promotion authority / Genau eine AEPS-Evidence-Disposition oder einen begruendeten No-change-Receipt erfassen.\n- [X] T075 Prepare the exact five-path transactional closeout only on `003-authoring-contract-closeout` by reconciling `specs/003-authoring-contract/tasks.md`, `specs/003-authoring-contract/autonomous-run-state.json`, `specs/003-authoring-contract/causal-closeout-evidence.json`, `specs/003-authoring-contract/engineering-retrospective.md`, and `specs/003-authoring-contract/autonomous-run-evidence.md`; include only facts known after feature and lifecycle merge/sync, keep the runner snapshots outside the repository candidate, and do not claim the closeout candidate's own merge or later final sync / Exakt fuenfpfadigen Closeout-Kandidaten ohne Zukunftsbehauptung vorbereiten.\n- [X] T076 Open or update, validate, review, and merge the exact five-path transactional closeout with required checks, zero actionable threads and exact-head review; a generator-owned `docs/project-statistics.md` companion is permitted only when the mandatory repository statistics gate requires it, and `--admin` may address only the remaining human-approval or ruleset barrier / Closeout-PR technisch vollstaendig pruefen und nur die enge Approval-Sperre ueberbruecken.\n- [X] T077 After the closeout merge, fast-forward local `main` and externally prove a clean worktree, local `main` equal to remote HEAD, and ahead/behind `0/0`; only after this synchronization may `.specify/runtime/autonomous-routing/044b77ae-85fd-46ee-97f4-61ce7a2c9c66/postmerge-gate-evidence.json` be created / Finalen Main-Sync vor PostMerge belegen.\n- [X] T078 Create and validate the runner-external schema-2.0 PostMerge snapshot at `.specify/runtime/autonomous-routing/044b77ae-85fd-46ee-97f4-61ce7a2c9c66/postmerge-gate-evidence.json` only after T077, using `specs/003-authoring-contract/contracts/postmerge-gate-requirements.json`, the same reviewed feature HEAD, actual feature merge commit, `changedPaths: []`, the exact accepted PreMerge runner path and normalized hash, all seven gates Pass, the feature-local pre-validator first, and the unchanged Evidence Core second / PostMerge nach Closeout-Merge und End-Sync kausal validieren.\n- [X] T079 Return the routed Implement result only after T078 proves terminal completion, then stop with no pending in-phase writer, no next-intake selection, no started follow-up feature, and no Level-0/preset/provider mutation; preserve that result for the outer-orchestrator binding in `specs/003-authoring-contract/autonomous-run-state.json` without performing the persistence PR inside Implement / Geroutete Implement-Phase beenden und sicher stoppen.\n\n---\n\n## Abhaengigkeiten und Reihenfolge / Dependencies and order\n\n| Abschnitt / Increment | Abhaengigkeit / Depends on | Unabhaengiges Ergebnis / Independent outcome |\n|---|---|---|\n| Setup/Foundation | keine; T001 -> T002 -> T003 / none | Akzeptierte Basis und unveraenderte Baseline sind gruen. / Accepted base and unchanged baseline pass. |\n| US1 (P1, MVP) | T003 | Ein gueltiger Einzel-Intake besteht den vollstaendigen fuenfteiligen Vertrag. / A valid single intake passes the complete five-part contract. |\n| US2 (P2) | US1 | Ein offener materieller Fall stoppt ohne ausfuehrbaren Prompt. / An open material case stops without an executable prompt. |\n| US3 (P3) | US2 | Exakte Ready-Prompts und genau eine vollstaendige META-LH-03-Update-Operation bestehen. / Exact Ready prompts and one complete META-LH-03 update pass. |\n| US4 (P4) | US3 | Global Ready, Plattformmatrix und unabhaengige Reviews konvergieren am selben HEAD. / Global Ready, platform matrix, and reviews converge on one head. |\n| Delivery/Closeout | US4 | Normaler MergeAndSync-Abschluss mit Statistik, Lifecycle, AEPS und `0/0`, ohne Folgelauf. / Normal MergeAndSync closeout with statistics, lifecycle, AEPS, and `0/0`, without a next run. |\n\nDer bindende Phasengraph bleibt seriell: `baseline -> vertical-red -> vertical-green -> domain-expansion -> renewal -> global-ready -> reviews -> checkpoint -> statistics -> premerge -> feature-merge -> lifecycle -> closeout -> postmerge`. Innerhalb von `premerge` gilt zusaetzlich strikt `freeze/push -> PR -> checks/threads/review/approval -> runner PreMerge`; innerhalb von `postmerge` gilt `closeout merge -> fast-forward/clean/0/0 -> runner PostMerge`. / The binding phase graph remains serial in the stated order, with the stated strict inner-phase causal sequences.\n\n## Parallele Moeglichkeiten / Parallel opportunities\n\n| Story | Sichere Parallelitaet / Safe parallelism |\n|---|---|\n| US1 | Keine standardmaessige Parallelitaet; Tests-first und die stabile Artefaktfolge 1..5 bleiben seriell. / None by default; tests-first and artefact order 1..5 remain serial. |\n| US2 | Keine; Tests, Template und beide Adapter teilen Vertragsschreiber. / None; tests, template, and adapters share contract writers. |\n| US3 | Keine; Update, Review und Binding sind eine atomare Kette. / None; update, review, and binding are one atomic chain. |\n| US4 | T057, T058, T059 und T060 duerfen nach T056 parallel durch unabhaengige Reviewer auf getrennten Dateien laufen; alle anderen Aufgaben bleiben seriell. / T057 through T060 may run in parallel after T056 through independent reviewers writing separate files; all other work remains serial. |\n\n## Implementierungsstrategie / Implementation strategy\n\n**MVP**: T001 bis T027, also Setup, Fundament und US1. Das MVP endet mit einem lokal gruenen vollstaendigen Einzel-Intake-Vertrag und fuehrt weder die Update-Publikation noch Remote Delivery aus. / T001 through T027. The MVP ends with a locally green complete single-intake contract and performs neither update publication nor remote delivery.\n\n**Inkrementell / Incremental**: Danach US2, US3 und US4 jeweils nur nach ihrem unabhaengigen Gate. Delivery beginnt erst nach allen vier Story-Gates. / Continue with US2, US3, and US4 only after each independent gate. Delivery starts only after all four story gates.\n\n**Serieller Standardpfad / Serial default path**: T001 -> T002 -> ... -> T079. `[P]` gilt ausschliesslich fuer die vier getrennten semantischen Reviewdateien nach dem gemeinsamen validierten HEAD. / T001 through T079. `[P]` applies only to the four separate semantic review files after the common validated head.\n\n## Outer-Orchestrator-Epilog ausserhalb der Implement-Checkliste / Outer-orchestrator epilogue outside the implementation checklist\n\nDieser Epilog ist ausdruecklich **keine nummerierte Implement-Aufgabe** und keine Voraussetzung fuer T078 oder das geroutete Implement-Ergebnis aus T079. Erst nachdem der Router dieses Ergebnis geschrieben und validiert hat, darf der aeussere Orchestrator genau einen Persistence-PR erstellen, dessen fachlicher Diff ausschliesslich `specs/003-authoring-contract/tasks.md` und `specs/003-authoring-contract/autonomous-run-state.json` enthaelt; ein generator-eigener Statistikbegleiter ist nur bei einem zwingenden Repository-Gate zulaessig. Er bindet das bereits bekannte Phasenergebnis, aber nicht seinen eigenen spaeteren Merge. Nach gruenen technischen Gates, null umsetzbaren Review-Threads und gegebenenfalls dem eng begrenzten Approval-Bypass folgen ausschliesslich externer Fast-forward, sauberer Worktree und Ahead/Behind-`0/0`-Nachweis; kein weiterer Repository-Writer und kein neues Feature folgen. / This epilogue is not a numbered Implement task and is not a prerequisite of PostMerge or the routed Implement result. Only the outer orchestrator may perform the bounded persistence PR afterwards; only external synchronization proof and process exit follow it.\n\n## Done-Kriterien / Done criteria\n\nDie Implementierung ist erst abgeschlossen, wenn alle 79 Aufgaben markiert, alle Story-Tests unabhaengig bestanden, alle Applicable Gates `Pass`, alle `N/A` kurz begruendet, jedes verbleibende `Open` mit Owner/Follow-up/Re-Evaluation-Trigger versehen, beide zeitlich getrennten Snapshots semantisch validiert, Admin-Bypass hoechstens fuer die verbleibende menschliche Approval-/Ruleset-Sperre verwendet, `main` bei `0/0` sauber synchronisiert und kein weiteres Feature gestartet ist. / Implementation is complete only when all 79 tasks are checked, every story test passes independently, all Applicable gates pass, every N/A has a short rationale, every remaining Open has owner/follow-up/re-evaluation trigger, both temporal snapshots validate, any bypass is limited to the human approval/ruleset barrier, main is clean at 0/0, and no next feature has started.\n"
+        },
+        {
+          "key": "hindermath/agent-operations-cockpit/blob/61667a9727c3c50ebee26c4b4d763648d6928bde/specs/004-series-eligibility/spec.md",
+          "kind": "file",
+          "sha256": "61027fb8e2f7b6e8a0e579c56f0bbc404a29c8446a61f548c2617459c4ef1f3b",
+          "content": "# Feature-Spezifikation: Series Eligibility / Feature Specification: Series Eligibility\n\n**Feature-Branch / Feature branch**: `004-series-eligibility`\n**Erstellt / Created**: 2026-09-13\n**Status / Status**: Spezifiziert; Qualitätsprüfung bestanden / Specified; quality review passed\n**Eingabe / Input**: [Verbindliches META-LH-04](../../requirements/intakes/active/Lastenheft_META-LH-04-Series-Eligibility.md), [aktuelles Ready-Single-Review](../intake-review-results/meta-lh-04-series-eligibility-2026-08-29-r8.json) und [akzeptierter Laufzustand](autonomous-run-state.json). / Binding META-LH-04, current Ready Single review, and accepted run state.\n\nDiese Spezifikation beschreibt die prüfbare Planung einer Intake-Serie und die Einstufung ihrer Startfähigkeit. Ein Intake ist ein Lastenheft; eine Serie verbindet mehrere Lastenhefte durch Abhängigkeiten. Eligibility bezeichnet eine geprüfte Eignung, keine Startfreigabe. Zielgruppe sind IT-Auszubildende ab Jahr 1, einschließlich der beiden IT-Management-Berufe, sowie Fachkräfte. Git-Branch-Grundlagen genügen; Spec-Kit-Vorkenntnisse sind nicht nötig. / *This specification describes verifiable intake-series planning and eligibility classification. An intake is a requirements document; a series links several intakes through dependencies. Eligibility means assessed suitability, not permission to start. The audience includes first-year IT apprentices, both IT management occupations, and experienced professionals. Basic Git branch knowledge is sufficient; no Spec Kit experience is required.*\n\nDer Leserpfad führt vom Lastenheft über die Szenarien und Anforderungen zu den Nachweisen und der [Qualitätscheckliste](checklists/requirements.md). Die nächste sichere Aktion ist die Prüfung dieser Spezifikation in der vorgesehenen Folgephase; dieses Dokument startet sie nicht. / *The reader path leads from the intake through scenarios and requirements to evidence and the quality checklist. The next safe action is reviewing this specification in the scheduled next phase; this document does not start it.*\n\n## Nutzungsszenarien und Prüfung / User Scenarios & Testing\n\n### US1 – Zulässigen Modus nachvollziehen / Understand the permitted mode (P1)\n\nAls verantwortliche Person möchte ich alle neun Kriterien einer Einstufung mit Gründen sehen, damit ich eine Empfehlung prüfen kann, ohne ungewollt Arbeit zu starten. P1 schützt die Autoritätsgrenze. / *As the responsible person, I want to see all nine classification criteria and their reasons so I can assess a recommendation without accidentally starting work. P1 protects the authority boundary.*\n\n**Unabhängige Prüfung / Independent test**: Die drei gebundenen Testdatensätze (Fixtures) einzeln auswerten; Ergebnis und Gründe prüfen, ohne Worker zu starten. / *Evaluate the three bound test data sets (fixtures) separately; check outcomes and reasons without starting workers.*\n\n**Akzeptanzszenarien / Acceptance scenarios**:\n\n1. Sind aktuelle Authority, disjunkte Writes, keine gemeinsame offene Decision, geplante Integration und Consolidation Review sowie Abort und Recovery belegt, ergibt `valid-parallel.json` den Modus `parallel-autonomous` und das Ergebnis `Eligible`. Es erfolgt kein Start. / *With current authority, disjoint writes, no shared open decision, planned integration and consolidation review, and abort and recovery evidence, the valid fixture yields mode `parallel-autonomous` and outcome `Eligible`. Nothing starts.*\n2. Überschneiden sich Writes oder besteht eine gemeinsame offene Decision, ergeben `shared-write.json` und `shared-decision.json` jeweils `Blocked` mit dem konkreten Grund. / *Overlapping writes or a shared open decision make the two negative fixtures return `Blocked` with the specific reason.*\n3. Fehlt eines der neun Kriterien, ist es doppelt, kommt ein zehntes hinzu oder fehlt aktuelle Authority, wird blockiert. Historische Receipts, `Ready` und ein gespeicherter Delivery-Modus ersetzen keine aktuelle Autorität. / *A missing, duplicate, or tenth criterion, or absent current authority, blocks classification. Historic receipts, `Ready`, and a stored delivery mode do not replace current authority.*\n\n### US2 – Eine gebundene Serie prüfen / Validate a bound series (P1)\n\nAls Serienverantwortliche*r möchte ich Reihenfolge, Wurzeln und Abhängigkeiten gegen unveränderte Eingaben prüfen. So entstehen keine Empfehlungen aus veralteten oder widersprüchlichen Daten. P1 verhindert eine falsche Reihenfolge. / *As the series owner, I want to validate order, roots, and dependencies against unchanged inputs. This prevents recommendations based on stale or conflicting data. P1 prevents an invalid order.*\n\n**Unabhängige Prüfung / Independent test**: Ein gültiges Manifest und je einen Fall mit Zyklus, Hash-Drift, fehlender Wurzel und mehrfach deklarierter Eligibility prüfen. / *Check one valid manifest and separate cases containing a cycle, hash drift, missing root, and multiple declared eligibility.*\n\n**Akzeptanzszenarien / Acceptance scenarios**:\n\n1. Ein Manifest mit exakter Reihenfolge, typisierten Kanten, expliziten Wurzeln, Lifecycle-Werten und passenden normalisierten SHA-256-Hashes wird akzeptiert. Eine Kante beschreibt eine gerichtete Beziehung; eine Wurzel hat keinen Vorgänger. / *A manifest with exact order, typed edges, explicit roots, lifecycle values, and matching normalized SHA-256 hashes is accepted. An edge describes a directed relationship; a root has no predecessor.*\n2. Jede der vier genannten Störungen blockiert vor einer Empfehlung; bestehende Daten werden nicht automatisch repariert. / *Each of the four faults blocks before a recommendation; existing data is not repaired automatically.*\n3. META-LH-01, META-LH-02 und META-LH-03 bleiben verpflichtende Vorgänger von META-LH-04. Historische Dateinamen werden nur über bestehende, belegte Lifecycle-Bindungen aufgelöst. / *META-LH-01, META-LH-02, and META-LH-03 remain mandatory predecessors of META-LH-04. Historic filenames resolve only through existing, proven lifecycle bindings.*\n\n### US3 – Status und nächste Möglichkeit sicher lesen / Read status and the next option safely (P2)\n\nAls lernende oder betreibende Person möchte ich Status, Gründe und genau eine sichere nächste Aktion als Text lesen. P2 schafft verständliche Orientierung auf allen Zielplattformen. / *As a learner or operator, I want to read status, reasons, and one safe next action as text. P2 provides clear guidance on all target platforms.*\n\n**Unabhängige Prüfung / Independent test**: `status` und `next` wiederholt mit unveränderten Eingaben aufrufen; semantisch gleiche Aussagen, unveränderte Dateien und keinerlei Folgeaktion nachweisen. / *Repeat `status` and `next` with unchanged inputs; prove equivalent statements, unchanged files, and no downstream action.*\n\n**Akzeptanzszenarien / Acceptance scenarios**:\n\n1. `status` erklärt den deklarierten Lifecycle, das aktuelle Review und die Eligibility getrennt. `next` meldet ausschließlich einen zulässigen Kandidaten oder konkrete Blocker. / *`status` explains declared lifecycle, current review, and eligibility separately. `next` reports only an eligible candidate or specific blockers.*\n2. Ohne Kandidaten oder bei mehreren unzulässig als eligible deklarierten Mitgliedern entsteht kein erfundener Nachfolger. Abfragen ändern weder Manifest noch Receipt, Lifecycle oder Laufzustand. / *With no candidate or multiple invalidly declared eligible members, no successor is invented. Queries change neither manifest nor receipt, lifecycle, or run state.*\n3. Bei Dienst-/Runnerausfall wird `ProviderFailure`, bei einem Fehler des geprüften Artefakts `ProductFailure` gemeldet. Die Ursache bleibt getrennt vom Eligibility-Ergebnis; Ausfälle sind kein Pass. / *A service or runner failure is `ProviderFailure`; a defect in the assessed artifact is `ProductFailure`. The cause stays separate from eligibility; failure is not a pass.*\n4. Deutsch und Englisch vermitteln gleiche Grenzen; Status, Gründe, Abhängigkeiten und nächste Aktion bleiben ohne Farbe oder Diagramm verständlich. / *German and English convey the same boundaries; status, reasons, dependencies, and next action remain understandable without colour or diagrams.*\n\n### Grenzfälle / Edge Cases\n\n- Leere, unbekannte oder widersprüchliche Kriterienwerte, unbekannter Modus und unsichere Evidence führen fail-closed zu `Blocked`. Fail-closed bedeutet: Ohne ausreichenden Nachweis gibt es keine Freigabe. / *Empty, unknown, or conflicting criterion values, unknown mode, and unsafe evidence fail closed to `Blocked`. Fail-closed means there is no approval without sufficient proof.*\n- Hash-, Root-, Edge-, Decision-, Governance-, Fixture-, Plattform- oder Supply-Chain-Drift verlangt erneute Prüfung. Ein früheres Ergebnis darf keine aktuelle Freigabe vortäuschen. / *Hash, root, edge, decision, governance, fixture, platform, or supply-chain drift requires reassessment. A past result must not imply current approval.*\n- Secrets, Tokens, ausführbare Remote-Befehle und personenbezogene Fixture-Daten stoppen die Verarbeitung ohne Wiedergabe sensibler Werte; Re-Evaluation ist nötig. / *Secrets, tokens, executable remote commands, and personal fixture data stop processing without repeating sensitive values; reassessment is required.*\n- Fehlende Laufzeitparität blockiert die plattformübergreifende Abnahme. Zwei Shell-Läufe auf macOS sind kein Nachweis für native Linux-/Windows-Läufe. / *Missing runtime parity blocks cross-platform acceptance. Two shell runs on macOS do not prove native Linux or Windows execution.*\n\n## Anforderungen / Requirements\n\n### Funktionale Anforderungen / Functional Requirements\n\n- **FR-001**: Jede Einstufung MUSS genau einen Modus aus `manual-assisted`, `single-autonomous`, `serial-autonomous`, `parallel-autonomous`, `research-only`, `blocked` nennen. Der Modus `blocked` und das Ergebnis `Blocked` bleiben getrennte Felder; eine gescheiterte Parallelprüfung bleibt als solche erkennbar. / *Each classification MUST name exactly one of the six modes. Mode `blocked` and outcome `Blocked` remain separate fields; a failed parallel assessment remains identifiable.*\n- **FR-002**: Jede Einstufung und jede Fixture MUSS genau die folgenden neun Kriterien vollständig enthalten, ohne Zusammenlegung, zusätzliche Kriterien oder Acht-Kriterien-Variante. / *Every classification and fixture MUST contain exactly the following nine complete criteria, without merging them, adding criteria, or allowing an eight-criterion version.*\n\n| Kriterium / Criterion | Vertragsschlüssel / Contract key | Erforderliche Aussage / Required statement |\n|---|---|---|\n| Authority | `authority` | Aktueller ausdrücklicher Auftrag und seine Grenze. / Current explicit instruction and its boundary. |\n| Side Effects | `sideEffects` | Zustandsänderungen außerhalb reiner Analyse und ihre Begrenzung. / State changes beyond read-only analysis and their bounds. |\n| Reversibility | `reversibility` | Ob und wie diese Änderungen kontrolliert rücknehmbar sind. / Whether and how those changes can be undone safely. |\n| Write Scope | `writeScope` | Veränderbare Pfade oder Ressourcen und mögliche Überschneidungen. / Writable paths or resources and possible overlaps. |\n| Decisions | `decisions` | Offene materielle Entscheidungen und gemeinsame Abhängigkeiten. / Open material decisions and shared dependencies. |\n| Integration | `integration` | Geplanter Weg zum Zusammenführen getrennter Ergebnisse. / Planned path for combining separate results. |\n| Review | `review` | Aktuelle Review-Evidence und geplante gemeinsame Ergebnisprüfung (Consolidation Review). / Current review evidence and planned combined-result assessment (consolidation review). |\n| Abort | `abort` | Konkrete Stop-Bedingung und sicherer Haltepunkt. / Specific stop condition and safe stopping boundary. |\n| Recovery | `recovery` | Wiederherstellung und erneute Prüfung vor einer Fortsetzung. / Recovery and reassessment before continuation. |\n\n- **FR-003**: `parallel-autonomous` darf nur bei aktueller Authority, disjunkten Writes, ohne gemeinsame offene Decisions, mit geplantem Consolidation Review und definierten Abort-/Recovery-Regeln `Eligible` ergeben; alle neun Kriterien müssen vollständig und konsistent sein. Sonst MUSS das Ergebnis `Blocked` sein. Eine Fixture-Freigabe startet keine realen Worker. / *`parallel-autonomous` may yield `Eligible` only with current authority, disjoint writes, no shared open decisions, a planned consolidation review, and defined abort/recovery rules; all nine criteria must be complete and consistent. Otherwise the outcome MUST be `Blocked`. A fixture approval starts no real workers.*\n- **FR-004**: Das Series-Manifest MUSS normalisierte SHA-256-Hashes, explizite Roots, exakte stabile Reihenfolge, Lifecycle-Werte und typisierte Kanten binden. SHA-256 bezeichnet hier eine Dateiprüfsumme; Normalisierung folgt dem vorhandenen Vertrag für UTF-8 und Zeilenenden. Lifecycle ist der deklarierte Mitgliedszustand. Der Graph MUSS gerichtet und zyklusfrei sein. / *The series manifest MUST bind normalized SHA-256 hashes, explicit roots, exact stable order, lifecycle values, and typed edges. SHA-256 means a file checksum here; normalization follows the existing UTF-8 and line-ending contract. Lifecycle is the declared member state. The graph MUST be directed and acyclic.*\n- **FR-005**: Zyklus, Hash-Drift, fehlende Root, mehrfach deklarierte Eligibility, unvollständige Kriterien und fehlende Authority MÜSSEN fail-closed blockieren, mit konkretem Grund und sicherer nächster Aktion. / *A cycle, hash drift, missing root, multiple declared eligibility, incomplete criteria, and missing authority MUST block fail-closed, with a specific reason and safe next action.*\n- **FR-006**: `status` und `next` MÜSSEN strikt read-only bleiben. Sie dürfen weder Dateien, Receipts, Lifecycle oder Laufzustand ändern noch Folgeaktionen, Worker, Worktrees, Specify, Implementierung oder Remote-Aktionen starten. / *`status` and `next` MUST remain strictly read-only. They may neither change files, receipts, lifecycle, or run state nor start downstream actions, workers, worktrees, Specify, implementation, or remote operations.*\n- **FR-007**: Eligibility, aktuelles Review, Series-Lifecycle, Delivery-Modus und konkrete Startautorität MÜSSEN getrennt dargestellt und geprüft werden. Historische Receipt-Autorität ist ausschließlich Herkunftsnachweis. / *Eligibility, current review, series lifecycle, delivery mode, and actual start authority MUST be shown and checked separately. Historical receipt authority is provenance only.*\n- **FR-008**: Ein Planungs-Receipt MUSS Eingaben und Ergebnis nachvollziehbar binden; seine Erstellung gehört ausschließlich zu separat autorisiertem Authoring und nie zu `status` oder `next`. `ProviderFailure` und `ProductFailure` MÜSSEN unterscheidbar bleiben. / *A planning receipt MUST traceably bind inputs and outcome; creating it belongs only to separately authorised authoring, never to `status` or `next`. `ProviderFailure` and `ProductFailure` MUST remain distinguishable.*\n- **FR-009**: Stop und Recovery MÜSSEN festlegen: Worker nicht starten beziehungsweise bei gesonderter Autorität sicher stoppen, keinen Teilmerge durchführen, Manifest und Eligibility neu prüfen. Eine Empfehlung erteilt keine Abbruch- oder Wiederanlaufrechte für fremde Prozesse. / *Stop and recovery MUST require: do not start workers, or stop them safely under separate authority; perform no partial merge; reassess manifest and eligibility. A recommendation grants no cancellation or restart rights over other processes.*\n\n**NFR-001**: Alle Statuswerte, Gründe, Abhängigkeiten und nächsten Aktionen MÜSSEN als verständlicher, farbunabhängiger Text vorliegen. / *All statuses, reasons, dependencies, and next actions MUST be available as clear, colour-independent text.*\n\n**NFR-002**: Normative Inhalte MÜSSEN paarig Deutsch zuerst und Englisch danach auf CEFR-B2-Niveau stehen; Fachbegriffe werden beim ersten Auftreten erklärt. / *Normative content MUST be paired German first and English second at CEFR B2; technical terms are explained at first use.*\n\n**NFR-003**: Bash und PowerShell MÜSSEN auf macOS, Linux und Windows semantisch gleiche Ergebnisse, Blocker und sichere nächste Aktionen liefern. Bestehende Laufzeiten werden wiederverwendet; neue Abhängigkeiten verlangen Re-Evaluation. / *Bash and PowerShell MUST provide equivalent outcomes, blockers, and safe next actions across macOS, Linux, and Windows. Existing runtimes are reused; new dependencies require reassessment.*\n\n### Verfassungsanforderungen / Constitution Requirements\n\n- **CR-001**: `constitution.md` v1.21.4 und der bytegleiche Spiegel `.specify/memory/constitution.md` sind bindend, einschließlich der lokalen Registry-Zeile `RiderProjects/AgentOperationsCockpit` unter Prinzip X: Python 3.9+ Standardbibliothek, Bash 5+/PowerShell 7+, bestehendes `unittest` und gepaarte native Validierung, DE/EN CEFR B2 und WCAG 2.2 AA, Statistik 80/125 mit Methodik v2 sowie alle fünf Agentenflächen und Spec-Kit. Gemeinsame Regeln bleiben unverändert; Amendment-Metadaten folgen dem bestehenden Verfahren mit tatsächlichem Merge-Datum. / *Both byte-identical constitutions and their Principle-X AOC row bind local runtime, existing tests, documentation/accessibility, statistics and all five agent plus Spec-Kit surfaces. Shared rules remain unchanged; amendment metadata uses the actual merge date under the existing procedure.*\n- **CR-002**: Der A11Y-Leserpfad und die anwendbaren WCAG-2.2-AA-Prüfpunkte stehen im Abschnitt Barrierefreiheit; visuelle Darstellung darf Text nicht ersetzen. / *The accessibility reader path and applicable WCAG 2.2 AA checkpoints appear below; visuals may not replace text.*\n- **CR-003**: Deutsch/Englisch stehen inline paarig, einschließlich Überschriften, Fehlergründen und Beispielen; eine separate Sprachdatei ist nicht vorgesehen. / *German/English content is paired inline, including headings, error reasons, and examples; no separate language file is planned.*\n- **CR-004**: Statistikpflege erfolgt nach Implementierungsphasen und Feature-Abschluss nach dem vorhandenen Renderer-Vertrag. Diese Specify-Phase ändert keine Statistik und keine gemeinsame Agentenregel. / *Statistics are updated after implementation phases and feature completion under the existing renderer contract. This Specify phase changes neither statistics nor shared agent rules.*\n- **CR-005**: C#/.NET ist der speichersichere Produktkontext; diese Arbeit erzeugt kein Produktprogramm. Vorhandene Python-Prüflogik ist speichersicher, Bash und PowerShell bleiben erforderliche Plattformadapter. Keine Hardwaregrenze verlangt native unsichere Sprache. Sichere Eingabeprüfung, begrenzte Dateizugriffe und Verzicht auf dynamische Codeausführung gelten für etwaige spätere Adapteränderungen. / *C#/.NET is the memory-safe product context; this work creates no product program. Existing Python validation is memory-safe; Bash and PowerShell remain required platform adapters. No hardware constraint requires an unsafe native language. Input validation, bounded file access, and no dynamic code execution apply to any later adapter changes.*\n- **CR-006**: NIST SSDF und CWE Top 25 sind anwendbar; die vollständige Anwendbarkeitsmatrix unten ist bindend. / *NIST SSDF and CWE Top 25 apply; the complete applicability matrix below is binding.*\n- **CR-007**: OWASP ASVS und eine ASVS-Stufe sind `N/A`, weil keine Web-, API-, HTTP-, Authentifizierungs- oder Sessionfläche hinzukommt. / *OWASP ASVS and an ASVS level are N/A because no web, API, HTTP, authentication, or session surface is added.*\n- **CR-008**: Eine Softwareveröffentlichung oder neue Lieferkomponente gehört nicht zu diesem Scope; SBOM, VEX und SLSA sind mit Trigger unten begründet. / *Software publication or a new shipped component is outside this scope; SBOM, VEX, and SLSA have justified dispositions and triggers below.*\n- **CR-009**: KI ist ausschließlich Entwicklungswerkzeug. Modelle, Datensätze, Inferenzdienste und KI-Runtime sind keine Feature-Komponenten; AI-SBOM ist `N/A`. / *AI is development tooling only. Models, data sets, inference services, and AI runtimes are not feature components; AI-SBOM is N/A.*\n- **CR-010**: Die Vertrauensgrenze verläuft zwischen gelesenen Metadaten und einer Empfehlung. STRIDE/CIA und CAPEC gelten für Manipulation, unzulässige Pfade und Autoritätsverwechslung; Zero Trust wird ausdrücklich unten abgegrenzt. / *The trust boundary lies between input metadata and a recommendation. STRIDE/CIA and CAPEC apply to tampering, unsafe paths, and authority confusion; Zero Trust is explicitly bounded below.*\n- **CR-011**: Geplante Security-Evidence liegt unter `docs/security/series-eligibility.md`; sie bündelt für diesen begrenzten Vertrag die anwendbaren Prüfungen und begründeten Nichtanwendungen. Keine Kopie fremder Produktnachweise wird als eigener Pass verwendet. / *Planned security evidence resides under the named security path; it groups applicable checks and justified non-applicability for this bounded contract. Other product evidence is not copied as proof of this feature.*\n- **CR-012**: Alle acht installierten Governance-Familien werden unten disponiert; Authoring, Review und Sequencing gelten zusätzlich für bestehende Eingabeverträge. Installation verleiht keine Ausführungsrechte. / *All eight installed governance families are disposed below; authoring, review, and sequencing additionally govern existing inputs. Installation grants no execution rights.*\n- **CR-013**: Genau eine Dokumentationsentscheidung gilt: `UpdateRequired`. Quelle, Owner, Leserpfad und Nachweise stehen im Abschnitt Dokumentationsauswirkung. / *Exactly one documentation decision applies: UpdateRequired. Source, owner, reader path, and evidence appear in the documentation-impact section.*\n- **CR-014**: Der spätere Feature-Abschluss benötigt `engineering-retrospective.md` mit Output, Findings, bestätigten Regeln, Interventionen/Reparaturen, Effizienzbeobachtungen, AEPS-Relevanz und verlinkter Completion-/Retrospective-Evidence. Ab drei vergleichbaren Läufen sind Trends quellen- und hashgebunden zu vergleichen; fehlende Vergleichsdaten bleiben sichtbar. / *Later feature closeout requires the named retrospective with output, findings, confirmed rules, interventions/repairs, efficiency observations, AEPS relevance, and linked completion/retrospective evidence. From three comparable runs, trends must bind sources and hashes; missing comparison evidence remains explicit.*\n\n### Zentrale Entitäten / Key Entities\n\n- **Series-Manifest / Series manifest**: Gebundene Liste von Intakes, Roots, typisierten Kanten, Reihenfolge und Lifecycle. / *Bound list of intakes, roots, typed edges, order, and lifecycle.*\n- **Eligibility-Einstufung / Eligibility classification**: Modus, genau neun Kriterien, Ergebnis, Gründe und sichere nächste Aktion; keine Autoritätserteilung. / *Mode, exactly nine criteria, outcome, reasons, and safe next action; no grant of authority.*\n- **Authority-/Review-Evidence / Authority/review evidence**: Aktueller Auftrag, passende Grenzen und hashgebundene Reviews; historische Herkunft bleibt getrennt. / *Current instruction, matching bounds, and hash-bound reviews; historical provenance remains separate.*\n- **Decision und Ownership / Decision and ownership**: Materielle Entscheidung und verantwortliche Rolle aus den bestehenden Vorgängerverträgen. / *Material decision and responsible role from existing predecessor contracts.*\n- **Receipt / Receipt**: Nachweis einer autorisierten Planungsoperation mit Eingabe- und Ergebnisbindung. / *Evidence of an authorised planning operation with bound inputs and outcome.*\n\n## Erfolgskriterien / Success Criteria\n\n### Messbare Ergebnisse / Measurable Outcomes\n\n- **SC-001**: 100 % der drei gebundenen Eligibility-Fixtures liefern die erwarteten Ergebnisse: einmal `Eligible`, zweimal `Blocked`; jede enthält genau neun Kriterien. / *All three bound eligibility fixtures produce their expected outcomes: one Eligible and two Blocked; each contains exactly nine criteria.*\n- **SC-002**: Alle vier strukturellen Negativfälle – Zyklus, Hash-Drift, fehlende Root und mehrfach deklarierte Eligibility – werden blockiert; fehlende Kriterien und Authority werden ebenfalls abgewiesen. / *All four structural negative cases—cycle, hash drift, missing root, and multiple declared eligibility—are blocked; missing criteria and authority are also rejected.*\n- **SC-003**: Jede geprüfte `status`-/`next`-Abfrage verursacht null Dateiänderungen und null Folgeaktionen; Wiederholung mit gleichen Eingaben liefert semantisch gleiche Aussagen. / *Every assessed status/next query causes zero file changes and zero downstream actions; repeating unchanged inputs produces equivalent statements.*\n- **SC-004**: Alle Abnahmeszenarien liefern auf den drei Zielplattformen gleichwertige Ergebnisse und Gründe; jede nicht belegte Plattform bleibt ausdrücklich offen für die spätere Abnahme. / *All acceptance scenarios produce equivalent outcomes and reasons on the three target platforms; each unproven platform remains explicitly outstanding for later acceptance.*\n- **SC-005**: Das semantische Review findet keine materielle Abweichung vom Intake, keine fehlende Sprachpaarung und keine Darstellung, die Farbe oder Grafik allein benötigt. Jede Empfehlung lässt ihre Autoritätsgrenze erkennen. / *Semantic review finds no material deviation from the intake, missing language pair, or colour/graphic-only information. Every recommendation exposes its authority boundary.*\n\n## Annahmen, Abhängigkeiten und Ausschlüsse / Assumptions, Dependencies, and Exclusions\n\nDie bindenden Quellen sind SRC-159, SRC-174, SRC-180 bis SRC-182 sowie RF-02, RF-09, RF-18 und RF-19 über das akzeptierte Intake. Der [ausführbare Eligibility-Vertrag](../../requirements/baseline/series-eligibility-contract.json) bleibt Quelle der neun Schlüssel und sechs Modi. META-LH-01/02/03 sind verpflichtende Vorgänger; ihre abgeschlossenen Feature-Nachweise werden wiederverwendet. Für META-LH-04 ist keine materielle Decision offen. / *Binding sources are SRC-159, SRC-174, SRC-180 through SRC-182 and RF-02, RF-09, RF-18, and RF-19 through the accepted intake. The executable eligibility contract remains the source of nine keys and six modes. META-LH-01/02/03 are mandatory predecessors; their completed feature evidence is reused. No material decision is open for META-LH-04.*\n\nDas aktuelle [Manifest](../intake-series/aoc-phase-2/manifest.json) und die [Reihenfolge](../../requirements/intakes/series/order.md) sind die Lifecycle-Quellen. Ihr deklarierter Status ersetzt weder einen Feature-Abschlussnachweis noch Review oder Startautorität. Der historische Snapshot im Intake wird nicht als aktueller Zustand übernommen. Die fachliche Einstufung von META-LH-04 bleibt `manual-assisted`; ein autorisierter automatisierter Specify-Schritt ändert diese Einstufung nicht. / *The current manifest and order document are lifecycle sources. Their declared status replaces neither feature-completion evidence nor review or start authority. The intake's historical snapshot is not adopted as current state. META-LH-04 remains classified as manual-assisted; an authorised automated Specify step does not change that classification.*\n\nAusgeschlossen sind Produktfeatures, Produktarchitektur oder Scaffold, parallele Worker und Workerstart, Worktree-Erzeugung, Level-0-Änderungen und Home-Sync, Preset-Promotion, Provider-Administration, Remote Writes, Merge und Bypass. Der Eligibility-Vertrag startet weder Specify noch Implementierung. Der aktuelle Auftrag erlaubt ausschließlich diese Specify-Phase im vorhandenen Feature, ohne Commit, Push, Merge oder weiteres Feature. / *Excluded are product features, product architecture or scaffolding, parallel workers and worker start, worktree creation, level-0 changes and Home sync, preset promotion, provider administration, remote writes, merge, and bypass. The eligibility contract starts neither Specify nor implementation. The current instruction authorises only this Specify phase in the existing feature, without commit, push, merge, or another feature.*\n\n## Governance-Anwendbarkeit und Nachweise / Governance Applicability and Evidence\n\nDie folgenden Angaben sind Anforderungsentscheidungen dieser Phase, keine Behauptung bereits umgesetzter Feature-Gates. Für jede Zeile gilt: Owner ist der AOC Repository Owner; Reviewer dieser Specify-Anwendbarkeit ist der Specify-Agent. `Applicable` hat für die spätere Umsetzung den Zustand `Not Assessed`; `N/A` bleibt ebenfalls `Not Assessed`. Restliches Risiko bei `Applicable` ist fehlende spätere Ausführungsevidence, bei `N/A` eine Scope-Änderung. Follow-up: im Plan den genannten Nachweis übernehmen und vor Feature-Abnahme prüfen; Re-Evaluation bei dem genannten Trigger. Es gibt keine materiell offene Anwendbarkeitsentscheidung. / *These are requirement decisions for this phase, not claims that feature gates have already been implemented. For every row, the owner is the AOC repository owner and the Specify agent reviews this phase's applicability. Applicable items remain Not Assessed for later implementation; N/A items also remain Not Assessed. Residual risk is missing later execution evidence for applicable items and scope change for N/A items. Follow-up: carry the named evidence into Plan and verify it before feature acceptance; reassess on the stated trigger. No material applicability decision is open.*\n\n### Sicherheit / Security\n\n| Prüfpunkt / Checkpoint | Anwendbarkeit / Applicability | Grund und geplanter Nachweis / Rationale and planned evidence | Trigger / Trigger |\n|---|---|---|---|\n| NIST SSDF; CWE Top 25; sichere Sprachregeln / secure language rules | Applicable | Authority-, Eingabe- und Pfadprüfung, Schutz vor Injection und Manipulation; `docs/security/series-eligibility.md`. / Authority, input, and path validation; prevent injection and tampering; named evidence. | Eingabe, Writes oder Runtime ändern sich. / Inputs, writes, or runtime change. |\n| STRIDE/CIA; CAPEC; arc42-Sicherheitskonzepte / security concepts | Applicable | Bedrohungsanalyse für gefälschte Authority, Hash-Drift, unzulässige Pfade, sensible Ausgaben und fehlgeschlagene Abfragen; gleicher Security-Nachweis. Integrität, Vertraulichkeit und Verfügbarkeit getrennt prüfen. / Threat analysis for forged authority, hash drift, unsafe paths, sensitive output, and failing queries; same security evidence. Assess integrity, confidentiality, and availability separately. | Neue Vertrauensgrenze. / New trust boundary. |\n| OWASP SAMM; Cheat Sheets / Proactive Controls | Applicable | Nachvollziehbare Anforderung-Prüfung-Verknüpfung und sichere Metadatenverarbeitung; gleicher Security-Nachweis, keine neue organisationsweite Bewertung. / Traceable requirements and checks plus safe metadata handling; same evidence, no new organisation-wide assessment. | Review-/Prozess- oder Eingabeänderung. / Review, process, or input change. |\n| MSL; Dependency Audit | Applicable | Bestehende Laufzeiten, keine neue Dependency; Abhängigkeiten und sichere Adapterregeln im gleichen Nachweis erfassen. / Existing runtimes, no new dependency; record dependencies and safe adapter rules in the same evidence. | Sprache oder Abhängigkeiten ändern sich. / Language or dependencies change. |\n| OWASP ASVS | N/A | Keine Web-/API-/HTTP-/Auth-Fläche; keine ASVS-Stufe. Gleicher Security-Nachweis. / No web/API/HTTP/auth surface; no ASVS level. Same evidence. | Eine solche Fläche wird genehmigt. / Such a surface is approved. |\n| SBOM; VEX; SLSA; OpenSSF Scorecard | N/A | Interne Repository-Evidence, keine neue Release-Komponente, Dependency-Auswahl oder Build-Pipeline; gleicher Security-Nachweis. / Internal repository evidence, no new released component, dependency selection, or build pipeline; same evidence. | Release, neue evaluierte Komponente, Schwachstellenfund oder Supply-Chain-Änderung. / Release, new evaluated component, vulnerability finding, or supply-chain change. |\n| AI-SBOM | N/A | KI nur als Entwicklungswerkzeug, keine KI-Produkt-/Runtime-Komponente; gleicher Security-Nachweis. / AI is development tooling only, no AI product/runtime component; same evidence. | KI-Komponente wird Lieferumfang. / AI component enters delivery scope. |\n| Zero Trust; BSI C3A; BSI C5 | N/A | Keine Netzwerk-, Cloud-, verteilte Service- oder Remote-Access-Grenze; gleicher Security-Nachweis. / No network, cloud, distributed-service, or remote-access boundary; same evidence. | Cloud-/Provider- oder Netzwerk-Scope. / Cloud, provider, or network scope. |\n| NIS2; CRA; EU AI Act; DORA | N/A | Interner Ausbildungs-/Governance-Vertrag ohne regulierte Dienstleistung, Marktprodukt, KI-Runtime oder Finanzsektor-Lieferpflicht; Scope-Screening im gleichen Nachweis. / Internal training/governance contract without regulated service, market product, AI runtime, or financial-sector delivery duty; scope screening in the same evidence. | Regulierter Lieferumfang oder Kundenpflicht. / Regulated delivery or customer obligation. |\n| Privacy; öffentliche Inhalte / public content | N/A | Keine personenbezogenen Daten nötig, Fixtures ohne solche Daten; keine Veröffentlichung im Scope. Gleicher Security-Nachweis. / No personal data needed; fixtures exclude it; publication outside scope. Same evidence. | Datenfund oder Veröffentlichungsvorschlag: Stop und neu prüfen. / Data discovery or proposed publication: stop and reassess. |\n\n### Architektur / Architecture\n\n`architecture-governance` und `isaqb-architecture-governance` sind `Applicable`: betroffen sind der Kontext Intake → Series-Prüfung → Empfehlung, die Metadatenschnittstellen und die Qualitätsziele Integrität, Nachvollziehbarkeit, Determinismus und Wiederherstellbarkeit. Die Szenarien US1–US3 und SC-001–SC-005 sind die messbaren Qualitätsszenarien. `docs/architecture/series-eligibility.md` soll Kontext, Datenfluss, Vertrauensgrenze und das Risiko gemeinsamer Writes/Decisions belegen. Produktbausteine, Deployment, Hardware, externe Services und neue technische Schuld sind `N/A`, da unverändert. / *Architecture and iSAQB governance apply to the intake → series validation → recommendation context, metadata interfaces, and integrity, traceability, determinism, and recoverability goals. US1–US3 and SC-001–SC-005 provide measurable quality scenarios. The named architecture evidence should record context, data flow, trust boundary, and shared-write/decision risk. Product components, deployment, hardware, external services, and new technical debt are N/A because they remain unchanged.*\n\nEin neuer ADR oder Security-ADR (begründete Architekturentscheidung) ist `N/A`: Die neun Kriterien und die Trennung von Empfehlung und Autorität sind bereits entschieden. Trigger für Re-Evaluation sind eine neue materielle Architekturentscheidung oder eine geänderte Trust Boundary; dann muss der Plan den ADR-/S-ADR-Bedarf neu prüfen, ohne Produkt-Scope abzuleiten. / *A new ADR or security ADR (reasoned architecture decision record) is N/A: the nine criteria and the separation between recommendation and authority are already decided. A new material architecture decision or changed trust boundary triggers reassessment of ADR/S-ADR need in Plan, without implying product scope.*\n\n### Barrierefreiheit / Accessibility\n\n`a11y-governance` ist `Applicable` für Markdown, Kriterienmatrix, Hilfetexte und CLI-Status/Fehler. Prüfpfad: Überschriften und Lesereihenfolge, ausgeschriebene Zustände und Gründe, beschreibende Links, sprachgleiche Beispiele sowie Textansicht ohne Farbe. WCAG 2.2 AA wird anhand anwendbarer Kriterien geprüft: 1.3.1 Beziehungen/Struktur, 1.3.2 sinnvolle Reihenfolge, 1.4.1 Farbe, 2.4.4 Linkzweck, 2.4.6 Überschriften und 3.1.1/3.1.2 Sprache in der gerenderten Ansicht. Die Evidence `docs/accessibility/series-eligibility.md` muss tatsächliche Prüfumgebung und Grenzen nennen; Markdown allein beweist keine Screenreader-Kompatibilität. / *Accessibility governance applies to Markdown, the criteria matrix, help, and CLI statuses/errors. Review headings and reading order, explicit statuses and reasons, descriptive links, equivalent examples, and a colour-free text view. Apply the named WCAG 2.2 AA criteria for structure, sequence, colour, link purpose, headings, and language in the rendered view. The named evidence must state the actual review environment and limits; Markdown alone does not prove screen-reader compatibility.*\n\nBilder, interaktive UI und Audio/Video sind `N/A`, weil nicht vorhanden. Codeblöcke erhalten Sprachangabe und DE/EN-Erklärung. Didaktische Inline-Kommentare sind in dieser textuellen Specify-Phase `N/A`; bei später geänderter nicht-trivialer Prüflogik sind sie `Applicable` für Authority-, Hash-, Pfad- und Recovery-Grenzen. Trigger: neue Darstellung, Diagnose, Interaktion oder Prüflogik. / *Images, interactive UI, and audio/video are N/A because absent. Code blocks receive a language tag and DE/EN explanation. Didactic inline comments are N/A in this textual Specify phase; they apply to authority, hash, path, and recovery boundaries if later non-trivial validation logic changes. Trigger: new presentation, diagnostic, interaction, or validation logic.*\n\n### Plattformen / Cross-Platform\n\n`cross-platform-governance` ist `Applicable`. Die gebundenen Bash-/PowerShell-Validatoren und ihre Tests gehören zur Abnahme; kein zusätzlicher Produkt-CLI-Befehl wird erfunden. Zielplattformen sind macOS, Linux und Windows. Falls der akzeptierte Plan einen vorhandenen skriptförmigen Eligibility-Adapter ändern muss, umfasst dieselbe Änderung `.sh` und `.ps1`, die Manpage `docs/man/validate-series-eligibility.1`, DE-first/EN-second PowerShell-Kommentarhilfe und die Advanced Function `Test-AocSeriesEligibility` mit dem zugelassenen Verb `Test`. / *Cross-platform governance applies. The bound Bash/PowerShell validators and tests belong to acceptance; no additional product CLI command is invented. Targets are macOS, Linux, and Windows. If the accepted plan must change an existing script-shaped eligibility adapter, that change includes both shell variants, the named man-page, bilingual PowerShell comment help, and the advanced function Test-AocSeriesEligibility using the approved verb Test.*\n\nFür rein lesende Validatoren und `status`/`next` sind schreibende Dry-run-/`-WhatIf`-Operationen `N/A`; jede Ausführung muss bereits ohne Writes bleiben. Vor einer separat autorisierten Manifest-Schreiboperation müssen Vorschau/Dry-run und `-WhatIf` semantisch gleich wirken. `checklists/cross-platform.md` soll später Plattform, Shell, Befehl, Ausgabe, Exitcode, Hilfe und No-write-Nachweis binden. Fehlende native Evidence bleibt offen bis zur Implementierungsabnahme. Trigger: Änderung von Skript, Help, Pfadnormalisierung oder Plattform. / *Writing dry-run/WhatIf operations are N/A for read-only validators and status/next: every execution must already avoid writes. Before any separately authorised manifest write, preview/dry-run and WhatIf must be equivalent. The later cross-platform checklist should bind platform, shell, command, output, exit code, help, and no-write proof. Missing native evidence remains outstanding until implementation acceptance. Trigger: script, help, path-normalization, or platform change.*\n\n### Agentenparität / Agent Parity\n\n`agent-parity-governance` ist `Applicable` als Prüfung auf gleiche Grenzen in allen Agenten. Änderungen gemeinsamer Guidance, Routingregeln, Projekttemplates und `.specify/memory/constitution.md` sind `N/A`, weil diese Phase nur Feature-Artefakte konkretisiert. Die gepflegte Paritätsmenge lautet `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` und `.github/agents/copilot-instructions.md`. Es gibt keine beabsichtigte Abweichung. / *Agent parity governance applies to verifying equal boundaries across agents. Changes to shared guidance, routing rules, project templates, and the constitution mirror are N/A because this phase only specifies feature artifacts. The maintained parity set consists of the five named files. No intentional deviation is planned.*\n\n`checklists/requirements.md` belegt diese Disposition jetzt; spätere gemeinsame Regeländerungen verlangen Prüfung und Synchronisierung aller fünf Flächen sowie betroffener `.specify/templates/`-Dateien. Konkrete Modellnamen gehören nicht in Feature-Anforderungen. Trigger: neue gemeinsame Regel oder Template-/Routingänderung. / *The requirements checklist records this disposition now; later shared-rule changes require review and synchronization of all five surfaces and affected project templates. Concrete model names do not belong in feature requirements. Trigger: a new shared rule or template/routing change.*\n\n## Autonomer Lauf und Abnahmegrenzen / Autonomous Run and Acceptance Boundaries\n\n`autonomous-run-governance` ist für den bestehenden Lauf `Applicable`; `parallel-autonomous-run-governance` ist nur für die Prüfung der Klassifikationsgrenzen `Applicable`, reale Kampagnenausführung ist `N/A`. Der Laufzustand bleibt in `specs/004-series-eligibility/autonomous-run-state.json`. Sein gespeicherter Modus `MergeAndSync` ist Kontext, keine aktuelle Remote-Freigabe. Der aktuelle Benutzerauftrag autorisiert Specify; der koordinierende Runner verwaltet Folgezustände. / *Autonomous-run governance applies to the existing run. Parallel-autonomous governance applies only to checking classification boundaries; real campaign execution is N/A. The run state remains at the named feature-local path. Its stored MergeAndSync mode is context, not current remote authority. The current user instruction authorises Specify; the coordinating runner manages later states.*\n\nDelivery-Set-Validierung, Routed-Phase-Schema und Gate-Evidence-Lifecycle werden nicht geändert (`N/A`). Neue spätere Lieferentscheidungen müssten den vorhandenen Schema-2.0-Vertrag beachten; historische Schema-1.0-Evidence bleibt historisch. Veränderliche Validierungstokens sind `N/A`, da dieser Vertrag keine einführt. / *Delivery-set validation, routed-phase schema, and gate-evidence lifecycle are not changed (N/A). Any later new delivery decision would follow the existing schema-2.0 contract; historical schema-1.0 evidence remains historical. Mutable validation tokens are N/A because this contract introduces none.*\n\nBei bewusstem Stop bleibt der Lauf `PausedByUser` bis zum ausdrücklich passenden Resume. Nach unerwarteter Unterbrechung sind Eingabehashes, Authority, laufende Operation und aktuelle Gates vor Fortsetzung neu zu prüfen; kein Erfolg wird aus dem Prozessende allein abgeleitet. Causal Closeout, also ursächlich belegter Lieferabschluss, ist erst bei später separat autorisierter Lieferung relevant und muss reale Ereignisse belegen. / *A deliberate stop leaves the run PausedByUser until an explicitly matching resume. After an unexpected interruption, input hashes, authority, active operation, and current gates must be revalidated before continuation; process exit alone does not prove success. Causal closeout becomes relevant only for later separately authorised delivery and must prove actual events.*\n\n| Gate-ID | Anwendbarkeit / Applicability | Umfang und Nachweis / Scope and evidence | Trigger / Trigger |\n|---|---|---|---|\n| SP-01 | Applicable | Specify: Branch/Feature, drei akzeptierte Eingabehashes, aktuelles Review/Receipt in beiden Shells, 14er Global-Ready-Gate und abgeschlossene Vorgänger. / Specify: branch/feature, three accepted input hashes, current review/receipt in both shells, global Ready coverage of 14, and completed predecessors. | Eingabe-, Review-, Authority- oder Lifecycle-Drift. / Input, review, authority, or lifecycle drift. |\n| SP-02 | Applicable | Specify: vollständige Spezifikation, Qualitätscheckliste, DE/EN und genau neun Kriterien; `phase-results/specify-report.md`. / Specify: complete specification, quality checklist, DE/EN, and exactly nine criteria; named report. | Spec- oder Checklist-Änderung. / Spec or checklist change. |\n| SP-03 | Applicable | Specify: `validate-autonomous-phase-result.sh` und `.ps1`, Phase `specify`, 1 von 1 Phasenaufgabe, echter Payload-Hash. / Specify: both phase-result validators, phase specify, one of one phase task, actual payload hash. | Ergebnis- oder Payload-Drift. / Result or payload drift. |\n| EL-01 | Applicable | Spätere Feature-Abnahme: Intake AC-001, Series-Validatoren in beiden Shells, Roots/Reihenfolge/Kanten/Lifecycle/Hashes. / Later feature acceptance: intake AC-001, both series validators, roots/order/edges/lifecycle/hashes. | Manifest-/Validatoränderung. / Manifest or validator change. |\n| EL-02 | Applicable | Spätere Feature-Abnahme: AC-002/003, Sequencing-Suite plus drei Eligibility-Fixtures in beiden Shells; neun Kriterien. / Later feature acceptance: AC-002/003, sequencing suite and three fixtures in both shells; nine criteria. | Kriterien-/Fixtureänderung. / Criteria or fixture change. |\n| EL-03 | Applicable | Spätere Feature-Abnahme: AC-004/005, semantisches Review von No-write/No-start, Authority, Sprache, A11Y und Plattformparität; SC-003–005. / Later feature acceptance: AC-004/005, semantic review of no-write/no-start, authority, language, accessibility, and platform parity; SC-003–005. | Bedien-/Sprach-/Plattformänderung. / Usage, language, or platform change. |\n| EL-04 | N/A | Aktuelle Phase: Produktbuild, Worker-/Provider-/Remote-Gates und Veröffentlichung; kein solcher Scope. / Current phase: product build, worker/provider/remote gates, and publication; no such scope. | Separater neuer Lieferauftrag. / Separate new delivery instruction. |\n\nDie exakten bestehenden Befehle für EL-01/02 stehen im Intake unter „Reproduzierbare Evidence“. Verbindlich sind `validate-intake-series-manifest.sh/.ps1`, `test-intake-sequencing-validator.ps1` und `validate-series-eligibility.sh/.ps1` mit `valid-parallel.json`, `shared-write.json` und `shared-decision.json`. Jeder erwartungsgemäße Test endet mit Exitcode 0, auch wenn die negative Fixture fachlich `Blocked` ergibt. Diese Phase spezifiziert die späteren Gates und behauptet deren Durchführung nicht. / *The exact existing commands for EL-01/02 appear in the intake's reproducible-evidence section. The named validators, sequencing suite, and three fixtures are binding. Every correctly reproduced expected test exits zero, including negative fixtures whose domain result is Blocked. This phase specifies later gates and does not claim to have executed them.*\n\n## Dokumentationsauswirkung / Documentation Impact\n\nDie Entscheidung aus CR-013 umfasst die Dokumentfamilien Feature-Anforderungen, Workflow-Evidence sowie spätere Security-, Architektur-, A11Y- und Plattformnachweise. Kanonische fachliche Quelle ist das akzeptierte META-LH-04 mit seinem Eligibility-Vertrag; Owner ist der AOC Repository Owner. Dokumentklasse ist lokale normative Feature-Dokumentation mit separat gekennzeichneter Evidence; Distributionsklasse ist interne Level-2-Repository-Evidence, keine Home-Runtime-Kopie. / *The CR-013 decision covers feature requirements, workflow evidence, and later security, architecture, accessibility, and platform evidence. The canonical domain source is accepted META-LH-04 and its eligibility contract; the owner is the AOC repository owner. Document class is local normative feature documentation with separately labelled evidence; distribution is internal level-2 repository evidence, not a Home runtime copy.*\n\nBetroffene Leser*innen sind Lernende, Maintainer und Reviewer. Navigation: Intake → `spec.md` → `checklists/requirements.md` → `phase-results/specify-report.md`; bestehende Baseline-Navigation bleibt Quelle statt Kopie. Sprachpartner ist jeweils der unmittelbar folgende englische Absatz. Plattform-/Beispielnachweis folgt EL-01–03, aktuelle Qualität SP-01–03. Ein Home-Sync ist nicht nötig. Re-Evaluation bei Scope-, Quell-, Governance-, Sprach-, Plattform- oder Evidence-Drift. / *Affected readers are learners, maintainers, and reviewers. Navigation follows intake → specification → requirements checklist → specify report; existing baseline navigation remains the source rather than being copied. Each following English paragraph is the language partner. Platform/example evidence follows EL-01–03; current quality follows SP-01–03. No Home sync is needed. Reassess on scope, source, governance, language, platform, or evidence drift.*\n\nAEPS-Erfassung folgt beim passenden Review-/Completion-/Fehlertrigger dem bestehenden `docs/aeps/README.md`; neue und unveränderte Evidence werden begründet unterschieden. Weder Retrospektive noch Receipt verleihen Level-0-, Promotion- oder Remote-Autorität. / *AEPS capture follows the existing contract at applicable review, completion, or failure triggers; new and unchanged evidence are distinguished with reasons. Neither a retrospective nor a receipt grants level-0, promotion, or remote authority.*\n"
         }
       ],
       "discovery": [
@@ -2571,7 +2582,7 @@
             "tasks.md": "b48e1eb7490c58442c2472276a3668826f9c3c5c",
             "autonomous-run-state.json": "0c0592d54f65eae69711e8faca834a3928a4666f"
           },
-          "commit": "793c85d8105bfd58f17db7aff23c0c4e7d0dbf77",
+          "commit": "61667a9727c3c50ebee26c4b4d763648d6928bde",
           "pullRequest": null
         },
         {
@@ -2582,7 +2593,7 @@
             "tasks.md": "76f934e252f6e0e9d927952a89836ab469d80451",
             "autonomous-run-state.json": "cf8da814538f3d73eba0253c9021d3409e30c0ee"
           },
-          "commit": "793c85d8105bfd58f17db7aff23c0c4e7d0dbf77",
+          "commit": "61667a9727c3c50ebee26c4b4d763648d6928bde",
           "pullRequest": null
         },
         {
@@ -2593,7 +2604,18 @@
             "tasks.md": "488d4f9ed2c75902e51fbcf3da98b96e5bde0366",
             "autonomous-run-state.json": "ad4397153259c90c5a48279e4f1aa47e9135b567"
           },
-          "commit": "793c85d8105bfd58f17db7aff23c0c4e7d0dbf77",
+          "commit": "61667a9727c3c50ebee26c4b4d763648d6928bde",
+          "pullRequest": null
+        },
+        {
+          "feature": "specs/004-series-eligibility",
+          "specBlob": "7b375243d242265a9849a5fa0081acdc279f89e8",
+          "evidenceBlobs": {
+            "spec.md": "7b375243d242265a9849a5fa0081acdc279f89e8",
+            "tasks.md": "99d545b6d39a70d8af7d3fae156238241dea7397",
+            "autonomous-run-state.json": "d7ffbe9ecbb7ecb88c5db5790d521c86150161d4"
+          },
+          "commit": "61667a9727c3c50ebee26c4b4d763648d6928bde",
           "pullRequest": null
         }
       ]
@@ -2603,7 +2625,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "b343271028bf95cf60c2f3472aefae9f1739729d",
+      "head": "d36c15940d6998e98bf92ab6edb54ef368c2dd76",
       "features": [
         {
           "feature": "specs/001-pgsql-paritaet",
@@ -2738,7 +2760,7 @@
             "spec.md": "792f3a12ddfc22d6d9198e7bd81b6e71b530e56c",
             "tasks.md": "4082a8006bf0b4ec91b1bc558e374859880e7c0e"
           },
-          "commit": "b343271028bf95cf60c2f3472aefae9f1739729d",
+          "commit": "d36c15940d6998e98bf92ab6edb54ef368c2dd76",
           "pullRequest": null
         },
         {
@@ -2749,7 +2771,7 @@
             "tasks.md": "eff30b1105b75dba29e9369deb7273dfc2f8d15d",
             "autonomous-run-state.json": "dd9c72a7f05fce8e325e4f49d73d9ffe963c8911"
           },
-          "commit": "b343271028bf95cf60c2f3472aefae9f1739729d",
+          "commit": "d36c15940d6998e98bf92ab6edb54ef368c2dd76",
           "pullRequest": null
         }
       ]
@@ -2759,7 +2781,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "1428b42b41263f5986b57e8b971d84ac8cf7946f",
+      "head": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
       "features": [
         {
           "feature": "specs/001-project-context",
@@ -3074,7 +3096,7 @@
             "spec.md": "d5d1ba8ad8c94d2bf781f95742d3edf3ea02901c",
             "tasks.md": "4d754eeae04a28773a2c9d863e2cc9c46e43c6aa"
           },
-          "commit": "1428b42b41263f5986b57e8b971d84ac8cf7946f",
+          "commit": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
           "pullRequest": null
         },
         {
@@ -3085,7 +3107,7 @@
             "tasks.md": "bad89a6a36b7ae64f11d4acc931d0ee7638fd9ad",
             "autonomous-run-state.json": "48e171efd528a7cc7d3468d56c682ff99a617de9"
           },
-          "commit": "1428b42b41263f5986b57e8b971d84ac8cf7946f",
+          "commit": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
           "pullRequest": null
         },
         {
@@ -3095,7 +3117,7 @@
             "spec.md": "67a21a0e5d857ba557332acc9c789b8ac561df6e",
             "tasks.md": "47ba0041929763f5c76299c7d66ca85d6a472247"
           },
-          "commit": "1428b42b41263f5986b57e8b971d84ac8cf7946f",
+          "commit": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
           "pullRequest": null
         },
         {
@@ -3105,7 +3127,7 @@
             "spec.md": "5d9ed1f73a0c52d91e88a85eedfc8ab410328f38",
             "tasks.md": "1479f508210ac44511099373fca98837ef901b78"
           },
-          "commit": "1428b42b41263f5986b57e8b971d84ac8cf7946f",
+          "commit": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
           "pullRequest": null
         },
         {
@@ -3115,7 +3137,7 @@
             "spec.md": "cbe6de5703c59b9d8fe1c22ac75c448d54ac1ab3",
             "tasks.md": "31e308f67b1c5f1e54a47d3724efe2ae156efc5a"
           },
-          "commit": "1428b42b41263f5986b57e8b971d84ac8cf7946f",
+          "commit": "aa7b9c4a3f265adb7749a9a796e9cc8bef28bf9f",
           "pullRequest": null
         }
       ]
@@ -3125,7 +3147,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "431152247d0b67350340daa4df6d8881a592c0c9",
+      "head": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
       "features": [
         {
           "feature": "specs/001-l10n-backend",
@@ -3532,7 +3554,7 @@
             "spec.md": "7b52ca94ba006334283a3b39ee6178f1dd652199",
             "tasks.md": "d19acc02d7d93d4118ced962e9d6f81a27eed8c8"
           },
-          "commit": "431152247d0b67350340daa4df6d8881a592c0c9",
+          "commit": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
           "pullRequest": null
         },
         {
@@ -3542,7 +3564,7 @@
             "spec.md": "f94f2f79313ec2a687833505b5472aaaa3e953ea",
             "tasks.md": "785af7f04a77430075404c41f40f8468fd5f4b60"
           },
-          "commit": "431152247d0b67350340daa4df6d8881a592c0c9",
+          "commit": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
           "pullRequest": null
         },
         {
@@ -3553,7 +3575,7 @@
             "tasks.md": "fd521a890cd704598ef7b87d1f356704b285f499",
             "autonomous-run-state.json": "e1ff4f65a3c46ff624021ec9bf156edd57b917b2"
           },
-          "commit": "431152247d0b67350340daa4df6d8881a592c0c9",
+          "commit": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
           "pullRequest": null
         },
         {
@@ -3564,7 +3586,7 @@
             "tasks.md": "2455969d8484862d9365a0457a08104fe50347b0",
             "autonomous-run-state.json": "c9e9f93fae34f4ec8a90d421f720d7ca73bd09b5"
           },
-          "commit": "431152247d0b67350340daa4df6d8881a592c0c9",
+          "commit": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
           "pullRequest": null
         },
         {
@@ -3575,7 +3597,7 @@
             "tasks.md": "fc350715e43596ac143cc32b3a3b4029870ec389",
             "autonomous-run-state.json": "3ceed54e4d958b6bd39ae9ae19c6d41aa77cd71e"
           },
-          "commit": "431152247d0b67350340daa4df6d8881a592c0c9",
+          "commit": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
           "pullRequest": null
         },
         {
@@ -3586,7 +3608,7 @@
             "tasks.md": "c81cbfeee1dd8f334655f6f7ddcdf239a16f149b",
             "autonomous-run-state.json": "e1a0529f35ba27140f4480938116ff834f1ad501"
           },
-          "commit": "431152247d0b67350340daa4df6d8881a592c0c9",
+          "commit": "fa4289b8ee30e6b44cd4fabdb2293f2534449d09",
           "pullRequest": null
         }
       ]
@@ -3596,7 +3618,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+      "head": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
       "features": [
         {
           "feature": "specs/001-view-system-tgroup",
@@ -5079,7 +5101,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/038-example-portfolio-conformance-audit",
@@ -5130,7 +5155,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/039-example-portfolio-closure",
@@ -5181,7 +5209,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/040-constitution-governance-closure",
@@ -5232,7 +5263,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/041-source-reference-policy",
@@ -5283,7 +5317,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/042-transactional-form-model",
@@ -5334,7 +5371,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/043-documentation-publishing-closure",
@@ -5385,7 +5425,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/044-sandbox-secure-development-hardening",
@@ -5436,7 +5479,10 @@
             "executionMode": "serial",
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
-          "changedEvidence": []
+          "changedEvidence": [
+            "autonomous-run-state.json",
+            "autonomous-run-state.json"
+          ]
         },
         {
           "feature": "specs/045-rl-se-checklist-self-review",
@@ -5539,6 +5585,11 @@
             "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
           },
           "changedEvidence": []
+        },
+        {
+          "feature": "specs/047-evidence-quality-audit",
+          "decision": "needsReview",
+          "source": "hindermath/TuiVision/blob/67c0120b2d7a343c80dff043e5e3f67f2236ca67/specs/047-evidence-quality-audit/spec.md"
         }
       ],
       "sources": [
@@ -5655,6 +5706,12 @@
           "kind": "file",
           "sha256": "72c732f2d6e3570d25a1eff41132a4ce75db97fdbdd024bec648330a0a257c91",
           "content": "{\n  \"schemaVersion\": \"1.1\",\n  \"runId\": \"9baf5e03-7a45-42b0-80f0-a06cbc6fa499\",\n  \"featurePath\": \"specs/046-gsdb-spec-kit-intensive-review\",\n  \"branch\": \"046-gsdb-spec-kit-intensive-review\",\n  \"deliveryMode\": \"MergeAndSync\",\n  \"authorityRevalidationRequired\": false,\n  \"stage\": \"Retrospective\",\n  \"status\": \"Completed\",\n  \"checkpointCommit\": \"fe1f57c201c84fb3f81d746a6ca3d8977c9f1edb\",\n  \"acceptedArtifacts\": [\n    {\n      \"path\": \"requirements/intakes/archive/Lastenheft_GSDB-Spec-Kit-Intensivpruefung.046-gsdb-spec-kit-intensive-review.md\",\n      \"sha256\": \"97d31e6eac5c2e5defeae1dd29bc5c97ddb8ba43b75106768dfe4b703c6d802d\"\n    },\n    {\n      \"path\": \"requirements/intakes/series/tui-vision-delivery/intake-review-result.json\",\n      \"sha256\": \"1ce187fe77bac12b462b6c2877f3512ad167cbc27d8455453b5173c177cbf42d\"\n    },\n    {\n      \"path\": \"requirements/intakes/series/tui-vision-delivery/manifest.json\",\n      \"sha256\": \"538d12fcc60cab96e5d70865a9ab9c31885634f3981e1c10dc2cd09d1ee2d2e7\"\n    },\n    {\n      \"path\": \"requirements/intakes/series/tui-vision-delivery/receipt.json\",\n      \"sha256\": \"eb64ab26a6e0d4fd9ab92039f61a31612cbda4ac1cd4978fabfb3ab220f71136\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/spec.md\",\n      \"sha256\": \"47c0140121cb5eac74ae5e7076a125b0516f078eb94aacc04ab2a4b343301c73\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/clarification-report.md\",\n      \"sha256\": \"e17e4213c1899a95771e954395924c9e2f65fe11667af48b834026cd82ee6c26\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/checklists/requirements.md\",\n      \"sha256\": \"cd38c0a8bcfba44ea7251228d6dd6fb98e24c64e20c6c3c99212c3b993f92d1e\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/checklists/audit-readiness.md\",\n      \"sha256\": \"a04310f3de1b709bbd8db0ed41ea2cd148175aee4309c008558b59cbb9bbfeaa\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/checklists/plan-quality.md\",\n      \"sha256\": \"e70e2bbde0992b8907a946003551bc12350a9b5f5a7a320ee9687b42a142c0a0\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/plan.md\",\n      \"sha256\": \"21d7194ddc72c00841c21aa3ba4564218971a2edaeb7e3dc9ec8a1ae0e16c39e\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/research.md\",\n      \"sha256\": \"94ee6eb0996a0855e6227cd695aa0243453bdc68c7ffc87b1aeed7311cb24dfe\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/data-model.md\",\n      \"sha256\": \"f8e1b111a116c1fefcd21c5b437e114e1036625b4e62ca6c36233cc7c4685085\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/quickstart.md\",\n      \"sha256\": \"4701c481bc882f12db38b52be88970f7e39999ea249e3e5db6706260b119720d\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/contracts/gsdb-review-acceptance-contract.md\",\n      \"sha256\": \"8d91980b28e8b8972aafced2e94a2122190cc73d39587902e76d14f8ce59ac9c\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/autonomous-gate-requirements.json\",\n      \"sha256\": \"dd545e99d4a0efc2aa52c3f1f9f7f7562e6e54613af95a3d22fdcd0be04ed992\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/plan-review.md\",\n      \"sha256\": \"c41bd660244498abc6974c4c90fbe6991fd44d94fe186f5609642bd251f93c29\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/tasks.md\",\n      \"sha256\": \"9f1f6ec5c8efb7a5590f0beb9e6d78b55e42e0e4f1737d26939ae7a945ffc5f2\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/analysis-report.md\",\n      \"sha256\": \"12e464bacb90a3ba3d96dc772ea264d0fc353a6a5adc7f51bdf27d4d96fc6664\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/pr-evidence.md\",\n      \"sha256\": \"d085e9b882e43f67c0df391c2c4ed0f18430f42135907c370ed895f54415f85d\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/delivery-closeout.md\",\n      \"sha256\": \"609d5edb3a68469e67220fe7cdb2d5d9b2b246fdc220a57d675ba55495361ec3\"\n    },\n    {\n      \"path\": \"specs/046-gsdb-spec-kit-intensive-review/retrospective.md\",\n      \"sha256\": \"dc47ee41825d7e1cac86180117a7661b49a34eeabcad5ff75c7dd2f0d399adf6\"\n    }\n  ],\n  \"tasks\": {\n    \"path\": \"specs/046-gsdb-spec-kit-intensive-review/tasks.md\",\n    \"sha256\": \"9f1f6ec5c8efb7a5590f0beb9e6d78b55e42e0e4f1737d26939ae7a945ffc5f2\",\n    \"completed\": 112,\n    \"total\": 112\n  },\n  \"routing\": {\n    \"policy\": \"balanced-v1\",\n    \"fallbackPolicy\": \"fail-closed\",\n    \"phases\": [\n      {\n        \"phaseId\": \"specify-1\",\n        \"command\": \"speckit.specify\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T12:21:23.882611Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/specify-1.result.json\",\n        \"resultSha256\": \"b5912fa265919f436e4692bb56f72695c65dd0933dfa918127f33c14c60a376f\"\n      },\n      {\n        \"phaseId\": \"clarify-1\",\n        \"command\": \"speckit.clarify\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"specify-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T12:29:34.341326Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/clarify-1.result.json\",\n        \"resultSha256\": \"a1780d7dff008f39425d93a1c68f183f2c3af758336da9051755359678a6ef93\"\n      },\n      {\n        \"phaseId\": \"checklist-1\",\n        \"command\": \"speckit.checklist\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"clarify-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T12:34:38.886618Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/checklist-1.result.json\",\n        \"resultSha256\": \"92142ae056935ad33001bfe463b3e090a43fb36e8e32f971a274a120660320b3\"\n      },\n      {\n        \"phaseId\": \"plan-1\",\n        \"command\": \"speckit.plan\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"checklist-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T12:59:12.498833Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/plan-1.result.json\",\n        \"resultSha256\": \"6f6cd980d97dd033d97ac4afd14fe4cc9264da47979660f0cf98fa6e7d01eaa0\"\n      },\n      {\n        \"phaseId\": \"plan-review-1\",\n        \"command\": \"speckit.analyze\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"plan-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T13:19:04.949349Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/plan-review-1.result.json\",\n        \"resultSha256\": \"07ce7c0345e87d6acd58a05b8a3a5b334cf513cb32dee4e70d60fe664f992762\"\n      },\n      {\n        \"phaseId\": \"tasks-1\",\n        \"command\": \"speckit.tasks\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"plan-review-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T13:47:22.947467Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/tasks-1.result.json\",\n        \"resultSha256\": \"4deb043f2bfa6fa867ac9a18cdc3978ca2b028e5f5e688c2d3b43f7bd0a9efa2\"\n      },\n      {\n        \"phaseId\": \"analyze-1\",\n        \"command\": \"speckit.analyze\",\n        \"routingRole\": \"frontier-reasoning\",\n        \"runnerProfile\": \"codex-frontier-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"tasks-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T13:54:24.672317Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/analyze-1.result.json\",\n        \"resultSha256\": \"7e91e0adad967b63fb670d8aa5142f818ea3d31ab5370a249ea21d99743f7eef\"\n      },\n      {\n        \"phaseId\": \"implement-1\",\n        \"command\": \"speckit.implement\",\n        \"routingRole\": \"long-running-implementation\",\n        \"runnerProfile\": \"codex-implementation-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"analyze-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T16:31:56Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/implement-1.result.json\",\n        \"resultSha256\": \"b095469abee893a5354a1d00b99edb70bdfa10c5076ef6f511a83390b3d429b0\"\n      },\n      {\n        \"phaseId\": \"retrospective-1\",\n        \"command\": \"speckit.autonomous-retrospective\",\n        \"routingRole\": \"coding-review\",\n        \"runnerProfile\": \"codex-review-auto\",\n        \"status\": \"Completed\",\n        \"dependsOn\": [\n          \"implement-1\"\n        ],\n        \"agentFamily\": \"Codex\",\n        \"model\": \"gpt-5.6-sol\",\n        \"reasoningEffort\": \"high\",\n        \"preflight\": \"Completed\",\n        \"exitCode\": 0,\n        \"updatedAt\": \"2026-08-30T16:31:56Z\",\n        \"resultPath\": \".specify/runtime/autonomous-routing/9baf5e03-7a45-42b0-80f0-a06cbc6fa499/retrospective-1.result.json\",\n        \"resultSha256\": \"1621149b10b599063c992c5182a261ec198ab85a0cf3e6a02d7d7a26787556cc\"\n      }\n    ]\n  },\n  \"lastPassingGate\": \"PR #164 merged exact head ec57b823 after 28 successful checks, one expected Pages deployment skip, zero reviews, comments or threads, schema-2.0 PreMerge and PostMerge validation in Bash and PowerShell, synchronized main, a completed ten-target intake series with no eligible successor, and a validated non-recursive closeout candidate.\",\n  \"nextExactAction\": \"N/A\",\n  \"lastOperation\": {\n    \"kind\": \"CausalCloseout\",\n    \"state\": \"Completed\",\n    \"summary\": \"Feature 046 delivery, approval-only admin bypass, merge commit, default-branch synchronization, non-recursive lifecycle evidence, retrospective and terminal series transition are complete without starting another feature.\"\n  },\n  \"stop\": {\n    \"reason\": \"N/A\",\n    \"requestedAt\": \"N/A\",\n    \"safeBoundary\": \"N/A\"\n  },\n  \"closeout\": {\n    \"mergeOrPublication\": \"Completed\",\n    \"defaultBranchSync\": \"Completed\",\n    \"postMergeActions\": \"Completed\",\n    \"finalValidation\": \"Completed\"\n  },\n  \"updatedAt\": \"2026-08-30T16:31:56Z\"\n}\n"
+        },
+        {
+          "key": "hindermath/TuiVision/blob/67c0120b2d7a343c80dff043e5e3f67f2236ca67/specs/047-evidence-quality-audit/spec.md",
+          "kind": "file",
+          "sha256": "59ebb5a274e28937d285ee91ed98314edb5deb762e6bc6bbac73521f37dd178b",
+          "content": "# Feature Specification: Evidence-Qualitaetsaudit 044-046\n\n**Feature Branch**: `047-evidence-quality-audit`\n**Created**: 2026-09-13\n**Status**: Accepted\n**Binding Input**: `requirements/intakes/active/Lastenheft_24_Evidence-Quality-Audit-Features-044-046.md`\n**Accepted Review**: Single review `9d9adb39-05a9-405e-953f-ad3e70b690c0` (`Ready`)\n**Delivery Authority**: `MergeAndSync`; granted after the completed local audit.\n\n## Zweck / Purpose\n\nFeature 047 prueft unabhaengig, ob die Abschlussaussagen der Features 044, 045\nund 046 durch konkrete, aktuelle und angemessen tiefe Evidence getragen werden.\nEs veraendert weder die geprueften Artefakte noch Produktcode und erzeugt keine\nFolge-Intakes.\n\nFeature 047 independently checks whether the closure claims of Features 044,\n045, and 046 are supported by concrete, current, and sufficiently deep\nevidence. It changes neither audited artifacts nor product code and creates no\nfollow-up intakes.\n\n## User Stories\n\n### US1 - Vollstaendige Evidence-Abdeckung (P1)\n\nReviewer koennen alle 12 Feature-044-Kontrollen sowie alle 157 kanonischen\nKontrollen aus 045/046 auf genau eine Qualitaetsentscheidung zurueckverfolgen.\n\n**Acceptance**: Keine ID fehlt oder ist doppelt; jede Zeile verweist auf Claim,\nEvidence, Begruendung und gegebenenfalls genau ein dedupliziertes Finding.\n\n### US2 - Konkrete Hinweise ehrlich klassifizieren (P1)\n\nReviewer erkennen, ob Paket-, Workflow-, Laufzeit- und Reviewhinweise offen,\nwiderlegt, doppelt, ueberholt oder durch Evidence getragen sind.\n\n**Acceptance**: Coverlet, MSTest, mutable Workflow-Referenz, Node-Version und\nNullsekunden-Review besitzen jeweils eine nachvollziehbare Entscheidung.\n\n### US3 - Finding-Register ohne vorbestimmtes Ergebnis (P1)\n\nMaintainer erhalten ein kanonisches Register, dessen Summen aus den tatsaechlich\nerfassten Findings berechnet werden. Findings werden nicht behoben und erzeugen\nkeine automatische Folgearbeit.\n\n**Acceptance**: Stabile `EQA###`-IDs, Kategorien, Severity, Owner,\nRe-Evaluation-Trigger und Evidence-Pfade sind vollstaendig; null Findings ist\nnur bei wirklich leerem Register moeglich.\n\n### US4 - Lern- und barrierearme Darstellung (P2)\n\nAuszubildende und Maintainer koennen Auditgrenzen, Findings und Restrisiken in\nsemantischem, text-first Markdown nachvollziehen.\n\n**Acceptance**: Deutsch steht vor Englisch, CEFR-B2 wird angestrebt, und keine\nBedeutung haengt nur von Farbe, Symbolen oder Layout ab.\n\n## Functional Requirements\n\n- **FR-001**: Der Audit MUSS die 12 Feature-044-Kontrollen vollstaendig pruefen.\n- **FR-002**: Der Crosswalk MUSS exakt 157 eindeutige `CL-XX-NN`-Zeilen enthalten.\n- **FR-003**: Jede Auditzeile MUSS genau eine Entscheidung aus `Supported`,\n  `OpenBoundary`, `EvidenceGap`, `Contradicted`, `Duplicate`, `Superseded` besitzen.\n- **FR-004**: Findings MUESSEN genau eine Kategorie aus `EvidenceDefect`,\n  `GovernanceFinding`, `TechnicalFinding`, `HumanBoundary`, `Informational` besitzen.\n- **FR-005**: Findings MUESSEN stabile `EQA###`-IDs und vollstaendige Evidence-,\n  Owner-, Risiko-, Trigger- und Scope-Felder besitzen.\n- **FR-006**: Die Inventare fuer 10 Sprachprofile, 12 Presets, 123 Agentenflaechen,\n  46 Governance-Checkpoints, 12 Evidence-Familien und 988 Referenzen MUESSEN\n  mechanisch bestaetigt werden.\n- **FR-007**: Mindestens 50 Evidence-Referenzen MUESSEN semantisch auf\n  Existenz, Claim-Bezug und Aussagegrenze geprueft werden.\n- **FR-008**: Der Audit MUSS die fuenf benannten Pflichtkandidaten klassifizieren.\n- **FR-009**: Summen MUESSEN aus kanonischen Arrays berechnet werden; ein\n  fest codierter Null-Finding-Ausgang ist verboten.\n- **FR-010**: Bestehende Artefakte von 044/045/046 bleiben unveraendert.\n- **FR-011**: Es duerfen keine Produkt-, API-, Dependency-, Projekt-, Beispiel-,\n  Workflow- oder Serienmutationen entstehen.\n- **FR-012**: Die Remote-Lieferung benoetigt mindestens einen unabhaengigen\n  semantischen Review. Ein eng begrenzter Admin-Bypass darf nur bei gruenen\n  technischen Gates, null umsetzbaren Threads und allein offener Human-Approval-\n  Regel eingesetzt werden.\n\n## Success Criteria\n\n- **SC-001**: 12/12 Feature-044-Kontrollen und 157/157 Crosswalk-Zeilen sind bewertet.\n- **SC-002**: 10/10 Sprachprofile, 12/12 Presets, 123/123 Agentenflaechen,\n  46/46 Governance-Checkpoints, 12/12 Evidence-Familien und 988/988 Referenzen\n  sind mechanisch inventarisiert.\n- **SC-003**: Mindestens 50 Referenzen besitzen dokumentierte semantische Traces.\n- **SC-004**: Positive und negative Validator-Faelle sind deterministisch gruen.\n- **SC-005**: Der finale Diff enthaelt keine verbotene Aenderung und keine\n  automatische Abstellung oder Folge-Intake-Datei.\n\n## Assumptions And Boundaries\n\n- Die frueheren Abschlusszustaende bleiben historische Tatsachen; Feature 047\n  bewertet ihre Evidence-Qualitaet und schreibt sie nicht rueckwirkend um.\n- Ein offener Human- oder Provider-Punkt ist nicht automatisch ein Defekt.\n- `tv203s/` und externe Vergleichsquellen sind fuer diesen Governance-Audit `N/A`.\n- DocFX/A11Y werden nur ausgeloest, wenn eine DocFX-Eingabe oder Navigation\n  geaendert wird; feature-lokale Markdown-Evidence allein loest sie nicht aus.\n"
         },
         {
           "key": "hindermath/TuiVision/blob/a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b/specs/001-view-system-tgroup/spec.md",
@@ -6355,7 +6412,7 @@
             "spec.md": "67479ff4b6a5a73d32d939d1206743612241092b",
             "tasks.md": "58afe95fb555e32d853c21f4a38070034adb3df1"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6365,7 +6422,7 @@
             "spec.md": "509b236222046c322486d87fdb1963739e94259e",
             "tasks.md": "be94ddd64e8a75c23a54efc594a45bad2e066e38"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6375,7 +6432,7 @@
             "spec.md": "fb267cb46280a0662cffb5d0d2444207dc8c1530",
             "tasks.md": "5cdee35666892dae031aa3f10cc99ab998e8b61f"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6385,7 +6442,7 @@
             "spec.md": "fc9fb0bb437e80e872bbd412df53ff99572cbedf",
             "tasks.md": "c2685c354d19e93a0811aa60ee5ba864719b5b98"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6395,7 +6452,7 @@
             "spec.md": "4420a26db8ab3499f55e5a3a0eb2d544c4162df0",
             "tasks.md": "d0ed7586244de1650de9b3ffa40eb3a0ecad07c0"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6405,7 +6462,7 @@
             "spec.md": "601008adfd0daa26703ded2c328397395726be45",
             "tasks.md": "cbccddce8359b6a5b8cfa6f1cfc2a16bbc6c94d4"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6415,7 +6472,7 @@
             "spec.md": "20bd1c3ec24203f508143946b5dda0fd5265d673",
             "tasks.md": "0a81a7c65ab1052b9cafd48bc2ebbdaa6e8843ea"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6425,7 +6482,7 @@
             "spec.md": "98e1fac029f710f801080f5510fe10439f2cbbc9",
             "tasks.md": "70e7dfbf6a8a9a757a22c73c6302ba5583911768"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6435,7 +6492,7 @@
             "spec.md": "b73e3948d60802fc9ccb43fcdefa387cca153e67",
             "tasks.md": "5a2e701811e964fbca2d763c82d19b168713b53a"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6445,7 +6502,7 @@
             "spec.md": "5c73178d51b712f0c0e80fd3aa66c615f5684e9b",
             "tasks.md": "8201812ac22a00ce4401da986eb4a56d572cb7d9"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6455,7 +6512,7 @@
             "spec.md": "6ec7d04043d486e4d0aaaa426cf205af43058ffe",
             "tasks.md": "02dd7c517d1c1225003f36da97f0e4c53492c38f"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6465,7 +6522,7 @@
             "spec.md": "eb6d31941c4eaa4f6c8cd9cecfb38d197be0e541",
             "tasks.md": "f5bbd2c46064d94d5d5c1f24be4f3021b3bd21cf"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6475,7 +6532,7 @@
             "spec.md": "b1560de68769572b456927343b8efa6752a08532",
             "tasks.md": "b3d34f93e75cf8a791908a255b6fae3cf2fe1d3e"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6485,7 +6542,7 @@
             "spec.md": "b04b1de76bc6eee44add410427affe1931f951da",
             "tasks.md": "49bc6e72071c77bf0bf7bb9b46c83566d91db324"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6495,7 +6552,7 @@
             "spec.md": "5494cf5769232e09bed331b1f0e27d9aaf0514a6",
             "tasks.md": "3571847d75bf5a1553f88fbe10e50f5604d46a86"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6505,7 +6562,7 @@
             "spec.md": "85287706591c7709f2dfbb4b54b5ba71fd39207e",
             "tasks.md": "1bae8adfe333b99b29d63920c9f883a019b782b8"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6515,7 +6572,7 @@
             "spec.md": "7697a4600625912649d469f4c206e0c41ed2b609",
             "tasks.md": "3b1d96ed7e048f7a38f774cb8894449b28cbda4c"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6525,7 +6582,7 @@
             "spec.md": "56d91413217fdb17452f575a7cb7c2ed4a9bb609",
             "tasks.md": "e22eb244221d255b19b527b49ef709eaa9484b76"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6535,7 +6592,7 @@
             "spec.md": "56c1af5ef97f9fa28bf0aa47dfd3370e652f18f5",
             "tasks.md": "2d66352ec8ee56195e18d88b2e3e7464936c0bb5"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6545,7 +6602,7 @@
             "spec.md": "bf88455a7e6954e01641445db050fe50dd3d4c0f",
             "tasks.md": "e40119409a0aa5b209cb6329514150d0f004fb09"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6555,7 +6612,7 @@
             "spec.md": "4ab914ad9839dfd5f6621b91cf21111ba005c1a0",
             "tasks.md": "3cb33eebfe2d20daec28acaf1d52672e4d30b54b"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6565,7 +6622,7 @@
             "spec.md": "f55861c4aa71f6510cba5b78a75543591d7da414",
             "tasks.md": "b26308d33135e94a90ac82ec1e0d8df4006f65bb"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6575,7 +6632,7 @@
             "spec.md": "37a7060fab0d0eade5452d74eef83f5ffce75c10",
             "tasks.md": "3d0391dd5d5a9611ecb18ef08dc162ef81812122"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6585,7 +6642,7 @@
             "spec.md": "7d1abe05391920a3d9fa7e1233561a931cf1812b",
             "tasks.md": "d650d698d037ded872463940eeeca3c8865fa1b1"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6595,7 +6652,7 @@
             "spec.md": "2c9374d57b7d5fd3613ed6840c3e143c593837b4",
             "tasks.md": "9aa23f0c14833bc59824543895187aa276aa647c"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6605,7 +6662,7 @@
             "spec.md": "6c342308faf8cfaf06941158cb71040b312564d5",
             "tasks.md": "1b204a70d751707a85704950b4764dfb0c70405b"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6615,7 +6672,7 @@
             "spec.md": "d31161ce4c01af1a32ef9fc76edec32a6b7b94d6",
             "tasks.md": "891b1f7071c17064993a71f10b61b761a81061df"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6626,7 +6683,7 @@
             "tasks.md": "fa0648a4c847e217201367ce905ae02b7ad556e3",
             "autonomous-run-state.json": "4e147a88888fc0d9743199010d60cd691a2e0f5c"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6637,7 +6694,7 @@
             "tasks.md": "5341e08a4820b350a2cbd4756384b787c8208acd",
             "autonomous-run-state.json": "c40e332e415c762c0e528746ef1ae0d11689e7af"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6648,7 +6705,7 @@
             "tasks.md": "c25eb0e8f5b719d3ca323dddaf9b540d23db0b51",
             "autonomous-run-state.json": "988f1251f6d63fb42939408ed5dbbe68f9618ed7"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6659,7 +6716,7 @@
             "tasks.md": "4c02bd6720bac0ec35026c0e8c442ad66b752870",
             "autonomous-run-state.json": "41fff2bc6b77ceb3f0aaa5c81bb5117db5d5d205"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6670,7 +6727,7 @@
             "tasks.md": "5072ffc359a36ced6c4b601da1209482add9e62b",
             "autonomous-run-state.json": "c8cc842f2da4db906fe89839ee49904b822021d1"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6681,7 +6738,7 @@
             "tasks.md": "ca1654fb6c17dd550b9633782f9cf8c89a33cbaf",
             "autonomous-run-state.json": "b21ebd970ee0d31555601c0059d61c5e70e33d10"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6692,7 +6749,7 @@
             "tasks.md": "e53f55ccadbc243963be0d79bcab37fd52e05fc4",
             "autonomous-run-state.json": "01e703af32dbcee9e077a78c5a7e337bb8396d51"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6703,7 +6760,7 @@
             "tasks.md": "751490c6974c3ed50bf515191e1ff34293a3ba76",
             "autonomous-run-state.json": "57ca5496ea83426a48761e691faceca64a38a78f"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6714,7 +6771,7 @@
             "tasks.md": "f86c61637ebde0e0dbd97246067426195069842e",
             "autonomous-run-state.json": "9a76079948181c3ca319620a64646ae0a8c7cb1c"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6723,9 +6780,9 @@
           "evidenceBlobs": {
             "spec.md": "e3791d69057b0c7684c4086a24e47cf2a328ea97",
             "tasks.md": "2224223164f21ef3092c9f63c9193af3d1ba783e",
-            "autonomous-run-state.json": "8691f324ab35cb1db214e5ed083d616f7dac52b0"
+            "autonomous-run-state.json": "4e54251784dde78a6b73f3d60ef3699c29a5bb0f"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6734,9 +6791,9 @@
           "evidenceBlobs": {
             "spec.md": "f18d8caa4ade7ea845b970c20cc914ac18391914",
             "tasks.md": "b1695288d9b4fded0f870ec4a66c64a4dd8c9610",
-            "autonomous-run-state.json": "16995c0d527e233bd569612a1309eaa9e87c6ccb"
+            "autonomous-run-state.json": "5159f0ad7fa7b62aa1827b5201b0013e4d6bd57c"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6745,9 +6802,9 @@
           "evidenceBlobs": {
             "spec.md": "95a834d8ebbb2c97ebca7612bccc5d5df6cc1c4c",
             "tasks.md": "be3ae6f845e330a12925dd3303506c6cffc7743b",
-            "autonomous-run-state.json": "310c8668e6f6b45169de801d8dde83c01934225f"
+            "autonomous-run-state.json": "ecbf13df4492b2ad8955153d21530460a5e5bac0"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6756,9 +6813,9 @@
           "evidenceBlobs": {
             "spec.md": "acb84666dedd84c31ebacad6baab9af46d6995f6",
             "tasks.md": "6c0634c6c2467beaf68f6f9c8f4779df3fd61aca",
-            "autonomous-run-state.json": "f0d579a96d266f288ec997265fc2c5459a449d94"
+            "autonomous-run-state.json": "effaca89e8d23f081fe44048d4a688d3db11b9a1"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6767,9 +6824,9 @@
           "evidenceBlobs": {
             "spec.md": "3906bb47be0b1871820f5dffd2f206d71244ba9f",
             "tasks.md": "097cc567dcccc9197bc598fc093ae80af9833aab",
-            "autonomous-run-state.json": "86acec78b73183ebf5f3ef413ddb8c087aca532b"
+            "autonomous-run-state.json": "9e35553a3acd05b8de194af662f6c70cb9268ff1"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6778,9 +6835,9 @@
           "evidenceBlobs": {
             "spec.md": "4550c751817970ccc6202ea76b0b003859f95d53",
             "tasks.md": "1e99ffdd3ad3bd2f7e012c44b31776ee9dc4914e",
-            "autonomous-run-state.json": "4d4711c266850f05a7877ee68148c837675fefde"
+            "autonomous-run-state.json": "b01ced296d8676fa99b69fbb9c1081f391d34f67"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6789,9 +6846,9 @@
           "evidenceBlobs": {
             "spec.md": "0e9cca6c6e23f79ff4c2e64ae515635c401d38e8",
             "tasks.md": "97d208da2ac5957fcf1677769f58721f1ccb5c5f",
-            "autonomous-run-state.json": "a2a910ab80ff23606da9d4610dc2dc30a54ae572"
+            "autonomous-run-state.json": "9f4b00b179f63dc00200c525689a04cc76e2f638"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6800,9 +6857,9 @@
           "evidenceBlobs": {
             "spec.md": "a380669e6bc1f43446083bf039ba3040f418eb4e",
             "tasks.md": "dc2118dc51ef94fc0b24346b71765e1733e3ee93",
-            "autonomous-run-state.json": "9d974d6e72381c7c1aaae5cd2ef15c29ddbfaad4"
+            "autonomous-run-state.json": "ab08123b432f1a036e2745bf7a8379071eb185bc"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6813,7 +6870,7 @@
             "tasks.md": "e5df9d5b6b2b1218f830e0415f5c48c3deee936f",
             "autonomous-run-state.json": "4cdd3004c22b12229c4fbd5ad9cd0282ed71f58b"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         },
         {
@@ -6824,7 +6881,18 @@
             "tasks.md": "e7b9cbde063357d5fa0ceb31af11b42537bf32a5",
             "autonomous-run-state.json": "f9a1e8949c4a3740ee0efaf7444086abf5df088b"
           },
-          "commit": "faeb3d0252cb84c3d8e4ba8230854cc4b3e00f8f",
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
+          "pullRequest": null
+        },
+        {
+          "feature": "specs/047-evidence-quality-audit",
+          "specBlob": "4f1f3d54e15760435e30005b66e17abbcc5b6659",
+          "evidenceBlobs": {
+            "spec.md": "4f1f3d54e15760435e30005b66e17abbcc5b6659",
+            "tasks.md": "c0b69b71478d2608707e9e605c0f76dce62d23ca",
+            "autonomous-run-state.json": "0b48183d5f1d31f76b2d4334f87b259892aa5972"
+          },
+          "commit": "67c0120b2d7a343c80dff043e5e3f67f2236ca67",
           "pullRequest": null
         }
       ]
@@ -6834,7 +6902,7 @@
       "level": 2,
       "visibility": "public",
       "defaultBranch": "main",
-      "head": "13b2cb7d95ae11fc1f0e6a97befc2c234606084f",
+      "head": "154230a8325483e6485ec70a22e7ac741ea38e6c",
       "features": [
         {
           "feature": "specs/001-public-readiness",
@@ -7044,7 +7112,7 @@
             "spec.md": "08614430aeb927f88c10c76cad4445a40b025375",
             "tasks.md": "27e909b2a4d71ac727b0d9f04fd5513b1bb964cd"
           },
-          "commit": "13b2cb7d95ae11fc1f0e6a97befc2c234606084f",
+          "commit": "154230a8325483e6485ec70a22e7ac741ea38e6c",
           "pullRequest": null
         },
         {
@@ -7055,7 +7123,7 @@
             "tasks.md": "ee3218637d5899ffd5fd66d4ecb0359367d73108",
             "autonomous-run-state.json": "ae451e32d3b80a07c373ea0ef0be2dc233cbdacc"
           },
-          "commit": "13b2cb7d95ae11fc1f0e6a97befc2c234606084f",
+          "commit": "154230a8325483e6485ec70a22e7ac741ea38e6c",
           "pullRequest": null
         },
         {
@@ -7066,10 +7134,20 @@
             "tasks.md": "46f98989857ba07937d198aefef593435dd8eb9f",
             "autonomous-run-state.json": "7b2f8c0e5dd2632deb2283e03931e8bde155394b"
           },
-          "commit": "13b2cb7d95ae11fc1f0e6a97befc2c234606084f",
+          "commit": "154230a8325483e6485ec70a22e7ac741ea38e6c",
           "pullRequest": null
         }
       ]
+    },
+    {
+      "name": "hindermath/Show-CommandTui400",
+      "level": 2,
+      "visibility": "public",
+      "defaultBranch": "main",
+      "head": "b299b64de68ae8794cd8b4199eba338762e5e651",
+      "features": [],
+      "sources": [],
+      "discovery": []
     }
   ]
 }

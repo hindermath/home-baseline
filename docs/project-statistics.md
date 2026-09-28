@@ -1371,6 +1371,24 @@ Both completed pilots are linked from the evidence. Fleet rollout and catalog
 submission stay separate; no feature execution or product approval is implied.
 Statistics retain methodology and 80/100 reference assumptions, not measured time.
 
+### 2026-09-28 - Show-CommandTui400 in der öffentlichen Laufstatistik / Public run statistics
+
+Show-CommandTui400 wird als öffentliches Level-2-Repository mit leerem
+Review-Register in die Laufstatistik aufgenommen. Nicht geprüfte Kandidaten
+werden nicht gezählt; eine Repository-Zeile mit Nullwerten ist ausdrücklich
+zulässig. Der vorhandene Collector und Renderer erzeugen die DE-/EN-Tabellen
+und Veröffentlichungsevidence. Schema v2 und private Summen bleiben erhalten.
+[Documentation Impact](spec-kit-runs/show-commandtui400-documentation-impact.json):
+`GeneratedUpdate`, `sourceOnly`, kein Home-Runtime-Sync. Kein neuer
+Spec-Kit-Lauf, keine Produktfreigabe; Methodik und Referenzen 80/100 unverändert.
+
+Show-CommandTui400 joins the public run statistics as a level-2 repository
+with an empty review register. Unreviewed candidates are not counted; a zero
+row is valid. Existing collection and rendering produce synchronized tables
+and publication evidence. Schema v2 and private totals remain unchanged.
+This source-only documentation delivery starts no Spec Kit run and grants no
+product approval; methodology and 80/100 references remain unchanged.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

@@ -10,7 +10,7 @@ experience is required to start here.
 ## Spec Kit runs in public repositories
 
 <!-- public-speckit-runs:begin -->
-Public data as of: 2026-09-12T17:13:51Z; private: 2026-09-12T16:57:29Z · [Method and evidence boundaries](https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md)
+Public data as of: 2026-09-28T21:43:49Z; private: 2026-09-12T16:57:29Z · [Method and evidence boundaries](https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md)
 
 | Level | Public GitHub repository / group | Started | Executed | Completion evidenced | Manual | Autonomous serial | Autonomous parallel | Mixed | Not clearly evidenced |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -23,6 +23,7 @@ Public data as of: 2026-09-12T17:13:51Z; private: 2026-09-12T16:57:29Z · [Metho
 | 2 | [TinyPl0](https://github.com/hindermath/TinyPl0) | 6 | 6 | 6 | 0 | 4 | 0 | 0 | 2 |
 | 2 | [TuiVision](https://github.com/hindermath/TuiVision) | 46 | 46 | 46 | 0 | 19 | 0 | 0 | 27 |
 | 2 | [absdd-image-sandbox](https://github.com/hindermath/absdd-image-sandbox) | 3 | 3 | 3 | 0 | 2 | 0 | 0 | 1 |
+| 2 | [Show-CommandTui400](https://github.com/hindermath/Show-CommandTui400) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | | **Public level-2 repositories total** | **65** | **65** | **65** | **0** | **30** | **0** | **0** | **35** |
 | | **Public level-0/2 repositories total** | **94** | **94** | **93** | **0** | **52** | **0** | **0** | **42** |
 | | **Private GitHub repositories total** | **24** | **24** | **0** | **0** | **0** | **24** | **0** | **0** |
