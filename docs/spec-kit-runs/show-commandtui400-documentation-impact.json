@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "show-commandtui400-public-statistics",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Public statistics registration and profile publication for Show-CommandTui400",
+      "decision": "GeneratedUpdate",
+      "rationale": "Show-CommandTui400 als öffentliches Level-2-Repository mit leerem Review-Register aufnehmen; ungeprüfte Läufe nicht zählen. / Register the public level-2 repository with no reviewed runs; do not count unreviewed candidates.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/spec-kit-runs/table.md",
+        "docs/spec-kit-runs/table.en.md",
+        "docs/spec-kit-runs/review-queue.md",
+        "docs/project-statistics.md"
+      ],
+      "owner": "hindermath",
+      "audiences": ["Maintainers", "Reviewers", "Profile readers"],
+      "readerPaths": ["README -> public statistics table -> repository and reviewed evidence"],
+      "canonicalSource": "docs/spec-kit-runs/registry.json",
+      "generatedSource": {
+        "path": "docs/spec-kit-runs/registry.json",
+        "renderer": "scripts/update-public-speckit-statistics.sh --action Render"
+      },
+      "navigationImpact": "Eine zusätzliche Repository-Zeile; Profilimport übernimmt den veröffentlichten Tabellenstand. / One additional repository row; the profile imports the published table.",
+      "documentClass": "Generated",
+      "languageStrategy": "Synchronisierte deutsche und englische Tabellen; Nachweise DE/EN. / Synchronized German and English tables; bilingual evidence.",
+      "languagePartners": ["README.md", "README.en.md", "docs/spec-kit-runs/table.md", "docs/spec-kit-runs/table.en.md"],
+      "platformAndExampleProof": "macOS: Collect --dry-run, Collect, Validate, Render --dry-run, Render and Render --check-only through update-public-speckit-statistics.sh; PowerShell fixture and parity checks. Native macOS/Linux/Windows CI checks bind the PR head; unavailable CI is not a pass.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/spec-kit-runs/publication.json",
+      "risk": "Neue Kandidaten bleiben ungeprüft; private Summen behalten ihren bisherigen Stand. / New candidates stay unreviewed; private totals retain their previous data date.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Changed visibility, reviewed feature evidence, registry rules or publication schema."
+    }
+  ]
+}

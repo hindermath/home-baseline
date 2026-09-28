@@ -1371,6 +1371,24 @@ Both completed pilots are linked from the evidence. Fleet rollout and catalog
 submission stay separate; no feature execution or product approval is implied.
 Statistics retain methodology and 80/100 reference assumptions, not measured time.
 
+### 2026-09-28 - Show-CommandTui400 in der öffentlichen Laufstatistik / Public run statistics
+
+Show-CommandTui400 wird als öffentliches Level-2-Repository mit leerem
+Review-Register in die Laufstatistik aufgenommen. Nicht geprüfte Kandidaten
+werden nicht gezählt; eine Repository-Zeile mit Nullwerten ist ausdrücklich
+zulässig. Der vorhandene Collector und Renderer erzeugen die DE-/EN-Tabellen
+und Veröffentlichungsevidence. Schema v2 und private Summen bleiben erhalten.
+[Documentation Impact](spec-kit-runs/show-commandtui400-documentation-impact.json):
+`GeneratedUpdate`, `sourceOnly`, kein Home-Runtime-Sync. Kein neuer
+Spec-Kit-Lauf, keine Produktfreigabe; Methodik und Referenzen 80/100 unverändert.
+
+Show-CommandTui400 joins the public run statistics as a level-2 repository
+with an empty review register. Unreviewed candidates are not counted; a zero
+row is valid. Existing collection and rendering produce synchronized tables
+and publication evidence. Schema v2 and private totals remain unchanged.
+This source-only documentation delivery starts no Spec Kit run and grants no
+product approval; methodology and 80/100 references remain unchanged.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1381,25 +1399,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 701347 lines |
-| Textdateien / Text files | 3250 |
+| Textbasis / Text base | 701483 lines |
+| Textdateien / Text files | 3251 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-05..2026-09-28 |
 | Aktivtage / Active days | 118 |
-| Relevante Commits / Relevant commits | 895 |
-| Zeilen je Aktivtag / Lines per active day | 5943.6 |
+| Relevante Commits / Relevant commits | 896 |
+| Zeilen je Aktivtag / Lines per active day | 5944.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 74.3x |
 | Speedup vs. 100 lines/day | 59.4x |
-| Methodik / Methodology | v2; source `46cfc2711e45` |
+| Methodik / Methodology | v2; source `2017be6e0c02` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.8% | 26693
-Dokumentation / Documentation   [##########..........]  51.7% | 362425
+Dokumentation / Documentation   [##########..........]  51.7% | 362561
 Skripte / Scripts               [##..................]   8.1% | 57024
 Konfiguration / Configuration   [#######.............]  36.0% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1678,7 +1696,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5943.6
+Visible repository [############........] 5944.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1704,6 +1722,6 @@ DE: Das Fenster beginnt am 2025-10-05 und endet am 2026-09-28. Es enthaelt 118 a
 | 2026-06 | 49106 |
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
-| 2026-09 | 144451 |
+| 2026-09 | 144845 |
 
 <!-- project-statistics-v2:end -->
