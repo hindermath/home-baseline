@@ -205,6 +205,8 @@
 
 | 2026-09-27 | Show-CommandTui400 Level-2-Aufnahme / Level-2 onboarding | N/A | N/A | N/A | Projektregister und Navigation; Nachweis: docs/maintenance/show-commandtui400-onboarding.md. / Project registration and navigation; no product implementation. |
 
+| 2026-10-01 | Pflicht-Dokumentwerkzeuge / Required document tools | N/A | N/A | N/A | Pandoc und Typst CLI plattformuebergreifend required, Tinymist Typst als neunte Pflicht-VS-Code-Erweiterung, separates Tinymist optional. Linux-Cargo-Fallback, Windows-Pflichtdrift-Exitcode und synchrone Agent-Guidance; lokale Nachweise in docs/maintenance/document-tools-validation-20261001.md. Documentation Impact UpdateRequired; MergeAndSync mit Admin-Bypass und anschliessender Home-Sync-Pruefung autorisiert. Flotten-Rollout spaeter; native Windows-/Linux-Installation offen. / Required document tools, optional standalone server, platform fallbacks and local verification; MergeAndSync and Home sync authorized, fleet rollout deferred and native installation remains open. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

@@ -441,9 +441,10 @@ class MaintenanceContractTests(unittest.TestCase):
             "swiftlang.swift-vscode",
             "ms-vscode.powershell",
             "ms-azuretools.vscode-containers",
+            "myriad-dreamin.tinymist",
         }
 
-        self.assertEqual(len(ids), 8)
+        self.assertEqual(len(ids), 9)
         self.assertEqual(len(ids), len(set(ids)))
         self.assertEqual(set(ids), expected)
         self.assertTrue(all(item["scope"] == "required" for item in extensions))
@@ -465,6 +466,76 @@ class MaintenanceContractTests(unittest.TestCase):
             with self.subTest(surface=relative):
                 content = (REPOSITORY / relative).read_text(encoding="utf-8")
                 self.assertIn("ms-vscode.powershell", content)
+                self.assertIn("myriad-dreamin.tinymist", content)
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is required.")
+    def test_windows_document_tool_drift_distinguishes_required_and_optional(self) -> None:
+        # Load the actual Windows comparison functions without invoking WinGet.
+        # This portable proof complements native Windows process/install tests.
+        source = REPOSITORY / "scripts/maintain-agentic-winget-apps.ps1"
+        command = f"""
+$ErrorActionPreference='Stop'
+Set-StrictMode -Version Latest
+$ast=[Management.Automation.Language.Parser]::ParseFile('{source}',[ref]$null,[ref]$null)
+$ast.FindAll({{param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and
+    $node.Name -in @('Get-HBCLITools','Compare-HBCLIScope','Compare-HBVSCodeRegistry')}},$false) |
+    ForEach-Object {{ . ([scriptblock]::Create($_.Extent.Text)) }}
+$cliRegistryData=Get-Content '{CONFIG / 'required-cli-tools-registry.json'}' -Raw | ConvertFrom-Json
+function Test-HBCLITool {{ param($Tool) return ($Tool.id -notin $script:missingTools) }}
+foreach ($case in @(
+    @{{scope='required'; missing=@('pandoc'); failed=$true}},
+    @{{scope='required'; missing=@('typst'); failed=$true}},
+    @{{scope='optional'; missing=@('tinymist'); failed=$false}},
+    @{{scope='required'; missing=@(); failed=$false}}
+)) {{
+    $script:RequiredDrift=$false; $script:missingTools=$case.missing
+    Compare-HBCLIScope -Scope $case.scope -Label 'fixture'
+    if ($script:RequiredDrift -ne $case.failed) {{ throw 'CLI drift scope mismatch' }}
+}}
+$SkipVSCodeExtensions=$false; $VSCodeRegistry='fixture'; $allVSCodeExtensionIds=@('myriad-dreamin.tinymist','fixture.optional')
+$vscodeRegistryData=[pscustomobject]@{{extensions=@(
+    [pscustomobject]@{{id='myriad-dreamin.tinymist';scope='required'}},
+    [pscustomobject]@{{id='fixture.optional';scope='optional'}}
+); deprecatedExtensions=@()}}
+function Get-HBVSCodeCli {{ return $script:fixtureCli }}
+function Get-HBVSCodeInstalledExtensionIds {{ param($Cli) return $script:fixtureInstalled }}
+foreach ($case in @(
+    @{{cli='fixture'; installed=@(); failed=$true}},
+    @{{cli='fixture'; installed=@('myriad-dreamin.tinymist'); failed=$false}},
+    @{{cli=$null; installed=@(); failed=$true}}
+)) {{
+    $script:RequiredDrift=$false; $script:fixtureCli=$case.cli; $script:fixtureInstalled=$case.installed
+    Compare-HBVSCodeRegistry
+    if ($script:RequiredDrift -ne $case.failed) {{ throw 'Extension drift scope mismatch' }}
+}}
+$script:RequiredDrift=$false; $SkipVSCodeExtensions=$true
+Compare-HBVSCodeRegistry
+if ($script:RequiredDrift) {{ throw 'Skipped extension check leaked drift' }}
+Write-Output 'PASS'
+"""
+        completed = subprocess.run(["pwsh", "-NoProfile", "-Command", command],
+            capture_output=True, text=True, timeout=30)
+        self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+        self.assertIn("PASS", completed.stdout)
+
+    def test_document_tools_have_matching_package_and_cli_scopes(self) -> None:
+        brew = read_json(CONFIG / "brew-apps-registry.json")
+        formulae = {item["name"]: item["scope"] for item in brew["formulae"]}
+        apt = {item["name"]: item["scope"] for item in brew["aptFallback"]["packages"]}
+        windows = {item["id"]: item["scope"] for item in read_json(CONFIG / "winget-apps-registry.json")["packages"]}
+        cli = {item["id"]: item for item in read_json(CONFIG / "required-cli-tools-registry.json")["tools"]}
+        for name, package, scope in (
+            ("pandoc", "JohnMacFarlane.Pandoc", "required"),
+            ("typst", "Typst.Typst", "required"),
+            ("tinymist", "Myriad-Dreamin.Tinymist", "optional"),
+        ):
+            with self.subTest(tool=name):
+                self.assertEqual(formulae[name], scope)
+                self.assertEqual(windows[package], scope)
+                self.assertEqual(cli[name]["scope"], scope)
+                self.assertEqual(set(cli[name]["platforms"]), {"Darwin", "Linux", "Windows"})
+                self.assertEqual(cli[name]["args"], ["--version"])
+        self.assertEqual(apt["pandoc"], "required")
 
     def test_required_cli_registry_and_swift_platform_contract_are_closed(self) -> None:
         registry = read_json(CONFIG / "required-cli-tools-registry.json")
