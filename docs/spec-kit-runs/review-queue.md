@@ -13,3 +13,4 @@ Nicht geprüfte Kandidaten sind in keiner Zahl enthalten. / Unreviewed candidate
 - [ ] Geänderte Nachweise prüfen / Review changed evidence: hindermath/TuiVision specs/043-documentation-publishing-closure: autonomous-run-state.json, autonomous-run-state.json. Existing counts retain their pinned reviewed basis.
 - [ ] Geänderte Nachweise prüfen / Review changed evidence: hindermath/TuiVision specs/044-sandbox-secure-development-hardening: autonomous-run-state.json, autonomous-run-state.json. Existing counts retain their pinned reviewed basis.
 - [ ] hindermath/TuiVision: specs/047-evidence-quality-audit — https://github.com/hindermath/TuiVision/blob/67c0120b2d7a343c80dff043e5e3f67f2236ca67/specs/047-evidence-quality-audit/spec.md
+- [ ] hindermath/Show-CommandTui400: specs/001-lh00-intake-process — https://github.com/hindermath/Show-CommandTui400/blob/e5f9cf68618896a04a885df24879bdea47ce1394/specs/001-lh00-intake-process/spec.md

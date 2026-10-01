@@ -11,7 +11,7 @@ um hier zu beginnen.
 ## Spec-Kit-Läufe in öffentlichen Repositories
 
 <!-- public-speckit-runs:begin -->
-Datenstand öffentlich: 2026-09-28T21:43:49Z; privat: 2026-09-12T16:57:29Z · [Methodik und Beleggrenzen](https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md)
+Datenstand öffentlich: 2026-10-01T15:34:33Z; privat: 2026-09-12T16:57:29Z · [Methodik und Beleggrenzen](https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md)
 
 | Level | Öffentliches GitHub-Repository / Gruppe | Gestartet | Ausgeführt | Abschluss belegt | Manuell | Autonom seriell | Autonom parallel | Gemischt | Nicht eindeutig belegt |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
