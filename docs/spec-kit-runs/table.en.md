@@ -1,4 +1,4 @@
-Public data as of: 2026-09-28T21:43:49Z; private: 2026-09-12T16:57:29Z · [Method and evidence boundaries](https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md)
+Public data as of: 2026-10-01T15:34:33Z; private: 2026-09-12T16:57:29Z · [Method and evidence boundaries](https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md)
 
 | Level | Public GitHub repository / group | Started | Executed | Completion evidenced | Manual | Autonomous serial | Autonomous parallel | Mixed | Not clearly evidenced |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
