@@ -73,7 +73,7 @@ the installed WinGet version, it uses `winget source update` as a compatible
 fallback. Package IDs are checked with `winget search --id <Id> --exact` before
 installation.*
 
-## Dokumentwerkzeuge / Document tools
+## Dokumentwerkzeuge (Document tools)
 
 Pandoc (`JohnMacFarlane.Pandoc`) und Typst CLI (`Typst.Typst`) sind
 Pflichtpakete. Nach der Paketpflege werden `pandoc --version` und

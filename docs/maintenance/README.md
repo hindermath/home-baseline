@@ -34,8 +34,8 @@ Start wählt die Vorschau standardmäßig; umgeleitete Aufrufe bleiben headless.
 Die Toolchain-Stufe pflegt Pandoc, Typst CLI und die VS-Code-Erweiterung
 Tinymist Typst als Pflichtwerkzeuge. Das separate Tinymist-Systempaket bleibt
 optional. Installationswege und Pruefgrenzen stehen in den Manpages fuer
-[macOS/Linux](../man/maintain-agentic-brew-apps.1.md#dokumentwerkzeuge--document-tools)
-und [Windows](../man/maintain-agentic-winget-apps.1.md#dokumentwerkzeuge--document-tools).
+[macOS/Linux](../man/maintain-agentic-brew-apps.1.md#dokumentwerkzeuge-document-tools)
+und [Windows](../man/maintain-agentic-winget-apps.1.md#dokumentwerkzeuge-document-tools).
 
 ## Remote-Freshness-Barriere
 

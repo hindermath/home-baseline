@@ -145,7 +145,7 @@ sources. The Homebrew registry contains top-level packages
 (`brew leaves --installed-on-request`) and macOS casks, not transitive
 dependencies. `xquartz` is intentionally excluded.*
 
-## Dokumentwerkzeuge / Document tools
+## Dokumentwerkzeuge (Document tools)
 
 Pandoc und Typst CLI sind Pflichtwerkzeuge. Nach der Paketpflege werden
 `pandoc --version` und `typst --version` geprueft. Homebrew installiert
