@@ -34,8 +34,8 @@ preview by default; redirected invocations remain headless.
 The toolchain stage maintains Pandoc, Typst CLI, and the Tinymist Typst VS Code
 extension as required tools. The standalone Tinymist system package remains
 optional. Installation routes and proof limits are described in the manpages
-for [macOS/Linux](../man/maintain-agentic-brew-apps.1.md#dokumentwerkzeuge-document-tools)
-and [Windows](../man/maintain-agentic-winget-apps.1.md#dokumentwerkzeuge-document-tools).
+for [macOS/Linux](../man/maintain-agentic-brew-apps.1.md#dokumentwerkzeuge--document-tools)
+and [Windows](../man/maintain-agentic-winget-apps.1.md#dokumentwerkzeuge--document-tools).
 
 ## Remote Freshness Barrier
 
