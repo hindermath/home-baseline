@@ -29,6 +29,14 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
 ausführen. `--dry-run` und `-WhatIf` zeigen geplante Mutationen. Ein interaktiver
 Start wählt die Vorschau standardmäßig; umgeleitete Aufrufe bleiben headless.
 
+## Dokumentwerkzeuge
+
+Die Toolchain-Stufe pflegt Pandoc, Typst CLI und die VS-Code-Erweiterung
+Tinymist Typst als Pflichtwerkzeuge. Das separate Tinymist-Systempaket bleibt
+optional. Installationswege und Pruefgrenzen stehen in den Manpages fuer
+[macOS/Linux](../man/maintain-agentic-brew-apps.1.md#dokumentwerkzeuge-document-tools)
+und [Windows](../man/maintain-agentic-winget-apps.1.md#dokumentwerkzeuge-document-tools).
+
 ## Remote-Freshness-Barriere
 
 Alle registrierten Repositories werden zuerst inventarisiert und soweit sicher

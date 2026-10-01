@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "required-pandoc-typst-and-vscode-extension",
+  "entries": [
+    {
+      "changeId": "CHG100",
+      "scope": "Cross-platform document-tool registries, Linux Cargo fallback, Windows required-drift status, operator documentation and shared agent guidance",
+      "decision": "UpdateRequired",
+      "rationale": "Pandoc and Typst CLI are required on every supported platform; Tinymist Typst is the required VS Code extension while the standalone server remains optional. Windows now returns exit 1 for required package, CLI or extension drift.",
+      "documents": [
+        "docs/maintenance/README.md",
+        "docs/maintenance/README.en.md",
+        "docs/man/maintain-agentic-brew-apps.1.md",
+        "docs/man/maintain-agentic-winget-apps.1.md",
+        "docs/project-statistics.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "scripts/templates/AGENTS.md.tmpl",
+        "scripts/templates/CLAUDE.md.tmpl",
+        "scripts/templates/GEMINI.md.tmpl",
+        "scripts/templates/copilot-instructions.tmpl"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": ["Daily workspace users", "Maintainers", "AI agents"],
+      "readerPaths": ["Daily maintenance -> platform preview -> document-tool manpage", "Maintainer guidance -> registry -> validation evidence"],
+      "canonicalSource": "scripts/config/required-cli-tools-registry.json",
+      "navigationImpact": "Adds document-tool sections to the existing bilingual maintenance guide and platform manpages; no new entry point or script.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with English following in shared guidance and manpages; synchronized language partners for the maintenance overview.",
+      "languagePartners": ["docs/maintenance/README.en.md"],
+      "platformAndExampleProof": "macOS Bash syntax, actual dry-run, isolated Linux Cargo and extension fixtures, portable PowerShell comparison functions and analyzer; real Pandoc-to-Typst-to-PDF smoke test with checksum-verified temporary Typst. Native Windows and Linux installs remain unverified.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/document-tools-validation-20261001.md",
+      "risk": "Linux distro Rust may be too old for a locked Cargo build; a failed build remains required drift. A generated PDF alone does not establish accessibility. Source implementation does not establish installation or fleet delivery.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Document-tool publisher/package IDs, upstream Rust requirements, VS Code server packaging, installer contract or maintenance distribution changes."
+    }
+  ]
+}
