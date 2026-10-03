@@ -139,7 +139,8 @@ successful; managed main is clean 0/0. The original dirty clone is preserved.
 - [Final Homogeneity run](https://github.com/hindermath/home-baseline/actions/runs/37138857411)
 
 DE: Beim Pilot-Abgleich verblieb ein Absatz mit alten Optional-Intake-Versionen
-in allen fuenf Guidance- und vier Template-Flaechen. Der gezielte Nachlauf
+in allen fuenf Guidance- und vier Template-Flaechen sowie zwei alte Tabellen-
+Versionen im Workflow-Template. Der gezielte Nachlauf
 korrigiert 0.3.5/0.2.3/0.2.6 auf 0.3.6/0.2.4/0.2.7; Pakete, Tags, Matrix,
 Methodik und Validatoren bleiben unveraendert. Vor weiterer Pilot-Lieferung
 separat pruefen, liefern und betroffene Home Runtime erneut synchronisieren.
@@ -147,7 +148,9 @@ Show-CommandTui400 hat bereits beide neuen Pakete und einen erfolgreichen
 14er-Check; es ist noch nicht committed oder geliefert. TinyCalc ist unveraendert.
 EN: A remaining stale optional-version paragraph requires a bounded shared
 guidance follow-up before further pilot delivery. No package/tag or validator
-change. Show installation is checked but not delivered; TinyCalc is untouched.
+weakening. A new regression guard rejects the five observed obsolete prose/table
+forms across ten current normative surfaces, never historical receipts.
+Show installation is checked but not delivered; TinyCalc is untouched.
 
 Audience: maintainers, learners, project owners and privacy/compliance reviewers.
 Reader path: source PR -> source contract -> this tracking report -> pilot issue.

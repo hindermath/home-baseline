@@ -12,7 +12,7 @@ assurance contracts, and removes temporary projects without touching installatio
 pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1
 .PARAMETER GovernanceReviewOnly
 DE: Nur den lokalen Jahresreview-Vertrag mit Negativfaellen pruefen, ohne Downloads.
-EN: Check only the local annual-review contract and negative cases, without downloads.
+EN: Check local annual-review/narrative contracts and negative cases, without downloads.
 #>
 [CmdletBinding()]
 param([switch]$GovernanceReviewOnly)
@@ -47,7 +47,37 @@ function Assert-GovernanceReviewContract {
         @($expected | Where-Object { $_ -cnotin $actual }).Count) { throw 'Annual review coverage drift' }
 }
 
+function Assert-CurrentPresetNarrative {
+    param([string]$Text)
+    # DE: Nur aktuelle normative Guidance scannen, keine historischen Receipts.
+    # EN: Guard the previously missed prose/table spellings, not historical receipts.
+    $obsolete = @(
+        'Intake Authoring v0\.3\.5', 'Intake Review v0\.2\.3',
+        'Intake Sequencing v0\.2\.6',
+        'security-governance[`\s|]*(?:Security Governance[`\s|]*)?v0\.6\.2',
+        'architecture-governance[`\s|]*(?:Architecture Governance[`\s|]*)?v0\.(?:5\.2|6\.0)'
+    )
+    foreach ($pattern in $obsolete) {
+        if ($Text -match $pattern) { throw 'Obsolete current preset narrative' }
+    }
+}
+
 try {
+    foreach ($path in @('AGENTS.md', 'CLAUDE.md', 'GEMINI.md',
+        '.github/copilot-instructions.md', '.github/agents/copilot-instructions.md',
+        'scripts/templates/AGENTS.md.tmpl', 'scripts/templates/CLAUDE.md.tmpl',
+        'scripts/templates/GEMINI.md.tmpl', 'scripts/templates/copilot-instructions.tmpl',
+        'scripts/templates/speckit-workflow-section.md')) {
+        Assert-CurrentPresetNarrative -Text (Get-Content (Join-Path $repo $path) -Raw)
+    }
+    foreach ($badText in @('Intake Authoring v0.3.5', 'Intake Review v0.2.3',
+        'Intake Sequencing v0.2.6', '| `security-governance` | Security Governance | `v0.6.2` |',
+        '| `architecture-governance` | Architecture Governance | `v0.5.2` |')) {
+        $rejected = $false
+        try { Assert-CurrentPresetNarrative -Text $badText } catch { $rejected = $true }
+        if (-not $rejected) { throw 'Obsolete narrative negative fixture accepted' }
+    }
+    Write-Output 'PASS current normative narrative: ten surfaces and five negative fixtures'
     $reviewPath = Join-Path $repo 'docs/maintenance/governance-review-register.json'
     $review = Get-Content $reviewPath -Raw | ConvertFrom-Json -AsHashtable
     Assert-GovernanceReviewContract -Record $review
