@@ -828,3 +828,16 @@ Deliver central/runtime first, then two named public Level-2 pilots. Remaining
 public Level-2 consumers require a separate request; the remaining affected
 fleet requires another request. No implicit tool, product or community authority.
 See docs/maintenance/governance-review-and-rollout.md in the Level-0 source.
+
+## RiderProjects: offene Produktarchitektur / Undecided product architecture
+
+`Show-CommandTui400` ist ein Level-2-Projekt in RiderProjects mit PowerShell-7-
+Zielumgebung. Primärsprache, Framework, Mindestversion und MSL-Status sind offen.
+Der Workspace-Name begründet keine C#/.NET-Vorgabe. Verbindlich ist die
+Projektzeile im Umgebungsregister; die lokale operative Registry verwendet
+`unknown` für Primärsprache und MSL-Status und das explizite 14-Preset-Profil.
+
+*Show-CommandTui400 targets PowerShell 7 terminals in RiderProjects. Primary
+language, framework, minimum version and MSL status remain undecided. The
+workspace name does not select C#/.NET. Use the project environment row and
+unknown language/MSL metadata with its explicit fourteen-preset profile.*
