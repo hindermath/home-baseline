@@ -10,9 +10,12 @@ Downloads only hash-bound GitHub archives, verifies tag/commit bindings, tests p
 assurance contracts, and removes temporary projects without touching installations.
 .EXAMPLE
 pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1
+.PARAMETER GovernanceReviewOnly
+DE: Nur den lokalen Jahresreview-Vertrag mit Negativfaellen pruefen, ohne Downloads.
+EN: Check only the local annual-review contract and negative cases, without downloads.
 #>
 [CmdletBinding()]
-param()
+param([switch]$GovernanceReviewOnly)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -27,7 +30,42 @@ function Invoke-PresetTestCommand {
     return $output
 }
 
+function Assert-GovernanceReviewContract {
+    param([hashtable]$Record)
+    $expected = @('security-governance','architecture-governance','isaqb-architecture-governance',
+        'a11y-governance','cross-platform-governance','agent-parity-governance',
+        'secure-development-assurance-governance')
+    if ($Record.fixedSchedule.month -ne 10 -or $Record.fixedSchedule.day -ne 3 -or
+        $Record.fixedSchedule.timeZone -cne 'Europe/Berlin' -or
+        $Record.fixedSchedule.eventReviewsResetSchedule -ne $false -or
+        $Record.fixedSchedule.nextReview -notmatch '^\d{4}-10-03$') { throw 'Fixed annual schedule drift' }
+    if ($Record.automation.mode -cne 'ReadOnly' -or $Record.automation.writesAuthorized -ne $false) {
+        throw 'Annual automation must not acquire mutation authority'
+    }
+    $actual = @($Record.presets | ForEach-Object { $_.id })
+    if ($actual.Count -ne 7 -or @($actual | Select-Object -Unique).Count -ne 7 -or
+        @($expected | Where-Object { $_ -cnotin $actual }).Count) { throw 'Annual review coverage drift' }
+}
+
 try {
+    $reviewPath = Join-Path $repo 'docs/maintenance/governance-review-register.json'
+    $review = Get-Content $reviewPath -Raw | ConvertFrom-Json -AsHashtable
+    Assert-GovernanceReviewContract -Record $review
+    # Date, event cadence and read-only authority are independent invariants.
+    foreach ($fault in @('date','event-reset','mutation','coverage')) {
+        $negative = Get-Content $reviewPath -Raw | ConvertFrom-Json -AsHashtable
+        switch ($fault) {
+            'date' { $negative.fixedSchedule.nextReview = '2027-10-04' }
+            'event-reset' { $negative.fixedSchedule.eventReviewsResetSchedule = $true }
+            'mutation' { $negative.automation.writesAuthorized = $true }
+            'coverage' { $negative.presets = @($negative.presets[0..5]) }
+        }
+        $rejected = $false
+        try { Assert-GovernanceReviewContract -Record $negative } catch { $rejected = $true }
+        if (-not $rejected) { throw "Annual review negative fixture accepted: $fault" }
+    }
+    Write-Output 'PASS annual review: seven presets, fixed due date, event independence and read-only authority'
+    if ($GovernanceReviewOnly) { return }
     $null = New-Item -ItemType Directory -Path $temporaryRoot
     $lock = Get-Content (Join-Path $repo 'docs/maintenance/preset-source-lock.json') -Raw | ConvertFrom-Json
     $profiles = Get-Content (Join-Path $repo 'scripts/config/spec-kit-preset-profiles.json') -Raw | ConvertFrom-Json
@@ -69,6 +107,19 @@ try {
         if ($roots.Count -ne 1) { throw 'Expected a single package root.' }
         $packages[$preset.id] = @{root=$roots[0].FullName; binding=$preset}
     }
+    # DE: Gemeinsame Konfigurationsregeln duerfen nicht je Preset auseinanderlaufen.
+    # EN: Shared configuration rules must not drift between Intake presets.
+    $configurationHashes = @(
+        foreach ($id in @('intake-authoring-governance','intake-review-governance','intake-sequencing-governance')) {
+            (Get-FileHash (Join-Path $packages[$id].root 'scripts/validate-intake-governance-config.py') -Algorithm SHA256).Hash
+            $output = Invoke-PresetTestCommand pwsh @('-NoProfile','-File',(Join-Path $packages[$id].root 'tests/test-intake-governance-config.ps1'))
+            Write-Host ($output -join [Environment]::NewLine)
+        }
+    )
+    if (@($configurationHashes | Select-Object -Unique).Count -ne 1) { throw 'Intake configuration contract drift.' }
+    $python = if ($IsWindows) { 'python' } else { 'python3' }
+    $output = Invoke-PresetTestCommand $python @((Join-Path $packages['architecture-governance'].root 'tests/test-cloud-contract.py'))
+    Write-Output $output
     foreach ($presetProfile in $profiles.profiles.PSObject.Properties) {
         if (-not $presetProfile.Value.presetConfig) { continue }
         $matrix = Get-Content (Join-Path $repo $presetProfile.Value.presetConfig) -Raw | ConvertFrom-Json
@@ -90,6 +141,7 @@ try {
         }
         $null = Invoke-PresetTestCommand specify @('preset','list')
         $null = Invoke-PresetTestCommand specify @('preset','resolve','constitution-template')
+        $null = Invoke-PresetTestCommand specify @('preset','resolve','c3a-criteria-catalog')
         if ($registry.presets.ContainsKey('secure-development-assurance-governance')) {
             $null = Invoke-PresetTestCommand specify @('preset','resolve','secure-development-evidence-contract')
         }

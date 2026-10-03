@@ -19,20 +19,20 @@ v0.1.3; it grants no automatic expansion to additional repositories.
 
 | Preset | Tag | Produktquelle / Product source |
 |---|---|---|
-| security-governance | v0.6.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-security-governance/tree/v0.6.2) |
+| security-governance | v0.7.0 | [GitHub](https://github.com/hindermath/spec-kit-preset-security-governance/tree/v0.7.0) |
 | secure-development-assurance-governance | v0.1.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/tree/v0.1.3) |
-| architecture-governance | v0.5.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-architecture-governance/tree/v0.5.2) |
+| architecture-governance | v0.6.1 | [GitHub](https://github.com/hindermath/spec-kit-preset-architecture-governance/tree/v0.6.1) |
 | isaqb-architecture-governance | v0.2.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/tree/v0.2.2) |
 | a11y-governance | v0.4.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-a11y-governance/tree/v0.4.3) |
 | cross-platform-governance | v0.2.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-cross-platform-governance/tree/v0.2.2) |
 | agent-parity-governance | v0.4.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-agent-parity-governance/tree/v0.4.2) |
 | model-routing-governance | v0.1.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-model-routing-governance/tree/v0.1.4) |
-| intake-authoring-governance | v0.3.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/tree/v0.3.4) |
-| intake-review-governance | v0.2.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-review-governance/tree/v0.2.3) |
-| intake-sequencing-governance | v0.2.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/tree/v0.2.6) |
+| intake-authoring-governance | v0.3.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/tree/v0.3.6) |
+| intake-review-governance | v0.2.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-review-governance/tree/v0.2.4) |
+| intake-sequencing-governance | v0.2.7 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/tree/v0.2.7) |
 | autonomous-run-governance | v0.4.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/tree/v0.4.4) |
 | parallel-autonomous-run-governance | v0.2.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.6) |
-| project-statistics-governance | v0.1.0 (Pre-Release) | [GitHub](https://github.com/hindermath/spec-kit-preset-project-statistics-governance/tree/v0.1.0) |
+| project-statistics-governance | v0.1.0 (stable) | [GitHub](https://github.com/hindermath/spec-kit-preset-project-statistics-governance/tree/v0.1.0) |
 
 Die aktuelle Assurance-Quellenbindung ist v0.1.3: das gesondert genehmigte unveraenderliche
 Patch-Prerelease korrigiert Kontextbindung und Risikotyp-Paritaet. Produkt-PR
@@ -56,13 +56,15 @@ the older `Latest` label. Submission does not establish catalog acceptance.
 
 ## Nachweise und Wartung / Evidence and Maintenance
 
-Das zusaetzliche Project Statistics Governance v0.1.0-Pre-Release wird nur in
-den drei genehmigten Statistik-Piloten verwendet. Es ersetzt keine bestehende
-Statistik und aendert keine globalen Profil-Defaults.
+Project Statistics Governance v0.1.0 ist inzwischen stabil veroeffentlicht.
+Die genehmigten Piloten und der gesonderte Rollout sind in den Nachweisen
+dokumentiert; diese Quellenuebersicht erteilt keine weitere Verteilungsautoritaet.
+Es ersetzt keine bestehende Statistik und aendert keine globalen Profil-Defaults.
 Siehe [Statistik-Pilot / Statistics pilot](../../docs/maintenance/project-statistics-pilot-v010.md).
 
-The additional statistics pre-release is restricted to three approved pilots.
-It does not replace existing statistics or change global profile defaults.
+The statistics release is now stable. Approved pilots and the separately
+authorized rollout retain their own evidence; this index grants no further
+distribution authority. Existing statistics and global defaults remain unchanged.
 
 - [Quellenbindung: Tags, Commits und ZIP-SHA-256 / Source lock](../../docs/maintenance/preset-source-lock.json)
 - [Bereinigung und bekannte Abweichungen / Cleanup and known differences](../../docs/maintenance/preset-source-cleanup.md)

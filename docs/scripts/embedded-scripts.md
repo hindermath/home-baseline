@@ -26,6 +26,7 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/extensions/git/scripts/powershell/create-new-feature.ps1` | `.specify` |
 | `.specify/extensions/git/scripts/powershell/git-common.ps1` | `.specify` |
 | `.specify/extensions/git/scripts/powershell/initialize-repo.ps1` | `.specify` |
+| `.specify/presets/architecture-governance/tests/test-cloud-contract.py` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/autonomous-evidence-core.py` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.ps1` | `.specify` |
 | `.specify/presets/autonomous-run-governance/scripts/invoke-autonomous-model-phase.sh` | `.specify` |
@@ -98,6 +99,7 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/secure-development-assurance-governance/scripts/validate-secure-development-assurance.sh` | `.specify` |
 | `.specify/presets/secure-development-assurance-governance/tests/test-installed-surfaces.ps1` | `.specify` |
 | `.specify/presets/secure-development-assurance-governance/tests/test-secure-development-assurance.ps1` | `.specify` |
+| `.specify/presets/security-governance/tests/test-regulatory-contract.ps1` | `.specify` |
 | `.specify/scripts/bash/check-prerequisites.sh` | `.specify` |
 | `.specify/scripts/bash/common.sh` | `.specify` |
 | `.specify/scripts/bash/create-new-feature.sh` | `.specify` |
