@@ -88,21 +88,35 @@ project decision. Unknown remains Open. Tests do not prove compliance.
 
 ## Verbleibende Schritte / Remaining steps
 
-1. Professional review of both source PRs; then successful exact-head delivery
-   under current MergeAndSync/admin authority and stable publication.
-2. Bind released commits/tag ZIP hashes centrally; baseline 3.3.0 and generated
-   compendium 2.3.0, controlled documents, Guidance and README together.
+1. Completed: human source review, bounded Copilot corrections, exact-head
+   native CI, MergeAndSync, stable releases and verified immutable tag ZIPs.
+2. Prepared: released source bindings, baseline 3.3.0 / compendium 2.3.0,
+   shared guidance, annual register and staged rollout. Await central PR checks,
+   exact merge, default-branch synchronization and bounded Home Runtime sync.
 3. Deliver only Show-CommandTui400 and TinyCalc, preserving prior findings,
    receipts and human decisions. Perform bounded GSDB and project regression,
    reproducible statistics and exact merge/default-branch synchronization.
 4. Complete [Show-CommandTui400 #19](https://github.com/hindermath/Show-CommandTui400/issues/19)
    and [TinyCalc #92](https://github.com/hindermath/TinyCalc/issues/92)
-   with actual delivery evidence. Both now contain the extended candidate scope.
+   with actual delivery evidence. Both contain current source-release and stage boundaries.
 5. Recheck review freshness, series/candidate, local model routing, tools and
    current authority before any separately authorized product implementation.
 
 Preserve earlier coordinated Intake/maintenance work; this report does not
 claim its pending central/pilot delivery was completed.
+
+Central delivery is isolated in a managed worktree. Existing unrelated
+Autonomous runner removals in the original dirty checkout are preserved there,
+not included in this delivery. Whitespace was normalized only in regenerated
+specify/tasks surfaces. Initial full seven-preset source review remains open;
+annual-contract tests do not substitute for that review.
+
+Local completion checks: all 14 hash/tag-bound packages, seven profiles 8-14,
+Assurance lifecycle/negative/zero-write tests and annual contract negatives pass.
+Documentation Impact (three entries), Bash/PowerShell generated-document checks
+and secret scan of the changed diff pass. Full-directory secret-scan hits were
+unchanged educational prose/examples, not introduced credentials. Legacy Profile
+2 and the separate statistics-pilot context are generated and checked separately.
 
 Audience: maintainers, learners, project owners and privacy/compliance reviewers.
 Reader path: source PR -> source contract -> this tracking report -> pilot issue.
