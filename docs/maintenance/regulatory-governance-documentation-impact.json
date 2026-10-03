@@ -52,7 +52,7 @@
       "decision": "GeneratedUpdate",
       "generatedSource": { "path": "docs/secure-development/baseline-manifest.json", "renderer": "build-secure-development-docs.*, render-script-reference.*, render-project-statistics.* and installed project-statistics update" },
       "rationale": "Canonical sources changed; regenerate using existing renderers, never hand-edit generated blocks.",
-      "documents": ["docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md", "docs/scripts/embedded-scripts.md", "docs/project-statistics.md", "docs/project-statistics-pilot/report.md", "docs/project-statistics-pilot/snapshot.json"],
+      "documents": ["docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md", "docs/scripts/reference.md", "docs/scripts/embedded-scripts.md", "docs/project-statistics.md", "docs/project-statistics-pilot/report.md", "docs/project-statistics-pilot/snapshot.json"],
       "owner": "Thorsten Hindermann",
       "audiences": ["Maintainers", "Learners"],
       "readerPaths": ["Canonical source -> generated view -> method/evidence"],

@@ -189,6 +189,15 @@ Plattform-/Umgebungs-Skips) bestanden in beiden Piloten. Keine Abschwaechung,
 kein Cache-Fallback und kein Rerun zum Umgehen des urspruenglichen Fehlers.
 Der zentrale Nachlauf verteilt genau diese gemeinsame Testdatei zur Home Runtime.
 
+DE: Der erste zentrale Closeout-Head meldete veraltete generierte
+Skriptreferenz-Metadaten im Windows-Homogenitaetscheck; die weiteren beiden
+Matrixjobs wurden durch Fail-fast abgebrochen. Der bestehende Renderer
+aktualisiert diese Ableitung; anschliessend werden beide Statistiken neu
+gebunden und alle technischen Checks am neuen Head erneut ausgefuehrt.
+EN: Initial closeout CI detected stale generated script-reference metadata.
+The existing renderer updates it; statistics and all exact-head technical
+checks are refreshed, without bypassing the failed run.
+
 EN: The failed Show check exposed a hard-coded OpenCode namespace. The shared
 test now uses only the tracked manifest, accepts one declared namespace and
 rejects invalid/mixed paths. Four focused tests and the maintenance suite passed
