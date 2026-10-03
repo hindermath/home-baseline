@@ -8,6 +8,15 @@ Sie verwaltet gemeinsame Skripte, Governance, Spec-Kit-Presets,
 Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
+Aktueller vorbereiteter Governance-Zielstand: Security v0.7.0, Architecture v0.6.1 sowie
+Intake Authoring v0.3.6, Review v0.2.4 und Sequencing v0.2.7.
+[Paketbindung, Piloten und verbleibende Schritte](docs/maintenance/coordinated-governance-oct03.md).
+Die Installation startet keine Produktimplementierung.
+
+[Jahresprüfung und gestufte Lieferung](docs/maintenance/governance-review-and-rollout.md):
+zentrale Baseline/Home Runtime, zwei benannte Piloten, übrige öffentliche Level-2-Repos
+erst nach separatem Auftrag, übrige Flotte nach erneutem Auftrag.
+
 ## Spec-Kit-Läufe in öffentlichen Repositories
 
 <!-- public-speckit-runs:begin -->

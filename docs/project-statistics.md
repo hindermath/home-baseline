@@ -207,6 +207,10 @@
 
 | 2026-10-01 | Pflicht-Dokumentwerkzeuge / Required document tools | N/A | N/A | N/A | Pandoc und Typst CLI plattformuebergreifend required, Tinymist Typst als neunte Pflicht-VS-Code-Erweiterung, separates Tinymist optional. Linux-Cargo-Fallback, Windows-Pflichtdrift-Exitcode und synchrone Agent-Guidance; lokale Nachweise in docs/maintenance/document-tools-validation-20261001.md. Documentation Impact UpdateRequired; MergeAndSync mit Admin-Bypass und anschliessender Home-Sync-Pruefung autorisiert. Flotten-Rollout spaeter; native Windows-/Linux-Installation offen. / Required document tools, optional standalone server, platform fallbacks and local verification; MergeAndSync and Home sync authorized, fleet rollout deferred and native installation remains open. |
 
+| 2026-10-03 | Koordinierte Architecture-/Intake-Patches / Coordinated architecture/intake patches | N/A | N/A | N/A | UpdateRequired: Architecture v0.6.0 und Intake Authoring v0.3.6, Review v0.2.4, Sequencing v0.2.7 zentral gebunden und lokal im 14er-Profil installiert. C5-Typen, 30 C3A-Gruppen und bytegleicher Intake-Konfigurationsvertrag; Quellen-CI auf drei Plattformen erfolgreich. README, Constitution, fuenf Guidance-Flaechen und Vorlagen gemeinsam aktualisiert. Zwei Piloten und Wartungsdateien aus #317 beauftragt; keine Produktimplementierung oder Community-Einreichung. Nachweis: docs/maintenance/coordinated-governance-oct03.md. / Immutable source bindings and fourteen-preset integration, native source CI, synchronized documentation; pilots authorized, no product run or catalog update. |
+
+| 2026-10-03 | Regulatorische Integration und gestufte Lieferung / Regulatory integration and staged delivery | N/A | N/A | N/A | Security v0.7.0 und Architecture v0.6.1 nach fachlicher Sichtung und gruenen nativen Checks stabil veroeffentlicht; Tags und ZIP-Hashes gebunden. Baseline 3.3.0/Sammelband 2.3.0, Jahresreview der sechs Governance-Presets plus Assurance am 3. Oktober, Read-only-Automation und getrennte Rollout-Stufen integriert. Zentrale Lieferung und Piloten bleiben bis zum exakten Merge-/Sync-Nachweis offen; C/D warten auf eigene Beauftragung. Autonomous-Runner-Aenderungen aus dem urspruenglichen Arbeitsstand nicht mitgeliefert. UpdateRequired; generierte Ableitungen separat. / Stable reviewed source releases, immutable provenance, annual read-only cadence and explicit delivery stages; central/pilot closeout remains pending, later fleet stages need separate authority. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1401,27 +1405,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 702040 lines |
-| Textdateien / Text files | 3253 |
-| Beobachtbarer Zeitraum / Observable period | 2025-10-05..2026-10-01 |
-| Aktivtage / Active days | 119 |
-| Relevante Commits / Relevant commits | 899 |
-| Zeilen je Aktivtag / Lines per active day | 5899.5 |
+| Textbasis / Text base | 706881 lines |
+| Textdateien / Text files | 3276 |
+| Beobachtbarer Zeitraum / Observable period | 2025-10-05..2026-10-03 |
+| Aktivtage / Active days | 120 |
+| Relevante Commits / Relevant commits | 901 |
+| Zeilen je Aktivtag / Lines per active day | 5890.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 73.7x |
-| Speedup vs. 100 lines/day | 59.0x |
-| Methodik / Methodology | v2; source `82ff62ea5624` |
+| Speedup vs. 80 lines/day | 73.6x |
+| Speedup vs. 100 lines/day | 58.9x |
+| Methodik / Methodology | v2; source `3ba255cc6bf7` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 26865
-Dokumentation / Documentation   [##########..........]  51.7% | 362843
-Skripte / Scripts               [##..................]   8.1% | 57127
-Konfiguration / Configuration   [#######.............]  36.0% | 252617
+Tests                           [#...................]   3.8% | 26917
+Dokumentation / Documentation   [##########..........]  52.0% | 367496
+Skripte / Scripts               [##..................]   8.1% | 57263
+Konfiguration / Configuration   [#######.............]  35.7% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 351
 ```
@@ -1450,8 +1454,8 @@ Mo/Mo  3 3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3
 Di/Tu  0 3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0
 Mi/We  4 3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0
 Do/Th  0 3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3
-Fr/Fr  4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 -
-Sa/Sa  4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 -
+Fr/Fr  4 1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0
+Sa/Sa  4 3 4 0 0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 4
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1684,8 +1688,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [###############.....] 73.7x
-100 lines/day      [############........] 59.0x
+80 lines/day       [###############.....] 73.6x
+100 lines/day      [############........] 58.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1698,7 +1702,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5899.5
+Visible repository [############........] 5890.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1707,9 +1711,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-10-05 und endet am 2026-10-01. Es enthaelt 119 aktive und 243 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-10-05 und endet am 2026-10-03. Es enthaelt 120 aktive und 244 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-10-05 and ends on 2026-10-01. It contains 119 active and 243 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-10-05 and ends on 2026-10-03. It contains 120 active and 244 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1724,6 +1728,6 @@ DE: Das Fenster beginnt am 2025-10-05 und endet am 2026-10-01. Es enthaelt 119 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 599 |
+| 2026-10 | 6542 |
 
 <!-- project-statistics-v2:end -->

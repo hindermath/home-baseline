@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-03",
+  "deliveryMode": "MergeAndSync",
+  "adminBypass": "OnlyAfterSuccessfulTechnicalChecks",
+  "scope": "Source releases, central bindings, Show-CommandTui400 and TinyCalc pilots; no product run or fleet execution",
+  "sources": [
+    {
+      "id": "security-governance",
+      "version": "0.7.0",
+      "commit": "ad0b642db325db6803b33ecd99bc7935b43d2d59",
+      "tagArchiveSha256": "a121ea1f9be7597a40f6f328581f680b8670ea6dc6d9ba8743095ece32af179c"
+    },
+    {
+      "id": "architecture-governance",
+      "version": "0.6.1",
+      "commit": "21c0f43d1c93455c43e989de965d45c2851e824f",
+      "tagArchiveSha256": "9ea0721e9475e4e955c4b71214adcc96b117ef97f977115446128bd157ed05c6"
+    },
+    {
+      "id": "intake-authoring-governance",
+      "version": "0.3.6",
+      "commit": "5530868f0de63b8fae19781f69086befefe4f965",
+      "tagArchiveSha256": "6f08f7df93bf0096672de6b6a5e44f08e960463409634826e5b430ac1090db7e"
+    },
+    {
+      "id": "intake-review-governance",
+      "version": "0.2.4",
+      "commit": "f0f9b3536a58f8c90a79119565af8190809a4bdb",
+      "tagArchiveSha256": "c4a21c4a99ba6eed0df3028bc1ee19158f1274d9e440f433c504877c997ed816"
+    },
+    {
+      "id": "intake-sequencing-governance",
+      "version": "0.2.7",
+      "commit": "74f6b343b79c93f6fcbfe9db1c111e9eb3aeeee8",
+      "tagArchiveSha256": "5ccaa7fff94fea433fcc4ec960991c945fe8c62ad4b8dbffc1e60a09fee644a4"
+    }
+  ],
+  "maintenance": {
+    "pullRequest": "https://github.com/hindermath/home-baseline/pull/317",
+    "commit": "3b3abecdcad7395b97948f4d42578b4a83502cbb",
+    "scope": "Declared file propagation only; actual tool installation remains separate"
+  },
+  "inventoryBoundary": "37 inherited Intake consumers, not complete Architecture consumer inventory; other Architecture consumers require later enumeration",
+  "historicalInventory": "2026-09-28-authoring-v035-rollout.json",
+  "pilotOrder": [
+    "RiderProjects/Show-CommandTui400",
+    "RiderProjects/TinyCalc"
+  ],
+  "targetCount": 37,
+  "rolloutStages": {
+    "A": { "status": "InProgress", "targets": ["hindermath/home-baseline", "HomeRuntime"] },
+    "B": { "status": "WaitingCentralDelivery", "targets": ["hindermath/Show-CommandTui400", "hindermath/TinyCalc"] },
+    "C": { "status": "WaitingAuthorization", "scope": "Remaining affected public Level-2 consumers; freeze live targets after separate request" },
+    "D": { "status": "WaitingAuthorization", "scope": "Remaining affected registered fleet; freeze live targets after another separate request" }
+  },
+  "targets": [
+    {
+      "path": "home-baseline-source",
+      "repository": "hindermath/home-baseline",
+      "level": 0,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "InstalledPendingCentralDelivery"
+    },
+    {
+      "path": "C64Projects",
+      "repository": "hindermath/c64-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "C64Projects/cc65",
+      "repository": "hindermath/cc65",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "CLionProjects",
+      "repository": "hindermath/clion-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "CLionProjects/tvision",
+      "repository": "hindermath/tvision",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "DataGripProjects",
+      "repository": "hindermath/datagrip-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "DataGripProjects/InventarDb",
+      "repository": "hindermath/InventarDb",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "RiderProjects",
+      "repository": "hindermath/rider-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "RiderProjects/AgentOperationsCockpit",
+      "repository": "hindermath/agent-operations-cockpit",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "RiderProjects/InventarWorkerService",
+      "repository": "hindermath/InventarWorkerService",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "RiderProjects/Show-CommandTui400",
+      "repository": "hindermath/Show-CommandTui400",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPilotInstallation"
+    },
+    {
+      "path": "RiderProjects/TinyCalc",
+      "repository": "hindermath/TinyCalc",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "PendingPilotInstallation"
+    },
+    {
+      "path": "RiderProjects/TinyPl0",
+      "repository": "hindermath/TinyPl0",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "RiderProjects/TuiVision",
+      "repository": "hindermath/TuiVision",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects",
+      "repository": "hindermath/secure-casetracker-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-CSharp",
+      "repository": "hindermath/securecasetracker-csharp",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Go",
+      "repository": "hindermath/securecasetracker-go",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Java",
+      "repository": "hindermath/securecasetracker-java",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Python",
+      "repository": "hindermath/securecasetracker-python",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Rust",
+      "repository": "hindermath/securecasetracker-rust",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureCaseTrackerProjects/SecureCaseTracker-Swift",
+      "repository": "hindermath/securecasetracker-swift",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects",
+      "repository": "hindermath/secure-orderdesk-baseline",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-CSharp",
+      "repository": "hindermath/secureorderdesk-csharp",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Go",
+      "repository": "hindermath/secureorderdesk-go",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Java",
+      "repository": "hindermath/secureorderdesk-java",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Python",
+      "repository": "hindermath/secureorderdesk-python",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Rust",
+      "repository": "hindermath/secureorderdesk-rust",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureOrderDeskProjects/SecureOrderDesk-Swift",
+      "repository": "hindermath/secureorderdesk-swift",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects",
+      "repository": "hindermath/secure-serviceharvester",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-CSharp",
+      "repository": "hindermath/secureserviceharvester-csharp",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Go",
+      "repository": "hindermath/secureserviceharvester-go",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Java",
+      "repository": "hindermath/secureserviceharvester-java",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Python",
+      "repository": "hindermath/secureserviceharvester-python",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Rust",
+      "repository": "hindermath/secureserviceharvester-rust",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "SecureServiceHarvesterProjects/SecureServiceHarvester-Swift",
+      "repository": "hindermath/secureserviceharvester-swift",
+      "level": 2,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "container-images",
+      "repository": "hindermath/container-images",
+      "level": 1,
+      "profile": "model-routing-twelve-governance-presets",
+      "status": "WaitingAuthorization"
+    },
+    {
+      "path": "container-images/absdd-image-sandbox",
+      "repository": "hindermath/absdd-image-sandbox",
+      "level": 2,
+      "profile": "project-statistics-fourteen-governance-presets",
+      "status": "WaitingAuthorization"
+    }
+  ],
+  "communityStatus": "NotSubmitted",
+  "productExecution": "NotStarted"
+}

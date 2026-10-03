@@ -7,6 +7,15 @@ AI-agent-assisted development workspace. It manages shared scripts, governance,
 Spec Kit presets, documentation rules, and learning material. No prior Spec Kit
 experience is required to start here.
 
+Current prepared governance target: Security v0.7.0, Architecture v0.6.1 and Intake Authoring
+v0.3.6, Review v0.2.4 and Sequencing v0.2.7.
+[Package bindings, pilots and remaining steps](docs/maintenance/coordinated-governance-oct03.md).
+Installation does not start product implementation.
+
+[Annual review and staged delivery](docs/maintenance/governance-review-and-rollout.md):
+central baseline/Home Runtime, two named pilots, remaining public Level-2 repositories
+only after a separate request, remaining fleet after another request.
+
 ## Spec Kit runs in public repositories
 
 <!-- public-speckit-runs:begin -->

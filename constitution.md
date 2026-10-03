@@ -596,7 +596,7 @@ MUST use this matrix to determine which standards apply.
 | NIST Zero Trust (SP 800-207) | Project-type-dependent | Distributed, service-based, cloud, remote-managed, or multi-device systems | Explicit applicability decision with controls or justified N/A |
 | BSI C3A (Criteria enabling Cloud Computing Autonomy) | Project-type-dependent | Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, or provider-dependent deployments | Explicit cloud-autonomy applicability decision with service-selection evidence, provider-dependency review, audit/assurance status, autonomy risks, and justified N/A where not applicable |
 | BSI C5 (Cloud Computing Compliance Criteria Catalogue) | Project-type-dependent | Cloud-service selection, cloud operation, SaaS/PaaS/IaaS, managed services, container/artifact hosting, provider-dependent deployments, or customer/security assurance reviews | Explicit cloud-compliance assurance decision with C5 report/testat status, assurance scope, shared-responsibility gaps, provider/subprocessor dependencies, data location, logging, backup, and incident evidence |
-| Regulatory applicability (NIS2 / CRA / EU AI Act / DORA) | Project-type-dependent | Regulated entity, regulated customer/supply chain, EU-market product, AI runtime/product component, financial-sector ICT dependency, or sector-specific obligation | Explicit applicability matrix with `Applicable`, `N/A`, or `Open`; private training projects default to `N/A` when no regulated service, market product, customer obligation, or regulated supply-chain role exists |
+| Regulatory applicability (GDPR / NIS2 / CRA / EU AI Act / DORA) | Scope-dependent | Personal-data processing, regulated legal entity, EU-market product, AI role, financial ICT relationship or applicable contractual duty | Assess sample product, development tooling and operating organisation separately; record jurisdiction, legal role, direct/contractual duties, official source, owner/reviewer and evidence as `Applicable`, `N/A` or `Open`. Education and AI-SBOM N/A are not blanket exemptions; unknown remains Open |
 | OWASP Cheat Sheet Series / Proactive Controls | SHOULD | All developer-facing projects | Use as day-to-day implementation guidance below the constitution |
 | OpenSSF Scorecard | Project-type-dependent | Public OSS repositories or high-impact external dependencies | Review repository/dependency security posture before adoption or release |
 
@@ -1031,8 +1031,8 @@ workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.6.2` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
-| `architecture-governance` | `v0.5.2` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
+| `security-governance` | `v0.7.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
+| `architecture-governance` | `v0.6.1` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
 | `isaqb-architecture-governance` | `v0.2.2` | `30` | general iSAQB/arc42 architecture governance |
 | `a11y-governance` | `v0.4.3` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
@@ -1041,9 +1041,21 @@ workspace family consists of:
 | `parallel-autonomous-run-governance` | `v0.2.6` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
 `model-routing-governance` v0.1.4 at priority `61`,
-`intake-authoring-governance` v0.3.5 at priority `64`,
-`intake-review-governance` v0.2.3 at priority `65`, and
-`intake-sequencing-governance` v0.2.6 at priority `66` are optional presets,
+Architecture v0.6.1 separates C5 Type 1 point-in-time evidence from Type 2
+period effectiveness and Unknown. Its C3A v1.0 index retains all 30 groups,
+exact selected C/AC IDs and SI interpretation; missing evidence is Open.
+It records external assurance, not an audit or certification.
+
+The coordinated Intake validators share the same configuration contract:
+Active with an Active member may have no additional Eligible candidate (N/A);
+Ready still needs exactly one. Empty Idle requires no targets, roots or
+dependencies; DirectoryStrict additionally requires an empty active inventory.
+Nested Git checkouts own their index; ordinary duplicates remain blocked.
+Historical evidence is preserved; installation grants no execution authority.
+
+`intake-authoring-governance` v0.3.6 at priority `64`,
+`intake-review-governance` v0.2.4 at priority `65`, and
+`intake-sequencing-governance` v0.2.7 at priority `66` are optional presets,
 not part of the standard eight. Model Routing discovers harness capabilities
 locally and binds stable roles to an explicitly selected model without
 committing machine-specific model names. Unknown or ambiguous mappings fail
@@ -1131,9 +1143,9 @@ listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
 The current standalone releases are `autonomous-run-governance` v0.4.4,
 `parallel-autonomous-run-governance` v0.2.6, optional
-`intake-authoring-governance` v0.3.5, optional
-`intake-review-governance` v0.2.3, and optional
-`intake-sequencing-governance` v0.2.6. Registered Level-0, Level-1, and Level-2
+`intake-authoring-governance` v0.3.6, optional
+`intake-review-governance` v0.2.4, and optional
+`intake-sequencing-governance` v0.2.7. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote
@@ -1221,3 +1233,23 @@ checks. Add final merge/sync proof in chat and existing closeout evidence, witho
 commits solely for self-referential counts or IDs. Preserve local rules/templates
 across Spec Kit updates.*
 <!-- END spec-kit-diagrams-completion -->
+
+## Governance-Jahrespruefung und Lieferstufen / Annual governance review and delivery stages
+
+DE: Die urspruenglichen sechs Governance-Presets plus Secure Development
+Assurance werden am 3. Oktober jaehrlich geprueft; naechster Termin
+2027-10-03, 10:00 Europe/Berlin. Anlasspruefungen verschieben den Termin nicht.
+Die Automation liest und berichtet nur; Aenderungen brauchen einen Auftrag.
+Lieferung: A Home Baseline/betroffene Home Runtime, B zwei je Vorhaben benannte
+public Level-2-Piloten, C restliche betroffene public Level-2-Verbraucher erst
+nach separatem Auftrag, D restliche betroffene Flotte nach erneutem Auftrag.
+Aktuelle Piloten: Show-CommandTui400 und TinyCalc. Keine implizite Flotten-,
+Werkzeuginstallations-, Produktlauf- oder Community-Autoritaet. Admin-Bypass
+nur nach erfolgreich abgeschlossenen technischen Checks des exakten Heads.
+EN: Review the original six governance presets plus Secure Development
+Assurance annually on 3 October; next due 2027-10-03 at 10:00 Europe/Berlin.
+Event reviews do not reset the date. Automation only reads and reports.
+Deliver central/runtime first, then two named public Level-2 pilots. Remaining
+public Level-2 consumers require a separate request; the remaining affected
+fleet requires another request. No implicit tool, product or community authority.
+See docs/maintenance/governance-review-and-rollout.md in the Level-0 source.
