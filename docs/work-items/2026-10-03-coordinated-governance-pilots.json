@@ -49,8 +49,8 @@
   ],
   "targetCount": 37,
   "rolloutStages": {
-    "A": { "status": "InProgress", "targets": ["hindermath/home-baseline", "HomeRuntime"] },
-    "B": { "status": "WaitingCentralDelivery", "targets": ["hindermath/Show-CommandTui400", "hindermath/TinyCalc"] },
+    "A": { "status": "Completed", "targets": ["hindermath/home-baseline", "HomeRuntime"], "evidence": "https://github.com/hindermath/home-baseline/pull/321", "mergeCommit": "8aa6fd0ed7b6ebe81c0db3e90e7fdcfd9c4fe59e", "followUp": "Shared manifest-bound parity test and final tracking report require this closeout delivery and one bounded Home Runtime copy." },
+    "B": { "status": "Completed", "targets": ["hindermath/Show-CommandTui400", "hindermath/TinyCalc"], "evidence": ["https://github.com/hindermath/Show-CommandTui400/issues/19#issuecomment-5972401690", "https://github.com/hindermath/TinyCalc/issues/92#issuecomment-5972725565"] },
     "C": { "status": "WaitingAuthorization", "scope": "Remaining affected public Level-2 consumers; freeze live targets after separate request" },
     "D": { "status": "WaitingAuthorization", "scope": "Remaining affected registered fleet; freeze live targets after another separate request" }
   },
@@ -60,7 +60,8 @@
       "repository": "hindermath/home-baseline",
       "level": 0,
       "profile": "project-statistics-fourteen-governance-presets",
-      "status": "InstalledPendingCentralDelivery"
+      "status": "Completed",
+      "evidence": "https://github.com/hindermath/home-baseline/pull/321"
     },
     {
       "path": "C64Projects",
@@ -130,14 +131,24 @@
       "repository": "hindermath/Show-CommandTui400",
       "level": 2,
       "profile": "project-statistics-fourteen-governance-presets",
-      "status": "PendingPilotInstallation"
+      "status": "Completed",
+      "pullRequest": "https://github.com/hindermath/Show-CommandTui400/pull/21",
+      "mergeCommit": "12224440ee851711fb5f2c73eb8cd98eee7e07fe",
+      "handoff": "https://github.com/hindermath/Show-CommandTui400/issues/19",
+      "mergeWorkflows": "3/3 successful",
+      "localRemote": "0/0"
     },
     {
       "path": "RiderProjects/TinyCalc",
       "repository": "hindermath/TinyCalc",
       "level": 2,
       "profile": "project-statistics-fourteen-governance-presets",
-      "status": "PendingPilotInstallation"
+      "status": "Completed",
+      "pullRequest": "https://github.com/hindermath/TinyCalc/pull/93",
+      "mergeCommit": "4d2a3ed622c492a2e44608c6c5c251202db1f443",
+      "handoff": "https://github.com/hindermath/TinyCalc/issues/92",
+      "mergeWorkflows": "7/7 successful",
+      "localRemote": "0/0"
     },
     {
       "path": "RiderProjects/TinyPl0",

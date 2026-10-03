@@ -1,7 +1,7 @@
 # Regulatorischer Governance-Rollout / Regulatory governance rollout
 
 Date: 2026-10-03. Owner: Thorsten Hindermann.
-Documentation Impact: UpdateRequired. State: SourcesReleasedCentralGuidanceFollowUp.
+Documentation Impact: UpdateRequired. State: SourcesAndPilotsDeliveredTrackingCloseout.
 
 ## Genehmigter Umfang / Approved scope
 
@@ -49,8 +49,10 @@ See [binding policy](governance-review-and-rollout.md) and
 automation is active; next due 2027-10-03 at 10:00 Europe/Berlin.
 Initial full seven-preset source review remains PendingReview, not fabricated
 from two source PR reviews. Central installation passes full 14-preset
-Bash/PowerShell CheckOnly. Central commit/CI/merge/Home sync and both pilot
-deliveries remain open. Stages C/D are WaitingAuthorization, not executing.
+Bash/PowerShell CheckOnly. Central delivery through PR #321 and both pilot
+deliveries are complete. Stages C/D are WaitingAuthorization, not executing.
+This final tracking/parity-test follow-up still requires its own exact-head
+checks, merge and one manifest-bound Home Runtime copy.
 
 ## Technische Evidence / Technical evidence
 
@@ -90,20 +92,21 @@ project decision. Unknown remains Open. Tests do not prove compliance.
 
 1. Completed: human source review, bounded Copilot corrections, exact-head
    native CI, MergeAndSync, stable releases and verified immutable tag ZIPs.
-2. Prepared: released source bindings, baseline 3.3.0 / compendium 2.3.0,
-   shared guidance, annual register and staged rollout. Await central PR checks,
-   exact merge, default-branch synchronization and bounded Home Runtime sync.
-3. Deliver only Show-CommandTui400 and TinyCalc, preserving prior findings,
-   receipts and human decisions. Perform bounded GSDB and project regression,
-   reproducible statistics and exact merge/default-branch synchronization.
-4. Complete [Show-CommandTui400 #19](https://github.com/hindermath/Show-CommandTui400/issues/19)
-   and [TinyCalc #92](https://github.com/hindermath/TinyCalc/issues/92)
-   with actual delivery evidence. Both contain current source-release and stage boundaries.
-5. Recheck review freshness, series/candidate, local model routing, tools and
+2. Completed: central released bindings, baseline 3.3.0 / compendium 2.3.0,
+   shared guidance, annual register and stages through PR #321, six successful
+   merge workflows, managed main 0/0 and verified Home Runtime synchronization.
+3. Completed: exactly Show-CommandTui400 and TinyCalc, preserving prior findings,
+   receipts and human decisions. Both delivered after successful PR/merge CI;
+   default branches are clean 0/0 and existing statistics are CURRENT.
+4. Completed: [Show-CommandTui400 #19](https://github.com/hindermath/Show-CommandTui400/issues/19)
+   and [TinyCalc #92](https://github.com/hindermath/TinyCalc/issues/92) closed as
+   completed with actual delivery evidence. Final central tracking/parity-test
+   closeout requires its own checks and bounded runtime copy.
+5. Report-only future gate: recheck review freshness, series/candidate, local model routing, tools and
    current authority before any separately authorized product implementation.
 
 Preserve earlier coordinated Intake/maintenance work; this report does not
-claim its pending central/pilot delivery was completed.
+authorize another fleet stage or a product implementation.
 
 Central delivery is isolated in a managed worktree. Existing unrelated
 Autonomous runner removals in the original dirty checkout are preserved there,
@@ -142,15 +145,61 @@ DE: Beim Pilot-Abgleich verblieb ein Absatz mit alten Optional-Intake-Versionen
 in allen fuenf Guidance- und vier Template-Flaechen sowie zwei alte Tabellen-
 Versionen im Workflow-Template. Der gezielte Nachlauf
 korrigiert 0.3.5/0.2.3/0.2.6 auf 0.3.6/0.2.4/0.2.7; Pakete, Tags, Matrix,
-Methodik und Validatoren bleiben unveraendert. Vor weiterer Pilot-Lieferung
-separat pruefen, liefern und betroffene Home Runtime erneut synchronisieren.
-Show-CommandTui400 hat bereits beide neuen Pakete und einen erfolgreichen
-14er-Check; es ist noch nicht committed oder geliefert. TinyCalc ist unveraendert.
+Methodik und Validatoren bleiben unveraendert. PR #321 lieferte diesen Nachlauf
+nach 20 erfolgreichen PR-Checks; Merge 8aa6fd0ed7b6ebe81c0db3e90e7fdcfd9c4fe59e,
+sechs erfolgreiche main-Workflows, beide Statistiken CURRENT, verwaltetes main
+0/0 und gepruefte Home-Runtime-Synchronisierung.
 EN: A remaining stale optional-version paragraph requires a bounded shared
-guidance follow-up before further pilot delivery. No package/tag or validator
+guidance follow-up was delivered before both pilots. No package/tag or validator
 weakening. A new regression guard rejects the five observed obsolete prose/table
 forms across ten current normative surfaces, never historical receipts.
-Show installation is checked but not delivered; TinyCalc is untouched.
+PR #321 delivered the correction with successful PR and merge checks and verified runtime sync.
+
+## Pilotabschluss / Pilot closeout
+
+| Pilot | Delivery / merge | PR checks | Merge workflows | Tracking |
+| --- | --- | --- | --- | --- |
+| Show-CommandTui400 | [PR #21](https://github.com/hindermath/Show-CommandTui400/pull/21), 12224440ee851711fb5f2c73eb8cd98eee7e07fe | 5 successful | 3 successful | [#19 completed](https://github.com/hindermath/Show-CommandTui400/issues/19#issuecomment-5972401690) |
+| TinyCalc | [PR #93](https://github.com/hindermath/TinyCalc/pull/93), 4d2a3ed622c492a2e44608c6c5c251202db1f443 | 21 successful | 7 successful | [#92 completed](https://github.com/hindermath/TinyCalc/issues/92#issuecomment-5972725565) |
+
+DE: Beide Piloten binden Security 0.7.0, Architecture 0.6.1 und Intake
+0.3.6/0.2.4/0.2.7 mit unveraenderlichen Quellen und Wartungspaket #317.
+Beide operativen Zuordnungen bleiben beim 14er-Profil. Show bleibt im
+Konzeptstadium: Produktbuild/Runtime sind nicht definiert und nicht geprueft.
+TinyCalc: Restore, Release-Build ohne Warnungen/Fehler, 82 Tests und TUI-Smoke
+bestanden. Die begrenzte GSDB-Quellenbindung wurde aktualisiert; alle vier
+Aktionen bestanden in beiden Shells, 89 Evidence-Dateihashes blieben bei der
+Read-only-Pruefung unveraendert. Bestehende menschliche Entscheidungen,
+157 Kontrollachsen, 16 externe Pflichten und 13 Findings wurden nicht ersetzt.
+Beide bestehenden Statistik-Vertraege wurden reproduzierbar fortgeschrieben,
+nicht als gemessene KI-Produktivitaet ausgegeben.
+
+EN: Both pilots bind the five released packages and maintenance #317. Show
+remains concept-only; no undefined product runtime/build is claimed tested.
+TinyCalc restore/build, 82 tests and smoke passed. Bounded GSDB source refresh
+and both-shell read-only checks preserve existing human decisions and controls.
+Existing statistics remain reproducible repository-history views.
+
+DE: Ein roter Show-Maintenance-Check legte den fest codierten OpenCode-Pfad
+offen. Der gemeinsame Paritaetstest liest jetzt ausschliesslich das getrackte
+Integrationsmanifest und akzeptiert genau einen Namespace: `.opencode/command`
+oder `.opencode/commands`. Leere, gemischte, absolute und Traversal-Pfade
+blockieren weiterhin. Vier gezielte Tests und 89 Wartungstests (12 explizite
+Plattform-/Umgebungs-Skips) bestanden in beiden Piloten. Keine Abschwaechung,
+kein Cache-Fallback und kein Rerun zum Umgehen des urspruenglichen Fehlers.
+Der zentrale Nachlauf verteilt genau diese gemeinsame Testdatei zur Home Runtime.
+
+EN: The failed Show check exposed a hard-coded OpenCode namespace. The shared
+test now uses only the tracked manifest, accepts one declared namespace and
+rejects invalid/mixed paths. Four focused tests and the maintenance suite passed
+in both pilots; platform/environment skips are explicit. No gate was bypassed.
+
+Initial sieben vollstaendige fachliche Quellenreviews bleiben PendingReview.
+Die feste Read-only-Wiedervorlage ist aktiv; sie startet keine Reparatur oder
+Lieferung. C/D benoetigen eigene Auftraege. Kein Produktfeature, keine neue
+Rechts-/Risiko-/C5-/Zertifizierungsfreigabe und keine Community-Einreichung.
+EN: Initial full seven-preset professional reviews remain PendingReview;
+the annual automation is read-only. Later fleet stages require separate authority.
 
 Audience: maintainers, learners, project owners and privacy/compliance reviewers.
 Reader path: source PR -> source contract -> this tracking report -> pilot issue.

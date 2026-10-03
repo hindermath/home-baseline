@@ -213,6 +213,8 @@
 
 | 2026-10-03 | Show-CommandTui400 Registrierungsabschluss / Registration closeout | N/A | N/A | N/A | Lokaler Klon/Registry, konsistente Level-0/1/2-Umgebungszeilen und offene MSL-/Produktarchitektur. / Local clone/registry and aligned Level-0/1/2 rows, undecided product architecture/MSL. [Nachweis / Evidence](maintenance/show-commandtui400-onboarding.md). |
 
+| 2026-10-03 | Governance-Pilotabschluss / Governance pilot closeout | N/A | N/A | N/A | UpdateRequired: zentrale Lieferung #321 und beide Piloten Show-CommandTui400 #21/TinyCalc #93 nach gruenen PR- und Merge-Checks abgeschlossen, Hand-offs geschlossen, main jeweils 0/0. Manifestgebundener OpenCode-Paritaetstest bewahrt singulaere/plurale Integrationen und blockiert ungueltige Pfade. Initiale sieben fachliche Quellenreviews bleiben PendingReview; C/D benoetigen getrennte Beauftragung. Statistikmethodik unveraendert; finaler zentraler Tracking-Nachlauf und eine Home-Runtime-Testdatei separat geprueft. / Delivered pilots with exact-head CI evidence; no product run or further fleet authority, reproducible statistics unchanged in method. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
