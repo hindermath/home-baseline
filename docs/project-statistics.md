@@ -213,6 +213,8 @@
 
 | 2026-10-03 | Show-CommandTui400 Registrierungsabschluss / Registration closeout | N/A | N/A | N/A | Lokaler Klon/Registry, konsistente Level-0/1/2-Umgebungszeilen und offene MSL-/Produktarchitektur. / Local clone/registry and aligned Level-0/1/2 rows, undecided product architecture/MSL. [Nachweis / Evidence](maintenance/show-commandtui400-onboarding.md). |
 
+| 2026-10-03 | Governance-Pilotabschluss / Governance pilot closeout | N/A | N/A | N/A | UpdateRequired: zentrale Lieferung #321 und beide Piloten Show-CommandTui400 #21/TinyCalc #93 nach gruenen PR- und Merge-Checks abgeschlossen, Hand-offs geschlossen, main jeweils 0/0. Manifestgebundener OpenCode-Paritaetstest bewahrt singulaere/plurale Integrationen und blockiert ungueltige Pfade. Initiale sieben fachliche Quellenreviews bleiben PendingReview; C/D benoetigen getrennte Beauftragung. Statistikmethodik unveraendert; finaler zentraler Tracking-Nachlauf und eine Home-Runtime-Testdatei separat geprueft. / Delivered pilots with exact-head CI evidence; no product run or further fleet authority, reproducible statistics unchanged in method. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1407,25 +1409,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 707115 lines |
+| Textbasis / Text base | 707234 lines |
 | Textdateien / Text files | 3276 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-05..2026-10-03 |
 | Aktivtage / Active days | 120 |
-| Relevante Commits / Relevant commits | 903 |
-| Zeilen je Aktivtag / Lines per active day | 5892.6 |
+| Relevante Commits / Relevant commits | 908 |
+| Zeilen je Aktivtag / Lines per active day | 5893.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 73.7x |
 | Speedup vs. 100 lines/day | 58.9x |
-| Methodik / Methodology | v2; source `664992fba012` |
+| Methodik / Methodology | v2; source `5785000cd0ea` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 26947
-Dokumentation / Documentation   [##########..........]  52.0% | 367700
+Tests                           [#...................]   3.8% | 26976
+Dokumentation / Documentation   [##########..........]  52.0% | 367790
 Skripte / Scripts               [##..................]   8.1% | 57263
 Konfiguration / Configuration   [#######.............]  35.7% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1704,7 +1706,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5892.6
+Visible repository [############........] 5893.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1730,6 +1732,6 @@ DE: Das Fenster beginnt am 2025-10-05 und endet am 2026-10-03. Es enthaelt 120 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 6814 |
+| 2026-10 | 7005 |
 
 <!-- project-statistics-v2:end -->
