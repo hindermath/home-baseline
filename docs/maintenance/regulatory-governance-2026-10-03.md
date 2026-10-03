@@ -198,6 +198,16 @@ EN: Initial closeout CI detected stale generated script-reference metadata.
 The existing renderer updates it; statistics and all exact-head technical
 checks are refreshed, without bypassing the failed run.
 
+DE: Native Windows-CI fand danach einen OS-abhaengigen Separatorvergleich
+im neuen Namespace-Test. Versionierte Manifestpfade werden jetzt mit
+PurePosixPath ausgewertet; Windows-Pfade und Backslash-Manifestangaben bleiben
+ungueltig. Die beiden bereits gelieferten Piloten benoetigen denselben kleinen
+Test-Nachlauf, ohne Paket-, Quellenhash-, Produkt- oder Evidence-Aenderung.
+EN: Native Windows CI then exposed an OS-dependent separator comparison.
+PurePosixPath now parses versioned manifest paths consistently; backslash and
+drive paths remain invalid. Both delivered pilots require the same bounded
+test follow-up, without package, product or assurance-evidence changes.
+
 EN: The failed Show check exposed a hard-coded OpenCode namespace. The shared
 test now uses only the tracked manifest, accepts one declared namespace and
 rejects invalid/mixed paths. Four focused tests and the maintenance suite passed
