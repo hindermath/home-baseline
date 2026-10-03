@@ -211,6 +211,8 @@
 
 | 2026-10-03 | Regulatorische Integration und gestufte Lieferung / Regulatory integration and staged delivery | N/A | N/A | N/A | Security v0.7.0 und Architecture v0.6.1 nach fachlicher Sichtung und gruenen nativen Checks stabil veroeffentlicht; Tags und ZIP-Hashes gebunden. Baseline 3.3.0/Sammelband 2.3.0, Jahresreview der sechs Governance-Presets plus Assurance am 3. Oktober, Read-only-Automation und getrennte Rollout-Stufen integriert. Zentrale Lieferung und Piloten bleiben bis zum exakten Merge-/Sync-Nachweis offen; C/D warten auf eigene Beauftragung. Autonomous-Runner-Aenderungen aus dem urspruenglichen Arbeitsstand nicht mitgeliefert. UpdateRequired; generierte Ableitungen separat. / Stable reviewed source releases, immutable provenance, annual read-only cadence and explicit delivery stages; central/pilot closeout remains pending, later fleet stages need separate authority. |
 
+| 2026-10-03 | Show-CommandTui400 Registrierungsabschluss / Registration closeout | N/A | N/A | N/A | Lokaler Klon/Registry, konsistente Level-0/1/2-Umgebungszeilen und offene MSL-/Produktarchitektur. / Local clone/registry and aligned Level-0/1/2 rows, undecided product architecture/MSL. [Nachweis / Evidence](maintenance/show-commandtui400-onboarding.md). |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
