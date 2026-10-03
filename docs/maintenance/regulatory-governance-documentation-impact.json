@@ -26,10 +26,10 @@
     },
     {
       "changeId": "CHG002",
-      "scope": "Seven-preset fixed annual review and four independent delivery stages",
+      "scope": "Seven-preset fixed annual review, four delivery stages and current optional Intake version parity",
       "decision": "UpdateRequired",
-      "rationale": "New read-only review cadence and explicit later-fleet authorization boundaries.",
-      "documents": ["docs/maintenance/governance-review-and-rollout.md", "docs/maintenance/governance-review-register.json", "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md"],
+      "rationale": "New read-only review cadence, later-fleet boundaries and correction of remaining stale optional-version prose across all shared guidance/templates.",
+      "documents": ["docs/maintenance/governance-review-and-rollout.md", "docs/maintenance/governance-review-register.json", "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md", ".github/agents/copilot-instructions.md", "scripts/templates/AGENTS.md.tmpl", "scripts/templates/CLAUDE.md.tmpl", "scripts/templates/GEMINI.md.tmpl", "scripts/templates/copilot-instructions.tmpl", "scripts/templates/speckit-workflow-section.md"],
       "owner": "Thorsten Hindermann",
       "audiences": ["Maintainers", "Agents"],
       "readerPaths": ["README -> annual policy -> register -> execution evidence"],

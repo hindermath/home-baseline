@@ -179,8 +179,8 @@ zero-write values. A partial proof is not a full regression pass.
 
 | Preset ID | Name | Version | Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.6.2` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.5.2` | `20` |
+| `security-governance` | Security Governance | `v0.7.0` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.6.1` | `20` |
 | `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.2` | `30` |
 | `a11y-governance` | A11Y Governance | `v0.4.3` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.2` | `50` |
