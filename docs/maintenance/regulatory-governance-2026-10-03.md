@@ -208,6 +208,17 @@ PurePosixPath now parses versioned manifest paths consistently; backslash and
 drive paths remain invalid. Both delivered pilots require the same bounded
 test follow-up, without package, product or assurance-evidence changes.
 
+DE: Copilot in Show #22 fand zusaetzlich Backslashes innerhalb des Dateinamens.
+Die gemeinsame Korrektur fordert kanonische POSIX-Zeichenketten vor der
+Namespace-Auswertung; verschachtelte Backslashes, normalisierte `./`-Angaben
+und Nicht-Textwerte sind negative Fixtures. Die begrenzten Pilot-Nachlaeufe
+sind [Show #22](https://github.com/hindermath/Show-CommandTui400/pull/22) und
+[TinyCalc #94](https://github.com/hindermath/TinyCalc/pull/94); deren finale
+Merge-/Sync-Nachweise werden in den vorhandenen Hand-offs verlinkt.
+EN: The additional Copilot finding is fixed in all three sources. Canonical
+POSIX string keys are mandatory, with nested-backslash/non-string/normalization
+negative fixtures. Final follow-up evidence is linked from the existing hand-offs.
+
 EN: The failed Show check exposed a hard-coded OpenCode namespace. The shared
 test now uses only the tracked manifest, accepts one declared namespace and
 rejects invalid/mixed paths. Four focused tests and the maintenance suite passed
