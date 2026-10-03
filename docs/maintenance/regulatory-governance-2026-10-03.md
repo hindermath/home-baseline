@@ -1,7 +1,7 @@
 # Regulatorischer Governance-Rollout / Regulatory governance rollout
 
 Date: 2026-10-03. Owner: Thorsten Hindermann.
-Documentation Impact: UpdateRequired. State: SourcesReleasedCentralIntegrationInProgress.
+Documentation Impact: UpdateRequired. State: SourcesReleasedCentralGuidanceFollowUp.
 
 ## Genehmigter Umfang / Approved scope
 
@@ -117,6 +117,37 @@ Documentation Impact (three entries), Bash/PowerShell generated-document checks
 and secret scan of the changed diff pass. Full-directory secret-scan hits were
 unchanged educational prose/examples, not introduced credentials. Legacy Profile
 2 and the separate statistics-pilot context are generated and checked separately.
+
+## Zentraler Liefernachweis und Nachlauf / Central delivery and follow-up
+
+DE: PR #318 ist mit 23 erfolgreichen technischen Checks und einem erwarteten
+Skip geliefert. Merge 58a9a10f424964653fe2316dd3a162e34c912f4a. Home Runtime
+wurde nach Vorschau synchronisiert und CheckOnly bestaetigt. Der Statistik-
+Drift nach Squash wurde ausschliesslich generiert in PR #319 korrigiert:
+20 erfolgreiche PR-Checks, Merge 33776b8b94c053c60248ad48627d5e90ba07d46b,
+alle sechs main-Workflows erfolgreich, sauberes verwaltetes main auf 0/0,
+beide Statistiken CURRENT und lokale Homogenitaet 100. Originale fremde
+Aenderungen im dauerhaften Klon sind weiterhin erhalten.
+
+EN: Central source/runtime delivery and its generated statistics follow-up
+passed exact-head technical gates. All six workflows at the final merge are
+successful; managed main is clean 0/0. The original dirty clone is preserved.
+
+- [Central PR #318](https://github.com/hindermath/home-baseline/pull/318)
+- [Generated-only follow-up #319](https://github.com/hindermath/home-baseline/pull/319)
+- [Final Assurance run](https://github.com/hindermath/home-baseline/actions/runs/37138857437)
+- [Final Homogeneity run](https://github.com/hindermath/home-baseline/actions/runs/37138857411)
+
+DE: Beim Pilot-Abgleich verblieb ein Absatz mit alten Optional-Intake-Versionen
+in allen fuenf Guidance- und vier Template-Flaechen. Der gezielte Nachlauf
+korrigiert 0.3.5/0.2.3/0.2.6 auf 0.3.6/0.2.4/0.2.7; Pakete, Tags, Matrix,
+Methodik und Validatoren bleiben unveraendert. Vor weiterer Pilot-Lieferung
+separat pruefen, liefern und betroffene Home Runtime erneut synchronisieren.
+Show-CommandTui400 hat bereits beide neuen Pakete und einen erfolgreichen
+14er-Check; es ist noch nicht committed oder geliefert. TinyCalc ist unveraendert.
+EN: A remaining stale optional-version paragraph requires a bounded shared
+guidance follow-up before further pilot delivery. No package/tag or validator
+change. Show installation is checked but not delivered; TinyCalc is untouched.
 
 Audience: maintainers, learners, project owners and privacy/compliance reviewers.
 Reader path: source PR -> source contract -> this tracking report -> pilot issue.
