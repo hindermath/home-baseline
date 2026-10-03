@@ -78,6 +78,11 @@ scripts/config/*repository-registry.local.json
 !.agents/skills/
 !.agents/skills/**
 
+# Lokal installierte externe Skills und Installationszustand bleiben unversioniert.
+# Locally installed external skills and installation state remain untracked.
+/.agents/skills/microsoft-foundry/
+/.agents/.skill-lock.json
+
 # Claude Spec-Kit Commands (nur commands/, NICHT root — root enthält history, sessions, cache)
 !.claude/
 .claude/*
