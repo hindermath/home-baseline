@@ -215,6 +215,8 @@
 
 | 2026-10-03 | Governance-Pilotabschluss / Governance pilot closeout | N/A | N/A | N/A | UpdateRequired: zentrale Lieferung #321 und beide Piloten Show-CommandTui400 #21/TinyCalc #93 nach gruenen PR- und Merge-Checks abgeschlossen, Hand-offs geschlossen, main jeweils 0/0. Manifestgebundener OpenCode-Paritaetstest bewahrt singulaere/plurale Integrationen und blockiert ungueltige Pfade. Initiale sieben fachliche Quellenreviews bleiben PendingReview; C/D benoetigen getrennte Beauftragung. Statistikmethodik unveraendert; finaler zentraler Tracking-Nachlauf und eine Home-Runtime-Testdatei separat geprueft. / Delivered pilots with exact-head CI evidence; no product run or further fleet authority, reproducible statistics unchanged in method. |
 
+| 2026-10-04 | Zentrale Assurance-v0.1.3-Prüfung / Central Assurance v0.1.3 review | N/A | N/A | N/A | UpdateRequired: unveränderliches Tag-ZIP und sieben Feldberichte live gebunden; Originaltests, acht Agentenflächen, separate CRLF/BOM-Läufe und historische Profile 8-13 sowie aktuelles 14er-Profil erfolgreich geprüft. Technische Empfehlung ReleaseAccepted; fachliche Abnahme, Dokumentationslieferung und stabile Veröffentlichung bleiben Open. Bekannte Claude-Remove-Restdateien und korrigierter Matrix-Harness-Fehlversuch ausdrücklich dokumentiert. Community-Aufnahme #4455/#4513 abgeschlossen; kein neuer Rollout, kein Release- oder Home-Sync. Methodik unverändert; generierte Statistiken nach Inhaltscommit. [Nachweis / Evidence](maintenance/secure-development-assurance-v013-release-review.md). / Immutable central technical proof completed; human decisions remain separate and open. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

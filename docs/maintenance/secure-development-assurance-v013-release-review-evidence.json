@@ -1,0 +1,561 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-04",
+  "preset": "secure-development-assurance-governance",
+  "version": "0.1.3",
+  "recommendation": "ReleaseAccepted",
+  "humanAcceptance": "Open",
+  "documentationDelivery": "Open",
+  "stablePublication": "Open",
+  "tagCommit": "0d03aa9ebe8f74a26e331815bca5609fb48d7a14",
+  "archiveSha256": "9023b442b4d82e25bee5a7fe9b73efb7f591a4f265f54061ae6e4a56b9b5c75f",
+  "sourceCommit": "999a4e3e5c8771b2012e4d07438ca401304abde1",
+  "runtime": {
+    "os": "macOS arm64",
+    "specify": "0.12.8",
+    "powershell": "7.6.6",
+    "jq": "1.7.1-apple"
+  },
+  "freshTests": [
+    {
+      "exitCode": 0,
+      "name": "immutable-validator-suite"
+    },
+    {
+      "surfaces": 8,
+      "exitCode": 0,
+      "name": "immutable-installed-surfaces",
+      "missingEvidenceExitCode": 2
+    },
+    {
+      "exitCode": 0,
+      "name": "separate-crlf",
+      "harnessChange": "final fixture CRLF without BOM only"
+    },
+    {
+      "exitCode": 0,
+      "name": "separate-bom",
+      "harnessChange": "final fixture BOM with LF only"
+    }
+  ],
+  "nativeEvidence": {
+    "runUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/34059720402",
+    "fresh": null,
+    "conclusion": "success",
+    "jobs": [
+      "ubuntu-22.04",
+      "windows-2022",
+      "macos-14"
+    ],
+    "head": "0d03aa9ebe8f74a26e331815bca5609fb48d7a14"
+  },
+  "compositionCommands": [
+    {
+      "profileDirectory": "REVIEW_ROOT",
+      "command": "git",
+      "arguments": [
+        "clone",
+        "--quiet",
+        "--local",
+        "--no-hardlinks",
+        "LEVEL0_SOURCE",
+        "REVIEW_ROOT/historical13-verified"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "git",
+      "arguments": [
+        "switch",
+        "--detach",
+        "e0168c7dbd9510650cc4e4304f8efc46898cb425"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/historical13-verified",
+        "--preset-config",
+        "REVIEW_ROOT/historical13-verified/scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "list"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "info",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "resolve",
+        "secure-development-evidence-contract"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "disable",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "enable",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/historical13-verified",
+        "--preset-config",
+        "REVIEW_ROOT/historical13-verified/scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "remove",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/historical13-verified",
+        "--preset-config",
+        "REVIEW_ROOT/historical13-verified/scripts/config/spec-kit-model-routing-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "add",
+        "--from",
+        "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.3.zip",
+        "--priority",
+        "15"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/historical13-verified",
+        "--preset-config",
+        "REVIEW_ROOT/historical13-verified/scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "pwsh",
+      "arguments": [
+        "-NoProfile",
+        "-File",
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.ps1",
+        "-Repo",
+        "REVIEW_ROOT/historical13-verified",
+        "-PresetConfig",
+        "REVIEW_ROOT/historical13-verified/scripts/config/spec-kit-secure-development-assurance-governance-presets.json",
+        "-CheckOnly"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "resolve",
+        "secure-development-evidence-contract"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/historical13-verified",
+      "command": "specify",
+      "arguments": [
+        "check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT",
+      "command": "git",
+      "arguments": [
+        "clone",
+        "--quiet",
+        "--local",
+        "--no-hardlinks",
+        "LEVEL0_SOURCE",
+        "REVIEW_ROOT/current14-verified"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/current14-verified",
+        "--preset-config",
+        "REVIEW_ROOT/current14-verified/scripts/config/spec-kit-project-statistics-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "list"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "info",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "resolve",
+        "secure-development-evidence-contract"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "disable",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "check"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "enable",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/current14-verified",
+        "--preset-config",
+        "REVIEW_ROOT/current14-verified/scripts/config/spec-kit-project-statistics-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "remove",
+        "secure-development-assurance-governance"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/current14-verified",
+        "--preset-config",
+        "REVIEW_ROOT/current13-without-assurance.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "add",
+        "--from",
+        "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.3.zip",
+        "--priority",
+        "15"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "bash",
+      "arguments": [
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.sh",
+        "--repo",
+        "REVIEW_ROOT/current14-verified",
+        "--preset-config",
+        "REVIEW_ROOT/current14-verified/scripts/config/spec-kit-project-statistics-governance-presets.json",
+        "--check-only"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "pwsh",
+      "arguments": [
+        "-NoProfile",
+        "-File",
+        "LEVEL0_SOURCE/scripts/install-spec-kit-governance-presets.ps1",
+        "-Repo",
+        "REVIEW_ROOT/current14-verified",
+        "-PresetConfig",
+        "REVIEW_ROOT/current14-verified/scripts/config/spec-kit-project-statistics-governance-presets.json",
+        "-CheckOnly"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "preset",
+        "resolve",
+        "secure-development-evidence-contract"
+      ],
+      "exitCode": 0
+    },
+    {
+      "profileDirectory": "REVIEW_ROOT/current14-verified",
+      "command": "specify",
+      "arguments": [
+        "check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "compositionFindings": [
+    {
+      "profile": "historical13",
+      "removalOrphans": [
+        ".claude/skills/speckit-secure-development-status/SKILL.md",
+        ".claude/skills/speckit-secure-development-review/SKILL.md"
+      ]
+    },
+    {
+      "profile": "historical13",
+      "installedArchiveHashes": "all equal"
+    },
+    {
+      "profile": "current14",
+      "removalOrphans": [
+        ".claude/skills/speckit-secure-development-status/SKILL.md",
+        ".claude/skills/speckit-secure-development-review/SKILL.md"
+      ]
+    },
+    {
+      "profile": "current14",
+      "installedArchiveHashes": "all equal"
+    }
+  ],
+  "historicalSubprofiles": [
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "historicalSubprofileExitCode": 0,
+  "correctedHarnessFailure": {
+    "exitCode": 1,
+    "cause": "12 installed presets checked against 8-preset exact matrix",
+    "correctedWithoutValidatorChanges": true
+  },
+  "logEvidence": [
+    {
+      "name": "validator-tests.log",
+      "sha256": "3467294a11dee3bd2a95a2a95dbc7e26640ea137148c1167afa9827629be9ab0",
+      "passLines": [
+        "PASS: exact unique context, evidence ID/mode binding and array-only risks",
+        "PASS: scalar nonblank accepted-risk IDs, single JSON roots, status/all gate reviews and unchanged evidence",
+        "PASS: deterministic raw-byte snapshots, hidden files and mutation detection",
+        "PASS: binary jq routing, legacy LF compatibility and fail-closed CRLF/error probes",
+        "PASS: four mixed-mode gate reviews, four missing-runbook blockers and unchanged human decisions",
+        "PASS: secure-development-assurance validator contract and Bash/PowerShell parity"
+      ]
+    },
+    {
+      "name": "installed-surfaces.log",
+      "sha256": "a3b47cb05da3054f46d53898faac544445df0fd6af53ea55505954ccbfaa8985",
+      "passLines": [
+        "PASS: .agents/skills/speckit-secure-development-status/SKILL.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .claude/skills/speckit-secure-development-status/SKILL.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .github/agents/speckit.secure-development-status.agent.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .opencode/command/speckit.secure-development-status.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .agents/skills/speckit-secure-development-review/SKILL.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .claude/skills/speckit-secure-development-review/SKILL.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .github/agents/speckit.secure-development-review.agent.md (canonical body preserved; Bash and PowerShell fail closed)",
+        "PASS: .opencode/command/speckit.secure-development-review.md (canonical body preserved; Bash and PowerShell fail closed)"
+      ]
+    },
+    {
+      "name": "composition.log",
+      "sha256": "7d67ce4f2a98f47a9965b201fdac226e96a884248f82847a3102f199dae879a4",
+      "passLines": []
+    },
+    {
+      "name": "composition-verified.log",
+      "sha256": "5ad71201b17cdd7002071dd06087f432e5fb76b0fc72343498435056e67c2e26",
+      "passLines": [
+        "PASS: historical13 installed bytes equal release archive",
+        "PASS: current14 installed bytes equal release archive"
+      ]
+    },
+    {
+      "name": "subprofiles.log",
+      "sha256": "70d067221d128c98c10fa29f5c52f2f34bb1175e58417a0f48c0aae33f13096e",
+      "passLines": [
+        "PASS: exact historical 8-preset profile",
+        "PASS: exact historical 10-preset profile",
+        "PASS: exact historical 9-preset profile",
+        "PASS: exact historical 11-preset profile"
+      ]
+    },
+    {
+      "name": "supplement-crlf.log",
+      "sha256": "3467294a11dee3bd2a95a2a95dbc7e26640ea137148c1167afa9827629be9ab0",
+      "passLines": [
+        "PASS: exact unique context, evidence ID/mode binding and array-only risks",
+        "PASS: scalar nonblank accepted-risk IDs, single JSON roots, status/all gate reviews and unchanged evidence",
+        "PASS: deterministic raw-byte snapshots, hidden files and mutation detection",
+        "PASS: binary jq routing, legacy LF compatibility and fail-closed CRLF/error probes",
+        "PASS: four mixed-mode gate reviews, four missing-runbook blockers and unchanged human decisions",
+        "PASS: secure-development-assurance validator contract and Bash/PowerShell parity"
+      ]
+    },
+    {
+      "name": "supplement-bom.log",
+      "sha256": "3467294a11dee3bd2a95a2a95dbc7e26640ea137148c1167afa9827629be9ab0",
+      "passLines": [
+        "PASS: exact unique context, evidence ID/mode binding and array-only risks",
+        "PASS: scalar nonblank accepted-risk IDs, single JSON roots, status/all gate reviews and unchanged evidence",
+        "PASS: deterministic raw-byte snapshots, hidden files and mutation detection",
+        "PASS: binary jq routing, legacy LF compatibility and fail-closed CRLF/error probes",
+        "PASS: four mixed-mode gate reviews, four missing-runbook blockers and unchanged human decisions",
+        "PASS: secure-development-assurance validator contract and Bash/PowerShell parity"
+      ]
+    }
+  ],
+  "suiteHashes": {
+    "bomSupplement": "a3d2b9b0620a9623d99454d2c700ed9121f7f55fb4a0ce1ffcb866e60059b4e1",
+    "validator": "3a19684322128304f2b185fb456e20f09dc7354937def0c16c3cbbd55c20bda6",
+    "crlfSupplement": "c1c1e6c1adbec8550ee74af25b0729f099f3c0ccc0a6b000be7afd56bc45ebbf",
+    "installedSurfaces": "73c3407adf92a1110d43feae274b29569fef4f09d4c493595ea6ae4cc3a4c505"
+  },
+  "residualRisks": [
+    "Known external CLI remove residue: two Claude skills",
+    "No fresh native Linux/Windows 14-preset test",
+    "Synthetic fixtures and educational pilots are not product/certification acceptance"
+  ],
+  "releaseMutated": false,
+  "homeSyncRequired": false
+}
