@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "ruleVersion": 2,
+  "schemaVersion": 3,
+  "ruleVersion": 3,
   "repositories": [
     {
       "name": "hindermath/home-baseline",

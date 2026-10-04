@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
-  "ruleVersion": 2,
-  "collectedAt": "2026-09-12T16:57:29Z",
+  "schemaVersion": 3,
+  "ruleVersion": 3,
+  "collectedAt": "2026-10-04T16:37:47Z",
   "started": 24,
   "executed": 24,
   "completed": 0,
@@ -10,5 +10,14 @@
   "parallel": 24,
   "mixed": 0,
   "unknown": 0,
-  "needsReview": 0
+  "needsReview": 0,
+  "acceleration": {
+    "reference": 80,
+    "repositories": 112,
+    "covered": 35,
+    "textLines": 4883079,
+    "activeDays": 1022,
+    "oldest": "2026-09-26",
+    "newest": "2026-10-04"
+  }
 }
