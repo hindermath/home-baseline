@@ -180,7 +180,7 @@ $module=Get-Module public-speckit-statistics
   param([string]$Endpoint)
   switch -Wildcard ($Endpoint) {
    '*/commits[?]*' { return ,@(@{sha=('b'*40);parents=@(@{});commit=@{committer=@{date='2026-09-12T23:30:00Z'}}},@{sha=('c'*40);parents=@(@{},@{});commit=@{committer=@{date='2026-09-12T12:00:00Z'}}}) }
-   '*/commits/*' { return @{stats=@{total=3};files=@(@{filename='file.txt';changes=1;additions=1;deletions=0},@{filename='STATS.md';changes=2;additions=2;deletions=0})} }
+   '*/commits/*' { return ConvertFrom-HBJson '{"stats":{"total":3},"files":[{"filename":"file.txt","changes":1,"additions":1,"deletions":0},{"filename":"STATS.md","changes":2,"additions":2,"deletions":0}]}' }
    '*/git/blobs/*' { return @{encoding='base64';size=4;content='YQpiCg=='} }
    default { throw 'Unexpected fallback API request.' }
   }
@@ -191,6 +191,33 @@ Test-HBRepositoryAcceleration $fallback 'example/source'
 Assert-Test ($fallback.basis.textLines -eq 2 -and $fallback.basis.activeDays -eq 1 -and $fallback.commits[0].date -eq '2026-09-13' -and $fallback.blobs.Count -eq 1) 'fallback filters merges/ledger and respects timezone'
 $bad=Copy-Fixture $fallback;$bad.commits+=$bad.commits[0]
 Assert-Rejected {Test-HBRepositoryAcceleration $bad 'example/source'} 'duplicate activity evidence rejected'
+& $module {
+ function script:Invoke-HBGitHub {
+  param([string]$Endpoint)
+  if($Endpoint -like '*/commits[?]*'){return ,@(@{sha=('b'*40);parents=@(@{});commit=@{committer=@{date='2026-09-12T12:00:00Z'}}})}
+  if($Endpoint -like '*/commits/*'){return ConvertFrom-HBJson '{"stats":{"total":0},"files":[]}'}
+  throw 'Empty commit must not fetch blobs.'
+ }
+}
+$emptyCommit=Get-HBFallbackAcceleration 'example/source' ('a'*40) @() @() '2026-09-13'
+Test-HBRepositoryAcceleration $emptyCommit 'example/source'
+Assert-Test ($emptyCommit.basis.covered -eq 0 -and $emptyCommit.commits[0].changes -eq 0) 'empty commit is valid but does not invent activity'
+& $module {
+ function script:Invoke-HBGitHub {
+  param([string]$Endpoint)
+  if($Endpoint -like '*/commits[?]*'){return ,@(@{sha=('b'*40);parents=@(@{});commit=@{committer=@{date='2026-09-12T12:00:00Z'}}})}
+  return ConvertFrom-HBJson '{"stats":{"total":1},"files":[{"filename":"file.txt","additions":1,"deletions":0}]}'
+ }
+}
+Assert-Rejected {Get-HBFallbackAcceleration 'example/source' ('a'*40) @() @() '2026-09-13'} 'missing file change count fails closed'
+& $module {
+ function script:Invoke-HBGitHub {
+  param([string]$Endpoint)
+  if($Endpoint -like '*/commits[?]*'){return ,@(@{sha=('b'*40);parents=@(@{});commit=@{committer=@{date='2026-09-12T12:00:00Z'}}})}
+  return ConvertFrom-HBJson '{"stats":{"total":2},"files":[{"filename":"file.txt","changes":1,"additions":1,"deletions":0}]}'
+ }
+}
+Assert-Rejected {Get-HBFallbackAcceleration 'example/source' ('a'*40) @() @() '2026-09-13'} 'incomplete ordered-dictionary commit diff fails closed'
 & $module { function script:Invoke-HBGitHub { param([string]$Endpoint); if($Endpoint -like '*/commits[?]*'){return ,@()}; throw 'Inactive repository must not fetch blobs.' } }
 $inactive=Get-HBFallbackAcceleration 'example/source' ('a'*40) @() @() '2026-09-13'
 Assert-Test ($inactive.basis.covered -eq 0) 'no activity is unavailable rather than 0x'
