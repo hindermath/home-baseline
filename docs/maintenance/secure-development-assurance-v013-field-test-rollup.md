@@ -2,6 +2,11 @@
 
 Stand / State: 2026-09-09.
 
+Aktueller zentraler Nachlauf / Current central follow-up: 2026-10-04;
+[zentrale technische Release-Prüfung](secure-development-assurance-v013-release-review.md).
+Die folgenden Projektberichte bleiben historische Feldtestnachweise.
+The project reports below remain historical field evidence.
+
 ## Ergebnis und Prüfgrenze / Outcome and proof boundary
 
 Die Feldtestgruppe umfasst jetzt **sieben Repositories**: fünf bisherige
@@ -168,25 +173,24 @@ context or resolve unrelated open findings.*
 ## Zentrale Entscheidungsgrenze / Central decision boundary
 
 Die Community-Einreichung [github/spec-kit#4455](https://github.com/github/spec-kit/issues/4455)
-ist beim Abgleich am 2026-09-09 offen, mit `preset-submission`,
-`triage-must-have` und `validation-passed`.
-Die Katalog-PR-Erstellung ist laut
+ist abgeschlossen: [PR #4513](https://github.com/github/spec-kit/pull/4513)
+wurde am 2026-09-10 gemergt; Issue geschlossen, v0.1.3 im Community-Katalog.
+Live-Abgleich: 2026-10-04. Die zuvor dokumentierte Upstream-PR-Grenze aus
 [Workflow-Bericht #4484](https://github.com/github/spec-kit/issues/4484)
-durch eine Upstream-PR-Grenze blockiert. Das ist weder Ablehnung noch Aufnahme.
+ist ein historischer Einreichungsbefund, kein aktueller Blocker.
 
 - Projektbezogene Feldtest-Empfehlungen: **7/7 ReleaseAccepted** im jeweiligen Scope.
-- Zentrale Preset-Empfehlung: **noch nicht erstellt**.
-- Nächste Aktion: Upstream-Ergebnis abwarten; erst dann gesondert die zentrale
-  v0.1.3-Preset-Prüfung durchführen. Sie erhält genau eine Empfehlung:
-  ReleaseAccepted, PatchRequired oder Blocked.
-- Unverändert: Pre-Release, Community-Issue und Maintainer-Kommunikation.
-  Kein automatischer Folgeauftrag oder geplanter Überwachungsjob.
+- Zentrale technische Preset-Empfehlung: **ReleaseAccepted**, siehe
+  [Prüfbericht und Grenzen](secure-development-assurance-v013-release-review.md).
+- Nächste Aktion: gesonderte fachliche Abnahme, Dokumentations-Lieferfreigabe
+  und Freigabe zur stabilen Veröffentlichung durch @hindermath; alle **Open**.
+- Unverändert: v0.1.3 ist Pre-Release. Dieser Nachlauf ändert weder Release,
+  Community-Issue noch Maintainer-Kommunikation und startet keinen Rollout.
 
-*Seven scoped project recommendations do not decide central acceptance.
-Upstream submission remains open with successful validation; its catalog PR
-automation reports a PR-limit blockage. Await the upstream outcome before a
-separate central review with one recommendation. No release mutation,
-community message or automatic follow-up job is created.*
+*Seven scoped project recommendations do not grant human release acceptance.
+Community inclusion is complete. The separate central technical review now
+recommends ReleaseAccepted; human acceptance and publication authority remain
+Open. No release mutation, community message or rollout is performed.*
 
 ## Dokumentationsauswirkung / Documentation impact
 

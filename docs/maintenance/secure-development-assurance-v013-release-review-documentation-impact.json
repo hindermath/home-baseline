@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "assurance-v013-central-release-review",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Central immutable v0.1.3 technical release review and current community status",
+      "decision": "UpdateRequired",
+      "rationale": "Seven scoped field verdicts and completed community admission permit the separately authorized central review; human acceptance remains Open.",
+      "documents": ["docs/maintenance/secure-development-assurance-v013-release-review.md", "docs/maintenance/secure-development-assurance-v013-release-review-evidence.json", "docs/maintenance/secure-development-assurance-v013-field-test-rollup.md"],
+      "owner": "Thorsten Hindermann",
+      "audiences": ["Preset maintainers", "Technical reviewers", "Learners"],
+      "readerPaths": ["Seven-project rollup -> central review -> execution evidence -> human release decision"],
+      "canonicalSource": "Immutable v0.1.3 archive, seven project reports and central execution evidence",
+      "navigationImpact": "Existing rollup links to the new canonical central review; historical project reports remain unchanged.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second; technical identifiers and JSON remain language-neutral.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Fresh macOS Bash/PowerShell tests, separate CRLF/BOM variants, exact profiles 8-14 and successful historical native Linux/Windows/macOS CI at the tag commit.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/secure-development-assurance-v013-release-review-evidence.json",
+      "risk": "Known external CLI removal residue and synthetic/educational proof limits are documented; no human, product, legal or certification approval inferred.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Package or contract drift, material CLI change, new finding, or annual review on 2027-10-03."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "Statistics derivations for the new documentation delivery",
+      "decision": "GeneratedUpdate",
+      "generatedSource": {"path": "docs/project-statistics.config.json", "renderer": "scripts/render-project-statistics.sh and installed project-statistics update with existing pilot config"},
+      "rationale": "Record the bounded documentation phase and regenerate existing legacy and preset-pilot statistics from committed content without changing methodology.",
+      "documents": ["docs/project-statistics.md", "docs/project-statistics-pilot/report.md", "docs/project-statistics-pilot/snapshot.json"],
+      "owner": "Thorsten Hindermann",
+      "audiences": ["Maintainers", "Learners"],
+      "readerPaths": ["Statistics ledger -> central review; pilot configuration -> generated report and snapshot"],
+      "canonicalSource": "Git history, docs/project-statistics.config.json and docs/project-statistics-pilot/config.json",
+      "navigationImpact": "Existing reader paths and configurations retained.",
+      "documentClass": "Generated",
+      "languageStrategy": "Existing bilingual ASCII profile and preset-generated report conventions retained.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Preview before update; clean-source generation and Bash/PowerShell reproducibility checks.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/secure-development-assurance-v013-release-review.md",
+      "risk": "Visible repository history is not measured AI productivity; reference assumptions and historical entries remain unchanged.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Next source revision or statistics configuration change."
+    }
+  ]
+}
