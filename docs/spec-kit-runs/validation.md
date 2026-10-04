@@ -27,6 +27,29 @@ German and English are generated together.*
 
 ## Historischer Ausgangspunkt / Historical starting point
 
+### 2026-10-04: Fallback-Summierung / Fallback summation
+
+Der echte JSON-Parser liefert geordnete Dictionaries. Die Commit-Summierung
+liest deshalb die numerischen `changes`-Schlüssel direkt statt über
+`Measure-Object`. Regressionstests verwenden den Parser-Ausgabetyp und prüfen
+leere Commits, fehlende Änderungszahlen und unvollständige Diffs. Fehlende
+Daten bleiben Fehler; ein leerer Commit erzeugt keinen Aktivtag.
+Documentation Impact: `UpdateRequired`, Owner hindermath; Leserpfad Methodik
+→ Validierungsgrenze; DE/EN-Nachweis hier, Runtime-Modul aus Level 0. Home-Sync
+nach geprüfter Lieferung erforderlich, keine Level-2-Verteilung. Erneut prüfen
+bei Parser-, GitHub-Diff- oder Zählregeländerungen. Historische Snapshots bleiben
+unverändert. Plattformnachweis: lokale macOS-Suite und native PR-Checks.
+
+The real JSON parser returns ordered dictionaries. Commit totals therefore
+read numeric `changes` keys directly rather than through `Measure-Object`.
+Regression tests use parser-produced objects and cover empty commits, missing
+counts and incomplete diffs. Missing data still fails closed; empty commits
+create no active day. Documentation impact is UpdateRequired, owned by
+hindermath, with this bilingual validation boundary as evidence. Sync the
+Level-0 runtime only after verified delivery; do not distribute to level 2.
+Reevaluate on parser, GitHub diff or counting-rule changes. Historical
+snapshots remain unchanged. Local macOS and native PR checks supply evidence.
+
 Die Ausgangserhebung vom 10. September 2026 liest öffentliche GitHub-Quellen
 direkt und bestätigt 93/93/92. Die neun Repository-Identitäten, gepinnten
 Quellen und acht historischen ergänzenden PRs stehen im Snapshot. Feature 030

@@ -1401,6 +1401,21 @@ and publication evidence. Schema v2 and private totals remain unchanged.
 This source-only documentation delivery starts no Spec Kit run and grants no
 product approval; methodology and 80/100 references remain unchanged.
 
+### 2026-10-04 - Statistik-Fallback für geordnete Dictionaries / Ordered-dictionary fallback
+
+Die frische CI-Erhebung deckte eine PowerShell-Adaptergrenze auf. Die
+Commit-Summierung liest jetzt Parser-Dictionaries direkt und behält die
+Vollständigkeitsprüfung bei. Regressionstests prüfen den echten Parser-Typ,
+leere Commits und fehlende bzw. widersprüchliche Änderungszahlen.
+Siehe [Validierungsgrenze](spec-kit-runs/validation.md). Keine geänderten
+Zählregeln, keine historischen Belegkorrekturen, kein neuer Spec-Kit-Lauf.
+
+Fresh CI collection exposed a PowerShell adapter boundary. Commit summation
+now reads parser dictionaries directly while retaining completeness checks.
+Tests cover the real parser type, empty commits and missing or inconsistent
+change counts. Counting rules and historical evidence remain unchanged; this
+repair does not constitute another Spec Kit run.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

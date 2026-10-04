@@ -689,7 +689,17 @@ function Get-HBFallbackAcceleration {
                 $detail = Invoke-HBGitHub "repos/$Repository/commits/$($item.sha)?per_page=100&page=$filePage"
                 $files += @($detail.files); $total = $detail.stats.total; $filePage++
             } while ($detail.files.Count -eq 100 -and $filePage -le 31)
-            if (($files | Measure-Object -Property changes -Sum).Sum -ne $total) { throw 'Incomplete commit diff; acceleration cannot be calculated.' }
+            # The JSON parser returns OrderedDictionary objects. Measure-Object's
+            # property adapter does not read their keys reliably; index them directly.
+            $fileChanges = 0L
+            foreach ($file in $files) {
+                if (-not ($file -is [System.Collections.IDictionary]) -or
+                    -not $file.Contains('changes') -or
+                    ($file['changes'] -isnot [long] -and $file['changes'] -isnot [int]) -or
+                    $file['changes'] -lt 0) { throw 'Invalid commit diff change count.' }
+                $fileChanges += $file['changes']
+            }
+            if ($fileChanges -ne $total) { throw 'Incomplete commit diff; acceleration cannot be calculated.' }
             $relevant = 0L
             foreach ($file in $files) {
                 if (-not (Test-HBAccelerationExcludedPath $file.filename $excluded)) { $relevant += $file.additions + $file.deletions }
