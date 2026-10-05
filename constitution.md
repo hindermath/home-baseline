@@ -1053,7 +1053,7 @@ dependencies; DirectoryStrict additionally requires an empty active inventory.
 Nested Git checkouts own their index; ordinary duplicates remain blocked.
 Historical evidence is preserved; installation grants no execution authority.
 
-`intake-authoring-governance` v0.3.6 at priority `64`,
+`intake-authoring-governance` v0.3.7 at priority `64`,
 `intake-review-governance` v0.2.4 at priority `65`, and
 `intake-sequencing-governance` v0.2.7 at priority `66` are optional presets,
 not part of the standard eight. Model Routing discovers harness capabilities
@@ -1143,7 +1143,7 @@ listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
 The current standalone releases are `autonomous-run-governance` v0.4.4,
 `parallel-autonomous-run-governance` v0.2.6, optional
-`intake-authoring-governance` v0.3.6, optional
+`intake-authoring-governance` v0.3.7, optional
 `intake-review-governance` v0.2.4, and optional
 `intake-sequencing-governance` v0.2.7. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central

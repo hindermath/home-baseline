@@ -217,6 +217,8 @@
 
 | 2026-10-04 | Zentrale Assurance-v0.1.3-Prüfung / Central Assurance v0.1.3 review | N/A | N/A | N/A | UpdateRequired: unveränderliches Tag-ZIP und sieben Feldberichte live gebunden; Originaltests, acht Agentenflächen, separate CRLF/BOM-Läufe und historische Profile 8-13 sowie aktuelles 14er-Profil erfolgreich geprüft. Technische Empfehlung ReleaseAccepted; fachliche Abnahme, Dokumentationslieferung und stabile Veröffentlichung bleiben Open. Bekannte Claude-Remove-Restdateien und korrigierter Matrix-Harness-Fehlversuch ausdrücklich dokumentiert. Community-Aufnahme #4455/#4513 abgeschlossen; kein neuer Rollout, kein Release- oder Home-Sync. Methodik unverändert; generierte Statistiken nach Inhaltscommit. [Nachweis / Evidence](maintenance/secure-development-assurance-v013-release-review.md). / Immutable central technical proof completed; human decisions remain separate and open. |
 
+| 2026-10-05 | Intake Authoring v0.3.7: zentrale Integration / Central integration | N/A | N/A | N/A | UpdateRequired: Authoring-Patch mit unveraenderlicher Tag-/Commit-/ZIP-Bindung in fuenf Profilen und installierter 14er-Matrix; README-Sprachpartner, Constitution, fuenf Guidance-Flaechen und Vorlagen synchron aktualisiert. Begrenzter Auftrag: Level 0/Home Runtime und zwei Piloten, technische GSDB-Hashpflege ohne neue fachliche Freigabe. Andere Presets und historische Evidence erhalten; keine Produktimplementierung oder weiterer Flotten-Rollout. [Nachweis / Evidence](maintenance/intake-authoring-v037-rollout.md). / Immutable source integration and bounded pilot authority; unchanged methodology, no product or wider fleet acceptance. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

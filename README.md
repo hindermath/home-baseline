@@ -9,7 +9,8 @@ Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
 Aktueller vorbereiteter Governance-Zielstand: Security v0.7.0, Architecture v0.6.1 sowie
-Intake Authoring v0.3.6, Review v0.2.4 und Sequencing v0.2.7.
+Intake Authoring v0.3.7, Review v0.2.4 und Sequencing v0.2.7.
+Aktueller Authoring-Patch: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
 [Paketbindung, Piloten und verbleibende Schritte](docs/maintenance/coordinated-governance-oct03.md).
 Die Installation startet keine Produktimplementierung.
 
