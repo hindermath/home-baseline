@@ -68,11 +68,11 @@
     },
     {
       "id": "intake-authoring-governance",
-      "tag": "v0.3.6",
-      "commit": "5530868f0de63b8fae19781f69086befefe4f965",
+      "tag": "v0.3.7",
+      "commit": "dbf135e89ba583fb27294f84e487cf1a5826604f",
       "repository": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance",
-      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.6.zip",
-      "archiveSha256": "6f08f7df93bf0096672de6b6a5e44f08e960463409634826e5b430ac1090db7e"
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.7.zip",
+      "archiveSha256": "fc20a010c2124977249f926677d1bb2b03b81e7cd2a549bc4c7489de837e1427"
     },
     {
       "id": "intake-review-governance",
