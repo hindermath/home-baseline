@@ -104,3 +104,5 @@ must not be inferred from the stream alone.
 
 **Next action:** Run the matching check or preview mode first and read its
 text-oriented next action.
+
+[macOS CI: Versionsbindung und Pruefgrenzen / version pinning and proof limits](macos-runner-migration.md).

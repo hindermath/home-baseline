@@ -20,6 +20,13 @@ Das Skript bringt einen bestehenden Workspace auf die aktuelle Homogenitaets-Bas
 
 *The script brings an existing workspace to the current homogeneity baseline: it updates `.gitignore` for detected sub-repositories, creates standard files, and calls `init-stats` for the shared statistics. Do not run several migrations in parallel, because `init-stats` updates the shared level-0/1/2 statistics.*
 
+Die erzeugte CI-Matrix verwendet `ubuntu-22.04`, `macos-15` und `windows-2022`.
+Vorhandene Required-Check-Namen auf der Hosting-Plattform muessen bei einem
+Runnerwechsel nach erfolgreichem neuem Check angepasst werden.
+
+*Generated CI uses Ubuntu 22.04, macOS 15 and Windows 2022. Update matching
+required-check names on the hosting platform after the new check succeeds.*
+
 ## OPTIONS
 
 | Bash | PowerShell | Bedeutung / Meaning |
