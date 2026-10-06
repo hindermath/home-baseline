@@ -78,7 +78,7 @@
       "changeId": "CHG003",
       "scope": "Generated public Spec Kit statistics publication after runner migration",
       "decision": "GeneratedUpdate",
-      "rationale": "Publish the successful main-branch collection without changing reviewed registry decisions or counts.",
+      "rationale": "Publish the successful main-branch collection without changing reviewed registry decisions or counts. README.md is manifest-bound homeRuntime; the remaining public evidence stays source-only.",
       "documents": [
         "README.md",
         "README.en.md",
@@ -105,8 +105,8 @@
         "docs/spec-kit-runs/table.md <-> docs/spec-kit-runs/table.en.md"
       ],
       "platformAndExampleProof": "Successful main workflow 37443383992 (macOS 15, Linux, Windows and collect); 75 local assertions and render check-only; PR 329 exact-head checks before merge.",
-      "distributionClass": "sourceOnly",
-      "homeSyncRequired": false,
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
       "evidence": "https://github.com/hindermath/home-baseline/actions/runs/37443383992",
       "risk": "Unreviewed candidates remain excluded; timestamps and pinned source commits bound the published snapshot.",
       "criticality": "Normal",
