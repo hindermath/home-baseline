@@ -13,7 +13,10 @@
         "CLAUDE.md",
         "GEMINI.md",
         ".github/copilot-instructions.md",
-        ".github/agents/copilot-instructions.md"
+        ".github/agents/copilot-instructions.md",
+        "docs/man/migrate-workspace.1.md",
+        "docs/maintenance/README.md",
+        "docs/maintenance/README.en.md"
       ],
       "owner": "Repository Maintainer",
       "audiences": [
@@ -27,7 +30,9 @@
       "navigationImpact": "Adds a linked bilingual runner guide to existing agent surfaces.",
       "documentClass": "ActiveSemantic",
       "languageStrategy": "German first, English second",
-      "languagePartners": [],
+      "languagePartners": [
+        "docs/maintenance/README.md <-> docs/maintenance/README.en.md"
+      ],
       "platformAndExampleProof": "Local syntax and isolated migration-template checks; exact-head hosted CI results are recorded in PR checks before merge.",
       "distributionClass": "homeRuntime",
       "homeSyncRequired": true,
@@ -67,6 +72,48 @@
       "generatedSource": {
         "path": "docs/project-statistics.config.json",
         "renderer": "scripts/render-project-statistics.sh and .ps1"
+      }
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "Generated public Spec Kit statistics publication after runner migration",
+      "decision": "GeneratedUpdate",
+      "rationale": "Publish the successful main-branch collection without changing reviewed registry decisions or counts.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/spec-kit-runs/snapshot.json",
+        "docs/spec-kit-runs/publication.json",
+        "docs/spec-kit-runs/table.md",
+        "docs/spec-kit-runs/table.en.md",
+        "docs/spec-kit-runs/review-queue.md"
+      ],
+      "owner": "Repository Maintainer",
+      "audiences": [
+        "Maintainers",
+        "AI agents"
+      ],
+      "readerPaths": [
+        "Repository README -> public statistics table -> method and review queue"
+      ],
+      "canonicalSource": "docs/spec-kit-runs/registry.json and snapshot.json",
+      "navigationImpact": "Refreshes the existing generated statistics block; no navigation change.",
+      "documentClass": "Generated",
+      "languageStrategy": "German first, English second",
+      "languagePartners": [
+        "README.md <-> README.en.md",
+        "docs/spec-kit-runs/table.md <-> docs/spec-kit-runs/table.en.md"
+      ],
+      "platformAndExampleProof": "Successful main workflow 37443383992 (macOS 15, Linux, Windows and collect); 75 local assertions and render check-only; PR 329 exact-head checks before merge.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "https://github.com/hindermath/home-baseline/actions/runs/37443383992",
+      "risk": "Unreviewed candidates remain excluded; timestamps and pinned source commits bound the published snapshot.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "New reviewed registry evidence or next public collection",
+      "generatedSource": {
+        "path": "docs/spec-kit-runs/snapshot.json",
+        "renderer": "scripts/update-public-speckit-statistics.sh and .ps1"
       }
     }
   ]

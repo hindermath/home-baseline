@@ -219,6 +219,7 @@
 
 | 2026-10-05 | Intake Authoring v0.3.7: zentrale Integration / Central integration | N/A | N/A | N/A | UpdateRequired: Authoring-Patch mit unveraenderlicher Tag-/Commit-/ZIP-Bindung in fuenf Profilen und installierter 14er-Matrix; README-Sprachpartner, Constitution, fuenf Guidance-Flaechen und Vorlagen synchron aktualisiert. Begrenzter Auftrag: Level 0/Home Runtime und zwei Piloten, technische GSDB-Hashpflege ohne neue fachliche Freigabe. Andere Presets und historische Evidence erhalten; keine Produktimplementierung oder weiterer Flotten-Rollout. [Nachweis / Evidence](maintenance/intake-authoring-v037-rollout.md). / Immutable source integration and bounded pilot authority; unchanged methodology, no product or wider fleet acceptance. |
 | 2026-10-06 | macOS-15 CI runner migration | — | — | — | CI-Matrizen und gemeinsame Guidance auf macOS 15 umgestellt; Linux-/Windows-Auswahl erhalten, Required-Check-Migration und exakte PR-CI als Liefergates. / Migrated CI labels and guidance; preserved other platforms and required exact-head CI proof. |
+| 2026-10-06 | Public statistics after macOS-15 delivery | — | — | — | Öffentliche Belege auf main gesammelt und deterministisch veröffentlicht; geprüfte Registerentscheidungen und Laufzahlen erhalten. / Collected and published public evidence on main; preserved reviewed registry decisions and run counts. |
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
@@ -1429,25 +1430,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 709164 lines |
+| Textbasis / Text base | 709211 lines |
 | Textdateien / Text files | 3283 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-12..2026-10-06 |
 | Aktivtage / Active days | 123 |
-| Relevante Commits / Relevant commits | 916 |
-| Zeilen je Aktivtag / Lines per active day | 5765.6 |
+| Relevante Commits / Relevant commits | 918 |
+| Zeilen je Aktivtag / Lines per active day | 5765.9 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 72.1x |
 | Speedup vs. 100 lines/day | 57.7x |
-| Methodik / Methodology | v2; source `7cb84a68080a` |
+| Methodik / Methodology | v2; source `bb9b1f65840f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.8% | 27003
-Dokumentation / Documentation   [##########..........]  52.1% | 369678
+Dokumentation / Documentation   [##########..........]  52.1% | 369725
 Skripte / Scripts               [##..................]   8.1% | 57273
 Konfiguration / Configuration   [#######.............]  35.6% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1475,7 +1476,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 4
 Wochen / Weeks 27..52 | 2026-04-12..2026-10-10
 So/Su  3 0 4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4
 Mo/Mo  3 4 0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2
-Di/Tu  3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 2
+Di/Tu  3 1 2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3
 Mi/We  3 2 3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 -
 Do/Th  3 2 4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 -
 Fr/Fr  1 4 0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 -
@@ -1726,7 +1727,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5765.6
+Visible repository [############........] 5765.9
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1752,6 +1753,6 @@ DE: Das Fenster beginnt am 2025-10-12 und endet am 2026-10-06. Es enthaelt 123 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 9503 |
+| 2026-10 | 9792 |
 
 <!-- project-statistics-v2:end -->
