@@ -105,3 +105,5 @@ ist; der Abschluss darf dann nicht aus dem Stream allein abgeleitet werden.
 
 **Nächste Aktion:** Zuerst den passenden Prüf- oder Vorschaumodus ausführen und
 die textorientierte nächste Aktion lesen.
+
+[macOS CI: Versionsbindung und Pruefgrenzen / version pinning and proof limits](macos-runner-migration.md).

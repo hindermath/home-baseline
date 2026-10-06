@@ -423,7 +423,7 @@ Include: affected scripts/docs, manual verification commands run (`--dry-run` ou
 - **Visibility**: public template repository (GitHub "Use this template" enabled)
 - **License**: MIT
 - **Branch protection**: `main` requires PR review; `enforce_admins: false` (owner can push directly)
-- **CI**: green on `ubuntu-22.04`, `macos-14`, `windows-2022` via `.github/workflows/homogeneity-check.yml`
+- **CI runners**: `ubuntu-22.04`, `macos-15`, `windows-2022` via `.github/workflows/homogeneity-check.yml`
 - **Compliance score**: 100 % (25/25 checks) as of last verified installation
 
 ## Bekannte Fallstricke & technische Entscheidungen / Known Pitfalls & Technical Decisions
@@ -900,3 +900,16 @@ Projektzeile im Umgebungsregister; die lokale operative Registry verwendet
 language, framework, minimum version and MSL status remain undecided. The
 workspace name does not select C#/.NET. Use the project environment row and
 unknown language/MSL metadata with its explicit fourteen-preset profile.*
+
+## macOS-CI-Runner / macOS CI runners
+
+Bisherige macOS-14-Jobs verwenden explizit `macos-15`. Die bestehende
+Repository-Auswahl fuer Linux-only-Wartungsjobs bleibt erhalten. Ein gruener
+CI-Lauf beweist nur die ausgefuehrten Checks, keine Produkt-Plattformabnahme.
+Bei Runnerwechseln auch verpflichtende Checknamen und Migrationsvorlagen
+pruefen. Betrieb und Pruefgrenzen: `docs/maintenance/macos-runner-migration.md`.
+
+Existing macOS 14 jobs explicitly use `macos-15`. Keep the existing repository
+selection for Linux-only maintenance jobs. Successful CI proves the executed
+checks, not product platform acceptance. Review required check names and
+migration templates whenever runner labels change. See the linked guide.
