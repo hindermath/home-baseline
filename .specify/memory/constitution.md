@@ -1031,8 +1031,8 @@ workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.7.0` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
-| `architecture-governance` | `v0.6.1` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
+| `security-governance` | `v0.7.1` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
+| `architecture-governance` | `v0.6.2` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
 | `isaqb-architecture-governance` | `v0.2.2` | `30` | general iSAQB/arc42 architecture governance |
 | `a11y-governance` | `v0.4.3` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
 | `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
@@ -1041,7 +1041,7 @@ workspace family consists of:
 | `parallel-autonomous-run-governance` | `v0.2.6` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
 `model-routing-governance` v0.1.4 at priority `61`,
-Architecture v0.6.1 separates C5 Type 1 point-in-time evidence from Type 2
+Architecture v0.6.2 separates C5 Type 1 point-in-time evidence from Type 2
 period effectiveness and Unknown. Its C3A v1.0 index retains all 30 groups,
 exact selected C/AC IDs and SI interpretation; missing evidence is Open.
 It records external assurance, not an audit or certification.
@@ -1055,7 +1055,7 @@ Historical evidence is preserved; installation grants no execution authority.
 
 `intake-authoring-governance` v0.3.7 at priority `64`,
 `intake-review-governance` v0.2.4 at priority `65`, and
-`intake-sequencing-governance` v0.2.7 at priority `66` are optional presets,
+`intake-sequencing-governance` v0.2.8 at priority `66` are optional presets,
 not part of the standard eight. Model Routing discovers harness capabilities
 locally and binds stable roles to an explicitly selected model without
 committing machine-specific model names. Unknown or ambiguous mappings fail
@@ -1145,7 +1145,7 @@ The current standalone releases are `autonomous-run-governance` v0.4.4,
 `parallel-autonomous-run-governance` v0.2.6, optional
 `intake-authoring-governance` v0.3.7, optional
 `intake-review-governance` v0.2.4, and optional
-`intake-sequencing-governance` v0.2.7. Registered Level-0, Level-1, and Level-2
+`intake-sequencing-governance` v0.2.8. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote

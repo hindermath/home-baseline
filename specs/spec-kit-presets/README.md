@@ -19,9 +19,9 @@ v0.1.3; it grants no automatic expansion to additional repositories.
 
 | Preset | Tag | Produktquelle / Product source |
 |---|---|---|
-| security-governance | v0.7.0 | [GitHub](https://github.com/hindermath/spec-kit-preset-security-governance/tree/v0.7.0) |
+| security-governance | v0.7.1 | [GitHub](https://github.com/hindermath/spec-kit-preset-security-governance/tree/v0.7.1) |
 | secure-development-assurance-governance | v0.1.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/tree/v0.1.3) |
-| architecture-governance | v0.6.1 | [GitHub](https://github.com/hindermath/spec-kit-preset-architecture-governance/tree/v0.6.1) |
+| architecture-governance | v0.6.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-architecture-governance/tree/v0.6.2) |
 | isaqb-architecture-governance | v0.2.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/tree/v0.2.2) |
 | a11y-governance | v0.4.3 | [GitHub](https://github.com/hindermath/spec-kit-preset-a11y-governance/tree/v0.4.3) |
 | cross-platform-governance | v0.2.2 | [GitHub](https://github.com/hindermath/spec-kit-preset-cross-platform-governance/tree/v0.2.2) |
@@ -29,7 +29,7 @@ v0.1.3; it grants no automatic expansion to additional repositories.
 | model-routing-governance | v0.1.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-model-routing-governance/tree/v0.1.4) |
 | intake-authoring-governance | v0.3.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/tree/v0.3.6) |
 | intake-review-governance | v0.2.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-review-governance/tree/v0.2.4) |
-| intake-sequencing-governance | v0.2.7 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/tree/v0.2.7) |
+| intake-sequencing-governance | v0.2.8 | [GitHub](https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/tree/v0.2.8) |
 | autonomous-run-governance | v0.4.4 | [GitHub](https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/tree/v0.4.4) |
 | parallel-autonomous-run-governance | v0.2.6 | [GitHub](https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/tree/v0.2.6) |
 | project-statistics-governance | v0.1.0 (stable) | [GitHub](https://github.com/hindermath/spec-kit-preset-project-statistics-governance/tree/v0.1.0) |

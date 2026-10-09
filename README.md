@@ -8,9 +8,11 @@ Sie verwaltet gemeinsame Skripte, Governance, Spec-Kit-Presets,
 Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
-Aktueller vorbereiteter Governance-Zielstand: Security v0.7.0, Architecture v0.6.1 sowie
-Intake Authoring v0.3.7, Review v0.2.4 und Sequencing v0.2.7.
+Aktueller vorbereiteter Governance-Zielstand: Security v0.7.1, Architecture v0.6.2 sowie
+Intake Authoring v0.3.7, Review v0.2.4 und Sequencing v0.2.8.
 Aktueller Authoring-Patch: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
+
+Aktueller begrenzter Rollout: [Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Paketbindung, Piloten und verbleibende Schritte](docs/maintenance/coordinated-governance-oct03.md).
 Die Installation startet keine Produktimplementierung.
 
