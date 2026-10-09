@@ -1422,6 +1422,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-09 | Show-CommandTui400 LH-01: Registerausrichtung / Registry alignment | Nur zentrale Projektzeile und fünf Projekt-Guidance-Abschnitte; managed C#14/MSL, Host-.NET10, Terminal.Gui2.5.0/dotnet, PS7.6.4 und projektspezifische80/125. Andere Projekte und zentrale Statistikreferenz80/100 unverändert; begrenzter Home-Runtime-Sync nach Lieferung. / Bounded row/guidance alignment, unchanged other projects and central references; no product or fleet rollout. [Nachweis / Evidence](maintenance/show-commandtui400-lh01-alignment.md). |
 
+| 2026-10-10 | Drei Preset-Patches: zentrale Integration / Central integration | Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8 mit unveraenderlichen Quellenbindungen, synchronen Profilen/Guidance und installierter 14er-Matrix. Auftrag auf Level 0/Home Runtime und drei benannte Repos begrenzt; technische TinyCalc-GSDB-Nachpruefung ohne neue fachliche Freigabe. Statistikmethodik und uebrige elf Presets bleiben erhalten. [Nachweis / Evidence](maintenance/preset-patches-bounded-2026-10-10.md). / Bounded integration; delivery and downstream completion require separate exact-head evidence. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

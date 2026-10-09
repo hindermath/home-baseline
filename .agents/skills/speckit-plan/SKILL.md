@@ -227,6 +227,34 @@ Audit-ready evidence requirement:
 - If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
 - If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
 
+
+Audit-ready evidence requirement:
+
+- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
+- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
+- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
+
+
+Audit-ready evidence requirement:
+
+- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
+- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
+- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
+
+
+Audit-ready evidence requirement:
+
+- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
+- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
+- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
+
+
+Audit-ready evidence requirement:
+
+- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
+- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
+- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
+
 ## C3A-/C5-Evidence-Vertrag / C3A/C5 evidence contract
 
 DE: Bei anwendbarem C3A alle 30 Gruppen aus `c3a-criteria-catalog` v1.0
@@ -313,31 +341,3 @@ Use regulatory-applicability-template as the index and link
 gdpr-applicability-template, ai-act-applicability-template,
 cra-applicability-template, nis2-applicability-template and
 dora-applicability-template where relevant. An unfilled record is not evidence.
-
-
-Audit-ready evidence requirement:
-
-- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
-- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
-- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
-
-
-Audit-ready evidence requirement:
-
-- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
-- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
-- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
-
-
-Audit-ready evidence requirement:
-
-- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
-- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
-- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
-
-
-Audit-ready evidence requirement:
-
-- Ensure this plan wrapper requires concrete Markdown evidence/checklist updates for every applicable checkpoint.
-- If a checkpoint does not apply in the current Spec-Kit run, require `N/A` with a short rationale instead of omitting it.
-- If a checkpoint is undecided, require `Open` with owner, follow-up, and re-evaluation trigger.
