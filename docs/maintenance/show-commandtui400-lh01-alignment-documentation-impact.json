@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "lh01-readiness-delivery",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "LH-01 readiness and bounded central alignment / LH-01-Startvorbereitung und begrenzte Ausrichtung",
+      "decision": "UpdateRequired",
+      "rationale": "Owner commissions delivery of completed prerequisite package / Owner beauftragt Lieferung der abgeschlossenen Vorbereitung",
+      "documents": [
+        "constitution.md",
+        ".specify/memory/constitution.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "docs/maintenance/show-commandtui400-lh01-alignment.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers / Maintainer",
+        "Agents / Agenten"
+      ],
+      "readerPaths": [
+        "Project spec/plan -> readiness -> distinct reviews -> delivery / Spec/Plan -> Startnachweis -> andere Reviews -> Lieferung"
+      ],
+      "canonicalSource": "constitution.md",
+      "navigationImpact": "Adds bounded delivery evidence to existing readiness path / Ergänzt Liefernachweis",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second, approximately B2 / DE zuerst, EN danach",
+      "languagePartners": [],
+      "platformAndExampleProof": "Document/hash/policy checks and final exact-head PR CI; no product acceptance / Dokument-/Hash-/Policyprüfungen, keine Produktabnahme",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/show-commandtui400-lh01-alignment.md",
+      "risk": "Ready and delivery are not product execution or acceptance / Ready und Lieferung sind keine Produktfreigabe",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Scope, source, language, runtime or delivery authority changes / Änderung von Scope/Quelle/Technik/Autorität"
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "Existing Profile2 ledger and generated statistics / Bestehendes Statistikprotokoll",
+      "decision": "GeneratedUpdate",
+      "rationale": "Renderer derives committed Git history / Renderer aus committen Quellen",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers / Maintainer",
+        "Agents / Agenten"
+      ],
+      "readerPaths": [
+        "Project spec/plan -> readiness -> distinct reviews -> delivery / Spec/Plan -> Startnachweis -> andere Reviews -> Lieferung"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Adds bounded delivery evidence to existing readiness path / Ergänzt Liefernachweis",
+      "documentClass": "Generated",
+      "languageStrategy": "German first, English second, approximately B2 / DE zuerst, EN danach",
+      "languagePartners": [],
+      "platformAndExampleProof": "Document/hash/policy checks and final exact-head PR CI; no product acceptance / Dokument-/Hash-/Policyprüfungen, keine Produktabnahme",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/show-commandtui400-lh01-alignment.md",
+      "risk": "Ready and delivery are not product execution or acceptance / Ready und Lieferung sind keine Produktfreigabe",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Scope, source, language, runtime or delivery authority changes / Änderung von Scope/Quelle/Technik/Autorität",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "scripts/render-project-statistics.sh and .ps1"
+      }
+    }
+  ]
+}

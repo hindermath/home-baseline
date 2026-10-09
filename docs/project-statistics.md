@@ -1420,6 +1420,8 @@ Tests cover the real parser type, empty commits and missing or inconsistent
 change counts. Counting rules and historical evidence remain unchanged; this
 repair does not constitute another Spec Kit run.
 
+| 2026-10-09 | Show-CommandTui400 LH-01: Registerausrichtung / Registry alignment | Nur zentrale Projektzeile und fünf Projekt-Guidance-Abschnitte; managed C#14/MSL, Host-.NET10, Terminal.Gui2.5.0/dotnet, PS7.6.4 und projektspezifische80/125. Andere Projekte und zentrale Statistikreferenz80/100 unverändert; begrenzter Home-Runtime-Sync nach Lieferung. / Bounded row/guidance alignment, unchanged other projects and central references; no product or fleet rollout. [Nachweis / Evidence](maintenance/show-commandtui400-lh01-alignment.md). |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
