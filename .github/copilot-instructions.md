@@ -888,18 +888,20 @@ public Level-2 consumers require a separate request; the remaining affected
 fleet requires another request. No implicit tool, product or community authority.
 See docs/maintenance/governance-review-and-rollout.md in the Level-0 source.
 
-## RiderProjects: offene Produktarchitektur / Undecided product architecture
+## RiderProjects: LH-01-Technikauswahl / LH-01 technical selection
 
-`Show-CommandTui400` ist ein Level-2-Projekt in RiderProjects mit PowerShell-7-
-Zielumgebung. Primärsprache, Framework, Mindestversion und MSL-Status sind offen.
-Der Workspace-Name begründet keine C#/.NET-Vorgabe. Verbindlich ist die
-Projektzeile im Umgebungsregister; die lokale operative Registry verwendet
-`unknown` für Primärsprache und MSL-Status und das explizite 14-Preset-Profil.
+`Show-CommandTui400` verwendet nach LH-01-Machbarkeit managed C#14 (eigener Code
+MSL ohne unsafe), Host-.NET10/net10.0, Terminal.Gui2.5.0 mit explizitem dotnet-Treiber
+und Mindest-PowerShell7.6.4. Runtime/OS/PInvoke/native Pakete bleiben getrennte
+Vertrauensgrenzen. Die operative Registry führt C# und `msl`; Statistikreferenz
+Thorsten-Solo125, konservativ80. Das explizite14er-Profil bleibt unverändert.
+Die Auswahl ist keine Produkt-/Plattform-/A11Y-Abnahme oder Rolloutbefugnis.
 
-*Show-CommandTui400 targets PowerShell 7 terminals in RiderProjects. Primary
-language, framework, minimum version and MSL status remain undecided. The
-workspace name does not select C#/.NET. Use the project environment row and
-unknown language/MSL metadata with its explicit fourteen-preset profile.*
+*LH-01 evidence selects managed C#14 for own memory-safe code, host .NET10,
+Terminal.Gui2.5.0 with explicit dotnet driver and minimum PowerShell7.6.4. Native
+and runtime trust boundaries remain separate. Use C#/msl metadata and80/125
+statistics references, unchanged fourteen presets. Selection grants no product,
+platform, accessibility or fleet authority.*
 
 ## macOS-CI-Runner / macOS CI runners
 
