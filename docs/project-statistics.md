@@ -1424,6 +1424,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-10 | Drei Preset-Patches: zentrale Integration / Central integration | Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8 mit unveraenderlichen Quellenbindungen, synchronen Profilen/Guidance und installierter 14er-Matrix. Auftrag auf Level 0/Home Runtime und drei benannte Repos begrenzt; technische TinyCalc-GSDB-Nachpruefung ohne neue fachliche Freigabe. Statistikmethodik und uebrige elf Presets bleiben erhalten. [Nachweis / Evidence](maintenance/preset-patches-bounded-2026-10-10.md). / Bounded integration; delivery and downstream completion require separate exact-head evidence. |
 
+| 2026-10-18 | 14 README-Patch-Releases: Quellenbindung / Source binding | Alle 14 regulaeren Preset-Patches samt Tag-/Commit-/ZIP-SHA-256-Bindung, synchronen Profilen und Zielstand-Guidance. Paketinstallation ausschliesslich in temporaeren Tests; bestehende Installationen und Home Runtime bleiben unveraendert. Kein Community-Update, keine neue Produkt-/Risiko-/Rechtsfreigabe. [Nachweis / Evidence](maintenance/preset-readme-patch-releases-2026-10-18.md). / Verified documentation packages and central source targets; rollout, runtime sync and community updates remain separate. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

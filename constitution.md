@@ -1026,22 +1026,29 @@ Any expansion of the surgical subdirectory exception (Principle I) MUST include
 a security justification confirming no credentials are present in the newly
 allowed path.
 
+
+DE: Die Versionsangaben beschreiben den zentralen Release-Sollstand. Diese
+Quellenpflege aktualisiert keine installierten Presets oder Home Runtime.
+Rollout und Community-Einreichung brauchen getrennte Auftraege.
+EN: Version references describe the central release target, not installation
+state. Source binding updates install no presets and sync no Home Runtime.
+Rollout and community submission require separate requests.
 **Spec Kit preset governance**: The standard governance preset set for this
 workspace family consists of:
 
 | Preset | Version | Priority | Scope |
 |---|---:|---:|---|
-| `security-governance` | `v0.7.1` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
-| `architecture-governance` | `v0.6.2` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
-| `isaqb-architecture-governance` | `v0.2.2` | `30` | general iSAQB/arc42 architecture governance |
-| `a11y-governance` | `v0.4.3` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
-| `cross-platform-governance` | `v0.2.2` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
-| `agent-parity-governance` | `v0.4.2` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
-| `autonomous-run-governance` | `v0.4.4` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
-| `parallel-autonomous-run-governance` | `v0.2.6` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
+| `security-governance` | `v0.7.2` | `10` | secure development, MSL, language-specific secure coding, SSDF, ASVS, SBOM/VEX/SLSA, AI-SBOM, CRA/regulatory applicability |
+| `architecture-governance` | `v0.6.3` | `20` | secure architecture, STRIDE/CAPEC, Zero Trust, SAMM, S-ADR, BSI C3A cloud autonomy, BSI C5 cloud assurance |
+| `isaqb-architecture-governance` | `v0.2.3` | `30` | general iSAQB/arc42 architecture governance |
+| `a11y-governance` | `v0.4.4` | `40` | WCAG 2.2 AA, bilingual DE/EN, CEFR B2, inclusive artefacts, didactic inline-code-comment review |
+| `cross-platform-governance` | `v0.2.3` | `50` | Bash/PowerShell parity, macOS/Linux/Windows script governance |
+| `agent-parity-governance` | `v0.4.3` | `60` | synchronized agent guidance, fleet-completion evidence, and agent-neutral Spec-Kit model routing |
+| `autonomous-run-governance` | `v0.4.5` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
+| `parallel-autonomous-run-governance` | `v0.2.7` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`model-routing-governance` v0.1.4 at priority `61`,
-Architecture v0.6.2 separates C5 Type 1 point-in-time evidence from Type 2
+`model-routing-governance` v0.1.5 at priority `61`,
+Architecture v0.6.3 separates C5 Type 1 point-in-time evidence from Type 2
 period effectiveness and Unknown. Its C3A v1.0 index retains all 30 groups,
 exact selected C/AC IDs and SI interpretation; missing evidence is Open.
 It records external assurance, not an audit or certification.
@@ -1053,9 +1060,9 @@ dependencies; DirectoryStrict additionally requires an empty active inventory.
 Nested Git checkouts own their index; ordinary duplicates remain blocked.
 Historical evidence is preserved; installation grants no execution authority.
 
-`intake-authoring-governance` v0.3.7 at priority `64`,
-`intake-review-governance` v0.2.4 at priority `65`, and
-`intake-sequencing-governance` v0.2.8 at priority `66` are optional presets,
+`intake-authoring-governance` v0.3.8 at priority `64`,
+`intake-review-governance` v0.2.5 at priority `65`, and
+`intake-sequencing-governance` v0.2.9 at priority `66` are optional presets,
 not part of the standard eight. Model Routing discovers harness capabilities
 locally and binds stable roles to an explicitly selected model without
 committing machine-specific model names. Unknown or ambiguous mappings fail
@@ -1141,11 +1148,11 @@ All eight presets are published as standalone repositories under
 `https://github.com/hindermath/spec-kit-preset-*`. The original six have been
 listed in the `github/spec-kit` community preset catalog since 2026-05-04;
 `autonomous-run-governance` v0.2.2 was verified there on 2026-07-17.
-The current standalone releases are `autonomous-run-governance` v0.4.4,
-`parallel-autonomous-run-governance` v0.2.6, optional
-`intake-authoring-governance` v0.3.7, optional
-`intake-review-governance` v0.2.4, and optional
-`intake-sequencing-governance` v0.2.8. Registered Level-0, Level-1, and Level-2
+The current standalone releases are `autonomous-run-governance` v0.4.5,
+`parallel-autonomous-run-governance` v0.2.7, optional
+`intake-authoring-governance` v0.3.8, optional
+`intake-review-governance` v0.2.5, and optional
+`intake-sequencing-governance` v0.2.9. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote

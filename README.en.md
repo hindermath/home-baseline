@@ -1,5 +1,8 @@
 # home-baseline
 
+[14 README-Patch-Releases / Fourteen README patch releases](docs/maintenance/preset-readme-patch-releases-2026-10-18.md).
+Central release bindings are updated; installation, Home Runtime sync and community updates remain separate.
+
 [Deutsche Fassung](README.md)
 
 `home-baseline` is the versioned Level 0 source for a secure, cross-platform,
@@ -7,11 +10,11 @@ AI-agent-assisted development workspace. It manages shared scripts, governance,
 Spec Kit presets, documentation rules, and learning material. No prior Spec Kit
 experience is required to start here.
 
-Current prepared governance target: Security v0.7.1, Architecture v0.6.2 and Intake Authoring
-v0.3.7, Review v0.2.4 and Sequencing v0.2.8.
-Current Authoring patch: [bounded v0.3.7 delivery](docs/maintenance/intake-authoring-v037-rollout.md).
+Current prepared governance target: Security v0.7.2, Architecture v0.6.3 and Intake Authoring
+v0.3.8, Review v0.2.5 and Sequencing v0.2.9.
+Last delivered Authoring patch: [bounded v0.3.7 delivery](docs/maintenance/intake-authoring-v037-rollout.md).
 
-Current bounded rollout: [Security 0.7.1, Architecture 0.6.2 and Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
+Last delivered bounded rollout: [Security 0.7.1, Architecture 0.6.2 and Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Package bindings, pilots and remaining steps](docs/maintenance/coordinated-governance-oct03.md).
 Installation does not start product implementation.
 

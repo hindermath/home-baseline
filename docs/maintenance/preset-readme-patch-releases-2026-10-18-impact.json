@@ -1,0 +1,110 @@
+{
+  "feature": "preset-readme-patch-releases-2026-10-18",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "runtime-sources",
+      "decision": "UpdateRequired",
+      "rationale": "Bind verified documentation patch releases without installing consumers; distinguish release targets, installed state and separately authorized runtime sync. / Gepruefte Dokumentations-Patches binden, ohne Verbraucherinstallation; Sollstand, Installation und getrennte Runtime-Verteilung unterscheiden.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/maintenance/preset-readme-patch-releases-2026-10-18.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → central release report → release notes, PRs and source lock"
+      ],
+      "canonicalSource": "scripts/config/spec-kit-project-statistics-governance-presets.json",
+      "navigationImpact": "README language partners link the central release record; existing navigation and historical delivery records are retained.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "All 14 published archives verified against tagged Git blobs and installed/listed/inspected/resolved in temporary projects on macOS. Configured native CI recorded per release; central profile gates documented in the delivery PR.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/preset-readme-patch-releases-2026-10-18.md",
+      "risk": "Release targets differ intentionally from existing installed/runtime copies until separately authorized rollout/sync; no product or regulatory approval is inferred.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset, source hash, profile, installation or runtime-distribution contract changes."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "source-bindings",
+      "decision": "UpdateRequired",
+      "rationale": "Bind verified documentation patch releases without installing consumers; distinguish release targets, installed state and separately authorized runtime sync. / Gepruefte Dokumentations-Patches binden, ohne Verbraucherinstallation; Sollstand, Installation und getrennte Runtime-Verteilung unterscheiden.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/maintenance/preset-readme-patch-releases-2026-10-18.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → central release report → release notes, PRs and source lock"
+      ],
+      "canonicalSource": "docs/maintenance/preset-source-lock.json",
+      "navigationImpact": "README language partners link the central release record; existing navigation and historical delivery records are retained.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "All 14 published archives verified against tagged Git blobs and installed/listed/inspected/resolved in temporary projects on macOS. Configured native CI recorded per release; central profile gates documented in the delivery PR.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-readme-patch-releases-2026-10-18.md",
+      "risk": "Release targets differ intentionally from existing installed/runtime copies until separately authorized rollout/sync; no product or regulatory approval is inferred.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset, source hash, profile, installation or runtime-distribution contract changes."
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "statistics",
+      "decision": "GeneratedUpdate",
+      "rationale": "Append a bounded delivery ledger entry and regenerate Profile 2 with unchanged configuration and methodology.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → central release report → release notes, PRs and source lock"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "README language partners link the central release record; existing navigation and historical delivery records are retained.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "All 14 published archives verified against tagged Git blobs and installed/listed/inspected/resolved in temporary projects on macOS. Configured native CI recorded per release; central profile gates documented in the delivery PR.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-readme-patch-releases-2026-10-18.md",
+      "risk": "Release targets differ intentionally from existing installed/runtime copies until separately authorized rollout/sync; no product or regulatory approval is inferred.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset, source hash, profile, installation or runtime-distribution contract changes.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh --repo ."
+      }
+    }
+  ],
+  "schemaVersion": "1.1"
+}
