@@ -1,5 +1,9 @@
 # home-baseline
 
+[14 README-Patch-Releases / Fourteen README patch releases](docs/maintenance/preset-readme-patch-releases-2026-10-18.md).
+Zentrale Quellenbindungen sind aktualisiert; Installation, Home Runtime Sync und Community-Updates bleiben separat.
+*Central release bindings are updated; installation, Home Runtime sync and community updates remain separate.*
+
 [English version](README.en.md)
 
 `home-baseline` ist die versionierte Level-0-Quelle für einen sicheren,
@@ -8,11 +12,11 @@ Sie verwaltet gemeinsame Skripte, Governance, Spec-Kit-Presets,
 Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
-Aktueller vorbereiteter Governance-Zielstand: Security v0.7.1, Architecture v0.6.2 sowie
-Intake Authoring v0.3.7, Review v0.2.4 und Sequencing v0.2.8.
-Aktueller Authoring-Patch: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
+Aktueller vorbereiteter Governance-Zielstand: Security v0.7.2, Architecture v0.6.3 sowie
+Intake Authoring v0.3.8, Review v0.2.5 und Sequencing v0.2.9.
+Zuletzt gelieferter Authoring-Patch: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
 
-Aktueller begrenzter Rollout: [Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
+Zuletzt gelieferter begrenzter Rollout: [Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Paketbindung, Piloten und verbleibende Schritte](docs/maintenance/coordinated-governance-oct03.md).
 Die Installation startet keine Produktimplementierung.
 
