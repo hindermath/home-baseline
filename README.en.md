@@ -3,6 +3,9 @@
 [14 README-Patch-Releases / Fourteen README patch releases](docs/maintenance/preset-readme-patch-releases-2026-10-18.md).
 Central release bindings are updated; installation, Home Runtime sync and community updates remain separate.
 
+[Bounded installation rollout](docs/maintenance/preset-readme-patch-rollout-2026-10-18.md):
+Level 0, TinyCalc, Show-CommandTui400 and absdd-image-sandbox only; Home Runtime follows Level-0 delivery. Community updates remain separate.
+
 [Deutsche Fassung](README.md)
 
 `home-baseline` is the versioned Level 0 source for a secure, cross-platform,

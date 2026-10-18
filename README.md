@@ -4,6 +4,10 @@
 Zentrale Quellenbindungen sind aktualisiert; Installation, Home Runtime Sync und Community-Updates bleiben separat.
 *Central release bindings are updated; installation, Home Runtime sync and community updates remain separate.*
 
+[Begrenzter Installations-Rollout / Bounded installation rollout](docs/maintenance/preset-readme-patch-rollout-2026-10-18.md):
+Level 0 sowie TinyCalc, Show-CommandTui400 und absdd-image-sandbox; Home Runtime folgt nach Level-0-Lieferung. Community bleibt getrennt.
+*Level 0 and three named consumers only; Home Runtime follows Level-0 delivery. Community updates remain separate.*
+
 [English version](README.en.md)
 
 `home-baseline` ist die versionierte Level-0-Quelle für einen sicheren,

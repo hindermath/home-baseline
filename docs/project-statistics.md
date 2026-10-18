@@ -1428,6 +1428,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-18 | Stabile MSL-Host-Toolchains / Stable MSL host toolchains | Gemeinsame Release- und Wartungslogik fuer sechs MSL-Toolchains auf macOS, Linux und Windows; getrennte aktive, installierte, Paketquellen- und Hersteller-Versionen, begrenzter MSL-Modus und atomare Berichte. Mac A nativ auf .NET 10.0.402, Python 3.15.0 und Swift 6.4.1 aktualisiert; Go 1.27.2, Java 27 und Rust/Cargo 1.99.1 bestaetigt. Neun native Smoke-Schritte und idempotenter Wiederholungslauf erfolgreich. Windows/Linux nur Fixture-/Code-Pruefung; kein Remote- oder Flotten-Rollout. [Nachweis / Evidence](maintenance/msl-toolchains-validation-2026-10-18.md). / Shared stable-release maintenance, bounded Mac A updates and native proof; project pins and cross-host acceptance remain separate. |
 
+| 2026-10-18 | Begrenzter 14-Preset-Rollout: Level 0 / Bounded fourteen-preset rollout: Level 0 | Autorisierte Installation der 14 README-Patch-Pakete; bytegleiches Home-only-Runner-Overlay, vollstaendige Agentenkomposition und eigener technischer Assurance-Kontext. Installation, Evidence und Lieferpruefung getrennt von menschlicher Produkt-/Releasefreigabe. Home Runtime erst nach Level-0-Lieferung; drei benannte Verbraucher folgen getrennt, keine Community-Einreichung. [Nachweis / Evidence](maintenance/preset-readme-patch-rollout-2026-10-18.md). / Authorized Level-0 installation with preserved overlay, full agent composition and scoped technical evidence; bounded consumer/runtime follow-up only. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
