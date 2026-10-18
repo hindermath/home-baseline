@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Validate installed Spec Kit command surfaces and preset profiles."""
+# DE: Prueft Release-Quellen, hashgebundene Installation und Agentenparitaet.
+# EN: Validates release sources, hash-bound installation and agent parity.
 
 from __future__ import annotations
 
@@ -35,7 +37,8 @@ def payload_binding(root: Path) -> dict:
     if root.is_symlink() or not root.is_dir():
         raise ValueError("installed preset must be a regular directory")
     entries = []
-    for path in sorted(root.rglob("*")):
+    # POSIX string ordering is stable across hosts; Windows Path ordering folds case.
+    for path in sorted(root.rglob("*"), key=lambda item: item.relative_to(root).as_posix()):
         if path.is_symlink():
             raise ValueError("symlink in installed preset")
         if path.is_file():
@@ -139,6 +142,15 @@ def command_path(surface: str, command: str) -> Path:
 
 
 class SpecKitAgentSurfaceParityTests(unittest.TestCase):
+    def test_payload_inventory_has_host_independent_case_sensitive_order(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for name in ("z.md", "README.md", "a.md"):
+                (root / name).write_text(name, encoding="utf-8")
+            entries = [[name, normalized_hash(root / name)] for name in ("README.md", "a.md", "z.md")]
+            digest = hashlib.sha256(json.dumps(entries, separators=(",", ":")).encode("utf-8")).hexdigest()
+            self.assertEqual(payload_binding(root), {"fileCount": 3, "contentSha256": digest})
+
     def test_opencode_namespace_requires_one_bound_safe_directory(self) -> None:
         for namespace in ("command", "commands"):
             manifest = {"files": {f".opencode/{namespace}/speckit.plan.md": "hash"}}

@@ -867,7 +867,7 @@ python3 scripts/tests/test_shared_learner_guide_propagation.py --help
 ### `scripts/tests/test_spec_kit_agent_surface_parity.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** DE: Die versionierte Integration bestimmt den Pfad, nicht lokale Caches.
+- **Kurzbeschreibung / Summary:** DE: Prueft Release-Quellen, hashgebundene Installation und Agentenparitaet.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
