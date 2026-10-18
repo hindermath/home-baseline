@@ -13,15 +13,72 @@ pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1
 .PARAMETER GovernanceReviewOnly
 DE: Nur den lokalen Jahresreview-Vertrag mit Negativfaellen pruefen, ohne Downloads.
 EN: Check local annual-review/narrative contracts and negative cases, without downloads.
+.PARAMETER PythonRuntimeOnly
+DE: Nur Python-Auswahl, Features und Negativfaelle pruefen; keine Downloads.
+EN: Test Python selection, capabilities and negative cases only; no downloads.
 #>
 [CmdletBinding()]
-param([switch]$GovernanceReviewOnly)
+param([switch]$GovernanceReviewOnly, [switch]$PythonRuntimeOnly)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $temporaryRoot = Join-Path ([IO.Path]::GetTempPath()) ('preset-source-test-' + [guid]::NewGuid().ToString('N'))
 $originalLocation = Get-Location
+$originalPath = $env:PATH
+
+function Select-PresetTestPython {
+    param([object[]]$Candidates)
+    # DE: Nur erfolgreich gepruefte Python-3-Runtimes akzeptieren, nie Versionsstrings erraten.
+    # EN: Accept only probed Python 3 runtimes; never infer capability from a command name.
+    foreach ($candidate in $Candidates) {
+        if ($candidate.major -eq 3 -and $candidate.minor -ge 11 -and
+            $candidate.features -eq $true -and $candidate.path) { return $candidate }
+    }
+    throw 'Python >=3.11 with UTC fractional timestamps and modern typing is required; no valid runtime found.'
+}
+
+function Get-PresetTestPythonCandidate {
+    param([string]$Path)
+    $probe = 'import datetime,json,pathlib,sys; assert sys.version_info[:2]>=(3,11) and sys.version_info.major==3; annotation=int|None; assert pathlib.Path(".").is_relative_to(pathlib.Path(".")); assert datetime.datetime.fromisoformat("2026-01-01T00:00:00.1234567+00:00").tzinfo is not None; print(json.dumps({"major":sys.version_info.major,"minor":sys.version_info.minor,"version":sys.version.split()[0],"features":True}))'
+    $output = & $Path -I -c $probe 2>&1
+    if ($LASTEXITCODE -ne 0) { return $null }
+    try {
+        $data = ($output -join "`n") | ConvertFrom-Json
+        return [pscustomobject]@{path=$Path;major=$data.major;minor=$data.minor;version=$data.version;features=$data.features}
+    } catch { return $null }
+}
+
+function Resolve-PresetTestPython {
+    $candidates = @()
+    foreach ($name in @('python3', 'python', 'python3.14', 'python3.13', 'python3.12', 'python3.11')) {
+        $command = Get-Command $name -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+        if (-not $command) { continue }
+        $candidate = Get-PresetTestPythonCandidate -Path $command.Source
+        if ($candidate) { $candidates += $candidate }
+    }
+    return Select-PresetTestPython -Candidates $candidates
+}
+
+function Test-PresetTestPythonSelection {
+    $valid = [pscustomobject]@{path='fixture-python';major=3;minor=14;features=$true}
+    foreach ($invalid in @(
+        [pscustomobject]@{path='old-python';major=3;minor=9;features=$true},
+        [pscustomobject]@{path='old-python';major=3;minor=10;features=$true},
+        [pscustomobject]@{path='wrong-major';major=4;minor=14;features=$true},
+        [pscustomobject]@{path='missing-features';major=3;minor=14;features=$false},
+        [pscustomobject]@{path='';major=3;minor=14;features=$true}
+    )) {
+        $rejected = $false
+        try { $null = Select-PresetTestPython -Candidates @($invalid) } catch { $rejected = $true }
+        if (-not $rejected) { throw 'Invalid Python runtime accepted.' }
+        if ((Select-PresetTestPython -Candidates @($invalid, $valid)).path -cne $valid.path) { throw 'Valid Python fallback not selected.' }
+    }
+    $rejected = $false
+    try { $null = Select-PresetTestPython -Candidates @() } catch { $rejected = $true }
+    if (-not $rejected) { throw 'Missing Python runtime accepted.' }
+    Write-Output 'PASS Python selection: old/missing/invalid runtimes rejected; explicit capable fallback retained.'
+}
 
 function Invoke-PresetTestCommand {
     param([string]$Command, [string[]]$Arguments)
@@ -63,6 +120,13 @@ function Assert-CurrentPresetNarrative {
 }
 
 try {
+    if ($GovernanceReviewOnly -and $PythonRuntimeOnly) { throw 'Choose one isolated test mode.' }
+    if ($PythonRuntimeOnly) {
+        Test-PresetTestPythonSelection
+        $selectedPython = Resolve-PresetTestPython
+        Write-Output "PASS Python capability probe: $($selectedPython.path) ($($selectedPython.version)); UTC precision and modern typing."
+        return
+    }
     foreach ($path in @('AGENTS.md', 'CLAUDE.md', 'GEMINI.md',
         '.github/copilot-instructions.md', '.github/agents/copilot-instructions.md',
         'scripts/templates/AGENTS.md.tmpl', 'scripts/templates/CLAUDE.md.tmpl',
@@ -96,7 +160,29 @@ try {
     }
     Write-Output 'PASS annual review: seven presets, fixed due date, event independence and read-only authority'
     if ($GovernanceReviewOnly) { return }
+    Test-PresetTestPythonSelection
+    $selectedPython = Resolve-PresetTestPython
     $null = New-Item -ItemType Directory -Path $temporaryRoot
+    # DE: Alias nur im temporaeren Pruefprozess bereitstellen, keine globale PATH-/Runtime-Aenderung.
+    # EN: Scope runtime aliases to this temporary test process; never modify global PATH or runtime.
+    $pythonDirectory = if ($IsWindows) { Split-Path -Parent $selectedPython.path } else {
+        $shim = Join-Path $temporaryRoot 'python-runtime'
+        $null = New-Item -ItemType Directory -Path $shim
+        foreach ($alias in @('python3','python')) {
+            $null = New-Item -ItemType SymbolicLink -Path (Join-Path $shim $alias) -Target $selectedPython.path
+        }
+        $shim
+    }
+    $env:PATH = $pythonDirectory + [IO.Path]::PathSeparator + $originalPath
+    $python = if ($IsWindows) { 'python' } else { 'python3' }
+    foreach ($alias in @('python3','python')) {
+        $command = Get-Command $alias -CommandType Application -ErrorAction Stop | Select-Object -First 1
+        $candidate = Get-PresetTestPythonCandidate -Path $command.Source
+        if (-not $candidate) { throw "Scoped Python alias is not capable: $alias" }
+        $resolvedPython = Select-PresetTestPython -Candidates @($candidate)
+        if ($resolvedPython.version -cne $selectedPython.version) { throw "Scoped Python runtime drift: $alias" }
+    }
+    Write-Output "PASS scoped Python runtime: $($selectedPython.path) ($($selectedPython.version)); child processes use the verified runtime."
     $lock = Get-Content (Join-Path $repo 'docs/maintenance/preset-source-lock.json') -Raw | ConvertFrom-Json
     $profiles = Get-Content (Join-Path $repo 'scripts/config/spec-kit-preset-profiles.json') -Raw | ConvertFrom-Json
     if ($profiles.defaultProfile -cne 'standard-eight-governance-presets') { throw 'Statistics pilot must not change the default profile.' }
@@ -147,7 +233,6 @@ try {
         }
     )
     if (@($configurationHashes | Select-Object -Unique).Count -ne 1) { throw 'Intake configuration contract drift.' }
-    $python = if ($IsWindows) { 'python' } else { 'python3' }
     $output = Invoke-PresetTestCommand $python @((Join-Path $packages['architecture-governance'].root 'tests/test-cloud-contract.py'))
     Write-Output $output
     foreach ($presetProfile in $profiles.profiles.PSObject.Properties) {
@@ -201,6 +286,7 @@ try {
     Write-Output $output
     Write-Output 'PASS: 14 verified packages; profiles 8-14; assurance and statistics generated commands.'
 } finally {
+    $env:PATH = $originalPath
     Set-Location $originalLocation
     if (Test-Path -LiteralPath $temporaryRoot) { Remove-Item -LiteralPath $temporaryRoot -Recurse -Force }
 }

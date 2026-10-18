@@ -70,6 +70,28 @@
       "reevaluationTrigger": "Preset, source hash, profile, installation or runtime-distribution contract changes."
     },
     {
+      "changeId": "CHG004",
+      "scope": "release-installed-contract-and-test-runtime",
+      "decision": "UpdateRequired",
+      "rationale": "Separate immutable installed-state evidence from release targets without weakening checks; select a capability-probed Python only for package-test child processes. / Installationsnachweis vom Release-Sollstand trennen; geeignete Python-Runtime ausschliesslich im Pakettestprozess waehlen.",
+      "documents": ["docs/maintenance/preset-readme-patch-releases-2026-10-18.md"],
+      "owner": "Thorsten Hindermann",
+      "audiences": ["Preset users", "Maintainers"],
+      "readerPaths": ["README → release report → release and installed locks → tests"],
+      "canonicalSource": "scripts/tests/test_spec_kit_agent_surface_parity.py",
+      "navigationImpact": "Release report links both independent locks and explains authorized update boundaries.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second in the same report.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Negative drift fixtures, UTF-8 newline/BOM parity, isolated Python selection negatives and real capability probe; full package verification and native CI results recorded in PR #333.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/preset-readme-patch-releases-2026-10-18.md",
+      "risk": "Installed snapshot and release targets intentionally differ. Missing capable Python blocks testing. Runtime sync is explicitly deferred; no global PATH, installed preset, ZIP or validator modification.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Explicitly authorized installation, release-source change or Python test-runtime contract change."
+    },
+    {
       "changeId": "CHG003",
       "scope": "statistics",
       "decision": "GeneratedUpdate",

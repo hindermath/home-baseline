@@ -48,12 +48,44 @@ untouched; rollout, Home Runtime sync and community submissions are separate.
 - Je Paket temporaere URL-Installation, list/info/resolve und exakte Versions-/Prioritaets-/README-Pruefung: Exitcode 0.
 - Vor Merge lokale relevante Regressionen und alle konfigurierten nativen PR-Checks erfolgreich; Details in Release-Notes und PRs.
 - Nicht konfigurierte Linux-/Windows-Pruefungen werden nicht behauptet.
-- Intake-Tests verwenden gepflegtes Python: lokal 3.14, native Intake-CI 3.12. Apples Python 3.9 scheitert an siebenstelligen UTC-Bruchteilen; Authoring benoetigt zudem moderne Python-Typsyntax. Die lokalen Fehlversuche wurden nicht als Pass gewertet; erfolgreiche Nachpruefungen sind getrennt belegt.
+- Intake-Tests verwenden gepflegtes Python: lokal 3.14, native Intake-CI 3.12. Die urspruenglichen lokalen Fehlversuche mit Apples Python 3.9 wurden nicht als Pass gewertet. Der zentrale Paketpruefer waehlt jetzt ein vorhandenes Python >=3.11 nach Faehigkeitspruefung aus (siebenstellige UTC-Bruchteile, moderne Typsyntax, Pfad-API). Er prueft beide generischen Aliase und stellt sie nur seinen Kindprozessen bereit; PATH wird anschliessend wiederhergestellt. Fehlende geeignete Runtimes blockieren vor dem Download. Keine globale Installation, keine Python-3.9-Kompatibilitaetsbehauptung, keine Aenderung an UTC-/Receipt-Validatoren oder veroeffentlichten Paketen.
+- The central package verifier now selects an existing Python >=3.11 using capability probes for fractional UTC timestamps, modern typing and the path API. Both generic aliases are checked and scoped to child processes; PATH is restored afterwards. Missing supported runtimes fail before downloads. Original Python 3.9 failures remain failures; no global runtime change, Python 3.9 compatibility or package/receipt-validator change is claimed.
 - All package hashes, exact source commits and native check links are recorded above and in release notes. No absent platform check is inferred.
 - Zentrale Profil-/Quellenpruefung (Profile 8 bis 14), weitere CI, exakter Merge und 0/0 werden im zentralen Liefer-PR abschliessend dokumentiert; dieser Vorabstand behauptet noch keinen zentralen Gate-Pass.
 - Annual review due date and review acceptance are unchanged; documentation packaging is not a regulatory reassessment.
 
 [Documentation-Impact-Evidence](preset-readme-patch-releases-2026-10-18-impact.json).
+
+## Getrennte Vertraege / Separate contracts
+
+Die zentralen Profile und [Release-Source-Lock](preset-source-lock.json) binden
+den freigegebenen Release-Sollstand; der Paketpruefer verifiziert weiterhin
+Tag-Commit, ZIP-Hash und temporaere Profilinstallation. Die bestehende Level-0-
+Installation wird unabhaengig gegen [Installed-Lock](preset-installed-lock.json)
+geprueft: alle 14 IDs, Versionen, Prioritaeten, Enabled-Werte, Registry,
+Manifest-Hashes und vollstaendige Dateiinventare mit Inhalts-Hashes.
+Der Ausgangsstand ist Commit `224739c59311f5f0d64a3037135095288c0aa756`.
+UTF-8-Text erlaubt ausschliesslich LF/CRLF/CR- und BOM-Paritaet; Binaerdaten
+bleiben bytegenau. Historische lokale Anpassungen werden dadurch exakt gebunden,
+nicht als identisch mit frueheren Release-ZIPs ausgegeben.
+
+Der Installed-Lock darf nur mit ausdruecklich beauftragter Installation und
+Review angepasst werden, nie lediglich zur Beseitigung eines Testfehlers.
+Bestehende Profilkompositions- und Command-Paritaetspruefungen bleiben erhalten.
+Negativfaelle sichern Versions-, Prioritaets-, Enabled-, Registry-, Manifest-
+und Payload-Drift sowie fehlende/doppelte Eintraege und Release-Quellenabweichungen.
+
+Central profiles and the release source lock bind approved release targets;
+tag commits, ZIP hashes and temporary installations remain strictly verified.
+The separate installed lock binds the unchanged Level-0 baseline: all fourteen
+IDs, versions, priorities, enabled flags, registry/manifest hashes and complete
+file inventories/content hashes. Only UTF-8 newline/BOM parity is normalized;
+binary data stays byte-exact. Historical local patches are bound as installed,
+not asserted to match earlier release ZIPs. Update this lock only with an
+explicitly authorized installation and review, never just to make a test pass.
+Existing composition/command-parity checks remain; new negative fixtures reject
+installed-state drift and release-source inconsistencies. No rollout is performed.
+
 Die geaenderten homeRuntime-Quellen benoetigen bei spaeterer Verteilung einen getrennt
 beauftragten Sync. Dieser Auftrag fuehrt ihn nicht aus. / Changed homeRuntime sources
 need a separately authorized later sync; this delivery does not perform it.
