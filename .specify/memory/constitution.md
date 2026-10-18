@@ -361,6 +361,17 @@ Mandatory rules:
 - Adding a new non-MSL Level-2 project is allowed with justification. Removing
   the MSL preference itself requires a MAJOR constitution amendment.
 
+<!-- BEGIN stable-msl-host-context -->
+DE: Betriebsgrenze der Host-Wartung: Die sechs MSL-CLI-Toolchains folgen dem
+stabilen Release-Vertrag der zentralen CLI- und Paketregister. Herstellerstand,
+Paketquelle und gestartete CLI werden getrennt nachgewiesen. Swiftly verwaltet
+Swift-CLI auf macOS/Linux; Windows verwendet WinGet. Projekt-Pins und die
+Runtime-/Sprachdeklarationen des Level-2-Registers werden dadurch nicht migriert.
+EN: Host maintenance follows the stable release contract in the central CLI
+and package registries. Upstream, package source and active CLI versions require
+separate evidence. Swiftly manages Swift CLI on macOS/Linux; Windows uses WinGet.
+This operational context does not migrate project pins or Level-2 runtime rows.
+<!-- END stable-msl-host-context -->
 **MSL allow-list** (baseline: NSA "Software Memory Safety", Nov 2022; CISA
 "The Case for Memory Safe Roadmaps", Dec 2023; extended with obvious
 CLR/JVM/BEAM and functional peers of the NSA/CISA-listed languages):

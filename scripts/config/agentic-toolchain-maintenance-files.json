@@ -18,6 +18,18 @@
   ],
   "files": [
     {
+      "path": "scripts/lib/msl-toolchains.psm1",
+      "executable": false
+    },
+    {
+      "path": "scripts/lib/invoke-msl-toolchains.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/test_msl_toolchains.py",
+      "executable": false
+    },
+    {
       "path": "scripts/lib/maintenance_execution_context.py",
       "executable": false
     },

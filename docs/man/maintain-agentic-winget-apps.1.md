@@ -14,6 +14,18 @@ pwsh -NoProfile -File scripts/maintain-agentic-winget-apps.ps1 [-WhatIf] [-Compa
 
 ## Beschreibung / Description
 
+`-MslOnly` begrenzt die Wartung auf sechs stabile MSL-Toolchains samt
+Abhaengigkeiten. `-CompareOnly` und `-WhatIf` bleiben ohne Installation oder
+Benutzer-PATH-Aenderung. `-ResultFile` schreibt optional atomare JSON-Evidence
+mit sechs `mslToolchains`-Eintraegen. Versionsgebundene WinGet-ID-Vorlagen
+werden aus stabilen Releases aufgeloest. Admin-Gates bleiben verbindlich.
+[Quellen und Nachweisgrenzen](../maintenance/msl-toolchains.md).
+
+*Use `-MslOnly` for the six stable MSL toolchains and dependencies. Comparison
+and WhatIf do not change installations or the user PATH. Optional `-ResultFile`
+writes atomic JSON evidence including six MSL results. Versioned WinGet ID
+templates are resolved from stable releases. Administrator gates still apply.*
+
 Das Werkzeug liest
 `scripts/config/winget-apps-registry.json` und gleicht die Windows-Toolchain fuer
 agentische Entwicklung ab. Zusaetzlich liest es

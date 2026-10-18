@@ -14,6 +14,18 @@ bash scripts/maintain-agentic-brew-apps.sh [--dry-run] [--compare-only] [--allow
 
 ## Beschreibung / Description
 
+`--msl-only` begrenzt die Wartung auf die sechs stabilen MSL-Toolchains und
+deren Manager-/Paketabhaengigkeiten. Vergleich (`--compare-only`) und Vorschau
+(`--dry-run`) bleiben ohne Installations- und Profilveraenderungen. Hersteller-,
+Paket- und aktive CLI-Versionen werden getrennt geprueft; offene MSL-Befunde
+verhindern einen vollstaendigen Erfolg auch im normalen Lauf.
+[Quellen und Benutzerumgebung](../maintenance/msl-toolchains.md).
+
+*Use `--msl-only` for the six stable MSL toolchains and their dependencies.
+Comparison and preview do not change installations or profiles. Upstream,
+package and active CLI versions are checked separately. MSL findings prevent
+complete success in full maintenance as well.*
+
 Bash ab Version 5 ist unter macOS und Linux ein Pflichtprogramm. Homebrew
 installiert und aktualisiert die Formel `bash`; ohne Homebrew verwendet Linux
 das apt-Paket `bash`. Die CLI-Probe prueft die tatsaechlich ueber PATH aufgeloeste
@@ -77,9 +89,9 @@ leeren, unvollstaendigen, syntaktisch fehlerhaften, nicht als UTF-8 lesbaren
 und schemafremden Ergebnissen. Sie geben dabei weder Stacktraces noch private
 Dateipfade aus.
 
-Auf Ubuntu 22.04/24.04 (`x86_64`/`aarch64`) kann fehlendes oder abweichendes
-Swift ueber den gepinnten offiziellen Vertrag Swiftly `1.1.2` / Swift `6.3.3`
-installiert werden. URL und SHA-256 werden vor dem sicheren Extrahieren
+Auf Ubuntu 22.04/24.04 (`x86_64`/`aarch64`) kann Swiftly ueber den gepinnten
+offiziellen Bootstrap-Vertrag `1.1.2` bereitgestellt werden. Die Swift-Version
+folgt dem gemeinsamen stabilen Release-Snapshot. URL und SHA-256 werden vor dem sicheren Extrahieren
 validiert. Swiftly veraendert mit `--no-modify-profile` kein Shell-Profil; seine
 erzeugte Umgebung wird nur im aktuellen Prozess aktiviert. Eventuelle
 Systemnacharbeit laeuft ausschließlich mit aktueller
@@ -119,9 +131,9 @@ evidence. Consumers distinguish missing, empty, truncated, malformed,
 non-UTF-8, and schema-mismatched results without exposing stack traces or
 private file paths.
 
-On Ubuntu 22.04/24.04 (`x86_64`/`aarch64`), missing or mismatched Swift can be
-installed through the pinned official Swiftly `1.1.2` / Swift `6.3.3`
-contract. URL and SHA-256 are validated before safe extraction. Swiftly runs
+On Ubuntu 22.04/24.04 (`x86_64`/`aarch64`), Swiftly can be provisioned through
+the pinned official `1.1.2` bootstrap contract. The Swift language version
+follows the shared stable release snapshot. URL and SHA-256 are validated before safe extraction. Swiftly runs
 with `--no-modify-profile`; its generated environment is activated only in the
 current process. System post-install work requires current
 `--allow-admin-prompts` authority.
@@ -200,6 +212,7 @@ requires a separate semantic review.*
 |---|---|
 | `--dry-run` | Paketmanager-Aktionen anzeigen, nicht ausfuehren |
 | `--compare-only` | Registry-Drift nach Required/Optional getrennt melden, nichts installieren oder upgraden |
+| `--msl-only` | Nur sechs stabile MSL-Toolchains samt Abhaengigkeiten pflegen / only six stable MSL toolchains and dependencies |
 | `--registry PATH` | Alternative Registry-Datei verwenden |
 | `--cli-registry PATH` | Alternative Required-CLI-Registry verwenden |
 | `--vscode-registry PATH` | Alternative VS-Code-Extension-Registry verwenden |

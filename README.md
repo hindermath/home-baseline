@@ -136,6 +136,14 @@ Autonome Presets dürfen Modelle ausschließlich an validierten Phasengrenzen in
 einem neuen Prozess wechseln. Delivery- und Provider-Rechte entstehen dadurch
 nicht.
 
+Die sechs MSL-Host-Toolchains folgen stabilen Hersteller-Releases. Ein begrenzter
+Lauf verwendet `--msl-only` beziehungsweise `-MslOnly`; zuerst Vorschau lesen.
+[Quellen, Benutzerumgebung und Pruefgrenzen](docs/maintenance/msl-toolchains.md).
+
+*The six MSL host toolchains follow stable upstream releases. Use `--msl-only`
+or `-MslOnly` for bounded maintenance and review its preview first.
+See the linked reference for sources, user environment and proof limits.*
+
 Danach folgt die neue Storage-Stufe: `Safe` inventarisiert und bereinigt
 verifizierte Level-2-Buildausgaben und ausgewählte Caches; bei weniger als 15
 Prozent freiem Speicher greift Pressure Mode. `Deep` benötigt für einen echten

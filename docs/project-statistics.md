@@ -1426,6 +1426,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-18 | 14 README-Patch-Releases: Quellenbindung / Source binding | Alle 14 regulaeren Preset-Patches samt Tag-/Commit-/ZIP-SHA-256-Bindung, synchronen Profilen und Zielstand-Guidance. Getrennte Release-/Installed-Locks mit Drift-Negativtests; faehigkeitsgepruefte Python-Auswahl im Pakettestprozess. Paketinstallation ausschliesslich in temporaeren Tests; bestehende Installationen und Home Runtime bleiben unveraendert. Kein Community-Update, keine neue Produkt-/Risiko-/Rechtsfreigabe. [Nachweis / Evidence](maintenance/preset-readme-patch-releases-2026-10-18.md). / Verified documentation packages, independent release/installed bindings and scoped capable Python; rollout, runtime sync and community updates remain separate. |
 
+| 2026-10-18 | Stabile MSL-Host-Toolchains / Stable MSL host toolchains | Gemeinsame Release- und Wartungslogik fuer sechs MSL-Toolchains auf macOS, Linux und Windows; getrennte aktive, installierte, Paketquellen- und Hersteller-Versionen, begrenzter MSL-Modus und atomare Berichte. Mac A nativ auf .NET 10.0.402, Python 3.15.0 und Swift 6.4.1 aktualisiert; Go 1.27.2, Java 27 und Rust/Cargo 1.99.1 bestaetigt. Neun native Smoke-Schritte und idempotenter Wiederholungslauf erfolgreich. Windows/Linux nur Fixture-/Code-Pruefung; kein Remote- oder Flotten-Rollout. [Nachweis / Evidence](maintenance/msl-toolchains-validation-2026-10-18.md). / Shared stable-release maintenance, bounded Mac A updates and native proof; project pins and cross-host acceptance remain separate. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1436,29 +1438,29 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 710297 lines |
-| Textdateien / Text files | 3292 |
+| Textbasis / Text base | 712347 lines |
+| Textdateien / Text files | 3298 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-26..2026-10-18 |
 | Aktivtage / Active days | 126 |
-| Relevante Commits / Relevant commits | 924 |
-| Zeilen je Aktivtag / Lines per active day | 5637.3 |
+| Relevante Commits / Relevant commits | 927 |
+| Zeilen je Aktivtag / Lines per active day | 5653.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 70.5x |
-| Speedup vs. 100 lines/day | 56.4x |
-| Methodik / Methodology | v2; source `bdbc04782d99` |
+| Speedup vs. 80 lines/day | 70.7x |
+| Speedup vs. 100 lines/day | 56.5x |
+| Methodik / Methodology | v2; source `7943378413b6` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 27247
-Dokumentation / Documentation   [##########..........]  52.2% | 370539
-Skripte / Scripts               [##..................]   8.1% | 57301
-Konfiguration / Configuration   [#######.............]  35.6% | 252617
+Tests                           [#...................]   3.9% | 27665
+Dokumentation / Documentation   [##########..........]  52.1% | 371102
+Skripte / Scripts               [##..................]   8.2% | 58370
+Konfiguration / Configuration   [#######.............]  35.5% | 252617
 Daten und Medien / Data and media [....................]   0.0% | 0
-Sonstiger Text / Other text     [#...................]   0.1% | 356
+Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
 
 Die Balken teilen die aktuelle getrackte Textbasis in stabile Kategorien. Prozent und Zeilenwert sind die genaue, textorientierte Aussage.
@@ -1480,7 +1482,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 4 3 4
 
 ```text
 Wochen / Weeks 27..52 | 2026-04-26..2026-10-24
-So/Su  4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4 0 3
+So/Su  4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4 0 4
 Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 -
 Di/Tu  2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 -
 Mi/We  3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 -
@@ -1719,8 +1721,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.5x
-100 lines/day      [###########.........] 56.4x
+80 lines/day       [##############......] 70.7x
+100 lines/day      [###########.........] 56.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1733,7 +1735,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5637.3
+Visible repository [###########.........] 5653.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1759,6 +1761,6 @@ DE: Das Fenster beginnt am 2025-10-26 und endet am 2026-10-18. Es enthaelt 126 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 13084 |
+| 2026-10 | 15220 |
 
 <!-- project-statistics-v2:end -->

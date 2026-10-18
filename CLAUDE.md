@@ -863,3 +863,29 @@ Existing macOS 14 jobs explicitly use `macos-15`. Keep the existing repository
 selection for Linux-only maintenance jobs. Successful CI proves the executed
 checks, not product platform acceptance. Review required check names and
 migration templates whenever runner labels change. See the linked guide.
+
+<!-- BEGIN stable-msl-host-toolchains -->
+## Stabile MSL-Host-Toolchains / Stable MSL host toolchains
+
+DE: Die sechs Host-Toolchains C#/.NET, Go, Java/Javac, Python, Rust/Cargo und
+Swift folgen den neuesten stabilen Hersteller-Releases einschliesslich neuer
+Hauptversionen. CLI-Registry und Paketregister bestimmen Quellen und Zuordnung.
+Paketstand, gestartete CLI und Herstellerstand werden getrennt geprueft.
+`--msl-only` / `-MslOnly` begrenzt Wartung auf diese Toolchains und ihre
+Abhaengigkeiten; zuerst Vergleich und Vorschau lesen. Paketquellen-Rueckstand,
+PATH-Drift und unbekannte Aktualitaet bleiben Pflichtbefunde. Kein automatischer
+Installer-Fallback. Swiftly verwaltet Swift-CLI auf macOS/Linux; Windows nutzt
+WinGet. Apples Werkzeuge und Projekt-Pins bleiben eigenstaendige Vertraege.
+Eine zentrale Skriptaenderung autorisiert keinen Lauf auf anderen Rechnern.
+Details im Level-0-Klon: `docs/maintenance/msl-toolchains.md`.
+
+EN: The six host toolchains follow the latest stable upstream releases,
+including new major versions. CLI and package registries define sources and
+mapping. Package, active CLI and upstream versions are checked separately.
+Use `--msl-only` / `-MslOnly` for bounded maintenance after comparison and
+preview. Package source lag, PATH drift and unknown currency remain required
+findings; no automatic installer fallback. Swiftly manages Swift CLI on
+macOS/Linux; Windows uses WinGet. Apple tools and project pins retain their
+own contracts. Central script changes do not authorize runs on other hosts.
+Read `docs/maintenance/msl-toolchains.md` in the Level-0 source clone.
+<!-- END stable-msl-host-toolchains -->
