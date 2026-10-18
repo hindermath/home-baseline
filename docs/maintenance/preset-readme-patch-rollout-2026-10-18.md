@@ -86,6 +86,32 @@ Pilot authorization, project acceptance and general release remain Open.
 
 ## Lieferstatus / Delivery status
 
+### Lokale Level-0-Pruefung / Local Level-0 validation
+
+- Tag-/Commit-/ZIP-Pruefung: 14/14, Exit 0; Bash-/PowerShell-Matrix jeweils
+  14/14, Exit 0. / Source and exact installed-matrix verification passed.
+- Erhaltenes Home-Overlay: direkte PowerShell- und Bash-Wrapper-Matrix jeweils
+  18/18, Exit 0; zusaetzlich Vanilla-v0.4.5-Routingtests aus dem verifizierten
+  ZIP unter beiden Einstiegspunkten Exit 0. / Preserved overlay and immutable
+  package tests pass independently; no overlay is claimed to be vanilla.
+- Installierte Assurance-Fixtures: Exit 0, einschliesslich Context-/Mode-/Risk-
+  Negativfaellen, Rohbyte-Snapshots, CRLF-/Error-Probes und Runbook-Blockierung.
+  / Installed strict negative fixtures and shell parity passed.
+- Status und vier getrennte Gate-Reviews unter beiden Shells: zehn Aufrufe,
+  jeweils Exit 0, unveraenderte rohe Evidence-Hashes.
+  [Befehle und Nullschreibnachweis / Commands and zero-write proof](preset-readme-patch-rollout-2026-10-18-home-gates.json).
+- Agenten-/Profil-/Installed-Lock-Vertrag: neun Tests Exit 0; vollstaendige
+  Wrapperkomposition auf allen gepflegten Agentenflaechen eingeschlossen.
+  / Nine contract tests include complete multi-wrapper composition.
+- Documentation Impact beider Shells, Skriptreferenz, Whitespace und Secret-
+  Scan bestanden. Erster gestagter Liefersatz: 148 Pfade, Delivery-Set Pass,
+  keine historische Whitespace-Ausnahme. / Documentation and staged delivery
+  gates passed without historical whitespace allowances.
+- Installed-Lock-Baseline ist der tatsaechliche Installationscommit
+  `ab7e392b44faf2c2261abe2c0fabb27e60940f9b`; Statistik und finale native
+  PR-Gates folgen vor Lieferung. / The snapshot binds actual installation;
+  statistics and final native PR gates still precede delivery.
+
 | Ziel / Target | Stand / State | Naechste Aktion / Next action |
 | --- | --- | --- |
 | Level 0 | Installierter Kandidat / Installed candidate | Installed-Lock, lokale Gates, PR und exakte Lieferung / Lock, local gates, PR and exact delivery |
