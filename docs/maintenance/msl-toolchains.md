@@ -56,6 +56,18 @@ instead of reporting currency. The MSL package stage disables automatic
 Homebrew cleanup so a .NET runtime currently hosting PowerShell remains
 available until the process ends. Later cleanup is a separate operation.*
 
+Bei Homebrew-.NET wird zusaetzlich die `Add-Type`-Faehigkeit von PowerShell
+geprueft: Homebrews Engine kann nach einem SDK-Wechsel auf alte Referenz-Packs
+zeigen. Ein echter Update-Lauf darf dann ausschliesslich das bereits vorhandene
+Homebrew-Paket `powershell` aktualisieren und muss die Reparatur bestaetigen.
+Vergleich und Skip-upgrade melden den Defekt als Pflichtbefund; Vorschau plant
+die Reparatur. Es wird keine weitere Paketquelle hinzugefuegt.
+
+*Homebrew .NET maintenance also checks PowerShell Add-Type. If SDK reference
+packs break, update mode may upgrade only the existing Homebrew powershell
+package and must verify the repair. Compare and skip-upgrade report required
+drift; preview plans repair. No alternate package source is introduced.*
+
 ## Quellen und Auswahl / Sources and selection
 
 | Toolchain | Release-Quelle / Release source | Installation |

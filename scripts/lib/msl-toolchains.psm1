@@ -145,6 +145,17 @@ function Invoke-HBMslAction {
     if ($result.ExitCode -ne 0) { throw "Paketaktion fehlgeschlagen / package action failed: $Command ($($result.ExitCode))." }
 }
 
+function Test-HBMslPowerShellHealth {
+    param([string]$Directory)
+    $code = @'
+$ErrorActionPreference='Stop'
+Add-Type -TypeDefinition 'public static class HBEngineProbe { public static int Value => 1; }'
+if([HBEngineProbe]::Value -ne 1){exit 1}
+'@
+    $result = Invoke-HBMslProcess pwsh @('-NoProfile', '-NonInteractive', '-Command', $code) $Directory
+    return $result.ExitCode -eq 0
+}
+
 function Get-HBMslStatus {
     param([AllowEmptyString()][string]$Active, [AllowEmptyString()][string]$Installed,
         [AllowEmptyString()][string]$Source, [AllowEmptyString()][string]$Latest)
@@ -572,6 +583,22 @@ function Invoke-HBMslMaintenance {
                         $item.installedVersion = if ($definition['id'] -eq 'swift') { $probe.Version } else { $state.Installed }
                         $item.executable = $probe.Executable.Replace($UserHome, '~')
                         $item.status = Get-HBMslStatus $probe.Version $item.installedVersion $item.sourceVersion $latest
+                    }
+                }
+                if ($definition['id'] -eq 'dotnet' -and $state.Manager -eq 'brew') {
+                    # Homebrew PowerShell references SDK packs through opt/dotnet.
+                    # A running interpreter alone does not prove those references.
+                    $phase = 'MaintenanceEngine'
+                    if (-not (Test-HBMslPowerShellHealth $directory)) {
+                        if ($Preview) { $item.status = 'Planned' }
+                        elseif ($CompareOnly -or $SkipUpgrade) { throw 'PowerShell-Referenzen defekt / broken PowerShell references.' }
+                        else {
+                            $engine = Invoke-HBMslProcess brew @('list', '--formula', '--versions', 'powershell') $directory
+                            if ($engine.ExitCode -ne 0) { throw 'PowerShell-Reparaturquelle fehlt / no PowerShell repair source.' }
+                            Invoke-HBMslAction brew @('upgrade', '--formula', 'powershell') $directory
+                            $item.changed = $true
+                            if (-not (Test-HBMslPowerShellHealth $directory)) { throw 'PowerShell-Reparatur unbestaetigt / PowerShell repair not verified.' }
+                        }
                     }
                 }
                 $item.nextAction = switch ($item.status) {

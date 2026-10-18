@@ -67,6 +67,13 @@ $answer = & (Get-Module msl-toolchains) {
     param($cli, $packages, $fixture)
     $script:fixture=$fixture
     $script:calls=[Collections.Generic.List[string]]::new()
+    function script:Test-HBMslPowerShellHealth {
+        param($Directory)
+        if ($fixture['engineBroken']) {
+            return @($script:calls | Where-Object { $_ -like '*upgrade* powershell*' }).Count -gt 0
+        }
+        return $true
+    }
     function script:Get-HBMslRemoteData {
         param($Uri, [switch]$Text)
         if ($fixture['failRemote'] -and $Uri -like '*python.org*') { throw 'source unavailable' }
@@ -88,11 +95,20 @@ $answer = & (Get-Module msl-toolchains) {
     }
     function script:Invoke-HBMslAction {
         param($Command, $Arguments, $Directory, [switch]$Preview)
-        if (-not $Preview) { throw 'unexpected mutation' }
+        if (-not $Preview -and -not ($fixture['engineRepair'] -and $Command -eq 'brew' -and
+            ($Arguments -join ' ') -eq 'upgrade --formula powershell')) { throw 'unexpected mutation' }
         $script:calls.Add($Command + ' ' + ($Arguments -join ' '))
     }
+    function script:Invoke-HBMslProcess {
+        param($Command, $Arguments, $Directory)
+        if ($fixture['engineRepair'] -and $Command -eq 'brew' -and
+            ($Arguments -join ' ') -eq 'list --formula --versions powershell') {
+            return @{ExitCode=0;Output='powershell 7.6.7'}
+        }
+        throw 'unexpected process'
+    }
     $parameters=@{ CliRegistry=$cli; PackageRegistry=$packages; Platform=$fixture['platform'];
-        CompareOnly=(-not $fixture['preview']); Preview=[bool]$fixture['preview'] }
+        CompareOnly=(-not $fixture['preview'] -and -not $fixture['update']); Preview=[bool]$fixture['preview'] }
     if($fixture['userHome']){$parameters.UserHome=$fixture['userHome']}
     $result=Invoke-HBMslMaintenance @parameters 6>$null
     return @{ result=$result; calls=@($script:calls.ToArray()) }
@@ -147,6 +163,23 @@ class StableMslTests(unittest.TestCase):
         self.assertEqual(len(report["mslToolchains"]), 6)
         self.assertEqual(len({item["toolchainId"] for item in report["mslToolchains"]}), 6)
         self.assertTrue(all(item["status"] == "Current" for item in report["mslToolchains"]))
+
+    def test_broken_powershell_sdk_references_are_required_without_mutating_preview(self):
+        for preview, expected in ((False, "Failed"), (True, "Planned")):
+            fixture = self.engine_fixture()
+            fixture.update(engineBroken=True, preview=preview)
+            data = run_ps(ENGINE, fixture)
+            dotnet = next(item for item in data["result"]["mslToolchains"] if item["toolchainId"] == "dotnet")
+            self.assertEqual(dotnet["status"], expected)
+            self.assertIn("dotnet", data["result"]["remainingRequired"])
+            self.assertFalse(any("upgrade" in call or "install" in call for call in data["calls"]))
+        fixture = self.engine_fixture()
+        fixture.update(engineBroken=True, engineRepair=True, update=True)
+        data = run_ps(ENGINE, fixture)
+        self.assertEqual(data["result"]["exitCode"], 0)
+        self.assertEqual(data["calls"], ["brew upgrade --formula powershell"])
+        dotnet = next(item for item in data["result"]["mslToolchains"] if item["toolchainId"] == "dotnet")
+        self.assertTrue(dotnet["changed"])
 
     def test_apple_python_path_mismatch_and_source_lag_remain_required(self):
         fixture = self.engine_fixture()

@@ -47,10 +47,18 @@ Homebrew hat beim ersten SDK-Upgrade die alte .NET-Version bereinigt; die
 gemeinsame Logik deaktiviert diese automatische Bereinigung jetzt fuer
 kuenftige Laeufe, damit ein noch laufender PowerShell-Prozess seine
 Runtime-Dateien behaelt.
+Die Statistik-Generierung deckte danach einen getrennten Referenz-Pack-Defekt
+auf: Homebrew-PowerShell 7.6.7 zeigte ueber `opt/dotnet` noch auf .NET-10.0.12-
+Referenzen. Die gepruefte Paketvorschau und das begrenzte Upgrade auf die
+Homebrew-Revision `7.6.7_1` beheben diesen Defekt; `Add-Type` besteht danach.
+Die gemeinsame MSL-Logik prueft diese Engine-Faehigkeit bei Homebrew-.NET
+jetzt auch bei bereits aktueller Sprachversion. Nur ein echter Update-Lauf
+darf das vorhandene Homebrew-PowerShell-Paket reparieren; Vorschau, Vergleich
+und Skip-upgrade bleiben entsprechend begrenzt.
 
 Die isolierten Tests decken Release-Auswahl, PATH-Drift,
 Paketquellen-Rueckstand, Preview-Grenzen und Berichtskonsistenz ab.
-17 neue MSL-Tests bestehen; PSScriptAnalyzer 1.25.0 prueft 120 Dateien ohne
+18 neue MSL-Tests bestehen; PSScriptAnalyzer 1.25.0 prueft 120 Dateien ohne
 Error-/Warning-Befund. Documentation-Impact-Validierung, Secret-Scan und
 Skriptinventar-Pruefung sind erfolgreich. Die Constitution-Kopie und die
 fuenf gemeinsamen MSL-Guidance-Bloecke werden auf Gleichheit geprueft.
@@ -65,8 +73,8 @@ Skips). Unter Python 3.15 bleibt nach der Fixture-Isolation genau ein
 Wiederholung mit direktem Interpreter besteht in 2.149 Sekunden. Auch dort
 bleiben Deadline und Assertions erhalten. Die uebrigen 42 ausfuehrbaren
 Regressionstests bestehen im Python-3.15-Gesamtlauf.
-Die finale 17er-MSL-Suite besteht nach den letzten Codeaenderungen in
-28.314 Sekunden; die erneute Modul-Analyse meldet keine Befunde.
+Die finale 18er-MSL-Suite besteht nach den letzten Codeaenderungen in
+40.870 Sekunden; die erneute Modul-Analyse meldet keine Befunde.
 
 Der Benutzerblock stellt seine PATH-Prioritaet auch nach macOS `path_helper`
 wieder her, entfernt Duplikate und wird atomar ersetzt. Bash und Zsh pruefen
@@ -89,9 +97,12 @@ packages nor activation files. A fresh login shell and nine native smoke
 steps confirm all six languages. Apple's executables retain their original
 hashes and command resolution. Python 3.14 remains installed alongside 3.15.
 The first SDK upgrade cleaned up the old SDK; future runs disable automatic
-Homebrew cleanup to protect a running PowerShell runtime. Windows and Linux
+Homebrew cleanup to protect a running PowerShell runtime. PowerShell SDK
+references were repaired through Homebrew revision 7.6.7_1. Native Add-Type
+passes; shared maintenance now checks this engine capability and bounds any
+repair to the existing Homebrew PowerShell package. Windows and Linux
 still require their own native acceptance; Mac fixture tests do not provide
-that proof. Seventeen new tests and the pinned analyzer pass. Existing POSIX
+that proof. Eighteen new tests and the pinned analyzer pass. Existing POSIX
 fixtures now resolve their test interpreter directly to avoid repeated host
 launcher startup; functional assertions and timeouts remain unchanged. The
 56-case suite passes with Python 3.14, with 13 platform skips. Python 3.15
