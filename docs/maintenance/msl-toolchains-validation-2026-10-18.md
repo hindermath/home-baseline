@@ -117,6 +117,20 @@ Machine-local JSON reports retain the installation evidence.*
 
 ## Dokumentation und Distribution / Documentation and distribution
 
+Im ersten PR-CI-Lauf von [PR #334](https://github.com/hindermath/home-baseline/pull/334)
+findet die Windows-Regression einen fest vorgegebenen Slash im Swift-
+Launcher-Pfadvergleich. Der Vergleich verwendet jetzt das native
+`DirectorySeparatorChar`, passend zu `Join-Path`. Der fehlgeschlagene
+plattformuebergreifende Test bleibt unveraendert erhalten; der korrigierte
+Commit erhaelt einen vollstaendigen neuen CI-Lauf vor dem Merge. Dieser
+PR-Nachweis ist weiterhin keine Installation der MSL-Toolchains auf Windows.
+
+*The first PR CI run exposed a hard-coded slash in the Swift launcher path
+comparison on Windows. The comparison now uses the native separator matching
+Join-Path. The failing cross-platform test remains unchanged; the corrected
+commit receives a fresh complete CI run before merge. PR CI does not establish
+native Windows toolchain installation.*
+
 [Documentation Impact](msl-toolchains-documentation-impact.json):
 `UpdateRequired`. Code, Register, gemeinsame Guidance und Constitution-Kontext
 sind `homeRuntime`; Referenz und Nachweis werden im Level-0-Klon gelesen.

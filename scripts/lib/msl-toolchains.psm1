@@ -525,7 +525,7 @@ function Invoke-HBMslMaintenance {
                 $item.sourceVersion = $state.Source
                 $item.status = Get-HBMslStatus $probe.Version $state.Installed $state.Source $latest
                 $needsSwift = $definition['id'] -eq 'swift' -and $Platform -ne 'Windows' -and
-                    -not $probe.Executable.StartsWith((Join-Path $UserHome '.home-baseline/toolchains/bin') + '/')
+                    -not $probe.Executable.StartsWith((Join-Path $UserHome '.home-baseline/toolchains/bin') + [IO.Path]::DirectorySeparatorChar)
                 $activationOnly = $false
                 if ($needsSwift -and $item.status -eq 'Current') { $item.status = 'PathMismatch' }
                 if ($definition['id'] -eq 'swift' -and $Platform -ne 'Windows' -and
