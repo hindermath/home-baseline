@@ -556,7 +556,9 @@ Write-Output 'PASS'
         self.assertEqual(install["manager"], "swiftly")
         linux = install["linux"]
         self.assertEqual(linux["swiftlyVersion"], "1.1.2")
-        self.assertEqual(linux["swiftVersion"], "6.3.3")
+        self.assertEqual(linux["swiftVersion"], "latest-stable")
+        self.assertEqual({item["id"] for item in registry["mslToolchains"]},
+                         {"dotnet", "go", "java", "python", "rust", "swift"})
         self.assertEqual(
             linux["profiles"],
             {

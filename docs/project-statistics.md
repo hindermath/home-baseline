@@ -1426,6 +1426,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-18 | 14 README-Patch-Releases: Quellenbindung / Source binding | Alle 14 regulaeren Preset-Patches samt Tag-/Commit-/ZIP-SHA-256-Bindung, synchronen Profilen und Zielstand-Guidance. Getrennte Release-/Installed-Locks mit Drift-Negativtests; faehigkeitsgepruefte Python-Auswahl im Pakettestprozess. Paketinstallation ausschliesslich in temporaeren Tests; bestehende Installationen und Home Runtime bleiben unveraendert. Kein Community-Update, keine neue Produkt-/Risiko-/Rechtsfreigabe. [Nachweis / Evidence](maintenance/preset-readme-patch-releases-2026-10-18.md). / Verified documentation packages, independent release/installed bindings and scoped capable Python; rollout, runtime sync and community updates remain separate. |
 
+| 2026-10-18 | Stabile MSL-Host-Toolchains / Stable MSL host toolchains | Gemeinsame Release- und Wartungslogik fuer sechs MSL-Toolchains auf macOS, Linux und Windows; getrennte aktive, installierte, Paketquellen- und Hersteller-Versionen, begrenzter MSL-Modus und atomare Berichte. Mac A nativ auf .NET 10.0.402, Python 3.15.0 und Swift 6.4.1 aktualisiert; Go 1.27.2, Java 27 und Rust/Cargo 1.99.1 bestaetigt. Neun native Smoke-Schritte und idempotenter Wiederholungslauf erfolgreich. Windows/Linux nur Fixture-/Code-Pruefung; kein Remote- oder Flotten-Rollout. [Nachweis / Evidence](maintenance/msl-toolchains-validation-2026-10-18.md). / Shared stable-release maintenance, bounded Mac A updates and native proof; project pins and cross-host acceptance remain separate. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

@@ -11,6 +11,7 @@ NPM_AGENT_REGISTRY="$REPO_ROOT/scripts/config/npm-agent-cli-registry.json"
 POWERSHELL_MODULE_REGISTRY="$REPO_ROOT/scripts/config/powershell-modules-registry.json"
 LINUX_HARDENING="$REPO_ROOT/scripts/lib/linux-maintenance-hardening.py"
 DRY_RUN=0
+MSL_ONLY=0
 COMPARE_ONLY=0
 SKIP_UPGRADE=0
 INCLUDE_OPTIONAL=0
@@ -35,6 +36,7 @@ Verwendung / Usage: maintain-agentic-brew-apps.sh [OPTIONEN / OPTIONS]
 Optionen / Options:
   --dry-run             Paketaktionen nur anzeigen / preview package actions
   --compare-only        Nur Registry vergleichen / compare registry only
+  --msl-only            Nur sechs MSL-Toolchains / only the six MSL toolchains
   --registry PATH       Alternative Paket-Registry / alternative package registry
   --cli-registry PATH   Alternative Required-CLI-Registry
   --vscode-registry PATH
@@ -67,6 +69,9 @@ while [ "$#" -gt 0 ]; do
       ;;
     --compare-only)
       COMPARE_ONLY=1
+      ;;
+    --msl-only)
+      MSL_ONLY=1
       ;;
     --registry)
       if [ "$#" -lt 2 ] || [ -z "${2:-}" ]; then
@@ -146,6 +151,31 @@ while [ "$#" -gt 0 ]; do
   esac
   shift
 done
+
+if [ "$MSL_ONLY" -eq 1 ]; then
+  if ! command -v pwsh >/dev/null 2>&1; then
+    printf '%s\n' 'Fehler: PowerShell 7 (pwsh) fehlt fuer die gemeinsame MSL-Pruefung / PowerShell 7 is required.' >&2
+    if [ -n "$RESULT_FILE" ]; then
+      msl_mode=update
+      [ "$DRY_RUN" -eq 0 ] || msl_mode=dry-run
+      [ "$COMPARE_ONLY" -eq 0 ] || msl_mode=compare-only
+      mkdir -p -- "$(dirname -- "$RESULT_FILE")"
+      msl_temporary="$(mktemp "${RESULT_FILE}.msl.XXXXXX")"
+      printf '{"schemaVersion":"1.0","platform":"%s","mode":"%s","overallStatus":"FAILED","exitCode":2,"items":[],"remainingRequired":["msl-engine"],"optionalDrift":[],"nextAction":"PowerShell 7 installieren / install PowerShell 7.","failureClass":"MslEngineUnavailable"}\n' \
+        "$(uname -s)" "$msl_mode" > "$msl_temporary"
+      mv -- "$msl_temporary" "$RESULT_FILE"
+    fi
+    exit 2
+  fi
+  msl_args=(-NoProfile -File "$SCRIPT_DIR/lib/invoke-msl-toolchains.ps1"
+    -Registry "$CLI_REGISTRY" -PackageRegistry "$REGISTRY")
+  [ "$DRY_RUN" -eq 0 ] || msl_args+=(-WhatIf)
+  [ "$COMPARE_ONLY" -eq 0 ] || msl_args+=(-CompareOnly)
+  [ "$SKIP_UPGRADE" -eq 0 ] || msl_args+=(-SkipUpgrade)
+  [ "$ALLOW_ADMIN_PROMPTS" -eq 0 ] || msl_args+=(-AllowAdminPrompts)
+  [ -z "$RESULT_FILE" ] || msl_args+=(-ResultFile "$RESULT_FILE")
+  exec pwsh "${msl_args[@]}"
+fi
 
 if [ ! -f "$REGISTRY" ]; then
   echo "Fehler: Registry nicht gefunden: $REGISTRY" >&2
@@ -457,6 +487,9 @@ with open(registry_path, encoding="utf-8") as handle:
     data = json.load(handle)
 
 for item in data.get("tools", []):
+    # MSL commands and companions are evaluated together by the shared engine.
+    if data.get("mslToolchains") and item.get("mslToolchain"):
+        continue
     if scope != "all" and item.get("scope", "required") != scope:
         continue
     if os_name not in item.get("platforms", []):
@@ -547,10 +580,14 @@ try:
     data = json.load(sys.stdin)
 except (json.JSONDecodeError, TypeError, UnicodeDecodeError):
     data = {"formulae": []}
+with open(sys.argv[1], encoding="utf-8") as handle:
+    registry_names = {item["name"] for item in json.load(handle).get("formulae", [])}
 for formula in data.get("formulae", []):
     if any(item.get("installed_on_request") for item in formula.get("installed", [])):
-        print(formula["full_name"])
-'
+        aliases = set(formula.get("aliases", [])) | {formula["full_name"], formula.get("name", "")}
+        matched = sorted(aliases & registry_names)
+        print(matched[0] if matched else formula["full_name"])
+' "$REGISTRY"
 }
 
 installed_casks() {
@@ -676,7 +713,7 @@ with open(sys.argv[1], encoding="utf-8") as handle:
     registry = json.load(handle)
 for item in registry.get("tools", []):
     if item.get("id") == "swift":
-        print(item.get("install", {}).get("linux", {}).get("swiftVersion", ""))
+        print("" if registry.get("mslToolchains") else item.get("install", {}).get("linux", {}).get("swiftVersion", ""))
         break
 PY
     )"
@@ -1499,6 +1536,32 @@ fi
 
 maintain_powershell_modules
 
+# One shared version contract complements the legacy availability probes.
+# Alternative fixture registries without MSL metadata keep their old contract.
+msl_result="$WORK_DIR/msl-result.json"
+msl_status=0
+msl_expected=0
+if python3 - "$CLI_REGISTRY" <<'PY'
+import json, sys
+with open(sys.argv[1], encoding="utf-8") as handle:
+    sys.exit(0 if json.load(handle).get("mslToolchains") else 1)
+PY
+then
+  msl_expected=1
+  msl_args=(-NoProfile -File "$SCRIPT_DIR/lib/invoke-msl-toolchains.ps1"
+    -Registry "$CLI_REGISTRY" -PackageRegistry "$REGISTRY" -ResultFile "$msl_result")
+  [ "$DRY_RUN" -eq 0 ] || msl_args+=(-WhatIf)
+  [ "$COMPARE_ONLY" -eq 0 ] || msl_args+=(-CompareOnly)
+  [ "$SKIP_UPGRADE" -eq 0 ] || msl_args+=(-SkipUpgrade)
+  [ "$ALLOW_ADMIN_PROMPTS" -eq 0 ] || msl_args+=(-AllowAdminPrompts)
+  if command -v pwsh >/dev/null 2>&1; then
+    pwsh "${msl_args[@]}" || msl_status=$?
+  else
+    log "Fehler: PowerShell 7 fehlt fuer die MSL-Pruefung / PowerShell 7 is required for MSL checks."
+    msl_status=2
+  fi
+fi
+
 result_mode="update"
 [ "$DRY_RUN" -eq 1 ] && result_mode="dry-run"
 [ "$COMPARE_ONLY" -eq 1 ] && result_mode="compare-only"
@@ -1509,6 +1572,31 @@ python3 "$LINUX_HARDENING" summarize-results \
   --output "$RESULT_FILE" \
   --platform "$OS_NAME" \
   --mode "$result_mode" > "$summary_output" || result_status=$?
+if [ -f "$msl_result" ]; then
+  python3 - "$RESULT_FILE" "$msl_result" <<'PY'
+import json, os, sys
+target, msl_path = sys.argv[1:]
+with open(target, encoding="utf-8") as handle:
+    result = json.load(handle)
+with open(msl_path, encoding="utf-8") as handle:
+    msl = json.load(handle)
+result["mslToolchains"] = msl["mslToolchains"]
+result["remainingRequired"] += ["msl:" + item for item in msl["remainingRequired"]]
+result["exitCode"] = max(result["exitCode"], msl["exitCode"])
+if result["exitCode"]:
+    result["overallStatus"] = "FAILED" if result["exitCode"] == 2 else "PARTIAL"
+    result["nextAction"] = "Offene Toolchain-Befunde beheben / resolve toolchain findings."
+temporary = target + ".msl.tmp"
+with open(temporary, "w", encoding="utf-8") as handle:
+    json.dump(result, handle, ensure_ascii=False, indent=2)
+    handle.write("\n")
+os.replace(temporary, target)
+PY
+  [ "$msl_status" -le "$result_status" ] || result_status="$msl_status"
+elif [ "$msl_expected" -eq 1 ]; then
+  publish_failure_result "MslResultMissing"
+  result_status=2
+fi
 if python3 "$LINUX_HARDENING" inspect-result --input "$RESULT_FILE" >/dev/null; then
   RESULT_PUBLISHED=1
 else

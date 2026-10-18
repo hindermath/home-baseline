@@ -60,6 +60,9 @@ def empty_registries(root: Path) -> dict[str, Path]:
 def install_fake_brew(root: Path) -> tuple[Path, Path, Path]:
     bin_dir = root / "bin"
     bin_dir.mkdir()
+    # Resolve Python directly: host PATH launchers add a shell startup to each
+    # of the many JSON probes and can exhaust the fixture's process budget.
+    (bin_dir / "python3").symlink_to(sys.executable)
     state = root / "brew-state"
     log = root / "brew-install-log"
     state.write_text("", encoding="utf-8")
@@ -508,7 +511,6 @@ class LinuxMaintenanceHardeningTests(unittest.TestCase):
                 bin_dir, _, _ = install_fake_brew(root)
                 (bin_dir / "brew").unlink()
                 # Avoid Homebrew inherited through PATH even on macOS test hosts.
-                (bin_dir / "python3").symlink_to(sys.executable)
                 write_executable(bin_dir / "uname", "#!/bin/sh\nprintf 'Linux\\n'\n")
                 write_executable(bin_dir / "apt", "#!/bin/sh\nexit 0\n")
                 cargo_root = root / "cargo"
@@ -1024,6 +1026,10 @@ exit 2
         finalization_functions = source[start:end]
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            bin_dir = root / "bin"
+            bin_dir.mkdir()
+            (bin_dir / "python3").symlink_to(sys.executable)
+            environment = dict(os.environ, PATH=str(bin_dir) + os.pathsep + os.environ["PATH"])
             cases = (
                 ("TERM", signal.SIGTERM, 143, "INTERRUPTED"),
                 ("late-error", None, 1, "FAILED"),
@@ -1059,6 +1065,7 @@ exit 2
                     process = subprocess.Popen(
                         ["bash", str(harness)],
                         cwd=REPOSITORY,
+                        env=environment,
                         text=True,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT,

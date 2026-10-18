@@ -29,6 +29,14 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
 `--dry-run` and `-WhatIf` preview mutations. An interactive launch selects
 preview by default; redirected invocations remain headless.
 
+## Stable MSL toolchains
+
+The six host toolchains are checked against stable upstream releases.
+A current package does not by itself establish the active CLI version.
+Preview a bounded run with `bash scripts/maintain-agentic-brew-apps.sh --msl-only --dry-run`
+or PowerShell `-MslOnly -WhatIf`.
+[Sources, commands and proof limits](msl-toolchains.md).
+
 ## Document tools
 
 The toolchain stage maintains Pandoc, Typst CLI, and the Tinymist Typst VS Code

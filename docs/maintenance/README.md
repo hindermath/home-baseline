@@ -29,6 +29,14 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -WhatIf
 ausführen. `--dry-run` und `-WhatIf` zeigen geplante Mutationen. Ein interaktiver
 Start wählt die Vorschau standardmäßig; umgeleitete Aufrufe bleiben headless.
 
+## Stabile MSL-Toolchains
+
+Die sechs Host-Toolchains werden gegen stabile Hersteller-Releases geprueft.
+Ein aktuelles Paket allein bestaetigt nicht die gestartete CLI. Fuer einen
+begrenzten Lauf zuerst `bash scripts/maintain-agentic-brew-apps.sh --msl-only --dry-run`
+beziehungsweise PowerShell `-MslOnly -WhatIf` verwenden.
+[Quellen, Befehle und Pruefgrenzen](msl-toolchains.md).
+
 ## Dokumentwerkzeuge
 
 Die Toolchain-Stufe pflegt Pandoc, Typst CLI und die VS-Code-Erweiterung
