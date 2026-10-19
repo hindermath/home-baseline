@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "scope": "Level 0, Home Runtime and exactly TinyCalc, Show-CommandTui400, absdd-image-sandbox",
+  "records": [
+    {
+      "repository": "hindermath/home-baseline",
+      "delivery": {
+        "headRefOid": "423c8446eefd65afcb616e316f813fa4d0c97836",
+        "mergeCommit": {
+          "oid": "bd64c6076021200ea8a12f8d5a55b78b0e6decd1"
+        },
+        "mergedAt": "2026-10-18T20:57:25Z",
+        "number": 335,
+        "state": "MERGED",
+        "url": "https://github.com/hindermath/home-baseline/pull/335"
+      },
+      "mergeWorkflows": [
+        {
+          "conclusion": "success",
+          "databaseId": 39165658929,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/home-baseline/actions/runs/39165658929"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39165658964,
+          "name": "Assurance Preset Regression",
+          "status": "completed",
+          "url": "https://github.com/hindermath/home-baseline/actions/runs/39165658964"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39165658920,
+          "name": "Documentation and Learning Package",
+          "status": "completed",
+          "url": "https://github.com/hindermath/home-baseline/actions/runs/39165658920"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39165658930,
+          "name": "Release Please",
+          "status": "completed",
+          "url": "https://github.com/hindermath/home-baseline/actions/runs/39165658930"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39165658943,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/home-baseline/actions/runs/39165658943"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39165658924,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/home-baseline/actions/runs/39165658924"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/Show-CommandTui400",
+      "delivery": {
+        "headRefOid": "0e5bd526ae1a92ed6a7ed163339ab27cf40dde57",
+        "mergeCommit": {
+          "oid": "ce7188b43eec02a7d594a56aa58fc7b5d685faae"
+        },
+        "mergedAt": "2026-10-18T21:42:08Z",
+        "number": 51,
+        "state": "MERGED",
+        "url": "https://github.com/hindermath/Show-CommandTui400/pull/51"
+      },
+      "mergeWorkflows": [
+        {
+          "conclusion": "success",
+          "databaseId": 39169005545,
+          "name": "Level-2 Setup Validation",
+          "status": "completed",
+          "url": "https://github.com/hindermath/Show-CommandTui400/actions/runs/39169005545"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39169005494,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/Show-CommandTui400/actions/runs/39169005494"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39169005544,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/Show-CommandTui400/actions/runs/39169005544"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39169005464,
+          "name": "LH-01 Product Automation",
+          "status": "completed",
+          "url": "https://github.com/hindermath/Show-CommandTui400/actions/runs/39169005464"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/absdd-image-sandbox",
+      "delivery": {
+        "headRefOid": "1f73190c5ba6f89adf0a9c0515fc72f319d1e8dd",
+        "mergeCommit": {
+          "oid": "51af13d11e403ea7acdfc15bc928708df6f1f8a2"
+        },
+        "mergedAt": "2026-10-19T06:33:20Z",
+        "number": 95,
+        "state": "MERGED",
+        "url": "https://github.com/hindermath/absdd-image-sandbox/pull/95"
+      },
+      "mergeWorkflows": [
+        {
+          "conclusion": "success",
+          "databaseId": 39210594545,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/absdd-image-sandbox/actions/runs/39210594545"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39210594510,
+          "name": "Documentation and Sandbox Static Checks",
+          "status": "completed",
+          "url": "https://github.com/hindermath/absdd-image-sandbox/actions/runs/39210594510"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39210594526,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/absdd-image-sandbox/actions/runs/39210594526"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39210594570,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/absdd-image-sandbox/actions/runs/39210594570"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TinyCalc",
+      "delivery": {
+        "headRefOid": "00bb6b577f2e039f1178766459306fe21df51afe",
+        "mergeCommit": {
+          "oid": "98414a2dc9ec38439e84b3cec324caab7b237f0d"
+        },
+        "mergedAt": "2026-10-19T10:10:32Z",
+        "number": 111,
+        "state": "MERGED",
+        "url": "https://github.com/hindermath/TinyCalc/pull/111"
+      },
+      "mergeWorkflows": [
+        {
+          "conclusion": "skipped",
+          "databaseId": 39237400671,
+          "name": "Claude Code",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237400671"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39235544837,
+          "name": "Agent Secret Scan",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235544837"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39235544910,
+          "name": "Gitleaks",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235544910"
+        },
+        {
+          "conclusion": "failure",
+          "databaseId": 39235545135,
+          "name": "Homogeneity Check",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235545135"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39235544846,
+          "name": "Release Please",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235544846"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39235544968,
+          "name": "PowerShell Static Analysis",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235544968"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39235545107,
+          "name": "Maintenance TUI",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235545107"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 39235544972,
+          "name": "ci",
+          "status": "completed",
+          "url": "https://github.com/hindermath/TinyCalc/actions/runs/39235544972"
+        }
+      ]
+    }
+  ],
+  "homeRuntime": {
+    "commit": "ce842a620101c9f44f01c7469f665897806c6867",
+    "files": 12,
+    "force": false,
+    "checkOnly": "CURRENT after synchronization",
+    "newSyncForSourceOnlyCloseout": false
+  },
+  "technicalException": {
+    "repository": "hindermath/TinyCalc",
+    "check": "claude-review",
+    "authority": "Explicit human approval in this chat on 2026-10-19, including future TinyCalc provider failures",
+    "technicalChecksWaived": false,
+    "substantiveFindingsWaived": false,
+    "otherRepositoriesOrProvidersAuthorized": false
+  },
+  "historicalFailure": {
+    "repository": "hindermath/TinyCalc",
+    "mergeCommit": "98414a2dc9ec38439e84b3cec324caab7b237f0d",
+    "workflowUrl": "https://github.com/hindermath/TinyCalc/actions/runs/39235545135",
+    "reason": "Generated current-date statistics cutoff crossed from 2026-10-18 to 2026-10-19",
+    "followupPr": "https://github.com/hindermath/TinyCalc/pull/112",
+    "followupState": "MERGED; all seven exact-merge workflows succeeded"
+  },
+  "decisionBoundary": "Technical rollout only, no new product/risk/pilot/release/conformity/certification acceptance",
+  "communitySubmissions": false,
+  "widerFleet": false,
+  "remediation": {
+    "repository": "hindermath/TinyCalc",
+    "delivery": {
+      "headRefOid": "fcdb5ca7299fd850aea54bc5ff5ab7a5712c2722",
+      "mergeCommit": {
+        "oid": "45c66a2d5542bd3747e9523e5df661b160e57a61"
+      },
+      "mergedAt": "2026-10-19T10:25:52Z",
+      "number": 112,
+      "state": "MERGED",
+      "url": "https://github.com/hindermath/TinyCalc/pull/112"
+    },
+    "technicalPrChecks": 18,
+    "claudeProviderException": "Explicitly authorized standing TinyCalc-only exception; failure remains failure",
+    "changedPaths": [
+      "docs/project-statistics.md"
+    ],
+    "changedGeneratedLines": 4,
+    "configurationChanged": false,
+    "methodologyChanged": false,
+    "mergeWorkflows": [
+      {
+        "conclusion": "success",
+        "databaseId": 39237408026,
+        "name": "Gitleaks",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237408026"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 39237408378,
+        "name": "Agent Secret Scan",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237408378"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 39237408164,
+        "name": "Release Please",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237408164"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 39237407964,
+        "name": "Homogeneity Check",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237407964"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 39237408328,
+        "name": "PowerShell Static Analysis",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237408328"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 39237408196,
+        "name": "Maintenance TUI",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237408196"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 39237407972,
+        "name": "ci",
+        "status": "completed",
+        "url": "https://github.com/hindermath/TinyCalc/actions/runs/39237407972"
+      }
+    ]
+  },
+  "finalResult": "Technical bounded rollout delivered; source-only central documentation delivery recorded in its own PR",
+  "localPythonValidation": {
+    "firstAggregate": {
+      "tests": 335,
+      "skipped": 14,
+      "failures": 2,
+      "reason": "Dirty-tree CI-budget fixture path selection; no code change"
+    },
+    "cleanBaseRecheck": {
+      "tests": 2,
+      "failures": 0
+    },
+    "finalCleanAggregate": "Results recorded in this closeout delivery PR; never infer pass from a pending run"
+  }
+}
